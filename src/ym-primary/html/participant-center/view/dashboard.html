@@ -385,8 +385,10 @@
             <div class="hv-image" ng-init="hvImgsrc='pc-heartsville-static.png';" ng-mouseover="hvImgsrc='pc-heartsville-animated.gif';" ng-mouseout="hvImgsrc='pc-heartsville-static.png';">
               <img class="list-group" ng-src="../{{dev_branch != '' ? dev_branch+'/' : ''}}aha-luminate/dist/ym-primary/image/{{hvImgsrc}}" alt="Heartsville">
             </div>
-            <br/>
-            <a class="btn btn-lg btn-primary" href="javascript:void(0);"><strong>Coming Soon!</strong></a>
+            <br>
+            <a class="btn btn-lg btn-primary" href="javascript:void(0);">
+              <strong>Coming Soon!</strong>
+            </a>
           </div>
           <!-- <a class="entry-button" ng-href="https://hearttools.heart.org/aha_ym19{{tablePrefix == 'heartdev' ? '_dev' : ''}}/virtualworld/?fr_id={{frId}}&cons_id={{consId}}&name={{consName}}" target="_new">Enter World!</a> -->
           <!-- <div class="" ng-if="personalInfo.avatar != ''" ng-cloak>&nbsp;<img ng-src='{{personalInfo.avatar}}'></div> -->
@@ -879,8 +881,8 @@
       </div>
     </div>
   </section>
-	<div id="launch-builder-popup" class="launch-builder-popup" ng-if="heroPopup == true" ng-click="monsterEdit()" ng-cloak>
-	  <div class="launch-builder-character wink"></div>
-	  <div class="launch-builder-character pop"></div>
-	</div>
+  <div id="launch-builder-popup" class="launch-builder-popup" ng-if="heroPopup == true" ng-click="monsterEdit()" ng-cloak>
+    <div class="launch-builder-character wink"></div>
+    <div class="launch-builder-character pop"></div>
+  </div>
 </div>

@@ -1262,6 +1262,11 @@
 
       // begin StationaryV2 event conditional
       if (eventType2 === 'StationaryV2' ) {
+        var loDefaultGoal = $('#fr_team_goal').val();
+        if(loDefaultGoal){
+          goalPerBike =  Number(loDefaultGoal.replace(/[^0-9\.-]+/g,""));
+        }
+        
       // check to see if Start a Team and Breakaway ptypes are available
 
       // if Start a Team and Breakaway ptypes are not available, remove those registration options and display a sponsor code field on the reg options step
@@ -1427,7 +1432,7 @@
         .wrap('<div class="input-group" />')
         .before('<div class="input-group-prepend"><div class="input-group-text input-group-text pr-0 border-right-0 bg-white">$</div></div>')
         .attr({
-          "min": "1000",
+          "min": goalPerBike,
           "step": "100",
           "aria-label": "Goal amount (to the nearest dollar)",
           "data-parsley-validation-threshold": "1",
@@ -1480,7 +1485,7 @@
         $('form[name=FriendraiserFind]').removeAttr('hidden');
       }
 
-      if (eventType2 === 'Road') {
+      if (eventType2 === 'Road' || eventType2 === 'StationaryV2') {
         $('#team_find_page > form').parsley(teamFindParsleyConfig);
       }
 
