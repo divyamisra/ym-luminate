@@ -1497,6 +1497,11 @@
       // append session variable setting hidden input to track number of bikes selected so same value can be automatically selected in reg info step
       $('form[name="FriendraiserFind"]').prepend('<input type="hidden" class="js__numbikes" name="s_numBikes" value="">');
 
+      if($('body').data('numbikes')){
+        // If a session variable for number of bikes has already been set, prepopulate the js__numbikes input with that value so it isn't cleared out if the team create form errors out
+        $('.js__numbikes').val($('body').data('numbikes'));
+      }
+
       $('.dropdown-item').on('click', function (e) {
         e.preventDefault();
         var bikesSelected = $(this).data('numbikes');
@@ -1510,6 +1515,13 @@
         $('#fr_team_goal').val(currentTeamGoal);
         $('.js__show-team-details').prop('disabled', false);
       });
+
+      if($('.field-error-text').length > 0 && $('.field-error-text:contains("There is already a team registered with that name")').length > 0){
+        // append "join team" link in error message with s_regType=joinTeam session var 
+        var joinTeamLink = $('.field-error-text a');
+        var updatedJoinTeamLink = $(joinTeamLink).attr('href') + '&s_regType=joinTeam';
+        $(joinTeamLink).attr('href', updatedJoinTeamLink);
+      } 
 
       if (eventType2 === 'StationaryV2') {
         $('#team_find_new_fundraising_goal_input_hint').text('You can increase your team\'s goal, but the amount shown above is your team\'s required fundraising minimum.');
