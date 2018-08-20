@@ -125,7 +125,9 @@
                   '</strong><br>' +
                   participant.eventName + '<br>' +
                   ((participant.teamName !== null && participant.teamName !== undefined) ? participant.teamName + '<br>' : '') +
-                  '<a href="' + participant.personalPageUrl + '">Visit Personal Page</a></p></div><div class="col-xs-12 col-md-3 col-sm-4"><a class="button btn-primary btn-block btn-lg pull-right" href="' + participant.donationUrl + '">Donate</a>' + ((teamRegUrl !== null) ? '<a class="button btn-outline-dark btn-block btn-lg pull-right" href="' + teamRegUrl + ((participant.aTeamCaptain === 'true') ? '&s_captainConsId=' + participant.consId : '') + '&s_regType=joinTeam">Join Team</a>' : '') + '</div></div>'
+                  '<a href="' + participant.personalPageUrl + '" aria-label="Visit page for ' +
+                  participant.name.first + ' ' + participant.name.last +
+                  '">Visit Personal Page</a></p></div><div class="col-xs-12 col-md-3 col-sm-4"><a class="button btn-primary btn-block btn-lg pull-right" href="' + participant.donationUrl + '" aria-label="Donate to ' +  participant.name.first + ' ' + participant.name.last + '">Donate</a>' + ((teamRegUrl !== null) ? '<a class="button btn-outline-dark btn-block btn-lg pull-right" href="' + teamRegUrl + ((participant.aTeamCaptain === 'true') ? '&s_captainConsId=' + participant.consId : '') + '&s_regType=joinTeam" aria-label="Join ' +  participant.teamName + '">Join Team</a>' : '') + '</div></div>'
                 );
               });
               //add call to hook donate button with payment type selections
@@ -170,7 +172,7 @@
                   team.eventName + '<br>' +
                   'Team Captain: ' + team.captainFirstName + ' ' + team.captainLastName + '<br>' +
                   ((team.companyName !== null && team.companyName !== undefined) ? team.companyName + '<br>' : '') +
-                  '<a href="' + team.teamPageURL + '">Visit Team Page</a></p></div><div class="col-xs-12 col-sm-4 col-md-3"><a class="button btn-primary btn-block btn-lg pull-right" href="' + team.teamDonateURL + '">Donate</a><a class="button btn-outline-dark btn-block btn-lg pull-right" href="' + team.joinTeamURL + '&s_captainConsId=' + team.captainConsId +'&s_regType=joinTeam">Join Team</a></div></div>');
+                  '<a href="' + team.teamPageURL + '">Visit Team Page</a></p></div><div class="col-xs-12 col-sm-4 col-md-3"><a class="button btn-primary btn-block btn-lg pull-right" href="' + team.teamDonateURL + '" aria-label="Donate to ' +  team.name + '">Donate</a><a class="button btn-outline-dark btn-block btn-lg pull-right" href="' + team.joinTeamURL + '&s_captainConsId=' + team.captainConsId +'&s_regType=joinTeam" aria-label="Join ' +  team.name + '">Join Team</a></div></div>');
                 $('#team_results').removeAttr('hidden');
 
               });
@@ -211,7 +213,7 @@
                   '<div class="row pb-4"><div class="col-sm-12 col-sm-8"><p><strong>' +
                   company.companyName +
                   '</strong></p></div>' +
-                  '<div class="col-sm-12 col-sm-4"><a class="button btn-primary btn-block btn-lg pull-right" href="' + company.companyURL + '">Visit Company Page</a></div></div>'
+                  '<div class="col-sm-12 col-sm-4"><a class="button btn-primary btn-block btn-lg pull-right" href="' + company.companyURL + '" aria-label="Visit page for ' +  company.companyName + '">Visit Company Page</a></div></div>'
                 );
                 $('#company_results').removeAttr('hidden');
               });
@@ -341,9 +343,9 @@
                   eventLocation + '</span><span class="event-date d-block">' +
                   eventDate + '</span></p></div><div class="col-md-3 col-6"><a href="' +
                   greetingUrl +
-                  '" class="button btn-outline-dark btn-block btn-lg js__event-details">Details</a></div><div class="col-md-3 col-6">' +
+                  '" class="button btn-outline-dark btn-block btn-lg js__event-details" aria-label="Details for ' +  eventName +'">Details</a></div><div class="col-md-3 col-6">' +
                   (acceptsRegistration === 'true' ? '<a href="' +
-                    registerUrl + '" class="button btn-primary btn-block btn-lg js__event-register">Register</a>' : '<span class="d-block text-center">Registration is closed<br>but <a class="scroll-link" href="#fundraiserSearch">you can still donate</a></span>') +
+                    registerUrl + '" class="button btn-primary btn-block btn-lg js__event-register" aria-label="Register for ' +  eventName +'">Register</a>' : '<span class="d-block text-center">Registration is closed<br>but <a class="scroll-link" href="#fundraiserSearch">you can still donate</a></span>') +
                   '</div></li>';
 
                 $('.js__event-search-results').append(eventRow);
@@ -1235,10 +1237,13 @@
                 callback: {
                   success: function success(response) {
                     var captainArray = luminateExtend.utils.ensureArray(response.getTeamCaptainsResponse.captain);
+                    var joinTeamName = 'Join ' + captainArray[0].teamName;
+                    console.log('joinTeamName: ', joinTeamName);
                     captainConsId = captainArray[0].consId;
                     origJoinTeamUrl = $(self).find('.list-component-cell-column-join-link a').attr('href');
                     modJoinTeamUrl = origJoinTeamUrl + '&s_captainConsId=' + captainConsId;
-                    $(self).find('.list-component-cell-column-join-link a').attr('href', modJoinTeamUrl);
+                    
+                    $(self).find('.list-component-cell-column-join-link a').attr('href', modJoinTeamUrl).attr('aria-label', joinTeamName);
                   },
                   error: function error(response) {}
                 }
@@ -1262,6 +1267,11 @@
 
       // begin StationaryV2 event conditional
       if (eventType2 === 'StationaryV2' ) {
+        var loDefaultGoal = $('#fr_team_goal').val();
+        if(loDefaultGoal){
+          goalPerBike =  Number(loDefaultGoal.replace(/[^0-9\.-]+/g,""));
+        }
+        
       // check to see if Start a Team and Breakaway ptypes are available
 
       // if Start a Team and Breakaway ptypes are not available, remove those registration options and display a sponsor code field on the reg options step
@@ -1427,7 +1437,7 @@
         .wrap('<div class="input-group" />')
         .before('<div class="input-group-prepend"><div class="input-group-text input-group-text pr-0 border-right-0 bg-white">$</div></div>')
         .attr({
-          "min": "1000",
+          "min": goalPerBike,
           "step": "100",
           "aria-label": "Goal amount (to the nearest dollar)",
           "data-parsley-validation-threshold": "1",
@@ -1480,12 +1490,17 @@
         $('form[name=FriendraiserFind]').removeAttr('hidden');
       }
 
-      if (eventType2 === 'Road') {
+      if (eventType2 === 'Road' || eventType2 === 'StationaryV2') {
         $('#team_find_page > form').parsley(teamFindParsleyConfig);
       }
 
       // append session variable setting hidden input to track number of bikes selected so same value can be automatically selected in reg info step
       $('form[name="FriendraiserFind"]').prepend('<input type="hidden" class="js__numbikes" name="s_numBikes" value="">');
+
+      if($('body').data('numbikes')){
+        // If a session variable for number of bikes has already been set, prepopulate the js__numbikes input with that value so it isn't cleared out if the team create form errors out
+        $('.js__numbikes').val($('body').data('numbikes'));
+      }
 
       $('.dropdown-item').on('click', function (e) {
         e.preventDefault();
@@ -1500,6 +1515,13 @@
         $('#fr_team_goal').val(currentTeamGoal);
         $('.js__show-team-details').prop('disabled', false);
       });
+
+      if($('.field-error-text').length > 0 && $('.field-error-text:contains("There is already a team registered with that name")').length > 0){
+        // append "join team" link in error message with s_regType=joinTeam session var 
+        var joinTeamLink = $('.field-error-text a');
+        var updatedJoinTeamLink = $(joinTeamLink).attr('href') + '&s_regType=joinTeam';
+        $(joinTeamLink).attr('href', updatedJoinTeamLink);
+      } 
 
       if (eventType2 === 'StationaryV2') {
         $('#team_find_new_fundraising_goal_input_hint').text('You can increase your team\'s goal, but the amount shown above is your team\'s required fundraising minimum.');
@@ -2006,18 +2028,10 @@
 
     // ptype
     $('#part_type_selection_container').wrapInner('<fieldset role="radiogroup" class="ptype-selection" aria-labelledby="sel_type_container"/>');
-    
-    // $('input[name=fr_part_radio]').attr('aria-labelledby', 'sel_type_container');
-    
-    // wrap donation options in a fieldset with legend
-    // $('#part_type_additional_gift_container').wrapInner('<fieldset role="radiogroup" class="donation-form-fields" aria-lablledby="part_type_additional_gift_section_header"/>');
 
+    $('.donation-levels').before('<legend id="reg_donation_array_label" class="sr-only">Make a donation</legend>');
 
-    // $('#part_type_donation_level_input_container').wrapInner('<fieldset role="radiogroup" class="donation-form-fields" aria-lablledby="part_type_additional_gift_section_header"/>');
-    $('.donation-level-container').before('<legend id="reg_donation_label" class="sr-only">Make a donation</legend>');
-
-    $('#part_type_donation_level_input_container').wrapInner('<fieldset role="radiogroup" class="donation-form-fields" aria-labelledby="reg_donation_label"/>');
-    // $('.donation-level-container input[type=radio]').attr('aria-labelledby', 'reg_donation_label');
+    $('#part_type_donation_level_input_container').wrapInner('<fieldset role="radiogroup" class="donation-form-fields" aria-labelledby="reg_donation_array_label"/>');
 
     // associate ptype label with input
     $('.part-type-container label').each(function (i) {
@@ -2025,6 +2039,17 @@
       $(this).closest('.part-type-container').find('input[name="fr_part_radio"]').attr('id', ptypeOptionId);
     });
 
+    $('label[for="responsive_payment_typecc_exp_date_MONTH"] .label-text').text('Month:');
+    $('label[for="responsive_payment_typecc_exp_date_MONTH"]').insertBefore($('#responsive_payment_typecc_exp_date_MONTH'));
+
+    $('label[for="responsive_payment_typecc_exp_date_YEAR"]').append('<span class="label-text">Year: </span>');
+    $('label[for="responsive_payment_typecc_exp_date_YEAR"]').insertBefore($('#responsive_payment_typecc_exp_date_YEAR'));
+
+    $('#responsive_payment_typecc_exp_date_row .field-required').remove();
+    $('fieldset.cardExpGroup').prepend('<legend class="cc-legend">Credit Card Expires</legend>')
+    $('.cc-legend').prepend('<span class="field-required"></span>&nbsp;');
+
+    $('.payment-type-label').prepend('<span class="sr-only">Pay with PayPal</span>');
 
     // Reg
     $('label[for="cons_first_name"]').eq(0).remove();
@@ -2033,7 +2058,8 @@
 
     // paymentForm
     $('#responsive_payment_typepay_typeradio_payment_types').wrap('<fieldset />').prepend('<legend class="sr-only">Payment method:</legend>');
-    $('.cardExpGroup').prepend('<legend class="sr-only">Credit card expiration date</legend>');
+
+
 
     $('#find_hdr_container').replaceWith(function () {
       return '<h2 class="' + $(this).attr('class') + '" id="' + $(this).attr('id') + '">' + $(this).html() + '</h2>';
@@ -2094,7 +2120,7 @@
       // Add text above matching company label
       $('#donor_matching_employer_Row').prepend('<p><strong>Play matchmaker. Here&#8217;s how.</strong></p><ul><li>Find out if your employer participates in a matching gifts program, an easy way to increase your donation.</li><li>Just fill in your company&#8217;s details below.</li></ul>');
 
-      $('fieldset.cardExpGroup').prepend('<legend class="aural-only">Credit Card Expires</legend>');
+      // $('fieldset.cardExpGroup').prepend('<legend class="aural-only">Credit Card Expires</legend>');
 
       $('#level_flexible_row2').wrapInner('<fieldset></fieldset>');
       $('#level_flexible_row2 fieldset').prepend('<legend class="aural-only">Select Gift Amount</legend>');
