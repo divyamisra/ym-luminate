@@ -14,8 +14,8 @@
       <a class="btn pc-white-btn text-uppercase" href ng-click="sendGAEvent('Not Right Now - social lightbox'); notRightNow();">Not Right Now</a>
     </div>
     <div class="pull-right">
-      <a class="btn pc-white-btn text-uppercase" ng-if="device.isMobile && device.mobileType == 'android'" ng-href="https://play.google.com/store/apps/details?id=com.aha.cyclenation" ng-click="sendGAEvent('Go Social Android- social lightbox');">Get the App</a>
-      <a class="btn pc-white-btn text-uppercase" ng-if="device.isMobile && device.mobileType == 'ios'" ng-href="https://itunes.apple.com/us/app/cyclenation/id1155979191?mt=8" ng-click="sendGAEvent('Go Social ios - social lightbox');">Get the App</a>
+      <a class="btn pc-white-btn text-uppercase" ng-if="device.isMobile && device.mobileType == 'android'" ng-href="https://play.google.com/store/apps/details?id=com.aha.hw.communicator" ng-click="sendGAEvent('Go Social Android- social lightbox');">Get the App</a>
+      <a class="btn pc-white-btn text-uppercase" ng-if="device.isMobile && device.mobileType == 'ios'" ng-href="https://itunes.apple.com/us/app/heart-walk/id451276834?ls=1&mt=8" ng-click="sendGAEvent('Go Social ios - social lightbox');">Get the App</a>
       <a class="btn pc-white-btn text-uppercase" ng-if="!device.isMobile" ng-href="PageServer?pagename=heartwalk_fundraising_tools&amp;fr_id={{frId}}"  ng-click="sendGAEvent('Go Social - social lightbox');">Get the App</a>
     </div>
   </div>

@@ -571,9 +571,9 @@ angular.module 'trPcControllers'
 
       $scope.goSocial = ->
         if $rootScope.device.mobileType == 'android'
-          window.location = 'https://play.google.com/store/apps/details?id=com.aha.cyclenation'
+          window.location = 'https://play.google.com/store/apps/details?id=com.aha.hw.communicator'
         else if $rootScope.device.mobileType == 'ios'
-          window.location = 'https://itunes.apple.com/us/app/cyclenation/id1155979191?mt=8'
+          window.location = 'https://itunes.apple.com/us/app/heart-walk/id451276834?ls=1&mt=8'
         else
           window.location = 'PageServer?pagename=heartwalk_fundraising_tools&amp;pc2_page=center&amp;fr_id=' + $scope.frId + '#/social'
 
