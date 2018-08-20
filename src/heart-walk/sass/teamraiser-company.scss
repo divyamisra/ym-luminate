@@ -54,3 +54,27 @@
     margin: 20px 0 0;
   }
 }
+
+.paymentSelectType {
+  text-align: right;
+  display:none;
+}
+
+.paymentSelectWrapper {
+  display: inline-block;
+  padding:15px 0;
+  a {
+    display:block;
+    margin: 25px 0;
+  }
+}
+
+input:checked+.paymentSelectType {
+  display:block;
+}
+
+.heart-company-participant-list__metarow {
+   input[type=radio]{
+    display:none;
+  }
+}
