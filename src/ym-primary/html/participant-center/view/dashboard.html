@@ -337,6 +337,9 @@
           <h3 class="h5">
             Daily Heart-Healthy Challenge
           </h3>
+          <div class="ym_my_challenge__current" ng-if="personalChallenge.loadPending" ng-cloak>
+            Loading Your Challenge...
+          </div>
           <div class="ym_my_challenge__current" ng-if="personalChallenge.id && personalChallenge.id != '-1'" ng-cloak>
             <div class="row">
               <div class="col-sm-8">
