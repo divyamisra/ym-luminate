@@ -105,24 +105,34 @@
 					</h2>
                 </div>
                 <div class="col-md-6">
-                    <ul class="ym-tl-dollars-raised">
-                        <li class="ym-donor-list__row" ng-repeat="personalDonor in personalDonors.donors" role="listitem" ng-if="personalDonors.donors.length > 0" ng-cloak>
-                            <div class="clearfix">
-                                <span class="ym-donor-list__row--name">{{personalDonor.name}}</span>
-                                <span class="ym-donor-list__row--amount">{{personalDonor.amountFormatted}}</span>
+                    <div class="ym-tl-dollars-raised">
+                        <div class="row" ng-repeat="personalDonor in personalDonors.donors" role="listitem" ng-if="personalDonors.donors.length > 0" ng-cloak>
+                            <div class="span2">#{{$index +1}}1</div>
+                            <div class="span2">
+                                <div class="row-fluid">
+                                    <div class="span12">{{personalDonor.name}}</div>
+                                    <div class="span12">{{personalDonor.amountFormatted}}</div>
+                                    <div class="span12">span2</div>
+                                    <div class="span12">span2</div>
+                                </div>
                             </div>
-                        </li>
-                    </ul>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-md-6">
-                    <ul class="ym-tl-registered-students">
-                        <li class="ym-donor-list__row" ng-repeat="personalDonor in personalDonors.donors" role="listitem" ng-if="personalDonors.donors.length > 0" ng-cloak>
-                            <div class="clearfix">
-                                <span class="ym-donor-list__row--name">{{personalDonor.name}}</span>
-                                <span class="ym-donor-list__row--amount">{{personalDonor.amountFormatted}}</span>
+                    <div class="ym-tl-registered-students">
+                        <div class="row" ng-repeat="personalDonor in personalDonors.donors" role="listitem" ng-if="personalDonors.donors.length > 0" ng-cloak>
+                            <div class="span2">#{{$index +1}}1</div>
+                            <div class="span2">
+                                <div class="row-fluid">
+                                    <div class="span12">{{personalDonor.name}}</div>
+                                    <div class="span12">{{personalDonor.amountFormatted}}</div>
+                                    <div class="span12">span2</div>
+                                    <div class="span12">span2</div>
+                                </div>
                             </div>
-                        </li>
-                    </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
