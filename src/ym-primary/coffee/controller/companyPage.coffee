@@ -27,6 +27,8 @@ angular.module 'ahaLuminateControllers'
       $scope.activity1amt = ''
       $scope.activity2amt = ''
       $scope.activity3amt = ''
+      $scope.tlDollarsRaised = ''
+      $scope.tlRegisteredStudents = ''
       
       $scope.trustHtml = (html) ->
         return $sce.trustAsHtml(html)
@@ -331,5 +333,12 @@ angular.module 'ahaLuminateControllers'
                 $scope.companyPageContent.ng_rich_text = richText
                 $scope.companyPageContent.mode = 'view'
                 if not $scope.$$phase
-                  $scope.$apply()
+                  $scope.$apply()  
+      ###
+      BoundlessService.getLeaderboards $scope.companyId,
+        error: (response) ->
+        success: (response) ->
+          $scope.tlDollarsRaised = ''
+          $scope.tlRegisteredStudents = ''
+      ###
   ]
