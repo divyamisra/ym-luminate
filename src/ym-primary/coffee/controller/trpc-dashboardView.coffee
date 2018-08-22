@@ -501,12 +501,19 @@ angular.module 'trPcControllers'
           $scope.updatedPersonalChallenge.id = id
         if not $scope.$$phase
           $scope.$apply()
+          
+      errorCount = 0
       getStudentChallenge = ->
         if not $scope.personalChallenge
           $scope.personalChallenge = {}
         $scope.personalChallenge.updatePending = true
+        $scope.personalChallenge.loadPending = true
         ZuriService.getStudent $scope.frId + '/' + $scope.consId,
           failure: (response) ->
+            # if challenge not found - wait 3 secs and try again 10 times max
+            if errorCount < 10 && response.status == 404
+              errorCount++
+              setTimeout(getStudentChallenge,3000);
             delete $scope.personalChallenge.updatePending
             setPersonalChallenge()
           error: (response) ->
@@ -518,6 +525,7 @@ angular.module 'trPcControllers'
               setPersonalChallenge()
             else
               delete $scope.personalChallenge.updatePending
+              $scope.personalChallenge.loadPending = false
               id = personalChallenges.current
               if id is '0'
                 setPersonalChallenge()
