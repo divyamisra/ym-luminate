@@ -234,7 +234,7 @@
         <h2>My Achievements</h2>
         <p>Earn as you reach for your goal. Curious what badges you get? <a href="PageServer?pagename=heartwalk_fundraising_tools&amp;fr_id={{frId}}" ng-click="sendGAEvent('Badges - learn more');">Read more to learn all about achievement badges.</a></p>
         <ul class="heart_pc_achievements_badge_list">
-          <li class="heart_pc_achievements_badge_item" ng-if="userInteractions.donate == '1'">
+          <li class="heart_pc_achievements_badge_item" ng-if="isSelfDonor">
             <img src="../images/content/pagebuilder/heart-walk-personal-donation-no-text.svg" alt="You Made a Personal Donation badge">
             <span>I donated<br>towards my goal</span>
           </li>
