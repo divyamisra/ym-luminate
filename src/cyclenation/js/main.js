@@ -2249,6 +2249,15 @@
         $('#responsive_payment_typecc_cvvname').removeAttr('data-parsley-required');
       });
 
+      $('#pstep_finish').on('click', function (e) {
+          console.log('"Donate" button was clicked');
+          var rawPhoneNumber = $('#cell_or_phone_number_input').val();
+          console.log('Raw phone number is' + rawPhoneNumber);
+          var cleanPhoneNumber = rawPhoneNumber.replace(/[()-]/g,"");
+          cleanPhoneNumber = cleanPhoneNumber.replace(/\s/g,"");
+          console.log('Clean phone number is' + cleanPhoneNumber);
+          $('#cell_or_phone_number_input').val(cleanPhoneNumber);
+      });
 
     }
 
