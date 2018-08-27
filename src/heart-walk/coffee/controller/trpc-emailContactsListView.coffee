@@ -110,16 +110,17 @@ angular.module 'trPcControllers'
           .then (response) ->
             addressBookContacts = response.data.getTeamraiserAddressBookContactsResponse.addressBookContact
             addressBookContacts = [addressBookContacts] if not angular.isArray addressBookContacts
-            if (page==currentPage)
-              $scope.addressBookContacts.contacts = [];
-            angular.forEach addressBookContacts, (contact) ->
+            $scope.addressBookContacts.contacts = [];
+            i=0
+            while i < addressBookContacts.length
+              contact=addressBookContacts[i++]
               if contact?
                 contactString = getContactString contact
                 contactIndex = $rootScope.selectedContacts.contacts.indexOf contactString
                 contact.selected = contactIndex isnt -1
                 $scope.addressBookContacts.allContacts.push(contact);
                 if (index++ < numPerPage)
-                  $scope.addressBookContacts.contacts.push(contact);
+                  $scope.addressBookContacts.contacts.push(contact);                  
             $scope.addressBookContacts.totalNumber = response.data.getTeamraiserAddressBookContactsResponse.totalNumberResults
             response
         $scope.emailPromises.push contactsPromise
