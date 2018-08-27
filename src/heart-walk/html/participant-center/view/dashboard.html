@@ -119,7 +119,7 @@
             </div>
           </div>
 
-          <div class="col-sm-4 profile_box" ng-if="!hasBoundlessApp">
+          <div class="col-sm-4 profile_box" ng-if="hasBoundlessApp == 'FALSE'">
             <div class="profile_box_icon pull-left">
               <img class="mobile_app_icon" src="../images/content/pagebuilder/AHA-mobile-phone-A1A2A3.svg" alt="Mobile Phone Icon">
             </div>
@@ -132,7 +132,7 @@
               <a id="go_social" class="btn btn-primary" ng-if="!device.isMobile" ng-href="PageServer?pagename=heartwalk_fundraising_tools&amp;fr_id={{frId}}" ng-click="sendGAEvent('To do Desktop - mobile app download');">Get the Heart Walk App</a>
             </div>
           </div>
-          <div class="col-sm-4 profile_box" ng-if="hasBoundlessApp">
+          <div class="col-sm-4 profile_box" ng-if="hasBoundlessApp == 'TRUE'">
             <div class="profile_box_icon pull-left">
               <i class="fa fa-check"></i>
             </div>
@@ -234,7 +234,7 @@
         <h2>My Achievements</h2>
         <p>Earn as you reach for your goal. Curious what badges you get? <a href="PageServer?pagename=heartwalk_fundraising_tools&amp;fr_id={{frId}}" ng-click="sendGAEvent('Badges - learn more');">Read more to learn all about achievement badges.</a></p>
         <ul class="heart_pc_achievements_badge_list">
-          <li class="heart_pc_achievements_badge_item" ng-if="isSelfDonor">
+          <li class="heart_pc_achievements_badge_item" ng-if="isSelfDonor == 'TRUE'">
             <img src="../images/content/pagebuilder/heart-walk-personal-donation-no-text.svg" alt="You Made a Personal Donation badge">
             <span>I donated<br>towards my goal</span>
           </li>
