@@ -203,3 +203,14 @@
     }
   }
 }
+
+div.responsive {
+  .cons-info-question-container {
+      border: 1px solid transparent;
+      padding: 3px;
+      margin-right: 4px;
+  }
+  div.ErrorMessage>span.field-error-indicator {
+    display:none;
+  }
+}
