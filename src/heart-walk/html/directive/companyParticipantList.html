@@ -21,6 +21,9 @@
       </a>
     </div>
   </div>
+  <div ng-if="!participants.length" style="display:table-cell;vertical-align:middle;height:90px;text-align:middle;">
+    <p class="no-result">Your search "{{searchCompanyParticipants.lastSearch}}" did not return any results.</p>
+  </div>
   <div class="heart-company-participant-list__body" ng-if="participants.length > 0 && isOpen">
     <div ng-repeat="participant in participants track by $index" class="heart-company-participant-list__metarow">
       <div class="heart-company-participant-list__row">
