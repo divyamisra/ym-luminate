@@ -3,5 +3,5 @@ angular.module 'ahaLuminateControllers'
     '$scope'
     'SchoolSearchService'
     ($scope, SchoolSearchService) ->
-      SchoolSearchService.init $scope, 'Middle School'
+      SchoolSearchService.init $scope, 'American Heart Challenge'
   ]
