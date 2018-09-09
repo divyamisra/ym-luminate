@@ -123,12 +123,14 @@ angular.module 'trPcControllers'
                 contactIndex = $rootScope.selectedContacts.contacts.indexOf contactString
                 contact.selected = contactIndex isnt -1
                 $scope.addressBookContacts.allContacts.push(contact);
-                if (page==currentPage)
-                  $scope.addressBookContacts.contacts.push(contact);
+                if (page === currentPage || (page===-1 & idx<$scope.addressBookContacts.numPerPage))
+                  $scope.addressBookContacts.contacts.push(contact)
             contact=addressBookContacts.shift()
+            idx=0
             while contact
               process contact
               contact=addressBookContacts.shift()
+              idx++
             $scope.addressBookContacts.totalNumber = response.data.getTeamraiserAddressBookContactsResponse.totalNumberResults
             if ( $scope.addressBookContacts.totalNumber >  $scope.addressBookContacts.allContacts.length )
               $scope.getContacts(page+1);
