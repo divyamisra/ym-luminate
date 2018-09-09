@@ -118,7 +118,7 @@ angular.module 'trPcControllers'
                 contactIndex = $rootScope.selectedContacts.contacts.indexOf contactString
                 contact.selected = contactIndex isnt -1
                 $scope.addressBookContacts.allContacts.push(contact);
-                if (page === currentPage || (page===-1 & idx<$scope.addressBookContacts.numPerPage))
+                if (page == currentPage || (page==-1 & idx<$scope.addressBookContacts.numPerPage))
                   $scope.addressBookContacts.contacts.push(contact)
               contact=addressBookContacts.shift()
               while contact
@@ -129,10 +129,10 @@ angular.module 'trPcControllers'
               if ( $scope.addressBookContacts.totalNumber >  $scope.addressBookContacts.allContacts.length )
                 $scope.getContacts(page+1);
               response
-            else
-              while (idx < numPerPage)
-                 $scope.addressBookContacts.contacts.push($scope.addressBookContacts.allContacts[idx+(numPerPage*currentPage)]);
-                 idx++
+        else
+          while (idx < numPerPage)
+             $scope.addressBookContacts.contacts.push($scope.addressBookContacts.allContacts[idx+(numPerPage*currentPage)]);
+             idx++
         $scope.emailPromises.push contactsPromise
       $scope.getContacts(true)
 
