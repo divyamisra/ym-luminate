@@ -104,17 +104,20 @@ angular.module 'trPcControllers'
       $scope.getContacts = (page) ->
         if !page 
           $scope.addressBookContacts.allContacts = [];
-          page=0;
+          page=-1
+          pager=''
+        else
+          pager='&list_page_size=' + numPerPage + '&list_page_offset=' + page;
         currentPage = $scope.addressBookContacts.page - 1
         numPerPage = $scope.addressBookContacts.numPerPage
-        requestData = 'tr_ab_filter=' + $scope.filter + '&skip_groups=true&list_page_size=' + numPerPage + '&list_page_offset=' + page
+        requestData = 'tr_ab_filter=' + $scope.filter + '&skip_groups=true' + pager
         contactsPromise = ContactService.getTeamraiserAddressBookContacts requestData
           .then (response) ->
             addressBookContacts = response.data.getTeamraiserAddressBookContactsResponse.addressBookContact
             addressBookContacts = [addressBookContacts] if not angular.isArray addressBookContacts
             if (page==currentPage)
               $scope.addressBookContacts.contacts = [];
-            angular.forEach addressBookContacts, (contact) ->
+           process=(contact) ->
               if contact?
                 contactString = getContactString contact
                 contactIndex = $rootScope.selectedContacts.contacts.indexOf contactString
@@ -122,6 +125,10 @@ angular.module 'trPcControllers'
                 $scope.addressBookContacts.allContacts.push(contact);
                 if (page==currentPage)
                   $scope.addressBookContacts.contacts.push(contact);
+            contact=addressBookContacts.shift()
+            while contact
+              process contact
+              contact=addressBookContacts.shift()
             $scope.addressBookContacts.totalNumber = response.data.getTeamraiserAddressBookContactsResponse.totalNumberResults
             if ( $scope.addressBookContacts.totalNumber >  $scope.addressBookContacts.allContacts.length )
               $scope.getContacts(page+1);
