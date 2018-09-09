@@ -107,7 +107,7 @@ angular.module 'trPcControllers'
         numPerPage = $scope.addressBookContacts.numPerPage
         requestData = 'tr_ab_filter=' + $scope.filter + '&skip_groups=true'
         $scope.addressBookContacts.contacts = []
-        if (!refresh)
+        if (refresh)
           $scope.addressBookContacts.allContacts = [];
           contactsPromise = ContactService.getTeamraiserAddressBookContacts requestData
             .then (response) ->
@@ -118,7 +118,7 @@ angular.module 'trPcControllers'
                 contactIndex = $rootScope.selectedContacts.contacts.indexOf contactString
                 contact.selected = contactIndex isnt -1
                 $scope.addressBookContacts.allContacts.push(contact);
-                if (page == currentPage || (page==-1 & idx<$scope.addressBookContacts.numPerPage))
+                if (Math.floor(idx/numPerPage) == currentPage)
                   $scope.addressBookContacts.contacts.push(contact)
               contact=addressBookContacts.shift()
               while contact
