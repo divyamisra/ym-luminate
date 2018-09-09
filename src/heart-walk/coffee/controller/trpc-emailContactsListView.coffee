@@ -116,8 +116,8 @@ angular.module 'trPcControllers'
             addressBookContacts = response.data.getTeamraiserAddressBookContactsResponse.addressBookContact
             addressBookContacts = [addressBookContacts] if not angular.isArray addressBookContacts
             if (page==currentPage)
-              $scope.addressBookContacts.contacts = [];
-           process=(contact) ->
+              $scope.addressBookContacts.contacts = []
+            process=(contact) ->
               if contact?
                 contactString = getContactString contact
                 contactIndex = $rootScope.selectedContacts.contacts.indexOf contactString
