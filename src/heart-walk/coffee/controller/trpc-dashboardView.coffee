@@ -1540,11 +1540,20 @@ angular.module 'trPcControllers'
             updateUrlPromise = TeamraiserShortcutURLService.updateTeamShortcut dataStr
               .then (response) ->
                 if response.data.errorResponse
-                  $scope.editPageUrlOptions.updateUrlFailure = true
-                  $scope.editPageUrlOptions.updateUrlFailureMessage = response.data.errorResponse.message or 'An unexpected error occurred while updating your team page URL.'
+                  if $scope.editPageUrlOptions.updateUrlInput isnt $scope.prevTeamShortcut.text
+                    $scope.editPageUrlOptions.updateUrlFailure = true;
+                    return $scope.editPageUrlOptions.updateUrlFailureMessage = response.data.errorResponse.message or 'An unexpected error occurred while updating your personal page URL.';
+                  else
+                    updateUrlPromise = TeamraiserShortcutURLService.updateTeamShortcut("text=",$rootScope.prevFrIdForShortcut)
+                      .then (response) ->
+                        if (response.data.errorResponse)
+                          $scope.editPageUrlOptions.updateUrlFailure = true
+                          return $scope.editPageUrlOptions.updateUrlFailureMessage = response.data.errorResponse.message or 'An unexpected error occurred while updating your personal page URL.';
+                        else
+                          $scope.updatePageUrl("Team")
                 else
                   $scope.editPageUrlModal.close()
-                  $scope.getTeamShortcut()
+                  $scope.getParticipantTeamShortcut()
             $scope.dashboardPromises.push updateUrlPromise
 
       if $scope.participantRegistration.teamId and $scope.participantRegistration.teamId isnt '-1'
