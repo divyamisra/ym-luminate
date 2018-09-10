@@ -219,7 +219,6 @@ angular.module 'trPcControllers'
       $scope.getSurveyResponses = ->
         getSurveyResponsesPromise = TeamraiserSurveyResponseService.getSurveyResponses()
           .then (response) ->
-
             surveyResponses = response.data.getSurveyResponsesResponse.responses
             surveyResponses = [surveyResponses] if not angular.isArray surveyResponses
             angular.forEach surveyResponses, (surveyResponse) ->
@@ -282,8 +281,8 @@ angular.module 'trPcControllers'
 
                 if thisField.questionKey isnt 'no_key_assigned'
                   $scope.sqvm.surveyFields.push thisField
-                  if surveyResponse.responseValue is 'User Provided No Response'
-                    $scope.sqvm.surveyModel[thisField.questionKey] = null
+                  if surveyResponse.responseValue is 'User Provided No Response' or not angular.isString surveyResponse.responseValue 
+                    $scope.sqvm.surveyModel[thisField.questionKey] = ''
                   else
                     $scope.sqvm.surveyModel[thisField.questionKey] = surveyResponse.responseValue
 
@@ -320,7 +319,7 @@ angular.module 'trPcControllers'
       $scope.resetSurveyAlerts()
 
       $scope.updateTellUsWhy = ($event) ->
-        $scope.updateSurveyResponses($event)
+        $scope.updateSurveyResponses $event
 
       logUserInt = (subject, body) ->
         ConstituentService.logInteraction 'interaction_type_id='+ $rootScope.interactionTypeId + '&interaction_subject=' + subject + '&interaction_body=' + body
@@ -634,7 +633,7 @@ angular.module 'trPcControllers'
 
       $scope.updateEditYears = ($event) ->
         $scope.LByearsProfileModal.close()
-        $scope.updateSurveyResponses($event)
+        $scope.updateSurveyResponses $event
         $timeout ->
           reCheckProfileItems()
         , 250
@@ -692,7 +691,7 @@ angular.module 'trPcControllers'
 
       $scope.updateEditSurvivor = ($event) ->
         $scope.LBsurvivorModal.close()
-        $scope.updateSurveyResponses($event)
+        $scope.updateSurveyResponses $event
 
       $scope.editTeamName = ->
         $scope.editTeamNameModal = $uibModal.open
