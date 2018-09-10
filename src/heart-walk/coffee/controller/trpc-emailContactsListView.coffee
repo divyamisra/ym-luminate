@@ -240,7 +240,7 @@ angular.module 'trPcControllers'
       $scope.addContactsToGroup = ->
         $scope.resetAddContactsToGroup()
         selectedContacts = []
-        angular.forEach $scope.addressBookContacts.contacts, (contact) ->
+        angular.forEach $scope.addressBookContacts.allContacts, (contact) ->
           if contact?.selected
             selectedContacts.push contact.id
         $scope.addContactGroupForm.contactIds = selectedContacts.join ','
@@ -564,8 +564,7 @@ angular.module 'trPcControllers'
       if not $rootScope.selectedContacts?.contacts
         $scope.resetSelectedContacts()
       
-      $scope.toggleContact = (contactId) ->
-        contact = getContactById contactId
+      $scope.toggleContact = (contact) ->
         contactData = getContactString contact
         contactIndex = $rootScope.selectedContacts.contacts.indexOf contactData
         if contactIndex is -1 and contact.selected
@@ -584,7 +583,7 @@ angular.module 'trPcControllers'
         angular.forEach $scope.addressBookContacts.allContacts, (contact) ->
           if contact.selected isnt selectToggle
             contact.selected = selectToggle
-            $scope.toggleContact contact.id
+            $scope.toggleContact contact
         $scope.contactsSelected.all selectToggle
       
       $scope.clearEditContactAlerts = ->

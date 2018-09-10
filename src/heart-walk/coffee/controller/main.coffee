@@ -16,4 +16,6 @@ angular.module 'ahaLuminateControllers'
       angular.element('#ProcessForm .external-payment').on 'click', (e) ->
         if not angular.element(e.target).is '#responsive_payment_typepay_typeradiopaypal'
           angular.element('#responsive_payment_typepay_typeradiopaypal').click().keypress()
+          
+      angular.element('label span.input-label:contains(By submitting the information requested in this form)').closest('.survey-question-container').addClass("att_id").hide();
   ]

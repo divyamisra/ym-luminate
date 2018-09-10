@@ -337,6 +337,9 @@
           <h3 class="h5">
             Daily Heart-Healthy Challenge
           </h3>
+          <div class="ym_my_challenge__current" ng-if="personalChallenge.loadPending" ng-cloak>
+            Loading Your Challenge...
+          </div>
           <div class="ym_my_challenge__current" ng-if="personalChallenge.id && personalChallenge.id != '-1'" ng-cloak>
             <div class="row">
               <div class="col-sm-8">
@@ -386,9 +389,12 @@
               <img class="list-group" ng-src="../{{dev_branch != '' ? dev_branch+'/' : ''}}aha-luminate/dist/ym-primary/image/{{hvImgsrc}}" alt="Heartsville">
             </div>
             <br>
-            <a class="btn btn-lg btn-primary" href="javascript:void(0);">
-              <strong>Coming Soon!</strong>
+            <a class="btn btn-lg btn-primary" ng-href="https://hearttools.heart.org/aha_ym19{{tablePrefix == 'heartdev' ? '_dev' : ''}}/virtualworld/?fr_id={{frId}}&cons_id={{consId}}&name={{consNameFirst}}" target="_new">
+              <strong>Enter World!</strong>
             </a>
+            <!-- <a class="btn btn-lg btn-primary" href="javascript:void(0);">
+              <strong>Coming Soon!</strong>
+            </a> -->
           </div>
           <!-- <a class="entry-button" ng-href="https://hearttools.heart.org/aha_ym19{{tablePrefix == 'heartdev' ? '_dev' : ''}}/virtualworld/?fr_id={{frId}}&cons_id={{consId}}&name={{consName}}" target="_new">Enter World!</a> -->
           <!-- <div class="" ng-if="personalInfo.avatar != ''" ng-cloak>&nbsp;<img ng-src='{{personalInfo.avatar}}'></div> -->
@@ -830,7 +836,7 @@
     </div>
     <div class="ym-pc-dashboard-spread-options">
       <div class="row">
-        <div class="col-sm-4">
+        <div class="col-sm-6">
           <div class="ym-pc-dashboard-section-header">
             <h3 class="h5">
               Download Mobile App
@@ -848,33 +854,18 @@
             </a>
           </div>
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-6">
           <div class="ym-pc-dashboard-section-header">
             <h3 class="h5">
-              Facebook Fundraising
+              Social Share
             </h3>
           </div>
           <p>
-            Use our Facebook app to raise even more!
+            Share on Facebook, Twitter, LinkedIn and event text messaging!
           </p>
           <div class="text-center">
-            <a ng-href="https://apps.facebook.com/bf-ahajumpxii/add/user/{{consId}}/{{frId}}/ParticipantCenter" target="_blank">
-              <img ng-src="../{{dev_branch != '' ? dev_branch+'/' : ''}}aha-luminate/dist/youth-markets/image/fundraise-with-facebook.png" alt="Fundraise with Facebook">
-            </a>
-          </div>
-        </div>
-        <div class="col-sm-4">
-          <div class="ym-pc-dashboard-section-header">
-            <h3 class="h5">
-              Email Badge
-            </h3>
-          </div>
-          <p>
-            Download an email badge!
-          </p>
-          <div class="text-center">
-            <a class="btn btn-md-wide btn-secondary" ng-href="PageServer?pagename=reus_bf_email_badge&amp;trID={{frId}}" target="_blank">
-              <strong>Download Email Badge</strong> 
+            <a class="btn btn-md-wide btn-secondary" ng-href="{{baseUrl}}#/social">
+              <strong>Go Social</strong> 
             </a>
           </div>
         </div>
