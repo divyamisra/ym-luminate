@@ -1568,6 +1568,17 @@ angular.module 'trPcControllers'
                   , 500
             $scope.dashboardPromises.push getTeamShortcutPromise
           $scope.getTeamShortcut()
+          $scope.getPrevTeamShortcut = ()->
+            getPrevShortcutPromise = TeamraiserShortcutURLService.getTeamShortcut($rootScope.prevFrIdForShortcut)
+              .then (response) ->
+                if response.data.errorResponse
+                  # TODO
+                else
+                  shortcutItem = response.data.getShortcutResponse.shortcutItem
+                  if shortcutItem
+                    $scope.prevTeamShortcut = shortcutItem
+            $scope.dashboardPromises.push getPrevShortcutPromise
+          $scope.getPrevTeamShortcut()
 
       if $scope.participantRegistration.companyInformation and $scope.participantRegistration.companyInformation.companyId and $scope.participantRegistration.companyInformation.companyId isnt -1
         if $scope.participantRegistration.companyInformation?.isCompanyCoordinator isnt 'true'
