@@ -110,7 +110,7 @@ angular.module 'trPcControllers'
                           $scope.updatePageUrl("Team")
                 else
                   $scope.editPageUrlModal.close()
-                  $scope.getParticipantTeamShortcut()
+                  $scope.getTeamShortcut()
             $scope.dashboardPromises.push updateUrlPromise
       
       if $scope.participantRegistration.teamId and $scope.participantRegistration.teamId isnt '-1' and $scope.participantRegistration.aTeamCaptain is 'true'
@@ -128,4 +128,16 @@ angular.module 'trPcControllers'
                   $scope.teamPageUrl = shortcutItem.defaultUrl.replace('www.', '').split('/site/')[0] + '/site/TR?fr_id=' + $scope.frId + '&pg=team&team_id=' + $scope.participantRegistration.teamId
           $scope.editPagePromises.push getTeamShortcutPromise
         $scope.getTeamShortcut()
+        $scope.getPrevTeamShortcut = ()->
+          getPrevShortcutPromise = TeamraiserShortcutURLService.getTeamShortcut($rootScope.prevFrIdForShortcut)
+            .then (response) ->
+              if response.data.errorResponse
+                # TODO
+              else
+                shortcutItem = response.data.getTeamShortcutResponse.shortcutItem
+                if shortcutItem
+                  $scope.prevTeamShortcut = shortcutItem
+          $scope.dashboardPromises.push getPrevShortcutPromise
+        $scope.getPrevTeamShortcut()
+
   ]

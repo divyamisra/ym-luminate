@@ -1553,7 +1553,7 @@ angular.module 'trPcControllers'
                           $scope.updatePageUrl("Team")
                 else
                   $scope.editPageUrlModal.close()
-                  $scope.getParticipantTeamShortcut()
+                  $scope.getTeamShortcut()
             $scope.dashboardPromises.push updateUrlPromise
 
       if $scope.participantRegistration.teamId and $scope.participantRegistration.teamId isnt '-1'
@@ -1583,7 +1583,7 @@ angular.module 'trPcControllers'
                 if response.data.errorResponse
                   # TODO
                 else
-                  shortcutItem = response.data.getShortcutResponse.shortcutItem
+                  shortcutItem = response.data.getTeamShortcutResponse.shortcutItem
                   if shortcutItem
                     $scope.prevTeamShortcut = shortcutItem
             $scope.dashboardPromises.push getPrevShortcutPromise
@@ -1611,3 +1611,4 @@ angular.module 'trPcControllers'
             $scope.dashboardPromises.push getCompanyShortcutPromise
           $scope.getCompanyShortcut()
   ]
+  
