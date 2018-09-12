@@ -1069,9 +1069,9 @@
                 /* email already exists */
                 cd.consRetrieveLogin(email, false);
                 $('.js__signup-error-message').html('Oops! An account already exists with matching information. A password reset has been sent to ' + email + '.');
-              } else if(response.errorResponse.code === '22'){ 
+              } else if(response.errorResponse.code === '22'){
                 $('.js__signup-error-message').html("One or more attributes failed validation: \"Biographical Information/User Name\" Invalid characters in User Name (valid characters are letters, digits, '-', '_', '@', '.', '%', and ':')");
-              
+
             } else {
                 $('.js__signup-error-message').html(response.errorResponse.message);
               }
@@ -1223,14 +1223,14 @@
 
           // append cons ID to the join team button
           if($('#team_find_search_results_container').length > 0) {
-            
+
             var teamRows = $('.list-component-row');
             $.each( teamRows, function(i, teamRow) {
               var captainConsId, origJoinTeamUrl, modJoinTeamUrl;
               var self = $(this);
               var origTeamNameUrl = $(this).find('.list-component-cell-column-team-name a').attr('href');
               var teamId = getURLParameter(origTeamNameUrl, 'team_id');
-              
+
               luminateExtend.api({
                 api: 'teamraiser',
                 data: 'method=getTeamCaptains&response_format=json&fr_id=' + evID + '&team_id=' + teamId,
@@ -1242,7 +1242,7 @@
                     captainConsId = captainArray[0].consId;
                     origJoinTeamUrl = $(self).find('.list-component-cell-column-join-link a').attr('href');
                     modJoinTeamUrl = origJoinTeamUrl + '&s_captainConsId=' + captainConsId;
-                    
+
                     $(self).find('.list-component-cell-column-join-link a').attr('href', modJoinTeamUrl).attr('aria-label', joinTeamName);
                   },
                   error: function error(response) {}
@@ -1262,7 +1262,7 @@
       var currentTeamGoal, currentTeamGoalFormatted, minTeamGoalMsg;
       var loTeamGoal = $('#fr_team_goal');
       var promoCode =  ($('body').data('promocode')!==undefined ? $('body').data('promocode') : "");
-     
+
       // tfind
 
       // begin StationaryV2 event conditional
@@ -1271,7 +1271,7 @@
         if(loDefaultGoal){
           goalPerBike =  Number(loDefaultGoal.replace(/[^0-9\.-]+/g,""));
         }
-        
+
       // check to see if Start a Team and Breakaway ptypes are available
 
       // if Start a Team and Breakaway ptypes are not available, remove those registration options and display a sponsor code field on the reg options step
@@ -1299,7 +1299,7 @@
                   var participationTypes = luminateExtend.utils.ensureArray(response.getParticipationTypesResponse.participationType);
                   // var promoPtypeLoaded = false;
                   $(participationTypes).each(function (i, ptype) {
-                      // There is no promo code in session 
+                      // There is no promo code in session
                       if(ptype.participationTypeRegistrationLimit && ptype.participationTypeRegistrationLimit.limitReached === 'false'){
                         // Publicly available ptypes are available
                         // ptype has a limit and it has NOT been reached
@@ -1312,14 +1312,14 @@
                             isBreakawayAvailable = true;
                           }
                         }
-                      } 
+                      }
 
                       // if(promo){
-                      // promo is loaded 
+                      // promo is loaded
                       if(promo && ptype.promoCodeRequired === "true"){
                         console.log('promo code only ptype available');
                         // promo code is valid
-                        
+
                           if(ptype.name.indexOf('Start a Team') > -1){
                             if(ptype.participationTypeRegistrationLimit.limitReached === 'false'){
                               isStartTeamAvailable = true;
@@ -1335,7 +1335,7 @@
                           }
                         validPromo = true;
 
-                        // } 
+                        // }
                       } else {
                         // promo code is inavlid
                         console.log('set promo to validPromo');
@@ -1357,7 +1357,7 @@
                   }
                   if(isBreakawayAvailable === true){
                     $('.breakaway-container').show();
-                  } 
+                  }
 
                   if(promoCodePtypesAvailable){
                     console.log('promoCode ptypes are available and loaded');
@@ -1389,7 +1389,7 @@
                   }
 
                   $('.join-team-container').show();
-                } 
+                }
               },
               error: function (response) {
                 console.log(response.errorResponse.message);
@@ -1517,11 +1517,11 @@
       });
 
       if($('.field-error-text').length > 0 && $('.field-error-text:contains("There is already a team registered with that name")').length > 0){
-        // append "join team" link in error message with s_regType=joinTeam session var 
+        // append "join team" link in error message with s_regType=joinTeam session var
         var joinTeamLink = $('.field-error-text a');
         var updatedJoinTeamLink = $(joinTeamLink).attr('href') + '&s_regType=joinTeam';
         $(joinTeamLink).attr('href', updatedJoinTeamLink);
-      } 
+      }
 
       if (eventType2 === 'StationaryV2') {
         $('#team_find_new_fundraising_goal_input_hint').text('You can increase your team\'s goal, but the amount shown above is your team\'s required fundraising minimum.');
@@ -1548,7 +1548,7 @@
 
             // Hide and disable participation types that don't apply to this particular registration path
             $(this).parent().find('input[type=radio]').attr('aria-hidden', 'true').prop('checked', false).prop('disabled', true);
-            
+
             if(ptypeName.indexOf('VIP') > -1) {
               $(this).closest('.part-type-container').addClass('vip-ptype-container');
             } else if(ptypeName.indexOf('Breakaway') > -1) {
@@ -2210,10 +2210,8 @@
       $('#billing_addr_zipname')
         .attr('data-parsley-required', '')
         .attr('data-parsley-required-message', 'Zip Code is required')
-        .attr('data-parsley-type', 'number')
-        .attr('data-parsley-type-message', 'Zip Code must be a number')
-        .attr('data-parsley-maxlength', '7')
-        .attr('data-parsley-maxlength-message', 'Zip Code  cannot be more than 7 characters');
+        .attr('data-parsley-maxlength', '10')
+        .attr('data-parsley-maxlength-message', 'Zip Code cannot be more than 10 characters');
 
       $('#responsive_payment_typecc_numbername')
         .attr('data-parsley-required', '')
@@ -2251,6 +2249,12 @@
         $('#responsive_payment_typecc_cvvname').removeAttr('data-parsley-required');
       });
 
+      $('#pstep_finish').on('click', function (e) {
+          var rawPhoneNumber = $('#cell_or_phone_number_input').val();
+          var cleanPhoneNumber = rawPhoneNumber.replace(/[()-]/g,"");
+          cleanPhoneNumber = cleanPhoneNumber.replace(/\s/g,"");
+          $('#cell_or_phone_number_input').val(cleanPhoneNumber);
+      });
 
     }
 
