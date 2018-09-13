@@ -1540,8 +1540,17 @@ angular.module 'trPcControllers'
             updateUrlPromise = TeamraiserShortcutURLService.updateTeamShortcut dataStr
               .then (response) ->
                 if response.data.errorResponse
-                  $scope.editPageUrlOptions.updateUrlFailure = true
-                  $scope.editPageUrlOptions.updateUrlFailureMessage = response.data.errorResponse.message or 'An unexpected error occurred while updating your team page URL.'
+                  if $scope.editPageUrlOptions.updateUrlInput isnt $scope.prevTeamShortcut.text
+                    $scope.editPageUrlOptions.updateUrlFailure = true;
+                    return $scope.editPageUrlOptions.updateUrlFailureMessage = response.data.errorResponse.message or 'An unexpected error occurred while updating your personal page URL.';
+                  else
+                    updateUrlPromise = TeamraiserShortcutURLService.updateTeamShortcut("text=",$rootScope.prevFrIdForShortcut)
+                      .then (response) ->
+                        if (response.data.errorResponse)
+                          $scope.editPageUrlOptions.updateUrlFailure = true
+                          return $scope.editPageUrlOptions.updateUrlFailureMessage = response.data.errorResponse.message or 'An unexpected error occurred while updating your personal page URL.';
+                        else
+                          $scope.updatePageUrl("Team")
                 else
                   $scope.editPageUrlModal.close()
                   $scope.getTeamShortcut()
@@ -1568,6 +1577,17 @@ angular.module 'trPcControllers'
                   , 500
             $scope.dashboardPromises.push getTeamShortcutPromise
           $scope.getTeamShortcut()
+          $scope.getPrevTeamShortcut = ()->
+            getPrevShortcutPromise = TeamraiserShortcutURLService.getTeamShortcut($rootScope.prevFrIdForShortcut)
+              .then (response) ->
+                if response.data.errorResponse
+                  # TODO
+                else
+                  shortcutItem = response.data.getTeamShortcutResponse.shortcutItem
+                  if shortcutItem
+                    $scope.prevTeamShortcut = shortcutItem
+            $scope.dashboardPromises.push getPrevShortcutPromise
+          $scope.getPrevTeamShortcut()
 
       if $scope.participantRegistration.companyInformation and $scope.participantRegistration.companyInformation.companyId and $scope.participantRegistration.companyInformation.companyId isnt -1
         if $scope.participantRegistration.companyInformation?.isCompanyCoordinator isnt 'true'
@@ -1591,3 +1611,4 @@ angular.module 'trPcControllers'
             $scope.dashboardPromises.push getCompanyShortcutPromise
           $scope.getCompanyShortcut()
   ]
+  
