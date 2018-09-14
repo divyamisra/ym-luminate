@@ -1587,7 +1587,6 @@ angular.module 'trPcControllers'
                   if shortcutItem
                     $scope.prevTeamShortcut = shortcutItem
             $scope.dashboardPromises.push getPrevShortcutPromise
-//          $scope.getPrevTeamShortcut()
 
       if $scope.participantRegistration.companyInformation and $scope.participantRegistration.companyInformation.companyId and $scope.participantRegistration.companyInformation.companyId isnt -1
         if $scope.participantRegistration.companyInformation?.isCompanyCoordinator isnt 'true'

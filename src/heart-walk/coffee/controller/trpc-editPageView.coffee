@@ -138,6 +138,5 @@ angular.module 'trPcControllers'
                 if shortcutItem
                   $scope.prevTeamShortcut = shortcutItem
           $scope.dashboardPromises.push getPrevShortcutPromise
-//        $scope.getPrevTeamShortcut()
 
   ]
