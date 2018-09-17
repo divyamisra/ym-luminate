@@ -97,7 +97,7 @@ angular.module 'trPcControllers'
             updateUrlPromise = TeamraiserShortcutURLService.updateTeamShortcut dataStr
               .then (response) ->
                 if response.data.errorResponse
-                  if $scope.editPageUrlOptions.updateUrlInput isnt $scope.prevTeamShortcut.text
+                  if $scope.getPrevTeamShortcut && ($scope.editPageUrlOptions.updateUrlInput != $scope.prevTeamShortcut.text)
                     $scope.editPageUrlOptions.updateUrlFailure = true;
                     return $scope.editPageUrlOptions.updateUrlFailureMessage = response.data.errorResponse.message or 'An unexpected error occurred while updating your personal page URL.';
                   else
@@ -138,6 +138,5 @@ angular.module 'trPcControllers'
                 if shortcutItem
                   $scope.prevTeamShortcut = shortcutItem
           $scope.dashboardPromises.push getPrevShortcutPromise
-        $scope.getPrevTeamShortcut()
 
   ]
