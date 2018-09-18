@@ -57,35 +57,6 @@ module.exports = {
     }
   },
   
-  "jump-hoops": {
-    files: {
-      'dist/jump-hoops/js/main.js': [
-        'src/jump-hoops/coffee/init.coffee',
-        'src/jump-hoops/coffee/config/*.*',
-        '!src/jump-hoops/coffee/config/trpc-*.*',
-        'src/global/coffee/service/*.*',
-        '!src/global/coffee/service/trpc-*.*',
-        'src/youth-markets/coffee/service/*.*',
-        'src/youth-markets/coffee/controller/*.*',
-        '!src/youth-markets/coffee/service/trpc-*.*',
-        'src/jump-hoops/coffee/service/*.*',
-        '!src/jump-hoops/coffee/service/trpc-*.*',
-        'src/global/coffee/directive/*.*',
-        'src/jump-hoops/coffee/directive/*.*',
-        '!src/jump-hoops/coffee/directive/trpc-*.*',
-        'src/jump-hoops/coffee/**/*.*',
-        '!src/jump-hoops/coffee/**/trpc-*.*'
-      ],
-      'dist/jump-hoops/js/participant.js': [
-        'src/jump-hoops/coffee/trpc-init.coffee',
-        'src/jump-hoops/coffee/config/trpc-*.*',
-        'src/global/coffee/service/trpc-*.*',
-        'src/youth-markets/coffee/service/trpc-*.*',
-        'src/jump-hoops/coffee/**/trpc-*.*'
-      ]
-    }
-  },
-  
   "ym-primary": {
     files: {
       'dist/ym-primary/js/main.js': [
