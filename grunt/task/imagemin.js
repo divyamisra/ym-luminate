@@ -44,19 +44,6 @@ module.exports = {
     ]
   }, 
   
-  "jump-hoops": {
-    files: [
-      {
-        expand: true, 
-        cwd: 'src/jump-hoops/image/', 
-        src: [
-          '*.{gif,GIF,jpg,JPG,png,PNG,svg,SVG}'
-        ], 
-        dest: 'dist/jump-hoops/image/'
-      }
-    ]
-  }, 
-  
   "ym-primary": {
     files: [
       {

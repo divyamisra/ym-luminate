@@ -31,19 +31,6 @@ module.exports = {
     ]
   }, 
   
-  "jump-hoops": {
-    files: [
-      {
-        src: 'dist/jump-hoops/css/main.css', 
-        dest: 'dist/jump-hoops/css/main.'+ '<%= timestamp %>' +'.min.css'
-      }, 
-      {
-        src: 'dist/jump-hoops/css/participant.css', 
-        dest: 'dist/jump-hoops/css/participant.'+'<%= timestamp %>'+'.min.css'
-      }
-    ]
-  }, 
-  
   "ym-primary": {
     files: [
       {
