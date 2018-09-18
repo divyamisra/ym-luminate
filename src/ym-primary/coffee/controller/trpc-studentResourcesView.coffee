@@ -5,7 +5,7 @@ angular.module 'trPcControllers'
     ($scope, PageBuilderService) ->
       PageBuilderService.getPageContent 'reus_ym_khc_student_resources', ''
         .then (response) ->
-          pageContent = response.data.pageContent
+          pageContent = response.data
           if pageContent
             $scope.pageContent = pageContent
 ]
