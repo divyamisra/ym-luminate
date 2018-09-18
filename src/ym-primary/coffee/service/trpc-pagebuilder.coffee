@@ -18,7 +18,7 @@ angular.module 'trPcApp'
             dataString += '&' + additionalArguments
           $http
             method: 'GET'
-            url: 'SPageServer?' + dataString
+            url: (location.protocol == "https:" ? 'S' : '') + 'PageServer?' + dataString
             headers:
               'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
           .then (response) ->
