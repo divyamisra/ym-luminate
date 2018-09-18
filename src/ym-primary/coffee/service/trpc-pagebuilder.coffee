@@ -16,9 +16,12 @@ angular.module 'trPcApp'
           dataString += '&pb_page_name=' + pbPageName if pbPageName
           if additionalArguments
             dataString += '&' + additionalArguments
+          pageserver = "PageServer"
+          if location.protocol == "https:"
+            pageserver = "SPageServer"
           $http
             method: 'GET'
-            url: ((location.protocol == "https:") ? 'SPageServer?' : 'PageServer?') + dataString
+            url: pageserver + '?' + dataString
             headers:
               'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
           .then (response) ->
