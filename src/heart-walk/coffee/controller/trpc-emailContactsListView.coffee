@@ -101,30 +101,27 @@ angular.module 'trPcControllers'
       $scope.$watchGroup ['addressBookContacts.contacts', 'contactsUpdated'], () ->
         $scope.refreshSelectedContacts()
 
-      $scope.getContacts = (page) ->
-        if !page 
-          $scope.addressBookContacts.allContacts = [];
-          page=0;
-        currentPage = $scope.addressBookContacts.page - 1
+      $scope.getContacts = () ->
+        $scope.addressBookContacts.allContacts = [];
+        index = 0
         numPerPage = $scope.addressBookContacts.numPerPage
-        requestData = 'tr_ab_filter=' + $scope.filter + '&skip_groups=true&list_page_size=' + numPerPage + '&list_page_offset=' + page
+        requestData = 'tr_ab_filter=' + $scope.filter + '&skip_groups=true'
         contactsPromise = ContactService.getTeamraiserAddressBookContacts requestData
           .then (response) ->
             addressBookContacts = response.data.getTeamraiserAddressBookContactsResponse.addressBookContact
             addressBookContacts = [addressBookContacts] if not angular.isArray addressBookContacts
-            if (page==currentPage)
-              $scope.addressBookContacts.contacts = [];
-            angular.forEach addressBookContacts, (contact) ->
+            $scope.addressBookContacts.contacts = [];
+            i=0
+            while i < addressBookContacts.length
+              contact=addressBookContacts[i++]
               if contact?
                 contactString = getContactString contact
                 contactIndex = $rootScope.selectedContacts.contacts.indexOf contactString
                 contact.selected = contactIndex isnt -1
                 $scope.addressBookContacts.allContacts.push(contact);
-                if (page==currentPage)
-                  $scope.addressBookContacts.contacts.push(contact);
+                if (index++ < numPerPage)
+                  $scope.addressBookContacts.contacts.push(contact);                  
             $scope.addressBookContacts.totalNumber = response.data.getTeamraiserAddressBookContactsResponse.totalNumberResults
-            if ( $scope.addressBookContacts.totalNumber >  $scope.addressBookContacts.allContacts.length )
-              $scope.getContacts(page+1);
             response
         $scope.emailPromises.push contactsPromise
       $scope.getContacts()
