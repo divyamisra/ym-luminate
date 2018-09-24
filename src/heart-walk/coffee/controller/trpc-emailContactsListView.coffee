@@ -101,30 +101,40 @@ angular.module 'trPcControllers'
       $scope.$watchGroup ['addressBookContacts.contacts', 'contactsUpdated'], () ->
         $scope.refreshSelectedContacts()
 
-      $scope.getContacts = () ->
-        $scope.addressBookContacts.allContacts = [];
-        index = 0
+      $scope.getContacts = (refresh) ->
+        idx=0
+        currentPage = $scope.addressBookContacts.page - 1
         numPerPage = $scope.addressBookContacts.numPerPage
         requestData = 'tr_ab_filter=' + $scope.filter + '&skip_groups=true'
-        contactsPromise = ContactService.getTeamraiserAddressBookContacts requestData
-          .then (response) ->
-            addressBookContacts = response.data.getTeamraiserAddressBookContactsResponse.addressBookContact
-            addressBookContacts = [addressBookContacts] if not angular.isArray addressBookContacts
-            $scope.addressBookContacts.contacts = [];
-            i=0
-            while i < addressBookContacts.length
-              contact=addressBookContacts[i++]
-              if contact?
+        $scope.addressBookContacts.contacts = []
+        if (refresh)
+          $scope.addressBookContacts.allContacts = [];
+          contactsPromise = ContactService.getTeamraiserAddressBookContacts requestData
+            .then (response) ->
+              addressBookContacts = response.data.getTeamraiserAddressBookContactsResponse.addressBookContact
+              addressBookContacts = [addressBookContacts] if not angular.isArray addressBookContacts
+              process=(contact) ->
                 contactString = getContactString contact
                 contactIndex = $rootScope.selectedContacts.contacts.indexOf contactString
                 contact.selected = contactIndex isnt -1
                 $scope.addressBookContacts.allContacts.push(contact);
-                if (index++ < numPerPage)
-                  $scope.addressBookContacts.contacts.push(contact);                  
-            $scope.addressBookContacts.totalNumber = response.data.getTeamraiserAddressBookContactsResponse.totalNumberResults
-            response
+                if (Math.floor(idx/numPerPage) == currentPage)
+                  $scope.addressBookContacts.contacts.push(contact)
+              contact=addressBookContacts.shift()
+              while contact
+                process contact
+                contact=addressBookContacts.shift()
+                idx++
+              $scope.addressBookContacts.totalNumber = response.data.getTeamraiserAddressBookContactsResponse.totalNumberResults
+              if ( $scope.addressBookContacts.totalNumber >  $scope.addressBookContacts.allContacts.length )
+                $scope.getContacts(page+1);
+              response
+        else
+          while (idx < numPerPage)
+             $scope.addressBookContacts.contacts.push($scope.addressBookContacts.allContacts[idx+(numPerPage*currentPage)]);
+             idx++
         $scope.emailPromises.push contactsPromise
-      $scope.getContacts()
+      $scope.getContacts(true)
 
       $scope.showDeleteGroup = false
       $scope.getGroups = ->
@@ -222,7 +232,7 @@ angular.module 'trPcControllers'
                     $scope.addContactSuccess = translationId
                 closeAddContactModal()
                 refreshContactsNavBar()
-                $scope.getContacts()
+                $scope.getContacts(true)
               response
           $scope.emailPromises.push addContactPromise
 
@@ -507,7 +517,7 @@ angular.module 'trPcControllers'
                 $scope.importContactsSuccess = true
                 closeImportContactsModal()
                 refreshContactsNavBar()
-                $scope.getContacts()
+                $scope.getContacts(true)
       
       $scope.uploadContactsCSV = ->
         angular.element('.js--import-contacts-csv-form').submit()
@@ -640,7 +650,7 @@ angular.module 'trPcControllers'
                 closeEditContactModal()
                 window.scrollTo 0, 0
                 refreshContactsNavBar()
-                $scope.getContacts()
+                $scope.getContacts(true)
               response
           $scope.emailPromises.push updateContactPromise
       
@@ -689,7 +699,7 @@ angular.module 'trPcControllers'
               closeDeleteContactModal()
               window.scrollTo 0, 0
               refreshContactsNavBar()
-              $scope.getContacts()
+              $scope.getContacts(true)
               response
           $scope.emailPromises.push deleteContactPromise
       
