@@ -75,8 +75,8 @@ angular.module 'trPcControllers'
                       name: choice.label
                       value: choice.value
                 $scope.sqvm.surveyFields.push thisField
-                if surveyResponse.responseValue is 'User Provided No Response'
-                  $scope.sqvm.surveyModel[thisField.key] = null
+                if surveyResponse.responseValue is 'User Provided No Response' or not angular.isString surveyResponse.responseValue 
+                  $scope.sqvm.surveyModel[thisField.key] = ''
                 else if thisField.type is 'datepicker'
                   fieldValue = surveyResponse.responseValue.split "-"
                   $scope.sqvm.surveyModel[thisField.key] = new Date parseInt(fieldValue[0]), parseInt(fieldValue[1])-1, parseInt(fieldValue[2]), parseInt(fieldValue[3].split(":")[0]), parseInt(fieldValue[3].split(":")[1])
