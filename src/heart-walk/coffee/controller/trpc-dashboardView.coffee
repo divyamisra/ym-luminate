@@ -400,7 +400,7 @@ angular.module 'trPcControllers'
               if $rootScope.isSelfDonor is 'TRUE' and $scope.userInteractions.donate is 0
                 $scope.userInteractions.donate = 1
                 logUserInt 'donate', $scope.frId
-              if $rootScope.hasBoundlessApp is 'true' and $scope.userInteractions.social is 0
+              if $rootScope.hasBoundlessApp is true and $scope.userInteractions.social is 0
                 $scope.userInteractions.social = 1
                 logUserInt 'social', $scope.frId
               if $scope.messageCounts.sentMessages > 0 and $scope.userInteractions.email is 0
@@ -1540,7 +1540,7 @@ angular.module 'trPcControllers'
             updateUrlPromise = TeamraiserShortcutURLService.updateTeamShortcut dataStr
               .then (response) ->
                 if response.data.errorResponse
-                  if $scope.editPageUrlOptions.updateUrlInput isnt $scope.prevTeamShortcut.text
+                  if $scope.getPrevTeamShortcut && ($scope.editPageUrlOptions.updateUrlInput != $scope.prevTeamShortcut.text)
                     $scope.editPageUrlOptions.updateUrlFailure = true;
                     return $scope.editPageUrlOptions.updateUrlFailureMessage = response.data.errorResponse.message or 'An unexpected error occurred while updating your personal page URL.';
                   else
@@ -1587,7 +1587,6 @@ angular.module 'trPcControllers'
                   if shortcutItem
                     $scope.prevTeamShortcut = shortcutItem
             $scope.dashboardPromises.push getPrevShortcutPromise
-          $scope.getPrevTeamShortcut()
 
       if $scope.participantRegistration.companyInformation and $scope.participantRegistration.companyInformation.companyId and $scope.participantRegistration.companyInformation.companyId isnt -1
         if $scope.participantRegistration.companyInformation?.isCompanyCoordinator isnt 'true'

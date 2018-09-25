@@ -23,17 +23,6 @@ module.exports = {
     }
   }, 
   
-  "jump-hoops": {
-    files: {
-      'dist/jump-hoops/css/main.css': [
-        'src/jump-hoops/sass/main.scss'
-      ], 
-      'dist/jump-hoops/css/participant.css': [
-        'src/jump-hoops/sass/participant.scss'
-      ]
-    }
-  }, 
-  
   "ym-primary": {
     files: {
       'dist/ym-primary/css/main.css': [

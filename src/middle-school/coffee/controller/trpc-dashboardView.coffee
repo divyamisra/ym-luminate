@@ -117,7 +117,7 @@ angular.module 'trPcControllers'
       
       $scope.emailChallenge = {}
       setEmailSampleText = ->
-        sampleText = 'Hello! I am excited to be participating in the American Heart Association\'s Middle School Program! It is their mission to improve lives of all Americans, by providing public health education and research. Some of those ways are happening right here in my own school!\n\n' + 
+        sampleText = 'Hello! I am excited to be participating in the American Heart Association\'s American Heart Challenge Program! It is their mission to improve lives of all Americans, by providing public health education and research. Some of those ways are happening right here in my own school!\n\n' + 
         'Please help me reach my fundraising goal'
         if not $scope.personalGoalInfo or not $scope.personalGoalInfo.goal or $scope.personalGoalInfo.goal is ''
           sampleText += ', '
@@ -367,6 +367,7 @@ angular.module 'trPcControllers'
                   $scope.personalPageUrl = shortcutItem.url
                 else
                   $scope.personalPageUrl = shortcutItem.defaultUrl.split('/site/')[0] + '/site/TR?fr_id=' + $scope.frId + '&pg=personal&px=' + $scope.consId
+                $scope.personalPageUrlEsc = window.encodeURIComponent($scope.personalPageUrl)
             response
         $scope.dashboardPromises.push getParticipantShortcutPromise
       $scope.getParticipantShortcut()
