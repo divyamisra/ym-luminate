@@ -34,7 +34,6 @@ jQuery(document).ready(function(){
 
 function addPaymentOptions() {
 	var applePayLink = "";
-	var hideApplePay = (jQuery.getCustomQuerystring(location.href,"showapplepay") == "true" ? "" : "hidden" );
 
 	if (jQuery('a#sidebar_donate_button').length > 0) {
 		var fr_id = jQuery.getCustomQuerystring(location.href,"fr_id");
@@ -45,7 +44,7 @@ function addPaymentOptions() {
 		if (jQuery('body.pg_personal').length > 0) {
 			var dlink = jQuery('a#sidebar_donate_button').attr("href");
 			if (location.href.indexOf("showapplepay=true") > 0) {
-				applePayLink = "<a href='"+default_path+"/site/SPageNavigator/cyclenation_donate_applepay.html?FR_ID="+fr_id+"&mfc_pref=T&PROXY_ID="+px+"&PROXY_TYPE=20' class='applepay "+hideApplePay+"'><img src='https://www2.heart.org/donation-forms-braintree/donatenow/images/DonateBlack_32pt_@2x.png' alt='ApplePay'/></a>";
+				applePayLink = "<a href='"+default_path+"/site/SPageNavigator/cyclenation_donate_applepay.html?FR_ID="+fr_id+"&mfc_pref=T&PROXY_ID="+px+"&PROXY_TYPE=20' class='applepay'><img src='https://www2.heart.org/donation-forms-braintree/donatenow/images/DonateBlack_32pt_@2x.png' alt='ApplePay'/></a>";
 			}
 
 			var html = "<div class='paymentSelType text-center hidden'><h3>How would you like to donate?</h3>" +
@@ -64,7 +63,7 @@ function addPaymentOptions() {
 		if (jQuery('body.pg_team').length > 0) {
 			var dlink = jQuery('a#sidebar_donate_button').attr("href");
 			if (location.href.indexOf("showapplepay=true") > 0) {
-				applePayLink = "<a href='"+default_path+"/site/SPageNavigator/cyclenation_donate_applepay.html?FR_ID="+fr_id+"&mfc_pref=T&PROXY_ID="+teamid+"&PROXY_TYPE=22' class='applepay "+hideApplePay+"'><img src='https://www2.heart.org/donation-forms-braintree/donatenow/images/DonateBlack_32pt_@2x.png' alt='ApplePay'/></a>";
+				applePayLink = "<a href='"+default_path+"/site/SPageNavigator/cyclenation_donate_applepay.html?FR_ID="+fr_id+"&mfc_pref=T&PROXY_ID="+teamid+"&PROXY_TYPE=22' class='applepay'><img src='https://www2.heart.org/donation-forms-braintree/donatenow/images/DonateBlack_32pt_@2x.png' alt='ApplePay'/></a>";
 			}
   			var html = "<div class='paymentSelType text-center hidden'><h3>How would you like to donate?</h3>"+
 		  			"<a href='"+dlink+"'><img src='https://www2.heart.org/images/content/pagebuilder/credit-card-logos2.png' alt='Donate with Visa, MasterCard, American Express or Discover cards'/></a>" +
@@ -86,7 +85,6 @@ function addPaymentOptions() {
 function addPCPaymentOptions() {
 	if (jQuery('a#make_a_donation').length > 0) {
 		var applePayLink = "";
-		var hideApplePay = (jQuery.getCustomQuerystring(location.href,"showapplepay") == "true" ? "" : "hidden" );
 
 		var fr_id = jQuery.getCustomQuerystring(location.href,"fr_id");
 		var teamid = jQuery.getCustomQuerystring(location.href,"team_id");
@@ -97,7 +95,7 @@ function addPCPaymentOptions() {
 			var dlink = jQuery('a#make_a_donation').attr("href");
 			var px = jQuery('body').data("cons-id");
 			if (location.href.indexOf("showapplepay=true") > 0) {
-				applePayLink = "<a href='"+default_path+"/site/SPageNavigator/cyclenation_donate_applepay.html?FR_ID="+fr_id+"&mfc_pref=T&PROXY_ID="+px+"&PROXY_TYPE=20' class='applepay "+hideApplePay+"'><img src='https://www2.heart.org/donation-forms-braintree/donatenow/images/DonateBlack_32pt_@2x.png' alt='ApplePay'/></a>";
+				applePayLink = "<a href='"+default_path+"/site/SPageNavigator/cyclenation_donate_applepay.html?FR_ID="+fr_id+"&mfc_pref=T&PROXY_ID="+px+"&PROXY_TYPE=20' class='applepay'><img src='https://www2.heart.org/donation-forms-braintree/donatenow/images/DonateBlack_32pt_@2x.png' alt='ApplePay'/></a>";
 			}
 
 			var html = "<div class='paymentSelType hidden' style='clear:both;padding-top:20px;'>" +
@@ -127,14 +125,13 @@ function addPaymentTypesOnSearch() {
 			jQuery(this).next('.paymentSelType').remove();
 		} else {
 			var applePayLink = "";
-			var hideApplePay = (jQuery.getCustomQuerystring(location.href,"showapplepay") == "true" ? "" : "hidden" );
 
 			var dlink = jQuery(this).attr("href");
 			var fr_id = jQuery.getCustomQuerystring(dlink,"FR_ID");
 			var px = jQuery.getCustomQuerystring(dlink,"PROXY_ID");
 			var pt = jQuery.getCustomQuerystring(dlink,"PROXY_TYPE");
 			if (location.href.indexOf("showapplepay=true") > 0) {
-				applePayLink = "<a href='"+default_path+"/site/SPageNavigator/cyclenation_donate_applepay.html?FR_ID="+fr_id+"&mfc_pref=T&PROXY_ID="+px+"&PROXY_TYPE="+pt+"' class='applepay "+hideApplePay+"'><img src='https://www2.heart.org/donation-forms-braintree/donatenow/images/DonateBlack_32pt_@2x.png' alt='ApplePay'/></a>";
+				applePayLink = "<a href='"+default_path+"/site/SPageNavigator/cyclenation_donate_applepay.html?FR_ID="+fr_id+"&mfc_pref=T&PROXY_ID="+px+"&PROXY_TYPE="+pt+"' class='applepay'><img src='https://www2.heart.org/donation-forms-braintree/donatenow/images/DonateBlack_32pt_@2x.png' alt='ApplePay'/></a>";
 			}
 
 			var html = "<div class='paymentSelType text-center' style='padding-top:10px;'>" +
