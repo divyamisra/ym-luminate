@@ -19,6 +19,20 @@ header {
     }
   }
 
+  @media (max-width: $screen-xs-max) {
+    .ym-header-logo--aha > a img {
+      max-width: 100px;
+    }
+    
+    .ym-header-logo--middle-school {
+      max-width: 150px;
+
+      img {
+        max-width: 100%;
+      }
+    }
+  }
+  
   @media(max-width: 370px) {
     .ym-header-logo--district-heart {
       width: 45%;
