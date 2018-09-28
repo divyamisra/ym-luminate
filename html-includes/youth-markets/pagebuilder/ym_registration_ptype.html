@@ -15,7 +15,7 @@
   document.hide_addons = [];
 </script>
 <div class="ym-registration-page-container ym-registration-page-container--ptype" ng-controller="RegistrationPtypeCtrl">
-  <div class="hidden" hidden aria-hidden="true" ng-init="participationOptions.fr_goal = '[[?xx::x[[A15]]x::[[T6:[[A18]]]]::[[T6:[[A15]]]]]]'; participationOptions.min_donation = '[[E130:"[[S0:DON_MINIMUM_MANUAL_DONATION]]" 100 / currency]]'"></div>
+  <div class="hidden" hidden aria-hidden="true" ng-init="participationOptions.fr_goal = '[[?xx::x[[A15]]x::[[T6:[[A18]]]]::[[T6:[[A15]]]]]]'; participationOptions.min_donation = '$10.00'"></div>
   <div class="ym-registration-page-header">
     <div class="manageable-content" data-container="edit_pt_title_container">
       [[?xx::x[[S1:cons_id]]x::::
@@ -101,18 +101,21 @@
               [[A33]]
             </fieldset>
           </div>
-          <div class="ym-registration-ptype-donation-levels ym-donation-levels__levels" ng-class="{'active': donationLevels.activeLevel}">
-            <button type="button" class="btn btn-toggle" ng-class="{'active': donationLevels.activeLevel.amount == donationLevel.amount}" aria-describedby="ym-registration-ptype-donation-message-{{$index}}" ng-repeat="donationLevel in donationLevels.levels" ng-click="toggleDonationLevel(donationLevel.amount)" ng-if="!donationLevel.isOtherAmount && !donationLevel.isNoDonation" ng-cloak>
+          <fieldset>
+            <legend class="aural-only">Select Gift Amount</legend>
+          <div class="ym-registration-ptype-donation-levels ym-donation-levels__levels" ng-class="{'active': donationLevels.activeLevel, 'has-error': (participationOptionsForm.$submitted && participationOptionsForm.ng_donation_level_other_amount.$invalid)}" role="list">
+            <button role="listitem" type="button" class="btn btn-toggle" ng-class="{'active': donationLevels.activeLevel.amount == donationLevel.amount}" aria-describedby="ym-registration-ptype-donation-message-{{$index}}" ng-repeat="donationLevel in donationLevels.levels" ng-click="toggleDonationLevel($event, donationLevel.amount)" ng-if="!donationLevel.isOtherAmount && !donationLevel.isNoDonation" ng-cloak>
               <span ng-bind-html="donationLevel.amountFormatted"></span>
             </button>
-            <div class="ym-donation-levels__amount" ng-class="{'active': donationLevels.activeLevel.amount == donationLevel.amount}" aria-describedby="ym-registration-ptype-donation-message-other" ng-repeat="donationLevel in donationLevels.levels" ng-if="donationLevel.isOtherAmount" ng-cloak>
+            <div role="listitem" class="ym-donation-levels__amount" ng-class="{'active': donationLevels.activeLevel.amount == donationLevel.amount}" aria-describedby="ym-registration-ptype-donation-message-other" ng-repeat="donationLevel in donationLevels.levels" ng-if="donationLevel.isOtherAmount" ng-cloak>
               <label class="sr-only" for="participationOptions-ng_donation_level_other_amount">Other Amount</label>
               <span class="ym-donation-levels__dollar-sign">$</span>
-              <input type="text" class="btn btn-enter" ng-class="{'active': donationLevels.activeLevel.amount == donationLevel.amount}" name="ng_donation_level_other_amount" id="participationOptions-ng_donation_level_other_amount" ng-model="participationOptions.ng_donation_level_other_amount" ng-repeat="donationLevel in donationLevels.levels" placeholder="Other" ng-focus="toggleDonationLevel(donationLevel.amount)" ng-if="donationLevel.isOtherAmount" ng-cloak>
+              <input type="text" class="btn btn-enter" ng-class="{'active': donationLevels.activeLevel.amount == donationLevel.amount}" name="ng_donation_level_other_amount" id="participationOptions-ng_donation_level_other_amount" ng-model="participationOptions.ng_donation_level_other_amount" ng-repeat="donationLevel in donationLevels.levels" placeholder="Other" ng-keyup="toggleDonationLevel($event, donationLevel.amount)" ng-if="donationLevel.isOtherAmount" ng-cloak>
             </div>
-            <button type="button" class="btn btn-toggle" ng-class="{'active': donationLevels.activeLevel.amount == donationLevel.amount}" ng-repeat="donationLevel in donationLevels.levels" ng-click="toggleDonationLevel(donationLevel.amount)" ng-if="donationLevel.isNoDonation" ng-cloak>
+            <button role="listitem" type="button" class="btn btn-toggle" ng-class="{'active': donationLevels.activeLevel.amount == donationLevel.amount}" ng-repeat="donationLevel in donationLevels.levels" ng-click="toggleDonationLevel($event, donationLevel.amount)" ng-if="donationLevel.isNoDonation" ng-cloak>
               <span>No, Thanks</span>
             </button>
+            <span class="help-block" role="alert" ng-show="participationOptionsForm.ng_donation_level_other_amount.$error.amount" >Donations of all amounts are greatly appreciated.<br/>Online donations have a $10 minimum</span>
             <div class="ym-registration-ptype-donation-message" ng-class="{'hidden': !donationLevels.activeLevel || donationLevels.activeLevel.isNoDonation}" ng-cloak>
               <div ng-class="{'hidden': donationLevels.activeLevel.amount != donationLevel.amount}" id="ym-registration-ptype-donation-message-{{$index}}" ng-repeat="donationLevel in donationLevels.levels" ng-if="!donationLevel.isOtherAmount && !donationLevel.isNoDonation">
                 <span ng-bind-html="donationLevel.askMessage"></span>
@@ -122,13 +125,14 @@
               </div>
             </div>
           </div>
+          </fieldset>
         ]]
       </div>
     ::]]
     [[?xTx::x[[A17]]x::
       <div class="ym-registration-ptype-goal-container">
         <p class="ym-section-header">
-          Set your goal! How much can you raise?
+          Set your child's goal! How much can you raise?
         </p>
         <p>
           Thank you for being a Heart Hero!
