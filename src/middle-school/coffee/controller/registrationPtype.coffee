@@ -32,7 +32,8 @@ angular.module 'ahaLuminateControllers'
       
       $scope.toggleDonationLevel = (levelAmount) ->
         $scope.participationOptions.ng_donation_level = levelAmount
-        $scope.participationOptionsForm.ng_donation_level_other_amount.$setValidity("amount", true);
+        if $scope.participationOptionsForm != undefined
+          $scope.participationOptionsForm.ng_donation_level_other_amount.$setValidity("amount", true);
         angular.forEach $scope.donationLevels.levels, (donationLevel, donationLevelIndex) ->
           if donationLevel.amount is levelAmount
             $scope.donationLevels.activeLevel = donationLevel

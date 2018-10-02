@@ -219,7 +219,6 @@ angular.module 'trPcControllers'
       $scope.getSurveyResponses = ->
         getSurveyResponsesPromise = TeamraiserSurveyResponseService.getSurveyResponses()
           .then (response) ->
-
             surveyResponses = response.data.getSurveyResponsesResponse.responses
             surveyResponses = [surveyResponses] if not angular.isArray surveyResponses
             angular.forEach surveyResponses, (surveyResponse) ->
@@ -282,8 +281,8 @@ angular.module 'trPcControllers'
 
                 if thisField.questionKey isnt 'no_key_assigned'
                   $scope.sqvm.surveyFields.push thisField
-                  if surveyResponse.responseValue is 'User Provided No Response'
-                    $scope.sqvm.surveyModel[thisField.questionKey] = null
+                  if surveyResponse.responseValue is 'User Provided No Response' or not angular.isString surveyResponse.responseValue 
+                    $scope.sqvm.surveyModel[thisField.questionKey] = ''
                   else
                     $scope.sqvm.surveyModel[thisField.questionKey] = surveyResponse.responseValue
 
@@ -320,7 +319,7 @@ angular.module 'trPcControllers'
       $scope.resetSurveyAlerts()
 
       $scope.updateTellUsWhy = ($event) ->
-        $scope.updateSurveyResponses($event)
+        $scope.updateSurveyResponses $event
 
       logUserInt = (subject, body) ->
         ConstituentService.logInteraction 'interaction_type_id='+ $rootScope.interactionTypeId + '&interaction_subject=' + subject + '&interaction_body=' + body
@@ -401,7 +400,7 @@ angular.module 'trPcControllers'
               if $rootScope.isSelfDonor is 'TRUE' and $scope.userInteractions.donate is 0
                 $scope.userInteractions.donate = 1
                 logUserInt 'donate', $scope.frId
-              if $rootScope.hasBoundlessApp is 'true' and $scope.userInteractions.social is 0
+              if $rootScope.hasBoundlessApp is true and $scope.userInteractions.social is 0
                 $scope.userInteractions.social = 1
                 logUserInt 'social', $scope.frId
               if $scope.messageCounts.sentMessages > 0 and $scope.userInteractions.email is 0
@@ -634,7 +633,7 @@ angular.module 'trPcControllers'
 
       $scope.updateEditYears = ($event) ->
         $scope.LByearsProfileModal.close()
-        $scope.updateSurveyResponses($event)
+        $scope.updateSurveyResponses $event
         $timeout ->
           reCheckProfileItems()
         , 250
@@ -692,7 +691,7 @@ angular.module 'trPcControllers'
 
       $scope.updateEditSurvivor = ($event) ->
         $scope.LBsurvivorModal.close()
-        $scope.updateSurveyResponses($event)
+        $scope.updateSurveyResponses $event
 
       $scope.editTeamName = ->
         $scope.editTeamNameModal = $uibModal.open
@@ -1541,8 +1540,17 @@ angular.module 'trPcControllers'
             updateUrlPromise = TeamraiserShortcutURLService.updateTeamShortcut dataStr
               .then (response) ->
                 if response.data.errorResponse
-                  $scope.editPageUrlOptions.updateUrlFailure = true
-                  $scope.editPageUrlOptions.updateUrlFailureMessage = response.data.errorResponse.message or 'An unexpected error occurred while updating your team page URL.'
+                  if $scope.getPrevTeamShortcut && ($scope.editPageUrlOptions.updateUrlInput != $scope.prevTeamShortcut.text)
+                    $scope.editPageUrlOptions.updateUrlFailure = true;
+                    return $scope.editPageUrlOptions.updateUrlFailureMessage = response.data.errorResponse.message or 'An unexpected error occurred while updating your personal page URL.';
+                  else
+                    updateUrlPromise = TeamraiserShortcutURLService.updateTeamShortcut("text=",$rootScope.prevFrIdForShortcut)
+                      .then (response) ->
+                        if (response.data.errorResponse)
+                          $scope.editPageUrlOptions.updateUrlFailure = true
+                          return $scope.editPageUrlOptions.updateUrlFailureMessage = response.data.errorResponse.message or 'An unexpected error occurred while updating your personal page URL.';
+                        else
+                          $scope.updatePageUrl("Team")
                 else
                   $scope.editPageUrlModal.close()
                   $scope.getTeamShortcut()
@@ -1569,6 +1577,16 @@ angular.module 'trPcControllers'
                   , 500
             $scope.dashboardPromises.push getTeamShortcutPromise
           $scope.getTeamShortcut()
+          $scope.getPrevTeamShortcut = ()->
+            getPrevShortcutPromise = TeamraiserShortcutURLService.getTeamShortcut($rootScope.prevFrIdForShortcut)
+              .then (response) ->
+                if response.data.errorResponse
+                  # TODO
+                else
+                  shortcutItem = response.data.getTeamShortcutResponse.shortcutItem
+                  if shortcutItem
+                    $scope.prevTeamShortcut = shortcutItem
+            $scope.dashboardPromises.push getPrevShortcutPromise
 
       if $scope.participantRegistration.companyInformation and $scope.participantRegistration.companyInformation.companyId and $scope.participantRegistration.companyInformation.companyId isnt -1
         if $scope.participantRegistration.companyInformation?.isCompanyCoordinator isnt 'true'
@@ -1592,3 +1610,4 @@ angular.module 'trPcControllers'
             $scope.dashboardPromises.push getCompanyShortcutPromise
           $scope.getCompanyShortcut()
   ]
+  

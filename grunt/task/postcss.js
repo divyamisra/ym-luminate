@@ -56,27 +56,6 @@ module.exports = {
     ]
   }, 
   
-  "jump-hoops": {
-    files: [
-      {
-        expand: true, 
-        cwd: 'dist/jump-hoops/css/', 
-        src: [
-          'main.css'
-        ], 
-        dest: 'dist/jump-hoops/css/'
-      }, 
-      {
-        expand: true, 
-        cwd: 'dist/jump-hoops/css/', 
-        src: [
-          'participant.css'
-        ], 
-        dest: 'dist/jump-hoops/css/'
-      }
-    ]
-  }, 
-  
   "ym-primary": {
     files: [
       {

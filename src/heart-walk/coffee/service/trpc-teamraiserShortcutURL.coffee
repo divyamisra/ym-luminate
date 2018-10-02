@@ -20,15 +20,20 @@ angular.module 'trPcApp'
           .then (response) ->
             response
       
-      updateTeamShortcut: (requestData) ->
+      updateTeamShortcut: (requestData,frid) ->
         dataString = 'method=updateTeamShortcut'
+        if frid
+          dataString = dataString + "&fr_id=" + frid
         dataString += '&' + requestData if requestData and requestData isnt ''
         LuminateRESTService.teamraiserRequest dataString, true, true
           .then (response) ->
             response
       
-      getTeamShortcut: ->
-        LuminateRESTService.teamraiserRequest 'method=getTeamShortcut', true, true
+      getTeamShortcut: (frid)->
+        dataString='method=getTeamShortcut'
+        if frid
+          dataString = dataString + "&fr_id=" + frid
+        LuminateRESTService.teamraiserRequest dataString, true, true
           .then (response) ->
             response
 

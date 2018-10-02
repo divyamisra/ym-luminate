@@ -17,5 +17,5 @@ angular.module 'trPcControllers'
         if $rootScope.clipboard
           $rootScope.clipboard.destroy()
           delete $rootScope.clipboard
-        $rootScope.clipboard = new Clipboard '[data-clipboard-target]'
+        $rootScope.clipboard = new ClipboardJS '[data-clipboard-target]'
   ]

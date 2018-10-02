@@ -1,6 +1,11 @@
 angular.module 'trPcControllers'
   .controller 'NgPcTeacherResourcesViewCtrl', [
     '$scope'
-    ($scope) ->
-      # TODO
+    'PageBuilderService'
+    ($scope, PageBuilderService) ->
+      PageBuilderService.getPageContent 'reus_ym_khc_teacher_resources', ''
+        .then (response) ->
+          pageContent = response.data
+          if pageContent
+            $scope.pageContent = pageContent
   ]

@@ -36,13 +36,6 @@ module.exports = {
     }
   }, 
   
-  "jump-hoops": {
-    options: {
-      title: 'AHA Luminate Framework', 
-      message: 'Jump/Hoops files updated.'
-    }
-  }, 
-  
   "ym-primary": {
     options: {
       title: 'AHA Luminate Framework', 
