@@ -313,7 +313,7 @@ angular.module 'trPcControllers'
 
         $scope.reportMessageModal = $uibModal.open
         scope: $scope
-        templateUrl: APP_INFO.rootPath + 'html/participant-center/modal/generatingReportMessage.html'
+        templateUrl: APP_INFO.rootPath + 'dist/ym-primary/html/participant-center/modal/generatingReportMessage.html'
 
         setTimeout ->
           $scope.reportMessageModal.open
