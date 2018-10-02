@@ -98,9 +98,9 @@
         <h2 class="ym-headline h3">
           Check Out My Badges
         </h2>
-        <div class="ym-badges__item" ng-repeat="prize in prizes | limitTo: 3" ng-cloak>
-          <img class="img-responsive" ng-src="https://s3.amazonaws.com/aha-jumphoops-production/fy18/assets/badges/{{prize.id}}_delivered.png" alt="{{prize.label}}">
-          <div>
+        <div class="ym-badges__item" ng-repeat="prize in prizes" ng-cloak> <!--  ng-repeat="prize in prizes | limitTo: 3" -->
+          <div class="ym-badge__item" ng-if="prize.earned" ng-cloak>
+            <img class="img-responsive" ng-src="//s3.amazonaws.com/aha-oot-production/fy19/assets/badges/khc/{{prize.id}}_delivered.png" alt="{{prize.label}}">
             <span ng-bind-html="prize.label"></span> <span class="sr-only">(earned)</span>
           </div>
         </div>
@@ -113,7 +113,7 @@
         <div class="col-sm-4">
           <img class="img-responsive" ng-if="challengeId == 1 || challengeId == 4" src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/ym-primary/image/my-challenge-exercise.png" alt="{{challengeName}}" ng-cloak>
           <img class="img-responsive" ng-if="challengeId == 2" src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/ym-primary/image/my-challenge-water.png" alt="{{challengeName}}" ng-cloak>
-          <img class="img-responsive" ng-if="challengeId == 3" src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/ym-primary/image/my-challenge-food.png" alt="{{challengeName}}" ng-cloak>
+          <img class="img-responsive" ng-if="challengeId == 3" src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/ym-primary/image/my-challenge-deed.png" alt="{{challengeName}}" ng-cloak>
         </div>
         <div class="col-sm-8">
           <p class="ym_my_challenge__description">

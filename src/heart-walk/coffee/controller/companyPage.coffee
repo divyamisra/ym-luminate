@@ -330,7 +330,10 @@ angular.module 'ahaLuminateControllers'
                       participant.amountRaisedFormatted = $filter('currency')(participant.amountRaised / 100, '$', 0)
                       donationUrl = participant.donationUrl
                       if donationUrl?
-                        participant.donationUrl = donationUrl.split('/site/')[1]
+                        donationUrl = donationUrl.split('/site/')[1]
+                        participant.donationUrl = donationUrl
+                        participant.paypalDonationUrl = donationUrl+"&paypal=true";
+                        participant.amazonDonationUrl=donationUrl.replace(/Donation2/,"SPageNavigator/heartwalk_donate_amazon.html");
                       companyParticipants.push participant
                   setCompanyParticipants companyParticipants
                   numCompaniesParticipantRequestComplete++

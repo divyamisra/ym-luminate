@@ -1,10 +1,10 @@
 <form ng-submit="updatePageUrl('Company')">
-  <div class="modal-header">
+  <div class="modal-header modal-header-red">
     <h2 class="modal-title">
       <span translate="company_page_shortcut_edit2"></span> <span translate="company_page_shortcut_edit"></span>
     </h2>
   </div>
-  <div class="modal-body">
+  <div class="modal-body modal-body-red">
     <div uib-alert class="alert-success" ng-if="editPageUrlOptions.updateUrlSuccess" dismiss-on-timeout="5000" close="closeUrlAlerts(true)">
       <span translate="company_page_shortcut_save_success"></span>
     </div>
@@ -22,15 +22,15 @@
       </div>
     </div>
   </div>
-  <div class="modal-footer">
+  <div class="modal-footer modal-footer-red">
     <div class="clearfix">
       <div class="pull-left">
-        <button type="button" class="btn btn-default" ng-click="cancelEditPageUrl()">
+        <button type="button" class="btn btn-outline-white"  ng-click="cancelEditPageUrl()">
           <span translate="company_page_shortcut_cancel"></span>
         </button>
       </div>
       <div class="pull-right">
-        <button type="submit" class="btn btn-primary">
+        <button type="submit" class="btn btn-outline-white">
           <span translate="company_page_shortcut_save"></span>
         </button>
       </div>

@@ -17,7 +17,7 @@ angular.module 'trPcControllers'
       $scope.messageType = $routeParams.messageType
       $scope.messageId = $routeParams.messageId
       $scope.baseDomain = $location.absUrl().split('/site/')[0]
-
+      $scope.refreshContactsNav = 0
       $scope.emailPromises = []
 
       $scope.getMessageCounts = (refresh) ->
@@ -36,11 +36,7 @@ angular.module 'trPcControllers'
             $scope.emailPromises.push messageCountPromise
       $scope.getMessageCounts()
 
-
-
-      $scope.getContactCounts = ->
-        $scope.contactCounts = {}
-        contactFilters = [
+      $scope.contactFilters = [
           'email_rpt_show_all'
           'email_rpt_show_never_emailed'
           'email_rpt_show_nondonors_followup'
@@ -51,11 +47,14 @@ angular.module 'trPcControllers'
           'email_rpt_show_lybunt_teammates'
           'email_rpt_show_ly_donors'
         ]
+      
+      $scope.getContactCounts = ->
+        $scope.contactCounts = {}
         # TODO: email_rpt_show_teammates and email_rpt_show_nonteammates
-        angular.forEach contactFilters, (filter) ->
+        angular.forEach $scope.contactFilters, (filter) ->
           contactCountPromise = ContactService.getTeamraiserAddressBookContacts 'tr_ab_filter=' + filter + '&skip_groups=true&list_page_size=1'
             .then (response) ->
-              $scope.contactCounts[filter] = response.data.getTeamraiserAddressBookContactsResponse?.totalNumberResults or '0'
+              $scope.contactCounts[filter] = response.data.getTeamraiserAddressBookContactsResponse.totalNumberResults
               response
           $scope.emailPromises.push contactCountPromise
       $scope.getContactCounts()
@@ -113,8 +112,38 @@ angular.module 'trPcControllers'
                 $scope.emailComposer.subject = messageInfo.subject
                 messageBody = messageInfo.messageBody
                 setEmailMessageBody messageBody
+      else if $scope.messageType is 'group' and $scope.messageId and $scope.contactFilters.indexOf $scope.messageId isnt -1
+        $scope.resetSelectedContacts()
+        $scope.getGroupRecipientsPage = 0
+        $scope.getGroupRecipients = ->
+          contactsPromise = ContactService.getTeamraiserAddressBookContacts 'tr_ab_filter=' + $scope.messageId + '&skip_groups=true&list_page_size=200&list_page_offset=' + $scope.getGroupRecipientsPage
+            .then (response) ->
+              totalNumber = response.data.getTeamraiserAddressBookContactsResponse.totalNumberResults
+              addressBookContacts = response.data.getTeamraiserAddressBookContactsResponse.addressBookContact
+              addressBookContacts = [addressBookContacts] if not angular.isArray addressBookContacts
+              angular.forEach addressBookContacts, (contact) ->
+                contactData = ''
+                if contact.firstName
+                  contactData += contact.firstName
+                if contact.lastName
+                  if contactData isnt ''
+                    contactData += ' '
+                  contactData += contact.lastName
+                if contact.email
+                  if contactData isnt ''
+                    contactData += ' '
+                  contactData += '<' + contact.email + '>'
+                $rootScope.selectedContacts.contacts.push contactData
+              if totalNumber > $rootScope.selectedContacts.contacts.length
+                $scope.getGroupRecipientsPage = $scope.getGroupRecipientsPage + 1
+                $scope.getGroupRecipients()
+              else
+                setEmailComposerDefaults()
+              response
+          $scope.emailPromises.push contactsPromise
+        $scope.getGroupRecipients()
 
-      $scope.emailTabNames = []
+      $scope.emailTabNames = []      
       suggestedMessagesPromise = TeamraiserEmailService.getSuggestedMessages()
         .then (response) ->
           suggestedMessages = response.data.getSuggestedMessagesResponse.suggestedMessage

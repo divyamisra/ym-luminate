@@ -17,7 +17,7 @@ angular.module 'ahaLuminateControllers'
         $scope.noSchoolLink = noSchoolLink
         if not $scope.$$phase
           $scope.$apply()
-      TeamraiserService.getTeamRaisersByInfo 'event_type=' + encodeURIComponent('Jump Hoops') + '&public_event_type=' + encodeURIComponent('School Not Found') + '&name=' + encodeURIComponent('%') + '&list_page_size=1&list_ascending=false&list_sort_column=event_date',
+      TeamraiserService.getTeamRaisersByInfo 'event_type=' + encodeURIComponent('YM Kids Heart Challenge') + '&public_event_type=' + encodeURIComponent('School Not Found') + '&name=' + encodeURIComponent('%') + '&list_page_size=1&list_ascending=false&list_sort_column=event_date',
           error: (response) ->
             # TODO
           success: (response) ->
@@ -29,7 +29,7 @@ angular.module 'ahaLuminateControllers'
               teamraiserInfo = teamraisers[0]
               setNoSchoolLink $scope.nonSecureDomain + '/site/TRR?fr_id=' + teamraiserInfo.id + '&pg=tfind&fr_tm_opt=none&s_frTJoin=&s_frCompanyId='
       if consId
-        TeamraiserParticipantService.getRegisteredTeamraisers 'cons_id=' + consId + '&event_type=' + encodeURIComponent('Jump Hoops'),
+        TeamraiserParticipantService.getRegisteredTeamraisers 'cons_id=' + consId + '&event_type=' + encodeURIComponent('YM Kids Heart Challenge'),
           error: ->
             modalSet = readCookie 'modalSet'
             if modalSet isnt 'true'
@@ -108,6 +108,7 @@ angular.module 'ahaLuminateControllers'
           nav: true
           loop: true
           center: true
+          dots: false
           responsive:
             0:
               stagePadding: 0
@@ -140,6 +141,7 @@ angular.module 'ahaLuminateControllers'
               nav: true
               loop: true
               center: true
+              dots: false
               navText: [
                 '<i class="fa fa-chevron-left" hidden aria-hidden="true" />'
                 '<i class="fa fa-chevron-right" hidden aria-hidden="true" />'

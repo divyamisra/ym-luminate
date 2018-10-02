@@ -478,7 +478,9 @@ angular.module 'trPcControllers'
         
       $scope.personalChallenge = {}
       $scope.updatedPersonalChallenge = {}
-      setPersonalChallenge = (id = '-1', name = '', numCompleted = 0, completedToday = false) ->
+      setPersonalChallenge = (id, name = '', numCompleted = 0, completedToday = false) ->
+        if id == null or id == ''
+          id = '-1'
         if id is '-1' and $scope.challengeTaken and $scope.challengeTaken isnt ''
           if $scope.challengeTaken.indexOf('1. ') isnt -1
             id = '1'
@@ -499,12 +501,19 @@ angular.module 'trPcControllers'
           $scope.updatedPersonalChallenge.id = id
         if not $scope.$$phase
           $scope.$apply()
+          
+      errorCount = 0
       getStudentChallenge = ->
         if not $scope.personalChallenge
           $scope.personalChallenge = {}
         $scope.personalChallenge.updatePending = true
+        $scope.personalChallenge.loadPending = true
         ZuriService.getStudent $scope.frId + '/' + $scope.consId,
           failure: (response) ->
+            # if challenge not found - wait 3 secs and try again 10 times max
+            if errorCount < 10 && response.status == 404
+              errorCount++
+              setTimeout(getStudentChallenge,3000);
             delete $scope.personalChallenge.updatePending
             setPersonalChallenge()
           error: (response) ->
@@ -516,6 +525,7 @@ angular.module 'trPcControllers'
               setPersonalChallenge()
             else
               delete $scope.personalChallenge.updatePending
+              $scope.personalChallenge.loadPending = false
               id = personalChallenges.current
               if id is '0'
                 setPersonalChallenge()
@@ -539,7 +549,7 @@ angular.module 'trPcControllers'
       challengeOptions =
         "1": "Be physically active for 60 minutes everyday"
         "2": "Choose water over sugar drinks"
-        "3": "Eat at least one serving of fruit and vegetables at every meal"
+        "3": "Do a good deed daily"
       angular.forEach challengeOptions, (challenge, challengeIndex) ->
         $scope.challenges.push
           id: challengeIndex
@@ -644,7 +654,41 @@ angular.module 'trPcControllers'
             if response.data.student.student_id != null and typeof response.data.student.avatar_url != 'undefined'
               avatarURL = response.data.student.avatar_url
             else
-              avatarURL = 'https://hearttools.heart.org/aha_ym18_dev/virtualworld/img/avatar-charger.png'
+              avatarURL = 'https://hearttools.heart.org/aha_ym19_dev/virtualworld/img/avatar-charger.png'
             $scope.personalInfo.avatar = avatarURL
       $scope.getPersonalAvatar()
+      
+      $scope.heroPopup = false
+      $scope.heartHeros = heroPopup: ->
+        $scope.heroPopup = true
+        WAIT_TIME = 8000
+        POP_TIME = 2500
+        NUM_POPS = 3
+        i = 0
+        pop_timer = ''
+        doPopup = ->
+          popup_container = angular.element('.launch-builder-popup')
+          if i == NUM_POPS
+            clearInterval(pop_timer)
+          else
+            popup_container.addClass 'pop'
+            i++
+          setTimeout (->
+            popup_container.removeClass 'pop'
+            return
+          ), POP_TIME
+          return
+
+        pop_timer = setInterval(doPopup, WAIT_TIME)
+        return
+
+      $scope.heartHeros.heroPopup()
+    
+      $scope.monsterEdit = ->
+        url = ''
+        if $rootScope.tablePrefix == 'heartdev'
+          url = "https://khc.staging.ootqa.org"
+        else
+          url = "https://kidsheartchallenge.heart.org"
+        window.open url + "/student/login/"+$scope.authToken+"/"+$scope.sessionCookie
   ]

@@ -1,5 +1,5 @@
 <script>
-  var showDualLogo = true,
+  var showDualLogo = false,
   ahaFooterLoadBootstrap = false,
   showAHAPrivacyPolicyBanner = false;
 
@@ -15,7 +15,7 @@
   footer_contact[1]['body'] = '1-877-824-8531';
   footer_contact[2] = [];
   footer_contact[2]['header'] = 'Need Help';
-  footer_contact[2]['body'] = '<a href="https://jumphoops.zendesk.com/hc/en-us" target="_blank">Visit the Help Center</a>';
+  footer_contact[2]['body'] = '<a href="https://kidsheartchallenge.zendesk.com/hc/en-us" target="_blank">Visit the Help Center</a>';
   footer_contact[3] = [];
   footer_contact[3]['header'] = 'Text to Chat';
   footer_contact[3]['body'] = '214-444-6688';
@@ -52,7 +52,7 @@
     ajaxProxyAuth: '[[S86:true]]',
     [[?
       [[?xx::x[[S1:cons_id]]x::T::
-        [[?[[S39:0*#000000*10pt*true*1*0*0*Events:true:Jump Hoops:::]]:: href=::::T]]
+        [[?[[S39:0*#000000*10pt*true*1*0*0*Events:true:YM Kids Heart Challenge:::]]:: href=::::T]]
       ]]
     ::T::
       isParticipant: false
@@ -110,9 +110,9 @@
 
       var scriptTag = document.createElement('script');
       [[?xheartdevx::x[[S29:TABLE_PREFIX]]x::
-        scriptTag.src = 'https://hearttools.heart.org/aha_ym18_dev/visitlink_record.php?ecard_linktrack=' + uparts[0];
+        scriptTag.src = 'https://hearttools.heart.org/aha_ym19_dev/visitlink_record.php?ecard_linktrack=' + uparts[0];
       ::
-        scriptTag.src = 'https://hearttools.heart.org/aha_ym18/visitlink_record.php?ecard_linktrack=' + uparts[0];
+        scriptTag.src = 'https://hearttools.heart.org/aha_ym19/visitlink_record.php?ecard_linktrack=' + uparts[0];
       ]]
       document.body.appendChild(scriptTag);
     }

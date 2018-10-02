@@ -1,10 +1,10 @@
 <form ng-submit="submitOfflineGift()" name="gift">
-  <div class="modal-header">
+  <div class="modal-header modal-header-red">
     <h2 class="modal-title">
       Add Donation
     </h2>
   </div>
-  <div class="modal-body">
+  <div class="modal-body modal-body-red">
     <!-- TODO: errors -->
     <p>
       Enter donations from friends, family or businesses here. For donations from businesses, leave the First Name field blank and enter the entire company name in the Last Name/Company Name field.
@@ -60,15 +60,15 @@
       <!-- TODO: credit card info -->
     </div>
   </div>
-  <div class="modal-footer">
+  <div class="modal-footer modal-footer-red">
     <div class="clearfix">
       <div class="pull-left">
-        <button type="button" class="btn btn-primary-inverted text-uppercase" ng-click="sendGAEvent('Cancel Adding Offline Gift');cancelAddOfflineGift()">
+        <button type="button" class="btn btn-outline-white text-uppercase" ng-click="sendGAEvent('Cancel Adding Offline Gift');cancelAddOfflineGift()">
           Cancel
         </button>
       </div>
       <div class="pull-right">
-        <button type="submit" class="btn btn-primary text-uppercase" ng-click="sendGAEvent('Submit Adding Offline Gift')">
+        <button type="submit" class="btn btn-outline-white text-uppercase"  ng-click="sendGAEvent('Submit Adding Offline Gift')">
           Submit
         </button>
       </div>

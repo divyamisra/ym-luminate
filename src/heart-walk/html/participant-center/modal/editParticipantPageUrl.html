@@ -1,10 +1,10 @@
 <form ng-submit="updatePageUrl('Participant')">
-  <div class="modal-header">
+    <div class="modal-header modal-header-red">
     <h2 class="modal-title">
       <span translate="personal_page_shortcut_edit"></span>
     </h2>
   </div>
-  <div class="modal-body">
+  <div class="modal-body modal-body-red">
     <div uib-alert class="alert-danger" ng-if="editPageUrlOptions.updateUrlFailure">
       {{editPageUrlOptions.updateUrlFailureMessage}}
     </div>
@@ -19,15 +19,15 @@
       </div>
     </div>
   </div>
-  <div class="modal-footer">
+  <div class="modal-footer modal-footer-red">
     <div class="clearfix">
       <div class="pull-left">
-        <button type="button" class="btn btn-primary-inverted text-uppercase" ng-click="sendGAEvent('Cancel editing Personal Page URL');cancelEditPageUrl()">
+        <button type="button" class="btn btn-outline-white text-uppercase" ng-click="sendGAEvent('Cancel editing Personal Page URL');cancelEditPageUrl()">
           <span translate="class_cancel_link"></span>
         </button>
       </div>
       <div class="pull-right">
-        <button type="submit" class="btn btn-primary text-uppercase" ng-click="sendGAEvent('Save editing Personal Page URL')">
+        <button type="submit" class="btn btn-outline-white text-uppercase"  ng-click="sendGAEvent('Save editing Personal Page URL')">
           <span translate="personal_page_shortcut_save"></span>
         </button>
       </div>

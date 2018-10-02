@@ -1,10 +1,10 @@
 <form ng-submit="updateGoal('Participant')">
-  <div class="modal-header">
+  <div class="modal-header modal-header-red">
     <h2 class="modal-title">
       Update Goal
     </h2>
   </div>
-  <div class="modal-body">
+  <div class="modal-body modal-body-red">
     <div uib-alert class="alert-danger" ng-if="editGoalOptions.updateGoalFailure">
       {{editGoalOptions.updateGoalFailureMessage}}
     </div>
@@ -17,15 +17,15 @@
       </div>
     </div>
   </div>
-  <div class="modal-footer">
+  <div class="modal-footer modal-footer-red">
     <div class="clearfix">
       <div class="pull-left">
-        <button type="button" class="btn btn-primary-inverted text-uppercase" ng-click="sendGAEvent('Cancel editing Participant Goal');cancelEditGoal()">
+        <button type="button" class="btn btn-outline-white text-uppercase"  ng-click="sendGAEvent('Cancel editing Participant Goal');cancelEditGoal()">
           <span translate="class_cancel_link"></span>
         </button>
       </div>
       <div class="pull-right">
-        <button type="submit" class="btn btn-primary text-uppercase" ng-click="sendGAEvent('Save editing Participant Goal')">
+        <button type="submit" class="btn btn-outline-white text-uppercase"  ng-click="sendGAEvent('Save editing Participant Goal')">
           <span translate="dialog_save_label"></span>
         </button>
       </div>

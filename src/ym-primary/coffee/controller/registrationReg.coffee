@@ -3,9 +3,11 @@ angular.module 'ahaLuminateControllers'
     '$rootScope'
     '$scope'
     '$filter'
+    '$uibModal'
+    'APP_INFO'
     'TeamraiserCompanyService'
     'TeamraiserRegistrationService'
-    ($rootScope, $scope, $filter, TeamraiserCompanyService, TeamraiserRegistrationService) ->
+    ($rootScope, $scope, $filter, $uibModal, APP_INFO, TeamraiserCompanyService, TeamraiserRegistrationService) ->
       $rootScope.companyName = ''
       regCompanyId = luminateExtend.global.regCompanyId
       setCompanyName = (companyName) ->
@@ -192,10 +194,10 @@ angular.module 'ahaLuminateControllers'
           setRegistrationQuestionSurveyKey = (questionName, surveyKey) ->
             $scope.registrationQuestions[questionName].surveyKey = surveyKey
             questionLegend = $scope.registrationQuestions[questionName].legend
-            if surveyKey is 'ym_hoops_jump_email_type' or surveyKey is 'ym_hoops_jump_grade' or surveyKey is 'ym_hoops_jump_school' or surveyKey is 'ym_hoops_jump_teacher_name' or surveyKey is 'ym_hoops_jump_school_city' or surveyKey is 'ym_hoops_jump_school_state'
+            if surveyKey is 'ym_khc_email_type' or surveyKey is 'ym_khc_grade' or surveyKey is 'ym_khc_school' or surveyKey is 'ym_khc_teacher_title' or surveyKey is 'ym_khc_teacher_name' or surveyKey is 'ym_khc_school_city' or surveyKey is 'ym_khc_school_state'
               initCustomQuestions()
               $scope.registrationCustomQuestions[surveyKey] = questionName
-            else if questionLegend isnt 'Event Date' and surveyKey isnt 'ym_hoops_jump_challenge_info' and surveyKey isnt 'ym_hoops_jump_ecards_sent' and surveyKey isnt 'ym_hoops_jump_ecards_shared' and surveyKey isnt 'ym_hoops_jump_ecards_open' and surveyKey isnt 'ym_hoops_jump_ecards_clicked'  and surveyKey isnt 'ym_hoops_jump_ym_game_points'
+            else if questionLegend isnt 'Event Date' and surveyKey isnt 'ym_khc_challenge_info' and surveyKey isnt 'ym_khc_ecards_sent' and surveyKey isnt 'ym_khc_ecards_shared' and surveyKey isnt 'ym_khc_ecards_open' and surveyKey isnt 'ym_khc_ecards_clicked'  and surveyKey isnt 'ym_khc_ym_game_points'
               if not $scope.registrationAdditionalQuestions
                 $scope.registrationAdditionalQuestions = {}
               $scope.registrationAdditionalQuestions[questionName] = questionName
@@ -230,6 +232,10 @@ angular.module 'ahaLuminateControllers'
         , 500
         false
       
+      $scope.familyChallengePopup = false
+      $scope.submitFamilyChallengePopup = ->
+        angular.element('.js--default-reg-form').submit()
+      
       $scope.submitReg = ->
         if $scope.acceptWaiver isnt 'yes' and not $scope.ng_go_back
           window.scrollTo 0, 0
@@ -239,6 +245,12 @@ angular.module 'ahaLuminateControllers'
             }
           ]
         else
-          angular.element('.js--default-reg-form').submit()
+          if not $scope.familyChallengePopup
+            $scope.familyChallengePopup = true
+            $scope.showFamilyChallengePopup = $uibModal.open
+              scope: $scope
+              templateUrl: APP_INFO.rootPath + 'dist/ym-primary/html/modal/showFamilyChallengePopup.html'
+          else 
+            angular.element('.js--default-reg-form').submit()
         false
   ]

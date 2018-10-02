@@ -1,10 +1,10 @@
 <form ng-submit="addNewContact()">
-  <div class="modal-header">
+  <div class="modal-header modal-header-red">
     <h2 class="modal-title">
       <span translate="contacts_sidebar_add_contact_header"></span>
     </h2>
   </div>
-  <div class="modal-body">
+  <div class="modal-body modal-body-red">
     <div uib-alert class="alert-danger" ng-if="addContactError">
       {{addContactError}}
     </div>
@@ -27,15 +27,15 @@
       <input type="email" class="form-control" id="addContactEmail" ng-model="newContact.email" aria-label="{{ 'add_contact_email_label' | translate }}" required>
     </div>
   </div>
-  <div class="modal-footer">
+  <div class="modal-footer modal-footer-red">
     <div class="clearfix">
       <div class="pull-left">
-        <button type="button" class="btn btn-primary-inverted text-uppercase" ng-click="cancelAddContact()">
+        <button type="button" class="btn btn-outline-white text-uppercase"  ng-click="cancelAddContact()">
           <span translate="add_contacts_cancel_link"></span>
         </button>
       </div>
       <div class="pull-right">
-        <button type="submit" class="btn btn-primary text-uppercase">
+        <button type="submit" class="btn btn-outline-white text-uppercase" >
           <span translate="add_contact_submit_button"></span>
         </button>
       </div>

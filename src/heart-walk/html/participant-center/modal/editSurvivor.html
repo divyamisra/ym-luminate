@@ -1,10 +1,10 @@
 <form ng-submit="updateEditSurvivor($event)" novalidate>
-  <div class="modal-header">
+  <div class="modal-header modal-header-red">
     <h2 class="modal-title">
       Update Survivor Status
     </h2>
   </div>
-  <div class="modal-body">
+  <div class="modal-body modal-body-red">
     <div uib-alert class="alert-success" ng-if="updateSurveySuccess" close="resetSurveyAlerts()">
       <span translate="survey_save_success"></span>
     </div>
@@ -19,15 +19,15 @@
       </div>
     </div>
   </div>
-  <div class="modal-footer">
+  <div class="modal-footer modal-footer-red">
     <div class="clearfix">
       <div class="pull-left">
-        <button type="button" class="btn btn-primary-inverted text-uppercase" ng-click="sendGAEvent('Cancel editing Survivor Status');cancelEditSurvivor()">
+        <button type="button" class="btn btn-outline-white text-uppercase"  ng-click="sendGAEvent('Cancel editing Survivor Status');cancelEditSurvivor()">
           Cancel
         </button>
       </div>
       <div class="pull-right">
-        <button type="submit" class="btn btn-primary text-uppercase" ng-click="sendGAEvent('Save editing Survivor Status')">Save</span>
+        <button type="submit" class="btn btn-outline-white text-uppercase"  ng-click="sendGAEvent('Save editing Survivor Status')">Save</span>
         </button>
       </div>
     </div>

@@ -212,7 +212,7 @@ div.responsive a.step-button, div.responsive button.step-button, div.responsive 
   .janrainContent {
     background: transparent !important;
     border: none !important;
-    padding: 15px 5px 0px !important;
+    padding: 15px 5px 0 !important;
   }
 
   #janrainProviderPages {
@@ -375,7 +375,7 @@ div.responsive div.ErrorMessage.page-error>span.field-error-text {
       font-size: inherit;
     }
   }
-
+  
 
 // ptype
 #part_type_instruction_sub_header {
@@ -436,10 +436,11 @@ div.part-type-container {
   }
 
   &.ptype-full {
-    cursor: default;
+    &.selected {
+      color: #212529;
+    }
     &:hover,
     &:active {
-      cursor:default;
       border: 1px solid $black;
       background-color:#fff;
     }
@@ -878,4 +879,22 @@ div.responsive button.step-button {
 
 #reg_payment_page div.form-row div.form-content>select {
   height: calc(2.25rem + 2px);
+}
+
+// Stationary v2 customizations
+.event-type2-stationaryv2 {
+  .part-type-name {
+    padding-left: 5px;
+    padding-right: 5px;
+    display:block;
+  }
+  .start-team-container,
+  .join-team-container,
+  .breakaway-container {
+    display:none;
+  }
+  .part-type-container,
+  .part-type-name-value-separator {
+    display:none;
+  }
 }

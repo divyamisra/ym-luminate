@@ -124,10 +124,14 @@
                   participant.name.first + ' ' + participant.name.last +
                   '</strong><br>' +
                   participant.eventName + '<br>' +
-                  ((participant.teamName !== null) ? participant.teamName + '<br>' : '') +
-                  '<a href="' + participant.personalPageUrl + '">Visit Personal Page</a></p></div><div class="col-xs-12 col-md-3 col-sm-4"><a class="button btn-primary btn-block btn-lg pull-right" href="' + participant.donationUrl + '">Donate</a>' + ((teamRegUrl !== null) ? '<a class="button btn-outline-dark btn-block btn-lg pull-right" href="' + teamRegUrl + '">Join Team</a>' : '') + '</div></div>'
+                  ((participant.teamName !== null && participant.teamName !== undefined) ? participant.teamName + '<br>' : '') +
+                  '<a href="' + participant.personalPageUrl + '" aria-label="Visit page for ' +
+                  participant.name.first + ' ' + participant.name.last +
+                  '">Visit Personal Page</a></p></div><div class="col-xs-12 col-md-3 col-sm-4"><a class="button btn-primary btn-block btn-lg pull-right" href="' + participant.donationUrl + '" aria-label="Donate to ' +  participant.name.first + ' ' + participant.name.last + '">Donate</a>' + ((teamRegUrl !== null) ? '<a class="button btn-outline-dark btn-block btn-lg pull-right" href="' + teamRegUrl + ((participant.aTeamCaptain === 'true') ? '&s_captainConsId=' + participant.consId : '') + '&s_regType=joinTeam" aria-label="Join ' +  participant.teamName + '">Join Team</a>' : '') + '</div></div>'
                 );
               });
+              //add call to hook donate button with payment type selections
+              addPaymentTypesOnSearch();
               $('#participant_results').removeAttr('hidden');
             }
           },
@@ -144,7 +148,7 @@
         api: 'teamraiser',
         data: 'method=getTeamsByInfo' +
           '&team_name=' + teamName +
-          '&event_type=' + eventType +
+          (isCrossEvent === true ? '&event_type=' + eventType : '&fr_id=' + evID) +
           '&list_page_size=499' +
           '&list_page_offset=0' +
           '&response_format=json' +
@@ -167,12 +171,13 @@
                   '</strong><br>' +
                   team.eventName + '<br>' +
                   'Team Captain: ' + team.captainFirstName + ' ' + team.captainLastName + '<br>' +
-                  ((team.companyName !== null) ? team.companyName + '<br>' : '') +
-                  '<a href="' + team.teamPageURL + '">Visit Team Page</a></p></div><div class="col-xs-12 col-sm-4 col-md-3"><a class="button btn-primary btn-block btn-lg pull-right" href="' + team.teamDonateURL + '">Donate</a><a class="button btn-outline-dark btn-block btn-lg pull-right" href="' + team.joinTeamURL + '">Join Team</a></div></div>');
+                  ((team.companyName !== null && team.companyName !== undefined) ? team.companyName + '<br>' : '') +
+                  '<a href="' + team.teamPageURL + '">Visit Team Page</a></p></div><div class="col-xs-12 col-sm-4 col-md-3"><a class="button btn-primary btn-block btn-lg pull-right" href="' + team.teamDonateURL + '" aria-label="Donate to ' +  team.name + '">Donate</a><a class="button btn-outline-dark btn-block btn-lg pull-right" href="' + team.joinTeamURL + '&s_captainConsId=' + team.captainConsId +'&s_regType=joinTeam" aria-label="Join ' +  team.name + '">Join Team</a></div></div>');
                 $('#team_results').removeAttr('hidden');
 
               });
-
+              //add call to hook donate button with payment type selections
+              addPaymentTypesOnSearch();
             }
           },
           error: function (response) {
@@ -188,7 +193,7 @@
         api: 'teamraiser',
         data: 'method=getCompaniesByInfo' +
           '&company_name=' + companyName +
-          '&event_type=' + eventType +
+          (isCrossEvent === true ? '&event_type=' + eventType : '&fr_id=' + evID) +
           '&list_page_size=499' +
           '&list_page_offset=0' +
           '&include_cross_event=true' +
@@ -208,7 +213,7 @@
                   '<div class="row pb-4"><div class="col-sm-12 col-sm-8"><p><strong>' +
                   company.companyName +
                   '</strong></p></div>' +
-                  '<div class="col-sm-12 col-sm-4"><a class="button btn-primary btn-block btn-lg pull-right" href="' + company.companyURL + '">Visit Company Page</a></div></div>'
+                  '<div class="col-sm-12 col-sm-4"><a class="button btn-primary btn-block btn-lg pull-right" href="' + company.companyURL + '" aria-label="Visit page for ' +  company.companyName + '">Visit Company Page</a></div></div>'
                 );
                 $('#company_results').removeAttr('hidden');
               });
@@ -338,9 +343,9 @@
                   eventLocation + '</span><span class="event-date d-block">' +
                   eventDate + '</span></p></div><div class="col-md-3 col-6"><a href="' +
                   greetingUrl +
-                  '" class="button btn-outline-dark btn-block btn-lg js__event-details">Details</a></div><div class="col-md-3 col-6">' +
+                  '" class="button btn-outline-dark btn-block btn-lg js__event-details" aria-label="Details for ' +  eventName +'">Details</a></div><div class="col-md-3 col-6">' +
                   (acceptsRegistration === 'true' ? '<a href="' +
-                    registerUrl + '" class="button btn-primary btn-block btn-lg js__event-register">Register</a>' : '<span class="d-block text-center">Registration is closed<br>but <a class="scroll-link" href="#fundraiserSearch">you can still donate</a></span>') +
+                    registerUrl + '" class="button btn-primary btn-block btn-lg js__event-register" aria-label="Register for ' +  eventName +'">Register</a>' : '<span class="d-block text-center">Registration is closed<br>but <a class="scroll-link" href="#fundraiserSearch">you can still donate</a></span>') +
                   '</div></li>';
 
                 $('.js__event-search-results').append(eventRow);
@@ -790,6 +795,36 @@
 
     // END LANDING PAGE ONLY
 
+    /******************************************************************/
+    /* Get Captain ID - auto select ptype time for those joining team */
+    /******************************************************************/
+
+    cd.getTeamCaptainId = function (evID, teamId, trPage) {
+      luminateExtend.api({
+        api: 'teamraiser',
+        data: 'method=getTeamCaptains&response_format=json&fr_id=' + evID + '&team_id=' + teamId,
+        callback: {
+          success: function (response) {
+            var captainArray = luminateExtend.utils.ensureArray(response.getTeamCaptainsResponse.captain);
+            var captainConsId = captainArray[0].consId;
+
+            if(trPage === 'personal'){
+              var origJoinTeamUrl = $('#personal_page_join_team_button').attr('href');
+              var modJoinTeamUrl = origJoinTeamUrl + '&s_regType=joinTeam&s_captainConsId=' + captainConsId + '&s_dev_branch=cd-cyclenation';
+              $('#personal_page_join_team_button').attr('href', modJoinTeamUrl);
+            }else if(trPage === 'team'){
+              var origJoinTeamUrl = $('#join_team_button').attr('href');
+              var modJoinTeamUrl = origJoinTeamUrl + '&s_regType=joinTeam&s_captainConsId=' + captainConsId + '&s_dev_branch=cd-cyclenation';
+              $('#join_team_button').attr('href', modJoinTeamUrl);
+            }
+          },
+          error: function (response) {
+
+          }
+        }
+      });
+    };
+
     /*****************************/
     /* Survey - Stay in the Know */
     /*****************************/
@@ -891,7 +926,7 @@
 
       var getRegInteractionCallback = {
         success: function (data) {
-          console.log('getRegInteraction success: ' + JSON.stringify(data));
+          // console.log('getRegInteraction success: ' + JSON.stringify(data));
           var hasInteraction = data.getUserInteractionsResponse.interaction;
           if (!hasInteraction) {
             // Does not have trRegInteraction. Check to see if has trLoginInteraction
@@ -905,7 +940,7 @@
 
       var getSocialInteractionCallback = {
         success: function (data) {
-          console.log('getSocialInteraction success: ' + JSON.stringify(data));
+          // console.log('getSocialInteraction success: ' + JSON.stringify(data));
           var hasInteraction = data.getUserInteractionsResponse.interaction;
           if (!hasInteraction) {
             // Does not have trRegInteraction OR trSocialInteraction. Assign a trLoggedInInteraction
@@ -919,7 +954,7 @@
 
       var getLoginInteractionCallback = {
         success: function (data) {
-          console.log('getLoginInteraction success: ' + JSON.stringify(data));
+          // console.log('getLoginInteraction success: ' + JSON.stringify(data));
           var hasInteraction = data.getUserInteractionsResponse.interaction;
           if (!hasInteraction) {
             // Does not have trRegInteraction OR trSocialInteraction OR trLoginInteraction. Assign a trLoggedInInteraction
@@ -1034,7 +1069,10 @@
                 /* email already exists */
                 cd.consRetrieveLogin(email, false);
                 $('.js__signup-error-message').html('Oops! An account already exists with matching information. A password reset has been sent to ' + email + '.');
-              } else {
+              } else if(response.errorResponse.code === '22'){
+                $('.js__signup-error-message').html("One or more attributes failed validation: \"Biographical Information/User Name\" Invalid characters in User Name (valid characters are letters, digits, '-', '_', '@', '.', '%', and ':')");
+
+            } else {
                 $('.js__signup-error-message').html(response.errorResponse.message);
               }
               $('.js__signup-error-container').removeClass('d-none');
@@ -1174,7 +1212,7 @@
       $('form[name=FriendraiserFind]').attr('hidden', true);
 
       if (regType === 'startTeam') {
-        if (eventType2 === 'Road') {
+        if (eventType2 === 'Road' || eventType2 === 'StationaryV2' ) {
           $('form[name=FriendraiserFind]').removeAttr('hidden');
         }
       } else if (regType === 'joinTeam') {
@@ -1182,8 +1220,39 @@
           // On JOIN TEAM step - rename label
           $('#team_label_container').text('Team name:');
           $('form[name=FriendraiserFind]').removeAttr('hidden');
+
+          // append cons ID to the join team button
+          if($('#team_find_search_results_container').length > 0) {
+
+            var teamRows = $('.list-component-row');
+            $.each( teamRows, function(i, teamRow) {
+              var captainConsId, origJoinTeamUrl, modJoinTeamUrl;
+              var self = $(this);
+              var origTeamNameUrl = $(this).find('.list-component-cell-column-team-name a').attr('href');
+              var teamId = getURLParameter(origTeamNameUrl, 'team_id');
+
+              luminateExtend.api({
+                api: 'teamraiser',
+                data: 'method=getTeamCaptains&response_format=json&fr_id=' + evID + '&team_id=' + teamId,
+                callback: {
+                  success: function success(response) {
+                    var captainArray = luminateExtend.utils.ensureArray(response.getTeamCaptainsResponse.captain);
+                    var joinTeamName = 'Join ' + captainArray[0].teamName;
+                    console.log('joinTeamName: ', joinTeamName);
+                    captainConsId = captainArray[0].consId;
+                    origJoinTeamUrl = $(self).find('.list-component-cell-column-join-link a').attr('href');
+                    modJoinTeamUrl = origJoinTeamUrl + '&s_captainConsId=' + captainConsId;
+
+                    $(self).find('.list-component-cell-column-join-link a').attr('href', modJoinTeamUrl).attr('aria-label', joinTeamName);
+                  },
+                  error: function error(response) {}
+                }
+              });
+            });
+          }
         }
       }
+
 
       // rebuild LO's create team form
       var goalPerBike = 1000;
@@ -1193,9 +1262,161 @@
       var currentTeamGoal, currentTeamGoalFormatted, minTeamGoalMsg;
       var loTeamGoal = $('#fr_team_goal');
       var promoCode =  ($('body').data('promocode')!==undefined ? $('body').data('promocode') : "");
-     
+
       // tfind
-      $('#team_find_new_company_selection_container').append('<div id="team_sponsor_code" class="input-container"><div class="form-group"><label for="sponsorCode">Do you have a sponsor code?</label><input name="s_promoCode"type="text"id="sponsorCode"class="form-control" value="' + promoCode + '"></div></div>');
+
+      // begin StationaryV2 event conditional
+      if (eventType2 === 'StationaryV2' ) {
+        var loDefaultGoal = $('#fr_team_goal').val();
+        if(loDefaultGoal){
+          goalPerBike =  Number(loDefaultGoal.replace(/[^0-9\.-]+/g,""));
+        }
+
+      // check to see if Start a Team and Breakaway ptypes are available
+
+      // if Start a Team and Breakaway ptypes are not available, remove those registration options and display a sponsor code field on the reg options step
+
+
+
+        cd.getParticipationTypes = function (promo) {
+          $('.js__reg-type-container .alert').addClass('hidden');
+          var isStartTeamAvailable = false;
+          var isBreakawayAvailable = false;
+          var validPromo = false;
+          var promoCodePtypesAvailable = false;
+
+          luminateExtend.api({
+            api: 'teamraiser',
+            data: 'method=getParticipationTypes' +
+            '&fr_id=' + evID +
+            ((promo !== undefined) ? '&promotion_code=' + promo : '') +
+            '&response_format=json',
+            callback: {
+              success: function (response) {
+
+                if (response.getParticipationTypesResponse.participationType.length) {
+                  // no search results
+                  var participationTypes = luminateExtend.utils.ensureArray(response.getParticipationTypesResponse.participationType);
+                  // var promoPtypeLoaded = false;
+                  $(participationTypes).each(function (i, ptype) {
+                      // There is no promo code in session
+                      if(ptype.participationTypeRegistrationLimit && ptype.participationTypeRegistrationLimit.limitReached === 'false'){
+                        // Publicly available ptypes are available
+                        // ptype has a limit and it has NOT been reached
+                        if(ptype.name.indexOf('Start a Team') > -1){
+                          if(ptype.participationTypeRegistrationLimit.limitReached === 'false'){
+                            isStartTeamAvailable = true;
+                          }
+                        } else if(ptype.name.indexOf('Breakaway') > -1){
+                          if(ptype.participationTypeRegistrationLimit.limitReached === 'false'){
+                            isBreakawayAvailable = true;
+                          }
+                        }
+                      }
+
+                      // if(promo){
+                      // promo is loaded
+                      if(promo && ptype.promoCodeRequired === "true"){
+                        console.log('promo code only ptype available');
+                        // promo code is valid
+
+                          if(ptype.name.indexOf('Start a Team') > -1){
+                            if(ptype.participationTypeRegistrationLimit.limitReached === 'false'){
+                              isStartTeamAvailable = true;
+                              // Promo code ptypes are available
+                              promoCodePtypesAvailable = true;
+                            }
+                          } else if(ptype.name.indexOf('Breakaway') > -1){
+                            if(ptype.participationTypeRegistrationLimit.limitReached === 'false'){
+                              isBreakawayAvailable = true;
+                              // Promo code ptypes are available
+                              promoCodePtypesAvailable = true;
+                            }
+                          }
+                        validPromo = true;
+
+                        // }
+                      } else {
+                        // promo code is inavlid
+                        console.log('set promo to validPromo');
+                        if(validPromo === true){
+                          return false;
+                        } else {
+                          validPromo = false;
+                        }
+                      }
+                    // }
+
+                  });
+
+
+                  if(isStartTeamAvailable === true){
+                    $('.start-team-container').show();
+                  } else {
+                    $('.js__reg-options-promo-container, .js__promo-code-sold-out').removeClass('hidden');
+                  }
+                  if(isBreakawayAvailable === true){
+                    $('.breakaway-container').show();
+                  }
+
+                  if(promoCodePtypesAvailable){
+                    console.log('promoCode ptypes are available and loaded');
+                    // add promo code to reg options links in case they are entering it for the first time on this step
+                    var regOptionLinks = $('.js__reg-type-form .step-button');
+
+                    $(regOptionLinks).each(function(){
+                      var origUrl = $(this).attr('href');
+                      var modUrl = origUrl + '&s_promoCode=' + promo;
+                      $(this).attr('href', modUrl);
+                    });
+                    if(!promoCode){
+                      // show a custom message if a promo code is not already in session and someone manually enters a promo code and we DO retrieve an available ptype
+                      $('.js__promo-code-success').removeClass('hidden');
+                      $('html, body').animate({ scrollTop: 0 }, "slow");
+                    }
+                    $('.js__reg-options-promo-container').addClass('hidden');
+                  // } else if(promo && promoCodePtypesAvailable === false && validPromo === false){
+                  } else if(promo && promoCodePtypesAvailable === false && validPromo === true){
+
+                    console.log('promoCode in session but NO promoCode ptypes are available for registration');
+                    // show a custom message if someone manually enters a promo code and we DO NOT retrieve an available ptype
+                    $('.js__promo-code-sold-out').addClass('hidden');
+                    $('.js__promo-code-error, .js__reg-options-promo-container').removeClass('hidden');
+                  } else if(promo && validPromo === false){
+                    console.log('invalid promoss');
+                    $('.js__promo-code-sold-out').addClass('hidden');
+                    $('.js__promo-code-invalid, .js__reg-options-promo-container').removeClass('hidden');
+                  }
+
+                  $('.join-team-container').show();
+                }
+              },
+              error: function (response) {
+                console.log(response.errorResponse.message);
+              }
+            }
+          });
+        };
+
+        if(promoCode){
+          cd.getParticipationTypes(promoCode);
+        } else {
+          cd.getParticipationTypes();
+        }
+
+        // manage manual submission of promo codes on reg options step
+        $('.js__reg-options-promo-form').on('submit', function(e){
+          e.preventDefault();
+          var manualPromoCode = $('#sponsorCode').val();
+          cd.getParticipationTypes(manualPromoCode);
+        });
+
+      } // end StationaryV2 event conditional
+
+      // only show the VIP code field if a promo code is not already in session
+      if(!promoCode){
+        $('#team_find_new_company_selection_container').append('<div id="team_sponsor_code" class="input-container"><div class="form-group"><label for="sponsorCode">Do you have a VIP Code?</label><input name="s_promoCode"type="text"id="sponsorCode"class="form-control" value=""></div></div>');
+      }
 
       var numTeamResults = $('#team_find_search_results_container .list-component-row').length;
 
@@ -1216,7 +1437,7 @@
         .wrap('<div class="input-group" />')
         .before('<div class="input-group-prepend"><div class="input-group-text input-group-text pr-0 border-right-0 bg-white">$</div></div>')
         .attr({
-          "min": "1000",
+          "min": goalPerBike,
           "step": "100",
           "aria-label": "Goal amount (to the nearest dollar)",
           "data-parsley-validation-threshold": "1",
@@ -1269,15 +1490,17 @@
         $('form[name=FriendraiserFind]').removeAttr('hidden');
       }
 
-
-      // TODO - move this back into the onclick above IF stationary. Otherwise, call below for Road
-
-      if (eventType2 === 'Road') {
+      if (eventType2 === 'Road' || eventType2 === 'StationaryV2') {
         $('#team_find_page > form').parsley(teamFindParsleyConfig);
       }
 
       // append session variable setting hidden input to track number of bikes selected so same value can be automatically selected in reg info step
       $('form[name="FriendraiserFind"]').prepend('<input type="hidden" class="js__numbikes" name="s_numBikes" value="">');
+
+      if($('body').data('numbikes')){
+        // If a session variable for number of bikes has already been set, prepopulate the js__numbikes input with that value so it isn't cleared out if the team create form errors out
+        $('.js__numbikes').val($('body').data('numbikes'));
+      }
 
       $('.dropdown-item').on('click', function (e) {
         e.preventDefault();
@@ -1293,8 +1516,18 @@
         $('.js__show-team-details').prop('disabled', false);
       });
 
-      $('#team_find_new_fundraising_goal_input_hint').text('You can increase your team\'s goal, but the amount shown above is your required fundraising minimum based off of the number of reserved bikes you selected');
+      if($('.field-error-text').length > 0 && $('.field-error-text:contains("There is already a team registered with that name")').length > 0){
+        // append "join team" link in error message with s_regType=joinTeam session var
+        var joinTeamLink = $('.field-error-text a');
+        var updatedJoinTeamLink = $(joinTeamLink).attr('href') + '&s_regType=joinTeam';
+        $(joinTeamLink).attr('href', updatedJoinTeamLink);
+      }
 
+      if (eventType2 === 'StationaryV2') {
+        $('#team_find_new_fundraising_goal_input_hint').text('You can increase your team\'s goal, but the amount shown above is your team\'s required fundraising minimum.');
+      } else {
+        $('#team_find_new_fundraising_goal_input_hint').text('You can increase your team\'s goal, but the amount shown above is your required fundraising minimum based off of the number of reserved bikes you selected.');
+      }
       $('#previous_step span').text('Back');
 
     }
@@ -1303,14 +1536,105 @@
     if ($('#F2fRegPartType').length > 0) {
         // add reg full class to ptype container
         var ptypeBlocks = $('.part-type-decoration-messages');
+
         $(ptypeBlocks).each(function(){
           if($(this).hasClass('part-type-full')){
             $(this).parent().removeClass('selected').addClass('ptype-full').find('input[type=radio]').remove();
+            var disabledLabel = $(this).find('label');
+            $(disabledLabel).replaceWith('<div>' + $(disabledLabel).html() + '</div>');
+          }
+          if (eventType2 === 'StationaryV2' ) {
+            var ptypeName = $(this).find('.part-type-name').text();
+
+            // Hide and disable participation types that don't apply to this particular registration path
+            $(this).parent().find('input[type=radio]').attr('aria-hidden', 'true').prop('checked', false).prop('disabled', true);
+
+            if(ptypeName.indexOf('VIP') > -1) {
+              $(this).closest('.part-type-container').addClass('vip-ptype-container');
+            } else if(ptypeName.indexOf('Breakaway') > -1) {
+              $(this).closest('.part-type-container').addClass('breakaway-ptype-container');
+            } else if (ptypeName.indexOf('Start a Team') > -1){
+              $(this).closest('.part-type-container').addClass('start-team-ptype-container');
+            } else if (ptypeName.indexOf('Join a Team') > -1){
+              $(this).closest('.part-type-container').addClass('join-team-ptype-container');
+              var coachPtype = $('.captain-ptype').text();
+
+              // NOTE - participation type names and times must always be split by " - "
+              if(coachPtype){
+                var coachTime = coachPtype.split('-')[1];
+                console.log(coachTime);
+                if(ptypeName.indexOf(coachTime) > -1) {
+                // add special class to the join team ptype that matches the coach's ptype time
+                $(this).closest('.part-type-container').addClass('join-team-ptype-time');
+                }
+              }
+            }
           }
         });
 
-      if (eventType2 === 'Stationary') {
+      // begin StationaryV2 event conditional
+      if (eventType2 === 'StationaryV2' ) {
+        if (regType === 'joinTeam') {
+          $('#sel_type_container').text('What time will you ride?');
+          if($('.join-team-ptype-container').hasClass('join-team-ptype-time')){
+            // ensure the relevant ptypes are visiable and accessible from keyboard navigation
+            $('.join-team-ptype-time').find('input[name=fr_part_radio]').attr('aria-hidden', 'false').prop('disabled', false).eq(0).prop('checked', true);
+            // only display the ptype that matches the coach's ptype
+            $('.join-team-ptype-time').show();
+          } else {
+            // ensure the relevant ptypes are visiable and accessible from keyboard navigation
+            $('.join-team-ptype-container').find('input[name=fr_part_radio]').attr('aria-hidden', 'false').prop('disabled', false).eq(0).prop('checked', true);
+            // show all join team ptypes as coach's ptype time was not found
+            $('.join-team-ptype-container').show();
+          }
+        } else if(regType === 'startTeam'){
+          if($('.vip-ptype-container').length){
+            // ensure the relevant ptypes are visiable and accessible from keyboard navigation
+            $('.vip-ptype-container').find('input[name=fr_part_radio]').attr('aria-hidden', 'false').prop('disabled', false).eq(0).prop('checked', true);
+            // if promo code based ptype is available on page, only show that ptype option
+            $('.vip-ptype-container').show();
+          } else {
+            // ensure the relevant ptypes are visiable and accessible from keyboard navigation
+            $('.start-team-ptype-container').find('input[name=fr_part_radio]').attr('aria-hidden', 'false').prop('disabled', false).eq(0).prop('checked', true);
+            // otherwise, show publicly available ptypes that match selected reg option
+            $('.start-team-ptype-container').show();
+          }
+        } else if(regType === 'individual'){
+          if($('.vip-ptype-container').length){
+            // ensure the relevant ptypes are visiable and accessible from keyboard navigation
+            $('.vip-ptype-container').find('input[name=fr_part_radio]').attr('aria-hidden', 'false').prop('disabled', false).eq(0).prop('checked', true);
+            // if promo code based ptype is available on page, only show that ptype option
+            $('.vip-ptype-container').show();
+          } else {
+            // ensure the relevant ptypes are visiable and accessible from keyboard navigation
+            $('.breakaway-ptype-container').find('input[name=fr_part_radio]').attr('aria-hidden', 'false').prop('disabled', false).eq(0).prop('checked', true);
+            // otherwise, show publicly available ptypes that match selected reg option
+            $('.breakaway-ptype-container').show();
+          }
+        } else {
+          // ensure the relevant ptypes are visiable and accessible from keyboard navigation
+          $('.part-type-container').find('input[name=fr_part_radio]').attr('aria-hidden', 'false').prop('disabled', false).eq(0).prop('checked', true);
+          // show all participation types in the case that a session variable has not been set for regType
+          $('.part-type-container').show();
+        }
+
+      }
+
+      if (eventType2 === 'Stationary' || eventType2 === 'StationaryV2') {
         $('#sel_type_container').text('What time will you ride?');
+        // $('.part-type-container.selected input').prop('checked', false).removeClass('selected');
+        $('.part-type-container').on('click focus', function (e) {
+            $('.part-type-container').removeClass('selected');
+            $(this).addClass('selected');
+            $(this).find('input[type="radio"]').prop('checked', true);
+        });
+
+        // add accessibility events for keyboard navigation
+        $('input[name=fr_part_radio]').on('click focus', function (e) {
+          $('.part-type-container').removeClass('selected');
+          $(this).closest('.part-type-container').addClass('selected');
+        });
+
       } else {
         if (regType === 'virtual') {
           $('.part-type-name:contains("Virtual")').closest('.part-type-container').show();
@@ -1340,6 +1664,8 @@
             $('#next_step').removeClass('disabled');
             $('#dspPledge').modal({backdrop: 'static', keyboard: false}).modal('show');
         });
+        // remove on click event if has class .ptype-full
+        $('.ptype-full').off();
 
       }
 
@@ -1693,21 +2019,19 @@
     //// This won't run because the JanRain scripts are at very bottom of body tag.
     $('#janrain-amazon, #janrain-facebook').removeAttr('role');
 
+    $('.list-component-sort-select-text').attr('id', 'team_sort_label');
+    $('.list-component-sort-select').attr('aria-labelledby', 'team_sort_label');
     // tr-06-join-or-form-a-team
     $('#team_find_new_team_company label.input-label').attr('for', 'fr_co_list');
 
     $('#team_find_new_team_recruiting_goal label.input-label').attr('for', 'fr_team_member_goal');
 
     // ptype
-    $('#part_type_selection_container').wrapInner('<fieldset role="radiogroup" class="ptype-selection" />');
-    
-    $('input[name=fr_part_radio]').attr('aria-labelledby', 'sel_type_container');
-    
-    // wrap donation options in a fieldset with legend
-    $('#part_type_donation_level_input_container').wrapInner('<fieldset role="radiogroup" class="donation-form-fields" />');
-    $('.donation-form-fields').prepend('<legend id="reg_donation_label" class="sr-only">Make a donation</legend>');
+    $('#part_type_selection_container').wrapInner('<fieldset role="radiogroup" class="ptype-selection" aria-labelledby="sel_type_container"/>');
 
-    $('.donation-level-container input[type=radio]').attr('aria-labelledby', 'reg_donation_label');
+    $('.donation-levels').before('<legend id="reg_donation_array_label" class="sr-only">Make a donation</legend>');
+
+    $('#part_type_donation_level_input_container').wrapInner('<fieldset role="radiogroup" class="donation-form-fields" aria-labelledby="reg_donation_array_label"/>');
 
     // associate ptype label with input
     $('.part-type-container label').each(function (i) {
@@ -1715,6 +2039,17 @@
       $(this).closest('.part-type-container').find('input[name="fr_part_radio"]').attr('id', ptypeOptionId);
     });
 
+    $('label[for="responsive_payment_typecc_exp_date_MONTH"] .label-text').text('Month:');
+    $('label[for="responsive_payment_typecc_exp_date_MONTH"]').insertBefore($('#responsive_payment_typecc_exp_date_MONTH'));
+
+    $('label[for="responsive_payment_typecc_exp_date_YEAR"]').append('<span class="label-text">Year: </span>');
+    $('label[for="responsive_payment_typecc_exp_date_YEAR"]').insertBefore($('#responsive_payment_typecc_exp_date_YEAR'));
+
+    $('#responsive_payment_typecc_exp_date_row .field-required').remove();
+    $('fieldset.cardExpGroup').prepend('<legend class="cc-legend">Credit Card Expires</legend>')
+    $('.cc-legend').prepend('<span class="field-required"></span>&nbsp;');
+
+    $('.payment-type-label').prepend('<span class="sr-only">Pay with PayPal</span>');
 
     // Reg
     $('label[for="cons_first_name"]').eq(0).remove();
@@ -1723,7 +2058,8 @@
 
     // paymentForm
     $('#responsive_payment_typepay_typeradio_payment_types').wrap('<fieldset />').prepend('<legend class="sr-only">Payment method:</legend>');
-    $('.cardExpGroup').prepend('<legend class="sr-only">Credit card expiration date</legend>');
+
+
 
     $('#find_hdr_container').replaceWith(function () {
       return '<h2 class="' + $(this).attr('class') + '" id="' + $(this).attr('id') + '">' + $(this).html() + '</h2>';
@@ -1752,12 +2088,24 @@
     if ($('body').is('.pg_personal')) {
       var personalHeadline = $('#personal_page_header h2');
       $(personalHeadline).replaceWith('<h1>' + $(personalHeadline).text() + '</h1>');
+      // populate captain cons ID in body attributes and append to modified join team URL
+      var currentUrl = $('#personal_page_join_team_button').attr('href');
+      var teamId = getURLParameter(currentUrl, 'fr_tjoin');
+      var captainId = cd.getTeamCaptainId(evID, teamId, 'personal');
     }
     if ($('body').is('.pg_team')) {
+
       var teamHeadline = $('#team_page_title');
       var existingTeamName = $('#team_name');
       $(teamHeadline).replaceWith('<h1>' + $(teamHeadline).text() + '</h1>');
       $(existingTeamName).replaceWith('<h2>' + $(existingTeamName).text() + '</h2>');
+
+      // populate captain cons ID in body attributes and append to modified join team URL
+      var currentUrl = window.location.href;
+      var teamId = getURLParameter(currentUrl, 'team_id');
+      var captainId = cd.getTeamCaptainId(evID, teamId, 'team');
+
+
     }
     if ($('body').is('.pg_company')) {
       var companyHeadline = $('.cstmTitle');
@@ -1772,7 +2120,7 @@
       // Add text above matching company label
       $('#donor_matching_employer_Row').prepend('<p><strong>Play matchmaker. Here&#8217;s how.</strong></p><ul><li>Find out if your employer participates in a matching gifts program, an easy way to increase your donation.</li><li>Just fill in your company&#8217;s details below.</li></ul>');
 
-      $('fieldset.cardExpGroup').prepend('<legend class="aural-only">Credit Card Expires</legend>');
+      // $('fieldset.cardExpGroup').prepend('<legend class="aural-only">Credit Card Expires</legend>');
 
       $('#level_flexible_row2').wrapInner('<fieldset></fieldset>');
       $('#level_flexible_row2 fieldset').prepend('<legend class="aural-only">Select Gift Amount</legend>');
@@ -1793,7 +2141,7 @@
       $('#level_flexible_row').before('<div class="required-indicator-legend d-block w-100"><span class="field-required"></span><span class="required-indicator-legend-text">&nbsp;Indicates Required</span></div>');
 
       $('label[for="responsive_payment_typepay_typeradiocredit"] a').attr('aria-label', 'PAYMENT BY CREDIT CARD');
-      $('label[for="responsive_payment_typepay_typeradiopaypal"] a').attr('aria-label', 'PAYMENT BY PAY PAL');
+      $('label[for="responsive_payment_typepay_typeradiopaypal"] a').attr('aria-label', 'Pay with PayPal');
 
       // Selecting empty value from the Gift Duration drop-down when the One-time Gift box is checked
       $('#level_flexiblegift_type1').click(function () {
@@ -1862,10 +2210,8 @@
       $('#billing_addr_zipname')
         .attr('data-parsley-required', '')
         .attr('data-parsley-required-message', 'Zip Code is required')
-        .attr('data-parsley-type', 'number')
-        .attr('data-parsley-type-message', 'Zip Code must be a number')
-        .attr('data-parsley-maxlength', '7')
-        .attr('data-parsley-maxlength-message', 'Zip Code  cannot be more than 7 characters');
+        .attr('data-parsley-maxlength', '10')
+        .attr('data-parsley-maxlength-message', 'Zip Code cannot be more than 10 characters');
 
       $('#responsive_payment_typecc_numbername')
         .attr('data-parsley-required', '')
@@ -1903,6 +2249,12 @@
         $('#responsive_payment_typecc_cvvname').removeAttr('data-parsley-required');
       });
 
+      $('#pstep_finish').on('click', function (e) {
+          var rawPhoneNumber = $('#cell_or_phone_number_input').val();
+          var cleanPhoneNumber = rawPhoneNumber.replace(/[()-]/g,"");
+          cleanPhoneNumber = cleanPhoneNumber.replace(/\s/g,"");
+          $('#cell_or_phone_number_input').val(cleanPhoneNumber);
+      });
 
     }
 

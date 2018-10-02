@@ -1,4 +1,4 @@
-if window.location.href.indexOf('pagename=jump_hoops_participant_center') isnt -1
+if window.location.href.indexOf('pagename=ym_khc_participant_center') isnt -1
   angular.module 'trPcApp'
     .config [
       '$routeProvider'
@@ -6,42 +6,42 @@ if window.location.href.indexOf('pagename=jump_hoops_participant_center') isnt -
       ($routeProvider, APP_INFO) ->
         $routeProvider
           .when '/load-error', 
-            templateUrl: APP_INFO.rootPath + 'dist/jump-hoops/html/participant-center/view/loadError.html'
+            templateUrl: APP_INFO.rootPath + 'dist/ym-primary/html/participant-center/view/loadError.html'
             controller: 'NgPcLoadErrorViewCtrl'
           .when '/dashboard', 
-            templateUrl: APP_INFO.rootPath + 'dist/jump-hoops/html/participant-center/view/dashboard.html'
+            templateUrl: APP_INFO.rootPath + 'dist/ym-primary/html/participant-center/view/dashboard.html'
             controller: 'NgPcDashboardViewCtrl'
           .when '/dashboard-student', 
-            templateUrl: APP_INFO.rootPath + 'dist/jump-hoops/html/participant-center/view/dashboard.html'
+            templateUrl: APP_INFO.rootPath + 'dist/ym-primary/html/participant-center/view/dashboard.html'
             controller: 'NgPcDashboardViewCtrl'
           .when '/email', 
             redirectTo: '/email/compose'
           .when '/email/compose/:messageType?/:messageId?', 
-            templateUrl: APP_INFO.rootPath + 'dist/jump-hoops/html/participant-center/view/emailCompose.html'
+            templateUrl: APP_INFO.rootPath + 'dist/ym-primary/html/participant-center/view/emailCompose.html'
             controller: 'NgPcEmailComposeViewCtrl'
           .when '/email/message/:messageType', 
             redirectTo: '/email/message/:messageType/list'
           .when '/email/message/:messageType/list', 
-            templateUrl: APP_INFO.rootPath + 'dist/jump-hoops/html/participant-center/view/emailMessageList.html'
+            templateUrl: APP_INFO.rootPath + 'dist/ym-primary/html/participant-center/view/emailMessageList.html'
             controller: 'NgPcEmailMessageListViewCtrl'
           .when '/email/contacts', 
             redirectTo: '/email/contacts/email_rpt_show_all/list'
           .when '/email/contacts/:filter', 
             redirectTo: '/email/contacts/:filter/list'
           .when '/email/contacts/:filter/list', 
-            templateUrl: APP_INFO.rootPath + 'dist/jump-hoops/html/participant-center/view/emailContactsList.html'
+            templateUrl: APP_INFO.rootPath + 'dist/ym-primary/html/participant-center/view/emailContactsList.html'
             controller: 'NgPcEmailContactsListViewCtrl'
           .when '/reports', 
-            templateUrl: APP_INFO.rootPath + 'dist/jump-hoops/html/participant-center/view/reports.html'
+            templateUrl: APP_INFO.rootPath + 'dist/ym-primary/html/participant-center/view/reports.html'
             controller: 'NgPcReportsViewCtrl'
           .when '/student-resources', 
-            templateUrl: APP_INFO.rootPath + 'dist/jump-hoops/html/participant-center/view/studentResources.html'
+            templateUrl: APP_INFO.rootPath + 'dist/ym-primary/html/participant-center/view/studentResources.html'
             controller: 'NgPcStudentResourcesViewCtrl'
           .when '/teacher-resources', 
-            templateUrl: APP_INFO.rootPath + 'dist/jump-hoops/html/participant-center/view/teacherResources.html'
+            templateUrl: APP_INFO.rootPath + 'dist/ym-primary/html/participant-center/view/teacherResources.html'
             controller: 'NgPcTeacherResourcesViewCtrl'
           .when '/social', 
-            templateUrl: APP_INFO.rootPath + 'dist/jump-hoops/html/participant-center/view/social.html'
+            templateUrl: APP_INFO.rootPath + 'dist/ym-primary/html/participant-center/view/social.html'
             controller: 'NgPcSocialViewCtrl'
           .otherwise 
             redirectTo: do ->
@@ -90,7 +90,7 @@ if window.location.href.indexOf('pagename=jump_hoops_participant_center') isnt -
               $rootScope.loginModal = $uibModal.open 
                 scope: $rootScope
                 backdrop: 'static'
-                templateUrl: APP_INFO.rootPath + 'dist/jump-hoops/html/participant-center/modal/login.html'
+                templateUrl: APP_INFO.rootPath + 'dist/ym-primary/html/participant-center/modal/login.html'
           
           # load error
           if $rootScope.loadError

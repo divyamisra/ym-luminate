@@ -61,9 +61,13 @@ angular.module 'ahaLuminateApp'
         getCompanyList: getCompanyList
         getCompanyTree: getCompanyTree
         getCoordinatorQuestion: (coordinatorId, eventId) ->
+          requestUrl = luminateExtend.global.path.nonsecure
+          if window.location.protocol == 'https:'
+            requestUrl = luminateExtend.global.path.secure + 'S'
+          requestUrl += 'PageServer?pagename=ym_coordinator_data&pgwrap=n'
           $http
             method: 'GET'
-            url: 'PageServer?pagename=ym_coordinator_data&pgwrap=n&consId=' + coordinatorId + '&frId=' + eventId
+            url: requestUrl + '&consId=' + coordinatorId + '&frId=' + eventId
           .then (response) ->
             response
       }

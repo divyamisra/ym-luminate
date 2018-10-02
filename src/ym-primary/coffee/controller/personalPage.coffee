@@ -24,63 +24,19 @@ angular.module 'ahaLuminateControllers'
       $scope.challengeCompleted = 0
 
       $scope.prizes = []
-      $scope.monsters = []
       BoundlessService.getBadges $scope.participantId
-        .then (response) ->
-          if not response.data.status or response.data.status isnt 'success'
-            # TODO
-          else
-            prizes = response.data.prizes
-            angular.forEach prizes, (prize) ->
-              if prize.earned_datetime isnt null
-                if prize.id is 342 or prize.id is 344
-                  $scope.monsters.push
-                    priority: 1
-                    id: prize.id
-                    label: prize.label
-                    sku: prize.sku
-                    status: prize.status
-                    earned: prize.earned_datetime
-                  $scope.monsters.sort (a, b) ->
-                    b.id - a.id
-                else
-                  if prize.id is 352
-                    $scope.prizes.push
-                      priority: 2
-                      id: prize.id
-                      label: prize.label
-                      sku: prize.sku
-                      status: prize.status
-                      earned: prize.earned_datetime
-                  else if prize.id is 350
-                    $scope.prizes.push
-                      priority: 3
-                      id: prize.id
-                      label: prize.label
-                      sku: prize.sku
-                      status: prize.status
-                      earned: prize.earned_datetime
-                  else if prize.id is 353
-                    $scope.prizes.push
-                      priority: 4
-                      id: prize.id
-                      label: prize.label
-                      sku: prize.sku
-                      status: prize.status
-                      earned: prize.earned_datetime
-                  else if prize.id is 351
-                    $scope.prizes.push
-                      priority: 5
-                      id: prize.id
-                      label: prize.label
-                      sku: prize.sku
-                      status: prize.status
-                      earned: prize.earned_datetime
-            if $scope.monsters.length > 0
-              $scope.prizes.push $scope.monsters[0]
-            if $scope.prizes.length > 0
-              $scope.prizes.sort (a, b) ->
-                a.priority - b.priority
+      .then (response) ->
+        prizes = response.data.prizes
+        angular.forEach prizes, (prize) ->
+          if prize.status  == 1
+            $scope.prizes.push
+              id: prize.id
+              label: prize.label
+              sku: prize.sku
+              status: prize.status
+              earned: prize.earned_datetime
+      , (response) ->
+        # TODO
 
       ZuriService.getStudent $scope.frId + '/' + $scope.participantId,
         error: (response) ->

@@ -80,26 +80,6 @@ module.exports = {
     ]
   }, 
   
-  "jump-hoops": {
-    files: [
-      'src/youth-markets/sass/**/*', 
-      'src/global/coffee/**/*', 
-      'src/youth-markets/coffee/**/*', 
-      'src/jump-hoops/html/**/*', 
-      'src/jump-hoops/image/**/*', 
-      'src/jump-hoops/sass/**/*', 
-      'src/jump-hoops/coffee/**/*'
-    ], 
-    tasks: [
-      'clean:jump-hoops',  
-      'css-dist:jump-hoops', 
-      'js-dist:jump-hoops', 
-      'html-dist:jump-hoops', 
-      'img-copy:jump-hoops-images', 
-      'notify:jump-hoops'
-    ]
-  }, 
-  
   "ym-primary": {
     files: [
       'src/youth-markets/sass/**/*', 

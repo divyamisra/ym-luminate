@@ -1,0 +1,81 @@
+/* Hero Popup Styles */
+.launch-builder-popup {
+	bottom: 0;
+	cursor: pointer;
+	height: 230px;
+	margin: auto;
+	position: fixed;
+	right: 0;
+	top: 60%;
+	transition: all 0.2s;
+	width: 150px;
+	z-index: 99999;
+	outline: none;
+}
+
+.ym-activity-box--virtual img {
+	max-width:100%;
+}
+
+@media only screen and (min-width: 768px) {
+	.launch-builder-popup {
+		height: 268.333px;
+		width: 175px;
+	}
+}
+
+@media only screen and (min-width: 1000px) {
+	.launch-builder-popup {
+		height: 306.667px;
+		width: 200px;
+	}	
+}
+
+.launch-builder-character {
+	background-repeat: no-repeat;
+	background-size: 100% auto;
+	height: 100%;
+	position:  absolute;	
+	width: 100%;
+}
+
+@keyframes wink {
+	0% { background-position: 100%  0%; }
+	90% { background-position: 100% 0%; }
+	100% { background-position: 100%  100%; }
+}
+
+@keyframes pop {
+	0% { background-position: 100%  0%; }
+	100% { background-position: 100%  100%; }
+}
+
+.launch-builder-character.wink {
+	animation: wink 2.5s steps(3) infinite;
+	background-image: url(../image/pc_customize-wink.png);
+        transform-origin: 100% 60%;
+	transition: all 0.667s;
+}
+
+.launch-builder-character.pop {
+	background-image: url(../image/pc_customize-pop.png);
+	transform: scale(0);
+	transform-origin: 100% 60%;
+	transition: all 0.667s;
+}
+
+.launch-builder-popup.pop .launch-builder-character.wink,
+.launch-builder-popup:hover .launch-builder-character.wink {
+	animation: none;
+	transform: scale(0);
+}
+
+.launch-builder-popup.pop .launch-builder-character.pop,
+.launch-builder-popup:hover .launch-builder-character.pop {
+	animation: pop 1s steps(36) infinite;
+	transform: scale(1);
+}	
+
+.social-iframe {
+	min-height: 950px;
+}

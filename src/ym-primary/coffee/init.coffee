@@ -49,6 +49,7 @@ angular.module 'ahaLuminateApp'
       $rootScope.apiKey = $dataRoot.data('api-key') if $dataRoot.data('api-key') isnt ''
       $rootScope.authToken = $dataRoot.data('auth-token') if $dataRoot.data('auth-token') isnt ''
       $rootScope.sessionCookie = $dataRoot.data('session-cookie') if $dataRoot.data('session-cookie') isnt ''
+      $rootScope.dev_branch = $dataRoot.data('dev-branch') if $dataRoot.data('dev-branch') isnt ''
   ]
 
 angular.element(document).ready ->

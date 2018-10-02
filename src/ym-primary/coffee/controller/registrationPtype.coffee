@@ -30,14 +30,15 @@ angular.module 'ahaLuminateControllers'
       $participationType = angular.element('.js--registration-ptype-part-types input[name="fr_part_radio"]').eq 0
       $scope.participationOptions.fr_part_radio = $participationType.val()
       
-      $scope.toggleDonationLevel = (levelAmount) ->
-        $scope.participationOptions.ng_donation_level = levelAmount
-        $scope.participationOptionsForm.ng_donation_level_other_amount.$setValidity("amount", true);
-        angular.forEach $scope.donationLevels.levels, (donationLevel, donationLevelIndex) ->
-          if donationLevel.amount is levelAmount
-            $scope.donationLevels.activeLevel = donationLevel
-        if levelAmount isnt '-1'
-          $scope.participationOptions.ng_donation_level_other_amount = ''
+      $scope.toggleDonationLevel = (event, levelAmount) ->
+        if event.type == 'click' or (event.type == 'keyup' and event.key >= 0 and event.key <= 9)
+          $scope.participationOptions.ng_donation_level = levelAmount
+          $scope.participationOptionsForm.ng_donation_level_other_amount.$setValidity("amount", true);
+          angular.forEach $scope.donationLevels.levels, (donationLevel, donationLevelIndex) ->
+            if donationLevel.amount is levelAmount
+              $scope.donationLevels.activeLevel = donationLevel
+          if levelAmount isnt '-1'
+            $scope.participationOptions.ng_donation_level_other_amount = ''
       
       $scope.donationLevels = 
         levels: []
@@ -94,6 +95,8 @@ angular.module 'ahaLuminateControllers'
           else
             window.scrollTo 0, 0
         else
+          if $scope.donationLevels.activeLevel == undefined
+            $scope.toggleDonationLevel "$0.00"
           angular.element('.js--default-ptype-form').submit()
           false
   ]

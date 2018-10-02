@@ -10,6 +10,7 @@ angular.module 'trPcControllers'
     'ContactService'
     ($scope, $routeParams, $location, $translate, $uibModal, APP_INFO, TeamraiserEmailService, ContactService) ->
       $scope.messageType = $routeParams.messageType
+      $scope.refreshContactsNav = 0
       
       $scope.emailPromises = []
       
@@ -53,7 +54,7 @@ angular.module 'trPcControllers'
       angular.forEach contactFilters, (filter) ->
         contactCountPromise = ContactService.getTeamraiserAddressBookContacts 'tr_ab_filter=' + filter + '&skip_groups=true&list_page_size=1'
           .then (response) ->
-            $scope.contactCounts[filter] = response.data.getTeamraiserAddressBookContactsResponse?.totalNumberResults or '0'
+            $scope.contactCounts[filter] = response.data.getTeamraiserAddressBookContactsResponse.totalNumberResults
             response
         $scope.emailPromises.push contactCountPromise
       

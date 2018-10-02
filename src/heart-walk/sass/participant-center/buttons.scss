@@ -63,6 +63,33 @@ a.btn-primary-inverted:active:hover {
     color: #ffffff;
     border-color: #3c3c3c;
 }
+.btn-outline-white,
+.btn-outline-white:link,
+.btn-outline-white:focus,
+.btn-outline-white:visited,
+.btn-outline-white:active:focus,
+a.btn-outline-white,
+a.btn-outline-white:link,
+a.btn-outline-white:visited,
+a.btn-outline-white:focus,
+a.btn-outline-white:active:focus {
+    border-color: #ffffff;
+    color: #ffffff;
+    background-color: $brand-primary;
+    background: $brand-primary;
+}
+
+.btn-outline-white:active,
+.btn-outline-white:hover,
+a.btn-outline-white:active,
+a.btn-outline-white:hover,
+.btn-outline-white:active:hover,
+a.btn-outline-white:active:hover {
+    background-color: #3c3c3c;
+    color: #ffffff;
+    border-color: #3c3c3c;
+}
+
 a.pc_btn, button.pc_btn {
     height: 60px;
     padding: 0 20px;

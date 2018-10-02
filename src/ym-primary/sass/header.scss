@@ -1,22 +1,10 @@
 header {
-  .ym-header-logo--jump {
+  .ym-header-logo--khc {
+    float:right;
+    border-left:none;
     > a, 
     > span {
-      margin: -8px 8px 0;
-    }
-  }
-  
-  .ym-header-logo--hoops {
-    > a, 
-    > span {
-      margin: 10px 8px 0;
-    }
-  }
-  
-  .ym-header-logo--shape-america {
-    > a, 
-    > span {
-      margin: 6px 18px 0;
+      margin: -2px 12px 0;
     }
   }
 }

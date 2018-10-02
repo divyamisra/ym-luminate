@@ -1,144 +1,7 @@
 <div cg-busy="emailPromises">
   <div class="row">
     <div class="col-sm-4 col-md-3">
-      <div class="visible-xs">
-        <div class="btn-group ng-pc-nav-btn-group" uib-dropdown>
-          <button type="button" class="btn btn-success form-control" uib-dropdown-toggle>
-            {{filterName}} <span class="caret"></span>
-          </button>
-          <ul class="list-unstyled dropdown-menu" uib-dropdown-menu>
-            <li>
-              <a ng-href="{{baseUrl}}#/email/compose">
-                Compose
-              </a>
-            </li>
-            <li class="divider"></li>
-            <li>
-              <a ng-href="{{baseUrl}}#/email/message/draft/list">
-                <span class="badge">{{messageCounts.drafts}}</span>
-                Drafts
-              </a>
-            </li>
-            <li>
-              <a ng-href="{{baseUrl}}#/email/message/sentMessage/list">
-                <span class="badge">{{messageCounts.sentMessages}}</span> 
-                Sent Messages
-              </a>
-            </li>
-            <li class="divider"></li>
-            <li>
-              <a ng-href="{{baseUrl}}#/email/contacts/email_rpt_show_all/list">
-                <span class="badge">{{contactCounts.email_rpt_show_all}}</span>
-                All Contacts
-              </a>
-            </li>
-            <li>
-              <a ng-href="{{baseUrl}}#/email/contacts/email_rpt_show_never_emailed/list">
-                <span class="badge">{{contactCounts.email_rpt_show_never_emailed}}</span>
-                Never Emailed
-              </a>
-            </li>
-            <li>
-              <a ng-href="{{baseUrl}}#/email/contacts/email_rpt_show_nondonors_followup/list">
-                <span class="badge">{{contactCounts.email_rpt_show_nondonors_followup}}</span>
-                Needs Follow-Up
-              </a>
-            </li>
-            <li>
-              <a ng-href="{{baseUrl}}#/email/contacts/email_rpt_show_unthanked_donors/list">
-                <span class="badge">{{contactCounts.email_rpt_show_unthanked_donors}}</span>
-                Unthanked Donors
-              </a>
-            </li>
-            <li>
-              <a ng-href="{{baseUrl}}#/email/contacts/email_rpt_show_donors/list">
-                <span class="badge">{{contactCounts.email_rpt_show_donors}}</span>
-                Donors
-              </a>
-            </li>
-            <li>
-              <a ng-href="{{baseUrl}}#/email/contacts/email_rpt_show_nondonors/list">
-                <span class="badge">{{contactCounts.email_rpt_show_nondonors}}</span>
-                Non-Donors
-              </a>
-            </li>
-            <li>
-              <a ng-href="{{baseUrl}}#/email/contacts/email_rpt_show_teammates/list">
-                <span class="badge">{{contactCounts.email_rpt_show_teammates}}</span>
-                Current Teammates
-              </a>
-            </li>
-            <li>
-              <a ng-href="{{baseUrl}}#/email/contacts/email_rpt_show_lybunt_teammates/list">
-                <span class="badge">{{contactCounts.email_rpt_show_lybunt_teammates}}</span>
-                Past Teammates
-              </a>
-            </li>
-            <li>
-              <a ng-href="{{baseUrl}}#/email/contacts/email_rpt_show_ly_donors/list">
-                <span class="badge">{{contactCounts.email_rpt_show_ly_donors}}</span>
-                Past-Donors
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <div class="hidden-xs">
-        <a class="btn btn-success form-control" ng-href="{{baseUrl}}#/email/compose">
-          Compose
-        </a>
-        <div class="list-group ng-pc-nav-list-group">
-          <a class="list-group-item" ng-href="{{baseUrl}}#/email/message/draft/list">
-            <span class="badge">{{messageCounts.drafts}}</span> 
-            Drafts
-          </a>
-          <a class="list-group-item" ng-href="{{baseUrl}}#/email/message/sentMessage/list">
-            <span class="badge">{{messageCounts.sentMessages}}</span> 
-            Sent Mail
-          </a>
-        </div>
-        <div class="list-group ng-pc-nav-list-group">
-          <h3 class="list-group-item-heading">
-            Contacts
-          </h3>
-          <a class="list-group-item" ng-class="{'active': filter == 'email_rpt_show_all'}" ng-href="{{baseUrl}}#/email/contacts/email_rpt_show_all/list">
-            <span class="badge">{{contactCounts.email_rpt_show_all}}</span>
-            All Contacts
-          </a>
-          <a class="list-group-item" ng-class="{'active': filter == 'email_rpt_show_never_emailed'}" ng-href="{{baseUrl}}#/email/contacts/email_rpt_show_never_emailed/list">
-            <span class="badge">{{contactCounts.email_rpt_show_never_emailed}}</span>
-            Never Emailed
-          </a>
-          <a class="list-group-item" ng-class="{'active': filter == 'email_rpt_show_nondonors_followup'}" ng-href="{{baseUrl}}#/email/contacts/email_rpt_show_nondonors_followup/list">
-            <span class="badge">{{contactCounts.email_rpt_show_nondonors_followup}}</span>
-            Needs Follow-Up
-          </a>
-          <a class="list-group-item" ng-class="{'active': filter == 'email_rpt_show_unthanked_donors'}" ng-href="{{baseUrl}}#/email/contacts/email_rpt_show_unthanked_donors/list">
-            <span class="badge">{{contactCounts.email_rpt_show_unthanked_donors}}</span>
-            Unthanked Donors
-          </a>
-          <a class="list-group-item" ng-class="{'active': filter == 'email_rpt_show_donors'}" ng-href="{{baseUrl}}#/email/contacts/email_rpt_show_donors/list">
-            <span class="badge">{{contactCounts.email_rpt_show_donors}}</span>
-            Donors
-          </a>
-          <a class="list-group-item" ng-class="{'active': filter == 'email_rpt_show_nondonors'}" ng-href="{{baseUrl}}#/email/contacts/email_rpt_show_nondonors/list">
-            <span class="badge">{{contactCounts.email_rpt_show_nondonors}}</span>
-            Non Donors
-          </a>
-          <a class="list-group-item" ng-class="{'active': filter == 'email_rpt_show_teammates'}" ng-href="{{baseUrl}}#/email/contacts/email_rpt_show_teammates/list">
-            <span class="badge">{{contactCounts.email_rpt_show_teammates}}</span>
-            Current Teammates
-          </a>
-          <a class="list-group-item" ng-class="{'active': filter == 'email_rpt_show_lybunt_teammates'}" ng-href="{{baseUrl}}#/email/contacts/email_rpt_show_lybunt_teammates/list">
-            <span class="badge">{{contactCounts.email_rpt_show_lybunt_teammates}}</span>
-            Past Teammates
-          </a>
-          <a class="list-group-item" ng-class="{'active': filter == 'email_rpt_show_ly_donors'}" ng-href="{{baseUrl}}#/email/contacts/email_rpt_show_ly_donors/list">
-            <span class="badge">{{contactCounts.email_rpt_show_ly_donors}}</span>
-            Past-Donors
-          </a>
-        </div>
-      </div>
+      <email-contacts-nav refresh-contacts="refreshContactsNav"></email-contacts-nav>
     </div>
     <div class="col-sm-8 col-md-9">
       <div uib-alert class="alert-success" ng-if="addContactSuccess">
@@ -156,6 +19,9 @@
       <div uib-alert class="alert-success" ng-if="deleteContactSuccess">
         {{deleteContactSuccess}}
       </div>
+      <div uib-alert class="alert-danger" ng-if="deleteContactGroupError">
+        {{deleteContactGroupError}}
+      </div>
       <div class="contacts-list__actions clearfix">
         <div class="contacts-list__actions-selected">
           <button class="btn btn-primary text-uppercase" ng-click="emailSelectedContacts()">
@@ -169,13 +35,16 @@
           <button class="btn btn-primary-inverted text-uppercase" ng-click="importContacts()">
             Import<span class="hidden-xs"> Contacts</span>
           </button>
+          <button class="btn btn-primary-inverted" ng-click="addContactsToGroup()">
+            <span> Add Contacts to Group</span>
+          </button>
         </div>
       </div>
       <div class="panel panel-default">
         <div class="panel-heading">
           <div class="checkbox">
             <label for="contact_select_all">
-              <input id="contact_select_all" type="checkbox" ng-checked="addressBookContacts.allContactsSelected" ng-click="toggleAllContacts()">
+              <input id="contact_select_all" type="checkbox" ng-model="contactsSelected.all" ng-model-options="{ getterSetter: true }" ng-if="addressBookContacts.totalNumber" ng-click="toggleAllContacts()">
               <span class="panel-title">
                 {{filterName}}
               </span>

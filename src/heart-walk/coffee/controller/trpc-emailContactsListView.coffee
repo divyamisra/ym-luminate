@@ -3,17 +3,19 @@ angular.module 'trPcControllers'
     '$rootScope'
     '$scope'
     '$window'
+    '$timeout'
     '$routeParams'
     '$location'
     '$httpParamSerializer'
     '$translate'
+    '$filter'
     '$uibModal'
-    'APP_INFO'
     'TeamraiserEmailService'
     'ContactService'
-    ($rootScope, $scope, $window, $routeParams, $location, $httpParamSerializer, $translate, $uibModal, APP_INFO, TeamraiserEmailService, ContactService) ->
+    'APP_INFO'
+    ($rootScope, $scope, $window, $timeout, $routeParams, $location, $httpParamSerializer, $translate, $filter, $uibModal, TeamraiserEmailService, ContactService, APP_INFO) ->
       $scope.filter = $routeParams.filter
-      
+      $scope.refreshContactsNav = 0
       $scope.emailPromises = []
       
       $scope.messageCounts = {}
@@ -48,115 +50,127 @@ angular.module 'trPcControllers'
         contactIndex = $rootScope.selectedContacts.contacts.indexOf contactData
         contactIndex isnt -1
 
-      countContactSelected = (contacts) ->
-        count = 0
-        angular.forEach contacts, (contact) ->
-          if contact?.selected
-            count = count + 1
-        count
+      getContactById = (contactId) ->
+        contact = null
+        if $scope.addressBookContacts.contacts.length > 0
+          angular.forEach $scope.addressBookContacts.allContacts, (currContact) ->
+            if currContact.id is contactId
+              contact = angular.copy currContact
+        contact
 
       isAllContactsSelected = () ->
         $scope.addressBookContacts.allContacts.length is countContactSelected $scope.addressBookContacts.allContacts
-      
-      $scope.contactCounts = {}
-      contactFilters = [
-        'email_rpt_show_all'
-        'email_rpt_show_never_emailed'
-        'email_rpt_show_nondonors_followup'
-        'email_rpt_show_unthanked_donors'
-        'email_rpt_show_donors'
-        'email_rpt_show_nondonors'
-        'email_rpt_show_teammates'
-        'email_rpt_show_lybunt_teammates'
-        'email_rpt_show_ly_donors'
-      ]
+
       $scope.addressBookContacts = 
         page: 1
-        allContactsSelected: false
-      angular.forEach contactFilters, (filter) ->
-        if filter is $scope.filter
-          $scope.getContacts = ->
-            pageNumber = $scope.addressBookContacts.page - 1
-            contactsPromise = ContactService.getTeamraiserAddressBookContacts 'tr_ab_filter=' + filter + '&skip_groups=true&list_page_size=10&list_page_offset=' + pageNumber
-              .then (response) ->
-                $scope.contactCounts[filter] = $scope.addressBookContacts.totalNumber = response.data.getTeamraiserAddressBookContactsResponse.totalNumberResults
-                addressBookContacts = response.data.getTeamraiserAddressBookContactsResponse.addressBookContact
-                addressBookContacts = [addressBookContacts] if not angular.isArray addressBookContacts
-                contacts = []
-                angular.forEach addressBookContacts, (contact) ->
-                  if contact
-                    contact.selected = isContactSelected contact
-                    contacts.push contact
-                $scope.addressBookContacts.contacts = contacts
-                response
-            $scope.emailPromises.push contactsPromise
-          $scope.getContacts()
-          $scope.getAllContacts = ->
-            if not $scope.addressBookContacts.getAllPage
-              $scope.addressBookContacts.allContacts = []
-              $scope.addressBookContacts.getAllPage = 0
-            pageNumber = $scope.addressBookContacts.getAllPage
-            allContactsPromise = ContactService.getTeamraiserAddressBookContacts 'tr_ab_filter=' + filter + '&skip_groups=true&list_page_size=200&list_page_offset=' + pageNumber
-              .then (response) ->
-                totalNumber = response.data.getTeamraiserAddressBookContactsResponse.totalNumberResults
-                addressBookContacts = response.data.getTeamraiserAddressBookContactsResponse.addressBookContact
-                addressBookContacts = [addressBookContacts] if not angular.isArray addressBookContacts
-                contacts = []
-                angular.forEach addressBookContacts, (contact) ->
-                  if contact
-                    contact.selected = isContactSelected contact
-                    $scope.addressBookContacts.allContacts.push contact
-                if $scope.addressBookContacts.allContacts.length < totalNumber
-                  $scope.addressBookContacts.getAllPage = $scope.addressBookContacts.getAllPage + 1
-                  $scope.getAllContacts()
-                else
-                  delete $scope.addressBookContacts.getAllPage
-                  $scope.addressBookContacts.allContactsSelected = isAllContactsSelected()
-                  response
-            $scope.emailPromises.push allContactsPromise
-          $scope.getAllContacts()
-        else
-          contactCountPromise = ContactService.getTeamraiserAddressBookContacts 'tr_ab_filter=' + filter + '&skip_groups=true'
-            .then (response) ->
-              $scope.contactCounts[filter] = response.data.getTeamraiserAddressBookContactsResponse?.totalNumberResults or '0'
-              response
-          $scope.emailPromises.push contactCountPromise
-      
-      filterNames = 
-        email_rpt_show_all: 'All Contacts'
-        email_rpt_show_never_emailed: 'Never Emailed'
-        email_rpt_show_nondonors_followup: 'Needs Follow-Up'
-        email_rpt_show_unthanked_donors: 'Unthanked Donors'
-        email_rpt_show_donors: 'Donors'
-        email_rpt_show_nondonors: 'Non-Donors'
-        email_rpt_show_teammates : 'Current Teammates'
-        email_rpt_show_lybunt_teammates : 'Past Teammates'
-        email_rpt_show_ly_donors: 'Past Donors'
+        numPerPage: '10'
+        maxContacts: 0
+        totalNumber: 0
+        searching: false
+        contacts: []
+        contactSearchInput: ''
+      $scope.addressBookGroups = []
+      $scope.contactSearchInput = ''
+      $scope.allContactsSelected = false
+      $scope.contactsSelected =
+        all: (newVal) ->
+          if arguments.length then $scope.allContactsSelected = newVal else $scope.allContactsSelected
+      $scope.contactsUpdated = false
 
-      
-      $translate [ 'contacts_groups_all', 'filter_email_rpt_show_never_emailed', 'filter_email_rpt_show_nondonors_followup', 'filter_email_rpt_show_unthanked_donors', 'filter_email_rpt_show_donors', 'filter_email_rpt_show_nondonors', 'filter_email_rpt_show_teammates', 'filter_email_rpt_show_lybunt_teammates', 'filter_email_rpt_show_ly_donors' ]
-        .then (translations) ->
-          filterNames.email_rpt_show_all = translations.contacts_groups_all
-          filterNames.email_rpt_show_never_emailed = translations.filter_email_rpt_show_never_emailed
-          filterNames.email_rpt_show_nondonors_followup = translations.filter_email_rpt_show_nondonors_followup
-          filterNames.email_rpt_show_unthanked_donors = translations.filter_email_rpt_show_unthanked_donors
-          filterNames.email_rpt_show_donors = translations.filter_email_rpt_show_donors
-          filterNames.email_rpt_show_nondonors = translations.filter_email_rpt_show_nondonors
-          filterNames.email_rpt_show_teammates = translations.filter_email_rpt_show_teammates
-          filterNames.email_rpt_show_lybunt_teammates = translations.filter_email_rpt_show_lybunt_teammates
-          filterNames.email_rpt_show_ly_donors = translations.filter_email_rpt_show_ly_donors
-        , (translationIds) ->
-          filterNames.email_rpt_show_all = translationIds.contacts_groups_all
-          filterNames.email_rpt_show_never_emailed = translationIds.filter_email_rpt_show_never_emailed
-          filterNames.email_rpt_show_nondonors_followup = translationIds.filter_email_rpt_show_nondonors_followup
-          filterNames.email_rpt_show_unthanked_donors = translationIds.filter_email_rpt_show_unthanked_donors
-          filterNames.email_rpt_show_donors = translationIds.filter_email_rpt_show_donors
-          filterNames.email_rpt_show_nondonors = translationIds.filter_email_rpt_show_nondonors
-          filterNames.email_rpt_show_teammates = translationIds.filter_email_rpt_show_teammates
-          filterNames.email_rpt_show_lybunt_teammates = translationIds.filter_email_rpt_show_lybunt_teammates
-          filterNames.email_rpt_show_ly_donors = translationIds.filter_email_rpt_show_ly_donors
-      
-      $scope.filterName = filterNames[$scope.filter]
+      getContactsTotal = ->
+        getContactsTotalPromise = ContactService.getTeamraiserAddressBookContacts 'tr_ab_filter=email_rpt_show_all&skip_groups=true&list_page_size=10&list_page_offset=0'
+          .then (response) ->
+            $scope.addressBookContacts.maxContacts = response.data?.getTeamraiserAddressBookContactsResponse?.totalNumberResults
+            response
+        $scope.emailPromises.push getContactsTotalPromise
+      getContactsTotal()
+
+      refreshContactsNavBar = ->
+        getContactsTotal()
+        $scope.refreshContactsNav = $scope.refreshContactsNav + 1
+
+      $scope.refreshSelectedContacts = ->
+        if $scope.addressBookContacts.contacts and $scope.addressBookContacts.contacts.length > 0
+          $scope.numContactsSelected = $filter('filter')($scope.addressBookContacts.contacts, {selected: true}).length
+          $scope.contactsSelected.all $scope.numContactsSelected is $scope.addressBookContacts.contacts.length
+        else
+          $scope.numContactsSelected = 0
+          $scope.contactsSelected.all false
+        $scope.contactsSelected.all()
+      $scope.refreshSelectedContacts()
+      $scope.$watchGroup ['addressBookContacts.contacts', 'contactsUpdated'], () ->
+        $scope.refreshSelectedContacts()
+
+      $scope.getContacts = (refresh) ->
+        idx=0
+        currentPage = $scope.addressBookContacts.page - 1
+        numPerPage = $scope.addressBookContacts.numPerPage
+        requestData = 'tr_ab_filter=' + $scope.filter + '&skip_groups=true'
+        $scope.addressBookContacts.contacts = []
+        if (refresh)
+          $scope.addressBookContacts.allContacts = [];
+          contactsPromise = ContactService.getTeamraiserAddressBookContacts requestData
+            .then (response) ->
+              addressBookContacts = response.data.getTeamraiserAddressBookContactsResponse.addressBookContact
+              addressBookContacts = [addressBookContacts] if not angular.isArray addressBookContacts
+              process=(contact) ->
+                contactString = getContactString contact
+                contactIndex = $rootScope.selectedContacts.contacts.indexOf contactString
+                contact.selected = contactIndex isnt -1
+                $scope.addressBookContacts.allContacts.push(contact);
+                if (Math.floor(idx/numPerPage) == currentPage)
+                  $scope.addressBookContacts.contacts.push(contact)
+              contact=addressBookContacts.shift()
+              while contact
+                process contact
+                contact=addressBookContacts.shift()
+                idx++
+              $scope.addressBookContacts.totalNumber = response.data.getTeamraiserAddressBookContactsResponse.totalNumberResults
+              if ( $scope.addressBookContacts.totalNumber >  $scope.addressBookContacts.allContacts.length )
+                $scope.getContacts(page+1);
+              response
+        else
+          while (idx < numPerPage)
+             $scope.addressBookContacts.contacts.push($scope.addressBookContacts.allContacts[idx+(numPerPage*currentPage)]);
+             idx++
+        $scope.emailPromises.push contactsPromise
+      $scope.getContacts(true)
+
+      $scope.showDeleteGroup = false
+      $scope.getGroups = ->
+        getGroupsPromise = ContactService.getAddressBookGroups()
+          .then (response) ->
+            abgroups = response.data.getAddressBookGroupsResponse?.group
+            abgroups = [abgroups] if not angular.isArray abgroups
+            $scope.showDeleteGroup = false
+            angular.forEach abgroups, (group) ->
+              if group?
+                filter = 'email_rpt_group_' + group.id
+                if $scope.filter is filter
+                  $scope.filterName = group.name
+                  $scope.showDeleteGroup = true
+            $scope.addressBookGroups = abgroups
+            response
+        $scope.emailPromises.push getGroupsPromise
+
+      updateContactFilterNames = ->
+        if $scope.updateContactFilterNamesTimeout
+          $timeout.cancel $scope.updateContactFilterNamesTimeout
+        if $scope.filter is 'email_rpt_show_all'
+          $translate 'contacts_groups_all'
+            .then (translation) ->
+              $scope.filterName = translation
+            , (translationId) ->
+              $scope.updateContactFilterNamesTimeout = $timeout updateContactFilterNames, 500
+        else if $scope.filter.match 'email_rpt_group_'
+          $scope.getGroups()
+        else
+          $translate 'filter_' + $scope.filter
+            .then (translation) ->
+              $scope.filterName = translation
+            , (translationId) ->
+              $scope.updateContactFilterNamesTimeout = $timeout updateContactFilterNames, 500
+      updateContactFilterNames()
       
       $scope.clearAllContactAlerts = ->
         $scope.clearAddContactAlerts()
@@ -217,11 +231,108 @@ angular.module 'trPcControllers'
                   , (translationId) ->
                     $scope.addContactSuccess = translationId
                 closeAddContactModal()
-                $scope.getContacts()
-                $scope.getAllContacts()
+                refreshContactsNavBar()
+                $scope.getContacts(true)
               response
           $scope.emailPromises.push addContactPromise
+
+      $scope.resetAddContactsToGroup = ->
+        $scope.addContactGroupForm =
+          groupId: ''
+          groupName: ''
+          errorMsg: null
+        if $scope.addressBookGroups.length is 0
+          $scope.getGroups()
+
+      $scope.addContactsToGroup = ->
+        $scope.resetAddContactsToGroup()
+        selectedContacts = []
+        angular.forEach $scope.addressBookContacts.allContacts, (contact) ->
+          if contact?.selected
+            selectedContacts.push contact.id
+        $scope.addContactGroupForm.contactIds = selectedContacts.join ','
+        $scope.addContactsToGroupModal = $uibModal.open 
+          scope: $scope
+          templateUrl: APP_INFO.rootPath + 'dist/heart-walk/html/participant-center/modal/addContactsToGroup.html'
       
+      $scope.cancelAddContactsToGroup = ->
+        $scope.addContactsToGroupModal.close()
+      
+      $scope.confirmAddContactsToGroup = ->
+        delete $scope.addContactGroupForm.errorMsg
+        if $scope.addContactGroupForm.groupId is '' and $scope.addContactGroupForm.groupName is ''
+          $translate 'contact_add_to_group_warning'
+            .then (translation) ->
+              $scope.addContactGroupForm.errorMsg = translation
+            , (translationId) ->
+              $scope.addContactGroupForm.errorMsg = translationId
+        else
+          if $scope.addContactGroupForm.groupName isnt ''
+            dataStr = 'group_name=' + encodeURIComponent($scope.addContactGroupForm.groupName) + '&contact_ids=' + $scope.addContactGroupForm.contactIds
+            addContactGroupPromise = ContactService.addAddressBookGroup dataStr
+              .then (response) ->
+                if response.data?.errorResponse?
+                  if response.data.errorResponse.message
+                    $scope.addContactGroupForm.errorMsg = response.data.errorResponse.message
+                  else
+                    $translate 'contact_add_to_group_unknown_error'
+                      .then (translation) ->
+                        $scope.addContactGroupForm.errorMsg = translation
+                      , (translationId) ->
+                        $scope.addContactGroupForm.errorMsg = translationId
+                else
+                  refreshContactsNavBar()
+                  $scope.cancelAddContactsToGroup()
+                response
+            $scope.emailPromises.push addContactGroupPromise
+          else
+            dataStr = 'group_id=' + $scope.addContactGroupForm.groupId + '&contact_ids=' + $scope.addContactGroupForm.contactIds
+            addContactGroupPromise = ContactService.addContactsToGroup dataStr
+              .then (response) ->
+                if response.data?.errorResponse?
+                  if response.data.errorResponse.message
+                    $scope.addContactGroupForm.errorMsg = response.data.errorResponse.message
+                  else
+                    $translate 'contact_add_to_group_unknown_error'
+                      .then (translation) ->
+                        $scope.addContactGroupForm.errorMsg = translation
+                      , (translationId) ->
+                        $scope.addContactGroupForm.errorMsg = translationId
+                else
+                  refreshContactsNavBar()
+                  $scope.cancelAddContactsToGroup()
+                response
+            $scope.emailPromises.push addContactGroupPromise
+
+      $scope.deleteContactGroup = ->
+        delete $scope.deleteContactGroupError
+        $scope.deleteContactGroupId = $scope.filter.replace('email_rpt_group_', '')
+        $scope.deleteContactGroupModal = $uibModal.open 
+          scope: $scope
+          templateUrl: APP_INFO.rootPath + 'html/modal/deleteContactGroup.html'
+
+      $scope.cancelDeleteContactGroup = ->
+        delete $scope.deleteContactGroupError
+        delete $scope.deleteContactGroupId
+        $scope.deleteContactGroupModal.close()
+
+      $scope.confirmDeleteContactGroup = ->
+        deleteContactGroupPromise = ContactService.deleteAddressBookGroups 'group_ids=' + $scope.deleteContactGroupId
+          .then (response) ->
+            if response.data?.errorResponse?
+              if response.data.errorResponse.message
+                $scope.deleteContactGroupError = response.data.errorResponse.message
+              else
+                $translate 'contact_delete_group_unknown_error'
+                  .then (translation) ->
+                    $scope.deleteContactGroupError = translation
+                  , (translationId) ->
+                    $scope.deleteContactGroupError = translationId
+            else
+              $scope.cancelDeleteContactGroup()
+              $location.path '/email/contacts'
+        $scope.emailPromises.push deleteContactGroupPromise
+
       $scope.clearImportContactsAlerts = ->
         if $scope.importContactsError
           delete $scope.importContactsError
@@ -232,12 +343,17 @@ angular.module 'trPcControllers'
         $scope.contactImport = 
           step: 'choose-type'
           import_type: ''
-          jobEvents: [
-            {
-              message: '1. Waiting for your consent ...'
-            }
-          ]
+          jobEvents: []
           contactsToAdd: []
+        $translate 'contact_import_consent_needed'
+          .then (translation) ->
+            $scope.contactImport.jobEvents = []
+            $scope.contactImport.jobEvents.push
+              message: translation
+          , (translationId) ->
+            $scope.contactImport.jobEvents = []
+            $scope.contactImport.jobEvents.push
+              message: translationId
       
       $scope.importContacts = ->
         $scope.clearAllContactAlerts()
@@ -400,8 +516,8 @@ angular.module 'trPcControllers'
                 # TODO: handle errorContacts, potentialDuplicateContacts, and duplicateContacts
                 $scope.importContactsSuccess = true
                 closeImportContactsModal()
-                $scope.getContacts()
-                $scope.getAllContacts()
+                refreshContactsNavBar()
+                $scope.getContacts(true)
       
       $scope.uploadContactsCSV = ->
         angular.element('.js--import-contacts-csv-form').submit()
@@ -458,27 +574,24 @@ angular.module 'trPcControllers'
       $scope.toggleContact = (contact) ->
         contactData = getContactString contact
         contactIndex = $rootScope.selectedContacts.contacts.indexOf contactData
-        if contactIndex is -1
+        if contactIndex is -1 and contact.selected
+          # add contact to selectedContacts
           $rootScope.selectedContacts.contacts.push contactData
-        else
+          $scope.contactsUpdated = !$scope.contactsUpdated
+        else if contactIndex isnt -1 and not contact.selected
+          # remove contact from selectedContacts
           $rootScope.selectedContacts.contacts.splice contactIndex, 1
-        angular.forEach $scope.addressBookContacts.allContacts, (aContact) ->
-          if contactData is getContactString aContact
-            aContact.selected = contactIndex is -1
-          aContact
-        $scope.addressBookContacts.allContactsSelected = isAllContactsSelected()
-        $scope.addressBookContacts.allContactsSelected
+          $scope.contactsUpdated = !$scope.contactsUpdated
+        else
+          # no change needed
 
-      $scope.toggleAllContacts = ->
-        selected = not $scope.addressBookContacts.allContactsSelected
-        angular.forEach $scope.addressBookContacts.contacts, (contact) ->
-          contact.selected = selected
+      $scope.toggleAllContacts = () ->
+        selectToggle = $scope.contactsSelected.all()
         angular.forEach $scope.addressBookContacts.allContacts, (contact) ->
-          contact.selected = selected
-          if selected isnt isContactSelected contact
+          if contact.selected isnt selectToggle
+            contact.selected = selectToggle
             $scope.toggleContact contact
-        $scope.addressBookContacts.allContactsSelected = selected
-        $scope.addressBookContacts.allContactsSelected
+        $scope.contactsSelected.all selectToggle
       
       $scope.clearEditContactAlerts = ->
         if $scope.editContactError
@@ -488,12 +601,13 @@ angular.module 'trPcControllers'
       
       $scope.selectContact = (contact) ->
         $scope.clearAllContactAlerts()
-        $scope.selectedContact = contact
+        $scope.editContactMode = false
+        $scope.viewContact = angular.copy contact
         $scope.updatedContact = 
-          contact_id: $scope.selectedContact.id
-          first_name: $scope.selectedContact.firstName
-          last_name: $scope.selectedContact.lastName
-          email: $scope.selectedContact.email
+          contact_id:contact.id
+          first_name: contact.firstName
+          last_name: contact.lastName
+          email: contact.email
         $scope.editContactModal = $uibModal.open
           scope: $scope
           templateUrl: APP_INFO.rootPath + 'dist/heart-walk/html/participant-center/modal/editContact.html'
@@ -502,13 +616,18 @@ angular.module 'trPcControllers'
         $scope.editContactModal.close()
       
       $scope.cancelEditContact = ->
-        delete $scope.selectedContact
+        delete $scope.editContactMode
+        delete $scope.viewContact
+        delete $scope.updatedContact
         $scope.clearEditContactAlerts()
         closeEditContactModal()
+
+      $scope.toggleEditContact = () ->
+        $scope.editContactMode = not $scope.editContactMode
       
       $scope.saveUpdatedContact = ->
         $scope.clearEditContactAlerts()
-        if not $scope.selectedContact
+        if not $scope.updatedContact
           # TODO
         else
           updateContactPromise = ContactService.updateTeamraiserAddressBookContact $httpParamSerializer($scope.updatedContact)
@@ -530,9 +649,8 @@ angular.module 'trPcControllers'
                     $scope.editContactSuccess = translation
                 closeEditContactModal()
                 window.scrollTo 0, 0
-                # TODO: update selected contacts
-                $scope.getContacts()
-                $scope.getAllContacts()
+                refreshContactsNavBar()
+                $scope.getContacts(true)
               response
           $scope.emailPromises.push updateContactPromise
       
@@ -577,11 +695,11 @@ angular.module 'trPcControllers'
                     $scope.deleteContactSuccess = translation
                   , (translationId) ->
                     $scope.deleteContactSuccess = translationId
+              $scope.resetSelectedContacts()
               closeDeleteContactModal()
               window.scrollTo 0, 0
-              # TODO: update selected contacts
-              $scope.getContacts()
-              $scope.getAllContacts()
+              refreshContactsNavBar()
+              $scope.getContacts(true)
               response
           $scope.emailPromises.push deleteContactPromise
       

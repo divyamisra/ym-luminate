@@ -1,11 +1,11 @@
 <div ng-controller="LoginCtrl">
   <form name="consLoginForm" method="POST" novalidate ng-submit="submitLogin()">
-    <div class="modal-header">
+      <div class="modal-header modal-header-red">
       <h2 class="modal-title">
         Login
       </h2>
     </div>
-    <div class="modal-body">
+    <div class="modal-body modal-body-red">
       <div uib-alert class="alert-danger" ng-if="loginError">
         {{loginError}}
       </div>
@@ -26,10 +26,10 @@
       </div>
       <!-- TODO: remember me -->
     </div>
-    <div class="modal-footer">
+    <div class="modal-footer modal-footer-red">
       <div class="clearfix">
         <div class="pull-right">
-          <button type="submit" class="btn btn-primary text-uppercase">
+          <button type="submit" class="btn btn-outline-white text-uppercase">
             <span translate="login_button_label"></span>
           </button>
         </div>

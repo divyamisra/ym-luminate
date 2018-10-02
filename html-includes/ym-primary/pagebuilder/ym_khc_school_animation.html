@@ -1,0 +1,905 @@
+[[?COMMENT::::::
+   NOT PART OF DEPLOYMENT PROCESS. MUST BE MANUALLY COPIED TO PAGEBUILDER.
+]]
+
+<style>
+html {
+	color: #000;
+	font-size: 1em;
+	height: 0;
+	line-height: 1.4;
+	overflow: hidden;
+	padding-bottom: 56.25%;
+	position: absolute;
+	width: 100%;
+}
+
+body {
+	background: url(../images/content/pagebuilder/hero-bg-body.png) no-repeat;
+	background-size: cover;
+        background-attachment: fixed;
+	margin: 0;
+}
+
+.container-iframe {
+	display: none;
+}
+
+@media screen and (min-width: 768px) {
+	.container-iframe {
+		display: block;
+		height: 0;
+		margin: auto;
+		max-width: 1140px;
+		padding-bottom: 56.25%;
+		position: relative;
+		width: 100%;
+	}
+
+	.container-iframe iframe {
+		border: 0 none;
+		height: 100%;
+		position: absolute;
+		width: 100%;
+	}
+}
+
+.container-character-square {
+	height: 0;
+	padding-bottom: 56.25%;
+	position: relative;
+	width: 100%;
+}
+
+.character-square {
+	height: 100%;
+	position: absolute;
+	width: 100%;
+}
+
+.button {
+	cursor: pointer;
+}
+
+.button.button-play {
+	background-color: #000;
+	border: 0 none;
+	border-radius: 50%;
+	bottom: 0;
+	height: 8vw;
+	left: 0;
+	margin: auto;
+	opacity: 0.3;
+	padding: 0;
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 8vw;
+	z-index: 9999;
+}
+
+.button.button-play:hover {
+	opacity: 0.667;
+}
+
+.icon-play {
+	border-bottom: 2vw solid transparent;
+	border-left: 3vw solid #fff;
+	border-top: 2vw solid transparent;
+	bottom: 0;
+	height: 0;
+	left: 0;
+	margin: auto;
+	position: absolute;
+	right: 0;
+	top: 0;
+	-webkit-transform: translateX(0.333vw);
+	-ms-transform: translateX(0.333vw);
+	transform: translateX(0.333vw);
+	width: 0;
+}
+
+.character {
+	display: none;
+	margin: 0;
+	position: absolute;
+	z-index: 1;
+}
+
+.character::before {
+	background-attachment: scroll;
+	background-color: transparent;
+	background-repeat: no-repeat;
+	background-position: 0 0;
+	background-size: cover;
+	content: "";
+	height: 100%;
+	left: 0;
+	position: absolute;
+	top: 0;
+	-webkit-transition: opacity 0.3s ease-in-out 0s;
+	-o-transition: opacity 0.3s ease-in-out 0s;
+	transition: opacity 0.3s ease-in-out 0s;
+	width: 100%;
+}
+
+.character figcaption {
+	background-color: rgba(255, 255, 255, 0.75);
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	display: none;
+	left: 0;
+	margin: auto;
+	padding: 5px;
+	position: absolute;
+	right: 0;
+	text-align: center;
+	top: -66.667%;
+	width: 100%;
+}
+
+.character:hover, .character.animating {
+	z-index: 2;
+}
+
+.character:hover figcaption, .character.animating figcaption {
+	display: inline-block;
+}
+
+.character-image {
+	height: auto;
+	width: 100%;
+}
+
+@-webkit-keyframes sprite {
+	from {
+		background-position: -12px  0%;
+	}
+
+	to {
+		background-position: -12px 100%;
+	}
+}
+
+@keyframes sprite {
+	from {
+		background-position: -12px  0%;
+	}
+
+	to {
+		background-position: -12px 100%;
+	}
+}
+
+@-webkit-keyframes sprite-narwhal {
+	from {
+		background-position: -6px  0%;
+	}
+
+	to {
+		background-position: -6px 100%;
+	}
+}
+
+@keyframes sprite-narwhal {
+	from {
+		background-position: -6px  0%;
+	}
+
+	to {
+		background-position: -6px 100%;
+	}
+}
+
+.character-echo::before {
+	background-image: url("../images/content/pagebuilder/hero-echo-thumb.png");
+}
+
+.character-echo:hover::before, .character-echo.animating::before {
+	-webkit-animation: sprite 1s steps(17) infinite;
+	animation: sprite 1s steps(17) infinite;
+	background-image: url("../images/content/pagebuilder/hero-echo-sprite.png");
+	background-size: 119%;
+}
+
+.character-fiery::before {
+	background-image: url("../images/content/pagebuilder/hero-fiery-thumb.png");
+}
+
+.character-fiery:hover::before, .character-fiery.animating::before {
+	-webkit-animation: sprite 1s steps(23) infinite;
+	animation: sprite 1s steps(23) infinite;
+	background-image: url("../images/content/pagebuilder/hero-fiery-sprite.png");
+	background-size: 119%;
+}
+
+.character-finn::before {
+	background-image: url("../images/content/pagebuilder/hero-finn-thumb.png");
+}
+
+.character-finn:hover::before, .character-finn.animating::before {
+	-webkit-animation: sprite 1s steps(23) infinite;
+	animation: sprite 1s steps(23) infinite;
+	background-image: url("../images/content/pagebuilder/hero-finn-sprite.png");
+	background-size: 111%;
+}
+
+.character-narwhal::before {
+	background-image: url("../images/content/pagebuilder/hero-narwhal-thumb.png");
+}
+
+.character-narwhal:hover::before, .character-narwhal.animating::before {
+	-webkit-animation: sprite-narwhal 1s steps(23) infinite;
+	animation: sprite-narwhal 1s steps(23) infinite;
+	background-image: url("../images/content/pagebuilder/hero-narwhal-sprite.png");
+	background-size: 113%;
+}
+
+.character-oscar::before {
+	background-image: url("../images/content/pagebuilder/hero-oscar-thumb.png");
+}
+
+.character-oscar:hover::before, .character-oscar.animating::before {
+	-webkit-animation: sprite 1s steps(17) infinite;
+	animation: sprite 1s steps(17) infinite;
+	background-image: url("../images/content/pagebuilder/hero-oscar-sprite.png");
+	background-size: 114%;
+}
+
+.character-ruby::before {
+	background-image: url("../images/content/pagebuilder/hero-ruby-thumb.png");
+}
+
+.character-ruby:hover::before, .character-ruby.animating::before {
+	-webkit-animation: sprite 0.5s steps(20) infinite;
+	animation: sprite 0.5s steps(20) infinite;
+	background-image: url("../images/content/pagebuilder/hero-ruby-sprite.png");
+	background-size: 111% auto;
+}
+
+.character-sprinkles::before {
+	background-image: url("../images/content/pagebuilder/hero-sprinkles-thumb.png");
+}
+
+.character-sprinkles:hover::before, .character-sprinkles.animating::before {
+	-webkit-animation: sprite 0.667s steps(17) infinite;
+	animation: sprite 0.667s steps(17) infinite;
+	background-image: url("../images/content/pagebuilder/hero-sprinkles-sprite.png");
+	background-size: 113%;
+}
+
+.element-character-square {
+	height: 0;
+	overflow: visible;
+	position: absolute;
+}
+
+.element-character-square .inner {
+	height: 100%;
+	position: absolute;
+	width: 100%;
+}
+
+.element-sky {
+	left: 17%;
+	top: 0;
+	width: 83%;
+	z-index: 5;
+	height: 56%;
+}
+
+.element-sky .character figcaption {
+	top: -33.333%;
+}
+
+.element-sky .character-0 {
+	left: 12%;
+	top: 3.3%;
+	width: 13%;
+}
+
+.element-sky .character-0 figcaption {
+	right: -200%;
+	top: 33%;
+}
+
+.element-sky .character-1 {
+	left: 21%;
+	top: 31%;
+	width: 15%;
+}
+
+.element-sky .character-1 figcaption {
+	right: -200%;
+	top: 33%;
+}
+
+.element-sky .character-2 {
+	left: 37%;
+	top: 7%;
+	width: 11%;
+}
+
+.element-sky .character-2 figcaption {
+	right: -200%;
+	top: 33%;
+}
+
+.element-sky .character-3 {
+	left: 53%;
+	top: 11.3%;
+	width: 15%;
+}
+
+.element-sky .character-3 figcaption {
+	left: -200%;
+	top: 33%;
+}
+
+.element-sky .character-4 {
+	left: 70%;
+	top: 9.5%;
+	width: 12%;
+}
+
+.element-sky .character-4 figcaption {
+	left: -200%;
+	top: 33%;
+}
+
+.element-sky .character-5 {
+	left: 82%;
+	top: 28.5%;
+	width: 15%;
+}
+
+.element-sky .character-6 {
+	left: 38%;
+	top: 51.5%;
+	width: 16%;
+}
+
+.element-random-space {
+	z-index: 10;
+}
+
+.element-random-space .character {
+	padding-bottom: 0;
+	width: 25%;
+}
+
+.element-random-space-left {
+	height: 43%;
+	left: 0;
+	bottom: 12%;
+	width: 37%;
+}
+
+.element-random-space-left .character-0 {
+	left: 0%;
+	top: 57%;
+	width: 39%;
+}
+
+.element-random-space-left .character-1 {
+	left: 9%;
+	top: 16%;
+	width: 29%;
+}
+
+.element-random-space-left .character-2 {
+	left: 46%;
+	top: 16%;
+	width: 25%;
+}
+
+.element-random-space-left .character-3 {
+	left: 37%;
+	top: 44%;
+	width: 32%;
+}
+
+.element-random-space-left .character-4 {
+	left: 71%;
+	top: 14%;
+	width: 26%;
+}
+
+.element-random-space-left .character-5 {
+	left: 62%;
+	top: 60%;
+	width: 35%;
+}
+
+.element-random-space-left .character-6 {
+	left: 92%;
+	top: 21%;
+	width: 24%;
+}
+
+.element-random-space-right {
+	height: 29%;
+	right: 0;
+	bottom: 20%;
+	width: 45%;
+}
+
+	.element-random-space-right .character-0 {
+		left: 71%;
+		top: 64%;
+		width: 32%;
+}
+
+.element-random-space-right .character-1 {
+	left: 2%;
+	top: 58%;
+	width: 25%;
+}
+
+.element-random-space-right .character-2 {
+	left: 25%;
+	top: 65%;
+	width: 30%;
+}
+
+.element-random-space-right .character-3 {
+	left: 50%;
+	top: 56%;
+	width: 23%;
+}
+
+.element-random-space-right .character-4 {
+	left: 17%;
+	top: 40%;
+	width: 17%;
+}
+
+.element-random-space-right .character-5 {
+	left: 80%;
+	top: 34%;
+	width: 20%;
+}
+
+::-moz-selection {
+	background: #b3d4fc;
+	text-shadow: none;
+}
+
+::selection {
+	background: #b3d4fc;
+	text-shadow: none;
+}
+
+audio,
+canvas,
+iframe,
+img,
+svg,
+video {
+	vertical-align: middle;
+}
+
+.hidden {
+	display: none !important;
+}
+
+.visuallyhidden {
+	border: 0;
+	clip: rect(0 0 0 0);
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	width: 1px;
+}
+
+.visuallyhidden.focusable:active,
+.visuallyhidden.focusable:focus {
+	clip: auto;
+	height: auto;
+	margin: 0;
+	overflow: visible;
+	position: static;
+	width: auto;
+}
+
+.invisible {
+	visibility: hidden;
+}
+</style>
+
+<div id="container-character-square" class="container-character-square">
+	<button class="hidden" id="button-shuffle" type="button">Shuffle</button>
+	<div id="character-square" class="character-square">
+		<div id="sky" class="element-character-square element-sky">
+			<div class="inner element-sky-inner"></div>
+		</div>
+		<div id="random-space-left" class="element-character-square element-random-space element-random-space-left">
+			<div class="inner element-random-space-inner-left"></div>
+		</div>
+		<div id="random-space-right" class="element-character-square element-random-space element-random-space-right">
+			<div class="inner element-random-space-inner-right"></div>
+		</div>
+	</div>
+</div>
+
+<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+<script>jQuery.noConflict();</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.1/TweenMax.min.js"></script>
+
+<script>
+var getSchoolData = function(e) {
+	//var schoolData = '{participants: [{name: "Brian E.", raised: "$1,590"}, {name: "Marc B.", raised: "$345.54"}, {name: "Marc B.", raised: "$345.54"}, {name: "Marc B.", raised: "$345.54"}, {name: "Stacey R.", raised: "$287.50"}, {name: "Alice T.", raised: "$250"}, {name: "Noah P.", raised: "$150"}, {name: "Noah P.", raised: "$150"}, {name: "Noah P.", raised: "$150"}, {name: "Noah P.", raised: "$150"}, {name: "Noah P.", raised: "$150"}, {name: "Noah P.", raised: "$150"}, {name: "Noah P.", raised: "$150"}, {name: "Noah P.", raised: "$150"}, {name: "Noah P.", raised: "$150"}, {name: "Noah P.", raised: "$123"}, {name: "Noah S.", raised: "$50"}, {name: "Stacey T.", raised: "$35"}, {name: "Noah J.", raised: "$25"}, {name: "Noah C.", raised: "$6"}, {name: "Toasty T.", raised: "$2"}], totalNumber: 20}';
+	var schoolData = e.data;
+	console.log(schoolData);
+
+	var json_str = schoolData;
+	var object_schoolData;
+	var participants;
+	var totalNumber;
+
+	//remove trailing commas
+	json_str = json_str.replace(/\, \]/g, ']');
+	// Add qoutes to keys
+	json_str = json_str.replace(/([a-zA-Z0-9]+?):/g, '"$1":');
+	object_schoolData = JSON.parse(json_str);
+	participants = object_schoolData.participants;
+	totalNumber = object_schoolData.totalNumber;
+	animation_done = false;
+
+	(function($) {
+		function placecharacters() {
+			// Donation amounts for characters
+			var donation_level_finn = 1;
+			var donation_level_echo = 5;
+			var donation_level_oscar = 20;
+			var donation_level_sprinkles = 35;
+			var donation_level_ruby = 40;
+			var donation_level_narwhal = 100;
+			var donation_level_fiery = 200;
+			// How many character locations in each element
+			var sky_slots = 7;
+			var grass_left_slots = 7;
+			var grass_right_slots = 6;
+			var total_slots = sky_slots + grass_left_slots + grass_right_slots; // 20 slots
+			// How many characters have ben placed
+			var sky_slots_taken = 0;
+			var grass_left_slots_taken = 0;
+			var grass_right_slots_taken = 0;
+			var slots_taken = 0;
+
+			function currencyToNumber(amount) {
+				return Number(amount.replace(/[^0-9\.]+/g, ''))
+			}
+
+			function addCharacter(character, participant, count) {
+				var s = '';
+				var character_name_capitalized = character.charAt(0).toUpperCase() + character.slice(1);
+				var participant_name = participant.name;
+				var participant_raised = participant.raised;
+
+				s += '<figure class="character character-' + count + ' character-' + character + '">';
+				s += '	<img class="invisible character-image" src="../images/content/pagebuilder/hero-' + character + '-thumb.png" alt="' + character_name_capitalized + '">';
+				s += '	<figcaption class="leader">';
+				s += '		<div class="name">' + participant_name + '</div>';
+				s += '		<div class="amount-rasied">' + participant_raised + '</div>';
+				s += '	</figcaption>';
+				s += '</figure>';
+
+				return s;
+			}
+
+			function fillSky() {
+				jQuery('.element-sky-inner').append(function() {
+					var s = '';
+					var participant;
+					var participant_raised;
+					var i = total_slots;
+                                        
+                                        if (slots_taken <= total_slots) {
+    					        while (i--) {
+							if (typeof participants[i] != 'undefined') {
+								participant = participants[i];
+								participant_raised = currencyToNumber(participant.raised);
+
+								if (participant_raised >=  donation_level_fiery && !fiery_placed) {
+									s += addCharacter('fiery', participant, sky_slots_taken);
+									sky_slots_taken++;
+									participants.splice(i, 1);
+									fiery_placed = true;
+								} else if (participant_raised >= donation_level_narwhal && participant_raised < donation_level_fiery) {
+									s += addCharacter('narwhal', participant, sky_slots_taken);
+									sky_slots_taken++;
+									participants.splice(i, 1);
+									narwhal_placed = true;
+								} else if (participant_raised >= donation_level_ruby && participant_raised < donation_level_narwhal) {
+									s += addCharacter('ruby', participant, sky_slots_taken);
+									sky_slots_taken++;
+									participants.splice(i, 1);
+									ruby_placed = true;
+								} else if (participant_raised >= donation_level_sprinkles && participant_raised < donation_level_ruby) {
+									s += addCharacter('sprinkles', participant, sky_slots_taken);
+									sky_slots_taken++;
+									participants.splice(i, 1);
+									sprinkles_placed = true;
+								} else if (participant_raised >= donation_level_oscar && participant_raised < donation_level_sprinkles) {
+									s += addCharacter('oscar', participant, sky_slots_taken);
+									sky_slots_taken++;
+									participants.splice(i, 1);
+									oscar_placed = true;
+								} else if (participant_raised >= donation_level_finn && participant_raised < donation_level_echo) {
+									s += addCharacter('finn', participant, sky_slots_taken);
+									sky_slots_taken++;
+									participants.splice(i, 1);
+									finn_placed = true;
+								}
+							}
+						}
+					}
+					slots_taken += sky_slots_taken;
+					return s;
+				});
+			}
+
+			function fillGrass(callback) {
+				var $random_space_left = $('.element-random-space-inner-left');
+				var $random_space_right = $('.element-random-space-inner-right');
+
+				function fillGrassRight() {
+					$random_space_right.append(function() {
+						var s = '';
+						var participant;
+						var participant_raised;
+						var i = total_slots;
+
+						if (slots_taken <= total_slots) {
+							while (i--) {
+								if (grass_right_slots_taken >= grass_right_slots) {
+									break;
+								} else {
+									if (typeof participants[i] != 'undefined') {
+										participant = participants[i];
+										participant_raised = currencyToNumber(participant.raised);
+
+										if (participant_raised >= donation_level_fiery) {
+											s += addCharacter('fiery', participant, grass_right_slots_taken);
+											grass_right_slots_taken++;
+											participants.splice(i, 1);
+										} else if (participant_raised >= donation_level_narwhal && participant_raised < donation_level_fiery) {
+											s += addCharacter('narwhal', participant, grass_right_slots_taken);
+											grass_right_slots_taken++;
+											participants.splice(i, 1);
+										} else if (participant_raised >= donation_level_ruby && participant_raised < donation_level_narwhal) {
+											s += addCharacter('ruby', participant, grass_right_slots_taken);
+											grass_right_slots_taken++;
+											participants.splice(i, 1);
+										} else if (participant_raised >= donation_level_sprinkles && participant_raised < donation_level_ruby) {
+											s += addCharacter('sprinkles', participant, grass_right_slots_taken);
+											grass_right_slots_taken++;
+											participants.splice(i, 1);
+										} else if (participant_raised >= donation_level_oscar && participant_raised < donation_level_sprinkles) {
+											s += addCharacter('oscar', participant, grass_right_slots_taken);
+											grass_right_slots_taken++;
+											participants.splice(i, 1);
+										} else if (participant_raised >= donation_level_echo && participant_raised < donation_level_oscar) {
+											s += addCharacter('echo', participant, grass_right_slots_taken);
+											grass_right_slots_taken++;
+											participants.splice(i, 1);
+										} else if (participant_raised >= donation_level_finn && participant_raised < donation_level_echo) {
+											s += addCharacter('finn', participant, grass_right_slots_taken);
+											grass_right_slots_taken++;
+											participants.splice(i, 1);
+										}
+									}
+								}
+							}
+						}
+						slots_taken += grass_right_slots_taken;
+						return s;
+					});
+				}
+
+				function fillGrassLeft() {
+					$random_space_left.append(function() {
+						var s = '';
+						var participant;
+						var participant_raised;
+						var i = total_slots;
+
+						if (slots_taken <= total_slots) {
+							while (i--) {
+								if (grass_left_slots_taken >= grass_left_slots) {
+									break;
+								} else {
+									if (typeof participants[i] != 'undefined') {
+										participant = participants[i];
+										participant_raised = currencyToNumber(participant.raised);
+
+										if (participant_raised >= donation_level_fiery) {
+											s += addCharacter('fiery', participant, grass_left_slots_taken);
+											grass_left_slots_taken++;
+											participants.splice(i, 1);
+										} else if (participant_raised >= donation_level_narwhal && participant_raised < donation_level_fiery) {
+											s += addCharacter('narwhal', participant, grass_left_slots_taken);
+											grass_left_slots_taken++;
+											participants.splice(i, 1);
+										} else if (participant_raised >= donation_level_ruby && participant_raised < donation_level_narwhal) {
+											s += addCharacter('ruby', participant, grass_left_slots_taken);
+											grass_left_slots_taken++;
+											participants.splice(i, 1);
+										} else if (participant_raised >= donation_level_sprinkles && participant_raised < donation_level_ruby) {
+											s += addCharacter('sprinkles', participant, grass_left_slots_taken);
+											grass_left_slots_taken++;
+											participants.splice(i, 1);
+										} else if (participant_raised >= donation_level_oscar && participant_raised < donation_level_sprinkles) {
+											s += addCharacter('oscar', participant, grass_left_slots_taken);
+											grass_left_slots_taken++;
+											participants.splice(i, 1);
+										} else if (participant_raised >= donation_level_echo && participant_raised < donation_level_oscar) {
+											s += addCharacter('echo', participant, grass_left_slots_taken);
+											grass_left_slots_taken++;
+											participants.splice(i, 1);
+										} else if (participant_raised >= donation_level_finn && participant_raised < donation_level_echo) {
+											s += addCharacter('finn', participant, grass_left_slots_taken);
+											grass_left_slots_taken++;
+											participants.splice(i, 1);
+										}
+									}
+								}
+							}
+						}
+						slots_taken += grass_left_slots_taken;
+						return s;
+					});
+				}
+
+				fillGrassRight();
+				fillGrassLeft();
+
+				 if (typeof(callback) == 'function') {
+					callback();
+				 }
+			}
+
+			// Limit to number of locations for placing characters
+			if (totalNumber > total_slots) {
+				participants.splice(total_slots, (totalNumber - total_slots));
+			}
+			// We'll be looping from bottom to top to place characters
+			participants = participants.reverse();
+
+			fillGrass(function() {
+				fillSky();
+			});
+
+		}
+
+		function animatecharacter($character) {
+			if (typeof $character != 'undefined') {
+				var _trans = .5;
+				var _timer = _trans;
+				var _bounces = 2;
+				var _bounce = _bounces;
+				var _fallHeight = 0;
+				var _endY = 10;
+				var _offset = 20;
+				var _exaggeration = .2;
+				var _gravity = 1; //0 - 1;
+				var $c = $character;
+				var $p = jQuery('body');
+
+				$character.show().addClass('animating');
+
+				falling();
+
+				$c.click(function() {
+					replayBounce();
+				});
+
+				function replayBounce(){
+					_bounce = _bounces;
+					_fallHeight = 0;
+					_trans = _timer / ((_bounces - _bounce) + 1);
+					_offset = ((((1 / _bounces) / _bounces) * _bounce) * (_bounce / 2)) * _exaggeration;
+					squash_n_stretch();
+				}
+
+				function falling() {
+					_offset = ((((1 / _bounces) / _bounces) * _bounce) * (_bounce / 2)) * _exaggeration;
+					if (_offset > 1.5) _offset=1.5;
+					if (_offset < .1) _offset = .1;
+					TweenLite.to($p,_trans,{css:{top:_endY},overwrite:false,ease:Quad.easeIn,onComplete:squash_n_stretch});
+					TweenLite.to($c,_trans,{css:{scaleY:1 + _offset,scaleX:1 - _offset},ease:Quad.easeOut});
+				}
+
+				function squash_n_stretch() {
+					if (_bounce == 1) {
+						TweenLite.to($c,.1,{css:{scaleY:1 - _offset,scaleX:1 + _offset, transformOrigin:"50% 100%"},ease:Quad.easeOut, onComplete:rising});
+					} else {
+						TweenLite.to($c,_trans / 2,{css:{scaleY:1 - _offset,scaleX:1 + _offset, transformOrigin:"50% 100%"},ease:Quad.easeOut, onComplete:rising});
+					}
+				}
+
+				function rising() {
+					_fallHeight = _fallHeight + ((((_endY - _fallHeight) * _gravity) / (_bounce)));
+					if (_bounce == 1) {
+						_fallHeight = _endY;
+					}
+
+					TweenLite.to($c,_trans / 2,{css:{scaleY:1 + _offset,scaleX:1 - _offset, transformOrigin:"50% 100%"},ease:Quad.easeIn, onComplete:normalize});
+					TweenLite.to($p,_trans,{css:{top:_fallHeight+"px"},overwrite:false,ease:Quad.easeOut,  delay:_trans / 4});
+
+				}
+
+				function normalize(){
+					if (_bounce == 1) {
+						TweenLite.to($c,.2,{css:{scaleY:1,scaleX:1},ease:Quad.easeInOut});
+							$character.removeClass('animating');
+
+					} else {
+						TweenLite.to($c,_trans / 2,{css:{scaleY:1,scaleX:1},ease:Quad.easeInOut, onComplete:next_bounce});
+					}
+				}
+
+				function next_bounce() {
+					_bounce--;
+					if (_bounce > 0) {
+						falling();
+						_trans = _trans * (_bounce / _bounces);
+						if (_trans < _timer / _bounces) {
+							_trans = _timer / _bounces;
+						}
+					}
+				}
+			}
+		}
+
+		function animatecharacters() {
+			var speed = 1000;
+			var timer = setInterval(doAnimate, speed);
+			var $characters =  jQuery('.character');
+			var length = $characters.length;
+			var index = 0;
+
+			function doAnimate() {
+				animatecharacter($characters.eq(index));
+				index++;
+				 if (index >= length) {
+					 clearInterval(timer);
+				}
+			}
+		}
+
+		function characterEvents() {
+			jQuery('.character').on('mouseover', function() {
+				animatecharacter($(this));
+			});
+		}
+
+		if (jQuery('.character').length === 0 && $('#container-character-square').length > 0) {
+			function startAnimation() {
+				if (jQuery('#container-character-square').width() > 0 && !animation_done) {
+					clearInterval(listener);
+					placecharacters();
+					animatecharacters();
+					characterEvents();
+					animation_done = true;
+				}
+			}
+			var listener = setInterval(startAnimation, 100);
+		}
+	})(jQuery);
+};
+
+
+jQuery(window).on('load', function() {
+	getSchoolData();
+});
+
+if (typeof window.addEventListener != 'undefined') {
+	window.addEventListener('message', getSchoolData, false);
+} else if (typeof window.attachEvent != 'undefined') {
+	window.attachEvent('onmessage', getSchoolData);
+}
+</script>

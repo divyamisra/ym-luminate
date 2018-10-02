@@ -106,17 +106,6 @@ module.exports = (grunt) ->
       'replace'
       'htmlmin'
       'imagemin'
-    ], 'jump-hoops'
-    runTargetedTask [
-      'clean'
-      'sass'
-      'postcss'
-      'cssmin'
-      'coffee'
-      'uglify'
-      'replace'
-      'htmlmin'
-      'imagemin'
     ], 'ym-primary'
     runTargetedTask [
       'clean'

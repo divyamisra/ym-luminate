@@ -112,7 +112,7 @@
               <h2 class="h5">
                 Badges
               </h2>
-              <a class="btn btn-md-wide btn-secondary" href="http://american.heart.org/middle-school/resources/for-students/learn-about-badges.html">
+              <a class="btn btn-md-wide btn-secondary" href="http://american.heart.org/americanheartchallenge/resources/for-students/learn-about-badges.html">
                 <strong>Learn About Badges</strong>
               </a>
             </div>
@@ -314,12 +314,18 @@
                   <p>
                     <strong>Share My Personal&nbsp;Page:</strong>
                   </p>
-                  <a ng-href="{{baseUrl}}#" ng-click="delegatedAddThis('.js--personal-social-share', 'facebook')">
+                  <a target="_new" ng-href="https://www.facebook.com/sharer/sharer.php?u={{personalPageUrlEsc}}">
+                    <img src="../aha-luminate/dist/youth-markets/image/facebook-logo.png" alt="Facebook">
+                  </a> 
+                  <a target="_new" ng-href="https://twitter.com/home?status={{personalPageUrlEsc}}">
+                    <img src="../aha-luminate/dist/youth-markets/image/twitter-logo.png" alt="Twitter">
+                  </a> 
+                  <!-- <a ng-href="{{baseUrl}}#" ng-click="delegatedAddThis('.js--personal-social-share', 'facebook')">
                     <img src="../aha-luminate/dist/youth-markets/image/facebook-logo.png" alt="Facebook">
                   </a> 
                   <a ng-href="{{baseUrl}}#" ng-click="delegatedAddThis('.js--personal-social-share', 'twitter')">
                     <img src="../aha-luminate/dist/youth-markets/image/twitter-logo.png" alt="Twitter">
-                  </a>
+                  </a> -->
                 </div>
               </div>
             </div>
@@ -682,12 +688,15 @@
             Visit our Thank-You Gift portal to manage and order gifts for your students.
           </p>
           <div class="ym-activity-box-cta">
-            <a class="btn btn-md-wide btn-primary" ng-href="https://thegreatreplaystaging.boundlessnetwork.com/coordinator/login/{{authToken}}/{{sessionCookie}}" target="_blank" ng-if="tablePrefix == 'heartdev'" ng-cloak>
+            <a class="btn btn-md-wide btn-primary" href="javascript:void(0);">
+              <strong>Coming Soon</strong>
+            </a>
+            <!--<a class="btn btn-md-wide btn-primary" ng-href="https://ms.staging.ootqa.org/coordinator/login/{{authToken}}/{{sessionCookie}}" target="_blank" ng-if="tablePrefix == 'heartdev'" ng-cloak>
               <strong>Thank You Gifts</strong>
             </a>
             <a class="btn btn-md-wide btn-primary" ng-href="https://thegreatreplay.heart.org/coordinator/login/{{authToken}}/{{sessionCookie}}" target="_blank" ng-if="tablePrefix == 'heart'" ng-cloak>
               <strong>Thank You Gifts</strong>
-            </a>
+            </a>-->
           </div>
         </div>
       </div>
@@ -706,7 +715,7 @@
                 Game Guide
               </h3>
             </div>
-            <a class="btn btn-md-wide btn-primary" href="http://american.heart.org/middle-school/resources/the-great-replay-game-guide-2017.pdf" target="_blank">
+            <a class="btn btn-md-wide btn-primary" href="http://american.heart.org/americanheartchallenge/resources/the-great-replay-game-guide-2017.pdf" target="_blank">
               <strong>Download</strong> <span class="sr-only">Game Guide</span>
             </a>
           </div>
@@ -716,7 +725,7 @@
                 Volunteer Guide
               </h3>
             </div>
-            <a class="btn btn-md-wide btn-primary" href="http://american.heart.org/middle-school/resources/for-teachers/2018-middle-school-volunteer.pdf" target="_blank">
+            <a class="btn btn-md-wide btn-primary" href="http://american.heart.org/americanheartchallenge/resources/for-teachers/2018-middle-school-volunteer.pdf" target="_blank">
               <strong>Download</strong> <span class="sr-only">Volunteer Guide</span>
             </a>
           </div>
@@ -726,7 +735,7 @@
                 Online Instruction Sheet
               </h3>
             </div>
-            <a class="btn btn-md-wide btn-primary" href="http://american.heart.org/middle-school/resources/thegreatreplayonlineinstructionsheet.pdf" target="_blank">
+            <a class="btn btn-md-wide btn-primary" href="http://american.heart.org/americanheartchallenge/resources/thegreatreplayonlineinstructionsheet.pdf" target="_blank">
               <strong>Download</strong> <span class="sr-only">Online Instruction Sheet</span>
             </a>
           </div>
