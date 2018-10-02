@@ -331,9 +331,6 @@
             <p ng-if="frIdMultidate == true && eventLocation">
               Location: <span ng-bind-html="eventLocation"></span>
             </p>
-            <p ng-if="eventInfo.event_date && eventInfo.event_date != ''">
-              Date: {{eventInfo.event_date | date : 'MMMM d'}}
-            </p>
             <a ng-if="viewMap !== undefined" id="view_map" class="btn btn-primary-inverted view_map" ng-href="{{viewMap}}" target="_blank">View Map</a>
           </div>
         </div>

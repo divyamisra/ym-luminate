@@ -108,6 +108,7 @@ angular.module 'ahaLuminateControllers'
           nav: true
           loop: true
           center: true
+          dots: false
           responsive:
             0:
               stagePadding: 0
@@ -140,6 +141,7 @@ angular.module 'ahaLuminateControllers'
               nav: true
               loop: true
               center: true
+              dots: false
               navText: [
                 '<i class="fa fa-chevron-left" hidden aria-hidden="true" />'
                 '<i class="fa fa-chevron-right" hidden aria-hidden="true" />'
