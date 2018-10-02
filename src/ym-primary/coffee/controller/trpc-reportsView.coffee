@@ -8,7 +8,7 @@ angular.module 'trPcControllers'
     'NgPcTeamraiserEmailService'
     'NgPcTeamraiserGiftService'
     'NgPcTeamraiserReportsService'
-    ($rootScope, $scope, $filter, $location, $uibModal, NgPcTeamraiserEmailService, NgPcTeamraiserGiftService, NgPcTeamraiserReportsService) ->
+    ($rootScope, $scope, $filter, $location, $uibModal, APP_INFO, NgPcTeamraiserEmailService, NgPcTeamraiserGiftService, NgPcTeamraiserReportsService) ->
       $scope.reportPromises = []
 
       $scope.activeReportTab = if $scope.participantRegistration.companyInformation?.isCompanyCoordinator is 'true' then 0 else 1
