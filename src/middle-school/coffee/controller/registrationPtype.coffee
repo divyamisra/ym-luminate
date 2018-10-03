@@ -30,7 +30,7 @@ angular.module 'ahaLuminateControllers'
       $participationType = angular.element('.js--registration-ptype-part-types input[name="fr_part_radio"]').eq 0
       $scope.participationOptions.fr_part_radio = $participationType.val()
       
-      $scope.toggleDonationLevel = (levelAmount) ->
+      $scope.toggleDonationLevel = (event, levelAmount) ->
         $scope.participationOptions.ng_donation_level = levelAmount
         if $scope.participationOptionsForm != undefined
           $scope.participationOptionsForm.ng_donation_level_other_amount.$setValidity("amount", true);
