@@ -304,6 +304,25 @@ angular.module 'trPcControllers'
                 response
             $scope.emailPromises.push addContactGroupPromise
 
+      $scope.confirmDeleteContacts = ->
+        contacts = []
+        for i in [0..$scope.addressBookContacts.allContacts.length]
+          contact=$scope.addressBookContacts.allContacts[i]
+          if (contact.selected)
+            contacts.push(contact.id)
+            
+        dataStr = 'group_id=' + $scope.addContactGroupForm.groupId + '&contact_ids=' + $scope.contactsToDelete
+        deleteContactsPromise = ContactService.deleteTeamraiserAddressBookContacts dataStr
+          .then (response) ->
+            if response.data?.errorResponse?
+              # TODO: error message
+            else
+              refreshContactsNavBar()
+              $scope.cancelDeleteContacts()
+              $scope.getContacts()
+            response
+        $scope.emailPromises.push deleteContactsPromise
+
       $scope.deleteContactGroup = ->
         delete $scope.deleteContactGroupError
         $scope.deleteContactGroupId = $scope.filter.replace('email_rpt_group_', '')
@@ -667,9 +686,25 @@ angular.module 'trPcControllers'
           scope: $scope
           templateUrl: APP_INFO.rootPath + 'dist/heart-walk/html/participant-center/modal/deleteContact.html'
       
+      $scope.deleteContacts = () ->
+        contacts = []
+        for i in [0..$scope.addressBookContacts.allContacts.length]
+          contact=$scope.addressBookContacts.allContacts[i]
+          if (contact.selected)
+            contacts.push(contact.id)
+        $scope.contactsToDelete=contacts.join(",")
+        $scope.clearAllContactAlerts()
+        $scope.deleteContactId = contactId
+        $scope.deleteContactsModal = $uibModal.open 
+          scope: $scope
+          templateUrl: APP_INFO.rootPath + 'dist/heart-walk/html/participant-center/modal/deleteContacts.html'
+      
       closeDeleteContactModal = ->
         delete $scope.deleteContactId
         $scope.deleteContactModal.close()
+      
+      closeDeleteContactsModal = ->
+        $scope.deleteContactsModal.close()
       
       $scope.cancelDeleteContact = ->
         closeDeleteContactModal()
