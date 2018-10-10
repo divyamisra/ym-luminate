@@ -130,7 +130,7 @@ angular.module 'trPcControllers'
                 $scope.getContacts(page+1);
               response
         else
-          while (idx < numPerPage)
+          while (idx < numPerPage && $scope.addressBookContacts.allContacts[idx + (numPerPage * currentPage)])
              $scope.addressBookContacts.contacts.push($scope.addressBookContacts.allContacts[idx+(numPerPage*currentPage)]);
              idx++
         $scope.emailPromises.push contactsPromise
@@ -303,25 +303,6 @@ angular.module 'trPcControllers'
                   $scope.cancelAddContactsToGroup()
                 response
             $scope.emailPromises.push addContactGroupPromise
-
-      $scope.confirmDeleteContacts = ->
-        contacts = []
-        for i in [0..$scope.addressBookContacts.allContacts.length]
-          contact=$scope.addressBookContacts.allContacts[i]
-          if (contact.selected)
-            contacts.push(contact.id)
-            
-        dataStr = 'group_id=' + $scope.addContactGroupForm.groupId + '&contact_ids=' + $scope.contactsToDelete
-        deleteContactsPromise = ContactService.deleteTeamraiserAddressBookContacts dataStr
-          .then (response) ->
-            if response.data?.errorResponse?
-              # TODO: error message
-            else
-              refreshContactsNavBar()
-              $scope.cancelDeleteContacts()
-              $scope.getContacts()
-            response
-        $scope.emailPromises.push deleteContactsPromise
 
       $scope.deleteContactGroup = ->
         delete $scope.deleteContactGroupError
@@ -690,11 +671,10 @@ angular.module 'trPcControllers'
         contacts = []
         for i in [0..$scope.addressBookContacts.allContacts.length]
           contact=$scope.addressBookContacts.allContacts[i]
-          if (contact.selected)
+          if (contact?.selected)
             contacts.push(contact.id)
         $scope.contactsToDelete=contacts.join(",")
         $scope.clearAllContactAlerts()
-        $scope.deleteContactId = contactId
         $scope.deleteContactsModal = $uibModal.open 
           scope: $scope
           templateUrl: APP_INFO.rootPath + 'dist/heart-walk/html/participant-center/modal/deleteContacts.html'
@@ -708,6 +688,9 @@ angular.module 'trPcControllers'
       
       $scope.cancelDeleteContact = ->
         closeDeleteContactModal()
+      
+      $scope.cancelDeleteContacts = ->
+        closeDeleteContactsModal()
       
       $scope.confirmDeleteContact = ->
         if not $scope.deleteContactId
@@ -738,6 +721,24 @@ angular.module 'trPcControllers'
               response
           $scope.emailPromises.push deleteContactPromise
       
+      deselectAllContacts = ->
+        for i in [0..$scope.addressBookContacts.allContacts.length]
+          contact=$scope.addressBookContacts.allContacts[i]
+          contact?.selected=false;        
+      
+      $scope.confirmDeleteContacts = ->
+        dataStr = '&contact_ids=' + $scope.contactsToDelete
+        deleteContactsPromise = ContactService.deleteTeamraiserAddressBookContacts dataStr
+          .then (response) ->
+            if response.data?.errorResponse?
+              # TODO: error message
+            else
+              refreshContactsNavBar()
+              $scope.cancelDeleteContacts()
+              $scope.getContacts(true)
+              deselectAllContacts()
+            response
+        $scope.emailPromises.push deleteContactsPromise
       $scope.emailSelectedContacts = ->
         $location.path '/email/compose'
   ]
