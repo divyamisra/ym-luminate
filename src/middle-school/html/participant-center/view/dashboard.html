@@ -745,7 +745,7 @@
       </div>
     </section>
   </div>
-  <section class="ym-pc-dashboard-spread-section event-secondary-medium event-secondary-medium--grid" aria-label="Resources to Spread the Word">
+  <section class="ym-pc-dashboard-spread-section event-secondary-medium--diagonal" aria-label="Resources for Spreading the Word">
     <div class="ym-pc-dashboard-section-header">
       <h2 class="h3">
         Spread the Word
@@ -753,7 +753,7 @@
     </div>
     <div class="ym-pc-dashboard-spread-options">
       <div class="row">
-        <div class="col-sm-4">
+        <div class="col-sm-6">
           <div class="ym-pc-dashboard-section-header">
             <h3 class="h5">
               Download Mobile App
@@ -763,41 +763,26 @@
             Download our Mobile Fundraising App today!
           </p>
           <div class="ym-pc-dashboard-mobile-downloads">
-            <a ng-href="https://itunes.apple.com/us/app/aha-middle-school/id1274201161?mt=8" target="_blank">
-              <img src="../aha-luminate/dist/youth-markets/image/apple-store-logo.png" alt="Download the iPhone App">
+            <a href="https://itunes.apple.com/us/app/aha-middle-school/id1274201161?mt=8" target="_blank">
+              <img ng-src="../{{dev_branch != '' ? dev_branch+'/' : ''}}aha-luminate/dist/youth-markets/image/apple-store-logo.png" alt="Download the iPhone App">
             </a> 
-            <a ng-href="https://play.google.com/store/apps/details?id=com.charitydynamics.ahatgr" target="_blank">
-              <img src="../aha-luminate/dist/youth-markets/image/google-play-logo.png" alt="Download the Android App">
+            <a href="https://play.google.com/store/apps/details?id=com.charitydynamics.ahatgr" target="_blank">
+              <img ng-src="../{{dev_branch != '' ? dev_branch+'/' : ''}}aha-luminate/dist/youth-markets/image/google-play-logo.png" alt="Download the Android App">
             </a>
           </div>
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-6">
           <div class="ym-pc-dashboard-section-header">
             <h3 class="h5">
-              Facebook Fundraising
+              Social Share
             </h3>
           </div>
           <p>
-            Use our Facebook app to raise even more!
+            Share on Facebook, Twitter, LinkedIn and event text messaging!
           </p>
           <div class="text-center">
-            <a ng-href="https://apps.facebook.com/bf-ahatgr/add/user/{{consId}}/{{frId}}/ParticipantCenter" target="_blank">
-              <img src="../aha-luminate/dist/youth-markets/image/fundraise-with-facebook.png" alt="Fundraise with Facebook">
-            </a>
-          </div>
-        </div>
-        <div class="col-sm-4">
-          <div class="ym-pc-dashboard-section-header">
-            <h3 class="h5">
-              Email Badge
-            </h3>
-          </div>
-          <p>
-            Download an email badge!
-          </p>
-          <div class="text-center">
-            <a class="btn btn-md-wide btn-secondary" ng-href="PageServer?pagename=reus_bf_email_badge&amp;trID={{frId}}" target="_blank">
-              <strong>Download Email Badge</strong> 
+            <a class="btn btn-md-wide btn-secondary" ng-href="{{baseUrl}}#/social">
+              <strong>Go Social</strong> 
             </a>
           </div>
         </div>
