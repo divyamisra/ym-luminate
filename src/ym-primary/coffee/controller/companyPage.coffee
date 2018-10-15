@@ -116,7 +116,20 @@ angular.module 'ahaLuminateControllers'
               coordinatorId = companies[0].coordinatorId
               $rootScope.companyName = name
               setCompanyProgress amountRaised, goal
-              
+
+              TeamraiserCompanyPageService.getSchoolDates()
+                .then (response) ->
+                  schoolDataRows = response.data.getSchoolDatesResponse.schoolData
+                  schoolDataHeaders = {}
+                  schoolDates = {}
+                  angular.forEach schoolDataRows[0], (schoolDataHeader, schoolDataHeaderIndex) ->
+                    schoolDataHeaders[schoolDataHeader] = schoolDataHeaderIndex
+                  angular.forEach schoolDataRows, (schoolDataRow, schoolDataRowIndex) ->
+                    if schoolDataRowIndex > 0
+                      if $scope.companyId == schoolDataHeaders.CID
+                        $scope.eventDate = schoolDataRow[schoolDataHeaders.ED]
+                        $scope.monyDueDate = schoolDataRow[schoolDataHeaders.MDD]
+
               if coordinatorId and coordinatorId isnt '0' and eventId
                 TeamraiserCompanyService.getCoordinatorQuestion coordinatorId, eventId
                   .then (response) ->
