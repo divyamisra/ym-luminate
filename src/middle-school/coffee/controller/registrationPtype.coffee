@@ -30,10 +30,9 @@ angular.module 'ahaLuminateControllers'
       $participationType = angular.element('.js--registration-ptype-part-types input[name="fr_part_radio"]').eq 0
       $scope.participationOptions.fr_part_radio = $participationType.val()
       
-      $scope.toggleDonationLevel = (levelAmount) ->
+      $scope.toggleDonationLevel = (event, levelAmount) ->
         $scope.participationOptions.ng_donation_level = levelAmount
-        if $scope.participationOptionsForm != undefined
-          $scope.participationOptionsForm.ng_donation_level_other_amount.$setValidity("amount", true);
+        $scope.participationOptionsForm.ng_donation_level_other_amount.$setValidity("amount", true);
         angular.forEach $scope.donationLevels.levels, (donationLevel, donationLevelIndex) ->
           if donationLevel.amount is levelAmount
             $scope.donationLevels.activeLevel = donationLevel
@@ -62,7 +61,8 @@ angular.module 'ahaLuminateControllers'
           isNoDonation: isNoDonation
           askMessage: askMessage
         if $donationLevelRadio.is '[checked]'
-          $scope.toggleDonationLevel levelAmount
+          setTimeout ->
+            $scope.toggleDonationLevel levelAmount
         if isOtherAmount
           otherAmount = $donationLevel.find('input[name^="donation_level_form_input_"]').val()
           if otherAmount
@@ -76,17 +76,26 @@ angular.module 'ahaLuminateControllers'
         false
       
       $scope.submitPtype = ->
-        if $scope.participationOptionsForm.ng_donation_level_other_amount.$viewValue != '' && $scope.participationOptionsForm.ng_donation_level_other_amount.$viewValue < 10
-          $scope.participationOptionsForm.ng_donation_level_other_amount.$setValidity("amount", false);
+        if $scope.donationLevels.activeLevel?.isOtherAmount
+          if $scope.participationOptionsForm.ng_donation_level_other_amount.$viewValue is undefined 
+            amt = 0
+          else 
+            amt = parseInt($scope.participationOptionsForm.ng_donation_level_other_amount.$viewValue)
+          if amt < 10 or !angular.isNumber(amt) or isNaN(amt) or amt is ""
+            $scope.participationOptionsForm.ng_donation_level_other_amount.$setValidity("amount", false);
+          else
+            $scope.participationOptionsForm.ng_donation_level_other_amount.$setValidity("amount", true);
         else
           $scope.participationOptionsForm.ng_donation_level_other_amount.$setValidity("amount", true);
-          if not $scope.participationOptionsForm.$valid
-            goalElem = angular.element '#participationOptions-fr_goal'
-            if goalElem.is '.ng-invalid'
-              goalElem.focus()
-            else
-              window.scrollTo 0, 0
+        if not $scope.participationOptionsForm.$valid
+          goalElem = angular.element '#participationOptions-fr_goal'
+          if goalElem.is '.ng-invalid'
+            goalElem.focus()
           else
-            angular.element('.js--default-ptype-form').submit()
-            false
+            window.scrollTo 0, 0
+        else
+          if $scope.donationLevels.activeLevel == undefined
+            $scope.toggleDonationLevel "$0.00"
+          angular.element('.js--default-ptype-form').submit()
+          false
   ]
