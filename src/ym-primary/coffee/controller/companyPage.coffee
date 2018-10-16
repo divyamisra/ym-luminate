@@ -128,9 +128,9 @@ angular.module 'ahaLuminateControllers'
                   i = 0
                   len = schoolDataRows.length
                   while i < len
-                    if $scope.companyId == schoolDataRow[schoolDataHeaders.CID]
-                      $scope.eventDate = schoolDataRow[schoolDataHeaders.ED]
-                      $scope.moneyDueDate = schoolDataRow[schoolDataHeaders.MDD]
+                    if $scope.companyId == schoolDataRows[i][schoolDataHeaders.CID]
+                      $scope.eventDate = schoolDataRows[i][schoolDataHeaders.ED]
+                      $scope.moneyDueDate = schoolDataRows[i][schoolDataHeaders.MDD]
                       break
                     i++
 
