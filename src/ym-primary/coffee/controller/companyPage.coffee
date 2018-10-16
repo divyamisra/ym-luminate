@@ -117,7 +117,7 @@ angular.module 'ahaLuminateControllers'
               $rootScope.companyName = name
               setCompanyProgress amountRaised, goal
 
-              TeamraiserCompanyPageService.getSchoolDates
+              TeamraiserCompanyPageService.getSchoolDates()
                 .then (response) ->
                   schoolDataRows = response.data.getSchoolDatesResponse.schoolData
                   schoolDataHeaders = {}
