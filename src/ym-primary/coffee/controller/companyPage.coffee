@@ -117,7 +117,7 @@ angular.module 'ahaLuminateControllers'
               $rootScope.companyName = name
               setCompanyProgress amountRaised, goal
 
-              TeamraiserCompanyPageService.getSchoolDates()
+              TeamraiserCompanyPageService.getSchoolDates
                 .then (response) ->
                   schoolDataRows = response.data.getSchoolDatesResponse.schoolData
                   schoolDataHeaders = {}
@@ -128,7 +128,7 @@ angular.module 'ahaLuminateControllers'
                     if schoolDataRowIndex > 0
                       if $scope.companyId == schoolDataHeaders.CID
                         $scope.eventDate = schoolDataRow[schoolDataHeaders.ED]
-                        $scope.monyDueDate = schoolDataRow[schoolDataHeaders.MDD]
+                        $scope.moneyDueDate = schoolDataRow[schoolDataHeaders.MDD]
 
               if coordinatorId and coordinatorId isnt '0' and eventId
                 TeamraiserCompanyService.getCoordinatorQuestion coordinatorId, eventId
