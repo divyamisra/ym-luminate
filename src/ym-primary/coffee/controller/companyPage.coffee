@@ -21,6 +21,7 @@ angular.module 'ahaLuminateControllers'
       domain = $location.absUrl().split('/site/')[0]
       $rootScope.companyName = ''
       $scope.eventDate = ''
+      $scope.moneyDueDate = ''
       $scope.totalTeams = ''
       $scope.teamId = ''
       $scope.studentsPledgedTotal = ''
@@ -133,7 +134,6 @@ angular.module 'ahaLuminateControllers'
               if coordinatorId and coordinatorId isnt '0' and eventId
                 TeamraiserCompanyService.getCoordinatorQuestion coordinatorId, eventId
                   .then (response) ->
-                    $scope.eventDate = response.data.coordinator?.event_date
                     if totalTeams is 1
                       $scope.teamId = response.data.coordinator?.team_id
       getCompanyTotals()
