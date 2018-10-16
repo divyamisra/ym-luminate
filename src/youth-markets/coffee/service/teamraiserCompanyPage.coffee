@@ -2,8 +2,9 @@ angular.module 'ahaLuminateApp'
   .factory 'TeamraiserCompanyPageService', [
     '$scope'
     '$rootScope'
+    '$http'
     'LuminateRESTService'
-    ($scope, $rootScope, LuminateRESTService) ->
+    ($scope, $rootScope, $http, LuminateRESTService) ->
       getCompanyPhoto: (callback) ->
         LuminateRESTService.luminateExtendTeamraiserRequest 'method=getCompanyPhoto', true, true, callback
       
