@@ -125,14 +125,14 @@ angular.module 'ahaLuminateControllers'
                   schoolDates = {}
                   angular.forEach schoolDataRows[0], (schoolDataHeader, schoolDataHeaderIndex) ->
                     schoolDataHeaders[schoolDataHeader] = schoolDataHeaderIndex
-                    i = 0
-                    len = schoolDataRows.length
-                    while i < len
-                      if $scope.companyId == schoolDataRow[schoolDataHeaders.CID]
-                        $scope.eventDate = schoolDataRow[schoolDataHeaders.ED]
-                        $scope.moneyDueDate = schoolDataRow[schoolDataHeaders.MDD]
-                        break
-                      i++
+                  i = 0
+                  len = schoolDataRows.length
+                  while i < len
+                    if $scope.companyId == schoolDataRow[schoolDataHeaders.CID]
+                      $scope.eventDate = schoolDataRow[schoolDataHeaders.ED]
+                      $scope.moneyDueDate = schoolDataRow[schoolDataHeaders.MDD]
+                      break
+                    i++
 
               if coordinatorId and coordinatorId isnt '0' and eventId
                 TeamraiserCompanyService.getCoordinatorQuestion coordinatorId, eventId
