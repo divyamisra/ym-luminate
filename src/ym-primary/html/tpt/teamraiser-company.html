@@ -44,7 +44,12 @@
         <div class="clearfix"></div>
         <div class="ym-progress__date" ng-if="eventDate && eventDate != '' && eventDate != 'User Provided No Response'" ng-cloak>
           <p>
-            Our event date is <strong><span ng-bind-html="eventDate"></span></strong>
+            Our event date is <strong>{{eventDate | date:'MM/dd/yyyy'}}</strong>
+          </p>
+        </div>
+        <div class="ym-progress__date" ng-if="moneyDueDate && moneyDueDate != '' && moneyDueDate != 'User Provided No Response'" ng-cloak>
+          <p>
+            Our money due date is <strong>{{moneyDueDate | date:'MM/dd/yyyy'}}</strong>
           </p>
         </div>
       </div>
