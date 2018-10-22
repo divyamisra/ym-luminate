@@ -21,6 +21,7 @@ angular.module 'ahaLuminateControllers'
       domain = $location.absUrl().split('/site/')[0]
       $rootScope.companyName = ''
       $scope.eventDate = ''
+      $scope.moneyDueDate = ''
       $scope.totalTeams = ''
       $scope.teamId = ''
       $scope.studentsPledgedTotal = ''
@@ -116,11 +117,26 @@ angular.module 'ahaLuminateControllers'
               coordinatorId = companies[0].coordinatorId
               $rootScope.companyName = name
               setCompanyProgress amountRaised, goal
-              
+
+              TeamraiserCompanyPageService.getSchoolDates()
+                .then (response) ->
+                  schoolDataRows = response.data.getSchoolDatesResponse.schoolData
+                  schoolDataHeaders = {}
+                  schoolDates = {}
+                  angular.forEach schoolDataRows[0], (schoolDataHeader, schoolDataHeaderIndex) ->
+                    schoolDataHeaders[schoolDataHeader] = schoolDataHeaderIndex
+                  i = 0
+                  len = schoolDataRows.length
+                  while i < len
+                    if $scope.companyId == schoolDataRows[i][schoolDataHeaders.CID]
+                      $scope.eventDate = schoolDataRows[i][schoolDataHeaders.ED]
+                      $scope.moneyDueDate = schoolDataRows[i][schoolDataHeaders.MDD]
+                      break
+                    i++
+
               if coordinatorId and coordinatorId isnt '0' and eventId
                 TeamraiserCompanyService.getCoordinatorQuestion coordinatorId, eventId
                   .then (response) ->
-                    $scope.eventDate = response.data.coordinator?.event_date
                     if totalTeams is 1
                       $scope.teamId = response.data.coordinator?.team_id
       getCompanyTotals()

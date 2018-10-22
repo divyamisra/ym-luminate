@@ -93,7 +93,7 @@ angular.module 'ahaLuminateControllers'
             calculateInstallment(number)
           , 500
 
-      $scope.selectLevel = (type, level, amount) ->
+      $scope.selectLevel = (event, type, level, amount) ->
         if amount is undefined
           amount = $scope.donationInfo.otherAmt
         levelSelect = ->
@@ -130,7 +130,7 @@ angular.module 'ahaLuminateControllers'
           else
             $scope.donationInfo.installmentAmount = amount
             $scope.donationInfo.numberPayments = 1
-        if type is 'Other'
+        if type is 'other'
           if type isnt $scope.donationInfo.levelType
             levelSelect()
         else

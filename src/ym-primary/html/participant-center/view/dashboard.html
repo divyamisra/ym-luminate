@@ -371,7 +371,7 @@
           <div class="ym_my_challenge__update" ng-if="personalChallenge.id" ng-cloak>
             <form method="post" novalidate ng-submit="updateChallenge()">
               <label for="ym-update-challenge">Update my challenge:</label>
-              <select class="form-control" ng-class="{'disabled': personalChallenge.updatePending}" ng-disabled="personalChallenge.updatePending" name="ym-update-challenge" ng-model="updatedPersonalChallenge.id">
+              <select class="form-control" ng-class="{'disabled': personalChallenge.updatePending}" ng-disabled="personalChallenge.updatePending" name="ym-update-challenge" id="ym-update-challenge" ng-model="updatedPersonalChallenge.id">
                 <option value=""></option>
                 <option ng-repeat="challenge in challenges" value="{{challenge.id}}">{{challenge.name}}</option>
               </select>
