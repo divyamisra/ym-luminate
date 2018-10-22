@@ -131,7 +131,7 @@ angular.module 'ahaLuminateControllers'
             $scope.donationInfo.installmentAmount = amount
             $scope.donationInfo.numberPayments = 1
         if type is 'other'
-          if type isnt $scope.donationInfo.levelType
+          if type isnt $scope.donationInfo.levelType and $scope.donationInfo.otherAmt != ""
             levelSelect()
         else
           levelSelect()
