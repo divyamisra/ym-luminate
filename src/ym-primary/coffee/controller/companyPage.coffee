@@ -350,6 +350,12 @@ angular.module 'ahaLuminateControllers'
                 $scope.companyPageContent.mode = 'view'
                 if not $scope.$$phase
                   $scope.$apply()  
+
+      url = 'PageServer?pagename=ym_khc_school_animation&pgwrap=n'
+      if $scope.protocol == 'https:'
+        url = 'S' + url
+      $scope.schoolAnimationURL = $sce.trustAsResourceUrl(url)
+      
       getLeaderboards = ->
         BoundlessService.getLeaderboardRaised $scope.companyId
         .then (response) ->
