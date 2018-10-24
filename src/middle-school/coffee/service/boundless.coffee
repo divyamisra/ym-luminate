@@ -8,7 +8,7 @@ angular.module 'ahaLuminateApp'
         if $rootScope.tablePrefix is 'heartdev'
           url = 'AjaxProxy?cnv_url=' + encodeURIComponent('https://ms.staging.ootqa.org/api/badges/student/' + requestData) + '&auth=' + luminateExtend.global.ajaxProxyAuth
         else
-          url = 'AjaxProxy?cnv_url=' + encodeURIComponent('https://thegreatreplay.heart.org/api/badges/student/' + requestData) + '&auth=' + luminateExtend.global.ajaxProxyAuth
+          url = 'AjaxProxy?cnv_url=' + encodeURIComponent('https://middleschool.heart.org/api/badges/student/' + requestData) + '&auth=' + luminateExtend.global.ajaxProxyAuth
         $http
           method: 'GET'
           url: url
@@ -30,7 +30,7 @@ angular.module 'ahaLuminateApp'
         if $rootScope.tablePrefix is 'heartdev'
           url = 'AjaxProxy?cnv_url=' + encodeURIComponent('https://ms.staging.ootqa.org/api/schools/totals/' + requestData) + '&auth=' + luminateExtend.global.ajaxProxyAuth
         else
-          url = 'AjaxProxy?cnv_url=' + encodeURIComponent('https://thegreatreplay.heart.org/api/schools/totals/' + requestData) + '&auth=' + luminateExtend.global.ajaxProxyAuth
+          url = 'AjaxProxy?cnv_url=' + encodeURIComponent('https://middleschool.heart.org/api/schools/totals/' + requestData) + '&auth=' + luminateExtend.global.ajaxProxyAuth
         $http
           method: 'GET'
           url: url
@@ -41,7 +41,7 @@ angular.module 'ahaLuminateApp'
         if $rootScope.tablePrefix is 'heartdev'
           url = 'AjaxProxy?cnv_url=' + encodeURIComponent('https://ms.staging.ootqa.org/api/webhooks/student/emails-sent/' + $rootScope.frId + '/' + $rootScope.consId) + '&auth=' + luminateExtend.global.ajaxProxyAuth
         else
-          url = 'AjaxProxy?cnv_url=' + encodeURIComponent('https://thegreatreplay.heart.org/api/webhooks/student/emails-sent/' + $rootScope.frId + '/' + $rootScope.consId) + '&auth=' + luminateExtend.global.ajaxProxyAuth
+          url = 'AjaxProxy?cnv_url=' + encodeURIComponent('https://middleschool.heart.org/api/webhooks/student/emails-sent/' + $rootScope.frId + '/' + $rootScope.consId) + '&auth=' + luminateExtend.global.ajaxProxyAuth
         $http
           url: url
           headers:
@@ -51,7 +51,7 @@ angular.module 'ahaLuminateApp'
         if $rootScope.tablePrefix is 'heartdev'
           url = 'AjaxProxy?cnv_url=' + encodeURIComponent('https://ms.staging.ootqa.org/api/webhooks/student/personal-page-updated/' + $rootScope.frId + '/' + $rootScope.consId) + '&auth=' + luminateExtend.global.ajaxProxyAuth
         else
-          url = 'AjaxProxy?cnv_url=' + encodeURIComponent('https://thegreatreplay.heart.org/api/webhooks/student/personal-page-updated/' + $rootScope.frId + '/' + $rootScope.consId) + '&auth=' + luminateExtend.global.ajaxProxyAuth
+          url = 'AjaxProxy?cnv_url=' + encodeURIComponent('https://middleschool.heart.org/api/webhooks/student/personal-page-updated/' + $rootScope.frId + '/' + $rootScope.consId) + '&auth=' + luminateExtend.global.ajaxProxyAuth
         $http
           url: url
           headers:
