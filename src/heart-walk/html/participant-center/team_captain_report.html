@@ -1,0 +1,45 @@
+<div id="report">
+[[E16:1009:false:[[E48:[[S334:fr_id]]::team-id]]:[[S334:fr_id]]]]
+</div>
+<style>
+#report .reportTable {
+  display:none;
+}
+
+@media (max-width: 768px){
+#report .reportTable {
+  display:table;
+}
+
+}
+</style>
+[[?xx::x[[S334:fr_id]]x::::
+<script>
+jQuery(function($){
+  var button=$("<a class='button' download='team_captain_report.csv'>Download Report</a>"),
+      data=[],
+      row=[],
+      table=$(".reportTable").eq(0),
+      value;
+  
+  table.find("th.reportHeading:first-child, td.reportBody:first-child, tr:last-child").remove();
+  table.find("tr").each(function(i){
+    row=[];
+    $(this).find("td,th").each(function(j,cell){
+      value=$(cell).text();
+      value=value.replace(/\s+/," ").replace("NaN","--");
+      row.push(value);
+    })
+    data.push(row.join(","));
+  })
+  data="data:text/csv;charset=utf-8,"+data.join("\r\n");
+  button.attr("href",data);
+  table.after(button);
+  console.log(data);
+  button.css("color","white");
+  if ()
+//  button.get(0).click();
+//  setTimeout(window.close,100);
+})
+</script>
+]]
