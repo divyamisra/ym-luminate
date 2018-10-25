@@ -25,4 +25,15 @@ angular.module 'ahaLuminateApp'
             response
           , (response) ->
             response
-  ]
+      
+      getSchoolDataByState: (requestData) ->
+        requestUrl = luminateExtend.global.path.nonsecure
+        if window.location.protocol is 'https:'
+          requestUrl = luminateExtend.global.path.secure + 'S'
+        requestUrl += 'PageServer?pagename=reus_ym_dhc_school_data_csv&state='+requestData+'&pgwrap=n'
+        $http.jsonp($sce.trustAsResourceUrl(requestUrl), jsonpCallbackParam: 'callback')
+          .then (response) ->
+            response
+          , (response) ->
+            response
+]
