@@ -1646,7 +1646,7 @@
         $('#next_step').addClass('disabled');
 
         $('#next_step').on('click', function () {
-          if (!$('.part-type-container input').is(':checked')) {
+          if ($('.part-type-container input[type="radio"]').length && !$('.part-type-container input[type="radio"]').is(':checked')) {
             $('.js__ptype-errors').remove();
             $('#sel_type_container').after('<div class="js__ptype-errors"><div class="alert alert-danger" role="alert">Please select a participation type and agree to the Self-Pledge.</div></div>')
             $('html, body').animate({
