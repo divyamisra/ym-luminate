@@ -6,7 +6,7 @@ angular.module 'ahaLuminateApp'
     ($rootScope, $http, $sce) ->
       getBadges: (requestData) ->
         if $rootScope.tablePrefix is 'heartdev'
-          url = 'https://ms.staging.ootqa.org/api/badges/student/' + requestData 
+          url = 'https://ahc.staging.ootqa.org/api/badges/student/' + requestData 
         else
           url = 'https://middleschool.heart.org/api/badges/student/' + requestData
         $http.jsonp($sce.trustAsResourceUrl(url), jsonpCallbackParam: 'callback')
@@ -17,7 +17,7 @@ angular.module 'ahaLuminateApp'
       
       getRollupTotals: ->
         if $rootScope.tablePrefix is 'heartdev'
-          url = 'https://ms.staging.ootqa.org/api/schools/totals/'
+          url = 'https://ahc.staging.ootqa.org/api/schools/totals/'
         else
           url = 'https://middleschool.heart.org/api/schools/totals/'
         $http.jsonp($sce.trustAsResourceUrl(url), jsonpCallbackParam: 'callback')
@@ -28,7 +28,7 @@ angular.module 'ahaLuminateApp'
 
       getSchoolRollupTotals: (requestData) ->
         if $rootScope.tablePrefix is 'heartdev'
-          url = 'https://ms.staging.ootqa.org/api/schools/totals/' + requestData
+          url = 'https://ahc.staging.ootqa.org/api/schools/totals/' + requestData
         else
           url = 'https://middleschool.heart.org/api/schools/totals/' + requestData
         $http.jsonp($sce.trustAsResourceUrl(url), jsonpCallbackParam: 'callback')
@@ -39,7 +39,7 @@ angular.module 'ahaLuminateApp'
             
       logEmailSent: ->
         if $rootScope.tablePrefix is 'heartdev'
-          url = 'https://ms.staging.ootqa.org/api/webhooks/student/emails-sent/' + $rootScope.frId + '/' + $rootScope.consId 
+          url = 'https://ahc.staging.ootqa.org/api/webhooks/student/emails-sent/' + $rootScope.frId + '/' + $rootScope.consId 
         else
           url = 'https://middleschool.heart.org/api/webhooks/student/emails-sent/' + $rootScope.frId + '/' + $rootScope.consId
         $http.jsonp($sce.trustAsResourceUrl(url), jsonpCallbackParam: 'callback')
@@ -50,7 +50,7 @@ angular.module 'ahaLuminateApp'
       
       logPersonalPageUpdated: ->
         if $rootScope.tablePrefix is 'heartdev'
-          url = 'https://ms.staging.ootqa.org/api/webhooks/student/personal-page-updated/' + $rootScope.frId + '/' + $rootScope.consId 
+          url = 'https://ahc.staging.ootqa.org/api/webhooks/student/personal-page-updated/' + $rootScope.frId + '/' + $rootScope.consId 
         else
           url = 'https://middleschool.heart.org/api/webhooks/student/personal-page-updated/' + $rootScope.frId + '/' + $rootScope.consId
         $http.jsonp($sce.trustAsResourceUrl(url), jsonpCallbackParam: 'callback')
