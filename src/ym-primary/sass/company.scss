@@ -34,7 +34,7 @@ body.pg-company {
 .ym-teachers-leaderboard-block {
      h2 {
          font-size:42px;
-         color:#a41752;
+         color:$brand-primary-darker;
           @media (max-width: $screen-sm-max) {
                font-size:32px;
           }
@@ -42,7 +42,7 @@ body.pg-company {
      h3 {
          font-size: 17px;
          text-align: center;
-         color: #a41752;
+         color: $brand-primary-darker;
     }
     > [class*="col-"] {
          padding-left: 0 !important;
