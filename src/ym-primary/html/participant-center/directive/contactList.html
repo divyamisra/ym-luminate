@@ -5,7 +5,7 @@
         <div class="checkbox" custom-checkbox ng-class="{'checked': contact.selected}">
           <label>
             <input type="checkbox" value="{{contact.id}}" ng-checked="contact.selected" ng-click="toggleContact(contact)"> 
-            <a ng-click="selectContact(contact)" ng-if="selectContact && contact.id" tabindex="0">
+            <a ng-click="selectContact(contact)" ng-keyup="$event.keyCode == 13 ? selectContact(contact) : null" ng-if="selectContact && contact.id" tabindex="0">
               <span ng-if="contact.firstName">
                 {{contact.firstName}}{{contact.lastName ? ' ' + contact.lastName : ''}}{{contact.email ? ' &lt;' + contact.email + '&gt;' : ''}}
               </span>
