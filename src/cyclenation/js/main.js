@@ -1646,7 +1646,7 @@
         $('#next_step').addClass('disabled');
 
         $('#next_step').on('click', function () {
-          if (!$('.part-type-container input').is(':checked')) {
+          if ($('.part-type-container input[type="radio"]').length && !$('.part-type-container input[type="radio"]').is(':checked')) {
             $('.js__ptype-errors').remove();
             $('#sel_type_container').after('<div class="js__ptype-errors"><div class="alert alert-danger" role="alert">Please select a participation type and agree to the Self-Pledge.</div></div>')
             $('html, body').animate({
@@ -2141,7 +2141,7 @@
       $('#level_flexible_row').before('<div class="required-indicator-legend d-block w-100"><span class="field-required"></span><span class="required-indicator-legend-text">&nbsp;Indicates Required</span></div>');
 
       $('label[for="responsive_payment_typepay_typeradiocredit"] a').attr('aria-label', 'PAYMENT BY CREDIT CARD');
-      $('label[for="responsive_payment_typepay_typeradiopaypal"] a').attr('aria-label', 'PAYMENT BY PAY PAL');
+      $('label[for="responsive_payment_typepay_typeradiopaypal"] a').attr('aria-label', 'Pay with PayPal');
 
       // Selecting empty value from the Gift Duration drop-down when the One-time Gift box is checked
       $('#level_flexiblegift_type1').click(function () {

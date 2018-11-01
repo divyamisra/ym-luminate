@@ -19,7 +19,7 @@ angular.module 'ahaLuminateApp'
         requestUrl = luminateExtend.global.path.nonsecure
         if window.location.protocol is 'https:'
           requestUrl = luminateExtend.global.path.secure + 'S'
-        requestUrl += 'PageServer?pagename=reus_ym_school_data_csv&pgwrap=n'
+        requestUrl += 'PageServer?pagename=reus_ym_khc_school_data_csv&pgwrap=n'
         $http.jsonp($sce.trustAsResourceUrl(requestUrl), jsonpCallbackParam: 'callback')
           .then (response) ->
             response
@@ -30,7 +30,7 @@ angular.module 'ahaLuminateApp'
         requestUrl = luminateExtend.global.path.nonsecure
         if window.location.protocol is 'https:'
           requestUrl = luminateExtend.global.path.secure + 'S'
-        requestUrl += 'PageServer?pagename=reus_ym_school_data_csv&state='+requestData+'&pgwrap=n'
+        requestUrl += 'PageServer?pagename=reus_ym_khc_school_data_csv&state='+requestData+'&pgwrap=n'
         $http.jsonp($sce.trustAsResourceUrl(requestUrl), jsonpCallbackParam: 'callback')
           .then (response) ->
             response

@@ -49,19 +49,6 @@ module.exports = {
     ]
   }, 
   
-  "jump-hoops": {
-    files: [
-      {
-        expand: true, 
-        cwd: 'src/jump-hoops/html/', 
-        src: [
-          '**/*.*'
-        ], 
-        dest: "dist/jump-hoops/html/"
-      }
-    ]
-  }, 
-  
   "ym-primary": {
     files: [
       {
