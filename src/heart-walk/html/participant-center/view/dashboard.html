@@ -433,7 +433,7 @@
             <h2 class="pull-left">
               My Donors
             </h2>
-            <a id="download_donation_list_prev" class="btn btn-primary-inverted pull-right" ng-if="prevFrId != 'F'" ng-href="TRParticipantDownload/Personal_Donations.csv?download_type=personal_donations&amp;fr_id={{prevFrId}}" target="_blank">Download My Team&rsquo;s Past Totals</a><a id="download_donation_list" class="btn btn-primary-inverted pull-right" ng-if="participantGifts.totalNumber > 0" ng-href="TRParticipantDownload/Personal_Donations.csv?download_type=personal_donations&amp;fr_id={{frId}}" target="_blank">Download My Donors</a>
+            <a id="download_donation_list_prev" class="btn btn-primary-inverted pull-right" ng-if="prevFrId != 'F'" ng-href="TRParticipantDownload/Personal_Donations.csv?download_type=personal_donations&amp;fr_id={{prevFrId}}" target="_blank">Download My Past Donors</a><a id="download_donation_list" class="btn btn-primary-inverted pull-right" ng-if="participantGifts.totalNumber > 0" ng-href="TRParticipantDownload/Personal_Donations.csv?download_type=personal_donations&amp;fr_id={{frId}}" target="_blank">Download My Donors</a>
           </div>
           <div ng-if="participantGifts.totalNumber == 0">
             No donations found.
