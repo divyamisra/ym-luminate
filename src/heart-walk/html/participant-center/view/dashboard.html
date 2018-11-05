@@ -599,7 +599,7 @@
               Team Donors
             </h2>
             <a id="download_team_donation_list" class="btn btn-primary-inverted pull-right" ng-href="TRParticipantDownload/Team_Donations.csv?download_type=team_donations&amp;fr_id={{frId}}" target="_blank">Download Donation List</a>
-            <a id="download_my_past_donors" target="_blank" ng-if="participantRegistration.aTeamCaptain == 'true'" class="btn btn-primary-inverted pull-right" ng-href="SPageServer/?pagename=team_captain_report&amp;fr_id={{frId}}" target="_blank">Download My Past Donors</a>
+            <a id="download_my_past_donors" target="_blank" ng-if="participantRegistration.aTeamCaptain == 'true'" class="btn btn-primary-inverted pull-right" ng-href="SPageServer/?pagename=team_captain_report&amp;fr_id={{frId}}" target="_blank">Download My Team&rsquo;s Past Totals</a>
           </div>
           <div ng-if="teamGifts.totalNumber == 0">
             No donations found.
