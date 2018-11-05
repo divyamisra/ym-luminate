@@ -638,7 +638,7 @@ angular.module 'trPcControllers'
         $scope.clearAllContactAlerts()
         $scope.deleteContactsModal = $uibModal.open 
           scope: $scope
-          templateUrl: APP_INFO.rootPath + 'dist/heart-walk/html/participant-center/modal/deleteContacts.html'
+          templateUrl: APP_INFO.rootPath + 'dist/ym-primary/html/participant-center/modal/deleteContacts.html'
       
       closeDeleteContactModal = ->
         delete $scope.deleteContactId
@@ -678,12 +678,11 @@ angular.module 'trPcControllers'
       
       $scope.confirmDeleteContacts = ->
         dataStr = '&contact_ids=' + $scope.contactsToDelete
-        deleteContactsPromise = ContactService.deleteTeamraiserAddressBookContacts dataStr
+        deleteContactsPromise = NgPcContactService.deleteTeamraiserAddressBookContacts dataStr
           .then (response) ->
             if response.data?.errorResponse?
               # TODO: error message
             else
-              refreshContactsNavBar()
               $scope.cancelDeleteContacts()
               $scope.getContacts(true)
               deselectAllContacts()
