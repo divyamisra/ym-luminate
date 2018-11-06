@@ -74,7 +74,7 @@ angular.module 'trPcControllers'
           recipients: selectedContacts.join ', '
           suggested_message_id: ''
           subject: ''
-          prepend_salutation: true
+          prepend_salutation: false
           message_body: ''
           layout_id: if defaultStationeryId isnt '-1' then defaultStationeryId else ''
       setEmailComposerDefaults()
@@ -111,7 +111,7 @@ angular.module 'trPcControllers'
                 $scope.emailComposer.message_id = $scope.messageId
                 # TODO: recipients
                 $scope.emailComposer.subject = messageInfo.subject
-                $scope.emailComposer.prepend_salutation = messageInfo.prependsalutation is 'true'
+                # $scope.emailComposer.prepend_salutation = messageInfo.prependsalutation is 'true'
                 messageBody = messageInfo.messageBody
                 setEmailMessageBody messageBody
       else if $scope.messageType is 'copy' and $scope.messageId
