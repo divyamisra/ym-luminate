@@ -62,7 +62,7 @@ angular.module 'trPcControllers'
       
       messageTypeNames = 
         draft: 'Drafts'
-        sentMessage: 'Sent Mail'
+        sentMessage: 'Sent Messages'
       $scope.messageTypeName = messageTypeNames[$scope.messageType]
       
       $scope.selectMessage = (messageId) ->
