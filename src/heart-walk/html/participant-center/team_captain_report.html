@@ -78,7 +78,10 @@ legend {
     })
     data.push(row.join(","));
   })
-  data="data:text/csv;charset=utf-8,"+data.join("\r\n");
+  console.log("La la")
+  data=data.join("\r\n"); 
+  data=new Blob([data]);
+  data=window.URL.createObjectURL(data,{type:"text/csv"})
   button.attr("href",data);
   table.after(button);
   console.log(data);
