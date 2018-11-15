@@ -2,7 +2,7 @@
 
 module.exports = {
   options: {
-    optimizationLevel: 7
+    optimizationLevel: 3
   }, 
   
   "general": {
