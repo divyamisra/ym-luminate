@@ -22,11 +22,13 @@
   }
   
   .contacts-list__actions-manage {
-    float: right;
-    
+    float: left;
+    margin-top: 1em;
+    clear:left;
     .btn {
       padding: 10px;
       margin: 0 0 0 6px;
+      letter-spacing: -1px;
       
       @media (min-width: 360px) {
         padding: 12px 14px;
@@ -41,6 +43,9 @@
         padding: 12px 12px;
         margin: 0 0 0 12px;
       }
+    }
+    .btn:first-child {
+      margin: 0;
     }
   }
 }
