@@ -54,10 +54,11 @@ angular.module 'trPcControllers'
       $scope.dashboardPromises.push constituentPromise
 
       runCheckBrightStores = ->
-        $timeout ->
+        $http.post('https://bfstage.boundlessfundraising.com/ahadevstore/brightpost.php', {username:$scope.constituent.user_name})
+        #$timeout ->
           #$http.post('https://bfstage.boundlessfundraising.com/ahadevstore/brightpost.php', {username:$scope.constituent.user_name})
-          $http.post('https://bfstage.boundlessfundraising.com/ahadevstore/brightpost.php', {username:'kathy1'})
-        , 3000
+          #$http.post('https://bfstage.boundlessfundraising.com/ahadevstore/brightpost.php', {username:'kathy'})
+        #, 2000
 
       $scope.checkBrightStores = ->
         console.log 'number 2'
@@ -76,7 +77,8 @@ angular.module 'trPcControllers'
                 #There is another unknown error do nothing
             else
               console.log response.data.login_url
-              $scope.BrightStoresURL = response.data.login_url
+              $scope.BrightStoreTrue = true
+              $scope.BrightStoreURL = response.data.login_url
             #response
           .catch (response) ->
             console.log 'failure'
