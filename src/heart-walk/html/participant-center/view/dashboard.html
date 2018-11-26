@@ -230,6 +230,11 @@
           </p>
         </div>
       </div>
+      <div class="clearfix header_checklist" ng-if="BrightStoreTrue">
+        <h2>The HeartWalk Store</h2>
+        <p>Check out how many points you've earned and what you can redeem them for in the HeartWalk Store.</p>
+        <a id="heartwalk_store" class="btn btn-primary" ng-href="{{BrightStoreURL}}">Visit Store</a>
+      </div>
       <div class="clearfix heart_pc_achievements_container">
         <h2>My Achievements</h2>
         <p>Earn as you reach for your goal. Curious what badges you get? <a href="PageServer?pagename=heartwalk_fundraising_tools&amp;fr_id={{frId}}" ng-click="sendGAEvent('Badges - learn more');">Read more to learn all about achievement badges.</a></p>

@@ -6,6 +6,7 @@ angular.module 'trPcControllers'
     '$filter'
     '$location'
     '$httpParamSerializer'
+    '$http'
     '$translate'
     '$uibModal'
     '$uibModalStack'
@@ -24,7 +25,7 @@ angular.module 'trPcControllers'
     'TeamraiserSurveyResponseService'
     'TeamraiserEmailService'
     'FacebookFundraiserService'
-    ($rootScope, $scope, $timeout, $filter, $location, $httpParamSerializer, $translate, $uibModal, $uibModalStack, APP_INFO, ConstituentService, TeamraiserRecentActivityService, TeamraiserRegistrationService, TeamraiserProgressService, TeamraiserGiftService, TeamraiserParticipantService, TeamraiserTeamService, TeamraiserNewsFeedService, TeamraiserCompanyService, TeamraiserShortcutURLService, ContactService, TeamraiserSurveyResponseService, TeamraiserEmailService, FacebookFundraiserService) ->
+    ($rootScope, $scope, $timeout, $filter, $location, $httpParamSerializer, $http, $translate, $uibModal, $uibModalStack, APP_INFO, ConstituentService, TeamraiserRecentActivityService, TeamraiserRegistrationService, TeamraiserProgressService, TeamraiserGiftService, TeamraiserParticipantService, TeamraiserTeamService, TeamraiserNewsFeedService, TeamraiserCompanyService, TeamraiserShortcutURLService, ContactService, TeamraiserSurveyResponseService, TeamraiserEmailService, FacebookFundraiserService) ->
       $scope.dashboardPromises = []
 
       $scope.baseDomain = $location.absUrl().split('/site/')[0]
@@ -34,6 +35,7 @@ angular.module 'trPcControllers'
           if response.data.errorResponse
             # TODO
           else
+            console.log 'number 1'
             $scope.constituent = response.data.getConsResponse
             if angular.equals({}, $scope.constituent.primary_address.street1) is true
               $scope.constituent.primary_address.street1 = ''
@@ -47,8 +49,39 @@ angular.module 'trPcControllers'
               $scope.constituent.primary_address.zip = ''
             if angular.equals({}, $scope.constituent.mobile_phone) is true
               $scope.constituent.mobile_phone = ''
+            $scope.checkBrightStores()
           response
       $scope.dashboardPromises.push constituentPromise
+
+      runCheckBrightStores = ->
+        $timeout ->
+          #$http.post('https://bfstage.boundlessfundraising.com/ahadevstore/brightpost.php', {username:$scope.constituent.user_name})
+          $http.post('https://bfstage.boundlessfundraising.com/ahadevstore/brightpost.php', {username:'kathy1'})
+        , 3000
+
+      $scope.checkBrightStores = ->
+        console.log 'number 2'
+        getcheckBrightStoresPromise = runCheckBrightStores()
+          .then (response) ->
+            console.log 'success', response
+            if response.data.errors
+              console.log response.data.errors.username
+              if response.data.errors.username is 'Invalid or disabled user requested'
+                console.log 'Run webhook to create user in store'
+                runCheckBrightStores()
+                  .then (test) ->
+                    console.log test
+                    test #this is the response from new hook is the user was created might need to nest multiple promises
+              #else
+                #There is another unknown error do nothing
+            else
+              console.log response.data.login_url
+              $scope.BrightStoresURL = response.data.login_url
+            #response
+          .catch (response) ->
+            console.log 'failure'
+            #console.log response
+        $scope.dashboardPromises.push getcheckBrightStoresPromise
 
       $scope.getMessageCounts = (refresh) ->
         $scope.messageCounts = {}
@@ -281,7 +314,7 @@ angular.module 'trPcControllers'
 
                 if thisField.questionKey isnt 'no_key_assigned'
                   $scope.sqvm.surveyFields.push thisField
-                  if surveyResponse.responseValue is 'User Provided No Response' or not angular.isString surveyResponse.responseValue 
+                  if surveyResponse.responseValue is 'User Provided No Response' or not angular.isString surveyResponse.responseValue
                     $scope.sqvm.surveyModel[thisField.questionKey] = ''
                   else
                     $scope.sqvm.surveyModel[thisField.questionKey] = surveyResponse.responseValue
@@ -575,6 +608,8 @@ angular.module 'trPcControllers'
           window.location = 'https://itunes.apple.com/us/app/heart-walk/id451276834?ls=1&mt=8'
         else
           window.location = 'PageServer?pagename=heartwalk_fundraising_tools&amp;pc2_page=center&amp;fr_id=' + $scope.frId + '#/social'
+
+
 
       $scope.profileProgress = 0
       $scope.profileChecklist = ->
@@ -1610,4 +1645,3 @@ angular.module 'trPcControllers'
             $scope.dashboardPromises.push getCompanyShortcutPromise
           $scope.getCompanyShortcut()
   ]
-  
