@@ -12,4 +12,10 @@ angular.module 'trPcControllers'
       $rootScope.$on '$routeChangeSuccess', ->
         $scope.location = $location.path()
         return
+      
+      $scope.$on '$viewContentLoaded', ->
+        if $rootScope.clipboard
+          $rootScope.clipboard.destroy()
+          delete $rootScope.clipboard
+        $rootScope.clipboard = new Clipboard '[data-clipboard-target]'
   ]
