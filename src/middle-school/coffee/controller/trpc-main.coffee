@@ -4,7 +4,8 @@ angular.module 'trPcControllers'
     '$scope'
     '$location'
     'APP_INFO'
-    ($rootScope, $scope, $location, APP_INFO) ->
+    'FacebookFundraiserService'
+    ($rootScope, $scope, $location, APP_INFO, FacebookFundraiserService) ->
       $rootScope.$location = $location
       $rootScope.baseUrl = $location.absUrl().split('#')[0]
       
