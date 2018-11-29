@@ -387,8 +387,11 @@
               <div class="manage_walk_header">
                 Prize Information
               </div>
-              <p>
-                <span ng-if="constituent.name && constituent.name.first">{{constituent.name.first}}</span><span ng-if="!constituent.name.first">Participant</span>, <span ng-if="sqvm.surveyModel.question_key_hw_recognize_survivor == 'Yes'">you are being recognized as a survivor.</span><span ng-if="sqvm.surveyModel.question_key_hw_recognize_survivor == 'No' || sqvm.surveyModel.question_key_hw_recognize_survivor == '[object Object]'">would you like to be recognized as a survivor?</span>
+              <p ng-if="BrightSites.points == 0">
+                By fundraising you can earn points and redeem prizes at the Heart Walk Store.
+              </p>
+              <p ng-if="BrightSites.points > 0">
+                Congratulations, you have {{BrightSites.points}} points! Check out what you can redeem at the Heart Walk Store.
               </p>
             </div>
             <div class="pull-right">

@@ -96,7 +96,7 @@ angular.module 'trPcControllers'
             else
               $scope.BrightSites.active = true
               $scope.BrightSites.url = response.data.login_url
-              #$scope.BrightSites.points = response.data.login_url
+              $scope.BrightSites.points = '123'
               console.log response.data.login_url
               console.log $scope.BrightSites
             #response
