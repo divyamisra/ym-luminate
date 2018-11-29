@@ -16,7 +16,8 @@ angular.module 'trPcControllers'
     'NgPcInteractionService'
     'NgPcTeamraiserCompanyService'
     'NgPcTeamraiserSchoolService'
-    ($rootScope, $scope, $filter, $timeout, $uibModal, APP_INFO, BoundlessService, NgPcTeamraiserRegistrationService, NgPcTeamraiserProgressService, NgPcTeamraiserTeamService, NgPcTeamraiserGiftService, NgPcContactService, NgPcTeamraiserShortcutURLService, NgPcInteractionService, NgPcTeamraiserCompanyService, NgPcTeamraiserSchoolService) ->
+    'FacebookFundraiserService'
+    ($rootScope, $scope, $filter, $timeout, $uibModal, APP_INFO, BoundlessService, NgPcTeamraiserRegistrationService, NgPcTeamraiserProgressService, NgPcTeamraiserTeamService, NgPcTeamraiserGiftService, NgPcContactService, NgPcTeamraiserShortcutURLService, NgPcInteractionService, NgPcTeamraiserCompanyService, NgPcTeamraiserSchoolService, FacebookFundraiserService) ->
       $scope.dashboardPromises = []
       
       $dataRoot = angular.element '[data-embed-root]'
@@ -247,6 +248,10 @@ angular.module 'trPcControllers'
               else
                 $scope.editPersonalGoalModal.close()
                 $scope.refreshFundraisingProgress()
+                if $rootScope.facebookFundraiserId
+                  FacebookFundraiserService.updateFundraiser()
+                    .then ->
+                      FacebookFundraiserService.syncDonations()
               response
           $scope.dashboardPromises.push updatePersonalGoalPromise
       
