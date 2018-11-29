@@ -35,7 +35,6 @@ angular.module 'trPcControllers'
           if response.data.errorResponse
             # TODO
           else
-            console.log 'number 1'
             $scope.constituent = response.data.getConsResponse
             if angular.equals({}, $scope.constituent.primary_address.street1) is true
               $scope.constituent.primary_address.street1 = ''
@@ -49,41 +48,62 @@ angular.module 'trPcControllers'
               $scope.constituent.primary_address.zip = ''
             if angular.equals({}, $scope.constituent.mobile_phone) is true
               $scope.constituent.mobile_phone = ''
-            $scope.checkBrightStores()
+            $scope.checkBrightSites()
           response
       $scope.dashboardPromises.push constituentPromise
 
-      runCheckBrightStores = ->
-        $http.post('https://bfstage.boundlessfundraising.com/ahadevstore/brightpost.php', {username:$scope.constituent.user_name})
+      APurlPrefix = ''
+      if $scope.tablePrefix == 'heartdev'
+        APurlPrefix = 'https://hwk.staging.ootqa.org/'
+      else
+        APurlPrefix = 'https://heartwalk.heart.org/'
+
+      runCheckBrightSites = ->
+        #$http.post('https://bfstage.boundlessfundraising.com/ahadevstore/brightpost.php', {username:$scope.constituent.user_name})
+        postData =
+          #username: 'kathy1'
+          username: $scope.constituent.user_name
+          server: $rootScope.tablePrefix
+        $http.post('https://bfstage.boundlessfundraising.com/ahadevstore/brightpost.php', postData)
+        #$http.post('https://bfstage.boundlessfundraising.com/ahadevstore/brightpost.php', {username:'kathy1'})
         #$timeout ->
           #$http.post('https://bfstage.boundlessfundraising.com/ahadevstore/brightpost.php', {username:$scope.constituent.user_name})
           #$http.post('https://bfstage.boundlessfundraising.com/ahadevstore/brightpost.php', {username:'kathy'})
         #, 2000
 
-      $scope.checkBrightStores = ->
-        console.log 'number 2'
-        getcheckBrightStoresPromise = runCheckBrightStores()
+      $scope.BrightSites =
+        url: ''
+        points: ''
+        active: false
+
+      $scope.checkBrightSites = ->
+        getcheckBrightSitesPromise = runCheckBrightSites()
           .then (response) ->
             console.log 'success', response
             if response.data.errors
               console.log response.data.errors.username
               if response.data.errors.username is 'Invalid or disabled user requested'
                 console.log 'Run webhook to create user in store'
-                runCheckBrightStores()
-                  .then (test) ->
-                    console.log test
-                    test #this is the response from new hook is the user was created might need to nest multiple promises
+                console.log APurlPrefix+'/api/brightsites/'+$scope.consId+'/import'
+                $http.get(APurlPrefix+'/api/brightsites/'+$scope.consId+'/import')
+                #This was only if they could do the update immediatly
+                #runCheckBrightSites()
+                  #.then (test) ->
+                    #console.log test
+                    #test #this is the response from new hook is the user was created might need to nest multiple promises
               #else
                 #There is another unknown error do nothing
             else
+              $scope.BrightSites.active = true
+              $scope.BrightSites.url = response.data.login_url
+              #$scope.BrightSites.points = response.data.login_url
               console.log response.data.login_url
-              $scope.BrightStoreTrue = true
-              $scope.BrightStoreURL = response.data.login_url
+              console.log $scope.BrightSites
             #response
           .catch (response) ->
             console.log 'failure'
             #console.log response
-        $scope.dashboardPromises.push getcheckBrightStoresPromise
+        $scope.dashboardPromises.push getcheckBrightSitesPromise
 
       $scope.getMessageCounts = (refresh) ->
         $scope.messageCounts = {}

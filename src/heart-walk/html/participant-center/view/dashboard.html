@@ -230,11 +230,6 @@
           </p>
         </div>
       </div>
-      <div class="clearfix header_checklist" ng-if="BrightStoreTrue">
-        <h2>The HeartWalk Store</h2>
-        <p>Check out how many points you've earned and what you can redeem them for in the HeartWalk Store.</p>
-        <a id="heartwalk_store" class="btn btn-primary" ng-href="{{BrightStoreURL}}" target="_blank">Visit Store</a>
-      </div>
       <div class="clearfix heart_pc_achievements_container">
         <h2>My Achievements</h2>
         <p>Earn as you reach for your goal. Curious what badges you get? <a href="PageServer?pagename=heartwalk_fundraising_tools&amp;fr_id={{frId}}" ng-click="sendGAEvent('Badges - learn more');">Read more to learn all about achievement badges.</a></p>
@@ -385,6 +380,19 @@
             </div>
             <div class="pull-right">
               <a href id="edit_status" class="btn btn-primary-inverted" ng-click="editSurvivor()">Edit Status</a>
+            </div>
+          </div>
+          <div class="manage_walk_items clearfix" ng-if="BrightSites.active">
+            <div class="pull-left">
+              <div class="manage_walk_header">
+                Prize Information
+              </div>
+              <p>
+                <span ng-if="constituent.name && constituent.name.first">{{constituent.name.first}}</span><span ng-if="!constituent.name.first">Participant</span>, <span ng-if="sqvm.surveyModel.question_key_hw_recognize_survivor == 'Yes'">you are being recognized as a survivor.</span><span ng-if="sqvm.surveyModel.question_key_hw_recognize_survivor == 'No' || sqvm.surveyModel.question_key_hw_recognize_survivor == '[object Object]'">would you like to be recognized as a survivor?</span>
+              </p>
+            </div>
+            <div class="pull-right">
+              <a href id="heartwalk_store" class="btn btn-primary-inverted" ng-href="{{BrightSites.url}}" target="_blank">View Prize Area</a>
             </div>
           </div>
           <div class="manage_walk_items clearfix">
