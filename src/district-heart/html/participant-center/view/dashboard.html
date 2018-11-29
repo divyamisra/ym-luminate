@@ -172,18 +172,28 @@
       </div>
       <div class="row" ng-show="facebookFundraisersEnabled" ng-cloak>
         <div class="col-xs-12">
-          <div class="ym-pc-dashboard-progress-box" ng-show="!facebookFundraiserId">
+          <div class="ym-pc-dashboard-facebook-box" ng-show="!facebookFundraiserId">
             <div class="ym-pc-dashboard-section-header">
               <h3 class="h5">
                 Let's Get Fundraising, [[S1:first_name]]!
               </h3>
             </div>
+            <div class="text-center">
+              <p>
+                Link your personal page to a new Facebook Fundraiser to receive donations from your Facebook friends.
+              </p>
+            </div>
           </div>
-          <div class="ym-pc-dashboard-progress-box" ng-show="facebookFundraiserId">
+          <div class="ym-pc-dashboard-facebook-box" ng-show="facebookFundraiserId">
             <div class="ym-pc-dashboard-section-header">
               <h3 class="h5">
                 Your Fundraiser is Connected to Facebook!
               </h3>
+            </div>
+            <div class="text-center">
+              <p>
+                Log in to use Facebook's fundraising tools to invite friends, share updates and collect donations. We'll keep track of your progress on Facebook and on your page, so you'll always know how close you are to reaching your goal.
+              </p>
             </div>
           </div>
         </div>
