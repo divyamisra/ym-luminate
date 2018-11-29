@@ -170,6 +170,17 @@
           </div>
         </div>
       </div>
+      <div class="row" ng-show="facebookFundraisersEnabled" ng-cloak>
+        <div class="col-xs-12">
+          <div class="ym-pc-dashboard-progress-box" ng-show="!facebookFundraiserId">
+            <div class="ym-pc-dashboard-section-header">
+              <h3 class="h5">
+                Let's Get Fundraising, [[S1:first_name]]!
+              </h3>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
     <section class="ym-pc-dashboard-activities-section" aria-label="My Fundraising Activities" ng-if="participantRegistration.aTeamCaptain != 'true' || location == '/dashboard-student'" ng-cloak>
       <div class="ym-pc-dashboard-section-header">
