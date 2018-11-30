@@ -17,11 +17,13 @@
     }
   }
   
-  a {
-      &,
-      &:link,
-      &:visited {
-        color: $acc-purple;
-      }
+  p {
+    a {
+        &,
+        &:link,
+        &:visited {
+          color: $acc-purple;
+        }
+    }
   }
 }
