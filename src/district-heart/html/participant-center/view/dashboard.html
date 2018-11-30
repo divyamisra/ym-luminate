@@ -170,9 +170,9 @@
           </div>
         </div>
       </div>
-      <div class="row" ng-show="facebookFundraisersEnabled" ng-cloak>
-        <div class="col-xs-12">
-          <div class="ym-pc-dashboard-facebook-box" ng-show="!facebookFundraiserId">
+      <div ng-show="facebookFundraisersEnabled" ng-cloak>
+        <div class="ym-pc-dashboard-facebook-box" ng-show="!facebookFundraiserId">
+          <div class="container">
             <div class="ym-pc-dashboard-section-header">
               <h3 class="h5">
                 Let's Get Fundraising<span ng-if="consNameFirst && consNameFirst != ''">, <span ng-bind-html="consNameFirst"></span></span>!
@@ -183,14 +183,16 @@
                 Link your personal page to a new Facebook Fundraiser to receive donations from your Facebook friends.
               </p>
               <button type="button" class="btn btn-white" ng-click="loginToFacebook()">
-                <strong>Connect to Facebook Fundraiser</strong>
+                <span class="fa fa-facebook-square"></span> <strong>Connect to Facebook Fundraiser</strong>
               </button>
               <div class="ym-pc-dashboard-facebook-hint">
                 By clicking this link, you will leave AHA's website and be redirected to another site not under the control of AHA.
               </div>
             </div>
           </div>
-          <div class="ym-pc-dashboard-facebook-box js--facebook-fundraiser-completed-section" ng-show="facebookFundraiserId">
+        </div>
+        <div class="ym-pc-dashboard-facebook-box js--facebook-fundraiser-completed-section" ng-show="facebookFundraiserId">
+          <div class="container">
             <div class="ym-pc-dashboard-section-header">
               <h3 class="h5">
                 Your Fundraiser is Connected to Facebook!
@@ -201,7 +203,7 @@
                 Log in to use Facebook's fundraising tools to invite friends, share updates and collect donations. We'll keep track of your progress on Facebook and on your page, so you'll always know how close you are to reaching your goal.
               </p>
               <a class="btn btn-white" ng-href="//facebook.com/donate/{{facebookFundraiserId}}/" target="_blank">
-                <strong>Go to Facebook Fundraiser</strong>
+                <span class="fa fa-facebook-square"></span> <strong>Go to Facebook Fundraiser</strong>
               </a>
               <div class="ym-pc-dashboard-facebook-hint">
                 By clicking this link, you will leave AHA's website and be redirected to another site not under the control of AHA.
