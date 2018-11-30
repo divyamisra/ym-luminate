@@ -624,14 +624,17 @@ main > .container {
     &:active {
       color: #4260b4;
       font-size: 14px;
-      padding: 6px 12px;
+      padding: 6px 10px;
       white-space: normal;
       margin: 0 0 20px;
       
       @media(min-width: 414px) {
         font-size: 16px;
-        padding: 12px 18px;
         margin: 0 0 24px;
+      }
+      
+      @media(min-width: 440px) {
+        padding: 12px 18px;
       }
       
       @media(min-width: 480px) {
