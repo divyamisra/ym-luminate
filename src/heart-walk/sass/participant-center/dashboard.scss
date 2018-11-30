@@ -636,7 +636,7 @@ div#send_via_FC {
     padding: 2em 0;
     text-align: center;
   }
-  
+
   &_badge_item {
     text-align: center;
     display: inline-block;
@@ -652,4 +652,8 @@ div#send_via_FC {
     display: block;
     font-size: 16px;
   }
+}
+
+.heartwalk_store .pull-left {
+    width: 75%;
 }
