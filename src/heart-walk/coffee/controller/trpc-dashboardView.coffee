@@ -62,7 +62,7 @@ angular.module 'trPcControllers'
         postData =
           username: $scope.constituent.user_name
           server: $rootScope.tablePrefix
-        $http.post('https://bfstage.boundlessfundraising.com/applications/ahahw/brightsites/brightpost.php', postData)
+        $http.post('https://bfapps1.boundlessfundraising.com/applications/ahahw/brightsites/brightpost.php', postData)
 
       $scope.BrightSites =
         url: ''
