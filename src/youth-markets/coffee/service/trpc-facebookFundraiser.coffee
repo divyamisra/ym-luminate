@@ -4,7 +4,7 @@ angular.module 'trPcApp'
     '$filter'
     '$http'
     ($rootScope, $filter, $http) ->
-      createFundraiser: (fundraiserName = '', fundraiserDescription = '') ->
+      createFundraiser: (coverPhoto = '', fundraiserName = '', fundraiserDescription = '') ->
         eventDate = $rootScope.eventInfo.event_date
         endDate = $rootScope.facebookFundraisersEndDate
         endTime = null
@@ -23,8 +23,8 @@ angular.module 'trPcApp'
           fundraiser_name: fundraiserName
           fundraiser_description: fundraiserDescription
           default_goal_amount: '250.00'
-          cover_photo: ''
-          default_cover_photo: ''
+          cover_photo: coverPhoto
+          default_cover_photo: coverPhoto
           facebook_user_id: $rootScope.facebookFundraiserUserId
           access_token: $rootScope.facebookFundraiserAccessToken
         if endTimeOffset

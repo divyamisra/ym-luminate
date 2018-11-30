@@ -557,7 +557,7 @@ main > .container {
         height: 302px;
       }
     }
-
+    
     button {
       margin: 18px 0 0;
     }
@@ -578,6 +578,19 @@ main > .container {
 .ym-pc-dashboard-facebook-box {
   background: #4260b4;
   color: $brand-white;
+  padding: 20px;
+  
+  .btn-white, 
+  a.btn-white {
+    &, 
+    &:link, 
+    &:visited, 
+    &:hover, 
+    &:focus, 
+    &:active {
+      color: #4260b4;
+    }
+  }
 }
 
 .ym-pc-dashboard-badges-section {

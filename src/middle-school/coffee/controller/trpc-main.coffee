@@ -3,9 +3,10 @@ angular.module 'trPcControllers'
     '$rootScope'
     '$scope'
     '$location'
+    '$timeout'
     'APP_INFO'
     'FacebookFundraiserService'
-    ($rootScope, $scope, $location, APP_INFO, FacebookFundraiserService) ->
+    ($rootScope, $scope, $location, $timeout, APP_INFO, FacebookFundraiserService) ->
       $rootScope.$location = $location
       $rootScope.baseUrl = $location.absUrl().split('#')[0]
       
@@ -53,7 +54,7 @@ angular.module 'trPcControllers'
                     $rootScope.facebookFundraiserAccessToken = accessToken
                     $rootScope.facebookFundraiserCreateStatus = 'pending'
                     fundraiserName = 'Help Keep Hearts Beating'
-                    FacebookFundraiserService.createFundraiser fundraiserName
+                    FacebookFundraiserService.createFundraiser '', fundraiserName
                       .then (response) ->
                         facebookFundraiserId = if response.data.error?.code is '105' then response.data.error.debug?.fundraiserId else response.data.fundraiser?.id
                         if not facebookFundraiserId
