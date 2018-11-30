@@ -582,20 +582,36 @@ main > .container {
   margin: 0 0 30px;
   
   .container {
-    max-width: 540px;
-    margin: 0 auto;
+    padding: 0;
+    
+    @media(min-width: 414px) {
+      padding: 0 15px;
+    }
+    
+    @media(min-width: 640px) {
+      max-width: 540px;
+      margin: 0 auto;
+    }
   }
   
   .ym-pc-dashboard-section-header {
     h5, 
     .h5 {
       line-height: 1.4;
-      margin: 0 0 18px;
+      margin: 0 0 14px;
+      
+      @media(min-width: 414px) {
+        margin: 0 0 18px;
+      }
     }
   }
   
   p {
-    margin: 0 0 24px;
+    margin: 0 0 20px;
+    
+    @media(min-width: 414px) {
+      margin: 0 0 24px;
+    }
   }
   
   .btn-white, 
@@ -607,8 +623,21 @@ main > .container {
     &:focus, 
     &:active {
       color: #4260b4;
-      font-size: 18px;
-      margin: 0 0 24px;
+      font-size: 14px;
+      padding: 6px 12px;
+      white-space: normal;
+      margin: 0 0 20px;
+      
+      @media(min-width: 414px) {
+        font-size: 16px;
+        padding: 12px 18px;
+        margin: 0 0 24px;
+      }
+      
+      @media(min-width: 480px) {
+        font-size: 18px;
+        padding: 12px 24px;
+      }
       
       .fa {
         margin: 0 8px 0 0;
