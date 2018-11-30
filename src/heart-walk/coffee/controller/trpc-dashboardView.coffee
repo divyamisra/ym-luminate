@@ -59,17 +59,10 @@ angular.module 'trPcControllers'
         APurlPrefix = 'https://heartwalk.heart.org/'
 
       runCheckBrightSites = ->
-        #$http.post('https://bfstage.boundlessfundraising.com/ahadevstore/brightpost.php', {username:$scope.constituent.user_name})
         postData =
-          #username: 'kathy1'
           username: $scope.constituent.user_name
           server: $rootScope.tablePrefix
-        $http.post('https://bfstage.boundlessfundraising.com/ahadevstore/brightpost.php', postData)
-        #$http.post('https://bfstage.boundlessfundraising.com/ahadevstore/brightpost.php', {username:'kathy1'})
-        #$timeout ->
-          #$http.post('https://bfstage.boundlessfundraising.com/ahadevstore/brightpost.php', {username:$scope.constituent.user_name})
-          #$http.post('https://bfstage.boundlessfundraising.com/ahadevstore/brightpost.php', {username:'kathy'})
-        #, 2000
+        $http.post('https://bfstage.boundlessfundraising.com/applications/ahahw/brightsites/brightpost.php', postData)
 
       $scope.BrightSites =
         url: ''
@@ -96,8 +89,8 @@ angular.module 'trPcControllers'
             else
               $scope.BrightSites.active = true
               $scope.BrightSites.url = response.data.login_url
-              $scope.BrightSites.points = '123'
-              console.log response.data.login_url
+              $scope.BrightSites.points = response.data.balance
+              console.log response.data
               console.log $scope.BrightSites
             #response
           .catch (response) ->
