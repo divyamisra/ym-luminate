@@ -321,7 +321,17 @@ angular.module 'trPcControllers'
               $scope.editSchoolGoalModal.close()
               $scope.refreshFundraisingProgress()
           $scope.dashboardPromises.push updateSchoolGoalPromise
-
+      
+      if $scope.facebookFundraisersEnabled and $rootScope.facebookFundraiserId and $rootScope.facebookFundraiserId isnt ''
+        $rootScope.facebookFundraiserConfirmedStatus = 'pending'
+        FacebookFundraiserService.confirmFundraiserStatus()
+          .then (response) ->
+            if not response.data.status?.active
+              delete $rootScope.facebookFundraiserId
+              $rootScope.facebookFundraiserConfirmedStatus = 'deleted'
+            else
+              $rootScope.facebookFundraiserConfirmedStatus = 'confirmed'
+      
       $scope.participantGifts =
         sortColumn: 'date_recorded'
         sortAscending: false

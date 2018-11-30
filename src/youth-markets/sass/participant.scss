@@ -579,21 +579,23 @@ main > .container {
   background: #4260b4;
   color: $brand-white;
   padding: 20px;
+  margin: 0 0 30px;
   
   .container {
-    max-width: 400px;
+    max-width: 540px;
     margin: 0 auto;
   }
   
   .ym-pc-dashboard-section-header {
     h5, 
     .h5 {
+      line-height: 1.4;
       margin: 0 0 18px;
     }
   }
   
   p {
-    margin: 0 0 18px;
+    margin: 0 0 24px;
   }
   
   .btn-white, 
@@ -605,7 +607,12 @@ main > .container {
     &:focus, 
     &:active {
       color: #4260b4;
-      margin: 0 0 18px;
+      font-size: 18px;
+      margin: 0 0 24px;
+      
+      .fa {
+        margin: 0 8px 0 0;
+      }
     }
   }
   

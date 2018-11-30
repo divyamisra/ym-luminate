@@ -282,6 +282,16 @@ angular.module 'trPcControllers'
               $scope.refreshFundraisingProgress()
           $scope.dashboardPromises.push updateSchoolGoalPromise
       
+      if $scope.facebookFundraisersEnabled and $rootScope.facebookFundraiserId and $rootScope.facebookFundraiserId isnt ''
+        $rootScope.facebookFundraiserConfirmedStatus = 'pending'
+        FacebookFundraiserService.confirmFundraiserStatus()
+          .then (response) ->
+            if not response.data.status?.active
+              delete $rootScope.facebookFundraiserId
+              $rootScope.facebookFundraiserConfirmedStatus = 'deleted'
+            else
+              $rootScope.facebookFundraiserConfirmedStatus = 'confirmed'
+      
       $scope.participantGifts =
         sortColumn: 'date_recorded'
         sortAscending: false
@@ -688,12 +698,12 @@ angular.module 'trPcControllers'
         return
 
       $scope.heartHeros.heroPopup()
-    
+      
       $scope.monsterEdit = ->
         url = ''
         if $rootScope.tablePrefix == 'heartdev'
           url = "https://khc.staging.ootqa.org"
         else
           url = "https://kidsheartchallenge.heart.org"
-        window.open url + "/student/login/"+$scope.authToken+"/"+$scope.sessionCookie
+        window.open url + "/student/login/" + $scope.authToken + "/" + $scope.sessionCookie
   ]
