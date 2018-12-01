@@ -21,10 +21,13 @@
       </a>
     </div>
   </div>
-  <div class="heart-company-team-list__company-name" ng-if="teams.length == 0  && !isChildCompany && !hasChildren">
+  <div class="heart-company-team-list__company-name" ng-if="teams.length == 0  && !isChildCompany">
     <div class="clearfix">
-      <div class="pull-left">
+      <div class="pull-left" ng-if="!searchCompanyTeams.lastSearch.length">
         No Teams Yet
+      </div>
+      <div class="pull-left" ng-if="searchCompanyTeams.lastSearch.length">
+        Your search "{{searchCompanyTeams.lastSearch}}" did not return any results.
       </div>
       <a class="pull-right" ng-click="toggleCompanyTeamList()">
         <i class="glyphicon ng-scope" ng-class="{'glyphicon-triangle-bottom': isOpen, 'glyphicon-triangle-left': !isOpen}"></i>
@@ -51,5 +54,5 @@
         </a>
       </div>
     </div>
-  </div>
+ </div>
 </div>

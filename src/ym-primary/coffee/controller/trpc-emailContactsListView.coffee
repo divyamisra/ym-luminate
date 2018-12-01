@@ -632,12 +632,30 @@ angular.module 'trPcControllers'
           scope: $scope
           templateUrl: APP_INFO.rootPath + 'dist/ym-primary/html/participant-center/modal/deleteContact.html'
       
+      $scope.deleteContacts = () ->
+        contacts = []
+        for i in [0..$scope.addressBookContacts.allContacts.length]
+          contact=$scope.addressBookContacts.allContacts[i]
+          if (contact?.selected)
+            contacts.push(contact.id)
+        $scope.contactsToDelete=contacts.join(",")
+        $scope.clearAllContactAlerts()
+        $scope.deleteContactsModal = $uibModal.open 
+          scope: $scope
+          templateUrl: APP_INFO.rootPath + 'dist/ym-primary/html/participant-center/modal/deleteContacts.html'
+      
       closeDeleteContactModal = ->
         delete $scope.deleteContactId
         $scope.deleteContactModal.close()
       
+      closeDeleteContactsModal = ->
+        $scope.deleteContactsModal.close()
+      
       $scope.cancelDeleteContact = ->
         closeDeleteContactModal()
+      
+      $scope.cancelDeleteContacts = ->
+        closeDeleteContactsModal()
       
       $scope.confirmDeleteContact = ->
         if not $scope.deleteContactId
@@ -657,6 +675,23 @@ angular.module 'trPcControllers'
               response
           $scope.emailPromises.push deleteContactPromise
       
+      deselectAllContacts = ->
+        for i in [0..$scope.addressBookContacts.allContacts.length]
+          contact=$scope.addressBookContacts.allContacts[i]
+          contact?.selected=false;        
+      
+      $scope.confirmDeleteContacts = ->
+        dataStr = '&contact_ids=' + $scope.contactsToDelete
+        deleteContactsPromise = NgPcContactService.deleteTeamraiserAddressBookContacts dataStr
+          .then (response) ->
+            if response.data?.errorResponse?
+              # TODO: error message
+            else
+              $scope.cancelDeleteContacts()
+              $scope.getContacts(true)
+              deselectAllContacts()
+            response
+        $scope.emailPromises.push deleteContactsPromise
       $scope.emailSelectedContacts = ->
         $location.path '/email/compose'
   ]
