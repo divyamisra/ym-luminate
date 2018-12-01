@@ -632,13 +632,13 @@ angular.module 'trPcControllers'
           scope: $scope
           templateUrl: APP_INFO.rootPath + 'dist/ym-primary/html/participant-center/modal/deleteContact.html'
       
-      $scope.deleteContacts = () ->
+      $scope.deleteContacts = ->
         contacts = []
         for i in [0..$scope.addressBookContacts.allContacts.length]
-          contact=$scope.addressBookContacts.allContacts[i]
-          if (contact?.selected)
-            contacts.push(contact.id)
-        $scope.contactsToDelete=contacts.join(",")
+          contact = $scope.addressBookContacts.allContacts[i]
+          if contact?.selected
+            contacts.push contact.id
+        $scope.contactsToDelete = contacts.join ','
         $scope.clearAllContactAlerts()
         $scope.deleteContactsModal = $uibModal.open 
           scope: $scope
