@@ -32,7 +32,7 @@ angular.module 'trPcApp'
           }, options.$http
             .then (result) ->
               result.data
-            , () ->
+            , ->
               $q.reject options.key
         loadMsgCat = (data) ->
           if not data?.keys or not angular.isArray data.keys
