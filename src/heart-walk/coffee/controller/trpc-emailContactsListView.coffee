@@ -58,7 +58,7 @@ angular.module 'trPcControllers'
               contact = angular.copy currContact
         contact
 
-      isAllContactsSelected = () ->
+      isAllContactsSelected = ->
         $scope.addressBookContacts.allContacts.length is countContactSelected $scope.addressBookContacts.allContacts
 
       $scope.addressBookContacts = 
@@ -98,7 +98,7 @@ angular.module 'trPcControllers'
           $scope.contactsSelected.all false
         $scope.contactsSelected.all()
       $scope.refreshSelectedContacts()
-      $scope.$watchGroup ['addressBookContacts.contacts', 'contactsUpdated'], () ->
+      $scope.$watchGroup ['addressBookContacts.contacts', 'contactsUpdated'], ->
         $scope.refreshSelectedContacts()
 
       $scope.getContacts = (refresh) ->
@@ -585,7 +585,7 @@ angular.module 'trPcControllers'
         else
           # no change needed
 
-      $scope.toggleAllContacts = () ->
+      $scope.toggleAllContacts = ->
         selectToggle = $scope.contactsSelected.all()
         angular.forEach $scope.addressBookContacts.allContacts, (contact) ->
           if contact.selected isnt selectToggle
@@ -622,7 +622,7 @@ angular.module 'trPcControllers'
         $scope.clearEditContactAlerts()
         closeEditContactModal()
 
-      $scope.toggleEditContact = () ->
+      $scope.toggleEditContact = ->
         $scope.editContactMode = not $scope.editContactMode
       
       $scope.saveUpdatedContact = ->
@@ -667,13 +667,13 @@ angular.module 'trPcControllers'
           scope: $scope
           templateUrl: APP_INFO.rootPath + 'dist/heart-walk/html/participant-center/modal/deleteContact.html'
       
-      $scope.deleteContacts = () ->
+      $scope.deleteContacts = ->
         contacts = []
         for i in [0..$scope.addressBookContacts.allContacts.length]
-          contact=$scope.addressBookContacts.allContacts[i]
-          if (contact?.selected)
-            contacts.push(contact.id)
-        $scope.contactsToDelete=contacts.join(",")
+          contact = $scope.addressBookContacts.allContacts[i]
+          if contact?.selected
+            contacts.push contact.id
+        $scope.contactsToDelete = contacts.join ','
         $scope.clearAllContactAlerts()
         $scope.deleteContactsModal = $uibModal.open 
           scope: $scope
