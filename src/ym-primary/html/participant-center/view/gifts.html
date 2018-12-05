@@ -1,0 +1,40 @@
+    <section class="ym-pc-dashboard-bonus-gifts-section" aria-label="My Bonus Gifts" ng-if="prizes && prizes.length > 0" ng-cloak>
+      <div class="ym-pc-dashboard-section-header">
+        <h2 class="h5">
+          Bonus Gifts
+        </h2>
+      </div>
+      <div class="ym-pc-dashboard-bonus-gifts-icons ym-carousel--gifts owl-carousel" role="list" aria-label="Bonus Gifts Carousel">
+        <div class="ym-pc-dashboard-bonus-gifts-icon" ng-repeat="prize in prizes" ng-cloak>
+          <div ng-if="prize.earned">
+            <img class="img-responsive" ng-src="//s3.amazonaws.com/aha-oot-production/fy19/assets/badges/khc/{{prize.id}}_delivered.png" alt="">
+          </div>
+          <div ng-if="!prize.earned">
+            <img class="img-responsive" ng-src="//s3.amazonaws.com/aha-oot-production/fy19/assets/badges/khc/{{prize.id}}_earned.png" alt="">
+          </div>
+          <div>
+            <span ng-bind-html="prize.label"></span> <span class="sr-only" ng-if="prize.earned">(earned)</span><span class="sr-only" ng-if="!prize.earned">(not yet earned)</span>
+          </div>
+        </div>
+      </div>
+   </section>
+   <section class="ym-pc-dashboard-standard-gifts-section" aria-label="My Standard Gifts" ng-if="prizes && prizes.length > 0" ng-cloak>
+      <div class="ym-pc-dashboard-section-header">
+        <h2 class="h5">
+          Standard Gifts
+        </h2>
+      </div>
+      <div class="ym-pc-dashboard-standard-gifts-icons ym-carousel--gifts owl-carousel" role="list" aria-label="Standard Gifts Carousel">
+        <div class="ym-pc-dashboard-standard-gifts-icon" ng-repeat="prize in prizes" ng-cloak>
+          <div ng-if="prize.earned">
+            <img class="img-responsive" ng-src="//s3.amazonaws.com/aha-oot-production/fy19/assets/badges/khc/{{prize.id}}_delivered.png" alt="">
+          </div>
+          <div ng-if="!prize.earned">
+            <img class="img-responsive" ng-src="//s3.amazonaws.com/aha-oot-production/fy19/assets/badges/khc/{{prize.id}}_earned.png" alt="">
+          </div>
+          <div>
+            <span ng-bind-html="prize.label"></span> <span class="sr-only" ng-if="prize.earned">(earned)</span><span class="sr-only" ng-if="!prize.earned">(not yet earned)</span>
+          </div>
+        </div>
+      </div>
+   </section>
