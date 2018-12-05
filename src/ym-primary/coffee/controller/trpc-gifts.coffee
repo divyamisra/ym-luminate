@@ -11,7 +11,7 @@ angular.module 'trPcControllers'
       $scope.bonusGifts = []
       $scope.standardGifts = []
 
-      BoundlessService.getBonusGifts $scope.participantId
+      BoundlessService.getBonusGifts $scope.consId
       .then (response) ->
         prizes = response.data.prizes
         angular.forEach prizes, (prize) ->
@@ -25,7 +25,7 @@ angular.module 'trPcControllers'
       , (response) ->
         # TODO
 
-      BoundlessService.getStandardGifts $scope.participantId
+      BoundlessService.getStandardGifts $scope.consId
       .then (response) ->
         prizes = response.data.prizes
         angular.forEach prizes, (prize) ->
