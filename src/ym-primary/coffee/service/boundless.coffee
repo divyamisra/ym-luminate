@@ -39,9 +39,9 @@ angular.module 'ahaLuminateApp'
       
       getStudentDetail: ->
         if $rootScope.tablePrefix is 'heartdev'
-          url = 'https://khc.staging.ootqa.org/api/coordinator/students/search/' + $rootScope.frId + '/' + $rootScope.consId 
+          url = 'https://khc.staging.ootqa.org/api/coordinator/students/search/' + $rootScope.frId + '/' + $rootScope.companyInfo.companyId + '/' + $rootScope.companyId.coordinatorId + '?cons_id=' + $rootScope.consId
         else
-          url = 'https://kidsheartchallenge.heart.org/api/coordinator/students/search/' + $rootScope.frId  + $rootScope.consId
+          url = 'https://kidsheartchallenge.heart.org/api/coordinator/students/search/' + $rootScope.frId + '/' + $rootScope.companyInfo.companyId + '/' + $rootScope.companyId.coordinatorId + '?cons_id=' + $rootScope.consId
         $http.jsonp($sce.trustAsResourceUrl(url), jsonpCallbackParam: 'callback')
           .then (response) ->
             response
