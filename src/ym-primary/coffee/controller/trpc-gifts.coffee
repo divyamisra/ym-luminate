@@ -8,34 +8,21 @@ angular.module 'trPcControllers'
     'PageContentService'
     '$sce'
     ($scope, $rootScope, $location, APP_INFO, BoundlessService, PageContentService, $sce) ->
-      $scope.bonusGifts = []
-      $scope.standardGifts = []
+      $scope.gifts = []
 
-      BoundlessService.getBonusGifts $scope.consId
+      BoundlessService.getStudentDetail 
       .then (response) ->
-        prizes = response.data.prizes
-        angular.forEach prizes, (prize) ->
-          if prize.status  == 1
-            $scope.bonusGifts.push
-              id: prize.id
-              label: prize.label
-              sku: prize.sku
-              status: prize.status
-              earned: prize.earned_datetime
-      , (response) ->
-        # TODO
-
-      BoundlessService.getStandardGifts $scope.consId
-      .then (response) ->
-        prizes = response.data.prizes
-        angular.forEach prizes, (prize) ->
-          if prize.status  == 1
-            $scope.standardGifts.push
-              id: prize.id
-              label: prize.label
-              sku: prize.sku
-              status: prize.status
-              earned: prize.earned_datetime
+        students = response.data.student
+        angular.forEach students, (student) ->
+          prizes = students.prizes
+          angular.forEach prizes, (prize) ->
+            if prize.status  == 1
+              $scope.gifts.push
+                id: prize.id
+                label: prize.label
+                sku: prize.sku
+                status: prize.status
+                earned: prize.earned_datetime
       , (response) ->
         # TODO
 
