@@ -37,6 +37,28 @@ angular.module 'ahaLuminateApp'
           , (response) ->
             response
       
+      getBonusGifts: (requestData) ->
+        if $rootScope.tablePrefix is 'heartdev'
+          url = 'https://khc.staging.ootqa.org/api/coordinator/instant/student/' + requestData 
+        else
+          url = 'https://kidsheartchallenge.heart.org/api/coordinator/instant/student/' + requestData
+        $http.jsonp($sce.trustAsResourceUrl(url), jsonpCallbackParam: 'callback')
+          .then (response) ->
+            response
+          , (response) ->
+            response
+      
+      getStandardGifts: (requestData) ->
+        if $rootScope.tablePrefix is 'heartdev'
+          url = 'https://khc.staging.ootqa.org/api/coordinator/instant/student/' + requestData 
+        else
+          url = 'https://kidsheartchallenge.heart.org/api/coordinator/instant/student/' + requestData
+        $http.jsonp($sce.trustAsResourceUrl(url), jsonpCallbackParam: 'callback')
+          .then (response) ->
+            response
+          , (response) ->
+            response
+
       getRollupTotals: ->
         if $rootScope.tablePrefix is 'heartdev'
           url = 'https://khc.staging.ootqa.org/api/schools/totals/'
