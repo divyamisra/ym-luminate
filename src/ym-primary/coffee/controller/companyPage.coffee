@@ -10,22 +10,26 @@ angular.module 'ahaLuminateControllers'
     'TeamraiserCompanyService'
     'TeamraiserTeamService'
     'TeamraiserParticipantService'
+    'BoundlessService'
     'ZuriService'
     'TeamraiserRegistrationService'
     'TeamraiserCompanyPageService'
     'PageContentService'
     '$sce'
-    ($scope, $rootScope, $location, $filter, $timeout, $uibModal, APP_INFO, TeamraiserCompanyService, TeamraiserTeamService, TeamraiserParticipantService, ZuriService, TeamraiserRegistrationService, TeamraiserCompanyPageService, PageContentService, $sce) ->
+    ($scope, $rootScope, $location, $filter, $timeout, $uibModal, APP_INFO, TeamraiserCompanyService, TeamraiserTeamService, TeamraiserParticipantService, BoundlessService, ZuriService, TeamraiserRegistrationService, TeamraiserCompanyPageService, PageContentService, $sce) ->
       $scope.companyId = $location.absUrl().split('company_id=')[1].split('&')[0].split('#')[0]
       domain = $location.absUrl().split('/site/')[0]
       $rootScope.companyName = ''
       $scope.eventDate = ''
+      $scope.moneyDueDate = ''
       $scope.totalTeams = ''
       $scope.teamId = ''
       $scope.studentsPledgedTotal = ''
       $scope.activity1amt = ''
       $scope.activity2amt = ''
       $scope.activity3amt = ''
+      $scope.topClassRaised = []
+      $scope.topClassStudents = []
       
       $scope.trustHtml = (html) ->
         return $sce.trustAsHtml(html)
@@ -113,11 +117,26 @@ angular.module 'ahaLuminateControllers'
               coordinatorId = companies[0].coordinatorId
               $rootScope.companyName = name
               setCompanyProgress amountRaised, goal
-              
+
+              TeamraiserCompanyPageService.getSchoolDates()
+                .then (response) ->
+                  schoolDataRows = response.data.getSchoolDatesResponse.schoolData
+                  schoolDataHeaders = {}
+                  schoolDates = {}
+                  angular.forEach schoolDataRows[0], (schoolDataHeader, schoolDataHeaderIndex) ->
+                    schoolDataHeaders[schoolDataHeader] = schoolDataHeaderIndex
+                  i = 0
+                  len = schoolDataRows.length
+                  while i < len
+                    if $scope.companyId == schoolDataRows[i][schoolDataHeaders.CID]
+                      $scope.eventDate = schoolDataRows[i][schoolDataHeaders.ED]
+                      $scope.moneyDueDate = schoolDataRows[i][schoolDataHeaders.MDD]
+                      break
+                    i++
+
               if coordinatorId and coordinatorId isnt '0' and eventId
                 TeamraiserCompanyService.getCoordinatorQuestion coordinatorId, eventId
                   .then (response) ->
-                    $scope.eventDate = response.data.coordinator?.event_date
                     if totalTeams is 1
                       $scope.teamId = response.data.coordinator?.team_id
       getCompanyTotals()
@@ -330,5 +349,57 @@ angular.module 'ahaLuminateControllers'
                 $scope.companyPageContent.ng_rich_text = richText
                 $scope.companyPageContent.mode = 'view'
                 if not $scope.$$phase
-                  $scope.$apply()
+                  $scope.$apply()  
+
+      url = 'PageServer?pagename=ym_khc_school_animation&pgwrap=n'
+      if $scope.protocol == 'https:'
+        url = 'S' + url
+      $scope.schoolAnimationURL = $sce.trustAsResourceUrl(url)
+      
+      getLeaderboards = ->
+        BoundlessService.getLeaderboardRaised $scope.companyId
+        .then (response) ->
+          teachers = response.data.teachers
+          angular.forEach teachers, (teacher) ->
+            grade = teacher.grade_name
+            if grade is null
+              grade = "N/A"
+            $scope.topClassRaised.push
+              name: teacher.teacher_name
+              grade: grade
+              raised: teacher.total | 0
+              msg: 'Amount Raised'
+          ###
+          i = $scope.topClassRaised.length
+          while i < 5
+            $scope.topClassRaised.push
+              name: ''
+              grade: ''
+              raised: ''
+              msg: ''
+            i++ 
+          ###    
+        BoundlessService.getLeaderboardStudents $scope.companyId
+        .then (response) ->
+          teachers = response.data.teachers
+          angular.forEach teachers, (teacher) ->
+            grade = teacher.grade_name
+            if grade is null
+              grade = "N/A"
+            $scope.topClassStudents.push
+              name: teacher.teacher_name
+              grade: grade
+              students: teacher.students | 0
+              msg: '# Online Students'
+          ###
+          i = $scope.topClassStudents.length
+          while i < 5
+            $scope.topClassStudents.push
+              name: ''
+              grade: ''
+              students: ''
+              msg: ''
+            i++
+          ###
+      getLeaderboards()
   ]

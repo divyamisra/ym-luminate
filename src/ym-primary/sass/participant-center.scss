@@ -13,6 +13,18 @@
 	outline: none;
 }
 
+.ym-activity-box--virtual img {
+	max-width:100%;
+}
+
+a.ym-progress-update-goal {
+	color: $event-primary-acc;
+}
+
+a.ym-pc-dashboard-download-certificates {
+	color: $event-primary-acc;
+}
+
 @media only screen and (min-width: 768px) {
 	.launch-builder-popup {
 		height: 268.333px;

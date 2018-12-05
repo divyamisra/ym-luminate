@@ -210,6 +210,7 @@ angular.module 'ahaLuminateControllers'
         angular.forEach $scope.childCompanyTeams.companies, (company, companyIndex) ->
           $scope.childCompanyTeams.companies[companyIndex].isOpen = true
           $scope.childCompanyTeams.companies[companyIndex].page = 1
+        $scope.searchCompanyTeams.lastSearch = companyTeamSearch.team_name
         $scope.getCompanyTeamLists()
 
       $scope.companyParticipantSearch =
@@ -330,7 +331,10 @@ angular.module 'ahaLuminateControllers'
                       participant.amountRaisedFormatted = $filter('currency')(participant.amountRaised / 100, '$', 0)
                       donationUrl = participant.donationUrl
                       if donationUrl?
-                        participant.donationUrl = donationUrl.split('/site/')[1]
+                        donationUrl = donationUrl.split('/site/')[1]
+                        participant.donationUrl = donationUrl
+                        participant.paypalDonationUrl = donationUrl+"&paypal=true";
+                        participant.amazonDonationUrl=donationUrl.replace(/Donation2/,"SPageNavigator/heartwalk_donate_amazon.html");
                       companyParticipants.push participant
                   setCompanyParticipants companyParticipants
                   numCompaniesParticipantRequestComplete++
@@ -472,5 +476,6 @@ angular.module 'ahaLuminateControllers'
         angular.forEach $scope.childCompanyParticipants.companies, (company, companyIndex) ->
           $scope.childCompanyParticipants.companies[companyIndex].isOpen = true
           $scope.childCompanyParticipants.companies[companyIndex].page = 1
+        $scope.searchCompanyParticipants.lastSearch = companyParticipantSearch.participant_name or ''
         $scope.getCompanyParticipantLists()
   ]

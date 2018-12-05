@@ -2,7 +2,7 @@
 
 module.exports = {
   options: {
-    optimizationLevel: 7
+    optimizationLevel: 3
   }, 
   
   "general": {
@@ -40,19 +40,6 @@ module.exports = {
           '*.{gif,GIF,jpg,JPG,png,PNG,svg,SVG}'
         ], 
         dest: 'dist/youth-markets/image/'
-      }
-    ]
-  }, 
-  
-  "jump-hoops": {
-    files: [
-      {
-        expand: true, 
-        cwd: 'src/jump-hoops/image/', 
-        src: [
-          '*.{gif,GIF,jpg,JPG,png,PNG,svg,SVG}'
-        ], 
-        dest: 'dist/jump-hoops/image/'
       }
     ]
   }, 
