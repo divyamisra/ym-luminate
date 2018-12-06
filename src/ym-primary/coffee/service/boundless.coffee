@@ -39,10 +39,21 @@ angular.module 'ahaLuminateApp'
       
       getStudentDetail: ->
         if $rootScope.tablePrefix is 'heartdev'
-          url = 'https://khc.staging.ootqa.org/api/coordinator/students/search/' + $rootScope.frId + '/' + $rootScope.companyInfo.companyId + '/' + $rootScope.companyInfo.coordinatorId + '?cons_id=' + $rootScope.consId
+          url = 'https://khc.staging.ootqa.org/api/coordinator/students/search/' + $rootScope.frId + '/' + $rootScope.companyInfo.companyId + '/' + $rootScope.companyInfo.coordinatorId
         else
-          url = 'https://kidsheartchallenge.heart.org/api/coordinator/students/search/' + $rootScope.frId + '/' + $rootScope.companyInfo.companyId + '/' + $rootScope.companyInfo.coordinatorId + '?cons_id=' + $rootScope.consId
-        $http.jsonp($sce.trustAsResourceUrl(url), jsonpCallbackParam: 'callback')
+          url = 'https://kidsheartchallenge.heart.org/api/coordinator/students/search/' + $rootScope.frId + '/' + $rootScope.companyInfo.companyId + '/' + $rootScope.companyInfo.coordinatorId
+        settings = 
+          'async': true
+          'crossDomain': true
+          'url': $sce.trustAsResourceUrl(url)
+          'method': 'POST'
+          'headers':
+            'token': 'JDJ5JDEwJEFrUmlwQ2N1WlpoSlYuTFBvVUcyaHV6a3U0ZkpvRlJRTUR5emkuSXpURGo3b096UE05cmdH'
+            'Content-Type': 'application/json'
+            'cache-control': 'no-cache'
+          'processData': false
+          'data': '{ "cons_id": ' + $rootScope.consId + ' }'
+        $http(settings)
           .then (response) ->
             response
           , (response) ->
