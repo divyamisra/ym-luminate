@@ -46,7 +46,7 @@ angular.module 'ahaLuminateApp'
           'async': true
           'crossDomain': true
           'url': $sce.trustAsResourceUrl(url)
-          'method': 'POST'
+          'method': 'JSONP'
           'headers':
             'token': 'JDJ5JDEwJEFrUmlwQ2N1WlpoSlYuTFBvVUcyaHV6a3U0ZkpvRlJRTUR5emkuSXpURGo3b096UE05cmdH'
             'Content-Type': 'application/json'
