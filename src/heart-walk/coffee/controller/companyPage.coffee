@@ -210,6 +210,7 @@ angular.module 'ahaLuminateControllers'
         angular.forEach $scope.childCompanyTeams.companies, (company, companyIndex) ->
           $scope.childCompanyTeams.companies[companyIndex].isOpen = true
           $scope.childCompanyTeams.companies[companyIndex].page = 1
+        $scope.searchCompanyTeams.lastSearch = companyTeamSearch.team_name
         $scope.getCompanyTeamLists()
 
       $scope.companyParticipantSearch =
@@ -475,5 +476,6 @@ angular.module 'ahaLuminateControllers'
         angular.forEach $scope.childCompanyParticipants.companies, (company, companyIndex) ->
           $scope.childCompanyParticipants.companies[companyIndex].isOpen = true
           $scope.childCompanyParticipants.companies[companyIndex].page = 1
+        $scope.searchCompanyParticipants.lastSearch = companyParticipantSearch.participant_name or ''
         $scope.getCompanyParticipantLists()
   ]
