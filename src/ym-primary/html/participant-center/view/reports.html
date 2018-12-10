@@ -52,13 +52,13 @@
                       </button>
                     </div>
                   </th>
-                  <th scope="col" aria-sort="{{schoolDetailStudents.sortColumn != 'ecardsSent' ? 'none' : (schoolDetailStudents.sortAscending ? 'ascending' : 'descending')}}">
+<!--                  <th scope="col" aria-sort="{{schoolDetailStudents.sortColumn != 'ecardsSent' ? 'none' : (schoolDetailStudents.sortAscending ? 'ascending' : 'descending')}}">
                     <div class="text-center">
                       <button type="button" class="btn btn-link" ng-click="orderSchoolDetailStudents('ecardsSent')">
                         <strong>Ecards</strong>&nbsp;<span class="fa" ng-class="{'fa-caret-down': (schoolDetailStudents.sortColumn == 'ecardsSent' && !schoolDetailStudents.sortAscending) || schoolDetailStudents.sortColumn != 'ecardsSent', 'fa-caret-up': schoolDetailStudents.sortColumn == 'ecardsSent' && schoolDetailStudents.sortAscending, 'inactive': schoolDetailStudents.sortColumn != 'ecardsSent'}" ng-if="schoolDetailStudents.students.length"><span class="sr-only">Sortable. {{schoolDetailStudents.sortColumn != 'ecardsSent' ? 'Not sorted.' : (schoolDetailStudents.sortAscending ? 'Sorted ascending.' : 'Sorted descending.')}}</span></span>
                       </button>
                     </div>
-                  </th>
+                  </th>-->
                   <th scope="col" aria-sort="{{schoolDetailStudents.sortColumn != 'emailsSent' ? 'none' : (schoolDetailStudents.sortAscending ? 'ascending' : 'descending')}}">
                     <div class="text-center">
                       <button type="button" class="btn btn-link" ng-click="orderSchoolDetailStudents('emailsSent')">
@@ -101,12 +101,12 @@
                       {{schoolDetailStudent.amountFormatted}}
                     </div>
                   </td>
-                  <td>
+<!--                  <td>
                     <div class="text-center">
                       {{schoolDetailStudent.ecardsSent}}
                     </div>
                   </td>
-                  <td>
+                  <td>-->
                     <div class="text-center">
                       {{schoolDetailStudent.emailsSent}}
                     </div>
