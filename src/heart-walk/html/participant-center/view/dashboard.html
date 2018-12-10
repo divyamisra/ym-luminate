@@ -581,8 +581,8 @@
           <div class="heart-team-members__header clearfix">
             <h2>
               <span ng-bind-html="teamInfo.name"></span> Roster
-            </h2><!--
-            <a id="download_team_roster" ng-if="participantRegistration.aTeamCaptain == 'true'" class="btn btn-primary-inverted pull-right" ng-href="" target="_blank">Download Team Roster</a>-->
+            </h2>
+            <a id="download_team_roster" ng-if="participantRegistration.aTeamCaptain == 'true'" class="btn btn-primary-inverted pull-right" ng-href="SPageServer/?pagename=team_roster&amp;fr_id={{frId}}" target="_blank">Download Team Roster</a>
           </div>
           <!-- TODO: empty state -->
           <trpc-team-member-list members="teamMembers.members" sort-column="teamMembers.sortColumn" sort-ascending="teamMembers.sortAscending" sort-members="sortTeamMembers" email-team-member="emailTeamMember"></trpc-team-member-list>
