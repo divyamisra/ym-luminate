@@ -178,6 +178,16 @@
           </div>
         </div>
       </div>
+      <div class="clearfix heartwalk_store" ng-if="BrightSites.active">
+        <h2><i class="fa fa-heart"></i> Heart Walk Rewards Center</h2>
+        <p ng-if="BrightSites.points == 0">
+          By fundraising, you can earn fun, new Heart Walk Hero gear!
+        </p>
+        <p ng-if="BrightSites.points > 0">
+          Congratulations, you have {{BrightSites.points}} points available! Check out the Reward Center to redeem Heart Walk Hero gear!
+        </p>
+        <a id="heartwalk_store_button" class="btn btn-primary" ng-href="{{BrightSites.url}}" target="_blank">Visit the Rewards Center</a>
+      </div>
       <div class="pc-facebook-fundraiser js--facebook-fundraiser-uncompleted-section" id="facebook-fundraisers" ng-if="facebookFundraisersEnabled" ng-show="!facebookFundraiserId" ng-cloak>
         <div class="container">
           <h2>
@@ -380,22 +390,6 @@
             </div>
             <div class="pull-right">
               <a href id="edit_status" class="btn btn-primary-inverted" ng-click="editSurvivor()">Edit Status</a>
-            </div>
-          </div>
-          <div class="manage_walk_items heartwalk_store clearfix" ng-if="BrightSites.active">
-            <div class="pull-left">
-              <div class="manage_walk_header">
-                Prize Information
-              </div>
-              <p ng-if="BrightSites.points == 0">
-                By fundraising you can earn points and redeem prizes at the Heart Walk Store.
-              </p>
-              <p ng-if="BrightSites.points > 0">
-                Congratulations, you have {{BrightSites.points}} points! Check out what you can redeem at the Heart Walk Store.
-              </p>
-            </div>
-            <div class="pull-right">
-              <a href id="heartwalk_store_button" class="btn btn-primary-inverted" ng-href="{{BrightSites.url}}" target="_blank">View Prize Area</a>
             </div>
           </div>
           <div class="manage_walk_items clearfix">
