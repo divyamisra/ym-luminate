@@ -124,23 +124,27 @@ angular.module 'trPcControllers'
                             prev2CompanyId = prev2Company.companyId
                             NgPcTeamraiserReportsService.getSchoolDetailReport $scope.prev2FrId, prev2CompanyId
                               .then (response) ->
-                                report2Html = response.data.getSchoolDetailReport?.report
-                                handleReportHtml report2Html
+                                report2Data = response.data.getSchoolDetailReport?.reportData
+                                handleReportData report2Data
                                 $scope.addressBookContacts.contacts = previousParticipants
                                 $scope.addressBookContacts.totalNumber = totalNumberResults
                                 $scope.addressBookContacts.allContacts = previousParticipants
                                 $scope.addressBookContacts.allContactsSelected = isAllContactsSelected()
-                    handleReportHtml = (reportHtml) ->
-                      if reportHtml and reportHtml.indexOf('<p>No results</p>') is -1
-                        $reportTable = angular.element('<div>' + reportHtml + '</div>').find 'table'
-                        if $reportTable.length > 0
-                          $reportTableRows = $reportTable.find 'tr'
-                          if $reportTableRows.length > 0
-                            angular.forEach $reportTableRows, (reportTableRow, reportTableRowIndex) ->
-                              $reportTableRow = angular.element reportTableRow
-                              firstName = jQuery.trim $reportTableRow.find('td').eq(8).text()
-                              lastName = jQuery.trim $reportTableRow.find('td').eq(9).text()
-                              email = jQuery.trim $reportTableRow.find('td').eq(10).text()
+                    handleReportData = (reportData) ->
+                      if reportData
+                        reportDataRows = []
+                        angular.forEach reportData, (reportDataRow) ->
+                          if reportDataRow.length > 1
+                            reportDataRows.push reportDataRow
+                        if reportDataRows.length > 1
+                          reportDataColumnIndexMap = {}
+                          angular.forEach reportDataRows[0], (reportDataHeader, reportDataHeaderIndex) ->
+                            reportDataColumnIndexMap[reportDataHeader] = reportDataHeaderIndex
+                          angular.forEach reportDataRows, (reportDataRow, reportDataRowIndex) ->
+                            if reportDataRowIndex > 0
+                              firstName = jQuery.trim reportDataRow[reportDataColumnIndexMap.PARTICIPANT_FIRST_NAME]
+                              lastName = jQuery.trim reportDataRow[reportDataColumnIndexMap.PARTICIPANT_LAST_NAME]
+                              email = jQuery.trim reportDataRow[reportDataColumnIndexMap.PARTICIPANT_EMAIL]
                               contact =
                                 firstName: firstName
                                 lastName: lastName
@@ -155,15 +159,15 @@ angular.module 'trPcControllers'
                               if contactIsUnique
                                 totalNumberResults++
                                 previousParticipants.push contact
-                            previousParticipants.sort (a, b) ->
-                              aFullName = a.firstName.toLowerCase() + ' ' + a.lastName.toLowerCase()
-                              bFullName = b.firstName.toLowerCase() + ' ' + b.lastName.toLowerCase()
-                              if aFullName < bFullName
-                                return -1
-                              else if aFullName > bFullName
-                                return 1
-                              else
-                                return 0
+                          previousParticipants.sort (a, b) ->
+                            aFullName = a.firstName.toLowerCase() + ' ' + a.lastName.toLowerCase()
+                            bFullName = b.firstName.toLowerCase() + ' ' + b.lastName.toLowerCase()
+                            if aFullName < bFullName
+                              return -1
+                            else if aFullName > bFullName
+                              return 1
+                            else
+                              return 0
                     prev1Companies = response.data.getCompaniesResponse?.company
                     prev1CompanyId = null
                     if prev1Companies
@@ -175,8 +179,8 @@ angular.module 'trPcControllers'
                     else
                       NgPcTeamraiserReportsService.getSchoolDetailReport $scope.prev1FrId, prev1CompanyId
                         .then (response) ->
-                          report1Html = response.data.getSchoolDetailReport?.report
-                          handleReportHtml report1Html
+                          report1Data = response.data.getSchoolDetailReport?.reportData
+                          handleReportData report1Data
                           if not $scope.prev2FrId or $scope.prev2FrId is ''
                             $scope.addressBookContacts.contacts = previousParticipants
                             $scope.addressBookContacts.totalNumber = totalNumberResults
@@ -225,7 +229,7 @@ angular.module 'trPcControllers'
                     delete $scope.addressBookContacts.getAllPage
                     $scope.addressBookContacts.allContactsSelected = isAllContactsSelected()
                     response
-            $scope.emailPromises.push allContactsPromise
+              $scope.emailPromises.push allContactsPromise
           $scope.getAllContacts()
         else
           if filter is 'email_custom_rpt_show_past_company_coordinator_participants'
@@ -628,12 +632,30 @@ angular.module 'trPcControllers'
           scope: $scope
           templateUrl: APP_INFO.rootPath + 'dist/ym-primary/html/participant-center/modal/deleteContact.html'
       
+      $scope.deleteContacts = ->
+        contacts = []
+        for i in [0..$scope.addressBookContacts.allContacts.length]
+          contact = $scope.addressBookContacts.allContacts[i]
+          if contact?.selected
+            contacts.push contact.id
+        $scope.contactsToDelete = contacts.join ','
+        $scope.clearAllContactAlerts()
+        $scope.deleteContactsModal = $uibModal.open 
+          scope: $scope
+          templateUrl: APP_INFO.rootPath + 'dist/ym-primary/html/participant-center/modal/deleteContacts.html'
+      
       closeDeleteContactModal = ->
         delete $scope.deleteContactId
         $scope.deleteContactModal.close()
       
+      closeDeleteContactsModal = ->
+        $scope.deleteContactsModal.close()
+      
       $scope.cancelDeleteContact = ->
         closeDeleteContactModal()
+      
+      $scope.cancelDeleteContacts = ->
+        closeDeleteContactsModal()
       
       $scope.confirmDeleteContact = ->
         if not $scope.deleteContactId
@@ -653,6 +675,23 @@ angular.module 'trPcControllers'
               response
           $scope.emailPromises.push deleteContactPromise
       
+      deselectAllContacts = ->
+        for i in [0..$scope.addressBookContacts.allContacts.length]
+          contact=$scope.addressBookContacts.allContacts[i]
+          contact?.selected=false;        
+      
+      $scope.confirmDeleteContacts = ->
+        dataStr = '&contact_ids=' + $scope.contactsToDelete
+        deleteContactsPromise = NgPcContactService.deleteTeamraiserAddressBookContacts dataStr
+          .then (response) ->
+            if response.data?.errorResponse?
+              # TODO: error message
+            else
+              $scope.cancelDeleteContacts()
+              $scope.getContacts(true)
+              deselectAllContacts()
+            response
+        $scope.emailPromises.push deleteContactsPromise
       $scope.emailSelectedContacts = ->
         $location.path '/email/compose'
   ]
