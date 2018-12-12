@@ -92,7 +92,6 @@ a.ym-pc-dashboard-download-certificates {
 section.ym-pc-dashboard-bonus-gifts-section {
 	background: #d7d4e8;
 	padding:20px 0;
-	position:relative;
   
         @media (min-width: $screen-sm-min) {
            margin: 0 0 40px;
@@ -108,13 +107,15 @@ section.ym-pc-dashboard-bonus-gifts-section {
            max-width: 270px;
            margin: 0 5px 0;
            vertical-align: top;
+   	   position:relative;
 
            .ym-pc-dashboard-bonus-gift-earned {
-              color: $acc-purple;
-	      font-style:bold;
-	      text-align:center;
-	      postition: absolute;
-	      top: 15px;
+              color: #440075;
+              text-align: center;
+              position: absolute;
+              top: 15px;
+              font-family: "Luckiest Guy",cursive;
+              font-size: 20px;
            }
            .ym-pc-dashboard-bonus-gifts-text {
               background: $prize-purple;
@@ -128,7 +129,6 @@ section.ym-pc-dashboard-bonus-gifts-section {
 section.ym-pc-dashboard-standard-gifts-section {
 	background: #c8e3aa;
 	padding:20px 0;
-	position:relative;
   
         @media (min-width: $screen-sm-min) {
            margin: 0 0 40px;
@@ -144,15 +144,18 @@ section.ym-pc-dashboard-standard-gifts-section {
            max-width: 270px;
            margin: 0 5px 0;
            vertical-align: top;
+   	   position:relative;
 
            .ym-pc-dashboard-standard-gift-earned {
-              color: $acc-purple;
-	      font-style:bold;
-	      text-align:center;
-	      postition: absolute;
-	      top: 15px;
+              color: #440075;
+              text-align: center;
+              position: absolute;
+              top: 15px;
+              font-family: "Luckiest Guy",cursive;
+              font-size: 24px;
            }
-           .ym-pc-dashboard-standard-gifts-text {
+
+	   .ym-pc-dashboard-standard-gifts-text {
 	      text-align:center;
 	      color: #000;
 	      postition: absolute;
