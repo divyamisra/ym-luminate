@@ -10,7 +10,7 @@ angular.module 'trPcControllers'
     ($scope, $rootScope, $location, APP_INFO, BoundlessService, PageContentService, $sce) ->
       $scope.gifts = []
       
-      BoundlessService.getPrizes
+      BoundlessService.getPrizes $scope.consId
       .then (response) ->
         gifts = response.data.students.prizes
         angular.forEach gifts, (gift) ->
