@@ -9,10 +9,10 @@
       <div class="ym-pc-dashboard-bonus-gifts-icons ym-carousel--gifts owl-carousel" role="list" aria-label="Bonus Gifts Carousel">
         <div class="ym-pc-dashboard-bonus-gifts-icon" ng-repeat="bonusGift in bonusGifts" ng-cloak>
           <div ng-if="bonusGift.prize_status">
-            <img class="img-responsive" ng-src="//s3.amazonaws.com/aha-oot-production/fy19/assets/badges/khc/{{prize.id}}_delivered.png" alt="">
+            <img class="img-responsive" ng-src="/ym-khc-prizes/images/{{bonusGift.prize_id}}_notearned.png" alt="">
           </div>
           <div ng-if="!bonusGift.prize_status">
-            <img class="img-responsive" ng-src="//s3.amazonaws.com/aha-oot-production/fy19/assets/badges/khc/{{prize.id}}_earned.png" alt="">
+            <img class="img-responsive" ng-src="/ym-khc-prizes/images/{{bonusGift.prize_id}}_earned.png" alt="">
           </div>
           <div>
             <span ng-bind-html="bonusGift.prize_label"></span> <span class="sr-only" ng-if="bonusGift.prize_status">(earned)</span><span class="sr-only" ng-if="!bonusGift.prize_status">(not yet earned)</span>
