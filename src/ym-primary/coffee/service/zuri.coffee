@@ -105,10 +105,12 @@ angular.module 'ahaLuminateApp'
         $http
           method: 'POST'
           url: $sce.trustAsResourceUrl(url)
-
+      
       getAvatar: (requestData, callback) ->
         if $rootScope.tablePrefix is 'heartdev'
           url = '//khc.staging.ootqa.org/api/student/' + requestData + '/monster-designer'
+        else if $rootScope.tablePrefix is 'heartnew'
+          url = '//khc.dev.ootqa.org/api/student/' + requestData + '/monster-designer'
         else
           url = '//kidsheartchallenge.heart.org/api/student/' + requestData + '/monster-designer'
         $http.jsonp($sce.trustAsResourceUrl(url), jsonpCallbackParam: 'callback')
