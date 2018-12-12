@@ -9,21 +9,20 @@ angular.module 'trPcControllers'
     '$sce'
     ($scope, $rootScope, $location, APP_INFO, BoundlessService, PageContentService, $sce) ->
       $scope.gifts = []
-
-      BoundlessService.getStudentDetail $scope.consId 
+      
+      BoundlessService.getPrizes
       .then (response) ->
-        students = response.data.student
-        angular.forEach students, (student) ->
-          prizes = students.prizes
-          angular.forEach prizes, (prize) ->
-            if prize.status  == 1
-              $scope.gifts.push
-                id: prize.id
-                label: prize.label
-                sku: prize.sku
-                status: prize.status
-                earned: prize.earned_datetime
+        gifts = response.data.students.prizes
+        angular.forEach gifts, (gift) ->
+          $scope.gifts.push
+            earned_id: gift.earned_id
+            prize_id: gift.prize_id
+            prize_label: gift.prize_label
+            prize_sku: gift.prize_sku
+            prize_type: gift.prize_type
+            prize_colour: gift.prize_colour
+            prize_status: gift.prize_status
+            prize_earned_datetime: gift.prize_earned_datetime
       , (response) ->
         # TODO
-
   ]
