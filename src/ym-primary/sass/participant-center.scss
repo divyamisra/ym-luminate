@@ -92,7 +92,6 @@ a.ym-pc-dashboard-download-certificates {
 section.ym-pc-dashboard-bonus-gifts-section {
 	background: #d7d4e8;
 	padding:20px 0;
-        margin: 0 0 30px;
 	position:relative;
   
         @media (min-width: $screen-sm-min) {
@@ -100,7 +99,8 @@ section.ym-pc-dashboard-bonus-gifts-section {
         }
         
 	.ym-pc-dashboard-bonus-gifts-icons {
-           margin: 0 0 32px;
+	   background: $brand-white;
+           margin: 5px 0 0 0;
         }
 	
 	.ym-pc-dashboard-bonus-gifts-icon {
@@ -126,9 +126,8 @@ section.ym-pc-dashboard-bonus-gifts-section {
 }
 
 section.ym-pc-dashboard-standard-gifts-section {
-	background: #d7d4e8;
+	background: #c8e3aa;
 	padding:20px 0;
-        margin: 0 0 30px;
 	position:relative;
   
         @media (min-width: $screen-sm-min) {
@@ -136,7 +135,8 @@ section.ym-pc-dashboard-standard-gifts-section {
         }
         
 	.ym-pc-dashboard-standard-gifts-icons {
-           margin: 0 0 32px;
+	   background: $brand-white;
+           margin: 5px 0 0 0;
         }
 	
 	.ym-pc-dashboard-standard-gifts-icon {
