@@ -37,23 +37,12 @@ angular.module 'ahaLuminateApp'
           , (response) ->
             response
       
-      getStudentDetail: ->
+      getPrizes: ->
         if $rootScope.tablePrefix is 'heartdev'
-          url = 'https://khc.staging.ootqa.org/api/coordinator/students/search/' + $rootScope.frId + '/' + $rootScope.companyInfo.companyId + '/' + $rootScope.companyInfo.coordinatorId
+          url = 'https://khc.staging.ootqa.org/api/coordinator/students/' +  + $rootScope.frId + '/' + $rootScope.consId 
         else
-          url = 'https://kidsheartchallenge.heart.org/api/coordinator/students/search/' + $rootScope.frId + '/' + $rootScope.companyInfo.companyId + '/' + $rootScope.companyInfo.coordinatorId
-        settings = 
-          'async': true
-          'crossDomain': true
-          'url': $sce.trustAsResourceUrl(url)
-          'method': 'JSONP'
-          'headers':
-            'token': 'JDJ5JDEwJEFrUmlwQ2N1WlpoSlYuTFBvVUcyaHV6a3U0ZkpvRlJRTUR5emkuSXpURGo3b096UE05cmdH'
-            'Content-Type': 'application/json'
-            'cache-control': 'no-cache'
-          'processData': false
-          'data': '{ "cons_id": ' + $rootScope.consId + ' }'
-        $http(settings)
+          url = 'https://kidsheartchallenge.heart.org/api/coordinator/students/' +  + $rootScope.frId + '/' + $rootScope.consId
+        $http.jsonp($sce.trustAsResourceUrl(url), jsonpCallbackParam: 'callback')
           .then (response) ->
             response
           , (response) ->
