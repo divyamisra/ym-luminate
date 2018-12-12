@@ -124,3 +124,39 @@ section.ym-pc-dashboard-bonus-gifts-section {
            }
 	}
 }
+
+section.ym-pc-dashboard-standard-gifts-section {
+	background: #d7d4e8;
+	padding:20px 0;
+        margin: 0 0 30px;
+	position:relative;
+  
+        @media (min-width: $screen-sm-min) {
+           margin: 0 0 40px;
+        }
+        
+	.ym-pc-dashboard-standard-gifts-icons {
+           margin: 0 0 32px;
+        }
+	
+	.ym-pc-dashboard-standard-gifts-icon {
+           display: inline-block;
+           max-width: 270px;
+           margin: 0 5px 0;
+           vertical-align: top;
+
+           .ym-pc-dashboard-standard-gift-earned {
+              color: $acc-purple;
+	      font-style:bold;
+	      text-align:center;
+	      postition: absolute;
+	      top: 15px;
+           }
+           .ym-pc-dashboard-standard-gifts-text {
+	      text-align:center;
+	      color: #000;
+	      postition: absolute;
+	      bottom: 10px;
+           }
+	}
+}
