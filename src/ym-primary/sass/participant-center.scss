@@ -112,6 +112,11 @@ section.ym-pc-dashboard-bonus-gifts-section {
            max-width: 270px;
            margin: 0 5px 0;
            vertical-align: top;
-        }
-}
 
+           .ym-pc-dashboard-bonus-gifts-text {
+              background: $prize-purple;
+	      padding: 20px;
+	      text-align:center;
+           }
+	}
+}
