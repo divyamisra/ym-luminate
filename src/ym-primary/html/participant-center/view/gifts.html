@@ -14,7 +14,7 @@
           <div ng-if="!bonusGift.prize_status">
             <img class="img-responsive" ng-src="/ym-khc-prizes/images/{{bonusGift.prize_id}}_earned.png" alt="">
           </div>
-          <div>
+          <div class="ym-pc-dashboard-bonus-gifts-text">
             <span ng-bind-html="bonusGift.prize_label"></span> <span class="sr-only" ng-if="bonusGift.prize_status">(earned)</span><span class="sr-only" ng-if="!bonusGift.prize_status">(not yet earned)</span>
           </div>
         </div>
