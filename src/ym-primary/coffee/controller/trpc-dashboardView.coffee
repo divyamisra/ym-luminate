@@ -678,17 +678,17 @@ angular.module 'trPcControllers'
             return
           ), POP_TIME
           return
-
         pop_timer = setInterval(doPopup, WAIT_TIME)
         return
-
       $scope.heartHeros.heroPopup()
-    
+      
       $scope.monsterEdit = ->
         url = ''
-        if $rootScope.tablePrefix == 'heartdev'
-          url = "https://khc.staging.ootqa.org"
+        if $rootScope.tablePrefix is 'heartdev'
+          url = 'https://khc.staging.ootqa.org'
+        else if $rootScope.tablePrefix is 'heartnew'
+          url = 'https://khc.dev.ootqa.org'
         else
-          url = "https://kidsheartchallenge.heart.org"
-        window.open url + "/student/login/"+$scope.authToken+"/"+$scope.sessionCookie
+          url = 'https://kidsheartchallenge.heart.org'
+        window.open url + '/student/login/' + $scope.authToken + '/' + $scope.sessionCookie
   ]
