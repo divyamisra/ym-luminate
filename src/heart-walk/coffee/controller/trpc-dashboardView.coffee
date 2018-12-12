@@ -61,7 +61,7 @@ angular.module 'trPcControllers'
       runCheckBrightSites = ->
         postData =
           username: $scope.constituent.user_name
-          server: $rootScope.tablePrefix
+          server: $scope.tablePrefix
         $http.post('https://bfapps1.boundlessfundraising.com/applications/ahahw/brightsites/brightpost.php', postData)
 
       $scope.BrightSites =
@@ -78,7 +78,7 @@ angular.module 'trPcControllers'
               if response.data.errors.username is 'Invalid or disabled user requested'
                 console.log 'Run webhook to create user in store'
                 console.log APurlPrefix+'/api/brightsites/'+$scope.consId+'/import'
-                $http.get(APurlPrefix+'/api/brightsites/'+$scope.consId+'/import')
+                #$http.get(APurlPrefix+'/api/brightsites/'+$scope.consId+'/import')
                 #This was only if they could do the update immediatly
                 #runCheckBrightSites()
                   #.then (test) ->
