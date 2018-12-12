@@ -21,22 +21,24 @@
         </div>
       </div>
    </section>
-   <section class="ym-pc-dashboard-standard-gifts-section" aria-label="My Standard Gifts" ng-if="prizes && prizes.length > 0" ng-cloak>
+   <section class="ym-pc-dashboard-standard-gifts-section" aria-label="My Standard Gifts" ng-if="standardGifts && standardGifts.length > 0" ng-cloak>
       <div class="ym-pc-dashboard-section-header">
-        <h2 class="h5">
-          Standard Gifts
+        <h2 class="h4">
+          Standard Donation Gifts
         </h2>
+        <p>These thank you gifts are only available for online fundraisers like yourself! Earn these gifts<br/>along with all the standard donation gifts below as well.</p>
       </div>
-      <div class="ym-pc-dashboard-standard-gifts-icons ym-carousel--gifts owl-carousel" role="list" aria-label="Standard Gifts Carousel">
-        <div class="ym-pc-dashboard-standard-gifts-icon" ng-repeat="prize in prizes" ng-cloak>
-          <div ng-if="prize.earned">
-            <img class="img-responsive" ng-src="//s3.amazonaws.com/aha-oot-production/fy19/assets/badges/khc/{{prize.id}}_delivered.png" alt="">
+      <div class="ym-pc-dashboard-standard-gifts-icons" role="list" aria-label="Bonus Gifts">
+        <div class="ym-pc-dashboard-standard-gifts-icon" ng-repeat="standardGift in standardGifts" ng-cloak>
+          <div class="ym-pc-dashboard-standard-gift-earned" ng-if="standardGift.prize_status">Earned!</div>
+          <div ng-if="standardGift.prize_status">
+            <img class="img-responsive" ng-src="/ym-khc-prizes/images/{{standardGift.prize_id}}_notearned.png" alt="">
           </div>
-          <div ng-if="!prize.earned">
-            <img class="img-responsive" ng-src="//s3.amazonaws.com/aha-oot-production/fy19/assets/badges/khc/{{prize.id}}_earned.png" alt="">
+          <div ng-if="!standardGift.prize_status">
+            <img class="img-responsive" ng-src="/ym-khc-prizes/images/{{standardGift.prize_id}}_earned.png" alt="">
           </div>
-          <div>
-            <span ng-bind-html="prize.label"></span> <span class="sr-only" ng-if="prize.earned">(earned)</span><span class="sr-only" ng-if="!prize.earned">(not yet earned)</span>
+          <div class="ym-pc-dashboard-standard-gifts-text">
+            <span ng-bind-html="standardGift.prize_label"></span> <span class="sr-only" ng-if="standardGift.prize_status">(earned)</span><span class="sr-only" ng-if="!standardGift.prize_status">(not yet earned)</span>
           </div>
         </div>
       </div>
