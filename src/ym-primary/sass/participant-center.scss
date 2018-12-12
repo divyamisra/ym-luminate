@@ -90,8 +90,10 @@ a.ym-pc-dashboard-download-certificates {
 
 /* Gifts tab */
 section.ym-pc-dashboard-bonus-gifts-section {
-	background: #d7d4e8;
-	padding:20px 0 0;
+	.ym-pc-dashboard-section-header {
+	   background: #d7d4e8;
+   	   padding:20px 0 0;
+	}
   
         @media (min-width: $screen-sm-min) {
            margin: 0 0 40px;
