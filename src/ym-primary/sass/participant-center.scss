@@ -159,11 +159,13 @@ section.ym-pc-dashboard-standard-gifts-section {
               font-size: 30px;
            }
 
-	   .ym-pc-dashboard-standard-gifts-text {
-	      text-align:center;
-	      color: #000;
-	      position: absolute;
-	      bottom: 10px;
+           .ym-pc-dashboard-standard-gifts-text {
+              text-align: center;
+              color: #000;
+              position: relative;
+              top: -36px;
+              font-weight: bold;
+              font-size: 20px;
            }
 	}
 }
