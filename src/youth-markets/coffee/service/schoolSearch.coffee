@@ -52,7 +52,7 @@ angular.module 'ahaLuminateApp'
           return
 
         # ask or retrieve current lat/long
-        getLocation = ->
+        $scope.getLocation = ->
           e = 
             enableHighAccuracy: !0
             timeout: 1e4
@@ -164,7 +164,7 @@ angular.module 'ahaLuminateApp'
 
         #if getLoc not set or set to false then do normal load process of old search
         if getLoc == true
-          $scope.getLocationAlt()
+          $scope.getLocation()
           
         SchoolLookupService.getSchoolData()
           .then (response) ->
