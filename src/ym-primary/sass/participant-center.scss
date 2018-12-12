@@ -93,6 +93,8 @@ section.ym-pc-dashboard-bonus-gifts-section {
 	.ym-pc-dashboard-section-header {
 	   background: #d7d4e8;
    	   padding:20px 0 0;
+	   overflow:hidden;
+		
 	   p {
               font-size: 16px;
               margin: 10px 0 20px;
@@ -137,7 +139,8 @@ section.ym-pc-dashboard-standard-gifts-section {
 	.ym-pc-dashboard-section-header {
 	   background: #c8e3aa;
    	   padding:20px 0 0;
-
+	   overflow:hidden;
+		
 	   p {
               font-size: 16px;
               margin: 10px 0 20px;
