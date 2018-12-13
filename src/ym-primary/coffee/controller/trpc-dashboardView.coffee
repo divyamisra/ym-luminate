@@ -479,7 +479,7 @@ angular.module 'trPcControllers'
       $scope.personalChallenge = {}
       $scope.updatedPersonalChallenge = {}
       setPersonalChallenge = (id, name = '', numCompleted = 0, completedToday = false) ->
-        if id == null or id == ''
+        if id is null or id is ''
           id = '-1'
         if id is '-1' and $scope.challengeTaken and $scope.challengeTaken isnt ''
           if $scope.challengeTaken.indexOf('1. ') isnt -1
@@ -511,9 +511,9 @@ angular.module 'trPcControllers'
         ZuriService.getStudent $scope.frId + '/' + $scope.consId,
           failure: (response) ->
             # if challenge not found - wait 3 secs and try again 10 times max
-            if errorCount < 10 && response.status == 404
+            if errorCount < 10 and response.status is 404
               errorCount++
-              setTimeout(getStudentChallenge,3000);
+              setTimeout getStudentChallenge, 3000
             delete $scope.personalChallenge.updatePending
             setPersonalChallenge()
           error: (response) ->
@@ -651,7 +651,7 @@ angular.module 'trPcControllers'
           error: (response) ->
             # TODO
           success: (response) ->
-            if response.data.student.student_id != null and typeof response.data.student.avatar_url != 'undefined'
+            if response.data.student.student_id isnt null and typeof response.data.student.avatar_url isnt 'undefined'
               avatarURL = response.data.student.avatar_url
             else
               if $rootScope.tablePrefix is 'heartdev'
@@ -673,7 +673,7 @@ angular.module 'trPcControllers'
         pop_timer = ''
         doPopup = ->
           popup_container = angular.element('.launch-builder-popup')
-          if i == NUM_POPS
+          if i is NUM_POPS
             clearInterval(pop_timer)
           else
             popup_container.addClass 'pop'

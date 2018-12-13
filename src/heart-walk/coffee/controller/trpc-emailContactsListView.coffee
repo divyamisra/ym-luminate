@@ -108,7 +108,7 @@ angular.module 'trPcControllers'
         requestData = 'tr_ab_filter=' + $scope.filter + '&skip_groups=true'
         $scope.addressBookContacts.contacts = []
         if (refresh)
-          $scope.addressBookContacts.allContacts = [];
+          $scope.addressBookContacts.allContacts = []
           contactsPromise = ContactService.getTeamraiserAddressBookContacts requestData
             .then (response) ->
               addressBookContacts = response.data.getTeamraiserAddressBookContactsResponse.addressBookContact
@@ -117,8 +117,8 @@ angular.module 'trPcControllers'
                 contactString = getContactString contact
                 contactIndex = $rootScope.selectedContacts.contacts.indexOf contactString
                 contact.selected = contactIndex isnt -1
-                $scope.addressBookContacts.allContacts.push(contact);
-                if (Math.floor(idx/numPerPage) == currentPage)
+                $scope.addressBookContacts.allContacts.push contact
+                if (Math.floor(idx / numPerPage) is currentPage)
                   $scope.addressBookContacts.contacts.push(contact)
               contact=addressBookContacts.shift()
               while contact
@@ -127,14 +127,14 @@ angular.module 'trPcControllers'
                 idx++
               $scope.addressBookContacts.totalNumber = response.data.getTeamraiserAddressBookContactsResponse.totalNumberResults
               if ( $scope.addressBookContacts.totalNumber >  $scope.addressBookContacts.allContacts.length )
-                $scope.getContacts(page+1);
+                $scope.getContacts(page + 1)
               response
         else
-          while (idx < numPerPage && $scope.addressBookContacts.allContacts[idx + (numPerPage * currentPage)])
-             $scope.addressBookContacts.contacts.push($scope.addressBookContacts.allContacts[idx+(numPerPage*currentPage)]);
+          while (idx < numPerPage and $scope.addressBookContacts.allContacts[idx + (numPerPage * currentPage)])
+             $scope.addressBookContacts.contacts.push($scope.addressBookContacts.allContacts[idx + (numPerPage * currentPage)])
              idx++
         $scope.emailPromises.push contactsPromise
-      $scope.getContacts(true)
+      $scope.getContacts true
 
       $scope.showDeleteGroup = false
       $scope.getGroups = ->
@@ -232,7 +232,7 @@ angular.module 'trPcControllers'
                     $scope.addContactSuccess = translationId
                 closeAddContactModal()
                 refreshContactsNavBar()
-                $scope.getContacts(true)
+                $scope.getContacts true
               response
           $scope.emailPromises.push addContactPromise
 
@@ -517,7 +517,7 @@ angular.module 'trPcControllers'
                 $scope.importContactsSuccess = true
                 closeImportContactsModal()
                 refreshContactsNavBar()
-                $scope.getContacts(true)
+                $scope.getContacts true
       
       $scope.uploadContactsCSV = ->
         angular.element('.js--import-contacts-csv-form').submit()
@@ -650,7 +650,7 @@ angular.module 'trPcControllers'
                 closeEditContactModal()
                 window.scrollTo 0, 0
                 refreshContactsNavBar()
-                $scope.getContacts(true)
+                $scope.getContacts true
               response
           $scope.emailPromises.push updateContactPromise
       
@@ -717,7 +717,7 @@ angular.module 'trPcControllers'
               closeDeleteContactModal()
               window.scrollTo 0, 0
               refreshContactsNavBar()
-              $scope.getContacts(true)
+              $scope.getContacts true
               response
           $scope.emailPromises.push deleteContactPromise
       
