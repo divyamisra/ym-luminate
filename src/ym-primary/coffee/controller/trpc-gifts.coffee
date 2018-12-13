@@ -259,7 +259,7 @@ angular.module 'trPcControllers'
       , (response) ->
         # TODO
       
-      $scope.getRandomSpan = function(){
+      $scope.getRandomID = function(){
         return Math.floor((Math.random()*3)+1);
       }
 ]
