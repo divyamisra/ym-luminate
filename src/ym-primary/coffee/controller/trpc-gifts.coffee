@@ -171,7 +171,7 @@ angular.module 'trPcControllers'
           "KNAR-19"
           "LVL5DB-19"
           "KDRA-19"
-          "LVL6ST"
+          "LVL6ST-19"
         ]
         "Brown $500-$999":[
           "KUNI-19"
@@ -184,7 +184,7 @@ angular.module 'trPcControllers'
           "KNAR-19"
           "LVL5DB-19"
           "KDRA-19"
-          "LVL6ST"
+          "LVL6ST-19"
           "LVL7SR-19"
         ]
         "Yellow $1000+":[
@@ -198,7 +198,7 @@ angular.module 'trPcControllers'
           "KNAR-19"
           "LVL5DB-19"
           "KDRA-19"
-          "LVL6ST"
+          "LVL6ST-19"
           "LVL7SR-19"
           "LVL8WH-19"
           "3D"
