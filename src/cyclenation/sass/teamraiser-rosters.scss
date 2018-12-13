@@ -17,7 +17,13 @@
     display: none;
   }
 }
-
+.top-participants-roster,
+.team-list-name,
+.trr-company-list-name {
+  a {
+    text-decoration:underline;
+  }
+}
 .pg_cn_top_participants {}
 
 .pg_teamlist {
