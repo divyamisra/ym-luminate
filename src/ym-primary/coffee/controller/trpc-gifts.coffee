@@ -29,7 +29,8 @@ angular.module 'trPcControllers'
       ]
       $scope.defaultStandardGifts = [
         {
-          "KUNI-19":"Echo and Hero Clasp"
+          "id":"KUNI-19"
+          "name":"Echo and Hero Clasp"
           "status":0
         }
       ]
