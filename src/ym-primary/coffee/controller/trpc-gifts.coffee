@@ -8,7 +8,7 @@ angular.module 'trPcControllers'
     'PageContentService'
     '$sce'
     ($scope, $rootScope, $location, APP_INFO, BoundlessService, PageContentService, $sce) ->
-      $scope.defaultInstantGifts = [
+      defaultInstantGifts = [
         {
           "id":"MWB-19"
           "name":"Heart Heroes Wristband"
@@ -30,7 +30,7 @@ angular.module 'trPcControllers'
           "status":0
         }
       ]
-      $scope.defaultStandardGifts = [
+      defaultStandardGifts = [
         {
           "id":"KUNI-19"
           "name":"Echo and Hero Clasp"
@@ -225,7 +225,6 @@ angular.module 'trPcControllers'
       }
       
       $scope.bonusGifts = []
-      $scope.instantGifts = []
       $scope.standardGifts = []
       
       BoundlessService.getPrizes $scope.consId
@@ -233,7 +232,7 @@ angular.module 'trPcControllers'
         students = response.data.students
         angular.forEach students, (student) ->
           current_level = student.current_level
-          angular.forEach $scope.defaultInstantGifts, (gift) ->
+          angular.forEach defaultInstantGifts, (gift) ->
             status = 0
             if giftLevels[current_level].includes(gift.id)
               status = 1
@@ -242,14 +241,18 @@ angular.module 'trPcControllers'
               prize_sku: gift.id
               prize_status: status
 
-          angular.forEach $scope.defaultStandardGifts, (gift) ->
+          angular.forEach defaultStandardGifts, (gift, key) ->
             status = 0
+            lastItem = 0
             if giftLevels[current_level].includes(gift.id)
               status = 1
+            if Object.is(defaultStandardGifts.length - 1, key)) {
+              lastItem = 1
             $scope.standardGifts.push
               prize_label: gift.name
               prize_sku: gift.id
               prize_status: status
+              lastItem: lastItem
 
       , (response) ->
         # TODO
