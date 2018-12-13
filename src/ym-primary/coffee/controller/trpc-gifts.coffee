@@ -94,7 +94,7 @@ angular.module 'trPcControllers'
       ]
 
       giftLevels = {
-        "$0-$14":[
+        "$5-$14":[
           "KUNI-19"
           "MWB-19"
           "KSHA-19"
@@ -105,7 +105,14 @@ angular.module 'trPcControllers'
           "KSHA-19"
           "LVL2JR-19"
         ]
-        "$20-$49":[
+        "$20-$34":[
+          "KUNI-19"
+          "MWB-19"
+          "KSHA-19"
+          "LVL2JR-19"
+          "KOTT-19"
+        ]
+        "$35-$49":[
           "KUNI-19"
           "MWB-19"
           "KSHA-19"
