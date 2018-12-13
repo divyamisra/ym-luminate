@@ -61,18 +61,22 @@ angular.module 'trPcControllers'
         angular.forEach students, (student) ->
           current_level = student.current_level
           angular.forEach $scope.defaultInstantGifts, (id,gift) ->
+            status = 0
             if giftLevels[current_level].includes(id)
-              $scope.instantGifts.push
-                prize_label: gift
-                prize_sku: id
-                prize_status: 1
+              status = 1
+            $scope.instantGifts.push
+              prize_label: gift
+              prize_sku: id
+              prize_status: status
 
           angular.forEach $scope.defaultStandardGifts, (id,gift) ->
+            status = 0
             if giftLevels[current_level].includes(id)
-              $scope.standardGifts.push
-                prize_label: gift
-                prize_sku: id
-                prize_status: 1
+              status = 1
+            $scope.standardGifts.push
+              prize_label: gift
+              prize_sku: id
+              prize_status: status
 
       , (response) ->
         # TODO
