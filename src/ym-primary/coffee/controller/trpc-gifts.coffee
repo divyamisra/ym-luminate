@@ -10,7 +10,8 @@ angular.module 'trPcControllers'
     ($scope, $rootScope, $location, APP_INFO, BoundlessService, PageContentService, $sce) ->
       $scope.defaultInstantGifts = [
         {
-          "MWB-19":"Heart Heroes Wristband"
+          "id":"MWB-19"
+          "name":"Heart Heroes Wristband"
           "status":0
         }
         {
@@ -60,22 +61,22 @@ angular.module 'trPcControllers'
         students = response.data.students
         angular.forEach students, (student) ->
           current_level = student.current_level
-          angular.forEach $scope.defaultInstantGifts, (id,gift) ->
+          angular.forEach $scope.defaultInstantGifts, (gift) ->
             status = 0
-            if giftLevels[current_level].includes(id)
+            if giftLevels[current_level].includes(gift.id)
               status = 1
             $scope.instantGifts.push
-              prize_label: gift
-              prize_sku: id
+              prize_label: gift.name
+              prize_sku: gift.id
               prize_status: status
 
-          angular.forEach $scope.defaultStandardGifts, (id,gift) ->
+          angular.forEach $scope.defaultStandardGifts, (gift) ->
             status = 0
-            if giftLevels[current_level].includes(id)
+            if giftLevels[current_level].includes(gift.id)
               status = 1
             $scope.standardGifts.push
-              prize_label: gift
-              prize_sku: id
+              prize_label: gift.name
+              prize_sku: gift.id
               prize_status: status
 
       , (response) ->
