@@ -241,18 +241,20 @@ angular.module 'trPcControllers'
               prize_sku: gift.id
               prize_status: status
 
+          prevstatus = 0
           angular.forEach defaultStandardGifts, (gift, key) ->
             status = 0
             lastItem = 0
             if giftLevels[current_level].includes(gift.id)
               status = 1
-            if defaultStandardGifts.length - 1 == key
-              lastItem = 1
+            if prevstatus == 1 and status == 0
+              $scope.standardGifts[$scope.standardGifts.length-1].lastItem = 1
             $scope.standardGifts.push
               prize_label: gift.name
               prize_sku: gift.id
               prize_status: status
               lastItem: lastItem
+            prevstatus = status
 
       , (response) ->
         # TODO
