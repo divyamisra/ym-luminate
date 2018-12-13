@@ -97,15 +97,18 @@ angular.module 'trPcControllers'
         "$0-$14":[
           "KUNI-19"
           "MWB-19"
+          "KSHA-19"
         ]
         "$15-$19":[
           "KUNI-19"
           "MWB-19"
+          "KSHA-19"
           "LVL2JR-19"
         ]
         "$20-$49":[
           "KUNI-19"
           "MWB-19"
+          "KSHA-19"
           "LVL2JR-19"
           "KOTT-19"
           "KPIG-19"
@@ -113,6 +116,8 @@ angular.module 'trPcControllers'
         "$50-$74":[
           "KUNI-19"
           "MWB-19"
+          "KSHA-19"
+          "KPAN-19"
           "LVL2JR-19"
           "KOTT-19"
           "KPIG-19"
@@ -121,6 +126,8 @@ angular.module 'trPcControllers'
         "Green $75-$99":[
           "KUNI-19"
           "MWB-19"
+          "KSHA-19"
+          "KPAN-19"
           "LVL2JR-19"
           "KOTT-19"
           "KPIG-19"
@@ -130,6 +137,8 @@ angular.module 'trPcControllers'
         "Blue $100-$149":[
           "KUNI-19"
           "MWB-19"
+          "KSHA-19"
+          "KPAN-19"
           "LVL2JR-19"
           "KOTT-19"
           "KPIG-19"
@@ -140,6 +149,8 @@ angular.module 'trPcControllers'
         "Purple $150-$199":[
           "KUNI-19"
           "MWB-19"
+          "KSHA-19"
+          "KPAN-19"
           "LVL2JR-19"
           "KOTT-19"
           "KPIG-19"
@@ -151,6 +162,8 @@ angular.module 'trPcControllers'
         "Red $200-$249":[
           "KUNI-19"
           "MWB-19"
+          "KSHA-19"
+          "KPAN-19"
           "LVL2JR-19"
           "KOTT-19"
           "KPIG-19"
@@ -163,6 +176,8 @@ angular.module 'trPcControllers'
         "Orange $250-$499":[
           "KUNI-19"
           "MWB-19"
+          "KSHA-19"
+          "KPAN-19"
           "LVL2JR-19"
           "KOTT-19"
           "KPIG-19"
@@ -176,6 +191,8 @@ angular.module 'trPcControllers'
         "Brown $500-$999":[
           "KUNI-19"
           "MWB-19"
+          "KSHA-19"
+          "KPAN-19"
           "LVL2JR-19"
           "KOTT-19"
           "KPIG-19"
@@ -190,6 +207,8 @@ angular.module 'trPcControllers'
         "Yellow $1000+":[
           "KUNI-19"
           "MWB-19"
+          "KSHA-19"
+          "KPAN-19"
           "LVL2JR-19"
           "KOTT-19"
           "KPIG-19"
