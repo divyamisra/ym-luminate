@@ -8,6 +8,50 @@ angular.module 'trPcControllers'
     'PageContentService'
     '$sce'
     ($scope, $rootScope, $location, APP_INFO, BoundlessService, PageContentService, $sce) ->
+      $scope.defaultInstantGifts = [
+        {
+          "MWB-19":"Heart Heroes Wristband"
+          "status":0
+        }
+        {
+          "KSHA-19":"Finn"
+          "status":0
+        }
+        {
+          "KPAN-19":"Ruby"
+          "status":0
+        }
+        {
+          "3D":"Create Your Own 3D Printed Heart Hero"
+          "status":0
+        }
+      ]
+      $scope.defaultStandardGifts = [
+        {
+          "KUNI-19":"Echo and Hero Clasp"
+          "status":0
+        }
+      ]
+
+      $scope.giftLevels = [
+        {
+          "$0-$14":{
+            "KUNI-19"
+          }
+          "$15-$19":{
+            "KUNI-19"
+            "LVL2JR-19"
+          }
+          "$20-$49":{
+            "KUNI-19"
+            "LVL2JR-19"
+          }
+          "$50-$19":{
+            "KUNI-19"
+            "LVL2JR-19"
+          }
+        }
+      ]
       $scope.bonusGifts = []
       $scope.instantGifts = []
       $scope.standardGifts = []
