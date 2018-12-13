@@ -118,7 +118,7 @@ section.ym-pc-dashboard-bonus-gifts-section {
            vertical-align: top;
    	   position:relative;
            
-           &:nth-last-child(1) {
+           &:nth-child(4n+4) {
               margin-right: 0;
            }
            .ym-pc-dashboard-bonus-gift-earned {
@@ -168,7 +168,7 @@ section.ym-pc-dashboard-standard-gifts-section {
            vertical-align: top;
    	   position:relative;
            
-           &:nth-last-child(1) {
+           &:nth-child(4n+4) {
               margin-right: 0;
            }
 
