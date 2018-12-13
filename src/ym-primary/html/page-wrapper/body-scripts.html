@@ -107,12 +107,16 @@
     if(window.location.href.indexOf('ecard_linktrack=') > 0) {
       var uparts = window.location.href.split('ecard_linktrack=');
       uparts = uparts[1].split('&');
-
+      
       var scriptTag = document.createElement('script');
       [[?xheartdevx::x[[S29:TABLE_PREFIX]]x::
         scriptTag.src = 'https://hearttools.heart.org/aha_ym19_dev/visitlink_record.php?ecard_linktrack=' + uparts[0];
       ::
-        scriptTag.src = 'https://hearttools.heart.org/aha_ym19/visitlink_record.php?ecard_linktrack=' + uparts[0];
+        [[?xheartnewx::x[[S29:TABLE_PREFIX]]x::
+          scriptTag.src = 'https://hearttools.heart.org/aha_ym19_testing/visitlink_record.php?ecard_linktrack=' + uparts[0];
+        ::
+          scriptTag.src = 'https://hearttools.heart.org/aha_ym19/visitlink_record.php?ecard_linktrack=' + uparts[0];
+        ]]
       ]]
       document.body.appendChild(scriptTag);
     }
