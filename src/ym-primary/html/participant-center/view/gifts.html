@@ -33,9 +33,12 @@
           <div class="ym-pc-dashboard-standard-gift-earned" ng-if="standardGift.prize_status">Earned!</div>
           <div ng-if="standardGift.prize_status">
             <img class="img-responsive" ng-src="/ym-khc-prizes/images/{{standardGift.prize_sku}}_earned.jpg" alt="">
+            <img ng-if="!standardGift.lastItem" class="img-responsive" ng-src="/ym-khc-prizes/images/gift_path_03_on.png" alt="">
+            <img ng-if="standardGift.lastItem" class="img-responsive" ng-src="/ym-khc-prizes/images/gift_path_02_fiery_on.png" alt="">
           </div>
           <div ng-if="!standardGift.prize_status">
             <img class="img-responsive" ng-src="/ym-khc-prizes/images/{{standardGift.prize_sku}}_notearned.jpg" alt="">
+            <img class="img-responsive" ng-src="/ym-khc-prizes/images/gift_path_03_off.png" alt="">
           </div>
           <div class="ym-pc-dashboard-standard-gifts-text">
             <span ng-bind-html="standardGift.prize_label"></span> <span class="sr-only" ng-if="standardGift.prize_status">(earned)</span><span class="sr-only" ng-if="!standardGift.prize_status">(not yet earned)</span>
