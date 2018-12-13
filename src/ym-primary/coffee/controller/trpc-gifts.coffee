@@ -65,7 +65,7 @@ angular.module 'trPcControllers'
             status = 0
             if giftLevels[current_level].includes(gift.id)
               status = 1
-            $scope.instantGifts.push
+            $scope.bonusGifts.push
               prize_label: gift.name
               prize_sku: gift.id
               prize_status: status
