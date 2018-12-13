@@ -12,7 +12,7 @@ angular.module 'ahaLuminateControllers'
     ($scope, $timeout, TeamraiserParticipantService, $rootScope, $location, $anchorScroll, BoundlessService, TeamraiserService, AriaCarouselService) ->
       $dataRoot = angular.element '[data-aha-luminate-root]'
       consId = $dataRoot.data('cons-id') if $dataRoot.data('cons-id') isnt ''
-      
+
       setNoSchoolLink = (noSchoolLink) ->
 
         $scope.noSchoolLink = noSchoolLink
@@ -29,9 +29,9 @@ angular.module 'ahaLuminateControllers'
               teamraisers = [teamraisers] if not angular.isArray teamraisers
               teamraiserInfo = teamraisers[0]
               setNoSchoolLink $scope.nonSecureDomain + '/site/TRR?fr_id=' + teamraiserInfo.id + '&pg=tfind&fr_tm_opt=none&s_frTJoin=&s_frCompanyId='
-      
+
       if consId
-        TeamraiserParticipantService.getRegisteredTeamraisers 'cons_id=' + consId + '&event_type=' + encodeURIComponent('Middle School'),
+        TeamraiserParticipantService.getRegisteredTeamraisers 'cons_id=' + consId + '&event_type=' + encodeURIComponent('YM 2019'),
           error: ->
             modalSet = readCookie 'modalSet'
             if modalSet isnt 'true'
@@ -46,7 +46,7 @@ angular.module 'ahaLuminateControllers'
               modalSet = readCookie 'modalSet'
               if modalSet isnt 'true'
                 setModal()
-      
+
       readCookie = (name) ->
         nameEQ = name + '='
         ca = document.cookie.split ';'
@@ -59,30 +59,30 @@ angular.module 'ahaLuminateControllers'
             return c.substring nameEQ.length, c.length
           i++
         null
-      
+
       setModal = ->
         date = new Date
         expires = 'expires='
         date.setDate date.getDate() + 1
         expires += date.toGMTString()
-        
+
         angular.element('#noRegModal').modal()
         document.cookie = 'modalSet=true; ' + expires + '; path=/'
-      
+
       $scope.closeModal = ->
         angular.element('#noRegModal').modal 'hide'
         document.getElementById('school-search').scrollIntoView()
-      
+
       $scope.totalStudents = ''
       $scope.totalSchools = ''
       $scope.totalEmail = ''
-      
+
       BoundlessService.getRollupTotals()
         .then (response) ->
           if not response.data.status or response.data.status isnt 'success'
             $scope.showStats = false
           else
-            totals = response.data.totals 
+            totals = response.data.totals
             if not totals
               $scope.showStats = false
             else
@@ -98,7 +98,7 @@ angular.module 'ahaLuminateControllers'
                 $scope.totalEmails = Math.round($scope.totalEmails / 1000) + 'K'
         , (response) ->
           $scope.showStats = false
-      
+
       initCarousel = ->
         owl = jQuery '.ym-home-feature .owl-carousel'
         owlStr = '.ym-home-feature .owl-carousel'
@@ -127,7 +127,7 @@ angular.module 'ahaLuminateControllers'
             AriaCarouselService.onChange(owlStr)
 
       $timeout initCarousel, 1000
-      
+
       initHeroCarousel = ->
         owl = jQuery '.ym-carousel--hero'
         owlStr = '.ym-carousel--hero.owl-carousel'
@@ -148,6 +148,6 @@ angular.module 'ahaLuminateControllers'
                 AriaCarouselService.init(owlStr)
               onChanged: ->
                 AriaCarouselService.onChange(owlStr)
-              
+
       $timeout initHeroCarousel, 1000
   ]
