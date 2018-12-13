@@ -15,15 +15,18 @@ angular.module 'trPcControllers'
           "status":0
         }
         {
-          "KSHA-19":"Finn"
+          "id":"KSHA-19"
+          "name":"Finn"
           "status":0
         }
         {
-          "KPAN-19":"Ruby"
+          "id":"KPAN-19"
+          "name":"Ruby"
           "status":0
         }
         {
-          "3D":"Create Your Own 3D Printed Heart Hero"
+          "id":"3D"
+          "name":"Create Your Own 3D Printed Heart Hero"
           "status":0
         }
       ]
@@ -33,23 +36,172 @@ angular.module 'trPcControllers'
           "name":"Echo and Hero Clasp"
           "status":0
         }
+        {
+          "id":"LVL2JR-19"
+          "name":"Jump Rope"
+          "status":0
+        }
+        {
+          "id":"KOTT-19"
+          "name":"Oscar"
+          "status":0
+        }
+        {
+          "id":"KPIG-19"
+          "name":"Sprinkles"
+          "status":0
+        }
+        {
+          "id":"LVL3"
+          "name":"T-Shirt"
+          "status":0
+        }
+        {
+          "id":"LVL4BB-19"
+          "name":"Basketball"
+          "status":0
+        }
+        {
+          "id":"KNAR-19"
+          "name":"Splash"
+          "status":0
+        }
+        {
+          "id":"LVL5DB-19"
+          "name":"Dancing Ball"
+          "status":0
+        }
+        {
+          "id":"KDRA-19"
+          "name":"Fiery"
+          "status":0
+        }
+        {
+          "id":"LVL6ST-19"
+          "name":"Slimeball Target"
+          "status":0
+        }
+        {
+          "id":"LVL7SR-19"
+          "name":"Splash's Racquet Fun"
+          "status":0
+        }
+        {
+          "id":"LVL8WH-19"
+          "name":"Wireless Headphones"
+          "status":0
+        }
       ]
 
       giftLevels = {
         "$0-$14":[
           "KUNI-19"
+          "MWB-19"
         ]
         "$15-$19":[
           "KUNI-19"
+          "MWB-19"
           "LVL2JR-19"
         ]
         "$20-$49":[
           "KUNI-19"
+          "MWB-19"
           "LVL2JR-19"
+          "KOTT-19"
+          "KPIG-19"
         ]
-        "$50-$19":[
+        "$50-$74":[
           "KUNI-19"
+          "MWB-19"
           "LVL2JR-19"
+          "KOTT-19"
+          "KPIG-19"
+          "LVL3"
+        ]
+        "Green $75-$99":[
+          "KUNI-19"
+          "MWB-19"
+          "LVL2JR-19"
+          "KOTT-19"
+          "KPIG-19"
+          "LVL3"
+          "LVL4BB-19"
+        ]
+        "Blue $100-$149":[
+          "KUNI-19"
+          "MWB-19"
+          "LVL2JR-19"
+          "KOTT-19"
+          "KPIG-19"
+          "LVL3"
+          "LVL4BB-19"
+          "KNAR-19"
+        ]
+        "Purple $150-$199":[
+          "KUNI-19"
+          "MWB-19"
+          "LVL2JR-19"
+          "KOTT-19"
+          "KPIG-19"
+          "LVL3"
+          "LVL4BB-19"
+          "KNAR-19"
+          "LVL5DB-19"
+        ]
+        "Red $200-$249":[
+          "KUNI-19"
+          "MWB-19"
+          "LVL2JR-19"
+          "KOTT-19"
+          "KPIG-19"
+          "LVL3"
+          "LVL4BB-19"
+          "KNAR-19"
+          "LVL5DB-19"
+          "KDRA-19"
+        ]
+        "Orange $250-$499":[
+          "KUNI-19"
+          "MWB-19"
+          "LVL2JR-19"
+          "KOTT-19"
+          "KPIG-19"
+          "LVL3"
+          "LVL4BB-19"
+          "KNAR-19"
+          "LVL5DB-19"
+          "KDRA-19"
+          "LVL6ST"
+        ]
+        "Brown $500-$999":[
+          "KUNI-19"
+          "MWB-19"
+          "LVL2JR-19"
+          "KOTT-19"
+          "KPIG-19"
+          "LVL3"
+          "LVL4BB-19"
+          "KNAR-19"
+          "LVL5DB-19"
+          "KDRA-19"
+          "LVL6ST"
+          "LVL7SR-19"
+        ]
+        "Yellow $1000+":[
+          "KUNI-19"
+          "MWB-19"
+          "LVL2JR-19"
+          "KOTT-19"
+          "KPIG-19"
+          "LVL3"
+          "LVL4BB-19"
+          "KNAR-19"
+          "LVL5DB-19"
+          "KDRA-19"
+          "LVL6ST"
+          "LVL7SR-19"
+          "LVL8WH-19"
+          "3D"
         ]
       }
       
