@@ -259,6 +259,6 @@ angular.module 'trPcControllers'
       , (response) ->
         # TODO
       
-      $scope.getRandomID: ->
+      $scope.getRandomIDb = ->
         return Math.floor((Math.random()*3)+1);
 ]
