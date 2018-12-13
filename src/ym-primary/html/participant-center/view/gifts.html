@@ -41,11 +41,11 @@
             <span ng-bind-html="standardGift.prize_label"></span> <span class="sr-only" ng-if="standardGift.prize_status">(earned)</span><span class="sr-only" ng-if="!standardGift.prize_status">(not yet earned)</span>
           </div>
           <div ng-if="standardGift.prize_status">
-            <img ng-if="!standardGift.lastItem" class="img-responsive" ng-src="/ym-khc-prizes/images/gift_path_03_on.png" alt="">
+            <img ng-if="!standardGift.lastItem" class="img-responsive" ng-src="/ym-khc-prizes/images/gift_path_0{{randomID()}}_on.png" alt="">
             <img ng-if="standardGift.lastItem" class="img-responsive" ng-src="/ym-khc-prizes/images/gift_path_02_fiery_on.png" alt="">
           </div>
           <div ng-if="!standardGift.prize_status">
-            <img class="img-responsive" ng-src="/ym-khc-prizes/images/gift_path_03_off.png" alt="">
+            <img class="img-responsive" ng-src="/ym-khc-prizes/images/gift_path_0{{randomID()}}_off.png" alt="">
           </div>
         </div>
       </div>
