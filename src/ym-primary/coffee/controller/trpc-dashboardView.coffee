@@ -654,7 +654,12 @@ angular.module 'trPcControllers'
             if response.data.student.student_id != null and typeof response.data.student.avatar_url != 'undefined'
               avatarURL = response.data.student.avatar_url
             else
-              avatarURL = 'https://hearttools.heart.org/aha_ym19_dev/virtualworld/img/avatar-charger.png'
+              if $rootScope.tablePrefix is 'heartdev'
+                avatarURL = 'https://hearttools.heart.org/aha_ym19_dev/virtualworld/img/avatar-charger.png'
+              else if $rootScope.tablePrefix is 'heartnew'
+                avatarURL = 'https://hearttools.heart.org/aha_ym19_testing/virtualworld/img/avatar-charger.png'
+              else
+                avatarURL = 'https://hearttools.heart.org/aha_ym19/virtualworld/img/avatar-charger.png'
             $scope.personalInfo.avatar = avatarURL
       $scope.getPersonalAvatar()
       
