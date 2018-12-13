@@ -246,7 +246,7 @@ angular.module 'trPcControllers'
             lastItem = 0
             if giftLevels[current_level].includes(gift.id)
               status = 1
-            if Object.is(defaultStandardGifts.length - 1, key)) {
+            if defaultStandardGifts.length - 1 == key
               lastItem = 1
             $scope.standardGifts.push
               prize_label: gift.name
