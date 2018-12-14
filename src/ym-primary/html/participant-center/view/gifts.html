@@ -32,7 +32,7 @@
       </div>
       <div class="ym-pc-dashboard-standard-gifts-icons" role="list" aria-label="Standard Gifts">
         <div class="ym-pc-dashboard-standard-gifts-icon" ng-repeat="standardGift in standardGifts" ng-cloak>
-           <a href="" ng-click="showPrize('{{standardGift.prize_sku}}','{{standardGift.prize_label}}','{{standardGift.prize_status}}')">
+           <a href="" ng-click="showPrize(standardGift.prize_sku,standardGift.prize_label,standardGift.prize_status)">
               <div class="ym-pc-dashboard-standard-gift-earned" ng-if="standardGift.prize_status">Earned!</div>
               <div ng-if="standardGift.prize_status">
                 <img class="img-responsive" ng-src="/ym-khc-prizes/images/{{standardGift.prize_sku}}_earned.jpg" alt="">
