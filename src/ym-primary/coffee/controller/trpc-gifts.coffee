@@ -11,6 +11,18 @@ angular.module 'trPcControllers'
     'PageContentService'
     '$sce'
     ($scope, $rootScope, $filter, $timeout, $uibModal, $location, APP_INFO, BoundlessService, PageContentService, $sce) ->
+
+      $scope.showPrize = (sku, label, earned) ->
+        $scope.prize_sku = sku
+        $scope.prize_label = label
+        $scope.prize_status = earned
+        $scope.viewPrizeModal = $uibModal.open
+          scope: $scope
+          templateUrl: APP_INFO.rootPath + 'dist/ym-primary/html/participant-center/modal/viewPrize.html'
+
+      $scope.cancelShowPrize = ->
+        $scope.viewPrizeModal.close()
+
       defaultInstantGifts = [
         {
           "id":"MWB-19"
@@ -265,22 +277,9 @@ angular.module 'trPcControllers'
               prize_status: status
               lastItem: lastItem
             prevstatus = status
-
       , (response) ->
         # TODO
       
       $scope.getRandomID = ->
         return Math.floor((Math.random()*3)+1);
-
-      $scope.showPrize = (sku, label, earned) ->
-        $scope.prize_sku = sku
-        $scope.prize_label = label
-        $scope.prize_status = earned
-        $scope.viewPrizeModal = $uibModal.open
-          scope: $scope
-          templateUrl: APP_INFO.rootPath + 'dist/ym-primary/html/participant-center/modal/viewPrize.html'
-
-      $scope.cancelShowPrize = ->
-        $scope.viewPrizeModal.close()
-
 ]
