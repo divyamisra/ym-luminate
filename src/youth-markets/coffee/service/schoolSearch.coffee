@@ -420,5 +420,5 @@ angular.module 'ahaLuminateApp'
               else
                 setResults()
                 delete $scope.schoolList.searchPending
-                updateCompanyData()     
+                updateCompanyData()
   ]

@@ -78,8 +78,31 @@
 <script src="[[S666:template_macros/aha_luminate_filepath.tpt::ym-primary/js/main::js::@@buildTimestamp]]"></script>
 
 [[?xym_khc_participant_centerx::x[[S334:pagename]]x::
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/owl.carousel[[?xtruex::x[[S80:debug]]x::::.min]].js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/owl.carousel[[?xtruex::x[[S80:debug]]x::::.min]].js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard[[?xtruex::x[[S80:debug]]x::::.min]].js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/ng-csv/0.3.6/ng-csv[[?xtruex::x[[S80:debug]]x::::.min]].js"></script>
+  <script>
+    window.fbAsyncInit = function() {
+      FB.init({
+        appId: '[[S0:FACEBOOK_FUNDRAISER_APP_ID]]', 
+        cookie: true, 
+        xfbml: true, 
+        version: 'v3.2'
+      });
+      FB.AppEvents.logPageView();
+    };
+    (function(d, s, id) {
+      var js, 
+      fjs = d.getElementsByTagName(s)[0];
+      if(d.getElementById(id)) {
+        return;
+      }
+      js = d.createElement(s);
+      js.id = id;
+      js.src = '//connect.facebook.net/en_US/sdk.js';
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+  </script>
   <script src="[[S666:template_macros/aha_luminate_filepath.tpt::ym-primary/js/participant::js::@@buildTimestamp]]"></script>
 ::]]
 
