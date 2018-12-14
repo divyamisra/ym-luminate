@@ -16,9 +16,9 @@ angular.module 'trPcApp'
           dataString += '&pb_page_name=' + pbPageName if pbPageName
           if additionalArguments
             dataString += '&' + additionalArguments
-          pageserver = "PageServer"
-          if location.protocol == "https:"
-            pageserver = "SPageServer"
+          pageserver = 'PageServer'
+          if location.protocol is 'https:'
+            pageserver = 'S' + pageserver
           $http
             method: 'GET'
             url: pageserver + '?' + dataString
