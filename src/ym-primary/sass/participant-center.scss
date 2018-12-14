@@ -121,7 +121,12 @@ section.ym-pc-dashboard-bonus-gifts-section {
            &:nth-child(4n+4) {
               margin-right: 0;
            }
-           .ym-pc-dashboard-bonus-gift-earned {
+
+	   a {
+              text-decoration:none;
+	   }
+		
+	   .ym-pc-dashboard-bonus-gift-earned {
               color: #440075;
               left:35%;
               position: absolute;
@@ -172,6 +177,10 @@ section.ym-pc-dashboard-standard-gifts-section {
            &:nth-child(4n+4) {
               margin-right: 0;
            }
+
+	   a {
+              text-decoration:none;
+	   }
 
 	   .ym-pc-dashboard-standard-gift-earned {
               color: #440075;
