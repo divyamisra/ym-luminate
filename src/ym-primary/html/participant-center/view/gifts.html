@@ -11,10 +11,10 @@
            <a href="" ng-click="showPrize(bonusGift.prize_sku,bonusGift.prize_label,bonusGift.prize_status)">
               <div class="ym-pc-dashboard-bonus-gift-earned" ng-if="bonusGift.prize_status">Earned!</div>
               <div ng-if="bonusGift.prize_status">
-                <img class="img-responsive" ng-src="/ym-khc-prizes/images/{{bonusGift.prize_sku}}_earned.jpg" alt="{{bonusGift.prize_label}}">
+                <img class="img-responsive" ng-src="/ym-khc-prizes/images/{{bonusGift.prize_sku}}_earned.jpg" ng-alt="{{bonusGift.prize_label}}">
               </div>
               <div ng-if="!bonusGift.prize_status">
-                <img class="img-responsive" ng-src="/ym-khc-prizes/images/{{bonusGift.prize_sku}}_notearned.jpg" alt="{{bonusGift.prize_label}}">
+                <img class="img-responsive" ng-src="/ym-khc-prizes/images/{{bonusGift.prize_sku}}_notearned.jpg" ng-alt="{{bonusGift.prize_label}}">
               </div>
               <div class="ym-pc-dashboard-bonus-gifts-text">
                 <span ng-bind-html="bonusGift.prize_label"></span> <span class="sr-only" ng-if="bonusGift.prize_status">(earned)</span><span class="sr-only" ng-if="!bonusGift.prize_status">(not yet earned)</span>
@@ -35,10 +35,10 @@
            <a href="" ng-click="showPrize(standardGift.prize_sku,standardGift.prize_label,standardGift.prize_status)">
               <div class="ym-pc-dashboard-standard-gift-earned" ng-if="standardGift.prize_status">Earned!</div>
               <div ng-if="standardGift.prize_status">
-                <img class="img-responsive" ng-src="/ym-khc-prizes/images/{{standardGift.prize_sku}}_earned.jpg" alt="{{standardGift.prize_label}}">
+                <img class="img-responsive" ng-src="/ym-khc-prizes/images/{{standardGift.prize_sku}}_earned.jpg" ng-alt="{{standardGift.prize_label}}">
               </div>
               <div ng-if="!standardGift.prize_status">
-                <img class="img-responsive" ng-src="/ym-khc-prizes/images/{{standardGift.prize_sku}}_notearned.jpg" alt="{{standardGift.prize_label}}">
+                <img class="img-responsive" ng-src="/ym-khc-prizes/images/{{standardGift.prize_sku}}_notearned.jpg" ng-alt="{{standardGift.prize_label}}">
               </div>
               <div class="ym-pc-dashboard-standard-gifts-text">
                 <span ng-bind-html="standardGift.prize_label"></span> <span class="sr-only" ng-if="standardGift.prize_status">(earned)</span><span class="sr-only" ng-if="!standardGift.prize_status">(not yet earned)</span>
