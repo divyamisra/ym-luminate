@@ -7,7 +7,7 @@
         <p>These thank you gifts are only available for online fundraisers like yourself! Earn these gifts<br/>along with all the standard donation gifts below as well.</p>
       </div>
       <div class="ym-pc-dashboard-bonus-gifts-icons" role="list" aria-label="Bonus Gifts">
-        <div class="ym-pc-dashboard-bonus-gifts-icon" ng-repeat="bonusGift in bonusGifts" ng-click="showPrize('{{bonusGift.prize_sku}}')" ng-cloak>
+        <div class="ym-pc-dashboard-bonus-gifts-icon" ng-repeat="bonusGift in bonusGifts" ng-click="showPrize('{{bonusGift.prize_sku}}','{{bonusGift.prize_label}}','{{bonusGift.prize_status}}')" ng-cloak>
           <div class="ym-pc-dashboard-bonus-gift-earned" ng-if="bonusGift.prize_status">Earned!</div>
           <div ng-if="bonusGift.prize_status">
             <img class="img-responsive" ng-src="/ym-khc-prizes/images/{{bonusGift.prize_sku}}_earned.jpg" alt="">
@@ -29,7 +29,7 @@
         <p>Check your fundraising progress and see what gifts you’ve collected along the way. Help Fiery<br/>get to the end of the trail and earn all the thank you gifts!</p>
       </div>
       <div class="ym-pc-dashboard-standard-gifts-icons" role="list" aria-label="Standard Gifts">
-        <div class="ym-pc-dashboard-standard-gifts-icon" ng-repeat="standardGift in standardGifts" ng-click="showPrize('{{standardGift.prize_sku}}')" ng-cloak>
+        <div class="ym-pc-dashboard-standard-gifts-icon" ng-repeat="standardGift in standardGifts" ng-click="showPrize('{{standardGift.prize_sku}}','{{standardGift.prize_label}}','{{standardGift.prize_status}}')" ng-cloak>
           <div class="ym-pc-dashboard-standard-gift-earned" ng-if="standardGift.prize_status">Earned!</div>
           <div ng-if="standardGift.prize_status">
             <img class="img-responsive" ng-src="/ym-khc-prizes/images/{{standardGift.prize_sku}}_earned.jpg" alt="">
