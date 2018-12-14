@@ -72,14 +72,14 @@ angular.module 'ahaLuminateControllers'
 
       $childCompanyLinks = $defaultCompanyHierarchy.find('.trr-td a')
       $scope.childCompanies = []
-      $scope.companyPath = [];
-      $scope.companyDepth = 0;
+      $scope.companyPath = []
+      $scope.companyDepth = 0
       angular.forEach $childCompanyLinks, (childCompanyLink) ->
         childCompanyUrl = angular.element(childCompanyLink).attr('href')
         childCompanyName = angular.element(childCompanyLink).text()
-        depth=parseInt(childCompanyLink.parentElement.style.paddingLeft) / 10;
+        depth=parseInt(childCompanyLink.parentElement.style.paddingLeft) / 10
         if isNaN depth
-          depth=0;
+          depth = 0
         while ( $scope.companyPath.length and $scope.companyPath.length >= depth)
           $scope.companyPath.pop()
         $scope.companyPath.push childCompanyName
@@ -319,8 +319,8 @@ angular.module 'ahaLuminateControllers'
                 if not batch?
                   batch = []
                 batch = [batch] if not angular.isArray batch
-                participants = participants.concat(batch);
-                if (++page)*500 < total
+                participants = participants.concat batch
+                if (++page) * 500 < total
                   getCompanyParticipantsList(page,participants)
                 else
                   participants = participants.concat(individualParticipants)
@@ -333,8 +333,8 @@ angular.module 'ahaLuminateControllers'
                       if donationUrl?
                         donationUrl = donationUrl.split('/site/')[1]
                         participant.donationUrl = donationUrl
-                        participant.paypalDonationUrl = donationUrl+"&paypal=true";
-                        participant.amazonDonationUrl=donationUrl.replace(/Donation2/,"SPageNavigator/heartwalk_donate_amazon.html");
+                        participant.paypalDonationUrl = donationUrl + '&paypal=true'
+                        participant.amazonDonationUrl = donationUrl.replace(/Donation2/, 'SPageNavigator/heartwalk_donate_amazon.html')
                       companyParticipants.push participant
                   setCompanyParticipants companyParticipants
                   numCompaniesParticipantRequestComplete++
@@ -388,8 +388,8 @@ angular.module 'ahaLuminateControllers'
               if not batch?
                 batch = []
               batch = [batch] if not angular.isArray batch
-              participants = participants.concat(batch);
-              if (++page)*500 < total
+              participants = participants.concat batch
+              if (++page) * 500 < total
                 getChildCompanyParticipantsList(page,participants)
               else
                 participants = participants.concat(individualParticipants)

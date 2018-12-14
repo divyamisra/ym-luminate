@@ -139,7 +139,7 @@ angular.module 'trPageEditControllers'
         $scope.closePersonalPhoto1Modal = ->
           if $scope.editPersonalPhoto1Modal
             $scope.editPersonalPhoto1Modal.close()
-          $scope.setPersonalPhoto1Error();
+          $scope.setPersonalPhoto1Error()
           if not $scope.$$phase
             $scope.$apply()
         $scope.deletePersonalPhoto1 = ($event) ->
@@ -189,7 +189,7 @@ angular.module 'trPageEditControllers'
         $personalHeader.append $compile('<form method="POST" novalidate ng-class="{\'hidden\': !personalHeadlineOpen}" ng-submit="updatePersonalHeadline()"><button type="button" class="btn btn-primary-inverted btn-raised" ng-click="cancelEditPersonalHeadline()">Cancel</button> <button type="submit" class="btn btn-primary btn-raised">Save</button><h2><input type="text" class="form-control" ng-model="personalHeadline"></h2></form>')($scope)
 
         $personalVideo = angular.element '.heart-user-video--personal'
-        $scope.fr_id = $rootScope.frId;
+        $scope.fr_id = $rootScope.frId
         # make video dynamic
         $scope.personalMedia = {}
         $scope.personalVideo = {}
@@ -231,7 +231,7 @@ angular.module 'trPageEditControllers'
         $scope.closePersonalVideoModal = ->
           if $scope.editPersonalVideoModal
             $scope.editPersonalVideoModal.close()
-          $scope.setPersonalVideoError();
+          $scope.setPersonalVideoError()
           if not $scope.$$phase
             $scope.$apply()
         $scope.cancelEditPersonalVideo = ->
@@ -357,7 +357,7 @@ angular.module 'trPageEditControllers'
         $scope.closeTeamPhoto1Modal = ->
           if $scope.editTeamPhoto1Modal
             $scope.editTeamPhoto1Modal.close()
-          $scope.setTeamPhoto1Error();
+          $scope.setTeamPhoto1Error()
           if not $scope.$$phase
             $scope.$apply()
         $scope.deleteTeamPhoto1 = ($event) ->
@@ -459,7 +459,7 @@ angular.module 'trPageEditControllers'
                 $scope.closeCompanyPhoto1Modal = ->
                   if $scope.editCompanyPhoto1Modal
                     $scope.editCompanyPhoto1Modal.close()
-                  $scope.setCompanyPhoto1Error();
+                  $scope.setCompanyPhoto1Error()
                   if not $scope.$$phase
                     $scope.$apply()
                 $scope.deleteCompanyPhoto1 = ($event) ->
@@ -605,13 +605,13 @@ angular.module 'trPageEditControllers'
           url = $location.absUrl()
         name = name.replace(/[\[\]]/g, '\\$&')
         regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)')
-        results = regex.exec(url)
+        results = regex.exec url
         if !results
           return null
         if !results[2]
           return ''
         decodeURIComponent results[2].replace(/\+/g, ' ')
-      videoWhy = getParameterByName('videoWhy');
+      videoWhy = getParameterByName 'videoWhy'
       if videoWhy is 'true'
         $scope.editPersonalVideo()
   ]

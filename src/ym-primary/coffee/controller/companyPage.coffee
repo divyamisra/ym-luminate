@@ -128,7 +128,7 @@ angular.module 'ahaLuminateControllers'
                   i = 0
                   len = schoolDataRows.length
                   while i < len
-                    if $scope.companyId == schoolDataRows[i][schoolDataHeaders.CID]
+                    if $scope.companyId is schoolDataRows[i][schoolDataHeaders.CID]
                       $scope.eventDate = schoolDataRows[i][schoolDataHeaders.ED]
                       $scope.moneyDueDate = schoolDataRows[i][schoolDataHeaders.MDD]
                       break
@@ -352,7 +352,7 @@ angular.module 'ahaLuminateControllers'
                   $scope.$apply()  
 
       url = 'PageServer?pagename=ym_khc_school_animation&pgwrap=n'
-      if $scope.protocol == 'https:'
+      if $scope.protocol is 'https:'
         url = 'S' + url
       $scope.schoolAnimationURL = $sce.trustAsResourceUrl(url)
       
