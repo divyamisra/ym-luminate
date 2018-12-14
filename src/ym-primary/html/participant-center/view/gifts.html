@@ -45,7 +45,8 @@
               </div>
               <div ng-if="standardGift.prize_status" class="ym-pc-dashboard-standard-gifts-path">
                 <img ng-if="!standardGift.lastItem" class="img-responsive" ng-src="/ym-khc-prizes/images/gift_path_0{{standardGift.randomID}}_on.png" alt="Prize Path">
-                <img ng-if="standardGift.lastItem" class="img-responsive" ng-src="/ym-khc-prizes/images/gift_path_02_fiery_on.png" alt="Fiery on Path">
+                <img ng-if="standardGift.lastItem && !$last" class="img-responsive" ng-src="/ym-khc-prizes/images/gift_path_02_fiery_on.png" alt="Fiery on Path">
+                <img ng-if="standardGift.lastItem && $last" class="img-responsive" ng-src="/ym-khc-prizes/images/gift_path_final_on.png" alt="Finn, Ruby and Fiery on Path">
               </div>
               <div ng-if="!standardGift.prize_status" class="ym-pc-dashboard-standard-gifts-path">
                 <img class="img-responsive" ng-src="/ym-khc-prizes/images/gift_path_0{{standardGift.randomID}}_off.png" alt="Prize Path Not Earned">
