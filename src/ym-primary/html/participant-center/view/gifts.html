@@ -8,7 +8,7 @@
       </div>
       <div class="ym-pc-dashboard-bonus-gifts-icons" role="list" aria-label="Bonus Gifts">
         <div class="ym-pc-dashboard-bonus-gifts-icon" ng-repeat="bonusGift in bonusGifts" ng-cloak>
-           <a href="" ng-click="showPrize('{{bonusGift.prize_sku}}','{{bonusGift.prize_label}}','{{bonusGift.prize_status}}')">
+           <a href="" ng-click="showPrize(bonusGift.prize_sku,bonusGift.prize_label,bonusGift.prize_status)">
               <div class="ym-pc-dashboard-bonus-gift-earned" ng-if="bonusGift.prize_status">Earned!</div>
               <div ng-if="bonusGift.prize_status">
                 <img class="img-responsive" ng-src="/ym-khc-prizes/images/{{bonusGift.prize_sku}}_earned.jpg" alt="">
