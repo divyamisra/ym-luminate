@@ -280,9 +280,10 @@ angular.module 'trPcControllers'
               prize_status: status
               lastItem: lastItem
               randomID: getRandomID()
+            $scope.giftStatus = status
             prevstatus = status
           
-          if status == 1
+          if $scope.giftStatus == 1
             $scope.standardGifts[$scope.standardGifts.length-1].lastItem = 1
       , (response) ->
         # TODO
