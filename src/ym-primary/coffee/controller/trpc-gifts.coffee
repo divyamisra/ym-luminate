@@ -2,12 +2,13 @@ angular.module 'trPcControllers'
   .controller 'NgPcGiftsViewCtrl', [
     '$scope'
     '$rootScope'
+    '$uibModal'
     '$location'
     'APP_INFO'
     'BoundlessService'
     'PageContentService'
     '$sce'
-    ($scope, $rootScope, $location, APP_INFO, BoundlessService, PageContentService, $sce) ->
+    ($scope, $rootScope, $uibModal, $location, APP_INFO, BoundlessService, PageContentService, $sce) ->
       defaultInstantGifts = [
         {
           "id":"MWB-19"
