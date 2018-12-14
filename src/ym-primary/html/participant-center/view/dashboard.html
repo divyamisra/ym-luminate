@@ -121,17 +121,17 @@
               </p>
               <div class="ym-pc-dashboard-email-challenge-images">
                 <a ng-href="{{baseUrl}}#/email">
-                  <img ng-src="../{{dev_branch != '' ? dev_branch+'/' : ''}}aha-luminate/dist/ym-primary/image/pc-challenge-animated-email.gif" alt="Send Email">
+                  <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/pc-challenge-animated-email.gif" alt="Send Email">
                 </a> 
-                <a ng-href="https://hearttools.heart.org/aha_ym19{{tablePrefix == 'heartdev' ? '_dev' : ''}}/?eid={{frId}}&amp;sid={{consId}}&amp;name={{consNameFirst}}" target="_blank">
-                  <img ng-src="../{{dev_branch != '' ? dev_branch+'/' : ''}}aha-luminate/dist/ym-primary/image/pc-challenge-animated-ecard.gif" alt="Send Ecard">
+                <a ng-href="https://hearttools.heart.org/aha_ym19{{tablePrefix == 'heartdev' ? '_dev' : (tablePrefix == 'heartnew' ? '_testing' : '')}}/?eid={{frId}}&amp;sid={{consId}}&amp;name={{consNameFirst}}" target="_blank">
+                  <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/pc-challenge-animated-ecard.gif" alt="Send Ecard">
                 </a>
               </div>
               <div class="ym-pc-dashboard-email-challenge-buttons">
                 <a class="btn btn-md-wide btn-primary" ng-href="{{baseUrl}}#/email">
                   <strong>Send Email</strong>
                 </a> 
-                <a class="btn btn-md-wide btn-primary" ng-href="https://hearttools.heart.org/aha_ym19{{tablePrefix == 'heartdev' ? '_dev' : ''}}/?eid={{frId}}&amp;sid={{consId}}&amp;name={{consNameFirst}}" target="_blank">
+                <a class="btn btn-md-wide btn-primary" ng-href="https://hearttools.heart.org/aha_ym19{{tablePrefix == 'heartdev' ? '_dev' : (tablePrefix == 'heartnew' ? '_testing' : '')}}/?eid={{frId}}&amp;sid={{consId}}&amp;name={{consNameFirst}}" target="_blank">
                   <strong>Send Ecard</strong>
                 </a>
               </div>
@@ -369,10 +369,10 @@
                     <strong>Share My Personal&nbsp;Page:</strong>
                   </p>
                   <a ng-href="{{baseUrl}}#" ng-click="delegatedAddThis('.js--personal-social-share', 'facebook')">
-                    <img ng-src="../{{dev_branch != '' ? dev_branch+'/' : ''}}aha-luminate/dist/youth-markets/image/facebook-logo.png" alt="Facebook">
+                    <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/youth-markets/image/facebook-logo.png" alt="Facebook">
                   </a> 
                   <a ng-href="{{baseUrl}}#" ng-click="delegatedAddThis('.js--personal-social-share', 'twitter')">
-                    <img ng-src="../{{dev_branch != '' ? dev_branch+'/' : ''}}aha-luminate/dist/youth-markets/image/twitter-logo.png" alt="Twitter">
+                    <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/youth-markets/image/twitter-logo.png" alt="Twitter">
                   </a>
                 </div>
               </div>
@@ -402,9 +402,9 @@
                 </p>
               </div>
               <div class="col-sm-4">
-                <img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch+'/' : ''}}aha-luminate/dist/ym-primary/image/my-challenge-exercise.png" alt="{{personalChallenge.name}}" ng-if="personalChallenge.id == '1'" ng-cloak>
-                <img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch+'/' : ''}}aha-luminate/dist/ym-primary/image/my-challenge-water.png" alt="{{personalChallenge.name}}" ng-if="personalChallenge.id == '2'" ng-cloak>
-                <img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch+'/' : ''}}aha-luminate/dist/ym-primary/image/my-challenge-deed.png" alt="{{personalChallenge.name}}" ng-if="personalChallenge.id == '3'" ng-cloak>
+                <img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/my-challenge-exercise.png" alt="{{personalChallenge.name}}" ng-if="personalChallenge.id == '1'" ng-cloak>
+                <img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/my-challenge-water.png" alt="{{personalChallenge.name}}" ng-if="personalChallenge.id == '2'" ng-cloak>
+                <img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/my-challenge-deed.png" alt="{{personalChallenge.name}}" ng-if="personalChallenge.id == '3'" ng-cloak>
               </div>
             </div>
             <div class="ym_my_challenge__actions">
@@ -434,23 +434,23 @@
           <p>Take a trip to Heartsville. All the heart heroes are there as well as some of your friends from the past. Play games to learn about heart health and earn points to win your own 3D printed Heart Hero!</p>
           <div class="text-center">
             <div class="hv-image" ng-init="hvImgsrc='pc-heartsville-static.png';" ng-mouseover="hvImgsrc='pc-heartsville-animated.gif';" ng-mouseout="hvImgsrc='pc-heartsville-static.png';">
-              <img class="list-group" ng-src="../{{dev_branch != '' ? dev_branch+'/' : ''}}aha-luminate/dist/ym-primary/image/{{hvImgsrc}}" alt="Heartsville">
+              <img class="list-group" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/{{hvImgsrc}}" alt="Heartsville">
             </div>
             <br>
-            <a class="btn btn-lg btn-primary" ng-href="https://hearttools.heart.org/aha_ym19{{tablePrefix == 'heartdev' ? '_dev' : ''}}/virtualworld/?fr_id={{frId}}&cons_id={{consId}}&name={{consNameFirst}}" target="_new">
+            <a class="btn btn-lg btn-primary" ng-href="https://hearttools.heart.org/aha_ym19{{tablePrefix == 'heartdev' ? '_dev' : (tablePrefix == 'heartnew' ? '_testing' : '')}}/virtualworld/?fr_id={{frId}}&cons_id={{consId}}&name={{consNameFirst}}" target="_new">
               <strong>Enter World!</strong>
             </a>
             <!-- <a class="btn btn-lg btn-primary" href="javascript:void(0);">
               <strong>Coming Soon!</strong>
             </a> -->
           </div>
-          <!-- <a class="entry-button" ng-href="https://hearttools.heart.org/aha_ym19{{tablePrefix == 'heartdev' ? '_dev' : ''}}/virtualworld/?fr_id={{frId}}&cons_id={{consId}}&name={{consName}}" target="_new">Enter World!</a> -->
+          <!-- <a class="entry-button" ng-href="https://hearttools.heart.org/aha_ym19{{tablePrefix == 'heartdev' ? '_dev' : (tablePrefix == 'heartnew' ? '_testing' : '')}}/virtualworld/?fr_id={{frId}}&cons_id={{consId}}&name={{consName}}" target="_new">Enter World!</a> -->
           <!-- <div class="" ng-if="personalInfo.avatar != ''" ng-cloak>&nbsp;<img ng-src='{{personalInfo.avatar}}'></div> -->
         </div>
       </div>
     </section>
     <div ng-if="coordinatorMessage.message && coordinatorMessage.message != ''" ng-cloak>
-      <img class="ym-coordinator-message-monster" ng-src="../{{dev_branch != '' ? dev_branch+'/' : ''}}aha-luminate/dist/ym-primary/image/peek_monster.png" alt="Ninja Monster peeking out">
+      <img class="ym-coordinator-message-monster" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/peek_monster.png" alt="Ninja Monster peeking out">
       <section class="ym-pc-dashboard-coordinators-message-section" aria-label="Note From Your Teacher">
         <div class="ym-pc-dashboard-section-header">
           <h2 class="h5">
@@ -668,10 +668,10 @@
                       <strong>Share My School&nbsp;Page:</strong>
                     </p>
                     <a ng-href="{{baseUrl}}#" ng-click="delegatedAddThis('.js--company-social-share', 'facebook')">
-                      <img ng-src="../{{dev_branch != '' ? dev_branch+'/' : ''}}aha-luminate/dist/youth-markets/image/facebook-logo.png" alt="Facebook">
+                      <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/youth-markets/image/facebook-logo.png" alt="Facebook">
                     </a> 
                     <a ng-href="{{baseUrl}}#" ng-click="delegatedAddThis('.js--company-social-share', 'twitter')">
-                      <img ng-src="../{{dev_branch != '' ? dev_branch+'/' : ''}}aha-luminate/dist/youth-markets/image/twitter-logo.png" alt="Twitter">
+                      <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/youth-markets/image/twitter-logo.png" alt="Twitter">
                     </a>
                   </div>
                 </div>
@@ -707,10 +707,10 @@
                       <strong>Share My Team&nbsp;Page:</strong>
                     </p>
                     <a ng-href="{{baseUrl}}#" ng-click="delegatedAddThis('.js--team-social-share', 'facebook')">
-                      <img ng-src="../{{dev_branch != '' ? dev_branch+'/' : ''}}aha-luminate/dist/youth-markets/image/facebook-logo.png" alt="Facebook">
+                      <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/youth-markets/image/facebook-logo.png" alt="Facebook">
                     </a> 
                     <a ng-href="{{baseUrl}}#" ng-click="delegatedAddThis('.js--team-social-share', 'twitter')">
-                      <img ng-src="../{{dev_branch != '' ? dev_branch+'/' : ''}}aha-luminate/dist/youth-markets/image/twitter-logo.png" alt="Twitter">
+                      <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/youth-markets/image/twitter-logo.png" alt="Twitter">
                     </a>
                   </div>
                 </div>
@@ -746,10 +746,10 @@
                       <strong>Share My Personal&nbsp;Page:</strong>
                     </p>
                     <a ng-href="{{baseUrl}}#" ng-click="delegatedAddThis('.js--personal-social-share', 'facebook')">
-                      <img ng-src="../{{dev_branch != '' ? dev_branch+'/' : ''}}aha-luminate/dist/youth-markets/image/facebook-logo.png" alt="Facebook">
+                      <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/youth-markets/image/facebook-logo.png" alt="Facebook">
                     </a> 
                     <a ng-href="{{baseUrl}}#" ng-click="delegatedAddThis('.js--personal-social-share', 'twitter')">
-                      <img ng-src="../{{dev_branch != '' ? dev_branch+'/' : ''}}aha-luminate/dist/youth-markets/image/twitter-logo.png" alt="Twitter">
+                      <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/youth-markets/image/twitter-logo.png" alt="Twitter">
                     </a>
                   </div>
                 </div>
@@ -774,10 +774,10 @@
             </div>
             <div class="ym-pc-student-view-image">
               <div class="visible-xs">
-                <img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch+'/' : ''}}aha-luminate/dist/ym-primary/image/student-view_113x230.jpg" alt="Student View">
+                <img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/student-view_113x230.jpg" alt="Student View">
               </div>
               <div class="hidden-xs">
-                <img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch+'/' : ''}}aha-luminate/dist/ym-primary/image/student-view.jpg" alt="Student View">
+                <img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/student-view.jpg" alt="Student View">
               </div>
             </div>
           </div>
@@ -811,6 +811,9 @@
           </p>
           <div class="ym-activity-box-cta">
             <a class="btn btn-md-wide btn-primary" ng-href="https://khc.staging.ootqa.org/coordinator/login/{{authToken}}/{{sessionCookie}}" target="_blank" ng-if="tablePrefix == 'heartdev'" ng-cloak>
+              <strong>Thank You Gifts</strong>
+            </a>
+            <a class="btn btn-md-wide btn-primary" ng-href="https://khc.dev.ootqa.org/coordinator/login/{{authToken}}/{{sessionCookie}}" target="_blank" ng-if="tablePrefix == 'heartnew'" ng-cloak>
               <strong>Thank You Gifts</strong>
             </a>
             <a class="btn btn-md-wide btn-primary" ng-href="https://kidsheartchallenge.heart.org/coordinator/login/{{authToken}}/{{sessionCookie}}" target="_blank" ng-if="tablePrefix == 'heart'" ng-cloak> 
@@ -895,10 +898,10 @@
           </p>
           <div class="ym-pc-dashboard-mobile-downloads">
             <a href="https://itunes.apple.com/us/app/ym-primary/id548389448?mt=8" target="_blank">
-              <img ng-src="../{{dev_branch != '' ? dev_branch+'/' : ''}}aha-luminate/dist/youth-markets/image/apple-store-logo.png" alt="Download the iPhone App">
+              <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/youth-markets/image/apple-store-logo.png" alt="Download the iPhone App">
             </a> 
             <a href="https://play.google.com/store/apps/details?id=com.aha_jump.android.communicator&amp;hl=en" target="_blank">
-              <img ng-src="../{{dev_branch != '' ? dev_branch+'/' : ''}}aha-luminate/dist/youth-markets/image/google-play-logo.png" alt="Download the Android App">
+              <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/youth-markets/image/google-play-logo.png" alt="Download the Android App">
             </a>
           </div>
         </div>

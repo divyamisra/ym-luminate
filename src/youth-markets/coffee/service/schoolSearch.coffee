@@ -62,7 +62,7 @@ angular.module 'ahaLuminateApp'
 
         # if getLoc is passed as true
         # ask for geolocation and load all schools within 10 miles of geolocation
-        # if getLoc == true
+        # if getLoc is true
         #   getLocation()
         
         $scope.filterByLocation = ->
@@ -105,7 +105,7 @@ angular.module 'ahaLuminateApp'
               $scope.schoolList.totalNumberResults = totalNumberResults
               $scope.schoolList.totalItems = totalNumberResults
               $scope.schoolList.schools = schools
-              #setResults();
+              # setResults()
               $scope.schoolList.searchSubmitted = true
               delete $scope.schoolList.searchPending
               updateCompanyData()
@@ -131,7 +131,7 @@ angular.module 'ahaLuminateApp'
           $scope.schoolList.geoLocationEnabled = true
           SchoolLookupService.getGeoState(e)
             .then (response) ->
-              $scope.schoolList.stateFilter = stateFilter = response.data.results[0].address_components[4].short_name;
+              $scope.schoolList.stateFilter = stateFilter = response.data.results[0].address_components[4].short_name
               SchoolLookupService.getSchoolDataByState(stateFilter)
                 .then (response) ->
                   schoolDataRows = response.data.getSchoolSearchDataResponse.schoolData
@@ -163,7 +163,7 @@ angular.module 'ahaLuminateApp'
           return
 
         #if getLoc not set or set to false then do normal load process of old search
-        if getLoc == true
+        if getLoc is true
           $scope.getLocationAlt()
           
         SchoolLookupService.getSchoolData()
@@ -334,7 +334,7 @@ angular.module 'ahaLuminateApp'
             setResults = ->
               if companies.length > 0
                 schools = setSchools companies
-                if bystate == true
+                if bystate is true
                   schools = setSchoolsDataByState schools
                 else
                   schools = setSchoolsData schools
@@ -366,7 +366,7 @@ angular.module 'ahaLuminateApp'
                     moreCompanies = [moreCompanies] if not angular.isArray moreCompanies
                     if moreCompanies.length > 0
                       moreSchools = setSchools moreCompanies
-                      if bystate == true
+                      if bystate is true
                         moreSchools = setSchoolsDataByState moreSchools
                       else
                         moreSchools = setSchoolsData moreSchools

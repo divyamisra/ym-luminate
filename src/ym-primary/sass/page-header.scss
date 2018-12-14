@@ -16,4 +16,14 @@
       margin: 0 0 22px;
     }
   }
+  
+  p {
+    a {
+        &,
+        &:link,
+        &:visited {
+          color: $acc-purple;
+        }
+    }
+  }
 }
