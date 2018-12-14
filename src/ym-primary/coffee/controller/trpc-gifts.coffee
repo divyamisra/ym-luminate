@@ -280,7 +280,7 @@ angular.module 'trPcControllers'
           scope: $scope
           templateUrl: APP_INFO.rootPath + 'dist/ym-primary/html/participant-center/modal/viewPrize.html'
 
-        $scope.cancelShowPrize = ->
-          $scope.viewPrizeModal.close()
+      $scope.cancelShowPrize = ->
+        $scope.viewPrizeModal.close()
 
 ]
