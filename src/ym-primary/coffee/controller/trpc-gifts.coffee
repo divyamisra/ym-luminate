@@ -281,7 +281,8 @@ angular.module 'trPcControllers'
               lastItem: lastItem
               randomID: getRandomID()
             prevstatus = status
-          if prevstatus == 1 and status == 1
+          
+          if status == 1
             $scope.standardGifts[$scope.standardGifts.length-1].lastItem = 1
       , (response) ->
         # TODO
