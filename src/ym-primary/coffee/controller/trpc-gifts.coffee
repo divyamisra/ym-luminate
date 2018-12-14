@@ -279,7 +279,7 @@ angular.module 'trPcControllers'
               prize_sku: gift.id
               prize_status: status
               lastItem: lastItem
-              randomID: getRandomId()
+              randomID: getRandomID()
             prevstatus = status
       , (response) ->
         # TODO
