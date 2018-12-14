@@ -114,7 +114,22 @@ a.btn {
       background: $event-secondary-dark;
     }
   }
-
+  
+  &.btn-white {
+    &,
+    &:link,
+    &:visited {
+      background: $brand-white;
+      color: $event-primary;
+    }
+    
+    &:hover,
+    &:focus,
+    &:active {
+      background: $brand-white;
+    }
+  }
+  
   &.btn-success {
     &,
     &:link,
