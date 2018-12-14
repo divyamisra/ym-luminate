@@ -23,6 +23,9 @@ angular.module 'trPcControllers'
       $scope.cancelShowPrize = ->
         $scope.viewPrizeModal.close()
 
+      $scope.getRandomID = ->
+        return Math.floor((Math.random()*3)+1);
+
       defaultInstantGifts = [
         {
           "id":"MWB-19"
@@ -281,6 +284,4 @@ angular.module 'trPcControllers'
       , (response) ->
         # TODO
       
-      $scope.getRandomID = ->
-        return Math.floor((Math.random()*3)+1);
 ]
