@@ -241,6 +241,8 @@ angular.module 'trPcControllers'
       
       $scope.previewEmail = ->
         $scope.clearEmailAlerts()
+        $scope.rawRecipients = $scope.emailComposer.recipients
+        $scope.emailComposer.recipients = $scope.emailComposer.recipients.replace(";",",")
         NgPcTeamraiserEmailService.previewMessage $httpParamSerializer($scope.emailComposer)
           .then (response) ->
             if response.data.errorResponse
@@ -262,6 +264,7 @@ angular.module 'trPcControllers'
                 templateUrl: APP_INFO.rootPath + 'dist/ym-primary/html/participant-center/modal/emailPreview.html'
                 size: 'lg'
                 windowClass: 'ng-pc-modal ym-modal-full-screen'
+        $scope.emailComposer.recipients=$scope.rawRecipients
       
       $scope.selectStationery = ->
         NgPcTeamraiserEmailService.previewMessage $httpParamSerializer($scope.emailComposer)
@@ -284,6 +287,8 @@ angular.module 'trPcControllers'
         if not $rootScope.sendEmailPending
           $rootScope.sendEmailPending = true
           $scope.sendEmailPending = true
+          $scope.rawRecipients = $scope.emailComposer.recipients
+          $scope.emailComposer.recipients = $scope.emailComposer.recipients.replace(";",",")
           NgPcTeamraiserEmailService.sendMessage $httpParamSerializer($scope.emailComposer)
             .then (response) ->
               delete $rootScope.sendEmailPending
@@ -310,4 +315,5 @@ angular.module 'trPcControllers'
                 window.scrollTo 0, 0
                 angular.element('#emailComposer-recipients').focus()
                 BoundlessService.logEmailSent()
+          $scope.emailComposer.recipients=$scope.rawRecipients
   ]
