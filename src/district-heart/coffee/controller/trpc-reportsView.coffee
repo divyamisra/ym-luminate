@@ -240,41 +240,42 @@ angular.module 'trPcControllers'
               $scope.districtDetailParticipants.participants = []
               $scope.districtDetailParticipants.downloadData = []
             else
-              reportHtml = response.data.getDistrictDetailReport?.report
-              if not reportHtml
+              reportData = response.data.getSchoolDetailReport?.reportData
+              if not reportData
                 $scope.districtDetailParticipants.participants = []
                 $scope.districtDetailParticipants.downloadData = []
               else
-                $reportTable = angular.element('<div>' + reportHtml + '</div>').find 'table'
-                if $reportTable.length is 0
+                reportDataRows = []
+                angular.forEach reportData, (reportDataRow) ->
+                  if reportDataRow.length > 1
+                    reportDataRows.push reportDataRow
+                if reportDataRows.length <= 1
                   $scope.districtDetailParticipants.participants = []
                   $scope.districtDetailParticipants.downloadData = []
                 else
-                  $reportTableRows = $reportTable.find 'tr'
-                  if $reportTableRows.length is 0
-                    $scope.districtDetailParticipants.participants = []
-                    $scope.districtDetailParticipants.downloadData = []
-                  else
-                    districtDetailParticipants = []
-                    districtDetailDownloadData = []
-                    angular.forEach $reportTableRows, (reportTableRow) ->
-                      $reportTableRow = angular.element reportTableRow
-                      teamName = jQuery.trim $reportTableRow.find('td').eq(3).text()
-                      firstName = jQuery.trim $reportTableRow.find('td').eq(8).text()
-                      lastName = jQuery.trim $reportTableRow.find('td').eq(9).text()
-                      email = jQuery.trim $reportTableRow.find('td').eq(10).text()
-                      amount = Number jQuery.trim($reportTableRow.find('td').eq(11).text())
-                      amountFormatted = $filter('currency') jQuery.trim($reportTableRow.find('td').eq(11).text()), '$'
-                      ecardsSent = Number jQuery.trim($reportTableRow.find('td').eq(14).text())
-                      emailsSent = Number jQuery.trim($reportTableRow.find('td').eq(13).text())
-                      tshirtSize = jQuery.trim $reportTableRow.find('td').eq(15).text()
-                      challenge2 = jQuery.trim $reportTableRow.find('td').eq(17).text()
+                  reportDataColumnIndexMap = {}
+                  angular.forEach reportDataRows[0], (reportDataHeader, reportDataHeaderIndex) ->
+                    reportDataColumnIndexMap[reportDataHeader] = reportDataHeaderIndex
+                  districtDetailParticipants = []
+                  districtDetailDownloadData = []
+                  angular.forEach reportDataRows, (reportDataRow, reportDataRowIndex) ->
+                    if reportDataRowIndex > 0
+                      teamName = jQuery.trim reportDataRow[reportDataColumnIndexMap.TEAM_NAME]
+                      firstName = jQuery.trim reportDataRow[reportDataColumnIndexMap.PARTICIPANT_FIRST_NAME]
+                      lastName = jQuery.trim reportDataRow[reportDataColumnIndexMap.PARTICIPANT_LAST_NAME]
+                      email = jQuery.trim reportDataRow[reportDataColumnIndexMap.PARTICIPANT_EMAIL]
+                      amount = Number reportDataRow[reportDataColumnIndexMap.TRX_AMT]
+                      amountFormatted = $filter('currency') jQuery.trim(reportDataRow[reportDataColumnIndexMap.TRX_AMT]), '$'
+                      ecardsSent = Number reportDataRow[reportDataColumnIndexMap.ECARDS_SENT_CNT]
+                      emailsSent = Number reportDataRow[reportDataColumnIndexMap.EMAILS_SENT_CNT]
+                      tshirtSize = jQuery.trim reportDataRow[reportDataColumnIndexMap.TSHIRT_SIZE]
+                      challenge2 = jQuery.trim reportDataRow[reportDataColumnIndexMap.CHALLENGE2]
                       bloodPressureCheck = ''
                       if challenge2?.toLowerCase() is 'true'
                         bloodPressureCheck = 'Yes'
                       else
                         bloodPressureCheck = 'No'
-                      challenge1 = jQuery.trim $reportTableRow.find('td').eq(16).text()
+                      challenge1 = reportDataRow[reportDataColumnIndexMap.CHALLENGE1]
                       minsActivity = ''
                       if not challenge1 or challenge1 is ''
                         minsActivity = '0'
@@ -302,8 +303,8 @@ angular.module 'trPcControllers'
                         bloodPressureCheck
                         minsActivity
                       ]
-                    $scope.districtDetailParticipants.participants = districtDetailParticipants
-                    $scope.districtDetailParticipants.downloadData = districtDetailDownloadData
+                  $scope.districtDetailParticipants.participants = districtDetailParticipants
+                  $scope.districtDetailParticipants.downloadData = districtDetailDownloadData
             response
         $scope.reportPromises.push districtDetailReportPromise
         

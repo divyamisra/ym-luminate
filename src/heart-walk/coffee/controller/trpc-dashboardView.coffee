@@ -400,7 +400,7 @@ angular.module 'trPcControllers'
               if $rootScope.isSelfDonor is 'TRUE' and $scope.userInteractions.donate is 0
                 $scope.userInteractions.donate = 1
                 logUserInt 'donate', $scope.frId
-              if $rootScope.hasBoundlessApp is 'true' and $scope.userInteractions.social is 0
+              if $rootScope.hasBoundlessApp is true and $scope.userInteractions.social is 0
                 $scope.userInteractions.social = 1
                 logUserInt 'social', $scope.frId
               if $scope.messageCounts.sentMessages > 0 and $scope.userInteractions.email is 0
@@ -429,7 +429,7 @@ angular.module 'trPcControllers'
         if not PCLogin
           skipLBs = 0
         sessionStorage.setItem 'PCLogin', 'yes'
-        if $rootScope.participantRegistration.lastPC2Login is '0' and $rootScope.isSelfDonor != "TRUE"
+        if $rootScope.participantRegistration.lastPC2Login is '0' and $rootScope.isSelfDonor isnt 'TRUE'
           $scope.dashboardGreeting = 'page'
           if skipLBs is 0
             $scope.LBthankYouRegisteringModal = $uibModal.open
@@ -544,19 +544,19 @@ angular.module 'trPcControllers'
         logUserInt 'goal2', $scope.frId
         $scope.LBgoal2Modal.close()
         $scope.editGoal 'Participant'
-
+      
       $scope.notRightNow = ->
         $uibModalStack.dismissAll()
-
+      
       $scope.sendGAEvent = (event) ->
         _gaq.push(['t2._trackEvent', 'HW PC', 'click', event])
-
+      
       $scope.LBskip = (interaction) ->
         logUserInt interaction, $scope.frId
         $scope.userInteractions[interaction] = 1
         $uibModalStack.dismissAll()
         runHeaderCheck()
-
+      
       $scope.scrollToFacebookFundraiser = ->
         $timeout ->
           if jQuery('.js--facebook-fundraiser-uncompleted-section').length > 0
@@ -567,15 +567,15 @@ angular.module 'trPcControllers'
             jQuery('html, body').animate
               scrollTop: jQuery('.js--facebook-fundraiser-completed-section').offset().top - 150
             , 250
-
+      
       $scope.goSocial = ->
-        if $rootScope.device.mobileType == 'android'
+        if $rootScope.device.mobileType is 'android'
           window.location = 'https://play.google.com/store/apps/details?id=com.aha.hw.communicator'
-        else if $rootScope.device.mobileType == 'ios'
+        else if $rootScope.device.mobileType is 'ios'
           window.location = 'https://itunes.apple.com/us/app/heart-walk/id451276834?ls=1&mt=8'
         else
           window.location = 'PageServer?pagename=heartwalk_fundraising_tools&amp;pc2_page=center&amp;fr_id=' + $scope.frId + '#/social'
-
+      
       $scope.profileProgress = 0
       $scope.profileChecklist = ->
         $scope.resetSurveyAlerts()
@@ -587,7 +587,7 @@ angular.module 'trPcControllers'
           document.getElementById('LBprofileWhy').onclick = ->
             _gaq.push(['t2._trackEvent', 'HW PC', 'click', 'Whats your why - profile lightbox'])
         , 500
-
+      
       $scope.reLaunchprofileChecklist = ->
         $scope.LBprofileModal = $uibModal.open
           scope: $scope
@@ -596,7 +596,7 @@ angular.module 'trPcControllers'
             document.getElementById('LBprofileWhy').onclick = ->
               _gaq.push(['t2._trackEvent', 'HW PC', 'click', 'Whats your why - profile lightbox'])
           , 500
-
+      
       reCheckProfileItems = ->
         $scope.profileChecklistItems = {
           mobile: 0
@@ -1522,14 +1522,14 @@ angular.module 'trPcControllers'
               .then (response) ->
                 if response.data.errorResponse
                   if $scope.editPageUrlOptions.updateUrlInput isnt $scope.prevShortcut.text
-                    $scope.editPageUrlOptions.updateUrlFailure = true;
-                    return $scope.editPageUrlOptions.updateUrlFailureMessage = response.data.errorResponse.message or 'An unexpected error occurred while updating your personal page URL.';
+                    $scope.editPageUrlOptions.updateUrlFailure = true
+                    return $scope.editPageUrlOptions.updateUrlFailureMessage = response.data.errorResponse.message or 'An unexpected error occurred while updating your personal page URL.'
                   else
                     updateUrlPromise = TeamraiserShortcutURLService.updateShortcut("text=",$rootScope.prevFrIdForShortcut)
                       .then (response) ->
                         if (response.data.errorResponse)
                           $scope.editPageUrlOptions.updateUrlFailure = true
-                          return $scope.editPageUrlOptions.updateUrlFailureMessage = response.data.errorResponse.message or 'An unexpected error occurred while updating your personal page URL.';
+                          return $scope.editPageUrlOptions.updateUrlFailureMessage = response.data.errorResponse.message or 'An unexpected error occurred while updating your personal page URL.'
                         else
                           $scope.updatePageUrl("Participant")
                 else
@@ -1540,15 +1540,15 @@ angular.module 'trPcControllers'
             updateUrlPromise = TeamraiserShortcutURLService.updateTeamShortcut dataStr
               .then (response) ->
                 if response.data.errorResponse
-                  if $scope.getPrevTeamShortcut && ($scope.editPageUrlOptions.updateUrlInput != $scope.prevTeamShortcut.text)
-                    $scope.editPageUrlOptions.updateUrlFailure = true;
-                    return $scope.editPageUrlOptions.updateUrlFailureMessage = response.data.errorResponse.message or 'An unexpected error occurred while updating your personal page URL.';
+                  if $scope.getPrevTeamShortcut and ($scope.editPageUrlOptions.updateUrlInput isnt $scope.prevTeamShortcut.text)
+                    $scope.editPageUrlOptions.updateUrlFailure = true
+                    return $scope.editPageUrlOptions.updateUrlFailureMessage = response.data.errorResponse.message or 'An unexpected error occurred while updating your personal page URL.'
                   else
                     updateUrlPromise = TeamraiserShortcutURLService.updateTeamShortcut("text=",$rootScope.prevFrIdForShortcut)
                       .then (response) ->
                         if (response.data.errorResponse)
                           $scope.editPageUrlOptions.updateUrlFailure = true
-                          return $scope.editPageUrlOptions.updateUrlFailureMessage = response.data.errorResponse.message or 'An unexpected error occurred while updating your personal page URL.';
+                          return $scope.editPageUrlOptions.updateUrlFailureMessage = response.data.errorResponse.message or 'An unexpected error occurred while updating your personal page URL.'
                         else
                           $scope.updatePageUrl("Team")
                 else
@@ -1610,4 +1610,3 @@ angular.module 'trPcControllers'
             $scope.dashboardPromises.push getCompanyShortcutPromise
           $scope.getCompanyShortcut()
   ]
-  

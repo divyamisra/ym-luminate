@@ -19,7 +19,8 @@ angular.module 'trPcControllers'
     'NgPcTeamraiserCompanyService'
     'NgPcTeamraiserSurveyResponseService'
     'NgPcTeamraiserSchoolService'
-  ($rootScope, $scope, $filter, $httpParamSerializer, $timeout, $uibModal, APP_INFO, BoundlessService, ZuriService, NgPcTeamraiserRegistrationService, NgPcTeamraiserProgressService, NgPcTeamraiserTeamService, NgPcTeamraiserGiftService, NgPcContactService, NgPcTeamraiserShortcutURLService, NgPcInteractionService, NgPcTeamraiserCompanyService, NgPcTeamraiserSurveyResponseService, NgPcTeamraiserSchoolService) ->
+    'FacebookFundraiserService'
+    ($rootScope, $scope, $filter, $httpParamSerializer, $timeout, $uibModal, APP_INFO, BoundlessService, ZuriService, NgPcTeamraiserRegistrationService, NgPcTeamraiserProgressService, NgPcTeamraiserTeamService, NgPcTeamraiserGiftService, NgPcContactService, NgPcTeamraiserShortcutURLService, NgPcInteractionService, NgPcTeamraiserCompanyService, NgPcTeamraiserSurveyResponseService, NgPcTeamraiserSchoolService, FacebookFundraiserService) ->
       $scope.dashboardPromises = []
       
       $dataRoot = angular.element '[data-embed-root]'
@@ -250,6 +251,10 @@ angular.module 'trPcControllers'
               else
                 $scope.editPersonalGoalModal.close()
                 $scope.refreshFundraisingProgress()
+                if $rootScope.facebookFundraiserId
+                  FacebookFundraiserService.updateFundraiser()
+                    .then ->
+                      FacebookFundraiserService.syncDonations()
               response
           $scope.dashboardPromises.push updatePersonalGoalPromise
       
@@ -316,7 +321,17 @@ angular.module 'trPcControllers'
               $scope.editSchoolGoalModal.close()
               $scope.refreshFundraisingProgress()
           $scope.dashboardPromises.push updateSchoolGoalPromise
-
+      
+      if $scope.facebookFundraisersEnabled and $rootScope.facebookFundraiserId and $rootScope.facebookFundraiserId isnt ''
+        $rootScope.facebookFundraiserConfirmedStatus = 'pending'
+        FacebookFundraiserService.confirmFundraiserStatus()
+          .then (response) ->
+            if not response.data.status?.active
+              delete $rootScope.facebookFundraiserId
+              $rootScope.facebookFundraiserConfirmedStatus = 'deleted'
+            else
+              $rootScope.facebookFundraiserConfirmedStatus = 'confirmed'
+      
       $scope.participantGifts =
         sortColumn: 'date_recorded'
         sortAscending: false

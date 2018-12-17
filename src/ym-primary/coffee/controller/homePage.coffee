@@ -27,7 +27,7 @@ angular.module 'ahaLuminateControllers'
             else
               teamraisers = [teamraisers] if not angular.isArray teamraisers
               teamraiserInfo = teamraisers[0]
-              setNoSchoolLink $scope.nonSecureDomain + '/site/TRR?fr_id=' + teamraiserInfo.id + '&pg=tfind&fr_tm_opt=none&s_frTJoin=&s_frCompanyId='
+              setNoSchoolLink $scope.nonsecureDomain + 'site/TRR?fr_id=' + teamraiserInfo.id + '&pg=tfind&fr_tm_opt=none&s_frTJoin=&s_frCompanyId='
       if consId
         TeamraiserParticipantService.getRegisteredTeamraisers 'cons_id=' + consId + '&event_type=' + encodeURIComponent('YM Kids Heart Challenge'),
           error: ->
@@ -108,6 +108,7 @@ angular.module 'ahaLuminateControllers'
           nav: true
           loop: true
           center: true
+          dots: false
           responsive:
             0:
               stagePadding: 0
@@ -140,6 +141,7 @@ angular.module 'ahaLuminateControllers'
               nav: true
               loop: true
               center: true
+              dots: false
               navText: [
                 '<i class="fa fa-chevron-left" hidden aria-hidden="true" />'
                 '<i class="fa fa-chevron-right" hidden aria-hidden="true" />'
