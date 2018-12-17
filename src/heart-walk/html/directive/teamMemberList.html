@@ -39,5 +39,8 @@
         <a class="btn btn-lg btn-primary" ng-href="{{teamMember.donationUrl}}" ng-if="teamMember.donationUrl">Donate</a>
       </div>
     </div>
+      <div ng-if="!teamMembers.length" style="display:table-cell;vertical-align:middle;height:90px;text-align:middle;">
+        <p class="no-result">Your search "{{teamMemberSearch.lastSearch}}" did not return any results.</p>
+      </div>
   </div>
 </div>

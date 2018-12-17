@@ -58,7 +58,7 @@ angular.module 'trPcControllers'
               contact = angular.copy currContact
         contact
 
-      isAllContactsSelected = () ->
+      isAllContactsSelected = ->
         $scope.addressBookContacts.allContacts.length is countContactSelected $scope.addressBookContacts.allContacts
 
       $scope.addressBookContacts = 
@@ -98,7 +98,7 @@ angular.module 'trPcControllers'
           $scope.contactsSelected.all false
         $scope.contactsSelected.all()
       $scope.refreshSelectedContacts()
-      $scope.$watchGroup ['addressBookContacts.contacts', 'contactsUpdated'], () ->
+      $scope.$watchGroup ['addressBookContacts.contacts', 'contactsUpdated'], ->
         $scope.refreshSelectedContacts()
 
       $scope.getContacts = (refresh) ->
@@ -108,7 +108,7 @@ angular.module 'trPcControllers'
         requestData = 'tr_ab_filter=' + $scope.filter + '&skip_groups=true'
         $scope.addressBookContacts.contacts = []
         if (refresh)
-          $scope.addressBookContacts.allContacts = [];
+          $scope.addressBookContacts.allContacts = []
           contactsPromise = ContactService.getTeamraiserAddressBookContacts requestData
             .then (response) ->
               addressBookContacts = response.data.getTeamraiserAddressBookContactsResponse.addressBookContact
@@ -117,8 +117,8 @@ angular.module 'trPcControllers'
                 contactString = getContactString contact
                 contactIndex = $rootScope.selectedContacts.contacts.indexOf contactString
                 contact.selected = contactIndex isnt -1
-                $scope.addressBookContacts.allContacts.push(contact);
-                if (Math.floor(idx/numPerPage) == currentPage)
+                $scope.addressBookContacts.allContacts.push contact
+                if (Math.floor(idx / numPerPage) is currentPage)
                   $scope.addressBookContacts.contacts.push(contact)
               contact=addressBookContacts.shift()
               while contact
@@ -127,14 +127,14 @@ angular.module 'trPcControllers'
                 idx++
               $scope.addressBookContacts.totalNumber = response.data.getTeamraiserAddressBookContactsResponse.totalNumberResults
               if ( $scope.addressBookContacts.totalNumber >  $scope.addressBookContacts.allContacts.length )
-                $scope.getContacts(page+1);
+                $scope.getContacts(page + 1)
               response
         else
-          while (idx < numPerPage && $scope.addressBookContacts.allContacts[idx + (numPerPage * currentPage)])
-             $scope.addressBookContacts.contacts.push($scope.addressBookContacts.allContacts[idx+(numPerPage*currentPage)]);
+          while (idx < numPerPage and $scope.addressBookContacts.allContacts[idx + (numPerPage * currentPage)])
+             $scope.addressBookContacts.contacts.push($scope.addressBookContacts.allContacts[idx + (numPerPage * currentPage)])
              idx++
         $scope.emailPromises.push contactsPromise
-      $scope.getContacts(true)
+      $scope.getContacts true
 
       $scope.showDeleteGroup = false
       $scope.getGroups = ->
@@ -232,7 +232,7 @@ angular.module 'trPcControllers'
                     $scope.addContactSuccess = translationId
                 closeAddContactModal()
                 refreshContactsNavBar()
-                $scope.getContacts(true)
+                $scope.getContacts true
               response
           $scope.emailPromises.push addContactPromise
 
@@ -517,7 +517,7 @@ angular.module 'trPcControllers'
                 $scope.importContactsSuccess = true
                 closeImportContactsModal()
                 refreshContactsNavBar()
-                $scope.getContacts(true)
+                $scope.getContacts true
       
       $scope.uploadContactsCSV = ->
         angular.element('.js--import-contacts-csv-form').submit()
@@ -585,7 +585,7 @@ angular.module 'trPcControllers'
         else
           # no change needed
 
-      $scope.toggleAllContacts = () ->
+      $scope.toggleAllContacts = ->
         selectToggle = $scope.contactsSelected.all()
         angular.forEach $scope.addressBookContacts.allContacts, (contact) ->
           if contact.selected isnt selectToggle
@@ -622,7 +622,7 @@ angular.module 'trPcControllers'
         $scope.clearEditContactAlerts()
         closeEditContactModal()
 
-      $scope.toggleEditContact = () ->
+      $scope.toggleEditContact = ->
         $scope.editContactMode = not $scope.editContactMode
       
       $scope.saveUpdatedContact = ->
@@ -650,7 +650,7 @@ angular.module 'trPcControllers'
                 closeEditContactModal()
                 window.scrollTo 0, 0
                 refreshContactsNavBar()
-                $scope.getContacts(true)
+                $scope.getContacts true
               response
           $scope.emailPromises.push updateContactPromise
       
@@ -667,13 +667,13 @@ angular.module 'trPcControllers'
           scope: $scope
           templateUrl: APP_INFO.rootPath + 'dist/heart-walk/html/participant-center/modal/deleteContact.html'
       
-      $scope.deleteContacts = () ->
+      $scope.deleteContacts = ->
         contacts = []
         for i in [0..$scope.addressBookContacts.allContacts.length]
-          contact=$scope.addressBookContacts.allContacts[i]
-          if (contact?.selected)
-            contacts.push(contact.id)
-        $scope.contactsToDelete=contacts.join(",")
+          contact = $scope.addressBookContacts.allContacts[i]
+          if contact?.selected
+            contacts.push contact.id
+        $scope.contactsToDelete = contacts.join ','
         $scope.clearAllContactAlerts()
         $scope.deleteContactsModal = $uibModal.open 
           scope: $scope
@@ -717,7 +717,7 @@ angular.module 'trPcControllers'
               closeDeleteContactModal()
               window.scrollTo 0, 0
               refreshContactsNavBar()
-              $scope.getContacts(true)
+              $scope.getContacts true
               response
           $scope.emailPromises.push deleteContactPromise
       

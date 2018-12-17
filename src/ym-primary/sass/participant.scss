@@ -4,6 +4,15 @@
 
 @import "../../youth-markets/sass/participant.scss";
 
+.ng-pc-nav {
+  a {
+    &, 
+    &:link, 
+    &:visited {
+      width: 16.66666667%;
+    }
+  }
+}
 .ym-page-header-related {
   bottom: -20px;
 }
