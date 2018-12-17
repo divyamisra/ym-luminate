@@ -194,9 +194,6 @@ module.exports = (grunt) ->
     config.watch['youth-markets'].tasks.forEach (task) ->
       if task.indexOf('notify:') is -1
         devTasks.push task
-    config.watch['jump-hoops'].tasks.forEach (task) ->
-      if task.indexOf('notify:') is -1
-        devTasks.push task
     config.watch['ym-primary'].tasks.forEach (task) ->
       if task.indexOf('notify:') is -1
         devTasks.push task
