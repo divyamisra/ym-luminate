@@ -254,17 +254,16 @@ angular.module 'trPcControllers'
       
       BoundlessService.getPrizes $scope.consId
       .then (response) ->
-        students = response.data.students
-        angular.forEach students, (student) ->
-          current_level = student.current_level
-          angular.forEach defaultInstantGifts, (gift) ->
-            status = 0
-            if giftLevels[current_level].includes(gift.id) and student.has_bonus != 0
-              status = 1
-            $scope.bonusGifts.push
-              prize_label: gift.name
-              prize_sku: gift.id
-              prize_status: status
+        student = response.data.student
+        current_level = student.current_level
+        angular.forEach defaultInstantGifts, (gift) ->
+          status = 0
+          if giftLevels[current_level].includes(gift.id) and student.has_bonus != 0
+            status = 1
+          $scope.bonusGifts.push
+            prize_label: gift.name
+            prize_sku: gift.id
+            prize_status: status
 
           prevstatus = 0
           angular.forEach defaultStandardGifts, (gift, key) ->
