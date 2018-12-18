@@ -50,7 +50,8 @@ module.exports = {
         expand: true, 
         cwd: 'src/ym-primary/image/', 
         src: [
-          '*.{gif,GIF,jpg,JPG,png,PNG,svg,SVG}'
+          '*.{gif,GIF,jpg,JPG,png,PNG,svg,SVG}',
+          'prizes/*.{gif,GIF,jpg,JPG,png,PNG,svg,SVG}'
         ], 
         dest: 'dist/ym-primary/image/'
       }
