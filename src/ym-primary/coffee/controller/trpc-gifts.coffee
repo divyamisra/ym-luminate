@@ -112,141 +112,202 @@ angular.module 'trPcControllers'
       ]
 
       giftLevels = {
-        "$5-$14":[
-          "KUNI-19"
-          "MWB-19"
-          "KSHA-19"
-        ]
-        "$15-$19":[
-          "KUNI-19"
-          "MWB-19"
-          "KSHA-19"
-          "LVL2JR-19"
-        ]
-        "$20-$34":[
-          "KUNI-19"
-          "MWB-19"
-          "KSHA-19"
-          "LVL2JR-19"
-          "KOTT-19"
-        ]
-        "$35-$49":[
-          "KUNI-19"
-          "MWB-19"
-          "KSHA-19"
-          "LVL2JR-19"
-          "KOTT-19"
-          "KPIG-19"
-        ]
-        "$50-$74":[
-          "KUNI-19"
-          "MWB-19"
-          "KSHA-19"
-          "KPAN-19"
-          "LVL2JR-19"
-          "KOTT-19"
-          "KPIG-19"
-          "LVL3"
-        ]
-        "Green $75-$99":[
-          "KUNI-19"
-          "MWB-19"
-          "KSHA-19"
-          "KPAN-19"
-          "LVL2JR-19"
-          "KOTT-19"
-          "KPIG-19"
-          "LVL3"
-          "LVL4BB-19"
-        ]
-        "Blue $100-$149":[
-          "KUNI-19"
-          "MWB-19"
-          "KSHA-19"
-          "KPAN-19"
-          "LVL2JR-19"
-          "KOTT-19"
-          "KPIG-19"
-          "LVL3"
-          "LVL4BB-19"
-          "KNAR-19"
-        ]
-        "Purple $150-$199":[
-          "KUNI-19"
-          "MWB-19"
-          "KSHA-19"
-          "KPAN-19"
-          "LVL2JR-19"
-          "KOTT-19"
-          "KPIG-19"
-          "LVL3"
-          "LVL4BB-19"
-          "KNAR-19"
-          "LVL5DB-19"
-        ]
-        "Red $200-$249":[
-          "KUNI-19"
-          "MWB-19"
-          "KSHA-19"
-          "KPAN-19"
-          "LVL2JR-19"
-          "KOTT-19"
-          "KPIG-19"
-          "LVL3"
-          "LVL4BB-19"
-          "KNAR-19"
-          "LVL5DB-19"
-          "KDRA-19"
-        ]
-        "Orange $250-$499":[
-          "KUNI-19"
-          "MWB-19"
-          "KSHA-19"
-          "KPAN-19"
-          "LVL2JR-19"
-          "KOTT-19"
-          "KPIG-19"
-          "LVL3"
-          "LVL4BB-19"
-          "KNAR-19"
-          "LVL5DB-19"
-          "KDRA-19"
-          "LVL6ST-19"
-        ]
-        "Brown $500-$999":[
-          "KUNI-19"
-          "MWB-19"
-          "KSHA-19"
-          "KPAN-19"
-          "LVL2JR-19"
-          "KOTT-19"
-          "KPIG-19"
-          "LVL3"
-          "LVL4BB-19"
-          "KNAR-19"
-          "LVL5DB-19"
-          "KDRA-19"
-          "LVL6ST-19"
-          "LVL7SR-19"
-        ]
-        "Yellow $1000+":[
-          "KUNI-19"
-          "MWB-19"
-          "KSHA-19"
-          "KPAN-19"
-          "LVL2JR-19"
-          "KOTT-19"
-          "KPIG-19"
-          "LVL3"
-          "LVL4BB-19"
-          "KNAR-19"
-          "LVL5DB-19"
-          "KDRA-19"
-          "LVL6ST-19"
-          "LVL7SR-19"
-          "LVL8WH-19"
-          "3D"
-        ]
+        "$5-$14": {
+          "products":[
+            "KUNI-19"
+            "MWB-19"
+            "KSHA-19"
+          ]
+          "desc":
+            "Up to $14"
+          }
+        }
+        "$15-$19": {
+          "products":[
+            "KUNI-19"
+            "MWB-19"
+            "KSHA-19"
+            "LVL2JR-19"
+          ]
+          "desc":
+            "Up to $19"
+          }
+        }
+        "$20-$34": {
+          "products":[
+            "KUNI-19"
+            "MWB-19"
+            "KSHA-19"
+            "LVL2JR-19"
+            "KOTT-19"
+          ]
+          "desc":
+            "Up to $34"
+          }
+        }
+        "$35-$49": {
+          "products":[
+            "KUNI-19"
+            "MWB-19"
+            "KSHA-19"
+            "LVL2JR-19"
+            "KOTT-19"
+            "KPIG-19"
+          ]
+          "desc":
+            "Up to $49"
+          }
+        }
+        "$50-$74": {
+          "products":[
+            "KUNI-19"
+            "MWB-19"
+            "KSHA-19"
+            "KPAN-19"
+            "LVL2JR-19"
+            "KOTT-19"
+            "KPIG-19"
+            "LVL3"
+          ]
+          "desc":
+            "Up to $74"
+          }
+        }
+
+        "Green $75-$99": {
+          "products":[
+            "KUNI-19"
+            "MWB-19"
+            "KSHA-19"
+            "KPAN-19"
+            "LVL2JR-19"
+            "KOTT-19"
+            "KPIG-19"
+            "LVL3"
+            "LVL4BB-19"
+          ]
+          "desc":
+            "Up to $99"
+          }
+        }
+        "Blue $100-$149": {
+          "products":[
+            "KUNI-19"
+            "MWB-19"
+            "KSHA-19"
+            "KPAN-19"
+            "LVL2JR-19"
+            "KOTT-19"
+            "KPIG-19"
+            "LVL3"
+            "LVL4BB-19"
+            "KNAR-19"
+          ]
+          "desc":
+            "Up to $149"
+          }
+        }
+        "Purple $150-$199": {
+          "products":[
+            "KUNI-19"
+            "MWB-19"
+            "KSHA-19"
+            "KPAN-19"
+            "LVL2JR-19"
+            "KOTT-19"
+            "KPIG-19"
+            "LVL3"
+            "LVL4BB-19"
+            "KNAR-19"
+            "LVL5DB-19"
+          ]
+          "desc":
+            "Up to $199"
+          }
+        }
+        "Red $200-$249": {
+          "products":[
+            "KUNI-19"
+            "MWB-19"
+            "KSHA-19"
+            "KPAN-19"
+            "LVL2JR-19"
+            "KOTT-19"
+            "KPIG-19"
+            "LVL3"
+            "LVL4BB-19"
+            "KNAR-19"
+            "LVL5DB-19"
+            "KDRA-19"
+          ]
+          "desc":
+            "Up to $249"
+          }
+        }
+        "Orange $250-$499": {
+          "products":[
+            "KUNI-19"
+            "MWB-19"
+            "KSHA-19"
+            "KPAN-19"
+            "LVL2JR-19"
+            "KOTT-19"
+            "KPIG-19"
+            "LVL3"
+            "LVL4BB-19"
+            "KNAR-19"
+            "LVL5DB-19"
+            "KDRA-19"
+            "LVL6ST-19"
+          ]
+          "desc":
+            "Up to $499"
+          }
+        }
+        "Brown $500-$999": {
+          "products":[
+            "KUNI-19"
+            "MWB-19"
+            "KSHA-19"
+            "KPAN-19"
+            "LVL2JR-19"
+            "KOTT-19"
+            "KPIG-19"
+            "LVL3"
+            "LVL4BB-19"
+            "KNAR-19"
+            "LVL5DB-19"
+            "KDRA-19"
+            "LVL6ST-19"
+            "LVL7SR-19"
+          ]
+          "desc":
+            "Up to $999"
+          }
+        }
+        "Yellow $1000+": {
+          "products":[
+            "KUNI-19"
+            "MWB-19"
+            "KSHA-19"
+            "KPAN-19"
+            "LVL2JR-19"
+            "KOTT-19"
+            "KPIG-19"
+            "LVL3"
+            "LVL4BB-19"
+            "KNAR-19"
+            "LVL5DB-19"
+            "KDRA-19"
+            "LVL6ST-19"
+            "LVL7SR-19"
+            "LVL8WH-19"
+            "3D"
+          ]
+          "desc":
+            "$1000+"
+          }
+        }
       }
       
       $scope.bonusGifts = []
@@ -259,18 +320,19 @@ angular.module 'trPcControllers'
           current_level = student.current_level
           angular.forEach defaultInstantGifts, (gift) ->
             status = 0
-            if giftLevels[current_level].includes(gift.id) and student.has_bonus != 0
+            if giftLevels[current_level].products.includes(gift.id) and student.has_bonus != 0
               status = 1
             $scope.bonusGifts.push
               prize_label: gift.name
               prize_sku: gift.id
               prize_status: status
+              prize_level: giftLevels[current_level].desc
 
           prevstatus = 0
           angular.forEach defaultStandardGifts, (gift, key) ->
             status = 0
             lastItem = 0
-            if giftLevels[current_level].includes(gift.id)
+            if giftLevels[current_level].products.includes(gift.id)
               status = 1
             if prevstatus == 1 and status == 0
               $scope.standardGifts[$scope.standardGifts.length-1].lastItem = 1
@@ -280,6 +342,7 @@ angular.module 'trPcControllers'
               prize_status: status
               lastItem: lastItem
               randomID: getRandomID()
+              prize_level: giftLevels[current_level].desc
             $scope.giftStatus = status
             prevstatus = status
         
