@@ -254,36 +254,37 @@ angular.module 'trPcControllers'
       
       BoundlessService.getPrizes $scope.consId
       .then (response) ->
-        student = response.data.student
-        current_level = student.current_level
-        angular.forEach defaultInstantGifts, (gift) ->
-          status = 0
-          if giftLevels[current_level].includes(gift.id) and student.has_bonus != 0
-            status = 1
-          $scope.bonusGifts.push
-            prize_label: gift.name
-            prize_sku: gift.id
-            prize_status: status
+        students = response.data.student
+        angular.forEach students, (student) ->
+          current_level = student.current_level
+          angular.forEach defaultInstantGifts, (gift) ->
+            status = 0
+            if giftLevels[current_level].includes(gift.id) and student.has_bonus != 0
+              status = 1
+            $scope.bonusGifts.push
+              prize_label: gift.name
+              prize_sku: gift.id
+              prize_status: status
 
-        prevstatus = 0
-        angular.forEach defaultStandardGifts, (gift, key) ->
-          status = 0
-          lastItem = 0
-          if giftLevels[current_level].includes(gift.id)
-            status = 1
-          if prevstatus == 1 and status == 0
-            $scope.standardGifts[$scope.standardGifts.length-1].lastItem = 1
-          $scope.standardGifts.push
-            prize_label: gift.name
-            prize_sku: gift.id
-            prize_status: status
-            lastItem: lastItem
-            randomID: getRandomID()
-          $scope.giftStatus = status
-          prevstatus = status
+          prevstatus = 0
+          angular.forEach defaultStandardGifts, (gift, key) ->
+            status = 0
+            lastItem = 0
+            if giftLevels[current_level].includes(gift.id)
+              status = 1
+            if prevstatus == 1 and status == 0
+              $scope.standardGifts[$scope.standardGifts.length-1].lastItem = 1
+            $scope.standardGifts.push
+              prize_label: gift.name
+              prize_sku: gift.id
+              prize_status: status
+              lastItem: lastItem
+              randomID: getRandomID()
+            $scope.giftStatus = status
+            prevstatus = status
         
-        if $scope.giftStatus == 1
-          $scope.standardGifts[$scope.standardGifts.length-1].lastItem = 1
+          if $scope.giftStatus == 1
+            $scope.standardGifts[$scope.standardGifts.length-1].lastItem = 1
       , (response) ->
         # TODO
       
