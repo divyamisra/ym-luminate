@@ -13,4 +13,4 @@ angular.module('trPcControllers').controller 'NgPcSocialViewCtrl', [
     url = 'https://' + urlPrefix + '.boundlessfundraising.com/applications/ahakhc/social/app/ui/#/addsocial/' + consId + '/' + frId + '?source=PCSocial'
     $scope.socialIframeURL = $sce.trustAsResourceUrl url
     return
-]
+  ]

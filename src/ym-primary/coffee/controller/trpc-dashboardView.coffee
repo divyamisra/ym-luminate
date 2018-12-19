@@ -17,7 +17,8 @@ angular.module 'trPcControllers'
     'NgPcTeamraiserShortcutURLService'
     'NgPcInteractionService'
     'NgPcTeamraiserCompanyService'
-    ($rootScope, $scope, $filter, $timeout, $uibModal, APP_INFO, ZuriService, BoundlessService, NgPcTeamraiserRegistrationService, NgPcTeamraiserProgressService, NgPcTeamraiserTeamService, NgPcTeamraiserSchoolService, NgPcTeamraiserGiftService, NgPcContactService, NgPcTeamraiserShortcutURLService, NgPcInteractionService, NgPcTeamraiserCompanyService) ->
+    'FacebookFundraiserService'
+    ($rootScope, $scope, $filter, $timeout, $uibModal, APP_INFO, ZuriService, BoundlessService, NgPcTeamraiserRegistrationService, NgPcTeamraiserProgressService, NgPcTeamraiserTeamService, NgPcTeamraiserSchoolService, NgPcTeamraiserGiftService, NgPcContactService, NgPcTeamraiserShortcutURLService, NgPcInteractionService, NgPcTeamraiserCompanyService, FacebookFundraiserService) ->
       $scope.dashboardPromises = []
       
       $dataRoot = angular.element '[data-embed-root]'
@@ -210,6 +211,10 @@ angular.module 'trPcControllers'
               else
                 $scope.editPersonalGoalModal.close()
                 $scope.refreshFundraisingProgress()
+                if $rootScope.facebookFundraiserId
+                  FacebookFundraiserService.updateFundraiser()
+                    .then ->
+                      FacebookFundraiserService.syncDonations()
               response
           $scope.dashboardPromises.push updatePersonalGoalPromise
       
@@ -276,6 +281,16 @@ angular.module 'trPcControllers'
               $scope.editSchoolGoalModal.close()
               $scope.refreshFundraisingProgress()
           $scope.dashboardPromises.push updateSchoolGoalPromise
+      
+      if $scope.facebookFundraisersEnabled and $rootScope.facebookFundraiserId and $rootScope.facebookFundraiserId isnt ''
+        $rootScope.facebookFundraiserConfirmedStatus = 'pending'
+        FacebookFundraiserService.confirmFundraiserStatus()
+          .then (response) ->
+            if not response.data.status?.active
+              delete $rootScope.facebookFundraiserId
+              $rootScope.facebookFundraiserConfirmedStatus = 'deleted'
+            else
+              $rootScope.facebookFundraiserConfirmedStatus = 'confirmed'
       
       $scope.participantGifts =
         sortColumn: 'date_recorded'
@@ -479,7 +494,7 @@ angular.module 'trPcControllers'
       $scope.personalChallenge = {}
       $scope.updatedPersonalChallenge = {}
       setPersonalChallenge = (id, name = '', numCompleted = 0, completedToday = false) ->
-        if id == null or id == ''
+        if id is null or id is ''
           id = '-1'
         if id is '-1' and $scope.challengeTaken and $scope.challengeTaken isnt ''
           if $scope.challengeTaken.indexOf('1. ') isnt -1
@@ -511,9 +526,9 @@ angular.module 'trPcControllers'
         ZuriService.getStudent $scope.frId + '/' + $scope.consId,
           failure: (response) ->
             # if challenge not found - wait 3 secs and try again 10 times max
-            if errorCount < 10 && response.status == 404
+            if errorCount < 10 and response.status is 404
               errorCount++
-              setTimeout(getStudentChallenge,3000);
+              setTimeout getStudentChallenge, 3000
             delete $scope.personalChallenge.updatePending
             setPersonalChallenge()
           error: (response) ->
@@ -651,10 +666,15 @@ angular.module 'trPcControllers'
           error: (response) ->
             # TODO
           success: (response) ->
-            if response.data.student.student_id != null and typeof response.data.student.avatar_url != 'undefined'
+            if response.data.student.student_id isnt null and typeof response.data.student.avatar_url isnt 'undefined'
               avatarURL = response.data.student.avatar_url
             else
-              avatarURL = 'https://hearttools.heart.org/aha_ym19_dev/virtualworld/img/avatar-charger.png'
+              if $rootScope.tablePrefix is 'heartdev'
+                avatarURL = 'https://hearttools.heart.org/aha_ym19_dev/virtualworld/img/avatar-charger.png'
+              else if $rootScope.tablePrefix is 'heartnew'
+                avatarURL = 'https://hearttools.heart.org/aha_ym19_testing/virtualworld/img/avatar-charger.png'
+              else
+                avatarURL = 'https://hearttools.heart.org/aha_ym19/virtualworld/img/avatar-charger.png'
             $scope.personalInfo.avatar = avatarURL
       $scope.getPersonalAvatar()
       
@@ -668,7 +688,7 @@ angular.module 'trPcControllers'
         pop_timer = ''
         doPopup = ->
           popup_container = angular.element('.launch-builder-popup')
-          if i == NUM_POPS
+          if i is NUM_POPS
             clearInterval(pop_timer)
           else
             popup_container.addClass 'pop'
