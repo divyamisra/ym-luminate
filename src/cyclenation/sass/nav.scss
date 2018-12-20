@@ -1,29 +1,29 @@
-a#skip-main:hover, a#skip-main:active, a#skip-main:focus {
+a#skip-main:hover,
+a#skip-main:active, 
+a#skip-main:focus,
+a#skip-main:-moz-focusring, 
+a#skip-main:focus-visible {
   left: 0;
   width: auto;
   height: auto;
 }
 
-a#skip-main:active, a#skip-main:focus {
-position: static;
-width: auto;
-height: auto;
-clip: unset;
-clip-path: none;
-display: block;
-background: rgb(248, 249, 250);
-padding: 0.625rem 1.25rem;
-}
-
-.skip-to:active, .skip-to:focus {
-position: static;
-width: auto;
-height: auto;
-clip: unset;
-clip-path: none;
-display: block;
-background: rgb(248, 249, 250);
-padding: 0.625rem 1.25rem;
+a#skip-main:active, 
+a#skip-main:focus,
+a#skip-main:-moz-focusring,
+a#skip-main:focus-visible,
+.skip-to:active, 
+.skip-to:focus,
+.skip-to:focus:focus-visible,
+.skip-to:focus:-moz-focusring {
+  position: static;
+  width: auto;
+  height: auto;
+  clip: unset;
+  clip-path: none;
+  display: block;
+  background: rgb(248, 249, 250);
+  padding: 0.625rem 1.25rem;
 }
 
 .navbar {
