@@ -120,7 +120,6 @@ angular.module 'trPcControllers'
           ]
           "desc":
             "Up to $14"
-          }
         }
         "$15-$19": {
           "products":[
@@ -131,7 +130,6 @@ angular.module 'trPcControllers'
           ]
           "desc":
             "Up to $19"
-          }
         }
         "$20-$34": {
           "products":[
@@ -143,7 +141,6 @@ angular.module 'trPcControllers'
           ]
           "desc":
             "Up to $34"
-          }
         }
         "$35-$49": {
           "products":[
@@ -156,7 +153,6 @@ angular.module 'trPcControllers'
           ]
           "desc":
             "Up to $49"
-          }
         }
         "$50-$74": {
           "products":[
@@ -171,9 +167,7 @@ angular.module 'trPcControllers'
           ]
           "desc":
             "Up to $74"
-          }
         }
-
         "Green $75-$99": {
           "products":[
             "KUNI-19"
@@ -188,7 +182,6 @@ angular.module 'trPcControllers'
           ]
           "desc":
             "Up to $99"
-          }
         }
         "Blue $100-$149": {
           "products":[
@@ -205,7 +198,6 @@ angular.module 'trPcControllers'
           ]
           "desc":
             "Up to $149"
-          }
         }
         "Purple $150-$199": {
           "products":[
@@ -223,7 +215,6 @@ angular.module 'trPcControllers'
           ]
           "desc":
             "Up to $199"
-          }
         }
         "Red $200-$249": {
           "products":[
@@ -242,7 +233,6 @@ angular.module 'trPcControllers'
           ]
           "desc":
             "Up to $249"
-          }
         }
         "Orange $250-$499": {
           "products":[
@@ -262,7 +252,6 @@ angular.module 'trPcControllers'
           ]
           "desc":
             "Up to $499"
-          }
         }
         "Brown $500-$999": {
           "products":[
@@ -283,7 +272,6 @@ angular.module 'trPcControllers'
           ]
           "desc":
             "Up to $999"
-          }
         }
         "Yellow $1000+": {
           "products":[
@@ -306,7 +294,6 @@ angular.module 'trPcControllers'
           ]
           "desc":
             "$1000+"
-          }
         }
       }
       
