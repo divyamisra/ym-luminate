@@ -1,4 +1,5 @@
    <h2 class="text-center">Thank You Gifts</h2>
+<h3 class="text-center">You Have Raised {{participantProgress.raisedFormatted}}</h3>
    <section class="ym-pc-dashboard-bonus-gifts-section" aria-label="My Bonus Gifts" ng-if="bonusGifts && bonusGifts.length > 0" ng-cloak>
       <div class="ym-pc-dashboard-section-header">
         <h2 class="h4">
@@ -18,6 +19,7 @@
               </div>
               <div class="ym-pc-dashboard-bonus-gifts-text">
                 <span ng-bind-html="bonusGift.prize_label"></span> <span class="sr-only" ng-if="bonusGift.prize_status">(earned)</span><span class="sr-only" ng-if="!bonusGift.prize_status">(not yet earned)</span>
+                <div ng-bind-html="bonusGift.prize_level"></div>
               </div>
            </a>
         </div>
@@ -49,7 +51,8 @@
                 <img ng-if="standardGift.lastItem && $last" class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/prizes/gift_path_final_on.png" alt="Finn, Ruby and Fiery on Path">
               </div>
               <div ng-if="!standardGift.prize_status" class="ym-pc-dashboard-standard-gifts-path">
-                <img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/prizes/gift_path_0{{standardGift.randomID}}_off.png" alt="Prize Path Not Earned">
+                 <div ng-bind-html="standardGift.prize_level"></div>
+                 <img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/prizes/gift_path_0{{standardGift.randomID}}_off.png" alt="Prize Path Not Earned">
               </div>
            </a>
         </div>
