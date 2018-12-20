@@ -9,9 +9,9 @@ angular.module 'trPcControllers'
     'APP_INFO'
     'BoundlessService'
     'PageContentService'
-    'TeamraiserProgressService'
+    'NgPcTeamraiserProgressService'
     '$sce'
-    ($scope, $rootScope, $filter, $timeout, $uibModal, $location, APP_INFO, BoundlessService, PageContentService, TeamraiserProgressService, $sce) ->
+    ($scope, $rootScope, $filter, $timeout, $uibModal, $location, APP_INFO, BoundlessService, PageContentService, NgPcTeamraiserProgressService, $sce) ->
 
       $scope.showPrize = (sku, label, earned) ->
         $scope.prize_sku = sku
@@ -314,7 +314,7 @@ angular.module 'trPcControllers'
         goalFormatted: '$0'
         percent: 0
       $scope.getParticipantProgress = ->
-        fundraisingProgressPromise = TeamraiserProgressService.getProgress()
+        fundraisingProgressPromise = NgPcTeamraiserProgressService.getProgress()
           .then (response) ->
             participantProgress = response.data.getParticipantProgressResponse?.personalProgress
             if participantProgress
