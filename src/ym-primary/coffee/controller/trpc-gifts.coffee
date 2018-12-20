@@ -9,8 +9,9 @@ angular.module 'trPcControllers'
     'APP_INFO'
     'BoundlessService'
     'PageContentService'
+    'TeamraiserProgressService'
     '$sce'
-    ($scope, $rootScope, $filter, $timeout, $uibModal, $location, APP_INFO, BoundlessService, PageContentService, $sce) ->
+    ($scope, $rootScope, $filter, $timeout, $uibModal, $location, APP_INFO, BoundlessService, PageContentService, TeamraiserProgressService, $sce) ->
 
       $scope.showPrize = (sku, label, earned) ->
         $scope.prize_sku = sku
