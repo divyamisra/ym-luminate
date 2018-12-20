@@ -13,6 +13,17 @@
     }
   }
 }
+@media only screen and (max-width: 768px) {
+   .ng-pc-nav {
+     a {
+       &, 
+       &:link, 
+       &:visited {
+         width: 48%;
+       }
+     }
+   }
+}
 .ym-page-header-related {
   bottom: -20px;
 }

@@ -254,7 +254,7 @@ angular.module 'trPcControllers'
       
       BoundlessService.getPrizes $scope.consId
       .then (response) ->
-        students = response.data.students
+        students = response.data.student
         angular.forEach students, (student) ->
           current_level = student.current_level
           angular.forEach defaultInstantGifts, (gift) ->
@@ -280,7 +280,11 @@ angular.module 'trPcControllers'
               prize_status: status
               lastItem: lastItem
               randomID: getRandomID()
+            $scope.giftStatus = status
             prevstatus = status
+        
+          if $scope.giftStatus == 1
+            $scope.standardGifts[$scope.standardGifts.length-1].lastItem = 1
       , (response) ->
         # TODO
       
