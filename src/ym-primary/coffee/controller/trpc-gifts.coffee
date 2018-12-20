@@ -275,7 +275,7 @@ angular.module 'trPcControllers'
           current_level = student.current_level
           angular.forEach defaultInstantGifts, (gift) ->
             status = 0
-            if giftLevels[current_level].products.includes(gift.id) and student.has_bonus != 0
+            if giftLevels[current_level].includes(gift.id) and student.has_bonus != 0
               status = 1
             $scope.bonusGifts.push
               prize_label: gift.name
@@ -287,7 +287,7 @@ angular.module 'trPcControllers'
           angular.forEach defaultStandardGifts, (gift, key) ->
             status = 0
             lastItem = 0
-            if giftLevels[current_level].products.includes(gift.id)
+            if giftLevels[current_level].includes(gift.id)
               status = 1
             if prevstatus == 1 and status == 0
               $scope.standardGifts[$scope.standardGifts.length-1].lastItem = 1
