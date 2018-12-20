@@ -322,16 +322,7 @@ angular.module 'trPcControllers'
               participantProgress.raisedFormatted = if participantProgress.raised then $filter('currency')(participantProgress.raised / 100, '$', 0) else '$0'
               participantProgress.goal = Number participantProgress.goal
               participantProgress.goalFormatted = if participantProgress.goal then $filter('currency')(participantProgress.goal / 100, '$', 0) else '$0'
-              participantProgress.percent = 0
               $scope.participantProgress = participantProgress
-              $timeout ->
-                percent = $scope.participantProgress.percent
-                if $scope.participantProgress.goal isnt 0
-                  percent = Math.ceil(($scope.participantProgress.raised / $scope.participantProgress.goal) * 100)
-                if percent > 100
-                  percent = 100
-                $scope.participantProgress.percent = percent
-              , 500
             response
       $scope.getParticipantProgress()
 ]
