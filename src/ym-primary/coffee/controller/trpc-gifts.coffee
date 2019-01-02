@@ -32,7 +32,7 @@ angular.module 'trPcControllers'
           "id":"MWB-19"
           "name":"Heart Heroes Wristband"
           "status":0
-          "level":"$5"
+          "level":""
         }
         {
           "id":"KSHA-19"
