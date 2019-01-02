@@ -19,11 +19,12 @@ angular.module 'trPcControllers'
         if $rootScope.clipboard
           $rootScope.clipboard.destroy()
           delete $rootScope.clipboard
-        $rootScope.clipboard = new ClipboardJS '[data-clipboard-target]', text: (trigger) ->
+        $rootScope.clipboard = new ClipboardJS '[data-clipboard-target]'
+        $rootScope.clipboard.on 'success', (e) ->
           if angular.element('.clipboard-copy').length == 0
-            angular.element(trigger).after '<div class=\'clipboard-copy text-center small\' role=\'alert\' aria-atomic=\'true\'>Text copied to clipboard</div>'
-          'copied'
-      
+            angular.element(e.trigger).after '<div class=\'clipboard-copy text-center small\' role=\'alert\' aria-atomic=\'true\'>Text copied to clipboard</div>'
+          return      
+        
       if $rootScope.facebookFundraisersEnabled
         toggleFacebookFundraiserStatus = ->
           if not $rootScope.$$phase
