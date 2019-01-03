@@ -470,7 +470,7 @@
 
       for (var i = 0, len = sortedParticipantsData.length; i < len; i++) {
         if (sortedParticipantsData[i].consTotal > 0) {
-          var participantData = '<tr><td><a href="' + luminateExtend.global.path.nonsecure + 'TR/?fr_id=' +
+          var participantData = '<tr><td><a href="' + luminateExtend.global.path.secure + 'TR/?fr_id=' +
             sortedParticipantsData[i].consEventId + '&pg=personal&px=' + sortedParticipantsData[i].consId +
             '">' + sortedParticipantsData[i].consName + '</a>' +
             ((isCrossEvent) ? '<br>' + sortedParticipantsData[i].consEventLocation : '') + '</td><td><span class="pull-right">$' +
@@ -552,7 +552,7 @@
 
       for (var i = 0, len = sortedTeamsData.length; i < len; i++) {
         if (sortedTeamsData[i].teamTotal > 0) {
-          var teamData = '<tr><td><a href="' + luminateExtend.global.path.nonsecure + 'TR/?pg=team&team_id=' +
+          var teamData = '<tr><td><a href="' + luminateExtend.global.path.secure + 'TR/?pg=team&team_id=' +
             sortedTeamsData[i].teamId + '&fr_id=' + sortedTeamsData[i].teamEventId + '">' + sortedTeamsData[i]
             .teamName + '</a>' +
             ((isCrossEvent) ? '<br>' + sortedTeamsData[i].teamEventLocation : '') + '</td><td><span class="pull-right">$' + sortedTeamsData[i].teamTotal.formatMoney(0) +
@@ -884,8 +884,82 @@
       }
     };
 
+// Top Participants Roster
+if ($('body').is('.pg_cn_top_participants')) {
 
+  luminateExtend.api({
+    api: 'teamraiser',
+    data: 'method=getParticipants' +
+      '&first_name=%25%25%25' + 
+      '&last_name=%25%25%25' + 
+      '&fr_id=' + evID +
+      '&list_page_size=499' +
+      '&list_page_offset=0',
+      // '&response_format=json' +
+      // '&list_sort_column=raised' +
+      // '&list_ascending=false',
+    callback: {
+      success: function (response) {
+        if (response.getParticipantsResponse.totalNumberResults === '0') {
+          // no search results
+        console.log('getParticipants no results: ', response);
+        } else {
+          var participants = luminateExtend.utils.ensureArray(response.getParticipantsResponse.participant);
 
+        var topParticipantsData = [];
+
+          $(participants).each(function (i, participant) {
+            topParticipantsData.push({
+              "consName": participant.name.first + ' ' + participant.name.last,
+              "consTeamName": participant.teamName,
+              "consTeamUrl": participant.teamPageUrl,
+              "consTotal": participant.amountRaised,
+              "consId": participant.consId,
+              "consEventId": participant.eventId,
+              "consEventLocation": participant.eventName
+            });
+          });
+
+          var sortedTopParticipantsData = cd.sort('consTotal', topParticipantsData);
+        
+          console.log('sortedTopParticipantsData: ', sortedTopParticipantsData);
+  
+          for (var i = 0, len = sortedTopParticipantsData.length; i < len; i++) {
+              var participantData = '<tr><td><a href="' + luminateExtend.global.path.secure + 'TR/?fr_id=' +
+                sortedTopParticipantsData[i].consEventId + '&pg=personal&px=' + sortedTopParticipantsData[i].consId +
+                '">' + sortedTopParticipantsData[i].consName + '</a>' +
+                ((sortedTopParticipantsData[i].consTeamUrl) ? ', ' + '<a href="' + sortedTopParticipantsData[i].consTeamUrl +
+                '">' + sortedTopParticipantsData[i].consTeamName + '</a>': '') + '</td><td class="text-right"><span class="pull-right">$' +
+                (sortedTopParticipantsData[i].consTotal / 100).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '</span></td></tr>';
+
+              $('.js__top-participants-roster').append(participantData);
+          }
+          //add call to hook donate button with payment type selections
+          // $('#participant_results').removeAttr('hidden');
+        }
+      },
+      error: function (response) {
+        // $('#error-participant').removeAttr('hidden').text(response.errorResponse.message);
+        console.log('getParticipants Error: ', response);
+
+      }
+    }
+  });
+}
+// Top Teams Roster
+if ($('body').is('.pg_teamlist')) {
+  $('.tr-page-header h2').replaceWith(function () {
+    return '<h1>' + $(this).html() + '</h1>';
+  });
+}
+
+// Top Companies Roster
+if ($('body').is('.pg_complist')) {
+  $('.tr-page-header h2').replaceWith(function () {
+    return '<h1>' + $(this).html() + '</h1>';
+  });
+  $('.tr-page-header').append('<h2>Top Companies</h2>');
+}
     /****************/
     /* REGISTRATION */
     /****************/

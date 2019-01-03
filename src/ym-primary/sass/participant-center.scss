@@ -126,6 +126,14 @@ section.ym-pc-dashboard-bonus-gifts-section {
               text-decoration:none;
 	   }
 		
+	   .ym-pc-dashboard-bonus-gift-level {
+              color: #440075;
+              right:10px;
+              position: absolute;
+              top: 15px;
+              font-family: "Luckiest Guy",cursive;
+              font-size: 16px;
+           }
 	   .ym-pc-dashboard-bonus-gift-earned {
               color: #440075;
               left:35%;
@@ -182,6 +190,14 @@ section.ym-pc-dashboard-standard-gifts-section {
               text-decoration:none;
 	   }
 
+	   .ym-pc-dashboard-bonus-gift-level {
+              color: #440075;
+              right:10px;
+              position: absolute;
+              top: 15px;
+              font-family: "Luckiest Guy",cursive;
+              font-size: 16px;
+           }
 	   .ym-pc-dashboard-standard-gift-earned {
               color: #440075;
               left:28%;
@@ -190,7 +206,6 @@ section.ym-pc-dashboard-standard-gifts-section {
               font-family: "Luckiest Guy",cursive;
               font-size: 30px;
            }
-
            .ym-pc-dashboard-standard-gifts-text {
               text-align: center;
               color: #000;
@@ -214,7 +229,7 @@ section.ym-pc-dashboard-standard-gifts-section {
       font-size: 30px;
       text-align:center;
    }
-   img {
+   img.prize-image {
       margin:0 auto;
       -webkit-animation-name: wiggle;
       -ms-animation-name: wiggle;
