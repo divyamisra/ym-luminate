@@ -16,3 +16,24 @@ h5,
 .h5 {
   font-weight: 700;
 }
+
+.ym-accent-color,
+.event-accent {
+  h2,
+  .h,
+  .h2-heading,
+  h3,
+  .h3,
+  .h3-heading,
+  h4,
+  .h4,
+  .h4-heading,
+  h5,
+  .h5,
+  .h5-heading,
+  h6,
+  .h6,
+  .h6-heading {
+    color: $event-grey;
+  }
+}
