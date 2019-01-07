@@ -681,6 +681,17 @@ angular.module 'trPcControllers'
             $scope.cancelEditYears = ->
               $scope.LByearsProfileModal.close()
               reCheckProfileItems()
+      
+      $scope.editYourWhy = ->
+        $scope.LBwhyModal = $uibModal.open
+          scope: $scope
+          templateUrl: APP_INFO.rootPath + 'dist/heart-walk/html/participant-center/modal/editYourWhy.html'
+        $scope.cancelEditYourWhy = ->
+          $scope.LBwhyModal.close()
+
+      $scope.updateEditYourWhy = ($event) ->
+        $scope.LBwhyModal.close()
+        $scope.updateSurveyResponses $event
 
       $scope.editSurvivor = ->
         $scope.LBsurvivorModal = $uibModal.open
