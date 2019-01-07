@@ -227,9 +227,9 @@ angular.module 'trPcControllers'
           if message.messageID is messageID
             emailSubject = message.subject
             emailBody = message.content
-            emailBodyClean1 = emailBody.replace(/<p>/g,"");
-            emailBodyClean2 = emailBodyClean1.replace(/<\/p>/g,"%0D%0A%0D%0A");
-            emailBodyClean3 = emailBodyClean2.replace(/&/g,"%26");
+            emailBodyClean1 = emailBody.replace(/<p>/g, "")
+            emailBodyClean2 = emailBodyClean1.replace(/<\/p>/g, "%0D%0A%0D%0A")
+            emailBodyClean3 = emailBodyClean2.replace(/&/g, "%26")
             logUserInt('email',$scope.frId)
             window.location.href = 'mailto:?subject=' + emailSubject + '&body=' + emailBodyClean3
         return
