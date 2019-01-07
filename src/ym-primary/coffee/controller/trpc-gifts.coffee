@@ -32,7 +32,7 @@ angular.module 'trPcControllers'
           "id":"MWB-19"
           "name":"Heart Heroes Wristband"
           "status":0
-          "level":"$5"
+          "level":""
         }
         {
           "id":"KSHA-19"
@@ -129,6 +129,9 @@ angular.module 'trPcControllers'
       ]
 
       giftLevels = {
+        "$0": [
+          "MWB-19"
+        ]
         "$5-$14": [
           "KUNI-19"
           "MWB-19"
@@ -273,7 +276,7 @@ angular.module 'trPcControllers'
       .then (response) ->
         students = response.data.student
         angular.forEach students, (student) ->
-          current_level = student.current_level
+          current_level = if student.current_level != null then student.current_level else '$0'
           angular.forEach defaultInstantGifts, (gift) ->
             status = 0
             if giftLevels[current_level].includes(gift.id) and student.has_bonus != 0
