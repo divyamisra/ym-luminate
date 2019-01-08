@@ -36,4 +36,13 @@ h5,
   .h6-heading {
     color: $event-grey;
   }
+  
+  h2,
+  .h2,
+  .h2-heading,
+  h3,
+  .h3,
+  .h3-heading {
+    text-shadow: none;
+  }
 }
