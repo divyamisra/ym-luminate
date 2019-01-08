@@ -408,11 +408,11 @@ angular.module 'trPcControllers'
               if $scope.messageCounts.sentMessages > 0 and $scope.userInteractions.email is 0
                 $scope.userInteractions.email = 1
                 logUserInt 'email', $scope.frId
-              if ($scope.sqvm.surveyModel.question_key_what_is_why isnt null | 'User Provided No Response') and $scope.userInteractions.why is 0
+              if $scope.sqvm.surveyModel.question_key_what_is_why isnt null and $scope.sqvm.surveyModel.question_key_what_is_why isnt 'User Provided No Response' and $scope.userInteractions.why is 0
                 $scope.userInteractions.why = 1
                 logUserInt 'why', $scope.frId
-              else
-                $scope.userInteractions.why = 0
+              # else
+              #   $scope.userInteractions.why = 0
               if $scope.profileChecklistItems.why is 1 and $scope.profileChecklistItems.years is 1 and $scope.profileChecklistItems.mobile is 1 and $scope.userInteractions.profile is 0
                 $scope.userInteractions.profile = 1
                 logUserInt 'profile', $scope.frId
@@ -608,7 +608,7 @@ angular.module 'trPcControllers'
           street: 0
           years: 0
         }
-        if $scope.sqvm.surveyModel.question_key_what_is_why isnt null | 'User Provided No Response'
+        if $scope.sqvm.surveyModel.question_key_what_is_why isnt null and $scope.sqvm.surveyModel.question_key_what_is_why isnt 'User Provided No Response'
           $scope.profileChecklistItems.why = 1
         # else
         #   $scope.profileChecklistItems.why = 0
