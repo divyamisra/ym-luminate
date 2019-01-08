@@ -1,2 +1,9 @@
 .ym-page-header {
+  p {
+    a,
+    a:link,
+    a:visited {
+      color: $event-grey;
+    }
+  }
 }
