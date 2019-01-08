@@ -380,6 +380,8 @@ angular.module 'trPcControllers'
                               $scope.userInteractions.goal2 = 1
               if $scope.sqvm.surveyModel.question_key_what_is_why isnt null | 'User Provided No Response'
                 $scope.profileChecklistItems.why = 1
+              else
+                $scope.profileChecklistItems.why = 0
               if $scope.sqvm.surveyModel.question_key_hw_years_participated
                 $scope.profileChecklistItems.years = 1
               if $scope.constituent.mobile_phone
@@ -409,6 +411,8 @@ angular.module 'trPcControllers'
               if ($scope.sqvm.surveyModel.question_key_what_is_why isnt null | 'User Provided No Response') and $scope.userInteractions.why is 0
                 $scope.userInteractions.why = 1
                 logUserInt 'why', $scope.frId
+              else
+                $scope.userInteractions.why = 0
               if $scope.profileChecklistItems.why is 1 and $scope.profileChecklistItems.years is 1 and $scope.profileChecklistItems.mobile is 1 and $scope.userInteractions.profile is 0
                 $scope.userInteractions.profile = 1
                 logUserInt 'profile', $scope.frId
@@ -606,6 +610,8 @@ angular.module 'trPcControllers'
         }
         if $scope.sqvm.surveyModel.question_key_what_is_why isnt null | 'User Provided No Response'
           $scope.profileChecklistItems.why = 1
+        else
+          $scope.profileChecklistItems.why = 0
         if $scope.sqvm.surveyModel.question_key_hw_years_participated
           $scope.profileChecklistItems.years = 1
         if $scope.constituent.mobile_phone
