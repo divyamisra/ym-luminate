@@ -16,7 +16,7 @@
 /* amazon pay code here */
 var default_path = "https://www2.heart.org";
 jQuery(document).ready(function(){
-  if (location.href.indexOf("heartdev") > 0) {
+  if (location.href.indexOf("dev2") > 0) {
     default_path = "https://secure3.convio.net/heartdev";
   }
   if (location.href.indexOf("pg=personal") > 0 || location.href.indexOf("pg=team") > 0) {
