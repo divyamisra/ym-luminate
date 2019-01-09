@@ -6,3 +6,10 @@
 .paymentSelType img {
   max-width:100%;
 }
+
+a.venmo {
+    display:none;
+}
+body.tr4110 a.venmo {
+    display:inline-block;
+}
