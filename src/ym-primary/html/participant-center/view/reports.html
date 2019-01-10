@@ -4,12 +4,13 @@
       <uib-tab index="0" heading="School Detail" ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
         <div class="ym-pc-report-header">
           <div class="row clearfix">
-            <div class="col-md-4"></div>
-            <div class="col-md-4">
+            <!-- <div class="col-md-4"></div> -->
+            <!-- <div class="col-md-4"> -->
               <h2 class="h5">
                 School Detail Report
               </h2>
-            </div>
+              <p>Navigate to the <a ng-href="https://kidsheartchallenge.heart.org/coordinator/login/{{authToken}}/{{sessionCookie}}">Order Gifts>/a> tab for our new and improved School Detail Report! This report is found on the right side of the page under the heading School Detail Report.
+            <!-- </div>
             <div class="col-md-4">
               <div class="ym-pc-report-header-buttons" ng-if="schoolDetailStudents.students && schoolDetailStudents.students.length > 0" ng-cloak>
                 <button type="button" class="btn btn-md-wide btn-secondary" aria-label="Download Report" csv-header="schoolDetailStudents.downloadHeaders" ng-csv="schoolDetailStudents.downloadData" filename="School_Detail_Report.csv">
@@ -19,9 +20,10 @@
                   <i class="fa fa-envelope" hidden aria-hidden="true"></i>&nbsp;<strong>Email Students</strong>
                 </button>
               </div>
-            </div>
+            </div> -->
           </div>
         </div>
+        <!--
         <div ng-if="schoolDetailStudents.students && schoolDetailStudents.students.length == 0" ng-cloak>
           <div class="text-center">
             No students to display.
@@ -130,7 +132,7 @@
               </tbody>
             </table>
           </div>
-        </div>
+        </div> -->
       </uib-tab>
       <uib-tab index="1" heading="Donors">
         <div class="ym-pc-report-header">
