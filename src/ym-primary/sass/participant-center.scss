@@ -25,7 +25,7 @@ a.ym-pc-dashboard-download-certificates {
 	color: $event-primary-acc;
 }
 
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: $screen-sm-min) {
 	.launch-builder-popup {
 		height: 268.333px;
 		width: 175px;
@@ -86,4 +86,183 @@ a.ym-pc-dashboard-download-certificates {
 
 .social-iframe {
 	min-height: 950px;
+}
+
+/* Gifts tab */
+section.ym-pc-dashboard-bonus-gifts-section {
+	.ym-pc-dashboard-section-header {
+	   background: #d7d4e8;
+   	   padding:20px 0 0;
+	   overflow:hidden;
+		
+	   p {
+              font-size: 16px;
+              margin: 10px 0 20px;
+              line-height: 22px;
+           }
+	}
+  
+        @media (min-width: $screen-sm-min) {
+           margin: 0 0 40px;
+        }
+        
+	.ym-pc-dashboard-bonus-gifts-icons {
+	   background: $brand-white;
+           margin: 5px 0 0 0;
+        }
+	
+	.ym-pc-dashboard-bonus-gifts-icon {
+           display: inline-block;
+           max-width: 270px;
+           margin: 0 11px 12px 0;
+           vertical-align: top;
+   	   position:relative;
+           
+           &:nth-child(4n+4) {
+              margin-right: 0;
+           }
+
+	   a {
+              text-decoration:none;
+	   }
+		
+	   .ym-pc-dashboard-bonus-gift-level {
+              color: #440075;
+              right:10px;
+              position: absolute;
+              top: 15px;
+              font-family: "Luckiest Guy",cursive;
+              font-size: 16px;
+           }
+	   .ym-pc-dashboard-bonus-gift-earned {
+              color: #440075;
+              left:35%;
+              position: absolute;
+              top: 15px;
+              font-family: "Luckiest Guy",cursive;
+              font-size: 20px;
+           }
+           .ym-pc-dashboard-bonus-gifts-text {
+              background: $prize-purple;
+	      padding: 20px;
+	      text-align:center;
+	      color: $brand-white;
+	      min-height:85px;
+           }
+	}
+}
+
+section.ym-pc-dashboard-standard-gifts-section {
+	.ym-pc-dashboard-section-header {
+	   background: #c8e3aa;
+   	   padding:20px 0 0;
+	   overflow:hidden;
+		
+	   p {
+              font-size: 16px;
+              margin: 10px 0 20px;
+              line-height: 22px;
+           }
+	}
+	
+        @media (min-width: $screen-sm-min) {
+           margin: 0 0 40px;
+        }
+        
+	.ym-pc-dashboard-standard-gifts-icons {
+	   background: $brand-white;
+           margin: 5px 0 0 0;
+        }
+	
+	.ym-pc-dashboard-standard-gifts-icon {
+           display: inline-block;
+           max-width: 270px;
+           max-width: 270px;
+           margin: 0 11px 0 0;
+           vertical-align: top;
+   	   position:relative;
+           
+           &:nth-child(4n+4) {
+              margin-right: 0;
+           }
+
+	   a {
+              text-decoration:none;
+	   }
+
+	   .ym-pc-dashboard-bonus-gift-level {
+              color: #440075;
+              right:10px;
+              position: absolute;
+              top: 15px;
+              font-family: "Luckiest Guy",cursive;
+              font-size: 16px;
+           }
+	   .ym-pc-dashboard-standard-gift-earned {
+              color: #440075;
+              left:28%;
+              position: absolute;
+              top: 15px;
+              font-family: "Luckiest Guy",cursive;
+              font-size: 30px;
+           }
+           .ym-pc-dashboard-standard-gifts-text {
+              text-align: center;
+              color: #000;
+              position: relative;
+              margin-top: -36px;
+ 	      margin-bottom:12px;
+              font-weight: bold;
+              font-size: 20px;
+           }
+	   
+	   .ym-pc-dashboard-standard-gifts-path {
+	      margin-bottom: 15px;
+	   }
+	}
+}
+
+.modal-dialog {
+   .ym-pc-dashboard-gift-earned {
+      color: #440075;
+      font-family: "Luckiest Guy",cursive;
+      font-size: 30px;
+      text-align:center;
+   }
+   img.prize-image {
+      margin:0 auto;
+      -webkit-animation-name: wiggle;
+      -ms-animation-name: wiggle;
+      -ms-animation-duration: 1000ms;
+      -webkit-animation-duration: 1000ms;
+      -webkit-animation-iteration-count: 1;
+      -ms-animation-iteration-count: 1;
+      -webkit-animation-timing-function: ease-in-out;
+      -ms-animation-timing-function: ease-in-out;
+    }
+
+}
+
+@-webkit-keyframes wiggle {
+   0% {-webkit-transform: rotate(10deg);}
+   25% {-webkit-transform: rotate(-10deg);}
+   50% {-webkit-transform: rotate(20deg);}
+   75% {-webkit-transform: rotate(-5deg);}
+   100% {-webkit-transform: rotate(0deg);}
+}
+
+@-ms-keyframes wiggle {
+   0% {-ms-transform: rotate(1deg);}
+   25% {-ms-transform: rotate(-1deg);}
+   50% {-ms-transform: rotate(1.5deg);}
+   75% {-ms-transform: rotate(-5deg);}
+   100% {-ms-transform: rotate(0deg);}
+}
+
+@keyframes wiggle {
+   0% {transform: rotate(10deg);}
+   25% {transform: rotate(-10deg);}
+   50% {transform: rotate(20deg);}
+   75% {transform: rotate(-5deg);}
+   100% {transform: rotate(0deg);}
 }

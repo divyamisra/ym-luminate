@@ -477,7 +477,7 @@ angular.module 'trPcControllers'
         if not PCLogin
           skipLBs = 0
         sessionStorage.setItem 'PCLogin', 'yes'
-        if $rootScope.participantRegistration.lastPC2Login is '0' and $rootScope.isSelfDonor != "TRUE"
+        if $rootScope.participantRegistration.lastPC2Login is '0' and $rootScope.isSelfDonor isnt 'TRUE'
           $scope.dashboardGreeting = 'page'
           if skipLBs is 0
             $scope.LBthankYouRegisteringModal = $uibModal.open
@@ -617,15 +617,13 @@ angular.module 'trPcControllers'
             , 250
 
       $scope.goSocial = ->
-        if $rootScope.device.mobileType == 'android'
+        if $rootScope.device.mobileType is 'android'
           window.location = 'https://play.google.com/store/apps/details?id=com.aha.hw.communicator'
-        else if $rootScope.device.mobileType == 'ios'
+        else if $rootScope.device.mobileType is 'ios'
           window.location = 'https://itunes.apple.com/us/app/heart-walk/id451276834?ls=1&mt=8'
         else
           window.location = 'PageServer?pagename=heartwalk_fundraising_tools&amp;pc2_page=center&amp;fr_id=' + $scope.frId + '#/social'
-
-
-
+      
       $scope.profileProgress = 0
       $scope.profileChecklist = ->
         $scope.resetSurveyAlerts()
@@ -1572,14 +1570,14 @@ angular.module 'trPcControllers'
               .then (response) ->
                 if response.data.errorResponse
                   if $scope.editPageUrlOptions.updateUrlInput isnt $scope.prevShortcut.text
-                    $scope.editPageUrlOptions.updateUrlFailure = true;
-                    return $scope.editPageUrlOptions.updateUrlFailureMessage = response.data.errorResponse.message or 'An unexpected error occurred while updating your personal page URL.';
+                    $scope.editPageUrlOptions.updateUrlFailure = true
+                    return $scope.editPageUrlOptions.updateUrlFailureMessage = response.data.errorResponse.message or 'An unexpected error occurred while updating your personal page URL.'
                   else
                     updateUrlPromise = TeamraiserShortcutURLService.updateShortcut("text=",$rootScope.prevFrIdForShortcut)
                       .then (response) ->
                         if (response.data.errorResponse)
                           $scope.editPageUrlOptions.updateUrlFailure = true
-                          return $scope.editPageUrlOptions.updateUrlFailureMessage = response.data.errorResponse.message or 'An unexpected error occurred while updating your personal page URL.';
+                          return $scope.editPageUrlOptions.updateUrlFailureMessage = response.data.errorResponse.message or 'An unexpected error occurred while updating your personal page URL.'
                         else
                           $scope.updatePageUrl("Participant")
                 else
@@ -1590,15 +1588,15 @@ angular.module 'trPcControllers'
             updateUrlPromise = TeamraiserShortcutURLService.updateTeamShortcut dataStr
               .then (response) ->
                 if response.data.errorResponse
-                  if $scope.getPrevTeamShortcut && ($scope.editPageUrlOptions.updateUrlInput != $scope.prevTeamShortcut.text)
-                    $scope.editPageUrlOptions.updateUrlFailure = true;
-                    return $scope.editPageUrlOptions.updateUrlFailureMessage = response.data.errorResponse.message or 'An unexpected error occurred while updating your personal page URL.';
+                  if $scope.getPrevTeamShortcut and ($scope.editPageUrlOptions.updateUrlInput isnt $scope.prevTeamShortcut.text)
+                    $scope.editPageUrlOptions.updateUrlFailure = true
+                    return $scope.editPageUrlOptions.updateUrlFailureMessage = response.data.errorResponse.message or 'An unexpected error occurred while updating your personal page URL.'
                   else
                     updateUrlPromise = TeamraiserShortcutURLService.updateTeamShortcut("text=",$rootScope.prevFrIdForShortcut)
                       .then (response) ->
                         if (response.data.errorResponse)
                           $scope.editPageUrlOptions.updateUrlFailure = true
-                          return $scope.editPageUrlOptions.updateUrlFailureMessage = response.data.errorResponse.message or 'An unexpected error occurred while updating your personal page URL.';
+                          return $scope.editPageUrlOptions.updateUrlFailureMessage = response.data.errorResponse.message or 'An unexpected error occurred while updating your personal page URL.'
                         else
                           $scope.updatePageUrl("Team")
                 else

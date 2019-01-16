@@ -35,7 +35,7 @@ angular.module 'ahaLuminateApp'
           if not requestData
             # TODO
           else
-            if includeFrId
+            if includeFrId and $rootScope.frId
               requestData += '&fr_id=' + $rootScope.frId + '&s_trID=' + $rootScope.frId
             luminateExtend.api 
               api: apiServlet
