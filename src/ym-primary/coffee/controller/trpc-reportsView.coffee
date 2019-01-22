@@ -4,10 +4,12 @@ angular.module 'trPcControllers'
     '$scope'
     '$filter'
     '$location'
+    '$uibModal'
+    'APP_INFO'
     'NgPcTeamraiserEmailService'
     'NgPcTeamraiserGiftService'
     'NgPcTeamraiserReportsService'
-    ($rootScope, $scope, $filter, $location, NgPcTeamraiserEmailService, NgPcTeamraiserGiftService, NgPcTeamraiserReportsService) ->
+    ($rootScope, $scope, $filter, $location, $uibModal, APP_INFO, NgPcTeamraiserEmailService, NgPcTeamraiserGiftService, NgPcTeamraiserReportsService) ->
       $scope.reportPromises = []
       
       $scope.activeReportTab = if $scope.participantRegistration.companyInformation?.isCompanyCoordinator is 'true' then 0 else 1
@@ -73,7 +75,7 @@ angular.module 'trPcControllers'
         $scope.participantGifts.sortColumn = sortColumn
         $scope.participantGifts.page = 1
         $scope.getGifts()
-      
+
       $scope.thankParticipantDonor = (participantGift) ->
         if not $rootScope.selectedContacts
           $rootScope.selectedContacts = {}
@@ -207,7 +209,7 @@ angular.module 'trPcControllers'
             $location.path '/email/compose/suggestedMessage/' + $scope.thankYouMessageId
           else
             $location.path '/email/compose/'
-      
+      ###
       if $scope.participantRegistration.companyInformation?.isCompanyCoordinator is 'true'
         $scope.schoolDetailStudents =
           downloadHeaders: [
@@ -227,35 +229,36 @@ angular.module 'trPcControllers'
               $scope.schoolDetailStudents.students = []
               $scope.schoolDetailStudents.downloadData = []
             else
-              reportHtml = response.data.getSchoolDetailReport?.report
-              if not reportHtml
+              reportData = response.data.getSchoolDetailReport?.reportData
+              if not reportData
                 $scope.schoolDetailStudents.students = []
                 $scope.schoolDetailStudents.downloadData = []
               else
-                $reportTable = angular.element('<div>' + reportHtml + '</div>').find 'table'
-                if $reportTable.length is 0
+                reportDataRows = []
+                angular.forEach reportData, (reportDataRow) ->
+                  if reportDataRow.length > 1
+                    reportDataRows.push reportDataRow
+                if reportDataRows.length <= 1
                   $scope.schoolDetailStudents.students = []
                   $scope.schoolDetailStudents.downloadData = []
                 else
-                  $reportTableRows = $reportTable.find 'tr'
-                  if $reportTableRows.length is 0
-                    $scope.schoolDetailStudents.students = []
-                    $scope.schoolDetailStudents.downloadData = []
-                  else
-                    schoolDetailStudents = []
-                    schoolDetailDownloadData = []
-                    angular.forEach $reportTableRows, (reportTableRow) ->
-                      $reportTableRow = angular.element reportTableRow
-                      firstName = jQuery.trim $reportTableRow.find('td').eq(8).text()
-                      lastName = jQuery.trim $reportTableRow.find('td').eq(9).text()
-                      email = jQuery.trim $reportTableRow.find('td').eq(10).text()
-                      amount = Number jQuery.trim($reportTableRow.find('td').eq(11).text())
-                      amountFormatted = $filter('currency') jQuery.trim($reportTableRow.find('td').eq(11).text()), '$'
-                      ecardsSent = Number jQuery.trim($reportTableRow.find('td').eq(14).text())
-                      emailsSent = Number jQuery.trim($reportTableRow.find('td').eq(13).text())
-                      tshirtSize = jQuery.trim $reportTableRow.find('td').eq(16).text()
-                      teacherName = jQuery.trim $reportTableRow.find('td').eq(6).text()
-                      challenge = jQuery.trim($reportTableRow.find('td').eq(17).text()).replace('1. ', '').replace('2. ', '').replace('3. ', '').replace '4. ', ''
+                  reportDataColumnIndexMap = {}
+                  angular.forEach reportDataRows[0], (reportDataHeader, reportDataHeaderIndex) ->
+                    reportDataColumnIndexMap[reportDataHeader] = reportDataHeaderIndex
+                  schoolDetailStudents = []
+                  schoolDetailDownloadData = []
+                  angular.forEach reportDataRows, (reportDataRow, reportDataRowIndex) ->
+                    if reportDataRowIndex > 0
+                      firstName = jQuery.trim reportDataRow[reportDataColumnIndexMap.PARTICIPANT_FIRST_NAME]
+                      lastName = jQuery.trim reportDataRow[reportDataColumnIndexMap.PARTICIPANT_LAST_NAME]
+                      email = jQuery.trim reportDataRow[reportDataColumnIndexMap.PARTICIPANT_EMAIL]
+                      amount = Number reportDataRow[reportDataColumnIndexMap.TRX_AMT]
+                      amountFormatted = $filter('currency') jQuery.trim(reportDataRow[reportDataColumnIndexMap.TRX_AMT]), '$'
+                      ecardsSent = Number reportDataRow[reportDataColumnIndexMap.ECARDS_SENT_CNT]
+                      emailsSent = Number reportDataRow[reportDataColumnIndexMap.EMAILS_SENT_CNT]
+                      tshirtSize = jQuery.trim reportDataRow[reportDataColumnIndexMap.TSHIRT_SIZE]
+                      teacherName = jQuery.trim reportDataRow[reportDataColumnIndexMap.TEACHER_NAME]
+                      challenge = jQuery.trim(reportDataRow[reportDataColumnIndexMap.CHALLENGE1]).replace('1. ', '').replace('2. ', '').replace('3. ', '').replace '4. ', ''
                       schoolDetailStudents.push
                         firstName: firstName
                         lastName: lastName
@@ -276,8 +279,8 @@ angular.module 'trPcControllers'
                         teacherName
                         challenge
                       ]
-                    $scope.schoolDetailStudents.students = schoolDetailStudents
-                    $scope.schoolDetailStudents.downloadData = schoolDetailDownloadData
+                  $scope.schoolDetailStudents.students = schoolDetailStudents
+                  $scope.schoolDetailStudents.downloadData = schoolDetailDownloadData
             response
         $scope.reportPromises.push schoolDetailReportPromise
         
@@ -309,4 +312,5 @@ angular.module 'trPcControllers'
               if companyParticipantContact
                 $rootScope.selectedContacts.contacts.push companyParticipantContact
           $location.path '/email/compose/'
+      ###
   ]

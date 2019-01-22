@@ -7,6 +7,8 @@ angular.module 'ahaLuminateApp'
       getChallenges: (requestData, callback) ->
         if $rootScope.tablePrefix is 'heartdev'
           url = '//hearttools.heart.org/aha_ym19_dev/api/student/challenges/' + requestData + '?key=k7wvZXDpmDpenVcp'
+        else if $rootScope.tablePrefix is 'heartnew'
+          url = '//hearttools.heart.org/aha_ym19_testing/api/student/challenges/' + requestData + '?key=XgUnZxvFcjZ4jEMT'
         else
           url = '//hearttools.heart.org/aha_ym19/api/student/challenges/' + requestData + '?key=XgUnZxvFcjZ4jEMT'
         $http.jsonp($sce.trustAsResourceUrl(url), jsonpCallbackParam: 'callback')
@@ -21,6 +23,8 @@ angular.module 'ahaLuminateApp'
       updateChallenge: (requestData, callback) ->
         if $rootScope.tablePrefix is 'heartdev'
           url = '//hearttools.heart.org/aha_ym19_dev/api/student/challenge/' + requestData + '&key=k7wvZXDpmDpenVcp'
+        else if $rootScope.tablePrefix is 'heartnew'
+          url = '//hearttools.heart.org/aha_ym19_testing/api/student/challenge/' + requestData + '&key=XgUnZxvFcjZ4jEMT'
         else
           url = '//hearttools.heart.org/aha_ym19/api/student/challenge/' + requestData + '&key=XgUnZxvFcjZ4jEMT'
         $http.jsonp($sce.trustAsResourceUrl(url), jsonpCallbackParam: 'callback')
@@ -33,6 +37,8 @@ angular.module 'ahaLuminateApp'
       logChallenge: (requestData, callback) ->
         if $rootScope.tablePrefix is 'heartdev'
           url = '//hearttools.heart.org/aha_ym19_dev/api/student/' + requestData + '?key=k7wvZXDpmDpenVcp'
+        else if $rootScope.tablePrefix is 'heartnew'
+          url = '//hearttools.heart.org/aha_ym19_testing/api/student/' + requestData + '?key=XgUnZxvFcjZ4jEMT'
         else
           url = '//hearttools.heart.org/aha_ym19/api/student/' + requestData + '?key=XgUnZxvFcjZ4jEMT'
         $http.jsonp($sce.trustAsResourceUrl(url), jsonpCallbackParam: 'callback')
@@ -44,6 +50,8 @@ angular.module 'ahaLuminateApp'
       getStudent: (requestData, callback) ->
         if $rootScope.tablePrefix is 'heartdev'
           url = '//hearttools.heart.org/aha_ym19_dev/api/student/' + requestData + '?key=k7wvZXDpmDpenVcp'
+        else if $rootScope.tablePrefix is 'heartnew'
+          url = '//hearttools.heart.org/aha_ym19_testing/api/student/' + requestData + '?key=XgUnZxvFcjZ4jEMT'
         else
           url = '//hearttools.heart.org/aha_ym19/api/student/' + requestData + '?key=XgUnZxvFcjZ4jEMT'
         $http.jsonp($sce.trustAsResourceUrl(url), jsonpCallbackParam: 'callback')
@@ -58,6 +66,8 @@ angular.module 'ahaLuminateApp'
       getSchool: (requestData, callback) ->
         if $rootScope.tablePrefix is 'heartdev'
           url = '//hearttools.heart.org/aha_ym19_dev/api/program/school/' + requestData + '?key=k7wvZXDpmDpenVcp'
+        else if $rootScope.tablePrefix is 'heartnew'
+          url = '//hearttools.heart.org/aha_ym19_testing/api/program/school/' + requestData + '?key=XgUnZxvFcjZ4jEMT'
         else
           url = '//hearttools.heart.org/aha_ym19/api/program/school/' + requestData + '?key=XgUnZxvFcjZ4jEMT'
         $http.jsonp($sce.trustAsResourceUrl(url), jsonpCallbackParam: 'callback')
@@ -72,6 +82,8 @@ angular.module 'ahaLuminateApp'
       getTeam: (requestData, callback) ->
         if $rootScope.tablePrefix is 'heartdev'
           url = '//hearttools.heart.org/aha_ym19_dev/api/program/team/' + requestData + '?key=k7wvZXDpmDpenVcp'
+        else if $rootScope.tablePrefix is 'heartnew'
+          url = '//hearttools.heart.org/aha_ym19_testing/api/program/team/' + requestData + '?key=XgUnZxvFcjZ4jEMT'
         else
           url = '//hearttools.heart.org/aha_ym19/api/program/team/' + requestData + '?key=XgUnZxvFcjZ4jEMT'
         $http.jsonp($sce.trustAsResourceUrl(url), jsonpCallbackParam: 'callback')
@@ -86,6 +98,8 @@ angular.module 'ahaLuminateApp'
       getProgram: (callback) ->
         if $rootScope.tablePrefix is 'heartdev'
           url = '//hearttools.heart.org/aha_ym19_dev/api/program?key=k7wvZXDpmDpenVcp'
+        else if $rootScope.tablePrefix is 'heartnew'
+          url = '//hearttools.heart.org/aha_ym19_testing/api/program?key=XgUnZxvFcjZ4jEMT'
         else
           url = '//hearttools.heart.org/aha_ym19/api/program?key=XgUnZxvFcjZ4jEMT'
         $http.jsonp($sce.trustAsResourceUrl(url), jsonpCallbackParam: 'callback')
@@ -100,15 +114,19 @@ angular.module 'ahaLuminateApp'
       eCardTracking: (requestData) ->
         if $rootScope.tablePrefix is 'heartdev'
           url = '//hearttools.heart.org/aha_ym19_dev/visitlink_record.php?ecard_linktrack=' + requestData
+        else if $rootScope.tablePrefix is 'heartnew'
+          url = '//hearttools.heart.org/aha_ym19_testing/visitlink_record.php?ecard_linktrack=' + requestData
         else
           url = '//hearttools.heart.org/aha_ym19/visitlink_record.php?ecard_linktrack=' + requestData
         $http
           method: 'POST'
           url: $sce.trustAsResourceUrl(url)
-
+      
       getAvatar: (requestData, callback) ->
         if $rootScope.tablePrefix is 'heartdev'
           url = '//khc.staging.ootqa.org/api/student/' + requestData + '/monster-designer'
+        else if $rootScope.tablePrefix is 'heartnew'
+          url = '//khc.dev.ootqa.org/api/student/' + requestData + '/monster-designer'
         else
           url = '//kidsheartchallenge.heart.org/api/student/' + requestData + '/monster-designer'
         $http.jsonp($sce.trustAsResourceUrl(url), jsonpCallbackParam: 'callback')

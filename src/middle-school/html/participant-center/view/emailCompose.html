@@ -78,7 +78,7 @@
         </div>
       </div>
       <div class="hidden-xs">
-        <a disabled class="btn btn-secondary form-control">
+        <a disabled class="btn btn-secondary form-control btn-compose">
           <strong>Compose</strong>
         </a>
         <div class="list-group ng-pc-nav-list-group">
@@ -88,7 +88,7 @@
           </a>
           <a class="list-group-item" ng-href="{{baseUrl}}#/email/message/sentMessage/list">
             <span class="badge">{{messageCounts.sentMessages}}</span> 
-            Sent Mail
+            Sent Messages
           </a>
         </div>
         <div class="list-group ng-pc-nav-list-group">
@@ -155,7 +155,7 @@
           <label for="emailComposer-subject" class="sr-only">Subject</label>
           <input type="text" class="form-control input-lg" id="emailComposer-subject" name="subject" ng-model="emailComposer.subject" placeholder="Subject" autocorrect="on" autocapitalize="on" spellcheck="true">
         </div>
-        <div class="form-group" ng-if="personalizedSalutationEnabled">
+        <div class="form-group" ng-if="personalizedSalutationEnabled && false">
           <div class="checkbox" custom-checkbox ng-class="{'checked': emailComposer.prepend_salutation}">
             <label>
               <input type="checkbox" ng-model="emailComposer.prepend_salutation"> Include personalized greeting

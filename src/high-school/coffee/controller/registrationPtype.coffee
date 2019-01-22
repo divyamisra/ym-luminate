@@ -32,7 +32,7 @@ angular.module 'ahaLuminateControllers'
       
       $scope.toggleDonationLevel = (levelAmount) ->
         $scope.participationOptions.ng_donation_level = levelAmount
-        $scope.participationOptionsForm.ng_donation_level_other_amount.$setValidity("amount", true);
+        $scope.participationOptionsForm.ng_donation_level_other_amount.$setValidity('amount', true)
         angular.forEach $scope.donationLevels.levels, (donationLevel, donationLevelIndex) ->
           if donationLevel.amount is levelAmount
             $scope.donationLevels.activeLevel = donationLevel
@@ -75,10 +75,10 @@ angular.module 'ahaLuminateControllers'
         false
       
       $scope.submitPtype = ->
-        if $scope.participationOptionsForm.ng_donation_level_other_amount.$viewValue != '' && $scope.participationOptionsForm.ng_donation_level_other_amount.$viewValue < 10
-          $scope.participationOptionsForm.ng_donation_level_other_amount.$setValidity("amount", false);
+        if $scope.participationOptionsForm.ng_donation_level_other_amount.$viewValue isnt '' and $scope.participationOptionsForm.ng_donation_level_other_amount.$viewValue < 10
+          $scope.participationOptionsForm.ng_donation_level_other_amount.$setValidity('amount', false)
         else
-          $scope.participationOptionsForm.ng_donation_level_other_amount.$setValidity("amount", true);
+          $scope.participationOptionsForm.ng_donation_level_other_amount.$setValidity('amount', true)
           if not $scope.participationOptionsForm.$valid
             goalElem = angular.element '#participationOptions-fr_goal'
             if goalElem.is '.ng-invalid'

@@ -138,5 +138,6 @@ angular.module 'ahaLuminateControllers'
         $scope.teamMemberSearch.ng_member_name = teamMemberSearch?.ng_member_name or ''
         $scope.teamMemberSearch.member_name = teamMemberSearch?.ng_member_name or ''
         $scope.teamMembers.page = 1
+        $scope.teamMemberSearch.lastSearch = $scope.teamMemberSearch.member_name
         $scope.getTeamMembers()
   ]

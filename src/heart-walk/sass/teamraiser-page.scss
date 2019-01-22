@@ -203,3 +203,29 @@
     }
   }
 }
+
+ body div.responsive {
+  .cons-info-question-container {
+      border: 1px solid transparent;
+      padding: 3px;
+      margin-right: 4px;
+  }
+  .section-container div.ErrorMessage>span.field-error-indicator {
+    display:none;
+  }
+
+  .header-container div.ErrorMessage>span.field-error-indicator {
+    display:none;
+  }
+}
+#contact_info_section_two .regMobilePhone .input-container{
+    margin-left:17px;
+}
+
+#cons_zip_code {
+    margin-left:-1px;
+    marsgin-right:1px;
+}
+
+
+

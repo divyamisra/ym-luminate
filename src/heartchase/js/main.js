@@ -114,23 +114,16 @@
       var companyPromise = new Promise(function(resolve, reject) {
         luminateExtend.api({
           api: 'teamraiser',
-          data: 'method=getCompaniesByInfo&fr_id=' + evID + '&response_format=json',
+          data: 'method=getCompaniesByInfo&fr_id=' + evID + '&response_format=json&list_sort_column=total&list_ascending=false&list_page_size=5',
           callback: {
             success: function (response) {
               if (!$.isEmptyObject(response.getCompaniesResponse)) {
                 var companyData = luminateExtend.utils.ensureArray(response.getCompaniesResponse.company);
                 console.log(companyData);
                 console.log('companyData.length = ',companyData.length);
-                if (companyData.length > 0) {
-                  var sortedCompaniesData = companyData.slice(0, 5);
-                  // build company roster here
-                  for (var i = 0, len = sortedCompaniesData.length; i < len; i++) {
-                    if (sortedCompaniesData[i].amountRaised > 0) {
-                      var companyData = '<tr><td><a href="' + sortedCompaniesData[i].companyURL + '">' + sortedCompaniesData[i].companyName + '</a></td><td><span class="pull-right">$' + (sortedCompaniesData[i].amountRaised / 100).formatMoney(0) + '</span></td></tr>';
-                      $('.insert_top-companies-list').append(companyData);
-                    }
-                  }
-                }
+                $.each(companyData, function() {
+                  $('.insert_top-companies-list').append('<tr><td><a href="' + this.companyURL + '">' + this.companyName + '</a></td><td><span class="pull-right">$' + (this.amountRaised / 100).formatMoney(0) + '</span></td></tr>');
+                });
               }
               resolve();
             },

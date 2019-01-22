@@ -131,7 +131,7 @@ angular.module 'ahaLuminateControllers'
             $scope.donationInfo.installmentAmount = amount
             $scope.donationInfo.numberPayments = 1
         if type is 'other'
-          if type isnt $scope.donationInfo.levelType and event.key >= 0 and event.key <= 9
+          if type isnt $scope.donationInfo.levelType and $scope.donationInfo.otherAmt isnt ''
             levelSelect()
         else
           levelSelect()
@@ -171,6 +171,7 @@ angular.module 'ahaLuminateControllers'
       employerMatchFields = ->
         angular.element('.employer-address-container').addClass 'hidden'
         angular.element('.matching-gift-container').addClass 'hidden'
+        angular.element('label[for="match_checkbox_dropdown"]').before("<input type='hidden' name='match_checkbox_dropdown' id='match_checkbox_dropdown' value=''>")
         angular.element('label[for="match_checkbox_dropdown"]').parent().parent().parent().addClass 'ym-employer-match'
         empCheck = angular.element('#match_checkbox_radio').prop 'checked'
         if empCheck is true

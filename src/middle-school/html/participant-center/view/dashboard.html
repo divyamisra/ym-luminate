@@ -112,17 +112,14 @@
               <h2 class="h5">
                 Badges
               </h2>
-              <a class="btn btn-md-wide btn-secondary" href="http://american.heart.org/americanheartchallenge/resources/for-students/learn-about-badges.html">
-                <strong>Learn About Badges</strong>
-              </a>
             </div>
             <div class="ym-pc-dashboard-badges-icons clearfix">
               <div class="ym-pc-dashboard-badges-icon" ng-repeat="prize in prizes" ng-cloak>
                 <div ng-if="prize.earned">
-                  <img class="img-responsive" ng-src="//s3.amazonaws.com/aha-jumphoops-production/fy18/assets/badges/tgr/{{prize.id}}_delivered.png" alt="">
+                  <img class="img-responsive" ng-src="//s3.amazonaws.com/aha-oot-production/fy19/assets/badges/ahc/{{prize.id}}_delivered.png" alt="">
                 </div>
                 <div ng-if="!prize.earned">
-                  <img class="img-responsive" ng-src="//s3.amazonaws.com/aha-jumphoops-production/fy18/assets/badges/tgr/{{prize.id}}_earned.png" alt="">
+                  <img class="img-responsive" ng-src="//s3.amazonaws.com/aha-oot-production/fy19/assets/badges/ahc/{{prize.id}}_earned.png" alt="">
                 </div>
                 <div>
                   <span ng-bind-html="prize.label"></span> <span class="sr-only" ng-if="prize.earned">(earned)</span><span class="sr-only" ng-if="!prize.earned">(not yet earned)</span>
@@ -158,6 +155,54 @@
                 <strong>Copy Email Text</strong>
               </button>
             </form>
+          </div>
+        </div>
+      </div>
+      <div ng-show="facebookFundraisersEnabled" ng-cloak>
+        <div class="ym-pc-dashboard-facebook-box" ng-show="!facebookFundraiserId">
+          <div class="container">
+            <div class="ym-pc-dashboard-section-header">
+              <h3 class="h5">
+                Let's Get Fundraising<span ng-if="consNameFirst && consNameFirst != ''">, <span ng-bind-html="consNameFirst"></span></span>!
+              </h3>
+            </div>
+            <div class="text-center">
+              <p>
+                Link your personal page to a new Facebook Fundraiser to receive donations from your Facebook friends.
+              </p>
+              <div role="alert" class="alert alert-danger" ng-if="facebookFundraiserLoginStatus == 'login_error' || facebookFundraiserLoginStatus == 'permission_error' || facebookFundraiserLoginStatus == 'create_fundraiser_error' || facebookFundraiserCreateStatus == 'login_error' || facebookFundraiserCreateStatus == 'permission_error' || facebookFundraiserCreateStatus == 'create_fundraiser_error'" ng-cloak>
+                An error occurred attempting to connect to Facebook. Please try again later.
+              </div>
+              <div role="alert" class="alert alert-danger" ng-if="facebookFundraiserLoginStatus == 'declined_manage_fundraisers'" ng-cloak>
+                We need your permission to create a Facebook Fundraiser on your behalf.
+              </div>
+              <button type="button" class="btn btn-white" ng-class="{'disabled': facebookFundraiserLoginStatus == 'pending' || facebookFundraiserCreateStatus == 'pending'}" ng-click="loginToFacebook()" ng-disabled="facebookFundraiserLoginStatus == 'pending' || facebookFundraiserCreateStatus == 'pending'">
+                <span class="fa fa-facebook-square"></span> <strong>Connect to Facebook Fundraiser</strong>
+              </button>
+              <div class="ym-pc-dashboard-facebook-hint">
+                By clicking this link, you will leave AHA's website and be redirected to another site not under the control of AHA.
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="ym-pc-dashboard-facebook-box js--facebook-fundraiser-completed-section" ng-show="facebookFundraiserId">
+          <div class="container">
+            <div class="ym-pc-dashboard-section-header">
+              <h3 class="h5">
+                Your Fundraiser is Connected to Facebook!
+              </h3>
+            </div>
+            <div class="text-center">
+              <p>
+                Log in to use Facebook's fundraising tools to invite friends, share updates and collect donations. We'll keep track of your progress on Facebook and on your page, so you'll always know how close you are to reaching your goal.
+              </p>
+              <a class="btn btn-white" ng-class="{'disabled': !facebookFundraiserConfirmedStatus || facebookFundraiserConfirmedStatus == 'pending'}" ng-href="//facebook.com/donate/{{facebookFundraiserId}}/" ng-disabled="!facebookFundraiserConfirmedStatus || facebookFundraiserConfirmedStatus == 'pending'" target="_blank">
+                <span class="fa fa-facebook-square"></span> <strong>Go to Facebook Fundraiser</strong>
+              </a>
+              <div class="ym-pc-dashboard-facebook-hint">
+                By clicking this link, you will leave AHA's website and be redirected to another site not under the control of AHA.
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -314,18 +359,18 @@
                   <p>
                     <strong>Share My Personal&nbsp;Page:</strong>
                   </p>
-                  <a target="_new" ng-href="https://www.facebook.com/sharer/sharer.php?u={{personalPageUrlEsc}}">
+                  <!--<a target="_new" ng-href="https://www.facebook.com/sharer/sharer.php?u={{personalPageUrlEsc}}">
                     <img src="../aha-luminate/dist/youth-markets/image/facebook-logo.png" alt="Facebook">
                   </a> 
                   <a target="_new" ng-href="https://twitter.com/home?status={{personalPageUrlEsc}}">
                     <img src="../aha-luminate/dist/youth-markets/image/twitter-logo.png" alt="Twitter">
-                  </a> 
-                  <!-- <a ng-href="{{baseUrl}}#" ng-click="delegatedAddThis('.js--personal-social-share', 'facebook')">
+                  </a>--> 
+                  <a ng-href="{{baseUrl}}#" ng-click="delegatedAddThis('.js--personal-social-share', 'facebook')">
                     <img src="../aha-luminate/dist/youth-markets/image/facebook-logo.png" alt="Facebook">
                   </a> 
                   <a ng-href="{{baseUrl}}#" ng-click="delegatedAddThis('.js--personal-social-share', 'twitter')">
                     <img src="../aha-luminate/dist/youth-markets/image/twitter-logo.png" alt="Twitter">
-                  </a> -->
+                  </a>
                 </div>
               </div>
             </div>
@@ -688,15 +733,12 @@
             Visit our Thank-You Gift portal to manage and order gifts for your students.
           </p>
           <div class="ym-activity-box-cta">
-            <a class="btn btn-md-wide btn-primary" href="javascript:void(0);">
-              <strong>Coming Soon</strong>
-            </a>
-            <!--<a class="btn btn-md-wide btn-primary" ng-href="https://ms.staging.ootqa.org/coordinator/login/{{authToken}}/{{sessionCookie}}" target="_blank" ng-if="tablePrefix == 'heartdev'" ng-cloak>
+            <a class="btn btn-md-wide btn-primary" ng-href="https://ms.staging.ootqa.org/coordinator/login/{{authToken}}/{{sessionCookie}}" target="_blank" ng-if="tablePrefix == 'heartdev'" ng-cloak>
               <strong>Thank You Gifts</strong>
             </a>
-            <a class="btn btn-md-wide btn-primary" ng-href="https://thegreatreplay.heart.org/coordinator/login/{{authToken}}/{{sessionCookie}}" target="_blank" ng-if="tablePrefix == 'heart'" ng-cloak>
+            <a class="btn btn-md-wide btn-primary" ng-href="https://middleschool.heart.org/coordinator/login/{{authToken}}/{{sessionCookie}}" target="_blank" ng-if="tablePrefix == 'heart'" ng-cloak>
               <strong>Thank You Gifts</strong>
-            </a>-->
+            </a>
           </div>
         </div>
       </div>
@@ -712,11 +754,11 @@
           <div class="col-sm-4">
             <div class="ym-pc-dashboard-section-header">
               <h3 class="h5">
-                Game Guide
+                Activation Guide
               </h3>
             </div>
-            <a class="btn btn-md-wide btn-primary" href="http://american.heart.org/americanheartchallenge/resources/the-great-replay-game-guide-2017.pdf" target="_blank">
-              <strong>Download</strong> <span class="sr-only">Game Guide</span>
+            <a class="btn btn-md-wide btn-primary" href="http://american.heart.org/americanheartchallenge/resources/for-teachers/activation-guide.html" target="_blank">
+              <strong>Download</strong> <span class="sr-only">Activation Guide</span>
             </a>
           </div>
           <div class="col-sm-4">
@@ -725,7 +767,7 @@
                 Volunteer Guide
               </h3>
             </div>
-            <a class="btn btn-md-wide btn-primary" href="http://american.heart.org/americanheartchallenge/resources/for-teachers/2018-middle-school-volunteer.pdf" target="_blank">
+            <a class="btn btn-md-wide btn-primary" href="http://american.heart.org/americanheartchallenge/resources/for-teachers/ahc-volunteer-guide.pdf" target="_blank">
               <strong>Download</strong> <span class="sr-only">Volunteer Guide</span>
             </a>
           </div>
@@ -748,7 +790,7 @@
       </div>
     </section>
   </div>
-  <section class="ym-pc-dashboard-spread-section event-secondary-medium event-secondary-medium--grid" aria-label="Resources to Spread the Word">
+  <section class="ym-pc-dashboard-spread-section event-secondary-medium--diagonal" aria-label="Resources for Spreading the Word">
     <div class="ym-pc-dashboard-section-header">
       <h2 class="h3">
         Spread the Word
@@ -756,7 +798,7 @@
     </div>
     <div class="ym-pc-dashboard-spread-options">
       <div class="row">
-        <div class="col-sm-4">
+        <div class="col-sm-6">
           <div class="ym-pc-dashboard-section-header">
             <h3 class="h5">
               Download Mobile App
@@ -766,41 +808,26 @@
             Download our Mobile Fundraising App today!
           </p>
           <div class="ym-pc-dashboard-mobile-downloads">
-            <a ng-href="https://itunes.apple.com/us/app/aha-middle-school/id1274201161?mt=8" target="_blank">
-              <img src="../aha-luminate/dist/youth-markets/image/apple-store-logo.png" alt="Download the iPhone App">
+            <a href="https://itunes.apple.com/us/app/aha-middle-school/id1274201161?mt=8" target="_blank">
+              <img ng-src="../{{dev_branch != '' ? dev_branch+'/' : ''}}aha-luminate/dist/youth-markets/image/apple-store-logo.png" alt="Download the iPhone App">
             </a> 
-            <a ng-href="https://play.google.com/store/apps/details?id=com.charitydynamics.ahatgr" target="_blank">
-              <img src="../aha-luminate/dist/youth-markets/image/google-play-logo.png" alt="Download the Android App">
+            <a href="https://play.google.com/store/apps/details?id=com.charitydynamics.ahatgr" target="_blank">
+              <img ng-src="../{{dev_branch != '' ? dev_branch+'/' : ''}}aha-luminate/dist/youth-markets/image/google-play-logo.png" alt="Download the Android App">
             </a>
           </div>
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-6">
           <div class="ym-pc-dashboard-section-header">
             <h3 class="h5">
-              Facebook Fundraising
+              Social Share
             </h3>
           </div>
           <p>
-            Use our Facebook app to raise even more!
+            Share on Facebook, Twitter, LinkedIn and event text messaging!
           </p>
           <div class="text-center">
-            <a ng-href="https://apps.facebook.com/bf-ahatgr/add/user/{{consId}}/{{frId}}/ParticipantCenter" target="_blank">
-              <img src="../aha-luminate/dist/youth-markets/image/fundraise-with-facebook.png" alt="Fundraise with Facebook">
-            </a>
-          </div>
-        </div>
-        <div class="col-sm-4">
-          <div class="ym-pc-dashboard-section-header">
-            <h3 class="h5">
-              Email Badge
-            </h3>
-          </div>
-          <p>
-            Download an email badge!
-          </p>
-          <div class="text-center">
-            <a class="btn btn-md-wide btn-secondary" ng-href="PageServer?pagename=reus_bf_email_badge&amp;trID={{frId}}" target="_blank">
-              <strong>Download Email Badge</strong> 
+            <a class="btn btn-md-wide btn-secondary" ng-href="{{baseUrl}}#/social">
+              <strong>Go Social</strong> 
             </a>
           </div>
         </div>
