@@ -215,7 +215,7 @@ angular.module 'trPcControllers'
           downloadHeaders: [
             'Name'
             'Amount'
-#            'Ecards'
+            'Ecards'
             'Emails'
             'T-shirt'
             'Teacher'
@@ -254,7 +254,7 @@ angular.module 'trPcControllers'
                       email = jQuery.trim reportDataRow[reportDataColumnIndexMap.PARTICIPANT_EMAIL]
                       amount = Number reportDataRow[reportDataColumnIndexMap.TRX_AMT]
                       amountFormatted = $filter('currency') jQuery.trim(reportDataRow[reportDataColumnIndexMap.TRX_AMT]), '$'
-#                      ecardsSent = Number reportDataRow[reportDataColumnIndexMap.ECARDS_SENT_CNT]
+                      ecardsSent = Number reportDataRow[reportDataColumnIndexMap.ECARDS_SENT_CNT]
                       emailsSent = Number reportDataRow[reportDataColumnIndexMap.EMAILS_SENT_CNT]
                       tshirtSize = jQuery.trim reportDataRow[reportDataColumnIndexMap.TSHIRT_SIZE]
                       teacherName = jQuery.trim reportDataRow[reportDataColumnIndexMap.TEACHER_NAME]
@@ -265,7 +265,7 @@ angular.module 'trPcControllers'
                         email: email
                         amount: amount
                         amountFormatted: amountFormatted.replace '.00', ''
-#                        ecardsSent: ecardsSent
+                        ecardsSent: ecardsSent
                         emailsSent: emailsSent
                         tshirtSize: tshirtSize
                         teacherName: teacherName
@@ -273,7 +273,7 @@ angular.module 'trPcControllers'
                       schoolDetailDownloadData.push [
                         firstName + ' ' + lastName
                         amountFormatted.replace('$', '').replace /,/g, ''
-#                        ecardsSent
+                        ecardsSent
                         emailsSent
                         tshirtSize
                         teacherName
