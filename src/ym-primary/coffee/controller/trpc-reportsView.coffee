@@ -14,16 +14,6 @@ angular.module 'trPcControllers'
       
       $scope.activeReportTab = if $scope.participantRegistration.companyInformation?.isCompanyCoordinator is 'true' then 0 else 1
       
-      if $scope.participantRegistration.companyInformation?.isCompanyCoordinator is 'true'
-        setTimeout ->
-          $scope.reportMessageModal = $uibModal.open
-            scope: $scope
-            templateUrl: APP_INFO.rootPath + 'dist/ym-primary/html/participant-center/modal/generatingReportMessage.html'
-        , 500
-        
-        $scope.closeReportMessage = ->
-          $scope.reportMessageModal.close()
-      
       NgPcTeamraiserEmailService.getSuggestedMessages()
         .then (response) ->
           suggestedMessages = response.data.getSuggestedMessagesResponse.suggestedMessage
@@ -219,7 +209,7 @@ angular.module 'trPcControllers'
             $location.path '/email/compose/suggestedMessage/' + $scope.thankYouMessageId
           else
             $location.path '/email/compose/'
-      
+      ###
       if $scope.participantRegistration.companyInformation?.isCompanyCoordinator is 'true'
         $scope.schoolDetailStudents =
           downloadHeaders: [
@@ -322,4 +312,5 @@ angular.module 'trPcControllers'
               if companyParticipantContact
                 $rootScope.selectedContacts.contacts.push companyParticipantContact
           $location.path '/email/compose/'
+      ###
   ]
