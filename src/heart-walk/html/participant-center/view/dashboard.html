@@ -180,11 +180,8 @@
       </div>
       <div class="clearfix heartwalk_store" ng-if="BrightSites.active">
         <h2><i class="fa fa-heart"></i> Heart Walk Rewards Center</h2>
-        <p ng-if="BrightSites.points == 0">
-          By fundraising, you can earn fun, new Heart Walk Hero gear!
-        </p>
-        <p ng-if="BrightSites.points > 0">
-          Congratulations, you have {{BrightSites.points}} points available! Check out the Reward Center to redeem Heart Walk Hero gear!
+        <p>
+          {{BrightSites.greeting}}
         </p>
         <a id="heartwalk_store_button" class="btn btn-primary" ng-href="{{BrightSites.url}}" target="_blank">Visit the Rewards Center</a>
       </div>
