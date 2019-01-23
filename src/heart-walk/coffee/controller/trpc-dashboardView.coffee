@@ -75,7 +75,7 @@ angular.module 'trPcControllers'
         getcheckBrightSitesPromise = runCheckBrightSites()
           .then (response) ->
             if response.data.errors
-              console.log response.data.errors
+              console.log response.data
             else
               $scope.BrightSites.active = true
               $scope.BrightSites.url = response.data.login_url
