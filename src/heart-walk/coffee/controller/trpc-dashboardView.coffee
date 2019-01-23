@@ -53,15 +53,17 @@ angular.module 'trPcControllers'
       $scope.dashboardPromises.push constituentPromise
 
       APurlPrefix = ''
-      if $scope.tablePrefix == 'heartdev'
+      if $scope.tablePrefix is 'heartdev'
         APurlPrefix = 'https://hwk.staging.ootqa.org/'
       else
-        APurlPrefix = 'https://heartwalk.heart.org/'
+        #TO DO
+        APurlPrefix = ''
 
       runCheckBrightSites = ->
         postData =
-          username: $scope.constituent.user_name
           server: $scope.tablePrefix
+          frid: $scope.frId
+          consid: $scope.consId
         $http.post('https://bfapps1.boundlessfundraising.com/applications/ahahw/brightsites/brightpost.php', postData)
 
       $scope.BrightSites =
@@ -72,24 +74,13 @@ angular.module 'trPcControllers'
       $scope.checkBrightSites = ->
         getcheckBrightSitesPromise = runCheckBrightSites()
           .then (response) ->
-            console.log 'success', response
             if response.data.errors
-              console.log response.data.errors.username
-              if response.data.errors.username is 'Invalid or disabled user requested'
-                console.log 'Run webhook to create user in store'
-                console.log APurlPrefix+'/api/brightsites/'+$scope.consId+'/import'
-                #$http.get(APurlPrefix+'/api/brightsites/'+$scope.consId+'/import')
-                #This was only if they could do the update immediatly
-                #runCheckBrightSites()
-                  #.then (test) ->
-                    #console.log test
-                    #test #this is the response from new hook is the user was created might need to nest multiple promises
-              #else
-                #There is another unknown error do nothing
+              console.log response.data.errors
             else
               $scope.BrightSites.active = true
               $scope.BrightSites.url = response.data.login_url
               $scope.BrightSites.points = response.data.balance
+              $scope.BrightSites.greeting = response.data.greeting
               console.log response.data
               console.log $scope.BrightSites
             #response
@@ -623,7 +614,7 @@ angular.module 'trPcControllers'
           window.location = 'https://itunes.apple.com/us/app/heart-walk/id451276834?ls=1&mt=8'
         else
           window.location = 'PageServer?pagename=heartwalk_fundraising_tools&amp;pc2_page=center&amp;fr_id=' + $scope.frId + '#/social'
-      
+
       $scope.profileProgress = 0
       $scope.profileChecklist = ->
         $scope.resetSurveyAlerts()
