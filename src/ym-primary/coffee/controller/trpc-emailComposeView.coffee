@@ -208,7 +208,7 @@ angular.module 'trPcControllers'
                 .then (response) ->
                   draftMessage = response.data.addDraftResponse?.message
                   if draftMessage
-                    $scope.getMessageCounts true
+#                    $scope.getMessageCounts true
                     messageId = draftMessage.messageId
                     $scope.messageId = messageId
                     # TODO: add draftId to URL
@@ -304,10 +304,10 @@ angular.module 'trPcControllers'
                 if $scope.messageId
                   deleteDraftPromise = NgPcTeamraiserEmailService.deleteDraft 'message_id=' + $scope.messageId
                     .then (response) ->
-                      $scope.getMessageCounts()
+#                      $scope.getMessageCounts()
                   $scope.emailPromises.push deleteDraftPromise
                 else
-                  $scope.getMessageCounts()
+#                  $scope.getMessageCounts()
                 $scope.getContactCounts()
                 $scope.sendEmailSuccess = true
                 $scope.resetSelectedContacts()
