@@ -18,21 +18,21 @@ angular.module 'trPcControllers'
       
       $scope.emailPromises = []
       
-      $scope.getMessageCounts = (refresh) ->
-        $scope.messageCounts = {}
-        messageTypes = [
-          'draft'
-          'sentMessage'
-        ]
-        angular.forEach messageTypes, (messageType) ->
-          apiMethod = 'get' + messageType.charAt(0).toUpperCase() + messageType.slice(1) + 's'
-          messageCountPromise = NgPcTeamraiserEmailService[apiMethod] 'list_page_size=1'
-            .then (response) ->
-              $scope.messageCounts[messageType + 's'] = response.data[apiMethod + 'Response'].totalNumberResults
-              response
-          if not refresh
-            $scope.emailPromises.push messageCountPromise
-      $scope.getMessageCounts()
+#      $scope.getMessageCounts = (refresh) ->
+#        $scope.messageCounts = {}
+#        messageTypes = [
+#          'draft'
+#          'sentMessage'
+#        ]
+#        angular.forEach messageTypes, (messageType) ->
+#          apiMethod = 'get' + messageType.charAt(0).toUpperCase() + messageType.slice(1) + 's'
+#          messageCountPromise = NgPcTeamraiserEmailService[apiMethod] 'list_page_size=1'
+#            .then (response) ->
+#              $scope.messageCounts[messageType + 's'] = response.data[apiMethod + 'Response'].totalNumberResults
+#              response
+#          if not refresh
+#            $scope.emailPromises.push messageCountPromise
+#      $scope.getMessageCounts()
       
       $scope.getContactCounts = ->
         $scope.contactCounts = {}
