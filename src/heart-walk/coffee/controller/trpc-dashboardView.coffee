@@ -476,7 +476,7 @@ angular.module 'trPcControllers'
               templateUrl: APP_INFO.rootPath + 'dist/heart-walk/html/participant-center/modal/LBthankYouRegistering.html'
             $timeout ->
               document.getElementById('LBmakeDonation').onclick = ->
-                _gaq.push(['t2._trackEvent', 'HW PC', 'click', 'Heck Yeah! - thank you for registering lightbox'])
+                _gaq.push(['t2._trackEvent', 'hw pc', 'click', 'heck yeah! - thank you for registering lightbox'])
             , 500
         else if $scope.facebookFundraisersEnabled and $scope.userInteractions.facebookFundraiser is 0
           $scope.dashboardGreeting = 'facebookFundraiser'
@@ -492,7 +492,7 @@ angular.module 'trPcControllers'
               templateUrl: APP_INFO.rootPath + 'dist/heart-walk/html/participant-center/modal/LBwelcomeBack.html'
             $timeout ->
               document.getElementById('update_my_story_welcome_back_lb').onclick = ->
-                _gaq.push(['t2._trackEvent', 'HW PC', 'click', 'Update my story - welcome back lightbox'])
+                _gaq.push(['t2._trackEvent', 'hw pc', 'click', 'update my story - welcome back lightbox'])
             , 500
         else if $scope.userInteractions.donate is 0
           $scope.dashboardGreeting = 'donate'
@@ -502,11 +502,11 @@ angular.module 'trPcControllers'
               templateUrl: APP_INFO.rootPath + 'dist/heart-walk/html/participant-center/modal/LBdonate.html'
             $timeout ->
               #document.getElementById('LBmakeDonation').onclick = ->
-                #_gaq.push(['t2._trackEvent', 'HW PC', 'click', 'Make A Donation - donate lightbox'])
+                #_gaq.push(['t2._trackEvent', 'hw pc', 'click', 'make a donation - donate lightbox'])
               document.getElementById('LBmakeDonationHoliday').onclick = ->
-                _gaq.push(['t2._trackEvent', 'HW PC', 'click', 'Download Healthy Eating Guide'])
+                _gaq.push(['t2._trackEvent', 'hw pc', 'click', 'download healthy eating guide'])
               document.getElementById('LBmakeDonationHoliday2').onclick = ->
-                _gaq.push(['t2._trackEvent', 'HW PC', 'click', 'Download Healthy Eating Guide'])
+                _gaq.push(['t2._trackEvent', 'hw pc', 'click', 'download healthy eating guide'])
             , 500
         else if $scope.userInteractions.email is 0
           $scope.dashboardGreeting = 'email'
@@ -516,7 +516,7 @@ angular.module 'trPcControllers'
               templateUrl: APP_INFO.rootPath + 'dist/heart-walk/html/participant-center/modal/LBemail.html'
             $timeout ->
               document.getElementById('LBsendEmail').onclick = ->
-                _gaq.push(['t2._trackEvent', 'HW PC', 'click', 'Send Email - email lightbox'])
+                _gaq.push(['t2._trackEvent', 'hw pc', 'click', 'send email - email lightbox'])
             , 500
         else if $scope.userInteractions.why is 0
           $scope.dashboardGreeting = 'why'
@@ -538,7 +538,7 @@ angular.module 'trPcControllers'
               templateUrl: APP_INFO.rootPath + 'dist/heart-walk/html/participant-center/modal/LBprofile.html'
             $timeout ->
               document.getElementById('LBprofileWhy').onclick = ->
-                _gaq.push(['t2._trackEvent', 'HW PC', 'click', 'Whats your why - profile lightbox'])
+                _gaq.push(['t2._trackEvent', 'hw pc', 'click', 'whats your why - profile lightbox'])
             , 500
         else if $scope.userInteractions.goal1 is 0 and $scope.participantProgress.percent >= 50
           $scope.dashboardGreeting = 'goal1'
@@ -588,7 +588,7 @@ angular.module 'trPcControllers'
         $uibModalStack.dismissAll()
 
       $scope.sendGAEvent = (event) ->
-        _gaq.push(['t2._trackEvent', 'HW PC', 'click', event])
+        _gaq.push(['t2._trackEvent', 'hw pc', 'click', event])
 
       $scope.LBskip = (interaction) ->
         logUserInt interaction, $scope.frId
@@ -624,7 +624,7 @@ angular.module 'trPcControllers'
           templateUrl: APP_INFO.rootPath + 'dist/heart-walk/html/participant-center/modal/LBprofile.html'
         $timeout ->
           document.getElementById('LBprofileWhy').onclick = ->
-            _gaq.push(['t2._trackEvent', 'HW PC', 'click', 'Whats your why - profile lightbox'])
+            _gaq.push(['t2._trackEvent', 'hw pc', 'click', 'whats your why - profile lightbox'])
         , 500
 
       $scope.reLaunchprofileChecklist = ->
@@ -633,7 +633,7 @@ angular.module 'trPcControllers'
           templateUrl: APP_INFO.rootPath + 'dist/heart-walk/html/participant-center/modal/LBprofile.html'
           $timeout ->
             document.getElementById('LBprofileWhy').onclick = ->
-              _gaq.push(['t2._trackEvent', 'HW PC', 'click', 'Whats your why - profile lightbox'])
+              _gaq.push(['t2._trackEvent', 'hw pc', 'click', 'whats your why - profile lightbox'])
           , 500
 
       reCheckProfileItems = ->
