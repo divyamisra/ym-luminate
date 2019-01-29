@@ -18,18 +18,18 @@ angular.module 'trPcControllers'
       
       $scope.emailPromises = []
       
-      $scope.messageCounts = {}
-      messageTypes = [
-        'draft'
-        'sentMessage'
-      ]
-      angular.forEach messageTypes, (messageType) ->
-        apiMethod = 'get' + messageType.charAt(0).toUpperCase() + messageType.slice(1) + 's'
-        messageCountPromise = NgPcTeamraiserEmailService[apiMethod] 'list_page_size=1'
-          .then (response) ->
-            $scope.messageCounts[messageType + 's'] = response.data[apiMethod + 'Response'].totalNumberResults
-            response
-        $scope.emailPromises.push messageCountPromise
+#      $scope.messageCounts = {}
+#      messageTypes = [
+#        'draft'
+#        'sentMessage'
+#      ]
+#      angular.forEach messageTypes, (messageType) ->
+#        apiMethod = 'get' + messageType.charAt(0).toUpperCase() + messageType.slice(1) + 's'
+#        messageCountPromise = NgPcTeamraiserEmailService[apiMethod] 'list_page_size=1'
+#          .then (response) ->
+#            $scope.messageCounts[messageType + 's'] = response.data[apiMethod + 'Response'].totalNumberResults
+#            response
+#        $scope.emailPromises.push messageCountPromise
       
       $scope.focusPanel = ->
         $elem = angular.element '.contacts-list__actions-selected .btn'
