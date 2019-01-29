@@ -1,3 +1,25 @@
+a#skip-main:hover, 
+a#skip-main:active, 
+a#skip-main:focus {
+  left: 0;
+  width: 200px;
+  height: 40px;
+  margin: 5px;
+}
+
+a#skip-main:active, 
+a#skip-main:focus,
+.skip-to:active, 
+.skip-to:focus  {
+position: static;
+width: auto;
+height: auto;
+clip: unset;
+clip-path: none;
+display: block;
+background: rgb(248, 249, 250);
+padding: 0.625rem 1.25rem;
+}
 
 .navbar {
   background:$primary;

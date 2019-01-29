@@ -13,7 +13,7 @@ angular.module 'trPcControllers'
       
       $scope.emailPromises = []
       
-      $scope.messageCounts = {}
+#      $scope.messageCounts = {}
       $scope.emailMessages = 
         page: 1
       $scope.getEmailMessages = ->
@@ -28,7 +28,7 @@ angular.module 'trPcControllers'
           pageNumber = if $scope.messageType is messageType then $scope.emailMessages.page - 1 else 0
           messageListPromise = NgPcTeamraiserEmailService[apiMethod] 'list_sort_column=' + sortColumn + '&list_ascending=false&list_page_size=' + pageSize + '&list_page_offset=' + pageNumber
             .then (response) ->
-              $scope.messageCounts[messageType + 's'] = response.data[apiMethod + 'Response'].totalNumberResults
+#              $scope.messageCounts[messageType + 's'] = response.data[apiMethod + 'Response'].totalNumberResults
               if $scope.messageType is messageType
                 messageItems = response.data[apiMethod + 'Response'].messageItem
                 messageItems = [messageItems] if not angular.isArray messageItems
