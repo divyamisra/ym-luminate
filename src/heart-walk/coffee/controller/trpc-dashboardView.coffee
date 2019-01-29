@@ -77,15 +77,16 @@ angular.module 'trPcControllers'
             if response.data.errors
               console.log response.data
             else
-              $scope.BrightSites.active = true
-              $scope.BrightSites.url = response.data.login_url
-              $scope.BrightSites.points = response.data.balance
-              $scope.BrightSites.greeting = response.data.greeting
               console.log response.data
-              console.log $scope.BrightSites
+              if response.data.login_url
+                $scope.BrightSites.active = true
+                $scope.BrightSites.url = response.data.login_url
+                $scope.BrightSites.points = response.data.balance
+                $scope.BrightSites.greeting = response.data.greeting
+                console.log $scope.BrightSites
             #response
           .catch (response) ->
-            console.log 'failure'
+            console.log 'brightsites promise failure'
             #console.log response
         $scope.dashboardPromises.push getcheckBrightSitesPromise
 
