@@ -115,7 +115,7 @@
       var companyPromise = new Promise(function(resolve, reject) {
         luminateExtend.api({
           api: 'teamraiser',
-          data: 'method=getCompaniesByInfo&fr_id=' + evID + '&response_format=json',
+          data: 'method=getCompaniesByInfo&fr_id=' + evID + '&list_sort_column=total&list_ascending=false&response_format=json',
           callback: {
             success: function (response) {
               if (!$.isEmptyObject(response.getCompaniesResponse)) {
