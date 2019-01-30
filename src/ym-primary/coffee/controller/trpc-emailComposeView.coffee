@@ -18,21 +18,21 @@ angular.module 'trPcControllers'
       
       $scope.emailPromises = []
       
-      $scope.getMessageCounts = (refresh) ->
-        $scope.messageCounts = {}
-        messageTypes = [
-          'draft'
-          'sentMessage'
-        ]
-        angular.forEach messageTypes, (messageType) ->
-          apiMethod = 'get' + messageType.charAt(0).toUpperCase() + messageType.slice(1) + 's'
-          messageCountPromise = NgPcTeamraiserEmailService[apiMethod] 'list_page_size=1'
-            .then (response) ->
-              $scope.messageCounts[messageType + 's'] = response.data[apiMethod + 'Response'].totalNumberResults
-              response
-          if not refresh
-            $scope.emailPromises.push messageCountPromise
-      $scope.getMessageCounts()
+#      $scope.getMessageCounts = (refresh) ->
+#        $scope.messageCounts = {}
+#        messageTypes = [
+#          'draft'
+#          'sentMessage'
+#        ]
+#        angular.forEach messageTypes, (messageType) ->
+#          apiMethod = 'get' + messageType.charAt(0).toUpperCase() + messageType.slice(1) + 's'
+#          messageCountPromise = NgPcTeamraiserEmailService[apiMethod] 'list_page_size=1'
+#            .then (response) ->
+#              $scope.messageCounts[messageType + 's'] = response.data[apiMethod + 'Response'].totalNumberResults
+#              response
+#          if not refresh
+#            $scope.emailPromises.push messageCountPromise
+#      $scope.getMessageCounts()
       
       $scope.getContactCounts = ->
         $scope.contactCounts = {}
@@ -208,7 +208,7 @@ angular.module 'trPcControllers'
                 .then (response) ->
                   draftMessage = response.data.addDraftResponse?.message
                   if draftMessage
-                    $scope.getMessageCounts true
+#                    $scope.getMessageCounts true
                     messageId = draftMessage.messageId
                     $scope.messageId = messageId
                     # TODO: add draftId to URL
@@ -304,10 +304,10 @@ angular.module 'trPcControllers'
                 if $scope.messageId
                   deleteDraftPromise = NgPcTeamraiserEmailService.deleteDraft 'message_id=' + $scope.messageId
                     .then (response) ->
-                      $scope.getMessageCounts()
+#                      $scope.getMessageCounts()
                   $scope.emailPromises.push deleteDraftPromise
                 else
-                  $scope.getMessageCounts()
+#                  $scope.getMessageCounts()
                 $scope.getContactCounts()
                 $scope.sendEmailSuccess = true
                 $scope.resetSelectedContacts()
