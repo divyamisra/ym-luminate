@@ -52,13 +52,6 @@ angular.module 'trPcControllers'
           response
       $scope.dashboardPromises.push constituentPromise
 
-      APurlPrefix = ''
-      if $scope.tablePrefix is 'heartdev'
-        APurlPrefix = 'https://hwk.staging.ootqa.org/'
-      else
-        #TO DO
-        APurlPrefix = ''
-
       runCheckBrightSites = ->
         postData =
           server: $scope.tablePrefix
