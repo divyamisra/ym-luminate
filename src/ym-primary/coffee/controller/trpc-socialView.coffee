@@ -7,7 +7,7 @@ angular.module('trPcControllers').controller 'NgPcSocialViewCtrl', [
     if $scope.tablePrefix is 'heartdev' or $scope.tablePrefix is 'heartnew'
       urlPrefix = 'bfstage'
     else
-      urlPrefix = 'bfapps1'
+      urlPrefix = 'loadaha'
     consId = $scope.consId
     frId = $rootScope.frId
     url = 'https://' + urlPrefix + '.boundlessfundraising.com/applications/ahakhc/social/app/ui/#/addsocial/' + consId + '/' + frId + '?source=PCSocial'
