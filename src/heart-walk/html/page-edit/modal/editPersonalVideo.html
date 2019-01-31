@@ -27,12 +27,11 @@
           Default Video
         </label>
       </div>
-      <div class="form-group" ng-if="personalVideo.type == 'personalized'">
+<!--      <div class="form-group" ng-if="personalVideo.type == 'personalized'">
         <label for="">
           Your Why:
         </label>
         <input type="text" class="form-control" id="" ng-model="personalMedia.myWhy">
-   
       </div>
     </div>
     <div class="modal-footer">
@@ -53,6 +52,7 @@
 </div>
 
 <div class="hidden" hidden aria-hidden="true">
+
   <form class="js--submit-personalized-video-LO-form" action="{{teamraiserAPIPath}}" method="POST" enctype="multipart/form-data" target="submit-personalized-video-LO-shim">
     <input type="hidden" name="v" value="1.0">
     <input type="hidden" name="api_key" value="{{apiKey}}">
@@ -67,6 +67,7 @@
     <input type="hidden" name="success_redirect" value="{{nonsecurePath + '../aha-luminate/dist/heart-walk/html/page-edit/frame/edit-video.html'}}">
     <input type="hidden" name="error_redirect" value="{{nonsecurePath + '../aha-luminate/dist/heart-walk/html/page-edit/frame/edit-video.html'}}">
   </form>
+
   <form class="js--submit-personalized-video-VY-form" action="http://blender.vidyard.com/forms/pd5MsBtKJwfrReeWz7d8v4/submit.json" method="POST" enctype="multipart/form-data" target="submit-personalized-video-VY-shim">
     <input type="hidden" ng-model="personalizedVideoObj.auth_token" name="auth_token" value="{{authToken}}">
     <input type="hidden" ng-model="personalizedVideoObj.email" name="email" value="{{email}}">
@@ -74,6 +75,7 @@
     <input type="hidden" ng-model="personalizedVideoObj.fields.why" name="fields[why]" value="{{personalMedia.myWhy}}">
     <input type="hidden" ng-model="personalizedVideoObj.fields.cons_id" name="fields[cons_id]" value="{{consId}}">
   </form>
+
   <form class="js--remove-personalized-video-form" action="{{teamraiserAPIPath}}" method="POST" enctype="multipart/form-data" target="remove-personalized-video-shim">
     <input type="hidden" name="v" value="1.0">
     <input type="hidden" name="api_key" value="{{apiKey}}">
@@ -88,7 +90,8 @@
     <input type="hidden" name="success_redirect" value="{{nonsecurePath + '../aha-luminate/dist/heart-walk/html/page-edit/frame/edit-video.html'}}">
     <input type="hidden" name="error_redirect" value="{{nonsecurePath + '../aha-luminate/dist/heart-walk/html/page-edit/frame/edit-video.html'}}">
   </form>
+
   <iframe name="submit-personalized-video-LO-shim" id="submit-personalized-video-LO-shim" src="../aha-luminate/dist/heart-walk/html/page-edit/frame/edit-video.html"></iframe>
-  <iframe name="submit-personalized-video-VY-shim" id="submit-personalized-video-VY-shim" src="../aha-luminate/dist/heart-walk/html/page-edit/frame/edit-video.html"></iframe>
+<!--   <iframe name="submit-personalized-video-VY-shim" id="submit-personalized-video-VY-shim" src="../aha-luminate/dist/heart-walk/html/page-edit/frame/edit-video.html"></iframe> -->
   <iframe name="remove-personalized-video-shim" id="remove-personalized-video-shim" src="../aha-luminate/dist/heart-walk/html/page-edit/frame/edit-video.html"></iframe>
 </div>
