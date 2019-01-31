@@ -4,7 +4,6 @@
     // New NCHW JS goes here...
     // Example of retrieving data attribute (fr_id) from the body tag
     var evID = $('body').data('fr-id') ? $('body').data('fr-id') : null;
-    console.log("Event ID = ",evID);
 
     //mobile nav
     jQuery('#mobileNav .sub-nav-toggle-link').click(function () {
@@ -30,7 +29,6 @@
 
     if ($('body').is('.pg_entry')) {
       // Greeting page-specific JS goes here
-      console.log('testing the new main.js file')
       $('#insert_ele_welcome').appendTo('#welcome .row');
       $('#insert_ele_contact').appendTo('#contact .row');
 
@@ -54,8 +52,6 @@
             success: function (response) {
               if (!$.isEmptyObject(response.getTopParticipantsDataResponse)) {
                 var participantData = luminateExtend.utils.ensureArray(response.getTopParticipantsDataResponse.teamraiserData);
-                console.log(participantData);
-                console.log('participantData.length = ',participantData.length);
                 if (participantData.length > 0) {
                   var sortedParticipantsData = participantData.slice(0, 5);
                   for (var i = 0, len = sortedParticipantsData.length; i < len; i++) {
@@ -88,8 +84,6 @@
             success: function (response) {
               if (!$.isEmptyObject(response.getTopTeamsDataResponse)) {
                 var teamData = luminateExtend.utils.ensureArray(response.getTopTeamsDataResponse.teamraiserData);
-                console.log(teamData);
-                console.log('teamData.length = ',teamData.length);
                 if (teamData.length > 0) {
                   var sortedTeamsData = teamData.slice(0, 5);
                   for (var i = 0, len = sortedTeamsData.length; i < len; i++) {
@@ -115,13 +109,11 @@
       var companyPromise = new Promise(function(resolve, reject) {
         luminateExtend.api({
           api: 'teamraiser',
-          data: 'method=getCompaniesByInfo&fr_id=' + evID + '&response_format=json',
+          data: 'method=getCompaniesByInfo&fr_id=' + evID + '&list_sort_column=total&list_ascending=false&response_format=json',
           callback: {
             success: function (response) {
               if (!$.isEmptyObject(response.getCompaniesResponse)) {
                 var companyData = luminateExtend.utils.ensureArray(response.getCompaniesResponse.company);
-                console.log(companyData);
-                console.log('companyData.length = ',companyData.length);
                 if (companyData.length > 0) {
                   var sortedCompaniesData = companyData.slice(0, 5);
                   // build company roster here
@@ -147,12 +139,10 @@
       var compP;
       participantPromise.then(function() {
         if( !$.trim( $('.insert_top-participants-list').html() ).length ) {
-          console.log('parts empty');
           partP = false;
           $('.top-participants-list').hide();
         }
         else {
-          console.log("parts no empty");
           partP = true;
           $('#top_lists').show();
           $('.top-participants-list').show();
@@ -163,12 +153,10 @@
 
       teamPromise.then(function() {
         if( !$.trim( $('.insert_top-teams-list').html() ).length ) {
-          console.log('teams empty');
           teamP = false;
           $('.top-teams-list').hide();
         }
         else {
-          console.log("teams no empty");
           teamP = true;
           $('#top_lists').show();
           $('.top-teams-list').show();
@@ -179,12 +167,10 @@
 
       companyPromise.then(function() {
         if( !$.trim( $('.insert_top-companies-list').html() ).length ) {
-          console.log('comps empty');
           compP = false;
           $('.top-companies-list').hide();
         }
         else {
-          console.log("comps no empty");
           compP = true;
           $('#top_lists').show();
           $('.top-companies-list').show();
@@ -194,7 +180,6 @@
       });
 
       setTimeout(function(){
-        console.log(partP+' '+teamP+' '+compP);
         if ( partP == false) {
             if ( teamP == false) {
                 // No part list and no team list
