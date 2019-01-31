@@ -6,11 +6,10 @@
       </h2>
     </div>
     <div class="modal-body">
-      <p>Open the drop-down, select Personalized Video, and enter in your Why to create your own custom video to share on your Personal Page.</p>
+      <p>Open the drop-down and select YouTube to upload a video to your Personal Page or use the Default Heart Walk Video</p>
       <select class="form-control" ng-model="personalVideo.type">
         <option value="" selected="selected" disabled="disabled">Select video option</option>
         <option value="default">Default Video</option>
-        <option value="personalized">Personalized Video</option>
         <option value="youtube">YouTube Video</option>
       </select>
       <br>
@@ -27,16 +26,6 @@
         <label for="">
           Default Video
         </label>
-      </div>
-      <div class="form-group" ng-if="personalVideo.type == 'personalized'">
-        <label for="">
-          Your Why:
-        </label>
-        <input type="text" class="form-control" id="" ng-model="personalMedia.myWhy">
-        <p>
-          Your personalized video will take 5-10mins to generate.<br>
-          Please refresh your browser to see your personalized video.
-        </p>
       </div>
     </div>
     <div class="modal-footer">
@@ -56,43 +45,4 @@
   </form>
 </div>
 
-<div class="hidden" hidden aria-hidden="true">
-  <form class="js--submit-personalized-video-LO-form" action="{{teamraiserAPIPath}}" method="POST" enctype="multipart/form-data" target="submit-personalized-video-LO-shim">
-    <input type="hidden" name="v" value="1.0">
-    <input type="hidden" name="api_key" value="{{apiKey}}">
-    <input type="hidden" name="method" value="updateSurveyResponses">
-    <input type="hidden" name="fr_id" value="{{frId}}">
-    <div ng-repeat="surveyResponse in regSurvey">
-      <input type="hidden" name="question_{{surveyResponse.questionId}}" value="{{surveyResponse.responseValue}}" ng-if="surveyResponse.key != 'what_is_why' && surveyResponse.key != 'clear_hw_id'">
-    </div>
-    <input type="hidden" id="submit-personalized-video-why" name="question_key_what_is_why" value="{{personalMedia.myWhy}}">
-    <input type="hidden" name="auth" value="{{authToken}}">
-    <input type="hidden" name="JSESSIONID" value="{{sessionCookie}}">
-    <input type="hidden" name="success_redirect" value="{{nonsecurePath + '../aha-luminate/dist/heart-walk/html/page-edit/frame/edit-video.html'}}">
-    <input type="hidden" name="error_redirect" value="{{nonsecurePath + '../aha-luminate/dist/heart-walk/html/page-edit/frame/edit-video.html'}}">
-  </form>
-  <form class="js--submit-personalized-video-VY-form" action="http://blender.vidyard.com/forms/pd5MsBtKJwfrReeWz7d8v4/submit.json" method="POST" enctype="multipart/form-data" target="submit-personalized-video-VY-shim">
-    <input type="hidden" ng-model="personalizedVideoObj.auth_token" name="auth_token" value="{{authToken}}">
-    <input type="hidden" ng-model="personalizedVideoObj.email" name="email" value="{{email}}">
-    <input type="hidden" ng-model="personalizedVideoObj.fields.firstname" name="fields[firstname]" value="{{firstName}}">
-    <input type="hidden" ng-model="personalizedVideoObj.fields.why" name="fields[why]" value="{{personalMedia.myWhy}}">
-    <input type="hidden" ng-model="personalizedVideoObj.fields.cons_id" name="fields[cons_id]" value="{{consId}}">
-  </form>
-  <form class="js--remove-personalized-video-form" action="{{teamraiserAPIPath}}" method="POST" enctype="multipart/form-data" target="remove-personalized-video-shim">
-    <input type="hidden" name="v" value="1.0">
-    <input type="hidden" name="api_key" value="{{apiKey}}">
-    <input type="hidden" name="method" value="updateSurveyResponses">
-    <input type="hidden" name="fr_id" value="{{frId}}">
-    <div ng-repeat="surveyResponse in regSurvey">
-      <input type="hidden" name="question_{{surveyResponse.questionId}}" value="{{surveyResponse.responseValue}}" ng-if="surveyResponse.key != 'what_is_why' && surveyResponse.key != 'clear_hw_id'">
-    </div>
-    <input type="hidden" name="question_key_clear_hw_id" value="null">
-    <input type="hidden" name="auth" value="{{authToken}}">
-    <input type="hidden" name="JSESSIONID" value="{{sessionCookie}}">
-    <input type="hidden" name="success_redirect" value="{{nonsecurePath + '../aha-luminate/dist/heart-walk/html/page-edit/frame/edit-video.html'}}">
-    <input type="hidden" name="error_redirect" value="{{nonsecurePath + '../aha-luminate/dist/heart-walk/html/page-edit/frame/edit-video.html'}}">
-  </form>
-  <iframe name="submit-personalized-video-LO-shim" id="submit-personalized-video-LO-shim" src="../aha-luminate/dist/heart-walk/html/page-edit/frame/edit-video.html"></iframe>
-  <iframe name="submit-personalized-video-VY-shim" id="submit-personalized-video-VY-shim" src="../aha-luminate/dist/heart-walk/html/page-edit/frame/edit-video.html"></iframe>
-  <iframe name="remove-personalized-video-shim" id="remove-personalized-video-shim" src="../aha-luminate/dist/heart-walk/html/page-edit/frame/edit-video.html"></iframe>
-</div>
+<div class="hidden" hidden aria-hidden="true"></div>

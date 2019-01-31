@@ -103,7 +103,7 @@
               <div class="profile_box_text">
                 Why do you walk? Finish this sentence: "______ is Why."
               </div>
-              <a id="tell_us_your_why" class="btn btn-primary" ng-href="{{personalPageUrlSecure}}&amp;videoWhy=true">Tell Us Your Why</a>
+              <a href id="tell_us_your_why" class="btn btn-primary" ng-click="editYourWhy()">Tell Us Your Why</a>
             </div>
           </div>
           <div class="col-sm-4 profile_box" ng-if="userInteractions.why == '1'">
@@ -115,7 +115,7 @@
                 Thank you for telling us<br>
                 your Why: {{sqvm.surveyModel.question_key_what_is_why}}
               </div>
-              <a id="update_your_why" class="btn btn-primary" ng-href="{{personalPageUrlSecure}}&amp;videoWhy=true">Update Your Why</a>
+              <a href id="update_your_why" class="btn btn-primary" ng-click="editYourWhy()">Update Your Why</a>
             </div>
           </div>
 
@@ -127,9 +127,9 @@
               <div class="profile_box_text">
                 Download our mobile app to fundraise on the go! Our app makes fundraising easy.
               </div>
-              <a id="go_social" class="btn btn-primary" ng-if="device.isMobile && device.mobileType == 'android'" href="https://play.google.com/store/apps/details?id=com.aha.hw.communicator" ng-click="sendGAEvent('To do Android - mobile app download');">Get the Heart Walk App</a>
-              <a id="go_social" class="btn btn-primary" ng-if="device.isMobile && device.mobileType == 'ios'" href="https://itunes.apple.com/us/app/heart-walk/id451276834?ls=1&mt=8" ng-click="sendGAEvent('To do iOS - mobile app download');">Get the Heart Walk App</a>
-              <a id="go_social" class="btn btn-primary" ng-if="!device.isMobile" ng-href="PageServer?pagename=heartwalk_fundraising_tools&amp;fr_id={{frId}}" ng-click="sendGAEvent('To do Desktop - mobile app download');">Get the Heart Walk App</a>
+              <a id="go_social" class="btn btn-primary" ng-if="device.isMobile && device.mobileType == 'android'" href="https://play.google.com/store/apps/details?id=com.aha.hw.communicator" ng-click="sendGAEvent('to do android - mobile app download');">Get the Heart Walk App</a>
+              <a id="go_social" class="btn btn-primary" ng-if="device.isMobile && device.mobileType == 'ios'" href="https://itunes.apple.com/us/app/heart-walk/id451276834?ls=1&mt=8" ng-click="sendGAEvent('to do ios - mobile app download');">Get the Heart Walk App</a>
+              <a id="go_social" class="btn btn-primary" ng-if="!device.isMobile" ng-href="PageServer?pagename=heartwalk_fundraising_tools&amp;fr_id={{frId}}" ng-click="sendGAEvent('to do desktop - mobile app download');">Get the Heart Walk App</a>
             </div>
           </div>
           <div class="col-sm-4 profile_box" ng-if="hasBoundlessApp">
@@ -140,9 +140,9 @@
               <div class="profile_box_text">
                 You&rsquo;ve downloaded the app, so now use it! It&rsquo;ll make fundraising easy peasy!
               </div>
-              <a id="go_social_again" class="btn btn-primary" ng-if="device.isMobile && device.mobileType == 'android'" href="https://play.google.com/store/apps/details?id=com.aha.hw.communicator" ng-click="sendGAEvent('To do Android - mobile app downloaded');">Use the Heart Walk App</a>
-              <a id="go_social_again" class="btn btn-primary" ng-if="device.isMobile && device.mobileType == 'ios'" href="https://itunes.apple.com/us/app/heart-walk/id451276834?ls=1&mt=8" ng-click="sendGAEvent('To do iOS - mobile app downloaded');">Use the Heart Walk App</a>
-              <a id="go_social_again" class="btn btn-primary" ng-if="!device.isMobile" ng-href="PageServer?pagename=heartwalk_fundraising_tools&amp;fr_id={{frId}}" ng-click="sendGAEvent('To do Desktop - mobile app downloaded');">Use the Heart Walk App</a>
+              <a id="go_social_again" class="btn btn-primary" ng-if="device.isMobile && device.mobileType == 'android'" href="https://play.google.com/store/apps/details?id=com.aha.hw.communicator" ng-click="sendGAEvent('to do android - mobile app downloaded');">Use the Heart Walk App</a>
+              <a id="go_social_again" class="btn btn-primary" ng-if="device.isMobile && device.mobileType == 'ios'" href="https://itunes.apple.com/us/app/heart-walk/id451276834?ls=1&mt=8" ng-click="sendGAEvent('to do ios - mobile app downloaded');">Use the Heart Walk App</a>
+              <a id="go_social_again" class="btn btn-primary" ng-if="!device.isMobile" ng-href="PageServer?pagename=heartwalk_fundraising_tools&amp;fr_id={{frId}}" ng-click="sendGAEvent('to do desktop - mobile app downloaded');">Use the Heart Walk App</a>
             </div>
           </div>
 
@@ -178,6 +178,13 @@
           </div>
         </div>
       </div>
+      <div class="clearfix heartwalk_store" ng-if="BrightSites.active">
+        <h2><i class="fa fa-heart"></i> Heart Walk Rewards Center</h2>
+        <p>
+          {{BrightSites.greeting}}
+        </p>
+        <a id="heartwalk_store_button" class="btn btn-primary" ng-href="{{BrightSites.url}}" ng-click="sendGAEvent('visit rewards center');" target="_blank">Visit the Rewards Center</a>
+      </div>
       <div class="pc-facebook-fundraiser js--facebook-fundraiser-uncompleted-section" id="facebook-fundraisers" ng-if="facebookFundraisersEnabled" ng-show="!facebookFundraiserId" ng-cloak>
         <div class="container">
           <h2>
@@ -203,7 +210,7 @@
           <div role="alert" class="alert alert-danger" ng-if="facebookFundraiserLoginStatus == 'declined_manage_fundraisers'" ng-cloak>
             We need your permission to create a Facebook Fundraiser on your behalf.
           </div>
-          <button type="button" class="btn pc-facebook-fundraiser-btn" ng-click="sendGAEvent('Connect to Fundraiser FB Banner'); loginToFacebook()" ng-if="facebookFundraiserLoginStatus != 'pending' && facebookFundraiserCreateStatus != 'pending'" ng-cloak>
+          <button type="button" class="btn pc-facebook-fundraiser-btn" ng-click="sendGAEvent('connect to fundraiser fb banner'); loginToFacebook()" ng-if="facebookFundraiserLoginStatus != 'pending' && facebookFundraiserCreateStatus != 'pending'" ng-cloak>
             <span class="fa fa-facebook-square"></span> Connect <span class="hidden-text-xxs">Fundraiser</span> to Facebook
           </button>
           <button type="button" class="btn pc-facebook-fundraiser-btn" disabled ng-if="facebookFundraiserLoginStatus == 'pending' || facebookFundraiserCreateStatus == 'pending'" ng-cloak>
@@ -222,7 +229,7 @@
           <p>
             Log in to use Facebook's fundraising tools to invite friends, share updates and collect donations. We'll keep track of your progress on Facebook and on your Heart Walk page, so you'll always know how close you are to reaching your goal.
           </p>
-          <a class="btn pc-facebook-fundraiser-btn" ng-href="//facebook.com/donate/{{facebookFundraiserId}}/" target="_blank" ng-click="sendGAEvent('Go to FB Fundraiser');" ng-disabled="!facebookFundraiserConfirmedStatus || facebookFundraiserConfirmedStatus == 'pending'" ng-if="facebookFundraiserId" ng-cloak>
+          <a class="btn pc-facebook-fundraiser-btn" ng-href="//facebook.com/donate/{{facebookFundraiserId}}/" target="_blank" ng-click="sendGAEvent('go to fb fundraiser');" ng-disabled="!facebookFundraiserConfirmedStatus || facebookFundraiserConfirmedStatus == 'pending'" ng-if="facebookFundraiserId" ng-cloak>
             Go To Facebook Fundraiser
           </a>
           <p class="small">
@@ -232,7 +239,7 @@
       </div>
       <div class="clearfix heart_pc_achievements_container">
         <h2>My Achievements</h2>
-        <p>Earn as you reach for your goal. Curious what badges you get? <a href="PageServer?pagename=heartwalk_fundraising_tools&amp;fr_id={{frId}}" ng-click="sendGAEvent('Badges - learn more');">Read more to learn all about achievement badges.</a></p>
+        <p>Earn as you reach for your goal. Curious what badges you get? <a href="PageServer?pagename=heartwalk_fundraising_tools&amp;fr_id={{frId}}" ng-click="sendGAEvent('badges - learn more');">Read more to learn all about achievement badges.</a></p>
         <ul class="heart_pc_achievements_badge_list">
           <li class="heart_pc_achievements_badge_item" ng-if="isSelfDonor == 'TRUE'">
             <img src="../images/content/pagebuilder/heart-walk-personal-donation-no-text.svg" alt="You Made a Personal Donation badge">
