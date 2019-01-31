@@ -411,8 +411,10 @@ angular.module 'trPcControllers'
                               $scope.userInteractions.goal1 = 1
                             when 'goal2'
                               $scope.userInteractions.goal2 = 1
-              if $scope.sqvm.surveyModel.question_key_what_is_why isnt null
+              if $scope.sqvm.surveyModel.question_key_what_is_why isnt null | 'User Provided No Response'
                 $scope.profileChecklistItems.why = 1
+              else
+                $scope.profileChecklistItems.why = 0
               if $scope.sqvm.surveyModel.question_key_hw_years_participated
                 $scope.profileChecklistItems.years = 1
               if $scope.constituent.mobile_phone
@@ -439,9 +441,11 @@ angular.module 'trPcControllers'
               if $scope.messageCounts.sentMessages > 0 and $scope.userInteractions.email is 0
                 $scope.userInteractions.email = 1
                 logUserInt 'email', $scope.frId
-              if $scope.sqvm.surveyModel.question_key_what_is_why isnt null and $scope.userInteractions.why is 0
+              if $scope.sqvm.surveyModel.question_key_what_is_why isnt null and $scope.sqvm.surveyModel.question_key_what_is_why isnt 'User Provided No Response' and $scope.userInteractions.why is 0
                 $scope.userInteractions.why = 1
                 logUserInt 'why', $scope.frId
+              # else
+              #   $scope.userInteractions.why = 0
               if $scope.profileChecklistItems.why is 1 and $scope.profileChecklistItems.years is 1 and $scope.profileChecklistItems.mobile is 1 and $scope.userInteractions.profile is 0
                 $scope.userInteractions.profile = 1
                 logUserInt 'profile', $scope.frId
@@ -637,8 +641,10 @@ angular.module 'trPcControllers'
           street: 0
           years: 0
         }
-        if $scope.sqvm.surveyModel.question_key_what_is_why isnt null
+        if $scope.sqvm.surveyModel.question_key_what_is_why isnt null and $scope.sqvm.surveyModel.question_key_what_is_why isnt 'User Provided No Response'
           $scope.profileChecklistItems.why = 1
+        # else
+        #   $scope.profileChecklistItems.why = 0
         if $scope.sqvm.surveyModel.question_key_hw_years_participated
           $scope.profileChecklistItems.years = 1
         if $scope.constituent.mobile_phone
@@ -714,6 +720,17 @@ angular.module 'trPcControllers'
             $scope.cancelEditYears = ->
               $scope.LByearsProfileModal.close()
               reCheckProfileItems()
+      
+      $scope.editYourWhy = ->
+        $scope.LBwhyModal = $uibModal.open
+          scope: $scope
+          templateUrl: APP_INFO.rootPath + 'dist/heart-walk/html/participant-center/modal/editYourWhy.html'
+        $scope.cancelEditYourWhy = ->
+          $scope.LBwhyModal.close()
+
+      $scope.updateEditYourWhy = ($event) ->
+        $scope.LBwhyModal.close()
+        $scope.updateSurveyResponses $event
 
       $scope.editSurvivor = ->
         $scope.LBsurvivorModal = $uibModal.open
