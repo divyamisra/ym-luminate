@@ -6,6 +6,7 @@ angular.module 'trPcControllers'
     '$filter'
     '$location'
     '$httpParamSerializer'
+    '$http'
     '$translate'
     '$uibModal'
     '$uibModalStack'
@@ -24,7 +25,7 @@ angular.module 'trPcControllers'
     'TeamraiserSurveyResponseService'
     'TeamraiserEmailService'
     'FacebookFundraiserService'
-    ($rootScope, $scope, $timeout, $filter, $location, $httpParamSerializer, $translate, $uibModal, $uibModalStack, APP_INFO, ConstituentService, TeamraiserRecentActivityService, TeamraiserRegistrationService, TeamraiserProgressService, TeamraiserGiftService, TeamraiserParticipantService, TeamraiserTeamService, TeamraiserNewsFeedService, TeamraiserCompanyService, TeamraiserShortcutURLService, ContactService, TeamraiserSurveyResponseService, TeamraiserEmailService, FacebookFundraiserService) ->
+    ($rootScope, $scope, $timeout, $filter, $location, $httpParamSerializer, $http, $translate, $uibModal, $uibModalStack, APP_INFO, ConstituentService, TeamraiserRecentActivityService, TeamraiserRegistrationService, TeamraiserProgressService, TeamraiserGiftService, TeamraiserParticipantService, TeamraiserTeamService, TeamraiserNewsFeedService, TeamraiserCompanyService, TeamraiserShortcutURLService, ContactService, TeamraiserSurveyResponseService, TeamraiserEmailService, FacebookFundraiserService) ->
       $scope.dashboardPromises = []
 
       $scope.baseDomain = $location.absUrl().split('/site/')[0]
@@ -47,8 +48,40 @@ angular.module 'trPcControllers'
               $scope.constituent.primary_address.zip = ''
             if angular.equals({}, $scope.constituent.mobile_phone) is true
               $scope.constituent.mobile_phone = ''
+            $scope.checkBrightSites()
           response
       $scope.dashboardPromises.push constituentPromise
+
+      runCheckBrightSites = ->
+        postData =
+          server: $scope.tablePrefix
+          frid: $scope.frId
+          consid: $scope.consId
+        $http.post('https://bfapps1.boundlessfundraising.com/applications/ahahw/brightsites/brightpost.php', postData)
+
+      $scope.BrightSites =
+        url: ''
+        points: ''
+        active: false
+
+      $scope.checkBrightSites = ->
+        getcheckBrightSitesPromise = runCheckBrightSites()
+          .then (response) ->
+            if response.data.errors
+              console.log response.data
+            else
+              console.log response.data
+              if response.data.login_url
+                $scope.BrightSites.active = true
+                $scope.BrightSites.url = response.data.login_url
+                $scope.BrightSites.points = response.data.balance
+                $scope.BrightSites.greeting = response.data.greeting
+                console.log $scope.BrightSites
+            #response
+          .catch (response) ->
+            console.log 'brightsites promise failure'
+            #console.log response
+        $scope.dashboardPromises.push getcheckBrightSitesPromise
 
       $scope.getMessageCounts = (refresh) ->
         $scope.messageCounts = {}
@@ -281,7 +314,7 @@ angular.module 'trPcControllers'
 
                 if thisField.questionKey isnt 'no_key_assigned'
                   $scope.sqvm.surveyFields.push thisField
-                  if surveyResponse.responseValue is 'User Provided No Response' or not angular.isString surveyResponse.responseValue 
+                  if surveyResponse.responseValue is 'User Provided No Response' or not angular.isString surveyResponse.responseValue
                     $scope.sqvm.surveyModel[thisField.questionKey] = ''
                   else
                     $scope.sqvm.surveyModel[thisField.questionKey] = surveyResponse.responseValue
@@ -441,7 +474,7 @@ angular.module 'trPcControllers'
               templateUrl: APP_INFO.rootPath + 'dist/heart-walk/html/participant-center/modal/LBthankYouRegistering.html'
             $timeout ->
               document.getElementById('LBmakeDonation').onclick = ->
-                _gaq.push(['t2._trackEvent', 'HW PC', 'click', 'Heck Yeah! - thank you for registering lightbox'])
+                _gaq.push(['t2._trackEvent', 'hw pc', 'click', 'heck yeah! - thank you for registering lightbox'])
             , 500
         else if $scope.facebookFundraisersEnabled and $scope.userInteractions.facebookFundraiser is 0
           $scope.dashboardGreeting = 'facebookFundraiser'
@@ -457,7 +490,7 @@ angular.module 'trPcControllers'
               templateUrl: APP_INFO.rootPath + 'dist/heart-walk/html/participant-center/modal/LBwelcomeBack.html'
             $timeout ->
               document.getElementById('update_my_story_welcome_back_lb').onclick = ->
-                _gaq.push(['t2._trackEvent', 'HW PC', 'click', 'Update my story - welcome back lightbox'])
+                _gaq.push(['t2._trackEvent', 'hw pc', 'click', 'update my story - welcome back lightbox'])
             , 500
         else if $scope.userInteractions.donate is 0
           $scope.dashboardGreeting = 'donate'
@@ -467,11 +500,11 @@ angular.module 'trPcControllers'
               templateUrl: APP_INFO.rootPath + 'dist/heart-walk/html/participant-center/modal/LBdonate.html'
             $timeout ->
               #document.getElementById('LBmakeDonation').onclick = ->
-                #_gaq.push(['t2._trackEvent', 'HW PC', 'click', 'Make A Donation - donate lightbox'])
+                #_gaq.push(['t2._trackEvent', 'hw pc', 'click', 'make a donation - donate lightbox'])
               document.getElementById('LBmakeDonationHoliday').onclick = ->
-                _gaq.push(['t2._trackEvent', 'HW PC', 'click', 'Download Healthy Eating Guide'])
+                _gaq.push(['t2._trackEvent', 'hw pc', 'click', 'download healthy eating guide'])
               document.getElementById('LBmakeDonationHoliday2').onclick = ->
-                _gaq.push(['t2._trackEvent', 'HW PC', 'click', 'Download Healthy Eating Guide'])
+                _gaq.push(['t2._trackEvent', 'hw pc', 'click', 'download healthy eating guide'])
             , 500
         else if $scope.userInteractions.email is 0
           $scope.dashboardGreeting = 'email'
@@ -481,7 +514,7 @@ angular.module 'trPcControllers'
               templateUrl: APP_INFO.rootPath + 'dist/heart-walk/html/participant-center/modal/LBemail.html'
             $timeout ->
               document.getElementById('LBsendEmail').onclick = ->
-                _gaq.push(['t2._trackEvent', 'HW PC', 'click', 'Send Email - email lightbox'])
+                _gaq.push(['t2._trackEvent', 'hw pc', 'click', 'send email - email lightbox'])
             , 500
         else if $scope.userInteractions.why is 0
           $scope.dashboardGreeting = 'why'
@@ -503,7 +536,7 @@ angular.module 'trPcControllers'
               templateUrl: APP_INFO.rootPath + 'dist/heart-walk/html/participant-center/modal/LBprofile.html'
             $timeout ->
               document.getElementById('LBprofileWhy').onclick = ->
-                _gaq.push(['t2._trackEvent', 'HW PC', 'click', 'Whats your why - profile lightbox'])
+                _gaq.push(['t2._trackEvent', 'hw pc', 'click', 'whats your why - profile lightbox'])
             , 500
         else if $scope.userInteractions.goal1 is 0 and $scope.participantProgress.percent >= 50
           $scope.dashboardGreeting = 'goal1'
@@ -548,19 +581,19 @@ angular.module 'trPcControllers'
         logUserInt 'goal2', $scope.frId
         $scope.LBgoal2Modal.close()
         $scope.editGoal 'Participant'
-      
+
       $scope.notRightNow = ->
         $uibModalStack.dismissAll()
-      
+
       $scope.sendGAEvent = (event) ->
-        _gaq.push(['t2._trackEvent', 'HW PC', 'click', event])
-      
+        _gaq.push(['t2._trackEvent', 'hw pc', 'click', event])
+
       $scope.LBskip = (interaction) ->
         logUserInt interaction, $scope.frId
         $scope.userInteractions[interaction] = 1
         $uibModalStack.dismissAll()
         runHeaderCheck()
-      
+
       $scope.scrollToFacebookFundraiser = ->
         $timeout ->
           if jQuery('.js--facebook-fundraiser-uncompleted-section').length > 0
@@ -571,7 +604,7 @@ angular.module 'trPcControllers'
             jQuery('html, body').animate
               scrollTop: jQuery('.js--facebook-fundraiser-completed-section').offset().top - 150
             , 250
-      
+
       $scope.goSocial = ->
         if $rootScope.device.mobileType is 'android'
           window.location = 'https://play.google.com/store/apps/details?id=com.aha.hw.communicator'
@@ -579,7 +612,7 @@ angular.module 'trPcControllers'
           window.location = 'https://itunes.apple.com/us/app/heart-walk/id451276834?ls=1&mt=8'
         else
           window.location = 'PageServer?pagename=heartwalk_fundraising_tools&amp;pc2_page=center&amp;fr_id=' + $scope.frId + '#/social'
-      
+
       $scope.profileProgress = 0
       $scope.profileChecklist = ->
         $scope.resetSurveyAlerts()
@@ -589,18 +622,18 @@ angular.module 'trPcControllers'
           templateUrl: APP_INFO.rootPath + 'dist/heart-walk/html/participant-center/modal/LBprofile.html'
         $timeout ->
           document.getElementById('LBprofileWhy').onclick = ->
-            _gaq.push(['t2._trackEvent', 'HW PC', 'click', 'Whats your why - profile lightbox'])
+            _gaq.push(['t2._trackEvent', 'hw pc', 'click', 'whats your why - profile lightbox'])
         , 500
-      
+
       $scope.reLaunchprofileChecklist = ->
         $scope.LBprofileModal = $uibModal.open
           scope: $scope
           templateUrl: APP_INFO.rootPath + 'dist/heart-walk/html/participant-center/modal/LBprofile.html'
           $timeout ->
             document.getElementById('LBprofileWhy').onclick = ->
-              _gaq.push(['t2._trackEvent', 'HW PC', 'click', 'Whats your why - profile lightbox'])
+              _gaq.push(['t2._trackEvent', 'hw pc', 'click', 'whats your why - profile lightbox'])
           , 500
-      
+
       reCheckProfileItems = ->
         $scope.profileChecklistItems = {
           mobile: 0
