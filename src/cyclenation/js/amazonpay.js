@@ -1,6 +1,7 @@
 (function ($) {
 	$.extend({
 		getCustomQuerystring: function(url, name){
+		  url = url.replace(new RegExp('&amp;', 'g'),'&');
 		  name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
 		  var regexS = "[\\?&]" + name + "=([^&#]*)";
 		  var regex = new RegExp(regexS);
@@ -16,8 +17,8 @@
 /* amazon pay code here */
 var default_path = "https://www2.heart.org";
 jQuery(document).ready(function(){
-  if (location.href.indexOf("heartdev") > 0) {
-    default_path = "https://secure3.convio.net/heartdev";
+  if (location.href.indexOf("dev2") > 0) {
+    default_path = "https://dev2.heart.org";
   }
   if (location.href.indexOf("pg=personal") > 0 || location.href.indexOf("pg=team") > 0) {
 		addPaymentOptions();
@@ -45,6 +46,7 @@ function addPaymentOptions() {
   				"<a href='"+dlink+"'><img src='https://www2.heart.org/images/content/pagebuilder/credit-card-logos2.png' alt='Donate with Visa, MasterCard, American Express or Discover cards'/></a>" +
   				"<a href='"+default_path+"/site/SPageNavigator/cyclenation_donate_amazon.html?FR_ID="+fr_id+"&mfc_pref=T&PROXY_ID="+px+"&PROXY_TYPE=20' class='amazon'><img src='https://www2.heart.org/images/content/pagebuilder/amazon-payments.png' alt='Donate with Amazon Pay'/></a>" +
 				"<a href='"+default_path+"/site/SPageNavigator/cyclenation_donate_applepay.html?FR_ID="+fr_id+"&mfc_pref=T&PROXY_ID="+px+"&PROXY_TYPE=20' class='applepay'><img src='https://www2.heart.org/donation-forms-braintree/donatenow/images/DonateBlack_32pt_@2x.png' alt='ApplePay'/></a>" +
+				"<a href='"+default_path+"/site/SPageNavigator/cyclenation_donate_venmo.html?FR_ID="+fr_id+"&mfc_pref=T&PROXY_ID="+px+"&PROXY_TYPE=20' class='venmo'><img src='https://www2.heart.org/donation-forms/donatenow/images/venmo-button.png' alt='Venmo'/></a>" +
 			    	"<a href='"+dlink+"&paypal=true'><img src='https://www2.heart.org/images/content/pagebuilder/PP_logo_h_100x26.png'/ alt='Donate with PayPal'></a>";
 			jQuery('a#sidebar_donate_button').closest('div').after(html);
 			jQuery('a#sidebar_donate_button').click(function(){
@@ -65,6 +67,7 @@ function addPaymentOptions() {
 		  			"<a href='"+dlink+"'><img src='https://www2.heart.org/images/content/pagebuilder/credit-card-logos2.png' alt='Donate with Visa, MasterCard, American Express or Discover cards'/></a>" +
 		  			"<a href='"+default_path+"/site/SPageNavigator/cyclenation_donate_amazon.html?FR_ID="+fr_id+"&mfc_pref=T&PROXY_ID="+teamid+"&PROXY_TYPE=22' class='amazon'><img src='https://www2.heart.org/images/content/pagebuilder/amazon-payments.png' alt='Donate with Amazon Pay'/></a>" +
 					"<a href='"+default_path+"/site/SPageNavigator/cyclenation_donate_applepay.html?FR_ID="+fr_id+"&mfc_pref=T&PROXY_ID="+teamid+"&PROXY_TYPE=22' class='applepay'><img src='https://www2.heart.org/donation-forms-braintree/donatenow/images/DonateBlack_32pt_@2x.png' alt='ApplePay'/></a>" +
+					"<a href='"+default_path+"/site/SPageNavigator/cyclenation_donate_venmo.html?FR_ID="+fr_id+"&mfc_pref=T&PROXY_ID="+teamid+"&PROXY_TYPE=22' class='venmo'><img src='https://www2.heart.org/donation-forms/donatenow/images/venmo-button.png' alt='Venmo'/></a>" +
 		  			"<a href='"+dlink+"&paypal=true'><img src='https://www2.heart.org/images/content/pagebuilder/PP_logo_h_100x26.png'/ alt='Donate with PayPal'></a>" +
 		    		 "</div>";
 			jQuery('a#sidebar_donate_button').closest('div').after(html);
@@ -98,6 +101,7 @@ function addPCPaymentOptions() {
 						 "<a href='"+dlink+"'><img src='https://www2.heart.org/images/content/pagebuilder/credit-card-logos2.png' alt='Donate with Visa, MasterCard, American Express or Discover cards'/></a>" +
 						 "<a href='"+default_path+"/site/SPageNavigator/cyclenation_donate_amazon.html?FR_ID="+fr_id+"&mfc_pref=T&PROXY_ID="+px+"&PROXY_TYPE=20' class='amazon'><img src='https://www2.heart.org/images/content/pagebuilder/amazon-payments.png' alt='Donate with Amazon Pay'/></a>" +
 						 "<a href='"+default_path+"/site/SPageNavigator/cyclenation_donate_applepay.html?FR_ID="+fr_id+"&mfc_pref=T&PROXY_ID="+px+"&PROXY_TYPE=20' class='applepay'><img src='https://www2.heart.org/donation-forms-braintree/donatenow/images/DonateBlack_32pt_@2x.png' alt='ApplePay'/></a>" +
+						 "<a href='"+default_path+"/site/SPageNavigator/cyclenation_donate_venmo.html?FR_ID="+fr_id+"&mfc_pref=T&PROXY_ID="+px+"&PROXY_TYPE=20' class='venmo'><img src='https://www2.heart.org/donation-forms/donatenow/images/venmo-button.png' alt='Venmo'/></a>" +
 						 "<a href='"+dlink+"&paypal=true'><img src='https://www2.heart.org/images/content/pagebuilder/PP_logo_h_100x26.png'/ alt='Donate with PayPal'></a>" +
 						 "</div>";
 			jQuery('a#make_a_donation').closest('.profile_box').append(html);
@@ -129,6 +133,7 @@ function addPaymentTypesOnSearch() {
 				"<a href='"+dlink+"'><img src='https://www2.heart.org/images/content/pagebuilder/credit-card-logos2.png' alt='Donate with Visa, MasterCard, American Express or Discover cards'/></a>" +
 				"<a href='"+default_path+"/site/SPageNavigator/cyclenation_donate_amazon.html?FR_ID="+fr_id+"&mfc_pref=T&PROXY_ID="+px+"&PROXY_TYPE="+pt+"' class='amazon'><img src='https://donatenow.heart.org/images/amazon-payments_inactive.png' alt='Donate with Amazon Pay'/></a>" +
 				"<a href='"+default_path+"/site/SPageNavigator/cyclenation_donate_applepay.html?FR_ID="+fr_id+"&mfc_pref=T&PROXY_ID="+px+"&PROXY_TYPE="+pt+"' class='applepay'><img src='https://www2.heart.org/donation-forms-braintree/donatenow/images/DonateBlack_32pt_@2x.png' alt='ApplePay'/></a>" +
+				"<a href='"+default_path+"/site/SPageNavigator/cyclenation_donate_venmo.html?FR_ID="+fr_id+"&mfc_pref=T&PROXY_ID="+px+"&PROXY_TYPE="+pt+"' class='venmo'><img src='https://www2.heart.org/donation-forms/donatenow/images/venmo-button.png' alt='Venmo'/></a>" +
 				"<a href='"+dlink+"&paypal=true'><img src='https://www2.heart.org/images/content/pagebuilder/PP_logo_h_100x26.png'/ alt='Donate with PayPal'></a>";
 			jQuery(this).after(html);
 		}
