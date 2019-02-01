@@ -40,7 +40,7 @@ angular.module 'trPcControllers'
           "name":"Finn"
           "status":0
           "level":""
-          "level_desc":"First Online Gift"
+          "level_desc":"(First Online Gift)"
         }
         {
           "id":"KPAN-19"
