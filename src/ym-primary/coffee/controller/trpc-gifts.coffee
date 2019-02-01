@@ -33,24 +33,28 @@ angular.module 'trPcControllers'
           "name":"Heart Heroes Wristband"
           "status":0
           "level":""
+          "level_desc":""
         }
         {
           "id":"KSHA-19"
           "name":"Finn"
           "status":0
-          "level":"$1"
+          "level":""
+          "level_desc":"First Online Gift"
         }
         {
           "id":"KPAN-19"
           "name":"Ruby"
           "status":0
           "level":"$40"
+          "level_desc":""
         }
         {
           "id":"3D"
           "name":"Create Your Own 3D Printed Heart Hero"
           "status":0
           "level":"$1,000"
+          "level_desc":""
         }
       ]
       defaultStandardGifts = [
@@ -286,6 +290,7 @@ angular.module 'trPcControllers'
               prize_sku: gift.id
               prize_status: status
               prize_level: gift.level
+              prize_desc: gift.level_desc
 
           prevstatus = 0
           angular.forEach defaultStandardGifts, (gift, key) ->
