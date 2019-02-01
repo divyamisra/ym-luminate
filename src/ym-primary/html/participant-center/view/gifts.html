@@ -21,6 +21,7 @@
               </div>
               <div class="ym-pc-dashboard-bonus-gifts-text">
                 <span ng-bind-html="bonusGift.prize_label"></span> <span class="sr-only" ng-if="bonusGift.prize_status">(earned)</span><span class="sr-only" ng-if="!bonusGift.prize_status">(not yet earned)</span>
+                <div class="ym-pc-dashboard-bonus-gifts-desc" ng-if="bonusGift.prize_desc"><span ng-bind-html="bonusGift.prize_desc"></span></div>
               </div>
            </a>
         </div>
