@@ -103,7 +103,7 @@
               <div class="profile_box_text">
                 Why do you walk? Finish this sentence: "______ is Why."
               </div>
-              <a id="tell_us_your_why" class="btn btn-primary" ng-href="{{personalPageUrlSecure}}&amp;videoWhy=true">Tell Us Your Why</a>
+              <a href id="tell_us_your_why" class="btn btn-primary" ng-click="editYourWhy()">Tell Us Your Why</a>
             </div>
           </div>
           <div class="col-sm-4 profile_box" ng-if="userInteractions.why == '1'">
@@ -115,7 +115,7 @@
                 Thank you for telling us<br>
                 your Why: {{sqvm.surveyModel.question_key_what_is_why}}
               </div>
-              <a id="update_your_why" class="btn btn-primary" ng-href="{{personalPageUrlSecure}}&amp;videoWhy=true">Update Your Why</a>
+              <a href id="update_your_why" class="btn btn-primary" ng-click="editYourWhy()">Update Your Why</a>
             </div>
           </div>
 

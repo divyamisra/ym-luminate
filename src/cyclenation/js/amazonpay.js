@@ -1,6 +1,7 @@
 (function ($) {
 	$.extend({
 		getCustomQuerystring: function(url, name){
+		  url = url.replace(new RegExp('&amp;', 'g'),'&');
 		  name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
 		  var regexS = "[\\?&]" + name + "=([^&#]*)";
 		  var regex = new RegExp(regexS);
