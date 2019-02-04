@@ -10,6 +10,7 @@ angular.module 'trPcControllers'
     '$translate'
     '$uibModal'
     '$uibModalStack'
+    '$window'
     'APP_INFO'
     'ConstituentService'
     'TeamraiserRecentActivityService'
@@ -25,7 +26,7 @@ angular.module 'trPcControllers'
     'TeamraiserSurveyResponseService'
     'TeamraiserEmailService'
     'FacebookFundraiserService'
-    ($rootScope, $scope, $timeout, $filter, $location, $httpParamSerializer, $http, $translate, $uibModal, $uibModalStack, APP_INFO, ConstituentService, TeamraiserRecentActivityService, TeamraiserRegistrationService, TeamraiserProgressService, TeamraiserGiftService, TeamraiserParticipantService, TeamraiserTeamService, TeamraiserNewsFeedService, TeamraiserCompanyService, TeamraiserShortcutURLService, ContactService, TeamraiserSurveyResponseService, TeamraiserEmailService, FacebookFundraiserService) ->
+    ($rootScope, $scope, $timeout, $filter, $location, $httpParamSerializer, $http, $translate, $uibModal, $uibModalStack, $window, APP_INFO, ConstituentService, TeamraiserRecentActivityService, TeamraiserRegistrationService, TeamraiserProgressService, TeamraiserGiftService, TeamraiserParticipantService, TeamraiserTeamService, TeamraiserNewsFeedService, TeamraiserCompanyService, TeamraiserShortcutURLService, ContactService, TeamraiserSurveyResponseService, TeamraiserEmailService, FacebookFundraiserService) ->
       $scope.dashboardPromises = []
 
       $scope.baseDomain = $location.absUrl().split('/site/')[0]
@@ -82,6 +83,27 @@ angular.module 'trPcControllers'
             console.log 'brightsites promise failure'
             #console.log response
         $scope.dashboardPromises.push getcheckBrightSitesPromise
+
+      $scope.BrightSitesLogin = ->
+        console.log 'button press'
+        #$window.open 'https://yahoo.com'
+        BrightSitesWindow = $window.open '', 'RewardCenter'
+        postData =
+          server: $scope.tablePrefix
+          frid: $scope.frId
+          consid: $scope.consId
+        $http.post('https://bfapps1.boundlessfundraising.com/applications/ahahw/brightsites/brightpost-dev.php', postData)
+          .then (response) ->
+            console.log 'v01'
+            if response.data.errors
+              console.log response.data
+            else
+              console.log response.data
+              if response.data.login_url
+                console.log response.data.login_url
+                BrightSitesWindow.location.href = response.data.login_url
+          .catch (response) ->
+            console.log 'brightsites promise failure'
 
       $scope.getMessageCounts = (refresh) ->
         $scope.messageCounts = {}
@@ -720,7 +742,7 @@ angular.module 'trPcControllers'
             $scope.cancelEditYears = ->
               $scope.LByearsProfileModal.close()
               reCheckProfileItems()
-      
+
       $scope.editYourWhy = ->
         $scope.LBwhyModal = $uibModal.open
           scope: $scope
