@@ -158,6 +158,7 @@ angular.module 'trPcControllers'
           "KUNI-19"
           "MWB-19"
           "KSHA-19"
+          "KPAN-19"
           "LVL2JR-19"
           "KOTT-19"
           "KPIG-19"
