@@ -103,6 +103,23 @@ table {
     @media (min-width: $screen-sm-min) {
       margin: 0 auto 30px;
     }
+
+    td.ym-list__column--city {
+      span {
+        @media (min-width: $screen-sm-min) {
+          font-weight: bold;
+        }
+      }
+    }
+
+    td.ym-list__column--state {
+      span {
+        @media (min-width: $screen-sm-min) {
+          font-weight: bold;
+        }
+      }
+    }
+
   }
   
   .pagination {
