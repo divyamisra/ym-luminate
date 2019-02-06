@@ -1,8 +1,8 @@
 <div>
   <div class="modal-body">
-    <a class="close" aria-label="Close" ng-click="closeFirstLogin()">
+    <button tabindex="0" class="close" aria-label="Close" ng-click="closeFirstLogin()">
       <span aria-hidden="true">×</span>
-    </a>
+    </button>
     <div class="ym-pc-first-login-modal">
       <h2 class="h3">
         Thank You!
@@ -45,9 +45,9 @@
         <img class="img-responsive" src="../aha-luminate/dist/ym-primary/image/intro_scaresquad.png" alt="Welcome to the scare squad">
       </div>
       <div class="ym-pc-first-login-close">
-        <a class="btn btn-primary" ng-click="closeFirstLogin()">
+        <button tabindex="0" class="btn btn-primary" ng-click="closeFirstLogin()">
           <strong>Start Fundraising!</strong>
-        </a>
+        </button>
       </div>
       <div class="hidden" hidden aria-hidden="true">
         <img ng-src="//hearttools.heart.org/aha_ym19_dev/api/student/register/{{frId}}/{{consId}}?team_id={{participantRegistration.teamId}}&amp;school_id={{participantRegistration.companyInformation.companyId}}" alt="" ng-if="tablePrefix == 'heartdev'">
