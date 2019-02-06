@@ -16,6 +16,7 @@ angular.module 'trPcControllers'
     'TeamraiserRecentActivityService'
     'TeamraiserRegistrationService'
     'TeamraiserProgressService'
+    'TeamraiserFundraisingResultsService'
     'TeamraiserGiftService'
     'TeamraiserParticipantService'
     'TeamraiserTeamService'
@@ -26,7 +27,7 @@ angular.module 'trPcControllers'
     'TeamraiserSurveyResponseService'
     'TeamraiserEmailService'
     'FacebookFundraiserService'
-    ($rootScope, $scope, $timeout, $filter, $location, $httpParamSerializer, $http, $translate, $uibModal, $uibModalStack, $window, APP_INFO, ConstituentService, TeamraiserRecentActivityService, TeamraiserRegistrationService, TeamraiserProgressService, TeamraiserGiftService, TeamraiserParticipantService, TeamraiserTeamService, TeamraiserNewsFeedService, TeamraiserCompanyService, TeamraiserShortcutURLService, ContactService, TeamraiserSurveyResponseService, TeamraiserEmailService, FacebookFundraiserService) ->
+    ($rootScope, $scope, $timeout, $filter, $location, $httpParamSerializer, $http, $translate, $uibModal, $uibModalStack, $window, APP_INFO, ConstituentService, TeamraiserRecentActivityService, TeamraiserRegistrationService, TeamraiserProgressService, TeamraiserFundraisingResultsService, TeamraiserGiftService, TeamraiserParticipantService, TeamraiserTeamService, TeamraiserNewsFeedService, TeamraiserCompanyService, TeamraiserShortcutURLService, ContactService, TeamraiserSurveyResponseService, TeamraiserEmailService, FacebookFundraiserService) ->
       $scope.dashboardPromises = []
 
       $scope.baseDomain = $location.absUrl().split('/site/')[0]
@@ -885,6 +886,22 @@ angular.module 'trPcControllers'
             response
         $scope.dashboardPromises.push fundraisingProgressPromise
       $scope.refreshFundraisingProgress()
+
+      $scope.participantConfirmedGifts
+      $scope.getConfirmedGifts = ->
+        fundraisingResultsPromise = TeamraiserFundraisingResultsService.getFundraisingResults()
+          .then (response) ->
+            console.log response.data
+            participantFundraisingRecord = response.data.getFundraisingResponse?.fundraisingRecord
+            participantConfirmedGifts = Number participantFundraisingRecord.totalConfirmedAmount
+            console.log participantConfirmedGifts
+            if participantConfirmedGifts >= 10000
+              alert 'Success: User has '+participantConfirmedGifts+' in confirmed gifts'
+            else
+              alert 'Fail: User only has '+participantConfirmedGifts+' in confirmed gifts'
+            response
+        $scope.dashboardPromises.push fundraisingResultsPromise
+      $scope.getConfirmedGifts()
 
       $scope.editGoalOptions =
         updateGoalFailure: false
