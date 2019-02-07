@@ -886,21 +886,21 @@ angular.module 'trPcControllers'
         $scope.dashboardPromises.push fundraisingProgressPromise
       $scope.refreshFundraisingProgress()
 
-      $scope.participantConfirmedGifts
-      $scope.getConfirmedGifts = ->
-        fundraisingResultsPromise = TeamraiserFundraisingResultsService.getFundraisingResults()
-          .then (response) ->
-            console.log response.data
-            participantFundraisingRecord = response.data.getFundraisingResponse?.fundraisingRecord
-            participantConfirmedGifts = Number participantFundraisingRecord.totalConfirmedAmount
-            console.log participantConfirmedGifts
-            if participantConfirmedGifts >= 10000
-              alert 'Success: User has '+participantConfirmedGifts+' in confirmed gifts'
-            else
-              alert 'Fail: User only has '+participantConfirmedGifts+' in confirmed gifts'
-            response
-        $scope.dashboardPromises.push fundraisingResultsPromise
-      $scope.getConfirmedGifts()
+      #$scope.participantConfirmedGifts
+      #$scope.getConfirmedGifts = ->
+        #fundraisingResultsPromise = TeamraiserFundraisingResultsService.getFundraisingResults()
+          #.then (response) ->
+            #console.log response.data
+            #participantFundraisingRecord = response.data.getFundraisingResponse?.fundraisingRecord
+            #participantConfirmedGifts = Number participantFundraisingRecord.totalConfirmedAmount
+            #console.log participantConfirmedGifts
+            #if participantConfirmedGifts >= 10000
+              #alert 'Success: User has '+participantConfirmedGifts+' in confirmed gifts'
+            #else
+              #alert 'Fail: User only has '+participantConfirmedGifts+' in confirmed gifts'
+            #response
+        #$scope.dashboardPromises.push fundraisingResultsPromise
+      #$scope.getConfirmedGifts()
 
       $scope.editGoalOptions =
         updateGoalFailure: false
