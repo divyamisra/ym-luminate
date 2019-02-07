@@ -810,11 +810,11 @@
 
             if(trPage === 'personal'){
               var origJoinTeamUrl = $('#personal_page_join_team_button').attr('href');
-              var modJoinTeamUrl = origJoinTeamUrl + '&s_regType=joinTeam&s_captainConsId=' + captainConsId + '&s_dev_branch=cd-cyclenation';
+              var modJoinTeamUrl = origJoinTeamUrl + '&s_regType=joinTeam&s_captainConsId=' + captainConsId;
               $('#personal_page_join_team_button').attr('href', modJoinTeamUrl);
             }else if(trPage === 'team'){
               var origJoinTeamUrl = $('#join_team_button').attr('href');
-              var modJoinTeamUrl = origJoinTeamUrl + '&s_regType=joinTeam&s_captainConsId=' + captainConsId + '&s_dev_branch=cd-cyclenation';
+              var modJoinTeamUrl = origJoinTeamUrl + '&s_regType=joinTeam&s_captainConsId=' + captainConsId;
               $('#join_team_button').attr('href', modJoinTeamUrl);
             }
           },
