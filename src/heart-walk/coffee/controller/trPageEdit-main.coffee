@@ -193,13 +193,16 @@ angular.module 'trPageEditControllers'
         # make video dynamic
         $scope.personalMedia = {}
         $scope.personalVideo = {}
-        $scope.personalizedVideoObj = {}
+
+#        $scope.personalizedVideoObj = {}
+
         $scope.setPersonalVideoUrl = (videoUrl) ->
           angular.forEach $personalVideo, (videoContainer) ->
             $personalVideoIframe = angular.element(videoContainer).find('iframe')
             $personalVideoIframe.css('opacity','1')
             if $scope.personalVideoEmbedUrl isnt ''
               $personalVideoIframe.replaceWith $compile($personalVideoIframe.clone().attr('ng-src', '{{personalVideoEmbedUrl}}'))($scope)
+
           if videoUrl and videoUrl.indexOf('vidyard') is -1
             videoUrl = videoUrl.replace '&amp;v=', '&v='
             videoId = ''
@@ -243,7 +246,7 @@ angular.module 'trPageEditControllers'
             message: errorMessage
         $scope.updatePersonalVideo = ->
           if $scope.personalVideo.type is 'youtube'
-            angular.element('.js--remove-personalized-video-form').submit()
+#            angular.element('.js--remove-personalized-video-form').submit()
             TeamraiserParticipantPageService.updatePersonalVideoUrl 'video_url=' + $scope.personalMedia.videoUrl,
               error: (response) ->
                 $scope.setPersonalVideoError response.errorResponse.message
@@ -251,33 +254,34 @@ angular.module 'trPageEditControllers'
                 videoUrl = response.updatePersonalVideoUrlResponse?.videoUrl
                 $scope.setPersonalVideoUrl videoUrl
                 $scope.closePersonalVideoModal()
-          else if $scope.personalVideo.type is 'personalized'
-            TeamraiserParticipantPageService.updatePersonalVideoUrl 'video_url='
-            formData = { auth_token: "Jep8QrDjpqwOnI5rpsAbJw", email: $rootScope.email, fields: {firstname: $rootScope.firstName, why: $scope.personalMedia.myWhy, cons_id: $rootScope.consId} }
-            $scope.submitVidyardCallback = (data) ->
-              jQuery.ajax 'http://hearttools.heart.org/vidyard/vy_pv_callback_to_bb.php',
-                type: 'POST'
-                data: JSON.stringify( { uuid: data.unit.uuid, cons_id: $rootScope.consId } ),
-                contentType: 'application/json',
-                dataType: 'json',
-                success: (data) ->
-                  # TODO
-            $scope.submitVidyard = ->
-              jQuery.ajax 'https://blender.vidyard.com/forms/pd5MsBtKJwfrReeWz7d8v4/submit.json',
-                type: 'POST'
-                data: JSON.stringify( { auth_token: "Jep8QrDjpqwOnI5rpsAbJw", email: $rootScope.email, fields: {firstname: $rootScope.firstName, why: $scope.personalMedia.myWhy, cons_id: '"' + $rootScope.consId + '"'} } ),
-                contentType: 'application/json',
-                dataType: 'json',
-                success: (response) ->
-                  $scope.submitVidyardCallback response
-            $scope.submitVidyard()
-            angular.element('.js--submit-personalized-video-LO-form').submit()
-            setTimeout ( ->
-              $scope.closePersonalVideoModal()
-            ), 500
+
+#          else if $scope.personalVideo.type is 'personalized'
+#            TeamraiserParticipantPageService.updatePersonalVideoUrl 'video_url='
+#            formData = { auth_token: "Jep8QrDjpqwOnI5rpsAbJw", email: $rootScope.email, fields: {firstname: $rootScope.firstName, why: $scope.personalMedia.myWhy, cons_id: $rootScope.consId} }#
+#            $scope.submitVidyardCallback = (data) ->
+#              jQuery.ajax 'http://hearttools.heart.org/vidyard/vy_pv_callback_to_bb.php',
+#                type: 'POST'
+#                data: JSON.stringify( { uuid: data.unit.uuid, cons_id: $rootScope.consId } ),
+#                contentType: 'application/json',
+#                dataType: 'json',
+#                success: (data) ->
+#                  # TODO
+#            $scope.submitVidyard = ->
+#              jQuery.ajax 'https://blender.vidyard.com/forms/pd5MsBtKJwfrReeWz7d8v4/submit.json',
+#                type: 'POST'
+#                data: JSON.stringify( { auth_token: "Jep8QrDjpqwOnI5rpsAbJw", email: $rootScope.email, fields: {firstname: $rootScope.firstName, why: $scope.personalMedia.myWhy, cons_id: '"' + $rootScope.consId + '"'} } ),
+#                contentType: 'application/json',
+#                dataType: 'json',
+#                success: (response) ->
+#                  $scope.submitVidyardCallback response
+#            $scope.submitVidyard()
+#            angular.element('.js--submit-personalized-video-LO-form').submit()
+#            setTimeout ( ->
+#              $scope.closePersonalVideoModal()
+#            ), 500
 
           else if $scope.personalVideo.type is 'default'
-            angular.element('.js--remove-personalized-video-form').submit()
+#            angular.element('.js--remove-personalized-video-form').submit()
             TeamraiserParticipantPageService.updatePersonalVideoUrl 'video_url='
             setTimeout ( ->
               $scope.closePersonalVideoModal()

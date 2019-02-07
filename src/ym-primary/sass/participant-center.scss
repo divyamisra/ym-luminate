@@ -25,7 +25,7 @@ a.ym-pc-dashboard-download-certificates {
 	color: $event-primary-acc;
 }
 
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: $screen-sm-min) {
 	.launch-builder-popup {
 		height: 268.333px;
 		width: 175px;
@@ -143,11 +143,12 @@ section.ym-pc-dashboard-bonus-gifts-section {
               font-size: 20px;
            }
            .ym-pc-dashboard-bonus-gifts-text {
-              background: $prize-purple;
+              background: #440075;
 	      padding: 20px;
 	      text-align:center;
-	      color: $brand-white;
+	      color: #ffffff;
 	      min-height:85px;
+	      font-weight:bold;
            }
 	}
 }

@@ -53,7 +53,7 @@
     <div class="col-sm-8 profile_icon_checklist">
       <div class="row">
         <div class="col-xs-6">
-          <i class="fa fa-question" ng-if="profileChecklistItems.why == 0"></i><i class="fa fa-check" ng-if="profileChecklistItems.why == 1"></i><a id="LBprofileWhy" href ng-href="{{personalPageUrlSecure}}&amp;videoWhy=true">What's Your Why?</a>
+          <i class="fa fa-question" ng-if="profileChecklistItems.why == 0"></i><i class="fa fa-check" ng-if="profileChecklistItems.why == 1"></i><a href id="LBprofileWhy" ng-click="notRightNow(); editYourWhy();">What's Your Why?</a>
         </div>
         <div class="col-xs-6">
           <i class="fa fa-mobile" ng-if="profileChecklistItems.mobile == 0"></i><i class="fa fa-check" ng-if="profileChecklistItems.mobile == 1"></i><a href ng-click="sendGAEvent('Mobile Phone - profile lightbox');LBprofileLinks('mobile')">Mobile Phone</a>
