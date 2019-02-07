@@ -85,26 +85,25 @@ angular.module 'trPcControllers'
             #console.log response
         $scope.dashboardPromises.push getcheckBrightSitesPromise
 
-      $scope.BrightSitesLogin = ->
-        console.log 'button press'
-        #$window.open 'https://yahoo.com'
-        BrightSitesWindow = $window.open '', 'RewardCenter'
-        postData =
-          server: $scope.tablePrefix
-          frid: $scope.frId
-          consid: $scope.consId
-        $http.post('https://bfapps1.boundlessfundraising.com/applications/ahahw/brightsites/brightpost-dev.php', postData)
-          .then (response) ->
-            console.log 'v01'
-            if response.data.errors
-              console.log response.data
-            else
-              console.log response.data
-              if response.data.login_url
-                console.log response.data.login_url
-                BrightSitesWindow.location.href = response.data.login_url
-          .catch (response) ->
-            console.log 'brightsites promise failure'
+      #$scope.BrightSitesLogin = ->
+        #console.log 'button press'
+        #BrightSitesWindow = $window.open '', 'RewardCenter'
+        #postData =
+          #server: $scope.tablePrefix
+          #frid: $scope.frId
+          #consid: $scope.consId
+        #$http.post('https://bfapps1.boundlessfundraising.com/applications/ahahw/brightsites/brightpost-dev.php', postData)
+          #.then (response) ->
+            #console.log 'v01'
+            #if response.data.errors
+              #console.log response.data
+            #else
+              #console.log response.data
+              #if response.data.login_url
+                #console.log response.data.login_url
+                #BrightSitesWindow.location.href = response.data.login_url
+          #.catch (response) ->
+            #console.log 'brightsites promise failure'
 
       $scope.getMessageCounts = (refresh) ->
         $scope.messageCounts = {}
