@@ -15,3 +15,7 @@ html.ym-modal-is-open {
     box-shadow: none;
   }
 }
+
+.ng-pc-modal .close:focus {
+    background: #a41752;
+}

@@ -11,11 +11,12 @@ angular.module 'ahaLuminateControllers'
     'TeamraiserTeamService'
     'TeamraiserParticipantService'
     'BoundlessService'
+    'ZuriService'
     'TeamraiserRegistrationService'
     'TeamraiserCompanyPageService'
     'PageContentService'
     '$sce'
-    ($scope, $rootScope, $location, $filter, $timeout, $uibModal, APP_INFO, TeamraiserCompanyService, TeamraiserTeamService, TeamraiserParticipantService, BoundlessService, TeamraiserRegistrationService, TeamraiserCompanyPageService, PageContentService, $sce) ->
+    ($scope, $rootScope, $location, $filter, $timeout, $uibModal, APP_INFO, TeamraiserCompanyService, TeamraiserTeamService, TeamraiserParticipantService, BoundlessService, ZuriService, TeamraiserRegistrationService, TeamraiserCompanyPageService, PageContentService, $sce) ->
       $scope.companyId = $location.absUrl().split('company_id=')[1].split('&')[0].split('#')[0]
       $rootScope.companyName = ''
       $scope.eventDate = ''
@@ -44,7 +45,29 @@ angular.module 'ahaLuminateControllers'
       getLocalSponsors()
       $scope.$watch 'parentCompanyId', ->
         getLocalSponsors()
-      
+
+      ZuriService.getChallenges $scope.companyId,
+        error: (response) ->
+          $scope.studentsPledgedTotal = 0
+          $scope.activity1amt = 0
+          $scope.activity2amt = 0
+          $scope.activity3amt = 0
+        success: (response) ->
+          $scope.studentsPledgedTotal = response.data.studentsPledged
+          studentsPledgedActivities = response.data.studentsPledgedByActivity
+          if studentsPledgedActivities['1']
+            $scope.activity1amt = studentsPledgedActivities['1'].count
+          else
+            $scope.activity1amt = 0
+          if studentsPledgedActivities['2']
+            $scope.activity2amt = studentsPledgedActivities['2'].count
+          else
+            $scope.activity2amt = 0
+          if studentsPledgedActivities['3']
+            $scope.activity3amt = studentsPledgedActivities['3'].count
+          else
+            $scope.activity3amt = 0
+
       BoundlessService.getSchoolRollupTotals $scope.companyId
         .then (response) ->
           if response.data.status isnt 'success'

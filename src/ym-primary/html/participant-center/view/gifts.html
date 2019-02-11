@@ -1,5 +1,6 @@
    <h2 class="text-center">Thank You Gifts</h2>
-<h3 class="text-center">You Have Raised {{participantProgress.raisedFormatted}}</h3>
+   <h3 class="text-center">You Have Raised {{participantProgress.raisedFormatted}}</h3>
+   <em class="text-center" style="display: block;">Please allow 15 minutes for the system to update your donation.</em>
    <section class="ym-pc-dashboard-bonus-gifts-section" aria-label="My Bonus Gifts" ng-if="bonusGifts && bonusGifts.length > 0" ng-cloak>
       <div class="ym-pc-dashboard-section-header">
         <h2 class="h4">
@@ -20,6 +21,7 @@
               </div>
               <div class="ym-pc-dashboard-bonus-gifts-text">
                 <span ng-bind-html="bonusGift.prize_label"></span> <span class="sr-only" ng-if="bonusGift.prize_status">(earned)</span><span class="sr-only" ng-if="!bonusGift.prize_status">(not yet earned)</span>
+                <div class="ym-pc-dashboard-bonus-gifts-desc" ng-if="bonusGift.prize_desc"><span ng-bind-html="bonusGift.prize_desc"></span></div>
               </div>
            </a>
         </div>
