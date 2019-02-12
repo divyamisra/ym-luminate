@@ -183,11 +183,9 @@
         <p>
           {{BrightSites.greeting}}
         </p>
-        <a id="heartwalk_store_button" class="btn btn-primary" ng-href="{{BrightSites.url}}" ng-click="sendGAEvent('visit rewards center');" target="_blank">Visit the Rewards Center</a>
+        <!--<a id="heartwalk_store_button" class="btn btn-primary" ng-href="{{BrightSites.url}}" ng-click="sendGAEvent('visit rewards center');" target="_blank">Visit the Rewards Center</a>-->
+        <a id="heartwalk_store_button-dev" class="btn btn-primary" href ng-click="BrightSitesLogin()" ng-click="sendGAEvent('visit rewards center');">Visit the Rewards Center Dev</a>
       </div>
-      <!-- <div class="clearfix heartwalk_store">
-        <a id="heartwalk_store_button-dev" class="btn btn-primary" href ng-click="BrightSitesLogin()">Visit the Rewards Center Dev</a>
-      </div> -->
       <div class="pc-facebook-fundraiser js--facebook-fundraiser-uncompleted-section" id="facebook-fundraisers" ng-if="facebookFundraisersEnabled" ng-show="!facebookFundraiserId" ng-cloak>
         <div class="container">
           <h2>
