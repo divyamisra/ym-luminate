@@ -21,8 +21,10 @@
 }
 
 @media not all and (min-resolution:.001dpcm) { 
-    .applepay { 
-        display: inline-block !important;
+    @media {
+       .applepay { 
+           display: inline-block !important;
+       }
     }
 }
 
