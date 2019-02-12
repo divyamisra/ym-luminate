@@ -89,8 +89,8 @@ angular.module 'trPcControllers'
               console.log response.data
             else
               console.log response.data
-              $scope.BrightSites.active = response.data.participant.event_status
-              if response.data.participant.exported isnt false
+              $scope.BrightSites.active = response.data.participant?.event_status
+              if response.data.participant?.exported isnt false
                 $scope.BrightSites.participant = true
             #response
           .catch (response) ->
