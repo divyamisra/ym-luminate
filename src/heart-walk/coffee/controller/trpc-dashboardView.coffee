@@ -32,6 +32,11 @@ angular.module 'trPcControllers'
 
       $scope.baseDomain = $location.absUrl().split('/site/')[0]
 
+      if $scope.tablePrefix is 'heartdev'
+        $scope.bfserver = 'bfstage'
+      else
+        $scope.bfserver = 'bfapps1'
+
       constituentPromise = ConstituentService.getUser()
         .then (response) ->
           if response.data.errorResponse
@@ -50,60 +55,71 @@ angular.module 'trPcControllers'
               $scope.constituent.primary_address.zip = ''
             if angular.equals({}, $scope.constituent.mobile_phone) is true
               $scope.constituent.mobile_phone = ''
-            $scope.checkBrightSites()
+            #remove this if not using
+            #$scope.checkBrightSites()
           response
       $scope.dashboardPromises.push constituentPromise
 
-      runCheckBrightSites = ->
-        postData =
-          server: $scope.tablePrefix
-          frid: $scope.frId
-          consid: $scope.consId
-        $http.post('https://bfapps1.boundlessfundraising.com/applications/ahahw/brightsites/brightpost.php', postData)
+      $scope.participantConfirmedGifts
+      $scope.getConfirmedGifts = ->
+        fundraisingResultsPromise = TeamraiserFundraisingResultsService.getFundraisingResults()
+          .then (response) ->
+            console.log response.data
+            participantFundraisingRecord = response.data.getFundraisingResponse?.fundraisingRecord
+            $scope.participantConfirmedGifts = Number participantFundraisingRecord.totalConfirmedAmount
+            console.log 'Confirmed gifts = '+$scope.participantConfirmedGifts
+            response
+        $scope.dashboardPromises.push fundraisingResultsPromise
+      $scope.getConfirmedGifts()
+
+      $scope.rewardsPostData =
+        server: $scope.tablePrefix
+        frid: $scope.frId
+        consid: $scope.consId
 
       $scope.BrightSites =
-        url: ''
-        points: ''
+        url: 'http://heartwalkguest.mybrightsites.com'
         active: false
+        participant: false
 
       $scope.checkBrightSites = ->
-        getcheckBrightSitesPromise = runCheckBrightSites()
+        getcheckBrightSitesPromise = $http.post('https://'+$scope.bfserver+'.boundlessfundraising.com/applications/ahahw/brightsites/brightpost.php', $scope.rewardsPostData)
           .then (response) ->
             if response.data.errors
               console.log response.data
             else
               console.log response.data
-              if response.data.login_url
-                $scope.BrightSites.active = true
-                $scope.BrightSites.url = response.data.login_url
-                $scope.BrightSites.points = response.data.balance
-                $scope.BrightSites.greeting = response.data.greeting
-                console.log $scope.BrightSites
+              $scope.BrightSites.active = response.data.participant.event_status
+              if response.data.participant.exported isnt false
+                $scope.BrightSites.participant = true
             #response
           .catch (response) ->
-            console.log 'brightsites promise failure'
+            console.log 'promise failure participant and event status call'
             #console.log response
         $scope.dashboardPromises.push getcheckBrightSitesPromise
+      $scope.checkBrightSites()
 
-      #$scope.BrightSitesLogin = ->
-        #console.log 'button press'
-        #BrightSitesWindow = $window.open '', 'RewardCenter'
-        #postData =
-          #server: $scope.tablePrefix
-          #frid: $scope.frId
-          #consid: $scope.consId
-        #$http.post('https://bfapps1.boundlessfundraising.com/applications/ahahw/brightsites/brightpost-dev.php', postData)
-          #.then (response) ->
-            #console.log 'v01'
-            #if response.data.errors
-              #console.log response.data
-            #else
-              #console.log response.data
-              #if response.data.login_url
-                #console.log response.data.login_url
-                #BrightSitesWindow.location.href = response.data.login_url
-          #.catch (response) ->
-            #console.log 'brightsites promise failure'
+      $scope.BrightSitesLogin = ->
+        if $scope.BrightSites.participant is true and $scope.participantConfirmedGifts >= 10000
+          BrightSitesWindow = $window.open '', 'RewardCenter'
+          $http.post('https://'+$scope.bfserver+'.boundlessfundraising.com/applications/ahahw/brightsites/brightpost-sso.php', $scope.rewardsPostData)
+            .then (response) ->
+              if response.data.errors
+                console.log response.data
+                BrightSitesWindow.location.href = $scope.BrightSites.url
+              else
+                console.log response.data
+                if response.data.login_url
+                  console.log response.data.login_url
+                  $scope.BrightSites.url = response.data.login_url
+                BrightSitesWindow.location.href = $scope.BrightSites.url
+            .catch (response) ->
+              console.log 'brightsites promise failure sso fetch'
+        else
+          console.log 'either user not in BS or not raised $100'
+          BrightSitesWindow = $window.open $scope.BrightSites.url, 'RewardCenter'
+          return true
+
 
       $scope.getMessageCounts = (refresh) ->
         $scope.messageCounts = {}
@@ -885,22 +901,6 @@ angular.module 'trPcControllers'
             response
         $scope.dashboardPromises.push fundraisingProgressPromise
       $scope.refreshFundraisingProgress()
-
-      #$scope.participantConfirmedGifts
-      #$scope.getConfirmedGifts = ->
-        #fundraisingResultsPromise = TeamraiserFundraisingResultsService.getFundraisingResults()
-          #.then (response) ->
-            #console.log response.data
-            #participantFundraisingRecord = response.data.getFundraisingResponse?.fundraisingRecord
-            #participantConfirmedGifts = Number participantFundraisingRecord.totalConfirmedAmount
-            #console.log participantConfirmedGifts
-            #if participantConfirmedGifts >= 10000
-              #alert 'Success: User has '+participantConfirmedGifts+' in confirmed gifts'
-            #else
-              #alert 'Fail: User only has '+participantConfirmedGifts+' in confirmed gifts'
-            #response
-        #$scope.dashboardPromises.push fundraisingResultsPromise
-      #$scope.getConfirmedGifts()
 
       $scope.editGoalOptions =
         updateGoalFailure: false
