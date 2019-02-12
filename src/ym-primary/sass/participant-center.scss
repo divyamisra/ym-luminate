@@ -150,6 +150,10 @@ section.ym-pc-dashboard-bonus-gifts-section {
 	      min-height:85px;
 	      font-weight:bold;
            }
+           .ym-pc-dashboard-bonus-gifts-desc {
+	      font-style:italic;
+              font-size:0.9em;
+           }
 	}
 }
 
@@ -266,4 +270,11 @@ section.ym-pc-dashboard-standard-gifts-section {
    50% {transform: rotate(20deg);}
    75% {transform: rotate(-5deg);}
    100% {transform: rotate(0deg);}
+}
+
+div[id^="taTextElement"]:focus {
+    border-color: #66afe9;
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
 }
