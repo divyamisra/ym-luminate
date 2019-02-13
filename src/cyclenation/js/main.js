@@ -1135,6 +1135,12 @@ if ($('body').is('.pg_complist')) {
             success: function (response) {
               console.log('signup success');
               cd.logInteraction(trRegInteractionID, evID);
+              var domainName = window.location.hostname, 
+              domainNameParts = domainName.split('.');
+              if(domainNameParts.length > 2) {
+                domainName = domainNameParts[domainNameParts.length - 2] + '.' + domainNameParts[domainNameParts.length - 1];
+              }
+              domainName = '.' + domainName;
               document.cookie = 'gtm_tr_reg_page_success_' + evID + '=true; domain=' + domainName + '; path=/';
               window.location = window.location.href + '&s_regType=';
             },
