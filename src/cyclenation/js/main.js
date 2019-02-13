@@ -1135,6 +1135,7 @@ if ($('body').is('.pg_complist')) {
             success: function (response) {
               console.log('signup success');
               cd.logInteraction(trRegInteractionID, evID);
+              document.cookie = 'gtm_tr_reg_page_success=true; domain=' + domainName + '; path=/';
               window.location = window.location.href + '&s_regType=';
             },
             error: function (response) {
