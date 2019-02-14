@@ -90,10 +90,10 @@ angular.module 'trPcControllers'
               console.log response.data
             else
               console.log response.data
+              $scope.BrightSites.greeting = response.data.greeting
               $scope.BrightSites.active = response.data.participant?.event_status
               if response.data.participant?.exported isnt false
                 $scope.BrightSites.participant = true
-                $scope.BrightSites.greeting = response.data.greeting
             #response
           .catch (response) ->
             console.log 'promise failure participant and event status call'
