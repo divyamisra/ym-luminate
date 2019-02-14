@@ -18,21 +18,21 @@ angular.module 'trPcControllers'
       
       $scope.emailPromises = []
       
-      $scope.getMessageCounts = (refresh) ->
-        $scope.messageCounts = {}
-        messageTypes = [
-          'draft'
-          'sentMessage'
-        ]
-        angular.forEach messageTypes, (messageType) ->
-          apiMethod = 'get' + messageType.charAt(0).toUpperCase() + messageType.slice(1) + 's'
-          messageCountPromise = NgPcTeamraiserEmailService[apiMethod] 'list_page_size=1'
-            .then (response) ->
-              $scope.messageCounts[messageType + 's'] = response.data[apiMethod + 'Response'].totalNumberResults
-              response
-          if not refresh
-            $scope.emailPromises.push messageCountPromise
-      $scope.getMessageCounts()
+      # $scope.getMessageCounts = (refresh) ->
+      #   $scope.messageCounts = {}
+      #   messageTypes = [
+      #     'draft'
+      #     'sentMessage'
+      #   ]
+      #   angular.forEach messageTypes, (messageType) ->
+      #     apiMethod = 'get' + messageType.charAt(0).toUpperCase() + messageType.slice(1) + 's'
+      #     messageCountPromise = NgPcTeamraiserEmailService[apiMethod] 'list_page_size=1'
+      #       .then (response) ->
+      #         $scope.messageCounts[messageType + 's'] = response.data[apiMethod + 'Response'].totalNumberResults
+      #         response
+      #     if not refresh
+      #       $scope.emailPromises.push messageCountPromise
+      # $scope.getMessageCounts()
       
       $scope.getContactCounts = ->
         $scope.contactCounts = {}
@@ -72,10 +72,15 @@ angular.module 'trPcControllers'
       setEmailComposerDefaults = ->
         defaultStationeryId = $scope.teamraiserConfig.defaultStationeryId
         selectedContacts = $rootScope.selectedContacts.contacts
+        recipients = []
+        if selectedContacts.length > 0
+          angular.forEach selectedContacts, (selectedContact) ->
+            if selectedContact.lastIndexOf('<>') isnt (selectedContact.length - 2)
+              recipients.push selectedContact
         $scope.emailComposer =
           serial: new Date().getTime()
           message_id: ''
-          recipients: selectedContacts.join ', '
+          recipients: recipients.join ', '
           suggested_message_id: ''
           subject: ''
           prepend_salutation: false
@@ -223,7 +228,7 @@ angular.module 'trPcControllers'
                 .then (response) ->
                   draftMessage = response.data.addDraftResponse?.message
                   if draftMessage
-                    $scope.getMessageCounts true
+                    # $scope.getMessageCounts true
                     messageId = draftMessage.messageId
                     $scope.messageId = messageId
                     # TODO: add draftId to URL
@@ -256,6 +261,8 @@ angular.module 'trPcControllers'
       
       $scope.previewEmail = ->
         $scope.clearEmailAlerts()
+        $scope.rawRecipients = $scope.emailComposer.ng_recipients
+        $scope.emailComposer.ng_recipients = $scope.emailComposer.ng_recipients.replace />;/g, '>,'
         NgPcTeamraiserEmailService.previewMessage $httpParamSerializer($scope.emailComposer)
           .then (response) ->
             if response.data.errorResponse
@@ -277,6 +284,7 @@ angular.module 'trPcControllers'
                 templateUrl: APP_INFO.rootPath + 'dist/high-school/html/participant-center/modal/emailPreview.html'
                 size: 'lg'
                 windowClass: 'ng-pc-modal ym-modal-full-screen'
+        $scope.emailComposer.ng_recipients = $scope.rawRecipients
       
       $scope.selectStationery = ->
         NgPcTeamraiserEmailService.previewMessage $httpParamSerializer($scope.emailComposer)
@@ -299,6 +307,8 @@ angular.module 'trPcControllers'
         if not $rootScope.sendEmailPending
           $rootScope.sendEmailPending = true
           $scope.sendEmailPending = true
+          $scope.rawRecipients = $scope.emailComposer.ng_recipients
+          $scope.emailComposer.ng_recipients = $scope.emailComposer.ng_recipients.replace />;/g, '>,'
           NgPcTeamraiserEmailService.sendMessage $httpParamSerializer($scope.emailComposer)
             .then (response) ->
               delete $rootScope.sendEmailPending
@@ -314,10 +324,10 @@ angular.module 'trPcControllers'
                 if $scope.messageId
                   deleteDraftPromise = NgPcTeamraiserEmailService.deleteDraft 'message_id=' + $scope.messageId
                     .then (response) ->
-                      $scope.getMessageCounts()
+                      # $scope.getMessageCounts()
                   $scope.emailPromises.push deleteDraftPromise
                 else
-                  $scope.getMessageCounts()
+                  # $scope.getMessageCounts()
                 $scope.getContactCounts()
                 $scope.sendEmailSuccess = true
                 $scope.resetSelectedContacts()
@@ -325,4 +335,5 @@ angular.module 'trPcControllers'
                 window.scrollTo 0, 0
                 angular.element('#emailComposer-recipients').focus()
                 BoundlessService.logEmailSent()
+          $scope.emailComposer.ng_recipients = $scope.rawRecipients
   ]
