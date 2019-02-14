@@ -43,15 +43,21 @@ angular.module 'trPcControllers'
       getContactString = (contact) ->
         contactData = ''
         if contact?.firstName
-          contactData += contact.firstName
+          contactData += '"' + contact.firstName
         if contact?.lastName
-          if contactData isnt ''
+          if contactData is ''
+            contactData += '"'
+          else
             contactData += ' '
           contactData += contact.lastName
+        if contactData isnt ''
+          contactData += '"'
+        if contactData isnt ''
+          contactData += ' '
+        contactData += '<'
         if contact?.email
-          if contactData isnt ''
-            contactData += ' '
-          contactData += '<' + contact.email + '>'
+          contactData += contact.email
+        contactData += '>'
         contactData
       
       isContactSelected = (contact) ->
