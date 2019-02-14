@@ -76,7 +76,7 @@ angular.module 'trPcControllers'
         $scope.emailComposer =
           serial: new Date().getTime()
           message_id: ''
-          recipients: recipients.join ', '
+          ng_recipients: recipients.join ', '
           suggested_message_id: ''
           subject: ''
           prepend_salutation: false
