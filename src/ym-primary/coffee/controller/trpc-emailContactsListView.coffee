@@ -201,6 +201,8 @@ angular.module 'trPcControllers'
                   angular.forEach addressBookContacts, (contact) ->
                     if contact
                       contact.selected = isContactSelected contact
+                      contact.firstName = contact.firstName.replace /&amp;/g, '&'
+                      contact.lastName = contact.lastName.replace /&amp;/g, '&'
                       contacts.push contact
                   $scope.addressBookContacts.contacts = contacts
                   response
@@ -223,6 +225,8 @@ angular.module 'trPcControllers'
                   angular.forEach addressBookContacts, (contact) ->
                     if contact
                       contact.selected = isContactSelected contact
+                      contact.firstName = contact.firstName.replace /&amp;/g, '&'
+                      contact.lastName = contact.lastName.replace /&amp;/g, '&'
                       $scope.addressBookContacts.allContacts.push contact
                   if $scope.addressBookContacts.allContacts.length < totalNumber
                     $scope.addressBookContacts.getAllPage = $scope.addressBookContacts.getAllPage + 1
