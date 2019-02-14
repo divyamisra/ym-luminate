@@ -43,13 +43,13 @@ angular.module 'trPcControllers'
       getContactString = (contact) ->
         contactData = ''
         if contact?.firstName
-          contactData += '"' + contact.firstName
+          contactData += '"' + contact.firstName.replace(/,/g, '')
         if contact?.lastName
           if contactData is ''
             contactData += '"'
           else
             contactData += ' '
-          contactData += contact.lastName
+          contactData += contact.lastName.replace(/,/g, '')
         if contactData isnt ''
           contactData += '"'
         if contactData isnt ''
