@@ -200,9 +200,9 @@ angular.module 'trPcControllers'
                   contacts = []
                   angular.forEach addressBookContacts, (contact) ->
                     if contact
-                      contact.selected = isContactSelected contact
                       contact.firstName = jQuery('<div>' + contact.firstName + '</div>').text()
                       contact.lastName = jQuery('<div>' + contact.lastName + '</div>').text()
+                      contact.selected = isContactSelected contact
                       contacts.push contact
                   $scope.addressBookContacts.contacts = contacts
                   response
@@ -224,9 +224,9 @@ angular.module 'trPcControllers'
                   contacts = []
                   angular.forEach addressBookContacts, (contact) ->
                     if contact
-                      contact.selected = isContactSelected contact
                       contact.firstName = jQuery('<div>' + contact.firstName + '</div>').text()
                       contact.lastName = jQuery('<div>' + contact.lastName + '</div>').text()
+                      contact.selected = isContactSelected contact
                       $scope.addressBookContacts.allContacts.push contact
                   if $scope.addressBookContacts.allContacts.length < totalNumber
                     $scope.addressBookContacts.getAllPage = $scope.addressBookContacts.getAllPage + 1
