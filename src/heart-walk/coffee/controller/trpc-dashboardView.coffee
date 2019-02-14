@@ -81,6 +81,7 @@ angular.module 'trPcControllers'
         url: 'http://heartwalkguest.mybrightsites.com'
         active: false
         participant: false
+        greeting: ''
 
       $scope.checkBrightSites = ->
         getcheckBrightSitesPromise = $http.post('https://'+$scope.bfserver+'.boundlessfundraising.com/applications/ahahw/brightsites/brightpost.php', $scope.rewardsPostData)
@@ -92,6 +93,7 @@ angular.module 'trPcControllers'
               $scope.BrightSites.active = response.data.participant?.event_status
               if response.data.participant?.exported isnt false
                 $scope.BrightSites.participant = true
+                $scope.BrightSites.greeting = response.data.greeting
             #response
           .catch (response) ->
             console.log 'promise failure participant and event status call'
