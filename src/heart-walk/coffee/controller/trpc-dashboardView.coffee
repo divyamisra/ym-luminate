@@ -55,8 +55,6 @@ angular.module 'trPcControllers'
               $scope.constituent.primary_address.zip = ''
             if angular.equals({}, $scope.constituent.mobile_phone) is true
               $scope.constituent.mobile_phone = ''
-            #remove this if not using
-            #$scope.checkBrightSites()
           response
       $scope.dashboardPromises.push constituentPromise
 
@@ -64,10 +62,8 @@ angular.module 'trPcControllers'
       $scope.getConfirmedGifts = ->
         fundraisingResultsPromise = TeamraiserFundraisingResultsService.getFundraisingResults()
           .then (response) ->
-            console.log response.data
             participantFundraisingRecord = response.data.getFundraisingResponse?.fundraisingRecord
             $scope.participantConfirmedGifts = Number participantFundraisingRecord.totalConfirmedAmount
-            console.log 'Confirmed gifts = '+$scope.participantConfirmedGifts
             response
         $scope.dashboardPromises.push fundraisingResultsPromise
       $scope.getConfirmedGifts()
@@ -84,7 +80,7 @@ angular.module 'trPcControllers'
         greeting: ''
 
       $scope.checkBrightSites = ->
-        getcheckBrightSitesPromise = $http.post('https://'+$scope.bfserver+'.boundlessfundraising.com/applications/ahahw/brightsites/brightpost.php', $scope.rewardsPostData)
+        getcheckBrightSitesPromise = $http.post('https://'+$scope.bfserver+'.boundlessfundraising.com/applications/ahahw/brightsites/brightpost-info.php', $scope.rewardsPostData)
           .then (response) ->
             if response.data.errors
               console.log response.data
@@ -112,13 +108,11 @@ angular.module 'trPcControllers'
               else
                 console.log response.data
                 if response.data.login_url
-                  console.log response.data.login_url
                   $scope.BrightSites.url = response.data.login_url
                 BrightSitesWindow.location.href = $scope.BrightSites.url
             .catch (response) ->
               console.log 'brightsites promise failure sso fetch'
         else
-          console.log 'either user not in BS or not raised $100'
           BrightSitesWindow = $window.open $scope.BrightSites.url, 'RewardCenter'
           return true
 
