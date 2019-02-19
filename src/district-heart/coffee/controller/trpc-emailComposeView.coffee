@@ -80,7 +80,7 @@ angular.module 'trPcControllers'
         $scope.emailComposer =
           serial: new Date().getTime()
           message_id: ''
-          recipients: recipients.join ', '
+          ng_recipients: recipients.join ', '
           suggested_message_id: ''
           subject: ''
           prepend_salutation: false
@@ -149,7 +149,7 @@ angular.module 'trPcControllers'
                       message.name = message.name.split('Participant: ')[1] or message.name
                       $scope.suggestedMessages.push message
                   else
-                    if message.name.indexOf('Participant:') isnt -1
+                    if message.name.indexOf('Participant: ') isnt -1
                       message.name = message.name.split('Participant: ')[1]
                       $scope.suggestedMessages.push message
                     else if message.name.indexOf('Captain:') isnt -1
@@ -261,7 +261,8 @@ angular.module 'trPcControllers'
       
       $scope.previewEmail = ->
         $scope.clearEmailAlerts()
-        NgPcTeamraiserEmailService.previewMessage $httpParamSerializer($scope.emailComposer)
+        recipients = $scope.emailComposer.ng_recipients.replace />;/g, '>,'
+        NgPcTeamraiserEmailService.previewMessage($httpParamSerializer($scope.emailComposer) + '&recipients=' + encodeURIComponent(recipients))
           .then (response) ->
             if response.data.errorResponse
               $scope.sendEmailError = response.data.errorResponse.message
@@ -282,7 +283,6 @@ angular.module 'trPcControllers'
                 templateUrl: APP_INFO.rootPath + 'dist/district-heart/html/participant-center/modal/emailPreview.html'
                 size: 'lg'
                 windowClass: 'ng-pc-modal ym-modal-full-screen'
-              angular.element('html').addClass 'ym-modal-is-open'
       
       $scope.selectStationery = ->
         NgPcTeamraiserEmailService.previewMessage $httpParamSerializer($scope.emailComposer)
@@ -305,7 +305,8 @@ angular.module 'trPcControllers'
         if not $rootScope.sendEmailPending
           $rootScope.sendEmailPending = true
           $scope.sendEmailPending = true
-          NgPcTeamraiserEmailService.sendMessage $httpParamSerializer($scope.emailComposer)
+          recipients = $scope.emailComposer.ng_recipients.replace />;/g, '>,'
+          NgPcTeamraiserEmailService.sendMessage($httpParamSerializer($scope.emailComposer) + '&recipients=' + encodeURIComponent(recipients))
             .then (response) ->
               delete $rootScope.sendEmailPending
               delete $scope.sendEmailPending
