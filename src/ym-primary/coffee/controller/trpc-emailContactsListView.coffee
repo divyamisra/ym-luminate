@@ -204,8 +204,10 @@ angular.module 'trPcControllers'
                   contacts = []
                   angular.forEach addressBookContacts, (contact) ->
                     if contact
-                      contact.firstName = jQuery('<div>' + contact.firstName.replace(/&amp;/g, '&') + '</div>').text()
-                      contact.lastName = jQuery('<div>' + contact.lastName.replace(/&amp;/g, '&') + '</div>').text()
+                      if contact.firstName
+                        contact.firstName = jQuery('<div>' + contact.firstName.replace(/&amp;/g, '&') + '</div>').text()
+                      if contact.lastName
+                        contact.lastName = jQuery('<div>' + contact.lastName.replace(/&amp;/g, '&') + '</div>').text()
                       contact.selected = isContactSelected contact
                       contacts.push contact
                   $scope.addressBookContacts.contacts = contacts
@@ -228,8 +230,10 @@ angular.module 'trPcControllers'
                   contacts = []
                   angular.forEach addressBookContacts, (contact) ->
                     if contact
-                      contact.firstName = jQuery('<div>' + contact.firstName.replace(/&amp;/g, '&') + '</div>').text()
-                      contact.lastName = jQuery('<div>' + contact.lastName.replace(/&amp;/g, '&') + '</div>').text()
+                      if contact.firstName
+                        contact.firstName = jQuery('<div>' + contact.firstName.replace(/&amp;/g, '&') + '</div>').text()
+                      if contact.lastName
+                        contact.lastName = jQuery('<div>' + contact.lastName.replace(/&amp;/g, '&') + '</div>').text()
                       contact.selected = isContactSelected contact
                       $scope.addressBookContacts.allContacts.push contact
                   if $scope.addressBookContacts.allContacts.length < totalNumber
