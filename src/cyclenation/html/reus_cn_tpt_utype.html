@@ -1,212 +1,294 @@
 <section id="uType" class="">
-    <!-- BEGIN login container    -->
+  <!-- BEGIN reg options container -->
+  [[?xx::x[[S80:regType]]x::
+  <!-- BEGIN step 1 of tfind -->
+  <div class="row js__reg-type-container">
+    <div class="col-md-6 offset-md-3 text-center">
+      <h1 class="h3 show-desktop">I want to:</h1>
+    </div>
 
-    <div class="row js__login-container d-none">
-      <div class="col-md-6 offset-md-3 text-center">
-        <h1 class="h3">Log In</h1>
-        <p>
-          New to CycleNation?
-          <a href="#" class="js__show-signup"><u>Create account</u></a>.
+    <div class="col-md-6 offset-md-3">
+      <div class="js__reg-type-error-container alert alert-danger d-none" role="alert">
+        <span class="" aria-hidden="true"></span>
+        <span class="sr-only">Error:</span>
+        <i class="fas fa-exclamation-triangle" aria-hidden="true"></i>
+        <span class="js__reg-type-error-message"></span>
+      </div>
+      [[?xStationaryV2x::x[[E42:[[S80:trID]]:classification2]]x::
+      <!-- Stationary v2 Event -->
+      <div class="js__promo-code-success alert alert-success hidden" role="alert">Success! We located available bikes reserved with your VIP code. Please proceed with registration.</div>
+      ::]]
+      
+      <form id="regTypeForm" class="js__reg-type-form text-center">
+        <div class="form-content">
+          [[?xStationary Cyclingx::x[[E42:[[S80:trID]]:public-event-type]]x::
+            [[?xStationaryx::x[[E42:[[S80:evID]]:classification2]]x::
+            <!-- Legacy Stationary Event -->
+              [[?[[T12:[[E47:[[S80:trID]]:fr_info:1:event_location_country]]]]::showstartteam:false::::
+                <div class="form-group">
+                  <a href="TRR/?pg=tfind&amp;fr_id=[[S80:trID]]&amp;fr_tm_opt=new&amp;s_regType=startTeam&amp;s_hideTeamDetails=true" class="button btn-lg btn-block btn-outline-grey step-button p-3 mb-1">Start a Team</a>
+                  <p class="p-2">
+                    I will recruit riders to join my team and together we are raising funds to reach our team goal.
+                  </p>
+                </div>
+              ]]
+              [[?[[T12:[[E47:[[S80:trID]]:fr_info:1:event_location_country]]]]::showjointeam:false::::
+                <div class="form-group">
+                  <a href="TRR/?pg=tfind&amp;fr_id=[[S80:trID]]&amp;fr_tm_opt=existing&amp;s_regType=joinTeam" class="button btn-lg btn-block btn-outline-grey step-button js__show-team-join p-3 mb-1">Join a Team</a>
+                  <p class="p-2">
+                    I am joining an existing team and raising funds to reach the team goal.
+                  </p>
+                </div>
+              ]]
+              [[?[[T12:[[E47:[[S80:trID]]:fr_info:1:event_location_country]]]]::showjoinindividual:false::::
+                <div class="form-group">
+                  <a href="TRR/?pg=tfind&amp;fr_id=[[S80:trID]]&amp;fr_tm_opt=none&amp;s_regType=individual" class="button btn-lg btn-block btn-outline-grey step-button js__reg-individual p-3 mb-1">Breakaway
+                    <br>from the Pack</a>
+                  <p class="p-2">
+                    I am riding and fundraising solo.
+                  </p>
+                </div>
+              ]]
+            ::
+            <!-- Stationary v2 Event -->
+            [[?[[T12:[[E47:[[S80:trID]]:fr_info:1:event_location_country]]]]::showstartteam:false::::
+            <div class="form-group start-team-container">
+              <a href="TRR/?pg=tfind&amp;fr_id=[[S80:trID]]&amp;fr_tm_opt=new&amp;s_regType=startTeam&amp;s_hideTeamDetails=false" class="button btn-lg btn-block btn-outline-grey step-button p-3 mb-1">Start a Team</a>
+              <p class="p-2">
+                I will recruit riders to join my team and together we are raising funds to reach our team goal.
+              </p>
+            </div>
+            ]]
+            [[?[[T12:[[E47:[[S80:trID]]:fr_info:1:event_location_country]]]]::showjointeam:false::::
+            <div class="form-group join-team-container">
+              <a href="TRR/?pg=tfind&amp;fr_id=[[S80:trID]]&amp;fr_tm_opt=existing&amp;s_regType=joinTeam" class="button btn-lg btn-block btn-outline-grey step-button js__show-team-join p-3 mb-1">Join a Team</a>
+              <p class="p-2">
+                I am joining an existing team and raising funds to reach the team goal.
+              </p>
+            </div>
+            ]]
+            [[?[[T12:[[E47:[[S80:trID]]:fr_info:1:event_location_country]]]]::showjoinindividual:false::::
+            <div class="form-group breakaway-container">
+              <a href="TRR/?pg=tfind&amp;fr_id=[[S80:trID]]&amp;fr_tm_opt=none&amp;s_regType=individual" class="button btn-lg btn-block btn-outline-grey step-button js__reg-individual p-3 mb-1">Breakaway
+                <br>from the Pack</a>
+              <p class="p-2">
+                I am riding and fundraising solo.
+              </p>
+            </div>
+            ]]
+            ]]
+          ::
+          [[?[[T12:[[E47:[[S80:trID]]:fr_info:1:event_location_country]]]]::showstartteam:false::::
+            <div class="form-group">
+              <a href="TRR/?pg=tfind&amp;fr_id=[[S80:trID]]&amp;fr_tm_opt=new&amp;s_regType=startTeam&amp;s_hideTeamDetails=false" class="button btn-lg btn-block btn-outline-grey step-button p-3 mb-1">Start a Team</a>
+              <p class="p-2">
+                  Become a team captain and start a team. 
+              </p>
+            </div>
+            ]]
+            [[?[[T12:[[E47:[[S80:trID]]:fr_info:1:event_location_country]]]]::showjointeam:false::::
+            <div class="form-group">
+              <a href="TRR/?pg=tfind&amp;fr_id=[[S80:trID]]&amp;fr_tm_opt=existing&amp;s_regType=joinTeam" class="button btn-lg btn-block btn-outline-grey step-button js__show-team-join p-3 mb-1">Join a Team</a>
+              <p class="p-2">
+                Find and join a team that already exists.
+              </p>
+            </div>
+            ]]
+            [[?[[T12:[[E47:[[S80:trID]]:fr_info:1:event_location_country]]]]::showjoinindividual:false::::
+            <div class="form-group">
+              <a href="TRR/?pg=tfind&amp;fr_id=[[S80:trID]]&amp;fr_tm_opt=none&amp;s_regType=individual" class="button btn-lg btn-block btn-outline-grey step-button js__reg-individual p-3 mb-1">Ride Solo</a>
+              <p class="p-2">
+                Ride on your own.
+              </p>
+            </div>
+            ]]
+            [[?[[T12:[[E47:[[S80:trID]]:fr_info:1:event_location_country]]]]::showjoinvirtually:false::::
+            <div class="form-group">
+                <a href="TRR/?pg=tfind&amp;fr_id=[[S80:trID]]&amp;fr_tm_opt=none&amp;s_regType=virtual&amp;s_promoCode=virtualRider" class="button btn-lg btn-block btn-outline-grey step-button js__reg-individual p-3 mb-1">Join Us Virtually</a>
+                <p class="p-2">
+                    Can't attend the event? Want to fundraise? Join us from the comfort of your home by being a virtual rider.
+                </p>
+              </div>
+              ]]
+          ]]
+        </div>
+      </form>
+      [[?xStationaryV2x::x[[E42:[[S80:trID]]:classification2]]x::
+      <!-- Stationary v2 Event -->
+      <div class="js__promo-code-invalid alert alert-danger hidden" role="alert">
+        <p>Sorry, the VIP code you entered is not valid. Please contact the CycleNation Team: 
+          <span class="pl-3 d-block">
+            [[E47:[[S80:trID]]:fr_info:1:coordinator_name]]<br>
+            <a class="alert-link" href="mailto:[[E47:[[S80:trID]]:fr_info:1:coordinator_email]]">[[E47:[[S80:trID]]:fr_info:1:coordinator_email]]</a>
+            <br>[[E47:[[S80:trID]]:fr_info:1:coordinator_phone]]
+          </span>
         </p>
-    
-        <p>
-          <span class="field-required"></span>
-          <!-- <sup>
+      </div>
+      <div class="js__promo-code-error alert alert-danger hidden" role="alert">
+          <p>Sorry, the bikes reserved for this VIP code have already been assigned. Please contact the CycleNation Team: 
+            <span class="pl-3 d-block">
+              [[E47:[[S80:trID]]:fr_info:1:coordinator_name]]<br>
+              <a class="alert-link" href="mailto:[[E47:[[S80:trID]]:fr_info:1:coordinator_email]]">[[E47:[[S80:trID]]:fr_info:1:coordinator_email]]</a>
+              <br>[[E47:[[S80:trID]]:fr_info:1:coordinator_phone]]
+            </span>
+          </p>
+      </div>
+      <div class="js__promo-code-sold-out alert border border-primary hidden" role="alert" >
+          <p>Oh no! All our bikes are currently reserved, please contact our CycleNation team to be added to our waitlist:
+            <span class="pl-3 d-block">
+            [[E47:[[S80:trID]]:fr_info:1:coordinator_name]]<br>
+            <a class="alert-link" href="mailto:[[E47:[[S80:trID]]:fr_info:1:coordinator_email]]">[[E47:[[S80:trID]]:fr_info:1:coordinator_email]]</a>
+            <br>[[E47:[[S80:trID]]:fr_info:1:coordinator_phone]]
+          </span>
+          </p>
+        </div>
+      <div class="js__reg-options-promo-container hidden">
+          <form class="js__reg-options-promo-form">
+              <div class="form-row">
+                <div class="col-md-12 my-1">
+                  <p>If you have a VIP code, please enter it below to see if any reserved bikes are available.</p>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="col-md-9 mb-3">
+                  <label for="sponsorCode" class="sr-only">VIP Code:</label>
+                  <input name="s_promoCode" type="text" id="sponsorCode" class="form-control" placeholder="VIP Code" value="[[S80:promoCode]]">
+                </div>
+                <div class="col-md-3 mb-3">
+                  <button type="submit" class="button btn-primary btn-block mb-2">Submit</button>
+                </div>
+              </div>
+            </form>
+      </div>
+      ::]]
+    </div>
+  </div>
+  <!-- END part 1 of tfind -->
+  ::]]
+    <!-- END reg options container -->
+
+  <!-- BEGIN have we met container -->
+  <div class="row js__have-we-met-container d-none">
+    <div class="col-sm-12 text-center">
+      <h1>Have you participated in an event for the American Heart Association before? </h1>
+      <button type="button" id="utype-yes" class="btn btn-block btn-primary js__existing-record">YES</button>
+      <button type="button" id="utype-no" class="btn btn-block btn-primary js__new-record">NO</button>
+    </div>
+  </div>
+  <!-- END have we met container -->
+
+  <!-- BEGIN login container -->
+  <div class="row js__login-container d-none">
+    <div class="col-md-6 offset-md-3 text-center">
+      <h1 class="h3">Welcome Back</h1>
+
+      <p>
+        <span class="field-required"></span>
+        <!-- <sup>
                   <i class="fas fa-asterisk"></i>
                 </sup> -->Indicates required</p>
-      </div>
-    
-      <div class="col-md-6 offset-md-3">
-        <div class="js__login-error-container alert alert-danger d-none" role="alert">
-          <span class="" aria-hidden="true"></span>
-          <span class="sr-only">Error:</span>
-          <i class="fas fa-exclamation-triangle" aria-hidden="true"></i>
-          <span class="js__login-error-message"></span>
-        </div>
-      </div>
-    
-      <div class="col-md-4 offset-md-4">
-        <form id="loginForm" class="js__login-form" autocomplete="off">
-          <div id="utype_login_container" class="">
-            <div class="">
-              <div class="form-group">
-                <span class="d-flex">
-                  <span class="field-required"></span>
-                  <label for="loginUsername">Username: </label>
-                  <small id="loginUsernameHelpBlock" class="ml-auto form-text">
-                    <a href="#" class="js__show-retrieve-login"><u>Forgot username?</u></a>
-                  </small>
-                </span>
-                <input type="text" name="user_name" id="loginUsername" class="form-control" aria-describedby="loginUsernameHelpBlock" data-parsley-trigger="change"
-                  data-parsley-minlength="5" data-parsley-maxlength="60" data-parsley-minlength-message="Your username must be at least 5 characters long."
-                  data-parsley-maxlength-message="Your username must be at fewer than 60 characters long." data-parsley-required-message="Username is required"
-                  data-parsley-required="true" required>
-              </div>
-              <div class="form-group">
-                <span class="d-flex">
-                  <span class="field-required"></span>
-                  <label for="loginPassword">Password:</label>
-                  <small id="loginPasswordHelpBlock" class="ml-auto form-text">
-                    <a href="#" class="js__show-retrieve-login"><u>Forgot password?</u></a>
-                  </small>
-                </span>
-    
-                <input type="password" name="user_password" id="loginPassword" class="form-control" aria-describedby="loginPasswordHelpBlock"
-                  data-parsley-trigger="change" data-parsley-minlength="5" data-parsley-maxlength="20" data-parsley-minlength-message="Your password must be at least 5 characters long."
-                  data-parsley-maxlength-message="Your password must be at fewer than 20 characters long." data-parsley-required-message="Password is required"
-                  data-parsley-required="true" required>
-              </div>
-    
-              <div class="form-group text-center">
-                <button class="btn btn-block btn-primary js__login-submit step-button" name="loginSubmit" value="Log In" type="submit">Log In</button>
-              </div>
-            </div>
-          </div>
-        </form>
+    </div>
+
+    <div class="col-md-6 offset-md-3">
+      <div class="js__login-error-container alert alert-danger d-none" role="alert">
+        <span class="" aria-hidden="true"></span>
+        <span class="sr-only">Error:</span>
+        <i class="fas fa-exclamation-triangle" aria-hidden="true"></i>
+        <span class="js__login-error-message"></span>
       </div>
     </div>
-    <!-- END login container -->
-    <!-- BEGIN sign up form container -->
-    <div class="row js__signup-container">
-      <div class="col-md-8 offset-md-2 text-center">
-        <h1 class="h3">Let's Get Started</h1>
-        <p>
-          CycleNation has a new website!
-        </p>
-        <p>
-          Please create an account below or login to begin cycling.
-        </p>
-        <p>
-          Have an account?
-          <a href="#" class="js__show-login"><u>Log in here</u></a>.
-        </p>
-        <p>
-          <span class="field-required"></span>
-          Indicates required</p>
-      </div>
-    
-      <div class="col-md-6 offset-md-3">
-        <div class="js__signup-error-container alert alert-danger d-none" role="alert">
-          <span class="" aria-hidden="true"></span>
-          <span class="sr-only">Error:</span>
-          <i class="fas fa-exclamation-triangle" aria-hidden="true"></i>
-          <span class="js__signup-error-message"></span>
-        </div>
-      </div>
-    
-    
-      <form id="signupForm" class="js__signup-form col-md-12" autocomplete="off">
-        <div id="utype_create_account_container" class="row">
-          <div class="col-md-4 offset-md-2">
-            <div class="form-group">
-              <span class="field-required"></span>
-              <label for="firstName">First Name: </label>
-              <input type="text" name="name.first" id="firstName" class="form-control" data-parsley-trigger="change" data-parsley-minlength="2"
-                data-parsley-maxlength="60" data-parsley-minlength-message="Your first name must be at least 2 characters long."
-                data-parsley-maxlength-message="Your first name must be at fewer than 60 characters long." data-parsley-required-message="First name is required"
-                data-parsley-required="true" required>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="form-group">
-              <span class="field-required"></span>
-              <label for="lastName">Last Name: </label>
-              <input type="text" name="name.last" id="lastName" class="form-control" data-parsley-trigger="change" data-parsley-minlength="2"
-                data-parsley-maxlength="60" data-parsley-minlength-message="Your last name must be at least 5 characters long."
-                data-parsley-maxlength-message="Your last name must be at fewer than 60 characters long." data-parsley-required-message="Last name is required"
-                data-parsley-required="true" required>
-            </div>
-          </div>
-          <div class="col-md-4 offset-md-2">
-            <div class="form-group">
-              <span class="field-required"></span>
-              <label for="signupEmail">Email:</label>
-              <input type="email" name="email.primary_address" id="signupEmail" class="form-control" data-parsley-trigger="keyup" data-parsley-type="email"
-                data-parsley-required-message="Email address is required" data-parsley-required="true" required>
-            </div>
-          </div>
-          <div class="col-md-4">
+
+    <div class="col-md-4 offset-md-4">
+      <form id="loginForm" class="js__login-form" autocomplete="off">
+        <div id="utype_login_container" class="">
+          <div class="">
             <div class="form-group">
               <span class="d-flex">
                 <span class="field-required"></span>
-                <label for="signupUsername">&nbsp;Username: </label>
-                <small id="usernameHelpBlock" class="ml-auto form-text text-muted ">Tip: Use your email</small>
+                <label for="loginUsername">Username: </label>
+                <small id="loginUsernameHelpBlock" class="ml-auto form-text">
+                  <a href="#" class="js__show-retrieve-login"><u>Forgot username?</u></a>
+                </small>
               </span>
-              <input type="text" name="user_name" id="signupUsername" class="form-control" aria-describedby="usernameHelpBlock" data-parsley-trigger="change"
-                data-parsley-minlength="5" data-parsley-maxlength="60" data-parsley-minlength-message="Your username must be at least 5 characters long."
-                data-parsley-maxlength-message="Your username must be at fewer than 60 characters long." data-parsley-required-message="Username is required"
-                data-parsley-required="true" required>
+              <input type="text" name="user_name" id="loginUsername" class="form-control" aria-describedby="loginUsernameHelpBlock"
+                data-parsley-trigger="change" data-parsley-minlength="5" data-parsley-maxlength="60"
+                data-parsley-minlength-message="Your username must be at least 5 characters long."
+                data-parsley-maxlength-message="Your username must be at fewer than 60 characters long."
+                data-parsley-required-message="Username is required" data-parsley-required="true" required>
             </div>
-          </div>
-          <div class="col-md-4 offset-md-2">
             <div class="form-group">
-              <span class="field-required"></span>
-              <label for="signupPassword">Password:</label>
-              <input type="password" name="user_password" id="signupPassword" class="form-control" data-parsley-trigger="change" data-parsley-minlength="5"
-                data-parsley-maxlength="20" data-parsley-minlength-message="Your password must be at least 5 characters long."
-                data-parsley-maxlength-message="Your password must be at fewer than 20 characters long." data-parsley-required-message="Password is required"
-                data-parsley-required="true" required>
+              <span class="d-flex">
+                <span class="field-required"></span>
+                <label for="loginPassword">Password:</label>
+                <small id="loginPasswordHelpBlock" class="ml-auto form-text">
+                  <a href="#" class="js__show-retrieve-login"><u>Forgot password?</u></a>
+                </small>
+              </span>
+
+              <input type="password" name="user_password" id="loginPassword" class="form-control" aria-describedby="loginPasswordHelpBlock"
+                data-parsley-trigger="change" data-parsley-minlength="5" data-parsley-maxlength="20"
+                data-parsley-minlength-message="Your password must be at least 5 characters long."
+                data-parsley-maxlength-message="Your password must be at fewer than 20 characters long."
+                data-parsley-required-message="Password is required" data-parsley-required="true" required>
             </div>
-          </div>
-          <div class="col-md-4">
-            <div class="form-group">
-              <span class="field-required"></span>
-              <label for="signupPasswordConfirm">Repeat Password:</label>
-              <input type="password" name="password_confirm" id="signupPasswordConfirm" class="form-control" data-parsley-trigger="keyup"
-                data-parsley-equalto="#signupPassword" data-parsley-equalto-message="Your password does not match." data-parsley-validation-threshold="5"
-                data-parsley-required-message="Password confirmation is required" data-parsley-required="true" required>
-            </div>
-          </div>
-          <div class="col-md-4 offset-md-4">
+
             <div class="form-group text-center">
-              <button class="btn btn-block btn-primary js__signup-submit step-button" name="signupSubmit" value="Create Account" type="submit">Create Account</button>
+              <button class="btn btn-block btn-primary js__login-submit step-button" name="loginSubmit" value="Log In"
+                type="submit">Log In</button>
+            </div>
+            <div class="form-group">
+              <p>
+                <a href="#" class="js__show-have-we-met"><u>Back</u></a>
+              </p>
             </div>
           </div>
         </div>
       </form>
     </div>
-      <!-- END signup form -->
-      <!-- BEGIN retrieval form  container -->
-      <div class="row js__retrieve-login-container d-none">
-        <div class="col-md-4 offset-md-4 text-center">
-          <h1 class="h3 show-desktop">Log In Assistance</h1>
-          <p>Submit the form below to have your login information emailed to you.</p>
-        </div>
-    
-        <div class="col-md-4 offset-md-4">
-          <div class="js__retrieve-login-error-container alert alert-danger d-none" role="alert">
-            <span class="" aria-hidden="true"></span>
-            <span class="sr-only">Error:</span>
-            <i class="fas fa-exclamation-triangle" aria-hidden="true"></i>
-            <span class="js__retrieve-login-error-message"></span>
-          </div>
-    
-          <form id="retrieveLoginForm" class="js__retrieve-login-form" autocomplete="off">
-            <div class="">
-              <div class="form-group">
-                <span class="field-required"></span>
-                <label for="retrieveLoginEmail">Email:</label>
-                <input type="email" name="email" id="retrieveLoginEmail" class="form-control" data-parsley-required-message="Email address is required"
-                  data-parsley-required="true" data-parsley-trigger="keyup" required>
-              </div>
-    
-              <div class="form-group text-center">
-                <button class="btn btn-primary btn-block step-button action-button" name="login" value="Retrieve Login" type="submit">Send Login</button>
-              </div>
-            </div>
-            <div class="form-group">
-              <div class="text-center toggle-login-container form-group">
-                <a class="js__show-login" href="#">Return to login</a>
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>
-      <!-- END retrieval form container -->
-      <div class="row">
-          <div class="js__social-login-container col-md-4 offset-md-4 text-center">
-            [[S202]]
-          </div>
-      </div>
-    </section>
+  </div>
+  <!-- END login container -->
 
+  <!-- BEGIN retrieval form  container -->
+  <div class="row js__retrieve-login-container d-none">
+    <div class="col-md-4 offset-md-4 text-center">
+      <h1 class="h3 show-desktop">Log In Assistance</h1>
+      <p>Submit the form below to have your login information emailed to you.</p>
+    </div>
+
+    <div class="col-md-4 offset-md-4">
+      <div class="js__retrieve-login-error-container alert alert-danger d-none" role="alert">
+        <span class="" aria-hidden="true"></span>
+        <span class="sr-only">Error:</span>
+        <i class="fas fa-exclamation-triangle" aria-hidden="true"></i>
+        <span class="js__retrieve-login-error-message"></span>
+      </div>
+
+      <form id="retrieveLoginForm" class="js__retrieve-login-form" autocomplete="off">
+        <div class="">
+          <div class="form-group">
+            <span class="field-required"></span>
+            <label for="retrieveLoginEmail">Email:</label>
+            <input type="email" name="email" id="retrieveLoginEmail" class="form-control" data-parsley-required-message="Email address is required"
+              data-parsley-required="true" data-parsley-trigger="keyup" required>
+          </div>
+
+          <div class="form-group text-center">
+            <button class="btn btn-primary btn-block step-button action-button" name="login" value="Retrieve Login"
+              type="submit">Send Login</button>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="text-center toggle-login-container form-group">
+            <a class="js__show-login" href="#">Return to login</a>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <!-- END retrieval form container -->
+  <div class="row">
+    <div class="js__social-login-container col-md-4 offset-md-4 text-center">
+      [[S202]]
+    </div>
+  </div>
+</section>
