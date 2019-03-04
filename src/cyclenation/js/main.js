@@ -1306,6 +1306,13 @@ if ($('body').is('.pg_complist')) {
         if (eventType2 === 'Road' || eventType2 === 'StationaryV2' ) {
           $('form[name=FriendraiserFind]').removeAttr('hidden');
         }
+        var trCompanyCount = $('#fr_co_list > option').length;
+        if(trCompanyCount < 2){
+          // no companies associated with this TR yet. Hide the team_find_new_team_company column
+          $('#team_find_new_team_company').hide();
+          $('#team_find_new_team_attributes').addClass('no-companies');
+          $('#team_find_new_team_name, #team_find_new_fundraising_goal').addClass('col-md-6');
+        }
       } else if (regType === 'joinTeam') {
         if ($('#team_find_existing').length > 0) {
           // On JOIN TEAM step - rename label
@@ -1832,7 +1839,9 @@ if ($('body').is('.pg_complist')) {
 
     // BEGIN REG INFO CUSTOMIZATIONS
     if ($('#F2fRegContact').length > 0) {
-
+      if(regType === 'startTeam'){
+        $('#cons_info_component_contact_info_section').show();
+      }
       $('.input-label.cons_city_town').text('City:');
       $('.input-label.cons_state').text('State:');
 

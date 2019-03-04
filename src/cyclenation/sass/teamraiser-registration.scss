@@ -128,6 +128,25 @@
   .mobile select#matchingAddresses {
     margin-top: 0;
   }
+
+@include media-breakpoint-up(sm) {
+  div#team_find_search_results_container {
+    div.list-component-cell.list-component-cell-column-captain-name {
+    width:40%;
+    }
+    div.list-component-cell.list-component-cell-column-company-name {
+      width:35%;
+    }
+    div.list-component-cell.list-component-cell-column-join-link {
+      width:auto;
+    }
+    div.list-component-cell.list-component-cell-column-captain-name span.list-component-cell-title-text,
+    div.list-component-cell.list-component-cell-column-company-name span.list-component-cell-title-text {
+      display:inline-block;
+    }
+  } 
+} 
+
 // Progress bar
 .progress {
   background-color:$progress-bkd;
@@ -276,6 +295,8 @@ div#team_find_search_results_container div.list-component-cell-column-join-link 
   }
 }
 
+  #team_find_existing_team_search_container,
+  #team_find_existing_company_selection_container,
   #team_find_new_team_company,
   #team_find_new_team_attributes,
   #team_find_registration_type_container,
@@ -321,9 +342,9 @@ div#team_find_search_results_container div.list-component-cell-column-join-link 
     @include media-breakpoint-up(xs) {
       @include make-col(12);
     }
-    @include media-breakpoint-up(md) {
-      @include make-col(10);
-    }
+    // @include media-breakpoint-up(md) {
+    //   @include make-col(10);
+    // }
   }
   div.responsive div.ErrorMessage.page-error {
     margin: 0 auto;
@@ -335,27 +356,36 @@ div.responsive div.ErrorMessage.page-error>span.field-error-text {
     font-size: 1.25rem;
     font-weight: 600;
   }
-
+@include media-breakpoint-up(md) {
+  .no-companies {
+    display: flex !important;
+    max-width: 100% !important;
+    padding: 0 !important;
+  }
+}
 
   // BEGIN TFIND
   form[name="FriendraiserFind"] {
   margin:0 auto;
 }
   #team_find_existing {
-    @extend .offset-md-3;
-    @include make-col-ready();
-    @include media-breakpoint-up(md) {
-      @include make-col(6);
-    }
-  }
-  #team_find_existing_team_search_container,
-  #team_find_existing_company_selection_container,
-  #team_find_search_button_container {
-    width:100%;
+    @extend .row;
+    // @extend .offset-md-3;
     // @include make-col-ready();
     // @include media-breakpoint-up(md) {
     //   @include make-col(12);
     // }
+  }
+  // #team_find_existing_team_search_container,
+  // #team_find_existing_company_selection_container,
+  #team_find_search_button_container {
+    width:100%;
+    @include make-col-ready();
+    @include media-breakpoint-up(md) {
+      @include make-col(4);
+      margin-left: auto;
+      margin-right: auto;
+    }
   }
   
   // #team_find_section_container
@@ -527,6 +557,10 @@ display: flex;
 -ms-flex-wrap: wrap;
 flex-wrap: wrap;
 }
+#reg_options_cons_info_extension {
+  clear:both;
+}
+
 #reg_instr_container,
 #cons_info_component_contact_info_section,
 #email_optin,
