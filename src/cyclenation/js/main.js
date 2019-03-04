@@ -1281,6 +1281,16 @@ if ($('body').is('.pg_complist')) {
         $('.js__signup-container').removeClass('d-none');
       });
 
+      $('.js__existing-record').on('click', function(e){
+        // existing record. show log in form
+        $('.js__have-we-met-container').addClass('d-none');
+        $('.js__login-container').removeClass('d-none');
+      });
+      
+      $('.js__new-record').on('click', function(e){
+        // new participant. continue to tfind step
+        $('#f2fRegPartType #next_step').click();
+      });
 
       $('.janrainEngage').html('<div class="btn-social-login btn-facebook"><i class="fab fa-facebook-f mr-2"></i> Create with Facebook</div><div class="btn-social-login btn-amazon mt-3"><i class="fab fa-amazon mr-2"></i> Create with Amazon</div>');
 
