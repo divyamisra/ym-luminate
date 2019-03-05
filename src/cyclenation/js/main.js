@@ -1673,7 +1673,7 @@ if ($('body').is('.pg_complist')) {
       // begin StationaryV2 event conditional
       if (eventType2 === 'StationaryV2' ) {
         if (regType === 'joinTeam') {
-          $('#sel_type_container').text('What time will you ride?');
+          $('#sel_type_container').text('What time do you want to ride?');
           if($('.join-team-ptype-container').hasClass('join-team-ptype-time')){
             // ensure the relevant ptypes are visiable and accessible from keyboard navigation
             $('.join-team-ptype-time').find('input[name=fr_part_radio]').attr('aria-hidden', 'false').prop('disabled', false).eq(0).prop('checked', true);
@@ -1719,7 +1719,7 @@ if ($('body').is('.pg_complist')) {
       }
 
       if (eventType2 === 'Stationary' || eventType2 === 'StationaryV2') {
-        $('#sel_type_container').text('What time will you ride?');
+        $('#sel_type_container').text('What time do you want to ride?');
         // $('.part-type-container.selected input').prop('checked', false).removeClass('selected');
         $('.part-type-container').on('click focus', function (e) {
             $('.part-type-container').removeClass('selected');
@@ -1770,22 +1770,31 @@ if ($('body').is('.pg_complist')) {
 
 
       $('#fund_goal_container').prepend('<span class="field-required"></span>&nbsp;');
-      $('#part_type_additional_gift_section_header').prepend('<div class="bold-label">Make a Donation</div>');
+    
+      $('#fund_goal_container').after('How much will you fundraise for CycleNation?');
+
+      var minFundraisingGoal = $('#fr_goal').val().replace('.00', '');
+      $('#part_type_fundraising_goal_container .form-content').append('<p class="small">All riders commit to fundraising ' + minFundraisingGoal + '. Don\'t be scared! We\'ve got your back and will show you how easy it is to fundraise for CycleNation!</p>');
+
+      $('#part_type_additional_gift_section_header').prepend('<div class="bold-label">Donate Towards Your Goal Now</div>' + (regType === 'startTeam' ? 'Show your squad how it\'s done and make a donation towards your goal.' : 'Show your dedication and make a donation towards your goal.'));
 
       $('.donation-level-amount-text').closest('.donation-level-row-container').addClass('don-level-btn');
       $('.donation-level-container .input-container').parent().addClass('other-amount-row-container');
 
-      $('.other-amount-row-container .donation-level-row-label').text('Or enter your own amount:').attr('id', 'enterAmtLabel');
+      $('.other-amount-row-container .donation-level-row-label').text('Enter your own amount:').attr('id', 'enterAmtLabel');
 
-      $('.donation-level-row-label-no-gift').text("I don\'t want to make a donation towards my goal at this time").closest('.donation-level-row-container').addClass('don-no-gift');
+      $('.donation-level-row-label-no-gift').text("No thanks. I don\'t want to make a donation towards my goal at the moment").closest('.donation-level-row-container').addClass('don-no-gift');
       $('.don-no-gift, #part_type_anonymous_input_container, #part_type_show_public_input_container').wrap('<div class="form-check"/>');
 
-      $('label[for="fr_anonymous_gift"]').text('You can show my donation amount on this website');
-      $('label[for="fr_show_public_gift"]').text('I would like to make this donation private and not show my name on this website');
-
+      // hide anon and gift display options
+      $('label[for="fr_anonymous_gift"], label[for="fr_show_public_gift"]').closest('.form-check').hide();
+      
       // modify button behavior at bottom
       $('#next_step').wrap('<div class="order-1 order-sm-2 col-sm-4 offset-md-4 col-8 offset-2 mb-3"></div>');
-
+      $('.donation-level-amount-text').each(function(i){
+        $(this).text($(this).text().replace('.00', ''));
+        $(this).text($(this).text().replace(',', ''));
+      });
       $('.donation-level-row-label').on('click', function (e) {
         $('.donation-level-row-label').removeClass('active');
         $('.other-amount-row-container input[type="text"]').val('');
@@ -1839,16 +1848,49 @@ if ($('body').is('.pg_complist')) {
 
     // BEGIN REG INFO CUSTOMIZATIONS
     if ($('#F2fRegContact').length > 0) {
+// begin 2019 test updates
+      $('#emergency_contact_title_container span').text('Just in case, we need your ICE (in case of emergency)');
+      $('#cons_info_component_contact_info_section').show();
+      $('#cons_city').closest('.cons-info-question-container').addClass('col-md-6');
+      $('#cons_state').closest('.cons-full-address-container').addClass('col-md-2');
+      $('#cons_zip_code').closest('.cons-full-address-container').addClass('col-md-4');
+
+      
+      $('.input-label:contains("Mobile")').closest('.survey-question-container').addClass('mobile-question-container');
+      $('.input-label:contains("I am a")').closest('.survey-question-container').addClass('survivor-question-container');
+      $('.input-label:contains("jersey size")').closest('.survey-question-container').addClass('jersey-question-container');
+      $('.input-label:contains("route distance")').closest('.survey-question-container').addClass('route-question-container');
+      $('#cons_email').closest('.form-content').addClass('email-question-container');
+
+      $('#cons_info_dob')
+        .after($('.jersey-question-container'))
+        .after($('.route-question-container'))
+        .after($('.survivor-question-container'))
+        .after($('#gift_notice_optin'))
+        .after($('.email-question-container'))
+        .after($('.mobile-question-container'));
+
+      
+
+// end 2019 test updates
       if(regType === 'startTeam'){
-        $('#cons_info_component_contact_info_section').show();
+
+      } else if (regType === 'joinTeam') {
+        var pFirstName = $('body').data('first-name') ? $('body').data('first-name') : null;
+        var pLastName = $('body').data('last-name') ? $('body').data('last-name') : null;
+        var pEmail = $('body').data('email') ? $('body').data('email') : null;
+        $('#cons_first_name').val(pFirstName);
+        $('#cons_last_name').val(pLastName);
+        $('#cons_email').val(pEmail);
+
       }
       $('.input-label.cons_city_town').text('City:');
       $('.input-label.cons_state').text('State:');
 
-      $('.input-label:contains("Mobile")').closest('.survey-question-container').addClass('mobile-question-container');
+      // $('.input-label:contains("Mobile")').closest('.survey-question-container').addClass('mobile-question-container');
 
       $('.cons_dob').text('Birthday:');
-      $('.mobile-question-container').after($('#cons_info_dob'));
+      // $('.mobile-question-container').after($('#cons_info_dob'));
 
       cd.setBirthMonth = function () {
         var birthDay = $('#cons_birth_date_DAY').val();

@@ -299,11 +299,7 @@ div#team_find_search_results_container div.list-component-cell-column-join-link 
   #team_find_existing_company_selection_container,
   #team_find_new_team_company,
   #team_find_new_team_attributes,
-  #team_find_registration_type_container,
-  #F2fRegPartType,
-  #F2fRegContact,
-  #FriendraiserUserWaiver,
-  #fr_payment_form {
+  #team_find_registration_type_container {
     @include make-col-ready();
     @include media-breakpoint-up(xs) {
       @include make-col(12);
@@ -313,6 +309,18 @@ div#team_find_search_results_container div.list-component-cell-column-join-link 
     }
   }
 
+  #F2fRegPartType,
+  #F2fRegContact,
+  #FriendraiserUserWaiver,
+  #fr_payment_form {
+    @include make-col-ready();
+    @include media-breakpoint-up(xs) {
+      @include make-col(12);
+    }
+    @include media-breakpoint-up(lg) {
+      @include make-col(8);
+    }
+  }
 #reg_payment_page div.form-row {
   margin:0;
 }
@@ -510,6 +518,9 @@ div#part_type_fundraising_goal_container {
     .don-level-btn {
       // TODO - apply donation-level-btn class to actual amounts and make those xs-6 other things xs-12
       @include make-col-ready();
+      @include media-breakpoint-up(lg) {
+        @include make-col(3);
+      }
       @include media-breakpoint-up(xs) {
         @include make-col(6);
       }
@@ -547,7 +558,14 @@ div#part_type_fundraising_goal_container {
     @extend .row;
   }
 }
-
+// #personal_info_section_one {
+//   @extend .row;
+// }
+.cons-full-name-container {
+  @include media-breakpoint-up(xs) {
+    @include make-col(6);
+  }
+}
 #reg_options_cons_info_extension_body {
 display: -webkit-box;
 display: -webkit-flex;
@@ -562,7 +580,7 @@ flex-wrap: wrap;
 }
 
 #reg_instr_container,
-#cons_info_component_contact_info_section,
+// #cons_info_component_contact_info_section,
 #email_optin,
 #cons_birth_date_YEAR,
 .survey-question-number {
@@ -591,10 +609,10 @@ div#gift_notice_optin {
   }
 }
 
-div#cons_info_component_container div#personal_info_section_one, div#cons_info_component_container div#personal_info_section_two, div#cons_info_component_container div#contact_info_section_one, div#cons_info_component_container div#contact_info_section_two, div#registration_options_page div#user_name_pword_container, div#registration_options_page div#privacy_opts_container, div#registration_options_page div#tribute_component_section_one, div#registration_options_page div#tribute_component_section_two, div#emergency_contact_container, div#email_optin {
+div#cons_info_component_container div#personal_info_section_one, div#cons_info_component_container div#personal_info_section_two, div#cons_info_component_container div#contact_info_section_one, div#cons_info_component_container div#contact_info_section_two, div#registration_options_page div#user_name_pword_container, div#registration_options_page div#privacy_opts_container, div#registration_options_page div#tribute_component_section_one, div#registration_options_page div#tribute_component_section_two, div#emergency_contact_container, div#email_optin, div#gift_notice_optin {
   width:100%;
 }
-div#privacy_component_container label, div#gift_notice_optin label, div#email_opt_in_container label, div#postal_mail_opt_in_container label, div#remember_me_container label {
+div#privacy_component_container label,  div#gift_notice_optin label, div#email_opt_in_container label, div#postal_mail_opt_in_container label, div#remember_me_container label {
   max-width:100%;
 }
 div#emergency_contact_field_group {
