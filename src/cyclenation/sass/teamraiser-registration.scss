@@ -244,7 +244,7 @@ div.responsive a.step-button, div.responsive button.step-button, div.responsive 
  
 
 // tfind step
-
+#team_find_new_team_recruiting_goal,
 #team_find_registration_type_container {
   display:none;
 }
@@ -809,7 +809,6 @@ div.responsive button.step-button {
     }
   }
 
-
 // paymentForm step
 #fr_payment_form {
   margin:0 auto;
@@ -940,11 +939,11 @@ div.responsive button.step-button {
     padding-right: 5px;
     display:block;
   }
-  .start-team-container,
-  .join-team-container,
-  .breakaway-container {
-    display:none;
-  }
+  // .start-team-container,
+  // .join-team-container,
+  // .breakaway-container {
+  //   display:none;
+  // }
   .part-type-container,
   .part-type-name-value-separator {
     display:none;
