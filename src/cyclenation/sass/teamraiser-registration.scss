@@ -28,7 +28,7 @@ div#cons_info_component_container div#personal_info_section_one, div#cons_info_c
     padding:15px 30px;
   }
   div.registration-page-container div.sub-section-container {
-    margin:30px 0;
+    margin:30px -30px;
   }
 
   div.registration-page-container div.sub-section-header {
@@ -350,9 +350,12 @@ div#team_find_search_results_container div.list-component-cell-column-join-link 
     @include media-breakpoint-up(xs) {
       @include make-col(12);
     }
-    @include media-breakpoint-up(lg) {
+    @include media-breakpoint-up(sm) {
       @include make-col(10);
     }
+    // @include media-breakpoint-up(lg) {
+    //   @include make-col(8);
+    // }
   }
 #reg_payment_page div.form-row {
   margin:0;
@@ -504,7 +507,8 @@ div.part-type-container {
     cursor:pointer;
   }
 
-  &.join-team-ptype-time {
+  &.join-team-ptype-time,
+  &.vip-ptype-container {
     border:none;
     color: #212529;
     background-color: #fff;
