@@ -331,7 +331,7 @@
                 var eventLocation = event.location_name;
                 var eventType = event.public_event_type_name;
                 var greetingUrl = event.greeting_url;
-                var registerUrl = 'TRR/?pg=utype&fr_id=' + eventId + '&s_regType=';
+                var registerUrl = 'SPageServer/?pagename=cn_register&fr_id=' + eventId + '&s_regType=';
                 var acceptsRegistration = event.accepting_registrations;
 
                 var eventRow = '<li class="event-detail row mb-4 fadein"' + (i < 3 ? '' : 'hidden') + '><div class="col-md-6"><p><a class="js__event-name" href="' +
@@ -1208,7 +1208,6 @@ if ($('body').is('.pg_complist')) {
 
       cd.resetValidation = function () {
         $('.js__login-form').parsley().reset();
-        $('.js__signup-form').parsley().reset();
       }
       // manage form submissions
       $('.js__login-form').on('submit', function (e) {
@@ -1305,7 +1304,7 @@ if ($('body').is('.pg_complist')) {
 
     // BEGIN TFIND
 
-    if ($('#team_find_page').length > 0) {
+    if ($('#team_find_page').length > 0 || $('body').is('.pg_cn_register')) {
       // BEGIN tfind customizations
       $('form[name=FriendraiserFind]').attr('hidden', true);
 
@@ -1323,7 +1322,8 @@ if ($('body').is('.pg_complist')) {
       } else if (regType === 'joinTeam') {
         if ($('#team_find_existing').length > 0) {
           // On JOIN TEAM step - rename label
-          $('#team_label_container').text('Team name:');
+          $('#team_label_container').text('Squad name:');
+          $('#team_find_existing').prepend('<div class="text-center w-100"><p>Enter squad name and/or pick company from drop down</p></div>');
           $('form[name=FriendraiserFind]').removeAttr('hidden');
 
           // append cons ID to the join team button

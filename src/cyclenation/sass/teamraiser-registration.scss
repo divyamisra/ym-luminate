@@ -248,9 +248,9 @@ div.responsive a.step-button, div.responsive button.step-button, div.responsive 
 #team_find_registration_type_container {
   display:none;
 }
-#team_find_search_button_container {
-  @extend .mt-2;
-}
+// #team_find_search_button_container {
+//   @extend .mt-2;
+// }
 div.responsive a.button {
   &.btn-dropdown {
     background:$white;
@@ -295,8 +295,8 @@ div#team_find_search_results_container div.list-component-cell-column-join-link 
   }
 }
 
-  #team_find_existing_team_search_container,
-  #team_find_existing_company_selection_container,
+  // #team_find_existing_team_search_container,
+  // #team_find_existing_company_selection_container,
   #team_find_new_team_company,
   #team_find_new_team_attributes,
   #team_find_registration_type_container {
@@ -306,6 +306,34 @@ div#team_find_search_results_container div.list-component-cell-column-join-link 
     }
     @include media-breakpoint-up(md) {
       @include make-col(6);
+    }
+  }
+  #team_find_existing_team_search_container {
+    @include make-col-ready();
+    // @include media-breakpoint-up(xs) {
+    //   @include make-col(12);
+    // }
+    @include media-breakpoint-up(md) {
+      @include make-col(4);
+    }
+  }
+  #team_find_existing_company_selection_container {
+    @include make-col-ready();
+    // @include media-breakpoint-up(xs) {
+    //   @include make-col(12);
+    // }
+    @include media-breakpoint-up(md) {
+      @include make-col(5);
+    }
+  }
+
+  #team_find_search_button_container {
+    @include make-col-ready();
+    // @include media-breakpoint-up(xs) {
+    //   @include make-col(12);
+    // }
+    @include media-breakpoint-up(md) {
+      @include make-col(3);
     }
   }
 
@@ -386,15 +414,16 @@ div.responsive div.ErrorMessage.page-error>span.field-error-text {
   }
   // #team_find_existing_team_search_container,
   // #team_find_existing_company_selection_container,
-  #team_find_search_button_container {
-    width:100%;
-    @include make-col-ready();
-    @include media-breakpoint-up(md) {
-      @include make-col(4);
-      margin-left: auto;
-      margin-right: auto;
-    }
-  }
+
+  // #team_find_search_button_container {
+  //   width:100%;
+  //   @include make-col-ready();
+  //   @include media-breakpoint-up(md) {
+  //     @include make-col(4);
+  //     margin-left: auto;
+  //     margin-right: auto;
+  //   }
+  // }
   
   // #team_find_section_container
   // #team_find_section_body {
@@ -457,7 +486,9 @@ div.part-type-container {
 #participation_options_page {
   margin:0 auto;
 }
-
+div.part-type-registrations-left {
+  display:none;
+}
 div.part-type-container {
   cursor: pointer;
   @include button-variant(#dcdcdc, #000, $hover-background: $red, $hover-border: $red, $active-background: $red, $active-border: $red);
@@ -490,10 +521,11 @@ div.part-type-container {
     color: #212529;
     background-color: #fff;
     div.part-type-registrations-left {
-      margin-top: 0;
-      .part-type-registrations-full-text {
-        color: $primary;
-      }
+      display:none;
+      // margin-top: 0;
+      // .part-type-registrations-full-text {
+      //   color: $primary;
+      // }
     }
   }
 }
@@ -939,11 +971,11 @@ div.responsive button.step-button {
     padding-right: 5px;
     display:block;
   }
-  // .start-team-container,
-  // .join-team-container,
-  // .breakaway-container {
-  //   display:none;
-  // }
+  .start-team-container,
+  .join-team-container,
+  .breakaway-container {
+    display:none;
+  }
   .part-type-container,
   .part-type-name-value-separator {
     display:none;
