@@ -159,7 +159,7 @@ angular.module 'ahaLuminateApp'
             enableHighAccuracy: !0
             timeout: 1e4
             maximumAge: 'infinity'
-          if navigator.geolocation then navigator.geolocation.getCurrentPosition(getSchoolState, showGEOError, e) else console.log('Geolocation is not supported by this browser.')
+          if navigator.geolocation then navigator.geolocation.getCurrentPosition(filterGeoSchoolData, showGEOError, e) else console.log('Geolocation is not supported by this browser.')
           return
 
         #if getLoc not set or set to false then do normal load process of old search
