@@ -1324,6 +1324,7 @@ if ($('body').is('.pg_complist')) {
           // On JOIN TEAM step - rename label
           $('#team_label_container').text('Squad name:');
           $('#team_find_existing').prepend('<div class="text-center w-100"><p>Enter squad name and/or pick company from drop down</p></div>');
+          $('#company_label_container').text('Search by company:');
           $('form[name=FriendraiserFind]').removeAttr('hidden');
 
           // append cons ID to the join team button
@@ -1857,11 +1858,11 @@ if ($('body').is('.pg_complist')) {
     if ($('#F2fRegContact').length > 0) {
 // begin 2019 test updates
       $('#emergency_contact_title_container span').text('Just in case, we need your ICE (in case of emergency)');
-      $('#cons_info_component_contact_info_section').show();
-      $('#cons_city').closest('.cons-info-question-container').addClass('col-md-6');
-      $('#cons_state').closest('.cons-full-address-container').addClass('col-md-2');
-      $('#cons_zip_code').closest('.cons-full-address-container').addClass('col-md-4');
-
+      $('#cons_city').closest('.cons-info-question-container').addClass('address-details col-md-6');
+      $('#cons_state').closest('.cons-full-address-container').addClass('address-details col-md-2');
+      $('#cons_zip_code').closest('.cons-full-address-container').addClass('address-details col-md-4');
+      $( '.address-details' ).wrapAll( '<div class="row" />');
+      $( '.cons-full-name-container' ).wrapAll( '<div class="row" />');
       
       $('.input-label:contains("Mobile")').closest('.survey-question-container').addClass('mobile-question-container');
       $('.input-label:contains("I am a")').closest('.survey-question-container').addClass('survivor-question-container');
@@ -1877,11 +1878,10 @@ if ($('body').is('.pg_complist')) {
         .after($('.email-question-container'))
         .after($('.mobile-question-container'));
 
-      
-
-// end 2019 test updates
       if(regType === 'startTeam'){
-
+        $('#cons_info_component_contact_info_section .sub-section-header').after('<p>As a team lead, we\'ll need your address so we can show you some love and send you swag to help inspire your squad and help you hit those fundraising milestones!</p>');
+        $('#cons_info_component_contact_info_section').show();
+// end 2019 test updates
       } else if (regType === 'joinTeam') {
         var pFirstName = $('body').data('first-name') ? $('body').data('first-name') : null;
         var pLastName = $('body').data('last-name') ? $('body').data('last-name') : null;
