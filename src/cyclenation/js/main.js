@@ -1336,7 +1336,7 @@ if ($('body').is('.pg_complist')) {
               var self = $(this);
               var origTeamNameUrl = $(this).find('.list-component-cell-column-team-name a').attr('href');
               var teamId = getURLParameter(origTeamNameUrl, 'team_id');
-
+              
               luminateExtend.api({
                 api: 'teamraiser',
                 data: 'method=getTeamCaptains&response_format=json&fr_id=' + evID + '&team_id=' + teamId,
@@ -1784,7 +1784,7 @@ if ($('body').is('.pg_complist')) {
       var minFundraisingGoal = $('#fr_goal').val().replace('.00', '');
       $('#part_type_fundraising_goal_container .form-content').append('<p class="small">All riders commit to fundraising ' + minFundraisingGoal + '. Don\'t be scared! We\'ve got your back and will show you how easy it is to fundraise for CycleNation!</p>');
 
-      $('#part_type_additional_gift_section_header').prepend('<div class="bold-label">Donate Towards Your Goal Now</div>' + (regType === 'startTeam' ? 'Show your squad how it\'s done and make a donation towards your goal.' : 'Show your dedication and make a donation towards your goal.'));
+      
 
       $('.donation-level-amount-text').closest('.donation-level-row-container').addClass('don-level-btn');
       $('.donation-level-container .input-container').parent().addClass('other-amount-row-container');
@@ -1869,7 +1869,8 @@ if ($('body').is('.pg_complist')) {
       $('.input-label:contains("jersey size")').closest('.survey-question-container').addClass('jersey-question-container');
       $('.input-label:contains("route distance")').closest('.survey-question-container').addClass('route-question-container');
       $('#cons_email').closest('.form-content').addClass('email-question-container');
-
+      $('#cons_email_format').before('<legend id="consEmailFormat" class="sr-only">Email Format</legend>');
+      $('#cons_email_format').attr('aria-labelledby', 'consEmailFormat');
       $('#cons_info_dob')
         .after($('.jersey-question-container'))
         .after($('.route-question-container'))
@@ -1881,6 +1882,8 @@ if ($('body').is('.pg_complist')) {
       if(regType === 'startTeam'){
         $('#cons_info_component_contact_info_section .sub-section-header').after('<p>As a team lead, we\'ll need your address so we can show you some love and send you swag to help inspire your squad and help you hit those fundraising milestones!</p>');
         $('#cons_info_component_contact_info_section').show();
+
+
 // end 2019 test updates
       } else if (regType === 'joinTeam') {
         var pFirstName = $('body').data('first-name') ? $('body').data('first-name') : null;
@@ -1898,6 +1901,13 @@ if ($('body').is('.pg_complist')) {
 
       $('.cons_dob').text('Birthday:');
       // $('.mobile-question-container').after($('#cons_info_dob'));
+// $('.cons-dob-label label').attr('for', 'cons_info_dob');
+// $('.cons-zip-label label').attr('for', 'cons_zip_code');
+
+$('.cons-dob-label label').remove();
+$('.cons-email-label label').remove();
+$('.cons-zip-label label').remove();
+
 
       cd.setBirthMonth = function () {
         var birthDay = $('#cons_birth_date_DAY').val();
@@ -2178,9 +2188,10 @@ if ($('body').is('.pg_complist')) {
     // ptype
     $('#part_type_selection_container').wrapInner('<fieldset role="radiogroup" class="ptype-selection" aria-labelledby="sel_type_container"/>');
 
-    $('.donation-levels').before('<legend id="reg_donation_array_label" class="sr-only">Make a donation</legend>');
+    // $('.donation-levels').before('<legend id="reg_donation_array_label" class="sr-only">Make a donation</legend>');
+    $('#part_type_additional_gift_section_header').prepend('<div class="bold-label" id="regDonationLabel">Donate Towards Your Goal Now</div>' + (regType === 'startTeam' ? 'Show your squad how it\'s done and make a donation towards your goal.' : 'Show your dedication and make a donation towards your goal.'));
 
-    $('#part_type_donation_level_input_container').wrapInner('<fieldset role="radiogroup" class="donation-form-fields" aria-labelledby="reg_donation_array_label"/>');
+    $('#part_type_donation_level_input_container').wrapInner('<fieldset role="radiogroup" class="donation-form-fields" aria-labelledby="regDonationLabel"/>');
 
     // associate ptype label with input
     $('.part-type-container label').each(function (i) {

@@ -58,11 +58,11 @@ div.responsive button.next-step.disabled,
 div.responsive button#next_step.disabled,
   div.responsive button.next-step[disabled="disabled"] {
   background-image: none;
-  background-color:$gray-500;
-  border-color:$gray-500;
+  background-color:#757575;
+  border-color:#757575;
   &:hover {
-    background-color:$gray-500;
-    border-color:$gray-500;
+    background-color:#757575;
+    border-color:#757575;
     cursor: not-allowed;
   }
 }
