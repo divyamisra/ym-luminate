@@ -2,11 +2,11 @@
 <!-- BEGIN step 1 of tfind -->
 <div class="row js__reg-type-container">
     <div class="col-12 text-center">
-      <h1 class="h3 show-desktop">We are so excited you are registering for [[E42:[[S334:fr_id]]:title]]! How would you like to join? </h1>
+      <h1 class="h3 show-desktop" id="regOptions">We are so excited you are registering for [[E42:[[S334:fr_id]]:title]]! How would you like to join? </h1>
     </div>
 
     <div class="col-md-6 offset-md-3">
-      <div class="js__reg-type-error-container alert alert-danger d-none" role="alert">
+      <div class="js__reg-type-error-container alert alert-danger d-none" role="alert" aria-atomic="true">
         <span class="" aria-hidden="true"></span>
         <span class="sr-only">Error:</span>
         <i class="fas fa-exclamation-triangle" aria-hidden="true"></i>
@@ -14,7 +14,7 @@
       </div>
       [[?xStationaryV2x::x[[E42:[[S334:fr_id]]:classification2]]x::
       <!-- Stationary v2 Event -->
-      <div class="js__promo-code-success alert alert-success hidden" role="alert">Success! We located available bikes reserved with your VIP code. Please proceed with registration.</div>
+      <div class="js__promo-code-success alert alert-success hidden" role="alert" aria-atomic="true">Success! We located available bikes reserved with your VIP code. Please proceed with registration.</div>
       ::]]
       
       <form id="regTypeForm" class="js__reg-type-form text-center">
@@ -112,7 +112,7 @@
       </form>
       [[?xStationaryV2x::x[[E42:[[S334:fr_id]]:classification2]]x::
       <!-- Stationary v2 Event -->
-      <div class="js__promo-code-invalid alert alert-danger hidden" role="alert">
+      <div class="js__promo-code-invalid alert alert-danger hidden" role="alert" aria-atomic="true">
         <p>Sorry, the VIP code you entered is not valid. Please contact the CycleNation Team: 
           <span class="pl-3 d-block">
             [[E47:[[S334:fr_id]]:fr_info:1:coordinator_name]]<br>
@@ -121,7 +121,7 @@
           </span>
         </p>
       </div>
-      <div class="js__promo-code-error alert alert-danger hidden" role="alert">
+      <div class="js__promo-code-error alert alert-danger hidden" role="alert" aria-atomic="true">
           <p>Sorry, the bikes reserved for this VIP code have already been assigned. Please contact the CycleNation Team: 
             <span class="pl-3 d-block">
               [[E47:[[S334:fr_id]]:fr_info:1:coordinator_name]]<br>
@@ -130,7 +130,7 @@
             </span>
           </p>
       </div>
-      <div class="js__promo-code-sold-out alert border border-primary hidden" role="alert" >
+      <div class="js__promo-code-sold-out alert border border-primary hidden" role="alert" aria-atomic="true" >
           <p>Oh no! All our bikes are currently reserved, please contact our CycleNation team to be added to our waitlist:
             <span class="pl-3 d-block">
             [[E47:[[S334:fr_id]]:fr_info:1:coordinator_name]]<br>
