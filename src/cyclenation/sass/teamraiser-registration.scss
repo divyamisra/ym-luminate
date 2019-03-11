@@ -36,11 +36,13 @@ div#cons_info_component_container div#personal_info_section_one, div#cons_info_c
     margin:0;
   }
 .modal-body,
-.input-container {
+.input-container,
+small {
   a {
-    text-decoration:underline;
+    text-decoration:underline !important;
   }
 }
+
 
   div.responsive {
     width: inherit;

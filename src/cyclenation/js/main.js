@@ -1907,6 +1907,10 @@ if ($('body').is('.pg_complist')) {
 $('.cons-dob-label label').remove();
 $('.cons-email-label label').remove();
 $('.cons-zip-label label').remove();
+$('.cons-full-address-label label').remove();
+$('.cons-city-town-label label').remove();
+$('.cons-state-label label').remove();
+$('.cons-country-label label').remove();
 
 
       cd.setBirthMonth = function () {

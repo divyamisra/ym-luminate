@@ -115,7 +115,9 @@ div.responsive a.secondary-step,
       }
     }
   }
-
+  a.text-link {
+    text-decoration:underline !important;
+  }
   
   div.indicator-container {
     border:none;
