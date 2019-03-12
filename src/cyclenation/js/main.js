@@ -1457,12 +1457,12 @@ if ($('body').is('.pg_complist')) {
 
 
                   if(isStartTeamAvailable === true){
-                    $('.start-team-container').show();
+                    $('.start-team-container').removeClass('hidden');
                   } else {
                     $('.js__reg-options-promo-container, .js__promo-code-sold-out').removeClass('hidden');
                   }
                   if(isBreakawayAvailable === true){
-                    $('.breakaway-container').show();
+                    $('.breakaway-container').removeClass('hidden');
                   }
 
                   if(promoCodePtypesAvailable){
