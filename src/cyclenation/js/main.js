@@ -1742,6 +1742,8 @@ if ($('body').is('.pg_complist')) {
         });
 
       } else {
+        $('#sel_type_container').text('How would you like to participate?');
+
         if (regType === 'virtual') {
           $('.part-type-name:contains("Virtual")').closest('.part-type-container').show();
         }
@@ -1754,7 +1756,7 @@ if ($('body').is('.pg_complist')) {
         $('#next_step').on('click', function () {
           if ($('.part-type-container input[type="radio"]').length && !$('.part-type-container input[type="radio"]').is(':checked')) {
             $('.js__ptype-errors').remove();
-            $('#sel_type_container').after('<div class="js__ptype-errors"><div class="alert alert-danger" role="alert">Please select a participation type and agree to the Self-Pledge.</div></div>')
+            $('#sel_type_container').after('<div class="js__ptype-errors"><div class="alert alert-danger" role="alert">Please select a participation type and agree to the Self-Pledge.</div></div>');
             $('html, body').animate({
               scrollTop: $("#part_type_selection_container").offset().top
             }, 1000);
@@ -1992,10 +1994,8 @@ $('.cons-country-label label').remove();
     // payment step of reg
     if ($('#fr_payment_form').length > 0) {
 
-
-
       $('#btn_next').text('Submit')
-        .wrap('<div class="order-1 order-sm-2 col-sm-6 offset-md-2 col-8 offset-2 mb-3"/>');
+        .wrap('<div class="order-1 order-sm-2 col-sm-4 offset-md-4 col-8 offset-2 mb-3"/>');
       $('#btn_prev').text('Back')
         .wrap('<div class="order-2 order-sm-1 col-sm-4 col-8 offset-2 offset-sm-0" />');
 

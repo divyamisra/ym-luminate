@@ -96,7 +96,10 @@ small {
     text-align: center;
     padding: 0;
 }
-  
+
+div.responsive .survey-question-container label {
+  width:95%;
+}
   div.responsive div.form-content {
     // margin-bottom: 0;
     margin-right: 0;
