@@ -1494,7 +1494,7 @@ if ($('body').is('.pg_complist')) {
                     $('.js__promo-code-invalid, .js__reg-options-promo-container').removeClass('hidden');
                   }
 
-                  $('.join-team-container').show();
+                  $('.join-team-container').removeClass('hidden');
                 }
               },
               error: function (response) {
