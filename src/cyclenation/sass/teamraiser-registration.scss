@@ -224,13 +224,20 @@ div.responsive a.step-button, div.responsive button.step-button, div.responsive 
     font-size: 1rem;
     line-height: 1.5;
     text-decoration:none;
-
+    @include media-breakpoint-up(md) {
+      width:47%;
+    }
     &.btn-facebook {
       background:#3b579d;
-      
+      @include media-breakpoint-up(md) {
+        float:left;
+      }
     }
     &.btn-amazon {
       background:#231f20;
+      @include media-breakpoint-up(md) {
+        float:right;
+      }
     }
     span:hover {
       text-decoration:none;

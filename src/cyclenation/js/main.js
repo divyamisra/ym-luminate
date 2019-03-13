@@ -1298,7 +1298,7 @@ if ($('body').is('.pg_complist')) {
 
       
 
-      $('.janrainEngage').html('<div class="btn-social-login btn-facebook"><i class="fab fa-facebook-f mr-2"></i> Create with Facebook</div><div class="btn-social-login btn-amazon mt-3"><i class="fab fa-amazon mr-2"></i> Create with Amazon</div>');
+      $('.janrainEngage').html('<div class="btn-social-login btn-facebook"><i class="fab fa-facebook-f mr-2"></i> Create with Facebook</div><div class="btn-social-login btn-amazon"><i class="fab fa-amazon mr-2"></i> Create with Amazon</div>');
 
     }
 
