@@ -20,6 +20,9 @@ div#cons_info_component_container div#personal_info_section_one, div#cons_info_c
   div.registration-page-container div.section-container {
     color: $body-color;
   }
+div#reg_summary_body_container,
+  div#part_type_fundraising_goal_container,
+  div#part_type_additional_gift_container, div#part_type_addon_container, div#part_type_individual_company_selection_container,
   div.registration-page-container div.sub-section-header,
   div.registration-page-container div.sub-section-body,
   div.registration-page-container div.sub-section-container {
@@ -622,7 +625,7 @@ div#part_type_fundraising_goal_container {
         @include make-col(12);
       }
       .donation-level-row-label {
-        background-color:$white;
+        // background-color:$white;
         border:none;
         text-align:left;
         padding-left: 0;
@@ -817,12 +820,16 @@ div.reg-summary-thanks-common-container {
 div.registration-page-container div.label-value-block-container {
   font-weight:bold;
   font-size:normal;
-  background-color:#fff;
+  // background-color:#fff;
   border:none;
 }
 #reg_summary_body_container .manageable-content,
 .left-decorator {
   display:none;
+}
+
+#reg_summary_body_container {
+  margin-bottom: 1em;
 }
 div.reg-summary-thanks-common-container {
 
@@ -846,7 +853,7 @@ div.reg-summary-thanks-common-container {
   //   font-weight:normal;
   // }
   div.reg-summary-total {
-    background-color:#fff;
+    background-color:#F6F9F9;
     text-align:left;
     font-weight:bold;
     @extend .pt-3;
