@@ -393,7 +393,7 @@ angular.module 'ahaLuminateControllers'
         angular.element('#tr_recognition_namerec_namename').attr 'placeholder', 'Example: Jane Hero, Heart Hero Family, From Jane - In memory of Grandma'
         angular.element('#tr_message_to_participantname').attr 'placeholder', 'Write a message of encouragement. 255 characters max.'
         addOptional()
-        employerMatchFields()
+#        employerMatchFields()
         billingAddressFields()
         donorRecognitionFields()
         ariaAdjustments()
