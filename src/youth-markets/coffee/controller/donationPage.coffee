@@ -168,23 +168,23 @@ angular.module 'ahaLuminateControllers'
             levelAmt = '<span> $' + $scope.donationInfo.amount + '  <i class="fa fa-chevron-right" hidden aria-hidden="true"></i></span>'
           angular.element('#pstep_finish').append levelAmt
 
-      employerMatchFields = ->
-        angular.element('.employer-address-container').addClass 'hidden'
-        angular.element('.matching-gift-container').addClass 'hidden'
-        angular.element('label[for="match_checkbox_dropdown"]').before("<input type='hidden' name='match_checkbox_dropdown' id='match_checkbox_dropdown' value=''>")
-        angular.element('label[for="match_checkbox_dropdown"]').parent().parent().parent().addClass 'ym-employer-match'
-        empCheck = angular.element('#match_checkbox_radio').prop 'checked'
-        if empCheck is true
-          angular.element('.ym-employer-match__message').removeClass 'hidden'
-          angular.element('.matching-gift-container').removeClass 'hidden'
+#      employerMatchFields = ->
+#        angular.element('.employer-address-container').addClass 'hidden'
+#        angular.element('.matching-gift-container').addClass 'hidden'
+#        angular.element('label[for="match_checkbox_dropdown"]').before("<input type='hidden' name='match_checkbox_dropdown' id='match_checkbox_dropdown' value=''>")
+#        angular.element('label[for="match_checkbox_dropdown"]').parent().parent().parent().addClass 'ym-employer-match'
+#        empCheck = angular.element('#match_checkbox_radio').prop 'checked'
+#        if empCheck is true
+#          angular.element('.ym-employer-match__message').removeClass 'hidden'
+#          angular.element('.matching-gift-container').removeClass 'hidden'
 
-      document.getElementById('match_checkbox_radio').onclick = ->
-        angular.element('.ym-employer-match__message').toggleClass 'hidden'
-        angular.element('.matching-gift-container').toggleClass 'hidden'
+#      document.getElementById('match_checkbox_radio').onclick = ->
+#        angular.element('.ym-employer-match__message').toggleClass 'hidden'
+#        angular.element('.matching-gift-container').toggleClass 'hidden'
 
-      $scope.toggleEmployerMatch = ->
-        angular.element('.ym-employer-match__message').toggleClass 'hidden'
-        angular.element('.matching-gift-container').toggleClass 'hidden'
+#      $scope.toggleEmployerMatch = ->
+#        angular.element('.ym-employer-match__message').toggleClass 'hidden'
+#        angular.element('.matching-gift-container').toggleClass 'hidden'
 
       donorRecognitionFields = ->
         angular.element('#tr_show_gift_to_public_row').addClass 'hidden ym-donor-recognition__fields'
