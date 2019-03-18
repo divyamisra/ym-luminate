@@ -95,4 +95,62 @@
     <!-- END team bikes step of tfind -->
 
     ::]]
+
+<!-- BEGIN new tfind search -->
+<div class="join-team-section">
+    <div class="container">
+      <!-- <div class="join-team-container js__join-team-container" style="display:none;"> -->
+      <div class="join-team-container js__join-team-container">
+      <div class="row">
+        <div class="col-md-8 offset-md-2 text-center">
+          <h1 class="reg-headline">
+            Team Details 2</h1>
+        </div>
+      </div>
+      <div class="row">
+          <div class="reg-text mt-3 col-md-6 offset-md-3"><p>Enter squad name, team captain and/or pick company from drop down</p></div>
+      </div>
+      <div class="row my-3">
+          <div class="col-md-4 col-sm-6 offset-md-4 offset-sm-3">
+                  <form class="js__reg-team-search-form">
+                    <div class="form-group">
+                      <label class="" for="regTeamName">Squad Name</label>
+                      <input type="text" name="user_name" id="regTeamName" class="form-control" aria-describedby="regTeamNameHelpBlock">
+                    </div>
+                    <div class="form-group">
+                      <label class="" for="regCompanyId">Squad's Group/Company</label>
+                      <select name="regCompanyId" id="regCompanyId" class="form-control js__reg-company-name">
+                        <option selected="selected" value="">Choose from existing list</option>
+                      </select>
+                    </div>
+
+                    <label class="" for="">Squad Member</label>
+                    <div class="form-group">
+                        <label class="sr-only" for="regTeamMemberFirst">Squad Member First Name</label>
+                        <input type="text" name="user_password" id="regTeamMemberFirst" class="form-control" placeholder="First Name" aria-describedby="regTeamMemberFirstHelpBlock">
+                      </div>
+                      <div class="form-group">
+                          <label class="sr-only" for="regTeamMemberLast">Squad Member Last Name</label>
+                          <input type="text" name="user_password" id="regTeamMemberLast" class="form-control" placeholder="Last Name" aria-describedby="regTeamMemberLastHelpBlock">
+                        </div>
+                        <div class="form-group text-center">
+                          <button type="submit" class="button btn-secondary">SEARCH</button>
+                        </div>
+                 
+                  </form>
+        </div>
+     
+        <div class="search-results-container reg-team-search-results js__search-results col-md-6 offset-md-3">
+            <div class="js__error-team-search help-block alert alert-danger text-center mt-2" style="display:none;"></div>
+
+                <div class="js__loading py-4 text-center  text-primary" style="display:none;"><i class="fas fa-cog fa-2x fa-spin"></i><br>
+                  Loading...
+                </div>
+              <div class="results-table py-4 js__search-results-container" style="display:none;"></div>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>
+<!-- END new tfind search -->
   </section>
