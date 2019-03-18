@@ -8,149 +8,162 @@
 ::]]
 
 <section id="tFind" aria-labelledby="title_container">
-    [[?xx::x[[S80:regType]]x::
-      <!-- BEGIN part 1 of tfind -->
-      [[S51:reus_cn_tpt_reg_options]]
-      <!-- END part 1 of tfind -->
-    ::]]
+  [[?xx::x[[S80:regType]]x::
+  <!-- BEGIN part 1 of tfind -->
+  [[S51:reus_cn_tpt_reg_options]]
+  <!-- END part 1 of tfind -->
+  ::]]
 
 
-    [[?[[?xStationaryx::x[[E42:[[S80:trID]]:classification2]]x::T::]][[?xstartTeamx::x[[S80:regType]]x::T::]]::TT::
-    <!-- ONLY show bike number option to people who are 1) registering for a Stationary event and 2) are forming a team -->
-    <!-- BEGIN team bikes step of tfind -->
-    <div class="row js__team-bikes-container">
-      <div class="col-md-6 offset-md-3 text-center">
-        <h1 class="h3 show-desktop">Hello, Team Captain!</h1>
-        <span class="field-required"></span>
-        Indicates required</p>
+  [[?[[?xStationaryx::x[[E42:[[S80:trID]]:classification2]]x::T::]][[?xstartTeamx::x[[S80:regType]]x::T::]]::TT::
+  <!-- ONLY show bike number option to people who are 1) registering for a Stationary event and 2) are forming a team -->
+  <!-- BEGIN team bikes step of tfind -->
+  <div class="row js__team-bikes-container">
+    <div class="col-md-6 offset-md-3 text-center">
+      <h1 class="h3 show-desktop">Hello, Team Captain!</h1>
+      <span class="field-required"></span>
+      Indicates required</p>
+    </div>
+
+    <div class="col-md-6 offset-md-3">
+      <div class="js__team-bikes-error-container alert alert-danger d-none" role="alert">
+        <span class="" aria-hidden="true"></span>
+        <span class="sr-only">Error:</span>
+        <i class="fas fa-exclamation-triangle" aria-hidden="true"></i>
+        <span class="js__team-bikes-error-message"></span>
       </div>
 
-      <div class="col-md-6 offset-md-3">
-        <div class="js__team-bikes-error-container alert alert-danger d-none" role="alert">
-          <span class="" aria-hidden="true"></span>
-          <span class="sr-only">Error:</span>
-          <i class="fas fa-exclamation-triangle" aria-hidden="true"></i>
-          <span class="js__team-bikes-error-message"></span>
-        </div>
+      <form id="teamBikesForm" class="js__team-bikes-form">
+        <div class="form-content">
+          <div class="form-group">
+            <p><span class="field-required"><span class="aural-only">Field Is Required</span></span> Before we can talk
+              squad goals, we need to know how many bikes you'll reserve for your group.</p>
 
-        <form id="teamBikesForm" class="js__team-bikes-form">
-          <div class="form-content">
-            <div class="form-group">
-              <p><span class="field-required"><span class="aural-only">Field Is Required</span></span> Before we can talk squad goals, we need to know how many bikes you'll reserve for your group.</p>
+            <div class="dropdown show">
+              <a class="d-flex justify-content-between button btn-block btn-dropdown dropdown-toggle js__numbike-selector"
+                href="#" role="button" id="dropdownNumberOfBikes" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false">
+                Number of Bikes
+              </a>
 
-              <div class="dropdown show">
-                <a class="d-flex justify-content-between button btn-block btn-dropdown dropdown-toggle js__numbike-selector" href="#" role="button" id="dropdownNumberOfBikes"
-                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Number of Bikes
-                </a>
-
-                <div class="dropdown-menu" aria-labelledby="dropdownNumberOfBikes">
-                  <a class="dropdown-item" href="#" data-numbikes="1">
-                    <span class="flex-column">
+              <div class="dropdown-menu" aria-labelledby="dropdownNumberOfBikes">
+                <a class="dropdown-item" href="#" data-numbikes="1">
+                  <span class="flex-column">
                     1 bike = 4-8 riders
                     <em class="d-block">(min. fundraising is $1,000)</em>
                   </span>
-                  </a>
-                  <a class="dropdown-item" href="#" data-numbikes="2">
-                      <span class="flex-column">
-                          2 bikes = 8-16 riders
+                </a>
+                <a class="dropdown-item" href="#" data-numbikes="2">
+                  <span class="flex-column">
+                    2 bikes = 8-16 riders
                     <em class="d-block">(min. fundraising is $2,000)</em>
                   </span>
-                  </a>
-                  <a class="dropdown-item" href="#" data-numbikes="3">
-                      <span class="flex-column">
-                          3 bikes = 12-24 riders
+                </a>
+                <a class="dropdown-item" href="#" data-numbikes="3">
+                  <span class="flex-column">
+                    3 bikes = 12-24 riders
                     <em class="d-block">(min. fundraising is $3,000)</em>
                   </span>
-                  </a>
-                  <a class="dropdown-item" href="#" data-numbikes="4">
-                      <span class="flex-column">
-                          4 bikes = 16-32 riders
+                </a>
+                <a class="dropdown-item" href="#" data-numbikes="4">
+                  <span class="flex-column">
+                    4 bikes = 16-32 riders
                     <em class="d-block">(min. fundraising is $4,000)</em>
                   </span>
-                    
-                  </a>
-                </div>
-              </div>
-            </div>
 
-            <div class="form-group">
-              <label for="generatedTeamGoal">Squad Fundraising Goal:</label>
-              <input name="team_goal" type="text" id="generatedTeamGoal" class="js__generated-team-goal" readonly value="Not Set" style="border:none;background:#fff;">
-            </div>
-
-            <div class="form-group row">
-              <div class="order-2 order-sm-1 col-sm-4 col-8 offset-2 offset-sm-0">
-                <!-- <button type="button" class="button btn-secondary btn-block js__show-reg-type">Back</button> -->
-                <a href="TRR/?pg=tfind&amp;fr_id=[[S80:trID]]" class="button btn-secondary btn-block">Back</a>
-              </div>
-              <div class="order-1 order-sm-2 col-sm-4 offset-md-4 col-8 offset-2 mb-3">
-                <button type="button" class="button btn-primary btn-block js__show-team-details" disabled>Next Step</button>
+                </a>
               </div>
             </div>
           </div>
-        </form>
-      </div>
+
+          <div class="form-group">
+            <label for="generatedTeamGoal">Squad Fundraising Goal:</label>
+            <input name="team_goal" type="text" id="generatedTeamGoal" class="js__generated-team-goal" readonly value="Not Set"
+              style="border:none;background:#fff;">
+          </div>
+
+          <div class="form-group row">
+            <div class="order-2 order-sm-1 col-sm-4 col-8 offset-2 offset-sm-0">
+              <!-- <button type="button" class="button btn-secondary btn-block js__show-reg-type">Back</button> -->
+              <a href="TRR/?pg=tfind&amp;fr_id=[[S80:trID]]" class="button btn-secondary btn-block">Back</a>
+            </div>
+            <div class="order-1 order-sm-2 col-sm-4 offset-md-4 col-8 offset-2 mb-3">
+              <button type="button" class="button btn-primary btn-block js__show-team-details" disabled>Next Step</button>
+            </div>
+          </div>
+        </div>
+      </form>
     </div>
-    <!-- END team bikes step of tfind -->
+  </div>
+  <!-- END team bikes step of tfind -->
 
-    ::]]
+  ::]]
 
-<!-- BEGIN new tfind search -->
-<div class="join-team-section">
+  <!-- BEGIN new tfind search -->
+  <div class="join-team-section">
     <div class="container">
       <!-- <div class="join-team-container js__join-team-container" style="display:none;"> -->
       <div class="join-team-container js__join-team-container">
-      <div class="row">
-        <div class="col-md-8 offset-md-2 text-center">
-          <h1 class="reg-headline">
-            Team Details 2</h1>
+        <div class="row">
+          <div class="col-md-8 offset-md-2 text-center">
+            <h1 class="reg-headline">
+              Team Details 2</h1>
+          </div>
         </div>
-      </div>
-      <div class="row">
-          <div class="reg-text mt-3 col-md-6 offset-md-3"><p>Enter squad name, team captain and/or pick company from drop down</p></div>
-      </div>
-      <div class="row my-3">
-          <div class="col-md-4 col-sm-6 offset-md-4 offset-sm-3">
-                  <form class="js__reg-team-search-form">
-                    <div class="form-group">
-                      <label class="" for="regTeamName">Squad Name</label>
-                      <input type="text" name="user_name" id="regTeamName" class="form-control" aria-describedby="regTeamNameHelpBlock">
-                    </div>
-                    <div class="form-group">
-                      <label class="" for="regCompanyId">Squad's Group/Company</label>
-                      <select name="regCompanyId" id="regCompanyId" class="form-control js__reg-company-name">
-                        <option selected="selected" value="">Choose from existing list</option>
-                      </select>
-                    </div>
+        <div class="row">
+          <div class="reg-text mt-3 col-md-6 offset-md-3">
+            <p>Enter squad name, team captain and/or pick company from drop down</p>
+          </div>
+        </div>
+        <div class="my-3">
+          <form class="js__reg-team-search-form row">
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label class="" for="regTeamName">Squad Name</label>
+                <input type="text" name="user_name" id="regTeamName" class="form-control" aria-describedby="regTeamNameHelpBlock">
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label class="" for="regCompanyId">Squad's Group/Company</label>
+                <select name="regCompanyId" id="regCompanyId" class="form-control js__reg-company-name">
+                  <option selected="selected" value="">Choose from existing list</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <label class="" for="">Squad Member</label>
+              <div class="form-group">
+                <label class="sr-only" for="regTeamMemberFirst">Squad Member First Name</label>
+                <input type="text" name="user_password" id="regTeamMemberFirst" class="form-control" placeholder="First Name"
+                  aria-describedby="regTeamMemberFirstHelpBlock">
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label class="sr-only" for="regTeamMemberLast">Squad Member Last Name</label>
+                <input type="text" name="user_password" id="regTeamMemberLast" class="form-control" placeholder="Last Name"
+                  aria-describedby="regTeamMemberLastHelpBlock">
+              </div>
+            </div>
+            <div class="col-sm-6 offset-sm-3">
+              <div class="form-group text-center">
+                <button type="submit" class="button btn-primary btn-block">Search</button>
+              </div>
+            </div>
+          </form>
 
-                    <label class="" for="">Squad Member</label>
-                    <div class="form-group">
-                        <label class="sr-only" for="regTeamMemberFirst">Squad Member First Name</label>
-                        <input type="text" name="user_password" id="regTeamMemberFirst" class="form-control" placeholder="First Name" aria-describedby="regTeamMemberFirstHelpBlock">
-                      </div>
-                      <div class="form-group">
-                          <label class="sr-only" for="regTeamMemberLast">Squad Member Last Name</label>
-                          <input type="text" name="user_password" id="regTeamMemberLast" class="form-control" placeholder="Last Name" aria-describedby="regTeamMemberLastHelpBlock">
-                        </div>
-                        <div class="form-group text-center">
-                          <button type="submit" class="button btn-secondary">SEARCH</button>
-                        </div>
-                 
-                  </form>
-        </div>
-     
-        <div class="search-results-container reg-team-search-results js__search-results col-md-6 offset-md-3">
+          <div class="search-results-container reg-team-search-results js__search-results col-md-6 offset-md-3">
             <div class="js__error-team-search help-block alert alert-danger text-center mt-2" style="display:none;"></div>
 
-                <div class="js__loading py-4 text-center  text-primary" style="display:none;"><i class="fas fa-cog fa-2x fa-spin"></i><br>
-                  Loading...
-                </div>
-              <div class="results-table py-4 js__search-results-container" style="display:none;"></div>
+            <div class="js__loading py-4 text-center  text-primary" style="display:none;"><i class="fas fa-cog fa-2x fa-spin"></i><br>
+              Loading...
             </div>
+            <div id="#team_find" class="results-table py-4 js__search-results-container" style="display:none;"></div>
+          </div>
         </div>
+      </div>
     </div>
   </div>
-</div>
-<!-- END new tfind search -->
-  </section>
+  <!-- END new tfind search -->
+</section>
