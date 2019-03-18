@@ -164,6 +164,7 @@
             if (response.getTeamSearchByInfoResponse.totalNumberResults === '0') {
               // no search results
               $('#error-team').removeAttr('hidden').text('Sorry. Your search did not return any results.');
+             $('.js__error-team-search').show();
             } else {
               var teams = luminateExtend.utils.ensureArray(response.getTeamSearchByInfoResponse.team);
 
@@ -175,9 +176,6 @@
                     
                     // joinTeamUrl: https://dev2.heart.org/site/TRR/CycleNation/General/1108685120?pg=tfind&amp;fr_id=3742&amp;fr_tjoin=1640&amp;skip_login_page=true&amp;s_captainConsId=8866284
 
-                  // $('#team_results').removeAttr('hidden');
-                  // $('#team_find').slideDown();
-                  // $('#team_results').slideDown();
                 } else {
                   var donFormId = team.teamDonateURL;
 
@@ -196,7 +194,6 @@
                   $('#team_results').slideDown();
                 }
 
-
               });
               //add call to hook donate button with payment type selections
               addPaymentTypesOnSearch();
@@ -204,7 +201,7 @@
           },
           error: function (response) {
             $('#error-team').removeAttr('hidden').text(response.errorResponse.message);
-
+            $('.js__error-team-search').show();
           }
         }
       });
@@ -1358,7 +1355,93 @@ $('.js__reg-team-search-form').on('submit', function (e) {
 
 });
 
+cd.getCompanyList = function (frId, companyId) {
+  // $('.js__loading').show();
 
+  luminateExtend.api({
+    api: 'teamraiser',
+    data: 'method=getCompanyList' +
+      '&fr_id=' + frId +
+      '&list_page_size=499' +
+      '&list_page_offset=0' +
+      '&response_format=json' +
+      '&list_sort_column=company_name' +
+      '&list_ascending=true',
+    callback: {
+      success: function (response) {
+        // $('.js__loading').hide();
+
+
+        var companyList = '',
+          nationals = (response.getCompanyListResponse.nationalItem ? luminateExtend.utils.ensureArray(response.getCompanyListResponse.nationalItem) : []),
+          regionals = (response.getCompanyListResponse.regionalItem ? luminateExtend.utils.ensureArray(response.getCompanyListResponse.regionalItem) : []),
+          companies = (response.getCompanyListResponse.companyItem ? luminateExtend.utils.ensureArray(response.getCompanyListResponse.companyItem) : []);
+
+        var sortCompanies = function (a, b) {
+          var A = a.companyName.toLowerCase();
+          var B = b.companyName.toLowerCase();
+          if (A < B) {
+            return -1;
+          } else if (A > B) {
+            return 1;
+          } else {
+            return 0;
+          }
+        };
+
+        nationals.sort(sortCompanies);
+        regionals.sort(sortCompanies);
+        companies.sort(sortCompanies);
+
+        if (nationals.length > 0) {
+          companyList += '<optgroup label="National Companies">';
+        }
+        $.each(nationals, function () {
+          if (this.companyName.indexOf('(sponsor)') != -1) {
+            this.companyName = this.companyName.split('(sponsor)')[0];
+          }
+          companyList += '<option value="' + this.companyId + '">' + this.companyName + '</option>';
+        });
+        if (nationals.length > 0) {
+          companyList += '</optgroup>';
+        }
+        if (regionals.length > 0) {
+          companyList += '<optgroup label="Regional Companies">';
+        }
+        $.each(regionals, function () {
+          if (this.companyName.indexOf('(sponsor)') != -1) {
+            this.companyName = this.companyName.split('(sponsor)')[0];
+          }
+          companyList += '<option value="' + this.companyId + '">' + this.companyName + '</option>';
+        });
+        if (regionals.length > 0) {
+          companyList += '</optgroup>';
+        }
+        if (companies.length > 0) {
+          companyList += '<optgroup label="Local Companies, Schools and Organizations">';
+        }
+        $.each(companies, function () {
+          if (this.companyName.indexOf('(sponsor)') != -1) {
+            this.companyName = this.companyName.split('(sponsor)')[0];
+          }
+          companyList += '<option value="' + this.companyId + '">' + this.companyName + '</option>';
+        });
+        if (companies.length > 0) {
+          companyList += '</optgroup>';
+        }
+        $('.js__reg-company-name').append(companyList);
+
+
+      },
+      error: function (response) {
+        // $('.js__loading').hide();
+        $('.js__error-team-search').text(response.errorResponse.message).show();
+      }
+    }
+  });
+};
+
+cd.getCompanyList(evID);
 // END new team find form
 
 
