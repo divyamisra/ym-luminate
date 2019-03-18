@@ -145,12 +145,15 @@
       });
     };
 
-    cd.getTeams = function (teamName) {
+    cd.getTeams = function (teamName, searchType, isCrossEvent, firstName, lastName, companyId) {
       luminateExtend.api({
         api: 'teamraiser',
         data: 'method=getTeamsByInfo' +
           '&team_name=' + teamName +
           (isCrossEvent === true ? '&event_type=' + eventType : '&fr_id=' + evID) +
+          (firstName ? '&first_name=' + firstName : '') +
+          (lastName ? '&last_name=' + lastName : '') +
+          (companyId ? '&team_company_id=' + companyId : '') +
           '&list_page_size=499' +
           '&list_page_offset=0' +
           '&response_format=json' +
@@ -165,17 +168,34 @@
               var teams = luminateExtend.utils.ensureArray(response.getTeamSearchByInfoResponse.team);
 
               $(teams).each(function (i, team) {
-                var donFormId = team.teamDonateURL;
+                if(searchType === 'registration'){
+                  $('.js__search-results-container').append(
+                    '<div class="search-result-details row"><div class="col-md-6"><p><strong><a href="' + team.teamPageURL + '" title="' +  team.name + '" target=_blank><span class="team-company-label sr-only">Team Name:</span> ' +  team.name + '</a></strong><br><span class="team-captain-label">Team Captain:</span> <span class="team-captain-name">' + team.captainFirstName + ' ' + team.captainLastName + '</span></div><div class="col-md-3">' + ((team.companyName !== null && team.companyName !== undefined) ? '<p><span class="team-company-label">Company:</span><span class="team-company-name">Company: ' + team.companyName + '</span>' : '') + '</div><div class="col-md-3"><p><a href="' + team.joinTeamURL + '&s_captainConsId=' + team.captainConsId +'&s_regType=joinTeam" title="Join ' +  team.name + '" aria-label="Join ' +  team.name + '" class="btn-block btn-primary button team-join-btn">Join</a></div></div>');
+                    $('.js__search-results-container').slideDown();
+                    
+                    // joinTeamUrl: https://dev2.heart.org/site/TRR/CycleNation/General/1108685120?pg=tfind&amp;fr_id=3742&amp;fr_tjoin=1640&amp;skip_login_page=true&amp;s_captainConsId=8866284
 
-                $('#team_rows').append(
-                  '<div class="row pb-4"><div class="col-xs-12 col-sm-8 col-md-9 search-result-details"><p><strong>' +
-                  team.name +
-                  '</strong><br>' +
-                  team.eventName + '<br>' +
-                  'Team Captain: ' + team.captainFirstName + ' ' + team.captainLastName + '<br>' +
-                  ((team.companyName !== null && team.companyName !== undefined) ? team.companyName + '<br>' : '') +
-                  '<a href="' + team.teamPageURL + '">Visit Team Page</a></p></div><div class="col-xs-12 col-sm-4 col-md-3"><a class="button btn-primary btn-block btn-lg pull-right" href="' + team.teamDonateURL + '" aria-label="Donate to ' +  team.name + '">Donate</a><a class="button btn-outline-dark btn-block btn-lg pull-right" href="' + team.joinTeamURL + '&s_captainConsId=' + team.captainConsId +'&s_regType=joinTeam" aria-label="Join ' +  team.name + '">Join Team</a></div></div>');
-                $('#team_results').removeAttr('hidden');
+                  // $('#team_results').removeAttr('hidden');
+                  // $('#team_find').slideDown();
+                  // $('#team_results').slideDown();
+                } else {
+                  var donFormId = team.teamDonateURL;
+
+                  $('#team_find').append(
+                    '<div class="row pb-4"><div class="col-xs-12 col-sm-8 col-md-9 search-result-details"><p><strong>' +
+                    team.name +
+                    '</strong><br>' +
+                    team.eventName + '<br>' +
+                    'Team Captain: ' + team.captainFirstName + ' ' + team.captainLastName + '<br>' +
+                    ((team.companyName !== null && team.companyName !== undefined) ? team.companyName + '<br>' : '') +
+                    '<a href="' + team.teamPageURL + '">Visit Team Page</a></p></div><div class="col-xs-12 col-sm-4 col-md-3"><a class="button btn-primary btn-block btn-lg pull-right" href="' + team.teamDonateURL + '" aria-label="Donate to ' +  team.name + '">Donate</a><a class="button btn-outline-dark btn-block btn-lg pull-right" href="' + team.joinTeamURL + '&s_captainConsId=' + team.captainConsId +'&s_regType=joinTeam" aria-label="Join ' +  team.name + '">Join Team</a></div></div>');
+                  $('#team_results').removeAttr('hidden');
+                  // TODO - harmonize normal team search page with reg team search results
+                  
+                  $('#team_find').slideDown();
+                  $('#team_results').slideDown();
+                }
+
 
               });
               //add call to hook donate button with payment type selections
@@ -1323,6 +1343,25 @@ if ($('body').is('.pg_complist')) {
         }
       } else if (regType === 'joinTeam') {
         if ($('#team_find_existing').length > 0) {
+
+// BEGIN new team find form
+$('.js__reg-team-search-form').on('submit', function (e) {
+  e.preventDefault();
+  $('.alert').hide();
+  $('.js__search-results-container').html('');
+  var teamName = $('#regTeamName').val();
+  var firstName = $('#regTeamMemberFirst').val();
+  var lastName = $('#regTeamMemberLast').val();
+  var companyId = $('#regCompanyId').val();
+  // cd.getTeams(teamName, searchType);
+  cd.getTeams(teamName, 'registration', false, firstName, lastName, companyId);
+
+});
+
+
+// END new team find form
+
+
           // $('#team_find_search_team_name_required').remove();
           // On JOIN TEAM step - rename label
           $('#team_label_container').text('Squad name:');
@@ -2403,7 +2442,6 @@ $('#password_component_container > div:nth-child(3)').addClass('col-md-6');
         .attr('data-parsley-maxlength', '4')
         .attr('data-parsley-maxlength-message', 'CVV cannot be more than 4 characters');
 
-        
       var parsleyDonDefaults = {
         uiEnabled: true,
         priorityEnabled: true,

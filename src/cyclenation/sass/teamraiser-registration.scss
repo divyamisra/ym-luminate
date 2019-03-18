@@ -75,6 +75,17 @@ small {
     margin: 0;
   }
 
+.team-captain-label,
+.team-company-label {
+  font-style:italic;
+}
+.team-join-btn {
+  text-decoration:none;
+}
+.search-results-details {
+  border-bottom: 1px solid #3c3c3c;
+}
+
   div.registration-page-container div.section-body,
   div.registration-page-container div.section-header,
   div.registration-page-container div.section-sub-header,
