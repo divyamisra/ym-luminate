@@ -64,7 +64,9 @@ small {
   label[for="fr_show_public_gift"],{
     @extend .form-check-label;
   }
-  .progress-bar-container {
+  .progress-bar-container,
+  .campaign-banner-container,
+  #team_find_search_team_name_required {
     display: none;
   }
   .campaign-banner-container,
@@ -72,9 +74,7 @@ small {
     border: none;
     margin: 0;
   }
-  .campaign-banner-container {
-    display: none;
-  }
+
   div.registration-page-container div.section-body,
   div.registration-page-container div.section-header,
   div.registration-page-container div.section-sub-header,
@@ -643,11 +643,15 @@ div#part_type_fundraising_goal_container {
     @extend .row;
   }
 }
-
-// #personal_info_section_one {
-//   @extend .row;
-// }
-.cons-full-name-container {
+#password_component_container .field-required {
+  float:left;
+}
+div#participant_info_body_container,
+#emergency_contact_field_group {
+  @extend .row;
+}
+.cons-full-name-container,
+#emergency_contact_field_group .field-required {
   @include make-col-ready();
   @include media-breakpoint-up(sm) {
     @include make-col(6);
@@ -703,9 +707,9 @@ div#cons_info_component_container div#personal_info_section_one, div#cons_info_c
 div#privacy_component_container label,  div#gift_notice_optin label, div#email_opt_in_container label, div#postal_mail_opt_in_container label, div#remember_me_container label {
   max-width:100%;
 }
-div#emergency_contact_field_group {
-  margin-left:0;
-}
+// div#emergency_contact_field_group {
+//   margin-left:0;
+// }
 
 #reg_option_custom_html {
   .modal-dialog{

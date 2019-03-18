@@ -1,6 +1,8 @@
 'use strict';
+
 (function ($) {
   $(document).ready(function ($) {
+
     /*************/
     /* Namespace */
     /*************/
@@ -1321,6 +1323,7 @@ if ($('body').is('.pg_complist')) {
         }
       } else if (regType === 'joinTeam') {
         if ($('#team_find_existing').length > 0) {
+          // $('#team_find_search_team_name_required').remove();
           // On JOIN TEAM step - rename label
           $('#team_label_container').text('Squad name:');
           $('#team_find_existing').prepend('<div class="text-center w-100"><p>Enter squad name and/or pick company from drop down</p></div>');
@@ -1913,6 +1916,11 @@ $('.cons-full-address-label label').remove();
 $('.cons-city-town-label label').remove();
 $('.cons-state-label label').remove();
 $('.cons-country-label label').remove();
+
+$('#password_component_container > div:nth-child(1)').addClass('col-md-12');
+$('#password_component_container > div:nth-child(2)').addClass('col-md-6');
+$('#password_component_container > div:nth-child(3)').addClass('col-md-6');
+
 
 
       cd.setBirthMonth = function () {
