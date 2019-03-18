@@ -86,6 +86,47 @@ small {
   border-bottom: 1px solid #3c3c3c;
 }
 
+.sort {
+  &:after {
+    width: 0;
+    height: 0;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-bottom: 4px solid transparent;
+    content: "";
+    position: relative;
+    top: -10px;
+    right: -4px;
+  }
+
+  &.asc {
+    &:after {
+      width: 0;
+      height: 0;
+      border-left: 4px solid transparent;
+      border-right: 4px solid transparent;
+      border-top: 4px solid #2e2e2e;
+      content: "";
+      position: relative;
+      top: 11px;
+      right: -4px;
+    }
+  }
+
+  &.desc {
+    &:after {
+      width: 0;
+      height: 0;
+      border-left: 4px solid transparent;
+      border-right: 4px solid transparent;
+      border-bottom: 4px solid #2e2e2e;
+      content: "";
+      position: relative;
+      top: -9px;
+      right: -4px;
+    }
+  }
+}
   div.registration-page-container div.section-body,
   div.registration-page-container div.section-header,
   div.registration-page-container div.section-sub-header,
@@ -480,6 +521,10 @@ div.responsive div.ErrorMessage.page-error>span.field-error-text {
       // TODO - update these across registration
       margin-left: inherit;
       font-size: inherit;
+    }
+    #team_find_section_header,
+    #team_find_section_body {
+      display:none;
     }
   }
   
