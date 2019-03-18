@@ -2403,6 +2403,7 @@ $('#password_component_container > div:nth-child(3)').addClass('col-md-6');
         .attr('data-parsley-maxlength', '4')
         .attr('data-parsley-maxlength-message', 'CVV cannot be more than 4 characters');
 
+        
       var parsleyDonDefaults = {
         uiEnabled: true,
         priorityEnabled: true,
