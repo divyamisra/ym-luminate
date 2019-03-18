@@ -156,15 +156,17 @@
             </div>
           </form>
 
-          <div id="team_results" class="search-results-container reg-team-search-results js__search-results col-12">
+          <div id="team_results" class="search-results-container reg-team-search-results js__search-results col-12" style="display:none;">
             <div id="error-team" class="js__error-team-search help-block alert alert-danger text-center mt-2" hidden></div>
 
             <div class="js__loading py-4 text-center  text-primary" style="display:none;"><i class="fas fa-cog fa-2x fa-spin"></i><br>
               Loading...
             </div>
-            <div id="team_find" style="display:none;"">
-            <button class="sort button btn-secondary btn-sm" data-sort="team-name-label">Sort by squad name</button>
-            <button class="sort button btn-secondary btn-sm" data-sort="team-captain-name">Sort by squad captain</button>
+            <div id="team_find">
+                Sort by:<br>
+            <button class="sort button btn-light btn-sm" data-sort="team-name-label">Squad name</button>
+            <button class="sort button btn-light btn-sm" data-sort="team-captain-name">Squad captain</button>
+            <button class="sort button btn-light btn-sm" data-sort="team-company-name">Company</button>
             <ul class="list results-table py-4 js__search-results-container"></ul>
           </div>
           </div>
