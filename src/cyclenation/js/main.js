@@ -171,7 +171,7 @@
               $(teams).each(function (i, team) {
                 if(searchType === 'registration'){
                   $('.js__search-results-container').append(
-                    '<li class="search-result-details row py-3"><div class="col-md-5"><strong><a href="' + team.teamPageURL + '" title="' +  team.name + '" target=_blank><span class="team-company-label sr-only">Team Name:</span> ' +  team.name + '</a></strong><br><span class="team-captain-label">Team Captain:</span> <span class="team-captain-name">' + team.captainFirstName + ' ' + team.captainLastName + '</span></div><div class="col-md-5 mt-auto">' + ((team.companyName !== null && team.companyName !== undefined) ? '<span class="team-company-label">Company:</span> <span class="team-company-name">' + team.companyName + '</span>' : '') + '</div><div class="col-md-2"><a href="' + luminateExtend.global.path.secure + 'TRR/?fr_tjoin=' + team.id + '&pg=tfind&fr_id=' + evID + '&s_captainConsId=' + team.captainConsId +'&s_regType=joinTeam&skip_login_page=true" title="Join ' +  team.name + '" aria-label="Join ' +  team.name + '" class="btn-block btn-primary button team-join-btn">Join</a></div></li>');
+                    '<li class="search-result-details row py-3"><div class="col-md-5"><strong><a href="' + team.teamPageURL + '" class="team-name-label" title="' +  team.name + '" target=_blank><span class="team-company-label sr-only">Team Name:</span> ' +  team.name + '</a></strong><br><span class="team-captain-label">Team Captain:</span> <span class="team-captain-name">' + team.captainFirstName + ' ' + team.captainLastName + '</span></div><div class="col-md-5 mt-auto">' + ((team.companyName !== null && team.companyName !== undefined) ? '<span class="team-company-label">Company:</span> <span class="team-company-name">' + team.companyName + '</span>' : '') + '</div><div class="col-md-2"><a href="' + luminateExtend.global.path.secure + 'TRR/?fr_tjoin=' + team.id + '&pg=tfind&fr_id=' + evID + '&s_captainConsId=' + team.captainConsId +'&s_regType=joinTeam&skip_login_page=true" title="Join ' +  team.name + '" aria-label="Join ' +  team.name + '" class="btn-block btn-primary button team-join-btn">Join</a></div></li>');
                     $('.js__search-results-container').slideDown();
                     
                     // joinTeamUrl: https://dev2.heart.org/site/TRR/CycleNation/General/1108685120?pg=tfind&amp;fr_id=3742&amp;fr_tjoin=1640&amp;skip_login_page=true&amp;s_captainConsId=8866284
@@ -195,8 +195,122 @@
                 }
 
               });
+
+              if(searchType === 'registration'){
+                var options = {
+                  valueNames: [ 
+                    'team-name-label', 
+                    'team-captain-name', 
+                    'team-company-name' 
+                  ]
+                };
+                var teamsList = new List('team_find', options);
+              
+
+                
+                // function resetTeamsList() {
+                //   $('.event-detail').each(function (i) {
+                //     if (i > 2) {
+                //       $(this).attr('hidden', true);
+                //     }
+                //     $('.js__show-fewer-events').attr('hidden', true);
+                //     $('.js__show-more-events').removeAttr('hidden');
+                //     $('.js__show-more-container').removeClass('d-none');
+                //   });
+                // }
+              // function applyTeamsListFilter() {
+              //   // add sorting for team list in reg 
+
+              //   var options = {
+              //     valueNames: [ 
+              //       'team-name-label', 
+              //       'team-captain-name', 
+              //       'team-company-name' 
+              //     ]
+              //   };
+              //   var teamsList = new List('teamSearch', options);
+
+              //   var activeFilters = [];
+          
+              //   teamsList.on('updated', function (list) {
+              //     // $('.js__show-more-container').addClass('d-none');
+              //     // $('.event-detail').removeAttr('hidden');
+          
+              //     if (list.matchingItems.length == 0) {
+              //       $('.js__no-event-results').removeClass('d-none');
+              //     } else if (list.matchingItems.length == list.items.length) {
+              //       // $('.js__no-event-results').addClass('d-none');
+              //       // reset show more/fewer functionality after filters have been cleared
+              //       // resetEventList();
+              //     } else {
+              //       // $('.js__no-event-results').addClass('d-none');
+              //     }
+              //   });
+          
+              //   $('.filter').on('change', function () {
+              //     activeFilters = [];
+              //     var allFilters = $('input.filter');
+              //     $(allFilters).not(this).prop('checked', false);
+              //     $(allFilters).parent().removeClass('active');
+          
+              //     var isChecked = this.checked;
+              //     var value = $(this).data('filter');
+          
+              //     if (isChecked) {
+              //       //  add to list of active filters
+              //       $(this).parent().addClass('active');
+              //       activeFilters.push(value);
+              //     } else {
+              //       // remove from active filters
+              //       activeFilters.splice(activeFilters.indexOf(value), 1);
+              //       // resetEventList();
+              //     }
+          
+              //     teamsList.filter(function (item) {
+              //       if (activeFilters.length > 0) {
+              //         $('.js__show-more-container').addClass('d-none');
+              //         $('.event-detail').removeAttr('hidden');
+              //         $('.js__clear-event-filters').removeClass('d-none');
+              //         return (activeFilters.indexOf(item.values().eventtype)) > -1;
+              //       } else {
+              //         $('.js__clear-event-filters').addClass('d-none');
+              //         // reset show more/fewer functionality after filters have been cleared
+              //         setTimeout(function () {
+              //           // resetEventList();
+              //         }, 200);
+              //       }
+              //       return true;
+              //     });
+              //   });
+          
+                // clear filters on click
+                // $('.js__clear-event-filters').on('click', function (e) {
+                //   e.preventDefault();
+                //   activeFilters = [];
+                //   $('.js__clear-event-filters').addClass('d-none');
+          
+                //   $('input.filter').prop('checked', false);
+                //   $('.search').val('');
+                //   eventList.search();
+          
+                //   eventList.filter(function (item) {
+                //     if (activeFilters.length > 0) {
+                //       return (activeFilters.indexOf(item.values().eventtype)) > -1;
+                //     }
+                //     return true;
+                //   });
+                //   // reset show more/fewer functionality after filters have been cleared
+                //   resetEventList();
+          
+                // });
+           
+          
+
+
+            } else {
               //add call to hook donate button with payment type selections
               addPaymentTypesOnSearch();
+            }
             }
           },
           error: function (response) {

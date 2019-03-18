@@ -162,9 +162,11 @@
             <div class="js__loading py-4 text-center  text-primary" style="display:none;"><i class="fas fa-cog fa-2x fa-spin"></i><br>
               Loading...
             </div>
-            <button class="sort" data-sort="team-name-label">Sort by squad name</button>
-            <button class="sort" data-sort="team-captain-name">Sort by squad captain</button>
-            <ul id="team_find" class="results-table py-4 js__search-results-container" style="display:none;"></ul>
+            <div id="team_find" style="display:none;"">
+            <button class="sort button btn-secondary btn-sm" data-sort="team-name-label">Sort by squad name</button>
+            <button class="sort button btn-secondary btn-sm" data-sort="team-captain-name">Sort by squad captain</button>
+            <ul class="list results-table py-4 js__search-results-container"></ul>
+          </div>
           </div>
         </div>
       </div>
