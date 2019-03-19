@@ -216,6 +216,7 @@ angular.module 'trPcControllers'
             'Emails'
             'T-shirt'
             'Teacher'
+            'Challenge'
           ]
           sortColumn: ''
           sortAscending: false
@@ -253,7 +254,8 @@ angular.module 'trPcControllers'
                       emailsSent = Number reportDataRow[reportDataColumnIndexMap.EMAILS_SENT_CNT]
                       tshirtSize = jQuery.trim reportDataRow[reportDataColumnIndexMap.TSHIRT_SIZE]
                       teacherName = jQuery.trim reportDataRow[reportDataColumnIndexMap.TEACHER_NAME]
-                      challenge = jQuery.trim reportDataRow[reportDataColumnIndexMap.CHALLENGE3]
+#                      challenge = jQuery.trim reportDataRow[reportDataColumnIndexMap.CHALLENGE3]
+                      challenge = jQuery.trim reportDataRow[reportDataColumnIndexMap.CHALLENGE]
                       schoolDetailStudents.push
                         firstName: firstName
                         lastName: lastName
