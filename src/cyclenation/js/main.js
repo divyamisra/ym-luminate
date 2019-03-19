@@ -201,9 +201,9 @@
                 };
                 var teamsList = new List('custom_team_find', options);
 
-                // if ($('.team-company-name').length) {
-                //   $('.js__company-sort').show();
-                // }
+                if ($('.team-company-name').length) {
+                  $('.js__company-sort').show();
+                }
 
               } else {
                 //add call to hook donate button with payment type selections
@@ -213,7 +213,9 @@
           },
           error: function (response) {
             $('#error-team').removeAttr('hidden').text(response.errorResponse.message);
-            $('.js__error-team-search').show();
+            
+            $('.js__search-results').show();
+            $('.js__search-results-container').show();
           }
         }
       });
@@ -2579,6 +2581,7 @@
       });
 
     }
+
 
   });
 }(jQuery));
