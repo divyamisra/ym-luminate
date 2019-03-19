@@ -772,7 +772,7 @@ div#privacy_component_container label,  div#gift_notice_optin label, div#email_o
 .mobile-question-container,
 .email-question-container {
   @include make-col-ready();
-  @include media-breakpoint-up(xs) {
+  @include media-breakpoint-up(sm) {
     @include make-col(6);
   }
 }
