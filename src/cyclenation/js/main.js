@@ -201,7 +201,7 @@
                 };
                 var teamsList = new List('custom_team_find', options);
 
-                if ($('.team-company-name').length) {
+                if ($('.team-company-name').length > 0) {
                   $('.js__company-sort').show();
                 }
 
