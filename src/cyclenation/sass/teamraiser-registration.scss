@@ -766,6 +766,16 @@ div#privacy_component_container label,  div#gift_notice_optin label, div#email_o
 // div#emergency_contact_field_group {
 //   margin-left:0;
 // }
+// div#personal_info_section_two {
+//   @extend .row;
+// }
+.mobile-question-container,
+.email-question-container {
+  @include make-col-ready();
+  @include media-breakpoint-up(xs) {
+    @include make-col(6);
+  }
+}
 
 #reg_option_custom_html {
   .modal-dialog{

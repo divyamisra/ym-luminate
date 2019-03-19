@@ -2011,13 +2011,14 @@
       $('.address-details').wrapAll('<div class="row" />');
       $('.cons-full-name-container').wrapAll('<div class="row" />');
 
-      $('.input-label:contains("Mobile")').closest('.survey-question-container').addClass('mobile-question-container');
+      $('.input-label:contains("Mobile")').closest('.survey-question-container').addClass('mobile-question-container two-col');
       $('.input-label:contains("I am a")').closest('.survey-question-container').addClass('survivor-question-container');
       $('.input-label:contains("jersey size")').closest('.survey-question-container').addClass('jersey-question-container');
       $('.input-label:contains("route distance")').closest('.survey-question-container').addClass('route-question-container');
-      $('#cons_email').closest('.form-content').addClass('email-question-container');
+      $('#cons_email').closest('.form-content').addClass('email-question-container two-col');
       $('#cons_email_format').before('<legend id="consEmailFormat" class="sr-only">Email Format</legend>');
       $('#cons_email_format').attr('aria-labelledby', 'consEmailFormat');
+
       $('#cons_info_dob')
         .after($('.jersey-question-container'))
         .after($('.route-question-container'))
@@ -2025,6 +2026,8 @@
         .after($('#gift_notice_optin'))
         .after($('.email-question-container'))
         .after($('.mobile-question-container'));
+
+      $('.two-col').wrapAll('<div class="row" />');
 
       if (regType === 'startTeam') {
         $('#cons_info_component_contact_info_section .sub-section-header').after('<p>As a team lead, we\'ll need your address so we can show you some love and send you swag to help inspire your squad and help you hit those fundraising milestones!</p>');
@@ -2088,7 +2091,12 @@
 
       $('#cons_info_dob .form-content').append('<p class="small">If you would like to provide your birthday, we would love to acknowledge your special day each year.</p>');
 
-      $('.mobile-question-container .form-content').append('<p class="small">We require your cell/mobile phone number in case last minute or emergency situations happen with the event and we need to communicate important details to you. We respect your privacy and will not sell or divulge your cell phone number to third parties, without your consent.</p>');
+
+      
+      $('.mobile-question-container .input-label').append('&nbsp;<span class="mobile-phone-tooltip" data-toggle="tooltip" data-placement="top" title="We require your cell/mobile phone number in case last minute or emergency situations happen with the event and we need to communicate important details to you. We respect your privacy and will not sell or divulge your cell phone number to third parties, without your consent."><i class="fas fa-question-circle"></i></span>');
+
+      $('.mobile-phone-tooltip').tooltip();
+      // $('.mobile-question-container .form-content').append('<p class="small"><i class="fas fa-question-circle"></i> We require your cell/mobile phone number in case last minute or emergency situations happen with the event and we need to communicate important details to you. We respect your privacy and will not sell or divulge your cell phone number to third parties, without your consent.</p>');
 
       if (eventType2 === 'Stationary') {
         // autoselect number of bikes based on tfind responses and/or ptype
