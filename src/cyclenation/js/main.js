@@ -171,11 +171,8 @@
               $(teams).each(function (i, team) {
                 if (searchType === 'registration') {
                   $('.js__search-results-container').append(
-                    '<li class="search-result-details row py-3"><div class="col-md-5"><strong><a href="' + team.teamPageURL + '" class="team-name-label" title="' + team.name + '" target=_blank><span class="team-company-label sr-only">Team Name:</span> ' + team.name + '</a></strong><br><span class="team-captain-label">Team Captain:</span> <span class="team-captain-name">' + team.captainFirstName + ' ' + team.captainLastName + '</span></div><div class="col-md-5 mt-auto">' + ((team.companyName !== null && team.companyName !== undefined) ? '<span class="team-company-label">Company:</span> <span class="team-company-name">' + team.companyName + '</span>' : '') + '</div><div class="col-md-2"><a href="' + luminateExtend.global.path.secure + 'TRR/?fr_tjoin=' + team.id + '&pg=tfind&fr_id=' + evID + '&s_captainConsId=' + team.captainConsId + '&s_regType=joinTeam&skip_login_page=true" title="Join ' + team.name + '" aria-label="Join ' + team.name + '" class="btn-block btn-primary button team-join-btn">Join</a></div></li>');
+                    '<div class="search-result-details row py-3"><div class="col-md-5"><strong><a href="' + team.teamPageURL + '" class="team-name-label" title="' + team.name + '" target=_blank><span class="team-company-label sr-only">Team Name:</span> ' + team.name + '</a></strong><br><span class="team-captain-label">Team Captain:</span> <span class="team-captain-name">' + team.captainFirstName + ' ' + team.captainLastName + '</span></div><div class="col-md-5 mt-auto">' + ((team.companyName !== null && team.companyName !== undefined) ? '<span class="team-company-label">Company:</span> <span class="team-company-name">' + team.companyName + '</span>' : '') + '</div><div class="col-md-2"><a href="' + luminateExtend.global.path.secure + 'TRR/?fr_tjoin=' + team.id + '&pg=tfind&fr_id=' + evID + '&s_captainConsId=' + team.captainConsId + '&s_regType=joinTeam&skip_login_page=true" title="Join ' + team.name + '" aria-label="Join ' + team.name + '" class="btn-block btn-primary button team-join-btn">Join</a></div></div>');
                   $('.js__search-results-container').slideDown();
-                  $('.js__search-results').slideDown();
-
-                  // joinTeamUrl: https://dev2.heart.org/site/TRR/CycleNation/General/1108685120?pg=tfind&amp;fr_id=3742&amp;fr_tjoin=1640&amp;skip_login_page=true&amp;s_captainConsId=8866284
 
                 } else {
                   var donFormId = team.teamDonateURL;
@@ -189,10 +186,6 @@
                     ((team.companyName !== null && team.companyName !== undefined) ? team.companyName + '<br>' : '') +
                     '<a href="' + team.teamPageURL + '">Visit Team Page</a></p></div><div class="col-xs-12 col-sm-4 col-md-3"><a class="button btn-primary btn-block btn-lg pull-right" href="' + team.teamDonateURL + '" aria-label="Donate to ' + team.name + '">Donate</a><a class="button btn-outline-dark btn-block btn-lg pull-right" href="' + team.joinTeamURL + '&s_captainConsId=' + team.captainConsId + '&s_regType=joinTeam" aria-label="Join ' + team.name + '">Join Team</a></div></div>');
                   $('#team_results').removeAttr('hidden');
-                  // TODO - harmonize normal team search page with reg team search results
-
-                  $('#team_find').slideDown();
-                  $('#team_results').slideDown();
                 }
 
               });
@@ -205,11 +198,11 @@
                     'team-company-name'
                   ]
                 };
-                var teamsList = new List('team_find', options);
+                var teamsList = new List('custom_team_find', options);
 
-                if ($('.team-company-name').length) {
-                  $('.js__company-sort').show();
-                }
+                // if ($('.team-company-name').length) {
+                //   $('.js__company-sort').show();
+                // }
 
               } else {
                 //add call to hook donate button with payment type selections
