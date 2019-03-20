@@ -527,7 +527,6 @@ div.responsive div.ErrorMessage.page-error>span.field-error-text {
       display:none;
     }
   }
-  
 
 // ptype
 #part_type_instruction_sub_header {
@@ -698,6 +697,10 @@ div#part_type_fundraising_goal_container {
   .section-footer {
     @extend .row;
   }
+}
+div.responsive .sub-section-container span.field-required {
+  float:left;
+  margin-right: 2px;
 }
 #password_component_container .field-required {
   float:left;

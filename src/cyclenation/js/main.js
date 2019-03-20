@@ -1336,7 +1336,7 @@
     }
 
     // BEGIN TFIND
-
+ 
     if ($('#team_find_page').length > 0 || $('body').is('.pg_cn_register')) {
       // BEGIN tfind customizations
       $('form[name=FriendraiserFind]').attr('hidden', true);
@@ -1344,6 +1344,7 @@
       if (regType === 'startTeam') {
         if (eventType2 === 'Road' || eventType2 === 'StationaryV2') {
           $('form[name=FriendraiserFind]').removeAttr('hidden');
+          $('#team_find_section_body, #team_find_section_header').show();
         }
         var trCompanyCount = $('#fr_co_list > option').length;
         if (trCompanyCount < 2) {
