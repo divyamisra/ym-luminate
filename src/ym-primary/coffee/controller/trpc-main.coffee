@@ -57,8 +57,6 @@ angular.module 'trPcControllers'
                     FacebookFundraiserService.createFundraiser $rootScope.secureDomain + 'images/content/pagebuilder/ym-facebook-cover.png', fundraiserName
                       .then (response) ->
                         facebookFundraiserId = if response.data.error?.code is '105' then response.data.error.debug?.fundraiserId else if response.data.error?.code is '107' then response.data.error.debug?.fundraiserId else response.data.fundraiser?.id
-                        console.log('facebookFundraiserId ' + facebookFundraiserId)
-                        console.log('response.data.error.debug ' + response.data.error.debug.error.message)
                         if not facebookFundraiserId
                           if response.data.error?.code is '107'
                             $rootScope.facebookFundraiserCreateStatus = 'create_fundraiser_duplicate'
