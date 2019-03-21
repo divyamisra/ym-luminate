@@ -285,7 +285,15 @@ angular.module 'trPcControllers'
           angular.forEach defaultInstantGifts, (gift) ->
             status = 0
             if jQuery.inArray(gift.id,giftLevels[current_level]) isnt -1 and student.has_bonus != 0
-              status = 1
+              # even though current level > $40 if they haven't raied more than $40 online, 
+              # ruby won't be in the prize list
+              if gift.id == 'KPAN-19'
+                jQuery(student.prizes).each ->
+                  if @prize_sku == 'KPAN-19'
+                    status = 1
+                  return
+              else
+                status = 1
             $scope.bonusGifts.push
               prize_label: gift.name
               prize_sku: gift.id
