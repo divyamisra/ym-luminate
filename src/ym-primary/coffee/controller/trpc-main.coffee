@@ -58,9 +58,12 @@ angular.module 'trPcControllers'
                       .then (response) ->
                         facebookFundraiserId = if response.data.error?.code is '105' then response.data.error.debug?.fundraiserId else if response.data.error?.code is '107' then response.data.error.debug?.fundraiserId else response.data.fundraiser?.id
                         console.log('facebookFundraiserId ' + facebookFundraiserId)
-                        console.log('response.data.error.debug ' + response.data.error.debug)
+                        console.log('response.data.error.debug ' + response.data.error.debug.error.message)
                         if not facebookFundraiserId
-                          $rootScope.facebookFundraiserCreateStatus = 'create_fundraiser_error'
+                          if response.data.error?.code is '107'
+                            $rootScope.facebookFundraiserCreateStatus = 'create_fundraiser_duplicate'
+                          else
+                            $rootScope.facebookFundraiserCreateStatus = 'create_fundraiser_error'
                         else
                           $rootScope.facebookFundraiserCreateStatus = 'complete'
                           $rootScope.facebookFundraiserId = facebookFundraiserId
