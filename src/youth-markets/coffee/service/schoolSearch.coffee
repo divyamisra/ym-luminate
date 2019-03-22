@@ -27,6 +27,11 @@ angular.module 'ahaLuminateApp'
         #
         # New Geo Locate code for KHC
         filterGeoSchoolData = (e) ->
+          SchoolLookupService.getStateByLocation e,
+            failure: (response) ->
+            success: (response) ->
+              $scope.schoolList.stateFilter = response
+
           delete $scope.schoolList.schools
           $scope.schoolList.searchPending = true
           $scope.schoolList.searchSubmitted = true
@@ -105,8 +110,6 @@ angular.module 'ahaLuminateApp'
               $scope.schoolList.totalNumberResults = totalNumberResults
               $scope.schoolList.totalItems = totalNumberResults
               $scope.schoolList.schools = schools
-              if getLoc is true and totalNumberResults > 0
-                $scope.schoolList.stateFilter = schools[0].SCHOOL_CITY
               # setResults()
               $scope.schoolList.searchSubmitted = true
               delete $scope.schoolList.searchPending
