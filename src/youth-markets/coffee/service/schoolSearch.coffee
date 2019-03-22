@@ -105,6 +105,8 @@ angular.module 'ahaLuminateApp'
               $scope.schoolList.totalNumberResults = totalNumberResults
               $scope.schoolList.totalItems = totalNumberResults
               $scope.schoolList.schools = schools
+              if getLoc is true and totalNumberResults > 0
+                $scope.schoolList.stateFilter = schools[0].SCHOOL_CITY
               # setResults()
               $scope.schoolList.searchSubmitted = true
               delete $scope.schoolList.searchPending
@@ -195,7 +197,7 @@ angular.module 'ahaLuminateApp'
         $scope.submitSchoolSearch = ->
           nameFilter = jQuery.trim $scope.schoolList.ng_nameFilter
           $scope.schoolList.nameFilter = nameFilter
-          $scope.schoolList.stateFilter = ''
+          #$scope.schoolList.stateFilter = ''
           $scope.schoolList.searchSubmitted = true
           # if not nameFilter or nameFilter.length < 3
           if false
