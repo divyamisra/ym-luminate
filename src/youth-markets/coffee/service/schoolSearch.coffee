@@ -30,7 +30,7 @@ angular.module 'ahaLuminateApp'
           SchoolLookupService.getStateByLocation e,
             failure: (response) ->
             success: (response) ->
-              $scope.schoolList.stateFilter = response
+              $scope.schoolList.stateFilter = response.data.company.schoolData.state
 
           delete $scope.schoolList.schools
           $scope.schoolList.searchPending = true
