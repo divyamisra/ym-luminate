@@ -339,10 +339,10 @@ angular.module 'ahaLuminateApp'
             setResults = ->
               if companies.length > 0
                 schools = setSchools companies
-                if bystate is true
-                  schools = setSchoolsDataByState schools
-                else
-                  schools = setSchoolsData schools
+                #if bystate is true
+                #  schools = setSchoolsDataByState schools
+                #else
+                schools = setSchoolsData schools
                 $scope.schoolList.totalItems = schools.length
                 $scope.schoolList.totalNumberResults = schools.length
                 $scope.schoolList.schools = schools
