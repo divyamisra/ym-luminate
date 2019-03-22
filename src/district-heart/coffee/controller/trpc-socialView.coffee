@@ -10,7 +10,10 @@ angular.module('trPcControllers').controller 'NgPcSocialViewCtrl', [
       urlPrefix = 'bfapps1'
     consId = $scope.consId
     frId = $rootScope.frId
-    url = 'https://' + urlPrefix + '.boundlessfundraising.com/applications/ahadhc/social/app/ui/#/addsocial/' + consId + '/' + frId + '?source=PCSocial'
+    auth = $rootScope.authToken
+    jsession = $rootScope.sessionCookie
+    console.log "distict heart"
+    url = 'https://' + urlPrefix + '.boundlessfundraising.com/applications/ahadhc/social/app/ui/#/addsocial/' + consId + '/' + frId + '/' + auth + '/' + jsession + '?source=PCSocial'
     $scope.socialIframeURL = $sce.trustAsResourceUrl url
     return
   ]
