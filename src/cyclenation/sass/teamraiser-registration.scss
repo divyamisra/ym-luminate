@@ -129,6 +129,10 @@ small {
       right: -4px;
     }
   }
+  &:focus {
+    -webkit-box-shadow: 0 0 0 0.2rem rgba(222, 36, 39, 0.5);
+    box-shadow: 0 0 0 0.2rem rgba(222, 36, 39, 0.5);
+  }
 }
   div.registration-page-container div.section-body,
   div.registration-page-container div.section-header,
@@ -888,6 +892,9 @@ div#privacy_component_container label,  div#gift_notice_optin label, div#email_o
   .section-footer {
     @extend .row;
     @extend .m-0;
+  }
+  .contact-info-address {
+    display:none;
   }
 }
 

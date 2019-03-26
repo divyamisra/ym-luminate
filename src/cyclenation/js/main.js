@@ -2213,7 +2213,9 @@ cd.regInfoVerification();
     if ($('#FriendraiserUserWaiver').length > 0) {
       // reg summary step
       $('.reg-summary-reg-info').prepend('<p>Click the <strong>"Complete Registration"</strong> button below to finish your registration.</p><p>Click on <strong>"Edit"</strong> below to revise your registration details</p>');
-
+      if(regType === 'startTeam'){
+        $('.contact-info-address').show();
+      }
       $('.additional-gift-label').text('Personal Donation:');
       $('.total-label').text('Your registration total:');
 
@@ -2236,6 +2238,10 @@ cd.regInfoVerification();
     }
 
 
+    if ($('body').is('.app_id_27') || $('body').is('.pg_cn_register')) {
+      // remove side nav from tabindex for registration
+      $('.navbar-toggler').attr('tabindex', -1);
+    }
     if ($('body').is('.app_id_27')) {
       // BEGIN THERMO LOGIC
       cd.updateRegProgress = function (stepsComplete, stepsPossible) {
@@ -2316,6 +2322,15 @@ cd.regInfoVerification();
             }
           } else {
             // road logic
+              // override default Bootstrap modal tab behavior 
+
+              $('#dspPledge').on('keyup', function(e){
+                var focusedElement = document.activeElement.id
+                if(document.activeElement.id === 'dspPledge'){
+                  // Focus on outer lightbox container. Change focus to close button.
+                  $('#dspPledge .close').focus();
+                } 
+              });
             if (regType === 'startTeam' || regType === 'joinTeam') {
               cd.updateRegProgress(4, 8);
             } else if (regType === 'individual' || regType === 'virtual') {
