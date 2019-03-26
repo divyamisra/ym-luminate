@@ -1869,19 +1869,16 @@
           $('.part-type-container').find('input[name=fr_part_radio]').attr('aria-hidden', 'false').prop('disabled', false).eq(0).prop('checked', true);
           // show all participation types in the case that a session variable has not been set for regType
           $('.part-type-container').addClass('d-inline-block col-md-6');
-
-
+        }
+        
       }
 
       if (eventType2 === 'Stationary' || eventType2 === 'StationaryV2') {
-      }
-      var numPtypesShown = $('.part-type-container:visible').length;
-
-      if(numPtypesShown === 1 && (regType === 'startTeam' || regType === 'joinTeam')){
-        $('#sel_type_container').text('Your team is riding at:');
-      } else {
-        $('#sel_type_container').text('What time do you want to ride?');
-      }
+        if(numPtypesShown === 1 && (regType === 'startTeam' || regType === 'joinTeam')){
+          $('#sel_type_container').text('Your team is riding at:');
+        } else {
+          $('#sel_type_container').text('What time do you want to ride?');
+        }
         // $('.part-type-container.selected input').prop('checked', false).removeClass('selected');
         $('.part-type-container').on('click focus', function (e) {
           $('.part-type-container').removeClass('selected');
