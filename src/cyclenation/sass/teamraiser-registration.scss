@@ -5,6 +5,9 @@
 div#cons_info_component_container div#personal_info_section_one, div#cons_info_component_container div#personal_info_section_two, div#cons_info_component_container div#contact_info_section_one, div#cons_info_component_container div#contact_info_section_two, div#registration_options_page div#user_name_pword_container, div#registration_options_page div#privacy_opts_container, div#registration_options_page div#tribute_component_section_one, div#registration_options_page div#tribute_component_section_two, div#emergency_contact_container, div#gift_notice_optin, div#email_optin {
   float:none;
 }
+div#contact_info_section_one div.form-error, div#personal_info_section_one div.form-error, div#user_name_pword_container div.form-error {
+  margin-right:0;
+}
 .app_tr_registration {
   // input overrides
   div.responsive input[type="text"],
@@ -267,6 +270,10 @@ div.responsive a.step-button, div.responsive button.step-button, div.responsive 
   &.btn-primary {
     @extend .btn-primary;
   }
+}
+svg.fa-info-circle {
+  height: 16px;
+  vertical-align: top;
 }
 .janrainEngage {
   &:hover {
@@ -533,6 +540,7 @@ div.responsive div.ErrorMessage.page-error>span.field-error-text {
   display:none;
 }
 #part_type_selection_container {
+  // display:flex;
   @extend .mt-2;
 }
 #sel_type_container,
@@ -1112,7 +1120,8 @@ div.responsive button.step-button {
 }
 
 // Stationary v2 customizations
-.event-type2-stationaryv2 {
+.event-type2-stationaryv2,
+.event-type2-road {
   .part-type-name {
     padding-left: 5px;
     padding-right: 5px;
@@ -1133,8 +1142,8 @@ div.responsive button.step-button {
         max-width:50%;
       }
     }
-    // #cons_user_name {
-    //   max-width:50%;
-    // }
+    #discount_code {
+      max-width:50%;
+    }
   }
 }

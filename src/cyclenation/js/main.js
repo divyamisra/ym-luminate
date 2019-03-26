@@ -1870,10 +1870,11 @@
           // show all participation types in the case that a session variable has not been set for regType
           $('.part-type-container').addClass('d-inline-block col-md-6');
         }
-        
       }
 
       if (eventType2 === 'Stationary' || eventType2 === 'StationaryV2') {
+               var numPtypesShown = $('.part-type-container:visible').length;
+        console.log('numPtypesShown: ', + numPtypesShown);
         if(numPtypesShown === 1 && (regType === 'startTeam' || regType === 'joinTeam')){
           $('#sel_type_container').text('Your team is riding at:');
         } else {
@@ -1894,9 +1895,12 @@
 
       } else {
         $('#sel_type_container').text('How would you like to participate?');
-
+        console.log('road event');
         if (regType === 'virtual') {
           $('.part-type-name:contains("Virtual")').closest('.part-type-container').addClass('d-inline-block col-md-6');
+        } else {
+          console.log('not virtual');
+          $('.part-type-name').closest('.part-type-container').addClass('d-inline-block col-md-6');
         }
         $('.part-type-container.selected input').prop('checked', false).removeClass('selected');
 
@@ -2253,6 +2257,8 @@ cd.regInfoVerification();
         // Utype Step
         if ($('#user_type_page').length > 0) {
           // assuming max number of steps at beginning. As decisions are made in registration, will remove steps if necessary, i.e. if they do NOT create a team or have a payment step
+          $('.existing-account-tooltip').tooltip();
+
           if (eventType2 === 'Stationary') {
             cd.updateRegProgress(1, 9);
           } else {
