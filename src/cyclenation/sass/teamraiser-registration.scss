@@ -544,6 +544,7 @@ div.responsive div.ErrorMessage.page-error>span.field-error-text {
 }
 div.part-type-container {
   position:relative;
+  float: left;
   .part-type-decoration-messages {
     width:100%;
     max-width:100%;
@@ -654,6 +655,16 @@ div#part_type_fundraising_goal_container {
 
 
   // COLUMN overrides
+
+  // div.part-type-container {
+  //   @include make-col-ready();
+  //   @include media-breakpoint-up(lg) {
+  //     @include make-col(4);
+  //   }
+  //   @include media-breakpoint-up(xs) {
+  //     @include make-col(6);
+  //   }
+  // }
   // .donation-level-row-container {
     .don-level-btn {
       // TODO - apply donation-level-btn class to actual amounts and make those xs-6 other things xs-12
@@ -664,20 +675,21 @@ div#part_type_fundraising_goal_container {
       @include media-breakpoint-up(xs) {
         @include make-col(6);
       }
-      
     }
   .don-no-gift {
+    padding-top:7px;
     @include make-col-ready();
     @include media-breakpoint-up(xs) {
       @include make-col(12);
     }
   }
-    .other-amount-row-container {
+    .other-amount-row-container,
+    #part_type_additional_gift_container .form-check {
       flex:none;
-      max-width:100%;
+      // max-width:100%;
       @include make-col-ready();
       @include media-breakpoint-up(xs) {
-        @include make-col(12);
+        @include make-col(6);
       }
       .donation-level-row-label {
         // background-color:$white;
@@ -732,6 +744,7 @@ flex-wrap: wrap;
 #reg_instr_container,
 #cons_info_component_contact_info_section,
 #email_optin,
+#cons_info_dob,
 #cons_birth_date_YEAR,
 .survey-question-number {
   display:none;
@@ -903,6 +916,7 @@ div.registration-page-container div.label-value-block-container {
 
 #reg_summary_body_container {
   margin-bottom: 1em;
+  margin-top: 1em;
 }
 div.reg-summary-thanks-common-container {
 
@@ -1104,13 +1118,23 @@ div.responsive button.step-button {
     padding-right: 5px;
     display:block;
   }
-  // .start-team-container,
-  // .join-team-container,
-  // .breakaway-container {
-  //   display:none;
-  // }
+
   .part-type-container,
   .part-type-name-value-separator {
     display:none;
+  }
+}
+
+@include media-breakpoint-up(md) {
+  div.responsive {
+    #part_type_fundraising_goal_input_container {
+      .form-control,
+      input[type="text"] {
+        max-width:50%;
+      }
+    }
+    // #cons_user_name {
+    //   max-width:50%;
+    // }
   }
 }

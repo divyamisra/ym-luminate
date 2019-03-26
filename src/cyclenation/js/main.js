@@ -1819,6 +1819,8 @@
                 $(this).closest('.part-type-container').addClass('join-team-ptype-time');
               }
             }
+
+
           }
         }
       });
@@ -1836,43 +1838,50 @@
             // ensure the relevant ptypes are visiable and accessible from keyboard navigation
             $('.join-team-ptype-container').find('input[name=fr_part_radio]').attr('aria-hidden', 'false').prop('disabled', false).eq(0).prop('checked', true);
             // show all join team ptypes as coach's ptype time was not found
-            $('.join-team-ptype-container').show();
+            $('.join-team-ptype-container').addClass('d-inline-block col-md-6');
           }
         } else if (regType === 'startTeam') {
           if ($('.vip-ptype-container').length) {
             // ensure the relevant ptypes are visiable and accessible from keyboard navigation
             $('.vip-ptype-container').find('input[name=fr_part_radio]').attr('aria-hidden', 'false').prop('disabled', false).eq(0).prop('checked', true);
             // if promo code based ptype is available on page, only show that ptype option
-            $('.vip-ptype-container').show();
+            $('.vip-ptype-container').addClass('d-inline-block col-md-6');
           } else {
             // ensure the relevant ptypes are visiable and accessible from keyboard navigation
             $('.start-team-ptype-container').find('input[name=fr_part_radio]').attr('aria-hidden', 'false').prop('disabled', false).eq(0).prop('checked', true);
             // otherwise, show publicly available ptypes that match selected reg option
-            $('.start-team-ptype-container').show();
+            $('.start-team-ptype-container').addClass('d-inline-block col-md-6');
           }
         } else if (regType === 'individual') {
           if ($('.vip-ptype-container').length) {
             // ensure the relevant ptypes are visiable and accessible from keyboard navigation
             $('.vip-ptype-container').find('input[name=fr_part_radio]').attr('aria-hidden', 'false').prop('disabled', false).eq(0).prop('checked', true);
             // if promo code based ptype is available on page, only show that ptype option
-            $('.vip-ptype-container').show();
+            $('.vip-ptype-container').addClass('d-inline-block col-md-6');
           } else {
             // ensure the relevant ptypes are visiable and accessible from keyboard navigation
             $('.breakaway-ptype-container').find('input[name=fr_part_radio]').attr('aria-hidden', 'false').prop('disabled', false).eq(0).prop('checked', true);
             // otherwise, show publicly available ptypes that match selected reg option
-            $('.breakaway-ptype-container').show();
+            $('.breakaway-ptype-container').addClass('d-inline-block col-md-6');
           }
         } else {
           // ensure the relevant ptypes are visiable and accessible from keyboard navigation
           $('.part-type-container').find('input[name=fr_part_radio]').attr('aria-hidden', 'false').prop('disabled', false).eq(0).prop('checked', true);
           // show all participation types in the case that a session variable has not been set for regType
-          $('.part-type-container').show();
-        }
+          $('.part-type-container').addClass('d-inline-block col-md-6');
+
 
       }
 
       if (eventType2 === 'Stationary' || eventType2 === 'StationaryV2') {
+      }
+      var numPtypesShown = $('.part-type-container:visible').length;
+
+      if(numPtypesShown === 1 && (regType === 'startTeam' || regType === 'joinTeam')){
+        $('#sel_type_container').text('Your team is riding at:');
+      } else {
         $('#sel_type_container').text('What time do you want to ride?');
+      }
         // $('.part-type-container.selected input').prop('checked', false).removeClass('selected');
         $('.part-type-container').on('click focus', function (e) {
           $('.part-type-container').removeClass('selected');
@@ -1890,7 +1899,7 @@
         $('#sel_type_container').text('How would you like to participate?');
 
         if (regType === 'virtual') {
-          $('.part-type-name:contains("Virtual")').closest('.part-type-container').show();
+          $('.part-type-name:contains("Virtual")').closest('.part-type-container').addClass('d-inline-block col-md-6');
         }
         $('.part-type-container.selected input').prop('checked', false).removeClass('selected');
 
@@ -2034,8 +2043,10 @@
 
       if (regType === 'startTeam') {
         $('#cons_info_component_contact_info_section .sub-section-header').after('<p>As a team lead, we\'ll need your address so we can show you some love and send you swag to help inspire your squad and help you hit those fundraising milestones!</p>');
+        $('#cons_info_dob').show();
+        $('#contact_info_section_one .form-content').addClass('required').prepend('<span class="field-required"></span>');
+        $('.cons-address-street-full-container .form-content').eq(1).removeClass('required').find('.field-required').remove();
         $('#cons_info_component_contact_info_section').show();
-
 
         // end 2019 test updates
       } else if (regType === 'joinTeam') {
@@ -2065,8 +2076,8 @@
       $('.cons-state-label label').remove();
       $('.cons-country-label label').remove();
 
-      $('#password_component_container > div:nth-child(1)').addClass('col-md-12');
-      $('#password_component_container > div:nth-child(2)').addClass('col-md-6');
+      $('#password_component_container > div:nth-child(1)').addClass('col-md-6');
+      $('#password_component_container > div:nth-child(2)').addClass('col-md-6').css('clear', 'left');
       $('#password_component_container > div:nth-child(3)').addClass('col-md-6');
 
 
@@ -2092,8 +2103,7 @@
       $('#cons_birth_date_YEAR').before('<label class="sr-only" for="cons_birth_date_YEAR">Birth Year</label>');
 
 
-      $('#cons_info_dob .form-content').append('<p class="small">If you would like to provide your birthday, we would love to acknowledge your special day each year.</p>');
-
+      $('#cons_info_dob .form-content').append('<p class="small">We love birthdays and want to make sure we put your special day in our calendar so we don’t forget.</p>');
 
       
       $('.mobile-question-container .input-label').append('&nbsp;<span class="mobile-phone-tooltip" data-toggle="tooltip" data-placement="top" title="We require your cell/mobile phone number in case last minute or emergency situations happen with the event and we need to communicate important details to you. We respect your privacy and will not sell or divulge your cell phone number to third parties, without your consent."><i class="fas fa-question-circle"></i></span>');
@@ -2115,7 +2125,7 @@
         }
       }
 
-      $('.input-container label:contains("terms and conditions")').html('I accept and acknowledge that I have read and understand these <a href="#" class="js__terms-conditions">terms and conditions</a> and agree to them voluntarily.')
+      $('.input-container label:contains("terms and conditions")').html('We have to make sure that you have read and understand these <a href="#" class="js__terms-conditions">terms and conditions</a> and that you agree to them voluntarily.');
 
 
       $('.js__terms-conditions').on('click', function (e) {
@@ -2129,18 +2139,73 @@
       $('#previous_step').text('Back')
         .wrap('<div class="order-2 order-sm-1 col-sm-4 col-8 offset-2 offset-sm-0" />');
 
-      var waiverCheckbox = $('.input-container label:contains("terms and conditions")').prev('input[type=checkbox]');
+        var addressComplete = (regType === 'startTeam' ? false : true);
+
+        var waiverCheckbox = $('.input-container label:contains("terms and conditions")').prev('input[type=checkbox]');
+
+        cd.regInfoVerification = function () {
+          if ($(waiverCheckbox).is(':checked') === true && addressComplete === true) {
+            $('#next_step').attr('disabled', false);
+          } else {
+            $('#next_step').attr('disabled', true);
+          }
+        }
+        cd.addressVerification = function () {
+
+if($('input#cons_street1').val() == "" || $('input#cons_city').val() == "" || $('input#cons_zip_code').val() == "" || $('select#cons_state option:selected').val() == "" || $('select#cons_country option:selected').val() == ""){
+  addressComplete = false;
+  cd.regInfoVerification();
+} else {
+  addressComplete = true;
+  cd.regInfoVerification();
+}
+cd.regInfoVerification();
+
+// var inputsCompleted = false;
+// var selectsCompleted = false;
+// $('#contact_info_section_one .required input').each(function(){
+//     if( $(this).val() == ""){
+//       inputsCompleted = false;
+//     } else {
+//       inputsCompleted = true;
+//     }
+//   });
+        //     $('#contact_info_section_one .required select').each(function(){
+              
+        //       if( $(this).children('option:selected').val() == "" ){
+        //         selectsCompleted = false;
+        //       } else {
+        //         selectsCompleted = true;
+        //       }
+        //     });
+  
+        //     if(inputsCompleted === true && selectsCompleted === true){
+        //       console.log('address complete');
+        //       addressComplete = true;
+        //     } else {
+        //       console.log('address incomplete');
+        //       addressComplete = false;
+        //     }
+        //     cd.regInfoVerification();
+        }
+
+
+
+
+      $('#contact_info_section_one input, #contact_info_section_one select').on('keyup keypress blur change mouseout', function(e){
+        console.log('check address fields');
+        cd.addressVerification();
+        
+      });
+
+
 
       $(waiverCheckbox).on('click', function (e) {
-        if ($(this).is(':checked')) {
-          $('#next_step').attr('disabled', false);
-        } else {
-          $('#next_step').attr('disabled', true);
-        }
+        cd.regInfoVerification();
       });
-      if ($(waiverCheckbox).is(':checked') === true) {
-        $('#next_step').attr('disabled', false);
-      }
+      // if ($(waiverCheckbox).is(':checked') === true && addressComplete === true) {
+      //   $('#next_step').attr('disabled', false);
+      // }
 
     }
 
@@ -2150,6 +2215,13 @@
 
       $('.additional-gift-label').text('Personal Donation:');
       $('.total-label').text('Your registration total:');
+
+      $('#reg_summary_body_container').before('<div class="row"><div class="reg-text my-3 col-md-10 offset-md-1 text-center"><p>To complete your registration, please review your information below and then click "Complete Registration."</p></div></div><div class="row"><div class="col-md-4 offset-md-4"><a href="#" class="button btn-primary btn-block js__submit-registration" id="submit-button">Complete Registration</a></div></div>');
+      $('.action-button-container').addClass('col-md-4 offset-md-4')
+      $('.js__submit-registration').on('click', function (e) {
+        e.preventDefault();
+        $('#next_button').click();
+      });
 
     }
     // payment step of reg
