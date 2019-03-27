@@ -19,7 +19,9 @@ div.responsive {
 /* **************** */
 /* elements to hide */
 /* **************** */
-
+.hidden {
+  display: none !important;
+}
 div.responsive span.header-warning-message, 
 div.responsive div.ErrorMessage.page-error>span.field-error-indicator {
   display: none;
