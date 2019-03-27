@@ -178,14 +178,14 @@
                 } else {
                   var donFormId = team.teamDonateURL;
 
-                  $('#team_find').append(
+                  $('#team_rows').append(
                     '<div class="row pb-4"><div class="col-xs-12 col-sm-8 col-md-9 search-result-details"><p><strong>' +
                     team.name +
                     '</strong><br>' +
                     team.eventName + '<br>' +
                     'Team Captain: ' + team.captainFirstName + ' ' + team.captainLastName + '<br>' +
                     ((team.companyName !== null && team.companyName !== undefined) ? team.companyName + '<br>' : '') +
-                    '<a href="' + team.teamPageURL + '">Visit Team Page</a></p></div><div class="col-xs-12 col-sm-4 col-md-3"><a class="button btn-primary btn-block btn-lg pull-right" href="' + team.teamDonateURL + '" aria-label="Donate to ' + team.name + '">Donate</a><a class="button btn-outline-dark btn-block btn-lg pull-right" href="' + team.joinTeamURL + '&s_captainConsId=' + team.captainConsId + '&s_regType=joinTeam" aria-label="Join ' + team.name + '">Join Team</a></div></div>');
+                    '<a href="' + team.teamPageURL + '">Visit Team Page</a></p></div><div class="col-xs-12 col-sm-4 col-md-3"><a class="button btn-primary btn-block btn-lg pull-right" href="' + team.teamDonateURL + '" aria-label="Donate to ' +  team.name + '">Donate</a><a class="button btn-outline-dark btn-block btn-lg pull-right" href="' + team.joinTeamURL + '&s_captainConsId=' + team.captainConsId +'&s_regType=joinTeam" aria-label="Join ' +  team.name + '">Join Team</a></div></div>');
                   $('#team_results').removeAttr('hidden');
                 }
 
@@ -277,7 +277,8 @@
       $('.results-table, .alert').attr('hidden', true);
       $('.results-rows').html('');
       var teamName = $('#teamName').val();
-      cd.getTeams(teamName);
+      // cd.getTeams(teamName);
+      cd.getTeams(teamName, null, true);
     });
     // Search by Company
     $('.js__company-search').on('submit', function (e) {
