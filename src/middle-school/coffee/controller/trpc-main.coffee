@@ -67,9 +67,6 @@ angular.module 'trPcControllers'
                             $rootScope.facebookFundraiserCreateStatus = 'create_fundraiser_duplicate'
                           else
                             $rootScope.facebookFundraiserCreateStatus = 'create_fundraiser_error'
-#                        facebookFundraiserId = if response.data.error?.code is '105' then response.data.error.debug?.fundraiserId else response.data.fundraiser?.id
-#                        if not facebookFundraiserId
-#                          $rootScope.facebookFundraiserCreateStatus = 'create_fundraiser_error'
                         else
                           $rootScope.facebookFundraiserCreateStatus = 'complete'
                           $rootScope.facebookFundraiserId = facebookFundraiserId
