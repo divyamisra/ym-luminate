@@ -1,6 +1,12 @@
 /* jshint strict:false */
 
+const sass = require('node-sass')
+
 module.exports = {
+  options: {
+    implementation: sass
+  }, 
+  
   "general": {
     files: {
       'dist/general/css/main.css': [
