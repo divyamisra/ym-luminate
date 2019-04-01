@@ -2014,7 +2014,11 @@
       });
 
       if (regType === 'virtual' || regType === 'individual') {
-        $('#part_type_section_footer').append('<div class="order-2 order-sm-1 col-sm-4 col-8 offset-2 offset-sm-0"><a href="TRR/?pg=tfind&amp;fr_id=' + evID + '" class="button btn-secondary btn-block">Back</a></div>');
+        $('#part_type_section_footer').append('<div class="order-2 order-sm-1 col-sm-4 col-8 offset-2 offset-sm-0"><a href="TRR/?pg=tfind&amp;fr_id=' + evID + '&amp;fr_tm_opt=none&amp;skip_login_page=true" class="button btn-secondary btn-block">Back</a></div>');
+      } else if(regType === 'startTeam'){
+        $('#previous_step').replaceWith('<div class="order-2 order-sm-1 col-sm-4 col-8 offset-2 offset-sm-0"><a href="TRR/?pg=tfind&amp;fr_id=' + evID + '&amp;fr_tm_opt=new&amp;skip_login_page=true" class="button btn-secondary btn-block">Back</a></div>');
+      } else if(regType === 'joinTeam'){
+        $('#previous_step').replaceWith('<div class="order-2 order-sm-1 col-sm-4 col-8 offset-2 offset-sm-0"><a href="TRR/?pg=tfind&amp;fr_id=' + evID + '&amp;fr_tm_opt=existing&amp;skip_login_page=true" class="button btn-secondary btn-block">Back</a></div>');
       } else {
         $('#previous_step').replaceWith('<div class="order-2 order-sm-1 col-sm-4 col-8 offset-2 offset-sm-0"><a href="TRR/?pg=tfind&amp;fr_id=' + evID + '" class="button btn-secondary btn-block">Back</a></div>');
       }
@@ -2423,6 +2427,7 @@
 
     // ptype
     $('#part_type_selection_container').wrapInner('<fieldset role="radiogroup" class="ptype-selection" aria-labelledby="sel_type_container"/>');
+    $('#fr_part_co_list').attr('aria-labelledby', 'individual_company_hdr_container');
 
     // $('.donation-levels').before('<legend id="reg_donation_array_label" class="sr-only">Make a donation</legend>');
     $('#part_type_additional_gift_section_header').prepend('<div class="bold-label" id="regDonationLabel">Donate Towards Your Goal Now</div>' + (regType === 'startTeam' ? 'Show your squad how it\'s done and make a donation towards your goal.' : 'Show your dedication and make a donation towards your goal.'));
@@ -2434,7 +2439,10 @@
       var ptypeOptionId = $(this).attr('for');
       $(this).closest('.part-type-container').find('input[name="fr_part_radio"]').attr('id', ptypeOptionId);
     });
-
+    // replace all h3 tags with h2
+    $('#reg_payment_body_container h3').replaceWith(function () {
+      return "<h2>" + $(this).html() + "</h2>";
+    });
     $('label[for="responsive_payment_typecc_exp_date_MONTH"] .label-text').text('Month:');
     $('label[for="responsive_payment_typecc_exp_date_MONTH"]').insertBefore($('#responsive_payment_typecc_exp_date_MONTH'));
 
@@ -2445,7 +2453,10 @@
     $('fieldset.cardExpGroup').prepend('<legend class="cc-legend">Credit Card Expires</legend>')
     $('.cc-legend').prepend('<span class="field-required"></span>&nbsp;');
 
-    $('.payment-type-label').prepend('<span class="sr-only">Pay with PayPal</span>');
+    $('.internal-payment .payment-type-label').prepend('<span class="sr-only">Pay by Credit Card</span>');
+    $('.external-payment .payment-type-label').prepend('<span class="sr-only">Pay with PayPal</span>');
+
+    $('#responsive_payment_typecc_cvv_row .HelpLink').attr('aria-hidden', 'true');
 
     // Reg
     $('label[for="cons_first_name"]').eq(0).remove();
