@@ -1908,6 +1908,8 @@
         } else {
           console.log('not virtual');
           $('.part-type-name').closest('.part-type-container').addClass('d-inline-block col-md-6');
+          $('.part-type-name:contains("Virtual")').closest('.part-type-container').removeClass('d-inline-block');
+
         }
         $('.part-type-container.selected input').prop('checked', false).removeClass('selected');
 
