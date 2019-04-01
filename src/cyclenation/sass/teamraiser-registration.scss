@@ -11,6 +11,7 @@ div#contact_info_section_one div.form-error, div#personal_info_section_one div.f
 .app_tr_registration {
   // input overrides
   div.responsive input[type="text"],
+  div.responsive input[type="email"],
   div.responsive input[type="number"],
   div.responsive input[type="password"],
   div.responsive textarea,
@@ -25,6 +26,7 @@ div#contact_info_section_one div.form-error, div#personal_info_section_one div.f
   }
 div#reg_summary_body_container,
   div#part_type_fundraising_goal_container,
+  div#discount_code_container,
   div#part_type_additional_gift_container, div#part_type_addon_container, div#part_type_individual_company_selection_container,
   div.registration-page-container div.sub-section-header,
   div.registration-page-container div.sub-section-body,
@@ -540,7 +542,8 @@ div.responsive div.ErrorMessage.page-error>span.field-error-text {
   }
 
 // ptype
-#part_type_instruction_sub_header {
+#part_type_instruction_sub_header,
+div.part-type-decoration-messages .part-type-description-text {
   display:none;
 }
 #part_type_selection_container {
@@ -564,20 +567,26 @@ div.part-type-container {
       height:100%;
       width:100%;
     }
-
   }
   input {
     margin:0;
     position: absolute;
-    top: 35%;
+    top: 25%;
     left: 15%;
   }
   @include media-breakpoint-down(sm) {
     input {
-      top: 35%;
+      top: 25%;
       left: 10%;
     }
   }
+}
+
+@include media-breakpoint-up(md) {
+div.part-type-container {
+  max-width:47%;
+  margin:10px;
+}
 }
 #F2fRegPartType,
 #participation_options_page {
@@ -733,8 +742,8 @@ div#participant_info_body_container,
 #emergency_contact_field_group {
   @extend .row;
 }
-.cons-full-name-container,
-#emergency_contact_field_group .field-required {
+#emergency_contact_field_group div.field-required,
+.cons-full-name-container {
   @include make-col-ready();
   @include media-breakpoint-up(sm) {
     @include make-col(6);
@@ -893,6 +902,8 @@ div#privacy_component_container label,  div#gift_notice_optin label, div#email_o
     @extend .row;
     @extend .m-0;
   }
+  .reg-summary-reg-info > p,
+  #next_button,
   .contact-info-address {
     display:none;
   }
@@ -1133,6 +1144,7 @@ div.responsive button.step-button {
     padding-left: 5px;
     padding-right: 5px;
     display:block;
+    line-height: 1rem;
   }
 
   .part-type-container,
