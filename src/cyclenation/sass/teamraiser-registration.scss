@@ -92,6 +92,7 @@ small {
 }
 
 .sort {
+  border: 1px solid #000;
   &:after {
     width: 0;
     height: 0;
@@ -152,6 +153,11 @@ small {
   
   div.registration-page-container div.section-footer {
     @extend .mt-3;
+    button.step-button,
+    a.button {
+      font-weight: bold !important;
+      font-size: 1.2em !important;
+    }
   }
   div.registration-page-container div.section-header {
     text-align:center;

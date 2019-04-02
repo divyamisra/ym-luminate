@@ -2216,7 +2216,7 @@
     }
     // payment step of reg
     if ($('#fr_payment_form').length > 0) {
-
+      
       $('#btn_next').text('Submit')
         .wrap('<div class="order-1 order-sm-2 col-sm-4 offset-md-4 col-8 offset-2 mb-3"/>');
       $('#btn_prev').text('Back')
@@ -2458,8 +2458,10 @@
     $('.internal-payment .payment-type-label').prepend('<span class="sr-only">Pay by Credit Card</span>');
     $('.external-payment .payment-type-label').prepend('<span class="sr-only">Pay with PayPal</span>');
 
-    $('#responsive_payment_typecc_cvv_row .HelpLink').attr('aria-hidden', 'true');
-
+    $('#responsive_payment_typecc_cvv_row .HelpLink').attr({
+      "aria-hidden": "true",
+      "tabindex": "-1"
+    });
     // Reg
     $('label[for="cons_first_name"]').eq(0).remove();
     // $('#cons_birth_date_MONTH, #cons_birth_date_DAY, #cons_birth_date_YEAR').attr('aria-labelledby', 'enterAmtLabel');
