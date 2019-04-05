@@ -27,6 +27,11 @@ angular.module 'ahaLuminateApp'
         #
         # New Geo Locate code for KHC
         filterGeoSchoolData = (e) ->
+          SchoolLookupService.getStateByLocation e,
+            failure: (response) ->
+            success: (response) ->
+              $scope.schoolList.stateFilter = response.data.company.schoolData.state
+
           delete $scope.schoolList.schools
           $scope.schoolList.searchPending = true
           $scope.schoolList.searchSubmitted = true
@@ -62,8 +67,8 @@ angular.module 'ahaLuminateApp'
 
         # if getLoc is passed as true
         # ask for geolocation and load all schools within 10 miles of geolocation
-        # if getLoc is true
-        #   getLocation()
+        if getLoc is true
+          $scope.getLocation()
         
         $scope.filterByLocation = ->
           $scope.schoolList.ng_nameFilter = ''
@@ -159,7 +164,7 @@ angular.module 'ahaLuminateApp'
             enableHighAccuracy: !0
             timeout: 1e4
             maximumAge: 'infinity'
-          if navigator.geolocation then navigator.geolocation.getCurrentPosition(getSchoolState, showGEOError, e) else console.log('Geolocation is not supported by this browser.')
+          if navigator.geolocation then navigator.geolocation.getCurrentPosition(filterGeoSchoolData, showGEOError, e) else console.log('Geolocation is not supported by this browser.')
           return
 
         #if getLoc not set or set to false then do normal load process of old search
@@ -195,7 +200,7 @@ angular.module 'ahaLuminateApp'
         $scope.submitSchoolSearch = ->
           nameFilter = jQuery.trim $scope.schoolList.ng_nameFilter
           $scope.schoolList.nameFilter = nameFilter
-          $scope.schoolList.stateFilter = ''
+          #$scope.schoolList.stateFilter = ''
           $scope.schoolList.searchSubmitted = true
           # if not nameFilter or nameFilter.length < 3
           if false
@@ -334,10 +339,10 @@ angular.module 'ahaLuminateApp'
             setResults = ->
               if companies.length > 0
                 schools = setSchools companies
-                if bystate is true
-                  schools = setSchoolsDataByState schools
-                else
-                  schools = setSchoolsData schools
+                #if bystate is true
+                #  schools = setSchoolsDataByState schools
+                #else
+                schools = setSchoolsData schools
                 $scope.schoolList.totalItems = schools.length
                 $scope.schoolList.totalNumberResults = schools.length
                 $scope.schoolList.schools = schools

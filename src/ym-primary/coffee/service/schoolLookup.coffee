@@ -58,7 +58,18 @@ angular.module 'ahaLuminateApp'
             callback.success response
           , (response) ->
             callback.failure response
-      
+
+      # call returns all schools within 10 miles of lat/long passed
+      getStateByLocation: (e, callback) ->
+        url = '//hearttools.heart.org/ym-khc-schools/schoolProcessing.php?method=getStateByLocation&lat=' + e.coords.latitude + '&long=' + e.coords.longitude
+        if $rootScope.tablePrefix is 'heartdev'
+          url += '&table=dev'
+        $http.jsonp($sce.trustAsResourceUrl(url), jsonpCallbackParam: 'callback')
+          .then (response) ->
+            callback.success response
+          , (response) ->
+            callback.failure response
+
       # call returns address info for lat/long passed
       getGeoState: (e, callback) ->
         requestUrl = '//maps.googleapis.com/maps/api/geocode/json?sensor=true&latlng=' + e.coords.latitude + ',' + e.coords.longitude

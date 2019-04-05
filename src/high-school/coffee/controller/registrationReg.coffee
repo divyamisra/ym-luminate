@@ -55,7 +55,7 @@ angular.module 'ahaLuminateControllers'
         questionName = $contactInfoHiddenField.attr 'name'
         questionValue = $contactInfoHiddenField.val()
         $scope.registrationHiddenFields[questionName] = questionValue
-      $contactInfoQuestions = $contactInfo.find 'input[type="text"], select'
+      $contactInfoQuestions = $contactInfo.find 'input[type="text"], input[type="email"], input[type="tel"], select'
       angular.forEach $contactInfoQuestions, (contactInfoQuestion) ->
         $contactInfoQuestion = angular.element contactInfoQuestion
         questionName = $contactInfoQuestion.attr 'name'
