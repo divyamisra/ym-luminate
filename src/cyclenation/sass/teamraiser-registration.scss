@@ -728,6 +728,9 @@ div#part_type_fundraising_goal_container {
   
     #part_type_section_footer {
       @extend .row;
+      #previous_step {
+        display:none;
+      }
     }
 
 // reg info
@@ -1144,18 +1147,25 @@ div.responsive button.step-button {
 }
 
 // Stationary v2 customizations
+
 .event-type2-stationaryv2,
 .event-type2-road {
   .part-type-name {
-    padding-left: 5px;
+    padding-left: 0;
     padding-right: 5px;
-    display:block;
-    line-height: 1rem;
+    // display:block;
+    // line-height: 1rem;
+    text-align:left;
+    font-size: 1.25rem;
+    font-weight: 600;
   }
 
   .part-type-container,
   .part-type-name-value-separator {
     display:none;
+  }
+  div.part-type-container .part-type-decoration-messages {
+    margin:1px 0 0 0;
   }
 }
 
