@@ -1882,15 +1882,9 @@
         if(numPtypesShown === 1 && (regType === 'startTeam' || regType === 'joinTeam')){
           $('#part_type_selection_container .field-required').hide();
           if (regType === 'startTeam' && $('.vip-ptype-container').length) {
-            $('#sel_type_container').text('Your team is riding with:').css({
-              'line-height': '2.4',
-              'float': 'left'
-            });
+            $('#sel_type_container').text('Your team is riding with:');
           } else {
-            $('#sel_type_container').text('Your team is riding from:').css({
-              'line-height': '2.4',
-              'float': 'left'
-            });
+            $('#sel_type_container').text('Your team is riding from:');
           }
           
         } else {
@@ -2503,7 +2497,10 @@
       $('.js__how-it-works-container').html($('.js__chapter-how-it-works'));
       $('.js__greeting-inspire-text').html($('.js__chapter-inspire-text'));
       $('.js__greeting-inspire-image').html($('.js__chapter-inspire-image'));
-    }
+}
+
+// END custom sponsor script
+
     if ($('body').is('.pg_personal')) {
       var personalHeadline = $('#personal_page_header h2');
       $(personalHeadline).replaceWith('<h1>' + $(personalHeadline).text() + '</h1>');

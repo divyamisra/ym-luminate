@@ -616,6 +616,9 @@ div.part-type-container {
     border:none;
     color: #212529;
     background-color: #fff;
+    padding-left: 0;
+    margin-left: 0;
+    text-align: left;
     input[type=radio]{
       display:none;
     }
@@ -1159,6 +1162,13 @@ div.responsive button.step-button {
     font-size: 1.25rem;
     font-weight: 600;
   }
+  .join-team-ptype-time,
+  .vip-ptype-container {
+    .part-type-name {
+      font-size:1rem;
+    }
+  }
+  
 
   .part-type-container,
   .part-type-name-value-separator {
