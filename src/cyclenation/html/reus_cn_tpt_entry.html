@@ -5,7 +5,7 @@
   <div class="container">
     <div class="row">
       <div class="col-12">
-        <h1 class="pb-1">CycleNation San Antonio Impact</h1>
+        <h1 class="pb-1">CycleNation [[E47:[[S80:evID]]:fr_info:1:event_location_city]] Impact</h1>
         <div class="stats-container">
           <p class="mb-0 pb-3"><span class="amount-raised js__fundraiser-raised">[[E130:"[[E42:[[S334:fr_id]]:dollars]]" ".00" "" replaceall]]</span> Raised  <span class="separator text-white">//</span> <span class="amount-raised js__fundraiser-goal">[[E130:"[[E42:[[S334:fr_id]]:goal]]" ".00" "" replaceall]]</span> Goal <span class="separator text-white">//</span> <span class="days-left">[[E42:[[S334:fr_id]]:days-to-event]]</span> Days To Go</p>
         </div>
@@ -33,7 +33,7 @@
 <!-- END PROGRESS THERMOMETER SECTION -->
 
 <!-- EVENT DETAILS SECTION -->
-<section id="event_details" class="section-event-details">
+<section id="eventDetails" class="section-event-details">
   <div class="container">
     <div class="row">
       <div class="details-container col-12 pb-5">
@@ -86,10 +86,10 @@
             <div id="collapseOne" class="details-items-text collapse dont-collapse-lg col-8 pl-0 pt-3 pt-lg-0" aria-labelledby="headingOne" data-parent="#event-details-accordion">
               <div class="card-body">
                 <h3 class="text-uppercase text-primary text-bold">Date</h3>
-                <p class="mb-1">Sat. May 11, 2019</p>
+                <p class="mb-1">[[C1:event_date]]</p>
                 <a href="#" onclick="jQuery('#calendarMenu').toggle(); return false;"><i class="far fa-calendar-plus" aria-hidden="true"></i>[ADD]</a>
                 <!-- BEGIN add to calendar -->
-                <!-- [[U0:thisEventDate=[[E47:[[S334:fr_id]]:fr_info:1:sponsor_1]]]] [[U0:parsedEventDate=[[E130:"[[S80:thisEventDate]]" dup dup "/" lastindexof 1 + swap length substring]][[E130:"[[S80:thisEventDate]]" dup 0 swap "/" indexof substring]][[E130:"[[S80:thisEventDate]]" dup dup "/" indexof 1 + swap "/" lastindexof substring]]]] -->
+                [[U0:thisEventDate=[[E47:[[S334:fr_id]]:fr_info:1:sponsor_1]]]] [[U0:parsedEventDate=[[E130:"[[S80:thisEventDate]]" dup dup "/" lastindexof 1 + swap length substring]][[E130:"[[S80:thisEventDate]]" dup 0 swap "/" indexof substring]][[E130:"[[S80:thisEventDate]]" dup dup "/" indexof 1 + swap "/" lastindexof substring]]]]
                 <!-- S80 thisEventDate: xx[[S80:thisEventDate]]xx -->
                 <!-- S80 parsedEventDate: xx[[S80:parsedEventDate]]xx -->
                 <!--
@@ -141,7 +141,7 @@
             <div id="collapseTwo" class="details-items-text collapse dont-collapse-lg col-8 pl-0 pt-3 pt-lg-0" aria-labelledby="headingTwo" data-parent="#event-details-accordion">
               <div class="card-body">
                 <h3 class="text-uppercase text-primary text-bold mb-1">Location</h3>
-                <p class="mb-1">Brackenridge Park</p>
+                <p class="mb-1">[[E47:[[S80:evID]]:fr_info:1:event_location]]</p>
                 <a href="#">Map It<i class="fas fa-external-link-alt" aria-hidden="true"></i></a><br>
                 <a href="#">Parking Info<i class="fas fa-angle-right" aria-hidden="true"></i></a>
               </div>
@@ -393,9 +393,9 @@
             <div id="collapseSeven" class="details-items-text collapse dont-collapse-lg col-8 pl-0 pt-3 pt-lg-0" aria-labelledby="headingSeven" data-parent="#event-details-accordion">
               <div class="card-body">
                 <h3 class="text-uppercase text-primary text-bold mb-1">Questions?</h3>
-                <a href="#">FAQ<i class="fas fa-angle-right" aria-hidden="true"></i></a><br>
+                <a href="TR?fr_id=[[S80:evID]]&amp;pg=informational&amp;sid=2012">FAQ<i class="fas fa-angle-right" aria-hidden="true"></i></a><br>
                 <a href="#">More Event Info<i class="fas fa-angle-right" aria-hidden="true"></i></a>
-                <p class="mb-1"><a href="#">Email us</a> or call (555) 555-5555</p>
+                <p class="mb-1"><a href="[[S80:evID]]:fr_info:1:coordinator_email]]">Email us</a> or call [[S80:evID]]:fr_info:1:coordinator_phone]]</p>
               </div>
             </div>
             <!-- END DETAILS TEXT -->
@@ -438,7 +438,7 @@
             <div id="collapseEight" class="details-items-text collapse dont-collapse-lg col-8 pl-0 pt-3 pt-lg-0" aria-labelledby="headingEight" data-parent="#event-details-accordion">
               <div class="card-body">
                 <h3 class="text-uppercase text-white text-bold mb-1">Register</h3>
-                <a href="#">Get signed up to ride</a>
+                <a href="SPageServer/?pagename=cn_register&amp;fr_id=[[S334:fr_id]]&amp;s_regType=">Get signed up to ride</a>
               </div>
             </div>
             <!-- END DETAILS TEXT -->
@@ -447,7 +447,7 @@
         </div>
         <!-- MOBILE REGISTER BUTTON -->
         <div class="details-register pt-5 pb-5 text-center">
-          <a class="btn btn-rounded btn-primary" href="#">
+          <a class="btn btn-rounded btn-primary" href="SPageServer/?pagename=cn_register&amp;fr_id=[[S334:fr_id]]&amp;s_regType=">
             <!-- DETAILS ICON - MAIN -->
             <svg version="1.1" id="register-check" class="details-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 260.8 266.8" style="enable-background:new 0 0 260.8 266.8;" xml:space="preserve">
               <g>
@@ -546,13 +546,12 @@
     </div>
     <div class="row">
       <div class="container">
-        <div class="search-container col-12 col-lg-10 offset-lg-1 py-5">
+        <div id="fundraiserSearch" class="search-container col-12 col-lg-10 offset-lg-1 py-5">
           <form class="js__rider-search row mx-0 px-0">
             <label for="name" class="sr-only">Search individuals, teams, and companies</label>
             <input type="text" class="search form-control col-10 col-lg-11" id="rider_name" placeholder="Search individuals, teams, and companies">
             <button type="submit" id="rider_search_button" class="search-button action-button search-submit col-2 col-lg-1">
                 <?xml version="1.0" encoding="utf-8"?>
-                <!-- Generator: Adobe Illustrator 23.0.2, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
                 <svg version="1.1" id="search-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                     viewBox="0 0 24 24" style="enable-background:new 0 0 24 24;" xml:space="preserve">
                 <g transform="translate(-1358,-18)">
@@ -574,7 +573,7 @@
 <section  id="social-feed" class="section-social-feed gray-background">
   <div class="container pt-5 pb-5">
     <div class="social-feed-title col-12">
-      <h2 class="pb-1">San Antonio CycleNation on Flickr</h2>
+      <h2 class="pb-1">[[C1:location_city]] CycleNation on Flickr</h2>
     </div>
     <div class="title-divider col-12">
       <svg id="title-divider" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -589,7 +588,7 @@
       <!-- THIRD PARTY EMBED -->
     </div>
     <div class="social-feed-button col-12 pt-2 text-center">
-      <a class="btn-rounded btn-white" href="#">Community Page Link</a>
+      <a class="btn-rounded btn-white" href="SPageServer/?pagename=cn_blog">Community Page Link</a>
     </div>
   </div>
 </section>
@@ -725,7 +724,7 @@
           <a href="#" class="btn-rounded btn-primary px-5">Sponsors Page</a>
         </p>
         <p class="text-center">
-            If interested in sponsorship, please contact Damaris Alfonso at <a href="#">dalfonso@heart.org</a>.
+            If interested in sponsorship, please contact [[S80:evID]]:fr_info:1:coordinator_name]] at <a href="mailto:[[S80:evID]]:fr_info:1:coordinator_email]]">[[S80:evID]]:fr_info:1:coordinator_email]]</a>.
         </p>
       </div>
     </div>
