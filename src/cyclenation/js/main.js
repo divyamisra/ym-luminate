@@ -2042,7 +2042,7 @@
       $('.input-label:contains("Mobile")').closest('.survey-question-container').addClass('mobile-question-container two-col');
       $('.input-label:contains("I am a")').closest('.survey-question-container').addClass('survivor-question-container');
       $('.input-label:contains("jersey size")').closest('.survey-question-container').addClass('jersey-question-container');
-      $('.input-label:contains("route distance")').closest('.survey-question-container').addClass('route-question-container');
+      $('.input-label:contains("Route Distance")').closest('.survey-question-container').addClass('route-question-container');
       $('#cons_email').closest('.form-content').addClass('email-question-container two-col');
       $('#cons_email_format').before('<legend id="consEmailFormat" class="sr-only">Email Format</legend>');
       $('#cons_email_format').attr('aria-labelledby', 'consEmailFormat');
@@ -2434,7 +2434,7 @@
     $('#fr_part_co_list').attr('aria-labelledby', 'individual_company_hdr_container');
 
     // $('.donation-levels').before('<legend id="reg_donation_array_label" class="sr-only">Make a donation</legend>');
-    $('#part_type_additional_gift_section_header').prepend('<div class="bold-label" id="regDonationLabel">Donate Towards Your Goal Now</div>' + (regType === 'startTeam' ? 'Want to donate above and beyond the registration fee to jump start your fundraising? Kick your fundraising into high gear with a personal donation:'));
+    $('#part_type_additional_gift_section_header').prepend('<div class="bold-label" id="regDonationLabel">Donate Towards Your Goal Now</div>Want to donate above and beyond the registration fee to jump start your fundraising? Kick your fundraising into high gear with a personal donation:');
 
     $('#part_type_donation_level_input_container').wrapInner('<fieldset role="radiogroup" class="donation-form-fields" aria-labelledby="regDonationLabel"/>');
 
