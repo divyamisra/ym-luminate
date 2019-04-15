@@ -11,76 +11,28 @@
         <button type="button" id="utype-no" class="btn btn-block btn-primary js__new-record">NO</button>
       </div>
     </div>
-    <!-- END have we met container -->
-  
-    <!-- BEGIN login container -->
-    <div class="row js__login-container d-none">
-      <div class="col-11 m-auto text-center">
-        <h1 class="h3">Fantastic! If you use your username and password from the last time you registered, it'll make the registration process faster!</h1>
+  </div>
+  <!-- END have we met container -->
 
-        <p>
-          <span class="field-required"></span>
-          <!-- <sup>
-  
-                    <i class="fas fa-asterisk"></i>
-                  </sup> -->Indicates required</p>
-      </div>
-  
-      <div class="col-md-6 offset-md-3">
-        <div class="js__login-error-container alert alert-danger d-none" role="alert" aria-atomic="true">
-          <span class="" aria-hidden="true"></span>
-          <span class="sr-only">Error:</span>
-          <i class="fas fa-exclamation-triangle" aria-hidden="true"></i>
-          <span class="js__login-error-message"></span>
-        </div>
-      </div>
-  
-      <div class="col-md-6 offset-md-3">
-        <form id="loginForm" class="js__login-form" autocomplete="off">
-          <div id="utype_login_container" class="">
-            <div class="">
-              <div class="form-group">
-                <span class="d-flex">
-                  <span class="field-required"></span>
-                  <label for="loginUsername">Username: </label>
-                  <small id="loginUsernameHelpBlock" class="ml-auto form-text">
-                    <a href="#" class="js__show-retrieve-login">Forgot username?</a>
-                  </small>
-                </span>
-                <input type="text" name="user_name" id="loginUsername" class="form-control" aria-describedby="loginUsernameHelpBlock"
-                  data-parsley-trigger="change" data-parsley-minlength="5" data-parsley-maxlength="60"
-                  data-parsley-minlength-message="Your username must be at least 5 characters long."
-                  data-parsley-maxlength-message="Your username must be at fewer than 60 characters long."
-                  data-parsley-required-message="Username is required" data-parsley-required="true" required>
-              </div>
-              <div class="form-group">
-                <span class="d-flex">
-                  <span class="field-required"></span>
-                  <label for="loginPassword">Password:</label>
-                  <small id="loginPasswordHelpBlock" class="ml-auto form-text">
-                    <a href="#" class="js__show-retrieve-login">Forgot password?</a>
-                  </small>
-                </span>
-  
-                <input type="password" name="user_password" id="loginPassword" class="form-control" aria-describedby="loginPasswordHelpBlock"
-                  data-parsley-trigger="change" data-parsley-minlength="5" data-parsley-maxlength="20"
-                  data-parsley-minlength-message="Your password must be at least 5 characters long."
-                  data-parsley-maxlength-message="Your password must be at fewer than 20 characters long."
-                  data-parsley-required-message="Password is required" data-parsley-required="true" required>
-              </div>
-  
-              <div class="form-group text-center">
-                <button class="btn btn-block btn-primary js__login-submit step-button" name="loginSubmit" value="Log In"
-                  type="submit">Log In</button>
-              </div>
-              <div class="form-group">
-                <p>
-                  <a href="#" class="js__show-have-we-met text-link">Back</a>
-                </p>
-              </div>
-            </div>
-          </div>
-        </form>
+  <!-- BEGIN login container -->
+  <div class="row js__login-container d-none">
+    <div class="col-11 m-auto text-center">
+      <h1 class="h3">Fantastic! If you use your username and password from the last time you registered, it'll make the registration process faster!</h1>
+
+      <p>
+        <span class="field-required"></span>
+        <!-- <sup>
+
+                  <i class="fas fa-asterisk"></i>
+                </sup> -->Indicates required</p>
+    </div>
+
+    <div class="col-md-6 offset-md-3">
+      <div class="js__login-error-container alert alert-danger d-none" role="alert" aria-atomic="true">
+        <span class="" aria-hidden="true"></span>
+        <span class="sr-only">Error:</span>
+        <i class="fas fa-exclamation-triangle" aria-hidden="true"></i>
+        <span class="js__login-error-message"></span>
       </div>
       <div class="js__social-login-container text-center mx-auto mb-4">
           <div class="col-12">

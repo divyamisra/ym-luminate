@@ -1997,7 +1997,7 @@ cd.getEventsByDistance = function (zipCode, numEvents) {
         }
         if (eventType2 === 'StationaryV2') {
           var ptypeName = $(this).find('.part-type-name').text();
-          var newPtypeName = ptypeName.replace("Start a Team - ", "").replace("Join a Team - ", "").replace("Breakaway - ", "");
+          var newPtypeName = ptypeName.replace("Start a Team - ", "").replace("Join a Team - ", "").replace("Breakaway - ", "").replace("VIP", "").replace(", ", " from ");
           // Hide and disable participation types that don't apply to this particular registration path
           $(this).parent().find('input[type=radio]').attr('aria-hidden', 'true').prop('checked', false).prop('disabled', true);
 
@@ -2080,12 +2080,14 @@ cd.getEventsByDistance = function (zipCode, numEvents) {
         console.log('numPtypesShown: ', + numPtypesShown);
         if(numPtypesShown === 1 && (regType === 'startTeam' || regType === 'joinTeam')){
           $('#part_type_selection_container .field-required').hide();
-          $('#sel_type_container').text('Your team is riding from:').css({
-            'line-height': '2.4',
-            'float': 'left'
-          });
+          if (regType === 'startTeam' && $('.vip-ptype-container').length) {
+            $('#sel_type_container').text('Your team is riding with:');
+          } else {
+            $('#sel_type_container').text('Your team is riding from:');
+          }
+          
         } else {
-          $('#sel_type_container').text('What time do you want to ride?');
+            $('#sel_type_container').text('What time do you want to ride?');
         }
         $('.part-type-container').on('click focus', function (e) {
           $('.part-type-container').removeClass('selected');
