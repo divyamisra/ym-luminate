@@ -289,6 +289,41 @@
       cd.getCompanies(companyName);
     });
 
+    /******************************/
+    /* THERMOMETER SCRIPTS */
+    /******************************/
+    // GREETING PAGE
+    if ($('body').is('.pg_entry')) {
+      cd.runThermometer = function (raised, goal) {
+        var fundraiserRaised = parseInt(raised.replace('$', '').replace(',', ''));
+        var fundraiserGoal = parseInt(goal.replace('$', '').replace(',', ''));
+        var percentRaised = (fundraiserRaised / fundraiserGoal);
+        if (isNaN(percentRaised)) {
+          percentRaised = 0;
+        }
+        var percentRaisedFormatted = (percentRaised * 100) + '%';
+        $('.js__progress-bar')
+          .css('width', percentRaisedFormatted)
+          .attr("aria-valuenow", percentRaisedFormatted);
+        $('.js__percent-raised').each(function () {
+          $(this).prop('Counter', 0).animate({
+            Counter: percentRaisedFormatted
+          }, {
+            duration: 1000,
+            easing: 'swing',
+            step: function (now) {
+              $(this).text(Math.ceil(now) + '%');
+              if (now > 80 && now <= 100) {
+                $(this).addClass('invert-percent-raised');
+              } else if (now > 100) {
+                $(this).addClass('progress-goal-met');
+              }
+            }
+          });
+        });
+      }
+    }
+
 
     /******************************/
     /* CROSS EVENT ROSTER SCRIPTS */
@@ -341,11 +376,13 @@
         Math.abs(n - i).toFixed(c).slice(2) : "");
     };
 
-    cd.getEvents = function (eventName) {
+    cd.getEvents = function (eventName, eventState, numEvents) {
+      $('.js__no-event-results').addClass('d-none');
       luminateExtend.api({
         api: 'teamraiser',
         data: 'method=getTeamraisersByInfo' +
-          '&name=' + eventName +
+          '&name=' + (eventState ? '%25%25' : eventName) +
+           (eventState ? '&state=' + eventState : '') +
           '&event_type=' + eventType +
           '&response_format=json&list_page_size=499&list_page_offset=0&list_sort_column=event_date&list_ascending=true',
         callback: {
@@ -354,11 +391,18 @@
 
               var events = luminateExtend.utils.ensureArray(response.getTeamraisersResponse.teamraiser);
 
-              events.map(function (event, i) {
+              var todaysDate = new Date();
+              var liveEventsDisplayed = 0;
+              var pastEventsDisplayed = 0;
+
+              $(events).each(function (i, event) {
+
+                console.log('liveEventsDisplayed: ', liveEventsDisplayed);
                 var eventId = event.id;
                 var eventName = event.name;
                 var eventDate = luminateExtend.utils.simpleDateFormat(event.event_date,
                   'EEEE, MMMM d, yyyy');
+                var eventTimestamp = new Date(event.event_date);
                 var eventCity = event.city;
                 var eventStateAbbr = event.state;
                 var eventStateFull = event.mail_state;
@@ -367,27 +411,30 @@
                 var greetingUrl = event.greeting_url;
                 var registerUrl = 'SPageServer/?pagename=cn_register&fr_id=' + eventId + '&s_regType=';
                 var acceptsRegistration = event.accepting_registrations;
+                var eventRow = '<li class="event-detail row col-12 col-lg-4 mb-4 fadein"><div class="event-detail-content col-10"><a class="js__event-name" href="' +
+                greetingUrl + '"><span class="city">' +
+                eventCity + '</span>, <span class="fullstate">' +
+                eventStateAbbr + '</span></a><span class="eventtype d-block">' +
+                eventType + ' Event</span><span class="event-date d-block">' +
+                eventDate + '</span></div><a href="' +
+                greetingUrl + '" class="event-detail-button btn col-2"><i class="fas fa-angle-right"></i></a></li>';
 
-                var eventRow = '<li class="event-detail row mb-4 fadein"' + (i < 3 ? '' : 'hidden') + '><div class="col-md-6"><p><a class="js__event-name" href="' +
-                  greetingUrl + '" class="d-block font-weight-bold"><span class="city">' +
-                  eventCity + '</span>, <span class="fullstate">' +
-                  eventStateFull + '</span></a><span class="state-abbr d-none">' +
-                  eventStateAbbr + '</span><span class="eventtype d-block">' +
-                  eventType + '</span><span class="event-location d-block">' +
-                  eventLocation + '</span><span class="event-date d-block">' +
-                  eventDate + '</span></p></div><div class="col-md-3 col-6"><a href="' +
-                  greetingUrl +
-                  '" class="button btn-outline-dark btn-block btn-lg js__event-details" aria-label="Details for ' + eventName + '">Details</a></div><div class="col-md-3 col-6">' +
-                  (acceptsRegistration === 'true' ? '<a href="' +
-                    registerUrl + '" class="button btn-primary btn-block btn-lg js__event-register" aria-label="Register for ' + eventName + '">Register</a>' : '<span class="d-block text-center">Registration is closed<br>but <a class="scroll-link" href="#fundraiserSearch">you can still donate</a></span>') +
-                  '</div></li>';
-
-                $('.js__event-search-results').append(eventRow);
-
-                eventData.push({
-                  'eventId': eventId,
-                  'eventLocation': eventCity + ', ' + eventStateFull
-                });
+                if(eventTimestamp > todaysDate){
+                  if(numEvents){
+                    if(liveEventsDisplayed < numEvents){
+                      // numEvents exists. Restrict the number of results that are displayed
+                      $('.js__event-search-results').append(eventRow);
+                      liveEventsDisplayed++;
+                    }
+                  } else {
+                    // numEvents does NOT exist. Display all results in list
+                    $('.js__event-search-results').append(eventRow);
+                  }
+                } else {
+                  // display past events in a separate table
+                  $('.js__past-event-search-results').removeClass('d-none').append(eventRow);
+                }
+               
               });
 
               $('.js__event-details').on('click', function () {
@@ -402,14 +449,8 @@
                 _gaq.push(['t2._trackEvent', 'program-homepage', 'click', 'search-event-details-link']);
               });
 
-              addScrollLinks();
-
-              // applyListFilter only on cn_home
-              applyListFilter();
-
-              cd.getTopParticipants(eventData);
-              cd.getTopTeams(eventData);
-              cd.getTopCompanies(eventData);
+            } else {
+              $('.js__no-event-results').removeClass('d-none');
             }
           },
           error: function (response) {
@@ -418,25 +459,116 @@
         }
       });
     };
+// BEGIN getEventsByDistance
 
+cd.getEventsByDistance = function (zipCode, numEvents) {
+  $('.js__no-event-results').addClass('d-none');
 
-    $('.js__show-more-events').on('click', function (e) {
-      e.preventDefault();
-      $(this).attr('hidden', true);
-      $('.event-detail').removeAttr('hidden');
-      $('.js__show-fewer-events').removeAttr('hidden');
-    });
+  luminateExtend.api({
+    api: 'teamraiser',
+    data: 'method=getTeamraisersByDistance' +
+      '&starting_postal=' + zipCode +
+      '&distance_units=mi' +
+      '&search_distance=200' +
+      '&event_type=' + eventType +
+      '&response_format=json&list_page_size=499&list_page_offset=0&list_sort_column=event_date&list_ascending=true',
+    callback: {
+      success: function (response) {
+        if (response.getTeamraisersResponse.totalNumberResults > '0') {
 
-    $('.js__show-fewer-events').on('click', function (e) {
-      e.preventDefault();
-      $(this).attr('hidden', true);
-      $('.event-detail').each(function (i) {
-        if (i > 2) {
-          $(this).attr('hidden', true);
+          var events = luminateExtend.utils.ensureArray(response.getTeamraisersResponse.teamraiser);
+
+          var todaysDate = new Date();
+          var liveEventsDisplayed = 0;
+          var pastEventsDisplayed = 0;
+
+          $(events).each(function (i, event) {
+            var eventId = event.id;
+            var eventName = event.name;
+            var eventDate = luminateExtend.utils.simpleDateFormat(event.event_date,
+              'EEEE, MMMM d, yyyy');
+            var eventTimestamp = new Date(event.event_date);
+            var eventCity = event.city;
+            var eventStateAbbr = event.state;
+            var eventStateFull = event.mail_state;
+            var eventLocation = event.location_name;
+            var eventType = event.public_event_type_name;
+            var greetingUrl = event.greeting_url;
+            var registerUrl = 'SPageServer/?pagename=cn_register&fr_id=' + eventId + '&s_regType=';
+            var acceptsRegistration = event.accepting_registrations;
+
+            var eventRow = '<li class="event-detail row col-12 col-lg-4 mb-4 fadein"><div class="event-detail-content col-10"><a class="js__event-name" href="' +
+            greetingUrl + '"><span class="city">' +
+            eventCity + '</span>, <span class="fullstate">' +
+            eventStateAbbr + '</span></a><span class="eventtype d-block">' +
+            eventType + ' Event</span><span class="event-date d-block">' +
+            eventDate + '</span></div><a href="' +
+            greetingUrl + '" class="event-detail-button btn col-2"><i class="fas fa-angle-right"></i></a></li>';
+
+            if(eventTimestamp > todaysDate){
+              if(numEvents){
+                if(liveEventsDisplayed < numEvents){
+                  // numEvents exists. Restrict the number of results that are displayed
+                  $('.js__event-search-results').append(eventRow);
+                  liveEventsDisplayed++;
+                }
+              } else {
+                // numEvents does NOT exist. Display all results in list
+                $('.js__event-search-results').append(eventRow);
+              }
+            } else {
+              // display past events in a separate table
+              $('.js__past-event-search-results').append(eventRow);
+            }
+
+          });
+
+          $('.js__event-details').on('click', function () {
+            _gaq.push(['t2._trackEvent', 'program-homepage', 'click', 'search-event-details-button']);
+          });
+
+          $('.js__event-register').on('click', function () {
+            _gaq.push(['t2._trackEvent', 'program-homepage', 'click', 'search-event-register-button']);
+          });
+
+          $('.js__event-name').on('click', function () {
+            _gaq.push(['t2._trackEvent', 'program-homepage', 'click', 'search-event-details-link']);
+          });
+
+          addScrollLinks();
+
+          // applyListFilter only on cn_home
+          // applyListFilter();
+
+        } else {
+          $('.js__no-event-results').removeClass('d-none');
         }
-      });
-      $('.js__show-more-events').removeAttr('hidden');
-    });
+      },
+      error: function (response) {
+        console.log('getEvents error: ' + response.errorResponse.message);
+      }
+    }
+  });
+};
+// END getEventsByDistance
+
+    // $('.js__show-more-events').on('click', function (e) {
+    //   e.preventDefault();
+    //   $(this).attr('hidden', true);
+    //   $('.event-detail').removeAttr('hidden');
+    //   $('.js__show-fewer-events').removeAttr('hidden');
+    // });
+
+    // $('.js__show-fewer-events').on('click', function (e) {
+    //   e.preventDefault();
+    //   $(this).attr('hidden', true);
+    //   $('.event-detail').each(function (i) {
+    //     if (i > 2) {
+    //       $(this).attr('hidden', true);
+    //     }
+    //   });
+    //   $('.js__show-more-events').removeAttr('hidden');
+    // });
 
 
     // BEGIN TOP PARTICIPANTS
@@ -682,28 +814,82 @@
 
     }
 
+
+    function getLocation(){
+      console.log("Entered getLocation");
+      var options = {
+        enableHighAccuracy: true,
+        timeout: 10000,
+        maximumAge: 'infinity'
+      };
+      if (navigator.geolocation){
+        navigator.geolocation.getCurrentPosition(showPosition,showGeolocationError,options);
+      }
+      else{
+        console.log("Geolocation is not supported by this browser.");}
+    }
+    
+    function showPosition(position) {
+      console.log("Entered showPosition lat: ",position.coords.latitude);
+      console.log("Entered showPosition long: ",position.coords.longitude);
+      
+      var input = position.coords.latitude + "," + position.coords.longitude;
+      var latlngStr = input.split(',', 2);
+      var latlng = new google.maps.LatLng(latlngStr[0], latlngStr[1]);
+      var geocoder = new google.maps.Geocoder();
+      geocoder.geocode( { 'location': latlng }, function (result, status) {
+        var zipCode = result[0]['address_components'][7]['short_name'];
+        cd.getEventsByDistance(zipCode, 3);
+
+      });
+    }   
+    function showGeolocationError(error){
+      cd.getEvents('%25%25', null, 3);
+      switch(error.code){
+        case error.PERMISSION_DENIED:
+          console.log("User denied the request for Geolocation.");
+          
+          break;
+        case error.POSITION_UNAVAILABLE:
+          alert("Location information is currently unavailable.");
+          break;
+        case error.TIMEOUT:
+          alert("The request to get location timed out.  Please refresh the page to use this feature.");
+          break;
+        case error.UNKNOWN_ERROR:
+          alert("An unknown error occurred.");
+          break;
+      } 
+    }
     // Call roster scripts based on page type
-    if ($('body').is('.pg_cn_home')) {
-      cd.getEvents('%25%25');
-      $('.js__event-search-form').on('submit', function (e) {
+    if ($('body').is('.pg_cn_home') || $('body').is('.pg_cn_events')) {
+      
+      if ($('body').is('.pg_cn_home')) {
+        // cd.getEvents('%25%25', null, 3);
+
+
+        getLocation();
+
+      } else {
+        cd.getEvents('%25%25', null);
+      }
+
+      $('.js__state-search select').on('change', function (e) {
+        $('#zip').val('');
+        $('.js__event-search-results').html('');
+        var stateSearched = $(this).children('option:selected').val();
+        cd.getEvents(null, stateSearched);
         e.preventDefault();
       });
 
-      var allEventDataUrl = '../cyclenation_data/CN_EventTotals.txt';
-
-      $.getJSON(allEventDataUrl, function (data) {
-        var totalRaised = data[0].TotalRevenue;
-        var totalRaisedFormatted = '$' + totalRaised.toFixed(0).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");;
-        var totalGoal = data[0].TotalGoal;
-        // var dateCalculated = luminateExtend.utils.simpleDateFormat(data[0].CalculatedOn, 'h:mm a MMMM d, yyyy');
-        var percentAchieved = Math.round((totalRaised / totalGoal) * 100);
-        var percentAchievedFormatted = percentAchieved + '%';
-
-        $('.js__greeting-thermo').val(percentAchieved);
-        $('.js__all-event-raised').text(totalRaisedFormatted);
-        $('.js__event-stats-percent').text(percentAchievedFormatted);
-
+      $('.js__zip-search ').on('submit', function (e) {
+        $('#fr_event_state').val($('#fr_event_state option:first').val());
+        $('.js__event-search-results').html('');
+        var zipSearched = $('#zip').val();
+        cd.getEventsByDistance(zipSearched);
+        e.preventDefault();
       });
+
 
     } else if ($('body').is('.pg_entry')) {
       eventData.push({
@@ -714,6 +900,19 @@
       cd.getTopCompanies(eventData);
     }
 
+    // TODO - rename to make clear that this is a redirect search form with single field
+    $('.js__rider-search').on('submit', function (e) {
+      console.log('participant search submitted');
+      e.preventDefault();
+      var fullName = $('#rider_name').val();
+      // First Name is the first word of a multi word search. If there are more than two words, first name will include all of the words except the last word
+      var firstName = fullName.split(' ').slice(0, -1).join(' ');
+      // Last Name is the last whole word in a multi word search
+      var lastName = fullName.split(' ').slice(-1).join(' ');
+
+      window.location.href = 'https://[[S29:SECURE_DOMAIN]][[S29:SECURE_PATH]]SPageServer/?pagename=cn_search&search_for=participant&first_name=' + firstName + '&last_name=' + lastName;
+    });
+
     // reset show more/fewer functionality after filters have been cleared
     function resetEventList() {
       $('.event-detail').each(function (i) {
@@ -721,7 +920,7 @@
           $(this).attr('hidden', true);
         }
         $('.js__show-fewer-events').attr('hidden', true);
-        $('.js__show-more-events').removeAttr('hidden');
+        // $('.js__show-more-events').removeAttr('hidden');
         $('.js__show-more-container').removeClass('d-none');
       });
     }
@@ -1794,10 +1993,11 @@
           $(this).parent().removeClass('selected').addClass('ptype-full').find('input[type=radio]').remove();
           var disabledLabel = $(this).find('label');
           $(disabledLabel).replaceWith('<div>' + $(disabledLabel).html() + '</div>');
+          $(this).remove();
         }
         if (eventType2 === 'StationaryV2') {
           var ptypeName = $(this).find('.part-type-name').text();
-
+          var newPtypeName = ptypeName.replace("Start a Team - ", "").replace("Join a Team - ", "").replace("Breakaway - ", "");
           // Hide and disable participation types that don't apply to this particular registration path
           $(this).parent().find('input[type=radio]').attr('aria-hidden', 'true').prop('checked', false).prop('disabled', true);
 
@@ -1807,6 +2007,7 @@
             $(this).closest('.part-type-container').addClass('breakaway-ptype-container');
           } else if (ptypeName.indexOf('Start a Team') > -1) {
             $(this).closest('.part-type-container').addClass('start-team-ptype-container');
+       
           } else if (ptypeName.indexOf('Join a Team') > -1) {
             $(this).closest('.part-type-container').addClass('join-team-ptype-container');
             var coachPtype = $('.captain-ptype').text();
@@ -1820,9 +2021,10 @@
                 $(this).closest('.part-type-container').addClass('join-team-ptype-time');
               }
             }
-
-
           }
+          
+          // Remove ptype prefixes from public-facing reg options
+          $(this).find('.part-type-name').text(newPtypeName);
         }
       });
 
@@ -1877,11 +2079,14 @@
                var numPtypesShown = $('.part-type-container:visible').length;
         console.log('numPtypesShown: ', + numPtypesShown);
         if(numPtypesShown === 1 && (regType === 'startTeam' || regType === 'joinTeam')){
-          $('#sel_type_container').text('Your team is riding at:');
+          $('#part_type_selection_container .field-required').hide();
+          $('#sel_type_container').text('Your team is riding from:').css({
+            'line-height': '2.4',
+            'float': 'left'
+          });
         } else {
           $('#sel_type_container').text('What time do you want to ride?');
         }
-        // $('.part-type-container.selected input').prop('checked', false).removeClass('selected');
         $('.part-type-container').on('click focus', function (e) {
           $('.part-type-container').removeClass('selected');
           $(this).addClass('selected');
@@ -1902,6 +2107,8 @@
         } else {
           console.log('not virtual');
           $('.part-type-name').closest('.part-type-container').addClass('d-inline-block col-md-6');
+          $('.part-type-name:contains("Virtual")').closest('.part-type-container').removeClass('d-inline-block');
+
         }
         $('.part-type-container.selected input').prop('checked', false).removeClass('selected');
 
@@ -1943,8 +2150,8 @@
       $('#fund_goal_container').after('How much will you fundraise for CycleNation?');
 
       var minFundraisingGoal = $('#fr_goal').val().replace('.00', '');
-      $('#part_type_fundraising_goal_container .form-content').append('<p class="small">All riders commit to fundraising ' + minFundraisingGoal + '. Don\'t be scared! We\'ve got your back and will show you how easy it is to fundraise for CycleNation!</p>');
-
+      $('#part_type_fundraising_goal_container .form-content').append('<p class="small">All riders commit to fundraising ' + minFundraisingGoal + '. You can increase your fundraising goal, but the amount shown above is your required fundraising minimum.</p>');
+      
 
 
       $('.donation-level-amount-text').closest('.donation-level-row-container').addClass('don-level-btn');
@@ -2008,7 +2215,11 @@
       });
 
       if (regType === 'virtual' || regType === 'individual') {
-        $('#part_type_section_footer').append('<div class="order-2 order-sm-1 col-sm-4 col-8 offset-2 offset-sm-0"><a href="TRR/?pg=tfind&amp;fr_id=' + evID + '" class="button btn-secondary btn-block">Back</a></div>');
+        $('#part_type_section_footer').append('<div class="order-2 order-sm-1 col-sm-4 col-8 offset-2 offset-sm-0"><a href="TRR/?pg=tfind&amp;fr_id=' + evID + '&amp;fr_tm_opt=none&amp;skip_login_page=true" class="button btn-secondary btn-block">Back</a></div>');
+      } else if(regType === 'startTeam'){
+        $('#previous_step').replaceWith('<div class="order-2 order-sm-1 col-sm-4 col-8 offset-2 offset-sm-0"><a href="TRR/?pg=tfind&amp;fr_id=' + evID + '&amp;fr_tm_opt=new&amp;skip_login_page=true" class="button btn-secondary btn-block">Back</a></div>');
+      } else if(regType === 'joinTeam'){
+        $('#previous_step').replaceWith('<div class="order-2 order-sm-1 col-sm-4 col-8 offset-2 offset-sm-0"><a href="TRR/?pg=tfind&amp;fr_id=' + evID + '&amp;fr_tm_opt=existing&amp;skip_login_page=true" class="button btn-secondary btn-block">Back</a></div>');
       } else {
         $('#previous_step').replaceWith('<div class="order-2 order-sm-1 col-sm-4 col-8 offset-2 offset-sm-0"><a href="TRR/?pg=tfind&amp;fr_id=' + evID + '" class="button btn-secondary btn-block">Back</a></div>');
       }
@@ -2105,7 +2316,7 @@
       $('#cons_birth_date_YEAR').before('<label class="sr-only" for="cons_birth_date_YEAR">Birth Year</label>');
 
 
-      $('#cons_info_dob .form-content').append('<p class="small">We love birthdays and want to make sure we put your special day in our calendar so we don’t forget.</p>');
+      $('#cons_info_dob .form-content').append('<p class="small">We love birthdays and want to make sure we put your special day in our calendar so we don\'t forget.</p>');
 
       
       $('.mobile-question-container .input-label').append('&nbsp;<span class="mobile-phone-tooltip" data-toggle="tooltip" data-placement="top" title="We require your cell/mobile phone number in case last minute or emergency situations happen with the event and we need to communicate important details to you. We respect your privacy and will not sell or divulge your cell phone number to third parties, without your consent."><i class="fas fa-question-circle"></i></span>');
@@ -2153,45 +2364,19 @@
           }
         }
         cd.addressVerification = function () {
-
-if($('input#cons_street1').val() == "" || $('input#cons_city').val() == "" || $('input#cons_zip_code').val() == "" || $('select#cons_state option:selected').val() == "" || $('select#cons_country option:selected').val() == ""){
-  addressComplete = false;
-  cd.regInfoVerification();
-} else {
-  addressComplete = true;
-  cd.regInfoVerification();
-}
-cd.regInfoVerification();
-
-// var inputsCompleted = false;
-// var selectsCompleted = false;
-// $('#contact_info_section_one .required input').each(function(){
-//     if( $(this).val() == ""){
-//       inputsCompleted = false;
-//     } else {
-//       inputsCompleted = true;
-//     }
-//   });
-        //     $('#contact_info_section_one .required select').each(function(){
-              
-        //       if( $(this).children('option:selected').val() == "" ){
-        //         selectsCompleted = false;
-        //       } else {
-        //         selectsCompleted = true;
-        //       }
-        //     });
-  
-        //     if(inputsCompleted === true && selectsCompleted === true){
-        //       console.log('address complete');
-        //       addressComplete = true;
-        //     } else {
-        //       console.log('address incomplete');
-        //       addressComplete = false;
-        //     }
-        //     cd.regInfoVerification();
+          if(regType === 'startTeam'){
+            if($('input#cons_street1').val() == "" || $('input#cons_city').val() == "" || $('input#cons_zip_code').val() == "" || $('select#cons_state option:selected').val() == "" || $('select#cons_country option:selected').val() == ""){
+              addressComplete = false;
+              cd.regInfoVerification();
+            } else {
+              addressComplete = true;
+              cd.regInfoVerification();
+            }
+          } else {
+            cd.regInfoVerification();
+          }
         }
-
-
+        cd.addressVerification();
 
 
       $('#contact_info_section_one input, #contact_info_section_one select').on('keyup keypress blur change mouseout', function(e){
@@ -2230,7 +2415,7 @@ cd.regInfoVerification();
     }
     // payment step of reg
     if ($('#fr_payment_form').length > 0) {
-
+      
       $('#btn_next').text('Submit')
         .wrap('<div class="order-1 order-sm-2 col-sm-4 offset-md-4 col-8 offset-2 mb-3"/>');
       $('#btn_prev').text('Back')
@@ -2443,6 +2628,7 @@ cd.regInfoVerification();
 
     // ptype
     $('#part_type_selection_container').wrapInner('<fieldset role="radiogroup" class="ptype-selection" aria-labelledby="sel_type_container"/>');
+    $('#fr_part_co_list').attr('aria-labelledby', 'individual_company_hdr_container');
 
     // $('.donation-levels').before('<legend id="reg_donation_array_label" class="sr-only">Make a donation</legend>');
     $('#part_type_additional_gift_section_header').prepend('<div class="bold-label" id="regDonationLabel">Donate Towards Your Goal Now</div>' + (regType === 'startTeam' ? 'Show your squad how it\'s done and make a donation towards your goal.' : 'Show your dedication and make a donation towards your goal.'));
@@ -2454,7 +2640,10 @@ cd.regInfoVerification();
       var ptypeOptionId = $(this).attr('for');
       $(this).closest('.part-type-container').find('input[name="fr_part_radio"]').attr('id', ptypeOptionId);
     });
-
+    // replace all h3 tags with h2
+    $('#reg_payment_body_container h3').replaceWith(function () {
+      return "<h2>" + $(this).html() + "</h2>";
+    });
     $('label[for="responsive_payment_typecc_exp_date_MONTH"] .label-text').text('Month:');
     $('label[for="responsive_payment_typecc_exp_date_MONTH"]').insertBefore($('#responsive_payment_typecc_exp_date_MONTH'));
 
@@ -2465,8 +2654,13 @@ cd.regInfoVerification();
     $('fieldset.cardExpGroup').prepend('<legend class="cc-legend">Credit Card Expires</legend>')
     $('.cc-legend').prepend('<span class="field-required"></span>&nbsp;');
 
-    $('.payment-type-label').prepend('<span class="sr-only">Pay with PayPal</span>');
+    $('.internal-payment .payment-type-label').prepend('<span class="sr-only">Pay by Credit Card</span>');
+    $('.external-payment .payment-type-label').prepend('<span class="sr-only">Pay with PayPal</span>');
 
+    $('#responsive_payment_typecc_cvv_row .HelpLink').attr({
+      "aria-hidden": "true",
+      "tabindex": "-1"
+    });
     // Reg
     $('label[for="cons_first_name"]').eq(0).remove();
     // $('#cons_birth_date_MONTH, #cons_birth_date_DAY, #cons_birth_date_YEAR').attr('aria-labelledby', 'enterAmtLabel');
@@ -2500,7 +2694,62 @@ cd.regInfoVerification();
       $('.js__how-it-works-container').html($('.js__chapter-how-it-works'));
       $('.js__greeting-inspire-text').html($('.js__chapter-inspire-text'));
       $('.js__greeting-inspire-image').html($('.js__chapter-inspire-image'));
+
+// BEGIN custom sponsor script
+
+if($('.tr_sponsorship_logos').length){
+  $('.tr_sponsorship_logo').each(function(i, sponsor){
+    var sponsorAlt = $(this).find('img').attr('alt');
+    var sponsorImg = $(this).find('img').attr('src');
+    var sponsorUrl = $(this).find('a').attr('href');
+    var sponsorLevel = sponsorAlt.split(' | ')[0];
+    var sponsorName = sponsorAlt.split(' | ')[1];
+
+// TODO - add logic to show levels when a sponsor is added
+    switch (sponsorLevel) {
+      case "life":
+        $('.js__life-sponsor-logos').append('<a href="#"><img src="' + sponsorImg + '" alt="' + sponsorName + '"></a>');
+        $('.js__life-sponsor-container').show();
+        break;
+      case "platform":
+        $('.js__platform-sponsor-logos').append('<a href="#"><img src="' + sponsorImg + '" alt="' + sponsorName + '"></a>');
+        $('.js__platform-sponsor-container').show();
+        break;
+      case "signature":
+        $('.js__signature-sponsor-logos').append('<a href="#"><img src="' + sponsorImg + '" alt="' + sponsorName + '"></a>');
+        $('.js__signature-sponsor-container').show();
+        break;
+      case "level1":
+        $('.js__level1-sponsor-logos').append('<a href="#"><img src="' + sponsorImg + '" alt="' + sponsorName + '"></a>');
+        $('.js__level1-sponsor-container').show();
+        break;
+      case "level2":
+        $('.js__level2-sponsor-logos').append('<a href="#"><img src="' + sponsorImg + '" alt="' + sponsorName + '"></a>');
+        $('.js__level2-sponsor-container').show();
+        break;
+      case "level3":
+        $('.js__level3-sponsor-logos').append('<a href="#">' + sponsorName + '</a><br>');
+        $('.js__level3-sponsor-container').show();
+        break;
+      case "level4":
+        $('.js__level4-sponsor-logos').append('<a href="#">' + sponsorName + '</a><br>');
+        $('.js__level4-sponsor-container').show();
+
+        break;
     }
+
+    // var sponsorToPush = { }; 
+    // sponsorToPush["sponsorName"] = sponsorName;
+    // sponsorToPush["sponsorLevel"] = sponsorLevel;
+    // sponsorToPush["sponsorImg"] = sponsorImg;
+    // sponsorToPush["sponsorLevel"] = sponsorLevel;
+    // sponsorToPush["sponsorUrl"] = sponsorUrl;
+    // sponsorsArray.push(sponsorToPush);
+
+  });
+
+    }
+  }
     if ($('body').is('.pg_personal')) {
       var personalHeadline = $('#personal_page_header h2');
       $(personalHeadline).replaceWith('<h1>' + $(personalHeadline).text() + '</h1>');
@@ -2655,7 +2904,7 @@ cd.regInfoVerification();
       }
 
       $('#ProcessForm').parsley(parsleyDonDefaults);
-
+ 
       $('.internal-payment').on('click', function (e) {
         $('#responsive_payment_typecc_numbername').attr('data-parsley-required', '');
         $('#responsive_payment_typecc_cvvname').attr('data-parsley-required', '');
