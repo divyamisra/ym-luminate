@@ -7,8 +7,8 @@ module.exports = {
         browsers: [
           'last 2 versions', 
           'ie >= 9', 
-          'Safari >= 7', 
-          'ios_saf >= 7'
+          'Safari >= 9', 
+          'ios_saf >= 9'
         ]
       })
     ]
