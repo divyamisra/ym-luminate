@@ -19,6 +19,7 @@
   "devDependencies": {
     "autoprefixer": "^9.5.0",
     "glob": "^7.1.3",
+    "grunt": "^1.0.4",
     "grunt-connect-proxy": "git+https://github.com/drewzboto/grunt-connect-proxy.git",
     "grunt-contrib-clean": "^2.0.0",
     "grunt-contrib-coffee": "^1.0.0",
