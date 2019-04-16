@@ -867,7 +867,7 @@ cd.getEventsByDistance = function (zipCode, numEvents) {
       if ($('body').is('.pg_cn_home')) {
         // cd.getEvents('%25%25', null, 3);
 
-
+        console.log('getLocation');
         getLocation();
 
       } else {
@@ -882,7 +882,7 @@ cd.getEventsByDistance = function (zipCode, numEvents) {
         e.preventDefault();
       });
 
-      $('.js__zip-search ').on('submit', function (e) {
+      $('.js__zip-search').on('submit', function (e) {
         $('#fr_event_state').val($('#fr_event_state option:first').val());
         $('.js__event-search-results').html('');
         var zipSearched = $('#zip').val();
@@ -2711,31 +2711,31 @@ if($('.tr_sponsorship_logos').length){
     switch (sponsorLevel) {
       case "life":
         $('.js__life-sponsor-logos').append('<a href="#"><img src="' + sponsorImg + '" alt="' + sponsorName + '"></a>');
-        $('.js__life-sponsor-container').show();
+        $('.js__life-sponsor-container').fadeIn();
         break;
       case "platform":
         $('.js__platform-sponsor-logos').append('<a href="#"><img src="' + sponsorImg + '" alt="' + sponsorName + '"></a>');
-        $('.js__platform-sponsor-container').show();
+        $('.js__platform-sponsor-container').fadeIn();
         break;
       case "signature":
         $('.js__signature-sponsor-logos').append('<a href="#"><img src="' + sponsorImg + '" alt="' + sponsorName + '"></a>');
-        $('.js__signature-sponsor-container').show();
+        $('.js__signature-sponsor-container').fadeIn();
         break;
       case "level1":
         $('.js__level1-sponsor-logos').append('<a href="#"><img src="' + sponsorImg + '" alt="' + sponsorName + '"></a>');
-        $('.js__level1-sponsor-container').show();
+        $('.js__level1-sponsor-container').fadeIn();
         break;
       case "level2":
         $('.js__level2-sponsor-logos').append('<a href="#"><img src="' + sponsorImg + '" alt="' + sponsorName + '"></a>');
-        $('.js__level2-sponsor-container').show();
+        $('.js__level2-sponsor-container').fadeIn();
         break;
       case "level3":
         $('.js__level3-sponsor-logos').append('<a href="#">' + sponsorName + '</a><br>');
-        $('.js__level3-sponsor-container').show();
+        $('.js__level3-sponsor-container').fadeIn();
         break;
       case "level4":
         $('.js__level4-sponsor-logos').append('<a href="#">' + sponsorName + '</a><br>');
-        $('.js__level4-sponsor-container').show();
+        $('.js__level4-sponsor-container').fadeIn();
 
         break;
     }
