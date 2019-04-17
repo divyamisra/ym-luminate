@@ -88,7 +88,7 @@
             <!-- DETAILS TEXT -->
             <div id="collapseOne" class="details-items-text collapse dont-collapse-lg col-8 pl-0 pt-3 pt-lg-0" aria-labelledby="headingOne" data-parent="#event-details-accordion">
               <div class="card-body">
-                <h3 class="text-uppercase text-primary text-bold">Date</h3>
+                <h3 class="text-uppercase text-primary text-bold mb-1">Date</h3>
                 <p class="mb-1">[[E47:[[S334:fr_id]]:fr_info:1:event_date]]</p>
                 <a href="#" onclick="jQuery('#calendarMenu').toggle(); return false;"><i class="far fa-calendar-plus" aria-hidden="true"></i>[ADD]</a>
                 <!-- BEGIN add to calendar -->
@@ -96,11 +96,13 @@
                 [[U0:calendarLink=http://www.google.com/calendar/event?action=TEMPLATE&amp;text=[[T1:[[S42:0:title]]]]&amp;dates=[[S80:parsedEventDate]]/[[S80:parsedEventDate]]&amp;details=Visit%20your%20Ride%20Hub%20for%20event%20schedule%20and%20more%20details%20at%20http%3A%2F%2Fwww.alz.org%2Fride.&amp;location=[[T1:[[E130:"[[E47:[[S334:fr_id]]:fr_info:1:event_schedule]]" " | " ", " replaceall]]]]&amp;trp=false&amp;sprop=&amp;sprop=name:]]
                 <!-- S80 thisEventDate: xx[[S80:thisEventDate]]xx -->
                 <!-- S80 parsedEventDate: xx[[S80:parsedEventDate]]xx -->
-                <div class="calendar-container js__calendar-menu" style="">
-                    <p><a rel="nofollow" target="_blank" href="[[S80:calendarLink]]">Google Calendar</a>
-                        <br /> or
-                        <br />
-                        <a href="/site/PageServer?pagename=ride_ical&amp;fr_id=[[S42:0:fr-id]]&amp;pgwrap=n">Other Calendars</a></p>
+                <div class="calendar-container js__calendar-menu" style="display:none;">
+                    <p>
+                      <a rel="nofollow" target="_blank" href="[[S80:calendarLink]]">Google Calendar</a>
+                      <br /> or
+                      <br />
+                      <a href="/site/PageServer?pagename=ride_ical&amp;fr_id=[[S42:0:fr-id]]&amp;pgwrap=n">Other Calendars</a>
+                    </p>
                 </div>
                 <!-- END add to calendar -->
               </div>
