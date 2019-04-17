@@ -310,7 +310,7 @@
         max-width: 420px;
       }
     }
-    .local-sponors {
+    .local-sponsors {
 
       img {
         @include media-breakpoint-down(md){
@@ -318,7 +318,7 @@
         }
       }
     }
-    .local-sponors.second-tier {
+    .local-sponsors.second-tier {
       .title h2 {
         font-size: 2.1em;
       }
@@ -332,7 +332,7 @@
         }
       }
     }
-    .local-sponors.third-tier {
+    .local-sponsors.third-tier {
       .title h2 {
         font-size: 2.1em;
       }
@@ -346,7 +346,7 @@
         }
       }
     }
-    .local-sponors.fourth-tier {
+    .local-sponsors.fourth-tier {
       .title h2 {
         font-size: 1.75em;
       }
@@ -360,7 +360,7 @@
         }
       }
     }
-    .local-sponors.level-4 {
+    .local-sponsors.level-4 {
       margin: 0 auto;
     }
   }
