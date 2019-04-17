@@ -193,11 +193,13 @@
                 color: $black;
               }
 
-              i {
+              i,
+              .svg-inline--fa {
                 text-decoration: none;
                 margin-left: 5px;
               }
-              i.far {
+              i.far,
+              .svg-inline--fa.fa-calendar-plus {
                 text-decoration: none;
                 margin-right: 5px;
                 margin-left: 0;

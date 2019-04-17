@@ -102,7 +102,8 @@ padding: 0.625rem 1.25rem;
   .navbar-nav li.nav-item.menu {
     background-color: $black;
   }
-  .navbar-nav li.nav-item.menu .fas {
+  .navbar-nav li.nav-item.menu .fas,
+  .navbar-nav li.nav-item.menu .svg-inline--fa {
     -webkit-transform: scale(0.8,1); 
     -moz-transform: scale(0.8,1); 
     -ms-transform: scale(0.8,1); 
@@ -137,6 +138,9 @@ padding: 0.625rem 1.25rem;
 
   a {
     color:$white;
+  }
+  .utility-nav {
+    min-height: 2.5em;
   }
   .utility-nav-item {
     padding: 0 1em;
@@ -208,7 +212,8 @@ padding: 0.625rem 1.25rem;
       margin-right: 0;
     }
 
-    button .fas {
+    button .fas,
+    button .svg-inline--fa {
       background: -webkit-linear-gradient( $primary, $black);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
