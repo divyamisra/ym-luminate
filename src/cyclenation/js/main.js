@@ -575,15 +575,23 @@ cd.getEventsByDistance = function (zipCode, numEvents) {
     cd.getTopParticipants = function (eventId) {
           luminateExtend.api({
             api: 'teamraiser',
-            data: 'method=getTopParticipantsData&event_type=' + eventType + '&fr_id=' + eventId + '&response_format=json',
+            data: 'method=getParticipants&first_name=%25%25%25&event_type=' + eventType + '&fr_id=' + eventId + '&list_sort_column=total&list_ascending=false&list_page_size=5&response_format=json',
             callback: {
               success: function (response) {
-                if (!$.isEmptyObject(response.getTopParticipantsDataResponse)) {
-                  var participantData = luminateExtend.utils.ensureArray(response.getTopParticipantsDataResponse
-                    .teamraiserData);
-                  $(participantData).each(function() {
-                   var topParticipantHtml = '<div class="top-list-entry row pb-2"><div class="badges col-2"> <svg version="1.1" id="team-captain" class="team-captain-badge" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 110 110" style="enable-background:new 0 0 110 110;" xml:space="preserve"><circle class="st0" cx="55" cy="55" r="55"></circle><polygon class="st1" points="55,72.8 32.1,87.2 38.7,61 18,43.7 44.9,41.9 55,16.8 65.1,41.9 92,43.7 71.3,61 77.9,87.2 "></polygon></svg></div><div class="names-amounts col-10 pl-0"><a class="participant-name" href="#">Elizabeth Indest</a><span class="amount-raised">$275</span></div></div>';
+                if (!$.isEmptyObject(response.getParticipantsResponse)) {
+                  var participantData = luminateExtend.utils.ensureArray(response.getParticipantsResponse
+                    .participant);
 
+                  $(participantData).each(function() {
+                    console.log('getting top participants');
+                    var participantName = this.name.first + ' ' + this.name.last;
+                    var participantRaised = this.amountRaised;
+                    var participantRaisedFormmatted = participantRaised.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+                    var participantId = this.consId;
+                    var participantPage = this.personalPageUrl;
+                    var isCaptain = this.aTeamCaptain;
+
+                   var topParticipantHtml = '<div class="top-list-entry row pb-2"><div class="badges col-2">' + (isCaptain === "true" ? '<svg version="1.1" class="team-captain-badge" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 110 110" style="enable-background:new 0 0 110 110;" xml:space="preserve"><circle class="st0" cx="55" cy="55" r="55"></circle><polygon class="st1" points="55,72.8 32.1,87.2 38.7,61 18,43.7 44.9,41.9 55,16.8 65.1,41.9 92,43.7 71.3,61 77.9,87.2 "></polygon></svg>' : '') + '</div><div class="names-amounts col-10 pl-0"><a class="participant-name" href="' + participantPage + '">' + participantName + '</a><span class="amount-raised">$' + participantRaisedFormmatted + '</span></div></div>';
 
                     $('.js__top-participants-list').append(topParticipantHtml);
                   });
@@ -603,19 +611,32 @@ cd.getEventsByDistance = function (zipCode, numEvents) {
     cd.getTopTeams = function (eventId) {
           luminateExtend.api({
             api: 'teamraiser',
-            data: 'method=getTopTeamsData&event_type=' + eventType + '&fr_id=' + eventId + '&response_format=json',
+            // data: 'method=getTopTeamsData&fr_id=' + eventId + '&response_format=json',
+            data: 'method=getTeamsByInfo&fr_id=' + eventId + '&list_sort_column=total&list_ascending=false&list_page_size=5&response_format=json',
             callback: {
               success: function (response) {
-                if (!$.isEmptyObject(response.getTopTeamsDataResponse)) {
-                  var rawTeamData = luminateExtend.utils.ensureArray(response.getTopTeamsDataResponse
-                    .teamraiserData);
+                if (!$.isEmptyObject(response.getTeamSearchByInfoResponse)) {
+                  var teamData = luminateExtend.utils.ensureArray(response.getTeamSearchByInfoResponse.team);
                     
-                    console.log('build topTeamsRoster: ', rawTeamData);
-                  $(rawTeamData).each(function(){
-                    var topTeamHtml = '<div class="top-list-entry row pb-2"> <div class="badges col-2"> <svg version="1.1" id="raised-badge-gold" class="raised-badge gold" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 110 110" style="enable-background:new 0 0 110 110;" xml:space="preserve"> <defs> </defs> <g> <linearGradient id="SVGID_GOLD_1_" gradientUnits="userSpaceOnUse" x1="34.43" y1="0" x2="34.43" y2="110"> <stop offset="0" style="stop-color:#EFD96A"></stop> <stop offset="3.004593e-02" style="stop-color:#EFD465"></stop> <stop offset="0.3437" style="stop-color:#EBA438"></stop> <stop offset="0.5" style="stop-color:#EA9226"></stop> <stop offset="0.5899" style="stop-color:#D88622"></stop> <stop offset="0.7712" style="stop-color:#A86619"></stop> <stop offset="1" style="stop-color:#63390B"></stop> </linearGradient> <path class="st0" d="M36.5,45.5c-0.1-2.6-0.1-5.1-0.1-7.7c0-0.3,0-0.5,0-0.8H30c0.2,3.1,0.5,6.2,1.5,9.1c0.6,1.9,1.5,3.8,2.9,5.2 c1.2,1.2,2.6,2.1,4.3,2.6c-0.1-0.2-0.1-0.4-0.2-0.5C37.4,50.9,36.6,48.3,36.5,45.5z"></path> <linearGradient id="SVGID_GOLD_2_" gradientUnits="userSpaceOnUse" x1="55.0007" y1="0" x2="55.0007" y2="110"> <stop offset="0" style="stop-color:#EFD96A"></stop> <stop offset="3.004593e-02" style="stop-color:#EFD465"></stop> <stop offset="0.3437" style="stop-color:#EBA438"></stop> <stop offset="0.5" style="stop-color:#EA9226"></stop> <stop offset="0.5899" style="stop-color:#D88622"></stop> <stop offset="0.7712" style="stop-color:#A86619"></stop> <stop offset="1" style="stop-color:#63390B"></stop> </linearGradient> <path class="st1" d="M62.4,40.5c-1.3,0-2.6,0-3.9,0c-0.5,0-0.7-0.2-0.9-0.6c-0.4-1.3-0.8-2.6-1.3-3.9c-0.3-1-1.5-1.4-2.3-0.8 c-0.3,0.2-0.5,0.6-0.6,1c-0.5,1.4-1,2.8-1.5,4.2h-4.4c-1,0-1.5,0.3-1.8,1.1c-0.2,0.7,0,1.3,0.8,1.9c1,0.8,2,1.5,3.1,2.2 c0.4,0.3,0.5,0.5,0.3,0.9c-0.5,1.3-0.8,2.6-1.2,4c-0.2,0.7-0.1,1.3,0.5,1.7c0.5,0.4,1.1,0.4,1.7,0.1c0.3-0.1,0.5-0.3,0.7-0.5 c1.1-0.8,2.1-1.6,3.2-2.4c1.2,0.9,2.4,1.8,3.5,2.6c0.2,0.2,0.5,0.4,0.8,0.4c1.3,0.3,2.2-0.8,1.8-2.2c-0.4-1.4-0.9-2.8-1.4-4.3 c1.3-0.9,2.5-1.8,3.6-2.6c0.7-0.5,1-1.2,0.7-1.9C63.9,40.9,63.3,40.6,62.4,40.5z"></path> <linearGradient id="SVGID_GOLD_3_" gradientUnits="userSpaceOnUse" x1="75.69" y1="0" x2="75.69" y2="110"> <stop offset="0" style="stop-color:#EFD96A"></stop> <stop offset="3.004593e-02" style="stop-color:#EFD465"></stop> <stop offset="0.3437" style="stop-color:#EBA438"></stop> <stop offset="0.5" style="stop-color:#EA9226"></stop> <stop offset="0.5899" style="stop-color:#D88622"></stop> <stop offset="0.7712" style="stop-color:#A86619"></stop> <stop offset="1" style="stop-color:#63390B"></stop> </linearGradient> <path class="st2" d="M73.7,37.8c0,1.9,0.1,3.8,0,5.7c-0.1,1.8-0.3,3.6-0.6,5.3c-0.4,1.7-1.1,3.4-1.7,5.2c1.7-0.5,3.2-1.4,4.4-2.7 c1.5-1.7,2.3-3.7,3-5.8c0.8-2.8,1.1-5.6,1.3-8.5h-6.3V37.8z"></path> <linearGradient id="SVGID_GOLD_4_" gradientUnits="userSpaceOnUse" x1="55" y1="0" x2="55" y2="110"> <stop offset="0" style="stop-color:#EFD96A"></stop> <stop offset="3.004593e-02" style="stop-color:#EFD465"></stop> <stop offset="0.3437" style="stop-color:#EBA438"></stop> <stop offset="0.5" style="stop-color:#EA9226"></stop> <stop offset="0.5899" style="stop-color:#D88622"></stop> <stop offset="0.7712" style="stop-color:#A86619"></stop> <stop offset="1" style="stop-color:#63390B"></stop> </linearGradient> <path class="st3" d="M55,0C24.6,0,0,24.6,0,55s24.6,55,55,55s55-24.6,55-55S85.4,0,55,0z M71.9,88.6c0,0.8-0.6,1.2-1.4,1.2 c-0.2,0-0.3,0-0.5,0c-10,0-20,0-29.9,0c-0.5,0-1-0.2-1.4-0.4c-0.3-0.2-0.5-0.6-0.5-1c-0.1-1.4,0-2.8,0-4.2c11.3,0,22.5,0,33.8,0 C71.9,85.7,72,87.2,71.9,88.6z M83.3,49.5c-2.7,6.6-7.6,10.4-14.8,10.8c-0.6,0-1.2,0-1.8,0.1c-0.2,0-0.4,0.1-0.5,0.2 c-2.2,2.1-4.6,3.8-7.4,4.9c-0.2,0.1-0.3,0.3-0.3,0.4c0,3.3,0,6.5,0,9.9h1.9c1.1,0,2.1,0,3.2,0c1,0,1.5,0.6,1.5,1.5 c0,1.3,0,2.5,0,3.9H45c0-1.4-0.1-2.7,0-4.1c0-0.8,0.6-1.3,1.5-1.3c1.4,0,2.8,0,4.2,0h0.8c0-0.3,0-0.5,0-0.7c0-2.9,0-5.9,0-8.8 c0-0.5-0.2-0.7-0.7-0.9c-2.5-1-4.8-2.5-6.8-4.4c-0.4-0.4-0.9-0.6-1.5-0.6c-2.4,0-4.8-0.4-7-1.4c-4.6-2-7.5-5.6-9.2-10.2 c-1.3-3.4-1.7-7-2-10.7c-0.1-1.2-0.1-2.5-0.1-3.8c0-2,1.2-3.2,3.2-3.2c2.7,0,5.5,0,8.2,0h0.8c0-1.5,0-3,0-4.4 c0-1.3,0.5-1.8,1.8-1.8h33.6c1.4,0,1.9,0.5,1.9,1.9v4.3h0.9c2.7,0,5.3,0,8,0c1.6,0,2.7,0.7,3.1,2.1c0,0.2,0.1,0.3,0.1,0.5 C85.8,39.2,85.4,44.5,83.3,49.5z"></path> <path class="st4" d="M82.6,31.2c-2.7,0-5.3,0-8,0h-0.9v-4.3c0-1.4-0.5-1.9-1.9-1.9H38.2c-1.3,0-1.8,0.5-1.8,1.8c0,1.4,0,2.9,0,4.4 h-0.8c-2.7,0-5.5,0-8.2,0c-2,0-3.2,1.2-3.2,3.2c0,1.2,0,2.5,0.1,3.8c0.3,3.6,0.7,7.2,2,10.7C28.1,53.4,31,57,35.6,59 c2.2,1,4.6,1.4,7,1.4c0.6,0,1,0.2,1.5,0.6c2,1.8,4.2,3.4,6.8,4.4c0.5,0.2,0.7,0.4,0.7,0.9c0,2.9,0,5.9,0,8.8c0,0.2,0,0.4,0,0.7 h-0.8c-1.4,0-2.8,0-4.2,0c-0.9,0-1.5,0.4-1.5,1.3c-0.1,1.3,0,2.7,0,4.1h20c0-1.3,0-2.6,0-3.9c0-0.9-0.5-1.5-1.5-1.5 c-1.1,0-2.1,0-3.2,0h-1.9c0-3.4,0-6.6,0-9.9c0-0.1,0.2-0.4,0.3-0.4c2.8-1.1,5.2-2.8,7.4-4.9c0.1-0.1,0.3-0.2,0.5-0.2 c0.6,0,1.2,0,1.8-0.1c7.2-0.5,12.1-4.2,14.8-10.8c2.1-5,2.4-10.4,2.4-15.7c0-0.2,0-0.4-0.1-0.5C85.3,31.9,84.2,31.2,82.6,31.2z M34.5,51.4c-1.5-1.5-2.3-3.3-2.9-5.2c-1-2.9-1.3-6-1.5-9.1h6.3c0,0.3,0,0.5,0,0.8c0,2.6,0,5.1,0.1,7.7c0.1,2.8,0.9,5.4,2.1,8 c0.1,0.1,0.1,0.3,0.2,0.5C37,53.5,35.7,52.6,34.5,51.4z M63.4,43.6c-1.2,0.9-2.4,1.7-3.6,2.6c0.5,1.5,1,2.9,1.4,4.3 c0.4,1.4-0.5,2.4-1.8,2.2c-0.3-0.1-0.6-0.2-0.8-0.4c-1.2-0.9-2.3-1.7-3.5-2.6c-1.1,0.8-2.2,1.6-3.2,2.4c-0.2,0.2-0.5,0.4-0.7,0.5 c-0.6,0.3-1.2,0.3-1.7-0.1c-0.6-0.4-0.7-1-0.5-1.7c0.4-1.3,0.8-2.6,1.2-4c0.2-0.5,0.1-0.7-0.3-0.9c-1-0.7-2-1.5-3.1-2.2 c-0.8-0.6-1.1-1.2-0.8-1.9c0.2-0.8,0.8-1.1,1.8-1.1H52c0.5-1.4,0.9-2.8,1.5-4.2c0.1-0.4,0.3-0.8,0.6-1c0.8-0.6,2-0.2,2.3,0.8 c0.5,1.3,0.9,2.6,1.3,3.9c0.1,0.5,0.3,0.7,0.9,0.6c1.3-0.1,2.6,0,3.9,0c0.9,0,1.4,0.4,1.7,1.1C64.4,42.4,64.1,43,63.4,43.6z M78.7,45.5c-0.7,2.1-1.5,4.2-3,5.8c-1.2,1.3-2.7,2.1-4.4,2.7c0.6-1.8,1.3-3.5,1.7-5.2c0.4-1.7,0.5-3.6,0.6-5.3 c0.1-1.9,0-3.8,0-5.7V37H80C79.8,39.9,79.6,42.7,78.7,45.5z"></path> <path class="st4" d="M38.1,84.2c0,1.5,0,2.9,0,4.2c0,0.3,0.2,0.8,0.5,1c0.4,0.3,1,0.4,1.4,0.4c10,0,20,0,29.9,0c0.2,0,0.3,0,0.5,0 c0.8-0.1,1.4-0.5,1.4-1.2c0.1-1.5,0-2.9,0-4.4C60.6,84.2,49.4,84.2,38.1,84.2z"></path> </g> </svg> </div><div class="names-amounts col-10 pl-0"> <a class="participant-name" href="#">Tour de Friends Has a Lodhbhvbfhvbfhvbfh</a> <span class="amount-raised">$5645</span> </div></div>';
+                  $(teamData).each(function(i){
+                      var teamName = this.name;
+                      var teamRaised = this.amountRaised;
+                      var teamRaisedFormmatted = teamRaised.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+                      var teamId = this.id;
 
-                    $('.js__top-teams-list').append(topTeamHtml);
+                      var badgeLevel = null;
 
+                      if(teamRaised >= 5000){
+                        badgeLevel = "5000";
+                      } else if(teamRaised >= 2500){
+                        badgeLevel = "2500";
+                      } else if(teamRaised >= 1000){
+                        badgeLevel = "1000";
+                      }
+
+                      var topTeamRow = '<div class="top-list-entry row pb-2"><div class="badges col-2"> ' + (badgeLevel ? '<img src="https://' + luminateExtend.global.path.secure + '/cd-cn-landing/dist/cyclenation/image/badge_team_' + badgeLevel + '.svg" alt="">' : '') + '</div><div class="names-amounts col-10 pl-0"> <a class="participant-name" href="TR/?team_id=' + teamId + '&amp;pg=team&amp;fr_id=' + evID + '">' + teamName + '</a> <span class="amount-raised">$' + teamRaisedFormmatted + '</span> </div></div>';
+
+                    $('.js__top-teams-list').append(topTeamRow);
                   });
                 }
               },
@@ -635,19 +656,21 @@ cd.getEventsByDistance = function (zipCode, numEvents) {
           luminateExtend.api({
             api: 'teamraiser',
             data: 'method=getCompaniesByInfo&fr_id=' + eventId +
-              '&include_cross_event=true&response_format=json',
+              '&include_cross_event=true&list_sort_column=total&list_ascending=false&list_page_size=5&response_format=json',
             callback: {
               success: function (response) {
                 if (!$.isEmptyObject(response.getCompaniesResponse)) {
-                  var rawCompanyData = luminateExtend.utils.ensureArray(response.getCompaniesResponse
+                  var topCompanies = luminateExtend.utils.ensureArray(response.getCompaniesResponse
                     .company);
 
-                  $(rawCompanyData).each(function(){
-                    var topCompanyHtml = '<div class="top-list-entry row pb-2"> <div class="badges col-2"> </div><div class="names-amounts col-10 pl-0"> <a class="participant-name" href="#">Dell</a> <span class="amount-raised">$2750</span> </div></div>';
-                    $('.js__top-companies-list').append(topCompanyHtml);
+                  $(topCompanies).each(function(){
+                      var companyName = this.companyName;
+                      var companyRaised = this.amountRaised;
+                      var companyRaisedFormmatted = companyRaised.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+                      var topCompanyHtml = '<div class="top-list-entry row pb-2"> <div class="badges col-2"> </div><div class="names-amounts col-10 pl-0"> <a class="participant-name" href="TR?company_id=' + this.companyId + '&fr_id=' + evID + '&pg=company">' + companyName + '</a> <span class="amount-raised">$' + companyRaisedFormmatted + '</span> </div></div>';
+                      $('.js__top-companies-list').append(topCompanyHtml);
                   });
                 }
-            
               },
               error: function (response) {
                 console.log('getTopCompanies error: ' + response.errorResponse.message);
