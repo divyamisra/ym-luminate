@@ -90,7 +90,7 @@
               <div class="card-body">
                 <h3 class="text-uppercase text-primary text-bold mb-1">Date</h3>
                 <p class="mb-1">[[E47:[[S334:fr_id]]:fr_info:1:event_date]]</p>
-                <a href="#" onclick="jQuery('#calendarMenu').toggle(); return false;"><i class="far fa-calendar-plus" aria-hidden="true"></i>[ADD]</a>
+                <a href="#" onclick="jQuery('#calendarMenu').toggle(); return false;"><i class="far fa-calendar-plus" aria-hidden="true"></i>&nbsp;[ADD]</a>
                 <!-- BEGIN add to calendar -->
                 [[U0:thisEventDate=[[E47:[[S334:fr_id]]:fr_info:1:sponsor_1]]]] [[U0:parsedEventDate=[[E130:"[[S80:thisEventDate]]" dup dup "/" lastindexof 1 + swap length substring]][[E130:"[[S80:thisEventDate]]" dup 0 swap "/" indexof substring]][[E130:"[[S80:thisEventDate]]" dup dup "/" indexof 1 + swap "/" lastindexof substring]]]]
                 [[U0:calendarLink=http://www.google.com/calendar/event?action=TEMPLATE&amp;text=[[T1:[[S42:0:title]]]]&amp;dates=[[S80:parsedEventDate]]/[[S80:parsedEventDate]]&amp;details=Visit%20your%20Ride%20Hub%20for%20event%20schedule%20and%20more%20details%20at%20http%3A%2F%2Fwww.alz.org%2Fride.&amp;location=[[T1:[[E130:"[[E47:[[S334:fr_id]]:fr_info:1:event_schedule]]" " | " ", " replaceall]]]]&amp;trp=false&amp;sprop=&amp;sprop=name:]]
@@ -146,7 +146,7 @@
               <div class="card-body">
                 <h3 class="text-uppercase text-primary text-bold mb-1">Location</h3>
                 <p class="mb-1">[[E47:[[S334:fr_id]]:fr_info:1:event_location]]</p>
-                <a href="[[S80:eventLocationMapLink]]">Map It<i class="fas fa-external-link-alt" aria-hidden="true"></i></a><br>
+                <a href="[[S80:eventLocationMapLink]]">Map It&nbsp;<i class="fas fa-external-link-alt" aria-hidden="true"></i></a><br>
                 <a href="[[S80:eventLocationParkingLink]]">Parking Info<i class="fas fa-angle-right" aria-hidden="true"></i></a>
               </div>
             </div>
@@ -330,9 +330,9 @@
             <div id="collapseSix" class="details-items-text collapse dont-collapse-lg col-8 pl-0 pt-3 pt-lg-0" aria-labelledby="headingSix" data-parent="#event-details-accordion">
               <div class="card-body">
                 <h3 class="text-uppercase text-primary text-bold mb-1">Afterparty</h3>
-                <a href="#">[[T9:[[E130:"[[E47:[[S334:fr_id]]:fr_info:1:event_schedule]]" dup 0 swap "|" indexof substring]]]]<i class="fas fa-external-link-alt" aria-hidden="true"></i></a>
+                <a href="[[S80:afterpartyMapLink]]" target="_blank">[[T9:[[E130:"[[E47:[[S334:fr_id]]:fr_info:1:event_schedule]]" dup 0 swap "|" indexof substring]]]]&nbsp;<i class="fas fa-external-link-alt" aria-hidden="true"></i></a>
                 <p class="mb-1">[[T9:[[E130:"[[T9:[[E130:"[[E47:[[S334:fr_id]]:fr_info:1:event_schedule]]" dup dup "|" indexof 1 + swap length substring]]]]" dup 0 swap "|" indexof substring]]]]</p>
-                <a href="[[S80:afterpartyMapLink]]">Map It<i class="fas fa-external-link-alt" aria-hidden="true"></i></a>
+                <a href="[[S80:afterpartyMapLink]]" target="_blank">Map It&nbsp;<i class="fas fa-external-link-alt" aria-hidden="true"></i></a>
               </div>
             </div>
             <!-- END DETAILS TEXT -->
@@ -395,6 +395,7 @@
             <!-- END DETAILS TEXT -->
           </div>
           <!-- END DETAILS ITEM -->
+          [[?x1x2x::x[[S42:0:status]]x::
           <!-- DETAILS ITEM -->
           <div class="details-item card register invert col-12 col-lg-3 pt-2 pb-1 pb-lg-5 pr-0 pl-0">
             <div id="headingEight" class="details-items-icon card-header col-lg-4 px-0 py-0 row mx-0">
@@ -423,6 +424,7 @@
                 </svg>
                 <!-- END DETAILS ICON - CIRCLE -->
               </div>
+              
               <!-- ICON -->
               <div class="card-title col-10">
                 <h3 class="text-uppercase text-bold mb-1"><button class="btn btn-link w-100 collapsed" type="button" data-toggle="collapse" data-target="#collapseEight" aria-expanded="true" aria-controls="collapseOne">Register</button></h3>
@@ -438,7 +440,10 @@
             <!-- END DETAILS TEXT -->
           </div>
           <!-- END DETAILS ITEM -->
+          ::]]
+
         </div>
+ [[?x1x2x::x[[S42:0:status]]x::
         <!-- MOBILE REGISTER BUTTON -->
         <div class="details-register pt-5 pb-5 text-center">
           <a class="btn btn-rounded btn-primary" href="SPageServer/?pagename=cn_register&amp;fr_id=[[S334:fr_id]]&amp;s_regType=">
@@ -462,6 +467,7 @@
           </a>
         </div>
         <!-- END MOBILE REGISTER BUTTON -->
+        ::]]
       </div>
     </div>
   </div>
