@@ -243,10 +243,10 @@
     }
 
     .photos-box {
-      background-image: url("/images/content/pagebuilder/AHA_CN_landing_why_we_ride_photo_grid.jpg");
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-position: left;
+      // background-image: url("/images/content/pagebuilder/AHA_CN_landing_why_we_ride_photo_grid.jpg");
+      // background-size: cover;
+      // background-repeat: no-repeat;
+      // background-position: left;
 
       @include media-breakpoint-down(md) {
         order: 1;
@@ -269,10 +269,10 @@
     }
 
     .photos-box {
-      background-image: url("/images/content/pagebuilder/AHA_CN_landing_updatable_content_photo.jpg");
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-position: top;
+      // background-image: url("/images/content/pagebuilder/AHA_CN_landing_updatable_content_photo.jpg");
+      // background-size: cover;
+      // background-repeat: no-repeat;
+      // background-position: top;
 
       @include media-breakpoint-down(md) {
         height: 250px;
