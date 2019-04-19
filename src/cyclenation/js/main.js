@@ -2331,6 +2331,10 @@ if ($('body').is('.pg_complist')) {
       });
 
       $('#pstep_finish').on('click', function (e) {
+          var r = /((?:\d{4}[ -]?){3}\d{3,4})/gm;
+          $('[type=text]:not(#responsive_payment_typecc_numbername)').each(function() {
+             jQuery(this).val(jQuery(this).val().replace(r,""));
+          });
           var rawPhoneNumber = $('#cell_or_phone_number_input').val();
           var cleanPhoneNumber = rawPhoneNumber.replace(/[()-]/g,"");
           cleanPhoneNumber = cleanPhoneNumber.replace(/\s/g,"");
