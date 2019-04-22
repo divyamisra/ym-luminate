@@ -322,6 +322,9 @@
           });
         });
       }
+      $('.js__toggle-calendar').on('click', function(e){
+        $('.js__calendar-menu').toggleSlide();
+      });
     }
 
 
