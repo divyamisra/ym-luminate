@@ -323,6 +323,7 @@
         });
       }
       $('.js__toggle-calendar').on('click', function(e){
+        e.preventDefault();
         $('.js__calendar-menu').toggleSlide();
       });
     }
@@ -741,6 +742,15 @@ cd.getEventsByDistance = function (zipCode, numEvents) {
       }
 
       $('.js__state-search select').on('change', function (e) {
+        $('#zip').val('');
+        $('.js__event-search-results').html('');
+        var stateSearched = $(this).children('option:selected').val();
+        cd.getEvents(null, stateSearched);
+        e.preventDefault();
+      });
+
+      $('.js__state-search').on('submit', function (e) {
+        e.preventDefault();
         $('#zip').val('');
         $('.js__event-search-results').html('');
         var stateSearched = $(this).children('option:selected').val();

@@ -434,6 +434,7 @@
 
   .tr-page-container {
     display:none;
+    visibility:hidden;
   }
 
   .section-fundraiser {
@@ -542,11 +543,11 @@
             padding: 1em;
             max-height: 70px;
           }
-          button.search-submit #search-icon {
+          button.search-submit .search-icon {
             width: 100%;
             max-width: 2.2rem;
           }
-          button.search-submit #search-icon .st0 {
+          button.search-submit .search-icon .st0 {
             fill: $white;
           }
         }
