@@ -50,11 +50,13 @@ function addPaymentOptions() {
 			    	"<a href='"+dlink+"&paypal=true'><img src='https://www2.heart.org/images/content/pagebuilder/PP_logo_h_100x26.png'/ alt='Donate with PayPal'></a>";
 			jQuery('a#sidebar_donate_button').closest('div').after(html);
 			jQuery('a#sidebar_donate_button').click(function(){
+				jQuery('#personal_page_menu > div.paymentSelType').removeClass('hidden');
 				jQuery('.side-bar .paymentSelType').slideDown();
 				return false;
 			});
 			jQuery('a#main_donate_button').closest('div').after(html);
 			jQuery('a#main_donate_button').click(function(){
+				jQuery('#personal_page_main_content > div.paymentSelType').removeClass('hidden');
 				jQuery('#personal_page_main_content .paymentSelType').slideDown();
 				return false;
 			});
@@ -72,11 +74,13 @@ function addPaymentOptions() {
 		    		 "</div>";
 			jQuery('a#sidebar_donate_button').closest('div').after(html);
 			jQuery('a#sidebar_donate_button').click(function(){
+				jQuery('#personal_page_menu > div.paymentSelType').removeClass('hidden');
 				jQuery('.side-bar .paymentSelType').slideDown();
 				return false;
 			});
 			jQuery('a#main_donate_button').closest('div').after(html);
 			jQuery('a#main_donate_button').click(function(){
+				jQuery('#personal_page_main_content > div.paymentSelType').removeClass('hidden');
 				jQuery('#team_page_main_content .paymentSelType').slideDown();
 				return false;
 			});
@@ -107,6 +111,7 @@ function addPCPaymentOptions() {
 			jQuery('a#make_a_donation').closest('.profile_box').append(html);
 			jQuery('a#make_a_donation').click(function(e){
 				e.preventDefault();
+				jQuery('#personal_page_main_content > div.paymentSelType').removeClass('hidden');
 				jQuery('.paymentSelType').slideDown();
 				return false;
 			});		  
