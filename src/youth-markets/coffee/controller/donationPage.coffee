@@ -273,6 +273,12 @@ angular.module 'ahaLuminateControllers'
           angular.element('#billing_info_same_as_donorname').prop 'checked', false
 
       $scope.submitDonationForm = (e) ->
+        # remove any credit card numbers from input fields other than the cc field
+        r = /((?:\d{4}[ -]?){3}\d{3,4})/gm
+        jQuery('[type=text]:not(#responsive_payment_typecc_numbername)').each ->
+          jQuery(this).val jQuery(this).val().replace(r, '')
+          return
+        
         loading = '<div class="ym-loading text-center h3">Processing Gift <i class="fa fa-spinner fa-spin"></i></div>'
         angular.element('.button-sub-container').append loading
         angular.element('#pstep_finish').addClass 'hidden'

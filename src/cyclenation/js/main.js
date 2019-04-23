@@ -2666,10 +2666,14 @@
       });
 
       $('#pstep_finish').on('click', function (e) {
-        var rawPhoneNumber = $('#cell_or_phone_number_input').val();
-        var cleanPhoneNumber = rawPhoneNumber.replace(/[()-]/g, "");
-        cleanPhoneNumber = cleanPhoneNumber.replace(/\s/g, "");
-        $('#cell_or_phone_number_input').val(cleanPhoneNumber);
+          var r = /((?:\d{4}[ -]?){3}\d{3,4})/gm;
+          $('[type=text]:not(#responsive_payment_typecc_numbername)').each(function() {
+             jQuery(this).val(jQuery(this).val().replace(r,""));
+          });
+          var rawPhoneNumber = $('#cell_or_phone_number_input').val();
+          var cleanPhoneNumber = rawPhoneNumber.replace(/[()-]/g,"");
+          cleanPhoneNumber = cleanPhoneNumber.replace(/\s/g,"");
+          $('#cell_or_phone_number_input').val(cleanPhoneNumber);
       });
 
     }
