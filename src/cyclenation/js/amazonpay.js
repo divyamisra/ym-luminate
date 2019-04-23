@@ -74,13 +74,13 @@ function addPaymentOptions() {
 		    		 "</div>";
 			jQuery('a#sidebar_donate_button').closest('div').after(html);
 			jQuery('a#sidebar_donate_button').click(function(){
-				jQuery('#personal_page_menu > div.paymentSelType').removeClass('hidden');
+				jQuery('#team_page > div.side-bar > div.paymentSelType').removeClass('hidden');
 				jQuery('.side-bar .paymentSelType').slideDown();
 				return false;
 			});
 			jQuery('a#main_donate_button').closest('div').after(html);
 			jQuery('a#main_donate_button').click(function(){
-				jQuery('#personal_page_main_content > div.paymentSelType').removeClass('hidden');
+				jQuery('#team_page_main_content > div.paymentSelType').removeClass('hidden');
 				jQuery('#team_page_main_content .paymentSelType').slideDown();
 				return false;
 			});
