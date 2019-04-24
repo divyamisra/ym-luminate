@@ -41,15 +41,12 @@ padding: 0.625rem 1.25rem;
 
   button .fas.fa-bars { 
     @include media-breakpoint-down(md) {
-      background: -webkit-linear-gradient( $primary, $black);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
       font-size: 2.5rem;
     }
   }
-  button .svg-inline--fa {
+  .navbar-toggler-main svg * {
     @include media-breakpoint-down(md) {
-      fill: url(#lgrad1);
+      fill: url(#lgrad);
     }
   }
 
@@ -228,13 +225,8 @@ padding: 0.625rem 1.25rem;
       margin-right: 0;
     }
 
-    button .fas.fa-bars {
-      background: -webkit-linear-gradient( $primary, $black);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    button .svg-inline--fa {
-      fill: url(#lgrad2);
+    .navbar-toggler-main svg * {
+      fill: url(#lgrad);
     }
 
     @include media-breakpoint-down(sm) {
