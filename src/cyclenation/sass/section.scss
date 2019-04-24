@@ -107,6 +107,13 @@
       -ms-flex: 0 0 25%;
       flex: 0 0 25%;
       max-width: 25%;
+
+      @include media-breakpoint-down(lg) {
+        -webkit-flex: 0 0 15%;
+        -ms-flex: 0 0 15%;
+        flex: 0 0 15%;
+        max-width: 15%;
+      }
     }
   
     /* IE11 hide native button (thanks Matt!) */
