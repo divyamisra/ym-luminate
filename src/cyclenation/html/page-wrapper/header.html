@@ -1,4 +1,7 @@
-<a id="skip-main" class="skip-to js__skip-to aural-only" href="[[S8]]#contentStart">Skip to main content</a>
+<nav id="skipNav" aria-labelledby="skip-main">
+  <a id="skip-main" class="skip-to js__skip-to aural-only" href="[[S8]]#contentStart">Skip to main content</a>
+</nav>
+
 <header class="hero-header">
       [[?xcn_homex::x[[S334:pagename]]x::
       <!-- Begin Hero Carousel -->
@@ -26,7 +29,7 @@
       </div>
 ::]]
       <div class="hero-header-content">
-        <nav class="navbar navbar-expand-lg pt-0" data-toggle="sticky-onscroll" role="navigation" aria-labelledby="sideNav">
+        <nav class="navbar navbar-expand-lg pt-0" data-toggle="sticky-onscroll" aria-labelledby="sideNav">
             <span class="sr-only" id="sideNav">Sidebar Navigation</span>
           <div class="container">
             <a class="navbar-brand" href="SPageServer/?pagename=cn_home">
@@ -45,18 +48,24 @@
               <div class="d-flex align-items-end flex-column text-white">
                 <div class="p-3 small">
                 [[?xx::x[[S1:first_name]]x::
-                [[?x27x::x[[S4]]x::::
-                <a href="UserLogin?NEXTURL=[[T1:https://[[S29:SECURE_DOMAIN]][[S29:SECURE_PATH]]SPageServer?pagename=MyEvents]]">Fundraisers, log in
+                [[?
+                  [[?xcn_registerx::x[[S334:pagename]]x::T::]]
+                  [[?x27x::x[[S4]]x:::T::]]
+                ::T::::
+                <a class="text-link" href="UserLogin?NEXTURL=[[T1:https://[[S29:SECURE_DOMAIN]][[S29:SECURE_PATH]]SPageServer?pagename=MyEvents]]">Fundraisers, log in
                     <i class="fas fa-angle-right" alt="" aria-hidden="true"></i>
                   </a>
                   ]]
                 ::
-                Hi, [[S1:first_name]]!&nbsp;<a href="https://[[S29:SECURE_DOMAIN]][[S29:SECURE_PATH]]SPageServer?pagename=MyEvents">My Participant Center </a> | <a href="ConsProfileUser?dispMode=edit">My Profile</a> | <a href="UserLogin?logout=&amp;NEXTURL=[[T1:[[E130:[[T8:[[S8]]]] [[T8:&amp;]] [[T8:&]] replaceall]]]]">Log Out</a>
+                Hi, [[S1:first_name]]!&nbsp;<a class="text-link" href="https://[[S29:SECURE_DOMAIN]][[S29:SECURE_PATH]]SPageServer?pagename=MyEvents">My Participant Center </a> | <a class="text-link" href="ConsProfileUser?dispMode=edit">My Profile</a> | <a class="text-link" href="UserLogin?logout=&amp;NEXTURL=[[T1:[[E130:[[T8:[[S8]]]] [[T8:&amp;]] [[T8:&]] replaceall]]]]">Log Out</a>
                   ]]
                 </div>
           [[?x9x::x[[S4]]x::::
                 <div>
-                  [[?x27x::x[[S4]]x::::
+                  [[?
+                    [[?xcn_registerx::x[[S334:pagename]]x::T::]]
+                    [[?x27x::x[[S4]]x:::T::]]
+                  ::T::::
                   <ul class="navbar-nav">
                     [[?x26x::x[[S4]]x::
                     <li class="nav-item">
@@ -80,7 +89,7 @@
                           </a>
                         ::
                           <!-- on a tr page, direct to general reg step for that particular event -->
-                          <a class="nav-link" href="TRR/?pg=utype&amp;fr_id=[[S334:fr_id]]&amp;s_regType=">
+                          <a class="nav-link" href="SPageServer/?pagename=cn_register&amp;fr_id=[[S334:fr_id]]&amp;s_regType=">
                             <strong>Register</strong>
                           </a>
                         ]]
@@ -161,7 +170,7 @@
   
   
         <!-- Pushy Menu -->
-        <nav class="pushy pushy-right" role="navigation" aria-labelledby="headerNav">
+        <nav class="pushy pushy-right" aria-labelledby="headerNav">
           <span class="sr-only" id="headerNav">Header Navigation</span>
           <div class="pushy-header">
             <img class="pushy-header-brand" src="https://secure3.convio.net/[[S29:TABLE_PREFIX]]/[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/cyclenation/image/aha_cyclenation_logo_white.png" alt="American Heart Association CycleNation Logo">
@@ -205,7 +214,7 @@
                       </a>
                     ::
                       <!-- on a tr page, direct to general reg step for that particular event -->
-                      <a href="TRR/?pg=utype&amp;fr_id=[[S334:fr_id]]&amp;s_regType=">
+                      <a href="SPageServer/?pagename=cn_register&amp;fr_id=[[S334:fr_id]]&amp;s_regType=">
                         Register
                       </a>
                     ]]
@@ -365,7 +374,7 @@
     </p>
     <p>
       [[?x1x2x::x[[S42:0:status]]x::
-      <a class="button btn-black btn-lg text-white px-5" href="TRR/?pg=utype&amp;fr_id=[[S334:fr_id]]&amp;s_regType=" role="button">Register</a>
+      <a class="button btn-black btn-lg text-white px-5" href="SPageServer/?pagename=cn_register&amp;fr_id=[[S334:fr_id]]&amp;s_regType=" role="button">Register</a>
       ::]]
     </p>
   </div>

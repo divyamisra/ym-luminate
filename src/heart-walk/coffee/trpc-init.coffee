@@ -22,7 +22,7 @@ angular.module 'trPcApp'
     'NgPc_APP_INFO'
     ($rootScope, NgPc_APP_INFO) ->
       $rootScope.Math = window.Math
-
+      
       # get data from embed container
       $embedRoot = angular.element '[data-embed-root]'
       appVersion = $embedRoot.data('app-version') if $embedRoot.data('app-version') isnt ''
@@ -39,7 +39,7 @@ angular.module 'trPcApp'
       $rootScope.frId = $embedRoot.data('fr-id') if $embedRoot.data('fr-id') isnt ''
       if not $rootScope.frId
         new Error 'Angular TeamRaiser Participant Center: No TeamRaiser ID is defined.'
-
+      
       $rootScope.eventName = $embedRoot.data('event-name') if $embedRoot.data('event-name') isnt ''
       $rootScope.eventCity = $embedRoot.data('event-city') if $embedRoot.data('event-city') isnt ''
       $rootScope.eventState = $embedRoot.data('event-state') if $embedRoot.data('event-state') isnt ''
@@ -49,7 +49,6 @@ angular.module 'trPcApp'
       $rootScope.locale = if $embedRoot.data('locale') is '' then 'en_US' else $embedRoot.data('locale')
       $rootScope.consId = $embedRoot.data('cons-id') if $embedRoot.data('cons-id') isnt ''
       $rootScope.authToken = $embedRoot.data('auth-token') if $embedRoot.data('auth-token') isnt ''
-      $rootScope.sessionCookie = $embedRoot.data('session-cookie') if $embedRoot.data('session-cookie') isnt ''
       $rootScope.daysToEvent = $embedRoot.data('days-to-event') if $embedRoot.data('days-to-event') isnt ''
       $rootScope.isSelfDonor = $embedRoot.data('is-self-donor') if $embedRoot.data('is-self-donor') isnt ''
       $rootScope.emailsSent = $embedRoot.data('emails-sent') if $embedRoot.data('emails-sent') isnt ''
