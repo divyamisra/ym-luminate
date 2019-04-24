@@ -33,6 +33,11 @@ padding: 0.625rem 1.25rem;
       padding-right: 2em;
     }
   }
+  .container::after {
+    content: '';
+    display: none;
+    background-color: black;
+  }
 
   button .fas.fa-bars { 
     @include media-breakpoint-down(md) {
@@ -160,12 +165,6 @@ padding: 0.625rem 1.25rem;
   a.utility-nav-item {
     color: $dark;
     text-decoration: underline;
-  }
-
-  .container::after {
-    content: '';
-    display: none;
-    background-color: black;
   }
 
   .main-nav::after {
