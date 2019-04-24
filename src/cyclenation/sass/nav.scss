@@ -44,7 +44,7 @@ padding: 0.625rem 1.25rem;
   }
   button .svg-inline--fa {
     @include media-breakpoint-down(md) {
-      fill: url(#lgrad);
+      fill: url(#lgrad1);
     }
   }
 
@@ -235,7 +235,7 @@ padding: 0.625rem 1.25rem;
       -webkit-text-fill-color: transparent;
     }
     button .svg-inline--fa {
-      fill: url(#lgrad);
+      fill: url(#lgrad2);
     }
 
     @include media-breakpoint-down(sm) {
