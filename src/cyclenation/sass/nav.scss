@@ -298,4 +298,13 @@ padding: 0.625rem 1.25rem;
   background:$primary;
 }
 
-
+@include media-breakpoint-up(sm) {
+  .navbar {
+    height:126px;
+  }
+  .navbar-nav {
+    position:absolute;
+    bottom:0;
+    right:0;
+  }
+}
