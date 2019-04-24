@@ -827,6 +827,78 @@
           <li class="pushy-link">
             <a href="TR?fr_id=[[S80:evID]]&amp;pg=informational&amp;sid=2014">Sponsors</a>
           </li>
+          <li class="pushy-link d-block d-sm-none">
+              [[?x[[S334:pagename]]x::xcn_homex::
+              <!-- landing page, scroll to event search form -->
+              <a class="scroll-link" href="#eventSearch">
+                Register
+              </a>
+              ::
+               [[?xx::x[[S334:fr_id]]x::
+               <!-- not a tr page, redirect to CN home page and scroll to event search form -->
+               <a href="SPageServer/?pagename=cn_home#eventSearch">
+                 Register
+               </a>
+               ::
+                 <!-- on a tr page, direct to general reg step for that particular event -->
+                 [[?x1x2x::x[[E42:[[S334:fr_id]]:status]]x::
+                 <a href="SPageServer/?pagename=cn_register&amp;fr_id=[[S334:fr_id]]&amp;s_regType=">
+                   Register
+                 </a>
+                 ::]]
+               ]]
+              ]]
+            </li>
+            <li class="pushy-link d-block d-sm-none">
+               [[?
+                 [[?x[[S334:pagename]]x::xcn_homex::T::]]
+                 [[?x[[S334:pg]]x::xentryx::T::]]
+               ::T::
+                 <!-- landing and greeting page, scroll to fundraiser search form -->
+                 <a class="scroll-link" href="#fundraiserSearch" aria-label="Donate to CycleNation">
+                   Donate
+                 </a>
+               ::
+                 [[?x[[S334:pg]]x::xpersonalx::
+                   <!-- personal page, redirect to personal proxy type donation form -->
+                   [[?x2x3x::x[[E42:[[S334:fr_id]]:status]]x::
+                   <a href="Donation2?df_id=[[E42:[[S334:fr_id]]:form-ID]]&amp;PROXY_ID=[[E48:[[S334:fr_id]]:participant-id]]&amp;PROXY_TYPE=20&amp;FR_ID=[[S334:fr_id]]" aria-label="Donate to CycleNation">
+                     Donate
+                   </a>
+                   ::]]
+                 ::
+                   [[?x[[S334:pg]]x::xteamx::
+                     <!-- team page, redirect to team proxy type donation form -->
+                     [[?x2x3x::x[[E42:[[S334:fr_id]]:status]]x::
+                     <a href="Donation2?df_id=[[E42:[[S334:fr_id]]:form-ID]]&amp;PROXY_ID=[[S334:team_id]]&amp;PROXY_TYPE=22&amp;FR_ID=[[S334:fr_id]]" aria-label="Donate to CycleNation">
+                       Donate
+                     </a>
+                     ::]]
+                   ::
+                     [[?x[[S334:pg]]x::xcompanyx::
+                       <!-- company page, redirect to CN search page -->
+                       [[?x2x3x::x[[E42:[[S334:fr_id]]:status]]x::
+                       <a href="SPageServer?pagename=cn_search" aria-label="Donate to CycleNation">
+                         Donate
+                       </a>
+                       ::]]
+                     ::
+                       [[?x[[S334:fr_id]]x::xx::
+                         <!-- not a tr page, redirect to CN home page and scroll to cross-event fundraiserSearch -->
+                         <a href="SPageServer/?pagename=cn_home#fundraiserSearch" aria-label="Donate to CycleNation">
+                           Donate
+                         </a>
+                       ::
+                         <!-- on a tr page, redirect to tr greeting page and scroll to event-specific fundraiserSearch -->
+                         <a href="TR/CycleNation/General?fr_id=[[S334:fr_id]]&amp;pg=entry#fundraiserSearch" aria-label="Donate to CycleNation">
+                           Donate
+                         </a>
+                       ]]
+                     ]]
+                   ]]
+                 ]]
+               ]]
+             </li>
         </ul>
       </div>
     </nav>
