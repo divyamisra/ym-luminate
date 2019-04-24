@@ -60,9 +60,12 @@ angular.module 'trPcControllers'
                     fundraiserName = 'Help Keep Hearts Beating'
                     FacebookFundraiserService.createFundraiser $rootScope.secureDomain + 'images/content/pagebuilder/district-heart-challenge-facebook-cover.png', fundraiserName
                       .then (response) ->
-                        facebookFundraiserId = if response.data.error?.code is '105' then response.data.error.debug?.fundraiserId else response.data.fundraiser?.id
+                        facebookFundraiserId = if response.data.error?.code is '105' then response.data.error.debug?.fundraiserId else if response.data.error?.code is '107' then response.data.error.debug?.fundraiserId else response.data.fundraiser?.id
                         if not facebookFundraiserId
-                          $rootScope.facebookFundraiserCreateStatus = 'create_fundraiser_error'
+                          if response.data.error?.debug.error.error_user_title is 'Duplicate Fundraiser'
+                            $rootScope.facebookFundraiserCreateStatus = 'create_fundraiser_duplicate'
+                          else
+                            $rootScope.facebookFundraiserCreateStatus = 'create_fundraiser_error'
                         else
                           $rootScope.facebookFundraiserCreateStatus = 'complete'
                           $rootScope.facebookFundraiserId = facebookFundraiserId

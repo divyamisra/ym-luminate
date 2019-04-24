@@ -33,24 +33,28 @@ angular.module 'trPcControllers'
           "name":"Heart Heroes Wristband"
           "status":0
           "level":""
+          "level_desc":""
         }
         {
           "id":"KSHA-19"
           "name":"Finn"
           "status":0
-          "level":"$1"
+          "level":""
+          "level_desc":"(First Online Gift)"
         }
         {
           "id":"KPAN-19"
           "name":"Ruby"
           "status":0
           "level":"$40"
+          "level_desc":""
         }
         {
           "id":"3D"
           "name":"Create Your Own 3D Printed Heart Hero"
           "status":0
           "level":"$1,000"
+          "level_desc":""
         }
       ]
       defaultStandardGifts = [
@@ -154,6 +158,7 @@ angular.module 'trPcControllers'
           "KUNI-19"
           "MWB-19"
           "KSHA-19"
+          "KPAN-19"
           "LVL2JR-19"
           "KOTT-19"
           "KPIG-19"
@@ -280,12 +285,21 @@ angular.module 'trPcControllers'
           angular.forEach defaultInstantGifts, (gift) ->
             status = 0
             if jQuery.inArray(gift.id,giftLevels[current_level]) isnt -1 and student.has_bonus != 0
-              status = 1
+              # even though current level > $40 if they haven't raied more than $40 online, 
+              # ruby won't be in the prize list
+              if gift.id == 'KPAN-19'
+                jQuery(student.prizes).each ->
+                  if @prize_sku == 'KPAN-19'
+                    status = 1
+                  return
+              else
+                status = 1
             $scope.bonusGifts.push
               prize_label: gift.name
               prize_sku: gift.id
               prize_status: status
               prize_level: gift.level
+              prize_desc: gift.level_desc
 
           prevstatus = 0
           angular.forEach defaultStandardGifts, (gift, key) ->

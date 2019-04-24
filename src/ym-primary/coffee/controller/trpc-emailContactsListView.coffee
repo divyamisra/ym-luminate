@@ -18,18 +18,18 @@ angular.module 'trPcControllers'
       
       $scope.emailPromises = []
       
-#      $scope.messageCounts = {}
-#      messageTypes = [
-#        'draft'
-#        'sentMessage'
-#      ]
-#      angular.forEach messageTypes, (messageType) ->
-#        apiMethod = 'get' + messageType.charAt(0).toUpperCase() + messageType.slice(1) + 's'
-#        messageCountPromise = NgPcTeamraiserEmailService[apiMethod] 'list_page_size=1'
-#          .then (response) ->
-#            $scope.messageCounts[messageType + 's'] = response.data[apiMethod + 'Response'].totalNumberResults
-#            response
-#        $scope.emailPromises.push messageCountPromise
+      # $scope.messageCounts = {}
+      # messageTypes = [
+      #   'draft'
+      #   'sentMessage'
+      # ]
+      # angular.forEach messageTypes, (messageType) ->
+      #   apiMethod = 'get' + messageType.charAt(0).toUpperCase() + messageType.slice(1) + 's'
+      #   messageCountPromise = NgPcTeamraiserEmailService[apiMethod] 'list_page_size=1'
+      #     .then (response) ->
+      #       $scope.messageCounts[messageType + 's'] = response.data[apiMethod + 'Response'].totalNumberResults
+      #       response
+      #   $scope.emailPromises.push messageCountPromise
       
       $scope.focusPanel = ->
         $elem = angular.element '.contacts-list__actions-selected .btn'
@@ -43,15 +43,21 @@ angular.module 'trPcControllers'
       getContactString = (contact) ->
         contactData = ''
         if contact?.firstName
-          contactData += contact.firstName
+          contactData += '"' + contact.firstName.replace(/,/g, '')
         if contact?.lastName
-          if contactData isnt ''
+          if contactData is ''
+            contactData += '"'
+          else
             contactData += ' '
-          contactData += contact.lastName
+          contactData += contact.lastName.replace(/,/g, '')
+        if contactData isnt ''
+          contactData += '"'
+        if contactData isnt ''
+          contactData += ' '
+        contactData += '<'
         if contact?.email
-          if contactData isnt ''
-            contactData += ' '
-          contactData += '<' + contact.email + '>'
+          contactData += contact.email
+        contactData += '>'
         contactData
       
       isContactSelected = (contact) ->
@@ -198,6 +204,10 @@ angular.module 'trPcControllers'
                   contacts = []
                   angular.forEach addressBookContacts, (contact) ->
                     if contact
+                      if contact.firstName
+                        contact.firstName = jQuery('<div>' + contact.firstName.replace(/&amp;/g, '&') + '</div>').text()
+                      if contact.lastName
+                        contact.lastName = jQuery('<div>' + contact.lastName.replace(/&amp;/g, '&') + '</div>').text()
                       contact.selected = isContactSelected contact
                       contacts.push contact
                   $scope.addressBookContacts.contacts = contacts
@@ -220,6 +230,10 @@ angular.module 'trPcControllers'
                   contacts = []
                   angular.forEach addressBookContacts, (contact) ->
                     if contact
+                      if contact.firstName
+                        contact.firstName = jQuery('<div>' + contact.firstName.replace(/&amp;/g, '&') + '</div>').text()
+                      if contact.lastName
+                        contact.lastName = jQuery('<div>' + contact.lastName.replace(/&amp;/g, '&') + '</div>').text()
                       contact.selected = isContactSelected contact
                       $scope.addressBookContacts.allContacts.push contact
                   if $scope.addressBookContacts.allContacts.length < totalNumber

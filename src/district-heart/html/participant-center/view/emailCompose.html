@@ -170,7 +170,7 @@
       <form name="emailComposerForm" method="POST" novalidate ng-submit="previewEmail()">
         <div class="form-group">
           <label for="emailComposer-recipients" class="sr-only">Recipients:</label>
-          <textarea class="form-control" id="emailComposer-recipients" name="recipients" ng-model="emailComposer.recipients" placeholder="Recipients (separate multiple email addresses with a comma)" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea>
+          <textarea class="form-control" id="emailComposer-recipients" name="recipients" ng-model="emailComposer.ng_recipients" placeholder="Recipients (separate multiple email addresses with a comma)" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea>
         </div>
         <div class="form-group" ng-if="suggestedMessages.length > 0">
           <label for="emailComposer-suggested_message_id" class="sr-only">Sample Message:</label>

@@ -10,11 +10,13 @@ angular.module 'trPcControllers'
     '$translate'
     '$uibModal'
     '$uibModalStack'
+    '$window'
     'APP_INFO'
     'ConstituentService'
     'TeamraiserRecentActivityService'
     'TeamraiserRegistrationService'
     'TeamraiserProgressService'
+    'TeamraiserFundraisingResultsService'
     'TeamraiserGiftService'
     'TeamraiserParticipantService'
     'TeamraiserTeamService'
@@ -25,10 +27,15 @@ angular.module 'trPcControllers'
     'TeamraiserSurveyResponseService'
     'TeamraiserEmailService'
     'FacebookFundraiserService'
-    ($rootScope, $scope, $timeout, $filter, $location, $httpParamSerializer, $http, $translate, $uibModal, $uibModalStack, APP_INFO, ConstituentService, TeamraiserRecentActivityService, TeamraiserRegistrationService, TeamraiserProgressService, TeamraiserGiftService, TeamraiserParticipantService, TeamraiserTeamService, TeamraiserNewsFeedService, TeamraiserCompanyService, TeamraiserShortcutURLService, ContactService, TeamraiserSurveyResponseService, TeamraiserEmailService, FacebookFundraiserService) ->
+    ($rootScope, $scope, $timeout, $filter, $location, $httpParamSerializer, $http, $translate, $uibModal, $uibModalStack, $window, APP_INFO, ConstituentService, TeamraiserRecentActivityService, TeamraiserRegistrationService, TeamraiserProgressService, TeamraiserFundraisingResultsService, TeamraiserGiftService, TeamraiserParticipantService, TeamraiserTeamService, TeamraiserNewsFeedService, TeamraiserCompanyService, TeamraiserShortcutURLService, ContactService, TeamraiserSurveyResponseService, TeamraiserEmailService, FacebookFundraiserService) ->
       $scope.dashboardPromises = []
 
       $scope.baseDomain = $location.absUrl().split('/site/')[0]
+
+      if $scope.tablePrefix is 'heartdev'
+        $scope.bfserver = 'bfstage'
+      else
+        $scope.bfserver = 'bfapps1'
 
       constituentPromise = ConstituentService.getUser()
         .then (response) ->
@@ -48,40 +55,67 @@ angular.module 'trPcControllers'
               $scope.constituent.primary_address.zip = ''
             if angular.equals({}, $scope.constituent.mobile_phone) is true
               $scope.constituent.mobile_phone = ''
-            $scope.checkBrightSites()
           response
       $scope.dashboardPromises.push constituentPromise
 
-      runCheckBrightSites = ->
-        postData =
-          server: $scope.tablePrefix
-          frid: $scope.frId
-          consid: $scope.consId
-        $http.post('https://bfapps1.boundlessfundraising.com/applications/ahahw/brightsites/brightpost.php', postData)
+      $scope.participantConfirmedGifts
+      $scope.getConfirmedGifts = ->
+        fundraisingResultsPromise = TeamraiserFundraisingResultsService.getFundraisingResults()
+          .then (response) ->
+            participantFundraisingRecord = response.data.getFundraisingResponse?.fundraisingRecord
+            $scope.participantConfirmedGifts = Number participantFundraisingRecord.totalConfirmedAmount
+            response
+        $scope.dashboardPromises.push fundraisingResultsPromise
+      $scope.getConfirmedGifts()
+
+      $scope.rewardsPostData =
+        server: $scope.tablePrefix
+        frid: $scope.frId
+        consid: $scope.consId
 
       $scope.BrightSites =
-        url: ''
-        points: ''
+        url: 'http://heartwalkguest.mybrightsites.com'
         active: false
+        participant: false
+        greeting: ''
 
       $scope.checkBrightSites = ->
-        getcheckBrightSitesPromise = runCheckBrightSites()
+        getcheckBrightSitesPromise = $http.post('https://'+$scope.bfserver+'.boundlessfundraising.com/applications/ahahw/brightsites/brightpost-info.php', $scope.rewardsPostData)
           .then (response) ->
             if response.data.errors
               console.log response.data
             else
               console.log response.data
-              if response.data.login_url
-                $scope.BrightSites.active = true
-                $scope.BrightSites.url = response.data.login_url
-                $scope.BrightSites.points = response.data.balance
-                $scope.BrightSites.greeting = response.data.greeting
-                console.log $scope.BrightSites
+              $scope.BrightSites.greeting = response.data.greeting
+              $scope.BrightSites.active = response.data.participant?.event_status
+              if response.data.participant?.exported isnt false
+                $scope.BrightSites.participant = true
             #response
           .catch (response) ->
-            console.log 'brightsites promise failure'
+            console.log 'promise failure participant and event status call'
             #console.log response
         $scope.dashboardPromises.push getcheckBrightSitesPromise
+      $scope.checkBrightSites()
+
+      $scope.BrightSitesLogin = ->
+        if $scope.BrightSites.participant is true and $scope.participantConfirmedGifts >= 10000
+          BrightSitesWindow = $window.open '', 'RewardCenter'
+          $http.post('https://'+$scope.bfserver+'.boundlessfundraising.com/applications/ahahw/brightsites/brightpost-sso.php', $scope.rewardsPostData)
+            .then (response) ->
+              if response.data.errors
+                console.log response.data
+                BrightSitesWindow.location.href = $scope.BrightSites.url
+              else
+                console.log response.data
+                if response.data.login_url
+                  $scope.BrightSites.url = response.data.login_url
+                BrightSitesWindow.location.href = $scope.BrightSites.url
+            .catch (response) ->
+              console.log 'brightsites promise failure sso fetch'
+        else
+          BrightSitesWindow = $window.open $scope.BrightSites.url, 'RewardCenter'
+          return true
+
 
       $scope.getMessageCounts = (refresh) ->
         $scope.messageCounts = {}
@@ -720,7 +754,7 @@ angular.module 'trPcControllers'
             $scope.cancelEditYears = ->
               $scope.LByearsProfileModal.close()
               reCheckProfileItems()
-      
+
       $scope.editYourWhy = ->
         $scope.LBwhyModal = $uibModal.open
           scope: $scope
