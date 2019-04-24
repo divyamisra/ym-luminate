@@ -2,6 +2,10 @@
 .pg_entry {
   .section-hero {
     .section-hero-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
       .section-hero-content-container {
         width: 100%;
         max-width: 600px;
@@ -452,7 +456,6 @@
           background-color: $black;
 
           a {
-            margin-left: 5%;
             text-decoration: none;
           }
         }
@@ -520,7 +523,8 @@
           a {
             font-style: italic;
 
-            i {
+            i, 
+            .svg-inline--fa.fa-angle-right {
               margin-left: 5px;
             }
           }

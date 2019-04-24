@@ -9,6 +9,7 @@
     width: 100%;
     min-height: 430px;
     height: 100%;
+    z-index: -1;
 
     @include media-breakpoint-down(sm) {
       background-image: url(../images/content/pagebuilder/AHA_CN_landing_hero_mobile.png) !important;
