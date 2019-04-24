@@ -252,7 +252,8 @@ div.payment-field-container {
   color: $white;
   text-decoration: none;
 }
-.btn-rounded.btn-primary {
+.btn-rounded.btn-primary,
+.btn-rounded.btn-primary:visited {
   background-color: $primary;
   color: $white;
 }
