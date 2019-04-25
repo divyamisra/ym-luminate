@@ -709,6 +709,9 @@ cd.getEventsByDistance = function (zipCode, numEvents) {
       var latlng = new google.maps.LatLng(latlngStr[0], latlngStr[1]);
       var geocoder = new google.maps.Geocoder();
       geocoder.geocode( { 'location': latlng }, function (result, status) {
+      console.log("Geocode result: ", result);
+      console.log("Geocode status: ", status);
+
         var zipCode = result[0]['address_components'][7]['short_name'];
         cd.getEventsByDistance(zipCode, 3);
 
