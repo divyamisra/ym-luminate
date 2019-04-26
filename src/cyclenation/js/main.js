@@ -2121,7 +2121,7 @@ cd.getEventsByDistance = function (zipCode, numEvents) {
       $('.input-label:contains("Mobile")').closest('.survey-question-container').addClass('mobile-question-container two-col');
       $('.input-label:contains("I am a")').closest('.survey-question-container').addClass('survivor-question-container');
       $('.input-label:contains("jersey size")').closest('.survey-question-container').addClass('jersey-question-container');
-      $('.input-label:contains("route distance")').closest('.survey-question-container').addClass('route-question-container');
+      $('.input-label:contains("Route Distance")').closest('.survey-question-container').addClass('route-question-container');
       $('#cons_email').closest('.form-content').addClass('email-question-container two-col');
       $('#cons_email_format').before('<legend id="consEmailFormat" class="sr-only">Email Format</legend>');
       $('#cons_email_format').attr('aria-labelledby', 'consEmailFormat');
@@ -2513,7 +2513,7 @@ cd.getEventsByDistance = function (zipCode, numEvents) {
     $('#fr_part_co_list').attr('aria-labelledby', 'individual_company_hdr_container');
 
     // $('.donation-levels').before('<legend id="reg_donation_array_label" class="sr-only">Make a donation</legend>');
-    $('#part_type_additional_gift_section_header').prepend('<div class="bold-label" id="regDonationLabel">Donate Towards Your Goal Now</div>' + (regType === 'startTeam' ? 'Show your squad how it\'s done and make a donation towards your goal.' : 'Show your dedication and make a donation towards your goal.'));
+    $('#part_type_additional_gift_section_header').prepend('<div class="bold-label" id="regDonationLabel">Donate Towards Your Goal Now</div>Want to donate above and beyond the registration fee to jump start your fundraising? Kick your fundraising into high gear with a personal donation:');
 
     $('#part_type_donation_level_input_container').wrapInner('<fieldset role="radiogroup" class="donation-form-fields" aria-labelledby="regDonationLabel"/>');
 
@@ -2797,10 +2797,14 @@ if($('.tr_sponsorship_logos').length){
       });
 
       $('#pstep_finish').on('click', function (e) {
-        var rawPhoneNumber = $('#cell_or_phone_number_input').val();
-        var cleanPhoneNumber = rawPhoneNumber.replace(/[()-]/g, "");
-        cleanPhoneNumber = cleanPhoneNumber.replace(/\s/g, "");
-        $('#cell_or_phone_number_input').val(cleanPhoneNumber);
+          var r = /((?:\d{4}[ -]?){3}\d{3,4})/gm;
+          $('[type=text]:not(#responsive_payment_typecc_numbername)').each(function() {
+             jQuery(this).val(jQuery(this).val().replace(r,""));
+          });
+          var rawPhoneNumber = $('#cell_or_phone_number_input').val();
+          var cleanPhoneNumber = rawPhoneNumber.replace(/[()-]/g,"");
+          cleanPhoneNumber = cleanPhoneNumber.replace(/\s/g,"");
+          $('#cell_or_phone_number_input').val(cleanPhoneNumber);
       });
 
     }

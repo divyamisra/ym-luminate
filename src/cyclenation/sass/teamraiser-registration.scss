@@ -791,7 +791,7 @@ div.registration-page-container div.sub-section-header {
   @extend .my-2;
 }
 #cons_birth_date_date {
-  @extend .d-flex;
+  @extend .row;
 }
 li.input-container,
 div#gift_notice_optin {
@@ -856,15 +856,10 @@ div#privacy_component_container label,  div#gift_notice_optin label, div#email_o
   }
 }
 
-
   select {
-    // div.responsive select {
     &#cons_birth_date_MONTH,
     &#cons_birth_date_DAY {
-      @include make-col-ready();
-      @include media-breakpoint-up(xs) {
-        @include make-col(6);
-      } // min-width:75px;
+      width:100%;
     }
   }
   #part_type_additional_gift_section_header {
