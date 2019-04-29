@@ -1789,6 +1789,10 @@
       // add reg full class to ptype container
       var ptypeBlocks = $('.part-type-decoration-messages');
 
+      if($('.part-type-container').length === 1){
+        $('.part-type-decoration-messages > label').attr('tabindex', '0');
+      }
+
       $(ptypeBlocks).each(function () {
         if ($(this).hasClass('part-type-full')) {
           $(this).parent().removeClass('selected').addClass('ptype-full').find('input[type=radio]').remove();
@@ -1828,6 +1832,8 @@
           $(this).find('.part-type-name').text(newPtypeName);
         }
       });
+
+
 
       // begin StationaryV2 event conditional
       if (eventType2 === 'StationaryV2') {
@@ -1941,6 +1947,23 @@
             keyboard: false
           }).modal('show');
         });
+        
+        $('.part-type-container').on('keypress', function (e) {
+          var key = e.which;
+          if(key == 13) {
+            $('.part-type-container').removeClass('selected');
+            $(this).addClass('selected');
+            $(this).find('input[type="radio"]').prop('checked', true);
+            $('#next_step').removeClass('disabled');
+            $('#dspPledge').modal({
+              backdrop: 'static',
+              keyboard: false
+            }).modal('show');
+              return false;  
+            }
+        });
+
+
         // remove on click event if has class .ptype-full
         $('.ptype-full').off();
 
@@ -1960,7 +1983,7 @@
       $('.donation-level-amount-text').closest('.donation-level-row-container').addClass('don-level-btn');
       $('.donation-level-container .input-container').parent().addClass('other-amount-row-container');
 
-      $('.other-amount-row-container .donation-level-row-label').text('Enter your own amount:').attr('id', 'enterAmtLabel');
+      $('.other-amount-row-container .donation-level-row-label').text('Enter your own amount:');
 
       $('.donation-level-row-label-no-gift').text("No thanks. I don\'t want to make a donation towards my goal at the moment").closest('.donation-level-row-container').addClass('don-no-gift');
       $('.don-no-gift, #part_type_anonymous_input_container, #part_type_show_public_input_container').wrap('<div class="form-check"/>');
@@ -1980,7 +2003,10 @@
         $(this).addClass('active');
       });
       // add label to other amount text input
-      $('.other-amount-row-container input[type=text]').addClass('other-amount').attr('aria-labelledby', 'enterAmtLabel');
+      $('.other-amount-row-container input[type=text]').addClass('other-amount')
+      
+      var otherFieldLabel = $('.other-amount').attr('id');
+      $('.other-amount').insertBefore('<label for="' + otherFieldLabel + '" class="sr-only">Enter other amount</label>');
 
       $('.other-amount')
         .prop('onclick', null).off('click')
@@ -2430,13 +2456,24 @@
     $('#team_find_new_team_recruiting_goal label.input-label').attr('for', 'fr_team_member_goal');
 
     // ptype
-    $('#part_type_selection_container').wrapInner('<fieldset role="radiogroup" class="ptype-selection" aria-labelledby="sel_type_container"/>');
+    // $('#part_type_selection_container').wrapInner('<fieldset role="radiogroup" class="ptype-selection"/>');
+    
+    $('#part_type_selection_container').wrapInner('<fieldset role="radiogroup" class="ptype-selection" id="ptype_fieldset" aria-labelledby="sel_type_container"/>');
+    $('#ptype_fieldset').prepend('<legend class="sr-only">What time do you want to ride?</legend>');
+
+    // $('input[name=fr_part_radio]').attr('aria-labelledby', 'sel_type_container');
+
     $('#fr_part_co_list').attr('aria-labelledby', 'individual_company_hdr_container');
 
     // $('.donation-levels').before('<legend id="reg_donation_array_label" class="sr-only">Make a donation</legend>');
     $('#part_type_additional_gift_section_header').prepend('<div class="bold-label" id="regDonationLabel">Donate Towards Your Goal Now</div>Want to donate above and beyond the registration fee to jump start your fundraising? Kick your fundraising into high gear with a personal donation:');
 
-    $('#part_type_donation_level_input_container').wrapInner('<fieldset role="radiogroup" class="donation-form-fields" aria-labelledby="regDonationLabel"/>');
+    $('#part_type_donation_level_input_container').wrapInner('<fieldset role="radiogroup" class="donation-form-fields" />');
+    // $('#part_type_donation_level_input_container').wrapInner('<fieldset role="radiogroup" class="donation-form-fields" aria-labelledby="regDonationLabel"/>');
+    $('.donation-form-fields').prepend('<legend class="sr-only">Donate Towards Your Goal Now</legend>');
+    // $('.donation-form-fields input[type="radio"]').attr('aria-labelledby', 'regDonationLabel');
+    // donation_level_form_
+
 
     // associate ptype label with input
     $('.part-type-container label').each(function (i) {
