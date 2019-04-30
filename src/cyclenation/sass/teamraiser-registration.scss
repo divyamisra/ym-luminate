@@ -1096,6 +1096,11 @@ div.responsive button.step-button {
   }
 
 }
+#external_payment_wait_dlg_mask,
+#external_payment_wait_dlg,
+#external_payment_wait_dlg_c {
+  max-width: 100% !important;
+}
 
 #fr_thanks_page {
   .part-center-container {
