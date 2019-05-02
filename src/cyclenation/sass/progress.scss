@@ -12,25 +12,25 @@
   }
   progress,
   progress[role][aria-valuenow] {
-    background: url(../image/gear_lg_grey.png) #fff;
+    background: url(../images/content/pagebuilder/gear_lg_grey.png) #fff;
   }
   progress {
     &::-webkit-progress-bar {
-      background: url(../image/gear_lg_grey.png) #fff;
+      background: url(../images/content/pagebuilder/gear_lg_grey.png) #fff;
     }
     color: $primary;
     &::-ms-fill {
       border: none;
-      background: url(../image/gear_lg_red.png) #fff !important;
+      background: url(../images/content/pagebuilder/gear_lg_red.png) #fff !important;
     }
     &::-moz-progress-bar {
-      background: url(../image/gear_lg_red.png) #fff !important;
+      background: url(../images/content/pagebuilder/gear_lg_red.png) #fff !important;
     }
     &::-webkit-progress-value {
-      background: url(../image/gear_lg_red.png) #fff !important;
+      background: url(../images/content/pagebuilder/gear_lg_red.png) #fff !important;
     }
     &[aria-valuenow]:before {
-      background: url(../image/gear_lg_red.png) #fff !important;
+      background: url(../images/content/pagebuilder/gear_lg_red.png) #fff !important;
     }
   }
 }
@@ -49,25 +49,25 @@
   }
   progress,
   progress[role][aria-valuenow] {
-    background: url(../image/gear_white.png) #DADADA;
+    background: url(../images/content/pagebuilder/gear_white.png) #DADADA;
   }
   progress {
     &::-webkit-progress-bar {
-      background: url(../image/gear_white.png) #DADADA;
+      background: url(../images/content/pagebuilder/gear_white.png) #DADADA;
     }
     color: $primary;
     &::-ms-fill {
       border: none;
-      background: url(../image/gear_red.png) #DADADA !important;
+      background: url(../images/content/pagebuilder/gear_red.png) #DADADA !important;
     }
     &::-moz-progress-bar {
-      background: url(../image/gear_red.png) #DADADA !important;
+      background: url(../images/content/pagebuilder/gear_red.png) #DADADA !important;
     }
     &::-webkit-progress-value {
-      background: url(../image/gear_red.png) #DADADA !important;
+      background: url(../images/content/pagebuilder/gear_red.png) #DADADA !important;
     }
     &[aria-valuenow]:before {
-      background: url(../image/gear_red.png) #DADADA !important;
+      background: url(../images/content/pagebuilder/gear_red.png) #DADADA !important;
     }
   }
 }

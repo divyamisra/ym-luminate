@@ -7,253 +7,174 @@
 </style>
 ::]]
 
-<section id="tFind" class="">
-    [[?xx::x[[S80:regType]]x::
-    <!-- BEGIN step 1 of tfind -->
-    <div class="row js__reg-type-container">
-      <div class="col-md-6 offset-md-3 text-center">
-        <h1 class="h3 show-desktop">I want to:</h1>
-      </div>
+<section id="tFind" aria-labelledby="title_container">
+  [[?xx::x[[S80:regType]]x::
+  <!-- BEGIN part 1 of tfind -->
+  [[S51:reus_cn_tpt_reg_options]]
+  <!-- END part 1 of tfind -->
+  ::]]
 
-      <div class="col-md-6 offset-md-3">
-        <div class="js__reg-type-error-container alert alert-danger d-none" role="alert">
-          <span class="" aria-hidden="true"></span>
-          <span class="sr-only">Error:</span>
-          <i class="fas fa-exclamation-triangle" aria-hidden="true"></i>
-          <span class="js__reg-type-error-message"></span>
-        </div>
-        [[?xStationaryV2x::x[[E42:[[S80:trID]]:classification2]]x::
-        <!-- Stationary v2 Event -->
-        <div class="js__promo-code-success alert alert-success hidden" role="alert">Success! We located available bikes reserved with your VIP code. Please proceed with registration.</div>
-        ::]]
-        
-        <form id="regTypeForm" class="js__reg-type-form text-center">
-          <div class="form-content">
-            [[?xStationary Cyclingx::x[[E42:[[S80:trID]]:public-event-type]]x::
-              [[?xStationaryx::x[[E42:[[S80:evID]]:classification2]]x::
-              <!-- Legacy Stationary Event -->
-                [[?[[T12:[[E47:[[S80:trID]]:fr_info:1:event_location_country]]]]::showstartteam:false::::
-                  <div class="form-group">
-                    <a href="TRR/?pg=tfind&amp;fr_id=[[S80:trID]]&amp;fr_tm_opt=new&amp;s_regType=startTeam&amp;s_hideTeamDetails=true" class="button btn-lg btn-block btn-outline-grey step-button p-3 mb-1">Start a Team</a>
-                    <p class="p-2">
-                      I will recruit riders to join my team and together we are raising funds to reach our team goal.
-                    </p>
-                  </div>
-                ]]
-                [[?[[T12:[[E47:[[S80:trID]]:fr_info:1:event_location_country]]]]::showjointeam:false::::
-                  <div class="form-group">
-                    <a href="TRR/?pg=tfind&amp;fr_id=[[S80:trID]]&amp;fr_tm_opt=existing&amp;s_regType=joinTeam" class="button btn-lg btn-block btn-outline-grey step-button js__show-team-join p-3 mb-1">Join a Team</a>
-                    <p class="p-2">
-                      I am joining an existing team and raising funds to reach the team goal.
-                    </p>
-                  </div>
-                ]]
-                [[?[[T12:[[E47:[[S80:trID]]:fr_info:1:event_location_country]]]]::showjoinindividual:false::::
-                  <div class="form-group">
-                    <a href="TRR/?pg=tfind&amp;fr_id=[[S80:trID]]&amp;fr_tm_opt=none&amp;s_regType=individual" class="button btn-lg btn-block btn-outline-grey step-button js__reg-individual p-3 mb-1">Breakaway
-                      <br>from the Pack</a>
-                    <p class="p-2">
-                      I am riding and fundraising solo.
-                    </p>
-                  </div>
-                ]]
-              ::
-              <!-- Stationary v2 Event -->
-              [[?[[T12:[[E47:[[S80:trID]]:fr_info:1:event_location_country]]]]::showstartteam:false::::
-              <div class="form-group start-team-container">
-                <a href="TRR/?pg=tfind&amp;fr_id=[[S80:trID]]&amp;fr_tm_opt=new&amp;s_regType=startTeam&amp;s_hideTeamDetails=false" class="button btn-lg btn-block btn-outline-grey step-button p-3 mb-1">Start a Team</a>
-                <p class="p-2">
-                  I will recruit riders to join my team and together we are raising funds to reach our team goal.
-                </p>
-              </div>
-              ]]
-              [[?[[T12:[[E47:[[S80:trID]]:fr_info:1:event_location_country]]]]::showjointeam:false::::
-              <div class="form-group join-team-container">
-                <a href="TRR/?pg=tfind&amp;fr_id=[[S80:trID]]&amp;fr_tm_opt=existing&amp;s_regType=joinTeam" class="button btn-lg btn-block btn-outline-grey step-button js__show-team-join p-3 mb-1">Join a Team</a>
-                <p class="p-2">
-                  I am joining an existing team and raising funds to reach the team goal.
-                </p>
-              </div>
-              ]]
-              [[?[[T12:[[E47:[[S80:trID]]:fr_info:1:event_location_country]]]]::showjoinindividual:false::::
-              <div class="form-group breakaway-container">
-                <a href="TRR/?pg=tfind&amp;fr_id=[[S80:trID]]&amp;fr_tm_opt=none&amp;s_regType=individual" class="button btn-lg btn-block btn-outline-grey step-button js__reg-individual p-3 mb-1">Breakaway
-                  <br>from the Pack</a>
-                <p class="p-2">
-                  I am riding and fundraising solo.
-                </p>
-              </div>
-              ]]
-              ]]
-            ::
-            [[?[[T12:[[E47:[[S80:trID]]:fr_info:1:event_location_country]]]]::showstartteam:false::::
-              <div class="form-group">
-                <a href="TRR/?pg=tfind&amp;fr_id=[[S80:trID]]&amp;fr_tm_opt=new&amp;s_regType=startTeam&amp;s_hideTeamDetails=false" class="button btn-lg btn-block btn-outline-grey step-button p-3 mb-1">Start a Team</a>
-                <p class="p-2">
-                    Become a team captain and start a team. 
-                </p>
-              </div>
-              ]]
-              [[?[[T12:[[E47:[[S80:trID]]:fr_info:1:event_location_country]]]]::showjointeam:false::::
-              <div class="form-group">
-                <a href="TRR/?pg=tfind&amp;fr_id=[[S80:trID]]&amp;fr_tm_opt=existing&amp;s_regType=joinTeam" class="button btn-lg btn-block btn-outline-grey step-button js__show-team-join p-3 mb-1">Join a Team</a>
-                <p class="p-2">
-                  Find and join a team that already exists.
-                </p>
-              </div>
-              ]]
-              [[?[[T12:[[E47:[[S80:trID]]:fr_info:1:event_location_country]]]]::showjoinindividual:false::::
-              <div class="form-group">
-                <a href="TRR/?pg=tfind&amp;fr_id=[[S80:trID]]&amp;fr_tm_opt=none&amp;s_regType=individual" class="button btn-lg btn-block btn-outline-grey step-button js__reg-individual p-3 mb-1">Ride Solo</a>
-                <p class="p-2">
-                  Ride on your own.
-                </p>
-              </div>
-              ]]
-              [[?[[T12:[[E47:[[S80:trID]]:fr_info:1:event_location_country]]]]::showjoinvirtually:false::::
-              <div class="form-group">
-                  <a href="TRR/?pg=tfind&amp;fr_id=[[S80:trID]]&amp;fr_tm_opt=none&amp;s_regType=virtual&amp;s_promoCode=virtualRider" class="button btn-lg btn-block btn-outline-grey step-button js__reg-individual p-3 mb-1">Join Us Virtually</a>
-                  <p class="p-2">
-                      Can't attend the event? Want to fundraise? Join us from the comfort of your home by being a virtual rider.
-                  </p>
-                </div>
-                ]]
-            ]]
-          </div>
-        </form>
-        [[?xStationaryV2x::x[[E42:[[S80:trID]]:classification2]]x::
-        <!-- Stationary v2 Event -->
-        <div class="js__promo-code-invalid alert alert-danger hidden" role="alert">
-          <p>Sorry, the VIP code you entered is not valid. Please contact the CycleNation Team: 
-            <span class="pl-3 d-block">
-              [[E47:[[S80:trID]]:fr_info:1:coordinator_name]]<br>
-              <a class="alert-link" href="mailto:[[E47:[[S80:trID]]:fr_info:1:coordinator_email]]">[[E47:[[S80:trID]]:fr_info:1:coordinator_email]]</a>
-              <br>[[E47:[[S80:trID]]:fr_info:1:coordinator_phone]]
-            </span>
-          </p>
-        </div>
-        <div class="js__promo-code-error alert alert-danger hidden" role="alert">
-            <p>Sorry, the bikes reserved for this VIP code have already been assigned. Please contact the CycleNation Team: 
-              <span class="pl-3 d-block">
-                [[E47:[[S80:trID]]:fr_info:1:coordinator_name]]<br>
-                <a class="alert-link" href="mailto:[[E47:[[S80:trID]]:fr_info:1:coordinator_email]]">[[E47:[[S80:trID]]:fr_info:1:coordinator_email]]</a>
-                <br>[[E47:[[S80:trID]]:fr_info:1:coordinator_phone]]
-              </span>
-            </p>
-        </div>
-        <div class="js__promo-code-sold-out alert border border-primary hidden" role="alert" >
-            <p>Oh no! All our bikes are currently reserved, please contact our CycleNation team to be added to our waitlist:
-              <span class="pl-3 d-block">
-              [[E47:[[S80:trID]]:fr_info:1:coordinator_name]]<br>
-              <a class="alert-link" href="mailto:[[E47:[[S80:trID]]:fr_info:1:coordinator_email]]">[[E47:[[S80:trID]]:fr_info:1:coordinator_email]]</a>
-              <br>[[E47:[[S80:trID]]:fr_info:1:coordinator_phone]]
-            </span>
-            </p>
-          </div>
-        <div class="js__reg-options-promo-container hidden">
-            <form class="js__reg-options-promo-form">
-                <div class="form-row">
-                  <div class="col-md-12 my-1">
-                    <p>If you have a VIP code, please enter it below to see if any reserved bikes are available.</p>
-                  </div>
-                </div>
-                <div class="form-row">
-                  <div class="col-md-9 mb-3">
-                    <label for="sponsorCode" class="sr-only">VIP Code:</label>
-                    <input name="s_promoCode" type="text" id="sponsorCode" class="form-control" placeholder="VIP Code" value="[[S80:promoCode]]">
-                  </div>
-                  <div class="col-md-3 mb-3">
-                    <button type="submit" class="button btn-primary btn-block mb-2">Submit</button>
-                  </div>
-                </div>
-              </form>
-        </div>
-        ::]]
-      </div>
+
+  [[?[[?xStationaryx::x[[E42:[[S80:trID]]:classification2]]x::T::]][[?xstartTeamx::x[[S80:regType]]x::T::]]::TT::
+  <!-- ONLY show bike number option to people who are 1) registering for a Stationary event and 2) are forming a team -->
+  <!-- BEGIN team bikes step of tfind -->
+  <div class="row js__team-bikes-container">
+    <div class="col-md-6 offset-md-3 text-center">
+      <h1 class="h3 show-desktop">Hello, Team Captain!</h1>
+      <span class="field-required"></span>
+      Indicates required</p>
     </div>
-    <!-- END part 1 of tfind -->
 
-    ::]]
-
-
-    [[?[[?xStationaryx::x[[E42:[[S80:trID]]:classification2]]x::T::]][[?xstartTeamx::x[[S80:regType]]x::T::]]::TT::
-    <!-- ONLY show bike number option to people who are 1) registering for a Stationary event and 2) are forming a team -->
-    <!-- BEGIN team bikes step of tfind -->
-    <div class="row js__team-bikes-container">
-      <div class="col-md-6 offset-md-3 text-center">
-        <h1 class="h3 show-desktop">Hello, Team Captain!</h1>
-        <span class="field-required"></span>
-        Indicates required</p>
+    <div class="col-md-6 offset-md-3">
+      <div class="js__team-bikes-error-container alert alert-danger d-none" role="alert">
+        <span class="" aria-hidden="true"></span>
+        <span class="sr-only">Error:</span>
+        <i class="fas fa-exclamation-triangle" aria-hidden="true"></i>
+        <span class="js__team-bikes-error-message"></span>
       </div>
 
-      <div class="col-md-6 offset-md-3">
-        <div class="js__team-bikes-error-container alert alert-danger d-none" role="alert">
-          <span class="" aria-hidden="true"></span>
-          <span class="sr-only">Error:</span>
-          <i class="fas fa-exclamation-triangle" aria-hidden="true"></i>
-          <span class="js__team-bikes-error-message"></span>
-        </div>
+      <form id="teamBikesForm" class="js__team-bikes-form">
+        <div class="form-content">
+          <div class="form-group">
+            <p><span class="field-required"><span class="aural-only">Field Is Required</span></span> Before we can talk
+              team goals, we need to know how many bikes you'll reserve for your group.</p>
 
-        <form id="teamBikesForm" class="js__team-bikes-form">
-          <div class="form-content">
-            <div class="form-group">
-              <p><span class="field-required"><span class="aural-only">Field Is Required</span></span> How many bikes do you want to reserve?</p>
+            <div class="dropdown show">
+              <a class="d-flex justify-content-between button btn-block btn-dropdown dropdown-toggle js__numbike-selector"
+                href="#" role="button" id="dropdownNumberOfBikes" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false">
+                Number of Bikes
+              </a>
 
-              <div class="dropdown show">
-                <a class="d-flex justify-content-between button btn-block btn-dropdown dropdown-toggle js__numbike-selector" href="#" role="button" id="dropdownNumberOfBikes"
-                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Number of Bikes
-                </a>
-
-                <div class="dropdown-menu" aria-labelledby="dropdownNumberOfBikes">
-                  <a class="dropdown-item" href="#" data-numbikes="1">
-                    <span class="flex-column">
+              <div class="dropdown-menu" aria-labelledby="dropdownNumberOfBikes">
+                <a class="dropdown-item" href="#" data-numbikes="1">
+                  <span class="flex-column">
                     1 bike = 4-8 riders
                     <em class="d-block">(min. fundraising is $1,000)</em>
                   </span>
-                  </a>
-                  <a class="dropdown-item" href="#" data-numbikes="2">
-                      <span class="flex-column">
-                          2 bikes = 8-16 riders
+                </a>
+                <a class="dropdown-item" href="#" data-numbikes="2">
+                  <span class="flex-column">
+                    2 bikes = 8-16 riders
                     <em class="d-block">(min. fundraising is $2,000)</em>
                   </span>
-                  </a>
-                  <a class="dropdown-item" href="#" data-numbikes="3">
-                      <span class="flex-column">
-                          3 bikes = 12-24 riders
+                </a>
+                <a class="dropdown-item" href="#" data-numbikes="3">
+                  <span class="flex-column">
+                    3 bikes = 12-24 riders
                     <em class="d-block">(min. fundraising is $3,000)</em>
                   </span>
-                  </a>
-                  <a class="dropdown-item" href="#" data-numbikes="4">
-                      <span class="flex-column">
-                          4 bikes = 16-32 riders
+                </a>
+                <a class="dropdown-item" href="#" data-numbikes="4">
+                  <span class="flex-column">
+                    4 bikes = 16-32 riders
                     <em class="d-block">(min. fundraising is $4,000)</em>
                   </span>
-                    
-                  </a>
-                </div>
-              </div>
-            </div>
 
-            <div class="form-group">
-              <label for="generatedTeamGoal">Team Fundraising Goal:</label>
-              <input name="team_goal" type="text" id="generatedTeamGoal" class="js__generated-team-goal" readonly value="Not Set" style="border:none;background:#fff;">
-            </div>
-
-            <div class="form-group row">
-              <div class="order-2 order-sm-1 col-sm-4 col-8 offset-2 offset-sm-0">
-                <!-- <button type="button" class="button btn-secondary btn-block js__show-reg-type">Back</button> -->
-                <a href="TRR/?pg=tfind&amp;fr_id=[[S80:trID]]&amp;s_regType=" class="button btn-secondary btn-block">Back</a>
-              </div>
-              <div class="order-1 order-sm-2 col-sm-4 offset-md-4 col-8 offset-2 mb-3">
-                <button type="button" class="button btn-primary btn-block js__show-team-details" disabled>Next Step</button>
+                </a>
               </div>
             </div>
           </div>
-        </form>
+
+          <div class="form-group">
+            <label for="generatedTeamGoal">Team Fundraising Goal:</label>
+            <input name="team_goal" type="text" id="generatedTeamGoal" class="js__generated-team-goal" readonly value="Not Set"
+              style="border:none;background:#fff;">
+          </div>
+
+          <div class="form-group row">
+            <div class="order-2 order-sm-1 col-sm-4 col-8 offset-2 offset-sm-0">
+              <!-- <button type="button" class="button btn-secondary btn-block js__show-reg-type">Back</button> -->
+              <a href="SPageServer/?pagename=cn_register&amp;fr_id=[[S80:trID]]&amp;s_regType=" class="button btn-secondary btn-block">Back</a>
+            </div>
+            <div class="order-1 order-sm-2 col-sm-4 offset-md-4 col-8 offset-2 mb-3">
+              <button type="button" class="button btn-primary btn-block js__show-team-details" disabled>Next Step</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <!-- END team bikes step of tfind -->
+
+  ::]]
+  [[?xjoinTeamx::x[[S80:regType]]x::
+  <!-- BEGIN new tfind search -->
+  <div class="join-team-section">
+    <div class="container">
+      <!-- <div class="join-team-container js__join-team-container" style="display:none;"> -->
+      <div class="join-team-container js__join-team-container">
+        <div class="row">
+          <div class="col-md-8 offset-md-2 text-center">
+            <h1 class="reg-headline">
+
+              <div class="section-header">
+                <div class="manageable-editor" data-container="edit_title_container">
+                  <h1 class="h3 section-header-text">Team Details</h1>
+                </div>
+              </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="reg-text mt-3 col-md-6 offset-md-3 text-center">
+            <p>Search by team name, team captain and/or company</p>
+          </div>
+        </div>
+        <div class="my-3">
+          <form class="js__reg-team-search-form row">
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label class="" for="regTeamName">Team Name</label>
+                <input type="text" name="user_name" id="regTeamName" class="form-control">
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label class="" for="regCompanyId">Team's Group/Company</label>
+                <select name="regCompanyId" id="regCompanyId" class="form-control js__reg-company-name">
+                  <option selected="selected" value="">Choose from existing list</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <!-- <label class="" for="">Team Member</label> -->
+              <div class="form-group">
+                <label for="regTeamMemberFirst">Team Captain First Name</label>
+                <input type="text" name="user_password" id="regTeamMemberFirst" class="form-control">
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label for="regTeamMemberLast">Team Captain Last Name</label>
+                <input type="text" name="user_password" id="regTeamMemberLast" class="form-control">
+              </div>
+            </div>
+            <div class="col-sm-4 offset-sm-4">
+              <div class="form-group text-center">
+                <button type="submit" class="button btn-primary btn-block">Search</button>
+              </div>
+            </div>
+          </form>
+          <div id="error-team" class="js__error-team-search help-block alert alert-danger text-center mt-2" hidden></div>
+          <div id="team_results" class="search-results-container js__search-results-container reg-team-search-results js__search-results col-12"
+            style="display:none;">
+            
+
+            <div class="js__loading py-4 text-center  text-primary" style="display:none;"><i class="fas fa-cog fa-2x fa-spin"></i><br>
+              Loading...
+            </div>
+            <div id="custom_team_find">
+              Sort by:<br>
+              <button class="sort button btn-light btn-sm" data-sort="team-name-label" tabindex="0">Team name</button>
+              <button class="sort button btn-light btn-sm" data-sort="team-captain-name" tabindex="0">Team captain</button>
+              <button class="sort button btn-light btn-sm js__company-sort" data-sort="team-company-name" style="display:none;" tabindex="0">Company</button>
+              <div class="list results-table py-4"></div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-    <!-- END team bikes step of tfind -->
-
-    ::]]
-  </section>
+  </div>
+  <!-- END new tfind search -->
+  ::]]
+</section>

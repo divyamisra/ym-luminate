@@ -19,7 +19,21 @@
 .pg_cn_home,
 .pg_entry {
   .form-control {
-    border-color:$border-color;
+    border-color: $border-color;
+    font-size: 1.5rem;
+    color: $gray-500;
+    padding: 1rem;
+    border-radius: 4px;
+    max-height: 70px;
+  }
+  .form-control::placeholder  {
+    color: $gray-500;
+  }
+  .form-control:-ms-input-placeholder {
+    color: $gray-500;
+  }
+  .form-control::-ms-input-placeholder {
+    color: $gray-500;
   }
 }
 .pg_cn_home {
@@ -218,4 +232,33 @@ div.payment-field-container {
   .external-payment {
     margin-top:10px;
   }
+}
+
+.btn-rounded {
+  border-radius: 32px !important;
+  font-size: 2rem;
+  padding: 0.3em 1em !important;
+
+  @include media-breakpoint-down(md) {
+    font-size: 1.4rem;
+  }
+}
+.btn-rounded.btn-white {
+  background-color: $white;
+  color: $primary;
+}
+.btn-rounded.btn-white:hover {
+  background-color: $primary;
+  color: $white;
+  text-decoration: none;
+}
+.btn-rounded.btn-primary,
+.btn-rounded.btn-primary:visited {
+  background-color: $primary;
+  color: $white;
+}
+.btn-rounded.btn-primary:hover {
+  background-color: $red-deep;
+  color: $white;
+  text-decoration: none;
 }

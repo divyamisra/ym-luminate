@@ -168,23 +168,23 @@ angular.module 'ahaLuminateControllers'
             levelAmt = '<span> $' + $scope.donationInfo.amount + '  <i class="fa fa-chevron-right" hidden aria-hidden="true"></i></span>'
           angular.element('#pstep_finish').append levelAmt
 
-      employerMatchFields = ->
-        angular.element('.employer-address-container').addClass 'hidden'
-        angular.element('.matching-gift-container').addClass 'hidden'
-        angular.element('label[for="match_checkbox_dropdown"]').before("<input type='hidden' name='match_checkbox_dropdown' id='match_checkbox_dropdown' value=''>")
-        angular.element('label[for="match_checkbox_dropdown"]').parent().parent().parent().addClass 'ym-employer-match'
-        empCheck = angular.element('#match_checkbox_radio').prop 'checked'
-        if empCheck is true
-          angular.element('.ym-employer-match__message').removeClass 'hidden'
-          angular.element('.matching-gift-container').removeClass 'hidden'
+#      employerMatchFields = ->
+#        angular.element('.employer-address-container').addClass 'hidden'
+#        angular.element('.matching-gift-container').addClass 'hidden'
+#        angular.element('label[for="match_checkbox_dropdown"]').before("<input type='hidden' name='match_checkbox_dropdown' id='match_checkbox_dropdown' value=''>")
+#        angular.element('label[for="match_checkbox_dropdown"]').parent().parent().parent().addClass 'ym-employer-match'
+#        empCheck = angular.element('#match_checkbox_radio').prop 'checked'
+#        if empCheck is true
+#          angular.element('.ym-employer-match__message').removeClass 'hidden'
+#          angular.element('.matching-gift-container').removeClass 'hidden'
 
-      document.getElementById('match_checkbox_radio').onclick = ->
-        angular.element('.ym-employer-match__message').toggleClass 'hidden'
-        angular.element('.matching-gift-container').toggleClass 'hidden'
+#      document.getElementById('match_checkbox_radio').onclick = ->
+#        angular.element('.ym-employer-match__message').toggleClass 'hidden'
+#        angular.element('.matching-gift-container').toggleClass 'hidden'
 
-      $scope.toggleEmployerMatch = ->
-        angular.element('.ym-employer-match__message').toggleClass 'hidden'
-        angular.element('.matching-gift-container').toggleClass 'hidden'
+#      $scope.toggleEmployerMatch = ->
+#        angular.element('.ym-employer-match__message').toggleClass 'hidden'
+#        angular.element('.matching-gift-container').toggleClass 'hidden'
 
       donorRecognitionFields = ->
         angular.element('#tr_show_gift_to_public_row').addClass 'hidden ym-donor-recognition__fields'
@@ -247,7 +247,7 @@ angular.module 'ahaLuminateControllers'
         angular.element('#billing_addr_street2_row label').append optional
 
       ariaAdjustments = ->
-        angular.element('.ym-employer-match label').append '<span class="sr-only">Checkbox 1 of 3</span>'
+#        angular.element('.ym-employer-match label').append '<span class="sr-only">Checkbox 1 of 3</span>'
         angular.element('.ym-donor-recognition label').append '<span class="sr-only">Checkbox 2 of 3</span>'
         angular.element('.ym-personal-note label').append '<span class="sr-only">Checkbox 3 of 3</span>'
 
@@ -273,6 +273,12 @@ angular.module 'ahaLuminateControllers'
           angular.element('#billing_info_same_as_donorname').prop 'checked', false
 
       $scope.submitDonationForm = (e) ->
+        # remove any credit card numbers from input fields other than the cc field
+        r = /((?:\d{4}[ -]?){3}\d{3,4})/gm
+        jQuery('[type=text]:not(#responsive_payment_typecc_numbername)').each ->
+          jQuery(this).val jQuery(this).val().replace(r, '')
+          return
+        
         loading = '<div class="ym-loading text-center h3">Processing Gift <i class="fa fa-spinner fa-spin"></i></div>'
         angular.element('.button-sub-container').append loading
         angular.element('#pstep_finish').addClass 'hidden'
@@ -393,7 +399,7 @@ angular.module 'ahaLuminateControllers'
         angular.element('#tr_recognition_namerec_namename').attr 'placeholder', 'Example: Jane Hero, Heart Hero Family, From Jane - In memory of Grandma'
         angular.element('#tr_message_to_participantname').attr 'placeholder', 'Write a message of encouragement. 255 characters max.'
         addOptional()
-        employerMatchFields()
+#        employerMatchFields()
         billingAddressFields()
         donorRecognitionFields()
         ariaAdjustments()

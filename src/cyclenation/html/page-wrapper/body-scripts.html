@@ -1,6 +1,9 @@
-<script src="//code.jquery.com/jquery-2.2.4[[?xtruex::x[[S80:debug]]x::::.min]].js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
-crossorigin="anonymous"></script>
-
+<!-- <script src="//code.jquery.com/jquery-2.2.4[[?xtruex::x[[S80:debug]]x::::.min]].js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+crossorigin="anonymous"></script> -->
+<script src="//code.jquery.com/jquery-3.3.1.min.js" 
+integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" 
+crossorigin="anonymous">
+</script>
 [[?x[[?x9x::x[[S4]]x::T::]][[?xpaymentFormx::x[[S334:pg]]x::T::]]::T::
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-migrate/1.4.1/jquery-migrate.min.js" integrity="sha256-SOuLUArmo4YXtXONKz+uxIGSKneCJG4x0nVcA0pFzV0=" crossorigin="anonymous"></script>
 ::]]
@@ -12,6 +15,10 @@ crossorigin="anonymous"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/parsley.js/2.8.0/parsley[[?xtruex::x[[S80:debug]]x::::.min]].js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list[[?xtruex::x[[S80:debug]]x::::.min]].js"></script>
 <script src="//cdn.jsdelivr.net/npm/promise-polyfill@7/dist/polyfill[[?xtruex::x[[S80:debug]]x::::.min]].js"></script>
+
+[[?xcn_homex::x[[S334:pagename]]x::
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDZL2rsCFANLgFepYWTtDx18EJuBCEpehE"></script>
+::]]
 
 <script>
   luminateExtend({
@@ -35,12 +42,15 @@ crossorigin="anonymous"></script>
 <script src="[[S666:template_macros/aha_luminate_filepath.tpt::cyclenation/js/main::js::@@buildTimestamp]]"></script>
 
 <script src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/cyclenation/js/amazonpay.js?v=1"></script>
-
+[[?xheartdevx::x[[S29:TABLE_PREFIX]]x::
+<script src="//static.heart.org/ahaanywhere/sitecore/dist/ahaHeaderFooterSitecore.dev.js"></script>
+::
 <script src="//static.heart.org/ahaanywhere/sitecore/dist/ahaHeaderFooterSitecore.js"></script>
+]]
 <!-- Activate header/footer plugin -->
 <script>
-  jQuery(function() {
-    //Bare bones
-    jQuery('#app').ahaHeaderFooterSitecore();
-  });
-</script>
+    jQuery(function() {
+      //Bare bones
+      jQuery('#globalFooter').ahaHeaderFooterSitecore();
+    });
+  </script>
