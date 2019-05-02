@@ -1868,6 +1868,10 @@ cd.getEventsByDistance = function (zipCode, numEvents) {
       // add reg full class to ptype container
       var ptypeBlocks = $('.part-type-decoration-messages');
 
+      if($('.part-type-container').length === 1){
+        $('.part-type-decoration-messages > label').attr('tabindex', '0');
+      }
+
       $(ptypeBlocks).each(function () {
         if ($(this).hasClass('part-type-full')) {
           $(this).parent().removeClass('selected').addClass('ptype-full').find('input[type=radio]').remove();
@@ -1907,6 +1911,8 @@ cd.getEventsByDistance = function (zipCode, numEvents) {
           $(this).find('.part-type-name').text(newPtypeName);
         }
       });
+
+
 
       // begin StationaryV2 event conditional
       if (eventType2 === 'StationaryV2') {
@@ -2020,6 +2026,23 @@ cd.getEventsByDistance = function (zipCode, numEvents) {
             keyboard: false
           }).modal('show');
         });
+        
+        $('.part-type-container').on('keypress', function (e) {
+          var key = e.which;
+          if(key == 13) {
+            $('.part-type-container').removeClass('selected');
+            $(this).addClass('selected');
+            $(this).find('input[type="radio"]').prop('checked', true);
+            $('#next_step').removeClass('disabled');
+            $('#dspPledge').modal({
+              backdrop: 'static',
+              keyboard: false
+            }).modal('show');
+              return false;  
+            }
+        });
+
+
         // remove on click event if has class .ptype-full
         $('.ptype-full').off();
 
@@ -2039,7 +2062,7 @@ cd.getEventsByDistance = function (zipCode, numEvents) {
       $('.donation-level-amount-text').closest('.donation-level-row-container').addClass('don-level-btn');
       $('.donation-level-container .input-container').parent().addClass('other-amount-row-container');
 
-      $('.other-amount-row-container .donation-level-row-label').text('Enter your own amount:').attr('id', 'enterAmtLabel');
+      $('.other-amount-row-container .donation-level-row-label').text('Enter your own amount:');
 
       $('.donation-level-row-label-no-gift').text("No thanks. I don\'t want to make a donation towards my goal at the moment").closest('.donation-level-row-container').addClass('don-no-gift');
       $('.don-no-gift, #part_type_anonymous_input_container, #part_type_show_public_input_container').wrap('<div class="form-check"/>');
@@ -2059,7 +2082,10 @@ cd.getEventsByDistance = function (zipCode, numEvents) {
         $(this).addClass('active');
       });
       // add label to other amount text input
-      $('.other-amount-row-container input[type=text]').addClass('other-amount').attr('aria-labelledby', 'enterAmtLabel');
+      $('.other-amount-row-container input[type=text]').addClass('other-amount')
+      
+      var otherFieldLabel = $('.other-amount').attr('id');
+      $('<label for="' + otherFieldLabel + '" class="sr-only">Enter other amount</label>').insertBefore($('.other-amount'));
 
       $('.other-amount')
         .prop('onclick', null).off('click')
@@ -2097,13 +2123,13 @@ cd.getEventsByDistance = function (zipCode, numEvents) {
       });
 
       if (regType === 'virtual' || regType === 'individual') {
-        $('#part_type_section_footer').append('<div class="order-2 order-sm-1 col-sm-4 col-8 offset-2 offset-sm-0"><a href="TRR/?pg=tfind&amp;fr_id=' + evID + '&amp;fr_tm_opt=none&amp;skip_login_page=true" class="button btn-secondary btn-block">Back</a></div>');
+        $('#part_type_section_footer').append('<div class="order-2 order-sm-1 col-sm-4 col-8 offset-2 offset-sm-0"><a href="SPageServer/?pagename=cn_register&fr_id=' + evID + '&s_regType=" class="button btn-secondary btn-block">Back</a></div>');
       } else if(regType === 'startTeam'){
         $('#previous_step').replaceWith('<div class="order-2 order-sm-1 col-sm-4 col-8 offset-2 offset-sm-0"><a href="TRR/?pg=tfind&amp;fr_id=' + evID + '&amp;fr_tm_opt=new&amp;skip_login_page=true" class="button btn-secondary btn-block">Back</a></div>');
       } else if(regType === 'joinTeam'){
         $('#previous_step').replaceWith('<div class="order-2 order-sm-1 col-sm-4 col-8 offset-2 offset-sm-0"><a href="TRR/?pg=tfind&amp;fr_id=' + evID + '&amp;fr_tm_opt=existing&amp;skip_login_page=true" class="button btn-secondary btn-block">Back</a></div>');
       } else {
-        $('#previous_step').replaceWith('<div class="order-2 order-sm-1 col-sm-4 col-8 offset-2 offset-sm-0"><a href="TRR/?pg=tfind&amp;fr_id=' + evID + '" class="button btn-secondary btn-block">Back</a></div>');
+        $('#previous_step').replaceWith('<div class="order-2 order-sm-1 col-sm-4 col-8 offset-2 offset-sm-0"><a href="SPageServer/?pagename=cn_register&fr_id=' + evID + '&s_regType=" class="button btn-secondary btn-block">Back</a></div>');
       }
 
     }
@@ -2148,10 +2174,11 @@ cd.getEventsByDistance = function (zipCode, numEvents) {
         var pFirstName = $('body').data('first-name') ? $('body').data('first-name') : null;
         var pLastName = $('body').data('last-name') ? $('body').data('last-name') : null;
         var pEmail = $('body').data('email') ? $('body').data('email') : null;
-        $('#cons_first_name').val(pFirstName);
-        $('#cons_last_name').val(pLastName);
-        $('#cons_email').val(pEmail);
-
+        if(pFirstName && pLastName && pEmail){
+          $('#cons_first_name').val(pFirstName);
+          $('#cons_last_name').val(pLastName);
+          $('#cons_email').val(pEmail);
+        }
       }
       $('.input-label.cons_city_town').text('City:');
       $('.input-label.cons_state').text('State:');
@@ -2193,8 +2220,8 @@ cd.getEventsByDistance = function (zipCode, numEvents) {
         cd.setBirthMonth();
       });
 
-      $('#cons_birth_date_DAY').before('<label class="sr-only" for="cons_birth_date_DAY">Birth Day</label>');
-      $('#cons_birth_date_MONTH').before('<label class="sr-only" for="cons_birth_date_MONTH">Birth Month</label>');
+      $('#cons_birth_date_DAY').wrap('<div class="col-md-6" />').before('<label class="sr-only" for="cons_birth_date_DAY">Birth Day</label>');		      $('#cons_birth_date_DAY').before('<label class="sr-only" for="cons_birth_date_DAY">Birth Day</label>');
+      $('#cons_birth_date_MONTH').wrap('<div class="col-md-6" />').before('<label class="sr-only" for="cons_birth_date_MONTH">Birth Month</label>');		      $('#cons_birth_date_MONTH').before('<label class="sr-only" for="cons_birth_date_MONTH">Birth Month</label>');
       $('#cons_birth_date_YEAR').before('<label class="sr-only" for="cons_birth_date_YEAR">Birth Year</label>');
 
 
@@ -2297,6 +2324,9 @@ cd.getEventsByDistance = function (zipCode, numEvents) {
     }
     // payment step of reg
     if ($('#fr_payment_form').length > 0) {
+      $('label[for="responsive_payment_typecc_exp_date_MONTH"], #responsive_payment_typecc_exp_date_MONTH').wrapAll('<div class="col-6 col-md-4"></div>');		      
+      $('label[for="responsive_payment_typecc_exp_date_YEAR"], #responsive_payment_typecc_exp_date_YEAR').wrapAll('<div class="col-6 col-md-4"></div>');		
+      $('.date-input-container').insertBefore($('#responsive_payment_typecc_exp_date_row'));
       
       $('#btn_next').text('Submit')
         .wrap('<div class="order-1 order-sm-2 col-sm-4 offset-md-4 col-8 offset-2 mb-3"/>');
@@ -2509,13 +2539,24 @@ cd.getEventsByDistance = function (zipCode, numEvents) {
     $('#team_find_new_team_recruiting_goal label.input-label').attr('for', 'fr_team_member_goal');
 
     // ptype
-    $('#part_type_selection_container').wrapInner('<fieldset role="radiogroup" class="ptype-selection" aria-labelledby="sel_type_container"/>');
+    // $('#part_type_selection_container').wrapInner('<fieldset role="radiogroup" class="ptype-selection"/>');
+    
+    $('#part_type_selection_container').wrapInner('<fieldset role="radiogroup" class="ptype-selection" id="ptype_fieldset" aria-labelledby="sel_type_container"/>');
+    $('#ptype_fieldset').prepend('<legend class="sr-only">What time do you want to ride?</legend>');
+
+    // $('input[name=fr_part_radio]').attr('aria-labelledby', 'sel_type_container');
+
     $('#fr_part_co_list').attr('aria-labelledby', 'individual_company_hdr_container');
 
     // $('.donation-levels').before('<legend id="reg_donation_array_label" class="sr-only">Make a donation</legend>');
     $('#part_type_additional_gift_section_header').prepend('<div class="bold-label" id="regDonationLabel">Donate Towards Your Goal Now</div>Want to donate above and beyond the registration fee to jump start your fundraising? Kick your fundraising into high gear with a personal donation:');
 
-    $('#part_type_donation_level_input_container').wrapInner('<fieldset role="radiogroup" class="donation-form-fields" aria-labelledby="regDonationLabel"/>');
+    $('#part_type_donation_level_input_container').wrapInner('<fieldset role="radiogroup" class="donation-form-fields" />');
+    // $('#part_type_donation_level_input_container').wrapInner('<fieldset role="radiogroup" class="donation-form-fields" aria-labelledby="regDonationLabel"/>');
+    $('.donation-form-fields').prepend('<legend class="sr-only">Donate Towards Your Goal Now</legend>');
+    // $('.donation-form-fields input[type="radio"]').attr('aria-labelledby', 'regDonationLabel');
+    // donation_level_form_
+
 
     // associate ptype label with input
     $('.part-type-container label').each(function (i) {
