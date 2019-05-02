@@ -2095,10 +2095,11 @@
         var pFirstName = $('body').data('first-name') ? $('body').data('first-name') : null;
         var pLastName = $('body').data('last-name') ? $('body').data('last-name') : null;
         var pEmail = $('body').data('email') ? $('body').data('email') : null;
-        $('#cons_first_name').val(pFirstName);
-        $('#cons_last_name').val(pLastName);
-        $('#cons_email').val(pEmail);
-
+        if(pFirstName && pLastName && pEmail){
+          $('#cons_first_name').val(pFirstName);
+          $('#cons_last_name').val(pLastName);
+          $('#cons_email').val(pEmail);
+        }
       }
       $('.input-label.cons_city_town').text('City:');
       $('.input-label.cons_state').text('State:');
