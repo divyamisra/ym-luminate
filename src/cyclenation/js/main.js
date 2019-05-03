@@ -440,7 +440,8 @@
                   }
                 } else {
                   // display past events in a separate table
-                  $('.js__past-event-search-results').removeClass('d-none').append(eventRow);
+                  $('.js__past-event-search-results').append(eventRow);
+                  $('.js__past-events-container').removeClass('d-none');
                 }
                
               });
@@ -749,10 +750,18 @@ cd.getEventsByDistance = function (zipCode, numEvents) {
       }
 
       $('.js__state-search select').on('change', function (e) {
+        e.preventDefault();
         $('#zip').val('');
         $('.js__event-search-results').html('');
+        $('.js__past-event-search-results').html('');
+        $('.js__past-events-container').addClass('d-none');
         var stateSearched = $(this).children('option:selected').val();
-        cd.getEvents(null, stateSearched);
+      
+        if(stateSearched === 'Select State'){
+          cd.getEvents('%25%25', null);
+        } else {
+          cd.getEvents(null, stateSearched);
+        }
         e.preventDefault();
       });
 
@@ -760,11 +769,17 @@ cd.getEventsByDistance = function (zipCode, numEvents) {
         e.preventDefault();
         $('#zip').val('');
         $('.js__event-search-results').html('');
+        $('.js__past-event-search-results').html('');
+        $('.js__past-events-container').addClass('d-none');
         var stateSearched = $(this).children('option:selected').val();
-        cd.getEvents(null, stateSearched);
+      
+        if(stateSearched === 'Select State'){
+          cd.getEvents('%25%25', null);
+        } else {
+          cd.getEvents(null, stateSearched);
+        }
         e.preventDefault();
       });
-
       $('.js__zip-search').on('submit', function (e) {
         $('#fr_event_state').val($('#fr_event_state option:first').val());
         $('.js__event-search-results').html('');
