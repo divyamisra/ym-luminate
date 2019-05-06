@@ -312,27 +312,21 @@ div.payment-field-container {
         .sorting {
           background-image:none;
           &:after {
-            position: absolute;
             font-family: 'Font Awesome 5 Free';
-            right: 0;
             content: "\f0dc";
           }
         }
         .sorting_desc {
           background-image:none;
           &:after {
-            position: absolute;
             font-family: 'Font Awesome 5 Free';
-            right: 0;
             content: "\f0de";
           }
         }
         .sorting_asc {
           background-image:none;
           &:after {
-            position: absolute;
             font-family: 'Font Awesome 5 Free';
-            right: 0;
             content: "\f0dd";
           }
         }
@@ -354,8 +348,15 @@ div.payment-field-container {
           white-space: nowrap;
           overflow: hidden;
           text-overflow: ellipsis;
-          vertical-align: middle;
-          padding: 15px;
+          vertical-align: top;
+          padding: 20px 15px 15px;
+          &.col-cta {
+            padding-top:15px;
+            white-space: pre-wrap;
+            h6 {
+              color:#000;
+            }
+          }
           @include media-breakpoint-down(md) {
             max-width:100%;
             width:100%;
@@ -369,6 +370,7 @@ div.payment-field-container {
         }
       }
     }
+
     .btn-rounded {
       font-size:initial;
       font-weight:bold;

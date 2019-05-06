@@ -131,22 +131,23 @@
                 participant.name.first + ' ' + participant.name.last +
                 '</td><td>' +
                 ((participant.teamName !== null && participant.teamName !== undefined) ? participant.teamName : '') + '</td><td>' +
-                participant.eventName + '</td><td><a href="' + participant.donationUrl + '" aria-label="Donate to ' + participant.name.first + ' ' + participant.name.last + '" class="btn-rounded btn-primary btn-block">Donate</a></td></tr>');
+                participant.eventName + '</td><td class="col-cta"><a href="' + participant.donationUrl + '" aria-label="Donate to ' + participant.name.first + ' ' + participant.name.last + '" class="btn-rounded btn-primary btn-block">Donate</a></td></tr>');
 
               });
               if(totalParticipants > 10) {
                 $('.js__more-participant-results').removeAttr('hidden');
               }
-              //add call to hook donate button with payment type selections
-              // addPaymentTypesOnSearch();
+
               $('#participantResultsTable').DataTable({
                 "destroy": true,
                 "paging":   false,
                 "searching":   false,
-                "info":     false
+                "info":     false,
+                "autoWidth": false
               });
               $('.dataTables_length').addClass('bs-select');
-              
+              //add call to hook donate button with payment type selections
+              addPaymentTypesOnSearch();
               $('.js__participant-results-container').removeAttr('hidden');
 
               $('.js__more-participant-results').on('click', function(e){
@@ -200,11 +201,9 @@
                 } else {
                   $('.js__team-results-rows')
                   .append('<tr' + (i > 10 ? ' class="d-none"' : '') + '><td>' +
-                  team.name +
-                  '</td><td>' + team.captainFirstName + ' ' + team.captainLastName + '</td><td>' +
+                  team.name + '</td><td>' + team.captainFirstName + ' ' + team.captainLastName + '</td><td>' +
                   ((team.companyName !== null && team.companyName !== undefined) ? team.companyName : '') +
-                  '</td><td>' +
-                  team.eventName + '</td><td><a href="' + team.teamDonateURL + '" class="btn-rounded btn-primary btn-block">Donate</a></td></tr>');
+                  '</td><td>' + team.eventName + '</td><td class="col-cta"><a href="' + team.teamDonateURL + '" class="btn-rounded btn-primary btn-block" title="Donate to ' + team.name + '" aria-label="Donate to ' + team.name + '">Donate</a></td></tr>');
                 }
               });
 
@@ -250,7 +249,7 @@
 
                 $('.js__team-results-container').removeAttr('hidden');
                 //add call to hook donate button with payment type selections
-                // addPaymentTypesOnSearch();
+                addPaymentTypesOnSearch();
               }
             }
           },
@@ -290,7 +289,7 @@
               $(companies).each(function (i, company) {
                 $('.js__company-results-rows').append('<tr' + (i > 10 ? ' class="d-none"' : '') + '><td>' +
                 company.companyName +
-                '</td><td><a href="' + company.companyURL + '" aria-label="Visit page for ' + company.companyName + '" class="btn-rounded btn-primary btn-block">View</a></td></tr>');
+                '</td><td class="col-cta"><a href="' + company.companyURL + '" aria-label="Visit page for ' + company.companyName + '" class="btn-rounded btn-primary btn-block">View</a></td></tr>');
               });
 
               if(totalCompanies > 10) {
@@ -310,7 +309,11 @@
                 "destroy": true,
                 "paging":   false,
                 "searching":   false,
-                "info":     false
+                "info":     false,
+                "columns": [
+                  { "width": "80%" },
+                  null
+                ]
               });
               $('.dataTables_length').addClass('bs-select');
 
