@@ -137,8 +137,7 @@
               if(totalParticipants > 10) {
                 $('.js__more-participant-results').removeAttr('hidden');
               }
-              //add call to hook donate button with payment type selections
-              // addPaymentTypesOnSearch();
+
               $('#participantResultsTable').DataTable({
                 "destroy": true,
                 "paging":   false,
@@ -147,6 +146,9 @@
               });
               $('.dataTables_length').addClass('bs-select');
               
+                //add call to hook donate button with payment type selections
+                addPaymentTypesOnSearch();
+
               $('.js__participant-results-container').removeAttr('hidden');
 
               $('.js__more-participant-results').on('click', function(e){
@@ -250,7 +252,7 @@
 
                 $('.js__team-results-container').removeAttr('hidden');
                 //add call to hook donate button with payment type selections
-                // addPaymentTypesOnSearch();
+                addPaymentTypesOnSearch();
               }
             }
           },
@@ -831,8 +833,8 @@ cd.getEventsByDistance = function (zipCode, numEvents) {
       var searchType = getURLParameter(currentUrl, 'search_type');
    
       if(searchType){
-        var firstSearchTerm = getURLParameter(currentUrl, 'first_name') ? getURLParameter(currentUrl, 'first_name') : '';
-        var lastSearchTerm = getURLParameter(currentUrl, 'last_name') ? getURLParameter(currentUrl, 'last_name') : '';
+        var firstSearchTerm = getURLParameter(currentUrl, 'first_term') ? getURLParameter(currentUrl, 'first_term') : '';
+        var lastSearchTerm = getURLParameter(currentUrl, 'last_term') ? getURLParameter(currentUrl, 'last_term') : '';
 
         firstSearchTerm = encodeURI(firstSearchTerm);
         lastSearchTerm = encodeURI(lastSearchTerm);
@@ -939,7 +941,12 @@ cd.getEventsByDistance = function (zipCode, numEvents) {
       // Last Name is the last whole word in a multi word search
       var lastName = fullName.split(' ').slice(-1).join(' ');
 
-      window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=cn_search&search_for=participant&first_name=' + firstName + '&last_name=' + lastName;
+      if($('body').is('.pg_cn_home')){
+        window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=cn_search&search_type=crossEvent&first_term=' + firstName + '&second_term=' + lastName;
+      } else {
+        window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=cn_search&search_type=singleEvent&first_term=' + firstName + '&second_term=' + lastName + '&fr_id=' + evID;
+      }
+      
     });
 
 
