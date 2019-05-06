@@ -137,7 +137,8 @@
               if(totalParticipants > 10) {
                 $('.js__more-participant-results').removeAttr('hidden');
               }
-
+              //add call to hook donate button with payment type selections
+              // addPaymentTypesOnSearch();
               $('#participantResultsTable').DataTable({
                 "destroy": true,
                 "paging":   false,
@@ -146,9 +147,6 @@
               });
               $('.dataTables_length').addClass('bs-select');
               
-                //add call to hook donate button with payment type selections
-                addPaymentTypesOnSearch();
-
               $('.js__participant-results-container').removeAttr('hidden');
 
               $('.js__more-participant-results').on('click', function(e){
@@ -252,7 +250,7 @@
 
                 $('.js__team-results-container').removeAttr('hidden');
                 //add call to hook donate button with payment type selections
-                addPaymentTypesOnSearch();
+                // addPaymentTypesOnSearch();
               }
             }
           },
@@ -744,14 +742,50 @@ cd.getEventsByDistance = function (zipCode, numEvents) {
       var latlngStr = input.split(',', 2);
       var latlng = new google.maps.LatLng(latlngStr[0], latlngStr[1]);
       var geocoder = new google.maps.Geocoder();
-      geocoder.geocode( { 'location': latlng }, function (result, status) {
-      console.log("Geocode result: ", result);
-      console.log("Geocode status: ", status);
-
-        var zipCode = result[0]['address_components'][7]['short_name'];
-        cd.getEventsByDistance(zipCode, 3);
-
+      geocoder.geocode({
+        'location': latlng
+      }, function (results, status) {
+        console.log("Geocode result: ", results);
+        console.log("Geocode status: ", status);
+        var postalCode;
+        
+        if(status == google.maps.GeocoderStatus.OK && results[0]) {
+          $.each(results[0].address_components, function() {
+            if($.inArray('postal_code', this.types) >= 0) {
+              postalCode = this.short_name;
+            }
+          });
+          
+          if(postalCode) {
+            cd.getEventsByDistance(postalCode, 3);
+          }
+          else {
+            if(results[0].geometry && results[0].geometry.location) {
+              console.log('run getZipForLatLng');
+              // getZipForLatLng({
+              //   lat: results[0].geometry.location.lat(), 
+              //   lng: results[0].geometry.location.lng(), 
+              //   callback: settings.callback
+              // });
+            }
+            else {
+              cd.getEventsByDistance(postalCode, 3);
+            }
+          }
+        }
+        else {
+          cd.getEventsByDistance(postalCode, 3);
+        }
       });
+
+      // geocoder.geocode( { 'location': latlng }, function (result, status) {
+      // console.log("Geocode result: ", result);
+      // console.log("Geocode status: ", status);
+
+      //   var zipCode = result[0]['address_components'][7]['short_name'];
+      //   cd.getEventsByDistance(zipCode, 3);
+
+      // });
     }   
     function showGeolocationError(error){
       cd.getEvents('%25%25', null, 3);
