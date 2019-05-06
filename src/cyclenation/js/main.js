@@ -102,7 +102,7 @@
       return (RegExp(name + '=' + '(.+?)(&|$)').exec(url) || [, null])[1];
     }
 
-    cd.getParticipants = function (firstName, lastName) {
+    cd.getParticipants = function (firstName, lastName, isCrossEvent) {
       luminateExtend.api({
         api: 'teamraiser',
         data: 'method=getParticipants' +
@@ -121,24 +121,42 @@
               $('#error-participant').removeAttr('hidden').text('Sorry. Your search did not return any results.');
             } else {
               var participants = luminateExtend.utils.ensureArray(response.getParticipantsResponse.participant);
+              var totalParticipants = parseInt(response.getParticipantsResponse.totalNumberResults);
+
+              $('.js__num-participant-results').text((totalParticipants === 1 ? '1 Result' : totalParticipants + ' Results'));
 
               $(participants).each(function (i, participant) {
 
-                var teamRegUrl = ((participant.teamPageUrl !== null) ? luminateExtend.global.path.secure + 'TRR/?fr_tjoin=' + getURLParameter(participant.teamPageUrl, 'team_id') + '&amp;pg=tfind&amp;fr_id=' + participant.eventId : null);
+                $('.js__participants-results-rows').append('<tr' + (i > 10 ? ' class="d-none"' : '') + '><td>' +
+                participant.name.first + ' ' + participant.name.last +
+                '</td><td>' +
+                ((participant.teamName !== null && participant.teamName !== undefined) ? participant.teamName : '') + '</td><td>' +
+                participant.eventName + '</td><td><a href="' + participant.donationUrl + '" aria-label="Donate to ' + participant.name.first + ' ' + participant.name.last + '" class="btn-rounded btn-primary btn-block">Donate</a></td></tr>');
 
-                $('#participant_rows').append('<div class="row pb-4"><div class="col-xs-12 col-md-9 col-sm-8 search-result-details search-result-details"><p><strong>' +
-                  participant.name.first + ' ' + participant.name.last +
-                  '</strong><br>' +
-                  participant.eventName + '<br>' +
-                  ((participant.teamName !== null && participant.teamName !== undefined) ? participant.teamName + '<br>' : '') +
-                  '<a href="' + participant.personalPageUrl + '" aria-label="Visit page for ' +
-                  participant.name.first + ' ' + participant.name.last +
-                  '">Visit Personal Page</a></p></div><div class="col-xs-12 col-md-3 col-sm-4"><a class="button btn-primary btn-block btn-lg pull-right" href="' + participant.donationUrl + '" aria-label="Donate to ' + participant.name.first + ' ' + participant.name.last + '">Donate</a>' + ((teamRegUrl !== null) ? '<a class="button btn-outline-dark btn-block btn-lg pull-right" href="' + teamRegUrl + ((participant.aTeamCaptain === 'true') ? '&s_captainConsId=' + participant.consId : '') + '&s_regType=joinTeam" aria-label="Join ' + participant.teamName + '">Join Team</a>' : '') + '</div></div>'
-                );
               });
+              if(totalParticipants > 10) {
+                $('.js__more-participant-results').removeAttr('hidden');
+              }
               //add call to hook donate button with payment type selections
-              addPaymentTypesOnSearch();
-              $('#participant_results').removeAttr('hidden');
+              // addPaymentTypesOnSearch();
+              $('#participantResultsTable').DataTable({
+                "destroy": true,
+                "paging":   false,
+                "searching":   false,
+                "info":     false
+              });
+              $('.dataTables_length').addClass('bs-select');
+              
+              $('.js__participant-results-container').removeAttr('hidden');
+
+              $('.js__more-participant-results').on('click', function(e){
+                e.preventDefault();
+                $('.js__participants-results-rows tr').removeClass('d-none');
+                $(this).attr('hidden', true);
+                $('.js__end-participant-list').removeAttr('hidden');
+              });
+
+
             }
           },
           error: function (response) {
@@ -180,19 +198,14 @@
                   // $('.js__search-results-container').show();
 
                 } else {
-                  var donFormId = team.teamDonateURL;
-
-                  $('#team_rows').append(
-                    '<div class="row pb-4"><div class="col-xs-12 col-sm-8 col-md-9 search-result-details"><p><strong>' +
-                    team.name +
-                    '</strong><br>' +
-                    team.eventName + '<br>' +
-                    'Team Captain: ' + team.captainFirstName + ' ' + team.captainLastName + '<br>' +
-                    ((team.companyName !== null && team.companyName !== undefined) ? team.companyName + '<br>' : '') +
-                    '<a href="' + team.teamPageURL + '">Visit Team Page</a></p></div><div class="col-xs-12 col-sm-4 col-md-3"><a class="button btn-primary btn-block btn-lg pull-right" href="' + team.teamDonateURL + '" aria-label="Donate to ' +  team.name + '">Donate</a><a class="button btn-outline-dark btn-block btn-lg pull-right" href="' + team.joinTeamURL + '&s_captainConsId=' + team.captainConsId +'&s_regType=joinTeam" aria-label="Join ' +  team.name + '">Join Team</a></div></div>');
-                  $('#team_results').removeAttr('hidden');
+                  $('.js__team-results-rows')
+                  .append('<tr' + (i > 10 ? ' class="d-none"' : '') + '><td>' +
+                  team.name +
+                  '</td><td>' + team.captainFirstName + ' ' + team.captainLastName + '</td><td>' +
+                  ((team.companyName !== null && team.companyName !== undefined) ? team.companyName : '') +
+                  '</td><td>' +
+                  team.eventName + '</td><td><a href="' + team.teamDonateURL + '" class="btn-rounded btn-primary btn-block">Donate</a></td></tr>');
                 }
-
               });
 
               if (searchType === 'registration') {
@@ -210,8 +223,34 @@
                 }
 
               } else {
+                var totalTeams = parseInt(response.getTeamSearchByInfoResponse.totalNumberResults);
+
+                $('.js__num-team-results').text((totalTeams === 1 ? '1 Result' : totalTeams + ' Results'));
+
+                if(totalTeams > 10) {
+                  $('.js__more-team-results').removeAttr('hidden');
+                }
+
+                $('.js__team-results-container').removeAttr('hidden');
+
+                $('.js__more-team-results').on('click', function(e){
+                  e.preventDefault();
+                  $('.js__team-results-rows tr').removeClass('d-none');
+                  $(this).attr('hidden', true);
+                  $('.js__end-team-list').removeAttr('hidden');
+                });
+
+                $('#teamResultsTable').DataTable({
+                  "destroy": true,
+                  "paging":   false,
+                  "searching":   false,
+                  "info":     false
+                });
+                $('.dataTables_length').addClass('bs-select');
+
+                $('.js__team-results-container').removeAttr('hidden');
                 //add call to hook donate button with payment type selections
-                addPaymentTypesOnSearch();
+                // addPaymentTypesOnSearch();
               }
             }
           },
@@ -225,7 +264,7 @@
       });
     };
 
-    cd.getCompanies = function (companyName) {
+    cd.getCompanies = function (companyName, isCrossEvent) {
       luminateExtend.api({
         api: 'teamraiser',
         data: 'method=getCompaniesByInfo' +
@@ -244,54 +283,48 @@
               $('#error-company').removeAttr('hidden').text('Sorry. Your search did not return any results.');
             } else {
               var companies = luminateExtend.utils.ensureArray(response.getCompaniesResponse.company);
+              var totalCompanies = parseInt(response.getCompaniesResponse.totalNumberResults);
+
+              $('.js__num-company-results').text((totalCompanies === 1 ? '1 Result' : totalCompanies + ' Results'));
 
               $(companies).each(function (i, company) {
-                $('#company_rows').append(
-                  '<div class="row pb-4"><div class="col-sm-12 col-sm-8"><p><strong>' +
-                  company.companyName +
-                  '</strong></p></div>' +
-                  '<div class="col-sm-12 col-sm-4"><a class="button btn-primary btn-block btn-lg pull-right" href="' + company.companyURL + '" aria-label="Visit page for ' + company.companyName + '">Visit Company Page</a></div></div>'
-                );
-                $('#company_results').removeAttr('hidden');
+                $('.js__company-results-rows').append('<tr' + (i > 10 ? ' class="d-none"' : '') + '><td>' +
+                company.companyName +
+                '</td><td><a href="' + company.companyURL + '" aria-label="Visit page for ' + company.companyName + '" class="btn-rounded btn-primary btn-block">View</a></td></tr>');
               });
 
+              if(totalCompanies > 10) {
+                $('.js__more-company-results').removeAttr('hidden');
+              }
+
+              $('.js__company-results-container').removeAttr('hidden');
+
+              $('.js__more-company-results').on('click', function(e){
+                e.preventDefault();
+                $('.js__company-results-rows tr').removeClass('d-none');
+                $(this).attr('hidden', true);
+                $('.js__end-company-list').removeAttr('hidden');
+              });
+
+              $('#companyResultsTable').DataTable({
+                "destroy": true,
+                "paging":   false,
+                "searching":   false,
+                "info":     false
+              });
+              $('.dataTables_length').addClass('bs-select');
+
+              $('.js__company-results-container').removeAttr('hidden');
             }
           },
           error: function (response) {
-            $('#error-company').removeAttr('hidden').text(response.errorResponse.message);
+            $('.js__company-results-container').removeAttr('hidden').text(response.errorResponse.message);
 
           }
         }
       });
     };
 
-    // Search by Participant
-    $('.js__participant-search').on('submit', function (e) {
-      e.preventDefault();
-      $('.results-table, .alert').attr('hidden', true);
-      $('.results-rows').html('');
-      var firstName = $('#participant_first_name').val();
-      var lastName = $('#participant_last_name').val();
-      cd.getParticipants(firstName, lastName);
-    });
-
-    // Search by Team
-    $('.js__team-search').on('submit', function (e) {
-      e.preventDefault();
-      $('.results-table, .alert').attr('hidden', true);
-      $('.results-rows').html('');
-      var teamName = $('#teamName').val();
-      // cd.getTeams(teamName);
-      cd.getTeams(teamName, null, true);
-    });
-    // Search by Company
-    $('.js__company-search').on('submit', function (e) {
-      e.preventDefault();
-      $('.results-table, .alert').attr('hidden', true);
-      $('.results-rows').html('');
-      var companyName = $('#company_name').val();
-      cd.getCompanies(companyName);
-    });
 
     /******************************/
     /* THERMOMETER SCRIPTS */
@@ -737,6 +770,101 @@ cd.getEventsByDistance = function (zipCode, numEvents) {
       } 
     }
     // Call roster scripts based on page type
+    if ($('body').is('.pg_cn_search')) {
+      // TODO - add api calls here on tab
+      $('#participant-search-tab').on('click', function (e) {
+        e.preventDefault()
+        $('.results-tab-pane').hide();
+        $('#participantSearchResults').show();
+      });
+      $('#team-search-tab').on('click', function (e) {
+        e.preventDefault()
+        $('.results-tab-pane').hide();
+        $('#teamSearchResults').show();
+      });
+      $('#company-search-tab').on('click', function (e) {
+        e.preventDefault()
+        $('.results-tab-pane').hide();
+        $('#companySearchResults').show();
+      });
+
+      var clearSearchForms = function(){
+        $('#participantFirstName, #participantLastName, #teamName, #companyName').val('');
+      }
+
+      var clearSearchResults = function(){
+        $('.js__participant-results-container, .alert').attr('hidden', true);
+        $('.js__participants-results-rows').html('');
+        $('.js__team-results-container, .alert').attr('hidden', true);
+        $('.js__team-results-rows').html('');
+        $('.js__company-results-container, .alert').attr('hidden', true);
+        $('.js__company-results-rows').html('');
+      }
+
+    // Search by Participant
+    $('.js__participant-search-form').on('submit', function (e) {
+      e.preventDefault();
+      clearSearchResults();
+      var firstName = encodeURI($('#participantFirstName').val());
+      var lastName = encodeURI($('#participantLastName').val());
+      cd.getParticipants(firstName, lastName);
+    });
+
+    // Search by Team
+    $('.js__team-search-form').on('submit', function (e) {
+      e.preventDefault();
+      clearSearchResults();
+      var teamName = encodeURI($('#teamName').val());
+      cd.getTeams(teamName, null, true);
+    });
+
+    // Search by Company
+    $('.js__company-search-form').on('submit', function (e) {
+      e.preventDefault();
+      clearSearchResults();
+      var companyName = encodeURI($('#companyName').val());
+      cd.getCompanies(companyName, true);
+    });
+
+// auto search functionality based on URL params
+      var currentUrl = window.location.href;
+      var searchType = getURLParameter(currentUrl, 'search_type');
+   
+      if(searchType){
+        var firstSearchTerm = getURLParameter(currentUrl, 'first_name') ? getURLParameter(currentUrl, 'first_name') : '';
+        var lastSearchTerm = getURLParameter(currentUrl, 'last_name') ? getURLParameter(currentUrl, 'last_name') : '';
+
+        firstSearchTerm = encodeURI(firstSearchTerm);
+        lastSearchTerm = encodeURI(lastSearchTerm);
+
+        cd.autoSearchParticipant = function () {
+          $('#participantFirstName').val(firstSearchTerm);
+          $('#participantLastName').val(lastSearchTerm);
+
+          cd.getParticipants(firstSearchTerm, lastSearchTerm, (searchType === "crossEvent" ? true : false));
+        }
+  
+        cd.autoSearchTeam = function () {
+          var teamName = firstSearchTerm + (lastSearchTerm.length ? ' ' + lastSearchTerm : '');
+          $('#teamName').val(teamName);
+          cd.getTeams(teamName, null, (searchType === "crossEvent" ? true : false));
+        }
+  
+        cd.autoSearchCompany = function () {
+          var companyName = firstSearchTerm + (lastSearchTerm.length ? ' ' + lastSearchTerm : '');
+          $('#companyName').val(companyName);
+          
+          cd.getCompanies(companyName, (searchType === "crossEvent" ? true : false));
+        }
+
+        cd.autoSearchParticipant();
+        // TODO - add search based on page click
+        cd.autoSearchTeam();
+        cd.autoSearchCompany();
+      }
+
+    }
+
     if ($('body').is('.pg_cn_home') || $('body').is('.pg_cn_events')) {
       
       if ($('body').is('.pg_cn_home')) {
@@ -749,12 +877,15 @@ cd.getEventsByDistance = function (zipCode, numEvents) {
         cd.getEvents('%25%25', null);
       }
 
-      $('.js__state-search select').on('change', function (e) {
-        e.preventDefault();
-        $('#zip').val('');
+      var clearEventSearchResults = function(){
         $('.js__event-search-results').html('');
         $('.js__past-event-search-results').html('');
         $('.js__past-events-container').addClass('d-none');
+      }
+      $('.js__state-search select').on('change', function (e) {
+        e.preventDefault();
+        $('#zip').val('');
+        clearEventSearchResults();
         var stateSearched = $(this).children('option:selected').val();
       
         if(stateSearched === 'Select State'){
@@ -768,11 +899,8 @@ cd.getEventsByDistance = function (zipCode, numEvents) {
       $('.js__state-search').on('submit', function (e) {
         e.preventDefault();
         $('#zip').val('');
-        $('.js__event-search-results').html('');
-        $('.js__past-event-search-results').html('');
-        $('.js__past-events-container').addClass('d-none');
+        clearEventSearchResults();
         var stateSearched = $(this).children('option:selected').val();
-      
         if(stateSearched === 'Select State'){
           cd.getEvents('%25%25', null);
         } else {
@@ -783,8 +911,14 @@ cd.getEventsByDistance = function (zipCode, numEvents) {
       $('.js__zip-search').on('submit', function (e) {
         $('#fr_event_state').val($('#fr_event_state option:first').val());
         $('.js__event-search-results').html('');
+        clearEventSearchResults();
         var zipSearched = $('#zip').val();
-        cd.getEventsByDistance(zipSearched);
+        if(zipSearched.length){
+          cd.getEventsByDistance(zipSearched);
+        } else {
+          cd.getEvents('%25%25', null);
+        }
+        
         e.preventDefault();
       });
 
@@ -808,118 +942,6 @@ cd.getEventsByDistance = function (zipCode, numEvents) {
       window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=cn_search&search_for=participant&first_name=' + firstName + '&last_name=' + lastName;
     });
 
-    // reset show more/fewer functionality after filters have been cleared
-    function resetEventList() {
-      $('.event-detail').each(function (i) {
-        if (i > 2) {
-          $(this).attr('hidden', true);
-        }
-        $('.js__show-fewer-events').attr('hidden', true);
-        // $('.js__show-more-events').removeAttr('hidden');
-        $('.js__show-more-container').removeClass('d-none');
-      });
-    }
-
-    function applyListFilter() {
-      // add sorting for landing page
-      var options = {
-        valueNames: [
-          'city',
-          'fullstate',
-          'eventtype',
-          'event-location',
-          'state-abbr'
-        ]
-      };
-      var eventList = new List('eventSearch', options);
-      var activeFilters = [];
-
-      eventList.on('updated', function (list) {
-        $('.js__show-more-container').addClass('d-none');
-        $('.event-detail').removeAttr('hidden');
-
-        if (list.matchingItems.length == 0) {
-          $('.js__no-event-results').removeClass('d-none');
-        } else if (list.matchingItems.length == list.items.length) {
-          $('.js__no-event-results').addClass('d-none');
-          // reset show more/fewer functionality after filters have been cleared
-          resetEventList();
-        } else {
-          $('.js__no-event-results').addClass('d-none');
-        }
-      });
-
-      $('.filter').on('change', function () {
-        activeFilters = [];
-        var allFilters = $('input.filter');
-        $(allFilters).not(this).prop('checked', false);
-        $(allFilters).parent().removeClass('active');
-
-        var isChecked = this.checked;
-        var value = $(this).data('filter');
-
-        if (isChecked) {
-          //  add to list of active filters
-          $(this).parent().addClass('active');
-          activeFilters.push(value);
-        } else {
-          // remove from active filters
-          activeFilters.splice(activeFilters.indexOf(value), 1);
-          resetEventList();
-        }
-
-        eventList.filter(function (item) {
-          if (activeFilters.length > 0) {
-            $('.js__show-more-container').addClass('d-none');
-            $('.event-detail').removeAttr('hidden');
-            $('.js__clear-event-filters').removeClass('d-none');
-            return (activeFilters.indexOf(item.values().eventtype)) > -1;
-          } else {
-            $('.js__clear-event-filters').addClass('d-none');
-            // reset show more/fewer functionality after filters have been cleared
-            setTimeout(function () {
-              resetEventList();
-            }, 200);
-          }
-          return true;
-        });
-      });
-
-      // clear filters on click
-      $('.js__clear-event-filters').on('click', function (e) {
-        e.preventDefault();
-        activeFilters = [];
-        $('.js__clear-event-filters').addClass('d-none');
-
-        $('input.filter').prop('checked', false);
-        $('.search').val('');
-        eventList.search();
-
-        eventList.filter(function (item) {
-          if (activeFilters.length > 0) {
-            return (activeFilters.indexOf(item.values().eventtype)) > -1;
-          }
-          return true;
-        });
-        // reset show more/fewer functionality after filters have been cleared
-        resetEventList();
-
-      });
-    }
-
-    // disable animated gears on click
-    $('.js__animated-gears').on('click', function (e) {
-      $(this).toggleClass('animated-gear');
-    });
-
-    var knowSurveyParsleyConfig = {
-      errorsContainer: function (pEle) {
-        var $err = pEle.$element.parent().parent().parent().parent().parent().find('.know-survey-error');
-        return $err;
-      }
-    }
-
-    $('.js__know-survey').parsley(knowSurveyParsleyConfig);
 
     // END LANDING PAGE ONLY
 
@@ -951,65 +973,6 @@ cd.getEventsByDistance = function (zipCode, numEvents) {
           }
         }
       });
-    };
-
-    /*****************************/
-    /* Survey - Stay in the Know */
-    /*****************************/
-
-    if ($('.survey-form').length > 0) {
-      $('.survey-form').parsley();
-
-      $('.survey-form').on('submit', function () {
-        $(this).hide();
-        $(this).before('<div class="well survey-loading">' +
-          'Loading ...' +
-          '</div>');
-      });
-    }
-
-
-    cd.submitKnowSurveyCallback = {
-      error: function (data) {
-        $('#survey-errors').remove();
-        $('.survey-form .form-group .alert').remove();
-
-        $('.know-survey-error').html('<div id="survey-errors"><div class="alert alert-danger" role="alert">' +
-          data.errorResponse.message +
-          '</div></div>');
-
-        $('.survey-loading').remove();
-        $('.survey-form').show();
-      },
-      success: function (data) {
-        $('#survey-errors').remove();
-        $('.survey-form .form-group .survey-alert-wrap').remove();
-
-        if (data.submitSurveyResponse.success == 'false') {
-
-          $('.know-survey-error').html('<div id="survey-errors"><div class="alert alert-danger" role="alert">There was an error with your submission. Please try again.</div></div>');
-
-          var surveyErrors = luminateExtend.utils.ensureArray(data.submitSurveyResponse.errors);
-          $.each(surveyErrors, function () {
-            if (this.errorField) {
-              $('input[name="' + this.errorField + '"]').closest('.form-group')
-                .prepend('<div class="col-sm-12 survey-alert-wrap">' +
-                  '<div class="alert alert-danger" role="alert">' +
-                  this.errorMessage +
-                  '</div>' +
-                  '</div>');
-            }
-          });
-
-          $('.survey-loading').remove();
-          $('.survey-form').show();
-        } else {
-          $('.survey-loading').remove();
-          $('.survey-form').before('<div class="alert alert-success" role="alert">' +
-            'Thank you! We will keep you in the know!' +
-            '</div>');
-        }
-      }
     };
 
     // Top Participants Roster
