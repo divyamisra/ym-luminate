@@ -970,15 +970,23 @@ cd.getEventsByDistance = function (zipCode, numEvents) {
       console.log('participant search submitted');
       e.preventDefault();
       var fullName = $('#rider_name').val();
-      // First Name is the first word of a multi word search. If there are more than two words, first name will include all of the words except the last word
-      var firstName = fullName.split(' ').slice(0, -1).join(' ');
-      // Last Name is the last whole word in a multi word search
-      var lastName = fullName.split(' ').slice(-1).join(' ');
+      var isMultiWordSearch = fullName.trim().indexOf(' ');
+      var firstTerm, lastTerm, searchParams;
+      
+      if(isMultiWordSearch = -1){
+        searchParams = '&first_term=' + fullName;
+      } else {
+        // First Name is the first word of a multi word search. If there are more than two words, first name will include all of the words except the last word
+        firstTerm = fullName.split(' ').slice(0, -1).join(' ');
+        // Last Name is the last whole word in a multi word search
+        lastTerm = fullName.split(' ').slice(-1).join(' ');
+        searchParams = '&first_term=' + firstTerm + '&second_term=' + lastTerm;
+      }
 
       if($('body').is('.pg_cn_home')){
-        window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=cn_search&search_type=crossEvent&first_term=' + firstName + '&second_term=' + lastName;
+        window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=cn_search&search_type=crossEvent' + searchParams;
       } else {
-        window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=cn_search&search_type=singleEvent&first_term=' + firstName + '&second_term=' + lastName + '&fr_id=' + evID;
+        window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=cn_search&search_type=singleEvent' + searchParams + '&fr_id=' + evID;
       }
       
     });
