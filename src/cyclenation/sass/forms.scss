@@ -27,6 +27,7 @@
     padding: 1rem;
     border-radius: 4px;
     max-height: 70px;
+    height: 70px;
   }
   .form-control::placeholder  {
     color: $gray-500;
@@ -361,7 +362,6 @@ div.payment-field-container {
             border-bottom:none;
             padding:5px 0;
             white-space: pre-wrap;
-
           }
         }
         tr > td:first-child {
