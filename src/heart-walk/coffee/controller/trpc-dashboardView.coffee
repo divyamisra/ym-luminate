@@ -32,6 +32,8 @@ angular.module 'trPcControllers'
 
       $scope.baseDomain = $location.absUrl().split('/site/')[0]
 
+      console.log 'happy days'
+
       if $scope.tablePrefix is 'heartdev'
         $scope.bfserver = 'bfstage'
       else
@@ -80,6 +82,7 @@ angular.module 'trPcControllers'
         greeting: ''
 
       $scope.checkBrightSites = ->
+        console.log $scope.rewardsPostData
         getcheckBrightSitesPromise = $http.post('https://'+$scope.bfserver+'.boundlessfundraising.com/applications/ahahw/brightsites/brightpost-info.php', $scope.rewardsPostData)
           .then (response) ->
             if response.data.errors
