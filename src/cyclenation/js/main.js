@@ -1883,6 +1883,9 @@
       }
 
       var minFundraisingGoal = $('input[name="fr_part_radio"]:checked').parent().find('.goal').val().replace('.00', '');
+      if(minFundraisingGoal = "$0"){
+        minFundraisingGoal = $('#fr_goal').val().replace('.00', '');
+      }
       $('#fr_goal').val(minFundraisingGoal);
       $('#part_type_fundraising_goal_container .form-content').append('<p class="small">All riders commit to fundraising <span class="min-fundraising-goal">' + minFundraisingGoal + '</span>. You can increase your fundraising goal, but the amount shown above is your required fundraising minimum.</p>');
 
@@ -1903,6 +1906,9 @@
         $('.part-type-container').on('click focus', function (e) {
           $('.part-type-container').removeClass('selected');
           var ptypeMin = $(this).find('.goal').val().replace('.00', '');
+          if(ptypeMin = "$0"){
+            ptypeMin = minFundraisingGoal;
+          }
           $('.min-fundraising-goal').text(ptypeMin);
           $('#fr_goal').val(ptypeMin);
           $(this).addClass('selected');
@@ -1913,6 +1919,9 @@
         $('input[name=fr_part_radio]').on('click focus', function (e) {
           $('.part-type-container').removeClass('selected');
           var ptypeMin = $(this).find('.goal').val().replace('.00', '');
+          if(ptypeMin = "$0"){
+            ptypeMin = minFundraisingGoal;
+          }
           $('.min-fundraising-goal').text(ptypeMin);
           $('#fr_goal').val(ptypeMin);
           $(this).closest('.part-type-container').addClass('selected');
@@ -1952,6 +1961,9 @@
           $(this).addClass('selected');
           $(this).find('input[type="radio"]').prop('checked', true);
           var ptypeMin = $(this).find('.goal').val().replace('.00', '');
+          if(ptypeMin = "$0"){
+            ptypeMin = minFundraisingGoal;
+          }
           $('.min-fundraising-goal').text(ptypeMin);
           $('#fr_goal').val(ptypeMin);
           $('#next_step').removeClass('disabled');
@@ -1967,6 +1979,9 @@
             $('.part-type-container').removeClass('selected');
             $(this).addClass('selected');
             var ptypeMin = $(this).find('.goal').val().replace('.00', '');
+            if(ptypeMin = "$0"){
+              ptypeMin = minFundraisingGoal;
+            }
             $('.min-fundraising-goal').text(ptypeMin);
             $('#fr_goal').val(ptypeMin);
             $(this).find('input[type="radio"]').prop('checked', true);
