@@ -1791,6 +1791,7 @@
 
       if($('.part-type-container').length === 1){
         $('.part-type-decoration-messages > label').attr('tabindex', '0');
+        $('input[name="fr_part_radio"]').attr('type', 'radio');
       }
 
       $(ptypeBlocks).each(function () {
@@ -1882,8 +1883,8 @@
         }
       }
 
-      var minFundraisingGoal = $('input[name="fr_part_radio"]:checked').parent().find('.goal').val().replace('.00', '');
-      if(minFundraisingGoal === "$0"){
+      var minFundraisingGoal = ($('input[name="fr_part_radio"]:checked').parent().find('.goal').val() ? $('input[name="fr_part_radio"]:checked').parent().find('.goal').val().replace('.00', '') : null);
+      if(!minFundraisingGoal || minFundraisingGoal === "$0"){
         minFundraisingGoal = $('#fr_goal').val().replace('.00', '');
       }
       $('#fr_goal').val(minFundraisingGoal);
