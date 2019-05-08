@@ -421,6 +421,7 @@
     };
 
     cd.getEvents = function (eventName, eventState) {
+      $('.js__loading').show();
       if($('body').is('.pg_cn_home')){
         var numEvents = 3;
       }
@@ -435,7 +436,7 @@
         callback: {
           success: function (response) {
             if (response.getTeamraisersResponse.totalNumberResults > '0') {
-
+              $('.js__loading').hide();
               var events = luminateExtend.utils.ensureArray(response.getTeamraisersResponse.teamraiser);
 
               var todaysDate = new Date();
@@ -502,10 +503,12 @@
               });
 
             } else {
+              $('.js__loading').hide();
               $('.js__no-event-results').removeClass('d-none');
             }
           },
           error: function (response) {
+          $('.js__loading').hide();
             console.log('getEvents error: ' + response.errorResponse.message);
           }
         }
@@ -515,6 +518,7 @@
 
 cd.getEventsByDistance = function (zipCode) {
   $('.js__no-event-results').addClass('d-none');
+  $('.js__loading').show();
   if($('body').is('.pg_cn_home')){
     var numEvents = 3;
   }
@@ -529,7 +533,7 @@ cd.getEventsByDistance = function (zipCode) {
     callback: {
       success: function (response) {
         if (response.getTeamraisersResponse.totalNumberResults > '0') {
-
+          $('.js__loading').hide();
           var events = luminateExtend.utils.ensureArray(response.getTeamraisersResponse.teamraiser);
 
           var todaysDate = new Date();
@@ -595,10 +599,12 @@ cd.getEventsByDistance = function (zipCode) {
           // applyListFilter();
 
         } else {
+          $('.js__loading').hide();
           $('.js__no-event-results').removeClass('d-none');
         }
       },
       error: function (response) {
+        $('.js__loading').hide();
         console.log('getEvents error: ' + response.errorResponse.message);
       }
     }
@@ -919,6 +925,7 @@ cd.getEventsByDistance = function (zipCode) {
         // cd.getEvents('%25%25', null, 3);
 
         console.log('getLocation');
+        $('.js__loading').show();
         getLocation();
 
       } else {
