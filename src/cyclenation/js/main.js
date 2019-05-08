@@ -1883,7 +1883,7 @@
       }
 
       var minFundraisingGoal = $('input[name="fr_part_radio"]:checked').parent().find('.goal').val().replace('.00', '');
-      if(minFundraisingGoal = "$0"){
+      if(minFundraisingGoal === "$0"){
         minFundraisingGoal = $('#fr_goal').val().replace('.00', '');
       }
       $('#fr_goal').val(minFundraisingGoal);
@@ -1905,25 +1905,20 @@
         }
         $('.part-type-container').on('click focus', function (e) {
           $('.part-type-container').removeClass('selected');
-          var ptypeMin = $(this).find('.goal').val().replace('.00', '');
-          if(ptypeMin = "$0"){
-            ptypeMin = minFundraisingGoal;
-          }
-          $('.min-fundraising-goal').text(ptypeMin);
-          $('#fr_goal').val(ptypeMin);
+
           $(this).addClass('selected');
           $(this).find('input[type="radio"]').prop('checked', true);
         });
 
         // add accessibility events for keyboard navigation
-        $('input[name=fr_part_radio]').on('click focus', function (e) {
+        $('input[name="fr_part_radio"]').on('click focus', function (e) {
           $('.part-type-container').removeClass('selected');
-          var ptypeMin = $(this).find('.goal').val().replace('.00', '');
-          if(ptypeMin = "$0"){
-            ptypeMin = minFundraisingGoal;
+          var selectedPtypeMin = $(this).parent().find('.goal').val().replace('.00', '');
+          if(selectedPtypeMin === "$0"){
+            selectedPtypeMin = minFundraisingGoal;
           }
-          $('.min-fundraising-goal').text(ptypeMin);
-          $('#fr_goal').val(ptypeMin);
+          $('.min-fundraising-goal').text(selectedPtypeMin);
+          $('#fr_goal').val(selectedPtypeMin);
           $(this).closest('.part-type-container').addClass('selected');
         });
 
@@ -1960,8 +1955,8 @@
           $('.part-type-container').removeClass('selected');
           $(this).addClass('selected');
           $(this).find('input[type="radio"]').prop('checked', true);
-          var ptypeMin = $(this).find('.goal').val().replace('.00', '');
-          if(ptypeMin = "$0"){
+          var ptypeMin = $(this).parent().find('.goal').val().replace('.00', '');
+          if(ptypeMin === "$0"){
             ptypeMin = minFundraisingGoal;
           }
           $('.min-fundraising-goal').text(ptypeMin);
@@ -1978,8 +1973,8 @@
           if(key == 13) {
             $('.part-type-container').removeClass('selected');
             $(this).addClass('selected');
-            var ptypeMin = $(this).find('.goal').val().replace('.00', '');
-            if(ptypeMin = "$0"){
+            var ptypeMin = $(this).parent().find('.goal').val().replace('.00', '');
+            if(ptypeMin === "$0"){
               ptypeMin = minFundraisingGoal;
             }
             $('.min-fundraising-goal').text(ptypeMin);
