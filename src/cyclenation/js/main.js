@@ -420,7 +420,10 @@
         Math.abs(n - i).toFixed(c).slice(2) : "");
     };
 
-    cd.getEvents = function (eventName, eventState, numEvents) {
+    cd.getEvents = function (eventName, eventState) {
+      if($('body').is('.pg_cn_home')){
+        var numEvents = 3;
+      }
       $('.js__no-event-results').addClass('d-none');
       luminateExtend.api({
         api: 'teamraiser',
@@ -469,7 +472,7 @@
                       // numEvents exists. Restrict the number of results that are displayed
                       $('.js__event-search-results').append(eventRow);
                       liveEventsDisplayed++;
-                    }
+                    } 
                   } else {
                     // numEvents does NOT exist. Display all results in list
                     $('.js__event-search-results').append(eventRow);
@@ -479,8 +482,12 @@
                   $('.js__past-event-search-results').append(eventRow);
                   $('.js__past-events-container').removeClass('d-none');
                 }
-               
               });
+
+              if($('body').is('.pg_cn_home') && liveEventsDisplayed === 0){
+                console.log('only found old events');
+                $('.js__no-event-results').removeClass('d-none');
+              }
 
               $('.js__event-details').on('click', function () {
                 _gaq.push(['t2._trackEvent', 'program-homepage', 'click', 'search-event-details-button']);
@@ -506,9 +513,11 @@
     };
 // BEGIN getEventsByDistance
 
-cd.getEventsByDistance = function (zipCode, numEvents) {
+cd.getEventsByDistance = function (zipCode) {
   $('.js__no-event-results').addClass('d-none');
-
+  if($('body').is('.pg_cn_home')){
+    var numEvents = 3;
+  }
   luminateExtend.api({
     api: 'teamraiser',
     data: 'method=getTeamraisersByDistance' +
@@ -760,7 +769,7 @@ cd.getEventsByDistance = function (zipCode, numEvents) {
           });
           
           if(postalCode) {
-            cd.getEventsByDistance(postalCode, 3);
+            cd.getEventsByDistance(postalCode);
           }
           else {
             if(results[0].geometry && results[0].geometry.location) {
@@ -772,12 +781,12 @@ cd.getEventsByDistance = function (zipCode, numEvents) {
               // });
             }
             else {
-              cd.getEventsByDistance(postalCode, 3);
+              cd.getEventsByDistance(postalCode);
             }
           }
         }
         else {
-          cd.getEventsByDistance(postalCode, 3);
+          cd.getEventsByDistance(postalCode);
         }
       });
 
@@ -786,12 +795,12 @@ cd.getEventsByDistance = function (zipCode, numEvents) {
       // console.log("Geocode status: ", status);
 
       //   var zipCode = result[0]['address_components'][7]['short_name'];
-      //   cd.getEventsByDistance(zipCode, 3);
+      //   cd.getEventsByDistance(zipCode);
 
       // });
     }   
     function showGeolocationError(error){
-      cd.getEvents('%25%25', null, 3);
+      cd.getEvents('%25%25', null);
       switch(error.code){
         case error.PERMISSION_DENIED:
           console.log("User denied the request for Geolocation.");
