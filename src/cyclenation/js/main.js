@@ -10,6 +10,18 @@
 
     // BEGIN WRAPPER JS
 
+    // GREETING PAGE - HIDE CALENDAR IN IOS
+    console.log('iOS hide calendar 01');
+    var iOS = false,
+    p = navigator.platform;
+    if( p === 'iPad' || p === 'iPhone' || p === 'iPod' ) {
+      iOS = true;
+    }
+    if (iOS === false) {
+      $(".ios-hide").hide();
+    }
+    console.log('iOS hide calendar 02');
+
     /***************/
     /* NAV SCRIPTS */
     /***************/
