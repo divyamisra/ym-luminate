@@ -18,6 +18,8 @@
       iOS = true;
     }
     if (iOS === false) {
+      //show "ios-hide" items
+    } else {
       $(".ios-hide").hide();
     }
     console.log('iOS hide calendar 02');
