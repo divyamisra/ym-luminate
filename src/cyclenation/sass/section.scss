@@ -242,6 +242,17 @@
             fill: $white;
           }
         }
+
+        .fundraiserSearchLink {
+          a {
+            text-decoration: underline;
+  
+            i, 
+            .svg-inline--fa.fa-angle-right {
+              margin-left: 5px;
+            }
+          }
+        }
       }
 
       @include media-breakpoint-down(md) {
