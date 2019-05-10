@@ -32,8 +32,6 @@ angular.module 'trPcControllers'
 
       $scope.baseDomain = $location.absUrl().split('/site/')[0]
 
-      console.log 'happy days'
-
       constituentPromise = ConstituentService.getUser()
         .then (response) ->
           if response.data.errorResponse
