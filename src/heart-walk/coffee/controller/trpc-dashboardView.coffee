@@ -32,10 +32,7 @@ angular.module 'trPcControllers'
 
       $scope.baseDomain = $location.absUrl().split('/site/')[0]
 
-      if $scope.tablePrefix is 'heartdev'
-        $scope.bfserver = 'bfstage'
-      else
-        $scope.bfserver = 'bfapps1'
+      console.log 'happy days'
 
       constituentPromise = ConstituentService.getUser()
         .then (response) ->
@@ -74,13 +71,14 @@ angular.module 'trPcControllers'
         consid: $scope.consId
 
       $scope.BrightSites =
-        url: 'http://heartwalkguest.mybrightsites.com'
+        url: 'https://heartwalkguest.mybrightsites.com'
         active: false
         participant: false
         greeting: ''
 
       $scope.checkBrightSites = ->
-        getcheckBrightSitesPromise = $http.post('https://'+$scope.bfserver+'.boundlessfundraising.com/applications/ahahw/brightsites/brightpost-info.php', $scope.rewardsPostData)
+        console.log $scope.rewardsPostData
+        getcheckBrightSitesPromise = $http.post('https://www.rewardscenter.info/vendor/hwpc/brightpost-info.php', $scope.rewardsPostData)
           .then (response) ->
             if response.data.errors
               console.log response.data
@@ -100,7 +98,7 @@ angular.module 'trPcControllers'
       $scope.BrightSitesLogin = ->
         if $scope.BrightSites.participant is true and $scope.participantConfirmedGifts >= 10000
           BrightSitesWindow = $window.open '', 'RewardCenter'
-          $http.post('https://'+$scope.bfserver+'.boundlessfundraising.com/applications/ahahw/brightsites/brightpost-sso.php', $scope.rewardsPostData)
+          $http.post('https://www.rewardscenter.info/vendor/hwpc/brightpost-sso.php', $scope.rewardsPostData)
             .then (response) ->
               if response.data.errors
                 console.log response.data

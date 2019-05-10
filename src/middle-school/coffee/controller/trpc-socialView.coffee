@@ -3,6 +3,7 @@ angular.module('trPcControllers').controller 'NgPcSocialViewCtrl', [
   '$sce'
   '$rootScope'
   ($scope, $sce, $rootScope) ->
+    console.log 'middle school'
     urlPrefix = ''
     if $scope.tablePrefix is 'heartdev'
       urlPrefix = 'bfstage'
@@ -10,7 +11,9 @@ angular.module('trPcControllers').controller 'NgPcSocialViewCtrl', [
       urlPrefix = 'bfapps1'
     consId = $scope.consId
     frId = $rootScope.frId
-    url = 'https://' + urlPrefix + '.boundlessfundraising.com/applications/ahatgr/social/app/ui/#/addsocial/' + consId + '/' + frId + '?source=PCSocial'
+    auth = $rootScope.authToken
+    jsession = $rootScope.sessionCookie
+    url = 'https://' + urlPrefix + '.boundlessfundraising.com/applications/ahatgr/social/app/ui/#/addsocial/' + consId + '/' + frId + '/' + auth + '/' + jsession + '?source=PCSocial'
     $scope.socialIframeURL = $sce.trustAsResourceUrl url
     return
   ]
