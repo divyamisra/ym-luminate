@@ -479,7 +479,7 @@
                 eventStateAbbr + '</span></a><span class="eventtype d-block">' +
                 eventType + ' Event</span><span class="event-date d-block">' +
                 eventDate + '</span></div><a href="' +
-                greetingUrl + '" class="event-detail-button btn col-2" aria-label="Visit event page for CycleNation' + eventCity + '"><i class="fas fa-angle-right"></i></a></li>';
+                greetingUrl + '" class="event-detail-button btn col-2" aria-label="Visit event page for CycleNation ' + eventCity + '"><i class="fas fa-angle-right"></i></a></li>';
 
                 if(eventTimestamp > todaysDate){
                   if(numEvents){
@@ -575,7 +575,7 @@ cd.getEventsByDistance = function (zipCode) {
             eventStateAbbr + '</span></a><span class="eventtype d-block">' +
             eventType + ' Event</span><span class="event-date d-block">' +
             eventDate + '</span></div><a href="' +
-            greetingUrl + '" class="event-detail-button btn col-2"  aria-label="Visit event page for CycleNation' + eventCity + '><i class="fas fa-angle-right"></i></a></li>';
+            greetingUrl + '" class="event-detail-button btn col-2"  aria-label="Visit event page for CycleNation ' + eventCity + '"><i class="fas fa-angle-right"></i></a></li>';
 
             if(eventTimestamp > todaysDate){
               if(numEvents){
