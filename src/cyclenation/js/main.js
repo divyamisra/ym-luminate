@@ -595,6 +595,23 @@ cd.getEventsByDistance = function (zipCode) {
 
           });
 
+          // accessibility screen reader label for state search
+          $("select#fr_event_state").on({    
+            "change": function() {
+                    $(this).blur();
+                },
+                'focus': function() {
+                    $('.js__state-search-submit').text('Select state combo box expanded');
+                },
+                "blur": function() {
+                  $('.js__state-search-submit').text('Select state combo box collapsed');
+                },
+               "keyup": function(e) {
+                    if (e.keyCode == 27)
+                    $('.js__state-search-submit').text('Select state combo box collapsed');
+                }
+            });
+
           $('.js__event-details').on('click', function () {
             _gaq.push(['t2._trackEvent', 'program-homepage', 'click', 'search-event-details-button']);
           });
@@ -606,7 +623,6 @@ cd.getEventsByDistance = function (zipCode) {
           $('.js__event-name').on('click', function () {
             _gaq.push(['t2._trackEvent', 'program-homepage', 'click', 'search-event-details-link']);
           });
-d
           addScrollLinks();
 
           // applyListFilter only on cn_home
