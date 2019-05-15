@@ -36,7 +36,7 @@ angular.module 'trPcApp'
         .when '/edit-team',
           templateUrl: APP_INFO.rootPath + 'dist/heart-walk/html/participant-center/view/editTeam.html'
           controller: 'editTeamViewCtrl'
-        .when '/edit-Company',
+        .when '/edit-company',
           templateUrl: APP_INFO.rootPath + 'dist/heart-walk/html/participant-center/view/editCompany.html'
           controller: 'editCompanyViewCtrl'
         .when '/profile',
