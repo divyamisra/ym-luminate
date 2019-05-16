@@ -20,6 +20,9 @@
     <div class="page_personal_story_container">
 				<div class="manageable-editor-window-editor" data-container="edit_fr_rich_text_container">
 					<div class="personal-page-description" id="fr_rich_text_container">
+              <div class="form-group"><button type="button" class="btn btn-primary btn-raised" ng-class="{\'hidden\': pagePersonalContentOpen}" ng-click="editPagePersonalContent()" id="edit_personal_story"><span class="glyphicon glyphicon-pencil"></span> Edit Story</button></div> 
+              <div ng-class="{\'hidden\': pagePersonalContentOpen}" ng-bind-html="pagePersonalContent"></div>
+              <form method="POST" novalidate ng-class="{\'hidden\': !pagePersonalContentOpen}" ng-submit="updatePagePersonalContent()"><div class="form-group"><button type="button" class="btn btn-primary-inverted btn-raised" ng-click="cancelEditPagePersonalContent()">Cancel</button> <button type="submit" class="btn btn-primary btn-raised">Save</button></div><div class="form-group"><div text-angular ng-model="ng_pagePersonalContent" ta-toolbar="{{textEditorToolbar}}" ta-text-editor-class="border-around" ta-html-editor-class="border-around"></div></div></form>
 					</div>
 				</div>
 			</div>
