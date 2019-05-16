@@ -11,6 +11,8 @@ angular.module 'trPcControllers'
     ($rootScope, $scope, $location, $compile, $sce, $uibModal, APP_INFO, TeamraiserParticipantPageService) ->
       #luminateExtend.api.getAuth()
 
+      $scope.personalPagePromises = []
+
       $scope.teamraiserAPIPath = $sce.trustAsResourceUrl $rootScope.securePath + 'CRTeamraiserAPI'
 
       console.log 'this is the personal page edit controller'
@@ -72,8 +74,8 @@ angular.module 'trPcControllers'
       $scope.deletePagePersonalPhoto = ($event) ->
         if $event
           $event.preventDefault()
-        angular.element('.js--delete-personal-photo-1-form').submit()
-        $scope.setPagePersonalPhotoUrl angular.element('.heart-user-image-wrap-inner[data-defaultphoto]').attr('data-defaultphoto')
+        angular.element('.js--delete-page-personal-photo-form').submit()
+        $scope.setPagePersonalPhotoUrl angular.element('.page_personal_photo_container[data-defaultphoto]').attr('data-defaultphoto')
         false
       $scope.cancelEditPagePersonalPhoto = ->
         $scope.closePagePersonalPhotoModal()
@@ -84,6 +86,24 @@ angular.module 'trPcControllers'
           message: errorMessage
         if not $scope.$$phase
           $scope.$apply()
+
+
+      # console.log 'runnning'
+      # getPersonalPhotosPromise = TeamraiserParticipantPageService.getPersonalPhotos()
+      #   .then (response) ->
+      #     if response.data.errorResponse
+      #       # TODO
+      #     else
+      #       photoItems = response.getPersonalPhotosResponse?.photoItem
+      #       if photoItems
+      #         photoItems = [photoItems] if not angular.isArray photoItems
+      #         angular.forEach photoItems, (photoItem) ->
+      #           photoUrl = photoItem.customUrl
+      #           if photoItem.id is '1'
+      #             $scope.setPagePersonalPhotoUrl photoUrl
+      #     response
+      # $scope.personalPagePromises.push getPersonalPhotosPromise  
+
 
       $scope.getPagePersonalPhotoUrl = ->
         console.log 'runnning'
@@ -101,16 +121,31 @@ angular.module 'trPcControllers'
       $scope.getPagePersonalPhotoUrl()
 
 
+
       #Personal page text
       $personalTextContainer = angular.element '.page_personal_story_container #fr_rich_text_container'
 
+      # $scope.getPersonalPageRichText = ->
+      #   getPersonalPageRichTextPromise = TeamraiserParticipantPageService.getPersonalPageInfo()
+      #     .then(response) ->
+      #       if response.data.errorResponse
+      #         # TODO
+      #       else
+      #         console.log response
+      #       response
+      #   $scope.personalPagePromises.push getPersonalPageRichTextPromise
+      # $scope.getPersonalPageRichText()
+
+
       $scope.getPersonalPageRichText = ->
-        console.log 'runnning'
+        console.log 'runnning2'
         TeamraiserParticipantPageService.getPersonalPageInfo
           error: (response) ->
             # TODO
           success: (response) ->
             console.log response.getPersonalPageResponse.personalPage?.richText
+            $retrievedPersonalPageText = response.getPersonalPageResponse.personalPage?.richText
+            #$personalTextContainer.html $compile($retrievedPersonalPageText)($scope)
       $scope.getPersonalPageRichText()
 
       # make content dynamic
