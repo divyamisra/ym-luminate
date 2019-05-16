@@ -8,16 +8,41 @@ angular.module 'trPcControllers'
     '$uibModal'
     'APP_INFO'
     'TeamraiserParticipantPageService'
-    'TeamraiserRegistrationService'
-    'TeamraiserSurveyResponseService'
-    ($rootScope, $scope, $location, $compile, $sce, $uibModal, APP_INFO, TeamraiserParticipantPageService, TeamraiserRegistrationService, TeamraiserSurveyResponseService) ->
+    ($rootScope, $scope, $location, $compile, $sce, $uibModal, APP_INFO, TeamraiserParticipantPageService) ->
       #luminateExtend.api.getAuth()
 
       $scope.teamraiserAPIPath = $sce.trustAsResourceUrl $rootScope.securePath + 'CRTeamraiserAPI'
 
-      console.log $scope.teamraiserAPIPath
-
       console.log 'this is the personal page edit controller'
+
+
+      $scope.textEditorToolbar = [
+        [
+          'h1'
+          'h2'
+          'h3'
+          'p'
+          'bold'
+          'italics'
+          'underline'
+        ]
+        [
+          'ul'
+          'ol'
+          'justifyLeft'
+          'justifyCenter'
+          'justifyRight'
+          'justifyFull'
+          'indent'
+          'outdent'
+        ]
+        [
+          'insertImage'
+          'insertLink'
+          'undo'
+          'redo'
+        ]
+      ]
 
       $pagePersonalPhoto = angular.element '.page_personal_photo_container'
 
@@ -59,7 +84,81 @@ angular.module 'trPcControllers'
           message: errorMessage
         if not $scope.$$phase
           $scope.$apply()
-      #$personalPagePhoto.append $compile('<button type="button" class="btn btn-primary-inverted btn-raised" ng-click="editPagePersonalPhoto()" id="edit_personal_photo"><span class="glyphicon glyphicon-camera"></span> Edit Photo</button>')($scope)
+
+      $scope.getPagePersonalPhotoUrl = ->
+        console.log 'runnning'
+        TeamraiserParticipantPageService.getPersonalPhotos
+          error: (response) ->
+            # TODO
+          success: (response) ->
+            photoItems = response.getPersonalPhotosResponse?.photoItem
+            if photoItems
+              photoItems = [photoItems] if not angular.isArray photoItems
+              angular.forEach photoItems, (photoItem) ->
+                photoUrl = photoItem.customUrl
+                if photoItem.id is '1'
+                  $scope.setPagePersonalPhotoUrl photoUrl
+      $scope.getPagePersonalPhotoUrl()
+
+
+      #Personal page text
+      $personalTextContainer = angular.element '.page_personal_story_container #fr_rich_text_container'
+
+      $scope.getPersonalPageRichText = ->
+        console.log 'runnning'
+        TeamraiserParticipantPageService.getPersonalPageInfo
+          error: (response) ->
+            # TODO
+          success: (response) ->
+            console.log response.getPersonalPageResponse.personalPage?.richText
+      $scope.getPersonalPageRichText()
+
+      # make content dynamic
+      $scope.personalContent = $personalTextContainer.html()
+      $scope.ng_personalContent = $personalTextContainer.html()
+      $personalTextContainer.html $compile('<div ng-class="{\'hidden\': personalContentOpen}" ng-bind-html="personalContent"></div>')($scope)
+
+      # insert content edit button
+      $scope.editPersonalContent = ->
+        $scope.prevPersonalContent = $scope.personalContent
+        $scope.personalContentOpen = true
+      $personalTextContainer.prepend $compile('<div class="form-group"><button type="button" class="btn btn-primary btn-raised" ng-class="{\'hidden\': personalContentOpen}" ng-click="editPersonalContent()" id="edit_personal_story"><span class="glyphicon glyphicon-pencil"></span> Edit Story</button></div>')($scope)
+
+      # insert content form
+      closePersonalContent = ->
+        $scope.personalContentOpen = false
+        if not $scope.$$phase
+          $scope.$apply()
+      $scope.cancelEditPersonalContent = ->
+        $scope.personalContent = $scope.prevPersonalContent
+        closePersonalContent()
+        $scope.ng_personalContent = $scope.prevPersonalContent
+      $scope.updatePersonalContent = ->
+        richText = $scope.ng_personalContent
+        $richText = jQuery '<div />',
+          html: richText
+        richText = $richText.html()
+        richText = richText.replace /<\/?[A-Z]+.*?>/g, (m) ->
+          m.toLowerCase()
+        .replace(/<font>/g, '<span>').replace(/<font /g, '<span ').replace /<\/font>/g, '</span>'
+        .replace(/<b>/g, '<strong>').replace(/<b /g, '<strong ').replace /<\/b>/g, '</strong>'
+        .replace(/<i>/g, '<em>').replace(/<i /g, '<em ').replace /<\/i>/g, '</em>'
+        .replace(/<u>/g, '<span style="text-decoration: underline;">').replace(/<u /g, '<span style="text-decoration: underline;" ').replace /<\/u>/g, '</span>'
+        .replace /[\u00A0-\u9999\&]/gm, (i) ->
+          '&#' + i.charCodeAt(0) + ';'
+        .replace /&#38;/g, '&'
+        .replace /<!--[\s\S]*?-->/g, ''
+        TeamraiserParticipantPageService.updatePersonalPageInfo 'rich_text=' + encodeURIComponent(richText),
+          error: (response) ->
+            # TODO
+          success: (response) ->
+            success = response.updatePersonalPageResponse?.success
+            if not success or success isnt 'true'
+              # TODO
+            else
+              $scope.personalContent = richText
+              closePersonalContent()
+
 
       window.trPageEdit =
         uploadPhotoError: (response) ->
