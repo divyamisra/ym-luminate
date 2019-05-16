@@ -469,6 +469,7 @@
                 var eventStateAbbr = event.state;
                 var eventStateFull = event.mail_state;
                 var eventLocation = event.location_name;
+                var eventStatus = event.status;
                 var eventType = event.public_event_type_name;
                 var greetingUrl = event.greeting_url;
                 var registerUrl = 'SPageServer/?pagename=cn_register&fr_id=' + eventId + '&s_regType=';
@@ -479,9 +480,9 @@
                 eventStateAbbr + '</span></a><span class="eventtype d-block">' +
                 eventType + ' Event</span><span class="event-date d-block">' +
                 eventDate + '</span></div><a href="' +
-                greetingUrl + '" class="event-detail-button btn col-2" aria-label="Visit event page for CycleNation ' + eventCity + '"><i class="fas fa-angle-right"></i></a></li>';
+                greetingUrl + '" class="event-detail-button btn col-2" aria-label="Visit event page for CycleNation ' + eventCity + '"><i class="fas fa-angle-right" aria-hidden="true"  </i></a></li>';
 
-                if(eventTimestamp > todaysDate){
+                if(eventTimestamp > todaysDate && (eventStatus === '1' || eventStatus === '2' || eventStatus === '3')){
                   if(numEvents){
                     if(liveEventsDisplayed < numEvents){
                       // numEvents exists. Restrict the number of results that are displayed
@@ -492,7 +493,7 @@
                     // numEvents does NOT exist. Display all results in list
                     $('.js__event-search-results').append(eventRow);
                   }
-                } else {
+                } else if(eventStatus === '1' || eventStatus === '2' || eventStatus === '3'){
                   // display past events in a separate table
                   $('.js__past-event-search-results').append(eventRow);
                   $('.js__past-events-container').removeClass('d-none');
@@ -564,10 +565,12 @@ cd.getEventsByDistance = function (zipCode) {
             var eventStateAbbr = event.state;
             var eventStateFull = event.mail_state;
             var eventLocation = event.location_name;
+            var eventStatus = event.status;
             var eventType = event.public_event_type_name;
             var greetingUrl = event.greeting_url;
             var registerUrl = 'SPageServer/?pagename=cn_register&fr_id=' + eventId + '&s_regType=';
             var acceptsRegistration = event.accepting_registrations;
+            console.log('eventStatus: ', eventStatus);
 
             var eventRow = '<li class="event-detail row col-12 col-lg-4 mb-4 fadein"><div class="event-detail-content col-10"><a class="js__event-name" href="' +
             greetingUrl + '" aria-label="Visit ' + eventCity + ' ' + eventType + ' Event"><span class="city">' +
@@ -575,9 +578,9 @@ cd.getEventsByDistance = function (zipCode) {
             eventStateAbbr + '</span></a><span class="eventtype d-block">' +
             eventType + ' Event</span><span class="event-date d-block">' +
             eventDate + '</span></div><a href="' +
-            greetingUrl + '" class="event-detail-button btn col-2"  aria-label="Visit event page for CycleNation ' + eventCity + '"><i class="fas fa-angle-right"></i></a></li>';
-
-            if(eventTimestamp > todaysDate){
+            greetingUrl + '" class="event-detail-button btn col-2"  aria-label="Visit event page for CycleNation ' + eventCity + '"><i class="fas fa-angle-right" aria-hidden="true"></i></a></li>';
+              console.log('eventStatus: ', eventStatus);
+            if(eventTimestamp > todaysDate && (eventStatus === '1' || eventStatus === '2' || eventStatus === '3')){
               if(numEvents){
                 if(liveEventsDisplayed < numEvents){
                   // numEvents exists. Restrict the number of results that are displayed
@@ -588,7 +591,7 @@ cd.getEventsByDistance = function (zipCode) {
                 // numEvents does NOT exist. Display all results in list
                 $('.js__event-search-results').append(eventRow);
               }
-            } else {
+            } else if(eventStatus === '1' || eventStatus === '2' || eventStatus === '3'){
               // display past events in a separate table
               $('.js__past-event-search-results').append(eventRow);
             }
