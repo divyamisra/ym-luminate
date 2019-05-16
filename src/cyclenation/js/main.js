@@ -480,7 +480,7 @@
                 eventStateAbbr + '</span></a><span class="eventtype d-block">' +
                 eventType + ' Event</span><span class="event-date d-block">' +
                 eventDate + '</span></div><a href="' +
-                greetingUrl + '" class="event-detail-button btn col-2" aria-label="Visit event page for CycleNation ' + eventCity + '"><i class="fas fa-angle-right" aria-hidden="true"  </i></a></li>';
+                greetingUrl + '" class="event-detail-button btn col-2" aria-label="Visit event page for CycleNation ' + eventCity + '"><i class="fas fa-angle-right" aria-hidden="true" alt="angle-right"></i></a></li>';
 
                 if(eventTimestamp > todaysDate && (eventStatus === '1' || eventStatus === '2' || eventStatus === '3')){
                   if(numEvents){
@@ -578,7 +578,7 @@ cd.getEventsByDistance = function (zipCode) {
             eventStateAbbr + '</span></a><span class="eventtype d-block">' +
             eventType + ' Event</span><span class="event-date d-block">' +
             eventDate + '</span></div><a href="' +
-            greetingUrl + '" class="event-detail-button btn col-2"  aria-label="Visit event page for CycleNation ' + eventCity + '"><i class="fas fa-angle-right" aria-hidden="true"></i></a></li>';
+            greetingUrl + '" class="event-detail-button btn col-2"  aria-label="Visit event page for CycleNation ' + eventCity + '"><i class="fas fa-angle-right" aria-hidden="true" alt="angle-right"></i></a></li>';
               console.log('eventStatus: ', eventStatus);
             if(eventTimestamp > todaysDate && (eventStatus === '1' || eventStatus === '2' || eventStatus === '3')){
               if(numEvents){
