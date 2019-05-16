@@ -75,7 +75,7 @@ angular.module 'trPcControllers'
         if $event
           $event.preventDefault()
         angular.element('.js--delete-page-personal-photo-form').submit()
-        $scope.setPagePersonalPhotoUrl angular.element('.page_personal_photo_container[data-defaultphoto]').attr('data-defaultphoto')
+        $scope.setPagePersonalPhotoUrl angular.element('.page_personal_photo_inner[data-defaultphoto]').attr('data-defaultphoto')
         false
       $scope.cancelEditPagePersonalPhoto = ->
         $scope.closePagePersonalPhotoModal()
@@ -86,24 +86,6 @@ angular.module 'trPcControllers'
           message: errorMessage
         if not $scope.$$phase
           $scope.$apply()
-
-
-      # console.log 'runnning'
-      # getPersonalPhotosPromise = TeamraiserParticipantPageService.getPersonalPhotos()
-      #   .then (response) ->
-      #     if response.data.errorResponse
-      #       # TODO
-      #     else
-      #       photoItems = response.getPersonalPhotosResponse?.photoItem
-      #       if photoItems
-      #         photoItems = [photoItems] if not angular.isArray photoItems
-      #         angular.forEach photoItems, (photoItem) ->
-      #           photoUrl = photoItem.customUrl
-      #           if photoItem.id is '1'
-      #             $scope.setPagePersonalPhotoUrl photoUrl
-      #     response
-      # $scope.personalPagePromises.push getPersonalPhotosPromise  
-
 
       $scope.getPagePersonalPhotoUrl = ->
         console.log 'runnning'
@@ -116,8 +98,10 @@ angular.module 'trPcControllers'
               photoItems = [photoItems] if not angular.isArray photoItems
               angular.forEach photoItems, (photoItem) ->
                 photoUrl = photoItem.customUrl
-                if photoItem.id is '1'
+                if photoItem.id is '1' and photoUrl
                   $scope.setPagePersonalPhotoUrl photoUrl
+                else if photoItem.id is '1'
+                  $scope.setPagePersonalPhotoUrl angular.element('.page_personal_photo_inner[data-defaultphoto]').attr('data-defaultphoto')
       $scope.getPagePersonalPhotoUrl()
 
 
@@ -144,32 +128,33 @@ angular.module 'trPcControllers'
             # TODO
           success: (response) ->
             console.log response.getPersonalPageResponse.personalPage?.richText
-            $retrievedPersonalPageText = response.getPersonalPageResponse.personalPage?.richText
+            $scope.pagePersonalContent  = response.getPersonalPageResponse.personalPage?.richText
+            $scope.ng_pagePersonalContent  = response.getPersonalPageResponse.personalPage?.richText
             #$personalTextContainer.html $compile($retrievedPersonalPageText)($scope)
       $scope.getPersonalPageRichText()
 
       # make content dynamic
-      $scope.personalContent = $personalTextContainer.html()
-      $scope.ng_personalContent = $personalTextContainer.html()
-      $personalTextContainer.html $compile('<div ng-class="{\'hidden\': personalContentOpen}" ng-bind-html="personalContent"></div>')($scope)
+      #$scope.pagePersonalContent = $personalTextContainer.html()
+      #$scope.ng_pagePersonalContent = $personalTextContainer.html()
+      #$personalTextContainer.html $compile('<div ng-class="{\'hidden\': pagePersonalContentOpen}" ng-bind-html="pagePersonalContent"></div>')($scope)
 
       # insert content edit button
-      $scope.editPersonalContent = ->
-        $scope.prevPersonalContent = $scope.personalContent
-        $scope.personalContentOpen = true
-      $personalTextContainer.prepend $compile('<div class="form-group"><button type="button" class="btn btn-primary btn-raised" ng-class="{\'hidden\': personalContentOpen}" ng-click="editPersonalContent()" id="edit_personal_story"><span class="glyphicon glyphicon-pencil"></span> Edit Story</button></div>')($scope)
+      $scope.editPagePersonalContent = ->
+        $scope.prevPersonalContent = $scope.pagePersonalContent
+        $scope.pagePersonalContentOpen = true
+      #$personalTextContainer.prepend $compile('<div class="form-group"><button type="button" class="btn btn-primary btn-raised" ng-class="{\'hidden\': pagePersonalContentOpen}" ng-click="editPagePersonalContent()" id="edit_personal_story"><span class="glyphicon glyphicon-pencil"></span> Edit Story</button></div>')($scope)
 
       # insert content form
       closePersonalContent = ->
-        $scope.personalContentOpen = false
+        $scope.pagePersonalContentOpen = false
         if not $scope.$$phase
           $scope.$apply()
-      $scope.cancelEditPersonalContent = ->
-        $scope.personalContent = $scope.prevPersonalContent
+      $scope.cancelEditPagePersonalContent = ->
+        $scope.pagePersonalContent = $scope.prevPersonalContent
         closePersonalContent()
-        $scope.ng_personalContent = $scope.prevPersonalContent
-      $scope.updatePersonalContent = ->
-        richText = $scope.ng_personalContent
+        $scope.ng_pagePersonalContent = $scope.prevPersonalContent
+      $scope.updatePagePersonalContent = ->
+        richText = $scope.ng_pagePersonalContent
         $richText = jQuery '<div />',
           html: richText
         richText = $richText.html()
@@ -191,8 +176,9 @@ angular.module 'trPcControllers'
             if not success or success isnt 'true'
               # TODO
             else
-              $scope.personalContent = richText
+              $scope.pagePersonalContent = richText
               closePersonalContent()
+      #$personalTextContainer.append $compile('<form method="POST" novalidate ng-class="{\'hidden\': !pagePersonalContentOpen}" ng-submit="updatePagePersonalContent()"><div class="form-group"><button type="button" class="btn btn-primary-inverted btn-raised" ng-click="cancelEditPagePersonalContent()">Cancel</button> <button type="submit" class="btn btn-primary btn-raised">Save</button></div><div class="form-group"><div text-angular ng-model="ng_pagePersonalContent" ta-toolbar="{{textEditorToolbar}}" ta-text-editor-class="border-around" ta-html-editor-class="border-around"></div></div></form>')($scope)
 
 
       window.trPageEdit =
