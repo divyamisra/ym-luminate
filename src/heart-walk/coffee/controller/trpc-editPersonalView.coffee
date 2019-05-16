@@ -7,10 +7,11 @@ angular.module 'trPcControllers'
     '$sce'
     '$uibModal'
     'APP_INFO'
+    'TeamraiserParticipantPageService'
     'TeamraiserRegistrationService'
     'TeamraiserSurveyResponseService'
-    ($rootScope, $scope, $location, $compile, $sce, $uibModal, APP_INFO, TeamraiserRegistrationService, TeamraiserSurveyResponseService) ->
-      luminateExtend.api.getAuth()
+    ($rootScope, $scope, $location, $compile, $sce, $uibModal, APP_INFO, TeamraiserParticipantPageService, TeamraiserRegistrationService, TeamraiserSurveyResponseService) ->
+      #luminateExtend.api.getAuth()
 
       $scope.teamraiserAPIPath = $sce.trustAsResourceUrl $rootScope.securePath + 'CRTeamraiserAPI'
 
@@ -18,7 +19,19 @@ angular.module 'trPcControllers'
 
       console.log 'this is the personal page edit controller'
 
-      $personalPagePhoto = angular.element 'h1'
+      $pagePersonalPhoto = angular.element '.page_personal_photo_container'
+
+      # make photo dynamic
+      $scope.setPagePersonalPhotoUrl = (photoUrl) ->
+        $scope.pagePersonalPhotoUrl = photoUrl
+        if not $scope.$$phase
+          $scope.$apply()
+      angular.forEach $pagePersonalPhoto, (photoContainer) ->
+        $personalPhoto = angular.element(photoContainer).find('img')
+        $personalPhotoSrc = $personalPhoto.attr 'src'
+        if $personalPhotoSrc and $personalPhotoSrc isnt ''
+          $scope.setPagePersonalPhotoUrl $personalPhotoSrc
+        $personalPhoto.replaceWith $compile($personalPhoto.clone().attr('ng-src', '{{pagePersonalPhotoUrl}}'))($scope)
 
       # insert photo edit button
       $scope.editPagePersonalPhoto = ->
@@ -48,7 +61,7 @@ angular.module 'trPcControllers'
           $scope.$apply()
       #$personalPagePhoto.append $compile('<button type="button" class="btn btn-primary-inverted btn-raised" ng-click="editPagePersonalPhoto()" id="edit_personal_photo"><span class="glyphicon glyphicon-camera"></span> Edit Photo</button>')($scope)
 
-      window.trPageEditCD =
+      window.trPageEdit =
         uploadPhotoError: (response) ->
           errorResponse = response.errorResponse
           photoType = errorResponse.photoType
@@ -59,7 +72,6 @@ angular.module 'trPcControllers'
           $scope.setPagePersonalPhotoError errorMessage
 
         uploadPhotoSuccess: (response) ->
-          console.log 'succes'
           successResponse = response.successResponse
           photoType = successResponse.photoType
           photoNumber = successResponse.photoNumber
@@ -76,9 +88,7 @@ angular.module 'trPcControllers'
                     photoUrl = photoItem.customUrl
                     if photoItem.id is '1'
                       $scope.setPagePersonalPhotoUrl photoUrl
-                    else if photoItem.id is '2'
-                      $scope.setPersonalPhoto2Url photoUrl
                 $scope.closePagePersonalPhotoModal()
-                $scope.closePersonalVideoModal()
+                #$scope.closePersonalVideoModal()
 
   ]
