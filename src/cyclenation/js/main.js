@@ -136,7 +136,7 @@
           success: function (response) {
             if (response.getParticipantsResponse.totalNumberResults === '0') {
               // no search results
-              $('#error-participant').removeAttr('hidden').text('Sorry. Your search did not return any results.');
+              $('#error-participant').removeAttr('hidden').text('Participant not found. Please try different search terms.');
             } else {
               var participants = luminateExtend.utils.ensureArray(response.getParticipantsResponse.participant);
               var totalParticipants = parseInt(response.getParticipantsResponse.totalNumberResults);
@@ -145,11 +145,11 @@
 
               $(participants).each(function (i, participant) {
 
-                $('.js__participants-results-rows').append('<tr' + (i > 10 ? ' class="d-none"' : '') + '><td>' +
+                $('.js__participants-results-rows').append('<tr' + (i > 10 ? ' class="d-none"' : '') + '><td><a href="' + participant.personalPageUrl + '">' +
                 participant.name.first + ' ' + participant.name.last +
-                '</td><td>' +
-                ((participant.teamName !== null && participant.teamName !== undefined) ? participant.teamName : '') + '</td><td>' +
-                participant.eventName + '</td><td class="col-cta"><a href="' + participant.donationUrl + '" aria-label="Donate to ' + participant.name.first + ' ' + participant.name.last + '" class="btn-rounded btn-primary btn-block">Donate</a></td></tr>');
+                '</a></td><td>' +
+                ((participant.teamName !== null && participant.teamName !== undefined) ? '<a href="' + participant.teamPageUrl + '">' + participant.teamName + '</a>': '') + '</td><td><a href="TR/?fr_id=' + participant.eventId + '&pg=entry">' +
+                participant.eventName + '</a></td><td class="col-cta"><a href="' + participant.donationUrl + '" aria-label="Donate to ' + participant.name.first + ' ' + participant.name.last + '" class="btn-rounded btn-primary btn-block">Donate</a></td></tr>');
 
               });
               if(totalParticipants > 10) {
@@ -187,6 +187,7 @@
     };
 
     cd.getTeams = function (teamName, searchType, isCrossEvent, firstName, lastName, companyId) {
+      $('.js__team-results-rows').html('');
       luminateExtend.api({
         api: 'teamraiser',
         data: 'method=getTeamsByInfo' +
@@ -204,7 +205,7 @@
           success: function (response) {
             if (response.getTeamSearchByInfoResponse.totalNumberResults === '0') {
               // no search results
-              $('#error-team').removeAttr('hidden').text('Sorry. Your search did not return any results.');
+              $('#error-team').removeAttr('hidden').text('Team not found. Please try different search terms.');
               $('.js__error-team-search').show();
             } else {
               var teams = luminateExtend.utils.ensureArray(response.getTeamSearchByInfoResponse.team);
@@ -218,10 +219,10 @@
 
                 } else {
                   $('.js__team-results-rows')
-                  .append('<tr' + (i > 10 ? ' class="d-none"' : '') + '><td>' +
-                  team.name + '</td><td>' + team.captainFirstName + ' ' + team.captainLastName + '</td><td>' +
-                  ((team.companyName !== null && team.companyName !== undefined) ? team.companyName : '') +
-                  '</td><td>' + team.eventName + '</td><td class="col-cta"><a href="' + team.teamDonateURL + '" class="btn-rounded btn-primary btn-block" title="Donate to ' + team.name + '" aria-label="Donate to ' + team.name + '">Donate</a></td></tr>');
+                  .append('<tr' + (i > 10 ? ' class="d-none"' : '') + '><td><a href="' + team.teamPageURL + '">' +
+                  team.name + '</a></td><td><a href="TR/?px=' + team.captainConsId + '&pg=personal&fr_id=' + team.EventId + '">' + team.captainFirstName + ' ' + team.captainLastName + '</a></td><td>' +
+                  ((team.companyName !== null && team.companyName !== undefined) ? '<a href="TR?company_id=' + team.companyId + '&fr_id=' + team.EventId + '&pg=company">' + team.companyName + '</a>': '') +
+                  '</td><td><a href="TR/?fr_id=' + team.EventId + '&pg=entry"' + team.eventName + '</a></td><td class="col-cta"><a href="' + team.teamDonateURL + '" class="btn-rounded btn-primary btn-block" title="Donate to ' + team.name + '" aria-label="Donate to ' + team.name + '">Donate</a></td></tr>');
                 }
               });
 
@@ -297,7 +298,7 @@
           success: function (response) {
             if (response.getCompaniesResponse.totalNumberResults === '0') {
               // no search results
-              $('#error-company').removeAttr('hidden').text('Sorry. Your search did not return any results.');
+              $('#error-company').removeAttr('hidden').text('Company not found. Please try different search terms.');
             } else {
               var companies = luminateExtend.utils.ensureArray(response.getCompaniesResponse.company);
               var totalCompanies = parseInt(response.getCompaniesResponse.totalNumberResults);
@@ -305,9 +306,8 @@
               $('.js__num-company-results').text((totalCompanies === 1 ? '1 Result' : totalCompanies + ' Results'));
 
               $(companies).each(function (i, company) {
-                $('.js__company-results-rows').append('<tr' + (i > 10 ? ' class="d-none"' : '') + '><td>' +
-                company.companyName +
-                '</td><td class="col-cta"><a href="' + company.companyURL + '" aria-label="Visit page for ' + company.companyName + '" class="btn-rounded btn-primary btn-block">View</a></td></tr>');
+                $('.js__company-results-rows').append('<tr' + (i > 10 ? ' class="d-none"' : '') + '><td><a href="' + company.companyURL + '">' +
+                company.companyName + '</a></td><td class="col-cta"><a href="' + company.companyURL + '" aria-label="Visit page for ' + company.companyName + '" class="btn-rounded btn-primary btn-block">View</a></td></tr>');
               });
 
               if(totalCompanies > 10) {
@@ -1850,14 +1850,14 @@ cd.getEventsByDistance = function (zipCode) {
         .wrap('<div class="order-1 order-sm-2 col-sm-4 offset-md-6 col-md-3 col-8 offset-2 mb-3"/>');
 
       $('#team_find_section_footer')
-        .prepend('<div class="order-2 order-sm-1 col-sm-4 col-md-3 col-8 offset-2 offset-sm-0"><a href="SPageServer/?pagename=cn_register&fr_id=' + evID + '&s_regType=" class="button btn-secondary btn-block">Back</a></div>')
+        .prepend('<div class="order-2 order-sm-1 col-sm-4 col-md-3 col-8 offset-2 offset-sm-0"><a href="TRR/?pg=tfind&amp;fr_id=' + evID + '" class="button btn-secondary btn-block">Back</a></div>')
 
       // Add minimum validation to LOs team goal input
       $(loTeamGoal)
         .val(goalPerBike)
         .addClass('pl-0 border-left-0')
         .wrap('<div class="input-group" />')
-        .before('<div class="input-group-prepend"><div class="input-group-text input-group-text pr-0 border-right-0 bg-white">$</div></div>')
+        .before('<div class="input-group-prepend"><div class="input-group-text py-0 px-1 border-right-0 bg-white">$</div></div>')
         .attr({
           "min": goalPerBike,
           "step": "100",
@@ -1961,7 +1961,6 @@ cd.getEventsByDistance = function (zipCode) {
 
       if($('.part-type-container').length === 1){
         $('.part-type-decoration-messages > label').attr('tabindex', '0');
-        $('input[name="fr_part_radio"]').attr('type', 'radio');
       }
 
       $(ptypeBlocks).each(function () {
@@ -2053,13 +2052,6 @@ cd.getEventsByDistance = function (zipCode) {
         }
       }
 
-      var minFundraisingGoal = ($('input[name="fr_part_radio"]:checked').parent().find('.goal').val() ? $('input[name="fr_part_radio"]:checked').parent().find('.goal').val().replace('.00', '') : null);
-      if(!minFundraisingGoal || minFundraisingGoal === "$0"){
-        minFundraisingGoal = $('#fr_goal').val().replace('.00', '');
-      }
-      $('#fr_goal').val(minFundraisingGoal);
-      $('#part_type_fundraising_goal_container .form-content').append('<p class="small">All riders commit to fundraising <span class="min-fundraising-goal">' + minFundraisingGoal + '</span>. You can increase your fundraising goal, but the amount shown above is your required fundraising minimum.</p>');
-
       if (eventType2 === 'Stationary' || eventType2 === 'StationaryV2') {
                var numPtypesShown = $('.part-type-container:visible').length;
         console.log('numPtypesShown: ', + numPtypesShown);
@@ -2076,20 +2068,13 @@ cd.getEventsByDistance = function (zipCode) {
         }
         $('.part-type-container').on('click focus', function (e) {
           $('.part-type-container').removeClass('selected');
-
           $(this).addClass('selected');
           $(this).find('input[type="radio"]').prop('checked', true);
         });
 
         // add accessibility events for keyboard navigation
-        $('input[name="fr_part_radio"]').on('click focus', function (e) {
+        $('input[name=fr_part_radio]').on('click focus', function (e) {
           $('.part-type-container').removeClass('selected');
-          var selectedPtypeMin = $(this).parent().find('.goal').val().replace('.00', '');
-          if(selectedPtypeMin === "$0"){
-            selectedPtypeMin = minFundraisingGoal;
-          }
-          $('.min-fundraising-goal').text(selectedPtypeMin);
-          $('#fr_goal').val(selectedPtypeMin);
           $(this).closest('.part-type-container').addClass('selected');
         });
 
@@ -2126,12 +2111,6 @@ cd.getEventsByDistance = function (zipCode) {
           $('.part-type-container').removeClass('selected');
           $(this).addClass('selected');
           $(this).find('input[type="radio"]').prop('checked', true);
-          var ptypeMin = $(this).parent().find('.goal').val().replace('.00', '');
-          if(ptypeMin === "$0"){
-            ptypeMin = minFundraisingGoal;
-          }
-          $('.min-fundraising-goal').text(ptypeMin);
-          $('#fr_goal').val(ptypeMin);
           $('#next_step').removeClass('disabled');
           $('#dspPledge').modal({
             backdrop: 'static',
@@ -2144,12 +2123,6 @@ cd.getEventsByDistance = function (zipCode) {
           if(key == 13) {
             $('.part-type-container').removeClass('selected');
             $(this).addClass('selected');
-            var ptypeMin = $(this).parent().find('.goal').val().replace('.00', '');
-            if(ptypeMin === "$0"){
-              ptypeMin = minFundraisingGoal;
-            }
-            $('.min-fundraising-goal').text(ptypeMin);
-            $('#fr_goal').val(ptypeMin);
             $(this).find('input[type="radio"]').prop('checked', true);
             $('#next_step').removeClass('disabled');
             $('#dspPledge').modal({
@@ -2170,7 +2143,12 @@ cd.getEventsByDistance = function (zipCode) {
 
       $('#fund_goal_container').prepend('<span class="field-required"></span>&nbsp;');
 
-      $('#fund_goal_container').after('How much will you fundraise for CycleNation?');  
+      $('#fund_goal_container').after('How much will you fundraise for CycleNation?');
+
+      var minFundraisingGoal = $('#fr_goal').val().replace('.00', '');
+      $('#part_type_fundraising_goal_container .form-content').append('<p class="small">All riders commit to fundraising ' + minFundraisingGoal + '. You can increase your fundraising goal, but the amount shown above is your required fundraising minimum.</p>');
+      
+
 
       $('.donation-level-amount-text').closest('.donation-level-row-container').addClass('don-level-btn');
       $('.donation-level-container .input-container').parent().addClass('other-amount-row-container');
@@ -2664,7 +2642,7 @@ cd.getEventsByDistance = function (zipCode) {
     // $('.donation-levels').before('<legend id="reg_donation_array_label" class="sr-only">Make a donation</legend>');
     $('#part_type_additional_gift_section_header').prepend('<div class="bold-label" id="regDonationLabel">Donate Towards Your Goal Now</div>Want to donate above and beyond the registration fee to jump start your fundraising? Kick your fundraising into high gear with a personal donation:');
 
-    $('#part_type_donation_level_input_container').wrapInner('<fieldset role="radiogroup" class="donation-form-fields" aria-labelledby="regDonationLabel"/>');
+    $('#part_type_donation_level_input_container').wrapInner('<fieldset role="radiogroup" class="donation-form-fields" />');
     // $('#part_type_donation_level_input_container').wrapInner('<fieldset role="radiogroup" class="donation-form-fields" aria-labelledby="regDonationLabel"/>');
     $('.donation-form-fields').prepend('<legend class="sr-only">Donate Towards Your Goal Now</legend>');
     // $('.donation-form-fields input[type="radio"]').attr('aria-labelledby', 'regDonationLabel');
