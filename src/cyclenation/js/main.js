@@ -104,6 +104,7 @@
     var regType = $('body').data('reg-type') ? $('body').data('reg-type') : null;
     var publicEventType = $('body').data('public-event-type') ? $('body').data('public-event-type') : null;
     var isCrossEvent = $('body').is('.pg_cn_home') ? true : false;
+    var viewportWidth = window.innerWidth || document.documentElement.clientWidth;
   
 
     var isProd = (luminateExtend.global.tablePrefix === 'heartdev' ? false : true);
@@ -2707,6 +2708,9 @@ cd.getEventsByDistance = function (zipCode) {
       $('.js__how-it-works-container').html($('.js__chapter-how-it-works'));
       $('.js__greeting-inspire-text').html($('.js__chapter-inspire-text'));
       $('.js__greeting-inspire-image').html($('.js__chapter-inspire-image'));
+      if (viewportWidth < 640) {
+        $('#rider_name').attr('placeholder', 'Search');
+      } 
 
 // BEGIN custom sponsor script
 
