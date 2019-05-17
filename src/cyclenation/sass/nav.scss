@@ -295,9 +295,9 @@ padding: 0.625rem 1.25rem;
   }
 }
 
-.header-event-details {
-  background:$primary;
-}
+// .header-event-details {
+//   background:$primary;
+// }
 
 @include media-breakpoint-up(sm) {
   .navbar {
