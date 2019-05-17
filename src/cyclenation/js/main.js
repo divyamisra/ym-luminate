@@ -104,6 +104,7 @@
     var regType = $('body').data('reg-type') ? $('body').data('reg-type') : null;
     var publicEventType = $('body').data('public-event-type') ? $('body').data('public-event-type') : null;
     var isCrossEvent = $('body').is('.pg_cn_home') ? true : false;
+  
 
     var isProd = (luminateExtend.global.tablePrefix === 'heartdev' ? false : true);
     var eventName = luminateExtend.global.eventName;
@@ -115,14 +116,16 @@
     function getURLParameter(url, name) {
       return (RegExp(name + '=' + '(.+?)(&|$)').exec(url) || [, null])[1];
     }
+    var currentUrl = window.location.href;
+    var searchType = getURLParameter(currentUrl, 'search_type');
 
-    cd.getParticipants = function (firstName, lastName, isCrossEvent) {
+    cd.getParticipants = function (firstName, lastName, searchAllEvents) {
       luminateExtend.api({
         api: 'teamraiser',
         data: 'method=getParticipants' +
           '&first_name=' + ((firstName !== undefined) ? firstName : '') +
           '&last_name=' + ((lastName !== undefined) ? lastName : '') +
-          (isCrossEvent === true ? '&event_type=' + eventType : '&fr_id=' + evID) +
+          (searchAllEvents === true ? '&event_type=' + eventType : '&fr_id=' + evID) +
           '&list_page_size=499' +
           '&list_page_offset=0' +
           '&response_format=json' +
@@ -285,7 +288,7 @@
           (isCrossEvent === true ? '&event_type=' + eventType : '&fr_id=' + evID) +
           '&list_page_size=499' +
           '&list_page_offset=0' +
-          '&include_cross_event=true' +
+          (isCrossEvent === true ? '&include_cross_event=true' : '') +
           '&response_format=json' +
           '&list_sort_column=company_name' +
           '&list_ascending=true',
@@ -894,7 +897,14 @@ cd.getEventsByDistance = function (zipCode) {
       clearSearchResults();
       var firstName = encodeURI($('#participantFirstName').val());
       var lastName = encodeURI($('#participantLastName').val());
-      cd.getParticipants(firstName, lastName);
+
+      // console.log('searchType: ', searchType);
+      // var searchAllEvents = true;
+      // if(searchType && searchType === "individual"){
+      //   searchAllEvents = false;
+      // }
+
+      cd.getParticipants(firstName, lastName, (searchType === "singleEvent" ? false : true));
     });
 
     // Search by Team
@@ -902,7 +912,7 @@ cd.getEventsByDistance = function (zipCode) {
       e.preventDefault();
       clearSearchResults();
       var teamName = encodeURI($('#teamName').val());
-      cd.getTeams(teamName, null, true);
+      cd.getTeams(teamName, null, (searchType === "singleEvent" ? false : true));
     });
 
     // Search by Company
@@ -910,14 +920,14 @@ cd.getEventsByDistance = function (zipCode) {
       e.preventDefault();
       clearSearchResults();
       var companyName = encodeURI($('#companyName').val());
-      cd.getCompanies(companyName, true);
+      cd.getCompanies(companyName, (searchType === "singleEvent" ? false : true));
     });
 
 // auto search functionality based on URL params
-      var currentUrl = window.location.href;
-      var searchType = getURLParameter(currentUrl, 'search_type');
+
    
       if(searchType){
+        console.log('autosearch');
         var firstSearchTerm = getURLParameter(currentUrl, 'first_term') ? getURLParameter(currentUrl, 'first_term') : '';
         var lastSearchTerm = getURLParameter(currentUrl, 'last_term') ? getURLParameter(currentUrl, 'last_term') : '';
 
@@ -928,7 +938,8 @@ cd.getEventsByDistance = function (zipCode) {
           $('#participantFirstName').val(firstSearchTerm);
           $('#participantLastName').val(lastSearchTerm);
 
-          cd.getParticipants(firstSearchTerm, lastSearchTerm, (searchType === "crossEvent" ? true : false));
+          // cd.getParticipants(firstSearchTerm, lastSearchTerm, (searchType === "crossEvent" ? true : false));
+          cd.getParticipants(firstSearchTerm, lastSearchTerm, (searchType === "singleEvent" ? false : true));
         }
   
         cd.autoSearchTeam = function () {
@@ -940,7 +951,7 @@ cd.getEventsByDistance = function (zipCode) {
         cd.autoSearchCompany = function () {
           var companyName = firstSearchTerm + (lastSearchTerm.length ? ' ' + lastSearchTerm : '');
           $('#companyName').val(companyName);
-          
+          console.log('searchType: ', searchType);
           cd.getCompanies(companyName, (searchType === "crossEvent" ? true : false));
         }
 
