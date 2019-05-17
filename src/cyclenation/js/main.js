@@ -480,7 +480,7 @@
                 eventStateAbbr + '</span></a><span class="eventtype d-block">' +
                 eventType + ' Event</span><span class="event-date d-block">' +
                 eventDate + '</span></div><a href="' +
-                greetingUrl + '" class="event-detail-button btn col-2" aria-label="Visit event page for CycleNation ' + eventCity + '"><i class="fas fa-angle-right" aria-hidden="true" alt="angle-right"></i></a></li>';
+                greetingUrl + '" class="event-detail-button btn col-2" aria-label="Visit event page for CycleNation ' + eventCity + '"><i class="fas fa-angle-right" aria-hidden="true" alt=""></i></a></li>';
 
                 if(eventTimestamp > todaysDate && (eventStatus === '1' || eventStatus === '2' || eventStatus === '3')){
                   if(numEvents){
@@ -578,7 +578,7 @@ cd.getEventsByDistance = function (zipCode) {
             eventStateAbbr + '</span></a><span class="eventtype d-block">' +
             eventType + ' Event</span><span class="event-date d-block">' +
             eventDate + '</span></div><a href="' +
-            greetingUrl + '" class="event-detail-button btn col-2"  aria-label="Visit event page for CycleNation ' + eventCity + '"><i class="fas fa-angle-right" aria-hidden="true" alt="angle-right"></i></a></li>';
+            greetingUrl + '" class="event-detail-button btn col-2"  aria-label="Visit event page for CycleNation ' + eventCity + '"><i class="fas fa-angle-right" aria-hidden="true" alt=""></i></a></li>';
               console.log('eventStatus: ', eventStatus);
             if(eventTimestamp > todaysDate && (eventStatus === '1' || eventStatus === '2' || eventStatus === '3')){
               if(numEvents){
@@ -726,7 +726,7 @@ cd.getEventsByDistance = function (zipCode) {
                       } else if(teamRaised >= 1000){
                         badgeLevel = "1000";
                       }
-                        var topTeamRow = '<div class="top-list-entry row pb-2"><div class="badges col-2"> ' + (badgeLevel ? '<img src="http://' + window.location.host + '/cd-cn-landing/aha-luminate/dist/cyclenation/image/badge_team_' + badgeLevel + '.svg" alt="">' : '') + '</div><div class="names-amounts col-10 pl-0"> <a class="participant-name" href="TR/?team_id=' + teamId + '&amp;pg=team&amp;fr_id=' + evID + '">' + teamName + '</a> <span class="amount-raised">$' + teamRaisedFormmatted + '</span> </div></div>';
+                        var topTeamRow = '<div class="top-list-entry row pb-2"><div class="badges col-2"> ' + (badgeLevel ? '<img src="http://' + window.location.host + '/cd-cn-landing/aha-luminate/dist/cyclenation/image/badge_team_' + badgeLevel + '.svg" aria-hidden="true">' : '') + '</div><div class="names-amounts col-10 pl-0"> <a class="participant-name" href="TR/?team_id=' + teamId + '&amp;pg=team&amp;fr_id=' + evID + '">' + teamName + '</a> <span class="amount-raised">$' + teamRaisedFormmatted + '</span> </div></div>';
 
                     $('.js__top-teams-list').append(topTeamRow);
                   });
