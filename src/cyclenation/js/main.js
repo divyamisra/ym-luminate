@@ -2703,11 +2703,19 @@ cd.getEventsByDistance = function (zipCode) {
     // END REGISTRATION
 
     if ($('body').is('.pg_entry')) {
-      $('.js__greeting-intro-text').html($('.js__chapter-intro-text'));
-      $('.js__greeting-intro-images').html($('.js__chapter-intro-images'));
-      $('.js__how-it-works-container').html($('.js__chapter-how-it-works'));
-      $('.js__greeting-inspire-text').html($('.js__chapter-inspire-text'));
-      $('.js__greeting-inspire-image').html($('.js__chapter-inspire-image'));
+      // $('.js__greeting-intro-text').html($('.js__chapter-intro-text'));
+
+
+      $('.js__chapter-intro-images img').each(function(i){
+        console.log('this: ', + $(this))
+        $('.js__carousel-indicators').append('<li data-target="#carouselIndicators" data-slide-to="' + i + '"' + (i===0 ? 'class="active"' : '') + '></li>');
+
+        $('.js__carousel-inner').append('<div class="carousel-item ' + (i===0 ? 'active' : '')  + '"><img src="' + $(this).attr('src') + '" alt="' + $(this).attr('alt') + '"></div>');
+      });
+      $('.carousel').carousel({
+        interval: 2000
+      });
+
       if (viewportWidth < 640) {
         $('#rider_name').attr('placeholder', 'Search');
       } 
