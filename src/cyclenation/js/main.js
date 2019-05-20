@@ -847,16 +847,15 @@ cd.getEventsByDistance = function (zipCode) {
       switch(error.code){
         case error.PERMISSION_DENIED:
           console.log("User denied the request for Geolocation.");
-          
           break;
         case error.POSITION_UNAVAILABLE:
-          alert("Location information is currently unavailable.");
+          console.log("Location information is currently unavailable.");
           break;
         case error.TIMEOUT:
-          alert("The request to get location timed out.  Please refresh the page to use this feature.");
+          console.log("The request to get location timed out.  Please refresh the page to use this feature.");
           break;
         case error.UNKNOWN_ERROR:
-          alert("An unknown error occurred.");
+          console.log("An unknown error occurred.");
           break;
       } 
     }
