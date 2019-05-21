@@ -682,7 +682,8 @@ cd.getEventsByDistance = function (zipCode) {
                   $(participantData).each(function() {
                     console.log('getting top participants');
                     var participantName = this.name.first + ' ' + this.name.last;
-                    var participantRaised = this.amountRaised;
+                    var participantRaised = (parseInt(this.amountRaised) * 0.01);
+                    participantRaised = participantRaised.toString();
                     var participantRaisedFormmatted = participantRaised.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
                     var participantId = this.consId;
                     var participantPage = this.personalPageUrl;
@@ -717,7 +718,8 @@ cd.getEventsByDistance = function (zipCode) {
                     
                   $(teamData).each(function(i){
                       var teamName = this.name;
-                      var teamRaised = this.amountRaised;
+                      var teamRaised = (parseInt(this.amountRaised) * 0.01);
+                      teamRaised = teamRaised.toString();
                       var teamRaisedFormmatted = teamRaised.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
                       var teamId = this.id;
 
@@ -730,7 +732,7 @@ cd.getEventsByDistance = function (zipCode) {
                       } else if(teamRaised >= 1000){
                         badgeLevel = "1000";
                       }
-                        var topTeamRow = '<div class="top-list-entry row pb-2"><div class="badges col-2"> ' + (badgeLevel ? '<img src="http://' + window.location.host + '/cd-cn-landing/aha-luminate/dist/cyclenation/image/badge_team_' + badgeLevel + '.svg" aria-hidden="true">' : '') + '</div><div class="names-amounts col-10 pl-0"> <a class="participant-name" href="TR/?team_id=' + teamId + '&amp;pg=team&amp;fr_id=' + evID + '">' + teamName + '</a> <span class="amount-raised">$' + teamRaisedFormmatted + '</span> </div></div>';
+                        var topTeamRow = '<div class="top-list-entry row pb-2"><div class="badges col-2"> ' + (badgeLevel ? '<img src="http://' + window.location.host + '/aha-luminate/dist/cyclenation/image/badge_team_' + badgeLevel + '.svg" aria-hidden="true">' : '') + '</div><div class="names-amounts col-10 pl-0"> <a class="participant-name" href="TR/?team_id=' + teamId + '&amp;pg=team&amp;fr_id=' + evID + '">' + teamName + '</a> <span class="amount-raised">$' + teamRaisedFormmatted + '</span> </div></div>';
 
                     $('.js__top-teams-list').append(topTeamRow);
                   });
@@ -761,7 +763,8 @@ cd.getEventsByDistance = function (zipCode) {
 
                   $(topCompanies).each(function(){
                       var companyName = this.companyName;
-                      var companyRaised = this.amountRaised;
+                      var companyRaised = (parseInt(this.amountRaised) / 100);
+                      companyRaised = companyRaised.toString();
                       var companyRaisedFormmatted = companyRaised.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
                       var topCompanyHtml = '<div class="top-list-entry row pb-2"> <div class="badges col-2"> </div><div class="names-amounts col-10 pl-0"> <a class="participant-name" href="TR?company_id=' + this.companyId + '&fr_id=' + evID + '&pg=company">' + companyName + '</a> <span class="amount-raised">$' + companyRaisedFormmatted + '</span> </div></div>';
                       $('.js__top-companies-list').append(topCompanyHtml);
