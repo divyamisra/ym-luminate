@@ -1,197 +1,399 @@
-.section {
-  &-whats-at-stake {
-    background: #161616;
-    border-radius: 0;
-    background-size: cover;
-    background-repeat: no-repeat;
-    color: $white;
-    h1 {
-      font-weight: $display3-weight;
-    }
-    .decorative {
-      width: 100%;
-    }
-    &-icon {
-      height: 120px;
-      width: auto;
-      @include media-breakpoint-down(sm) {
-        height: 80px;
-      }
-    }
-  }
-  &-fundraiser {
-    &-list-title {
-      font-family: "Helvetica Neue", Helvetica, Arial;
-    }
+.gray-background {
+  background-color: $gray-background;
+}
+.title-divider #title-divider {
+  width: 100%;
+  height: 2px;
 
-    .table-responsive {
-      border-top: 7px solid darken($border-color, 30%);
-      border-left: 1px solid $border-color;
-      border-right: 1px solid $border-color;
-      border-bottom: 1px solid $border-color;
+  .block-1 {
+    fill: $primary;
+  }
+  .block-2 {
+    fill: $red-deep;
+  }
+  .block-3 {
+    fill: $dark;
+  }
+  .block-4 {
+    fill: $black;
+  }
+}
 
-      td {
-        border-top: none;
-      }
-    }
-  }
-  &-fundraiser-search {
-    // override Bootstrap default tab styles to match design
-    .nav-tabs {
-      background: lighten($border-color, 15%);
-      border-top: 1px solid $border-color;
-    }
-    .nav-link {
-      color: $dark;
-      padding: 0.25rem 1rem;
-      border: none;
-      font-size: $font-size-md;
-      border-right: 1px solid $border-color;
-    }
-    .nav-link.active {
-      border-left: 0;
-      border-top: 0;
-      border-bottom: 1px solid $white;
-      border-right: 1px solid $border-color;
-    }
-  }
-  &-what-inspires-you {
-    background: #DADADA;
-    .decorative {
-      width: 100%;
-    }
-    img {
-      @extend .w-100;
-      @extend .mx-auto;
-      @extend .d-block;
-      @extend .pb-4;
-    }
-    a {
-      @extend .button;
-      @extend .btn-lg;
-      @extend .btn-primary;
-      @extend .px-md-5;
-    }
-  }
-  &-mission {
-    background: url(https://secure3.convio.net/heartdev/images/content/pagebuilder/aha-cn-we-are-cyclenation.jpg);
-    background-repeat: no-repeat;
-    background-size: cover; // padding: $spacer * 2 0;
-  }
-  &-stay-in-the-know {
-    background: #DADADA;
-    .decorative {
-      width: 100%;
-    }
-  }
-  &-email-signup {
-    background: #dadada;
-    .decorative {
-      width: 100%;
-    }
-    a {
-      color:#B91D20;
-    }
-  }
-  &-event-welcome {
-    img {
-      max-width: 300px;
-    }
-  }
-  &-sponsors {
-    .sponsor-logo {
-      max-width: 200px;
-    }
-  }
-  &-event-stats {
-    background: #DADADA;
-    &-thermometer {
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      margin: 0 auto;
-      &-container {
-        @include media-breakpoint-down(sm) {
-          height: 200px;
-        }
-      }
+.content-box {
+  .content-box-container {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 0 0 auto;
+
+    @include media-breakpoint-down(md) {
+      max-width: 100%;
     }
   }
 }
-.pg_cn_home {
-  .section {
-    &-event-stats {
-      background: #DADADA;
-      &-percentage {
-        font-size: 2.5rem;
-        font-weight:bold;
-        @include media-breakpoint-down(xl) {
-          top: 48%;
-          left: 50%;
-          margin-right: -45%;
-          transform: translate(-50%, -45%);
-        }
-        @include media-breakpoint-down(lg) {
-          top: 48%;
-          left: 50%;
-          margin-right: -45%;
-          transform: translate(-50%, -45%);
-        }
-        @include media-breakpoint-down(md) {
-          top: 48%;
-          left: 50%;
-          margin-right: -45%;
-          transform: translate(-50%, -45%);
-        }
-        @include media-breakpoint-down(sm) {
-          top: 49%;
-          left: 51%;
-          margin-right: -50%;
-          transform: translate(-50%, -50%);
+
+.left-column.content-box {
+  .content-box-container {
+    margin: 0 0 0 auto;
+  }
+}
+.right-column.content-box {
+  .content-box-container {
+    margin: 0 auto 0 0;
+  }
+}
+
+.gradient-background {
+  background: rgb(255, 255, 255);
+  background: -moz-linear-gradient(90deg, rgb(255, 255, 255) 7%, rgb(169, 176, 190) 100%);
+  background: -webkit-linear-gradient(90deg, rgb(255, 255, 255) 7%, rgb(169, 176, 190) 100%);
+  background: -o-linear-gradient(90deg, rgb(255, 255, 255) 7%, rgb(169, 176, 190) 100%);
+  background: -ms-linear-gradient(90deg, rgb(255, 255, 255) 7%, rgb(169, 176, 190) 100%);
+  background: linear-gradient(180deg, rgb(255, 255, 255) 7%, rgb(169, 176, 190) 100%);
+}
+
+.gradient-background.radial {
+  background: rgb(255, 255, 255);
+  background: -moz-linear-gradient(90deg, rgb(255, 255, 255) 7%, rgb(169, 176, 190) 100%);
+  background: -webkit-linear-gradient(90deg, rgb(255, 255, 255) 7%, rgb(169, 176, 190) 100%);
+  background: -o-linear-gradient(90deg, rgb(255, 255, 255) 7%, rgb(169, 176, 190) 100%);
+  background: -ms-linear-gradient(90deg, rgb(255, 255, 255) 7%, rgb(169, 176, 190) 100%);
+  background: radial-gradient(at top right, $white, rgb(169, 176, 190) 100%);
+}
+
+.section {
+  &-event-search {
+
+    .form-group form {
+      display: flex;
+    }
+    .form-group input {
+      border-radius: 4px 0 0 4px;
+    }
+    .form-group button.search-submit {
+      background-color: $primary;
+      color: $white;
+      border-radius: 0 4px 4px 0;
+      border: 0;
+      padding: 1em;
+      max-height: 70px;
+    }
+    .form-group button.search-submit .search-icon {
+      width: 100%;
+      max-width: 2.2rem;
+    }
+    .form-group button.search-submit .search-icon .st0 {
+      fill: $white;
+    }
+    .form-group-divider  {
+      font-size: 1.5rem;
+      line-height: 2.8;
+    }
+
+    .form-group.select:after {
+      content: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="32.5px" height="21.5px"><path fill-rule="evenodd"  stroke="rgb(255, 255, 255)" stroke-width="3px" stroke-linecap="butt" stroke-linejoin="miter" fill="none" d="M29.367,3.793 L15.500,17.661 L1.633,3.793 "/></svg>');
+      color: $white;
+      background-color: $primary;
+      right: 15px;
+      top: 0;
+      height: 70px;
+      padding: 1.5em 0;
+      position: absolute;
+      pointer-events: none;
+      border-radius: 0 4px 4px 0;
+      text-align: center;
+      width: 100%;
+      -webkit-box-flex: 0;
+      -webkit-flex: 0 0 25%;
+      -ms-flex: 0 0 25%;
+      flex: 0 0 25%;
+      max-width: 25%;
+
+      @include media-breakpoint-down(lg) {
+        -webkit-flex: 0 0 15%;
+        -ms-flex: 0 0 15%;
+        flex: 0 0 15%;
+        max-width: 15%;
+      }
+    }
+  
+    /* IE11 hide native button (thanks Matt!) */
+    .form-group.select select::-ms-expand {
+      display: none;
+    }
+  
+    .form-group.select select {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      /* Add some styling */
+      height: 70px;
+      background-image: none;
+      -ms-word-break: normal;
+      word-break: normal;
+    }
+
+    .results-container {
+      .results-container-title {
+        font-size: 1.25rem;
+        font-style: italic;
+        border-bottom: 3px solid $gray-300;
+      }
+      .alert-primary {
+        color: inherit;
+        background-color: inherit;
+        border: 0 none;
+
+        span {
+          font-style: italic;
+          font-size: 2rem;
         }
       }
-      &-thermometer {
-        &-container {
-          @include media-breakpoint-down(sm) {
-            height: auto;
+      ul.list {
+        margin-right: 0;
+        margin-left: 0;
+      }
+      .event-detail {
+        list-style: none;
+        display: flex;
+        margin-right: 0;
+        margin-left: 0;
+
+        .event-detail-content {
+          background-color: $white;
+          border-radius: 4px 0 0 4px;
+          padding: 1em;
+  
+          a {
+            color: $primary;
+            text-decoration: underline;
+            font-size: 1.9rem;
+          }
+        }
+        .event-detail-button {
+          background-color: $primary;
+          border-radius: 0 4px 4px 0;
+          color: $white;
+          padding: 1em;
+          margin: 0;
+  
+          .fa-angle-right {
+            font-size: 1.8rem;
+            line-height: 3;
+            position: inherit;
+            top: 50%;
+            transform: translateY(-50%);
           }
         }
       }
     }
+
+    .js__show-more-events {
+      color: $black;
+    }
+  }
+
+  &-why-we-ride {
+    display: flex;
+
+    .content-box {
+
+      h2 {
+        margin-bottom: 0.5em;
+      }
+
+      .content-box-one {
+        h2 {
+          color: $primary;
+        }
+      }
+      .content-box-two {
+        background-color: $primary;
+
+        h2 {
+          color: $white;
+        }
+        p {
+          color: $white;
+        }
+
+        form {
+          margin-top: 1.5rem;
+          margin-right: 0;
+          margin-left: 0;
+          display: flex;
+
+          input {
+            border-radius: 4px 0 0 4px;
+          }
+
+          button.search-submit {
+            background-color: $black;
+            color: $white;
+            border-radius: 0 4px 4px 0;
+            border: 0;
+            padding: 1em;
+            max-height: 70px;
+          }
+          button.search-submit .search-icon {
+            width: 100%;
+            max-width: 2.2rem;
+          }
+          button.search-submit .search-icon .st0 {
+            fill: $white;
+          }
+        }
+
+        .fundraiserSearchLink {
+          a {
+            text-decoration: underline;
+  
+            i, 
+            .svg-inline--fa.fa-angle-right {
+              margin-left: 5px;
+            }
+          }
+        }
+      }
+
+      @include media-breakpoint-down(md) {
+        order: 2;
+      }
+    }
+
+    .photos-box {
+      // background-image: url("/images/content/pagebuilder/AHA_CN_landing_why_we_ride_photo_grid.jpg");
+      // background-size: cover;
+      // background-repeat: no-repeat;
+      // background-position: left;
+
+      @include media-breakpoint-down(md) {
+        order: 1;
+        height: 400px;
+        background-position: top;
+      }
+    }
+  }
+
+  &-updatable {
+    display: flex;
+
+    .content-box {
+      h2 {
+        margin-bottom: 0.5em;
+      }
+      a {
+        text-decoration: underline;
+      }
+    }
+
+    .photos-box {
+      // background-image: url("/images/content/pagebuilder/AHA_CN_landing_updatable_content_photo.jpg");
+      // background-size: cover;
+      // background-repeat: no-repeat;
+      // background-position: top;
+
+      @include media-breakpoint-down(md) {
+        height: 250px;
+        background-position: bottom;
+      }
+    }
+  }
+
+  &-social-feed {
+    .social-feed-title h2 {
+      text-align: center;
+
+      @include media-breakpoint-down(sm) {
+        text-align: left;
+      }
+    }
+
+    .social-feed-text {
+      text-align: center;
+
+      @include media-breakpoint-down(sm) {
+        text-align: left;
+      }
+    }
+  }
+
+  &-national-sponsors {
+    h2 {
+      border-bottom: 2px solid $primary;
+    }
+
+    .national-sponsor {
+      img {
+        width: 100%;
+        max-width: 420px;
+      }
+    }
+    .local-sponsors {
+
+      img {
+        @include media-breakpoint-down(md){
+          margin: 0 0 1em 0;
+        }
+      }
+    }
+    .local-sponsors.second-tier {
+      .title h2 {
+        font-size: 2.1em;
+      }
+      img {
+        width: 100%;
+        max-width: 200px;
+        margin: 0 1em;
+
+        @include media-breakpoint-down(md){
+          margin: 0 0 1em 0;
+        }
+      }
+    }
+    .local-sponsors.third-tier {
+      .title h2 {
+        font-size: 2.1em;
+      }
+      img {
+        width: 100%;
+        max-width: 160px;
+        margin: 0 1em;
+
+        @include media-breakpoint-down(md){
+          margin: 0 0 1em 0;
+        }
+      }
+    }
+    .local-sponsors.fourth-tier {
+      .title h2 {
+        font-size: 1.75em;
+      }
+      img {
+        width: 100%;
+        max-width: 110px;
+        margin: 0 1em;
+
+        @include media-breakpoint-down(md){
+          margin: 0 0 1em 0;
+        }
+      }
+    }
+    .local-sponsors.level-4 {
+      margin: 0 auto;
+    }
   }
 }
-
-.pg_entry {
-  .section {
-    &-event-stats {
-      background: #DADADA;
-      &-percentage {
-        @include media-breakpoint-down(xl) {
-          top: 45%;
-          left: 51%;
-          margin-right: -45%;
-          transform: translate(-50%, -45%);
-        }
-        @include media-breakpoint-down(lg) {
-          top: 45%;
-          left: 51%;
-          margin-right: -45%;
-          transform: translate(-50%, -45%);
-        }
-        @include media-breakpoint-down(md) {
-          top: 45%;
-          left: 50%;
-          margin-right: -45%;
-          transform: translate(-50%, -45%);
-        }
-        @include media-breakpoint-down(sm) {
-          top: 54%;
-          left: 51%;
-          margin-right: -50%;
-          transform: translate(-50%, -50%);
-        }
+.event-search-results-container {
+  background-color:#e2e5e9;
+}
+.app_id_23 {
+  .section-national-sponsors {
+    .national-sponsor {
+      img {
+        width: 40%;
       }
     }
   }
 }
+
+
