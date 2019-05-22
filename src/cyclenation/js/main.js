@@ -934,8 +934,8 @@ cd.getEventsByDistance = function (zipCode) {
         var firstSearchTerm = getURLParameter(currentUrl, 'first_term') ? getURLParameter(currentUrl, 'first_term') : '';
         var lastSearchTerm = getURLParameter(currentUrl, 'last_term') ? getURLParameter(currentUrl, 'last_term') : '';
 
-        firstSearchTerm = encodeURI(firstSearchTerm);
-        lastSearchTerm = encodeURI(lastSearchTerm);
+        firstSearchTerm = decodeURI(firstSearchTerm);
+        lastSearchTerm = decodeURI(lastSearchTerm);
 
         cd.autoSearchParticipant = function () {
           $('#participantFirstName').val(firstSearchTerm);
@@ -959,7 +959,6 @@ cd.getEventsByDistance = function (zipCode) {
         }
 
         cd.autoSearchParticipant();
-        // TODO - add search based on page click
         cd.autoSearchTeam();
         cd.autoSearchCompany();
       }
