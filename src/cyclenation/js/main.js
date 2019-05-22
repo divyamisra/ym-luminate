@@ -140,6 +140,11 @@
             } else {
               var participants = luminateExtend.utils.ensureArray(response.getParticipantsResponse.participant);
               var totalParticipants = parseInt(response.getParticipantsResponse.totalNumberResults);
+              
+              if ( $.fn.DataTable.isDataTable('#participantResultsTable') ) {
+                $('#participantResultsTable').DataTable().destroy();
+              }
+              $('#participantResultsTable tbody').empty();
 
               $('.js__num-participant-results').text((totalParticipants === 1 ? '1 Result' : totalParticipants + ' Results'));
 
@@ -157,7 +162,6 @@
               }
 
               $('#participantResultsTable').DataTable({
-                "destroy": true,
                 "paging":   false,
                 "searching":   false,
                 "info":     false,
@@ -203,6 +207,11 @@
           '&list_ascending=true',
         callback: {
           success: function (response) {
+            if ( $.fn.DataTable.isDataTable('#teamResultsTable') ) {
+              $('#teamResultsTable').DataTable().destroy();
+            }
+            $('#teamResultsTable tbody').empty();
+
             if (response.getTeamSearchByInfoResponse.totalNumberResults === '0') {
               // no search results
               $('#error-team').removeAttr('hidden').text('Team not found. Please try different search terms.');
@@ -257,9 +266,7 @@
                   $(this).attr('hidden', true);
                   $('.js__end-team-list').removeAttr('hidden');
                 });
-
                 $('#teamResultsTable').DataTable({
-                  "destroy": true,
                   "paging":   false,
                   "searching":   false,
                   "info":     false
@@ -303,6 +310,11 @@
               var companies = luminateExtend.utils.ensureArray(response.getCompaniesResponse.company);
               var totalCompanies = parseInt(response.getCompaniesResponse.totalNumberResults);
 
+              if ( $.fn.DataTable.isDataTable('#companyResultsTable') ) {
+                $('#companyResultsTable').DataTable().destroy();
+              }
+              $('#companyResultsTable tbody').empty();
+
               $('.js__num-company-results').text((totalCompanies === 1 ? '1 Result' : totalCompanies + ' Results'));
 
               $(companies).each(function (i, company) {
@@ -324,7 +336,6 @@
               });
 
               $('#companyResultsTable').DataTable({
-                "destroy": true,
                 "paging":   false,
                 "searching":   false,
                 "info":     false,
@@ -928,7 +939,7 @@ cd.getEventsByDistance = function (zipCode) {
 
 // auto search functionality based on URL params
 
-   
+
       if(searchType){
         console.log('autosearch');
         var firstSearchTerm = getURLParameter(currentUrl, 'first_term') ? getURLParameter(currentUrl, 'first_term') : '';
@@ -941,7 +952,6 @@ cd.getEventsByDistance = function (zipCode) {
           $('#participantFirstName').val(firstSearchTerm);
           $('#participantLastName').val(lastSearchTerm);
 
-          // cd.getParticipants(firstSearchTerm, lastSearchTerm, (searchType === "crossEvent" ? true : false));
           cd.getParticipants(firstSearchTerm, lastSearchTerm, (searchType === "singleEvent" ? false : true));
         }
   
