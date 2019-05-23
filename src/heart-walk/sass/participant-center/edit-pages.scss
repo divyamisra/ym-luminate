@@ -7,3 +7,13 @@
 .page_personal_story_container h2 {
   margin-top: 50px;
 }
+
+.page_personal_photo_inner img {
+  max-height: 294px;
+  max-width: 100%;
+  
+  @media (max-width: $screen-sm-min) {
+    max-height: 100%;
+    width: 100%;
+  }
+}
