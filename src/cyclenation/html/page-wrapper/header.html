@@ -802,10 +802,22 @@
       </div>
       <div id="sideMenuContainer" class="pushy-content">
         <ul>
+          [[?xx::x[[S1:first_name]]x::
+            <!-- NOT LOGGED IN -->
+            <li class="pushy-link d-lg-none">
+              <a href="UserLogin?NEXTURL=[[T1:https://[[S29:SECURE_DOMAIN]][[S29:SECURE_PATH]]SPageServer?pagename=MyEvents]]">
+                Log In
+              </a>
+            </li>
+          ::
+            <!-- LOGGED IN -->
+          ]]
           <!-- Submenu -->
-          <li class="pushy-link">
-            <a href="TR?fr_id=[[S80:evID]]&amp;pg=informational&amp;sid=2012" target="_blank">FAQ</a>
-          </li>
+          [[?xx::x[[S80:evID]]x::::
+            <li class="pushy-link">
+              <a href="TR?fr_id=[[S80:evID]]&amp;pg=informational&amp;sid=2012" target="_blank">FAQ</a>
+            </li>
+          ]]
           <!-- <li class="pushy-link">
             <a href="#" target="_blank">Why We Ride</a>
           </li> -->

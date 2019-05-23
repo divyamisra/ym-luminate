@@ -449,7 +449,7 @@
         Math.abs(n - i).toFixed(c).slice(2) : "");
     };
 
-    cd.getEvents = function (eventName, eventState) {
+    cd.getEvents = function (eventName, eventState, eventSort) {
       $('.js__loading').show();
       if($('body').is('.pg_cn_home')){
         var numEvents = 3;
@@ -461,7 +461,7 @@
           '&name=' + (eventState ? '%25%25' : eventName) +
            (eventState ? '&state=' + eventState : '') +
           '&event_type=' + eventType +
-          '&response_format=json&list_page_size=499&list_page_offset=0&list_sort_column=event_date&list_ascending=true',
+          '&response_format=json&list_page_size=499&list_page_offset=0&list_sort_column=' + (eventSort === 'city' ? 'city' : 'event_date') + '&list_ascending=true',
         callback: {
           success: function (response) {
             if (response.getTeamraisersResponse.totalNumberResults > '0') {
@@ -978,14 +978,10 @@ cd.getEventsByDistance = function (zipCode) {
     if ($('body').is('.pg_cn_home') || $('body').is('.pg_cn_events')) {
       
       if ($('body').is('.pg_cn_home')) {
-        // cd.getEvents('%25%25', null, 3);
-
-        console.log('getLocation');
         $('.js__loading').show();
         getLocation();
-
       } else {
-        cd.getEvents('%25%25', null);
+        cd.getEvents('%25%25', null, 'city');
       }
 
       var clearEventSearchResults = function(){
