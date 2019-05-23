@@ -46,6 +46,7 @@ angular.module 'trPcControllers'
         ]
       ]
 
+      #Personal page photo update
       $pagePersonalPhoto = angular.element '.page_personal_photo_container'
 
       # make photo dynamic
@@ -60,7 +61,7 @@ angular.module 'trPcControllers'
           $scope.setPagePersonalPhotoUrl $personalPhotoSrc
         $personalPhoto.replaceWith $compile($personalPhoto.clone().attr('ng-src', '{{pagePersonalPhotoUrl}}'))($scope)
 
-      # insert photo edit button
+      #Bind to button
       $scope.editPagePersonalPhoto = ->
         $scope.editPagePersonalPhotoModal = $uibModal.open
           scope: $scope
@@ -105,21 +106,97 @@ angular.module 'trPcControllers'
       $scope.getPagePersonalPhotoUrl()
 
 
+      #Update Video
+      $personalVideo = angular.element '.page_personal_video_container'
+      $scope.fr_id = $rootScope.frId
+      
+      # make video dynamic
+      $scope.personalMedia = {}
+      $scope.personalVideo = {}
+
+      $scope.setPagePersonalVideoUrl = (videoUrl) ->
+        console.log 'inside video rmeb url'
+        angular.forEach $personalVideo, (videoContainer) ->
+          console.log 'inside video rmeb url2'
+          $personalVideoIframe = angular.element(videoContainer).find('iframe')
+          $personalVideoIframe.css('opacity','1')
+          console.log $scope.personalVideoEmbedUrl
+          if $scope.personalVideoEmbedUrl isnt ''
+            $personalVideoIframe.replaceWith $compile($personalVideoIframe.clone().attr('ng-src', '{{personalVideoEmbedUrl}}'))($scope)
+
+        if videoUrl and videoUrl.indexOf('vidyard') is -1
+          videoUrl = videoUrl.replace '&amp;v=', '&v='
+          videoId = ''
+          if videoUrl.indexOf('?v=') isnt -1
+            videoId = videoUrl.split('?v=')[1].split('&')[0]
+          else if videoUrl.indexOf('&v=') isnt -1
+            videoId = videoUrl.split('&v=')[1].split('&')[0]
+          else if videoUrl.indexOf('/embed/') isnt -1
+            videoId = videoUrl.split('/embed/')[1].split('/')[0].split('?')[0]
+          else if videoUrl.indexOf('youtu.be/') isnt -1
+            videoId = videoUrl.split('youtu.be/')[1].split('/')[0].split('?')[0]
+          if videoId isnt ''
+            $scope.personalMedia.videoUrl = 'https://youtube.com/watch?v=' + videoId
+            $scope.personalVideoEmbedUrl = $sce.trustAsResourceUrl '//www.youtube.com/embed/' + videoId + '?wmode=opaque&amp;rel=0&amp;showinfo=0'
+        if not $scope.$$phase
+          $scope.$apply()
+      angular.forEach $personalVideo, (videoContainer) ->
+        $personalVideoIframe = angular.element(videoContainer).find('iframe')
+        $personalVideoSrc = $personalVideoIframe.attr 'src'
+        $personalVideoIframe.css('opacity','1')
+        if $personalVideoSrc and $personalVideoSrc isnt ''
+          $scope.setPagePersonalVideoUrl $personalVideoSrc
+        $personalVideoIframe.replaceWith $compile($personalVideoIframe.clone().attr('ng-src', '{{personalVideoEmbedUrl}}'))($scope)
+
+      $scope.editPagePersonalVideo = ->
+        $scope.editPagePersonalVideoModal = $uibModal.open
+          scope: $scope
+          templateUrl: APP_INFO.rootPath + 'dist/heart-walk/html/page-edit/modal/editPersonalVideo.html'
+      $scope.closePagePersonalVideo = ->
+        if $scope.editPagePersonalVideoModal
+          $scope.editPagePersonalVideoModal.close()
+        $scope.setPersonalVideoError()
+        if not $scope.$$phase
+          $scope.$apply()
+      $scope.cancelEditPersonalVideo = ->
+        $scope.closePagePersonalVideo()
+      $scope.setPersonalVideoError = (errorMessage) ->
+        if not errorMessage and $scope.updatePersonalVideoError
+          delete $scope.updatePersonalVideoError
+        $scope.updatePersonalVideoError =
+          message: errorMessage
+      $scope.updatePersonalVideo = ->
+        if $scope.personalVideo.type is 'youtube'
+          TeamraiserParticipantPageService.updatePersonalVideoUrl 'video_url=' + $scope.personalMedia.videoUrl,
+            error: (response) ->
+              $scope.setPersonalVideoError response.errorResponse.message
+            success: (response) ->
+              videoUrl = response.updatePersonalVideoUrlResponse?.videoUrl
+              #$scope.setPagePersonalVideoUrl videoUrl
+              $scope.closePagePersonalVideo()
+              location.reload();
+        else if $scope.personalVideo.type is 'default'
+          TeamraiserParticipantPageService.updatePersonalVideoUrl 'video_url='
+          setTimeout ( ->
+            $scope.closePagePersonalVideo()
+            location.reload();
+          ), 500
+
+      $scope.getPagePersonalVideoUrl = ->
+        console.log 'runnning video'
+        TeamraiserParticipantPageService.getPersonalVideoUrl
+          error: (response) ->
+            # TODO
+          success: (response) ->
+            console.log response
+            personalVideoUrl = response.getPersonalVideoUrlResponse?.videoUrl
+            console.log personalVideoUrl
+            $scope.setPagePersonalVideoUrl personalVideoUrl
+      $scope.getPagePersonalVideoUrl()
+
 
       #Personal page text
       $personalTextContainer = angular.element '.page_personal_story_container #fr_rich_text_container'
-
-      # $scope.getPersonalPageRichText = ->
-      #   getPersonalPageRichTextPromise = TeamraiserParticipantPageService.getPersonalPageInfo()
-      #     .then(response) ->
-      #       if response.data.errorResponse
-      #         # TODO
-      #       else
-      #         console.log response
-      #       response
-      #   $scope.personalPagePromises.push getPersonalPageRichTextPromise
-      # $scope.getPersonalPageRichText()
-
 
       $scope.getPersonalPageRichText = ->
         console.log 'runnning2'
@@ -209,6 +286,6 @@ angular.module 'trPcControllers'
                     if photoItem.id is '1'
                       $scope.setPagePersonalPhotoUrl photoUrl
                 $scope.closePagePersonalPhotoModal()
-                #$scope.closePersonalVideoModal()
+                #$scope.closePagePersonalVideo()
 
   ]

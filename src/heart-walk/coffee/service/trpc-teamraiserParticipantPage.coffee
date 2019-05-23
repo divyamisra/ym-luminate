@@ -8,6 +8,9 @@ angular.module 'trPcApp'
 
       getPersonalPageInfo: (callback) ->
         LuminateRESTService.luminateExtendTeamraiserRequest 'method=getPersonalPageInfo', true, true, callback
+
+      getPersonalVideoUrl: (callback) ->
+        LuminateRESTService.luminateExtendTeamraiserRequest 'method=getPersonalVideoUrl', true, true, callback
       
       updatePersonalPageInfo: (requestData, callback) ->
         dataString = 'method=updatePersonalPageInfo'
