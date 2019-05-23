@@ -10,6 +10,20 @@
 
     // BEGIN WRAPPER JS
 
+    // GREETING PAGE - HIDE CALENDAR IN IOS
+    console.log('iOS hide calendar 01');
+    var iOS = false,
+    p = navigator.platform;
+    if( p === 'iPad' || p === 'iPhone' || p === 'iPod' ) {
+      iOS = true;
+    }
+    if (iOS === false) {
+      //show "ios-hide" items
+    } else {
+      $(".ios-hide").hide();
+    }
+    console.log('iOS hide calendar 02');
+
     /***************/
     /* NAV SCRIPTS */
     /***************/
@@ -64,7 +78,11 @@
           if (target.length) {
             // Only prevent default if animation is actually gonna happen
             event.preventDefault();
-            var scrollLocation = target.offset().top - 130;
+            if ($('body').is('.pg_cn_home')){
+              var scrollLocation = target.offset().top - 130;
+            } else {
+              var scrollLocation = target.offset().top - 230;
+            }
             $('html, body').animate({
               scrollTop: scrollLocation
             }, 1000, function () {});
@@ -86,6 +104,8 @@
     var regType = $('body').data('reg-type') ? $('body').data('reg-type') : null;
     var publicEventType = $('body').data('public-event-type') ? $('body').data('public-event-type') : null;
     var isCrossEvent = $('body').is('.pg_cn_home') ? true : false;
+    var viewportWidth = window.innerWidth || document.documentElement.clientWidth;
+  
 
     var isProd = (luminateExtend.global.tablePrefix === 'heartdev' ? false : true);
     var eventName = luminateExtend.global.eventName;
@@ -97,14 +117,16 @@
     function getURLParameter(url, name) {
       return (RegExp(name + '=' + '(.+?)(&|$)').exec(url) || [, null])[1];
     }
+    var currentUrl = window.location.href;
+    var searchType = getURLParameter(currentUrl, 'search_type');
 
-    cd.getParticipants = function (firstName, lastName) {
+    cd.getParticipants = function (firstName, lastName, searchAllEvents) {
       luminateExtend.api({
         api: 'teamraiser',
         data: 'method=getParticipants' +
           '&first_name=' + ((firstName !== undefined) ? firstName : '') +
           '&last_name=' + ((lastName !== undefined) ? lastName : '') +
-          (isCrossEvent === true ? '&event_type=' + eventType : '&fr_id=' + evID) +
+          (searchAllEvents === true ? '&event_type=' + eventType : '&fr_id=' + evID) +
           '&list_page_size=499' +
           '&list_page_offset=0' +
           '&response_format=json' +
@@ -114,27 +136,46 @@
           success: function (response) {
             if (response.getParticipantsResponse.totalNumberResults === '0') {
               // no search results
-              $('#error-participant').removeAttr('hidden').text('Sorry. Your search did not return any results.');
+              $('#error-participant').removeAttr('hidden').text('Participant not found. Please try different search terms.');
             } else {
               var participants = luminateExtend.utils.ensureArray(response.getParticipantsResponse.participant);
+              var totalParticipants = parseInt(response.getParticipantsResponse.totalNumberResults);
+
+              $('.js__num-participant-results').text((totalParticipants === 1 ? '1 Result' : totalParticipants + ' Results'));
 
               $(participants).each(function (i, participant) {
 
-                var teamRegUrl = ((participant.teamPageUrl !== null) ? luminateExtend.global.path.secure + 'TRR/?fr_tjoin=' + getURLParameter(participant.teamPageUrl, 'team_id') + '&amp;pg=tfind&amp;fr_id=' + participant.eventId : null);
+                $('.js__participants-results-rows').append('<tr' + (i > 10 ? ' class="d-none"' : '') + '><td><a href="' + participant.personalPageUrl + '">' +
+                participant.name.first + ' ' + participant.name.last +
+                '</a></td><td>' +
+                ((participant.teamName !== null && participant.teamName !== undefined) ? '<a href="' + participant.teamPageUrl + '">' + participant.teamName + '</a>': '') + '</td><td><a href="TR/?fr_id=' + participant.eventId + '&pg=entry">' +
+                participant.eventName + '</a></td><td class="col-cta"><a href="' + participant.donationUrl + '" aria-label="Donate to ' + participant.name.first + ' ' + participant.name.last + '" class="btn-rounded btn-primary btn-block">Donate</a></td></tr>');
 
-                $('#participant_rows').append('<div class="row pb-4"><div class="col-xs-12 col-md-9 col-sm-8 search-result-details search-result-details"><p><strong>' +
-                  participant.name.first + ' ' + participant.name.last +
-                  '</strong><br>' +
-                  participant.eventName + '<br>' +
-                  ((participant.teamName !== null && participant.teamName !== undefined) ? participant.teamName + '<br>' : '') +
-                  '<a href="' + participant.personalPageUrl + '" aria-label="Visit page for ' +
-                  participant.name.first + ' ' + participant.name.last +
-                  '">Visit Personal Page</a></p></div><div class="col-xs-12 col-md-3 col-sm-4"><a class="button btn-primary btn-block btn-lg pull-right" href="' + participant.donationUrl + '" aria-label="Donate to ' + participant.name.first + ' ' + participant.name.last + '">Donate</a>' + ((teamRegUrl !== null) ? '<a class="button btn-outline-dark btn-block btn-lg pull-right" href="' + teamRegUrl + ((participant.aTeamCaptain === 'true') ? '&s_captainConsId=' + participant.consId : '') + '&s_regType=joinTeam" aria-label="Join ' + participant.teamName + '">Join Team</a>' : '') + '</div></div>'
-                );
               });
+              if(totalParticipants > 10) {
+                $('.js__more-participant-results').removeAttr('hidden');
+              }
+
+              $('#participantResultsTable').DataTable({
+                "destroy": true,
+                "paging":   false,
+                "searching":   false,
+                "info":     false,
+                "autoWidth": false
+              });
+              $('.dataTables_length').addClass('bs-select');
               //add call to hook donate button with payment type selections
               addPaymentTypesOnSearch();
-              $('#participant_results').removeAttr('hidden');
+              $('.js__participant-results-container').removeAttr('hidden');
+
+              $('.js__more-participant-results').on('click', function(e){
+                e.preventDefault();
+                $('.js__participants-results-rows tr').removeClass('d-none');
+                $(this).attr('hidden', true);
+                $('.js__end-participant-list').removeAttr('hidden');
+              });
+
+
             }
           },
           error: function (response) {
@@ -146,6 +187,7 @@
     };
 
     cd.getTeams = function (teamName, searchType, isCrossEvent, firstName, lastName, companyId) {
+      $('.js__team-results-rows').html('');
       luminateExtend.api({
         api: 'teamraiser',
         data: 'method=getTeamsByInfo' +
@@ -163,7 +205,7 @@
           success: function (response) {
             if (response.getTeamSearchByInfoResponse.totalNumberResults === '0') {
               // no search results
-              $('#error-team').removeAttr('hidden').text('Sorry. Your search did not return any results.');
+              $('#error-team').removeAttr('hidden').text('Team not found. Please try different search terms.');
               $('.js__error-team-search').show();
             } else {
               var teams = luminateExtend.utils.ensureArray(response.getTeamSearchByInfoResponse.team);
@@ -176,19 +218,12 @@
                   // $('.js__search-results-container').show();
 
                 } else {
-                  var donFormId = team.teamDonateURL;
-
-                  $('#team_rows').append(
-                    '<div class="row pb-4"><div class="col-xs-12 col-sm-8 col-md-9 search-result-details"><p><strong>' +
-                    team.name +
-                    '</strong><br>' +
-                    team.eventName + '<br>' +
-                    'Team Captain: ' + team.captainFirstName + ' ' + team.captainLastName + '<br>' +
-                    ((team.companyName !== null && team.companyName !== undefined) ? team.companyName + '<br>' : '') +
-                    '<a href="' + team.teamPageURL + '">Visit Team Page</a></p></div><div class="col-xs-12 col-sm-4 col-md-3"><a class="button btn-primary btn-block btn-lg pull-right" href="' + team.teamDonateURL + '" aria-label="Donate to ' +  team.name + '">Donate</a><a class="button btn-outline-dark btn-block btn-lg pull-right" href="' + team.joinTeamURL + '&s_captainConsId=' + team.captainConsId +'&s_regType=joinTeam" aria-label="Join ' +  team.name + '">Join Team</a></div></div>');
-                  $('#team_results').removeAttr('hidden');
+                  $('.js__team-results-rows')
+                  .append('<tr' + (i > 10 ? ' class="d-none"' : '') + '><td><a href="' + team.teamPageURL + '">' +
+                  team.name + '</a></td><td><a href="TR/?px=' + team.captainConsId + '&pg=personal&fr_id=' + team.EventId + '">' + team.captainFirstName + ' ' + team.captainLastName + '</a></td><td>' +
+                  ((team.companyName !== null && team.companyName !== undefined) ? '<a href="TR?company_id=' + team.companyId + '&fr_id=' + team.EventId + '&pg=company">' + team.companyName + '</a>': '') +
+                  '</td><td><a href="TR/?fr_id=' + team.EventId + '&pg=entry"' + team.eventName + '</a></td><td class="col-cta"><a href="' + team.teamDonateURL + '" class="btn-rounded btn-primary btn-block" title="Donate to ' + team.name + '" aria-label="Donate to ' + team.name + '">Donate</a></td></tr>');
                 }
-
               });
 
               if (searchType === 'registration') {
@@ -206,6 +241,32 @@
                 }
 
               } else {
+                var totalTeams = parseInt(response.getTeamSearchByInfoResponse.totalNumberResults);
+
+                $('.js__num-team-results').text((totalTeams === 1 ? '1 Result' : totalTeams + ' Results'));
+
+                if(totalTeams > 10) {
+                  $('.js__more-team-results').removeAttr('hidden');
+                }
+
+                $('.js__team-results-container').removeAttr('hidden');
+
+                $('.js__more-team-results').on('click', function(e){
+                  e.preventDefault();
+                  $('.js__team-results-rows tr').removeClass('d-none');
+                  $(this).attr('hidden', true);
+                  $('.js__end-team-list').removeAttr('hidden');
+                });
+
+                $('#teamResultsTable').DataTable({
+                  "destroy": true,
+                  "paging":   false,
+                  "searching":   false,
+                  "info":     false
+                });
+                $('.dataTables_length').addClass('bs-select');
+
+                $('.js__team-results-container').removeAttr('hidden');
                 //add call to hook donate button with payment type selections
                 addPaymentTypesOnSearch();
               }
@@ -221,7 +282,7 @@
       });
     };
 
-    cd.getCompanies = function (companyName) {
+    cd.getCompanies = function (companyName, isCrossEvent) {
       luminateExtend.api({
         api: 'teamraiser',
         data: 'method=getCompaniesByInfo' +
@@ -229,7 +290,7 @@
           (isCrossEvent === true ? '&event_type=' + eventType : '&fr_id=' + evID) +
           '&list_page_size=499' +
           '&list_page_offset=0' +
-          '&include_cross_event=true' +
+          (isCrossEvent === true ? '&include_cross_event=true' : '') +
           '&response_format=json' +
           '&list_sort_column=company_name' +
           '&list_ascending=true',
@@ -237,57 +298,93 @@
           success: function (response) {
             if (response.getCompaniesResponse.totalNumberResults === '0') {
               // no search results
-              $('#error-company').removeAttr('hidden').text('Sorry. Your search did not return any results.');
+              $('#error-company').removeAttr('hidden').text('Company not found. Please try different search terms.');
             } else {
               var companies = luminateExtend.utils.ensureArray(response.getCompaniesResponse.company);
+              var totalCompanies = parseInt(response.getCompaniesResponse.totalNumberResults);
+
+              $('.js__num-company-results').text((totalCompanies === 1 ? '1 Result' : totalCompanies + ' Results'));
 
               $(companies).each(function (i, company) {
-                $('#company_rows').append(
-                  '<div class="row pb-4"><div class="col-sm-12 col-sm-8"><p><strong>' +
-                  company.companyName +
-                  '</strong></p></div>' +
-                  '<div class="col-sm-12 col-sm-4"><a class="button btn-primary btn-block btn-lg pull-right" href="' + company.companyURL + '" aria-label="Visit page for ' + company.companyName + '">Visit Company Page</a></div></div>'
-                );
-                $('#company_results').removeAttr('hidden');
+                $('.js__company-results-rows').append('<tr' + (i > 10 ? ' class="d-none"' : '') + '><td><a href="' + company.companyURL + '">' +
+                company.companyName + '</a></td><td class="col-cta"><a href="' + company.companyURL + '" aria-label="Visit page for ' + company.companyName + '" class="btn-rounded btn-primary btn-block">View</a></td></tr>');
               });
 
+              if(totalCompanies > 10) {
+                $('.js__more-company-results').removeAttr('hidden');
+              }
+
+              $('.js__company-results-container').removeAttr('hidden');
+
+              $('.js__more-company-results').on('click', function(e){
+                e.preventDefault();
+                $('.js__company-results-rows tr').removeClass('d-none');
+                $(this).attr('hidden', true);
+                $('.js__end-company-list').removeAttr('hidden');
+              });
+
+              $('#companyResultsTable').DataTable({
+                "destroy": true,
+                "paging":   false,
+                "searching":   false,
+                "info":     false,
+                "columns": [
+                  { "width": "80%" },
+                  null
+                ]
+              });
+              $('.dataTables_length').addClass('bs-select');
+
+              $('.js__company-results-container').removeAttr('hidden');
             }
           },
           error: function (response) {
-            $('#error-company').removeAttr('hidden').text(response.errorResponse.message);
+            $('.js__company-results-container').removeAttr('hidden').text(response.errorResponse.message);
 
           }
         }
       });
     };
 
-    // Search by Participant
-    $('.js__participant-search').on('submit', function (e) {
-      e.preventDefault();
-      $('.results-table, .alert').attr('hidden', true);
-      $('.results-rows').html('');
-      var firstName = $('#participant_first_name').val();
-      var lastName = $('#participant_last_name').val();
-      cd.getParticipants(firstName, lastName);
-    });
 
-    // Search by Team
-    $('.js__team-search').on('submit', function (e) {
-      e.preventDefault();
-      $('.results-table, .alert').attr('hidden', true);
-      $('.results-rows').html('');
-      var teamName = $('#teamName').val();
-      // cd.getTeams(teamName);
-      cd.getTeams(teamName, null, true);
-    });
-    // Search by Company
-    $('.js__company-search').on('submit', function (e) {
-      e.preventDefault();
-      $('.results-table, .alert').attr('hidden', true);
-      $('.results-rows').html('');
-      var companyName = $('#company_name').val();
-      cd.getCompanies(companyName);
-    });
+    /******************************/
+    /* THERMOMETER SCRIPTS */
+    /******************************/
+    // GREETING PAGE
+    if ($('body').is('.pg_entry')) {
+      cd.runThermometer = function (raised, goal) {
+        var fundraiserRaised = parseInt(raised.replace('$', '').replace(',', ''));
+        var fundraiserGoal = parseInt(goal.replace('$', '').replace(',', ''));
+        var percentRaised = (fundraiserRaised / fundraiserGoal);
+        if (isNaN(percentRaised)) {
+          percentRaised = 0;
+        }
+        var percentRaisedFormatted = (percentRaised * 100) + '%';
+        $('.js__progress-bar')
+          .css('width', percentRaisedFormatted)
+          .attr("aria-valuenow", percentRaisedFormatted);
+        $('.js__percent-raised').each(function () {
+          $(this).prop('Counter', 0).animate({
+            Counter: percentRaisedFormatted
+          }, {
+            duration: 1000,
+            easing: 'swing',
+            step: function (now) {
+              $(this).text(Math.ceil(now) + '%');
+              if (now > 80 && now <= 100) {
+                $(this).addClass('invert-percent-raised');
+              } else if (now > 100) {
+                $(this).addClass('progress-goal-met');
+              }
+            }
+          });
+        });
+      }
+      $('.js__toggle-calendar').on('click', function(e){
+        e.preventDefault();
+        $('.js__calendar-menu').slideToggle();
+      });
+    }
 
 
     /******************************/
@@ -341,54 +438,76 @@
         Math.abs(n - i).toFixed(c).slice(2) : "");
     };
 
-    cd.getEvents = function (eventName) {
+    cd.getEvents = function (eventName, eventState) {
+      $('.js__loading').show();
+      if($('body').is('.pg_cn_home')){
+        var numEvents = 3;
+      }
+      $('.js__no-event-results').addClass('d-none');
       luminateExtend.api({
         api: 'teamraiser',
         data: 'method=getTeamraisersByInfo' +
-          '&name=' + eventName +
+          '&name=' + (eventState ? '%25%25' : eventName) +
+           (eventState ? '&state=' + eventState : '') +
           '&event_type=' + eventType +
           '&response_format=json&list_page_size=499&list_page_offset=0&list_sort_column=event_date&list_ascending=true',
         callback: {
           success: function (response) {
             if (response.getTeamraisersResponse.totalNumberResults > '0') {
-
+              $('.js__loading').hide();
               var events = luminateExtend.utils.ensureArray(response.getTeamraisersResponse.teamraiser);
 
-              events.map(function (event, i) {
+              var todaysDate = new Date();
+              var liveEventsDisplayed = 0;
+              var pastEventsDisplayed = 0;
+
+              $(events).each(function (i, event) {
+
+                console.log('liveEventsDisplayed: ', liveEventsDisplayed);
                 var eventId = event.id;
                 var eventName = event.name;
                 var eventDate = luminateExtend.utils.simpleDateFormat(event.event_date,
                   'EEEE, MMMM d, yyyy');
+                var eventTimestamp = new Date(event.event_date);
                 var eventCity = event.city;
                 var eventStateAbbr = event.state;
                 var eventStateFull = event.mail_state;
                 var eventLocation = event.location_name;
+                var eventStatus = event.status;
                 var eventType = event.public_event_type_name;
                 var greetingUrl = event.greeting_url;
                 var registerUrl = 'SPageServer/?pagename=cn_register&fr_id=' + eventId + '&s_regType=';
                 var acceptsRegistration = event.accepting_registrations;
+                var eventRow = '<li class="event-detail row col-12 col-lg-4 mb-4 fadein"><div class="event-detail-content col-10"><a class="js__event-name" href="' +
+                greetingUrl + '" aria-label="Visit ' + eventCity + ' ' + eventType + ' Event"><span class="city">' +
+                eventCity + '</span>, <span class="fullstate">' +
+                eventStateAbbr + '</span></a><span class="eventtype d-block">' +
+                eventType + ' Event</span><span class="event-date d-block">' +
+                eventDate + '</span></div><a href="' +
+                greetingUrl + '" class="event-detail-button btn col-2" aria-label="Visit event page for CycleNation ' + eventCity + '"><i class="fas fa-angle-right" aria-hidden="true" alt=""></i></a></li>';
 
-                var eventRow = '<li class="event-detail row mb-4 fadein"' + (i < 3 ? '' : 'hidden') + '><div class="col-md-6"><p><a class="js__event-name" href="' +
-                  greetingUrl + '" class="d-block font-weight-bold"><span class="city">' +
-                  eventCity + '</span>, <span class="fullstate">' +
-                  eventStateFull + '</span></a><span class="state-abbr d-none">' +
-                  eventStateAbbr + '</span><span class="eventtype d-block">' +
-                  eventType + '</span><span class="event-location d-block">' +
-                  eventLocation + '</span><span class="event-date d-block">' +
-                  eventDate + '</span></p></div><div class="col-md-3 col-6"><a href="' +
-                  greetingUrl +
-                  '" class="button btn-outline-dark btn-block btn-lg js__event-details" aria-label="Details for ' + eventName + '">Details</a></div><div class="col-md-3 col-6">' +
-                  (acceptsRegistration === 'true' ? '<a href="' +
-                    registerUrl + '" class="button btn-primary btn-block btn-lg js__event-register" aria-label="Register for ' + eventName + '">Register</a>' : '<span class="d-block text-center">Registration is closed<br>but <a class="scroll-link" href="#fundraiserSearch">you can still donate</a></span>') +
-                  '</div></li>';
-
-                $('.js__event-search-results').append(eventRow);
-
-                eventData.push({
-                  'eventId': eventId,
-                  'eventLocation': eventCity + ', ' + eventStateFull
-                });
+                if(eventTimestamp > todaysDate && (eventStatus === '1' || eventStatus === '2' || eventStatus === '3')){
+                  if(numEvents){
+                    if(liveEventsDisplayed < numEvents){
+                      // numEvents exists. Restrict the number of results that are displayed
+                      $('.js__event-search-results').append(eventRow);
+                      liveEventsDisplayed++;
+                    } 
+                  } else {
+                    // numEvents does NOT exist. Display all results in list
+                    $('.js__event-search-results').append(eventRow);
+                  }
+                } else if(eventStatus === '1' || eventStatus === '2' || eventStatus === '3'){
+                  // display past events in a separate table
+                  $('.js__past-event-search-results').append(eventRow);
+                  $('.js__past-events-container').removeClass('d-none');
+                }
               });
+
+              if($('body').is('.pg_cn_home') && liveEventsDisplayed === 0){
+                console.log('only found old events');
+                $('.js__no-event-results').removeClass('d-none');
+              }
 
               $('.js__event-details').on('click', function () {
                 _gaq.push(['t2._trackEvent', 'program-homepage', 'click', 'search-event-details-button']);
@@ -402,430 +521,542 @@
                 _gaq.push(['t2._trackEvent', 'program-homepage', 'click', 'search-event-details-link']);
               });
 
-              addScrollLinks();
-
-              // applyListFilter only on cn_home
-              applyListFilter();
-
-              cd.getTopParticipants(eventData);
-              cd.getTopTeams(eventData);
-              cd.getTopCompanies(eventData);
+            } else {
+              $('.js__loading').hide();
+              $('.js__no-event-results').removeClass('d-none');
             }
           },
           error: function (response) {
+          $('.js__loading').hide();
             console.log('getEvents error: ' + response.errorResponse.message);
           }
         }
       });
     };
+// BEGIN getEventsByDistance
 
+cd.getEventsByDistance = function (zipCode) {
+  $('.js__no-event-results').addClass('d-none');
+  $('.js__loading').show();
+  if($('body').is('.pg_cn_home')){
+    var numEvents = 3;
+  }
+  luminateExtend.api({
+    api: 'teamraiser',
+    data: 'method=getTeamraisersByDistance' +
+      '&starting_postal=' + zipCode +
+      '&distance_units=mi' +
+      '&search_distance=200' +
+      '&event_type=' + eventType +
+      '&response_format=json&list_page_size=499&list_page_offset=0&list_sort_column=event_date&list_ascending=true',
+    callback: {
+      success: function (response) {
+        if (response.getTeamraisersResponse.totalNumberResults > '0') {
+          $('.js__loading').hide();
+          var events = luminateExtend.utils.ensureArray(response.getTeamraisersResponse.teamraiser);
 
-    $('.js__show-more-events').on('click', function (e) {
-      e.preventDefault();
-      $(this).attr('hidden', true);
-      $('.event-detail').removeAttr('hidden');
-      $('.js__show-fewer-events').removeAttr('hidden');
-    });
+          var todaysDate = new Date();
+          var liveEventsDisplayed = 0;
+          var pastEventsDisplayed = 0;
 
-    $('.js__show-fewer-events').on('click', function (e) {
-      e.preventDefault();
-      $(this).attr('hidden', true);
-      $('.event-detail').each(function (i) {
-        if (i > 2) {
-          $(this).attr('hidden', true);
+          $(events).each(function (i, event) {
+            var eventId = event.id;
+            var eventName = event.name;
+            var eventDate = luminateExtend.utils.simpleDateFormat(event.event_date,
+              'EEEE, MMMM d, yyyy');
+            var eventTimestamp = new Date(event.event_date);
+            var eventCity = event.city;
+            var eventStateAbbr = event.state;
+            var eventStateFull = event.mail_state;
+            var eventLocation = event.location_name;
+            var eventStatus = event.status;
+            var eventType = event.public_event_type_name;
+            var greetingUrl = event.greeting_url;
+            var registerUrl = 'SPageServer/?pagename=cn_register&fr_id=' + eventId + '&s_regType=';
+            var acceptsRegistration = event.accepting_registrations;
+            console.log('eventStatus: ', eventStatus);
+
+            var eventRow = '<li class="event-detail row col-12 col-lg-4 mb-4 fadein"><div class="event-detail-content col-10"><a class="js__event-name" href="' +
+            greetingUrl + '" aria-label="Visit ' + eventCity + ' ' + eventType + ' Event"><span class="city">' +
+            eventCity + '</span>, <span class="fullstate">' +
+            eventStateAbbr + '</span></a><span class="eventtype d-block">' +
+            eventType + ' Event</span><span class="event-date d-block">' +
+            eventDate + '</span></div><a href="' +
+            greetingUrl + '" class="event-detail-button btn col-2"  aria-label="Visit event page for CycleNation ' + eventCity + '"><i class="fas fa-angle-right" aria-hidden="true" alt=""></i></a></li>';
+              console.log('eventStatus: ', eventStatus);
+            if(eventTimestamp > todaysDate && (eventStatus === '1' || eventStatus === '2' || eventStatus === '3')){
+              if(numEvents){
+                if(liveEventsDisplayed < numEvents){
+                  // numEvents exists. Restrict the number of results that are displayed
+                  $('.js__event-search-results').append(eventRow);
+                  liveEventsDisplayed++;
+                }
+              } else {
+                // numEvents does NOT exist. Display all results in list
+                $('.js__event-search-results').append(eventRow);
+              }
+            } else if(eventStatus === '1' || eventStatus === '2' || eventStatus === '3'){
+              // display past events in a separate table
+              $('.js__past-event-search-results').append(eventRow);
+            }
+
+          });
+
+          // accessibility screen reader label for state search
+          $("select#fr_event_state").on({    
+            "change": function() {
+                    $(this).blur();
+                },
+                'focus': function() {
+                    $('.js__state-search-submit').text('Select state combo box expanded');
+                },
+                "blur": function() {
+                  $('.js__state-search-submit').text('Select state combo box collapsed');
+                },
+               "keyup": function(e) {
+                    if (e.keyCode == 27)
+                    $('.js__state-search-submit').text('Select state combo box collapsed');
+                }
+            });
+
+          $('.js__event-details').on('click', function () {
+            _gaq.push(['t2._trackEvent', 'program-homepage', 'click', 'search-event-details-button']);
+          });
+
+          $('.js__event-register').on('click', function () {
+            _gaq.push(['t2._trackEvent', 'program-homepage', 'click', 'search-event-register-button']);
+          });
+
+          $('.js__event-name').on('click', function () {
+            _gaq.push(['t2._trackEvent', 'program-homepage', 'click', 'search-event-details-link']);
+          });
+          addScrollLinks();
+
+          // applyListFilter only on cn_home
+          // applyListFilter();
+
+        } else {
+          $('.js__loading').hide();
+          $('.js__no-event-results').removeClass('d-none');
         }
-      });
-      $('.js__show-more-events').removeAttr('hidden');
-    });
+      },
+      error: function (response) {
+        $('.js__loading').hide();
+        console.log('getEvents error: ' + response.errorResponse.message);
+      }
+    }
+  });
+};
+// END getEventsByDistance
+
+    // $('.js__show-more-events').on('click', function (e) {
+    //   e.preventDefault();
+    //   $(this).attr('hidden', true);
+    //   $('.event-detail').removeAttr('hidden');
+    //   $('.js__show-fewer-events').removeAttr('hidden');
+    // });
+
+    // $('.js__show-fewer-events').on('click', function (e) {
+    //   e.preventDefault();
+    //   $(this).attr('hidden', true);
+    //   $('.event-detail').each(function (i) {
+    //     if (i > 2) {
+    //       $(this).attr('hidden', true);
+    //     }
+    //   });
+    //   $('.js__show-more-events').removeAttr('hidden');
+    // });
 
 
     // BEGIN TOP PARTICIPANTS
-    cd.getTopParticipants = function (eventData) {
-      var hybridParticipantData = [];
-      var promises = eventData.map(function (eventData) {
-        return new Promise(function (resolve, reject) {
-          var eventId = eventData.eventId;
-          var eventLocation = eventData.eventLocation;
+    cd.getTopParticipants = function (eventId) {
           luminateExtend.api({
             api: 'teamraiser',
-            data: 'method=getTopParticipantsData&event_type=' + eventType + '&fr_id=' + eventId +
-              '&response_format=json',
+            data: 'method=getParticipants&first_name=%25%25%25&event_type=' + eventType + '&fr_id=' + eventId + '&list_sort_column=total&list_ascending=false&list_page_size=5&response_format=json',
             callback: {
               success: function (response) {
-                if (!$.isEmptyObject(response.getTopParticipantsDataResponse)) {
-                  var participantData = luminateExtend.utils.ensureArray(response.getTopParticipantsDataResponse
-                    .teamraiserData);
+                if (!$.isEmptyObject(response.getParticipantsResponse)) {
+                  var participantData = luminateExtend.utils.ensureArray(response.getParticipantsResponse
+                    .participant);
 
-                  participantData.map(function (obj) {
-                    obj.eventId = eventId;
-                    obj.eventLocation = eventLocation;
-                    hybridParticipantData.push(obj);
-                    return;
+                  $(participantData).each(function() {
+                    console.log('getting top participants');
+                    var participantName = this.name.first + ' ' + this.name.last;
+                    var participantRaised = (parseInt(this.amountRaised) * 0.01);
+                    participantRaised = participantRaised.toString();
+                    var participantRaisedFormmatted = participantRaised.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+                    var participantId = this.consId;
+                    var participantPage = this.personalPageUrl;
+                    var isCaptain = this.aTeamCaptain;
+  var topParticipantHtml = '<div class="top-list-entry row pb-2"><div class="badges col-2">' + (isCaptain === "true" ? '<svg version="1.1" class="team-captain-badge" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 110 110" style="enable-background:new 0 0 110 110;" xml:space="preserve"><circle class="st0" cx="55" cy="55" r="55"></circle><polygon class="st1" points="55,72.8 32.1,87.2 38.7,61 18,43.7 44.9,41.9 55,16.8 65.1,41.9 92,43.7 71.3,61 77.9,87.2 "></polygon></svg>' : '') + '</div><div class="names-amounts col-10 pl-0"><a class="participant-name" href="' + participantPage + '">' + participantName + '</a><span class="amount-raised">$' + participantRaisedFormmatted + '</span></div></div>';
+
+  $('.js__top-participants-list').append(topParticipantHtml);
+                   
                   });
                 }
-                resolve();
               },
               error: function (response) {
                 console.log('getTopParticipants error: ' + response.errorResponse.message);
-                reject();
               }
             }
           }); // end luminateExtend
-        }); // end inner promise
-      }); // end map
-
-      Promise.all(promises).then(function () {
-        cd.compileParticipantData(hybridParticipantData);
-      });
+  
     } // end getTopParticipants
-
-    cd.compileParticipantData = function (eventsParticipants) {
-      for (var i = 0, len = eventsParticipants.length; i < len; i++) {
-        var consName = eventsParticipants[i].name.trunc(25);
-        var consTotal = Number(eventsParticipants[i].total.replace('$', '').replace(',', ''));
-        var consId = eventsParticipants[i].id;
-        var consEventId = eventsParticipants[i].eventId;
-        var consEventLocation = eventsParticipants[i].eventLocation;
-
-        compiledParticipantsData.push({
-          "consName": consName,
-          "consTotal": consTotal,
-          "consId": consId,
-          "consEventId": consEventId,
-          "consEventLocation": consEventLocation
-        });
-      }
-      cd.buildParticipantList();
-    } // end compileParticipantData
-
-    cd.buildParticipantList = function () {
-      // Sort participants descending by amount raised and trim array to the top 5 participants
-      var sortedParticipantsData = cd.sort('consTotal', compiledParticipantsData).slice(0, 5);
-
-      for (var i = 0, len = sortedParticipantsData.length; i < len; i++) {
-        if (sortedParticipantsData[i].consTotal > 0) {
-          var participantData = '<tr><td><a href="' + luminateExtend.global.path.secure + 'TR/?fr_id=' +
-            sortedParticipantsData[i].consEventId + '&pg=personal&px=' + sortedParticipantsData[i].consId +
-            '">' + sortedParticipantsData[i].consName + '</a>' +
-            ((isCrossEvent) ? '<br>' + sortedParticipantsData[i].consEventLocation : '') + '</td><td><span class="pull-right">$' +
-            sortedParticipantsData[i].consTotal.formatMoney(0) + '</span></td></tr>';
-          $('.js__top-participants-list').append(participantData);
-        } else {
-          // TODO - display 'no results' message
-        }
-      }
-      participantRosterReady = true;
-    }
 
     // END TOP PARTICIPANTS
 
     // BEGIN TOP TEAMS
-    cd.getTopTeams = function (eventData) {
-      var hybridTeamData = [];
-      var teamPromise = eventData.map(function (eventData) {
-        return new Promise(function (resolve, reject) {
-          var eventId = eventData.eventId;
-          var eventLocation = eventData.eventLocation;
-
+    cd.getTopTeams = function (eventId) {
           luminateExtend.api({
             api: 'teamraiser',
-            data: 'method=getTopTeamsData&event_type=' + eventType + '&fr_id=' + eventId +
-              '&response_format=json',
+            // data: 'method=getTopTeamsData&fr_id=' + eventId + '&response_format=json',
+            data: 'method=getTeamsByInfo&fr_id=' + eventId + '&list_sort_column=total&list_ascending=false&list_page_size=5&response_format=json',
             callback: {
               success: function (response) {
-                if (!$.isEmptyObject(response.getTopTeamsDataResponse)) {
-                  var rawTeamData = luminateExtend.utils.ensureArray(response.getTopTeamsDataResponse
-                    .teamraiserData);
+                if (!$.isEmptyObject(response.getTeamSearchByInfoResponse)) {
+                  var teamData = luminateExtend.utils.ensureArray(response.getTeamSearchByInfoResponse.team);
+                    
+                  $(teamData).each(function(i){
+                      var teamName = this.name;
+                      var teamRaised = (parseInt(this.amountRaised) * 0.01);
+                      teamRaised = teamRaised.toString();
+                      var teamRaisedFormmatted = teamRaised.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+                      var teamId = this.id;
 
-                  rawTeamData.map(function (obj) {
-                    obj.eventId = eventId;
-                    obj.eventLocation = eventLocation;
-                    hybridTeamData.push(obj);
-                    return;
-                  })
+                      var badgeLevel = null;
+
+                      if(teamRaised >= 5000){
+                        badgeLevel = "5000";
+                      } else if(teamRaised >= 2500){
+                        badgeLevel = "2500";
+                      } else if(teamRaised >= 1000){
+                        badgeLevel = "1000";
+                      }
+                        var topTeamRow = '<div class="top-list-entry row pb-2"><div class="badges col-2"> ' + (badgeLevel ? '<img src="http://' + window.location.host + '/aha-luminate/dist/cyclenation/image/badge_team_' + badgeLevel + '.svg" aria-hidden="true">' : '') + '</div><div class="names-amounts col-10 pl-0"> <a class="participant-name" href="TR/?team_id=' + teamId + '&amp;pg=team&amp;fr_id=' + evID + '">' + teamName + '</a> <span class="amount-raised">$' + teamRaisedFormmatted + '</span> </div></div>';
+
+                    $('.js__top-teams-list').append(topTeamRow);
+                  });
                 }
-                resolve();
               },
               error: function (response) {
                 console.log('getTopTeams error: ' + response.errorResponse.message);
-                reject();
               }
             }
           }); // end luminateExtend
-        }); // end inner promise
-      }); // end map
+  
 
-
-      Promise.all(teamPromise).then(function () {
-        cd.compileTeamData(hybridTeamData);
-      });
     } // end getTopTeams
 
-    cd.compileTeamData = function (eventsTeams) {
-      for (var i = 0, len = eventsTeams.length; i < len; i++) {
-        var teamName = eventsTeams[i].name.trunc(25);
-        var teamTotal = Number(eventsTeams[i].total.replace('$', '').replace(',', ''));
-        var teamId = eventsTeams[i].id;
-        var teamEventId = eventsTeams[i].eventId;
-        var teamEventLocation = eventsTeams[i].eventLocation;
-
-        compiledTeamsData.push({
-          "teamName": teamName,
-          "teamTotal": teamTotal,
-          "teamId": teamId,
-          "teamEventId": teamEventId,
-          "teamEventLocation": teamEventLocation
-        });
-      }
-      cd.buildTeamList();
-    } // end compileTeamData
-
-    cd.buildTeamList = function () {
-      // Sort teams descending by amount raised and trim array to the top 5 teams
-      var sortedTeamsData = cd.sort('teamTotal', compiledTeamsData).slice(0, 5);
-
-      for (var i = 0, len = sortedTeamsData.length; i < len; i++) {
-        if (sortedTeamsData[i].teamTotal > 0) {
-          var teamData = '<tr><td><a href="' + luminateExtend.global.path.secure + 'TR/?pg=team&team_id=' +
-            sortedTeamsData[i].teamId + '&fr_id=' + sortedTeamsData[i].teamEventId + '">' + sortedTeamsData[i]
-            .teamName + '</a>' +
-            ((isCrossEvent) ? '<br>' + sortedTeamsData[i].teamEventLocation : '') + '</td><td><span class="pull-right">$' + sortedTeamsData[i].teamTotal.formatMoney(0) +
-            '</span></td></tr>';
-
-          $('.js__top-teams-list').append(teamData);
-
-        } else {
-          // TODO - display 'no results' message
-        }
-      }
-      teamRosterReady = true;
-    }
     // END TOP TEAMS
 
     // BEGIN TOP COMPANIES
-    cd.getTopCompanies = function (eventData) {
-      var hybridCompanyData = [];
-      var companyPromise = eventData.map(function (eventData) {
-        return new Promise(function (resolve, reject) {
-          var eventId = eventData.eventId;
-          var eventLocation = eventData.eventLocation;
-
+    cd.getTopCompanies = function (eventId) {
           luminateExtend.api({
             api: 'teamraiser',
             data: 'method=getCompaniesByInfo&fr_id=' + eventId +
-              '&include_cross_event=true&response_format=json',
+              '&include_cross_event=true&list_sort_column=total&list_ascending=false&list_page_size=5&response_format=json',
             callback: {
               success: function (response) {
                 if (!$.isEmptyObject(response.getCompaniesResponse)) {
-                  var rawCompanyData = luminateExtend.utils.ensureArray(response.getCompaniesResponse
+                  var topCompanies = luminateExtend.utils.ensureArray(response.getCompaniesResponse
                     .company);
 
-                  rawCompanyData.map(function (obj) {
-                    obj.eventId = eventId;
-                    obj.eventLocation = eventLocation;
-                    hybridCompanyData.push(obj);
-                    return;
+                  $(topCompanies).each(function(){
+                      var companyName = this.companyName;
+                      var companyRaised = (parseInt(this.amountRaised) / 100);
+                      companyRaised = companyRaised.toString();
+                      var companyRaisedFormmatted = companyRaised.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+                      var topCompanyHtml = '<div class="top-list-entry row pb-2"> <div class="badges col-2"> </div><div class="names-amounts col-10 pl-0"> <a class="participant-name" href="TR?company_id=' + this.companyId + '&fr_id=' + evID + '&pg=company">' + companyName + '</a> <span class="amount-raised">$' + companyRaisedFormmatted + '</span> </div></div>';
+                      $('.js__top-companies-list').append(topCompanyHtml);
                   });
                 }
-                resolve();
               },
               error: function (response) {
                 console.log('getTopCompanies error: ' + response.errorResponse.message);
-                reject();
               }
             }
           }); // end luminateExtend
-        }); // end inner promise
-      }); // end map
-
-
-      Promise.all(companyPromise).then(function () {
-        cd.compileCompanyData(hybridCompanyData);
-      });
     } // end getTopCompanies
 
-    cd.compileCompanyData = function (eventsCompanies) {
-      for (var i = 0, len = eventsCompanies.length; i < len; i++) {
-        var companyName = eventsCompanies[i].companyName.trunc(25);
-        var companyTotal = Number(eventsCompanies[i].amountRaised.replace('$', '').replace(',', ''));
-        var companyEventLocation = eventsCompanies[i].eventLocation;
-        var companyUrl = eventsCompanies[i].companyURL;
-
-        compiledCompaniesData.push({
-          "companyName": companyName,
-          "companyTotal": companyTotal,
-          "companyUrl": companyUrl,
-          "companyEventLocation": companyEventLocation
-        });
-
-      }
-      cd.buildCompanyList();
-    } // end compileCompanyData
-
-    cd.buildCompanyList = function () {
-      // Sort teams descending by amount raised and trim array to the top 5 teams
-      var sortedCompaniesData = cd.sort('companyTotal', compiledCompaniesData).slice(0, 5);
-      for (var i = 0, len = sortedCompaniesData.length; i < len; i++) {
-        if (sortedCompaniesData[i].companyTotal > 0) {
-          var companyData = '<tr><td><a href="' + sortedCompaniesData[i].companyUrl + '">' + sortedCompaniesData[
-              i].companyName + '</a>' +
-            ((isCrossEvent) ? '<br>' + sortedCompaniesData[i].companyEventLocation : '') + '</td><td><span class="pull-right">$' + (sortedCompaniesData[i].companyTotal / 100).formatMoney(
-              0) + '</span></td></tr>';
-
-          $('.js__top-companies-list').append(companyData);
-
-        } else {
-          // TODO - display 'no results' message
-        }
-      }
-      companyRosterReady = true;
-
-    }
-
-    // Call roster scripts based on page type
-    if ($('body').is('.pg_cn_home')) {
-      cd.getEvents('%25%25');
-      $('.js__event-search-form').on('submit', function (e) {
-        e.preventDefault();
-      });
-
-      var allEventDataUrl = '../cyclenation_data/CN_EventTotals.txt';
-
-      $.getJSON(allEventDataUrl, function (data) {
-        var totalRaised = data[0].TotalRevenue;
-        var totalRaisedFormatted = '$' + totalRaised.toFixed(0).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");;
-        var totalGoal = data[0].TotalGoal;
-        // var dateCalculated = luminateExtend.utils.simpleDateFormat(data[0].CalculatedOn, 'h:mm a MMMM d, yyyy');
-        var percentAchieved = Math.round((totalRaised / totalGoal) * 100);
-        var percentAchievedFormatted = percentAchieved + '%';
-
-        $('.js__greeting-thermo').val(percentAchieved);
-        $('.js__all-event-raised').text(totalRaisedFormatted);
-        $('.js__event-stats-percent').text(percentAchievedFormatted);
-
-      });
-
-    } else if ($('body').is('.pg_entry')) {
-      eventData.push({
-        eventId: evID
-      });
-      cd.getTopParticipants(eventData);
-      cd.getTopTeams(eventData);
-      cd.getTopCompanies(eventData);
-    }
-
-    // reset show more/fewer functionality after filters have been cleared
-    function resetEventList() {
-      $('.event-detail').each(function (i) {
-        if (i > 2) {
-          $(this).attr('hidden', true);
-        }
-        $('.js__show-fewer-events').attr('hidden', true);
-        $('.js__show-more-events').removeAttr('hidden');
-        $('.js__show-more-container').removeClass('d-none');
-      });
-    }
-
-    function applyListFilter() {
-      // add sorting for landing page
+    function getLocation(){
+      console.log("Entered getLocation");
       var options = {
-        valueNames: [
-          'city',
-          'fullstate',
-          'eventtype',
-          'event-location',
-          'state-abbr'
-        ]
+        enableHighAccuracy: true,
+        timeout: 10000,
+        maximumAge: 'infinity'
       };
-      var eventList = new List('eventSearch', options);
-      var activeFilters = [];
-
-      eventList.on('updated', function (list) {
-        $('.js__show-more-container').addClass('d-none');
-        $('.event-detail').removeAttr('hidden');
-
-        if (list.matchingItems.length == 0) {
-          $('.js__no-event-results').removeClass('d-none');
-        } else if (list.matchingItems.length == list.items.length) {
-          $('.js__no-event-results').addClass('d-none');
-          // reset show more/fewer functionality after filters have been cleared
-          resetEventList();
-        } else {
-          $('.js__no-event-results').addClass('d-none');
-        }
-      });
-
-      $('.filter').on('change', function () {
-        activeFilters = [];
-        var allFilters = $('input.filter');
-        $(allFilters).not(this).prop('checked', false);
-        $(allFilters).parent().removeClass('active');
-
-        var isChecked = this.checked;
-        var value = $(this).data('filter');
-
-        if (isChecked) {
-          //  add to list of active filters
-          $(this).parent().addClass('active');
-          activeFilters.push(value);
-        } else {
-          // remove from active filters
-          activeFilters.splice(activeFilters.indexOf(value), 1);
-          resetEventList();
-        }
-
-        eventList.filter(function (item) {
-          if (activeFilters.length > 0) {
-            $('.js__show-more-container').addClass('d-none');
-            $('.event-detail').removeAttr('hidden');
-            $('.js__clear-event-filters').removeClass('d-none');
-            return (activeFilters.indexOf(item.values().eventtype)) > -1;
-          } else {
-            $('.js__clear-event-filters').addClass('d-none');
-            // reset show more/fewer functionality after filters have been cleared
-            setTimeout(function () {
-              resetEventList();
-            }, 200);
-          }
-          return true;
-        });
-      });
-
-      // clear filters on click
-      $('.js__clear-event-filters').on('click', function (e) {
-        e.preventDefault();
-        activeFilters = [];
-        $('.js__clear-event-filters').addClass('d-none');
-
-        $('input.filter').prop('checked', false);
-        $('.search').val('');
-        eventList.search();
-
-        eventList.filter(function (item) {
-          if (activeFilters.length > 0) {
-            return (activeFilters.indexOf(item.values().eventtype)) > -1;
-          }
-          return true;
-        });
-        // reset show more/fewer functionality after filters have been cleared
-        resetEventList();
-
-      });
+      if (navigator.geolocation){
+        navigator.geolocation.getCurrentPosition(showPosition,showGeolocationError,options);
+      }
+      else{
+        console.log("Geolocation is not supported by this browser.");}
     }
+    
+    function showPosition(position) {
+      console.log("Entered showPosition lat: ",position.coords.latitude);
+      console.log("Entered showPosition long: ",position.coords.longitude);
+      
+      var input = position.coords.latitude + "," + position.coords.longitude;
+      var latlngStr = input.split(',', 2);
+      var latlng = new google.maps.LatLng(latlngStr[0], latlngStr[1]);
+      var geocoder = new google.maps.Geocoder();
+      geocoder.geocode({
+        'location': latlng
+      }, function (results, status) {
+        console.log("Geocode result: ", results);
+        console.log("Geocode status: ", status);
+        var postalCode;
+        
+        if(status == google.maps.GeocoderStatus.OK && results[0]) {
+          $.each(results[0].address_components, function() {
+            if($.inArray('postal_code', this.types) >= 0) {
+              postalCode = this.short_name;
+            }
+          });
+          
+          if(postalCode) {
+            cd.getEventsByDistance(postalCode);
+          }
+          else {
+            if(results[0].geometry && results[0].geometry.location) {
+              console.log('run getZipForLatLng');
+              // getZipForLatLng({
+              //   lat: results[0].geometry.location.lat(), 
+              //   lng: results[0].geometry.location.lng(), 
+              //   callback: settings.callback
+              // });
+            }
+            else {
+              cd.getEventsByDistance(postalCode);
+            }
+          }
+        }
+        else {
+          cd.getEventsByDistance(postalCode);
+        }
+      });
 
-    // disable animated gears on click
-    $('.js__animated-gears').on('click', function (e) {
-      $(this).toggleClass('animated-gear');
+      // geocoder.geocode( { 'location': latlng }, function (result, status) {
+      // console.log("Geocode result: ", result);
+      // console.log("Geocode status: ", status);
+
+      //   var zipCode = result[0]['address_components'][7]['short_name'];
+      //   cd.getEventsByDistance(zipCode);
+
+      // });
+    }   
+    function showGeolocationError(error){
+      cd.getEvents('%25%25', null);
+      switch(error.code){
+        case error.PERMISSION_DENIED:
+          console.log("User denied the request for Geolocation.");
+          break;
+        case error.POSITION_UNAVAILABLE:
+          console.log("Location information is currently unavailable.");
+          break;
+        case error.TIMEOUT:
+          console.log("The request to get location timed out.  Please refresh the page to use this feature.");
+          break;
+        case error.UNKNOWN_ERROR:
+          console.log("An unknown error occurred.");
+          break;
+      } 
+    }
+    // Call roster scripts based on page type
+    if ($('body').is('.pg_cn_search')) {
+      // TODO - add api calls here on tab
+      $('#participant-search-tab').on('click', function (e) {
+        e.preventDefault()
+        $('.results-tab-pane').hide();
+        $('#participantSearchResults').show();
+      });
+      $('#team-search-tab').on('click', function (e) {
+        e.preventDefault()
+        $('.results-tab-pane').hide();
+        $('#teamSearchResults').show();
+      });
+      $('#company-search-tab').on('click', function (e) {
+        e.preventDefault()
+        $('.results-tab-pane').hide();
+        $('#companySearchResults').show();
+      });
+
+      var clearSearchForms = function(){
+        $('#participantFirstName, #participantLastName, #teamName, #companyName').val('');
+      }
+
+      var clearSearchResults = function(){
+        $('.js__participant-results-container, .alert').attr('hidden', true);
+        $('.js__participants-results-rows').html('');
+        $('.js__team-results-container, .alert').attr('hidden', true);
+        $('.js__team-results-rows').html('');
+        $('.js__company-results-container, .alert').attr('hidden', true);
+        $('.js__company-results-rows').html('');
+      }
+
+    // Search by Participant
+    $('.js__participant-search-form').on('submit', function (e) {
+      e.preventDefault();
+      clearSearchResults();
+      var firstName = encodeURI($('#participantFirstName').val());
+      var lastName = encodeURI($('#participantLastName').val());
+
+      // console.log('searchType: ', searchType);
+      // var searchAllEvents = true;
+      // if(searchType && searchType === "individual"){
+      //   searchAllEvents = false;
+      // }
+
+      cd.getParticipants(firstName, lastName, (searchType === "singleEvent" ? false : true));
     });
 
-    var knowSurveyParsleyConfig = {
-      errorsContainer: function (pEle) {
-        var $err = pEle.$element.parent().parent().parent().parent().parent().find('.know-survey-error');
-        return $err;
+    // Search by Team
+    $('.js__team-search-form').on('submit', function (e) {
+      e.preventDefault();
+      clearSearchResults();
+      var teamName = encodeURI($('#teamName').val());
+      cd.getTeams(teamName, null, (searchType === "singleEvent" ? false : true));
+    });
+
+    // Search by Company
+    $('.js__company-search-form').on('submit', function (e) {
+      e.preventDefault();
+      clearSearchResults();
+      var companyName = encodeURI($('#companyName').val());
+      cd.getCompanies(companyName, (searchType === "singleEvent" ? false : true));
+    });
+
+// auto search functionality based on URL params
+
+   
+      if(searchType){
+        console.log('autosearch');
+        var firstSearchTerm = getURLParameter(currentUrl, 'first_term') ? getURLParameter(currentUrl, 'first_term') : '';
+        var lastSearchTerm = getURLParameter(currentUrl, 'last_term') ? getURLParameter(currentUrl, 'last_term') : '';
+
+        firstSearchTerm = encodeURI(firstSearchTerm);
+        lastSearchTerm = encodeURI(lastSearchTerm);
+
+        cd.autoSearchParticipant = function () {
+          $('#participantFirstName').val(firstSearchTerm);
+          $('#participantLastName').val(lastSearchTerm);
+
+          // cd.getParticipants(firstSearchTerm, lastSearchTerm, (searchType === "crossEvent" ? true : false));
+          cd.getParticipants(firstSearchTerm, lastSearchTerm, (searchType === "singleEvent" ? false : true));
+        }
+  
+        cd.autoSearchTeam = function () {
+          var teamName = firstSearchTerm + (lastSearchTerm.length ? ' ' + lastSearchTerm : '');
+          $('#teamName').val(teamName);
+          cd.getTeams(teamName, null, (searchType === "crossEvent" ? true : false));
+        }
+  
+        cd.autoSearchCompany = function () {
+          var companyName = firstSearchTerm + (lastSearchTerm.length ? ' ' + lastSearchTerm : '');
+          $('#companyName').val(companyName);
+          console.log('searchType: ', searchType);
+          cd.getCompanies(companyName, (searchType === "crossEvent" ? true : false));
+        }
+
+        cd.autoSearchParticipant();
+        // TODO - add search based on page click
+        cd.autoSearchTeam();
+        cd.autoSearchCompany();
       }
+
     }
 
-    $('.js__know-survey').parsley(knowSurveyParsleyConfig);
+    if ($('body').is('.pg_cn_home') || $('body').is('.pg_cn_events')) {
+      
+      if ($('body').is('.pg_cn_home')) {
+        // cd.getEvents('%25%25', null, 3);
+
+        console.log('getLocation');
+        $('.js__loading').show();
+        getLocation();
+
+      } else {
+        cd.getEvents('%25%25', null);
+      }
+
+      var clearEventSearchResults = function(){
+        $('.js__event-search-results').html('');
+        $('.js__past-event-search-results').html('');
+        $('.js__past-events-container').addClass('d-none');
+      }
+      $('.js__state-search select').on('change', function (e) {
+        e.preventDefault();
+        $('#zip').val('');
+        clearEventSearchResults();
+        var stateSearched = $(this).children('option:selected').val();
+      
+        if(stateSearched === 'Select State'){
+          cd.getEvents('%25%25', null);
+        } else {
+          cd.getEvents(null, stateSearched);
+        }
+        e.preventDefault();
+      });
+
+      $('.js__state-search').on('submit', function (e) {
+        e.preventDefault();
+        $('#zip').val('');
+        clearEventSearchResults();
+        var stateSearched = $(this).children('option:selected').val();
+        if(stateSearched === 'Select State'){
+          cd.getEvents('%25%25', null);
+        } else {
+          cd.getEvents(null, stateSearched);
+        }
+        e.preventDefault();
+      });
+      $('.js__zip-search').on('submit', function (e) {
+        $('#fr_event_state').val($('#fr_event_state option:first').val());
+        $('.js__event-search-results').html('');
+        clearEventSearchResults();
+        var zipSearched = $('#zip').val();
+        if(zipSearched.length){
+          cd.getEventsByDistance(zipSearched);
+        } else {
+          cd.getEvents('%25%25', null);
+        }
+        
+        e.preventDefault();
+      });
+
+
+    } else if ($('body').is('.pg_entry')) {
+      cd.getTopParticipants(evID);
+      cd.getTopTeams(evID);
+      cd.getTopCompanies(evID);
+    }
+
+    // TODO - rename to make clear that this is a redirect search form with single field
+    $('.js__rider-search').on('submit', function (e) {
+      console.log('participant search submitted');
+      e.preventDefault();
+      var fullName = $('#rider_name').val();
+      var isMultiWordSearch = fullName.trim().indexOf(' ');
+      var firstTerm, lastTerm, searchParams;
+      
+      if(isMultiWordSearch = -1){
+        searchParams = '&first_term=' + fullName;
+      } else {
+        // First Name is the first word of a multi word search. If there are more than two words, first name will include all of the words except the last word
+        firstTerm = fullName.split(' ').slice(0, -1).join(' ');
+        // Last Name is the last whole word in a multi word search
+        lastTerm = fullName.split(' ').slice(-1).join(' ');
+        searchParams = '&first_term=' + firstTerm + '&second_term=' + lastTerm;
+      }
+
+      if($('body').is('.pg_cn_home')){
+        window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=cn_search&search_type=crossEvent' + searchParams;
+      } else {
+        window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=cn_search&search_type=singleEvent' + searchParams + '&fr_id=' + evID;
+      }
+      
+    });
+
 
     // END LANDING PAGE ONLY
 
@@ -857,65 +1088,6 @@
           }
         }
       });
-    };
-
-    /*****************************/
-    /* Survey - Stay in the Know */
-    /*****************************/
-
-    if ($('.survey-form').length > 0) {
-      $('.survey-form').parsley();
-
-      $('.survey-form').on('submit', function () {
-        $(this).hide();
-        $(this).before('<div class="well survey-loading">' +
-          'Loading ...' +
-          '</div>');
-      });
-    }
-
-
-    cd.submitKnowSurveyCallback = {
-      error: function (data) {
-        $('#survey-errors').remove();
-        $('.survey-form .form-group .alert').remove();
-
-        $('.know-survey-error').html('<div id="survey-errors"><div class="alert alert-danger" role="alert">' +
-          data.errorResponse.message +
-          '</div></div>');
-
-        $('.survey-loading').remove();
-        $('.survey-form').show();
-      },
-      success: function (data) {
-        $('#survey-errors').remove();
-        $('.survey-form .form-group .survey-alert-wrap').remove();
-
-        if (data.submitSurveyResponse.success == 'false') {
-
-          $('.know-survey-error').html('<div id="survey-errors"><div class="alert alert-danger" role="alert">There was an error with your submission. Please try again.</div></div>');
-
-          var surveyErrors = luminateExtend.utils.ensureArray(data.submitSurveyResponse.errors);
-          $.each(surveyErrors, function () {
-            if (this.errorField) {
-              $('input[name="' + this.errorField + '"]').closest('.form-group')
-                .prepend('<div class="col-sm-12 survey-alert-wrap">' +
-                  '<div class="alert alert-danger" role="alert">' +
-                  this.errorMessage +
-                  '</div>' +
-                  '</div>');
-            }
-          });
-
-          $('.survey-loading').remove();
-          $('.survey-form').show();
-        } else {
-          $('.survey-loading').remove();
-          $('.survey-form').before('<div class="alert alert-success" role="alert">' +
-            'Thank you! We will keep you in the know!' +
-            '</div>');
-        }
-      }
     };
 
     // Top Participants Roster
@@ -1687,7 +1859,7 @@
         .val(goalPerBike)
         .addClass('pl-0 border-left-0')
         .wrap('<div class="input-group" />')
-        .before('<div class="input-group-prepend"><div class="input-group-text input-group-text pr-0 border-right-0 bg-white">$</div></div>')
+        .before('<div class="input-group-prepend"><div class="input-group-text py-0 px-1 border-right-0 bg-white">$</div></div>')
         .attr({
           "min": goalPerBike,
           "step": "100",
@@ -2533,15 +2705,78 @@
     // END REGISTRATION
 
     if ($('body').is('.pg_entry')) {
-      $('.js__greeting-intro-text').html($('.js__chapter-intro-text'));
-      $('.js__greeting-intro-images').html($('.js__chapter-intro-images'));
-      $('.js__how-it-works-container').html($('.js__chapter-how-it-works'));
-      $('.js__greeting-inspire-text').html($('.js__chapter-inspire-text'));
-      $('.js__greeting-inspire-image').html($('.js__chapter-inspire-image'));
-}
+      // $('.js__greeting-intro-text').html($('.js__chapter-intro-text'));
 
-// END custom sponsor script
 
+      $('.js__chapter-intro-images img').each(function(i){
+        console.log('this: ', + $(this))
+        $('.js__carousel-indicators').append('<li data-target="#carouselIndicators" data-slide-to="' + i + '"' + (i===0 ? 'class="active"' : '') + '></li>');
+
+        $('.js__carousel-inner').append('<div class="carousel-item ' + (i===0 ? 'active' : '')  + '"><img src="' + $(this).attr('src') + '" alt="' + $(this).attr('alt') + '"></div>');
+      });
+      $('.carousel').carousel({
+        interval: 2000
+      });
+
+      if (viewportWidth < 640) {
+        $('#rider_name').attr('placeholder', 'Search');
+      } 
+
+// BEGIN custom sponsor script
+
+if($('.tr_sponsorship_logos').length){
+  $('.tr_sponsorship_logo').each(function(i, sponsor){
+    var sponsorAlt = $(this).find('img').attr('alt');
+    var sponsorImg = $(this).find('img').attr('src');
+    var sponsorUrl = $(this).find('a').attr('href');
+    var sponsorLevel = sponsorAlt.split(' | ')[0];
+    var sponsorName = sponsorAlt.split(' | ')[1];
+
+// TODO - add logic to show levels when a sponsor is added
+    switch (sponsorLevel) {
+      case "life":
+        $('.js__life-sponsor-logos').append('<a href="TR?fr_id=' + evID + '&amp;pg=informational&amp;sid=2014"><img src="' + sponsorImg + '" alt="' + sponsorName + '"></a>');
+        $('.js__life-sponsor-container').fadeIn();
+        break;
+      case "platform":
+        $('.js__platform-sponsor-logos').append('<a href="TR?fr_id=' + evID + '&amp;pg=informational&amp;sid=2014"><img src="' + sponsorImg + '" alt="' + sponsorName + '"></a>');
+        $('.js__platform-sponsor-container').fadeIn();
+        break;
+      case "signature":
+        $('.js__signature-sponsor-logos').append('<a href="TR?fr_id=' + evID + '&amp;pg=informational&amp;sid=2014"><img src="' + sponsorImg + '" alt="' + sponsorName + '"></a>');
+        $('.js__signature-sponsor-container').fadeIn();
+        break;
+      case "level1":
+        $('.js__level1-sponsor-logos').append('<a href="TR?fr_id=' + evID + '&amp;pg=informational&amp;sid=2014"><img src="' + sponsorImg + '" alt="' + sponsorName + '"></a>');
+        $('.js__level1-sponsor-container').fadeIn();
+        break;
+      case "level2":
+        $('.js__level2-sponsor-logos').append('<a href="TR?fr_id=' + evID + '&amp;pg=informational&amp;sid=2014"><img src="' + sponsorImg + '" alt="' + sponsorName + '"></a>');
+        $('.js__level2-sponsor-container').fadeIn();
+        break;
+      case "level3":
+        $('.js__level3-sponsor-logos').append('<a href="TR?fr_id=' + evID + '&amp;pg=informational&amp;sid=2014">' + sponsorName + '</a><br>');
+        $('.js__level3-sponsor-container').fadeIn();
+        break;
+      case "level4":
+        $('.js__level4-sponsor-logos').append('<a href="TR?fr_id=' + evID + '&amp;pg=informational&amp;sid=2014">' + sponsorName + '</a><br>');
+        $('.js__level4-sponsor-container').fadeIn();
+
+        break;
+    }
+
+    // var sponsorToPush = { }; 
+    // sponsorToPush["sponsorName"] = sponsorName;
+    // sponsorToPush["sponsorLevel"] = sponsorLevel;
+    // sponsorToPush["sponsorImg"] = sponsorImg;
+    // sponsorToPush["sponsorLevel"] = sponsorLevel;
+    // sponsorToPush["sponsorUrl"] = sponsorUrl;
+    // sponsorsArray.push(sponsorToPush);
+
+  });
+
+    }
+  }
     if ($('body').is('.pg_personal')) {
       var personalHeadline = $('#personal_page_header h2');
       $(personalHeadline).replaceWith('<h1>' + $(personalHeadline).text() + '</h1>');
