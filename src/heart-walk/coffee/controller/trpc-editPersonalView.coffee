@@ -89,7 +89,7 @@ angular.module 'trPcControllers'
           $scope.$apply()
 
       $scope.getPagePersonalPhotoUrl = ->
-        console.log 'runnning'
+        console.log 'running Get Personal Page Photo'
         TeamraiserParticipantPageService.getPersonalPhotos
           error: (response) ->
             # TODO
@@ -115,12 +115,10 @@ angular.module 'trPcControllers'
       $scope.personalVideo = {}
 
       $scope.setPagePersonalVideoUrl = (videoUrl) ->
-        console.log 'inside video rmeb url'
         angular.forEach $personalVideo, (videoContainer) ->
-          console.log 'inside video rmeb url2'
           $personalVideoIframe = angular.element(videoContainer).find('iframe')
           $personalVideoIframe.css('opacity','1')
-          console.log $scope.personalVideoEmbedUrl
+          console.log $scope.personalVideoEmbedUrl,'running set personal video #1'
           if $scope.personalVideoEmbedUrl isnt ''
             $personalVideoIframe.replaceWith $compile($personalVideoIframe.clone().attr('ng-src', '{{personalVideoEmbedUrl}}'))($scope)
 
@@ -140,13 +138,15 @@ angular.module 'trPcControllers'
             $scope.personalVideoEmbedUrl = $sce.trustAsResourceUrl '//www.youtube.com/embed/' + videoId + '?wmode=opaque&amp;rel=0&amp;showinfo=0'
         if not $scope.$$phase
           $scope.$apply()
-      angular.forEach $personalVideo, (videoContainer) ->
-        $personalVideoIframe = angular.element(videoContainer).find('iframe')
-        $personalVideoSrc = $personalVideoIframe.attr 'src'
-        $personalVideoIframe.css('opacity','1')
-        if $personalVideoSrc and $personalVideoSrc isnt ''
-          $scope.setPagePersonalVideoUrl $personalVideoSrc
-        $personalVideoIframe.replaceWith $compile($personalVideoIframe.clone().attr('ng-src', '{{personalVideoEmbedUrl}}'))($scope)
+          
+      # angular.forEach $personalVideo, (videoContainer) ->
+      #   $personalVideoIframe = angular.element(videoContainer).find('iframe')
+      #   $personalVideoSrc = $personalVideoIframe.attr 'src'
+      #   $personalVideoIframe.css('opacity','1')
+      #   console.log 'running set personal video #2'
+      #   if $personalVideoSrc and $personalVideoSrc isnt ''
+      #     $scope.setPagePersonalVideoUrl $personalVideoSrc
+      #   $personalVideoIframe.replaceWith $compile($personalVideoIframe.clone().attr('ng-src', '{{personalVideoEmbedUrl}}'))($scope)
 
       $scope.editPagePersonalVideo = ->
         $scope.editPagePersonalVideoModal = $uibModal.open
@@ -183,7 +183,7 @@ angular.module 'trPcControllers'
           ), 500
 
       $scope.getPagePersonalVideoUrl = ->
-        console.log 'runnning video'
+        console.log 'runnning get personal video'
         TeamraiserParticipantPageService.getPersonalVideoUrl
           error: (response) ->
             # TODO
