@@ -2,31 +2,55 @@
 #user_type_section_container {
   display: none;
 }
-
+div#cons_info_component_container div#personal_info_section_one, div#cons_info_component_container div#personal_info_section_two, div#cons_info_component_container div#contact_info_section_one, div#cons_info_component_container div#contact_info_section_two, div#registration_options_page div#user_name_pword_container, div#registration_options_page div#privacy_opts_container, div#registration_options_page div#tribute_component_section_one, div#registration_options_page div#tribute_component_section_two, div#emergency_contact_container, div#gift_notice_optin, div#email_optin {
+  float:none;
+}
+div#contact_info_section_one div.form-error, div#personal_info_section_one div.form-error, div#user_name_pword_container div.form-error {
+  margin-right:0;
+}
 .app_tr_registration {
   // input overrides
   div.responsive input[type="text"],
+  div.responsive input[type="email"],
   div.responsive input[type="number"],
   div.responsive input[type="password"],
   div.responsive textarea,
   div.responsive select {
-    box-shadow: none;
     @extend .form-control;
+    box-shadow: none;
+    height:46px !important;
   }
 
   div.registration-page-container div.section-container {
     color: $body-color;
   }
+div#reg_summary_body_container,
+  div#part_type_fundraising_goal_container,
+  div#discount_code_container,
+  div#part_type_additional_gift_container, div#part_type_addon_container, div#part_type_individual_company_selection_container,
   div.registration-page-container div.sub-section-header,
+  div.registration-page-container div.sub-section-body,
   div.registration-page-container div.sub-section-container {
     border:none;
-    background-color:$white;
+    background-color:#F6F9F9;
+    padding:15px 30px;
+  }
+  div.registration-page-container div.sub-section-container {
+    margin:30px -30px;
   }
 
   div.registration-page-container div.sub-section-header {
     padding:0;
     margin:0;
   }
+.modal-body,
+.input-container,
+small {
+  a {
+    text-decoration:underline !important;
+  }
+}
+
 
   div.responsive {
     width: inherit;
@@ -45,7 +69,9 @@
   label[for="fr_show_public_gift"],{
     @extend .form-check-label;
   }
-  .progress-bar-container {
+  .progress-bar-container,
+  .campaign-banner-container,
+  #team_find_search_team_name_required {
     display: none;
   }
   .campaign-banner-container,
@@ -53,9 +79,64 @@
     border: none;
     margin: 0;
   }
-  .campaign-banner-container {
-    display: none;
+
+.team-captain-label,
+.team-company-label {
+  font-style:italic;
+}
+.team-join-btn {
+  text-decoration:none;
+}
+.search-result-details {
+  border-bottom: 1px solid #3c3c3c;
+}
+
+.sort {
+  border: 1px solid #000;
+  &:after {
+    width: 0;
+    height: 0;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-bottom: 4px solid transparent;
+    content: "";
+    position: relative;
+    top: -10px;
+    right: -4px;
   }
+
+  &.asc {
+    &:after {
+      width: 0;
+      height: 0;
+      border-left: 4px solid transparent;
+      border-right: 4px solid transparent;
+      border-top: 4px solid #2e2e2e;
+      content: "";
+      position: relative;
+      top: 11px;
+      right: -4px;
+    }
+  }
+
+  &.desc {
+    &:after {
+      width: 0;
+      height: 0;
+      border-left: 4px solid transparent;
+      border-right: 4px solid transparent;
+      border-bottom: 4px solid #2e2e2e;
+      content: "";
+      position: relative;
+      top: -9px;
+      right: -4px;
+    }
+  }
+  &:focus {
+    -webkit-box-shadow: 0 0 0 0.2rem rgba(222, 36, 39, 0.5);
+    box-shadow: 0 0 0 0.2rem rgba(222, 36, 39, 0.5);
+  }
+}
   div.registration-page-container div.section-body,
   div.registration-page-container div.section-header,
   div.registration-page-container div.section-sub-header,
@@ -72,6 +153,11 @@
   
   div.registration-page-container div.section-footer {
     @extend .mt-3;
+    button.step-button,
+    a.button {
+      font-weight: bold !important;
+      font-size: 1.2em !important;
+    }
   }
   div.registration-page-container div.section-header {
     text-align:center;
@@ -80,7 +166,10 @@
     text-align: center;
     padding: 0;
 }
-  
+
+div.responsive .survey-question-container label {
+  width:95%;
+}
   div.responsive div.form-content {
     // margin-bottom: 0;
     margin-right: 0;
@@ -128,6 +217,25 @@
   .mobile select#matchingAddresses {
     margin-top: 0;
   }
+
+@include media-breakpoint-up(sm) {
+  div#team_find_search_results_container {
+    div.list-component-cell.list-component-cell-column-captain-name {
+    width:40%;
+    }
+    div.list-component-cell.list-component-cell-column-company-name {
+      width:35%;
+    }
+    div.list-component-cell.list-component-cell-column-join-link {
+      width:auto;
+    }
+    div.list-component-cell.list-component-cell-column-captain-name span.list-component-cell-title-text,
+    div.list-component-cell.list-component-cell-column-company-name span.list-component-cell-title-text {
+      display:inline-block;
+    }
+  } 
+} 
+
 // Progress bar
 .progress {
   background-color:$progress-bkd;
@@ -175,6 +283,10 @@ div.responsive a.step-button, div.responsive button.step-button, div.responsive 
     @extend .btn-primary;
   }
 }
+svg.fa-info-circle {
+  height: 16px;
+  vertical-align: top;
+}
 .janrainEngage {
   &:hover {
     text-decoration:none;
@@ -186,13 +298,20 @@ div.responsive a.step-button, div.responsive button.step-button, div.responsive 
     font-size: 1rem;
     line-height: 1.5;
     text-decoration:none;
-
+    @include media-breakpoint-up(md) {
+      width:47%;
+    }
     &.btn-facebook {
       background:#3b579d;
-      
+      @include media-breakpoint-up(md) {
+        float:left;
+      }
     }
     &.btn-amazon {
       background:#231f20;
+      @include media-breakpoint-up(md) {
+        float:right;
+      }
     }
     span:hover {
       text-decoration:none;
@@ -225,13 +344,13 @@ div.responsive a.step-button, div.responsive button.step-button, div.responsive 
  
 
 // tfind step
-
+#team_find_new_team_recruiting_goal,
 #team_find_registration_type_container {
   display:none;
 }
-#team_find_search_button_container {
-  @extend .mt-2;
-}
+// #team_find_search_button_container {
+//   @extend .mt-2;
+// }
 div.responsive a.button {
   &.btn-dropdown {
     background:$white;
@@ -276,13 +395,11 @@ div#team_find_search_results_container div.list-component-cell-column-join-link 
   }
 }
 
+  // #team_find_existing_team_search_container,
+  // #team_find_existing_company_selection_container,
   #team_find_new_team_company,
   #team_find_new_team_attributes,
-  #team_find_registration_type_container,
-  #F2fRegPartType,
-  #F2fRegContact,
-  #FriendraiserUserWaiver,
-  #fr_payment_form {
+  #team_find_registration_type_container {
     @include make-col-ready();
     @include media-breakpoint-up(xs) {
       @include make-col(12);
@@ -291,7 +408,47 @@ div#team_find_search_results_container div.list-component-cell-column-join-link 
       @include make-col(6);
     }
   }
+  #team_find_existing_team_search_container {
+    @include make-col-ready();
+    @include media-breakpoint-up(md) {
+      @include make-col(4);
+    }
+  }
+  #team_find_existing_company_selection_container {
+    @include make-col-ready();
+    @include media-breakpoint-up(md) {
+      @include make-col(5);
+    }
+  }
 
+  #team_find_search_button_container {
+    @include make-col-ready();
+    @extend .d-flex;
+    @extend .align-items-end;
+    @include media-breakpoint-up(md) {
+      @include make-col(3);
+    }
+    @include media-breakpoint-down(md) {
+      margin-top:1rem;
+      margin-bottom:1rem;
+    }
+  }
+
+  #FriendraiserUserWaiver,
+  #fr_payment_form,
+  #F2fRegPartType,
+  #F2fRegContact {
+    @include make-col-ready();
+    @include media-breakpoint-up(xs) {
+      @include make-col(12);
+    }
+    @include media-breakpoint-up(sm) {
+      @include make-col(10);
+    }
+    // @include media-breakpoint-up(lg) {
+    //   @include make-col(8);
+    // }
+  }
 #reg_payment_page div.form-row {
   margin:0;
 }
@@ -302,27 +459,16 @@ div#team_find_search_results_container div.list-component-cell-column-join-link 
   @extend .row;
 }
 
-#responsive_payment_typecc_exp_date_MONTH,
-#responsive_payment_typecc_exp_date_YEAR {
-  display:inline-block;
-  @include make-col-ready();
-  @include media-breakpoint-up(xs) {
-    @include make-col(12);
-  }
-  @include media-breakpoint-up(md) {
-    @include make-col(4);
-  }
+#responsive_payment_typecc_exp_date_row > .form-content {
+  @extend .row;
+  @extend .d-flex;
 }
-
   
   div.responsive div.ErrorMessage.page-error,
   form[name="FriendraiserFind"] {
     @include make-col-ready();
     @include media-breakpoint-up(xs) {
       @include make-col(12);
-    }
-    @include media-breakpoint-up(md) {
-      @include make-col(10);
     }
   }
   div.responsive div.ErrorMessage.page-error {
@@ -335,28 +481,38 @@ div.responsive div.ErrorMessage.page-error>span.field-error-text {
     font-size: 1.25rem;
     font-weight: 600;
   }
-
+@include media-breakpoint-up(md) {
+  .no-companies {
+    display: flex !important;
+    max-width: 100% !important;
+    padding: 0 !important;
+  }
+}
 
   // BEGIN TFIND
   form[name="FriendraiserFind"] {
   margin:0 auto;
 }
   #team_find_existing {
-    @extend .offset-md-3;
-    @include make-col-ready();
-    @include media-breakpoint-up(md) {
-      @include make-col(6);
-    }
-  }
-  #team_find_existing_team_search_container,
-  #team_find_existing_company_selection_container,
-  #team_find_search_button_container {
-    width:100%;
+    @extend .row;
+    // @extend .offset-md-3;
     // @include make-col-ready();
     // @include media-breakpoint-up(md) {
     //   @include make-col(12);
     // }
   }
+  // #team_find_existing_team_search_container,
+  // #team_find_existing_company_selection_container,
+
+  // #team_find_search_button_container {
+  //   width:100%;
+  //   @include make-col-ready();
+  //   @include media-breakpoint-up(md) {
+  //     @include make-col(4);
+  //     margin-left: auto;
+  //     margin-right: auto;
+  //   }
+  // }
   
   // #team_find_section_container
   // #team_find_section_body {
@@ -374,14 +530,19 @@ div.responsive div.ErrorMessage.page-error>span.field-error-text {
       margin-left: inherit;
       font-size: inherit;
     }
+    #team_find_section_header,
+    #team_find_section_body {
+      display:none;
+    }
   }
-  
 
 // ptype
-#part_type_instruction_sub_header {
+#part_type_instruction_sub_header,
+div.part-type-decoration-messages .part-type-description-text {
   display:none;
 }
 #part_type_selection_container {
+  // display:flex;
   @extend .mt-2;
 }
 #sel_type_container,
@@ -393,6 +554,7 @@ div.responsive div.ErrorMessage.page-error>span.field-error-text {
 }
 div.part-type-container {
   position:relative;
+  float: left;
   .part-type-decoration-messages {
     width:100%;
     max-width:100%;
@@ -400,26 +562,34 @@ div.part-type-container {
       height:100%;
       width:100%;
     }
-
   }
   input {
     margin:0;
     position: absolute;
-    top: 35%;
-    left: 15%;
+    top: 25%;
+    left: 10%;
   }
   @include media-breakpoint-down(sm) {
     input {
-      top: 35%;
+      top: 25%;
       left: 10%;
     }
   }
+}
+
+@include media-breakpoint-up(md) {
+div.part-type-container {
+  max-width:47%;
+  margin:10px;
+}
 }
 #F2fRegPartType,
 #participation_options_page {
   margin:0 auto;
 }
-
+div.part-type-registrations-left {
+  display:none;
+}
 div.part-type-container {
   cursor: pointer;
   @include button-variant(#dcdcdc, #000, $hover-background: $red, $hover-border: $red, $active-background: $red, $active-border: $red);
@@ -429,11 +599,42 @@ div.part-type-container {
   &:hover {
     cursor:pointer;
   }
+
+  &.join-team-ptype-time,
+  &.vip-ptype-container {
+    border:none;
+    color: #212529;
+    background-color: #fff;
+    padding-left: 0;
+    margin-left: 0;
+    text-align: left;
+    input[type=radio]{
+      display:none;
+    }
+    &.selected {
+      color: #212529;
+      border:none;
+    }
+    &:hover,
+    &:active {
+      border:none;
+      background-color:#fff;
+    }
+    &:not(:disabled):not(.disabled):active {
+      color: #212529;
+      border:none;
+      background-color:#fff;
+    }
+
+  }
+
   &.selected {
     @extend .btn-primary;
     border-radius: 0;
     border: 1px solid $red;
   }
+
+
 
   &.ptype-full {
     &.selected {
@@ -452,10 +653,7 @@ div.part-type-container {
     color: #212529;
     background-color: #fff;
     div.part-type-registrations-left {
-      margin-top: 0;
-      .part-type-registrations-full-text {
-        color: $primary;
-      }
+      display:none;
     }
   }
 }
@@ -476,30 +674,44 @@ div#part_type_fundraising_goal_container {
 
 
   // COLUMN overrides
+
+  // div.part-type-container {
+  //   @include make-col-ready();
+  //   @include media-breakpoint-up(lg) {
+  //     @include make-col(4);
+  //   }
+  //   @include media-breakpoint-up(xs) {
+  //     @include make-col(6);
+  //   }
+  // }
   // .donation-level-row-container {
     .don-level-btn {
       // TODO - apply donation-level-btn class to actual amounts and make those xs-6 other things xs-12
       @include make-col-ready();
+      @include media-breakpoint-up(lg) {
+        @include make-col(3);
+      }
       @include media-breakpoint-up(xs) {
         @include make-col(6);
       }
-      
     }
   .don-no-gift {
+    padding-top:7px;
     @include make-col-ready();
     @include media-breakpoint-up(xs) {
       @include make-col(12);
     }
   }
-    .other-amount-row-container {
+    .other-amount-row-container,
+    #part_type_additional_gift_container .form-check {
       flex:none;
-      max-width:100%;
+      // max-width:100%;
       @include make-col-ready();
       @include media-breakpoint-up(xs) {
-        @include make-col(12);
+        @include make-col(6);
       }
       .donation-level-row-label {
-        background-color:$white;
+        // background-color:$white;
         border:none;
         text-align:left;
         padding-left: 0;
@@ -508,6 +720,9 @@ div#part_type_fundraising_goal_container {
   
     #part_type_section_footer {
       @extend .row;
+      #previous_step {
+        display:none;
+      }
     }
 
 // reg info
@@ -517,7 +732,24 @@ div#part_type_fundraising_goal_container {
     @extend .row;
   }
 }
-
+div.responsive .sub-section-container span.field-required {
+  float:left;
+  margin-right: 2px;
+}
+#password_component_container .field-required {
+  float:left;
+}
+div#participant_info_body_container,
+#emergency_contact_field_group {
+  @extend .row;
+}
+#emergency_contact_field_group div.field-required,
+.cons-full-name-container {
+  @include make-col-ready();
+  @include media-breakpoint-up(sm) {
+    @include make-col(6);
+  }
+}
 #reg_options_cons_info_extension_body {
 display: -webkit-box;
 display: -webkit-flex;
@@ -527,9 +759,14 @@ display: flex;
 -ms-flex-wrap: wrap;
 flex-wrap: wrap;
 }
+#reg_options_cons_info_extension {
+  clear:both;
+}
+
 #reg_instr_container,
 #cons_info_component_contact_info_section,
 #email_optin,
+#cons_info_dob,
 #cons_birth_date_YEAR,
 .survey-question-number {
   display:none;
@@ -543,7 +780,7 @@ div.registration-page-container div.sub-section-header {
   @extend .my-2;
 }
 #cons_birth_date_date {
-  @extend .d-flex;
+  @extend .row;
 }
 li.input-container,
 div#gift_notice_optin {
@@ -557,14 +794,25 @@ div#gift_notice_optin {
   }
 }
 
-div#cons_info_component_container div#personal_info_section_one, div#cons_info_component_container div#personal_info_section_two, div#cons_info_component_container div#contact_info_section_one, div#cons_info_component_container div#contact_info_section_two, div#registration_options_page div#user_name_pword_container, div#registration_options_page div#privacy_opts_container, div#registration_options_page div#tribute_component_section_one, div#registration_options_page div#tribute_component_section_two, div#emergency_contact_container, div#email_optin {
+div#cons_info_component_container div#personal_info_section_one, div#cons_info_component_container div#personal_info_section_two, div#cons_info_component_container div#contact_info_section_one, div#cons_info_component_container div#contact_info_section_two, div#registration_options_page div#user_name_pword_container, div#registration_options_page div#privacy_opts_container, div#registration_options_page div#tribute_component_section_one, div#registration_options_page div#tribute_component_section_two, div#emergency_contact_container, div#email_optin, div#gift_notice_optin {
   width:100%;
+  // @extend .row;
 }
-div#privacy_component_container label, div#gift_notice_optin label, div#email_opt_in_container label, div#postal_mail_opt_in_container label, div#remember_me_container label {
+div#privacy_component_container label,  div#gift_notice_optin label, div#email_opt_in_container label, div#postal_mail_opt_in_container label, div#remember_me_container label {
   max-width:100%;
 }
-div#emergency_contact_field_group {
-  margin-left:0;
+// div#emergency_contact_field_group {
+//   margin-left:0;
+// }
+// div#personal_info_section_two {
+//   @extend .row;
+// }
+.mobile-question-container,
+.email-question-container {
+  @include make-col-ready();
+  @include media-breakpoint-up(sm) {
+    @include make-col(6);
+  }
 }
 
 #reg_option_custom_html {
@@ -599,13 +847,14 @@ div#emergency_contact_field_group {
 
 
   select {
-    // div.responsive select {
     &#cons_birth_date_MONTH,
     &#cons_birth_date_DAY {
-      @include make-col-ready();
-      @include media-breakpoint-up(xs) {
-        @include make-col(6);
-      } // min-width:75px;
+      width:100%;
+
+      // @include make-col-ready();
+      // @include media-breakpoint-up(xs) {
+      //   @include make-col(6);
+      // } 
     }
   }
   #part_type_additional_gift_section_header {
@@ -655,6 +904,11 @@ div#emergency_contact_field_group {
     @extend .row;
     @extend .m-0;
   }
+  .reg-summary-reg-info > p,
+  #next_button,
+  .contact-info-address {
+    display:none;
+  }
 }
 
 .ObjTitle {
@@ -680,12 +934,17 @@ div.reg-summary-thanks-common-container {
 div.registration-page-container div.label-value-block-container {
   font-weight:bold;
   font-size:normal;
-  background-color:#fff;
+  // background-color:#fff;
   border:none;
 }
 #reg_summary_body_container .manageable-content,
 .left-decorator {
   display:none;
+}
+
+#reg_summary_body_container {
+  margin-bottom: 1em;
+  margin-top: 1em;
 }
 div.reg-summary-thanks-common-container {
 
@@ -709,7 +968,7 @@ div.reg-summary-thanks-common-container {
   //   font-weight:normal;
   // }
   div.reg-summary-total {
-    background-color:#fff;
+    background-color:#F6F9F9;
     text-align:left;
     font-weight:bold;
     @extend .pt-3;
@@ -756,7 +1015,6 @@ div.responsive button.step-button {
       @include make-col(4);
     }
   }
-
 
 // paymentForm step
 #fr_payment_form {
@@ -838,6 +1096,11 @@ div.responsive button.step-button {
   }
 
 }
+#external_payment_wait_dlg_mask,
+#external_payment_wait_dlg,
+#external_payment_wait_dlg_c {
+  max-width: 100% !important;
+}
 
 #fr_thanks_page {
   .part-center-container {
@@ -876,25 +1139,51 @@ div.responsive button.step-button {
     }
   }
 }
-
+ 
 #reg_payment_page div.form-row div.form-content>select {
   height: calc(2.25rem + 2px);
 }
 
 // Stationary v2 customizations
-.event-type2-stationaryv2 {
+
+.event-type2-stationaryv2,
+.event-type2-road {
   .part-type-name {
-    padding-left: 5px;
+    padding-left: 0;
     padding-right: 5px;
-    display:block;
+    // display:block;
+    // line-height: 1rem;
+    text-align:left;
+    font-size: 1.25rem;
+    font-weight: 600;
   }
-  .start-team-container,
-  .join-team-container,
-  .breakaway-container {
-    display:none;
+  .join-team-ptype-time,
+  .vip-ptype-container {
+    .part-type-name {
+      font-size:1rem;
+    }
   }
+  
+
   .part-type-container,
   .part-type-name-value-separator {
     display:none;
+  }
+  div.part-type-container .part-type-decoration-messages {
+    margin:1px 0 0 0;
+  }
+}
+
+@include media-breakpoint-up(md) {
+  div.responsive {
+    #part_type_fundraising_goal_input_container {
+      .form-control,
+      input[type="text"] {
+        max-width:50%;
+      }
+    }
+    #discount_code {
+      max-width:50%;
+    }
   }
 }

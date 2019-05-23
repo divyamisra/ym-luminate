@@ -49,6 +49,7 @@ angular.module 'trPcApp'
       $rootScope.locale = if $embedRoot.data('locale') is '' then 'en_US' else $embedRoot.data('locale')
       $rootScope.consId = $embedRoot.data('cons-id') if $embedRoot.data('cons-id') isnt ''
       $rootScope.authToken = $embedRoot.data('auth-token') if $embedRoot.data('auth-token') isnt ''
+      $rootScope.sessionCookie = $embedRoot.data('session-cookie') if $embedRoot.data('session-cookie') isnt ''
       $rootScope.daysToEvent = $embedRoot.data('days-to-event') if $embedRoot.data('days-to-event') isnt ''
       $rootScope.isSelfDonor = $embedRoot.data('is-self-donor') if $embedRoot.data('is-self-donor') isnt ''
       $rootScope.emailsSent = $embedRoot.data('emails-sent') if $embedRoot.data('emails-sent') isnt ''

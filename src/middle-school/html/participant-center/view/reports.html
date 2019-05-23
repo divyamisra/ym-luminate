@@ -73,6 +73,13 @@
                       </button>
                     </div>
                   </th>
+                  <th scope="col" aria-sort="{{schoolDetailStudents.sortColumn != 'challenge' ? 'none' : (schoolDetailStudents.sortAscending ? 'ascending' : 'descending')}}">
+                    <div class="text-center">
+                      <button type="button" class="btn btn-link" ng-click="orderSchoolDetailStudents('challenge')">
+                        <strong>Challenge</strong>&nbsp;<span class="fa" ng-class="{'fa-caret-down': (schoolDetailStudents.sortColumn == 'challenge' && !schoolDetailStudents.sortAscending) || schoolDetailStudents.sortColumn != 'challenge', 'fa-caret-up': schoolDetailStudents.sortColumn == 'challenge' && schoolDetailStudents.sortAscending, 'inactive': schoolDetailStudents.sortColumn != 'challenge'}" ng-if="schoolDetailStudents.students.length"><span class="sr-only">Sortable. {{schoolDetailStudents.sortColumn != 'challenge' ? 'Not sorted.' : (schoolDetailStudents.sortAscending ? 'Sorted ascending.' : 'Sorted descending.')}}</span></span>
+                      </button>
+                    </div>
+                  </th>
                 </tr>
               </thead>
               <tbody>
@@ -100,6 +107,11 @@
                   <td>
                     <div class="text-center">
                       <span ng-bind-html="schoolDetailStudent.teacherName"></span>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="text-center">
+                      <span ng-bind-html="schoolDetailStudent.challenge"></span>
                     </div>
                   </td>
                 </tr>

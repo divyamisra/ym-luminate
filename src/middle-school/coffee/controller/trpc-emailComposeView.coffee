@@ -76,7 +76,7 @@ angular.module 'trPcControllers'
         $scope.emailComposer =
           serial: new Date().getTime()
           message_id: ''
-          recipients: recipients.join ', '
+          ng_recipients: recipients.join ', '
           suggested_message_id: ''
           subject: ''
           prepend_salutation: false
@@ -246,7 +246,8 @@ angular.module 'trPcControllers'
       
       $scope.previewEmail = ->
         $scope.clearEmailAlerts()
-        NgPcTeamraiserEmailService.previewMessage $httpParamSerializer($scope.emailComposer)
+        recipients = $scope.emailComposer.ng_recipients.replace />;/g, '>,'
+        NgPcTeamraiserEmailService.previewMessage($httpParamSerializer($scope.emailComposer) + '&recipients=' + encodeURIComponent(recipients))
           .then (response) ->
             if response.data.errorResponse
               $scope.sendEmailError = response.data.errorResponse.message
@@ -289,7 +290,8 @@ angular.module 'trPcControllers'
         if not $rootScope.sendEmailPending
           $rootScope.sendEmailPending = true
           $scope.sendEmailPending = true
-          NgPcTeamraiserEmailService.sendMessage $httpParamSerializer($scope.emailComposer)
+          recipients = $scope.emailComposer.ng_recipients.replace />;/g, '>,'
+          NgPcTeamraiserEmailService.sendMessage($httpParamSerializer($scope.emailComposer) + '&recipients=' + encodeURIComponent(recipients))
             .then (response) ->
               delete $rootScope.sendEmailPending
               delete $scope.sendEmailPending
