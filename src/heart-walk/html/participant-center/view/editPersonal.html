@@ -11,9 +11,12 @@
     </div>
 
     <div class="page_personal_video_container">
-      <div id="videoX"></div>
       <div class="heart-user-video-inner">
-        <button type="button" class="btn btn-primary-inverted btn-raised ng-scope" ng-click="editPagePersonalVideo()" id="edit_page_personal_video"><span class="glyphicon glyphicon-facetime-video"></span> Edit Video</button>
+        <div class="embed-responsive embed-responsive-16by9">
+            <iframe width="700" height="700" src="" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+          </div>
+        <button type="button" class="btn btn-primary-inverted btn-raised" ng-click="editPagePersonalVideo()" id="edit_page_personal_video"><span class="glyphicon glyphicon-facetime-video"></span> Edit Video</button>
       </div>
     </div>
 
