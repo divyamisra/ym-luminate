@@ -11,11 +11,9 @@ angular.module 'trPcControllers'
     ($rootScope, $scope, $location, $compile, $sce, $uibModal, APP_INFO, TeamraiserParticipantPageService) ->
       #luminateExtend.api.getAuth()
 
-      $scope.personalPagePromises = []
+      #$scope.teamraiserAPIPath = $sce.trustAsResourceUrl $rootScope.securePath + 'CRTeamraiserAPI'
 
-      $scope.teamraiserAPIPath = $sce.trustAsResourceUrl $rootScope.securePath + 'CRTeamraiserAPI'
-
-      console.log 'this is the personal page edit controller'
+      console.log 'this is the personal page edit controller2'
 
 
       $scope.textEditorToolbar = [
