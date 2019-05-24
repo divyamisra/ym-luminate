@@ -22,7 +22,7 @@
                 <div class="company-page-description" id="fr_rich_text_container">
                     <div ng-class="{'hidden': companyContentOpen}" ng-bind-html="companyContent"></div>
 
-                    <form method="POST" novalidate ng-class="{\'hidden\': !companyContentOpen}" ng-submit="updateCompanyContent()">
+                    <form method="POST" novalidate ng-class="{'hidden': !companyContentOpen}" ng-submit="updateCompanyContent()">
                       <div class="form-group">
                           <div text-angular ng-model="ng_companyContent" ta-toolbar="{{textEditorToolbar}}" ta-text-editor-class="border-around" ta-html-editor-class="border-around"></div>
                         </div>
