@@ -11,7 +11,7 @@ angular.module 'trPcControllers'
     ($rootScope, $scope, $location, $compile, $sce, $uibModal, APP_INFO, TeamraiserParticipantPageService) ->
       #luminateExtend.api.getAuth()
 
-      #$scope.teamraiserAPIPath = $sce.trustAsResourceUrl $rootScope.securePath + 'CRTeamraiserAPI'
+      $scope.teamraiserAPIPath = $sce.trustAsResourceUrl $rootScope.securePath + 'CRTeamraiserAPI'
 
       console.log 'this is the personal page edit controller2'
 
@@ -49,18 +49,16 @@ angular.module 'trPcControllers'
 
       # make photo dynamic
       $scope.setPagePersonalPhotoUrl = (photoUrl) ->
-        console.log('2')
+        console.log '2',photoUrl
         $scope.pagePersonalPhotoUrl = photoUrl
-        # if not $scope.$$phase
-        #   $scope.$apply()
-      # angular.forEach $pagePersonalPhoto, (photoContainer) ->
-      #   console.log('1')
-      #   $personalPhoto = angular.element(photoContainer).find('img')
-      #   $personalPhotoSrc = $personalPhoto.attr 'src'
-      #   console.log $personalPhotoSrc
-      #   if $personalPhotoSrc and $personalPhotoSrc isnt ''
-      #     $scope.setPagePersonalPhotoUrl $personalPhotoSrc
-      #   $personalPhoto.replaceWith $compile($personalPhoto.clone().attr('ng-src', '{{pagePersonalPhotoUrl}}'))($scope)
+        if not $scope.$$phase
+          $scope.$apply()
+      angular.forEach $pagePersonalPhoto, (photoContainer) ->
+        $personalPhoto = angular.element(photoContainer).find('img')
+        $personalPhotoSrc = $personalPhoto.attr 'src'
+        if $personalPhotoSrc and $personalPhotoSrc isnt ''
+          $scope.setPagePersonalPhotoUrl $personalPhotoSrc
+        $personalPhoto.replaceWith $compile($personalPhoto.clone().attr('ng-src', '{{pagePersonalPhotoUrl}}'))($scope)
 
       #Bind to button
       $scope.editPagePersonalPhoto = ->
