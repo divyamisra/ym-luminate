@@ -20,7 +20,7 @@
             <h2>Update company story</h2>
               <div class="manageable-editor-window-editor" data-container="edit_fr_rich_text_container">
                 <div class="company-page-description" id="fr_rich_text_container">
-                    <div ng-class="{'hidden': pageCompanyContentOpen}" ng-bind-html="pageCompanyContent"></div>
+                    <div ng-class="{'hidden': companyContentOpen}" ng-bind-html="companyContent"></div>
 
                     <form method="POST" novalidate ng-class="{\'hidden\': !companyContentOpen}" ng-submit="updateCompanyContent()">
                       <div class="form-group">
@@ -30,7 +30,7 @@
                         <button type="button" class="btn btn-primary-inverted btn-raised" ng-click="cancelEditCompanyContent()">Cancel</button> <button type="submit" class="btn btn-primary btn-raised">Save</button>
                       </div>
                     </form>
-                    <div class="form-group"><button type="button" class="btn btn-primary btn-raised" ng-class="{'hidden': pageCompanyContentOpen}" ng-click="editPageCompanyContent()" id="edit_company_story"><span class="glyphicon glyphicon-pencil"></span> Edit Story</button></div> 
+                    <div class="form-group"><button type="button" class="btn btn-primary btn-raised" ng-class="{'hidden': companyContentOpen}" ng-click="editCompanyContent()" id="edit_company_story"><span class="glyphicon glyphicon-pencil"></span> Edit Story</button></div> 
                 </div>
               </div>
             </div>
