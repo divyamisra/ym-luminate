@@ -141,9 +141,10 @@
               var participants = luminateExtend.utils.ensureArray(response.getParticipantsResponse.participant);
               var totalParticipants = parseInt(response.getParticipantsResponse.totalNumberResults);
               
-              if ( $.fn.DataTable.isDataTable('#participantResultsTable') ) {
-                $('#participantResultsTable').DataTable().destroy();
-              }
+              if ( $.fn.DataTable ) {
+                if ( $.fn.DataTable.isDataTable('#participantResultsTable') ) {
+                  $('#participantResultsTable').DataTable().destroy();
+                }              }
               $('#participantResultsTable tbody').empty();
 
               $('.js__num-participant-results').text((totalParticipants === 1 ? '1 Result' : totalParticipants + ' Results'));
@@ -207,8 +208,11 @@
           '&list_ascending=true',
         callback: {
           success: function (response) {
-            if ( $.fn.DataTable.isDataTable('#teamResultsTable') ) {
-              $('#teamResultsTable').DataTable().destroy();
+         
+            if ( $.fn.DataTable ) {
+              if ( $.fn.DataTable.isDataTable('#teamResultsTable') ) {
+                $('#teamResultsTable').DataTable().destroy();
+              }
             }
             $('#teamResultsTable tbody').empty();
 
@@ -310,8 +314,10 @@
               var companies = luminateExtend.utils.ensureArray(response.getCompaniesResponse.company);
               var totalCompanies = parseInt(response.getCompaniesResponse.totalNumberResults);
 
-              if ( $.fn.DataTable.isDataTable('#companyResultsTable') ) {
-                $('#companyResultsTable').DataTable().destroy();
+              if ( $.fn.DataTable ) {
+                if ( $.fn.DataTable.isDataTable('#companyResultsTable') ) {
+                  $('#companyResultsTable').DataTable().destroy();
+                }
               }
               $('#companyResultsTable tbody').empty();
 
