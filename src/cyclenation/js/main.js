@@ -140,6 +140,11 @@
             } else {
               var participants = luminateExtend.utils.ensureArray(response.getParticipantsResponse.participant);
               var totalParticipants = parseInt(response.getParticipantsResponse.totalNumberResults);
+              
+              if ( $.fn.DataTable.isDataTable('#participantResultsTable') ) {
+                $('#participantResultsTable').DataTable().destroy();
+              }
+              $('#participantResultsTable tbody').empty();
 
               $('.js__num-participant-results').text((totalParticipants === 1 ? '1 Result' : totalParticipants + ' Results'));
 
@@ -157,7 +162,6 @@
               }
 
               $('#participantResultsTable').DataTable({
-                "destroy": true,
                 "paging":   false,
                 "searching":   false,
                 "info":     false,
@@ -203,6 +207,11 @@
           '&list_ascending=true',
         callback: {
           success: function (response) {
+            if ( $.fn.DataTable.isDataTable('#teamResultsTable') ) {
+              $('#teamResultsTable').DataTable().destroy();
+            }
+            $('#teamResultsTable tbody').empty();
+
             if (response.getTeamSearchByInfoResponse.totalNumberResults === '0') {
               // no search results
               $('#error-team').removeAttr('hidden').text('Team not found. Please try different search terms.');
@@ -257,9 +266,7 @@
                   $(this).attr('hidden', true);
                   $('.js__end-team-list').removeAttr('hidden');
                 });
-
                 $('#teamResultsTable').DataTable({
-                  "destroy": true,
                   "paging":   false,
                   "searching":   false,
                   "info":     false
@@ -303,6 +310,11 @@
               var companies = luminateExtend.utils.ensureArray(response.getCompaniesResponse.company);
               var totalCompanies = parseInt(response.getCompaniesResponse.totalNumberResults);
 
+              if ( $.fn.DataTable.isDataTable('#companyResultsTable') ) {
+                $('#companyResultsTable').DataTable().destroy();
+              }
+              $('#companyResultsTable tbody').empty();
+
               $('.js__num-company-results').text((totalCompanies === 1 ? '1 Result' : totalCompanies + ' Results'));
 
               $(companies).each(function (i, company) {
@@ -324,7 +336,6 @@
               });
 
               $('#companyResultsTable').DataTable({
-                "destroy": true,
                 "paging":   false,
                 "searching":   false,
                 "info":     false,
@@ -438,7 +449,7 @@
         Math.abs(n - i).toFixed(c).slice(2) : "");
     };
 
-    cd.getEvents = function (eventName, eventState) {
+    cd.getEvents = function (eventName, eventState, eventSort) {
       $('.js__loading').show();
       if($('body').is('.pg_cn_home')){
         var numEvents = 3;
@@ -450,7 +461,7 @@
           '&name=' + (eventState ? '%25%25' : eventName) +
            (eventState ? '&state=' + eventState : '') +
           '&event_type=' + eventType +
-          '&response_format=json&list_page_size=499&list_page_offset=0&list_sort_column=event_date&list_ascending=true',
+          '&response_format=json&list_page_size=499&list_page_offset=0&list_sort_column=' + (eventSort === 'city' ? 'city' : 'event_date') + '&list_ascending=true',
         callback: {
           success: function (response) {
             if (response.getTeamraisersResponse.totalNumberResults > '0') {
@@ -928,20 +939,19 @@ cd.getEventsByDistance = function (zipCode) {
 
 // auto search functionality based on URL params
 
-   
+
       if(searchType){
         console.log('autosearch');
         var firstSearchTerm = getURLParameter(currentUrl, 'first_term') ? getURLParameter(currentUrl, 'first_term') : '';
         var lastSearchTerm = getURLParameter(currentUrl, 'last_term') ? getURLParameter(currentUrl, 'last_term') : '';
 
-        firstSearchTerm = encodeURI(firstSearchTerm);
-        lastSearchTerm = encodeURI(lastSearchTerm);
+        firstSearchTerm = decodeURI(firstSearchTerm);
+        lastSearchTerm = decodeURI(lastSearchTerm);
 
         cd.autoSearchParticipant = function () {
           $('#participantFirstName').val(firstSearchTerm);
           $('#participantLastName').val(lastSearchTerm);
 
-          // cd.getParticipants(firstSearchTerm, lastSearchTerm, (searchType === "crossEvent" ? true : false));
           cd.getParticipants(firstSearchTerm, lastSearchTerm, (searchType === "singleEvent" ? false : true));
         }
   
@@ -959,7 +969,6 @@ cd.getEventsByDistance = function (zipCode) {
         }
 
         cd.autoSearchParticipant();
-        // TODO - add search based on page click
         cd.autoSearchTeam();
         cd.autoSearchCompany();
       }
@@ -969,14 +978,10 @@ cd.getEventsByDistance = function (zipCode) {
     if ($('body').is('.pg_cn_home') || $('body').is('.pg_cn_events')) {
       
       if ($('body').is('.pg_cn_home')) {
-        // cd.getEvents('%25%25', null, 3);
-
-        console.log('getLocation');
         $('.js__loading').show();
         getLocation();
-
       } else {
-        cd.getEvents('%25%25', null);
+        cd.getEvents('%25%25', null, 'city');
       }
 
       var clearEventSearchResults = function(){
