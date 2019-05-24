@@ -49,15 +49,18 @@ angular.module 'trPcControllers'
 
       # make photo dynamic
       $scope.setPagePersonalPhotoUrl = (photoUrl) ->
+        console.log('2')
         $scope.pagePersonalPhotoUrl = photoUrl
-        if not $scope.$$phase
-          $scope.$apply()
-      angular.forEach $pagePersonalPhoto, (photoContainer) ->
-        $personalPhoto = angular.element(photoContainer).find('img')
-        $personalPhotoSrc = $personalPhoto.attr 'src'
-        if $personalPhotoSrc and $personalPhotoSrc isnt ''
-          $scope.setPagePersonalPhotoUrl $personalPhotoSrc
-        $personalPhoto.replaceWith $compile($personalPhoto.clone().attr('ng-src', '{{pagePersonalPhotoUrl}}'))($scope)
+        # if not $scope.$$phase
+        #   $scope.$apply()
+      # angular.forEach $pagePersonalPhoto, (photoContainer) ->
+      #   console.log('1')
+      #   $personalPhoto = angular.element(photoContainer).find('img')
+      #   $personalPhotoSrc = $personalPhoto.attr 'src'
+      #   console.log $personalPhotoSrc
+      #   if $personalPhotoSrc and $personalPhotoSrc isnt ''
+      #     $scope.setPagePersonalPhotoUrl $personalPhotoSrc
+      #   $personalPhoto.replaceWith $compile($personalPhoto.clone().attr('ng-src', '{{pagePersonalPhotoUrl}}'))($scope)
 
       #Bind to button
       $scope.editPagePersonalPhoto = ->
@@ -87,7 +90,7 @@ angular.module 'trPcControllers'
           $scope.$apply()
 
       $scope.getPagePersonalPhotoUrl = ->
-        console.log 'running Get Personal Page Photo'
+        console.log 'running Get Personal Page Photo (3)'
         TeamraiserParticipantPageService.getPersonalPhotos
           error: (response) ->
             # TODO
