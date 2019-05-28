@@ -315,5 +315,37 @@ module.exports = {
         ]
       }
     ]
+  },
+  "heartwalk2020": {
+    files: [
+      {
+        expand: true,
+        cwd: 'dist/heartwalk2020/css/',
+        src: [
+          '**/*'
+        ]
+      },
+      {
+        expand: true,
+        cwd: 'dist/heartwalk2020/js/',
+        src: [
+          '**/*'
+        ]
+      },
+      {
+        expand: true,
+        cwd: 'dist/heartwalk2020/html/',
+        src: [
+          '**/*'
+        ]
+      },
+      {
+        expand: true,
+        cwd: 'dist/heartwalk2020/image/',
+        src: [
+          '**/*'
+        ]
+      }
+    ]
   } 
 }

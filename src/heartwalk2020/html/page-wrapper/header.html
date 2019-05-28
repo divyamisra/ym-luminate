@@ -1,0 +1,99 @@
+[[U0:eventLocationMapLink=[[T9:[[E130:"[[E47:[[S334:fr_id]]:fr_info:1:map_link]]" dup 0 swap "|" indexof substring]]]]]]
+<header>
+<!-- NAVIGATION -->
+<nav class="navbar navbar-expand-lg static-top">
+    <a class="navbar-brand" href="#">
+      <img src="img/LOGO-Heartwalk.svg" alt="Heart Walk 2019">
+    </a>
+    <button id="mobile-toggle" class="navbar-toggler float-right" type="button">
+      <span class="navbar-toggler-icon fas fa-align-justify"></span>
+    </button>
+    <a class="d-lg-none d-md-block float-right mobile-search-trigger" id="mobile-search">
+        <i class="fas fa-search"></i>
+    </a>
+    <!-- /#mobile-search.d-lg-none d-md-block -->
+    <div class="collapse navbar-collapse" id="navbar-container">
+      <div id="mobile-search-input" class="d-lg-none d-md-block d-sm-block mobile-search-trigger">
+          Find an Event, Walker, or Team <i class="fas fa-search"></i>
+      </div>
+      <!-- /#mobile-search-input -->
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" id="home" href="#">
+            <i class="fas fa-home"></i>
+            Home
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link d-md-none d-lg-block" id="find" href="#">
+            <i class="fas fa-search"></i>
+            Find
+          </a>
+            <div class="dropdown-menu-container find">
+                <div class="dropdown-menu">
+                    <h1>What are you looking for?</h1>
+                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                        <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#walk-event" role="tab" aria-controls="nav-home" aria-selected="true">A Walk Event</a>
+                        <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#walker" role="tab" aria-controls="nav-profile" aria-selected="false">A Walker</a>
+                        <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#team" role="tab" aria-controls="nav-contact" aria-selected="false">A Team</a>
+                    </div>
+
+                    <div class="tab-content" id="nav-tabContent">
+                        <div class="tab-pane fade show active" id="walk-event" role="tabpanel" aria-labelledby="walk-event">
+                            <p>Search by zip code</p>
+                            <div class="input-group input-group-lg">
+                                <input type="text" class="form-control" name="event-search" />
+                                <div class="input-group-append">
+                                    <button class="btn btn-primary">Search <i class="fas fa-search"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="walker" role="tabpanel" aria-labelledby="walker">
+                            <p>Search by First and / or Last Name</p>
+                            <div class="input-group input-group-lg">
+                                <input type="text" name="first-name" class="form-control" />
+                                <input type="text" name="last-name" class="form-control" />
+                                <div class="input-group-append">
+                                    <button class="btn btn-primary">Search <i class="fas fa-search"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="team" role="tabpanel" aria-labelledby="team">
+                            <p>Search by Team Name</p>
+                            <div class="input-group input-group-lg">
+                                <input type="text" class="form-control" name="team-search" />
+                                <div class="input-group-append">
+                                    <button class="btn btn-primary">Search <i class="fas fa-search"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.dropdown-menu-container -->
+        </li>
+        <li class="nav-item">
+          <a class="nav-link d-md-none d-lg-block" id="about" href="#">
+            <i class="fas fa-bars"></i>
+            About
+          </a>
+            <div class="dropdown-menu-container about">
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">Log In</a>
+                    <a class="dropdown-item" href="#">FAQ</a>
+                    <a class="dropdown-item" href="#"> Why We Walk</a>
+                    <a class="dropdown-item" href="#">Teams</a>
+                    <a class="dropdown-item" href="#">Volunteer</a>
+                    <a class="dropdown-item" href="#">Contact Us</a>
+                </div>
+            </div>
+            <!-- /.dropdown-menu-container -->
+        </li>
+        <li class="nav-item login d-md-none d-lg-block">
+          <a class="nav-link btn btn-primary" href="#">Log In <i class="fas fa-sign-in-alt"></i> </a>
+        </li>
+      </ul>
+    </div>
+</nav>
+<!-- END NAVIGATION -->
+</header>

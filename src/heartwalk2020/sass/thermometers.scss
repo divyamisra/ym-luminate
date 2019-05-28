@@ -1,0 +1,10 @@
+.thermometer{
+  background-color: $gray-200;
+  border: solid 1px $thermometer-border;
+  margin: 4px 0 0;
+}
+.thermometer-inner {
+  background-color: $red-deep;
+  height: 61px;
+  width: 0;
+}

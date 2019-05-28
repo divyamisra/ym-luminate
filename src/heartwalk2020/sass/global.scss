@@ -1,0 +1,65 @@
+/* TODO: remove after development is done */
+/* Laptop */
+#dev {
+  position: absolute;
+  top: 0;
+  left: 1px;
+  z-index: 999;
+  opacity: 0.5;
+  width: 100%;
+  display: none;
+}
+/* Monitor */
+#_dev {
+  position: absolute;
+  top: 0;
+  left: -82px;
+  z-index: 999;
+  opacity: 0.5;
+  width: 113%;
+  display: none;
+  _display: block;
+}
+
+body {
+  font-family: $font-family-medium;
+  font-size: 18px;
+}
+
+a {
+  color: $red;
+  text-decoration: underline;
+}
+
+*:focus {
+  outline: none !important;
+}
+
+.text-small {
+  font-size: small;
+}
+
+.bg-gray-700 {
+  background-color: $gray-700;
+}
+
+h1, h2, h3, h4, strong {
+  font-family: $font-family-bold;
+  font-weight: bold;
+}
+
+ul {
+  margin: 0;
+}
+
+.container-content {
+  max-width: 1350px;
+}
+
+.text-red {
+  color: $red;
+}
+
+img {
+  max-width: 100%;
+}

@@ -177,5 +177,18 @@ module.exports = {
         dest: 'dist/cyclenation/css/'
       }
     ]
+  },
+
+  "heartwalk2020": {
+    files: [
+      {
+        expand: true,
+        cwd: 'dist/heartwalk2020/css/',
+        src: [
+          'main.css'
+        ],
+        dest: 'dist/heartwalk2020/css/'
+      }
+    ]
   }
 }
