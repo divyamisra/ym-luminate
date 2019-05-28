@@ -4,24 +4,28 @@
       <!-- EVENT INFO BOX -->
       <div class="container d-flex justify-content-center">
           <div class="event-info bg-white">
-              <h1>2019 Austin <span class="event-name">Heart & Stroke Walk</span></h1>
-              <p class="event-date">October 19, 2019</p>
+              <h1>[[T9:[[E130:"[[E47:[[S334:fr_id]]:fr_info:1:event_title]]" dup 0 swap "Heart" indexof substring]]]] <span class="event-name">Heart & Stroke Walk</span></h1>
+              <p class="event-date">[[E47:[[S334:fr_id]]:fr_info:1:event_date]]</p>
               <div class="row buttons-row">
-                  <button class="btn btn-primary col-lg col-sm-12 mx-md-2 mx-sm-0">Register to Walk</button>
-                  <button class="btn btn-primary col-lg col-sm-12 mx-md-2 mx-sm-0">Donate</button>
+                  [[?x1x2x::x[[S42:0:status]]x::
+                    <a href="SPageServer/?pagename=heartwalk_register&amp;fr_id=[[S334:fr_id]]" class="btn btn-primary col-lg col-sm-12 mx-md-2 mx-sm-0">Register to Walk</a>
+                  ::]]
+                  [[?x2x3x::x[[S42:0:status]]x::
+                    <a href="TR?fr_id=[[S334:fr_id]]&pg=pfind" class="btn btn-primary col-lg col-sm-12 mx-md-2 mx-sm-0">Donate</a>
+                  ::]]
               </div>
               <div class="row info-columns">
                   <div class="col-lg col-md col-sm-12 pl-0">
                       <h3>Date & Time <a href="javascript:void(0)" class="event-info-expand d-none d-sm-block d-md-none float-right"><i class="fas fa-plus"></i></a></h3>
                       <div class="event-info-collapse d-sm-none d-xsm-none d-md-block">
                           <p>
-                              October 19, 2019<br>
-                              Check-In: 7:00am<br>
-                              Start Time: 8:30am
+                              [[E47:[[S334:fr_id]]:fr_info:1:event_date]]<br>
+                              Check-In: [[E47:[[S334:fr_id]]:fr_info:1:sponsor_1]]<br>
+                              Start Time: [[E47:[[S334:fr_id]]:fr_info:1:sponsor_2]]
                           </p>
                           <div>
                               <i class="fas fa-info-circle"></i>
-                              <a href="#">More Details</a>
+                              <a href="TR?fr_id=[[S334:fr_id]]&pg=informational&type=fr_informational&sid=1020">More Details</a>
                           </div>
                       </div>
                       <!-- /.event-info-collapse -->
@@ -31,13 +35,11 @@
                       <h3>Location <a href="javascript:void(0)" class="event-info-expand d-none d-sm-block d-md-none float-right"><i class="fas fa-plus"></i></a></h3>
                       <div class="event-info-collapse d-sm-none d-xsm-none d-md-block">
                           <p>
-                              The Long Center<br>
-                              701 W Riverside Dr.<br>
-                              Austin, TX 78704
+                              [[E130:"[[T9:[[E47:[[S334:fr_id]]:fr_info:1:event_location]]]]" " | "  "<br>" replaceall]]
                           </p>
                           <div>
                               <i class="fas fa-map-marker-alt"></i>
-                              <a href="#">Get Directions</a>
+                              <a href="[[E47:[[S334:fr_id]]:fr_info:1:map_link]]" target="_blank">Get Directions</a>
                           </div>
                       </div>
                   </div>
@@ -46,13 +48,12 @@
                       <h3>Contact <a href="javascript:void(0)" class="event-info-expand d-none d-sm-block d-md-none float-right"><i class="fas fa-plus"></i></a></h3>
                       <div class="event-info-collapse d-sm-none d-xsm-none d-md-block">
                           <p>
-                              Heart Walk<br>
-                              Care Team<br>
-                              1-866-430-9255
+                              [[E47:[[S334:fr_id]]:fr_info:1:coordinator_name]]
+                              [[E47:[[S334:fr_id]]:fr_info:1:coordinator_phone]]
                           </p>
                           <div>
                               <i class="fas fa-envelope"></i>
-                              <a href="#">Email Us</a>
+                              <a href="mailto:[[E47:[[S334:fr_id]]:fr_info:1:coordinator_email]]">Email Us</a>
                           </div>
                       </div>
                   </div>
@@ -63,7 +64,7 @@
                   <div class="col-6">
                       <span class="d-block">Our Progress</span>
                       <span id="progress-amount" class="amount">
-                          $425,083
+                          [[E130:"[[E42:[[S334:fr_id]]:dollars]]" ".00" "" replaceall]]
                       </span>
                       <!-- /.amount -->
                   </div>
@@ -71,7 +72,7 @@
                   <div class="col-6 text-right">
                       <span class="d-block">Our Goal</span>
                       <span id="goal-amount" class="amount">
-                          $1,730,000
+                          [[E130:"[[E42:[[S334:fr_id]]:goal]]" ".00" "" replaceall]]
                       </span>
                       <!-- /.amount -->
                   </div>
@@ -94,7 +95,7 @@
 
       <!-- TOP LISTS -->
       <div class="container container-wide top-lists-container">
-          <h2 class="text-center">Outstanding Fundraisers <span class="d-sm-none d-md-inline">-</span> <br class="d-sm-block d-md-none"/> <span class="event-name">2019 Austin Heart & Stroke Walk</span></h2>
+          <h2 class="text-center">Outstanding Fundraisers <span class="d-sm-none d-md-inline">-</span> <br class="d-sm-block d-md-none"/> <span class="event-name">[[E47:[[S334:fr_id]]:fr_info:1:event_title]]</span></h2>
           <div class="row">
               <div class="col-lg col-md-12 top-list">
                   <h3 class="d-flex bg-gray-700">
@@ -346,18 +347,20 @@
           <div class="container container-content">
               <div class="row d-flex flex-lg-row flex-md-column flex-sm-column flex-xsm-column">
                   <div class="about-image-box">
-                      <img src="img/GreetingPlaceholder@2x.jpg" />
+                      <img src="[[E47:[[S334:fr_id]]:fr_info:1:sponsor_3]]" alt="About the [[E47:[[S334:fr_id]]:fr_info:1:event_title]]"/>
                       <div class="bg-black-gradient">
-                          <button class="btn btn-primary">Register to Walk</button>
+                          [[?x1x2x::x[[S42:0:status]]x::
+                          <a href="SPageServer/?pagename=heartwalk_register&amp;fr_id=[[S334:fr_id]]" class="btn btn-primary">Register to Walk</a>
+                          ::]]
                           <!-- /.btn btn-primary -->
-                          <button class="btn btn-tertiary">More Details</button>
+                          <a href="TR?fr_id=[[S334:fr_id]]&pg=informational&type=fr_informational&sid=1020" class="btn btn-tertiary">More Details</a>
                           <!-- /.btn btn-tertiary -->
                       </div>
                       <!-- /.bg-black-gradient -->
                   </div>
                   <!-- /.about-image-box -->
                   <div class="about-content-area">
-                      <h2>About the <span class="text-red">2019 Austin Heart & Stroke Walk</span></h2>
+                      <h2>About the <span class="text-red">[[E47:[[S334:fr_id]]:fr_info:1:event_title]]</span></h2>
                       <p>The Heart Walk is the AHA's largest source of funding and our biggest platforms to connect with the community, celebrate heart disease & stroke survivors, and honor our volunteers and partners who do so much for our organization. Join us on October 19 and celebrate with us!</p>
                       <p>Join a team, get involved, and make a difference in our community!</p>
                       <p><strong>1 mile walk - FREE</strong></p>
@@ -374,65 +377,3 @@
       </div>
       <!-- /.bg-white -->
       <!-- END ABOUT EVENT SECTION -->
-
-      <!-- WHY WE WALK SECTION -->
-      <div class="container container-sm-content why-we-walk">
-          <div class="row">
-              <div class="col-lg-6 col-md-12">
-                  <h2><span class="text-red">Life is why</span> we walk.</h2>
-                  <p>Thanks to all our walkers, donors and volunteers who have accepted the challenge to help fight heart disease and stroke. We cannot achieve our mission without each one of you! </p>
-                  <p>By participating in the Heart Walk, you’re joining a million Heart Walk Heroes from across the nation raising funds for lifesaving science. Science that can teach us all how to live longer and be Healthy For Good.</p>
-              </div>
-              <!-- /.col-6 -->
-
-              <div class="col-lg-6 col-md-12 text-center">
-                  <img src="img/WhyWalk@2x.jpg"/>
-              </div>
-              <!-- /.col-6 -->
-          </div>
-          <!-- /.row -->
-      </div>
-      <!-- /.container -->
-      <!-- END WHY WE WALK SECTION -->
-
-      <!-- SPONSORS AND AD SECTION -->
-      <div class="bg-white">
-          <div class="container container-sm-content">
-              <div class="sponsors d-flex flex-column text-center">
-                  <h4>Thanks to Our Local Sponsors</h4>
-                  <span><img src="img/HEB.jpg" alt="HEB" width="146"/></span>
-                  <a href="">Learn More About Becoming a Sponsor</a>
-              </div>
-              <!-- /.sponsors -->
-
-              <div class="row d-flex justify-content-center">
-                  <div class="col-11 register-today text-white">
-                    <img src="img/register-icon.png" />
-                    <h2>April is National Move More Month</h2>
-                    <p>Heart Walk is the perfect way to get moving <br>and show your commitment to saving lives <br>through preventing heart disease and stroke.</p>
-                    <button class="btn btn-primary">Register Today</button>
-                  </div>
-                  <!-- /.col-8 register-today -->
-              </div>
-              <!-- /.row -->
-
-              <div class="row info-boxes">
-                  <div class="col-lg col-md-12">
-                      <h4>Warning Signs</h4>
-                      <p>Learn about the warning signs of heart <br>attack, stroke and cardiac arrest.</p>
-                      <a href="#">Learn the Warning Signs</a>
-                  </div>
-                  <!-- /.w-50 -->
-                  <div class="col-lg col-md-12">
-                      <h4>Contact Us</h4>
-                      <p>We’d love to hear from you! Send us<br> your questions or feedback.</p>
-                      <a href="">Contact Us</a>
-                  </div>
-                  <!-- /.w-50 -->
-              </div>
-              <!-- /.row -->
-          </div>
-          <!-- /.container -->
-      </div>
-      <!-- /.bg-white -->
-      <!-- END SPONSORS AND AD SECTION -->

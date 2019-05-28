@@ -40,23 +40,38 @@ div.responsive a {
   &:hover, 
   &:focus, 
   &:active {
-    color: $link-color;
+    // color: $link-color;
     // color:initial;
+    color:#C10E21;
   }
-  &.btn-primary {
-    color: $white;
-  }
-  &.btn-secondary {
-    color: $white;
-  }
-  &.btn-outline-dark {
-    color: $dark;
-  }
+  // &.btn-primary {
+  //   color: $white;
+  // }
+  // &.btn-secondary {
+  //   color: $white;
+  // }
+  // &.btn-outline-dark {
+  //   color: $dark;
+  // }
 }
 
-.button {
-  @extend .btn;
+a.btn, a.btn:visited, a.editBtn, a.editBtn:visited, input.btn, input.btnMini,      input.btnSm, input.btnMed, input.btnLg {
+  font-family: initial;
+  font-size: initial;
+  font-weight: initial;
+  text-decoration: initial;
+  font-size: initial;
+  font-weight: initial;
+  color: initial;
+  background: initial;
+  border: initial;
+  padding: initial;
+  @extend .btn-primary;
 }
+ 
+// .button {
+//   @extend .btn;
+// }
 
 
 /* ******************* */
@@ -116,9 +131,9 @@ div.registration-page-container div.section-header {
 .mobile div#find_participant li {
   width: 135px !important;
   
-  @media (min-width: $screen-sm-min) {
-    width: auto !important;
-  }
+  // @media (min-width: $screen-sm-min) {
+  //   width: auto !important;
+  // }
 }
 
 /* ************** */
