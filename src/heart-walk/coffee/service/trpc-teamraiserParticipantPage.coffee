@@ -12,6 +12,9 @@ angular.module 'trPcApp'
       getPersonalVideoUrl: (callback) ->
         LuminateRESTService.luminateExtendTeamraiserRequest 'method=getPersonalVideoUrl', true, true, callback
       
+      getCompanyPhoto: (callback) ->
+        LuminateRESTService.luminateExtendTeamraiserRequest 'method=getCompanyPhoto', true, true, callback
+
       updatePersonalPageInfo: (requestData, callback) ->
         dataString = 'method=updatePersonalPageInfo'
         dataString += '&' + requestData if requestData and requestData isnt ''

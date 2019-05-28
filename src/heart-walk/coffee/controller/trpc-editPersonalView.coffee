@@ -64,25 +64,25 @@ angular.module 'trPcControllers'
       $scope.editPagePersonalPhoto = ->
         $scope.editPagePersonalPhotoModal = $uibModal.open
           scope: $scope
-          templateUrl: APP_INFO.rootPath + 'dist/heart-walk/html/page-edit/modal/editPagePersonalPhoto.html'
+          templateUrl: APP_INFO.rootPath + 'dist/heart-walk/html/page-edit/modal/editPersonalPhoto1.html'
       $scope.closePagePersonalPhotoModal = ->
         if $scope.editPagePersonalPhotoModal
           $scope.editPagePersonalPhotoModal.close()
         $scope.setPagePersonalPhotoError()
         if not $scope.$$phase
           $scope.$apply()
-      $scope.deletePagePersonalPhoto = ($event) ->
+      $scope.deletePersonalPhoto1 = ($event) ->
         if $event
           $event.preventDefault()
-        angular.element('.js--delete-page-personal-photo-form').submit()
+        angular.element('.js--delete-personal-photo-1-form').submit()
         $scope.setPagePersonalPhotoUrl angular.element('.page_personal_photo_inner[data-defaultphoto]').attr('data-defaultphoto')
         false
-      $scope.cancelEditPagePersonalPhoto = ->
+      $scope.cancelEditPersonalPhoto1 = ->
         $scope.closePagePersonalPhotoModal()
       $scope.setPagePersonalPhotoError = (errorMessage) ->
-        if not errorMessage and $scope.updatePagePersonalPhotoError
-          delete $scope.updatePagePersonalPhotoError
-        $scope.updatePagePersonalPhotoError =
+        if not errorMessage and $scope.updatePersonalPhoto1Error
+          delete $scope.updatePersonalPhoto1Error
+        $scope.updatePersonalPhoto1Error =
           message: errorMessage
         if not $scope.$$phase
           $scope.$apply()
@@ -94,6 +94,7 @@ angular.module 'trPcControllers'
             # TODO
           success: (response) ->
             photoItems = response.getPersonalPhotosResponse?.photoItem
+            console.log response
             if photoItems
               photoItems = [photoItems] if not angular.isArray photoItems
               angular.forEach photoItems, (photoItem) ->
@@ -272,19 +273,17 @@ angular.module 'trPcControllers'
           photoType = successResponse.photoType
           photoNumber = successResponse.photoNumber
 
-          if photoType is 'personal'
-            TeamraiserParticipantPageService.getPersonalPhotos
-              error: (response) ->
-                # TODO
-              success: (response) ->
-                photoItems = response.getPersonalPhotosResponse?.photoItem
-                if photoItems
-                  photoItems = [photoItems] if not angular.isArray photoItems
-                  angular.forEach photoItems, (photoItem) ->
-                    photoUrl = photoItem.customUrl
-                    if photoItem.id is '1'
-                      $scope.setPagePersonalPhotoUrl photoUrl
-                $scope.closePagePersonalPhotoModal()
-                #$scope.closePagePersonalVideo()
+          TeamraiserParticipantPageService.getPersonalPhotos
+            error: (response) ->
+              # TODO
+            success: (response) ->
+              photoItems = response.getPersonalPhotosResponse?.photoItem
+              if photoItems
+                photoItems = [photoItems] if not angular.isArray photoItems
+                angular.forEach photoItems, (photoItem) ->
+                  photoUrl = photoItem.customUrl
+                  if photoItem.id is '1'
+                    $scope.setPagePersonalPhotoUrl photoUrl
+              $scope.closePagePersonalPhotoModal()
 
   ]

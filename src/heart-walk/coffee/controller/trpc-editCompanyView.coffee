@@ -7,13 +7,10 @@ angular.module 'trPcControllers'
     '$sce'
     '$uibModal'
     'APP_INFO'
-    'TeamraiserParticipantPageService'
-    'TeamraiserRegistrationService'
-    ($rootScope, $scope, $location, $compile, $sce, $uibModal, APP_INFO, TeamraiserParticipantPageService, TeamraiserRegistrationService) ->
+    'TeamraiserCompanyPageService'
+    ($rootScope, $scope, $location, $compile, $sce, $uibModal, APP_INFO, TeamraiserCompanyPageService) ->
 
       $scope.teamraiserAPIPath = $sce.trustAsResourceUrl $rootScope.securePath + 'CRTeamraiserAPI'
-
-      console.log 'this is the company page edit controller3'
 
       $scope.textEditorToolbar = [
         [
@@ -57,18 +54,21 @@ angular.module 'trPcControllers'
       #       if companyInformation?.companyId is $scope.companyId and companyInformation?.isCompanyCoordinator is 'true'
       #         $companyPhoto1 = angular.element '.heart-user-image-wrap--company'
 
-      $companyPhoto1 = angular.element '.page_copmany_photo_container'
+      $companyPhoto1 = angular.element '.page_company_photo_container'
 
       # make photo dynamic
       $scope.setCompanyPhoto1Url = (photoUrl) ->
         $scope.companyPhoto1Url = photoUrl
         if not $scope.$$phase
           $scope.$apply()
+
       angular.forEach $companyPhoto1, (photoContainer) ->
         $companyPhoto = angular.element(photoContainer).find('img')
         $companyPhotoSrc = $companyPhoto.attr 'src'
+        console.log $companyPhotoSrc,"src go 1"
         if $companyPhotoSrc and $companyPhotoSrc isnt ''
           $scope.setCompanyPhoto1Url $companyPhotoSrc
+          console.log $companyPhotoSrc,"not blank"
         $companyPhoto.replaceWith $compile($companyPhoto.clone().attr('ng-src', '{{companyPhoto1Url}}'))($scope)
 
       # insert photo edit button
@@ -98,32 +98,41 @@ angular.module 'trPcControllers'
         if not $scope.$$phase
           $scope.$apply()
       
+      $scope.getCompanyPhotoUrl = ->
+        console.log 'running Get Company Page Photo (3)'
+        TeamraiserCompanyPageService.getCompanyPhoto
+          error: (response) ->
+            # TODO
+          success: (response) ->
+            photoItems = response.getCompanyPhotoResponse?.photoItem
+            if photoItems
+              photoItems = [photoItems] if not angular.isArray photoItems
+              angular.forEach photoItems, (photoItem) ->
+                photoUrl = photoItem.customUrl
+                if photoItem.id is '1' and photoUrl
+                  $scope.setCompanyPhoto1Url photoUrl
+                else if photoItem.id is '1'
+                  console.log "no URL image"
+                  $scope.setCompanyPhoto1Url angular.element('.page_company_photo_inner[data-defaultphoto]').attr('data-defaultphoto')
+      $scope.getCompanyPhotoUrl()
 
       #Company Page Text
       $companyPageTextContainer = angular.element '.page_company_story_container #fr_rich_text_container'
 
       $scope.getCompanyPageRichText = ->
-        console.log 'runnning2'
-        TeamraiserParticipantPageService.getPersonalPageInfo
+        TeamraiserCompanyPageService.getCompanyPageInfo
           error: (response) ->
             # TODO
           success: (response) ->
-            console.log response.getPersonalPageResponse.personalPage?.richText
-            $scope.pagePersonalContent  = response.getPersonalPageResponse.personalPage?.richText
-            $scope.ng_pagePersonalContent  = response.getPersonalPageResponse.personalPage?.richText
-      # TEMP TEMP TEMP TEMP TEMP TEMP
-      #$scope.getPCompanyPageRichText()
+            $scope.companyContent = response.getCompanyPageResponse.companyPage?.richText
+            $scope.ng_companyContent = response.getCompanyPageResponse.companyPage?.richText
+      $scope.getCompanyPageRichText()
 
-      # make content dynamic
-      # $scope.companyContent = $companyPageTextContainer.html()
-      # $scope.ng_companyContent = $companyPageTextContainer.html()
-      # $companyPageTextContainer.html $compile('<div ng-class="{\'hidden\': companyContentOpen}" ng-bind-html="companyContent"></div>')($scope)
 
       # insert content edit button
       $scope.editCompanyContent = ->
         $scope.prevCompanyContent = $scope.companyContent
         $scope.companyContentOpen = true
-      #$companyPageTextContainer.prepend $compile('<div class="form-group"><button type="button" class="btn btn-primary btn-raised" ng-class="{\'hidden\': companyContentOpen}" ng-click="editCompanyContent()" id="edit_company_story"><span class="glyphicon glyphicon-pencil"></span> Edit Story</button></div>')($scope)
 
       # insert content form
       closeCompanyContent = ->
@@ -168,25 +177,24 @@ angular.module 'trPcControllers'
           errorCode = errorResponse.code
           errorMessage = errorResponse.message
 
-          $scope.setPagePersonalPhotoError errorMessage
+          $scope.setCompanyPhoto1Error errorMessage
 
         uploadPhotoSuccess: (response) ->
           successResponse = response.successResponse
           photoType = successResponse.photoType
           photoNumber = successResponse.photoNumber
 
-          if photoType is 'company'
-            TeamraiserCompanyPageService.getCompanyPhoto
-              error: (response) ->
-                # TODO
-              success: (response) ->
-                photoItems = response.getCompanyPhotoResponse?.photoItem
-                if photoItems
-                  photoItems = [photoItems] if not angular.isArray photoItems
-                  angular.forEach photoItems, (photoItem) ->
-                    photoUrl = photoItem.customUrl
-                    if photoItem.id is '1'
-                      $scope.setCompanyPhoto1Url photoUrl
-                $scope.closeCompanyPhoto1Modal()
+          TeamraiserCompanyPageService.getCompanyPhoto
+            error: (response) ->
+              # TODO
+            success: (response) ->
+              photoItems = response.getCompanyPhotoResponse?.photoItem
+              if photoItems
+                photoItems = [photoItems] if not angular.isArray photoItems
+                angular.forEach photoItems, (photoItem) ->
+                  photoUrl = photoItem.customUrl
+                  if photoItem.id is '1'
+                    $scope.setCompanyPhoto1Url photoUrl
+              $scope.closeCompanyPhoto1Modal()
 
   ]
