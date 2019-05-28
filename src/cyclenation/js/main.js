@@ -1526,7 +1526,7 @@ cd.getEventsByDistance = function (zipCode) {
       $('form[name=FriendraiserFind]').attr('hidden', true);
 
       if (regType === 'startTeam') {
-        if (eventType2 === 'Road' || eventType2 === 'StationaryV2') {
+        if (eventType2 === 'Road' || eventType2 === 'Executive Challenge' || eventType2 === 'StationaryV2') {
           $('form[name=FriendraiserFind]').removeAttr('hidden');
           $('#team_find_section_body, #team_find_section_header').show();
         }
@@ -1925,7 +1925,7 @@ cd.getEventsByDistance = function (zipCode) {
         $('form[name=FriendraiserFind]').removeAttr('hidden');
       }
 
-      if (eventType2 === 'Road' || eventType2 === 'StationaryV2') {
+      if (eventType2 === 'Road' || eventType2 === 'Executive Challenge' || eventType2 === 'StationaryV2') {
         $('#team_find_page > form').parsley(teamFindParsleyConfig);
       }
 
