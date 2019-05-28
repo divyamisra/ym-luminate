@@ -2013,7 +2013,7 @@ cd.getEventsByDistance = function (zipCode) {
           
           // Remove ptype prefixes from public-facing reg options
           $(this).find('.part-type-name').text(newPtypeName);
-        }
+        } 
       });
 
 
@@ -2071,7 +2071,7 @@ cd.getEventsByDistance = function (zipCode) {
       }
       $('#fr_goal').val(minFundraisingGoal);
       $('#part_type_fundraising_goal_container .form-content').append('<p class="small">All riders commit to fundraising <span class="min-fundraising-goal">' + minFundraisingGoal + '</span>. You can increase your fundraising goal, but the amount shown above is your required fundraising minimum.</p>');
-      
+
       if (eventType2 === 'Stationary' || eventType2 === 'StationaryV2') {
                var numPtypesShown = $('.part-type-container:visible').length;
         console.log('numPtypesShown: ', + numPtypesShown);
@@ -2107,8 +2107,10 @@ cd.getEventsByDistance = function (zipCode) {
       } else {
         $('#sel_type_container').text('How would you like to participate?');
         console.log('road event');
+         // Hide and disable participation types that don't apply to this particular registration path
         if (regType === 'virtual') {
-          $('.part-type-name:contains("Virtual")').closest('.part-type-container').addClass('d-inline-block col-md-6');
+          // $('.part-type-name:contains("Virtual")').closest('.part-type-container').addClass('d-inline-block col-md-6');
+          $('.part-type-name').closest('.part-type-container').addClass('d-inline-block col-md-6');
         } else {
           console.log('not virtual');
           $('.part-type-name').closest('.part-type-container').addClass('d-inline-block col-md-6');
