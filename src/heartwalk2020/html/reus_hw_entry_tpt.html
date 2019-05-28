@@ -16,7 +16,7 @@
               </div>
               <div class="row info-columns">
                   <div class="col-lg col-md col-sm-12 pl-0">
-                      <h3>Date & Time <a href="javascript:void(0)" class="event-info-expand d-none d-sm-block d-md-none float-right"><i class="fas fa-plus"></i></a></h3>
+                      <h3>Date & Time <a href="javascript:void(0)" class="event-info-expand d-none d-sm-block d-md-none float-right"><i class="fas fa-plus" aria-hidden="true"></i><span class="sr-only">Toggle event data and time info</span></a></h3>
                       <div class="event-info-collapse d-sm-none d-xsm-none d-md-block">
                           <p>
                               [[E47:[[S334:fr_id]]:fr_info:1:event_date]]<br>
@@ -24,7 +24,7 @@
                               Start Time: [[E47:[[S334:fr_id]]:fr_info:1:sponsor_2]]
                           </p>
                           <div>
-                              <i class="fas fa-info-circle"></i>
+                              <i class="fas fa-info-circle" aria-hidden="true"></i>
                               <a href="TR?fr_id=[[S334:fr_id]]&pg=informational&type=fr_informational&sid=1071">More Details</a>
                           </div>
                       </div>
@@ -32,27 +32,27 @@
                   </div>
                   <!-- /.col -->
                   <div class="col-lg col-md col-sm-12 pl-md-3 pl-sm-0">
-                      <h3>Location <a href="javascript:void(0)" class="event-info-expand d-none d-sm-block d-md-none float-right"><i class="fas fa-plus"></i></a></h3>
+                      <h3>Location <a href="javascript:void(0)" class="event-info-expand d-none d-sm-block d-md-none float-right"><i class="fas fa-plus" aria-hidden="true"></i><span class="sr-only">Toggle Location Info</span></a></h3>
                       <div class="event-info-collapse d-sm-none d-xsm-none d-md-block">
                           <p>
                               [[E130:"[[T9:[[E47:[[S334:fr_id]]:fr_info:1:event_location]]]]" " | "  "<br>" replaceall]]
                           </p>
                           <div>
-                              <i class="fas fa-map-marker-alt"></i>
+                              <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
                               <a href="[[E47:[[S334:fr_id]]:fr_info:1:map_link]]" target="_blank">Get Directions</a>
                           </div>
                       </div>
                   </div>
                   <!-- /.col -->
                   <div class="col-lg col-md col-sm-12 pl-md-3 pl-sm-0">
-                      <h3>Contact <a href="javascript:void(0)" class="event-info-expand d-none d-sm-block d-md-none float-right"><i class="fas fa-plus"></i></a></h3>
+                      <h3>Contact <a href="javascript:void(0)" class="event-info-expand d-none d-sm-block d-md-none float-right"><i class="fas fa-plus" aria-hidden="true"></i><span class="sr-only">Toggle Contact Info</span></a></h3>
                       <div class="event-info-collapse d-sm-none d-xsm-none d-md-block">
                           <p>
-                              [[E47:[[S334:fr_id]]:fr_info:1:coordinator_name]]
+                              [[E47:[[S334:fr_id]]:fr_info:1:coordinator_name]]<br>
                               [[E47:[[S334:fr_id]]:fr_info:1:coordinator_phone]]
                           </p>
                           <div>
-                              <i class="fas fa-envelope"></i>
+                              <i class="fas fa-envelope" aria-hidden="true"></i>
                               <a href="mailto:[[E47:[[S334:fr_id]]:fr_info:1:coordinator_email]]">Email Us</a>
                           </div>
                       </div>
@@ -159,15 +159,15 @@
                       </li>
                   </ul>
                   <div class="top-list-footer bg-gray-700 d-flex justify-content-center">
+                    <form class="js--team-search-form">
                       <div class="input-group mx-5">
-                        <form class="js--team-search-form">
                           <label for="teamName" class="sr-only">Search by team name</label>
                           <input id="teamName" type="text" class="form-control" placeholder="Search by team name" aria-label="Search by team name">
                           <div class="input-group-append">
-                              <button class="btn btn-primary btn-outline-secondary" type="submit"><i class="fas fa-search"></i><span class="sr-only">Submit Team Search</span></button>
+                              <button class="btn btn-primary btn-outline-secondary" type="submit"><i class="fas fa-search" aria-hidden="true"></i><span class="sr-only">Submit Team Search</span></button>
                           </div>
-                          </form>
                       </div>
+                    </form>
                   </div>
                   <!-- /.top-list-footer -->
               </div>
@@ -199,7 +199,7 @@
                           <label for="walkerLastName" class="sr-only">Walker Last Name</label>
                           <input id="walkerLastName" type="text" placeholder="Search by last name" class="form-control">
                           <div class="input-group-append">
-                              <button class="btn btn-primary btn-outline-secondary" type="submit"><i class="fas fa-search"></i><span class="sr-only">Submit Walker Search</span></button>
+                              <button class="btn btn-primary btn-outline-secondary" type="submit"><i class="fas fa-search" aria-hidden="true"></i><span class="sr-only">Submit Walker Search</span></button>
                           </div>
                       </div>
                     </form>
