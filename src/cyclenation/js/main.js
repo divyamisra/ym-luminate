@@ -2065,6 +2065,13 @@ cd.getEventsByDistance = function (zipCode) {
         }
       }
 
+      var minFundraisingGoal = ($('input[name="fr_part_radio"]:checked').parent().find('.goal').val() ? $('input[name="fr_part_radio"]:checked').parent().find('.goal').val().replace('.00', '') : null);
+      if(!minFundraisingGoal || minFundraisingGoal === "$0"){
+        minFundraisingGoal = $('#fr_goal').val().replace('.00', '');
+      }
+      $('#fr_goal').val(minFundraisingGoal);
+      $('#part_type_fundraising_goal_container .form-content').append('<p class="small">All riders commit to fundraising <span class="min-fundraising-goal">' + minFundraisingGoal + '</span>. You can increase your fundraising goal, but the amount shown above is your required fundraising minimum.</p>');
+      
       if (eventType2 === 'Stationary' || eventType2 === 'StationaryV2') {
                var numPtypesShown = $('.part-type-container:visible').length;
         console.log('numPtypesShown: ', + numPtypesShown);
@@ -2086,8 +2093,14 @@ cd.getEventsByDistance = function (zipCode) {
         });
 
         // add accessibility events for keyboard navigation
-        $('input[name=fr_part_radio]').on('click focus', function (e) {
+        $('input[name="fr_part_radio"]').on('click focus', function (e) {
           $('.part-type-container').removeClass('selected');
+          var selectedPtypeMin = $(this).parent().find('.goal').val().replace('.00', '');
+          if(selectedPtypeMin === "$0"){
+            selectedPtypeMin = minFundraisingGoal;
+          }
+          $('.min-fundraising-goal').text(selectedPtypeMin);
+          $('#fr_goal').val(selectedPtypeMin);
           $(this).closest('.part-type-container').addClass('selected');
         });
 
@@ -2124,6 +2137,12 @@ cd.getEventsByDistance = function (zipCode) {
           $('.part-type-container').removeClass('selected');
           $(this).addClass('selected');
           $(this).find('input[type="radio"]').prop('checked', true);
+          var ptypeMin = $(this).parent().find('.goal').val().replace('.00', '');
+          if(ptypeMin === "$0"){
+            ptypeMin = minFundraisingGoal;
+          }
+          $('.min-fundraising-goal').text(ptypeMin);
+          $('#fr_goal').val(ptypeMin);
           $('#next_step').removeClass('disabled');
           $('#dspPledge').modal({
             backdrop: 'static',
@@ -2136,6 +2155,12 @@ cd.getEventsByDistance = function (zipCode) {
           if(key == 13) {
             $('.part-type-container').removeClass('selected');
             $(this).addClass('selected');
+            var ptypeMin = $(this).parent().find('.goal').val().replace('.00', '');
+            if(ptypeMin === "$0"){
+              ptypeMin = minFundraisingGoal;
+            }
+            $('.min-fundraising-goal').text(ptypeMin);
+            $('#fr_goal').val(ptypeMin);
             $(this).find('input[type="radio"]').prop('checked', true);
             $('#next_step').removeClass('disabled');
             $('#dspPledge').modal({
@@ -2158,10 +2183,7 @@ cd.getEventsByDistance = function (zipCode) {
 
       $('#fund_goal_container').after('How much will you fundraise for CycleNation?');
 
-      var minFundraisingGoal = $('#fr_goal').val().replace('.00', '');
-      $('#part_type_fundraising_goal_container .form-content').append('<p class="small">All riders commit to fundraising ' + minFundraisingGoal + '. You can increase your fundraising goal, but the amount shown above is your required fundraising minimum.</p>');
-      
-
+ 
 
       $('.donation-level-amount-text').closest('.donation-level-row-container').addClass('don-level-btn');
       $('.donation-level-container .input-container').parent().addClass('other-amount-row-container');
