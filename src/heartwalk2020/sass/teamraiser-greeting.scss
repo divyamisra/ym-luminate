@@ -1,6 +1,6 @@
 .pg_entry {
   main {
-    background-image: url("../../img/HeroImage@2x.jpg");
+    background-image: url("https://www2.heart.org/images/content/pagebuilder/hw_hero_desktop.jpg");
     background-size: 100%;
     background-repeat: no-repeat;
     background-color: $gray-400;
@@ -8,7 +8,6 @@
 
   /* Event information box at top of page */
   .event-info {
-      @include box-shadow(0px, 15px, 30px, rgba(0,0,0,0.2));
       padding: 48px 72px 67px;
       margin: 50px 0 0 0;
       width: 674px;
@@ -66,6 +65,7 @@
 
       .fundraising-amounts {
         margin-top: 30px;
+        margin-bottom: 0px;
         border-top: solid 1px $gray-200;
 
         span {
@@ -112,13 +112,12 @@
 
       li {
         border-bottom: solid 2px $gray-700;
-      }
-
-      a {
-        font-size: 1rem;
-        padding: 26px 0 23px 47px;
-        line-height: 1.6;
-        display: block;
+        a {
+          font-size: 1rem;
+          padding: 26px 0 23px 47px;
+          line-height: 1.6;
+          display: block;
+        }
       }
 
       .raised {
@@ -206,10 +205,6 @@
   }
 
   .register-today {
-    background-image: url("../../img/register-bg.jpg");
-    padding: 55px 134px 69px;
-    margin: 80px 0 66px;
-
     h2 {
       margin: 30px 0 18px;
     }

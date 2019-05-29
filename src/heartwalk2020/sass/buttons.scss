@@ -1,0 +1,46 @@
+a.btn {
+  text-decoration: none;
+}
+
+.btn {
+  @include border-radius(60px, 60px, 60px, 60px);
+  color: $white;
+  border: none;
+}
+
+.btn-primary {
+  background-color: $red;
+
+  &:hover {
+    background-color: $red-deep;
+  }
+}
+
+.btn-secondary {
+  background-color: $white;
+  border: solid 2px $red;
+  color: $red;
+}
+
+.btn-tertiary {
+  border: solid 2px $white;
+}
+
+.input-group-append .btn {
+  @include border-radius(4px, 4px, 0, 0);
+}
+
+.donation-amount-btn {
+  border: solid 2px $black;
+  color: $black;
+  background-color: $white;
+  padding: 11px 0;
+  width: 99px;
+  float: left;
+  margin: 0 15px 0 0;
+
+  &:hover, &.active {
+    background-color: $black;
+    color: $white;
+  }
+}

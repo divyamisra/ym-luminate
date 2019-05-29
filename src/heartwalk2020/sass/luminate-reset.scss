@@ -30,31 +30,6 @@ div.responsive div.ErrorMessage.page-error>span.field-error-indicator {
 /* ***** */
 /* links */
 /* ***** */
-
-a, 
-#login-div-content a, 
-div.responsive a {
-  &, 
-  &:link, 
-  &:visited, 
-  &:hover, 
-  &:focus, 
-  &:active {
-    // color: $link-color;
-    // color:initial;
-    color:#C10E21;
-  }
-  // &.btn-primary {
-  //   color: $white;
-  // }
-  // &.btn-secondary {
-  //   color: $white;
-  // }
-  // &.btn-outline-dark {
-  //   color: $dark;
-  // }
-}
-
 a.btn, a.btn:visited, a.editBtn, a.editBtn:visited, input.btn, input.btnMini,      input.btnSm, input.btnMed, input.btnLg {
   font-family: initial;
   font-size: initial;
@@ -66,8 +41,38 @@ a.btn, a.btn:visited, a.editBtn, a.editBtn:visited, input.btn, input.btnMini,   
   background: initial;
   border: initial;
   padding: initial;
-  @extend .btn-primary;
 }
+
+a, 
+#login-div-content a, 
+div.responsive a {
+  &:link, 
+  &:visited, 
+  &:hover, 
+  &:focus, 
+  &:active {
+    // color: $link-color;
+    // color:initial;
+    color:#C10E21;
+  }
+  &.btn.btn-primary {
+    color: $white;
+    @extend .btn-primary;
+  }
+  &.btn.btn-secondary {
+    color: $white;
+    @extend .btn-secondary;
+  }
+  &.btn.btn-tertiary {
+    color: $white;
+    @extend .btn-tertiary;
+  }
+  &.btn.btn-outline-dark {
+    color: $dark;
+  }
+}
+
+
  
 // .button {
 //   @extend .btn;
