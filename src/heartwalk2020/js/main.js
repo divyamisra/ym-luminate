@@ -8,6 +8,45 @@
     /*************/
     window.cd = {};
 
+    /*******************/
+    /* WRAPPER SCRIPTS */
+    /*******************/
+
+    var screenWidth = $(window).innerWidth();
+
+    // Mobile nav toggle
+    $('#mobile-toggle').click(function() {
+      if ($('#navbar-container').hasClass('is-search')) {
+        $('#navbar-container').removeClass('is-search');
+        $('.mobile-search-trigger').removeClass('active');
+        } else {
+        $('#navbar-container').slideToggle('fast');
+        }
+        $('.navbar-toggler-icon').toggleClass('fa-align-justify').toggleClass('fa-times');
+    });
+
+    // Mobile search toggle
+    $('.mobile-search-trigger').click(function() {
+      if ($('.navbar-toggler-icon').hasClass('fa-times')) {
+        $('#navbar-container').addClass('is-search');
+        $('.mobile-search-trigger').addClass('active');
+        $('.navbar-toggler-icon').toggleClass('fa-align-justify').toggleClass('fa-times');
+      } else {
+        $('.mobile-search-trigger').toggleClass('active');
+        if ($('#navbar-container').hasClass('is-search')) {
+          // Wait to toggle is-search class until the container
+          // is fully closed so that the user doesn't see the
+          // gray navigation appear as it closes
+          $('#navbar-container').slideToggle('fast', function() {
+            $('#navbar-container').toggleClass('is-search');
+           });
+        } else {
+          $('#navbar-container').toggleClass('is-search');
+          $('#navbar-container').slideToggle('fast');
+          }
+      }
+    });
+
 
     /******************/
     /* SEARCH SCRIPTS */
@@ -45,8 +84,6 @@
               var participants = luminateExtend.utils.ensureArray(response.getParticipantsResponse.participant);
               var totalParticipants = parseInt(response.getParticipantsResponse.totalNumberResults);
 
-              $('.js__num-participant-results').text((totalParticipants === 1 ? '1 Result' : totalParticipants + ' Results'));
-
               $(participants).each(function (i, participant) {
 
                 $('.js__participants-results-rows').append('<tr' + (i > 10 ? ' class="d-none"' : '') + '><td><a href="' + participant.personalPageUrl + '">' +
@@ -54,10 +91,8 @@
                   '</a></td><td>' +
                   ((participant.teamName !== null && participant.teamName !== undefined) ? '<a href="' + participant.teamPageUrl + '">' + participant.teamName + '</a>' : '') + '</td><td><a href="TR/?fr_id=' + participant.eventId + '&pg=entry">' +
                   participant.eventName + '</a></td><td class="col-cta"><a href="' + participant.donationUrl + '" aria-label="Donate to ' + participant.name.first + ' ' + participant.name.last + '" class="btn-rounded btn-primary btn-block">Donate</a></td></tr>');
-
               });
 
-              $('.js__participant-results-container').removeAttr('hidden');
             }
           },
           error: function (response) {
@@ -98,11 +133,7 @@
                     ((team.companyName !== null && team.companyName !== undefined) ? '<a href="TR?company_id=' + team.companyId + '&fr_id=' + team.EventId + '&pg=company">' + team.companyName + '</a>' : '') +
                     '</td><td><a href="TR/?fr_id=' + team.EventId + '&pg=entry"' + team.eventName + '</a></td><td class="col-cta"><a href="' + team.teamDonateURL + '" class="btn-rounded btn-primary btn-block" title="Donate to ' + team.name + '" aria-label="Donate to ' + team.name + '">Donate</a></td></tr>');
               });
-
-              var totalTeams = parseInt(response.getTeamSearchByInfoResponse.totalNumberResults);
-
-              $('.js__num-team-results').text((totalTeams === 1 ? '1 Result' : totalTeams + ' Results'));
-              $('.js__team-results-container').removeAttr('hidden');
+         
             }
           },
           error: function (response) {
@@ -136,7 +167,7 @@
               var companies = luminateExtend.utils.ensureArray(response.getCompaniesResponse.company);
               var totalCompanies = parseInt(response.getCompaniesResponse.totalNumberResults);
 
-              $('.js__num-company-results').text((totalCompanies === 1 ? '1 Result' : totalCompanies + ' Results'));
+              $('.js--num-companies').text(totalCompanies);
 
               $(companies).each(function (i, company) {
                 $('.js__company-results-rows').append('<tr' + (i > 10 ? ' class="d-none"' : '') + '><td><a href="' + company.companyURL + '">' +
@@ -314,51 +345,6 @@
           });
         });
       };
-
-      // Event info section mobile expand/collapse functionality
-      $('.event-info-expand').click(function() {
-        $(this).parent().next('.event-info-collapse').toggleClass('d-sm-none');
-        var icon = $(this).children('i');
-
-        if ($(icon).hasClass('fa-plus')) {
-            $(icon).removeClass('fa-plus').addClass('fa-minus');
-        } else {
-            $(icon).removeClass('fa-minus').addClass('fa-plus');
-        }
-      });
-
-      // Mobile nav toggle
-      $('#mobile-toggle').click(function() {
-          if ($('#navbar-container').hasClass('is-search')) {
-              $('#navbar-container').removeClass('is-search');
-              $('.mobile-search-trigger').removeClass('active');
-          } else {
-              $('#navbar-container').slideToggle('fast');
-          }
-          $('.navbar-toggler-icon').toggleClass('fa-align-justify').toggleClass('fa-times');
-      });
-
-      // Mobile search toggle
-      $('.mobile-search-trigger').click(function() {
-          if ($('.navbar-toggler-icon').hasClass('fa-times')) {
-              $('#navbar-container').addClass('is-search');
-              $('.mobile-search-trigger').addClass('active');
-              $('.navbar-toggler-icon').toggleClass('fa-align-justify').toggleClass('fa-times');
-          } else {
-              $('.mobile-search-trigger').toggleClass('active');
-              if ($('#navbar-container').hasClass('is-search')) {
-                  // Wait to toggle is-search class until the container
-                  // is fully closed so that the user doesn't see the
-                  // gray navigation appear as it closes
-                  $('#navbar-container').slideToggle('fast', function() {
-                      $('#navbar-container').toggleClass('is-search');
-                  });
-              } else {
-                  $('#navbar-container').toggleClass('is-search');
-                  $('#navbar-container').slideToggle('fast');
-              }
-          }
-      });
     }
 
     /******************/
@@ -383,10 +369,8 @@
                 var participantId = this.consId;
                 var participantPage = this.personalPageUrl;
                 var isCaptain = this.aTeamCaptain;
-                var topParticipantHtml = '<div class="top-list-entry row pb-2"><div class="names-amounts col-10 pl-0"><a class="participant-name" href="' + participantPage + '">' + participantName + '</a><span class="amount-raised">$' + participantRaisedFormmatted + '</span></div></div>';
-
-                $('.js__top-participants-list').append(topParticipantHtml);
-
+                var topWalkerHtml = '<li><div class="d-flex"><div class="flex-grow-1"><a href="' + participantPage + '">' + participantName + '</a></div><div class="raised">Raised<br><strong>$' + participantRaisedFormmatted + '</strong></div></div></li>';
+                $('.js--walker-top-list ul').append(topWalkerHtml);
               });
             }
           },
@@ -414,9 +398,9 @@
                 var teamRaisedFormmatted = teamRaised.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
                 var teamId = this.id;
 
-                var topTeamRow = '<div class="top-list-entry row pb-2"><div class="names-amounts col-10 pl-0"> <a class="participant-name" href="TR/?team_id=' + teamId + '&amp;pg=team&amp;fr_id=' + evID + '">' + teamName + '</a> <span class="amount-raised">$' + teamRaisedFormmatted + '</span> </div></div>';
+                var topTeamRow = '<li><div class="d-flex"><div class="flex-grow-1"><a href="TR/?team_id=' + teamId + '&amp;pg=team&amp;fr_id=' + evID + '">' + teamName + '</a></div><div class="raised">Raised<br><strong>$' + teamRaisedFormmatted + '</strong></div></div></li>';
 
-                $('.js__top-teams-list').append(topTeamRow);
+                $('.js--team-top-list ul').append(topTeamRow);
               });
             }
           },
@@ -445,8 +429,9 @@
                 var companyName = this.companyName;
                 var companyRaised = (parseInt(this.amountRaised) * 0.01);
                 var companyRaisedFormmatted = companyRaised.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
-                var topCompanyHtml = '<div class="top-list-entry row pb-2"><div class="names-amounts col-10 pl-0"> <a class="participant-name" href="TR?company_id=' + this.companyId + '&fr_id=' + evID + '&pg=company">' + companyName + '</a> <span class="amount-raised">$' + companyRaisedFormmatted + '</span> </div></div>';
-                $('.js__top-companies-list').append(topCompanyHtml);
+                var topCompanyHtml = '<li><div class="d-flex"><div class="flex-grow-1"><a href="TR?company_id=' + this.companyId + '&fr_id=' + evID + '&pg=company">' + companyName + '</a></div><div class="raised">Raised<br><strong>$' + companyRaisedFormmatted + '</strong></div></div></li>';
+
+                $('.js--company-top-list ul').append(topCompanyHtml);
               });
             }
           },
@@ -460,6 +445,26 @@
 
     if ($('body').is('.pg_entry')) {
       // Greeting Page
+        // populate greeting page content
+        $('.js--greeting-text').html($('#fr_html_container').html());
+
+        // Event info section mobile expand/collapse functionality
+        $('.event-info-expand').click(function() {
+            $(this).parent().next('.event-info-collapse').toggleClass('d-sm-none');
+            var icon = $(this).children('i');
+
+            if ($(icon).hasClass('fa-plus')) {
+                $(icon).removeClass('fa-plus').addClass('fa-minus');
+            } else {
+                $(icon).removeClass('fa-minus').addClass('fa-plus');
+            }
+        });
+
+        // Update placeholder text in mobile for top walker search
+        if(screenWidth <= 480) {
+            $('#top-walker-first-name').attr('placeholder', 'First Name');
+            $('#top-walker-last-name').attr('placeholder', 'Last Name');
+        }
 
         // Launch thermometer
         var progress = $('#progress-amount').text();
