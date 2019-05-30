@@ -2,9 +2,12 @@ angular.module 'ahaLuminateControllers'
   .controller 'RegistrationUtypeCtrl', [
     '$rootScope'
     '$scope'
-    'TeamraiserCompanyService'
-    ($rootScope, $scope, TeamraiserCompanyService) ->
+    'TeamraiserCompanyService',
+    'SchoolLookupService'
+    ($rootScope, $scope, TeamraiserCompanyService, SchoolLookupService) ->
       $rootScope.companyName = ''
+      $scope.schoolCity = ''
+      $scope.schoolState = ''
       regCompanyId = luminateExtend.global.regCompanyId
       setCompanyName = (companyName) ->
         $rootScope.companyName = companyName
@@ -38,4 +41,14 @@ angular.module 'ahaLuminateControllers'
       $scope.submitForgotLogin = ->
         angular.element('.js--default-utype-send-username-form').submit()
         false
+
+      SchoolLookupService.getSchoolData()
+        .then (response) ->
+          schoolDataRows = response.data.getSchoolSearchDataResponse.schoolData
+          angular.forEach schoolDataRows, (schoolDataRow, schoolDataRowIndex) ->
+            if schoolDataRowIndex > 0
+              if schoolDataRow.COMPANY_ID = regCompanyId
+                $scope.schoolCity = schoolDataRow.SCHOOL_CITY
+                $scope.schoolState = schoolDataRow.SCHOOL_STATE
+                return
   ]
