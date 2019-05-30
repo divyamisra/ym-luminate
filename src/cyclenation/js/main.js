@@ -151,11 +151,18 @@
 
               $(participants).each(function (i, participant) {
 
-                $('.js__participants-results-rows').append('<tr' + (i > 10 ? ' class="d-none"' : '') + '><td><a href="' + participant.personalPageUrl + '">' +
+                $('.js__participants-results-rows').append('<tr' + (i > 10 ? ' class="d-none"' : '') + '><td><a href="' + participant.personalPageUrl + '" aria-label="Visit ' +
+                participant.name.first + ' ' + participant.name.last +
+                '\'s ' +
+                participant.eventName + ' personal page">' +
                 participant.name.first + ' ' + participant.name.last +
                 '</a></td><td>' +
-                ((participant.teamName !== null && participant.teamName !== undefined) ? '<a href="' + participant.teamPageUrl + '">' + participant.teamName + '</a>': '') + '</td><td><a href="TR/?fr_id=' + participant.eventId + '&pg=entry">' +
-                participant.eventName + '</a></td><td class="col-cta"><a href="' + participant.donationUrl + '" aria-label="Donate to ' + participant.name.first + ' ' + participant.name.last + '" class="btn-rounded btn-primary btn-block">Donate</a></td></tr>');
+                ((participant.teamName !== null && participant.teamName !== undefined) ? '<a href="' + participant.teamPageUrl + '" aria-label="Visit ' +
+                participant.name.first + ' ' + participant.name.last +
+                '\'s ' +
+                participant.eventName + '\'s ' + participant.teamName + ' team page">' + participant.teamName + '</a>': '') + '</td><td><a href="TR/?fr_id=' + participant.eventId + '&pg=entry">' +
+                participant.eventName + '</a></td><td class="col-cta"><a href="' + participant.donationUrl + '" aria-label="Donate to ' + participant.name.first + ' ' + participant.name.last + '\'s ' +
+                participant.eventName + ' fundraiser" class="btn-rounded btn-primary btn-block">Donate</a></td></tr>');
 
               });
               if(totalParticipants > 10) {
@@ -232,10 +239,11 @@
 
                 } else {
                   $('.js__team-results-rows')
-                  .append('<tr' + (i > 10 ? ' class="d-none"' : '') + '><td><a href="' + team.teamPageURL + '">' +
-                  team.name + '</a></td><td><a href="TR/?px=' + team.captainConsId + '&pg=personal&fr_id=' + team.EventId + '">' + team.captainFirstName + ' ' + team.captainLastName + '</a></td><td>' +
+                  .append('<tr' + (i > 10 ? ' class="d-none"' : '') + '><td><a href="' + team.teamPageURL + '" aria-label="Visit ' +
+                  team.name + '\s team page for ' + team.eventName + '">' +
+                  team.name + '</a></td><td><a href="TR/?px=' + team.captainConsId + '&pg=personal&fr_id=' + team.EventId + '" aria-label="Visit team captain, ' + team.captainFirstName + ' ' + team.captainLastName + '\s personal page for ' + team.eventName + '">' + team.captainFirstName + ' ' + team.captainLastName + '</a></td><td>' +
                   ((team.companyName !== null && team.companyName !== undefined) ? '<a href="TR?company_id=' + team.companyId + '&fr_id=' + team.EventId + '&pg=company">' + team.companyName + '</a>': '') +
-                  '</td><td><a href="TR/?fr_id=' + team.EventId + '&pg=entry"' + team.eventName + '</a></td><td class="col-cta"><a href="' + team.teamDonateURL + '" class="btn-rounded btn-primary btn-block" title="Donate to ' + team.name + '" aria-label="Donate to ' + team.name + '">Donate</a></td></tr>');
+                  '</td><td><a href="TR/?fr_id=' + team.EventId + '&pg=entry"' + team.eventName + '</a></td><td class="col-cta"><a href="' + team.teamDonateURL + '" class="btn-rounded btn-primary btn-block" title="Donate to ' + team.name + '\'s ' + team.eventName + ' fundraiser" aria-label="Donate to ' + team.name + '\'s ' + team.eventName + ' fundraiser">Donate</a></td></tr>');
                 }
               });
 
