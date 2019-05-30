@@ -107,6 +107,7 @@
       -ms-flex: 0 0 25%;
       flex: 0 0 25%;
       max-width: 25%;
+      display:block;
 
       @include media-breakpoint-down(lg) {
         -webkit-flex: 0 0 15%;
@@ -242,17 +243,6 @@
             fill: $white;
           }
         }
-
-        .fundraiserSearchLink {
-          a {
-            text-decoration: underline;
-  
-            i, 
-            .svg-inline--fa.fa-angle-right {
-              margin-left: 5px;
-            }
-          }
-        }
       }
 
       @include media-breakpoint-down(md) {
@@ -386,14 +376,3 @@
 .event-search-results-container {
   background-color:#e2e5e9;
 }
-.app_id_23 {
-  .section-national-sponsors {
-    .national-sponsor {
-      img {
-        width: 40%;
-      }
-    }
-  }
-}
-
-
