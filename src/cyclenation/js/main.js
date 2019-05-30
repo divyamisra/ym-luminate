@@ -1974,6 +1974,7 @@ cd.getEventsByDistance = function (zipCode) {
 
       if($('.part-type-container').length === 1){
         $('.part-type-decoration-messages > label').attr('tabindex', '0');
+        $('input[name="fr_part_radio"]').attr('type', 'radio');
       }
 
       $(ptypeBlocks).each(function () {
@@ -2296,12 +2297,12 @@ cd.getEventsByDistance = function (zipCode) {
         $('#contact_info_section_one .form-content').addClass('required').prepend('<span class="field-required"></span>');
         $('.cons-address-street-full-container .form-content').eq(1).removeClass('required').find('.field-required').remove();
         $('#cons_info_component_contact_info_section').show();
-      } else if (regType === 'individual') {
+      } else if (regType === 'individual' || regType === 'virtual') {
         $('#cons_info_dob').show();
         $('#contact_info_section_one .form-content').addClass('required').prepend('<span class="field-required"></span>');
         $('.cons-address-street-full-container .form-content').eq(1).removeClass('required').find('.field-required').remove();
         $('#cons_info_component_contact_info_section').show();
-      }else if (regType === 'joinTeam') {
+      } else if (regType === 'joinTeam') {
         var pFirstName = $('body').data('first-name') ? $('body').data('first-name') : null;
         var pLastName = $('body').data('last-name') ? $('body').data('last-name') : null;
         var pEmail = $('body').data('email') ? $('body').data('email') : null;
