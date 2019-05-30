@@ -90,18 +90,24 @@
     }
 
     .form-group.select:after {
-      content: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="32.5px" height="21.5px"><path fill-rule="evenodd"  stroke="rgb(255, 255, 255)" stroke-width="3px" stroke-linecap="butt" stroke-linejoin="miter" fill="none" d="M29.367,3.793 L15.500,17.661 L1.633,3.793 "/></svg>');
+      // content: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="32.5px" height="21.5px"><path fill-rule="evenodd"  stroke="rgb(255, 255, 255)" stroke-width="3px" stroke-linecap="butt" stroke-linejoin="miter" fill="none" d="M29.367,3.793 L15.500,17.661 L1.633,3.793 "/></svg>');
+      // font-family: 'Font Awesome 5 Free';
+      // content: '\f078';
+      font-family: "Font Awesome 5 Free";
+      font-weight: 600;
+      content: "\f078";
       color: $white;
       background-color: $primary;
       right: 15px;
       top: 0;
       height: 70px;
-      padding: 1.5em 0;
+      padding: 1rem 0;
       position: absolute;
       pointer-events: none;
       border-radius: 0 4px 4px 0;
       text-align: center;
       width: 100%;
+      font-size: 30px;
       // -webkit-box-flex: 0;
       // -webkit-flex: 0 0 25%;
       // -ms-flex: 0 0 25%;
