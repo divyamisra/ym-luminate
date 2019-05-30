@@ -552,7 +552,7 @@
     };
 // BEGIN getEventsByDistance
 
-cd.getEventsByDistance = function (zipCode) {
+cd.getEventsByDistance = function (zipCode, eventSort) {
   $('.js__no-event-results').addClass('d-none');
   $('.js__loading').show();
   if($('body').is('.pg_cn_home')){
@@ -565,7 +565,7 @@ cd.getEventsByDistance = function (zipCode) {
       '&distance_units=mi' +
       '&search_distance=200' +
       '&event_type=' + eventType +
-      '&response_format=json&list_page_size=499&list_page_offset=0&list_sort_column=event_date&list_ascending=true',
+      '&response_format=json&list_page_size=499&list_page_offset=0&list_sort_column=' + (eventSort === 'city' ? 'city' : 'event_date') + '&list_ascending=true',
     callback: {
       success: function (response) {
         if (response.getTeamraisersResponse.totalNumberResults > '0') {
@@ -1002,9 +1002,9 @@ cd.getEventsByDistance = function (zipCode) {
         var stateSearched = $(this).children('option:selected').val();
       
         if(stateSearched === 'Select State'){
-          cd.getEvents('%25%25', null);
+          cd.getEvents('%25%25', null, ($('body').is('.pg_cn_events') ? 'city' : 'event_date'));
         } else {
-          cd.getEvents(null, stateSearched);
+          cd.getEvents(null, stateSearched, ($('body').is('.pg_cn_events') ? 'city' : 'event_date'));
         }
         e.preventDefault();
       });
@@ -1017,7 +1017,7 @@ cd.getEventsByDistance = function (zipCode) {
         if(stateSearched === 'Select State'){
           cd.getEvents('%25%25', null);
         } else {
-          cd.getEvents(null, stateSearched);
+          cd.getEvents(null, stateSearched, ($('body').is('.pg_cn_events') ? 'city' : 'event_date'));
         }
         e.preventDefault();
       });
@@ -1027,14 +1027,13 @@ cd.getEventsByDistance = function (zipCode) {
         clearEventSearchResults();
         var zipSearched = $('#zip').val();
         if(zipSearched.length){
-          cd.getEventsByDistance(zipSearched);
+          cd.getEventsByDistance(zipSearched, ($('body').is('.pg_cn_events') ? 'city' : 'event_date'));
         } else {
-          cd.getEvents('%25%25', null);
+          cd.getEvents('%25%25', null, ($('body').is('.pg_cn_events') ? 'city' : 'event_date'));
         }
         
         e.preventDefault();
       });
-
 
     } else if ($('body').is('.pg_entry')) {
       cd.getTopParticipants(evID);
