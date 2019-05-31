@@ -1526,7 +1526,7 @@ cd.getEventsByDistance = function (zipCode) {
       $('form[name=FriendraiserFind]').attr('hidden', true);
 
       if (regType === 'startTeam') {
-        if (eventType2 === 'Road' || eventType2 === 'StationaryV2') {
+        if (eventType2 === 'Road' || eventType2 === 'Executive Challenge' || eventType2 === 'StationaryV2') {
           $('form[name=FriendraiserFind]').removeAttr('hidden');
           $('#team_find_section_body, #team_find_section_header').show();
         }
@@ -1925,7 +1925,7 @@ cd.getEventsByDistance = function (zipCode) {
         $('form[name=FriendraiserFind]').removeAttr('hidden');
       }
 
-      if (eventType2 === 'Road' || eventType2 === 'StationaryV2') {
+      if (eventType2 === 'Road' || eventType2 === 'Executive Challenge' || eventType2 === 'StationaryV2') {
         $('#team_find_page > form').parsley(teamFindParsleyConfig);
       }
 
@@ -2013,7 +2013,7 @@ cd.getEventsByDistance = function (zipCode) {
           
           // Remove ptype prefixes from public-facing reg options
           $(this).find('.part-type-name').text(newPtypeName);
-        }
+        } 
       });
 
 
@@ -2065,6 +2065,13 @@ cd.getEventsByDistance = function (zipCode) {
         }
       }
 
+      var minFundraisingGoal = ($('input[name="fr_part_radio"]:checked').parent().find('.goal').val() ? $('input[name="fr_part_radio"]:checked').parent().find('.goal').val().replace('.00', '') : null);
+      if(!minFundraisingGoal || minFundraisingGoal === "$0"){
+        minFundraisingGoal = $('#fr_goal').val().replace('.00', '');
+      }
+      $('#fr_goal').val(minFundraisingGoal);
+      $('#part_type_fundraising_goal_container .form-content').append('<p class="small">All riders commit to fundraising <span class="min-fundraising-goal">' + minFundraisingGoal + '</span>. You can increase your fundraising goal, but the amount shown above is your required fundraising minimum.</p>');
+
       if (eventType2 === 'Stationary' || eventType2 === 'StationaryV2') {
                var numPtypesShown = $('.part-type-container:visible').length;
         console.log('numPtypesShown: ', + numPtypesShown);
@@ -2086,16 +2093,24 @@ cd.getEventsByDistance = function (zipCode) {
         });
 
         // add accessibility events for keyboard navigation
-        $('input[name=fr_part_radio]').on('click focus', function (e) {
+        $('input[name="fr_part_radio"]').on('click focus', function (e) {
           $('.part-type-container').removeClass('selected');
+          var selectedPtypeMin = $(this).parent().find('.goal').val().replace('.00', '');
+          if(selectedPtypeMin === "$0"){
+            selectedPtypeMin = minFundraisingGoal;
+          }
+          $('.min-fundraising-goal').text(selectedPtypeMin);
+          $('#fr_goal').val(selectedPtypeMin);
           $(this).closest('.part-type-container').addClass('selected');
         });
 
       } else {
         $('#sel_type_container').text('How would you like to participate?');
         console.log('road event');
+         // Hide and disable participation types that don't apply to this particular registration path
         if (regType === 'virtual') {
-          $('.part-type-name:contains("Virtual")').closest('.part-type-container').addClass('d-inline-block col-md-6');
+          // $('.part-type-name:contains("Virtual")').closest('.part-type-container').addClass('d-inline-block col-md-6');
+          $('.part-type-name').closest('.part-type-container').addClass('d-inline-block col-md-6');
         } else {
           console.log('not virtual');
           $('.part-type-name').closest('.part-type-container').addClass('d-inline-block col-md-6');
@@ -2124,6 +2139,12 @@ cd.getEventsByDistance = function (zipCode) {
           $('.part-type-container').removeClass('selected');
           $(this).addClass('selected');
           $(this).find('input[type="radio"]').prop('checked', true);
+          var ptypeMin = $(this).parent().find('.goal').val().replace('.00', '');
+          if(ptypeMin === "$0"){
+            ptypeMin = minFundraisingGoal;
+          }
+          $('.min-fundraising-goal').text(ptypeMin);
+          $('#fr_goal').val(ptypeMin);
           $('#next_step').removeClass('disabled');
           $('#dspPledge').modal({
             backdrop: 'static',
@@ -2136,6 +2157,12 @@ cd.getEventsByDistance = function (zipCode) {
           if(key == 13) {
             $('.part-type-container').removeClass('selected');
             $(this).addClass('selected');
+            var ptypeMin = $(this).parent().find('.goal').val().replace('.00', '');
+            if(ptypeMin === "$0"){
+              ptypeMin = minFundraisingGoal;
+            }
+            $('.min-fundraising-goal').text(ptypeMin);
+            $('#fr_goal').val(ptypeMin);
             $(this).find('input[type="radio"]').prop('checked', true);
             $('#next_step').removeClass('disabled');
             $('#dspPledge').modal({
@@ -2158,10 +2185,7 @@ cd.getEventsByDistance = function (zipCode) {
 
       $('#fund_goal_container').after('How much will you fundraise for CycleNation?');
 
-      var minFundraisingGoal = $('#fr_goal').val().replace('.00', '');
-      $('#part_type_fundraising_goal_container .form-content').append('<p class="small">All riders commit to fundraising ' + minFundraisingGoal + '. You can increase your fundraising goal, but the amount shown above is your required fundraising minimum.</p>');
-      
-
+ 
 
       $('.donation-level-amount-text').closest('.donation-level-row-container').addClass('don-level-btn');
       $('.donation-level-container .input-container').parent().addClass('other-amount-row-container');
@@ -2272,9 +2296,12 @@ cd.getEventsByDistance = function (zipCode) {
         $('#contact_info_section_one .form-content').addClass('required').prepend('<span class="field-required"></span>');
         $('.cons-address-street-full-container .form-content').eq(1).removeClass('required').find('.field-required').remove();
         $('#cons_info_component_contact_info_section').show();
-
-        // end 2019 test updates
-      } else if (regType === 'joinTeam') {
+      } else if (regType === 'individual') {
+        $('#cons_info_dob').show();
+        $('#contact_info_section_one .form-content').addClass('required').prepend('<span class="field-required"></span>');
+        $('.cons-address-street-full-container .form-content').eq(1).removeClass('required').find('.field-required').remove();
+        $('#cons_info_component_contact_info_section').show();
+      }else if (regType === 'joinTeam') {
         var pFirstName = $('body').data('first-name') ? $('body').data('first-name') : null;
         var pLastName = $('body').data('last-name') ? $('body').data('last-name') : null;
         var pEmail = $('body').data('email') ? $('body').data('email') : null;
