@@ -5,25 +5,3 @@
 .container-wide {
   max-width: 1630px;
 }
-
-.btn {
-  @include border-radius(60px, 60px, 60px, 60px);
-  color: $white;
-  border: none;
-}
-
-.btn-primary {
-  background-color: $red;
-
-  &:hover {
-    background-color: $red-deep;
-  }
-}
-
-.btn-tertiary {
-  border: solid 2px $white;
-}
-
-.input-group-append .btn {
-  @include border-radius(4px, 4px, 0, 0);
-}

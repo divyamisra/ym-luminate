@@ -22,3 +22,16 @@
   background: linear-gradient(to bottom, $color2 0%, $color1 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr=$color2, endColorstr=$color1,GradientType=0 ); /* IE6-9 */
 }
+
+@mixin justify-content-center {
+  -webkit-box-pack: center !important;
+  -webkit-justify-content: center !important;
+  -ms-flex-pack: center !important;
+  justify-content: center !important;
+}
+
+@mixin display-inline-grid {
+  display: inline-grid !important;
+  display: -moz-inline-grid !important;
+  display: -ms-inline-grid !important;
+}

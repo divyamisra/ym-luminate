@@ -192,19 +192,11 @@
     margin: 0 0 22px;
   }
 
-  .sponsors {
-    padding: 81px 0 0;
-
-    h4 {
-      margin: 0 0 36px;
-    }
-
-    a {
-      margin: 44px 0 0;
-    }
-  }
-
   .register-today {
+    background-image: url("https://www2.heart.org/images/content/pagebuilder/hw_hero_desktop.jpg");
+    padding: 55px 134px 69px;
+    margin: 80px 0 0;
+
     h2 {
       margin: 30px 0 18px;
     }
@@ -220,25 +212,6 @@
       font-size: 1.2rem;
       max-width: 258px;
       width: 100%;
-    }
-  }
-
-  .info-boxes {
-    width: 1080px;
-    margin: 0 auto 55px;
-    border-left: solid 1px $gray-200;
-    border-right: solid 1px $gray-200;
-
-    .col-lg {
-      padding-left: 100px;
-
-      &:first-child {
-        border-right: solid 1px $gray-200;
-      }
-    }
-
-    p {
-      margin: 0 0 32px;
     }
   }
 }
