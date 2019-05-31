@@ -121,7 +121,7 @@
                   My School: <a aria-label="My School: {{companyName}}" href="TR?fr_id=[[S80:trID]]&pg=company&company_id=[[S80:frCompanyId]]"><span class="sr-only">View</span> <span ng-bind-html="companyName"></span> <span class="sr-only">page</span></a>
                 </p>
                 <p class="school-location" ng-if="companyCity" ng-cloak>
-                  Location: <span ng-bind-html="companyCity"></span>, <span ng-bind-html="companyState"></span>
+                  Location: <span ng-bind-html="companyCity" class="school-city"></span>, <span ng-bind-html="companyState"></span>
                 </p>
                 [[?xx::x[[S80:frTJoin]]x::::
                   <p class="team-name">
