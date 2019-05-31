@@ -8,6 +8,7 @@ angular.module 'ahaLuminateControllers'
       $rootScope.companyName = ''
       $rootScope.schoolCity = ''
       $rootScope.schoolState = ''
+      $rootScope.regCompanyId = luminateExtend.global.regCompanyId
       regCompanyId = luminateExtend.global.regCompanyId
       setCompanyName = (companyName) ->
         $rootScope.companyName = companyName
