@@ -1,25 +1,33 @@
 <div class="container container-personal hero">
     <div class="row">
         <div class="col-lg-4 col-md-12 sidebar">
-            <img class="sidebar-hero" src="img/PersonalPlaceholder@2x.jpg" />
+            <!-- <img class="sidebar-hero" src="img/PersonalPlaceholder@2x.jpg" /> -->
+            <!-- TODO - add alt and uploaded image conditional relying on reus_hw_default_image -->
+            <img class="sidebar-hero" src="../aha-luminate/dist/heartwalk2020/image/hw_default_personal.jpg" alt=""/>
+
             <div class="bg-gray-700">
                 <ul>
                     <li>
-                        <p><strong>Jason's Event:</strong></p>
-                        <p><a href="#">2019 Austin Heart & Stroke Walk</a></p>
-                        <p>October 19, 2019</p>
+                        <p><strong>[[E48:[[S334:fr_id]]-[[S334:px]]:cons.first_name]]'s Event:</strong></p>
+                        <p><a href="TR?fr_id=[[S334:fr_id]]&pg=entry">[[E47:[[S334:fr_id]]:fr_info:1:event_title]]</a></p>
+                        <p>[[E47:[[S334:fr_id]]:fr_info:1:event_date]]</p>
                     </li>
+                    [[?xx::x[[E48:[[S334:fr_id]]-[[S334:px]]:team-name]]x::::
                     <li>
-                        <p><strong>Jason's Team:</strong></p>
-                        <p><a href="#">Red River Rowdies</a></p>
+                        <p><strong>[[E48:[[S334:fr_id]]-[[S334:px]]:cons.first_name]]'s Team:</strong></p>
+                        <p><a href="TR/?team_id=[[E48:[[S334:fr_id]]-[[S334:px]]:team-id]]&pg=team&fr_id=[[S334:fr_id]]">[[E48:[[S334:fr_id]]-[[S334:px]]:team-name]]</a></p>
                     </li>
+                    ]]
+                    [[?xx::x[[E48:[[S334:fr_id]]-[[S334:px]]:company-name]]]]x::::
                     <li>
-                        <p><strong>Jason's Company:</strong></p>
-                        <p><a href="#">Charity Dynamics</a></p>
+                        <p><strong>[[E48:[[S334:fr_id]]-[[S334:px]]:cons.first_name]]'s Company:</strong></p>
+                        <p><a href="TR?company_id=[[E48:[[S334:fr_id]]-[[S334:px]]:company-id]]]]&fr_id=[[S334:fr_id]]&pg=company">[[E48:[[S334:fr_id]]-[[S334:px]]:company-name]]]]</a></p>
                     </li>
+                    ]]
                     <li>
-                        <p><strong>Jason's Achievements:</strong></p>
+                        <p><strong>[[E48:[[S334:fr_id]]-[[S334:px]]:cons.first_name]]'s Achievements:</strong></p>
                         <div class="achievements">
+                          <!-- TODO - add conditionals and svgs -->
                           <img src="img/heart-walk-$100-milestone-no-text.svg" />
                           <img src="img/heart-walk-$250-milestone-no-text.svg" />
                           <img src="img/heart-walk-$500-milestone-no-text.svg" />
@@ -38,7 +46,7 @@
             </div>
             <!-- /.bg-gray-700 -->
             <div class="donor-roll box-shadow">
-                <h5>Jason's Donors:</h5>
+                <h5>[[E48:[[S334:fr_id]]-[[S334:px]]:cons.first_name]]'s Donors:</h5>
                 <div class="donations-container">
                     <div>
                         <span class="name">Lance Vincent</span>
@@ -109,11 +117,13 @@
                 <div class="personal-page-info bg-white information-box">
                     <h1>
                         <div class="float-left">
-                            Jason Stafin
+                            [[E48:[[S334:fr_id]]-[[S334:px]]:cons.first_name]] Stafin
                         </div>
                         <!-- /.float-left -->
                         <div class="badges-container">
-                            <img src="img/AlumniBadge_HWAlumniBadge.svg" />
+                            <!-- <img src="img/AlumniBadge_HWAlumniBadge.svg" /> -->
+                            <!-- TODO - find conditional for alum -->
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 77.9 60.3" aria-hidden="true" alt=""><style>.st0{fill:none}.st1{fill:#fff}.st2{fill:#e5404e}</style><path class="st0" d="M67.4 11c.1.1.1.2.2.3-.1-.1-.2-.2-.2-.3zM69.1 15.9c0 .1 0 .2.1.3-.1-.2-.1-.3-.1-.3zM64.5 7.1zM68.1 12.5c.1.1.1.3.2.4-.1-.2-.2-.3-.2-.4zM66.4 9.4c.1.1.2.3.3.4-.1-.1-.2-.3-.3-.4zM18.2 39.9c.6.7 1.2 1.3 1.8 2-.6-.6-1.2-1.3-1.8-2zM69.3 17.5v0zM8.8 19.5v0zM69.4 19.6v-.3.3zM68.7 14.2c0 .1.1.2.1.3-.1-.1-.1-.2-.1-.3zM23.8 1.9c-8.1 1-14.8 8.6-15 17.6.2-9 6.9-16.6 15-17.6z"/><path class="st1" d="M10.3 20.9c0-.5-.1-.9 0-1.4.2-8.4 6.8-16.2 15.2-16.2 5.8 0 11.2 3.3 13.8 8.5 2.4-5.2 7.7-8.5 13.4-8.5 8.4 0 15.6 7.8 15.2 16.2 0 .5-.1.9-.1 1.4h1.5c.1-.5.1-.9.1-1.4v-.3-1.4-.3c0-.5-.1-.9-.2-1.4 0-.1 0-.2-.1-.3-.1-.5-.2-.9-.3-1.4 0-.1-.1-.2-.1-.3-.1-.4-.3-.9-.4-1.3-.1-.1-.1-.3-.2-.4-.2-.4-.3-.8-.5-1.2-.1-.1-.1-.2-.2-.3-.2-.4-.4-.8-.7-1.2-.1-.1-.2-.3-.3-.4-.2-.3-.5-.7-.7-1-.4-.5-.7-.9-1.1-1.3-3.1-3.3-7.3-5.2-11.8-5.3-5.4 0-10.4 2.7-13.5 7.1-3.2-4.5-8.3-7.1-13.8-7.1-.6 0-1.1 0-1.6.1C15.7 2.9 9 10.5 8.8 19.5V21h1.5zM23.6 45.6c4.6 4.4 9.6 8.4 14.9 12l.8.5.8-.6c.7-.5 11.2-7.8 19.5-17.6h-2c-8.2 9.4-18.3 16.4-18.3 16.4s-10.7-7-19.1-16.4h-2c.6.7 1.2 1.3 1.8 2 1.1 1.3 2.3 2.5 3.6 3.7z"/><path class="st2" d="M38.5 42.3l-.7 1.9h1.4zM43.5 16.1h-.7v1.6h.7c.2 0 .5-.1.6-.2s.2-.3.2-.6-.1-.5-.2-.6-.3-.2-.6-.2zM39.7 16.3l-.7 1.9h1.4z"/><path class="st1" d="M77.1 21.2v.7h-76v17h76v.3-18zm-54.9 13l-.9-2.5h-3.5l-.9 2.5h-1.2l3.2-8.5h1.2l3.3 8.5h-1.2zm7.5 0h-4.8v-8.5H26v7.5h3.7v1zm8.1-3.2c0 .6-.1 1.2-.4 1.7-.3.5-.7.9-1.2 1.2-.5.3-1.1.4-1.8.4s-1.3-.1-1.8-.4c-.5-.3-.9-.7-1.2-1.2-.3-.5-.4-1.1-.4-1.7v-5.3h1.1v5.2c0 .8.2 1.3.6 1.7.4.4.9.6 1.6.6.7 0 1.2-.2 1.6-.6.4-.4.6-1 .6-1.7v-5.2h1.1V31zm10.7 3.2h-1.1v-6.9l-2.7 4.9h-.9l-2.7-4.9v6.9H40v-8.5h1.4l2.8 5 2.9-5h1.4v8.5zm3.5-6.8v6.8h-1.1v-8.5H52l4.8 6.7v-6.7h1.1v8.5h-1.1L52 27.4zm8.2 6.8v-8.5h1.1v8.5h-1.1z"/><path class="st1" d="M18.2 30.7H21l-1.4-3.8z"/><path class="st2" d="M77.1 21.9v-1h-6.8c0-.4.1-.9.1-1.3.2-4.9-1.7-9.7-5.1-13.2C62 2.9 57.5.9 52.7.8c-5.2 0-10.2 2.4-13.5 6.5C35.8 3.2 30.7.9 25.4.8 16.1.8 8 9.4 7.8 19.5V21H1.1v1h76zM33 17.5v-1.9h.6v4.3H33V18h-2.2v1.9h-.6v-4.3h.6v1.9H33zm6.4-1.8h.6l1.6 4.3H41l-.5-1.2h-1.8l-.5 1.2h-.6l1.8-4.3zm-2.3 1.8v.5h-1.8v1.4h1.9v.5h-2.4v-4.3h2.4v.5h-1.8v1.4h1.7zm7.5 1.4c.1.2.3.3.4.4.1.1.2.1.4.1h.1v.5h-.1c-.2 0-.3 0-.4-.1s-.2-.1-.4-.2-.3-.3-.4-.5l-.6-.9H43v1.7h-.6v-4.3h1.3c.4 0 .8.1 1 .3.2.2.4.5.4.9 0 .3-.1.5-.2.8-.2.2-.4.4-.7.5l.4.8zm.9-2.7v-.5h2.9v.5h-1.2V20h-.6v-3.8h-1.1zM8.8 19.5c.2-9 6.9-16.7 15-17.6.5-.1 1.1-.1 1.6-.1 5.5 0 10.6 2.6 13.8 7.1 3-4.4 8.1-7.1 13.5-7.1 4.5.1 8.8 2 11.8 5.3.4.4.8.9 1.1 1.3.3.3.5.7.7 1 .1.1.2.3.3.4.2.4.5.8.7 1.2.1.1.1.2.2.3.2.4.4.8.5 1.2.1.1.1.3.2.4.2.4.3.9.4 1.3 0 .1.1.2.1.3.1.5.2.9.3 1.4 0 .1 0 .2.1.3.1.5.1.9.2 1.4v2c0 .5-.1.9-.1 1.4h-1.5c.1-.5.1-.9.1-1.4.4-8.4-6.8-16.2-15.2-16.2-5.8 0-11 3.3-13.4 8.5-2.6-5.2-8-8.5-13.8-8.5-8.4 0-15 7.8-15.2 16.2V21H8.8v-1.5zM1.1 38.9v1h15.8c1.8 2.1 3.7 4.2 6 6.4 4.7 4.4 9.7 8.5 15 12.1l.8.6.6.4.5-.4.8-.6c.7-.5 11.8-8.2 20.2-18.4H77v-1H1.1zM45 43.5l1.5-1.9h.6l-1.7 2.1.8 1.1c.2.2.3.4.4.4.1.1.3.1.4.1h.1v.5H47c-.2 0-.3 0-.4-.1-.1 0-.2-.1-.4-.2s-.3-.3-.4-.5l-.8-1h-.2v1.9h-.6v-4.3h.6v1.9h.2zm-1.4 1.9v.5h-2.4v-4.3h.6v3.7h1.8zm-5.4-3.7h.6l1.6 4.3h-.6l-.5-1.2h-1.8L37 46h-.6l1.8-4.3zm-2.8 4.2h-.6l-1-3.4-1 3.4h-.6L31 41.6h.6l1 3.5 1-3.5h.6l1 3.4 1-3.4h.6l-1.4 4.3zm-17.2-6h2c8.4 9.4 19.1 16.4 19.1 16.4s10.1-7 18.3-16.4h2C51.4 49.7 40.8 57 40.1 57.5l-.8.6-.8-.5c-5.3-3.6-10.2-7.6-14.9-12-1.3-1.2-2.5-2.4-3.6-3.6l-1.8-2.1z"/><path d="M19 25.6l-3.2 8.5H17l.9-2.5h3.5l.9 2.5h1.2l-3.3-8.5H19zm-.8 5.1l1.4-3.8 1.4 3.8h-2.8zM26 25.6h-1.2v8.6h4.9v-1.1H26zM36.6 30.8c0 .8-.2 1.3-.6 1.7-.4.4-1 .6-1.6.6-.7 0-1.2-.2-1.6-.6-.4-.4-.6-1-.6-1.7v-5.2H31V31c0 .6.1 1.2.4 1.7.3.5.7.9 1.2 1.2.5.3 1.1.4 1.8.4s1.3-.1 1.8-.4c.5-.3.9-.7 1.2-1.2.3-.5.4-1.1.4-1.7v-5.3h-1.1v5.1zM44.2 30.7l-2.8-5.1H40v8.6h1.1v-7l2.7 4.9h.9l2.7-4.9v7h1.1v-8.6h-1.3zM57.8 25.6h-1.1v6.8l-4.8-6.8h-1v8.6H52v-6.8l4.8 6.8h1zM60.2 25.6h1.1v8.5h-1.1z"/><path class="st1" d="M30.2 15.7v4.2h.6V18H33v1.9h.6v-4.2H33v1.8h-2.2v-1.8zM37.1 16.2v-.5h-2.4v4.2h2.5v-.5h-1.9V18h1.8v-.5h-1.8v-1.3zM38.3 19.9l.5-1.2h1.8l.5 1.2h.6L40 15.7h-.6L37.8 20h.5zm1.4-3.6l.7 1.9H39l.7-1.9zM45 16.9c0-.4-.1-.7-.4-.9-.2-.2-.6-.3-1-.3h-1.3V20h.6v-1.7h.6l.6.9c.2.2.3.4.4.5s.2.2.4.2.3.1.4.1h.1v-.5h-.1c-.1 0-.3 0-.4-.1l-.4-.4-.6-.8c.3-.1.5-.2.7-.5.3-.3.4-.5.4-.8zm-.9.6c-.2.1-.4.2-.6.2h-.7v-1.6h.7c.2 0 .5.1.6.2s.2.3.2.6c.1.3 0 .5-.2.6zM47.3 19.9v-3.7h1.1v-.5h-2.9v.5h1.2v3.7zM35.1 45.1l-1-3.4h-.6l-1 3.4-1-3.4h-.6l1.3 4.2h.6l1-3.4 1 3.4h.6l1.2-4.2h-.5zM37.7 44.7h1.8l.5 1.2h.6L39 41.6h-.6l-1.6 4.3h.6l.3-1.2zm.8-2.4l.7 1.9h-1.4l.7-1.9zM41.2 41.7v4.2h2.4v-.5h-1.9v-3.7zM44.3 41.7V46h.6v-2h.1l.8 1.1c.2.2.3.4.4.5s.2.2.4.2c.1 0 .3.1.4.1h.2v-.5h-.1c-.2 0-.3 0-.4-.1-.1-.1-.3-.2-.4-.4l-.8-1.1 1.7-2.1h-.6L45 43.5h-.1v-1.9h-.6z"/></svg>
                         </div>
                         <!-- /.badges-container -->
                     </h1>
@@ -121,17 +131,13 @@
                     <div class="row fundraising-amounts">
                         <div class="col-6">
                             <span class="d-block">Fundraising Progress</span>
-                            <span id="progress-amount" class="amount">
-                                $763
-                            </span>
+                            <span id="progress-amount" class="amount">[[E130:"[[E48:[[S334:fr_id]]-[[S334:px]]:dollars]]" ".00" "" replaceall]]</span>
                             <!-- /.amount -->
                         </div>
                         <!-- /.col-6 -->
                         <div class="col-6 text-right">
                             <span class="d-block">Fundraising Goal</span>
-                            <span id="goal-amount" class="amount">
-                                $1,000
-                            </span>
+                            <span id="goal-amount" class="amount">[[E130:"[[E48:[[S334:fr_id]]-[[S334:px]]:goal]]" ".00" "" replaceall]]</span>
                             <!-- /.amount -->
                         </div>
                         <!-- /.col-6 -->
@@ -145,8 +151,8 @@
                         <!-- /.col-12 -->
                     </div>
                     <!-- /.row -->
-
-                    <p>Select an Amount to Donate to Jason:</p>
+              
+                    [[?x2x3x::x[[S42:0:status]]x::                    <p>Select an Amount to Donate to [[E48:[[S334:fr_id]]-[[S334:px]]:cons.first_name]]:</p>
                     <form>
                         <div class="donation-amounts row">
                             <a class="donation-amount-btn btn" href="#">$25</a>
@@ -161,12 +167,17 @@
                             <!-- /.form-group -->
                         </div>
                         <!-- /.row d-flex justify-content-center -->
+                        [[?x1x2x::x[[S42:0:status]]x::
                         <div class="row buttons-row">
                             <a class="btn btn-primary col-lg col-sm-12 mx-md-2 mx-sm-0" href="#">Donate $50</a>
-                            <a class="btn btn-secondary col-lg col-sm-12 mx-md-2 mx-sm-0" href="#">Join Jason's Team</a>
+                            <a class="btn btn-secondary col-lg col-sm-12 mx-md-2 mx-sm-0" href="#">Join [[E48:[[S334:fr_id]]-[[S334:px]]:cons.first_name]]'s Team</a>
                         </div>
+                        ::]]
+
                     </form>
-                    <a href="#" class="d-block text-small mt-3">Mail in a Donation</a>
+                    <a href="TRGiftForm?fr_id=[[S334:fr_id]]&px=[[S334:px]]" class="d-block text-small mt-3" target="_blank">Mail in a Donation</a>
+                    ::]]
+
                 </div>
                 <!-- /.event-info -->
             </div>
@@ -174,6 +185,7 @@
             <!-- END PERSONAL PAGE INFO BOX -->
             <div class="content-area">
                 <h4>Why I Walk</h4>
+                <div class="js--personal-text"></div>
                 <p>I walk because I know that with every step, I’m making a difference in someone’s life. And when combined with a million other Heart Walk Heroes across the nation, we have an even greater impact toward curing heart disease and stroke. Will you be a Heart Walk Hero with me?</p>
                 <p>Your donation will fund groundbreaking research that literally keeps hearts beating and helps people have longer, healthier lives.</p>
                 <p>Have a heart and help me reach my goal today!</p>
