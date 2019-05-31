@@ -6,8 +6,8 @@ angular.module 'ahaLuminateControllers'
     'SchoolLookupService'
     ($rootScope, $scope, TeamraiserCompanyService, SchoolLookupService) ->
       $rootScope.companyName = ''
-      $scope.schoolCity = ''
-      $scope.schoolState = ''
+      $rootScope.schoolCity = ''
+      $rootScope.schoolState = ''
       regCompanyId = luminateExtend.global.regCompanyId
       setCompanyName = (companyName) ->
         $rootScope.companyName = companyName
@@ -48,7 +48,7 @@ angular.module 'ahaLuminateControllers'
           angular.forEach schoolDataRows, (schoolDataRow, schoolDataRowIndex) ->
             if schoolDataRowIndex > 0
               if schoolDataRow.COMPANY_ID = regCompanyId
-                $scope.schoolCity = schoolDataRow.SCHOOL_CITY
-                $scope.schoolState = schoolDataRow.SCHOOL_STATE
+                $rootScope.schoolCity = schoolDataRow.SCHOOL_CITY
+                $rootScope.schoolState = schoolDataRow.SCHOOL_STATE
                 return
   ]
