@@ -58,6 +58,6 @@ angular.module 'ahaLuminateControllers'
             if schoolDataRowIndex > 0
               if schoolDataRow.COMPANY_ID = regCompanyId
                 setCompanyCity schoolDataRow.SCHOOL_CITY
-                setComapnyState schoolDataRow.SCHOOL_STATE
+                setCompanyState schoolDataRow.SCHOOL_STATE
                 return
   ]
