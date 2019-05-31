@@ -56,7 +56,7 @@ angular.module 'ahaLuminateControllers'
           schoolDataRows = response.data.getSchoolSearchDataResponse.schoolData
           angular.forEach schoolDataRows, (schoolDataRow, schoolDataRowIndex) ->
             if schoolDataRowIndex > 0
-              if schoolDataRow.COMPANY_ID = regCompanyId
+              if schoolDataRow[0] = regCompanyId
                 setCompanyCity schoolDataRow.SCHOOL_CITY
                 setCompanyState schoolDataRow.SCHOOL_STATE
                 return
