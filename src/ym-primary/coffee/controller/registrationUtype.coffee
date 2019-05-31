@@ -50,5 +50,7 @@ angular.module 'ahaLuminateControllers'
               if schoolDataRow.COMPANY_ID = regCompanyId
                 $rootScope.schoolCity = schoolDataRow.SCHOOL_CITY
                 $rootScope.schoolState = schoolDataRow.SCHOOL_STATE
+                if not $rootScope.$$phase
+                  $rootScope.$apply()
                 return
   ]
