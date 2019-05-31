@@ -14,6 +14,14 @@ angular.module 'ahaLuminateControllers'
         $rootScope.companyName = companyName
         if not $rootScope.$$phase
           $rootScope.$apply()
+      setCompanyCity = (companyCity) ->
+        $rootScope.schoolCity = companyCity
+        if not $rootScope.$$phase
+          $rootScope.$apply()
+      setCompanyState = (companyState) ->
+        $rootScope.companyState = companyState
+        if not $rootScope.$$phase
+          $rootScope.$apply()
       TeamraiserCompanyService.getCompanies 'company_id=' + regCompanyId,
         error: ->
           # TODO
@@ -49,9 +57,7 @@ angular.module 'ahaLuminateControllers'
           angular.forEach schoolDataRows, (schoolDataRow, schoolDataRowIndex) ->
             if schoolDataRowIndex > 0
               if schoolDataRow.COMPANY_ID = regCompanyId
-                $rootScope.schoolCity = schoolDataRow.SCHOOL_CITY
-                $rootScope.schoolState = schoolDataRow.SCHOOL_STATE
-                if not $rootScope.$$phase
-                  $rootScope.$apply()
+                setCompanyCity schoolDataRow.SCHOOL_CITY
+                setComapnyState schoolDataRow.SCHOOL_STATE
                 return
   ]
