@@ -134,7 +134,7 @@ function addPaymentTypesOnSearch() {
 			var pt = jQuery.getCustomQuerystring(dlink,"PROXY_TYPE");
 
 			var html = "<div class='paymentSelType text-center' style='padding-top:10px;'>" +
-				"<h6>How would you like to donate?</h6>" +
+				"<p class='text-dark'>How would you like to donate?</p>" +
 				"<a href='"+dlink+"'><img src='https://www2.heart.org/images/content/pagebuilder/credit-card-logos2.png' alt='Donate with Visa, MasterCard, American Express or Discover cards'/></a>" +
 				"<a href='"+default_path+"/site/SPageNavigator/cyclenation_donate_amazon.html?FR_ID="+fr_id+"&mfc_pref=T&PROXY_ID="+px+"&PROXY_TYPE="+pt+"' class='amazon'><img src='https://donatenow.heart.org/images/amazon-payments_inactive.png' alt='Donate with Amazon Pay'/></a>" +
 				"<a href='"+default_path+"/site/SPageNavigator/cyclenation_donate_applepay.html?FR_ID="+fr_id+"&mfc_pref=T&PROXY_ID="+px+"&PROXY_TYPE="+pt+"' class='applepay hidden-md hidden-lg'><img src='https://www2.heart.org/donation-forms-braintree/donatenow/images/DonateBlack_32pt_@2x.png' alt='ApplePay'/></a>" +

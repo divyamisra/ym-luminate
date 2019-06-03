@@ -16,9 +16,9 @@ div#contact_info_section_one div.form-error, div#personal_info_section_one div.f
   div.responsive input[type="password"],
   div.responsive textarea,
   div.responsive select {
-    box-shadow: none;
-    height:38px;
     @extend .form-control;
+    box-shadow: none;
+    height:46px !important;
   }
 
   div.registration-page-container div.section-container {
@@ -1147,7 +1147,8 @@ div.responsive button.step-button {
 // Stationary v2 customizations
 
 .event-type2-stationaryv2,
-.event-type2-road {
+.event-type2-road,
+.event-type2-executive {
   .part-type-name {
     padding-left: 0;
     padding-right: 5px;

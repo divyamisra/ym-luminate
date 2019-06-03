@@ -295,9 +295,9 @@ padding: 0.625rem 1.25rem;
   }
 }
 
-.header-event-details {
-  background:$primary;
-}
+// .header-event-details {
+//   background:$primary;
+// }
 
 @include media-breakpoint-up(sm) {
   .navbar {
@@ -307,5 +307,35 @@ padding: 0.625rem 1.25rem;
     position:absolute;
     bottom:0;
     right:0;
+  }
+}
+
+.pg_cn_search {
+  .filter-label {
+    color:$white;
+    font-weight:500;
+    font-style:italic;
+  }
+  @include media-breakpoint-up(md) {
+    main {
+      .nav-item {
+        margin:0 22px;
+      }
+    }
+  }
+  .nav-tabs {
+    .nav-link {
+      color:$white;
+      text-decoration:underline;
+      font-weight:500;
+      border:none;
+      border-bottom: 3px solid $primary;
+      &.active,
+      &:hover {
+        text-decoration:none;
+        border-bottom: 3px solid $white;
+        background-color:#990000;
+      }
+    }
   }
 }

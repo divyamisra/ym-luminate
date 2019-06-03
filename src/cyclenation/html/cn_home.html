@@ -19,17 +19,15 @@
             <form class="row ml-0 mr-0 pr-0 pl-0 js__zip-search">
                 <label for="zip" class="sr-only">Enter Zip</label>
                 <input type="text" class="search form-control col-10 col-lg-9" id="zip" placeholder="Enter ZIP">
-                <button type="submit" class="search-button action-button search-submit col-2 col-lg-3"><span class="sr-only">Submit</span>
-                    <?xml version="1.0" encoding="utf-8"?>
-                    <svg version="1.1" class="search-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                       viewBox="0 0 24 24" style="enable-background:new 0 0 24 24;" xml:space="preserve">
-                    <g transform="translate(-1358,-18)">
-                      <path class="st0" d="M1374.8,33.4l-1.4,1.4l0.7,0.7l5.7,5.7l0.7,0.7l1.4-1.4l-0.7-0.7l-5.7-5.7L1374.8,33.4z"/>
-                      <path class="st0" d="M1368.3,18c-5.6,0-10.3,4.6-10.3,10.3s4.6,10.3,10.3,10.3s10.3-4.6,10.3-10.3S1373.9,18,1368.3,18z
-                         M1368.3,20.1c4.5,0,8.2,3.7,8.2,8.2s-3.7,8.2-8.2,8.2s-8.2-3.7-8.2-8.2S1363.7,20.1,1368.3,20.1z"/>
-                    </g>
-                    </svg>
-                </button>
+                <button type="submit" class="search-button action-button search-submit col-2 col-lg-3"><span class="sr-only">Search</span>
+                  <svg version="1.1" class="search-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                  viewBox="0 0 24 24" style="enable-background:new 0 0 24 24;" xml:space="preserve" aria-hidden="true">
+               <g transform="translate(-1358,-18)">
+                 <path class="st0" d="M1374.8,33.4l-1.4,1.4l0.7,0.7l5.7,5.7l0.7,0.7l1.4-1.4l-0.7-0.7l-5.7-5.7L1374.8,33.4z"/>
+                 <path class="st0" d="M1368.3,18c-5.6,0-10.3,4.6-10.3,10.3s4.6,10.3,10.3,10.3s10.3-4.6,10.3-10.3S1373.9,18,1368.3,18z
+                    M1368.3,20.1c4.5,0,8.2,3.7,8.2,8.2s-3.7,8.2-8.2,8.2s-8.2-3.7-8.2-8.2S1363.7,20.1,1368.3,20.1z"/>
+               </g>
+               </svg>                </button>
             </form>
           </div>
           <p class="form-group-divider col-12 col-lg-1 text-center">or</p>
@@ -90,7 +88,7 @@
                   <option value="WV">WV</option>
                   <option value="WY">WY</option>
                 </select>
-                <button type="submit" class="sr-only js__state-search-submit">Submit</button>
+                <button type="submit" class="sr-only js__state-search-submit">Select state combo box collapsed</button>
             </form>
           </div>
         </div>
@@ -99,6 +97,9 @@
       <div class="results-container col-sm-12 pt-3">
         <div class="results-container-title">
           <h3>Results</h3>
+        </div>
+        <div class="js__loading py-4 text-center  text-primary" style="display:none;"><i class="fas fa-cog fa-2x fa-spin" aria-hidden="true"></i><br>
+          Loading...
         </div>
         <div class="js__no-event-results alert alert-primary text-center col-md-8 offset-md-2 d-none" role="alert" aria-atomic="true">
           <span>
@@ -110,7 +111,7 @@
       </div>
 
       <div class="js__show-more-container col-md-4 offset-md-4 text-center">
-        <a href="#" class="js__show-more-events text-underline">Show All Events ></a>
+        <a href="SPageServer/?pagename=cn_events" class="js__show-more-events text-underline">Show All Events <i class="fas fa-angle-right" aria-hidden="true" alt=""></i></a>
       </div>
     </div>
   </div>
@@ -124,9 +125,9 @@
       <div class="content-box-one">
         <div class="content-box-container pt-5 pb-5 pl-5 pr-5">
           <h2>Why We Ride</h2>
-          <p>We ride for our family. We ride for our community. We ride for ourselves. Our work will fund life-saving stroke research and brain health, and we&#146;re stronger together.
+          <p>Our work will fund life-saving stroke and heart disease research and we&#146;re stronger together.
           </p>
-          <p>Let&#146;s be real: Cycling is not only fun, it&#146;s a way to look good and feel good. Whether it be on the road or on a stationary bike, we&#146;re cycling towards solving brain and heart health... literally and figuratively.</p>
+          <p>Let&#146;s be real: Cycling is not only fun, it&#146;s a way to look good and feel good. Whether it be on the road or on a stationary bike, we&#146;re cycling towards solving brain and heart health.</p>
         </div>  
       </div>
       <div id="fundraiserSearch" class="content-box-two">
@@ -136,18 +137,23 @@
           <form class="row mx-0 px-0 js__rider-search">
             <label for="rider_name" class="sr-only">Search for a rider</label>
             <input type="text" class="search form-control col-10 col-md-8" id="rider_name" placeholder="Search for a rider">
-            <button type="submit" id="rider_search_button" class="search-button action-button search-submit col-2"><span class="sr-only">Submit</span>
-                <?xml version="1.0" encoding="utf-8"?>
-                <svg version="1.1" class="search-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                    viewBox="0 0 24 24" style="enable-background:new 0 0 24 24;" xml:space="preserve">
-                <g transform="translate(-1358,-18)">
-                  <path class="st0" d="M1374.8,33.4l-1.4,1.4l0.7,0.7l5.7,5.7l0.7,0.7l1.4-1.4l-0.7-0.7l-5.7-5.7L1374.8,33.4z"/>
-                  <path class="st0" d="M1368.3,18c-5.6,0-10.3,4.6-10.3,10.3s4.6,10.3,10.3,10.3s10.3-4.6,10.3-10.3S1373.9,18,1368.3,18z
-                      M1368.3,20.1c4.5,0,8.2,3.7,8.2,8.2s-3.7,8.2-8.2,8.2s-8.2-3.7-8.2-8.2S1363.7,20.1,1368.3,20.1z"/>
-                </g>
-                </svg>
-            </button>
+            <button type="submit" id="rider_search_button" class="search-button action-button search-submit col-2"><span class="sr-only">Search</span>
+              <svg version="1.1" class="search-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+              viewBox="0 0 24 24" style="enable-background:new 0 0 24 24;" xml:space="preserve" aria-hidden="true">
+           <g transform="translate(-1358,-18)">
+             <path class="st0" d="M1374.8,33.4l-1.4,1.4l0.7,0.7l5.7,5.7l0.7,0.7l1.4-1.4l-0.7-0.7l-5.7-5.7L1374.8,33.4z"/>
+             <path class="st0" d="M1368.3,18c-5.6,0-10.3,4.6-10.3,10.3s4.6,10.3,10.3,10.3s10.3-4.6,10.3-10.3S1373.9,18,1368.3,18z
+                M1368.3,20.1c4.5,0,8.2,3.7,8.2,8.2s-3.7,8.2-8.2,8.2s-8.2-3.7-8.2-8.2S1363.7,20.1,1368.3,20.1z"/>
+           </g>
+           </svg>
+                    </button>
           </form>
+          <!--
+          <div class="fundraiserSearchLink pt-4">
+            <span class="sr-only" id="donateDirectlyToEvent">Donate directly to event</span>
+            <a class="text-white" href="Donation2?donation=form1&df_id=[[E42:[[S334:fr_id]]:form-id]]&FR_ID=[[S334:fr_id]]&mfc_pref=T&PROXY_ID=[[S334:fr_id]]&PROXY_TYPE=21" aria-labelledby="donateDirectlyToEvent">Donate directly to event<i class="fas fa-angle-right" aria-hidden="true"></i></a>
+          </div>
+          -->
         </div>
       </div>
     </div>
@@ -165,10 +171,7 @@
     <div class="right-column content-box col-12 col-lg-6 pt-0 pb-0 pr-0 pl-0">
       <div class="content-box-one">
         <div class="content-box-container pt-5 pb-5 pl-5 pr-5">
-          <h2>Area of updatable content</h2>
-          <p><strong>December 31, 2019</strong></p>
-          <p>Sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
-          <a href="#">Link here</a>
+          [[S51:reus_cn_home_story]]
         </div>  
       </div>
     </div>
@@ -177,7 +180,7 @@
 <!-- END UPDATABLE SECTION -->
 
 <!-- SOCIAL FEED SECTION -->
-<section  id="social-feed" class="section-social-feed gray-background">
+<!-- <section  id="social-feed" class="section-social-feed gray-background">
   <div class="container pt-5 pb-5">
     <div class="social-feed-title col-12">
       <h2 class="pb-1">Getting Social with <span class="text-primary font-weight-bold">#CycleNation</span></h2>
@@ -192,11 +195,10 @@
     </div>
     <p class="social-feed-text col-12 pt-3">Wanna be low-key famous? Use <span class="text-primary font-weight-bold">#CycleNation</span> on social media and you could see your post here!</p>
     <div class="social-feed-container col-12 pt-2">
-      <!-- THIRD PARTY EMBED -->
     </div>
     <div class="social-feed-button col-12 pt-2 text-center">
       <a class="btn-rounded btn-white" href="#">See More #CycleNation</a>
     </div>
   </div>
-</section>
+</section> -->
 <!-- END SOCIAL FEED SECTION -->

@@ -140,6 +140,9 @@
                   font-size: 1.75rem;
                   text-transform: uppercase;
                   text-decoration: none;
+                  @include media-breakpoint-down(md) {
+                    font-size: 1.6rem;
+                  }
                 }
                 button:hover {
                   text-decoration: none;
@@ -553,6 +556,16 @@
           }
           button.search-submit .search-icon .st0 {
             fill: $white;
+          }
+        }
+      }
+
+      .fundraiserSearchLink {
+        a {
+
+          i, 
+          .svg-inline--fa.fa-angle-right {
+            margin-left: 5px;
           }
         }
       }
