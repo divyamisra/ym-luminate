@@ -19,10 +19,10 @@
       if ($('#navbar-container').hasClass('is-search')) {
         $('#navbar-container').removeClass('is-search');
         $('.mobile-search-trigger').removeClass('active');
-        } else {
+      } else {
         $('#navbar-container').slideToggle('fast');
-        }
-        $('.navbar-toggler-icon').toggleClass('fa-align-justify').toggleClass('fa-times');
+      }
+      $('.navbar-toggler-icon').toggleClass('fa-align-justify').toggleClass('fa-times');
     });
 
     // Mobile search toggle
@@ -39,11 +39,11 @@
           // gray navigation appear as it closes
           $('#navbar-container').slideToggle('fast', function() {
             $('#navbar-container').toggleClass('is-search');
-           });
+          });
         } else {
           $('#navbar-container').toggleClass('is-search');
           $('#navbar-container').slideToggle('fast');
-          }
+        }
       }
     });
 
@@ -63,13 +63,20 @@
     var evID = $('body').data('fr-id') ? $('body').data('fr-id') : null;
     var consID = $('body').data('cons-id') ? $('body').data('cons-id') : null;
 
-    cd.getParticipants = function (firstName, lastName, searchAllEvents) {
+    function getURLParameter(url, name) {
+      return (RegExp(name + '=' + '(.+?)(&|$)').exec(url) || [, null])[1];
+    }
+    var currentUrl = window.location.href;
+    var searchType = getURLParameter(currentUrl, 'search_type');
+    var isCrossEventSearch = getURLParameter(currentUrl, 'cross_event');
+
+    cd.getParticipants = function (firstName, lastName, isCrossEvent) {
       luminateExtend.api({
         api: 'teamraiser',
         data: 'method=getParticipants' +
           '&first_name=' + ((firstName !== undefined) ? firstName : '') +
           '&last_name=' + ((lastName !== undefined) ? lastName : '') +
-          (searchAllEvents === true ? '&event_type=' + eventType : '&fr_id=' + evID) +
+          (isCrossEvent === true ? '&event_type=' + eventType : '&fr_id=' + evID) +
           '&list_page_size=499' +
           '&list_page_offset=0' +
           '&response_format=json' +
@@ -84,25 +91,53 @@
               var participants = luminateExtend.utils.ensureArray(response.getParticipantsResponse.participant);
               var totalParticipants = parseInt(response.getParticipantsResponse.totalNumberResults);
 
-              $(participants).each(function (i, participant) {
+              if ( $.fn.DataTable ) {
+                if ( $.fn.DataTable.isDataTable('#participantResultsTable') ) {
+                  $('#participantResultsTable').DataTable().destroy();
+                }              }
+              $('#participantResultsTable tbody').empty();
 
-                $('.js__participants-results-rows').append('<tr' + (i > 10 ? ' class="d-none"' : '') + '><td><a href="' + participant.personalPageUrl + '">' +
+              $('.js--num-participant-results').text((totalParticipants === 1 ? '1 Result' : totalParticipants + ' Results'));
+
+              $(participants).each(function (i, participant) {
+                $('.js--participants-results-rows').append('<tr' + (i > 10 ? ' class="d-none"' : '') + '><td><a href="' + participant.personalPageUrl + '">' +
                   participant.name.first + ' ' + participant.name.last +
                   '</a></td><td>' +
                   ((participant.teamName !== null && participant.teamName !== undefined) ? '<a href="' + participant.teamPageUrl + '">' + participant.teamName + '</a>' : '') + '</td><td><a href="TR/?fr_id=' + participant.eventId + '&pg=entry">' +
-                  participant.eventName + '</a></td><td class="col-cta"><a href="' + participant.donationUrl + '" aria-label="Donate to ' + participant.name.first + ' ' + participant.name.last + '" class="btn-rounded btn-primary btn-block">Donate</a></td></tr>');
+                  participant.eventName + '</a></td><td class="col-cta"><a href="' + participant.donationUrl + '" aria-label="Donate to ' + participant.name.first + ' ' + participant.name.last + '" class="btn btn-primary btn-block">Donate</a></td></tr>');
+              });
+
+              if(totalParticipants > 10) {
+                $('.js--more-participant-results').removeAttr('hidden');
+              }
+
+              $('#participantResultsTable').DataTable({
+                "paging":   false,
+                "searching":   false,
+                "info":     false,
+                "autoWidth": false
+              });
+              $('.dataTables_length').addClass('bs-select');
+              $('.js--participant-results-container').removeAttr('hidden');
+
+              $('.js--more-participant-results').on('click', function(e){
+                e.preventDefault();
+                $('.js--participants-results-rows tr').removeClass('d-none');
+                $(this).attr('hidden', true);
+                $('.js--end-participant-list').removeAttr('hidden');
               });
 
             }
           },
           error: function (response) {
             $('#error-participant').removeAttr('hidden').text(response.errorResponse.message);
+            console.log('error response: ', response);
           }
         }
       });
     };
 
-    cd.getTeams = function (teamName, searchType, isCrossEvent, firstName, lastName, companyId) {
+    cd.getTeams = function (teamName, isCrossEvent, firstName, lastName, companyId) {
       $('.js__team-results-rows').html('');
       luminateExtend.api({
         api: 'teamraiser',
@@ -119,28 +154,60 @@
           '&list_ascending=true',
         callback: {
           success: function (response) {
+
+            if ( $.fn.DataTable ) {
+              if ( $.fn.DataTable.isDataTable('#teamResultsTable') ) {
+                $('#teamResultsTable').DataTable().destroy();
+              }
+            }
+            $('#teamResultsTable tbody').empty();
+
             if (response.getTeamSearchByInfoResponse.totalNumberResults === '0') {
               // no search results
               $('#error-team').removeAttr('hidden').text('Team not found. Please try different search terms.');
-              $('.js__error-team-search').show();
+              $('.js--error-team-search').show();
             } else {
               var teams = luminateExtend.utils.ensureArray(response.getTeamSearchByInfoResponse.team);
 
               $(teams).each(function (i, team) {
-                $('.js__team-results-rows')
+                $('.js--team-results-rows')
                   .append('<tr' + (i > 10 ? ' class="d-none"' : '') + '><td><a href="' + team.teamPageURL + '">' +
                     team.name + '</a></td><td><a href="TR/?px=' + team.captainConsId + '&pg=personal&fr_id=' + team.EventId + '">' + team.captainFirstName + ' ' + team.captainLastName + '</a></td><td>' +
                     ((team.companyName !== null && team.companyName !== undefined) ? '<a href="TR?company_id=' + team.companyId + '&fr_id=' + team.EventId + '&pg=company">' + team.companyName + '</a>' : '') +
-                    '</td><td><a href="TR/?fr_id=' + team.EventId + '&pg=entry"' + team.eventName + '</a></td><td class="col-cta"><a href="' + team.teamDonateURL + '" class="btn-rounded btn-primary btn-block" title="Donate to ' + team.name + '" aria-label="Donate to ' + team.name + '">Donate</a></td></tr>');
+                    '</td><td><a href="TR/?fr_id=' + team.EventId + '&pg=entry">' + team.eventName + '</a></td><td class="col-cta"><a href="' + team.teamDonateURL + '" class="btn btn-primary btn-block" title="Donate to ' + team.name + '" aria-label="Donate to ' + team.name + '">Donate</a></td></tr>');
               });
-         
+
+              var totalTeams = parseInt(response.getTeamSearchByInfoResponse.totalNumberResults);
+
+              $('.js--num-team-results').text((totalTeams === 1 ? '1 Result' : totalTeams + ' Results'));
+
+              if(totalTeams > 10) {
+                $('.js--more-team-results').removeAttr('hidden');
+              }
+
+              $('.js--team-results-container').removeAttr('hidden');
+
+              $('.js--more-team-results').on('click', function(e){
+                e.preventDefault();
+                $('.js--team-results-rows tr').removeClass('d-none');
+                $(this).attr('hidden', true);
+                $('.js--end-team-list').removeAttr('hidden');
+              });
+              $('#teamResultsTable').DataTable({
+                "paging":   false,
+                "searching":   false,
+                "info":     false
+              });
+              $('.dataTables_length').addClass('bs-select');
+
+              $('.js--team-results-container').removeAttr('hidden');
+
             }
           },
           error: function (response) {
             $('#error-team').removeAttr('hidden').text(response.errorResponse.message);
-
-            $('.js__search-results').show();
-            $('.js__search-results-container').show();
+            $('.js--search-results').show();
+            $('.js--search-results-container').show();
           }
         }
       });
@@ -174,12 +241,12 @@
                   company.companyName + '</a></td><td class="col-cta"><a href="' + company.companyURL + '" aria-label="Visit page for ' + company.companyName + '" class="btn-rounded btn-primary btn-block">View</a></td></tr>');
               });
 
-              $('.js__company-results-container').removeAttr('hidden');
-              $('.js__company-results-container').removeAttr('hidden');
+              $('.js--company-results-container').removeAttr('hidden');
+              $('.js--company-results-container').removeAttr('hidden');
             }
           },
           error: function (response) {
-            $('.js__company-results-container').removeAttr('hidden').text(response.errorResponse.message);
+            $('.js--company-results-container').removeAttr('hidden').text(response.errorResponse.message);
           }
         }
       });
@@ -192,8 +259,8 @@
 
     // Get events by name or state
     cd.getEvents = function (eventName, eventState) {
-      $('.js__loading').show();
-      $('.js__no-event-results').addClass('d-none');
+      $('.js--loading').show();
+      $('.js--no-event-results').addClass('d-none');
       luminateExtend.api({
         api: 'teamraiser',
         data: 'method=getTeamraisersByInfo' +
@@ -204,7 +271,7 @@
         callback: {
           success: function (response) {
             if (response.getTeamraisersResponse.totalNumberResults > '0') {
-              $('.js__loading').hide();
+              $('.js--loading').hide();
               var events = luminateExtend.utils.ensureArray(response.getTeamraisersResponse.teamraiser);
 
               $(events).each(function (i, event) {
@@ -222,7 +289,7 @@
                 var greetingUrl = event.greeting_url;
                 var registerUrl = 'SPageServer/?pagename=cn_register&fr_id=' + eventId + '&s_regType=';
                 var acceptsRegistration = event.accepting_registrations;
-                var eventRow = '<li class="event-detail row col-12 col-lg-4 mb-4 fadein"><div class="event-detail-content col-10"><a class="js__event-name" href="' +
+                var eventRow = '<li class="event-detail row col-12 col-lg-4 mb-4 fadein"><div class="event-detail-content col-10"><a class="js--event-name" href="' +
                   greetingUrl + '" aria-label="Visit ' + eventCity + ' ' + eventType + ' Event"><span class="city">' +
                   eventCity + '</span>, <span class="fullstate">' +
                   eventStateAbbr + '</span></a><span class="eventtype d-block">' +
@@ -231,16 +298,16 @@
                   greetingUrl + '" class="event-detail-button btn col-2" aria-label="Visit event page for CycleNation ' + eventCity + '"><i class="fas fa-angle-right" aria-hidden="true" alt=""></i></a></li>';
 
                 if (eventStatus === '1' || eventStatus === '2' || eventStatus === '3') {
-                  $('.js__event-search-results').append(eventRow);
+                  $('.js--event-search-results').append(eventRow);
                 }
               });
             } else {
-              $('.js__loading').hide();
-              $('.js__no-event-results').removeClass('d-none');
+              $('.js--loading').hide();
+              $('.js--no-event-results').removeClass('d-none');
             }
           },
           error: function (response) {
-            $('.js__loading').hide();
+            $('.js--loading').hide();
             console.log('getEvents error: ' + response.errorResponse.message);
           }
         }
@@ -250,8 +317,8 @@
     // Get events by zip
 
     cd.getEventsByDistance = function (zipCode) {
-      $('.js__no-event-results').addClass('d-none');
-      $('.js__loading').show();
+      $('.js--no-event-results').addClass('d-none');
+      $('.js--loading').show();
 
       luminateExtend.api({
         api: 'teamraiser',
@@ -264,44 +331,61 @@
         callback: {
           success: function (response) {
             if (response.getTeamraisersResponse.totalNumberResults > '0') {
-              $('.js__loading').hide();
+              $('.js--loading').hide();
               var events = luminateExtend.utils.ensureArray(response.getTeamraisersResponse.teamraiser);
+              var totalEvents = parseInt(response.getTeamraisersResponse.totalNumberResults);
+
+              if ( $.fn.DataTable ) {
+                if ( $.fn.DataTable.isDataTable('#eventResultsTable') ) {
+                  $('#eventResultsTable').DataTable().destroy();
+                }
+              }
+              $('#eventResultsTable tbody').empty();
+
+              $('.js--num-event-results').text((totalEvents === 1 ? '1 Result' : totalEvents + ' Results'));
 
               $(events).each(function (i, event) {
-                var eventId = event.id;
-                var eventName = event.name;
                 var eventDate = luminateExtend.utils.simpleDateFormat(event.event_date,
-                  'EEEE, MMMM d, yyyy');
+                  'EEE, MMM d, yyyy');
                 var eventTimestamp = new Date(event.event_date);
-                var eventCity = event.city;
-                var eventStateAbbr = event.state;
-                var eventStateFull = event.mail_state;
-                var eventLocation = event.location_name;
                 var eventStatus = event.status;
-                var eventType = event.public_event_type_name;
-                var greetingUrl = event.greeting_url;
-                var registerUrl = 'SPageServer/?pagename=cn_register&fr_id=' + eventId + '&s_regType=';
                 var acceptsRegistration = event.accepting_registrations;
 
-                var eventRow = '<li class="event-detail row col-12 col-lg-4 mb-4 fadein"><div class="event-detail-content col-10"><a class="js__event-name" href="' +
-                  greetingUrl + '" aria-label="Visit ' + eventCity + ' ' + eventType + ' Event"><span class="city">' +
-                  eventCity + '</span>, <span class="fullstate">' +
-                  eventStateAbbr + '</span></a><span class="eventtype d-block">' +
-                  eventType + ' Event</span><span class="event-date d-block">' +
-                  eventDate + '</span></div><a href="' +
-                  greetingUrl + '" class="event-detail-button btn col-2"  aria-label="Visit event page for CycleNation ' + eventCity + '"><i class="fas fa-angle-right" aria-hidden="true" alt=""></i></a></li>';
+
+                var eventRow = '<tr' + (i > 10 ? ' class="d-none"' : '') + '><td><a href="' +
+                event.greeting_url + '">' + event.name + '</a></td><td>' + eventDate + '</td><td>' + event.distance + 'mi</td><td><a href="' + event.greeting_url + '" aria-label="More details about ' + event.name + '" class="btn btn-secondary btn-block">Details</a></td><td class="col-cta">' + (acceptsRegistration === 'true' ? '<a href="SPageServer/?pagename=heartwalk_register&fr_id=' + event.id + '" aria-label="Register for ' + event.name + '" class="btn btn-primary btn-block">Register</a>' : 'Registration Closed') + '</td></tr>';
+
                 if (eventStatus === '1' || eventStatus === '2' || eventStatus === '3') {
-                  $('.js__event-search-results').append(eventRow);
+                  $('.js--event-results-rows').append(eventRow);
                 }
               });
 
+              if(totalEvents > 10) {
+                $('.js--more-event-results').removeAttr('hidden');
+              }
+
+              $('.js--more-event-results').on('click', function(e){
+                e.preventDefault();
+                $('.js--event-results-rows tr').removeClass('d-none');
+                $(this).attr('hidden', true);
+                $('.js--end-event-list').removeAttr('hidden');
+              });
+
+              $('#eventResultsTable').DataTable({
+                "paging":   false,
+                "searching":false,
+                "info":     false
+              });
+              $('.dataTables_length').addClass('bs-select');
+
+              $('.js--event-results-container').removeAttr('hidden');
             } else {
-              $('.js__loading').hide();
-              $('.js__no-event-results').removeClass('d-none');
+              $('.js--loading').hide();
+              $('.js--no-event-results').removeClass('d-none');
             }
           },
           error: function (response) {
-            $('.js__loading').hide();
+            $('.js--loading').hide();
             console.log('getEvents error: ' + response.errorResponse.message);
           }
         }
@@ -313,39 +397,36 @@
     /* THERMOMETER SCRIPTS */
     /***********************/
 
-    // GREETING PAGE
-    if ($('body').is('.pg_entry')) {
-      cd.runThermometer = function (raised, goal) {
-        var fundraiserRaised = Number(raised.replace(/[^0-9.-]+/g,''));
-        var fundraiserGoal = Number(goal.replace(/[^0-9.-]+/g,''));
+    cd.runThermometer = function (raised, goal) {
+          var fundraiserRaised = Number(raised.replace(/[^0-9.-]+/g,''));
+          var fundraiserGoal = Number(goal.replace(/[^0-9.-]+/g,''));
 
-        var percentRaised = (fundraiserRaised / fundraiserGoal);
-        if (isNaN(percentRaised)) {
-          percentRaised = 0;
-        }
-        var percentRaisedFormatted = (percentRaised * 100) + '%';
+          var percentRaised = (fundraiserRaised / fundraiserGoal);
+          if (isNaN(percentRaised)) {
+              percentRaised = 0;
+          }
+          var percentRaisedFormatted = (percentRaised * 100) + '%';
 
-        $('.js__progress-bar')
-            .animate({width : percentRaisedFormatted}, 2000)
-            .attr("aria-valuenow", percentRaisedFormatted);
-        $('.js__percent-raised').each(function () {
-          $(this).prop('Counter', 0).animate({
-            Counter: percentRaisedFormatted
-          }, {
-            duration: 1000,
-            easing: 'swing',
-            step: function (now) {
-              $(this).text(Math.ceil(now) + '%');
-              if (now > 80 && now <= 100) {
-                $(this).addClass('invert-percent-raised');
-              } else if (now > 100) {
-                $(this).addClass('progress-goal-met');
-              }
-            }
+          $('.js__progress-bar')
+              .animate({width : percentRaisedFormatted}, 2000)
+              .attr("aria-valuenow", percentRaisedFormatted);
+          $('.js__percent-raised').each(function () {
+              $(this).prop('Counter', 0).animate({
+                  Counter: percentRaisedFormatted
+              }, {
+                  duration: 1000,
+                  easing: 'swing',
+                  step: function (now) {
+                      $(this).text(Math.ceil(now) + '%');
+                      if (now > 80 && now <= 100) {
+                          $(this).addClass('invert-percent-raised');
+                      } else if (now > 100) {
+                          $(this).addClass('progress-goal-met');
+                      }
+                  }
+              });
           });
-        });
       };
-    }
 
     /******************/
     /* ROSTER SCRIPTS */
@@ -379,7 +460,7 @@
           }
         }
       }); 
-    }
+    };
     // END TOP PARTICIPANTS
 
     // BEGIN TOP TEAMS
@@ -409,7 +490,7 @@
           }
         }
       }); 
-    } 
+    };
 
     // END TOP TEAMS
 
@@ -440,8 +521,56 @@
           }
         }
       }); 
-    } 
+    };
 
+    // EXPANDABLE DONOR ROLL
+    $('.honor-roll-expander').click(function() {
+        if ($(this).children('i').hasClass('fa-chevron-down')) {
+            $(this).children('i').removeClass('fa-chevron-down');
+            $(this).children('i').addClass('fa-chevron-up');
+        } else {
+            $(this).children('i').removeClass('fa-chevron-up');
+            $(this).children('i').addClass('fa-chevron-down');
+        }
+        // In order for the animation to work we need an absolute
+        // height value, so we calculate that by getting the total
+        // height of the donations-container child divs plus their
+        // margin value
+        var totalHeight = 205;
+        $('.donations-container div').each(function(i, div) {
+            if (i > 4) {
+                totalHeight += ($(div).height() + 20);
+            }
+        });
+
+        if ($('.donations-container').height() == 205) {
+            $('.donations-container').animate({height: totalHeight}, 400);
+        } else {
+            $('.donations-container').animate({height: 205}, 400);
+        }
+    });
+
+    cd.reorderPageForMobile = function () {
+        // Reorganize page for mobile views
+        if (screenWidth <= 767) {
+            $('.tr-page-info').insertAfter('.sidebar-hero');
+            $('.fundraising-amounts').prepend($('.fundraising-amounts .col-12'));
+
+            if ($('body').is('.pg_team')) {
+                $('.team-roster').insertBefore($('.donor-roll'));
+
+                $('.team-roster li .raised span').each(function(i, span) {
+                    if ($(this).parent().prev('.donor-name').find('span.coach').length !== 0) {
+                        $(this).insertAfter($(this).parent().prev('.donor-name').children('.coach'));
+                    } else {
+                        $(this).insertAfter($(this).parent().prev('.donor-name').children('a'));
+                    }
+                });
+
+                $('.team-roster form .btn').html($('.team-roster form .btn i'));
+            }
+        }
+    };
 
     if ($('body').is('.pg_entry')) {
       // Greeting Page
@@ -475,19 +604,138 @@
             cd.getTopTeams(evID);
             cd.getTopCompanies(evID);
     }
+
     if ($('body').is('.pg_personal')) {
       // Personal Page
+        var progress = $('#progress-amount').text();
+        var goal = $('#goal-amount').text();
+        cd.runThermometer(progress, goal);
+        cd.reorderPageForMobile();
+
     }
+
     if ($('body').is('.pg_team')) {
       // Team Page
+        var progress = $('#progress-amount').text();
+        var goal = $('#goal-amount').text();
+        cd.runThermometer(progress, goal);
+        cd.reorderPageForMobile();
+        window.cdTeamRosterTable = $('#team-roster').DataTable({
+            order: [[ 1, 'desc' ]]
+        });
     }
+
     if ($('body').is('.pg_company')) {
       // Company Page
     }
+
     if ($('body').is('.pg_informational')) {
       // Custom TR Page
     }
+    if ($('body').is('.pg_HeartWalk_Search')) {
+      // HeartWalk Search Page
+      var clearSearchResults = function(){
+        $('.js--event-results-container, .alert').attr('hidden', true);
+        $('.js--event-results-rows').html('');
+        $('.js--participant-results-container, .alert').attr('hidden', true);
+        $('.js--participants-results-rows').html('');
+        $('.js--team-results-container, .alert').attr('hidden', true);
+        $('.js--team-results-rows').html('');
+      }
 
+    // Search by Event
+    $('.js--zip-search-form').on('submit', function (e) {
+      e.preventDefault();
+      clearSearchResults();
+      var zipSearched = encodeURI($('#zipCodeSearch').val());
+      cd.getEventsByDistance(zipSearched);
+    });
+
+    // Search by Participant
+    $('.js--walker-search-form').on('submit', function (e) {
+      e.preventDefault();
+      clearSearchResults();
+      var firstName = encodeURI($('#walkerFirstName').val());
+      var lastName = encodeURI($('#walkerLastName').val());
+
+      cd.getParticipants(firstName, lastName, (isCrossEventSearch === "true" ? true : false));
+    });
+
+    // Search by Team
+    $('.js--team-search-form').on('submit', function (e) {
+      e.preventDefault();
+      clearSearchResults();
+      var teamName = encodeURI($('#teamNameSearch').val());
+      cd.getTeams(teamName, null, (isCrossEventSearch === "true" ? true : false));
+    });
+
+
+    if(searchType){
+      console.log('autosearch');
+
+      cd.autoSearchParticipant = function () {
+        var firstNameVal = getURLParameter(currentUrl, 'first_name') ? getURLParameter(currentUrl, 'first_name') : '';
+        var lastNameVal = getURLParameter(currentUrl, 'last_name') ? getURLParameter(currentUrl, 'last_name') : '';
+
+        firstNameVal = decodeURI(firstNameVal);
+        lastNameVal = decodeURI(lastNameVal);
+
+        $('#walkerFirstName').val(firstNameVal);
+        $('#walkerLastName').val(lastNameVal);
+
+        cd.getParticipants(firstNameVal, lastNameVal, (isCrossEventSearch === "true" ? true : false));
+      }
+
+      cd.autoSearchTeam = function () {
+        var teamName = getURLParameter(currentUrl, 'team_name') ? getURLParameter(currentUrl, 'team_name') : '';
+        teamName = decodeURI(teamName);
+        $('#teamName').val(teamName);
+
+        cd.getTeams(teamName, null, (isCrossEventSearch === "true" ? true : false));
+      }
+
+      cd.autoSearchEvents = function () {
+        var searchZip = firstSearchTerm + (lastSearchTerm.length ? ' ' + lastSearchTerm : '');
+        $('#zipCodeSearch').val(searchZip);
+
+        cd.getEventsByDistance(searchZip);
+      }
+
+      // cd.autoSearchParticipant();
+      // cd.autoSearchTeam();
+      // cd.autoSearchEvents();
+    }
+
+
+
+    }
 
   });
 }(jQuery));
+
+var cdSortByAmount = true;
+
+var cdSortTeamRoster = function () {
+    var column = cdSortByAmount ? 1 : 0;
+    var direction = cdTeamRosterTable.order()[0][1] === 'desc' ? 'asc' : 'desc';
+
+    cdTeamRosterTable.order([column, direction]).draw();
+
+    var selectedOption = column === 0 ? 'Participant Name' : 'Amount Raised';
+    $('#selected-sort-option').html(selectedOption);
+
+    var icon = $('#sorter-icon i');
+
+    if (icon.hasClass('fa-chevron-down')) {
+        icon.removeClass('fa-chevron-down');
+        icon.addClass('fa-chevron-up');
+    } else {
+        icon.removeClass('fa-chevron-up');
+        icon.addClass('fa-chevron-down');
+    }
+};
+
+var cdSetSortBy = function (sortType) {
+    cdSortByAmount = sortType;
+    cdSortTeamRoster();
+};
