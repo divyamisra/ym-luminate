@@ -1,7 +1,8 @@
 angular.module 'ahaLuminateControllers'
   .controller 'RegistrationWaiverCtrl', [
     '$scope'
-    ($scope) ->
+    'SchoolLookupService'
+    ($scope, SchoolLookupService) ->
       $scope.submitWaiver = ->
         angular.element('.js--registration-waiver-form').submit()
         false
