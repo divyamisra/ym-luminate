@@ -61,6 +61,7 @@
     var srcCode = luminateExtend.global.srcCode;
     var subSrcCode = luminateExtend.global.subSrcCode;
     var evID = $('body').data('fr-id') ? $('body').data('fr-id') : null;
+    var dfID = $('body').data('df-id') ? $('body').data('df-id') : null;
     var consID = $('body').data('cons-id') ? $('body').data('cons-id') : null;
 
     function getURLParameter(url, name) {
@@ -611,6 +612,87 @@
         var goal = $('#goal-amount').text();
         cd.runThermometer(progress, goal);
         cd.reorderPageForMobile();
+
+        // populate custom personal page content
+        $('.js--personal-text').html($('#fr_rich_text_container').html());
+
+        // populate donor honor roll
+        if($('.team-honor-list-row').length > 0){
+          $('.team-honor-list-row').each(function(i, donor){
+            var donorName = $(this).find('.team-honor-list-name').text();
+            var donorAmt = $(this).find('.team-honor-list-value').text();
+            // console.log('donorName donorAmt', donorName + ' ' + donorAmt);
+            $('.js--donor-roll').append('<div><span class="name">' + donorName + '</span><span class="amount">' + donorAmt + '</span></div>');
+            if(i === 4){
+              $('.js--honor-roll-expander').addClass('d-block').removeClass('hide');
+            }
+          });
+        }
+
+
+        // Build personal donation form
+        cd.formatDonation = function(amount){
+          if(amount > 0){
+            amount *= 100;
+            $('.personal-donation-level-other-amount-hidden').val(amount);
+          } else {
+            alert('Please enter a valid number in the "Other" field');
+          }
+        };
+
+        cd.getDonationFormInfo = function(options) {
+          luminateExtend.api({
+            api: 'donation', 
+            requestType: 'POST', 
+            data: 'method=getDonationFormInfo&fr_id=' + evID + '&form_id=' + dfID, 
+            requiresAuth: true, 
+            callback: {
+              success: function(response) {
+                  var i = 0,
+                  donationLevels = luminateExtend.utils.ensureArray(response.getDonationFormInfoResponse.donationLevels.donationLevel);
+                console.log('donationLevels: ', donationLevels);
+                  // $.each(donationLevels, function(){
+                  //   var userSpecified = this.userSpecified,
+                  //   amountFormatted = this.amount.formatted.replace('.00',''),
+                  //   levelID = this.level_id;
+
+                  //   i++;
+
+                  //   if(userSpecified == 'false'){
+                  //     // build pre-defined giving levels
+                  //     $('#amount_preselect').append('<div class="col-md-4 col-xs-6"><input type="radio" name="set.DonationLevel" id="personal-donation-level-'  + i + '" ' + 'value="' + levelID + '" ' + ' class="personal-donation-level hidden"><label for="personal-donation-level-' + i + '" class="button btn-white btn-lg btn-block">' + amountFormatted + '</label></div>');
+                  //   } else {
+                  //     // build user-specified level
+                  //     $('#amount_preselect').append('<div class="col-md-4 col-xs-6"><input type="radio" name="set.DonationLevel" id="personal-donation-level-other" value="' + levelID + '" ' + ' class="personal-donation-level hidden"><label for="personal-donation-level-other" class="button btn-white btn-lg btn-block">Other</label></div>');
+                  //   }
+                  // });
+                  //     $('#donation-form').removeClass('hidden');
+                  //     // define donation widget button behavior
+                  //     $('.personal-donation-form label').on('click', function(){
+                  //       $('.personal-donation-form label').removeClass('active');
+                  //       $(this).addClass('active');
+                  //     });
+                  //     $('#amount_preselect label').on('click', function(){
+                  //       $('.other-amount-container').addClass('hidden');
+                  //       $('.personal-donation-level-other-amount').val('');
+                  //     });
+                  //     $('label[for="personal-donation-level-other"]').on('click', function(){
+                  //       $('.other-amount-container').removeClass('hidden');
+                  //     });
+
+                  //     // format "other" amount before submitting to native donation form
+                  //     $('.personal-donation-level-other-amount').on('blur', function(){
+                  //       cd.formatDonation($(this).val());
+                  //     });
+              }, 
+              error: function(response) {
+                  // $('.field-error-text').text(response.errorResponse.message);
+                  // $('.ErrorContainer').removeClass('hidden');
+              }
+            }
+          });
+        };
+        cd.getDonationFormInfo();
 
     }
 
