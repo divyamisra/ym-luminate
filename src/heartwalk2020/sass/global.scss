@@ -43,6 +43,10 @@ a {
   background-color: $gray-700;
 }
 
+.bg-gray-100 {
+  background-color: $gray-100;
+}
+
 h1, h2, h3, h4, h5, strong {
   font-family: $font-family-bold;
   font-weight: bold;
@@ -219,5 +223,66 @@ img {
 
   p {
     margin: 0 0 32px;
+  }
+}
+
+.tr-page-container {
+  max-width: 1290px;
+
+  &.hero {
+    padding: 77px 0 0;
+  }
+
+  .sidebar {
+    .sidebar-hero {
+      width: 100%;
+    }
+
+    li {
+      border-top: solid 1px $white;
+      color: $white;
+      padding: 11px 0 24px 45px;
+      font-size: 0.97rem;
+      line-height: 1.4;
+
+      p {
+        margin: 0;
+      }
+
+      a {
+        color: $white;
+        margin: 0 0 12px;
+        display: block;
+      }
+    }
+
+    .achievements {
+      img {
+        width: 50px;
+      }
+    }
+  }
+
+  .content-area {
+    margin: 67px 0 0 40px;
+    font-size: 1rem;
+
+    h4 {
+      margin: 0 0 21px;
+    }
+  }
+}
+
+.pg_personal, .pg_team {
+  main {
+    // background-image: url("../../img/FrHeroImage@2x.jpg");
+    background-image: url("../img/hw_hero_personal.jpg")
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-color: $white;
+  }
+
+  .sponsors {
+    border-top: solid 1px $gray-200;
   }
 }

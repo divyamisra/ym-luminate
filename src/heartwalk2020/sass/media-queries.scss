@@ -75,14 +75,15 @@
 }
 
 @media all and (max-width: 1340px) {
-  .pg_personal .container-personal {
+  .tr-page-container {
     max-width: 98%;
   }
 }
 
-@media all and (max-width: 1307px) {
-  .pg_personal .information-box {
+@media all and (max-width: 1315px) {
+  .information-box {
     padding: 30px;
+    width: 95%;
   }
 }
 
@@ -113,6 +114,32 @@
   }
 }
 
+@media all and (max-width: 1160px) {
+  .pg_team {
+    .team-roster {
+      .team-roster-header {
+        h1 {
+          margin: 20px 10px;
+        }
+
+        .row {
+          padding: 0 10px 15px;
+        }
+      }
+    }
+  }
+}
+
+@media all and (max-width: 1035px) {
+  .pg_team {
+    .information-box {
+      width: 98%;
+      margin-left: 0;
+      margin-right: 0;
+    }
+  }
+}
+
 @media all and (max-width: 1010px) {
   nav {
     li.login a {
@@ -125,6 +152,10 @@
     .nav-link {
       font-size: 1.1rem;
     }
+  }
+
+  .pg_team .team-roster .team-roster-header .row {
+    font-size: 0.7rem;
   }
 }
 
@@ -230,92 +261,135 @@
     }
   }
 
-  /* PERSONAL PAGE STYLES */
-  .pg_personal {
+  /* PERSONAL AND TEAM PAGE STYLES */
+  .pg_personal, .pg_team {
     main {
       bade: none !important;
       background-color: $white;
       border-top: solid 1px $gray-400;
     }
+  }
+  /* END PERSONAL AND TEAM PAGE STYLES */
 
-    .container-personal {
-      &.hero {
-        .col-lg-4 {
-          padding: 0 !important;
-        }
-      }
-
-      .sidebar {
-        max-width: 40% !important;
-
-        li {
-          padding: 20px;
-        }
-
-        .donor-roll {
-          margin-bottom: 20px !important;
-        }
-      }
-
-      .col-lg-8 {
-        max-width: 60% !important;
-      }
-
-      .information-box {
-        box-shadow: none !important;
-        margin: 0 auto;
-        width: 100% !important;
-        padding: 10px 30px 30px !important;
-
-        h1 {
-          width: 100%;
-          font-size: 1.33rem;
-
-          .badges-container {
-            width: 100%;
-            margin: 10px 0 !important;
-
-            img {
-              width: 60px;
-            }
-          }
-        }
-
-        .donation-amounts {
-          .donation-amount-btn {
-            width: 53px;
-          }
-
-          .custom-amount {
-            margin: 10px 0 0 !important;
-
-            input {
-              width: 100%;
-            }
-          }
-        }
-
-        .buttons-row {
-          .btn {
-            max-width: 44% !important;
-
-            &:first-child {
-              margin-right: 15px !important;
-            }
-          }
-        }
-      }
-
-      .content-area {
-        margin: 15px;
+  .tr-page-container {
+    &.hero {
+      .col-lg-4 {
+        padding: 0 !important;
       }
     }
 
-    .sponsors {
-      padding: 0;
+    .sidebar {
+      max-width: 40% !important;
+
+      li {
+        padding: 20px;
+      }
+
+      .donor-roll {
+        margin-bottom: 20px !important;
+      }
+    }
+
+    .col-lg-8 {
+      max-width: 60% !important;
+    }
+
+    .information-box {
+      box-shadow: none !important;
+      margin: 0 auto;
+      width: 100% !important;
+      padding: 10px 30px 30px !important;
+
+      h1 {
+        width: 100%;
+        font-size: 1.33rem;
+
+        .badges-container {
+          width: 100%;
+          margin: 10px 0 !important;
+
+          img {
+            width: 60px;
+          }
+        }
+      }
+
+      .donation-amounts {
+        .donation-amount-btn {
+          width: 53px;
+        }
+
+        .custom-amount {
+          margin: 10px 0 0 !important;
+
+          input {
+            width: 100%;
+          }
+        }
+      }
+
+      .buttons-row {
+        .btn {
+          max-width: 44% !important;
+
+          &:first-child {
+            margin-right: 15px !important;
+          }
+        }
+      }
+    }
+
+    .content-area {
+      margin: 15px;
     }
   }
-  /* END PERSONAL PAGE STYLES */
+
+  /* TEAM PAGE STYLES */
+  .pg_team {
+    .tr-page-container {
+      .information-box {
+        h1 {
+          margin: 0;
+        }
+
+        .buttons-row .btn {
+          font-size: 0.8rem;
+        }
+      }
+    }
+    .team-roster {
+      padding: 0 !important;
+
+      h1 {
+        margin: 20px !important;
+      }
+      li {
+        color: $black;
+        a {
+          color: $red;
+        }
+
+        span {
+          display: block;
+        }
+      }
+
+      .team-roster-header .row {
+        padding: 0 20px 20px !important;
+      }
+    }
+
+    .content-area {
+      border: none;
+      padding: 0;
+
+      .col-lg-5 {
+        margin: 30px 0 !important;
+        padding: 0 20px !important;
+      }
+    }
+  }
+  /* END TEAM PAGE STYLES */
 }
 
 @media all and (max-width: 767px) {
@@ -517,8 +591,8 @@
   }
 
   /* PERSONAL PAGE STYLES */
-  .pg_personal {
-    .container-personal {
+  .pg_personal, .pg_team {
+    .tr-page-container {
       &.hero {
         padding: 20px 0 0 0;
       }
@@ -675,8 +749,8 @@
   }
 
   /* PERSONAL PAGE STYLES */
-  .pg_personal {
-    .container-personal {
+  .pg_personal, .pg_team {
+    .tr-page-container {
       .information-box {
 
         h1 .badges-container {
@@ -743,7 +817,7 @@
         }
       }
 
-      .personal-page-info .text-small, .personal-page-info p {
+      .tr-page-info .text-small, .tr-page-info p {
           text-align: center;
       }
 
