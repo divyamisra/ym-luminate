@@ -667,7 +667,7 @@ $('.donation-amounts').html('');
                       $('.donation-amounts').append('<div class="donation-amount-btn btn"> <input class="form-check-input sr-only" type="radio" name="personalDonAmt" id="personalDonAmt' + i + '" value="' + levelID + '"> <label class="form-check-label" for="personalDonAmt' + i + '" data-level-id="' + levelID + '">' + amountFormatted + '</label> </div>');                      
                     } else {
                       // build user-specified level
-                      $('.donation-amounts').append('<div class="custom-amount"> <input class="form-check-input js--don-amt-other sr-only" type="radio" name="personalDonAmt" id="personalDonAmt' + i + '" value="' + levelID + '"> <label class="sr-only" for="personalDonAmt' + i + '" data-level-id="' + levelID + '">Enter your own amount</label> <label class="form-label d-inline-block" for="personalOtherAmt">Custom Amount:</label><br/> <input type="text" id="personalOtherAmt" class="form-control d-inline-block"/> </div>');                     
+                      $('.donation-amounts').append('<div class="custom-amount"> <input class="form-check-input js--don-amt-other sr-only" type="radio" name="personalDonAmt" id="personalDonAmt' + i + '" value="' + levelID + '"> <label class="sr-only" for="personalDonAmt' + i + '" data-level-id="' + levelID + '">Enter your own amount</label> <label class="form-label d-inline-block" for="personalOtherAmt">Custom Amount:</label><br/> <input type="text" id="personalOtherAmt" class="form-control d-inline-block js--personal-amt-other"/> </div>');                     
                     }
                   });
                       $('.js--personal-don-form').removeClass('hidden');
@@ -675,7 +675,7 @@ $('.donation-amounts').html('');
                       var finalDonUrl = null;
                       // define donation widget button behavior
                       $('.js--personal-don-form label').on('click', function(){
-                        $('.js--don-amt-other input[type="text"]').val('');
+                        $('.js--personal-amt-other').val('');
                         $('.js--personal-don-form .donation-amount-btn').removeClass('active');
                         $(this).parent().addClass('active');
                         $('.js--don-amt').text($(this).text());
@@ -683,15 +683,20 @@ $('.donation-amounts').html('');
                         console.log('finalDonUrl: ', finalDonUrl);
                      });
 
-// TODO - add custom amount to button, deselect others when custom amount selected, format final submit redirect
                       // format "other" amount before submitting to native donation form
-                      $('.js--don-amt-other input[type="text"]').on('blur', function(){
+                      $('.js--personal-amt-other').on('blur, keyup', function(){
+                        $('.js--personal-don-form .donation-amount-btn').removeClass('active');
                         var customAmt = cd.formatDonation($(this).val());
-                        $('.js--don-amt').text($(this).val());
+                        $('.js--don-amt').text('$' + $(this).val());
                         $('.js--don-amt').attr('href', defaultDonUrl + '&set.DonationLevel=' + $('.js--don-amt-other').val() + '&set.Value=' + customAmt);
-
                       });
 
+                      $('.js--personal-don-form').on('submit', function(e){
+                        e.preventDefault();
+                        console.log('finalDonUrl: ', finalDonUrl);
+                        // redirect to personal donation form with preselected amount
+                        window.location.href = finalDonUrl;
+                      })
                      
               }, 
               error: function(response) {
