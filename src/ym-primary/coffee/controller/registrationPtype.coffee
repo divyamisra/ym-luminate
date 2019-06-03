@@ -100,6 +100,7 @@ angular.module 'ahaLuminateControllers'
             $scope.toggleDonationLevel '$0.00'
           angular.element('.js--default-ptype-form').submit()
           false
+          
       setCompanyCity = (companyCity) ->
         $rootScope.companyCity = companyCity
         if not $rootScope.$$phase
