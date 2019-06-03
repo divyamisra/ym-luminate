@@ -624,7 +624,7 @@
             // console.log('donorName donorAmt', donorName + ' ' + donorAmt);
             $('.js--donor-roll').append('<div><span class="name">' + donorName + '</span><span class="amount">' + donorAmt + '</span></div>');
             if(i === 4){
-              $('.js--honor-roll-expander').addClass('d-block').removeClass('hide');
+              $('.js--honor-roll-expander').addClass('d-block').removeClass('hidden');
             }
           });
         }
@@ -651,39 +651,48 @@
                   var i = 0,
                   donationLevels = luminateExtend.utils.ensureArray(response.getDonationFormInfoResponse.donationLevels.donationLevel);
                 console.log('donationLevels: ', donationLevels);
-                  // $.each(donationLevels, function(){
-                  //   var userSpecified = this.userSpecified,
-                  //   amountFormatted = this.amount.formatted.replace('.00',''),
-                  //   levelID = this.level_id;
 
-                  //   i++;
+                // TODO - remove after local testing
+$('.donation-amounts').html('');
 
-                  //   if(userSpecified == 'false'){
-                  //     // build pre-defined giving levels
-                  //     $('#amount_preselect').append('<div class="col-md-4 col-xs-6"><input type="radio" name="set.DonationLevel" id="personal-donation-level-'  + i + '" ' + 'value="' + levelID + '" ' + ' class="personal-donation-level hidden"><label for="personal-donation-level-' + i + '" class="button btn-white btn-lg btn-block">' + amountFormatted + '</label></div>');
-                  //   } else {
-                  //     // build user-specified level
-                  //     $('#amount_preselect').append('<div class="col-md-4 col-xs-6"><input type="radio" name="set.DonationLevel" id="personal-donation-level-other" value="' + levelID + '" ' + ' class="personal-donation-level hidden"><label for="personal-donation-level-other" class="button btn-white btn-lg btn-block">Other</label></div>');
-                  //   }
-                  // });
-                  //     $('#donation-form').removeClass('hidden');
-                  //     // define donation widget button behavior
-                  //     $('.personal-donation-form label').on('click', function(){
-                  //       $('.personal-donation-form label').removeClass('active');
-                  //       $(this).addClass('active');
-                  //     });
-                  //     $('#amount_preselect label').on('click', function(){
-                  //       $('.other-amount-container').addClass('hidden');
-                  //       $('.personal-donation-level-other-amount').val('');
-                  //     });
-                  //     $('label[for="personal-donation-level-other"]').on('click', function(){
-                  //       $('.other-amount-container').removeClass('hidden');
-                  //     });
+                  $.each(donationLevels, function(){
+                    var userSpecified = this.userSpecified,
+                    amountFormatted = this.amount.formatted.replace('.00',''),
+                    levelID = this.level_id;
 
-                  //     // format "other" amount before submitting to native donation form
-                  //     $('.personal-donation-level-other-amount').on('blur', function(){
-                  //       cd.formatDonation($(this).val());
-                  //     });
+                    i++;
+
+                    if(userSpecified == 'false'){
+                      // build pre-defined giving levels
+                      $('.donation-amounts').append('<div class="donation-amount-btn btn"> <input class="form-check-input sr-only" type="radio" name="personalDonAmt" id="personalDonAmt' + i + '" value="' + levelID + '"> <label class="form-check-label" for="personalDonAmt' + i + '" data-level-id="' + levelID + '">' + amountFormatted + '</label> </div>');                      
+                    } else {
+                      // build user-specified level
+                      $('.donation-amounts').append('<div class="custom-amount"> <input class="form-check-input js--don-amt-other sr-only" type="radio" name="personalDonAmt" id="personalDonAmt' + i + '" value="' + levelID + '"> <label class="sr-only" for="personalDonAmt' + i + '" data-level-id="' + levelID + '">Enter your own amount</label> <label class="form-label d-inline-block" for="personalOtherAmt">Custom Amount:</label><br/> <input type="text" id="personalOtherAmt" class="form-control d-inline-block"/> </div>');                     
+                    }
+                  });
+                      $('.js--personal-don-form').removeClass('hidden');
+                      var defaultDonUrl = $('.js--personal-don-submit').data('don-url');
+                      var finalDonUrl = null;
+                      // define donation widget button behavior
+                      $('.js--personal-don-form label').on('click', function(){
+                        $('.js--don-amt-other input[type="text"]').val('');
+                        $('.js--personal-don-form .donation-amount-btn').removeClass('active');
+                        $(this).parent().addClass('active');
+                        $('.js--don-amt').text($(this).text());
+                        finalDonUrl = defaultDonUrl + '&set.DonationLevel=' + $(this).data('level-id');
+                        console.log('finalDonUrl: ', finalDonUrl);
+                     });
+
+// TODO - add custom amount to button, deselect others when custom amount selected, format final submit redirect
+                      // format "other" amount before submitting to native donation form
+                      $('.js--don-amt-other input[type="text"]').on('blur', function(){
+                        var customAmt = cd.formatDonation($(this).val());
+                        $('.js--don-amt').text($(this).val());
+                        $('.js--don-amt').attr('href', defaultDonUrl + '&set.DonationLevel=' + $('.js--don-amt-other').val() + '&set.Value=' + customAmt);
+
+                      });
+
+                     
               }, 
               error: function(response) {
                   // $('.field-error-text').text(response.errorResponse.message);
