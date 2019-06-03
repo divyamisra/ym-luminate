@@ -87,7 +87,7 @@ img {
       margin: -9px 0 0 36px;
       float: left;
 
-      img {
+      svg {
         display: block;
         float: left;
         width: 76px;
@@ -274,7 +274,7 @@ img {
 .pg_personal, .pg_team {
   main {
     // background-image: url("../../img/FrHeroImage@2x.jpg");
-    background-image: url("images/content/pagebuilder/hw_hero_personal.jpg");
+    background-image: url("/images/content/pagebuilder/hw_hero_personal.jpg");
     background-size: 100%;
     background-repeat: no-repeat;
     background-color: $white;
