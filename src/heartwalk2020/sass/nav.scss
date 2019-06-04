@@ -29,7 +29,7 @@ nav {
   padding: 0 !important;
 
   /* Logo */
-  .navbar-brand img {
+  .navbar-brand svg {
     margin: -17px 0px 1px -1px;
   }
 
@@ -170,7 +170,17 @@ nav {
       }
     }
   }
-
+  .mobile-utility-nav {
+    background-color: $gray-400;
+    width:100%;
+    padding:10px 15px;
+    a {
+      display:inline-block;
+      font-size:16px;
+      color:$primary;
+      font-weight:bold;
+    }
+  }
   /* Login button */
   li.login {
     margin: 30px -2px -11px 45px;
