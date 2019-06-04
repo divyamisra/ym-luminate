@@ -686,7 +686,7 @@
         // Team Search
         $('.js--greeting-team-search-form').on('submit', function (e) {
           e.preventDefault();
-          var teamName = encodeURI($('#teamNameSearch').val());
+          var teamName = encodeURI($('#teamName').val());
           cd.getTeams(teamName, null, (isCrossEventSearch === "true" ? true : false));
           window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=HeartWalk_Search&search_type=team&cross_event=false&fr_id=' + evID + '&team_name=' + teamName;
         });
@@ -893,11 +893,11 @@
       } else if(searchType === 'walker'){
         cd.autoSearchParticipant();
         // Switch to walker tab
-        $('#searchWalker').tab('show');
+        $('#searchWalkerTab').tab('show');
       } else if(searchType === 'team'){
         cd.autoSearchTeam();
         // Switch to team tab
-        $('#searchTeam').tab('show');
+        $('#searchTeamTab').tab('show');
       }
     }
 
