@@ -63,7 +63,15 @@ nav {
         display: block;
       }
     }
-
+    &.logged-in {
+      width:500px;
+      a {
+        display:inline-block;
+        font-size:16px;
+        color:$primary;
+        font-weight:bold;
+      }
+    }
     /* Dropdown styles */
 
     .dropdown-menu-container {
@@ -247,7 +255,7 @@ nav {
    * appropriately.
    */
   .is-search {
-    #mobile-search-input, #home, #find, #about, .about, .dropdown-menu:after, .dropdown-menu:before {
+    #mobile-search-input, #home, #find, #about, .about, .dropdown-menu:after, .dropdown-menu:before, .dropdown-menu-container.about {
       display: none !important;
     }
 
