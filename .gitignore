@@ -1,15 +1,15 @@
 # compiled output
-/dist
+dist
 
 # dependencies
-/node_modules
+node_modules
 
 # IDEs (IntelliJ)
-/.idea
+.idea
 *.iml
 
 # misc
-/.sass-cache
+.sass-cache
 npm-debug.log
 package-lock.json
 
