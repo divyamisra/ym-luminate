@@ -1,1 +1,310 @@
-<!-- TODO - place HTML for team page body customizations here -->
+<div class="container tr-page-container hero">
+    <div class="row">
+        <div class="col-lg-4 col-md-12 sidebar">
+            <img class="sidebar-hero" src="../images/friendraiser_uploads/4024.386400868.custom.jpg" alt="[[E43:[[S334:fr_id]]:name:[[S334:team_id]]]] fundraising page"/>
+            <div class="bg-gray-700">
+                <ul>
+                    <li>
+                        <p><strong>Event:</strong></p>
+                        <p><a href="TR?fr_id=[[S334:fr_id]]&pg=entry">[[E47:[[S334:fr_id]]:fr_info:1:event_title]]</a></p>
+                        <p>[[E47:[[S334:fr_id]]:fr_info:1:event_date]]</p>
+                    </li>
+                    <li>
+                        <p><strong>Team Coach:</strong></p>
+                        <p><a href="#">Jason Stafin</a></p>
+                    </li>
+                    <li>
+                        <p><strong>Company affiliation:</strong></p>
+                        <p><a href="TR?company_id=[[E48:[[S334:fr_id]]-[[S334:px]]:company-id]]]]&fr_id=[[S334:fr_id]]&pg=company">[[E43:[[S334:fr_id]]:company-name:[[S334:team_id]]]]</a></p>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.bg-gray-700 -->
+            <div class="donor-roll box-shadow bg-gray-100">
+                <h5>[[E43:[[S334:fr_id]]:name:[[S334:team_id]]]] Donors:</h5>
+                <div class="donations-container">
+                    <div>
+                        <span class="name">Lance Vincent</span>
+                        <span class="amount">$100.00</span>
+                    </div>
+                    <div>
+                        <span class="name">Bobbie Lowrimore</span>
+                        <span class="amount">$100.00</span>
+                    </div>
+                    <div>
+                        <span class="name">Leslie Lowrimore</span>
+                        <span class="amount">$75.00</span>
+                    </div>
+                    <div>
+                        <span class="name">Bek Horne</span>
+                        <span class="amount">$25.00</span>
+                    </div>
+                    <div>
+                        <span class="name">Slade Gauntt</span>
+                        <span class="amount">$25.00</span>
+                    </div>
+                    <div>
+                        <span class="name">Lance Vincent</span>
+                        <span class="amount">$100.00</span>
+                    </div>
+                    <div>
+                        <span class="name">Bobbie Lowrimore</span>
+                        <span class="amount">$100.00</span>
+                    </div>
+                    <div>
+                        <span class="name">Leslie Lowrimore</span>
+                        <span class="amount">$75.00</span>
+                    </div>
+                    <div>
+                        <span class="name">Bek Horne</span>
+                        <span class="amount">$25.00</span>
+                    </div>
+                    <div>
+                        <span class="name">Slade Gauntt</span>
+                        <span class="amount">$25.00</span>
+                    </div>
+                    <div>
+                        <span class="name">Bobbie Lowrimore</span>
+                        <span class="amount">$100.00</span>
+                    </div>
+                    <div>
+                        <span class="name">Leslie Lowrimore</span>
+                        <span class="amount">$75.00</span>
+                    </div>
+                    <div>
+                        <span class="name">Bek Horne</span>
+                        <span class="amount">$25.00</span>
+                    </div>
+                    <div>
+                        <span class="name">Last donor name</span>
+                        <span class="amount">$25.00</span>
+                    </div>
+                </div>
+                <!-- /.donations-container -->
+                <a class="honor-roll-expander text-center d-block" href="javascript:void(0);"><i class="fas fa-chevron-down"></i></a>
+            </div>
+            <!-- /.donor-roll -->
+        </div>
+        <!-- /.sidebar -->
+        <div class="col-lg-8 col-md-12">
+
+            <!-- TEAM PAGE INFO BOX -->
+            <div class="tr-page-info bg-white information-box">
+                <h1 class="w-100">
+                    <div class="float-left">
+                        [[E43:[[S334:fr_id]]:name:[[S334:team_id]]]]
+                    </div>
+                    <!-- /.float-left -->
+                    <div class="team-members float-right d-lg-block d-md-none">
+                        [[E43:0:num-members:[[S334:team_id]] members
+                    </div>
+                    <!-- /.badges-container -->
+                </h1>
+                <div class="clearfix"></div>
+                <div class="row fundraising-amounts">
+                    <div class="col-6">
+                        <span class="d-block">Fundraising Progress</span>
+                        <span id="progress-amount" class="amount">
+                            [[E130:"[[E43:[[S334:fr_id]]:dollars:[[S334:team_id]]]]" ".00" "" replaceall]]
+                        </span>
+                        <!-- /.amount -->
+                    </div>
+                    <!-- /.col-6 -->
+                    <div class="col-6 text-right">
+                        <span class="d-block">Fundraising Goal</span>
+                        <span id="goal-amount" class="amount">
+                          [[E130:"[[E43:[[S334:fr_id]]:goal-dollars:[[S334:team_id]]]]" ".00" "" replaceall]]
+                      </span>
+                        <!-- /.amount -->
+                    </div>
+                    <!-- /.col-6 -->
+                    <div class="col-12">
+                        <div class="thermometer">
+                            <div class="thermometer-inner js__progress-bar"></div>
+                            <!-- /.thermometer-inner -->
+                        </div>
+                        <!-- /.thermometer -->
+                    </div>
+                    <!-- /.col-12 -->
+                </div>
+                <!-- /.row -->
+
+                <form>
+                    <div class="row buttons-row">
+                        [[?x2x3x::x[[S42:0:status]]x::
+                        <a class="btn btn-primary col-lg col-sm-12 mx-md-2 mx-sm-0" href="Donation2?df_id=[[E43:[[S334:fr_id]]:form-id]]&PROXY_ID=[[S334:team_id]]&PROXY_TYPE=22&FR_ID=[[S334:fr_id]]">Donate to a Team Member</a>
+                        ::]]
+                        [[?x1x2x::x[[S42:0:status]]x::
+                            <a class="btn btn-secondary col-lg col-sm-12 mx-md-2 mx-sm-0" href="TRR/HeartWalk/General?fr_tjoin=[[S334:team_id]]&pg=tfind&fr_id=[[S334:fr_id]]">Join This Team</a>
+                        ::]]
+                    </div>
+                </form>
+                <a href="#" class="d-block text-small mt-3">Mail in a Donation</a>
+                <a href="#" class="d-block text-small mt-3">Make a General Donation to this Team</a>
+            </div>
+            <!-- /.event-info -->
+            <!-- END TEAM PAGE INFO BOX -->
+
+            <!-- TEAM ROSTER -->
+            <div class="information-box team-roster bg-gray-100">
+                <div class="team-roster-header">
+                    <h1>Team Roster</h1>
+                    <div class="clearfix"></div>
+                    <!-- /.clearfix -->
+                    <div class="row">
+                        <div class="col-lg-6 col-md-12 sorter d-flex align-items-end">
+                            <div>
+                                Showing 1 - 5 of 37
+                                <span class="d-lg-inline d-md-none">|</span>
+                                <br class="d-lg-none d-md-block" />
+                                Sort By:
+                                <div class="dropdown d-inline">
+                                    <a class="selected-sort-option" href="javascript:void(0)" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Amount Raised</a>
+                                    <a href="javascript:void(0);" onclick="cdSortRoster(this)" id="sorter-icon"><i class="fas fa-chevron-down"></i></a>
+                                    <div class="dropdown-menu">
+                                        <a href="javascript:void(0);" onclick="cdSetSortBy(1, this)">Amount Raised</a>
+                                        <a href="javascript:void(0);" onclick="cdSetSortBy(0, this)">Participant Name</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.col -->
+
+                        <div class="col-lg-6 col-md-12">
+                            <form>
+                                <label for="search-for-team-member">Search for a Team Member</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="search-for-team-member" name="search-for-team-member" aria-label="Search for team member">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-primary btn-outline-secondary" type="button">Search <i class="fas fa-search"></i></button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <!-- /.team-roster-header -->
+                <table id="team-roster" class="float-left w-100">
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Amount Raised</th>
+                        <th>Donation Link</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="row">
+                        <td class="col-4 donor-name">
+                            <a href="#">Jeff Thomas</a>
+                        </td>
+
+                        <td class="col-4 raised" data-sort="5">
+                            <span>Raised:<strong>$5</strong></span>
+                        </td>
+                        <!-- /.col-4 -->
+
+                        <td class="col-4">
+                            <a href="">Donate to Jeff</a>
+                        </td>
+                        <!-- /.col-4 -->
+                    </tr>
+                    <tr class="row">
+                        <td class="col-4 donor-name">
+                            <a href="#">Jason Stafin</a> <span class="coach">- Coach</span>
+                        </td>
+
+                        <td class="col-4 raised" data-sort="90">
+                            <span>Raised:<strong>$90</strong></span>
+                        </td>
+                        <!-- /.col-4 -->
+
+                        <td class="col-4">
+                            <a href="">Donate to Jason</a>
+                        </td>
+                        <!-- /.col-4 -->
+                    </tr>
+                    <tr class="row">
+                        <td class="col-4 donor-name">
+                            <a href="#">Doug Losey</a>
+                        </td>
+
+                        <td class="col-4 raised" data-sort="95">
+                            <span>Raised:<strong>$95</strong></span>
+                        </td>
+                        <!-- /.col-4 -->
+
+                        <td class="col-4">
+                            <a href="">Donate to Doug</a>
+                        </td>
+                        <!-- /.col-4 -->
+                    </tr>
+                    <tr class="row">
+                        <td class="col-4 donor-name">
+                            <a href="#">Greg Weaver</a>
+                        </td>
+
+                        <td class="col-4 raised" data-sort="605">
+                            <span>Raised:<strong>$605</strong></span>
+                        </td>
+                        <!-- /.col-4 -->
+
+                        <td class="col-4">
+                            <a href="">Donate to Greg</a>
+                        </td>
+                        <!-- /.col-4 -->
+                    </tr>
+                    <tr class="row">
+                        <td class="col-4 donor-name">
+                            <a href="#">Howard Moon</a>
+                        </td>
+
+                        <td class="col-4 raised" data-sort="905">
+                            <span>Raised:<strong>$905</strong></span>
+                        </td>
+                        <!-- /.col-4 -->
+
+                        <td class="col-4">
+                            <a href="">Donate to Howard</a>
+                        </td>
+                        <!-- /.col-4 -->
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="clearfix"></div>
+                <!-- /.clearfix -->
+                <div class="d-flex justify-content-center">
+                    <a href="#" class="btn btn-tertiary-black">Show All Team Members</a>
+                </div>
+                <!-- /.d-flex justify-content-center -->
+            </div>
+            <!-- /.information-box -->
+            <!-- END TEAM ROSTER -->
+        </div>
+        <!-- /.col-lg-8 -->
+        <div class="col-12">
+            <div class="content-area">
+                <div class="row">
+                    <div class="col-lg-7 col-md-12">
+                        <div class="video-container embed-responsive embed-responsive-16by9">
+                            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/6PyBq8AvZNU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
+                        <!-- /.video-container -->
+                    </div>
+                    <!-- /.col-7 -->
+                    <div class="col-lg-5 col-md-12 pl-5">
+                        <h4>Why We Walk</h4>
+                        <div class="js--team-text"></div>
+                    </div>
+                    <!-- /.col-5 -->
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- /.content-area -->
+        </div>
+        <!-- /.col-12 -->
+    </div>
+    <!-- /.row -->
+</div>
+<!-- /.container -->
