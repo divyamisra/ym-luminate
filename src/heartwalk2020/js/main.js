@@ -632,15 +632,8 @@
         }
     };
 
-    cd.initializeTeamRosterTable = function() {
-        window.cdTeamRosterTable = $('#team-roster').DataTable({
-            order: [[ 1, 'desc' ]]
-        });
-    };
-    cd.initializeParticipantRosterTable = function() {
-        window.cdParticipantRosterTable = $('#participant-roster').DataTable({
-            order: [[ 2, 'desc' ]]
-        });
+    cd.convertNumberToDollarAmount = function(number) {
+        return (number + '').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
     };
 
     if ($('body').is('.pg_entry')) {
@@ -789,31 +782,39 @@
         // populate custom team page content		
         $('.js--team-text').html($('#fr_rich_text_container').html());		
         // populate donor honor roll		
-        cd.getTeamHonorRoll()
+        cd.getTeamHonorRoll();
     }
 
     if ($('body').is('.pg_company')) {
       // Company Page
+        // Populate total raised
+        var raised = $('.company-tally-container--amount .company-tally-ammount').text();
+        if (raised) {
+            $('#progress-amount').html(raised);
+        }
+
+        // Get company goal
+        $('.indicator-title:contains("Company Fundraising")').closest('.tr-status-indicator-container').addClass('default-company-thermometer');
+        var companyoGoalText = $('.default-company-thermometer .total-goal-value').text();
+        var companyGoal = companyoGoalText.split('.');
+        $('#goal-amount').html(companyGoal[0]);
+
+        // populate custom personal page content
+        $('.js--company-text').html($('#fr_rich_text_container').html());
+
         var progress = $('#progress-amount').text();
         var goal = $('#goal-amount').text();
         cd.runThermometer(progress, goal);
         cd.reorderPageForMobile();
         cd.initializeTeamRosterTable();
         cd.initializeParticipantRosterTable();
-        cd.reorderPageForMobile();
 
         // Reset selected sort option
         $('.nav-tabs .nav-link').click(function() {
             $('.selected-sort-option').html('Amount Raised');
         });
 
-        // Populate total raised		
-        var raised = $('.company-tally-container--amount .company-tally-ammount').text();		
-        if (raised) {		
-          $('#progress-amount').html(raised);		
-        }		
-        // populate custom personal page content		
-        $('.js--company-text').html($('#fr_rich_text_container').html());
+
     }
 
     if ($('body').is('.pg_informational')) {
@@ -900,11 +901,7 @@
         $('#searchTeamTab').tab('show');
       }
     }
-
-
-
     }
-
   });
 }(jQuery));
 
