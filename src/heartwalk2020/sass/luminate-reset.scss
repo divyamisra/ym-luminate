@@ -141,6 +141,13 @@ div.registration-page-container div.section-header {
   // }
 }
 
+// Hide default TR page content for customized pages
+.pg_team, .pg_company {
+  .default-tr-content {
+    display: none;
+  }
+}
+
 /* ************** */
 /* donation forms */
 /* ************** */

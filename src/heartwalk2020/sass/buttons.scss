@@ -6,6 +6,7 @@ a.btn {
   @include border-radius(60px, 60px, 60px, 60px);
   color: $white;
   border: none;
+  font-family: 'LubDubMedium', Helvetica, Arial, sans-serif !important;
 }
 
 .btn-primary {
@@ -20,6 +21,12 @@ a.btn {
   background-color: $white;
   border: solid 2px $red;
   color: $red;
+
+  &:hover {
+    background-color: $red;
+    border: solid 2px $red;
+    color: $white;
+  }
 }
 
 .btn-tertiary {
@@ -27,8 +34,15 @@ a.btn {
 }
 
 .btn-tertiary-black {
-  border: solid 2px $black;
-  color: $black;
+  border: solid 2px $black !important;
+  color: $black !important;
+  padding: 5px 20px !important;
+
+  &:hover {
+    background-color: $red;
+    color: $white !important;
+    border: solid 2px $red !important;
+  }
 }
 
 .input-group-append .btn {
