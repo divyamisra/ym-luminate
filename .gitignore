@@ -1,5 +1,17 @@
-node_modules
+# compiled output
+/dist
+
+# dependencies
+/node_modules
+
+# IDEs (IntelliJ)
+/.idea
+*.iml
+
+# misc
+/.sass-cache
 npm-debug.log
 package-lock.json
-dist
+
+# system files
 *.DS_Store
