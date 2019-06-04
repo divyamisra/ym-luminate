@@ -785,7 +785,6 @@
         cd.getTeamHonorRoll();
 
       // build team roster
-
         cd.getTeamRoster = function () {
           var teamId = getURLParameter(currentUrl, 'team_id');
           luminateExtend.api({
@@ -879,13 +878,122 @@
         var goal = $('#goal-amount').text();
         cd.runThermometer(progress, goal);
         cd.reorderPageForMobile();
-        cd.initializeTeamRosterTable();
-        cd.initializeParticipantRosterTable();
+
 
         // Reset selected sort option
         $('.nav-tabs .nav-link').click(function() {
             $('.selected-sort-option').html('Amount Raised');
         });
+
+        // Build company team roster
+         // build team roster
+  var companyId = getURLParameter(currentUrl, 'company_id');
+
+ cd.getCompanyTeams = function () {
+  luminateExtend.api({
+    api: 'teamraiser',
+    data: 'method=getTeamsByInfo' +
+      '&team_name=%25%25%25&fr_id=' + evID +
+      '&team_company_id=' + companyId +
+      '&list_page_size=499' +
+      '&list_page_offset=0' +
+      '&response_format=json' +
+      '&list_sort_column=team_name' +
+      '&list_ascending=true',
+    callback: {
+      success: function (response) {
+        if (response.getTeamSearchByInfoResponse.totalNumberResults === '0') {
+          // no search results
+
+        } else {
+          var teams = luminateExtend.utils.ensureArray(response.getTeamSearchByInfoResponse.team);
+          var totalTeams = parseInt(response.getTeamSearchByInfoResponse.totalNumberResults);
+          $('.js--num-company-teams').text(totalTeams);
+
+          $(teams).each(function (i, team) {
+
+            var teamRaised = (parseInt(team.amountRaised) * 0.01);
+            var teamRaisedFormmatted = teamRaised.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+
+            $('#team-roster tbody').append('<tr class="row' + (i > 10 ? ' d-none' : '') + '"> <td class="col-3 donor-name"> <span>Team:</span><br><a href="' + team.teamPageURL + '" data-sort="' + team.name + '">' + team.name + '</a> </td><td class="col-3 donor-name"> <span>Coach:</span><br><a href="TR/?px=' + team.captainConsId + '&pg=personal&fr_id=' + team.EventId + '" data-sort="' + team.captainFirstName + ' ' + team.captainLastName + '">' + team.captainFirstName + ' ' + team.captainLastName + '</a> </td><td class="col-3 raised" data-sort="' + teamRaisedFormmatted + '"> <span>Raised:<strong>$' + teamRaisedFormmatted + '</strong></span> </td><td class="col-3"> <a href="' + team.joinTeamURL + '">Join Team</a> </td></tr>');
+          });
+          
+          if(totalTeams > 5) {
+            $('.js--more-team-results').removeAttr('hidden');
+          }
+          cd.initializeTeamRosterTable();
+
+          $('.js--more-team-results').on('click', function(e){
+            e.preventDefault();
+            $('#team-roster tr').removeClass('d-none');
+            $(this).attr('hidden', true);
+          });
+        }
+      }
+    },
+    error: function (response) {
+      $('#error-participant').removeAttr('hidden').text(response.errorResponse.message);
+      console.log('error response: ', response);
+    }
+  });
+};
+cd.getCompanyTeams();
+
+
+ // build team roster
+ cd.getCompanyParticipants = function () {
+  $('#participant-roster tbody').html('');
+  luminateExtend.api({
+    api: 'teamraiser',
+    data: 'method=getParticipants' +
+      '&team_name=%25%25%25&fr_id=' + evID +
+      '&list_filter_column=team.company_id' +
+      '&list_filter_text=' + companyId +
+      '&list_page_size=499' +
+      '&list_page_offset=0' +
+      '&response_format=json',
+    callback: {
+      success: function (response) {
+        if (response.getParticipantsResponse.totalNumberResults === '0') {
+          // no search results
+
+        } else {
+          var participants = luminateExtend.utils.ensureArray(response.getParticipantsResponse.participant);
+          var totalParticipants = parseInt(response.getParticipantsResponse.totalNumberResults);
+
+          $('.js--num-company-participants').text(totalParticipants);
+
+          $(participants).each(function (i, participant) {
+
+            var participantRaised = (parseInt(participant.amountRaised) * 0.01);
+            var participantRaisedFormmatted = participantRaised.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+
+            $('#participant-roster tbody').append('<tr class="row' + (i > 10 ? ' d-none' : '') + '"><td class="col-4 donor-name"><a href="' + participant.personalPageUrl + '">' +
+              participant.name.first + ' ' + participant.name.last +
+              '</a>' + (participant.aparticipantCaptain === "true" ? ' <span class="coach">- Coach</span>' : '') + '</td><td class="col-4 raised" data-sort="' + participantRaisedFormmatted + '"><span>Raised:<strong>$' + participantRaisedFormmatted + '</strong></span></td><td class="col-4"><a href="' + participant.donationUrl + '">Donate to ' +
+              participant.name.first + '</a></td></tr>');
+          });
+
+          if (totalParticipants > 5) {
+            $('.js--more-team-results').removeAttr('hidden');
+          }
+          cd.initializeParticipantRosterTable();
+
+          $('.js--more-participant-results').on('click', function (e) {
+            e.preventDefault();
+            $('#participant-roster tr').removeClass('d-none');
+            $(this).attr('hidden', true);
+          });
+        }
+      }
+    },
+    error: function (response) {
+      $('#error-participant').removeAttr('hidden').text(response.errorResponse.message);
+      console.log('error response: ', response);
+    }
+  });
+};
+cd.getCompanyParticipants();
 
 
     }
