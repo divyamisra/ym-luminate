@@ -570,7 +570,23 @@
 
                 $('.team-roster form .btn').html($('.team-roster form .btn i'));
             }
+
+            if ($('body').is('.pg_company')) {
+                $('.team-roster form .btn').html('<i class="fas fa-search"></i>');
+                $('#participant-roster td:nth-child(3) a').html('Donate');
+            }
         }
+    };
+
+    cd.initializeTeamRosterTable = function() {
+        window.cdTeamRosterTable = $('#team-roster').DataTable({
+            order: [[ 1, 'desc' ]]
+        });
+    };
+    cd.initializeParticipantRosterTable = function() {
+        window.cdParticipantRosterTable = $('#participant-roster').DataTable({
+            order: [[ 2, 'desc' ]]
+        });
     };
 
     if ($('body').is('.pg_entry')) {
@@ -631,15 +647,6 @@
 
 
         // Build personal donation form
-        cd.formatDonation = function(amount){
-          if(amount > 0){
-            amount *= 100;
-            $('.personal-donation-level-other-amount-hidden').val(amount);
-          } else {
-            alert('Please enter a valid number in the "Other" field');
-          }
-        };
-
         cd.getDonationFormInfo = function(options) {
           luminateExtend.api({
             api: 'donation', 
@@ -653,7 +660,7 @@
                 console.log('donationLevels: ', donationLevels);
 
                 // TODO - remove after local testing
-$('.donation-amounts').html('');
+                $('.donation-amounts').html('');
 
                   $.each(donationLevels, function(){
                     var userSpecified = this.userSpecified,
@@ -667,7 +674,7 @@ $('.donation-amounts').html('');
                       $('.donation-amounts').append('<div class="donation-amount-btn btn"> <input class="form-check-input sr-only" type="radio" name="personalDonAmt" id="personalDonAmt' + i + '" value="' + levelID + '"> <label class="form-check-label" for="personalDonAmt' + i + '" data-level-id="' + levelID + '">' + amountFormatted + '</label> </div>');                      
                     } else {
                       // build user-specified level
-                      $('.donation-amounts').append('<div class="custom-amount"> <input class="form-check-input js--don-amt-other sr-only" type="radio" name="personalDonAmt" id="personalDonAmt' + i + '" value="' + levelID + '"> <label class="sr-only" for="personalDonAmt' + i + '" data-level-id="' + levelID + '">Enter your own amount</label> <label class="form-label d-inline-block" for="personalOtherAmt">Custom Amount:</label><br/> <input type="text" id="personalOtherAmt" class="form-control d-inline-block js--personal-amt-other"/> </div>');                     
+                      $('.donation-amounts').append('<div class="custom-amount"> <input class="form-check-input sr-only" type="radio" name="personalDonAmt" id="personalDonAmt' + i + '" value="' + levelID + '"> <label class="js--don-amt-other sr-only" for="personalDonAmt' + i + '" data-level-id="' + levelID + '">Enter your own amount</label> <label class="form-label d-inline-block" for="personalOtherAmt">Custom Amount:</label><br/> <input type="text" id="personalOtherAmt" class="form-control d-inline-block js--personal-amt-other"/> </div>');                     
                     }
                   });
                       $('.js--personal-don-form').removeClass('hidden');
@@ -684,16 +691,17 @@ $('.donation-amounts').html('');
                      });
 
                       // format "other" amount before submitting to native donation form
-                      $('.js--personal-amt-other').on('blur, keyup', function(){
+                      $('.js--personal-amt-other').on('blur keyup', function(){
                         $('.js--personal-don-form .donation-amount-btn').removeClass('active');
-                        var customAmt = cd.formatDonation($(this).val());
+                        var customAmt = parseInt($(this).val()) * 10;
+
+                        finalDonUrl = defaultDonUrl + '&set.DonationLevel=' + $('.js--don-amt-other').data('level-id') + '&set.Value=' + customAmt;
+
                         $('.js--don-amt').text('$' + $(this).val());
-                        $('.js--don-amt').attr('href', defaultDonUrl + '&set.DonationLevel=' + $('.js--don-amt-other').val() + '&set.Value=' + customAmt);
                       });
 
                       $('.js--personal-don-form').on('submit', function(e){
                         e.preventDefault();
-                        console.log('finalDonUrl: ', finalDonUrl);
                         // redirect to personal donation form with preselected amount
                         window.location.href = finalDonUrl;
                       })
@@ -716,13 +724,23 @@ $('.donation-amounts').html('');
         var goal = $('#goal-amount').text();
         cd.runThermometer(progress, goal);
         cd.reorderPageForMobile();
-        window.cdTeamRosterTable = $('#team-roster').DataTable({
-            order: [[ 1, 'desc' ]]
-        });
+        cd.initializeTeamRosterTable();
     }
 
     if ($('body').is('.pg_company')) {
       // Company Page
+        var progress = $('#progress-amount').text();
+        var goal = $('#goal-amount').text();
+        cd.runThermometer(progress, goal);
+        cd.reorderPageForMobile();
+        cd.initializeTeamRosterTable();
+        cd.initializeParticipantRosterTable();
+        cd.reorderPageForMobile();
+
+        // Reset selected sort option
+        $('.nav-tabs .nav-link').click(function() {
+            $('.selected-sort-option').html('Amount Raised');
+        });
     }
 
     if ($('body').is('.pg_informational')) {
@@ -809,29 +827,35 @@ $('.donation-amounts').html('');
   });
 }(jQuery));
 
-var cdSortByAmount = true;
+var cdSortByColumnNumber = 1;
+var cdSortByText = 'Amount Raised';
+var direction = 'desc';
 
-var cdSortTeamRoster = function () {
-    var column = cdSortByAmount ? 1 : 0;
-    var direction = cdTeamRosterTable.order()[0][1] === 'desc' ? 'asc' : 'desc';
+var cdSortRoster = function (element, isParticipantRoster) {
+    var roster = isParticipantRoster ? cdParticipantRosterTable : cdTeamRosterTable;
+    direction = roster.order()[0][1] === 'desc' ? 'asc' : 'desc';
+    roster.order([cdSortByColumnNumber, direction]).draw();
+    $('.selected-sort-option').html(cdSortByText);
+    setIconDirection(element);
+};
 
-    cdTeamRosterTable.order([column, direction]).draw();
+var cdSetSortBy = function (columnNumber, element, isParticipantRoster) {
+    cdSortByColumnNumber = columnNumber;
+    cdSortByText = $(element).text();
+    var sortIconElement = $(element).parent().prev('.selected-sort-option');
+    direction = 'desc';
+    setIconDirection(element);
+    cdSortRoster(sortIconElement, isParticipantRoster ? isParticipantRoster : false);
+};
 
-    var selectedOption = column === 0 ? 'Participant Name' : 'Amount Raised';
-    $('#selected-sort-option').html(selectedOption);
+var setIconDirection = function (element) {
+    var icon = $(element).children('i');
 
-    var icon = $('#sorter-icon i');
-
-    if (icon.hasClass('fa-chevron-down')) {
+    if (direction === 'asc') {
         icon.removeClass('fa-chevron-down');
         icon.addClass('fa-chevron-up');
     } else {
         icon.removeClass('fa-chevron-up');
         icon.addClass('fa-chevron-down');
     }
-};
-
-var cdSetSortBy = function (sortType) {
-    cdSortByAmount = sortType;
-    cdSortTeamRoster();
 };
