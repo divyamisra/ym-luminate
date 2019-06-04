@@ -142,6 +142,7 @@ img {
 
 .achievements {
   margin: 0 0 10px;
+
   svg {
     margin: 17px 37px 0 0;
   }
@@ -271,9 +272,9 @@ img {
     }
   }
 }
-.pg_personal, .pg_team {
+
+.pg_personal, .pg_team, .pg_company {
   main {
-    // background-image: url("../../img/FrHeroImage@2x.jpg");
     background-image: url("/images/content/pagebuilder/hw_hero_personal.jpg");
     background-size: 100%;
     background-repeat: no-repeat;
