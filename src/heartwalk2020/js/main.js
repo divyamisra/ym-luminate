@@ -583,6 +583,33 @@
             order: [[ 1, 'desc' ]]
         });
     };
+
+    cd.initializeParticipantRosterTable = function() {
+        window.cdParticipantRosterTable = $('#participant-roster').DataTable({
+            order: [[ 2, 'desc' ]]
+        });
+    };
+
+    cd.getTeamHonorRoll = function() {
+        // populate donor honor roll
+        if($('.team-honor-list-row').length > 0){
+            $('.team-honor-list-row').each(function(i, donor){
+                var donorName = $(this).find('.team-honor-list-name').text();
+                var donorAmt = $(this).find('.team-honor-list-value').text();
+                // console.log('donorName donorAmt', donorName + ' ' + donorAmt);
+                $('.js--donor-roll').append('<div><span class="name">' + donorName + '</span><span class="amount">' + donorAmt + '</span></div>');
+                if(i === 4){
+                    $('.js--honor-roll-expander').addClass('d-block').removeClass('hidden');
+                }
+            });
+        }
+    };
+
+    cd.initializeTeamRosterTable = function() {
+        window.cdTeamRosterTable = $('#team-roster').DataTable({
+            order: [[ 1, 'desc' ]]
+        });
+    };
     cd.initializeParticipantRosterTable = function() {
         window.cdParticipantRosterTable = $('#participant-roster').DataTable({
             order: [[ 2, 'desc' ]]
@@ -633,17 +660,7 @@
         $('.js--personal-text').html($('#fr_rich_text_container').html());
 
         // populate donor honor roll
-        if($('.team-honor-list-row').length > 0){
-          $('.team-honor-list-row').each(function(i, donor){
-            var donorName = $(this).find('.team-honor-list-name').text();
-            var donorAmt = $(this).find('.team-honor-list-value').text();
-            // console.log('donorName donorAmt', donorName + ' ' + donorAmt);
-            $('.js--donor-roll').append('<div><span class="name">' + donorName + '</span><span class="amount">' + donorAmt + '</span></div>');
-            if(i === 4){
-              $('.js--honor-roll-expander').addClass('d-block').removeClass('hidden');
-            }
-          });
-        }
+        cd.getTeamHonorRoll();
 
 
         // Build personal donation form
