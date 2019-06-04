@@ -590,6 +590,21 @@
         });
     };
 
+    cd.getTeamHonorRoll = function() {
+        // populate donor honor roll
+        if($('.team-honor-list-row').length > 0){
+            $('.team-honor-list-row').each(function(i, donor){
+                var donorName = $(this).find('.team-honor-list-name').text();
+                var donorAmt = $(this).find('.team-honor-list-value').text();
+                // console.log('donorName donorAmt', donorName + ' ' + donorAmt);
+                $('.js--donor-roll').append('<div><span class="name">' + donorName + '</span><span class="amount">' + donorAmt + '</span></div>');
+                if(i === 4){
+                    $('.js--honor-roll-expander').addClass('d-block').removeClass('hidden');
+                }
+            });
+        }
+    };
+
     if ($('body').is('.pg_entry')) {
       // Greeting Page
         // populate greeting page content
@@ -634,17 +649,7 @@
         $('.js--personal-text').html($('#fr_rich_text_container').html());
 
         // populate donor honor roll
-        if($('.team-honor-list-row').length > 0){
-          $('.team-honor-list-row').each(function(i, donor){
-            var donorName = $(this).find('.team-honor-list-name').text();
-            var donorAmt = $(this).find('.team-honor-list-value').text();
-            // console.log('donorName donorAmt', donorName + ' ' + donorAmt);
-            $('.js--donor-roll').append('<div><span class="name">' + donorName + '</span><span class="amount">' + donorAmt + '</span></div>');
-            if(i === 4){
-              $('.js--honor-roll-expander').addClass('d-block').removeClass('hidden');
-            }
-          });
-        }
+        cd.getTeamHonorRoll();
 
 
         // Build personal donation form
@@ -734,6 +739,12 @@ $('.donation-amounts').html('');
         cd.runThermometer(progress, goal);
         cd.reorderPageForMobile();
         cd.initializeTeamRosterTable();
+
+        // populate custom team page content
+        $('.js--team-text').html($('#fr_rich_text_container').html());
+
+        // populate donor honor roll
+        cd.getTeamHonorRoll()
     }
 
     if ($('body').is('.pg_company')) {
@@ -750,6 +761,16 @@ $('.donation-amounts').html('');
         $('.nav-tabs .nav-link').click(function() {
             $('.selected-sort-option').html('Amount Raised');
         });
+
+        // Populate total raised
+        var raised = $('.company-tally-container--amount .company-tally-ammount').text();
+
+        if (raised) {
+          $('#progress-amount').html(raised);
+        }
+
+        // populate custom personal page content
+        $('.js--company-text').html($('#fr_rich_text_container').html());
     }
 
     if ($('body').is('.pg_informational')) {
