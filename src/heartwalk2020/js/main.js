@@ -570,7 +570,24 @@
 
                 $('.team-roster form .btn').html($('.team-roster form .btn i'));
             }
+
+            if ($('body').is('.pg_company')) {
+                $('.team-roster form .btn').html('<i class="fas fa-search"></i>');
+                $('#participant-roster td:nth-child(3) a').html('Donate');
+            }
         }
+    };
+
+    cd.initializeTeamRosterTable = function() {
+        window.cdTeamRosterTable = $('#team-roster').DataTable({
+            order: [[ 1, 'desc' ]]
+        });
+    };
+
+    cd.initializeParticipantRosterTable = function() {
+        window.cdParticipantRosterTable = $('#participant-roster').DataTable({
+            order: [[ 2, 'desc' ]]
+        });
     };
 
     if ($('body').is('.pg_entry')) {
@@ -716,13 +733,23 @@ $('.donation-amounts').html('');
         var goal = $('#goal-amount').text();
         cd.runThermometer(progress, goal);
         cd.reorderPageForMobile();
-        window.cdTeamRosterTable = $('#team-roster').DataTable({
-            order: [[ 1, 'desc' ]]
-        });
+        cd.initializeTeamRosterTable();
     }
 
     if ($('body').is('.pg_company')) {
       // Company Page
+        var progress = $('#progress-amount').text();
+        var goal = $('#goal-amount').text();
+        cd.runThermometer(progress, goal);
+        cd.reorderPageForMobile();
+        cd.initializeTeamRosterTable();
+        cd.initializeParticipantRosterTable();
+        cd.reorderPageForMobile();
+
+        // Reset selected sort option
+        $('.nav-tabs .nav-link').click(function() {
+            $('.selected-sort-option').html('Amount Raised');
+        });
     }
 
     if ($('body').is('.pg_informational')) {
@@ -809,29 +836,35 @@ $('.donation-amounts').html('');
   });
 }(jQuery));
 
-var cdSortByAmount = true;
+var cdSortByColumnNumber = 1;
+var cdSortByText = 'Amount Raised';
+var direction = 'desc';
 
-var cdSortTeamRoster = function () {
-    var column = cdSortByAmount ? 1 : 0;
-    var direction = cdTeamRosterTable.order()[0][1] === 'desc' ? 'asc' : 'desc';
+var cdSortRoster = function (element, isParticipantRoster) {
+    var roster = isParticipantRoster ? cdParticipantRosterTable : cdTeamRosterTable;
+    direction = roster.order()[0][1] === 'desc' ? 'asc' : 'desc';
+    roster.order([cdSortByColumnNumber, direction]).draw();
+    $('.selected-sort-option').html(cdSortByText);
+    setIconDirection(element);
+};
 
-    cdTeamRosterTable.order([column, direction]).draw();
+var cdSetSortBy = function (columnNumber, element, isParticipantRoster) {
+    cdSortByColumnNumber = columnNumber;
+    cdSortByText = $(element).text();
+    var sortIconElement = $(element).parent().prev('.selected-sort-option');
+    direction = 'desc';
+    setIconDirection(element);
+    cdSortRoster(sortIconElement, isParticipantRoster ? isParticipantRoster : false);
+};
 
-    var selectedOption = column === 0 ? 'Participant Name' : 'Amount Raised';
-    $('#selected-sort-option').html(selectedOption);
+var setIconDirection = function (element) {
+    var icon = $(element).children('i');
 
-    var icon = $('#sorter-icon i');
-
-    if (icon.hasClass('fa-chevron-down')) {
+    if (direction === 'asc') {
         icon.removeClass('fa-chevron-down');
         icon.addClass('fa-chevron-up');
     } else {
         icon.removeClass('fa-chevron-up');
         icon.addClass('fa-chevron-down');
     }
-};
-
-var cdSetSortBy = function (sortType) {
-    cdSortByAmount = sortType;
-    cdSortTeamRoster();
 };
