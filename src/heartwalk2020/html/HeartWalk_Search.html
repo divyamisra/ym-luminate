@@ -1,6 +1,6 @@
 
     <!-- Search menu container -->
-    <div class="container mb-5">
+    <div class="mb-5">
         <div class="search-menu-container find">
           <div class="search-menu">
             <div class="row">
@@ -10,12 +10,12 @@
             </div>
             <div class="row">
               <div class="col-12">
-                <div class="nav nav-tabs d-flex justify-content-center" id="body-body-nav-tab" role="tablist">
-                  <a class="nav-item nav-link active" id="body-nav-home-tab" data-toggle="tab" href="#body-walk-event"
+                <div class="nav nav-tabs d-flex justify-content-center" id="searchPageTabs" role="tablist">
+                  <a class="nav-item nav-link active" id="searchEventTab" data-toggle="tab" href="#searchEvent"
                     role="tab" aria-controls="nav-home" aria-selected="true">A Walk Event</a>
-                  <a class="nav-item nav-link" id="body-nav-profile-tab" data-toggle="tab" href="#body-walker" role="tab"
+                  <a class="nav-item nav-link" id="searchWalkerTab" data-toggle="tab" href="#searchWalker" role="tab"
                     aria-controls="nav-profile" aria-selected="false">A Walker</a>
-                  <a class="nav-item nav-link" id="body-nav-contact-tab" data-toggle="tab" href="#body-team" role="tab"
+                  <a class="nav-item nav-link" id="searchTeamTab" data-toggle="tab" href="#searchTeam" role="tab"
                     aria-controls="nav-contact" aria-selected="false">A Team</a>
                 </div>
               </div>
@@ -23,10 +23,10 @@
   
   
             <div class="tab-content" id="body-nav-tabContent">
-              <div class="tab-pane fade show active" id="body-walk-event" role="tabpanel" aria-labelledby="walk-event">
+              <div class="tab-pane fade show active" id="searchEvent" role="tabpanel" aria-labelledby="walk-event">
                 <div class="row">
                   <div class="col-md-4 offset-md-4">
-                    <form class="js--zip-search-form">
+                    <form class="js--zip-search-form mt-3">
                       <label for="zipCodeSearch">Search by zip code</label>
                       <div class="input-group input-group-lg">
                         <input id="zipCodeSearch" type="text" class="form-control" name="event-search" />
@@ -48,7 +48,7 @@
                     <div class="js--event-results-container col-md-12" hidden>
                       <div class="d-block d-md-none font-italic mobile-results-count"><span
                         class="js--num-event-results"></span></div>
-                      <table id="eventResultsTable" class="js--events-results-table table" width="100%">
+                      <table id="eventResultsTable" class="js--events-results-table table mt-4" width="100%">
                         <thead>
                           <tr>
                             <th class="th-sm">Event Name
@@ -76,10 +76,10 @@
                 <!-- END event results container -->
               </div>
   
-              <div class="tab-pane fade" id="body-walker" role="tabpanel" aria-labelledby="walker">
+              <div class="tab-pane fade" id="searchWalker" role="tabpanel" aria-labelledby="walker">
                 <div class="row">
                   <div class="col-md-8 offset-md-2">
-                    <form class="js--walker-search-form">
+                    <form class="js--walker-search-form mt-3">
                       <p>Search by First and / or Last Name</p>
                       <div class="input-group input-group-lg">
                         <label for="walkerFirstName" class="sr-only">Walker's First Name</label>
@@ -102,7 +102,7 @@
                     <div class="js--participant-results-container col-md-12" hidden>
                       <div class="d-block d-md-none font-italic mobile-results-count"><span
                           class="js--num-participant-results"></span></div>
-                      <table id="participantResultsTable" class="js--participants-results-table table" width="100%">
+                      <table id="participantResultsTable" class="js--participants-results-table table mt-4" width="100%">
                         <thead>
                           <tr>
                             <th class="th-sm">Full Name
@@ -131,10 +131,10 @@
                 <!-- END walker results container -->
               </div>
   
-              <div class="tab-pane fade" id="body-team" role="tabpanel" aria-labelledby="team">
+              <div class="tab-pane fade" id="searchTeam" role="tabpanel" aria-labelledby="team">
                 <div class="row">
                   <div class="col-md-6 offset-md-3">
-                    <form class="js--team-search-form">
+                    <form class="js--team-search-form mt-3">
                       <label for="teamNameSearch">Search by Team Name</label>
                       <div class="input-group input-group-lg">
                         <input id="teamNameSearch" type="text" class="form-control" name="team-search" />
@@ -156,7 +156,7 @@
                       <div class="d-block d-md-none font-italic mobile-results-count"><span
                           class="js--num-team-results"></span>
                       </div>
-                      <table id="teamResultsTable" class="table" width="100%">
+                      <table id="teamResultsTable" class="table mt-4" width="100%">
                         <thead>
                           <tr>
                             <th class="th-sm">Team

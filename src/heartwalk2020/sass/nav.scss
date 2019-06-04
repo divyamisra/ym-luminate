@@ -21,7 +21,9 @@ display: block;
 background: rgb(248, 249, 250);
 padding: 0.625rem 1.25rem;
 }
-
+#skipNav {
+  margin:0 !important;
+}
 /* Main navigation styles */
 nav {
   margin: 12px auto 0px !important;
@@ -29,8 +31,9 @@ nav {
   padding: 0 !important;
 
   /* Logo */
-  .navbar-brand img {
+  .navbar-brand svg {
     margin: -17px 0px 1px -1px;
+    width:100%;
   }
 
   /* Navigation links */
@@ -63,7 +66,15 @@ nav {
         display: block;
       }
     }
-
+    &.logged-in {
+      width:500px;
+      a {
+        display:inline-block;
+        font-size:16px;
+        color:$primary;
+        font-weight:bold;
+      }
+    }
     /* Dropdown styles */
 
     .dropdown-menu-container {
@@ -162,7 +173,18 @@ nav {
       }
     }
   }
-
+  &.mobile-utility-nav {
+    background-color: $gray-400;
+    width:100%;
+    padding:10px 15px !important;
+    margin-top:0 !important;
+    a {
+      display:inline-block;
+      font-size:16px;
+      color:$primary;
+      font-weight:bold;
+    }
+  }
   /* Login button */
   li.login {
     margin: 30px -2px -11px 45px;
@@ -247,7 +269,7 @@ nav {
    * appropriately.
    */
   .is-search {
-    #mobile-search-input, #home, #find, #about, .about, .dropdown-menu:after, .dropdown-menu:before {
+    #mobile-search-input, #home, #find, #about, .about, .dropdown-menu:after, .dropdown-menu:before, .dropdown-menu-container.about {
       display: none !important;
     }
 
