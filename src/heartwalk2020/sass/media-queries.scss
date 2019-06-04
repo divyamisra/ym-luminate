@@ -262,7 +262,7 @@
   }
 
   /* PERSONAL AND TEAM PAGE STYLES */
-  .pg_personal, .pg_team {
+  .pg_personal, .pg_team, .pg_company {
     main {
       bade: none !important;
       background-color: $white;
@@ -345,7 +345,7 @@
   }
 
   /* TEAM PAGE STYLES */
-  .pg_team {
+  .pg_team, .pg_company {
     .tr-page-container {
       .information-box {
         h1 {
@@ -416,7 +416,7 @@
 
       svg {
         margin: 0;
-        width: 157px;
+        max-width: 200px;;
       }
     }
   }
@@ -590,8 +590,8 @@
     }
   }
 
-  /* PERSONAL PAGE STYLES */
-  .pg_personal, .pg_team {
+  /* PERSONAL, TEAM, COMPANY PAGE STYLES */
+  .pg_personal, .pg_team, .pg_company {
     .tr-page-container {
       &.hero {
         padding: 20px 0 0 0;
@@ -638,7 +638,7 @@
       }
     }
   }
-  /* END PERSONAL PAGE STYLES */
+  /* END PERSONAL, TEAM, COMPANY PAGE STYLES */
 }
 
 @media all and (max-width: 675px) {
@@ -720,6 +720,10 @@
       }
     }
   }
+
+  .pg_company .nav-tabs .nav-link {
+    font-size: 1rem !important;
+  }
 }
 
 @media all and (max-width: 524px) {
@@ -748,8 +752,8 @@
     }
   }
 
-  /* PERSONAL PAGE STYLES */
-  .pg_personal, .pg_team {
+  /* PERSONAL, TEAM, COMPANY PAGE STYLES */
+  .pg_personal, .pg_team, .pg_company {
     .tr-page-container {
       .information-box {
 
@@ -826,18 +830,78 @@
       }
     }
   }
-  /* END PERSONAL PAGE STYLES */
+  /* END PERSONAL, TEAM, COMPANY PAGE STYLES */
+  .pg_company {
+    .buttons-row {
+      margin-bottom: 0 !important;
+    }
+  }
 }
 
 @media all and (max-width: 480px) {
-  .nav-tabs .nav-link {
-    margin: 0 40px 32px 0 !important;
+  nav {
+    .nav-tabs .nav-link {
+      margin: 0 40px 32px 0 !important;
+    }
   }
   /* overriding some breaking styles introduced by the footer code */
   .input-group button.btn {
     margin: unset;
     padding: 7px 10px 8px;
     @include border-radius(0, 4px, 4px, 0);
+  }
+
+  .pg_company .col-12.mt-5 {
+    margin-top: 7px !important;
+  }
+
+  label[for="search-for-team"] {
+    margin: 20px 0 0 !important;
+  }
+
+  #team-roster, #participant-roster {
+    tr {
+      padding: 15px;
+    }
+
+    td {
+      display: flex;
+      max-width: 100%;
+      flex: unset;
+
+      &:nth-child(4) {
+        position: absolute;
+        right: 10px;
+        text-align: right;
+        display: block;
+      }
+    }
+
+    span {
+      margin: 0 10px 10px 0 !important;
+
+      strong {
+        margin: 0 0 0 10px;
+      }
+    }
+  }
+
+  #participant-roster {
+      td:nth-child(3) {
+        position: absolute;
+        right: 10px;
+        text-align: right;
+        display: block;
+        a {
+          content: "Donate";
+        }
+      }
+  }
+
+  .pg_team, .pg_company {
+    .team-roster table tr strong {
+      display: inline-block;
+    }
   }
 }
 
