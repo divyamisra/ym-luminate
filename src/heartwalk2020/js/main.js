@@ -777,12 +777,85 @@
         var goal = $('#goal-amount').text();
         cd.runThermometer(progress, goal);
         cd.reorderPageForMobile();
-        cd.initializeTeamRosterTable();
+        
 
         // populate custom team page content		
         $('.js--team-text').html($('#fr_rich_text_container').html());		
         // populate donor honor roll		
         cd.getTeamHonorRoll();
+
+      // build team roster
+
+        cd.getTeamRoster = function () {
+          var teamId = getURLParameter(currentUrl, 'team_id');
+          luminateExtend.api({
+            api: 'teamraiser',
+            data: 'method=getParticipants' +
+              '&first_name=%25%25%25&fr_id=' + evID +
+              '&list_filter_column=reg.team_id' +
+              '&list_filter_text=' + teamId +
+              '&list_page_size=499' +
+              '&list_page_offset=0' +
+              '&response_format=json' +
+              '&list_sort_column=first_name' +
+              '&list_ascending=true',
+            callback: {
+              success: function (response) {
+                if (response.getParticipantsResponse.totalNumberResults === '0') {
+                  // no search results
+        
+                } else {
+                  var participants = luminateExtend.utils.ensureArray(response.getParticipantsResponse.participant);
+                  var totalParticipants = parseInt(response.getParticipantsResponse.totalNumberResults);
+        
+                  // if ( $.fn.DataTable ) {
+                  //   if ( $.fn.DataTable.isDataTable('#participantResultsTable') ) {
+                  //     $('#participantResultsTable').DataTable().destroy();
+                  //   }              }
+                  // $('#participantResultsTable tbody').empty();
+        
+                  // $('.js--num-participant-results').text((totalParticipants === 1 ? '1 Result' : totalParticipants + ' Results'));
+        
+                  $(participants).each(function (i, participant) {
+        
+                    var participantRaised = (parseInt(participant.amountRaised) * 0.01);
+                    var participantRaisedFormmatted = participantRaised.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+        
+                    $('#team-roster tbody').append('<tr class="row' + (i > 10 ? ' d-none' : '') + '"><td class="col-4 donor-name"><a href="' + participant.personalPageUrl + '">' +
+                      participant.name.first + ' ' + participant.name.last +
+                      '</a>' + (participant.aTeamCaptain === "true" ? ' <span class="coach">- Coach</span>' : '') + '</td><td class="col-4 raised" data-sort="' + participantRaisedFormmatted + '"><span>Raised:<strong>$' + participantRaisedFormmatted + '</strong></span></td><td class="col-4"><a href="' + participant.donationUrl + '">Donate to ' +
+                      participant.name.first + '</a></td></tr>');
+                  });
+        
+                  if(totalParticipants > 10) {
+                    $('.js--more-participant-results').removeAttr('hidden');
+                  }
+                  cd.initializeTeamRosterTable();
+
+                  // $('#team-roster').DataTable({
+                  //   "info":     false,
+                  //   "autoWidth": false
+                  // });
+
+                  // $('.dataTables_length').addClass('bs-select');
+                  // $('.js--participant-results-container').removeAttr('hidden');
+        
+                  $('.js--more-participant-results').on('click', function(e){
+                    e.preventDefault();
+                    $('#team-roster tr').removeClass('d-none');
+                    $(this).attr('hidden', true);
+                  });
+                }
+              }
+            },
+            error: function (response) {
+              $('#error-participant').removeAttr('hidden').text(response.errorResponse.message);
+              console.log('error response: ', response);
+            }
+          });
+        };
+        cd.getTeamRoster();
+
     }
 
     if ($('body').is('.pg_company')) {
@@ -877,7 +950,7 @@
       cd.autoSearchTeam = function () {
         var teamName = getURLParameter(currentUrl, 'team_name') ? getURLParameter(currentUrl, 'team_name') : '';
         teamName = decodeURI(teamName);
-        $('#teamName').val(teamName);
+        $('#teamNameSearch').val(teamName);
 
         cd.getTeams(teamName, null, (isCrossEventSearch === "true" ? true : false));
       }
