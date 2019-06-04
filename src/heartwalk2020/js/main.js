@@ -261,7 +261,7 @@
     $('.js--header-zip-search').on('submit', function (e) {
       e.preventDefault();
       var zipSearched = encodeURI($('#zipSearch').val());
-      window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=HeartWalk_Search&cross_event=' + (evID ? 'true' : 'false') + (evID ? '&fr_id=' + evID : '') + '&zip=' + zipSearched;
+      window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=HeartWalk_Search&search_type=event&cross_event=' + (evID ? 'false' : 'true') + (evID ? '&fr_id=' + evID : '') + '&zip=' + zipSearched;
     });
 
     // Search page by Participant
@@ -269,7 +269,7 @@
       e.preventDefault();
       var firstName = encodeURI($('#walkerSearchFirst').val());
       var lastName = encodeURI($('#walkerSearchLast').val());
-      window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=HeartWalk_Search&cross_event=' + (evID ? 'true' : 'false') + (evID ? '&fr_id=' + evID : '') + '&first_name=' + firstName + '&last_name=' + lastName;
+      window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=HeartWalk_Search&search_type=walker&cross_event=' + (evID ? 'false' : 'true') + (evID ? '&fr_id=' + evID : '') + '&first_name=' + firstName + '&last_name=' + lastName;
     });
 
     // Search by Team
@@ -277,7 +277,7 @@
       e.preventDefault();
       var teamName = encodeURI($('#teamSearch').val());
       cd.getTeams(teamName, null, (isCrossEventSearch === "true" ? true : false));
-      window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=HeartWalk_Search&cross_event=' + (evID ? 'true' : 'false') + (evID ? '&fr_id=' + evID : '') + '&team_name=' + teamName;
+      window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=HeartWalk_Search&search_type=team&cross_event=' + (evID ? 'false' : 'true') + (evID ? '&fr_id=' + evID : '') + '&team_name=' + teamName;
     });
 
 
@@ -680,7 +680,7 @@
           e.preventDefault();
           var firstName = encodeURI($('#walkerFirstName').val());
           var lastName = encodeURI($('#walkerLastName').val());
-          window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=HeartWalk_Search&cross_event=false&fr_id=' + evID + '&first_name=' + firstName + '&last_name=' + lastName;
+          window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=HeartWalk_Search&search_type=walker&cross_event=false&fr_id=' + evID + '&first_name=' + firstName + '&last_name=' + lastName;
         });
 
         // Team Search
@@ -688,7 +688,7 @@
           e.preventDefault();
           var teamName = encodeURI($('#teamNameSearch').val());
           cd.getTeams(teamName, null, (isCrossEventSearch === "true" ? true : false));
-          window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=HeartWalk_Search&cross_event=false&fr_id=' + evID + '&team_name=' + teamName;
+          window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=HeartWalk_Search&search_type=team&cross_event=false&fr_id=' + evID + '&team_name=' + teamName;
         });
     }
 
@@ -858,7 +858,7 @@
 
 
     if(searchType){
-      console.log('autosearch');
+      console.log('run autosearch');
 
       cd.autoSearchParticipant = function () {
         var firstNameVal = getURLParameter(currentUrl, 'first_name') ? getURLParameter(currentUrl, 'first_name') : '';
@@ -888,9 +888,17 @@
         cd.getEventsByDistance(searchZip);
       }
 
-      // cd.autoSearchParticipant();
-      // cd.autoSearchTeam();
-      // cd.autoSearchEvents();
+      if(searchType === 'event'){
+        cd.autoSearchEvents();
+      } else if(searchType === 'walker'){
+        cd.autoSearchParticipant();
+        // Switch to walker tab
+        $('#searchWalker').tab('show');
+      } else if(searchType === 'team'){
+        cd.autoSearchTeam();
+        // Switch to team tab
+        $('#searchTeam').tab('show');
+      }
     }
 
 
