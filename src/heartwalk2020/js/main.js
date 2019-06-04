@@ -785,6 +785,11 @@
         cd.runThermometer(progress, goal);
         cd.reorderPageForMobile();
         cd.initializeTeamRosterTable();
+
+        // populate custom team page content		
+        $('.js--team-text').html($('#fr_rich_text_container').html());		
+        // populate donor honor roll		
+        cd.getTeamHonorRoll()
     }
 
     if ($('body').is('.pg_company')) {
@@ -801,6 +806,14 @@
         $('.nav-tabs .nav-link').click(function() {
             $('.selected-sort-option').html('Amount Raised');
         });
+
+        // Populate total raised		
+        var raised = $('.company-tally-container--amount .company-tally-ammount').text();		
+        if (raised) {		
+          $('#progress-amount').html(raised);		
+        }		
+        // populate custom personal page content		
+        $('.js--company-text').html($('#fr_rich_text_container').html());
     }
 
     if ($('body').is('.pg_informational')) {
