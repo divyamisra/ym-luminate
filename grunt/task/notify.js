@@ -83,5 +83,12 @@ module.exports = {
       title: 'AHA Luminate Framework',
       message: 'CycleNation files updated.'
     }
+  },
+
+  "heartwalk2020": {
+    options: {
+      title: 'AHA Luminate Framework',
+      message: 'HeartWalk 2020 files updated.'
+    }
   }
 }

@@ -140,6 +140,12 @@
             } else {
               var participants = luminateExtend.utils.ensureArray(response.getParticipantsResponse.participant);
               var totalParticipants = parseInt(response.getParticipantsResponse.totalNumberResults);
+              
+              if ( $.fn.DataTable ) {
+                if ( $.fn.DataTable.isDataTable('#participantResultsTable') ) {
+                  $('#participantResultsTable').DataTable().destroy();
+                }              }
+              $('#participantResultsTable tbody').empty();
 
               $('.js__num-participant-results').text((totalParticipants === 1 ? '1 Result' : totalParticipants + ' Results'));
 
@@ -157,7 +163,6 @@
               }
 
               $('#participantResultsTable').DataTable({
-                "destroy": true,
                 "paging":   false,
                 "searching":   false,
                 "info":     false,
@@ -203,6 +208,14 @@
           '&list_ascending=true',
         callback: {
           success: function (response) {
+         
+            if ( $.fn.DataTable ) {
+              if ( $.fn.DataTable.isDataTable('#teamResultsTable') ) {
+                $('#teamResultsTable').DataTable().destroy();
+              }
+            }
+            $('#teamResultsTable tbody').empty();
+
             if (response.getTeamSearchByInfoResponse.totalNumberResults === '0') {
               // no search results
               $('#error-team').removeAttr('hidden').text('Team not found. Please try different search terms.');
@@ -257,9 +270,7 @@
                   $(this).attr('hidden', true);
                   $('.js__end-team-list').removeAttr('hidden');
                 });
-
                 $('#teamResultsTable').DataTable({
-                  "destroy": true,
                   "paging":   false,
                   "searching":   false,
                   "info":     false
@@ -303,6 +314,13 @@
               var companies = luminateExtend.utils.ensureArray(response.getCompaniesResponse.company);
               var totalCompanies = parseInt(response.getCompaniesResponse.totalNumberResults);
 
+              if ( $.fn.DataTable ) {
+                if ( $.fn.DataTable.isDataTable('#companyResultsTable') ) {
+                  $('#companyResultsTable').DataTable().destroy();
+                }
+              }
+              $('#companyResultsTable tbody').empty();
+
               $('.js__num-company-results').text((totalCompanies === 1 ? '1 Result' : totalCompanies + ' Results'));
 
               $(companies).each(function (i, company) {
@@ -324,7 +342,6 @@
               });
 
               $('#companyResultsTable').DataTable({
-                "destroy": true,
                 "paging":   false,
                 "searching":   false,
                 "info":     false,
@@ -438,7 +455,7 @@
         Math.abs(n - i).toFixed(c).slice(2) : "");
     };
 
-    cd.getEvents = function (eventName, eventState) {
+    cd.getEvents = function (eventName, eventState, eventSort) {
       $('.js__loading').show();
       if($('body').is('.pg_cn_home')){
         var numEvents = 3;
@@ -450,7 +467,7 @@
           '&name=' + (eventState ? '%25%25' : eventName) +
            (eventState ? '&state=' + eventState : '') +
           '&event_type=' + eventType +
-          '&response_format=json&list_page_size=499&list_page_offset=0&list_sort_column=event_date&list_ascending=true',
+          '&response_format=json&list_page_size=499&list_page_offset=0&list_sort_column=' + (eventSort === 'city' ? 'city' : 'event_date') + '&list_ascending=true',
         callback: {
           success: function (response) {
             if (response.getTeamraisersResponse.totalNumberResults > '0') {
@@ -928,20 +945,19 @@ cd.getEventsByDistance = function (zipCode) {
 
 // auto search functionality based on URL params
 
-   
+
       if(searchType){
         console.log('autosearch');
         var firstSearchTerm = getURLParameter(currentUrl, 'first_term') ? getURLParameter(currentUrl, 'first_term') : '';
         var lastSearchTerm = getURLParameter(currentUrl, 'last_term') ? getURLParameter(currentUrl, 'last_term') : '';
 
-        firstSearchTerm = encodeURI(firstSearchTerm);
-        lastSearchTerm = encodeURI(lastSearchTerm);
+        firstSearchTerm = decodeURI(firstSearchTerm);
+        lastSearchTerm = decodeURI(lastSearchTerm);
 
         cd.autoSearchParticipant = function () {
           $('#participantFirstName').val(firstSearchTerm);
           $('#participantLastName').val(lastSearchTerm);
 
-          // cd.getParticipants(firstSearchTerm, lastSearchTerm, (searchType === "crossEvent" ? true : false));
           cd.getParticipants(firstSearchTerm, lastSearchTerm, (searchType === "singleEvent" ? false : true));
         }
   
@@ -959,7 +975,6 @@ cd.getEventsByDistance = function (zipCode) {
         }
 
         cd.autoSearchParticipant();
-        // TODO - add search based on page click
         cd.autoSearchTeam();
         cd.autoSearchCompany();
       }
@@ -969,14 +984,10 @@ cd.getEventsByDistance = function (zipCode) {
     if ($('body').is('.pg_cn_home') || $('body').is('.pg_cn_events')) {
       
       if ($('body').is('.pg_cn_home')) {
-        // cd.getEvents('%25%25', null, 3);
-
-        console.log('getLocation');
         $('.js__loading').show();
         getLocation();
-
       } else {
-        cd.getEvents('%25%25', null);
+        cd.getEvents('%25%25', null, 'city');
       }
 
       var clearEventSearchResults = function(){
@@ -1515,7 +1526,7 @@ cd.getEventsByDistance = function (zipCode) {
       $('form[name=FriendraiserFind]').attr('hidden', true);
 
       if (regType === 'startTeam') {
-        if (eventType2 === 'Road' || eventType2 === 'StationaryV2') {
+        if (eventType2 === 'Road' || eventType2 === 'Executive Challenge' || eventType2 === 'StationaryV2') {
           $('form[name=FriendraiserFind]').removeAttr('hidden');
           $('#team_find_section_body, #team_find_section_header').show();
         }
@@ -1914,7 +1925,7 @@ cd.getEventsByDistance = function (zipCode) {
         $('form[name=FriendraiserFind]').removeAttr('hidden');
       }
 
-      if (eventType2 === 'Road' || eventType2 === 'StationaryV2') {
+      if (eventType2 === 'Road' || eventType2 === 'Executive Challenge' || eventType2 === 'StationaryV2') {
         $('#team_find_page > form').parsley(teamFindParsleyConfig);
       }
 
@@ -2002,7 +2013,7 @@ cd.getEventsByDistance = function (zipCode) {
           
           // Remove ptype prefixes from public-facing reg options
           $(this).find('.part-type-name').text(newPtypeName);
-        }
+        } 
       });
 
 
@@ -2054,6 +2065,13 @@ cd.getEventsByDistance = function (zipCode) {
         }
       }
 
+      var minFundraisingGoal = ($('input[name="fr_part_radio"]:checked').parent().find('.goal').val() ? $('input[name="fr_part_radio"]:checked').parent().find('.goal').val().replace('.00', '') : null);
+      if(!minFundraisingGoal || minFundraisingGoal === "$0"){
+        minFundraisingGoal = $('#fr_goal').val().replace('.00', '');
+      }
+      $('#fr_goal').val(minFundraisingGoal);
+      $('#part_type_fundraising_goal_container .form-content').append('<p class="small">All riders commit to fundraising <span class="min-fundraising-goal">' + minFundraisingGoal + '</span>. You can increase your fundraising goal, but the amount shown above is your required fundraising minimum.</p>');
+
       if (eventType2 === 'Stationary' || eventType2 === 'StationaryV2') {
                var numPtypesShown = $('.part-type-container:visible').length;
         console.log('numPtypesShown: ', + numPtypesShown);
@@ -2075,16 +2093,24 @@ cd.getEventsByDistance = function (zipCode) {
         });
 
         // add accessibility events for keyboard navigation
-        $('input[name=fr_part_radio]').on('click focus', function (e) {
+        $('input[name="fr_part_radio"]').on('click focus', function (e) {
           $('.part-type-container').removeClass('selected');
+          var selectedPtypeMin = $(this).parent().find('.goal').val().replace('.00', '');
+          if(selectedPtypeMin === "$0"){
+            selectedPtypeMin = minFundraisingGoal;
+          }
+          $('.min-fundraising-goal').text(selectedPtypeMin);
+          $('#fr_goal').val(selectedPtypeMin);
           $(this).closest('.part-type-container').addClass('selected');
         });
 
       } else {
         $('#sel_type_container').text('How would you like to participate?');
         console.log('road event');
+         // Hide and disable participation types that don't apply to this particular registration path
         if (regType === 'virtual') {
-          $('.part-type-name:contains("Virtual")').closest('.part-type-container').addClass('d-inline-block col-md-6');
+          // $('.part-type-name:contains("Virtual")').closest('.part-type-container').addClass('d-inline-block col-md-6');
+          $('.part-type-name').closest('.part-type-container').addClass('d-inline-block col-md-6');
         } else {
           console.log('not virtual');
           $('.part-type-name').closest('.part-type-container').addClass('d-inline-block col-md-6');
@@ -2113,6 +2139,12 @@ cd.getEventsByDistance = function (zipCode) {
           $('.part-type-container').removeClass('selected');
           $(this).addClass('selected');
           $(this).find('input[type="radio"]').prop('checked', true);
+          var ptypeMin = $(this).parent().find('.goal').val().replace('.00', '');
+          if(ptypeMin === "$0"){
+            ptypeMin = minFundraisingGoal;
+          }
+          $('.min-fundraising-goal').text(ptypeMin);
+          $('#fr_goal').val(ptypeMin);
           $('#next_step').removeClass('disabled');
           $('#dspPledge').modal({
             backdrop: 'static',
@@ -2125,6 +2157,12 @@ cd.getEventsByDistance = function (zipCode) {
           if(key == 13) {
             $('.part-type-container').removeClass('selected');
             $(this).addClass('selected');
+            var ptypeMin = $(this).parent().find('.goal').val().replace('.00', '');
+            if(ptypeMin === "$0"){
+              ptypeMin = minFundraisingGoal;
+            }
+            $('.min-fundraising-goal').text(ptypeMin);
+            $('#fr_goal').val(ptypeMin);
             $(this).find('input[type="radio"]').prop('checked', true);
             $('#next_step').removeClass('disabled');
             $('#dspPledge').modal({
@@ -2147,10 +2185,7 @@ cd.getEventsByDistance = function (zipCode) {
 
       $('#fund_goal_container').after('How much will you fundraise for CycleNation?');
 
-      var minFundraisingGoal = $('#fr_goal').val().replace('.00', '');
-      $('#part_type_fundraising_goal_container .form-content').append('<p class="small">All riders commit to fundraising ' + minFundraisingGoal + '. You can increase your fundraising goal, but the amount shown above is your required fundraising minimum.</p>');
-      
-
+ 
 
       $('.donation-level-amount-text').closest('.donation-level-row-container').addClass('don-level-btn');
       $('.donation-level-container .input-container').parent().addClass('other-amount-row-container');
@@ -2261,9 +2296,12 @@ cd.getEventsByDistance = function (zipCode) {
         $('#contact_info_section_one .form-content').addClass('required').prepend('<span class="field-required"></span>');
         $('.cons-address-street-full-container .form-content').eq(1).removeClass('required').find('.field-required').remove();
         $('#cons_info_component_contact_info_section').show();
-
-        // end 2019 test updates
-      } else if (regType === 'joinTeam') {
+      } else if (regType === 'individual') {
+        $('#cons_info_dob').show();
+        $('#contact_info_section_one .form-content').addClass('required').prepend('<span class="field-required"></span>');
+        $('.cons-address-street-full-container .form-content').eq(1).removeClass('required').find('.field-required').remove();
+        $('#cons_info_component_contact_info_section').show();
+      }else if (regType === 'joinTeam') {
         var pFirstName = $('body').data('first-name') ? $('body').data('first-name') : null;
         var pLastName = $('body').data('last-name') ? $('body').data('last-name') : null;
         var pEmail = $('body').data('email') ? $('body').data('email') : null;

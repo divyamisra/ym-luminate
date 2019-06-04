@@ -209,5 +209,21 @@ module.exports = {
       'img-copy:cyclenation-images',
       'notify:cyclenation'
     ]
+  },
+  "heartwalk2020": {
+    files: [
+      'src/heartwalk2020/html/**/*',
+      'src/heartwalk2020/image/**/*',
+      'src/heartwalk2020/sass/**/*',
+      'src/heartwalk2020/js/**/*'
+    ],
+    tasks: [
+      'clean:heartwalk2020',
+      'css-dist:heartwalk2020',
+      'js-dist:heartwalk2020',
+      'html-dist:heartwalk2020',
+      'img-copy:heartwalk2020-images',
+      'notify:heartwalk2020'
+    ]
   }
 }

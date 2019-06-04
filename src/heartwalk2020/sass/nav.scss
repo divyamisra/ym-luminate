@@ -1,0 +1,275 @@
+/* skip nav styles */
+a#skip-main:hover, 
+a#skip-main:active, 
+a#skip-main:focus {
+  left: 0;
+  width: 200px;
+  height: 40px;
+  margin: 5px;
+}
+
+a#skip-main:active, 
+a#skip-main:focus,
+.skip-to:active, 
+.skip-to:focus  {
+position: static;
+width: auto;
+height: auto;
+clip: unset;
+clip-path: none;
+display: block;
+background: rgb(248, 249, 250);
+padding: 0.625rem 1.25rem;
+}
+
+/* Main navigation styles */
+nav {
+  margin: 12px auto 0px !important;
+  max-width: 1350px;
+  padding: 0 !important;
+
+  /* Logo */
+  .navbar-brand img {
+    margin: -17px 0px 1px -1px;
+  }
+
+  /* Navigation links */
+  .nav-link {
+    color: $black;
+    font-size: 1.4rem;
+    text-decoration: none;
+    font-family: $font-family-bold;
+    padding: 6px 0 0 0 !important;
+
+    &:hover {
+      color: $red;
+      text-decoration: underline;
+    }
+  }
+
+  li.nav-item {
+    margin: 30px 0 0 58px;
+    position: relative;
+    height: 96px;
+
+    &:hover {
+
+      a.nav-link {
+        color: $red;
+        text-decoration: underline;
+      }
+
+      .dropdown-menu-container, .dropdown-menu {
+        display: block;
+      }
+    }
+
+    /* Dropdown styles */
+
+    .dropdown-menu-container {
+      display: none;
+      position: absolute;
+      margin: 8px 0 0 0;
+
+      .dropdown-menu {
+        position: relative;
+        margin: 48px 0 0;
+        background-color: $white;
+        border-radius: 0;
+        border: 1px solid $gray-200;
+
+        a.dropdown-item {
+          font-size: 1.333rem;
+          text-decoration: none;
+          font-family: $font-family-bold;
+
+          &:hover {
+            background-color: transparent;
+          }
+        }
+      }
+
+      /* Speech bubble styles for subnavs */
+      .dropdown-menu:before,
+      .dropdown-menu:after {
+        content: "\0020";
+        display: block;
+        position: absolute;
+        top: -20px;
+        z-index: 2;
+        width: 0;
+        height: 0;
+        overflow: hidden;
+        border: solid 20px transparent;
+        border-top: 0;
+        border-bottom-color: $white;
+      }
+
+      .dropdown-menu:before {
+        top: -21px;
+        z-index: 1;
+        border-bottom-color: $gray-200;
+      }
+    }
+
+    .about {
+      left: -133px;
+
+      .dropdown-menu {
+        width: 25rem;
+        padding: 30px 100px 39px;
+
+        &:before,
+        &:after {
+          left: 166px;
+        }
+      }
+    }
+
+    .find {
+      left: -360px;
+
+      .dropdown-menu  {
+        width: 48rem;
+        padding: 45px 150px;
+
+        h1 {
+          font-size: 2.222rem;
+          margin: 0 0 32px;
+        }
+
+        &:before,
+        &:after {
+          left: 383px;
+        }
+
+        .nav-tabs {
+          border: none;
+
+          .nav-link {
+            font-size: 1rem;
+            color: $black !important;
+            text-decoration: none !important;
+            border: none;
+            margin: 0 53px 32px 0;
+          }
+
+          .nav-link.active {
+            color: $red !important;
+            text-decoration: underline !important;
+          }
+        }
+      }
+    }
+  }
+
+  /* Login button */
+  li.login {
+    margin: 30px -2px -11px 45px;
+
+    &:hover {
+
+      a.nav-link {
+        color: $white;
+        text-decoration: none;
+      }
+    }
+  }
+
+  .nav-item.login a {
+    color: $white;
+    padding: 9px 35px 13px !important;
+    margin: 0 0 0 0;
+  }
+
+  .nav-item.login a, .nav-item.login .fas {
+    font-size: 1.1rem;
+  }
+
+  /* Main nav icons */
+  .nav-link .fas {
+    font-size: 1.2rem;
+  }
+
+  /* Event search tabs under "Find" */
+  .tab-pane {
+    p {
+      margin: 0 0 5px;
+    }
+
+    .input-group-append {
+      .btn {
+        font-size: 1rem;
+      }
+      .btn-primary .fas {
+        font-size: 0.8rem;
+      }
+    }
+  }
+
+  /* Mobile specific styles */
+  .navbar-toggler {
+    padding: 0;
+
+    .navbar-toggler-icon {
+      width: 30px;
+      height: auto;
+      font-size: 2rem;
+    }
+  }
+
+  #mobile-search {
+    font-size: 1.6rem;
+    cursor: pointer;
+
+    &.active {
+      color: $red;
+    }
+  }
+
+  #mobile-search-input {
+    padding: 25px;
+    text-align: center;
+    color: $white;
+    background-color: $progress-bar;
+    cursor: pointer;
+  }
+
+  #mobile-toggle {
+    .fa-times {
+      color: $red;
+    }
+  }
+
+  /*
+   * Since the mobile view has a different button that shows just the event search
+   * we add a "is-search" class dynamically to the navigation to show/hide elements
+   * appropriately.
+   */
+  .is-search {
+    #mobile-search-input, #home, #find, #about, .about, .dropdown-menu:after, .dropdown-menu:before {
+      display: none !important;
+    }
+
+    .dropdown-menu-container.find, .dropdown-menu-container.find .dropdown-menu {
+      display: block !important;
+    }
+
+    .find {
+      position: static !important;
+      margin: 0 !important;
+
+      .dropdown-menu {
+        width: 100% !important;
+        padding: 40px 20px !important;
+        margin: 0 !important;
+        border: none !important;
+      }
+    }
+
+    li.nav-item {
+      margin: 0 !important;
+    }
+  }
+}
+
