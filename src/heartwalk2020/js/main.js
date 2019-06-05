@@ -237,7 +237,6 @@
             } else {
               var companies = luminateExtend.utils.ensureArray(response.getCompaniesResponse.company);
               var totalCompanies = parseInt(response.getCompaniesResponse.totalNumberResults);
-
               $('.js--num-companies').text(totalCompanies);
 
               $(companies).each(function (i, company) {
@@ -533,6 +532,9 @@
             if (!$.isEmptyObject(response.getCompaniesResponse)) {
               var topCompanies = luminateExtend.utils.ensureArray(response.getCompaniesResponse
                 .company);
+
+                var totalCompanies = parseInt(response.getCompaniesResponse.totalNumberResults);
+                $('.js--num-companies').text(totalCompanies);
 
               $(topCompanies).each(function () {
                 var companyName = this.companyName;
