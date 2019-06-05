@@ -621,7 +621,7 @@
         $('#team-roster_info').insertBefore($('#team-roster_filter')).wrap('<div class="col-lg-6 col-md-12 sorter d-flex align-items-end"></div>');
         $('#team-roster_filter').wrap('<div class="col-lg-6 col-md-12"></div>');
 
-        $('.dataTables_filter input[type="search"]').wrap('<div class="input-group"></div>').addClass('form-control').after('<div class="input-group-append"><button class="btn btn-primary btn-outline-secondary" type="button">Search <i class="fas fa-search"></i></button></div>');
+        $('#team-roster_filter input[type="search"]').wrap('<div class="input-group"></div>').addClass('form-control').after('<div class="input-group-append"><button class="btn btn-primary btn-outline-secondary" type="button">Search <i class="fas fa-search"></i></button></div>');
     
     };
 
@@ -629,8 +629,18 @@
         window.cdParticipantRosterTable = $('#participant-roster').DataTable({
           "paging":   false,
           "autoWidth": false,
-          "order": [[ 2, 'desc' ]]
+          "order": [[ 2, 'desc' ]],
+          "language": {
+            "search": "Search for a Walker"
+          }
         });
+
+        $('#participant-roster_info, #participant-roster_filter').wrapAll('<div class="row"></div>');
+        $('#participant-roster_info').insertBefore($('#participant-roster_filter')).wrap('<div class="col-lg-6 col-md-12 sorter d-flex align-items-end"></div>');
+        $('#participant-roster_filter').wrap('<div class="col-lg-6 col-md-12"></div>');
+
+        $('#participant-roster_filter input[type="search"]').wrap('<div class="input-group"></div>').addClass('form-control').after('<div class="input-group-append"><button class="btn btn-primary btn-outline-secondary" type="button">Search <i class="fas fa-search"></i></button></div>');
+
     };
 
     cd.getTeamHonorRoll = function() {
@@ -838,7 +848,7 @@
         
                     $('#team-roster tbody').append('<tr class="row' + (i > 10 ? ' d-none' : '') + '"><td class="col-4 donor-name"><a href="' + participant.personalPageUrl + '">' +
                       participant.name.first + ' ' + participant.name.last +
-                      '</a>' + (participant.aTeamCaptain === "true" ? ' <span class="coach">- Coach</span>' : '') + '</td><td class="col-4 raised" data-sort="' + participantRaisedFormmatted + '"><span>Raised:<strong>$' + participantRaisedFormmatted + '</strong></span></td><td class="col-4"><a href="' + participant.donationUrl + '">Donate to ' +
+                      '</a>' + (participant.aTeamCaptain === "true" ? ' <span class="coach">- Coach</span>' : '') + '</td><td class="col-4 raised" data-sort="' + participantRaisedFormmatted + '"><span><strong>$' + participantRaisedFormmatted + '</strong></span></td><td class="col-4"><a href="' + participant.donationUrl + '">Donate to ' +
                       participant.name.first + '</a></td></tr>');
                       if(participant.aTeamCaptain === 'true'){
                         $('.js--team-captain-link').attr('href', participant.personalPageUrl).text(participant.name.first + ' ' + participant.name.last);
@@ -994,7 +1004,7 @@ cd.getCompanyTeams();
 
             $('#participant-roster tbody').append('<tr class="row' + (i > 10 ? ' d-none' : '') + '"><td class="col-4 donor-name"><a href="' + participant.personalPageUrl + '">' +
               participant.name.first + ' ' + participant.name.last +
-              '</a>' + (participant.aparticipantCaptain === "true" ? ' <span class="coach">- Coach</span>' : '') + '</td><td class="col-4 raised" data-sort="' + participantRaisedFormmatted + '"><span>Raised:<strong>$' + participantRaisedFormmatted + '</strong></span></td><td class="col-4"><a href="' + participant.donationUrl + '">Donate to ' +
+              '</a>' + (participant.aparticipantCaptain === "true" ? ' <span class="coach">- Coach</span>' : '') + '</td><td class="col-4 raised" data-sort="' + participantRaisedFormmatted + '"><span><strong>$' + participantRaisedFormmatted + '</strong></span></td><td class="col-4"><a href="' + participant.donationUrl + '">Donate to ' +
               participant.name.first + '</a></td></tr>');
           });
 

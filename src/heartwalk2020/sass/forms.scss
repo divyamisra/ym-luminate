@@ -1,6 +1,11 @@
 .table {
   &.dataTable {
     thead {
+      th {
+        &:hover {
+          cursor:pointer;
+        }
+      }
       .sorting {
         background-image:none;
         &:after {
