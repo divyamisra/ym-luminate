@@ -37,6 +37,8 @@ angular.module 'ahaLuminateControllers'
         numberPayments: 1
         amount: ''
         installmentAmount: ''
+        sustainingAmount: ''
+        sustainingDuration: ''
         levelType: 'level'
         otherAmt: ''
         levelChecked: ''
@@ -77,16 +79,20 @@ angular.module 'ahaLuminateControllers'
           angular.element('.ym-donation-levels__type--monthly').addClass 'active'
           if $scope.donationGiftType is "installment"
             angular.element('#level_installment_row').removeClass 'hidden'
+            number = 1
+            $timeout ->
+              calculateInstallment(number)
+            , 500
           if $scope.donationGiftType is "flexible"
             angular.element('#level_flexibleduration_row').removeClass 'hidden'
             angular.element('#level_flexiblegift_type2').prop 'checked', true
             angular.element('#level_flexiblegift_type2').trigger 'click'
+            $scope.donationInfo.sustainingAmount = amount
+            $scope.donationInfo.sustainingDuration = 1
+            localStorage['sustainingAmount'] = amount
+            localStorage['sustainingDuration'] = 1
           angular.element('#pstep_finish span').remove()
           $scope.donationInfo.monthly = true
-          number = 1
-          $timeout ->
-            calculateInstallment(number)
-          , 500
         else
           angular.element('.ym-donation-levels__type--onetime').addClass 'active'
           angular.element('.ym-donation-levels__type--monthly').removeClass 'active'
@@ -94,19 +100,28 @@ angular.module 'ahaLuminateControllers'
             angular.element('#level_installment_row').addClass 'hidden'
             angular.element('#level_installmentduration').val 'S:0'
             angular.element('#level_installmentduration').click()
+            if $scope.donationInfo.amount is undefined
+              amount = 0
+            else
+              amount = Number $scope.donationInfo.amount.split('$')[1]
+            $timeout ->
+              calculateInstallment(number)
+            , 500
           if $scope.donationGiftType is "flexible"
             angular.element('#level_flexibleduration_row').addClass 'hidden'
             angular.element('#level_flexiblegift_type1').prop 'checked', true
             angular.element('#level_flexiblegift_type1').trigger 'click'
-            $scope.donationInfo.monthly = false
+            if $scope.donationInfo.amount is undefined
+              amount = 0
+            else
+              amount = Number $scope.donationInfo.amount.split('$')[1]
+            $scope.donationInfo.sustainingAmount = amount
+            $scope.donationInfo.sustainingDuration = 1
+            localStorage['sustainingAmount'] = amount
+            localStorage['sustainingDuration'] = 1
+         
+          $scope.donationInfo.monthly = false
           populateBtnAmt $scope.donationInfo.levelType
-          if $scope.donationInfo.amount is undefined
-            amount = 0
-          else
-            amount = Number $scope.donationInfo.amount.split('$')[1]
-          $timeout ->
-            calculateInstallment(number)
-          , 500
 
       $scope.selectLevel = (event, type, level, amount) ->
         if amount is undefined
@@ -146,6 +161,20 @@ angular.module 'ahaLuminateControllers'
             else
               $scope.donationInfo.installmentAmount = amount
               $scope.donationInfo.numberPayments = 1
+
+          if $scope.donationGiftType is "flexible"
+            if $scope.donationInfo.monthly is true
+              duration = angular.element('#level_sustainingduration option:selected').html()
+              if $scope.donationInfo.levelType is 'level'
+                amount = Number($scope.donationInfo.amount.split('$')[1]) / number
+              else
+                amount = Number $scope.donationInfo.amount
+
+            $scope.donationInfo.sustainingAmount = amount
+            $scope.donationInfo.sustainingDuration = duration
+            localStorage['sustainingAmount'] = amount
+            localStorage['sustainingDuration'] = duration
+              
         if type is 'other'
           if type isnt $scope.donationInfo.levelType and $scope.donationInfo.otherAmt isnt ''
             levelSelect()
