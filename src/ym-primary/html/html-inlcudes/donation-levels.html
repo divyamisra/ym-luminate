@@ -34,8 +34,8 @@
   <div class="event-secondary-light ym-donation-levels">
     <div class="ym-donation-levels__type" role="list" aria-label="Choose your gift type">
       <button role="listitem" type="button" class="btn btn-toggle btn-lg ym-donation-levels__type--onetime" ng-class="{'active': donationInfo.giftType == 'onetime'}" ng-click="giftType('onetime')">One-time Gift</button>
-      <button role="listitem" type="button" class="btn btn-toggle btn-lg ym-donation-levels__type--monthly" ng-class="{'active': donationInfo.giftType == 'monthly'}" ng-if="donationGiftType == 'installment'" ng-cloak>Installment Gift</button>
-      <button role="listitem" type="button" class="btn btn-toggle btn-lg ym-donation-levels__type--monthly" ng-class="{'active': donationInfo.giftType == 'monthly'}" ng-if="donationGiftType == 'flexible'" ng-cloak>Sustaining Gift</button>
+      <button role="listitem" type="button" class="btn btn-toggle btn-lg ym-donation-levels__type--monthly" ng-class="{'active': donationInfo.giftType == 'monthly'}" ng-click="giftType('monthly')" ng-if="donationGiftType == 'installment'" ng-cloak>Installment Gift</button>
+      <button role="listitem" type="button" class="btn btn-toggle btn-lg ym-donation-levels__type--monthly" ng-class="{'active': donationInfo.giftType == 'monthly'}" ng-click="giftType('monthly')" ng-if="donationGiftType == 'flexible'" ng-cloak>Sustaining Gift</button>
     </div>
     <hr>
     <fieldset>
