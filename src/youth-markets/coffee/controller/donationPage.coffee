@@ -349,7 +349,10 @@ angular.module 'ahaLuminateControllers'
                 amount = level.amount.formatted
                 amount = amount.split('.')[0]
                 userSpecified = level.userSpecified
-                inputId = '#level_installmentexpanded' + levelId
+                if jQuery('#level_installmentduration').length > 0
+                  inputId = '#level_installmentexpanded' + levelId
+                else
+                  inputId = '#level_flexibleexpanded' + levelId
                 classLevel = 'level' + levelId
 
                 angular.element(inputId).parent().parent().parent().parent().addClass classLevel
