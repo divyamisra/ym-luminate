@@ -17,7 +17,7 @@
    padding: 0;
    overflow: hidden;
 
-   .team-roster-header {
+   .dataTables_wrapper {
      h1 {
        margin: 40px 0 0 40px;
      }
@@ -64,10 +64,10 @@
       margin: 25px 0;
    }
 
-   #team-roster_length, #team-roster_filter, #team-roster_info, #team-roster_paginate, #team-roster thead,
-   #participant-roster_length, #participant-roster_filter, #participant-roster_info, #participant-roster_paginate, #participant-roster thead{
-     display: none !important;
-   }
+  //  #team-roster_length, #team-roster_filter, #team-roster_info, #team-roster_paginate, #team-roster thead,
+  //  #participant-roster_length, #participant-roster_filter, #participant-roster_info, #participant-roster_paginate, #participant-roster thead{
+  //    display: none !important;
+  //  }
  }
 
   .content-area {

@@ -610,13 +610,26 @@
 
     cd.initializeTeamRosterTable = function() {
         window.cdTeamRosterTable = $('#team-roster').DataTable({
-            order: [[ 1, 'desc' ]]
+          "paging":   false,
+          "autoWidth": false,
+          "order": [[ 1, 'desc' ]],
+          "language": {
+            "search": "Search for a Team"
+          }
         });
+        $('#team-roster_info, #team-roster_filter').wrapAll('<div class="row"></div>');
+        $('#team-roster_info').insertBefore($('#team-roster_filter')).wrap('<div class="col-lg-6 col-md-12 sorter d-flex align-items-end"></div>');
+        $('#team-roster_filter').wrap('<div class="col-lg-6 col-md-12"></div>');
+
+        $('.dataTables_filter input[type="search"]').wrap('<div class="input-group"></div>').addClass('form-control').after('<div class="input-group-append"><button class="btn btn-primary btn-outline-secondary" type="button">Search <i class="fas fa-search"></i></button></div>');
+    
     };
 
     cd.initializeParticipantRosterTable = function() {
         window.cdParticipantRosterTable = $('#participant-roster').DataTable({
-            order: [[ 2, 'desc' ]]
+          "paging":   false,
+          "autoWidth": false,
+          "order": [[ 2, 'desc' ]]
         });
     };
 
@@ -926,7 +939,7 @@
             var teamRaised = (parseInt(team.amountRaised) * 0.01);
             var teamRaisedFormmatted = teamRaised.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
 
-            $('#team-roster tbody').append('<tr class="row' + (i > 10 ? ' d-none' : '') + '"> <td class="col-3 donor-name"> <span>Team:</span><br><a href="' + team.teamPageURL + '" data-sort="' + team.name + '">' + team.name + '</a> </td><td class="col-3 donor-name"> <span>Coach:</span><br><a href="TR/?px=' + team.captainConsId + '&pg=personal&fr_id=' + team.EventId + '" data-sort="' + team.captainFirstName + ' ' + team.captainLastName + '">' + team.captainFirstName + ' ' + team.captainLastName + '</a> </td><td class="col-3 raised" data-sort="' + teamRaisedFormmatted + '"> <span>Raised:<strong>$' + teamRaisedFormmatted + '</strong></span> </td><td class="col-3"> <a href="' + team.joinTeamURL + '">Join Team</a> </td></tr>');
+            $('#team-roster tbody').append('<tr class="row' + (i > 10 ? ' d-none' : '') + '"> <td class="col-3 donor-name"> <a href="' + team.teamPageURL + '" data-sort="' + team.name + '">' + team.name + '</a> </td><td class="col-3 donor-name"> <a href="TR/?px=' + team.captainConsId + '&pg=personal&fr_id=' + team.EventId + '" data-sort="' + team.captainFirstName + ' ' + team.captainLastName + '">' + team.captainFirstName + ' ' + team.captainLastName + '</a> </td><td class="col-3 raised" data-sort="' + teamRaisedFormmatted + '"> <span><strong>$' + teamRaisedFormmatted + '</strong></span> </td><td class="col-3"> <a href="' + team.joinTeamURL + '">Join Team</a> </td></tr>');
           });
           
           if(totalTeams > 5) {
