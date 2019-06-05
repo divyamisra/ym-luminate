@@ -68,7 +68,7 @@ angular.module 'ahaLuminateControllers'
           $timeout ->
             installmentDropdown()
           , 500
-
+          
       $scope.giftType = (type) ->
         $scope.donationInfo.giftType = type
         localStorage['giftType'] = type
@@ -79,6 +79,7 @@ angular.module 'ahaLuminateControllers'
             angular.element('#level_installment_row').removeClass 'hidden'
           if $scope.donationGiftType is "flexible"
             angular.element('#level_flexibleduration_row').removeClass 'hidden'
+            angluar.element('#level_flexiblegift_type2').click();
           angular.element('#pstep_finish span').remove()
           $scope.donationInfo.monthly = true
           number = 1
@@ -94,7 +95,8 @@ angular.module 'ahaLuminateControllers'
             angular.element('#level_installmentduration').click()
           if $scope.donationGiftType is "flexible"
             angular.element('#level_flexibleduration_row').addClass 'hidden'
-          $scope.donationInfo.monthly = false
+            angular.element('#level_flexiblegift_type1').click();
+            $scope.donationInfo.monthly = false
           populateBtnAmt $scope.donationInfo.levelType
           if $scope.donationInfo.amount is undefined
             amount = 0
@@ -402,6 +404,7 @@ angular.module 'ahaLuminateControllers'
           loadLocalStorage()
         if $scope.donationInfo.giftType is 'onetime'
           angular.element('#level_installment_row').addClass 'hidden'
+          angular.element('#level_flexibleduration_row').addClass 'hidden'
         $requiredField = angular.element '.field-required'
         angular.forEach $requiredField, (required) ->
           $req = angular.element required
