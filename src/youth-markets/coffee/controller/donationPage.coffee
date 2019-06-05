@@ -56,7 +56,7 @@ angular.module 'ahaLuminateControllers'
           calculateInstallment(number)
         , 500
 
-      if typeof document.getElementById('level_installmentduration') != 'undefined'
+      if jQuery('#level_installmentduration').length > 0
         document.getElementById('level_installmentduration').onchange = ->
           installmentDropdown()
 
