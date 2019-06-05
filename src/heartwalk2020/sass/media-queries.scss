@@ -117,7 +117,7 @@
 @media all and (max-width: 1160px) {
   .pg_team {
     .team-roster {
-      .team-roster-header {
+      .dataTables_wrapper {
         h1 {
           margin: 20px 10px;
         }
@@ -154,7 +154,7 @@
     }
   }
 
-  .pg_team .team-roster .team-roster-header .row {
+  .pg_team .team-roster .dataTables_wrapper .row {
     font-size: 0.7rem;
   }
 }
@@ -374,8 +374,10 @@
         }
       }
 
-      .team-roster-header .row {
+      .dataTables_wrapper .row {
         padding: 0 20px 20px !important;
+        font-size:1rem;
+        
       }
     }
 

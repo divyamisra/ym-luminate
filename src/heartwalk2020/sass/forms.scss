@@ -1,6 +1,11 @@
 .table {
   &.dataTable {
     thead {
+      th {
+        &:hover {
+          cursor:pointer;
+        }
+      }
       .sorting {
         background-image:none;
         &:after {
@@ -89,3 +94,22 @@
     }
   }
 }
+// .dataTables_filter {
+//   width: 50%;
+//   float: right;
+//   text-align: right;
+// }
+.dataTables_filter {
+  label {
+    width:100%;
+    display: inline-block;
+    margin-bottom: 0.5rem;
+    font-size:13px;
+  }
+}
+.dataTables_info {
+  font-size:13px;
+}
+// .dataTables_filter {
+//   display: none;
+// }

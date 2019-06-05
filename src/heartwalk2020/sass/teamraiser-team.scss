@@ -17,15 +17,23 @@
    padding: 0;
    overflow: hidden;
 
-   .team-roster-header {
+   .dataTables_wrapper {
      h1 {
        margin: 40px 0 0 40px;
      }
-
+     div.row {
+      padding: 0 40px 15px;
+     }
+     thead {
+      .row {
+        font-size: 0.8rem;
+        padding: 0 40px;
+      }
+    }
+     tbody {
      .row {
        font-size: 0.8rem;
        padding: 0 40px 15px;
-
        label {
          margin: 0;
        }
@@ -34,6 +42,7 @@
          @include border-radius(0, 4px, 4px, 0);
        }
      }
+    }
    }
 
    .dropdown-menu a {
@@ -43,8 +52,9 @@
    }
 
    table {
-     background-color: $team-roster-bg-gray;
 
+    tbody {
+      background-color: $team-roster-bg-gray;
      tr {
        border-bottom: solid 1px $white;
        font-size: 0.9rem;
@@ -60,14 +70,15 @@
        }
      }
    }
+  }
    .btn-tertiary-black {
       margin: 25px 0;
    }
 
-   #team-roster_length, #team-roster_filter, #team-roster_info, #team-roster_paginate, #team-roster thead,
-   #participant-roster_length, #participant-roster_filter, #participant-roster_info, #participant-roster_paginate, #participant-roster thead{
-     display: none !important;
-   }
+  //  #team-roster_length, #team-roster_filter, #team-roster_info, #team-roster_paginate, #team-roster thead,
+  //  #participant-roster_length, #participant-roster_filter, #participant-roster_info, #participant-roster_paginate, #participant-roster thead{
+  //    display: none !important;
+  //  }
  }
 
   .content-area {
