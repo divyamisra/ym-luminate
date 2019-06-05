@@ -79,7 +79,8 @@ angular.module 'ahaLuminateControllers'
             angular.element('#level_installment_row').removeClass 'hidden'
           if $scope.donationGiftType is "flexible"
             angular.element('#level_flexibleduration_row').removeClass 'hidden'
-            angular.element('#level_flexiblegift_type2').click();
+            angular.element('#level_flexiblegift_type2').prop 'checked', true
+            angular.element('#level_flexiblegift_type2').trigger 'click'
           angular.element('#pstep_finish span').remove()
           $scope.donationInfo.monthly = true
           number = 1
@@ -95,7 +96,8 @@ angular.module 'ahaLuminateControllers'
             angular.element('#level_installmentduration').click()
           if $scope.donationGiftType is "flexible"
             angular.element('#level_flexibleduration_row').addClass 'hidden'
-            angular.element('#level_flexiblegift_type1').click()
+            angular.element('#level_flexiblegift_type1').prop 'checked', true
+            angular.element('#level_flexiblegift_type1').trigger 'click'
             $scope.donationInfo.monthly = false
           populateBtnAmt $scope.donationInfo.levelType
           if $scope.donationInfo.amount is undefined
