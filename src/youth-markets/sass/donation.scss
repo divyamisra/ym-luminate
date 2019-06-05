@@ -97,10 +97,13 @@ div.donation-form-container {
   #tribute_show_honor_fields_row,
   #billing_info_same_as_donor_row,
   #level_flexiblegift_type_Row,
-  .don-level-total-row {
+  #level_flexibletotal_row {
     display: none;
   }
-
+  
+  #level_flexibleduration_row {
+    padding-top:20px;
+  }
   h2 {
     font-size: 32px;
     font-weight: 700;
