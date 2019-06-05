@@ -39,6 +39,7 @@ angular.module 'ahaLuminateControllers'
         installmentAmount: ''
         sustainingAmount: ''
         sustainingDuration: ''
+        sustainingFrequency: ''
         levelType: 'level'
         otherAmt: ''
         levelChecked: ''
@@ -53,16 +54,25 @@ angular.module 'ahaLuminateControllers'
         localStorage['installmentAmount'] = amount
         localStorage['numberPayments'] = number
 
-      calculateSustaining = (duration) ->
+      calculateSustaining = (duration, freq) ->
         $scope.donationInfo.sustainingDuration = duration
         localStorage['sustainingDuration'] = duration
-
+        $scope.donationInfo.sustainingFrequency = freq
+        localStorage['sustainingFrequency'] = freq
+        
       sustainingDropdown = ->
         duration = angular.element('#level_flexibleduration option:selected').text()
+        freq = ''
+        if duration.indexOf('month') > 0
+          freq = 'monthly'
+        if duration.indexOf('quarter') > 0
+          freq = 'quarterly'
+        if duration.indexOf('yearly') > 0
+          freq = 'yearly'
         if duration is ''
           duration = 'an unlimited time period'
         $timeout ->
-          calculateSustaining(duration)
+          calculateSustaining(duration,freq)
         , 500
 
       installmentDropdown = ->
@@ -395,6 +405,7 @@ angular.module 'ahaLuminateControllers'
             $scope.donationInfo.numberPayments = localStorage['numberPayments']
             $scope.donationInfo.sustainingAmount = localStorage['sustainingAmount']
             $scope.donationInfo.sustainingDuration = localStorage['sustainingDuration']
+            $scope.donationInfo.sustainingFrequency = localStorage['sustainingFrequency']
         if localStorage['amount']
           if localStorage['amount'] is 'undefined'
             $scope.donationInfo.otherAmt = ''
