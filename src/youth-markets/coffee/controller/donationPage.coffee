@@ -79,7 +79,7 @@ angular.module 'ahaLuminateControllers'
             angular.element('#level_installment_row').removeClass 'hidden'
           if $scope.donationGiftType is "flexible"
             angular.element('#level_flexibleduration_row').removeClass 'hidden'
-            angluar.element('#level_flexiblegift_type2').click();
+            angular.element('#level_flexiblegift_type2').click();
           angular.element('#pstep_finish span').remove()
           $scope.donationInfo.monthly = true
           number = 1
