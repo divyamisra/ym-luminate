@@ -95,7 +95,7 @@ angular.module 'ahaLuminateControllers'
             angular.element('#level_installmentduration').click()
           if $scope.donationGiftType is "flexible"
             angular.element('#level_flexibleduration_row').addClass 'hidden'
-            angular.element('#level_flexiblegift_type1').click();
+            angular.element('#level_flexiblegift_type1').click()
             $scope.donationInfo.monthly = false
           populateBtnAmt $scope.donationInfo.levelType
           if $scope.donationInfo.amount is undefined
