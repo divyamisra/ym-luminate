@@ -51,6 +51,8 @@
       .event-date {
         margin: 1px 0 31px;
         font-size: 1.44rem;
+        font-family:$font-family-medium;
+        font-weight: normal;
       }
 
       .btn {
@@ -110,6 +112,10 @@
         }
       }
 
+      ul {
+        height: 380px;
+      }
+
       li {
         border-bottom: solid 2px $gray-700;
         a {
@@ -137,6 +143,7 @@
         .btn-tertiary {
           width: 100%;
           max-width: 263px;
+          padding: 5px 0px !important;
         }
       }
     }

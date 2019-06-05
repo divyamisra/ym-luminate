@@ -108,7 +108,7 @@
                   participant.name.first + ' ' + participant.name.last +
                   '</a></td><td>' +
                   ((participant.teamName !== null && participant.teamName !== undefined) ? '<a href="' + participant.teamPageUrl + '">' + participant.teamName + '</a>' : '') + '</td><td><a href="TR/?fr_id=' + participant.eventId + '&pg=entry">' +
-                  participant.eventName + '</a></td><td class="col-cta"><a href="' + participant.donationUrl + '" aria-label="Donate to ' + participant.name.first + ' ' + participant.name.last + '" class="btn btn-primary btn-block">Donate</a></td></tr>');
+                  participant.eventName + '</a></td><td class="col-cta"><a href="' + participant.donationUrl + '" aria-label="Donate to ' + participant.name.first + ' ' + participant.name.last + '" class="btn btn-primary btn-block btn-rounded">Donate</a></td></tr>');
               });
 
               if(totalParticipants > 10) {
@@ -178,7 +178,7 @@
                   .append('<tr' + (i > 10 ? ' class="d-none"' : '') + '><td><a href="' + team.teamPageURL + '">' +
                     team.name + '</a></td><td><a href="TR/?px=' + team.captainConsId + '&pg=personal&fr_id=' + team.EventId + '">' + team.captainFirstName + ' ' + team.captainLastName + '</a></td><td>' +
                     ((team.companyName !== null && team.companyName !== undefined) ? '<a href="TR?company_id=' + team.companyId + '&fr_id=' + team.EventId + '&pg=company">' + team.companyName + '</a>' : '') +
-                    '</td><td><a href="TR/?fr_id=' + team.EventId + '&pg=entry">' + team.eventName + '</a></td><td class="col-cta"><a href="' + team.teamDonateURL + '" class="btn btn-primary btn-block" title="Donate to ' + team.name + '" aria-label="Donate to ' + team.name + '">Donate</a></td></tr>');
+                    '</td><td><a href="TR/?fr_id=' + team.EventId + '&pg=entry">' + team.eventName + '</a></td><td class="col-cta"><a href="' + team.teamDonateURL + '" class="btn btn-primary btn-block btn-rounded" title="Donate to ' + team.name + '" aria-label="Donate to ' + team.name + '">Donate</a></td></tr>');
               });
 
               var totalTeams = parseInt(response.getTeamSearchByInfoResponse.totalNumberResults);
@@ -237,7 +237,6 @@
             } else {
               var companies = luminateExtend.utils.ensureArray(response.getCompaniesResponse.company);
               var totalCompanies = parseInt(response.getCompaniesResponse.totalNumberResults);
-
               $('.js--num-companies').text(totalCompanies);
 
               $(companies).each(function (i, company) {
@@ -381,7 +380,7 @@
 
 
                 var eventRow = '<tr' + (i > 10 ? ' class="d-none"' : '') + '><td><a href="' +
-                event.greeting_url + '">' + event.name + '</a></td><td>' + eventDate + '</td><td>' + event.distance + 'mi</td><td><a href="' + event.greeting_url + '" aria-label="More details about ' + event.name + '" class="btn btn-secondary btn-block">Details</a></td><td class="col-cta">' + (acceptsRegistration === 'true' ? '<a href="SPageServer/?pagename=heartwalk_register&fr_id=' + event.id + '" aria-label="Register for ' + event.name + '" class="btn btn-primary btn-block">Register</a>' : 'Registration Closed') + '</td></tr>';
+                event.greeting_url + '">' + event.name + '</a></td><td>' + eventDate + '</td><td>' + event.distance + 'mi</td><td><a href="' + event.greeting_url + '" aria-label="More details about ' + event.name + '" class="btn btn-secondary btn-block btn-rounded">Details</a></td><td class="col-cta">' + (acceptsRegistration === 'true' ? '<a href="SPageServer/?pagename=heartwalk_register&fr_id=' + event.id + '" aria-label="Register for ' + event.name + '" class="btn btn-primary btn-block btn-rounded">Register</a>' : 'Registration Closed') + '</td></tr>';
 
                 if (eventStatus === '1' || eventStatus === '2' || eventStatus === '3') {
                   $('.js--event-results-rows').append(eventRow);
@@ -437,7 +436,7 @@
 
           $('.js__progress-bar')
               .animate({width : percentRaisedFormatted}, 2000)
-              .attr("aria-valuenow", percentRaisedFormatted);
+              .attr("aria-valuenow", percentRaised * 100);
           $('.js__percent-raised').each(function () {
               $(this).prop('Counter', 0).animate({
                   Counter: percentRaisedFormatted
@@ -534,6 +533,9 @@
               var topCompanies = luminateExtend.utils.ensureArray(response.getCompaniesResponse
                 .company);
 
+                var totalCompanies = parseInt(response.getCompaniesResponse.totalNumberResults);
+                $('.js--num-companies').text(totalCompanies);
+
               $(topCompanies).each(function () {
                 var companyName = this.companyName;
                 var companyRaised = (parseInt(this.amountRaised) * 0.01);
@@ -599,6 +601,7 @@
             }
 
             if ($('body').is('.pg_company')) {
+                
                 $('.team-roster form .btn').html('<i class="fas fa-search"></i>');
                 $('#participant-roster td:nth-child(3) a').html('Donate');
             }
@@ -824,6 +827,9 @@
                       participant.name.first + ' ' + participant.name.last +
                       '</a>' + (participant.aTeamCaptain === "true" ? ' <span class="coach">- Coach</span>' : '') + '</td><td class="col-4 raised" data-sort="' + participantRaisedFormmatted + '"><span>Raised:<strong>$' + participantRaisedFormmatted + '</strong></span></td><td class="col-4"><a href="' + participant.donationUrl + '">Donate to ' +
                       participant.name.first + '</a></td></tr>');
+                      if(participant.aTeamCaptain === 'true'){
+                        $('.js--team-captain-link').attr('href', participant.personalPageUrl).text(participant.name.first + ' ' + participant.name.last);
+                      }
                   });
         
                   if(totalParticipants > 10) {
@@ -889,11 +895,13 @@
          // build team roster
   var companyId = getURLParameter(currentUrl, 'company_id');
 
+  console.log('companyId: ', companyId);
  cd.getCompanyTeams = function () {
   luminateExtend.api({
     api: 'teamraiser',
     data: 'method=getTeamsByInfo' +
-      '&team_name=%25%25%25&fr_id=' + evID +
+      '&team_name=%25%25%25' + 
+      '&fr_id=' + evID +
       '&team_company_id=' + companyId +
       '&list_page_size=499' +
       '&list_page_offset=0' +
@@ -911,7 +919,10 @@
           $('.js--num-company-teams').text(totalTeams);
 
           $(teams).each(function (i, team) {
-
+            var companyName = team.companyName;
+            if(i === 0){
+              $('.js--company-name').text(companyName);
+            }
             var teamRaised = (parseInt(team.amountRaised) * 0.01);
             var teamRaisedFormmatted = teamRaised.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
 
