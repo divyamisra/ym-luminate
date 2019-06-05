@@ -67,7 +67,7 @@ angular.module 'ahaLuminateControllers'
           freq = 'monthly'
         if duration.indexOf('quarter') > 0
           freq = 'quarterly'
-        if duration.indexOf('yearly') > 0
+        if duration.indexOf('year') > 0
           freq = 'yearly'
         if duration is ''
           duration = 'an unlimited time period'
