@@ -599,6 +599,7 @@
             }
 
             if ($('body').is('.pg_company')) {
+                
                 $('.team-roster form .btn').html('<i class="fas fa-search"></i>');
                 $('#participant-roster td:nth-child(3) a').html('Donate');
             }
@@ -824,6 +825,9 @@
                       participant.name.first + ' ' + participant.name.last +
                       '</a>' + (participant.aTeamCaptain === "true" ? ' <span class="coach">- Coach</span>' : '') + '</td><td class="col-4 raised" data-sort="' + participantRaisedFormmatted + '"><span>Raised:<strong>$' + participantRaisedFormmatted + '</strong></span></td><td class="col-4"><a href="' + participant.donationUrl + '">Donate to ' +
                       participant.name.first + '</a></td></tr>');
+                      if(participant.aTeamCaptain === 'true'){
+                        $('.js--team-captain-link').attr('href', participant.personalPageUrl).text(participant.name.first + ' ' + participant.name.last);
+                      }
                   });
         
                   if(totalParticipants > 10) {
@@ -889,11 +893,13 @@
          // build team roster
   var companyId = getURLParameter(currentUrl, 'company_id');
 
+  console.log('companyId: ', companyId);
  cd.getCompanyTeams = function () {
   luminateExtend.api({
     api: 'teamraiser',
     data: 'method=getTeamsByInfo' +
-      '&team_name=%25%25%25&fr_id=' + evID +
+      '&team_name=%25%25%25' + 
+      '&fr_id=' + evID +
       '&team_company_id=' + companyId +
       '&list_page_size=499' +
       '&list_page_offset=0' +
