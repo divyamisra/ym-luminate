@@ -53,6 +53,18 @@ angular.module 'ahaLuminateControllers'
         localStorage['installmentAmount'] = amount
         localStorage['numberPayments'] = number
 
+      calculateSustaining = (duration) ->
+        $scope.donationInfo.sustainingDuration = duration
+        localStorage['sustainingDuration'] = duration
+
+      sustainingDropdown = ->
+        duration = angular.element('#level_flexibleduration').text()
+        if duration is ''
+          duration = 1
+        $timeout ->
+          calculateSustaining(duration)
+        , 500
+
       installmentDropdown = ->
         number = angular.element('#level_installmentduration').val()
         number = Number number.split(':')[1]
@@ -71,6 +83,15 @@ angular.module 'ahaLuminateControllers'
             installmentDropdown()
           , 500
           
+      if $scope.donationGiftType is "flexible"
+        document.getElementById('level_flexibleduration').onchange = ->
+          sustainingDropdown()
+
+        document.getElementById('level_flexibleduration').onblur = ->
+          $timeout ->
+            sustainingDropdown()
+          , 500
+
       $scope.giftType = (type) ->
         $scope.donationInfo.giftType = type
         localStorage['giftType'] = type
@@ -88,9 +109,10 @@ angular.module 'ahaLuminateControllers'
             angular.element('#level_flexiblegift_type2').prop 'checked', true
             angular.element('#level_flexiblegift_type2').trigger 'click'
             $scope.donationInfo.sustainingAmount = amount
-            $scope.donationInfo.sustainingDuration = 1
             localStorage['sustainingAmount'] = amount
-            localStorage['sustainingDuration'] = 1
+            $timeout ->
+              sustainingDropdown()
+            , 500
           angular.element('#pstep_finish span').remove()
           $scope.donationInfo.monthly = true
         else
@@ -116,9 +138,10 @@ angular.module 'ahaLuminateControllers'
             else
               amount = Number $scope.donationInfo.amount.split('$')[1]
             $scope.donationInfo.sustainingAmount = amount
-            $scope.donationInfo.sustainingDuration = 1
             localStorage['sustainingAmount'] = amount
-            localStorage['sustainingDuration'] = 1
+            $timeout ->
+              sustainingDropdown()
+            , 500
          
           $scope.donationInfo.monthly = false
           populateBtnAmt $scope.donationInfo.levelType
