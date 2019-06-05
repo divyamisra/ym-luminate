@@ -47,7 +47,7 @@ a {
   background-color: $gray-100;
 }
 
-h1, h2, h3, h4, h5, strong {
+h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, strong {
   font-family: $font-family-bold;
   font-weight: bold;
 }
@@ -275,7 +275,7 @@ img {
 
 .pg_personal, .pg_team, .pg_company {
   main {
-    background-image: url("/images/content/pagebuilder/hw_hero_personal.jpg");
+    background-image: url("../../img/FrHeroImage@2x.jpg");
     background-size: 100%;
     background-repeat: no-repeat;
     background-color: $white;
