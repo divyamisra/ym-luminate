@@ -60,7 +60,7 @@ angular.module 'ahaLuminateControllers'
       sustainingDropdown = ->
         duration = angular.element('#level_flexibleduration option:selected').text()
         if duration is ''
-          duration = 1
+          duration = 'an unlimited time period'
         $timeout ->
           calculateSustaining(duration)
         , 500
@@ -190,9 +190,9 @@ angular.module 'ahaLuminateControllers'
               $timeout ->
                 sustainingDropdown()
               , 500
-
-            $scope.donationInfo.sustainingAmount = amount
-            localStorage['sustainingAmount'] = amount
+            else 
+              $scope.donationInfo.sustainingAmount = amount
+              localStorage['sustainingAmount'] = amount
               
         if type is 'other'
           if type isnt $scope.donationInfo.levelType and $scope.donationInfo.otherAmt isnt ''
@@ -386,6 +386,8 @@ angular.module 'ahaLuminateControllers'
             $scope.donationInfo.monthly = true
             $scope.donationInfo.installmentAmount = localStorage['installmentAmount']
             $scope.donationInfo.numberPayments = localStorage['numberPayments']
+            $scope.donationInfo.sustainingAmount = localStorage['sustainingAmount']
+            $scope.donationInfo.sustainingDuration = localStorage['sustainingDuration']
         if localStorage['amount']
           if localStorage['amount'] is 'undefined'
             $scope.donationInfo.otherAmt = ''
