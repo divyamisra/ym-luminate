@@ -58,7 +58,7 @@ angular.module 'ahaLuminateControllers'
         localStorage['sustainingDuration'] = duration
 
       sustainingDropdown = ->
-        duration = angular.element('#level_flexibleduration').text()
+        duration = angular.element('#level_flexibleduration option:selected').text()
         if duration is ''
           duration = 1
         $timeout ->
@@ -133,12 +133,8 @@ angular.module 'ahaLuminateControllers'
             angular.element('#level_flexibleduration_row').addClass 'hidden'
             angular.element('#level_flexiblegift_type1').prop 'checked', true
             angular.element('#level_flexiblegift_type1').trigger 'click'
-            if $scope.donationInfo.amount is undefined
-              amount = 0
-            else
-              amount = Number $scope.donationInfo.amount.split('$')[1]
-            $scope.donationInfo.sustainingAmount = amount
-            localStorage['sustainingAmount'] = amount
+            $scope.donationInfo.sustainingAmount = $scope.donationInfo.amount
+            localStorage['sustainingAmount'] = $scope.donationInfo.amount
             $timeout ->
               sustainingDropdown()
             , 500
@@ -187,16 +183,16 @@ angular.module 'ahaLuminateControllers'
 
           if $scope.donationGiftType is "flexible"
             if $scope.donationInfo.monthly is true
-              duration = angular.element('#level_sustainingduration option:selected').html()
               if $scope.donationInfo.levelType is 'level'
                 amount = Number($scope.donationInfo.amount.split('$')[1]) / number
               else
                 amount = Number $scope.donationInfo.amount
+              $timeout ->
+                sustainingDropdown()
+              , 500
 
             $scope.donationInfo.sustainingAmount = amount
-            $scope.donationInfo.sustainingDuration = duration
             localStorage['sustainingAmount'] = amount
-            localStorage['sustainingDuration'] = duration
               
         if type is 'other'
           if type isnt $scope.donationInfo.levelType and $scope.donationInfo.otherAmt isnt ''
