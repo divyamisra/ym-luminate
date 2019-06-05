@@ -184,15 +184,15 @@ angular.module 'ahaLuminateControllers'
           if $scope.donationGiftType is "flexible"
             if $scope.donationInfo.monthly is true
               if $scope.donationInfo.levelType is 'level'
-                amount = Number($scope.donationInfo.amount.split('$')[1]) / number
+                amount = Number amount.split('$')[1]
               else
-                amount = Number $scope.donationInfo.amount
+                amount = Number amount
               $timeout ->
                 sustainingDropdown()
               , 500
-            else 
-              $scope.donationInfo.sustainingAmount = amount
-              localStorage['sustainingAmount'] = amount
+
+            $scope.donationInfo.sustainingAmount = amount
+            localStorage['sustainingAmount'] = amount
               
         if type is 'other'
           if type isnt $scope.donationInfo.levelType and $scope.donationInfo.otherAmt isnt ''
