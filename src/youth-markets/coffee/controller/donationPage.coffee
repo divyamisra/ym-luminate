@@ -120,6 +120,8 @@ angular.module 'ahaLuminateControllers'
             angular.element('#level_flexiblegift_type2').prop 'checked', true
             angular.element('#level_flexiblegift_type2').trigger 'click'
             if $scope.donationInfo.levelType is 'level'
+              if $scope.donationInfo.amount is ''
+                $scope.donationInfo.amount = "$0"
               amount = Number $scope.donationInfo.amount.split('$')[1]
             else
               amount = Number $scope.donationInfo.amount
