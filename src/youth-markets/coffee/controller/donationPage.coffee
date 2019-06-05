@@ -106,6 +106,7 @@ angular.module 'ahaLuminateControllers'
             , 500
           if $scope.donationGiftType is "flexible"
             angular.element('#level_flexibleduration_row').removeClass 'hidden'
+            angular.element('#level_flexibletotal_row').removeClass 'hidden'
             angular.element('#level_flexiblegift_type2').prop 'checked', true
             angular.element('#level_flexiblegift_type2').trigger 'click'
             if $scope.donationInfo.levelType is 'level'
@@ -135,6 +136,7 @@ angular.module 'ahaLuminateControllers'
             , 500
           if $scope.donationGiftType is "flexible"
             angular.element('#level_flexibleduration_row').addClass 'hidden'
+            angular.element('#level_flexibletotal_row').addClass 'hidden'
             angular.element('#level_flexiblegift_type1').prop 'checked', true
             angular.element('#level_flexiblegift_type1').trigger 'click'
             $scope.donationInfo.sustainingAmount = $scope.donationInfo.amount
@@ -464,6 +466,7 @@ angular.module 'ahaLuminateControllers'
         if $scope.donationInfo.giftType is 'onetime'
           angular.element('#level_installment_row').addClass 'hidden'
           angular.element('#level_flexibleduration_row').addClass 'hidden'
+          angular.element('#level_flexibletotal_row').addClass 'hidden'
         $requiredField = angular.element '.field-required'
         angular.forEach $requiredField, (required) ->
           $req = angular.element required
