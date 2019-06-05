@@ -56,13 +56,14 @@ angular.module 'ahaLuminateControllers'
           calculateInstallment(number)
         , 500
 
-      document.getElementById('level_installmentduration').onchange = ->
-        installmentDropdown()
-
-      document.getElementById('level_installmentduration').onblur = ->
-        $timeout ->
+      if typeof document.getElementById('level_installmentduration') != 'undefined'
+        document.getElementById('level_installmentduration').onchange = ->
           installmentDropdown()
-        , 500
+
+        document.getElementById('level_installmentduration').onblur = ->
+          $timeout ->
+            installmentDropdown()
+          , 500
 
       $scope.giftType = (type) ->
         $scope.donationInfo.giftType = type
