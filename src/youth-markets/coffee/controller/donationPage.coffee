@@ -108,6 +108,10 @@ angular.module 'ahaLuminateControllers'
             angular.element('#level_flexibleduration_row').removeClass 'hidden'
             angular.element('#level_flexiblegift_type2').prop 'checked', true
             angular.element('#level_flexiblegift_type2').trigger 'click'
+            if $scope.donationInfo.levelType is 'level'
+              amount = Number $scope.donationInfo.amount.split('$')[1]
+            else
+              amount = Number $scope.donationInfo.amount
             $scope.donationInfo.sustainingAmount = amount
             localStorage['sustainingAmount'] = amount
             $timeout ->
@@ -428,10 +432,12 @@ angular.module 'ahaLuminateControllers'
                 if levelChecked is true
                   if userSpecified  is 'true'
                     $scope.donationInfo.amount = $scope.donationInfo.otherAmt
+                    $scope.donationInfo.sustainingAmount = $scope.donationInfo.otherAmt
                     installmentAmount = Number($scope.donationInfo.otherAmt)/Number($scope.donationInfo.numberPayments)
                     $scope.donationInfo.installmentAmount = installmentAmount.toFixed 2
                   else
                     $scope.donationInfo.amount = amount
+                    $scope.donationInfo.sustainingAmount = amount
                     if localStorage['installmentAmount']
                       $scope.donationInfo.installmentAmount = localStorage['installmentAmount']
                     else
