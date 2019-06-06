@@ -925,6 +925,14 @@
     }
 
     #our-teams, #our-walkers, .team-roster {
+      .team-roster-header {
+        padding: 20px 0 0 32px !important;
+
+        h1 {
+          margin: 0 0 15px 0 !important;
+        }
+      }
+
       .btn {
         color: transparent;
         width: 40px;
@@ -937,6 +945,10 @@
         }
       }
     }
+  }
+
+  #team-roster_wrapper .row {
+    margin: 0;
   }
 }
 
