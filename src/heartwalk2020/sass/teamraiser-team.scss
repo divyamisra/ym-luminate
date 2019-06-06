@@ -71,14 +71,10 @@
      }
    }
   }
+
    .btn-tertiary-black {
       margin: 25px 0;
    }
-
-  //  #team-roster_length, #team-roster_filter, #team-roster_info, #team-roster_paginate, #team-roster thead,
-  //  #participant-roster_length, #participant-roster_filter, #participant-roster_info, #participant-roster_paginate, #participant-roster thead{
-  //    display: none !important;
-  //  }
  }
 
   .content-area {
@@ -95,4 +91,12 @@
 
 .pg_team .team-roster {
   margin: 80px 0 0 30px;
+
+  .team-roster-header {
+    padding: 20px 0 0 20px;
+
+    h1 {
+      margin: 0 !important;
+    }
+  }
 }
