@@ -41,7 +41,7 @@
             #event-info-icon-wheel {
               width: 100%;
               max-width: 25px;
-              
+              max-height: 25px;
               .st0 {
                 fill: $dark;
               }
@@ -71,6 +71,11 @@
     margin-top: -44px;
   }
 
+  .location-accordion {
+    .card-body {
+      padding-top: 40px;
+    }
+  }
   .section-event-details {
     margin-top: -44px;
     padding-top: 5em;
@@ -116,7 +121,7 @@
               z-index: 1;
               position: absolute;
               width: 60px;
-              height: auto;
+              height: 60px;
 
               @include media-breakpoint-down(md) {
                 display: none;
@@ -227,7 +232,7 @@
           .details-items-icon {
             .details-icon {
               width: 60px;
-              height: auto;
+              height: 60px;
               top: 15px;
               left: 15px;
 
@@ -249,7 +254,7 @@
           .details-items-icon {
             .details-icon {
               width: 44px;
-              height: auto;
+              height: 57px;
 
               @include media-breakpoint-down(md) {
                 width: 35px;
@@ -269,7 +274,7 @@
           .details-items-icon {
             .details-icon {
               width: 57px;
-              height: auto;
+              height: 50px;
 
               @include media-breakpoint-down(md) {
                 width: 45px;
@@ -289,7 +294,7 @@
           .details-items-icon {
             .details-icon {
               width: 39px;
-              height: auto;
+              height: 60px;
               left: 30px;
 
               @include media-breakpoint-down(md) {
@@ -310,7 +315,7 @@
           .details-items-icon {
             .details-icon {
               width: 60px;
-              height: auto;
+              height: 60px;
               top: 12px;
 
               @include media-breakpoint-down(md) {
@@ -330,7 +335,7 @@
           .details-items-icon {
             .details-icon {
               width: 57px;
-              height: auto;
+              height: 75px;
               top: 12px;
 
               @include media-breakpoint-down(md) {
@@ -355,7 +360,7 @@
           .details-items-icon {
             .details-icon {
               width: 58px;
-              height: auto;
+              height: 71px;
 
               @include media-breakpoint-down(md) {
                 width: 46px;
@@ -380,7 +385,7 @@
           .details-items-icon {
             .details-icon {
               width: 42px;
-              height: auto;
+              height: 43px;
               top: 22px;
               left: 25px;
             }
@@ -489,7 +494,7 @@
         .badges {
           svg {
             width: 25px;
-            height: auto;
+            height: 25px;
           }
           .team-captain-badge {
     

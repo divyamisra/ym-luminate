@@ -1,13 +1,78 @@
 
-#preFooter {
-  background-color: #fcf8dd;
-  color: #3d3d3d;
-  font-size: 12px;
+.l-promo {
+  margin-bottom: 2.5rem;
+  margin-top: 2.5rem;
 }
 
-#preFooter .col-xs-12 {
-  margin-top: 10px;
-  margin-bottom: 10px;
+.no-gutters {
+  margin-right: 0;
+  margin-left: 0;
+}
+
+.c-text-promo {
+  position: relative;
+  padding: 1;
+  padding-bottom: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  height: 100%;
+  border-top: 1px solid #e3e3e3;
+  h3 {
+    font-size:24px;
+  }
+}
+.c-text-promo .c-text-promo__content p {
+  color: #6d6e71;
+  font-size:16px;
+}
+
+.c-text-promo p {
+  line-height: 1.5;
+}
+.c-recipe .c-text-promo .gig-rating-readReviewsLink, .c-recipe .c-text-promo .gig-rating-writeYourReview, .c-text-promo .c-cta, .c-text-promo .c-recipe .gig-rating-readReviewsLink, .c-text-promo .c-recipe .gig-rating-writeYourReview {
+  display: inline-block;
+}
+
+.c-cta.h-theme--red {
+  color: #c10e21!important;
+}
+.c-cta--arrow {
+  padding-right: 30px;
+}
+.c-cta {
+  font-weight: 600;
+  position: relative;
+}
+
+@media (min-width: 992px){
+  .c-text-promo {
+    padding: 2.5rem 2.1875rem;
+  }
+}
+
+@media (min-width: 768px){
+  .c-text-promo {
+    padding: 1.875rem .9375rem 1.875rem 1.875rem;
+    border-left: 1px solid #e3e3e3;
+    border-top: none;
+  }
+  .c-text-promo .c-text-promo__content {
+    -webkit-box-flex: 1;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+  }
+}
+@media (max-width: 767px){
+  .c-text-promo {
+    padding: 1.2rem;
+    border-left: none;
+    border-top: 1px solid #e3e3e3;
+  }
 }
 footer .menu li.menu-item a::before {
   display: none;
@@ -21,15 +86,15 @@ footer {
 }
 }
 @media (min-width: 992px) {
-  #preFooter .container {
-    width: 970px;
-  }
+  // #preFooter .container {
+  //   width: 970px;
+  // }
 }
 
 @media (min-width: 768px) {
-  #preFooter .container {
-    width: 750px;
-  }
+  // #preFooter .container {
+  //   width: 750px;
+  // }
 }
 
 a.button.footerWarning {
