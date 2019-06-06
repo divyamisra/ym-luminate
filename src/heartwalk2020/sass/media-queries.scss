@@ -865,48 +865,77 @@
     margin: 20px 0 0 !important;
   }
 
-  #team-roster, #participant-roster {
-    tr {
-      padding: 15px;
-    }
+  .pg_team #team-roster, .pg_company #participant-roster {
+      tbody tr {
+        td:nth-child(3) a {
+          color: transparent;
 
-    td {
-      display: flex;
-      max-width: 100%;
-      flex: unset;
-
-      &:nth-child(4) {
-        position: absolute;
-        right: 10px;
-        text-align: right;
-        display: block;
-      }
-    }
-
-    span {
-      margin: 0 10px 10px 0 !important;
-
-      strong {
-        margin: 0 0 0 10px;
-      }
-    }
-  }
-
-  #participant-roster {
-      td:nth-child(3) {
-        position: absolute;
-        right: 10px;
-        text-align: right;
-        display: block;
-        a {
-          content: "Donate";
+          &::after {
+            content: "Donate";
+            color: #C10E21;
+            text-decoration: underline;
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            &:hover {
+              background-color: $red-deep;
+            }
+          }
         }
       }
   }
 
-  .pg_team, .pg_company {
-    .team-roster table tr strong {
-      display: inline-block;
+  .pg_company {
+    #team-roster {
+      tbody tr {
+        td:nth-child(4) a {
+          color: transparent;
+
+          &::after {
+            content: "Join";
+            color: #C10E21;
+            text-decoration: underline;
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            &:hover {
+              background-color: $red-deep;
+            }
+          }
+        }
+      }
+    }
+
+    #participant-roster {
+      font-size: 0.8rem;
+
+      tr {
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+    }
+  }
+
+  .pg_company, .pg_team {
+    #team-roster, #participant-roster {
+      td span {
+        margin: 5px 0 0 0;
+        display: inline-block;
+      }
+    }
+
+    #our-teams, #our-walkers, .team-roster {
+      .btn {
+        color: transparent;
+        width: 40px;
+
+        i {
+          color: #fff;
+          position: absolute;
+          top: 12px;
+          right: 11px;
+        }
+      }
     }
   }
 }
