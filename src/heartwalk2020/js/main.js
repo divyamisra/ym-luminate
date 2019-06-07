@@ -740,6 +740,16 @@
         });
     }
 
+    if($('.tr_sponsorship_logos').length > 0){
+      jQuery('.tr_sponsorship_logos a').on('click', function(e){
+        e.preventDefault();
+        var sponsorUrl = jQuery(this).attr('href');
+          if (confirm("These are proud sponsors of the American Heart Association's Heart Walk. By clicking on this link, you will be taken outside American Heart Association and this is not an endorsement of either the linked-to entity or any product or service.")) {
+            window.location.href = sponsorUrl;
+          } 
+      });
+    }
+
     if ($('body').is('.pg_personal')) {
       // Personal Page
         var progress = $('#progress-amount').text();
