@@ -9,6 +9,10 @@ a.btn {
   font-family: 'LubDubMedium', Helvetica, Arial, sans-serif !important;
 }
 
+.content a.btn {
+  padding: 10px 20px;
+}
+
 .btn-primary {
   background-color: $red;
 

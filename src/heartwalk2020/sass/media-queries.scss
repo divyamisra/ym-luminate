@@ -304,12 +304,17 @@
         width: 100%;
         font-size: 1.33rem;
 
+        div.float-left {
+          margin: 4px 0px 0 0;
+        }
+
         .badges-container {
           width: 100%;
           margin: 10px 0 !important;
 
-          img {
-            width: 60px;
+          svg {
+            width: 40px;
+            margin: 0 0 0 10px;
           }
         }
       }
@@ -449,7 +454,7 @@
       }
 
       .buttons-row {
-        margin: 0;
+        margin: 0 0 10px;
       }
 
       .btn {
@@ -618,6 +623,11 @@
       }
 
       .information-box {
+
+        h1 {
+          margin: 5px 0;
+        }
+
         .donation-amounts {
           &.row {
             display: block;
@@ -961,4 +971,11 @@
     }
   }
   /* END PERSONAL PAGE STYLES */
+}
+
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+  // IE10+ specific CSS
+  .information-box h1 .badges-container svg {
+    height: 59px;
+  }
 }

@@ -662,6 +662,14 @@
         return (number + '').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
     };
 
+    cd.setDonorRollHeight = function() {
+        $('.donations-container div').each(function(i, div) {
+            if (i > 4) {
+                $('.donations-container').css('height', '205px');
+            }
+        });
+    };
+
     if ($('body').is('.pg_entry')) {
       // Greeting Page
         // populate greeting page content
@@ -717,6 +725,7 @@
         var goal = $('#goal-amount').text();
         cd.runThermometer(progress, goal);
         cd.reorderPageForMobile();
+        cd.setDonorRollHeight();
 
         // populate custom personal page content
         $('.js--personal-text').html($('#fr_rich_text_container').html());
@@ -794,7 +803,6 @@
           });
         };
         cd.getDonationFormInfo();
-
     }
 
     if ($('body').is('.pg_team')) {
@@ -802,8 +810,8 @@
         var progress = $('#progress-amount').text();
         var goal = $('#goal-amount').text();
         cd.runThermometer(progress, goal);
+        cd.setDonorRollHeight();
         cd.reorderPageForMobile();
-        
 
         // populate custom team page content		
         $('.js--team-text').html($('#fr_rich_text_container').html());		

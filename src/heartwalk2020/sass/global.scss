@@ -136,6 +136,7 @@ img {
     .btn {
       max-width: 265px;
       padding: 11px 0;
+      font-size: 1rem;
     }
   }
 }
@@ -162,7 +163,6 @@ img {
   }
 
   .donations-container {
-    height: 205px;
     overflow: hidden;
 
     div {
@@ -259,7 +259,6 @@ img {
     .achievements {
       svg {
         width: 50px;
-        max-height: 50px;
       }
     }
   }
@@ -285,4 +284,8 @@ img {
   .sponsors {
     border-top: solid 1px $gray-200;
   }
+}
+
+.dataTable td {
+  padding: 20px 0px 10px !important;
 }

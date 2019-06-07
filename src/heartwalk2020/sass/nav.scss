@@ -33,7 +33,6 @@ nav {
   /* Logo */
   .navbar-brand svg {
     margin: -17px 0px 1px -1px;
-    max-width:300px;
     width:100%;
   }
 
@@ -56,6 +55,16 @@ nav {
     position: relative;
     height: 96px;
 
+    &.logged-in:hover {
+      a {
+        text-decoration: none !important;
+
+        &.nav-link.utility-nav-item:hover {
+          text-decoration: underline !important;
+        }
+      }
+    }
+
     &:hover {
 
       a.nav-link {
@@ -68,7 +77,6 @@ nav {
       }
     }
     &.logged-in {
-      width:500px;
       a {
         display:inline-block;
         font-size:16px;
