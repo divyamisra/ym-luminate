@@ -122,7 +122,7 @@
           margin: 20px 10px;
         }
 
-        .row {
+        tr {
           padding: 0 10px 15px;
         }
       }
@@ -154,7 +154,7 @@
     }
   }
 
-  .pg_team .team-roster .dataTables_wrapper .row {
+  .pg_team .team-roster .dataTables_wrapper tr {
     font-size: 0.7rem;
   }
 }
@@ -379,7 +379,7 @@
         }
       }
 
-      .dataTables_wrapper .row {
+      .dataTables_wrapper tr {
         padding: 0 20px 20px !important;
         font-size:1rem;
         

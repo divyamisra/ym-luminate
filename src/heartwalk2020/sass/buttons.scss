@@ -9,8 +9,19 @@ a.btn {
   font-family: 'LubDubMedium', Helvetica, Arial, sans-serif !important;
 }
 
-.content a.btn {
-  padding: 10px 20px;
+.content {
+  .btn {
+    padding: 15px 20px;
+    line-height: 1;
+  }
+
+  .btn-primary {
+    border: solid 2px $red !important;
+
+    &:hover {
+      border: solid 2px $red-deep !important;
+    }
+  }
 }
 
 .btn-primary {

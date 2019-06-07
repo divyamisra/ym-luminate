@@ -182,6 +182,7 @@ img {
 
   .honor-roll-expander {
     color: $gray-700;
+    display: block;
 
     i {
       border: solid 2px $gray-700;
@@ -284,8 +285,4 @@ img {
   .sponsors {
     border-top: solid 1px $gray-200;
   }
-}
-
-.dataTable td {
-  padding: 20px 0px 10px !important;
 }
