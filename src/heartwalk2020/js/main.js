@@ -85,11 +85,8 @@
           if (target.length) {
             // Only prevent default if animation is actually gonna happen
             event.preventDefault();
-            if ($('body').is('.pg_cn_home')) {
-              var scrollLocation = target.offset().top - 130;
-            } else {
-              var scrollLocation = target.offset().top - 230;
-            }
+              var scrollLocation = target.offset().top;
+              // var scrollLocation = target.offset().top - 230;
             $('html, body').animate({
               scrollTop: scrollLocation
             }, 1000, function () {});
