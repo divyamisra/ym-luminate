@@ -36,12 +36,6 @@ a.btn {
   background-color: $white;
   border: solid 2px $red;
   color: $red;
-
-  &:hover {
-    background-color: $red;
-    border: solid 2px $red;
-    color: $white;
-  }
 }
 
 .btn-tertiary {
@@ -52,11 +46,13 @@ a.btn {
   border: solid 2px $black !important;
   color: $black !important;
   padding: 5px 20px !important;
+}
 
+.btn-secondary, .btn-tertiary, .btn-tertiary-black {
   &:hover {
-    background-color: $red;
-    color: $white !important;
+    background-color: $red !important;
     border: solid 2px $red !important;
+    color: $white !important;
   }
 }
 

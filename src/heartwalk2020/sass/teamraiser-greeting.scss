@@ -31,6 +31,16 @@
       }
 
       .info-columns {
+        margin: 31px 0 0 0;
+
+        .event-info-collapse {
+          &:hover {
+            a, i {
+              color: $red-deep;
+            }
+          }
+        }
+
         h3, p {
           line-height: 1.2;
         }
@@ -59,10 +69,6 @@
         max-width: 260px;
         padding: 13px 0;
         font-size: 1rem;
-      }
-
-      .info-columns {
-        margin: 31px 0 0 0;
       }
 
       .fundraising-amounts {

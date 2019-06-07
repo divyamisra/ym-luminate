@@ -39,5 +39,9 @@
     .team-roster .btn-tertiary-black {
       width: 260px;
     }
+
+    #participant-roster th:nth-child(3) {
+      display: none;
+    }
   }
 }

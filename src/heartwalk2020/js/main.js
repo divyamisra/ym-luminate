@@ -677,8 +677,8 @@
 
         // Event info section mobile expand/collapse functionality
         $('.event-info-expand').click(function() {
-            $(this).parent().next('.event-info-collapse').toggleClass('d-sm-none');
-            var icon = $(this).children('i');
+            $(this).children('.event-info-collapse').toggleClass('d-sm-none');
+            var icon = $(this).children('h3').children('a').children('i');
 
             if ($(icon).hasClass('fa-plus')) {
                 $(icon).removeClass('fa-plus').addClass('fa-minus');
@@ -946,7 +946,8 @@
         } else {
           var teams = luminateExtend.utils.ensureArray(response.getTeamSearchByInfoResponse.team);
           var totalTeams = parseInt(response.getTeamSearchByInfoResponse.totalNumberResults);
-          $('.js--num-company-teams').text(totalTeams);
+          var totalTeamsText = totalTeams > 1 ? ' Teams' : ' Team';
+          $('.js--num-company-teams').text(totalTeams + totalTeamsText);
 
           $(teams).each(function (i, team) {
             var companyName = team.companyName;
@@ -1001,8 +1002,8 @@ cd.getCompanyTeams();
         } else {
           var participants = luminateExtend.utils.ensureArray(response.getParticipantsResponse.participant);
           var totalParticipants = parseInt(response.getParticipantsResponse.totalNumberResults);
-
-          $('.js--num-company-participants').text(totalParticipants);
+          var totalParticipantsText = totalParticipants > 1 ? ' Walkers' : ' Walker';
+          $('.js--num-company-participants').text(totalParticipants + totalParticipantsText);
 
           $(participants).each(function (i, participant) {
 
