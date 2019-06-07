@@ -700,7 +700,7 @@
         // populate multi-event 
         var multiEventUrl = '/TR?fr_id=' + evID + 'pg=informational&sid=1110 #page_body_container';
 
-// TODO - make fr_id dynamic
+          // TODO - make fr_id dynamic
          $('.js--multi-event-locations').load("TR?fr_id=4062&pg=informational&sid=1110 #page_body_container");
         
         }
