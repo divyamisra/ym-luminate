@@ -696,6 +696,16 @@
         // populate greeting page content
         $('.js--greeting-text').html($('#fr_html_container').html());
 
+        if(publicEventType === "Multi-Event"){
+        // populate multi-event 
+        var multiEventUrl = '/TR?fr_id=' + evID + 'pg=informational&sid=1110 #page_body_container';
+
+// TODO - make fr_id dynamic
+         $('.js--multi-event-locations').load("TR?fr_id=4062&pg=informational&sid=1110 #page_body_container");
+        
+        }
+        
+
         // Event info section mobile expand/collapse functionality
         $('.event-info-expand').click(function() {
             $(this).children('.event-info-collapse').toggleClass('d-sm-none');
