@@ -678,7 +678,7 @@
         // Event info section mobile expand/collapse functionality
         $('.event-info-expand').click(function() {
             $(this).children('.event-info-collapse').toggleClass('d-sm-none');
-            var icon = $(this).children('h3').children('a').children('i');
+            var icon = $(this).children('h3').children('span').children('i');
 
             if ($(icon).hasClass('fa-plus')) {
                 $(icon).removeClass('fa-plus').addClass('fa-minus');
