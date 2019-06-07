@@ -280,22 +280,22 @@
     // Search by Event
     $('.js--header-zip-search').on('submit', function (e) {
       e.preventDefault();
-      var zipSearched = encodeURI($('#zipSearch').val());
+      var zipSearched = encodeURIComponent($('#zipSearch').val());
       window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=HeartWalk_Search&search_type=event&cross_event=' + (evID ? 'false' : 'true') + (evID ? '&fr_id=' + evID : '') + '&zip=' + zipSearched;
     });
 
     // Search page by Participant
     $('.js--header-walker-search').on('submit', function (e) {
       e.preventDefault();
-      var firstName = encodeURI($('#walkerSearchFirst').val());
-      var lastName = encodeURI($('#walkerSearchLast').val());
+      var firstName = encodeURIComponent($('#walkerSearchFirst').val());
+      var lastName = encodeURIComponent($('#walkerSearchLast').val());
       window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=HeartWalk_Search&search_type=walker&cross_event=' + (evID ? 'false' : 'true') + (evID ? '&fr_id=' + evID : '') + '&first_name=' + firstName + '&last_name=' + lastName;
     });
 
     // Search by Team
     $('.js--header-team-search').on('submit', function (e) {
       e.preventDefault();
-      var teamName = encodeURI($('#teamSearch').val());
+      var teamName = encodeURIComponent($('#teamSearch').val());
       cd.getTeams(teamName, null, (isCrossEventSearch === "true" ? true : false));
       window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=HeartWalk_Search&search_type=team&cross_event=' + (evID ? 'false' : 'true') + (evID ? '&fr_id=' + evID : '') + '&team_name=' + teamName;
     });
@@ -726,15 +726,15 @@
         // Walker Search
         $('.js--greeting-walker-search-form').on('submit', function (e) {
           e.preventDefault();
-          var firstName = encodeURI($('#walkerFirstName').val());
-          var lastName = encodeURI($('#walkerLastName').val());
+          var firstName = encodeURIComponent($('#walkerFirstName').val());
+          var lastName = encodeURIComponent($('#walkerLastName').val());
           window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=HeartWalk_Search&search_type=walker&cross_event=false&fr_id=' + evID + '&first_name=' + firstName + '&last_name=' + lastName;
         });
 
         // Team Search
         $('.js--greeting-team-search-form').on('submit', function (e) {
           e.preventDefault();
-          var teamName = encodeURI($('#teamName').val());
+          var teamName = encodeURIComponent($('#teamName').val());
           cd.getTeams(teamName, null, (isCrossEventSearch === "true" ? true : false));
           window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=HeartWalk_Search&search_type=team&cross_event=false&fr_id=' + evID + '&team_name=' + teamName;
         });
@@ -1088,7 +1088,7 @@ cd.getCompanyParticipants();
     $('.js--zip-search-form').on('submit', function (e) {
       e.preventDefault();
       clearSearchResults();
-      var zipSearched = encodeURI($('#zipCodeSearch').val());
+      var zipSearched = encodeURIComponent($('#zipCodeSearch').val());
       cd.getEventsByDistance(zipSearched);
     });
 
@@ -1096,8 +1096,8 @@ cd.getCompanyParticipants();
     $('.js--walker-search-form').on('submit', function (e) {
       e.preventDefault();
       clearSearchResults();
-      var firstName = encodeURI($('#walkerFirstName').val());
-      var lastName = encodeURI($('#walkerLastName').val());
+      var firstName = encodeURIComponent($('#walkerFirstName').val());
+      var lastName = encodeURIComponent($('#walkerLastName').val());
 
       cd.getParticipants(firstName, lastName, (isCrossEventSearch === "true" ? true : false));
     });
@@ -1106,7 +1106,7 @@ cd.getCompanyParticipants();
     $('.js--team-search-form').on('submit', function (e) {
       e.preventDefault();
       clearSearchResults();
-      var teamName = encodeURI($('#teamNameSearch').val());
+      var teamName = encodeURIComponent($('#teamNameSearch').val());
       cd.getTeams(teamName, null, (isCrossEventSearch === "true" ? true : false));
     });
 
@@ -1119,10 +1119,10 @@ cd.getCompanyParticipants();
         if(!firstNameVal && !lastNameVal){
           // General participant search from greeting page. Show all walkers
           console.log('run general search for all walkers');
-          cd.getParticipants('%%%', '%%%', (isCrossEventSearch === "true" ? true : false));
+          cd.getParticipants('%25%25%25', '%25%25%25', (isCrossEventSearch === "true" ? true : false));
         } else {
-          firstNameVal = decodeURI(firstNameVal);
-          lastNameVal = decodeURI(lastNameVal);
+          firstNameVal = decodeURIComponent(firstNameVal);
+          lastNameVal = decodeURIComponent(lastNameVal);
 
           $('#walkerFirstName').val(firstNameVal);
           $('#walkerLastName').val(lastNameVal);
@@ -1134,7 +1134,7 @@ cd.getCompanyParticipants();
 
       cd.autoSearchTeam = function () {
         var teamName = getURLParameter(currentUrl, 'team_name') ? getURLParameter(currentUrl, 'team_name') : '';
-        teamName = decodeURI(teamName);
+        teamName = decodeURIComponent(teamName);
         $('#teamNameSearch').val(teamName);
 
         cd.getTeams(teamName, null, (isCrossEventSearch === "true" ? true : false));
