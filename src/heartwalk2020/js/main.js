@@ -1112,19 +1112,24 @@ cd.getCompanyParticipants();
 
 
     if(searchType){
-      console.log('run autosearch');
-
       cd.autoSearchParticipant = function () {
         var firstNameVal = getURLParameter(currentUrl, 'first_name') ? getURLParameter(currentUrl, 'first_name') : '';
         var lastNameVal = getURLParameter(currentUrl, 'last_name') ? getURLParameter(currentUrl, 'last_name') : '';
 
-        firstNameVal = decodeURI(firstNameVal);
-        lastNameVal = decodeURI(lastNameVal);
+        if(!firstNameVal && !lastNameVal){
+          // General participant search from greeting page. Show all walkers
+          console.log('run general search for all walkers');
+          cd.getParticipants('%%%', '%%%', (isCrossEventSearch === "true" ? true : false));
+        } else {
+          firstNameVal = decodeURI(firstNameVal);
+          lastNameVal = decodeURI(lastNameVal);
 
-        $('#walkerFirstName').val(firstNameVal);
-        $('#walkerLastName').val(lastNameVal);
+          $('#walkerFirstName').val(firstNameVal);
+          $('#walkerLastName').val(lastNameVal);
+  
+          cd.getParticipants(firstNameVal, lastNameVal, (isCrossEventSearch === "true" ? true : false));
+        }
 
-        cd.getParticipants(firstNameVal, lastNameVal, (isCrossEventSearch === "true" ? true : false));
       }
 
       cd.autoSearchTeam = function () {
