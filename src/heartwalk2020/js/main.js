@@ -74,6 +74,30 @@
     var searchType = getURLParameter(currentUrl, 'search_type');
     var isCrossEventSearch = getURLParameter(currentUrl, 'cross_event');
 
+    var addScrollLinks = function () {
+      $('a.scroll-link')
+        .on('click', function (event) {
+          // On-page links
+          // Figure out element to scroll to
+          var target = $(this.hash);
+          target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+          // Does a scroll target exist?
+          if (target.length) {
+            // Only prevent default if animation is actually gonna happen
+            event.preventDefault();
+            if ($('body').is('.pg_cn_home')) {
+              var scrollLocation = target.offset().top - 130;
+            } else {
+              var scrollLocation = target.offset().top - 230;
+            }
+            $('html, body').animate({
+              scrollTop: scrollLocation
+            }, 1000, function () {});
+          }
+        });
+    }
+    addScrollLinks();
+
     cd.getParticipants = function (firstName, lastName, isCrossEvent) {
       luminateExtend.api({
         api: 'teamraiser',
@@ -759,7 +783,7 @@
 
                     if(userSpecified == 'false'){
                       // build pre-defined giving levels
-                      $('.donation-amounts').append('<div class="donation-amount-btn btn"> <input class="form-check-input sr-only" type="radio" name="personalDonAmt" id="personalDonAmt' + i + '" value="' + levelID + '"> <label class="form-check-label" for="personalDonAmt' + i + '" data-level-id="' + levelID + '">' + amountFormatted + '</label> </div>');                      
+                      $('.donation-amounts').append('<label class="form-check-label donation-amount-btn btn" for="personalDonAmt' + i + '" data-level-id="' + levelID + '"> <input class="form-check-input sr-only" type="radio" name="personalDonAmt" id="personalDonAmt' + i + '" value="' + levelID + '"> ' + amountFormatted + '</label>');                      
                     } else {
                       // build user-specified level
                       $('.donation-amounts').append('<div class="custom-amount"> <input class="form-check-input sr-only" type="radio" name="personalDonAmt" id="personalDonAmt' + i + '" value="' + levelID + '"> <label class="js--don-amt-other sr-only" for="personalDonAmt' + i + '" data-level-id="' + levelID + '">Enter your own amount</label> <label class="form-label d-inline-block" for="personalOtherAmt">Custom Amount:</label><br/> <input type="text" id="personalOtherAmt" class="form-control d-inline-block js--personal-amt-other"/> </div>');                     
@@ -772,7 +796,7 @@
                       $('.js--personal-don-form label').on('click', function(){
                         $('.js--personal-amt-other').val('');
                         $('.js--personal-don-form .donation-amount-btn').removeClass('active');
-                        $(this).parent().addClass('active');
+                        $(this).addClass('active');
                         $('.js--don-amt').text($(this).text());
                         finalDonUrl = defaultDonUrl + '&set.DonationLevel=' + $(this).data('level-id');
                         console.log('finalDonUrl: ', finalDonUrl);
