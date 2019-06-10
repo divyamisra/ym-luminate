@@ -215,7 +215,8 @@ angular.module 'trPageEditControllers'
             else if videoUrl.indexOf('youtu.be/') isnt -1
               videoId = videoUrl.split('youtu.be/')[1].split('/')[0].split('?')[0]
             if videoId isnt ''
-              $scope.personalMedia.videoUrl = 'http://youtube.com/watch?v=' + videoId
+#              $scope.personalMedia.videoUrl = 'http://youtube.com/watch?v=' + videoId
+              $scope.personalMedia.videoUrl = 'https://youtube.com/watch?v=' + videoId
               $scope.personalVideoEmbedUrl = $sce.trustAsResourceUrl '//www.youtube.com/embed/' + videoId + '?wmode=opaque&amp;rel=0&amp;showinfo=0'
           if not $scope.$$phase
             $scope.$apply()
@@ -285,7 +286,8 @@ angular.module 'trPageEditControllers'
             TeamraiserParticipantPageService.updatePersonalVideoUrl 'video_url='
             setTimeout ( ->
               $scope.closePersonalVideoModal()
-              window.location.href = 'http://' + $location.$$host + '/site/TR?fr_id=' + $scope.frId + '&pg=personal&px=' + $rootScope.consId
+#              window.location.href = 'http://' + $location.$$host + '/site/TR?fr_id=' + $scope.frId + '&pg=personal&px=' + $rootScope.consId
+              window.location.href = 'https://' + $location.$$host + '/site/TR?fr_id=' + $scope.frId + '&pg=personal&px=' + $rootScope.consId
             ), 500
         $personalVideo.find('.heart-user-video-inner').prepend $compile('<button type="button" class="btn btn-primary-inverted btn-raised" ng-click="editPersonalVideo()" id="edit_personal_video"><span class="glyphicon glyphicon-facetime-video"></span> Edit Video</button>')($scope)
 
