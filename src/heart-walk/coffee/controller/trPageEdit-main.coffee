@@ -13,7 +13,11 @@ angular.module 'trPageEditControllers'
     'TeamraiserCompanyPageService'
     'TeamraiserSurveyResponseService'
     ($rootScope, $scope, $location, $compile, $sce, $uibModal, APP_INFO, TeamraiserRegistrationService, TeamraiserParticipantPageService, TeamraiserTeamPageService, TeamraiserCompanyPageService, TeamraiserSurveyResponseService) ->
-      luminateExtend.api.getAuth()
+#      luminateExtend.api.getAuth()
+
+      luminateExtend.api.getAuth({
+        useHTTPS: true
+      });
 
       $embedRoot = angular.element '[data-embed-root]'
       editPage = $embedRoot.data 'edit-page'
