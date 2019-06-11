@@ -64,7 +64,7 @@ angular.module 'ahaLuminateApp'
           requestUrl = luminateExtend.global.path.nonsecure
           if window.location.protocol is 'https:'
             requestUrl = luminateExtend.global.path.secure + 'S'
-          requestUrl += 'PageServer?pagename=ym_coordinator_data&pgwrap=n'
+          requestUrl += 'SPageServer?pagename=ym_coordinator_data&pgwrap=n'
           $http
             method: 'GET'
             url: requestUrl + '&consId=' + coordinatorId + '&frId=' + eventId

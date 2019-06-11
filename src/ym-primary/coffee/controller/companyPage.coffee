@@ -351,7 +351,7 @@ angular.module 'ahaLuminateControllers'
                 if not $scope.$$phase
                   $scope.$apply()  
 
-      url = 'PageServer?pagename=ym_khc_school_animation&pgwrap=n'
+      url = 'SPageServer?pagename=ym_khc_school_animation&pgwrap=n'
       if $scope.protocol is 'https:'
         url = 'S' + url
       $scope.schoolAnimationURL = $sce.trustAsResourceUrl(url)
