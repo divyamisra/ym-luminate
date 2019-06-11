@@ -19,7 +19,7 @@ angular.module 'ahaLuminateApp'
         requestUrl = luminateExtend.global.path.nonsecure
         if window.location.protocol is 'https:'
           requestUrl = luminateExtend.global.path.secure + 'S'
-        requestUrl += 'SPageServer?pagename=getJumpHoopsSchoolSearchData&pgwrap=n'
+        requestUrl += 'PageServer?pagename=getJumpHoopsSchoolSearchData&pgwrap=n'
         $http.jsonp($sce.trustAsResourceUrl(requestUrl), jsonpCallbackParam: 'callback')
           .then (response) ->
             response
