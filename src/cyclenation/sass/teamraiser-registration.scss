@@ -16,9 +16,9 @@ div#contact_info_section_one div.form-error, div#personal_info_section_one div.f
   div.responsive input[type="password"],
   div.responsive textarea,
   div.responsive select {
-    box-shadow: none;
-    height:38px;
     @extend .form-control;
+    box-shadow: none;
+    height:46px !important;
   }
 
   div.registration-page-container div.section-container {
@@ -459,18 +459,10 @@ div#team_find_search_results_container div.list-component-cell-column-join-link 
   @extend .row;
 }
 
-#responsive_payment_typecc_exp_date_MONTH,
-#responsive_payment_typecc_exp_date_YEAR {
-  display:inline-block;
-  @include make-col-ready();
-  @include media-breakpoint-up(xs) {
-    @include make-col(12);
-  }
-  @include media-breakpoint-up(md) {
-    @include make-col(4);
-  }
+#responsive_payment_typecc_exp_date_row > .form-content {
+  @extend .row;
+  @extend .d-flex;
 }
-
   
   div.responsive div.ErrorMessage.page-error,
   form[name="FriendraiserFind"] {
@@ -478,9 +470,6 @@ div#team_find_search_results_container div.list-component-cell-column-join-link 
     @include media-breakpoint-up(xs) {
       @include make-col(12);
     }
-    // @include media-breakpoint-up(md) {
-    //   @include make-col(10);
-    // }
   }
   div.responsive div.ErrorMessage.page-error {
     margin: 0 auto;
@@ -856,10 +845,16 @@ div#privacy_component_container label,  div#gift_notice_optin label, div#email_o
   }
 }
 
+
   select {
     &#cons_birth_date_MONTH,
     &#cons_birth_date_DAY {
       width:100%;
+
+      // @include make-col-ready();
+      // @include media-breakpoint-up(xs) {
+      //   @include make-col(6);
+      // } 
     }
   }
   #part_type_additional_gift_section_header {
@@ -1101,6 +1096,11 @@ div.responsive button.step-button {
   }
 
 }
+#external_payment_wait_dlg_mask,
+#external_payment_wait_dlg,
+#external_payment_wait_dlg_c {
+  max-width: 100% !important;
+}
 
 #fr_thanks_page {
   .part-center-container {
@@ -1139,7 +1139,7 @@ div.responsive button.step-button {
     }
   }
 }
-
+ 
 #reg_payment_page div.form-row div.form-content>select {
   height: calc(2.25rem + 2px);
 }
@@ -1147,7 +1147,8 @@ div.responsive button.step-button {
 // Stationary v2 customizations
 
 .event-type2-stationaryv2,
-.event-type2-road {
+.event-type2-road,
+.event-type2-executive {
   .part-type-name {
     padding-left: 0;
     padding-right: 5px;

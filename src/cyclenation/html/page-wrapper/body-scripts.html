@@ -1,17 +1,26 @@
-<script src="//code.jquery.com/jquery-2.2.4[[?xtruex::x[[S80:debug]]x::::.min]].js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
-crossorigin="anonymous"></script>
-
+<!-- <script src="//code.jquery.com/jquery-2.2.4[[?xtruex::x[[S80:debug]]x::::.min]].js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+crossorigin="anonymous"></script> -->
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" 
+integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" 
+crossorigin="anonymous">
+</script>
 [[?x[[?x9x::x[[S4]]x::T::]][[?xpaymentFormx::x[[S334:pg]]x::T::]]::T::
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-migrate/1.4.1/jquery-migrate.min.js" integrity="sha256-SOuLUArmo4YXtXONKz+uxIGSKneCJG4x0nVcA0pFzV0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/1.4.1/jquery-migrate.min.js" integrity="sha256-SOuLUArmo4YXtXONKz+uxIGSKneCJG4x0nVcA0pFzV0=" crossorigin="anonymous"></script>
 ::]]
-<script src="//cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper[[?xtruex::x[[S80:debug]]x::::.min]].js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper[[?xtruex::x[[S80:debug]]x::::.min]].js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
 crossorigin="anonymous"></script>
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap[[?xtruex::x[[S80:debug]]x::::.min]].js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/js/bootstrap[[?xtruex::x[[S80:debug]]x::::.min]].js" integrity="sha256-63ld7aiYP6UxBifJWEzz87ldJyVnETUABZAYs5Qcsmc="
 crossorigin="anonymous"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/luminateExtend/1.7.1/luminateExtend[[?xtruex::x[[S80:debug]]x::::.min]].js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/parsley.js/2.8.0/parsley[[?xtruex::x[[S80:debug]]x::::.min]].js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list[[?xtruex::x[[S80:debug]]x::::.min]].js"></script>
-<script src="//cdn.jsdelivr.net/npm/promise-polyfill@7/dist/polyfill[[?xtruex::x[[S80:debug]]x::::.min]].js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/luminateExtend/1.7.1/luminateExtend[[?xtruex::x[[S80:debug]]x::::.min]].js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.8.0/parsley[[?xtruex::x[[S80:debug]]x::::.min]].js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list[[?xtruex::x[[S80:debug]]x::::.min]].js"></script>
+[[?xcn_searchx::x[[S334:pagename]]x::
+<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables[[?xtruex::x[[S80:debug]]x::::.min]].js"></script>
+::]]
+
+[[?xcn_homex::x[[S334:pagename]]x::
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDZL2rsCFANLgFepYWTtDx18EJuBCEpehE"></script>
+::]]
 
 <script>
   luminateExtend({
@@ -35,12 +44,15 @@ crossorigin="anonymous"></script>
 <script src="[[S666:template_macros/aha_luminate_filepath.tpt::cyclenation/js/main::js::@@buildTimestamp]]"></script>
 
 <script src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/cyclenation/js/amazonpay.js?v=1"></script>
-
-<script src="//static.heart.org/ahaanywhere/sitecore/dist/ahaHeaderFooterSitecore.js"></script>
+[[?xheartdevx::x[[S29:TABLE_PREFIX]]x::
+<script src="https://static.heart.org/ahaanywhere/sitecore/dist/ahaHeaderFooterSitecore.dev.js"></script>
+::
+<script src="https://static.heart.org/ahaanywhere/sitecore/dist/ahaHeaderFooterSitecore.js"></script>
+]]
 <!-- Activate header/footer plugin -->
 <script>
-  jQuery(function() {
-    //Bare bones
-    jQuery('#app').ahaHeaderFooterSitecore();
-  });
-</script>
+    jQuery(function() {
+      //Bare bones
+      jQuery('#globalFooter').ahaHeaderFooterSitecore();
+    });
+  </script>
