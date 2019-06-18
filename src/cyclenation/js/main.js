@@ -11,10 +11,9 @@
     // BEGIN WRAPPER JS
 
     // GREETING PAGE - HIDE CALENDAR IN IOS
-    console.log('iOS hide calendar 01');
     var iOS = false,
-    p = navigator.platform;
-    if( p === 'iPad' || p === 'iPhone' || p === 'iPod' ) {
+      p = navigator.platform;
+    if (p === 'iPad' || p === 'iPhone' || p === 'iPod') {
       iOS = true;
     }
     if (iOS === false) {
@@ -22,7 +21,6 @@
     } else {
       $(".ios-hide").hide();
     }
-    console.log('iOS hide calendar 02');
 
     /***************/
     /* NAV SCRIPTS */
@@ -78,7 +76,7 @@
           if (target.length) {
             // Only prevent default if animation is actually gonna happen
             event.preventDefault();
-            if ($('body').is('.pg_cn_home')){
+            if ($('body').is('.pg_cn_home')) {
               var scrollLocation = target.offset().top - 130;
             } else {
               var scrollLocation = target.offset().top - 230;
@@ -105,7 +103,7 @@
     var publicEventType = $('body').data('public-event-type') ? $('body').data('public-event-type') : null;
     var isCrossEvent = $('body').is('.pg_cn_home') ? true : false;
     var viewportWidth = window.innerWidth || document.documentElement.clientWidth;
-  
+
 
     var isProd = (luminateExtend.global.tablePrefix === 'heartdev' ? false : true);
     var eventName = luminateExtend.global.eventName;
@@ -140,11 +138,12 @@
             } else {
               var participants = luminateExtend.utils.ensureArray(response.getParticipantsResponse.participant);
               var totalParticipants = parseInt(response.getParticipantsResponse.totalNumberResults);
-              
-              if ( $.fn.DataTable ) {
-                if ( $.fn.DataTable.isDataTable('#participantResultsTable') ) {
+
+              if ($.fn.DataTable) {
+                if ($.fn.DataTable.isDataTable('#participantResultsTable')) {
                   $('#participantResultsTable').DataTable().destroy();
-                }              }
+                }
+              }
               $('#participantResultsTable tbody').empty();
 
               $('.js__num-participant-results').text((totalParticipants === 1 ? '1 Result' : totalParticipants + ' Results'));
@@ -152,20 +151,20 @@
               $(participants).each(function (i, participant) {
 
                 $('.js__participants-results-rows').append('<tr' + (i > 10 ? ' class="d-none"' : '') + '><td><a href="' + participant.personalPageUrl + '">' +
-                participant.name.first + ' ' + participant.name.last +
-                '</a></td><td>' +
-                ((participant.teamName !== null && participant.teamName !== undefined) ? '<a href="' + participant.teamPageUrl + '">' + participant.teamName + '</a>': '') + '</td><td><a href="TR/?fr_id=' + participant.eventId + '&pg=entry">' +
-                participant.eventName + '</a></td><td class="col-cta"><a href="' + participant.donationUrl + '" aria-label="Donate to ' + participant.name.first + ' ' + participant.name.last + '" class="btn-rounded btn-primary btn-block">Donate</a></td></tr>');
+                  participant.name.first + ' ' + participant.name.last +
+                  '</a></td><td>' +
+                  ((participant.teamName !== null && participant.teamName !== undefined) ? '<a href="' + participant.teamPageUrl + '">' + participant.teamName + '</a>' : '') + '</td><td><a href="TR/?fr_id=' + participant.eventId + '&pg=entry">' +
+                  participant.eventName + '</a></td><td class="col-cta"><a href="' + participant.donationUrl + '" aria-label="Donate to ' + participant.name.first + ' ' + participant.name.last + '" class="btn-rounded btn-primary btn-block">Donate</a></td></tr>');
 
               });
-              if(totalParticipants > 10) {
+              if (totalParticipants > 10) {
                 $('.js__more-participant-results').removeAttr('hidden');
               }
 
               $('#participantResultsTable').DataTable({
-                "paging":   false,
-                "searching":   false,
-                "info":     false,
+                "paging": false,
+                "searching": false,
+                "info": false,
                 "autoWidth": false
               });
               $('.dataTables_length').addClass('bs-select');
@@ -173,7 +172,7 @@
               addPaymentTypesOnSearch();
               $('.js__participant-results-container').removeAttr('hidden');
 
-              $('.js__more-participant-results').on('click', function(e){
+              $('.js__more-participant-results').on('click', function (e) {
                 e.preventDefault();
                 $('.js__participants-results-rows tr').removeClass('d-none');
                 $(this).attr('hidden', true);
@@ -208,9 +207,9 @@
           '&list_ascending=true',
         callback: {
           success: function (response) {
-         
-            if ( $.fn.DataTable ) {
-              if ( $.fn.DataTable.isDataTable('#teamResultsTable') ) {
+
+            if ($.fn.DataTable) {
+              if ($.fn.DataTable.isDataTable('#teamResultsTable')) {
                 $('#teamResultsTable').DataTable().destroy();
               }
             }
@@ -232,10 +231,10 @@
 
                 } else {
                   $('.js__team-results-rows')
-                  .append('<tr' + (i > 10 ? ' class="d-none"' : '') + '><td><a href="' + team.teamPageURL + '">' +
-                  team.name + '</a></td><td><a href="TR/?px=' + team.captainConsId + '&pg=personal&fr_id=' + team.EventId + '">' + team.captainFirstName + ' ' + team.captainLastName + '</a></td><td>' +
-                  ((team.companyName !== null && team.companyName !== undefined) ? '<a href="TR?company_id=' + team.companyId + '&fr_id=' + team.EventId + '&pg=company">' + team.companyName + '</a>': '') +
-                  '</td><td><a href="TR/?fr_id=' + team.EventId + '&pg=entry"' + team.eventName + '</a></td><td class="col-cta"><a href="' + team.teamDonateURL + '" class="btn-rounded btn-primary btn-block" title="Donate to ' + team.name + '" aria-label="Donate to ' + team.name + '">Donate</a></td></tr>');
+                    .append('<tr' + (i > 10 ? ' class="d-none"' : '') + '><td><a href="' + team.teamPageURL + '">' +
+                      team.name + '</a></td><td><a href="TR/?px=' + team.captainConsId + '&pg=personal&fr_id=' + team.EventId + '">' + team.captainFirstName + ' ' + team.captainLastName + '</a></td><td>' +
+                      ((team.companyName !== null && team.companyName !== undefined) ? '<a href="TR?company_id=' + team.companyId + '&fr_id=' + team.EventId + '&pg=company">' + team.companyName + '</a>' : '') +
+                      '</td><td><a href="TR/?fr_id=' + team.EventId + '&pg=entry"' + team.eventName + '</a></td><td class="col-cta"><a href="' + team.teamDonateURL + '" class="btn-rounded btn-primary btn-block" title="Donate to ' + team.name + '" aria-label="Donate to ' + team.name + '">Donate</a></td></tr>');
                 }
               });
 
@@ -258,22 +257,22 @@
 
                 $('.js__num-team-results').text((totalTeams === 1 ? '1 Result' : totalTeams + ' Results'));
 
-                if(totalTeams > 10) {
+                if (totalTeams > 10) {
                   $('.js__more-team-results').removeAttr('hidden');
                 }
 
                 $('.js__team-results-container').removeAttr('hidden');
 
-                $('.js__more-team-results').on('click', function(e){
+                $('.js__more-team-results').on('click', function (e) {
                   e.preventDefault();
                   $('.js__team-results-rows tr').removeClass('d-none');
                   $(this).attr('hidden', true);
                   $('.js__end-team-list').removeAttr('hidden');
                 });
                 $('#teamResultsTable').DataTable({
-                  "paging":   false,
-                  "searching":   false,
-                  "info":     false
+                  "paging": false,
+                  "searching": false,
+                  "info": false
                 });
                 $('.dataTables_length').addClass('bs-select');
 
@@ -285,7 +284,7 @@
           },
           error: function (response) {
             $('#error-team').removeAttr('hidden').text(response.errorResponse.message);
-            
+
             $('.js__search-results').show();
             $('.js__search-results-container').show();
           }
@@ -314,8 +313,8 @@
               var companies = luminateExtend.utils.ensureArray(response.getCompaniesResponse.company);
               var totalCompanies = parseInt(response.getCompaniesResponse.totalNumberResults);
 
-              if ( $.fn.DataTable ) {
-                if ( $.fn.DataTable.isDataTable('#companyResultsTable') ) {
+              if ($.fn.DataTable) {
+                if ($.fn.DataTable.isDataTable('#companyResultsTable')) {
                   $('#companyResultsTable').DataTable().destroy();
                 }
               }
@@ -325,16 +324,16 @@
 
               $(companies).each(function (i, company) {
                 $('.js__company-results-rows').append('<tr' + (i > 10 ? ' class="d-none"' : '') + '><td><a href="' + company.companyURL + '">' +
-                company.companyName + '</a></td><td class="col-cta"><a href="' + company.companyURL + '" aria-label="Visit page for ' + company.companyName + '" class="btn-rounded btn-primary btn-block">View</a></td></tr>');
+                  company.companyName + '</a></td><td class="col-cta"><a href="' + company.companyURL + '" aria-label="Visit page for ' + company.companyName + '" class="btn-rounded btn-primary btn-block">View</a></td></tr>');
               });
 
-              if(totalCompanies > 10) {
+              if (totalCompanies > 10) {
                 $('.js__more-company-results').removeAttr('hidden');
               }
 
               $('.js__company-results-container').removeAttr('hidden');
 
-              $('.js__more-company-results').on('click', function(e){
+              $('.js__more-company-results').on('click', function (e) {
                 e.preventDefault();
                 $('.js__company-results-rows tr').removeClass('d-none');
                 $(this).attr('hidden', true);
@@ -342,11 +341,12 @@
               });
 
               $('#companyResultsTable').DataTable({
-                "paging":   false,
-                "searching":   false,
-                "info":     false,
-                "columns": [
-                  { "width": "80%" },
+                "paging": false,
+                "searching": false,
+                "info": false,
+                "columns": [{
+                    "width": "80%"
+                  },
                   null
                 ]
               });
@@ -362,6 +362,66 @@
         }
       });
     };
+
+    // FAQ SEARCH SCRIPTS
+    if ($('body').is('.pg_internal.faq')) {
+      // FAQ page scripts
+
+      var faqCards = $('.js__faq-container li > .card ');
+      // Use JS to add data attributes to make collapse functionality work. Otherwise, the WYSIWYG in LO will strip those from the hard coded HTML
+      $(faqCards).each(function (i) {
+        $(this).find('.card-header').attr('id', 'faq_header' + i);
+        $(this).find('.faq-title').attr({
+            'data-toggle': 'collapse',
+            'data-target': '#faq_block_' + i,
+            'aria-expanded': 'false',
+            'aria-controls': 'faq_block_' + i
+          })
+          .append('<div class="accordion-icon icon-closed text-primary mr-2"><i class="fas fa-plus-circle"></i></div><div class="accordion-icon icon-open text-primary mr-2"><i class="fas fa-minus-circle"></i></div>');
+        $(this).find('.collapse').attr({
+          'id': 'faq_block_' + i,
+          'aria-labelledby': 'faq_block_' + i,
+          'data-parent': '#faqSearch'
+        });
+      });
+      // add sorting for landing page
+      var options = {
+        valueNames: [
+          'faq-title',
+          'keywords'
+        ]
+      };
+      var faqList = new List('faqSearch', options);
+
+      faqList.on('updated', function (list) {
+        var searchTextLength = $('.search').val().length;
+        if (list.matchingItems.length == 0) {
+          $('.js__no-faq-results').show();
+        } else if (list.matchingItems.length == list.items.length) {
+          $('.js__no-faq-results').hide();
+        } else {
+          $('.js__no-faq-results').hide();
+        }
+        if (searchTextLength > 0) {
+          $('.js__clear-faq-search').show();
+        } else {
+          $('.js__clear-faq-search').hide();
+        }
+      });
+
+      $('.js__faq-search-form').on('submit', function (e) {
+        e.preventDefault();
+        faqList.search();
+      });
+      // clear search on click
+      $('.js__clear-faq-search').on('click', function (e) {
+        e.preventDefault();
+        $('.search').val('');
+        faqList.search();
+        $('.js__clear-faq-search').hide();
+      });
+
+    }
 
 
     /******************************/
@@ -397,7 +457,7 @@
           });
         });
       }
-      $('.js__toggle-calendar').on('click', function(e){
+      $('.js__toggle-calendar').on('click', function (e) {
         e.preventDefault();
         $('.js__calendar-menu').slideToggle();
       });
@@ -457,7 +517,7 @@
 
     cd.getEvents = function (eventName, eventState, eventSort) {
       $('.js__loading').show();
-      if($('body').is('.pg_cn_home')){
+      if ($('body').is('.pg_cn_home')) {
         var numEvents = 3;
       }
       $('.js__no-event-results').addClass('d-none');
@@ -465,7 +525,7 @@
         api: 'teamraiser',
         data: 'method=getTeamraisersByInfo' +
           '&name=' + (eventState ? '%25%25' : eventName) +
-           (eventState ? '&state=' + eventState : '') +
+          (eventState ? '&state=' + eventState : '') +
           '&event_type=' + eventType +
           '&response_format=json&list_page_size=499&list_page_offset=0&list_sort_column=' + (eventSort === 'city' ? 'city' : 'event_date') + '&list_ascending=true',
         callback: {
@@ -480,7 +540,6 @@
 
               $(events).each(function (i, event) {
 
-                console.log('liveEventsDisplayed: ', liveEventsDisplayed);
                 var eventId = event.id;
                 var eventName = event.name;
                 var eventDate = luminateExtend.utils.simpleDateFormat(event.event_date,
@@ -496,33 +555,32 @@
                 var registerUrl = 'SPageServer/?pagename=cn_register&fr_id=' + eventId + '&s_regType=';
                 var acceptsRegistration = event.accepting_registrations;
                 var eventRow = '<li class="event-detail row col-12 col-lg-4 mb-4 fadein"><div class="event-detail-content col-10"><a class="js__event-name" href="' +
-                greetingUrl + '" aria-label="Visit ' + eventCity + ' ' + eventType + ' Event"><span class="city">' +
-                eventCity + '</span>, <span class="fullstate">' +
-                eventStateAbbr + '</span></a><span class="eventtype d-block">' +
-                eventType + ' Event</span><span class="event-date d-block">' +
-                eventDate + '</span></div><a href="' +
-                greetingUrl + '" class="event-detail-button btn col-2" aria-label="Visit event page for CycleNation ' + eventCity + '"><i class="fas fa-angle-right" aria-hidden="true" alt=""></i></a></li>';
+                  greetingUrl + '" aria-label="Visit ' + eventCity + ' ' + eventType + ' Event"><span class="city">' +
+                  eventCity + '</span>, <span class="fullstate">' +
+                  eventStateAbbr + '</span></a><span class="eventtype d-block">' +
+                  eventType + ' Event</span><span class="event-date d-block">' +
+                  eventDate + '</span></div><a href="' +
+                  greetingUrl + '" class="event-detail-button btn col-2" aria-label="Visit event page for CycleNation ' + eventCity + '"><i class="fas fa-angle-right" aria-hidden="true" alt=""></i></a></li>';
 
-                if(eventTimestamp > todaysDate && (eventStatus === '1' || eventStatus === '2' || eventStatus === '3')){
-                  if(numEvents){
-                    if(liveEventsDisplayed < numEvents){
+                if (eventTimestamp > todaysDate && (eventStatus === '1' || eventStatus === '2' || eventStatus === '3')) {
+                  if (numEvents) {
+                    if (liveEventsDisplayed < numEvents) {
                       // numEvents exists. Restrict the number of results that are displayed
                       $('.js__event-search-results').append(eventRow);
                       liveEventsDisplayed++;
-                    } 
+                    }
                   } else {
                     // numEvents does NOT exist. Display all results in list
                     $('.js__event-search-results').append(eventRow);
                   }
-                } else if(eventStatus === '1' || eventStatus === '2' || eventStatus === '3'){
+                } else if (eventStatus === '1' || eventStatus === '2' || eventStatus === '3') {
                   // display past events in a separate table
                   $('.js__past-event-search-results').append(eventRow);
                   $('.js__past-events-container').removeClass('d-none');
                 }
               });
 
-              if($('body').is('.pg_cn_home') && liveEventsDisplayed === 0){
-                console.log('only found old events');
+              if ($('body').is('.pg_cn_home') && liveEventsDisplayed === 0) {
                 $('.js__no-event-results').removeClass('d-none');
               }
 
@@ -544,127 +602,125 @@
             }
           },
           error: function (response) {
-          $('.js__loading').hide();
+            $('.js__loading').hide();
             console.log('getEvents error: ' + response.errorResponse.message);
           }
         }
       });
     };
-// BEGIN getEventsByDistance
+    // BEGIN getEventsByDistance
 
-cd.getEventsByDistance = function (zipCode) {
-  $('.js__no-event-results').addClass('d-none');
-  $('.js__loading').show();
-  if($('body').is('.pg_cn_home')){
-    var numEvents = 3;
-  }
-  luminateExtend.api({
-    api: 'teamraiser',
-    data: 'method=getTeamraisersByDistance' +
-      '&starting_postal=' + zipCode +
-      '&distance_units=mi' +
-      '&search_distance=200' +
-      '&event_type=' + eventType +
-      '&response_format=json&list_page_size=499&list_page_offset=0&list_sort_column=event_date&list_ascending=true',
-    callback: {
-      success: function (response) {
-        if (response.getTeamraisersResponse.totalNumberResults > '0') {
-          $('.js__loading').hide();
-          var events = luminateExtend.utils.ensureArray(response.getTeamraisersResponse.teamraiser);
+    cd.getEventsByDistance = function (zipCode) {
+      $('.js__no-event-results').addClass('d-none');
+      $('.js__loading').show();
+      if ($('body').is('.pg_cn_home')) {
+        var numEvents = 3;
+      }
+      luminateExtend.api({
+        api: 'teamraiser',
+        data: 'method=getTeamraisersByDistance' +
+          '&starting_postal=' + zipCode +
+          '&distance_units=mi' +
+          '&search_distance=200' +
+          '&event_type=' + eventType +
+          '&response_format=json&list_page_size=499&list_page_offset=0&list_sort_column=event_date&list_ascending=true',
+        callback: {
+          success: function (response) {
+            if (response.getTeamraisersResponse.totalNumberResults > '0') {
+              $('.js__loading').hide();
+              var events = luminateExtend.utils.ensureArray(response.getTeamraisersResponse.teamraiser);
 
-          var todaysDate = new Date();
-          var liveEventsDisplayed = 0;
-          var pastEventsDisplayed = 0;
+              var todaysDate = new Date();
+              var liveEventsDisplayed = 0;
+              var pastEventsDisplayed = 0;
 
-          $(events).each(function (i, event) {
-            var eventId = event.id;
-            var eventName = event.name;
-            var eventDate = luminateExtend.utils.simpleDateFormat(event.event_date,
-              'EEEE, MMMM d, yyyy');
-            var eventTimestamp = new Date(event.event_date);
-            var eventCity = event.city;
-            var eventStateAbbr = event.state;
-            var eventStateFull = event.mail_state;
-            var eventLocation = event.location_name;
-            var eventStatus = event.status;
-            var eventType = event.public_event_type_name;
-            var greetingUrl = event.greeting_url;
-            var registerUrl = 'SPageServer/?pagename=cn_register&fr_id=' + eventId + '&s_regType=';
-            var acceptsRegistration = event.accepting_registrations;
-            console.log('eventStatus: ', eventStatus);
+              $(events).each(function (i, event) {
+                var eventId = event.id;
+                var eventName = event.name;
+                var eventDate = luminateExtend.utils.simpleDateFormat(event.event_date,
+                  'EEEE, MMMM d, yyyy');
+                var eventTimestamp = new Date(event.event_date);
+                var eventCity = event.city;
+                var eventStateAbbr = event.state;
+                var eventStateFull = event.mail_state;
+                var eventLocation = event.location_name;
+                var eventStatus = event.status;
+                var eventType = event.public_event_type_name;
+                var greetingUrl = event.greeting_url;
+                var registerUrl = 'SPageServer/?pagename=cn_register&fr_id=' + eventId + '&s_regType=';
+                var acceptsRegistration = event.accepting_registrations;
 
-            var eventRow = '<li class="event-detail row col-12 col-lg-4 mb-4 fadein"><div class="event-detail-content col-10"><a class="js__event-name" href="' +
-            greetingUrl + '" aria-label="Visit ' + eventCity + ' ' + eventType + ' Event"><span class="city">' +
-            eventCity + '</span>, <span class="fullstate">' +
-            eventStateAbbr + '</span></a><span class="eventtype d-block">' +
-            eventType + ' Event</span><span class="event-date d-block">' +
-            eventDate + '</span></div><a href="' +
-            greetingUrl + '" class="event-detail-button btn col-2"  aria-label="Visit event page for CycleNation ' + eventCity + '"><i class="fas fa-angle-right" aria-hidden="true" alt=""></i></a></li>';
-              console.log('eventStatus: ', eventStatus);
-            if(eventTimestamp > todaysDate && (eventStatus === '1' || eventStatus === '2' || eventStatus === '3')){
-              if(numEvents){
-                if(liveEventsDisplayed < numEvents){
-                  // numEvents exists. Restrict the number of results that are displayed
-                  $('.js__event-search-results').append(eventRow);
-                  liveEventsDisplayed++;
+                var eventRow = '<li class="event-detail row col-12 col-lg-4 mb-4 fadein"><div class="event-detail-content col-10"><a class="js__event-name" href="' +
+                  greetingUrl + '" aria-label="Visit ' + eventCity + ' ' + eventType + ' Event"><span class="city">' +
+                  eventCity + '</span>, <span class="fullstate">' +
+                  eventStateAbbr + '</span></a><span class="eventtype d-block">' +
+                  eventType + ' Event</span><span class="event-date d-block">' +
+                  eventDate + '</span></div><a href="' +
+                  greetingUrl + '" class="event-detail-button btn col-2"  aria-label="Visit event page for CycleNation ' + eventCity + '"><i class="fas fa-angle-right" aria-hidden="true" alt=""></i></a></li>';
+                if (eventTimestamp > todaysDate && (eventStatus === '1' || eventStatus === '2' || eventStatus === '3')) {
+                  if (numEvents) {
+                    if (liveEventsDisplayed < numEvents) {
+                      // numEvents exists. Restrict the number of results that are displayed
+                      $('.js__event-search-results').append(eventRow);
+                      liveEventsDisplayed++;
+                    }
+                  } else {
+                    // numEvents does NOT exist. Display all results in list
+                    $('.js__event-search-results').append(eventRow);
+                  }
+                } else if (eventStatus === '1' || eventStatus === '2' || eventStatus === '3') {
+                  // display past events in a separate table
+                  $('.js__past-event-search-results').append(eventRow);
                 }
-              } else {
-                // numEvents does NOT exist. Display all results in list
-                $('.js__event-search-results').append(eventRow);
-              }
-            } else if(eventStatus === '1' || eventStatus === '2' || eventStatus === '3'){
-              // display past events in a separate table
-              $('.js__past-event-search-results').append(eventRow);
-            }
 
-          });
+              });
 
-          // accessibility screen reader label for state search
-          $("select#fr_event_state").on({    
-            "change": function() {
-                    $(this).blur();
+              // accessibility screen reader label for state search
+              $("select#fr_event_state").on({
+                "change": function () {
+                  $(this).blur();
                 },
-                'focus': function() {
-                    $('.js__state-search-submit').text('Select state combo box expanded');
+                'focus': function () {
+                  $('.js__state-search-submit').text('Select state combo box expanded');
                 },
-                "blur": function() {
+                "blur": function () {
                   $('.js__state-search-submit').text('Select state combo box collapsed');
                 },
-               "keyup": function(e) {
-                    if (e.keyCode == 27)
+                "keyup": function (e) {
+                  if (e.keyCode == 27)
                     $('.js__state-search-submit').text('Select state combo box collapsed');
                 }
-            });
+              });
 
-          $('.js__event-details').on('click', function () {
-            _gaq.push(['t2._trackEvent', 'program-homepage', 'click', 'search-event-details-button']);
-          });
+              $('.js__event-details').on('click', function () {
+                _gaq.push(['t2._trackEvent', 'program-homepage', 'click', 'search-event-details-button']);
+              });
 
-          $('.js__event-register').on('click', function () {
-            _gaq.push(['t2._trackEvent', 'program-homepage', 'click', 'search-event-register-button']);
-          });
+              $('.js__event-register').on('click', function () {
+                _gaq.push(['t2._trackEvent', 'program-homepage', 'click', 'search-event-register-button']);
+              });
 
-          $('.js__event-name').on('click', function () {
-            _gaq.push(['t2._trackEvent', 'program-homepage', 'click', 'search-event-details-link']);
-          });
-          addScrollLinks();
+              $('.js__event-name').on('click', function () {
+                _gaq.push(['t2._trackEvent', 'program-homepage', 'click', 'search-event-details-link']);
+              });
+              addScrollLinks();
 
-          // applyListFilter only on cn_home
-          // applyListFilter();
+              // applyListFilter only on cn_home
+              // applyListFilter();
 
-        } else {
-          $('.js__loading').hide();
-          $('.js__no-event-results').removeClass('d-none');
+            } else {
+              $('.js__loading').hide();
+              $('.js__no-event-results').removeClass('d-none');
+            }
+          },
+          error: function (response) {
+            $('.js__loading').hide();
+            console.log('getEvents error: ' + response.errorResponse.message);
+          }
         }
-      },
-      error: function (response) {
-        $('.js__loading').hide();
-        console.log('getEvents error: ' + response.errorResponse.message);
-      }
-    }
-  });
-};
-// END getEventsByDistance
+      });
+    };
+    // END getEventsByDistance
 
     // $('.js__show-more-events').on('click', function (e) {
     //   e.preventDefault();
@@ -687,80 +743,79 @@ cd.getEventsByDistance = function (zipCode) {
 
     // BEGIN TOP PARTICIPANTS
     cd.getTopParticipants = function (eventId) {
-          luminateExtend.api({
-            api: 'teamraiser',
-            data: 'method=getParticipants&first_name=%25%25%25&event_type=' + eventType + '&fr_id=' + eventId + '&list_sort_column=total&list_ascending=false&list_page_size=5&response_format=json',
-            callback: {
-              success: function (response) {
-                if (!$.isEmptyObject(response.getParticipantsResponse)) {
-                  var participantData = luminateExtend.utils.ensureArray(response.getParticipantsResponse
-                    .participant);
+      luminateExtend.api({
+        api: 'teamraiser',
+        data: 'method=getParticipants&first_name=%25%25%25&event_type=' + eventType + '&fr_id=' + eventId + '&list_sort_column=total&list_ascending=false&list_page_size=5&response_format=json',
+        callback: {
+          success: function (response) {
+            if (!$.isEmptyObject(response.getParticipantsResponse)) {
+              var participantData = luminateExtend.utils.ensureArray(response.getParticipantsResponse
+                .participant);
 
-                  $(participantData).each(function() {
-                    console.log('getting top participants');
-                    var participantName = this.name.first + ' ' + this.name.last;
-                    var participantRaised = (parseInt(this.amountRaised) * 0.01);
-                    participantRaised = participantRaised.toString();
-                    var participantRaisedFormmatted = participantRaised.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
-                    var participantId = this.consId;
-                    var participantPage = this.personalPageUrl;
-                    var isCaptain = this.aTeamCaptain;
-  var topParticipantHtml = '<div class="top-list-entry row pb-2"><div class="badges col-2">' + (isCaptain === "true" ? '<svg version="1.1" class="team-captain-badge" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 110 110" style="enable-background:new 0 0 110 110;" xml:space="preserve"><circle class="st0" cx="55" cy="55" r="55"></circle><polygon class="st1" points="55,72.8 32.1,87.2 38.7,61 18,43.7 44.9,41.9 55,16.8 65.1,41.9 92,43.7 71.3,61 77.9,87.2 "></polygon></svg>' : '') + '</div><div class="names-amounts col-10 pl-0"><a class="participant-name" href="' + participantPage + '">' + participantName + '</a><span class="amount-raised">$' + participantRaisedFormmatted + '</span></div></div>';
+              $(participantData).each(function () {
+                var participantName = this.name.first + ' ' + this.name.last;
+                var participantRaised = (parseInt(this.amountRaised) * 0.01);
+                participantRaised = participantRaised.toString();
+                var participantRaisedFormmatted = participantRaised.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+                var participantId = this.consId;
+                var participantPage = this.personalPageUrl;
+                var isCaptain = this.aTeamCaptain;
+                var topParticipantHtml = '<div class="top-list-entry row pb-2"><div class="badges col-2">' + (isCaptain === "true" ? '<svg version="1.1" class="team-captain-badge" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 110 110" style="enable-background:new 0 0 110 110;" xml:space="preserve"><circle class="st0" cx="55" cy="55" r="55"></circle><polygon class="st1" points="55,72.8 32.1,87.2 38.7,61 18,43.7 44.9,41.9 55,16.8 65.1,41.9 92,43.7 71.3,61 77.9,87.2 "></polygon></svg>' : '') + '</div><div class="names-amounts col-10 pl-0"><a class="participant-name" href="' + participantPage + '">' + participantName + '</a><span class="amount-raised">$' + participantRaisedFormmatted + '</span></div></div>';
 
-  $('.js__top-participants-list').append(topParticipantHtml);
-                   
-                  });
-                }
-              },
-              error: function (response) {
-                console.log('getTopParticipants error: ' + response.errorResponse.message);
-              }
+                $('.js__top-participants-list').append(topParticipantHtml);
+
+              });
             }
-          }); // end luminateExtend
-  
+          },
+          error: function (response) {
+            console.log('getTopParticipants error: ' + response.errorResponse.message);
+          }
+        }
+      }); // end luminateExtend
+
     } // end getTopParticipants
 
     // END TOP PARTICIPANTS
 
     // BEGIN TOP TEAMS
     cd.getTopTeams = function (eventId) {
-          luminateExtend.api({
-            api: 'teamraiser',
-            // data: 'method=getTopTeamsData&fr_id=' + eventId + '&response_format=json',
-            data: 'method=getTeamsByInfo&fr_id=' + eventId + '&list_sort_column=total&list_ascending=false&list_page_size=5&response_format=json',
-            callback: {
-              success: function (response) {
-                if (!$.isEmptyObject(response.getTeamSearchByInfoResponse)) {
-                  var teamData = luminateExtend.utils.ensureArray(response.getTeamSearchByInfoResponse.team);
-                    
-                  $(teamData).each(function(i){
-                      var teamName = this.name;
-                      var teamRaised = (parseInt(this.amountRaised) * 0.01);
-                      teamRaised = teamRaised.toString();
-                      var teamRaisedFormmatted = teamRaised.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
-                      var teamId = this.id;
+      luminateExtend.api({
+        api: 'teamraiser',
+        // data: 'method=getTopTeamsData&fr_id=' + eventId + '&response_format=json',
+        data: 'method=getTeamsByInfo&fr_id=' + eventId + '&list_sort_column=total&list_ascending=false&list_page_size=5&response_format=json',
+        callback: {
+          success: function (response) {
+            if (!$.isEmptyObject(response.getTeamSearchByInfoResponse)) {
+              var teamData = luminateExtend.utils.ensureArray(response.getTeamSearchByInfoResponse.team);
 
-                      var badgeLevel = null;
+              $(teamData).each(function (i) {
+                var teamName = this.name;
+                var teamRaised = (parseInt(this.amountRaised) * 0.01);
+                teamRaised = teamRaised.toString();
+                var teamRaisedFormmatted = teamRaised.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+                var teamId = this.id;
 
-                      if(teamRaised >= 5000){
-                        badgeLevel = "5000";
-                      } else if(teamRaised >= 2500){
-                        badgeLevel = "2500";
-                      } else if(teamRaised >= 1000){
-                        badgeLevel = "1000";
-                      }
-                        var topTeamRow = '<div class="top-list-entry row pb-2"><div class="badges col-2"> ' + (badgeLevel ? '<img src="http://' + window.location.host + '/aha-luminate/dist/cyclenation/image/badge_team_' + badgeLevel + '.svg" aria-hidden="true">' : '') + '</div><div class="names-amounts col-10 pl-0"> <a class="participant-name" href="TR/?team_id=' + teamId + '&amp;pg=team&amp;fr_id=' + evID + '">' + teamName + '</a> <span class="amount-raised">$' + teamRaisedFormmatted + '</span> </div></div>';
+                var badgeLevel = null;
 
-                    $('.js__top-teams-list').append(topTeamRow);
-                  });
+                if (teamRaised >= 5000) {
+                  badgeLevel = "5000";
+                } else if (teamRaised >= 2500) {
+                  badgeLevel = "2500";
+                } else if (teamRaised >= 1000) {
+                  badgeLevel = "1000";
                 }
-              },
-              error: function (response) {
-                console.log('getTopTeams error: ' + response.errorResponse.message);
-              }
+                var topTeamRow = '<div class="top-list-entry row pb-2"><div class="badges col-2"> ' + (badgeLevel ? '<img src="http://' + window.location.host + '/aha-luminate/dist/cyclenation/image/badge_team_' + badgeLevel + '.svg" aria-hidden="true">' : '') + '</div><div class="names-amounts col-10 pl-0"> <a class="participant-name" href="TR/?team_id=' + teamId + '&amp;pg=team&amp;fr_id=' + evID + '">' + teamName + '</a> <span class="amount-raised">$' + teamRaisedFormmatted + '</span> </div></div>';
+
+                $('.js__top-teams-list').append(topTeamRow);
+              });
             }
-          }); // end luminateExtend
-  
+          },
+          error: function (response) {
+            console.log('getTopTeams error: ' + response.errorResponse.message);
+          }
+        }
+      }); // end luminateExtend
+
 
     } // end getTopTeams
 
@@ -768,51 +823,47 @@ cd.getEventsByDistance = function (zipCode) {
 
     // BEGIN TOP COMPANIES
     cd.getTopCompanies = function (eventId) {
-          luminateExtend.api({
-            api: 'teamraiser',
-            data: 'method=getCompaniesByInfo&fr_id=' + eventId +
-              '&include_cross_event=true&list_sort_column=total&list_ascending=false&list_page_size=5&response_format=json',
-            callback: {
-              success: function (response) {
-                if (!$.isEmptyObject(response.getCompaniesResponse)) {
-                  var topCompanies = luminateExtend.utils.ensureArray(response.getCompaniesResponse
-                    .company);
+      luminateExtend.api({
+        api: 'teamraiser',
+        data: 'method=getCompaniesByInfo&fr_id=' + eventId +
+          '&include_cross_event=true&list_sort_column=total&list_ascending=false&list_page_size=5&response_format=json',
+        callback: {
+          success: function (response) {
+            if (!$.isEmptyObject(response.getCompaniesResponse)) {
+              var topCompanies = luminateExtend.utils.ensureArray(response.getCompaniesResponse
+                .company);
 
-                  $(topCompanies).each(function(){
-                      var companyName = this.companyName;
-                      var companyRaised = (parseInt(this.amountRaised) / 100);
-                      companyRaised = companyRaised.toString();
-                      var companyRaisedFormmatted = companyRaised.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
-                      var topCompanyHtml = '<div class="top-list-entry row pb-2"> <div class="badges col-2"> </div><div class="names-amounts col-10 pl-0"> <a class="participant-name" href="TR?company_id=' + this.companyId + '&fr_id=' + evID + '&pg=company">' + companyName + '</a> <span class="amount-raised">$' + companyRaisedFormmatted + '</span> </div></div>';
-                      $('.js__top-companies-list').append(topCompanyHtml);
-                  });
-                }
-              },
-              error: function (response) {
-                console.log('getTopCompanies error: ' + response.errorResponse.message);
-              }
+              $(topCompanies).each(function () {
+                var companyName = this.companyName;
+                var companyRaised = (parseInt(this.amountRaised) / 100);
+                companyRaised = companyRaised.toString();
+                var companyRaisedFormmatted = companyRaised.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+                var topCompanyHtml = '<div class="top-list-entry row pb-2"> <div class="badges col-2"> </div><div class="names-amounts col-10 pl-0"> <a class="participant-name" href="TR?company_id=' + this.companyId + '&fr_id=' + evID + '&pg=company">' + companyName + '</a> <span class="amount-raised">$' + companyRaisedFormmatted + '</span> </div></div>';
+                $('.js__top-companies-list').append(topCompanyHtml);
+              });
             }
-          }); // end luminateExtend
+          },
+          error: function (response) {
+            console.log('getTopCompanies error: ' + response.errorResponse.message);
+          }
+        }
+      }); // end luminateExtend
     } // end getTopCompanies
 
-    function getLocation(){
-      console.log("Entered getLocation");
+    function getLocation() {
       var options = {
         enableHighAccuracy: true,
         timeout: 10000,
         maximumAge: 'infinity'
       };
-      if (navigator.geolocation){
-        navigator.geolocation.getCurrentPosition(showPosition,showGeolocationError,options);
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition, showGeolocationError, options);
+      } else {
+        console.log("Geolocation is not supported by this browser.");
       }
-      else{
-        console.log("Geolocation is not supported by this browser.");}
     }
-    
+
     function showPosition(position) {
-      console.log("Entered showPosition lat: ",position.coords.latitude);
-      console.log("Entered showPosition long: ",position.coords.longitude);
-      
       var input = position.coords.latitude + "," + position.coords.longitude;
       var latlngStr = input.split(',', 2);
       var latlng = new google.maps.LatLng(latlngStr[0], latlngStr[1]);
@@ -820,35 +871,30 @@ cd.getEventsByDistance = function (zipCode) {
       geocoder.geocode({
         'location': latlng
       }, function (results, status) {
-        console.log("Geocode result: ", results);
-        console.log("Geocode status: ", status);
+
         var postalCode;
-        
-        if(status == google.maps.GeocoderStatus.OK && results[0]) {
-          $.each(results[0].address_components, function() {
-            if($.inArray('postal_code', this.types) >= 0) {
+
+        if (status == google.maps.GeocoderStatus.OK && results[0]) {
+          $.each(results[0].address_components, function () {
+            if ($.inArray('postal_code', this.types) >= 0) {
               postalCode = this.short_name;
             }
           });
-          
-          if(postalCode) {
+
+          if (postalCode) {
             cd.getEventsByDistance(postalCode);
-          }
-          else {
-            if(results[0].geometry && results[0].geometry.location) {
-              console.log('run getZipForLatLng');
+          } else {
+            if (results[0].geometry && results[0].geometry.location) {
               // getZipForLatLng({
               //   lat: results[0].geometry.location.lat(), 
               //   lng: results[0].geometry.location.lng(), 
               //   callback: settings.callback
               // });
-            }
-            else {
+            } else {
               cd.getEventsByDistance(postalCode);
             }
           }
-        }
-        else {
+        } else {
           cd.getEventsByDistance(postalCode);
         }
       });
@@ -861,10 +907,11 @@ cd.getEventsByDistance = function (zipCode) {
       //   cd.getEventsByDistance(zipCode);
 
       // });
-    }   
-    function showGeolocationError(error){
+    }
+
+    function showGeolocationError(error) {
       cd.getEvents('%25%25', null);
-      switch(error.code){
+      switch (error.code) {
         case error.PERMISSION_DENIED:
           console.log("User denied the request for Geolocation.");
           break;
@@ -877,7 +924,7 @@ cd.getEventsByDistance = function (zipCode) {
         case error.UNKNOWN_ERROR:
           console.log("An unknown error occurred.");
           break;
-      } 
+      }
     }
     // Call roster scripts based on page type
     if ($('body').is('.pg_cn_search')) {
@@ -898,11 +945,11 @@ cd.getEventsByDistance = function (zipCode) {
         $('#companySearchResults').show();
       });
 
-      var clearSearchForms = function(){
+      var clearSearchForms = function () {
         $('#participantFirstName, #participantLastName, #teamName, #companyName').val('');
       }
 
-      var clearSearchResults = function(){
+      var clearSearchResults = function () {
         $('.js__participant-results-container, .alert').attr('hidden', true);
         $('.js__participants-results-rows').html('');
         $('.js__team-results-container, .alert').attr('hidden', true);
@@ -911,45 +958,44 @@ cd.getEventsByDistance = function (zipCode) {
         $('.js__company-results-rows').html('');
       }
 
-    // Search by Participant
-    $('.js__participant-search-form').on('submit', function (e) {
-      e.preventDefault();
-      clearSearchResults();
-      var firstName = encodeURI($('#participantFirstName').val());
-      var lastName = encodeURI($('#participantLastName').val());
+      // Search by Participant
+      $('.js__participant-search-form').on('submit', function (e) {
+        e.preventDefault();
+        clearSearchResults();
+        var firstName = encodeURI($('#participantFirstName').val());
+        var lastName = encodeURI($('#participantLastName').val());
 
-      // console.log('searchType: ', searchType);
-      // var searchAllEvents = true;
-      // if(searchType && searchType === "individual"){
-      //   searchAllEvents = false;
-      // }
+        // console.log('searchType: ', searchType);
+        // var searchAllEvents = true;
+        // if(searchType && searchType === "individual"){
+        //   searchAllEvents = false;
+        // }
 
-      cd.getParticipants(firstName, lastName, (searchType === "singleEvent" ? false : true));
-    });
+        cd.getParticipants(firstName, lastName, (searchType === "singleEvent" ? false : true));
+      });
 
-    // Search by Team
-    $('.js__team-search-form').on('submit', function (e) {
-      e.preventDefault();
-      clearSearchResults();
-      var teamName = encodeURI($('#teamName').val());
-      cd.getTeams(teamName, null, (searchType === "singleEvent" ? false : true));
-    });
+      // Search by Team
+      $('.js__team-search-form').on('submit', function (e) {
+        e.preventDefault();
+        clearSearchResults();
+        var teamName = encodeURI($('#teamName').val());
+        cd.getTeams(teamName, null, (searchType === "singleEvent" ? false : true));
+      });
 
-    // Search by Company
-    $('.js__company-search-form').on('submit', function (e) {
-      e.preventDefault();
-      clearSearchResults();
-      var companyName = encodeURI($('#companyName').val());
-      cd.getCompanies(companyName, (searchType === "singleEvent" ? false : true));
-    });
+      // Search by Company
+      $('.js__company-search-form').on('submit', function (e) {
+        e.preventDefault();
+        clearSearchResults();
+        var companyName = encodeURI($('#companyName').val());
+        cd.getCompanies(companyName, (searchType === "singleEvent" ? false : true));
+      });
 
-// auto search functionality based on URL params
+      // auto search functionality based on URL params
 
 
-      if(searchType){
-        console.log('autosearch');
+      if (searchType) {
         var firstSearchTerm = getURLParameter(currentUrl, 'first_term') ? getURLParameter(currentUrl, 'first_term') : '';
-        var lastSearchTerm = getURLParameter(currentUrl, 'last_term') ? getURLParameter(currentUrl, 'last_term') : '';
+        var lastSearchTerm = getURLParameter(currentUrl, 'second_term') ? getURLParameter(currentUrl, 'second_term') : '';
 
         firstSearchTerm = decodeURI(firstSearchTerm);
         lastSearchTerm = decodeURI(lastSearchTerm);
@@ -960,17 +1006,16 @@ cd.getEventsByDistance = function (zipCode) {
 
           cd.getParticipants(firstSearchTerm, lastSearchTerm, (searchType === "singleEvent" ? false : true));
         }
-  
+
         cd.autoSearchTeam = function () {
           var teamName = firstSearchTerm + (lastSearchTerm.length ? ' ' + lastSearchTerm : '');
           $('#teamName').val(teamName);
           cd.getTeams(teamName, null, (searchType === "crossEvent" ? true : false));
         }
-  
+
         cd.autoSearchCompany = function () {
           var companyName = firstSearchTerm + (lastSearchTerm.length ? ' ' + lastSearchTerm : '');
           $('#companyName').val(companyName);
-          console.log('searchType: ', searchType);
           cd.getCompanies(companyName, (searchType === "crossEvent" ? true : false));
         }
 
@@ -982,7 +1027,7 @@ cd.getEventsByDistance = function (zipCode) {
     }
 
     if ($('body').is('.pg_cn_home') || $('body').is('.pg_cn_events')) {
-      
+
       if ($('body').is('.pg_cn_home')) {
         $('.js__loading').show();
         getLocation();
@@ -990,7 +1035,7 @@ cd.getEventsByDistance = function (zipCode) {
         cd.getEvents('%25%25', null, 'city');
       }
 
-      var clearEventSearchResults = function(){
+      var clearEventSearchResults = function () {
         $('.js__event-search-results').html('');
         $('.js__past-event-search-results').html('');
         $('.js__past-events-container').addClass('d-none');
@@ -1000,8 +1045,8 @@ cd.getEventsByDistance = function (zipCode) {
         $('#zip').val('');
         clearEventSearchResults();
         var stateSearched = $(this).children('option:selected').val();
-      
-        if(stateSearched === 'Select State'){
+
+        if (stateSearched === 'Select State') {
           cd.getEvents('%25%25', null);
         } else {
           cd.getEvents(null, stateSearched);
@@ -1014,7 +1059,7 @@ cd.getEventsByDistance = function (zipCode) {
         $('#zip').val('');
         clearEventSearchResults();
         var stateSearched = $(this).children('option:selected').val();
-        if(stateSearched === 'Select State'){
+        if (stateSearched === 'Select State') {
           cd.getEvents('%25%25', null);
         } else {
           cd.getEvents(null, stateSearched);
@@ -1026,12 +1071,12 @@ cd.getEventsByDistance = function (zipCode) {
         $('.js__event-search-results').html('');
         clearEventSearchResults();
         var zipSearched = $('#zip').val();
-        if(zipSearched.length){
+        if (zipSearched.length) {
           cd.getEventsByDistance(zipSearched);
         } else {
           cd.getEvents('%25%25', null);
         }
-        
+
         e.preventDefault();
       });
 
@@ -1044,13 +1089,12 @@ cd.getEventsByDistance = function (zipCode) {
 
     // TODO - rename to make clear that this is a redirect search form with single field
     $('.js__rider-search').on('submit', function (e) {
-      console.log('participant search submitted');
       e.preventDefault();
       var fullName = $('#rider_name').val();
       var isMultiWordSearch = fullName.trim().indexOf(' ');
       var firstTerm, lastTerm, searchParams;
-      
-      if(isMultiWordSearch = -1){
+
+      if (isMultiWordSearch === -1) {
         searchParams = '&first_term=' + fullName;
       } else {
         // First Name is the first word of a multi word search. If there are more than two words, first name will include all of the words except the last word
@@ -1058,14 +1102,15 @@ cd.getEventsByDistance = function (zipCode) {
         // Last Name is the last whole word in a multi word search
         lastTerm = fullName.split(' ').slice(-1).join(' ');
         searchParams = '&first_term=' + firstTerm + '&second_term=' + lastTerm;
+
       }
 
-      if($('body').is('.pg_cn_home')){
+      if ($('body').is('.pg_cn_home')) {
         window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=cn_search&search_type=crossEvent' + searchParams;
       } else {
         window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=cn_search&search_type=singleEvent' + searchParams + '&fr_id=' + evID;
       }
-      
+
     });
 
 
@@ -1119,7 +1164,6 @@ cd.getEventsByDistance = function (zipCode) {
           success: function (response) {
             if (response.getParticipantsResponse.totalNumberResults === '0') {
               // no search results
-              console.log('getParticipants no results: ', response);
             } else {
               var participants = luminateExtend.utils.ensureArray(response.getParticipantsResponse.participant);
 
@@ -1138,8 +1182,6 @@ cd.getEventsByDistance = function (zipCode) {
               });
 
               var sortedTopParticipantsData = cd.sort('consTotal', topParticipantsData);
-
-              console.log('sortedTopParticipantsData: ', sortedTopParticipantsData);
 
               for (var i = 0, len = sortedTopParticipantsData.length; i < len; i++) {
                 var participantData = '<tr><td><a href="' + luminateExtend.global.path.secure + 'TR/?fr_id=' +
@@ -1520,7 +1562,7 @@ cd.getEventsByDistance = function (zipCode) {
     }
 
     // BEGIN TFIND
- 
+
     if ($('#team_find_page').length > 0 || $('body').is('.pg_cn_register')) {
       // BEGIN tfind customizations
       $('form[name=FriendraiserFind]').attr('hidden', true);
@@ -1545,7 +1587,7 @@ cd.getEventsByDistance = function (zipCode) {
           $('.js__reg-team-search-form').on('submit', function (e) {
             e.preventDefault();
             $('.alert').hide();
-            
+
             $('.list').html('');
             // $('.js__search-results-container').html('');
             var teamName = $('#regTeamName').val();
@@ -1671,7 +1713,6 @@ cd.getEventsByDistance = function (zipCode) {
                   success: function success(response) {
                     var captainArray = luminateExtend.utils.ensureArray(response.getTeamCaptainsResponse.captain);
                     var joinTeamName = 'Join ' + captainArray[0].teamName;
-                    console.log('joinTeamName: ', joinTeamName);
                     captainConsId = captainArray[0].consId;
                     origJoinTeamUrl = $(self).find('.list-component-cell-column-join-link a').attr('href');
                     modJoinTeamUrl = origJoinTeamUrl + '&s_captainConsId=' + captainConsId;
@@ -1972,7 +2013,7 @@ cd.getEventsByDistance = function (zipCode) {
       // add reg full class to ptype container
       var ptypeBlocks = $('.part-type-decoration-messages');
 
-      if($('.part-type-container').length === 1){
+      if ($('.part-type-container').length === 1) {
         $('.part-type-decoration-messages > label').attr('tabindex', '0');
       }
 
@@ -1995,7 +2036,7 @@ cd.getEventsByDistance = function (zipCode) {
             $(this).closest('.part-type-container').addClass('breakaway-ptype-container');
           } else if (ptypeName.indexOf('Start a Team') > -1) {
             $(this).closest('.part-type-container').addClass('start-team-ptype-container');
-       
+
           } else if (ptypeName.indexOf('Join a Team') > -1) {
             $(this).closest('.part-type-container').addClass('join-team-ptype-container');
             var coachPtype = $('.captain-ptype').text();
@@ -2003,17 +2044,16 @@ cd.getEventsByDistance = function (zipCode) {
             // NOTE - participation type names and times must always be split by " - "
             if (coachPtype) {
               var coachTime = coachPtype.split('-')[1];
-              console.log(coachTime);
               if (ptypeName.indexOf(coachTime) > -1) {
                 // add special class to the join team ptype that matches the coach's ptype time
                 $(this).closest('.part-type-container').addClass('join-team-ptype-time');
               }
             }
           }
-          
+
           // Remove ptype prefixes from public-facing reg options
           $(this).find('.part-type-name').text(newPtypeName);
-        } 
+        }
       });
 
 
@@ -2066,25 +2106,24 @@ cd.getEventsByDistance = function (zipCode) {
       }
 
       var minFundraisingGoal = ($('input[name="fr_part_radio"]:checked').parent().find('.goal').val() ? $('input[name="fr_part_radio"]:checked').parent().find('.goal').val().replace('.00', '') : null);
-      if(!minFundraisingGoal || minFundraisingGoal === "$0"){
+      if (!minFundraisingGoal || minFundraisingGoal === "$0") {
         minFundraisingGoal = $('#fr_goal').val().replace('.00', '');
       }
       $('#fr_goal').val(minFundraisingGoal);
       $('#part_type_fundraising_goal_container .form-content').append('<p class="small">All riders commit to fundraising <span class="min-fundraising-goal">' + minFundraisingGoal + '</span>. You can increase your fundraising goal, but the amount shown above is your required fundraising minimum.</p>');
 
       if (eventType2 === 'Stationary' || eventType2 === 'StationaryV2') {
-               var numPtypesShown = $('.part-type-container:visible').length;
-        console.log('numPtypesShown: ', + numPtypesShown);
-        if(numPtypesShown === 1 && (regType === 'startTeam' || regType === 'joinTeam')){
+        var numPtypesShown = $('.part-type-container:visible').length;
+        if (numPtypesShown === 1 && (regType === 'startTeam' || regType === 'joinTeam')) {
           $('#part_type_selection_container .field-required').hide();
           if (regType === 'startTeam' && $('.vip-ptype-container').length) {
             $('#sel_type_container').text('Your team is riding with:');
           } else {
             $('#sel_type_container').text('Your team is riding from:');
           }
-          
+
         } else {
-            $('#sel_type_container').text('What time do you want to ride?');
+          $('#sel_type_container').text('What time do you want to ride?');
         }
         $('.part-type-container').on('click focus', function (e) {
           $('.part-type-container').removeClass('selected');
@@ -2096,7 +2135,7 @@ cd.getEventsByDistance = function (zipCode) {
         $('input[name="fr_part_radio"]').on('click focus', function (e) {
           $('.part-type-container').removeClass('selected');
           var selectedPtypeMin = $(this).parent().find('.goal').val().replace('.00', '');
-          if(selectedPtypeMin === "$0"){
+          if (selectedPtypeMin === "$0") {
             selectedPtypeMin = minFundraisingGoal;
           }
           $('.min-fundraising-goal').text(selectedPtypeMin);
@@ -2106,13 +2145,11 @@ cd.getEventsByDistance = function (zipCode) {
 
       } else {
         $('#sel_type_container').text('How would you like to participate?');
-        console.log('road event');
-         // Hide and disable participation types that don't apply to this particular registration path
+        // Hide and disable participation types that don't apply to this particular registration path
         if (regType === 'virtual') {
           // $('.part-type-name:contains("Virtual")').closest('.part-type-container').addClass('d-inline-block col-md-6');
           $('.part-type-name').closest('.part-type-container').addClass('d-inline-block col-md-6');
         } else {
-          console.log('not virtual');
           $('.part-type-name').closest('.part-type-container').addClass('d-inline-block col-md-6');
           $('.part-type-name:contains("Virtual")').closest('.part-type-container').removeClass('d-inline-block');
 
@@ -2140,7 +2177,7 @@ cd.getEventsByDistance = function (zipCode) {
           $(this).addClass('selected');
           $(this).find('input[type="radio"]').prop('checked', true);
           var ptypeMin = $(this).parent().find('.goal').val().replace('.00', '');
-          if(ptypeMin === "$0"){
+          if (ptypeMin === "$0") {
             ptypeMin = minFundraisingGoal;
           }
           $('.min-fundraising-goal').text(ptypeMin);
@@ -2151,14 +2188,14 @@ cd.getEventsByDistance = function (zipCode) {
             keyboard: false
           }).modal('show');
         });
-        
+
         $('.part-type-container').on('keypress', function (e) {
           var key = e.which;
-          if(key == 13) {
+          if (key == 13) {
             $('.part-type-container').removeClass('selected');
             $(this).addClass('selected');
             var ptypeMin = $(this).parent().find('.goal').val().replace('.00', '');
-            if(ptypeMin === "$0"){
+            if (ptypeMin === "$0") {
               ptypeMin = minFundraisingGoal;
             }
             $('.min-fundraising-goal').text(ptypeMin);
@@ -2169,8 +2206,8 @@ cd.getEventsByDistance = function (zipCode) {
               backdrop: 'static',
               keyboard: false
             }).modal('show');
-              return false;  
-            }
+            return false;
+          }
         });
 
 
@@ -2185,7 +2222,7 @@ cd.getEventsByDistance = function (zipCode) {
 
       $('#fund_goal_container').after('How much will you fundraise for CycleNation?');
 
- 
+
 
       $('.donation-level-amount-text').closest('.donation-level-row-container').addClass('don-level-btn');
       $('.donation-level-container .input-container').parent().addClass('other-amount-row-container');
@@ -2194,6 +2231,11 @@ cd.getEventsByDistance = function (zipCode) {
 
       $('.donation-level-row-label-no-gift').text("No thanks. I don\'t want to make a donation towards my goal at the moment").closest('.donation-level-row-container').addClass('don-no-gift');
       $('.don-no-gift, #part_type_anonymous_input_container, #part_type_show_public_input_container').wrap('<div class="form-check"/>');
+
+      // add donor recognition label
+      console.log('donor recognition 01');
+      $('<legend>Donor Recognition:</legend>').insertBefore('#tr_recognition_nameanonymous_row #tr_recognition_nameanonymousname');
+      console.log('donor recognition 02');
 
       // hide anon and gift display options
       $('label[for="fr_anonymous_gift"], label[for="fr_show_public_gift"]').closest('.form-check').hide();
@@ -2211,7 +2253,7 @@ cd.getEventsByDistance = function (zipCode) {
       });
       // add label to other amount text input
       $('.other-amount-row-container input[type=text]').addClass('other-amount')
-      
+
       var otherFieldLabel = $('.other-amount').attr('id');
       $('<label for="' + otherFieldLabel + '" class="sr-only">Enter other amount</label>').insertBefore($('.other-amount'));
 
@@ -2252,9 +2294,9 @@ cd.getEventsByDistance = function (zipCode) {
 
       if (regType === 'virtual' || regType === 'individual') {
         $('#part_type_section_footer').append('<div class="order-2 order-sm-1 col-sm-4 col-8 offset-2 offset-sm-0"><a href="SPageServer/?pagename=cn_register&fr_id=' + evID + '&s_regType=" class="button btn-secondary btn-block">Back</a></div>');
-      } else if(regType === 'startTeam'){
+      } else if (regType === 'startTeam') {
         $('#previous_step').replaceWith('<div class="order-2 order-sm-1 col-sm-4 col-8 offset-2 offset-sm-0"><a href="TRR/?pg=tfind&amp;fr_id=' + evID + '&amp;fr_tm_opt=new&amp;skip_login_page=true" class="button btn-secondary btn-block">Back</a></div>');
-      } else if(regType === 'joinTeam'){
+      } else if (regType === 'joinTeam') {
         $('#previous_step').replaceWith('<div class="order-2 order-sm-1 col-sm-4 col-8 offset-2 offset-sm-0"><a href="TRR/?pg=tfind&amp;fr_id=' + evID + '&amp;fr_tm_opt=existing&amp;skip_login_page=true" class="button btn-secondary btn-block">Back</a></div>');
       } else {
         $('#previous_step').replaceWith('<div class="order-2 order-sm-1 col-sm-4 col-8 offset-2 offset-sm-0"><a href="SPageServer/?pagename=cn_register&fr_id=' + evID + '&s_regType=" class="button btn-secondary btn-block">Back</a></div>');
@@ -2301,11 +2343,11 @@ cd.getEventsByDistance = function (zipCode) {
         $('#contact_info_section_one .form-content').addClass('required').prepend('<span class="field-required"></span>');
         $('.cons-address-street-full-container .form-content').eq(1).removeClass('required').find('.field-required').remove();
         $('#cons_info_component_contact_info_section').show();
-      }else if (regType === 'joinTeam') {
+      } else if (regType === 'joinTeam') {
         var pFirstName = $('body').data('first-name') ? $('body').data('first-name') : null;
         var pLastName = $('body').data('last-name') ? $('body').data('last-name') : null;
         var pEmail = $('body').data('email') ? $('body').data('email') : null;
-        if(pFirstName && pLastName && pEmail){
+        if (pFirstName && pLastName && pEmail) {
           $('#cons_first_name').val(pFirstName);
           $('#cons_last_name').val(pLastName);
           $('#cons_email').val(pEmail);
@@ -2351,14 +2393,16 @@ cd.getEventsByDistance = function (zipCode) {
         cd.setBirthMonth();
       });
 
-      $('#cons_birth_date_DAY').wrap('<div class="col-md-6" />').before('<label class="sr-only" for="cons_birth_date_DAY">Birth Day</label>');		      $('#cons_birth_date_DAY').before('<label class="sr-only" for="cons_birth_date_DAY">Birth Day</label>');
-      $('#cons_birth_date_MONTH').wrap('<div class="col-md-6" />').before('<label class="sr-only" for="cons_birth_date_MONTH">Birth Month</label>');		      $('#cons_birth_date_MONTH').before('<label class="sr-only" for="cons_birth_date_MONTH">Birth Month</label>');
+      $('#cons_birth_date_DAY').wrap('<div class="col-md-6" />').before('<label class="sr-only" for="cons_birth_date_DAY">Birth Day</label>');
+      $('#cons_birth_date_DAY').before('<label class="sr-only" for="cons_birth_date_DAY">Birth Day</label>');
+      $('#cons_birth_date_MONTH').wrap('<div class="col-md-6" />').before('<label class="sr-only" for="cons_birth_date_MONTH">Birth Month</label>');
+      $('#cons_birth_date_MONTH').before('<label class="sr-only" for="cons_birth_date_MONTH">Birth Month</label>');
       $('#cons_birth_date_YEAR').before('<label class="sr-only" for="cons_birth_date_YEAR">Birth Year</label>');
 
 
       $('#cons_info_dob .form-content').append('<p class="small">We love birthdays and want to make sure we put your special day in our calendar so we don\'t forget.</p>');
 
-      
+
       $('.mobile-question-container .input-label').append('&nbsp;<span class="mobile-phone-tooltip" data-toggle="tooltip" data-placement="top" title="We require your cell/mobile phone number in case last minute or emergency situations happen with the event and we need to communicate important details to you. We respect your privacy and will not sell or divulge your cell phone number to third parties, without your consent."><i class="fas fa-question-circle"></i></span>');
 
       $('.mobile-phone-tooltip').tooltip();
@@ -2392,37 +2436,36 @@ cd.getEventsByDistance = function (zipCode) {
       $('#previous_step').text('Back')
         .wrap('<div class="order-2 order-sm-1 col-sm-4 col-8 offset-2 offset-sm-0" />');
 
-        var addressComplete = (regType === 'startTeam' ? false : true);
+      var addressComplete = (regType === 'startTeam' ? false : true);
 
-        var waiverCheckbox = $('.input-container label:contains("terms and conditions")').prev('input[type=checkbox]');
+      var waiverCheckbox = $('.input-container label:contains("terms and conditions")').prev('input[type=checkbox]');
 
-        cd.regInfoVerification = function () {
-          if ($(waiverCheckbox).is(':checked') === true && addressComplete === true) {
-            $('#next_step').attr('disabled', false);
-          } else {
-            $('#next_step').attr('disabled', true);
-          }
+      cd.regInfoVerification = function () {
+        if ($(waiverCheckbox).is(':checked') === true && addressComplete === true) {
+          $('#next_step').attr('disabled', false);
+        } else {
+          $('#next_step').attr('disabled', true);
         }
-        cd.addressVerification = function () {
-          if(regType === 'startTeam'){
-            if($('input#cons_street1').val() == "" || $('input#cons_city').val() == "" || $('input#cons_zip_code').val() == "" || $('select#cons_state option:selected').val() == "" || $('select#cons_country option:selected').val() == ""){
-              addressComplete = false;
-              cd.regInfoVerification();
-            } else {
-              addressComplete = true;
-              cd.regInfoVerification();
-            }
+      }
+      cd.addressVerification = function () {
+        if (regType === 'startTeam') {
+          if ($('input#cons_street1').val() == "" || $('input#cons_city').val() == "" || $('input#cons_zip_code').val() == "" || $('select#cons_state option:selected').val() == "" || $('select#cons_country option:selected').val() == "") {
+            addressComplete = false;
+            cd.regInfoVerification();
           } else {
+            addressComplete = true;
             cd.regInfoVerification();
           }
+        } else {
+          cd.regInfoVerification();
         }
-        cd.addressVerification();
+      }
+      cd.addressVerification();
 
 
-      $('#contact_info_section_one input, #contact_info_section_one select').on('keyup keypress blur change mouseout', function(e){
-        console.log('check address fields');
+      $('#contact_info_section_one input, #contact_info_section_one select').on('keyup keypress blur change mouseout', function (e) {
         cd.addressVerification();
-        
+
       });
 
 
@@ -2439,7 +2482,7 @@ cd.getEventsByDistance = function (zipCode) {
     if ($('#FriendraiserUserWaiver').length > 0) {
       // reg summary step
       $('.reg-summary-reg-info').prepend('<p>Click the <strong>"Complete Registration"</strong> button below to finish your registration.</p><p>Click on <strong>"Edit"</strong> below to revise your registration details</p>');
-      if(regType === 'startTeam'){
+      if (regType === 'startTeam') {
         $('.contact-info-address').show();
       }
       $('.additional-gift-label').text('Personal Donation:');
@@ -2455,10 +2498,10 @@ cd.getEventsByDistance = function (zipCode) {
     }
     // payment step of reg
     if ($('#fr_payment_form').length > 0) {
-      $('label[for="responsive_payment_typecc_exp_date_MONTH"], #responsive_payment_typecc_exp_date_MONTH').wrapAll('<div class="col-6 col-md-4"></div>');		      
-      $('label[for="responsive_payment_typecc_exp_date_YEAR"], #responsive_payment_typecc_exp_date_YEAR').wrapAll('<div class="col-6 col-md-4"></div>');		
+      $('label[for="responsive_payment_typecc_exp_date_MONTH"], #responsive_payment_typecc_exp_date_MONTH').wrapAll('<div class="col-6 col-md-4"></div>');
+      $('label[for="responsive_payment_typecc_exp_date_YEAR"], #responsive_payment_typecc_exp_date_YEAR').wrapAll('<div class="col-6 col-md-4"></div>');
       $('.date-input-container').insertBefore($('#responsive_payment_typecc_exp_date_row'));
-      
+
       $('#btn_next').text('Submit')
         .wrap('<div class="order-1 order-sm-2 col-sm-4 offset-md-4 col-8 offset-2 mb-3"/>');
       $('#btn_prev').text('Back')
@@ -2551,15 +2594,15 @@ cd.getEventsByDistance = function (zipCode) {
             }
           } else {
             // road logic
-              // override default Bootstrap modal tab behavior 
+            // override default Bootstrap modal tab behavior 
 
-              $('#dspPledge').on('keyup', function(e){
-                var focusedElement = document.activeElement.id
-                if(document.activeElement.id === 'dspPledge'){
-                  // Focus on outer lightbox container. Change focus to close button.
-                  $('#dspPledge .close').focus();
-                } 
-              });
+            $('#dspPledge').on('keyup', function (e) {
+              var focusedElement = document.activeElement.id
+              if (document.activeElement.id === 'dspPledge') {
+                // Focus on outer lightbox container. Change focus to close button.
+                $('#dspPledge .close').focus();
+              }
+            });
             if (regType === 'startTeam' || regType === 'joinTeam') {
               cd.updateRegProgress(4, 8);
             } else if (regType === 'individual' || regType === 'virtual') {
@@ -2671,7 +2714,7 @@ cd.getEventsByDistance = function (zipCode) {
 
     // ptype
     // $('#part_type_selection_container').wrapInner('<fieldset role="radiogroup" class="ptype-selection"/>');
-    
+
     $('#part_type_selection_container').wrapInner('<fieldset role="radiogroup" class="ptype-selection" id="ptype_fieldset" aria-labelledby="sel_type_container"/>');
     $('#ptype_fieldset').prepend('<legend class="sr-only">What time do you want to ride?</legend>');
 
@@ -2701,7 +2744,7 @@ cd.getEventsByDistance = function (zipCode) {
     $('label[for="responsive_payment_typecc_exp_date_MONTH"] .label-text').text('Month:');
     $('label[for="responsive_payment_typecc_exp_date_MONTH"]').insertBefore($('#responsive_payment_typecc_exp_date_MONTH'));
 
-    $('label[for="responsive_payment_typecc_exp_date_YEAR"]').append('<span class="label-text">Year: </span>');
+    //$('label[for="responsive_payment_typecc_exp_date_YEAR"]').append('<span class="label-text">Year: </span>');
     $('label[for="responsive_payment_typecc_exp_date_YEAR"]').insertBefore($('#responsive_payment_typecc_exp_date_YEAR'));
 
     $('#responsive_payment_typecc_exp_date_row .field-required').remove();
@@ -2746,11 +2789,10 @@ cd.getEventsByDistance = function (zipCode) {
       // $('.js__greeting-intro-text').html($('.js__chapter-intro-text'));
 
 
-      $('.js__chapter-intro-images img').each(function(i){
-        console.log('this: ', + $(this))
-        $('.js__carousel-indicators').append('<li data-target="#carouselIndicators" data-slide-to="' + i + '"' + (i===0 ? 'class="active"' : '') + '></li>');
+      $('.js__chapter-intro-images img').each(function (i) {
+        $('.js__carousel-indicators').append('<li data-target="#carouselIndicators" data-slide-to="' + i + '"' + (i === 0 ? 'class="active"' : '') + '></li>');
 
-        $('.js__carousel-inner').append('<div class="carousel-item ' + (i===0 ? 'active' : '')  + '"><img src="' + $(this).attr('src') + '" alt="' + $(this).attr('alt') + '"></div>');
+        $('.js__carousel-inner').append('<div class="carousel-item ' + (i === 0 ? 'active' : '') + '"><img src="' + $(this).attr('src') + '" alt="' + $(this).attr('alt') + '"></div>');
       });
       $('.carousel').carousel({
         interval: 2000
@@ -2758,63 +2800,63 @@ cd.getEventsByDistance = function (zipCode) {
 
       if (viewportWidth < 640) {
         $('#rider_name').attr('placeholder', 'Search');
-      } 
+      }
 
-// BEGIN custom sponsor script
+      // BEGIN custom sponsor script
 
-if($('.tr_sponsorship_logos').length){
-  $('.tr_sponsorship_logo').each(function(i, sponsor){
-    var sponsorAlt = $(this).find('img').attr('alt');
-    var sponsorImg = $(this).find('img').attr('src');
-    var sponsorUrl = $(this).find('a').attr('href');
-    var sponsorLevel = sponsorAlt.split(' | ')[0];
-    var sponsorName = sponsorAlt.split(' | ')[1];
+      if ($('.tr_sponsorship_logos').length) {
+        $('.tr_sponsorship_logo').each(function (i, sponsor) {
+          var sponsorAlt = $(this).find('img').attr('alt');
+          var sponsorImg = $(this).find('img').attr('src');
+          var sponsorUrl = $(this).find('a').attr('href');
+          var sponsorLevel = sponsorAlt.split(' | ')[0];
+          var sponsorName = sponsorAlt.split(' | ')[1];
 
-// TODO - add logic to show levels when a sponsor is added
-    switch (sponsorLevel) {
-      case "life":
-        $('.js__life-sponsor-logos').append('<a href="TR?fr_id=' + evID + '&amp;pg=informational&amp;sid=2014"><img src="' + sponsorImg + '" alt="' + sponsorName + '"></a>');
-        $('.js__life-sponsor-container').fadeIn();
-        break;
-      case "platform":
-        $('.js__platform-sponsor-logos').append('<a href="TR?fr_id=' + evID + '&amp;pg=informational&amp;sid=2014"><img src="' + sponsorImg + '" alt="' + sponsorName + '"></a>');
-        $('.js__platform-sponsor-container').fadeIn();
-        break;
-      case "signature":
-        $('.js__signature-sponsor-logos').append('<a href="TR?fr_id=' + evID + '&amp;pg=informational&amp;sid=2014"><img src="' + sponsorImg + '" alt="' + sponsorName + '"></a>');
-        $('.js__signature-sponsor-container').fadeIn();
-        break;
-      case "level1":
-        $('.js__level1-sponsor-logos').append('<a href="TR?fr_id=' + evID + '&amp;pg=informational&amp;sid=2014"><img src="' + sponsorImg + '" alt="' + sponsorName + '"></a>');
-        $('.js__level1-sponsor-container').fadeIn();
-        break;
-      case "level2":
-        $('.js__level2-sponsor-logos').append('<a href="TR?fr_id=' + evID + '&amp;pg=informational&amp;sid=2014"><img src="' + sponsorImg + '" alt="' + sponsorName + '"></a>');
-        $('.js__level2-sponsor-container').fadeIn();
-        break;
-      case "level3":
-        $('.js__level3-sponsor-logos').append('<a href="TR?fr_id=' + evID + '&amp;pg=informational&amp;sid=2014">' + sponsorName + '</a><br>');
-        $('.js__level3-sponsor-container').fadeIn();
-        break;
-      case "level4":
-        $('.js__level4-sponsor-logos').append('<a href="TR?fr_id=' + evID + '&amp;pg=informational&amp;sid=2014">' + sponsorName + '</a><br>');
-        $('.js__level4-sponsor-container').fadeIn();
+          // TODO - add logic to show levels when a sponsor is added
+          switch (sponsorLevel) {
+            case "life":
+              $('.js__life-sponsor-logos').append('<a href="TR?fr_id=' + evID + '&amp;pg=informational&amp;sid=2014"><img src="' + sponsorImg + '" alt="' + sponsorName + '"></a>');
+              $('.js__life-sponsor-container').fadeIn();
+              break;
+            case "platform":
+              $('.js__platform-sponsor-logos').append('<a href="TR?fr_id=' + evID + '&amp;pg=informational&amp;sid=2014"><img src="' + sponsorImg + '" alt="' + sponsorName + '"></a>');
+              $('.js__platform-sponsor-container').fadeIn();
+              break;
+            case "signature":
+              $('.js__signature-sponsor-logos').append('<a href="TR?fr_id=' + evID + '&amp;pg=informational&amp;sid=2014"><img src="' + sponsorImg + '" alt="' + sponsorName + '"></a>');
+              $('.js__signature-sponsor-container').fadeIn();
+              break;
+            case "level1":
+              $('.js__level1-sponsor-logos').append('<a href="TR?fr_id=' + evID + '&amp;pg=informational&amp;sid=2014"><img src="' + sponsorImg + '" alt="' + sponsorName + '"></a>');
+              $('.js__level1-sponsor-container').fadeIn();
+              break;
+            case "level2":
+              $('.js__level2-sponsor-logos').append('<a href="TR?fr_id=' + evID + '&amp;pg=informational&amp;sid=2014"><img src="' + sponsorImg + '" alt="' + sponsorName + '"></a>');
+              $('.js__level2-sponsor-container').fadeIn();
+              break;
+            case "level3":
+              $('.js__level3-sponsor-logos').append('<a href="TR?fr_id=' + evID + '&amp;pg=informational&amp;sid=2014">' + sponsorName + '</a><br>');
+              $('.js__level3-sponsor-container').fadeIn();
+              break;
+            case "level4":
+              $('.js__level4-sponsor-logos').append('<a href="TR?fr_id=' + evID + '&amp;pg=informational&amp;sid=2014">' + sponsorName + '</a><br>');
+              $('.js__level4-sponsor-container').fadeIn();
 
-        break;
+              break;
+          }
+
+          // var sponsorToPush = { }; 
+          // sponsorToPush["sponsorName"] = sponsorName;
+          // sponsorToPush["sponsorLevel"] = sponsorLevel;
+          // sponsorToPush["sponsorImg"] = sponsorImg;
+          // sponsorToPush["sponsorLevel"] = sponsorLevel;
+          // sponsorToPush["sponsorUrl"] = sponsorUrl;
+          // sponsorsArray.push(sponsorToPush);
+
+        });
+
+      }
     }
-
-    // var sponsorToPush = { }; 
-    // sponsorToPush["sponsorName"] = sponsorName;
-    // sponsorToPush["sponsorLevel"] = sponsorLevel;
-    // sponsorToPush["sponsorImg"] = sponsorImg;
-    // sponsorToPush["sponsorLevel"] = sponsorLevel;
-    // sponsorToPush["sponsorUrl"] = sponsorUrl;
-    // sponsorsArray.push(sponsorToPush);
-
-  });
-
-    }
-  }
     if ($('body').is('.pg_personal')) {
       var personalHeadline = $('#personal_page_header h2');
       $(personalHeadline).replaceWith('<h1>' + $(personalHeadline).text() + '</h1>');
@@ -2842,15 +2884,43 @@ if($('.tr_sponsorship_logos').length){
       $(companyHeadline).replaceWith('<h1>' + $(companyHeadline).text() + '</h1>');
     }
     if ($('body').is('.app_donation')) {
+      /* 2019 DF UPDATES */
+      // add donor recognition label
+      $('<legend>Donor Recognition:</legend>').insertBefore('#tr_recognition_nameanonymous_row #tr_recognition_nameanonymousname');
+
+      // update anonymous checkbox text
+      $('label[for=tr_recognition_nameanonymousname]').text('Do not display my name on any donor lists or pages on this site.');
+
+      // Add text above matching company label
+      // removed code
+      
+      // wrap billing fields into container
+      $('#billing_first_name_row, #billing_last_name_row, #donor_email_address_row, .custom-field-container:contains("Cell or Phone Number"), #billing_addr_street1_row, #billing_addr_street2_row, #billing_addr_city_row, #billing_addr_state_row, #billing_addr_zip_row, #billing_addr_country_row').wrapAll('<div class="billing-fields-container"></div>');
+
+      // change paypal logo
+      $('#responsive_payment_typepay_typeradio_payment_types .external-payment img').attr('src', 'http://heartdev.convio.net/images/content/pagebuilder/aha_cn_donation_form_paypal_logo.png');
+
+      // change cc logos
+      $('#responsive_payment_typecc_type_Visa').attr('src', 'http://heartdev.convio.net/images/content/pagebuilder/aha_cn_donation_form_credit_cards_visa.png');
+      $('#responsive_payment_typecc_type_Discover').attr('src', 'http://heartdev.convio.net/images/content/pagebuilder/aha_cn_donation_form_credit_cards_discover.png');
+      $('#responsive_payment_typecc_type_American_Express').attr('src', 'http://heartdev.convio.net/images/content/pagebuilder/aha_cn_donation_form_credit_cards_amex.png');
+      $('#responsive_payment_typecc_type_MasterCard').attr('src', 'http://heartdev.convio.net/images/content/pagebuilder/aha_cn_donation_form_credit_cards_mastercard.png');
+
+      // wrap cc fields into container
+      $('#responsive_payment_typecc_number_row, #responsive_payment_typecc_exp_date_row').wrapAll('<div class="cc-fields-container"></div>');
+
+      // wrap cc expiration dates into separate containers 
+      $('label[for=responsive_payment_typecc_exp_date_MONTH], select#responsive_payment_typecc_exp_date_MONTH').wrapAll('<div class="cc-expiration-date-month-container expiration-date-fields"></div>');
+      $('label[for=responsive_payment_typecc_exp_date_YEAR], select#responsive_payment_typecc_exp_date_YEAR').wrapAll('<div class="cc-expiration-date-year-container expiration-date-fields"></div>');
+
+      // apply button styles classes 
+      $('#pstep_finish').addClass('btn-rounded btn-primary')
+      /* END 2019 DF UPDATES */
+      
       // replace duplicate ID
       $('#level_flexible_row.form-row.form-donation-level').attr('id', 'level_flexible_row2');
 
       $('.donation-level-user-entered input[type="text"]').after('<small class="form-text text-muted"><em>($25 minimum)</em></small>');
-
-      // Add text above matching company label
-      $('#donor_matching_employer_Row').prepend('<p><strong>Play matchmaker. Here&#8217;s how.</strong></p><ul><li>Find out if your employer participates in a matching gifts program, an easy way to increase your donation.</li><li>Just fill in your company&#8217;s details below.</li></ul>');
-
-      // $('fieldset.cardExpGroup').prepend('<legend class="aural-only">Credit Card Expires</legend>');
 
       $('#level_flexible_row2').wrapInner('<fieldset></fieldset>');
       $('#level_flexible_row2 fieldset').prepend('<legend class="aural-only">Select Gift Amount</legend>');
@@ -2969,7 +3039,7 @@ if($('.tr_sponsorship_logos').length){
       }
 
       $('#ProcessForm').parsley(parsleyDonDefaults);
- 
+
       $('.internal-payment').on('click', function (e) {
         $('#responsive_payment_typecc_numbername').attr('data-parsley-required', '');
         $('#responsive_payment_typecc_cvvname').attr('data-parsley-required', '');
@@ -2980,14 +3050,14 @@ if($('.tr_sponsorship_logos').length){
       });
 
       $('#pstep_finish').on('click', function (e) {
-          var r = /((?:\d{4}[ -]?){3}\d{3,4})/gm;
-          $('[type=text]:not(#responsive_payment_typecc_numbername)').each(function() {
-             jQuery(this).val(jQuery(this).val().replace(r,""));
-          });
-          var rawPhoneNumber = $('#cell_or_phone_number_input').val();
-          var cleanPhoneNumber = rawPhoneNumber.replace(/[()-]/g,"");
-          cleanPhoneNumber = cleanPhoneNumber.replace(/\s/g,"");
-          $('#cell_or_phone_number_input').val(cleanPhoneNumber);
+        var r = /((?:\d{4}[ -]?){3}\d{3,4})/gm;
+        $('[type=text]:not(#responsive_payment_typecc_numbername)').each(function () {
+          jQuery(this).val(jQuery(this).val().replace(r, ""));
+        });
+        var rawPhoneNumber = $('#cell_or_phone_number_input').val();
+        var cleanPhoneNumber = rawPhoneNumber.replace(/[()-]/g, "");
+        cleanPhoneNumber = cleanPhoneNumber.replace(/\s/g, "");
+        $('#cell_or_phone_number_input').val(cleanPhoneNumber);
       });
 
     }
