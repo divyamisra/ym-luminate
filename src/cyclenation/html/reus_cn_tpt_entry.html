@@ -51,12 +51,16 @@
           <div class="event-info-item">
             <div class="event-info-item-icon"><i class="fas fa-info-circle" aria-hidden="true" alt=""></i></div><a class="scroll-link" href="#eventDetails">More Details</a>
           </div>
-          <div class="event-info-buttons">
+          <div class="event-info-buttons row">
           [[?x1x2x::x[[S42:0:status]]x::
-            <a href="SPageServer/?pagename=cn_register&amp;fr_id=[[S334:fr_id]]&amp;s_regType=" class="btn-rounded btn-primary col-12 col-md-6">Register</a>
+          <div class="col-md-6 mb-1">
+            <a href="SPageServer/?pagename=cn_register&amp;fr_id=[[S334:fr_id]]&amp;s_regType=" class="text-center btn-rounded btn-primary btn-block" aria-label="Register for CycleNation [[E47:[[S334:fr_id]]:fr_info:1:event_location_city]]">Register</a>
+          </div>
           ::]]
           [[?x2x3x::x[[S42:0:status]]x::
-            <a href="#fundraiserSearch" class="btn-rounded btn-primary col-12 col-md-6 scroll-link">Donate</a>
+          <div class="col-md-6 mb-1">
+            <a href="#fundraiserSearch" class="text-center btn-rounded btn-primary btn-block scroll-link" aria-label="Donate to CycleNation [[E47:[[S334:fr_id]]:fr_info:1:event_location_city]]">Donate</a>
+          </div>
           ::]]
           </div>
         </div>
@@ -231,7 +235,7 @@
               </div>
             </div>
             <!-- DETAILS TEXT -->
-            <div id="collapseTwo" class="details-items-text collapse dont-collapse-lg col-12 col-sm-8 pl-0 pt-3 pt-lg-0" aria-labelledby="headingTwo" data-parent="#event-details-accordion">
+            <div id="collapseTwo" class="details-items-text collapse dont-collapse-lg location-accordion col-12 col-sm-8 pl-0 pt-3 pt-lg-0" aria-labelledby="headingTwo" data-parent="#event-details-accordion">
               <div class="card-body">
                 <h3 class="text-uppercase text-primary text-bold mb-1">Location</h3>
                 <!-- <p class="mb-1">[[E47:[[S334:fr_id]]:fr_info:1:event_location]]</p> -->
@@ -487,7 +491,7 @@
               <div class="card-body">
                 <h3 class="text-uppercase text-primary text-bold mb-1">Questions?</h3>
                 <a href="TR?fr_id=[[S80:evID]]&amp;pg=informational&amp;sid=2012" target="_blank">FAQ<i class="fas fa-angle-right" aria-hidden="true" alt=""></i></a><br>
-                <p class="mb-1"><a href="mailto:[[E47:[[S334:fr_id]]:fr_info:1:coordinator_email]]">Email us</a> or call<br><a href="tel:+!-[[E47:[[S334:fr_id]]:fr_info:1:coordinator_phone]]">[[E47:[[S334:fr_id]]:fr_info:1:coordinator_phone]]</a></p>
+                <p class="mb-1"><a href="mailto:[[E47:[[S334:fr_id]]:fr_info:1:coordinator_email]]">Email us</a> or call<br><a href="tel://+1[[T9:[[E47:[[S334:fr_id]]:fr_info:1:coordinator_phone]]]]">[[E47:[[S334:fr_id]]:fr_info:1:coordinator_phone]]</a></p>
               </div>
             </div>
             <!-- END DETAILS TEXT -->
