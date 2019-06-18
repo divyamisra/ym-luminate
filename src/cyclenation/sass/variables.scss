@@ -1,17 +1,22 @@
 
-$red:     #de2427 !default;
+$red: #c10e21 !default;
+$red-deep: #990000 !default;
+$red-light: #f5eff1 !default;
 $primary: $red !default;
 $success: #5cb85c !default;
 $white: #FFFFFF !default;
-$dark: #666666 !default;
+$dark: #636466 !default;
 $gray-600: #515151 !default;
 $gray-500: #8d8d8d !default;
+$gray-300: #f5eff1 !default;
+$gray-background: #f2f2f2 !default;
 $progress-bar: #333;
 $progress-bkd: #dfdede !default;
+$progress-thermo-shadow: #afafb1 !default;
 $black: #000000 !default;
 
-$body-color: #333 !default;
-$enable-rounded:            false !default;
+$body-color: $black !default;
+$enable-rounded: false !default;
 
 $spacer: 1rem !default;
 $spacers: () !default;
@@ -26,7 +31,7 @@ $spacers: map-merge((
 
 $link-color:                $primary !default;
 $link-decoration:           none !default;
-$link-hover-color:          #c82333 !default;
+$link-hover-color:          $red-deep !default;
 $link-hover-decoration:     underline !default;
 
 // $input-color:                $gray-700 !default;
@@ -44,7 +49,7 @@ $transition-collapse:         height .35s ease !default;
 
 $font-size-base:              1rem !default; // Assumes the browser default, typically `16px`
 
-$font-family-sans-serif: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif !default;
+$font-family-sans-serif: Montserrat, "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif !default;
 $font-family-base: $font-family-sans-serif !default;
 
 $font-family-sans-serif:      -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !default;
@@ -56,16 +61,18 @@ $font-size-base:              1rem !default; // Assumes the browser default, typ
 $font-size-lg:                ($font-size-base * 1.25) !default;
 $font-size-md:                ($font-size-base * 1.125) !default;
 $font-size-sm:                ($font-size-base * .875) !default;
+$font-size-24:                ($font-size-base * 1.5) !default;
 
 $font-weight-light:           300 !default;
 $font-weight-normal:          400 !default;
+$font-weight-medium:          500 !default;
 $font-weight-bold:            700 !default;
 
 $font-weight-base:            $font-weight-normal !default;
 $line-height-base:            1.5 !default;
 
 $h1-font-size:                $font-size-base * 2.5 !default;
-$h2-font-size:                $font-size-base * 2 !default;
+$h2-font-size:                $font-size-base * 2.7 !default;
 $h3-font-size:                $font-size-base * 1.75 !default;
 $h4-font-size:                $font-size-base * 1.5 !default;
 $h5-font-size:                $font-size-base * 1.25 !default;
@@ -118,6 +125,7 @@ $display-line-height:         $headings-line-height !default;
 // $btn-primary-darker-bg: $brand-primary-darker !default;
 // $btn-primary-darker-border: $btn-primary-darker-bg !default;
 
+$input-padding-y: 0;
 // $input-border-radius: $border-radius-base !default;
 
 $screen-sm: 768px !default;
@@ -138,3 +146,4 @@ $screen-md-max: ($screen-lg-min - 1) !default;
 // $alert-border-radius: $border-radius-base !default;
 
 // $panel-border-radius: $border-radius-base !default;
+

@@ -1,406 +1,204 @@
-<section id="eventSearch" class="container pt-0">
+<!-- HERO -->
+<section id="hero" class="section-hero hero" style="background-image: url(../images/content/pagebuilder/AHA_CN_2019_landing_rotator_[[?xx::x[[S80:landingPhotoNum]]x::1::[[S80:landingPhotoNum]]]].jpg);">
+  <div class="container container-md text-right">
+    <div class="hero-text-container">
+      <h1 class="display-3 py-4 pr-3 hero-title">Get yourself in gear</h1>
+      <p class="h2 pb-5 hero-subtitle">Get on your bike and be moved</p>
+    </div>
+  </div>
+</section>
+<!-- END HERO -->
+<!-- EVENT SEARCH SECTION -->
+<section id="eventSearch" class="section-event-search gradient-background pt-5 pb-5">
+  <div class="event-search-container container">
     <div class="row">
       <div class="col-sm-12 col-md-12 col-lg-8 offset-lg-2 offset-sm-0">
-        <h2 class="text-center pb-4">Find an Event:</h2>
-        <form name="event_search_form" class="js__event-search-form">
-          <div class="row">
-            <div class="form-group col-md-10 offset-md-1 mb-4">
-              <label for="name" class="sr-only">City, State or Other Search Keyword</label>
-              <input type="text" class="search form-control form-control-lg w-100" id="name" placeholder="Type in a City, State, Venue Name or Event Type">
-            </div>
-          </div>
-          <div class="row">
-            <div class="form-group col-md-7 offset-md-1">
-              <div class="form-check form-check-inline">
-                Filter by:
-              </div>
-              <div class="form-check form-check-inline">
-                <label for="stationary_cycling" class="">
-                  <input type="checkbox" name="stationary_cycling" id="stationary_cycling" class="filter form-check-input" data-filter="Stationary Cycling"> Stationary
-                </label>
-              </div>
-              <div class="form-check form-check-inline">
-                <label for="road_cycling" class="">
-                  <input type="checkbox" name="road_cycling" id="road_cycling" class="filter form-check-input" data-filter="Road Cycling"> Road Cycling
-                </label>
-              </div>
-            </div>
-            <div class="col-md-3 text-center text-sm-left text-md-right">
-              <a href="#" class="js__clear-event-filters text-secondary  d-none">
-                <i class="fa fa-times-circle"></i> Clear Filters</a>
-            </div>
-          </div>
-        </form>
-      </div>
-      <div class="js__no-event-results alert alert-primary text-center col-md-8 offset-md-2 d-none" role="alert">
-        <span>Sorry. Your search did not return any events.</span>
-      </div>
-
-      <ul class="list js__event-search-results col-sm-12 col-lg-8 offset-lg-2 mt-4 fadein"></ul>
-
-      <div class="js__show-more-container col-md-4 offset-md-4">
-        <a href="#" class="js__show-more-events button btn-outline-dark btn-lg btn-block">Show More Events</a>
-        <a href="#" class="js__show-fewer-events button btn-outline-dark btn-lg btn-block" hidden>Show Fewer Events</a>
-      </div>
-
-  </section>
-
-  <!-- Ride for What's at Stake section -->
-  <section id="whatsAtStake" class="section-whats-at-stake">
-    <img class="w-100" src="../images/content/pagebuilder/aha-cn-black-top.jpg" alt="decorative black and gray image">
-    <div class="container">
-      <div class="row">
-        <div class="col-12">
-          <h2 class="h1 pb-2 text-center">Ride for What's at Stake</h2>
-        </div>
-        <div class="col-12 col-md-6 mx-auto">
-          <p class="h4 pb-5 text-center">In the United States, someone has a stroke and dies of a heart attack
-            <span class="text-primary">
-              <strong>every 40 seconds</strong>
-            </span> and we intend to change that number.</p>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-12">
-          <h2 class="h1 pb-2 text-center">What will it take?</h2>
-        </div>
-        <div class="col-12 col-md-6 mx-auto">
-          <p class="h4 pb-5 text-center">Educating people about living heart-healthy. More research and advocacy that transforms health.</p>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-12">
-          <h2 class="h1 pb-4 text-center">And you.</h2>
-        </div>
-        <div class="col-md-12 col-lg-9 d-flex flex-column flex-md-row mx-auto justify-content-between">
-          <div class="col-xs-auto col-md-3 text-center pb-4 px-md-0">
-            <!-- animated gear icon -->
-            <svg id="Gear_with_Heart_1" data-name="Gear with Heart" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-              width="103" height="103" viewBox="0 0 103 103">
-              <metadata>
-                <?xpacket begin="﻿" id="W5M0MpCehiHzreSzNTczkc9d"?>
-                  <x:xmpmeta xmlns:x="adobe:ns:meta/" x:xmptk="Adobe XMP Core 5.6-c140 79.160451, 2017/05/06-01:08:21        ">
-                    <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-                      <rdf:Description rdf:about="" />
-                    </rdf:RDF>
-                  </x:xmpmeta>
-                  <?xpacket end="w"?>
-              </metadata>
-              <image class="animated-gear js__animated-gears" id="Gear_copy_6" data-name="Gear copy 6" width="103" height="103" xlink:href="data:img/png;base64,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"/>
-            </svg>
-
-            <h2 class="h4 pt-4">Sign Up for an Event</h2>
-          </div>
-          <div class="col-xs-auto col-md-3 text-center pb-4 px-md-0">
-            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="103" height="103" viewBox="0 0 103 103">
-              <metadata>
-                <?xpacket begin="﻿" id="W5M0MpCehiHzreSzNTczkc9d"?>
-                  <x:xmpmeta xmlns:x="adobe:ns:meta/" x:xmptk="Adobe XMP Core 5.6-c140 79.160451, 2017/05/06-01:08:21        ">
-                    <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-                      <rdf:Description rdf:about="" />
-                    </rdf:RDF>
-                  </x:xmpmeta>
-                  <?xpacket end="w"?>
-              </metadata>
-              <image id="AHA_Heart_2" data-name="AHA Heart" width="103" height="103" xlink:href="data:img/png;base64,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"/>
-            </svg>
-
-            <h2 class="h4 pt-4">Fundraise and Get Supporters</h2>
-          </div>
-          <div class="col-xs-auto col-md-3 text-center pb-4 px-md-0">
-            <svg id="Gear_with_Heart_2" data-name="Gear with Heart" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-              width="103" height="103" viewBox="0 0 103 103">
-              <metadata>
-                <?xpacket begin="﻿" id="W5M0MpCehiHzreSzNTczkc9d"?>
-                  <x:xmpmeta xmlns:x="adobe:ns:meta/" x:xmptk="Adobe XMP Core 5.6-c140 79.160451, 2017/05/06-01:08:21        ">
-                    <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-                      <rdf:Description rdf:about="" />
-                    </rdf:RDF>
-                  </x:xmpmeta>
-                  <?xpacket end="w"?>
-              </metadata>
-              <image class="animated-gear js__animated-gears" id="Gear_copy_7" data-name="Gear copy 7" width="103" height="103" xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGcAAABnCAQAAAC3SJRyAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QAAKqNIzIAAAAJcEhZcwAACxIAAAsSAdLdfvwAAAAHdElNRQfiAg0RFx79musmAAAMYElEQVR42sWca3QV1RXH9yQhEIgQCGgiCEFBkIKGl6CIUrXSqtUutYpxoYjWirEWK2BQVn3wEAR08SrYIr4qGGtBF4iIikLoWqK2PiAKQhATKoGCQuSVC8mvH3Jz75yZc2bmvsz+dGdm7/8+/zMzZ87Ze58rkkJhGpbjzN30TqXHZDY+03HcHbhFOdOO75nlsju1qVuuI9Oa1WQoZx4D9tLGdmYhUO3QmkRJU7ddR2cQsCT6cGGxE4D5kTN9qQPgGpvVSGBpU7ddR2cUAJMjxxfRIHUMFREhk03hMysiOsMIAZubuu0iwrWkK8czw439g4gIzVlHoxzhaUr4PHJczy9FROjPQQBO2N86LB5oguGCD3iHDrbjNyPNfYd5bMdL6lnPu5yMHPeNoLSiFChsCjqwmwvCR605RPwyO4zSjS3QNHRWARDiIfLow/sJkAGYz3DGhx++JqHzeoIEvCRuOmmBm38DWcqJ9KCWcUhzm998FnB+0j2whD2MbaREc3an8O4sCHvJZTrHqOeU5NMZA8AexpJLAct9GnSYWsOVo6zgY4752L/MSGaE36WtKbj/DAzUr7Ws4gEGkEFOeLBQ5RjniIiQQX/G8baRtF2WpYJOpo/retZyuzJD66fRWu9AbcNI3vOhMz4FdET41OPRms/ZLv3WGs1SLfLZzOWIEf265DQ/y3H8ldbZMWaSY0DY79Kea/TWnumGN2qaTSuHInrGR2cOZZTQJ3xUpHX1Ep09ED5x6U/09NiZZRofIe4ki7O4j3c5wUFaxkendxjuW5ayVuOmkit8EF512dzh6/UKdnm+SfPiIiMiwgYP2Odo7Wv/pMvqygBes3new2+f+OkUGSBr+V0g+7tdlgMDer7d8B5tipuMCJmalxm+Y1BA++Eu246BfQ9in8b3fd5WnnM2KyTu3qiQC62gfVTlOnM0KB1rkwySCtfp40HtdT2USZWjdzZzWgz2t7h69/aY/Hdih8P+Q2e8yNEJDoBeMli+k++k2tpHe5kjRcrlChlq7QnUkAwZIJfJg+KcPNbJctkk/5KPrPpAOB2lTLoqpz6XUsmQznKGdJEaGWqFvMxbuvojKvvoKr6Cxc95NrIQM2Mt5qJAhLrzPyPKUH/zSw2mocaFtNc9YXR4eRxMNnMbvisuhhDSWi8O0h3Cs1rjsb52V7M1BiqN8iVX+SLfq7HbS9tgdHLY4zJe4Yw2O2w68I84qDRKqV9gV4OunV9oG0mJPKGc2Cc9rR88nA2TV6WD9tIe2Sq7pEZqpLWcImdKd+lo0LvJKvPwkCvloo6pedbeQHcnEtGMys2e2sWccPVdiOWMopNGuxMjWaFZO53kLk8v1zv0LwlKJt0WwQRY46k9ydWw/ZTQ3sdHLiWar/4jnjZrFN1yunspZ3I6/RjOaAeZenp5WD3qaFAtk8kO2G1ZPM5xh/1DHvo9bXHTBqnkE9ayjAUOalwbju675QUPB3c4dD+lRzAqEYQerjXuaA9t00zbvSjkLq3iSboZwS9wvDPP0SI2MiIiNHd8GELmCS7dXPcHYKl21GWcRrXUCN2OSkVzSuxUIliPKUhVpsW6dkH4lnEWx1SX8jAj8BJFb2r8ZEREmKKgGb/3DHW0b4vHUhuLjYryl0bNixW9F70/sgHoWLykIF5s1FRnHr/3hlXvjyFriRXJpAGUxxmMUDGz2GzD3GTqIMeDeY836NuKsiEExG+UweK8xMmIiHCe8qJfY9DqqbRwG+1McG2YrqgaY8NKSMQYOYuD0Gwb7vtGrS+VVu5jDlfbgvKkMYCH2eCaqswywPWy6fxoHoXioJPDYRu2IUPKfNxyko1MJE1oyQfo5QYD3AybzpPJIyMiojwf0w06I7St3R5OcpHFQq3C6Qa4bTadLkmmU+D/sJOnaesrSg6I6/jeoVBlAOtm09mQXDIi4RRyoxgW81QrLQ1Fh+vw0tZaLoWifmW2GfzZl9jLk09HVtp+m6IJ25WjYusZBx0Rq1LUMXyXAco+o9qYAjrvGXyZ6djSWfbAg3o/THSi36KQfJoCOpslGmoyzc9VOgV6Ompa6L8GqKjxdqsu+WysOlu3nmVQOqgcLYxWn4TpkMV4eUpRMoVfo0GKXcknIyIilZFfpi/+j8rRRbKTGeSH6ZBNieySJ+3ZfBGpNUBFB8SaFNGJ4rYxaPzoOM6WCbKThXTNYJyUSK7G5JAORymt8wqnJiI2XDKskwHb1kJ+KxVp8qqUauPyzXSeFHDP4HcCYsPVkhFxl01UyzgpsGalWZVWsRTIDBdj06Q/quebfYtTorim9Ifa1cdlgpxpzbYO286Ry3rlW2sIQVAR0UhRlSDlEQ8VBg015GJbwkU/owccn1FTpGxH5FcPUlBmRLpEgy2GiZbkK0eva+iIyLeKUoEB6uvIr2YSf9rVLH1t7065QUf9HtkWmXY6RR4mUbEnEi9PAZ1htt8fG3TUYNlfOMOlwd2OLMpuPRJdbDofJJ+NEnwxzaidGY4fuN5+uQ2vaNYQhiQFX/s7jJuMfb2zxaBzunZ19gwtG2YF/eU/cpPG7lKDT3so0TswFLsU236vMOjog1Z3yUqyhHRK2KBN1y0y9E4fm85hciVpQlslVmB4M1ngaGeIdTxIoS2URTZX8pRjlWda3A5RtJ5OIp25CvIMg5YayZliLKahrSPGqImz0c9RCHYyWtSdIJm+roD6C5oqubMUjbe8IYsVZUfkmcGs1jyU5bRKAplWjl5vkHpK1e5ionJ9sjfoPYryN7YdHxc6sl92eSkJMeqXMctb0QoCB+kyD8+0dPXQjSIiDDPG4hpleoA2e9F5Aj8p4yo6a0KGj5kgMx0R6oabvYaPfF0BTIn3DmEFIOMl43SgadpPaSzyfFzZtyxeSNCvLi3CvIRB4bOGKukYyPTiMwfGIU1a30/q+LUK2425/J3VfMgO6gNBHOdP9Hc9y7VMDZy5zmaq6/P9Z9LI9a2hb5B13MovOJc8dTed001X2wLKJFWNZZA87rq2n0l+cwU6MFFTyfhI5G0qMWbSG+XdwKstR6rQLRvtRXqM0UyRTvAGoyjQYHdhNK9r60SU+lIu1xZuRmWUruX6mpzTpNqD7UIZqxbFMURekzytbrV8LZVyQGqlheRIFzlHTjXo3eisyaGLvCYDjK142JomwcRV/mDvwzu1Fh08P4N+8or+4aSFoRgNoDpoAVg79hog9nuV6PEr7TTFT7Z411bzkNFySTA6i40AxT6WaYyIqdrwC271HJVEhBwP+8v8yVziYT4mUHcM5q8+rzEcYJG5BENBO19j3Vg+VuEsAXBW6mbKRsmWSqmSSjkhI0RNsu+US6zdEkBIk0K5XAqlp/SwBSCPyg7ZJh9JmfzbEN904nSSDY5K3Zflj9YBciVfOkq+bLK+CoITJseHjn4pJy+weRSlLQWc6txAE4SMEpcAqCKRULKmjmpHstO7Rt9naoqg30wMcqzmya0OujEiIc8DtePr/sTujn5xcJTbUkzmVlcdYqMUxQ96nsfYtDjoVDNmr9mO4jJVyuIH9l40VAQbamP0eSnfaHyt4cXI+fi2/9OSg4RYSzEFNGe0Nhb3Ivlxges95juq2hplRPh6LyawnjnxgffgJmUf6DStqyNMDjh78vbWjimGzZaOPELsA77e4XXGx+4wMxOJVtOVWUr8U5VPktJ8l9Pxnm9SPau5Oda6Q7K5mTU+69/jNIsNNZjrZfjLMVZxL739trGQRh/uY5XvVvIG6Re0jTEEk9gqPUTkkCySchkut3gq18jnsll2SqXslYNSIyItJFuy5TTpJN3lZ1Io3sP8CrlfaqRIJkmeiIyxFklyhVOo5xjTGxda2pq/ZMluwiUbZDGWPfwtyWREGMgC+6DMoBTSWal4bqXk1jwlI6ii9bEjU1kb1DIOUUqXrCPyz6CGgf/rwyiHZIIMlwUJorwv50q+TJQTIhJDJydNKATgC8IZbp5O4OE61JhyYjBVpCSFHITOsmhmh/6Rxp1graOCxC1bmWfbZb/ahtued5qCTm/uV46bh3NnBxu+Elxta/xnlDDb9t1f17BqiSTHZipI6Vz7k9PRENwChKKzbN4INza8sZghkUDtkIhOw46CUU3ddh2dpSj/lhfeqVAX3aMQTuXusGeCeJbA2/5/WjoT1Z1rNGMfkb/wERGhDXuBRxWtdFamaiGYGB1XjRVPsV/dwcFIcG4/S2j1/5MSPNeZF8Piifiwgsn/AV18gPmVt/UYAAAAAElFTkSuQmCC"/>
-              <image id="Vector_Smart_Object" data-name="Vector Smart Object" x="41" y="42" width="21" height="19" xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAABUAAAATCAMAAABIkLa5AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAA/1BMVEX////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////2wsPnX2HeJyrgMDPypqf2w8TfKi3eJCfpamz75OToZWfgLzLoZGbfKy7hNzrrfX/rfH32xsfujY7ujI3lUlXlUlT87OzjR0rjRkn86+z+9vbmWVz99fXth4jzs7TgMTTgMjX0s7T63d3qdHb63t8AAABuoZ36AAAALnRSTlMAD37Y/fa1OiXd/nEKtnfQ+OqztFtdBt5JSo2OA6ytoaIEAYVQ8O8dvrwcauJmFfuqBQAAAAFiS0dEVOQDiKUAAAAJcEhZcwAACxIAAAsSAdLdfvwAAAAHdElNRQfiAg0RFx79musmAAAA2klEQVQY013Q11LCUBhF4U0ngBQLWLAF7LrohyIodkXs7/8uJoFBk3W155v5L86RFApHorF4QlIiHotGwiFnKWnhlkornfKWlZQyFrV6o9mCJWg1G/UaVkZZ2h3j1O3R67qj0yarHH3jNbgczEafnPIMjb8heYEJBiowCuCIgpa5Cug1K1plHNAxayqWuPHhLaWitA53//AeNtwnb/LwuMCnZ7ZcVHmbl8kcJ6/slDXjXZh6OIW9fc2zK/D2bj4+oWLrr+oBX98/HFbl6+jY+dmTUwWyz84vFte/qqU6tLqEdwQAAAAASUVORK5CYII="/>
-            </svg>
-            <h2 class="h4 pt-4">Get Healthy &amp; Save Lives</h2>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-8 mx-auto">
-          <p class="p-4 text-center">
-            <a href="PageServer/?pagename=cn_how_it_works" class="button btn-lg btn-primary">Learn more</a>
-          </p>
-        </div>
-      </div>
-    </div>
-    <img class="w-100" src="../images/content/pagebuilder/aha-cn-black-bottom.jpg" alt="decorative black and gray image">
-  </section>
-
-  <section id="fundraiser" class="section-fundraiser pt-0 pb-5">
-    <div class="leaderboard-container container">
-      <div class="row">
-        <div class="col-md-12 text-center">
-          <h2 class="h1 pb-4">Leaders of the Fundraising Pack</h2>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-4">
-          <h2 class="h4 text-center py-3 section-fundraiser-list-title">Top Individuals</h2>
-          <div class="table-responsive px-2">
-            <table class="table">
-              <!-- <caption>List of top fundraisers</caption> -->
-              <thead class="sr-only">
-                <tr>
-                  <th scope="col">Fundraiser Name</th>
-                  <th scope="col">Fundraiser Amount</th>
-                </tr>
-              </thead>
-              <tbody class="js__top-participants-list"></tbody>
-            </table>
-          </div>
-        </div>
-
-        <div class="col-md-4">
-          <h2 class="h4 text-center py-3 section-fundraiser-list-title">Top Teams</h2>
-          <div class="table-responsive px-2">
-            <table class="table">
-              <!-- <caption>List of top fundraisers</caption> -->
-              <thead class="sr-only">
-                <tr>
-                  <th scope="col">Fundraiser Name</th>
-                  <th scope="col">Fundraiser Amount</th>
-                </tr>
-              </thead>
-              <tbody class="js__top-teams-list"></tbody>
-            </table>
-          </div>
-        </div>
-
-        <div class="col-md-4">
-          <h2 class="h4 text-center py-3 section-fundraiser-list-title">Top Companies</h2>
-          <div class="table-responsive px-2">
-            <table class="table">
-              <!-- <caption>List of top fundraisers</caption> -->
-              <thead class="sr-only">
-                <tr>
-                  <th scope="col">Fundraiser Name</th>
-                  <th scope="col">Fundraiser Amount</th>
-                </tr>
-              </thead>
-              <tbody class="js__top-companies-list"></tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
- <!-- <section id="fundraiserStats" class="container section-fundraiser-stats mb-5">
-      <div class="row">
-          <div class="col-12">
-            <h1 class="text-center pb-4">We've Raised
-              <strong class="text-primary">
-                <span class="js__all-event-raised"></span>
-              </strong> to End Stroke</h1>
-          </div>
-        </div>
-        
+        <h2 class="text-center pb-4">Find your CycleNation event</h2>
         <div class="row">
-            <div class="col-md-12 section-event-stats-thermometer-container">
-              <div class="position-relative h-100 text-center">
-                <progress class="section-event-stats-thermometer js__greeting-thermo" max="100" value="0"></progress>
-                <h2 class="h3 position-absolute section-event-stats-percentage js__event-stats-percent"></h2>
-              </div>
-            </div>
+          <div class="form-group col-12 col-lg-6">
+            <form class="row ml-0 mr-0 pr-0 pl-0 js__zip-search">
+                <label for="zip" class="sr-only">Enter Zip</label>
+                <input type="text" class="search form-control col-10 col-lg-9" id="zip" placeholder="Enter ZIP">
+                <button type="submit" class="search-button action-button search-submit col-2 col-lg-3"><span class="sr-only">Search</span>
+                  <svg version="1.1" class="search-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                  viewBox="0 0 24 24" style="enable-background:new 0 0 24 24;" xml:space="preserve" aria-hidden="true">
+               <g transform="translate(-1358,-18)">
+                 <path class="st0" d="M1374.8,33.4l-1.4,1.4l0.7,0.7l5.7,5.7l0.7,0.7l1.4-1.4l-0.7-0.7l-5.7-5.7L1374.8,33.4z"/>
+                 <path class="st0" d="M1368.3,18c-5.6,0-10.3,4.6-10.3,10.3s4.6,10.3,10.3,10.3s10.3-4.6,10.3-10.3S1373.9,18,1368.3,18z
+                    M1368.3,20.1c4.5,0,8.2,3.7,8.2,8.2s-3.7,8.2-8.2,8.2s-8.2-3.7-8.2-8.2S1363.7,20.1,1368.3,20.1z"/>
+               </g>
+               </svg>                </button>
+            </form>
           </div>
-
-</section>-->
-  <section id="fundraiserSearch" class="container section-fundraiser-search">
-        <div class="row">
-          <div class="col-12">
-            <h2 class="h1 text-center pb-4">Search for a Cyclist</h2>
-            <p class="text-center pb-2">Looking for a specific participant, team or company?
-              <br> Simply enter either first name, last name, or team below and click search.</p>
+          <p class="form-group-divider col-12 col-lg-1 text-center">or</p>
+          <div class="form-group select col-12 col-lg-5">
+            <form class="row ml-0 mr-0 pr-0 pl-0 js__state-search">
+                <label for="fr_event_state" class="sr-only">Select State</label>
+                <select name="fr_event_state" id="fr_event_state" class="search form-control col-12" size="1">
+                  <option>Select State</option>
+                  <option value="AK">AK</option>
+                  <option value="AL">AL</option>
+                  <option value="AR">AR</option>
+                  <option value="AZ">AZ</option>
+                  <option value="CA">CA</option>
+                  <option value="CO">CO</option>
+                  <option value="CT">CT</option>
+                  <option value="DC">DC</option>
+                  <option value="DE">DE</option>
+                  <option value="FL">FL</option>
+                  <option value="GA">GA</option>
+                  <option value="HI">HI</option>
+                  <option value="IA">IA</option>
+                  <option value="ID">ID</option>
+                  <option value="IL">IL</option>
+                  <option value="IN">IN</option>
+                  <option value="KS">KS</option>
+                  <option value="KY">KY</option>
+                  <option value="LA">LA</option>
+                  <option value="MA">MA</option>
+                  <option value="MD">MD</option>
+                  <option value="ME">ME</option>
+                  <option value="MI">MI</option>
+                  <option value="MN">MN</option>
+                  <option value="MO">MO</option>
+                  <option value="MS">MS</option>
+                  <option value="MT">MT</option>
+                  <option value="NC">NC</option>
+                  <option value="ND">ND</option>
+                  <option value="NE">NE</option>
+                  <option value="NH">NH</option>
+                  <option value="NJ">NJ</option>
+                  <option value="NM">NM</option>
+                  <option value="NV">NV</option>
+                  <option value="NY">NY</option>
+                  <option value="OH">OH</option>
+                  <option value="OK">OK</option>
+                  <option value="OR">OR</option>
+                  <option value="PA">PA</option>
+                  <option value="RI">RI</option>
+                  <option value="SC">SC</option>
+                  <option value="SD">SD</option>
+                  <option value="TN">TN</option>
+                  <option value="TX">TX</option>
+                  <option value="UT">UT</option>
+                  <option value="VA">VA</option>
+                  <option value="VT">VT</option>
+                  <option value="WA">WA</option>
+                  <option value="WI">WI</option>
+                  <option value="WV">WV</option>
+                  <option value="WY">WY</option>
+                </select>
+                <button type="submit" class="sr-only js__state-search-submit">Select state combo box collapsed</button>
+            </form>
           </div>
         </div>
-    <div class="row">
-      <div class="col-md-8 offset-md-2">
-        <div class="col-xs-12 no-padding border border-top-0 border-right-0">
-          <ul class="nav nav-tabs" role="tablist">
-            <li role="presentation" class="nav-item search-tabs tab-participant">
-              <a href="#participant" id="participantTab" class="nav-link active" aria-controls="participant" role="tab" data-toggle="tab">Participant</a>
-            </li>
-            <li role="presentation" class="nav-item search-tabs tab-team">
-              <a href="#team" aria-controls="team" id="teamTab" class="nav-link" role="tab" data-toggle="tab">Team</a>
-            </li>
-            <li role="presentation" class="nav-item search-tabs tab-company">
-              <a href="#company" aria-controls="company" id="companyTab" class="nav-link" role="tab" data-toggle="tab">Company</a>
-            </li>
-          </ul>
-          <!-- Tab panes -->
-          <div class="tab-content p-2">
-            <div role="tabpanel" class="tab-pane tab-participant active" id="participant">
-              <form lpformnum="2" id="participantSearch" class="form-inline js__participant-search">
-                <div id="error-participant" class="help-block alert alert-danger text-center" hidden></div>
-                <div class="align-items-center">
-                  <div class="form-row ">
-                    <div class="col-auto m-1">
-                      <label for="participant_first_name" class="sr-only">Participant's First Name Field</label>
-                      <input type="text" id="participant_first_name" name="first_name" class="form-control form-control-lg" placeholder="First Name">
-                    </div>
-                    <div class="col-auto m-1">
-                      <label for="participant_last_name" class="sr-only">Participant's Last Name Field</label>
-                      <input type="text" id="participant_last_name" name="last_name" class="form-control form-control-lg" placeholder="Last Name">
-                    </div>
-                    <div class="col-auto m-1">
-                      <button id="search_participant" type="submit" class="button btn-lg btn-primary">Search</button>
-                    </div>
-                  </div>
-                </div>
-              </form>
-              <!-- begin participant table -->
-              <div id="participant_results" class="results-table py-4" hidden>
-                <div id="participant_rows" class="results-rows"></div>
-              </div>
-              <!-- end participant table -->
+      </div>
 
-            </div>
-            <div role="tabpanel" class="tab-pane tab-team" id="team">
-              <!-- <p>Enter the team name you want to donate to.</p> -->
-              <form lpformnum="3" id="teamSearch" class="js__team-search form-inline">
-                <div id="error-team" class="help-block alert alert-danger text-center" hidden></div>
-                <div class="align-items-center">
-                  <div class="form-row">
-                    <div class="col-auto m-1">
-                      <label for="teamName" class="sr-only">Team Name Field</label>
-                      <input type="text" id="teamName" name="team_name" class="form-control form-control-lg" placeholder="Enter team name">
-                    </div>
-                    <div class="col-auto m-1">
-                      <button id="search_team" type="submit" class="button btn-lg btn-primary">Search</button>
-                    </div>
-                  </div>
-                </div>
-              </form>
-              <!-- begin team table -->
-              <div id="team_results" class="results-table py-4" hidden>
-                <div id="team_rows" class="results-rows"></div>
-              </div>
-              <!-- end team table -->
-
-            </div>
-            <div role="tabpanel" class="tab-pane tab-company" id="company">
-              <form lpformnum="4" id="companySearch" class="js__company-search form-inline">
-                <div id="error-company" class="help-block alert alert-danger text-center" hidden></div>
-                <div class="align-items-center">
-                  <div class="form-row">
-                    <div class="col-auto m-1">
-
-                      <label for="company_name" class="sr-only">Company Name Field</label>
-                      <input type="text" id="company_name" name="company_name" class="form-control form-control-lg" placeholder="Company Name">
-                    </div>
-                    <div class="col-auto m-1">
-                      <button id="search_company" type="submit" class="button btn-primary btn-lg">Search</button>
-                    </div>
-                  </div>
-                </div>
-              </form>
-              <div id="company_results" class="results-table py-4" hidden>
-                <div id="company_rows" class="results-rows"></div>
-              </div>
-              <!-- end company table -->
-
-            </div>
-          </div>
-          <!-- end tab panes -->
+      <div class="results-container col-sm-12 pt-3">
+        <div class="results-container-title">
+          <h3>Results</h3>
         </div>
+        <div class="js__loading py-4 text-center  text-primary" style="display:none;"><i class="fas fa-cog fa-2x fa-spin" aria-hidden="true" alt=""></i><br>
+          Loading...
+        </div>
+        <div class="js__no-event-results alert alert-primary text-center col-md-8 offset-md-2 d-none" role="alert" aria-atomic="true">
+          <span>
+            We&#146;re not seeing anything on the horizon. Maybe try different search terms?
+          </span>
+        </div>
+        <ul class="list js__event-search-results col-md-12 mt-4 row fadein">
+        </ul>
+      </div>
 
-
+      <div class="js__show-more-container col-md-4 offset-md-4 text-center">
+        <a href="SPageServer/?pagename=cn_events" class="js__show-more-events text-underline">Show All Events <i class="fas fa-angle-right" aria-hidden="true" alt=""></i></a>
       </div>
     </div>
-  </section>
+  </div>
+</section>
+<!-- END EVENT SEARCH SECTION -->
 
-  <section id="whatInspiresYou" class="section-what-inspires-you">
-    <img class="w-100" src="../images/content/pagebuilder/aha-cn-gray-top.png" alt="decorative gray image">
-
-    <div class="container">
-      <div class="row text-center">
-        <div class="col-md-12">
-          <h2 class="h1 pb-4">What Inspires You?</h2>
-        </div>
-      </div>
-      <div class="row pb-5">
-        <div class="col-md-12 col-lg-9 offset-lg-1 lead">
-          <div class="row">
-            [[S51:reus_cn_home_inspires_story]]
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="registerToday" class="section-mission">
-    <div class="container">
-      <div class="row text-center text-white py-5">
-        <div class="col-md-8 offset-md-2">
-          <h2 class="h1 pb-4">We Are CycleNation</h2>
-          <p class="h2 pb-5">CycleNation empowers people across the country to use road and stationary bikes to get brain and heart healthy
-            &mdash; all while raising funds for community programs that will prevent stroke and heart disease.</p>
-          <p>
-            <a href="#eventSearch" class="scroll-link button btn-primary btn-lg">Register Today</a>
+<!-- WHY WE RIDE SECTION -->
+<section id="why-we-ride" class="section-why-we-ride">
+  <div class="col-md-12 row ml-0 mr-0 pr-0 pl-0">
+    <div class="left-column content-box col-12 col-lg-6 pt-0 pb-0 pr-0 pl-0">
+      <div class="content-box-one">
+        <div class="content-box-container pt-5 pb-5 pl-5 pr-5">
+          <h2>Why We Ride</h2>
+          <p>Our work will fund life-saving stroke and heart disease research and we&#146;re stronger together.
           </p>
-        </div>
+          <p>Let&#146;s be real: Cycling is not only fun, it&#146;s a way to look good and feel good. Whether it be on the road or on a stationary bike, we&#146;re cycling towards solving brain and heart health.</p>
+        </div>  
       </div>
-    </div>
-  </section>
-
-  <section id="stayInTheKnow" class="section-email-signup">
-    <div class="container">
-      <div class="row text-center pt-5">
-        <div class="col-md-12">
-          <h1 class="pb-2">Stay in the Know</h1>
-          <p>Not ready to register? Give us your email and we'll keep you up to date!</p>
-        </div>
-      </div>
-      <div class="row justify-content-center">
-        <form class="js__know-survey luminateApi survey-form form-inline" method="POST" action="CRSurveyAPI" data-luminateApi='{"callback": "cd.submitKnowSurveyCallback", "requiresAuth": "true"}'>
-          <input type="hidden" name="method" value="submitSurvey">
-          <input type="hidden" name="survey_id" id="SURVEY_ID" value="[[?x[[S29:TABLE_PREFIX]]x::xheartdevx::4505::4701]]">
-          <input type="hidden" name="cons_info_component" value="t">
-          <input type="hidden" name="cons_email_opt_in" value="true">
-          <input type="hidden" name="cons_email_opt_in_requested" value="true">
-          <input type="hidden" name="s_rememberMe" value="true">
-          <input type="hidden" name="remember_me_opt_in_requested" value="true">
-          <input type="hidden" name="survey_ignore_errors" value="TRUE">
-          <input type="hidden" name="source" value="[[?x19x23x::x[[S4]]x::[[S334:pagename]]::[[?xx::x[[S334:pg]]x::[[S8]]::[[S334:pg]]]]]]">
-          <input type="hidden" name="sub_source" value="[[?xx::x[[S334:fr_id]]x::::[[S334:fr_id]]]]">
-          <!-- Hidden Interests -->
-
-          <!-- General Event Information -->
-          <input type="hidden" name="[[?x[[S29:TABLE_PREFIX]]x::xheartdevx::question_11446::question_12361]]" value="[[?x[[S29:TABLE_PREFIX]]x::xheartdevx::1183::1202]]">
-          [[?xRoad Cyclingx::x[[E42:[[S80:evID]]:public-event-type]]x::
-          <!-- Road Event Information -->
-          <input type="hidden" name="[[?x[[S29:TABLE_PREFIX]]x::xheartdevx::question_11446::question_12361]]" value="[[?x[[S29:TABLE_PREFIX]]x::xheartdevx::1186::1204]]">
-          ::]]
-          [[?xStationary Cyclingx::x[[E42:[[S80:evID]]:public-event-type]]x::
-          <!-- Stationary Event Information -->
-          <input type="hidden" name="[[?x[[S29:TABLE_PREFIX]]x::xheartdevx::question_11446::question_12361]]" value="[[?x[[S29:TABLE_PREFIX]]x::xheartdevx::1184::1203]]">
-          ::]]
-
-          <div class="form-group">
-            <div>
-            <label for="landing_cons_email" class="sr-only">Email: </label>
-            <input type="text" name="cons_email" id="landing_cons_email" value="" class="form-control form-control-lg mr-sm-2"
-              data-parsley-trigger="keyup" data-parsley-type="email" data-parsley-required-message="Email address is required"
-              data-parsley-required="true" placeholder="jane@email.com" maxlength="255" required>
+      <div id="fundraiserSearch" class="content-box-two">
+        <div class="content-box-container pt-5 pb-5 pl-5 pr-5">
+          <h2>Know someone who&#146;s riding?</h2>
+          <p>Go ahead and search by rider, company, or team name. Donate now!</p>
+          <form class="row mx-0 px-0 js__rider-search">
+            <label for="rider_name" class="sr-only">Search for a rider</label>
+            <input type="text" class="search form-control col-10 col-md-8" id="rider_name" placeholder="Search for a rider">
+            <button type="submit" id="rider_search_button" class="search-button action-button search-submit col-2"><span class="sr-only">Search</span>
+              <svg version="1.1" class="search-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+              viewBox="0 0 24 24" style="enable-background:new 0 0 24 24;" xml:space="preserve" aria-hidden="true">
+           <g transform="translate(-1358,-18)">
+             <path class="st0" d="M1374.8,33.4l-1.4,1.4l0.7,0.7l5.7,5.7l0.7,0.7l1.4-1.4l-0.7-0.7l-5.7-5.7L1374.8,33.4z"/>
+             <path class="st0" d="M1368.3,18c-5.6,0-10.3,4.6-10.3,10.3s4.6,10.3,10.3,10.3s10.3-4.6,10.3-10.3S1373.9,18,1368.3,18z
+                M1368.3,20.1c4.5,0,8.2,3.7,8.2,8.2s-3.7,8.2-8.2,8.2s-8.2-3.7-8.2-8.2S1363.7,20.1,1368.3,20.1z"/>
+           </g>
+           </svg>
+                    </button>
+          </form>
+          <!--
+          <div class="fundraiserSearchLink pt-4">
+            <span class="sr-only" id="donateDirectlyToEvent">Donate directly to event</span>
+            <a class="text-white" href="Donation2?donation=form1&df_id=[[E42:[[S334:fr_id]]:form-id]]&FR_ID=[[S334:fr_id]]&mfc_pref=T&PROXY_ID=[[S334:fr_id]]&PROXY_TYPE=21" aria-labelledby="donateDirectlyToEvent">Donate directly to event<i class="fas fa-angle-right" aria-hidden="true" alt=""></i></a>
           </div>
-          <button type="submit" class="button btn-primary btn-lg">Sign Up</button>
+          -->
         </div>
-          
-        </form>
-      </div>
-      <div class="row justify-content-center">
-        <div class="know-survey-error pt-2"></div>
       </div>
     </div>
-    <img class="w-100" src="../images/content/pagebuilder/aha-cn-gray-bottom.png" alt="decorative gray image">
-  </section>
+    <div class="photos-box col-12 col-lg-6 pt-0 pb-0 pr-0 pl-0" style="background-image: url(../images/content/pagebuilder/AHA_CN_landing_why_we_ride_photo_grid_[[?xx::x[[S80:landingPhotoNum]]x::1::[[S80:landingPhotoNum]]]].jpg); background-size: cover; background-repeat: no-repeat; background-position: top;">
+    </div>
+  </div>
+</section>
+<!-- END WHY WE RIDE SECTION -->
+
+<!-- UPDATABLE SECTION -->
+<section id="updatable" class="section-updatable">
+  <div class="col-12 row ml-0 mr-0 pr-0 pl-0">
+    <div class="photos-box col-12 col-lg-6 pt-0 pb-0 pr-0 pl-0" style="background-image: url(../images/content/pagebuilder/AHA_CN_landing_updatable_content_photo.jpg); background-size: cover; background-repeat: no-repeat; background-position: left;">
+    </div>
+    <div class="right-column content-box col-12 col-lg-6 pt-0 pb-0 pr-0 pl-0">
+      <div class="content-box-one">
+        <div class="content-box-container pt-5 pb-5 pl-5 pr-5">
+          [[S51:reus_cn_home_story]]
+        </div>  
+      </div>
+    </div>
+  </div>
+</section>
+<!-- END UPDATABLE SECTION -->
+
+<!-- SOCIAL FEED SECTION -->
+<!-- <section  id="social-feed" class="section-social-feed gray-background">
+  <div class="container pt-5 pb-5">
+    <div class="social-feed-title col-12">
+      <h2 class="pb-1">Getting Social with <span class="text-primary font-weight-bold">#CycleNation</span></h2>
+    </div>
+    <div class="title-divider col-12">
+      <svg id="title-divider" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+       <path class="block-1" fill-rule="evenodd" d="M-0.000,-0.000 L300.250,-0.000 L300.250,2.000 L-0.000,2.000 L-0.000,-0.000 Z"/>
+       <path class="block-2" fill-rule="evenodd" d="M300.250,-0.000 L601.500,-0.000 L601.500,2.000 L300.250,2.000 L300.250,-0.000 Z"/>
+       <path class="block-3" fill-rule="evenodd" d="M600.500,-0.000 L900.750,-0.000 L900.750,2.000 L600.500,2.000 L600.500,-0.000 Z"/>
+       <path class="block-4" fill-rule="evenodd" d="M900.750,-0.000 L1201.000,-0.000 L1201.000,2.000 L900.750,2.000 L900.750,-0.000 Z"/>
+      </svg>
+    </div>
+    <p class="social-feed-text col-12 pt-3">Wanna be low-key famous? Use <span class="text-primary font-weight-bold">#CycleNation</span> on social media and you could see your post here!</p>
+    <div class="social-feed-container col-12 pt-2">
+    </div>
+    <div class="social-feed-button col-12 pt-2 text-center">
+      <a class="btn-rounded btn-white" href="#">See More #CycleNation</a>
+    </div>
+  </div>
+</section> -->
+<!-- END SOCIAL FEED SECTION -->
