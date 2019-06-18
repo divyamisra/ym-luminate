@@ -380,7 +380,7 @@
                       </a>
                     ::
                       [[?xx::x[[S334:fr_id]]x::
-                       <!-- not a tr page, redirect to CN home page and scroll to event search form -->
+                        <!-- not a tr page, redirect to CN home page and scroll to event search form -->
                         <a class="nav-link" href="SPageServer/?pagename=cn_home#eventSearch">
                           Register
                         </a>
@@ -824,18 +824,18 @@
           <!-- Submenu -->
           [[?xx::x[[S80:evID]]x::::
             <li class="pushy-link">
-              <a href="TR?fr_id=[[S80:evID]]&amp;pg=informational&amp;sid=2012" target="_blank">FAQ</a>
+              [[?x26x27x::x[[S4]]x::<!-- on a tr page, direct to FAQ custom page for that particular event --><a class="text-underline" href="TR?fr_id=[[S80:evID]]&amp;pg=informational&amp;sid=2012" target="_blank">FAQ</a>::<!-- not a tr page, redirect to general FAQ page --><a class="text-underline" href="SPageServer/?pagename=cn_faq" target="_blank">FAQ</a>]]
             </li>
           ]]
-          <!-- <li class="pushy-link">
-            <a href="#" target="_blank">Why We Ride</a>
-          </li> -->
-          <!-- <li class="pushy-link">
+          <li class="pushy-link">
+              [[?x26x27x::x[[S4]]x::<!-- on a tr page, direct to Why We Ride custom page for that particular event --><a class="text-underline" href="TR?fr_id=[[S80:evID]]&amp;pg=informational&amp;sid=2010" target="_blank">Why We Ride</a>::<!-- not a tr page, redirect to general FAQ page --><a class="text-underline" href="SPageServer/?pagename=cn_why_we_ride" target="_blank">Why We Ride</a>]]
+          </li>
+          <li class="pushy-link">
             <a href="SPageServer/?pagename=cn_blog" target="_blank">Community</a>
-          </li> -->
-          <!-- <li class="pushy-link">
-              <a href="#" target="_blank">Resources</a>
-            </li> -->
+          </li>
+          <li class="pushy-link">
+            <a href="SPageServer/?pagename=cn_resources" target="_blank">Resources</a>
+          </li>
           [[?xRoad Cyclingx::x[[E42:[[S80:evID]]:public-event-type]]x::
             <!-- VOLUNTEER LINK FOR ROAD CYCLING EVENTS ONLY -->
             <li class="pushy-link">
