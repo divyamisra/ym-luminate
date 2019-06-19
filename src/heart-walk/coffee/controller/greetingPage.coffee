@@ -8,7 +8,7 @@ angular.module 'ahaLuminateControllers'
     'TeamraiserTeamService'
     'TeamraiserCompanyService'
     ($scope, $http, $timeout, $filter, TeamraiserParticipantService, TeamraiserTeamService, TeamraiserCompanyService) ->
-      $http.get 'PageServer?pagename=getTeamraiserInfo&fr_id=' + $scope.frId + '&response_format=json&pgwrap=n'
+      $http.get 'SPageServer?pagename=getTeamraiserInfo&fr_id=' + $scope.frId + '&response_format=json&pgwrap=n'
         .then (response) ->
           teamraiserInfo = response.data.getTeamraiserInfo
           if not teamraiserInfo
