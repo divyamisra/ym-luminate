@@ -641,7 +641,7 @@ angular.module 'trPcControllers'
         else if $rootScope.device.mobileType is 'ios'
           window.location = 'https://itunes.apple.com/us/app/heart-walk/id451276834?ls=1&mt=8'
         else
-          window.location = 'PageServer?pagename=heartwalk_fundraising_tools&amp;pc2_page=center&amp;fr_id=' + $scope.frId + '#/social'
+          window.location = 'SPageServer?pagename=heartwalk_fundraising_tools&amp;pc2_page=center&amp;fr_id=' + $scope.frId + '#/social'
 
       $scope.profileProgress = 0
       $scope.profileChecklist = ->
