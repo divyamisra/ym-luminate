@@ -856,6 +856,19 @@
       margin-bottom: 0 !important;
     }
   }
+
+  .pg_complist {
+    .col-12.content,
+    .mobile div.responsive {
+      margin: 0 !important;
+      width: 100% !important;
+      padding: 0 !important;
+    }
+    aa
+    #mobile_company_list * {
+      font-size: 0.7rem;
+    }
+  }
 }
 
 @media all and (max-width: 480px) {
