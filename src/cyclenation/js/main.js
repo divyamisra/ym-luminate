@@ -461,6 +461,50 @@
         e.preventDefault();
         $('.js__calendar-menu').slideToggle();
       });
+
+       // build greeting page social album
+       if($('#social-feed').data('album-url')){
+        var albumUrl = $('#social-feed').data('album-url');
+        // var albumId = $('#social-feed').data('album-id');
+        var albumId = '7584';
+        // var albumImages = [];
+
+        $.ajax({
+          url: albumUrl,
+          dataType: 'html',
+          success: function (data) {
+            var rawAlbumTable = $(data).find('table')[0];
+            $('.js__raw-album-container').prepend(rawAlbumTable);
+
+            $('.js__raw-album-container table').addClass('raw-photo-album');
+
+            $('.raw-photo-album a').each(function(i){
+              var imageId = $(this).attr('href');
+              imageId = getURLParameter(imageId, 'PhotoID');
+              var imageAltText = $(this).find('img').attr('alt');
+              var imageSrc = '/images/content/photos/large_' + imageId + '.jpg';
+              var finalAlbumImage = '<div class="grid-item"><img src="' + imageSrc + '" alt="' + imageAltText + '" /></div>';
+
+              $('.js__lo-album-container').prepend(finalAlbumImage);
+            
+            });
+           
+            var $grid = $('.js__lo-album-container').imagesLoaded( function() {
+              console.log('launch masonry');
+              // init Masonry after all images have loaded
+              $grid.masonry({
+                itemSelector: '.grid-item',
+                percentPosition: true,
+                columnWidth: '.grid-sizer'
+              });
+            });
+
+          },
+          error: function (data) {
+            // handle errors
+          }
+        });
+      }
     }
 
 
