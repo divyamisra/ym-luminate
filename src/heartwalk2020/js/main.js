@@ -74,6 +74,27 @@
     var searchType = getURLParameter(currentUrl, 'search_type');
     var isCrossEventSearch = getURLParameter(currentUrl, 'cross_event');
 
+    var addScrollLinks = function () {
+      $('a.scroll-link')
+        .on('click', function (event) {
+          // On-page links
+          // Figure out element to scroll to
+          var target = $(this.hash);
+          target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+          // Does a scroll target exist?
+          if (target.length) {
+            // Only prevent default if animation is actually gonna happen
+            event.preventDefault();
+              var scrollLocation = target.offset().top;
+              // var scrollLocation = target.offset().top - 230;
+            $('html, body').animate({
+              scrollTop: scrollLocation
+            }, 1000, function () {});
+          }
+        });
+    }
+    addScrollLinks();
+
     cd.getParticipants = function (firstName, lastName, isCrossEvent) {
       luminateExtend.api({
         api: 'teamraiser',
@@ -259,22 +280,22 @@
     // Search by Event
     $('.js--header-zip-search').on('submit', function (e) {
       e.preventDefault();
-      var zipSearched = encodeURI($('#zipSearch').val());
+      var zipSearched = encodeURIComponent($('#zipSearch').val());
       window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=HeartWalk_Search&search_type=event&cross_event=' + (evID ? 'false' : 'true') + (evID ? '&fr_id=' + evID : '') + '&zip=' + zipSearched;
     });
 
     // Search page by Participant
     $('.js--header-walker-search').on('submit', function (e) {
       e.preventDefault();
-      var firstName = encodeURI($('#walkerSearchFirst').val());
-      var lastName = encodeURI($('#walkerSearchLast').val());
+      var firstName = encodeURIComponent($('#walkerSearchFirst').val());
+      var lastName = encodeURIComponent($('#walkerSearchLast').val());
       window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=HeartWalk_Search&search_type=walker&cross_event=' + (evID ? 'false' : 'true') + (evID ? '&fr_id=' + evID : '') + '&first_name=' + firstName + '&last_name=' + lastName;
     });
 
     // Search by Team
     $('.js--header-team-search').on('submit', function (e) {
       e.preventDefault();
-      var teamName = encodeURI($('#teamSearch').val());
+      var teamName = encodeURIComponent($('#teamSearch').val());
       cd.getTeams(teamName, null, (isCrossEventSearch === "true" ? true : false));
       window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=HeartWalk_Search&search_type=team&cross_event=' + (evID ? 'false' : 'true') + (evID ? '&fr_id=' + evID : '') + '&team_name=' + teamName;
     });
@@ -675,6 +696,16 @@
         // populate greeting page content
         $('.js--greeting-text').html($('#fr_html_container').html());
 
+        if(publicEventType === "Multi-Event"){
+        // populate multi-event 
+        var multiEventUrl = '/TR?fr_id=' + evID + 'pg=informational&sid=1110 #page_body_container';
+
+          // TODO - make fr_id dynamic
+         $('.js--multi-event-locations').load("TR?fr_id=4062&pg=informational&sid=1110 #page_body_container");
+        
+        }
+        
+
         // Event info section mobile expand/collapse functionality
         $('.event-info-expand').click(function() {
             $(this).children('.event-info-collapse').toggleClass('d-sm-none');
@@ -705,18 +736,28 @@
         // Walker Search
         $('.js--greeting-walker-search-form').on('submit', function (e) {
           e.preventDefault();
-          var firstName = encodeURI($('#walkerFirstName').val());
-          var lastName = encodeURI($('#walkerLastName').val());
+          var firstName = encodeURIComponent($('#walkerFirstName').val());
+          var lastName = encodeURIComponent($('#walkerLastName').val());
           window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=HeartWalk_Search&search_type=walker&cross_event=false&fr_id=' + evID + '&first_name=' + firstName + '&last_name=' + lastName;
         });
 
         // Team Search
         $('.js--greeting-team-search-form').on('submit', function (e) {
           e.preventDefault();
-          var teamName = encodeURI($('#teamName').val());
+          var teamName = encodeURIComponent($('#teamName').val());
           cd.getTeams(teamName, null, (isCrossEventSearch === "true" ? true : false));
           window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=HeartWalk_Search&search_type=team&cross_event=false&fr_id=' + evID + '&team_name=' + teamName;
         });
+    }
+
+    if($('.tr_sponsorship_logos').length > 0){
+      jQuery('.tr_sponsorship_logos a').on('click', function(e){
+        e.preventDefault();
+        var sponsorUrl = jQuery(this).attr('href');
+          if (confirm("These are proud sponsors of the American Heart Association's Heart Walk. By clicking on this link, you will be taken outside American Heart Association and this is not an endorsement of either the linked-to entity or any product or service.")) {
+            window.location.href = sponsorUrl;
+          } 
+      });
     }
 
     if ($('body').is('.pg_personal')) {
@@ -759,7 +800,7 @@
 
                     if(userSpecified == 'false'){
                       // build pre-defined giving levels
-                      $('.donation-amounts').append('<div class="donation-amount-btn btn"> <input class="form-check-input sr-only" type="radio" name="personalDonAmt" id="personalDonAmt' + i + '" value="' + levelID + '"> <label class="form-check-label" for="personalDonAmt' + i + '" data-level-id="' + levelID + '">' + amountFormatted + '</label> </div>');                      
+                      $('.donation-amounts').append('<label class="form-check-label donation-amount-btn btn" for="personalDonAmt' + i + '" data-level-id="' + levelID + '"> <input class="form-check-input sr-only" type="radio" name="personalDonAmt" id="personalDonAmt' + i + '" value="' + levelID + '"> ' + amountFormatted + '</label>');                      
                     } else {
                       // build user-specified level
                       $('.donation-amounts').append('<div class="custom-amount"> <input class="form-check-input sr-only" type="radio" name="personalDonAmt" id="personalDonAmt' + i + '" value="' + levelID + '"> <label class="js--don-amt-other sr-only" for="personalDonAmt' + i + '" data-level-id="' + levelID + '">Enter your own amount</label> <label class="form-label d-inline-block" for="personalOtherAmt">Custom Amount:</label><br/> <input type="text" id="personalOtherAmt" class="form-control d-inline-block js--personal-amt-other"/> </div>');                     
@@ -772,7 +813,7 @@
                       $('.js--personal-don-form label').on('click', function(){
                         $('.js--personal-amt-other').val('');
                         $('.js--personal-don-form .donation-amount-btn').removeClass('active');
-                        $(this).parent().addClass('active');
+                        $(this).addClass('active');
                         $('.js--don-amt').text($(this).text());
                         finalDonUrl = defaultDonUrl + '&set.DonationLevel=' + $(this).data('level-id');
                         console.log('finalDonUrl: ', finalDonUrl);
@@ -1057,7 +1098,7 @@ cd.getCompanyParticipants();
     $('.js--zip-search-form').on('submit', function (e) {
       e.preventDefault();
       clearSearchResults();
-      var zipSearched = encodeURI($('#zipCodeSearch').val());
+      var zipSearched = encodeURIComponent($('#zipCodeSearch').val());
       cd.getEventsByDistance(zipSearched);
     });
 
@@ -1065,8 +1106,8 @@ cd.getCompanyParticipants();
     $('.js--walker-search-form').on('submit', function (e) {
       e.preventDefault();
       clearSearchResults();
-      var firstName = encodeURI($('#walkerFirstName').val());
-      var lastName = encodeURI($('#walkerLastName').val());
+      var firstName = encodeURIComponent($('#walkerFirstName').val());
+      var lastName = encodeURIComponent($('#walkerLastName').val());
 
       cd.getParticipants(firstName, lastName, (isCrossEventSearch === "true" ? true : false));
     });
@@ -1075,30 +1116,35 @@ cd.getCompanyParticipants();
     $('.js--team-search-form').on('submit', function (e) {
       e.preventDefault();
       clearSearchResults();
-      var teamName = encodeURI($('#teamNameSearch').val());
+      var teamName = encodeURIComponent($('#teamNameSearch').val());
       cd.getTeams(teamName, null, (isCrossEventSearch === "true" ? true : false));
     });
 
 
     if(searchType){
-      console.log('run autosearch');
-
       cd.autoSearchParticipant = function () {
         var firstNameVal = getURLParameter(currentUrl, 'first_name') ? getURLParameter(currentUrl, 'first_name') : '';
         var lastNameVal = getURLParameter(currentUrl, 'last_name') ? getURLParameter(currentUrl, 'last_name') : '';
 
-        firstNameVal = decodeURI(firstNameVal);
-        lastNameVal = decodeURI(lastNameVal);
+        if(!firstNameVal && !lastNameVal){
+          // General participant search from greeting page. Show all walkers
+          console.log('run general search for all walkers');
+          cd.getParticipants('%25%25%25', '%25%25%25', (isCrossEventSearch === "true" ? true : false));
+        } else {
+          firstNameVal = decodeURIComponent(firstNameVal);
+          lastNameVal = decodeURIComponent(lastNameVal);
 
-        $('#walkerFirstName').val(firstNameVal);
-        $('#walkerLastName').val(lastNameVal);
+          $('#walkerFirstName').val(firstNameVal);
+          $('#walkerLastName').val(lastNameVal);
+  
+          cd.getParticipants(firstNameVal, lastNameVal, (isCrossEventSearch === "true" ? true : false));
+        }
 
-        cd.getParticipants(firstNameVal, lastNameVal, (isCrossEventSearch === "true" ? true : false));
       }
 
       cd.autoSearchTeam = function () {
         var teamName = getURLParameter(currentUrl, 'team_name') ? getURLParameter(currentUrl, 'team_name') : '';
-        teamName = decodeURI(teamName);
+        teamName = decodeURIComponent(teamName);
         $('#teamNameSearch').val(teamName);
 
         cd.getTeams(teamName, null, (isCrossEventSearch === "true" ? true : false));

@@ -5,62 +5,22 @@
       <div class="container d-flex justify-content-center">
           <div class="event-info box-shadow bg-white">
               <h1>[[T9:[[E130:"[[E47:[[S334:fr_id]]:fr_info:1:event_title]]" dup 0 swap "Heart" indexof substring]]]] <span class="event-name">Heart & Stroke Walk</span></h1>
-              <h2 class="event-date">[[E47:[[S334:fr_id]]:fr_info:1:event_date]]</h2>
-
               [[?xMulti-Eventx::x[[E42:[[S80:evID]]:public-event-type]]x::
+              <h2 class="event-date">[[E47:[[S334:fr_id]]:fr_info:1:event_date]]</h2>
+              ::]]
+              [[?xMulti-Eventx::x[[E42:[[S80:evID]]:public-event-type]]x::
+
                 <!-- multi-event -->
                 <div class="row buttons-row">
                         [[?x1x2x::x[[S42:0:status]]x::
                           <a href="SPageServer/?pagename=heartwalk_register&amp;fr_id=[[S334:fr_id]]" class="btn btn-primary col-lg col-sm-12 mx-md-2 mx-sm-0">Register to Walk</a>
                         ::]]
                         [[?x2x3x::x[[S42:0:status]]x::
-                          <a href="TR?fr_id=[[S334:fr_id]]&pg=pfind" class="btn btn-primary col-lg col-sm-12 mx-md-2 mx-sm-0">Donate</a>
+                          <a href="SPageServer/?pagename=HeartWalk_Search&amp;search_type=walker&amp;cross_event=false&amp;fr_id=[[S334:fr_id]]" class="btn btn-primary col-lg col-sm-12 mx-md-2 mx-sm-0">Donate</a>
                         ::]]
                     </div>
-<div class="row">
-                <div class="col-sm-12">
-                        <div class="col-sm-4" style="text-align: center;">
-                          <h3 style="text-align: center;"><a
-                              href="TR/HeartWalk/WSA-WesternStatesAffiliate?sid=1071&amp;type=fr_informational&amp;pg=informational&amp;fr_id=4226"
-                              target="_blank">San Francisco</a></h3>
-                          <strong>Friday, Sept 13, 2019</strong><br />
-                          <em>Embarcadero Plaza</em>
-                        </div>
-                        <div class="col-sm-4" style="text-align: center;">
-                          <h3><a
-                              href="TR/HeartWalk/WSA-WesternStatesAffiliate?sid=2720&amp;type=fr_informational&amp;pg=informational&amp;fr_id=4226"
-                              target="_blank">Silicon Valley</a></h3>
-                          <strong>Wed, Sept 25, 2019</strong><br /><em>Discovery Meadow, San Jose</em>
-                        </div>
-                        <div class="col-sm-4" style="text-align: center;">
-                          <h3><a
-                              href="TR/HeartWalk/WSA-WesternStatesAffiliate?sid=2721&amp;type=fr_informational&amp;pg=informational&amp;fr_id=4226"
-                              target="_blank">Peninsula</a></h3>
-                          <strong>Thur, Oct 3, 2019</strong><br /><em>Coyote Point Park, San Mateo</em>
-                        </div>
-                      
-                        <div class="col-sm-12">
-                          <div class="col-sm-4" style="text-align: center;">
-                            <h3><a
-                                href="TR/HeartWalk/WSA-WesternStatesAffiliate?sid=2723&amp;type=fr_informational&amp;pg=informational&amp;fr_id=4226"
-                                target="_blank">Danville</a></h3>
-                            <strong>Sat, Oct 5, 2019</strong><br /><em>Danville Livery &amp; Mercantile</em>
-                          </div>
-                          <div class="col-sm-4" style="text-align: center;">
-                            <h3><a
-                                href="TR/HeartWalk/WSA-WesternStatesAffiliate?sid=2724&amp;type=fr_informational&amp;pg=informational&amp;fr_id=4226"
-                                target="_blank">Oakland</a></h3>
-                            <strong>Thurs, Oct 10, 2019</strong><br /><em>Children's Fairyland Field</em>
-                          </div>
-                          <div class="col-sm-4" style="text-align: center;">
-                            <h3><a
-                                href="TR/HeartWalk/WSA-WesternStatesAffiliate?sid=2722&amp;type=fr_informational&amp;pg=informational&amp;fr_id=4226">Chevron&nbsp;HQ</a>
-                            </h3>
-                            <strong>Tues, Oct 15, 2019</strong><br /><em>Chevron Campus</em>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                    <div class="row info-columns js--multi-event-locations"></div>
+                    
               ::
                 <!-- single event -->
                 <div class="row buttons-row">
@@ -68,7 +28,7 @@
                           <a href="SPageServer/?pagename=heartwalk_register&amp;fr_id=[[S334:fr_id]]" class="btn btn-primary col-lg col-sm-12 mx-md-2 mx-sm-0">Register to Walk</a>
                         ::]]
                         [[?x2x3x::x[[S42:0:status]]x::
-                          <a href="TR?fr_id=[[S334:fr_id]]&pg=pfind" class="btn btn-primary col-lg col-sm-12 mx-md-2 mx-sm-0">Donate</a>
+                          <a href="SPageServer/?pagename=HeartWalk_Search&amp;search_type=walker&amp;cross_event=false&amp;fr_id=[[S334:fr_id]]" class="btn btn-primary col-lg col-sm-12 mx-md-2 mx-sm-0">Donate</a>
                         ::]]
                     </div>
                     <div class="row info-columns">
@@ -101,7 +61,6 @@
                             </div>
                         </div>
                         <!-- /.col -->
-              ]]
              
                   <div class="col-lg col-md col-sm-12 pl-md-3 pl-sm-0 event-info-expand">
                       <h3>Contact <span class="d-none d-sm-block d-md-none float-right"><i class="fas fa-plus" aria-hidden="true"></i><span class="sr-only">Toggle Contact Info</span></span></h3>
@@ -119,6 +78,8 @@
                   <!-- /.col -->
               </div>
               <!-- /.row -->
+              ]]
+
               <div class="row fundraising-amounts">
                   <div class="col-6">
                       <span class="d-block">Our Progress</span>

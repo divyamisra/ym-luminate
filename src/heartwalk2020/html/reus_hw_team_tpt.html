@@ -1,7 +1,14 @@
+[[S51:reus_hw_default_image]]
 <div class="container tr-page-container hero">
     <div class="row">
         <div class="col-lg-4 col-md-12 sidebar">
-            <img class="sidebar-hero" src="../images/friendraiser_uploads/4024.386400868.custom.jpg" alt="[[E43:[[S334:fr_id]]:name:[[S334:team_id]]]] fundraising page"/>
+                [[?xx::x[[C4:graphic_upload]]x::
+                <img class="sidebar-hero" src="[[S80:defaultTeamImage]]"
+                      alt="[[E43:[[S334:fr_id]]:name:[[S334:team_id]]]] fundraising page" />
+              ::
+                <img class="sidebar-hero" src="[[C4:graphic_upload]]"
+                      alt="[[E43:[[S334:fr_id]]:name:[[S334:team_id]]]] fundraising page" />
+              ]]
             <div class="bg-gray-700">
                 <ul>
                     <li>
@@ -76,7 +83,7 @@
                 <form>
                     <div class="row buttons-row">
                         [[?x2x3x::x[[S42:0:status]]x::
-                        <a class="btn btn-primary col-lg col-sm-12 mx-md-2 mx-sm-0" href="Donation2?df_id=[[E43:[[S334:fr_id]]:form-id]]&PROXY_ID=[[S334:team_id]]&PROXY_TYPE=22&FR_ID=[[S334:fr_id]]">Donate to a Team Member</a>
+                        <a class="scroll-link btn btn-primary col-lg col-sm-12 mx-md-2 mx-sm-0" href="#teamRoster">Donate to a Team Member</a>
                         ::]]
                         [[?x1x2x::x[[S42:0:status]]x::
                             <a class="btn btn-secondary col-lg col-sm-12 mx-md-2 mx-sm-0" href="TRR/?fr_tjoin=[[S334:team_id]]&pg=tfind&fr_id=[[S334:fr_id]]">Join This Team</a>
@@ -84,13 +91,13 @@
                     </div>
                 </form>
                 <!-- <a href="TRGiftForm?fr_id=[[S334:fr_id]]&px=[[S334:px]]" class="d-block text-small mt-3">Mail in a Donation</a> -->
-                <a href="Donation2?df_id=[[E43:[[S334:fr_id]]:form-id]]&PROXY_ID=[[S334:team_id]]&PROXY_TYPE=22&FR_ID=[[S334:fr_id]]" class="d-block text-small mt-3">Make a General Donation to this Team</a>
+                <a href="Donation2?df_id=[[E42:[[S334:fr_id]]:form-id]]&PROXY_ID=[[S334:team_id]]&PROXY_TYPE=22&FR_ID=[[S334:fr_id]]" class="d-block text-small mt-3">Make a General Donation to this Team</a>
             </div>
             <!-- /.event-info -->
             <!-- END TEAM PAGE INFO BOX -->
 
             <!-- TEAM ROSTER -->
-            <div class="information-box team-roster bg-gray-100">
+            <div id="teamRoster" class="information-box team-roster bg-gray-100">
                  <div class="team-roster-header">
                     <h1>Team Roster</h1>
                  </div>
