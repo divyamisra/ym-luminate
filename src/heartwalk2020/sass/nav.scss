@@ -31,9 +31,12 @@ nav {
   padding: 0 !important;
 
   /* Logo */
-  .navbar-brand svg {
-    margin: -17px 0px 1px -1px;
-    width:100%;
+  .navbar-brand {
+    max-width: 291px;
+    svg {
+      margin: -17px 0px 1px -1px;
+      width:100%;
+    }
   }
 
   /* Navigation links */

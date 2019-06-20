@@ -397,6 +397,38 @@
     }
   }
   /* END TEAM PAGE STYLES */
+
+  .pg_HeartWalk_Search {
+    table, thead, tbody, th, td, tr {
+      display: block;
+    }
+    thead tr {
+      position: absolute;
+      top: -9999px;
+      left: -9999px;
+    }
+    tr { border: 1px solid #ccc; }
+    td {
+      border: none;
+      border-bottom: 1px solid #eee;
+      position: relative;
+      padding-left: 200px;
+      margin-left: 150px;
+    }
+    td:before {
+      position: absolute;
+      top: 12px;
+      left: 6px;
+      width: 200px;
+      padding-right: 40px;
+      white-space: nowrap;
+      margin-left: -150px;
+    }
+    td:nth-of-type(1):before { content: "Option"; }
+    td:nth-of-type(2):before { content: "Description"; }
+    td:nth-of-type(3):before { content: "Type"; }
+    td:nth-of-type(4):before { content: "Default";}
+  }
 }
 
 @media all and (max-width: 767px) {
@@ -864,9 +896,9 @@
       width: 100% !important;
       padding: 0 !important;
     }
-    aa
+
     #mobile_company_list * {
-      font-size: 0.7rem;
+      font-size: 0.7rem !important;
     }
   }
 }
