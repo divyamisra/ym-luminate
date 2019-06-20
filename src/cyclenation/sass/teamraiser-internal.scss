@@ -1,6 +1,16 @@
 
 .pg_internal {
 
+  .h1,
+  h1,
+  .h2,
+  h2,
+  .h3,
+  h3 {
+    font-family: $font-family-base;
+    border-bottom: 0;
+  }
+
   .section {
 
     .description {
