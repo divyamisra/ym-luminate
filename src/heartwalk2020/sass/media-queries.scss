@@ -2,6 +2,27 @@
   .container-wide {
     max-width: 95%;
   }
+
+  .top-list-footer .js--greeting-walker-search-form .input-group {
+    margin: 0 10px !important;
+  }
+}
+
+@media all and (max-width: 1425px) {
+  .top-list-footer .input-group input[type="text"] {
+    &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+      font-size: 14px;
+    }
+    &::-moz-placeholder { /* Firefox 19+ */
+      font-size: 14px;
+    }
+    &:-ms-input-placeholder { /* IE 10+ */
+      font-size: 14px;
+    }
+    &:-moz-placeholder { /* Firefox 18- */
+      font-size: 14px;
+    }
+  }
 }
 
 @media all and (max-width: 1400px) {
@@ -44,6 +65,9 @@
 
   .top-lists-container {
     .top-list {
+      ul {
+        height: 320px;
+      }
       h3 {
         padding: 20px 15px !important;
         font-size: 1rem !important;
@@ -84,6 +108,23 @@
   .information-box {
     padding: 30px;
     width: 95%;
+  }
+}
+
+@media all and (max-width: 1230px) {
+  .top-list-footer .input-group input[type="text"] {
+    &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+      font-size: 12px;
+    }
+    &::-moz-placeholder { /* Firefox 19+ */
+      font-size: 12px;
+    }
+    &:-ms-input-placeholder { /* IE 10+ */
+      font-size: 12px;
+    }
+    &:-moz-placeholder { /* Firefox 18- */
+      font-size: 12px;
+    }
   }
 }
 
