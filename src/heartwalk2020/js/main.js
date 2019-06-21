@@ -1219,11 +1219,11 @@ var setIconDirection = function (element) {
 var toggleMultiEventInfo = function() {
   $('.js--multi-event-locations').slideToggle();
 
-  if ($('.multi-event-info-toggler fa').hasClass('fa-plus')) {
-      $('.multi-event-info-toggler fa').removeClass('fa-plus');
-      $('.multi-event-info-toggler fa').addClass('fa-minus');
+  if ($('.multi-event-info-toggler fas').hasClass('fa-plus')) {
+      $('.multi-event-info-toggler fas').removeClass('fa-plus');
+      $('.multi-event-info-toggler fas').addClass('fa-minus');
   } else {
-      $('.multi-event-info-toggler fa').addClass('fa-plus');
-      $('.multi-event-info-toggler fa').removeClass('fa-minus');
+      $('.multi-event-info-toggler fas').addClass('fa-plus');
+      $('.multi-event-info-toggler fas').removeClass('fa-minus');
   }
 };
