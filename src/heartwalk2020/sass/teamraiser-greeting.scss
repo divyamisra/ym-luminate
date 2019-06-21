@@ -228,3 +228,16 @@
     }
   }
 }
+
+.multi-event {
+  .multi-event-info-toggler {
+    display: block;
+    cursor: pointer;
+    margin: 30px 0 10px;
+    font-size: 1rem;
+
+    .fa {
+      color: $red;
+    }
+  }
+}

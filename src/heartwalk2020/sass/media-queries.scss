@@ -694,6 +694,10 @@
   .pl-sm-0, .px-sm-0 {
     padding-left: 0 !important;
   }
+
+  .js--multi-event-locations {
+    display: none;
+  }
 }
 
 @media all and (max-width: 663px) {

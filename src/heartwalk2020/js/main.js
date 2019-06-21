@@ -1215,3 +1215,15 @@ var setIconDirection = function (element) {
         icon.addClass('fa-chevron-down');
     }
 };
+
+var toggleMultiEventInfo = function() {
+  $('.js--multi-event-locations').slideToggle();
+
+  if ($('.multi-event-info-toggler fa').hasClass('fa-plus')) {
+      $('.multi-event-info-toggler fa').removeClass('fa-plus');
+      $('.multi-event-info-toggler fa').addClass('fa-minus');
+  } else {
+      $('.multi-event-info-toggler fa').addClass('fa-plus');
+      $('.multi-event-info-toggler fa').removeClass('fa-minus');
+  }
+};
