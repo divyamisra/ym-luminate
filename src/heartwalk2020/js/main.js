@@ -1216,14 +1216,15 @@ var setIconDirection = function (element) {
     }
 };
 
-var toggleMultiEventInfo = function() {
+var toggleMultiEventInfo = function(elem) {
+  $(elem).toggleClass('open');
   $('.js--multi-event-locations').slideToggle();
 
-  if ($('.multi-event-info-toggler fas').hasClass('fa-plus')) {
-      $('.multi-event-info-toggler fas').removeClass('fa-plus');
-      $('.multi-event-info-toggler fas').addClass('fa-minus');
+  if ($('.multi-event-info-toggler i').hasClass('fa-plus')) {
+      $('.multi-event-info-toggler i').removeClass('fa-plus');
+      $('.multi-event-info-toggler i').addClass('fa-minus');
   } else {
-      $('.multi-event-info-toggler fas').addClass('fa-plus');
-      $('.multi-event-info-toggler fas').removeClass('fa-minus');
+      $('.multi-event-info-toggler i').addClass('fa-plus');
+      $('.multi-event-info-toggler i').removeClass('fa-minus');
   }
 };
