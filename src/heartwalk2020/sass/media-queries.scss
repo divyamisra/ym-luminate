@@ -660,10 +660,23 @@
   }
   /* END PERSONAL, TEAM, COMPANY PAGE STYLES */
 
-  .js--team-results-rows.mobile tr table tr td{
-    &:first-child {
-      width: 30% !important;
-      color: $black !important;
+  .pg_HeartWalk_Search {
+    .js--team-results-rows.mobile {
+      td {
+        border: none !important;
+        table {
+          border-bottom: solid 1px $gray-100;
+          .btn-primary {
+            margin: 0 0 15px !important;
+          }
+        }
+      }
+      tr table tr td{
+        &:first-child {
+          width: 30% !important;
+          color: $black !important;
+        }
+      }
     }
   }
 }
