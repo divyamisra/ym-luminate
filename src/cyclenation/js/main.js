@@ -483,7 +483,7 @@
               imageId = getURLParameter(imageId, 'PhotoID');
               var imageAltText = $(this).find('img').attr('alt');
               var imageSrc = '/images/content/photos/large_' + imageId + '.jpg';
-              var finalAlbumImage = '<div class="grid-item"><img src="' + imageSrc + '" alt="' + imageAltText + '" /></div>';
+              var finalAlbumImage = '<div class="grid-item"><a href="' + imageSrc + '"><img src="' + imageSrc + '" alt="' + imageAltText + '" /></a></div>';
 
               $('.js__lo-album-container').prepend(finalAlbumImage);
             
@@ -497,6 +497,9 @@
                 percentPosition: true,
                 columnWidth: '.grid-sizer'
               });
+
+              var lightbox = $('.js__lo-album-container a').simpleLightbox();
+
             });
 
           },
