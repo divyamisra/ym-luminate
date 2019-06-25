@@ -509,7 +509,9 @@
                 var participantPage = this.personalPageUrl;
                 var isCaptain = this.aTeamCaptain;
                 var topWalkerHtml = '<li><div class="d-flex"><div class="flex-grow-1"><a href="' + participantPage + '">' + participantName + '</a></div><div class="raised">Raised<br><strong>$' + participantRaisedFormmatted + '</strong></div></div></li>';
-                $('.js--walker-top-list ul').append(topWalkerHtml);
+                if(participantName !== "Null Null"){
+                  $('.js--walker-top-list ul').append(topWalkerHtml);
+                }
               });
             }
           },
