@@ -47,8 +47,14 @@
       }
     });
 
-    $('.js--nav-about').on('click', function(e){
+    $('#find').on('click keypress', function(e){
       e.preventDefault();
+      $('.dropdown-menu-container.find, .dropdown-menu-container.find .dropdown-menu').toggle();
+    });
+
+    $('.js--nav-about').on('click keypress', function(e){
+      e.preventDefault();
+      $('.dropdown-menu-container.about, .dropdown-menu-container.about .dropdown-menu').toggle();
     });
 
     /******************/
