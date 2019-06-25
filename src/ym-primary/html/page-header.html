@@ -99,7 +99,7 @@
               <h1>
                 <span ng-bind-html="companyName"></span>
               </h1>
-              <p class="school-location text-center h5" ng-if="companyCity" ng-cloak>
+              <p class="school-location h5" ng-if="companyCity" ng-cloak>
                 Located in <span ng-bind-html="companyCity"></span>, <span ng-bind-html="companyState"></span>
               </p>
             ::]]
@@ -135,7 +135,7 @@
                   <p class="school-name-center text-center h5">
                     <a aria-label="My School: {{companyName}}" href="TR?fr_id=[[S80:trID]]&pg=company&company_id=[[S80:frCompanyId]]"><span class="sr-only">View</span> <span ng-bind-html="companyName"></span> <span class="sr-only">page</span></a>
                   </p>
-                  <p class="school-location h5" ng-if="companyCity" ng-cloak>
+                  <p class="school-location text-center h5" ng-if="companyCity" ng-cloak>
                     Located in <span ng-bind-html="companyCity"></span>, <span ng-bind-html="companyState"></span>
                   </p>
                 </div>
