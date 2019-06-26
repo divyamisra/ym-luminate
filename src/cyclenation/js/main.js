@@ -67,6 +67,7 @@
     if ($('body').is('.pg_cn_home')) {
       $('.js__see-all-social').on('click', function(e){
         e.preventDefault();
+        $(this).hide();
         $('.social-feed-container').css({
           "height": "auto",
           "overflow": "initial"
