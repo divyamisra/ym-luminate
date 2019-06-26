@@ -16,7 +16,7 @@
         <h2 class="text-center pb-4">Find your CycleNation event</h2>
         <div class="row">
           <div class="form-group col-12 col-lg-6">
-            <form class="row ml-0 mr-0 pr-0 pl-0 js__zip-search">
+            <form class="row ml-0 mr-0 pr-0 pl-0 js__zip-search" onsubmit="_gaq.push(['_trackEvent', 'program homepage', 'click', 'search enter zip']);">
                 <label for="zip" class="sr-only">Enter Zip</label>
                 <input type="text" class="search form-control col-10 col-lg-9" id="zip" placeholder="Enter ZIP">
                 <button type="submit" class="search-button action-button search-submit col-2 col-lg-3"><span class="sr-only">Search</span>
@@ -32,7 +32,7 @@
           </div>
           <p class="form-group-divider col-12 col-lg-1 text-center">or</p>
           <div class="form-group select col-12 col-lg-5">
-            <form class="row ml-0 mr-0 pr-0 pl-0 js__state-search">
+            <form class="row ml-0 mr-0 pr-0 pl-0 js__state-search" onsubmit="_gaq.push(['_trackEvent', 'program homepage', 'click', 'search enter state']);">
                 <label for="fr_event_state" class="sr-only">Select State</label>
                 <select name="fr_event_state" id="fr_event_state" class="search form-control col-12" size="1">
                   <option>Select State</option>
@@ -111,7 +111,7 @@
       </div>
 
       <div class="js__show-more-container col-md-4 offset-md-4 text-center">
-        <a href="SPageServer/?pagename=cn_events" class="js__show-more-events text-underline">Show All Events <i class="fas fa-angle-right" aria-hidden="true" alt=""></i></a>
+        <a href="SPageServer/?pagename=cn_events" class="js__show-more-events text-underline" onclick="_gaq.push(['_trackEvent', 'program homepage', 'click', 'search result show all events']);">Show All Events <i class="fas fa-angle-right" aria-hidden="true" alt=""></i></a>
       </div>
     </div>
   </div>
@@ -134,7 +134,7 @@
         <div class="content-box-container pt-5 pb-5 pl-5 pr-5">
           <h2>Know someone who&#146;s riding?</h2>
           <p>Go ahead and search by rider, company, or team name. Donate now!</p>
-          <form class="row mx-0 px-0 js__rider-search">
+          <form class="row mx-0 px-0 js__rider-search" onsubmit="_gaq.push(['_trackEvent', 'program homepage', 'click', 'search']);">
             <label for="rider_name" class="sr-only">Search for a rider</label>
             <input type="text" class="search form-control col-10 col-md-8" id="rider_name" placeholder="Search for a rider">
             <button type="submit" id="rider_search_button" class="search-button action-button search-submit col-2"><span class="sr-only">Search</span>

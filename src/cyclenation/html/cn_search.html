@@ -97,13 +97,13 @@
                 By:</span>
               <a class="nav-item nav-link text-uppercase d-flex align-items-center justify-content-center active"
                 id="participant-search-tab" data-toggle="tab" href="#participant-search-container" role="tab"
-                aria-controls="participant-search-container" aria-expanded="true">Cyclist</a>
+                aria-controls="participant-search-container" aria-expanded="true" onclick="_gaq.push(['_trackEvent', 'donate', 'click', 'filter cyclist']);">Cyclist</a>
               <a class="nav-item nav-link text-uppercase d-flex align-items-center justify-content-center"
                 id="team-search-tab" data-toggle="tab" href="#team-search-container" role="tab"
-                aria-controls="team-search-container" aria-expanded="false">Team</a>
+                aria-controls="team-search-container" aria-expanded="false" onclick="_gaq.push(['_trackEvent', 'donate', 'click', 'filter team']);">Team</a>
               <a class="nav-item nav-link text-uppercase d-flex align-items-center justify-content-center"
                 id="company-search-tab" data-toggle="tab" href="#company-search-container" role="tab"
-                aria-controls="company-search-container" aria-expanded="false">Company</a>
+                aria-controls="company-search-container" aria-expanded="false" onclick="_gaq.push(['_trackEvent', 'donate', 'click', 'filter company']);">Company</a>
             </nav>
           </div>
         </div>
@@ -125,13 +125,11 @@
                 width="100%">
                 <thead>
                   <tr>
-                    <th class="th-sm">Full Name
+                    <th class="th-sm" onclick="_gaq.push(['_trackEvent', 'donate', 'click', 'sort full name']);">Full Name
                     </th>
-                    <th class="th-sm">Team Name
+                    <th class="th-sm" onclick="_gaq.push(['_trackEvent', 'donate', 'click', 'sort team name']);">Team Name
                     </th>
-                    <!-- <th class="th-sm">Company
-                    </th> -->
-                    <th class="th-sm">Event Name
+                    <th class="th-sm" onclick="_gaq.push(['_trackEvent', 'donate', 'click', 'sort event name']);">Event Name
                     </th>
                     <th class="th-sm" data-orderable="false"><span class="js__num-participant-results"></span>
                     </th>
@@ -159,13 +157,13 @@
               <table id="teamResultsTable" class="table" width="100%">
                 <thead>
                   <tr>
-                    <th class="th-sm">Team
+                    <th class="th-sm" onclick="_gaq.push(['_trackEvent', 'donate', 'click', 'sort team name']);">Team
                     </th>
-                    <th class="th-sm">Team Captain
+                    <th class="th-sm" onclick="_gaq.push(['_trackEvent', 'donate', 'click', 'sort team captain']);">Team Captain
                     </th>
-                    <th class="th-sm">Company
+                    <th class="th-sm" onclick="_gaq.push(['_trackEvent', 'donate', 'click', 'sort company']);">Company
                     </th>
-                    <th class="th-sm">Event Name
+                    <th class="th-sm" onclick="_gaq.push(['_trackEvent', 'donate', 'click', 'sort event name']);">Event Name
                     </th>
                     <th class="th-sm" data-orderable="false"><span class="js__num-team-results"></span>
                     </th>
@@ -192,7 +190,7 @@
               <table id="companyResultsTable" class="table" width="100%">
                 <thead>
                   <tr>
-                    <th class="th-sm col-company-name" scope="col">Company
+                    <th class="th-sm col-company-name" scope="col" onclick="_gaq.push(['_trackEvent', 'donate', 'click', 'sort company']);">Company
                     </th>
                     <!-- <th class="th-sm">Event Name
                   </th> -->
