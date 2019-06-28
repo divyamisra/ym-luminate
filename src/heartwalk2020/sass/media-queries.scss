@@ -706,23 +706,28 @@
   /* END PERSONAL, TEAM, COMPANY PAGE STYLES */
 
   .pg_HeartWalk_Search {
-    .js--team-results-rows.mobile {
-      td {
-        border: none !important;
-        table {
-          border-bottom: solid 1px $gray-100;
-          .btn-primary {
-            margin: 0 0 15px !important;
+    .js--event-results-rows,
+    .js--participants-results-rows,
+    .js--team-results-rows {
+      &.mobile {
+        td {
+          border: none !important;
+          table {
+            border-bottom: solid 1px $gray-100;
+            .btn-primary {
+              margin: 0 0 15px !important;
+            }
+          }
+        }
+        tr table tr td{
+          &:first-child {
+            width: 30% !important;
+            color: $black !important;
           }
         }
       }
-      tr table tr td{
-        &:first-child {
-          width: 30% !important;
-          color: $black !important;
-        }
-      }
     }
+
   }
 }
 
@@ -896,7 +901,7 @@
             }
 
             input {
-              width: 100%;
+              // width: 100%;
               height: 40px;
             }
           }
