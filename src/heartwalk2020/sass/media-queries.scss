@@ -679,7 +679,7 @@
 
         .donation-amounts {
           &.row {
-            display: block;
+            display: flex;
             overflow: hidden;
           }
           .donation-amount-btn {
@@ -991,7 +991,7 @@
 
       .btn {
         color: transparent;
-        width: 40px;
+        // width: 40px;
 
         i {
           color: #fff;
