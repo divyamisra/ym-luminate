@@ -66,7 +66,7 @@
       $('.dropdown-menu-container.about, .dropdown-menu-container.about .dropdown-menu').show();
     });
 
-    $( ".js--nav-about" ).focusout(function() {
+    $( ".js--top-menu-contact" ).focusout(function() {
       $('.dropdown-menu-container.about, .dropdown-menu-container.about .dropdown-menu').hide();
     });
 
