@@ -594,7 +594,7 @@
     };
 
     // EXPANDABLE DONOR ROLL
-    $('.honor-roll-expander').click(function() {
+    $('.js--honor-roll-expander').on('click', function(e) {
         if ($(this).children('i').hasClass('fa-chevron-down')) {
             $(this).children('i').removeClass('fa-chevron-down');
             $(this).children('i').addClass('fa-chevron-up');
@@ -602,6 +602,7 @@
             $(this).children('i').removeClass('fa-chevron-up');
             $(this).children('i').addClass('fa-chevron-down');
         }
+
         // In order for the animation to work we need an absolute
         // height value, so we calculate that by getting the total
         // height of the donations-container child divs plus their
@@ -618,6 +619,8 @@
         } else {
             $('.donations-container').animate({height: 205}, 400);
         }
+      $('.hidden-donor-row').toggleClass('d-none');
+
     });
 
     cd.reorderPageForMobile = function () {
@@ -694,8 +697,8 @@
                 var donorName = $(this).find('.team-honor-list-name').text();
                 var donorAmt = $(this).find('.team-honor-list-value').text();
                 // console.log('donorName donorAmt', donorName + ' ' + donorAmt);
-                $('.js--donor-roll').append('<div><span class="name">' + donorName + '</span><span class="amount">' + donorAmt + '</span></div>');
-                if(i === 4){
+                $('.js--donor-roll').append('<div class="donor-row ' + (i > 4 ? 'hidden-donor-row d-none' : '') + '"><span class="name">' + donorName + '</span><span class="amount">' + donorAmt + '</span></div>');
+                if(i === 5){
                     $('.js--honor-roll-expander').addClass('d-block').removeClass('hidden');
                 }
             });
@@ -1023,6 +1026,7 @@
             $('#team-roster tbody').append('<tr class="' + (i > 4 ? 'd-none' : '') + '"> <td class="donor-name"> <a href="' + team.teamPageURL + '" data-sort="' + team.name + '">' + team.name + '</a> </td><td class="donor-name"> <a href="TR/?px=' + team.captainConsId + '&pg=personal&fr_id=' + team.EventId + '" data-sort="' + team.captainFirstName + ' ' + team.captainLastName + '">' + team.captainFirstName + ' ' + team.captainLastName + '</a> </td><td class="raised" data-sort="' + teamRaisedFormmatted + '"> <span><strong>$' + teamRaisedFormmatted + '</strong></span> </td><td> <a href="' + team.joinTeamURL + '">' + (screenWidth <= 480 ? 'Join' : 'Join Team') + '</a> </td></tr>');
           });
           
+          console.log('totalTeams: ', totalTeams);
           if(totalTeams > 5) {
             $('.js--more-team-results').removeAttr('hidden');
           }
@@ -1079,7 +1083,7 @@ cd.getCompanyTeams();
           });
 
           if (totalParticipants > 5) {
-            $('.js--more-team-results').removeAttr('hidden');
+            $('.js--more-participant-results').removeAttr('hidden');
           }
           cd.initializeParticipantRosterTable();
 
