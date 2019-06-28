@@ -144,23 +144,35 @@
               $('.js--num-participant-results').text((totalParticipants === 1 ? '1 Result' : totalParticipants + ' Results'));
 
               $(participants).each(function (i, participant) {
-                $('.js--participants-results-rows').append('<tr' + (i > 10 ? ' class="d-none"' : '') + '><td><a href="' + participant.personalPageUrl + '">' +
+                if (screenWidth >= 768) {
+                  $('.js--participants-results-rows').append('<tr' + (i > 10 ? ' class="d-none"' : '') + '><td><a href="' + participant.personalPageUrl + '">' +
                   participant.name.first + ' ' + participant.name.last +
                   '</a></td><td>' +
                   ((participant.teamName !== null && participant.teamName !== undefined) ? '<a href="' + participant.teamPageUrl + '">' + participant.teamName + '</a>' : '') + '</td><td><a href="TR/?fr_id=' + participant.eventId + '&pg=entry">' +
                   participant.eventName + '</a></td><td class="col-cta"><a href="' + participant.donationUrl + '" aria-label="Donate to ' + participant.name.first + ' ' + participant.name.last + '" class="btn btn-primary btn-block btn-rounded">Donate</a></td></tr>');
+                } else {
+                  $('#participantResultsTable thead').remove();
+                  $('.js--participants-results-rows').addClass('mobile').append('<tr><td><table><tr' + (i > 10 ? ' class="d-none"' : '') + '><td>Walker</td><td><a href="' + participant.personalPageUrl+ '">' +
+                    participant.name.first + ' ' + participant.name.last + '</a></td></tr>' +
+                    ((participant.teamName !== null && participant.teamName !== undefined) ? '<tr><td>Team</td><td><a href="' + participant.teamPageUrl + '">' + participant.teamName + '</a>' : '') +
+                    '</td></tr><tr><td>Event Name</td><td><a href="TR/?fr_id=' + participant.eventId + '&pg=entry">' + participant.eventName + '</a></td></tr><tr><td colspan="2" class="text-center"><a href="' + participant.donationUrl + '" class="btn btn-primary btn-block btn-rounded" title="Donate to ' + participant.name.first + ' ' + participant.name.last + '" aria-label="Donate to ' + participant.name.first + ' ' + participant.name.last + '">Donate</a></td></tr></table></td></tr>');
+                }
+
+
               });
 
               if(totalParticipants > 10) {
                 $('.js--more-participant-results').removeAttr('hidden');
               }
 
-              $('#participantResultsTable').DataTable({
-                "paging":   false,
-                "searching":   false,
-                "info":     false,
-                "autoWidth": false
-              });
+              if (screenWidth >= 768) {
+                $('#participantResultsTable').DataTable({
+                  "paging":   false,
+                  "searching":   false,
+                  "info":     false,
+                  "autoWidth": false
+                });
+              }
               $('.dataTables_length').addClass('bs-select');
               $('.js--participant-results-container').removeAttr('hidden');
 
@@ -227,7 +239,7 @@
                           .append('<tr><td><table><tr' + (i > 10 ? ' class="d-none"' : '') + '><td>Team</td><td><a href="' + team.teamPageURL + '">' +
                               team.name + '</a></td></tr><tr><td>Team Captain</td><td><a href="TR/?px=' + team.captainConsId + '&pg=personal&fr_id=' + team.EventId + '">' + team.captainFirstName + ' ' + team.captainLastName + '</a></td></tr>' +
                               ((team.companyName !== null && team.companyName !== undefined) ? '<tr><td>Company</td><td><a href="TR?company_id=' + team.companyId + '&fr_id=' + team.EventId + '&pg=company">' + team.companyName + '</a>' : '') +
-                              '</td></tr><tr><td>Event Name</td><td><a href="TR/?fr_id=' + team.EventId + '&pg=entry">' + team.eventName + '</a></td></tr><tr><td></td><td><a href="' + team.teamDonateURL + '" class="btn btn-primary btn-block btn-rounded" title="Donate to ' + team.name + '" aria-label="Donate to ' + team.name + '">Donate</a></td></tr></table></td></tr>');
+                              '</td></tr><tr><td>Event Name</td><td><a href="TR/?fr_id=' + team.EventId + '&pg=entry">' + team.eventName + '</a></td></tr><tr><td colspan="2" class="text-center"><a href="' + team.teamDonateURL + '" class="btn btn-primary btn-block btn-rounded" title="Donate to ' + team.name + '" aria-label="Donate to ' + team.name + '">Donate</a></td></tr></table></td></tr>');
                   }
               });
 
@@ -247,11 +259,13 @@
                 $(this).attr('hidden', true);
                 $('.js--end-team-list').removeAttr('hidden');
               });
+              if (screenWidth >= 768) {
               $('#teamResultsTable').DataTable({
                 "paging":   false,
                 "searching":   false,
                 "info":     false
               });
+            }
               $('.dataTables_length').addClass('bs-select');
 
               $('.js--team-results-container').removeAttr('hidden');
@@ -429,9 +443,18 @@
                 var eventStatus = event.status;
                 var acceptsRegistration = event.accepting_registrations;
 
-
+                if (screenWidth >= 768) {
                 var eventRow = '<tr' + (i > 10 ? ' class="d-none"' : '') + '><td><a href="' +
                 event.greeting_url + '">' + event.name + '</a></td><td data-order="' + event.event_date + '">' + eventDate + '</td><td data-order="' + parseFloat(event.distance) + '">' + event.distance + 'mi</td><td><a href="' + event.greeting_url + '" aria-label="More details about ' + event.name + '" class="btn btn-secondary btn-block btn-rounded">Details</a></td><td class="col-cta">' + (acceptsRegistration === 'true' ? '<a href="SPageServer/?pagename=heartwalk_register&fr_id=' + event.id + '" aria-label="Register for ' + event.name + '" class="btn btn-primary btn-block btn-rounded">Register</a>' : 'Registration Closed') + '</td></tr>';
+              } else {
+                $('#eventResultsTable thead').remove();
+                $('.js--event-results-rows').addClass('mobile')
+
+                var eventRow = '<tr><td><table><tr' + (i > 10 ? ' class="d-none"' : '') + '><td>Event Name</td><td><a href="' +
+                event.greeting_url + '">' + event.name + '</a></td></tr>' +
+                  '</td></tr><tr><td>Date</td><td>' + eventDate + '</td></tr><tr><td>Distance</td><td>' + event.distance + 'mi</td></tr><tr><td colspan="2" class="text-center">' + (acceptsRegistration === 'true' ? '<a href="SPageServer/?pagename=heartwalk_register&fr_id=' + event.id + '" class="btn btn-primary btn-block btn-rounded" title="Register for ' + event.name + '" aria-label="Register for ' + event.name + '">Register</a>' : 'Registration Closed') + '</td></tr></table></td></tr>';
+              }
+               
 
                 if (eventStatus === '1' || eventStatus === '2' || eventStatus === '3') {
                   $('.js--event-results-rows').append(eventRow);
@@ -448,12 +471,13 @@
                 $(this).attr('hidden', true);
                 $('.js--end-event-list').removeAttr('hidden');
               });
-
+              if (screenWidth >= 768) {
               $('#eventResultsTable').DataTable({
                 "paging":   false,
                 "searching":false,
                 "info":     false
               });
+            }
               $('.dataTables_length').addClass('bs-select');
 
               $('.js--event-results-container').removeAttr('hidden');
