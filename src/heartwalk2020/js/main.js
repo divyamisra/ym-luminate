@@ -105,9 +105,9 @@
       luminateExtend.api({
         api: 'teamraiser',
         data: 'method=getParticipants' +
-          '&first_name=' + ((firstName !== undefined) ? firstName : '') +
-          '&last_name=' + ((lastName !== undefined) ? lastName : '') +
-          (isCrossEvent === true ? '&event_type=' + eventType : '&fr_id=' + evID) +
+        ((firstName !== undefined) ? '&first_name=' + firstName : '') +
+        ((lastName !== undefined) ? '&last_name=' + lastName : '') +
+        (isCrossEvent === true ? '&event_type=' + eventType : '&fr_id=' + evID) +
           '&list_page_size=499' +
           '&list_page_offset=0' +
           '&response_format=json' +
@@ -305,7 +305,8 @@
       e.preventDefault();
       var firstName = encodeURIComponent($('#walkerSearchFirst').val());
       var lastName = encodeURIComponent($('#walkerSearchLast').val());
-      window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=HeartWalk_Search&search_type=walker&cross_event=' + (evID ? 'false' : 'true') + (evID ? '&fr_id=' + evID : '') + '&first_name=' + firstName + '&last_name=' + lastName;
+      window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=HeartWalk_Search&search_type=walker&cross_event=false&fr_id=' + evID + (firstName ? '&first_name=' + firstName : '') +
+          (lastName ? '&last_name=' + lastName : '');
     });
 
     // Search by Team
@@ -758,7 +759,8 @@
           e.preventDefault();
           var firstName = encodeURIComponent($('#walkerFirstName').val());
           var lastName = encodeURIComponent($('#walkerLastName').val());
-          window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=HeartWalk_Search&search_type=walker&cross_event=false&fr_id=' + evID + '&first_name=' + firstName + '&last_name=' + lastName;
+          window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=HeartWalk_Search&search_type=walker&cross_event=false&fr_id=' + evID + (firstName ? '&first_name=' + firstName : '') +
+          (lastName ? '&last_name=' + lastName : '');
         });
 
         // Team Search
@@ -915,7 +917,7 @@
                     var participantRaised = (parseInt(participant.amountRaised) * 0.01);
                     var participantRaisedFormmatted = participantRaised.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
         
-                    $('#team-roster tbody').append('<tr class="' + (i > 10 ? 'd-none' : '') + '"><td class="donor-name"><a href="' + participant.personalPageUrl + '">' +
+                    $('#team-roster tbody').append('<tr class="' + (i > 4 ? 'd-none' : '') + '"><td class="donor-name"><a href="' + participant.personalPageUrl + '">' +
                       participant.name.first + ' ' + participant.name.last +
                       '</a>' + (participant.aTeamCaptain === "true" ? ' <span class="coach">- Coach</span>' : '') + '</td><td class="raised" data-sort="' + participantRaisedFormmatted + '"><span><strong>$' + participantRaisedFormmatted + '</strong></span></td><td><a href="' + participant.donationUrl + '">' + (screenWidth <= 480 ? 'Donate' : 'Donate to ' + participant.name.first) + '</a></td></tr>');
                       if(participant.aTeamCaptain === 'true'){
@@ -923,7 +925,7 @@
                       }
                   });
         
-                  if(totalParticipants > 10) {
+                  if(totalParticipants > 5) {
                     $('.js--more-participant-results').removeAttr('hidden');
                   }
                   cd.initializeTeamRosterTable();
@@ -1018,7 +1020,7 @@
             var teamRaised = (parseInt(team.amountRaised) * 0.01);
             var teamRaisedFormmatted = teamRaised.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
 
-            $('#team-roster tbody').append('<tr class="' + (i > 10 ? 'd-none' : '') + '"> <td class="donor-name"> <a href="' + team.teamPageURL + '" data-sort="' + team.name + '">' + team.name + '</a> </td><td class="donor-name"> <a href="TR/?px=' + team.captainConsId + '&pg=personal&fr_id=' + team.EventId + '" data-sort="' + team.captainFirstName + ' ' + team.captainLastName + '">' + team.captainFirstName + ' ' + team.captainLastName + '</a> </td><td class="raised" data-sort="' + teamRaisedFormmatted + '"> <span><strong>$' + teamRaisedFormmatted + '</strong></span> </td><td> <a href="' + team.joinTeamURL + '">' + (screenWidth <= 480 ? 'Join' : 'Join Team') + '</a> </td></tr>');
+            $('#team-roster tbody').append('<tr class="' + (i > 4 ? 'd-none' : '') + '"> <td class="donor-name"> <a href="' + team.teamPageURL + '" data-sort="' + team.name + '">' + team.name + '</a> </td><td class="donor-name"> <a href="TR/?px=' + team.captainConsId + '&pg=personal&fr_id=' + team.EventId + '" data-sort="' + team.captainFirstName + ' ' + team.captainLastName + '">' + team.captainFirstName + ' ' + team.captainLastName + '</a> </td><td class="raised" data-sort="' + teamRaisedFormmatted + '"> <span><strong>$' + teamRaisedFormmatted + '</strong></span> </td><td> <a href="' + team.joinTeamURL + '">' + (screenWidth <= 480 ? 'Join' : 'Join Team') + '</a> </td></tr>');
           });
           
           if(totalTeams > 5) {
@@ -1071,7 +1073,7 @@ cd.getCompanyTeams();
             var participantRaised = (parseInt(participant.amountRaised) * 0.01);
             var participantRaisedFormmatted = participantRaised.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
 
-            $('#participant-roster tbody').append('<tr class="' + (i > 10 ? 'd-none' : '') + '"><td class="donor-name"><a href="' + participant.personalPageUrl + '">' +
+            $('#participant-roster tbody').append('<tr class="' + (i > 4 ? 'd-none' : '') + '"><td class="donor-name"><a href="' + participant.personalPageUrl + '">' +
               participant.name.first + ' ' + participant.name.last +
               '</a>' + (participant.aparticipantCaptain === "true" ? ' <span class="coach">- Coach</span>' : '') + '</td><td class="raised" data-sort="' + participantRaisedFormmatted + '"><span><strong>$' + participantRaisedFormmatted + '</strong></span></td><td><a href="' + participant.donationUrl + '">' + (screenWidth <= 480 ? 'Donate' : 'Donate to ' + participant.name.first) + '</a></td></tr>');
           });
@@ -1145,6 +1147,10 @@ cd.getCompanyParticipants();
       cd.autoSearchParticipant = function () {
         var firstNameVal = getURLParameter(currentUrl, 'first_name') ? getURLParameter(currentUrl, 'first_name') : '';
         var lastNameVal = getURLParameter(currentUrl, 'last_name') ? getURLParameter(currentUrl, 'last_name') : '';
+
+        console.log('firstNameVal: ', firstNameVal);
+        console.log('lastNameVal: ', lastNameVal);
+
 
         if(!firstNameVal && !lastNameVal){
           // General participant search from greeting page. Show all walkers
