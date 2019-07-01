@@ -86,25 +86,45 @@
    .challenge-days {
       position:relative;
       background: url(../image/pc-challenge-days-bg.png) no-repeat top;
+      overflow:hidden;
+   }
+   .challenge-day-count {
+      font-size: 60px;
+      background: #fff;
+      position: relative;
+      left: 20px;
+      width: 110px;
+      border-radius: 55px;
+      text-align: center;
+      margin-right: 30px;
+      margin-top: 25px;
+      line-height: 80px;
+      vertical-align: middle;
+      padding: 2px 10px 15px 10px;
+      color: #ed1c24;
+      border: 2px solid #2887c8;
+      font-weight: bold;
    }
    .text_with_1px_border {
       text-shadow: 
-         -1px -1px 0px #000,
-         0px -1px 0px #000,
-         1px -1px 0px #000,
-         -1px  0px 0px #000,
-         1px  0px 0px #000,
-         -1px  1px 0px #000,
-         0px  1px 0px #000,
-         1px  1px 0px #000;
+         -1px -1px 0px #2887c8,
+         0px -1px 0px #2887c8,
+         1px -1px 0px #2887c8,
+         -1px  0px 0px #2887c8,
+         1px  0px 0px #2887c8,
+         -1px  1px 0px #2887c8,
+         0px  1px 0px #2887c8,
+         1px  1px 0px #2887c8;
    }
    .challenge-day-title {
-      text-transform:uppercase;
-      font-size:47px;
-      color:#ffffff;
+      text-transform: uppercase;
+      font-size: 44px;
+      color: #fff;
+      margin-top: 25px;
+      line-height:46px;
    }
    .challenge-day-challenge {
-      font-size:37px;
+      font-size:33px;
       color:#ffffff;
    }
 }
