@@ -146,6 +146,9 @@
 	color: #293b90;
 	font-size: 24px;
 	line-height: 28px;
+	.selected {
+	   color: #fe5f00;
+	}
    }
 }
 .ym-activity-box.ym-activity-box--virtual a.entry-button{
