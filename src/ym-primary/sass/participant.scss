@@ -129,11 +129,8 @@
    .challenge-day-title {
       text-transform: uppercase;
       font-size: 44px;
-      @media only screen and (min-width: $screen-sm-max) and (max-width: $screen-md-max) {
-	      font-size:3vw;
-      }
-      @media only screen and (max-width: $screen-sm-max) {
-	      font-size:6vw;
+      @media only screen and (max-width: $screen-md-max) {
+	      font-size:3rem;
       }
       color: #fff;
       margin-top: 25px;
@@ -142,11 +139,8 @@
    .challenge-day-challenge {
       font-size:33px;
       color:#ffffff;
-      @media only screen and (min-width: $screen-sm-max) and (max-width: $screen-md-max) {
-	      font-size:2.5vw;
-      }
-      @media only screen and (max-width: $screen-sm-max) {
-	      font-size:5vw;
+      @media only screen and (max-width: $screen-md-max) {
+	      font-size:2.5rem;
       }
    }
    .ym_my_challenge__description {
