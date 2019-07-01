@@ -1,11 +1,11 @@
 [[?x9x19x23x200x201x26x27x::x[[S4]]x::
   <div class="ym-page-header ym-accent-color">
     <div class="container">
-      [[?x9x::x[[S4]]x::
+      <!-- [[?x9x::x[[S4]]x:: -->
         <div class="col-sm-12">
-      ::
+      <!-- ::
         <div class="col-sm-9">
-      ]]
+      ]] -->
         [[?x9x::x[[S4]]x::
           [[?xcompletedx::x[[E334:[[S334:df_id]].donation]]x::
           ::
@@ -18,7 +18,7 @@
             </p>
           ]]
         ::]]
-        [[?x19x23x::x[[S4]]x::
+        [[?x19x23x200x201x::x[[S4]]x::
           <!-- PageServer and SPageServer -->
           [[?xym_khc_participant_centerx::x[[S334:pagename]]x::
             <!-- participant center -->
@@ -66,7 +66,8 @@
             [[?xpersonalx::x[[S334:pg]]x::
               <!-- personal page -->
               <h1>
-                [[E48:[[S80:trID]]-[[S334:px]]:cons.first_name]] [[E48:[[S80:trID]]-[[S334:px]]:cons.last_name]]
+                <span class="survivor" ng-show="survivor" ng-cloak><img src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/ym-primary/image/survivor-badge.png" alt="I am a Survivor"></span>
+                [[E48:[[S80:trID]]-[[S334:px]]:cons.first_name]] [[E130:[[T8:[[E48:[[S80:trID]]-[[S334:px]]:cons.last_name]]]] 0 1 substring]].
               </h1>
               [[?xx::x[[E48:[[S80:trID]]-[[S334:px]]:team-id]]x::::
                 <!-- team ID is non-null -->
@@ -98,6 +99,9 @@
               <h1>
                 <span ng-bind-html="companyName"></span>
               </h1>
+              <p class="school-location h5" ng-if="companyCity" ng-cloak>
+                Located in <span ng-bind-html="companyCity"></span>, <span ng-bind-html="companyState"></span>
+              </p>
             ::]]
           ::
             <!-- all other TR pages -->
@@ -117,14 +121,24 @@
             </h1>
             [[?xx::x[[S80:frCompanyId]]x::::
               <div ng-if="companyName" ng-cloak>
-                <p class="school-name">
-                  My School: <a aria-label="My School: {{companyName}}" href="TR?fr_id=[[S80:trID]]&pg=company&company_id=[[S80:frCompanyId]]"><span class="sr-only">View</span> <span ng-bind-html="companyName"></span> <span class="sr-only">page</span></a>
-                </p>
+                <div ng-if="!companyCity" ng-cloak>
+                  <p class="school-name">
+                    My School: <a aria-label="My School: {{companyName}}" href="TR?fr_id=[[S80:trID]]&pg=company&company_id=[[S80:frCompanyId]]"><span class="sr-only">View</span> <span ng-bind-html="companyName"></span> <span class="sr-only">page</span></a>
+                  </p>
                 [[?xx::x[[S80:frTJoin]]x::::
                   <p class="team-name">
                     My Team: <a aria-label="My Team: [[E43:[[S80:trID]]:name:[[S80:frTJoin]]]]" href="TR?fr_id=[[S80:trID]]&pg=team&team_id=[[S80:frTJoin]]"><span class="sr-only">View</span> [[E43:[[S80:trID]]:name:[[S80:frTJoin]]]] <span class="sr-only">page</span></a>
                   </p>
                 ]]
+                </div>
+                <div ng-if="companyCity" ng-cloak>
+                  <p class="school-name-center text-center h5">
+                    <a aria-label="My School: {{companyName}}" href="TR?fr_id=[[S80:trID]]&pg=company&company_id=[[S80:frCompanyId]]"><span class="sr-only">View</span> <span ng-bind-html="companyName"></span> <span class="sr-only">page</span></a>
+                  </p>
+                  <p class="school-location text-center h5" ng-if="companyCity" ng-cloak>
+                    Located in <span ng-bind-html="companyCity"></span>, <span ng-bind-html="companyState"></span>
+                  </p>
+                </div>
               </div>
             ]]
           ]]

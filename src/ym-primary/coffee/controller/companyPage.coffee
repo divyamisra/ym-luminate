@@ -15,8 +15,9 @@ angular.module 'ahaLuminateControllers'
     'TeamraiserRegistrationService'
     'TeamraiserCompanyPageService'
     'PageContentService'
+    'SchoolLookupService'
     '$sce'
-    ($scope, $rootScope, $location, $filter, $timeout, $uibModal, APP_INFO, TeamraiserCompanyService, TeamraiserTeamService, TeamraiserParticipantService, BoundlessService, ZuriService, TeamraiserRegistrationService, TeamraiserCompanyPageService, PageContentService, $sce) ->
+    ($scope, $rootScope, $location, $filter, $timeout, $uibModal, APP_INFO, TeamraiserCompanyService, TeamraiserTeamService, TeamraiserParticipantService, BoundlessService, ZuriService, TeamraiserRegistrationService, TeamraiserCompanyPageService, PageContentService, SchoolLookupService, $sce) ->
       $scope.companyId = $location.absUrl().split('company_id=')[1].split('&')[0].split('#')[0]
       domain = $location.absUrl().split('/site/')[0]
       $rootScope.companyName = ''
@@ -402,4 +403,24 @@ angular.module 'ahaLuminateControllers'
             i++
           ###
       getLeaderboards()
+              
+      setCompanyCity = (companyCity) ->
+        $rootScope.companyCity = companyCity
+        if not $rootScope.$$phase
+          $rootScope.$apply()
+          
+      setCompanyState = (companyState) ->
+        $rootScope.companyState = companyState
+        if not $rootScope.$$phase
+          $rootScope.$apply()
+          
+      SchoolLookupService.getSchoolData()
+        .then (response) ->
+          schoolDataRows = response.data.getSchoolSearchDataResponse.schoolData
+          angular.forEach schoolDataRows, (schoolDataRow, schoolDataRowIndex) ->
+            if schoolDataRowIndex > 0
+              if $scope.companyId is schoolDataRow[0]
+                setCompanyCity schoolDataRow[1]
+                setCompanyState schoolDataRow[2]
+          return
   ]
