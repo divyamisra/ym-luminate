@@ -419,31 +419,25 @@
               </div>
               <div class="col-sm-12">
                 <div class="col-sm-4">
-                  <img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/my-challenge-exercise.png" alt="{{personalChallenge.name}}" ng-class="{'selected': personalChallenge.id == '1'}">
-                  Be Ready
+                  <a href="" ng-click="updateChallenge(1)">
+                    <img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/my-challenge-exercise.png" alt="{{personalChallenge.name}}" ng-class="{'selected': personalChallenge.id == '1'}">
+                    Be Ready
+                  </a>
                 </div>
                 <div class="col-sm-4">
-                  <img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/my-challenge-exercise.png" alt="{{personalChallenge.name}}" ng-class="{'selected': personalChallenge.id == '2'}">
-                  Move More
+                  <a href="" ng-click="updateChallenge(2)">
+                    <img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/my-challenge-exercise.png" alt="{{personalChallenge.name}}" ng-class="{'selected': personalChallenge.id == '2'}">
+                    Move More
+                  </a>
                 </div>
                 <div class="col-sm-4">
-                  <img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/my-challenge-exercise.png" alt="{{personalChallenge.name}}" ng-class="{'selected': personalChallenge.id == '3'}">
-                  Be Kind
+                  <a href="" ng-click="updateChallenge(3)">
+                    <img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/my-challenge-exercise.png" alt="{{personalChallenge.name}}" ng-class="{'selected': personalChallenge.id == '3'}">
+                    Be Kind
+                  </a>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="ym_my_challenge__update" ng-if="personalChallenge.id" ng-cloak>
-            <form method="post" novalidate ng-submit="updateChallenge()">
-              <label for="ym-update-challenge">Update my challenge:</label>
-              <select class="form-control" ng-class="{'disabled': personalChallenge.updatePending}" ng-disabled="personalChallenge.updatePending" name="ym-update-challenge" id="ym-update-challenge" ng-model="updatedPersonalChallenge.id">
-                <option value=""></option>
-                <option ng-repeat="challenge in challenges" value="{{challenge.id}}">{{challenge.name}}</option>
-              </select>
-              <button type="submit" class="btn btn-md-wide btn-primary" ng-class="{'disabled': personalChallenge.updatePending}" ng-disabled="personalChallenge.updatePending">
-                <strong>Update Challenge</strong>
-              </button>
-            </form>
           </div>
         </div>
         <div class="col-sm-6 ym-activity-box ym-activity-box--virtual">
