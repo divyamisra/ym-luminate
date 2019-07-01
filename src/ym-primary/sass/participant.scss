@@ -85,7 +85,10 @@
    }
    .challenge-days {
       position:relative;
-      background: url(../image/pc-challenge-days-bg.png) no-repeat top;
+      background: url(../image/pc-challenge-days-bg.png) no-repeat top / 100% auto;
+      @media only screen and (max-width: $screen-md-max) { 
+	 background: #ed1c24;
+      }
       overflow:hidden;
       button.btn {
 	margin: 50px 0;
