@@ -412,29 +412,24 @@
                    </div>
                  </div>
      	  		  </div>
-              <div class="col-sm-8">
+              <div class="col-sm-12">
                 <p class="ym_my_challenge__description">
-                  <strong><span ng-bind-html="personalChallenge.name"></span></strong>
-                </p>
-                <p class="ym_my_challenge__stats" ng-if="personalChallenge.numCompleted == 1" ng-cloak>
-                  I've met my challenge <span>1</span> day!
-                </p>
-                <p class="ym_my_challenge__stats" ng-if="personalChallenge.numCompleted != 1" ng-cloak>
-                  I've met my challenge <span><span ng-bind-html="personalChallenge.numCompleted"></span></span> days!
+                  <strong>Change Your Challenge</strong>
                 </p>
               </div>
-              <div class="col-sm-4">
-                <img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/my-challenge-exercise.png" alt="{{personalChallenge.name}}" ng-if="personalChallenge.id == '1'" ng-cloak>
-                <img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/my-challenge-water.png" alt="{{personalChallenge.name}}" ng-if="personalChallenge.id == '2'" ng-cloak>
-                <img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/my-challenge-deed.png" alt="{{personalChallenge.name}}" ng-if="personalChallenge.id == '3'" ng-cloak>
-              </div>
-            </div>
-            <div class="ym_my_challenge__actions">
-              <button type="button" class="btn btn-md-wide btn-primary" ng-class="{'disabled': personalChallenge.updatePending}" ng-disabled="personalChallenge.updatePending" ng-click="logChallenge()" ng-if="!personalChallenge.completedToday" ng-cloak>
-                <strong>Yes, I met this challenge today!</strong> <!--<i class="fa fa-check" hidden aria-hidden="true"></i>-->
-              </button>
-              <div class="alert alert-success" role="alert" ng-if="personalChallenge.completedToday" ng-cloak>
-                <strong>Challenge met</strong> <i class="fa fa-check" hidden aria-hidden="true"></i>
+              <div class="col-sm-12">
+                <div class="col-sm-4">
+                  <img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/my-challenge-exercise.png" alt="{{personalChallenge.name}}" ng-class="{'selected': personalChallenge.id == '1'}">
+                  Be Ready
+                </div>
+                <div class="col-sm-4">
+                  <img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/my-challenge-exercise.png" alt="{{personalChallenge.name}}" ng-class="{'selected': personalChallenge.id == '2'}">
+                  Move More
+                </div>
+                <div class="col-sm-4">
+                  <img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/my-challenge-exercise.png" alt="{{personalChallenge.name}}" ng-class="{'selected': personalChallenge.id == '3'}">
+                  Be Kind
+                </div>
               </div>
             </div>
           </div>
