@@ -582,6 +582,18 @@ angular.module 'trPcControllers'
             delete $scope.personalChallenge.updatePending
             getStudentChallenge()
       
+      $scope.updateDayChallenge = (challengeid) ->
+        if not $scope.personalChallenge
+          $scope.personalChallenge = {}
+        $scope.personalChallenge.updatePending = true
+        ZuriService.updateChallenge $scope.frId + '/' + $scope.consId + '?challenge=' + challengeid,
+          failure: (response) ->
+            # TODO
+            delete $scope.personalChallenge.updatePending
+          success: (response) ->
+            delete $scope.personalChallenge.updatePending
+            getStudentChallenge()
+      
       $scope.logChallenge = ->
         if not $scope.personalChallenge
           $scope.personalChallenge = {}
