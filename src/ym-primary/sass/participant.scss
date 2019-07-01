@@ -77,6 +77,37 @@
 	font-style: italic;
 	width:60%;
 }
+.ym-activity-box--challenge {
+   padding: 25px 0px;
+
+   .h5 {
+      margin: 0 20px 20px;
+   }
+   .challenge-days {
+      position:relative;
+      background: url(../image/pc-challenge-days-bg.png) no-repeat top;
+   }
+   .text_with_1px_border {
+      text-shadow: 
+         -1px -1px 0px #000,
+         0px -1px 0px #000,
+         1px -1px 0px #000,
+         -1px  0px 0px #000,
+         1px  0px 0px #000,
+         -1px  1px 0px #000,
+         0px  1px 0px #000,
+         1px  1px 0px #000;
+   }
+   .challenge-day-title {
+      text-transform:uppercase;
+      font-size:47px;
+      color:#ffffff;
+   }
+   .challenge-day-challenge {
+      font-size:37px;
+      color:#ffffff;
+   }
+}
 .ym-activity-box.ym-activity-box--virtual a.entry-button{
 	font-size:18px;
 	line-height:28px;
