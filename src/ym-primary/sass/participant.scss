@@ -126,7 +126,7 @@
    .challenge-day-title {
       text-transform: uppercase;
       font-size: 44px;
-      @media only screen and (max-width: $screen-mdd-max) {
+      @media only screen and (max-width: $screen-md-max) {
 	      font-size:3vw;
       }
       color: #fff;
@@ -136,7 +136,7 @@
    .challenge-day-challenge {
       font-size:33px;
       color:#ffffff;
-      @media only screen and (max-width: $screen-mdd-max) {
+      @media only screen and (max-width: $screen-md-max) {
          font-size:2.5vw;
       }
    }
