@@ -412,7 +412,12 @@
                 Enter Cash or Checks:
               </div>
               <p>
-                Enter offline donations here.
+                <a ng-if="device.isMobile && device.mobileType == 'android'" ng-href="https://play.google.com/store/apps/details?id=com.aha.hw.communicator">Use the mobile app to capture and depositi checks quickly!</a>
+                <a ng-if="device.isMobile && device.mobileType == 'iod'" ng-href="https://itunes.apple.com/us/app/heart-walk/id451276834?ls=1&mt=8">Use the mobile app to capture and depositi checks quickly!</a>
+                <a ng-if="!device.isMobile" ng-href="{{baseDomain}}/site/SPageServer?pagename=heartwalk_fundraising_tools&fr_id={{frId}}">Use the mobile app to capture and depositi checks quickly!</a>
+              </p>
+              <p>
+                Or you can always manually enter any offline donations here.
               </p>
             </div>
             <div class="pull-right">
