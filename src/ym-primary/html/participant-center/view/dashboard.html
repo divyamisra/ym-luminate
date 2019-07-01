@@ -397,9 +397,11 @@
     		  	      <div class="col-sm-4 challenge-day-count"><span ng-bind-html="personalChallenge.numCompleted"></span></div>
                   <div class="col-sm-8">
                      <div class="challenge-day-title text_with_1px_border">Day Streak</div>
-                     <div class="challenge-day-challenge text_with_1px_border">for moving more</div>
-         			    </div>
-                  <button type="button" class="btn btn-md-wide btn-primary" ng-class="{'disabled': personalChallenge.updatePending}" ng-disabled="personalChallenge.updatePending" ng-click="logChallenge()" ng-if="!personalChallenge.completedToday" ng-cloak><strong>Add Day</strong></button>
+                     <div class="challenge-day-challenge text_with_1px_border" ng-if="personalChallenge.id == '1'" ng-cloak>for being ready</div>
+                     <div class="challenge-day-challenge text_with_1px_border" ng-if="personalChallenge.id == '2'" ng-cloak>for moving more</div>
+                     <div class="challenge-day-challenge text_with_1px_border" ng-if="personalChallenge.id == '3'" ng-cloak>for being kind</div>
+                     <button type="button" class="btn btn-md-wide btn-primary" ng-class="{'disabled': personalChallenge.updatePending}" ng-disabled="personalChallenge.updatePending" ng-click="logChallenge()" ng-if="!personalChallenge.completedToday" ng-cloak><strong>Add Day</strong></button>
+                 </div>
      	  		  </div>
               <div class="col-sm-8">
                 <p class="ym_my_challenge__description">
