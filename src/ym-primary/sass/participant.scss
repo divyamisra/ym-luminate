@@ -126,6 +126,9 @@
    .challenge-day-title {
       text-transform: uppercase;
       font-size: 44px;
+      @media only screen and (max-width: $screen-mdd-max) {
+	      font-size:3vw;
+      }
       color: #fff;
       margin-top: 25px;
       line-height:46px;
@@ -133,6 +136,9 @@
    .challenge-day-challenge {
       font-size:33px;
       color:#ffffff;
+      @media only screen and (max-width: $screen-mdd-max) {
+         font-size:2.5vw;
+      }
    }
    .ym_my_challenge__description {
       color: indigo;
