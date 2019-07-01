@@ -96,6 +96,11 @@
 	width: 100%;
 	font-size: 20px;
       }
+      .row:nth-child(2) {
+        @media only screen and (max-width: $screen-md-max) {
+	  background: #253c91;
+	}
+      }
    }
    .challenge-day-count {
       font-size: 60px;
