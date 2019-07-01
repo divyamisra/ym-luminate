@@ -87,6 +87,12 @@
       position:relative;
       background: url(../image/pc-challenge-days-bg.png) no-repeat top;
       overflow:hidden;
+      button.btn {
+	margin: 50px 0;
+	background: #83bf37;
+	width: 100%;
+	font-size: 20px;
+      }
    }
    .challenge-day-count {
       font-size: 60px;
@@ -126,6 +132,10 @@
    .challenge-day-challenge {
       font-size:33px;
       color:#ffffff;
+   }
+   .ym_my_challenge__description {
+      color: indigo;
+      font-size: 26px;
    }
 }
 .ym-activity-box.ym-activity-box--virtual a.entry-button{
