@@ -88,6 +88,19 @@ a.ym-pc-dashboard-download-certificates {
 	min-height: 950px;
 }
 
+/* badge list */
+.ym-pc-dashboard-badges-icons {
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: flex-start;
+}
+.ym-pc-dashboard-badges-icon {
+	text-align: center;
+	margin: 0 15px;
+}
+
 /* Gifts tab */
 section.ym-pc-dashboard-bonus-gifts-section {
 	.ym-pc-dashboard-section-header {
