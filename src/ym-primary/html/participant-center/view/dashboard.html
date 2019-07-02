@@ -406,7 +406,9 @@
                    </div>
                  </div>
                  <div class="row">
-     		    	      <div class="col-sm-4"></div>
+     		    	      <div class="col-sm-4">
+                      <img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/pc-challenge-add-day-icon.png" alt="Add a Day to your Challenge">
+                    </div>
                     <div class="col-xs-12 col-sm-8">
                       <button type="button" class="btn btn-md-wide btn-primary" ng-class="{'disabled': personalChallenge.updatePending}" ng-disabled="personalChallenge.updatePending" ng-click="logChallenge()" ng-if="!personalChallenge.completedToday" ng-cloak><strong>Add Day</strong></button>
                    </div>
