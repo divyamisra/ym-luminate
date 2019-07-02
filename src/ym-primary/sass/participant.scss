@@ -85,11 +85,21 @@
    }
    .challenge-days {
       position:relative;
-      background: url(../image/pc-challenge-days-bg.png) no-repeat top / 100% auto;
-      @media only screen and (max-width: $screen-md-max) { 
+      /*background: url(../image/pc-challenge-days-bg.png) no-repeat top / 100% auto;*/
+      /*@media only screen and (max-width: $screen-md-max) { 
 	 background: #ed1c24;
-      }
+      }*/
       overflow:hidden;
+      &::before {
+	background: #ed1c24;
+	content: " ";
+	height: 50%;
+	width: 100%;
+	display: block;
+	position: absolute;
+	transform: rotate(-2deg);
+	margin-top: 9px;
+      }
       button.btn {
 	margin: 40px 0;
 	background: #83bf37;
@@ -100,7 +110,17 @@
         @media only screen and (max-width: $screen-md-max) {
 	  background: #253c91;
 	}
-      }
+        &::before {
+  	  background: #253c91;
+  	  content: " ";
+	  height: 50%;
+	  width: 100%;
+	  display: block;
+	  position: absolute;
+	  transform: rotate(2deg);
+	  margin-top: 9px;
+       }
+     }
    }
    .challenge-day-count {
       font-size: 60px;
