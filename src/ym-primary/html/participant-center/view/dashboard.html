@@ -405,12 +405,12 @@
                        <div class="challenge-day-challenge text_with_1px_border" ng-if="personalChallenge.id == '3'" ng-cloak>for being kind</div>
                    </div>
                  </div>
-                 <div class="row challenge-day-add-day">
+                 <div class="row challenge-day-add-day" ng-if="!personalChallenge.completedToday" ng-cloak>
      		    	      <div class="col-xs-4 col-sm-4 challenge-day-add-icon">
                       <img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/pc-challenge-add-day-icon.png" alt="Add a Day to your Challenge">
                     </div>
                     <div class="col-xs-8 col-sm-8">
-                      <button type="button" class="btn btn-md-wide btn-primary" ng-class="{'disabled': personalChallenge.updatePending}" ng-disabled="personalChallenge.updatePending" ng-click="logChallenge()" ng-if="!personalChallenge.completedToday" ng-cloak><strong>Add Day</strong></button>
+                      <button type="button" class="btn btn-md-wide btn-primary" ng-class="{'disabled': personalChallenge.updatePending}" ng-disabled="personalChallenge.updatePending" ng-click="logChallenge()"><strong>Add Day</strong></button>
                    </div>
                  </div>
      	  		  </div>
