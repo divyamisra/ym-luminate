@@ -90,17 +90,20 @@
 	 background: #ed1c24;
       }*/
       overflow:hidden;
-      &::before {
-	background: #ed1c24;
-	content: " ";
-	height: 50%;
-	width: 101%;
-	display: block;
-	position: absolute;
-	transform: rotate(-2deg);
-	margin-top: 9px;
-	left: -2px;
-      }
+      .row:nth-child(1) {
+	position:relative;
+        &::before {
+  	  background: #ed1c24;
+  	  content: " ";
+	  height: 50%;
+	  width: 101%;
+	  display: block;
+	  position: absolute;
+	  transform: rotate(-2deg);
+	  margin-top: 9px;
+	  left: -2px;
+        }
+	   }
       button.btn {
 	margin: 40px 0;
 	background: #83bf37;
