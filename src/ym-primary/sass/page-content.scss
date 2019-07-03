@@ -32,6 +32,12 @@
   }
 }
 
+.school-location {
+  &.h5 {
+    color:$event-grey;
+  }
+}
+
 .ym_my_challenge__stats {
   span {
     font-weight: 700;
@@ -46,6 +52,14 @@
       height: 50px;
       padding: 0 4px;
       vertical-align: middle;
+    }
+  }
+}
+
+.ym-page-section__list {
+  .ym-donate-cta {
+    .h5 {
+      color: indigo;
     }
   }
 }
