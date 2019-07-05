@@ -1,4 +1,4 @@
-<form action="{{teamraiserAPIPath}}" method="POST" enctype="multipart/form-data" target="edit-personal-photo-1-shim">
+<form action="{{teamraiserAPIPath}}" method="POST" enctype="multipart/form-data" target="edit-page-personal-photo-shim">
   <input type="hidden" name="v" value="1.0">
   <input type="hidden" name="api_key" value="{{apiKey}}">
   <input type="hidden" name="method" value="uploadPersonalPhoto">
@@ -14,26 +14,26 @@
     </h2>
   </div>
   <div class="modal-body">
-    <div uib-alert class="alert-danger" ng-if="updatePersonalPhoto1Error.message">
-      {{updatePersonalPhoto1Error.message}}
+    <div uib-alert class="alert-danger" ng-if="updatePagePersonalPhotoError.message">
+      {{updatePagePersonalPhotoError.message}}
     </div>
     <div uib-alert class="alert-warning">
       Images must be .jpg files. Uploaded images will be automatically resized to fit. The maximum acceptable file size is 8Mb and dimension is 16 Megapixels.
     </div>
     <div class="form-group">
-      <label for="personal-photo-1-file">
+      <label for="page-personal-photo-file">
         Select an image to upload:
       </label>
-      <input type="file" name="graphic_upload_file" id="personal-photo-1-file">
+      <input type="file" name="graphic_upload_file" id="page-personal-photo-file">
     </div>
-    <div class="form-group" ng-if="!personalPhoto1IsDefault">
-      or <a href="#" ng-click="deletePersonalPhoto1($event)">revert to default photo</a>
+    <div class="form-group" ng-if="!pagePersonalPhotoIsDefault">
+      or <a href="#" ng-click="deletePagePersonalPhoto($event)">revert to default photo</a>
     </div>
   </div>
   <div class="modal-footer">
     <div class="clearfix">
       <div class="pull-left">
-        <button type="button" class="btn btn-primary-inverted" ng-click="cancelEditPersonalPhoto1()">
+        <button type="button" class="btn btn-primary-inverted" ng-click="cancelEditPagePersonalPhoto()">
           Cancel
         </button>
       </div>
@@ -46,7 +46,7 @@
   </div>
 </form>
 <div class="hidden" hidden aria-hidden="true">
-  <form class="js--delete-personal-photo-1-form" action="{{teamraiserAPIPath}}" method="POST" enctype="multipart/form-data" target="edit-personal-photo-1-shim">
+  <form class="js--delete-page-personal-photo-form" action="{{teamraiserAPIPath}}" method="POST" enctype="multipart/form-data" target="edit-page-personal-photo-shim">
     <input type="hidden" name="v" value="1.0">
     <input type="hidden" name="api_key" value="{{apiKey}}">
     <input type="hidden" name="method" value="removePersonalPhoto">
@@ -57,5 +57,5 @@
     <input type="hidden" name="auth" value="{{authToken}}">
     <input type="hidden" name="JSESSIONID" value="{{sessionCookie}}">
   </form>
-  <iframe name="edit-personal-photo-1-shim" id="edit-personal-photo-1-shim" src="../aha-luminate/dist/heart-walk/html/page-edit/frame/edit-photo.html"></iframe>
+  <iframe name="edit-page-personal-photo-shim" id="edit-page-personal-photo-shim" src="../aha-luminate/dist/heart-walk/html/page-edit/frame/edit-photo.html"></iframe>
 </div>

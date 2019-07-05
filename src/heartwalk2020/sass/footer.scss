@@ -81,17 +81,16 @@ footer {
       }
     }
   }
-  // @media (max-width: $screen-sm-max) {
-  //   padding-bottom: 45px;
-  // }
+
 }
 
-// #footer-main {
-//   .menu-item-donate {
-//     display: none;
-//   }
-//   @include media-breakpoint-down(sm) {
-//     display:none;
-//   }
-// }
+.tr_sponsorship_logo_url {
+  &:focus{
+    -webkit-box-shadow: 0 0 0 0.2rem rgba(158,202,237, 0.75);
+    box-shadow: 0 0 0 0.2rem rgba(158,202,237, 0.75);
+    height: 150px;
+    width: 150px;
+    display:block;
+  }
+}
 
