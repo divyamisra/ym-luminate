@@ -1237,11 +1237,6 @@ cd.getCompanyParticipants();
       }
     }
     }
-
-    $('.navbar-nav .nav-link').hover(function() {
-        $('.dropdown-menu-container').hide();
-        $(this).next('.dropdown-menu-container').removeAttr('style').show();
-    });
   });
 }(jQuery));
 
