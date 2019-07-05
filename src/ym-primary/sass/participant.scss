@@ -191,8 +191,7 @@
 	line-height: 28px;
         margin-bottom:20px;
 
-	&.selected,
-	&:hover {
+	&.selected {
 	   color: #fe5f00;
 	}
 	&.disabled {
