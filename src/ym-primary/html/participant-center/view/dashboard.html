@@ -422,19 +422,19 @@
               <div class="col-sm-12">
                 <div class="col-xs-12 col-sm-4">
                   <a href="" ng-click="updateDayChallenge(1)" class="text-center" ng-class="{'selected': personalChallenge.id == '1','disabled': personalChallenge.updatePending}" ng-disabled="personalChallenge.updatePending">
-                    <img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/pc-challenge-be-ready{{personalChallenge.id == '1' ? '-active':''}}.png" onmouseover="var i1=this.src;this.src='../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/ym-primary/image/pc-challenge-be-ready-hover.png'" onmouseout="this.src=i1" alt="Be Ready">
+                    <img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/pc-challenge-be-ready{{personalChallenge.id == '1' ? '-active':''}}.png" ng-mouseover="this.src='../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/pc-challenge-be-ready-hover.png'" ng-mouseout="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/pc-challenge-be-ready{{personalChallenge.id == '1' ? '-active':''}}.png" alt="Be Ready">
                     Be<br/>Ready
                   </a>
                 </div>
                 <div class="col-xs-12 col-sm-4">
                   <a href="" ng-click="updateDayChallenge(2)" class="text-center" ng-class="{'selected': personalChallenge.id == '2','disabled': personalChallenge.updatePending}" ng-disabled="personalChallenge.updatePending">
-                    <img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/pc-challenge-move-more{{personalChallenge.id == '2' ? '-active':''}}.png" onmouseover="var i2=this.src;this.src='../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/ym-primary/image/pc-challenge-move-more-hover.png'" onmouseout="this.src=i2" alt="Move More">
+                    <img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/pc-challenge-move-more{{personalChallenge.id == '2' ? '-active':''}}.png" ng-mouseover="this.src='../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/pc-challenge-move-more-hover.png'" ng-mouseout="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/pc-challenge-move-more{{personalChallenge.id == '2' ? '-active':''}}.png" alt="Move More">
                     Move<br/>More
                   </a>
                 </div>
                 <div class="col-xs-12 col-sm-4">
                   <a href="" ng-click="updateDayChallenge(3)" class="text-center" ng-class="{'selected': personalChallenge.id == '3','disabled': personalChallenge.updatePending}" ng-disabled="personalChallenge.updatePending">
-                    <img class="img-responsive"  ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/pc-challenge-be-kind{{personalChallenge.id == '3' ? '-active':''}}.png" onmouseover="var i3=this.src;this.src='../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/ym-primary/image/pc-challenge-be-kind-hover.png'" onmouseout="this.src=i3" alt="Be Kind">
+                    <img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/pc-challenge-be-kind{{personalChallenge.id == '3' ? '-active':''}}.png" ngmouseover="this.src='../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/pc-challenge-be-kind-hover.png'" ng-mouseout="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/pc-challenge-be-kind{{personalChallenge.id == '3' ? '-active':''}}.png" alt="Be Kind">
                     Be<br/>Kind
                   </a>
                 </div>
