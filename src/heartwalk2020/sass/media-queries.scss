@@ -111,7 +111,7 @@
   }
 }
 
-@media all and (max-width: 1230px) {
+@media all and (max-width: 1300px) {
   .top-list-footer .input-group input[type="text"] {
     &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
       font-size: 12px;
@@ -167,6 +167,23 @@
           padding: 0 10px 15px;
         }
       }
+    }
+  }
+}
+
+@media all and (max-width: 1125px) {
+  .top-list-footer .input-group input[type="text"] {
+    &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+      font-size: 11px;
+    }
+    &::-moz-placeholder { /* Firefox 19+ */
+      font-size: 11px;
+    }
+    &:-ms-input-placeholder { /* IE 10+ */
+      font-size: 11px;
+    }
+    &:-moz-placeholder { /* Firefox 18- */
+      font-size: 11px;
     }
   }
 }

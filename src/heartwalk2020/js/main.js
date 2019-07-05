@@ -729,9 +729,9 @@
         });
 
         // Update placeholder text in mobile for top walker search
-        if(screenWidth <= 480) {
-            $('#top-walker-first-name').attr('placeholder', 'First Name');
-            $('#top-walker-last-name').attr('placeholder', 'Last Name');
+        if(screenWidth <= 1065) {
+            $('#walkerFirstName').attr('placeholder', 'First Name');
+            $('#walkerLastName').attr('placeholder', 'Last Name');
         }
 
         // Launch thermometer

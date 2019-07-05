@@ -117,3 +117,7 @@
 // .dataTables_filter {
 //   display: none;
 // }
+
+input[type="radio"], input[type="radio"]:focus {
+  outline: none;
+}

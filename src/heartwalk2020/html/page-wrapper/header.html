@@ -35,9 +35,11 @@
         <button id="mobile-toggle" class="navbar-toggler float-right" type="button">
             <span class="navbar-toggler-icon fas fa-align-justify"></span>
         </button>
+        [[?xpagenamex::xHearWalk_Searchx::::
         <a class="d-lg-none d-md-block float-right mobile-search-trigger" id="mobile-search">
             <i class="fas fa-search" aria-hidden="true"></i><span class="sr-only">Search</span>
         </a>
+        ]]
         <div class="clearfix"></div>
         <!-- /#mobile-search.d-lg-none d-md-block -->
         <div class="collapse navbar-collapse" id="navbar-container">
@@ -52,6 +54,11 @@
                         <i class="fas fa-home" aria-hidden="true"></i>
                         Home
                     </a>
+                </li>
+                ::]]
+                [?xx::x[[S1:first_name]]x::
+                <li class="nav-item d-lg-none d-md-block" id="mobile-login">
+                    <a class="nav-link" href="UserLogin?NEXTURL=[[T1:https://[[S29:SECURE_DOMAIN]][[S29:SECURE_PATH]]SPageServer?pagename=MyEvents]]">Log In</a>
                 </li>
                 ::]]
                 <li class="nav-item">
@@ -81,8 +88,8 @@
                                     </form>
                                 </div>
                                 <div class="tab-pane fade" id="walker" role="tabpanel" aria-labelledby="walker">
-                                    <p>Search by First and / or Last Name</p>
                                     <form class="js--header-walker-search">
+                                        <label for="walkerSearchFirst">Search by First and / or Last Name</label>
                                         <div class="input-group input-group-lg">
                                             <label for="walkerSearchFirst" class="sr-only">Walker's First Name</label>
                                             <input id="walkerSearchFirst" type="text" name="first-name" class="form-control" />
@@ -116,7 +123,7 @@
                         About
                     </a>
                     <div class="dropdown-menu-container about">
-                        <div class="dropdown-menu">
+                        <div class="dropdown-menu" role="list">
                             [[?xx::x[[S1:first_name]]x::
                             <!-- NOT LOGGED IN -->
                             <a class="dropdown-item d-lg-none" href="UserLogin?NEXTURL=[[T1:https://[[S29:SECURE_DOMAIN]][[S29:SECURE_PATH]]SPageServer?pagename=MyEvents]]">Log In</a>
