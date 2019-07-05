@@ -172,6 +172,7 @@ nav {
           .nav-link {
             font-size: 1rem;
             color: $black !important;
+            text-decoration: none !important;
             border: none;
             margin: 0 53px 32px 0;
           }
@@ -280,7 +281,7 @@ nav {
    * appropriately.
    */
   .is-search {
-    #mobile-search-input, #home, #find, #about, .about, .dropdown-menu:after, .dropdown-menu:before, .dropdown-menu-container.about {
+    #mobile-search-input, #home, #find, #about, .about, .dropdown-menu:after, .dropdown-menu:before, .dropdown-menu-container.about, #mobile-login {
       display: none !important;
     }
 
