@@ -96,13 +96,11 @@ a.ym-pc-dashboard-download-certificates {
 	justify-content: flex-start;
 	align-items: flex-start;
 	padding: 0 20px;
-        img {
-           max-width:125px;
-        }
 }
 .ym-pc-dashboard-badges-icon {
 	text-align: center;
 	margin: 0 15px 25px;
+	max-width:125px;
 }
 
 /* Gifts tab */
