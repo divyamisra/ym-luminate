@@ -34,6 +34,10 @@
         }
       }
     }
+
+    th, td {
+      padding: 1.6rem;
+    }
   }
 }
 
@@ -93,6 +97,18 @@
       text-align:center;
     }
   }
+
+  .nav-tabs {
+
+    .nav-link{
+      color: $gray-700;
+      text-decoration: none;
+      &.active {
+        color: $red !important;
+        text-decoration: underline;
+      }
+    }
+  }
 }
 // .dataTables_filter {
 //   width: 50%;
@@ -113,3 +129,7 @@
 // .dataTables_filter {
 //   display: none;
 // }
+
+input[type="radio"], input[type="radio"]:focus {
+  outline: none;
+}

@@ -2,6 +2,27 @@
   .container-wide {
     max-width: 95%;
   }
+
+  .top-list-footer .js--greeting-walker-search-form .input-group {
+    margin: 0 10px !important;
+  }
+}
+
+@media all and (max-width: 1425px) {
+  .top-list-footer .input-group input[type="text"] {
+    &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+      font-size: 14px;
+    }
+    &::-moz-placeholder { /* Firefox 19+ */
+      font-size: 14px;
+    }
+    &:-ms-input-placeholder { /* IE 10+ */
+      font-size: 14px;
+    }
+    &:-moz-placeholder { /* Firefox 18- */
+      font-size: 14px;
+    }
+  }
 }
 
 @media all and (max-width: 1400px) {
@@ -44,6 +65,9 @@
 
   .top-lists-container {
     .top-list {
+      ul {
+        height: 320px !important;
+      }
       h3 {
         padding: 20px 15px !important;
         font-size: 1rem !important;
@@ -87,6 +111,23 @@
   }
 }
 
+@media all and (max-width: 1300px) {
+  .top-list-footer .input-group input[type="text"] {
+    &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+      font-size: 12px;
+    }
+    &::-moz-placeholder { /* Firefox 19+ */
+      font-size: 12px;
+    }
+    &:-ms-input-placeholder { /* IE 10+ */
+      font-size: 12px;
+    }
+    &:-moz-placeholder { /* Firefox 18- */
+      font-size: 12px;
+    }
+  }
+}
+
 @media all and (max-width: 1200px) {
   .about-event {
     padding: 0 0 36px !important;
@@ -122,10 +163,27 @@
           margin: 20px 10px;
         }
 
-        .row {
+        tr {
           padding: 0 10px 15px;
         }
       }
+    }
+  }
+}
+
+@media all and (max-width: 1125px) {
+  .top-list-footer .input-group input[type="text"] {
+    &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+      font-size: 11px;
+    }
+    &::-moz-placeholder { /* Firefox 19+ */
+      font-size: 11px;
+    }
+    &:-ms-input-placeholder { /* IE 10+ */
+      font-size: 11px;
+    }
+    &:-moz-placeholder { /* Firefox 18- */
+      font-size: 11px;
     }
   }
 }
@@ -154,7 +212,7 @@
     }
   }
 
-  .pg_team .team-roster .dataTables_wrapper .row {
+  .pg_team .team-roster .dataTables_wrapper tr {
     font-size: 0.7rem;
   }
 }
@@ -304,19 +362,24 @@
         width: 100%;
         font-size: 1.33rem;
 
+        div.float-left {
+          margin: 4px 0px 0 0;
+        }
+
         .badges-container {
           width: 100%;
           margin: 10px 0 !important;
 
-          img {
-            width: 60px;
+          svg {
+            width: 40px;
+            margin: 0 0 0 10px;
           }
         }
       }
 
       .donation-amounts {
         .donation-amount-btn {
-          width: 53px;
+          width: 25%;
         }
 
         .custom-amount {
@@ -374,7 +437,7 @@
         }
       }
 
-      .dataTables_wrapper .row {
+      .dataTables_wrapper tr {
         padding: 0 20px 20px !important;
         font-size:1rem;
         
@@ -428,6 +491,14 @@
       background-image: url("/images/content/pagebuilder/hw_hero_mobile.jpg") !important;
       background-size: 100% !important;
     }
+
+    .event-info-expand {
+      cursor: pointer;
+    }
+
+    .top-lists-container .top-list ul {
+      height: 440px !important;
+    }
   }
 
   main {
@@ -449,7 +520,7 @@
       }
 
       .buttons-row {
-        margin: 0;
+        margin: 0 0 10px;
       }
 
       .btn {
@@ -468,8 +539,8 @@
         }
 
         h3 {
-          margin: 0 0 10px;
-          padding: 10px 0 0;
+          margin: 0 0 16px;
+          padding: 16px 0 0;
           font-family: $font-family-medium;
           font-size: 0.7778rem !important;
         }
@@ -618,9 +689,14 @@
       }
 
       .information-box {
+
+        h1 {
+          margin: 5px 0;
+        }
+
         .donation-amounts {
           &.row {
-            display: block;
+            display: flex;
             overflow: hidden;
           }
           .donation-amount-btn {
@@ -645,6 +721,31 @@
     }
   }
   /* END PERSONAL, TEAM, COMPANY PAGE STYLES */
+
+  .pg_HeartWalk_Search {
+    .js--event-results-rows,
+    .js--participants-results-rows,
+    .js--team-results-rows {
+      &.mobile {
+        td {
+          border: none !important;
+          table {
+            border-bottom: solid 1px $gray-100;
+            .btn-primary {
+              margin: 0 0 15px !important;
+            }
+          }
+        }
+        tr table tr td{
+          &:first-child {
+            width: 30% !important;
+            color: $black !important;
+          }
+        }
+      }
+    }
+
+  }
 }
 
 @media all and (max-width: 675px) {
@@ -659,6 +760,10 @@
   }
   .pl-sm-0, .px-sm-0 {
     padding-left: 0 !important;
+  }
+
+  .js--multi-event-locations {
+    display: none;
   }
 }
 
@@ -813,7 +918,7 @@
             }
 
             input {
-              width: 100%;
+              // width: 100%;
               height: 40px;
             }
           }
@@ -842,6 +947,19 @@
       margin-bottom: 0 !important;
     }
   }
+
+  .pg_complist {
+    .col-12.content,
+    .mobile div.responsive {
+      margin: 0 !important;
+      width: 100% !important;
+      padding: 0 !important;
+    }
+
+    #mobile_company_list * {
+      font-size: 0.7rem !important;
+    }
+  }
 }
 
 @media all and (max-width: 480px) {
@@ -865,48 +983,57 @@
     margin: 20px 0 0 !important;
   }
 
-  #team-roster, #participant-roster {
-    tr {
-      padding: 15px;
-    }
+  .pg_company {
+    #participant-roster {
+      font-size: 0.8rem;
 
-    td {
-      display: flex;
-      max-width: 100%;
-      flex: unset;
-
-      &:nth-child(4) {
-        position: absolute;
-        right: 10px;
-        text-align: right;
-        display: block;
-      }
-    }
-
-    span {
-      margin: 0 10px 10px 0 !important;
-
-      strong {
-        margin: 0 0 0 10px;
+      tr {
+        margin: 0 !important;
+        padding: 0 !important;
       }
     }
   }
 
-  #participant-roster {
-      td:nth-child(3) {
-        position: absolute;
-        right: 10px;
-        text-align: right;
-        display: block;
-        a {
-          content: "Donate";
+  .pg_company, .pg_team {
+    #team-roster, #participant-roster {
+      td span {
+        margin: 5px 0 0 0;
+        display: inline-block;
+      }
+    }
+
+    #our-teams, #our-walkers, .team-roster {
+      .team-roster-header {
+        padding: 20px 0 0 32px !important;
+
+        h1 {
+          margin: 0 0 15px 0 !important;
         }
       }
+
+      .btn {
+        color: transparent;
+        // width: 40px;
+
+        i {
+          color: #fff;
+          position: absolute;
+          top: 12px;
+          right: 11px;
+        }
+      }
+    }
   }
 
-  .pg_team, .pg_company {
-    .team-roster table tr strong {
-      display: inline-block;
+  #team-roster_wrapper .row {
+    margin: 0;
+  }
+
+  .table {
+    &.dataTable {
+      th, td {
+        padding: 0.7rem;
+      }
     }
   }
 }
@@ -920,4 +1047,11 @@
     }
   }
   /* END PERSONAL PAGE STYLES */
+}
+
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+  // IE10+ specific CSS
+  .information-box h1 .badges-container svg {
+    height: 59px;
+  }
 }

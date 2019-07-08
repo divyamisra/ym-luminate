@@ -9,6 +9,21 @@ a.btn {
   font-family: 'LubDubMedium', Helvetica, Arial, sans-serif !important;
 }
 
+.content {
+  .btn {
+    padding: 15px 20px;
+    line-height: 1;
+  }
+
+  .btn-primary {
+    border: solid 2px $red !important;
+
+    &:hover {
+      border: solid 2px $red-deep !important;
+    }
+  }
+}
+
 .btn-primary {
   background-color: $red;
 
@@ -21,12 +36,6 @@ a.btn {
   background-color: $white;
   border: solid 2px $red;
   color: $red;
-
-  &:hover {
-    background-color: $red;
-    border: solid 2px $red;
-    color: $white;
-  }
 }
 
 .btn-tertiary {
@@ -37,11 +46,13 @@ a.btn {
   border: solid 2px $black !important;
   color: $black !important;
   padding: 5px 20px !important;
+}
 
+.btn-secondary, .btn-tertiary, .btn-tertiary-black {
   &:hover {
-    background-color: $red;
-    color: $white !important;
+    background-color: $red !important;
     border: solid 2px $red !important;
+    color: $white !important;
   }
 }
 
@@ -63,3 +74,9 @@ a.btn {
     color: $white;
   }
 }
+
+.btn-primary:focus, a.btn.btn-primary:focus, #login-div-content a.btn.btn-primary:focus, div.responsive a.btn.btn-primary:focus, .btn-primary.focus, a.focus.btn.btn-primary, #login-div-content a.focus.btn.btn-primary, div.responsive a.focus.btn.btn-primary, .btn:focus {
+  -webkit-box-shadow: 0 0 0 0.2rem rgba(158,202,237, 0.75);
+  box-shadow: 0 0 0 0.2rem rgba(158,202,237, 0.75);
+}
+

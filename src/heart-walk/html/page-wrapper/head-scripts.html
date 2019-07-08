@@ -7,27 +7,3 @@
 <script type="text/javascript">
   $.noConflict();
 </script>
-
-[[?xx::x[[S1:cons_id]]x::::
-  <!-- logged in -->
-  [[?
-    [[?xpersonalx[[S1:cons_id]]x::x[[S334:pg]]x[[S334:px]]x::T::]]
-    [[?xteamx[[E48:[[S334:fr_id]]-[[S1:cons_id]]:team-id]]xTRUEx::x[[S334:pg]]x[[S334:team_id]]x[[E48:[[S334:fr_id]]-[[S1:cons_id]]:if-is-captain]]x::T::]]
-    [[?xcompanyx::x[[S334:pg]]x::T::]]
-  ::T::
-    <!-- viewing own page -->
-    [[?xtruex::x[[S80:hasSecureSession]]x::::
-      <style>
-        body {
-          display: none;
-        }
-      </style>
-      <script>
-        window.location = '[[T7:https://[[S29:SECURE_DOMAIN]][[S29:SECURE_PATH]]EstablishSession?NEXTURL=[[T1:[[E130:[[T8:[[S8]]]] [[T8:&amp;]] [[T8:&]] replaceall]]&s_hasSecureSession=true]]&s_hasSecureSession=true]]';
-      </script>
-      <noscript>
-        <meta http-equiv="refresh" content="0;url=[[T7:https://[[S29:SECURE_DOMAIN]][[S29:SECURE_PATH]]EstablishSession?NEXTURL=[[T1:[[E130:[[T8:[[S8]]]] [[T8:&amp;]] [[T8:&]] replaceall]]&s_hasSecureSession=true]]&s_hasSecureSession=true]]">
-      </noscript>
-    ]]
-  ::]]
-]]

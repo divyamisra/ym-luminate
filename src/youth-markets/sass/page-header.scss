@@ -56,6 +56,17 @@
       }
     }
     
+    &.school-location {
+      .school-city {
+        margin-left: 43px;
+        
+        @media (max-width: $screen-xs-max) {
+          display: block;
+          margin: 0;
+        }
+      }
+    }
+    
     &.team-name {
       a {
         margin-left: 40px;

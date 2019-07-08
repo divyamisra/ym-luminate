@@ -30,7 +30,7 @@ div.responsive div.ErrorMessage.page-error>span.field-error-indicator {
 /* ***** */
 /* links */
 /* ***** */
-a.btn, a.btn:visited, a.editBtn, a.editBtn:visited, input.btn, input.btnMini,      input.btnSm, input.btnMed, input.btnLg {
+a.btn, a.btn:visited, a.editBtn, a.editBtn:visited, input.btn, input.btnMini, input.btnSm, input.btnMed, input.btnLg {
   font-family: $font-family-medium;
   font-size: initial;
   font-weight: initial;
@@ -38,7 +38,7 @@ a.btn, a.btn:visited, a.editBtn, a.editBtn:visited, input.btn, input.btnMini,   
   font-size: initial;
   font-weight: initial;
   color: initial;
-  background: initial;
+  background: none;
   border: initial;
   padding: initial;
 }

@@ -31,9 +31,12 @@ nav {
   padding: 0 !important;
 
   /* Logo */
-  .navbar-brand svg {
-    margin: -17px 0px 1px -1px;
-    width:100%;
+  .navbar-brand {
+    max-width: 291px;
+    svg {
+      margin: -17px 0px 1px -1px;
+      width:100%;
+    }
   }
 
   /* Navigation links */
@@ -55,6 +58,16 @@ nav {
     position: relative;
     height: 96px;
 
+    &.logged-in:hover {
+      a {
+        text-decoration: none !important;
+
+        &.nav-link.utility-nav-item:hover {
+          text-decoration: underline !important;
+        }
+      }
+    }
+
     &:hover {
 
       a.nav-link {
@@ -67,7 +80,6 @@ nav {
       }
     }
     &.logged-in {
-      width:500px;
       a {
         display:inline-block;
         font-size:16px;
@@ -269,7 +281,7 @@ nav {
    * appropriately.
    */
   .is-search {
-    #mobile-search-input, #home, #find, #about, .about, .dropdown-menu:after, .dropdown-menu:before, .dropdown-menu-container.about {
+    #mobile-search-input, #home, #find, #about, .about, .dropdown-menu:after, .dropdown-menu:before, .dropdown-menu-container.about, #mobile-login {
       display: none !important;
     }
 
@@ -292,6 +304,13 @@ nav {
     li.nav-item {
       margin: 0 !important;
     }
+  }
+
+  #mobile-login a {
+    color: #fff;
+    border-top: solid 1px #fff;
+    padding: 18px 0 !important;
+    margin: 0 20px 0 0;
   }
 }
 
