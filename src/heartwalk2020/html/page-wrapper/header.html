@@ -50,10 +50,10 @@
             </div>
             <!-- /#mobile-search-input -->
             ]]
-            <ul class="nav navbar-nav ml-auto" role="menubar">
+            <ul class="nav navbar-nav ml-auto">
                 [[?x27x26x::x[[S4]]x::
                 <li class="nav-item" >
-                    <a role="menuitem" class="nav-link" id="home" href="TR/?fr_id=[[S80:evID]]&amp;pg=entry">
+                    <a class="nav-link" id="home" href="TR/?fr_id=[[S80:evID]]&amp;pg=entry">
                         Home
                     </a>
                 </li>
@@ -63,12 +63,11 @@
                     <a class="nav-link" href="UserLogin?NEXTURL=[[T1:https://[[S29:SECURE_DOMAIN]][[S29:SECURE_PATH]]SPageServer?pagename=MyEvents]]">Log In</a>
                 </li>
                 ::]]
-                <li class="nav-item">
-                    <a class="nav-link d-md-none d-lg-block" id="find" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle d-md-none d-lg-block" id="find" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Find <i class="fas fa-angle-down" aria-hidden="true"></i>
                     </a>
-                    <div class="dropdown-menu-container find">
-                        <div  role="menu" class="dropdown-menu">
+                        <div class="dropdown-menu find">
                             <h1>What are you looking for?</h1>
                             <div class="nav nav-tabs" id="nav-tab" role="tablist">
                                 <a class="nav-item nav-link active" id="walk-event" data-toggle="tab" href="#walkEvent" role="tab" aria-controls="nav-home" aria-selected="true">A Walk Event</a>
@@ -115,14 +114,12 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <!-- /.dropdown-menu-container -->
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle d-md-none d-lg-block js--nav-about" id="about" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         About <i class="fas fa-angle-down" aria-hidden="true"></i>
                     </a>
-                        <div class="dropdown-menu">
+                        <div class="dropdown-menu about">
                             <a class="dropdown-item" href="SPageServer/?pagename=HeartWalk_FAQ">FAQ</a>
                             <a class="dropdown-item" href="SPageServer/?pagename=HeartWalk_Why_We_Walk"> Why We Walk</a>
                             <a class="dropdown-item" href="SPageServer/?pagename=HeartWalk_Teams">Teams</a>
