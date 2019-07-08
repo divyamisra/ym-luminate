@@ -180,9 +180,10 @@
    .ym_my_challenge__description {
       color: indigo;
       font-size: 26px;
-      margin-top:20px;
+      margin-top:0px;
    }
-   a {
+   .row 
+     a {
 	display: block;
 	text-decoration: none;
 	font-weight: bold;
@@ -204,6 +205,7 @@
 	img {
            margin:0 auto 5px;
 	}
+      }
    }
 }
 .ym-activity-box.ym-activity-box--virtual {
