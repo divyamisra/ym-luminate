@@ -47,28 +47,30 @@
       }
     });
 
-    $('#find').on('click', function(e){
-      e.preventDefault();
-      $('.dropdown-menu-container.find, .dropdown-menu-container.find .dropdown-menu').toggle();
-    });
+    // $('#find').on('click', function(e){
+    //   e.preventDefault();
+    //   $('.dropdown-menu-container.find, .dropdown-menu-container.find .dropdown-menu').toggle();
+    // });
 
-    $('.js--nav-about').on('click', function(e){
-      e.preventDefault();
-      $('.dropdown-menu-container.about, .dropdown-menu-container.about .dropdown-menu').toggle();
-    });
+    // $('.js--nav-about').on('click', function(e){
+    //   e.preventDefault();
+    //   $('.dropdown-menu-container.about, .dropdown-menu-container.about .dropdown-menu').toggle();
+    // });
 
-    $( "#find" ).focusin(function() {
-      $('.dropdown-menu-container.find, .dropdown-menu-container.find .dropdown-menu').show();
-    });
+    // $( "#find" ).focusin(function() {
+    //   $('.dropdown-menu-container.find, .dropdown-menu-container.find .dropdown-menu').show();
+    // });
 
-    $( ".js--nav-about" ).focusin(function() {
-      $('.dropdown-menu-container.find, .dropdown-menu-container.find .dropdown-menu').hide();
-      $('.dropdown-menu-container.about, .dropdown-menu-container.about .dropdown-menu').show();
-    });
+    // $( ".js--nav-about" ).focusin(function() {
+    //   $('.dropdown-menu-container.find, .dropdown-menu-container.find .dropdown-menu').hide();
+    //   $('.dropdown-menu-container.about, .dropdown-menu-container.about .dropdown-menu').show();
+    // });
 
-    $( ".js--top-menu-contact" ).focusout(function() {
-      $('.dropdown-menu-container.about, .dropdown-menu-container.about .dropdown-menu').hide();
-    });
+    // $( ".js--top-menu-contact" ).focusout(function() {
+    //   $('.dropdown-menu-container.about, .dropdown-menu-container.about .dropdown-menu').hide();
+    // });
+
+
 
     /******************/
     /* SEARCH SCRIPTS */
