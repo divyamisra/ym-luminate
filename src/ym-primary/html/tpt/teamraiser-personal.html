@@ -116,14 +116,11 @@
           <img class="img-responsive" ng-if="challengeId == 3" src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/ym-primary/image/badge-kind.png" alt="{{challengeName}}" ng-cloak>
         </div>
         <div class="col-sm-8">
-          <p class="ym_my_challenge__description">
-            <strong>{{challengeName}}</strong>
-          </p>
           <p class="ym_my_challenge__stats" ng-if="challengeCompleted == 1" ng-cloak>
-            I've met my challenge <span>1</span> day!
-          </p>
-          <p class="ym_my_challenge__stats" ng-if="challengeCompleted != 1" ng-cloak>
-            I've met my challenge <span>{{challengeCompleted}}</span> days!
+            I have a <span>{{challengeCompleted}}</span> day streak 
+            <span ng-if="challengeId == '1'" ng-cloak>for being ready!</span>
+            <span ng-if="challengeId == '2'" ng-cloak>for moving more!</span>
+            <span ng-if="challengeId == '3'" ng-cloak>for being kind!</span>
           </p>
         </div>
         <div class="clearfix"></div>
