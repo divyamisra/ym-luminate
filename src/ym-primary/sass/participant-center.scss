@@ -96,6 +96,9 @@ a.ym-pc-dashboard-download-certificates {
 	justify-content: flex-start;
 	align-items: flex-start;
 	padding: 0 20px;
+        img {
+           max-width:125px;
+        }
 }
 .ym-pc-dashboard-badges-icon {
 	text-align: center;
