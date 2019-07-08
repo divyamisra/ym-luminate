@@ -855,7 +855,7 @@
                 // TODO - remove after local testing
                 $('.donation-amounts').html('');
 
-                  $.each(donationLevels, function(){
+                  $.each(donationLevels, function(i){
                     var userSpecified = this.userSpecified,
                     amountFormatted = this.amount.formatted.replace('.00',''),
                     levelID = this.level_id;
@@ -870,6 +870,11 @@
                       $('.donation-amounts').append('<div class="custom-amount"> <input class="form-check-input sr-only" type="radio" name="personalDonAmt" id="personalDonAmt' + i + '" value="' + levelID + '"> <label class="js--don-amt-other sr-only" for="personalDonAmt' + i + '" data-level-id="' + levelID + '">Enter your own amount</label> <label class="form-label d-inline-block" for="personalOtherAmt">Custom Amount:</label><br/> <input type="text" id="personalOtherAmt" class="form-control d-inline-block js--personal-amt-other"/> </div>');                     
                     }
                   });
+
+                      $('input[name="personalDonAmt"]').eq(0).prop('checked', true).closest('.donation-amount-btn').addClass('active');
+                      $('.js--don-amt').text($('.form-check-label').eq(0).text().trim());
+                      
+
                       $('.js--personal-don-form').removeClass('hidden');
                       var defaultDonUrl = $('.js--personal-don-submit').data('don-url');
                       var finalDonUrl = null;
@@ -880,17 +885,21 @@
                         $(this).addClass('active');
                         $('.js--don-amt').text($(this).text());
                         finalDonUrl = defaultDonUrl + '&set.DonationLevel=' + $(this).data('level-id');
-                        console.log('finalDonUrl: ', finalDonUrl);
                      });
 
+                  
                       // format "other" amount before submitting to native donation form
                       $('.js--personal-amt-other').on('blur keyup', function(){
                         $('.js--personal-don-form .donation-amount-btn').removeClass('active');
+                        $('.custom-amount input[name="personalDonAmt"]').prop('checked', true);
                         var customAmt = parseInt($(this).val()) * 10;
 
                         finalDonUrl = defaultDonUrl + '&set.DonationLevel=' + $('.js--don-amt-other').data('level-id') + '&set.Value=' + customAmt;
-
-                        $('.js--don-amt').text('$' + $(this).val());
+                        if($(this).val()){
+                          $('.js--don-amt').text('$' + $(this).val());
+                        } else {
+                          $('.js--don-amt').text('');
+                        }
                       });
 
                       $('.js--personal-don-form').on('submit', function(e){
