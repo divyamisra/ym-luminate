@@ -34,8 +34,9 @@
   .challenge-day-streak {
     position:relative;
     z-index: 1;
-    margin-bottom:20px !important;
+    margin-bottom:20px;
     margin-top:20px;
+    padding-bottom: 10px !important;
     &::before {
       background: #ed1c24;
       content: " ";
@@ -45,7 +46,7 @@
       position: absolute;
       transform: rotate(-2deg);
       margin-top: -10px;
-      left: 17px;
+      left: -17px;
     }
   }
 }
