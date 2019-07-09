@@ -12,6 +12,7 @@
 .ym-my-challenge {
   background: $event-secondary-medium;
   padding: 20px;
+  overflow:hidden;
   
   @media (min-width: $screen-sm-min) {
     padding: 20px 30px;
@@ -31,19 +32,20 @@
     padding: 0;
   }
   .challenge-day-streak {
-  	position:relative;
-	  z-index: 1;
-  	margin-bottom:20px;
+    position:relative;
+    z-index: 1;
+    margin-bottom:20px !important;
+    margin-top:20px;
     &::before {
-  	  background: #ed1c24;
-  	  content: " ";
-	    height: 100%;
-	    width: 101%;
-  	  display: block;
-	    position: absolute;
-	    transform: rotate(-2deg);
-  	  margin-top: 9px;
-	    left: -2px;
+      background: #ed1c24;
+      content: " ";
+      height: 100%;
+      width: 107%;
+      display: block;
+      position: absolute;
+      transform: rotate(-2deg);
+      margin-top: -10px;
+      left: 17px;
     }
   }
 }
