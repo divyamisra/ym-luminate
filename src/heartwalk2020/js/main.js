@@ -871,13 +871,13 @@
                     }
                   });
 
-                      $('input[name="personalDonAmt"]').eq(0).prop('checked', true).closest('.donation-amount-btn').addClass('active');
-                      $('.js--don-amt').text($('.form-check-label').eq(0).text().trim());
-                      
 
                       $('.js--personal-don-form').removeClass('hidden');
                       var defaultDonUrl = $('.js--personal-don-submit').data('don-url');
                       var finalDonUrl = null;
+
+
+
                       // define donation widget button behavior
                       $('.js--personal-don-form label').on('click', function(){
                         $('.js--personal-amt-other').val('');
@@ -922,6 +922,10 @@
                           finalDonUrl = defaultDonUrl + '&set.DonationLevel=' + $('.js--don-amt-other').data('level-id') + (isNaN(customAmt) === true ? '' : '&set.Value=' + customAmt);
                       
                       });
+
+                      // Set default donation amount
+                      $('input[name="personalDonAmt"]').eq(0).click().prop('checked', true).closest('.donation-amount-btn').addClass('active');
+                      $('.js--don-amt').text($('.form-check-label').eq(0).text().trim());
 
                       $('.js--personal-don-form').on('submit', function(e){
                         e.preventDefault();
