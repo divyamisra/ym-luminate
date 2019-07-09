@@ -850,10 +850,6 @@
               success: function(response) {
                   var i = 0,
                   donationLevels = luminateExtend.utils.ensureArray(response.getDonationFormInfoResponse.donationLevels.donationLevel);
-                console.log('donationLevels: ', donationLevels);
-
-                // TODO - remove after local testing
-                $('.donation-amounts').html('');
 
                   $.each(donationLevels, function(i){
                     var userSpecified = this.userSpecified,
@@ -876,8 +872,6 @@
                       var defaultDonUrl = $('.js--personal-don-submit').data('don-url');
                       var finalDonUrl = null;
 
-
-
                       // define donation widget button behavior
                       $('.js--personal-don-form label').on('click', function(){
                         $('.js--personal-amt-other').val('');
@@ -889,25 +883,26 @@
 
                   
                       // format "other" amount before submitting to native donation form
-                      $('.js--personal-amt-other').on('blur', function(e){
-                        console.log('not tab key');
-                        var keyCode = e.keyCode || e.which;
-                        if (keyCode !== 9) {
-                        var customAmt = parseInt($(this).val()) * 10;
+                      // $('.js--personal-amt-other').on('blur', function(e){
+                      //   var keyCode = (e.keyCode ? e.keyCode : e.which);
+                      //   if (keyCode !== 9) {
+                      //   var customAmt = parseInt($(this).val()) * 10;
 
-                        finalDonUrl = defaultDonUrl + '&set.DonationLevel=' + $('.js--don-amt-other').data('level-id') + (isNaN(customAmt) === true ? '' : '&set.Value=' + customAmt);
+                      //   finalDonUrl = defaultDonUrl + '&set.DonationLevel=' + $('.js--don-amt-other').data('level-id') + (isNaN(customAmt) === true ? '' : '&set.Value=' + customAmt);
 
-                        if($(this).val()){
-                          $('.js--don-amt').text('$' + $(this).val());
-                        } else if($('.custom-amount .form-check-input').is(':checked') === true) {
-                          $('.js--don-amt').text('');
-                        }
-                        console.log('final url: ', finalDonUrl);
-                      } 
-                      });
+                      //   if($(this).val()){
+                      //     $('.js--don-amt').text('$' + $(this).val());
+                      //   } else if($('.custom-amount .form-check-input').is(':checked') === true) {
+                      //     $('.js--don-amt').text('');
+                      //   }
+                      //   console.log('final url BLUR: ', finalDonUrl);
+                      // } 
+                      // });
+
                       $('.js--personal-amt-other').on('keyup', function(e){
-                        var keyCode = e.keyCode || e.which;
-                        if (keyCode !== 9) {
+                        var keyCode = (e.keyCode ? e.keyCode : e.which);
+                        console.log('keyCode: ', keyCode);
+                        if (keyCode != 9) {
                           $('.js--personal-don-form .donation-amount-btn').removeClass('active');
                           $('.custom-amount input[name="personalDonAmt"]').prop('checked', true);
                           if($(this).val()){
@@ -915,12 +910,11 @@
                           } else {
                             $('.js--don-amt').text('');
                           }
-                        }
-  
                           var customAmt = parseInt($(this).val()) * 10;
   
                           finalDonUrl = defaultDonUrl + '&set.DonationLevel=' + $('.js--don-amt-other').data('level-id') + (isNaN(customAmt) === true ? '' : '&set.Value=' + customAmt);
-                      
+                          console.log('final url KEYUP: ', finalDonUrl);
+                        }
                       });
 
                       // Set default donation amount
@@ -931,8 +925,8 @@
                         e.preventDefault();
                         // redirect to personal donation form with preselected amount
                         window.location.href = finalDonUrl;
-                      })
-                     
+                      });
+
               }, 
               error: function(response) {
                   // $('.field-error-text').text(response.errorResponse.message);
