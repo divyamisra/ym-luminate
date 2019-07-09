@@ -13,10 +13,10 @@
                 <!-- multi-event -->
                 <div class="row buttons-row">
                         [[?x1x2x::x[[S42:0:status]]x::
-                          <a href="SPageServer/?pagename=heartwalk_register&amp;fr_id=[[S334:fr_id]]" class="btn btn-primary col-lg col-sm-12 mx-md-2 mx-sm-0">Register to Walk</a>
+                          <a href="SPageServer/?pagename=heartwalk_register&amp;fr_id=[[S334:fr_id]]" class="btn btn-primary col-lg col-sm-12 mx-md-2 mx-sm-0" onclick="_gaq.push(['_trackEvent', 'greeting', 'banner', 'register to walk button']);">Register to Walk</a>
                         ::]]
                         [[?x2x3x::x[[S42:0:status]]x::
-                          <a href="SPageServer/?pagename=HeartWalk_Search&amp;search_type=walker&amp;cross_event=false&amp;fr_id=[[S334:fr_id]]" class="btn btn-primary col-lg col-sm-12 mx-md-2 mx-sm-0">Donate</a>
+                          <a href="SPageServer/?pagename=HeartWalk_Search&amp;search_type=walker&amp;cross_event=false&amp;fr_id=[[S334:fr_id]]" class="btn btn-primary col-lg col-sm-12 mx-md-2 mx-sm-0" onclick="_gaq.push(['_trackEvent', 'greeting', 'banner', 'donate button']);">Donate</a>
                         ::]]
                     </div>
                     <span class="multi-event-info-toggler d-none d-sm-block d-md-none" onclick="toggleMultiEventInfo(this)">See All Locations <i class="fas fa-plus float-right" aria-hidden="true"></i><span class="sr-only">Toggle event data and time info</span></span>
@@ -26,10 +26,10 @@
                 <!-- single event -->
                 <div class="row buttons-row">
                         [[?x1x2x::x[[S42:0:status]]x::
-                          <a href="SPageServer/?pagename=heartwalk_register&amp;fr_id=[[S334:fr_id]]" class="btn btn-primary col-lg col-sm-12 mx-md-2 mx-sm-0">Register to Walk</a>
+                          <a href="SPageServer/?pagename=heartwalk_register&amp;fr_id=[[S334:fr_id]]" class="btn btn-primary col-lg col-sm-12 mx-md-2 mx-sm-0" onclick="_gaq.push(['_trackEvent', 'greeting', 'banner', 'register to walk button']);">Register to Walk</a>
                         ::]]
                         [[?x2x3x::x[[S42:0:status]]x::
-                          <a href="SPageServer/?pagename=HeartWalk_Search&amp;search_type=walker&amp;cross_event=false&amp;fr_id=[[S334:fr_id]]" class="btn btn-primary col-lg col-sm-12 mx-md-2 mx-sm-0">Donate</a>
+                          <a href="SPageServer/?pagename=HeartWalk_Search&amp;search_type=walker&amp;cross_event=false&amp;fr_id=[[S334:fr_id]]" class="btn btn-primary col-lg col-sm-12 mx-md-2 mx-sm-0" onclick="_gaq.push(['_trackEvent', 'greeting', 'banner', 'donate button']);">Donate</a>
                         ::]]
                     </div>
                     <div class="row info-columns">
@@ -43,7 +43,7 @@
                                 </p>
                                 <div>
                                     <i class="fas fa-info-circle" aria-hidden="true"></i>
-                                    <a href="TR?fr_id=[[S334:fr_id]]&pg=informational&type=fr_informational&sid=1020">More Details</a>
+                                    <a href="TR?fr_id=[[S334:fr_id]]&pg=informational&type=fr_informational&sid=1020" onclick="_gaq.push(['_trackEvent', 'greeting', 'banner', 'more details']);">More Details</a>
                                     <!-- <a href="TR?fr_id=[[S334:fr_id]]&pg=informational&type=fr_informational&sid=1071">More Details</a> -->
                                 </div>
                             </div>
@@ -58,7 +58,7 @@
                                 </p>
                                 <div>
                                     <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
-                                    <a href="[[E47:[[S334:fr_id]]:fr_info:1:map_link]]" target="_blank">Get Directions</a>
+                                    <a href="[[E47:[[S334:fr_id]]:fr_info:1:map_link]]" target="_blank" onclick="_gaq.push(['_trackEvent', 'greeting', 'banner', 'get directions']);">Get Directions</a>
                                 </div>
                             </div>
                         </div>
@@ -73,7 +73,7 @@
                           </p>
                           <div>
                               <i class="fas fa-envelope" aria-hidden="true"></i>
-                              <a href="mailto:[[E47:[[S334:fr_id]]:fr_info:1:coordinator_email]]">Email Us</a>
+                              <a href="mailto:[[E47:[[S334:fr_id]]:fr_info:1:coordinator_email]]" onclick="_gaq.push(['_trackEvent', 'greeting', 'banner', 'email us']);">Email Us</a>
                           </div>
                       </div>
                   </div>
@@ -129,7 +129,7 @@
                   </h3>
                   <ul></ul>
                   <div class="top-list-footer bg-gray-700 d-flex justify-content-center">
-                      <a href="TR?fr_id=[[S334:fr_id]]&pg=complist" class="btn btn-tertiary">View All Companies</a>
+                      <a href="TR?fr_id=[[S334:fr_id]]&pg=complist" class="btn btn-tertiary" onclick="_gaq.push(['_trackEvent', 'greeting', 'leaderboards', 'view all companies']);">View All Companies</a>
                   </div>
                   <!-- /.top-list-footer -->
               </div>
@@ -141,7 +141,7 @@
                   </h3>
                   <ul></ul>
                   <div class="top-list-footer bg-gray-700 d-flex justify-content-center">
-                    <form class="js--greeting-team-search-form d-flex w-100">
+                    <form class="js--greeting-team-search-form d-flex w-100" onsubmit="_gaq.push(['_trackEvent', 'greeting', 'leaderboards', 'team search']);">
                       <div class="input-group mx-5">
                           <label for="teamName" class="sr-only">Search by team name</label>
                           <input id="teamName" type="text" class="form-control" placeholder="Search by team name" aria-label="Search by team name">
@@ -161,7 +161,7 @@
                   </h3>
                   <ul></ul>
                   <div class="top-list-footer bg-gray-700 d-flex justify-content-center">
-                    <form class="js--greeting-walker-search-form d-flex w-100">
+                    <form class="js--greeting-walker-search-form d-flex w-100" onsubmit="_gaq.push(['_trackEvent', 'greeting', 'leaderboards', 'participant search']);">
                       <div class="input-group mx-5">
                         <label for="walkerFirstName" class="sr-only">Walker First Name</label>
                           <input id="walkerFirstName" name="walkerFirstName" type="text" placeholder="Search by first name" class="form-control">
@@ -190,7 +190,7 @@
                       <img src="[[E47:[[S334:fr_id]]:fr_info:1:sponsor_3]]" alt="About the [[E47:[[S334:fr_id]]:fr_info:1:event_title]]"/>
                       <div class="bg-black-gradient">
                           [[?x1x2x::x[[S42:0:status]]x::
-                          <a href="SPageServer/?pagename=heartwalk_register&amp;fr_id=[[S334:fr_id]]" class="btn btn-primary">Register to Walk</a>
+                          <a href="SPageServer/?pagename=heartwalk_register&amp;fr_id=[[S334:fr_id]]" class="btn btn-primary" onclick="_gaq.push(['_trackEvent', 'greeting', 'about', 'register to walk button']);">Register to Walk</a>
                           ::]]
                           <!-- /.btn btn-primary -->
                           <!-- <a href="TR?fr_id=[[S334:fr_id]]&pg=informational&type=fr_informational&sid=1071" class="btn btn-tertiary">More Details</a> -->
