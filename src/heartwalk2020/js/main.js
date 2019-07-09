@@ -889,16 +889,36 @@
 
                   
                       // format "other" amount before submitting to native donation form
-                      $('.js--personal-amt-other').on('blur keyup', function(){
-                        $('.js--personal-don-form .donation-amount-btn').removeClass('active');
-                        $('.custom-amount input[name="personalDonAmt"]').prop('checked', true);
+                      $('.js--personal-amt-other').on('blur', function(e){
+                        console.log('not tab key');
+                        var keyCode = e.keyCode || e.which;
+                        if (keyCode != '9') {
                         var customAmt = parseInt($(this).val()) * 10;
 
                         finalDonUrl = defaultDonUrl + '&set.DonationLevel=' + $('.js--don-amt-other').data('level-id') + '&set.Value=' + customAmt;
                         if($(this).val()){
                           $('.js--don-amt').text('$' + $(this).val());
-                        } else {
+                        } else if($('.custom-amount .form-check-input').is(':checked') === true) {
                           $('.js--don-amt').text('');
+                        }
+                      }
+                      });
+                      $('.js--personal-amt-other').on('keyup', function(e){
+                        var keyCode = e.keyCode || e.which;
+                        if (keyCode != '9') {
+                          console.log('not tab key');
+                          $('.js--personal-don-form .donation-amount-btn').removeClass('active');
+                        
+                          $('.custom-amount input[name="personalDonAmt"]').prop('checked', true);
+  
+                          var customAmt = parseInt($(this).val()) * 10;
+  
+                          finalDonUrl = defaultDonUrl + '&set.DonationLevel=' + $('.js--don-amt-other').data('level-id') + '&set.Value=' + customAmt;
+                          if($(this).val()){
+                            $('.js--don-amt').text('$' + $(this).val());
+                          } else {
+                            $('.js--don-amt').text('');
+                          }
                         }
                       });
 
