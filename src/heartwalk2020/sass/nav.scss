@@ -89,100 +89,86 @@ nav {
     }
     /* Dropdown styles */
 
-    .dropdown-menu-container {
-      display: none;
+    /* Speech bubble styles for subnavs */
+    .dropdown-menu:before,
+    .dropdown-menu:after {
+      content: "\0020";
+      display: block;
       position: absolute;
-      margin: 8px 0 0 0;
+      top: -20px;
+      z-index: 2;
+      width: 0;
+      height: 0;
+      overflow: hidden;
+      border: solid 20px transparent;
+      border-top: 0;
+      border-bottom-color: $white;
+    }
 
-      .dropdown-menu {
-        position: relative;
-        margin: 48px 0 0;
-        background-color: $white;
-        border-radius: 0;
-        border: 1px solid $gray-200;
+    .dropdown-menu:before {
+      top: -21px;
+      z-index: 1;
+      border-bottom-color: $gray-200;
+    }
 
-        a.dropdown-item {
-          font-size: 1.333rem;
-          text-decoration: none;
-          font-family: $font-family-bold;
+    a.dropdown-item {
+      font-size: 1.333rem;
+      text-decoration: none;
+      font-family: $font-family-bold;
 
-          &:hover {
-            background-color: transparent;
-          }
-        }
+      &:hover {
+        background-color: transparent;
       }
+    }
 
-      /* Speech bubble styles for subnavs */
-      .dropdown-menu:before,
-      .dropdown-menu:after {
-        content: "\0020";
-        display: block;
-        position: absolute;
-        top: -20px;
-        z-index: 2;
-        width: 0;
-        height: 0;
-        overflow: hidden;
-        border: solid 20px transparent;
-        border-top: 0;
-        border-bottom-color: $white;
-      }
-
-      .dropdown-menu:before {
-        top: -21px;
-        z-index: 1;
-        border-bottom-color: $gray-200;
-      }
+    .dropdown-toggle::after {
+      display: none;
     }
 
     .about {
       left: -133px;
+      width: 25rem;
+      padding: 30px 100px 39px;
 
-      .dropdown-menu {
-        width: 25rem;
-        padding: 30px 100px 39px;
-
-        &:before,
-        &:after {
-          left: 166px;
-        }
+      &:before,
+      &:after {
+        left: 166px;
       }
+
     }
 
     .find {
       left: -360px;
+      width: 48rem;
+      padding: 45px 150px;
 
-      .dropdown-menu  {
-        width: 48rem;
-        padding: 45px 150px;
+      h1 {
+        font-size: 2.222rem;
+        margin: 0 0 32px;
+      }
 
-        h1 {
-          font-size: 2.222rem;
-          margin: 0 0 32px;
-        }
+      &:before,
+      &:after {
+        left: 383px;
+      }
 
-        &:before,
-        &:after {
-          left: 383px;
-        }
+      .nav-tabs {
+        border: none;
 
-        .nav-tabs {
+        .nav-link {
+          font-size: 1rem;
+          color: $black !important;
+          text-decoration: none !important;
           border: none;
+          margin: 0 53px 32px 0;
+        }
 
-          .nav-link {
-            font-size: 1rem;
-            color: $black !important;
-            text-decoration: none !important;
-            border: none;
-            margin: 0 53px 32px 0;
-          }
-
-          .nav-link.active {
-            color: $red !important;
-            text-decoration: underline !important;
-          }
+        .nav-link.active {
+          color: $red !important;
+          text-decoration: underline !important;
         }
       }
+
     }
   }
   &.mobile-utility-nav {
@@ -281,24 +267,20 @@ nav {
    * appropriately.
    */
   .is-search {
-    #mobile-search-input, #home, #find, #about, .about, .dropdown-menu:after, .dropdown-menu:before, .dropdown-menu-container.about, #mobile-login {
+    #mobile-search-input, #home, #find, #about, .about, .dropdown-menu:after, .dropdown-menu:before, .dropdown-menu.about, #mobile-login {
       display: none !important;
     }
 
-    .dropdown-menu-container.find, .dropdown-menu-container.find .dropdown-menu {
+    .dropdown-menu.find {
       display: block !important;
     }
 
     .find {
       position: static !important;
       margin: 0 !important;
-
-      .dropdown-menu {
-        width: 100% !important;
-        padding: 40px 20px !important;
-        margin: 0 !important;
-        border: none !important;
-      }
+      width: 100% !important;
+      padding: 40px 20px !important;
+      border: none !important;
     }
 
     li.nav-item {
