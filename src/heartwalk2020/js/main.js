@@ -892,34 +892,35 @@
                       $('.js--personal-amt-other').on('blur', function(e){
                         console.log('not tab key');
                         var keyCode = e.keyCode || e.which;
-                        if (keyCode != '9') {
+                        if (keyCode !== 9) {
                         var customAmt = parseInt($(this).val()) * 10;
 
-                        finalDonUrl = defaultDonUrl + '&set.DonationLevel=' + $('.js--don-amt-other').data('level-id') + '&set.Value=' + customAmt;
+                        finalDonUrl = defaultDonUrl + '&set.DonationLevel=' + $('.js--don-amt-other').data('level-id') + (isNaN(customAmt) === true ? '' : '&set.Value=' + customAmt);
+
                         if($(this).val()){
                           $('.js--don-amt').text('$' + $(this).val());
                         } else if($('.custom-amount .form-check-input').is(':checked') === true) {
                           $('.js--don-amt').text('');
                         }
-                      }
+                        console.log('final url: ', finalDonUrl);
+                      } 
                       });
                       $('.js--personal-amt-other').on('keyup', function(e){
                         var keyCode = e.keyCode || e.which;
-                        if (keyCode != '9') {
-                          console.log('not tab key');
+                        if (keyCode !== 9) {
                           $('.js--personal-don-form .donation-amount-btn').removeClass('active');
-                        
                           $('.custom-amount input[name="personalDonAmt"]').prop('checked', true);
-  
-                          var customAmt = parseInt($(this).val()) * 10;
-  
-                          finalDonUrl = defaultDonUrl + '&set.DonationLevel=' + $('.js--don-amt-other').data('level-id') + '&set.Value=' + customAmt;
                           if($(this).val()){
                             $('.js--don-amt').text('$' + $(this).val());
                           } else {
                             $('.js--don-amt').text('');
                           }
                         }
+  
+                          var customAmt = parseInt($(this).val()) * 10;
+  
+                          finalDonUrl = defaultDonUrl + '&set.DonationLevel=' + $('.js--don-amt-other').data('level-id') + (isNaN(customAmt) === true ? '' : '&set.Value=' + customAmt);
+                      
                       });
 
                       $('.js--personal-don-form').on('submit', function(e){
