@@ -12,7 +12,8 @@ angular.module 'ahaLuminateControllers'
     'ZuriService'
     'BoundlessService'
     'TeamraiserParticipantPageService'
-    ($scope, $rootScope, $location, $filter, $timeout, $uibModal, APP_INFO, TeamraiserParticipantService, TeamraiserCompanyService, ZuriService, BoundlessService, TeamraiserParticipantPageService) ->
+    'TeamraiserSurveyResponseService'
+    ($scope, $rootScope, $location, $filter, $timeout, $uibModal, APP_INFO, TeamraiserParticipantService, TeamraiserCompanyService, ZuriService, BoundlessService, TeamraiserParticipantPageService, TeamraiserSurveyResponseService) ->
       $dataRoot = angular.element '[data-aha-luminate-root]'
       $scope.participantId = $location.absUrl().split('px=')[1].split('&')[0].split('#')[0]
       $scope.companyId = $dataRoot.data('company-id') if $dataRoot.data('company-id') isnt ''
@@ -22,6 +23,7 @@ angular.module 'ahaLuminateControllers'
       $scope.challengeId = null
       $scope.challengeName = null
       $scope.challengeCompleted = 0
+      $rootScope.survivor = false
 
       $scope.prizes = []
       BoundlessService.getBadges $scope.participantId
@@ -43,6 +45,7 @@ angular.module 'ahaLuminateControllers'
           $scope.challengeName = null
           $scope.challengeId = null
           $scope.challengeCompleted = 0
+          $rootScope.survivor = false
         success: (response) ->
           if response.data.challenges.current is '0'
             $scope.challengeId = null
@@ -50,6 +53,7 @@ angular.module 'ahaLuminateControllers'
             $scope.challengeId = response.data.challenges.current
           $scope.challengeName = response.data.challenges.text
           $scope.challengeCompleted = response.data.challenges.completed
+          $rootScope.survivor = response.data.show_banner
 
       TeamraiserCompanyService.getCompanies 'company_id=' + $scope.companyId,
         success: (response) ->

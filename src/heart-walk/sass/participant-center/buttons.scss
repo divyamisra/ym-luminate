@@ -35,8 +35,11 @@
 .btn-primary:focus,
 a.btn-primary:focus {
   background-color: #de2427;
-  border-color: #ca1e21;
+  // border-color: #ca1e21;
   color: #ffffff;
+  outline:none;
+  border-color:#79b5e6;
+  box-shadow:0 0 10px #79b5e6;
 }
 .btn-primary-inverted,
 .btn-primary-inverted:link,

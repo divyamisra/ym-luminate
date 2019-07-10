@@ -132,5 +132,16 @@ module.exports = {
         dest: "dist/cyclenation/html/"
       }
     ]
+  },
+
+  "heartwalk2020": {
+    files: [
+      {
+        expand: true,
+        cwd: "src/heartwalk2020/html/",
+        src: ["**/*.*"],
+        dest: "dist/heartwalk2020/html/"
+      }
+    ]
   }
 }

@@ -123,7 +123,7 @@
                 <a ng-href="{{baseUrl}}#/email">
                   <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/pc-challenge-animated-email.gif" alt="Send Email">
                 </a> 
-                <a ng-href="https://hearttools.heart.org/aha_ym19{{tablePrefix == 'heartdev' ? '_dev' : (tablePrefix == 'heartnew' ? '_testing' : '')}}/?eid={{frId}}&amp;sid={{consId}}&amp;name={{consNameFirst}}" target="_blank">
+                <a ng-href="https://hearttools.heart.org/aha_ym20{{tablePrefix == 'heartdev' ? '_dev' : (tablePrefix == 'heartnew' ? '_testing' : '')}}/?eid={{frId}}&amp;sid={{consId}}&amp;name={{consNameFirst}}" target="_blank">
                   <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/pc-challenge-animated-ecard.gif" alt="Send Ecard">
                 </a>
               </div>
@@ -131,7 +131,7 @@
                 <a class="btn btn-md-wide btn-primary" ng-href="{{baseUrl}}#/email">
                   <strong>Send Email</strong>
                 </a> 
-                <a class="btn btn-md-wide btn-primary" ng-href="https://hearttools.heart.org/aha_ym19{{tablePrefix == 'heartdev' ? '_dev' : (tablePrefix == 'heartnew' ? '_testing' : '')}}/?eid={{frId}}&amp;sid={{consId}}&amp;name={{consNameFirst}}" target="_blank">
+                <a class="btn btn-md-wide btn-primary" ng-href="https://hearttools.heart.org/aha_ym20{{tablePrefix == 'heartdev' ? '_dev' : (tablePrefix == 'heartnew' ? '_testing' : '')}}/?eid={{frId}}&amp;sid={{consId}}&amp;name={{consNameFirst}}" target="_blank">
                   <strong>Send Ecard</strong>
                 </a>
               </div>
@@ -196,7 +196,7 @@
         <h2 class="h5">
           Badges
         </h2>
-        <a class="btn btn-md-wide btn-secondary" href="http://american.heart.org/kidsheartchallenge/for-students/earn-badges/">
+        <a class="btn btn-md-wide btn-secondary" href="/site/SPageNavigator/khc_resources_earn_badges.html">
           <strong>Learn About Badges</strong>
         </a>
       </div>
@@ -215,7 +215,7 @@
       </div>
       <div class="text-center">
         <p>
-          <strong>You can also <a class="ym-pc-dashboard-download-certificates" href="http://american.heart.org/kidsheartchallenge/for-students/adoption-certificates/heart-hero-adoption-certificates.pdf" target="_blank">download Adoption Certificates</a> for each badge level!</strong>
+          <strong>You can also <a class="ym-pc-dashboard-download-certificates" href="/site/DocServer/heart-hero-adoption-certificates.pdf" target="_blank">download Adoption Certificates</a> for each badge level!</strong>
         </p>
       </div>
     </section>
@@ -440,14 +440,14 @@
               <img class="list-group" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/{{hvImgsrc}}" alt="Heartsville">
             </div>
             <br>
-            <a class="btn btn-lg btn-primary" ng-href="https://hearttools.heart.org/aha_ym19{{tablePrefix == 'heartdev' ? '_dev' : (tablePrefix == 'heartnew' ? '_testing' : '')}}/virtualworld/?fr_id={{frId}}&cons_id={{consId}}&name={{consNameFirst}}" target="_new">
+            <a class="btn btn-lg btn-primary" ng-href="https://hearttools.heart.org/aha_ym20{{tablePrefix == 'heartdev' ? '_dev' : (tablePrefix == 'heartnew' ? '_testing' : '')}}/virtualworld/?fr_id={{frId}}&cons_id={{consId}}&name={{consNameFirst}}" target="_new">
               <strong>Enter World!</strong>
             </a>
             <!-- <a class="btn btn-lg btn-primary" href="javascript:void(0);">
               <strong>Coming Soon!</strong>
             </a> -->
           </div>
-          <!-- <a class="entry-button" ng-href="https://hearttools.heart.org/aha_ym19{{tablePrefix == 'heartdev' ? '_dev' : (tablePrefix == 'heartnew' ? '_testing' : '')}}/virtualworld/?fr_id={{frId}}&cons_id={{consId}}&name={{consName}}" target="_new">Enter World!</a> -->
+          <!-- <a class="entry-button" ng-href="https://hearttools.heart.org/aha_ym20{{tablePrefix == 'heartdev' ? '_dev' : (tablePrefix == 'heartnew' ? '_testing' : '')}}/virtualworld/?fr_id={{frId}}&cons_id={{consId}}&name={{consName}}" target="_new">Enter World!</a> -->
           <!-- <div class="" ng-if="personalInfo.avatar != ''" ng-cloak>&nbsp;<img ng-src='{{personalInfo.avatar}}'></div> -->
         </div>
       </div>
@@ -586,7 +586,7 @@
           <div class="ym-pc-dashboard-coordinator-students-box" ng-if="companyInfo.participantCount" ng-cloak>
             <div class="ym-pc-dashboard-section-header">
               <h2 class="h5">
-                My Students
+                My School
               </h2>
             </div>
             <div>
@@ -616,7 +616,7 @@
         </h2>
       </div>
       <div class="row">
-        <div class="col-sm-6 ym-activity-box ym-activity-box--coordinator-pages">
+        <div class="col-sm-4 ym-activity-box ym-activity-box--coordinator-pages">
           <h3 class="h5 clearfix">
             <span class="ym-activity-box-number">1</span> Edit My Pages
           </h3>
@@ -760,7 +760,7 @@
             </div>
           </div>
         </div>
-        <div class="col-sm-6 ym-activity-box ym-activity-box--coordinator-student-view">
+        <div class="col-sm-4 ym-activity-box ym-activity-box--coordinator-student-view">
           <h3 class="h5 clearfix">
             <span class="ym-activity-box-number">2</span> Show your Students
           </h3>
@@ -790,38 +790,35 @@
             </a>
           </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-6 ym-activity-box ym-activity-box--coordinator-reports">
-          <h3 class="h5 clearfix">
-            <span class="ym-activity-box-number">3</span> Check Progress
-          </h3>
-          <p>
-            Check out the reports page to see which students have completed challenges and who has earned donations.
-          </p>
-          <div class="ym-activity-box-cta">
-            <a class="btn btn-md-wide btn-primary" ng-href="{{baseUrl}}#/reports">
-              <strong>View Reports</strong>
-            </a>
+        <div class="col-sm-4 ym-activity-box">
+          <div class="ym-activity-box--coordinator-reports">
+            <h3 class="h5 clearfix">
+              <span class="ym-activity-box-number">3</span> Manage Your Event
+            </h3>
+            <p>
+              Check out the reports page to see which students have completed challenges and who has earned donations.
+            </p>
+            <div class="ym-activity-box-cta">
+              <a class="btn btn-md-wide btn-primary" ng-href="{{baseUrl}}#/reports">
+                <strong>View Reports</strong>
+              </a>
+            </div>
           </div>
-        </div>
-        <div class="col-sm-6 ym-activity-box ym-activity-box--coordinator-prizes">
-          <h3 class="h5 clearfix">
-            <span class="ym-activity-box-number">4</span> Order Thank-You Gifts
-          </h3>
-          <p>
-            Visit our Thank-You Gift portal to manage and order gifts for your students.
-          </p>
-          <div class="ym-activity-box-cta">
-            <a class="btn btn-md-wide btn-primary" ng-href="https://khc.staging.ootqa.org/coordinator/login/{{authToken}}/{{sessionCookie}}" target="_blank" ng-if="tablePrefix == 'heartdev'" ng-cloak>
-              <strong>Thank You Gifts</strong>
-            </a>
-            <a class="btn btn-md-wide btn-primary" ng-href="https://khc.dev.ootqa.org/coordinator/login/{{authToken}}/{{sessionCookie}}" target="_blank" ng-if="tablePrefix == 'heartnew'" ng-cloak>
-              <strong>Thank You Gifts</strong>
-            </a>
-            <a class="btn btn-md-wide btn-primary" ng-href="https://kidsheartchallenge.heart.org/coordinator/login/{{authToken}}/{{sessionCookie}}" target="_blank" ng-if="tablePrefix == 'heart'" ng-cloak> 
-              <strong>Thank You Gifts</strong>
-            </a>
+          <div class="ym-activity-box--coordinator-prizes">
+            <p>
+              Visit our Thank-You Gift portal to manage and order gifts for your students.
+            </p>
+            <div class="ym-activity-box-cta">
+              <a class="btn btn-md-wide btn-primary" ng-href="https://khc.staging.ootqa.org/coordinator/login/{{authToken}}/{{sessionCookie}}" target="_blank" ng-if="tablePrefix == 'heartdev'" ng-cloak>
+                <strong>Thank You Gifts</strong>
+              </a>
+              <a class="btn btn-md-wide btn-primary" ng-href="https://khc.dev.ootqa.org/coordinator/login/{{authToken}}/{{sessionCookie}}" target="_blank" ng-if="tablePrefix == 'heartnew'" ng-cloak>
+                <strong>Thank You Gifts</strong>
+              </a>
+              <a class="btn btn-md-wide btn-primary" ng-href="https://kidsheartchallenge.heart.org/coordinator/login/{{authToken}}/{{sessionCookie}}" target="_blank" ng-if="tablePrefix == 'heart'" ng-cloak> 
+                <strong>Thank You Gifts</strong>
+              </a>
+            </div>
           </div>
         </div>
       </div>
@@ -843,7 +840,7 @@
             <p>
               Download resources by state to share with your students.
             </p>
-            <a class="btn btn-md-wide btn-primary" href="http://american.heart.org/kidsheartchallenge/for-teachers/educational-resources/">
+            <a class="btn btn-md-wide btn-primary" href="/site/SPageNavigator/khc_resources_educational_resources.html">
               <strong>Download Resources</strong>
             </a>
           </div>
@@ -856,7 +853,7 @@
             <p>
               Download a worksheet for an in-class assignment.
             </p>
-            <a class="btn btn-md-wide btn-primary" href="http://american.heart.org/kidsheartchallenge/for-teachers/online-fundraising-resources/in-class-assignment-1.pdf" target="_blank">
+            <a class="btn btn-md-wide btn-primary" href="/site/DocServer/in-class-assignment-1.pdf" target="_blank">
               <strong>Download Assignment</strong>
             </a>
           </div>
@@ -869,7 +866,7 @@
             <p>
               Download a worksheet for a take-home assignment.
             </p>
-            <a class="btn btn-md-wide btn-primary" href="http://american.heart.org/kidsheartchallenge/for-teachers/educational-resources/other-lesson-plans/aha-homework-with-heart.pdf" target="_blank">
+            <a class="btn btn-md-wide btn-primary" href="/site/DocServer/aha-homework-with-heart.pdf" target="_blank">
               <strong>Download Homework</strong>
             </a>
           </div>
