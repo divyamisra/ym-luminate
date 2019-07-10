@@ -169,5 +169,18 @@ module.exports = {
         dest: 'dist/cyclenation/js/'
       }
     ]
+  },
+
+  "heartwalk2020-scripts": {
+    files: [
+      {
+        expand: true,
+        cwd: 'src/heartwalk2020/js/',
+        src: [
+          '*.js'
+        ],
+        dest: 'dist/heartwalk2020/js/'
+      }
+    ]
   }
 }

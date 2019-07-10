@@ -108,5 +108,14 @@ module.exports = {
         dest: 'dist/cyclenation/css/main.'+ '<%= timestamp %>' +'.min.css'
       }
     ]
+  },
+
+  "heartwalk2020": {
+    files: [
+      {
+        src: 'dist/heartwalk2020/css/main.css', 
+        dest: 'dist/heartwalk2020/css/main.'+ '<%= timestamp %>' +'.min.css'
+      }
+    ]
   }
 }
