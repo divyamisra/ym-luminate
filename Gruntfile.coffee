@@ -179,6 +179,19 @@ module.exports = (grunt) ->
     runTargetedTask [
       'copy'
     ], 'cyclenation-scripts'
+    runTargetedTask [
+      'clean'
+      'sass'
+      'postcss'
+      'cssmin'
+      'uglify'
+      'replace'
+      'htmlmin'
+      'imagemin'
+    ], 'heartwalk2020'
+    runTargetedTask [
+      'copy'
+    ], 'heartwalk2020-scripts'
     return
   grunt.registerTask 'dev', ->
     devTasks = [
@@ -213,6 +226,9 @@ module.exports = (grunt) ->
       if task.indexOf('notify:') is -1
         devTasks.push task
     config.watch['cyclenation'].tasks.forEach (task) ->
+      if task.indexOf('notify:') is -1
+        devTasks.push task
+    config.watch['heartwalk2020'].tasks.forEach (task) ->
       if task.indexOf('notify:') is -1
         devTasks.push task
     devTasks.push 'watch'
