@@ -4,7 +4,8 @@ angular.module 'ahaLuminateControllers'
     '$scope'
     'TeamraiserCompanyService'
     'TeamraiserTeamService'
-    ($rootScope, $scope, TeamraiserCompanyService, TeamraiserTeamService) ->
+    'SchoolLookupService'
+    ($rootScope, $scope, TeamraiserCompanyService, TeamraiserTeamService, SchoolLookupService) ->
       $rootScope.companyName = ''
       regCompanyId = luminateExtend.global.regCompanyId
       setCompanyName = (companyName) ->
@@ -56,4 +57,24 @@ angular.module 'ahaLuminateControllers'
       
       $scope.submitTfindSearch = ->
         $scope.teamSearch.teamName = $scope.teamSearch.ng_team_name
+        
+      setCompanyCity = (companyCity) ->
+        $rootScope.companyCity = companyCity
+        if not $rootScope.$$phase
+          $rootScope.$apply()
+          
+      setCompanyState = (companyState) ->
+        $rootScope.companyState = companyState
+        if not $rootScope.$$phase
+          $rootScope.$apply()
+          
+      SchoolLookupService.getSchoolData()
+        .then (response) ->
+          schoolDataRows = response.data.getSchoolSearchDataResponse.schoolData
+          angular.forEach schoolDataRows, (schoolDataRow, schoolDataRowIndex) ->
+            if schoolDataRowIndex > 0
+              if regCompanyId is schoolDataRow[0]
+                setCompanyCity schoolDataRow[1]
+                setCompanyState schoolDataRow[2]
+                return
   ]

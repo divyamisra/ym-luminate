@@ -23,7 +23,8 @@
         </svg>
         <!-- END HIDDEN MENU ICON GRADIENT -->
         <!-- ORG LOGO -->
-        <a class="navbar-brand" href="SPageServer/?pagename=cn_home"><span class="sr-only">Visit CycleNation Home Page</span>
+        
+        <a class="navbar-brand" href="SPageServer/?pagename=cn_home"><span class="sr-only" onclick="_gaq.push(['_trackEvent', 'header', 'click', 'top logo']);">Visit CycleNation Home Page</span>
           <?xml version="1.0" encoding="utf-8"?>
           <svg version="1.1" class="AHA-cycle-nation-logo" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 437.9 142.4" style="enable-background:new 0 0 437.9 142.4;" xml:space="preserve">
             <g>
@@ -357,7 +358,7 @@
                   <!-- TRUNCATED -->
                 ::
                   <!-- FULL -->
-                  <span class="utility-nav-item">Welcome, [[S1:first_name]]</span> <a href="https://[[S29:SECURE_DOMAIN]][[S29:SECURE_PATH]]SPageServer?pagename=MyEvents"  class="utility-nav-item">My Events</a> <a href="ConsProfileUser?dispMode=edit"  class="utility-nav-item">Profile</a> <a href="UserLogin?logout=0&amp;NEXTURL=[[T1:[[E130:[[T8:[[S8]]]] [[T8:&amp;]] [[T8:&]] replaceall]]]]"  class="utility-nav-item">Log Out</a>
+                  <span class="utility-nav-item">Welcome, [[S1:first_name]]</span> <a href="https://[[S29:SECURE_DOMAIN]][[S29:SECURE_PATH]]SPageServer?pagename=MyEvents" onclick="_gaq.push(['_trackEvent', 'header', 'click', 'nav my events']);"  class="utility-nav-item">My Events</a> <a href="ConsProfileUser?dispMode=edit" onclick="_gaq.push(['_trackEvent', 'header', 'click', 'nav profile']);"  class="utility-nav-item">Profile</a> <a href="UserLogin?logout=0&amp;NEXTURL=[[T1:[[E130:[[T8:[[S8]]]] [[T8:&amp;]] [[T8:&]] replaceall]]]]"  class="utility-nav-item" onclick="_gaq.push(['_trackEvent', 'header', 'click', 'nav log out']);">Log Out</a>
                 ]]
               ]]
             </div>
@@ -375,19 +376,19 @@
                   <li class="nav-item register">
                     [[?x[[S334:pagename]]x::xcn_homex::
                       <!-- landing page, scroll to event search form -->
-                      <a class="nav-link scroll-link" href="#eventSearch">
+                      <a class="nav-link scroll-link" href="#eventSearch" onclick="_gaq.push(['_trackEvent', 'header', 'click', 'nav register']);">
                         Register
                       </a>
                     ::
                       [[?xx::x[[S334:fr_id]]x::
                         <!-- not a tr page, redirect to CN home page and scroll to event search form -->
-                        <a class="nav-link" href="SPageServer/?pagename=cn_home#eventSearch">
+                        <a class="nav-link" href="SPageServer/?pagename=cn_home#eventSearch" onclick="_gaq.push(['_trackEvent', 'header', 'click', 'nav register']);">
                           Register
                         </a>
                       ::
                         <!-- on a tr page, direct to general reg step for that particular event -->
                         [[?x1x2x::x[[E42:[[S334:fr_id]]:status]]x::
-                        <a class="nav-link" href="SPageServer/?pagename=cn_register&amp;fr_id=[[S334:fr_id]]&amp;s_regType=">
+                        <a class="nav-link" href="SPageServer/?pagename=cn_register&amp;fr_id=[[S334:fr_id]]&amp;s_regType=" onclick="_gaq.push(['_trackEvent', 'header', 'click', 'nav register']);">
                           Register
                         </a>
                         ::]]
@@ -400,14 +401,14 @@
                       [[?x[[S334:pg]]x::xentryx::T::]]
                     ::T::
                       <!-- landing and greeting page, scroll to fundraiser search form -->
-                      <a class="nav-link scroll-link" href="#fundraiserSearch" aria-label="Donate to CycleNation">
+                      <a class="nav-link scroll-link" href="#fundraiserSearch" aria-label="Donate to CycleNation" onclick="_gaq.push(['_trackEvent', 'header', 'click', 'nav donate']);">
                         Donate
                       </a>
                     ::
                       [[?x[[S334:pg]]x::xpersonalx::
                         <!-- personal page, redirect to personal proxy type donation form -->
                         [[?x2x3x::x[[E42:[[S334:fr_id]]:status]]x::
-                        <a class="nav-link" href="Donation2?df_id=[[E42:[[S334:fr_id]]:form-ID]]&amp;PROXY_ID=[[E48:[[S334:fr_id]]:participant-id]]&amp;PROXY_TYPE=20&amp;FR_ID=[[S334:fr_id]]" aria-label="Donate to CycleNation">
+                        <a class="nav-link" href="Donation2?df_id=[[E42:[[S334:fr_id]]:form-ID]]&amp;PROXY_ID=[[E48:[[S334:fr_id]]:participant-id]]&amp;PROXY_TYPE=20&amp;FR_ID=[[S334:fr_id]]" aria-label="Donate to CycleNation" onclick="_gaq.push(['_trackEvent', 'header', 'click', 'nav donate']);">
                           Donate
                         </a>
                         ::]]
@@ -423,7 +424,7 @@
                           [[?x[[S334:pg]]x::xcompanyx::
                             <!-- company page, redirect to CN search page -->
                             [[?x2x3x::x[[E42:[[S334:fr_id]]:status]]x::
-                            <a class="nav-link" href="SPageServer?pagename=cn_search" aria-label="Donate to CycleNation">
+                            <a class="nav-link" href="SPageServer?pagename=cn_search" aria-label="Donate to CycleNation" onclick="_gaq.push(['_trackEvent', 'header', 'click', 'nav donate']);">
                               Donate
                             </a>
                             ::]]
@@ -435,7 +436,7 @@
                               </a>
                             ::
                               <!-- on a tr page, redirect to tr greeting page and scroll to event-specific fundraiserSearch -->
-                              <a class="nav-link" href="TR/CycleNation/General?fr_id=[[S334:fr_id]]&amp;pg=entry#fundraiserSearch" aria-label="Donate to CycleNation">
+                              <a class="nav-link" href="TR/CycleNation/General?fr_id=[[S334:fr_id]]&amp;pg=entry#fundraiserSearch" aria-label="Donate to CycleNation" onclick="_gaq.push(['_trackEvent', 'header', 'click', 'nav donate']);">
                                 Donate
                               </a>
                             ]]
@@ -447,7 +448,7 @@
                   [[?xx::x[[S1:first_name]]x::
                     <!-- NOT LOGGED IN -->
                     <li class="nav-item login">
-                      <a class="nav-link" href="UserLogin?NEXTURL=[[T1:https://[[S29:SECURE_DOMAIN]][[S29:SECURE_PATH]]SPageServer?pagename=MyEvents]]">
+                      <a class="nav-link" href="UserLogin?NEXTURL=[[T1:https://[[S29:SECURE_DOMAIN]][[S29:SECURE_PATH]]SPageServer?pagename=MyEvents]]"  onclick="_gaq.push(['_trackEvent', 'header', 'click', 'nav login']);">
                         Log In
                       </a>
                     </li>
@@ -456,7 +457,7 @@
                   ]]
                   <li class="nav-item menu d-inline-flex" data-toggle="offcanvas">
                     <button class="navbar-toggler navbar-toggler-main navbar-toggler-right menu-btn px-2 border-0" type="button" data-toggle="off-canvas"
-                      aria-expanded="false" aria-label="Open navigation">
+                      aria-expanded="false" aria-label="Open navigation" onclick="_gaq.push(['_trackEvent', 'header', 'click', 'nav more']);">
                       <i class="fas fa-bars" aria-hidden="true" alt=""></i>
                       More
                     </button>
@@ -795,7 +796,7 @@
           </svg>
         </div>
         <button class="navbar-toggler navbar-toggler-right menu-btn p-0 border-0" type="button" data-toggle="off-canvas" aria-controls="sideMenuContainer"
-          aria-expanded="false" aria-label="Close navigation">
+          aria-expanded="false" aria-label="Close navigation" onclick="_gaq.push(['_trackEvent', 'header', 'click', 'nav more close']);">
           <span class="sr-only">Close navigation</span>
           <i class="fa fa-times text-white" aria-hidden="true" alt=""></i>
         </button>
@@ -805,26 +806,26 @@
           [[?xx::x[[S1:first_name]]x::
             <!-- NOT LOGGED IN -->
             <li class="pushy-link d-lg-none">
-              <a href="UserLogin?NEXTURL=[[T1:https://[[S29:SECURE_DOMAIN]][[S29:SECURE_PATH]]SPageServer?pagename=MyEvents]]">
+              <a href="UserLogin?NEXTURL=[[T1:https://[[S29:SECURE_DOMAIN]][[S29:SECURE_PATH]]SPageServer?pagename=MyEvents]]" onclick="_gaq.push(['_trackEvent', 'header', 'click', 'nav login']);">
                 Log In
               </a>
             </li>
           ::
             <!-- LOGGED IN -->
             <li class="pushy-link d-lg-none">
-              <a href="https://[[S29:SECURE_DOMAIN]][[S29:SECURE_PATH]]SPageServer?pagename=MyEvents">My Events</a> 
+              <a href="https://[[S29:SECURE_DOMAIN]][[S29:SECURE_PATH]]SPageServer?pagename=MyEvents" onclick="_gaq.push(['_trackEvent', 'header', 'click', 'nav my events']);">My Events</a> 
             </li>
             <li class="pushy-link d-lg-none">
-              <a href="ConsProfileUser?dispMode=edit">Profile</a> 
+              <a href="ConsProfileUser?dispMode=edit" onclick="_gaq.push(['_trackEvent', 'header', 'click', 'nav profile']);">Profile</a> 
             </li>
             <li class="pushy-link d-lg-none">
-              <a href="UserLogin?logout=0&amp;NEXTURL=[[T1:[[E130:[[T8:[[S8]]]] [[T8:&amp;]] [[T8:&]] replaceall]]]]">Log Out</a>
+              <a href="UserLogin?logout=0&amp;NEXTURL=[[T1:[[E130:[[T8:[[S8]]]] [[T8:&amp;]] [[T8:&]] replaceall]]]]" onclick="_gaq.push(['_trackEvent', 'header', 'click', 'nav log out']);">Log Out</a>
             </li>
           ]]
           <!-- Submenu -->
           [[?xx::x[[S80:evID]]x::::
             <li class="pushy-link">
-              [[?x26x27x::x[[S4]]x::<!-- on a tr page, direct to FAQ custom page for that particular event --><a class="text-underline" href="TR?fr_id=[[S80:evID]]&amp;pg=informational&amp;sid=2012" target="_blank">FAQ</a>::<!-- not a tr page, redirect to general FAQ page --><a class="text-underline" href="SPageServer/?pagename=cn_faq" target="_blank">FAQ</a>]]
+              [[?x26x27x::x[[S4]]x::<!-- on a tr page, direct to FAQ custom page for that particular event --><a class="text-underline" href="TR?fr_id=[[S80:evID]]&amp;pg=informational&amp;sid=2012" target="_blank" onclick="_gaq.push(['_trackEvent', 'header', 'click', 'nav more faq']);">FAQ</a>::<!-- not a tr page, redirect to general FAQ page --><a class="text-underline" href="SPageServer/?pagename=cn_faq" target="_blank" onclick="_gaq.push(['_trackEvent', 'header', 'click', 'nav more faq']);">FAQ</a>]]
             </li>
           ]]
           <li class="pushy-link">
@@ -839,38 +840,38 @@
           [[?xRoad Cyclingx::x[[E42:[[S80:evID]]:public-event-type]]x::
             <!-- VOLUNTEER LINK FOR ROAD CYCLING EVENTS ONLY -->
             <li class="pushy-link">
-              <a href="TR?fr_id=[[S80:evID]]&amp;pg=informational&amp;sid=2009" target="_blank">Volunteer</a>
+              <a href="TR?fr_id=[[S80:evID]]&amp;pg=informational&amp;sid=2009" target="_blank" onclick="_gaq.push(['_trackEvent', 'header', 'click', 'nav more volunteers']);">Volunteer</a>
             </li>
           ::]]
           <!-- LEADERSHIP LINK FOR SPECIFIC TR ID -->
           [[S51:reus_cns_pushy]]
           [[?xx::x[[S334:fr_id]]x::
           <li class="pushy-link">
-            <a href="SPageServer/?pagename=cn_sponsors" target="_blank">
+            <a href="SPageServer/?pagename=cn_sponsors" target="_blank" onclick="_gaq.push(['_trackEvent', 'header', 'click', 'nav more sponsors']);">
               Sponsors
             </a>
           </li>
           ::
           <li class="pushy-link">
-            <a href="TR?fr_id=[[S80:evID]]&amp;pg=informational&amp;sid=2014" target="_blank">Sponsors</a>
+            <a href="TR?fr_id=[[S80:evID]]&amp;pg=informational&amp;sid=2014" target="_blank" onclick="_gaq.push(['_trackEvent', 'header', 'click', 'nav more sponsors']);">Sponsors</a>
           </li>
           ]]
           <li class="pushy-link d-block d-sm-none">
               [[?x[[S334:pagename]]x::xcn_homex::
               <!-- landing page, scroll to event search form -->
-              <a class="scroll-link" href="#eventSearch">
+              <a class="scroll-link" href="#eventSearch" onclick="_gaq.push(['_trackEvent', 'header', 'click', 'nav register']);">
                 Register
               </a>
               ::
                [[?xx::x[[S334:fr_id]]x::
                <!-- not a tr page, redirect to CN home page and scroll to event search form -->
-               <a href="SPageServer/?pagename=cn_home#eventSearch" target="_blank">
+               <a href="SPageServer/?pagename=cn_home#eventSearch" target="_blank" onclick="_gaq.push(['_trackEvent', 'header', 'click', 'nav register']);">
                  Register
                </a>
                ::
                  <!-- on a tr page, direct to general reg step for that particular event -->
                  [[?x1x2x::x[[E42:[[S334:fr_id]]:status]]x::
-                 <a href="SPageServer/?pagename=cn_register&amp;fr_id=[[S334:fr_id]]&amp;s_regType=" target="_blank">
+                 <a href="SPageServer/?pagename=cn_register&amp;fr_id=[[S334:fr_id]]&amp;s_regType=" target="_blank" onclick="_gaq.push(['_trackEvent', 'header', 'click', 'nav register']);">
                    Register
                  </a>
                  ::]]
@@ -883,14 +884,14 @@
                  [[?x[[S334:pg]]x::xentryx::T::]]
                ::T::
                  <!-- landing and greeting page, scroll to fundraiser search form -->
-                 <a class="scroll-link" href="#fundraiserSearch" aria-label="Donate to CycleNation">
+                 <a class="scroll-link" href="#fundraiserSearch" aria-label="Donate to CycleNation" onclick="_gaq.push(['_trackEvent', 'header', 'click', 'nav donate']);">
                    Donate
                  </a>
                ::
                  [[?x[[S334:pg]]x::xpersonalx::
                    <!-- personal page, redirect to personal proxy type donation form -->
                    [[?x2x3x::x[[E42:[[S334:fr_id]]:status]]x::
-                   <a href="Donation2?df_id=[[E42:[[S334:fr_id]]:form-ID]]&amp;PROXY_ID=[[E48:[[S334:fr_id]]:participant-id]]&amp;PROXY_TYPE=20&amp;FR_ID=[[S334:fr_id]]" aria-label="Donate to CycleNation">
+                   <a href="Donation2?df_id=[[E42:[[S334:fr_id]]:form-ID]]&amp;PROXY_ID=[[E48:[[S334:fr_id]]:participant-id]]&amp;PROXY_TYPE=20&amp;FR_ID=[[S334:fr_id]]" aria-label="Donate to CycleNation" onclick="_gaq.push(['_trackEvent', 'header', 'click', 'nav donate']);">
                      Donate
                    </a>
                    ::]]
@@ -906,7 +907,7 @@
                      [[?x[[S334:pg]]x::xcompanyx::
                        <!-- company page, redirect to CN search page -->
                        [[?x2x3x::x[[E42:[[S334:fr_id]]:status]]x::
-                       <a href="SPageServer?pagename=cn_search" aria-label="Donate to CycleNation">
+                       <a href="SPageServer?pagename=cn_search" aria-label="Donate to CycleNation" onclick="_gaq.push(['_trackEvent', 'header', 'click', 'nav donate']);">
                          Donate
                        </a>
                        ::]]
@@ -918,7 +919,7 @@
                          </a>
                        ::
                          <!-- on a tr page, redirect to tr greeting page and scroll to event-specific fundraiserSearch -->
-                         <a href="TR/CycleNation/General?fr_id=[[S334:fr_id]]&amp;pg=entry#fundraiserSearch" aria-label="Donate to CycleNation" target="_blank">
+                         <a href="TR/CycleNation/General?fr_id=[[S334:fr_id]]&amp;pg=entry#fundraiserSearch" aria-label="Donate to CycleNation" target="_blank" onclick="_gaq.push(['_trackEvent', 'header', 'click', 'nav donate']);">
                            Donate
                          </a>
                        ]]

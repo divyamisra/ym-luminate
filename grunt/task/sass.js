@@ -95,5 +95,13 @@ module.exports = {
         'src/cyclenation/sass/main.scss'
       ]
     }
+  },
+
+  "heartwalk2020": {
+    files: {
+      'dist/heartwalk2020/css/main.css': [
+        'src/heartwalk2020/sass/main.scss'
+      ]
+    }
   }
 }

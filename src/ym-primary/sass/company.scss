@@ -30,6 +30,11 @@ body.pg-company {
                }
           }
      }
+     @media (min-width: $screen-sm-min) {
+          .ym-page-header h1 {
+               margin: 0;
+          }
+     }
 }
 .ym-teachers-leaderboard-block {
      h2 {

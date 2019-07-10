@@ -3,10 +3,7 @@ angular.module 'trPageEditApp', [
   'ui.bootstrap'
   'pascalprecht.translate'
   'textAngular'
-  'trPageEditControllers'
 ]
-
-angular.module 'trPageEditControllers', []
 
 angular.module 'trPageEditApp'
   .constant 'NgPageEdit_APP_INFO', 
