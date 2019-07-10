@@ -94,3 +94,31 @@ footer {
   }
 }
 
+a.unslider-arrow, .unslider-nav {
+  display: none;
+}
+.unslider {
+  display: inline-block;
+  margin: 0;
+  overflow: auto;
+  padding: 0;
+  width: 340px;
+}
+.container.sponsor_slider {
+  padding: 0;
+}
+
+.local_sponsors {
+  vertical-align: top;
+  margin-top: 10px;
+}
+.unslider-wrap {
+  position: relative;
+}
+.tr_sponsorship_logo {
+  margin: 10px 0;
+}
+.tr_sponsorship_logos {
+  max-width: initial;
+  margin: initial;
+}
