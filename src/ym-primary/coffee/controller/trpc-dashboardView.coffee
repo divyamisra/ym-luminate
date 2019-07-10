@@ -693,8 +693,8 @@ angular.module 'trPcControllers'
       $scope.heroPopup = false
       $scope.heartHeros = heroPopup: ->
         $scope.heroPopup = true
-        WAIT_TIME = 8000
-        POP_TIME = 2500
+        WAIT_TIME = 10000
+        POP_TIME = 3000
         NUM_POPS = 3
         i = 0
         pop_timer = ''
