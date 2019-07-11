@@ -410,7 +410,7 @@
                       <img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/pc-challenge-add-day-icon.png" alt="Add a Day to your Challenge">
                     </div>
                     <div class="col-xs-8 col-sm-8">
-                      <button type="button" class="btn btn-md-wide btn-primary" ng-class="{'disabled': personalChallenge.updatePending}" ng-disabled="personalChallenge.updatePending" ng-click="logChallenge()"><strong>Add Day</strong></button>
+                      <button type="button" class="btn btn-md-wide btn-primary" ng-class="{'disabled': personalChallenge.updatePending}" ng-disabled="personalChallenge.updatePending" ng-click="logChallenge()" aria-label="Add a day to your challenge"><strong>Add Day</strong></button>
                    </div>
                  </div>
      	  		  </div>
@@ -454,7 +454,7 @@
               <img class="list-group" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/{{hvImgsrc}}" alt="Heartsville">
             </div>
             <br>
-            <!--<a class="btn btn-lg btn-primary" ng-href="https://hearttools.heart.org/aha_ym20{{tablePrefix == 'heartdev' ? '_dev' : (tablePrefix == 'heartnew' ? '_testing' : '')}}/virtualworld/?fr_id={{frId}}&cons_id={{consId}}&name={{consNameFirst}}" target="_new">
+            <!--<a class="btn btn-lg btn-primary" ng-href="https://hearttools.heart.org/aha_ym20{{tablePrefix == 'heartdev' ? '_dev' : (tablePrefix == 'heartnew' ? '_testing' : '')}}/virtualworld/?fr_id={{frId}}&cons_id={{consId}}&name={{consNameFirst}}" target="_new" aria-label="Enter Heartsville World">
               <strong>Enter World!</strong>
             </a>-->
             <a class="btn btn-lg btn-primary" href="javascript:void(0);">
