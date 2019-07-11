@@ -19,6 +19,20 @@
 #team-roster > tbody > tr > td:nth-child(3) {
   width:35%;
 }
+.information-box {
+  .paymentSelType {
+    .payment-options-container {
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-pack: justify;
+      -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+      justify-content: space-between;
+    }
+  }
+}
 }
 
 @media (min-width: 992px) and (max-width: 1199px) {
