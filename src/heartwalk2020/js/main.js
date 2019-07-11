@@ -176,6 +176,8 @@
                 });
               }
               $('.dataTables_length').addClass('bs-select');
+              //add call to hook donate button with payment type selections
+              addPaymentTypesOnSearch();
               $('.js--participant-results-container').removeAttr('hidden');
 
               $('.js--more-participant-results').on('click', function(e){
@@ -269,7 +271,8 @@
               });
             }
               $('.dataTables_length').addClass('bs-select');
-
+              //add call to hook donate button with payment type selections
+              addPaymentTypesOnSearch();
               $('.js--team-results-container').removeAttr('hidden');
 
             }
@@ -882,6 +885,7 @@
                       $('.js--personal-don-form').removeClass('hidden');
                       var defaultDonUrl = $('.js--personal-don-submit').data('don-url');
                       var finalDonUrl = null;
+                      $('.js--personal-don-submit').attr('data-final-don-url', defaultDonUrl);
 
                       // define donation widget button behavior
                       $('.js--personal-don-form label').on('click', function(){
@@ -890,8 +894,9 @@
                         $(this).addClass('active');
                         $('.js--don-amt').text($(this).text());
                         finalDonUrl = defaultDonUrl + '&set.DonationLevel=' + $(this).data('level-id');
-                     });
+                        $('.js--personal-don-submit').attr('data-final-don-url', finalDonUrl);
 
+                     });
                   
                       // format "other" amount before submitting to native donation form
                       // $('.js--personal-amt-other').on('blur', function(e){
@@ -924,7 +929,7 @@
                           var customAmt = parseInt($(this).val()) * 10;
   
                           finalDonUrl = defaultDonUrl + '&set.DonationLevel=' + $('.js--don-amt-other').data('level-id') + (isNaN(customAmt) === true ? '' : '&set.Value=' + customAmt);
-                          console.log('final url KEYUP: ', finalDonUrl);
+                          $('.js--personal-don-submit').attr('data-final-don-url', finalDonUrl);
                         }
                       });
 
@@ -932,11 +937,12 @@
                       $('input[name="personalDonAmt"]').eq(0).click().prop('checked', true).closest('.donation-amount-btn').addClass('active');
                       $('.js--don-amt').text($('.form-check-label').eq(0).text().trim());
 
-                      $('.js--personal-don-form').on('submit', function(e){
-                        e.preventDefault();
-                        // redirect to personal donation form with preselected amount
-                        window.location.href = finalDonUrl;
-                      });
+                      // redirect is now managed in amazonpay.js
+                      // $('.js--personal-don-form').on('submit', function(e){
+                      //   e.preventDefault();
+                      //   // redirect to personal donation form with preselected amount
+                      //   window.location.href = finalDonUrl;
+                      // });
 
               }, 
               error: function(response) {
@@ -1000,7 +1006,7 @@
         
                     $('#team-roster tbody').append('<tr class="' + (i > 4 ? 'd-none' : '') + '"><td class="donor-name"><a href="' + participant.personalPageUrl + '">' +
                       participant.name.first + ' ' + participant.name.last +
-                      '</a>' + (participant.aTeamCaptain === "true" ? ' <span class="coach">- Coach</span>' : '') + '</td><td class="raised" data-sort="' + participantRaisedFormmatted + '"><span><strong>$' + participantRaisedFormmatted + '</strong></span></td><td><a href="' + participant.donationUrl + '" onclick="_gaq.push([\'_trackEvent\', \'team\', \'roster\', \'donate link\']);">' + (screenWidth <= 480 ? 'Donate' : 'Donate to ' + participant.name.first) + '</a></td></tr>');
+                      '</a>' + (participant.aTeamCaptain === "true" ? ' <span class="coach">- Coach</span>' : '') + '</td><td class="raised" data-sort="' + participantRaisedFormmatted + '"><span><strong>$' + participantRaisedFormmatted + '</strong></span></td><td><a href="' + participant.donationUrl + '">' + (screenWidth <= 480 ? 'Donate' : 'Donate to ' + participant.name.first) + '</a></td></tr>');
                       if(participant.aTeamCaptain === 'true'){
                         $('.js--team-captain-link').attr('href', participant.personalPageUrl).text(participant.name.first + ' ' + participant.name.last);
                       }
@@ -1018,7 +1024,8 @@
 
                   // $('.dataTables_length').addClass('bs-select');
                   // $('.js--participant-results-container').removeAttr('hidden');
-        
+                  //add call to hook donate button with payment type selections
+                  addPaymentTypesOnSearch();
                   $('.js--more-participant-results').on('click', function(e){
                     e.preventDefault();
                     $('#team-roster tr').removeClass('d-none');
@@ -1101,7 +1108,7 @@
             var teamRaised = (parseInt(team.amountRaised) * 0.01);
             var teamRaisedFormmatted = teamRaised.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
 
-            $('#team-roster tbody').append('<tr class="' + (i > 4 ? 'd-none' : '') + '"> <td class="donor-name"> <a href="' + team.teamPageURL + '" data-sort="' + team.name + '">' + team.name + '</a> </td><td class="donor-name"> <a href="TR/?px=' + team.captainConsId + '&pg=personal&fr_id=' + team.EventId + '" data-sort="' + team.captainFirstName + ' ' + team.captainLastName + '">' + team.captainFirstName + ' ' + team.captainLastName + '</a> </td><td class="raised" data-sort="' + teamRaisedFormmatted + '"> <span><strong>$' + teamRaisedFormmatted + '</strong></span> </td><td> <a href="' + team.joinTeamURL + '" onclick="_gaq.push([\'_trackEvent\', \'company\', \'roster\', \'join team link\']);">' + (screenWidth <= 480 ? 'Join' : 'Join Team') + '</a> </td></tr>');
+            $('#team-roster tbody').append('<tr class="' + (i > 4 ? 'd-none' : '') + '"> <td class="donor-name"> <a href="' + team.teamPageURL + '" data-sort="' + team.name + '">' + team.name + '</a> </td><td class="donor-name"> <a href="TR/?px=' + team.captainConsId + '&pg=personal&fr_id=' + team.EventId + '" data-sort="' + team.captainFirstName + ' ' + team.captainLastName + '">' + team.captainFirstName + ' ' + team.captainLastName + '</a> </td><td class="raised" data-sort="' + teamRaisedFormmatted + '"> <span><strong>$' + teamRaisedFormmatted + '</strong></span> </td><td> <a href="' + team.joinTeamURL + '">' + (screenWidth <= 480 ? 'Join' : 'Join Team') + '</a> </td></tr>');
           });
           
           console.log('totalTeams: ', totalTeams);
@@ -1157,14 +1164,15 @@ cd.getCompanyTeams();
 
             $('#participant-roster tbody').append('<tr class="' + (i > 4 ? 'd-none' : '') + '"><td class="donor-name"><a href="' + participant.personalPageUrl + '">' +
               participant.name.first + ' ' + participant.name.last +
-              '</a>' + (participant.aparticipantCaptain === "true" ? ' <span class="coach">- Coach</span>' : '') + '</td><td class="raised" data-sort="' + participantRaisedFormmatted + '"><span><strong>$' + participantRaisedFormmatted + '</strong></span></td><td><a href="' + participant.donationUrl + '" onclick="_gaq.push([\'_trackEvent\', \'company\', \'roster\', \'donate link\']);">' + (screenWidth <= 480 ? 'Donate' : 'Donate to ' + participant.name.first) + '</a></td></tr>');
+              '</a>' + (participant.aparticipantCaptain === "true" ? ' <span class="coach">- Coach</span>' : '') + '</td><td class="raised" data-sort="' + participantRaisedFormmatted + '"><span><strong>$' + participantRaisedFormmatted + '</strong></span></td><td><a href="' + participant.donationUrl + '">' + (screenWidth <= 480 ? 'Donate' : 'Donate to ' + participant.name.first) + '</a></td></tr>');
           });
 
           if (totalParticipants > 5) {
             $('.js--more-participant-results').removeAttr('hidden');
           }
           cd.initializeParticipantRosterTable();
-
+          //add call to hook donate button with payment type selections
+          addPaymentTypesOnSearch();
           $('.js--more-participant-results').on('click', function (e) {
             e.preventDefault();
             $('#participant-roster tr').removeClass('d-none');
