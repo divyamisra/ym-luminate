@@ -7,14 +7,19 @@
   img {
      max-width:100%;
   }
+  h6 {
+    word-wrap: break-word;
+    white-space: normal;
+  }
 }
 
-.pg_team,
-.pg_company {
-.paymentSelType {
-  max-width:200px;
+
+@media (min-width: 768px) {
+#participant-roster > tbody > tr > td:nth-child(3),
+#team-roster > tbody > tr > td:nth-child(3) {
+  width:35%;
 }
-} 
+}
 
 @media (min-width: 992px) and (max-width: 1199px) {
 .paymentSelType .hidden-md {
