@@ -380,6 +380,70 @@
           </div>
         </div>
       </div>
+      <div class="row">
+        <div class="col-sm-6 ym-activity-box ym-activity-box--challenge">
+          <h3 class="h5">
+            Daily Heart-Healthy Challenge
+          </h3>
+          <div class="ym_my_challenge__current" ng-if="personalChallenge.loadPending" ng-cloak>
+            Loading Your Challenge...
+          </div>
+          <div class="ym_my_challenge__current" ng-if="personalChallenge.id && personalChallenge.id != '-1'" ng-cloak>
+            <div class="row">
+               <div class="challenge-days">
+                  <div class="row challenge-day-streak">
+                     <div class="col-xs-5 col-sm-4">
+                       <div class="challenge-day-count"><span ng-bind-html="personalChallenge.numCompleted"></span></div>
+                    </div>
+                    <div class="col-xs-9 col-sm-8">
+                       <div class="challenge-day-title text_with_1px_border">Day Streak</div>
+                       <div class="challenge-day-challenge text_with_1px_border" ng-if="personalChallenge.id == '1'" ng-cloak>for being ready</div>
+                       <div class="challenge-day-challenge text_with_1px_border" ng-if="personalChallenge.id == '2'" ng-cloak>for moving more</div>
+                       <div class="challenge-day-challenge text_with_1px_border" ng-if="personalChallenge.id == '3'" ng-cloak>for being kind</div>
+                   </div>
+                 </div>
+                 <div class="row challenge-day-add-day" ng-if="!personalChallenge.completedToday" ng-cloak>
+     		    	      <div class="col-xs-4 col-sm-4 challenge-day-add-icon">
+                      <img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/pc-challenge-add-day-icon.png" alt="Add a Day to your Challenge">
+                    </div>
+                    <div class="col-xs-8 col-sm-8">
+                      <button type="button" class="btn btn-md-wide btn-primary" ng-class="{'disabled': personalChallenge.updatePending}" ng-disabled="personalChallenge.updatePending" ng-click="logChallenge()" aria-label="Add a day to your challenge"><strong>Add Day</strong></button>
+                   </div>
+                 </div>
+     	  		  </div>
+              <div class="col-sm-12">
+                <p class="ym_my_challenge__description">
+                  <strong>Change Your Challenge</strong>
+                </p>
+              </div>
+              <div class="col-sm-12">
+                <div class="col-xs-12 col-sm-4">
+                  <a href="" ng-click="updateDayChallenge(1)" class="text-center" ng-class="{'selected': personalChallenge.id == '1','disabled': personalChallenge.updatePending}" ng-disabled="personalChallenge.updatePending" ng-init="imghover1=false">
+                    <img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/pc-challenge-be-ready{{personalChallenge.id == '1' ? '-hover':''}}.png" ng-mouseover="imghover1=true" ng-mouseout="imghover1=false" alt="Be Ready" ng-show="!imghover1" ng-cloak>
+                    <img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/pc-challenge-be-ready-hover.png" ng-mouseover="imghover1=true" ng-mouseout="imghover1=false" alt="Be Ready" ng-show="imghover1" ng-cloak>
+                    Be<br/>Ready
+                  </a>
+                </div>
+                <div class="col-xs-12 col-sm-4">
+                  <a href="" ng-click="updateDayChallenge(2)" class="text-center" ng-class="{'selected': personalChallenge.id == '2','disabled': personalChallenge.updatePending}" ng-disabled="personalChallenge.updatePending" ng-init="imghover2=false">
+                    <img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/pc-challenge-move-more{{personalChallenge.id == '2' ? '-hover':''}}.png" ng-mouseover="imghover2=true" ng-mouseout="imghover2=false" alt="Move More" ng-show="!imghover2" ng-cloak>
+                    <img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/pc-challenge-move-more-hover.png" ng-mouseover="imghover2=true" ng-mouseout="imghover2=false" alt="Move More" ng-show="imghover2" ng-cloak>
+                    Move<br/>More
+                  </a>
+                </div>
+                <div class="col-xs-12 col-sm-4">
+                  <a href="" ng-click="updateDayChallenge(3)" class="text-center" ng-class="{'selected': personalChallenge.id == '3','disabled': personalChallenge.updatePending}" ng-disabled="personalChallenge.updatePending" ng-init="imghover3=false">
+                    <img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/pc-challenge-be-kind{{personalChallenge.id == '3' ? '-hover':''}}.png" ng-mouseover="imghover3=true" ng-mouseout="imghover3=false" alt="Be Kind" ng-show="!imghover3" ng-cloak>
+                    <img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/pc-challenge-be-kind-hover.png" ng-mouseover="imghover3=true" ng-mouseout="imghover3=false" alt="Be Kind" ng-show="imghover3" ng-cloak>
+                    Be<br/>Kind
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-12 text-center">To learn more about how you and your child can meet your daily challenge <a href="SPageServer?pagename=khc_resources_parents_corner" target="_blank" title="Click here to learn more about how you and your child can meet your daily challenge" aria-label="Click here to learn more about how you and your child can meet your daily challenge">click here</a>.</div>
+          </div>
+        </div>
+      </div>
     </section>
     <div ng-if="coordinatorMessage.message && coordinatorMessage.message != ''" ng-cloak>
       <section class="ym-pc-dashboard-coordinators-message-section" aria-label="Note From Your Teacher">
