@@ -95,7 +95,7 @@ footer {
 }
 
 a.unslider-arrow, .unslider-nav {
-  display: none;
+  display: none !important;
 }
 .unslider {
   display: inline-block;
