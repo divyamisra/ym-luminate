@@ -893,6 +893,7 @@
                       $('.js--personal-don-form label').on('click', function(){
                         $('.js--personal-amt-other').val('');
                         $('.js--personal-don-form .donation-amount-btn').removeClass('active');
+                        $('.paymentSelType').addClass('hidden');
                         $(this).addClass('active');
                         $('.js--don-amt').text($(this).text());
                         finalDonUrl = defaultDonUrl + '&set.DonationLevel=' + $(this).data('level-id');
@@ -920,6 +921,7 @@
                       $('.js--personal-amt-other').on('keyup', function(e){
                         var keyCode = (e.keyCode ? e.keyCode : e.which);
                         console.log('keyCode: ', keyCode);
+                        $('.paymentSelType').addClass('hidden');
                         if (keyCode != 9) {
                           $('.js--personal-don-form .donation-amount-btn').removeClass('active');
                           $('.custom-amount input[name="personalDonAmt"]').prop('checked', true);
