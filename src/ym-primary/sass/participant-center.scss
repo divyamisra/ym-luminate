@@ -1,3 +1,15 @@
+.ym-activity-box--virtual img {
+	max-width:100%;
+}
+
+a.ym-progress-update-goal {
+	color: $event-primary-acc;
+}
+
+a.ym-pc-dashboard-download-certificates {
+	color: $event-primary-acc;
+}
+
 /* Hero Popup Styles */
 .launch-builder-popup {
 	bottom: 0;
@@ -12,29 +24,16 @@
 	z-index: 99999;
 	outline: none;
 }
-
-.ym-activity-box--virtual img {
-	max-width:100%;
-}
-
-a.ym-progress-update-goal {
-	color: $event-primary-acc;
-}
-
-a.ym-pc-dashboard-download-certificates {
-	color: $event-primary-acc;
-}
-
-@media only screen and (min-width: $screen-sm-min) {
+@media only screen and (min-width: 768px) {
 	.launch-builder-popup {
-		height: 268.333px;
+		height: 350.333px;
 		width: 175px;
 	}
 }
 
 @media only screen and (min-width: 1000px) {
 	.launch-builder-popup {
-		height: 306.667px;
+		height: 399.667px;
 		width: 200px;
 	}	
 }
@@ -59,16 +58,16 @@ a.ym-pc-dashboard-download-certificates {
 }
 
 .launch-builder-character.wink {
-	animation: wink 2.5s steps(3) infinite;
+	animation: wink 2.5s steps(4) infinite;
 	background-image: url(../image/pc_customize-wink.png);
-        transform-origin: 100% 60%;
+	transform-origin: 100% 60%;
 	transition: all 0.667s;
 }
 
 .launch-builder-character.pop {
 	background-image: url(../image/pc_customize-pop.png);
 	transform: scale(0);
-	transform-origin: 100% 60%;
+	transform-origin: 100% 50%;
 	transition: all 0.667s;
 }
 
@@ -80,12 +79,28 @@ a.ym-pc-dashboard-download-certificates {
 
 .launch-builder-popup.pop .launch-builder-character.pop,
 .launch-builder-popup:hover .launch-builder-character.pop {
-	animation: pop 1s steps(36) infinite;
+	animation: pop 1s steps(23) infinite;
 	transform: scale(1);
-}	
+}		
+/* end hero popup */
 
 .social-iframe {
 	min-height: 950px;
+}
+
+/* badge list */
+.ym-pc-dashboard-badges-icons {
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: flex-start;
+	padding: 0 20px;
+}
+.ym-pc-dashboard-badges-icon {
+	text-align: center;
+	margin: 0 15px 25px;
+	max-width:125px;
 }
 
 /* Gifts tab */
