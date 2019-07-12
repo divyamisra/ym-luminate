@@ -777,7 +777,9 @@
 
         if(publicEventType === "Multi-Event"){
           // populate multi-event 
-          var multiEventApiRequest = "TR?fr_id=" + evID + "&pg=informational&sid=1110 #page_body_container";
+          var multiEventPageId = (isProd === true ? '3571' : '1110');
+
+          var multiEventApiRequest = "TR?fr_id=" + evID + "&pg=informational&sid=" + multiEventPageId + " #page_body_container";
 
           $('.js--multi-event-locations').load(multiEventApiRequest);
         }
