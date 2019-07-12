@@ -176,6 +176,8 @@
                 });
               }
               $('.dataTables_length').addClass('bs-select');
+              //add call to hook donate button with payment type selections
+              addPaymentTypesOnSearch();
               $('.js--participant-results-container').removeAttr('hidden');
 
               $('.js--more-participant-results').on('click', function(e){
@@ -269,7 +271,8 @@
               });
             }
               $('.dataTables_length').addClass('bs-select');
-
+              //add call to hook donate button with payment type selections
+              addPaymentTypesOnSearch();
               $('.js--team-results-container').removeAttr('hidden');
 
             }
@@ -774,7 +777,9 @@
 
         if(publicEventType === "Multi-Event"){
           // populate multi-event 
-          var multiEventApiRequest = "TR?fr_id=" + evID + "&pg=informational&sid=1110 #page_body_container";
+          var multiEventPageId = (isProd === true ? '3571' : '1110');
+
+          var multiEventApiRequest = "TR?fr_id=" + evID + "&pg=informational&sid=" + multiEventPageId + " #page_body_container";
 
           $('.js--multi-event-locations').load(multiEventApiRequest);
         }
@@ -871,7 +876,7 @@
 
                     if(userSpecified == 'false'){
                       // build pre-defined giving levels
-                      $('.donation-amounts').append('<label class="form-check-label donation-amount-btn btn mb-2" for="personalDonAmt' + i + '" data-level-id="' + levelID + '"> <input class="form-check-input" type="radio" name="personalDonAmt" id="personalDonAmt' + i + '" value="' + levelID + '"> ' + amountFormatted + '</label>');                      
+                      $('.donation-amounts').append('<label class="form-check-label donation-amount-btn btn mb-3" for="personalDonAmt' + i + '" data-level-id="' + levelID + '"> <input class="form-check-input" type="radio" name="personalDonAmt" id="personalDonAmt' + i + '" value="' + levelID + '"> ' + amountFormatted + '</label>');                      
                     } else {
                       // build user-specified level
                       $('.donation-amounts').append('<div class="custom-amount"> <input class="form-check-input sr-only" type="radio" name="personalDonAmt" id="personalDonAmt' + i + '" value="' + levelID + '"> <label class="js--don-amt-other sr-only" for="personalDonAmt' + i + '" data-level-id="' + levelID + '">Enter your own amount</label> <label class="form-label d-inline-block" for="personalOtherAmt">Custom Amount:</label><br/> <input type="text" id="personalOtherAmt" class="form-control d-inline-block js--personal-amt-other"/> </div>');                     
@@ -882,16 +887,19 @@
                       $('.js--personal-don-form').removeClass('hidden');
                       var defaultDonUrl = $('.js--personal-don-submit').data('don-url');
                       var finalDonUrl = null;
+                      $('.js--personal-don-submit').attr('data-final-don-url', defaultDonUrl);
 
                       // define donation widget button behavior
                       $('.js--personal-don-form label').on('click', function(){
                         $('.js--personal-amt-other').val('');
                         $('.js--personal-don-form .donation-amount-btn').removeClass('active');
+                        $('.paymentSelType').addClass('hidden');
                         $(this).addClass('active');
                         $('.js--don-amt').text($(this).text());
                         finalDonUrl = defaultDonUrl + '&set.DonationLevel=' + $(this).data('level-id');
-                     });
+                        $('.js--personal-don-submit').attr('data-final-don-url', finalDonUrl);
 
+                     });
                   
                       // format "other" amount before submitting to native donation form
                       // $('.js--personal-amt-other').on('blur', function(e){
@@ -913,6 +921,7 @@
                       $('.js--personal-amt-other').on('keyup', function(e){
                         var keyCode = (e.keyCode ? e.keyCode : e.which);
                         console.log('keyCode: ', keyCode);
+                        $('.paymentSelType').addClass('hidden');
                         if (keyCode != 9) {
                           $('.js--personal-don-form .donation-amount-btn').removeClass('active');
                           $('.custom-amount input[name="personalDonAmt"]').prop('checked', true);
@@ -924,7 +933,7 @@
                           var customAmt = parseInt($(this).val()) * 10;
   
                           finalDonUrl = defaultDonUrl + '&set.DonationLevel=' + $('.js--don-amt-other').data('level-id') + (isNaN(customAmt) === true ? '' : '&set.Value=' + customAmt);
-                          console.log('final url KEYUP: ', finalDonUrl);
+                          $('.js--personal-don-submit').attr('data-final-don-url', finalDonUrl);
                         }
                       });
 
@@ -932,11 +941,12 @@
                       $('input[name="personalDonAmt"]').eq(0).click().prop('checked', true).closest('.donation-amount-btn').addClass('active');
                       $('.js--don-amt').text($('.form-check-label').eq(0).text().trim());
 
-                      $('.js--personal-don-form').on('submit', function(e){
-                        e.preventDefault();
-                        // redirect to personal donation form with preselected amount
-                        window.location.href = finalDonUrl;
-                      });
+                      // redirect is now managed in amazonpay.js
+                      // $('.js--personal-don-form').on('submit', function(e){
+                      //   e.preventDefault();
+                      //   // redirect to personal donation form with preselected amount
+                      //   window.location.href = finalDonUrl;
+                      // });
 
               }, 
               error: function(response) {
@@ -1018,7 +1028,8 @@
 
                   // $('.dataTables_length').addClass('bs-select');
                   // $('.js--participant-results-container').removeAttr('hidden');
-        
+                  //add call to hook donate button with payment type selections
+                  addPaymentTypesOnSearch();
                   $('.js--more-participant-results').on('click', function(e){
                     e.preventDefault();
                     $('#team-roster tr').removeClass('d-none');
@@ -1164,7 +1175,8 @@ cd.getCompanyTeams();
             $('.js--more-participant-results').removeAttr('hidden');
           }
           cd.initializeParticipantRosterTable();
-
+          //add call to hook donate button with payment type selections
+          addPaymentTypesOnSearch();
           $('.js--more-participant-results').on('click', function (e) {
             e.preventDefault();
             $('#participant-roster tr').removeClass('d-none');

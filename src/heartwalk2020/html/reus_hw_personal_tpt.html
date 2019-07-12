@@ -14,14 +14,14 @@
         <ul>
           <li>
             <p><strong>[[E48:[[S334:fr_id]]-[[S334:px]]:cons.first_name]]'s Event:</strong></p>
-            <p><a href="TR?fr_id=[[S334:fr_id]]&pg=entry">[[E47:[[S334:fr_id]]:fr_info:1:event_title]]</a></p>
+            <p><a href="TR?fr_id=[[S334:fr_id]]&pg=entry" onclick="_gaq.push(['_trackEvent', 'personal', 'details', 'event link']);">[[E47:[[S334:fr_id]]:fr_info:1:event_title]]</a></p>
             <p>[[E47:[[S334:fr_id]]:fr_info:1:event_date]]</p>
           </li>
           [[?xx::x[[E48:[[S334:fr_id]]-[[S334:px]]:team-name]]x::::
           <li>
             <p><strong>[[E48:[[S334:fr_id]]-[[S334:px]]:cons.first_name]]'s Team:</strong></p>
             <p><a
-                href="TR/?team_id=[[E48:[[S334:fr_id]]-[[S334:px]]:team-id]]&pg=team&fr_id=[[S334:fr_id]]">[[E48:[[S334:fr_id]]-[[S334:px]]:team-name]]</a>
+                href="TR/?team_id=[[E48:[[S334:fr_id]]-[[S334:px]]:team-id]]&pg=team&fr_id=[[S334:fr_id]]" onclick="_gaq.push(['_trackEvent', 'personal', 'details', 'team link']);">[[E48:[[S334:fr_id]]-[[S334:px]]:team-name]]</a>
             </p>
           </li>
           ]]
@@ -29,7 +29,7 @@
           <li>
             <p><strong>[[E48:[[S334:fr_id]]-[[S334:px]]:cons.first_name]]'s Company:</strong></p>
             <p><a
-                href="TR?company_id=[[E48:[[S334:fr_id]]-[[S334:px]]:company-id]]&fr_id=[[S334:fr_id]]&pg=company">[[E48:[[S334:fr_id]]-[[S334:px]]:company-name]]</a>
+                href="TR?company_id=[[E48:[[S334:fr_id]]-[[S334:px]]:company-id]]&fr_id=[[S334:fr_id]]&pg=company" onclick="_gaq.push(['_trackEvent', 'personal', 'details', 'company link']);">[[E48:[[S334:fr_id]]-[[S334:px]]:company-name]]</a>
             </p>
           </li>
           ]]
@@ -958,16 +958,16 @@
             [[?x1x2x::x[[S42:0:status]]x::
             <div class="row buttons-row">
               <button type="submit" class="btn btn-primary col-lg col-sm-12 mx-md-2 mx-sm-0 js--personal-don-submit"
-                data-don-url="Donation2?df_id=[[E42:[[S334:fr_id]]:form-id]]&PROXY_ID=[[S334:px]]&PROXY_TYPE=20&FR_ID=[[S334:fr_id]]">Donate
+                data-don-url="Donation2?df_id=[[E42:[[S334:fr_id]]:form-id]]&PROXY_ID=[[S334:px]]&PROXY_TYPE=20&FR_ID=[[S334:fr_id]]" data-final-don-url="Donation2?df_id=[[E42:[[S334:fr_id]]:form-id]]&PROXY_ID=[[S334:px]]&PROXY_TYPE=20&FR_ID=[[S334:fr_id]]" onclick="_gaq.push(['_trackEvent', 'personal', 'banner', 'donate button']);">Donate
                 <span class="js--don-amt"></span></button>
               <a class="btn btn-secondary col-lg col-sm-12 mx-md-2 mx-sm-0"
-                href="TRR/?pg=tfind&fr_id=[[S334:fr_id]]&fr_tjoin=[[E48:[[S334:fr_id]]-[[S334:px]]:team-id]]&px=[[S334:px]]">Join
+                href="TRR/?pg=tfind&fr_id=[[S334:fr_id]]&fr_tjoin=[[E48:[[S334:fr_id]]-[[S334:px]]:team-id]]&px=[[S334:px]]" onclick="_gaq.push(['_trackEvent', 'personal', 'banner', 'join team button']);">Join
                 [[E48:[[S334:fr_id]]-[[S334:px]]:cons.first_name]]'s Team</a>
             </div>
             ::]]
 
           </form>
-          <a href="TRGiftForm?fr_id=[[S334:fr_id]]&px=[[S334:px]]" class="d-block text-small mt-3" target="_blank">Mail
+          <a href="TRGiftForm?fr_id=[[S334:fr_id]]&px=[[S334:px]]" class="d-block text-small mt-3" target="_blank" onclick="_gaq.push(['_trackEvent', 'personal', 'banner', 'mail in a donation PDF']);">Mail
             in a Donation</a>
           ::]]
 

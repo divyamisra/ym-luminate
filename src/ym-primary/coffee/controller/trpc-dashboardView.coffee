@@ -582,6 +582,18 @@ angular.module 'trPcControllers'
             delete $scope.personalChallenge.updatePending
             getStudentChallenge()
       
+      $scope.updateDayChallenge = (challengeid) ->
+        if not $scope.personalChallenge
+          $scope.personalChallenge = {}
+        $scope.personalChallenge.updatePending = true
+        ZuriService.updateChallenge $scope.frId + '/' + $scope.consId + '?challenge=' + challengeid,
+          failure: (response) ->
+            # TODO
+            delete $scope.personalChallenge.updatePending
+          success: (response) ->
+            delete $scope.personalChallenge.updatePending
+            getStudentChallenge()
+      
       $scope.logChallenge = ->
         if not $scope.personalChallenge
           $scope.personalChallenge = {}
@@ -681,8 +693,8 @@ angular.module 'trPcControllers'
       $scope.heroPopup = false
       $scope.heartHeros = heroPopup: ->
         $scope.heroPopup = true
-        WAIT_TIME = 8000
-        POP_TIME = 2500
+        WAIT_TIME = 10000
+        POP_TIME = 3000
         NUM_POPS = 3
         i = 0
         pop_timer = ''

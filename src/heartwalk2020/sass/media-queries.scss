@@ -498,6 +498,9 @@
     .top-lists-container .top-list ul {
       height: 440px !important;
     }
+      .event-info {
+        width: auto;
+      }
   }
 
   main {
@@ -508,7 +511,10 @@
     .event-info {
       margin-top: 66px !important;
       padding: 25px !important;
-
+      .event-info {
+        margin-top:0 !important;
+        padding: 25px 0 !important;
+      }
       h1 {
         font-size: 1.333rem !important;
       }
@@ -1054,3 +1060,4 @@
     height: 59px;
   }
 }
+
