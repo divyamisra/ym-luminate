@@ -1217,3 +1217,8 @@
     }
   }
 }
+
+#faq_search_form:focus {
+  -webkit-box-shadow: 0 0 0 0.2rem rgba(77, 144, 254, 0.5);
+  box-shadow: 0 0 0 0.2rem rgba(77, 144, 254, 0.5);
+}
