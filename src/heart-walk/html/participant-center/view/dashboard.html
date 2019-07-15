@@ -32,7 +32,7 @@
               <div class="profile_box_text">
                 Personalize your page with your "Why" story.
               </div>
-              <a id="update_your_page" class="btn btn-primary" ng-href="{{personalPageUrl}}">Update Your Story</a>
+              <a id="update_your_page" class="btn btn-primary" href="SPageServer?pagename=heartwalk_participant_center&amp;pc2_page=center&amp;fr_id={{frId}}#/edit-personal">Update Your Story</a>
             </div>
           </div>
           <div class="col-sm-4 profile_box" ng-if="userInteractions.page == '1'">
@@ -43,7 +43,7 @@
               <div class="profile_box_text">
                 Story told! Your personal story was successfully updated.
               </div>
-              <a id="update_page_again" class="btn btn-primary" ng-href="{{personalPageUrl}}">Update Story Again</a>
+              <a id="update_page_again" class="btn btn-primary" href="SPageServer?pagename=heartwalk_participant_center&amp;pc2_page=center&amp;fr_id={{frId}}#/edit-personal">Update Story Again</a>
             </div>
           </div>
 
