@@ -86,7 +86,7 @@
 
     .text {
 
-      h1 {
+      h1, .h1 {
         font-size: $h3-font-size;
 
         @include media-breakpoint-down(md) {
@@ -360,7 +360,10 @@
                   white-space: normal;
                   text-align:left;
                   border: 0;
-
+                  &:focus {
+                    -webkit-box-shadow: 0 0 0 0.2rem rgba(77, 144, 254, 0.5);
+                    box-shadow: 0 0 0 0.2rem rgba(77, 144, 254, 0.5);
+                  }
                   span {
                     order: 2;
                     font-weight: 700;
