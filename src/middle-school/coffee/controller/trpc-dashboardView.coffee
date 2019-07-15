@@ -17,7 +17,8 @@ angular.module 'trPcControllers'
     'NgPcTeamraiserCompanyService'
     'NgPcTeamraiserSchoolService'
     'FacebookFundraiserService'
-    ($rootScope, $scope, $filter, $timeout, $uibModal, APP_INFO, BoundlessService, NgPcTeamraiserRegistrationService, NgPcTeamraiserProgressService, NgPcTeamraiserTeamService, NgPcTeamraiserGiftService, NgPcContactService, NgPcTeamraiserShortcutURLService, NgPcInteractionService, NgPcTeamraiserCompanyService, NgPcTeamraiserSchoolService, FacebookFundraiserService) ->
+    'ZuriService'
+    ($rootScope, $scope, $filter, $timeout, $uibModal, APP_INFO, BoundlessService, NgPcTeamraiserRegistrationService, NgPcTeamraiserProgressService, NgPcTeamraiserTeamService, NgPcTeamraiserGiftService, NgPcContactService, NgPcTeamraiserShortcutURLService, NgPcInteractionService, NgPcTeamraiserCompanyService, NgPcTeamraiserSchoolService, FacebookFundraiserService, ZuriService) ->
       $scope.dashboardPromises = []
       
       $dataRoot = angular.element '[data-embed-root]'
@@ -516,4 +517,119 @@ angular.module 'trPcControllers'
               earned: prize.earned_datetime
         , (response) ->
           # TODO
+        $scope.personalChallenge = {}
+      $scope.updatedPersonalChallenge = {}
+      setPersonalChallenge = (id, name = '', numCompleted = 0, completedToday = false) ->
+        if id is null or id is ''
+          id = '-1'
+        if id is '-1' and $scope.challengeTaken and $scope.challengeTaken isnt ''
+          if $scope.challengeTaken.indexOf('1. ') isnt -1
+            id = '1'
+            name = $scope.challengeTaken.split('1. ')[1]
+          else if $scope.challengeTaken.indexOf('2. ') isnt -1
+            id = '2'
+            name = $scope.challengeTaken.split('2. ')[1]
+          else if $scope.challengeTaken.indexOf('3. ') isnt -1
+            id = '3'
+            name = $scope.challengeTaken.split('3. ')[1]
+        $scope.personalChallenge.id = id
+        $scope.personalChallenge.name = name
+        $scope.personalChallenge.numCompleted = numCompleted
+        $scope.personalChallenge.completedToday = completedToday
+        if id is '-1'
+          $scope.updatedPersonalChallenge.id = ''
+        else
+          $scope.updatedPersonalChallenge.id = id
+        if not $scope.$$phase
+          $scope.$apply()
+          
+      errorCount = 0
+      getStudentChallenge = ->
+        if not $scope.personalChallenge
+          $scope.personalChallenge = {}
+        $scope.personalChallenge.updatePending = true
+        $scope.personalChallenge.loadPending = true
+        ZuriService.getStudent $scope.frId + '/' + $scope.consId,
+          failure: (response) ->
+            # if challenge not found - wait 3 secs and try again 10 times max
+            if errorCount < 10 and response.status is 404
+              errorCount++
+              setTimeout getStudentChallenge, 3000
+            delete $scope.personalChallenge.updatePending
+            setPersonalChallenge()
+          error: (response) ->
+            delete $scope.personalChallenge.updatePending
+            setPersonalChallenge()
+          success: (response) ->
+            personalChallenges = response.data.challenges
+            if not personalChallenges
+              setPersonalChallenge()
+            else
+              delete $scope.personalChallenge.updatePending
+              $scope.personalChallenge.loadPending = false
+              id = personalChallenges.current
+              if id is '0'
+                setPersonalChallenge()
+              else
+                numCompleted = if personalChallenges.completed then Number(personalChallenges.completed) else 0
+                setPersonalChallenge id, personalChallenges.text, numCompleted, personalChallenges.completedToday
+      getStudentChallenge()
+      
+      $scope.challenges = []
+      # ZuriService.getChallenges $scope.frId + '/' + $scope.consId,
+        # failure: (response) ->
+          # TODO
+        # error: (response) ->
+          # TODO
+        # success: (response) ->
+          # challenges = response.data.challenges
+          # angular.forEach challenges, (challenge, challengeIndex) ->
+            # $scope.challenges.push
+              # id: challengeIndex
+              # name: challenge
+      challengeOptions =
+        "1": "Be physically active for 60 minutes a day."
+        "2": "Lead the way. No tobacco or vaping."
+        "3": "Choose water over sugary beverages."
+      angular.forEach challengeOptions, (challenge, challengeIndex) ->
+        $scope.challenges.push
+          id: challengeIndex
+          name: challenge
+      
+      $scope.updateChallenge = ->
+        if not $scope.personalChallenge
+          $scope.personalChallenge = {}
+        $scope.personalChallenge.updatePending = true
+        ZuriService.updateChallenge $scope.frId + '/' + $scope.consId + '?challenge=' + $scope.updatedPersonalChallenge.id,
+          failure: (response) ->
+            # TODO
+            delete $scope.personalChallenge.updatePending
+          success: (response) ->
+            delete $scope.personalChallenge.updatePending
+            getStudentChallenge()
+      
+      $scope.updateDayChallenge = (challengeid) ->
+        if not $scope.personalChallenge
+          $scope.personalChallenge = {}
+        $scope.personalChallenge.updatePending = true
+        ZuriService.updateChallenge $scope.frId + '/' + $scope.consId + '?challenge=' + challengeid,
+          failure: (response) ->
+            # TODO
+            delete $scope.personalChallenge.updatePending
+          success: (response) ->
+            delete $scope.personalChallenge.updatePending
+            getStudentChallenge()
+      
+      $scope.logChallenge = ->
+        if not $scope.personalChallenge
+          $scope.personalChallenge = {}
+        $scope.personalChallenge.updatePending = true
+        ZuriService.logChallenge $scope.frId + '/' + $scope.consId + '/' + $scope.personalChallenge.id,
+          failure: (response) ->
+            # TODO
+            delete $scope.personalChallenge.updatePending
+          success: (response) ->
+            delete $scope.personalChallenge.updatePending
+            getStudentChallenge()
+
   ]
