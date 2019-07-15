@@ -390,7 +390,7 @@
           </div>
           <div class="ym_my_challenge__current" ng-if="personalChallenge.id && personalChallenge.id != '-1'" ng-cloak>
             <div class="row">
-              <div class="col-sm-8">
+              <div class="col-sm-12">
                 <p class="ym_my_challenge__description">
                   <strong><span ng-bind-html="personalChallenge.name"></span></strong>
                 </p>
@@ -401,11 +401,11 @@
                   I've met my challenge <span><span ng-bind-html="personalChallenge.numCompleted"></span></span> days!
                 </p>
               </div>
-              <div class="col-sm-4">
+              <!-- <div class="col-sm-4">
                 <img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/middle-school/image/my-challenge-exercise.png" alt="{{personalChallenge.name}}" ng-if="personalChallenge.id == '1'" ng-cloak>
                 <img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/middle-school/image/my-challenge-water.png" alt="{{personalChallenge.name}}" ng-if="personalChallenge.id == '2'" ng-cloak>
                 <img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/middle-school/image/my-challenge-deed.png" alt="{{personalChallenge.name}}" ng-if="personalChallenge.id == '3'" ng-cloak>
-              </div>
+              </div> -->
             </div>
             <div class="ym_my_challenge__actions">
               <button type="button" class="btn btn-md-wide btn-primary" ng-class="{'disabled': personalChallenge.updatePending}" ng-disabled="personalChallenge.updatePending" ng-click="logChallenge()" ng-if="!personalChallenge.completedToday" ng-cloak>
