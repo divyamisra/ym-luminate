@@ -36,7 +36,7 @@ NOT PART OF DEPLOYMENT PROCESS. MUST BE MANUALLY COPIED TO PAGE WRAPPER EDITOR.
 
 [[E84:[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/heartwalk2020/html/page-wrapper/header.html]]
 [[S51:heartwalk_chat_by_affiliate]]
-
+[[S51:reus_heartwalk_2020_style_overrides]]
 <main>
   <a name="contentStart" id="contentStart" tabindex="-1"></a>
   [[?xentryxpersonalxteamxcompanyx::x[[S334:pg]]x::
@@ -65,6 +65,20 @@ NOT PART OF DEPLOYMENT PROCESS. MUST BE MANUALLY COPIED TO PAGE WRAPPER EDITOR.
 
 [[E84:[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/heartwalk2020/html/page-wrapper/footer.html]]
 [[E84:[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/heartwalk2020/html/page-wrapper/body-scripts.html]]
+  [[?x1073x::x[[S334:sid]]x::
+  <!-- add two-click confirmation message to sponsor links on sponsor page -->
+  <script>
+  Y.use('jquery-noconflict', function (Y) {
+    jQuery('#page_body_container a').on('click', function(e){
+      e.preventDefault();
+      var sponsorUrl = jQuery(this).attr('href');
+        if (confirm("These are proud sponsors of the American Heart Association's Heart Walk. By clicking on this link, you will be taken outside American Heart Association and this is not an endorsement of either the linked-to entity or any product or service.")) {
+          window.location.href = sponsorUrl;
+        } 
+    });
+    });
+  </script>
+  ::]]
 
 ::
     <!-- BEGIN ORIGINAL HEART WALK WRAPPER (pre-2019) -->
