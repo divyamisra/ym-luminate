@@ -31,6 +31,14 @@
   }
 }
 
+// typography
+
+p.large-text {
+  font-size: $font-size-lg; 
+}
+
+// buttons
+
 a.btn,
 a.btn:visited,
 a.editBtn,
@@ -166,4 +174,9 @@ div.responsive a.secondary-step,
   }
   .card-body {
     padding: .5rem 1rem;
+  }
+
+  // backgrounds
+  .red-light-background {
+    background-color: $red-light;
   }
