@@ -64,6 +64,17 @@
       luminateExtend.api.bind();
     }
 
+    if ($('body').is('.pg_cn_home')) {
+      $('.js__see-all-social').on('click', function(e){
+        e.preventDefault();
+        $(this).hide();
+        $('.social-feed-container').css({
+          "height": "auto",
+          "overflow": "initial"
+        })
+      });
+    }
+    
     // Select all links with hashes
     var addScrollLinks = function () {
       $('a.scroll-link')
@@ -76,10 +87,10 @@
           if (target.length) {
             // Only prevent default if animation is actually gonna happen
             event.preventDefault();
-            if ($('body').is('.pg_cn_home')) {
+            if ($('body').is('.pg_cn_home') || $('body').is('.pg_entry')) {
               var scrollLocation = target.offset().top - 130;
             } else {
-              var scrollLocation = target.offset().top - 230;
+              var scrollLocation = target.offset().top;
             }
             $('html, body').animate({
               scrollTop: scrollLocation
@@ -234,7 +245,7 @@
                     .append('<tr' + (i > 10 ? ' class="d-none"' : '') + '><td><a href="' + team.teamPageURL + '">' +
                       team.name + '</a></td><td><a href="TR/?px=' + team.captainConsId + '&pg=personal&fr_id=' + team.EventId + '">' + team.captainFirstName + ' ' + team.captainLastName + '</a></td><td>' +
                       ((team.companyName !== null && team.companyName !== undefined) ? '<a href="TR?company_id=' + team.companyId + '&fr_id=' + team.EventId + '&pg=company">' + team.companyName + '</a>' : '') +
-                      '</td><td><a href="TR/?fr_id=' + team.EventId + '&pg=entry"' + team.eventName + '</a></td><td class="col-cta"><a href="' + team.teamDonateURL + '" class="btn-rounded btn-primary btn-block" title="Donate to ' + team.name + '" aria-label="Donate to ' + team.name + '">Donate</a></td></tr>');
+                      '</td><td><a href="TR/?fr_id=' + team.EventId + '&pg=entry">' + team.eventName + '</a></td><td class="col-cta"><a href="' + team.teamDonateURL + '" class="btn-rounded btn-primary btn-block" title="Donate to ' + team.name + '" aria-label="Donate to ' + team.name + '">Donate</a></td></tr>');
                 }
               });
 
@@ -363,6 +374,66 @@
       });
     };
 
+    // FAQ SEARCH SCRIPTS
+    if ($('body').is('.pg_internal.faq')) {
+      // FAQ page scripts
+
+      var faqCards = $('.js__faq-container li > .card ');
+      // Use JS to add data attributes to make collapse functionality work. Otherwise, the WYSIWYG in LO will strip those from the hard coded HTML
+      $(faqCards).each(function (i) {
+        $(this).find('.card-header').attr('id', 'faq_header' + i);
+        $(this).find('.faq-title').attr({
+            'data-toggle': 'collapse',
+            'data-target': '#faq_block_' + i,
+            'aria-expanded': 'false',
+            'aria-controls': 'faq_block_' + i
+          })
+          .append('<div class="accordion-icon icon-closed text-primary mr-2"><i class="fas fa-plus-circle"></i></div><div class="accordion-icon icon-open text-primary mr-2"><i class="fas fa-minus-circle"></i></div>');
+        $(this).find('.collapse').attr({
+          'id': 'faq_block_' + i,
+          'aria-labelledby': 'faq_block_' + i,
+          'data-parent': '#faqSearch'
+        });
+      });
+      // add sorting for landing page
+      var options = {
+        valueNames: [
+          'faq-title',
+          'keywords'
+        ]
+      };
+      var faqList = new List('faqSearch', options);
+
+      faqList.on('updated', function (list) {
+        var searchTextLength = $('.search').val().length;
+        if (list.matchingItems.length == 0) {
+          $('.js__no-faq-results').show();
+        } else if (list.matchingItems.length == list.items.length) {
+          $('.js__no-faq-results').hide();
+        } else {
+          $('.js__no-faq-results').hide();
+        }
+        if (searchTextLength > 0) {
+          $('.js__clear-faq-search').show();
+        } else {
+          $('.js__clear-faq-search').hide();
+        }
+      });
+
+      $('.js__faq-search-form').on('submit', function (e) {
+        e.preventDefault();
+        faqList.search();
+      });
+      // clear search on click
+      $('.js__clear-faq-search').on('click', function (e) {
+        e.preventDefault();
+        $('.search').val('');
+        faqList.search();
+        $('.js__clear-faq-search').hide();
+      });
+
+    }
+
 
     /******************************/
     /* THERMOMETER SCRIPTS */
@@ -401,6 +472,53 @@
         e.preventDefault();
         $('.js__calendar-menu').slideToggle();
       });
+
+       // build greeting page social album
+       if($('#social-feed').data('album-url')){
+        var albumUrl = $('#social-feed').data('album-url');
+        // var albumId = $('#social-feed').data('album-id');
+        var albumId = '7584';
+        // var albumImages = [];
+
+        $.ajax({
+          url: albumUrl,
+          dataType: 'html',
+          success: function (data) {
+            var rawAlbumTable = $(data).find('table')[0];
+            $('.js__raw-album-container').prepend(rawAlbumTable);
+
+            $('.js__raw-album-container table').addClass('raw-photo-album');
+
+            $('.raw-photo-album a').each(function(i){
+              var imageId = $(this).attr('href');
+              imageId = getURLParameter(imageId, 'PhotoID');
+              var imageAltText = $(this).find('img').attr('alt');
+              var imageSrc = '/images/content/photos/large_' + imageId + '.jpg';
+              var finalAlbumImage = '<div class="grid-item"><a href="' + imageSrc + '"><img src="' + imageSrc + '" alt="' + imageAltText + '" /></a></div>';
+
+              $('.js__lo-album-container').prepend(finalAlbumImage);
+            
+            });
+           
+            var $grid = $('.js__lo-album-container').imagesLoaded( function() {
+              console.log('launch masonry');
+              // init Masonry after all images have loaded
+              $grid.masonry({
+                itemSelector: '.grid-item',
+                percentPosition: true,
+                columnWidth: '.grid-sizer'
+              });
+
+              var lightbox = $('.js__lo-album-container a').simpleLightbox();
+
+            });
+
+          },
+          error: function (data) {
+            // handle errors
+          }
+        });
+      }
     }
 
 
@@ -495,12 +613,12 @@
                 var registerUrl = 'SPageServer/?pagename=cn_register&fr_id=' + eventId + '&s_regType=';
                 var acceptsRegistration = event.accepting_registrations;
                 var eventRow = '<li class="event-detail row col-12 col-lg-4 mb-4 fadein"><div class="event-detail-content col-10"><a class="js__event-name" href="' +
-                  greetingUrl + '" aria-label="Visit ' + eventCity + ' ' + eventType + ' Event"><span class="city">' +
+                  greetingUrl + '" aria-label="Visit ' + eventCity + ' ' + eventType + ' Event" onclick="_gaq.push([\'_trackEvent\', \'program homepage\', \'click\', \'search result name\']);"><span class="city">' +
                   eventCity + '</span>, <span class="fullstate">' +
                   eventStateAbbr + '</span></a><span class="eventtype d-block">' +
                   eventType + ' Event</span><span class="event-date d-block">' +
                   eventDate + '</span></div><a href="' +
-                  greetingUrl + '" class="event-detail-button btn col-2" aria-label="Visit event page for CycleNation ' + eventCity + '"><i class="fas fa-angle-right" aria-hidden="true" alt=""></i></a></li>';
+                  greetingUrl + '" class="event-detail-button btn col-2" aria-label="Visit event page for CycleNation ' + eventCity + '" onclick="_gaq.push([\'_trackEvent\', \'program homepage\', \'click\', \'search result arrow\']);"><i class="fas fa-angle-right" aria-hidden="true" alt=""></i></a></li>';
 
                 if (eventTimestamp > todaysDate && (eventStatus === '1' || eventStatus === '2' || eventStatus === '3')) {
                   if (numEvents) {
@@ -932,7 +1050,6 @@
       });
 
       // auto search functionality based on URL params
-
 
       if (searchType) {
         var firstSearchTerm = getURLParameter(currentUrl, 'first_term') ? getURLParameter(currentUrl, 'first_term') : '';
@@ -2173,6 +2290,11 @@
       $('.donation-level-row-label-no-gift').text("No thanks. I don\'t want to make a donation towards my goal at the moment").closest('.donation-level-row-container').addClass('don-no-gift');
       $('.don-no-gift, #part_type_anonymous_input_container, #part_type_show_public_input_container').wrap('<div class="form-check"/>');
 
+      // add donor recognition label
+      console.log('donor recognition 01');
+      $('<legend>Donor Recognition:</legend>').insertBefore('#tr_recognition_nameanonymous_row #tr_recognition_nameanonymousname');
+      console.log('donor recognition 02');
+
       // hide anon and gift display options
       $('label[for="fr_anonymous_gift"], label[for="fr_show_public_gift"]').closest('.form-check').hide();
 
@@ -2680,7 +2802,7 @@
     $('label[for="responsive_payment_typecc_exp_date_MONTH"] .label-text').text('Month:');
     $('label[for="responsive_payment_typecc_exp_date_MONTH"]').insertBefore($('#responsive_payment_typecc_exp_date_MONTH'));
 
-    $('label[for="responsive_payment_typecc_exp_date_YEAR"]').append('<span class="label-text">Year: </span>');
+    //$('label[for="responsive_payment_typecc_exp_date_YEAR"]').append('<span class="label-text">Year: </span>');
     $('label[for="responsive_payment_typecc_exp_date_YEAR"]').insertBefore($('#responsive_payment_typecc_exp_date_YEAR'));
 
     $('#responsive_payment_typecc_exp_date_row .field-required').remove();
@@ -2820,15 +2942,43 @@
       $(companyHeadline).replaceWith('<h1>' + $(companyHeadline).text() + '</h1>');
     }
     if ($('body').is('.app_donation')) {
+      /* 2019 DF UPDATES */
+      // add donor recognition label
+      $('<legend>Donor Recognition:</legend>').insertBefore('#tr_recognition_nameanonymous_row #tr_recognition_nameanonymousname');
+
+      // update anonymous checkbox text
+      $('label[for=tr_recognition_nameanonymousname]').text('Do not display my name on any donor lists or pages on this site.');
+
+      // Add text above matching company label
+      // removed code
+      
+      // wrap billing fields into container
+      $('#billing_first_name_row, #billing_last_name_row, #donor_email_address_row, .custom-field-container:contains("Cell or Phone Number"), #billing_addr_street1_row, #billing_addr_street2_row, #billing_addr_city_row, #billing_addr_state_row, #billing_addr_zip_row, #billing_addr_country_row').wrapAll('<div class="billing-fields-container"></div>');
+
+      // change paypal logo
+      $('#responsive_payment_typepay_typeradio_payment_types .external-payment img').attr('src', 'http://heartdev.convio.net/images/content/pagebuilder/aha_cn_donation_form_paypal_logo.png');
+
+      // change cc logos
+      $('#responsive_payment_typecc_type_Visa').attr('src', 'http://heartdev.convio.net/images/content/pagebuilder/aha_cn_donation_form_credit_cards_visa.png');
+      $('#responsive_payment_typecc_type_Discover').attr('src', 'http://heartdev.convio.net/images/content/pagebuilder/aha_cn_donation_form_credit_cards_discover.png');
+      $('#responsive_payment_typecc_type_American_Express').attr('src', 'http://heartdev.convio.net/images/content/pagebuilder/aha_cn_donation_form_credit_cards_amex.png');
+      $('#responsive_payment_typecc_type_MasterCard').attr('src', 'http://heartdev.convio.net/images/content/pagebuilder/aha_cn_donation_form_credit_cards_mastercard.png');
+
+      // wrap cc fields into container
+      $('#responsive_payment_typecc_number_row, #responsive_payment_typecc_exp_date_row').wrapAll('<div class="cc-fields-container"></div>');
+
+      // wrap cc expiration dates into separate containers 
+      $('label[for=responsive_payment_typecc_exp_date_MONTH], select#responsive_payment_typecc_exp_date_MONTH').wrapAll('<div class="cc-expiration-date-month-container expiration-date-fields"></div>');
+      $('label[for=responsive_payment_typecc_exp_date_YEAR], select#responsive_payment_typecc_exp_date_YEAR').wrapAll('<div class="cc-expiration-date-year-container expiration-date-fields"></div>');
+
+      // apply button styles classes 
+      $('#pstep_finish').addClass('btn-rounded btn-primary')
+      /* END 2019 DF UPDATES */
+      
       // replace duplicate ID
       $('#level_flexible_row.form-row.form-donation-level').attr('id', 'level_flexible_row2');
 
       $('.donation-level-user-entered input[type="text"]').after('<small class="form-text text-muted"><em>($25 minimum)</em></small>');
-
-      // Add text above matching company label
-      $('#donor_matching_employer_Row').prepend('<p><strong>Play matchmaker. Here&#8217;s how.</strong></p><ul><li>Find out if your employer participates in a matching gifts program, an easy way to increase your donation.</li><li>Just fill in your company&#8217;s details below.</li></ul>');
-
-      // $('fieldset.cardExpGroup').prepend('<legend class="aural-only">Credit Card Expires</legend>');
 
       $('#level_flexible_row2').wrapInner('<fieldset></fieldset>');
       $('#level_flexible_row2 fieldset').prepend('<legend class="aural-only">Select Gift Amount</legend>');
