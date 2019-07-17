@@ -69,6 +69,14 @@ function addPaymentOptions() {
 				jQuery('.js--cc-btn').attr('href', updatedDlink);
 				var updatedPPdlink = updatedDlink + '&paypal=true';
 				jQuery('.js--paypal-btn').attr('href', updatedPPdlink);
+				$('a.amazon, a.applepay, a.venmo').each(function(){
+					var selectedAmt = $('.js--personal-don-form .donation-amount-btn.active').text().trim().replace("$","").replace(",","");;
+					var finalUrl = jQuery('.js--personal-don-submit').attr('data-final-don-url');
+					var otherAmt = jQuery.getCustomQuerystring(finalUrl,"set.Value");
+					var customAmt = parseInt(otherAmt / 10);
+					var link = $(this).attr('href').replace(/&amount=[0-9]*/,"");
+					$(this).attr('href', link + "&amount="+(customAmt > 0 ? customAmt : selectedAmt));
+				});
 				jQuery('.tr-page-container .paymentSelType').removeClass('hidden');
 				jQuery('.tr-page-container .paymentSelType').slideDown();
 				return false;
