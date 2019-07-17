@@ -17,7 +17,7 @@
             <div class="event-info-item-icon"><i class="far fa-calendar" aria-hidden="true" alt=""></i></div>[[E47:[[S334:fr_id]]:fr_info:1:event_date]]
           </div>
           <div class="event-info-item">
-            <div class="event-info-item-icon"><i class="fas fa-map-marker-alt" aria-hidden="true" alt=""></i></div><a href="[[S80:eventLocationMapLink]]" target="_blank">[[E47:[[S334:fr_id]]:fr_info:1:event_location]]</a>
+            <div class="event-info-item-icon"><i class="fas fa-map-marker-alt" aria-hidden="true" alt=""></i></div><a href="[[S80:eventLocationMapLink]]" target="_blank" onclick="_gaq.push(['_trackEvent', 'event homepage', 'click', 'header event map']);">[[E47:[[S334:fr_id]]:fr_info:1:event_location]]</a>
           </div>
           <div class="event-info-item">
             <div class="event-info-item-icon">
@@ -49,40 +49,27 @@
             [[?xRoad Cyclingx::x[[E42:[[S80:evID]]:public-event-type]]x::Road::Stationary Cycling]] Event
           </div>
           <div class="event-info-item">
-            <div class="event-info-item-icon"><i class="fas fa-info-circle" aria-hidden="true" alt=""></i></div><a class="scroll-link" href="#eventDetails">More Details</a>
+            <div class="event-info-item-icon"><i class="fas fa-info-circle" aria-hidden="true" alt=""></i></div><a class="scroll-link" href="#eventDetails" onclick="_gaq.push(['_trackEvent', 'event homepage', 'click', 'header event more details']);">More Details</a>
           </div>
           <div class="event-info-buttons row">
           [[?x1x2x::x[[S42:0:status]]x::
           <div class="col-md-6 mb-1">
-            <a href="SPageServer/?pagename=cn_register&amp;fr_id=[[S334:fr_id]]&amp;s_regType=" class="text-center btn-rounded btn-primary btn-block" aria-label="Register for CycleNation [[E47:[[S334:fr_id]]:fr_info:1:event_location_city]]">Register</a>
+            <a href="SPageServer/?pagename=cn_register&amp;fr_id=[[S334:fr_id]]&amp;s_regType=" class="text-center btn-rounded btn-primary btn-block" aria-label="Register for CycleNation [[E47:[[S334:fr_id]]:fr_info:1:event_location_city]]" onclick="_gaq.push(['_trackEvent', 'event homepage', 'click', 'header register']);">Register</a>
           </div>
           ::]]
           [[?x2x3x::x[[S42:0:status]]x::
           <div class="col-md-6 mb-1">
-            <a href="#fundraiserSearch" class="text-center btn-rounded btn-primary btn-block scroll-link" aria-label="Donate to CycleNation [[E47:[[S334:fr_id]]:fr_info:1:event_location_city]]">Donate</a>
+            <a href="#fundraiserSearch" class="text-center btn-rounded btn-primary btn-block scroll-link" aria-label="Donate to CycleNation [[E47:[[S334:fr_id]]:fr_info:1:event_location_city]]" onclick="_gaq.push(['_trackEvent', 'event homepage', 'click', 'header donate']);">Donate</a>
           </div>
           ::]]
           </div>
         </div>
       </div>
       <div class="section-hero-photos col-12 col-lg-6 px-0 py-0 order-1 order-lg-2">
-        <!-- <div id="carouselIndicators" class="carousel slide" data-ride="carousel" data-touch="true"> -->
           <div id="carouselIndicators" class="carousel slide">
           <ol class="js__carousel-indicators carousel-indicators">
-            <!-- <li data-target="#carouselIndicators" data-slide-to="0" class="active"></li>
-            <li data-target="#carouselIndicators" data-slide-to="1"></li>
-            <li data-target="#carouselIndicators" data-slide-to="2"></li> -->
           </ol>
           <div class="js__carousel-inner carousel-inner">
-            <!-- <div class="carousel-item active">
-              <img class="d-block" src="../images/content/pagebuilder/AHA_CN_greeting_rotator_01.png" alt="First slide">
-            </div>
-            <div class="carousel-item">
-              <img class="d-block" src="../images/content/pagebuilder/AHA_CN_greeting_rotator_01.png" alt="Second slide">
-            </div>
-            <div class="carousel-item">
-              <img class="d-block" src="../images/content/pagebuilder/AHA_CN_greeting_rotator_01.png" alt="Third slide">
-            </div> -->
           </div>
         </div>
       </div>
@@ -178,7 +165,7 @@
               <div class="card-body">
                 <h3 class="text-uppercase text-primary text-bold mb-1">Date</h3>
                 <p class="mb-1">[[E47:[[S334:fr_id]]:fr_info:1:event_date]]</p>
-                <a href="#" class="js__toggle-calendar"><i class="far fa-calendar-plus" aria-hidden="true" alt=""></i>&nbsp;[ADD]</a>
+                <a href="#" class="js__toggle-calendar"><i class="far fa-calendar-plus" aria-hidden="true" alt="" onclick="_gaq.push(['_trackEvent', 'event homepage', 'click', 'details event calendar']);"></i>&nbsp;[ADD]</a>
                 <!-- BEGIN add to calendar -->
                 [[U0:thisEventDate=[[S42:0:event-date]]]] 
                 [[U0:parsedEventDate=[[E130:"[[S80:thisEventDate]]" dup dup "/" lastindexof 1 + swap length substring]][[E130:"[[S80:thisEventDate]]" dup 0 swap "/" indexof substring]][[E130:"[[S80:thisEventDate]]" dup dup "/" indexof 1 + swap "/" lastindexof substring]]]]
@@ -240,8 +227,8 @@
                 <h3 class="text-uppercase text-primary text-bold mb-1">Location</h3>
                 <!-- <p class="mb-1">[[E47:[[S334:fr_id]]:fr_info:1:event_location]]</p> -->
                 <span class="sr-only" id="locationMap">Location Map</span>
-                <a href="[[S80:eventLocationMapLink]]" aria-labelledby="locationMap" target="_blank">[[E47:[[S334:fr_id]]:fr_info:1:event_location]]&nbsp;<i class="fas fa-external-link-alt" aria-hidden="true" alt=""></i></a><br>
-                <a href="[[S80:eventLocationParkingLink]]" target="_blank">Parking Info<i class="fas fa-angle-right" aria-hidden="true" alt=""></i></a>
+                <a href="[[S80:eventLocationMapLink]]" aria-labelledby="locationMap" target="_blank" onclick="_gaq.push(['_trackEvent', 'event homepage', 'click', 'details event map']);">[[E47:[[S334:fr_id]]:fr_info:1:event_location]]&nbsp;<i class="fas fa-external-link-alt" aria-hidden="true" alt=""></i></a><br>
+                <a href="[[S80:eventLocationParkingLink]]" target="_blank" onclick="_gaq.push(['_trackEvent', 'event homepage', 'click', 'details parking']);">Parking Info<i class="fas fa-angle-right" aria-hidden="true" alt=""></i></a>
               </div>
             </div>
             <!-- END DETAILS TEXT -->
@@ -305,16 +292,8 @@
               <!-- ICON -->
               <div class="icon-container col-2 col-lg-12 pt-0 pr-2 pr-lg-0 pb-0 pl-2 pl-lg-0 row mx-0">
                 <!-- DETAILS ICON - MAIN -->
-                <svg version="1.1" id="checkin" class="details-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 175.6 266.1" style="enable-background:new 0 0 175.6 266.1;" xml:space="preserve" aria-hidden="true">
-                  <path d="M164,12.3l-15.9-9.2c-11.1-6.4-25.4-2.6-31.8,8.5l-8.4,14.5c-0.9,1-1.6,2.1-2.2,3.2c-7.8,13.4-15.5,26.8-23.3,40.2
-                  c-26.8,46.3-53.5,92.5-80.2,138.9c-1.2,2.1-2.1,4.8-2.2,7.2c0,0.1,0,0.1,0,0.2c0,0.8,0,1.6,0.1,2.4c0.9,12.9,0.8,26,2.3,38.9
-                  c0.9,8,6.7,11.1,14,7.8c11-4.9,24-12.9,35.1-17.7c3.5-1.5,5.9-3.7,7.8-7c6.5-11.4,13.1-22.8,19.7-34.2
-                  c27.8-48.2,55.6-96.3,83.4-144.5c0.2-0.4,0.4-0.7,0.6-1.1l0.1,0.1l9.5-16.4C178.9,33,175.1,18.7,164,12.3z M139.5,18l15.9,9.2
-                  c2.9,1.7,3.9,5.4,2.2,8.3l-4.9,8.4c-1-0.6-2-1.1-3-1.7c-7.8-4.5-15.7-9-23.5-13.5l4.9-8.5C132.9,17.3,136.6,16.4,139.5,18z
-                  M18.9,244.1c-0.6-6,0.8-14.5,0.1-20.6c6.1,3.5,11.9,6.9,18.1,10.5C31.5,236.4,24.4,241.7,18.9,244.1z M49.9,220.6
-                  c-8.6-4.9-17.1-9.8-25.7-14.7c26.7-46.2,53.3-92.3,80.1-138.6c8.6,4.9,16.9,9.7,25.6,14.7C103.3,128.2,76.6,174.3,49.9,220.6z
-                  M138.8,66.6c-8.6-4.9-17-9.8-25.6-14.7c1.5-2.6,2.9-5,4.4-7.6c8.6,4.9,17,9.8,25.7,14.7C141.8,61.5,140.4,63.9,138.8,66.6z"/>
-                </svg>
+                <svg version="1.1" id="checkin" class="details-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"  aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 288 512" style="enable-background:new 0 0 175.6 266.1;" xml:space="preserve" ><path fill="currentColor" d="M209.2 233.4l-108-31.6C88.7 198.2 80 186.5 80 173.5c0-16.3 13.2-29.5 29.5-29.5h66.3c12.2 0 24.2 3.7 34.2 10.5 6.1 4.1 14.3 3.1 19.5-2l34.8-34c7.1-6.9 6.1-18.4-1.8-24.5C238 74.8 207.4 64.1 176 64V16c0-8.8-7.2-16-16-16h-32c-8.8 0-16 7.2-16 16v48h-2.5C45.8 64-5.4 118.7.5 183.6c4.2 46.1 39.4 83.6 83.8 96.6l102.5 30c12.5 3.7 21.2 15.3 21.2 28.3 0 16.3-13.2 29.5-29.5 29.5h-66.3C100 368 88 364.3 78 357.5c-6.1-4.1-14.3-3.1-19.5 2l-34.8 34c-7.1 6.9-6.1 18.4 1.8 24.5 24.5 19.2 55.1 29.9 86.5 30v48c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16v-48.2c46.6-.9 90.3-28.6 105.7-72.7 21.5-61.6-14.6-124.8-72.5-141.7z" class=""></path></svg>
+
                 <!-- END DETAILS ICON - MAIN -->
                 <!-- DETAILS ICON - CIRCLE -->
                 <svg class="details-icon-circle" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true">
@@ -325,15 +304,15 @@
               </div>
               <!-- ICON -->
               <div class="card-title col-10">
-                <h3 class="text-uppercase text-bold mb-1"><button class="btn btn-link w-100 collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="collapseOne">Check-In</button></h3>
+                <h3 class="text-uppercase text-bold mb-1"><button class="btn btn-link w-100 collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="collapseOne">Fundraising Minimum</button></h3>
               </div>
             </div>
             <!-- DETAILS TEXT -->
             <div id="collapseFour" class="details-items-text collapse dont-collapse-lg col-8 pl-0 pt-3 pt-lg-0" aria-labelledby="headingFour" data-parent="#event-details-accordion">
               <div class="card-body">
-                <h3 class="text-uppercase text-primary text-bold mb-1">Check-In</h3>
+                <h3 class="text-uppercase text-primary text-bold mb-1">Fundraising Minimum</h3>
                 <p class="mb-1">
-                    [[E130:"[[T9:[[E47:[[S334:fr_id]]:fr_info:1:sponsor_1]]]]" " (" "<br><em>(" replaceall ")" ")</em>" replaceall " | " "<br>" replaceall]]
+                  [[E47:[[S334:fr_id]]:fr_info:1:sponsor_1]]
                 </p>
               </div>
             </div>
@@ -432,7 +411,7 @@
             <div id="collapseSix" class="details-items-text collapse dont-collapse-lg col-8 pl-0 pt-3 pt-lg-0" aria-labelledby="headingSix" data-parent="#event-details-accordion">
               <div class="card-body">
                 <h3 class="text-uppercase text-primary text-bold mb-1">Afterparty</h3>
-                <a href="[[S80:afterpartyMapLink]]" target="_blank">[[T9:[[E130:"[[E47:[[S334:fr_id]]:fr_info:1:event_schedule]]" dup 0 swap "|" indexof substring]]]]&nbsp;<i class="fas fa-external-link-alt" aria-hidden="true" alt=""></i></a>
+                <a href="[[S80:afterpartyMapLink]]" target="_blank" onclick="_gaq.push(['_trackEvent', 'event homepage', 'click', 'details afterparty map']);">[[T9:[[E130:"[[E47:[[S334:fr_id]]:fr_info:1:event_schedule]]" dup 0 swap "|" indexof substring]]]]&nbsp;<i class="fas fa-external-link-alt" aria-hidden="true" alt=""></i></a>
                 <p class="mb-1">[[T9:[[E130:"[[T9:[[E130:"[[E47:[[S334:fr_id]]:fr_info:1:event_schedule]]" dup dup "|" indexof 1 + swap length substring]]]]" dup 0 swap "|" indexof substring]]]]</p>
               </div>
             </div>
@@ -490,8 +469,8 @@
             <div id="collapseSeven" class="details-items-text collapse dont-collapse-lg col-8 pl-0 pt-3 pt-lg-0" aria-labelledby="headingSeven" data-parent="#event-details-accordion">
               <div class="card-body">
                 <h3 class="text-uppercase text-primary text-bold mb-1">Questions?</h3>
-                <a href="TR?fr_id=[[S80:evID]]&amp;pg=informational&amp;sid=2012" target="_blank">FAQ<i class="fas fa-angle-right" aria-hidden="true" alt=""></i></a><br>
-                <p class="mb-1"><a href="mailto:[[E47:[[S334:fr_id]]:fr_info:1:coordinator_email]]">Email us</a> or call<br><a href="tel://+1[[T9:[[E47:[[S334:fr_id]]:fr_info:1:coordinator_phone]]]]">[[E47:[[S334:fr_id]]:fr_info:1:coordinator_phone]]</a></p>
+                <a href="TR?fr_id=[[S80:evID]]&amp;pg=informational&amp;sid=2012" target="_blank" onclick="_gaq.push(['_trackEvent', 'event homepage', 'click', 'details faq']);">FAQ<i class="fas fa-angle-right" aria-hidden="true" alt=""></i></a><br>
+                <p class="mb-1"><a href="mailto:[[E47:[[S334:fr_id]]:fr_info:1:coordinator_email]]" onclick="_gaq.push(['_trackEvent', 'event homepage', 'click', 'details contact email']);">Email us</a> or call<br><a href="tel://+1[[T9:[[E47:[[S334:fr_id]]:fr_info:1:coordinator_phone]]]]" onclick="_gaq.push(['_trackEvent', 'event homepage', 'click', 'details contact phone']);">[[E47:[[S334:fr_id]]:fr_info:1:coordinator_phone]]</a></p>
               </div>
             </div>
             <!-- END DETAILS TEXT -->
@@ -537,7 +516,7 @@
             <div id="collapseEight" class="details-items-text collapse dont-collapse-lg col-8 pl-0 pt-3 pt-lg-0" aria-labelledby="headingEight" data-parent="#event-details-accordion">
               <div class="card-body">
                 <h3 class="text-uppercase text-white text-bold mb-1">Register</h3>
-                <a href="SPageServer/?pagename=cn_register&amp;fr_id=[[S334:fr_id]]&amp;s_regType=">Let's Ride! ></a>
+                <a href="SPageServer/?pagename=cn_register&amp;fr_id=[[S334:fr_id]]&amp;s_regType=" onclick="_gaq.push(['_trackEvent', 'event homepage', 'click', 'details register']);">Let's Ride! ></a>
               </div>
             </div>
             <!-- END DETAILS TEXT -->
@@ -593,7 +572,7 @@
           <div class="row">
             <div class="col-2"></div>
             <div class="col-10 pl-0">
-              <h2 class="h4 py-3 section-fundraiser-list-title"><a class="text-white" href="https://[[S29:SECURE_DOMAIN]][[S29:SECURE_PATH]]SPageServer/?pagename=cn_top_participants&fr_id=[[S80:evID]]">Top Solo Riders <i class="fas fa-angle-right" aria-hidden="true" alt=""></i></a></h2>
+              <h2 class="h4 py-3 section-fundraiser-list-title"><a class="text-white" href="https://[[S29:SECURE_DOMAIN]][[S29:SECURE_PATH]]SPageServer/?pagename=cn_top_participants&fr_id=[[S80:evID]]" onclick="_gaq.push(['_trackEvent', 'event homepage', 'click', 'leaderboard riders top see all']);">Top Individuals <i class="fas fa-angle-right" aria-hidden="true" alt=""></i></a></h2>
             </div>
           </div>
         </div>
@@ -607,7 +586,7 @@
         <!-- LIST LINK -->
         <div class="top-list-link pt-2 pl-3">
           <span class="sr-only" id="seeAllIndividuals">See all Individuals</span>
-          <a class="text-white" href="https://[[S29:SECURE_DOMAIN]][[S29:SECURE_PATH]]SPageServer/?pagename=cn_top_participants&fr_id=[[S80:evID]]" aria-labelledby="seeAllIndividuals">See All<i class="fas fa-angle-right" aria-hidden="true" alt=""></i></a>
+          <a class="text-white" href="https://[[S29:SECURE_DOMAIN]][[S29:SECURE_PATH]]SPageServer/?pagename=cn_top_participants&fr_id=[[S80:evID]]" aria-labelledby="seeAllIndividuals" onclick="_gaq.push(['_trackEvent', 'event homepage', 'click', 'leaderboard riders bottom see all']);">See All<i class="fas fa-angle-right" aria-hidden="true" alt=""></i></a>
         </div>
         <!-- END LINK -->
       </div>
@@ -619,7 +598,7 @@
           <div class="row">
             <div class="col-2"></div>
             <div class="col-10 pl-0">
-              <h2 class="h4 py-3 section-fundraiser-list-title"><a class="text-white" href="https://[[S29:SECURE_DOMAIN]][[S29:SECURE_PATH]]TR?fr_id=[[S80:evID]]&pg=teamlist">Top team players <i class="fas fa-angle-right" aria-hidden="true" alt=""></i></a></h2>
+              <h2 class="h4 py-3 section-fundraiser-list-title"><a class="text-white" href="https://[[S29:SECURE_DOMAIN]][[S29:SECURE_PATH]]TR?fr_id=[[S80:evID]]&pg=teamlist" onclick="_gaq.push(['_trackEvent', 'event homepage', 'click', 'leaderboard teams top see all']);">Top Teams<i class="fas fa-angle-right" aria-hidden="true" alt=""></i></a></h2>
             </div>
           </div>
         </div>
@@ -633,7 +612,7 @@
         <!-- LIST LINK -->
         <div class="top-list-link pt-2 pl-3">
           <span class="sr-only" id="seeAllTeams">See all teams</span>
-          <a class="text-white" href="https://[[S29:SECURE_DOMAIN]][[S29:SECURE_PATH]]TR?fr_id=[[S80:evID]]&pg=teamlist" aria-labelledby="seeAllTeams">See All<i class="fas fa-angle-right" aria-hidden="true" alt=""></i></a>
+          <a class="text-white" href="https://[[S29:SECURE_DOMAIN]][[S29:SECURE_PATH]]TR?fr_id=[[S80:evID]]&pg=teamlist" aria-labelledby="seeAllTeams" onclick="_gaq.push(['_trackEvent', 'event homepage', 'click', 'leaderboard teams bottom see all']);">See All<i class="fas fa-angle-right" aria-hidden="true" alt=""></i></a>
         </div>
         <!-- END LINK -->
       </div>
@@ -646,7 +625,7 @@
           <div class="row">
             <div class="col-2"></div>
             <div class="col-10 pl-0">
-              <h2 class="h4 py-3 section-fundraiser-list-title"><a class="text-white" href="https://[[S29:SECURE_DOMAIN]][[S29:SECURE_PATH]]TR?fr_id=[[S80:evID]]&pg=complist">Top Companies <i class="fas fa-angle-right" aria-hidden="true" alt=""></i></a></h2>
+              <h2 class="h4 py-3 section-fundraiser-list-title"><a class="text-white" href="https://[[S29:SECURE_DOMAIN]][[S29:SECURE_PATH]]TR?fr_id=[[S80:evID]]&pg=complist" onclick="_gaq.push(['_trackEvent', 'event homepage', 'click', 'leaderboard company top see all']);">Top Companies <i class="fas fa-angle-right" aria-hidden="true" alt=""></i></a></h2>
             </div>
           </div>
         </div>
@@ -660,7 +639,7 @@
         <!-- LIST LINK -->
         <div class="top-list-link pt-2 pl-3">
           <span class="sr-only" id="seeAllCompanies">See all companies</span>
-          <a class="text-white" href="https://[[S29:SECURE_DOMAIN]][[S29:SECURE_PATH]]TR?fr_id=[[S80:evID]]&pg=complist" aria-labelledby="seeAllCompanies">See All<i class="fas fa-angle-right" aria-hidden="true" alt=""></i></a>
+          <a class="text-white" href="https://[[S29:SECURE_DOMAIN]][[S29:SECURE_PATH]]TR?fr_id=[[S80:evID]]&pg=complist" aria-labelledby="seeAllCompanies" onclick="_gaq.push(['_trackEvent', 'event homepage', 'click', 'leaderboard company bottom see all']);">See All<i class="fas fa-angle-right" aria-hidden="true" alt=""></i></a>
         </div>
         <!-- END LINK -->
       </div>
@@ -670,7 +649,7 @@
     <div class="row">
       <div class="container">
         <div id="fundraiserSearch" class="search-container col-12 col-lg-10 offset-lg-1 py-5">
-          <form class="js__rider-search row mx-0 px-0">
+          <form class="js__rider-search row mx-0 px-0" onsubmit="_gaq.push(['_trackEvent', 'event homepage', 'click', 'search']);">
             <label for="rider_name" class="sr-only">Search individuals, teams, and companies</label>
             <input type="text" class="search form-control col-10 col-lg-11" id="rider_name" placeholder="Search individuals, teams, and companies">
             <button type="submit" id="rider_search_button" class="search-button action-button search-submit col-2 col-lg-1"><span class="sr-only">Search</span>
@@ -688,7 +667,7 @@
           </form>
           <div class="fundraiserSearchLink text-center pt-4">
             <span class="sr-only" id="donateDirectlyToEvent">Donate directly to event</span>
-            <a class="text-white" href="Donation2?donation=form1&df_id=[[E42:[[S334:fr_id]]:form-id]]&FR_ID=[[S334:fr_id]]&mfc_pref=T&PROXY_ID=[[S334:fr_id]]&PROXY_TYPE=21" aria-labelledby="donateDirectlyToEvent">Donate directly to event<i class="fas fa-angle-right" aria-hidden="true" alt=""></i></a>
+            <a class="text-white" href="Donation2?donation=form1&df_id=[[E42:[[S334:fr_id]]:form-id]]&FR_ID=[[S334:fr_id]]&mfc_pref=T&PROXY_ID=[[S334:fr_id]]&PROXY_TYPE=21" aria-labelledby="donateDirectlyToEvent" onclick="_gaq.push(['_trackEvent', 'event homepage', 'click', 'donate directly to event']);">Donate directly to event<i class="fas fa-angle-right" aria-hidden="true" alt=""></i></a>
           </div>
         </div>
       </div>
@@ -696,9 +675,9 @@
   </div>
 </section>
 <!-- END TOP FUNDRAISERS SECTION -->
-
+[[?xx{unassigned}x::x[[E47:[[S334:fr_id]]:fr_info:1:sponsor_4]]x::::
 <!-- SOCIAL FEED SECTION -->
-<!-- <section  id="social-feed" class="section-social-feed gray-background">
+<section id="social-feed" class="section-social-feed gray-background" data-album-id="[[E47:[[S334:fr_id]]:fr_info:1:sponsor_4]]" data-album-url="AjaxProxy?cnv_url=[[T1:http://[[S29:DOMAIN]][[S29:PATH]]PhotoAlbumUser?view=UserAlbum&AlbumID=[[E47:[[S334:fr_id]]:fr_info:1:sponsor_4]]&pgwrap=n]]&auth=[[S86:true]]">
   <div class="container pt-5 pb-5">
     <div class="social-feed-title col-12">
       <h2 class="pb-1">[[E47:[[S334:fr_id]]:fr_info:1:event_location_city]] CycleNation on Social Media</h2>
@@ -711,13 +690,20 @@
         <path class="block-4" fill-rule="evenodd" d="M900.750,-0.000 L1201.000,-0.000 L1201.000,2.000 L900.750,2.000 L900.750,-0.000 Z"/>
       </svg>
     </div>
+  
     <p class="social-feed-text col-12 pt-3">See what CycleNation is all about! And don&rsquo;t be a victim of FOMO... join us and get your selfie in all the photos this year.</p>
+    <div class="js__raw-album-container" style="display:none;">
+    </div>
     <div class="social-feed-container col-12 pt-2">
+      <div class="js__lo-album-container grid">
+          <div class="grid-sizer"></div>
+          
+      </div>
     </div>
     <div class="social-feed-button col-12 pt-2 text-center">
       <a class="btn-rounded btn-white" href="SPageServer/?pagename=cn_blog">About #CycleNation</a>
     </div>
   </div>
 </section>
--->
+]]
 <!-- END SOCIAL FEED SECTION -->
