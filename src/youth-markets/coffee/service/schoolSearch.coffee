@@ -37,10 +37,11 @@ angular.module 'ahaLuminateApp'
           $scope.schoolList.searchSubmitted = true
           $scope.schoolList.searchByLocation = true
           $scope.schoolList.geoLocationEnabled = true
-          SchoolLookupService.getGeoSchoolData e,
-            failure: (response) ->
-            success: (response) ->
-              showSchoolSearchResults(response)
+          $scope.getSchoolSearchResults(true)
+          #SchoolLookupService.getGeoSchoolData e,
+          #  failure: (response) ->
+          #  success: (response) ->
+          #    showSchoolSearchResults(response)
 
         # gelocate call error
         showGEOError = (e) ->
