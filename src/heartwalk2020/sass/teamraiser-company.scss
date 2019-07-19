@@ -45,3 +45,14 @@
     }
   }
 }
+
+.evenly-like {
+  display: flex;
+  justify-content: space-between;
+
+  &:before,
+  &:after {
+    content: '';
+    display: block;
+  }
+}
