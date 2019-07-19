@@ -31,16 +31,16 @@ angular.module 'ahaLuminateApp'
             failure: (response) ->
             success: (response) ->
               $scope.schoolList.stateFilter = response.data.company.schoolData.state
-
-          delete $scope.schoolList.schools
-          $scope.schoolList.searchPending = true
-          $scope.schoolList.searchSubmitted = true
-          $scope.schoolList.searchByLocation = true
-          $scope.schoolList.geoLocationEnabled = true
-          SchoolLookupService.getGeoSchoolData e,
-            failure: (response) ->
-            success: (response) ->
-              showSchoolSearchResults(response)
+              delete $scope.schoolList.schools
+              $scope.schoolList.searchPending = true
+              $scope.schoolList.searchSubmitted = true
+              $scope.schoolList.searchByLocation = true
+              $scope.schoolList.geoLocationEnabled = true
+              $scope.getSchoolSearchResults(true)
+              #SchoolLookupService.getGeoSchoolData e,
+              #  failure: (response) ->
+              #  success: (response) ->
+              #    showSchoolSearchResults(response)
 
         # gelocate call error
         showGEOError = (e) ->
