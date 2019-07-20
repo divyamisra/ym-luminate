@@ -67,6 +67,7 @@ angular.module 'trPcControllers'
         server: $scope.tablePrefix
         frid: $scope.frId
         consid: $scope.consId
+        apiurl: ''
 
       $scope.BrightSites =
         url: ''
@@ -85,6 +86,7 @@ angular.module 'trPcControllers'
               console.log response.data
               $scope.BrightSites.greeting = response.data.greeting
               $scope.BrightSites.url = response.data.guest_store_url
+              $scope.rewardsPostData.apiurl = response.data.api_url
               $scope.BrightSites.active = response.data.participant?.event_status
               if response.data.participant?.exported isnt false
                 $scope.BrightSites.participant = true
@@ -98,6 +100,7 @@ angular.module 'trPcControllers'
       $scope.BrightSitesLogin = ->
         if $scope.BrightSites.participant is true and $scope.participantConfirmedGifts >= 10000
           BrightSitesWindow = $window.open '', 'RewardCenter'
+          console.log $scope.rewardsPostData
           $http.post('https://www.rewardscenter.info/vendor/hwpc/brightpost-sso_dev.php', $scope.rewardsPostData)
             .then (response) ->
               if response.data.errors
@@ -105,9 +108,11 @@ angular.module 'trPcControllers'
                 BrightSitesWindow.location.href = $scope.BrightSites.url
               else
                 console.log response.data
-                if response.data.login_url
+                if response.data.sso_server_error is true
+                  BrightSitesWindow.location.href = $scope.BrightSites.url
+                else
                   $scope.BrightSites.url = response.data.login_url
-                BrightSitesWindow.location.href = $scope.BrightSites.url
+                  BrightSitesWindow.location.href = $scope.BrightSites.url
             .catch (response) ->
               console.log 'brightsites promise failure sso fetch'
         else
