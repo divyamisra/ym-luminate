@@ -63,33 +63,38 @@ angular.module 'trPcControllers'
         $scope.dashboardPromises.push fundraisingResultsPromise
       $scope.getConfirmedGifts()
 
-      $scope.rewardsPostData =
+      #$scope.rewardsPostData =
+        #server: $scope.tablePrefix
+        #frid: $scope.frId
+        #consid: $scope.consId
+        #apiurl: ''
+
+      $scope.BrightSites =
+        #url: ''
+        active: false
+        participant_status: false
+        #greeting: ''
         server: $scope.tablePrefix
         frid: $scope.frId
         consid: $scope.consId
         apiurl: ''
 
-      $scope.BrightSites =
-        url: ''
-        active: false
-        participant: false
-        greeting: ''
-
       $scope.checkBrightSites = ->
-        console.log $scope.rewardsPostData
-        console.log "dev pc"
-        getcheckBrightSitesPromise = $http.post('https://www.rewardscenter.info/vendor/hwpc/brightpost-info_dev.php', $scope.rewardsPostData)
+        console.log "dev pc 3"
+        getcheckBrightSitesPromise = $http.post('https://www.rewardscenter.info/vendor/hwpc/brightpost-info_dev.php', $scope.BrightSites)
           .then (response) ->
             if response.data.errors
               console.log response.data
             else
               console.log response.data
-              $scope.BrightSites.greeting = response.data.greeting
-              $scope.BrightSites.url = response.data.guest_store_url
-              $scope.rewardsPostData.apiurl = response.data.api_url
+              $scope.BrightSites.participant = response.data.participant
+              #$scope.BrightSites.greeting = response.data.greeting
+              #$scope.BrightSites.url = response.data.guest_store_url
+              #$scope.rewardsPostData.apiurl = response.data.api_url
               $scope.BrightSites.active = response.data.participant?.event_status
-              if response.data.participant?.exported isnt false
-                $scope.BrightSites.participant = true
+              #if response.data.participant?.exported isnt false
+              if $scope.BrightSites.participant.exported isnt false
+                $scope.BrightSites.participant_status = true
             #response
           .catch (response) ->
             console.log 'promise failure participant and event status call'
@@ -98,26 +103,25 @@ angular.module 'trPcControllers'
       $scope.checkBrightSites()
 
       $scope.BrightSitesLogin = ->
-        if $scope.BrightSites.participant is true and $scope.participantConfirmedGifts >= 10000
+        if $scope.BrightSites.participant_status is true and $scope.participantConfirmedGifts >= 10000
           BrightSitesWindow = $window.open '', 'RewardCenter'
-          console.log $scope.rewardsPostData
-          $http.post('https://www.rewardscenter.info/vendor/hwpc/brightpost-sso_dev.php', $scope.rewardsPostData)
+          console.log $scope.BrightSites
+          $http.post('https://www.rewardscenter.info/vendor/hwpc/brightpost-sso_dev.php', $scope.BrightSites)
             .then (response) ->
               if response.data.errors
                 console.log response.data
-                BrightSitesWindow.location.href = $scope.BrightSites.url
+                BrightSitesWindow.location.href = $scope.BrightSites.participant.guest_store_url
               else
                 console.log response.data
                 if response.data.sso_server_error is true
-                  BrightSitesWindow.location.href = $scope.BrightSites.url
+                  BrightSitesWindow.location.href = $scope.BrightSites.participant.guest_store_url
                 else
-                  $scope.BrightSites.url = response.data.login_url
-                  BrightSitesWindow.location.href = $scope.BrightSites.url
+                  BrightSitesWindow.location.href = response.data.login_url
             .catch (response) ->
               console.log 'brightsites promise failure sso fetch'
         else
-          console.log $scope.BrightSites.url
-          BrightSitesWindow = $window.open $scope.BrightSites.url, 'RewardCenter'
+          console.log 'login: status is false or gifts less than 100'
+          BrightSitesWindow = $window.open $scope.BrightSites.participant.guest_store_url, 'RewardCenter'
           return true
 
 
