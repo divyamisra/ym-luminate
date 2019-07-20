@@ -69,20 +69,22 @@ angular.module 'trPcControllers'
         consid: $scope.consId
 
       $scope.BrightSites =
-        url: 'https://heartwalkguest.mybrightsites.com'
+        url: ''
         active: false
         participant: false
         greeting: ''
 
       $scope.checkBrightSites = ->
         console.log $scope.rewardsPostData
-        getcheckBrightSitesPromise = $http.post('https://www.rewardscenter.info/vendor/hwpc/brightpost-info.php', $scope.rewardsPostData)
+        console.log "dev pc"
+        getcheckBrightSitesPromise = $http.post('https://www.rewardscenter.info/vendor/hwpc/brightpost-info_dev.php', $scope.rewardsPostData)
           .then (response) ->
             if response.data.errors
               console.log response.data
             else
               console.log response.data
               $scope.BrightSites.greeting = response.data.greeting
+              $scope.BrightSites.url = response.data.guest_store_url
               $scope.BrightSites.active = response.data.participant?.event_status
               if response.data.participant?.exported isnt false
                 $scope.BrightSites.participant = true
@@ -96,7 +98,7 @@ angular.module 'trPcControllers'
       $scope.BrightSitesLogin = ->
         if $scope.BrightSites.participant is true and $scope.participantConfirmedGifts >= 10000
           BrightSitesWindow = $window.open '', 'RewardCenter'
-          $http.post('https://www.rewardscenter.info/vendor/hwpc/brightpost-sso.php', $scope.rewardsPostData)
+          $http.post('https://www.rewardscenter.info/vendor/hwpc/brightpost-sso_dev.php', $scope.rewardsPostData)
             .then (response) ->
               if response.data.errors
                 console.log response.data
@@ -109,6 +111,7 @@ angular.module 'trPcControllers'
             .catch (response) ->
               console.log 'brightsites promise failure sso fetch'
         else
+          console.log $scope.BrightSites.url
           BrightSitesWindow = $window.open $scope.BrightSites.url, 'RewardCenter'
           return true
 
