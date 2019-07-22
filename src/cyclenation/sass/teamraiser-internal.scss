@@ -886,7 +886,7 @@
             width: 36px;
             height: 36px;
             padding: 8px 0;
-            margin: 0 0 0.25em 0.75em;
+            margin: 0 0 0.25em 0;
 
             #search-icon {
               width: 18px;
@@ -1044,7 +1044,7 @@
         .form-row {
           //float: left;
           width: 300px;
-          display: inline-block;
+          display: block;
 
           @include media-breakpoint-down(md) {
             display: block;
@@ -1100,10 +1100,10 @@
             .cc-expiration-date-month-container {
               float: left;
             }
-            .cc-expiration-date-year-container {
-              align-self: flex-end;
-              align-items: flex-end;
-            }
+            // .cc-expiration-date-year-container {
+            //   align-self: flex-end;
+            //   align-items: flex-end;
+            // }
           }
         }
       }
@@ -1148,7 +1148,7 @@
       margin-top: 2em;
 
       #pstep_finish {
-        font-size: 2em;
+        font-size: 1.4em;
         width: auto;
       }
     }
