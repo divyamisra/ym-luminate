@@ -30,6 +30,15 @@ angular.module 'trPcApp'
         .when '/social',
           templateUrl: APP_INFO.rootPath + 'dist/heart-walk/html/participant-center/view/social.html'
           controller: 'socialViewCtrl'
+        .when '/edit-personal',
+          templateUrl: APP_INFO.rootPath + 'dist/heart-walk/html/participant-center/view/editPersonal.html'
+          controller: 'editPersonalViewCtrl'
+        .when '/edit-team',
+          templateUrl: APP_INFO.rootPath + 'dist/heart-walk/html/participant-center/view/editTeam.html'
+          controller: 'editTeamViewCtrl'
+        .when '/edit-company',
+          templateUrl: APP_INFO.rootPath + 'dist/heart-walk/html/participant-center/view/editCompany.html'
+          controller: 'editCompanyViewCtrl'
         .when '/profile',
           templateUrl: APP_INFO.rootPath + 'dist/heart-walk/html/participant-center/view/consProfile.html'
           controller: 'ConsProfileViewCtrl'

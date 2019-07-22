@@ -134,5 +134,18 @@ module.exports = {
         dest: 'dist/cyclenation/image/'
       }
     ]
+  },
+
+  "heartwalk2020": {
+    files: [
+      {
+        expand: true,
+        cwd: 'src/heartwalk2020/image/',
+        src: [
+          '*.{gif,GIF,jpg,JPG,png,PNG,svg,SVG}'
+        ],
+        dest: 'dist/heartwalk2020/image/'
+      }
+    ]
   }
 }

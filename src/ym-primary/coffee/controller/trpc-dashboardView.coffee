@@ -562,9 +562,9 @@ angular.module 'trPcControllers'
               # id: challengeIndex
               # name: challenge
       challengeOptions =
-        "1": "Be physically active for 60 minutes everyday"
-        "2": "Choose water over sugar drinks"
-        "3": "Do a good deed daily"
+        "1": "Be Ready"
+        "2": "Move More"
+        "3": "Be Kind"
       angular.forEach challengeOptions, (challenge, challengeIndex) ->
         $scope.challenges.push
           id: challengeIndex
@@ -575,6 +575,18 @@ angular.module 'trPcControllers'
           $scope.personalChallenge = {}
         $scope.personalChallenge.updatePending = true
         ZuriService.updateChallenge $scope.frId + '/' + $scope.consId + '?challenge=' + $scope.updatedPersonalChallenge.id,
+          failure: (response) ->
+            # TODO
+            delete $scope.personalChallenge.updatePending
+          success: (response) ->
+            delete $scope.personalChallenge.updatePending
+            getStudentChallenge()
+      
+      $scope.updateDayChallenge = (challengeid) ->
+        if not $scope.personalChallenge
+          $scope.personalChallenge = {}
+        $scope.personalChallenge.updatePending = true
+        ZuriService.updateChallenge $scope.frId + '/' + $scope.consId + '?challenge=' + challengeid,
           failure: (response) ->
             # TODO
             delete $scope.personalChallenge.updatePending
@@ -670,19 +682,19 @@ angular.module 'trPcControllers'
               avatarURL = response.data.student.avatar_url
             else
               if $rootScope.tablePrefix is 'heartdev'
-                avatarURL = 'https://hearttools.heart.org/aha_ym19_dev/virtualworld/img/avatar-charger.png'
+                avatarURL = 'https://hearttools.heart.org/aha_ym20_dev/virtualworld/img/avatar-charger.png'
               else if $rootScope.tablePrefix is 'heartnew'
-                avatarURL = 'https://hearttools.heart.org/aha_ym19_testing/virtualworld/img/avatar-charger.png'
+                avatarURL = 'https://hearttools.heart.org/aha_ym20_testing/virtualworld/img/avatar-charger.png'
               else
-                avatarURL = 'https://hearttools.heart.org/aha_ym19/virtualworld/img/avatar-charger.png'
+                avatarURL = 'https://hearttools.heart.org/aha_ym20/virtualworld/img/avatar-charger.png'
             $scope.personalInfo.avatar = avatarURL
       $scope.getPersonalAvatar()
       
       $scope.heroPopup = false
       $scope.heartHeros = heroPopup: ->
         $scope.heroPopup = true
-        WAIT_TIME = 8000
-        POP_TIME = 2500
+        WAIT_TIME = 10000
+        POP_TIME = 3000
         NUM_POPS = 3
         i = 0
         pop_timer = ''

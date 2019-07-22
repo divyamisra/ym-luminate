@@ -2,14 +2,28 @@ angular.module 'ahaLuminateControllers'
   .controller 'RegistrationUtypeCtrl', [
     '$rootScope'
     '$scope'
-    'TeamraiserCompanyService'
-    ($rootScope, $scope, TeamraiserCompanyService) ->
+    'TeamraiserCompanyService',
+    'SchoolLookupService'
+    ($rootScope, $scope, TeamraiserCompanyService, SchoolLookupService) ->
       $rootScope.companyName = ''
+      $rootScope.regCompanyId = luminateExtend.global.regCompanyId
       regCompanyId = luminateExtend.global.regCompanyId
+      
       setCompanyName = (companyName) ->
         $rootScope.companyName = companyName
         if not $rootScope.$$phase
           $rootScope.$apply()
+          
+      setCompanyCity = (companyCity) ->
+        $rootScope.companyCity = companyCity
+        if not $rootScope.$$phase
+          $rootScope.$apply()
+          
+      setCompanyState = (companyState) ->
+        $rootScope.companyState = companyState
+        if not $rootScope.$$phase
+          $rootScope.$apply()
+          
       TeamraiserCompanyService.getCompanies 'company_id=' + regCompanyId,
         error: ->
           # TODO
@@ -38,4 +52,14 @@ angular.module 'ahaLuminateControllers'
       $scope.submitForgotLogin = ->
         angular.element('.js--default-utype-send-username-form').submit()
         false
+
+      SchoolLookupService.getSchoolData()
+        .then (response) ->
+          schoolDataRows = response.data.getSchoolSearchDataResponse.schoolData
+          angular.forEach schoolDataRows, (schoolDataRow, schoolDataRowIndex) ->
+            if schoolDataRowIndex > 0
+              if regCompanyId is schoolDataRow[0]
+                setCompanyCity schoolDataRow[1]
+                setCompanyState schoolDataRow[2]
+                return
   ]

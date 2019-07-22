@@ -32,7 +32,7 @@
               <div class="profile_box_text">
                 Personalize your page with your "Why" story.
               </div>
-              <a id="update_your_page" class="btn btn-primary" ng-href="{{personalPageUrl}}">Update Your Story</a>
+              <a id="update_your_page" class="btn btn-primary" href="SPageServer?pagename=heartwalk_participant_center&amp;pc2_page=center&amp;fr_id={{frId}}#/edit-personal">Update Your Story</a>
             </div>
           </div>
           <div class="col-sm-4 profile_box" ng-if="userInteractions.page == '1'">
@@ -43,7 +43,7 @@
               <div class="profile_box_text">
                 Story told! Your personal story was successfully updated.
               </div>
-              <a id="update_page_again" class="btn btn-primary" ng-href="{{personalPageUrl}}">Update Story Again</a>
+              <a id="update_page_again" class="btn btn-primary" href="SPageServer?pagename=heartwalk_participant_center&amp;pc2_page=center&amp;fr_id={{frId}}#/edit-personal">Update Story Again</a>
             </div>
           </div>
 
@@ -412,7 +412,12 @@
                 Enter Cash or Checks:
               </div>
               <p>
-                Enter offline donations here.
+                <a ng-if="device.isMobile && device.mobileType == 'android'" ng-href="https://play.google.com/store/apps/details?id=com.aha.hw.communicator">Use the mobile app to capture and deposit checks quickly!</a>
+                <a ng-if="device.isMobile && device.mobileType == 'ios'" ng-href="https://itunes.apple.com/us/app/heart-walk/id451276834?ls=1&mt=8">Use the mobile app to capture and deposit checks quickly!</a>
+                <a ng-if="!device.isMobile" ng-href="{{baseDomain}}/site/SPageServer?pagename=heartwalk_fundraising_tools&fr_id={{frId}}#mobile_apps">Use the mobile app to capture and deposit checks quickly!</a>
+              </p>
+              <p>
+                Or you can always manually enter any offline donations here.
               </p>
             </div>
             <div class="pull-right">
@@ -458,9 +463,9 @@
             <p>
               Thank you for joining us to build healthier lives, free of cardiovascular diseases and stroke. This Participant Center is designed to help you be successful at your fundraising. Take time to move through the checklist above and hit your goal before event weekend!
             </p>
-            <p>
+            <!-- <p>
               As an added benefit to help you on your journey toward a healthy and active lifestyle we invite you to join the American Heart Association's Healthy For Good movement. Healthy For Good will engage you in new, simple and innovative ways to improve your health. Visit <a href="https://www.heart.org/healthyforgood" id="healthy_for_good_link" target="_blank">heart.org/healthyforgood</a>.
-            </p>
+            </p> -->
           </div>
           <div ng-if="newsFeed.totalNumber > 0">
             <h2>

@@ -8,6 +8,10 @@ angular.module 'ahaLuminateControllers'
     ($scope, $rootScope, DonationService, $timeout, $q) ->
       $scope.paymentInfoErrors =
         errors: []
+      $scope.donationGiftType = "installment";
+      if jQuery('#level_installmentduration').length is 0
+        $scope.donationGiftType = "flexible"
+        
       angular.element('.page-error:contains("There was a problem processing your request")').remove()
       $fieldErrors = angular.element '.ErrorMessage'
       angular.forEach $fieldErrors, (fieldError) ->
@@ -33,6 +37,9 @@ angular.module 'ahaLuminateControllers'
         numberPayments: 1
         amount: ''
         installmentAmount: ''
+        sustainingAmount: ''
+        sustainingDuration: ''
+        sustainingFrequency: ''
         levelType: 'level'
         otherAmt: ''
         levelChecked: ''
@@ -47,6 +54,27 @@ angular.module 'ahaLuminateControllers'
         localStorage['installmentAmount'] = amount
         localStorage['numberPayments'] = number
 
+      calculateSustaining = (duration, freq) ->
+        $scope.donationInfo.sustainingDuration = duration
+        localStorage['sustainingDuration'] = duration
+        $scope.donationInfo.sustainingFrequency = freq
+        localStorage['sustainingFrequency'] = freq
+        
+      sustainingDropdown = ->
+        duration = angular.element('#level_flexibleduration option:selected').text()
+        freq = ''
+        if duration.indexOf('month') > 0
+          freq = 'monthly'
+        if duration.indexOf('quarter') > 0
+          freq = 'quarterly'
+        if duration.indexOf('year') > 0
+          freq = 'yearly'
+        if duration is ''
+          duration = 'an unlimited time period'
+        $timeout ->
+          calculateSustaining(duration,freq)
+        , 500
+
       installmentDropdown = ->
         number = angular.element('#level_installmentduration').val()
         number = Number number.split(':')[1]
@@ -56,13 +84,23 @@ angular.module 'ahaLuminateControllers'
           calculateInstallment(number)
         , 500
 
-      document.getElementById('level_installmentduration').onchange = ->
-        installmentDropdown()
-
-      document.getElementById('level_installmentduration').onblur = ->
-        $timeout ->
+      if $scope.donationGiftType is "installment"
+        document.getElementById('level_installmentduration').onchange = ->
           installmentDropdown()
-        , 500
+
+        document.getElementById('level_installmentduration').onblur = ->
+          $timeout ->
+            installmentDropdown()
+          , 500
+          
+      if $scope.donationGiftType is "flexible"
+        document.getElementById('level_flexibleduration').onchange = ->
+          sustainingDropdown()
+
+        document.getElementById('level_flexibleduration').onblur = ->
+          $timeout ->
+            sustainingDropdown()
+          , 500
 
       $scope.giftType = (type) ->
         $scope.donationInfo.giftType = type
@@ -70,28 +108,57 @@ angular.module 'ahaLuminateControllers'
         if type is 'monthly'
           angular.element('.ym-donation-levels__type--onetime').removeClass 'active'
           angular.element('.ym-donation-levels__type--monthly').addClass 'active'
-          angular.element('#level_installment_row').removeClass 'hidden'
+          if $scope.donationGiftType is "installment"
+            angular.element('#level_installment_row').removeClass 'hidden'
+            number = 1
+            $timeout ->
+              calculateInstallment(number)
+            , 500
+          if $scope.donationGiftType is "flexible"
+            angular.element('#level_flexibleduration_row').removeClass 'hidden'
+            angular.element('#level_flexibletotal_row').removeClass 'hidden'
+            angular.element('#level_flexiblegift_type2').prop 'checked', true
+            angular.element('#level_flexiblegift_type2').trigger 'click'
+            if $scope.donationInfo.levelType is 'level'
+              if $scope.donationInfo.amount is ''
+                $scope.donationInfo.amount = "$0"
+              amount = Number $scope.donationInfo.amount.split('$')[1]
+            else
+              amount = Number $scope.donationInfo.amount
+            $scope.donationInfo.sustainingAmount = amount
+            localStorage['sustainingAmount'] = amount
+            $timeout ->
+              sustainingDropdown()
+            , 500
           angular.element('#pstep_finish span').remove()
           $scope.donationInfo.monthly = true
-          number = 1
-          $timeout ->
-            calculateInstallment(number)
-          , 500
         else
           angular.element('.ym-donation-levels__type--onetime').addClass 'active'
           angular.element('.ym-donation-levels__type--monthly').removeClass 'active'
-          angular.element('#level_installment_row').addClass 'hidden'
-          angular.element('#level_installmentduration').val 'S:0'
-          angular.element('#level_installmentduration').click()
+          if $scope.donationGiftType is "installment"
+            angular.element('#level_installment_row').addClass 'hidden'
+            angular.element('#level_installmentduration').val 'S:0'
+            angular.element('#level_installmentduration').click()
+            if $scope.donationInfo.amount is undefined
+              amount = 0
+            else
+              amount = Number $scope.donationInfo.amount.split('$')[1]
+            $timeout ->
+              calculateInstallment(number)
+            , 500
+          if $scope.donationGiftType is "flexible"
+            angular.element('#level_flexibleduration_row').addClass 'hidden'
+            angular.element('#level_flexibletotal_row').addClass 'hidden'
+            angular.element('#level_flexiblegift_type1').prop 'checked', true
+            angular.element('#level_flexiblegift_type1').trigger 'click'
+            $scope.donationInfo.sustainingAmount = $scope.donationInfo.amount
+            localStorage['sustainingAmount'] = $scope.donationInfo.amount
+            $timeout ->
+              sustainingDropdown()
+            , 500
+         
           $scope.donationInfo.monthly = false
           populateBtnAmt $scope.donationInfo.levelType
-          if $scope.donationInfo.amount is undefined
-            amount = 0
-          else
-            amount = Number $scope.donationInfo.amount.split('$')[1]
-          $timeout ->
-            calculateInstallment(number)
-          , 500
 
       $scope.selectLevel = (event, type, level, amount) ->
         if amount is undefined
@@ -115,21 +182,37 @@ angular.module 'ahaLuminateControllers'
             if amount isnt undefined
               localStorage['amount'] = amount
             localStorage['otherAmt'] = ''
-          if $scope.donationInfo.monthly is true
-            number = angular.element('#level_installmentduration').val()
-            number = Number number.split(':')[1]
-            if number is 0
-              number = 1
-            if $scope.donationInfo.levelType is 'level'
-              amount = Number($scope.donationInfo.amount.split('$')[1]) / number
+          if $scope.donationGiftType is "installment"
+            if $scope.donationInfo.monthly is true
+              number = angular.element('#level_installmentduration').val()
+              number = Number number.split(':')[1]
+              if number is 0
+                number = 1
+              if $scope.donationInfo.levelType is 'level'
+                amount = Number($scope.donationInfo.amount.split('$')[1]) / number
+              else
+                amount = Number $scope.donationInfo.amount
+              $timeout ->
+                calculateInstallment(number)
+              , 500
             else
-              amount = Number $scope.donationInfo.amount
-            $timeout ->
-              calculateInstallment(number)
-            , 500
-          else
-            $scope.donationInfo.installmentAmount = amount
-            $scope.donationInfo.numberPayments = 1
+              $scope.donationInfo.installmentAmount = amount
+              $scope.donationInfo.numberPayments = 1
+
+          if $scope.donationGiftType is "flexible"
+            angular.element('#level_flexiblegift_type2').trigger 'click'
+            if $scope.donationInfo.monthly is true
+              if $scope.donationInfo.levelType is 'level'
+                amount = Number amount.split('$')[1]
+              else
+                amount = Number amount
+              $timeout ->
+                sustainingDropdown()
+              , 500
+
+            $scope.donationInfo.sustainingAmount = amount
+            localStorage['sustainingAmount'] = amount
+              
         if type is 'other'
           if type isnt $scope.donationInfo.levelType and $scope.donationInfo.otherAmt isnt ''
             levelSelect()
@@ -145,16 +228,17 @@ angular.module 'ahaLuminateControllers'
         localStorage['amount'] = amount
         localStorage['otherAmt'] = amount
 
-        if $scope.donationInfo.monthly is true
-          number = angular.element('#level_installmentduration').val()
-          number = Number number.split(':')[1]
-          if number is 0
-            number = 1
-          amount = amount / number
-          $timeout ->
-            calculateInstallment(number)
-          , 500
-          angular.element('#level_installmentduration').click()
+        if $scope.donationGiftType is "installment"
+          if $scope.donationInfo.monthly is true
+            number = angular.element('#level_installmentduration').val()
+            number = Number number.split(':')[1]
+            if number is 0
+              number = 1
+            amount = amount / number
+            $timeout ->
+              calculateInstallment(number)
+            , 500
+            angular.element('#level_installmentduration').click()
         populateBtnAmt()
 
       $scope.focus = "focus"
@@ -321,6 +405,9 @@ angular.module 'ahaLuminateControllers'
             $scope.donationInfo.monthly = true
             $scope.donationInfo.installmentAmount = localStorage['installmentAmount']
             $scope.donationInfo.numberPayments = localStorage['numberPayments']
+            $scope.donationInfo.sustainingAmount = localStorage['sustainingAmount']
+            $scope.donationInfo.sustainingDuration = localStorage['sustainingDuration']
+            $scope.donationInfo.sustainingFrequency = localStorage['sustainingFrequency']
         if localStorage['amount']
           if localStorage['amount'] is 'undefined'
             $scope.donationInfo.otherAmt = ''
@@ -348,7 +435,10 @@ angular.module 'ahaLuminateControllers'
                 amount = level.amount.formatted
                 amount = amount.split('.')[0]
                 userSpecified = level.userSpecified
-                inputId = '#level_installmentexpanded' + levelId
+                if jQuery('#level_installmentduration').length > 0
+                  inputId = '#level_installmentexpanded' + levelId
+                else
+                  inputId = '#level_flexibleexpanded' + levelId
                 classLevel = 'level' + levelId
 
                 angular.element(inputId).parent().parent().parent().parent().addClass classLevel
@@ -358,10 +448,12 @@ angular.module 'ahaLuminateControllers'
                 if levelChecked is true
                   if userSpecified  is 'true'
                     $scope.donationInfo.amount = $scope.donationInfo.otherAmt
+                    $scope.donationInfo.sustainingAmount = $scope.donationInfo.otherAmt
                     installmentAmount = Number($scope.donationInfo.otherAmt)/Number($scope.donationInfo.numberPayments)
                     $scope.donationInfo.installmentAmount = installmentAmount.toFixed 2
                   else
                     $scope.donationInfo.amount = amount
+                    $scope.donationInfo.sustainingAmount = amount
                     if localStorage['installmentAmount']
                       $scope.donationInfo.installmentAmount = localStorage['installmentAmount']
                     else
@@ -386,6 +478,8 @@ angular.module 'ahaLuminateControllers'
           loadLocalStorage()
         if $scope.donationInfo.giftType is 'onetime'
           angular.element('#level_installment_row').addClass 'hidden'
+          angular.element('#level_flexibleduration_row').addClass 'hidden'
+          angular.element('#level_flexibletotal_row').addClass 'hidden'
         $requiredField = angular.element '.field-required'
         angular.forEach $requiredField, (required) ->
           $req = angular.element required

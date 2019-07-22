@@ -12,6 +12,7 @@
 .ym-my-challenge {
   background: $event-secondary-medium;
   padding: 20px;
+  overflow:hidden;
   
   @media (min-width: $screen-sm-min) {
     padding: 20px 30px;
@@ -30,22 +31,69 @@
   .col-xs-8 {
     padding: 0;
   }
+  .challenge-day-streak {
+    position:relative;
+    z-index: 1;
+    padding-bottom: 10px !important;
+    /*
+    &::before {
+      background: #ed1c24;
+      content: " ";
+      height: 100%;
+      width: 107%;
+      display: block;
+      position: absolute;
+      transform: rotate(-2deg);
+      margin-top: -10px;
+      left: -17px;
+    }
+    */
+  }
+}
+
+.school-location {
+  &.h5 {
+    color:$event-grey;
+  }
 }
 
 .ym_my_challenge__stats {
-  span {
-    font-weight: 700;
-    
-    @media (min-width: $screen-sm-min) {
-      display: inline-block;
-      background: $brand-white;
-      border-radius: 7px;
-      color: $event-secondary;
-      font-size: 40px;
+  font-size: 26px;
+  color: #ffffff;
+  line-height:48px;
+  margin-top:10px;
+
+  .challenge-day-count {
+      font-size: 32px;
+      background: #fff;
+      position: relative;
+      border-radius: 55px;
+      text-align: center;
       line-height: 40px;
-      height: 50px;
-      padding: 0 4px;
       vertical-align: middle;
+      padding: 0px 15px 6px 15px;
+      color: #ed1c24;
+      border: 2px solid #293B90;
+      font-weight: bold;
+      top: -5px;
+   }
+   .text_with_1px_border {
+      text-shadow: 
+         -2px -2px 0px #293B90,
+         0px -2px 0px #293B90,
+         2px -2px 0px #293B90,
+         -2px  0px 0px #293B90,
+         2px  0px 0px #293B90,
+         -2px  2px 0px #293B90,
+         0px  2px 0px #293B90,
+         2px  2px 0px #293B90;
+   }
+}
+
+.ym-page-section__list {
+  .ym-donate-cta {
+    .h5 {
+      color: indigo;
     }
   }
 }
