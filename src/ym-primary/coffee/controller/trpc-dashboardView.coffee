@@ -734,7 +734,7 @@ angular.module 'trPcControllers'
           i = 0
           len = schoolDataRows.length
           while i < len
-            if $scope.companyInfo.companyId is schoolDataRows[i][schoolDataHeaders.CID]
+            if $rootScope.companyInfo.companyId is schoolDataRows[i][schoolDataHeaders.CID]
               $scope.eventDate = schoolDataRows[i][schoolDataHeaders.ED]
               $scope.moneyDueDate = schoolDataRows[i][schoolDataHeaders.MDD]
               $scope.schoolStudentGoal = schoolDataRows[i][schoolDataHeaders.PG]
