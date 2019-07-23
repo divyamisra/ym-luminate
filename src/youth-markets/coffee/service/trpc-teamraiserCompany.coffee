@@ -1,8 +1,10 @@
 angular.module 'trPcApp'
   .factory 'NgPcTeamraiserCompanyService', [
     '$rootScope'
+    '$http'
+    '$sce'
     'NgPcLuminateRESTService'
-    ($rootScope, NgPcLuminateRESTService) ->
+    ($rootScope, $http, $sce, NgPcLuminateRESTService) ->
       getCompanyList: (requestData, callback) ->
         dataString = 'method=getCompanyList'
         dataString += '&' + requestData if requestData and requestData isnt ''
