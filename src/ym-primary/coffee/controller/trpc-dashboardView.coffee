@@ -723,4 +723,23 @@ angular.module 'trPcControllers'
         else
           url = 'https://kidsheartchallenge.heart.org'
         window.open url + '/student/login/' + $scope.authToken + '/' + $scope.sessionCookie
+
+      NgPcTeamraiserCompanyService.getSchoolDates()
+        .then (response) ->
+          schoolDataRows = response.data.getSchoolDatesResponse.schoolData
+          schoolDataHeaders = {}
+          schoolDates = {}
+          angular.forEach schoolDataRows[0], (schoolDataHeader, schoolDataHeaderIndex) ->
+            schoolDataHeaders[schoolDataHeader] = schoolDataHeaderIndex
+          i = 0
+          len = schoolDataRows.length
+          while i < len
+            if $scope.companyId is schoolDataRows[i][schoolDataHeaders.CID]
+              $scope.eventDate = schoolDataRows[i][schoolDataHeaders.ED]
+              $scope.moneyDueDate = schoolDataRows[i][schoolDataHeaders.MDD]
+              $scope.schoolStudentGoal = schoolDataRows[i][schoolDataHeaders.PG]
+              $scope.schoolStudentReg = schoolDataRows[i][schoolDataHeaders.TR]
+              $scope.schoolStudentRegOnline = schoolDataRows[i][schoolDataHeaders.RO]
+              break
+            i++
   ]
