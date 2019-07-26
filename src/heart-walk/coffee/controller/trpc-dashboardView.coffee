@@ -80,7 +80,7 @@ angular.module 'trPcControllers'
 
       $scope.checkBrightSites = ->
         console.log "dev pc 4"
-        getcheckBrightSitesPromise = $http.post('https://www.rewardscenter.info/vendor/hwpc/brightpost-info.php', $scope.BrightSites)
+        getcheckBrightSitesPromise = $http.post('https://www.rewardscenter.info/vendor/hwpc/brightpost-info_2020.php', $scope.BrightSites)
           .then (response) ->
             if response.data.errors
               console.log response.data
@@ -105,7 +105,7 @@ angular.module 'trPcControllers'
         if $scope.BrightSites.participant_status is true and $scope.participantConfirmedGifts >= 10000
           BrightSitesWindow = $window.open '', 'RewardCenter'
           console.log $scope.BrightSites
-          $http.post('https://www.rewardscenter.info/vendor/hwpc/brightpost-sso_dev.php', $scope.BrightSites)
+          $http.post('https://www.rewardscenter.info/vendor/hwpc/brightpost-sso_2020.php', $scope.BrightSites)
             .then (response) ->
               if response.data.errors
                 console.log response.data
