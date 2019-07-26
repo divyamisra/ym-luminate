@@ -1,4 +1,4 @@
-[[S51:reus_hw_default_image]]
+[[S51:reus_heartwalk_default_image]]
 <div class="container tr-page-container hero">
     <div class="row">
         <div class="col-lg-4 col-md-12 sidebar">
@@ -12,7 +12,8 @@
                     <li>
                         <p><strong>Event:</strong></p>
                         <p><a href="TR?fr_id=[[S334:fr_id]]&pg=entry" onclick="_gaq.push(['_trackEvent', 'company', 'details', 'event link']);">[[E47:[[S334:fr_id]]:fr_info:1:event_title]]</a></p>
-                        <p>[[E47:[[S334:fr_id]]:fr_info:1:event_date]]</p>
+                        [[?xMulti-Eventx::x[[E42:[[S80:evID]]:public-event-type]]x::::
+                        <p>[[E47:[[S334:fr_id]]:fr_info:1:event_date]]</p>]]
                     </li>
                 </ul>
             </div>
@@ -25,7 +26,7 @@
             <div class="tr-page-info bg-white information-box">
                 <h1 class="w-100">
                     <div class="float-left js--company-name">
-                        
+
                     </div>
                     <!-- /.float-left -->
                     <div class="team-members float-right d-lg-block d-md-none">
@@ -60,10 +61,10 @@
 
                 [[?x1x2x::x[[S42:0:status]]x::
                 <form>
-                    <div class="row buttons-row">
-                        <a class="btn btn-primary col-lg col-sm-12 mx-md-2 mx-sm-0" href="TRR/HeartWalk/General?pg=tfind&fr_id=[[S334:fr_id]]&fr_tm_opt=new" onclick="_gaq.push(['_trackEvent', 'company', 'banner', 'create team button']);">Create a Team</a>
-                        <a class="btn btn-primary col-lg col-sm-12 mx-md-2 mx-sm-0" href="TRR/HeartWalk/General?pg=tfind&fr_id=[[S334:fr_id]]" onclick="_gaq.push(['_trackEvent', 'company', 'banner', 'join team button']);">Join a Team</a>
-                    </div>
+                        <div class="row buttons-row justify-content-between">
+                            <a class="btn btn-primary col-lg col-sm-12 mx-md-2 mx-sm-0" href="TRR/HeartWalk/General?pg=tfind&fr_id=[[S334:fr_id]]&fr_tm_opt=new" onclick="_gaq.push(['_trackEvent', 'company', 'banner', 'create team button']);">Create a Team</a>
+                            <a class="btn btn-primary col-lg col-sm-12 mx-md-2 mx-sm-0" href="TRR/HeartWalk/General?pg=tfind&fr_id=[[S334:fr_id]]" onclick="_gaq.push(['_trackEvent', 'company', 'banner', 'join team button']);">Join a Team</a>
+                        </div>
                 </form>
                 ::]]
             </div>
