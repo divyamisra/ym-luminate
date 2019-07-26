@@ -77,11 +77,10 @@ angular.module 'trPcControllers'
         server: $scope.tablePrefix
         frid: $scope.frId
         consid: $scope.consId
-        apiurl: ''
 
       $scope.checkBrightSites = ->
-        console.log "dev pc 3"
-        getcheckBrightSitesPromise = $http.post('https://www.rewardscenter.info/vendor/hwpc/brightpost-info_dev.php', $scope.BrightSites)
+        console.log "dev pc 4"
+        getcheckBrightSitesPromise = $http.post('https://www.rewardscenter.info/vendor/hwpc/brightpost-info.php', $scope.BrightSites)
           .then (response) ->
             if response.data.errors
               console.log response.data
