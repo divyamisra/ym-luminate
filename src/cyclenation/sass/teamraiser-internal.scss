@@ -768,67 +768,107 @@
       }
     }
 
-    div.donation-level-container {
-      float: left;
-      margin-right: 10px;
-      margin-top: 0 !important;
-      margin-bottom: 0 !important;
-    }
+    .donation-levels {
+      display: flex;
+      flex-wrap: wrap;
 
-    div.donation-level-container:last-child {
-      float: left;
-      margin-right: 0;
-      position: relative;
+      div.donation-level-container {
+        border: 0 none;
+        margin: 0;
+        margin-right: 6px;
 
-      .form-content {
-        margin-top: 0;
-        margin-bottom: 0;
-
-        .donation-level-input-container {
-          padding-top: 0;
-        }
-      }
-
-      div.donation-level-label-container {
-        margin-right: 1em;
-      }
-
-      div.donation-level-user-entered {
-        display: inline-block;
-
-        @include media-breakpoint-down(md) {
+        label {
           display: block;
-          margin-left: 2em;
-          margin-top: -20px;
+          margin: 0;
         }
 
-        small.form-text {
-          position: absolute;
-          left: 25px;
-          margin-top: -10px;
+        &:last-child {
+          margin-right: 0px;
+        }
 
-          @include media-breakpoint-down(md) {
-            left: auto;
-            margin-top: 0;
+        div.form-content {
+          margin: 0;
+          width: auto;
+        }
+
+        div.donation-level-label-container,
+        .donation-level-amount-container {
+          @include button-variant(#fff, $red, $red-deep, $red-deep, $red, $red);
+          @include button-size(10px, 20px, 20px, 1.2, 0);
+          text-align: center;
+          vertical-align: top;
+          cursor: pointer;
+          border: 2px solid $red;
+        }
+
+        .donation-level-label-input-container,
+        div.donation-level-input-container input[type="radio"] {
+          display: none;
+          visibility: hidden;
+        }
+        div.donation-level-input-container {
+          padding: 0;
+        }
+
+        &.otherAmount {
+          width: auto;
+          max-width: none;
+
+          .donation-level-label-container {
+            display: none;
+          }
+
+          input[type="text"] {
+            @include button-variant(#fff, $red, $red-deep, $red-deep, $red, $red);
+            border: 2px solid $red;
+            border-radius: 0;
+            height: 48px;
+            box-shadow: none;
+            text-align: center;
+            cursor: pointer;
+          }
+
+          ::-webkit-input-placeholder {
+            text-align: center;
+            color: #212529;
+          }
+
+          ::-moz-placeholder {
+            text-align: center;
+            color: #212529;
+          }
+
+          :-ms-input-placeholder{
+            text-align: center;
+            color: #212529;
+          }
+
+          &:hover {
+            ::-webkit-input-placeholder {
+              color: #fff;
+            }
+
+            ::-moz-placeholder {
+              color: #fff;
+            }
+
+            :-ms-input-placeholder{
+              color: #fff;
+            }
+          }
+
+          div.donation-level-user-entered {
+            margin: 0px;
+
+            label {
+              display: none;
+            }
           }
         }
+        .donation-level-expanded-label {
+          display: none;
+        }
       }
-    }
-
-    div.donation-level-input-container,
-    div.generic-repeat-label-checkbox-container {
-
-      @include media-breakpoint-down(md) {
-        padding: 0 !important;
-      }
-    }
-
-    div.donation-level-label-container,
-    div.donation-level-amount-container {
-      margin-left: 0em;
-      margin-right: 4em;
-      margin-top: 0.15em;
-      vertical-align: top !important;
     }
 
     #level_flexiblegift_type_Row {
