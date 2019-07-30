@@ -606,7 +606,7 @@
             <div>
               <p>
                 You have <strong>{{companyInfo.participantCount|number}}</strong> students registered. <span ng-if="studentRegGoal && studentRegGoal != 0" ng-cloak>Keep recruiting to meet your goal of <strong>{{studentRegGoal|number}}</strong> students!</span>
-                <span ng-if="schoolStudentRegOnline > 0" ng-cloak>{{schoolStudentReg|number}} of those {{schoolStudentRegOnline|number}} students have registered online.</span>
+                <span ng-if="schoolStudentRegOnline > 0" ng-cloak><strong>{{schoolStudentReg|number}}</strong> of those <strong>{{schoolStudentRegOnline|number}}</strong> students have registered online.</span>
               </p>
               <a class="btn btn-md-wide btn-primary" ng-href="{{baseUrl}}#/email">
                 <strong>Send Emails</strong>
