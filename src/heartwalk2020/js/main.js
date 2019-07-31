@@ -930,7 +930,7 @@
                           } else {
                             $('.js--don-amt').text('');
                           }
-                          var customAmt = parseInt($(this).val()) * 10;
+                          var customAmt = parseInt($(this).val()) * 100;
   
                           finalDonUrl = defaultDonUrl + '&set.DonationLevel=' + $('.js--don-amt-other').data('level-id') + (isNaN(customAmt) === true ? '' : '&set.Value=' + customAmt);
                           $('.js--personal-don-submit').attr('data-final-don-url', finalDonUrl);
