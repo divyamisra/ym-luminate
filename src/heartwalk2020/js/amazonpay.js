@@ -53,18 +53,8 @@ function addPaymentOptions() {
 			    	"<a href='"+dlink+"&paypal=true' class='js--paypal-btn'><img src='https://www2.heart.org/images/content/pagebuilder/PP_logo_h_100x26.png'/ alt='Donate with PayPal'></a></div>";
 		
 			jQuery('.buttons-row').after(html);
-			jQuery('.js--personal-don-form').submit(function(e){
-				e.preventDefault();
-				var updatedDlink = jQuery('.js--personal-don-submit').attr('data-final-don-url');
-				var updatedPPdlink = updatedDlink + '&paypal=true';
-				jQuery('.js--paypal-btn').attr('href', updatedPPdlink);
-				jQuery('.tr-page-container .paymentSelType').removeClass('hidden');
-				jQuery('.tr-page-container .paymentSelType').slideDown();
-				return false;
-			});
 
 			// add front end validation
-			// TODO - style error message text and customize content
 			var parsleyOptions = {
 				successClass: 'is-valid',
 				errorClass: 'is-invalid',
@@ -74,14 +64,12 @@ function addPaymentOptions() {
           return _el.$element.closest('form').find('.error-row');
         }
 			};
-											
 
 			jQuery('.js--personal-don-form').parsley(parsleyOptions);
 			
 			cd.resetValidation = function () {
 				jQuery('.js--personal-don-form').parsley().reset();
 			}
-
 
 			jQuery('input[name=personalDonAmt]').change(function () {
 				var isOtherSelected = jQuery(this).hasClass('other-amt-radio');
@@ -103,6 +91,7 @@ function addPaymentOptions() {
 				var form = jQuery(this);
 				form.parsley().validate();
 				if (form.parsley().isValid()) {
+					console.log('form is valid');
 					// redirect to donation form
 					var updatedDlink = jQuery('.js--personal-don-submit').attr('data-final-don-url');
 					jQuery('.js--cc-btn').attr('href', updatedDlink);
@@ -111,7 +100,9 @@ function addPaymentOptions() {
 					jQuery('.tr-page-container .paymentSelType').removeClass('hidden');
 					jQuery('.tr-page-container .paymentSelType').slideDown();
 					return false;
-				} 
+				} else {
+					console.log('form is NOT valid');
+				}
 			});
 
 		}
