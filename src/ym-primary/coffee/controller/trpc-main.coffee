@@ -75,7 +75,7 @@ angular.module 'trPcControllers'
                               jQuery('html, body').animate
                                 scrollTop: jQuery('.js--facebook-fundraiser-completed-section').offset().top - 150
                               , 250
-                          BoundlessService.logEmailSent()
+                          BoundlessService.logFundraiserCreated()
                   toggleFacebookFundraiserStatus()
           , scope: 'manage_fundraisers'
   ]
