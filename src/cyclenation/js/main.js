@@ -2947,9 +2947,15 @@
       // donation levels
       $('.donation-level-container').addClass('level');
       $('.donation-level-container:last-child').addClass('otherAmount').removeClass('level');
+      $('.donation-level-container.level .donation-level-amount-container').prop('tabindex', '0').prop('role', 'button');
       $('.donation-level-user-entered input[type="text"]').prop('placeholder', 'Other');
+      $('.otherAmount .donation-level-input-container > label').remove();
+      $('.donation-level-user-entered label').append('<small class="form-text text-muted"><em>($25 minimum)</em></small>');
+      $('.donation-level-user-entered label').insertAfter('.donation-level-user-entered input[type="text"]');
+
       var askMessageHtml = '<div class="ask-message"></div>';
       $(askMessageHtml).insertAfter('.don-standard-levels');
+
 
       $('.donation-level-amount-container').click(function() {
         var askElem = $(this).parent().parent().find('.donation-level-expanded-label'),
@@ -2958,6 +2964,26 @@
         $('.donation-level-amount-container.active, .donation-level-user-entered input').removeClass('active');
         $(this).addClass('active');
       });
+
+      $('.donation-level-amount-container').keydown(function(e) {
+        var code = e.which
+        console.log(code);
+        if ((code === 13) || (code === 32)) {
+          $(this).click();
+        }
+
+      });
+      /*
+      $('.donation-level-amount-container').focus(function(e) {
+        var code = e.which
+        console.log('focus', e);
+         if ((code === 39) || (code === 40)) {
+          $(this).next('input').focus();
+        }
+        if ((code === 37) || (code === 38)) {
+          $(this).previous('input').focus();
+        }
+      });*/
 
       $('.donation-level-user-entered').click(function() {
         var askElem = $(this).parent().parent().find('.donation-level-expanded-label'),
@@ -3002,8 +3028,6 @@
 
       // replace duplicate ID
       $('#level_flexible_row.form-row.form-donation-level').attr('id', 'level_flexible_row2');
-
-      $('.donation-level-user-entered input[type="text"]').after('<small class="form-text text-muted"><em>($25 minimum)</em></small>');
 
       $('#level_flexible_row2').wrapInner('<fieldset></fieldset>');
       $('#level_flexible_row2 fieldset').prepend('<legend class="aural-only">Select Gift Amount</legend>');
