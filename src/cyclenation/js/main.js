@@ -2947,52 +2947,53 @@
       // donation levels
       $('.donation-level-container').addClass('level');
       $('.donation-level-container:last-child').addClass('otherAmount').removeClass('level');
-      $('.donation-level-container.level .donation-level-amount-container').prop('tabindex', '0').prop('role', 'button');
+      $('.donation-level-container.level .donation-level-amount-container').prop('tabindex', '0');
+
       $('.donation-level-user-entered input[type="text"]').prop('placeholder', 'Other');
       $('.otherAmount .donation-level-input-container > label').remove();
       $('.donation-level-user-entered label').append('<small class="form-text text-muted"><em>($25 minimum)</em></small>');
       $('.donation-level-user-entered label').insertAfter('.donation-level-user-entered input[type="text"]');
 
-      var askMessageHtml = '<div class="ask-message"></div>';
+      var askMessageHtml = '<div class="ask-message">Donors who give $5,000 or more each year join our Cor Vitae.</div>';
       $(askMessageHtml).insertAfter('.don-standard-levels');
 
-
       $('.donation-level-amount-container').click(function() {
-        var askElem = $(this).parent().parent().find('.donation-level-expanded-label'),
-        askMsg = askElem ? askElem[0].textContent : null
-        $('.ask-message').text(askMsg);
         $('.donation-level-amount-container.active, .donation-level-user-entered input').removeClass('active');
         $(this).addClass('active');
       });
 
-      $('.donation-level-amount-container').keydown(function(e) {
-        var code = e.which
-        console.log(code);
-        if ((code === 13) || (code === 32)) {
-          $(this).click();
-        }
-
-      });
-      /*
-      $('.donation-level-amount-container').focus(function(e) {
-        var code = e.which
-        console.log('focus', e);
-         if ((code === 39) || (code === 40)) {
-          $(this).next('input').focus();
-        }
-        if ((code === 37) || (code === 38)) {
-          $(this).previous('input').focus();
-        }
-      });*/
-
       $('.donation-level-user-entered').click(function() {
-        var askElem = $(this).parent().parent().find('.donation-level-expanded-label'),
-        askMsg = askElem ? askElem[0].textContent : null
-        $('.ask-message').text(askMsg);
         $('.donation-level-amount-container.active, .donation-level-user-entered input').removeClass('active');
         $(this).find('input').addClass('active');
       });
 
+      $('.donation-level-amount-container').keydown(function(e) {
+        var code = e.which
+        if ((code === 13) || (code === 32)) {
+          $(this).click();
+        }
+      });
+      $('.donation-level-user-entered').keyup(function(e) {
+        $(this).click();
+      });
+
+      $('.donation-level-amount-container').focus(function(e) {
+        $(this).keyup(function(e){
+          var code = e.which
+          if ((code === 39) || (code === 40)) {
+            var nextElem = $(this).parent().parent().parent().parent()[0].nextElementSibling;
+            if($(nextElem).hasClass('otherAmount')) {
+              $('.donation-level-user-entered input[type="text"]').focus();
+            } else {
+              $(nextElem).find('.donation-level-amount-container').focus();
+            }
+          }
+          if ((code === 37) || (code === 38)) {
+            var prevElem = $(this).parent().parent().parent().parent()[0].previousElementSibling;
+            $(prevElem).find('.donation-level-amount-container').focus();
+          }
+        });
+      });
 
       // add donor recognition label
       $('<legend>Donor Recognition:</legend>').insertBefore('#tr_recognition_nameanonymous_row #tr_recognition_nameanonymousname');
