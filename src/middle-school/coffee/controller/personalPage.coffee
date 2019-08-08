@@ -9,9 +9,10 @@ angular.module 'ahaLuminateControllers'
     'APP_INFO'
     'TeamraiserParticipantService'
     'TeamraiserCompanyService'
+    'ZuriService'
     'BoundlessService'
     'TeamraiserParticipantPageService'
-    ($scope, $rootScope, $location, $filter, $timeout, $uibModal, APP_INFO, TeamraiserParticipantService, TeamraiserCompanyService, BoundlessService, TeamraiserParticipantPageService) ->
+    ($scope, $rootScope, $location, $filter, $timeout, $uibModal, APP_INFO, TeamraiserParticipantService, TeamraiserCompanyService, ZuriService, BoundlessService, TeamraiserParticipantPageService) ->
       $dataRoot = angular.element '[data-aha-luminate-root]'
       $scope.participantId = $location.absUrl().split('px=')[1].split('&')[0].split('#')[0]
       $scope.companyId = $dataRoot.data('company-id') if $dataRoot.data('company-id') isnt ''
@@ -64,6 +65,19 @@ angular.module 'ahaLuminateControllers'
               $scope.prizes.sort (a, b) ->
                 a.priority - b.priority
       
+      ZuriService.getStudent $scope.frId + '/' + $scope.participantId,
+        error: (response) ->
+          $scope.challengeName = null
+          $scope.challengeId = null
+          $scope.challengeCompleted = 0
+        success: (response) ->
+          if response.data.challenges.current is '0'
+            $scope.challengeId = null
+          else
+            $scope.challengeId = response.data.challenges.current
+          $scope.challengeName = response.data.challenges.text
+          $scope.challengeCompleted = response.data.challenges.completed
+      
       TeamraiserCompanyService.getCompanies 'company_id=' + $scope.companyId,
         success: (response) ->
           coordinatorId = response.getCompaniesResponse?.company?.coordinatorId
@@ -74,7 +88,7 @@ angular.module 'ahaLuminateControllers'
             TeamraiserCompanyService.getCoordinatorQuestion coordinatorId, eventId
               .then (response) ->
                 $scope.eventDate = response.data.coordinator?.event_date
-        
+
       setParticipantProgress = (amountRaised, goal) ->
         $scope.personalProgress = 
           amountRaised: if amountRaised then Number(amountRaised) else 0

@@ -87,10 +87,10 @@
           if (target.length) {
             // Only prevent default if animation is actually gonna happen
             event.preventDefault();
-            if ($('body').is('.pg_cn_home')) {
+            if ($('body').is('.pg_cn_home') || $('body').is('.pg_entry')) {
               var scrollLocation = target.offset().top - 130;
             } else {
-              var scrollLocation = target.offset().top - 230;
+              var scrollLocation = target.offset().top;
             }
             $('html, body').animate({
               scrollTop: scrollLocation
@@ -613,12 +613,12 @@
                 var registerUrl = 'SPageServer/?pagename=cn_register&fr_id=' + eventId + '&s_regType=';
                 var acceptsRegistration = event.accepting_registrations;
                 var eventRow = '<li class="event-detail row col-12 col-lg-4 mb-4 fadein"><div class="event-detail-content col-10"><a class="js__event-name" href="' +
-                  greetingUrl + '" aria-label="Visit ' + eventCity + ' ' + eventType + ' Event"><span class="city">' +
+                  greetingUrl + '" aria-label="Visit ' + eventCity + ' ' + eventType + ' Event" onclick="_gaq.push([\'_trackEvent\', \'program homepage\', \'click\', \'search result name\']);"><span class="city">' +
                   eventCity + '</span>, <span class="fullstate">' +
                   eventStateAbbr + '</span></a><span class="eventtype d-block">' +
                   eventType + ' Event</span><span class="event-date d-block">' +
                   eventDate + '</span></div><a href="' +
-                  greetingUrl + '" class="event-detail-button btn col-2" aria-label="Visit event page for CycleNation ' + eventCity + '"><i class="fas fa-angle-right" aria-hidden="true" alt=""></i></a></li>';
+                  greetingUrl + '" class="event-detail-button btn col-2" aria-label="Visit event page for CycleNation ' + eventCity + '" onclick="_gaq.push([\'_trackEvent\', \'program homepage\', \'click\', \'search result arrow\']);"><i class="fas fa-angle-right" aria-hidden="true" alt=""></i></a></li>';
 
                 if (eventTimestamp > todaysDate && (eventStatus === '1' || eventStatus === '2' || eventStatus === '3')) {
                   if (numEvents) {

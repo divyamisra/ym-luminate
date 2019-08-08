@@ -49,7 +49,7 @@
     <div class="clearfix"></div>
   </div>
   <div class="ym-page-section ym-page-section__main">
-    <div class="ym-story" ng-class="prizes.length == 0 ? 'col-md-12' : 'col-md-6'">
+    <div class="ym-story" ng-class="prizes.length > 0 || challengeId != null ? 'col-md-6' : 'col-md-12'">
       <h2 class="ym-headline h3">
         My Story
       </h2>
@@ -93,19 +93,59 @@
         </div>
       ::]]
     </div>
-    <div class="col-md-6 ym-user-interactions" ng-if="prizes.length > 0">
-      <div class="ym-badges" >
+    <div class="col-md-6 ym-user-interactions" ng-if="prizes.length > 0 || challengeId != null">
+      <div class="ym-badges" ng-if="prizes.length > 0">
         <h2 class="ym-headline h3">
           Check Out My Badges
         </h2>
-        <div class="ym-badges__item" ng-repeat="prize in prizes" ng-cloak>
-          <img class="img-responsive" ng-src="https://s3.amazonaws.com/aha-jumphoops-production/fy18/assets/badges/tgr/{{prize.id}}_delivered.png" alt="{{prize.label}}">
-          <div>
+        <div class="ym-badges__item" ng-repeat="prize in prizes" ng-cloak> <!--  ng-repeat="prize in prizes | limitTo: 3" -->
+          <div class="ym-badge__item" ng-if="prize.earned" ng-cloak>
+            <img class="img-responsive" ng-src="//s3.amazonaws.com/aha-oot-production/fy19/assets/badges/khc/{{prize.id}}_delivered.png" alt="{{prize.label}}">
             <span ng-bind-html="prize.label"></span> <span class="sr-only">(earned)</span>
           </div>
         </div>
         <div class="clearfix"></div>
       </div>
+      <div class="ym-my-challenge ym-secondary-medium-color" ng-if="challengeId != null" ng-cloak>
+        <h2 class="ym-headline">
+          My Challenge
+        </h2>
+        <!-- <div class="col-sm-4">
+          <img class="img-responsive" ng-if="challengeId == 1 || challengeId == 4" src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/middle-school/image/my-challenge-exercise.png" alt="{{challengeName}}" ng-cloak>
+          <img class="img-responsive" ng-if="challengeId == 2" src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/middle-school/image/my-challenge-water.png" alt="{{challengeName}}" ng-cloak>
+          <img class="img-responsive" ng-if="challengeId == 3" src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/middle-school/image/my-challenge-deed.png" alt="{{challengeName}}" ng-cloak>
+        </div> -->
+        <div class="col-sm-12">
+          <p class="ym_my_challenge__description">
+            <strong>{{challengeName}}</strong>
+          </p>
+          <p class="ym_my_challenge__stats" ng-if="challengeCompleted == 1" ng-cloak>
+            I've met my challenge <span>1</span> day!
+          </p>
+          <p class="ym_my_challenge__stats" ng-if="challengeCompleted != 1" ng-cloak>
+            I've met my challenge <span>{{challengeCompleted}}</span> days!
+          </p>
+        </div>
+        <div class="clearfix"></div>
+      </div>
+      <!-- fallback to pull challenge from LO if no Zuri data -->
+      [[?[[E48:[[S80:trID]]-[[S334:px]]:question:Pick from one of the choices below and we will customize your message letting friends and family know you have taken the challenge. We will also send you some information to help you meet your goal.]]::::
+      ::
+        <div class="ym-my-challenge ym-secondary-medium-color" ng-if="challengeId == null" ng-cloak>
+          <h2 class="ym-headline">
+            My Challenge
+          </h2>
+          <div class="col-sm-4">
+            <img class="img-responsive" src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/middle-school/image/my-challenge-water.png" alt="">
+          </div>
+          <div class="col-sm-8">
+            <p class="ym_my_challenge__description">
+              <strong>[[E48:[[S80:trID]]-[[S334:px]]:question:Pick from one of the choices below and we will customize your message letting friends and family know you have taken the challenge. We will also send you some information to help you meet your goal.]]</strong>
+            </p>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+      ]]
       <div class="clearfix"></div>
     </div>
     <div class="clearfix"></div>

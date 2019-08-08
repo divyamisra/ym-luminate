@@ -562,9 +562,9 @@ angular.module 'trPcControllers'
               # id: challengeIndex
               # name: challenge
       challengeOptions =
-        "1": "Be physically active for 60 minutes everyday"
-        "2": "Choose water over sugar drinks"
-        "3": "Do a good deed daily"
+        "1": "Be Ready"
+        "2": "Move More"
+        "3": "Be Kind"
       angular.forEach challengeOptions, (challenge, challengeIndex) ->
         $scope.challenges.push
           id: challengeIndex
@@ -575,6 +575,18 @@ angular.module 'trPcControllers'
           $scope.personalChallenge = {}
         $scope.personalChallenge.updatePending = true
         ZuriService.updateChallenge $scope.frId + '/' + $scope.consId + '?challenge=' + $scope.updatedPersonalChallenge.id,
+          failure: (response) ->
+            # TODO
+            delete $scope.personalChallenge.updatePending
+          success: (response) ->
+            delete $scope.personalChallenge.updatePending
+            getStudentChallenge()
+      
+      $scope.updateDayChallenge = (challengeid) ->
+        if not $scope.personalChallenge
+          $scope.personalChallenge = {}
+        $scope.personalChallenge.updatePending = true
+        ZuriService.updateChallenge $scope.frId + '/' + $scope.consId + '?challenge=' + challengeid,
           failure: (response) ->
             # TODO
             delete $scope.personalChallenge.updatePending
@@ -681,8 +693,8 @@ angular.module 'trPcControllers'
       $scope.heroPopup = false
       $scope.heartHeros = heroPopup: ->
         $scope.heroPopup = true
-        WAIT_TIME = 8000
-        POP_TIME = 2500
+        WAIT_TIME = 10000
+        POP_TIME = 3000
         NUM_POPS = 3
         i = 0
         pop_timer = ''
@@ -711,4 +723,23 @@ angular.module 'trPcControllers'
         else
           url = 'https://kidsheartchallenge.heart.org'
         window.open url + '/student/login/' + $scope.authToken + '/' + $scope.sessionCookie
+
+      NgPcTeamraiserCompanyService.getSchoolDates()
+        .then (response) ->
+          schoolDataRows = response.data.getSchoolDatesResponse.schoolData
+          schoolDataHeaders = {}
+          schoolDates = {}
+          angular.forEach schoolDataRows[0], (schoolDataHeader, schoolDataHeaderIndex) ->
+            schoolDataHeaders[schoolDataHeader] = schoolDataHeaderIndex
+          i = 0
+          len = schoolDataRows.length
+          while i < len
+            if $rootScope.companyInfo.companyId is schoolDataRows[i][schoolDataHeaders.CID]
+              $scope.eventDate = schoolDataRows[i][schoolDataHeaders.ED]
+              $scope.moneyDueDate = schoolDataRows[i][schoolDataHeaders.MDD]
+              $scope.schoolStudentGoal = schoolDataRows[i][schoolDataHeaders.PG]
+              $scope.schoolStudentReg = schoolDataRows[i][schoolDataHeaders.TR]
+              $scope.schoolStudentRegOnline = schoolDataRows[i][schoolDataHeaders.RO]
+              break
+            i++
   ]
