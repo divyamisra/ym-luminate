@@ -694,12 +694,33 @@
     <p class="social-feed-text col-12 pt-3">See what CycleNation is all about! And don&rsquo;t be a victim of FOMO... join us and get your selfie in all the photos this year.</p>
     <div class="js__raw-album-container" style="display:none;">
     </div>
-    <div class="social-feed-container col-12 pt-2">
-      <div class="js__lo-album-container grid">
-          <div class="grid-sizer"></div>
-          
+
+    <!-- BEGIN media tabs -->
+    <ul class="nav nav-tabs greeting-media-tabs d-flex justify-content-center align-items-end" id="mediaTab" role="tablist">
+      <li class="nav-item gallery-tab-container">
+        <a class="nav-link active" id="gallery-tab" data-toggle="tab" href="#gallery" role="tab" aria-controls="gallery" aria-selected="true">Photos</a>
+      </li>
+      <li class="nav-item video-tab-container">
+        <a class="nav-link" id="video-tab" data-toggle="tab" href="#video" role="tab" aria-controls="video" aria-selected="false">Video</a>
+      </li>
+    </ul>
+    <div class="tab-content" id="mediaTabContent">
+      <div class="tab-pane fade show active" id="gallery" role="tabpanel" aria-labelledby="gallery-tab">
+        <div class="social-feed-container col-12 pt-2">
+          <div class="js__lo-album-container grid">
+            <div class="grid-sizer"></div>
+        </div>
+        </div>
+      </div>
+      <div class="tab-pane fade" id="video" role="tabpanel" aria-labelledby="video-tab">
+        <div class="video-container col-12 col-md-8 offset-md-2 py-2 py-md-5 text-center">
+          <div class="embed-responsive embed-responsive-16by9">
+            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/_te_5QV70FQ" frameborder="0" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen title="CycleNation Greeting Page Video"></iframe>
+          </div>
+        </div>
       </div>
     </div>
+    <!-- END media tabs -->
     <div class="social-feed-button col-12 pt-2 text-center">
       <a class="btn-rounded btn-white" href="SPageServer/?pagename=cn_blog">About #CycleNation</a>
     </div>
