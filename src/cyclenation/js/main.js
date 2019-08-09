@@ -2952,7 +2952,7 @@
       $('.donation-level-user-entered input[type="text"]').prop('placeholder', 'Other');
       $('.donation-level-user-entered label').remove();
       $('.otherAmount .donation-level-input-container > label .donation-level-label-container').append('<span class="text-muted"><em>($25 minimum)</em></span>');
-      //$('.donation-level-user-entered label').insertAfter('.donation-level-user-entered input[type="text"]');
+      $('.donation-level-user-entered input[type="text"]').removeAttr('onfocus');
 
       var askMessageHtml = '<div class="ask-message">Donors who give $5,000 or more each year join our Cor Vitae.</div>';
       $(askMessageHtml).insertAfter('.don-standard-levels');
@@ -2965,6 +2965,7 @@
       $('.donation-level-user-entered').click(function() {
         $('.donation-level-amount-container.active, .donation-level-user-entered input').removeClass('active');
         $(this).find('input').addClass('active');
+        $('.otherAmount .donation-level-label-input-container input[type="radio"]').click();
       });
 
       $('.donation-level-amount-container').keydown(function(e) {
@@ -2973,8 +2974,12 @@
           $(this).click();
         }
       });
-      $('.donation-level-user-entered').keyup(function(e) {
-        $(this).click();
+      $('.donation-level-user-entered input').keyup(function(e) {
+        var code = e.which
+        var click = code === 9 || code === 39 || code === 40 || code === 37 || code === 38 ? false : true;
+        if (click) {
+          $('.donation-level-user-entered').click();
+        }
       });
 
       $('.donation-level-amount-container').focus(function(e) {
