@@ -2950,9 +2950,9 @@
       $('.donation-level-container.level .donation-level-amount-container').prop('tabindex', '0');
 
       $('.donation-level-user-entered input[type="text"]').prop('placeholder', 'Other');
-      $('.otherAmount .donation-level-input-container > label').remove();
-      $('.donation-level-user-entered label').append('<small class="form-text text-muted"><em>($25 minimum)</em></small>');
-      $('.donation-level-user-entered label').insertAfter('.donation-level-user-entered input[type="text"]');
+      $('.donation-level-user-entered label').remove();
+      $('.otherAmount .donation-level-input-container > label .donation-level-label-container').append('<span class="text-muted"><em>($25 minimum)</em></span>');
+      //$('.donation-level-user-entered label').insertAfter('.donation-level-user-entered input[type="text"]');
 
       var askMessageHtml = '<div class="ask-message">Donors who give $5,000 or more each year join our Cor Vitae.</div>';
       $(askMessageHtml).insertAfter('.don-standard-levels');

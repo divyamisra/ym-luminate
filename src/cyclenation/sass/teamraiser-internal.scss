@@ -771,6 +771,7 @@
     .donation-levels {
       display: flex;
       flex-wrap: wrap;
+      align-items: flex-end;
 
       div.donation-level-container {
         border: 0 none;
@@ -814,8 +815,11 @@
           width: auto;
           max-width: none;
 
-          .donation-level-label-container {
-            display: none;
+          div.donation-level-label-container {
+            border: 0 none;
+            @include button-variant(transparent, transparent, transparent, transparent, transparent, transparent);
+            @include button-size(0px, 0px, 12px, 1.2, 0);
+            color: #515151 !important;
           }
 
           input[type="text"] {
