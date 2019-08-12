@@ -686,7 +686,7 @@
             }
 
             if ($('body').is('.pg_company')) {
-                
+             
                 $('.team-roster form .btn').html('<i class="fas fa-search"></i>');
                 $('#participant-roster td:nth-child(3) a').html('Donate');
             }
@@ -879,11 +879,13 @@
                       $('.donation-amounts').append('<label class="form-check-label donation-amount-btn btn mb-3" for="personalDonAmt' + i + '" data-level-id="' + levelID + '"> <input class="form-check-input" type="radio" name="personalDonAmt" id="personalDonAmt' + i + '" value="' + levelID + '"> ' + amountFormatted + '</label>');                      
                     } else {
                       // build user-specified level
-                      $('.donation-amounts').append('<div class="custom-amount"> <input class="form-check-input sr-only" type="radio" name="personalDonAmt" id="personalDonAmt' + i + '" value="' + levelID + '"> <label class="js--don-amt-other sr-only" for="personalDonAmt' + i + '" data-level-id="' + levelID + '">Enter your own amount</label> <label class="form-label d-inline-block" for="personalOtherAmt">Custom Amount:</label><br/> <input type="text" id="personalOtherAmt" class="form-control d-inline-block js--personal-amt-other"/> </div>');                     
+                      $('.donation-amounts').append('<div class="custom-amount"> <input class="form-check-input other-amt-radio sr-only" type="radio" name="personalDonAmt" id="personalDonAmt' + i + '" value="' + levelID + '"> <label class="js--don-amt-other sr-only" for="personalDonAmt' + i + '" data-level-id="' + levelID + '">Enter your own amount</label> <label class="form-label d-inline-block" for="personalOtherAmt">Custom Amount:</label><br/> <input type="text" id="personalOtherAmt" class="form-control d-inline-block js--personal-amt-other" data-parsley-min="25" data-parsley-min-message="Donations of all amounts are greatly appreciated. Online donations have a $25 minimum."/> </div>');                     
                     }
                   });
 
+                  $('.custom-amount').after('<span class="error-row"></span>');
 
+                  
                       $('.js--personal-don-form').removeClass('hidden');
                       var defaultDonUrl = $('.js--personal-don-submit').data('don-url');
                       var finalDonUrl = null;
@@ -930,7 +932,7 @@
                           } else {
                             $('.js--don-amt').text('');
                           }
-                          var customAmt = parseInt($(this).val()) * 10;
+                          var customAmt = parseInt($(this).val()) * 100;
   
                           finalDonUrl = defaultDonUrl + '&set.DonationLevel=' + $('.js--don-amt-other').data('level-id') + (isNaN(customAmt) === true ? '' : '&set.Value=' + customAmt);
                           $('.js--personal-don-submit').attr('data-final-don-url', finalDonUrl);
@@ -941,6 +943,8 @@
                       $('input[name="personalDonAmt"]').eq(0).click().prop('checked', true).closest('.donation-amount-btn').addClass('active');
                       $('.js--don-amt').text($('.form-check-label').eq(0).text().trim());
 
+                   
+                
                       // redirect is now managed in amazonpay.js
                       // $('.js--personal-don-form').on('submit', function(e){
                       //   e.preventDefault();
@@ -1050,6 +1054,14 @@
 
     if ($('body').is('.pg_company')) {
       // Company Page
+
+        // Populate company name from page title
+        var pageTitle = jQuery('head title').text().trim();
+        var start_pos = pageTitle.indexOf(':') + 1;
+        var end_pos = pageTitle.indexOf('-',start_pos);
+        var companyName = pageTitle.substring(start_pos,end_pos).trim();
+        $('.js--company-name').text(companyName);
+
         // Populate total raised
         var raised = $('.company-tally-container--amount .company-tally-ammount').text();
         if (raised) {
@@ -1106,9 +1118,6 @@
 
           $(teams).each(function (i, team) {
             var companyName = team.companyName;
-            if(i === 0){
-              $('.js--company-name').text(companyName);
-            }
             var teamRaised = (parseInt(team.amountRaised) * 0.01);
             var teamRaisedFormmatted = teamRaised.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
 
