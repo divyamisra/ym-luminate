@@ -2951,7 +2951,8 @@
 
       $('.donation-level-user-entered input[type="text"]').prop('placeholder', 'Other');
       $('.otherAmount .donation-level-label-container').remove();
-      $('.donation-level-user-entered > label').prepend('<span class="text-muted">Other amount edit <em>($25 minimum)</em></span>');
+      $('.donation-level-user-entered > label').prepend('<span class="text-muted">Enter an amount <em>($25 minimum)</em></span>');
+      $('.otherAmount label .aural-only').text('Other amount edit');
 
       $('.donation-level-user-entered input[type="text"]').removeAttr('onfocus');
 
