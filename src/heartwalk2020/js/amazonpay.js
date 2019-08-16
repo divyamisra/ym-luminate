@@ -53,34 +53,58 @@ function addPaymentOptions() {
 			    	"<a href='"+dlink+"&paypal=true' class='js--paypal-btn'><img src='https://www2.heart.org/images/content/pagebuilder/PP_logo_h_100x26.png'/ alt='Donate with PayPal'></a></div>";
 		
 			jQuery('.buttons-row').after(html);
+
+			// add front end validation
+			var parsleyOptions = {
+				successClass: 'is-valid',
+				errorClass: 'is-invalid',
+				errorsWrapper: '<div class="invalid-feedback row"></div>',
+				errorTemplate: '<div class="col-12"></div>',
+				errorsContainer: function (_el) {
+          return _el.$element.closest('form').find('.error-row');
+        }
+			};
+
+			jQuery('.js--personal-don-form').parsley(parsleyOptions);
+			
+			cd.resetValidation = function () {
+				jQuery('.js--personal-don-form').parsley().reset();
+			}
+
+			jQuery('input[name=personalDonAmt]').change(function () {
+				var isOtherSelected = jQuery(this).hasClass('other-amt-radio');
+				console.log('isOtherSelected: ', isOtherSelected);
+				switch (isOtherSelected) {
+						// If hidden "other" radio is selected, make other field required
+						case true:
+								jQuery('#personalOtherAmt').attr("required", "required");
+								break;
+						default:
+								jQuery('#personalOtherAmt').removeAttr("required");
+								break;
+				}
+				cd.resetValidation();
+		});
+
 			jQuery('.js--personal-don-form').submit(function(e){
 				e.preventDefault();
-				var updatedDlink = jQuery('.js--personal-don-submit').attr('data-final-don-url');
-				var updatedPPdlink = updatedDlink + '&paypal=true';
-				jQuery('.js--paypal-btn').attr('href', updatedPPdlink);
-				jQuery('.tr-page-container .paymentSelType').removeClass('hidden');
-				jQuery('.tr-page-container .paymentSelType').slideDown();
-				return false;
+				var form = jQuery(this);
+				form.parsley().validate();
+				if (form.parsley().isValid()) {
+					console.log('form is valid');
+					// redirect to donation form
+					var updatedDlink = jQuery('.js--personal-don-submit').attr('data-final-don-url');
+					jQuery('.js--cc-btn').attr('href', updatedDlink);
+					var updatedPPdlink = updatedDlink + '&paypal=true';
+					jQuery('.js--paypal-btn').attr('href', updatedPPdlink);
+					jQuery('.tr-page-container .paymentSelType').removeClass('hidden');
+					jQuery('.tr-page-container .paymentSelType').slideDown();
+					return false;
+				} else {
+					console.log('form is NOT valid');
+				}
 			});
 
-			jQuery('.js--personal-don-submit').click(function(e){
-				e.preventDefault();
-				var updatedDlink = jQuery('.js--personal-don-submit').attr('data-final-don-url');
-				jQuery('.js--cc-btn').attr('href', updatedDlink);
-				var updatedPPdlink = updatedDlink + '&paypal=true';
-				jQuery('.js--paypal-btn').attr('href', updatedPPdlink);
-				$('a.amazon, a.applepay, a.venmo').each(function(){
-					var selectedAmt = $('.js--personal-don-form .donation-amount-btn.active').text().trim().replace("$","").replace(",","");;
-					var finalUrl = jQuery('.js--personal-don-submit').attr('data-final-don-url');
-					var otherAmt = jQuery.getCustomQuerystring(finalUrl,"set.Value");
-					var customAmt = parseInt(otherAmt / 100);
-					var link = $(this).attr('href').replace(/&amount=[0-9]*/,"");
-					$(this).attr('href', link + "&amount="+(customAmt > 0 ? customAmt : selectedAmt));
-				});
-				jQuery('.tr-page-container .paymentSelType').removeClass('hidden');
-				jQuery('.tr-page-container .paymentSelType').slideDown();
-				return false;
-			});
 		}
 
     		/* team page */
