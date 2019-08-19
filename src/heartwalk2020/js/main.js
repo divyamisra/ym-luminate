@@ -1063,14 +1063,20 @@
         $('.js--company-name').text(companyName);
 
         // Populate total raised
-        var raised = $('.company-tally-container--amount .company-tally-ammount').text();
+        // var raised = $('.company-tally-container--amount .company-tally-ammount').text();
+        // var raised = $('#company_page_frstatus3 .amount-raised-value').text();
+        var raised = $('.indicator-title:contains("Campaign Progress")').parent().find('.amount-raised-value').text();
+
         if (raised) {
             $('#progress-amount').html(raised);
         }
 
         // Get company goal
         $('.indicator-title:contains("Company Fundraising")').closest('.tr-status-indicator-container').addClass('default-company-thermometer');
-        var companyoGoalText = $('.default-company-thermometer .total-goal-value').text();
+        // var companyoGoalText = $('.default-company-thermometer .total-goal-value').text();
+        var companyoGoalText = $('.indicator-title:contains("Campaign Progress")').parent().find('.total-goal-value').text();
+
+
         var companyGoal = companyoGoalText.split('.');
         $('#goal-amount').html(companyGoal[0]);
 
