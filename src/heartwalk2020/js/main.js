@@ -1073,7 +1073,10 @@
 
         // Get company goal
         $('.indicator-title:contains("Company Fundraising")').closest('.tr-status-indicator-container').addClass('default-company-thermometer');
-        var companyoGoalText = $('.default-company-thermometer .total-goal-value').text();
+        // var companyoGoalText = $('.default-company-thermometer .total-goal-value').text();
+        var companyoGoalText = $('.indicator-title:contains("Campaign Progress")').parent().find('.total-goal-value').text();
+
+
         var companyGoal = companyoGoalText.split('.');
         $('#goal-amount').html(companyGoal[0]);
 
