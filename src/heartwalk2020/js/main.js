@@ -1064,7 +1064,9 @@
 
         // Populate total raised
         // var raised = $('.company-tally-container--amount .company-tally-ammount').text();
-        var raised = $('#company_page_frstatus3 .amount-raised-value').text();
+        // var raised = $('#company_page_frstatus3 .amount-raised-value').text();
+        var raised = $('.indicator-title:contains("Campaign Progress")').parent().find('.amount-raised-value').text();
+
         if (raised) {
             $('#progress-amount').html(raised);
         }
