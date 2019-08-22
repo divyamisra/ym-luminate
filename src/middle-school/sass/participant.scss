@@ -48,7 +48,6 @@
   }
 }
 
-.ym-pc-dashboard-progress-type,
 .ym-pc-dashboard-captain-page-type, 
 .ym-pc-dashboard-coordinator-page-type {
   a,
@@ -60,6 +59,29 @@
       background-color: rgba(40, 79, 73, 0.2);
       color: rgb(255, 255, 255);
       color: rgba(40, 79, 73, 1);
+    }
+  }
+}
+
+.ym-pc-dashboard-progress-type {
+  a,
+  button {
+    &:hover,
+    &:focus,
+    &:active {
+      background-color: $event-primary;
+      color: $brand-white;
+    }
+  }
+  
+  &.active {
+    a, 
+    button {
+      &,
+      &:link,
+      &:visited {
+        background-color: $event-primary;
+      }
     }
   }
 }
