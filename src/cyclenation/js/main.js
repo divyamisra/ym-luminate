@@ -88,7 +88,11 @@
             // Only prevent default if animation is actually gonna happen
             event.preventDefault();
             if ($('body').is('.pg_cn_home') || $('body').is('.pg_entry')) {
-              var scrollLocation = target.offset().top - 130;
+              if($(document).scrollTop()>299){
+                var scrollLocation = target.offset().top - 130;
+              } else {
+                var scrollLocation = target.offset().top - 250;
+              }
             } else {
               var scrollLocation = target.offset().top;
             }
