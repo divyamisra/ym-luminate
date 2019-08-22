@@ -4,6 +4,16 @@
 
 @import "../../youth-markets/sass/participant.scss";
 
+.ng-pc-nav {
+ 
+  a {
+    &.active {
+      background: $brand-white;
+      color: $event-secondary-heading;
+    }
+  }
+}
+
 .ym-pc-dashboard-section-header {
   h2, 
   .h2 {
