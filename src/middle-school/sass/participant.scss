@@ -65,6 +65,15 @@
 }
 
 .ym-pc-dashboard-progress-type {
+  a, 
+  button {
+    &,
+    &:link,
+    &:visited {
+      color: $event-secondary-heading;
+    }
+  }
+
   a,
   button {
     &:hover,
