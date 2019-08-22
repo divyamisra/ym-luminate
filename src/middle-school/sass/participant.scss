@@ -7,9 +7,10 @@
 .ng-pc-nav {
   a {
     &:link,
-    &:visited,
+    &:visited {
+      color: $event-secondary-heading;
+    }
     &.active {
-      background: $brand-white;
       color: $event-secondary-heading;
     }
   }
