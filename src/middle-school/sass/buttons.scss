@@ -1,3 +1,4 @@
+.btn {
   &.btn-secondary {
     &,
     &:link,
@@ -12,3 +13,4 @@
       background: $event-primary-dark;
     }
   }
+}
