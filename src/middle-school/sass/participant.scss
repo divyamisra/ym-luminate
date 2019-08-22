@@ -5,8 +5,9 @@
 @import "../../youth-markets/sass/participant.scss";
 
 .ng-pc-nav {
- 
   a {
+    &:link,
+    &:visited,
     &.active {
       background: $brand-white;
       color: $event-secondary-heading;
