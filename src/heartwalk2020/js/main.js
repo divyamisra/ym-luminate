@@ -1298,10 +1298,6 @@ cd.getCompanyParticipants();
         cd.autoSearchParticipant();
         // Switch to walker tab
         $('#searchWalkerTab').tab('show');
-        if(isCrossEventSearch === "false"){
-          // show donate to event link on search page
-          $('.js--event-donation-container').show()
-        }
       } else if(searchType === 'team'){
         cd.autoSearchTeam();
         // Switch to team tab
