@@ -1,5 +1,30 @@
 <div cg-busy="dashboardPromises">
   <div ng-if="participantRegistration.companyInformation.isCompanyCoordinator != 'true' || location == '/dashboard-student'" ng-cloak>
+    <section class="ym-pc-dashboard-badges-section" aria-label="My Badges" ng-if="prizes && prizes.length > 0" ng-cloak>
+      <div class="ym-pc-dashboard-section-header">
+        <h2 class="h5">
+          Accept Finn's Missions
+        </h2>
+      </div>
+      <div class="ym-pc-dashboard-badges-icons" role="list" aria-label="Badge List">
+        <div class="ym-pc-dashboard-badges-icon" ng-repeat="prize in prizes" ng-cloak>
+          <div ng-if="prize.earned">
+            <img class="img-responsive" ng-src="//s3.amazonaws.com/aha-oot-production/fy20/assets/badges/khc/{{prize.id}}_delivered.png" alt="">
+          </div>
+          <div ng-if="!prize.earned">
+            <img class="img-responsive" ng-src="//s3.amazonaws.com/aha-oot-production/fy20/assets/badges/khc/{{prize.id}}_earned.png" alt="">
+          </div>
+          <div>
+            <span ng-bind-html="prize.label"></span> <span class="sr-only" ng-if="prize.earned">(earned)</span><span class="sr-only" ng-if="!prize.earned">(not yet earned)</span>
+          </div>
+        </div>
+      </div>
+      <div class="text-center">
+        <p>
+          <strong>You can also <a class="ym-pc-dashboard-download-certificates" href="/site/DocServer/heart-hero-adoption-certificates.pdf" target="_blank">download Adoption Certificates</a> for each badge level!</strong>
+        </p>
+      </div>
+    </section>
     <section class="ym-pc-dashboard-progress-section" aria-label="Fundraising Progress Meters">
       <div class="ym-pc-dashboard-section-header">
         <h2 class="h3">
@@ -189,34 +214,6 @@
             </div>
           </div>
         </div>
-      </div>
-    </section>
-    <section class="ym-pc-dashboard-badges-section" aria-label="My Badges" ng-if="prizes && prizes.length > 0" ng-cloak>
-      <div class="ym-pc-dashboard-section-header">
-        <h2 class="h5">
-          Badges
-        </h2>
-        <a class="btn btn-md-wide btn-secondary" href="/site/SPageNavigator/khc_resources_earn_badges.html">
-          <strong>Learn About Badges</strong>
-        </a>
-      </div>
-      <div class="ym-pc-dashboard-badges-icons" role="list" aria-label="Badge List">
-        <div class="ym-pc-dashboard-badges-icon" ng-repeat="prize in prizes" ng-cloak>
-          <div ng-if="prize.earned">
-            <img class="img-responsive" ng-src="//s3.amazonaws.com/aha-oot-production/fy20/assets/badges/khc/{{prize.id}}_delivered.png" alt="">
-          </div>
-          <div ng-if="!prize.earned">
-            <img class="img-responsive" ng-src="//s3.amazonaws.com/aha-oot-production/fy20/assets/badges/khc/{{prize.id}}_earned.png" alt="">
-          </div>
-          <div>
-            <span ng-bind-html="prize.label"></span> <span class="sr-only" ng-if="prize.earned">(earned)</span><span class="sr-only" ng-if="!prize.earned">(not yet earned)</span>
-          </div>
-        </div>
-      </div>
-      <div class="text-center">
-        <p>
-          <strong>You can also <a class="ym-pc-dashboard-download-certificates" href="/site/DocServer/heart-hero-adoption-certificates.pdf" target="_blank">download Adoption Certificates</a> for each badge level!</strong>
-        </p>
       </div>
     </section>
     <section class="ym-pc-dashboard-activities-section" aria-label="My Fundraising Activities">
