@@ -94,6 +94,15 @@ a.ym-pc-dashboard-download-certificates {
 }
 .ym-pc-dashboard-badges-header {
 	background: #feeec7;
+	width: 100%;
+	padding-bottom: 20px;
+	margin-top: 50px;
+	position: relative;
+}
+.ym-pc-dashboard-badges-header img {
+	margin-top: -37px;
+	max-width: 70px;
+	margin-bottom: 20px;
 }
 .ym-pc-dashboard-badges-icons {
 	display: flex;
