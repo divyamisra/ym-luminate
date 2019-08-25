@@ -619,7 +619,7 @@ angular.module 'trPcControllers'
             status: prize.status
             earned: prize.earned_datetime
           if prize.status == 1
-            prizesEarned++
+            $scope.prizesEarned++
       , (response) ->
         # TODO
       
