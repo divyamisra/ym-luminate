@@ -607,6 +607,7 @@ angular.module 'trPcControllers'
             getStudentChallenge()
       
       $scope.prizes = []
+      $scope.prizesEarned = 0
       BoundlessService.getBadges $scope.consId
       .then (response) ->
         prizes = response.data.prizes
@@ -617,6 +618,8 @@ angular.module 'trPcControllers'
             sku: prize.sku
             status: prize.status
             earned: prize.earned_datetime
+          if prize.status == 1
+            prizesEarned++
       , (response) ->
         # TODO
       
