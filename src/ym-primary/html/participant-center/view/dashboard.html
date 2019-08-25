@@ -174,16 +174,10 @@
         </h3>
       </div>
       <div class="ym-pc-dashboard-upcoming-gifts-icons" role="list" aria-label="Upcoming Gifts">
-        <div class="ym-pc-dashboard-upcoming-gifts-icon" ng-repeat="upcomingGift in upcomingGifts" ng-cloak>
+        <div class="ym-pc-dashboard-upcoming-gifts-icon" ng-class="{'not-earned': !upcomingGift.prize_status}" ng-repeat="upcomingGift in upcomingGifts" ng-cloak>
            <a href="" ng-click="showPrize(upcomingGift.prize_sku,upcomingGift.prize_label,upcomingGift.prize_status)">
               <div class="ym-pc-dashboard-upcoming-gift-level" ng-bind-html="upcomingGift.prize_level"></div>
-              <div class="ym-pc-dashboard-upcoming-gift-earned" ng-if="upcomingGift.prize_status">Earned!</div>
-              <div ng-if="upcomingGift.prize_status">
-                <img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/prizes/{{upcomingGift.prize_sku}}_earned.jpg" alt="{{upcomingGift.prize_label}}">
-              </div>
-              <div ng-if="!upcomingGift.prize_status">
-                <img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/prizes/{{upcomingGift.prize_sku}}_notearned.jpg" alt="{{upcomingGift.prize_label}}">
-              </div>
+              <img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/prizes/{{upcomingGift.prize_sku}}.png" alt="{{upcomingGift.prize_label}}">
               <div class="ym-pc-dashboard-upcoming-gifts-text">
                 <span ng-bind-html="upcomingGift.prize_label"></span> <span class="sr-only" ng-if="upcomingGift.prize_status">(earned)</span><span class="sr-only" ng-if="!upcomingGift.prize_status">(not yet earned)</span>
               </div>
