@@ -27,106 +27,83 @@ angular.module 'trPcControllers'
       getRandomID = ->
         return Math.floor((Math.random()*3)+1);
 
-      defaultInstantGifts = [
-        {
-          "id":"MWB-19"
-          "name":"Heart Heroes Wristband"
-          "status":0
-          "level":""
-          "level_desc":""
-        }
-        {
-          "id":"KSHA-19"
-          "name":"Finn"
-          "status":0
-          "level":""
-          "level_desc":"(First Online Gift)"
-        }
-        {
-          "id":"KPAN-19"
-          "name":"Ruby"
-          "status":0
-          "level":"$40"
-          "level_desc":""
-        }
-        {
-          "id":"3D"
-          "name":"Create Your Own 3D Printed Heart Hero"
-          "status":0
-          "level":"$1,000"
-          "level_desc":""
-        }
-      ]
       defaultStandardGifts = [
         {
-          "id":"KUNI-19"
-          "name":"Echo and Hero Clasp"
+          "id":"WB-20"
+          "name":"Worded Wristband"
+          "status":0
+          "level":""
+          "level_desc":""
+        }
+        {
+          "id":"CLIPPERRIE-20"
+          "name":"Perrie"
           "status":0
           "level":"$5"
         }
         {
-          "id":"LVL2JR-19"
-          "name":"Jump Rope"
+          "id":"CHARMKNOX-20"
+          "name":"Knox"
           "status":0
-          "level":"$15"
+          "level":"$10"
         }
         {
-          "id":"KOTT-19"
-          "name":"Oscar"
+          "id":"JR-20"
+          "name":"Jump Rope"
           "status":0
           "level":"$20"
         }
         {
-          "id":"KPIG-19"
-          "name":"Sprinkles"
+          "id":"CLIPNICO-20"
+          "name":"Nico"
           "status":0
-          "level":"$35"
+          "level":"$25"
         }
         {
-          "id":"LVL3"
+          "id":"CHARMSOFIE-20"
+          "name":"Sophie"
+          "status":0
+          "level":"$40"
+        }
+        {
+          "id":"KHC"
           "name":"T-Shirt"
           "status":0
           "level":"$50"
         }
         {
-          "id":"LVL4BB-19"
-          "name":"Basketball"
+          "id":"PBALL-20"
+          "name":"Playground Ball"
           "status":0
           "level":"$75"
         }
         {
-          "id":"KNAR-19"
-          "name":"Splash"
+          "id":"CLIPCRUSH-20"
+          "name":"Crush"
           "status":0
           "level":"$100"
         }
         {
-          "id":"LVL5DB-19"
-          "name":"Dancing Ball"
-          "status":0
-          "level":"$150"
-        }
-        {
-          "id":"KDRA-19"
-          "name":"Fiery"
+          "id":"CLIPSUNNY-20"
+          "name":"Sunny"
           "status":0
           "level":"$200"
         }
         {
-          "id":"LVL6ST-19"
-          "name":"Slimeball Target"
+          "id":"MGRIP-20"
+          "name":"Monster Grip"
           "status":0
           "level":"$250"
         }
         {
-          "id":"LVL7SR-19"
-          "name":"Splash's Racquet Fun"
+          "id":"POPPER-20"
+          "name":"Popper"
           "status":0
           "level":"$500"
         }
         {
-          "id":"LVL8WH-19"
-          "name":"Wireless Headphones"
+          "id":"EARBUDS-20"
+          "name":"Earbuds"
           "status":0
           "level":"$1,000"
         }
@@ -134,147 +111,124 @@ angular.module 'trPcControllers'
 
       giftLevels = {
         "$0": [
-          "MWB-19"
+          "WB-20"
         ]
-        "$5-$14": [
-          "KUNI-19"
-          "MWB-19"
-          "KSHA-19"
+        "$5-$9": [
+          "WB-20"
+          "CLIPPERIE-20"
         ]
-        "$15-$19":[
-          "KUNI-19"
-          "MWB-19"
-          "KSHA-19"
-          "LVL2JR-19"
+        "$10-$14":[
+          "WB-20"
+          "CLIPPERIE-20"
+          "CHARMKNOX-20"
         ]
-        "$20-$34":[
-          "KUNI-19"
-          "MWB-19"
-          "KSHA-19"
-          "LVL2JR-19"
-          "KOTT-19"
+        "$15-$24":[
+          "WB-20"
+          "CLIPPERIE-20"
+          "CHARMKNOX-20"
+          "JR-20"
         ]
-        "$35-$49":[
-          "KUNI-19"
-          "MWB-19"
-          "KSHA-19"
-          "KPAN-19"
-          "LVL2JR-19"
-          "KOTT-19"
-          "KPIG-19"
+        "$25-$39":[
+          "WB-20"
+          "CLIPPERIE-20"
+          "CHARMKNOX-20"
+          "JR-20"
+          "CLIPNICO-20"
+        ]
+        "$40-$49":[
+          "WB-20"
+          "CLIPPERIE-20"
+          "CHARMKNOX-20"
+          "JR-20"
+          "CLIPNICO-20"
+          "CHARMSOFIE-20"
         ]
         "$50-$74":[
-          "KUNI-19"
-          "MWB-19"
-          "KSHA-19"
-          "KPAN-19"
-          "LVL2JR-19"
-          "KOTT-19"
-          "KPIG-19"
-          "LVL3"
+          "WB-20"
+          "CLIPPERIE-20"
+          "CHARMKNOX-20"
+          "JR-20"
+          "CLIPNICO-20"
+          "CHARMSOFIE-20"
+          "KHC"
         ]
         "Green $75-$99":[
-          "KUNI-19"
-          "MWB-19"
-          "KSHA-19"
-          "KPAN-19"
-          "LVL2JR-19"
-          "KOTT-19"
-          "KPIG-19"
-          "LVL3"
-          "LVL4BB-19"
+          "WB-20"
+          "CLIPPERIE-20"
+          "CHARMKNOX-20"
+          "JR-20"
+          "CLIPNICO-20"
+          "CHARMSOFIE-20"
+          "KHC"
+          "PBALL-20"
         ]
-        "Blue $100-$149":[
-          "KUNI-19"
-          "MWB-19"
-          "KSHA-19"
-          "KPAN-19"
-          "LVL2JR-19"
-          "KOTT-19"
-          "KPIG-19"
-          "LVL3"
-          "LVL4BB-19"
-          "KNAR-19"
+        "Blue $100-$199":[
+          "WB-20"
+          "CLIPPERIE-20"
+          "CHARMKNOX-20"
+          "JR-20"
+          "CLIPNICO-20"
+          "CHARMSOFIE-20"
+          "KHC"
+          "PBALL-20"
+          "CLIPCRUSH-20"
         ]
-        "Purple $150-$199":[
-          "KUNI-19"
-          "MWB-19"
-          "KSHA-19"
-          "KPAN-19"
-          "LVL2JR-19"
-          "KOTT-19"
-          "KPIG-19"
-          "LVL3"
-          "LVL4BB-19"
-          "KNAR-19"
-          "LVL5DB-19"
+        "Purple $200-$249":[
+          "WB-20"
+          "CLIPPERIE-20"
+          "CHARMKNOX-20"
+          "JR-20"
+          "CLIPNICO-20"
+          "CHARMSOFIE-20"
+          "KHC"
+          "PBALL-20"
+          "CLIPCRUSH-20"
+          "CLIPSUNNY-20"
         ]
-        "Red $200-$249":[
-          "KUNI-19"
-          "MWB-19"
-          "KSHA-19"
-          "KPAN-19"
-          "LVL2JR-19"
-          "KOTT-19"
-          "KPIG-19"
-          "LVL3"
-          "LVL4BB-19"
-          "KNAR-19"
-          "LVL5DB-19"
-          "KDRA-19"
+        "Red $250-$499":[
+          "WB-20"
+          "CLIPPERIE-20"
+          "CHARMKNOX-20"
+          "JR-20"
+          "CLIPNICO-20"
+          "CHARMSOFIE-20"
+          "KHC"
+          "PBALL-20"
+          "CLIPCRUSH-20"
+          "CLIPSUNNY-20"
+          "MGRIP-20"
         ]
-        "Orange $250-$499":[
-          "KUNI-19"
-          "MWB-19"
-          "KSHA-19"
-          "KPAN-19"
-          "LVL2JR-19"
-          "KOTT-19"
-          "KPIG-19"
-          "LVL3"
-          "LVL4BB-19"
-          "KNAR-19"
-          "LVL5DB-19"
-          "KDRA-19"
-          "LVL6ST-19"
-        ]
-        "Brown $500-$999":[
-          "KUNI-19"
-          "MWB-19"
-          "KSHA-19"
-          "KPAN-19"
-          "LVL2JR-19"
-          "KOTT-19"
-          "KPIG-19"
-          "LVL3"
-          "LVL4BB-19"
-          "KNAR-19"
-          "LVL5DB-19"
-          "KDRA-19"
-          "LVL6ST-19"
-          "LVL7SR-19"
+        "Orange $500-$999":[
+          "WB-20"
+          "CLIPPERIE-20"
+          "CHARMKNOX-20"
+          "JR-20"
+          "CLIPNICO-20"
+          "CHARMSOFIE-20"
+          "KHC"
+          "PBALL-20"
+          "CLIPCRUSH-20"
+          "CLIPSUNNY-20"
+          "MGRIP-20"
+          "POPPER-20"
         ]
         "Yellow $1000+":[
-          "KUNI-19"
-          "MWB-19"
-          "KSHA-19"
-          "KPAN-19"
-          "LVL2JR-19"
-          "KOTT-19"
-          "KPIG-19"
-          "LVL3"
-          "LVL4BB-19"
-          "KNAR-19"
-          "LVL5DB-19"
-          "KDRA-19"
-          "LVL6ST-19"
-          "LVL7SR-19"
-          "LVL8WH-19"
-          "3D"
+          "WB-20"
+          "CLIPPERIE-20"
+          "CHARMKNOX-20"
+          "JR-20"
+          "CLIPNICO-20"
+          "CHARMSOFIE-20"
+          "KHC"
+          "PBALL-20"
+          "CLIPCRUSH-20"
+          "CLIPSUNNY-20"
+          "MGRIP-20"
+          "POPPER-20"
+          "EARBUDS-20"
         ]
       }
       
-      $scope.bonusGifts = []
       $scope.standardGifts = []
       
       BoundlessService.getPrizes $scope.consId
@@ -282,25 +236,6 @@ angular.module 'trPcControllers'
         students = response.data.student
         angular.forEach students, (student) ->
           current_level = if student.current_level != null then student.current_level else '$0'
-          angular.forEach defaultInstantGifts, (gift) ->
-            status = 0
-            if jQuery.inArray(gift.id,giftLevels[current_level]) isnt -1 and student.has_bonus != 0
-              # even though current level > $40 if they haven't raied more than $40 online, 
-              # ruby won't be in the prize list
-              if gift.id == 'KPAN-19'
-                jQuery(student.prizes).each ->
-                  if @prize_sku == 'KPAN-19'
-                    status = 1
-                  return
-              else
-                status = 1
-            $scope.bonusGifts.push
-              prize_label: gift.name
-              prize_sku: gift.id
-              prize_status: status
-              prize_level: gift.level
-              prize_desc: gift.level_desc
-
           prevstatus = 0
           angular.forEach defaultStandardGifts, (gift, key) ->
             status = 0
