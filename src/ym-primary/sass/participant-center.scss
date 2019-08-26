@@ -142,11 +142,11 @@ section.ym-pc-dashboard-standard-gifts-section {
 	.ym-pc-dashboard-standard-gifts-icons {
 	   background: $brand-white;
            margin: 5px 0 0 0;
+	   display:flex;
+	   flex-wrap: wrap;
         }
 	
 	.ym-pc-dashboard-standard-gifts-icon {
-           display: inline-block;
-           max-width: 270px;
            max-width: 270px;
            margin: 0 11px 15px 0;
            vertical-align: top;
