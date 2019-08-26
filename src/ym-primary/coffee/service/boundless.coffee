@@ -104,7 +104,7 @@ angular.module 'ahaLuminateApp'
             "level":""
             "level_desc":""
             "earned_title":"You're Awesome!"
-            "earned_subtitle1":"Thanks for registering online"
+            "earned_subtitle1":"Thanks for registering online!"
             "earned_subtitle2":"a wristband"
           }
           {
