@@ -116,7 +116,7 @@ angular.module 'ahaLuminateApp'
             "instant": 1
             "earned_title":"Check, Mate!"
             "earned_subtitle1":"You've raised $5!"
-            "earned_subtitle2":"Perrie"
+            "earned_subtitle2":"Perrie charm"
           }
           {
             "id":"LVL1WB-20"
@@ -136,7 +136,7 @@ angular.module 'ahaLuminateApp'
             "instant": 2
             "earned_title":"Give us 2 high fives!"
             "earned_subtitle1":"You just raised $10 online!"
-            "earned_subtitle2":"Knox"
+            "earned_subtitle2":"a Knox charm"
           }
           {
             "id":"JR-20"
@@ -156,7 +156,7 @@ angular.module 'ahaLuminateApp'
             "instant": 2
             "earned_title":"You're a Super hero!"
             "earned_subtitle1":"You're the best for raising $25!"
-            "earned_subtitle2":"Nico"
+            "earned_subtitle2":"a Nico charm"
           }
           {
             "id":"CHARMSOFIE-20"
@@ -166,7 +166,7 @@ angular.module 'ahaLuminateApp'
             "instant": 2
             "earned_title":"Color us happy!"
             "earned_subtitle1":"Nice job raising $40 online!"
-            "earned_subtitle2":"Sophie"
+            "earned_subtitle2":"a Sophie charm"
           }
           {
             "id":"KHC"
@@ -196,7 +196,7 @@ angular.module 'ahaLuminateApp'
             "instant": 2
             "earned_title":"Crushin' It!"
             "earned_subtitle1":"Nice job crusing to $100!"
-            "earned_subtitle2":"Crush"
+            "earned_subtitle2":"a Crush charm"
           }
           {
             "id":"CLIPSUNNY-20"
@@ -206,7 +206,7 @@ angular.module 'ahaLuminateApp'
             "instant": 2
             "earned_title":"Jam on!"
             "earned_subtitle1":"You are rockin' it to $200!"
-            "earned_subtitle2":"Sunny"
+            "earned_subtitle2":"a Sunny charm"
           }
           {
             "id":"MGRIP-20"
@@ -226,7 +226,7 @@ angular.module 'ahaLuminateApp'
             "instant": 2
             "earned_title":"You're Poppin'!"
             "earned_subtitle1":"You're amazing for raising $500!"
-            "earned_subtitle2":"Stretch"
+            "earned_subtitle2":"a popper"
           }
           {
             "id":"EARBUDS-20"
