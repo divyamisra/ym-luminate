@@ -351,7 +351,7 @@ angular.module 'ahaLuminateApp'
           "$0": [
             "WB-20"
           ]
-          "$5-$14": [
+          "$5-$9": [
             "WB-20"
             "LVL1WB-20"
           ]
