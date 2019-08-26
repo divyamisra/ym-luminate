@@ -153,13 +153,17 @@ section.ym-pc-dashboard-standard-gifts-section {
    	   position:relative;
 	   text-align:center;
 	   background: #eafbd7;
-	   padding: 10px;
+	   padding: 20px;
+		
+	   img {
+	      margin-bottom: 15px;
+	   }
            
 	   &.not-earned {
 	      background: #d7d5e9;
 		   
 	      img {
-		      opacity: 0.5;
+		 opacity: 0.5;
 	      }
 	   }
            &:nth-child(4n+4) {
