@@ -28,7 +28,6 @@ angular.module 'trPcControllers'
         return Math.floor((Math.random()*3)+1);
 
       defaultStandardGifts = BoundlessService.defaultStandardGifts()
-      giftLevels = BoundlessService.giftLevels()
       
       $scope.standardGifts = []
       $scope.giftsEarned = 0
@@ -37,6 +36,10 @@ angular.module 'trPcControllers'
       .then (response) ->
         students = response.data.student
         angular.forEach students, (student) ->
+          if student.has_bonus
+             giftLevels = BoundlessService.giftLevels_instant()
+          else
+             giftLevels = BoundlessService.giftLevels_noninstant()
           current_level = if student.current_level != null then student.current_level else '$0'
           prevstatus = 0
           angular.forEach defaultStandardGifts, (gift, key) ->
