@@ -811,7 +811,7 @@ angular.module 'trPcControllers'
                 $scope.giftStatus = status
               giftPrev = gift
               prevstatus = status
-              totalGifts++
+              $scope.totalGifts++
               if status == 1
                 $scope.giftsEarned++
 
