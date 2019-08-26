@@ -54,8 +54,8 @@ angular.module 'trPcControllers'
               randomID: getRandomID()
               prize_level: gift.level
               earned_title: gift.earned_title
-              earned_subtitle1: earned_subtitle1
-              earned_subtitle2: earned_subtitle2
+              earned_subtitle1: gift.earned_subtitle1
+              earned_subtitle2: gift.earned_subtitle2
             $scope.giftStatus = status
             prevstatus = status
         
