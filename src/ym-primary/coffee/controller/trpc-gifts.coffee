@@ -31,6 +31,7 @@ angular.module 'trPcControllers'
       giftLevels = BoundlessService.giftLevels()
       
       $scope.standardGifts = []
+      $scope.giftsEarned = 0
       
       BoundlessService.getPrizes $scope.consId
       .then (response) ->
@@ -52,11 +53,15 @@ angular.module 'trPcControllers'
               lastItem: lastItem
               randomID: getRandomID()
               prize_level: gift.level
+              earned_title: gift.earned_title
+              earned_subtitle1: earned_subtitle1
+              earned_subtitle2: earned_subtitle2
             $scope.giftStatus = status
             prevstatus = status
         
           if $scope.giftStatus == 1
             $scope.standardGifts[$scope.standardGifts.length-1].lastItem = 1
+            $scope.giftsEarned++
       , (response) ->
         # TODO
 
