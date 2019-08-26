@@ -745,4 +745,76 @@ angular.module 'trPcControllers'
               $scope.schoolStudentRegOnline = schoolDataRows[i][schoolDataHeaders.RO]
               break
             i++
+      $scope.showPrize = (sku, label, earned) ->
+        $scope.prize_sku = sku
+        $scope.prize_label = label
+        $scope.prize_status = earned
+        $scope.viewPrizeModal = $uibModal.open
+          scope: $scope
+          templateUrl: APP_INFO.rootPath + 'dist/ym-primary/html/participant-center/modal/viewPrize.html'
+
+      $scope.cancelShowPrize = ->
+        $scope.viewPrizeModal.close()
+
+      getRandomID = ->
+        return Math.floor((Math.random()*3)+1);
+
+      defaultStandardGifts = BoundlessService.defaultStandardGifts()
+      
+      $scope.upcomingGifts = []
+      $scope.giftsEarned = 0
+      
+      BoundlessService.getPrizes $scope.consId
+      .then (response) ->
+        students = response.data.student
+        angular.forEach students, (student) ->
+          if student.has_bonus
+             giftLevels = BoundlessService.giftLevels_instant()
+          else
+             giftLevels = BoundlessService.giftLevels_noninstant()
+          current_level = if student.current_level != null then student.current_level else '$0'
+          prevstatus = 0
+          startList = 0
+          listCnt = 1
+          giftPrev = ""
+          angular.forEach defaultStandardGifts, (gift, key) ->
+            if student.has_bonus and (gift.instant == 1 or gift.instant == 2) or !student.has_bonus and (gift.instant == 0 or gift.instant == 2)
+              status = 0
+              lastItem = 0
+              if jQuery.inArray(gift.id,giftLevels[current_level]) isnt -1
+                status = 1
+              if prevstatus == 1 and status == 0
+                $scope.upcomingGifts[$scope.upcomingGifts.length-1].lastItem = 1
+                startList = 1
+                $scope.upcomingGifts.push
+                  prize_label: giftPrev.name
+                  prize_sku: giftPrev.id
+                  prize_status: prevStatus
+                  lastItem: 1
+                  randomID: getRandomID()
+                  prize_level: giftPrev.level
+                  earned_title: giftPrev.earned_title
+                  earned_subtitle1: giftPrev.earned_subtitle1
+                  earned_subtitle2: giftPrev.earned_subtitle2
+              if startList == 1 and listCnt <= 4
+                listCnt++
+                $scope.upcomingGifts.push
+                  prize_label: gift.name
+                  prize_sku: gift.id
+                  prize_status: status
+                  lastItem: lastItem
+                  randomID: getRandomID()
+                  prize_level: gift.level
+                  earned_title: gift.earned_title
+                  earned_subtitle1: gift.earned_subtitle1
+                  earned_subtitle2: gift.earned_subtitle2
+                $scope.giftStatus = status
+                giftPrev = gift
+                prevstatus = status
+                if status == 1
+                  $scope.giftsEarned++
+
+      , (response) ->
+        # TODO
+        
   ]
