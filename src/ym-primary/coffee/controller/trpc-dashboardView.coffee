@@ -785,6 +785,7 @@ angular.module 'trPcControllers'
               if jQuery.inArray(gift.id,giftLevels[current_level]) isnt -1
                 status = 1
               if prevstatus == 1 and status == 0 or prevstatus == -1 and status == 0
+                prevstatus = 0
                 startList = 1
                 $scope.upcomingGifts.push
                   prize_label: giftPrev.name
