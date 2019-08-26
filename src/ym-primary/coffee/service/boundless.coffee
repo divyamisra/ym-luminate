@@ -101,6 +101,7 @@ angular.module 'ahaLuminateApp'
             "id":"WB-20"
             "name":"Worded Wristband"
             "status":0
+            "instant":0
             "level":""
             "level_desc":""
             "earned_title":"You're Awesome!"
@@ -111,15 +112,27 @@ angular.module 'ahaLuminateApp'
             "id":"CLIPPERRIE-20"
             "name":"Perrie"
             "status":0
+            "instant":1
             "level":"$5"
             "earned_title":"Check, Mate!"
             "earned_subtitle1":"You've raised $5!"
             "earned_subtitle2":"Perrie"
           }
           {
+            "id":"LVL1WB-20"
+            "name":"Water Bottle"
+            "status":0
+            "instant":0
+            "level":"$5"
+            "earned_title":"Check, Mate!"
+            "earned_subtitle1":"You've raised $5!"
+            "earned_subtitle2":"a water bottle"
+          }
+          {
             "id":"CHARMKNOX-20"
             "name":"Knox"
             "status":0
+            "instant":0
             "level":"$10 online"
             "earned_title":"Give us 2 high fives!"
             "earned_subtitle1":"You just raised $10 online!"
@@ -129,6 +142,7 @@ angular.module 'ahaLuminateApp'
             "id":"JR-20"
             "name":"Jump Rope"
             "status":0
+            "instant":0
             "level":"$20"
             "earned_title":"Jumping for joy!"
             "earned_subtitle1":"Way to jump in and raise $20!"
@@ -138,6 +152,7 @@ angular.module 'ahaLuminateApp'
             "id":"CLIPNICO-20"
             "name":"Nico"
             "status":0
+            "instant":0
             "level":"$25"
             "earned_title":"You're a Super hero!"
             "earned_subtitle1":"You're the best for raising $25!"
@@ -147,6 +162,7 @@ angular.module 'ahaLuminateApp'
             "id":"CHARMSOFIE-20"
             "name":"Sophie"
             "status":0
+            "instant":0
             "level":"$40 online"
             "earned_title":"Color us happy!"
             "earned_subtitle1":"Nice job raising $40 online!"
@@ -156,6 +172,7 @@ angular.module 'ahaLuminateApp'
             "id":"KHC"
             "name":"T-Shirt"
             "status":0
+            "instant":0
             "level":"$50"
             "earned_title":"You're a real hero!"
             "earned_subtitle1":"You've raised $50!"
@@ -165,6 +182,7 @@ angular.module 'ahaLuminateApp'
             "id":"PBALL-20"
             "name":"Playground Ball"
             "status":0
+            "instant":0
             "level":"$75"
             "earned_title":"Bouncin' High!"
             "earned_subtitle1":"Way to raise $75!"
@@ -174,6 +192,7 @@ angular.module 'ahaLuminateApp'
             "id":"CLIPCRUSH-20"
             "name":"Crush"
             "status":0
+            "instant":0
             "level":"$100"
             "earned_title":"Crushin' It!"
             "earned_subtitle1":"Nice job crusing to $100!"
@@ -183,6 +202,7 @@ angular.module 'ahaLuminateApp'
             "id":"CLIPSUNNY-20"
             "name":"Sunny"
             "status":0
+            "instant":0
             "level":"$200"
             "earned_title":"Jam on!"
             "earned_subtitle1":"You are rockin' it to $200!"
@@ -192,6 +212,7 @@ angular.module 'ahaLuminateApp'
             "id":"MGRIP-20"
             "name":"Monster Grip"
             "status":0
+            "instant":0
             "level":"$250"
             "earned_title":"You're Grrreat!"
             "earned_subtitle1":"Check you out &mdash $250 raised!"
@@ -201,6 +222,7 @@ angular.module 'ahaLuminateApp'
             "id":"POPPER-20"
             "name":"Popper"
             "status":0
+            "instant":0
             "level":"$500"
             "earned_title":"You're Poppin'!"
             "earned_subtitle1":"You're amazing for raising $500!"
@@ -210,6 +232,7 @@ angular.module 'ahaLuminateApp'
             "id":"EARBUDS-20"
             "name":"Earbuds"
             "status":0
+            "instant":0
             "level":"$1,000"
             "earned_title":"You did it!"
             "earned_subtitle1":"You hit $1,000!"
