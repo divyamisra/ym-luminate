@@ -120,7 +120,7 @@ angular.module 'ahaLuminateApp'
             "id":"CHARMKNOX-20"
             "name":"Knox"
             "status":0
-            "level":"$10"
+            "level":"$10 online"
             "earned_title":"Give us 2 high fives!"
             "earned_subtitle1":"You just raised $10 online!"
             "earned_subtitle2":"Knox"
@@ -147,7 +147,7 @@ angular.module 'ahaLuminateApp'
             "id":"CHARMSOFIE-20"
             "name":"Sophie"
             "status":0
-            "level":"$40"
+            "level":"$40 online"
             "earned_title":"Color us happy!"
             "earned_subtitle1":"Nice job raising $40 online!"
             "earned_subtitle2":"Sophie"
