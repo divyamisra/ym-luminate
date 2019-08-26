@@ -224,29 +224,29 @@ angular.module 'ahaLuminateApp'
           ]
           "$5-$9": [
             "WB-20"
-            "CLIPPERIE-20"
+            "CLIPPERRIE-20"
           ]
           "$10-$14":[
             "WB-20"
-            "CLIPPERIE-20"
+            "CLIPPERRIE-20"
             "CHARMKNOX-20"
           ]
           "$15-$24":[
             "WB-20"
-            "CLIPPERIE-20"
+            "CLIPPERRIE-20"
             "CHARMKNOX-20"
             "JR-20"
           ]
           "$25-$39":[
             "WB-20"
-            "CLIPPERIE-20"
+            "CLIPPERRIE-20"
             "CHARMKNOX-20"
             "JR-20"
             "CLIPNICO-20"
           ]
           "$40-$49":[
             "WB-20"
-            "CLIPPERIE-20"
+            "CLIPPERRIE-20"
             "CHARMKNOX-20"
             "JR-20"
             "CLIPNICO-20"
@@ -254,7 +254,7 @@ angular.module 'ahaLuminateApp'
           ]
           "$50-$74":[
             "WB-20"
-            "CLIPPERIE-20"
+            "CLIPPERRIE-20"
             "CHARMKNOX-20"
             "JR-20"
             "CLIPNICO-20"
@@ -263,7 +263,7 @@ angular.module 'ahaLuminateApp'
           ]
           "Green $75-$99":[
             "WB-20"
-            "CLIPPERIE-20"
+            "CLIPPERRIE-20"
             "CHARMKNOX-20"
             "JR-20"
             "CLIPNICO-20"
@@ -273,7 +273,7 @@ angular.module 'ahaLuminateApp'
           ]
           "Blue $100-$199":[
             "WB-20"
-            "CLIPPERIE-20"
+            "CLIPPERRIE-20"
             "CHARMKNOX-20"
             "JR-20"
             "CLIPNICO-20"
@@ -284,7 +284,7 @@ angular.module 'ahaLuminateApp'
           ]
           "Purple $200-$249":[
             "WB-20"
-            "CLIPPERIE-20"
+            "CLIPPERRIE-20"
             "CHARMKNOX-20"
             "JR-20"
             "CLIPNICO-20"
@@ -296,7 +296,7 @@ angular.module 'ahaLuminateApp'
           ]
           "Red $250-$499":[
             "WB-20"
-            "CLIPPERIE-20"
+            "CLIPPERRIE-20"
             "CHARMKNOX-20"
             "JR-20"
             "CLIPNICO-20"
@@ -309,7 +309,7 @@ angular.module 'ahaLuminateApp'
           ]
           "Orange $500-$999":[
             "WB-20"
-            "CLIPPERIE-20"
+            "CLIPPERRIE-20"
             "CHARMKNOX-20"
             "JR-20"
             "CLIPNICO-20"
@@ -323,7 +323,7 @@ angular.module 'ahaLuminateApp'
           ]
           "Yellow $1000+":[
             "WB-20"
-            "CLIPPERIE-20"
+            "CLIPPERRIE-20"
             "CHARMKNOX-20"
             "JR-20"
             "CLIPNICO-20"
