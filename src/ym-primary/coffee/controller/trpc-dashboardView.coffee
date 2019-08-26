@@ -763,6 +763,7 @@ angular.module 'trPcControllers'
       
       $scope.upcomingGifts = []
       $scope.giftsEarned = 0
+      $scope.totalGifts = 0
       
       BoundlessService.getPrizes $scope.consId
       .then (response) ->
@@ -810,6 +811,7 @@ angular.module 'trPcControllers'
                 $scope.giftStatus = status
               giftPrev = gift
               prevstatus = status
+              totalGifts++
               if status == 1
                 $scope.giftsEarned++
 
