@@ -774,7 +774,7 @@ angular.module 'trPcControllers'
           else
              giftLevels = BoundlessService.giftLevels_noninstant()
           current_level = if student.current_level != null then student.current_level else '$0'
-          prevstatus = 0
+          prevstatus = -1
           startList = 0
           listCnt = 1
           giftPrev = ""
@@ -784,7 +784,7 @@ angular.module 'trPcControllers'
               lastItem = 0
               if jQuery.inArray(gift.id,giftLevels[current_level]) isnt -1
                 status = 1
-              if prevstatus == 1 and status == 0 or prevstatus == 0 and status == 0
+              if prevstatus == 1 and status == 0 or prevstatus == -1 and status == 0
                 startList = 1
                 $scope.upcomingGifts.push
                   prize_label: giftPrev.name
