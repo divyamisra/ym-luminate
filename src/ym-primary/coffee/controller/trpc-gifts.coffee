@@ -58,10 +58,11 @@ angular.module 'trPcControllers'
               earned_subtitle2: gift.earned_subtitle2
             $scope.giftStatus = status
             prevstatus = status
+            if status == 1
+              $scope.giftsEarned++
         
           if $scope.giftStatus == 1
             $scope.standardGifts[$scope.standardGifts.length-1].lastItem = 1
-            $scope.giftsEarned++
       , (response) ->
         # TODO
 
