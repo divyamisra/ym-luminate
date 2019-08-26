@@ -43,29 +43,30 @@ angular.module 'trPcControllers'
           current_level = if student.current_level != null then student.current_level else '$0'
           prevstatus = 0
           angular.forEach defaultStandardGifts, (gift, key) ->
-            status = 0
-            lastItem = 0
-            if jQuery.inArray(gift.id,giftLevels[current_level]) isnt -1
-              status = 1
-            if prevstatus == 1 and status == 0
+            if student.has_bonus and (gift.instant == 1 or gift.instant == 2) or !student.has_bonus and (gift.instant == 0 or gift.instant == 2)
+              status = 0
+              lastItem = 0
+              if jQuery.inArray(gift.id,giftLevels[current_level]) isnt -1
+                status = 1
+              if prevstatus == 1 and status == 0
+                $scope.standardGifts[$scope.standardGifts.length-1].lastItem = 1
+              $scope.standardGifts.push
+                prize_label: gift.name
+                prize_sku: gift.id
+                prize_status: status
+                lastItem: lastItem
+                randomID: getRandomID()
+                prize_level: gift.level
+                earned_title: gift.earned_title
+                earned_subtitle1: gift.earned_subtitle1
+                earned_subtitle2: gift.earned_subtitle2
+              $scope.giftStatus = status
+              prevstatus = status
+              if status == 1
+                $scope.giftsEarned++
+
+            if $scope.giftStatus == 1
               $scope.standardGifts[$scope.standardGifts.length-1].lastItem = 1
-            $scope.standardGifts.push
-              prize_label: gift.name
-              prize_sku: gift.id
-              prize_status: status
-              lastItem: lastItem
-              randomID: getRandomID()
-              prize_level: gift.level
-              earned_title: gift.earned_title
-              earned_subtitle1: gift.earned_subtitle1
-              earned_subtitle2: gift.earned_subtitle2
-            $scope.giftStatus = status
-            prevstatus = status
-            if status == 1
-              $scope.giftsEarned++
-        
-          if $scope.giftStatus == 1
-            $scope.standardGifts[$scope.standardGifts.length-1].lastItem = 1
       , (response) ->
         # TODO
 
