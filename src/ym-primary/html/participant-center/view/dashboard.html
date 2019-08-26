@@ -164,7 +164,7 @@
         </div>
       </div>
     </section>
-    <section class="ym-pc-dashboard-gifts-section" aria-label="My Gifts">
+    <section class="ym-pc-dashboard-standard-gifts-section" aria-label="My Gifts">
       <div class="ym-pc-dashboard-section-header">
         <h2 class="h3">
           You Earned <span ng-bind-html="giftsEarned"></span> out of <span ng-bind-html="upcomingGifts.length"></span> Thank You Gifts!
@@ -173,14 +173,24 @@
           Continue sending emails and ecards to receive additional thank-you gifts!
         </h3>
       </div>
-      <div class="ym-pc-dashboard-upcoming-gifts-icons" role="list" aria-label="Upcoming Gifts">
-        <div class="ym-pc-dashboard-upcoming-gifts-icon" ng-class="{'not-earned': !upcomingGift.prize_status}" ng-repeat="upcomingGift in upcomingGifts" ng-cloak>
+      <div class="ym-pc-dashboard-standard-gifts-icons" role="list" aria-label="Standard Gifts">
+        <div class="ym-pc-dashboard-standard-gifts-icon" ng-class="{'not-earned': !upcomingGift.prize_status}" ng-repeat="upcomingGift in upcomingGifts" ng-cloak>
            <a href="" ng-click="showPrize(upcomingGift.prize_sku,upcomingGift.prize_label,upcomingGift.prize_status)">
-              <div class="ym-pc-dashboard-upcoming-gift-level" ng-bind-html="upcomingGift.prize_level"></div>
               <img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/prizes2020/{{upcomingGift.prize_sku}}.png" alt="{{upcomingGift.prize_label}}">
-              <div class="ym-pc-dashboard-upcoming-gifts-text">
-                <span ng-bind-html="upcomingGift.prize_label"></span> <span class="sr-only" ng-if="upcomingGift.prize_status">(earned)</span><span class="sr-only" ng-if="!upcomingGift.prize_status">(not yet earned)</span>
+              <div class="ym-pc-dashboard-standard-gift-earned" ng-if="upcomingGift.prize_status">
+                 <h4 class="gift-title" ng-bind-html="upcomingGift.earned_title"></h4>
+                 <div class="gift-subtitle1"><span ng-bind-html="upcomingGift.earned_subtitle1"></span></div>
+                 <div class="gift-subtitle2">You've earned <span ng-bind-html="upcomingGift.earned_subtitle2"></span>.</div>
               </div>
+              <div class="ym-pc-dashboard-standard-gift-notearned" ng-if="!upcomingGift.prize_status">
+                 <h4 class="gift-title">Up next...</h4>
+                 <div class="gift-subtitle1">Raise <span ng-bind-html="upcomingGift.prize_level"></span></div>
+                 <div class="gift-subtitle2">and you'll get <span ng-bind-html="upcomingGift.earned_subtitle2"></span>.</div>
+              </div>
+              <div class="ym-pc-dashboard-standard-gifts-text">
+                <span class="sr-only" ng-if="upcomingGift.prize_status">(earned)</span><span class="sr-only" ng-if="!upcomingGift.prize_status">(not yet earned)</span>
+              </div>
+              <div class="more-details-button">More Details</div>
            </a>
         </div>
       </div>
