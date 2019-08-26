@@ -795,7 +795,7 @@ angular.module 'trPcControllers'
                   earned_title: giftPrev.earned_title
                   earned_subtitle1: giftPrev.earned_subtitle1
                   earned_subtitle2: giftPrev.earned_subtitle2
-              if startList == 1 and listCnt <= 4
+              if startList == 1 and listCnt <= 3
                 listCnt++
                 $scope.upcomingGifts.push
                   prize_label: gift.name
