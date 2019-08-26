@@ -103,6 +103,7 @@ angular.module 'ahaLuminateApp'
             "status":0
             "level":""
             "level_desc":""
+            "instant": 2
             "earned_title":"You're Awesome!"
             "earned_subtitle1":"Thanks for registering online!"
             "earned_subtitle2":"a wristband"
@@ -112,6 +113,7 @@ angular.module 'ahaLuminateApp'
             "name":"Perrie"
             "status":0
             "level":"$5"
+            "instant": 1
             "earned_title":"Check, Mate!"
             "earned_subtitle1":"You've raised $5!"
             "earned_subtitle2":"Perrie"
@@ -121,6 +123,7 @@ angular.module 'ahaLuminateApp'
             "name":"Water Bottle"
             "status":0
             "level":"$5"
+            "instant": 0
             "earned_title":"Check, Mate!"
             "earned_subtitle1":"You've raised $5!"
             "earned_subtitle2":"a water bottle"
@@ -130,6 +133,7 @@ angular.module 'ahaLuminateApp'
             "name":"Knox"
             "status":0
             "level":"$10 online"
+            "instant": 2
             "earned_title":"Give us 2 high fives!"
             "earned_subtitle1":"You just raised $10 online!"
             "earned_subtitle2":"Knox"
@@ -139,6 +143,7 @@ angular.module 'ahaLuminateApp'
             "name":"Jump Rope"
             "status":0
             "level":"$20"
+            "instant": 2
             "earned_title":"Jumping for joy!"
             "earned_subtitle1":"Way to jump in and raise $20!"
             "earned_subtitle2":"a jump rope"
@@ -148,6 +153,7 @@ angular.module 'ahaLuminateApp'
             "name":"Nico"
             "status":0
             "level":"$25"
+            "instant": 2
             "earned_title":"You're a Super hero!"
             "earned_subtitle1":"You're the best for raising $25!"
             "earned_subtitle2":"Nico"
@@ -157,6 +163,7 @@ angular.module 'ahaLuminateApp'
             "name":"Sophie"
             "status":0
             "level":"$40 online"
+            "instant": 2
             "earned_title":"Color us happy!"
             "earned_subtitle1":"Nice job raising $40 online!"
             "earned_subtitle2":"Sophie"
@@ -166,6 +173,7 @@ angular.module 'ahaLuminateApp'
             "name":"T-Shirt"
             "status":0
             "level":"$50"
+            "instant": 2
             "earned_title":"You're a real hero!"
             "earned_subtitle1":"You've raised $50!"
             "earned_subtitle2":"a t-shirt"
@@ -175,6 +183,7 @@ angular.module 'ahaLuminateApp'
             "name":"Playground Ball"
             "status":0
             "level":"$75"
+            "instant": 2
             "earned_title":"Bouncin' High!"
             "earned_subtitle1":"Way to raise $75!"
             "earned_subtitle2":"a playground ball"
@@ -184,6 +193,7 @@ angular.module 'ahaLuminateApp'
             "name":"Crush"
             "status":0
             "level":"$100"
+            "instant": 2
             "earned_title":"Crushin' It!"
             "earned_subtitle1":"Nice job crusing to $100!"
             "earned_subtitle2":"Crush"
@@ -193,6 +203,7 @@ angular.module 'ahaLuminateApp'
             "name":"Sunny"
             "status":0
             "level":"$200"
+            "instant": 2
             "earned_title":"Jam on!"
             "earned_subtitle1":"You are rockin' it to $200!"
             "earned_subtitle2":"Sunny"
@@ -202,6 +213,7 @@ angular.module 'ahaLuminateApp'
             "name":"Monster Grip"
             "status":0
             "level":"$250"
+            "instant": 2
             "earned_title":"You're Grrreat!"
             "earned_subtitle1":"Check you out &mdash $250 raised!"
             "earned_subtitle2":"Stretch"
@@ -211,6 +223,7 @@ angular.module 'ahaLuminateApp'
             "name":"Popper"
             "status":0
             "level":"$500"
+            "instant": 2
             "earned_title":"You're Poppin'!"
             "earned_subtitle1":"You're amazing for raising $500!"
             "earned_subtitle2":"Stretch"
@@ -220,6 +233,7 @@ angular.module 'ahaLuminateApp'
             "name":"Earbuds"
             "status":0
             "level":"$1,000"
+            "instant": 2
             "earned_title":"You did it!"
             "earned_subtitle1":"You hit $1,000!"
             "earned_subtitle2":"ear pods that rock like you"
