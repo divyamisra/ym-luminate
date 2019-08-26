@@ -784,7 +784,6 @@ angular.module 'trPcControllers'
               if jQuery.inArray(gift.id,giftLevels[current_level]) isnt -1
                 status = 1
               if prevstatus == 1 and status == 0
-                $scope.upcomingGifts[$scope.upcomingGifts.length-1].lastItem = 1
                 startList = 1
                 $scope.upcomingGifts.push
                   prize_label: giftPrev.name
@@ -809,10 +808,10 @@ angular.module 'trPcControllers'
                   earned_subtitle1: gift.earned_subtitle1
                   earned_subtitle2: gift.earned_subtitle2
                 $scope.giftStatus = status
-                giftPrev = gift
-                prevstatus = status
-                if status == 1
-                  $scope.giftsEarned++
+              giftPrev = gift
+              prevstatus = status
+              if status == 1
+                $scope.giftsEarned++
 
       , (response) ->
         # TODO
