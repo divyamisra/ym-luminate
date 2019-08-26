@@ -788,7 +788,7 @@ angular.module 'trPcControllers'
                 $scope.upcomingGifts.push
                   prize_label: giftPrev.name
                   prize_sku: giftPrev.id
-                  prize_status: prevStatus
+                  prize_status: prevstatus
                   lastItem: 1
                   randomID: getRandomID()
                   prize_level: giftPrev.level
