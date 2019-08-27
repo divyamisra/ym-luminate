@@ -103,7 +103,7 @@ angular.module 'ahaLuminateApp'
             "status":0
             "level":""
             "level_desc":""
-            "instant": 2
+            "instant": 1
             "earned_title":"You're Awesome!"
             "earned_subtitle1":"Thanks for registering online!"
             "earned_subtitle2":"a wristband"
@@ -124,7 +124,7 @@ angular.module 'ahaLuminateApp'
             "status":0
             "level":"$5"
             "instant": 0
-            "earned_title":"Check, Mate!"
+            "earned_title":"Stay Hydrated!"
             "earned_subtitle1":"You've raised $5!"
             "earned_subtitle2":"a water bottle"
           }
@@ -133,7 +133,7 @@ angular.module 'ahaLuminateApp'
             "name":"Knox"
             "status":0
             "level":"$10 online"
-            "instant": 2
+            "instant": 1
             "earned_title":"Give us 2 high fives!"
             "earned_subtitle1":"You just raised $10 online!"
             "earned_subtitle2":"a Knox charm"
@@ -153,7 +153,7 @@ angular.module 'ahaLuminateApp'
             "name":"Nico"
             "status":0
             "level":"$25"
-            "instant": 2
+            "instant": 1
             "earned_title":"You're a Super hero!"
             "earned_subtitle1":"You're the best for raising $25!"
             "earned_subtitle2":"a Nico charm"
@@ -163,7 +163,7 @@ angular.module 'ahaLuminateApp'
             "name":"Sophie"
             "status":0
             "level":"$40 online"
-            "instant": 2
+            "instant": 1
             "earned_title":"Color us happy!"
             "earned_subtitle1":"Nice job raising $40 online!"
             "earned_subtitle2":"a Sophie charm"
@@ -193,7 +193,7 @@ angular.module 'ahaLuminateApp'
             "name":"Crush"
             "status":0
             "level":"$100"
-            "instant": 2
+            "instant": 1
             "earned_title":"Crushin' It!"
             "earned_subtitle1":"Nice job crusing to $100!"
             "earned_subtitle2":"a Crush charm"
@@ -203,7 +203,7 @@ angular.module 'ahaLuminateApp'
             "name":"Sunny"
             "status":0
             "level":"$200"
-            "instant": 2
+            "instant": 1
             "earned_title":"Jam on!"
             "earned_subtitle1":"You are rockin' it to $200!"
             "earned_subtitle2":"a Sunny charm"
