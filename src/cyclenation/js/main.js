@@ -828,7 +828,7 @@
                 var participantId = this.consId;
                 var participantPage = this.personalPageUrl;
                 var isCaptain = this.aTeamCaptain;
-                var topParticipantHtml = '<div class="top-list-entry row pb-2"><div class="badges col-2">' + (isCaptain === "true" ? '<svg version="1.1" class="team-captain-badge" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 110 110" style="enable-background:new 0 0 110 110;" xml:space="preserve"><circle class="st0" cx="55" cy="55" r="55"></circle><polygon class="st1" points="55,72.8 32.1,87.2 38.7,61 18,43.7 44.9,41.9 55,16.8 65.1,41.9 92,43.7 71.3,61 77.9,87.2 "></polygon></svg>' : '') + '</div><div class="names-amounts col-10 pl-0"><a class="participant-name" href="' + participantPage + '">' + participantName + '</a><span class="amount-raised">$' + participantRaisedFormmatted + '</span></div></div>';
+                var topParticipantHtml = '<div class="top-list-entry row pb-2"><div class="badges col-2">' + (isCaptain === "true" ? '<svg version="1.1" class="team-captain-badge" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 110 110" style="enable-background:new 0 0 110 110;" xml:space="preserve" alt=""><circle class="st0" cx="55" cy="55" r="55"></circle><polygon class="st1" points="55,72.8 32.1,87.2 38.7,61 18,43.7 44.9,41.9 55,16.8 65.1,41.9 92,43.7 71.3,61 77.9,87.2 "></polygon></svg>' : '') + '</div><div class="names-amounts col-10 pl-0"><a class="participant-name" href="' + participantPage + '">' + participantName + '</a><span class="amount-raised">$' + participantRaisedFormmatted + '</span></div></div>';
 
                 $('.js__top-participants-list').append(topParticipantHtml);
 
@@ -2812,7 +2812,7 @@
     $('label[for="responsive_payment_typecc_exp_date_MONTH"] .label-text').text('Month:');
     $('label[for="responsive_payment_typecc_exp_date_MONTH"]').insertBefore($('#responsive_payment_typecc_exp_date_MONTH'));
 
-    //$('label[for="responsive_payment_typecc_exp_date_YEAR"]').append('<span class="label-text">Year: </span>');
+    $('label[for="responsive_payment_typecc_exp_date_YEAR"]').append('<span class="label-text">Year: </span>');
     $('label[for="responsive_payment_typecc_exp_date_YEAR"]').insertBefore($('#responsive_payment_typecc_exp_date_YEAR'));
 
     $('#responsive_payment_typecc_exp_date_row .field-required').remove();
