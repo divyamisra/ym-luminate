@@ -778,13 +778,19 @@ angular.module 'trPcControllers'
           startList = 0
           listCnt = 1
           giftPrev = ""
+          giftToAdd = 3 # after adding first one - add 3 more
           angular.forEach defaultStandardGifts, (gift, key) ->
             if student.has_bonus and (gift.instant == 1 or gift.instant == 2) or !student.has_bonus and (gift.instant == 0 or gift.instant == 2)
               status = 0
               lastItem = 0
               if jQuery.inArray(gift.id,giftLevels[current_level]) isnt -1
                 status = 1
-              if prevstatus == 1 and status == 0 or prevstatus == -1 and status == 0 and $scope.giftsEarned == 0
+              # if nothing has been earned yet
+              if prevstatus == -1 and status == 0 and $scope.giftsEarned == 0
+                startList = 1
+                giftToAdd = 4 # need to add next 4 to list
+              # if prev item is the last item earned then add and start pusing in items
+              if prevstatus == 1 and status == 0
                 startList = 1
                 $scope.upcomingGifts.push
                   prize_label: giftPrev.name
@@ -796,7 +802,8 @@ angular.module 'trPcControllers'
                   earned_title: giftPrev.earned_title
                   earned_subtitle1: giftPrev.earned_subtitle1
                   earned_subtitle2: giftPrev.earned_subtitle2
-              if startList == 1 and listCnt <= 3
+              # if items need to be added then only add up to 3 after pushing first one
+              if startList == 1 and listCnt <= giftToAdd
                 listCnt++
                 $scope.upcomingGifts.push
                   prize_label: gift.name
