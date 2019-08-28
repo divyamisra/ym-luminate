@@ -774,6 +774,12 @@ angular.module 'trPcControllers'
           else
              giftLevels = BoundlessService.giftLevels_noninstant()
           current_level = if student.current_level != null then student.current_level else '$0'
+          #get total number of gifts student can get
+          giftsInList = 0
+          angular.forEach defaultStandardGifts, (gift, key) ->
+            if student.has_bonus and (gift.instant == 1 or gift.instant == 2) or !student.has_bonus and (gift.instant == 0 or gift.instant == 2)
+              giftsInList++
+          
           prevstatus = -1
           startList = 0
           listCnt = 1
@@ -802,6 +808,9 @@ angular.module 'trPcControllers'
                   earned_title: giftPrev.earned_title
                   earned_subtitle1: giftPrev.earned_subtitle1
                   earned_subtitle2: giftPrev.earned_subtitle2
+              # add last 4 no matter what
+              if $scope.totalGifts >= giftsInList-4
+                startList = 1
               # if items need to be added then only add up to 3 after pushing first one
               if startList == 1 and listCnt <= giftToAdd
                 listCnt++
