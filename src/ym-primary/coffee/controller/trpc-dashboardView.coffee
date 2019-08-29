@@ -796,7 +796,7 @@ angular.module 'trPcControllers'
                 startList = 1
                 giftToAdd = 4 # need to add next 4 to list
               # if prev item is the last item earned then add and start pusing in items
-              if prevstatus == 1 and status == 0
+              if prevstatus == 1 and status == 0 and startList == 0
                 startList = 1
                 $scope.upcomingGifts.push
                   prize_label: giftPrev.name
