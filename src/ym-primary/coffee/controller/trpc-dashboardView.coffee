@@ -825,9 +825,9 @@ angular.module 'trPcControllers'
               giftPrev = gift
               prevstatus = status
               # add last 4 no matter what
-              if $scope.totalGifts >= giftsInList-3
+              if $scope.totalGifts >= giftsInList - 5 and status == 1
                 startList = 1
-                prevstatus = 1
+                giftToAdd = 4
               $scope.totalGifts++
               if status == 1
                 $scope.giftsEarned++
