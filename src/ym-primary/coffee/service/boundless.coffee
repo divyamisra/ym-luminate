@@ -215,7 +215,7 @@ angular.module 'ahaLuminateApp'
             "level":"$250"
             "instant": 2
             "earned_title":"You're Grrreat!"
-            "earned_subtitle1":"Check you out &mdash $250 raised!"
+            "earned_subtitle1":"Check you out &mdash; $250 raised!"
             "earned_subtitle2":"Stretch"
           }
           {
