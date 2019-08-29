@@ -105,6 +105,7 @@ angular.module 'ahaLuminateControllers'
       $scope.giftType = (type) ->
         $scope.donationInfo.giftType = type
         localStorage['giftType'] = type
+        $scope.donationInfo.monthly = false
         if type is 'monthly'
           angular.element('.ym-donation-levels__type--onetime').removeClass 'active'
           angular.element('.ym-donation-levels__type--monthly').addClass 'active'
@@ -117,8 +118,12 @@ angular.module 'ahaLuminateControllers'
           if $scope.donationGiftType is "flexible"
             angular.element('#level_flexibleduration_row').removeClass 'hidden'
             angular.element('#level_flexibletotal_row').removeClass 'hidden'
-            angular.element('#level_flexiblegift_type2').prop 'checked', true
-            angular.element('#level_flexiblegift_type2').trigger 'click'
+            if $scope.donationInfo.monthly == true
+              angular.element('#level_flexiblegift_type2').prop 'checked', true
+              angular.element('#level_flexiblegift_type2').trigger 'click'
+            else 
+              angular.element('#level_flexiblegift_type1').prop 'checked', true
+              angular.element('#level_flexiblegift_type1').trigger 'click'
             if $scope.donationInfo.levelType is 'level'
               if $scope.donationInfo.amount is ''
                 $scope.donationInfo.amount = "$0"
@@ -131,7 +136,7 @@ angular.module 'ahaLuminateControllers'
               sustainingDropdown()
             , 500
           angular.element('#pstep_finish span').remove()
-          $scope.donationInfo.monthly = true
+          # $scope.donationInfo.monthly = true
         else
           angular.element('.ym-donation-levels__type--onetime').addClass 'active'
           angular.element('.ym-donation-levels__type--monthly').removeClass 'active'
@@ -201,7 +206,7 @@ angular.module 'ahaLuminateControllers'
 
           if $scope.donationGiftType is "flexible"
             if $scope.donationInfo.monthly is true
-              angular.element('#level_flexiblegift_type2').trigger 'click'
+              #angular.element('#level_flexiblegift_type2').trigger 'click'
               if $scope.donationInfo.levelType is 'level'
                 amount = Number amount.split('$')[1]
               else
@@ -209,6 +214,11 @@ angular.module 'ahaLuminateControllers'
               $timeout ->
                 sustainingDropdown()
               , 500
+              $scope.donationInfo.giftType = "monthly"
+              angular.element('#level_flexiblegift_type2').trigger 'click'
+            else 
+              $scope.donationInfo.giftType = "onetime"
+              angular.element('#level_flexiblegift_type1').trigger 'click'
 
             $scope.donationInfo.sustainingAmount = amount
             localStorage['sustainingAmount'] = amount
