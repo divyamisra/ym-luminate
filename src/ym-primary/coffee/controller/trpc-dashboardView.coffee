@@ -811,7 +811,7 @@ angular.module 'trPcControllers'
               # add last 4 no matter what
               if $scope.totalGifts >= giftsInList-3
                 startList = 1
-                prevstatus = 1
+                status = 1
               # if items need to be added then only add up to 3 after pushing first one
               if startList == 1 and listCnt <= giftToAdd
                 listCnt++
