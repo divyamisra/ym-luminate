@@ -210,6 +210,9 @@ angular.module 'ahaLuminateControllers'
               $timeout ->
                 sustainingDropdown()
               , 500
+              $scope.giftType = "monthly"
+            else 
+              $scope.giftType = "onetime"
 
             $scope.donationInfo.sustainingAmount = amount
             localStorage['sustainingAmount'] = amount
