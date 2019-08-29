@@ -56,7 +56,7 @@ angular.module 'ahaLuminateControllers'
           error: ->
             angular.element('.js--default-header-login-form').submit()
           success: ->
-#            console.log('next URL ' + $scope.headerLoginInfo.ng_nexturl + 'next url? ' + $rootScope.secureDomain +'site/SPageServer?pagename=ym_khc_my_events' )
+            console.log('next URL ' + $scope.headerLoginInfo.ng_nexturl + 'next url? ' + $rootScope.secureDomain + 'site/SPageServer?pagename=ym_khc_my_events' )
             if not $scope.headerLoginInfo.ng_nexturl or $scope.headerLoginInfo.ng_nexturl is ''
               window.location = window.location.href
 #              window.location = $rootScope.secureDomainsite/SPageServer?pagename=ym_khc_my_events
