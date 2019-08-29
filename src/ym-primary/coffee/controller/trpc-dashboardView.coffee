@@ -808,11 +808,6 @@ angular.module 'trPcControllers'
                   earned_title: giftPrev.earned_title
                   earned_subtitle1: giftPrev.earned_subtitle1
                   earned_subtitle2: giftPrev.earned_subtitle2
-              # add last 4 no matter what
-              if $scope.totalGifts >= giftsInList-4
-                startList = 1
-                status = 1
-                giftToAdd = 4
               # if items need to be added then only add up to 3 after pushing first one
               if startList == 1 and listCnt <= giftToAdd
                 listCnt++
@@ -829,6 +824,10 @@ angular.module 'trPcControllers'
                 $scope.giftStatus = status
               giftPrev = gift
               prevstatus = status
+              # add last 4 no matter what
+              if $scope.totalGifts >= giftsInList-3
+                startList = 1
+                prevstatus = 1
               $scope.totalGifts++
               if status == 1
                 $scope.giftsEarned++
