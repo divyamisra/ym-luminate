@@ -169,8 +169,11 @@
         <h2 class="h3">
           You Earned <span ng-bind-html="giftsEarned"></span> out of <span ng-bind-html="totalGifts"></span> Thank You Gifts!
         </h2>
-        <h3 class="h6">
+        <h3 class="h6" ng-if="giftsEarned != totalGifts">
           Continue sending emails and e-cards to receive additional thank-you gifts!
+        </h3>
+        <h3 class="h6" ng-if="giftsEarned == totalGifts">
+          Congratulations on earning all of your gifts! Keep going to help save special hearts.
         </h3>
       </div>
       <div class="ym-pc-dashboard-standard-gifts-icons" role="list" aria-label="Standard Gifts">
