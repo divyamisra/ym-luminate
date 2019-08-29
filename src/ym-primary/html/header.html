@@ -71,8 +71,8 @@
                 <div class="ym-header-login-dropdown" ng-class="{'open': loginMenuOpen}" ng-cloak>
                   <div class="ym-header-login-form">
                     <form method="POST" name="headerLoginForm" ng-submit="submitHeaderLogin()" novalidate>
-<!--                      <input type="hidden" name="ng_nexturl" ng-model="headerLoginInfo.ng_nexturl" value="[[E130:[[T8:[[S8]]]] [[T8:&amp;]] [[T8:&]] replaceall]]"> -->
-                      <input type="hidden" name="ng_nexturl" ng-model="headerLoginInfo.ng_nexturl" value="[[T7:https://[[S29:SECURE_DOMAIN]][[S29:SECURE_PATH]]UserLogin?NEXTURL=[[T1:SPageServer?pagename=ym_khc_my_events]]]]">
+                      <input type="hidden" name="ng_nexturl" ng-model="headerLoginInfo.ng_nexturl" value="[[E130:[[T8:[[S8]]]] [[T8:&amp;]] [[T8:&]] replaceall]]">
+<!--                      <input type="hidden" name="ng_nexturl" ng-model="headerLoginInfo.ng_nexturl" value="[[T7:https://[[S29:SECURE_DOMAIN]][[S29:SECURE_PATH]]UserLogin?NEXTURL=[[T1:SPageServer?pagename=ym_khc_my_events]]]]"> -->
                       <div class="form-group">
                         <label class="sr-only" for="headerLoginInfo-user_name">Username:</label>
                         <input type="text" class="form-control" name="USERNAME" id="headerLoginInfo-user_name" ng-model="headerLoginInfo.user_name" placeholder="Username" maxlength="[[S0:USER_MAX_LOGIN_LEN]]" autocorrect="off" autocapitalize="off" spellcheck="false" required>
