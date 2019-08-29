@@ -211,8 +211,10 @@ angular.module 'ahaLuminateControllers'
                 sustainingDropdown()
               , 500
               $scope.giftType = "monthly"
+              angular.element('#level_flexiblegift_type2').trigger 'click'
             else 
               $scope.giftType = "onetime"
+              angular.element('#level_flexiblegift_type1').trigger 'click'
 
             $scope.donationInfo.sustainingAmount = amount
             localStorage['sustainingAmount'] = amount
