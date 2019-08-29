@@ -200,8 +200,8 @@ angular.module 'ahaLuminateControllers'
               $scope.donationInfo.numberPayments = 1
 
           if $scope.donationGiftType is "flexible"
-            angular.element('#level_flexiblegift_type2').trigger 'click'
             if $scope.donationInfo.monthly is true
+              angular.element('#level_flexiblegift_type2').trigger 'click'
               if $scope.donationInfo.levelType is 'level'
                 amount = Number amount.split('$')[1]
               else
