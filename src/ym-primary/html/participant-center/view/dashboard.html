@@ -18,8 +18,15 @@
           <div ng-if="!prize.earned">
             <img class="img-responsive" ng-src="//s3.amazonaws.com/aha-oot-production/fy20/assets/badges/khc/{{prize.id}}_earned.png" alt="">
           </div>
-          <div>
-            <span ng-bind-html="prize.label"></span> <span class="sr-only" ng-if="prize.earned">(earned)</span><span class="sr-only" ng-if="!prize.earned">(not yet earned)</span>
+          <div ng-if="prize.earned">
+            <div class="missionAccomplished">Mission Accomplished</div>
+            <span ng-bind-html="prize.completed_label"></span> <span class="sr-only" ng-if="prize.earned">(earned)</span><span class="sr-only" ng-if="!prize.earned">(not yet earned)</span>
+          </div>
+          <div ng-if="!prize.earned">
+            <a ng-if="prize.url_type=='Modal'" href="" ng-click="editSchoolGoal()" id="prizeCTA" class="btn btn-md-wide btn-primary">{{prize.not_completed_label}}</a>
+            <a ng-if="prize.url_type=='Tab'" ng-href="{{baseUrl}}{{prize.not_completed_url}}" id="prizeCTA" class="btn btn-md-wide btn-primary">{{prize.not_completed_label}}</a>
+            <a ng-if="prize.url_type=='URL'" ng-href="{{prize.not_completed_url}}" id="prizeCTA" class="btn btn-md-wide btn-primary" target="_blank">{{prize.not_completed_label}}</a>
+            <span class="sr-only" ng-if="prize.earned">(earned)</span><span class="sr-only" ng-if="!prize.earned">(not yet earned)</span>
           </div>
         </div>
       </div>
