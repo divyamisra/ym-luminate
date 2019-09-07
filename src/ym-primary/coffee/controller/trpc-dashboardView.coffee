@@ -838,7 +838,8 @@ angular.module 'trPcControllers'
 
       , (response) ->
         # TODO
-        
+      $scope.schoolYearsInfo = {}
+      
       $scope.editSchoolYears = ->
         delete $scope.schoolYearsInfo.errorMessage
         schoolYears = $scope.companyProgress.schoolYears
