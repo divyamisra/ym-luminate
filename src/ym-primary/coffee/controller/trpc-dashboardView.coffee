@@ -618,6 +618,10 @@ angular.module 'trPcControllers'
             sku: prize.sku
             status: prize.status
             earned: prize.earned_datetime
+            completed_label: prize.completed_label
+            not_completed_label: prize.not_completed_label
+            not_completed_url: prize.not_completed_url
+            url_type: prize.url_type
           if prize.status == 1
             $scope.prizesEarned++
       , (response) ->
