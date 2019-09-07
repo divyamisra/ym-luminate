@@ -839,6 +839,7 @@ angular.module 'trPcControllers'
       , (response) ->
         # TODO
       $scope.schoolYearsInfo = {}
+      $scope.companyProgress.schoolYears = 0 
       
       if $scope.participantRegistration.companyInformation?.isCompanyCoordinator is 'true'
         ZuriService.getSchoolYears $scope.participantRegistration.companyInformation.companyId,
