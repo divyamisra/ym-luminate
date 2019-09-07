@@ -839,4 +839,29 @@ angular.module 'trPcControllers'
       , (response) ->
         # TODO
         
+      $scope.editSchoolYears = ->
+        delete $scope.schoolYearsInfo.errorMessage
+        schoolYears = $scope.companyProgress.schoolYears
+        if schoolYears is '' or schoolYears is '0'
+          $scope.schoolYearsInfo.years = ''
+        else
+          $scope.schoolYearsInfo.years = schoolYears
+        $scope.editSchoolYearsModal = $uibModal.open
+          scope: $scope
+          templateUrl: APP_INFO.rootPath + 'dist/ym-primary/html/participant-center/modal/editSchoolYears.html'
+      
+      $scope.cancelEditSchoolYears = ->
+        $scope.editSchoolYearsModal.close()
+      
+      $scope.updateSchoolYears = ->
+        delete $scope.schoolYearsInfo.errorMessage
+        newYears = $scope.schoolYearsInfo.goal
+        if not newYears or newYears is '' or newYears is '0' or isNaN(newYears)
+          $scope.schoolYearsInfo.errorMessage = 'Please specify a year greater than 0.'
+        else
+          updateSchoolYearPromise = NgPcTeamraiserSchoolService.updateSchoolYears(newYears, $scope)
+            .then (response) ->
+              $scope.editSchoolYearsModal.close()
+          $scope.dashboardPromises.push updateSchoolYearsPromise
+        
   ]
