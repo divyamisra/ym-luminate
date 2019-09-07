@@ -856,7 +856,7 @@ angular.module 'trPcControllers'
       
       $scope.updateSchoolYears = ->
         delete $scope.schoolYearsInfo.errorMessage
-        newYears = $scope.schoolYearsInfo.goal
+        newYears = $scope.schoolYearsInfo.years
         if not newYears or newYears is '' or newYears is '0' or isNaN(newYears)
           $scope.schoolYearsInfo.errorMessage = 'Please specify a year greater than 0.'
         else
