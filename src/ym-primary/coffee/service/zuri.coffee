@@ -140,11 +140,11 @@ angular.module 'ahaLuminateApp'
 
       getSchoolYears: (requestData, callback) ->
         if $rootScope.tablePrefix is 'heartdev'
-          url = '//hearttools.heart.org/aha_ym20_dev/api/school/' + scope.participantRegistration.companyInformation.companyId + '/years-participated?key=k7wvZXDpmDpenVcp'
+          url = '//hearttools.heart.org/aha_ym20_dev/api/school/' + requestData + '/years-participated?key=k7wvZXDpmDpenVcp'
         else if $rootScope.tablePrefix is 'heartnew'
-          url = '//hearttools.heart.org/aha_ym20_testing/api/school/' + scope.participantRegistration.companyInformation.companyId + '/years-participated?key=XgUnZxvFcjZ4jEMT'
+          url = '//hearttools.heart.org/aha_ym20_testing/api/school/' + requestData + '/years-participated?key=XgUnZxvFcjZ4jEMT'
         else
-          url = '//hearttools.heart.org/aha_ym20/api/school/' + scope.participantRegistration.companyInformation.companyId + '/years-participated?key=XgUnZxvFcjZ4jEMT'
+          url = '//hearttools.heart.org/aha_ym20/api/school/' + requestData + '/years-participated?key=XgUnZxvFcjZ4jEMT'
         $http.jsonp($sce.trustAsResourceUrl(url), jsonpCallbackParam: 'callback')
           .then (response) ->
             if response.data.success is false
