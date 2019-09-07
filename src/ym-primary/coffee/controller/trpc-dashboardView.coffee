@@ -878,5 +878,6 @@ angular.module 'trPcControllers'
             error: (response) ->
               $scope.schoolYearsInfo.errorMessage = 'Error: ' + response.data.message
             success: (response) ->
+              $scope.companyProgress.schoolYears = newYears
               $scope.editSchoolYearsModal.close()
   ]
