@@ -847,7 +847,10 @@ angular.module 'trPcControllers'
           error: (response) ->
             # TODO
           success: (response) ->
-            $scope.companyProgress.schoolYears = response.data.value
+            if response.data.value == ''
+              $scope.companyProgress.schoolYears = 0
+            else 
+              $scope.companyProgress.schoolYears = response.data.value
       
       $scope.editSchoolYears = ->
         delete $scope.schoolYearsInfo.errorMessage
