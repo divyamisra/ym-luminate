@@ -20,7 +20,7 @@
           </div>
           <div ng-if="prize.earned">
             <div class="missionAccomplished">Mission Accomplished</div>
-            <span ng-bind-html="prize.completed_label"></span> <span class="sr-only" ng-if="prize.earned">(earned)</span><span class="sr-only" ng-if="!prize.earned">(not yet earned)</span>
+            <span ng-bind-html="prize.completed_label">!</span> <span class="sr-only" ng-if="prize.earned">(earned)</span><span class="sr-only" ng-if="!prize.earned">(not yet earned)</span>
           </div>
           <div ng-if="!prize.earned">
             <a ng-if="prize.url_type=='Modal'" href="" ng-click="editSchoolGoal()" id="prizeCTA" class="btn btn-md-wide btn-primary">{{prize.not_completed_label}}</a>
