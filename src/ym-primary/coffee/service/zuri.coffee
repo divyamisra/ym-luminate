@@ -154,4 +154,18 @@ angular.module 'ahaLuminateApp'
           , (response) ->
             callback.failure response
 
+      updateSchoolYears: (requestData, scope, callback) ->
+        if $rootScope.tablePrefix is 'heartdev'
+          url = '//hearttools.heart.org/aha_ym20_dev/api/student/challenge/' + scope.participantRegistration.companyInformation.companyId + '/years-participated?update=' + requestData + '&key=k7wvZXDpmDpenVcp'
+        else if $rootScope.tablePrefix is 'heartnew'
+          url = '//hearttools.heart.org/aha_ym20_testing/api/student/challenge/' + scope.participantRegistration.companyInformation.companyId + '/years-participated?update=' + requestData + '&key=XgUnZxvFcjZ4jEMT'
+        else
+          url = '//hearttools.heart.org/aha_ym20/api/student/challenge/' + scope.participantRegistration.companyInformation.companyId + '/years-participated?update=' + requestData + '&key=XgUnZxvFcjZ4jEMT'
+        $http.jsonp($sce.trustAsResourceUrl(url), jsonpCallbackParam: 'callback')
+
+          .then (response) ->
+            callback.success response
+          , (response) ->
+            callback.failure response
+            
   ]
