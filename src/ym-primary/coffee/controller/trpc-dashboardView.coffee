@@ -863,6 +863,5 @@ angular.module 'trPcControllers'
           updateSchoolYearPromise = ZuriService.updateSchoolYears(newYears, $scope)
             .then (response) ->
               $scope.editSchoolYearsModal.close()
-          $scope.dashboardPromises.push updateSchoolYearsPromise
-        
+       
   ]
