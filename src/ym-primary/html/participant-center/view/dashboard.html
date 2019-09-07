@@ -666,16 +666,16 @@
         </div>
       </div>
     </section>
-    <section class="ym-pc-dashboard-coordinator-school-years-section" aria-label="Years School Participated">
+    <section class="ym-pc-dashboard-coordinator-school-years-section" aria-label="Years School Participated" ng-if="schoolYearsInfo.years" ng-cloak>
       <div class="ym-pc-dashboard-section-header">
         <h2 class="h3">
-          Your school has participated for <span ng-bind-html="school-participation-years"></span> Years
+          Your school has participated for <span ng-bind-html="schoolYearsInfo.years"></span> Years
         </h2>
       </div>
       <div class="ym-pc-dashboard-coordinator-school-years-update text-center">
          <p>
            <a href="" ng-click="editSchoolYears()" class="ym-school-update-years">
-             <strong>Update School Goal</strong>
+             <strong>Update School Years</strong>
            </a> 
         </p>
       </div>
