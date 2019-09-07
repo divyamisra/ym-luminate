@@ -860,7 +860,7 @@ angular.module 'trPcControllers'
         if not newYears or newYears is '' or newYears is '0' or isNaN(newYears)
           $scope.schoolYearsInfo.errorMessage = 'Please specify a year greater than 0.'
         else
-          updateSchoolYearPromise = NgPcTeamraiserSchoolService.updateSchoolYears(newYears, $scope)
+          updateSchoolYearPromise = ZuriService.updateSchoolYears(newYears, $scope)
             .then (response) ->
               $scope.editSchoolYearsModal.close()
           $scope.dashboardPromises.push updateSchoolYearsPromise
