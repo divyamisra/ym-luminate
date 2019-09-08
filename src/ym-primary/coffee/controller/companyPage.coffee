@@ -31,6 +31,7 @@ angular.module 'ahaLuminateControllers'
       $scope.activity3amt = ''
       $scope.topClassRaised = []
       $scope.topClassStudents = []
+      $scope.schoolYears = 0
       
       $scope.trustHtml = (html) ->
         return $sce.trustAsHtml(html)
@@ -424,4 +425,11 @@ angular.module 'ahaLuminateControllers'
                 setCompanyCity schoolDataRow[1]
                 setCompanyState schoolDataRow[2]
           return
-  ]
+        
+      ZuriService.getSchoolYears $scope.companyId,
+        error: (response) ->
+          # TO DO
+        success: (response) ->
+          $scope.schoolYears = response.data.value
+        
+    ]
