@@ -872,7 +872,7 @@ angular.module 'trPcControllers'
         if not newYears or newYears is '' or newYears is '0' or isNaN(newYears)
           $scope.schoolYearsInfo.errorMessage = 'Please specify a year greater than 0.'
         else
-          updateSchoolYearPromise = ZuriService.updateSchoolYears $scope.participantRegistration.companyInformation.companyId + '/years-participated?update=' + newYears,
+          updateSchoolYearPromise = ZuriService.updateSchoolYears $scope.participantRegistration.companyInformation.companyId + '/years-participated/update?value=' + newYears,
             failure: (response) ->
               $scope.schoolYearsInfo.errorMessage = 'Process failed to save years entered'
             error: (response) ->
