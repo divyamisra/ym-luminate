@@ -118,7 +118,7 @@ body.pg-company {
 
 .ym-school-participation-years {
   position:relative;
-  max-width:175px;
+  max-width:180px;
   padding:5px;
   
   img {
@@ -126,7 +126,7 @@ body.pg-company {
   }
   .ym-school-participation-years-text {
     position: absolute;
-    top: 34px;
+    top: 32px;
     left: 5%;
     text-align: center;
     font-weight: bold;
@@ -137,8 +137,8 @@ body.pg-company {
     
     span {
       display: block;
-      font-size: 1.3em;
-      line-height: 1.4em;
+      font-size: 1.5em;
+      line-height: 1.3em;
     }
   }
 }
