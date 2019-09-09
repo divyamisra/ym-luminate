@@ -668,8 +668,11 @@
     </section>
     <section class="ym-pc-dashboard-coordinator-school-years-section" aria-label="Years School Participated">
       <div class="ym-pc-dashboard-section-header">
-        <h2 class="h3">
+        <h2 class="h3" ng-if="companyProgress.schoolYears > 0">
           Your school has participated for <span ng-bind-html="companyProgress.schoolYears"></span> Years
+        </h2>
+        <h2 class="h3" ng-if="companyProgress.schoolYears == 0">
+          Tell us how many years your school has participated in the program
         </h2>
       </div>
       <div class="ym-pc-dashboard-coordinator-school-years-update text-center">
