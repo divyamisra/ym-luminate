@@ -797,6 +797,11 @@
             }
         });
 
+        // show EMC link if logged in visitor is EMC for this event
+        if($('.event-management-link-container').length){
+          $('.custom-event-management-link-container').removeClass('hidden');
+        }
+
         // Update placeholder text in mobile for top walker search
         if(screenWidth <= 1065) {
             $('#walkerFirstName').attr('placeholder', 'First Name');
