@@ -323,11 +323,11 @@
   /* END PERSONAL AND TEAM PAGE STYLES */
 
   .tr-page-container {
-    &.hero {
-      .col-lg-4 {
-        padding: 0 !important;
-      }
-    }
+    // &.hero {
+    //   .col-lg-4 {
+    //     padding: 0 !important;
+    //   }
+    // }
 
     .sidebar {
       max-width: 40% !important;
@@ -670,11 +670,12 @@
   .pg_personal, .pg_team, .pg_company {
     .tr-page-container {
       &.hero {
-        padding: 20px 0 0 0;
+        padding:0 15px;
       }
 
       .sidebar {
         max-width: unset !important;
+        padding:0;
       }
 
       .col-lg-8 {
