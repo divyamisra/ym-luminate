@@ -87,7 +87,7 @@ angular.module 'trPcControllers'
             else
               console.log response.data
               $scope.BrightSites.participant = response.data.participant
-              #$scope.BrightSites.greeting = response.data.greeting
+              $scope.BrightSites.greeting = response.data.greeting
               #$scope.BrightSites.url = response.data.guest_store_url
               #$scope.rewardsPostData.apiurl = response.data.api_url
               $scope.BrightSites.active = response.data.participant?.event_status
