@@ -603,6 +603,7 @@
               var events = luminateExtend.utils.ensureArray(response.getTeamraisersResponse.teamraiser);
 
               var todaysDate = new Date();
+              todaysDate.setDate(todaysDate.getDate() - 1);
               var liveEventsDisplayed = 0;
               var pastEventsDisplayed = 0;
 
@@ -699,6 +700,7 @@
               var events = luminateExtend.utils.ensureArray(response.getTeamraisersResponse.teamraiser);
 
               var todaysDate = new Date();
+              todaysDate.setDate(todaysDate.getDate() - 1);
               var liveEventsDisplayed = 0;
               var pastEventsDisplayed = 0;
 
