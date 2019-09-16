@@ -113,7 +113,7 @@ angular.module 'ahaLuminateApp'
       
       getProgram: (callback) ->
         if $rootScope.tablePrefix is 'heartdev'
-          url = '//hearttools.heart.org/aha_ahc20_dev/api/program?key=k7wvZXDpmDpenVcp'
+          url = '//hearttools.heart.org/aha_ahc20_dev/api/program?key=RByQUbXzYLBchS3n'
         else if $rootScope.tablePrefix is 'heartnew'
           url = '//hearttools.heart.org/aha_ahc20_testing/api/program?key=XgUnZxvFcjZ4jEMT'
         else
@@ -129,7 +129,7 @@ angular.module 'ahaLuminateApp'
 
       getSchoolYears: (requestData, callback) ->
         if $rootScope.tablePrefix is 'heartdev'
-          url = '//hearttools.heart.org/aha_ahc20_dev/api/school/' + requestData + '/years-participated?key=k7wvZXDpmDpenVcp'
+          url = '//hearttools.heart.org/aha_ahc20_dev/api/school/' + requestData + '/years-participated?key=RByQUbXzYLBchS3n'
         else if $rootScope.tablePrefix is 'heartnew'
           url = '//hearttools.heart.org/aha_ahc20_testing/api/school/' + requestData + '/years-participated?key=XgUnZxvFcjZ4jEMT'
         else
@@ -145,7 +145,7 @@ angular.module 'ahaLuminateApp'
 
       updateSchoolYears: (requestData, callback) ->
         if $rootScope.tablePrefix is 'heartdev'
-          url = '//hearttools.heart.org/aha_ahc20_dev/api/school/' + requestData + '&key=k7wvZXDpmDpenVcp'
+          url = '//hearttools.heart.org/aha_ahc20_dev/api/school/' + requestData + '&key=RByQUbXzYLBchS3n'
         else if $rootScope.tablePrefix is 'heartnew'
           url = '//hearttools.heart.org/aha_ahc20_testing/api/school/' + requestData + '&key=XgUnZxvFcjZ4jEMT'
         else
