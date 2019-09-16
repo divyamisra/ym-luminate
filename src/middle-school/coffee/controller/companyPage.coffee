@@ -328,4 +328,20 @@ angular.module 'ahaLuminateControllers'
                 $scope.companyPageContent.mode = 'view'
                 if not $scope.$$phase
                   $scope.$apply()
-  ]
+                  
+      SchoolLookupService.getSchoolData()
+        .then (response) ->
+          schoolDataRows = response.data.getSchoolSearchDataResponse.schoolData
+          angular.forEach schoolDataRows, (schoolDataRow, schoolDataRowIndex) ->
+            if schoolDataRowIndex > 0
+              if $scope.companyId is schoolDataRow[0]
+                setCompanyCity schoolDataRow[1]
+                setCompanyState schoolDataRow[2]
+          return
+        
+      ZuriService.getSchoolYears $scope.companyId,
+        error: (response) ->
+          # TO DO
+        success: (response) ->
+          $scope.schoolYears = response.data.value
+   ]
