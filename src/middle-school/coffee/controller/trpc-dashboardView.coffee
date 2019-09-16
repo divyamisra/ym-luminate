@@ -632,4 +632,47 @@ angular.module 'trPcControllers'
             delete $scope.personalChallenge.updatePending
             getStudentChallenge()
 
+
+      $scope.schoolYearsInfo = {}
+      
+      if $scope.participantRegistration.companyInformation?.isCompanyCoordinator is 'true'
+        ZuriService.getSchoolYears $scope.participantRegistration.companyInformation.companyId,
+          failure: (response) ->
+            $scope.companyProgress.schoolYears = 0 
+          error: (response) ->
+            $scope.companyProgress.schoolYears = 0
+          success: (response) ->
+            if response.data.value isnt null
+              $scope.companyProgress.schoolYears = response.data.value
+            else 
+              $scope.companyProgress.schoolYears = 0
+      
+      $scope.editSchoolYears = ->
+        delete $scope.schoolYearsInfo.errorMessage
+        schoolYears = $scope.companyProgress.schoolYears
+        if schoolYears is '' or schoolYears is '0'
+          $scope.schoolYearsInfo.years = ''
+        else
+          $scope.schoolYearsInfo.years = schoolYears
+        $scope.editSchoolYearsModal = $uibModal.open
+          scope: $scope
+          templateUrl: APP_INFO.rootPath + 'dist/ym-primary/html/participant-center/modal/editSchoolYears.html'
+      
+      $scope.cancelEditSchoolYears = ->
+        $scope.editSchoolYearsModal.close()
+      
+      $scope.updateSchoolYears = ->
+        delete $scope.schoolYearsInfo.errorMessage
+        newYears = $scope.schoolYearsInfo.years
+        if not newYears or newYears is '' or newYears is '0' or isNaN(newYears)
+          $scope.schoolYearsInfo.errorMessage = 'Please specify a year greater than 0.'
+        else
+          updateSchoolYearPromise = ZuriService.updateSchoolYears $scope.participantRegistration.companyInformation.companyId + '/years-participated/update?value=' + newYears,
+            failure: (response) ->
+              $scope.schoolYearsInfo.errorMessage = 'Process failed to save years entered'
+            error: (response) ->
+              $scope.schoolYearsInfo.errorMessage = 'Error: ' + response.data.message
+            success: (response) ->
+              $scope.companyProgress.schoolYears = newYears
+              $scope.editSchoolYearsModal.close()
   ]
