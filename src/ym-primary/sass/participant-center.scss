@@ -156,22 +156,21 @@ section.ym-pc-dashboard-standard-gifts-section {
 	   background: $brand-white;
            margin: 5px 0 0 0;
 	   display:flex;
-	   flex-wrap: nowrap;
+	   flex-flow: row wrap;
 	   justift-content: space-around;
-		
-  	   @media (min-width: $screen-sm-min) {
-	      flex-wrap: wrap;
-	   }
         }
 	
 	.ym-pc-dashboard-standard-gifts-icon {
-           max-width: 270px;
+           max-width: 23%;
            margin: 0 11px 15px 0;
            vertical-align: top;
    	   position:relative;
 	   text-align:center;
 	   background: #eafbd7;
 	   padding: 20px;
+  	   @media (min-width: $screen-lg-min) {
+	      max-width: 225px;
+	   }
 		
 	   img {
 	      margin-bottom: 30px;
