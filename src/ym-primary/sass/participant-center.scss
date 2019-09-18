@@ -156,7 +156,12 @@ section.ym-pc-dashboard-standard-gifts-section {
 	   background: $brand-white;
            margin: 5px 0 0 0;
 	   display:flex;
-	   flex-wrap: wrap;
+	   flex-wrap: nowrap;
+	   justift-content: space-around;
+		
+  	   @media (min-width: $screen-sm-min) {
+	      flex-wrap: wrap;
+	   }
         }
 	
 	.ym-pc-dashboard-standard-gifts-icon {
