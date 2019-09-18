@@ -697,7 +697,7 @@
               <h2>
                 <span ng-bind-html="companyInfo.companyName"></span> Teams
               </h2>
-              <div class="dropdown" ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'">
+              <!-- <div class="dropdown" ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'">
                 <a data-toggle="dropdown">
                   <i class="glyphicon glyphicon-cog"></i> <u>Tasks</u>
                 </a>
@@ -706,7 +706,7 @@
                     <a id="download_company_team_list" ng-href="TRParticipantDownload/Company_Teams.csv?download_type=company_teams&amp;fr_id={{frId}}" target="_blank">Download Company Team List</a>
                   </li>
                 </ul>
-              </div>
+              </div> -->
             </div>
             <!-- TODO: empty state -->
             <trpc-company-team-list sort-column="companyTeams.sortColumn" sort-ascending="companyTeams.sortAscending" sort-teams="sortCompanyTeams" teams="companyTeams.teams"></trpc-company-team-list>

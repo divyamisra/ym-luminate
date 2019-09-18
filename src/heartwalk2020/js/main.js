@@ -797,6 +797,11 @@
             }
         });
 
+        // show EMC link if logged in visitor is EMC for this event
+        if($('.event-management-link-container').length){
+          $('.custom-event-management-link-container').removeClass('hidden');
+        }
+
         // Update placeholder text in mobile for top walker search
         if(screenWidth <= 1065) {
             $('#walkerFirstName').attr('placeholder', 'First Name');
@@ -897,7 +902,7 @@
                         $('.js--personal-don-form .donation-amount-btn').removeClass('active');
                         $('.paymentSelType').addClass('hidden');
                         $(this).addClass('active');
-                        $('.js--don-amt').text($(this).text());
+                        // $('.js--don-amt').text($(this).text());
                         finalDonUrl = defaultDonUrl + '&set.DonationLevel=' + $(this).data('level-id');
                         $('.js--personal-don-submit').attr('data-final-don-url', finalDonUrl);
 
@@ -927,11 +932,11 @@
                         if (keyCode != 9) {
                           $('.js--personal-don-form .donation-amount-btn').removeClass('active');
                           $('.custom-amount input[name="personalDonAmt"]').prop('checked', true);
-                          if($(this).val()){
-                            $('.js--don-amt').text('$' + $(this).val());
-                          } else {
-                            $('.js--don-amt').text('');
-                          }
+                          // if($(this).val()){
+                          //   $('.js--don-amt').text('$' + $(this).val());
+                          // } else {
+                          //   $('.js--don-amt').text('');
+                          // }
                           var customAmt = parseInt($(this).val()) * 100;
   
                           finalDonUrl = defaultDonUrl + '&set.DonationLevel=' + $('.js--don-amt-other').data('level-id') + (isNaN(customAmt) === true ? '' : '&set.Value=' + customAmt);
@@ -940,8 +945,8 @@
                       });
 
                       // Set default donation amount
-                      $('input[name="personalDonAmt"]').eq(0).click().prop('checked', true).closest('.donation-amount-btn').addClass('active');
-                      $('.js--don-amt').text($('.form-check-label').eq(0).text().trim());
+                      $('input[name="personalDonAmt"]').eq(1).click().prop('checked', true).closest('.donation-amount-btn').addClass('active');
+                      // $('.js--don-amt').text($('.form-check-label').eq(1).text().trim());
 
                    
                 

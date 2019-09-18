@@ -12,6 +12,10 @@ div[id^="taTextElement"]:focus {
     box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
 }
 
+select#ym-update-challenge {
+	color: #000000;
+}
+
 .ym-pc-dashboard-coordinator-school-years-section {
 	background-color: $event-accent-light;
 	padding: 36px;
