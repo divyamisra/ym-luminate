@@ -17,6 +17,18 @@ h5,
   font-weight: 700;
 }
 
+h2,
+.h2,
+.h2-heading,
+h3,
+.h3,
+.h3-heading,
+h4,
+.h4,
+.h4-heading {
+  color: $event-secondary-heading;
+}
+
 .ym-accent-color,
 .event-accent {
   h2,
@@ -44,5 +56,13 @@ h5,
   .h3,
   .h3-heading {
     text-shadow: none;
+  }
+}
+
+.event-secondary-medium {
+  h5, 
+  .h5, 
+  .h5-heading {
+    color: $event-secondary-heading;
   }
 }
