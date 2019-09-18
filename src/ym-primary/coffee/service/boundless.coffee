@@ -173,13 +173,13 @@ angular.module 'ahaLuminateApp'
           }
           {
             "id":"CHARMSOFIE-20"
-            "name":"Sophie"
+            "name":"Sofie"
             "status":0
             "level":"$40 online"
             "instant": 1
             "earned_title":"Color us happy!"
             "earned_subtitle1":"Nice job raising $40 online!"
-            "earned_subtitle2":"a Sophie charm"
+            "earned_subtitle2":"a Sofie charm"
           }
           {
             "id":"KHC"
