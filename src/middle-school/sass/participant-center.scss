@@ -15,3 +15,9 @@ div[id^="taTextElement"]:focus {
 select#ym-update-challenge {
 	color: #000000;
 }
+
+.ym-pc-dashboard-coordinator-school-years-section {
+	background-color: $event-accent-light;
+	padding: 36px;
+	margin: 0 0 30px;
+}

@@ -328,4 +328,10 @@ angular.module 'ahaLuminateControllers'
                 $scope.companyPageContent.mode = 'view'
                 if not $scope.$$phase
                   $scope.$apply()
-  ]
+                  
+      ZuriService.getSchoolYears $scope.companyId,
+        error: (response) ->
+          # TO DO
+        success: (response) ->
+          $scope.schoolYears = response.data.value
+   ]
