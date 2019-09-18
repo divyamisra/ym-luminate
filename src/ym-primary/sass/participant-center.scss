@@ -168,6 +168,13 @@ section.ym-pc-dashboard-standard-gifts-section {
 	   text-align:center;
 	   background: #eafbd7;
 	   padding: 20px;
+  
+	   @media (min-width: $screen-sm-min) {
+              max-width:45%;
+           }
+	   @media (min-width: $screen-xs-min) {
+              max-width:100%;
+           }
 		
 	   img {
 	      margin-bottom: 30px;
