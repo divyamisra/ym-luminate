@@ -21,6 +21,9 @@ angular.module 'ahaLuminateControllers'
       $scope.companyId = $location.absUrl().split('company_id=')[1].split('&')[0].split('#')[0]
       domain = $location.absUrl().split('/site/')[0]
       $rootScope.companyName = ''
+      $scope.hideAmount = ''
+      $scope.notifyName = ''
+      $scope.notifyEmail = ''
       $scope.eventDate = ''
       $scope.moneyDueDate = ''
       $scope.totalTeams = ''
@@ -134,6 +137,9 @@ angular.module 'ahaLuminateControllers'
                       $scope.eventDate = schoolDataRows[i][schoolDataHeaders.ED]
                       $scope.moneyDueDate = schoolDataRows[i][schoolDataHeaders.MDD]
                       $scope.schoolStudentGoal = schoolDataRows[i][schoolDataHeaders.PG]
+                      $scope.hideAmount = schoolDataRows[i][schoolDataHeaders.HA]
+                      $scope.notifyName = schoolDataRows[i][schoolDataHeaders.YMDN]
+                      $scope.notifyEmail = schoolDataRows[i][schoolDataHeaders.YMDE]
                       break
                     i++
 
