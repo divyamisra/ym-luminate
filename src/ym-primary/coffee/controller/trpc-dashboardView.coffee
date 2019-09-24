@@ -880,4 +880,12 @@ angular.module 'trPcControllers'
             success: (response) ->
               $scope.companyProgress.schoolYears = newYears
               $scope.editSchoolYearsModal.close()
+
+      $scope.showMobileApp = ->
+        $scope.viewMobileApp = $uibModal.open
+          scope: $scope
+          templateUrl: APP_INFO.rootPath + 'dist/ym-primary/html/participant-center/modal/viewMobileApp.html'
+
+      $scope.cancelMobileApp = ->
+        $scope.viewMobileApp.close()
   ]

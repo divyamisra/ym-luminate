@@ -13,10 +13,10 @@
       <div class="ym-pc-dashboard-badges-icons" role="list" aria-label="Badge List">
         <div class="ym-pc-dashboard-badges-icon" ng-repeat="prize in prizes" ng-cloak>
           <div ng-if="prize.earned">
-            <img class="img-responsive" ng-src="//s3.amazonaws.com/aha-oot-production/fy20/assets/badges/khc/{{prize.id}}_delivered.png" alt="">
+            <img class="img-responsive" ng-src="//s3.amazonaws.com/aha-oot-production/fy20/assets/badges/khc/{{prize.id}}_delivered.png" alt="{{prize.label}}">
           </div>
           <div ng-if="!prize.earned">
-            <img class="img-responsive" ng-src="//s3.amazonaws.com/aha-oot-production/fy20/assets/badges/khc/{{prize.id}}_earned.png" alt="">
+            <img class="img-responsive" ng-src="//s3.amazonaws.com/aha-oot-production/fy20/assets/badges/khc/{{prize.id}}_earned.png" alt="{{prize.label}}">
           </div>
           <div ng-if="prize.earned">
             <div class="ym-pc-dashboard-mission-accomplished">Mission Accomplished</div>
@@ -24,10 +24,10 @@
           </div>
           <div ng-if="!prize.earned">
             <a ng-if="prize.url_type=='Donate'" ng-href="Donation2?df_id={{eventInfo.donationFormId}}&amp;FR_ID={{frId}}&amp;PROXY_TYPE=20&amp;PROXY_ID={{consId}}" class="btn btn-md-wide btn-primary prizeCTA">{{prize.not_completed_label}}</a>
-            <a ng-if="prize.url_type=='Modal'" href="" ng-click="editSchoolGoal()" class="btn btn-md-wide btn-primary prizeCTA">{{prize.not_completed_label}}</a>
             <a ng-if="prize.url_type=='Tab'" ng-href="{{baseUrl}}{{prize.not_completed_url}}" class="btn btn-md-wide btn-primary prizeCTA">{{prize.not_completed_label}}</a>
             <a ng-if="prize.url_type=='URL'" ng-href="{{prize.not_completed_url}}" class="btn btn-md-wide btn-primary prizeCTA" target="_blank">{{prize.not_completed_label}}</a>
             <a ng-if="prize.url_type=='Quiz'" ng-href="http://hearttools.heart.org/aha_ym20{{tablePrefix == 'heartdev' ? '_dev' : (tablePrefix == 'heartnew' ? '_testing' : '')}}/quiz/show/{{prize.not_completed_url}}?event_id={{frId}}&user_id={{consId}}&name={{consNameFirst}}" class="btn btn-md-wide btn-primary prizeCTA" target="_blank">{{prize.not_completed_label}}</a>
+            <a href="" ng-if="prize.url_type=='Modal' && prize.not_completed_url=='app'" ng-click="showMobileApp()" class="btn btn-md-wide btn-primary prizeCTA" target="_blank">{{prize.not_completed_label}}</a>
             <span class="sr-only" ng-if="prize.earned">(earned)</span><span class="sr-only" ng-if="!prize.earned">(not yet earned)</span>
           </div>
         </div>
