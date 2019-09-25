@@ -198,6 +198,7 @@ section.ym-pc-dashboard-standard-gifts-section {
 
 	   a {
               text-decoration:none;
+	      display:block;
 	   }
 
 	   .ym-pc-dashboard-standard-gift-earned {
@@ -236,9 +237,6 @@ section.ym-pc-dashboard-standard-gifts-section {
 	      border-radius: 15px;
 	      margin-top:40px;
 	      margin-bottom:20px;
-	      &:focus {
-	         outline: 1px dotted #999999;
-	      }
 	   }
 	}
 	
