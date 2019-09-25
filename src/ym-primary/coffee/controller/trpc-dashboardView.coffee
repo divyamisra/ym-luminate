@@ -747,6 +747,8 @@ angular.module 'trPcControllers'
               $scope.schoolStudentGoal = schoolDataRows[i][schoolDataHeaders.PG]
               $scope.schoolStudentReg = schoolDataRows[i][schoolDataHeaders.TR]
               $scope.schoolStudentRegOnline = schoolDataRows[i][schoolDataHeaders.RO]
+              $scope.notifyName = schoolDataRows[i][schoolDataHeaders.YMDN]
+              $scope.notifyEmail = schoolDataRows[i][schoolDataHeaders.YMDE]
               break
             i++
       $scope.showPrize = (sku, label, earned) ->
