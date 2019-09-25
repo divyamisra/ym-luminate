@@ -139,6 +139,14 @@ a.ym-pc-dashboard-download-certificates {
 	max-width:200px;
 }
 
+.ym-pc-dashboard-coordinator-resources-contact {
+	text-align:center;
+	font-weight:bold;
+	margin-top:15px;
+	color: $event-secondary;
+}
+
+
 /* Gifts tab */
 section.ym-pc-dashboard-gifts-section {
 	h3.h6 {
@@ -167,6 +175,7 @@ section.ym-pc-dashboard-standard-gifts-section {
 	   text-align:center;
 	   background: #eafbd7;
 	   padding: 20px;
+	   flex: 1 100%;
   
 	   @media (max-width: $screen-sm-min) {
               max-width:45%;

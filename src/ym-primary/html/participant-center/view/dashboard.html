@@ -176,7 +176,7 @@
     <section class="ym-pc-dashboard-standard-gifts-section" aria-label="My Gifts">
       <div class="ym-pc-dashboard-section-header">
         <h2 class="h3">
-          You Earned <span ng-bind-html="giftsEarned"></span> out of <span ng-bind-html="totalGifts"></span> Thank You Gifts!
+          You Earned <span ng-bind-html="giftsEarned"></span> out of <span ng-bind-html="totalGifts"></span> Thank-You Gifts!
         </h2>
         <h3 class="h6" ng-if="giftsEarned != totalGifts">
           Continue sending emails and e-cards to receive additional thank-you gifts!
@@ -884,13 +884,13 @@
             </p>
             <div class="ym-activity-box-cta">
               <a class="btn btn-md-wide btn-primary" ng-href="https://khc.staging.ootqa.org/coordinator/login/{{authToken}}/{{sessionCookie}}" target="_blank" ng-if="tablePrefix == 'heartdev'" ng-cloak>
-                <strong>Thank You Gifts</strong>
+                <strong>Thank-You Gifts</strong>
               </a>
               <a class="btn btn-md-wide btn-primary" ng-href="https://khc.dev.ootqa.org/coordinator/login/{{authToken}}/{{sessionCookie}}" target="_blank" ng-if="tablePrefix == 'heartnew'" ng-cloak>
-                <strong>Thank You Gifts</strong>
+                <strong>Thank-You Gifts</strong>
               </a>
               <a class="btn btn-md-wide btn-primary" ng-href="https://kidsheartchallenge.heart.org/coordinator/login/{{authToken}}/{{sessionCookie}}" target="_blank" ng-if="tablePrefix == 'heart'" ng-cloak> 
-                <strong>Thank You Gifts</strong>
+                <strong>Thank-You Gifts</strong>
               </a>
             </div>
           </div>
@@ -949,6 +949,11 @@
       <div class="ym-pc-dashboard-coordinator-resources-more">
         <a ng-href="{{baseUrl}}#/teacher-resources">
           <strong>View All Resources</strong>
+        </a>
+      </div>
+      <div class="ym-pc-dashboard-coordinator-resources-contact" ng-if="notifyName != ''">
+        Questions about your program – contact your staff partner at: <a ng-href="mailto:{{notifyEmail}}">
+          <strong>{{notifyName}}</strong>
         </a>
       </div>
     </section>
