@@ -552,8 +552,9 @@
               $(participantData).each(function () {
                 console.log('getting top participants');
                 var participantName = this.name.first + ' ' + this.name.last;
-                var participantRaised = (parseInt(this.amountRaised) * 0.01);
-                var participantRaisedFormmatted = participantRaised.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+                var participantRaised = (parseInt(this.amountRaised) * 0.01).toFixed(2);
+              
+                var participantRaisedFormmatted = participantRaised.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,").replace('.00', '');
                 var participantId = this.consId;
                 var participantPage = this.personalPageUrl;
                 var isCaptain = this.aTeamCaptain;
@@ -584,8 +585,9 @@
 
               $(teamData).each(function (i) {
                 var teamName = this.name;
-                var teamRaised = (parseInt(this.amountRaised) * 0.01);
-                var teamRaisedFormmatted = teamRaised.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+                var teamRaised = (parseInt(this.amountRaised) * 0.01).toFixed(2);
+                
+                var teamRaisedFormmatted = teamRaised.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,").replace('.00', '');
                 var teamId = this.id;
 
                 var topTeamRow = '<li><div class="d-flex"><div class="flex-grow-1"><a href="TR/?team_id=' + teamId + '&amp;pg=team&amp;fr_id=' + evID + '">' + teamName + '</a></div><div class="raised">Raised<br><strong>$' + teamRaisedFormmatted + '</strong></div></div></li>';
@@ -620,8 +622,9 @@
 
               $(topCompanies).each(function () {
                 var companyName = this.companyName;
-                var companyRaised = (parseInt(this.amountRaised) * 0.01);
-                var companyRaisedFormmatted = companyRaised.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+                var companyRaised = (parseInt(this.amountRaised) * 0.01).toFixed(2);
+
+                var companyRaisedFormmatted = companyRaised.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,").replace('.00', '');
                 var topCompanyHtml = '<li><div class="d-flex"><div class="flex-grow-1"><a href="TR?company_id=' + this.companyId + '&fr_id=' + evID + '&pg=company">' + companyName + '</a></div><div class="raised">Raised<br><strong>$' + companyRaisedFormmatted + '</strong></div></div></li>';
 
                 $('.js--company-top-list ul').append(topCompanyHtml);
@@ -1022,8 +1025,8 @@
         
                   $(participants).each(function (i, participant) {
         
-                    var participantRaised = (parseInt(participant.amountRaised) * 0.01);
-                    var participantRaisedFormmatted = participantRaised.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+                    var participantRaised = (parseInt(participant.amountRaised) * 0.01).toFixed(2);
+                    var participantRaisedFormmatted = participantRaised.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,").replace('.00', '');
         
                     $('#team-roster tbody').append('<tr class="' + (i > 4 ? 'd-none' : '') + '"><td class="donor-name"><a href="' + participant.personalPageUrl + '">' +
                       participant.name.first + ' ' + participant.name.last +
@@ -1137,8 +1140,8 @@
 
           $(teams).each(function (i, team) {
             var companyName = team.companyName;
-            var teamRaised = (parseInt(team.amountRaised) * 0.01);
-            var teamRaisedFormmatted = teamRaised.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+            var teamRaised = (parseInt(team.amountRaised) * 0.01).toFixed(2);
+            var teamRaisedFormmatted = teamRaised.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,").replace('.00', '');
 
             $('#team-roster tbody').append('<tr class="' + (i > 4 ? 'd-none' : '') + '"> <td class="donor-name"> <a href="' + team.teamPageURL + '" data-sort="' + team.name + '">' + team.name + '</a> </td><td class="donor-name"> <a href="TR/?px=' + team.captainConsId + '&pg=personal&fr_id=' + team.EventId + '" data-sort="' + team.captainFirstName + ' ' + team.captainLastName + '">' + team.captainFirstName + ' ' + team.captainLastName + '</a> </td><td class="raised" data-sort="' + teamRaisedFormmatted + '"> <span><strong>$' + teamRaisedFormmatted + '</strong></span> </td><td> <a href="' + team.joinTeamURL + '">' + (screenWidth <= 480 ? 'Join' : 'Join Team') + '</a> </td></tr>');
           });
@@ -1191,8 +1194,8 @@ cd.getCompanyTeams();
 
           $(participants).each(function (i, participant) {
 
-            var participantRaised = (parseInt(participant.amountRaised) * 0.01);
-            var participantRaisedFormmatted = participantRaised.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+            var participantRaised = (parseInt(participant.amountRaised) * 0.01).toFixed(2);
+            var participantRaisedFormmatted = participantRaised.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,").replace('.00', '');
 
             $('#participant-roster tbody').append('<tr class="' + (i > 4 ? 'd-none' : '') + '"><td class="donor-name"><a href="' + participant.personalPageUrl + '">' +
               participant.name.first + ' ' + participant.name.last +
