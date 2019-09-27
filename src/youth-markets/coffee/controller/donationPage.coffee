@@ -382,8 +382,9 @@ angular.module 'ahaLuminateControllers'
           amt = angular.element('.ym-donation-levels__amount.active').find('.btn').text()
           console.log('button amt ' + amt + amt.length)
           amt = amt.split('$')[1]
-          amt = Number(amt)
-          console.log('amt ' + amt)
+
+        amt = Number(amt)
+        console.log('amt ' + amt)
 
         if amt
           fee = amt * 2.6 / 100 + 0.26
@@ -395,7 +396,7 @@ angular.module 'ahaLuminateControllers'
         if coverFeeStatus is true
           console.log('coverFeeStatus  is true')
           angular.element('#cover_fee_radio_Yes').prop 'checked', true
-          angular.element('#other_amount').val(amt)
+          document.getElementById('other_amount').val(amt)
 
         else
           angular.element('#cover_fee_radio_Yes').prop 'checked', false
