@@ -383,9 +383,9 @@ angular.module 'ahaLuminateControllers'
           console.log('button amt ' + amt + amt.length)
           amt = amt.split('$')[1]
           amt = Number(amt)
-          console.log('amt ' + amt + amt.length)
+          console.log('amt ' + amt)
 
-          if amt.length > 0
+          if amt
             fee = amt * 2.6 / 100 + 0.26
             console.log('fee ' + fee)
             total = amt + fee
