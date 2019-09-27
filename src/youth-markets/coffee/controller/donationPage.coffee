@@ -365,7 +365,7 @@ angular.module 'ahaLuminateControllers'
       addFeeCheckbox()
 
       calculateFee = (giftAmt) ->
-        giftAmt = Number(giftAmt)
+        giftAmt = giftAmt
         fee = giftAmt * 2.6% + 0.26
         console.log('fee ' + fee)
         return
@@ -376,11 +376,11 @@ angular.module 'ahaLuminateControllers'
         console.log('coverFeeStatus ' + coverFeeStatus)
 
         otherAmt = angular.element('#other_amount').val()
-        console.log('otherAmt ' + otherAmt typeof otherAmt)
+        console.log('otherAmt ' + otherAmt + typeof otherAmt)
         if otherAmt is '0'
           amt = angular.element('.ym-donation-levels__amount.active').find('.btn').text()
           amt = amt.split('$')[1]
-#          amt = Number(amt)
+          amt = Number amt
           console.log('amt ' + amt)
           getFee = calculateFee(amt)
           total = amt + getFee
