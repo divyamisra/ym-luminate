@@ -386,7 +386,7 @@ angular.module 'ahaLuminateControllers'
             amt = Number(amt)
             console.log('amt ' + amt)
 #            getFee = calculateFee(amt)
-            fee = giftAmt * 2.6 / 100 + 0.26
+            fee = amt * 2.6 / 100 + 0.26
             console.log('fee ' + fee)
             total = amt + fee
             console.log('total ' + total)
