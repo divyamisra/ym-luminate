@@ -386,12 +386,12 @@ angular.module 'ahaLuminateControllers'
         else
 #          angular.element('#billing_info_same_as_donorname').prop 'checked', false
 
-        document.getElementById('cover-fee-checkbox').onclick = ->
-         console.log('onclick function')
-         if angular.element('#cover-fee-checkbox').prop 'checked' is true
-           angular.element('#cover_fee_radio_Yes').prop 'checked', true
-         else
-           angular.element('#cover_fee_radio_Yes').prop 'checked', false
+      document.getElementById('cover-fee-checkbox').onclick = ->
+       console.log('onclick function')
+       if angular.element('#cover-fee-checkbox').prop 'checked' is true
+         angular.element('#cover_fee_radio_Yes').prop 'checked', true
+       else
+         angular.element('#cover_fee_radio_Yes').prop 'checked', false
 
       $scope.submitDonationForm = (e) ->
         # remove any credit card numbers from input fields other than the cc field
