@@ -370,30 +370,26 @@ angular.module 'ahaLuminateControllers'
         console.log('fee ' + fee)
         return
 
-      $scope.coverFee = ->
-        inputStatus = angular.element('#cover_fee_radio_Yes').prop 'checked'
-        console.log('cover fee status ' + inputStatus)
-        if inputStatus is true
-#          angular.element('#billing_info_same_as_donorname').prop 'checked', true
-           otherAmt = Number(angular.element('#other_amount').val())
-           console.log('otherAmt ' + otherAmt)
-           if otherAmt is ''
-             amt = angular.element('.ym-donation-levels__amount.active').find('.btn').text()
-             amt = amt.split('$')[1]
-             amt = Number(amt)
-             console.log('amt ' + amt)
-
-        else
-#          angular.element('#billing_info_same_as_donorname').prop 'checked', false
-
       document.getElementById('cover-fee-checkbox').onclick = ->
-       console.log('onclick function')
-       coverFeeStatus = angular.element('#cover-fee-checkbox').prop 'checked'
-       console.log('coverFeeStatus ' + coverFeeStatus)
-       if coverFeeStatus is true
-         angular.element('#cover_fee_radio_Yes').prop 'checked', true
-       else
-         angular.element('#cover_fee_radio_Yes').prop 'checked', false
+        console.log('onclick function')
+        coverFeeStatus = angular.element('#cover-fee-checkbox').prop 'checked'
+        console.log('coverFeeStatus ' + coverFeeStatus)
+
+        otherAmt = Number(angular.element('#other_amount').val())
+        console.log('otherAmt ' + otherAmt)
+        if otherAmt is ''
+          amt = angular.element('.ym-donation-levels__amount.active').find('.btn').text()
+          amt = amt.split('$')[1]
+          amt = Number(amt)
+          console.log('amt ' + amt)
+          getFee = calculateFee(amt)
+          total = amt + getFee
+          console.log('total ' + total)
+
+        if coverFeeStatus is true
+          angular.element('#cover_fee_radio_Yes').prop 'checked', true
+        else
+          angular.element('#cover_fee_radio_Yes').prop 'checked', false
 
       $scope.submitDonationForm = (e) ->
         # remove any credit card numbers from input fields other than the cc field
