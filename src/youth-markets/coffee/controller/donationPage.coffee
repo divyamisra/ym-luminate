@@ -364,11 +364,11 @@ angular.module 'ahaLuminateControllers'
           angular.element('label[for="cover_fee_radio_Yes"]').parent().before('<input type="checkbox" name="cover-fee-checkbox" id="cover-fee-checkbox"><label for="cover-fee-checkbox">&nbsp;I\'d like to cover all of the transaction fees so 100% of my donation goes to support the AHA</label>');
       addFeeCheckbox()
 
-      calculateFee = (giftAmt) ->
-        giftAmt = giftAmt
-        fee = giftAmt * 2.6 / 100 + 0.26
-        console.log('fee ' + fee)
-        return
+#      calculateFee = (giftAmt) ->
+#        giftAmt = giftAmt
+#        fee = giftAmt * 2.6 / 100 + 0.26
+#        console.log('fee ' + fee)
+#        return
 
       document.getElementById('cover-fee-checkbox').onclick = ->
         console.log('onclick function')
@@ -398,7 +398,7 @@ angular.module 'ahaLuminateControllers'
           amt = toString(amt)
           angular.element('#cover_fee_radio_Yes').prop 'checked', true
           document.getElementById('other_amount').value = amt
-          document.getElementById('other_amount').blur()
+          angular.element('#other_amount').trigger 'click'
 
         else
           angular.element('#cover_fee_radio_Yes').prop 'checked', false
