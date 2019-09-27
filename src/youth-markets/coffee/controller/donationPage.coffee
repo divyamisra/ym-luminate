@@ -375,17 +375,17 @@ angular.module 'ahaLuminateControllers'
         coverFeeStatus = angular.element('#cover-fee-checkbox').prop 'checked'
         console.log('coverFeeStatus ' + coverFeeStatus)
 
-        otherAmt = angular.element('#other_amount').val()
-        console.log('otherAmt ' + otherAmt + typeof otherAmt)
+        amt = angular.element('#other_amount').val()
+        console.log('other amt ' + amt + typeof amt)
 
-        if otherAmt is '0' || otherAmt is ''
+        if amt is '0' || amt is ''
           amt = angular.element('.ym-donation-levels__amount.active').find('.btn').text()
-          console.log('initial amt ' + amt + amt.length)
+          console.log('button amt ' + amt + amt.length)
+          amt = amt.split('$')[1]
+          amt = Number(amt)
+          console.log('amt ' + amt)
+
           if amt.length > 0
-            amt = amt.split('$')[1]
-            amt = Number(amt)
-            console.log('amt ' + amt)
-#            getFee = calculateFee(amt)
             fee = amt * 2.6 / 100 + 0.26
             console.log('fee ' + fee)
             total = amt + fee
@@ -393,8 +393,11 @@ angular.module 'ahaLuminateControllers'
 
         if coverFeeStatus is true
           angular.element('#cover_fee_radio_Yes').prop 'checked', true
+          angular.element('#other_amount').val(amt)
+
         else
           angular.element('#cover_fee_radio_Yes').prop 'checked', false
+
 
       $scope.submitDonationForm = (e) ->
         # remove any credit card numbers from input fields other than the cc field
