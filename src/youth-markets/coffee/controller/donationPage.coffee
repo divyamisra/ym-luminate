@@ -396,7 +396,8 @@ angular.module 'ahaLuminateControllers'
         if coverFeeStatus is true
           console.log('coverFeeStatus  is true')
           angular.element('#cover_fee_radio_Yes').prop 'checked', true
-          document.getElementById('other_amount').value = amt
+          document.getElementById('other_amount').value = toString(amt)
+          document.getElementById('other_amount').blur
 
         else
           angular.element('#cover_fee_radio_Yes').prop 'checked', false
