@@ -359,12 +359,12 @@ angular.module 'ahaLuminateControllers'
         else
           angular.element('#billing_info_same_as_donorname').prop 'checked', false
 
-      $scope.addFeeCheckbox = ->
+      addFeeCheckbox = ->
         if angular.element('#cover_fee_radio_Yes').length > 0
           angular.element('label[for="cover_fee_radio_Yes"]').parent().before('<input type="checkbox" name="cover-fee-checkbox" id="cover-fee-checkbox"><label for="cover-fee-checkbox">&nbsp;I\'d like to cover all of the transaction fees so 100% of my donation goes to support the AHA</label>');
       addFeeCheckbox()
 
-      $scope.calculateFee = (giftAmt) ->
+      calculateFee = (giftAmt) ->
         giftAmt = Number(giftAmt)
         fee = giftAmt * 2.6% + 0.26
         console.log('fee ' + fee)
