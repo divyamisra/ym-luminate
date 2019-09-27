@@ -387,6 +387,7 @@ angular.module 'ahaLuminateControllers'
 #          angular.element('#billing_info_same_as_donorname').prop 'checked', false
 
         document.getElementById('cover-fee-checkbox').onclick = ->
+         console.log('onclick function')
          if angular.element('#cover-fee-checkbox').prop 'checked' is true
            angular.element('#cover_fee_radio_Yes').prop 'checked', true
          else
