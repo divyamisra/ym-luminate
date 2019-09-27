@@ -2958,7 +2958,7 @@
 
       $('.donation-level-user-entered input[type="text"]').removeAttr('onfocus');
 
-      var askMessageHtml = '<div class="ask-message">Donors who give $5,000 or more each year join our Cor Vitae.</div>';
+      var askMessageHtml = '<div class="ask-message">Donors who give $5,000 or more each year join our <a target="_blank" href="https://www.heart.org/en/get-involved/ways-to-give/cor-vitae-society">Cor Vitae</a>.</div>';
       $(askMessageHtml).insertAfter('.don-standard-levels');
 
       $('.donation-level-amount-container').click(function() {
@@ -2975,6 +2975,7 @@
       $('.donation-level-amount-container').keydown(function(e) {
         var code = e.which
         if ((code === 13) || (code === 32)) {
+          e.preventDefault();
           $(this).click();
         }
       });

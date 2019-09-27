@@ -794,12 +794,12 @@
 
         div.donation-level-label-container,
         .donation-level-amount-container {
-          @include button-variant(#fff, $red, $red-deep, $red-deep, $red, $red);
+          @include button-variant(#636466, #636466, $red-deep, $red-deep, $red, $red);
           @include button-size(10px, 20px, 20px, 1.2, 0);
           text-align: center;
           vertical-align: top;
           cursor: pointer;
-          border: 2px solid $red;
+          border: 2px solid #636466;
         }
 
         .donation-level-label-input-container,
@@ -823,41 +823,42 @@
           }
 
           input[type="text"] {
-            @include button-variant(#fff, $red, $red-deep, $red-deep, $red, $red);
-            border: 2px solid $red;
+            @include button-variant(#636466, #636466, $red-deep, $red-deep, $red, $red);
+            border: 2px solid #636466;
             border-radius: 0;
             height: 48px;
             box-shadow: none;
             text-align: center;
             cursor: pointer;
+            font-size: 20px;
           }
 
           ::-webkit-input-placeholder {
             text-align: center;
-            color: #212529;
+            color: #ffffff;
           }
 
           ::-moz-placeholder {
             text-align: center;
-            color: #212529;
+            color: #ffffff;
           }
 
           :-ms-input-placeholder{
             text-align: center;
-            color: #212529;
+            color: #ffffff;
           }
 
           &:hover {
             ::-webkit-input-placeholder {
-              color: #fff;
+              color: #ffffff;
             }
 
             ::-moz-placeholder {
-              color: #fff;
+              color: #ffffff;
             }
 
             :-ms-input-placeholder{
-              color: #fff;
+              color: #ffffff;
             }
           }
 
