@@ -366,7 +366,7 @@ angular.module 'ahaLuminateControllers'
 
       calculateFee = (giftAmt) ->
         giftAmt = giftAmt
-        fee = giftAmt * 2.6% + 0.26
+        fee = giftAmt * 2.6 / 100 + 0.26
         console.log('fee ' + fee)
         return
 
@@ -377,14 +377,17 @@ angular.module 'ahaLuminateControllers'
 
         otherAmt = angular.element('#other_amount').val()
         console.log('otherAmt ' + otherAmt + typeof otherAmt)
+
         if otherAmt is '0' || otherAmt is ''
           amt = angular.element('.ym-donation-levels__amount.active').find('.btn').text()
-          amt = amt.split('$')[1]
-          amt = Number(amt)
-          console.log('amt ' + amt)
-          getFee = calculateFee(amt)
-          total = amt + getFee
-          console.log('total ' + total)
+          console.log('initial amt ' + amt + amt.length)
+          if amt.length > 0
+            amt = amt.split('$')[1]
+            amt = Number(amt)
+            console.log('amt ' + amt)
+            getFee = calculateFee(amt)
+            total = amt + getFee
+            console.log('total ' + total)
 
         if coverFeeStatus is true
           angular.element('#cover_fee_radio_Yes').prop 'checked', true
