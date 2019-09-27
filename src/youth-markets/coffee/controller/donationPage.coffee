@@ -359,6 +359,34 @@ angular.module 'ahaLuminateControllers'
         else
           angular.element('#billing_info_same_as_donorname').prop 'checked', false
 
+      $scope.addFeeCheckbox = ->
+        if angular.element('#cover_fee_radio_Yes').length > 0
+          angular.element('label[for="cover_fee_radio_Yes"]').parent().before('<input type="checkbox" name="cover-fee-checkbox" id="cover-fee-checkbox"><label for="cover-fee-checkbox">&nbsp;I\'d like to cover all of the transaction fees so 100% of my donation goes to support the AHA</label>');
+
+
+      $scope.calculateFee = (giftAmt) ->
+        giftAmt = Number(giftAmt)
+        fee = giftAmt * 2.6% + 0.26
+        console.log('fee ' + fee)
+        return
+
+      $scope.coverFee = ->
+        inputStatus = angular.element('#cover_fee_radio_Yes').prop 'checked'
+        console.log('cover fee status ' + inputStatus)
+        if inputStatus is true
+#          angular.element('#billing_info_same_as_donorname').prop 'checked', true
+           otherAmt = Number(angular.element('#other_amount').val())
+           console.log('otherAmt ' + otherAmt)
+           if otherAmt is ''
+             amt = angular.element('.ym-donation-levels__amount.active').find('.btn').text()
+             amt = amt.split('$')[1]
+             amt = Number(amt)
+             console.log('amt ' + amt)
+
+        else
+#          angular.element('#billing_info_same_as_donorname').prop 'checked', false
+
+
       $scope.submitDonationForm = (e) ->
         # remove any credit card numbers from input fields other than the cc field
         r = /((?:\d{4}[ -]?){3}\d{3,4})/gm
