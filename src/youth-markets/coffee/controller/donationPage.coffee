@@ -376,8 +376,8 @@ angular.module 'ahaLuminateControllers'
         console.log('coverFeeStatus ' + coverFeeStatus)
 
         otherAmt = Number(angular.element('#other_amount').val())
-        console.log('otherAmt ' + otherAmt)
-        if otherAmt is ''
+        console.log('otherAmt ' + otherAmt typeof otherAmt)
+        if otherAmt is '0'
           amt = angular.element('.ym-donation-levels__amount.active').find('.btn').text()
           amt = amt.split('$')[1]
           amt = Number(amt)
