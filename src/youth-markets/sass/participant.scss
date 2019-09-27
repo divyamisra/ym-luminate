@@ -669,13 +669,13 @@ main > .container {
     margin: 0 0 32px;
   }
   
-  .btn {
+  /*.btn {
     @media (min-width: $screen-md-min) {
       position: absolute;
       right: 60px;
       top: 0;
     }
-  }
+  }*/
 }
 
 .ym-pc-dashboard-badges-icons {
@@ -1768,7 +1768,7 @@ main > .container {
   margin: 0 0 15px;
 
   @media (min-width: $screen-sm-min) {
-    width: 135px;
+    width: 125px;
     margin: 0;
   }
 }

@@ -31,9 +31,7 @@ angular.module 'ahaLuminateControllers'
       if consId
         TeamraiserParticipantService.getRegisteredTeamraisers 'cons_id=' + consId + '&event_type=' + encodeURIComponent('YM Kids Heart Challenge'),
           error: ->
-            modalSet = readCookie 'modalSet'
-            if modalSet isnt 'true'
-              setModal()
+            # TODO
           success: (response) ->
             teamraisers = response.getRegisteredTeamraisersResponse.teamraiser
             numberEvents = 0
