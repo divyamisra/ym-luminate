@@ -6,7 +6,8 @@ angular.module 'trPcControllers'
     '$timeout'
     'APP_INFO'
     'FacebookFundraiserService'
-    ($rootScope, $scope, $location, $timeout, APP_INFO, FacebookFundraiserService) ->
+    'BoundlessService'
+    ($rootScope, $scope, $location, $timeout, APP_INFO, FacebookFundraiserService, BoundlessService) ->
       $rootScope.$location = $location
       $rootScope.baseUrl = $location.absUrl().split('#')[0]
       
@@ -79,6 +80,7 @@ angular.module 'trPcControllers'
                               jQuery('html, body').animate
                                 scrollTop: jQuery('.js--facebook-fundraiser-completed-section').offset().top - 150
                               , 250
+                          BoundlessService.logFundraiserCreated()
                   toggleFacebookFundraiserStatus()
           , scope: 'manage_fundraisers'
   ]

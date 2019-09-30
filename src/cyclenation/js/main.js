@@ -603,6 +603,7 @@
               var events = luminateExtend.utils.ensureArray(response.getTeamraisersResponse.teamraiser);
 
               var todaysDate = new Date();
+              todaysDate.setDate(todaysDate.getDate() - 1);
               var liveEventsDisplayed = 0;
               var pastEventsDisplayed = 0;
 
@@ -699,6 +700,7 @@
               var events = luminateExtend.utils.ensureArray(response.getTeamraisersResponse.teamraiser);
 
               var todaysDate = new Date();
+              todaysDate.setDate(todaysDate.getDate() - 1);
               var liveEventsDisplayed = 0;
               var pastEventsDisplayed = 0;
 
@@ -1975,7 +1977,8 @@
         .prepend('<div class="order-2 order-sm-1 col-sm-4 col-md-3 col-8 offset-2 offset-sm-0"><a href="TRR/?pg=tfind&amp;fr_id=' + evID + '" class="button btn-secondary btn-block">Back</a></div>')
 
       // Add minimum validation to LOs team goal input
-      $(loTeamGoal)
+      if (eventType2 === 'StationaryV2') {
+        $(loTeamGoal)
         .val(goalPerBike)
         .addClass('pl-0 border-left-0')
         .wrap('<div class="input-group" />')
@@ -1989,6 +1992,27 @@
           "data-parsley-type": "number",
           "data-parsley-min-message": minTeamGoalMsg
         });
+      } else {
+        var minTeamGoal = $(loTeamGoal).val();
+        minTeamGoal = Number(minTeamGoal.replace(/[^0-9\.-]+/g, ""));
+        
+        $(loTeamGoal)
+        .val(minTeamGoal)
+        .addClass('pl-0 border-left-0')
+        .wrap('<div class="input-group" />')
+        .before('<div class="input-group-prepend"><div class="input-group-text py-0 px-1 border-right-0 bg-white">$</div></div>')
+        .attr({
+          "min": minTeamGoal,
+          "step": "100",
+          "aria-label": "Goal amount (to the nearest dollar)",
+          "data-parsley-validation-threshold": "1",
+          "data-parsley-trigger": "keyup",
+          "data-parsley-type": "number",
+          "data-parsley-min-message": minTeamGoalMsg
+        });
+      }
+      
+
       $('#team_find_new_fundraising_goal_input_hint').before('<div class="team-goal-error"></div>');
 
       $('.js__show-team-bikes').on('click', function (e) {
