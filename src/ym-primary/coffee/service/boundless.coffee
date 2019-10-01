@@ -155,10 +155,10 @@ angular.module 'ahaLuminateApp'
             "id":"JR-20"
             "name":"Jump Rope"
             "status":0
-            "level":"$20"
+            "level":"$15"
             "instant": 2
             "earned_title":"Jumping for joy!"
-            "earned_subtitle1":"Way to jump in and raise $20!"
+            "earned_subtitle1":"Way to jump in and raise $15!"
             "earned_subtitle2":"a jump rope"
           }
           {
