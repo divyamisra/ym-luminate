@@ -379,7 +379,7 @@ angular.module 'ahaLuminateControllers'
         classList = angular.element('.other-amount').attr('class').split(/\s+/);
         console.log('classList ' + classList)
 #        $.each(classList, function(index, item) {
-        angular.forEach classList ->
+        angular.forEach classList (class) ->
           if this.startsWith('level') is true
             console.log('this ' + this)
         
