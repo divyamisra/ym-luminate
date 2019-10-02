@@ -3,6 +3,8 @@ angular.module 'trPcControllers'
     '$scope'
     'PageBuilderService'
     ($scope, PageBuilderService) ->
+      $scope.trustHtml = (html) ->
+        return $sce.trustAsHtml(html)
       PageBuilderService.getPageContent 'reus_ym_ahc_teacher_resources', 'tab=middleschool'
         .then (response) ->
           pageContent = response.data
