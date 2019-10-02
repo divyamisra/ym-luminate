@@ -2,7 +2,11 @@ angular.module 'trPcControllers'
   .controller 'NgPcTeacherResourcesViewCtrl', [
     '$scope'
     'PageBuilderService'
-    ($scope, PageBuilderService) ->
+    '$sce'
+    ($scope, PageBuilderService, $sce) ->
+      $scope.SkipValidation = (value) ->
+	      return $sce.trustAsHtml(value)
+      
       PageBuilderService.getPageContent 'reus_ym_khc_teacher_resources', ''
         .then (response) ->
           pageContent = response.data
