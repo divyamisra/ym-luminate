@@ -372,6 +372,18 @@ angular.module 'ahaLuminateControllers'
 
       document.getElementById('cover-fee-checkbox').onclick = ->
         console.log('onclick function')
+
+        otherInput = angular.element('.other-amount')
+        otherLevel = 
+
+        classList = angular.element('.other-amount').attr('class').split(/\s+/);
+        console.log('classList ' + classList)
+#        $.each(classList, function(index, item) {
+        angular.forEach classList, (index, item) ->
+          if item ^= 'level'
+            console.log('item ' + item)
+        
+
         coverFeeStatus = angular.element('#cover-fee-checkbox').prop 'checked'
         console.log('coverFeeStatus ' + coverFeeStatus)
 
