@@ -3,7 +3,7 @@ angular.module 'trPcControllers'
     '$scope'
     'PageBuilderService'
     ($scope, PageBuilderService) ->
-      PageBuilderService.getPageContent 'reus_ym_ahc_teacher_resources', ''
+      PageBuilderService.getPageContent 'reus_ym_ahc_teacher_resources', 'tab=middleschool'
         .then (response) ->
           pageContent = response.data
           if pageContent
