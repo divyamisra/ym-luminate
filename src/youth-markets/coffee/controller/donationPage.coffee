@@ -380,7 +380,7 @@ angular.module 'ahaLuminateControllers'
         console.log('classList ' + classList)
 #        $.each(classList, function(index, item) {
 #        angular.forEach classList (item) ->
-         jQuery.each classList, (i, val) ->
+         $.each classList, (i, val) ->
            console.log 'val ' + val
            return
 #           if this.startsWith('level') is true
