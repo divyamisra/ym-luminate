@@ -378,11 +378,14 @@ angular.module 'ahaLuminateControllers'
 
         classList = angular.element('.other-amount').attr('class').split(/\s+/);
         console.log('classList ' + classList)
+        levelId
         angular.forEach classList, (item) ->
           item = item
           console.log('item ' + item + item.startsWith('level'))
           if item.startsWith('level') is true
             console.log('this is the one ' + item)
+            levelId = item.split('level')[1]
+            console.log('levelId ' +levelId)
           return
 #           if this.startsWith('level') is true
 #             console.log('this ' + this)
@@ -415,7 +418,7 @@ angular.module 'ahaLuminateControllers'
           console.log('total now ' + total + typeof total)
           angular.element('#cover_fee_radio_Yes').prop 'checked', true
           document.getElementById('other_amount').value = total
-          selectLevel($event, 'other', donationLevel.levelId)
+          selectLevel($event, 'other', levelId)
 
         else
           angular.element('#cover_fee_radio_Yes').prop 'checked', false
