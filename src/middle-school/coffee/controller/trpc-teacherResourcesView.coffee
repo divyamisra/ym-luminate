@@ -2,7 +2,8 @@ angular.module 'trPcControllers'
   .controller 'NgPcTeacherResourcesViewCtrl', [
     '$scope'
     'PageBuilderService'
-    ($scope, PageBuilderService) ->
+    '$sce'
+    ($scope, PageBuilderService, $sce) ->
       $scope.trustHtml = (html) ->
         return $sce.trustAsHtml(html)
       PageBuilderService.getPageContent 'reus_ym_ahc_teacher_resources', 'tab=middleschool'
