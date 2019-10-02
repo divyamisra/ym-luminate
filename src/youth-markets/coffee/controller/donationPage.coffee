@@ -374,21 +374,19 @@ angular.module 'ahaLuminateControllers'
         console.log('onclick function')
 
         otherInput = angular.element('.other-amount')
-        otherLevel = 
+        otherLevel = 0
 
         classList = angular.element('.other-amount').attr('class').split(/\s+/);
         console.log('classList ' + classList)
-        levelId
+        
         angular.forEach classList, (item) ->
           item = item
-          console.log('item ' + item + item.startsWith('level'))
+          console.log('item ' + item)
           if item.startsWith('level') is true
             console.log('this is the one ' + item)
-            levelId = item.split('level')[1]
-            console.log('levelId ' +levelId)
+            otherLevel = item.split('level')[1]
+            console.log('otherLevel ' + otherLevel)
           return
-#           if this.startsWith('level') is true
-#             console.log('this ' + this)
         
 
         coverFeeStatus = angular.element('#cover-fee-checkbox').prop 'checked'
@@ -414,11 +412,10 @@ angular.module 'ahaLuminateControllers'
 
         if coverFeeStatus is true
           console.log('coverFeeStatus  is true')
-#          total = toString(total)
           console.log('total now ' + total + typeof total)
           angular.element('#cover_fee_radio_Yes').prop 'checked', true
           document.getElementById('other_amount').value = total
-          selectLevel($event, 'other', levelId)
+          selectLevel($event, 'other', otherLevel)
 
         else
           angular.element('#cover_fee_radio_Yes').prop 'checked', false
