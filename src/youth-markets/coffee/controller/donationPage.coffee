@@ -384,7 +384,7 @@ angular.module 'ahaLuminateControllers'
           amt = amt.split('$')[1]
 
         amt = Number(amt)
-        console.log('amt ' + amt typeof amt)
+        console.log('amt ' + amt + typeof amt)
 
         if amt
           fee = amt * 2.6 / 100 + 0.26
