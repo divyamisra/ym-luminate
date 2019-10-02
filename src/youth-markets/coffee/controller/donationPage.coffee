@@ -380,7 +380,9 @@ angular.module 'ahaLuminateControllers'
         console.log('classList ' + classList)
         angular.forEach classList, (item) ->
           item = item
-          console.log('item ' + item)
+          console.log('item ' + item + item.startsWith('level'))
+          if item.startsWith('level') is true
+            console.log('this is the one ' + item)
           return
 #           if this.startsWith('level') is true
 #             console.log('this ' + this)
