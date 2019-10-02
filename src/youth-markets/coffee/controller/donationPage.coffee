@@ -384,18 +384,18 @@ angular.module 'ahaLuminateControllers'
           amt = amt.split('$')[1]
 
         amt = Number(amt)
-        console.log('amt ' + amt)
+        console.log('amt ' + amt typeof amt)
 
         if amt
           fee = amt * 2.6 / 100 + 0.26
-          console.log('fee ' + fee)
+          console.log('fee ' + fee + typeof fee)
           total = amt + fee
           total = total.toFixed(2)
-          console.log('total ' + total)
+          console.log('total ' + total + typeof total)
 
         if coverFeeStatus is true
           console.log('coverFeeStatus  is true')
-          total = toString(total)
+#          total = toString(total)
           console.log('total now ' + total + typeof total)
           angular.element('#cover_fee_radio_Yes').prop 'checked', true
           document.getElementById('other_amount').value = total
