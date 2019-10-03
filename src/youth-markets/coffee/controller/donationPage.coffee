@@ -376,17 +376,17 @@ angular.module 'ahaLuminateControllers'
         otherInput = angular.element('.other-amount')
 #        otherLevel = 0
 
-        classList = angular.element('.other-amount').attr('class').split(/\s+/);
-        console.log('classList ' + classList)
+#        classList = angular.element('.other-amount').attr('class').split(/\s+/);
+#        console.log('classList ' + classList)
         
-        angular.forEach classList, (item) ->
-          item = item
-          console.log('item ' + item)
-          if item.startsWith('level') is true
-            console.log('this is the one ' + item)
-            otherLevel = item.split('level')[1]
-            console.log('otherLevel ' + otherLevel)
-          return
+#        angular.forEach classList, (item) ->
+#          item = item
+#          console.log('item ' + item)
+#          if item.startsWith('level') is true
+#            console.log('this is the one ' + item)
+#            otherLevel = item.split('level')[1]
+#            console.log('otherLevel ' + otherLevel)
+#          return
         
 
         coverFeeStatus = angular.element('#cover-fee-checkbox').prop 'checked'
@@ -413,6 +413,20 @@ angular.module 'ahaLuminateControllers'
         if coverFeeStatus is true
           console.log('coverFeeStatus  is true')
           console.log('total now ' + total + typeof total)
+
+          otherLevel = 0
+          classList = angular.element('.other-amount').attr('class').split(/\s+/);
+          console.log('classList ' + classList)
+        
+          angular.forEach classList, (item) ->
+            item = item
+            console.log('item ' + item)
+            if item.startsWith('level') is true
+              console.log('this is the one ' + item)
+              otherLevel = item.split('level')[1]
+              console.log('otherLevel ' + otherLevel)
+            return
+
           angular.element('#cover_fee_radio_Yes').prop 'checked', true
           document.getElementById('other_amount').value = total
           $scope.selectLevel(event, 'other', otherLevel)
