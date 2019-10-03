@@ -218,6 +218,10 @@ angular.module 'ahaLuminateControllers'
             localStorage['sustainingAmount'] = amount
               
         if type is 'other'
+          console.log('type is other')
+          console.log('donationInfo.levelType ' + $scope.donationInfo.levelType)
+          console.log('$scope.donationInfo.otherAmt ' + $scope.donationInfo.otherAmt)
+
           if type isnt $scope.donationInfo.levelType and $scope.donationInfo.otherAmt isnt ''
             levelSelect()
         else
