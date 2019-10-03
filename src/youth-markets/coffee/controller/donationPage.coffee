@@ -192,7 +192,7 @@ angular.module 'ahaLuminateControllers'
             angular.element('.btn-enter').val ''
             $scope.donationInfo.otherAmt = ''
             if amount isnt undefined
-              console.log('amount is not undefined)
+              console.log('amount is not undefined')
               localStorage['amount'] = amount
             localStorage['otherAmt'] = ''
           if $scope.donationGiftType is "installment"
