@@ -164,6 +164,7 @@ angular.module 'ahaLuminateControllers'
           populateBtnAmt $scope.donationInfo.levelType
 
       $scope.selectLevel = (event, type, level, amount) ->
+        console.log('selectLevel ' + event + type + level + amount)
         if amount is undefined
           amount = $scope.donationInfo.otherAmt
         levelSelect = ->
