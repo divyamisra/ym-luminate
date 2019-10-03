@@ -154,7 +154,8 @@ main > .container {
         font-size: 18px;
       }
       
-      &.ng-pc-nav-item--resources {
+      &.ng-pc-nav-item--resources,
+      &.ng-pc-nav-item--order-gifts {
         padding: 3px 6px 0;
         
         @media (min-width: 670px) {
