@@ -434,7 +434,7 @@ angular.module 'ahaLuminateControllers'
 
           angular.element('#cover_fee_radio_Yes').prop 'checked', true
           document.getElementById('other_amount').value = total
-          $scope.selectLevel(event, 'other', otherLevel, total)
+          $scope.selectLevel(event, 'other', otherLevel)
 
         else
           angular.element('#cover_fee_radio_Yes').prop 'checked', false
