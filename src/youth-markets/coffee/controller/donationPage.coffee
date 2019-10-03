@@ -167,7 +167,11 @@ angular.module 'ahaLuminateControllers'
         console.log('selectLevel event: ' + event + ' type: ' + type + ' level: ' + level + ' amount: ' + amount)
         if amount is undefined
           amount = $scope.donationInfo.otherAmt
+          console.log('amount ' + amount)
+
         levelSelect = ->
+          console.log('levelSelect')
+
           angular.element('.ym-donation-levels__amount .btn-toggle.active').removeClass 'active'
           angular.element('.ym-donation-levels__amount .btn-toggle.level' + level).addClass 'active'
           angular.element('.ym-donation-levels__amount').removeClass 'active'
@@ -177,17 +181,27 @@ angular.module 'ahaLuminateControllers'
           angular.element('.donation-level-container.level' + level + ' input').click()
 
           $scope.donationInfo.amount = amount
+          console.log('$scope.donationInfo.amount ' +$scope.donationInfo.amount)
           $scope.donationInfo.levelType = type
+          console.log('$scope.donationInfo.levelType ' +$scope.donationInfo.levelType)
           localStorage['levelType'] = type
+
           populateBtnAmt type
           if type is 'level'
+            console.log('if type is level')
             angular.element('.btn-enter').val ''
             $scope.donationInfo.otherAmt = ''
             if amount isnt undefined
+              console.log('amount isn't undefined)
               localStorage['amount'] = amount
             localStorage['otherAmt'] = ''
           if $scope.donationGiftType is "installment"
+
+            console.log('$scope.donationGiftType is installment')
+
             if $scope.donationInfo.monthly is true
+              console.log('$scope.donationInfo.monthly is true')
+
               number = angular.element('#level_installmentduration').val()
               number = Number number.split(':')[1]
               if number is 0
@@ -200,10 +214,14 @@ angular.module 'ahaLuminateControllers'
                 calculateInstallment(number)
               , 500
             else
+              console.log('installment is not monthly')
               $scope.donationInfo.installmentAmount = amount
               $scope.donationInfo.numberPayments = 1
 
           if $scope.donationGiftType is "flexible"
+
+            console.log('$scope.donationGiftType is flexible')
+
             if $scope.donationInfo.monthly is true
               #angular.element('#level_flexiblegift_type2').trigger 'click'
               if $scope.donationInfo.levelType is 'level'
@@ -223,8 +241,10 @@ angular.module 'ahaLuminateControllers'
           console.log('$scope.donationInfo.otherAmt ' + $scope.donationInfo.otherAmt)
 
           if type isnt $scope.donationInfo.levelType and $scope.donationInfo.otherAmt isnt ''
+            console.log('running levelSelect')
             levelSelect()
         else
+          console.log('type is not other or level')
           levelSelect()
 
       $scope.enterAmount = (amount) ->
@@ -434,7 +454,7 @@ angular.module 'ahaLuminateControllers'
 
           angular.element('#cover_fee_radio_Yes').prop 'checked', true
           document.getElementById('other_amount').value = total
-          $scope.selectLevel(event, 'other', otherLevel)
+          $scope.selectLevel(event, 'other', otherLevel, total)
 
         else
           angular.element('#cover_fee_radio_Yes').prop 'checked', false
