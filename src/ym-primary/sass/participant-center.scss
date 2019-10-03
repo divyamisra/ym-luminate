@@ -250,6 +250,11 @@ section.ym-pc-dashboard-standard-gifts-section {
 		
 }
 
+div.ta-editor table.containFull, 
+div.ta-editor table.containFull table {
+	width: auto !important;
+}
+
 .modal-dialog {
    .ym-pc-dashboard-gift-earned {
       color: #440075;
