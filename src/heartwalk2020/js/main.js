@@ -612,7 +612,7 @@
       luminateExtend.api({
         api: 'teamraiser',
         data: 'method=getCompanyList&fr_id=' + eventId +
-          '&include_cross_event=true&list_sort_column=total&list_ascending=false&response_format=json',
+          '&include_cross_event=true&response_format=json',
         callback: {
           success: function (response) {
             if (!$.isEmptyObject(response.getCompanyListResponse)) {
@@ -639,7 +639,7 @@
                 var a1= a.amountRaised, b1= b.amountRaised;
                 if(a1== b1) return 0;
                 return a1> b1? 1: -1;
-            });
+              });
 
               $(sortedAncestorCompanies).each(function () {
                 var companyName = this.companyName;
