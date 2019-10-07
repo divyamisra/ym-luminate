@@ -1995,7 +1995,7 @@
       } else {
         var minTeamGoal = $(loTeamGoal).val();
         minTeamGoal = Number(minTeamGoal.replace(/[^0-9\.-]+/g, ""));
-        
+
         $(loTeamGoal)
         .val(minTeamGoal)
         .addClass('pl-0 border-left-0')
@@ -2011,7 +2011,7 @@
           "data-parsley-min-message": minTeamGoalMsg
         });
       }
-      
+
 
       $('#team_find_new_fundraising_goal_input_hint').before('<div class="team-goal-error"></div>');
 
@@ -2992,7 +2992,7 @@
 
       $('.donation-level-user-entered input[type="text"]').removeAttr('onfocus');
 
-      var askMessageHtml = '<div class="ask-message">Donors who give $5,000 or more each year join our <a target="_blank" href="https://www.heart.org/en/get-involved/ways-to-give/cor-vitae-society">Cor Vitae</a>.</div>';
+      var askMessageHtml = '<div class="ask-message">Donors who give $5,000 or more each year join our <a target="_blank" href="https://www.heart.org/en/get-involved/ways-to-give/cor-vitae-society">Cor Vitae Giving Society</a>.</div>';
       $(askMessageHtml).insertAfter('.don-standard-levels');
 
       $('.donation-level-amount-container').click(function() {
