@@ -757,7 +757,9 @@
     input[type="checkbox"] {
       margin-right: 0.5em;
     }
-
+    input[type="radio"]{
+      vertical-align: middle;
+    }
     input[type="radio"] + label,
     input[type="checkbox"] + label {
       margin-right: 3.7em;
@@ -927,7 +929,7 @@
             width: 36px;
             height: 36px;
             padding: 8px 0;
-            margin: 0 0 0.25em 0.75em;
+            margin: 0 0 0.25em 0;
 
             #search-icon {
               width: 18px;
@@ -1021,15 +1023,15 @@
             }
 
             img {
-              width: 155px;
-              margin-bottom: 8px;
+              width: 125px;
+              // margin-bottom: 8px;
             }
           }
 
           .payment-type-option {
             text-align: center;
             border-radius: 32px;
-            font-size: 2em;
+            // font-size: 2em;
             padding: 0.3em 1.5em;
 
             label {
@@ -1047,7 +1049,7 @@
         }
 
         #responsive_payment_typecc_type_row {
-          margin-left: 3.5em;
+          // margin-left: 3.5em;
 
           @include media-breakpoint-down(md) {
             text-align: center;
@@ -1085,7 +1087,7 @@
         .form-row {
           //float: left;
           width: 300px;
-          display: inline-block;
+          display: block;
 
           @include media-breakpoint-down(md) {
             display: block;
@@ -1141,10 +1143,10 @@
             .cc-expiration-date-month-container {
               float: left;
             }
-            .cc-expiration-date-year-container {
-              align-self: flex-end;
-              align-items: flex-end;
-            }
+            // .cc-expiration-date-year-container {
+            //   align-self: flex-end;
+            //   align-items: flex-end;
+            // }
           }
         }
       }
@@ -1189,7 +1191,7 @@
       margin-top: 2em;
 
       #pstep_finish {
-        font-size: 2em;
+        font-size: 1.4em;
         width: auto;
       }
     }

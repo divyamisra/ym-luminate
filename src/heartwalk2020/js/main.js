@@ -552,8 +552,9 @@
               $(participantData).each(function () {
                 console.log('getting top participants');
                 var participantName = this.name.first + ' ' + this.name.last;
-                var participantRaised = (parseInt(this.amountRaised) * 0.01);
-                var participantRaisedFormmatted = participantRaised.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+                var participantRaised = (parseInt(this.amountRaised) * 0.01).toFixed(2);
+              
+                var participantRaisedFormmatted = participantRaised.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,").replace('.00', '');
                 var participantId = this.consId;
                 var participantPage = this.personalPageUrl;
                 var isCaptain = this.aTeamCaptain;
@@ -584,8 +585,9 @@
 
               $(teamData).each(function (i) {
                 var teamName = this.name;
-                var teamRaised = (parseInt(this.amountRaised) * 0.01);
-                var teamRaisedFormmatted = teamRaised.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+                var teamRaised = (parseInt(this.amountRaised) * 0.01).toFixed(2);
+                
+                var teamRaisedFormmatted = teamRaised.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,").replace('.00', '');
                 var teamId = this.id;
 
                 var topTeamRow = '<li><div class="d-flex"><div class="flex-grow-1"><a href="TR/?team_id=' + teamId + '&amp;pg=team&amp;fr_id=' + evID + '">' + teamName + '</a></div><div class="raised">Raised<br><strong>$' + teamRaisedFormmatted + '</strong></div></div></li>';
@@ -620,8 +622,9 @@
 
               $(topCompanies).each(function () {
                 var companyName = this.companyName;
-                var companyRaised = (parseInt(this.amountRaised) * 0.01);
-                var companyRaisedFormmatted = companyRaised.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+                var companyRaised = (parseInt(this.amountRaised) * 0.01).toFixed(2);
+
+                var companyRaisedFormmatted = companyRaised.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,").replace('.00', '');
                 var topCompanyHtml = '<li><div class="d-flex"><div class="flex-grow-1"><a href="TR?company_id=' + this.companyId + '&fr_id=' + evID + '&pg=company">' + companyName + '</a></div><div class="raised">Raised<br><strong>$' + companyRaisedFormmatted + '</strong></div></div></li>';
 
                 $('.js--company-top-list ul').append(topCompanyHtml);
@@ -686,7 +689,7 @@
             }
 
             if ($('body').is('.pg_company')) {
-                
+             
                 $('.team-roster form .btn').html('<i class="fas fa-search"></i>');
                 $('#participant-roster td:nth-child(3) a').html('Donate');
             }
@@ -703,12 +706,20 @@
           }
         });
         $('#team-roster_info, #team-roster_filter').wrapAll('<div class="row"></div>');
-        $('#team-roster_info').insertBefore($('#team-roster_filter')).wrap('<div class="col-lg-6 col-md-12 sorter d-flex align-items-end"></div>');
+        $('#team-roster_info').insertBefore($('#team-roster_filter')).wrap('<div class="col-lg-6 col-md-12 sorter pl-md-0"></div>');
         $('#team-roster_filter').wrap('<div class="col-lg-6 col-md-12"></div>');
 
         $('#team-roster_filter input[type="search"]').attr('id', 'team_search').wrap('<div class="input-group"></div>').addClass('form-control').after('<div class="input-group-append"><button class="btn btn-primary btn-outline-secondary" type="button">Search <i class="fas fa-search"></i></button></div>');
 
         $('#team-roster_filter label').attr('for', 'team_search');
+
+        // Add general team donation total and link
+        var genTeamDonAmt = $('.team-roster-participant-name:contains("Team Gifts")').next().text();
+        $('.js--gen-team-don-total').text(genTeamDonAmt);
+
+        $('#team-roster_wrapper .sorter').prepend($('.js--gen-team-don-container'));
+
+        $('.js--gen-team-don-container').show();
     
     };
 
@@ -797,6 +808,11 @@
             }
         });
 
+        // show EMC link if logged in visitor is EMC for this event
+        if($('.event-management-link-container').length){
+          $('.custom-event-management-link-container').removeClass('hidden');
+        }
+
         // Update placeholder text in mobile for top walker search
         if(screenWidth <= 1065) {
             $('#walkerFirstName').attr('placeholder', 'First Name');
@@ -879,11 +895,13 @@
                       $('.donation-amounts').append('<label class="form-check-label donation-amount-btn btn mb-3" for="personalDonAmt' + i + '" data-level-id="' + levelID + '"> <input class="form-check-input" type="radio" name="personalDonAmt" id="personalDonAmt' + i + '" value="' + levelID + '"> ' + amountFormatted + '</label>');                      
                     } else {
                       // build user-specified level
-                      $('.donation-amounts').append('<div class="custom-amount"> <input class="form-check-input sr-only" type="radio" name="personalDonAmt" id="personalDonAmt' + i + '" value="' + levelID + '"> <label class="js--don-amt-other sr-only" for="personalDonAmt' + i + '" data-level-id="' + levelID + '">Enter your own amount</label> <label class="form-label d-inline-block" for="personalOtherAmt">Custom Amount:</label><br/> <input type="text" id="personalOtherAmt" class="form-control d-inline-block js--personal-amt-other"/> </div>');                     
+                      $('.donation-amounts').append('<div class="custom-amount"> <input class="form-check-input other-amt-radio sr-only" type="radio" name="personalDonAmt" id="personalDonAmt' + i + '" value="' + levelID + '"> <label class="js--don-amt-other sr-only" for="personalDonAmt' + i + '" data-level-id="' + levelID + '">Enter your own amount</label> <label class="form-label d-inline-block" for="personalOtherAmt">Custom Amount:</label><br/> <input type="text" id="personalOtherAmt" class="form-control d-inline-block js--personal-amt-other" data-parsley-min="25" data-parsley-min-message="Donations of all amounts are greatly appreciated. Online donations have a $25 minimum."/> </div>');                     
                     }
                   });
 
+                  $('.custom-amount').after('<span class="error-row"></span>');
 
+                  
                       $('.js--personal-don-form').removeClass('hidden');
                       var defaultDonUrl = $('.js--personal-don-submit').data('don-url');
                       var finalDonUrl = null;
@@ -895,7 +913,7 @@
                         $('.js--personal-don-form .donation-amount-btn').removeClass('active');
                         $('.paymentSelType').addClass('hidden');
                         $(this).addClass('active');
-                        $('.js--don-amt').text($(this).text());
+                        // $('.js--don-amt').text($(this).text());
                         finalDonUrl = defaultDonUrl + '&set.DonationLevel=' + $(this).data('level-id');
                         $('.js--personal-don-submit').attr('data-final-don-url', finalDonUrl);
 
@@ -925,12 +943,12 @@
                         if (keyCode != 9) {
                           $('.js--personal-don-form .donation-amount-btn').removeClass('active');
                           $('.custom-amount input[name="personalDonAmt"]').prop('checked', true);
-                          if($(this).val()){
-                            $('.js--don-amt').text('$' + $(this).val());
-                          } else {
-                            $('.js--don-amt').text('');
-                          }
-                          var customAmt = parseInt($(this).val()) * 10;
+                          // if($(this).val()){
+                          //   $('.js--don-amt').text('$' + $(this).val());
+                          // } else {
+                          //   $('.js--don-amt').text('');
+                          // }
+                          var customAmt = parseInt($(this).val()) * 100;
   
                           finalDonUrl = defaultDonUrl + '&set.DonationLevel=' + $('.js--don-amt-other').data('level-id') + (isNaN(customAmt) === true ? '' : '&set.Value=' + customAmt);
                           $('.js--personal-don-submit').attr('data-final-don-url', finalDonUrl);
@@ -938,9 +956,11 @@
                       });
 
                       // Set default donation amount
-                      $('input[name="personalDonAmt"]').eq(0).click().prop('checked', true).closest('.donation-amount-btn').addClass('active');
-                      $('.js--don-amt').text($('.form-check-label').eq(0).text().trim());
+                      $('input[name="personalDonAmt"]').eq(1).click().prop('checked', true).closest('.donation-amount-btn').addClass('active');
+                      // $('.js--don-amt').text($('.form-check-label').eq(1).text().trim());
 
+                   
+                
                       // redirect is now managed in amazonpay.js
                       // $('.js--personal-don-form').on('submit', function(e){
                       //   e.preventDefault();
@@ -1005,8 +1025,8 @@
         
                   $(participants).each(function (i, participant) {
         
-                    var participantRaised = (parseInt(participant.amountRaised) * 0.01);
-                    var participantRaisedFormmatted = participantRaised.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+                    var participantRaised = (parseInt(participant.amountRaised) * 0.01).toFixed(2);
+                    var participantRaisedFormmatted = participantRaised.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,").replace('.00', '');
         
                     $('#team-roster tbody').append('<tr class="' + (i > 4 ? 'd-none' : '') + '"><td class="donor-name"><a href="' + participant.personalPageUrl + '">' +
                       participant.name.first + ' ' + participant.name.last +
@@ -1050,15 +1070,29 @@
 
     if ($('body').is('.pg_company')) {
       // Company Page
+
+        // Populate company name from page title
+        var pageTitle = jQuery('head title').text().trim();
+        var start_pos = pageTitle.indexOf(':') + 1;
+        var end_pos = pageTitle.indexOf('-',start_pos);
+        var companyName = pageTitle.substring(start_pos,end_pos).trim();
+        $('.js--company-name').text(companyName);
+
         // Populate total raised
-        var raised = $('.company-tally-container--amount .company-tally-ammount').text();
+        // var raised = $('.company-tally-container--amount .company-tally-ammount').text();
+        // var raised = $('#company_page_frstatus3 .amount-raised-value').text();
+        var raised = $('.indicator-title:contains("Company Fundraising Status")').parent().find('.amount-raised-value').text();
+
         if (raised) {
             $('#progress-amount').html(raised);
         }
 
         // Get company goal
         $('.indicator-title:contains("Company Fundraising")').closest('.tr-status-indicator-container').addClass('default-company-thermometer');
-        var companyoGoalText = $('.default-company-thermometer .total-goal-value').text();
+        // var companyoGoalText = $('.default-company-thermometer .total-goal-value').text();
+        var companyoGoalText = $('.indicator-title:contains("Company Fundraising Status")').parent().find('.total-goal-value').text();
+
+
         var companyGoal = companyoGoalText.split('.');
         $('#goal-amount').html(companyGoal[0]);
 
@@ -1106,11 +1140,8 @@
 
           $(teams).each(function (i, team) {
             var companyName = team.companyName;
-            if(i === 0){
-              $('.js--company-name').text(companyName);
-            }
-            var teamRaised = (parseInt(team.amountRaised) * 0.01);
-            var teamRaisedFormmatted = teamRaised.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+            var teamRaised = (parseInt(team.amountRaised) * 0.01).toFixed(2);
+            var teamRaisedFormmatted = teamRaised.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,").replace('.00', '');
 
             $('#team-roster tbody').append('<tr class="' + (i > 4 ? 'd-none' : '') + '"> <td class="donor-name"> <a href="' + team.teamPageURL + '" data-sort="' + team.name + '">' + team.name + '</a> </td><td class="donor-name"> <a href="TR/?px=' + team.captainConsId + '&pg=personal&fr_id=' + team.EventId + '" data-sort="' + team.captainFirstName + ' ' + team.captainLastName + '">' + team.captainFirstName + ' ' + team.captainLastName + '</a> </td><td class="raised" data-sort="' + teamRaisedFormmatted + '"> <span><strong>$' + teamRaisedFormmatted + '</strong></span> </td><td> <a href="' + team.joinTeamURL + '">' + (screenWidth <= 480 ? 'Join' : 'Join Team') + '</a> </td></tr>');
           });
@@ -1163,8 +1194,8 @@ cd.getCompanyTeams();
 
           $(participants).each(function (i, participant) {
 
-            var participantRaised = (parseInt(participant.amountRaised) * 0.01);
-            var participantRaisedFormmatted = participantRaised.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+            var participantRaised = (parseInt(participant.amountRaised) * 0.01).toFixed(2);
+            var participantRaisedFormmatted = participantRaised.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,").replace('.00', '');
 
             $('#participant-roster tbody').append('<tr class="' + (i > 4 ? 'd-none' : '') + '"><td class="donor-name"><a href="' + participant.personalPageUrl + '">' +
               participant.name.first + ' ' + participant.name.last +

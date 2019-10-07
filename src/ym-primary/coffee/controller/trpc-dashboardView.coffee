@@ -607,6 +607,7 @@ angular.module 'trPcControllers'
             getStudentChallenge()
       
       $scope.prizes = []
+      $scope.prizesEarned = 0
       BoundlessService.getBadges $scope.consId
       .then (response) ->
         prizes = response.data.prizes
@@ -617,6 +618,12 @@ angular.module 'trPcControllers'
             sku: prize.sku
             status: prize.status
             earned: prize.earned_datetime
+            completed_label: prize.completed_label
+            not_completed_label: prize.not_completed_label
+            not_completed_url: prize.not_completed_url
+            url_type: prize.url_type
+          if prize.status == 1
+            $scope.prizesEarned++
       , (response) ->
         # TODO
       
@@ -723,4 +730,164 @@ angular.module 'trPcControllers'
         else
           url = 'https://kidsheartchallenge.heart.org'
         window.open url + '/student/login/' + $scope.authToken + '/' + $scope.sessionCookie
+
+      NgPcTeamraiserCompanyService.getSchoolDates()
+        .then (response) ->
+          schoolDataRows = response.data.getSchoolDatesResponse.schoolData
+          schoolDataHeaders = {}
+          schoolDates = {}
+          angular.forEach schoolDataRows[0], (schoolDataHeader, schoolDataHeaderIndex) ->
+            schoolDataHeaders[schoolDataHeader] = schoolDataHeaderIndex
+          i = 0
+          len = schoolDataRows.length
+          while i < len
+            if $rootScope.companyInfo.companyId is schoolDataRows[i][schoolDataHeaders.CID]
+              $scope.eventDate = schoolDataRows[i][schoolDataHeaders.ED]
+              $scope.moneyDueDate = schoolDataRows[i][schoolDataHeaders.MDD]
+              $scope.schoolStudentGoal = schoolDataRows[i][schoolDataHeaders.PG]
+              $scope.schoolStudentReg = schoolDataRows[i][schoolDataHeaders.TR]
+              $scope.schoolStudentRegOnline = schoolDataRows[i][schoolDataHeaders.RO]
+              $scope.notifyName = schoolDataRows[i][schoolDataHeaders.YMDN]
+              $scope.notifyEmail = schoolDataRows[i][schoolDataHeaders.YMDE]
+              break
+            i++
+      $scope.showPrize = (sku, label, earned) ->
+        $scope.prize_sku = sku
+        $scope.prize_label = label
+        $scope.prize_status = earned
+        $scope.viewPrizeModal = $uibModal.open
+          scope: $scope
+          templateUrl: APP_INFO.rootPath + 'dist/ym-primary/html/participant-center/modal/viewPrize.html'
+
+      $scope.cancelShowPrize = ->
+        $scope.viewPrizeModal.close()
+
+      getRandomID = ->
+        return Math.floor((Math.random()*3)+1);
+
+      defaultStandardGifts = BoundlessService.defaultStandardGifts()
+      
+      $scope.upcomingGifts = []
+      $scope.giftsEarned = 0
+      $scope.totalGifts = 0
+      
+      BoundlessService.getPrizes $scope.consId
+      .then (response) ->
+        students = response.data.student
+        angular.forEach students, (student) ->
+          if student.has_bonus
+             giftLevels = BoundlessService.giftLevels_instant()
+          else
+             giftLevels = BoundlessService.giftLevels_noninstant()
+          current_level = if student.current_level != null then student.current_level else '$0'
+          #get total number of gifts student can get
+          giftsInList = 0
+          angular.forEach defaultStandardGifts, (gift, key) ->
+            if student.has_bonus and (gift.instant == 1 or gift.instant == 2) or !student.has_bonus and (gift.instant == 0 or gift.instant == 2)
+              giftsInList++
+          
+          prevstatus = -1
+          startList = 0
+          listCnt = 1
+          giftPrev = ""
+          giftToAdd = 3 # after adding first one - add 3 more
+          angular.forEach defaultStandardGifts, (gift, key) ->
+            if student.has_bonus and (gift.instant == 1 or gift.instant == 2) or !student.has_bonus and (gift.instant == 0 or gift.instant == 2)
+              status = 0
+              lastItem = 0
+              if jQuery.inArray(gift.id,giftLevels[current_level]) isnt -1
+                status = 1
+              # if nothing has been earned yet
+              if prevstatus == -1 and status == 0 and $scope.giftsEarned == 0
+                startList = 1
+                giftToAdd = 4 # need to add next 4 to list
+              # if prev item is the last item earned then add and start pusing in items
+              if prevstatus == 1 and status == 0 and startList == 0
+                startList = 1
+                $scope.upcomingGifts.push
+                  prize_label: giftPrev.name
+                  prize_sku: giftPrev.id
+                  prize_status: prevstatus
+                  lastItem: 1
+                  randomID: getRandomID()
+                  prize_level: giftPrev.level
+                  earned_title: giftPrev.earned_title
+                  earned_subtitle1: giftPrev.earned_subtitle1
+                  earned_subtitle2: giftPrev.earned_subtitle2
+              # if items need to be added then only add up to 3 after pushing first one
+              if startList == 1 and listCnt <= giftToAdd
+                listCnt++
+                $scope.upcomingGifts.push
+                  prize_label: gift.name
+                  prize_sku: gift.id
+                  prize_status: status
+                  lastItem: lastItem
+                  randomID: getRandomID()
+                  prize_level: gift.level
+                  earned_title: gift.earned_title
+                  earned_subtitle1: gift.earned_subtitle1
+                  earned_subtitle2: gift.earned_subtitle2
+                $scope.giftStatus = status
+              giftPrev = gift
+              prevstatus = status
+              # add last 4 no matter what
+              if $scope.totalGifts >= giftsInList - 5 and status == 1
+                startList = 1
+                giftToAdd = 4
+              $scope.totalGifts++
+              if status == 1
+                $scope.giftsEarned++
+
+      , (response) ->
+        # TODO
+      $scope.schoolYearsInfo = {}
+      
+      if $scope.participantRegistration.companyInformation?.isCompanyCoordinator is 'true'
+        ZuriService.getSchoolYears $scope.participantRegistration.companyInformation.companyId,
+          failure: (response) ->
+            $scope.companyProgress.schoolYears = 0 
+          error: (response) ->
+            $scope.companyProgress.schoolYears = 0
+          success: (response) ->
+            if response.data.value isnt null
+              $scope.companyProgress.schoolYears = response.data.value
+            else 
+              $scope.companyProgress.schoolYears = 0
+      
+      $scope.editSchoolYears = ->
+        delete $scope.schoolYearsInfo.errorMessage
+        schoolYears = $scope.companyProgress.schoolYears
+        if schoolYears is '' or schoolYears is '0'
+          $scope.schoolYearsInfo.years = ''
+        else
+          $scope.schoolYearsInfo.years = schoolYears
+        $scope.editSchoolYearsModal = $uibModal.open
+          scope: $scope
+          templateUrl: APP_INFO.rootPath + 'dist/ym-primary/html/participant-center/modal/editSchoolYears.html'
+      
+      $scope.cancelEditSchoolYears = ->
+        $scope.editSchoolYearsModal.close()
+      
+      $scope.updateSchoolYears = ->
+        delete $scope.schoolYearsInfo.errorMessage
+        newYears = $scope.schoolYearsInfo.years
+        if not newYears or newYears is '' or newYears is '0' or isNaN(newYears)
+          $scope.schoolYearsInfo.errorMessage = 'Please specify a year greater than 0.'
+        else
+          updateSchoolYearPromise = ZuriService.updateSchoolYears $scope.participantRegistration.companyInformation.companyId + '/years-participated/update?value=' + newYears,
+            failure: (response) ->
+              $scope.schoolYearsInfo.errorMessage = 'Process failed to save years entered'
+            error: (response) ->
+              $scope.schoolYearsInfo.errorMessage = 'Error: ' + response.data.message
+            success: (response) ->
+              $scope.companyProgress.schoolYears = newYears
+              $scope.editSchoolYearsModal.close()
+
+      $scope.showMobileApp = ->
+        $scope.viewMobileApp = $uibModal.open
+          scope: $scope
+          templateUrl: APP_INFO.rootPath + 'dist/ym-primary/html/participant-center/modal/viewMobileApp.html'
+
+      $scope.cancelMobileApp = ->
+        $scope.viewMobileApp.close()
   ]
