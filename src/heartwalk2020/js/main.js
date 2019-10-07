@@ -606,6 +606,59 @@
     // END TOP TEAMS
 
     // BEGIN TOP COMPANIES
+// TODO - replace with companyList
+
+    cd.getCompanyList = function (eventId) {
+      luminateExtend.api({
+        api: 'teamraiser',
+        data: 'method=getCompanyList&fr_id=' + eventId +
+          '&include_cross_event=true&list_sort_column=total&list_ascending=false&response_format=json',
+        callback: {
+          success: function (response) {
+            if (!$.isEmptyObject(response.getCompanyListResponse)) {
+              var companyItems = luminateExtend.utils.ensureArray(response.getCompanyListResponse
+                .companyItem);
+              var rootAncestorCompanies = [];
+              var childCompanyIdMap = {};
+
+              $(companyItems).each(function () {
+                var isParentCompany = (this.parentOrgEventId === '0' ? true : false);
+
+                if(isParentCompany){
+                  var rootAncestorCompany = {
+                    eventId: eventId,
+                    companyId: this.companyId,
+                    companyName: this.companyName,
+                    amountRaised: (this.amountRaised ? Number(this.amountRaised) : 0)
+                  }
+                  rootAncestorCompanies.push(rootAncestorCompany);
+                }
+              });
+
+              var sortedAncestorCompanies = rootAncestorCompanies.sort(function(b, a){
+                var a1= a.amountRaised, b1= b.amountRaised;
+                if(a1== b1) return 0;
+                return a1> b1? 1: -1;
+            });
+
+              $(sortedAncestorCompanies).each(function () {
+                var companyName = this.companyName;
+                var companyRaised = (parseInt(this.amountRaised) * 0.01).toFixed(2);
+                var companyRaisedFormmatted = companyRaised.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,").replace('.00', '');
+                var topCompanyHtml = '<li><div class="d-flex"><div class="flex-grow-1"><a href="TR?company_id=' + this.companyId + '&fr_id=' + evID + '&pg=company">' + companyName + '</a></div><div class="raised">Raised<br><strong>$' + companyRaisedFormmatted + '</strong></div></div></li>';
+
+                $('.js--company-top-list ul').append(topCompanyHtml);
+              });
+
+            }
+          },
+          error: function (response) {
+            console.log('getCompanyList error: ' + response.errorResponse.message);
+          }
+        }
+      }); 
+    };
+
     cd.getTopCompanies = function (eventId) {
       luminateExtend.api({
         api: 'teamraiser',
@@ -616,19 +669,8 @@
             if (!$.isEmptyObject(response.getCompaniesResponse)) {
               var topCompanies = luminateExtend.utils.ensureArray(response.getCompaniesResponse
                 .company);
-
                 var totalCompanies = parseInt(response.getCompaniesResponse.totalNumberResults);
                 $('.js--num-companies').text(totalCompanies);
-
-              $(topCompanies).each(function () {
-                var companyName = this.companyName;
-                var companyRaised = (parseInt(this.amountRaised) * 0.01).toFixed(2);
-
-                var companyRaisedFormmatted = companyRaised.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,").replace('.00', '');
-                var topCompanyHtml = '<li><div class="d-flex"><div class="flex-grow-1"><a href="TR?company_id=' + this.companyId + '&fr_id=' + evID + '&pg=company">' + companyName + '</a></div><div class="raised">Raised<br><strong>$' + companyRaisedFormmatted + '</strong></div></div></li>';
-
-                $('.js--company-top-list ul').append(topCompanyHtml);
-              });
             }
           },
           error: function (response) {
@@ -826,6 +868,7 @@
             // Build roster on greeting page
             cd.getTopParticipants(evID);
             cd.getTopTeams(evID);
+            cd.getCompanyList(evID);
             cd.getTopCompanies(evID);
 
         // Walker Search
