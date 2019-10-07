@@ -123,6 +123,9 @@ a.ym-pc-dashboard-download-certificates {
 	color: indigo;
 	margin:0 auto;
    }
+   em {
+      font-size:16px;
+   }
 }
 .ym-pc-dashboard-badges-icons {
 	display: flex;
@@ -250,6 +253,14 @@ section.ym-pc-dashboard-standard-gifts-section {
 		
 }
 
+div.ta-editor table.containFull, 
+div.ta-editor table.containFull table {
+	width: auto !important;
+}
+
+.ym-pc-dashboard-coordinators-message-section .ym-pc-dashboard-section-header {
+	color: $event-grey;
+}
 .modal-dialog {
    .ym-pc-dashboard-gift-earned {
       color: #440075;

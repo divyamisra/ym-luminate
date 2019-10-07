@@ -71,11 +71,11 @@ angular.module 'ahaLuminateApp'
       
       logEmailSent: ->
         if $rootScope.tablePrefix is 'heartdev'
-          url = 'https://khc.staging.ootqa.org/api/webhooks/student/emails-sent/' + $rootScope.frId + '/' + $rootScope.consId
+          url = 'https://khc.staging.ootqa.org/api/points/activity/log/' + $rootScope.frId + '/' + $rootScope.consId + '/2/ecard_sent'
         else if $rootScope.tablePrefix is 'heartnew'
-          url = 'https://khc.dev.ootqa.org/api/webhooks/student/emails-sent/' + $rootScope.frId + '/' + $rootScope.consId
+          url = 'https://khc.dev.ootqa.org/api/points/activity/log/' + $rootScope.frId + '/' + $rootScope.consId + '/2/ecard_sent'
         else
-          url = 'https://kidsheartchallenge.heart.org/api/webhooks/student/emails-sent/' + $rootScope.frId + '/' + $rootScope.consId
+          url = 'https://kidsheartchallenge.heart.org/api/points/activity/log/' + $rootScope.frId + '/' + $rootScope.consId + '/2/ecard_sent'
         $http.jsonp($sce.trustAsResourceUrl(url), jsonpCallbackParam: 'callback')
           .then (response) ->
             response
@@ -318,7 +318,7 @@ angular.module 'ahaLuminateApp'
             "PBALL-20"
             "CLIPCRUSH-20"
           ]
-          "Purple $200-$249":[
+          "Red $200-$249":[
             "WB-20"
             "CLIPPERRIE-20"
             "CHARMKNOX-20"
@@ -330,7 +330,7 @@ angular.module 'ahaLuminateApp'
             "CLIPCRUSH-20"
             "CLIPSUNNY-20"
           ]
-          "Red $250-$499":[
+          "Orange $250-$499":[
             "WB-20"
             "CLIPPERRIE-20"
             "CHARMKNOX-20"
@@ -343,7 +343,7 @@ angular.module 'ahaLuminateApp'
             "CLIPSUNNY-20"
             "MGRIP-20"
           ]
-          "Orange $500-$999":[
+          "Brown $500-$999":[
             "WB-20"
             "CLIPPERRIE-20"
             "CHARMKNOX-20"
@@ -438,7 +438,7 @@ angular.module 'ahaLuminateApp'
             "PBALL-20"
             "CLIPCRUSH-20"
           ]
-          "Purple $200-$249":[
+          "Red $200-$249":[
             "WB-20"
             "LVL1WB-20"
             "CHARMKNOX-20"
@@ -450,7 +450,7 @@ angular.module 'ahaLuminateApp'
             "CLIPCRUSH-20"
             "CLIPSUNNY-20"
           ]
-          "Red $250-$499":[
+          "Orange $250-$499":[
             "WB-20"
             "LVL1WB-20"
             "CHARMKNOX-20"
@@ -463,7 +463,7 @@ angular.module 'ahaLuminateApp'
             "CLIPSUNNY-20"
             "MGRIP-20"
           ]
-          "Orange $500-$999":[
+          "Brown $500-$999":[
             "WB-20"
             "LVL1WB-20"
             "CHARMKNOX-20"
