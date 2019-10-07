@@ -129,7 +129,7 @@ angular.module 'ahaLuminateApp'
             "instant": 1
             "earned_title":"Check, Mate!"
             "earned_subtitle1":"You've raised $5!"
-            "earned_subtitle2":"Perrie charm"
+            "earned_subtitle2":"a Perrie charm"
           }
           {
             "id":"LVL1WB-20"
