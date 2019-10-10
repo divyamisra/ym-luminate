@@ -484,6 +484,8 @@ angular.module 'ahaLuminateControllers'
         console.log('level type ' + $scope.donationInfo.levelType)
         console.log('other amt ' + $scope.donationInfo.otherAmt)
         console.log('parseint other amt ' + parseInt($scope.donationInfo.otherAmt))
+        console.log('amount in the damned field ' + angular.element('#other_amount').val())
+
 
         if $scope.donationInfo.levelType is 'other' || $scope.donationInfo.levelType is 'addFee' 
           console.log('level type is other or addFee')
@@ -499,7 +501,7 @@ angular.module 'ahaLuminateControllers'
               $scope.$apply()
             angular.element('#pstep_finish').removeClass 'hidden'
             angular.element('.ym-loading').addClass 'hidden'
-
+          console.log('amount in the damned field 2 ' + angular.element('#other_amount').val())
       angular.element("#ProcessForm").submit $scope.submitDonationForm
 
       loggedInForm = ->
