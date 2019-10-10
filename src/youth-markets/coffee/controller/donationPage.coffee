@@ -180,6 +180,9 @@ angular.module 'ahaLuminateControllers'
           angular.element('.ym-donation-levels__message.level' + level).addClass 'active'
           angular.element('.donation-level-container.level' + level + ' input').click()
 
+          if type is 'addFee'
+            angular.element("input[name=otherAmt]").click().focus()
+
           $scope.donationInfo.amount = amount
           console.log('$scope.donationInfo.amount ' +$scope.donationInfo.amount)
           $scope.donationInfo.levelType = type
