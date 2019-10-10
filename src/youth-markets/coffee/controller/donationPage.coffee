@@ -466,7 +466,6 @@ angular.module 'ahaLuminateControllers'
           document.getElementById('other_amount').value = total
 #          $scope.selectLevel(event, 'other', otherLevel, total)
           $scope.donationInfo.otherAmt = total
-          $scope.enterAmount(total)
           $scope.selectLevel(event, 'addFee', otherLevel, total)
 
         else
