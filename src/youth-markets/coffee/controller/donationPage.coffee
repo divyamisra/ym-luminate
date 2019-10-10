@@ -480,6 +480,9 @@ angular.module 'ahaLuminateControllers'
         angular.element('.button-sub-container').append loading
         angular.element('#pstep_finish').addClass 'hidden'
 
+        console.log('level type ' + $scope.donationInfo.levelType)
+        console.log('other amt ' + $scope.donationInfo.otherAmt)
+
         if $scope.donationInfo.levelType is 'other'
           if $scope.donationInfo.otherAmt is undefined or !(parseInt($scope.donationInfo.otherAmt) >= 10)
             e.preventDefault()
