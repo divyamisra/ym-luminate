@@ -208,7 +208,7 @@ angular.module 'ahaLuminateApp'
             "level":"$100"
             "instant": 1
             "earned_title":"Crushin' It!"
-            "earned_subtitle1":"Nice job crusing to $100!"
+            "earned_subtitle1":"Nice job cruising to $100!"
             "earned_subtitle2":"a Crush charm"
           }
           {
