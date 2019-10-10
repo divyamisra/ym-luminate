@@ -237,6 +237,14 @@
 	color:#333;
 }
 */
+.ym-pc-dashboard-coordinator-steps-section {
+   .ym-pc-dashboard-section-header {
+      .h5, h5 {
+         color: $event-grey;
+      }
+   }
+}
+
 .right-column-images{
 	display:block;
 	background: url(../image/bg_entry-right.png) no-repeat top;
