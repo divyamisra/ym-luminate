@@ -256,6 +256,8 @@ angular.module 'ahaLuminateControllers'
           levelSelect()
 
       $scope.enterAmount = (amount) ->
+        console.log('enter amount function')
+        console.log('amount ' + amount)
         angular.element('#pstep_finish span').text ''
         angular.element('#pstep_finish span').prepend ' $' + amount
         angular.element('.donation-level-user-entered input').val amount
