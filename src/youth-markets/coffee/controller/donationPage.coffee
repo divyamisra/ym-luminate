@@ -483,9 +483,13 @@ angular.module 'ahaLuminateControllers'
 
         console.log('level type ' + $scope.donationInfo.levelType)
         console.log('other amt ' + $scope.donationInfo.otherAmt)
+        console.log('parseint other amt ' + parseInt($scope.donationInfo.otherAmt))
 
         if $scope.donationInfo.levelType is 'other' || $scope.donationInfo.levelType is 'addFee' 
+          console.log('level type is other or addFee')
           if $scope.donationInfo.otherAmt is undefined or !(parseInt($scope.donationInfo.otherAmt) >= 10)
+            console.log('otheramt ' + $scope.donationInfo.otherAmt)
+            console.log('parseint otheramt ' + parseInt($scope.donationInfo.otherAmt))
             e.preventDefault()
             jQuery('html, body').animate
               scrollTop: jQuery('a[name="donationLevels"]').offset().top
