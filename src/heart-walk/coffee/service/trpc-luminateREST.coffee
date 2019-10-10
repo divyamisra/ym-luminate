@@ -29,8 +29,6 @@ angular.module 'trPcApp'
                 requestData += '&auth=' + $rootScope.authToken
               if includeFrId
                 requestData += '&fr_id=' + $rootScope.frId + '&s_trID=' + $rootScope.frId
-              if $rootScope.locale
-                requestData += '&s_locale=' + $rootScope.locale
               $http
                 method: 'POST'
                 url: apiServlet
@@ -48,7 +46,22 @@ angular.module 'trPcApp'
                   $q.reject()
                 else
                   response
-      
+
+      luminateExtendRequest: (apiServlet, requestData, includeAuth, includeFrId, callback) ->
+        if not luminateExtend
+          # TODO
+        else
+          if not requestData
+            # TODO
+          else
+            if includeFrId
+              requestData += '&fr_id=' + $rootScope.frId + '&s_trID=' + $rootScope.frId
+            luminateExtend.api 
+              api: apiServlet
+              data: requestData
+              requiresAuth: includeAuth
+              callback: callback or angular.noop
+
       addressBookRequest: (requestData, includeAuth) ->
         this.request 'CRAddressBookAPI', requestData, includeAuth, false
       
@@ -60,4 +73,7 @@ angular.module 'trPcApp'
       
       teamraiserRequest: (requestData, includeAuth, includeFrId) ->
         this.request 'CRTeamraiserAPI', requestData, includeAuth, includeFrId
+
+      luminateExtendTeamraiserRequest: (requestData, includeAuth, includeFrId, callback) ->
+        this.luminateExtendRequest 'teamraiser', requestData, includeAuth, includeFrId, callback
   ]

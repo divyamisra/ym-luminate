@@ -24,6 +24,8 @@ angular.module 'ahaLuminateApp'
     '$rootScope'
     'APP_INFO'
     ($rootScope, APP_INFO) ->
+      $rootScope.tablePrefix = luminateExtend.global.tablePrefix
+      
       # get data from root element
       $dataRoot = angular.element '[data-aha-luminate-root]'
       $rootScope.apiKey = $dataRoot.data('api-key') if $dataRoot.data('api-key') isnt ''
@@ -32,6 +34,13 @@ angular.module 'ahaLuminateApp'
       $rootScope.consId = $dataRoot.data('cons-id') if $dataRoot.data('cons-id') isnt ''
       $rootScope.authToken = $dataRoot.data('auth-token') if $dataRoot.data('auth-token') isnt ''
       $rootScope.frId = $dataRoot.data('fr-id') if $dataRoot.data('fr-id') isnt ''
+      $rootScope.device =
+        isMobile: $dataRoot.data 'device-is-mobile'
+        mobileType: $dataRoot.data 'device-mobile-type'
+      $rootScope.facebookFundraisersEnabled = $dataRoot.data('facebook-fundraisers-enabled') is 'TRUE'
+      $rootScope.facebookFundraisersEndDate = if $dataRoot.data('facebook-fundraisers-end-date') is '' then '' else $dataRoot.data('facebook-fundraisers-end-date')
+      $rootScope.facebookCharityId = if $dataRoot.data('facebook-charity-id') is '' then '' else $dataRoot.data('facebook-charity-id')
+      $rootScope.facebookFundraiserId = $dataRoot.data('facebook-fundraiser-id') if $dataRoot.data('facebook-fundraiser-id') isnt ''
   ]
 
 angular.element(document).ready ->

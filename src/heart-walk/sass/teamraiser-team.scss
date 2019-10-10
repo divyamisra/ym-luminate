@@ -39,6 +39,21 @@
       background: $brand-primary;
     }
   }
+
+  img.heart-user-image {
+    max-width: 100%;
+    max-height: 400px;
+    width:auto;
+    margin: 0 auto 30px;
+  
+    @media (min-width: $screen-sm-min) {
+      margin: 0 auto 40px;
+    }
+  
+    @media (min-width: $screen-md-min) {
+      margin: 0 auto 30px;
+    }
+  }
 }
 
 .heart-page-lists--team {

@@ -35,19 +35,19 @@ module.exports = {
     ]
   }, 
   
-  "jump-hoops": {
+  "ym-primary": {
     files: [
       {
         src: [
-          'dist/jump-hoops/js/main.js'
+          'dist/ym-primary/js/main.js'
         ], 
-        dest: 'dist/jump-hoops/js/main.' + '<%= timestamp %>' + '.min.js'
+        dest: 'dist/ym-primary/js/main.' + '<%= timestamp %>' + '.min.js'
       }, 
       {
         src: [
-          'dist/jump-hoops/js/participant.js'
+          'dist/ym-primary/js/participant.js'
         ], 
-        dest: 'dist/jump-hoops/js/participant.' + '<%= timestamp %>' + '.min.js'
+        dest: 'dist/ym-primary/js/participant.' + '<%= timestamp %>' + '.min.js'
       }
     ]
   }, 
@@ -101,5 +101,49 @@ module.exports = {
         dest: 'dist/district-heart/js/participant.' + '<%= timestamp %>' + '.min.js'
       }
     ]
-  }
+  },
+  
+  "nchw": {
+    files: [
+      {
+        src: ["src/nchw/js/main.js"],
+        dest: "dist/nchw/js/main." + "<%= timestamp %>" + ".min.js"
+      }
+    ]
+  },
+  
+  "heartchase": {
+    files: [
+      {
+        src: ["src/heartchase/js/main.js"],
+        dest: "dist/heartchase/js/main." + "<%= timestamp %>" + ".min.js"
+      }
+    ]
+  },
+  
+  "cyclenation": {
+    files: [
+      {
+        src: ["src/cyclenation/js/main.js"],
+        dest: "dist/cyclenation/js/main." + "<%= timestamp %>" + ".min.js"
+      },
+      {
+        src: ["src/cyclenation/js/pushy.js"],
+        dest: "dist/cyclenation/js/pushy.min.js"
+      }
+    ]
+  },
+
+  "heartwalk2020": {
+    files: [
+      {
+        src: ["src/heartwalk2020/js/main.js"],
+        dest: "dist/heartwalk2020/js/main." + "<%= timestamp %>" + ".min.js"
+      },
+      {
+        src: ["src/heartwalk2020/js/pushy.js"],
+        dest: "dist/heartwalk2020/js/pushy.min.js"
+      }
+    ]
+  }  
 }

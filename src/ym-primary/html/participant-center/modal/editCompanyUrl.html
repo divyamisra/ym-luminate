@@ -1,0 +1,38 @@
+<form method="POST" novalidate ng-submit="updateCompanyUrl()">
+  <div class="modal-header">
+    <h2 class="h5 modal-title">
+      School Page URL
+    </h2>
+  </div>
+  <div class="modal-body">
+    <div uib-alert class="alert-danger" role="alert" ng-if="companyUrlInfo.errorMessage">
+      <span ng-bind-html="companyUrlInfo.errorMessage"></span>
+    </div>
+    <div uib-alert class="alert-warning" role="alert" ng-if="companyShortcut.hint">
+      <span ng-bind-html="companyShortcut.hint"></span>
+    </div>
+    <div class="form-group">
+      <label for="shortcut_text" class="sr-only">
+        URL:
+      </label>
+      <div class="input-group">
+        <span class="input-group-addon"><span ng-bind-html="companyShortcut.prefix"></span></span>
+        <input type="text" id="shortcut_text" class="form-control" ng-model="companyUrlInfo.updatedShortcut" aria-label="URL">
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <div class="clearfix">
+      <div class="pull-left">
+        <button type="button" class="btn btn-toggle" ng-click="cancelEditCompanyUrl()">
+          Cancel
+        </button>
+      </div>
+      <div class="pull-right">
+        <button type="submit" class="btn btn-primary">
+          <strong>Save</strong>
+        </button>
+      </div>
+    </div>
+  </div>
+<form>

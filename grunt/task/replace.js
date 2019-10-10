@@ -49,15 +49,15 @@ module.exports = {
     ]
   }, 
   
-  "jump-hoops": {
+  "ym-primary": {
     files: [
       {
         expand: true, 
-        cwd: 'src/jump-hoops/html/', 
+        cwd: 'src/ym-primary/html/', 
         src: [
           '**/*.*'
         ], 
-        dest: "dist/jump-hoops/html/"
+        dest: "dist/ym-primary/html/"
       }
     ]
   }, 
@@ -97,6 +97,50 @@ module.exports = {
           '**/*.*'
         ], 
         dest: "dist/district-heart/html/"
+      }
+    ]
+  },
+  
+  "nchw": {
+    files: [
+      {
+        expand: true,
+        cwd: "src/nchw/html/",
+        src: ["**/*.*"],
+        dest: "dist/nchw/html/"
+      }
+    ]
+  },
+  
+  "heartchase": {
+    files: [
+      {
+        expand: true,
+        cwd: "src/heartchase/html/",
+        src: ["**/*.*"],
+        dest: "dist/heartchase/html/"
+      }
+    ]
+  },
+  
+  "cyclenation": {
+    files: [
+      {
+        expand: true,
+        cwd: "src/cyclenation/html/",
+        src: ["**/*.*"],
+        dest: "dist/cyclenation/html/"
+      }
+    ]
+  },
+
+  "heartwalk2020": {
+    files: [
+      {
+        expand: true,
+        cwd: "src/heartwalk2020/html/",
+        src: ["**/*.*"],
+        dest: "dist/heartwalk2020/html/"
       }
     ]
   }

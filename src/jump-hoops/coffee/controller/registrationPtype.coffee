@@ -32,7 +32,7 @@ angular.module 'ahaLuminateControllers'
       
       $scope.toggleDonationLevel = (levelAmount) ->
         $scope.participationOptions.ng_donation_level = levelAmount
-        $scope.participationOptionsForm.ng_donation_level_other_amount.$setValidity("amount", true);
+        $scope.participationOptionsForm.ng_donation_level_other_amount.$setValidity('amount', true)
         angular.forEach $scope.donationLevels.levels, (donationLevel, donationLevelIndex) ->
           if donationLevel.amount is levelAmount
             $scope.donationLevels.activeLevel = donationLevel
@@ -77,16 +77,16 @@ angular.module 'ahaLuminateControllers'
       
       $scope.submitPtype = ->
         if $scope.donationLevels.activeLevel?.isOtherAmount
-          if $scope.participationOptionsForm.ng_donation_level_other_amount.$viewValue == undefined 
+          if $scope.participationOptionsForm.ng_donation_level_other_amount.$viewValue is undefined 
             amt = 0
           else 
             amt = parseInt($scope.participationOptionsForm.ng_donation_level_other_amount.$viewValue)
-          if amt < 10 || !angular.isNumber(amt) || isNaN(amt) || amt == ""
-            $scope.participationOptionsForm.ng_donation_level_other_amount.$setValidity("amount", false);
+          if amt < 10 or !angular.isNumber(amt) or isNaN(amt) or amt is ''
+            $scope.participationOptionsForm.ng_donation_level_other_amount.$setValidity('amount', false)
           else
-            $scope.participationOptionsForm.ng_donation_level_other_amount.$setValidity("amount", true);
+            $scope.participationOptionsForm.ng_donation_level_other_amount.$setValidity('amount', true)
         else
-          $scope.participationOptionsForm.ng_donation_level_other_amount.$setValidity("amount", true);
+          $scope.participationOptionsForm.ng_donation_level_other_amount.$setValidity('amount', true)
         if not $scope.participationOptionsForm.$valid
           goalElem = angular.element '#participationOptions-fr_goal'
           if goalElem.is '.ng-invalid'

@@ -15,7 +15,10 @@ angular.module 'trPcControllers'
     'NgPcTeamraiserShortcutURLService'
     'NgPcInteractionService'
     'NgPcTeamraiserCompanyService'
-    ($rootScope, $scope, $filter, $timeout, $uibModal, APP_INFO, BoundlessService, NgPcTeamraiserRegistrationService, NgPcTeamraiserProgressService, NgPcTeamraiserTeamService, NgPcTeamraiserGiftService, NgPcContactService, NgPcTeamraiserShortcutURLService, NgPcInteractionService, NgPcTeamraiserCompanyService) ->
+    'NgPcTeamraiserSchoolService'
+    'FacebookFundraiserService'
+    'ZuriService'
+    ($rootScope, $scope, $filter, $timeout, $uibModal, APP_INFO, BoundlessService, NgPcTeamraiserRegistrationService, NgPcTeamraiserProgressService, NgPcTeamraiserTeamService, NgPcTeamraiserGiftService, NgPcContactService, NgPcTeamraiserShortcutURLService, NgPcInteractionService, NgPcTeamraiserCompanyService, NgPcTeamraiserSchoolService, FacebookFundraiserService, ZuriService) ->
       $scope.dashboardPromises = []
       
       $dataRoot = angular.element '[data-embed-root]'
@@ -116,7 +119,7 @@ angular.module 'trPcControllers'
       
       $scope.emailChallenge = {}
       setEmailSampleText = ->
-        sampleText = 'Hello! I am excited to be participating in the American Heart Association\'s Middle School Program! It is their mission to improve lives of all Americans, by providing public health education and research. Some of those ways are happening right here in my own school!\n\n' + 
+        sampleText = 'Hello! I am excited to be participating in the American Heart Association\'s American Heart Challenge Program! It is their mission to improve lives of all Americans, by providing public health education and research. Some of those ways are happening right here in my own school!\n\n' + 
         'Please help me reach my fundraising goal'
         if not $scope.personalGoalInfo or not $scope.personalGoalInfo.goal or $scope.personalGoalInfo.goal is ''
           sampleText += ', '
@@ -230,6 +233,10 @@ angular.module 'trPcControllers'
               else
                 $scope.editPersonalGoalModal.close()
                 $scope.refreshFundraisingProgress()
+                if $rootScope.facebookFundraiserId
+                  FacebookFundraiserService.updateFundraiser()
+                    .then ->
+                      FacebookFundraiserService.syncDonations()
               response
           $scope.dashboardPromises.push updatePersonalGoalPromise
       
@@ -266,6 +273,46 @@ angular.module 'trPcControllers'
                 $scope.refreshFundraisingProgress()
               response
           $scope.dashboardPromises.push updateTeamGoalPromise
+ 
+      $scope.schoolGoalInfo = {}
+      
+      $scope.editSchoolGoal = ->
+        delete $scope.schoolGoalInfo.errorMessage
+        schoolGoal = $scope.companyProgress.goalFormatted.replace '$', ''
+        if schoolGoal is '' or schoolGoal is '0'
+          $scope.schoolGoalInfo.goal = ''
+        else
+          $scope.schoolGoalInfo.goal = schoolGoal
+        $scope.editSchoolGoalModal = $uibModal.open
+          scope: $scope
+          templateUrl: APP_INFO.rootPath + 'dist/middle-school/html/participant-center/modal/editSchoolGoal.html'
+      
+      $scope.cancelEditSchoolGoal = ->
+        $scope.editSchoolGoalModal.close()
+      
+      $scope.updateSchoolGoal = ->
+        delete $scope.schoolGoalInfo.errorMessage
+        newGoal = $scope.schoolGoalInfo.goal
+        if newGoal
+          newGoal = newGoal.replace('$', '').replace /,/g, ''
+        if not newGoal or newGoal is '' or newGoal is '0' or isNaN(newGoal)
+          $scope.schoolGoalInfo.errorMessage = 'Please specify a goal greater than $0.'
+        else
+          updateSchoolGoalPromise = NgPcTeamraiserSchoolService.updateSchoolGoal(newGoal, $scope)
+            .then (response) ->
+              $scope.editSchoolGoalModal.close()
+              $scope.refreshFundraisingProgress()
+          $scope.dashboardPromises.push updateSchoolGoalPromise
+      
+      if $scope.facebookFundraisersEnabled and $rootScope.facebookFundraiserId and $rootScope.facebookFundraiserId isnt ''
+        $rootScope.facebookFundraiserConfirmedStatus = 'pending'
+        FacebookFundraiserService.confirmFundraiserStatus()
+          .then (response) ->
+            if not response.data.status?.active
+              delete $rootScope.facebookFundraiserId
+              $rootScope.facebookFundraiserConfirmedStatus = 'deleted'
+            else
+              $rootScope.facebookFundraiserConfirmedStatus = 'confirmed'
       
       $scope.participantGifts =
         sortColumn: 'date_recorded'
@@ -336,6 +383,7 @@ angular.module 'trPcControllers'
                   $scope.personalPageUrl = shortcutItem.url
                 else
                   $scope.personalPageUrl = shortcutItem.defaultUrl.split('/site/')[0] + '/site/TR?fr_id=' + $scope.frId + '&pg=personal&px=' + $scope.consId
+                $scope.personalPageUrlEsc = window.encodeURIComponent($scope.personalPageUrl)
             response
         $scope.dashboardPromises.push getParticipantShortcutPromise
       $scope.getParticipantShortcut()
@@ -469,4 +517,182 @@ angular.module 'trPcControllers'
               earned: prize.earned_datetime
         , (response) ->
           # TODO
+        $scope.personalChallenge = {}
+      $scope.updatedPersonalChallenge = {}
+      setPersonalChallenge = (id, name = '', numCompleted = 0, completedToday = false) ->
+        if id is null or id is ''
+          id = '-1'
+        if id is '-1' and $scope.challengeTaken and $scope.challengeTaken isnt ''
+          if $scope.challengeTaken.indexOf('1. ') isnt -1
+            id = '1'
+            name = $scope.challengeTaken.split('1. ')[1]
+          else if $scope.challengeTaken.indexOf('2. ') isnt -1
+            id = '2'
+            name = $scope.challengeTaken.split('2. ')[1]
+          else if $scope.challengeTaken.indexOf('3. ') isnt -1
+            id = '3'
+            name = $scope.challengeTaken.split('3. ')[1]
+        $scope.personalChallenge.id = id
+        $scope.personalChallenge.name = name
+        $scope.personalChallenge.numCompleted = numCompleted
+        $scope.personalChallenge.completedToday = completedToday
+        if id is '-1'
+          $scope.updatedPersonalChallenge.id = ''
+        else
+          $scope.updatedPersonalChallenge.id = id
+        if not $scope.$$phase
+          $scope.$apply()
+          
+      errorCount = 0
+      getStudentChallenge = ->
+        if not $scope.personalChallenge
+          $scope.personalChallenge = {}
+        $scope.personalChallenge.updatePending = true
+        $scope.personalChallenge.loadPending = true
+        ZuriService.getStudent $scope.frId + '/' + $scope.consId,
+          failure: (response) ->
+            # if challenge not found - wait 3 secs and try again 10 times max
+            if errorCount < 10 and response.status is 404
+              errorCount++
+              setTimeout getStudentChallenge, 3000
+            delete $scope.personalChallenge.updatePending
+            setPersonalChallenge()
+          error: (response) ->
+            delete $scope.personalChallenge.updatePending
+            setPersonalChallenge()
+          success: (response) ->
+            personalChallenges = response.data.challenges
+            if not personalChallenges
+              setPersonalChallenge()
+            else
+              delete $scope.personalChallenge.updatePending
+              $scope.personalChallenge.loadPending = false
+              id = personalChallenges.current
+              if id is '0'
+                setPersonalChallenge()
+              else
+                numCompleted = if personalChallenges.completed then Number(personalChallenges.completed) else 0
+                setPersonalChallenge id, personalChallenges.text, numCompleted, personalChallenges.completedToday
+      getStudentChallenge()
+      
+      $scope.challenges = []
+      # ZuriService.getChallenges $scope.frId + '/' + $scope.consId,
+        # failure: (response) ->
+          # TODO
+        # error: (response) ->
+          # TODO
+        # success: (response) ->
+          # challenges = response.data.challenges
+          # angular.forEach challenges, (challenge, challengeIndex) ->
+            # $scope.challenges.push
+              # id: challengeIndex
+              # name: challenge
+      challengeOptions =
+        "1": "Be physically active for 60 minutes a day."
+        "2": "Lead the way. No tobacco or vaping."
+        "3": "Choose water over sugary beverages."
+      angular.forEach challengeOptions, (challenge, challengeIndex) ->
+        $scope.challenges.push
+          id: challengeIndex
+          name: challenge
+      
+      $scope.updateChallenge = ->
+        if not $scope.personalChallenge
+          $scope.personalChallenge = {}
+        $scope.personalChallenge.updatePending = true
+        ZuriService.updateChallenge $scope.frId + '/' + $scope.consId + '?challenge=' + $scope.updatedPersonalChallenge.id,
+          failure: (response) ->
+            # TODO
+            delete $scope.personalChallenge.updatePending
+          success: (response) ->
+            delete $scope.personalChallenge.updatePending
+            getStudentChallenge()
+      
+      $scope.updateDayChallenge = (challengeid) ->
+        if not $scope.personalChallenge
+          $scope.personalChallenge = {}
+        $scope.personalChallenge.updatePending = true
+        ZuriService.updateChallenge $scope.frId + '/' + $scope.consId + '?challenge=' + challengeid,
+          failure: (response) ->
+            # TODO
+            delete $scope.personalChallenge.updatePending
+          success: (response) ->
+            delete $scope.personalChallenge.updatePending
+            getStudentChallenge()
+      
+      $scope.logChallenge = ->
+        if not $scope.personalChallenge
+          $scope.personalChallenge = {}
+        $scope.personalChallenge.updatePending = true
+        ZuriService.logChallenge $scope.frId + '/' + $scope.consId + '/' + $scope.personalChallenge.id,
+          failure: (response) ->
+            # TODO
+            delete $scope.personalChallenge.updatePending
+          success: (response) ->
+            delete $scope.personalChallenge.updatePending
+            getStudentChallenge()
+
+      NgPcTeamraiserCompanyService.getSchoolDates()
+        .then (response) ->
+          schoolDataRows = response.data.getSchoolDatesResponse.schoolData
+          schoolDataHeaders = {}
+          schoolDates = {}
+          angular.forEach schoolDataRows[0], (schoolDataHeader, schoolDataHeaderIndex) ->
+            schoolDataHeaders[schoolDataHeader] = schoolDataHeaderIndex
+          i = 0
+          len = schoolDataRows.length
+          while i < len
+            if $rootScope.companyInfo.companyId is schoolDataRows[i][schoolDataHeaders.CID]
+              $scope.eventDate = schoolDataRows[i][schoolDataHeaders.ED]
+              $scope.moneyDueDate = schoolDataRows[i][schoolDataHeaders.MDD]
+              $scope.schoolStudentGoal = schoolDataRows[i][schoolDataHeaders.PG]
+              $scope.schoolStudentReg = schoolDataRows[i][schoolDataHeaders.TR]
+              $scope.schoolStudentRegOnline = schoolDataRows[i][schoolDataHeaders.RO]
+              $scope.notifyName = schoolDataRows[i][schoolDataHeaders.YMDN]
+              $scope.notifyEmail = schoolDataRows[i][schoolDataHeaders.YMDE]
+              break
+            i++
+
+      $scope.schoolYearsInfo = {}
+      
+      if $scope.participantRegistration.companyInformation?.isCompanyCoordinator is 'true'
+        ZuriService.getSchoolYears $scope.participantRegistration.companyInformation.companyId,
+          failure: (response) ->
+            $scope.companyProgress.schoolYears = 0 
+          error: (response) ->
+            $scope.companyProgress.schoolYears = 0
+          success: (response) ->
+            if response.data.value isnt null
+              $scope.companyProgress.schoolYears = response.data.value
+            else 
+              $scope.companyProgress.schoolYears = 0
+      
+      $scope.editSchoolYears = ->
+        delete $scope.schoolYearsInfo.errorMessage
+        schoolYears = $scope.companyProgress.schoolYears
+        if schoolYears is '' or schoolYears is '0'
+          $scope.schoolYearsInfo.years = ''
+        else
+          $scope.schoolYearsInfo.years = schoolYears
+        $scope.editSchoolYearsModal = $uibModal.open
+          scope: $scope
+          templateUrl: APP_INFO.rootPath + 'dist/ym-primary/html/participant-center/modal/editSchoolYears.html'
+      
+      $scope.cancelEditSchoolYears = ->
+        $scope.editSchoolYearsModal.close()
+      
+      $scope.updateSchoolYears = ->
+        delete $scope.schoolYearsInfo.errorMessage
+        newYears = $scope.schoolYearsInfo.years
+        if not newYears or newYears is '' or newYears is '0' or isNaN(newYears)
+          $scope.schoolYearsInfo.errorMessage = 'Please specify a year greater than 0.'
+        else
+          updateSchoolYearPromise = ZuriService.updateSchoolYears $scope.participantRegistration.companyInformation.companyId + '/years-participated/update?value=' + newYears,
+            failure: (response) ->
+              $scope.schoolYearsInfo.errorMessage = 'Process failed to save years entered'
+            error: (response) ->
+              $scope.schoolYearsInfo.errorMessage = 'Error: ' + response.data.message
+            success: (response) ->
+              $scope.companyProgress.schoolYears = newYears
+              $scope.editSchoolYearsModal.close()
   ]

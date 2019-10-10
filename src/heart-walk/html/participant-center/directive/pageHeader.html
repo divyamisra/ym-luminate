@@ -5,16 +5,21 @@
         <hr class="hidden-xs hidden-sm">
         <div class="clearfix"></div>
         <p>
-          <a ng-href="TR?fr_id={{frId}}&amp;pg=entry">{{eventInfo.name}}</a>
+          <a ng-href="TR?fr_id={{frId}}&amp;pg=entry">
+            {{eventName}}
+          </a>
         </p>
       </div>
       <div class="clearfix"></div>
-      <div class="heart-hero__info" ng-if="(eventInfo.city && eventInfo.city != '') || (eventInfo.state && eventInfo.state != '') || (eventInfo.event_date && eventInfo.event_date != '')">
-        <p ng-if="(eventInfo.city && eventInfo.city != '') || (eventInfo.state && eventInfo.state != '')">
-          {{eventInfo.city}}<span ng-if="eventInfo.city && eventInfo.city != '' && eventInfo.state && eventInfo.state != ''">, </span>{{eventInfo.state}}
+      <div class="heart-hero__info">
+        <p ng-if="(eventCity && eventCity != '') || (eventState && eventState != '')">
+          {{eventCity}}<span ng-if="eventCity && eventCity != '' && eventState && eventStatetate != ''">, </span>{{eventState}}
         </p>
-        <p ng-if="eventInfo.event_date && eventInfo.event_date != ''">
-          {{eventInfo.event_date | date : 'EEEE, MMMM d, y'}}
+        <p ng-if="eventDate && eventDate != ''">
+          {{eventDate}}
+        </p>
+        <p ng-if="!eventDate || eventDate == ''">
+          {{eventInfo.event_date | date: 'EEEE, MMMM d, y'}}
         </p>
       </div>
     </div>

@@ -225,7 +225,7 @@ angular.module 'trPcControllers'
           response
       $scope.consProfilePromises.push listUserFieldsPromise
       
-      $scope.updateUserProfile = -> 
+      $scope.updateUserProfile = ->
         updateUserPromise = ConstituentService.update $httpParamSerializer($scope.cpvm.profileModel)
           .then (response) ->
             if response.data.errorResponse?

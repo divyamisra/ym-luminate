@@ -1,0 +1,30 @@
+<form method="POST" novalidate ng-submit="updateCoordinatorMessage()">
+  <div class="modal-header">
+    <h2 class="h5 modal-title">
+      Create Message
+    </h2>
+  </div>
+  <div class="modal-body">
+    <div uib-alert class="alert-danger" role="alert" ng-if="coordinatorMessage.errorMessage">
+      <div ng-bind-html="coordinatorMessage.errorMessage"></div>
+    </div>
+    <div class="form-group">
+      <label for="coordinatorMessage" class="sr-only">Edit Coordinator Message</label>
+      <input type="text" class="form-control" id="coordinatorMessage" ng-model="coordinatorMessage.text" aria-label="Coordinator Message" ng-value="coordinatorMessage.text" required>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <div class="clearfix">
+      <div class="pull-left">
+        <button type="button" class="btn btn-toggle" ng-click="cancelEditCoordinatorMessage()">
+          Cancel
+        </button>
+      </div>
+      <div class="pull-right">
+        <button type="submit" class="btn btn-primary">
+          <strong>Save</strong>
+        </button>
+      </div>
+    </div>
+  </div>
+<form>

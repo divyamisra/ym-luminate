@@ -1,10 +1,10 @@
 <form ng-submit="saveUpdatedContact()">
-  <div class="modal-header">
+  <div class="modal-header modal-header-red">
     <h2 class="modal-title">
       <span translate="contact_details_edit_info"></span>
     </h2>
   </div>
-  <div class="modal-body">
+  <div class="modal-body modal-body-red">
     <div uib-alert class="alert-danger" ng-if="editContactError">
       {{editContactError}}
     </div>
@@ -27,15 +27,15 @@
       <input type="email" class="form-control" id="updatedContactEmail" ng-model="updatedContact.email" aria-label="{{ 'contact_edit_email_label' | translate }}" required>
     </div>
   </div>
-  <div class="modal-footer">
+  <div class="modal-footer modal-footer-red">
     <div class="clearfix">
       <div class="pull-left">
-        <button type="button" class="btn btn-primary-inverted text-uppercase" ng-click="cancelEditContact()">
+        <button type="button" class="btn btn-outline-white text-uppercase" ng-click="cancelEditContact()">
           <span translate="contact_edit_cancel_link"></span>
         </button>
       </div>
       <div class="pull-right">
-        <button type="submit" class="btn btn-primary text-uppercase">
+        <button type="submit" class="btn btn-outline-white text-uppercase" >
           <span translate="contact_edit_save_button"></span>
         </button>
       </div>

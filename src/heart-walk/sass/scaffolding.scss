@@ -1,7 +1,15 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
+body{
+    font-family: "Montserrat", HelveticaNeue-Light,"Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
+}
 .main {
   background: #eeeeee;
-  
+
   .container {
     background: #ffffff;
   }
+}
+.textRed {
+    color: $event-primary; 
 }

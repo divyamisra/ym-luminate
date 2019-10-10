@@ -44,12 +44,12 @@
         </td>
         <td>
           <div ng-if="device.isMobile">
-            <a class="icon-btn icon-btn-gray" ng-click="acknowledgeGift(gift.contactId)" ng-if="gift.acknowledged == 'false'"><i class="glyphicon glyphicon-ok"></i></a>
-            <a class="icon-btn icon-btn-gray" ng-click="deleteGift(gift.id)" ng-if="gift.isOnlineGift == 'false' && gift.confirmed == 'false'"><i class="fa fa-times"></i></a>
+            <a class="icon-btn icon-btn-gray" ng-click="acknowledgeGift(gift.contactId)" ng-if="(listType == 'participant' || participantRegistration.aTeamCaptain == 'true') && gift.acknowledged == 'false'"><i class="glyphicon glyphicon-ok"></i></a>
+            <a class="icon-btn icon-btn-gray" ng-click="deleteGift(gift.id)" ng-if="(listType == 'participant' || participantRegistration.aTeamCaptain == 'true') && gift.isOnlineGift == 'false' && gift.confirmed == 'false'"><i class="fa fa-times"></i></a>
           </div>
           <div ng-if="!device.isMobile">
-            <a class="icon-btn icon-btn-gray" uib-tooltip="Acknowledge&nbsp;Gift" tooltip-placement="'auto top'" ng-click="acknowledgeGift(gift.contactId)" ng-if="gift.acknowledged == 'false'"><i class="glyphicon glyphicon-ok"></i></a>
-            <a class="icon-btn icon-btn-gray" uib-tooltip="Delete&nbsp;Gift" tooltip-placement="'auto top'" ng-click="deleteGift(gift.id)" ng-if="gift.isOnlineGift == 'false' && gift.confirmed == 'false'"><i class="fa fa-times"></i></a>
+            <a class="icon-btn icon-btn-gray" uib-tooltip="Acknowledge&nbsp;Gift" tooltip-placement="'auto top'" ng-click="acknowledgeGift(gift.contactId)" ng-if="(listType == 'participant' || participantRegistration.aTeamCaptain == 'true') && gift.acknowledged == 'false'"><i class="glyphicon glyphicon-ok"></i></a>
+            <a class="icon-btn icon-btn-gray" uib-tooltip="Delete&nbsp;Gift" tooltip-placement="'auto top'" ng-click="deleteGift(gift.id)" ng-if="(listType == 'participant' || participantRegistration.aTeamCaptain == 'true') && gift.isOnlineGift == 'false' && gift.confirmed == 'false'"><i class="fa fa-times"></i></a>
           </div>
         </td>
       </tr>

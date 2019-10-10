@@ -1,10 +1,10 @@
 <div>
-  <div class="modal-header">
+    <div class="modal-header modal-header-red">
     <h2 class="modal-title">
       Import Contacts
     </h2>
   </div>
-  <div class="modal-body">
+  <div class="modal-body modal-body-red">
     <div uib-alert class="alert-danger" ng-if="importContactsError">
       {{importContactsError}}
     </div>
@@ -75,21 +75,21 @@
       </form>
     </div>
   </div>
-  <div class="modal-footer">
+  <div class="modal-footer modal-footer-red">
     <div class="clearfix">
       <div class="pull-left">
-        <button type="button" class="btn btn-primary-inverted text-uppercase" ng-click="cancelImportContacts()">
+        <button type="button" class="btn btn-outline-white text-uppercase" ng-click="cancelImportContacts()">
           Cancel
         </button>
       </div>
       <div class="pull-right">
-        <button type="button" class="btn btn-primary text-uppercase" ng-click="chooseImportContactType()" ng-if="contactImport.step == 'choose-type'">
+        <button type="button" class="btn btn-outline-white text-uppercase" ng-click="chooseImportContactType()" ng-if="contactImport.step == 'choose-type'">
           Next
         </button>
-        <button type="button" class="btn btn-primary text-uppercase" ng-click="chooseContactsToImport()" ng-if="contactImport.step == 'contacts-available-for-import' && contactsAvailableForImport.length > 0">
+        <button type="button" class="btn btn-outline-white text-uppercase" ng-click="chooseContactsToImport()" ng-if="contactImport.step == 'contacts-available-for-import' && contactsAvailableForImport.length > 0">
           Next
         </button>
-        <button type="button" class="btn btn-primary text-uppercase" ng-click="uploadContactsCSV()" ng-if="contactImport.step == 'csv-upload'">
+        <button type="button" class="btn btn-outline-white text-uppercase" ng-click="uploadContactsCSV()" ng-if="contactImport.step == 'csv-upload'">
           Next
         </button>
       </div>

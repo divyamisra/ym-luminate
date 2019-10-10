@@ -104,7 +104,7 @@ angular.module 'ahaLuminateApp'
           url = '//hearttools.heart.org/aha_ym18/visitlink_record.php?ecard_linktrack=' + requestData
         $http
           method: 'POST'
-          url: $sce.trustAsResourceUrl(url)
+          url: $sce.trustAsResourceUrl url
 
       getAvatar: (requestData, callback) ->
         if $rootScope.tablePrefix is 'heartdev'

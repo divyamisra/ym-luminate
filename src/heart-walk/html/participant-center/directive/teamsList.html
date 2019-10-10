@@ -1,6 +1,6 @@
 <ul class="list-group panel-body">
   <li class="list-group-item" ng-repeat="team in teams">
-  	<div class="team-search-result-info pull-left" data-team-id="{{team.id}}" data-requires-password="{{team.requiresPassword}}">
+    <div class="team-search-result-info pull-left" data-team-id="{{team.id}}" data-requires-password="{{team.requiresPassword}}">
       <h5 class="list-group-item-heading team-name">{{team.name}}</h5>
       <div class="list-group-item-text team-captain" ng-if="team.isCaptainAnon == 'false'">
         <span translate="manage_membership_search_result_captain_label" class="captain-label"></span>

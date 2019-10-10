@@ -35,8 +35,11 @@
 .btn-primary:focus,
 a.btn-primary:focus {
   background-color: #de2427;
-  border-color: #ca1e21;
+  // border-color: #ca1e21;
   color: #ffffff;
+  outline:none;
+  border-color:#79b5e6;
+  box-shadow:0 0 10px #79b5e6;
 }
 .btn-primary-inverted,
 .btn-primary-inverted:link,
@@ -63,6 +66,33 @@ a.btn-primary-inverted:active:hover {
     color: #ffffff;
     border-color: #3c3c3c;
 }
+.btn-outline-white,
+.btn-outline-white:link,
+.btn-outline-white:focus,
+.btn-outline-white:visited,
+.btn-outline-white:active:focus,
+a.btn-outline-white,
+a.btn-outline-white:link,
+a.btn-outline-white:visited,
+a.btn-outline-white:focus,
+a.btn-outline-white:active:focus {
+    border-color: #ffffff;
+    color: #ffffff;
+    background-color: $brand-primary;
+    background: $brand-primary;
+}
+
+.btn-outline-white:active,
+.btn-outline-white:hover,
+a.btn-outline-white:active,
+a.btn-outline-white:hover,
+.btn-outline-white:active:hover,
+a.btn-outline-white:active:hover {
+    background-color: #3c3c3c;
+    color: #ffffff;
+    border-color: #3c3c3c;
+}
+
 a.pc_btn, button.pc_btn {
     height: 60px;
     padding: 0 20px;
@@ -84,9 +114,14 @@ a.pc_btn, button.pc_btn {
     }
 }
 
-#download_donation_list, #download_donation_list_prev, #download_team_roster, #download_team_donation_list {
+#download_donation_list, #download_donation_list_prev, #download_team_roster, #download_team_donation_list, #download_my_past_donors {
     margin: 20px 0;
 }
+
+#download_my_past_donors {
+  margin-right:20px;
+}
+
 #download_donation_list_prev {
   margin-left: 20px;
 }

@@ -139,6 +139,54 @@
           </div>
         </div>
       </div>
+      <div ng-show="facebookFundraisersEnabled" ng-cloak>
+        <div class="ym-pc-dashboard-facebook-box" ng-show="!facebookFundraiserId">
+          <div class="container">
+            <div class="ym-pc-dashboard-section-header">
+              <h3 class="h5">
+                Let's Get Fundraising<span ng-if="consNameFirst && consNameFirst != ''">, <span ng-bind-html="consNameFirst"></span></span>!
+              </h3>
+            </div>
+            <div class="text-center">
+              <p>
+                Link your personal page to a new Facebook Fundraiser to receive donations from your Facebook friends.
+              </p>
+              <div role="alert" class="alert alert-danger" ng-if="facebookFundraiserLoginStatus == 'login_error' || facebookFundraiserLoginStatus == 'permission_error' || facebookFundraiserLoginStatus == 'create_fundraiser_error' || facebookFundraiserCreateStatus == 'login_error' || facebookFundraiserCreateStatus == 'permission_error' || facebookFundraiserCreateStatus == 'create_fundraiser_error'" ng-cloak>
+                An error occurred attempting to connect to Facebook. Please try again later.
+              </div>
+              <div role="alert" class="alert alert-danger" ng-if="facebookFundraiserLoginStatus == 'declined_manage_fundraisers'" ng-cloak>
+                We need your permission to create a Facebook Fundraiser on your behalf.
+              </div>
+              <button type="button" class="btn btn-white" ng-class="{'disabled': facebookFundraiserLoginStatus == 'pending' || facebookFundraiserCreateStatus == 'pending'}" ng-click="loginToFacebook()" ng-disabled="facebookFundraiserLoginStatus == 'pending' || facebookFundraiserCreateStatus == 'pending'">
+                <span class="fa fa-facebook-square"></span> <strong>Connect to Facebook Fundraiser</strong>
+              </button>
+              <div class="ym-pc-dashboard-facebook-hint">
+                By clicking this link, you will leave AHA's website and be redirected to another site not under the control of AHA.
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="ym-pc-dashboard-facebook-box js--facebook-fundraiser-completed-section" ng-show="facebookFundraiserId">
+          <div class="container">
+            <div class="ym-pc-dashboard-section-header">
+              <h3 class="h5">
+                Your Fundraiser is Connected to Facebook!
+              </h3>
+            </div>
+            <div class="text-center">
+              <p>
+                Log in to use Facebook's fundraising tools to invite friends, share updates and collect donations. We'll keep track of your progress on Facebook and on your page, so you'll always know how close you are to reaching your goal.
+              </p>
+              <a class="btn btn-white" ng-class="{'disabled': !facebookFundraiserConfirmedStatus || facebookFundraiserConfirmedStatus == 'pending'}" ng-href="//facebook.com/donate/{{facebookFundraiserId}}/" ng-disabled="!facebookFundraiserConfirmedStatus || facebookFundraiserConfirmedStatus == 'pending'" target="_blank">
+                <span class="fa fa-facebook-square"></span> <strong>Go to Facebook Fundraiser</strong>
+              </a>
+              <div class="ym-pc-dashboard-facebook-hint">
+                By clicking this link, you will leave AHA's website and be redirected to another site not under the control of AHA.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
     <section class="ym-pc-dashboard-badges-section" aria-label="My Badges" ng-if="prizes && prizes.length > 0" ng-cloak>
       <div class="ym-pc-dashboard-section-header">
@@ -256,7 +304,7 @@
             </div>
           </div>
           <div ng-if="((participantGifts.gifts && participantGifts.gifts.length == 1 && participantRegistration.selfDonor == 'false') || (participantGifts.gifts && participantGifts.gifts.length > 1)) && (donorContactCounts.email_rpt_show_unthanked_donors > 0 || donorContactCounts.email_rpt_show_nondonors_followup > 0)" ng-cloak>
-            <div class="ym-next-step ym-next-step--sm" ng-if="donorContactCounts.email_rpt_show_unthanked_donors > 0" ng-cloak>
+            <div class="ym-next-step ym-next-step- -sm" ng-if="donorContactCounts.email_rpt_show_unthanked_donors > 0" ng-cloak>
               <div class="ym-next-step__step">
                 You have new donors who haven't received a thank-you email!
               </div>
@@ -266,7 +314,7 @@
                 </a>
               </div>
             </div>
-            <div class="ym-next-step ym-next-step--sm" ng-if="donorContactCounts.email_rpt_show_nondonors_followup > 0" ng-cloak>
+            <div class="ym-next-step ym-next-step- -sm" ng-if="donorContactCounts.email_rpt_show_nondonors_followup > 0" ng-cloak>
               <div class="ym-next-step__step">
                 Great job sending emails. Some of your friends haven't donated!
               </div>
@@ -276,7 +324,7 @@
                 </a>
               </div>
             </div>
-            <div class="ym-next-step ym-next-step--sm" ng-if="donorContactCounts.email_rpt_show_donors > 0" ng-cloak>
+            <div class="ym-next-step ym-next-step- -sm" ng-if="donorContactCounts.email_rpt_show_donors > 0" ng-cloak>
               <div class="ym-next-step__step">
                 Review all of your donations on the Reports page.
               </div>
@@ -357,7 +405,7 @@
               </div>
             </div>
             <div class="ym_my_challenge__actions">
-              <button type="button" class="btn btn-md-wide btn-primary" ng-click="logChallenge()" ng-if="!personalChallenge.completedToday" ng-cloak>
+              <button type="button" class="btn btn-md-wide btn-primary" ng-class="{'disabled': personalChallenge.updatePending}" ng-disabled="personalChallenge.updatePending" ng-click="logChallenge()" ng-if="!personalChallenge.completedToday" ng-cloak>
                 <strong>Yes, I met this challenge today!</strong> <!--<i class="fa fa-check" hidden aria-hidden="true"></i>-->
               </button>
               <div class="alert alert-success" role="alert" ng-if="personalChallenge.completedToday" ng-cloak>
@@ -368,37 +416,39 @@
           <div class="ym_my_challenge__update" ng-if="personalChallenge.id" ng-cloak>
             <form method="post" novalidate ng-submit="updateChallenge()">
               <label for="ym-update-challenge">Update my challenge:</label>
-              <select class="form-control" name="ym-update-challenge" ng-model="updatedPersonalChallenge.id">
+              <select class="form-control" ng-class="{'disabled': personalChallenge.updatePending}" ng-disabled="personalChallenge.updatePending" name="ym-update-challenge" ng-model="updatedPersonalChallenge.id">
                 <option value=""></option>
                 <option ng-repeat="challenge in challenges" value="{{challenge.id}}">{{challenge.name}}</option>
               </select>
-              <button type="submit" class="btn btn-md-wide btn-primary"><strong>Update Challenge</strong></button>
+              <button type="submit" class="btn btn-md-wide btn-primary" ng-class="{'disabled': personalChallenge.updatePending}" ng-disabled="personalChallenge.updatePending">
+                <strong>Update Challenge</strong>
+              </button>
             </form>
           </div>
         </div>
         <div class="col-sm-6 ym-activity-box ym-activity-box--virtual">
-        	<div class="entry-container">
-        		<div class="entry-division green">
-        			<div class="title-banner">
-				  	<a class="title-banner-link" ng-href="https://hearttools.heart.org/aha_ym18{{tablePrefix == 'heartdev' ? '_dev' : ''}}/virtualworld/?fr_id={{frId}}&cons_id={{consId}}&name={{consName}}" target="_new">Enter the Monster's<br /> Virtual World!</a>
-				</div>
-        			<div class="text-area">
-        				Learn about heart health, play games and track your Scare Squad Points to win your own 3D printed monster.<br /><br />
-        				<a class="entry-button" ng-href="https://hearttools.heart.org/aha_ym18{{tablePrefix == 'heartdev' ? '_dev' : ''}}/virtualworld/?fr_id={{frId}}&cons_id={{consId}}&name={{consName}}" target="_new">Enter World!</a>
-				</div>
-        		</div>
-     		    <div class="entry-division pink">
-        			<div class="title-banner">
-					<a class="title-banner-link" ng-href="https://{{tablePrefix == 'heartdev' ? 'jumphoopsstaging.boundlessnetwork.com' : 'jumphoops.heart.org'}}/student/login/{{authToken}}/{{sessionCookie}}" target="_new">Create your <br />monster avatar</a>
-			        </div>
-        			<div class="text-area">
-        				Pick colors, accessories and learn how to win your very own 3D printed monster! <br /><br />
-					<a class="entry-button" ng-href="https://{{tablePrefix == 'heartdev' ? 'jumphoopsstaging.boundlessnetwork.com' : 'jumphoops.heart.org'}}/student/login/{{authToken}}/{{sessionCookie}}" target="_new">Customize Yours!</a>
-        			</div>
-         		</div>
-		
-        		<div class="right-column-images" ng-if="personalInfo.avatar != ''" ng-cloak>&nbsp;<img ng-src='{{personalInfo.avatar}}'></div>
-         	</div>
+          <div class="entry-container">
+            <div class="entry-division green">
+              <div class="title-banner">
+                <a class="title-banner-link" ng-href="https://hearttools.heart.org/aha_ym18{{tablePrefix == 'heartdev' ? '_dev' : ''}}/virtualworld/?fr_id={{frId}}&cons_id={{consId}}&name={{consName}}" target="_new">Enter the Monster's<br> Virtual World!</a>
+              </div>
+              <div class="text-area">
+                Learn about heart health, play games and track your Scare Squad Points to win your own 3D printed monster.<br><br>
+                <a class="entry-button" ng-href="https://hearttools.heart.org/aha_ym18{{tablePrefix == 'heartdev' ? '_dev' : ''}}/virtualworld/?fr_id={{frId}}&cons_id={{consId}}&name={{consName}}" target="_new">Enter World!</a>
+              </div>
+            </div>
+            <div class="entry-division pink">
+              <div class="title-banner">
+                <a class="title-banner-link" ng-href="https://{{tablePrefix == 'heartdev' ? 'jumphoopsstaging.boundlessnetwork.com' : 'jumphoops.heart.org'}}/student/login/{{authToken}}/{{sessionCookie}}" target="_new">Create your <br>monster avatar</a>
+              </div>
+              <div class="text-area">
+                Pick colors, accessories and learn how to win your very own 3D printed monster!<br><br>
+                <a class="entry-button" ng-href="https://{{tablePrefix == 'heartdev' ? 'jumphoopsstaging.boundlessnetwork.com' : 'jumphoops.heart.org'}}/student/login/{{authToken}}/{{sessionCookie}}" target="_new">Customize Yours!</a>
+              </div>
+            </div>
+            
+            <div class="right-column-images" ng-if="personalInfo.avatar != ''" ng-cloak>&nbsp;<img ng-src='{{personalInfo.avatar}}'></div>
+          </div>
         </div>
       </div>
     </section>

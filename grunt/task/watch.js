@@ -80,23 +80,23 @@ module.exports = {
     ]
   }, 
   
-  "jump-hoops": {
+  "ym-primary": {
     files: [
       'src/youth-markets/sass/**/*', 
       'src/global/coffee/**/*', 
       'src/youth-markets/coffee/**/*', 
-      'src/jump-hoops/html/**/*', 
-      'src/jump-hoops/image/**/*', 
-      'src/jump-hoops/sass/**/*', 
-      'src/jump-hoops/coffee/**/*'
+      'src/ym-primary/html/**/*', 
+      'src/ym-primary/image/**/*', 
+      'src/ym-primary/sass/**/*', 
+      'src/ym-primary/coffee/**/*'
     ], 
     tasks: [
-      'clean:jump-hoops',  
-      'css-dist:jump-hoops', 
-      'js-dist:jump-hoops', 
-      'html-dist:jump-hoops', 
-      'img-copy:jump-hoops-images', 
-      'notify:jump-hoops'
+      'clean:ym-primary',  
+      'css-dist:ym-primary', 
+      'js-dist:ym-primary', 
+      'html-dist:ym-primary', 
+      'img-copy:ym-primary-images', 
+      'notify:ym-primary'
     ]
   }, 
   
@@ -157,6 +157,73 @@ module.exports = {
       'html-dist:district-heart', 
       'img-copy:district-heart-images', 
       'notify:district-heart'
+    ]
+  },
+  
+  "nchw": {
+    files: [
+      'src/nchw/html/**/*',
+      'src/nchw/image/**/*',
+      'src/nchw/sass/**/*',
+      'src/nchw/js/**/*'
+    ],
+    tasks: [
+      'clean:nchw',
+      'css-dist:nchw',
+      'js-dist:nchw',
+      'html-dist:nchw',
+      'img-copy:nchw-images',
+      'notify:nchw'
+    ]
+  },
+  
+  "heartchase": {
+    files: [
+      'src/heartchase/html/**/*',
+      'src/heartchase/image/**/*',
+      'src/heartchase/sass/**/*',
+      'src/heartchase/js/**/*'
+    ],
+    tasks: [
+      'clean:heartchase',
+      'css-dist:heartchase',
+      'js-dist:heartchase',
+      'html-dist:heartchase',
+      'img-copy:heartchase-images',
+      'notify:heartchase'
+    ]
+  },
+  
+  "cyclenation": {
+    files: [
+      'src/cyclenation/html/**/*',
+      'src/cyclenation/image/**/*',
+      'src/cyclenation/sass/**/*',
+      'src/cyclenation/js/**/*'
+    ],
+    tasks: [
+      'clean:cyclenation',
+      'css-dist:cyclenation',
+      'js-dist:cyclenation',
+      'html-dist:cyclenation',
+      'img-copy:cyclenation-images',
+      'notify:cyclenation'
+    ]
+  },
+  "heartwalk2020": {
+    files: [
+      'src/heartwalk2020/html/**/*',
+      'src/heartwalk2020/image/**/*',
+      'src/heartwalk2020/sass/**/*',
+      'src/heartwalk2020/js/**/*'
+    ],
+    tasks: [
+      'clean:heartwalk2020',
+      'css-dist:heartwalk2020',
+      'js-dist:heartwalk2020',
+      'html-dist:heartwalk2020',
+      'img-copy:heartwalk2020-images',
+      'notify:heartwalk2020'
     ]
   }
 }

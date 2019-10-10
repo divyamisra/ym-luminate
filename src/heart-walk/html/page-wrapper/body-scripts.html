@@ -57,6 +57,28 @@
   <script src="//cdnjs.cloudflare.com/ajax/libs/api-check/7.5.5/api-check[[?xtruex::x[[S80:debug]]x::::.min]].js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/angular-formly/8.4.1/formly[[?xtruex::x[[S80:debug]]x::::.min]].js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/angular-formly-templates-bootstrap/6.4.0/angular-formly-templates-bootstrap[[?xtruex::x[[S80:debug]]x::::.min]].js"></script>
+  <script>
+    window.fbAsyncInit = function() {
+      FB.init({
+        appId: '[[S0:FACEBOOK_FUNDRAISER_APP_ID]]', 
+        cookie: true, 
+        xfbml: true, 
+        version: 'v3.2'
+      });
+      FB.AppEvents.logPageView();
+    };
+    (function(d, s, id) {
+      var js, 
+      fjs = d.getElementsByTagName(s)[0];
+      if(d.getElementById(id)) {
+        return;
+      }
+      js = d.createElement(s);
+      js.id = id;
+      js.src = '//connect.facebook.net/en_US/sdk.js';
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+  </script>
   <script src="[[S666:template_macros/aha_luminate_filepath.tpt::heart-walk/js/participant::js::@@buildTimestamp]]"></script>
 ::]]
 
@@ -89,3 +111,27 @@
     }
   });
 </script>
+<br />
+
+[[?x9x::x[[S4]]x::
+
+<script>
+  jQuery(document).ready(function() {
+    if  (jQuery('#tos_radio_true').length > 0){
+      jQuery('label[for="tos_dropdown"]').parent().hide();
+      jQuery('label[for="tos_dropdown"]').parent().next('fieldset').hide();
+      jQuery('label[for="tos_dropdown"]').parent().before('<input type="checkbox" name="terms-of-service-checkbox" id="terms-of-service-checkbox"><label for="terms-of-service-checkbox">&nbsp;Yes, I agree to the <a href="https://www.heart.org/en/about-us/statements-and-policies/privacy-statement" target="_blank">AHA Privacy Policy</a></label>');
+      jQuery('#terms-of-service-checkbox').change(function(){
+        if(jQuery(this).is(':checked')){
+          jQuery('#tos_radio_true').prop('checked',true);
+        }
+        else {
+          $('#tos_radio_true').prop('checked',false);
+        }
+      });
+    }
+  });
+</script>
+
+
+::]] 

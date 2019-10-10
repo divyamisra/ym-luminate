@@ -1,0 +1,317 @@
+.ym-activity-box--virtual img {
+	max-width:100%;
+}
+
+a.ym-progress-update-goal {
+	color: $event-primary-acc;
+}
+
+a.ym-pc-dashboard-download-certificates {
+	color: $event-primary-acc;
+}
+
+/* Hero Popup Styles */
+.launch-builder-popup {
+	bottom: 0;
+	cursor: pointer;
+	height: 230px;
+	margin: auto;
+	position: fixed;
+	right: 0;
+	top: 60%;
+	transition: all 0.2s;
+	width: 150px;
+	z-index: 99999;
+}
+@media only screen and (min-width: 768px) {
+	.launch-builder-popup {
+		height: 350.333px;
+		width: 175px;
+	}
+}
+
+@media only screen and (min-width: 1000px) {
+	.launch-builder-popup {
+		height: 399.667px;
+		width: 200px;
+	}	
+}
+
+.launch-builder-character {
+	background-repeat: no-repeat;
+	background-size: 100% auto;
+	height: 100%;
+	position:  absolute;	
+	width: 100%;
+}
+
+@keyframes wink {
+	0% { background-position: 100%  0%; }
+	90% { background-position: 100% 0%; }
+	100% { background-position: 100%  100%; }
+}
+
+@keyframes pop {
+	0% { background-position: 100%  0%; }
+	100% { background-position: 100%  100%; }
+}
+
+.launch-builder-character.wink {
+	animation: wink 2.5s steps(4) infinite;
+	background-image: url(../image/pc_customize-wink.png);
+	transform-origin: 100% 60%;
+	transition: all 0.667s;
+}
+
+.launch-builder-character.pop {
+	background-image: url(../image/pc_customize-pop.png);
+	transform: scale(0);
+	transform-origin: 100% 50%;
+	transition: all 0.667s;
+}
+
+.launch-builder-popup.pop .launch-builder-character.wink,
+.launch-builder-popup:hover .launch-builder-character.wink {
+	animation: none;
+	transform: scale(0);
+}
+
+.launch-builder-popup.pop .launch-builder-character.pop,
+.launch-builder-popup:hover .launch-builder-character.pop {
+	animation: pop 1s steps(23) infinite;
+	transform: scale(1);
+}		
+/* end hero popup */
+
+.social-iframe {
+	min-height: 950px;
+}
+
+/* badge list */
+.ym-pc-dashboard-badges-section {
+  background: none !important;
+  margin: 0px !important;
+  padding: 10px 0 0 0 !important;
+  
+  .ym-pc-dashboard-mission-accomplished {
+    color: $event-secondary;
+    font-weight:bold;
+  }
+  .ym-pc-dashboard-completed-label {
+    font-size:14px;
+  }
+  .btn {
+    white-space:normal;
+  }
+}
+
+.ym-pc-dashboard-badges-header {
+   background: #feeec7;
+   width: 100%;
+   padding-bottom: 20px;
+   margin-top: 50px;
+   position: relative;
+   font-size:20px;
+   img {
+	margin-top: -35px;
+	max-width: 70px;
+	margin-bottom: 20px;
+   }
+   p {
+	display: block;
+	max-width: 475px;
+	color: indigo;
+	margin:0 auto;
+   }
+   em {
+      font-size:16px;
+   }
+}
+.ym-pc-dashboard-badges-icons {
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: row;
+	justify-content: center;
+	align-items: flex-start;
+	padding: 20px;
+	background: #feeec7;
+}
+.ym-pc-dashboard-badges-icon {
+	text-align: center;
+	padding: 0 25px 25px;
+	max-width:200px;
+}
+
+.ym-pc-dashboard-coordinator-resources-contact {
+	text-align:center;
+	font-weight:bold;
+	margin-top:15px;
+	color: $event-secondary;
+}
+
+
+/* Gifts tab */
+section.ym-pc-dashboard-gifts-section {
+	h3.h6 {
+		color: $event-secondary;
+	}
+}
+
+section.ym-pc-dashboard-standard-gifts-section {
+        @media (min-width: $screen-sm-min) {
+           margin: 0 0 40px;
+        }
+        
+	.ym-pc-dashboard-standard-gifts-icons {
+	   background: $brand-white;
+           margin: 5px 0 0 0;
+	   display:flex;
+	   flex-flow: row wrap;
+	   justify-content: space-around;
+        }
+	
+	.ym-pc-dashboard-standard-gifts-icon {
+           max-width: 23%;
+           margin: 0 11px 15px 0;
+           vertical-align: top;
+   	   position:relative;
+	   text-align:center;
+	   background: #eafbd7;
+	   padding: 20px;
+	   flex: 1 100%;
+  
+	   @media (max-width: $screen-sm-min) {
+              max-width:45%;
+           }
+	   @media (max-width: $screen-xs-min) {
+              max-width:100%;
+           }
+		
+	   img {
+	      margin-bottom: 30px;
+	   }
+           
+	   &.not-earned {
+	      background: #d7d5e9;
+		   
+	      img {
+		 opacity: 0.5;
+	      }
+	   }
+
+	   a {
+              text-decoration:none;
+	      display:block;
+	   }
+
+	   .ym-pc-dashboard-standard-gift-earned {
+		   h4 {
+	              color: #440075;
+        	      font-family: "Luckiest Guy",cursive;
+	              font-size: 20px;
+		   }
+		   .gift-subtitle1 {
+			   color:#440075;
+			   font-weight:bold;
+		   }
+		   .gift-subtitle2 {
+			   color:#2d2d2d;
+		   }
+           }
+	   .ym-pc-dashboard-standard-gift-notearned {
+		   h4 {
+	              color: #2d2d2d;
+        	      font-family: "Luckiest Guy",cursive;
+	              font-size: 20px;
+		   }
+		   .gift-subtitle1 {
+			   color:#2d2d2d;
+			   font-weight:bold;
+		   }
+		   .gift-subtitle2 {
+			   color:#2d2d2d;
+		   }
+           }
+	   .more-details-button {
+	      display:inline-block;
+	      background: $event-primary;
+	      color:#ffffff;
+	      padding: 10px 30px;
+	      border-radius: 15px;
+	      margin-top:40px;
+	      margin-bottom:20px;
+	   }
+	}
+	
+	.see-all-gifts {
+	   a.btn {
+   	      font-size: 20px;
+   	      margin-top: 20px;
+	      margin-bottom: 20px;
+	   }
+	}
+		
+}
+
+div.ta-editor table.containFull, 
+div.ta-editor table.containFull table {
+	width: auto !important;
+}
+
+.modal-dialog {
+   .ym-pc-dashboard-gift-earned {
+      color: #440075;
+      font-family: "Luckiest Guy",cursive;
+      font-size: 30px;
+      text-align:center;
+   }
+   img.prize-image {
+      margin:0 auto;
+      -webkit-animation-name: wiggle;
+      -ms-animation-name: wiggle;
+      -ms-animation-duration: 1000ms;
+      -webkit-animation-duration: 1000ms;
+      -webkit-animation-iteration-count: 1;
+      -ms-animation-iteration-count: 1;
+      -webkit-animation-timing-function: ease-in-out;
+      -ms-animation-timing-function: ease-in-out;
+    }
+
+}
+
+@-webkit-keyframes wiggle {
+   0% {-webkit-transform: rotate(10deg);}
+   25% {-webkit-transform: rotate(-10deg);}
+   50% {-webkit-transform: rotate(20deg);}
+   75% {-webkit-transform: rotate(-5deg);}
+   100% {-webkit-transform: rotate(0deg);}
+}
+
+@-ms-keyframes wiggle {
+   0% {-ms-transform: rotate(1deg);}
+   25% {-ms-transform: rotate(-1deg);}
+   50% {-ms-transform: rotate(1.5deg);}
+   75% {-ms-transform: rotate(-5deg);}
+   100% {-ms-transform: rotate(0deg);}
+}
+
+@keyframes wiggle {
+   0% {transform: rotate(10deg);}
+   25% {transform: rotate(-10deg);}
+   50% {transform: rotate(20deg);}
+   75% {transform: rotate(-5deg);}
+   100% {transform: rotate(0deg);}
+}
+
+div[id^="taTextElement"]:focus {
+    border-color: #66afe9;
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
+}
+
+.ym-pc-dashboard-coordinator-school-years-section {
+	background-color: $event-accent-light;
+	padding: 36px;
+	margin: 0 0 30px;
+}

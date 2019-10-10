@@ -1,0 +1,31 @@
+div.company-list-table-container {
+  background-color:$white;
+}
+
+div.responsive div.list-row {
+  border:none;
+}
+
+#company_page_header {
+  display:none;
+}
+
+#local_company_page {
+  p.cstmTitle {
+    @extend h2;
+  }
+  p.righted {
+    margin-bottom:0;
+    padding: 5px 5px;
+  }
+  tr.lc_Row1 {
+    background-color:$white;
+  }
+}
+
+.top-participants-container {
+  div.trr-table-more {
+    display:none;
+  }
+}
+

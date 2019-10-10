@@ -15,7 +15,7 @@ angular.module 'ahaLuminateControllers'
         $scope.regEventId = regEventId
         if not $scope.$$phase
           $scope.$apply()
-      if not consId
+      if not consId or not luminateExtend.global.isParticipant
         setRegEventId()
       else
         TeamraiserParticipantService.getRegisteredTeamraisers 'cons_id=' + consId + '&event_type=' + encodeURIComponent('District Heart Challenge'),

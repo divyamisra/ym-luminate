@@ -1,6 +1,12 @@
 /* jshint strict:false */
 
+const sass = require('node-sass')
+
 module.exports = {
+  options: {
+    implementation: sass
+  }, 
+  
   "general": {
     files: {
       'dist/general/css/main.css': [
@@ -23,13 +29,13 @@ module.exports = {
     }
   }, 
   
-  "jump-hoops": {
+  "ym-primary": {
     files: {
-      'dist/jump-hoops/css/main.css': [
-        'src/jump-hoops/sass/main.scss'
+      'dist/ym-primary/css/main.css': [
+        'src/ym-primary/sass/main.scss'
       ], 
-      'dist/jump-hoops/css/participant.css': [
-        'src/jump-hoops/sass/participant.scss'
+      'dist/ym-primary/css/participant.css': [
+        'src/ym-primary/sass/participant.scss'
       ]
     }
   }, 
@@ -63,6 +69,38 @@ module.exports = {
       ], 
       'dist/district-heart/css/participant.css': [
         'src/district-heart/sass/participant.scss'
+      ]
+    }
+  },
+  
+  "nchw": {
+    files: {
+      'dist/nchw/css/main.css': [
+        'src/nchw/sass/main.scss'
+      ]
+    }
+  },
+  
+  "heartchase": {
+    files: {
+      'dist/heartchase/css/main.css': [
+        'src/heartchase/sass/main.scss'
+      ]
+    }
+  },
+  
+  "cyclenation": {
+    files: {
+      'dist/cyclenation/css/main.css': [
+        'src/cyclenation/sass/main.scss'
+      ]
+    }
+  },
+
+  "heartwalk2020": {
+    files: {
+      'dist/heartwalk2020/css/main.css': [
+        'src/heartwalk2020/sass/main.scss'
       ]
     }
   }

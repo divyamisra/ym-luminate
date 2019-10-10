@@ -55,7 +55,7 @@ angular.module 'ahaLuminateControllers'
         questionName = $contactInfoHiddenField.attr 'name'
         questionValue = $contactInfoHiddenField.val()
         $scope.registrationHiddenFields[questionName] = questionValue
-      $contactInfoQuestions = $contactInfo.find 'input[type="text"], select'
+      $contactInfoQuestions = $contactInfo.find 'input[type="text"], input[type="email"], input[type="tel"], select'
       angular.forEach $contactInfoQuestions, (contactInfoQuestion) ->
         $contactInfoQuestion = angular.element contactInfoQuestion
         questionName = $contactInfoQuestion.attr 'name'
@@ -192,10 +192,10 @@ angular.module 'ahaLuminateControllers'
           setRegistrationQuestionSurveyKey = (questionName, surveyKey) ->
             $scope.registrationQuestions[questionName].surveyKey = surveyKey
             questionLegend = $scope.registrationQuestions[questionName].legend
-            if surveyKey is 'ym_middle_school_email_type' or surveyKey is 'ym_middle_school_grade' or surveyKey is 'ym_middle_school_school' or surveyKey is 'ym_middle_school_teacher_name' or surveyKey is 'ym_middle_school_school_city' or surveyKey is 'ym_middle_school_school_state'
+            if surveyKey is 'ym_middle_school_email_type' or surveyKey is 'ym_middle_school_grade' or surveyKey is 'ym_middle_school_school' or surveyKey is 'ym_middle_school_teacher_name' or surveyKey is 'ym_middle_school_school_city' or surveyKey is 'ym_middle_school_school_state' or surveyKey is 'ym_ahc_student_state'
               initCustomQuestions()
               $scope.registrationCustomQuestions[surveyKey] = questionName
-            else if questionLegend isnt 'Event Date' and surveyKey isnt 'ym_middle_school_challenge_info' and surveyKey isnt 'ym_middle_school_ecards_sent' and surveyKey isnt 'ym_middle_school_ecards_shared' and surveyKey isnt 'ym_middle_school_ecards_open' and surveyKey isnt 'ym_middle_school_ecards_clicked'
+            else if questionLegend isnt 'Event Date' and surveyKey isnt 'ym_middle_school_challenge_info' and surveyKey isnt 'ym_middle_school_ecards_sent' and surveyKey isnt 'ym_middle_school_ecards_shared' and surveyKey isnt 'ym_middle_school_ecards_open' and surveyKey isnt 'ym_middle_school_ecards_clicked' and surveyKey isnt 'bb_facebook_connector_id'
               if not $scope.registrationAdditionalQuestions
                 $scope.registrationAdditionalQuestions = {}
               $scope.registrationAdditionalQuestions[questionName] = questionName

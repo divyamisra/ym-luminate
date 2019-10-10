@@ -6,6 +6,7 @@ angular.module 'trPcApp'
       restrict: 'E'
       replace: true
       scope:
+        listType: '='
         gifts: '='
         sortColumn: '='
         sortAscending: '='

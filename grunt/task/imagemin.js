@@ -2,7 +2,7 @@
 
 module.exports = {
   options: {
-    optimizationLevel: 7
+    optimizationLevel: 3
   }, 
   
   "general": {
@@ -44,15 +44,17 @@ module.exports = {
     ]
   }, 
   
-  "jump-hoops": {
+  "ym-primary": {
     files: [
       {
         expand: true, 
-        cwd: 'src/jump-hoops/image/', 
+        cwd: 'src/ym-primary/image/', 
         src: [
-          '*.{gif,GIF,jpg,JPG,png,PNG,svg,SVG}'
+          '*.{gif,GIF,jpg,JPG,png,PNG,svg,SVG}',
+          'prizes/*.{gif,GIF,jpg,JPG,png,PNG,svg,SVG}',
+          'prizes2020/*.{gif,GIF,jpg,JPG,png,PNG,svg,SVG}'
         ], 
-        dest: 'dist/jump-hoops/image/'
+        dest: 'dist/ym-primary/image/'
       }
     ]
   }, 
@@ -92,6 +94,58 @@ module.exports = {
           '*.{gif,GIF,jpg,JPG,png,PNG,svg,SVG}'
         ], 
         dest: 'dist/district-heart/image/'
+      }
+    ]
+  },
+  
+  "nchw": {
+    files: [
+      {
+        expand: true,
+        cwd: 'src/nchw/image/',
+        src: [
+          '*.{gif,GIF,jpg,JPG,png,PNG,svg,SVG}'
+        ],
+        dest: 'dist/nchw/image/'
+      }
+    ]
+  },
+  
+  "heartchase": {
+    files: [
+      {
+        expand: true,
+        cwd: 'src/heartchase/image/',
+        src: [
+          '*.{gif,GIF,jpg,JPG,png,PNG,svg,SVG}'
+        ],
+        dest: 'dist/heartchase/image/'
+      }
+    ]
+  },
+  
+  "cyclenation": {
+    files: [
+      {
+        expand: true,
+        cwd: 'src/cyclenation/image/',
+        src: [
+          '*.{gif,GIF,jpg,JPG,png,PNG,svg,SVG}'
+        ],
+        dest: 'dist/cyclenation/image/'
+      }
+    ]
+  },
+
+  "heartwalk2020": {
+    files: [
+      {
+        expand: true,
+        cwd: 'src/heartwalk2020/image/',
+        src: [
+          '*.{gif,GIF,jpg,JPG,png,PNG,svg,SVG}'
+        ],
+        dest: 'dist/heartwalk2020/image/'
       }
     ]
   }

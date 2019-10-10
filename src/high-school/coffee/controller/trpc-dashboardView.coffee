@@ -15,7 +15,9 @@ angular.module 'trPcControllers'
     'NgPcTeamraiserShortcutURLService'
     'NgPcInteractionService'
     'NgPcTeamraiserCompanyService'
-    ($rootScope, $scope, $filter, $timeout, $uibModal, APP_INFO, BoundlessService, NgPcTeamraiserRegistrationService, NgPcTeamraiserProgressService, NgPcTeamraiserTeamService, NgPcTeamraiserGiftService, NgPcContactService, NgPcTeamraiserShortcutURLService, NgPcInteractionService, NgPcTeamraiserCompanyService) ->
+    'NgPcTeamraiserSchoolService'
+    'FacebookFundraiserService'
+    ($rootScope, $scope, $filter, $timeout, $uibModal, APP_INFO, BoundlessService, NgPcTeamraiserRegistrationService, NgPcTeamraiserProgressService, NgPcTeamraiserTeamService, NgPcTeamraiserGiftService, NgPcContactService, NgPcTeamraiserShortcutURLService, NgPcInteractionService, NgPcTeamraiserCompanyService, NgPcTeamraiserSchoolService, FacebookFundraiserService) ->
       $scope.dashboardPromises = []
       
       $dataRoot = angular.element '[data-embed-root]'
@@ -246,6 +248,10 @@ angular.module 'trPcControllers'
               else
                 $scope.editPersonalGoalModal.close()
                 $scope.refreshFundraisingProgress()
+                if $rootScope.facebookFundraiserId
+                  FacebookFundraiserService.updateFundraiser()
+                    .then ->
+                      FacebookFundraiserService.syncDonations()
               response
           $scope.dashboardPromises.push updatePersonalGoalPromise
       
@@ -282,6 +288,46 @@ angular.module 'trPcControllers'
                 $scope.refreshFundraisingProgress()
               response
           $scope.dashboardPromises.push updateTeamGoalPromise
+      
+      $scope.schoolGoalInfo = {}
+      
+      $scope.editSchoolGoal = ->
+        delete $scope.schoolGoalInfo.errorMessage
+        schoolGoal = $scope.companyProgress.goalFormatted.replace '$', ''
+        if schoolGoal is '' or schoolGoal is '0'
+          $scope.schoolGoalInfo.goal = ''
+        else
+          $scope.schoolGoalInfo.goal = schoolGoal
+        $scope.editSchoolGoalModal = $uibModal.open
+          scope: $scope
+          templateUrl: APP_INFO.rootPath + 'dist/high-school/html/participant-center/modal/editSchoolGoal.html'
+      
+      $scope.cancelEditSchoolGoal = ->
+        $scope.editSchoolGoalModal.close()
+      
+      $scope.updateSchoolGoal = ->
+        delete $scope.schoolGoalInfo.errorMessage
+        newGoal = $scope.schoolGoalInfo.goal
+        if newGoal
+          newGoal = newGoal.replace('$', '').replace /,/g, ''
+        if not newGoal or newGoal is '' or newGoal is '0' or isNaN(newGoal)
+          $scope.schoolGoalInfo.errorMessage = 'Please specify a goal greater than $0.'
+        else
+          updateSchoolGoalPromise = NgPcTeamraiserSchoolService.updateSchoolGoal(newGoal, $scope)
+            .then (response) ->
+              $scope.editSchoolGoalModal.close()
+              $scope.refreshFundraisingProgress()
+          $scope.dashboardPromises.push updateSchoolGoalPromise
+      
+      if $scope.facebookFundraisersEnabled and $rootScope.facebookFundraiserId and $rootScope.facebookFundraiserId isnt ''
+        $rootScope.facebookFundraiserConfirmedStatus = 'pending'
+        FacebookFundraiserService.confirmFundraiserStatus()
+          .then (response) ->
+            if not response.data.status?.active
+              delete $rootScope.facebookFundraiserId
+              $rootScope.facebookFundraiserConfirmedStatus = 'deleted'
+            else
+              $rootScope.facebookFundraiserConfirmedStatus = 'confirmed'
       
       $scope.participantGifts =
         sortColumn: 'date_recorded'

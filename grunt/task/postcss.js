@@ -7,8 +7,8 @@ module.exports = {
         browsers: [
           'last 2 versions', 
           'ie >= 9', 
-          'Safari >= 7', 
-          'ios_saf >= 7'
+          'Safari >= 9', 
+          'ios_saf >= 9'
         ]
       })
     ]
@@ -56,23 +56,23 @@ module.exports = {
     ]
   }, 
   
-  "jump-hoops": {
+  "ym-primary": {
     files: [
       {
         expand: true, 
-        cwd: 'dist/jump-hoops/css/', 
+        cwd: 'dist/ym-primary/css/', 
         src: [
           'main.css'
         ], 
-        dest: 'dist/jump-hoops/css/'
+        dest: 'dist/ym-primary/css/'
       }, 
       {
         expand: true, 
-        cwd: 'dist/jump-hoops/css/', 
+        cwd: 'dist/ym-primary/css/', 
         src: [
           'participant.css'
         ], 
-        dest: 'dist/jump-hoops/css/'
+        dest: 'dist/ym-primary/css/'
       }
     ]
   }, 
@@ -136,6 +136,58 @@ module.exports = {
           'participant.css'
         ], 
         dest: 'dist/district-heart/css/'
+      }
+    ]
+  },
+  
+  "nchw": {
+    files: [
+      {
+        expand: true,
+        cwd: 'dist/nchw/css/',
+        src: [
+          'main.css'
+        ],
+        dest: 'dist/nchw/css/'
+      }
+    ]
+  },
+  
+  "heartchase": {
+    files: [
+      {
+        expand: true,
+        cwd: 'dist/heartchase/css/',
+        src: [
+          'main.css'
+        ],
+        dest: 'dist/heartchase/css/'
+      }
+    ]
+  },
+  
+  "cyclenation": {
+    files: [
+      {
+        expand: true,
+        cwd: 'dist/cyclenation/css/',
+        src: [
+          'main.css'
+        ],
+        dest: 'dist/cyclenation/css/'
+      }
+    ]
+  },
+
+  "heartwalk2020": {
+    files: [
+      {
+        expand: true,
+        cwd: 'dist/heartwalk2020/css/',
+        src: [
+          'main.css'
+        ],
+        dest: 'dist/heartwalk2020/css/'
       }
     ]
   }

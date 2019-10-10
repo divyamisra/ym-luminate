@@ -17,7 +17,8 @@ angular.module 'trPcControllers'
     'NgPcTeamraiserShortcutURLService'
     'NgPcInteractionService'
     'NgPcTeamraiserCompanyService'
-    ($rootScope, $scope, $filter, $timeout, $uibModal, APP_INFO, ZuriService, BoundlessService, NgPcTeamraiserRegistrationService, NgPcTeamraiserProgressService, NgPcTeamraiserTeamService, NgPcTeamraiserSchoolService, NgPcTeamraiserGiftService, NgPcContactService, NgPcTeamraiserShortcutURLService, NgPcInteractionService, NgPcTeamraiserCompanyService) ->
+    'FacebookFundraiserService'
+    ($rootScope, $scope, $filter, $timeout, $uibModal, APP_INFO, ZuriService, BoundlessService, NgPcTeamraiserRegistrationService, NgPcTeamraiserProgressService, NgPcTeamraiserTeamService, NgPcTeamraiserSchoolService, NgPcTeamraiserGiftService, NgPcContactService, NgPcTeamraiserShortcutURLService, NgPcInteractionService, NgPcTeamraiserCompanyService, FacebookFundraiserService) ->
       $scope.dashboardPromises = []
       
       $dataRoot = angular.element '[data-embed-root]'
@@ -210,6 +211,10 @@ angular.module 'trPcControllers'
               else
                 $scope.editPersonalGoalModal.close()
                 $scope.refreshFundraisingProgress()
+                if $rootScope.facebookFundraiserId
+                  FacebookFundraiserService.updateFundraiser()
+                    .then ->
+                      FacebookFundraiserService.syncDonations()
               response
           $scope.dashboardPromises.push updatePersonalGoalPromise
       
@@ -277,6 +282,16 @@ angular.module 'trPcControllers'
               $scope.refreshFundraisingProgress()
           $scope.dashboardPromises.push updateSchoolGoalPromise
       
+      if $scope.facebookFundraisersEnabled and $rootScope.facebookFundraiserId and $rootScope.facebookFundraiserId isnt ''
+        $rootScope.facebookFundraiserConfirmedStatus = 'pending'
+        FacebookFundraiserService.confirmFundraiserStatus()
+          .then (response) ->
+            if not response.data.status?.active
+              delete $rootScope.facebookFundraiserId
+              $rootScope.facebookFundraiserConfirmedStatus = 'deleted'
+            else
+              $rootScope.facebookFundraiserConfirmedStatus = 'confirmed'
+      
       $scope.participantGifts =
         sortColumn: 'date_recorded'
         sortAscending: false
@@ -307,7 +322,7 @@ angular.module 'trPcControllers'
             response
         $scope.dashboardPromises.push personalGiftsPromise
       $scope.getGifts()
-
+      
       $scope.donorContactCounts = {}
       donorContactFilters = [
         'email_rpt_show_nondonors_followup'
@@ -500,16 +515,22 @@ angular.module 'trPcControllers'
         if not $scope.$$phase
           $scope.$apply()
       getStudentChallenge = ->
+        if not $scope.personalChallenge
+          $scope.personalChallenge = {}
+        $scope.personalChallenge.updatePending = true
         ZuriService.getStudent $scope.frId + '/' + $scope.consId,
           failure: (response) ->
+            delete $scope.personalChallenge.updatePending
             setPersonalChallenge()
           error: (response) ->
+            delete $scope.personalChallenge.updatePending
             setPersonalChallenge()
           success: (response) ->
             personalChallenges = response.data.challenges
             if not personalChallenges
               setPersonalChallenge()
             else
+              delete $scope.personalChallenge.updatePending
               id = personalChallenges.current
               if id is '0'
                 setPersonalChallenge()
@@ -540,17 +561,27 @@ angular.module 'trPcControllers'
           name: challenge
       
       $scope.updateChallenge = ->
+        if not $scope.personalChallenge
+          $scope.personalChallenge = {}
+        $scope.personalChallenge.updatePending = true
         ZuriService.updateChallenge $scope.frId + '/' + $scope.consId + '?challenge=' + $scope.updatedPersonalChallenge.id,
           failure: (response) ->
             # TODO
+            delete $scope.personalChallenge.updatePending
           success: (response) ->
+            delete $scope.personalChallenge.updatePending
             getStudentChallenge()
       
       $scope.logChallenge = ->
+        if not $scope.personalChallenge
+          $scope.personalChallenge = {}
+        $scope.personalChallenge.updatePending = true
         ZuriService.logChallenge $scope.frId + '/' + $scope.consId + '/' + $scope.personalChallenge.id,
           failure: (response) ->
             # TODO
+            delete $scope.personalChallenge.updatePending
           success: (response) ->
+            delete $scope.personalChallenge.updatePending
             getStudentChallenge()
       
       $scope.prizes = []
@@ -625,7 +656,7 @@ angular.module 'trPcControllers'
           error: (response) ->
             # TODO
           success: (response) ->
-            if response.data.student.student_id != null and typeof response.data.student.avatar_url != 'undefined'
+            if response.data.student.student_id isnt null and typeof response.data.student.avatar_url isnt 'undefined'
               avatarURL = response.data.student.avatar_url
             else
               avatarURL = 'https://hearttools.heart.org/aha_ym18_dev/virtualworld/img/avatar-charger.png'

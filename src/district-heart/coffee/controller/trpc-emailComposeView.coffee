@@ -18,21 +18,21 @@ angular.module 'trPcControllers'
       
       $scope.emailPromises = []
       
-      $scope.getMessageCounts = (refresh) ->
-        $scope.messageCounts = {}
-        messageTypes = [
-          'draft'
-          'sentMessage'
-        ]
-        angular.forEach messageTypes, (messageType) ->
-          apiMethod = 'get' + messageType.charAt(0).toUpperCase() + messageType.slice(1) + 's'
-          messageCountPromise = NgPcTeamraiserEmailService[apiMethod] 'list_page_size=1'
-            .then (response) ->
-              $scope.messageCounts[messageType + 's'] = response.data[apiMethod + 'Response'].totalNumberResults
-              response
-          if not refresh
-            $scope.emailPromises.push messageCountPromise
-      $scope.getMessageCounts()
+      # $scope.getMessageCounts = (refresh) ->
+      #   $scope.messageCounts = {}
+      #   messageTypes = [
+      #     'draft'
+      #     'sentMessage'
+      #   ]
+      #   angular.forEach messageTypes, (messageType) ->
+      #     apiMethod = 'get' + messageType.charAt(0).toUpperCase() + messageType.slice(1) + 's'
+      #     messageCountPromise = NgPcTeamraiserEmailService[apiMethod] 'list_page_size=1'
+      #       .then (response) ->
+      #         $scope.messageCounts[messageType + 's'] = response.data[apiMethod + 'Response'].totalNumberResults
+      #         response
+      #     if not refresh
+      #       $scope.emailPromises.push messageCountPromise
+      # $scope.getMessageCounts()
       
       $scope.getContactCounts = ->
         $scope.contactCounts = {}
@@ -72,13 +72,18 @@ angular.module 'trPcControllers'
       setEmailComposerDefaults = ->
         defaultStationeryId = $scope.teamraiserConfig.defaultStationeryId
         selectedContacts = $rootScope.selectedContacts.contacts
+        recipients = []
+        if selectedContacts.length > 0
+          angular.forEach selectedContacts, (selectedContact) ->
+            if selectedContact.lastIndexOf('<>') isnt (selectedContact.length - 2)
+              recipients.push selectedContact
         $scope.emailComposer =
           serial: new Date().getTime()
           message_id: ''
-          recipients: selectedContacts.join ', '
+          ng_recipients: recipients.join ', '
           suggested_message_id: ''
           subject: ''
-          prepend_salutation: true
+          prepend_salutation: false
           message_body: ''
           layout_id: if defaultStationeryId isnt '-1' then defaultStationeryId else ''
       setEmailComposerDefaults()
@@ -115,7 +120,7 @@ angular.module 'trPcControllers'
                 $scope.emailComposer.message_id = $scope.messageId
                 # TODO: recipients
                 $scope.emailComposer.subject = messageInfo.subject
-                $scope.emailComposer.prepend_salutation = messageInfo.prependsalutation is 'true'
+                # $scope.emailComposer.prepend_salutation = messageInfo.prependsalutation is 'true'
                 messageBody = messageInfo.messageBody
                 setEmailMessageBody messageBody
       else if $scope.messageType is 'copy' and $scope.messageId
@@ -144,7 +149,7 @@ angular.module 'trPcControllers'
                       message.name = message.name.split('Participant: ')[1] or message.name
                       $scope.suggestedMessages.push message
                   else
-                    if message.name.indexOf('Participant:') isnt -1
+                    if message.name.indexOf('Participant: ') isnt -1
                       message.name = message.name.split('Participant: ')[1]
                       $scope.suggestedMessages.push message
                     else if message.name.indexOf('Captain:') isnt -1
@@ -223,7 +228,7 @@ angular.module 'trPcControllers'
                 .then (response) ->
                   draftMessage = response.data.addDraftResponse?.message
                   if draftMessage
-                    $scope.getMessageCounts true
+                    # $scope.getMessageCounts true
                     messageId = draftMessage.messageId
                     $scope.messageId = messageId
                     # TODO: add draftId to URL
@@ -256,7 +261,8 @@ angular.module 'trPcControllers'
       
       $scope.previewEmail = ->
         $scope.clearEmailAlerts()
-        NgPcTeamraiserEmailService.previewMessage $httpParamSerializer($scope.emailComposer)
+        recipients = $scope.emailComposer.ng_recipients.replace />;/g, '>,'
+        NgPcTeamraiserEmailService.previewMessage($httpParamSerializer($scope.emailComposer) + '&recipients=' + encodeURIComponent(recipients))
           .then (response) ->
             if response.data.errorResponse
               $scope.sendEmailError = response.data.errorResponse.message
@@ -277,7 +283,6 @@ angular.module 'trPcControllers'
                 templateUrl: APP_INFO.rootPath + 'dist/district-heart/html/participant-center/modal/emailPreview.html'
                 size: 'lg'
                 windowClass: 'ng-pc-modal ym-modal-full-screen'
-              angular.element('html').addClass 'ym-modal-is-open'
       
       $scope.selectStationery = ->
         NgPcTeamraiserEmailService.previewMessage $httpParamSerializer($scope.emailComposer)
@@ -300,7 +305,8 @@ angular.module 'trPcControllers'
         if not $rootScope.sendEmailPending
           $rootScope.sendEmailPending = true
           $scope.sendEmailPending = true
-          NgPcTeamraiserEmailService.sendMessage $httpParamSerializer($scope.emailComposer)
+          recipients = $scope.emailComposer.ng_recipients.replace />;/g, '>,'
+          NgPcTeamraiserEmailService.sendMessage($httpParamSerializer($scope.emailComposer) + '&recipients=' + encodeURIComponent(recipients))
             .then (response) ->
               delete $rootScope.sendEmailPending
               delete $scope.sendEmailPending
@@ -315,10 +321,10 @@ angular.module 'trPcControllers'
                 if $scope.messageId
                   deleteDraftPromise = NgPcTeamraiserEmailService.deleteDraft 'message_id=' + $scope.messageId
                     .then (response) ->
-                      $scope.getMessageCounts()
+                      # $scope.getMessageCounts()
                   $scope.emailPromises.push deleteDraftPromise
                 else
-                  $scope.getMessageCounts()
+                  # $scope.getMessageCounts()
                 $scope.getContactCounts()
                 $scope.sendEmailSuccess = true
                 $scope.resetSelectedContacts()

@@ -19,8 +19,6 @@ angular.module 'trPageEditApp'
                 requestData += '&auth=' + $rootScope.authToken
               if includeFrId
                 requestData += '&fr_id=' + $rootScope.frId + '&s_trID=' + $rootScope.frId
-              if $rootScope.locale
-                requestData += '&s_locale=' + $rootScope.locale
               $http
                 method: 'POST'
                 url: apiServlet

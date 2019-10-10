@@ -178,8 +178,8 @@ angular.module 'ahaLuminateControllers'
                   participant.amountRaised = Number participant.amountRaised
                   if participant.name?.first and participant.amountRaised > 0
                     participant.firstName = participant.name.first
-                    participant.lastName = participant.name.last
-                    participant.name.last = participant.name.last.substring(0, 1) + '.'
+                    participant.lastName = participant.name.last || ""
+                    participant.name.last =  participant.lastName.substring(0, 1) + '.'
                     participant.fullName = participant.name.first + ' ' + participant.name.last
                     participant.amountRaisedFormatted = $filter('currency')(participant.amountRaised / 100, '$').replace '.00', ''
                     if participant.donationUrl

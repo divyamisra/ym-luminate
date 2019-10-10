@@ -1,0 +1,36 @@
+.ym-page-header-social {
+  margin: 0 0 10px;
+  
+  p {
+    margin: 0 0 4px;
+  }
+}
+
+.ym-page-header {
+  h1 {
+    font-size: 32px;
+    margin: 0 0 18px;
+    
+    @media (min-width: $screen-sm-min) {
+      font-size: 60px;
+      margin: 0 0 22px;
+    }
+  }
+  
+  p {
+    a {
+        &,
+        &:link,
+        &:visited {
+          color: $acc-purple;
+        }
+    }
+  }
+  
+  .survivor {
+    img {
+       max-width: 50px;
+       margin-right: 10px;
+    }
+  }
+}

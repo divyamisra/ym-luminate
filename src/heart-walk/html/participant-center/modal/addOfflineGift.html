@@ -1,35 +1,47 @@
 <form ng-submit="submitOfflineGift()" name="gift">
-  <div class="modal-header">
+  <div class="modal-header modal-header-red">
     <h2 class="modal-title">
       Add Donation
     </h2>
   </div>
-  <div class="modal-body">
+  <div class="modal-body modal-body-red">
     <!-- TODO: errors -->
-    <p>Enter donations from friends, family or businesses here. For donations from businesses, leave the First Name field blank and enter the entire company name in the Last Name/Company Name field.</p>
+    <p>
+      Enter donations from friends, family or businesses here. For donations from businesses, leave the First Name field blank and enter the entire company name in the Last Name/Company Name field.
+    </p>
     <div class="form-group">
-      <label for="">* First Name:</label>
+      <label for="">
+        * First Name:
+      </label>
       <input type="text" class="form-control" id="" ng-model="newOfflineGift.first_name">
     </div>
     <div class="form-group">
-      <label for="">* Last Name/Company Name:</label>
+      <label for="">
+        * Last Name/Company Name:
+      </label>
       <input type="text" class="form-control" id="" ng-model="newOfflineGift.last_name">
     </div>
-		<div ng-if="newOfflineGift.name_error && !newOfflineGift.last_name && !newOfflineGift.first_name">
-			<label class="error" for="names">
-				Please enter a first and last name or a company name.
-			</label>
-		</div>
+    <div ng-if="newOfflineGift.name_error && !newOfflineGift.last_name && !newOfflineGift.first_name">
+      <label class="error" for="names">
+        Please enter a first and last name or a company name.
+      </label>
+    </div>
     <div class="form-group">
-      <label for="">Email:</label>
+      <label for="">
+        Email:
+      </label>
       <input type="email" class="form-control" id="" ng-model="newOfflineGift.email">
     </div>
     <div class="form-group">
-      <label for="">Amount:</label>
+      <label for="">
+        Amount:
+      </label>
       <input type="text" class="form-control" id="" ng-model="newOfflineGift.gift_amount">
     </div>
     <div class="form-group">
-      <label for="">Payment Type:</label>
+      <label for="">
+        Payment Type:
+      </label>
       <select class="form-control" id="" ng-model="newOfflineGift.payment_type">
         <option ng-repeat="paymentTypeOption in paymentTypeOptions" value="{{paymentTypeOption.value}}">
           {{paymentTypeOption.name}}
@@ -38,7 +50,9 @@
     </div>
     <div ng-if="newOfflineGift.payment_type == 'check'">
       <div class="form-group">
-        <label for="">Check Number:</label>
+        <label for="">
+          Check Number:
+        </label>
         <input type="text" class="form-control" id="" ng-model="newOfflineGift.check_number">
       </div>
     </div>
@@ -46,15 +60,15 @@
       <!-- TODO: credit card info -->
     </div>
   </div>
-  <div class="modal-footer">
+  <div class="modal-footer modal-footer-red">
     <div class="clearfix">
       <div class="pull-left">
-        <button type="button" class="btn btn-primary-inverted text-uppercase" ng-click="sendGAEvent('Cancel Adding Offline Gift');cancelAddOfflineGift()">
+        <button type="button" class="btn btn-outline-white text-uppercase" ng-click="sendGAEvent('Cancel Adding Offline Gift');cancelAddOfflineGift()">
           Cancel
         </button>
       </div>
       <div class="pull-right">
-        <button type="submit" class="btn btn-primary text-uppercase" ng-click="sendGAEvent('Submit Adding Offline Gift')">
+        <button type="submit" class="btn btn-outline-white text-uppercase"  ng-click="sendGAEvent('Submit Adding Offline Gift')">
           Submit
         </button>
       </div>

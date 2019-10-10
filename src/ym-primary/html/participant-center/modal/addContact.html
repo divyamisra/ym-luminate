@@ -1,0 +1,44 @@
+<form name="addNewContactForm" method="POST" novalidate ng-submit="addNewContact()">
+  <div class="modal-header">
+    <h2 class="h5 modal-title">
+      Add Contact
+    </h2>
+  </div>
+  <div class="modal-body">
+    <div uib-alert class="alert-danger" role="alert" ng-if="addContactError">
+      {{addContactError}}
+    </div>
+    <div class="form-group">
+      <label for="addContactFirstName">
+        First
+      </label>
+      <input type="text" class="form-control" id="addContactFirstName" ng-model="newContact.first_name" aria-label="First">
+    </div>
+    <div class="form-group">
+      <label for="addContactLastName">
+        Last
+      </label>
+      <input type="text" class="form-control" id="addContactLastName" ng-model="newContact.last_name" aria-label="Last">
+    </div>
+    <div class="form-group" ng-class="{'has-error': addNewContactForm.$submitted && addNewContactForm.email.$invalid}">
+      <label for="addContactEmail">
+        Email
+      </label>
+      <input type="email" class="form-control" name="email" id="addContactEmail" ng-model="newContact.email" aria-label="Email" required>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <div class="clearfix">
+      <div class="pull-left">
+        <button type="button" class="btn btn-toggle" ng-click="cancelAddContact()">
+          Cancel
+        </button>
+      </div>
+      <div class="pull-right">
+        <button type="submit" class="btn btn-primary">
+          <strong>Add</strong>
+        </button>
+      </div>
+    </div>
+  </div>
+</form>

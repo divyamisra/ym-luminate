@@ -1,4 +1,18 @@
+# compiled output
+dist
+
+# dependencies
 node_modules
+
+# IDEs (IntelliJ)
+.idea
+*.iml
+
+# misc
+.sass-cache
 npm-debug.log
 package-lock.json
-dist
+sftp-config.json
+
+# system files
+*.DS_Store

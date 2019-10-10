@@ -3,10 +3,7 @@ angular.module 'trPageEditApp', [
   'ui.bootstrap'
   'pascalprecht.translate'
   'textAngular'
-  'trPageEditControllers'
 ]
-
-angular.module 'trPageEditControllers', []
 
 angular.module 'trPageEditApp'
   .constant 'NgPageEdit_APP_INFO', 
@@ -36,7 +33,7 @@ angular.module 'trPageEditApp'
       $rootScope.consId = $embedRoot.data('cons-id') if $embedRoot.data('cons-id') isnt ''
       $rootScope.firstName = $embedRoot.data('first-name') if $embedRoot.data('first-name') isnt ''
       $rootScope.email = $embedRoot.data('email') if $embedRoot.data('email') isnt ''
-      $rootScope.vidyardId = $embedRoot.data('vidyard-id') if $embedRoot.data('vidyard-id') isnt ''
+#      $rootScope.vidyardId = $embedRoot.data('vidyard-id') if $embedRoot.data('vidyard-id') isnt ''
       $rootScope.authToken = $embedRoot.data('auth-token') if $embedRoot.data('auth-token') isnt ''
       $rootScope.sessionCookie = $embedRoot.data('session-cookie') if $embedRoot.data('session-cookie') isnt ''
   ]

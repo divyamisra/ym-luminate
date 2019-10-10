@@ -524,8 +524,21 @@
       margin: 0 0 0 8px;
     }
   }
+
+  .school-name-location-submit {
+    display: inline-block;
+    font-size: 40px;
+    width: auto;
+    height: 60px;
+    margin: 0 10px;
+    overflow: hidden;
+    vertical-align: middle;
+    color: #000000;
+    text-decoration:none;
+  }
   
   #school-state-filter,
+  #school-state-filter2,
   #search-sort {
     position: absolute;
     top: 0;

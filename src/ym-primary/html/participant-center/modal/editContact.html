@@ -1,0 +1,44 @@
+<form method="POST" novalidate ng-submit="saveUpdatedContact()">
+  <div class="modal-header">
+    <h2 class="h5 modal-title">
+      Edit Information
+    </h2>
+  </div>
+  <div class="modal-body">
+    <div uib-alert class="alert-danger" role="alert" ng-if="editContactError">
+      <div ng-bind-html="editContactError"></div>
+    </div>
+    <div class="form-group">
+      <label for="updatedContactFirstName">
+        First Name
+      </label>
+      <input type="text" class="form-control" id="updatedContactFirstName" ng-model="updatedContact.first_name" aria-label="First Name">
+    </div>
+    <div class="form-group">
+      <label for="updatedContactLastName">
+        Last Name
+      </label>
+      <input type="text" class="form-control" id="updatedContactLastName" ng-model="updatedContact.last_name" aria-label="Last Name">
+    </div>
+    <div class="form-group">
+      <label for="updatedContactEmail">
+        Email
+      </label>
+      <input type="email" class="form-control" id="updatedContactEmail" ng-model="updatedContact.email" aria-label="Email" required>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <div class="clearfix">
+      <div class="pull-left">
+        <button type="button" class="btn btn-toggle" ng-click="cancelEditContact()">
+          Cancel
+        </button>
+      </div>
+      <div class="pull-right">
+        <button type="submit" class="btn btn-primary">
+          <strong>Save</strong>
+        </button>
+      </div>
+    </div>
+  </div>
+</form>

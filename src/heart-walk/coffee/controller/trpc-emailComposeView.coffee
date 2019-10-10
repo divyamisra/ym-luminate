@@ -17,7 +17,7 @@ angular.module 'trPcControllers'
       $scope.messageType = $routeParams.messageType
       $scope.messageId = $routeParams.messageId
       $scope.baseDomain = $location.absUrl().split('/site/')[0]
-
+      $scope.refreshContactsNav = 0
       $scope.emailPromises = []
 
       $scope.getMessageCounts = (refresh) ->
@@ -36,23 +36,25 @@ angular.module 'trPcControllers'
             $scope.emailPromises.push messageCountPromise
       $scope.getMessageCounts()
 
-
-
-      $scope.getContactCounts = ->
-        $scope.contactCounts = {}
-        contactFilters = [
+      $scope.contactFilters = [
           'email_rpt_show_all'
           'email_rpt_show_never_emailed'
           'email_rpt_show_nondonors_followup'
           'email_rpt_show_unthanked_donors'
           'email_rpt_show_donors'
           'email_rpt_show_nondonors'
+          'email_rpt_show_teammates'
+          'email_rpt_show_lybunt_teammates'
+          'email_rpt_show_ly_donors'
         ]
+      
+      $scope.getContactCounts = ->
+        $scope.contactCounts = {}
         # TODO: email_rpt_show_teammates and email_rpt_show_nonteammates
-        angular.forEach contactFilters, (filter) ->
+        angular.forEach $scope.contactFilters, (filter) ->
           contactCountPromise = ContactService.getTeamraiserAddressBookContacts 'tr_ab_filter=' + filter + '&skip_groups=true&list_page_size=1'
             .then (response) ->
-              $scope.contactCounts[filter] = response.data.getTeamraiserAddressBookContactsResponse?.totalNumberResults or '0'
+              $scope.contactCounts[filter] = response.data.getTeamraiserAddressBookContactsResponse.totalNumberResults
               response
           $scope.emailPromises.push contactCountPromise
       $scope.getContactCounts()
@@ -110,8 +112,38 @@ angular.module 'trPcControllers'
                 $scope.emailComposer.subject = messageInfo.subject
                 messageBody = messageInfo.messageBody
                 setEmailMessageBody messageBody
+      else if $scope.messageType is 'group' and $scope.messageId and $scope.contactFilters.indexOf $scope.messageId isnt -1
+        $scope.resetSelectedContacts()
+        $scope.getGroupRecipientsPage = 0
+        $scope.getGroupRecipients = ->
+          contactsPromise = ContactService.getTeamraiserAddressBookContacts 'tr_ab_filter=' + $scope.messageId + '&skip_groups=true&list_page_size=200&list_page_offset=' + $scope.getGroupRecipientsPage
+            .then (response) ->
+              totalNumber = response.data.getTeamraiserAddressBookContactsResponse.totalNumberResults
+              addressBookContacts = response.data.getTeamraiserAddressBookContactsResponse.addressBookContact
+              addressBookContacts = [addressBookContacts] if not angular.isArray addressBookContacts
+              angular.forEach addressBookContacts, (contact) ->
+                contactData = ''
+                if contact.firstName
+                  contactData += contact.firstName
+                if contact.lastName
+                  if contactData isnt ''
+                    contactData += ' '
+                  contactData += contact.lastName
+                if contact.email
+                  if contactData isnt ''
+                    contactData += ' '
+                  contactData += '<' + contact.email + '>'
+                $rootScope.selectedContacts.contacts.push contactData
+              if totalNumber > $rootScope.selectedContacts.contacts.length
+                $scope.getGroupRecipientsPage = $scope.getGroupRecipientsPage + 1
+                $scope.getGroupRecipients()
+              else
+                setEmailComposerDefaults()
+              response
+          $scope.emailPromises.push contactsPromise
+        $scope.getGroupRecipients()
 
-      $scope.emailTabNames = []
+      $scope.emailTabNames = []      
       suggestedMessagesPromise = TeamraiserEmailService.getSuggestedMessages()
         .then (response) ->
           suggestedMessages = response.data.getSuggestedMessagesResponse.suggestedMessage
@@ -132,15 +164,16 @@ angular.module 'trPcControllers'
                     _gaq.push(['t2._trackEvent', 'HW PC', 'click', 'Send Email - Donation Reminder'])
                 , 500
                 loadSuggestedMessagePC(pcSetMessages)
-              when 'Ask 3: Help me Reach my Goal'
-                pcSetMessages.header = 'Additional Request'
-                pcSetMessages.messageID = message.messageId
-                pcSetMessages.headerID = 'send_email_additional_request'
-                $timeout ->
-                  document.getElementById('send_email_additional_request').getElementsByTagName('a')[0].onclick = ->
-                    _gaq.push(['t2._trackEvent', 'HW PC', 'click', 'Send Email - Additional Request'])
-                , 500
-                loadSuggestedMessagePC(pcSetMessages)
+              when 'Recruitment: Join My Team'
+                if $scope.participantRegistration.aTeamCaptain is 'true'
+                  pcSetMessages.header = 'Recruit My Team'
+                  pcSetMessages.messageID = message.messageId
+                  pcSetMessages.headerID = 'send_email_recruit_team'
+                  $timeout ->
+                    document.getElementById('send_email_recruit_team').getElementsByTagName('a')[0].onclick = ->
+                      _gaq.push(['t2._trackEvent', 'HW PC', 'click', 'Send Email - Recruit My Team'])
+                  , 500
+                  loadSuggestedMessagePC(pcSetMessages)
               when 'Ask 1: Donation Solicitation'
                 pcSetMessages.header = 'Ask for Donations'
                 pcSetMessages.messageID = message.messageId
@@ -185,7 +218,7 @@ angular.module 'trPcControllers'
         ConstituentService.logInteraction 'interaction_type_id=' + $rootScope.interactionTypeId + '&interaction_subject=' + subject + '&interaction_body=' + body
           .then (response) ->
             if response.data.updateConsResponse?.message
-              # todo confirmation 
+              # todo confirmation
             else
               console.log 'logged interaction failed'
 
@@ -194,9 +227,9 @@ angular.module 'trPcControllers'
           if message.messageID is messageID
             emailSubject = message.subject
             emailBody = message.content
-            emailBodyClean1 = emailBody.replace(/<p>/g,"");
-            emailBodyClean2 = emailBodyClean1.replace(/<\/p>/g,"%0D%0A%0D%0A");
-            emailBodyClean3 = emailBodyClean2.replace(/&/g,"%26");
+            emailBodyClean1 = emailBody.replace(/<p>/g, "")
+            emailBodyClean2 = emailBodyClean1.replace(/<\/p>/g, "%0D%0A%0D%0A")
+            emailBodyClean3 = emailBodyClean2.replace(/&/g, "%26")
             logUserInt('email',$scope.frId)
             window.location.href = 'mailto:?subject=' + emailSubject + '&body=' + emailBodyClean3
         return
@@ -383,5 +416,4 @@ angular.module 'trPcControllers'
               $scope.sendEmailSuccess = true
               $scope.resetSelectedContacts()
               setEmailComposerDefaults()
-
   ]

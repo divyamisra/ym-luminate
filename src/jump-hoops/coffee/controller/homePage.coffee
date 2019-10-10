@@ -27,7 +27,7 @@ angular.module 'ahaLuminateControllers'
             else
               teamraisers = [teamraisers] if not angular.isArray teamraisers
               teamraiserInfo = teamraisers[0]
-              setNoSchoolLink $scope.nonSecureDomain + '/site/TRR?fr_id=' + teamraiserInfo.id + '&pg=tfind&fr_tm_opt=none&s_frTJoin=&s_frCompanyId='
+              setNoSchoolLink $scope.nonsecureDomain + 'site/TRR?fr_id=' + teamraiserInfo.id + '&pg=tfind&fr_tm_opt=none&s_frTJoin=&s_frCompanyId='
       if consId
         TeamraiserParticipantService.getRegisteredTeamraisers 'cons_id=' + consId + '&event_type=' + encodeURIComponent('Jump Hoops'),
           error: ->
@@ -61,7 +61,7 @@ angular.module 'ahaLuminateControllers'
       setModal = ->
         date = new Date
         expires = 'expires='
-        date.setDate date.getDate() + 1
+        date.setHours date.getHours() + 1
         expires += date.toGMTString()
 
         angular.element('#noRegModal').modal()

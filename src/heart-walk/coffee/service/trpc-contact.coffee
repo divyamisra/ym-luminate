@@ -30,13 +30,24 @@ angular.module 'trPcApp'
           .then (response) ->
             response
       
-      addAddressBookGroup: ->
-        LuminateRESTService.addressBookRequest 'method=addAddressBookGroup', true
+      addAddressBookGroup: (requestData) ->
+        dataString = 'method=addAddressBookGroup'
+        dataString += '&' + requestData if requestData and requestData isnt ''
+        LuminateRESTService.addressBookRequest dataString, true
           .then (response) ->
             response
       
-      addContactsToGroup: ->
-        LuminateRESTService.addressBookRequest 'method=addContactsToGroup', true
+      addContactsToGroup: (requestData) ->
+        dataString = 'method=addContactsToGroup'
+        dataString += '&' + requestData if requestData and requestData isnt ''
+        LuminateRESTService.addressBookRequest dataString, true
+          .then (response) ->
+            response
+
+      deleteAddressBookGroups: (requestData) ->
+        dataString = 'method=deleteAddressBookGroups'
+        dataString += '&' + requestData if requestData and requestData isnt ''
+        LuminateRESTService.addressBookRequest dataString, true
           .then (response) ->
             response
       
@@ -54,6 +65,13 @@ angular.module 'trPcApp'
           .then (response) ->
             response
       
+      getAddressBookGroups: (requestData) ->
+        dataString = 'method=getAddressBookGroups'
+        dataString += '&' + requestData if requestData and requestData isnt ''
+        LuminateRESTService.addressBookRequest dataString, true
+          .then (response) ->
+            response
+
       getTeamraiserAddressBookFilters: (requestData) ->
         dataString = 'method=getTeamraiserAddressBookFilters'
         dataString += '&' + requestData if requestData and requestData isnt ''
@@ -68,8 +86,17 @@ angular.module 'trPcApp'
           .then (response) ->
             response
       
-      getTeamraiserAddressBookContact: ->
-        LuminateRESTService.teamraiserRequest 'method=getTeamraiserAddressBookContact', true, true
+      getTeamraiserAddressBookContact: (requestData) ->
+        dataString = 'method=getTeamraiserAddressBookContact'
+        dataString += '&' + requestData if requestData and requestData isnt ''
+        LuminateRESTService.teamraiserRequest dataString, true, true
+          .then (response) ->
+            response
+
+      getTeamraiserAddressBookGroupContacts: (requestData) ->
+        dataString = 'method=getTeamraiserAddressBookGroupContacts'
+        dataString += '&' + requestData if requestData and requestData isnt ''
+        LuminateRESTService.teamraiserRequest dataString, true, true
           .then (response) ->
             response
   ]

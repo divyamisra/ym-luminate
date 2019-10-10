@@ -216,6 +216,7 @@ angular.module 'trPcControllers'
             'Emails'
             'T-shirt'
             'Teacher'
+            'Challenge'
           ]
           sortColumn: ''
           sortAscending: false
@@ -225,42 +226,42 @@ angular.module 'trPcControllers'
               $scope.schoolDetailStudents.students = []
               $scope.schoolDetailStudents.downloadData = []
             else
-              reportHtml = response.data.getSchoolDetailReport?.report
-              if not reportHtml
+              reportData = response.data.getSchoolDetailReport?.reportData
+              if not reportData
                 $scope.schoolDetailStudents.students = []
                 $scope.schoolDetailStudents.downloadData = []
               else
-                $reportTable = angular.element('<div>' + reportHtml + '</div>').find 'table'
-                if $reportTable.length is 0
+                reportDataRows = []
+                angular.forEach reportData, (reportDataRow) ->
+                  if reportDataRow.length > 1
+                    reportDataRows.push reportDataRow
+                if reportDataRows.length <= 1
                   $scope.schoolDetailStudents.students = []
                   $scope.schoolDetailStudents.downloadData = []
                 else
-                  $reportTableRows = $reportTable.find 'tr'
-                  if $reportTableRows.length is 0
-                    $scope.schoolDetailStudents.students = []
-                    $scope.schoolDetailStudents.downloadData = []
-                  else
-                    schoolDetailStudents = []
-                    schoolDetailDownloadData = []
-                    angular.forEach $reportTableRows, (reportTableRow) ->
-                      $reportTableRow = angular.element reportTableRow
-                      firstName = jQuery.trim $reportTableRow.find('td').eq(8).text()
-                      lastName = jQuery.trim $reportTableRow.find('td').eq(9).text()
-                      email = jQuery.trim $reportTableRow.find('td').eq(10).text()
-                      amount = Number jQuery.trim($reportTableRow.find('td').eq(11).text())
-                      amountFormatted = $filter('currency') jQuery.trim($reportTableRow.find('td').eq(11).text()), '$'
-                      ecardsSent = Number jQuery.trim($reportTableRow.find('td').eq(14).text())
-                      emailsSent = Number jQuery.trim($reportTableRow.find('td').eq(13).text())
-                      tshirtSize = jQuery.trim $reportTableRow.find('td').eq(16).text()
-                      teacherName = jQuery.trim $reportTableRow.find('td').eq(6).text()
-                      challenge = jQuery.trim($reportTableRow.find('td').eq(17).text()).replace('1. ', '').replace('2. ', '').replace('3. ', '').replace '4. ', ''
+                  reportDataColumnIndexMap = {}
+                  angular.forEach reportDataRows[0], (reportDataHeader, reportDataHeaderIndex) ->
+                    reportDataColumnIndexMap[reportDataHeader] = reportDataHeaderIndex
+                  schoolDetailStudents = []
+                  schoolDetailDownloadData = []
+                  angular.forEach reportDataRows, (reportDataRow, reportDataRowIndex) ->
+                    if reportDataRowIndex > 0
+                      firstName = jQuery.trim reportDataRow[reportDataColumnIndexMap.PARTICIPANT_FIRST_NAME]
+                      lastName = jQuery.trim reportDataRow[reportDataColumnIndexMap.PARTICIPANT_LAST_NAME]
+                      email = jQuery.trim reportDataRow[reportDataColumnIndexMap.PARTICIPANT_EMAIL]
+                      amount = Number reportDataRow[reportDataColumnIndexMap.TRX_AMT]
+                      amountFormatted = $filter('currency') jQuery.trim(reportDataRow[reportDataColumnIndexMap.TRX_AMT]), '$'
+                      emailsSent = Number reportDataRow[reportDataColumnIndexMap.EMAILS_SENT_CNT]
+                      tshirtSize = jQuery.trim reportDataRow[reportDataColumnIndexMap.TSHIRT_SIZE]
+                      teacherName = jQuery.trim reportDataRow[reportDataColumnIndexMap.TEACHER_NAME]
+#                      challenge = jQuery.trim reportDataRow[reportDataColumnIndexMap.CHALLENGE3]
+                      challenge = jQuery.trim reportDataRow[reportDataColumnIndexMap.CHALLENGE]
                       schoolDetailStudents.push
                         firstName: firstName
                         lastName: lastName
                         email: email
                         amount: amount
                         amountFormatted: amountFormatted.replace '.00', ''
-                        ecardsSent: ecardsSent
                         emailsSent: emailsSent
                         tshirtSize: tshirtSize
                         teacherName: teacherName
@@ -271,9 +272,10 @@ angular.module 'trPcControllers'
                         emailsSent
                         tshirtSize
                         teacherName
+                        challenge
                       ]
-                    $scope.schoolDetailStudents.students = schoolDetailStudents
-                    $scope.schoolDetailStudents.downloadData = schoolDetailDownloadData
+                  $scope.schoolDetailStudents.students = schoolDetailStudents
+                  $scope.schoolDetailStudents.downloadData = schoolDetailDownloadData
             response
         $scope.reportPromises.push schoolDetailReportPromise
         

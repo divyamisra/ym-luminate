@@ -72,14 +72,14 @@ angular.module 'ahaLuminateControllers'
 
       $childCompanyLinks = $defaultCompanyHierarchy.find('.trr-td a')
       $scope.childCompanies = []
-      $scope.companyPath = [];
-      $scope.companyDepth = 0;
+      $scope.companyPath = []
+      $scope.companyDepth = 0
       angular.forEach $childCompanyLinks, (childCompanyLink) ->
         childCompanyUrl = angular.element(childCompanyLink).attr('href')
         childCompanyName = angular.element(childCompanyLink).text()
-        depth=parseInt(childCompanyLink.parentElement.style.paddingLeft) / 10;
+        depth=parseInt(childCompanyLink.parentElement.style.paddingLeft) / 10
         if isNaN depth
-          depth=0;
+          depth = 0
         while ( $scope.companyPath.length and $scope.companyPath.length >= depth)
           $scope.companyPath.pop()
         $scope.companyPath.push childCompanyName
@@ -210,6 +210,7 @@ angular.module 'ahaLuminateControllers'
         angular.forEach $scope.childCompanyTeams.companies, (company, companyIndex) ->
           $scope.childCompanyTeams.companies[companyIndex].isOpen = true
           $scope.childCompanyTeams.companies[companyIndex].page = 1
+        $scope.searchCompanyTeams.lastSearch = companyTeamSearch.team_name
         $scope.getCompanyTeamLists()
 
       $scope.companyParticipantSearch =
@@ -234,7 +235,7 @@ angular.module 'ahaLuminateControllers'
         totalNumber = participants.length
         $scope.companyParticipants.totalNumber = Number totalNumber
         $scope.paginateCompanyParticipants null
-        tallyParticipants $scope.companyParticipants.totalNumber, 'parent'
+        tallyParticipants $scope.companyParticipants.totalNumber, 'parent', true
         if not $scope.$$phase
           $scope.$apply()
 
@@ -304,29 +305,39 @@ angular.module 'ahaLuminateControllers'
           $scope.companyParticipants.isLoaded = true
 
           individualParticipants = []
-          getCompanyParticipantsList = ->
-            TeamraiserParticipantService.getParticipants 'team_name=' + encodeURIComponent('%%%') + '&list_filter_column=team.company_id&list_filter_text=' + $scope.companyId + '&list_page_size=500',
+          getCompanyParticipantsList = (page,participants)->
+            page=page or 0
+            participants=participants or []
+            TeamraiserParticipantService.getParticipants 'team_name=' + encodeURIComponent('%%%') + '&list_filter_column=team.company_id&list_filter_text=' + $scope.companyId + '&list_page_size=500&list_page_offset='+page,
               error: ->
                 companyParticipants = individualParticipants
                 setCompanyParticipants companyParticipants
                 numCompaniesParticipantRequestComplete++
               success: (response) ->
-                participants = response.getParticipantsResponse?.participant
-                if not participants?
-                  participants = []
-                participants = [participants] if not angular.isArray participants
-                participants = participants.concat(individualParticipants)
-                companyParticipants = []
-                angular.forEach participants, (participant) ->
-                  if participant.name?.first
-                    participant.amountRaised = Number participant.amountRaised
-                    participant.amountRaisedFormatted = $filter('currency')(participant.amountRaised / 100, '$', 0)
-                    donationUrl = participant.donationUrl
-                    if donationUrl?
-                      participant.donationUrl = donationUrl.split('/site/')[1]
-                    companyParticipants.push participant
-                setCompanyParticipants companyParticipants
-                numCompaniesParticipantRequestComplete++
+                batch = response.getParticipantsResponse?.participant
+                total=response.getParticipantsResponse?.totalNumberResults
+                if not batch?
+                  batch = []
+                batch = [batch] if not angular.isArray batch
+                participants = participants.concat batch
+                if (++page) * 500 < total
+                  getCompanyParticipantsList(page,participants)
+                else
+                  participants = participants.concat(individualParticipants)
+                  companyParticipants = []
+                  angular.forEach participants, (participant) ->
+                    if participant.name?.first
+                      participant.amountRaised = Number participant.amountRaised
+                      participant.amountRaisedFormatted = $filter('currency')(participant.amountRaised / 100, '$', 0)
+                      donationUrl = participant.donationUrl
+                      if donationUrl?
+                        donationUrl = donationUrl.split('/site/')[1]
+                        participant.donationUrl = donationUrl
+                        participant.paypalDonationUrl = donationUrl + '&paypal=true'
+                        participant.amazonDonationUrl = donationUrl.replace(/Donation2/, 'SPageNavigator/heartwalk_donate_amazon.html')
+                      companyParticipants.push participant
+                  setCompanyParticipants companyParticipants
+                  numCompaniesParticipantRequestComplete++
 
           getParticipantsList = ->
             # Get individual participants
@@ -363,29 +374,36 @@ angular.module 'ahaLuminateControllers'
             return
 
           individualParticipants = []
-          getChildCompanyParticipantsList = ->
-            TeamraiserParticipantService.getParticipants 'team_name=' + encodeURIComponent('%%%') + '&list_filter_column=team.company_id&list_filter_text=' + childCompanyId + '&list_page_size=500',
+          getChildCompanyParticipantsList = (page,participants)->
+            page=page or 0
+            participants=participants or []
+            TeamraiserParticipantService.getParticipants 'team_name=' + encodeURIComponent('%%%') + '&list_filter_column=team.company_id&list_filter_text=' + childCompanyId + '&list_page_size=500&list_page_offset='+page,
             error: ->
               companyParticipants = individualParticipants
               addChildCompanyParticipants childCompanyIndex, childCompanyId, childCompanyName, companyParticipants, depth
               numCompaniesParticipantRequestComplete++
             success: (response) ->
-              participants = response.getParticipantsResponse?.participant
-              if not participants?
-                participants = []
-              participants = [participants] if not angular.isArray participants
-              participants = participants.concat(individualParticipants)
-              companyParticipants = []
-              angular.forEach participants, (participant) ->
-                if participant.name?.first
-                  participant.amountRaised = Number participant.amountRaised
-                  participant.amountRaisedFormatted = $filter('currency')(participant.amountRaised / 100, '$', 0)
-                  donationUrl = participant.donationUrl
-                  if donationUrl?
-                    participant.donationUrl = donationUrl.split('/site/')[1]
-                  companyParticipants.push participant
-              addChildCompanyParticipants childCompanyIndex, childCompanyId, childCompanyName, companyParticipants, depth
-              numCompaniesParticipantRequestComplete++
+              batch = response.getParticipantsResponse?.participant
+              total=response.getParticipantsResponse?.totalNumberResults
+              if not batch?
+                batch = []
+              batch = [batch] if not angular.isArray batch
+              participants = participants.concat batch
+              if (++page) * 500 < total
+                getChildCompanyParticipantsList(page,participants)
+              else
+                participants = participants.concat(individualParticipants)
+                companyParticipants = []
+                angular.forEach participants, (participant) ->
+                  if participant.name?.first
+                    participant.amountRaised = Number participant.amountRaised
+                    participant.amountRaisedFormatted = $filter('currency')(participant.amountRaised / 100, '$', 0)
+                    donationUrl = participant.donationUrl
+                    if donationUrl?
+                      participant.donationUrl = donationUrl.split('/site/')[1]
+                    companyParticipants.push participant
+                addChildCompanyParticipants childCompanyIndex, childCompanyId, childCompanyName, companyParticipants, depth
+                numCompaniesParticipantRequestComplete++
 
           getParticipantsList = ->
             # Get individual participants
@@ -458,5 +476,6 @@ angular.module 'ahaLuminateControllers'
         angular.forEach $scope.childCompanyParticipants.companies, (company, companyIndex) ->
           $scope.childCompanyParticipants.companies[companyIndex].isOpen = true
           $scope.childCompanyParticipants.companies[companyIndex].page = 1
+        $scope.searchCompanyParticipants.lastSearch = companyParticipantSearch.participant_name or ''
         $scope.getCompanyParticipantLists()
   ]

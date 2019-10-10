@@ -1,0 +1,13 @@
+div#team_page_header {
+  background-color:$white;
+}
+
+@media only screen and (max-width: 768px){
+  .mobile div.tr-page-container div#team_page_main_content,
+  .mobile div.tr-page-container div.tr-page-main-content,
+  div#team_page_main_content,
+  div.tr-page-container div.side-bar {
+    width: 100%;
+    float: none;
+  }
+}

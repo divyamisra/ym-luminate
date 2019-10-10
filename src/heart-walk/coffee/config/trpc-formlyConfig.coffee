@@ -1,6 +1,6 @@
 angular.module 'trPcApp'
   .config [
-  	'formlyConfigProvider'
+    'formlyConfigProvider'
     'APP_INFO'
     (formlyConfigProvider, APP_INFO) ->
       formlyConfigProvider.setType

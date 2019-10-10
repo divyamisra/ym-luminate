@@ -1,0 +1,8 @@
+.container {
+  &-sm {
+    max-width: $screen-sm;
+  }
+  &-md {
+    max-width: $screen-md;
+  }
+}

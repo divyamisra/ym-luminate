@@ -3,14 +3,14 @@ div.donation-form-container {
     span.field-required {
       display: none;
     }
-    
+
     @media (max-width: $screen-sm-max) {
-      .btn-toggle:focus, 
+      .btn-toggle:focus,
       .btn-toggle:active,
       .btn-toggle:hover {
         background: $brand-white;
         color: $event-primary;
-        
+
         &.active {
           background: $event-primary;
           color: $brand-white;
@@ -18,11 +18,11 @@ div.donation-form-container {
       }
     }
   }
-  
+
   .ErrorMessage {
     display: none;
   }
-  
+
   .has-error {
     input[type="text"],
     select {
@@ -30,13 +30,13 @@ div.donation-form-container {
       border: 1px solid $event-secondary;
     }
   }
-  
+
   .form-info-message {
     display: none;
   }
-  
-  input[type="text"].btn, 
-  input[type="text"].btn:before, 
+
+  input[type="text"].btn,
+  input[type="text"].btn:before,
   input[type="text"].btn:after {
     -webkit-user-select: initial;
     -khtml-user-select: initial;
@@ -44,18 +44,18 @@ div.donation-form-container {
     -ms-user-select: initial;
     user-select: initial;
   }
-  
+
   .custom-field-container {
     .form-input-label-block {
       display: none;
     }
-    
+
     label.custom-element-checkbox-label {
       max-width: 100%;
     }
   }
-  
-  .section-header-container, 
+
+  .section-header-container,
   h2 {
     color: $event-secondary;
     border-color: $event-secondary;
@@ -75,7 +75,7 @@ div.donation-form-container {
     @media (min-width: $screen-sm-min) {
       margin: 0 0 30px;
     }
-    
+
     h4,
     .h4 {
       margin: 0;
@@ -84,26 +84,30 @@ div.donation-form-container {
     h5,
     .h5 {
       margin: 0 0 20px;
-    
+
       @media (min-width: $screen-md-min) {
         margin: 0 0 40px;
       }
     }
   }
-  
-  .form-progress-bar, 
-  div.form-row.don-standard-levels, 
-  div.donation-level-container-generic-repeat, 
-  #tribute_show_honor_fields_row, 
-  #billing_info_same_as_donor_row {
+
+  .form-progress-bar,
+  div.form-row.don-standard-levels,
+  div.donation-level-container-generic-repeat,
+  #tribute_show_honor_fields_row,
+  #billing_info_same_as_donor_row,
+  #level_flexiblegift_type_Row {
     display: none;
   }
   
+  #level_flexibleduration_row {
+    padding-top:20px;
+  }
   h2 {
     font-size: 32px;
     font-weight: 700;
   }
-  
+
   .section-header-container {
     font-size: 32px;
     font-weight: 700;
@@ -116,31 +120,31 @@ div.donation-form-container {
       margin: 50px 0 40px;
     }
   }
-  
+
   label {
     margin: 0;
   }
-  
+
   div.form-row {
     margin: 0 auto;
-    
+
     .form-content {
       width: 100%;
       margin: 0;
-      
-      input, 
+
+      input,
       select  {
         width: 100%;
         max-width: 100%;
       }
     }
   }
-  
+
   .ym-border {
     border-bottom: 1px solid $event-secondary;
   }
-  
-  div.donation-level-general-ask, 
+
+  div.donation-level-general-ask,
   div.html-caption-container {
     display: block;
     clear: both;
@@ -149,7 +153,7 @@ div.donation-form-container {
       max-width: 670px;
     }
   }
-  
+
   .ym-donation-levels {
     max-width: 670px;
     padding: 20px 5px;
@@ -157,7 +161,7 @@ div.donation-form-container {
     @media (min-width: $screen-xs-min) {
       padding: 30px 20px;
     }
-    
+
     p {
       font-size: 18px;
       font-weight: 700;
@@ -166,10 +170,10 @@ div.donation-form-container {
       margin: 0;
     }
   }
-  
+
   .ym-donation-levels__type {
     text-align: center;
-    
+
     .btn-toggle {
       height: 50px;
       line-height: 48px;
@@ -196,9 +200,9 @@ div.donation-form-container {
         @media (min-width: $screen-sm-min) {
           margin: 0 30px 0 0;
         }
-      }  
+      }
     }
-    
+
     .btn-lg {
       font-size: inherit;
     }
@@ -221,57 +225,59 @@ div.donation-form-container {
 
     &:last-child {
       padding-right: 0;
-      
+
     }
-    
+
     &:first-child {
       padding-left: 0;
     }
-    
+
     @media (min-width: $screen-xs-min) {
       margin: 0 0 15px;
-      padding: 0 10px;
+      padding: 0 5px;
     }
-    
+
     .btn-toggle {
       font-size: 20px;
       min-width: 80px;
       height: 50px;
       line-height: 48px;
       padding: 0;
-      
+
       @media (min-width: $screen-sm-min) {
         min-width: 110px;
       }
-      
+
       &.btn-enter {
         width: 110px;
         font-weight: 700;
-        
-        &:hover, 
-        &:active, 
+
+        &:hover,
+        &:active,
         &.active {
           font-weight: 700;
         }
       }
     }
   }
-  
-  #level_installment_row {
+
+  #level_installment_row,
+  #level_flexible_row {
     margin: 30px 0 0;
-    
+
     .form-content {
       max-width: 300px;
       margin: 0 auto 20px;
     }
-    
+
     div.don-level-total-row {
       border-color: $event-secondary;
     }
   }
-  
+
   .ym-donation-levels__message,
-  .ym-donation-levels__message--installment  {
+  .ym-donation-levels__message--installment,
+  .ym-donation-levels__message--sustaining {
     margin-top: 10px;
 
     @media (min-width: $screen-sm-min) {
@@ -286,7 +292,7 @@ div.donation-form-container {
       display:block;
     }
   }
-  
+
   .ym-employer-match {
     padding: 30px 0 0;
 
@@ -294,7 +300,7 @@ div.donation-form-container {
       padding: 50px 50px 0;
     }
   }
-  
+
   div.matching-gift-container {
     padding: 0 25px 25px;
 
@@ -348,24 +354,24 @@ div.donation-form-container {
     }
   }
 
-  .ym-donor-recognition, 
+  .ym-donor-recognition,
   .ym-personal-note {
     padding: 20px 0 0;
 
     @media (min-width: $screen-sm-min) {
       padding: 20px 50px 0;
     }
-    
+
     h5,
     .h5 {
       padding: 15px 25px;
 
       @media (min-width: $screen-sm-min) {
-        padding: 25px 25px 15px; 
+        padding: 25px 25px 15px;
       }
     }
   }
-  
+
   .employer-address-container {
     padding: 0 20px;
 
@@ -373,7 +379,7 @@ div.donation-form-container {
       padding: 0 50px;
     }
   }
-  
+
   .ym-employer-match__message {
     padding: 20px 25px 0;
 
@@ -381,11 +387,11 @@ div.donation-form-container {
       padding: 25px 75px 0;
     }
   }
-  
+
   .ym-employer-match__fields {
     padding: 5px 15px;
   }
-  
+
   #tr_show_gift_to_public_row {
     padding: 0 25px 25px;
 
@@ -393,7 +399,7 @@ div.donation-form-container {
       padding: 0 75px 25px;
     }
   }
-  
+
   #tr_recognition_nameanonymous_row {
     padding: 0 25px;
 
@@ -401,15 +407,19 @@ div.donation-form-container {
       padding: 0 75px;
     }
   }
-  
-  #tr_message_to_participant_row, 
+
+  #tr_recognition_namerec_namename {
+    font-size: 12px;
+  }
+
+  #tr_message_to_participant_row,
   #tr_recognition_namerec_name_row {
     padding: 25px;
 
     @media (min-width: $screen-sm-min) {
       padding: 25px 75px;
     }
-    
+
     &.ym-border {
       padding-bottom: 20px;
 
@@ -417,12 +427,12 @@ div.donation-form-container {
         padding-bottom: 40px;
       }
     }
-    
+
     textarea {
       width: 100%;
     }
   }
-  
+
   #tribute_type_row {
     display: none;
   }
@@ -433,9 +443,9 @@ div.donation-form-container {
     @media (min-width: $screen-sm-min) {
       padding: 20px 100px 0;
     }
-    
+
   }
-  
+
   .ym-tribute-gift__type {
     margin: 20px auto 0;
     text-align: center;
@@ -456,7 +466,7 @@ div.donation-form-container {
       @media (min-width: $screen-sm-min) {
         width: 200px;
       }
-      
+
       &:first-child {
         margin-right: 5px;
 
@@ -470,26 +480,26 @@ div.donation-form-container {
       }
     }
   }
-  
+
   #tribute_honoree_name_row {
     max-width: 435px;
     margin: 30px auto 0;
   }
-  
-  #donor_first_name_row, 
-  #donor_last_name_row, 
-  #donor_email_address_row, 
-  #donor_phone_row, 
-  #donor_addr_city_row, 
-  #donor_addr_state_row, 
-  #donor_addr_zip_row, 
-  #donor_addr_country_row, 
-  .ym-employer-match__fields, 
-  #billing_first_name_row, 
-  #billing_last_name_row, 
-  #billing_addr_city_row, 
-  #billing_addr_state_row, 
-  #billing_addr_zip_row, 
+
+  #donor_first_name_row,
+  #donor_last_name_row,
+  #donor_email_address_row,
+  #donor_phone_row,
+  #donor_addr_city_row,
+  #donor_addr_state_row,
+  #donor_addr_zip_row,
+  #donor_addr_country_row,
+  .ym-employer-match__fields,
+  #billing_first_name_row,
+  #billing_last_name_row,
+  #billing_addr_city_row,
+  #billing_addr_state_row,
+  #billing_addr_zip_row,
   #billing_addr_country_row {
     margin-bottom: 20px;
 
@@ -510,13 +520,13 @@ div.donation-form-container {
     }
   }
 
-  
-  #donor_first_name_row, 
-  #donor_email_address_row, 
-  #donor_addr_city_row, 
-  #donor_addr_zip_row, 
-  #billing_first_name_row, 
-  #billing_addr_city_row, 
+
+  #donor_first_name_row,
+  #donor_email_address_row,
+  #donor_addr_city_row,
+  #donor_addr_zip_row,
+  #billing_first_name_row,
+  #billing_addr_city_row,
   #billing_addr_zip_row {
     margin-bottom: 20px;
 
@@ -527,13 +537,13 @@ div.donation-form-container {
       clear: left;
     }
   }
-  
-  #donor_last_name_row, 
-  #donor_phone_row, 
-  #donor_addr_state_row, 
-  #donor_addr_country_row, 
-  #billing_last_name_row, 
-  #billing_addr_state_row, 
+
+  #donor_last_name_row,
+  #donor_phone_row,
+  #donor_addr_state_row,
+  #donor_addr_country_row,
+  #billing_last_name_row,
+  #billing_addr_state_row,
   #billing_addr_country_row {
     margin-bottom: 20px;
 
@@ -543,7 +553,7 @@ div.donation-form-container {
       margin: 0;
     }
   }
-  
+
   #donor_addr_country_row {
     margin-bottom: 20px;
 
@@ -552,38 +562,38 @@ div.donation-form-container {
       margin: 0;
     }
   }
-  
-  #donor_email_opt_in_Row, 
-  #donor_addr_street1_row, 
-  #donor_addr_street2_row, 
-  #billing_addr_street1_row, 
+
+  #donor_email_opt_in_Row,
+  #donor_addr_street1_row,
+  #donor_addr_street2_row,
+  #billing_addr_street1_row,
   #billing_addr_street2_row {
     clear: both;
     margin-bottom: 20px;
-    
+
     @media (min-width: $screen-sm-min) {
       padding: 0 50px 30px;
       margin: 0;
     }
   }
-  
-  #donor_addr_street1_row, 
-  #donor_addr_street2_row, 
-  #billing_addr_street1_row, 
+
+  #donor_addr_street1_row,
+  #donor_addr_street2_row,
+  #billing_addr_street1_row,
   #billing_addr_street2_row {
     width: 100%;
-    
+
     input {
       width: 100%;
     }
   }
-  
+
   .billing_info_toggle {
     margin-bottom: 20px;
 
     @media (min-width: $screen-sm-min) {
-      padding: 0 50px; 
-      margin-bottom: 30px; 
+      padding: 0 50px;
+      margin-bottom: 30px;
     }
   }
 
@@ -600,7 +610,7 @@ div.donation-form-container {
 
   div.payment-type-element-container {
     clear: both;
-    
+
     #responsive_payment_typecc_number_row {
       margin: 20px auto;
 
@@ -608,12 +618,12 @@ div.donation-form-container {
         max-width: 470px;
         margin: 30px auto;
       }
-      
+
       input {
         width: 100%;
       }
     }
-    
+
     #responsive_payment_typecc_exp_date_row {
       display: inline-block;
       vertical-align: middle;
@@ -621,7 +631,7 @@ div.donation-form-container {
       @media (min-width: $screen-sm-min) {
         padding-left: 50px;
       }
-      
+
       select {
         width: 100px;
         margin: 0 10px 0 0;
@@ -633,18 +643,18 @@ div.donation-form-container {
         @media (min-width: $screen-xs-min) {
           margin: 0 10px 0 0;
         }
-        
+
         @media (min-width: $screen-sm-min) {
           margin: 0 30px 0 0;
           width: 170px;
         }
       }
-      
+
       .date-input-container {
         margin-top: 2px;
       }
     }
-    
+
     #responsive_payment_typecc_cvv_row {
       width: auto;
       clear: both;
@@ -661,7 +671,7 @@ div.donation-form-container {
       @media (min-width: $screen-sm-min) {
         margin: 0 0 0 30px;
       }
-      
+
       input {
         width: auto;
         max-width: 100px;
@@ -672,20 +682,20 @@ div.donation-form-container {
       }
     }
   }
-  
+
   #payment_cc_container {
-    h3, 
+    h3,
     #responsive_payment_typecc_type_row {
       display: none;
     }
   }
-  
+
   div.button-container {
     border: 0;
     padding: 20px;
     clear: both;
     background: $event-secondary-light;
-    
+
     button.finish-step {
       display: block;
       float: none;
@@ -697,13 +707,13 @@ div.donation-form-container {
 .ym-donation-sidebar {
   margin: auto;
   padding: 0 0 20px;
-  max-width: 270px;  
+  max-width: 270px;
 
   @media (min-width: $screen-xs-min) {
     padding: 25px;
     max-width: 100%;
   }
-  
+
   @media (min-width: 1050px) {
     max-width: 270px;
     padding: 0 0 25px;
@@ -712,7 +722,7 @@ div.donation-form-container {
 
   hr {
     clear: both;
-    
+
     @media (min-width: 1050px) {
       max-width: 230px;
       margin: 10px auto 20px;
@@ -730,20 +740,20 @@ div.donation-form-container {
     @media (min-width: 1050px) {
       margin: 0 auto 25px;
     }
-  }  
+  }
 }
 
 .ym-donation-sidebar__text {
   text-align: center;
   padding: 0 20px;
-  
+
   h5,
   .h5 {
     color: $brand-white;
     font-weight: 700;
     margin-top: 0;
   }
-  
+
   span {
     color: $brand-white;
   }
@@ -755,12 +765,20 @@ div.donation-form-container {
     width: calc(100% - 300px);
     padding: 0;
   }
-  
+
   @media (min-width: 1050px) {
     padding: 25px 20px 0;
     width: 100%;
     float: none;
   }
+}
+
+.ym-donation-sidebar__header {
+  font-size:24px;
+  font-weight:bold;
+  color:#ffffff;
+  line-height:28px;
+  padding-bottom: 10px;
 }
 
 .ym-donation-thanks {
@@ -770,5 +788,5 @@ div.donation-form-container {
   .ym-donation-share a {
     display: inline-block;
     margin: 0 10px 0 0;
-  } 
+  }
 }

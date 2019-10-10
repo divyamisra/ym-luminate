@@ -1,17 +1,16 @@
 <div>
   <div class="modal-body">
-    <a class="close" aria-label="Close" ng-click="closeFirstLogin()">
+    <button type="button" tabindex="0" class="close" aria-label="Close" ng-click="closeFirstLogin()">
       <span aria-hidden="true">×</span>
-    </a>
+    </button>
     <div class="ym-pc-first-login-modal">
       <h2 class="h3">
         Thank You!
       </h2>
       <div>
-        Your personal page is built and ready! <!-- <strong>Customize your URL</strong> so you can quickly share your page with family and friends: -->
-        <br>&nbsp;
+        Your personal page is built and ready! <strong>Customize your URL</strong> so you can quickly share your page with family and friends:
       </div>
-      <div class="ym-pc-first-login-url hidden">
+      <div class="ym-pc-first-login-url">
         <div class="alert alert-danger" role="alert" ng-if="setPersonalUrlInfo.errorMessage" ng-cloak>
           <span ng-bind-html="setPersonalUrlInfo.errorMessage"></span>
         </div>
@@ -46,13 +45,13 @@
         <img class="img-responsive" src="../aha-luminate/dist/district-heart/image/firstLogin_intro.png" alt="">
       </div>
       <div class="ym-pc-first-login-close">
-        <a class="btn btn-primary" ng-click="closeFirstLogin()">
+        <button type="button" tabindex="0" class="btn btn-primary" ng-click="closeFirstLogin()">
           <strong>Start Fundraising!</strong>
-        </a>
+        </button>
       </div>
     </div>
     <div class="hidden" hidden aria-hidden="true">
-      <img ng-src="//districtheartchallengestaging.boundlessnetwork.com/api/webhooks/team/refresh/{{frId}}/{{participantRegistration.teamId}}" alt="" ng-if="tablePrefix == 'heartdev'">
+      <img ng-src="//dhc.staging.ootqa.org/api/webhooks/team/refresh/{{frId}}/{{participantRegistration.teamId}}" alt="" ng-if="tablePrefix == 'heartdev'">
       <img ng-src="//districtheartchallenge.heart.org/api/webhooks/team/refresh/{{frId}}/{{participantRegistration.teamId}}" alt="" ng-if="tablePrefix == 'heart'">
     </div>
   </div>

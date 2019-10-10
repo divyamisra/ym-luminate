@@ -1,0 +1,38 @@
+<form method="POST" novalidate ng-submit="updatePersonalUrl()">
+  <div class="modal-header">
+    <h2 class="h5 modal-title">
+      Personal Page URL
+    </h2>
+  </div>
+  <div class="modal-body">
+    <div uib-alert class="alert-danger" role="alert" ng-if="personalUrlInfo.errorMessage">
+      <span ng-bind-html="personalUrlInfo.errorMessage"></span>
+    </div>
+    <div uib-alert class="alert-warning" role="alert" ng-if="participantShortcut.hint">
+      <span ng-bind-html="participantShortcut.hint"></span>
+    </div>
+    <div class="form-group">
+      <label for="shortcut_text" class="sr-only">
+        URL:
+      </label>
+      <div class="input-group">
+        <span class="input-group-addon"><span ng-bind-html="participantShortcut.prefix"></span></span>
+        <input type="text" id="shortcut_text" class="form-control" ng-model="personalUrlInfo.updatedShortcut" aria-label="URL">
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <div class="clearfix">
+      <div class="pull-left">
+        <button type="button" class="btn btn-toggle" ng-click="cancelEditPersonalUrl()">
+          Cancel
+        </button>
+      </div>
+      <div class="pull-right">
+        <button type="submit" class="btn btn-primary">
+          <strong>Save</strong>
+        </button>
+      </div>
+    </div>
+  </div>
+<form>

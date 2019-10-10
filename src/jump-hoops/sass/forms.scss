@@ -22,3 +22,11 @@ select {
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.2), 0 0 8px rgba(0, 0, 0, 0.19);
   }
 }
+
+input.btn-enter[name=otherAmt]{
+  &+div.popover {
+    margin-top: -25px;
+    text-align: center;
+  }
+}
+

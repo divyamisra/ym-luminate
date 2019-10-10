@@ -1,0 +1,144 @@
+.ym-teachers-leaderboard h2 {
+  font-size:42px;
+  color:#a41752;
+}
+
+body.pg-company {
+     @media (max-width: $screen-sm-max) {
+          .ym-our-stats {
+               margin-bottom:40px;
+          }
+     }
+     .ym-promo-block__item {
+          margin: 10px;
+          width: 200px;
+          height: 200px;
+          @media (max-width: $screen-sm-max) {
+               height: auto;
+          }
+     }
+     .ym-page-section__main > .col-md-6 {
+          padding: 0 20px;
+     }
+     @media (max-width: $screen-sm-max) {
+          h2 {
+               font-size:32px;
+          }
+          body.pg-company {
+              .ym-promo-block__item {
+                    height: auto;
+               }
+          }
+     }
+     @media (min-width: $screen-sm-min) {
+          .ym-page-header h1 {
+               margin: 0 196px 0 0;
+          }
+     }
+}
+.ym-teachers-leaderboard-block {
+     h2 {
+         font-size:42px;
+         color:$brand-primary-darker;
+          @media (max-width: $screen-sm-max) {
+               font-size:32px;
+          }
+    }
+     h3 {
+         font-size: 17px;
+         text-align: center;
+         color: $brand-primary-darker;
+    }
+    > [class*="col-"] {
+         padding-left: 0 !important;
+         padding-right: 0 !important;
+    } 
+    .ym-tl-dollars-raised .row {
+         margin-right: 2px;
+    }
+     .ym-tl-registered-students .row {
+         margin-left:2px;
+    }
+     .ym-tl-dollars-raised, .ym-tl-registered-students {
+         .row {
+             padding: 10px;
+             color: #000;
+             margin-bottom: 5px;
+             &:nth-child(1) {
+                 background: #94C960;
+            }
+             &:nth-child(2) {
+                 background: #A8D180;
+            }
+             &:nth-child(3) {
+                 background: #BDDC9D;
+            }
+             &:nth-child(4) {
+                 background: #D2E6BB;
+            }
+             &:nth-child(5) {
+                 background: #E7F1DB;
+            }
+        }
+    }
+     .top-index {
+         text-align:left;
+    }
+     .top-detail {
+         text-align:center;
+    }
+     .top-index, .top-detail {
+         padding-left:0px;
+    }
+     .top-name {
+    }
+     .top-grade {
+        font-size:10px;
+    }
+     .top-raised, .top-students {
+        margin-top:10px;
+    }
+     .top-msg {
+        font-size:10px;
+    }
+     @media (max-width: $screen-sm-max) {
+         .ym-tl-dollars-raised {
+              margin-bottom: 20px;
+              .row {
+                    margin-right: -15px;
+               }
+          }
+          .ym-tl-registered-students {
+               .row {
+                    margin-left:-15px;
+               }
+          }
+     }
+}
+
+.ym-school-participation-years {
+  position:relative;
+  max-width:180px;
+  padding:5px;
+  
+  img {
+    width: 100%;
+  }
+  .ym-school-participation-years-text {
+    position: absolute;
+    top: 31px;
+    left: 5%;
+    text-align: center;
+    font-weight: bold;
+    margin: 0 27px;
+    line-height: 18px;
+    font-size: 14px;
+    color: $event-secondary;
+    
+    span {
+      display: block;
+      font-size: 1.5em;
+      line-height: 1.3em;
+    }
+  }
+}

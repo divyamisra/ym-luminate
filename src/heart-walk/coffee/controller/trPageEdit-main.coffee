@@ -13,7 +13,11 @@ angular.module 'trPageEditControllers'
     'TeamraiserCompanyPageService'
     'TeamraiserSurveyResponseService'
     ($rootScope, $scope, $location, $compile, $sce, $uibModal, APP_INFO, TeamraiserRegistrationService, TeamraiserParticipantPageService, TeamraiserTeamPageService, TeamraiserCompanyPageService, TeamraiserSurveyResponseService) ->
-      luminateExtend.api.getAuth()
+#      luminateExtend.api.getAuth()
+
+      luminateExtend.api.getAuth({
+        useHTTPS: true
+      });
 
       $embedRoot = angular.element '[data-embed-root]'
       editPage = $embedRoot.data 'edit-page'
@@ -75,11 +79,11 @@ angular.module 'trPageEditControllers'
           success: (response) ->
             $scope.registration = response.getRegistrationResponse?.registration
 
-        $personalPhoto2 = angular.element '.kd-user-cover__bg'
+        $personalPhoto2 = angular.element '.user-cover__bg'
 
         # make cover photo dynamic
         $scope.setPersonalPhoto2Url = (photoUrl) ->
-          defaultPhotoUrl = angular.element('.kd-user-cover__bg').attr('data-defaultphoto') or ''
+          defaultPhotoUrl = angular.element('.user-cover__bg').attr('data-defaultphoto') or ''
           $scope.personalPhoto2Url = photoUrl or defaultPhotoUrl
           if defaultPhotoUrl isnt ''
             $scope.personalPhoto2IsDefault = $scope.personalPhoto2Url.indexOf(defaultPhotoUrl.replace('..', '')) isnt -1
@@ -88,7 +92,7 @@ angular.module 'trPageEditControllers'
         if $personalPhoto2.css('background-image') and $personalPhoto2.css('background-image').indexOf('(') isnt -1
           $scope.setPersonalPhoto2Url $personalPhoto2.css('background-image').split('(')[1].split(')')[0]
           $personalPhoto2.replaceWith $compile($personalPhoto2.clone().attr('ng-style', "{'background-image': 'url(' + personalPhoto2Url + ')'}"))($scope)
-          $personalPhoto2 = angular.element '.kd-user-cover__bg'
+          $personalPhoto2 = angular.element '.user-cover__bg'
 
         # insert cover photo edit button
         $scope.editPersonalPhoto2 = ->
@@ -139,14 +143,14 @@ angular.module 'trPageEditControllers'
         $scope.closePersonalPhoto1Modal = ->
           if $scope.editPersonalPhoto1Modal
             $scope.editPersonalPhoto1Modal.close()
-          $scope.setPersonalPhoto1Error();
+          $scope.setPersonalPhoto1Error()
           if not $scope.$$phase
             $scope.$apply()
         $scope.deletePersonalPhoto1 = ($event) ->
           if $event
             $event.preventDefault()
           angular.element('.js--delete-personal-photo-1-form').submit()
-          $scope.setPersonalPhoto1Url "../aha-luminate/dist/heart-walk/image/default-personal.png"
+          $scope.setPersonalPhoto1Url angular.element('.heart-user-image-wrap-inner[data-defaultphoto]').attr('data-defaultphoto')
           false
         $scope.cancelEditPersonalPhoto1 = ->
           $scope.closePersonalPhoto1Modal()
@@ -159,7 +163,7 @@ angular.module 'trPageEditControllers'
             $scope.$apply()
         $personalPhoto1.find('.heart-user-image-wrap-inner').prepend $compile('<button type="button" class="btn btn-primary-inverted btn-raised" ng-click="editPersonalPhoto1()" id="edit_personal_photo"><span class="glyphicon glyphicon-camera"></span> Edit Photo</button>')($scope)
 
-        $personalHeader = angular.element '.kd-user-story__headline'
+        $personalHeader = angular.element '.user-story__headline'
         $personalHeadline = $personalHeader.find '> h2'
 
         # make headline dynamica
@@ -189,17 +193,20 @@ angular.module 'trPageEditControllers'
         $personalHeader.append $compile('<form method="POST" novalidate ng-class="{\'hidden\': !personalHeadlineOpen}" ng-submit="updatePersonalHeadline()"><button type="button" class="btn btn-primary-inverted btn-raised" ng-click="cancelEditPersonalHeadline()">Cancel</button> <button type="submit" class="btn btn-primary btn-raised">Save</button><h2><input type="text" class="form-control" ng-model="personalHeadline"></h2></form>')($scope)
 
         $personalVideo = angular.element '.heart-user-video--personal'
-        $scope.fr_id = $rootScope.frId;
+        $scope.fr_id = $rootScope.frId
         # make video dynamic
         $scope.personalMedia = {}
         $scope.personalVideo = {}
-        $scope.personalizedVideoObj = {}
+
+#        $scope.personalizedVideoObj = {}
+
         $scope.setPersonalVideoUrl = (videoUrl) ->
           angular.forEach $personalVideo, (videoContainer) ->
             $personalVideoIframe = angular.element(videoContainer).find('iframe')
             $personalVideoIframe.css('opacity','1')
             if $scope.personalVideoEmbedUrl isnt ''
               $personalVideoIframe.replaceWith $compile($personalVideoIframe.clone().attr('ng-src', '{{personalVideoEmbedUrl}}'))($scope)
+
           if videoUrl and videoUrl.indexOf('vidyard') is -1
             videoUrl = videoUrl.replace '&amp;v=', '&v='
             videoId = ''
@@ -212,7 +219,8 @@ angular.module 'trPageEditControllers'
             else if videoUrl.indexOf('youtu.be/') isnt -1
               videoId = videoUrl.split('youtu.be/')[1].split('/')[0].split('?')[0]
             if videoId isnt ''
-              $scope.personalMedia.videoUrl = 'http://youtube.com/watch?v=' + videoId
+#              $scope.personalMedia.videoUrl = 'http://youtube.com/watch?v=' + videoId
+              $scope.personalMedia.videoUrl = 'https://youtube.com/watch?v=' + videoId
               $scope.personalVideoEmbedUrl = $sce.trustAsResourceUrl '//www.youtube.com/embed/' + videoId + '?wmode=opaque&amp;rel=0&amp;showinfo=0'
           if not $scope.$$phase
             $scope.$apply()
@@ -231,7 +239,7 @@ angular.module 'trPageEditControllers'
         $scope.closePersonalVideoModal = ->
           if $scope.editPersonalVideoModal
             $scope.editPersonalVideoModal.close()
-          $scope.setPersonalVideoError();
+          $scope.setPersonalVideoError()
           if not $scope.$$phase
             $scope.$apply()
         $scope.cancelEditPersonalVideo = ->
@@ -243,7 +251,7 @@ angular.module 'trPageEditControllers'
             message: errorMessage
         $scope.updatePersonalVideo = ->
           if $scope.personalVideo.type is 'youtube'
-            angular.element('.js--remove-personalized-video-form').submit()
+#            angular.element('.js--remove-personalized-video-form').submit()
             TeamraiserParticipantPageService.updatePersonalVideoUrl 'video_url=' + $scope.personalMedia.videoUrl,
               error: (response) ->
                 $scope.setPersonalVideoError response.errorResponse.message
@@ -251,37 +259,39 @@ angular.module 'trPageEditControllers'
                 videoUrl = response.updatePersonalVideoUrlResponse?.videoUrl
                 $scope.setPersonalVideoUrl videoUrl
                 $scope.closePersonalVideoModal()
-          else if $scope.personalVideo.type is 'personalized'
-            TeamraiserParticipantPageService.updatePersonalVideoUrl 'video_url='
-            formData = { auth_token: "Jep8QrDjpqwOnI5rpsAbJw", email: $rootScope.email, fields: {firstname: $rootScope.firstName, why: $scope.personalMedia.myWhy, cons_id: $rootScope.consId} }
-            $scope.submitVidyardCallback = (data) ->
-              jQuery.ajax 'http://hearttools.heart.org/vidyard/vy_pv_callback_to_bb.php',
-                type: 'POST'
-                data: JSON.stringify( { uuid: data.unit.uuid, cons_id: $rootScope.consId } ),
-                contentType: 'application/json',
-                dataType: 'json',
-                success: (data) ->
-                  # TODO
-            $scope.submitVidyard = ->
-              jQuery.ajax 'http://blender.vidyard.com/forms/pd5MsBtKJwfrReeWz7d8v4/submit.json',
-                type: 'POST'
-                data: JSON.stringify( { auth_token: "Jep8QrDjpqwOnI5rpsAbJw", email: $rootScope.email, fields: {firstname: $rootScope.firstName, why: $scope.personalMedia.myWhy, cons_id: '"' + $rootScope.consId + '"'} } ),
-                contentType: 'application/json',
-                dataType: 'json',
-                success: (response) ->
-                  $scope.submitVidyardCallback response
-            $scope.submitVidyard()
-            angular.element('.js--submit-personalized-video-LO-form').submit()
-            setTimeout ( ->
-              $scope.closePersonalVideoModal()
-            ), 500
+
+#          else if $scope.personalVideo.type is 'personalized'
+#            TeamraiserParticipantPageService.updatePersonalVideoUrl 'video_url='
+#            formData = { auth_token: "Jep8QrDjpqwOnI5rpsAbJw", email: $rootScope.email, fields: {firstname: $rootScope.firstName, why: $scope.personalMedia.myWhy, cons_id: $rootScope.consId} }#
+#            $scope.submitVidyardCallback = (data) ->
+#              jQuery.ajax 'http://hearttools.heart.org/vidyard/vy_pv_callback_to_bb.php',
+#                type: 'POST'
+#                data: JSON.stringify( { uuid: data.unit.uuid, cons_id: $rootScope.consId } ),
+#                contentType: 'application/json',
+#                dataType: 'json',
+#                success: (data) ->
+#                  # TODO
+#            $scope.submitVidyard = ->
+#              jQuery.ajax 'https://blender.vidyard.com/forms/pd5MsBtKJwfrReeWz7d8v4/submit.json',
+#                type: 'POST'
+#                data: JSON.stringify( { auth_token: "Jep8QrDjpqwOnI5rpsAbJw", email: $rootScope.email, fields: {firstname: $rootScope.firstName, why: $scope.personalMedia.myWhy, cons_id: '"' + $rootScope.consId + '"'} } ),
+#                contentType: 'application/json',
+#                dataType: 'json',
+#                success: (response) ->
+#                  $scope.submitVidyardCallback response
+#            $scope.submitVidyard()
+#            angular.element('.js--submit-personalized-video-LO-form').submit()
+#            setTimeout ( ->
+#              $scope.closePersonalVideoModal()
+#            ), 500
 
           else if $scope.personalVideo.type is 'default'
-            angular.element('.js--remove-personalized-video-form').submit()
+#            angular.element('.js--remove-personalized-video-form').submit()
             TeamraiserParticipantPageService.updatePersonalVideoUrl 'video_url='
             setTimeout ( ->
               $scope.closePersonalVideoModal()
-              window.location.href = 'http://' + $location.$$host + '/site/TR?fr_id=' + $scope.frId + '&pg=personal&px=' + $rootScope.consId
+#              window.location.href = 'http://' + $location.$$host + '/site/TR?fr_id=' + $scope.frId + '&pg=personal&px=' + $rootScope.consId
+              window.location.href = 'https://' + $location.$$host + '/site/TR?fr_id=' + $scope.frId + '&pg=personal&px=' + $rootScope.consId
             ), 500
         $personalVideo.find('.heart-user-video-inner').prepend $compile('<button type="button" class="btn btn-primary-inverted btn-raised" ng-click="editPersonalVideo()" id="edit_personal_video"><span class="glyphicon glyphicon-facetime-video"></span> Edit Video</button>')($scope)
 
@@ -357,13 +367,14 @@ angular.module 'trPageEditControllers'
         $scope.closeTeamPhoto1Modal = ->
           if $scope.editTeamPhoto1Modal
             $scope.editTeamPhoto1Modal.close()
-          $scope.setTeamPhoto1Error();
+          $scope.setTeamPhoto1Error()
           if not $scope.$$phase
             $scope.$apply()
         $scope.deleteTeamPhoto1 = ($event) ->
           if $event
             $event.preventDefault()
           angular.element('.js--delete-team-photo-1-form').submit()
+          $scope.setTeamPhoto1Url angular.element('.heart-user-image-wrap-inner[data-defaultphoto]').attr('data-defaultphoto')
           false
         $scope.cancelEditTeamPhoto1 = ->
           $scope.closeTeamPhoto1Modal()
@@ -458,13 +469,14 @@ angular.module 'trPageEditControllers'
                 $scope.closeCompanyPhoto1Modal = ->
                   if $scope.editCompanyPhoto1Modal
                     $scope.editCompanyPhoto1Modal.close()
-                  $scope.setCompanyPhoto1Error();
+                  $scope.setCompanyPhoto1Error()
                   if not $scope.$$phase
                     $scope.$apply()
                 $scope.deleteCompanyPhoto1 = ($event) ->
                   if $event
                     $event.preventDefault()
                   angular.element('.js--delete-company-photo-1-form').submit()
+                  $scope.setCompanyPhoto1Url angular.element('.heart-user-image-wrap-inner[data-defaultphoto]').attr('data-defaultphoto')
                   false
                 $scope.cancelEditCompanyPhoto1 = ->
                   $scope.closeCompanyPhoto1Modal()
@@ -603,13 +615,13 @@ angular.module 'trPageEditControllers'
           url = $location.absUrl()
         name = name.replace(/[\[\]]/g, '\\$&')
         regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)')
-        results = regex.exec(url)
+        results = regex.exec url
         if !results
           return null
         if !results[2]
           return ''
         decodeURIComponent results[2].replace(/\+/g, ' ')
-      videoWhy = getParameterByName('videoWhy');
+      videoWhy = getParameterByName 'videoWhy'
       if videoWhy is 'true'
         $scope.editPersonalVideo()
   ]

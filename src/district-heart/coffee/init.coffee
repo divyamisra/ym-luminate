@@ -18,7 +18,7 @@ angular.module 'ahaLuminateApp', appDependencies
 angular.module 'ahaLuminateControllers', []
 
 angular.module 'ahaLuminateApp'
-  .constant 'APP_INFO', 
+  .constant 'APP_INFO',
     version: '1.0.0'
     rootPath: do ->
       rootPath = ''
@@ -36,6 +36,7 @@ angular.module 'ahaLuminateApp'
     '$sce'
     'APP_INFO'
     ($rootScope, $sce, APP_INFO) ->
+      $rootScope.eventType = 'district-heart'
       $rootScope.tablePrefix = luminateExtend.global.tablePrefix
       $rootScope.nonSecureDomain = luminateExtend.global.path.nonsecure.split('/site/')[0] + '/'
       $rootScope.secureDomain = luminateExtend.global.path.secure.split('/site/')[0] + '/'
@@ -48,16 +49,20 @@ angular.module 'ahaLuminateApp'
       $rootScope.apiKey = $dataRoot.data('api-key') if $dataRoot.data('api-key') isnt ''
       $rootScope.authToken = $dataRoot.data('auth-token') if $dataRoot.data('auth-token') isnt ''
       $rootScope.sessionCookie = $dataRoot.data('session-cookie') if $dataRoot.data('session-cookie') isnt ''
+      $rootScope.facebookFundraisersEnabled = $dataRoot.data('facebook-fundraisers-enabled') is 'TRUE'
+      $rootScope.facebookFundraisersEndDate = if $dataRoot.data('facebook-fundraisers-end-date') is '' then '' else $dataRoot.data('facebook-fundraisers-end-date')
+      $rootScope.facebookCharityId = if $dataRoot.data('facebook-charity-id') is '' then '' else $dataRoot.data('facebook-charity-id')
+      $rootScope.facebookFundraiserId = $dataRoot.data('facebook-fundraiser-id') if $dataRoot.data('facebook-fundraiser-id') isnt ''
   ]
 
 angular.element(document).ready ->
   appModules = [
     'ahaLuminateApp'
   ]
-  
+
   try
     angular.module 'trPcApp'
     appModules.push 'trPcApp'
   catch error
-  
+
   angular.bootstrap document, appModules

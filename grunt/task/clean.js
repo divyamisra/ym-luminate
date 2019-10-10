@@ -86,32 +86,32 @@ module.exports = {
     ]
   }, 
   
-  "jump-hoops": {
+  "ym-primary": {
     files: [
       {
         expand: true, 
-        cwd: 'dist/jump-hoops/css/', 
+        cwd: 'dist/ym-primary/css/', 
         src: [
           '**/*'
         ]
       }, 
       {
         expand: true, 
-        cwd: 'dist/jump-hoops/js/', 
+        cwd: 'dist/ym-primary/js/', 
         src: [
           '**/*'
         ]
       }, 
       {
         expand: true, 
-        cwd: 'dist/jump-hoops/html/', 
+        cwd: 'dist/ym-primary/html/', 
         src: [
           '**/*'
         ]
       }, 
       {
         expand: true, 
-        cwd: 'dist/jump-hoops/image/', 
+        cwd: 'dist/ym-primary/image/', 
         src: [
           '**/*'
         ]
@@ -216,5 +216,136 @@ module.exports = {
         ]
       }
     ]
-  }
+  }, 
+  
+  "nchw": {
+    files: [
+      {
+        expand: true,
+        cwd: 'dist/nchw/css/',
+        src: [
+          '**/*'
+        ]
+      },
+      {
+        expand: true,
+        cwd: 'dist/nchw/js/',
+        src: [
+          '**/*'
+        ]
+      },
+      {
+        expand: true,
+        cwd: 'dist/nchw/html/',
+        src: [
+          '**/*'
+        ]
+      },
+      {
+        expand: true,
+        cwd: 'dist/nchw/image/',
+        src: [
+          '**/*'
+        ]
+      }
+    ]
+  },
+  
+  "heartchase": {
+    files: [
+      {
+        expand: true,
+        cwd: 'dist/heartchase/css/',
+        src: [
+          '**/*'
+        ]
+      },
+      {
+        expand: true,
+        cwd: 'dist/heartchase/js/',
+        src: [
+          '**/*'
+        ]
+      },
+      {
+        expand: true,
+        cwd: 'dist/heartchase/html/',
+        src: [
+          '**/*'
+        ]
+      },
+      {
+        expand: true,
+        cwd: 'dist/heartchase/image/',
+        src: [
+          '**/*'
+        ]
+      }
+    ]
+  },
+
+  "cyclenation": {
+    files: [
+      {
+        expand: true,
+        cwd: 'dist/cyclenation/css/',
+        src: [
+          '**/*'
+        ]
+      },
+      {
+        expand: true,
+        cwd: 'dist/cyclenation/js/',
+        src: [
+          '**/*'
+        ]
+      },
+      {
+        expand: true,
+        cwd: 'dist/cyclenation/html/',
+        src: [
+          '**/*'
+        ]
+      },
+      {
+        expand: true,
+        cwd: 'dist/cyclenation/image/',
+        src: [
+          '**/*'
+        ]
+      }
+    ]
+  },
+  "heartwalk2020": {
+    files: [
+      {
+        expand: true,
+        cwd: 'dist/heartwalk2020/css/',
+        src: [
+          '**/*'
+        ]
+      },
+      {
+        expand: true,
+        cwd: 'dist/heartwalk2020/js/',
+        src: [
+          '**/*'
+        ]
+      },
+      {
+        expand: true,
+        cwd: 'dist/heartwalk2020/html/',
+        src: [
+          '**/*'
+        ]
+      },
+      {
+        expand: true,
+        cwd: 'dist/heartwalk2020/image/',
+        src: [
+          '**/*'
+        ]
+      }
+    ]
+  } 
 }

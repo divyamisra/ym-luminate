@@ -36,10 +36,10 @@ module.exports = {
     }
   }, 
   
-  "jump-hoops": {
+  "ym-primary": {
     options: {
       title: 'AHA Luminate Framework', 
-      message: 'Jump/Hoops files updated.'
+      message: 'YM Kids Heart Challenge files updated.'
     }
   }, 
   
@@ -61,6 +61,34 @@ module.exports = {
     options: {
       title: 'AHA Luminate Framework', 
       message: 'District Heart Challenge files updated.'
+    }
+  },
+  
+  "nchw": {
+    options: {
+      title: 'AHA Luminate Framework',
+      message: 'NCHW files updated.'
+    }
+  },
+  
+  "heartchase": {
+    options: {
+      title: 'AHA Luminate Framework',
+      message: 'HeartChase files updated.'
+    }
+  },
+  
+  "cyclenation": {
+    options: {
+      title: 'AHA Luminate Framework',
+      message: 'CycleNation files updated.'
+    }
+  },
+
+  "heartwalk2020": {
+    options: {
+      title: 'AHA Luminate Framework',
+      message: 'HeartWalk 2020 files updated.'
     }
   }
 }

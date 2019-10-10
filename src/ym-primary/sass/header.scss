@@ -1,0 +1,10 @@
+header {
+  .ym-header-logo--khc {
+    float:right;
+    border-left:none;
+    > a, 
+    > span {
+      margin: -2px 12px 0;
+    }
+  }
+}

@@ -106,7 +106,7 @@ module.exports = (grunt) ->
       'replace'
       'htmlmin'
       'imagemin'
-    ], 'jump-hoops'
+    ], 'ym-primary'
     runTargetedTask [
       'clean'
       'sass'
@@ -140,6 +140,58 @@ module.exports = (grunt) ->
       'htmlmin'
       'imagemin'
     ], 'district-heart'
+    runTargetedTask [
+      'clean'
+      'sass'
+      'postcss'
+      'cssmin'
+      'uglify'
+      'replace'
+      'htmlmin'
+      'imagemin'
+    ], 'nchw'
+    runTargetedTask [
+      'copy'
+    ], 'nchw-scripts'
+    runTargetedTask [
+      'clean'
+      'sass'
+      'postcss'
+      'cssmin'
+      'uglify'
+      'replace'
+      'htmlmin'
+      'imagemin'
+    ], 'heartchase'
+    runTargetedTask [
+      'copy'
+    ], 'heartchase-scripts'
+    runTargetedTask [
+      'clean'
+      'sass'
+      'postcss'
+      'cssmin'
+      'uglify'
+      'replace'
+      'htmlmin'
+      'imagemin'
+    ], 'cyclenation'
+    runTargetedTask [
+      'copy'
+    ], 'cyclenation-scripts'
+    runTargetedTask [
+      'clean'
+      'sass'
+      'postcss'
+      'cssmin'
+      'uglify'
+      'replace'
+      'htmlmin'
+      'imagemin'
+    ], 'heartwalk2020'
+    runTargetedTask [
+      'copy'
+    ], 'heartwalk2020-scripts'
     return
   grunt.registerTask 'dev', ->
     devTasks = [
@@ -155,7 +207,7 @@ module.exports = (grunt) ->
     config.watch['youth-markets'].tasks.forEach (task) ->
       if task.indexOf('notify:') is -1
         devTasks.push task
-    config.watch['jump-hoops'].tasks.forEach (task) ->
+    config.watch['ym-primary'].tasks.forEach (task) ->
       if task.indexOf('notify:') is -1
         devTasks.push task
     config.watch['middle-school'].tasks.forEach (task) ->
@@ -165,6 +217,18 @@ module.exports = (grunt) ->
       if task.indexOf('notify:') is -1
         devTasks.push task
     config.watch['district-heart'].tasks.forEach (task) ->
+      if task.indexOf('notify:') is -1
+        devTasks.push task
+    config.watch['nchw'].tasks.forEach (task) ->
+      if task.indexOf('notify:') is -1
+        devTasks.push task
+    config.watch['heartchase'].tasks.forEach (task) ->
+      if task.indexOf('notify:') is -1
+        devTasks.push task
+    config.watch['cyclenation'].tasks.forEach (task) ->
+      if task.indexOf('notify:') is -1
+        devTasks.push task
+    config.watch['heartwalk2020'].tasks.forEach (task) ->
       if task.indexOf('notify:') is -1
         devTasks.push task
     devTasks.push 'watch'

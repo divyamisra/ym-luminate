@@ -154,7 +154,8 @@ main > .container {
         font-size: 18px;
       }
       
-      &.ng-pc-nav-item--resources {
+      &.ng-pc-nav-item--resources,
+      &.ng-pc-nav-item--order-gifts {
         padding: 3px 6px 0;
         
         @media (min-width: 670px) {
@@ -337,6 +338,7 @@ main > .container {
       .badge {
         min-width: 26px;
         margin-left: 6px;
+        background-color: #000000;
       }
       
       &:not(.active) {
@@ -557,7 +559,7 @@ main > .container {
         height: 302px;
       }
     }
-
+    
     button {
       margin: 18px 0 0;
     }
@@ -575,6 +577,84 @@ main > .container {
   max-width: 420px;
 }
 
+.ym-pc-dashboard-facebook-box {
+  background: #4260b4;
+  color: $brand-white;
+  padding: 20px;
+  margin: 0 0 30px;
+  
+  .container {
+    padding: 0;
+    
+    @media(min-width: 414px) {
+      padding: 0 15px;
+    }
+    
+    @media(min-width: 640px) {
+      max-width: 540px;
+      margin: 0 auto;
+    }
+  }
+  
+  .ym-pc-dashboard-section-header {
+    h5, 
+    .h5 {
+      line-height: 1.4;
+      margin: 0 0 14px;
+      
+      @media(min-width: 414px) {
+        margin: 0 0 18px;
+      }
+    }
+  }
+  
+  p {
+    margin: 0 0 20px;
+    
+    @media(min-width: 414px) {
+      margin: 0 0 24px;
+    }
+  }
+  
+  .btn-white, 
+  a.btn-white {
+    &, 
+    &:link, 
+    &:visited, 
+    &:hover, 
+    &:focus, 
+    &:active {
+      color: #4260b4;
+      font-size: 14px;
+      padding: 6px 10px;
+      white-space: normal;
+      margin: 0 0 20px;
+      
+      @media(min-width: 414px) {
+        font-size: 16px;
+        margin: 0 0 24px;
+      }
+      
+      @media(min-width: 440px) {
+        padding: 12px 18px;
+      }
+      
+      @media(min-width: 480px) {
+        font-size: 18px;
+        padding: 12px 24px;
+      }
+      
+      .fa {
+        margin: 0 8px 0 0;
+      }
+    }
+  }
+  
+  .ym-pc-dashboard-facebook-hint {
+    font-size: 80%;
+  }
+}
+
 .ym-pc-dashboard-badges-section {
   background-color: $event-accent-medium;
   padding: 28px 0;
@@ -590,13 +670,13 @@ main > .container {
     margin: 0 0 32px;
   }
   
-  .btn {
+  /*.btn {
     @media (min-width: $screen-md-min) {
       position: absolute;
       right: 60px;
       top: 0;
     }
-  }
+  }*/
 }
 
 .ym-pc-dashboard-badges-icons {
@@ -728,7 +808,7 @@ main > .container {
   }
 
   .ym-pc-dashboard-section-header {
-    color: $brand-white;
+    color: $event-grey;
   }
 }
 
@@ -1689,7 +1769,7 @@ main > .container {
   margin: 0 0 15px;
 
   @media (min-width: $screen-sm-min) {
-    width: 135px;
+    width: 125px;
     margin: 0;
   }
 }

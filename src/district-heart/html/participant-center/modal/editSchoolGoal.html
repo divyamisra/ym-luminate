@@ -1,0 +1,33 @@
+<form method="POST" novalidate ng-submit="updateSchoolGoal()">
+  <div class="modal-header">
+    <h2 class="h5 modal-title">
+      Update District Goal
+    </h2>
+  </div>
+  <div class="modal-body">
+    <div uib-alert class="alert-danger" ng-if="schoolGoalInfo.errorMessage">
+      <div ng-bind-html="schoolGoalInfo.errorMessage"></div>
+    </div>
+    <div class="form-group">
+      <label for="goal" class="sr-only">Goal</label>
+      <div class="input-group">
+        <span class="input-group-addon">$</span>
+        <input type="text" class="form-control" id="goal" ng-model="schoolGoalInfo.goal" aria-label="Goal" required>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <div class="clearfix">
+      <div class="pull-left">
+        <button type="button" class="btn btn-toggle" ng-click="cancelEditSchoolGoal()">
+          Cancel
+        </button>
+      </div>
+      <div class="pull-right">
+        <button type="submit" class="btn btn-primary">
+          <strong>Save</strong>
+        </button>
+      </div>
+    </div>
+  </div>
+<form>

@@ -1,0 +1,46 @@
+<div>
+  <h2 class="text-center h5">
+    Our Teams
+  </h2>
+  <p class="text-center small">
+    <em>Scroll right to view all information</em>
+  </p>
+  <div class="table-responsive">
+    <table class="table table-striped table--padded ym-list ym-list--team-list">
+      <caption class="sr-only">
+        Our Teams
+      </caption>
+      <thead class="ym-list__header">
+        <tr>
+          <th class="ym-list__column ym-list__column--name" scope="col" aria-sort="none">
+            Name
+          </th>
+          <th class="ym-list__column ym-list__column--amount hidden-xs" scope="col" aria-sort="none">
+            Amount Raised
+          </th>
+          <th class="ym-list__column ym-list__column--cta" scope="col" aria-sort="none">
+            Action
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="ym-list__row" ng-repeat="team in teams | filter: paginateTeams">
+          <td class="ym-list__column ym-list__column--name">
+            <a ng-href="TR?fr_id={{team.EventId}}&amp;pg=team&amp;team_id={{team.id}}"><span ng-bind-html="team.name"></span></a>
+          </td>
+          <td class="ym-list__column ym-list__column--amount hidden-xs">
+            <span>{{team.amountRaisedFormatted}}</span>
+          </td>
+          <td class="ym-list__column ym-list__column--cta">
+            <a class="btn btn-primary btn-md" aria-label="Join {{team.name}}" ng-href="TRR?fr_id={{team.EventId}}&amp;pg=tfind&amp;fr_tjoin={{team.id}}&amp;s_frTJoin={{team.id}}&amp;s_frCompanyId={{team.companyId}}">
+              Join Team
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="ym-pagination text-center" ng-show="teamListSetting.totalNumber > teamListSetting.paginationItemsPerPage">
+    <ul uib-pagination ng-model="teamListSetting.currentPage" total-items="teamListSetting.totalNumber" items-per-page="teamListSetting.paginationItemsPerPage" max-size="teamListSetting.paginationMaxSize" boundary-links="teamListSetting.totalNumber > (teamListSetting.paginationItemsPerPage * teamListSetting.paginationMaxSize)"></ul>
+  </div>
+</div>

@@ -1,0 +1,38 @@
+<form method="POST" novalidate ng-submit="updateTeamUrl()">
+  <div class="modal-header">
+    <h2 class="h5 modal-title">
+      Team Page URL
+    </h2>
+  </div>
+  <div class="modal-body">
+    <div uib-alert class="alert-danger" role="alert" ng-if="teamUrlInfo.errorMessage">
+      <span ng-bind-html="teamUrlInfo.errorMessage"></span>
+    </div>
+    <div uib-alert class="alert-warning" role="alert" ng-if="teamShortcut.hint">
+      <span ng-bind-html="teamShortcut.hint"></span>
+    </div>
+    <div class="form-group">
+      <label for="shortcut_text" class="sr-only">
+        URL:
+      </label>
+      <div class="input-group">
+        <span class="input-group-addon"><span ng-bind-html="teamShortcut.prefix"></span></span>
+        <input type="text" id="shortcut_text" class="form-control" ng-model="teamUrlInfo.updatedShortcut" aria-label="URL">
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <div class="clearfix">
+      <div class="pull-left">
+        <button type="button" class="btn btn-toggle" ng-click="cancelEditTeamUrl()">
+          Cancel
+        </button>
+      </div>
+      <div class="pull-right">
+        <button type="submit" class="btn btn-primary">
+          <strong>Save</strong>
+        </button>
+      </div>
+    </div>
+  </div>
+<form>
