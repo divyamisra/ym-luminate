@@ -463,6 +463,7 @@ angular.module 'ahaLuminateControllers'
           angular.element('#cover_fee_radio_Yes').prop 'checked', true
           document.getElementById('other_amount').value = total
 #          $scope.selectLevel(event, 'other', otherLevel, total)
+          $scope.donationInfo.otherAmt = total
           $scope.selectLevel(event, 'addFee', otherLevel, total)
 
         else
@@ -483,7 +484,7 @@ angular.module 'ahaLuminateControllers'
         console.log('level type ' + $scope.donationInfo.levelType)
         console.log('other amt ' + $scope.donationInfo.otherAmt)
 
-        if $scope.donationInfo.levelType is 'other'
+        if $scope.donationInfo.levelType is 'other' || $scope.donationInfo.levelType is 'addFee' 
           if $scope.donationInfo.otherAmt is undefined or !(parseInt($scope.donationInfo.otherAmt) >= 10)
             e.preventDefault()
             jQuery('html, body').animate
