@@ -11,16 +11,6 @@
     &:visited {
       width: 16.66666667%;
     }
-
-    &:hover,
-    &:focus,
-    &:active {
-      background: $brand-white;
-      
-      @media (min-width: 560px) {
-        background: $brand-white;
-      }
-    }
   }
 }
 @media only screen and (max-width: $screen-xs-max) {
