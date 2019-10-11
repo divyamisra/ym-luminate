@@ -11,6 +11,7 @@ a.btn {
     &:focus,
     &:active {
       background: $event-primary-dark;
+      color: $event-grey;
     }
   }
 }
