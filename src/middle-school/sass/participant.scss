@@ -10,8 +10,16 @@
     &:visited {
       color: $event-secondary-heading;
     }
-    &.active {
+
+    &:hover,
+    &:focus,
+    &:active {
+      background: $brand-white;
       color: $event-secondary-heading;
+      
+      @media (min-width: 560px) {
+        background: $brand-white;
+      }
     }
   }
 }
