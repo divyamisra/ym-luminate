@@ -11,6 +11,8 @@ angular.module 'ahaLuminateControllers'
     'BoundlessService'
     ($rootScope, $scope, $filter, $uibModal, APP_INFO, TeamraiserCompanyService, TeamraiserRegistrationService, SchoolLookupService, BoundlessService) ->
       $rootScope.companyName = ''
+      $scope.teachers = ''
+      
       regCompanyId = luminateExtend.global.regCompanyId
       setCompanyName = (companyName) ->
         $rootScope.companyName = companyName
