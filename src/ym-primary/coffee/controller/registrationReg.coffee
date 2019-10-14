@@ -8,7 +8,8 @@ angular.module 'ahaLuminateControllers'
     'TeamraiserCompanyService'
     'TeamraiserRegistrationService'
     'SchoolLookupService'
-    ($rootScope, $scope, $filter, $uibModal, APP_INFO, TeamraiserCompanyService, TeamraiserRegistrationService, SchoolLookupService) ->
+    'BoundlessService'
+    ($rootScope, $scope, $filter, $uibModal, APP_INFO, TeamraiserCompanyService, TeamraiserRegistrationService, SchoolLookupService, BoundlessService) ->
       $rootScope.companyName = ''
       regCompanyId = luminateExtend.global.regCompanyId
       setCompanyName = (companyName) ->
@@ -254,7 +255,11 @@ angular.module 'ahaLuminateControllers'
           else 
             angular.element('.js--default-reg-form').submit()
         false
-        
+
+      BoundlessService.getTeachersBySchool $scope.companyId
+      .then (response) ->
+        $scope.teachers = response.data.teachers
+              
       setCompanyCity = (companyCity) ->
         $rootScope.companyCity = companyCity
         if not $rootScope.$$phase
