@@ -12,6 +12,7 @@ angular.module 'ahaLuminateControllers'
     ($rootScope, $scope, $filter, $uibModal, APP_INFO, TeamraiserCompanyService, TeamraiserRegistrationService, SchoolLookupService, BoundlessService) ->
       $rootScope.companyName = ''
       $scope.teachers = ''
+      $scope.companyId = angular.element('[name=s_frCompanyId]').val()
       
       regCompanyId = luminateExtend.global.regCompanyId
       setCompanyName = (companyName) ->
