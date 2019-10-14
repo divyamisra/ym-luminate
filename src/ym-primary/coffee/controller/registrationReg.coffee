@@ -264,10 +264,11 @@ angular.module 'ahaLuminateControllers'
       .then (response) ->
         $scope.teachers = response.data.teachers
 
-      $scope.getTeacherList = (sel) ->
+      $scope.getTeacherList = (obj,$event) ->
+        currentElement = $event.target
         $scope.teachersByGrade = ''
         angular.forEach $scope.teachers, (teacher) ->
-          if teacher.grade_name == sel
+          if teacher.grade_name == currentElement.value
             $scope.teacherByGrade.push teacher_name: teacher.teacher_name
         
       setCompanyCity = (companyCity) ->
