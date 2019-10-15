@@ -2,16 +2,17 @@ angular.module 'ahaLuminateControllers'
   .controller 'DonationCtrl', [
     '$scope'
     '$rootScope'
+    '$compile'
     'DonationService'
     '$timeout'
     '$q'
-    ($scope, $rootScope, DonationService, $timeout, $q) ->
+    ($scope, $rootScope, $compile, DonationService, $timeout, $q) ->
       $scope.paymentInfoErrors =
         errors: []
       $scope.donationGiftType = "installment";
       if jQuery('#level_installmentduration').length is 0
         $scope.donationGiftType = "flexible"
-        
+
       angular.element('.page-error:contains("There was a problem processing your request")').remove()
       $fieldErrors = angular.element '.ErrorMessage'
       angular.forEach $fieldErrors, (fieldError) ->
@@ -42,6 +43,8 @@ angular.module 'ahaLuminateControllers'
         sustainingFrequency: ''
         levelType: 'level'
         otherAmt: ''
+        otherLevelId: null
+        coverFee: false
         levelChecked: ''
 
       $scope.donationLevels = []
@@ -59,7 +62,7 @@ angular.module 'ahaLuminateControllers'
         localStorage['sustainingDuration'] = duration
         $scope.donationInfo.sustainingFrequency = freq
         localStorage['sustainingFrequency'] = freq
-        
+
       sustainingDropdown = ->
         duration = angular.element('#level_flexibleduration option:selected').text()
         freq = ''
@@ -92,7 +95,7 @@ angular.module 'ahaLuminateControllers'
           $timeout ->
             installmentDropdown()
           , 500
-          
+
       if $scope.donationGiftType is "flexible"
         document.getElementById('level_flexibleduration').onchange = ->
           sustainingDropdown()
@@ -101,7 +104,7 @@ angular.module 'ahaLuminateControllers'
           $timeout ->
             sustainingDropdown()
           , 500
-          
+
         angular.element('#level_flexiblegift_type1').trigger 'click'
 
       $scope.giftType = (type) ->
@@ -159,7 +162,7 @@ angular.module 'ahaLuminateControllers'
             $timeout ->
               sustainingDropdown()
             , 500
-         
+
           $scope.donationInfo.monthly = false
           populateBtnAmt $scope.donationInfo.levelType
 
@@ -237,7 +240,7 @@ angular.module 'ahaLuminateControllers'
 
             $scope.donationInfo.sustainingAmount = amount
             localStorage['sustainingAmount'] = amount
-              
+
         if type is 'other'
           console.log('type is other')
           console.log('donationInfo.levelType ' + $scope.donationInfo.levelType)
@@ -397,91 +400,13 @@ angular.module 'ahaLuminateControllers'
         else
           angular.element('#billing_info_same_as_donorname').prop 'checked', false
 
-      addFeeCheckbox = ->
-        if angular.element('#cover_fee_radio_Yes').length > 0
-          angular.element('label[for="cover_fee_radio_Yes"]').parent().before('<input type="checkbox" name="cover-fee-checkbox" id="cover-fee-checkbox"><label for="cover-fee-checkbox">&nbsp;I\'d like to cover all of the transaction fees so 100% of my donation goes to support the AHA</label>');
-      addFeeCheckbox()
-
-#      calculateFee = (giftAmt) ->
-#        giftAmt = giftAmt
-#        fee = giftAmt * 2.6 / 100 + 0.26
-#        console.log('fee ' + fee)
-#        return
-
-      document.getElementById('cover-fee-checkbox').onclick = ->
-        console.log('onclick function')
-
-        otherInput = angular.element('.other-amount')
-#        otherLevel = 0
-
-#        classList = angular.element('.other-amount').attr('class').split(/\s+/);
-#        console.log('classList ' + classList)
-        
-#        angular.forEach classList, (item) ->
-#          item = item
-#          console.log('item ' + item)
-#          if item.startsWith('level') is true
-#            console.log('this is the one ' + item)
-#            otherLevel = item.split('level')[1]
-#            console.log('otherLevel ' + otherLevel)
-#          return
-        
-
-        coverFeeStatus = angular.element('#cover-fee-checkbox').prop 'checked'
-        console.log('coverFeeStatus ' + coverFeeStatus)
-
-        amt = angular.element('#other_amount').val()
-        console.log('other amt ' + amt + typeof amt)
-
-        if amt is '0' || amt is ''
-          amt = angular.element('.ym-donation-levels__amount.active').find('.btn').text()
-          console.log('button amt ' + amt + amt.length)
-          amt = amt.split('$')[1]
-
-        amt = Number(amt)
-        console.log('amt ' + amt + typeof amt)
-
-        if amt
-          fee = amt * 2.6 / 100 + 0.26
-          console.log('fee ' + fee + typeof fee)
-          total = amt + fee
-          total = total.toFixed(2)
-          console.log('total ' + total + typeof total)
-
-        if coverFeeStatus is true
-          console.log('coverFeeStatus  is true')
-          console.log('total now ' + total + typeof total)
-
-          otherLevel = 0
-          classList = angular.element('.other-amount').attr('class').split(/\s+/);
-          console.log('classList ' + classList)
-        
-          angular.forEach classList, (item) ->
-            item = item
-            console.log('item ' + item)
-            if item.startsWith('level') is true
-              console.log('this is the one ' + item)
-              otherLevel = item.split('level')[1]
-              console.log('otherLevel ' + otherLevel)
-            return
-
-          angular.element('#cover_fee_radio_Yes').prop 'checked', true
-          document.getElementById('other_amount').value = total
-#          $scope.selectLevel(event, 'other', otherLevel, total)
-          $scope.donationInfo.otherAmt = total
-          $scope.selectLevel(event, 'addFee', otherLevel, total)
-
-        else
-          angular.element('#cover_fee_radio_Yes').prop 'checked', false
-
-
       $scope.submitDonationForm = (e) ->
         # remove any credit card numbers from input fields other than the cc field
         r = /((?:\d{4}[ -]?){3}\d{3,4})/gm
         jQuery('[type=text]:not(#responsive_payment_typecc_numbername)').each ->
           jQuery(this).val jQuery(this).val().replace(r, '')
           return
-        
+
         loading = '<div class="ym-loading text-center h3">Processing Gift <i class="fa fa-spinner fa-spin"></i></div>'
         angular.element('.button-sub-container').append loading
         angular.element('#pstep_finish').addClass 'hidden'
@@ -491,8 +416,7 @@ angular.module 'ahaLuminateControllers'
         console.log('parseint other amt ' + parseInt($scope.donationInfo.otherAmt))
         console.log('amount in the damned field ' + angular.element('#other_amount').val())
 
-
-        if $scope.donationInfo.levelType is 'other' || $scope.donationInfo.levelType is 'addFee' 
+        if $scope.donationInfo.levelType is 'other' || $scope.donationInfo.levelType is 'addFee'
           console.log('level type is other or addFee')
           if $scope.donationInfo.otherAmt is undefined or !(parseInt($scope.donationInfo.otherAmt) >= 10)
             console.log('otheramt ' + $scope.donationInfo.otherAmt)
@@ -573,8 +497,10 @@ angular.module 'ahaLuminateControllers'
                 levelLabel = angular.element('.' + classLevel).find('.donation-level-expanded-label p').text()
                 levelChecked = angular.element('.' + classLevel + ' .donation-level-label-input-container input').prop 'checked'
 
+                if userSpecified is 'true'
+                  $scope.donationInfo.otherLevelId = levelId
                 if levelChecked is true
-                  if userSpecified  is 'true'
+                  if userSpecified is 'true'
                     $scope.donationInfo.amount = $scope.donationInfo.otherAmt
                     $scope.donationInfo.sustainingAmount = $scope.donationInfo.otherAmt
                     installmentAmount = Number($scope.donationInfo.otherAmt)/Number($scope.donationInfo.numberPayments)
@@ -600,6 +526,28 @@ angular.module 'ahaLuminateControllers'
                   levelChecked: levelChecked
           resolve()
 
+      calculateGiftAmt = ->
+        # amount = if $scope.donationInfo.numberPayments == 1 then $scope.donationInfo.installmentAmount else $scope.donationInfo.sustainingAmount
+        amount = $scope.donationInfo.amount.replace '$', ''
+        amount = Number amount
+        (amount * 2.6 / 100 + 0.26 + amount).toFixed 2
+
+      $scope.toggleCoverFeeCheckbox = (state) ->
+        angular.element('#cover_fee_radio_Yes').prop 'checked', state
+        if state is true
+          giftAmt = calculateGiftAmt()
+          $scope.enterAmount giftAmt
+          $scope.selectLevel null, 'addFee', $scope.donationInfo.otherLevelId, giftAmt
+          return
+
+      addFeeCheckbox = ->
+        elmCoverFeeRadio = angular.element '#cover_fee_radio_Yes'
+        if elmCoverFeeRadio.length > 0
+          $scope.donationInfo.coverFee = elmCoverFeeRadio.prop 'checked'
+          elmAddFeeCheckbox = angular.element '<input type="checkbox" name="cover-fee-checkbox" id="cover-fee-checkbox" ng-model="donationInfo.coverFee" ng-change="toggleCoverFeeCheckbox(donationInfo.coverFee)"><label for="cover-fee-checkbox">&nbsp;I\'d like to cover all of the transaction fees so 100% of my donation goes to support the AHA</label>'
+          elmCoverFeeRadio.after elmAddFeeCheckbox
+          $compile(elmAddFeeCheckbox) $scope
+
       loadLevels().then ->
         $scope.otherAmtError = false
         if $scope.paymentInfoErrors.errors.length > 0
@@ -621,6 +569,7 @@ angular.module 'ahaLuminateControllers'
         angular.element('#tr_recognition_namerec_namename').attr 'placeholder', 'Example: Jane Hero, Heart Hero Family, From Jane - In memory of Grandma'
         angular.element('#tr_message_to_participantname').attr 'placeholder', 'Write a message of encouragement. 255 characters max.'
         addOptional()
+        addFeeCheckbox()
 #        employerMatchFields()
         billingAddressFields()
         donorRecognitionFields()
@@ -644,3 +593,81 @@ angular.module 'ahaLuminateControllers'
       #  angular.element("input[name=otherAmt]").click().focus()
       #, 1000
   ]
+
+###
+      addFeeCheckbox = ->
+        if angular.element('#cover_fee_radio_Yes').length > 0
+          angular.element('label[for="cover_fee_radio_Yes"]').parent().before('<input type="checkbox" name="cover-fee-checkbox" id="cover-fee-checkbox"><label for="cover-fee-checkbox">&nbsp;I\'d like to cover all of the transaction fees so 100% of my donation goes to support the AHA</label>');
+      addFeeCheckbox()
+
+#      calculateFee = (giftAmt) ->
+#        giftAmt = giftAmt
+#        fee = giftAmt * 2.6 / 100 + 0.26
+#        console.log('fee ' + fee)
+#        return
+
+      document.getElementById('cover-fee-checkbox').onclick = ->
+        console.log('onclick function')
+
+        otherInput = angular.element('.other-amount')
+#        otherLevel = 0
+
+#        classList = angular.element('.other-amount').attr('class').split(/\s+/);
+#        console.log('classList ' + classList)
+
+#        angular.forEach classList, (item) ->
+#          item = item
+#          console.log('item ' + item)
+#          if item.startsWith('level') is true
+#            console.log('this is the one ' + item)
+#            otherLevel = item.split('level')[1]
+#            console.log('otherLevel ' + otherLevel)
+#          return
+
+        coverFeeStatus = angular.element('#cover-fee-checkbox').prop 'checked'
+        console.log('coverFeeStatus ' + coverFeeStatus)
+
+        amt = angular.element('#other_amount').val()
+        console.log('other amt ' + amt + typeof amt)
+
+        if amt is '0' || amt is ''
+          amt = angular.element('.ym-donation-levels__amount.active').find('.btn').text()
+          console.log('button amt ' + amt + amt.length)
+          amt = amt.split('$')[1]
+
+        amt = Number(amt)
+        console.log('amt ' + amt + typeof amt)
+
+        if amt
+          fee = amt * 2.6 / 100 + 0.26
+          console.log('fee ' + fee + typeof fee)
+          total = amt + fee
+          total = total.toFixed(2)
+          console.log('total ' + total + typeof total)
+
+        if coverFeeStatus is true
+          console.log('coverFeeStatus  is true')
+          console.log('total now ' + total + typeof total)
+
+          otherLevel = 0
+          classList = angular.element('.other-amount').attr('class').split(/\s+/);
+          console.log('classList ' + classList)
+
+          angular.forEach classList, (item) ->
+            item = item
+            console.log('item ' + item)
+            if item.startsWith('level') is true
+              console.log('this is the one ' + item)
+              otherLevel = item.split('level')[1]
+              console.log('otherLevel ' + otherLevel)
+            return
+
+          angular.element('#cover_fee_radio_Yes').prop 'checked', true
+          document.getElementById('other_amount').value = total
+#          $scope.selectLevel(event, 'other', otherLevel, total)
+          $scope.donationInfo.otherAmt = total
+          $scope.selectLevel(event, 'addFee', otherLevel, total)
+
+        else
+          angular.element('#cover_fee_radio_Yes').prop 'checked', false
+###
