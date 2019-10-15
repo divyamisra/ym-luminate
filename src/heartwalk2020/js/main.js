@@ -1438,6 +1438,7 @@ var setIconDirection = function (element) {
     }
 };
 
+
 var toggleMultiEventInfo = function(elem) {
   $(elem).toggleClass('open');
   $('.js--multi-event-locations').slideToggle();
