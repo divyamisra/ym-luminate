@@ -616,14 +616,12 @@
         callback: {
           success: function (response) {
             if (!$.isEmptyObject(response.getCompanyListResponse)) {
-              var companyItems = luminateExtend.utils.ensureArray(response.getCompanyListResponse
-                .companyItem);
+              var companyItems = luminateExtend.utils.ensureArray(response.getCompanyListResponse.companyItem);
               var rootAncestorCompanies = [];
               var childCompanyIdMap = {};
 
               $(companyItems).each(function () {
                 var isParentCompany = (this.parentOrgEventId === '0' ? true : false);
-
                 if(isParentCompany){
                   var rootAncestorCompany = {
                     eventId: eventId,
@@ -632,6 +630,44 @@
                     amountRaised: (this.amountRaised ? Number(this.amountRaised) : 0)
                   }
                   rootAncestorCompanies.push(rootAncestorCompany);
+                }
+              });
+
+              $(companyItems).each(function () {
+                var parentOrgEventId = this.parentOrgEventId;
+                if(parentOrgEventId !== '0'){
+                  childCompanyIdMap['company-' + this.companyId] = parentOrgEventId; 
+                }
+              });
+
+            for (var key in childCompanyIdMap) {
+              if (childCompanyIdMap.hasOwnProperty(key)) {           
+                  if(childCompanyIdMap[key]){
+                    key = childCompanyIdMap[key]
+                  }
+                }
+              }
+
+              for (var key in childCompanyIdMap) {
+                if (childCompanyIdMap.hasOwnProperty(key)) {           
+                    if(childCompanyIdMap[key]){
+                      key = childCompanyIdMap[key]
+                    }
+                  }
+                }
+
+              $(companyItems).each(function () {
+                var parentOrgEventId = this.parentOrgEventId;
+                if(parentOrgEventId !== '0'){
+                  var rootParentCompanyId = (childCompanyIdMap['company-' + this.companyId]);
+
+                  var childCompanyAmountRaised = (this.amountRaised ? Number(this.amountRaised) : 0);
+
+                  $(rootAncestorCompanies).each(function (i) {
+                    if(this.companyId === rootParentCompanyId){
+                      rootAncestorCompanies[i].amountRaised += childCompanyAmountRaised;
+                    }
+                  });
                 }
               });
 
