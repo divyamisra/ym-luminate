@@ -595,10 +595,10 @@ angular.module 'ahaLuminateControllers'
   ]
 
 ###
-      addFeeCheckbox = ->
-        if angular.element('#cover_fee_radio_Yes').length > 0
-          angular.element('label[for="cover_fee_radio_Yes"]').parent().before('<input type="checkbox" name="cover-fee-checkbox" id="cover-fee-checkbox"><label for="cover-fee-checkbox">&nbsp;I\'d like to cover all of the transaction fees so 100% of my donation goes to support the AHA</label>');
-      addFeeCheckbox()
+#      addFeeCheckbox = ->
+#        if angular.element('#cover_fee_radio_Yes').length > 0
+#          angular.element('label[for="cover_fee_radio_Yes"]').parent().before('<input type="checkbox" name="cover-fee-checkbox" id="cover-fee-checkbox"><label for="cover-fee-checkbox">&nbsp;I\'d like to cover all of the transaction fees so 100% of my donation goes to support the AHA</label>');
+#      addFeeCheckbox()
 
 #      calculateFee = (giftAmt) ->
 #        giftAmt = giftAmt
@@ -606,10 +606,10 @@ angular.module 'ahaLuminateControllers'
 #        console.log('fee ' + fee)
 #        return
 
-      document.getElementById('cover-fee-checkbox').onclick = ->
-        console.log('onclick function')
+#      document.getElementById('cover-fee-checkbox').onclick = ->
+#        console.log('onclick function')
 
-        otherInput = angular.element('.other-amount')
+#        otherInput = angular.element('.other-amount')
 #        otherLevel = 0
 
 #        classList = angular.element('.other-amount').attr('class').split(/\s+/);
@@ -624,50 +624,50 @@ angular.module 'ahaLuminateControllers'
 #            console.log('otherLevel ' + otherLevel)
 #          return
 
-        coverFeeStatus = angular.element('#cover-fee-checkbox').prop 'checked'
-        console.log('coverFeeStatus ' + coverFeeStatus)
+#        coverFeeStatus = angular.element('#cover-fee-checkbox').prop 'checked'
+#        console.log('coverFeeStatus ' + coverFeeStatus)
 
-        amt = angular.element('#other_amount').val()
-        console.log('other amt ' + amt + typeof amt)
+#        amt = angular.element('#other_amount').val()
+#        console.log('other amt ' + amt + typeof amt)
 
-        if amt is '0' || amt is ''
-          amt = angular.element('.ym-donation-levels__amount.active').find('.btn').text()
-          console.log('button amt ' + amt + amt.length)
-          amt = amt.split('$')[1]
+#        if amt is '0' || amt is ''
+#          amt = angular.element('.ym-donation-levels__amount.active').find('.btn').text()
+#          console.log('button amt ' + amt + amt.length)
+#          amt = amt.split('$')[1]
 
-        amt = Number(amt)
-        console.log('amt ' + amt + typeof amt)
+#        amt = Number(amt)
+#        console.log('amt ' + amt + typeof amt)
 
-        if amt
-          fee = amt * 2.6 / 100 + 0.26
-          console.log('fee ' + fee + typeof fee)
-          total = amt + fee
-          total = total.toFixed(2)
-          console.log('total ' + total + typeof total)
+#        if amt
+#          fee = amt * 2.6 / 100 + 0.26
+#          console.log('fee ' + fee + typeof fee)
+#          total = amt + fee
+#          total = total.toFixed(2)
+#          console.log('total ' + total + typeof total)
 
-        if coverFeeStatus is true
-          console.log('coverFeeStatus  is true')
-          console.log('total now ' + total + typeof total)
+#        if coverFeeStatus is true
+#          console.log('coverFeeStatus  is true')
+#          console.log('total now ' + total + typeof total)
 
-          otherLevel = 0
-          classList = angular.element('.other-amount').attr('class').split(/\s+/);
-          console.log('classList ' + classList)
+#          otherLevel = 0
+#          classList = angular.element('.other-amount').attr('class').split(/\s+/);
+#          console.log('classList ' + classList)
 
-          angular.forEach classList, (item) ->
-            item = item
-            console.log('item ' + item)
-            if item.startsWith('level') is true
-              console.log('this is the one ' + item)
-              otherLevel = item.split('level')[1]
-              console.log('otherLevel ' + otherLevel)
-            return
+#          angular.forEach classList, (item) ->
+#            item = item
+#            console.log('item ' + item)
+#            if item.startsWith('level') is true
+#              console.log('this is the one ' + item)
+#              otherLevel = item.split('level')[1]
+#              console.log('otherLevel ' + otherLevel)
+#            return
 
-          angular.element('#cover_fee_radio_Yes').prop 'checked', true
-          document.getElementById('other_amount').value = total
+#          angular.element('#cover_fee_radio_Yes').prop 'checked', true
+#          document.getElementById('other_amount').value = total
 #          $scope.selectLevel(event, 'other', otherLevel, total)
-          $scope.donationInfo.otherAmt = total
-          $scope.selectLevel(event, 'addFee', otherLevel, total)
-
-        else
-          angular.element('#cover_fee_radio_Yes').prop 'checked', false
+#          $scope.donationInfo.otherAmt = total
+#          $scope.selectLevel(event, 'addFee', otherLevel, total)
+#
+#        else
+#          angular.element('#cover_fee_radio_Yes').prop 'checked', false
 ###
