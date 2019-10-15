@@ -641,13 +641,15 @@
                 return a1> b1? 1: -1;
               });
 
-              $(sortedAncestorCompanies).each(function () {
-                var companyName = this.companyName;
-                var companyRaised = (parseInt(this.amountRaised) * 0.01).toFixed(2);
-                var companyRaisedFormmatted = companyRaised.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,").replace('.00', '');
-                var topCompanyHtml = '<li><div class="d-flex"><div class="flex-grow-1"><a href="TR?company_id=' + this.companyId + '&fr_id=' + evID + '&pg=company">' + companyName + '</a></div><div class="raised">Raised<br><strong>$' + companyRaisedFormmatted + '</strong></div></div></li>';
-
-                $('.js--company-top-list ul').append(topCompanyHtml);
+              $(sortedAncestorCompanies).each(function (i) {
+                if(i < 5){
+                  var companyName = this.companyName;
+                  var companyRaised = (parseInt(this.amountRaised) * 0.01).toFixed(2);
+                  var companyRaisedFormmatted = companyRaised.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,").replace('.00', '');
+                  var topCompanyHtml = '<li><div class="d-flex"><div class="flex-grow-1"><a href="TR?company_id=' + this.companyId + '&fr_id=' + evID + '&pg=company">' + companyName + '</a></div><div class="raised">Raised<br><strong>$' + companyRaisedFormmatted + '</strong></div></div></li>';
+  
+                  $('.js--company-top-list ul').append(topCompanyHtml);
+                }
               });
 
             }
