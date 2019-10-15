@@ -74,7 +74,7 @@
         })
       });
     }
-    
+
     // Select all links with hashes
     var addScrollLinks = function () {
       $('a.scroll-link')
@@ -501,9 +501,9 @@
               var finalAlbumImage = '<div class="grid-item"><a href="' + imageSrc + '"><img src="' + imageSrc + '" alt="' + imageAltText + '" data-modaal-desc="' + imageAltText + '" data-group="gallery" class="gallery" /></a></div>';
 
               $('.js__lo-album-container').prepend(finalAlbumImage);
-            
+
             });
-           
+
             var $grid = $('.js__lo-album-container').imagesLoaded( function() {
               console.log('launch masonry');
               // init Masonry after all images have loaded
@@ -957,8 +957,8 @@
           } else {
             if (results[0].geometry && results[0].geometry.location) {
               // getZipForLatLng({
-              //   lat: results[0].geometry.location.lat(), 
-              //   lng: results[0].geometry.location.lng(), 
+              //   lat: results[0].geometry.location.lat(),
+              //   lng: results[0].geometry.location.lng(),
               //   callback: settings.callback
               // });
             } else {
@@ -1995,7 +1995,7 @@
       } else {
         var minTeamGoal = $(loTeamGoal).val();
         minTeamGoal = Number(minTeamGoal.replace(/[^0-9\.-]+/g, ""));
-        
+
         $(loTeamGoal)
         .val(minTeamGoal)
         .addClass('pl-0 border-left-0')
@@ -2011,7 +2011,7 @@
           "data-parsley-min-message": minTeamGoalMsg
         });
       }
-      
+
 
       $('#team_find_new_fundraising_goal_input_hint').before('<div class="team-goal-error"></div>');
 
@@ -2686,7 +2686,7 @@
             }
           } else {
             // road logic
-            // override default Bootstrap modal tab behavior 
+            // override default Bootstrap modal tab behavior
 
             $('#dspPledge').on('keyup', function (e) {
               var focusedElement = document.activeElement.id
@@ -2937,7 +2937,7 @@
               break;
           }
 
-          // var sponsorToPush = { }; 
+          // var sponsorToPush = { };
           // sponsorToPush["sponsorName"] = sponsorName;
           // sponsorToPush["sponsorLevel"] = sponsorLevel;
           // sponsorToPush["sponsorImg"] = sponsorImg;
@@ -2977,6 +2977,68 @@
     }
     if ($('body').is('.app_donation')) {
       /* 2019 DF UPDATES */
+
+      // donation levels
+      $('.donation-level-container').addClass('level');
+      $('.donation-level-container:last-child').addClass('otherAmount').removeClass('level');
+      $('.donation-level-container.level .donation-level-amount-container').prop('tabindex', '0');
+
+      $('.donation-level-user-entered input[type="text"]').prop('placeholder', 'Other');
+      $('.otherAmount .donation-level-label-container').remove();
+      $('.donation-level-user-entered > label').prepend('<span class="text-muted"><em>($25 minimum)</em></span>');
+      $('.otherAmount label .aural-only').text('Other amount edit');
+
+      $('.otherAmount .form-input > label').prepend('<span class="text-muted">Enter an amount</span>');
+
+      $('.donation-level-user-entered input[type="text"]').removeAttr('onfocus');
+
+      var askMessageHtml = '<div class="ask-message">Donors who give $5,000 or more each year join our <a target="_blank" href="https://www.heart.org/en/get-involved/ways-to-give/cor-vitae-society">Cor Vitae Giving Society</a>.</div>';
+      $(askMessageHtml).insertAfter('.don-standard-levels');
+
+      $('.donation-level-amount-container').click(function() {
+        $('.donation-level-amount-container.active, .donation-level-user-entered input').removeClass('active');
+        $(this).addClass('active');
+      });
+
+      $('.donation-level-user-entered').click(function() {
+        $('.donation-level-amount-container.active, .donation-level-user-entered input').removeClass('active');
+        $(this).find('input').addClass('active');
+        $('.otherAmount .donation-level-label-input-container input[type="radio"]').click();
+      });
+
+      $('.donation-level-amount-container').keydown(function(e) {
+        var code = e.which
+        if ((code === 13) || (code === 32)) {
+          e.preventDefault();
+          $(this).click();
+        }
+      });
+      $('.donation-level-user-entered input').keyup(function(e) {
+        var code = e.which
+        var click = code === 9 || code === 39 || code === 40 || code === 37 || code === 38 ? false : true;
+        if (click) {
+          $('.donation-level-user-entered').click();
+        }
+      });
+
+      $('.donation-level-amount-container').focus(function(e) {
+        $(this).keyup(function(e){
+          var code = e.which
+          if ((code === 39) || (code === 40)) {
+            var nextElem = $(this).parent().parent().parent().parent()[0].nextElementSibling;
+            if($(nextElem).hasClass('otherAmount')) {
+              $('.donation-level-user-entered input[type="text"]').focus();
+            } else {
+              $(nextElem).find('.donation-level-amount-container').focus();
+            }
+          }
+          if ((code === 37) || (code === 38)) {
+            var prevElem = $(this).parent().parent().parent().parent()[0].previousElementSibling;
+            $(prevElem).find('.donation-level-amount-container').focus();
+          }
+        });
+      });
+
       // add donor recognition label
       $('<legend>Donor Recognition:</legend>').insertBefore('#tr_recognition_nameanonymous_row #tr_recognition_nameanonymousname');
 
@@ -2985,7 +3047,7 @@
 
       // Add text above matching company label
       // removed code
-      
+
       // wrap billing fields into container
       $('#billing_first_name_row, #billing_last_name_row, #donor_email_address_row, .custom-field-container:contains("Cell or Phone Number"), #billing_addr_street1_row, #billing_addr_street2_row, #billing_addr_city_row, #billing_addr_state_row, #billing_addr_zip_row, #billing_addr_country_row').wrapAll('<div class="billing-fields-container"></div>');
 
@@ -3001,18 +3063,16 @@
       // wrap cc fields into container
       $('#responsive_payment_typecc_number_row, #responsive_payment_typecc_exp_date_row').wrapAll('<div class="cc-fields-container"></div>');
 
-      // wrap cc expiration dates into separate containers 
+      // wrap cc expiration dates into separate containers
       $('label[for=responsive_payment_typecc_exp_date_MONTH], select#responsive_payment_typecc_exp_date_MONTH').wrapAll('<div class="cc-expiration-date-month-container expiration-date-fields"></div>');
       $('label[for=responsive_payment_typecc_exp_date_YEAR], select#responsive_payment_typecc_exp_date_YEAR').wrapAll('<div class="cc-expiration-date-year-container expiration-date-fields"></div>');
 
-      // apply button styles classes 
+      // apply button styles classes
       $('#pstep_finish').addClass('btn-rounded btn-primary')
       /* END 2019 DF UPDATES */
-      
+
       // replace duplicate ID
       $('#level_flexible_row.form-row.form-donation-level').attr('id', 'level_flexible_row2');
-
-      $('.donation-level-user-entered input[type="text"]').after('<small class="form-text text-muted"><em>($25 minimum)</em></small>');
 
       $('#level_flexible_row2').wrapInner('<fieldset></fieldset>');
       $('#level_flexible_row2 fieldset').prepend('<legend class="aural-only">Select Gift Amount</legend>');
