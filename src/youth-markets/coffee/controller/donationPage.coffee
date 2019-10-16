@@ -287,6 +287,34 @@ angular.module 'ahaLuminateControllers'
 
       $scope.focus = "focus"
 
+      $scope.$watch (->
+        angular.element('.ym-donation-levels__amount .btn-toggle').classList
+      ), (newValue, oldValue) ->
+        console.log('watch on classlist')
+        if newValue.indexof('active') != -1
+          console.log('this one is active')
+        else
+        return
+
+
+#      $scope.$watch (->
+#        $('.owl-carousel--featured-steps > .step').length
+#      ), (newValue, oldValue) ->
+#        console.log('watch on number of steps')
+#        if newValue != oldValue
+#          $timeout initFeaturedStepsCarousel, 3000
+#        else
+#        return
+
+#      $scope.$watch 'nextSteps', (newValue, oldValue) ->
+#        if newValue
+#          $timeout initNextStepsCarousel, 1000
+      
+
+
+
+
+
       populateBtnAmt = (type) ->
         angular.element('#pstep_finish span').remove()
         if $scope.donationInfo.giftType is 'onetime'
