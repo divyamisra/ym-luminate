@@ -527,7 +527,6 @@ angular.module 'ahaLuminateControllers'
           resolve()
 
       calculateGiftAmt = ->
-        # amount = if $scope.donationInfo.numberPayments == 1 then $scope.donationInfo.installmentAmount else $scope.donationInfo.sustainingAmount
         amount = $scope.donationInfo.amount.replace '$', ''
         amount = Number amount
         (amount * 2.6 / 100 + 0.26 + amount).toFixed 2
@@ -538,6 +537,11 @@ angular.module 'ahaLuminateControllers'
           giftAmt = calculateGiftAmt()
           $scope.enterAmount giftAmt
           $scope.selectLevel null, 'addFee', $scope.donationInfo.otherLevelId, giftAmt
+          return
+        else
+          giftAmt = $scope.donationInfo.amount
+          $scope.enterAmount giftAmt
+          $scope.selectLevel null, 'other', $scope.donationInfo.otherLevelId, giftAmt
           return
 
       addFeeCheckbox = ->
