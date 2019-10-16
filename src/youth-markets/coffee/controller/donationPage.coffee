@@ -172,6 +172,13 @@ angular.module 'ahaLuminateControllers'
           amount = $scope.donationInfo.otherAmt
           console.log('amount ' + amount)
 
+        coverFee = angular.element('#cover_fee_radio_Yes').prop 'checked'
+        console.log('coverFee ' + coverFee)
+
+        if coverFee == true
+          type = addFee
+          amount = calculateGiftAmt('add')
+
         levelSelect = ->
           console.log('levelSelect')
 
@@ -527,7 +534,6 @@ angular.module 'ahaLuminateControllers'
           resolve()
 
       calculateGiftAmt = (type) ->
-        console.log('calc gift type ' + type)
         if type == 'add'
           amount = $scope.donationInfo.amount.replace '$', ''
           amount = Number amount
