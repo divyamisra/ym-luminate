@@ -527,6 +527,7 @@ angular.module 'ahaLuminateControllers'
           resolve()
 
       calculateGiftAmt = (type) ->
+        console.log('calc gift type ' + type)
         if type == 'add'
           amount = $scope.donationInfo.amount.replace '$', ''
           amount = Number amount
