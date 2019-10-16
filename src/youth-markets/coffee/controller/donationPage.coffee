@@ -535,7 +535,7 @@ angular.module 'ahaLuminateControllers'
 console.log('checkbox attribute ' + angular.element('#cover_fee_checkbox_radio').attr 'checked', state)
 
       $scope.toggleCoverFeeCheckbox = (state) ->
-//        angular.element('#cover_fee_checkbox_radio').prop 'checked', state
+#        angular.element('#cover_fee_checkbox_radio').prop 'checked', state
         angular.element('#cover_fee_checkbox_radio').attr 'checked', state
         if state is true
           giftAmt = calculateGiftAmt()
