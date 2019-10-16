@@ -526,20 +526,25 @@ angular.module 'ahaLuminateControllers'
                   levelChecked: levelChecked
           resolve()
 
-      calculateGiftAmt = ->
-        amount = $scope.donationInfo.amount.replace '$', ''
-        amount = Number amount
-        (amount * 2.6 / 100 + 0.26 + amount).toFixed 2
+      calculateGiftAmt = (type) ->
+        if type == 'add'
+          amount = $scope.donationInfo.amount.replace '$', ''
+          amount = Number amount
+          (amount * 2.6 / 100 + 0.26 + amount).toFixed 2
+        else
+          amount = $scope.donationInfo.amount.replace '$', ''
+          amount = Number amount
+          (amount / 1.026 - 0.26).toFixed 2
 
       $scope.toggleCoverFeeCheckbox = (state) ->
         angular.element('#cover_fee_radio_Yes').prop 'checked', state
         if state is true
-          giftAmt = calculateGiftAmt()
+          giftAmt = calculateGiftAmt('add')
           $scope.enterAmount giftAmt
           $scope.selectLevel null, 'addFee', $scope.donationInfo.otherLevelId, giftAmt
           return
         else
-          giftAmt = $scope.donationInfo.amount
+          giftAmt = calculateGiftAmt('remove')
           $scope.enterAmount giftAmt
           $scope.selectLevel null, 'other', $scope.donationInfo.otherLevelId, giftAmt
           return
