@@ -176,7 +176,7 @@ angular.module 'ahaLuminateControllers'
         console.log('coverFee ' + coverFee)
 
         if coverFee == true
-          type = addFee
+          type = 'addFee'
           amount = calculateGiftAmt('add')
 
         levelSelect = ->
