@@ -172,6 +172,9 @@ angular.module 'ahaLuminateControllers'
           amount = $scope.donationInfo.otherAmt
           console.log('amount ' + amount)
 
+        coverFee = angular.element('#cover_fee_radio_Yes').prop 'checked'
+        console.log('coverFee ' + coverFee)
+
         levelSelect = ->
           console.log('levelSelect')
 
