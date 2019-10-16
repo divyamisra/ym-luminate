@@ -532,7 +532,7 @@ angular.module 'ahaLuminateControllers'
         amount = Number amount
         (amount * 2.6 / 100 + 0.26 + amount).toFixed 2
 
-console.log('checkbox attribute ' + angular.element('#cover_fee_checkbox_radio').attr 'checked', state)
+console.log('checkbox attribute ' + angular.element('#cover_fee_checkbox_radio').attr 'checked')
 
       $scope.toggleCoverFeeCheckbox = (state) ->
 #        angular.element('#cover_fee_checkbox_radio').prop 'checked', state
