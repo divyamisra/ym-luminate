@@ -175,6 +175,9 @@ angular.module 'ahaLuminateControllers'
         coverFee = angular.element('#cover_fee_radio_Yes').prop 'checked'
         console.log('coverFee ' + coverFee)
 
+        if coverFee is true
+          type = 'addFee'
+
         levelSelect = ->
           console.log('levelSelect')
 
