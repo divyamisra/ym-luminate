@@ -1,16 +1,8 @@
 .btn {
   &.btn-secondary {
-    &,
-    &:link,
-    &:visited {
-      background: $event-primary;
-      color: $brand-white;
-    }
-    
     &:hover,
     &:focus,
     &:active {
-      background: $event-primary-dark;
       color: $event-grey;
     }
   }
