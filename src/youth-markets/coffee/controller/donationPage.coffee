@@ -533,21 +533,20 @@ angular.module 'ahaLuminateControllers'
         (amount * 2.6 / 100 + 0.26 + amount).toFixed 2
 
       $scope.toggleCoverFeeCheckbox = (state) ->
-#        angular.element('#cover_fee_radio_Yes').prop 'checked', state
-        angular.element('#cover_fee_checkbox_radio').prop 'checked', state
+        angular.element('#cover_fee_radio_Yes').prop 'checked', state
         if state is true
           giftAmt = calculateGiftAmt()
           $scope.enterAmount giftAmt
           $scope.selectLevel null, 'addFee', $scope.donationInfo.otherLevelId, giftAmt
           return
 
-#      addFeeCheckbox = ->
-#        elmCoverFeeRadio = angular.element '#cover_fee_radio_Yes'
-#        if elmCoverFeeRadio.length > 0
-#          $scope.donationInfo.coverFee = elmCoverFeeRadio.prop 'checked'
-#          elmAddFeeCheckbox = angular.element '<input type="checkbox" name="cover-fee-checkbox" id="cover-fee-checkbox" ng-model="donationInfo.coverFee" ng-change="toggleCoverFeeCheckbox(donationInfo.coverFee)"><label for="cover-fee-checkbox">&nbsp;I\'d like to cover all of the transaction fees so 100% of my donation goes to support the AHA</label>'
-#          elmCoverFeeRadio.after elmAddFeeCheckbox
-#          $compile(elmAddFeeCheckbox) $scope
+      addFeeCheckbox = ->
+        elmCoverFeeRadio = angular.element '#cover_fee_radio_Yes'
+        if elmCoverFeeRadio.length > 0
+          $scope.donationInfo.coverFee = elmCoverFeeRadio.prop 'checked'
+          elmAddFeeCheckbox = angular.element '<input type="checkbox" name="cover-fee-checkbox" id="cover-fee-checkbox" ng-model="donationInfo.coverFee" ng-change="toggleCoverFeeCheckbox(donationInfo.coverFee)"><label for="cover-fee-checkbox">&nbsp;I\'d like to cover all of the transaction fees so 100% of my donation goes to support the AHA</label>'
+          elmCoverFeeRadio.after elmAddFeeCheckbox
+          $compile(elmAddFeeCheckbox) $scope
 
       loadLevels().then ->
         $scope.otherAmtError = false
@@ -570,7 +569,7 @@ angular.module 'ahaLuminateControllers'
         angular.element('#tr_recognition_namerec_namename').attr 'placeholder', 'Example: Jane Hero, Heart Hero Family, From Jane - In memory of Grandma'
         angular.element('#tr_message_to_participantname').attr 'placeholder', 'Write a message of encouragement. 255 characters max.'
         addOptional()
-#        addFeeCheckbox()
+        addFeeCheckbox()
 #        employerMatchFields()
         billingAddressFields()
         donorRecognitionFields()
@@ -668,7 +667,7 @@ angular.module 'ahaLuminateControllers'
 #          $scope.selectLevel(event, 'other', otherLevel, total)
 #          $scope.donationInfo.otherAmt = total
 #          $scope.selectLevel(event, 'addFee', otherLevel, total)
-#
+
 #        else
 #          angular.element('#cover_fee_radio_Yes').prop 'checked', false
 ###
