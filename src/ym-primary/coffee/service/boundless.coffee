@@ -271,11 +271,7 @@ angular.module 'ahaLuminateApp'
           "$0": [
             "WB-20"
           ]
-          "$5-$9": [
-            "WB-20"
-            "CLIPPERRIE-20"
-          ]
-          "$10-$14":[
+          "$5-$14":[
             "WB-20"
             "CLIPPERRIE-20"
             "CHARMKNOX-20"
@@ -391,11 +387,7 @@ angular.module 'ahaLuminateApp'
           "$0": [
             "WB-20"
           ]
-          "$5-$9": [
-            "WB-20"
-            "LVL1WB-20"
-          ]
-          "$10-$14":[
+          "$5-$14":[
             "WB-20"
             "LVL1WB-20"
             "CHARMKNOX-20"
