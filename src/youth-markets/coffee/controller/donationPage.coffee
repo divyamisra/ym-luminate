@@ -175,97 +175,101 @@ angular.module 'ahaLuminateControllers'
         coverFee = angular.element('#cover_fee_radio_Yes').prop 'checked'
         console.log('coverFee ' + coverFee)
 
-#        if coverFee is true
-#          type = 'addFee'
+        if coverFee is true && type != 'addFee'
+          giftAmt = calculateGiftAmt()
+          $scope.enterAmount giftAmt
+          $scope.selectLevel null, 'addFee', $scope.donationInfo.otherLevelId, giftAmt
+          return
 
-        levelSelect = ->
-          console.log('levelSelect')
+        else
+          levelSelect = ->
+            console.log('levelSelect')
 
-          angular.element('.ym-donation-levels__amount .btn-toggle.active').removeClass 'active'
-          angular.element('.ym-donation-levels__amount .btn-toggle.level' + level).addClass 'active'
-          angular.element('.ym-donation-levels__amount').removeClass 'active'
-          angular.element('.ym-donation-levels__amount .btn-toggle.level' + level).parent().addClass 'active'
-          angular.element('.ym-donation-levels__message').removeClass 'active'
-          angular.element('.ym-donation-levels__message.level' + level).addClass 'active'
-          angular.element('.donation-level-container.level' + level + ' input').click()
+            angular.element('.ym-donation-levels__amount .btn-toggle.active').removeClass 'active'
+            angular.element('.ym-donation-levels__amount .btn-toggle.level' + level).addClass 'active'
+            angular.element('.ym-donation-levels__amount').removeClass 'active'
+            angular.element('.ym-donation-levels__amount .btn-toggle.level' + level).parent().addClass 'active'
+            angular.element('.ym-donation-levels__message').removeClass 'active'
+            angular.element('.ym-donation-levels__message.level' + level).addClass 'active'
+            angular.element('.donation-level-container.level' + level + ' input').click()
+
+            if type is 'addFee'
+              angular.element("input[name=otherAmt]").blur()
+
+            $scope.donationInfo.amount = amount
+            console.log('$scope.donationInfo.amount ' +$scope.donationInfo.amount)
+            $scope.donationInfo.levelType = type
+            console.log('$scope.donationInfo.levelType ' +$scope.donationInfo.levelType)
+            localStorage['levelType'] = type
+
+            populateBtnAmt type
+
+            if type is 'level'
+              console.log('if type is level')
+              angular.element('.btn-enter').val ''
+              $scope.donationInfo.otherAmt = ''
+              if amount isnt undefined
+                console.log('amount is not undefined')
+                localStorage['amount'] = amount
+              localStorage['otherAmt'] = ''
+            if $scope.donationGiftType is "installment"
+
+              console.log('$scope.donationGiftType is installment')
+
+              if $scope.donationInfo.monthly is true
+                console.log('$scope.donationInfo.monthly is true')
+
+                number = angular.element('#level_installmentduration').val()
+                number = Number number.split(':')[1]
+                if number is 0
+                  number = 1
+                if $scope.donationInfo.levelType is 'level'
+                  amount = Number($scope.donationInfo.amount.split('$')[1]) / number
+                else
+                  amount = Number $scope.donationInfo.amount
+                $timeout ->
+                  calculateInstallment(number)
+                , 500
+              else
+                console.log('installment is not monthly')
+                $scope.donationInfo.installmentAmount = amount
+                $scope.donationInfo.numberPayments = 1
+
+            if $scope.donationGiftType is "flexible"
+  
+              console.log('$scope.donationGiftType is flexible')
+
+              if $scope.donationInfo.monthly is true
+                #angular.element('#level_flexiblegift_type2').trigger 'click'
+                if $scope.donationInfo.levelType is 'level'
+                  amount = Number amount.split('$')[1]
+                else
+                  amount = Number amount
+                $timeout ->
+                  sustainingDropdown()
+                , 500
+
+              $scope.donationInfo.sustainingAmount = amount
+              localStorage['sustainingAmount'] = amount
+
+          if type is 'other'
+            console.log('type is other')
+            console.log('donationInfo.levelType ' + $scope.donationInfo.levelType)
+            console.log('$scope.donationInfo.otherAmt ' + $scope.donationInfo.otherAmt)
+
+            if type isnt $scope.donationInfo.levelType and $scope.donationInfo.otherAmt isnt ''
+              console.log('running levelSelect')
+              levelSelect()
 
           if type is 'addFee'
-            angular.element("input[name=otherAmt]").blur()
-
-          $scope.donationInfo.amount = amount
-          console.log('$scope.donationInfo.amount ' +$scope.donationInfo.amount)
-          $scope.donationInfo.levelType = type
-          console.log('$scope.donationInfo.levelType ' +$scope.donationInfo.levelType)
-          localStorage['levelType'] = type
-
-          populateBtnAmt type
-          if type is 'level'
-            console.log('if type is level')
-            angular.element('.btn-enter').val ''
-            $scope.donationInfo.otherAmt = ''
-            if amount isnt undefined
-              console.log('amount is not undefined')
-              localStorage['amount'] = amount
-            localStorage['otherAmt'] = ''
-          if $scope.donationGiftType is "installment"
-
-            console.log('$scope.donationGiftType is installment')
-
-            if $scope.donationInfo.monthly is true
-              console.log('$scope.donationInfo.monthly is true')
-
-              number = angular.element('#level_installmentduration').val()
-              number = Number number.split(':')[1]
-              if number is 0
-                number = 1
-              if $scope.donationInfo.levelType is 'level'
-                amount = Number($scope.donationInfo.amount.split('$')[1]) / number
-              else
-                amount = Number $scope.donationInfo.amount
-              $timeout ->
-                calculateInstallment(number)
-              , 500
-            else
-              console.log('installment is not monthly')
-              $scope.donationInfo.installmentAmount = amount
-              $scope.donationInfo.numberPayments = 1
-
-          if $scope.donationGiftType is "flexible"
-
-            console.log('$scope.donationGiftType is flexible')
-
-            if $scope.donationInfo.monthly is true
-              #angular.element('#level_flexiblegift_type2').trigger 'click'
-              if $scope.donationInfo.levelType is 'level'
-                amount = Number amount.split('$')[1]
-              else
-                amount = Number amount
-              $timeout ->
-                sustainingDropdown()
-              , 500
-
-            $scope.donationInfo.sustainingAmount = amount
-            localStorage['sustainingAmount'] = amount
-
-        if type is 'other'
-          console.log('type is other')
-          console.log('donationInfo.levelType ' + $scope.donationInfo.levelType)
-          console.log('$scope.donationInfo.otherAmt ' + $scope.donationInfo.otherAmt)
-
-          if type isnt $scope.donationInfo.levelType and $scope.donationInfo.otherAmt isnt ''
+  
+            console.log('type is addFee')
             console.log('running levelSelect')
             levelSelect()
 
-        if type is 'addFee'
-
-          console.log('type is addFee')
-          console.log('running levelSelect')
-          levelSelect()
-
-
-        else
-          console.log('type is not other or level')
-          levelSelect()
+          else
+            console.log('type is not other or level')
+            levelSelect()
 
       $scope.enterAmount = (amount) ->
         console.log('enter amount function')
