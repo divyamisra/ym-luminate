@@ -95,6 +95,7 @@
           <div text-angular name="ng_rich_text" ng-model="personalPageContent.ng_rich_text" ta-toolbar="{{personalPageContent.textEditorToolbar}}" serial="{{personalPageContent.serial}}"></div>
         </div>
       ::]]
+      <div class="" ng-if="personalInfo.avatar != ''" ng-cloak>&nbsp;<img ng-src='{{personalInfo.avatar}}'></div>
     </div>
     <div class="col-md-6 ym-user-interactions" ng-if="prizes.length > 0 || challengeId != null">
       <div class="ym-badges" ng-if="prizes.length > 0">
