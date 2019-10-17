@@ -58,7 +58,7 @@ angular.module 'ahaLuminateControllers'
       $scope.personalInfo = {}
       $scope.personalInfo.avatar = ''
       $scope.getPersonalAvatar = ->
-        ZuriService.getAvatar $scope.consId,
+        ZuriService.getAvatar $scope.frId + '/' + $scope.participantId,
           failure: (response) ->
             # TODO
           error: (response) ->
