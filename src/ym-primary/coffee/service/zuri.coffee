@@ -122,7 +122,7 @@ angular.module 'ahaLuminateApp'
           method: 'POST'
           url: $sce.trustAsResourceUrl(url)
       
-      getAvatar: (requestData, callback) -> https://khc.staging.ootqa.org/api/points/student/%5bfr_id%5d/%5bcons_id%5d
+      getAvatar: (requestData, callback) ->
         if $rootScope.tablePrefix is 'heartdev'
           url = '//khc.staging.ootqa.org/api/points/student/' + requestData
         else if $rootScope.tablePrefix is 'heartnew'
