@@ -786,7 +786,7 @@ angular.module 'trPcControllers'
             if student.has_bonus and (gift.instant == 1 or gift.instant == 2) or !student.has_bonus and (gift.instant == 0 or gift.instant == 2)
               if gift.online_only
                 jQuery.each student.prizes, (item, key) ->
-                  if key.prize_sku.indexOf(gift.id)
+                  if key.prize_sku.indexOf(gift.id) isnt -1
                     giftsInList++
                     return false
                   return
