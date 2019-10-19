@@ -811,9 +811,6 @@ angular.module 'trPcControllers'
                       status = 1
                       return false
                     return
-                  if status == 0
-                    prevstatus = -1
-                    $scope.upcomingGifts = []
 
               # if nothing has been earned yet
               if prevstatus == -1 and status == 0 and $scope.giftsEarned == 0
