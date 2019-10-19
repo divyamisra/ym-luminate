@@ -51,7 +51,7 @@ angular.module 'trPcControllers'
                 if gift.online_only
                   status = 0
                   jQuery.each student.prizes, (item, key) ->
-                    if key.prize_sku.indexOf(gift.id) > -1
+                    if key.prize_sku.indexOf(gift.id) isnt -1
                       status = 1
                       return false
                     return
