@@ -807,7 +807,7 @@ angular.module 'trPcControllers'
                 if gift.online_only
                   status = 0
                   jQuery.each student.prizes, (item, key) ->
-                    if key.prize_sku.indexOf(gift.id)
+                    if key.prize_sku.indexOf(gift.id) > -1
                       status = 1
                       return false
                     return
@@ -849,7 +849,7 @@ angular.module 'trPcControllers'
               giftPrev = gift
               prevstatus = status
               # add last 4 no matter what
-              if $scope.totalGifts >= giftsInList - 5 and status == 1
+              if $scope.totalGifts >= giftsInList - 5 and status == 1 and startList == 0
                 startList = 1
                 giftToAdd = 4
               $scope.totalGifts++
