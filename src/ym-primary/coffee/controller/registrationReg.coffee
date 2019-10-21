@@ -8,8 +8,13 @@ angular.module 'ahaLuminateControllers'
     'TeamraiserCompanyService'
     'TeamraiserRegistrationService'
     'SchoolLookupService'
-    ($rootScope, $scope, $filter, $uibModal, APP_INFO, TeamraiserCompanyService, TeamraiserRegistrationService, SchoolLookupService) ->
+    'BoundlessService'
+    ($rootScope, $scope, $filter, $uibModal, APP_INFO, TeamraiserCompanyService, TeamraiserRegistrationService, SchoolLookupService, BoundlessService) ->
       $rootScope.companyName = ''
+      $scope.teachers = ''
+      $scope.teachersByGrade = []
+      $scope.companyId = angular.element('[name=s_frCompanyId]').val()
+      
       regCompanyId = luminateExtend.global.regCompanyId
       setCompanyName = (companyName) ->
         $rootScope.companyName = companyName
@@ -254,6 +259,19 @@ angular.module 'ahaLuminateControllers'
           else 
             angular.element('.js--default-reg-form').submit()
         false
+
+      BoundlessService.getTeachersBySchool $scope.companyId
+      .then (response) ->
+        $scope.teachers = response.data.teachers
+
+      $scope.getTeacherList = () ->
+        selectedGrade = $scope.registrationInfo[$scope.registrationCustomQuestions.ym_khc_grade]
+        $scope.teachersByGrade = []
+        teachersByGrade = []
+        angular.forEach $scope.teachers, (teacher) ->
+          if teacher.grade_name == selectedGrade
+            teachersByGrade.push teacher_name: teacher.teacher_name
+        $scope.teachersByGrade = teachersByGrade
         
       setCompanyCity = (companyCity) ->
         $rootScope.companyCity = companyCity
