@@ -550,7 +550,6 @@
                 .participant);
 
               $(participantData).each(function () {
-                console.log('getting top participants');
                 var participantName = this.name.first + ' ' + this.name.last;
                 var participantRaised = (parseInt(this.amountRaised) * 0.01).toFixed(2);
               
@@ -606,6 +605,97 @@
     // END TOP TEAMS
 
     // BEGIN TOP COMPANIES
+// TODO - replace with companyList
+
+    cd.getCompanyList = function (eventId) {
+      luminateExtend.api({
+        api: 'teamraiser',
+        data: 'method=getCompanyList&fr_id=' + eventId +
+          '&include_cross_event=true&response_format=json',
+        callback: {
+          success: function (response) {
+            if (!$.isEmptyObject(response.getCompanyListResponse)) {
+              var companyItems = luminateExtend.utils.ensureArray(response.getCompanyListResponse.companyItem);
+              var rootAncestorCompanies = [];
+              var childCompanyIdMap = {};
+
+              $(companyItems).each(function () {
+                var isParentCompany = (this.parentOrgEventId === '0' ? true : false);
+                if(isParentCompany){
+                  var rootAncestorCompany = {
+                    eventId: eventId,
+                    companyId: this.companyId,
+                    companyName: this.companyName,
+                    amountRaised: (this.amountRaised ? Number(this.amountRaised) : 0)
+                  }
+                  rootAncestorCompanies.push(rootAncestorCompany);
+                }
+              });
+
+              $(companyItems).each(function () {
+                var parentOrgEventId = this.parentOrgEventId;
+                if(parentOrgEventId !== '0'){
+                  childCompanyIdMap['company-' + this.companyId] = parentOrgEventId; 
+                }
+              });
+
+            for (var key in childCompanyIdMap) {
+              if (childCompanyIdMap.hasOwnProperty(key)) {           
+                  if(childCompanyIdMap[key]){
+                    key = childCompanyIdMap[key]
+                  }
+                }
+              }
+
+              for (var key in childCompanyIdMap) {
+                if (childCompanyIdMap.hasOwnProperty(key)) {           
+                    if(childCompanyIdMap[key]){
+                      key = childCompanyIdMap[key]
+                    }
+                  }
+                }
+
+              $(companyItems).each(function () {
+                var parentOrgEventId = this.parentOrgEventId;
+                if(parentOrgEventId !== '0'){
+                  var rootParentCompanyId = (childCompanyIdMap['company-' + this.companyId]);
+
+                  var childCompanyAmountRaised = (this.amountRaised ? Number(this.amountRaised) : 0);
+
+                  $(rootAncestorCompanies).each(function (i) {
+                    if(this.companyId === rootParentCompanyId){
+                      rootAncestorCompanies[i].amountRaised += childCompanyAmountRaised;
+                    }
+                  });
+                }
+              });
+
+              var sortedAncestorCompanies = rootAncestorCompanies.sort(function(b, a){
+                var a1= a.amountRaised, b1= b.amountRaised;
+                if(a1== b1) return 0;
+                return a1> b1? 1: -1;
+              });
+
+              $(sortedAncestorCompanies).each(function (i) {
+                if(i < 5){
+                  var companyName = this.companyName;
+                  var companyRaised = (parseInt(this.amountRaised) * 0.01).toFixed(2);
+                  var companyRaisedFormmatted = companyRaised.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,").replace('.00', '');
+                  var topCompanyHtml = '<li><div class="d-flex"><div class="flex-grow-1"><a href="TR?company_id=' + this.companyId + '&fr_id=' + evID + '&pg=company">' + companyName + '</a></div><div class="raised">Raised<br><strong>$' + companyRaisedFormmatted + '</strong></div></div></li>';
+  
+                  $('.js--company-top-list ul').append(topCompanyHtml);
+                }
+              });
+
+            }
+          },
+          error: function (response) {
+            console.log('getCompanyList error: ' + response.errorResponse.message);
+          }
+        }
+      }); 
+    };
+
     cd.getTopCompanies = function (eventId) {
       luminateExtend.api({
         api: 'teamraiser',
@@ -616,19 +706,8 @@
             if (!$.isEmptyObject(response.getCompaniesResponse)) {
               var topCompanies = luminateExtend.utils.ensureArray(response.getCompaniesResponse
                 .company);
-
                 var totalCompanies = parseInt(response.getCompaniesResponse.totalNumberResults);
                 $('.js--num-companies').text(totalCompanies);
-
-              $(topCompanies).each(function () {
-                var companyName = this.companyName;
-                var companyRaised = (parseInt(this.amountRaised) * 0.01).toFixed(2);
-
-                var companyRaisedFormmatted = companyRaised.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,").replace('.00', '');
-                var topCompanyHtml = '<li><div class="d-flex"><div class="flex-grow-1"><a href="TR?company_id=' + this.companyId + '&fr_id=' + evID + '&pg=company">' + companyName + '</a></div><div class="raised">Raised<br><strong>$' + companyRaisedFormmatted + '</strong></div></div></li>';
-
-                $('.js--company-top-list ul').append(topCompanyHtml);
-              });
             }
           },
           error: function (response) {
@@ -749,7 +828,6 @@
             $('.team-honor-list-row').each(function(i, donor){
                 var donorName = $(this).find('.team-honor-list-name').text();
                 var donorAmt = $(this).find('.team-honor-list-value').text();
-                // console.log('donorName donorAmt', donorName + ' ' + donorAmt);
                 $('.js--donor-roll').append('<div class="donor-row ' + (i > 4 ? 'hidden-donor-row d-none' : '') + '"><span class="name">' + donorName + '</span><span class="amount">' + donorAmt + '</span></div>');
                 if(i === 5){
                     $('.js--honor-roll-expander').addClass('d-block').removeClass('hidden');
@@ -826,6 +904,7 @@
             // Build roster on greeting page
             cd.getTopParticipants(evID);
             cd.getTopTeams(evID);
+            cd.getCompanyList(evID);
             cd.getTopCompanies(evID);
 
         // Walker Search
@@ -918,23 +997,6 @@
                         $('.js--personal-don-submit').attr('data-final-don-url', finalDonUrl);
 
                      });
-                  
-                      // format "other" amount before submitting to native donation form
-                      // $('.js--personal-amt-other').on('blur', function(e){
-                      //   var keyCode = (e.keyCode ? e.keyCode : e.which);
-                      //   if (keyCode !== 9) {
-                      //   var customAmt = parseInt($(this).val()) * 10;
-
-                      //   finalDonUrl = defaultDonUrl + '&set.DonationLevel=' + $('.js--don-amt-other').data('level-id') + (isNaN(customAmt) === true ? '' : '&set.Value=' + customAmt);
-
-                      //   if($(this).val()){
-                      //     $('.js--don-amt').text('$' + $(this).val());
-                      //   } else if($('.custom-amount .form-check-input').is(':checked') === true) {
-                      //     $('.js--don-amt').text('');
-                      //   }
-                      //   console.log('final url BLUR: ', finalDonUrl);
-                      // } 
-                      // });
 
                       $('.js--personal-amt-other').on('keyup', function(e){
                         var keyCode = (e.keyCode ? e.keyCode : e.which);
@@ -943,11 +1005,7 @@
                         if (keyCode != 9) {
                           $('.js--personal-don-form .donation-amount-btn').removeClass('active');
                           $('.custom-amount input[name="personalDonAmt"]').prop('checked', true);
-                          // if($(this).val()){
-                          //   $('.js--don-amt').text('$' + $(this).val());
-                          // } else {
-                          //   $('.js--don-amt').text('');
-                          // }
+                      
                           var customAmt = parseInt($(this).val()) * 100;
   
                           finalDonUrl = defaultDonUrl + '&set.DonationLevel=' + $('.js--don-amt-other').data('level-id') + (isNaN(customAmt) === true ? '' : '&set.Value=' + customAmt);
@@ -1039,15 +1097,8 @@
                   if(totalParticipants > 5) {
                     $('.js--more-participant-results').removeAttr('hidden');
                   }
-                  cd.initializeTeamRosterTable();
+                  // cd.initializeTeamRosterTable();
 
-                  // $('#team-roster').DataTable({
-                  //   "info":     false,
-                  //   "autoWidth": false
-                  // });
-
-                  // $('.dataTables_length').addClass('bs-select');
-                  // $('.js--participant-results-container').removeAttr('hidden');
                   //add call to hook donate button with payment type selections
                   addPaymentTypesOnSearch();
                   $('.js--more-participant-results').on('click', function(e){
@@ -1074,13 +1125,70 @@
         // Populate company name from page title
         var pageTitle = jQuery('head title').text().trim();
         var start_pos = pageTitle.indexOf(':') + 1;
-        var end_pos = pageTitle.indexOf('-',start_pos);
-        var companyName = pageTitle.substring(start_pos,end_pos).trim();
-        $('.js--company-name').text(companyName);
+        var end_pos = pageTitle.indexOf('- Heart Walk',start_pos);
+        var currentCompanyName = pageTitle.substring(start_pos,end_pos).trim();
+        var currentCompanyId = getURLParameter(currentUrl, 'company_id');
+        $('.js--company-name').text(currentCompanyName);
+        // var isParentCompany = ($('#company_hierarchy_list_component .lc_Row1').length ? true : false)
+        var isParentCompany = ($('.js--company-hierarchy-list-container .lc_Row1').length ? true : false)
+        
+        var allCompanyData = [{
+          id: currentCompanyId,
+          name: currentCompanyName
+        }];
+        // allCompanyData.push({currentCompanyId, companyName});
+        // get child company IDs
+        if(isParentCompany){
+          $('.js--company-hierarchy-list-container .trr-td a').each(function(){
+            var childCompanyLink = $(this).attr('href');
+            var childCompanyName = $(this).text();
+            var childCompanyId = getURLParameter(childCompanyLink, 'company_id');
+            allCompanyData.push({id: childCompanyId, name: childCompanyName});
+            // allCompanyData.id
+          });
+        } else {
 
-        // Populate total raised
-        // var raised = $('.company-tally-container--amount .company-tally-ammount').text();
-        // var raised = $('#company_page_frstatus3 .amount-raised-value').text();
+          luminateExtend.api({
+            api: 'teamraiser',
+            data: 'method=getCompanyList&fr_id=' + evID +
+              '&include_cross_event=true&response_format=json',
+            callback: {
+              success: function (response) {
+                if (!$.isEmptyObject(response.getCompanyListResponse)) {
+                  var companyItems = luminateExtend.utils.ensureArray(response.getCompanyListResponse.companyItem);
+
+                  $(companyItems).each(function (i, company) {
+                    if(company.companyId === currentCompanyId){
+                      var parentCompanyId = company.parentOrgEventId;
+
+                      luminateExtend.api({
+                        api: 'teamraiser',
+                        data: 'method=getCompaniesByInfo' +
+                          '&company_id=' + parentCompanyId +
+                          '&response_format=json',
+                        callback: {
+                          success: function (response) {
+                            if (response.getCompaniesResponse.totalNumberResults !== '0') {
+                              $('.tr-page-info h1').before('<small><a href="' + response.getCompaniesResponse.company.companyURL + '">' + response.getCompaniesResponse.company.companyName + '</a></small>');
+                            }
+                          },
+                          error: function (response) {
+                            $('.js--company-results-container').removeAttr('hidden').text(response.errorResponse.message);
+                          }
+                        }
+                      });
+
+                    }
+                  });
+                }
+              },
+              error: function (response) {
+                console.log('getCompanyList error: ' + response.errorResponse.message);
+              }
+            }
+          }); 
+        }
+
         var raised = $('.indicator-title:contains("Company Fundraising Status")').parent().find('.amount-raised-value').text();
 
         if (raised) {
@@ -1092,7 +1200,7 @@
         // var companyoGoalText = $('.default-company-thermometer .total-goal-value').text();
         var companyoGoalText = $('.indicator-title:contains("Company Fundraising Status")').parent().find('.total-goal-value').text();
 
-
+        
         var companyGoal = companyoGoalText.split('.');
         $('#goal-amount').html(companyGoal[0]);
 
@@ -1112,10 +1220,8 @@
 
         // Build company team roster
          // build team roster
-  var companyId = getURLParameter(currentUrl, 'company_id');
 
-  console.log('companyId: ', companyId);
- cd.getCompanyTeams = function () {
+ cd.getCompanyTeams = function (companyId, companyName, numCompanies, companyIndex) {
   luminateExtend.api({
     api: 'teamraiser',
     data: 'method=getTeamsByInfo' +
@@ -1134,29 +1240,30 @@
 
         } else {
           var teams = luminateExtend.utils.ensureArray(response.getTeamSearchByInfoResponse.team);
-          var totalTeams = parseInt(response.getTeamSearchByInfoResponse.totalNumberResults);
-          var totalTeamsText = totalTeams > 1 ? ' Teams' : ' Team';
-          $('.js--num-company-teams').text(totalTeams + totalTeamsText);
+          // var totalTeams = parseInt(response.getTeamSearchByInfoResponse.totalNumberResults);
 
           $(teams).each(function (i, team) {
-            var companyName = team.companyName;
             var teamRaised = (parseInt(team.amountRaised) * 0.01).toFixed(2);
             var teamRaisedFormmatted = teamRaised.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,").replace('.00', '');
 
-            $('#team-roster tbody').append('<tr class="' + (i > 4 ? 'd-none' : '') + '"> <td class="donor-name"> <a href="' + team.teamPageURL + '" data-sort="' + team.name + '">' + team.name + '</a> </td><td class="donor-name"> <a href="TR/?px=' + team.captainConsId + '&pg=personal&fr_id=' + team.EventId + '" data-sort="' + team.captainFirstName + ' ' + team.captainLastName + '">' + team.captainFirstName + ' ' + team.captainLastName + '</a> </td><td class="raised" data-sort="' + teamRaisedFormmatted + '"> <span><strong>$' + teamRaisedFormmatted + '</strong></span> </td><td> <a href="' + team.joinTeamURL + '">' + (screenWidth <= 480 ? 'Join' : 'Join Team') + '</a> </td></tr>');
+            $('#team-roster tbody').append('<tr class="' + (i > 4 ? 'd-none' : '') + '"> <td class="team-name"> <a href="' + team.teamPageURL + '" data-sort="' + team.name + '">' + team.name + '</a> </td><td class="donor-name"> <a href="TR/?px=' + team.captainConsId + '&pg=personal&fr_id=' + team.EventId + '" data-sort="' + team.captainFirstName + ' ' + team.captainLastName + '">' + team.captainFirstName + ' ' + team.captainLastName + '</a> </td><td class="company-name"> <a href="' + luminateExtend.global.path.secure + 'TR/?pg=company&company_id=' + team.companyId + '&fr_id=' + team.EventId + '" data-sort="' + companyName + '">' + companyName + '</a> </td><td class="raised" data-sort="' + teamRaisedFormmatted + '"> <span><strong>$' + teamRaisedFormmatted + '</strong></span> </td><td> <a href="' + team.joinTeamURL + '">' + (screenWidth <= 480 ? 'Join' : 'Join Team') + '</a> </td></tr>');
           });
-          
-          console.log('totalTeams: ', totalTeams);
           if(totalTeams > 5) {
             $('.js--more-team-results').removeAttr('hidden');
           }
-          cd.initializeTeamRosterTable();
 
           $('.js--more-team-results').on('click', function(e){
             e.preventDefault();
             $('#team-roster tr').removeClass('d-none');
             $(this).attr('hidden', true);
           });
+        }
+
+        if(companyIndex === numCompanies){
+          var totalTeams = $('.team-name').length;
+          var totalTeamsText = totalTeams > 1 ? ' Teams' : ' Team';
+          $('.js--num-company-teams').text(totalTeams + totalTeamsText);
+          cd.initializeTeamRosterTable();
         }
       }
     },
@@ -1166,11 +1273,22 @@
     }
   });
 };
-cd.getCompanyTeams();
 
+cd.buildCompanyTeamRoster = function(){
+  var numCompanies = allCompanyData.length;
+  for (var i = 0, l = allCompanyData.length; i < l; i++) {
+    var company = allCompanyData[i];
+    var companyIndex = i + 1;
+    var companyId = company.id;
+    var companyName = company.name;
+    cd.getCompanyTeams(companyId, companyName, numCompanies, companyIndex);
+  }
+}
+
+cd.buildCompanyTeamRoster();
 
  // build team roster
- cd.getCompanyParticipants = function () {
+ cd.getCompanyParticipants = function (companyId, companyName, numCompanies, companyIndex) {
   $('#participant-roster tbody').html('');
   luminateExtend.api({
     api: 'teamraiser',
@@ -1188,24 +1306,25 @@ cd.getCompanyTeams();
 
         } else {
           var participants = luminateExtend.utils.ensureArray(response.getParticipantsResponse.participant);
-          var totalParticipants = parseInt(response.getParticipantsResponse.totalNumberResults);
-          var totalParticipantsText = totalParticipants > 1 ? ' Walkers' : ' Walker';
-          $('.js--num-company-participants').text(totalParticipants + totalParticipantsText);
+
+          // $('.js--num-company-participants').text($('.company-tally-container--recruited .company-tally-ammount').text());
 
           $(participants).each(function (i, participant) {
 
             var participantRaised = (parseInt(participant.amountRaised) * 0.01).toFixed(2);
             var participantRaisedFormmatted = participantRaised.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,").replace('.00', '');
 
-            $('#participant-roster tbody').append('<tr class="' + (i > 4 ? 'd-none' : '') + '"><td class="donor-name"><a href="' + participant.personalPageUrl + '">' +
+            $('#participant-roster tbody').append('<tr class="' + (i > 4 ? 'd-none' : '') + '"><td class="participant-name"><a href="' + participant.personalPageUrl + '">' +
               participant.name.first + ' ' + participant.name.last +
-              '</a>' + (participant.aparticipantCaptain === "true" ? ' <span class="coach">- Coach</span>' : '') + '</td><td class="raised" data-sort="' + participantRaisedFormmatted + '"><span><strong>$' + participantRaisedFormmatted + '</strong></span></td><td><a href="' + participant.donationUrl + '">' + (screenWidth <= 480 ? 'Donate' : 'Donate to ' + participant.name.first) + '</a></td></tr>');
+              '</a>' + (participant.aTeamCaptain === "true" ? ' <span class="coach">- Coach</span>' : '') + '</td><td class="company-name"> <a href="' + luminateExtend.global.path.secure + 'TR/?pg=company&company_id=' + companyId + '&fr_id=' + participant.eventId + '" data-sort="' + companyName+ '">' + companyName + '</a> </td><td class="raised" data-sort="' + participantRaisedFormmatted + '"><span><strong>$' + participantRaisedFormmatted + '</strong></span></td><td><a href="' + participant.donationUrl + '">' + (screenWidth <= 480 ? 'Donate' : 'Donate to ' + participant.name.first) + '</a></td></tr>');
           });
 
           if (totalParticipants > 5) {
             $('.js--more-participant-results').removeAttr('hidden');
           }
-          cd.initializeParticipantRosterTable();
+
+
+
           //add call to hook donate button with payment type selections
           addPaymentTypesOnSearch();
           $('.js--more-participant-results').on('click', function (e) {
@@ -1213,6 +1332,12 @@ cd.getCompanyTeams();
             $('#participant-roster tr').removeClass('d-none');
             $(this).attr('hidden', true);
           });
+        }
+        if(companyIndex === numCompanies){
+          var totalParticipants = $('.participant-name').length;
+          var totalParticipantsText = totalParticipants > 1 ? ' Walkers' : ' Walker';
+          $('.js--num-company-participants').text(totalParticipants + totalParticipantsText);
+          cd.initializeParticipantRosterTable();
         }
       }
     },
@@ -1222,7 +1347,21 @@ cd.getCompanyTeams();
     }
   });
 };
-cd.getCompanyParticipants();
+
+cd.buildCompanyParticipantRoster = function(){
+  var numCompanies = allCompanyData.length;
+
+  $(allCompanyData).each(function(i, company){
+    var company = allCompanyData[i];
+    var companyIndex = i + 1;
+    var companyId = company.id;
+    var companyName = company.name;
+    cd.getCompanyParticipants(companyId, companyName, numCompanies, companyIndex);
+  });
+}
+
+
+cd.buildCompanyParticipantRoster();
 
 
     }
@@ -1273,13 +1412,8 @@ cd.getCompanyParticipants();
         var firstNameVal = getURLParameter(currentUrl, 'first_name') ? getURLParameter(currentUrl, 'first_name') : '';
         var lastNameVal = getURLParameter(currentUrl, 'last_name') ? getURLParameter(currentUrl, 'last_name') : '';
 
-        console.log('firstNameVal: ', firstNameVal);
-        console.log('lastNameVal: ', lastNameVal);
-
-
         if(!firstNameVal && !lastNameVal){
           // General participant search from greeting page. Show all walkers
-          console.log('run general search for all walkers');
           cd.getParticipants('%25%25%25', '%25%25%25', (isCrossEventSearch === "true" ? true : false));
         } else {
           firstNameVal = decodeURIComponent(firstNameVal);
@@ -1356,6 +1490,7 @@ var setIconDirection = function (element) {
         icon.addClass('fa-chevron-down');
     }
 };
+
 
 var toggleMultiEventInfo = function(elem) {
   $(elem).toggleClass('open');
