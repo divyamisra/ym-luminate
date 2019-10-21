@@ -1,3 +1,20 @@
+div.responsive a,
+a {
+  &,
+  &:link,
+  &:visited {
+    text-decoration: underline;
+    color: $event-primary-acc;
+  }
+
+  &:hover,
+  &:focus,
+  &:active {
+    text-decoration: none;
+    color: $event-primary-acc;
+  }
+}
+
 h1, 
 .h1,
 .ym-headline {
