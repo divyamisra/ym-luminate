@@ -185,7 +185,9 @@ module.exports = {
         expand: true,
         cwd: 'dist/heartwalk2020/css/',
         src: [
-          'main.css'
+          'main.css',
+          'registration.css',
+          'donation.css'
         ],
         dest: 'dist/heartwalk2020/css/'
       }
