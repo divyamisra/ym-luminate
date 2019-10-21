@@ -379,7 +379,7 @@ div.form-row {
      color: #000000;
      -webkit-transition: all .2s;
      transition: all .2s;
-     font-family: 'Font Awesome 5 Free' !important;
+     font-family: 'Font Awesome 5 Free';
 }
 /* checked mark aspect changes */
  [type="checkbox"]:not(:checked) + label:after, [type="radio"]:not(:checked) + label:after {
