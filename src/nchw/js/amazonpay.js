@@ -1,3 +1,5 @@
+Y.use('jquery-noconflict', function (Y) {
+
 (function ($) {
 	$.extend({
 		getCustomQuerystring: function(url, name){
@@ -148,3 +150,4 @@ function addPaymentTypesOnSearch() {
 		}
 	});
 }
+});
