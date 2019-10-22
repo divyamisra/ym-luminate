@@ -1,6 +1,13 @@
 @import "variables.scss";
 @import "mixins.scss";
 
+main {
+    background-image: url("/images/content/pagebuilder/hw_hero_desktop.jpg");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-color: $gray-400;
+}
+ 
  a#skip-main:hover, a#skip-main:active, a#skip-main:focus {
      left: 0;
      width: auto;
@@ -14,10 +21,7 @@
  main > .container {
      background-color: #ffffff;
 }
- main {
-     background: #eeeeee;
-     background-color: #eeeeee;
-}
+
  label {
      font-weight: 400 !important;
 }
