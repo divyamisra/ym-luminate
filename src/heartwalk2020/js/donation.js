@@ -81,8 +81,8 @@
     });
 
     $('#level_flexiblegift_type_Row .form-content fieldset legend').addClass('aural-only');
-    $('#tr_recognition_nameanonymous_row').insertAfter('.form-donation-level');
-    $('#tr_show_gift_to_public_row').insertAfter('.form-donation-level');
+    //$('#tr_recognition_nameanonymous_row').insertAfter('.form-donation-level');
+    //$('#tr_show_gift_to_public_row').insertAfter('.form-donation-level');
     //$('#show_employer_match_row').insertAfter('.form-donation-level');
     
 
