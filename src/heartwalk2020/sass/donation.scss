@@ -153,8 +153,12 @@ div.responsive .level4.active .donation-level-user-entered input[type="text"] {
  div.payment-field-container #responsive_payment_typecc_number_row input {
      width: 280px;
 }
+
+#level_flexiblegift_type_Row {
+	margin-top:20px;
+}
  .designated-giving-recurring-row {
-     margin-bottom: 10px;
+     margin-bottom: 0px;
 }
  div.designated-giving-recurring-row input, div.designated-giving-recurring-row label {
      line-height: initial;
