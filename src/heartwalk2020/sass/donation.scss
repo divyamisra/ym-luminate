@@ -85,6 +85,11 @@ div.form-row {
      margin: 10px 2% 10px 0;
      position: relative;
 }
+/* hide duration selection by default until recurring selected */
+.level_flexibleduration_row {
+    display:none;
+}
+
 .matching-gift-container ul {
      margin-left: 30px;
     	margin-bottom: 20px;
