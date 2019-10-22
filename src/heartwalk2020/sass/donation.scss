@@ -90,6 +90,14 @@ div.form-row {
     display:none;
 }
 
+.donation-form-container #level_flexiblegift_type_Row .designated-giving-recurring-row {
+	float: left;
+}
+.donation-form-container input[type="checkbox"] + label, 
+.donation-form-container input[type="radio"] + label {
+	margin-right: 3.7em;
+}
+
 .matching-gift-container ul {
      margin-left: 30px;
     	margin-bottom: 20px;
