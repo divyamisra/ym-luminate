@@ -130,8 +130,15 @@ div.form-row {
      background-color: #ffffff;
 }
  div.responsive .donation-level-user-entered input[type="text"] {
-     margin: 20px 0;
+     margin: 20px 0 0;
 }
+.other-amt-note {
+	margin: 0px 5px 20px;
+	padding-left: 10px;
+	font-style: italic;
+	font-size: 0.8em;
+}
+
  div.payment-field-container #responsive_payment_typecc_number_row input {
      width: 280px;
 }
