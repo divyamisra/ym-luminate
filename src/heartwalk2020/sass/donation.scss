@@ -6,6 +6,7 @@ main {
     background-size: 100%;
     background-repeat: no-repeat;
     background-color: $gray-400;
+    padding: 48px 76px 67px;
 }
  
  a#skip-main:hover, a#skip-main:active, a#skip-main:focus {
@@ -20,6 +21,7 @@ main {
 }
  main > .container {
      background-color: #ffffff;
+     padding: 40px 20px;
 }
 
  label {
