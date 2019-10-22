@@ -784,7 +784,14 @@ angular.module 'trPcControllers'
           giftsInList = 0
           angular.forEach defaultStandardGifts, (gift, key) ->
             if student.has_bonus and (gift.instant == 1 or gift.instant == 2) or !student.has_bonus and (gift.instant == 0 or gift.instant == 2)
-              giftsInList++
+              if gift.online_only
+                jQuery.each student.prizes, (item, key) ->
+                  if key.prize_sku.indexOf(gift.id) isnt -1
+                    giftsInList++
+                    return false
+                  return
+              if !gift.online_only
+                giftsInList++
           
           prevstatus = -1
           startList = 0
@@ -797,6 +804,14 @@ angular.module 'trPcControllers'
               lastItem = 0
               if jQuery.inArray(gift.id,giftLevels[current_level]) isnt -1
                 status = 1
+                if gift.online_only
+                  status = 0
+                  jQuery.each student.prizes, (item, key) ->
+                    if key.prize_sku.indexOf(gift.id) > -1
+                      status = 1
+                      return false
+                    return
+
               # if nothing has been earned yet
               if prevstatus == -1 and status == 0 and $scope.giftsEarned == 0
                 startList = 1
@@ -831,7 +846,7 @@ angular.module 'trPcControllers'
               giftPrev = gift
               prevstatus = status
               # add last 4 no matter what
-              if $scope.totalGifts >= giftsInList - 5 and status == 1
+              if $scope.totalGifts >= giftsInList - 5 and status == 1 and startList == 0
                 startList = 1
                 giftToAdd = 4
               $scope.totalGifts++
