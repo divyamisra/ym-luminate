@@ -88,7 +88,7 @@
 
     $('h2:contains("Matching Gift:")').wrap('<div id="matching_gift_section"></div>');
     $('.matching-gift-container').appendTo('#matching_gift_section');
-    $('#matching_gift_section').insertAfter('.form-donation-level');
+    //$('#matching_gift_section').insertAfter('.form-donation-level');
     $('.donation-level-user-entered input').after("<div class='other-amt-note'><em>$25 minimum donation amount</em></div>");
     
     /*$('#show_employer_match_check').click(function(){
@@ -109,7 +109,7 @@
 
     var xname = $('#part_name_donform').text()
     if (xname != ''){
-    $('#tr_show_gift_to_public_row label').text('Yes, you can display the amount of my donation on '+xname+'\'s page.');
+    $('#tr_show_gift_to_public_row label').text('Would you like your name displayed on '+xname+'\'s page.');
     $('#tr_recognition_nameanonymous_row label').text('Hide my name from lists on '+xname+'\'s page. \('+xname+' will still see your name regardless of your choice.\)');}
 
     $('.external-payment label a').text('PayPal');
