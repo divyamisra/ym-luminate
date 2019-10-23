@@ -563,6 +563,12 @@ div.responsive .donation-levels .enterAmt .donation-level-input-container label 
  div.donation-level-amount-container {
      cursor: pointer;
 }
+.custom-field-container.form-row {
+	overflow: hidden;
+	clear: both;
+	padding-top: 20px;
+}
+
 /******** Donation Page Lightbox ********/
  #modalDonationForm {
      text-align: center;
