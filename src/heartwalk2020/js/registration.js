@@ -343,11 +343,6 @@
                 pTypeSetCookie(pType);
             });
 
-            function pTypeSetCookie(pType) {
-                var pTypeTrim = pType.replace(/\s/g, "");
-                //console.log(pTypeTrim);
-                document.cookie = "pType=" + pTypeTrim;
-            }
         }
 
         if ($('.lightboxWiaverContent').length > 0) {
@@ -404,7 +399,12 @@
         }
 
     });
-
+    function pTypeSetCookie(pType) {
+        var pTypeTrim = pType.replace(/\s/g, "");
+        //console.log(pTypeTrim);
+        document.cookie = "pType=" + pTypeTrim;
+    }
+    
     function readCookie(name) {
         var nameEQ = name + "=";
         var ca = document.cookie.split(';');
