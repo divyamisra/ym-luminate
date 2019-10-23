@@ -162,7 +162,7 @@
     $('label[for="responsive_payment_typepay_typeradiopaypal"] a').attr('aria-label','PAYMENT BY PAY PAL');
 
     // Adding Mark's text above matching company label
-    $('#donor_matching_employer_Row').prepend('<p><strong>Play matchmaker. Here&#8217;s how.</strong></p><ul><li>Find out if your employer participates in a matching gifts program, an easy way to increase your donation.</li><li>Just fill in your company&#8217;s details below.</li></ul>');
+    $('#donor_matching_employer_Row').prepend('<p>Use the search box below to find out if your employer will match your donation!</p>');
 
     // Selecting empty value from the Gift Duration drop-down when the One-time Gift box is checked
     $('#level_flexiblegift_type1').click(function(){
