@@ -72,6 +72,12 @@ div.form-row {
   margin-left:0px;
   display:block;
 }
+@media (max-width:767px) {
+   .mobile div.responsive div.form-row {
+	margin-top: 0px;
+	margin-bottom: 0px;
+   }
+}
  div.form-row div.form-content {
      display: inline-block !important;
      width: 100%;
