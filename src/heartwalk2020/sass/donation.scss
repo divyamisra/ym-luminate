@@ -175,6 +175,14 @@ div.responsive .level4.active .donation-level-user-entered input[type="text"] {
  div.designated-giving-recurring-row input, div.designated-giving-recurring-row label {
      line-height: initial;
 }
+
+.payment-type-selection-container {
+	margin-bottom:10px;
+}
+.payment-type-element-container h3 {
+	display: none;
+}
+
  #employer_street_row input, 
 #billing_addr_street1_row input, 
 #billing_addr_street2_row input, 
