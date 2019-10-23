@@ -168,10 +168,10 @@
     $('#level_flexiblegift_type1').click(function(){
         console.log('One-time gift box checked');
         $('#level_flexibleduration').val("");
-        $('.level_flexibleduration_row').hide();
+        $('#level_flexibleduration_row').hide();
     });
     $('#level_flexiblegift_type2').click(function(){
-        $('.level_flexibleduration_row').show();
+        $('#level_flexibleduration_row').show();
     });
 
     // Limiting number of characters in credit card field
