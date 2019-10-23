@@ -2,6 +2,12 @@
 (function ($) {
   $(document).ready(function () {
   // Heart Walk 2020 Registration JS
+        var fr_id = $('input[name=fr_id]').val();
+    
+        if (fr_id == 3476) {
+           jQuery('#fr_goal').val('$625');
+           jQuery('#suggested_goal_container').html("Suggested Goal: $625.00<br>In honor of our 25th anniversary, we invite you to set a goal of $625. That's 25 donations of $25!");
+        }
         
             if($('#user_type_page').length > 0){
                 $('.custom-progress-bar').hide();
@@ -49,11 +55,9 @@
             });
         
             /* Page = Reg */
-            [[?x27x::x[[S4]]x::
-              if($('input[name="pg"]').val() == 'reg') {
+            if($('input[name="pg"]').val() == 'reg') {
                 $('#additional_questions_container .survey-question-container:contains("Facebook Fundraiser ID:")').hide();
-              }
-            ::]]
+            }
             $('#password_component_container #cons_rep_password').parent().parent().parent().addClass('left');
             $('#password_component_container #cons_password').parent().parent().parent().addClass('left');
             $('span.survey-question-label:contains("Would you like to be recognized as a survivor?")').parent().next().children().children().children('input').wrap('<div></div>');
@@ -71,23 +75,23 @@
                 $(this).parent().addClass('survivor_active');
             });
         
-            [[?x3297x3260x3289x::x[[S80:trID]]x::
-            $('label[for="cons_street2"]').parent().before('<span style="display: inline-block; width: 14px;"></span>');
-            $('div.regMobilePhone').css('float','left');
-            $('div.cons-address-street-full-container').css('margin-right','0');
-            ::
-            /* zip only reg flow */
-            $('#cons_zip_code').parent().parent().parent().parent().addClass('field-required consZip');
+            if (fr_id = 3297 || fr_id == 3260 || fr_id == 3289
+              $('label[for="cons_street2"]').parent().before('<span style="display: inline-block; width: 14px;"></span>');
+              $('div.regMobilePhone').css('float','left');
+              $('div.cons-address-street-full-container').css('margin-right','0');
+            } else {
+              /* zip only reg flow */
+              $('#cons_zip_code').parent().parent().parent().parent().addClass('field-required consZip');
 
-            if($(".consZip span.field-required").length === 0){
-                $('label[for="cons_zip_code"]').parent().before('<span class="field-required"></span>');
-            } 
+              if($(".consZip span.field-required").length === 0){
+                  $('label[for="cons_zip_code"]').parent().before('<span class="field-required"></span>');
+              } 
 
-            $('.cons-address-street-full-container').hide();
-            $('#cons_city').parent().parent().parent().parent().hide();
-            $('#cons_state').parent().parent().parent().parent().hide();
-            $('#cons_info_country_container').hide();
-            ]]
+              $('.cons-address-street-full-container').hide();
+              $('#cons_city').parent().parent().parent().parent().hide();
+              $('#cons_state').parent().parent().parent().parent().hide();
+              $('#cons_info_country_container').hide();
+            }
             
         
             /*Donation Buttons*/
@@ -115,15 +119,15 @@
             //QA
         
             if ($('#F2fRegPartType').length > 0 && $('#previous_step').length === 0 ){
-                $('#F2fRegPartType .section-footer button.next-step').after('<a href="TRR/?pg=utype&fr_id=[[S334:fr_id]]" class="step-button previous-step backBtnReg">Back</a>');
+                $('#F2fRegPartType .section-footer button.next-step').after('<a href="TRR/?pg=utype&fr_id='+fr_id+'" class="step-button previous-step backBtnReg">Back</a>');
             }
             
             $('#reg_summary_header_container').insertAfter('.section-header');
             $('#previous_step span').text("Back");
-            [[?xexistingnewx::[[S334:fr_tm_opt]]::
-            $('#fr_team_goal').val('');
-            $('#fr_team_name').val('');
-            ::]]
+            if ($('input[name=fr_tm_opt]').val() = 'existingnew') {
+              $('#fr_team_goal').val('');
+              $('#fr_team_name').val('');
+            }
             $('.part-type-description-text:contains("Free")').html('&nbsp;');
             $('.survey-question-container legend span:contains("Waiver agreement")').parent().parent().addClass('waiverCheck');
             $('.waiverCheck legend').addClass('aural-only');
@@ -352,12 +356,12 @@
         
                 $.ajax({
                   type: 'GET',
-                  url: 'https://[[S29:SECURE_DOMAIN]][[S29:SECURE_PATH]]CRTeamraiserAPI', 
+                  url: 'CRTeamraiserAPI', 
                   data: {
                     method: 'getParticipationTypes',
                     api_key: 'wDB09SQODRpVIOvX',
                     v: '1.0',
-                    fr_id: '[[S80:trID]]',
+                    fr_id: fr_id,
                   },
                   dataType: 'xml'
                 }).done(function(data){
@@ -397,6 +401,7 @@
             });
             //jQuery('.list-component-cell-column-join-link .list-component-cell-data-text a').css('display','block');
         }
+        
   });
   function readCookie(name) {
       var nameEQ = name + "=";
