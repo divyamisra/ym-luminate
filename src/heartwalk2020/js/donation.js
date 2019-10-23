@@ -300,3 +300,74 @@
         return null;
     }
 })(jQuery);
+
+(function() {
+    Y.use('jquery-noconflict', function() {
+        jQuery(function($) {
+            if ($('.field-error-indicator').length) {
+                if ($('#additional_amountname').val() <= 0) {
+                    $("#cover-fee-no").prop("checked", true);
+                }
+            }
+            
+            if (getDonationAmount() > 0) {
+               var initAmt = parseFloat(getDonationAmount());
+               var toDonate =  initAmt + parseFloat((getDonationAmount() * 0.026 + .26).toFixed(2));
+               $('button#pstep_finish').html("Donate $" + toDonate);
+               $('.bb-additional-amount').text(toDonate)
+            }
+            
+            $("#cover-fee-yes").click(function() {
+               if ($(this).is(':checked')) {
+                  var initAmt = parseFloat(getDonationAmount());
+                  var toDonate =  initAmt + parseFloat((getDonationAmount() * 0.026 + .26).toFixed(2));
+                  $('button#pstep_finish').html("Donate $" + toDonate);
+                  $('.bb-additional-amount').text(toDonate)
+               } else {
+                  $('.bb-additional-amount').text(0)
+                  var initAmt = parseFloat(getDonationAmount());
+                  $('button#pstep_finish').html("Donate $" + initAmt);
+               }
+            });
+            jQuery('[id^=level_]').change(function() {
+               var initAmt = parseFloat(getDonationAmount());
+               var toDonate =  initAmt + parseFloat((getDonationAmount() * 0.026 + .26).toFixed(2));
+               $('button#pstep_finish').html("Donate $" + toDonate);
+               $('.bb-additional-amount').text(toDonate)
+            });
+            $('.donation-level-user-entered input').blur(function() {
+               var initAmt = parseFloat(getDonationAmount());
+               var toDonate =  initAmt + parseFloat((getDonationAmount() * 0.026 + .26).toFixed(2));
+               $('button#pstep_finish').html("Donate $" + toDonate);
+               $('.bb-additional-amount').text(toDonate)
+            });
+
+            $("#ProcessForm").submit(function(e) {
+                //e.preventDefault();
+                if ($('#cover-fee-yes').is(':checked')) {
+                    $('#additional_amountname').val(getDonationAmount() * 0.026 + .26);
+                } else {
+                    $('#additional_amountname').val(0);
+                }
+console.log($('#additional_amountname').val());
+                $("#ProcessForm").unbind('submit');
+                $('#pstep_finish').click();
+            });
+        });
+    });
+})();
+
+function getDonationAmount() {
+	//get selected amount from checkbox
+	var amt = jQuery('[id^=level_]:checked').closest('.donation-level-container').find('label').html();
+	if (amt === null || amt == undefined || amt.indexOf("Enter an Amount") > -1) {
+		amt = jQuery('[id^=level_flexible]:checked').parent().parent().find('input[id$="amount"]').val();
+		if (amt === null) {
+			amt = 0;
+		}
+	}
+	//Convert currency string to number
+	amt = Number(amt.replace(/[^0-9\.]+/g, ""));
+	//console.log(amt);
+	return amt;
+}
