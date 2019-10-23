@@ -20,6 +20,15 @@ main {
      background-color: #ffffff;
      padding: 40px 20px;
 }
+
+.utype-helper {
+    font-size:12px;
+    border:1px solid #ccc; 
+    border-radius:20px;
+    vertical-align:middle;
+    padding: 5px 8px;
+}
+
 #chatcode {
   z-index: 999;
 }
