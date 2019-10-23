@@ -2,3 +2,849 @@
 @import "mixins.scss";
 
 // Heat Walk 2020 TeamRaiser Registration SCSS
+
+
+#chatcode {
+  z-index: 999;
+}
+.displayNone {display: none;}
+.left {float: left;}
+
+/**** STRUCTURE ****/
+body {background-color: #eee;}
+a#skip-main:hover, a#skip-main:active, a#skip-main:focus {
+    left: 0;
+    width: auto;
+    height: auto;
+}
+#headerWrapper {
+  background-color: #ffffff;
+  z-index: 1040;
+  position: relative;
+}
+@media (min-width: 992px) {
+  .heart-page-main {
+      width: 822px;
+  }
+}
+.heart-page-rail.heart-page-rail--personal {
+    display: none;
+}
+#footer {
+  background-color: #f6f6f6;
+}
+
+label {font-weight: 400 !important;}
+
+legend {border-bottom: 0;}
+
+.heart-page-container {
+  background-color: #ffffff;
+}
+div.responsive a.next-step, div.responsive button.next-step, div.responsive button.action-button, div.responsive a.step-button, div.responsive button.step-button, div.responsive input.step-button {
+    min-width: 190px;
+    height: 60px;
+    padding: 0 20px;
+    line-height: 60px;
+    font-size: 24px;
+    font-weight: 400;
+    background: none;
+    background-color: #d01d20 !important;
+    color: #ffffff;
+    text-decoration: none;
+}
+div.responsive input[type="text"], div.responsive input[type="number"], div.responsive input[type="password"], div.responsive textarea, select, div.responsive select, select[size] {
+    border: 1px solid #acacac !important;
+    border-radius: 0 !important;
+    width: 280px;
+    margin: 0;
+    line-height: 45px;
+    padding: 0 10px;
+    background: #ffffff;
+    background-color: #ffffff;
+    height: 45px !important;
+    max-height: 45px;
+}
+div.responsive button.next-step {
+    float: left;
+}
+@media (max-width: 767px) {
+  .mobile div.responsive button.step-button {
+      width: 100%;
+  }
+  div.responsive a.step-button {
+    width: 100%;
+  }
+}
+#fr_find_search.action-button {
+    background: none;
+    background-color: #d01d20 !important;
+    font-weight: 400 !important;
+}
+
+a.show-not-sure {
+    font-weight: 400;
+    font-size: 18px;
+    text-align: right;
+    margin-left: 90px;
+}
+#part_type_instruction_sub_header, .progress-bar-container, .part-type-name-value-separator, .part-type-fee-text {
+    display: none;
+}
+#team_find_registration_type_container, .reg-summary-participant-info-container {
+    display: block;
+}
+.reg-summary-name-info span.contact-info-name {
+    padding-right: 3px;
+}
+
+.heart-hero--personal {
+    background-image: url(../images/content/pagebuilder/heartwalk2017_header.jpg);
+}
+.input-container {
+  width: auto;
+}
+.heart-hero {
+    margin-bottom: 17px;
+}
+h1.event-name-header a {
+    font-weight: 700;
+    color: #ffffff;
+}
+.container.custom-progress-bar {
+    background: #e6e6e6 none repeat scroll 0 0;
+    width: 100%;
+}
+.custom-progress-bar .row {
+  margin-left:0;
+  margin-right:0;
+}
+.col-xs-3.p-bar-step {
+    background: #f18b21;
+    height: 45px;
+    width: 33.333%;
+    margin-left: 0 !important;
+    background: url(../images/content/pagebuilder/arrow-right2.png) #f18b21 no-repeat;
+    background-position-x: right;
+}
+div.progressText {
+    font-weight: 600;
+    color: #ffffff;
+    line-height: 45px;
+    text-align: right;
+    margin-right: 25px;
+    font-size: 24px;
+}
+
+.heart-page-main.heart-page-main--personal {
+    margin: auto;
+    float:none;
+}
+div.registration-page-container div.section-container {
+    border: none;
+    padding: 0 10px;
+}
+div.registration-page-container div.section-container {
+    font-size: 18px !important;
+}
+
+/*utype*/
+#utype-login .col-sm-12 {
+    text-align: center;
+}
+div#user_type_password_input_container label {
+    margin-right: 175px;
+}
+div#user_type_oauth_login_container, .mobile div#user_type_oauth_login_container {
+    margin: auto;
+    float: none;
+}
+#f2fLoginForm button#user_type_login_login_button {
+    margin: 20px auto;
+}
+div#utype-have-we-met {
+    margin-top: 75px;
+    margin-bottom: 75px;
+}
+div#utype-have-we-met h1 {
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 40px;
+}
+div#utype-have-we-met button.btn {
+    background: #515151;
+    height: 60px;
+    width: 190px;
+    font-size: 24px;
+    font-weight: 400;
+    padding: 0;
+    line-height: 60px;
+    margin-bottom: 20px;
+}
+div#utype-have-we-met button.btn:hover, div#utype-have-we-met button.btn:focus {
+    background-color: #d01d20;
+    color: #ffffff;
+}
+#user_type_page #user_type_section_container {
+    display: block;
+}
+
+/*Log In*/
+div#utype-login h4 {
+    font-weight: 600;
+    font-size: 30px;
+}
+.mobile div#user_type_login_container, div#user_type_login_container {
+    float: none;
+    width: auto;
+    margin: auto;
+    background-color: #ffffff;
+    border: 0;
+    padding: 0;
+}
+#f2fLoginForm label {
+    font-weight: 400 !important;
+    font-size: 18px;
+}
+div#user_type_login_container input {
+  width: 280px;
+  max-width: 280px;
+  line-height: 45px;
+  margin: auto;
+}
+#user_type_login_login_container div.input-container {
+    display: block;
+}
+div#user_type_login_email_container #user_type_login_email_button {
+    display: block;
+    margin: auto;
+}
+
+/*** ptype  ***/
+
+.registration-page-container .section-header-text {
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+div#part_type_individual_company_input_container {
+    margin-top: 20px;
+}
+
+#part_type_additional_gift_section_header {
+  font-weight: 400;
+  padding: 0;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+div#part_type_fundraising_goal_container input {
+    margin-left: 0;
+}
+div.required-indicator-legend {
+    text-align: left;
+    padding: 0;
+    margin-bottom: 30px;
+}
+
+#part_type_section_body .required-indicator-legend-container.clearfix {
+    display: none;
+}
+
+div#part_type_individual_company_selection_container {
+  margin: 30px 0 !important;
+}
+
+a.step-button.previous-step.backBtnReg {
+    text-align: center;
+    background-color: #515151 !important;
+    margin-right: 20px;
+    float: left;
+}
+label.otherAmt {
+    display: block;
+}
+
+/** tfind page **/
+#team_find_existing_team_search_container, #team_find_existing_company_selection_container, #team_find_search_button_container {
+    display: block;
+}
+div.responsive #team_find_section_footer button.next-step {
+    float: none;
+}
+@media only screen and (max-width: 767px) {
+  .mobile #team_find_page input#fr_team_member_goal, .mobile #team_find_page input#fr_team_name {
+      max-width: 100%;
+      width: 100%;
+  }
+  div#team_find_new_team_attributes input[type="text"] {
+    width: 100%;
+  }
+}
+
+/*** page reg ***/
+div#personal_info_section_one .cons-full-name-label label, .cons-full-address-container .cons-zip-label label, div#cons_info_component_contact_info_section .sub-section-body .cons-full-address-label label {
+    display: none;
+}
+div.registration-page-container div.sub-section-container {
+    background-color: #ffffff;
+}
+div.registration-page-container div.sub-section-header {
+    border: 0;
+    background-color: #ffffff;
+}
+.cons-info-question-container.cons-full-name-container.field-required {
+    float: left;
+}
+div.registration-page-container div.sub-section-body {
+    padding: 0;
+}
+
+#reg_instr_container, #contact_hdr_container, #cons_info_component_contact_info_section .sub-section-header {
+  display: none;
+}
+span#title_container, h1#title_container {
+    font-size: 30px;
+}
+div.registration-page-container div.sub-section-header {
+    font-size: 30px;
+    font-weight: 700;
+}
+#user_name_pword_container input#cons_user_name {
+    width: 582px;
+}
+div#registration_options_page div#user_name_pword_container {
+  width: 100%;
+}
+@media only screen and (max-width: 767px) {
+  .mobile div#registration_options_page li.input-container label {
+      max-width: 100%;
+  }
+  #user_name_pword_container input#cons_user_name {
+    width:280px;
+  }
+}
+
+div#email_optin label, div#gift_notice_optin label, .mobile div#email_optin label, .mobile div#gift_notice_optin label {
+    max-width: 100%;
+}
+
+div#cons_info_component_container div#personal_info_section_one, div#cons_info_component_container div#personal_info_section_two, div#cons_info_component_container div#contact_info_section_one, div#cons_info_component_container div#contact_info_section_two, div#registration_options_page div#user_name_pword_container, div#registration_options_page div#privacy_opts_container, div#registration_options_page div#tribute_component_section_one, div#registration_options_page div#tribute_component_section_two, div#emergency_contact_container, div#gift_notice_optin, div#email_optin {
+  width: auto;
+}
+div.registration-page-container div#reg_options_cons_info_extension.sub-section-container {
+    clear: both;
+}
+.cons-info-question-container.cons-address-street-full-container {
+    float: left;
+    margin-right: 15px;
+}
+.cons-info-question-container {
+    float: left;
+}
+.survivor_yes_no li.input-container {
+  float: left;
+  margin-right: 25px;
+  background-color: #515151;
+  width: 125px;
+}
+.survivor_yes_no li.input-container:hover {
+  background-color: #d01d20;
+}
+.survivor_yes_no label {
+    width: 125px;
+    height: 60px;
+    text-align: center;
+    line-height: 60px;
+    font-size: 24px;
+    color: #ffffff;
+    cursor: pointer;
+}
+.survivor_yes_no li.input-container.survivor_active {
+  background-color: #d01d20;
+}
+.regMobilePhone .input-container {
+    margin-left: 15px;
+}
+/* account for spacing for faux required astrix */
+.cons-info-question-container.consZip div.form-content span.field-required {
+    margin-right: 5px;
+}
+/* account for stacking elements after error */
+.cons-info-question-container.consZip {
+  height: 98px;
+}
+label#cons_zip_code-error {
+    display: block;
+}
+.cons-info-question-container.form-error.consZip {
+    height: auto;
+}
+
+div.responsive div.ErrorMessage>span.field-error-indicator {
+    height: 23px;
+    width: 18px;
+    background-image: url(../images/page_error_icon.png);
+    vertical-align: top;
+    background-repeat: no-repeat;
+    display: inline-block;
+    zoom: 1;
+}
+div.responsive div.ErrorMessage.page-error>span.field-error-indicator, div.responsive span.header-warning-message {
+    display: inline-block;
+  }
+@media (max-width: 767px) {
+  .mobile div.registration-page-container select {
+      max-width: 280px;
+      font-size: 15px;
+      width: 280px;
+  }
+  .survivor_yes_no li.input-container {
+    width: 100%;
+  }
+  .survivor_yes_no label {
+    width: 100%;
+  }
+}
+/*Reg buttons*/
+
+div.part-type-container {
+    background-color: #515151;
+    border: 0;
+    border-radius: 0;
+    margin-top:0;
+    margin-bottom: 20px;
+    margin-right: 45px;
+    width: 280px;
+    display: inline-block;
+}
+div.part-type-container.selected {
+    background-color: #d01d20;
+    border-style: none;
+    border-width: 0;
+    margin-top:0;
+    margin-bottom: 20px;
+    outline: 5px auto -webkit-focus-ring-color;
+}
+@media only screen and (max-width: 767px) {
+  div.part-type-container {
+      width: 100%;
+      margin: 0 0 20px 0;
+  }
+ .mobile div.part-type-container .part-type-decoration-messages {
+      width: auto;
+  }
+}
+div.part-type-container .part-type-decoration-messages {
+    display: block;
+    margin: 0;
+}
+/*
+div.responsive .part-type-decoration-messages label {
+    display: block;
+    font-size: 24px !important;
+    line-height: 60px;
+    color: #ffffff;
+    text-align: center;
+}
+*/
+div.responsive .part-type-decoration-messages label {
+  color: #ffffff;
+  display: block;
+  font-size: 24px;
+  line-height: 32px;
+  padding: 10px;
+  text-align: center;
+}
+.part-type-name {
+    display: inline-block;
+}
+div.part-type-decoration-messages .part-type-description-text {
+    display: none;
+}
+
+div.part-type-decoration-messages .part-type-description-text, div.part-type-decoration-messages span.part-type-name {
+    font-size: inherit;
+    font-weight: 400;
+}
+div.reg-summary-thanks-common-container div.reg-summary-name-info {
+    background-color: rgba(0, 0, 0, 0);
+    border: medium none;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    padding: 0;
+    width: 100%;
+    margin-bottom: 15px;
+    font-size: 0;
+}
+div.registration-page-container div.section-header {
+  padding-left:0;
+}
+div.reg-summary-thanks-common-container div.reg-summary-name-info span.contact-info-first, div.reg-summary-thanks-common-container div.reg-summary-name-info span.contact-info-name {
+    color: #000000;
+    font-size: 18px;
+    font-weight: bold;
+    display: inline-block;
+}
+div.reg-summary-thanks-common-container div.reg-summary-address-info {
+    border: medium none;
+    display: block;
+    padding: 0;
+    width: 100%;
+}
+div.registration-page-container div.label-value-block-container {
+    border: 0;
+    padding: 0;
+}
+div.reg-summary-thanks-common-container div.reg-summary-event-info, div.reg-summary-thanks-common-container div.reg-summary-total {display: none;}
+
+div.responsive #FriendraiserUserWaiver button.next-step, div.reg-summary-thanks-common-container div.action-button-container, div.responsive #FriendraiserUserWaiver button.previous-step, div.responsive #FriendraiserUserWaiver button.cancel-step {
+  float: none;
+}
+div.registration-page-container div.section-footer, div.responsive #FriendraiserUserWaiver button.previous-step, div.responsive #FriendraiserUserWaiver button.cancel-step {
+  padding: 0;
+}
+div.responsive button.previous-step {
+    background-color: #515151 !important;
+    margin-right: 20px;
+}
+div.responsive button.cancel-step {
+    color: #d01d20;
+    font-size: 24px;
+    font-weight: 400;
+    background-color: #ffffff !important;
+}
+div.responsive #FriendraiserUserWaiver button.cancel-step:hover {
+    background: none;
+    background-color: #ffffff !important;
+    color: #d01d20;
+    text-decoration: underline;
+}
+div.reg-summary-thanks-common-container div.action-button-container {
+    float: left;
+    width: auto;
+}
+
+/* page regsummary */
+
+div#waiver_custom_html #fr_html_container div {
+    margin: 10px 0;
+}
+
+div.registration-page-container span.option-amount {
+  float: none;
+}
+
+div.reg-summary-thanks-common-container div.reg-summary-event-info {
+    display: block;
+    border: 0;
+    width: 100%;
+}
+div.reg-summary-thanks-common-container div.reg-summary-event-info > div {
+  background: none;
+  padding: 0;
+}
+
+div.reg-summary-address-info .contact-info-street, div.reg-summary-address-info .contact-info-city, div.reg-summary-address-info .contact-info-state {
+  display: none;
+}
+
+@media only screen and (max-width: 991px) and (min-width: 768px) {
+  .mobile div.reg-summary-thanks-common-container div.reg-summary-address-info {
+      width: auto;
+  }
+}
+
+.reg-summary-edit-link .left-decorator {
+  display: none;
+}
+.mobile div.reg-summary-thanks-common-container .detail-toggle-link {
+    display: none !important;
+}
+@media (max-width: 767px) {
+  div.responsive #FriendraiserUserWaiver button.next-step {
+    width: 100%;
+  }
+  .mobile div.reg-summary-thanks-common-container div.reg-summary-total {
+    display: none;
+  }
+  .mobile div.reg-summary-thanks-common-container div.reg-summary-reg-info .mobile-hidden {
+    display: block;
+  }
+}
+
+@media only screen and (max-width: 767px) and (min-width: 480px) {
+  .mobile #fr_reg_summary_page div.action-button-container {
+      float: none;
+  }
+}
+
+/******** Custom Checkboxes ********/
+/* Base for label styling */
+[type="checkbox"]:not(:checked),
+[type="checkbox"]:checked,
+[type="radio"]:not(:checked),
+[type="radio"]:checked {
+  position: absolute;
+  left: -9999px;
+}
+
+[type="checkbox"]:not(:checked) + span.manageable-content label,
+[type="checkbox"]:checked + span.manageable-content label,
+[type="checkbox"]:not(:checked) + label,
+[type="checkbox"]:checked + label,
+[type="radio"]:not(:checked) + label,
+[type="radio"]:checked + label {
+  position: relative;
+  padding-left: 35px;
+  cursor: pointer;
+}
+/* checkbox aspect */
+[type="checkbox"]:not(:checked) + span.manageable-content label:before,
+[type="checkbox"]:checked + span.manageable-content label:before,
+[type="checkbox"]:not(:checked) + label:before,
+[type="checkbox"]:checked + label:before,
+[type="radio"]:not(:checked) + label:before,
+[type="radio"]:checked + label:before {
+  content: '';
+  position: absolute;
+  left:0; 
+  top: 0;
+  width: 25px; 
+  height: 25px;
+  border: 1px solid #acacac;
+  background: #ffffff;
+  border-radius: 0;
+}
+
+/* checked mark aspect */
+[type="checkbox"]:not(:checked) + span.manageable-content label:after,
+[type="checkbox"]:checked + span.manageable-content label:after,
+[type="checkbox"]:not(:checked) + label:after,
+[type="checkbox"]:checked + label:after, 
+[type="radio"]:not(:checked) + label:after,
+[type="radio"]:checked + label:after {
+  content: '\f00c';
+  position: absolute;
+  top: 5px; 
+  left: 4px;
+  font-size: 1.8rem;
+  line-height: 0.8;
+  color: #000000;
+  transition: all .2s;
+  font-family: FontAwesome;
+}
+/* checked mark aspect changes */
+[type="checkbox"]:not(:checked) + span.manageable-content label:after,
+[type="checkbox"]:not(:checked) + label:after, 
+[type="radio"]:not(:checked) + label:after {
+  opacity: 0;
+  transform: scale(0);
+}
+[type="checkbox"]:checked + span.manageable-content label:after,
+[type="checkbox"]:checked + label:after, 
+[type="radio"]:checked + label:after {
+  opacity: 1;
+  transform: scale(1);
+}
+/* disabled checkbox */
+[type="checkbox"]:disable:not(:checked) + span.manageable-content label,
+[type="checkbox"]:disabled:checked + span.manageable-content label,
+[type="checkbox"]:disabled:not(:checked) + label:before,
+[type="checkbox"]:disabled:checked + label:before, 
+[type="radio"]:disabled:not(:checked) + label:before,
+[type="radio"]:disabled:checked + label:before {
+  box-shadow: none;
+  border-color: #bbb;
+  background-color: #ddd;
+}
+[type="checkbox"]:disabled:checked + span.manageable-content label,
+[type="checkbox"]:disabled:checked + label:after, 
+[type="radio"]:disabled:checked + label:after {
+  color: #999;
+}
+[type="checkbox"]:disabled + span.manageable-content label,
+[type="checkbox"]:disabled + label, 
+[type="radio"]:disabled + label {
+  color: #aaa;
+}
+/* accessibility */
+[type="checkbox"]:focus + span.manageable-content label:before,
+[type="checkbox"]:checked:focus + span.manageable-content label:before,
+[type="checkbox"]:not(:checked):focus + span.manageable-content label:before, 
+[type="checkbox"]:focus + label:before,
+[type="checkbox"]:checked:focus + label:before,
+[type="checkbox"]:not(:checked):focus + label:before, 
+[type="radio"]:focus + label:before,
+[type="radio"]:checked:focus + label:before,
+[type="radio"]:not(:checked):focus + label:before {
+  border: 1px solid -webkit-focus-ring-color;
+  outline: 5px auto -webkit-focus-ring-color;
+}
+@media (max-width: 1010px) {
+  [type="checkbox"]:not(:checked) + span.manageable-content label:before,
+  [type="checkbox"]:checked + span.manageable-content label:before,
+  [type="checkbox"]:not(:checked) + label:before,
+  [type="checkbox"]:checked + label:before,
+  [type="radio"]:not(:checked) + label:before,
+  [type="radio"]:checked + label:before {
+    top: -3px;
+  }
+  [type="checkbox"]:not(:checked) + span.manageable-content label:after,
+  [type="checkbox"]:checked + span.manageable-content label:after, 
+  [type="checkbox"]:not(:checked) + label:after,
+  [type="checkbox"]:checked + label:after, 
+  [type="radio"]:not(:checked) + label:after,
+  [type="radio"]:checked + label:after {
+    top: 2px; 
+  }
+}
+.notTime input:checked, .notTime input:not(:checked) {
+    left: 0;
+    position: relative;
+}
+.notTime [type="radio"]:not(:checked) + label:before, .notTime [type="radio"]:checked + label:before, .notTime [type="radio"]:not(:checked) + label:after, .notTime [type="radio"]:checked + label:after {
+  content: none;
+}
+div.notTime [type="radio"]:checked + label, div.notTime [type="radio"]:not(:checked) + label {
+  padding-left: 5px;
+}
+/******** End Custom Checkboxes ********/
+
+/****** DONATION BUTTONS ******/
+/*#part_type_donation_level_input_container .donation-level-row-container.donation-amt > input, #part_type_donation_level_input_container .donation-level-row-container.enterAmt .input-container input[type="radio"], #participation_options_page #part_type_additional_gift_container .donation-level-row-container.enterAmt .donation-level-row-label {
+  display: none;
+} */
+label.donation-level-row-label.other_amount_label {
+    position: absolute;
+    left: -9999999px;
+}
+.donation-level-row-container.donation-amt {
+    float: left;
+    margin-bottom: 15px;
+    margin-right: 35px;
+}
+@media only screen and (max-width: 767px) {
+  .donation-level-row-container.donation-amt {
+    margin-right: 15px;
+  }
+}
+
+.donation-level-row-container.donation-amt .donation-level-row-decoration-container {
+    background-color: #515151;
+    border-radius: 0;
+    color: #ffffff;
+    padding: 0 10px;
+    text-align: center;
+    width: 126px; 
+    font-size: 24px;
+    height: 60px;
+    margin: 0 !important;
+    display: inline-block !important;
+    line-height: 60px;
+}
+.donation-level-row-container.enterAmt {
+    float: none;
+    clear: both;
+}
+div.donation-level-row-container {
+  padding: 0;
+}
+.donation-level-container {
+  padding: 0;
+}
+.donation-level-container:last-of-type {
+  width: 100%;
+}
+.donation-level-row-container.donation-amt .donation-level-row-decoration-container:hover, .donation-level-row-container.donation-amt.active .donation-level-row-decoration-container {
+    background-color: #d01d20;
+    outline: 5px auto -webkit-focus-ring-color;
+}
+.donation-level-row-container.donation-amt:hover, .donation-level-row-label:hover {
+  cursor: pointer;
+}
+label.donation-level-row-label {
+    margin: auto;
+}
+.enterAmt span {
+    display: block;
+}
+@media only screen and (max-width: 767px) {
+  .mobile div.donation-level-row-container input[type="text"] {
+      margin-left: 0;
+  }
+}
+/**** WAIVER LIGHTBOX ****/
+#overlayWaiver, #lightboxWiaver {
+    display: none;
+}
+#overlayWaiver {
+  position: fixed;
+  top: 0%;
+  left: 0%;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  z-index:1001;
+  -moz-opacity: 0.8;
+  opacity:.80;
+  filter: alpha(opacity=80);
+}
+#lightboxWiaver {
+  position: fixed;
+  top: 15%;
+  left: 25%;
+  width: 50%;
+  height: 30%;
+  padding: 16px;
+  border: 4px solid #dddddd;
+  background-color: white;
+  z-index:1002;
+  overflow: auto;
+  overflow-y: scroll;
+  min-height: 400px;
+  min-width:50%;
+  background-size: cover;
+}
+@media only screen and (max-width: 1199px) {
+  #lightboxWiaver {
+    left: 15%;
+    min-width: 70%;
+  }
+}
+@media only screen and (max-width: 767px) {
+  #lightboxWiaver {
+    left: 5%;
+    min-width: 90%;
+  }
+}
+#lightboxWiaver h1 {
+    margin: 0.5em 0;
+    font-size: 22px;
+}
+.lightboxWiaverContent p {
+  font-size: 16px;
+}
+.lightboxWiaverClose {
+    font-family: fontAwesome;
+    position: absolute;
+    right: 10px;
+    top: 0;
+    text-align: center;
+    padding: 10px;
+    cursor: pointer;
+    background: 0 0;
+    border: 0;
+    -webkit-appearance: none;
+    font-size: 24px;
+    color: #000;
+    line-height:24px;
+}
+span.lightboxWiaverClose i.fa-close {
+    position: fixed;
+}
+/**** END WAIVER LIGHTBOX *****/
+
+#reg_payment_page #fr_payment_form #reg_payment_body_container #reg_billing_info_block #billing_info_name #billing_title_row, #reg_payment_page #fr_payment_form #reg_payment_body_container #reg_billing_info_block #billing_info_name #billing_suffix_row { display: none; }
+
+div#registration_options_page .indented-field-group {
+  margin-left: 0;
+}
