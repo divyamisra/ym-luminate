@@ -123,7 +123,7 @@
 
         $('#reg_summary_header_container').insertAfter('.section-header');
         $('#previous_step span').text("Back");
-        if ($('input[name=fr_tm_opt]').val() = 'existingnew') {
+        if ($('input[name=fr_tm_opt]').val() == 'existingnew') {
             $('#fr_team_goal').val('');
             $('#fr_team_name').val('');
         }
