@@ -318,6 +318,16 @@
             _gaq.push(['t2._trackEvent', 'Reg Completed', 'click', 'Access Participant Center']);
         });
 
+        jQuery("a:contains('Start a Team')").click(function(){
+            _gaq.push(['t2._trackEvent', 'Register Landing', 'click', 'Start Team']);
+        });
+        jQuery("a:contains('Join a Team')").click(function(){
+            _gaq.push(['t2._trackEvent', 'Register Landing', 'click', 'Join a Team']);
+        });
+        jQuery("a:contains('Join as Individual')").click(function(){
+            _gaq.push(['t2._trackEvent', 'Register Landing', 'click', 'Join as Indiv']);
+        });
+
         $('.survivor_yes_no input').change(function() {
             radioValue = $(this).val();
             console.log("radio value = ", radioVaalue);
