@@ -362,22 +362,6 @@
                 processPTypesData(data);
             });
 
-            function processPTypesData(data) {
-                var userParticipationType = readCookie('pType');
-                console.log(userParticipationType);
-                var waiver;
-                $(data).find('participationType').each(function() {
-                    var nodeName = $(this).find('name').text();
-                    var nodeNameTrim = nodeName.replace(/\s/g, "");
-                    if (nodeNameTrim == userParticipationType) {
-                        waiver = $(this).find('waiver').text();
-                        waiverHTML = waiver.replace(/(?:\r\n\r\n|\r\r|\n\n)/, '<p>').replace(/(?:\r\n\r\n|\r\r|\n\n)/g, '</p><p>').replace('our Privacy Policy', '<a href="http://www.Heart.org/Privacy">our Privacy Policy</a>');
-                        waiverHTML = waiverHTML + "</p>";
-                        $('.lightboxWiaverContent').html(waiverHTML);
-                    }
-                });
-                console.log(waiver);
-            }
         }
 
         if ($('#team_find_existing').length > 0) {
@@ -399,6 +383,24 @@
         }
 
     });
+
+    function processPTypesData(data) {
+        var userParticipationType = readCookie('pType');
+        console.log(userParticipationType);
+        var waiver;
+        $(data).find('participationType').each(function() {
+            var nodeName = $(this).find('name').text();
+            var nodeNameTrim = nodeName.replace(/\s/g, "");
+            if (nodeNameTrim == userParticipationType) {
+                waiver = $(this).find('waiver').text();
+                waiverHTML = waiver.replace(/(?:\r\n\r\n|\r\r|\n\n)/, '<p>').replace(/(?:\r\n\r\n|\r\r|\n\n)/g, '</p><p>').replace('our Privacy Policy', '<a href="http://www.Heart.org/Privacy">our Privacy Policy</a>');
+                waiverHTML = waiverHTML + "</p>";
+                $('.lightboxWiaverContent').html(waiverHTML);
+            }
+        });
+        console.log(waiver);
+    }
+
     function pTypeSetCookie(pType) {
         var pTypeTrim = pType.replace(/\s/g, "");
         //console.log(pTypeTrim);
