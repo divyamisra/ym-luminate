@@ -79,7 +79,7 @@
         [[C6:fr_rich_text]]
       </div>
       <div ng-show="personalPageContent.mode == 'view'">
-        <img style="max-width:35%;margin-right:20px;margin-bottom:20px;" ng-src='{{personalInfo.avatar}}' ng-if="personalInfo.avatar != ''" ng-cloak>
+        <img class="personal-avatar" ng-src='{{personalInfo.avatar}}' ng-if="personalInfo.avatar != ''" ng-cloak>
         <div ng-bind-html="personalPageContent.rich_text">
           <div ng-non-bindable>
             [[C6:fr_rich_text]]
