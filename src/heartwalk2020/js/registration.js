@@ -11,6 +11,10 @@
 
         if ($('#user_type_page').length > 0) {
             $('.custom-progress-bar').hide();
+            $('#utype=have-we-met h1').append('<span class="fas fa-question utype-helper"></span>');
+            $('.utype-helper').after("<div class='utype-helper-modal hidden'></div>");
+            $('.utype-helper').mouseover(function(){jQuery('.utype-helper-popup').removeClass('hidden');});
+            $('.utype-helper').mouseout(function(){jQuery('.utype-helper-popup').addClass('hidden');});
         }
         if ($('#reg_payment_page').length > 0) {
             $('.custom-progress-bar').hide();
