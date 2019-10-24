@@ -23,12 +23,23 @@ main {
 
 .utype-helper {
     font-size:12px;
-    border:1px solid #ccc; 
+    border:1px solid #3c3c3c; 
     border-radius:20px;
     vertical-align:middle;
     padding: 5px 8px;
+    cursor: pointer;
 }
-
+.utype-helper-popup {
+	position: absolute;
+	background: #fff;
+	border: 1px solid #3c3c3c;
+	padding: 10px;
+	max-width: 240px;
+	top: -30px;
+	left: inherit;
+	font-size: 14px;
+	line-height: 18px;
+}
 #chatcode {
   z-index: 999;
 }
