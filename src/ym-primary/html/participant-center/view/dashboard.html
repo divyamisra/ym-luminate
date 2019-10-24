@@ -19,7 +19,14 @@
       </div>
       <div class="ym-pc-dashboard-badges-header text-center">
         <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/ym-pc-dashboard-badge-header.png" alt="Send Email">
-        <p><strong>You’ve completed <span ng-bind-html="prizesEarned"></span> out of <span ng-bind-html="prizes.length"></span> missions to earn Finn’s charm for your wristband! Keep going!</strong></p>
+        <div ng-if="has_bonus" ng-cloak>
+          <p ng-if="prizesEarned != prizes.length" ng-cloak><strong>You’ve completed <span ng-bind-html="prizesEarned"></span> out of <span ng-bind-html="prizes.length"></span> missions to earn Finn’s charm for your wristband! Keep going!</strong></p>
+          <p ng-if="prizesEarned == prizes.length" ng-cloak><strong>All Missions Accomplished! You completed all 10 missions and earned Finn’s charm for your wristband. Yahoo!</strong></p>
+        </div>
+        <div ng-if="!has_bonus" ng-cloak>
+          <p ng-if="prizesEarned != prizes.length" ng-cloak><strong>You’ve completed <span ng-bind-html="prizesEarned"></span> out of <span ng-bind-html="prizes.length"></span> missions! Keep going!</strong></p>
+          <p ng-if="prizesEarned == prizes.length" ng-cloak><strong>All Missions Accomplished!</strong></p>
+        </div>
         <em>Please allow 15 minutes for the system to update your badges.</em>
       </div>
       <div class="ym-pc-dashboard-badges-icons" role="list" aria-label="Badge List">
