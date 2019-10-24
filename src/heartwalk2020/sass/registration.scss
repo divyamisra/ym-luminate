@@ -669,6 +669,7 @@ div.reg-summary-address-info .contact-info-street, div.reg-summary-address-info 
   color: #000000;
   transition: all .2s;
   font-family: Font Awesome\ 5 Free;
+  font-weight: 900;
 }
 /* checked mark aspect changes */
 [type="checkbox"]:not(:checked) + span.manageable-content label:after,
@@ -875,6 +876,7 @@ label.donation-level-row-label {
     font-size: 24px;
     color: #000;
     line-height:24px;
+  font-weight: 900;
 }
 span.lightboxWiaverClose i.fa-close {
     position: fixed;
