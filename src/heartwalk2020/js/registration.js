@@ -15,6 +15,20 @@
             $('.utype-helper').append("<div class='utype-helper-popup hidden'>If you’ve ever participated in Heart Walk, CycleNation or Kids Heart Challenge, choose yes.</div>");
             $('.utype-helper').mouseover(function(){jQuery('.utype-helper-popup').removeClass('hidden');});
             $('.utype-helper').mouseout(function(){jQuery('.utype-helper-popup').addClass('hidden');});
+            
+            $('#utype-yes').click(function() {
+              $('#user_type_page #user_type_section_container').show();
+              $('#user_type_page #f2fLoginForm, #user_type_page .show-login-container-2').show();
+              $('#user_type_page #utype-login, #user_type_page .show-login-container').show();
+              $('#user_type_page #utype-register, #utype-have-we-met, #user_type_page #f2fSendUserNameForm, #user_type_page .show-login-container-2').hide();
+              $('#user_type_page #user_type_login_container').appendTo('#user_type_page #utype-login-container').show();
+              $('#USERNAME_1').focus();
+            });
+            $('#utype-no').click(function() {
+              $('#user_type_page #utype-register').hide();
+              $('#f2fRegPartType #next_step').click();
+            });
+            
         }
         if ($('#reg_payment_page').length > 0) {
             $('.custom-progress-bar').hide();
