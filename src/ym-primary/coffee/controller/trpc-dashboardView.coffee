@@ -608,9 +608,11 @@ angular.module 'trPcControllers'
       
       $scope.prizes = []
       $scope.prizesEarned = 0
+      $scope.has_bonus = 0
       BoundlessService.getBadges $scope.consId
       .then (response) ->
         prizes = response.data.prizes
+        $scope.has_bonus = response.data.has_bonus
         angular.forEach prizes, (prize) ->
           $scope.prizes.push
             id: prize.id
