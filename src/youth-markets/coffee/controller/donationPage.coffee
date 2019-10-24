@@ -92,7 +92,7 @@ angular.module 'ahaLuminateControllers'
           installmentDropdown()
 
         document.getElementById('level_installmentduration').onblur = ->
-          console.log('installment gift type blur')
+#          console.log('installment gift type blur')
           $timeout ->
             installmentDropdown()
           , 500
@@ -103,7 +103,7 @@ angular.module 'ahaLuminateControllers'
           sustainingDropdown()
 
         document.getElementById('level_flexibleduration').onblur = ->
-          console.log('flexible gift type blur')
+#          console.log('flexible gift type blur')
           $timeout ->
             sustainingDropdown()
           , 500
@@ -170,24 +170,24 @@ angular.module 'ahaLuminateControllers'
           populateBtnAmt $scope.donationInfo.levelType
 
       $scope.selectLevel = (event, type, level, amount, addFee) ->
-        console.log('selectLevel event: ' + event + ' type: ' + type + ' level: ' + level + ' amount: ' + amount + ' addFee ' + addFee)
+#        console.log('selectLevel event: ' + event + ' type: ' + type + ' level: ' + level + ' amount: ' + amount + ' addFee ' + addFee)
         if amount is undefined
           amount = $scope.donationInfo.otherAmt
-          console.log('amount ' + amount)
+#          console.log('amount ' + amount)
 
         coverFee = angular.element('#cover_fee_radio_Yes').prop 'checked'
-        console.log('coverFee ' + coverFee)
+#        console.log('coverFee ' + coverFee)
         addFee = addFee
-        console.log('addFee ' + addFee)
+#        console.log('addFee ' + addFee)
 
 #        if coverFee == true && addFee != true
 #          angular.element('#cover-fee-checkbox').prop 'checked' false
 #          angular.element('#cover-fee-checkbox').click()
 
-        console.log('type ' + type)
+#        console.log('type ' + type)
 
         levelSelect = ->
-          console.log('levelSelect')
+#          console.log('levelSelect')
 
           angular.element('.ym-donation-levels__amount .btn-toggle.active').removeClass 'active'
           angular.element('.ym-donation-levels__amount .btn-toggle.level' + level).addClass 'active'
@@ -198,29 +198,29 @@ angular.module 'ahaLuminateControllers'
           angular.element('.donation-level-container.level' + level + ' input').click()
 
           $scope.donationInfo.amount = amount
-          console.log('$scope.donationInfo.amount ' +$scope.donationInfo.amount)
+#          console.log('$scope.donationInfo.amount ' +$scope.donationInfo.amount)
           $scope.donationInfo.levelType = type
-          console.log('$scope.donationInfo.levelType ' +$scope.donationInfo.levelType)
+#          console.log('$scope.donationInfo.levelType ' +$scope.donationInfo.levelType)
           localStorage['levelType'] = type
-          console.log('localStorage[levelType] ' +localStorage['levelType'])
+#          console.log('localStorage[levelType] ' +localStorage['levelType'])
 
           populateBtnAmt type
 
           if type is 'level'
-            console.log('if type is level')
+#            console.log('if type is level')
             angular.element('.btn-enter').val ''
             $scope.donationInfo.otherAmt = ''
             if amount isnt undefined
-              console.log('amount is not undefined')
+#              console.log('amount is not undefined')
               localStorage['amount'] = amount
             localStorage['otherAmt'] = ''
 
           if $scope.donationGiftType is "installment"
 
-            console.log('$scope.donationGiftType is installment')
+#            console.log('$scope.donationGiftType is installment')
 
             if $scope.donationInfo.monthly is true
-              console.log('$scope.donationInfo.monthly is true')
+#              console.log('$scope.donationInfo.monthly is true')
 
               number = angular.element('#level_installmentduration').val()
               number = Number number.split(':')[1]
@@ -234,14 +234,14 @@ angular.module 'ahaLuminateControllers'
                 calculateInstallment(number)
               , 500
             else
-              console.log('installment is not monthly')
+#              console.log('installment is not monthly')
               $scope.donationInfo.installmentAmount = amount
               $scope.donationInfo.numberPayments = 1
 
           if $scope.donationGiftType is "flexible"
 
-            console.log('$scope.donationGiftType is flexible')
-            console.log('$scope.donationInfo.giftType  ' + $scope.donationInfo.giftType )
+#            console.log('$scope.donationGiftType is flexible')
+#            console.log('$scope.donationInfo.giftType  ' + $scope.donationInfo.giftType )
 
             if $scope.donationInfo.monthly is true
               #angular.element('#level_flexiblegift_type2').trigger 'click'
@@ -258,7 +258,7 @@ angular.module 'ahaLuminateControllers'
                 if $scope.donationGiftType is "installment"
                   document.getElementById('level_installmentduration').blur() 
                 if $scope.donationGiftType is "flexible"
-                  console.log('trying to trigger level_flexibleduration blur')
+#                  console.log('trying to trigger level_flexibleduration blur')
                   angular.element('#level_flexibleduration').blur()
 
 
@@ -266,19 +266,19 @@ angular.module 'ahaLuminateControllers'
             localStorage['sustainingAmount'] = amount
 
           if coverFee == true && addFee != true
-            console.log('is this the place?')
+#            console.log('is this the place?')
             giftAmt = calculateGiftAmt('add')
-            console.log('new gift amount: ' + giftAmt)
+#            console.log('new gift amount: ' + giftAmt)
             $scope.enterAmount giftAmt
             $scope.selectLevel null, 'other', $scope.donationInfo.otherLevelId, giftAmt, true
 
         if type is 'other'
-          console.log('type is other? ' + type)
-          console.log('donationInfo.levelType ' + $scope.donationInfo.levelType)
-          console.log('$scope.donationInfo.otherAmt ' + $scope.donationInfo.otherAmt)
+#          console.log('type is other? ' + type)
+#          console.log('donationInfo.levelType ' + $scope.donationInfo.levelType)
+#          console.log('$scope.donationInfo.otherAmt ' + $scope.donationInfo.otherAmt)
 
           if type isnt $scope.donationInfo.levelType and $scope.donationInfo.otherAmt isnt ''
-            console.log('running levelSelect')
+#            console.log('running levelSelect')
             levelSelect()
 
           if coverFee == true && addFee == true
@@ -286,23 +286,23 @@ angular.module 'ahaLuminateControllers'
               if $scope.donationGiftType is "installment"
                 document.getElementById('level_installmentduration').blur() 
               if $scope.donationGiftType is "flexible"
-                console.log('trying to trigger level_flexibleduration blur')
+#                console.log('trying to trigger level_flexibleduration blur')
                 angular.element('#level_flexibleduration').blur()
 
           if coverFee == true && addFee != true
-            console.log('is this the other place?')
+#            console.log('is this the other place?')
             giftAmt = calculateGiftAmt('add')
-            console.log('new gift amount: ' + giftAmt)
+#            console.log('new gift amount: ' + giftAmt)
             $scope.enterAmount giftAmt
             $scope.selectLevel null, 'other', $scope.donationInfo.otherLevelId, giftAmt, true
 
         else
-          console.log('else type is ' + type)
+#          console.log('else type is ' + type)
           levelSelect()
 
       $scope.enterAmount = (amount) ->
-        console.log('enter amount function')
-        console.log('amount ' + amount)
+#        console.log('enter amount function')
+#        console.log('amount ' + amount)
         angular.element('#pstep_finish span').text ''
         angular.element('#pstep_finish span').prepend ' $' + amount
         angular.element('.donation-level-user-entered input').val amount
@@ -450,16 +450,16 @@ angular.module 'ahaLuminateControllers'
         angular.element('.button-sub-container').append loading
         angular.element('#pstep_finish').addClass 'hidden'
 
-        console.log('level type ' + $scope.donationInfo.levelType)
-        console.log('other amt ' + $scope.donationInfo.otherAmt)
-        console.log('parseint other amt ' + parseInt($scope.donationInfo.otherAmt))
-        console.log('amount in the damned field ' + angular.element('#other_amount').val())
+#        console.log('level type ' + $scope.donationInfo.levelType)
+#        console.log('other amt ' + $scope.donationInfo.otherAmt)
+#        console.log('parseint other amt ' + parseInt($scope.donationInfo.otherAmt))
+#        console.log('amount in the damned field ' + angular.element('#other_amount').val())
 
         if $scope.donationInfo.levelType is 'other' || $scope.donationInfo.levelType is 'addFee'
-          console.log('level type is other or addFee')
+#          console.log('level type is other or addFee')
           if $scope.donationInfo.otherAmt is undefined or !(parseInt($scope.donationInfo.otherAmt) >= 10)
-            console.log('otheramt ' + $scope.donationInfo.otherAmt)
-            console.log('parseint otheramt ' + parseInt($scope.donationInfo.otherAmt))
+#            console.log('otheramt ' + $scope.donationInfo.otherAmt)
+#            console.log('parseint otheramt ' + parseInt($scope.donationInfo.otherAmt))
             e.preventDefault()
             jQuery('html, body').animate
               scrollTop: jQuery('a[name="donationLevels"]').offset().top
@@ -469,7 +469,7 @@ angular.module 'ahaLuminateControllers'
               $scope.$apply()
             angular.element('#pstep_finish').removeClass 'hidden'
             angular.element('.ym-loading').addClass 'hidden'
-          console.log('amount in the damned field 2 ' + angular.element('#other_amount').val())
+#          console.log('amount in the damned field 2 ' + angular.element('#other_amount').val())
       angular.element("#ProcessForm").submit $scope.submitDonationForm
 
       loggedInForm = ->
@@ -577,7 +577,7 @@ angular.module 'ahaLuminateControllers'
 
       $scope.toggleCoverFeeCheckbox = (state) ->
         angular.element('#cover_fee_radio_Yes').prop 'checked', state
-        console.log('$scope.donationGiftType ' + $scope.donationGiftType)
+#        console.log('$scope.donationGiftType ' + $scope.donationGiftType)
         if state is true
           giftAmt = calculateGiftAmt('add')
           $scope.enterAmount giftAmt
