@@ -886,3 +886,68 @@ span.lightboxWiaverClose i.fa-close {
 div#registration_options_page .indented-field-group {
   margin-left: 0;
 }
+
+/* utype styling */
+
+div#user_type_oauth_login_container a.janrainEngage.loginHref {
+	background-image: -moz-linear-gradient(top, #e51c22, #cd181d);
+	background: -webkit-gradient(linear, left top, left bottom, from(#e51c22), to(#cd181d));
+	background-image: -moz-linear-gradient(top, #e51c22, #cd181d);
+	background-image: -ms-linear-gradient(top, #E51C22 0%, #CD181D 100%);
+	border: 1px solid #b5cbd9;
+	color: #fff;
+	display: inline-block;
+	text-decoration: none;
+	padding: 8px 7px;
+	border-radius: 3px;
+    -moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	margin-top: 10px;
+}
+div#user_type_oauth_login_container a.janrainEngage.loginHref div.loginLinks {
+	display: none;
+}
+.janrain-provider150-amazon {
+	display: none;
+}
+div.required-indicator-legend {
+	text-align: left;
+	padding-left: 0;
+}
+#user_type_login_login_container div.input-container {
+	width: auto;
+}
+#user_type_login_login_button {
+	vertical-align: bottom;
+}
+#fr_new_user_container, #fr_responsive_social_login_container {
+	display: none;
+}
+#user_type_login_email_button {
+	background-image: -moz-linear-gradient(top, #e51c22, #cd181d);
+	background: -webkit-gradient(linear, left top, left bottom, from(#e51c22), to(#cd181d));
+	background-image: -moz-linear-gradient(top, #e51c22, #cd181d);
+	background-image: -ms-linear-gradient(top, #E51C22 0%, #CD181D 100%);
+	border: 1px solid #b5cbd9;
+	color: #fff;
+}
+#facebook_login_logo, #amazon_login_logo {
+	height: 43px;
+	vertical-align: bottom;
+}
+
+@media (max-width: 1199px) {
+	div#user_type_oauth_login_container {
+		float: none;
+	}
+}
+@media (max-width: 991px) {
+	.mobile div#user_type_oauth_login_container {
+		width: 236px;
+	}
+}
+@media (max-width: 899px) {
+	.mobile div#user_type_new_participant_registration_container, .mobile div#user_type_login_container {
+		clear: left;
+	}
+}
