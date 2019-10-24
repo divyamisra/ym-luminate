@@ -951,3 +951,30 @@ div.required-indicator-legend {
 		clear: left;
 	}
 }
+
+/* registration - start or find a team */
+ div#team_find_search_results_container div.list-component-cell-column-join-link a {
+     display: inline-block;
+     border: 1px solid #b5cbd9 !important;
+     background-color: #d4e8f3 !important;
+     background-image: -moz-linear-gradient(top, #e51c22, #cd181d) !important;
+     background: -webkit-gradient(linear, left top, left bottom, from(#e51c22), to(#cd181d));
+     background-image: -ms-linear-gradient(top, #E51C22 0%, #CD181D 100%);
+     color: #fff !important;
+     text-align: center;
+     font-weight: bold;
+}
+ #team_find_page div.list-component-row {
+     border-radius: 1px !important;
+     background-image: -moz-linear-gradient(top, #ffffff, #fff) !important;
+     background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#fff));
+     background-image: -ms-linear-gradient(top, #ffffff 0%, #fff 100%);
+     border-top: 1px solid #e0e0e0 !important;
+}
+ #find_participant div.list-component-row {
+     border-radius: 1px !important;
+     background-image: -moz-linear-gradient(top, #ffffff, #fff) !important;
+     background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#fff));
+     background-image: -ms-linear-gradient(top, #ffffff 0%, #fff 100%);
+     border-top: 1px solid #e0e0e0 !important;
+}
