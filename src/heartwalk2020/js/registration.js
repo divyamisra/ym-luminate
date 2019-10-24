@@ -468,7 +468,7 @@
             jQuery('.list-component-row.list-row').each(function() {
                 var join_link = jQuery(this).find('.list-component-cell-column-team-name a').attr('href');
                 jQuery(this).find('.list-component-cell-column-team-name a').contents().unwrap();
-                jQuery(this).find('.list-component-cell-column-join-link .list-component-cell-data-text a').after('<a href="' + join_link + '" style="background:white;background-color:white !important;border:2px solid #cd181d!important;margin:5px auto 0;color:#cd181d!important;display:block;width:132px" target="_blank">View</a>');
+                jQuery(this).find('.list-component-cell-column-join-link .list-component-cell-data-text a').after('<a href="' + join_link + '" style="background:white;background-color:white !important;border:2px solid #cd181d!important;margin:5px auto 0;display:block;width:132px" target="_blank">View</a>');
             });
             //jQuery('.list-component-cell-column-join-link .list-component-cell-data-text a').css('display','block');
         }
