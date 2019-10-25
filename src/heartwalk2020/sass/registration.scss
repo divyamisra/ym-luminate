@@ -254,7 +254,9 @@ div#user_type_login_email_container #user_type_login_email_button {
     display: block;
     margin: auto;
 }
-
+#user_type_section_container {
+	display:none;
+}
 /*** ptype  ***/
 
 .registration-page-container .section-header-text {
