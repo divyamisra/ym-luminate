@@ -248,65 +248,6 @@
 
             $('.janrainEngage').html('<div class="btn-social-login btn-facebook"><i class="fab fa-facebook-f mr-2"></i> Create with Facebook</div><div class="btn-social-login btn-amazon"><i class="fab fa-amazon mr-2"></i> Create with Amazon</div>');
 
-            $('#user_type_page #utype-yes').click(function(){
-                $('#user_type_page #user_type_section_container').show();
-                $('#user_type_page #f2fLoginForm, #user_type_page .show-login-container-2').show();
-                $('#user_type_page #utype-login, #user_type_page .show-login-container').show();
-                $('#user_type_page #utype-register, #utype-have-we-met, #user_type_page #f2fSendUserNameForm, #user_type_page .show-login-container-2').hide();
-                $('#user_type_page #user_type_login_container').appendTo('#user_type_page #utype-login-container').show();
-                $('#USERNAME_1').focus();
-
-            });
-            $('#user_type_user_name_input_container label[for="USERNAME_1"]').after('<a class="show-not-sure" href="javascript:void(0);">Not sure?</a>');
-            $('#user_type_page .show-not-sure').click(function(){
-                console.log('hello');
-                $('#user_type_page #user_type_login_email_container').removeClass('hidden');
-                $('#utype-login-container #f2fLoginForm, #user_type_page .show-not-sure').hide();
-                $('#user_type_page #f2fSendUserNameForm').show();
-            });
-
-            $('#user_type_page .show-login-email-input').click(function(){
-                $('#user_type_page #f2fSendUserNameForm, #user_type_page .show-login-container').show();
-                $('#user_type_page #f2fLoginForm, #utype-have-we-met, #user_type_page .show-login-container-2').hide();
-                $('#user_type_page #user_type_login_email_container').removeClass('hidden');
-            });
-
-            //You came from personal/team page
-            console.log('You came from personal/team page');
-            $('#user_type_page #utype-no').click(function(){
-                $('#user_type_page #utype-register').hide();
-                $('#f2fRegPartType #next_step').click();
-            });
-
-            if($('#user_type_page .ErrorMessage').length > 0){
-                $('#user_type_page #utype-login, #user_type_page #f2fLoginForm').show();
-                $('#user_type_page #utype-register, #utype-have-we-met, #user_type_page .show-login-container, #user_type_page .updated-tech').hide();
-                $('#user_type_page #user_type_login_container').appendTo('#user_type_page #utype-login-container').show();
-            }
-            if ($('#user_type_page .ErrorMessage:contains("Email is a required field.")').length > 0 || $('#user_type_page .ErrorMessage:contains("The email address you provided is invalid.")').length > 0){
-                $('#user_type_page #utype-login, #user_type_page .show-login-container').show();
-                $('#user_type_page #utype-register, #utype-have-we-met, #user_type_page #f2fLoginForm, #user_type_page .show-login-container-2').hide();
-                $('#user_type_page #user_type_login_container').appendTo('#user_type_page #utype-login-container').show();
-            }
-            if($('#user_type_page .SuccessMessage:contains("Your user name was sent to your email address.")').length > 0){
-                $('#user_type_page #utype-login').show();
-                $('.SuccessMessage').clone().insertBefore('#f2fLoginForm');
-                $('#user_type_page #utype-register, #utype-have-we-met, #user_type_page .show-login-container, #utype-login h4, #user_type_page .updated-tech, #user_type_page .show-login-container-2 .show-login-email-input, #f2fSendUserNameForm .SuccessMessage').hide();
-                $('#user_type_page #user_type_login_container').appendTo('#user_type_page #utype-login-container').show();
-                $('#user_type_page #f2fLoginForm, #user_type_page .show-login-container-2').show();
-            }
-            $('#user_type_page .show-yes-no').click(function(){
-                $('#user_type_page #utype-register, #user_type_page #utype-login').hide();
-                $('#utype-have-we-met').show();
-                $('#user_type_page #user_type_login_email_container').removeClass('hidden');
-                $('#user_type_page #user_type_section_container').hide();
-                //$('#utype-yes').removeClass('no-back');
-                //$('#utype-yes').addClass('yes-back');
-            });
-            $('#user_type_page #user_type_email_login_info_link').html('Help! I can\'t remember my log in information.');
-            $('#user_type_page #user_type_login_email_button').html('RESET PASSWORD');
-            $('#user_type_page label[for="email_2"]').html('EMAIL');
-            $('#user_type_page #user_type_login_login_button span').html('LOGIN');
         }
         if ($('#reg_payment_page').length > 0) {
             $('.custom-progress-bar').hide();
