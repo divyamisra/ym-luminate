@@ -129,7 +129,10 @@ a.show-not-sure {
 #part_type_instruction_sub_header, .progress-bar-container, .part-type-name-value-separator, .part-type-fee-text {
     display: none;
 }
-#team_find_registration_type_container, .reg-summary-participant-info-container {
+#team_find_registration_type_container {
+    display: none;
+}
+.reg-summary-participant-info-container {
     display: block;
 }
 .reg-summary-name-info span.contact-info-name {
