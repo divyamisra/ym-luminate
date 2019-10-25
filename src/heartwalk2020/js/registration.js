@@ -260,7 +260,166 @@
         }
         //Form a team / join a team
         if ($('#team_find_page').length > 0) {
+            var evID = $('#FriendraiserFind input[name="fr_id"]').val();
             $('.custom-progress-bar').hide();
+            // BEGIN TFIND
+              $('form[name=FriendraiserFind]').attr('hidden', true);
+
+              if (regType === 'startTeam') {
+                var trCompanyCount = $('#fr_co_list > option').length;
+                if (trCompanyCount < 2) {
+                  // no companies associated with this TR yet. Hide the team_find_new_team_company column
+                  $('#team_find_new_team_company').hide();
+                  $('#team_find_new_team_attributes').addClass('no-companies');
+                  $('#team_find_new_team_name, #team_find_new_fundraising_goal').addClass('col-md-6');
+                }
+              } else if (regType === 'joinTeam') {
+                if ($('#team_find_existing').length > 0) {
+
+                  // BEGIN new team find form
+                  // $('.js__join-team-container').html($('.js__reg-team-search-form'));
+                  $('.js__reg-team-search-form').on('submit', function (e) {
+                    e.preventDefault();
+                    $('.alert').hide();
+
+                    $('.list').html('');
+                    // $('.js__search-results-container').html('');
+                    var teamName = $('#regTeamName').val();
+                    var firstName = $('#regTeamMemberFirst').val();
+                    var lastName = $('#regTeamMemberLast').val();
+                    var companyId = $('#regCompanyId').val();
+                    // cd.getTeams(teamName, searchType);
+                    cd.getTeams(teamName, 'registration', false, firstName, lastName, companyId);
+
+                  });
+
+                  cd.getCompanyList = function (frId, companyId) {
+                    // $('.js__loading').show();
+
+                    luminateExtend.api({
+                      api: 'teamraiser',
+                      data: 'method=getCompanyList' +
+                        '&fr_id=' + frId +
+                        '&list_page_size=499' +
+                        '&list_page_offset=0' +
+                        '&response_format=json' +
+                        '&list_sort_column=company_name' +
+                        '&list_ascending=true',
+                      callback: {
+                        success: function (response) {
+                          // $('.js__loading').hide();
+
+
+                          var companyList = '',
+                            nationals = (response.getCompanyListResponse.nationalItem ? luminateExtend.utils.ensureArray(response.getCompanyListResponse.nationalItem) : []),
+                            regionals = (response.getCompanyListResponse.regionalItem ? luminateExtend.utils.ensureArray(response.getCompanyListResponse.regionalItem) : []),
+                            companies = (response.getCompanyListResponse.companyItem ? luminateExtend.utils.ensureArray(response.getCompanyListResponse.companyItem) : []);
+
+                          var sortCompanies = function (a, b) {
+                            var A = a.companyName.toLowerCase();
+                            var B = b.companyName.toLowerCase();
+                            if (A < B) {
+                              return -1;
+                            } else if (A > B) {
+                              return 1;
+                            } else {
+                              return 0;
+                            }
+                          };
+
+                          nationals.sort(sortCompanies);
+                          regionals.sort(sortCompanies);
+                          companies.sort(sortCompanies);
+
+                          if (nationals.length > 0) {
+                            companyList += '<optgroup label="National Companies">';
+                          }
+                          $.each(nationals, function () {
+                            if (this.companyName.indexOf('(sponsor)') != -1) {
+                              this.companyName = this.companyName.split('(sponsor)')[0];
+                            }
+                            companyList += '<option value="' + this.companyId + '">' + this.companyName + '</option>';
+                          });
+                          if (nationals.length > 0) {
+                            companyList += '</optgroup>';
+                          }
+                          if (regionals.length > 0) {
+                            companyList += '<optgroup label="Regional Companies">';
+                          }
+                          $.each(regionals, function () {
+                            if (this.companyName.indexOf('(sponsor)') != -1) {
+                              this.companyName = this.companyName.split('(sponsor)')[0];
+                            }
+                            companyList += '<option value="' + this.companyId + '">' + this.companyName + '</option>';
+                          });
+                          if (regionals.length > 0) {
+                            companyList += '</optgroup>';
+                          }
+                          if (companies.length > 0) {
+                            companyList += '<optgroup label="Local Companies, Schools and Organizations">';
+                          }
+                          $.each(companies, function () {
+                            if (this.companyName.indexOf('(sponsor)') != -1) {
+                              this.companyName = this.companyName.split('(sponsor)')[0];
+                            }
+                            companyList += '<option value="' + this.companyId + '">' + this.companyName + '</option>';
+                          });
+                          if (companies.length > 0) {
+                            companyList += '</optgroup>';
+                          }
+                          $('.js__reg-company-name').append(companyList);
+
+
+                        },
+                        error: function (response) {
+                          // $('.js__loading').hide();
+                          $('.js__error-team-search').text(response.errorResponse.message).show();
+                        }
+                      }
+                    });
+                  };
+
+                  cd.getCompanyList(evID);
+                  // END new team find form
+
+
+                  // $('#team_find_search_team_name_required').remove();
+                  // On JOIN TEAM step - rename label
+                  $('#team_label_container').text('Squad name:');
+                  $('#team_find_existing').prepend('<div class="text-center w-100"><p>Enter squad name and/or pick company from drop down</p></div>');
+                  $('#company_label_container').text('Search by company:');
+                  $('form[name=FriendraiserFind]').removeAttr('hidden');
+
+                  // append cons ID to the join team button
+                  if ($('#team_find_search_results_container').length > 0) {
+
+                    var teamRows = $('.list-component-row');
+                    $.each(teamRows, function (i, teamRow) {
+                      var captainConsId, origJoinTeamUrl, modJoinTeamUrl;
+                      var self = $(this);
+                      var origTeamNameUrl = $(this).find('.list-component-cell-column-team-name a').attr('href');
+                      var teamId = getURLParameter(origTeamNameUrl, 'team_id');
+
+                      luminateExtend.api({
+                        api: 'teamraiser',
+                        data: 'method=getTeamCaptains&response_format=json&fr_id=' + evID + '&team_id=' + teamId,
+                        callback: {
+                          success: function success(response) {
+                            var captainArray = luminateExtend.utils.ensureArray(response.getTeamCaptainsResponse.captain);
+                            var joinTeamName = 'Join ' + captainArray[0].teamName;
+                            captainConsId = captainArray[0].consId;
+                            origJoinTeamUrl = $(self).find('.list-component-cell-column-join-link a').attr('href');
+                            modJoinTeamUrl = origJoinTeamUrl + '&s_captainConsId=' + captainConsId;
+
+                            $(self).find('.list-component-cell-column-join-link a').attr('href', modJoinTeamUrl).attr('aria-label', joinTeamName);
+                          },
+                          error: function error(response) {}
+                        }
+                      });
+                    });
+                  }
+                }
+              }
         }
         if ($('#fr_team_goal').length <= 0) {
             $('#team_find_section_footer').hide();
