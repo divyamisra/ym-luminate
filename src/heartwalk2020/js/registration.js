@@ -263,8 +263,6 @@
             var evID = $('#FriendraiserFind input[name="fr_id"]').val();
             $('.custom-progress-bar').hide();
             // BEGIN TFIND
-              $('form[name=FriendraiserFind]').attr('hidden', true);
-
               if (regType === 'startTeam') {
                 var trCompanyCount = $('#fr_co_list > option').length;
                 if (trCompanyCount < 2) {
@@ -274,6 +272,7 @@
                   $('#team_find_new_team_name, #team_find_new_fundraising_goal').addClass('col-md-6');
                 }
               } else if (regType === 'joinTeam') {
+                $('form[name=FriendraiserFind]').attr('hidden', true);
                 if ($('#team_find_existing').length > 0) {
 
                   // BEGIN new team find form
