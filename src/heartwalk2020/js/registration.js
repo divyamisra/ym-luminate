@@ -11,11 +11,7 @@
 
         if ($('#user_type_page').length > 0) {
             $('.custom-progress-bar').hide();
-            $('#utype-have-we-met h1').append('<span class="fas fa-question utype-helper"></span>');
-            $('.utype-helper').append("<div class='utype-helper-popup hidden'>If you've ever participated in Heart Walk, CycleNation or Kids Heart Challenge, choose yes.</div>");
-            $('.utype-helper').mouseover(function(){jQuery('.utype-helper-popup').removeClass('hidden');});
-            $('.utype-helper').mouseout(function(){jQuery('.utype-helper-popup').addClass('hidden');});
-            
+
             console.log('doc ready fired');
             console.log('Current Application ID: 27');
             var evID = $('#f2fSendUserNameForm input[name="fr_id"]').val();
@@ -26,13 +22,232 @@
             console.log('evid 3 = '+evID3);
 
             //Uptype customization
-            if($('#user_type_page').length > 0){
-                $('.custom-progress-bar').hide();
-            }
             /*$('#user_type_page #utype-login .show-login').click(function(){
                 $('#user_type_page #f2fLoginForm, #user_type_page .show-login-container-2').show();
                 $('#user_type_page #f2fSendUserNameForm, #user_type_page .show-login-container, #user_type_page .error-show-login-container, #user_type_page .updated-tech').hide();
             });*/
+
+            cd.consLogin = function (userName, password) {
+                luminateExtend.api({
+                  api: 'cons',
+                  form: '.js__login-form',
+                  requestType: 'POST',
+                  data: 'method=login&user_name=' +
+                    userName +
+                    '&password=' +
+                    password +
+                    '&source=' +
+                    trLoginSourceCode +
+                    '&sub_source=' +
+                    trLoginSubSourceCode +
+                    '&send_user_name=true',
+                  useHTTPS: true,
+                  requiresAuth: true,
+                  callback: {
+                    success: function (response) {
+                      console.log(
+                        'login success. show reg options to proceed to next step.'
+                      );
+                      cd.logInteraction(trLoginInteractionID, evID);
+                      window.location = window.location.href + '&s_regType=';
+                    },
+                    error: function (response) {
+                      if (response.errorResponse.code === '22') {
+                        /* invalid email */
+                        $('.js__login-error-message').html(
+                          'Oops! You entered an invalid email address.'
+                        );
+                      } else if (response.errorResponse.code === '202') {
+                        /* invalid email */
+                        $('.js__login-error-message').html(
+                          'You have entered an invalid username or password. Please re-enter your credentials below.'
+                        );
+                      } else {
+                        $('.js__login-error-message').html(
+                          response.errorResponse.message
+                        );
+                      }
+                      $('.js__login-error-container').removeClass('d-none');
+                    }
+                  }
+                });
+            };
+
+            cd.consSignup = function (userName, password, email) {
+                luminateExtend.api({
+                  api: 'cons',
+                  form: '.js__signup-form',
+                  data: 'method=create&user_name=' + userName + '&password=' + password + '&primary_email=' + email + '&source=' + trSignupSourceCode + '&sub_source=' + trSignupSubSourceCode + '&teamraiser_registration=true',
+                  useHTTPS: true,
+                  requestType: 'POST',
+                  requiresAuth: true,
+                  callback: {
+                    success: function (response) {
+                      console.log('signup success');
+                      cd.logInteraction(trRegInteractionID, evID);
+                      var domainName = window.location.hostname,
+                        domainNameParts = domainName.split('.');
+                      if (domainNameParts.length > 2) {
+                        domainName = domainNameParts[domainNameParts.length - 2] + '.' + domainNameParts[domainNameParts.length - 1];
+                      }
+                      domainName = '.' + domainName;
+                      document.cookie = 'gtm_tr_reg_page_success_' + evID + '=true; domain=' + domainName + '; path=/';
+                      window.location = window.location.href + '&s_regType=';
+                    },
+                    error: function (response) {
+                      console.log('signup error: ' + JSON.stringify(response));
+                      if (response.errorResponse.code === '11') {
+                        /* email already exists */
+                        cd.consRetrieveLogin(email, false);
+                        $('.js__signup-error-message').html('Oops! An account already exists with matching information. A password reset has been sent to ' + email + '.');
+                      } else if (response.errorResponse.code === '22') {
+                        $('.js__signup-error-message').html("One or more attributes failed validation: \"Biographical Information/User Name\" Invalid characters in User Name (valid characters are letters, digits, '-', '_', '@', '.', '%', and ':')");
+
+                      } else {
+                        $('.js__signup-error-message').html(response.errorResponse.message);
+                      }
+                      $('.js__signup-error-container').removeClass('d-none');
+                    }
+                  }
+                });
+            };
+
+            cd.consRetrieveLogin = function (accountToRetrieve, displayMsg) {
+                luminateExtend.api({
+                  api: 'cons',
+                  form: '.js__retrieve-login-form',
+                  requestType: 'POST',
+                  data: 'method=login&send_user_name=true&email=' + accountToRetrieve,
+                  useHTTPS: true,
+                  requiresAuth: true,
+                  callback: {
+                    success: function (response) {
+                      if (displayMsg === true) {
+                        console.log('account retrieval success. show log in page again.');
+                        $('.js__retrieve-login-container').addClass('d-none');
+                        $('.js__login-container').removeClass('d-none');
+                        $('.js__login-success-message').html('A password reset has been sent to ' + accountToRetrieve + '.');
+
+                        $('.js__login-success-container').removeClass('d-none');
+                      }
+
+                    },
+                    error: function (response) {
+                      if (displayMsg === true) {
+                        console.log('account retrieval error: ' + JSON.stringify(response));
+                        $('.js__retrieve-login-error-message').html(response.errorResponse.message);
+                        $('.js__retrieve-login-error-container').removeClass('d-none');
+                      }
+                    }
+                  }
+                });
+            };
+
+            var parsleyOptions = {
+                successClass: 'has-success',
+                errorClass: 'has-error',
+                classHandler: function (_el) {
+                  return _el.$element.closest('.form-group');
+                }
+            };
+
+            // add front end validation
+            $('.js__login-form').parsley(parsleyOptions);
+            $('.js__signup-form').parsley(parsleyOptions);
+            $('.js__retrieve-login-form').parsley(parsleyOptions);
+
+            cd.resetValidation = function () {
+                $('.js__login-form').parsley().reset();
+            }
+            // manage form submissions
+            $('.js__login-form').on('submit', function (e) {
+                e.preventDefault();
+                var form = $(this);
+                form.parsley().validate();
+                if (form.parsley().isValid()) {
+                  var consUsername = $('#loginUsername').val();
+                  var consPassword = $('#loginPassword').val();
+                  cd.consLogin(consUsername, consPassword);
+                  cd.resetValidation();
+                } else {
+                  $('.js__signup-error-message').html('Please fix the errors below.');
+                  $('.js__signup-error-container').removeClass('d-none');
+                }
+            });
+
+            $('.js__signup-form').on('submit', function (e) {
+                e.preventDefault();
+                var form = $(this);
+                form.parsley().validate();
+                if (form.parsley().isValid()) {
+                  var consUsername = $('#signupUsername').val();
+                  var consPassword = $('#signupPassword').val();
+                  var consEmail = $('#signupEmail').val();
+                  cd.consSignup(consUsername, consPassword, consEmail);
+                  cd.resetValidation();
+                } else {
+                  $('.js__signup-error-message').html('Please fix the errors below.');
+                  $('.js__signup-error-container').removeClass('d-none');
+                }
+            });
+
+            $('.js__retrieve-login-form').on('submit', function (e) {
+                e.preventDefault();
+                var form = $(this);
+                form.parsley().validate();
+                if (form.parsley().isValid()) {
+                  var consEmail = $('#retrieveLoginEmail').val();
+                  cd.consRetrieveLogin(consEmail, true);
+                  cd.resetValidation();
+                } else {
+                  $('.js__retrieve-login-error-message').html('Please fix the errors below.');
+                  $('.js__retrieve-login-error-container').removeClass('d-none');
+                }
+            });
+
+            // show login retrieval form
+            $('.js__show-retrieve-login').on('click', function (e) {
+                e.preventDefault();
+                cd.resetValidation();
+                $('.js__login-container').addClass('d-none');
+                $('.js__retrieve-login-container').removeClass('d-none');
+            });
+
+            // show login form
+            $('.js__show-login').on('click', function (e) {
+                e.preventDefault();
+                cd.resetValidation();
+                $('.js__retrieve-login-container').addClass('d-none');
+                $('.js__signup-container').addClass('d-none');
+                $('.js__login-container').removeClass('d-none');
+            });
+            // show signup form
+            $('.js__show-signup').on('click', function (e) {
+                e.preventDefault();
+                cd.resetValidation();
+                $('.js__retrieve-login-container').addClass('d-none');
+                $('.js__login-container').addClass('d-none');
+                $('.js__signup-container').removeClass('d-none');
+            });
+
+            $('.js__existing-record').on('click', function (e) {
+                // existing record. show log in form
+                $('.js__have-we-met-container').addClass('d-none');
+                $('.js__login-container').removeClass('d-none');
+            });
+            $('.js__show-have-we-met').on('click', function (e) {
+                // existing record. show log in form
+                e.preventDefault();
+                $('.js__login-container').addClass('d-none');
+                $('.js__have-we-met-container').removeClass('d-none');
+            });
+            $('.js__new-record').on('click', function (e) {
+            // new participant. continue to tfind step
+                $('#f2fRegPartType #next_step').click();
+            });
+
+            $('.janrainEngage').html('<div class="btn-social-login btn-facebook"><i class="fab fa-facebook-f mr-2"></i> Create with Facebook</div><div class="btn-social-login btn-amazon"><i class="fab fa-amazon mr-2"></i> Create with Amazon</div>');
+
             $('#user_type_page #utype-yes').click(function(){
                 $('#user_type_page #user_type_section_container').show();
                 $('#user_type_page #f2fLoginForm, #user_type_page .show-login-container-2').show();
