@@ -406,13 +406,6 @@
                     // END new team find form
 
 
-                    // $('#team_find_search_team_name_required').remove();
-                    // On JOIN TEAM step - rename label
-                    $('#team_label_container').text('Squad name:');
-                    $('#team_find_existing').prepend('<div class="text-center w-100"><p>Enter team name and/or pick company from drop down</p></div>');
-                    $('#company_label_container').text('Search by company:');
-                    $('form[name=FriendraiserFind]').removeAttr('hidden');
-
                     // append cons ID to the join team button
                     if ($('#team_find_search_results_container').length > 0) {
 
