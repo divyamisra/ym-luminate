@@ -264,15 +264,13 @@
             $('.custom-progress-bar').hide();
             // BEGIN TFIND
 
-            if ($('#team_find_page').length > 0 || $('body').is('.pg_cn_register')) {
+            if ($('#team_find_page').length > 0) {
               // BEGIN tfind customizations
               $('form[name=FriendraiserFind]').attr('hidden', true);
 
               if (regType === 'startTeam') {
-                if (eventType2 === 'Road' || eventType2 === 'Executive Challenge' || eventType2 === 'StationaryV2') {
-                  $('form[name=FriendraiserFind]').removeAttr('hidden');
-                  $('#team_find_section_body, #team_find_section_header').show();
-                }
+                $('form[name=FriendraiserFind]').removeAttr('hidden');
+                $('#team_find_section_body, #team_find_section_header').show();
                 var trCompanyCount = $('#fr_co_list > option').length;
                 if (trCompanyCount < 2) {
                   // no companies associated with this TR yet. Hide the team_find_new_team_company column
@@ -430,29 +428,14 @@
 
 
               // rebuild LO's create team form
-              var goalPerBike = 1000;
-              var defaultNumBikeText = 'Number of Bikes';
-              var numBikeSelector = $('.js__numbike-selector');
               var dynTeamGoal = $('.js__generated-team-goal');
               var currentTeamGoal, currentTeamGoalFormatted, minTeamGoalMsg;
               var loTeamGoal = $('#fr_team_goal');
               var promoCode = ($('body').data('promocode') !== undefined ? $('body').data('promocode') : "");
 
               // tfind
-
-              // begin StationaryV2 event conditional
-              if (eventType2 === 'StationaryV2') {
-                var loDefaultGoal = $('#fr_team_goal').val();
-                if (loDefaultGoal) {
-                  goalPerBike = Number(loDefaultGoal.replace(/[^0-9\.-]+/g, ""));
-                }
-
                 // check to see if Start a Team and Breakaway ptypes are available
-
                 // if Start a Team and Breakaway ptypes are not available, remove those registration options and display a sponsor code field on the reg options step
-
-
-
                 cd.getParticipationTypes = function (promo) {
                   $('.js__reg-type-container .alert').addClass('hidden');
                   var isStartTeamAvailable = false;
@@ -501,12 +484,6 @@
                                   // Promo code ptypes are available
                                   promoCodePtypesAvailable = true;
                                 }
-                              } else if (ptype.name.indexOf('Breakaway') > -1) {
-                                if (ptype.participationTypeRegistrationLimit.limitReached === 'false') {
-                                  isBreakawayAvailable = true;
-                                  // Promo code ptypes are available
-                                  promoCodePtypesAvailable = true;
-                                }
                               }
                               validPromo = true;
 
@@ -530,10 +507,6 @@
                           } else {
                             $('.js__reg-options-promo-container, .js__promo-code-sold-out').removeClass('hidden');
                           }
-                          if (isBreakawayAvailable === true) {
-                            $('.breakaway-container').removeClass('hidden');
-                          }
-
                           if (promoCodePtypesAvailable) {
                             console.log('promoCode ptypes are available and loaded');
                             // add promo code to reg options links in case they are entering it for the first time on this step
@@ -590,11 +563,6 @@
 
               } // end StationaryV2 event conditional
 
-              // only show the VIP code field if a promo code is not already in session
-              if (!promoCode) {
-                $('#team_find_new_company_selection_container').append('<div id="team_sponsor_code" class="input-container"><div class="form-group"><label for="sponsorCode">Do you have a VIP Code?</label><input name="s_promoCode"type="text"id="sponsorCode"class="form-control" value=""></div></div>');
-              }
-
               var numTeamResults = $('#team_find_search_results_container .list-component-row').length;
 
               if (numTeamResults < 20) {
@@ -608,7 +576,6 @@
                 .prepend('<div class="order-2 order-sm-1 col-sm-4 col-md-3 col-8 offset-2 offset-sm-0"><a href="TRR/?pg=tfind&amp;fr_id=' + evID + '" class="button btn-secondary btn-block">Back</a></div>')
 
               // Add minimum validation to LOs team goal input
-              if (eventType2 === 'StationaryV2') {
                 $(loTeamGoal)
                 .val(goalPerBike)
                 .addClass('pl-0 border-left-0')
@@ -623,26 +590,6 @@
                   "data-parsley-type": "number",
                   "data-parsley-min-message": minTeamGoalMsg
                 });
-              } else {
-                var minTeamGoal = $(loTeamGoal).val();
-                minTeamGoal = Number(minTeamGoal.replace(/[^0-9\.-]+/g, ""));
-
-                $(loTeamGoal)
-                .val(minTeamGoal)
-                .addClass('pl-0 border-left-0')
-                .wrap('<div class="input-group" />')
-                .before('<div class="input-group-prepend"><div class="input-group-text py-0 px-1 border-right-0 bg-white">$</div></div>')
-                .attr({
-                  "min": minTeamGoal,
-                  "step": "100",
-                  "aria-label": "Goal amount (to the nearest dollar)",
-                  "data-parsley-validation-threshold": "1",
-                  "data-parsley-trigger": "keyup",
-                  "data-parsley-type": "number",
-                  "data-parsley-min-message": minTeamGoalMsg
-                });
-              }
-
 
               $('#team_find_new_fundraising_goal_input_hint').before('<div class="team-goal-error"></div>');
 
@@ -673,14 +620,11 @@
                   .attr({
                     "data-parsley-min-message": minTeamGoalMsg
                   });
-                $('.js__team-bikes-container').attr('hidden', true);
                 $('form[name=FriendraiserFind]').removeAttr('hidden');
                 cd.calculateRegProgress();
 
                 // add parsley validation to the form AFTER all of the elements have been moved around/created. Since minimum team goal is being set by the bikes step, we really shouldn't validate this until we update that min attribute and the user clicks 'next'
-                if (eventType2 === 'Stationary') {
-                  $('#team_find_page > form').parsley(teamFindParsleyConfig);
-                }
+                $('#team_find_page > form').parsley(teamFindParsleyConfig);
               });
 
               // if team name submission fails, show system default error messages instead of going back to the bike number selector
@@ -689,17 +633,7 @@
                 $('form[name=FriendraiserFind]').removeAttr('hidden');
               }
 
-              if (eventType2 === 'Road' || eventType2 === 'Executive Challenge' || eventType2 === 'StationaryV2') {
-                $('#team_find_page > form').parsley(teamFindParsleyConfig);
-              }
-
-              // append session variable setting hidden input to track number of bikes selected so same value can be automatically selected in reg info step
-              $('form[name="FriendraiserFind"]').prepend('<input type="hidden" class="js__numbikes" name="s_numBikes" value="">');
-
-              if ($('body').data('numbikes')) {
-                // If a session variable for number of bikes has already been set, prepopulate the js__numbikes input with that value so it isn't cleared out if the team create form errors out
-                $('.js__numbikes').val($('body').data('numbikes'));
-              }
+              $('#team_find_page > form').parsley(teamFindParsleyConfig);
 
               $('.dropdown-item').on('click', function (e) {
                 e.preventDefault();
@@ -722,11 +656,7 @@
                 $(joinTeamLink).attr('href', updatedJoinTeamLink);
               }
 
-              if (eventType2 === 'StationaryV2') {
-                $('#team_find_new_fundraising_goal_input_hint').text('You can increase your team\'s goal, but the amount shown above is your team\'s required fundraising minimum.');
-              } else {
-                $('#team_find_new_fundraising_goal_input_hint').text('You can increase your team\'s goal, but the amount shown above is your required fundraising minimum based off of the number of reserved bikes you selected.');
-              }
+              $('#team_find_new_fundraising_goal_input_hint').text('You can increase your team\'s goal, but the amount shown above is your team\'s required fundraising minimum.');
               $('#previous_step span').text('Back');
 
             }
