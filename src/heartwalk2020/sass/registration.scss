@@ -28,6 +28,11 @@ main {
     margin-bottom:15px;
 }
 
+#team_find_section_container .section-header,
+#team_find_section_container .section-sub-header {
+	display:none;
+}
+
 .utype-helper {
     font-size:12px;
     border:1px solid #3c3c3c; 
