@@ -288,7 +288,7 @@
 
             if (regType === 'startTeam') {
                 $('h1.ObjTitle').html("Start a Team");
-                $('section-sub-header').html("Okay, coach! It’s time to name your team and set your team’s goal.").show();
+                $('.section-sub-header').html("Okay, coach! It’s time to name your team and set your team’s goal.").show();
                 $('form[name=FriendraiserFind]').removeAttr('hidden');
                 $('#team_find_section_body, #team_find_section_header').show();
                 var trCompanyCount = $('#fr_co_list > option').length;
@@ -300,7 +300,7 @@
                 }
             } else if (regType === 'joinTeam') {
                 $('h1.ObjTitle').html("Join a Team");
-                $('section-sub-header').html("Let’s find your team! You can search using any of the following fields. If you are just searching for teams within a company, just enter the company name below.").show();
+                $('.section-sub-header').html("Let’s find your team! You can search using any of the following fields. If you are just searching for teams within a company, just enter the company name below.").show();
                 if ($('#team_find_existing').length > 0) {
 
                     // BEGIN new team find form
