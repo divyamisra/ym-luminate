@@ -5,22 +5,22 @@
         /******************/
         /* SEARCH SCRIPTS */
         /******************/
-        var eventType = 'Heart Walk';
-        var eventType2 = $('body').data('event-type2') ? $('body').data('event-type2') : null;
+        //var eventType = 'Heart Walk';
+        //var eventType2 = $('body').data('event-type2') ? $('body').data('event-type2') : null;
         var regType = $('body').data('reg-type') ? $('body').data('reg-type') : null;
-        var publicEventType = $('body').data('public-event-type') ? $('body').data('public-event-type') : null;
-        var viewportWidth = window.innerWidth || document.documentElement.clientWidth;
+        //var publicEventType = $('body').data('public-event-type') ? $('body').data('public-event-type') : null;
+        //var viewportWidth = window.innerWidth || document.documentElement.clientWidth;
 
 
-        var isProd = (luminateExtend.global.tablePrefix === 'heartdev' ? false : true);
-        var eventName = luminateExtend.global.eventName;
-        var srcCode = luminateExtend.global.srcCode;
-        var subSrcCode = luminateExtend.global.subSrcCode;
-        var evID = $('body').data('fr-id') ? $('body').data('fr-id') : null;
-        var consID = $('body').data('cons-id') ? $('body').data('cons-id') : null;
+        //var isProd = (luminateExtend.global.tablePrefix === 'heartdev' ? false : true);
+        //var eventName = luminateExtend.global.eventName;
+        //var srcCode = luminateExtend.global.srcCode;
+        //var subSrcCode = luminateExtend.global.subSrcCode;
+        //var evID = $('body').data('fr-id') ? $('body').data('fr-id') : null;
+        //var consID = $('body').data('cons-id') ? $('body').data('cons-id') : null;
 
-        var currentUrl = window.location.href;
-        var searchType = getURLParameter(currentUrl, 'search_type');
+        //var currentUrl = window.location.href;
+        //var searchType = getURLParameter(currentUrl, 'search_type');
 
         // Heart Walk 2020 Registration JS
         var fr_id = $('input[name=fr_id]').val();
