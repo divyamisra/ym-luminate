@@ -583,11 +583,6 @@
 
             } // end StationaryV2 event conditional
 
-            // only show the VIP code field if a promo code is not already in session
-            if (!promoCode) {
-                $('#team_find_new_company_selection_container').append('<div id="team_sponsor_code" class="input-container"><div class="form-group"><label for="sponsorCode">Do you have a VIP Code?</label><input name="s_promoCode"type="text"id="sponsorCode"class="form-control" value=""></div></div>');
-            }
-
             var numTeamResults = $('#team_find_search_results_container .list-component-row').length;
 
             if (numTeamResults < 20) {
