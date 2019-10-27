@@ -299,6 +299,8 @@
                     $('#team_find_new_team_name, #team_find_new_fundraising_goal').addClass('col-md-6');
                 }
             } else if (regType === 'joinTeam') {
+                $('h1.ObjTitle').html("Join a Team");
+                $('section-sub-header').html("Let’s find your team! You can search using any of the following fields. If you are just searching for teams within a company, just enter the company name below.").show();
                 if ($('#team_find_existing').length > 0) {
 
                     // BEGIN new team find form
