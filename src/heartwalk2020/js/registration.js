@@ -287,6 +287,8 @@
             $('form[name=FriendraiserFind]').attr('hidden', true);
 
             if (regType === 'startTeam') {
+                $('h1.ObjTitle').html("Start a Team");
+                $('section-sub-header').html("Okay, coach! It’s time to name your team and set your team’s goal.").show();
                 $('form[name=FriendraiserFind]').removeAttr('hidden');
                 $('#team_find_section_body, #team_find_section_header').show();
                 var trCompanyCount = $('#fr_co_list > option').length;
