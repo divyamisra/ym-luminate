@@ -264,8 +264,6 @@
             $('.custom-progress-bar').hide();
             // BEGIN TFIND
 
-            if ($('#team_find_page').length > 0) {
-              // BEGIN tfind customizations
               $('form[name=FriendraiserFind]').attr('hidden', true);
 
               if (regType === 'startTeam') {
@@ -497,10 +495,7 @@
                                 validPromo = false;
                               }
                             }
-                            // }
-
                           });
-
 
                           if (isStartTeamAvailable === true) {
                             $('.start-team-container').removeClass('hidden');
@@ -574,22 +569,6 @@
 
               $('#team_find_section_footer')
                 .prepend('<div class="order-2 order-sm-1 col-sm-4 col-md-3 col-8 offset-2 offset-sm-0"><a href="TRR/?pg=tfind&amp;fr_id=' + evID + '" class="button btn-secondary btn-block">Back</a></div>')
-
-              // Add minimum validation to LOs team goal input
-                $(loTeamGoal)
-                .val(goalPerBike)
-                .addClass('pl-0 border-left-0')
-                .wrap('<div class="input-group" />')
-                .before('<div class="input-group-prepend"><div class="input-group-text py-0 px-1 border-right-0 bg-white">$</div></div>')
-                .attr({
-                  "min": goalPerBike,
-                  "step": "100",
-                  "aria-label": "Goal amount (to the nearest dollar)",
-                  "data-parsley-validation-threshold": "1",
-                  "data-parsley-trigger": "keyup",
-                  "data-parsley-type": "number",
-                  "data-parsley-min-message": minTeamGoalMsg
-                });
 
               $('#team_find_new_fundraising_goal_input_hint').before('<div class="team-goal-error"></div>');
 
