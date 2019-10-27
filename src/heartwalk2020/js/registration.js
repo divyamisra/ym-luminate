@@ -264,382 +264,382 @@
             $('.custom-progress-bar').hide();
             // BEGIN TFIND
 
-              $('form[name=FriendraiserFind]').attr('hidden', true);
+          $('form[name=FriendraiserFind]').attr('hidden', true);
 
-              if (regType === 'startTeam') {
-                $('form[name=FriendraiserFind]').removeAttr('hidden');
-                $('#team_find_section_body, #team_find_section_header').show();
-                var trCompanyCount = $('#fr_co_list > option').length;
-                if (trCompanyCount < 2) {
-                  // no companies associated with this TR yet. Hide the team_find_new_team_company column
-                  $('#team_find_new_team_company').hide();
-                  $('#team_find_new_team_attributes').addClass('no-companies');
-                  $('#team_find_new_team_name, #team_find_new_fundraising_goal').addClass('col-md-6');
-                }
-              } else if (regType === 'joinTeam') {
-                if ($('#team_find_existing').length > 0) {
+          if (regType === 'startTeam') {
+            $('form[name=FriendraiserFind]').removeAttr('hidden');
+            $('#team_find_section_body, #team_find_section_header').show();
+            var trCompanyCount = $('#fr_co_list > option').length;
+            if (trCompanyCount < 2) {
+              // no companies associated with this TR yet. Hide the team_find_new_team_company column
+              $('#team_find_new_team_company').hide();
+              $('#team_find_new_team_attributes').addClass('no-companies');
+              $('#team_find_new_team_name, #team_find_new_fundraising_goal').addClass('col-md-6');
+            }
+          } else if (regType === 'joinTeam') {
+            if ($('#team_find_existing').length > 0) {
 
-                  // BEGIN new team find form
-                  // $('.js__join-team-container').html($('.js__reg-team-search-form'));
-                  $('.js__reg-team-search-form').on('submit', function (e) {
-                    e.preventDefault();
-                    $('.alert').hide();
+              // BEGIN new team find form
+              // $('.js__join-team-container').html($('.js__reg-team-search-form'));
+              $('.js__reg-team-search-form').on('submit', function (e) {
+                e.preventDefault();
+                $('.alert').hide();
 
-                    $('.list').html('');
-                    // $('.js__search-results-container').html('');
-                    var teamName = $('#regTeamName').val();
-                    var firstName = $('#regTeamMemberFirst').val();
-                    var lastName = $('#regTeamMemberLast').val();
-                    var companyId = $('#regCompanyId').val();
-                    // cd.getTeams(teamName, searchType);
-                    cd.getTeams(teamName, 'registration', false, firstName, lastName, companyId);
+                $('.list').html('');
+                // $('.js__search-results-container').html('');
+                var teamName = $('#regTeamName').val();
+                var firstName = $('#regTeamMemberFirst').val();
+                var lastName = $('#regTeamMemberLast').val();
+                var companyId = $('#regCompanyId').val();
+                // cd.getTeams(teamName, searchType);
+                cd.getTeams(teamName, 'registration', false, firstName, lastName, companyId);
 
-                  });
+              });
 
-                  cd.getCompanyList = function (frId, companyId) {
-                    // $('.js__loading').show();
+              cd.getCompanyList = function (frId, companyId) {
+                // $('.js__loading').show();
 
-                    luminateExtend.api({
-                      api: 'teamraiser',
-                      data: 'method=getCompanyList' +
-                        '&fr_id=' + frId +
-                        '&list_page_size=499' +
-                        '&list_page_offset=0' +
-                        '&response_format=json' +
-                        '&list_sort_column=company_name' +
-                        '&list_ascending=true',
-                      callback: {
-                        success: function (response) {
-                          // $('.js__loading').hide();
-
-
-                          var companyList = '',
-                            nationals = (response.getCompanyListResponse.nationalItem ? luminateExtend.utils.ensureArray(response.getCompanyListResponse.nationalItem) : []),
-                            regionals = (response.getCompanyListResponse.regionalItem ? luminateExtend.utils.ensureArray(response.getCompanyListResponse.regionalItem) : []),
-                            companies = (response.getCompanyListResponse.companyItem ? luminateExtend.utils.ensureArray(response.getCompanyListResponse.companyItem) : []);
-
-                          var sortCompanies = function (a, b) {
-                            var A = a.companyName.toLowerCase();
-                            var B = b.companyName.toLowerCase();
-                            if (A < B) {
-                              return -1;
-                            } else if (A > B) {
-                              return 1;
-                            } else {
-                              return 0;
-                            }
-                          };
-
-                          nationals.sort(sortCompanies);
-                          regionals.sort(sortCompanies);
-                          companies.sort(sortCompanies);
-
-                          if (nationals.length > 0) {
-                            companyList += '<optgroup label="National Companies">';
-                          }
-                          $.each(nationals, function () {
-                            if (this.companyName.indexOf('(sponsor)') != -1) {
-                              this.companyName = this.companyName.split('(sponsor)')[0];
-                            }
-                            companyList += '<option value="' + this.companyId + '">' + this.companyName + '</option>';
-                          });
-                          if (nationals.length > 0) {
-                            companyList += '</optgroup>';
-                          }
-                          if (regionals.length > 0) {
-                            companyList += '<optgroup label="Regional Companies">';
-                          }
-                          $.each(regionals, function () {
-                            if (this.companyName.indexOf('(sponsor)') != -1) {
-                              this.companyName = this.companyName.split('(sponsor)')[0];
-                            }
-                            companyList += '<option value="' + this.companyId + '">' + this.companyName + '</option>';
-                          });
-                          if (regionals.length > 0) {
-                            companyList += '</optgroup>';
-                          }
-                          if (companies.length > 0) {
-                            companyList += '<optgroup label="Local Companies, Schools and Organizations">';
-                          }
-                          $.each(companies, function () {
-                            if (this.companyName.indexOf('(sponsor)') != -1) {
-                              this.companyName = this.companyName.split('(sponsor)')[0];
-                            }
-                            companyList += '<option value="' + this.companyId + '">' + this.companyName + '</option>';
-                          });
-                          if (companies.length > 0) {
-                            companyList += '</optgroup>';
-                          }
-                          $('.js__reg-company-name').append(companyList);
+                luminateExtend.api({
+                  api: 'teamraiser',
+                  data: 'method=getCompanyList' +
+                    '&fr_id=' + frId +
+                    '&list_page_size=499' +
+                    '&list_page_offset=0' +
+                    '&response_format=json' +
+                    '&list_sort_column=company_name' +
+                    '&list_ascending=true',
+                  callback: {
+                    success: function (response) {
+                      // $('.js__loading').hide();
 
 
-                        },
-                        error: function (response) {
-                          // $('.js__loading').hide();
-                          $('.js__error-team-search').text(response.errorResponse.message).show();
+                      var companyList = '',
+                        nationals = (response.getCompanyListResponse.nationalItem ? luminateExtend.utils.ensureArray(response.getCompanyListResponse.nationalItem) : []),
+                        regionals = (response.getCompanyListResponse.regionalItem ? luminateExtend.utils.ensureArray(response.getCompanyListResponse.regionalItem) : []),
+                        companies = (response.getCompanyListResponse.companyItem ? luminateExtend.utils.ensureArray(response.getCompanyListResponse.companyItem) : []);
+
+                      var sortCompanies = function (a, b) {
+                        var A = a.companyName.toLowerCase();
+                        var B = b.companyName.toLowerCase();
+                        if (A < B) {
+                          return -1;
+                        } else if (A > B) {
+                          return 1;
+                        } else {
+                          return 0;
                         }
+                      };
+
+                      nationals.sort(sortCompanies);
+                      regionals.sort(sortCompanies);
+                      companies.sort(sortCompanies);
+
+                      if (nationals.length > 0) {
+                        companyList += '<optgroup label="National Companies">';
                       }
-                    });
-                  };
-
-                  cd.getCompanyList(evID);
-                  // END new team find form
-
-
-                  // $('#team_find_search_team_name_required').remove();
-                  // On JOIN TEAM step - rename label
-                  $('#team_label_container').text('Squad name:');
-                  $('#team_find_existing').prepend('<div class="text-center w-100"><p>Enter squad name and/or pick company from drop down</p></div>');
-                  $('#company_label_container').text('Search by company:');
-                  $('form[name=FriendraiserFind]').removeAttr('hidden');
-
-                  // append cons ID to the join team button
-                  if ($('#team_find_search_results_container').length > 0) {
-
-                    var teamRows = $('.list-component-row');
-                    $.each(teamRows, function (i, teamRow) {
-                      var captainConsId, origJoinTeamUrl, modJoinTeamUrl;
-                      var self = $(this);
-                      var origTeamNameUrl = $(this).find('.list-component-cell-column-team-name a').attr('href');
-                      var teamId = getURLParameter(origTeamNameUrl, 'team_id');
-
-                      luminateExtend.api({
-                        api: 'teamraiser',
-                        data: 'method=getTeamCaptains&response_format=json&fr_id=' + evID + '&team_id=' + teamId,
-                        callback: {
-                          success: function success(response) {
-                            var captainArray = luminateExtend.utils.ensureArray(response.getTeamCaptainsResponse.captain);
-                            var joinTeamName = 'Join ' + captainArray[0].teamName;
-                            captainConsId = captainArray[0].consId;
-                            origJoinTeamUrl = $(self).find('.list-component-cell-column-join-link a').attr('href');
-                            modJoinTeamUrl = origJoinTeamUrl + '&s_captainConsId=' + captainConsId;
-
-                            $(self).find('.list-component-cell-column-join-link a').attr('href', modJoinTeamUrl).attr('aria-label', joinTeamName);
-                          },
-                          error: function error(response) {}
+                      $.each(nationals, function () {
+                        if (this.companyName.indexOf('(sponsor)') != -1) {
+                          this.companyName = this.companyName.split('(sponsor)')[0];
                         }
+                        companyList += '<option value="' + this.companyId + '">' + this.companyName + '</option>';
                       });
-                    });
+                      if (nationals.length > 0) {
+                        companyList += '</optgroup>';
+                      }
+                      if (regionals.length > 0) {
+                        companyList += '<optgroup label="Regional Companies">';
+                      }
+                      $.each(regionals, function () {
+                        if (this.companyName.indexOf('(sponsor)') != -1) {
+                          this.companyName = this.companyName.split('(sponsor)')[0];
+                        }
+                        companyList += '<option value="' + this.companyId + '">' + this.companyName + '</option>';
+                      });
+                      if (regionals.length > 0) {
+                        companyList += '</optgroup>';
+                      }
+                      if (companies.length > 0) {
+                        companyList += '<optgroup label="Local Companies, Schools and Organizations">';
+                      }
+                      $.each(companies, function () {
+                        if (this.companyName.indexOf('(sponsor)') != -1) {
+                          this.companyName = this.companyName.split('(sponsor)')[0];
+                        }
+                        companyList += '<option value="' + this.companyId + '">' + this.companyName + '</option>';
+                      });
+                      if (companies.length > 0) {
+                        companyList += '</optgroup>';
+                      }
+                      $('.js__reg-company-name').append(companyList);
+
+
+                    },
+                    error: function (response) {
+                      // $('.js__loading').hide();
+                      $('.js__error-team-search').text(response.errorResponse.message).show();
+                    }
                   }
-                }
-              }
+                });
+              };
+
+              cd.getCompanyList(evID);
+              // END new team find form
 
 
-              // rebuild LO's create team form
-              var dynTeamGoal = $('.js__generated-team-goal');
-              var currentTeamGoal, currentTeamGoalFormatted, minTeamGoalMsg;
-              var loTeamGoal = $('#fr_team_goal');
-              var promoCode = ($('body').data('promocode') !== undefined ? $('body').data('promocode') : "");
+              // $('#team_find_search_team_name_required').remove();
+              // On JOIN TEAM step - rename label
+              $('#team_label_container').text('Squad name:');
+              $('#team_find_existing').prepend('<div class="text-center w-100"><p>Enter squad name and/or pick company from drop down</p></div>');
+              $('#company_label_container').text('Search by company:');
+              $('form[name=FriendraiserFind]').removeAttr('hidden');
 
-              // tfind
-                // check to see if Start a Team and Breakaway ptypes are available
-                // if Start a Team and Breakaway ptypes are not available, remove those registration options and display a sponsor code field on the reg options step
-                cd.getParticipationTypes = function (promo) {
-                  $('.js__reg-type-container .alert').addClass('hidden');
-                  var isStartTeamAvailable = false;
-                  var isBreakawayAvailable = false;
-                  var validPromo = false;
-                  var promoCodePtypesAvailable = false;
+              // append cons ID to the join team button
+              if ($('#team_find_search_results_container').length > 0) {
+
+                var teamRows = $('.list-component-row');
+                $.each(teamRows, function (i, teamRow) {
+                  var captainConsId, origJoinTeamUrl, modJoinTeamUrl;
+                  var self = $(this);
+                  var origTeamNameUrl = $(this).find('.list-component-cell-column-team-name a').attr('href');
+                  var teamId = getURLParameter(origTeamNameUrl, 'team_id');
 
                   luminateExtend.api({
                     api: 'teamraiser',
-                    data: 'method=getParticipationTypes' +
-                      '&fr_id=' + evID +
-                      ((promo !== undefined) ? '&promotion_code=' + promo : '') +
-                      '&response_format=json',
+                    data: 'method=getTeamCaptains&response_format=json&fr_id=' + evID + '&team_id=' + teamId,
                     callback: {
-                      success: function (response) {
+                      success: function success(response) {
+                        var captainArray = luminateExtend.utils.ensureArray(response.getTeamCaptainsResponse.captain);
+                        var joinTeamName = 'Join ' + captainArray[0].teamName;
+                        captainConsId = captainArray[0].consId;
+                        origJoinTeamUrl = $(self).find('.list-component-cell-column-join-link a').attr('href');
+                        modJoinTeamUrl = origJoinTeamUrl + '&s_captainConsId=' + captainConsId;
 
-                        if (response.getParticipationTypesResponse.participationType.length) {
-                          // no search results
-                          var participationTypes = luminateExtend.utils.ensureArray(response.getParticipationTypesResponse.participationType);
-                          // var promoPtypeLoaded = false;
-                          $(participationTypes).each(function (i, ptype) {
-                            // There is no promo code in session
-                            if (ptype.participationTypeRegistrationLimit && ptype.participationTypeRegistrationLimit.limitReached === 'false') {
-                              // Publicly available ptypes are available
-                              // ptype has a limit and it has NOT been reached
-                              if (ptype.name.indexOf('Start a Team') > -1) {
-                                if (ptype.participationTypeRegistrationLimit.limitReached === 'false') {
-                                  isStartTeamAvailable = true;
-                                }
-                              } else if (ptype.name.indexOf('Breakaway') > -1) {
-                                if (ptype.participationTypeRegistrationLimit.limitReached === 'false') {
-                                  isBreakawayAvailable = true;
-                                }
-                              }
-                            }
-
-                            // if(promo){
-                            // promo is loaded
-                            if (promo && ptype.promoCodeRequired === "true") {
-                              console.log('promo code only ptype available');
-                              // promo code is valid
-
-                              if (ptype.name.indexOf('Start a Team') > -1) {
-                                if (ptype.participationTypeRegistrationLimit.limitReached === 'false') {
-                                  isStartTeamAvailable = true;
-                                  // Promo code ptypes are available
-                                  promoCodePtypesAvailable = true;
-                                }
-                              }
-                              validPromo = true;
-
-                              // }
-                            } else {
-                              // promo code is inavlid
-                              console.log('set promo to validPromo');
-                              if (validPromo === true) {
-                                return false;
-                              } else {
-                                validPromo = false;
-                              }
-                            }
-                          });
-
-                          if (isStartTeamAvailable === true) {
-                            $('.start-team-container').removeClass('hidden');
-                          } else {
-                            $('.js__reg-options-promo-container, .js__promo-code-sold-out').removeClass('hidden');
-                          }
-                          if (promoCodePtypesAvailable) {
-                            console.log('promoCode ptypes are available and loaded');
-                            // add promo code to reg options links in case they are entering it for the first time on this step
-                            var regOptionLinks = $('.js__reg-type-form .step-button');
-
-                            $(regOptionLinks).each(function () {
-                              var origUrl = $(this).attr('href');
-                              var modUrl = origUrl + '&s_promoCode=' + promo;
-                              $(this).attr('href', modUrl);
-                            });
-                            if (!promoCode) {
-                              // show a custom message if a promo code is not already in session and someone manually enters a promo code and we DO retrieve an available ptype
-                              $('.js__promo-code-success').removeClass('hidden');
-                              $('html, body').animate({
-                                scrollTop: 0
-                              }, "slow");
-                            }
-                            $('.js__reg-options-promo-container').addClass('hidden');
-                            // } else if(promo && promoCodePtypesAvailable === false && validPromo === false){
-                          } else if (promo && promoCodePtypesAvailable === false && validPromo === true) {
-
-                            console.log('promoCode in session but NO promoCode ptypes are available for registration');
-                            // show a custom message if someone manually enters a promo code and we DO NOT retrieve an available ptype
-                            $('.js__promo-code-sold-out').addClass('hidden');
-                            $('.js__promo-code-error, .js__reg-options-promo-container').removeClass('hidden');
-                          } else if (promo && validPromo === false) {
-                            console.log('invalid promoss');
-                            $('.js__promo-code-sold-out').addClass('hidden');
-                            $('.js__promo-code-invalid, .js__reg-options-promo-container').removeClass('hidden');
-                          }
-
-                          $('.join-team-container').removeClass('hidden');
-                        }
+                        $(self).find('.list-component-cell-column-join-link a').attr('href', modJoinTeamUrl).attr('aria-label', joinTeamName);
                       },
-                      error: function (response) {
-                        console.log(response.errorResponse.message);
-                      }
+                      error: function error(response) {}
                     }
                   });
-                };
-
-                if (promoCode) {
-                  cd.getParticipationTypes(promoCode);
-                } else {
-                  cd.getParticipationTypes();
-                }
-
-                // manage manual submission of promo codes on reg options step
-                $('.js__reg-options-promo-form').on('submit', function (e) {
-                  e.preventDefault();
-                  var manualPromoCode = $('#sponsorCode').val();
-                  cd.getParticipationTypes(manualPromoCode);
                 });
-
-              } // end StationaryV2 event conditional
-
-              var numTeamResults = $('#team_find_search_results_container .list-component-row').length;
-
-              if (numTeamResults < 20) {
-                $('.list-component-paginator').hide();
               }
-
-              $('#friend_potion_next')
-                .wrap('<div class="order-1 order-sm-2 col-sm-4 offset-md-6 col-md-3 col-8 offset-2 mb-3"/>');
-
-              $('#team_find_section_footer')
-                .prepend('<div class="order-2 order-sm-1 col-sm-4 col-md-3 col-8 offset-2 offset-sm-0"><a href="TRR/?pg=tfind&amp;fr_id=' + evID + '" class="button btn-secondary btn-block">Back</a></div>')
-
-              $('#team_find_new_fundraising_goal_input_hint').before('<div class="team-goal-error"></div>');
-
-              $('.js__show-team-bikes').on('click', function (e) {
-                e.preventDefault();
-                // display team captain page where bike numbers are calculated
-                $('.js__reg-type-container').addClass('d-none');
-                $('.js__team-bikes-container').removeClass('d-none');
-              });
-
-              $('.js__show-reg-type').on('click', function (e) {
-                e.preventDefault();
-                $('.js__team-bikes-container').addClass('d-none');
-                $('.js__reg-type-container').removeClass('d-none');
-              });
-
-
-              var teamFindParsleyConfig = {
-                errorsContainer: function (pEle) {
-                  var $err = pEle.$element.parent().parent().find('.team-goal-error');
-                  return $err;
-                }
-              }
-
-              $('.js__show-team-details').on('click', function (e) {
-                e.preventDefault();
-                $('#fr_team_goal')
-                  .attr({
-                    "data-parsley-min-message": minTeamGoalMsg
-                  });
-                $('form[name=FriendraiserFind]').removeAttr('hidden');
-                cd.calculateRegProgress();
-
-                // add parsley validation to the form AFTER all of the elements have been moved around/created. Since minimum team goal is being set by the bikes step, we really shouldn't validate this until we update that min attribute and the user clicks 'next'
-                $('#team_find_page > form').parsley(teamFindParsleyConfig);
-              });
-
-              // if team name submission fails, show system default error messages instead of going back to the bike number selector
-              if ($('.ErrorMessage').length > 0) {
-                $('.js__team-bikes-container').attr('hidden', true);
-                $('form[name=FriendraiserFind]').removeAttr('hidden');
-              }
-
-              $('#team_find_page > form').parsley(teamFindParsleyConfig);
-
-              $('.dropdown-item').on('click', function (e) {
-                e.preventDefault();
-                var bikesSelected = $(this).data('numbikes');
-                var bikesSelectedText = $(this).html();
-                currentTeamGoal = bikesSelected * goalPerBike;
-                currentTeamGoalFormatted = '$' + currentTeamGoal.formatMoney(0);
-                minTeamGoalMsg = 'Your goal must be at least ' + currentTeamGoalFormatted;
-                $(numBikeSelector).html(bikesSelectedText);
-                $(dynTeamGoal).val(currentTeamGoalFormatted);
-                $('.js__numbikes').val(bikesSelected);
-                $('#fr_team_goal').val(currentTeamGoal);
-                $('.js__show-team-details').prop('disabled', false);
-              });
-
-              if ($('.field-error-text').length > 0 && $('.field-error-text:contains("There is already a team registered with that name")').length > 0) {
-                // append "join team" link in error message with s_regType=joinTeam session var
-                var joinTeamLink = $('.field-error-text a');
-                var updatedJoinTeamLink = $(joinTeamLink).attr('href') + '&s_regType=joinTeam';
-                $(joinTeamLink).attr('href', updatedJoinTeamLink);
-              }
-
-              $('#team_find_new_fundraising_goal_input_hint').text('You can increase your team\'s goal, but the amount shown above is your team\'s required fundraising minimum.');
-              $('#previous_step span').text('Back');
-
             }
+          }
+
+
+          // rebuild LO's create team form
+          var dynTeamGoal = $('.js__generated-team-goal');
+          var currentTeamGoal, currentTeamGoalFormatted, minTeamGoalMsg;
+          var loTeamGoal = $('#fr_team_goal');
+          var promoCode = ($('body').data('promocode') !== undefined ? $('body').data('promocode') : "");
+
+          // tfind
+            // check to see if Start a Team and Breakaway ptypes are available
+            // if Start a Team and Breakaway ptypes are not available, remove those registration options and display a sponsor code field on the reg options step
+            cd.getParticipationTypes = function (promo) {
+              $('.js__reg-type-container .alert').addClass('hidden');
+              var isStartTeamAvailable = false;
+              var isBreakawayAvailable = false;
+              var validPromo = false;
+              var promoCodePtypesAvailable = false;
+
+              luminateExtend.api({
+                api: 'teamraiser',
+                data: 'method=getParticipationTypes' +
+                  '&fr_id=' + evID +
+                  ((promo !== undefined) ? '&promotion_code=' + promo : '') +
+                  '&response_format=json',
+                callback: {
+                  success: function (response) {
+
+                    if (response.getParticipationTypesResponse.participationType.length) {
+                      // no search results
+                      var participationTypes = luminateExtend.utils.ensureArray(response.getParticipationTypesResponse.participationType);
+                      // var promoPtypeLoaded = false;
+                      $(participationTypes).each(function (i, ptype) {
+                        // There is no promo code in session
+                        if (ptype.participationTypeRegistrationLimit && ptype.participationTypeRegistrationLimit.limitReached === 'false') {
+                          // Publicly available ptypes are available
+                          // ptype has a limit and it has NOT been reached
+                          if (ptype.name.indexOf('Start a Team') > -1) {
+                            if (ptype.participationTypeRegistrationLimit.limitReached === 'false') {
+                              isStartTeamAvailable = true;
+                            }
+                          } else if (ptype.name.indexOf('Breakaway') > -1) {
+                            if (ptype.participationTypeRegistrationLimit.limitReached === 'false') {
+                              isBreakawayAvailable = true;
+                            }
+                          }
+                        }
+
+                        // if(promo){
+                        // promo is loaded
+                        if (promo && ptype.promoCodeRequired === "true") {
+                          console.log('promo code only ptype available');
+                          // promo code is valid
+
+                          if (ptype.name.indexOf('Start a Team') > -1) {
+                            if (ptype.participationTypeRegistrationLimit.limitReached === 'false') {
+                              isStartTeamAvailable = true;
+                              // Promo code ptypes are available
+                              promoCodePtypesAvailable = true;
+                            }
+                          }
+                          validPromo = true;
+
+                          // }
+                        } else {
+                          // promo code is inavlid
+                          console.log('set promo to validPromo');
+                          if (validPromo === true) {
+                            return false;
+                          } else {
+                            validPromo = false;
+                          }
+                        }
+                      });
+
+                      if (isStartTeamAvailable === true) {
+                        $('.start-team-container').removeClass('hidden');
+                      } else {
+                        $('.js__reg-options-promo-container, .js__promo-code-sold-out').removeClass('hidden');
+                      }
+                      if (promoCodePtypesAvailable) {
+                        console.log('promoCode ptypes are available and loaded');
+                        // add promo code to reg options links in case they are entering it for the first time on this step
+                        var regOptionLinks = $('.js__reg-type-form .step-button');
+
+                        $(regOptionLinks).each(function () {
+                          var origUrl = $(this).attr('href');
+                          var modUrl = origUrl + '&s_promoCode=' + promo;
+                          $(this).attr('href', modUrl);
+                        });
+                        if (!promoCode) {
+                          // show a custom message if a promo code is not already in session and someone manually enters a promo code and we DO retrieve an available ptype
+                          $('.js__promo-code-success').removeClass('hidden');
+                          $('html, body').animate({
+                            scrollTop: 0
+                          }, "slow");
+                        }
+                        $('.js__reg-options-promo-container').addClass('hidden');
+                        // } else if(promo && promoCodePtypesAvailable === false && validPromo === false){
+                      } else if (promo && promoCodePtypesAvailable === false && validPromo === true) {
+
+                        console.log('promoCode in session but NO promoCode ptypes are available for registration');
+                        // show a custom message if someone manually enters a promo code and we DO NOT retrieve an available ptype
+                        $('.js__promo-code-sold-out').addClass('hidden');
+                        $('.js__promo-code-error, .js__reg-options-promo-container').removeClass('hidden');
+                      } else if (promo && validPromo === false) {
+                        console.log('invalid promoss');
+                        $('.js__promo-code-sold-out').addClass('hidden');
+                        $('.js__promo-code-invalid, .js__reg-options-promo-container').removeClass('hidden');
+                      }
+
+                      $('.join-team-container').removeClass('hidden');
+                    }
+                  },
+                  error: function (response) {
+                    console.log(response.errorResponse.message);
+                  }
+                }
+              });
+            };
+
+            if (promoCode) {
+              cd.getParticipationTypes(promoCode);
+            } else {
+              cd.getParticipationTypes();
+            }
+
+            // manage manual submission of promo codes on reg options step
+            $('.js__reg-options-promo-form').on('submit', function (e) {
+              e.preventDefault();
+              var manualPromoCode = $('#sponsorCode').val();
+              cd.getParticipationTypes(manualPromoCode);
+            });
+
+          } // end StationaryV2 event conditional
+
+          var numTeamResults = $('#team_find_search_results_container .list-component-row').length;
+
+          if (numTeamResults < 20) {
+            $('.list-component-paginator').hide();
+          }
+
+          $('#friend_potion_next')
+            .wrap('<div class="order-1 order-sm-2 col-sm-4 offset-md-6 col-md-3 col-8 offset-2 mb-3"/>');
+
+          $('#team_find_section_footer')
+            .prepend('<div class="order-2 order-sm-1 col-sm-4 col-md-3 col-8 offset-2 offset-sm-0"><a href="TRR/?pg=tfind&amp;fr_id=' + evID + '" class="button btn-secondary btn-block">Back</a></div>')
+
+          $('#team_find_new_fundraising_goal_input_hint').before('<div class="team-goal-error"></div>');
+
+          $('.js__show-team-bikes').on('click', function (e) {
+            e.preventDefault();
+            // display team captain page where bike numbers are calculated
+            $('.js__reg-type-container').addClass('d-none');
+            $('.js__team-bikes-container').removeClass('d-none');
+          });
+
+          $('.js__show-reg-type').on('click', function (e) {
+            e.preventDefault();
+            $('.js__team-bikes-container').addClass('d-none');
+            $('.js__reg-type-container').removeClass('d-none');
+          });
+
+
+          var teamFindParsleyConfig = {
+            errorsContainer: function (pEle) {
+              var $err = pEle.$element.parent().parent().find('.team-goal-error');
+              return $err;
+            }
+          }
+
+          $('.js__show-team-details').on('click', function (e) {
+            e.preventDefault();
+            $('#fr_team_goal')
+              .attr({
+                "data-parsley-min-message": minTeamGoalMsg
+              });
+            $('form[name=FriendraiserFind]').removeAttr('hidden');
+            cd.calculateRegProgress();
+
+            // add parsley validation to the form AFTER all of the elements have been moved around/created. Since minimum team goal is being set by the bikes step, we really shouldn't validate this until we update that min attribute and the user clicks 'next'
+            $('#team_find_page > form').parsley(teamFindParsleyConfig);
+          });
+
+          // if team name submission fails, show system default error messages instead of going back to the bike number selector
+          if ($('.ErrorMessage').length > 0) {
+            $('.js__team-bikes-container').attr('hidden', true);
+            $('form[name=FriendraiserFind]').removeAttr('hidden');
+          }
+
+          $('#team_find_page > form').parsley(teamFindParsleyConfig);
+
+          $('.dropdown-item').on('click', function (e) {
+            e.preventDefault();
+            var bikesSelected = $(this).data('numbikes');
+            var bikesSelectedText = $(this).html();
+            currentTeamGoal = bikesSelected * goalPerBike;
+            currentTeamGoalFormatted = '$' + currentTeamGoal.formatMoney(0);
+            minTeamGoalMsg = 'Your goal must be at least ' + currentTeamGoalFormatted;
+            $(numBikeSelector).html(bikesSelectedText);
+            $(dynTeamGoal).val(currentTeamGoalFormatted);
+            $('.js__numbikes').val(bikesSelected);
+            $('#fr_team_goal').val(currentTeamGoal);
+            $('.js__show-team-details').prop('disabled', false);
+          });
+
+          if ($('.field-error-text').length > 0 && $('.field-error-text:contains("There is already a team registered with that name")').length > 0) {
+            // append "join team" link in error message with s_regType=joinTeam session var
+            var joinTeamLink = $('.field-error-text a');
+            var updatedJoinTeamLink = $(joinTeamLink).attr('href') + '&s_regType=joinTeam';
+            $(joinTeamLink).attr('href', updatedJoinTeamLink);
+          }
+
+          $('#team_find_new_fundraising_goal_input_hint').text('You can increase your team\'s goal, but the amount shown above is your team\'s required fundraising minimum.');
+          $('#previous_step span').text('Back');
+
         }
+        
         if ($('#fr_team_goal').length <= 0) {
             $('#team_find_section_footer').hide();
         }
