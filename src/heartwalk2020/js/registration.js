@@ -612,7 +612,6 @@
 
             $('.js__show-reg-type').on('click', function(e) {
                 e.preventDefault();
-                $('.js__team-bikes-container').addClass('d-none');
                 $('.js__reg-type-container').removeClass('d-none');
             });
 
@@ -646,7 +645,7 @@
             $('#team_find_page > form').parsley(teamFindParsleyConfig);
 
             // append session variable setting hidden input to track number of bikes selected so same value can be automatically selected in reg info step
-            $('form[name="FriendraiserFind"]').prepend('<input type="hidden" class="js__numbikes" name="s_numBikes" value="">');
+            //$('form[name="FriendraiserFind"]').prepend('<input type="hidden" class="js__numbikes" name="s_numBikes" value="">');
 
             if ($('.field-error-text').length > 0 && $('.field-error-text:contains("There is already a team registered with that name")').length > 0) {
                 // append "join team" link in error message with s_regType=joinTeam session var
