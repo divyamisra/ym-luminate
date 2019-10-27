@@ -310,6 +310,9 @@ label.otherAmt {
 div.responsive #team_find_section_footer button.next-step {
     float: none;
 }
+#team_find_new_team_company label {
+	display:block;
+}
 @media only screen and (max-width: 767px) {
   .mobile #team_find_page input#fr_team_member_goal, .mobile #team_find_page input#fr_team_name {
       max-width: 100%;
