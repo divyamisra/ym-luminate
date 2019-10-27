@@ -41,6 +41,7 @@
             console.log('evid 1 = '+evID);
             console.log('evid 2 = '+evID2);
             console.log('evid 3 = '+evID3);
+            var frId = evID;
 
             //Uptype customization
             /*$('#user_type_page #utype-login .show-login').click(function(){
