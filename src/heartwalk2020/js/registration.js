@@ -922,6 +922,13 @@
             }
             $('#part_type_donation_level_input_container').wrapInner('<fieldset role="radiogroup" class="donation-form-fields" />');
             $('.donation-form-fields').prepend('<legend class="sr-only">Donate Towards Your Goal Now</legend>');
+            
+            $('form#F2fRegPartType').submit(function(e){
+                if ($('.part-type-container.selected').length == 0) {
+                    e.preventDefault();
+                    alert("Please select how you will participate");
+                }
+            });
         }
         
         
