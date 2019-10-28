@@ -209,6 +209,128 @@ div.registration-page-container div.section-container {
     font-size: 18px !important;
 }
 
+.app_tr_registration div.responsive input[type=email],
+.app_tr_registration div.responsive input[type=number],
+.app_tr_registration div.responsive input[type=password],
+.app_tr_registration div.responsive input[type=text],
+.app_tr_registration div.responsive select,
+.app_tr_registration div.responsive textarea,
+.form-control {
+ display:block;
+ width:100%;
+ padding:0 .75rem;
+ font-size:1rem;
+ line-height:1.5;
+ color:#495057;
+ background-color:#fff;
+ background-clip:padding-box;
+ border:1px solid #3c3c3c;
+ border-radius:0;
+ -webkit-transition:border-color .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;
+ transition:border-color .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;
+ transition:border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+ transition:border-color .15s ease-in-out,box-shadow .15s ease-in-out,-webkit-box-shadow .15s ease-in-out
+}
+.app_tr_registration div.responsive input[type=email]::-ms-expand,
+.app_tr_registration div.responsive input[type=number]::-ms-expand,
+.app_tr_registration div.responsive input[type=password]::-ms-expand,
+.app_tr_registration div.responsive input[type=text]::-ms-expand,
+.app_tr_registration div.responsive select::-ms-expand,
+.app_tr_registration div.responsive textarea::-ms-expand,
+.form-control::-ms-expand {
+ background-color:transparent;
+ border:0
+}
+.app_tr_registration div.responsive input:focus[type=email],
+.app_tr_registration div.responsive input:focus[type=number],
+.app_tr_registration div.responsive input:focus[type=password],
+.app_tr_registration div.responsive input:focus[type=text],
+.app_tr_registration div.responsive select:focus,
+.app_tr_registration div.responsive textarea:focus,
+.form-control:focus {
+ color:#495057;
+ background-color:#fff;
+ border-color:#f35b6b;
+ outline:0;
+ -webkit-box-shadow:0 0 0 .2rem rgba(193,14,33,.25);
+ box-shadow:0 0 0 .2rem rgba(193,14,33,.25)
+}
+.app_tr_registration div.responsive input[type=email]::-webkit-input-placeholder,
+.app_tr_registration div.responsive input[type=number]::-webkit-input-placeholder,
+.app_tr_registration div.responsive input[type=password]::-webkit-input-placeholder,
+.app_tr_registration div.responsive input[type=text]::-webkit-input-placeholder,
+.app_tr_registration div.responsive select::-webkit-input-placeholder,
+.app_tr_registration div.responsive textarea::-webkit-input-placeholder,
+.form-control::-webkit-input-placeholder {
+ color:#515151;
+ opacity:1
+}
+.app_tr_registration div.responsive input[type=email]::-moz-placeholder,
+.app_tr_registration div.responsive input[type=number]::-moz-placeholder,
+.app_tr_registration div.responsive input[type=password]::-moz-placeholder,
+.app_tr_registration div.responsive input[type=text]::-moz-placeholder,
+.app_tr_registration div.responsive select::-moz-placeholder,
+.app_tr_registration div.responsive textarea::-moz-placeholder,
+.form-control::-moz-placeholder {
+ color:#515151;
+ opacity:1
+}
+.app_tr_registration div.responsive input[type=email]:-ms-input-placeholder,
+.app_tr_registration div.responsive input[type=number]:-ms-input-placeholder,
+.app_tr_registration div.responsive input[type=password]:-ms-input-placeholder,
+.app_tr_registration div.responsive input[type=text]:-ms-input-placeholder,
+.app_tr_registration div.responsive select:-ms-input-placeholder,
+.app_tr_registration div.responsive textarea:-ms-input-placeholder,
+.form-control:-ms-input-placeholder {
+ color:#515151;
+ opacity:1
+}
+.app_tr_registration div.responsive input[type=email]::-ms-input-placeholder,
+.app_tr_registration div.responsive input[type=number]::-ms-input-placeholder,
+.app_tr_registration div.responsive input[type=password]::-ms-input-placeholder,
+.app_tr_registration div.responsive input[type=text]::-ms-input-placeholder,
+.app_tr_registration div.responsive select::-ms-input-placeholder,
+.app_tr_registration div.responsive textarea::-ms-input-placeholder,
+.form-control::-ms-input-placeholder {
+ color:#515151;
+ opacity:1
+}
+.app_tr_registration div.responsive input[type=email]::placeholder,
+.app_tr_registration div.responsive input[type=number]::placeholder,
+.app_tr_registration div.responsive input[type=password]::placeholder,
+.app_tr_registration div.responsive input[type=text]::placeholder,
+.app_tr_registration div.responsive select::placeholder,
+.app_tr_registration div.responsive textarea::placeholder,
+.form-control::placeholder {
+ color:#515151;
+ opacity:1
+}
+.app_tr_registration div.responsive input:disabled[type=email],
+.app_tr_registration div.responsive input:disabled[type=number],
+.app_tr_registration div.responsive input:disabled[type=password],
+.app_tr_registration div.responsive input:disabled[type=text],
+.app_tr_registration div.responsive input[readonly][type=email],
+.app_tr_registration div.responsive input[readonly][type=number],
+.app_tr_registration div.responsive input[readonly][type=password],
+.app_tr_registration div.responsive input[readonly][type=text],
+.app_tr_registration div.responsive select:disabled,
+.app_tr_registration div.responsive select[readonly],
+.app_tr_registration div.responsive textarea:disabled,
+.app_tr_registration div.responsive textarea[readonly],
+.form-control:disabled,
+.form-control[readonly] {
+ background-color:#e9ecef;
+ opacity:1
+}
+.app_tr_registration div.responsive select:not([size]):not([multiple]),
+select.form-control:not([size]):not([multiple]) {
+ height:calc(2.25rem + 2px)
+}
+.app_tr_registration div.responsive select:focus::-ms-value,
+select.form-control:focus::-ms-value {
+ color:#495057;
+ background-color:#fff
+}
 /*utype*/
 #utype-login .col-sm-12 {
     text-align: center;
