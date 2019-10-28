@@ -904,10 +904,20 @@
         if ($('#fr_team_goal').length <= 0) {
             $('#team_find_section_footer').hide();
         }
-        //Custom progress bar
+        
+        // PTYPE
         if ($('#F2fRegPartType').length > 0) {
-            $('.p-bar-step-1').show();
+            if (regType === 'startTeam') {
+                $('#part_type_additional_gift_section_header').prepend('<div class="bold-label" id="regDonationLabel">Show your team how it’s done: kick start your own fundraising with a donation!</div>');
+            }
+            if (regType === 'joinTeam') {
+                $('#part_type_additional_gift_section_header').prepend('<div class="bold-label" id="regDonationLabel">Show your dedication and make a donation towards your goal.</div>');
+            }
+            $('#part_type_donation_level_input_container').wrapInner('<fieldset role="radiogroup" class="donation-form-fields" />');
+            $('.donation-form-fields').prepend('<legend class="sr-only">Donate Towards Your Goal Now</legend>');
         }
+        
+        
         if ($('#F2fRegContact, form[name="RegisterAnother"]').length > 0) {
             $('.p-bar-step-1, .p-bar-step-2').show();
             $('#progressText1').hide();
