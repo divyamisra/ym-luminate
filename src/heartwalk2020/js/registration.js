@@ -909,7 +909,7 @@
         if ($('#F2fRegPartType').length > 0) {
             if ($('.part-type-container').length == 1) {
                 $('.part-type-container').hide();
-                $('.part-type-container').before("<strong>You are registering as a Heart Walker!</strong>");
+                $('.part-type-container').before("<div class='part_type_one_only'><strong>You are registering as a Heart Walker!</strong></div>");
             } else {
                 $('input[name=fr_part_radio]:checked').removeAttr("checked");
                 $('.part-type-container.selected').removeClass("selected");
