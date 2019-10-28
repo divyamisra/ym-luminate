@@ -854,7 +854,16 @@ div.responsive div.ErrorMessage.page-error>span.field-error-indicator, div.respo
 .survey-question-number-container {
 	display:none;
 }
-
+.app_tr_registration #additional_questions_container .survey-question-container {
+    width: auto;
+    max-width: none;
+}
+.app_tr_registration .cons-full-address-container {
+    overflow: hidden;
+}
+.app_tr_registration #remember_me_container {
+	display:none;
+}
 
 /*Reg buttons*/
 
