@@ -167,6 +167,7 @@ a.show-not-sure {
 .part_type_one_only {
     margin-top: 10px;
     font-size: 22px;
+    text-align:center;
 }
 
 #team_find_registration_type_container {
@@ -621,8 +622,12 @@ div.responsive div.ErrorMessage.page-error>span.field-error-indicator, div.respo
 	flex: 0 0 83.3333333333%;
 	max-width: 83.3333333333%;
 }
-.app_tr_registration #F2fRegContact {
+.app_tr_registration #F2fRegContact,
+ .app_tr_registration #F2fRegPartType {
 	margin: 0 auto;
+}
+.app_tr_registration . part_type_selection_container {
+	text-align:center;
 }
 .app_tr_registration div#discount_code_container,
 .app_tr_registration div#part_type_additional_gift_container,
