@@ -111,6 +111,21 @@ div.responsive a.next-step, div.responsive button.next-step, div.responsive butt
     color: #ffffff;
     text-decoration: none;
 }
+ 
+div.responsive button.step-button.btn, 
+div.responsive .donation-level-row-container.donation-amt .donation-level-row-decoration-container {
+    border-radius: 60px 60px 60px 60px;
+    background-clip: padding-box;
+    color: #fff;
+    border: none;
+    font-family: LubDubMedium,Helvetica,Arial,sans-serif!important;
+}
+.donation-amt input[type=radio] {
+    position: absolute;
+    top: 36%;
+    left: 9%;
+}
+
 div.responsive input[type="email"], div.responsive input[type="text"], div.responsive input[type="number"], div.responsive input[type="password"], div.responsive textarea, select, div.responsive select, select[size] {
     border: 1px solid #acacac !important;
     border-radius: 0 !important;
@@ -626,7 +641,7 @@ div.responsive div.ErrorMessage.page-error>span.field-error-indicator, div.respo
  .app_tr_registration #F2fRegPartType {
 	margin: 0 auto;
 }
-.app_tr_registration . part_type_selection_container {
+.app_tr_registration .part_type_selection_container {
 	text-align:center;
 }
 .app_tr_registration div#discount_code_container,
@@ -1188,6 +1203,7 @@ label.donation-level-row-label.other_amount_label {
     float: left;
     margin-bottom: 15px;
     margin-right: 35px;
+    postion:relative;
 }
 @media only screen and (max-width: 767px) {
   .donation-level-row-container.donation-amt {
