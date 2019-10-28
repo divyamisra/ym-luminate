@@ -914,6 +914,8 @@
                 $('input[name=fr_part_radio]:checked').removeAttr("checked");
                 $('.part-type-container.selected').removeClass("selected");
             }
+            $('#part_type_additional_gift_container .otherAmt span').html("$");
+            
             if (regType === 'startTeam') {
                 $('#part_type_additional_gift_section_header').prepend('<div class="bold-label" id="regDonationLabel">Show your team how it’s done: kick start your own fundraising with a donation!</div>');
             }
