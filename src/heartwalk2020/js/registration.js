@@ -907,6 +907,13 @@
         
         // PTYPE
         if ($('#F2fRegPartType').length > 0) {
+            if ($('.part-type-container').length == 1) {
+                $('.part-type-container').hide();
+                $('.part-type-container').before("<strong>You are registering as a Heart Walker!</strong>");
+            } else {
+                $('input[name=fr_part_radio]:checked').removeAttr("checked");
+                $('.part-type-container.selected').removeClass("selected");
+            }
             if (regType === 'startTeam') {
                 $('#part_type_additional_gift_section_header').prepend('<div class="bold-label" id="regDonationLabel">Show your team how it’s done: kick start your own fundraising with a donation!</div>');
             }
