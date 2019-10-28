@@ -553,6 +553,7 @@ div.registration-page-container div#reg_options_cons_info_extension.sub-section-
   margin-right: 25px;
   background-color: #515151;
   width: 125px;
+  text-align:center;
 }
 .survivor_yes_no li.input-container:hover {
   background-color: #d01d20;
@@ -612,6 +613,233 @@ div.responsive div.ErrorMessage.page-error>span.field-error-indicator, div.respo
     width: 100%;
   }
 }
+.app_tr_registration #F2fRegContact {
+	margin: 0 auto;
+}
+.app_tr_registration div#discount_code_container,
+.app_tr_registration div#part_type_additional_gift_container,
+.app_tr_registration div#part_type_addon_container,
+.app_tr_registration div#part_type_fundraising_goal_container,
+.app_tr_registration div#part_type_individual_company_selection_container,
+.app_tr_registration div#reg_summary_body_container,
+.app_tr_registration div.registration-page-container div.sub-section-body,
+.app_tr_registration div.registration-page-container div.sub-section-container,
+.app_tr_registration div.registration-page-container div.sub-section-header {
+ border:none;
+ background-color:#f6f9f9;
+ padding:15px 30px
+}
+.app_tr_registration .campaign-banner-container, .app_tr_registration div.registration-page-container div.section-container {
+	border: none;
+	margin: 0;
+}
+.app_tr_registration div.registration-page-container div.section-header {
+	text-align: center;
+}
+.app_tr_registration div.registration-page-container div.section-body, .app_tr_registration div.registration-page-container div.section-footer, .app_tr_registration div.registration-page-container div.section-header, .app_tr_registration div.registration-page-container div.section-sub-header {
+	background-color: #fff;
+	border: none;
+	padding: 0;
+}
+.app_id_9 div.responsive .payment-type-element-container .payment-type-selection-container h3, .h3, h3 {
+	font-size: 1.75rem;
+}
+.app_tr_registration div.registration-page-container div.sub-section-container {
+ margin:30px -30px
+}
+.app_tr_registration div.registration-page-container div.sub-section-header {
+ padding:0;
+ margin:0
+}
+.app_tr_registration .input-container a,
+.app_tr_registration .modal-body a,
+.app_tr_registration small a {
+ text-decoration:underline!important
+}
+.app_tr_registration div.responsive {
+ width:inherit
+}
+.app_tr_registration div.responsive input {
+ vertical-align:middle
+}
+.app_tr_registration div.registration-page-container div.section-header {
+ text-align:center
+}
+.app_tr_registration div.required-indicator-legend {
+ text-align:center;
+ padding:0
+}
+.app_tr_registration #F2fRegContact,
+.app_tr_registration #F2fRegPartType,
+.app_tr_registration #FriendraiserUserWaiver,
+.app_tr_registration #fr_payment_form {
+ position:relative;
+ width:100%;
+ min-height:1px;
+ padding-right:15px;
+ padding-left:15px;
+ -webkit-box-flex:0;
+ -ms-flex:0 0 100%;
+ flex:0 0 100%;
+ max-width:100%
+}
+@media (min-width:576px) {
+ .app_tr_registration #F2fRegContact,
+ .app_tr_registration #F2fRegPartType,
+ .app_tr_registration #FriendraiserUserWaiver,
+ .app_tr_registration #fr_payment_form {
+  -webkit-box-flex:0;
+  -ms-flex:0 0 83.3333333333%;
+  flex:0 0 83.3333333333%;
+  max-width:83.3333333333%
+ }
+}
+.app_tr_registration #F2fRegContact {
+ margin:0 auto
+}
+.app_tr_registration div.responsive .sub-section-container span.field-required {
+ float:left;
+ margin-right:2px
+}
+.app_tr_registration #password_component_container .field-required {
+ float:left
+}
+.app_tr_registration #emergency_contact_field_group div.field-required,
+.app_tr_registration .cons-full-name-container {
+ position:relative;
+ width:100%;
+ min-height:1px;
+ padding-right:15px;
+ padding-left:15px
+}
+@media (min-width:576px) {
+ .app_tr_registration #emergency_contact_field_group div.field-required,
+ .app_tr_registration .cons-full-name-container {
+  -webkit-box-flex:0;
+  -ms-flex:0 0 50%;
+  flex:0 0 50%;
+  max-width:50%
+ }
+}
+.app_tr_registration #reg_options_cons_info_extension_body {
+ display:-webkit-box;
+ display:-ms-flexbox;
+ display:flex;
+ -ms-flex-wrap:wrap;
+ flex-wrap:wrap
+}
+.app_tr_registration #reg_options_cons_info_extension {
+ clear:both
+}
+.app_tr_registration div#reg_options_cons_info_extension div.sub-section-body,
+.app_tr_registration div.registration-page-container div.sub-section-body {
+ padding:0
+}
+.app_tr_registration div#cons_info_component_container div#contact_info_section_one,
+.app_tr_registration div#cons_info_component_container div#contact_info_section_two,
+.app_tr_registration div#cons_info_component_container div#personal_info_section_one,
+.app_tr_registration div#cons_info_component_container div#personal_info_section_two,
+.app_tr_registration div#email_optin,
+.app_tr_registration div#emergency_contact_container,
+.app_tr_registration div#gift_notice_optin,
+.app_tr_registration div#registration_options_page div#privacy_opts_container,
+.app_tr_registration div#registration_options_page div#tribute_component_section_one,
+.app_tr_registration div#registration_options_page div#tribute_component_section_two,
+.app_tr_registration div#registration_options_page div#user_name_pword_container {
+ width:100%
+}
+.app_tr_registration div#email_opt_in_container label,
+.app_tr_registration div#gift_notice_optin label,
+.app_tr_registration div#postal_mail_opt_in_container label,
+.app_tr_registration div#privacy_component_container label,
+.app_tr_registration div#remember_me_container label {
+ max-width:100%
+}
+.app_tr_registration .email-question-container,
+.app_tr_registration .mobile-question-container {
+ position:relative;
+ width:100%;
+ min-height:1px;
+ padding-right:15px;
+ padding-left:15px
+}
+@media (min-width:576px) {
+ .app_tr_registration .email-question-container,
+ .app_tr_registration .mobile-question-container {
+  -webkit-box-flex:0;
+  -ms-flex:0 0 50%;
+  flex:0 0 50%;
+  max-width:50%
+ }
+}
+.app_tr_registration #reg_option_custom_html .modal-dialog {
+ overflow-y:initial
+}
+.app_tr_registration #reg_option_custom_html .modal-content {
+ background:0 0;
+ border:none
+}
+.app_tr_registration #reg_option_custom_html .modal-header {
+ border:none
+}
+.app_tr_registration #reg_option_custom_html .modal-header .close {
+ color:#fff;
+ font-weight:700;
+ text-shadow:none;
+ opacity:1;
+ padding:0
+}
+.app_tr_registration #reg_option_custom_html .modal-header .close small {
+ font-weight:500;
+ font-size:.9rem
+}
+.app_tr_registration #reg_option_custom_html .modal-body {
+ height:350px;
+ overflow-y:auto;
+ background:#fff;
+ border:2px solid #ced4da
+}
+.app_tr_registration select#cons_birth_date_DAY,
+.app_tr_registration select#cons_birth_date_MONTH {
+ width:100%
+}
+.app_tr_registration #part_type_additional_gift_section_header {
+ position:relative;
+ width:100%;
+ min-height:1px;
+ padding-right:15px;
+ padding-left:15px
+}
+@media (min-width:768px) {
+ .app_tr_registration #part_type_additional_gift_section_header {
+  -webkit-box-flex:0;
+  -ms-flex:0 0 100%;
+  flex:0 0 100%;
+  max-width:100%
+ }
+}
+.app_tr_registration #additional_questions_container .survey-question-container {
+ width:auto
+}
+.app_tr_registration #additional_questions_container .survey-question-container .input-container label {
+ display:inline
+}
+.app_tr_registration #additional_questions_container .survey-question-container .survey-date-day,
+.app_tr_registration #additional_questions_container .survey-question-container .survey-date-month,
+.app_tr_registration #additional_questions_container .survey-question-container .survey-date-year {
+ position:relative;
+ width:100%;
+ min-height:1px;
+ padding-right:15px;
+ padding-left:15px;
+ -webkit-box-flex:0;
+ -ms-flex:0 0 33.3333333333%;
+ flex:0 0 33.3333333333%;
+ max-width:33.3333333333%
+}
+
+
+
 /*Reg buttons*/
 
 div.part-type-container {
