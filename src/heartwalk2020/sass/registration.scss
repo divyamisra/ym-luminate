@@ -149,6 +149,10 @@ a.show-not-sure {
 #part_type_instruction_sub_header, .progress-bar-container, .part-type-name-value-separator, .part-type-fee-text {
     display: none;
 }
+#part_type_anonymous_input_container,
+#part_type_show_public_input_container {
+	display:none;
+}
 #team_find_registration_type_container {
     display: none;
 }
