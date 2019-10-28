@@ -572,9 +572,9 @@ div.registration-page-container div#reg_options_cons_info_extension.sub-section-
 .survivor_yes_no li.input-container.survivor_active {
   background-color: #d01d20;
 }
-.regMobilePhone .input-container {
+/*.regMobilePhone .input-container {
     margin-left: 15px;
-}
+}*/
 /* account for spacing for faux required astrix */
 .cons-info-question-container.consZip div.form-content span.field-required {
     margin-right: 5px;
@@ -851,7 +851,9 @@ div.responsive div.ErrorMessage.page-error>span.field-error-indicator, div.respo
  flex:0 0 33.3333333333%;
  max-width:33.3333333333%
 }
-
+.survey-question-number-container {
+	display:none;
+}
 
 
 /*Reg buttons*/
