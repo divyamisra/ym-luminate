@@ -499,8 +499,10 @@ div.registration-page-container div.sub-section-header {
     border: 0;
     background-color: #ffffff;
 }
-.cons-info-question-container.cons-full-name-container.field-required {
-    float: left;
+.cons-info-question-container.cons-full-name-container.field-required, 
+.app_tr_registration .survey-question-container, 
+.app_tr_registration .cons-info-question-container {
+	float: left;
 }
 div.registration-page-container div.sub-section-body {
     padding: 0;
@@ -613,6 +615,12 @@ div.responsive div.ErrorMessage.page-error>span.field-error-indicator, div.respo
     width: 100%;
   }
 }
+.app_tr_registration #F2fRegContact, .app_tr_registration #F2fRegPartType, .app_tr_registration #FriendraiserUserWaiver, .app_tr_registration #fr_payment_form {
+	-webkit-box-flex: 0;
+	-ms-flex: 0 0 83.3333333333%;
+	flex: 0 0 83.3333333333%;
+	max-width: 83.3333333333%;
+}
 .app_tr_registration #F2fRegContact {
 	margin: 0 auto;
 }
@@ -704,8 +712,7 @@ div.responsive div.ErrorMessage.page-error>span.field-error-indicator, div.respo
 .app_tr_registration #password_component_container .field-required {
  float:left
 }
-.app_tr_registration #emergency_contact_field_group div.field-required,
-.app_tr_registration .cons-full-name-container {
+.app_tr_registration #emergency_contact_field_group div.field-required, .app_tr_registration .cons-full-name-container, .app_tr_registration .cons-info-question-container, .app_tr_registration .survey-question-container {
  position:relative;
  width:100%;
  min-height:1px;
@@ -713,12 +720,11 @@ div.responsive div.ErrorMessage.page-error>span.field-error-indicator, div.respo
  padding-left:15px
 }
 @media (min-width:576px) {
- .app_tr_registration #emergency_contact_field_group div.field-required,
- .app_tr_registration .cons-full-name-container {
+ .app_tr_registration #emergency_contact_field_group div.field-required, .app_tr_registration .cons-full-name-container, .app_tr_registration .cons-info-question-container, .app_tr_registration .survey-question-container {
   -webkit-box-flex:0;
   -ms-flex:0 0 50%;
   flex:0 0 50%;
-  max-width:50%
+  max-width:50%;
  }
 }
 .app_tr_registration #reg_options_cons_info_extension_body {
@@ -730,6 +736,13 @@ div.responsive div.ErrorMessage.page-error>span.field-error-indicator, div.respo
 }
 .app_tr_registration #reg_options_cons_info_extension {
  clear:both
+}
+.app_tr_registration #cons_birth_date_YEAR,
+.app_tr_registration #cons_info_component_contact_info_section,
+.app_tr_registration #cons_info_dob,
+.app_tr_registration #email_optin,
+.app_tr_registration #reg_instr_container,
+.app_tr_registration .survey-question-number {
 }
 .app_tr_registration div#reg_options_cons_info_extension div.sub-section-body,
 .app_tr_registration div.registration-page-container div.sub-section-body {
@@ -746,7 +759,8 @@ div.responsive div.ErrorMessage.page-error>span.field-error-indicator, div.respo
 .app_tr_registration div#registration_options_page div#tribute_component_section_one,
 .app_tr_registration div#registration_options_page div#tribute_component_section_two,
 .app_tr_registration div#registration_options_page div#user_name_pword_container {
- width:100%
+ width:100%;
+ float: none;
 }
 .app_tr_registration div#email_opt_in_container label,
 .app_tr_registration div#gift_notice_optin label,
