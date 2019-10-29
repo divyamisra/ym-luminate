@@ -114,6 +114,13 @@ div.donation-level-container {
 
 .donation-form-container #level_flexiblegift_type_Row .designated-giving-recurring-row {
 	float: left;
+	border: 2px solid #000;
+	border-radius: 60px;
+	position: relative;
+	margin-right:10px;
+}
+.donation-form-container #level_flexiblegift_type_Row .designated-giving-recurring-row.active {
+	color: #ffffff;
 }
 .donation-form-container input[type="checkbox"] + label, 
 .donation-form-container input[type="radio"] + label {
@@ -554,8 +561,14 @@ div.responsive .donation-levels .enterAmt .donation-level-input-container label 
  .designated-giving-recurring-row [type="radio"]:not(:checked) + label:before, .designated-giving-recurring-row [type="radio"]:checked + label:before, .designated-giving-recurring-row [type="radio"]:not(:checked) + label:after, .designated-giving-recurring-row [type="radio"]:checked + label:after {
      content: none;
 }
- div.designated-giving-recurring-row [type="radio"]:checked + label, div.designated-giving-recurring-row [type="radio"]:not(:checked) + label {
-     padding-left: 5px;
+div.designated-giving-recurring-row [type="radio"]:checked, div.designated-giving-recurring-row [type="radio"]:not(:checked) {
+	position: absolute;
+	top: 15px;
+	left:20px;
+}
+div.designated-giving-recurring-row [type="radio"]:checked + label, div.designated-giving-recurring-row [type="radio"]:not(:checked) + label {
+     padding: 15px 15px 15px 40px;
+     margin-right: 10px;
 }
 div.button-container {
 	border: none;
