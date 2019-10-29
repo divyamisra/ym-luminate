@@ -312,7 +312,7 @@
             
             if (getDonationAmount() > 0) {
                var initAmt = parseFloat(getDonationAmount());
-               var toDonate =  initAmt + parseFloat((getDonationAmount() * 0.026 + .26).toFixed(2));
+               var toDonate =  initAmt + parseFloat((getDonationAmount() * 0.029 + .30).toFixed(2));
                $('button#pstep_finish').html("Donate $" + toDonate);
                $('.bb-additional-amount').text(toDonate)
             }
@@ -320,7 +320,7 @@
             $("#cover-fee-yes").click(function() {
                if ($(this).is(':checked')) {
                   var initAmt = parseFloat(getDonationAmount());
-                  var toDonate =  initAmt + parseFloat((getDonationAmount() * 0.026 + .26).toFixed(2));
+                  var toDonate =  initAmt + parseFloat((getDonationAmount() * 0.029 + .30).toFixed(2));
                   $('button#pstep_finish').html("Donate $" + toDonate);
                   $('.bb-additional-amount').text(toDonate)
                } else {
@@ -331,13 +331,13 @@
             });
             jQuery('[id^=level_]').change(function() {
                var initAmt = parseFloat(getDonationAmount());
-               var toDonate =  initAmt + parseFloat((getDonationAmount() * 0.026 + .26).toFixed(2));
+               var toDonate =  initAmt + parseFloat((getDonationAmount() * 0.029 + .30).toFixed(2));
                $('button#pstep_finish').html("Donate $" + toDonate);
                $('.bb-additional-amount').text(toDonate)
             });
             $('.donation-level-user-entered input').blur(function() {
                var initAmt = parseFloat(getDonationAmount());
-               var toDonate =  initAmt + parseFloat((getDonationAmount() * 0.026 + .26).toFixed(2));
+               var toDonate =  initAmt + parseFloat((getDonationAmount() * 0.029 + .30).toFixed(2));
                $('button#pstep_finish').html("Donate $" + toDonate);
                $('.bb-additional-amount').text(toDonate)
             });
@@ -345,7 +345,7 @@
             $("#ProcessForm").submit(function(e) {
                 //e.preventDefault();
                 if ($('#cover-fee-yes').is(':checked')) {
-                    $('#additional_amountname').val(getDonationAmount() * 0.026 + .26);
+                    $('#additional_amountname').val(getDonationAmount() * 0.029 + .30);
                 } else {
                     $('#additional_amountname').val(0);
                 }
