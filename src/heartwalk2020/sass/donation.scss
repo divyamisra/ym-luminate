@@ -235,11 +235,21 @@ div.employer-address-container input#employer_street {
 #billing_addr_city_row, 
 #billing_addr_state_row, 
 #billing_addr_zip_row, 
-#billing_addr_country_row,
-#donor_email_address_row{
+#billing_addr_country_row {
      float: left;
      width: auto;
      margin-right: 20px;
+}
+.billing-fields-container {
+	width: 100%;
+	overflow: hidden;
+	max-width: 767px;
+}
+div.responsive button.finish-step {
+	float: none;
+}
+.don-level-total-row {
+	display:none;
 }
  div#responsive_payment_typecc_number_row {
      float: left;
@@ -383,7 +393,7 @@ div.responsive .donation-levels .active .donation-level-input-container label {
      position: relative;
 }
  .designated-giving-recurring-row.active, div.donation-level-container.active {
-     background-color: #d01d20;
+     background-color: #0000;
 }
  label + div.donation-level-user-entered {
      margin-left: 0px;
@@ -415,6 +425,9 @@ div.responsive .donation-levels .enterAmt .donation-level-input-container label 
 }
  div.donation-level-label-input-container {
      display: block;
+}
+ .enterAmt div.donation-level-label-input-container {
+     display: none;
 }
  div.responsive div.ErrorMessage.page-error > span.field-error-indicator, div.responsive span.header-warning-message {
      display: inline-block;
@@ -565,13 +578,16 @@ div.responsive .donation-levels .enterAmt .donation-level-input-container label 
      float: none;
      width: 100%;
 }
- div.responsive .donation-levels .enterAmt .donation-level-input-container [type="checkbox"]:not(:checked), 
- div.responsive .donation-levels .enterAmt .donation-level-input-container [type="checkbox"]:checked, 
- div.responsive .donation-levels .enterAmt .donation-level-input-container [type="radio"]:not(:checked), 
- div.responsive .donation-levels .enterAmt .donation-level-input-container [type="radio"]:checked {
+ div.responsive .donation-levels .donation-level-input-container [type="radio"]:not(:checked), 
+ div.responsive .donation-levels .donation-level-input-container [type="radio"]:checked {
      position: absolute;
      left: 10px;
      top:20px;
+}
+ div.responsive .donation-levels .enterAmt .donation-level-input-container [type="radio"]:not(:checked), 
+ div.responsive .donation-levels .enterAmt .donation-level-input-container [type="radio"]:checked {
+     position: relative;
+     left: -9999px;
 }
  div.responsive .donation-levels .enterAmt .donation-level-input-container label {
      line-height: initial;
