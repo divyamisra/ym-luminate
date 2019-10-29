@@ -38,6 +38,7 @@ div.html-caption-container {
 }
  .section-header-container {
      border-top: 0;
+     margin-bottom: 15px;
 }
  @media (min-width: 992px) {
      .heart-page-main h2.section-header-container {
@@ -555,6 +556,16 @@ div.responsive .donation-levels .enterAmt .donation-level-input-container label 
 }
  div.designated-giving-recurring-row [type="radio"]:checked + label, div.designated-giving-recurring-row [type="radio"]:not(:checked) + label {
      padding-left: 5px;
+}
+div.button-container {
+	border: none;
+}
+#donor_email_address_row {
+	margin-bottom:20px;
+}
+/* hide select an amount */
+.form-donation-level fieldset div.form-content > span {
+	display: none;
 }
 /******** End Custom Checkboxes ********/
  .form-info-message {
