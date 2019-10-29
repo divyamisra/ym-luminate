@@ -315,7 +315,7 @@
                 }
             }
             
-            if (getDonationAmount() > 0) {
+            if (getDonationAmount() > 0 && $('#cover-fee-yes').is(':checked')) {
                var initAmt = parseFloat(getDonationAmount());
                var toDonate =  initAmt + parseFloat((getDonationAmount() * 0.029 + .30).toFixed(2));
                $('button#pstep_finish').html("Donate $" + toDonate);
@@ -354,7 +354,7 @@
                 } else {
                     $('#additional_amountname').val(0);
                 }
-console.log($('#additional_amountname').val());
+
                 $("#ProcessForm").unbind('submit');
                 $('#pstep_finish').click();
             });
