@@ -564,9 +564,12 @@ div.button-container {
 	margin-bottom:20px;
 }
 /* hide select an amount */
-.form-donation-level fieldset div.form-content > span {
+div.responsive div.form-content > span,
+div.responsive .donation-level-general-ask {
 	display: none;
 }
+
+
 /******** End Custom Checkboxes ********/
  .form-info-message {
      display: none;
