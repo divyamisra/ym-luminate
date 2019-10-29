@@ -57,7 +57,11 @@
             $('.formMessage .level4').addClass('active');
         }            
     }); 
-
+	  
+    $('.designated-giving-recurring-row').click(function(){
+        $('.designated-giving-recurring-row').removeClass('active');
+        $(this).addClass('active');
+    });
 
     //make sure to remember values on reload
     if(amountLevel == 'level0') {
