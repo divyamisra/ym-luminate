@@ -96,17 +96,16 @@ div.form-row {
 #level_flexible_row {
 	margin-bottom:25px;
 }
- div.donation-level-container {
-     background: #515151;
-     border-radius: 0;
-     border: 0;
-     float: left;
-     width: 125px;
-    /* height: 60px;
-     */
-     margin: 10px 2% 10px 0;
-     position: relative;
-}
+div.donation-level-container {
+	background: #fff;
+	border-radius: 60px;
+	border: 0;
+	float: left;
+	width: 125px;
+	margin: 10px 2% 10px 0;
+	position: relative;
+	border: 2px solid #000;
+
 /* hide duration selection by default until recurring selected */
 #level_flexibleduration_row {
     display:none;
@@ -128,11 +127,15 @@ div.form-row {
      float: left;
      margin-bottom: 20px;
 }
- div.responsive div.matching-gift-container button.step-button {
-     float: left;
-     line-height: 45px;
-     height: 45px;
-     margin-left: 20px;
+div.responsive div.matching-gift-container button.step-button {
+	float: left;
+	line-height: 45px;
+	height: 45px;
+	margin-left: 20px;
+	background: #fff !important;
+	color: #000;
+	border: 2px solid #000;
+	border-radius: 60px;
 }
  div.responsive a.next-step, 
 div.responsive button.next-step, 
@@ -278,7 +281,7 @@ div.employer-address-container input#employer_street {
      display: block;
 }
  a.payment-type-label, a.payment-type-label:link, div.responsive a.payment-type-label {
-     color: #ffffff;
+     color: #000000;
      font-weight: 400;
      font-size: 24px;
      text-align: center;
@@ -296,14 +299,14 @@ div.employer-address-container input#employer_street {
  div.payment-field-container span.payment-type-option {
      padding: 0;
      margin: 0;
-     border: 0;
-     background: none;
-     background-color: #515151;
-     border-radius: 3px;
+     border: 2px solid #000 !important;
+     background: #ffffff;
+     border-radius: 60px;
 }
  div.payment-field-container span.external-payment span.payment-type-option {
-     border-radius: 3px;
+     border-radius: 60px;
      padding: 0;
+     border: 2px solid #000;
 }
 /* DH - add override styles for payment types */
  div.payment-field-container span.internal-payment {
@@ -314,8 +317,8 @@ div.employer-address-container input#employer_street {
 }
 /* --- */
  div.payment-field-container span.payment-type-option.selected {
-     background-color: #d01d20;
-     background: #d01d20;
+     background-color: #000;
+     background: #000;
 }
  div.payment-field-container span.payment-type-option.selected a:link {
      width: 125px;
@@ -341,18 +344,20 @@ div.employer-address-container input#employer_street {
 }
  div.donation-level-input-container {
      line-height: inherit;
+     postion:relative;
 }
  div.responsive .donation-levels .donation-level-input-container label {
      clear: both;
      display: block;
-    /* position: absolute;
-    */
      top: 0;
      right: 0;
      width: 100%;
      font-size: 24px;
      font-weight: 400 !important;
-     color: #ffffff;
+     color: #000000;
+}
+div.responsive .donation-levels .active .donation-level-input-container label {
+	color: #fff;
 }
  div.donation-level-amount-container {
      display: block;
@@ -394,6 +399,7 @@ div.responsive .donation-levels .enterAmt .donation-level-input-container label 
      padding: 0;
      background: 0 0;
      width: auto;
+     border: none;
 }
  div.responsive .donation-levels .enterAmt .donation-level-input-container label {
      top: -54px;
@@ -560,6 +566,14 @@ div.responsive .donation-levels .enterAmt .donation-level-input-container label 
      clear: both;
      float: none;
      width: 100%;
+}
+ div.responsive .donation-levels .enterAmt .donation-level-input-container [type="checkbox"]:not(:checked), 
+ div.responsive .donation-levels .enterAmt .donation-level-input-container [type="checkbox"]:checked, 
+ div.responsive .donation-levels .enterAmt .donation-level-input-container [type="radio"]:not(:checked), 
+ div.responsive .donation-levels .enterAmt .donation-level-input-container [type="radio"]:checked {
+     position: absolute;
+     left: 10px;
+     top:20px;
 }
  div.responsive .donation-levels .enterAmt .donation-level-input-container label {
      line-height: initial;
