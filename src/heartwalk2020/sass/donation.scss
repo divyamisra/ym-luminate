@@ -37,13 +37,16 @@ div.html-caption-container {
      display: none;
 }
  .section-header-container {
-     border-top: 0;
      margin-bottom: 15px;
+     border-top: 1px solid #cccccc;
 }
  @media (min-width: 992px) {
      .heart-page-main h2.section-header-container {
          margin: 0 0 20px;
     }
+}
+.tributes-caption + .form-row + .section-header-container {
+	border: none;
 }
  h1#formTitle {
      font-weight: 600;
