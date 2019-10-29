@@ -1248,9 +1248,6 @@
 
             $('#team-roster tbody').append('<tr class="' + (i > 4 ? 'd-none' : '') + '"> <td class="team-name"> <a href="' + team.teamPageURL + '" data-sort="' + team.name + '">' + team.name + '</a> </td><td class="donor-name"> <a href="TR/?px=' + team.captainConsId + '&pg=personal&fr_id=' + team.EventId + '" data-sort="' + team.captainFirstName + ' ' + team.captainLastName + '">' + team.captainFirstName + ' ' + team.captainLastName + '</a> </td><td class="company-name"> <a href="' + luminateExtend.global.path.secure + 'TR/?pg=company&company_id=' + team.companyId + '&fr_id=' + team.EventId + '" data-sort="' + companyName + '">' + companyName + '</a> </td><td class="raised" data-sort="' + teamRaisedFormmatted + '"> <span><strong>$' + teamRaisedFormmatted + '</strong></span> </td><td> <a href="' + team.joinTeamURL + '">' + (screenWidth <= 480 ? 'Join' : 'Join Team') + '</a> </td></tr>');
           });
-          if(totalTeams > 5) {
-            $('.js--more-team-results').removeAttr('hidden');
-          }
 
           $('.js--more-team-results').on('click', function(e){
             e.preventDefault();
@@ -1263,6 +1260,10 @@
           var totalTeams = $('.team-name').length;
           var totalTeamsText = totalTeams > 1 ? ' Teams' : ' Team';
           $('.js--num-company-teams').text(totalTeams + totalTeamsText);
+          alert('totalTeams:', totalTeams);
+          if(totalTeams > 5) {
+            $('.js--more-team-results').removeAttr('hidden');
+          }
           cd.initializeTeamRosterTable();
         }
       }
