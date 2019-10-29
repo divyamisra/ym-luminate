@@ -58,6 +58,7 @@
         }            
     }); 
 	  
+    $('.designated-giving-recurring-row input[type=radio]:checked').closest('.designated-giving-recurring-row').addClass("active");
     $('.designated-giving-recurring-row').click(function(){
         $('.designated-giving-recurring-row').removeClass('active');
         $(this).addClass('active');
