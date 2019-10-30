@@ -4,6 +4,7 @@
  @media (max-width: 767px) {
 	.aural-only {
 		text-indent: -999px;
+		z-index: -1;
 	}
 	footer.l-footer .btn--select {
 		width: auto;
