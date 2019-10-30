@@ -340,16 +340,28 @@
                }
             });
             jQuery('[id^=level_]').change(function() {
-               var initAmt = parseFloat(getDonationAmount());
-               var toDonate =  initAmt + parseFloat((getDonationAmount() * 0.029 + .30).toFixed(2));
-               $('button#pstep_finish').html("Donate $" + toDonate);
-               $('.bb-additional-amount').text(toDonate)
+               if ($("#cover-fee-yes").is(':checked')) {
+                  var initAmt = parseFloat(getDonationAmount());
+                  var toDonate =  initAmt + parseFloat((getDonationAmount() * 0.029 + .30).toFixed(2));
+                  $('button#pstep_finish').html("Donate $" + toDonate);
+                  $('.bb-additional-amount').text(toDonate)
+               } else {
+                  $('.bb-additional-amount').text(0)
+                  var initAmt = parseFloat(getDonationAmount());
+                  $('button#pstep_finish').html("Donate $" + initAmt);
+               }
             });
             $('.donation-level-user-entered input').blur(function() {
-               var initAmt = parseFloat(getDonationAmount());
-               var toDonate =  initAmt + parseFloat((getDonationAmount() * 0.029 + .30).toFixed(2));
-               $('button#pstep_finish').html("Donate $" + toDonate);
-               $('.bb-additional-amount').text(toDonate)
+               if ($("#cover-fee-yes").is(':checked')) {
+                  var initAmt = parseFloat(getDonationAmount());
+                  var toDonate =  initAmt + parseFloat((getDonationAmount() * 0.029 + .30).toFixed(2));
+                  $('button#pstep_finish').html("Donate $" + toDonate);
+                  $('.bb-additional-amount').text(toDonate)
+               } else {
+                  $('.bb-additional-amount').text(0)
+                  var initAmt = parseFloat(getDonationAmount());
+                  $('button#pstep_finish').html("Donate $" + initAmt);
+               }
             });
 
             $("#ProcessForm").submit(function(e) {
