@@ -320,7 +320,12 @@
                var toDonate =  initAmt + parseFloat((getDonationAmount() * 0.029 + .30).toFixed(2));
                $('button#pstep_finish').html("Donate $" + toDonate);
                $('.bb-additional-amount').text(toDonate)
-            }
+            } else {
+               var initAmt = parseFloat(getDonationAmount());
+               var toDonate =  0;
+               $('button#pstep_finish').html("Donate $" + toDonate);
+               $('.bb-additional-amount').text(toDonate)
+	    }
             
             $("#cover-fee-yes").click(function() {
                if ($(this).is(':checked')) {
