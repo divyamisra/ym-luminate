@@ -1,6 +1,9 @@
 @import "variables.scss";
 @import "mixins.scss";
 
+.aural-only {
+	text-indent: -999px;
+}
 main {
     background-image: url("/images/content/pagebuilder/hw_hero_desktop.jpg");
     background-size: 100%;
