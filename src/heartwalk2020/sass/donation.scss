@@ -152,7 +152,10 @@ div.donation-level-container {
 #tr_recognition_nameanonymous_row {
 	display: none;
 }
-
+.tr-recognition-name-view,
+#tr_show_gift_to_public_row {
+	margin-left: 35px;
+}
 
 
 .matching-gift-container ul {
