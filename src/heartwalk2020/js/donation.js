@@ -322,7 +322,7 @@
                $('.bb-additional-amount').text(toDonate)
             } else {
                var initAmt = parseFloat(getDonationAmount());
-               var toDonate =  0;
+               var toDonate =  initAmt +0;
                $('button#pstep_finish').html("Donate $" + toDonate);
                $('.bb-additional-amount').text(toDonate)
 	    }
