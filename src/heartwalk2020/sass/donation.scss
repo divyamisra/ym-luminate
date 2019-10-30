@@ -1,8 +1,13 @@
 @import "variables.scss";
 @import "mixins.scss";
 
-.aural-only {
-	text-indent: -999px;
+ @media (max-width: 767px) {
+	.aural-only {
+		text-indent: -999px;
+	}
+	footer.l-footer .btn--select {
+		width: auto;
+	}
 }
 main {
     background-image: url("/images/content/pagebuilder/hw_hero_desktop.jpg");
