@@ -66,6 +66,19 @@
         $(this).addClass('active');
     });
 
+    //Ask custom question about displaying their name and check or uncheck anonymous check box
+    $('input[name=tr_show_name_to_public]').click(function(){
+	    if ($(this).is(':checked')) {
+		    $('input[name=tr_recognition_nameanonymousname]').removeAttr("checked");
+		    $('.tr-recognition-name-view').show();
+		    $('#tr_show_gift_to_public_row').show();
+	    } else {
+		    $('input[name=tr_recognition_nameanonymousname]').attr("checked","checked");
+		    $('.tr-recognition-name-view').hide();
+		    $('#tr_show_gift_to_public_row').hide();
+	    }
+    });
+	  
     //make sure to remember values on reload
     if(amountLevel == 'level0') {
         $('.level0').addClass('active');
