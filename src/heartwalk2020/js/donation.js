@@ -10,6 +10,8 @@
 
     if (amountLevel == null || amountLevel == "") {
        jQuery(".donation-level-container").each(function(i){
+	  //remove role from radio buttons
+	  jQuery(this).find('input[type=radio]').removeAttr("role");
           if (jQuery(this).find('input:checked').length > 0) {
              document.cookie="level=level"+i;
              amountLevel="level"+i;
