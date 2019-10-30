@@ -30,6 +30,11 @@ main {
  legend {
      border-bottom: 0;
 }
+@media all and (max-width:767px) {
+ p {
+  font-size:100%;
+ }
+}	
 div.html-caption-container {
 	max-width: none;
 }
@@ -122,6 +127,7 @@ div.donation-level-container {
 	border-radius: 60px;
 	position: relative;
 	margin-right:10px;
+	margin-bottom:10px;
 }
 .donation-form-container #level_flexiblegift_type_Row .designated-giving-recurring-row.active {
 	color: #ffffff;
@@ -549,14 +555,6 @@ div.responsive .donation-levels .enterAmt .donation-level-input-container label 
  [type="checkbox"]:focus + label:before, [type="checkbox"]:checked:focus + label:before, [type="checkbox"]:not(:checked):focus + label:before, [type="radio"]:focus + label:before, [type="radio"]:checked:focus + label:before, [type="radio"]:not(:checked):focus + label:before {
      border: 1px solid -webkit-focus-ring-color;
      outline: 5px auto -webkit-focus-ring-color;
-}
- @media (max-width: 1010px) {
-     [type="checkbox"]:not(:checked) + label:before, [type="checkbox"]:checked + label:before, [type="radio"]:not(:checked) + label:before, [type="radio"]:checked + label:before {
-         top: -3px;
-    }
-     [type="checkbox"]:not(:checked) + label:after, [type="checkbox"]:checked + label:after, [type="radio"]:not(:checked) + label:after, [type="radio"]:checked + label:after {
-         top: 2px;
-    }
 }
  .designated-giving-recurring-row input:checked, .designated-giving-recurring-row input:not(:checked) {
      left: 0;
