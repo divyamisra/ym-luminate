@@ -210,7 +210,16 @@
       group: 'donation-levels'
     });
 
-
+    //sponsor slider
+    if($('.sponsor_slider .local_sponsors').length > 0){
+	$('.sponsor_slider .local_sponsors').unslider({
+	  selectors: {
+	    container: 'div.tr_sponsorship_logos',
+	    slides: 'div.tr_sponsorship_logo'
+	  },
+	  autoplay: true
+	});
+    }
 
     /*Thank You Page access edits */
     if (jQuery('.transaction-summary-info').length > 0) {
