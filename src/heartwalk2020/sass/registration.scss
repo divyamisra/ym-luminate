@@ -494,10 +494,14 @@ div#part_type_individual_company_selection_container {
 }
 
 a.step-button.previous-step.backBtnReg {
-    text-align: center;
-    background-color: #515151 !important;
-    margin-right: 20px;
-    float: left;
+	text-align: center;
+	background-color: #515151 !important;
+	margin-right: 20px;
+	float: left;
+	background: #fff !important;
+	border: 2px solid #c10e21;
+	border-radius: 60px;
+	color: #c10e21;
 }
 label.otherAmt {
     display: block;
