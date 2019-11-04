@@ -673,14 +673,19 @@ div.responsive div.ErrorMessage.page-error>span.field-error-indicator, div.respo
     width: 100%;
   }
 }
-.app_tr_registration #F2fRegContact, .app_tr_registration #F2fRegPartType, .app_tr_registration #FriendraiserUserWaiver, .app_tr_registration #fr_payment_form {
+.app_tr_registration #F2fRegContact, 
+.app_tr_registration #F2fRegPartType, 
+.app_tr_registration #FriendraiserUserWaiver, 
+.app_tr_registration #fr_payment_form {
 	-webkit-box-flex: 0;
 	-ms-flex: 0 0 83.3333333333%;
 	flex: 0 0 83.3333333333%;
 	max-width: 83.3333333333%;
 }
 .app_tr_registration #F2fRegContact,
- .app_tr_registration #F2fRegPartType {
+.app_tr_registration #F2fRegPartType,
+.app_tr_registration #FriendraiserUserWaiver, 
+.app_tr_registration #fr_payment_form {
 	margin: 0 auto;
 }
 .app_tr_registration .part_type_selection_container {
