@@ -287,7 +287,19 @@
             console.log('evid 2 = '+evID2);
             console.log('evid 3 = '+evID3);
             var frId = evID;
+            var trLoginSourceCode = (srcCode.length ? srcCode : 'trReg');
+            var trSignupSourceCode = (srcCode.length ? srcCode : 'trReg');
+            var trSocialSourceCode = (srcCode.length ? srcCode : 'trReg');
 
+            var trLoginSubSourceCode = (subSrcCode.length ? subSrcCode : eventName + '_' + evID);
+            var trSignupSubSourceCode = (subSrcCode.length ? subSrcCode : eventName + '_' + evID);
+            var trSocialSubSourceCode = (subSrcCode.length ? subSrcCode : eventName + '_' + evID);
+
+            var trRegInteractionID = evID;
+            var trLoginInteractionID = evID;
+            var trSocialInteractionID = evID;
+            var trLoggedInInteractionID = evID;
+            
             //Uptype customization
             /*$('#user_type_page #utype-login .show-login').click(function(){
                 $('#user_type_page #f2fLoginForm, #user_type_page .show-login-container-2').show();
