@@ -306,6 +306,95 @@
                 $('#user_type_page #f2fSendUserNameForm, #user_type_page .show-login-container, #user_type_page .error-show-login-container, #user_type_page .updated-tech').hide();
             });*/
 
+              cd.logInteraction = function (intTypeId, intSubject, intCallback) {
+                var logInteractionCallback = {
+                  success: function (response) {
+                    console.log('interaction logged');
+                  },
+                  error: function (response) {
+                    console.log('Error logging interaction');
+                  }
+                };
+                luminateExtend.api({
+                  api: 'cons',
+                  useHTTPS: true,
+                  requestType: 'POST',
+                  requiresAuth: true,
+                  data: 'method=logInteraction&interaction_subject=' + intSubject + '&interaction_type_id=' + intTypeId,
+                  callback: logInteractionCallback
+                });
+              };
+
+              var getRegInteractionCallback = {
+                success: function (data) {
+                  // console.log('getRegInteraction success: ' + JSON.stringify(data));
+                  var hasInteraction = data.getUserInteractionsResponse.interaction;
+                  if (!hasInteraction) {
+                    // Does not have trRegInteraction. Check to see if has trLoginInteraction
+                    getSocialInteraction();
+                  }
+                },
+                error: function (data) {
+                  console.log('getRegInteraction error: ' + JSON.stringify(data));
+                }
+              };
+
+              var getSocialInteractionCallback = {
+                success: function (data) {
+                  // console.log('getSocialInteraction success: ' + JSON.stringify(data));
+                  var hasInteraction = data.getUserInteractionsResponse.interaction;
+                  if (!hasInteraction) {
+                    // Does not have trRegInteraction OR trSocialInteraction. Assign a trLoggedInInteraction
+                    getLoginInteraction();
+                  }
+                },
+                error: function (data) {
+                  console.log('getSocialInteraction error: ' + JSON.stringify(data));
+                }
+              };
+
+              var getLoginInteractionCallback = {
+                success: function (data) {
+                  // console.log('getLoginInteraction success: ' + JSON.stringify(data));
+                  var hasInteraction = data.getUserInteractionsResponse.interaction;
+                  if (!hasInteraction) {
+                    // Does not have trRegInteraction OR trSocialInteraction OR trLoginInteraction. Assign a trLoggedInInteraction
+                    cd.logInteraction(trLoggedInInteractionID, evID);
+                  }
+                },
+                error: function (data) {
+                  console.log('getLoginInteraction error: ' + JSON.stringify(data));
+                }
+              };
+
+              cd.getInteraction = function (intTypeId, intSubject, intCallback) {
+                luminateExtend.api({
+                  api: 'cons',
+                  useHTTPS: true,
+                  requestType: 'POST',
+                  requiresAuth: true,
+                  data: 'method=getUserInteractions&interaction_subject=' + intSubject + '&interaction_type_id=' + intTypeId,
+                  callback: intCallback
+                });
+              };
+
+              var getRegInteraction = function () {
+                cd.getInteraction(trRegInteractionID, evID, getRegInteractionCallback);
+              }
+
+              var getSocialInteraction = function () {
+                cd.getInteraction(trSocialInteractionID, evID, getSocialInteractionCallback);
+              }
+
+              var getLoginInteraction = function () {
+                cd.getInteraction(trLoginInteractionID, evID, getLoginInteractionCallback);
+              }
+
+              if ($('#team_find_page').length > 0) {
+                // check registrants interactions and assign trLoggedInInteraction if they do not have trRegInteraction OR trSocialInteraction OR trLoginInteraction
+                getRegInteraction();
+              }
+            
             cd.consLogin = function (userName, password) {
                 luminateExtend.api({
                   api: 'cons',
