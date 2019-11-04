@@ -1028,9 +1028,13 @@ div.reg-summary-thanks-common-container div.reg-summary-event-info, div.reg-summ
 div.responsive #FriendraiserUserWaiver button.next-step, div.reg-summary-thanks-common-container div.action-button-container, div.responsive #FriendraiserUserWaiver button.previous-step, div.responsive #FriendraiserUserWaiver button.cancel-step {
   float: none;
 }
-div.registration-page-container div.section-footer, div.responsive #FriendraiserUserWaiver button.previous-step, div.responsive #FriendraiserUserWaiver button.cancel-step {
+/*
+div.registration-page-container div.section-footer, 
+div.responsive #FriendraiserUserWaiver button.previous-step, 
+div.responsive #FriendraiserUserWaiver button.cancel-step {
   padding: 0 0 0 25px;
 }
+*/
 div.responsive button.previous-step {
 	background-color: #ffffff !important;
 	margin-right: 20px;
