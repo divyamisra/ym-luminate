@@ -165,6 +165,9 @@ div.responsive input[type="email"], div.responsive input[type="text"], div.respo
 div.responsive button.next-step {
     float: left;
 }
+div.responsive button.next-step:hover {
+    background: #900 !important;
+}
 @media (max-width: 767px) {
   .mobile div.responsive button.step-button {
       width: 100%;
@@ -507,6 +510,11 @@ a.step-button.previous-step.backBtnReg {
 	border: 2px solid #c10e21;
 	border-radius: 60px;
 	color: #c10e21;
+}
+a.step-button.previous-step.backBtnReg:hover {
+	color: #fff;
+	background: #900 !important;
+	border: 2px solid #900;
 }
 label.otherAmt {
     display: block;
@@ -1271,7 +1279,8 @@ div.donation-level-row-container {
   width: 100%;
 }
 .donation-level-row-container.donation-amt .donation-level-row-decoration-container:hover, .donation-level-row-container.donation-amt.active .donation-level-row-decoration-container {
-    background-color: #d01d20;
+    background-color: #000000;
+    color: #ffffff;
     outline: 5px auto -webkit-focus-ring-color;
 }
 .donation-level-row-container.donation-amt:hover, .donation-level-row-label:hover {
