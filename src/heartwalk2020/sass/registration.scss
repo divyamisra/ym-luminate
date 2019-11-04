@@ -1037,12 +1037,10 @@ div.responsive button.cancel-step {
     font-size: 24px;
     font-weight: 400;
     background-color: #ffffff !important;
+    border: 2px solid #d01d20;
 }
 div.responsive #FriendraiserUserWaiver button.cancel-step:hover {
-    background: none;
-    background-color: #ffffff !important;
-    color: #d01d20;
-    text-decoration: underline;
+    border-color:#900;
 }
 div.reg-summary-thanks-common-container div.action-button-container {
     float: left;
