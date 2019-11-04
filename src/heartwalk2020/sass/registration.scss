@@ -68,6 +68,24 @@ div.responsive span.field-required {
 .displayNone {display: none;}
 .left {float: left;}
 
+@media (max-width:767px) {
+   main {
+	padding-right: 5px;
+	padding-left: 5px;
+   }
+   .mobile div.responsive div.form-row {
+	margin-top: 0px;
+	margin-bottom: 0px;
+   }
+   .mobile div.responsive div.form-content {
+	margin-top: 5px;
+	margin-bottom: 5px;
+   }
+   .mobile div.html-caption-container {
+	width: auto;
+   }
+}
+
 /**** STRUCTURE ****/
 
 a#skip-main:hover, a#skip-main:active, a#skip-main:focus {
