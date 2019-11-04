@@ -141,8 +141,8 @@ div.responsive .survivor_yes_no .input-container.survivor_active {
 }
 div.responsive .donation-level-row-container.donation-amt.active .donation-level-row-decoration-container:hover,
 div.responsive .survivor_yes_no .input-container:hover {
-	background: #000;
-	color: #fff;
+	background: #000 !important;
+	color: #fff !important;
 }
 .donation-amt input[type=radio] {
     position: absolute;
