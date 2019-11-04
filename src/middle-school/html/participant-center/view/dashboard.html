@@ -116,10 +116,10 @@
             <div class="ym-pc-dashboard-badges-icons clearfix">
               <div class="ym-pc-dashboard-badges-icon" ng-repeat="prize in prizes" ng-cloak>
                 <div ng-if="prize.earned">
-                  <img class="img-responsive" ng-src="//s3.amazonaws.com/aha-oot-production/fy20/assets/badges/ahc/{{prize.id}}_delivered.png" alt="">
+                  <img class="img-responsive" ng-src="//s3.amazonaws.com/cd-aha-oot-production/fy20/assets/badges/ahc/{{prize.id}}_delivered.png" alt="">
                 </div>
                 <div ng-if="!prize.earned">
-                  <img class="img-responsive" ng-src="//s3.amazonaws.com/aha-oot-production/fy20/assets/badges/ahc/{{prize.id}}_earned.png" alt="">
+                  <img class="img-responsive" ng-src="//s3.amazonaws.com/cd-aha-oot-production/fy20/assets/badges/ahc/{{prize.id}}_earned.png" alt="">
                 </div>
                 <div>
                   <span ng-bind-html="prize.label"></span> <span class="sr-only" ng-if="prize.earned">(earned)</span><span class="sr-only" ng-if="!prize.earned">(not yet earned)</span>
@@ -857,7 +857,7 @@
           <strong>View All Resources</strong>
         </a>
       </div>
-      <div class="ym-pc-dashboard-coordinator-resources-contact" ng-if="notifyName != ''">
+      <div class="ym-pc-dashboard-coordinator-resources-contact" ng-if="notifyName != ''" ng-cloak>
         Questions about your program – contact your staff partner at: <a ng-href="mailto:{{notifyEmail}}">
           <strong>{{notifyName}}</strong>
         </a>

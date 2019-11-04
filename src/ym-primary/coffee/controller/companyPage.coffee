@@ -35,6 +35,7 @@ angular.module 'ahaLuminateControllers'
       $scope.topClassRaised = []
       $scope.topClassStudents = []
       $scope.schoolYears = 0
+      $scope.unconfirmedAmountRaised = 0
       
       $scope.trustHtml = (html) ->
         return $sce.trustAsHtml(html)
@@ -140,9 +141,12 @@ angular.module 'ahaLuminateControllers'
                       $scope.hideAmount = schoolDataRows[i][schoolDataHeaders.HA]
                       $scope.notifyName = schoolDataRows[i][schoolDataHeaders.YMDN]
                       $scope.notifyEmail = schoolDataRows[i][schoolDataHeaders.YMDE]
+                      $scope.unconfirmedAmountRaised = schoolDataRows[i][schoolDataHeaders.UCR]
                       break
                     i++
-
+                  #setCompanyProgress Number(amountRaised) + Number(($scope.unconfirmedAmountRaised) * 100), goal
+                  setCompanyProgress Number(amountRaised), goal
+                  
               if coordinatorId and coordinatorId isnt '0' and eventId
                 TeamraiserCompanyService.getCoordinatorQuestion coordinatorId, eventId
                   .then (response) ->
