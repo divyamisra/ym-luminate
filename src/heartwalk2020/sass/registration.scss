@@ -1279,8 +1279,8 @@ div.donation-level-row-container {
   width: 100%;
 }
 .donation-level-row-container.donation-amt .donation-level-row-decoration-container:hover, .donation-level-row-container.donation-amt.active .donation-level-row-decoration-container {
-    background-color: #000000;
-    color: #ffffff;
+    background-color: #000000 !important;
+    color: #ffffff !important;
     outline: 5px auto -webkit-focus-ring-color;
 }
 .donation-level-row-container.donation-amt:hover, .donation-level-row-label:hover {
