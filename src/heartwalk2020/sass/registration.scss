@@ -10,7 +10,12 @@ main {
     background-color: $gray-400;
     padding: 48px 76px 67px;
 }
-
+@media (max-width:767px) {
+  main {
+    padding-right:5px;
+    padding-left:5px
+  }
+}
 @media (min-width: 1200px) {
      main .content {
          margin: 0 auto;
@@ -20,6 +25,7 @@ main {
      background-color: #ffffff;
      padding: 40px 20px;
 }
+
 .campaign-banner-container {
     text-align: center;
     font-weight: bold;
