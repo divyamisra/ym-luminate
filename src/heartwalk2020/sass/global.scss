@@ -3,6 +3,24 @@ body {
   font-size: 18px;
 }
 
+main {
+    background-image: url("/images/content/pagebuilder/hw_hero_desktop.jpg");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-color: $gray-400;
+    padding: 48px 76px 67px;
+}
+
+@media (min-width: 1200px) {
+     main .content {
+         margin: 0 auto;
+    }
+}
+ main > .container {
+     background-color: #ffffff;
+     padding: 40px 20px;
+}
+
 a {
   color: $red;
   text-decoration: underline;
