@@ -530,19 +530,13 @@ div#part_type_individual_company_selection_container {
 }
 
 a.step-button.previous-step.backBtnReg {
-	text-align: center;
-	background-color: #515151 !important;
-	margin-right: 20px;
-	float: left;
-	background: #fff !important;
-	border: 2px solid #c10e21;
-	border-radius: 60px;
 	color: #c10e21;
+	background: none !important;
+	border: none;
+	padding: 0;
 }
 a.step-button.previous-step.backBtnReg:hover {
-	color: #fff;
-	background: #900 !important;
-	border: 2px solid #900;
+	text-decoration: underline;
 }
 label.otherAmt {
     display: block;
