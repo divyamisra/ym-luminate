@@ -5,6 +5,15 @@ a.btn-compose {
 	font-size:18px;
 }
 
+.btn.btn-secondary:active, 
+.btn.btn-secondary:focus, 
+.btn.btn-secondary:hover, 
+a.btn.btn-secondary:active, 
+a.btn.btn-secondary:focus, 
+a.btn.btn-secondary:hover {
+	background: #337ab7;
+}
+
 div[id^="taTextElement"]:focus {
     border-color: #66afe9;
     outline: 0;
