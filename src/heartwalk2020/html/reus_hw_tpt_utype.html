@@ -43,9 +43,6 @@
               <span class="d-flex">
                 <span class="field-required"></span>
                 <label for="loginUsername">Username: </label>
-                <small id="loginUsernameHelpBlock" class="ml-auto form-text">
-                  <a href="#" class="js__show-retrieve-login">Forgot username?</a>
-                </small>
               </span>
               <input type="text" name="user_name" id="loginUsername" class="form-control" aria-describedby="loginUsernameHelpBlock"
                 data-parsley-trigger="change" data-parsley-minlength="5" data-parsley-maxlength="60"
@@ -57,9 +54,6 @@
               <span class="d-flex">
                 <span class="field-required"></span>
                 <label for="loginPassword">Password:</label>
-                <small id="loginPasswordHelpBlock" class="ml-auto form-text">
-                  <a href="#" class="js__show-retrieve-login">Forgot password?</a>
-                </small>
               </span>
 
               <input type="password" name="user_password" id="loginPassword" class="form-control" aria-describedby="loginPasswordHelpBlock"
@@ -69,6 +63,11 @@
                 data-parsley-required-message="Password is required" data-parsley-required="true" required>
             </div>
 
+            <div class="form-group text-center">
+                <small id="loginUsernameHelpBlock" class="ml-auto form-text">
+                  <a href="#" class="js__show-retrieve-login">Retrieve Your Username or Password</a>
+                </small>
+            </div>
             <div class="form-group text-center">
               <button class="btn btn-block btn-primary js__login-submit step-button" name="loginSubmit" value="Log In"
                 type="submit">Log In</button>
@@ -95,12 +94,12 @@
 
   <!-- BEGIN retrieval form  container -->
   <div class="row js__retrieve-login-container d-none">
-    <div class="col-md-6 offset-md-2 text-center">
+    <div class="col-md-6 offset-md-3 text-center">
       <h1 class="h3 show-desktop">Log In Assistance</h1>
       <p>Submit the form below to have your login information emailed to you.</p>
     </div>
 
-    <div class="col-md-6 offset-md-2">
+    <div class="col-md-6 offset-md-3">
       <div class="js__retrieve-login-error-container alert alert-danger d-none" role="alert" aria-atomic="true">
         <span class="" aria-hidden="true"></span>
         <span class="sr-only">Error:</span>
@@ -124,7 +123,7 @@
         </div>
         <div class="form-group">
           <div class="text-center toggle-login-container form-group">
-            <a class="js__show-login" href="#">Return to login</a>
+            <a class="js__show-login" href="#">Back</a>
           </div>
         </div>
       </form>
