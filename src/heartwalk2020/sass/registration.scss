@@ -181,7 +181,12 @@ div.responsive .survivor_yes_no .input-container:hover {
     top: 36%;
     left: 9%;
 }
-
+@media (max-width:767px) {
+    div.responsive button.step-button {
+        float:left;
+    }
+}
+	
 div.responsive input[type="email"], div.responsive input[type="text"], div.responsive input[type="number"], div.responsive input[type="password"], div.responsive textarea, select, div.responsive select, select[size] {
     border: 1px solid #acacac !important;
     border-radius: 0 !important;
