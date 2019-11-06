@@ -198,6 +198,11 @@ div.responsive input.step-button {
      max-width: none;
      border-radius:60px;
 }
+div.responsive a.step-button:hover,
+div.responsive button.step-button:hover, 
+div.responsive input.step-button:hover {
+	background:$red-deep;
+}
  div.responsive input[type="text"], 
 div.responsive input[type="number"], 
 div.responsive input[type="password"], 
