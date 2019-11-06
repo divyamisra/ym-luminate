@@ -43,7 +43,8 @@ h1.ObjTitle {
     font-family: LubDubBold,Helvetica,Arial,sans-serif;
 }
 @media (max-width:767px) {
-	.campaign-banner-container {
+	.campaign-banner-container,
+	h1.#regOptions {
 	    font-size: 20px;
 	    line-height: 24px;
 	}
