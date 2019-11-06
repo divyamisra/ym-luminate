@@ -967,7 +967,8 @@ div.part-type-container {
     width: 280px;
     display: inline-block;
 }
-div.part-type-container.selected {
+div.part-type-container.selected,
+div.part-type-container:hover {
     background-color: #000;
     margin-top:0;
     margin-bottom: 20px;
@@ -1005,7 +1006,8 @@ div.responsive .part-type-decoration-messages label {
   padding: 10px 20px 0;
   text-align: center;
 }
-div.responsive .part-type-container.selected .part-type-decoration-messages label {
+div.responsive .part-type-container.selected .part-type-decoration-messages label,
+div.responsive .part-type-container:hover .part-type-decoration-messages label{
   color: #fff;
 }
 .part-type-name {
