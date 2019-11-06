@@ -13,7 +13,7 @@ main {
 @media (max-width:767px) {
   main {
     padding-right:5px;
-    padding-left:5px
+    padding-left:5px; 
   }
 }
 @media (min-width: 1200px) {
@@ -510,6 +510,10 @@ div#user_type_login_email_container #user_type_login_email_button {
 #user_type_section_container {
 	display:none;
 }
+.js__retrieve-login-container {
+	margin-top: 20px;
+}
+
 /*** ptype  ***/
 
 .registration-page-container .section-header-text {
