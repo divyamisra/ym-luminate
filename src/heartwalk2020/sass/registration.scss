@@ -42,7 +42,12 @@ h1.ObjTitle {
     margin-bottom:15px !important;
     font-family: LubDubBold,Helvetica,Arial,sans-serif;
 }
-
+@media (max-width:767px) {
+	.campaign-banner-container {
+	    font-size: 20px;
+	    line-height: 24px;
+	}
+}
 #team_find_section_container .section-header,
 #team_find_section_container .section-sub-header {
 	display:none !important;
