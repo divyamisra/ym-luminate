@@ -992,15 +992,6 @@ div.part-type-container .part-type-decoration-messages {
     display: block;
     margin: 0;
 }
-/*
-div.responsive .part-type-decoration-messages label {
-    display: block;
-    font-size: 24px !important;
-    line-height: 60px;
-    color: #ffffff;
-    text-align: center;
-}
-*/
 div.responsive .part-type-decoration-messages label {
   color: #000;
   display: block;
@@ -1008,6 +999,7 @@ div.responsive .part-type-decoration-messages label {
   line-height: 32px;
   padding: 10px 40px 0;
   text-align: center;
+  cursor:pointer;
 }
 div.responsive .part-type-container.selected .part-type-decoration-messages label,
 div.responsive .part-type-container:hover .part-type-decoration-messages label{
