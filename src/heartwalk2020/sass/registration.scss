@@ -511,6 +511,37 @@ div#user_type_login_email_container #user_type_login_email_button {
 	display:none;
 }
 
+.loginText a {
+	text-decoration: none;
+	text-align: center;
+	max-width: 300px;
+	display: flex;
+	font-size: 14px;
+	margin: 0 auto;
+}
+.btn-social-login.btn-facebook,
+.btn-social-login.btn-amazon {
+	width: 49%;
+	background: #000;
+	color: #fff;
+	padding: 15px 25px;
+	border-radius: 5px;
+  margin-right: 5px;
+}
+.btn-social-login.btn-facebook {
+	background: #445DB5;
+}
+.btn-social-login.btn-amazon {
+	background: #000;
+}
+
+.btn-social-login i {
+	display: block;
+	font-size: 1.7em;
+	margin-bottom: 10px;
+}
+
+
 /*** ptype  ***/
 
 .registration-page-container .section-header-text {
