@@ -523,11 +523,15 @@ div.responsive .donation-levels .enterAmt .donation-level-input-container label 
 }
 /******** Custom Checkboxes ********/
 /* Base for label styling */
+/* hide cover fiee custom field */
+.form-content > .form-input-label-block {
+	display:none;
+}
  [type="checkbox"]:not(:checked), [type="checkbox"]:checked, [type="radio"]:not(:checked), [type="radio"]:checked {
      position: absolute;
      left: -9999px;
 }
- [type="checkbox"]:not(:checked) + label, 
+[type="checkbox"]:not(:checked) + label, 
 [type="checkbox"]:checked + label, 
 [type="radio"]:not(:checked) + label, 
 [type="radio"]:checked + label,
@@ -538,7 +542,7 @@ div.responsive .donation-levels .enterAmt .donation-level-input-container label 
      cursor: pointer;
 }
 /* checkbox aspect */
- [type="checkbox"]:not(:checked) + label:before, 
+[type="checkbox"]:not(:checked) + label:before, 
 [type="checkbox"]:checked + label:before, 
 [type="radio"]:not(:checked) + label:before, 
 [type="radio"]:checked + label:before,
@@ -555,7 +559,7 @@ div.responsive .donation-levels .enterAmt .donation-level-input-container label 
      border-radius: 0;
 }
 /* checked mark aspect */
- [type="checkbox"]:not(:checked) + label:after, 
+[type="checkbox"]:not(:checked) + label:after, 
 [type="checkbox"]:checked + label:after, 
 [type="radio"]:not(:checked) + label:after, 
 [type="radio"]:checked + label:after,
@@ -574,33 +578,56 @@ div.responsive .donation-levels .enterAmt .donation-level-input-container label 
      font-weight: 900;
 }
 /* checked mark aspect changes */
- [type="checkbox"]:not(:checked) + label:after, [type="radio"]:not(:checked) + label:after {
+[type="checkbox"]:not(:checked) + label:after, 
+[type="radio"]:not(:checked) + label:after,
+[type="checkbox"]:not(:checked) + .form-input-label-block > label:after, 
+[type="radio"]:not(:checked) + .form-input-label-block > label:after {
      opacity: 0;
      -webkit-transform: scale(0);
      -ms-transform: scale(0);
      transform: scale(0);
 }
- [type="checkbox"]:checked + label:after, [type="radio"]:checked + label:after {
+[type="checkbox"]:checked + label:after, 
+[type="radio"]:checked + label:after,
+[type="checkbox"]:checked + .form-input-label-block > label:after, 
+[type="radio"]:checked + .form-input-label-block > label:after {
      opacity: 1;
      -webkit-transform: scale(1);
      -ms-transform: scale(1);
      transform: scale(1);
 }
 /* disabled checkbox */
- [type="checkbox"]:disabled:not(:checked) + label:before, [type="checkbox"]:disabled:checked + label:before, [type="radio"]:disabled:not(:checked) + label:before, [type="radio"]:disabled:checked + label:before {
+[type="checkbox"]:disabled:not(:checked) + label:before, 
+[type="checkbox"]:disabled:checked + label:before, 
+[type="radio"]:disabled:not(:checked) + .form-input-label-block > label:before, 
+[type="radio"]:disabled:checked + .form-input-label-block > label:before {
      -webkit-box-shadow: none;
      box-shadow: none;
      border-color: #bbb;
      background-color: #ddd;
 }
- [type="checkbox"]:disabled:checked + label:after, [type="radio"]:disabled:checked + label:after {
+[type="checkbox"]:disabled:checked + label:after,
+[type="radio"]:disabled:checked + label:after,
+[type="checkbox"]:disabled:checked + .form-input-label-block > label:after,
+[type="radio"]:disabled:checked + .form-input-label-block > label:after {
      color: #999;
 }
- [type="checkbox"]:disabled + label, [type="radio"]:disabled + label {
+[type="checkbox"]:disabled + label, 
+[type="radio"]:disabled + label,
+[type="checkbox"]:disabled + .form-input-label-block > label, 
+[type="radio"]:disabled + .form-input-label-block > label {
      color: #aaa;
 }
 /* accessibility */
- [type="checkbox"]:focus + label:before, [type="checkbox"]:checked:focus + label:before, [type="checkbox"]:not(:checked):focus + label:before, [type="radio"]:focus + label:before, [type="radio"]:checked:focus + label:before, [type="radio"]:not(:checked):focus + label:before {
+ [type="checkbox"]:focus + label:before, 
+[type="checkbox"]:checked:focus + label:before, 
+[type="checkbox"]:not(:checked):focus + label:before, 
+[type="radio"]:focus + label:before, 
+[type="radio"]:checked:focus + label:before, 
+[type="radio"]:not(:checked):focus + label:before,
+[type="radio"]:focus + .form-input-label-block > label:before, 
+[type="radio"]:checked:focus + .form-input-label-block > label:before, 
+[type="radio"]:not(:checked):focus + .form-input-label-block > label:before {
      border: 1px solid -webkit-focus-ring-color;
      outline: 5px auto -webkit-focus-ring-color;
 }
