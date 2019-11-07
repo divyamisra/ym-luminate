@@ -535,8 +535,8 @@ div.responsive .donation-levels .enterAmt .donation-level-input-container label 
 [type="checkbox"]:checked + label, 
 [type="radio"]:not(:checked) + label, 
 [type="radio"]:checked + label,
-[type="radio"]:not(:checked) + .form-input-label-block > label, 
-[type="radio"]:checked + .form-input-label-block > label {
+[type="checkbox"]:not(:checked) + .form-input-label-block > label, 
+[type="checkbox"]:checked + .form-input-label-block > label {
      position: relative;
      padding-left: 35px;
      cursor: pointer;
@@ -546,8 +546,8 @@ div.responsive .donation-levels .enterAmt .donation-level-input-container label 
 [type="checkbox"]:checked + label:before, 
 [type="radio"]:not(:checked) + label:before, 
 [type="radio"]:checked + label:before,
-[type="radio"]:not(:checked) + .form-input-label-block > label:before, 
-[type="radio"]:checked + .form-input-label-block > label:before {
+[type="checkbox"]:not(:checked) + .form-input-label-block > label:before, 
+[type="checkbox"]:checked + .form-input-label-block > label:before {
      content: '';
      position: absolute;
      left: 0;
@@ -563,8 +563,8 @@ div.responsive .donation-levels .enterAmt .donation-level-input-container label 
 [type="checkbox"]:checked + label:after, 
 [type="radio"]:not(:checked) + label:after, 
 [type="radio"]:checked + label:after,
-[type="radio"]:not(:checked) + .form-input-label-block > label:after, 
-[type="radio"]:checked + .form-input-label-block > label:after {
+[type="checkbox"]:not(:checked) + .form-input-label-block > label:after, 
+[type="checkbox"]:checked + .form-input-label-block > label:after {
      content: '\f00c';
      position: absolute;
      top: 5px;
@@ -580,8 +580,7 @@ div.responsive .donation-levels .enterAmt .donation-level-input-container label 
 /* checked mark aspect changes */
 [type="checkbox"]:not(:checked) + label:after, 
 [type="radio"]:not(:checked) + label:after,
-[type="checkbox"]:not(:checked) + .form-input-label-block > label:after, 
-[type="radio"]:not(:checked) + .form-input-label-block > label:after {
+[type="checkbox"]:not(:checked) + .form-input-label-block > label:after {
      opacity: 0;
      -webkit-transform: scale(0);
      -ms-transform: scale(0);
@@ -589,8 +588,7 @@ div.responsive .donation-levels .enterAmt .donation-level-input-container label 
 }
 [type="checkbox"]:checked + label:after, 
 [type="radio"]:checked + label:after,
-[type="checkbox"]:checked + .form-input-label-block > label:after, 
-[type="radio"]:checked + .form-input-label-block > label:after {
+[type="checkbox"]:checked + .form-input-label-block > label:after {
      opacity: 1;
      -webkit-transform: scale(1);
      -ms-transform: scale(1);
@@ -599,8 +597,8 @@ div.responsive .donation-levels .enterAmt .donation-level-input-container label 
 /* disabled checkbox */
 [type="checkbox"]:disabled:not(:checked) + label:before, 
 [type="checkbox"]:disabled:checked + label:before, 
-[type="radio"]:disabled:not(:checked) + .form-input-label-block > label:before, 
-[type="radio"]:disabled:checked + .form-input-label-block > label:before {
+[type="checkbox"]:disabled:not(:checked) + .form-input-label-block > label:before, 
+[type="checkbox"]:disabled:checked + .form-input-label-block > label:before {
      -webkit-box-shadow: none;
      box-shadow: none;
      border-color: #bbb;
@@ -608,14 +606,12 @@ div.responsive .donation-levels .enterAmt .donation-level-input-container label 
 }
 [type="checkbox"]:disabled:checked + label:after,
 [type="radio"]:disabled:checked + label:after,
-[type="checkbox"]:disabled:checked + .form-input-label-block > label:after,
-[type="radio"]:disabled:checked + .form-input-label-block > label:after {
+[type="checkbox"]:disabled:checked + .form-input-label-block > label:after {
      color: #999;
 }
 [type="checkbox"]:disabled + label, 
 [type="radio"]:disabled + label,
-[type="checkbox"]:disabled + .form-input-label-block > label, 
-[type="radio"]:disabled + .form-input-label-block > label {
+[type="checkbox"]:disabled + .form-input-label-block > label {
      color: #aaa;
 }
 /* accessibility */
@@ -626,8 +622,8 @@ div.responsive .donation-levels .enterAmt .donation-level-input-container label 
 [type="radio"]:checked:focus + label:before, 
 [type="radio"]:not(:checked):focus + label:before,
 [type="radio"]:focus + .form-input-label-block > label:before, 
-[type="radio"]:checked:focus + .form-input-label-block > label:before, 
-[type="radio"]:not(:checked):focus + .form-input-label-block > label:before {
+[type="checkbox"]:checked:focus + .form-input-label-block > label:before, 
+[type="checkbox"]:not(:checked):focus + .form-input-label-block > label:before {
      border: 1px solid -webkit-focus-ring-color;
      outline: 5px auto -webkit-focus-ring-color;
 }
