@@ -206,7 +206,7 @@ div.responsive input.step-button {
 div.responsive a.step-button:hover,
 div.responsive button.step-button:hover, 
 div.responsive input.step-button:hover {
-	background:$red-deep;
+	background:$red-deep !important;
 }
  div.responsive input[type="text"], 
 div.responsive input[type="number"], 
