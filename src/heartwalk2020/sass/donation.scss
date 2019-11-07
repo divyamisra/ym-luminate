@@ -527,7 +527,12 @@ div.responsive .donation-levels .enterAmt .donation-level-input-container label 
      position: absolute;
      left: -9999px;
 }
- [type="checkbox"]:not(:checked) + label, [type="checkbox"]:checked + label, [type="radio"]:not(:checked) + label, [type="radio"]:checked + label {
+ [type="checkbox"]:not(:checked) + label, 
+[type="checkbox"]:checked + label, 
+[type="radio"]:not(:checked) + label, 
+[type="radio"]:checked + label,
+[type="radio"]:not(:checked) + .form-input-label-block > label, 
+[type="radio"]:checked + .form-input-label-block > label {
      position: relative;
      padding-left: 35px;
      cursor: pointer;
