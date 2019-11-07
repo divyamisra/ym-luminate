@@ -28,7 +28,13 @@
     });   
     $(".donation-level-amount-container").each(function() {
         $(this).text($(this).text().replace(".00", ""));
-    });     
+    });
+	  
+    //wrap recognition section
+    var wrapStart = jQuery('.tr-recognition-name-view').prev('.form-row').prev('.section-header-container');
+    var wrapLast = jQuery('#tr_show_gift_to_public_row').next();
+    wrapStart.nextUntil(wrapLast).andSelf().wrapAll("<div class='recognition'></div>");
+    
     $('.donation-level-container').click(function(){
         $('.donation-level-container').removeClass('active');
         $('.formMessage p').removeClass('active');
