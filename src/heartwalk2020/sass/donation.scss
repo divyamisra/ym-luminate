@@ -120,6 +120,11 @@ div.form-row {
 #level_flexible_row {
 	margin-bottom:25px;
 }
+
+.custom-field-container span.field-required {
+	display: none !important;
+}
+
 div.donation-level-container {
 	background: #fff;
 	border-radius: 60px;
