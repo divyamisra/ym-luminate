@@ -336,6 +336,9 @@
 (function() {
     Y.use('jquery-noconflict', function() {
         jQuery(function($) {
+	    //change default radio button to checkbox
+	    $("#cover_fee_radio_Yes").attr("type","checkbox");
+		
             if ($('.field-error-indicator').length) {
                 if ($('#additional_amountname').val() <= 0) {
                     $("#cover_fee_radio_Yes").prop("checked", true);
