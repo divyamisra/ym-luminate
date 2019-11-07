@@ -338,11 +338,11 @@
         jQuery(function($) {
             if ($('.field-error-indicator').length) {
                 if ($('#additional_amountname').val() <= 0) {
-                    $("#cover-fee-no").prop("checked", true);
+                    $("#cover_fee_radio_Yes").prop("checked", true);
                 }
             }
             
-            if (getDonationAmount() > 0 && $('#cover-fee-yes').is(':checked')) {
+            if (getDonationAmount() > 0 && $('#cover_fee_radio_Yes').is(':checked')) {
                var initAmt = parseFloat(getDonationAmount());
                var toDonate =  initAmt + parseFloat((getDonationAmount() * 0.029 + .30).toFixed(2));
                $('button#pstep_finish').html("Donate $" + toDonate);
@@ -354,7 +354,7 @@
                $('.bb-additional-amount').text(toDonate)
 	    }
             
-            $("#cover-fee-yes").click(function() {
+            $("#cover_fee_radio_Yes").click(function() {
                if ($(this).is(':checked')) {
                   var initAmt = parseFloat(getDonationAmount());
                   var toDonate =  initAmt + parseFloat((getDonationAmount() * 0.029 + .30).toFixed(2));
@@ -367,7 +367,7 @@
                }
             });
             jQuery('[id^=level_]').change(function() {
-               if ($("#cover-fee-yes").is(':checked')) {
+               if ($("#cover_fee_radio_Yes").is(':checked')) {
                   var initAmt = parseFloat(getDonationAmount());
                   var toDonate =  initAmt + parseFloat((getDonationAmount() * 0.029 + .30).toFixed(2));
                   $('button#pstep_finish').html("Donate $" + toDonate);
@@ -379,7 +379,7 @@
                }
             });
             $('.donation-level-user-entered input').blur(function() {
-               if ($("#cover-fee-yes").is(':checked')) {
+               if ($("#cover_fee_radio_Yes").is(':checked')) {
                   var initAmt = parseFloat(getDonationAmount());
                   var toDonate =  initAmt + parseFloat((getDonationAmount() * 0.029 + .30).toFixed(2));
                   $('button#pstep_finish').html("Donate $" + toDonate);
@@ -393,7 +393,7 @@
 
             $("#ProcessForm").submit(function(e) {
                 //e.preventDefault();
-                if ($('#cover-fee-yes').is(':checked')) {
+                if ($('#cover_fee_radio_Yes').is(':checked')) {
                     $('#additional_amountname').val(getDonationAmount() * 0.029 + .30);
                 } else {
                     $('#additional_amountname').val(0);
