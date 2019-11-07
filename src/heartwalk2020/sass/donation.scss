@@ -524,6 +524,9 @@ div.responsive .donation-levels .enterAmt .donation-level-input-container label 
 /******** Custom Checkboxes ********/
 /* Base for label styling */
 /* hide cover fiee custom field */
+#additional_amount_row{
+	display:none;
+}
 .form-content > .form-input-label-block {
 	display:none;
 }
