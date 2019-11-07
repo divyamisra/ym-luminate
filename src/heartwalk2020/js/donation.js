@@ -106,7 +106,7 @@
     $('h2:contains("Matching Gift:")').wrap('<div id="matching_gift_section"></div>');
     $('.matching-gift-container').appendTo('#matching_gift_section');
     //$('#matching_gift_section').insertAfter('.form-donation-level');
-    $('.donation-level-user-entered input').attr("placeholder","Enter an Amount").after("<div class='other-amt-note'><em>$25 minimum donation</em></div>");
+    $('.donation-level-user-entered input').attr("placeholder","Other Amount").after("<div class='other-amt-note'><em>$25 minimum donation</em></div>");
     
     /*$('#show_employer_match_check').click(function(){
         $('#matching_gift_section').slideToggle();
