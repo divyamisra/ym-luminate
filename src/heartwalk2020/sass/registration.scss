@@ -619,6 +619,14 @@ div.responsive #team_find_section_footer button.next-step {
 	margin-top: 5px;
 	display: block;
 }
+#team_find_new_fundraising_goal .input-group-prepend {
+	position: absolute;
+	top: 14px;
+	left: 2px;
+}
+.app_tr_registration div.responsive #fr_team_goal input[type="text"] {
+	padding-left:20px;
+}
 
 /*** page reg ***/
 div#personal_info_section_one .cons-full-name-label label, .cons-full-address-container .cons-zip-label label, div#cons_info_component_contact_info_section .sub-section-body .cons-full-address-label label {
