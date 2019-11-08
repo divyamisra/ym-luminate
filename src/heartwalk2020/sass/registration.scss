@@ -802,9 +802,6 @@ div.responsive div.ErrorMessage.page-error>span.field-error-indicator, div.respo
  padding:15px 30px;
 }
 @media (max-width:767px) {
-	.app_tr_registration #F2fRegContact, .app_tr_registration #F2fRegPartType, .app_tr_registration #FriendraiserUserWaiver, .app_tr_registration #fr_payment_form {
-        	padding:0px;
-	}
 	.app_tr_registration div#discount_code_container,
 	.app_tr_registration div#part_type_additional_gift_container,
 	.app_tr_registration div#part_type_addon_container,
@@ -874,6 +871,14 @@ div.responsive div.ErrorMessage.page-error>span.field-error-indicator, div.respo
  -ms-flex:0 0 100%;
  flex:0 0 100%;
  max-width:100%
+}
+@media (max-width:767px) {
+	.app_tr_registration #F2fRegContact, 
+	.app_tr_registration #F2fRegPartType, 
+	.app_tr_registration #FriendraiserUserWaiver, 
+	.app_tr_registration #fr_payment_form {
+        	padding:0px;
+	}
 }
 @media (min-width:576px) {
  .app_tr_registration #F2fRegContact,
