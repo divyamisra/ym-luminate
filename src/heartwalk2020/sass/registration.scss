@@ -600,6 +600,9 @@ label.otherAmt {
 #team_find_existing_team_search_container, #team_find_existing_company_selection_container, #team_find_search_button_container {
     display: block;
 }
+#team_find_new_company_selection_container .hint-text {
+	font-size: .6em !important;
+}
 div.responsive #team_find_section_footer button.next-step {
     float: none;
 }
