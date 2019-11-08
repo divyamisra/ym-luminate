@@ -621,8 +621,11 @@ div.responsive #team_find_section_footer button.next-step {
 }
 #team_find_new_fundraising_goal .input-group-prepend {
 	position: absolute;
-	top: 14px;
+	top: 15px;
 	left: 2px;
+}
+#team_find_new_fundraising_goal .input-group-prepend .input-group-text {
+	border: none;
 }
 .app_tr_registration div.responsive #fr_team_goal {
 	padding-left:20px;
