@@ -1018,7 +1018,7 @@
             $('#part_type_additional_gift_container .otherAmt span').html("$");
             
             if (regType === 'startTeam') {
-                $('#part_type_additional_gift_section_header').prepend('<div class="bold-label" id="regDonationLabel">Show your team how it’s done: kick start your own fundraising with a donation!</div>');
+                $('#part_type_additional_gift_section_header').prepend('<div class="bold-label" id="regDonationLabel">Show your team how it\'s done: kick start your own fundraising with a donation!</div>');
             }
             if (regType === 'joinTeam') {
                 $('#part_type_additional_gift_section_header').prepend('<div class="bold-label" id="regDonationLabel">Show your dedication and make a donation towards your goal.</div>');
