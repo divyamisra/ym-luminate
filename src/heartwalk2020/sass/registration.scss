@@ -615,6 +615,10 @@ div.responsive #team_find_section_footer button.next-step {
 #team_find_new_fundraising_goal label.input-label {
 	margin-left: 0;
 }
+#team_find_new_team_company select#fr_co_list {
+	margin-top: 5px;
+	display: block;
+}
 
 /*** page reg ***/
 div#personal_info_section_one .cons-full-name-label label, .cons-full-address-container .cons-zip-label label, div#cons_info_component_contact_info_section .sub-section-body .cons-full-address-label label {
