@@ -612,6 +612,7 @@ div.responsive #team_find_section_footer button.next-step {
     width: 100%;
   }
 }
+
 #team_find_new_fundraising_goal label.input-label {
 	margin-left: 0;
 }
@@ -631,9 +632,13 @@ div.responsive #team_find_section_footer button.next-step {
 	padding-left:20px;
 }
 @media only screen and (max-width: 767px) {
-#team_find_section_footer {
+   #team_find_new_team_attributes, 
+   #team_find_new_team_company {
+	width: auto !important;
+   }
+   #team_find_section_footer {
 	margin-top:20px;
-}
+   }
 }
 
 /*** page reg ***/
