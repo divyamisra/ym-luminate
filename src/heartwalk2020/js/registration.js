@@ -633,7 +633,7 @@
             $('form[name=FriendraiserFind]').attr('hidden', true);
             
             if (regType === 'startTeam') {
-                $('#team_find_new').addClass("col-12 col-xl-10 offset-xl-1");
+                $('#team_find_section_container').addClass("col-12 col-xl-10 offset-xl-1").removeClass("section-container");
                 $('form[name=FriendraiserFind]').removeAttr('hidden');
                 $('#team_find_section_body, #team_find_section_header').show();
                 var trCompanyCount = $('#fr_co_list > option').length;
