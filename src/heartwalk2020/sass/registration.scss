@@ -627,6 +627,11 @@ div.responsive #team_find_section_footer button.next-step {
 .app_tr_registration div.responsive #fr_team_goal {
 	padding-left:20px;
 }
+@media only screen and (max-width: 767px) {
+#team_find_section_footer {
+	margin-top:20px;
+}
+}
 
 /*** page reg ***/
 div#personal_info_section_one .cons-full-name-label label, .cons-full-address-container .cons-zip-label label, div#cons_info_component_contact_info_section .sub-section-body .cons-full-address-label label {
