@@ -731,6 +731,10 @@ div#registration_options_page div#user_name_pword_container {
   #user_name_pword_container input#cons_user_name {
     width:280px;
   }
+  #user_name_pword_container input#cons_password,
+  #user_name_pword_container input#cons_rep_password {
+    width:280px;
+  }
 }
 
 div#email_optin label, div#gift_notice_optin label, .mobile div#email_optin label, .mobile div#gift_notice_optin label {
