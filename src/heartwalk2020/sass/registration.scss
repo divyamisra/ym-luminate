@@ -237,7 +237,9 @@ a.show-not-sure {
     text-align: right;
     margin-left: 90px;
 }
-
+div#part_type_fundraising_goal_container #suggested_goal_container {
+	margin-left: 0px;
+}
 #part_type_additional_gift_container .enterAmt label {
     display: inline-block;
     margin-top: 7px;
