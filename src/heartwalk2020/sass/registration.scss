@@ -2,7 +2,12 @@
 @import "mixins.scss";
 
 // Heat Walk 2020 TeamRaiser Registration SCSS
-
+@media screen and (min-color-index:0) and (-webkit-min-device-pixel-ratio:0) {
+	.aural-only {
+		text-indent: -999px;
+		z-index: -1;
+	}
+}
 main {
     background-image: url("/images/content/pagebuilder/hw_hero_desktop.jpg");
     background-size: 100%;
