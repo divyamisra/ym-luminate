@@ -1081,7 +1081,6 @@
         $('.survivor_yes_no li').click(function() {
             $('.survivor_yes_no li').removeClass('survivor_active');
             $(this).addClass('survivor_active');
-            $(this).find('input[type=radio]').click();
         });
 
         /* zip only reg flow */
@@ -1405,7 +1404,7 @@
     function processPTypesData(data) {
         var userParticipationType = readCookie('pType');
         console.log(userParticipationType);
-        var waiver;
+        var waiver, waiverHTML;
         $(data).find('participationType').each(function() {
             var nodeName = $(this).find('name').text();
             var nodeNameTrim = nodeName.replace(/\s/g, "");
