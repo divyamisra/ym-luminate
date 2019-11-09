@@ -914,8 +914,8 @@ div.responsive div.ErrorMessage.page-error>span.field-error-indicator, div.respo
  position:relative;
  width:100%;
  min-height:1px;
- padding-right:15px;
- padding-left:15px
+ /*padding-right:15px;
+ padding-left:15px*/
 }
 @media (min-width:576px) {
  .app_tr_registration #emergency_contact_field_group div.field-required, .app_tr_registration .cons-full-name-container, .app_tr_registration .cons-info-question-container, .app_tr_registration .survey-question-container {
