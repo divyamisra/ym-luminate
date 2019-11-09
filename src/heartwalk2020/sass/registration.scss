@@ -736,7 +736,9 @@ div#registration_options_page div#user_name_pword_container {
 div#email_optin label, div#gift_notice_optin label, .mobile div#email_optin label, .mobile div#gift_notice_optin label {
     max-width: 100%;
 }
-
+div#email_optin {
+	display:none;
+}
 div#cons_info_component_container div#personal_info_section_one, div#cons_info_component_container div#personal_info_section_two, div#cons_info_component_container div#contact_info_section_one, div#cons_info_component_container div#contact_info_section_two, div#registration_options_page div#user_name_pword_container, div#registration_options_page div#privacy_opts_container, div#registration_options_page div#tribute_component_section_one, div#registration_options_page div#tribute_component_section_two, div#emergency_contact_container, div#gift_notice_optin, div#email_optin {
   width: auto;
 }
