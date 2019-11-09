@@ -1095,7 +1095,7 @@
         /*Donation Buttons*/
         $('.donation-level-row-label').parent().parent().addClass('donation-amt');
         $('.donation-level-row-label:contains("Additional Gift:")').parent().parent().addClass('enterAmt').removeClass('donation-amt');
-        //$('<span>Other amount:</span>').insertBefore('.donation-level-row-container.enterAmt input:last-child');
+        $('<span>$</span>').insertBefore('.donation-level-row-container.enterAmt input:last-child');
         $(".donation-level-amount-text").each(function() {
             $(this).text($(this).text().replace(".00", ""));
         });
