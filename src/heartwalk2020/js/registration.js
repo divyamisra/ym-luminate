@@ -1025,7 +1025,7 @@
             if (regType === 'joinTeam') {
                 $('#part_type_additional_gift_section_header').prepend('<div class="bold-label" id="regDonationLabel">Show your dedication and make a donation towards your goal.</div>');
             }
-            $('#regDonationLabel').before("<h3>Make a Donation</h3>");
+            $('#part_type_additional_gift_section_header').before("<h3>Make a Donation</h3>");
 
             $('#part_type_donation_level_input_container').wrapInner('<fieldset role="radiogroup" class="donation-form-fields" />');
             $('.donation-form-fields').prepend('<legend class="sr-only">Donate Towards Your Goal Now</legend>');
