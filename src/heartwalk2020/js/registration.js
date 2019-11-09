@@ -1018,7 +1018,7 @@
                 $('.part-type-container.selected').removeClass("selected");
             }
             $('#part_type_additional_gift_container .otherAmt span').html("$");
-            $('#regDonationLable').before("<h3>Make a Donation</h3>");
+            $('#regDonationLabel').before("<h3>Make a Donation</h3>");
             
             if (regType === 'startTeam') {
                 $('#part_type_additional_gift_section_header').prepend('<div class="bold-label" id="regDonationLabel">Show your team how it\'s done: kick start your own fundraising with a donation!</div>');
