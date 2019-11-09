@@ -226,6 +226,9 @@ div.responsive .survivor_yes_no .input-container:hover {
     div.responsive button.step-button {
         float:left;
     }
+    div.responsive button.step-button.previous-button {
+        clear:both;
+    }
 }
 	
 div.responsive input[type="email"], div.responsive input[type="text"], div.responsive input[type="number"], div.responsive input[type="password"], div.responsive textarea, select, div.responsive select, select[size] {
