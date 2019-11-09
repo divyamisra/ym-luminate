@@ -1103,13 +1103,13 @@
             $(this).find('input').prop('checked', true);
             $('.donation-level-row-container.donation-amt').removeClass('active');
             $(this).addClass('active');
-            $('#part_type_anonymous_input_container, #part_type_show_public_input_container').show();
+            //$('#part_type_anonymous_input_container, #part_type_show_public_input_container').show();
             $('.donation-level-row-container.enterAmt input').val('');
         });
         $('.donation-level-row-container.enterAmt').click(function() {
             $(this).find('input').prop('checked', true);
             $('.donation-level-row-container.donation-amt').removeClass('active');
-            $('#part_type_anonymous_input_container, #part_type_show_public_input_container').show();
+            //$('#part_type_anonymous_input_container, #part_type_show_public_input_container').show();
         });
         $('#part_type_individual_company_selection_container').insertAfter('#part_type_selection_container');
         $('.donation-level-row-label-no-gift').insertBefore(jQuery('.donation-level-row-label-no-gift').parent());
