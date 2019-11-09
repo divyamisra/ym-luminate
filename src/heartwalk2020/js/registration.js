@@ -1078,7 +1078,7 @@
         } else if ($('.survivor_yes_no li.input-container input[value="Yes"]').is(':checked')) {
             $('.survivor_yes_no li.input-container input[value="Yes"]').parent().parent().addClass('survivor_active');
         }
-        $('.survivor_yes_no label').click(function() {
+        $('.survivor_yes_no li').click(function() {
             $('.survivor_yes_no li').removeClass('survivor_active');
             $(this).parent().addClass('survivor_active');
         });
