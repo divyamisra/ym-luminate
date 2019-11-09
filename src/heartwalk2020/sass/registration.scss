@@ -743,13 +743,14 @@ div.registration-page-container div#reg_options_cons_info_extension.sub-section-
   color: #000000;
 }
 .survivor_yes_no label {
-    width: 125px;
-    height: 60px;
-    text-align: center;
-    line-height: 60px;
-    font-size: 24px;
-    cursor: pointer;
-    padding: 20px 42px;
+	width: 125px;
+	height: 50px;
+	text-align: center;
+	/* line-height: 60px; */
+	font-size: 24px;
+	cursor: pointer;
+	padding: 8px 42px;
+	margin: 0;
 }
 .survivor_yes_no li.input-container.survivor_active {
   background-color: #d01d20;
@@ -1059,9 +1060,9 @@ div.responsive div.ErrorMessage.page-error>span.field-error-indicator, div.respo
 .app_tr_registration #additional_questions_container .survey-question-container {
  width:auto
 }
-.app_tr_registration #additional_questions_container .survey-question-container .input-container label {
+/*.app_tr_registration #additional_questions_container .survey-question-container .input-container label {
  display:inline
-}
+}*/
 .app_tr_registration #additional_questions_container .survey-question-container .survey-date-day,
 .app_tr_registration #additional_questions_container .survey-question-container .survey-date-month,
 .app_tr_registration #additional_questions_container .survey-question-container .survey-date-year {
