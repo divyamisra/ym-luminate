@@ -25,6 +25,9 @@ main {
      background-color: #ffffff;
      padding: 40px 20px;
 }
+.pg_entry main > .container {
+     padding: 0px !important;
+}
 
 h1#pt_title_container,
 h1.ObjTitle {
