@@ -1011,14 +1011,13 @@
         // PTYPE
         if ($('#F2fRegPartType').length > 0) {
             if ($('.part-type-container').length == 1) {
-                $('.part-type-container').hide();
+                $('.part-type-container, #part_type_section_header').hide();
                 $('.part-type-container').before("<div class='part_type_one_only'><strong>You are registering as a Heart Walker!</strong></div>");
             } else {
                 $('input[name=fr_part_radio]:checked').removeAttr("checked");
                 $('.part-type-container.selected').removeClass("selected");
             }
             $('#part_type_additional_gift_container .otherAmt span').html("$");
-            $('#regDonationLabel').before("<h3>Make a Donation</h3>");
             
             if (regType === 'startTeam') {
                 $('#part_type_additional_gift_section_header').prepend('<div class="bold-label" id="regDonationLabel">Show your team how it\'s done: kick start your own fundraising with a donation!</div>');
@@ -1026,6 +1025,8 @@
             if (regType === 'joinTeam') {
                 $('#part_type_additional_gift_section_header').prepend('<div class="bold-label" id="regDonationLabel">Show your dedication and make a donation towards your goal.</div>');
             }
+            $('#regDonationLabel').before("<h3>Make a Donation</h3>");
+
             $('#part_type_donation_level_input_container').wrapInner('<fieldset role="radiogroup" class="donation-form-fields" />');
             $('.donation-form-fields').prepend('<legend class="sr-only">Donate Towards Your Goal Now</legend>');
             
