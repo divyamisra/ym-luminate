@@ -632,6 +632,37 @@
             // BEGIN TFIND
             $('form[name=FriendraiserFind]').attr('hidden', true);
             
+            $('select[name=fr_co_list]').change(function(){
+                if ($(this).find('option:selected').text().indexOf("AT&T") > -1) {
+                    console.log("found AT&T 4");
+                    localStorage.companySelect = "AT&T";
+                } else {
+                    console.log("reset AT&T 4");
+                    localStorage.companySelect = "";
+                }
+            });
+            $('.list-component-cell-column-join-link a').click(function(){
+                var compSel = $(this).closest('.list-component-row').find('.list-component-cell-column-company-name .list-component-cell-data-text').html();
+                if (compSel.indexOf("AT&amp;T") > -1 || compSel.indexOf("AT&T") > -1) {
+                    console.log("found AT&T 5");
+                    localStorage.companySelect = "AT&T";
+                } else {
+                    console.log("reset AT&T 5");
+                    localStorage.companySelect = "";
+                }
+            });
+            $('button.next-step').click(function(){
+                if ($('select[name=fr_co_list]').length) {
+                    if ($('select[name=fr_co_list] option:selected').text().indexOf("AT&T") > -1) {
+                        console.log("found AT&T 6");
+                        localStorage.companySelect = "AT&T";
+                    } else {
+                        console.log("reset AT&T 6");
+                        localStorage.companySelect = "";
+                    }
+                }
+            });
+
             if (regType === 'startTeam') {
                 $('#team_find_section_container').addClass("col-12 col-xl-10 offset-xl-1").removeClass("section-container");
                 $('form[name=FriendraiserFind]').removeAttr('hidden');
@@ -1078,6 +1109,27 @@
             });
         }
         
+        if (jQuery('input[name=pg]').val() == "reg" || jQuery('input[name=pg]').val() == "reganother") {
+            //for AT&T company - a question will be displayed for their employee id
+            //first it must be hidden though
+            jQuery('label span.input-label:contains(By submitting the information requested in this form)').closest('.survey-question-container').addClass("att_id").hide();
+            //jQuery('label span.input-label:contains(Clear Vidyard ID)').closest('.survey-question-container').addClass("vidyard_id").hide();
+            //add additional code here for saving company name and displaying field if company selected was AT&T
+
+            setTimeout(function(){
+                if (localStorage.companySelect == "AT&T") {
+                    jQuery('.att_id').show();
+                    jQuery('.att_id .input-container label .input-label').html(jQuery('.att_id .input-container label .input-label').html().replace("AT&amp;T Services, Inc.","<span class='att_id_blue'>AT&T Services, Inc.</span>"));
+                    jQuery('.att_id .input-container label .input-label').prepend("<div class='att_id_title att_id_blue'>AT&T Employees:</div>");
+                    localStorage.companySelect = "";
+                }
+            },500);
+            jQuery('button.next-step').click(function(){
+                localStorage.hfg = jQuery('label:contains(Healthy For Good)').prev('input:checked').length;
+                localStorage.hfg_firstname = jQuery('input[name=cons_first_name]').val();
+                localStorage.hfg_email = jQuery('input[name=cons_email]').val();		 
+            });
+        }	
         
         if ($('#F2fRegContact, form[name="RegisterAnother"]').length > 0) {
             $('.p-bar-step-1, .p-bar-step-2').show();
