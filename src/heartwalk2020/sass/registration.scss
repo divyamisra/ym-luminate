@@ -984,6 +984,9 @@ div.responsive div.ErrorMessage.page-error>span.field-error-indicator, div.respo
   max-width:50%
  }
 }
+#participant_info_body_container #password_component_container {
+	max-width: 600px;
+}
 .app_tr_registration #reg_option_custom_html .modal-dialog {
  overflow-y:initial
 }
