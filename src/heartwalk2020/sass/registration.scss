@@ -1167,10 +1167,16 @@ div.responsive #FriendraiserUserWaiver button.cancel-step {
 }
 */
 div.responsive button.previous-step {
-	background-color: #ffffff !important;
-	margin-right: 20px;
+	color: #c10e21;
+	background: none !important;
+	border: none;
+	padding: 0;
+	font-size:16px;
+}
+div.responsive button.previous-step:hover {
+	background: none !important;
 	color: #d01d20;
-	border: 2px solid #d01d20;
+	text-decoration: underline;
 }
 div.responsive button.cancel-step {
     color: #d01d20;
