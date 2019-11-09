@@ -1031,11 +1031,49 @@
             $('.donation-form-fields').prepend('<legend class="sr-only">Donate Towards Your Goal Now</legend>');
             
             $('#part_type_individual_company_selection_container .input-container').prepend("<span class='hint-text'>Choose your company below. If your company does not show up, you can skip this step.</span>");
-            
-            $('form#F2fRegPartType').submit(function(e){
+
+            /* setup form validation - additional donation amount must be >= $25 */
+            $('input[name^=donation_level_form_input]').addClass("validDonation");
+
+            $('form').validate();
+            $.validator.addMethod("validDonation",function(value, element) {
+                    value = parseInt(value.replace("$","").replace(",",""));
+                    if ($('input[name^=donation_level_form]:checked').val() == -1 && value < 25) {
+                        return false;
+                    } else {
+                        return true;
+                    }
+                },
+                "Donations of all amounts are greatly appreciated. Online donations have a $25 minimum."
+            );
+
+            $('select[name=fr_part_co_list]').change(function(){
+                if (jQuery(this).find('option:selected').text().indexOf("AT&T") > -1) {
+                    console.log("found AT&T 2");
+                    localStorage.companySelect = "AT&T";
+                } else {
+                    console.log("reset AT&T 2");
+                    localStorage.companySelect = "";
+                }
+            });
+            $('button.next-step').click(function(){
                 if ($('.part-type-container.selected').length == 0) {
-                    e.preventDefault();
                     alert("Please select how you will participate");
+                    return false;
+                }
+                if ($('select[name=fr_part_co_list]').length) {
+                    if ($('select[name=fr_part_co_list] option:selected').text().indexOf("AT&T") > -1) {
+                        console.log("found AT&T 3");
+                        localStorage.companySelect = "AT&T";
+                    } else {
+                        console.log("reset AT&T 3");
+                        localStorage.companySelect = "";
+                    }
+                }
+                if ($('form').valid()) {
+                    return true;
+                } else {
+                    return false;
                 }
             });
         }
