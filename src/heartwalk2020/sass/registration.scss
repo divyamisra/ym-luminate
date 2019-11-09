@@ -641,6 +641,9 @@ div.responsive #team_find_section_footer button.next-step {
 .app_tr_registration div.responsive #fr_team_goal {
 	padding-left:20px;
 }
+#team_find_new_team_attributes, #team_find_new_team_company {
+	width: 50%;
+}
 @media only screen and (max-width: 767px) {
    #team_find_new_team_attributes, 
    #team_find_new_team_company {
