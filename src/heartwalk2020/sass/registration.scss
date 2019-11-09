@@ -811,6 +811,7 @@ div.responsive div.ErrorMessage.page-error>span.field-error-indicator, div.respo
 .app_tr_registration .part_type_selection_container {
 	text-align:center;
 }
+/*
 .app_tr_registration div#discount_code_container,
 .app_tr_registration div#part_type_additional_gift_container,
 .app_tr_registration div#part_type_addon_container,
@@ -824,7 +825,9 @@ div.responsive div.ErrorMessage.page-error>span.field-error-indicator, div.respo
  background-color:#f6f9f9;
  padding:15px 30px;
 }
+*/
 @media (max-width:767px) {
+/*
 	.app_tr_registration div#discount_code_container,
 	.app_tr_registration div#part_type_additional_gift_container,
 	.app_tr_registration div#part_type_addon_container,
@@ -836,6 +839,7 @@ div.responsive div.ErrorMessage.page-error>span.field-error-indicator, div.respo
 	.app_tr_registration div.registration-page-container div.sub-section-header {
 		 padding:5px;
 	}
+*/
 	div.registration-page-container div.section-container {
 		padding: 0px;
 	}
