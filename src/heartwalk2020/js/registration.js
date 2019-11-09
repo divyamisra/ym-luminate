@@ -1420,7 +1420,8 @@
         jQuery("a:contains('Join as Individual')").click(function(){
             _gaq.push(['t2._trackEvent', 'Register Landing', 'click', 'Join as Indiv']);
         });
-
+        
+        var radioValue = '';
         $('.survivor_yes_no input').change(function() {
             radioValue = $(this).val();
             console.log("radio value = ", radioVaalue);
