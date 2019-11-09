@@ -1080,7 +1080,8 @@
         }
         $('.survivor_yes_no li').click(function() {
             $('.survivor_yes_no li').removeClass('survivor_active');
-            $(this).parent().addClass('survivor_active');
+            $(this).addClass('survivor_active');
+            $(this).find('input[type=radio]').click();
         });
 
         /* zip only reg flow */
