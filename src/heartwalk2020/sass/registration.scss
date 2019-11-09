@@ -8,6 +8,18 @@
 		z-index: -1;
 	}
 }
+/* validation styling */
+ input.error, select.error {
+     border-color: #ff0000 !important;
+     box-shadow: none !important;
+}
+ label.error {
+     color: #ff0000;
+     font-weight: normal;
+     white-space: nowrap;
+}
+
+/* main styling */
 main {
     background-image: url("/images/content/pagebuilder/hw_hero_desktop.jpg");
     background-size: 100%;
