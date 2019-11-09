@@ -1030,6 +1030,8 @@
             $('#part_type_donation_level_input_container').wrapInner('<fieldset role="radiogroup" class="donation-form-fields" />');
             $('.donation-form-fields').prepend('<legend class="sr-only">Donate Towards Your Goal Now</legend>');
             
+            $('#part_type_individual_company_selection_container .input-container').prepend("<span class='hint-text'>Choose your company below. If your company does not show up, you can skip this step.</span>");
+            
             $('form#F2fRegPartType').submit(function(e){
                 if ($('.part-type-container.selected').length == 0) {
                     e.preventDefault();
