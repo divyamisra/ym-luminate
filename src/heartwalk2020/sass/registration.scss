@@ -1402,6 +1402,7 @@ div.reg-summary-address-info .contact-info-street, div.reg-summary-address-info 
   border: 1px solid -webkit-focus-ring-color;
   outline: 5px auto -webkit-focus-ring-color;
 }
+/*
 @media (max-width: 1010px) {
   [type="checkbox"]:not(:checked) + span.manageable-content label:before,
   [type="checkbox"]:checked + span.manageable-content label:before,
@@ -1420,6 +1421,7 @@ div.reg-summary-address-info .contact-info-street, div.reg-summary-address-info 
     top: 2px; 
   }
 }
+*/
 .notTime input:checked, .notTime input:not(:checked) {
     left: 0;
     position: relative;
