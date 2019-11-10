@@ -183,7 +183,7 @@ div.responsive a.next-step, div.responsive button.next-step, div.responsive butt
  
 div.responsive button.step-button, 
 div.responsive .donation-level-row-container.donation-amt .donation-level-row-decoration-container,
-div.responsive .survivor_yes_no .input-container{
+div.responsive .survivor_yes_no .input-container {
     border-radius: 60px 60px 60px 60px;
     background-clip: padding-box;
     color: #fff;
@@ -213,7 +213,8 @@ div.responsive .survivor_yes_no .input-container.survivor_active {
 	color: #fff;
 }
 div.responsive .donation-level-row-container.donation-amt.active .donation-level-row-decoration-container:hover,
-div.responsive .survivor_yes_no .input-container:hover {
+div.responsive .survivor_yes_no .input-container:hover,
+div.responsive .survivor_yes_no .input-container:focus {
 	background: #000 !important;
 	color: #fff !important;
 }
