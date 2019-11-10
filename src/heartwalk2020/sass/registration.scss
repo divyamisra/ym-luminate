@@ -30,7 +30,7 @@ main {
 @media (max-width:767px) {
   main {
     padding-right:5px;
-    padding-left:5px; 
+    padding-left:5px;
   }
 }
 @media (min-width: 1200px) {
@@ -90,7 +90,7 @@ div.responsive span.field-required {
 
 .utype-helper {
     font-size:12px;
-    border:1px solid #3c3c3c; 
+    border:1px solid #3c3c3c;
     border-radius:20px;
     vertical-align:middle;
     padding: 5px 8px;
@@ -180,8 +180,8 @@ div.responsive a.next-step, div.responsive button.next-step, div.responsive butt
     color: #ffffff;
     text-decoration: none;
 }
- 
-div.responsive button.step-button, 
+
+div.responsive button.step-button,
 div.responsive .donation-level-row-container.donation-amt .donation-level-row-decoration-container,
 div.responsive .survivor_yes_no .input-container {
     border-radius: 60px 60px 60px 60px;
@@ -231,7 +231,7 @@ div.responsive .survivor_yes_no .input-container:focus {
         clear:both;
     }
 }
-	
+
 div.responsive input[type="email"], div.responsive input[type="text"], div.responsive input[type="number"], div.responsive input[type="password"], div.responsive textarea, select, div.responsive select, select[size] {
     border: 1px solid #acacac !important;
     border-radius: 0 !important;
@@ -684,7 +684,7 @@ div.responsive #team_find_section_footer button.next-step {
 	width: 50%;
 }
 @media only screen and (max-width: 767px) {
-   #team_find_new_team_attributes, 
+   #team_find_new_team_attributes,
    #team_find_new_team_company {
 	width: auto !important;
    }
@@ -704,8 +704,8 @@ div.registration-page-container div.sub-section-header {
     border: 0;
     background-color: #ffffff;
 }
-.cons-info-question-container.cons-full-name-container.field-required, 
-.app_tr_registration .survey-question-container, 
+.cons-info-question-container.cons-full-name-container.field-required,
+.app_tr_registration .survey-question-container,
 .app_tr_registration .cons-info-question-container {
 	float: left;
 }
@@ -829,9 +829,9 @@ div.responsive div.ErrorMessage.page-error>span.field-error-indicator, div.respo
     width: 100%;
   }
 }
-.app_tr_registration #F2fRegContact, 
-.app_tr_registration #F2fRegPartType, 
-.app_tr_registration #FriendraiserUserWaiver, 
+.app_tr_registration #F2fRegContact,
+.app_tr_registration #F2fRegPartType,
+.app_tr_registration #FriendraiserUserWaiver,
 .app_tr_registration #fr_payment_form {
 	-webkit-box-flex: 0;
 	-ms-flex: 0 0 83.3333333333%;
@@ -840,7 +840,7 @@ div.responsive div.ErrorMessage.page-error>span.field-error-indicator, div.respo
 }
 .app_tr_registration #F2fRegContact,
 .app_tr_registration #F2fRegPartType,
-.app_tr_registration #FriendraiserUserWaiver, 
+.app_tr_registration #FriendraiserUserWaiver,
 .app_tr_registration #fr_payment_form {
 	margin: 0 auto;
 }
@@ -936,9 +936,9 @@ div.responsive div.ErrorMessage.page-error>span.field-error-indicator, div.respo
  max-width:100%
 }
 @media (max-width:767px) {
-	.app_tr_registration #F2fRegContact, 
-	.app_tr_registration #F2fRegPartType, 
-	.app_tr_registration #FriendraiserUserWaiver, 
+	.app_tr_registration #F2fRegContact,
+	.app_tr_registration #F2fRegPartType,
+	.app_tr_registration #FriendraiserUserWaiver,
 	.app_tr_registration #fr_payment_form {
         	padding:0px;
 	}
@@ -1216,8 +1216,8 @@ div.responsive #FriendraiserUserWaiver button.next-step, div.reg-summary-thanks-
   float: none;
 }
 /*
-div.registration-page-container div.section-footer, 
-div.responsive #FriendraiserUserWaiver button.previous-step, 
+div.registration-page-container div.section-footer,
+div.responsive #FriendraiserUserWaiver button.previous-step,
 div.responsive #FriendraiserUserWaiver button.cancel-step {
   padding: 0 0 0 25px;
 }
@@ -1333,9 +1333,9 @@ div.reg-summary-address-info .contact-info-street, div.reg-summary-address-info 
 [type="radio"]:checked + label:before {
   content: '';
   position: absolute;
-  left:0; 
+  left:0;
   top: 0;
-  width: 25px; 
+  width: 25px;
   height: 25px;
   border: 1px solid #acacac;
   background: #ffffff;
@@ -1346,12 +1346,12 @@ div.reg-summary-address-info .contact-info-street, div.reg-summary-address-info 
 [type="checkbox"]:not(:checked) + span.manageable-content label:after,
 [type="checkbox"]:checked + span.manageable-content label:after,
 [type="checkbox"]:not(:checked) + label:after,
-[type="checkbox"]:checked + label:after, 
+[type="checkbox"]:checked + label:after,
 [type="radio"]:not(:checked) + label:after,
 [type="radio"]:checked + label:after {
   content: '\f00c';
   position: absolute;
-  top: 5px; 
+  top: 5px;
   left: 4px;
   font-size: 1.2rem;
   line-height: 0.8;
@@ -1362,13 +1362,13 @@ div.reg-summary-address-info .contact-info-street, div.reg-summary-address-info 
 }
 /* checked mark aspect changes */
 [type="checkbox"]:not(:checked) + span.manageable-content label:after,
-[type="checkbox"]:not(:checked) + label:after, 
+[type="checkbox"]:not(:checked) + label:after,
 [type="radio"]:not(:checked) + label:after {
   opacity: 0;
   transform: scale(0);
 }
 [type="checkbox"]:checked + span.manageable-content label:after,
-[type="checkbox"]:checked + label:after, 
+[type="checkbox"]:checked + label:after,
 [type="radio"]:checked + label:after {
   opacity: 1;
   transform: scale(1);
@@ -1377,7 +1377,7 @@ div.reg-summary-address-info .contact-info-street, div.reg-summary-address-info 
 [type="checkbox"]:disable:not(:checked) + span.manageable-content label,
 [type="checkbox"]:disabled:checked + span.manageable-content label,
 [type="checkbox"]:disabled:not(:checked) + label:before,
-[type="checkbox"]:disabled:checked + label:before, 
+[type="checkbox"]:disabled:checked + label:before,
 [type="radio"]:disabled:not(:checked) + label:before,
 [type="radio"]:disabled:checked + label:before {
   box-shadow: none;
@@ -1385,22 +1385,22 @@ div.reg-summary-address-info .contact-info-street, div.reg-summary-address-info 
   background-color: #ddd;
 }
 [type="checkbox"]:disabled:checked + span.manageable-content label,
-[type="checkbox"]:disabled:checked + label:after, 
+[type="checkbox"]:disabled:checked + label:after,
 [type="radio"]:disabled:checked + label:after {
   color: #999;
 }
 [type="checkbox"]:disabled + span.manageable-content label,
-[type="checkbox"]:disabled + label, 
+[type="checkbox"]:disabled + label,
 [type="radio"]:disabled + label {
   color: #aaa;
 }
 /* accessibility */
 [type="checkbox"]:focus + span.manageable-content label:before,
 [type="checkbox"]:checked:focus + span.manageable-content label:before,
-[type="checkbox"]:not(:checked):focus + span.manageable-content label:before, 
+[type="checkbox"]:not(:checked):focus + span.manageable-content label:before,
 [type="checkbox"]:focus + label:before,
 [type="checkbox"]:checked:focus + label:before,
-[type="checkbox"]:not(:checked):focus + label:before, 
+[type="checkbox"]:not(:checked):focus + label:before,
 [type="radio"]:focus + label:before,
 [type="radio"]:checked:focus + label:before,
 [type="radio"]:not(:checked):focus + label:before {
@@ -1418,12 +1418,12 @@ div.reg-summary-address-info .contact-info-street, div.reg-summary-address-info 
     top: -3px;
   }
   [type="checkbox"]:not(:checked) + span.manageable-content label:after,
-  [type="checkbox"]:checked + span.manageable-content label:after, 
+  [type="checkbox"]:checked + span.manageable-content label:after,
   [type="checkbox"]:not(:checked) + label:after,
-  [type="checkbox"]:checked + label:after, 
+  [type="checkbox"]:checked + label:after,
   [type="radio"]:not(:checked) + label:after,
   [type="radio"]:checked + label:after {
-    top: 2px; 
+    top: 2px;
   }
 }
 */
@@ -1465,7 +1465,7 @@ label.donation-level-row-label.other_amount_label {
     color: #ffffff;
     padding: 0 10px;
     text-align: center;
-    width: 126px; 
+    width: 126px;
     font-size: 24px;
     height: 60px;
     margin: 0 !important;
@@ -1670,6 +1670,10 @@ div.required-indicator-legend {
      background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#fff));
      background-image: -ms-linear-gradient(top, #ffffff 0%, #fff 100%);
      border-top: 1px solid #e0e0e0 !important;
+}
+
+#registration_options_page .required-indicator-legend .required-indicator-legend-text {
+	font-size: 80%;
 }
 
 /* custom tr page styling */
