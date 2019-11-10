@@ -1050,6 +1050,9 @@
             }
             $('#part_type_additional_gift_container .otherAmt span').html("$");
             
+            /* add role to donation buttons */
+            $('.donation-form-fields').attr("role","radiogroup");
+            
             if (regType === 'startTeam') {
                 $('#part_type_additional_gift_section_header').prepend('<div class="bold-label" id="regDonationLabel">Show your team how it\'s done: kick start your own fundraising with a donation!</div>');
             }
