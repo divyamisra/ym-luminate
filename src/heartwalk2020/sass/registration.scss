@@ -1670,15 +1670,6 @@ div.required-indicator-legend {
      border-top: 1px solid #e0e0e0 !important;
 }
 
-/* tooltip popup that works on mobile */
-:root {
-  --balloon-color: rgba(16, 16, 16, 0.95);
-  --balloon-font-size: 12px;
-  --balloon-move: 4px; }
-
-button[aria-label][data-balloon-pos] {
-  overflow: visible;border:none;background:none; }
-
 /* custom tr page styling */
 #fr_informational_page {
     padding: 1em 3em;
