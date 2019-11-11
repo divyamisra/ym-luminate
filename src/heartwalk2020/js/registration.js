@@ -1173,7 +1173,7 @@
         $('#password_component_container #cons_rep_password').parent().parent().parent().addClass('left');
         $('#password_component_container #cons_password').parent().parent().parent().addClass('left');
         $('span.survey-question-label:contains("Would you like to be recognized as a survivor?")').parent().next().children().children().children('input').wrap('<div></div>');
-        $('span.survey-question-label:contains("Would you like to be recognized as a survivor?")').parent().parent().addClass('survivor_yes_no');
+        $('span.survey-question-label:contains("Would you like to be recognized as a survivor?")').parent().parent().addClass('survivor_yes_no').attr("role","radiogroup");
         $('span.input-label:contains("SurvivorQ")').parent().parent().addClass('survivorSelect');
         $('span.input-label:contains("SurvivorQ")').parent().parent().parent().parent().hide();
         if ($('.survivor_yes_no li.input-container input[value="No"]').is(':checked')) {
@@ -1181,7 +1181,7 @@
         } else if ($('.survivor_yes_no li.input-container input[value="Yes"]').is(':checked')) {
             $('.survivor_yes_no li.input-container input[value="Yes"]').parent().parent().addClass('survivor_active');
         }
-
+        
         $('.survivor_yes_no li').click(function() {
             $('.survivor_yes_no li').removeClass('survivor_active');
             $(this).addClass('survivor_active');
