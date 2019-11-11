@@ -1057,7 +1057,7 @@
             $('input.goal').attr('id',$('input.goal').closest('.part-type-decoration-messages').find('label').attr("for"));
             
             /* add role to donation buttons */
-            $('.donation-form-fields').attr("role","radiogroup");
+            $('.donation-form-fields').attr("role","radiogroup").attr("aria-label","Donation Amounts");
             
             if (regType === 'startTeam') {
                 $('#part_type_additional_gift_section_header').prepend('<div class="bold-label" id="regDonationLabel">Show your team how it\'s done: kick start your own fundraising with a donation!</div>');
