@@ -1054,6 +1054,8 @@
             $('#part_type_additional_gift_container .otherAmt span').html("$");
             //add title to input for acc
             $('#part_type_additional_gift_container .enterAmt input[type=text]').attr("title","Additional Amount");
+            //connect of for on label to missing id on field
+            $('input.goal').attr('id',$('input.goal').prev('label').attr("for"));
             
             /* add role to donation buttons */
             $('.donation-form-fields').attr("role","radiogroup");
