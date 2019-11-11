@@ -36,7 +36,7 @@
         <div class="ym-progress__thermometer--fill" ng-style="{'width': companyProgress.percent + '%'}"></div>
       </div>
       <div class="ym-progress__stats">
-        <div class="ym-progress__amount col-sm-6">
+        <div ng-if="hideAmount != 'Y'" class="ym-progress__amount" ng-class="(companyProgress.goalFormatted && companyProgress.goalFormatted != '' && companyProgress.goalFormatted != '$0') ? 'col-md-6' : 'col-md-12'" ng-cloak>
           <p>
             We've raised <strong><span ng-bind-html="companyProgress.amountRaisedFormatted"></span></strong>
           </p>
