@@ -46,7 +46,7 @@
             <div class="ym-header-login">
               [[?xx[[S8]]::xxhttps::
                 <!-- secure page -->
-                <button type="button" class="btn btn-global-primary ym-header-login-toggle" ng-click="toggleLoginMenu()">
+                <button type="button" class="btn btn-global-primary ym-header-login-toggle" ng-click="toggleLoginMenu()" title="Log In to Fundraise">
                   Log In to Fundraise <span class="fa fa-chevron-down" ng-class="{'fa-chevron-down': !loginMenuOpen, 'fa-chevron-up': loginMenuOpen}"></span>
                 </button>
                 <div class="ym-header-login-dropdown" ng-class="{'open': loginMenuOpen}" ng-cloak>
@@ -91,14 +91,14 @@
                     Welcome[[?xx::x[[S1:first_name]]x::::, <span class="ym-header-welcome-toggle--first-name">[[S1:first_name]]]]!</span> <span class="fa fa-chevron-down" ng-class="{'fa-chevron-down': !welcomeMenuOpen, 'fa-chevron-up': welcomeMenuOpen}"></span>
                   </button>
                   <div class="ym-header-welcome-dropdown" ng-class="{'open': welcomeMenuOpen, 'my-events': numberEvents > 1, 'my-hq' : numberEvents == 1}" role="menubar" title="Welcome Menu" ng-cloak>
-                    <ul role="menu" id="js--header-welcome-ul" tabindex="0">
-                      <li>
-                        <a role="menuitem" href="ConsProfileUser?dispMode=edit&amp;NEXTURL=[[T1:[[E130:[[T8:[[S8]]]] [[T8:&amp;]] [[T8:&]] replaceall]]]]">
+                    <ul role="tablist" id="js--header-welcome-ul">
+                      <li role="presentation">
+                        <a tabindex="0" role="tab" href="ConsProfileUser?dispMode=edit&amp;NEXTURL=[[T1:[[E130:[[T8:[[S8]]]] [[T8:&amp;]] [[T8:&]] replaceall]]]]">
                           Edit Profile
                         </a>
                       </li>
-                      <li>
-                        <a role="menuitem" href="UserLogin?logout=&amp;NEXTURL=[[T1:[[E130:[[T8:[[S8]]]] [[T8:&amp;]] [[T8:&]] replaceall]]]]">
+                      <li role="presentation">
+                        <a tabindex="0" role="tab" href="UserLogin?logout=&amp;NEXTURL=[[T1:[[E130:[[T8:[[S8]]]] [[T8:&amp;]] [[T8:&]] replaceall]]]]">
                           Log Out
                         </a>
                       </li>
