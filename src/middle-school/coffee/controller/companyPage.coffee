@@ -15,9 +15,10 @@ angular.module 'ahaLuminateControllers'
     'TeamraiserRegistrationService'
     'TeamraiserCompanyPageService'
     'PageContentService'
+    'CompanyService'
     '$sce'
     '$http'
-    ($scope, $rootScope, $location, $filter, $timeout, $uibModal, APP_INFO, TeamraiserCompanyService, TeamraiserTeamService, TeamraiserParticipantService, BoundlessService, ZuriService, TeamraiserRegistrationService, TeamraiserCompanyPageService, PageContentService, $sce, $http) ->
+    ($scope, $rootScope, $location, $filter, $timeout, $uibModal, APP_INFO, TeamraiserCompanyService, TeamraiserTeamService, TeamraiserParticipantService, BoundlessService, ZuriService, TeamraiserRegistrationService, TeamraiserCompanyPageService, PageContentService, CompanyService, $sce, $http) ->
       $scope.companyId = $location.absUrl().split('company_id=')[1].split('&')[0].split('#')[0]
       $rootScope.companyName = ''
       $scope.eventDate = ''
@@ -31,18 +32,7 @@ angular.module 'ahaLuminateControllers'
       
       $scope.trustHtml = (html) ->
         return $sce.trustAsHtml(html)
-
-      getSchoolDates: (requestData) ->
-        requestUrl = luminateExtend.global.path.nonsecure
-        if window.location.protocol is 'https:'
-          requestUrl = luminateExtend.global.path.secure + 'S'
-        requestUrl += 'PageServer?pagename=reus_ym_ahc_school_dates_csv&evid='+$rootScope.frId+'&pgwrap=n'
-        $http.jsonp($sce.trustAsResourceUrl(requestUrl), jsonpCallbackParam: 'callback')
-          .then (response) ->
-            response
-          , (response) ->
-            response
-            
+           
       getLocalSponsors = ->
         if $scope.parentCompanyId and $scope.parentCompanyId isnt ''
           PageContentService.getPageContent 'middle_school_local_sponsors_' + $scope.parentCompanyId
@@ -138,7 +128,7 @@ angular.module 'ahaLuminateControllers'
               $rootScope.companyName = name
               setCompanyProgress amountRaised, goal
 
-              getSchoolDates()
+              CompanyService.getSchoolDates()
                 .then (response) ->
                   schoolDataRows = response.data.getSchoolDatesResponse.schoolData
                   schoolDataHeaders = {}
