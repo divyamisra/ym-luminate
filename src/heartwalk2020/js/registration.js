@@ -1056,7 +1056,7 @@
             //connect of for on label to missing id on field
             $('input.goal').attr('id',$('input.goal').closest('.part-type-decoration-messages').find('label').attr("for"));
             
-            /* add role to donation buttons */
+            /* add role and label to donation buttons */
             $('.donation-form-fields').attr("role","radiogroup").attr("aria-label","Donation Amounts");
             
             if (regType === 'startTeam') {
