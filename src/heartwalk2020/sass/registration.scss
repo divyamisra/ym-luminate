@@ -212,6 +212,9 @@ div.responsive .survivor_yes_no .input-container input[type=radio] {
     left:15px;
     top:15px;
 }
+div.responsive .survivor_yes_no .input-container input[type=radio]:focus {
+	outline: 5px auto -webkit-focus-ring-color;
+}
 
 div.responsive .donation-level-row-container.donation-amt.active .donation-level-row-decoration-container,
 div.responsive .survivor_yes_no .input-container.survivor_active {
