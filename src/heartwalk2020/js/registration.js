@@ -1121,6 +1121,8 @@
         }
         
         if (jQuery('input[name=pg]').val() == "reg" || jQuery('input[name=pg]').val() == "reganother") {
+            //remove label causing acc issues
+            $('.cons-zip-label').remove();
             //for AT&T company - a question will be displayed for their employee id
             //first it must be hidden though
             jQuery('label span.input-label:contains(By submitting the information requested in this form)').closest('.survey-question-container').addClass("att_id").hide();
