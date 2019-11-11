@@ -11,7 +11,7 @@ angular.module 'ahaLuminateControllers'
     'BoundlessService'
     ($rootScope, $scope, $filter, $uibModal, APP_INFO, TeamraiserCompanyService, TeamraiserRegistrationService, SchoolLookupService, BoundlessService) ->
       $rootScope.companyName = ''
-      $scope.teachers = ''
+      $scope.teachers = []
       $scope.teachersByGrade = []
       $scope.companyId = angular.element('[name=s_frCompanyId]').val()
       
@@ -269,7 +269,7 @@ angular.module 'ahaLuminateControllers'
         $scope.teachersByGrade = []
         teachersByGrade = []
         angular.forEach $scope.teachers, (teacher) ->
-          if teacher.grade_name == selectedGrade
+          if teacher.grade == selectedGrade
             teachersByGrade.push teacher_name: teacher.teacher_name
         $scope.teachersByGrade = teachersByGrade
         
