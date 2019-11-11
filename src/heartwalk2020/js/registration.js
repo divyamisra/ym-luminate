@@ -1046,7 +1046,7 @@
         if ($('#F2fRegPartType').length > 0) {
             if ($('.part-type-container').length == 1) {
                 $('.part-type-container, #part_type_section_header').hide();
-                $('.part-type-container').before("<div class='part_type_one_only'><strong>You are registering as a Heart Walker!</strong></div>");
+                $('.part-type-container').before("<div class='part_type_one_only'><strong>Set Your Fundraising Goal!</strong></div>");
             } else {
                 $('input[name=fr_part_radio]:checked').removeAttr("checked");
                 $('.part-type-container.selected').removeClass("selected");
@@ -1078,7 +1078,7 @@
             $('input[name^=donation_level_form_input]').attr("title","Additional Amount");
 
             $('#part_type_donation_level_input_container div.donation-level-row-container.enterAmt label.donation-level-row-label').text('Other Amount');
-            
+
             $('form').validate();
             $.validator.addMethod("validDonation",function(value, element) {
                     value = parseInt(value.replace("$","").replace(",",""));
