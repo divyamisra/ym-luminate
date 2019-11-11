@@ -41,3 +41,7 @@ header {
     text-decoration: none;
   }
 }
+
+header nav .ym-header-welcome-toggle:focus {
+  outline: 5px solid -webkit-focus-ring-color;
+}
