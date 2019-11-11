@@ -207,6 +207,11 @@ div.responsive .survivor_yes_no .input-container{
     color: #000;
     border: 2px solid #000;
 }
+div.responsive .survivor_yes_no .input-container input[type=radio] {
+    left:15px;
+    top:15px;
+}
+
 div.responsive .donation-level-row-container.donation-amt.active .donation-level-row-decoration-container,
 div.responsive .survivor_yes_no .input-container.survivor_active {
 	background: #000;
