@@ -64,8 +64,10 @@ angular.module 'ahaLuminateControllers'
       
       $scope.toggleWelcomeMenu = ->
         if $scope.welcomeMenuOpen
+          angular.element("button.ym-header-welcome-toggle").attr("aria-expanded","false");
           delete $scope.welcomeMenuOpen
         else
+          angular.element("button.ym-header-welcome-toggle").attr("aria-expanded","true");
           $scope.welcomeMenuOpen = true
           focusDropdown = ->
             document.getElementById('js--header-welcome-ul').focus()
