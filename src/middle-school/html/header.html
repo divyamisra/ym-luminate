@@ -87,7 +87,7 @@
             <div class="ym-header-logged-in" ng-cloak>
               <div class="clearfix">
                 <div class="ym-header-welcome">
-                  <button type="button" class="btn btn-link ym-header-welcome-toggle" ng-click="toggleWelcomeMenu()">
+                  <button type="button" class="btn btn-link ym-header-welcome-toggle" ng-click="toggleWelcomeMenu()" title="Open menu to Edit Profile or Logout">
                     Welcome[[?xx::x[[S1:first_name]]x::::, <span class="ym-header-welcome-toggle--first-name">[[S1:first_name]]]]!</span> <span class="fa fa-chevron-down" ng-class="{'fa-chevron-down': !welcomeMenuOpen, 'fa-chevron-up': welcomeMenuOpen}"></span>
                   </button>
                   <div class="ym-header-welcome-dropdown" ng-class="{'open': welcomeMenuOpen, 'my-events': numberEvents > 1, 'my-hq' : numberEvents == 1}" role="menubar" title="Welcome Menu" ng-cloak>
