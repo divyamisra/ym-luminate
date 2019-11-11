@@ -1077,8 +1077,6 @@
             //add title to input for acc
             $('input[name^=donation_level_form_input]').attr("title","Additional Amount");
 
-            $('#part_type_donation_level_input_container div.donation-level-row-container.donation-amt label.donation-level-row-label').text('Other Amount');
-
             $('form').validate();
             $.validator.addMethod("validDonation",function(value, element) {
                     value = parseInt(value.replace("$","").replace(",",""));
@@ -1223,6 +1221,7 @@
         });
         $('#part_type_individual_company_selection_container').insertAfter('#part_type_selection_container');
         $('.donation-level-row-label-no-gift').insertBefore(jQuery('.donation-level-row-label-no-gift').parent());
+        $('.donation-level-row-container.enterAmt label.donation-level-row-label').text('Other Amount');
 
         //QA
 
