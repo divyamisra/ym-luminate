@@ -20,7 +20,14 @@ angular.module 'trPcControllers'
     'ZuriService'
     ($rootScope, $scope, $filter, $timeout, $uibModal, APP_INFO, BoundlessService, NgPcTeamraiserRegistrationService, NgPcTeamraiserProgressService, NgPcTeamraiserTeamService, NgPcTeamraiserGiftService, NgPcContactService, NgPcTeamraiserShortcutURLService, NgPcInteractionService, NgPcTeamraiserCompanyService, NgPcTeamraiserSchoolService, FacebookFundraiserService, ZuriService) ->
       $scope.dashboardPromises = []
-      
+      $scope.eventDate = ''
+      $scope.moneyDueDate = ''
+      $scope.schoolStudentGoal = ''
+      $scope.schoolStudentReg = ''
+      $scope.schoolStudentRegOnline = ''
+      $scope.notifyName = ''
+      $scope.notifyEmail = ''
+              
       $dataRoot = angular.element '[data-embed-root]'
       
       if $scope.participantRegistration.lastPC2Login is '0'

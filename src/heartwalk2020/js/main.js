@@ -1220,59 +1220,60 @@
 
         // Build company team roster
          // build team roster
+         var numTeamRows = 0;
 
- cd.getCompanyTeams = function (companyId, companyName, numCompanies, companyIndex) {
-  luminateExtend.api({
-    api: 'teamraiser',
-    data: 'method=getTeamsByInfo' +
-      '&team_name=%25%25%25' + 
-      '&fr_id=' + evID +
-      '&team_company_id=' + companyId +
-      '&list_page_size=499' +
-      '&list_page_offset=0' +
-      '&response_format=json' +
-      '&list_sort_column=team_name' +
-      '&list_ascending=true',
-    callback: {
-      success: function (response) {
-        if (response.getTeamSearchByInfoResponse.totalNumberResults === '0') {
-          // no search results
-
-        } else {
-          var teams = luminateExtend.utils.ensureArray(response.getTeamSearchByInfoResponse.team);
-          // var totalTeams = parseInt(response.getTeamSearchByInfoResponse.totalNumberResults);
-
-          $(teams).each(function (i, team) {
-            var teamRaised = (parseInt(team.amountRaised) * 0.01).toFixed(2);
-            var teamRaisedFormmatted = teamRaised.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,").replace('.00', '');
-
-            $('#team-roster tbody').append('<tr class="' + (i > 4 ? 'd-none' : '') + '"> <td class="team-name"> <a href="' + team.teamPageURL + '" data-sort="' + team.name + '">' + team.name + '</a> </td><td class="donor-name"> <a href="TR/?px=' + team.captainConsId + '&pg=personal&fr_id=' + team.EventId + '" data-sort="' + team.captainFirstName + ' ' + team.captainLastName + '">' + team.captainFirstName + ' ' + team.captainLastName + '</a> </td><td class="company-name"> <a href="' + luminateExtend.global.path.secure + 'TR/?pg=company&company_id=' + team.companyId + '&fr_id=' + team.EventId + '" data-sort="' + companyName + '">' + companyName + '</a> </td><td class="raised" data-sort="' + teamRaisedFormmatted + '"> <span><strong>$' + teamRaisedFormmatted + '</strong></span> </td><td> <a href="' + team.joinTeamURL + '">' + (screenWidth <= 480 ? 'Join' : 'Join Team') + '</a> </td></tr>');
+         cd.getCompanyTeams = function (companyId, companyName, numCompanies, companyIndex) {
+          luminateExtend.api({
+            api: 'teamraiser',
+            data: 'method=getTeamsByInfo' +
+              '&team_name=%25%25%25' + 
+              '&fr_id=' + evID +
+              '&team_company_id=' + companyId +
+              '&list_page_size=499' +
+              '&list_page_offset=0' +
+              '&response_format=json' +
+              '&list_sort_column=team_name' +
+              '&list_ascending=true',
+            callback: {
+              success: function (response) {
+                if (response.getTeamSearchByInfoResponse.totalNumberResults === '0') {
+                  // no search results
+        
+                } else {
+                  var teams = luminateExtend.utils.ensureArray(response.getTeamSearchByInfoResponse.team);
+                  $(teams).each(function (i, team) {
+                    var teamRaised = (parseInt(team.amountRaised) * 0.01).toFixed(2);
+                    var teamRaisedFormmatted = teamRaised.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,").replace('.00', '');
+                    $('#team-roster tbody').append('<tr class="' + (numTeamRows > 4 ? 'd-none' : '') + '"> <td class="team-name"> <a href="' + team.teamPageURL + '" data-sort="' + team.name + '">' + team.name + '</a> </td><td class="donor-name"> <a href="TR/?px=' + team.captainConsId + '&pg=personal&fr_id=' + team.EventId + '" data-sort="' + team.captainFirstName + ' ' + team.captainLastName + '">' + team.captainFirstName + ' ' + team.captainLastName + '</a> </td><td class="company-name"> <a href="' + luminateExtend.global.path.secure + 'TR/?pg=company&company_id=' + team.companyId + '&fr_id=' + team.EventId + '" data-sort="' + companyName + '">' + companyName + '</a> </td><td class="raised" data-sort="' + teamRaisedFormmatted + '"> <span><strong>$' + teamRaisedFormmatted + '</strong></span> </td><td> <a href="' + team.joinTeamURL + '">' + (screenWidth <= 480 ? 'Join' : 'Join Team') + '</a> </td></tr>');
+                    numTeamRows++;
+                  });
+        
+                  $('.js--more-team-results').on('click', function(e){
+                    e.preventDefault();
+                    $('#team-roster tr').removeClass('d-none');
+                    $(this).attr('hidden', true);
+                  });
+                }
+        
+                if(companyIndex === numCompanies){
+                  setTimeout(function(){ 
+                    cd.initializeTeamRosterTable();
+                    var totalTeams = $('.team-name').length;
+                    var totalTeamsText = totalTeams > 1 ? ' Teams' : ' Team';
+                    $('.js--num-company-teams').text(totalTeams + totalTeamsText);
+                    if(totalTeams > 5) {
+                      $('.js--more-team-results').removeAttr('hidden');
+                    }
+                  }, 250);
+                }
+              }
+            },
+            error: function (response) {
+              $('#error-participant').removeAttr('hidden').text(response.errorResponse.message);
+              console.log('error response: ', response);
+            }
           });
-          if(totalTeams > 5) {
-            $('.js--more-team-results').removeAttr('hidden');
-          }
-
-          $('.js--more-team-results').on('click', function(e){
-            e.preventDefault();
-            $('#team-roster tr').removeClass('d-none');
-            $(this).attr('hidden', true);
-          });
-        }
-
-        if(companyIndex === numCompanies){
-          var totalTeams = $('.team-name').length;
-          var totalTeamsText = totalTeams > 1 ? ' Teams' : ' Team';
-          $('.js--num-company-teams').text(totalTeams + totalTeamsText);
-          cd.initializeTeamRosterTable();
-        }
-      }
-    },
-    error: function (response) {
-      $('#error-participant').removeAttr('hidden').text(response.errorResponse.message);
-      console.log('error response: ', response);
-    }
-  });
-};
+        };
 
 cd.buildCompanyTeamRoster = function(){
   var numCompanies = allCompanyData.length;
@@ -1286,6 +1287,7 @@ cd.buildCompanyTeamRoster = function(){
 }
 
 cd.buildCompanyTeamRoster();
+var numWalkerRows = 0;
 
  // build team roster
  cd.getCompanyParticipants = function (companyId, companyName, numCompanies, companyIndex) {
@@ -1307,23 +1309,15 @@ cd.buildCompanyTeamRoster();
         } else {
           var participants = luminateExtend.utils.ensureArray(response.getParticipantsResponse.participant);
 
-          // $('.js--num-company-participants').text($('.company-tally-container--recruited .company-tally-ammount').text());
-
           $(participants).each(function (i, participant) {
-
             var participantRaised = (parseInt(participant.amountRaised) * 0.01).toFixed(2);
             var participantRaisedFormmatted = participantRaised.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,").replace('.00', '');
 
-            $('#participant-roster tbody').append('<tr class="' + (i > 4 ? 'd-none' : '') + '"><td class="participant-name"><a href="' + participant.personalPageUrl + '">' +
+            $('#participant-roster tbody').append('<tr class="' + (numWalkerRows > 4 ? 'd-none' : '') + '"><td class="participant-name"><a href="' + participant.personalPageUrl + '">' +
               participant.name.first + ' ' + participant.name.last +
               '</a>' + (participant.aTeamCaptain === "true" ? ' <span class="coach">- Coach</span>' : '') + '</td><td class="company-name"> <a href="' + luminateExtend.global.path.secure + 'TR/?pg=company&company_id=' + companyId + '&fr_id=' + participant.eventId + '" data-sort="' + companyName+ '">' + companyName + '</a> </td><td class="raised" data-sort="' + participantRaisedFormmatted + '"><span><strong>$' + participantRaisedFormmatted + '</strong></span></td><td><a href="' + participant.donationUrl + '">' + (screenWidth <= 480 ? 'Donate' : 'Donate to ' + participant.name.first) + '</a></td></tr>');
+              numWalkerRows++;
           });
-
-          if (totalParticipants > 5) {
-            $('.js--more-participant-results').removeAttr('hidden');
-          }
-
-
 
           //add call to hook donate button with payment type selections
           addPaymentTypesOnSearch();
@@ -1333,11 +1327,17 @@ cd.buildCompanyTeamRoster();
             $(this).attr('hidden', true);
           });
         }
+ 
         if(companyIndex === numCompanies){
-          var totalParticipants = $('.participant-name').length;
-          var totalParticipantsText = totalParticipants > 1 ? ' Walkers' : ' Walker';
-          $('.js--num-company-participants').text(totalParticipants + totalParticipantsText);
-          cd.initializeParticipantRosterTable();
+          setTimeout(function(){ 
+            cd.initializeParticipantRosterTable();
+            var totalParticipants = $('.participant-name').length;
+            var totalParticipantsText = totalParticipants > 1 ? ' Walkers' : ' Walker';
+            $('.js--num-company-participants').text(totalParticipants + totalParticipantsText);
+            if (numWalkerRows > 5) {
+              $('.js--more-participant-results').removeAttr('hidden');
+            }
+          }, 250);
         }
       }
     },
@@ -1350,7 +1350,6 @@ cd.buildCompanyTeamRoster();
 
 cd.buildCompanyParticipantRoster = function(){
   var numCompanies = allCompanyData.length;
-
   $(allCompanyData).each(function(i, company){
     var company = allCompanyData[i];
     var companyIndex = i + 1;
@@ -1358,6 +1357,7 @@ cd.buildCompanyParticipantRoster = function(){
     var companyName = company.name;
     cd.getCompanyParticipants(companyId, companyName, numCompanies, companyIndex);
   });
+
 }
 
 
