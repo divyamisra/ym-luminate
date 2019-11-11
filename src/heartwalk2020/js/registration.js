@@ -1053,8 +1053,6 @@
             }
             $('#part_type_additional_gift_container .otherAmt span').html("$");
             
-            //add title to input for acc
-            $('#part_type_additional_gift_container .enterAmt input[type=text]').attr("title","Additional Amount");
             //connect of for on label to missing id on field
             $('input.goal').attr('id',$('input.goal').closest('.part-type-decoration-messages').find('label').attr("for"));
             
@@ -1076,7 +1074,9 @@
 
             /* setup form validation - additional donation amount must be >= $25 */
             $('input[name^=donation_level_form_input]').addClass("validDonation");
-
+            //add title to input for acc
+            $('input[name^=donation_level_form_input]').attr("title","Additional Amount");
+            
             $('form').validate();
             $.validator.addMethod("validDonation",function(value, element) {
                     value = parseInt(value.replace("$","").replace(",",""));
