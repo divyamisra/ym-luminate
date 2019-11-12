@@ -664,6 +664,10 @@
                         localStorage.companySelect = "";
                     }
                 }
+                //store off personal goal in sess var by adding to action url
+                var defAction = $('form[name=FriendraiserFind]').attr('action');
+                $('form[name=FriendraiserFind]').attr('action',defAction + '?s_teamName=' + $('input#fr_team_name').val() + '&s_teamGoal=' + $('input#fr_team_goal').val());
+                return true;
             });
 
             if (regType === 'startTeam') {
