@@ -83,11 +83,26 @@ div.responsive div.ErrorMessage.page-error > span.field-error-text {
 div.registration-page-container div.section-body {
     padding-top: 0px;
 }
+div.registration-page-container span.option-label {
+	margin-right: 10px;
+}
+/*.reg-summary-part-type::before {
+	content: "Confirm your Event Information:";
+	font-size: 1.1em;
+	font-weight: bold;
+	margin-bottom: 10px;
+	display: block;
+	margin-top: 20px;
+}*/
+#fr_reg_summary_page button.cancel-step {
+	display:none;
+}
+
+
 
 div.responsive span.field-required {
     vertical-align: baseline;
 }
-
 .utype-helper {
     font-size:12px;
     border:1px solid #3c3c3c;
