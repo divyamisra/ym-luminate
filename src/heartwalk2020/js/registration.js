@@ -1243,6 +1243,9 @@
             if ($.trim($('.additional-gift-amount').html()) != "$0.00") {
                 $('button.next-step').attr("value","Complete and Donate").find('span').html("Complete and Donate");
             }
+            
+            //move custom details into content
+            $('.reg-summary-event-info').prepend($('#additionalRegDetails'));
         }
             
         $('#reg_summary_header_container').insertAfter('.section-header');
