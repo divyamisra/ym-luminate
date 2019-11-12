@@ -1233,7 +1233,7 @@
         /* Page = Reg */
         if ($('input[name="pg"]').val() == 'regsummary') {
             // if there is a donation then change button text
-            if ($.trim($('.additional-gift-amount').html()) == "$0.00") {
+            if ($.trim($('.additional-gift-amount').html()) != "$0.00") {
                 $('button.next-step').attr("value","Complete and Donate").find('span').html("Complete and Donate");
             }
         }
