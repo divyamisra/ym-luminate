@@ -37,15 +37,16 @@ header {
   .dropdown {
     display:inline-block !important;
     vertical-align:top;
+
+    span {
+      display:inline-block !important;
+    }
   }
   .dropdown-item {
     display: block;
     text-align: center;
     padding: 10px;
     text-decoration: none;
-  }
-  span {
-    display:inline-block !important;
   }
 }
 
