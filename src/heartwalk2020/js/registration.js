@@ -1113,6 +1113,9 @@
                     }
                 }
                 if ($('form').valid()) {
+                    //store off personal goal in sess var by adding to action url
+                    var defAction = $('#F2fRegPartType').attr('action');
+                    $('#F2fRegPartType').attr('action',defAction + '?s_personalGoal=' + $('input#fr_goal').val());
                     return true;
                 } else {
                     return false;
