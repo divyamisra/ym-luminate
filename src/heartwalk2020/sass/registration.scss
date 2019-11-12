@@ -86,14 +86,14 @@ div.registration-page-container div.section-body {
 div.registration-page-container span.option-label {
 	margin-right: 10px;
 }
-/*.reg-summary-part-type::before {
+.reg-summary-part-type::before {
 	content: "Confirm your Event Information:";
 	font-size: 1.1em;
 	font-weight: bold;
 	margin-bottom: 10px;
 	display: block;
 	margin-top: 20px;
-}*/
+}
 #fr_reg_summary_page button.cancel-step {
 	display:none;
 }
