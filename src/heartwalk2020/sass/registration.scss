@@ -329,9 +329,9 @@ div#part_type_fundraising_goal_container #suggested_goal_container {
 .reg-summary-participant-info-container {
     display: block;
 }
-.reg-summary-name-info span.contact-info-name {
+/*.reg-summary-name-info span.contact-info-name {
     padding-right: 3px;
-}
+}*/
 
 .heart-hero--personal {
     background-image: url(../images/content/pagebuilder/heartwalk2017_header.jpg);
@@ -1212,7 +1212,7 @@ div.reg-summary-thanks-common-container div.reg-summary-name-info {
     border-top-right-radius: 0;
     padding: 0;
     width: 100%;
-    margin-bottom: 15px;
+    /*margin-bottom: 15px;*/
     font-size: 0;
 }
 div.registration-page-container div.section-header {
@@ -1239,6 +1239,10 @@ div.reg-summary-thanks-common-container div.reg-summary-event-info, div.reg-summ
 div.responsive #FriendraiserUserWaiver button.next-step, div.reg-summary-thanks-common-container div.action-button-container, div.responsive #FriendraiserUserWaiver button.previous-step, div.responsive #FriendraiserUserWaiver button.cancel-step {
   float: none;
 }
+div.reg-summary-thanks-common-container div.reg-summary-address-info > div {
+	padding-bottom: 0;
+}
+
 /*
 div.registration-page-container div.section-footer,
 div.responsive #FriendraiserUserWaiver button.previous-step,
