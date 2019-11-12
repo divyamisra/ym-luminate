@@ -1229,6 +1229,15 @@
             $('#F2fRegPartType .section-footer button.next-step').after('<a href="TRR/?pg=utype&fr_id=' + fr_id + '" class="step-button previous-step backBtnReg">Back</a>');
         }
 
+
+        /* Page = Reg */
+        if ($('input[name="pg"]').val() == 'regsummary') {
+            // if there is a donation then change button text
+            if ($.trim($('.additional-gift-amount').html()) == "$0.00") {
+                $('button.next-step').attr("value","Complete and Donate").find('span').html("Complete and Donate");
+            }
+        }
+            
         $('#reg_summary_header_container').insertAfter('.section-header');
         $('#previous_step span').text("Back");
         if ($('input[name=fr_tm_opt]').val() == 'existingnew') {
