@@ -876,7 +876,13 @@
               Check out the reports page to see which students have completed challenges and who has earned donations.
             </p>
             <div class="ym-activity-box-cta">
-              <a class="btn btn-md-wide btn-primary" ng-href="{{baseUrl}}#/reports">
+              <a class="btn btn-md-wide btn-primary" ng-href="https://khc.staging.ootqa.org/coordinator/login/{{authToken}}/{{sessionCookie}}" target="_blank" ng-if="tablePrefix == 'heartdev'" ng-cloak>
+                <strong>View Reports</strong>
+              </a>
+              <a class="btn btn-md-wide btn-primary" ng-href="https://khc.dev.ootqa.org/coordinator/login/{{authToken}}/{{sessionCookie}}" target="_blank" ng-if="tablePrefix == 'heartnew'" ng-cloak>
+                <strong>View Reports</strong>
+              </a>
+              <a class="btn btn-md-wide btn-primary" ng-href="https://kidsheartchallenge.heart.org/coordinator/login/{{authToken}}/{{sessionCookie}}" target="_blank" ng-if="tablePrefix == 'heart'" ng-cloak> 
                 <strong>View Reports</strong>
               </a>
             </div>
