@@ -1035,6 +1035,61 @@
           });
         };
         cd.getDonationFormInfo();
+
+
+         // Get events by name or state
+    cd.getPersonalVideo = function (frId, consId) {
+       luminateExtend.api({
+        api: 'teamraiser',
+        data: 'method=getPersonalVideoUrl' +
+          '&fr_id=' + frId +
+          '&cons_id=' + consId +
+          '&response_format=json',
+        callback: {
+          success: function (response) {
+            var videoEmbedHtml;
+            if (response.getPersonalVideoUrlResponse.videoUrl) {
+              var videoUrl = response.getPersonalVideoUrlResponse.videoUrl;
+
+              if (videoUrl && videoUrl.indexOf('vidyard') === -1) {
+                videoUrl = videoUrl.replace('&amp;v=', '&v=');
+                var videoId = '';
+                var personalVideoEmbedUrl = '';
+
+                if (videoUrl.indexOf('?v=') !== -1) {
+                  videoId = videoUrl.split('?v=')[1].split('&')[0];
+                } else if (videoUrl.indexOf('&v=') !== -1) {
+                  videoId = videoUrl.split('&v=')[1].split('&')[0];
+                } else if (videoUrl.indexOf('/embed/') !== -1) {
+                  videoId = videoUrl
+                    .split('/embed/')[1]
+                    .split('/')[0]
+                    .split('?')[0];
+                } else if (videoUrl.indexOf('youtu.be/') !== -1) {
+                  videoId = videoUrl
+                    .split('youtu.be/')[1]
+                    .split('/')[0]
+                    .split('?')[0];
+                }
+                if (videoId !== '') {
+                  personalVideoEmbedUrl = 'https://www.youtube.com/embed/' + videoId + '?wmode=opaque&amp;rel=0&amp;showinfo=0';
+                }
+              }
+              videoEmbedHtml = '<iframe class="embed-responsive-item" src="' + personalVideoEmbedUrl + '" title="American Heart Association Heart Walk Video" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+            } else {
+              // TODO - show default video
+              videoEmbedHtml = '<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/_RHhQFOo4iE" title="American Heart Association Heart Walk Video" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+            }
+            $('.js--personal-video-container').append(videoEmbedHtml);
+          },
+          error: function (response) {
+            console.log('getPersonalVideo error: ' + response.errorResponse.message);
+          }
+        }
+      });
+    };
+    var personalPageConsId = getURLParameter(currentUrl, 'px');
+    cd.getPersonalVideo(evID, personalPageConsId);
     }
 
     if ($('body').is('.pg_team')) {
