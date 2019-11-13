@@ -1119,8 +1119,7 @@
                 }
                 if ($('form').valid()) {
                     //store off personal goal in sess var by adding to action url
-                    var defAction = $('#F2fRegPartType').attr('action');
-                    $('#F2fRegPartType').attr('action',defAction + '?s_personalGoal=' + $('input#fr_goal').val());
+                    $('#F2fRegPartType').prepend('<input type="hidden" id="personalGoal" name="s_personalGoal" value="' + $('input#fr_goal').val() + '">');
                     return true;
                 } else {
                     return false;
@@ -1129,6 +1128,26 @@
         }
 
         if (jQuery('input[name=pg]').val() == "reg" || jQuery('input[name=pg]').val() == "reganother") {
+            jQuery('form').validate({
+                rules: {
+                    cons_password: {
+                        required: true,
+                        minlength: 5
+                    },
+                    cons_rep_password: {
+                        required: true,
+                        minlength: 5,
+                        equalTo: "#cons_password"
+                    }
+                }
+            });
+            $.validator.addMethod("pwcheck", function(value) {
+               return /^[A-Za-z0-9\d=!\-@._*]*$/.test(value) // consists of only these
+                   && /[a-z]/.test(value) // has a lowercase letter
+                   && /\d/.test(value) // has a digit
+            });
+            $('input#cons_password').addClass("pwcheck");
+            
             //remove label causing acc issues
             $('.cons-zip-label, .cons-full-name-label, .cons-email-label').remove();
             //for AT&T company - a question will be displayed for their employee id
@@ -1149,6 +1168,13 @@
                 localStorage.hfg = jQuery('label:contains(Healthy For Good)').prev('input:checked').length;
                 localStorage.hfg_firstname = jQuery('input[name=cons_first_name]').val();
                 localStorage.hfg_email = jQuery('input[name=cons_email]').val();
+                if (jQuery('input[name=pg]').val() == "reg") {
+                    if (jQuery('form').valid()) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                } 
             });
         }
 
