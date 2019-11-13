@@ -1139,13 +1139,22 @@
                         minlength: 5,
                         equalTo: "#cons_password"
                     }
+                },
+                messages: {
+                    cons_password: {
+                        required: "Please enter a password"
+                    },
+                    cons_rep_password: {
+                        required: "Please confirm your password",
+                        equalTo: "Passwords do not match. Please re-enter password."
+                    }
                 }
             });
             $.validator.addMethod("pwcheck", function(value) {
                return /^[A-Za-z0-9\d=!\-@._*]*$/.test(value) // consists of only these
                    && /[a-z]/.test(value) // has a lowercase letter
                    && /\d/.test(value) // has a digit
-            });
+            },"Oops. Looks like you are using a character we don't recognize. Valid characters in your username are: letters, numbers, and these symbols: +, -, _, @, ., %, and :");
             $('input#cons_password').addClass("pwcheck");
             
             //remove label causing acc issues
