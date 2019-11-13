@@ -665,8 +665,9 @@
                     }
                 }
                 //store off personal goal in sess var by adding to action url
-                var defAction = $('form[name=FriendraiserFind]').attr('action');
-                $('form[name=FriendraiserFind]').attr('action',defAction + '?s_teamCaptain=&s_teamName=' + $('input#fr_team_name').val() + '&s_teamGoal=' + $('input#fr_team_goal').val());
+                $('form[name=FriendraiserFind').prepend('<input type="hidden" id="teamCaptainSessionVar" name="s_teamCaptain" value="">');
+                $('form[name=FriendraiserFind').prepend('<input type="hidden" id="teamNameSessionVar" name="s_teamName" value="' + $('input#fr_team_name').val() + '">');
+                $('form[name=FriendraiserFind').prepend('<input type="hidden" id="teamGoalSessionVar" name="s_teamGoal" value="' + $('input#fr_team_goal').val() + '">');
                 return true;
             });
 
