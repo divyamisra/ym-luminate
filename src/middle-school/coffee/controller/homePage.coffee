@@ -124,7 +124,7 @@ angular.module 'ahaLuminateControllers'
           onChanged: ->
             AriaCarouselService.onChange(owlStr)
 
-      $timeout initCarousel, 1000
+      #$timeout initCarousel, 1000
 
       initHeroCarousel = ->
         owl = jQuery '.ym-carousel--hero'
@@ -147,5 +147,5 @@ angular.module 'ahaLuminateControllers'
               onChanged: ->
                 AriaCarouselService.onChange(owlStr)
 
-      $timeout initHeroCarousel, 1000
+      #$timeout initHeroCarousel, 1000
   ]
