@@ -725,7 +725,11 @@ div#password_component_container span.input-hint {
 	line-height: 12pt;
 	display: block;
 }
-div#password_component_container #cons_password + span.input-hint {
+label#cons_password-error,
+label#cons_rep_password-error {
+	font-size: 0.8em;
+}
+.app_tr_registration #password_component_container .field-required.left {
 	max-width: 190px;
 }
 div#personal_info_section_one .cons-full-name-label label, .cons-full-address-container .cons-zip-label label, div#cons_info_component_contact_info_section .sub-section-body .cons-full-address-label label {
