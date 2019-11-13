@@ -718,6 +718,13 @@ div.responsive #team_find_section_footer button.next-step {
 }
 
 /*** page reg ***/
+div#password_component_container span.input-hint {
+	margin-left: 8px;
+	font-style: italic;
+	font-size: 8pt;
+	line-height: 12pt;
+	display: block;
+}
 div#personal_info_section_one .cons-full-name-label label, .cons-full-address-container .cons-zip-label label, div#cons_info_component_contact_info_section .sub-section-body .cons-full-address-label label {
     display: none;
 }
