@@ -1142,10 +1142,12 @@
                 },
                 messages: {
                     cons_password: {
+                        minlength: "Please enter 5 characters or more",
                         required: "Please enter a password"
                     },
                     cons_rep_password: {
                         required: "Please confirm your password",
+                        minlength: "Please enter 5 characters or more",
                         equalTo: "Passwords do not match. Please re-enter password."
                     }
                 }
