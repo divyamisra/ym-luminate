@@ -1160,7 +1160,7 @@
                return /^[A-Za-z0-9\d=!\-@._*]*$/.test(value) // consists of only these
                    && /[a-z]/.test(value) // has a lowercase letter
                    && /\d/.test(value) // has a digit
-            },"Oops. Looks like you are using a character we don’t recognize. Valid characters are letters, numbers, and the following symbols: !#$%()*+,-./:;=?@[\]^_`{|}~");
+            },"Oops. Looks like you are using a character we don't recognize. Valid characters are letters, numbers, and the following symbols: !#$%()*+,-./:;=?@[\]^_`{|}~");
 
             $('input#cons_user_name').addClass("uncheck");
             $('input#cons_password').addClass("pwcheck");
