@@ -1162,7 +1162,7 @@
                    && /\d/.test(value) // has a digit
             },"Oops. Looks like you are using a character we don’t recognize. Valid characters are letters, numbers, and the following symbols: !#$%()*+,-./:;=?@[\]^_`{|}~");
 
-            $('input#cons_username').addClass("uncheck");
+            $('input#cons_user_name').addClass("uncheck");
             $('input#cons_password').addClass("pwcheck");
             
             //remove label causing acc issues
