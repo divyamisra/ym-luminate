@@ -1150,11 +1150,19 @@
                     }
                 }
             });
-            $.validator.addMethod("pwcheck", function(value) {
+            $.validator.addMethod("uncheck", function(value) {
                return /^[A-Za-z0-9\d=!\-@._*]*$/.test(value) // consists of only these
                    && /[a-z]/.test(value) // has a lowercase letter
                    && /\d/.test(value) // has a digit
             },"Oops. Looks like you are using a character we don't recognize. Valid characters in your username are: letters, numbers, and these symbols: +, -, _, @, ., %, and :");
+
+            $.validator.addMethod("pwcheck", function(value) {
+               return /^[A-Za-z0-9\d=!\-@._*]*$/.test(value) // consists of only these
+                   && /[a-z]/.test(value) // has a lowercase letter
+                   && /\d/.test(value) // has a digit
+            },"Oops. Looks like you are using a character we don’t recognize. Valid characters are letters, numbers, and the following symbols: !#$%()*+,-./:;=?@[\]^_`{|}~");
+
+            $('input#cons_username').addClass("uncheck");
             $('input#cons_password').addClass("pwcheck");
             
             //remove label causing acc issues
