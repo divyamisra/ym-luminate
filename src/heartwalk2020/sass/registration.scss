@@ -1631,7 +1631,10 @@ span.lightboxWiaverClose i.fa-close {
 
 #reg_payment_page div.form-row {
 	margin-bottom: 0px;
-	margin-right: 10px;
+	margin-left: 0px;
+}
+#reg_payment_page .form-text {
+	margin-top: 0px;
 }
 #reg_payment_page span.internal-payment {
 	border: none;
@@ -1672,8 +1675,7 @@ span.lightboxWiaverClose i.fa-close {
 }
 #reg_payment_page #billing_addr_street1_row input, 
 #reg_payment_page #billing_addr_street2_row input {
-	max-width: 280px;
-	width:100%;
+	width: 280px;
 }
 
 #reg_payment_page  div#responsive_payment_typecc_number_row {
@@ -1706,7 +1708,9 @@ span.lightboxWiaverClose i.fa-close {
 #reg_billing_info_block {
 	max-width: 700px;
 }
-
+#reg_payment_page .section-footer {
+	clear:both;
+}
 
 
 div#registration_options_page .indented-field-group {
