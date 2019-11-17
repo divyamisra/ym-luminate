@@ -1353,9 +1353,9 @@ div.reg-summary-address-info .contact-info-street, div.reg-summary-address-info 
 /******** Custom Checkboxes ********/
 /* Base for label styling */
 [type="checkbox"]:not(:checked),
-[type="checkbox"]:checked,
-[type="radio"]:not(:checked),
-[type="radio"]:checked {
+[type="checkbox"]:checked
+/*[type="radio"]:not(:checked),
+[type="radio"]:checked*/ {
   position: absolute;
   left: -9999px;
 }
@@ -1363,9 +1363,9 @@ div.reg-summary-address-info .contact-info-street, div.reg-summary-address-info 
 [type="checkbox"]:not(:checked) + span.manageable-content label,
 [type="checkbox"]:checked + span.manageable-content label,
 [type="checkbox"]:not(:checked) + label,
-[type="checkbox"]:checked + label,
-[type="radio"]:not(:checked) + label,
-[type="radio"]:checked + label {
+[type="checkbox"]:checked + label
+/*[type="radio"]:not(:checked) + label,
+[type="radio"]:checked + label */ {
   position: relative;
   padding-left: 35px;
   cursor: pointer;
@@ -1374,9 +1374,9 @@ div.reg-summary-address-info .contact-info-street, div.reg-summary-address-info 
 [type="checkbox"]:not(:checked) + span.manageable-content label:before,
 [type="checkbox"]:checked + span.manageable-content label:before,
 [type="checkbox"]:not(:checked) + label:before,
-[type="checkbox"]:checked + label:before,
-[type="radio"]:not(:checked) + label:before,
-[type="radio"]:checked + label:before {
+[type="checkbox"]:checked + label:before
+/*[type="radio"]:not(:checked) + label:before,
+[type="radio"]:checked + label:before*/ {
   content: '';
   position: absolute;
   left:0;
@@ -1392,9 +1392,9 @@ div.reg-summary-address-info .contact-info-street, div.reg-summary-address-info 
 [type="checkbox"]:not(:checked) + span.manageable-content label:after,
 [type="checkbox"]:checked + span.manageable-content label:after,
 [type="checkbox"]:not(:checked) + label:after,
-[type="checkbox"]:checked + label:after,
-[type="radio"]:not(:checked) + label:after,
-[type="radio"]:checked + label:after {
+[type="checkbox"]:checked + label:after
+/*[type="radio"]:not(:checked) + label:after,
+[type="radio"]:checked + label:after*/ {
   content: '\f00c';
   position: absolute;
   top: 5px;
@@ -1408,14 +1408,14 @@ div.reg-summary-address-info .contact-info-street, div.reg-summary-address-info 
 }
 /* checked mark aspect changes */
 [type="checkbox"]:not(:checked) + span.manageable-content label:after,
-[type="checkbox"]:not(:checked) + label:after,
-[type="radio"]:not(:checked) + label:after {
+[type="checkbox"]:not(:checked) + label:after
+/*[type="radio"]:not(:checked) + label:after*/ {
   opacity: 0;
   transform: scale(0);
 }
 [type="checkbox"]:checked + span.manageable-content label:after,
-[type="checkbox"]:checked + label:after,
-[type="radio"]:checked + label:after {
+[type="checkbox"]:checked + label:after
+/*[type="radio"]:checked + label:after*/ {
   opacity: 1;
   transform: scale(1);
 }
@@ -1423,21 +1423,21 @@ div.reg-summary-address-info .contact-info-street, div.reg-summary-address-info 
 [type="checkbox"]:disable:not(:checked) + span.manageable-content label,
 [type="checkbox"]:disabled:checked + span.manageable-content label,
 [type="checkbox"]:disabled:not(:checked) + label:before,
-[type="checkbox"]:disabled:checked + label:before,
-[type="radio"]:disabled:not(:checked) + label:before,
-[type="radio"]:disabled:checked + label:before {
+[type="checkbox"]:disabled:checked + label:before
+/*[type="radio"]:disabled:not(:checked) + label:before,
+[type="radio"]:disabled:checked + label:before*/ {
   box-shadow: none;
   border-color: #bbb;
   background-color: #ddd;
 }
 [type="checkbox"]:disabled:checked + span.manageable-content label,
-[type="checkbox"]:disabled:checked + label:after,
-[type="radio"]:disabled:checked + label:after {
+[type="checkbox"]:disabled:checked + label:after
+/*[type="radio"]:disabled:checked + label:after*/ {
   color: #999;
 }
 [type="checkbox"]:disabled + span.manageable-content label,
-[type="checkbox"]:disabled + label,
-[type="radio"]:disabled + label {
+[type="checkbox"]:disabled + label
+/*[type="radio"]:disabled + label*/ {
   color: #aaa;
 }
 /* accessibility */
@@ -1446,10 +1446,10 @@ div.reg-summary-address-info .contact-info-street, div.reg-summary-address-info 
 [type="checkbox"]:not(:checked):focus + span.manageable-content label:before,
 [type="checkbox"]:focus + label:before,
 [type="checkbox"]:checked:focus + label:before,
-[type="checkbox"]:not(:checked):focus + label:before,
-[type="radio"]:focus + label:before,
+[type="checkbox"]:not(:checked):focus + label:before
+/*[type="radio"]:focus + label:before,
 [type="radio"]:checked:focus + label:before,
-[type="radio"]:not(:checked):focus + label:before {
+[type="radio"]:not(:checked):focus + label:before*/ {
   border: 1px solid -webkit-focus-ring-color;
   outline: 5px auto -webkit-focus-ring-color;
 }
@@ -1477,10 +1477,14 @@ div.reg-summary-address-info .contact-info-street, div.reg-summary-address-info 
     left: 0;
     position: relative;
 }
-.notTime [type="radio"]:not(:checked) + label:before, .notTime [type="radio"]:checked + label:before, .notTime [type="radio"]:not(:checked) + label:after, .notTime [type="radio"]:checked + label:after {
+.notTime [type="radio"]:not(:checked) + label:before, 
+.notTime [type="radio"]:checked + label:before, 
+.notTime [type="radio"]:not(:checked) + label:after, 
+.notTime [type="radio"]:checked + label:after {
   content: none;
 }
-div.notTime [type="radio"]:checked + label, div.notTime [type="radio"]:not(:checked) + label {
+div.notTime [type="radio"]:checked + label, 
+div.notTime [type="radio"]:not(:checked) + label {
   padding-left: 5px;
 }
 /******** End Custom Checkboxes ********/
