@@ -1640,10 +1640,10 @@ span.lightboxWiaverClose i.fa-close {
 	border: none;
 	background: none;
 }
-#reg_payment_page span.external-payment span.payment-type-label img {
+#reg_payment_page span.external-payment a.payment-type-label img {
 	display:none;
 }
-#reg_payment_page span.external-payment span.payment-type-label::after {
+#reg_payment_page span.external-payment a.payment-type-label::after {
 	content: "PayPal";
 	color: #000;
 }
