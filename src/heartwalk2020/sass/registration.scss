@@ -1673,6 +1673,22 @@ span.lightboxWiaverClose i.fa-close {
 #responsive_payment_typecc_type_row legend {
     display:none;
 }
+#reg_payment_page #billing_addr_city_row, 
+#reg_payment_page #billing_addr_country_row, 
+#reg_payment_page #billing_addr_state_row,
+#reg_payment_page #billing_addr_street1_row, 
+#reg_payment_page #billing_addr_street2_row, 
+#reg_payment_page #billing_addr_zip_row, 
+#reg_payment_page #billing_first_name_row, 
+#reg_payment_page #billing_last_name_row {
+	float: left;
+	width: auto;
+	margin-right: 20px;
+}
+#reg_payment_page div.form-row div.form-content > select, 
+#reg_payment_page div.form-row div.form-content > input {
+	width: 280px;
+}
 #reg_payment_page #billing_addr_street1_row input, 
 #reg_payment_page #billing_addr_street2_row input {
 	width: 280px;
