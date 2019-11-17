@@ -1648,7 +1648,7 @@ span.lightboxWiaverClose i.fa-close {
 	color: #000;
 }
 #reg_payment_page span.internal-payment span.payment-type-option,
-#reg_payment_page span.external-payment span.payment-type-option{
+#reg_payment_page span.external-payment span.payment-type-option {
     border-radius: 60px 60px 60px 60px;
     background-clip: padding-box;
     color: #fff;
@@ -1659,6 +1659,12 @@ span.lightboxWiaverClose i.fa-close {
     padding: 10px 20px 5px;
     position: relative;
     background: #fff;
+}
+@media (max-width: 767px) {
+	#reg_payment_page span.internal-payment span.payment-type-option,
+	#reg_payment_page span.external-payment span.payment-type-option {
+		margin-bottom:10px;
+	}
 }
 #reg_payment_page span.internal-payment span.payment-type-option.selected,
 #reg_payment_page span.internal-payment span.payment-type-option:hover, 
