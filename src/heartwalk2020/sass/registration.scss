@@ -1146,8 +1146,8 @@ div.responsive div.ErrorMessage.page-error>span.field-error-indicator, div.respo
  flex:0 0 33.3333333333%;
  max-width:33.3333333333%
 }
-.survey-question-number-container {
-	display:none;
+.survey-question-number-container .survey-question-number {
+	display: none;
 }
 .app_tr_registration #additional_questions_container .survey-question-container {
     width: 100%;
