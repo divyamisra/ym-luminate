@@ -1629,6 +1629,10 @@ span.lightboxWiaverClose i.fa-close {
 
 #reg_payment_page #fr_payment_form #reg_payment_body_container #reg_billing_info_block #billing_info_name #billing_title_row, #reg_payment_page #fr_payment_form #reg_payment_body_container #reg_billing_info_block #billing_info_name #billing_suffix_row { display: none; }
 
+#reg_payment_page div.form-row {
+	margin-bottom: 0px;
+	margin-right: 10px;
+}
 #reg_payment_page span.internal-payment {
 	border: none;
 	background: none;
@@ -1657,8 +1661,19 @@ span.lightboxWiaverClose i.fa-close {
 #reg_payment_page span.external-payment span.payment-type-option label {
     padding-left:25px;
 }
+#reg_payment_page span.payment-type-option input {
+	display: block;
+	position: absolute;
+	top: 18px;
+	left: 20px;
+}
 #responsive_payment_typecc_type_row legend {
     display:none;
+}
+#reg_payment_page #billing_addr_street1_row input, 
+#reg_payment_page #billing_addr_street2_row input {
+	max-width: 280px;
+	width:100%;
 }
 
 #reg_payment_page  div#responsive_payment_typecc_number_row {
