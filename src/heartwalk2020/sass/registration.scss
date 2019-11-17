@@ -756,6 +756,9 @@ div.registration-page-container div.sub-section-body {
 #reg_instr_container, #contact_hdr_container, #cons_info_component_contact_info_section .sub-section-header {
   display: none;
 }
+#cons_info_component_container {
+	max-width:680px;
+}
 span#title_container, h1#title_container {
     font-size: 30px;
 }
@@ -936,8 +939,12 @@ div.responsive div.ErrorMessage.page-error>span.field-error-indicator, div.respo
 	font-size: 1.75rem;
 }
 .app_tr_registration div.registration-page-container div.sub-section-container {
- /*margin:30px -30px;*/
- overflow:hidden;
+ 	overflow:hidden;
+}
+.app_tr_registration div.registration-page-container #personal_info_container,
+.app_tr_registration div.registration-page-container #contact_info_section_one,
+.app_tr_registration div.registration-page-container #contact_info_section_two {
+	margin-bottom: 10px;
 }
 .app_tr_registration div.registration-page-container div.sub-section-header {
  padding:0;
