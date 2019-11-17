@@ -1651,13 +1651,18 @@ span.lightboxWiaverClose i.fa-close {
     border: 2px solid #000000;
     padding: 10px 20px 5px;
     position: relative;
+    background: #fff;
 }
-#reg_payment_page span.payment-type-option.selected,
-#reg_payment_page span.payment-type-option:hover {
+#reg_payment_page span.internal-payment span.payment-type-option.selected,
+#reg_payment_page span.internal-payment span.payment-type-option:hover, 
+#reg_payment_page span.external-payment span.payment-type-option.selected,
+#reg_payment_page span.external-payment span.payment-type-option:hover {
 	background: #000000;
 }
-#reg_payment_page span.payment-type-option.selected a:link,
-#reg_payment_page span.payment-type-option:hover a:link{
+#reg_payment_page span.internal-payment span.payment-type-option.selected a:link,
+#reg_payment_page span.internal-payment span.payment-type-option:hover a:link,
+#reg_payment_page span.external-payment span.payment-type-option.selected a:link,
+#reg_payment_page span.external-payment span.payment-type-option:hover a:link{
 	color: #ffffff;
 }
 #reg_payment_page span.internal-payment span.payment-type-option label,
