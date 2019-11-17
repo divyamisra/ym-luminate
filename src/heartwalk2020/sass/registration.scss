@@ -1647,6 +1647,9 @@ span.lightboxWiaverClose i.fa-close {
 	content: "PayPal";
 	color: #000;
 }
+#reg_payment_page span.external-payment a.payment-type-label:hover::after {
+	color: #fff;
+}
 #reg_payment_page span.internal-payment span.payment-type-option,
 #reg_payment_page span.external-payment span.payment-type-option {
     border-radius: 60px 60px 60px 60px;
