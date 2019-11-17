@@ -1269,7 +1269,8 @@ div.responsive #FriendraiserUserWaiver button.cancel-step {
   padding: 0 0 0 25px;
 }
 */
-div.responsive button.previous-step {
+div.responsive button.previous-step,
+div.responsive button.prev-step {
 	color: #c10e21;
 	background: none !important;
 	border: none;
@@ -1277,7 +1278,8 @@ div.responsive button.previous-step {
 	font-size:16px;
 	text-align:left;
 }
-div.responsive button.previous-step:hover {
+div.responsive button.previous-step:hover,
+div.responsive button.prev-step:hover {
 	background: none !important;
 	color: #d01d20;
 	text-decoration: underline;
@@ -1626,6 +1628,71 @@ span.lightboxWiaverClose i.fa-close {
 /**** END WAIVER LIGHTBOX *****/
 
 #reg_payment_page #fr_payment_form #reg_payment_body_container #reg_billing_info_block #billing_info_name #billing_title_row, #reg_payment_page #fr_payment_form #reg_payment_body_container #reg_billing_info_block #billing_info_name #billing_suffix_row { display: none; }
+
+#reg_payment_page span.internal-payment {
+	border: none;
+	background: none;
+}
+#reg_payment_page span.internal-payment span.payment-type-option,
+#reg_payment_page span.external-payment span.payment-type-option{
+    border-radius: 60px 60px 60px 60px;
+    background-clip: padding-box;
+    color: #fff;
+    border: none;
+    font-family: LubDubMedium,Helvetica,Arial,sans-serif!important;
+    margin-right:10px;
+    border: 2px solid #000000;
+    padding: 10px 20px 5px;
+    position: relative;
+}
+#reg_payment_page span.payment-type-option.selected,
+#reg_payment_page span.payment-type-option:hover {
+	background: #000000;
+}
+#reg_payment_page span.payment-type-option.selected a:link,
+#reg_payment_page span.payment-type-option:hover a:link{
+	color: #ffffff;
+}
+#reg_payment_page span.internal-payment span.payment-type-option label,
+#reg_payment_page span.external-payment span.payment-type-option label {
+    padding-left:25px;
+}
+#responsive_payment_typecc_type_row legend {
+    display:none;
+}
+
+#reg_payment_page  div#responsive_payment_typecc_number_row {
+     float: left;
+     margin-right: 20px;
+}
+#reg_payment_page div#responsive_payment_typecc_exp_date_row {
+     float: left;
+}
+#reg_payment_page div#responsive_payment_typecc_cvv_row {
+     clear: both;
+}
+#reg_payment_page .cvv-input {
+     margin-right: 0;
+     position: relative;
+     width: auto;
+}
+#reg_payment_page .cardExpGroup {
+     width: 330px;
+}
+#reg_payment_page select#responsive_payment_typecc_exp_date_MONTH, select#responsive_payment_typecc_exp_date_YEAR {
+     width: 40%;
+     margin-right: 5%;
+     margin-top: 3px;
+     display: inline-block;
+}
+#reg_payment_page div.payment-field-container #responsive_payment_typecc_cvv_row input {
+     width: 280px;
+}
+#reg_billing_info_block {
+	max-width: 700px;
+}
+
+
 
 div#registration_options_page .indented-field-group {
   margin-left: 0;
