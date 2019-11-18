@@ -1082,7 +1082,16 @@
             //add title to input for acc
             $('input[name^=donation_level_form_input]').attr("title","Additional Amount");
 
-            $('form').validate();
+            $('form').validate({
+                errorPlacement: function(error, element) {
+                  var placement = $(element).data('error');
+                  if (placement) {
+                    $(placement).append(error)
+                  } else {
+                    error.insertAfter(element);
+                  }
+                }
+            });
             $.validator.addMethod("validDonation",function(value, element) {
                     value = parseInt(value.replace("$","").replace(",",""));
                     if ($('input[name^=donation_level_form]:checked').val() == -1 && value < 25) {
@@ -1090,8 +1099,9 @@
                     } else {
                         return true;
                     }
-                },
-                "Donations of all amounts are greatly appreciated. Online donations have a $25 minimum."
+                }, function(param, element) {
+                    return "Donations of all amounts are greatly appreciated. Online donations have a $25 minimum."
+                }
             );
 
             $('select[name=fr_part_co_list]').change(function(){
