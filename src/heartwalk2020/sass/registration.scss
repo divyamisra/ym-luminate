@@ -1032,6 +1032,10 @@ div.responsive div.ErrorMessage.page-error>span.field-error-indicator, div.respo
   max-width:50%;
  }
 }
+.app_tr_registration #additional_questions_container .survey-question-container select, 
+.app_tr_registration #additional_questions_container .survey-question-container input {
+	max-width: 680px;
+}
 .app_tr_registration #reg_options_cons_info_extension_body {
  display:-webkit-box;
  display:-ms-flexbox;
