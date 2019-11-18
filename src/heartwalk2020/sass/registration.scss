@@ -301,11 +301,13 @@ div#part_type_fundraising_goal_container #suggested_goal_container {
 #part_type_additional_gift_container .enterAmt label {
 	display: inline-block;
 	line-height: 25px;
+	margin-right: 0px;
 }
-#part_type_additional_gift_container .enterAmt input[type=text] {
-    display: inline-block;
-    width: 200px;
-    margin-left: 5px;
+#part_type_additional_gift_container .enterAmt input[type="text"] {
+	display: inline-block;
+	width: 150px;
+	margin-left: 5px;
+	margin-right: 20px;
 }
 @media (max-width:767px) {
 	#part_type_additional_gift_container .enterAmt input[type=text] {
@@ -1564,6 +1566,7 @@ div.responsive .donation-level-row-container.notTime label {
     padding: 15px;
 }
 div.responsive .donation-level-row-container.notTime label {
+    margin-right:0px;
     margin-bottom: 0;
     cursor: pointer;
 }
