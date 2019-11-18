@@ -299,8 +299,8 @@ div#part_type_fundraising_goal_container #suggested_goal_container {
 	color: #555555;
 }
 #part_type_additional_gift_container .enterAmt label {
-    display: inline-block;
-    margin-top: 7px;
+	display: inline-block;
+	line-height: 25px;
 }
 #part_type_additional_gift_container .enterAmt input[type=text] {
     display: inline-block;
@@ -1517,7 +1517,7 @@ label.donation-level-row-label.other_amount_label {
     left: -9999999px;
 }
 .donation-level-row-container.donation-amt {
-    display:inlie-block;
+    display:inline-block;
     margin-bottom: 15px;
     margin-right: 20px;
     position:relative;
@@ -1545,7 +1545,10 @@ label.donation-level-row-label.other_amount_label {
 div.responsive .donation-level-row-container input[type=radio] {
   display: none;
 }
-
+#participation_options_page .donation-level-row-container.enterAmt .input-container, 
+#participation_options_page .donation-level-row-container.notTime .input-container {
+	margin-top: 0;
+}
 div.responsive .donation-level-row-container.enterAmt label,
 div.responsive .donation-level-row-container.notTime label {
     border-radius: 60px 60px 60px 60px;
@@ -1569,6 +1572,7 @@ div.responsive .donation-level-row-container.notTime label {
     float: none;
     clear: both;
     display: inline-block;
+    vertical-align:top;
 }
 div.responsive .donation-level-row-container.enterAmt input:checked + label,
 div.responsive .donation-level-row-container.enterAmt label:hover,
