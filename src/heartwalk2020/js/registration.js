@@ -1309,7 +1309,7 @@
         $('.part-type-description-text:contains("Free")').html('&nbsp;');
         $('.survey-question-container legend span:contains("Waiver agreement")').parent().parent().addClass('waiverCheck');
         $('.waiverCheck legend').addClass('aural-only');
-        $('.waiverCheck label').html('I accept and acknowledge that I have read and understand the HeartWalk <a id="waiverPopLink" href="#">release and indemnification</a> and agree to them voluntarily.');
+        $('.waiverCheck label').html('<span class="field-required"></span> I accept and acknowledge that I have read and understand the HeartWalk <a id="waiverPopLink" href="#">release and indemnification</a> and agree to them voluntarily.');
         $('.survey-question-container legend span:contains("Healthy for good signup")').parent().parent().addClass('healthyCheck');
         $('.healthyCheck legend').addClass('aural-only');
         
