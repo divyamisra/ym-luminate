@@ -1079,9 +1079,7 @@
 
             /* setup form validation - additional donation amount must be >= $25 */
             $('input[name^=donation_level_form_input]').addClass("validDonation").attr("title","Donations of all amounts are greatly appreciated. Online donations have a $25 minimum.");
-            //add title to input for acc
-            $('input[name^=donation_level_form_input]').attr("title","Additional Amount");
-
+            
             $('form').validate({
                 errorPlacement: function(error, element) {
                   var placement = $(element).data('error');
