@@ -1070,7 +1070,7 @@
             if (regType === 'joinTeam') {
                 $('#part_type_additional_gift_section_header').prepend('<div class="bold-label" id="regDonationLabel">Show your dedication and make a donation towards your goal.</div>');
             }
-            $('#part_type_additional_gift_section_header').before("<h3>Make a Donation</h3>");
+            $('#part_type_additional_gift_section_header').before("<h2>Make a Donation</h2>");
 
             $('#part_type_donation_level_input_container').wrapInner('<fieldset role="radiogroup" class="donation-form-fields" aria-label="Donation Amounts" />');
             $('.donation-form-fields').prepend('<legend class="sr-only">Donate Towards Your Goal Now</legend>');
@@ -1079,7 +1079,7 @@
 
             /* setup form validation - additional donation amount must be >= $25 */
             $('input[name^=donation_level_form_input]').addClass("validDonation").attr("title","Donations of all amounts are greatly appreciated. Online donations have a $25 minimum.");
-            
+
             $('form').validate({
                 errorPlacement: function(error, element) {
                   var placement = $(element).data('error');
@@ -1170,7 +1170,7 @@
 
             $('input#cons_user_name').addClass("uncheck");
             $('input#cons_password').addClass("pwcheck");
-            
+
             //remove label causing acc issues
             $('.cons-zip-label, .cons-full-name-label, .cons-email-label').remove();
             //for AT&T company - a question will be displayed for their employee id
@@ -1197,7 +1197,7 @@
                     } else {
                         return false;
                     }
-                } 
+                }
             });
         }
 
@@ -1295,11 +1295,11 @@
             if ($.trim($('.additional-gift-amount').html()) != "$0.00") {
                 $('button.next-step').attr("value","Complete and Donate").find('span').html("Complete and Donate");
             }
-            
+
             //move custom details into content
             $('.reg-summary-event-info').prepend($('#additionalRegDetails'));
         }
-            
+
         $('#reg_summary_header_container').insertAfter('.section-header');
         $('#previous_step span').text("Back");
         if ($('input[name=fr_tm_opt]').val() == 'existingnew') {
@@ -1312,7 +1312,7 @@
         $('.waiverCheck label').html('<span class="field-required"></span> I accept and acknowledge that I have read and understand the HeartWalk <a id="waiverPopLink" href="#">release and indemnification</a> and agree to them voluntarily.');
         $('.survey-question-container legend span:contains("Healthy for good signup")').parent().parent().addClass('healthyCheck');
         $('.healthyCheck legend').addClass('aural-only');
-        
+
         $('#waiverPopLink').click(function(e) {
             e.preventDefault();
             $('#overlayWaiver, #lightboxWiaver').fadeIn(400);
