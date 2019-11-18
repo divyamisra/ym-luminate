@@ -1190,7 +1190,7 @@ div.part-type-container {
     margin-top:0;
     margin-bottom: 20px;
     margin-right: 20px;
-    display: block;
+    display: flex;
     cursor: pointer;
     text-align:left;
     max-width: 680px;
@@ -1219,6 +1219,7 @@ div.part-type-container input {
 
 div.part-type-container .part-type-decoration-messages {
     margin: 0;
+    flex: auto;
 }
 div.responsive .part-type-decoration-messages label {
   color: #000;
