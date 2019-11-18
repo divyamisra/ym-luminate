@@ -243,10 +243,11 @@ div.responsive .survivor_yes_no .input-container:focus {
 	background: #000 !important;
 	color: #fff !important;
 }
-.donation-amt input[type=radio] {
-    position: absolute;
-    top: 36%;
-    left: 9%;
+.donation-amt input[type="radio"] {
+	position: absolute;
+	top: 23px;
+	left: 15px;
+	z-index: 1;
 }
 @media (max-width:767px) {
     div.responsive button.step-button {
@@ -1516,7 +1517,7 @@ label.donation-level-row-label.other_amount_label {
     left: -9999999px;
 }
 .donation-level-row-container.donation-amt {
-    float: left;
+    display:inlie-block;
     margin-bottom: 15px;
     margin-right: 20px;
     position:relative;
@@ -1540,10 +1541,43 @@ label.donation-level-row-label.other_amount_label {
     display: inline-block !important;
     line-height: 60px;
 }
-.donation-level-row-container.enterAmt {
+
+div.responsive .donation-level-row-container input[type=radio] {
+  display: none;
+}
+
+div.responsive .donation-level-row-container.enterAmt label,
+div.responsive .donation-level-row-container.notTime label {
+    border-radius: 60px 60px 60px 60px;
+    background-clip: padding-box;
+    color: #fff;
+    border: none;
+    font-family: LubDubMedium,Helvetica,Arial,sans-serif!important;
+    margin-right:10px;
+    background: #fff;
+    color: #000;
+    border: 2px solid #000;
+    position:relative;
+    padding: 15px;
+}
+div.responsive .donation-level-row-container.notTime label {
+    margin-bottom: 0;
+    cursor: pointer;
+}
+.donation-level-row-container.enterAmt,
+.donation-level-row-container.notTime {
     float: none;
     clear: both;
+    display: inline-block;
 }
+div.responsive .donation-level-row-container.enterAmt input:checked + label,
+div.responsive .donation-level-row-container.enterAmt label:hover,
+div.responsive .donation-level-row-container.notTime input:checked + label,
+div.responsive .donation-level-row-container.notTime label:hover {
+  background: #000;
+  color: #fff;
+}
+
 div.donation-level-row-container {
   padding: 0;
 }
