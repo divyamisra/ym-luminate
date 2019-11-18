@@ -619,6 +619,8 @@
 
             $('.janrainEngage').html('<div class="btn-social-login btn-facebook"><i class="fab fa-facebook-f mr-2"></i> Create with Facebook</div><div class="btn-social-login btn-amazon"><i class="fab fa-amazon mr-2"></i> Create with Amazon</div>');
 
+            $('#janrainModal img').attr('alt', 'Close social login lightbox');
+
         }
         if ($('#reg_payment_page').length > 0) {
             $('.custom-progress-bar').hide();
