@@ -1214,7 +1214,7 @@ div.part-type-container:hover {
   }
 }
 div.part-type-container input {
-	margin: 0 10px 10px 10px;
+	margin: 10px;
 }
 
 div.part-type-container .part-type-decoration-messages {
@@ -1229,6 +1229,7 @@ div.responsive .part-type-decoration-messages label {
   padding: 10px 0px;
   text-align: left;
   cursor:pointer;
+  margin: 0px;
 }
 div.responsive .part-type-container.selected .part-type-decoration-messages label,
 div.responsive .part-type-container:hover .part-type-decoration-messages label{
