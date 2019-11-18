@@ -1312,6 +1312,8 @@
         $('.waiverCheck label').html('I accept and acknowledge that I have read and understand the HeartWalk <a id="waiverPopLink" href="#">release and indemnification</a> and agree to them voluntarily.');
         $('.survey-question-container legend span:contains("Healthy for good signup")').parent().parent().addClass('healthyCheck');
         $('.healthyCheck legend').addClass('aural-only');
+        
+        $('
         $('#waiverPopLink').click(function(e) {
             e.preventDefault();
             $('#overlayWaiver, #lightboxWiaver').fadeIn(400);
@@ -1534,7 +1536,7 @@
             });
 
         }
-/*
+
         if ($('.lightboxWiaverContent').length > 0) {
             console.log("yes we're on the waiver apge");
 
@@ -1552,7 +1554,7 @@
                 processPTypesData(data);
             });
         }
-*/
+
         if ($('#team_find_existing').length > 0) {
             if ($('#team_find_search_results_header_text').length > 0) {
                 location.hash = "team_label_container";
