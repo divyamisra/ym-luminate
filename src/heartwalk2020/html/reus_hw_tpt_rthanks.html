@@ -1,0 +1,19 @@
+      <style>
+        body {
+          display: none;
+        }
+      </style>
+      <script>
+        var redirectToParticipantCenter = function() {
+          window.location = 'https://[[S29:SECURE_DOMAIN]][[S29:SECURE_PATH]]TRSC?fr_id=[[A2]]&pg=center';
+        };
+        if(pushRegSuccessToDataLayer) {
+          pushRegSuccessToDataLayer();
+          setTimeout(function() {
+            redirectToParticipantCenter();
+          }, 3000);
+        }
+        else {
+          redirectToParticipantCenter();
+        }
+      </script>
