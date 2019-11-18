@@ -1534,7 +1534,7 @@
             });
 
         }
-
+/*
         if ($('.lightboxWiaverContent').length > 0) {
             console.log("yes we're on the waiver apge");
 
@@ -1551,9 +1551,8 @@
             }).done(function(data) {
                 processPTypesData(data);
             });
-
         }
-
+*/
         if ($('#team_find_existing').length > 0) {
             if ($('#team_find_search_results_header_text').length > 0) {
                 location.hash = "team_label_container";
