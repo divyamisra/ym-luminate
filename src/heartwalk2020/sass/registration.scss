@@ -1577,6 +1577,8 @@ div.responsive .donation-level-row-container.notTime label {
     clear: both;
     display: inline-block;
     vertical-align:top;
+    position:relative;
+    max-width:360px;
 }
 div.responsive .donation-level-row-container.enterAmt input:checked + label,
 div.responsive .donation-level-row-container.enterAmt label:hover,
@@ -1591,7 +1593,6 @@ div.responsive .donation-level-row-container.enterAmt label.error {
 	background: none;
 	font-size:14px;
 	color: #ff0000;
-	position:absolute;
 }
 div.donation-level-row-container {
   padding: 0;
