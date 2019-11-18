@@ -1354,6 +1354,19 @@ div.reg-summary-address-info .contact-info-street, div.reg-summary-address-info 
   }
 }
 
+/* rthanks page */
+div#fr_thanks_page a#part_ctr_container {
+	border-radius: 60px;
+}
+/* hide 2nd pc button */
+#fr_thanks_page .section-footer a#part_ctr_container_step {
+	display:none;
+}
+div#fr_thanks_page #part_ctr_container:hover {
+	background: #d01d20;
+}
+
+
 .reg-summary-edit-link .left-decorator {
   display: none;
 }
