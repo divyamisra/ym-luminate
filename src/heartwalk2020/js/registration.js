@@ -1313,7 +1313,6 @@
         $('.survey-question-container legend span:contains("Healthy for good signup")').parent().parent().addClass('healthyCheck');
         $('.healthyCheck legend').addClass('aural-only');
         
-        $('
         $('#waiverPopLink').click(function(e) {
             e.preventDefault();
             $('#overlayWaiver, #lightboxWiaver').fadeIn(400);
