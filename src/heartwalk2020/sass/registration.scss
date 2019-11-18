@@ -387,6 +387,10 @@ div.registration-page-container div.section-container {
 .app_tr_registration .search-result-details {
 	border-bottom: 1px solid $gray-500;
 }
+.content .app_tr_registration .search-result-details .btn {
+	padding-right: 10px;
+	padding-left: 10px;
+}
 .app_tr_registration div.responsive input[type=email],
 .app_tr_registration div.responsive input[type=number],
 .app_tr_registration div.responsive input[type=password],
