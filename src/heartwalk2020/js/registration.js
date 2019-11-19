@@ -1140,6 +1140,12 @@
         }
 
         if (jQuery('input[name=pg]').val() == "reg" || jQuery('input[name=pg]').val() == "reganother") {
+	    $('span.field-required').next('span').find('input').addClass("required");
+	    $('input.required').each(function(){
+		    var label = $(this).closest('.input-container').find('.input-label').html();
+		    $(this).attr("title",label.replace(":","") + " is required");
+	    });
+		
             jQuery('form').validate({
                 rules: {
                     cons_password: {
