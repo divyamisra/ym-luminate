@@ -1140,6 +1140,12 @@
         }
 
         if (jQuery('input[name=pg]').val() == "reg" || jQuery('input[name=pg]').val() == "reganother") {
+	    /* zip only reg flow */
+	    $('#cons_zip_code').parent().parent().parent().parent().addClass('field-required consZip');
+
+	    if ($(".consZip span.field-required").length === 0) {
+	    	$('label[for="cons_zip_code"]').parent().before('<span class="field-required"></span>');
+   	    }
 	    $('span.field-required').next('span').find('input').addClass("required");
 	    $('input.required').each(function(){
 		    var label = $(this).closest('.input-container').find('.input-label').html();
@@ -1255,13 +1261,6 @@
             $('.survivor_yes_no li').removeClass('survivor_active');
             $(this).addClass('survivor_active');
         });
-
-        /* zip only reg flow */
-        $('#cons_zip_code').parent().parent().parent().parent().addClass('field-required consZip');
-
-        if ($(".consZip span.field-required").length === 0) {
-            $('label[for="cons_zip_code"]').parent().before('<span class="field-required"></span>');
-        }
 
         $('.cons-address-street-full-container').hide();
         $('#cons_city').parent().parent().parent().parent().hide();
