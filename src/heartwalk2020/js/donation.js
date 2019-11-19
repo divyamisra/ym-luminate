@@ -214,10 +214,12 @@
     // a11y radio group for donation levels
     $('#level_flexible_row2 fieldset').attr('aria-labelledby', 'level_flexible_row2');
     $('#level_flexible_row2 fieldset').attr('role', 'radiogroup');
-    $('input[name="level_flexibleexpanded"]').attr({
-      role: 'radio', 
-      group: 'donation-levels',
-      'aria-checked': $(this).is(':checked')
+    $('input[name="level_flexibleexpanded"]').each(function(){
+      $(this).attr({
+        role: 'radio', 
+        group: 'donation-levels',
+        'aria-checked': $(this).is(':checked')
+      });
     });
 
     //sponsor slider
