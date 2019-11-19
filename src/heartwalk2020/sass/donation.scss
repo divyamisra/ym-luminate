@@ -453,7 +453,7 @@ div.responsive .donation-levels .active .donation-level-input-container label {
      margin-left: 0px;
      margin-top: 0px;
 }
-div.responsive .donation-levels .enterAmt .donation-level-input-container label {
+div.responsive .donation-levels .enterAmt .donation-level-input-container > label {
 	display: none;
 }
  div.donation-level-container.enterAmt, .donation-level-container.enterAmt.active {
