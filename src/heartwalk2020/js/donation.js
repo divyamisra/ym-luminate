@@ -38,6 +38,8 @@
     $('.donation-level-container').click(function(){
         $('.donation-level-container').removeClass('active');
         $('.formMessage p').removeClass('active');
+	$('.donation-level-container input[type=radio]').attr("aria-checked","false");
+	$(this).find('input[type=radio]').attr("aria-checked","true");
         if($(this).hasClass('level0')){
             var level = 'level0';
         }else if ($(this).hasClass('level1')){
