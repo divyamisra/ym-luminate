@@ -339,6 +339,7 @@
         jQuery(function($) {
 	    //change default radio button to checkbox
 	    $("#cover_fee_radio_Yes").attr("type","checkbox");
+	    $('label[for=cover_fee_dropdown]').closest('.form-input-label-block').remove();
 		
             if ($('.field-error-indicator').length) {
                 if ($('#additional_amountname').val() <= 0) {
