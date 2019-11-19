@@ -15,26 +15,26 @@
           if (jQuery(this).find('input:checked').length > 0) {
              document.cookie="level=level"+i;
              amountLevel="level"+i;
-             return; 
+             return;
           }
        });
     }
 
-    $('.donation-level-container:last-child').addClass('enterAmt'); 
+    $('.donation-level-container:last-child').addClass('enterAmt');
     var donateSpan = '<span class="donation-level-total-amount"></span>';
     $('.donation-level-container').each(function(i){
         $(this).addClass('level'+i);
         i++;
-    });   
+    });
     $(".donation-level-amount-container").each(function() {
         $(this).text($(this).text().replace(".00", ""));
     });
-	  
+
     //wrap recognition section
     var wrapStart = jQuery('.tr-recognition-name-view').prev('.form-row').prev('.section-header-container');
     var wrapLast = jQuery('#tr_show_gift_to_public_row').next();
     wrapStart.nextUntil(wrapLast).andSelf().wrapAll("<div class='recognition'></div>");
-    
+
     $('.donation-level-container').click(function(){
         $('.donation-level-container').removeClass('active');
         $('.formMessage p').removeClass('active');
@@ -54,7 +54,7 @@
         document.cookie="level="+level;
         $(this).addClass('active');
         var amt = $(this).find('.donation-level-amount-container').text();
-        //$('.donateSubmit').text('Donate '+amt);        
+        //$('.donateSubmit').text('Donate '+amt);
         if($('.donation-level-container.active').hasClass('level0')) {
             $('.formMessage .level0').addClass('active');
         }else if ($('.donation-level-container.active').hasClass('level1')) {
@@ -65,9 +65,9 @@
             $('.formMessage .level3').addClass('active');
         }else if ($('.donation-level-container.active').hasClass('level4')) {
             $('.formMessage .level4').addClass('active');
-        }            
-    }); 
-	  
+        }
+    });
+
     $('.designated-giving-recurring-row input[type=radio]:checked').closest('.designated-giving-recurring-row').addClass("active");
     $('.designated-giving-recurring-row').click(function(){
         $('.designated-giving-recurring-row').removeClass('active');
@@ -86,7 +86,7 @@
 		    $('#tr_show_gift_to_public_row').hide();
 	    }
     });
-	  
+
     //make sure to remember values on reload
     if(amountLevel == 'level0') {
         $('.level0').addClass('active');
@@ -103,7 +103,7 @@
     }else if (amountLevel == 'level4') {
         $('.level4').addClass('active');
         $('.level4 .donation-level-label-input-container input').click();
-    }  
+    }
     $('.donateSubmit').click(function(){
         $('#pstep_finish').click();
     });
@@ -115,7 +115,7 @@
     $('.matching-gift-container').appendTo('#matching_gift_section');
     //$('#matching_gift_section').insertAfter('.form-donation-level');
     $('.donation-level-user-entered input').attr("placeholder","Other Amount").after("<div class='other-amt-note'><em>$25 minimum donation</em></div>");
-    
+
     /*$('#show_employer_match_check').click(function(){
         $('#matching_gift_section').slideToggle();
         if (!$(this).is(':checked')) {
@@ -152,14 +152,14 @@
 
     /*access*/
     $('html').attr('xmlns','http://www.w3.org/1999/xhtml').attr('lang','en').attr('xml:lang','en');
-    
+
     var contentMeta = $('meta[name="Keywords"]').attr('content').trim();
     $('meta[name="Keywords"]').attr('content',contentMeta);
-    
+
     //$('.payment-type-label').attr('tabindex','-1');
-    
+
     $('#ProcessForm').attr('name','ProcessForm');
-    
+
     $('#level_flexible_row.form-row.form-donation-level').attr('id','level_flexible_row2');
 
     $('fieldset.cardExpGroup').prepend('<legend class="aural-only">Credit Card Expires</legend>');
@@ -173,10 +173,10 @@
     $('h5.transaction-summary-header').replaceWith(function () {
         return '<h1 class="transaction-summary-header summary-section-header dividerHeading" class="section-header-text">' + $(this).html() + '</h1>';
     });
-    
+
     $('#responsive_payment_typecc_numbername, #responsive_payment_typecc_cvvname, #billing_first_namename, #billing_last_namename, #billing_addr_street1name, #billing_addr_cityname, #billing_addr_zipname, #donor_email_addressname, #responsive_payment_typecc_exp_date_MONTH, #responsive_payment_typecc_exp_date_YEAR, #billing_addr_state, #billing_addr_country').attr('aria-required','true');
     $('#billing_addr_street1_row, #billing_addr_street2_row, #billing_addr_city_row, #billing_addr_state_row, #billing_addr_zip_row, #billing_addr_country_row').wrapAll('<div class="billing-fields-container"></div>');
-    
+
     if ($('.errorMessageContainer .ErrorMessage.page-error .field-error-text').length > 0) {
         $('.errorMessageContainer .ErrorMessage.page-error .field-error-text').attr('role','alert');
     }
@@ -186,10 +186,23 @@
     $('label[for="responsive_payment_typepay_typeradiocredit"] a').attr('aria-label','PAYMENT BY CREDIT CARD');
     $('label[for="responsive_payment_typepay_typeradiopaypal"] a').attr('aria-label','PAYMENT BY PAY PAL');
 
+    $('#responsive_payment_typepay_typeradiopaypal').attr('tabindex','-1');
+    $('#responsive_payment_typepay_typeradiocredit').attr('tabindex','-1');
+    
+    /*
+    $('label[for="responsive_payment_typepay_typeradiocredit"] a').click(function(e){
+        e.preventDefault();
+        $('label[for="responsive_payment_typepay_typeradiocredit"]').click();
+    });
+    $('label[for="responsive_payment_typepay_typeradiopaypal"] a').click(function(){
+
+    });
+    */
+
     // Adding Mark's text above matching company label
     $('#donor_matching_employer_Row').prepend('<p>Use the search box below to find out if your employer will match your donation!</p>');
     $('#donor_matching_employer_Row .form-input-label-block').addClass("aural-only");
-	  
+
     // Selecting empty value from the Gift Duration drop-down when the One-time Gift box is checked
     $('#level_flexiblegift_type1').click(function(){
         console.log('One-time gift box checked');
@@ -209,14 +222,14 @@
     // Moving matching gift widget to top of page if a search has been conducted
     /*if ($('#donor_matching_employer_company_information').length > 0) {
         $('#matching_gift_section').insertAfter($('h1#formTitle').parent().parent());
-    }*/ 
+    }*/
 
     // a11y radio group for donation levels
     $('#level_flexible_row2 fieldset').attr('aria-labelledby', 'level_flexible_row2');
     $('#level_flexible_row2 fieldset').attr('role', 'radiogroup');
     $('input[name="level_flexibleexpanded"]').each(function(){
       $(this).attr({
-        role: 'radio', 
+        role: 'radio',
         group: 'donation-levels',
         'aria-checked': $(this).is(':checked')
       });
@@ -281,7 +294,7 @@
     });
     jQuery("#billing_addr_street1name").blur(function(){
         _gaq.push(['t2._trackEvent', 'Billing Info', 'click', 'Street 1']);
-    }); 
+    });
     jQuery("#billing_addr_street2name").blur(function(){
         _gaq.push(['t2._trackEvent', 'Billing Info', 'click', 'Street 2']);
     });
@@ -296,26 +309,26 @@
     });
     jQuery("#billing_addr_country").blur(function(){
         _gaq.push(['t2._trackEvent', 'Billing Info', 'click', 'Country']);
-    });  
+    });
     jQuery("#donor_email_addressname").blur(function(){
         _gaq.push(['t2._trackEvent', 'Billing Info', 'click', 'Email']);
-    }); 
+    });
     jQuery("input[name='donor_matching_employerradioGroup']").blur(function(){
         _gaq.push(['t2._trackEvent', 'Employer Match', 'click', 'Company']);
-    }); 
+    });
     jQuery("#amazonPayLink a").blur(function(){
         _gaq.push(['t2._trackEvent', 'Payment', 'click', 'Amazon']);
-    }); 
+    });
     jQuery("#modalDonationButton").blur(function(){
         _gaq.push(['t2._trackEvent', 'Donation form lightbox', 'click', 'Donate Now']);
-    }); 
+    });
 
 
     // donation form year label
     jQuery('label[for="responsive_payment_typecc_exp_date_YEAR"] span').removeClass('aural-only').text('and Year');
 
     jQuery('label[for="responsive_payment_typecc_exp_date_MONTH"] span').text('Expiration Date');
-     
+
   });
     function randImpactStatement(array) {
       var m = array.length, t, i;
@@ -345,13 +358,13 @@
 	    //change default radio button to checkbox
 	    $("#cover_fee_radio_Yes").attr("type","checkbox");
 	    $('label[for=cover_fee_dropdown]').closest('.form-input-label-block').remove();
-		
+
             if ($('.field-error-indicator').length) {
                 if ($('#additional_amountname').val() <= 0) {
                     $("#cover_fee_radio_Yes").prop("checked", true);
                 }
             }
-            
+
             if (getDonationAmount() > 0 && $('#cover_fee_radio_Yes').is(':checked')) {
                var initAmt = parseFloat(getDonationAmount());
                var toDonate =  initAmt + parseFloat((getDonationAmount() * 0.029 + .30).toFixed(2));
@@ -363,7 +376,7 @@
                $('button#pstep_finish').html("Donate $" + toDonate);
                $('.bb-additional-amount').text(toDonate)
 	    }
-            
+
             $("#cover_fee_radio_Yes").click(function() {
                if ($(this).is(':checked')) {
                   var initAmt = parseFloat(getDonationAmount());
