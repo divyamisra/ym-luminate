@@ -214,7 +214,8 @@
     $('#level_flexible_row2 fieldset').attr('role', 'radiogroup');
     $('input[name="level_flexibleexpanded"]').attr({
       role: 'radio', 
-      group: 'donation-levels'
+      group: 'donation-levels',
+      'aria-checked': 'false'
     });
 
     //sponsor slider
