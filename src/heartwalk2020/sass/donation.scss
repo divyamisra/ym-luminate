@@ -1,13 +1,6 @@
 @import "variables.scss";
 @import "mixins.scss";
 
-
-@media screen and (min-color-index:0) and (-webkit-min-device-pixel-ratio:0) {
-	.aural-only {
-		text-indent: -999px;
-		z-index: -1;
-	}
-}
  @media (max-width: 767px) {
 	footer.l-footer .btn--select {
 		width: auto;
@@ -20,7 +13,7 @@ main {
     background-color: $gray-400;
     padding: 48px 76px 67px;
 }
- 
+
  a#skip-main:hover, a#skip-main:active, a#skip-main:focus {
      left: 0;
      width: auto;
@@ -46,7 +39,7 @@ main {
  p {
   font-size:100%;
  }
-}	
+}
 div.html-caption-container {
 	max-width: none;
 }
@@ -151,7 +144,7 @@ div.donation-level-container {
 .donation-form-container #level_flexiblegift_type_Row .designated-giving-recurring-row.active {
 	color: #ffffff;
 }
-.donation-form-container input[type="checkbox"] + label, 
+.donation-form-container input[type="checkbox"] + label,
 .donation-form-container input[type="radio"] + label {
 	margin-right: 3.7em;
 }
@@ -183,11 +176,11 @@ div.responsive div.matching-gift-container button.step-button {
 	border: 2px solid #000;
 	border-radius: 60px;
 }
- div.responsive a.next-step, 
-div.responsive button.next-step, 
-div.responsive button.action-button, 
-div.responsive a.step-button, 
-div.responsive button.step-button, 
+ div.responsive a.next-step,
+div.responsive button.next-step,
+div.responsive button.action-button,
+div.responsive a.step-button,
+div.responsive button.step-button,
 div.responsive input.step-button {
      min-width: 190px;
      height: 60px;
@@ -204,14 +197,14 @@ div.responsive input.step-button {
      border-radius:60px;
 }
 div.responsive a.step-button:hover,
-div.responsive button.step-button:hover, 
+div.responsive button.step-button:hover,
 div.responsive input.step-button:hover {
 	background:$red-deep !important;
 }
- div.responsive input[type="text"], 
-div.responsive input[type="number"], 
-div.responsive input[type="password"], 
-div.responsive textarea, select, 
+ div.responsive input[type="text"],
+div.responsive input[type="number"],
+div.responsive input[type="password"],
+div.responsive textarea, select,
 div.responsive select, select[size] {
      border: 1px solid #acacac !important;
      border-radius: 0 !important;
@@ -261,35 +254,35 @@ div.responsive .level4.active .donation-level-user-entered input[type="text"] {
 	display: none;
 }
 
- #employer_street_row input, 
-#billing_addr_street1_row input, 
-#billing_addr_street2_row input, 
-#billing_addr_street3_row input, 
-#billing_addr_country_row input.ui-autocomplete-input, 
-#donor_addr_street1_row input, 
-#donor_addr_street2_row input, 
-#donor_addr_street3_row input, 
-#donor_addr_country_row input.ui-autocomplete-input, 
-#shipping_addr_street1_row input, 
-#shipping_addr_street2_row input, 
-#shipping_addr_street3_row input, 
-#shipping_addr_country_row input.ui-autocomplete-input, 
-#tribute_notify_recip_street1_row input, 
+ #employer_street_row input,
+#billing_addr_street1_row input,
+#billing_addr_street2_row input,
+#billing_addr_street3_row input,
+#billing_addr_country_row input.ui-autocomplete-input,
+#donor_addr_street1_row input,
+#donor_addr_street2_row input,
+#donor_addr_street3_row input,
+#donor_addr_country_row input.ui-autocomplete-input,
+#shipping_addr_street1_row input,
+#shipping_addr_street2_row input,
+#shipping_addr_street3_row input,
+#shipping_addr_country_row input.ui-autocomplete-input,
+#tribute_notify_recip_street1_row input,
 #tribute_notify_recip_street2_row input,
-#tribute_notify_recip_street3_row input, 
-#tribute_notify_recip_country_row input.ui-autocomplete-input, 
-#tribute_signature_row input, 
-#tribute_message_closing_row input, 
+#tribute_notify_recip_street3_row input,
+#tribute_notify_recip_country_row input.ui-autocomplete-input,
+#tribute_signature_row input,
+#tribute_message_closing_row input,
 div.employer-address-container input#employer_street {
      width: 280px;
 }
- #billing_first_name_row, 
-#billing_last_name_row, 
-#billing_addr_street1_row, 
-#billing_addr_street2_row, 
-#billing_addr_city_row, 
-#billing_addr_state_row, 
-#billing_addr_zip_row, 
+ #billing_first_name_row,
+#billing_last_name_row,
+#billing_addr_street1_row,
+#billing_addr_street2_row,
+#billing_addr_city_row,
+#billing_addr_state_row,
+#billing_addr_zip_row,
 #billing_addr_country_row {
      float: left;
      width: auto;
@@ -537,22 +530,22 @@ div.responsive .donation-levels .enterAmt .donation-level-input-container > labe
      position: absolute;
      left: -9999px;
 }
-[type="checkbox"]:not(:checked) + label, 
-[type="checkbox"]:checked + label, 
-[type="radio"]:not(:checked) + label, 
+[type="checkbox"]:not(:checked) + label,
+[type="checkbox"]:checked + label,
+[type="radio"]:not(:checked) + label,
 [type="radio"]:checked + label,
-[type="checkbox"]:not(:checked) + .form-input-label-block > label, 
+[type="checkbox"]:not(:checked) + .form-input-label-block > label,
 [type="checkbox"]:checked + .form-input-label-block > label {
      position: relative;
      padding-left: 35px;
      cursor: pointer;
 }
 /* checkbox aspect */
-[type="checkbox"]:not(:checked) + label:before, 
-[type="checkbox"]:checked + label:before, 
-[type="radio"]:not(:checked) + label:before, 
+[type="checkbox"]:not(:checked) + label:before,
+[type="checkbox"]:checked + label:before,
+[type="radio"]:not(:checked) + label:before,
 [type="radio"]:checked + label:before,
-[type="checkbox"]:not(:checked) + .form-input-label-block > label:before, 
+[type="checkbox"]:not(:checked) + .form-input-label-block > label:before,
 [type="checkbox"]:checked + .form-input-label-block > label:before {
      content: '';
      position: absolute;
@@ -565,11 +558,11 @@ div.responsive .donation-levels .enterAmt .donation-level-input-container > labe
      border-radius: 0;
 }
 /* checked mark aspect */
-[type="checkbox"]:not(:checked) + label:after, 
-[type="checkbox"]:checked + label:after, 
-[type="radio"]:not(:checked) + label:after, 
+[type="checkbox"]:not(:checked) + label:after,
+[type="checkbox"]:checked + label:after,
+[type="radio"]:not(:checked) + label:after,
 [type="radio"]:checked + label:after,
-[type="checkbox"]:not(:checked) + .form-input-label-block > label:after, 
+[type="checkbox"]:not(:checked) + .form-input-label-block > label:after,
 [type="checkbox"]:checked + .form-input-label-block > label:after {
      content: '\f00c';
      position: absolute;
@@ -584,7 +577,7 @@ div.responsive .donation-levels .enterAmt .donation-level-input-container > labe
      font-weight: 900;
 }
 /* checked mark aspect changes */
-[type="checkbox"]:not(:checked) + label:after, 
+[type="checkbox"]:not(:checked) + label:after,
 [type="radio"]:not(:checked) + label:after,
 [type="checkbox"]:not(:checked) + .form-input-label-block > label:after {
      opacity: 0;
@@ -592,7 +585,7 @@ div.responsive .donation-levels .enterAmt .donation-level-input-container > labe
      -ms-transform: scale(0);
      transform: scale(0);
 }
-[type="checkbox"]:checked + label:after, 
+[type="checkbox"]:checked + label:after,
 [type="radio"]:checked + label:after,
 [type="checkbox"]:checked + .form-input-label-block > label:after {
      opacity: 1;
@@ -601,9 +594,9 @@ div.responsive .donation-levels .enterAmt .donation-level-input-container > labe
      transform: scale(1);
 }
 /* disabled checkbox */
-[type="checkbox"]:disabled:not(:checked) + label:before, 
-[type="checkbox"]:disabled:checked + label:before, 
-[type="checkbox"]:disabled:not(:checked) + .form-input-label-block > label:before, 
+[type="checkbox"]:disabled:not(:checked) + label:before,
+[type="checkbox"]:disabled:checked + label:before,
+[type="checkbox"]:disabled:not(:checked) + .form-input-label-block > label:before,
 [type="checkbox"]:disabled:checked + .form-input-label-block > label:before {
      -webkit-box-shadow: none;
      box-shadow: none;
@@ -615,20 +608,20 @@ div.responsive .donation-levels .enterAmt .donation-level-input-container > labe
 [type="checkbox"]:disabled:checked + .form-input-label-block > label:after {
      color: #999;
 }
-[type="checkbox"]:disabled + label, 
+[type="checkbox"]:disabled + label,
 [type="radio"]:disabled + label,
 [type="checkbox"]:disabled + .form-input-label-block > label {
      color: #aaa;
 }
 /* accessibility */
- [type="checkbox"]:focus + label:before, 
-[type="checkbox"]:checked:focus + label:before, 
-[type="checkbox"]:not(:checked):focus + label:before, 
-[type="radio"]:focus + label:before, 
-[type="radio"]:checked:focus + label:before, 
+ [type="checkbox"]:focus + label:before,
+[type="checkbox"]:checked:focus + label:before,
+[type="checkbox"]:not(:checked):focus + label:before,
+[type="radio"]:focus + label:before,
+[type="radio"]:checked:focus + label:before,
 [type="radio"]:not(:checked):focus + label:before,
-[type="radio"]:focus + .form-input-label-block > label:before, 
-[type="checkbox"]:checked:focus + .form-input-label-block > label:before, 
+[type="radio"]:focus + .form-input-label-block > label:before,
+[type="checkbox"]:checked:focus + .form-input-label-block > label:before,
 [type="checkbox"]:not(:checked):focus + .form-input-label-block > label:before {
      border: 1px solid -webkit-focus-ring-color;
      outline: 5px auto -webkit-focus-ring-color;
@@ -684,13 +677,13 @@ div.responsive .donation-level-general-ask {
      float: none;
      width: 100%;
 }
- div.responsive .donation-levels .donation-level-input-container [type="radio"]:not(:checked), 
+ div.responsive .donation-levels .donation-level-input-container [type="radio"]:not(:checked),
  div.responsive .donation-levels .donation-level-input-container [type="radio"]:checked {
      position: absolute;
      left: 10px;
      top:20px;
 }
- div.responsive .donation-levels .enterAmt .donation-level-input-container [type="radio"]:not(:checked), 
+ div.responsive .donation-levels .enterAmt .donation-level-input-container [type="radio"]:not(:checked),
  div.responsive .donation-levels .enterAmt .donation-level-input-container [type="radio"]:checked {
      position: relative;
      left: -9999px;
@@ -755,4 +748,3 @@ div.responsive .donation-level-general-ask {
      border: 1px solid white;
      color: #ffffff;
 }
- 
