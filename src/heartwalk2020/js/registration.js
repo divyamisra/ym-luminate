@@ -1086,17 +1086,16 @@
             
             $('form').validate({
                 errorPlacement: function(error, element) {
-                console.log($(element).attr("name"));
                   if ($(element).attr("name") == "fr_part_radio") {
 	                  $('#part_type_selection_container').append(error).css({"display":"block","text-align":"left"});
                   } else {
-					  var placement = $(element).data('error');
-					  if (placement) {
-						$(placement).append(error)
-					  } else {
-						error.insertAfter(element);
-					  }
-				  }
+			  var placement = $(element).data('error');
+			  if (placement) {
+				$(placement).append(error)
+			  } else {
+				error.insertAfter(element);
+			  }
+		  }
                 }
             });
             $.validator.addMethod("validDonation",function(value, element) {
