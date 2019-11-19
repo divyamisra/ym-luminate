@@ -1082,14 +1082,21 @@
             /* setup form validation - additional donation amount must be >= $25 */
             $('input[name^=donation_level_form_input]').addClass("validDonation").attr("title","Donations of all amounts are greatly appreciated. Online donations have a $25 minimum.");
 
+            $('input[name=fr_part_radio]').addClass("required").attr("title","Please select a participation type");
+            
             $('form').validate({
                 errorPlacement: function(error, element) {
-                  var placement = $(element).data('error');
-                  if (placement) {
-                    $(placement).append(error)
+                console.log($(element).attr("name"));
+                  if ($(element).attr("name") == "fr_part_radio") {
+	                  $('#part_type_selection_container').append(error).css({"display":"block","text-align":"left"});
                   } else {
-                    error.insertAfter(element);
-                  }
+					  var placement = $(element).data('error');
+					  if (placement) {
+						$(placement).append(error)
+					  } else {
+						error.insertAfter(element);
+					  }
+				  }
                 }
             });
             $.validator.addMethod("validDonation",function(value, element) {
@@ -1114,10 +1121,6 @@
                 }
             });
             $('button.next-step').click(function(){
-                if ($('.part-type-container.selected').length == 0) {
-                    alert("Please select how you will participate");
-                    return false;
-                }
                 if ($('select[name=fr_part_co_list]').length) {
                     if ($('select[name=fr_part_co_list] option:selected').text().indexOf("AT&T") > -1) {
                         console.log("found AT&T 3");
