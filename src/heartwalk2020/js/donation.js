@@ -186,7 +186,8 @@
 
     // Adding Mark's text above matching company label
     $('#donor_matching_employer_Row').prepend('<p>Use the search box below to find out if your employer will match your donation!</p>');
-
+    $('#donor_matching_employer_Row .form-input-label-block').addClass("aural-only");
+	  
     // Selecting empty value from the Gift Duration drop-down when the One-time Gift box is checked
     $('#level_flexiblegift_type1').click(function(){
         console.log('One-time gift box checked');
