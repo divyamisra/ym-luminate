@@ -417,7 +417,8 @@ div.responsive button.finish-step {
 div.responsive .donation-levels .active .donation-level-input-container label {
 	color: #fff;
 }
- div.donation-level-amount-container {
+ div.donation-level-amount-container,
+ div.donation-level-label-container {
      display: block;
      text-align: center;
      padding: 10px 0px;
@@ -447,7 +448,7 @@ div.responsive .donation-levels .active .donation-level-input-container label {
      margin-left: 0px;
      margin-top: 0px;
 }
-div.responsive .donation-levels .enterAmt .donation-level-input-container > label {
+/*div.responsive .donation-levels .enterAmt .donation-level-input-container > label {
 	display: none;
 }
  div.donation-level-container.enterAmt, .donation-level-container.enterAmt.active {
@@ -461,6 +462,9 @@ div.responsive .donation-levels .enterAmt .donation-level-input-container > labe
      top: -54px;
      color: #000000;
      font-size: 18px;
+}*/
+.donation-level-user-entered {
+	display:none;
 }
  div.responsive div.ErrorMessage > span.field-error-indicator {
      height: 23px;
