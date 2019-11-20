@@ -1648,6 +1648,10 @@ label.donation-level-row-label {
       margin-left: 0;
   }
 }
+.waiverCheck .survey-question-label {
+	display:none;
+}
+
 /**** WAIVER LIGHTBOX ****/
 #overlayWaiver, #lightboxWiaver {
     display: none;
