@@ -1100,7 +1100,7 @@
             });
             $.validator.addMethod("validDonation",function(value, element) {
                     value = parseInt(value.replace("$","").replace(",",""));
-                    if ($('input[name^=donation_level_form]:checked').val() == -1 && value < 25) {
+                    if ($('input[name^=donation_level_form]').is(':checked') && value < 25) {
                         return false;
                     } else {
                         return true;
