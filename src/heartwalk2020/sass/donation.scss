@@ -447,6 +447,7 @@ div.responsive .donation-levels .active .donation-level-input-container label {
  label + div.donation-level-user-entered {
      margin-left: 0px;
      margin-top: 0px;
+     display:none;
 }
 /*div.responsive .donation-levels .enterAmt .donation-level-input-container > label {
 	display: none;
@@ -463,9 +464,6 @@ div.responsive .donation-levels .active .donation-level-input-container label {
      color: #000000;
      font-size: 18px;
 }*/
-.donation-level-user-entered {
-	display:none;
-}
  div.responsive div.ErrorMessage > span.field-error-indicator {
      height: 23px;
      width: 18px;
@@ -477,9 +475,6 @@ div.responsive .donation-levels .active .donation-level-input-container label {
 }
  div.donation-level-label-input-container {
      display: block;
-}
-.enterAmt div.donation-level-label-input-container {
-     height: 0px;
 }
  div.responsive div.ErrorMessage.page-error > span.field-error-indicator, div.responsive span.header-warning-message {
      display: inline-block;
@@ -688,11 +683,11 @@ div.responsive .donation-level-general-ask {
      left: 10px;
      top:20px;
 }
- div.responsive .donation-levels .enterAmt .donation-level-input-container [type="radio"]:not(:checked),
+/* div.responsive .donation-levels .enterAmt .donation-level-input-container [type="radio"]:not(:checked),
  div.responsive .donation-levels .enterAmt .donation-level-input-container [type="radio"]:checked {
      position: relative;
      left: -9999px;
-}
+}*/
  div.responsive .donation-levels .enterAmt .donation-level-input-container label {
      line-height: initial;
      top: -25px !important;
