@@ -621,6 +621,10 @@
 
             $('#janrainModal img').attr('alt', 'Close social login lightbox');
 
+            $('div#user_type_campaign_banner_container').replaceWith(function() {
+                return '<h1 class="campaign-banner-container" id="user_type_campaign_banner_container">' + $(this).html() + '</h1>';
+            });
+
         }
         if ($('#reg_payment_page').length > 0) {
             $('.custom-progress-bar').hide();
