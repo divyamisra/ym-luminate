@@ -474,8 +474,8 @@ div.responsive .donation-levels .enterAmt .donation-level-input-container > labe
  div.donation-level-label-input-container {
      display: block;
 }
- .enterAmt div.donation-level-label-input-container {
-     display: none;
+.enterAmt div.donation-level-label-input-container {
+     height: 0px;
 }
  div.responsive div.ErrorMessage.page-error > span.field-error-indicator, div.responsive span.header-warning-message {
      display: inline-block;
