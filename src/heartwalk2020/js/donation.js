@@ -53,6 +53,7 @@
         }
         document.cookie="level="+level;
         $(this).addClass('active');
+	$('.donation-level-user-entered').hide();
         var amt = $(this).find('.donation-level-amount-container').text();
         //$('.donateSubmit').text('Donate '+amt);
         if($('.donation-level-container.active').hasClass('level0')) {
@@ -65,6 +66,7 @@
             $('.formMessage .level3').addClass('active');
         }else if ($('.donation-level-container.active').hasClass('level4')) {
             $('.formMessage .level4').addClass('active');
+	    $('.donation-level-user-entered').show();
         }
     });
 
