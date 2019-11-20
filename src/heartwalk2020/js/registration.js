@@ -1105,9 +1105,7 @@
                     } else {
                         return true;
                     }
-                }, function(param, element) {
-                    return "Donations of all amounts are greatly appreciated. Online donations have a $25 minimum."
-                }
+                }, "Donations of all amounts are greatly appreciated. Online donations have a $25 minimum."
             );
 
             $('select[name=fr_part_co_list]').change(function(){
