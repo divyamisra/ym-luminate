@@ -1274,7 +1274,8 @@
         $('.donation-level-row-label-no-gift').insertBefore(jQuery('.donation-level-row-label-no-gift').parent());
         $('.donation-level-row-container.enterAmt label.donation-level-row-label').text('Other Amount');
 	$('.donation-level-row-label-no-gift').parent().addClass('notTime');
-
+	$('.enterAmt .input-container > span').next('input').andSelf().wrapAll("<div class='enterAmt-other hidden'></div>");
+	    
         $(".donation-level-amount-text").each(function() {
             $(this).text($(this).text().replace(".00", ""));
         });
@@ -1284,12 +1285,14 @@
             $(this).addClass('active');
             //$('#part_type_anonymous_input_container, #part_type_show_public_input_container').show();
             $('.donation-level-row-container.enterAmt input').val('');
+	    $('.enterAmt-other').addClass("hidden");
         });
         $('.donation-level-row-container.enterAmt').click(function() {
             $(this).find('input').prop('checked', true);
             if ($(this).find('input').val() == "") {
 		 $(this).find('input').val(0);
 	    }
+	    $('.enterAmt-other').removeClass("hidden");
             $('.donation-level-row-container').removeClass('active');
 	    $(this).addClass("active");
             //$('#part_type_anonymous_input_container, #part_type_show_public_input_container').show();
@@ -1300,6 +1303,7 @@
 	    $(this).addClass("active");
             //$('#part_type_anonymous_input_container, #part_type_show_public_input_container').show();
             $('.donation-level-row-container.enterAmt input').val('');
+	    $('.enterAmt-other').addClass("hidden");
 	});
 	//check if amounts preselected
         $('.donation-level-row-container.donation-amt input:checked').closest('.donation-level-row-container.donation-amt').addClass("active");
