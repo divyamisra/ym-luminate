@@ -120,7 +120,7 @@ div.form-row {
 
 div.donation-level-container {
 	background: #fff;
-	border-radius: 60px;
+	border-radius: 35px;
 	border: 0;
 	float: left;
 	width: 125px;
@@ -218,8 +218,8 @@ div.responsive select, select[size] {
      background-color: #ffffff;
 }
 div.responsive .donation-level-user-entered input[type="text"] {
-	margin: 0;
-	max-width: 165px;
+	margin: 0 0 0 15px;
+	max-width: 90px;
 }
 div.responsive .level4.active .donation-level-user-entered input[type="text"] {
 	border: 2px solid #000 !important;
@@ -231,6 +231,8 @@ div.responsive .level4.active .donation-level-user-entered input[type="text"] {
 	margin: 0px 5px 20px;
 	font-style: italic;
 	font-size: 0.8em;
+	text-align:center;
+	color: #ffffff;
 }
 
  div.payment-field-container #responsive_payment_typecc_number_row input {
