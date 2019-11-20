@@ -431,6 +431,8 @@ div.donation-level-label-container::after {
     content: "Other";
     display: block;
     text-indent: 0;
+    margin-top: -28px;
+    position: relative;
 }
  #team_find_page label, .regSurvey label, div.responsive label {
      font-weight: 400;
