@@ -1084,9 +1084,6 @@
 
             $('input[name=fr_part_radio]').addClass("required").attr("title","Please select a participation type");
             
-	    //wrap additional amount radio and label in own div for acc
-	    $('.input-container label:contains(Other Amount)').prev('input').andSelf().wrapAll('<div class="donation-level-row-decoration-container"></div>');
-		
             $('form').validate({
                 errorPlacement: function(error, element) {
                   if ($(element).attr("name") == "fr_part_radio") {
@@ -1300,6 +1297,8 @@
             $('#F2fRegPartType .section-footer button.next-step').after('<a href="TRR/?pg=utype&fr_id=' + fr_id + '" class="step-button previous-step backBtnReg">Back</a>');
         }
 
+	//wrap additional amount radio and label in own div for acc
+	$('.input-container label:contains(Other Amount)').prev('input').andSelf().wrapAll('<div class="donation-level-row-decoration-container"></div>');
 
         /* Page = Reg */
         if ($('input[name="pg"]').val() == 'regsummary') {
