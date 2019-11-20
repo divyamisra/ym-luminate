@@ -1272,6 +1272,8 @@
         $('.donation-level-row-label').parent().parent().addClass('donation-amt');
         $('.donation-level-row-label:contains("Additional Gift:")').parent().parent().addClass('enterAmt').removeClass('donation-amt');
         $('<span>$</span>').insertBefore('.donation-level-row-container.enterAmt input:last-child');
+        $('.donation-level-row-label-no-gift').parent().addClass('notTime');
+
         $(".donation-level-amount-text").each(function() {
             $(this).text($(this).text().replace(".00", ""));
         });
@@ -1341,13 +1343,6 @@
         });
         $('.healthyCheck label').text('Yes, sign me up for sharable tips, videos and hacks so I can be Healthy For Good.');
         $('#responsive_payment_typecc_numbername').attr('maxlength', '16');
-
-        $('.donation-level-row-label-no-gift').parent().addClass('notTime');
-        $('.notTime').click(function() {
-            $('.donation-level-row-container').removeClass('active');
-        });
-
-
 
         //access
         $('html').attr('xmlns', 'http://www.w3.org/1999/xhtml').attr('lang', 'en').attr('xml:lang', 'en');
