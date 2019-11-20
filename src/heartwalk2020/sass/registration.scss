@@ -2,12 +2,14 @@
 @import "mixins.scss";
 
 // Heat Walk 2020 TeamRaiser Registration SCSS
+/*
 @media screen and (min-color-index:0) and (-webkit-min-device-pixel-ratio:0) {
 	.aural-only {
 		text-indent: -999px;
 		z-index: -1;
 	}
 }
+*/
 /* validation styling */
  input.error, select.error {
      border-color: #ff0000 !important;
@@ -1034,7 +1036,7 @@ div.responsive div.ErrorMessage.page-error>span.field-error-indicator, div.respo
   max-width:50%;
  }
 }
-.app_tr_registration #additional_questions_container .survey-question-container select, 
+.app_tr_registration #additional_questions_container .survey-question-container select,
 .app_tr_registration #additional_questions_container .survey-question-container input {
 	max-width: 680px;
 }
@@ -1516,13 +1518,13 @@ div#fr_thanks_page #part_ctr_container:hover {
     left: 0;
     position: relative;
 }
-.notTime [type="radio"]:not(:checked) + label:before, 
-.notTime [type="radio"]:checked + label:before, 
-.notTime [type="radio"]:not(:checked) + label:after, 
+.notTime [type="radio"]:not(:checked) + label:before,
+.notTime [type="radio"]:checked + label:before,
+.notTime [type="radio"]:not(:checked) + label:after,
 .notTime [type="radio"]:checked + label:after {
   content: none;
 }
-div.notTime [type="radio"]:checked + label, 
+div.notTime [type="radio"]:checked + label,
 div.notTime [type="radio"]:not(:checked) + label {
   padding-left: 5px;
 }
@@ -1566,7 +1568,7 @@ label.donation-level-row-label.other_amount_label {
 /*div.responsive .donation-level-row-container input[type=radio] {
   display: none;
 }*/
-#participation_options_page .donation-level-row-container.enterAmt .input-container, 
+#participation_options_page .donation-level-row-container.enterAmt .input-container,
 #participation_options_page .donation-level-row-container.notTime .input-container {
 	margin-top: 0;
 }
@@ -1760,7 +1762,7 @@ span.lightboxWiaverClose i.fa-close {
 	}
 }
 #reg_payment_page span.internal-payment span.payment-type-option.selected,
-#reg_payment_page span.internal-payment span.payment-type-option:hover, 
+#reg_payment_page span.internal-payment span.payment-type-option:hover,
 #reg_payment_page span.external-payment span.payment-type-option.selected,
 #reg_payment_page span.external-payment span.payment-type-option:hover {
 	background: #000000;
@@ -1784,23 +1786,23 @@ span.lightboxWiaverClose i.fa-close {
 #responsive_payment_typecc_type_row legend {
     display:none;
 }
-#reg_payment_page #billing_addr_city_row, 
-#reg_payment_page #billing_addr_country_row, 
+#reg_payment_page #billing_addr_city_row,
+#reg_payment_page #billing_addr_country_row,
 #reg_payment_page #billing_addr_state_row,
-#reg_payment_page #billing_addr_street1_row, 
-#reg_payment_page #billing_addr_street2_row, 
-#reg_payment_page #billing_addr_zip_row, 
-#reg_payment_page #billing_first_name_row, 
+#reg_payment_page #billing_addr_street1_row,
+#reg_payment_page #billing_addr_street2_row,
+#reg_payment_page #billing_addr_zip_row,
+#reg_payment_page #billing_first_name_row,
 #reg_payment_page #billing_last_name_row {
 	float: left;
 	width: auto;
 	margin-right: 20px;
 }
-#reg_payment_page div.form-row div.form-content > select, 
+#reg_payment_page div.form-row div.form-content > select,
 #reg_payment_page div.form-row div.form-content > input {
 	width: 280px;
 }
-#reg_payment_page #billing_addr_street1_row input, 
+#reg_payment_page #billing_addr_street1_row input,
 #reg_payment_page #billing_addr_street2_row input {
 	width: 280px;
 }
