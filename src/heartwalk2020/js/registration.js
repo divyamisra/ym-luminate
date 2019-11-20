@@ -624,9 +624,9 @@
         }
         if ($('#reg_payment_page').length > 0) {
             $('.custom-progress-bar').hide();
-            var event_name = $('div#reg_payment_campaign_banner_container').text();
-            $('div#reg_payment_campaign_banner_container').replaceWith('<h1 class="campaign-banner-container" id="reg_payment_campaign_banner_container"></h1>');
-            $('h1#reg_payment_campaign_banner_container').text(event_name);
+            $('div#reg_payment_campaign_banner_container').replaceWith(function() {
+                return '<h1 class="campaign-banner-container" id="reg_payment_campaign_banner_container">' + $(this).html() + '</h1>';
+            });
             $('h3#title_container').replaceWith('<h2 class="ObjTitle" id="title_container">Submit Payment</h2>');
         }
         $('#reg_total_label').html('Total:');
@@ -1404,9 +1404,6 @@
         $('#part_type_donation_level_input_container').wrapInner('<fieldset></fieldset>');
         $('#part_type_donation_level_input_container fieldset').prepend('<legend class="aural-only">Choose an optional donation amount</legend>');
 
-        $('#reg_summary_campaign_banner_container h2').replaceWith(function() {
-            return '<h1 class="cstmTitle">' + $(this).html() + '</h1>';
-        });
         $('span#title_container').replaceWith(function() {
             return '<h1 class="ObjTitle" id="title_container">' + $(this).html() + '</h1>';
         });
