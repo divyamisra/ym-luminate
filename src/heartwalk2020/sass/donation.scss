@@ -334,7 +334,8 @@ div.responsive button.finish-step {
      display: block;
      text-align: center;
 }
- .internal-payment a {
+.internal-payment a,
+.external-payment a {
      display: block;
 }
  a.payment-type-label, a.payment-type-label:link, div.responsive a.payment-type-label {
