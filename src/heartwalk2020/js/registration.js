@@ -1157,6 +1157,8 @@
 	    	$('label[for="cons_zip_code"]').parent().before('<span class="field-required"></span>');
    	    }
 	    $('span.field-required').next('span').find('input').addClass("required");
+            $('.survivor_yes_no input[type=radio]').addClass("required survivorq");
+		
 	    $('input.required').each(function(){
 		    var label = $(this).closest('.input-container').find('.input-label').html();
 		    $(this).attr("title",label.replace(":","") + " is required");
@@ -1184,6 +1186,18 @@
                         minlength: "Please enter 5 characters or more",
                         equalTo: "Passwords do not match. Please re-enter password."
                     }
+                },
+                errorPlacement: function(error, element) {
+			if ($(element).hasClass("survivorq")) {
+				$('fieldset.survivor_yes_no').after(error);
+			} else {
+				var placement = $(element).data('error');
+				if (placement) {
+					$(placement).append(error)
+				} else {
+					error.insertAfter(element);
+				}
+			}
                 }
             });
             $.validator.addMethod("uncheck", function(value) {
