@@ -1615,11 +1615,15 @@ div.responsive .donation-level-row-container.enterAmt label.error {
 	font-size:14px;
 	color: #ff0000;
 }
+.enterAmt-other {
+	display:inline-block;
+}
 div.donation-level-row-container {
   padding: 0;
 }
 .donation-level-container {
   padding: 0;
+  max-width: 680px;
 }
 .donation-level-container:last-of-type {
   width: 100%;
