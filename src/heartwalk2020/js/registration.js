@@ -1290,6 +1290,7 @@
             //$('#part_type_anonymous_input_container, #part_type_show_public_input_container').show();
             $('.donation-level-row-container.enterAmt input').val('');
 	    $('.enterAmt-other').addClass("hidden");
+	    $('form').validate().resetForm();
         });
         $('.donation-level-row-container.enterAmt').click(function() {
             $(this).find('input').prop('checked', true);
@@ -1308,6 +1309,7 @@
             //$('#part_type_anonymous_input_container, #part_type_show_public_input_container').show();
             $('.donation-level-row-container.enterAmt input').val('');
 	    $('.enterAmt-other').addClass("hidden");
+	    $('form').validate().resetForm();
 	});
 	//check if amounts preselected
         $('.donation-level-row-container.donation-amt input:checked').closest('.donation-level-row-container.donation-amt').addClass("active");
