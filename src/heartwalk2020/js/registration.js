@@ -1264,6 +1264,7 @@
             $('.p-bar-step-1, .p-bar-step-2, .p-bar-step-3').show();
             $('#progressText1, #progressText2').hide();
             $('.p-bar-step-1, .p-bar-step-2').css('background', '#f18b21');
+            $('h3#title_container').replaceWith('<h1 class="ObjTitle" id="title_container">You are registering for:</h1>');
         }
         $('#sel_type_container').parent().addClass('aural-only');
 
