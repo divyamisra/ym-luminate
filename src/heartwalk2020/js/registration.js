@@ -1277,21 +1277,27 @@
         });
         $('.donation-level-row-container.donation-amt').click(function() {
             $(this).find('input').prop('checked', true);
-            $('.donation-level-row-container.donation-amt').removeClass('active');
+            $('.donation-level-row-container').removeClass('active');
             $(this).addClass('active');
             //$('#part_type_anonymous_input_container, #part_type_show_public_input_container').show();
             $('.donation-level-row-container.enterAmt input').val('');
         });
         $('.donation-level-row-container.enterAmt').click(function() {
             $(this).find('input').prop('checked', true);
-            $('.donation-level-row-container.donation-amt').removeClass('active');
+            if ($(this).find('input').val() == "") {
+		 $(this).find('input').val(0);
+	    }
+            $('.donation-level-row-container').removeClass('active');
+	    $(this).addClass("active");
             //$('#part_type_anonymous_input_container, #part_type_show_public_input_container').show();
         });
         $('.donation-level-row-container.notTime').click(function() {
             $(this).find('input').prop('checked', true);
-            $('.donation-level-row-container.donation-amt').removeClass('active');
+            $('.donation-level-row-container').removeClass('active');
+	    $(this).addClass("active");
             //$('#part_type_anonymous_input_container, #part_type_show_public_input_container').show();
-        });
+            $('.donation-level-row-container.enterAmt input').val('');
+	});
         $('#part_type_individual_company_selection_container').insertAfter('#part_type_selection_container');
         $('.donation-level-row-label-no-gift').insertBefore(jQuery('.donation-level-row-label-no-gift').parent());
         $('.donation-level-row-container.enterAmt label.donation-level-row-label').text('Other Amount');
