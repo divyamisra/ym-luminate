@@ -141,7 +141,12 @@
     $('.internal-payment a.payment-type-label:contains(Credit)').text('Credit');
     $('.internal-payment a.payment-type-label img').closest('a').text('Swiper');
     $('.payment-type-option input').wrap('<span></span>');
-
+    $('a.payment-type-label').keyup(function(element){
+	    if (element.keyCode == 13) {
+		    $(this).closest('.payment-type-option').click();
+	    }
+    });
+	  
     $('.level5 .donation-level-label-input-container').addClass('aural-only');
 
 /**** impact statement randomizer *****/
