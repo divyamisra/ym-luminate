@@ -1570,6 +1570,9 @@ label.donation-level-row-label.other_amount_label {
 #participation_options_page .donation-level-row-container.notTime .input-container {
 	margin-top: 0;
 }
+div.responsive .donation-level-row-container.enterAmt .donation-level-row-decoration-container input {
+	margin-right: 10px;
+}
 div.responsive .donation-level-row-container.enterAmt .donation-level-row-decoration-container,
 div.responsive .donation-level-row-container.notTime {
     border-radius: 60px 60px 60px 60px;
