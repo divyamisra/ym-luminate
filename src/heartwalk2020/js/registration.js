@@ -642,6 +642,14 @@
             });
         }
 
+        // reg page
+        if ($('#registration_options_page').length > 0) {
+            $('#registration_options_page .header-container .campaign-banner-container').replaceWith(function() {
+                return '<h1 class="campaign-banner-container">' + $(this).html() + '</h1>';
+            });
+            $('#title_container').replaceWith('<h2 class="ObjTitle" id="title_container">Tell us about you:</h2>');
+        }
+
         //Rthanks
         if ($('#fr_thanks_page').length > 0) {
             $('.custom-progress-bar').hide();
@@ -1164,7 +1172,7 @@
 	    	$('label[for="cons_zip_code"]').parent().before('<span class="field-required"></span>');
    	    }
 	    $('span.field-required').next('span').find('input').addClass("required");
-		
+
 	    $('input.required').each(function(){
 		    var label = $(this).closest('.input-container').find('.input-label').html();
 		    $(this).attr("title",label.replace(":","") + " is required");
