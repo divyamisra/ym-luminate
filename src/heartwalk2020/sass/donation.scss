@@ -423,6 +423,14 @@ div.responsive .donation-levels .active .donation-level-input-container label {
      text-align: center;
      padding: 10px 0px;
 }
+div.donation-level-label-container {
+    text-indent: -9999px;
+}
+div.donation-level-label-container::after {
+    content: "Other";
+    display: block;
+    text-indent: 0;
+}
  #team_find_page label, .regSurvey label, div.responsive label {
      font-weight: 400;
      font-size: 18px;
