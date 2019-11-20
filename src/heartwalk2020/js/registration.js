@@ -1272,7 +1272,10 @@
         $('.donation-level-row-label').parent().parent().addClass('donation-amt');
         $('.donation-level-row-label:contains("Additional Gift:")').parent().parent().addClass('enterAmt').removeClass('donation-amt');
         $('<span>$</span>').insertBefore('.donation-level-row-container.enterAmt input:last-child');
-        $('.donation-level-row-label-no-gift').parent().addClass('notTime');
+        $('#part_type_individual_company_selection_container').insertAfter('#part_type_selection_container');
+        $('.donation-level-row-label-no-gift').insertBefore(jQuery('.donation-level-row-label-no-gift').parent());
+        $('.donation-level-row-container.enterAmt label.donation-level-row-label').text('Other Amount');
+	$('.donation-level-row-label-no-gift').parent().addClass('notTime');
 
         $(".donation-level-amount-text").each(function() {
             $(this).text($(this).text().replace(".00", ""));
@@ -1300,9 +1303,6 @@
             //$('#part_type_anonymous_input_container, #part_type_show_public_input_container').show();
             $('.donation-level-row-container.enterAmt input').val('');
 	});
-        $('#part_type_individual_company_selection_container').insertAfter('#part_type_selection_container');
-        $('.donation-level-row-label-no-gift').insertBefore(jQuery('.donation-level-row-label-no-gift').parent());
-        $('.donation-level-row-container.enterAmt label.donation-level-row-label').text('Other Amount');
 
         //QA
 
