@@ -1157,7 +1157,6 @@
 	    	$('label[for="cons_zip_code"]').parent().before('<span class="field-required"></span>');
    	    }
 	    $('span.field-required').next('span').find('input').addClass("required");
-            $('.survivor_yes_no input[type=radio]').addClass("required survivorq");
 		
 	    $('input.required').each(function(){
 		    var label = $(this).closest('.input-container').find('.input-label').html();
@@ -1280,6 +1279,8 @@
         } else if ($('.survivor_yes_no li.input-container input[value="Yes"]').is(':checked')) {
             $('.survivor_yes_no li.input-container input[value="Yes"]').parent().parent().addClass('survivor_active');
         }
+
+        $('.survivor_yes_no input[type=radio]').addClass("required survivorq");
 
         $('.survivor_yes_no li').click(function() {
             $('.survivor_yes_no li').removeClass('survivor_active');
