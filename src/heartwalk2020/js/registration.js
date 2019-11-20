@@ -1060,9 +1060,6 @@
             }
             $('#part_type_additional_gift_container .otherAmt span').html("$");
 
-	    //wrap additional amount radio and label in own div for acc
-	    $('.input-container label:contains(Other Amount)').prev('input').andSelf().wrapAll('<div class="donation-level-row-decoration-container"></div>');
-		
             //connect of for on label to missing id on field
             $('input.goal').attr('id',$('input.goal').closest('.part-type-decoration-messages').find('label').attr("for"));
 
@@ -1087,6 +1084,9 @@
 
             $('input[name=fr_part_radio]').addClass("required").attr("title","Please select a participation type");
             
+	    //wrap additional amount radio and label in own div for acc
+	    $('.input-container label:contains(Other Amount)').prev('input').andSelf().wrapAll('<div class="donation-level-row-decoration-container"></div>');
+		
             $('form').validate({
                 errorPlacement: function(error, element) {
                   if ($(element).attr("name") == "fr_part_radio") {
