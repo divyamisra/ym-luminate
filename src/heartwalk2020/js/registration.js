@@ -624,6 +624,10 @@
         }
         if ($('#reg_payment_page').length > 0) {
             $('.custom-progress-bar').hide();
+            var event_name = $('div#reg_payment_campaign_banner_container').text();
+            $('div#reg_payment_campaign_banner_container').replaceWith('<h1 class="campaign-banner-container" id="reg_payment_campaign_banner_container"></h1>');
+            $('h1#reg_payment_campaign_banner_container').text(event_name);
+            $('h3#title_container').replaceWith('<h2 class="ObjTitle" id="title_container">Submit Payment</h2>');
         }
         $('#reg_total_label').html('Total:');
 
@@ -1083,7 +1087,7 @@
             $('input[name^=donation_level_form_input]').addClass("validDonation").attr("title","Donations of all amounts are greatly appreciated. Online donations have a $25 minimum.");
 
             $('input[name=fr_part_radio]').addClass("required").attr("title","Please select a participation type");
-            
+
             $('form').validate({
                 errorPlacement: function(error, element) {
 			if ($(element).attr("name") == "fr_part_radio") {
@@ -1153,7 +1157,7 @@
 		    var label = $(this).closest('.input-container').find('.input-label').html();
 		    $(this).attr("title",label.replace(":","") + " is required");
 	    });
-		
+
             jQuery('form').validate({
                 rules: {
                     cons_password: {
@@ -1279,7 +1283,7 @@
         $('.donation-level-row-container.enterAmt label.donation-level-row-label').text('Other Amount');
 	$('.donation-level-row-label-no-gift').parent().addClass('notTime');
 	$('.enterAmt .input-container > span').next('input').andSelf().wrapAll("<div class='enterAmt-other hidden'></div>");
-	    
+
         $(".donation-level-amount-text").each(function() {
             $(this).text($(this).text().replace(".00", ""));
         });
@@ -1315,7 +1319,7 @@
         $('.donation-level-row-container.donation-amt input:checked').closest('.donation-level-row-container.donation-amt').addClass("active");
 	$('.donation-level-row-container.enterAmt input:checked').closest('.donation-level-row-container.enterAmt').addClass("active");
 	$('.donation-level-row-container.notTime input:checked').closest('.donation-level-row-container.notTime').addClass("active");
-	    
+
         //QA
 
         if ($('#F2fRegPartType').length > 0 && $('#previous_step').length === 0) {
