@@ -1324,7 +1324,11 @@
 	$('.donation-level-row-container.enterAmt input:checked').closest('.donation-level-row-container.enterAmt').addClass("active");
 	$('.donation-level-row-container.notTime input:checked').closest('.donation-level-row-container.notTime').addClass("active");
 
-        //QA
+        $('.donation-level-row-container.donation-amt input').focus(function(){
+	    $(this).click();
+        });
+
+	//QA
 
         if ($('#F2fRegPartType').length > 0 && $('#previous_step').length === 0) {
             $('#F2fRegPartType .section-footer button.next-step').after('<a href="TRR/?pg=utype&fr_id=' + fr_id + '" class="step-button previous-step backBtnReg">Back</a>');
