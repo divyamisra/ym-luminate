@@ -1303,7 +1303,11 @@
             //$('#part_type_anonymous_input_container, #part_type_show_public_input_container').show();
             $('.donation-level-row-container.enterAmt input').val('');
 	});
-
+	//check if amounts preselected
+        $('.donation-level-row-container.donation-amt input:checked').closest('.donation-level-row-container.donation-amt').addClass("active");
+	$('.donation-level-row-container.enterAmt input:checked').closest('.donation-level-row-container.enterAmt').addClass("active");
+	$('.donation-level-row-container.notTime input:checked').closest('.donation-level-row-container.notTime').addClass("active");
+	    
         //QA
 
         if ($('#F2fRegPartType').length > 0 && $('#previous_step').length === 0) {
