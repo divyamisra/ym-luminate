@@ -1182,7 +1182,7 @@
 	    });
 
 	    //Add mobile opt in check box
-	    var optinHTML = '<div id="mobile_optin">' + 
+	    var optinHTML = '<div id="mobile_optin_outer">' + 
 		                '<input type="checkbox" name="mobile_optin" id="mobile_optin" checked="checked">' +
 		                '<label for="mobile_optin" class="wrapable">' +
 		                    '<span id="optin_label">Mobile Opt in</span>' +
