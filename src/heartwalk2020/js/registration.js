@@ -1193,7 +1193,7 @@
 	    var rules = {};
 	    rules['cons_password'] = {required: true,minlength: 5};
 	    rules['cons_rep_password'] = {required: true,minlength: 5,equalTo: "#cons_password"};
-	    rules[optinName] = {required: 'mobile_optin:checked',minlength: 2};
+	    rules[optinName] = {required: $('#mobile_optin:checked'),minlength: 2};
 		
 	    jQuery('form').validate({
                 rules: rules,
