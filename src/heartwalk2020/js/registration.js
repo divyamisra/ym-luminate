@@ -1189,19 +1189,14 @@
 		                '</label>' +
 		             '</div>';
 	    $('.input-label:contains(Mobile Phone)').closest('.input-container').append(optinHTML);
-            
+  	    var optinName = $('.input-label:contains(Mobile Phone)').closest('.input-container').find('input').attr("name");
+	    var rules = {};
+	    rules['cons_password'] = {required: true,minlength: 5};
+	    rules['cons_rep_password'] = {required: true,minlength: 5,equalTo: "#cons_password"};
+	    rules[optinName] = {required: 'mobile_optin:checked',minlength: 2};
+		
 	    jQuery('form').validate({
-                rules: {
-                    cons_password: {
-                        required: true,
-                        minlength: 5
-                    },
-                    cons_rep_password: {
-                        required: true,
-                        minlength: 5,
-                        equalTo: "#cons_password"
-                    }
-                },
+                rules: rules,
                 messages: {
                     cons_password: {
                         minlength: "Please enter 5 characters or more",
