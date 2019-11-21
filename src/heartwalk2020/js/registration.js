@@ -5,7 +5,7 @@
         /******************/
         /* SEARCH SCRIPTS */
         /******************/
-        var eventType = 'Heart Walk';
+        var eventType = 'Heart Walk'; 
         var eventType2 = $('body').data('event-type2') ? $('body').data('event-type2') : null;
         var regType = $('body').data('reg-type') ? $('body').data('reg-type') : null;
         var publicEventType = $('body').data('public-event-type') ? $('body').data('public-event-type') : null;
@@ -1181,7 +1181,16 @@
 		    $(this).attr("title",label.replace(":","") + " is required");
 	    });
 
-            jQuery('form').validate({
+	    //Add mobile opt in check box
+	    var optinHTML = '<div id="mobile_optin">' + 
+		                '<input type="checkbox" name="mobile_optin" id="mobile_optin" checked="checked">' +
+		                '<label for="mobile_optin" class="wrapable">' +
+		                    '<span id="optin_label">Mobile Opt in</span>' +
+		                '</label>' +
+		             '</div>';
+	    $('.input-label:contains(Mobile Phone)').closest('.input-container').append(optinHTML);
+            
+	    jQuery('form').validate({
                 rules: {
                     cons_password: {
                         required: true,
@@ -1248,6 +1257,7 @@
                 localStorage.hfg = jQuery('label:contains(Healthy For Good)').prev('input:checked').length;
                 localStorage.hfg_firstname = jQuery('input[name=cons_first_name]').val();
                 localStorage.hfg_email = jQuery('input[name=cons_email]').val();
+	        localStorage.mobile_optin = jQuery('input[name=mobile_optin]:checked').val();
                 if (jQuery('input[name=pg]').val() == "reg") {
                     if (jQuery('form').valid()) {
                         return true;
@@ -1380,6 +1390,31 @@
 
             //move custom details into content
             $('.reg-summary-event-info').prepend($('#additionalRegDetails'));
+		
+	    //save off mobile opt option
+   	    if (localStorage.mobile_optin == "on") {
+		luminateExtend.api({
+			api: 'cons',
+			useHTTPS: true,
+			requestType: 'POST',
+			requiresAuth: true,
+			data: 'method=logInteraction' +
+				'&response_format=json' +
+				'&interaction_type_id=0' +
+				'&interaction_subject=Hustle-OptIn' +
+				'&interaction_body=\'{"EventId":' + $('body').data("fr-id") + ',"GroupId":"229999","OptIn":"Yes"}\'' +
+				'&cons_id=' + $('body').data("cons-id"),
+			callback: {
+				success: function (response) {
+					if (response.updateConsResponse === '0') {
+					}
+				},
+				error: function (response) {
+					console.log(response.errorResponse.message);
+				}
+			}
+		});
+	    }
         }
 
         $('#reg_summary_header_container').insertAfter('.section-header');
