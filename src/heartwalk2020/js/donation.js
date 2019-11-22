@@ -436,7 +436,21 @@
                 $("#ProcessForm").unbind('submit');
                 $('#pstep_finish').click();
             });
-		
+
+            $('form').validate({
+                errorPlacement: function(error, element) {
+			if ($(element).attr("name") == "terms-of-service-checkbox") {
+				$('#terms-of-service-checkbox').closest('.form-content').after(error);
+			} else {
+				var placement = $(element).data('error');
+				if (placement) {
+					$(placement).append(error)
+				} else {
+					error.insertAfter(element);
+				}
+			}
+                }
+            });
 	    $('#pstep_finish').click(function(){
 		    if ($('form').valid()) {
 			    return true;
