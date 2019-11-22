@@ -226,6 +226,8 @@
     // Change order of help link for tabbing
     $('.HelpLink').insertAfter('#responsive_payment_typecc_cvvname');
 
+    $('span.field-required').closest('.form-content').find('input').addClass("required");
+	  
     // Moving matching gift widget to top of page if a search has been conducted
     /*if ($('#donor_matching_employer_company_information').length > 0) {
         $('#matching_gift_section').insertAfter($('h1#formTitle').parent().parent());
@@ -434,6 +436,14 @@
                 $("#ProcessForm").unbind('submit');
                 $('#pstep_finish').click();
             });
+		
+	    $('#pstep_finish').click(function(){
+		    if ($('form').valid()) {
+			    return true;
+		    } else {
+			    return false;
+		    }
+	    }
         });
     });
 })();
