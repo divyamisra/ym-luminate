@@ -144,8 +144,9 @@ angular.module 'ahaLuminateControllers'
                       $scope.unconfirmedAmountRaised = schoolDataRows[i][schoolDataHeaders.UCR]
                       break
                     i++
-                  setCompanyProgress Number(amountRaised) + Number(($scope.unconfirmedAmountRaised) * 100), goal
-
+                  #setCompanyProgress Number(amountRaised) + Number(($scope.unconfirmedAmountRaised) * 100), goal
+                  setCompanyProgress Number(amountRaised), goal
+                  
               if coordinatorId and coordinatorId isnt '0' and eventId
                 TeamraiserCompanyService.getCoordinatorQuestion coordinatorId, eventId
                   .then (response) ->

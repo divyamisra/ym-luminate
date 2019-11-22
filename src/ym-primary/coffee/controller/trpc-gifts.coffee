@@ -48,6 +48,13 @@ angular.module 'trPcControllers'
               lastItem = 0
               if jQuery.inArray(gift.id,giftLevels[current_level]) isnt -1
                 status = 1
+                if gift.online_only
+                  status = 0
+                  jQuery.each student.prizes, (item, key) ->
+                    if key.prize_sku.indexOf(gift.id) isnt -1
+                      status = 1
+                      return false
+                    return
               if prevstatus == 1 and status == 0
                 $scope.standardGifts[$scope.standardGifts.length-1].lastItem = 1
               $scope.standardGifts.push
