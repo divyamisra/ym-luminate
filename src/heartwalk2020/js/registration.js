@@ -1185,10 +1185,11 @@
 	    var optinHTML = '<div id="mobile_optin_outer">' + 
 		                '<input type="checkbox" name="mobile_optin" id="mobile_optin" checked="checked">' +
 		                '<label for="mobile_optin" class="wrapable">' +
-		                    '<span id="optin_label">Mobile Opt in</span>' +
+		                    '<span id="optin_label">Mobile Opt in: By checking the box, I consent to receive up to 1 - 2 text messages per week from AHA  supporting my Heart Walk efforts at the mobile number above. Selecting text option is not required for my participation. Message and data rates may apply. I can Reply STOP at any time to opt out.</span>' +
 		                '</label>' +
 		             '</div>';
-	    $('.input-label:contains(Mobile Phone)').closest('.input-container').append(optinHTML);
+	    $('#cons_info_component_container').append(optinHTML);
+		
   	    var optinName = $('.input-label:contains(Mobile Phone)').closest('.input-container').find('input').attr("name");
 	    var rules = {};
 	    rules['cons_password'] = {required: true,minlength: 5};
