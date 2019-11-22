@@ -1397,7 +1397,7 @@
 				'&response_format=json' +
 				'&interaction_type_id=0' +
 				'&interaction_subject=Hustle-OptIn' +
-				'&interaction_body=\'{"EventId":' + $('body').data("fr-id") + ',"GroupId":"229999","OptIn":"Yes"}\'' +
+				'&interaction_body=\'{"EventId":' + $('body').data("fr-id") + ',"GroupId":' + $('body').data("group-id") + ',"OptIn":"Yes"}\'' +
 				'&cons_id=' + $('body').data("cons-id"),
 			callback: {
 				success: function (response) {
