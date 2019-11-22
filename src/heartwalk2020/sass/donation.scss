@@ -6,6 +6,17 @@
 		width: auto;
 	}
 }
+/* validation styling */
+ input.error, select.error {
+     border-color: #ff0000 !important;
+     box-shadow: none !important;
+}
+ label.error {
+     color: #ff0000;
+     font-weight: normal;
+     white-space: nowrap;
+}
+
 main {
     background-image: url("/images/content/pagebuilder/hw_hero_desktop.jpg");
     background-size: 100%;
@@ -288,7 +299,8 @@ div.employer-address-container input#employer_street {
 #billing_addr_state_row,
 #billing_addr_zip_row,
 #billing_addr_country_row {
-     float: left;
+     display:inline-block;
+     vertical-align: top;
      width: auto;
      margin-right: 20px;
 }
