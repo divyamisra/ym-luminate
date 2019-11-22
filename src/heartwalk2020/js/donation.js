@@ -371,7 +371,9 @@
                     $("#cover_fee_radio_Yes").prop("checked", true);
                 }
             }
-
+            
+	    $('label:contains(Cover Fee)').closest('.form-input-label-block').remove();
+		
             if (getDonationAmount() > 0 && $('#cover_fee_radio_Yes').is(':checked')) {
                var initAmt = parseFloat(getDonationAmount());
                var toDonate =  initAmt + parseFloat((getDonationAmount() * 0.029 + .30).toFixed(2));
