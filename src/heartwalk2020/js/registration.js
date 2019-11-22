@@ -1195,20 +1195,14 @@
 	    rules['cons_password'] = {required: true,minlength: 5};
 	    rules['cons_rep_password'] = {required: true,minlength: 5,equalTo: "#cons_password"};
 	    rules[optinName] = {required: '#mobile_optin:checked',minlength: 2};
+	    var messages = {};
+	    messages['cons_password'] = {minlength: "Please enter 5 characters or more",required: "Please enter a password"};
+	    messages['cons_rep_password'] = {required: "Please confirm your password",minlength: "Please enter 5 characters or more",equalTo: "Passwords do not match. Please re-enter password."};
+	    messages[optinName] = {required: "Mobile Opt in is selected.<br/>Please enter a mobile number."};
 		
 	    jQuery('form').validate({
                 rules: rules,
-                messages: {
-                    cons_password: {
-                        minlength: "Please enter 5 characters or more",
-                        required: "Please enter a password"
-                    },
-                    cons_rep_password: {
-                        required: "Please confirm your password",
-                        minlength: "Please enter 5 characters or more",
-                        equalTo: "Passwords do not match. Please re-enter password."
-                    }
-                },
+                messages: messages,
                 errorPlacement: function(error, element) {
 			if ($(element).hasClass("survivorq")) {
 				$('fieldset.survivor_yes_no').after(error);
