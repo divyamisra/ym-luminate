@@ -1608,7 +1608,6 @@
         var radioValue = '';
         $('.survivor_yes_no input').change(function() {
             radioValue = $(this).val();
-            console.log("radio value = ", radioVaalue);
             $('.survivor_yes_no li').removeClass('survivor_active');
 
             if ($(this).is(":checked") && radioValue == "Yes") {
@@ -1634,7 +1633,7 @@
         }
 
         if ($('.lightboxWiaverContent').length > 0) {
-            console.log("yes we're on the waiver apge");
+            console.log("yes we're on the waiver page");
 
             $.ajax({
                 type: 'GET',
@@ -1689,7 +1688,6 @@
                 $('.lightboxWiaverContent').html(waiverHTML);
             }
         });
-        console.log(waiver);
     }
 
     function pTypeSetCookie(pType) {
