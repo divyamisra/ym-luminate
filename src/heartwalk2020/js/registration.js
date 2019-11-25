@@ -1407,6 +1407,13 @@
 	    }
         }
 
+        /* Page = paymentForm */
+        if ($('input[name="pg"]').val() == 'paymentForm') {
+		$('.payment-type-selection-container h3').attr("id","payment-type-label");
+		$('.payment-type-selections').attr({"role":"radiogroup","aria-labelledby":"payment-type-label"});
+		$('.payment-type-selections inpyt[type=radio]').attr("role","radio");
+	}
+	    
         $('#reg_summary_header_container').insertAfter('.section-header');
         $('#previous_step span').text("Back");
         if ($('input[name=fr_tm_opt]').val() == 'existingnew') {
