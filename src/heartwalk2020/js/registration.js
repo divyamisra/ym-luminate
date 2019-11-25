@@ -5,7 +5,7 @@
         /******************/
         /* SEARCH SCRIPTS */
         /******************/
-        var eventType = 'Heart Walk'; 
+        var eventType = 'Heart Walk';
         var eventType2 = $('body').data('event-type2') ? $('body').data('event-type2') : null;
         var regType = $('body').data('reg-type') ? $('body').data('reg-type') : null;
         var publicEventType = $('body').data('public-event-type') ? $('body').data('public-event-type') : null;
@@ -640,7 +640,7 @@
             $('div#part_type_campaign_banner_container').replaceWith(function() {
                 return '<h1 class="campaign-banner-container" id="part_type_campaign_banner_container">' + $(this).html() + '</h1>';
             });
-            $('h1#pt_title_container').replaceWith(function() {
+            $('#pt_title_container').replaceWith(function() {
                 return '<h2 id="pt_title_container" class="section-header-text">' + $(this).html() + '</h2>';
             });
         }
@@ -1182,14 +1182,14 @@
 	    });
 
 	    //Add mobile opt in check box
-	    var optinHTML = '<div id="mobile_optin_outer">' + 
+	    var optinHTML = '<div id="mobile_optin_outer">' +
 		                '<input type="checkbox" name="mobile_optin" id="mobile_optin" checked="checked">' +
 		                '<label for="mobile_optin" class="wrapable">' +
 		                    '<span id="optin_label">Mobile Opt in: By checking the box, I consent to receive up to 1 - 2 text messages per week from AHA  supporting my Heart Walk efforts at the mobile number above. Selecting text option is not required for my participation. Message and data rates may apply. I can Reply STOP at any time to opt out.</span>' +
 		                '</label>' +
 		             '</div>';
 	    $('#cons_info_component_container').append(optinHTML);
-		
+
   	    var optinName = $('.input-label:contains(Mobile Phone)').closest('.input-container').find('input').attr("name");
 	    var rules = {};
 	    rules['cons_password'] = {required: true,minlength: 5};
@@ -1199,7 +1199,7 @@
 	    messages['cons_password'] = {minlength: "Please enter 5 characters or more",required: "Please enter a password"};
 	    messages['cons_rep_password'] = {required: "Please confirm your password",minlength: "Please enter 5 characters or more",equalTo: "Passwords do not match. Please re-enter password."};
 	    messages[optinName] = {required: "Mobile Opt in is selected.<br/>Please enter a mobile number."};
-		
+
 	    jQuery('form').validate({
                 rules: rules,
                 messages: messages,
@@ -1380,7 +1380,7 @@
 
             //move custom details into content
             $('.reg-summary-event-info').prepend($('#additionalRegDetails'));
-		
+
 	    //save off mobile opt option
    	    if (localStorage.mobile_optin == "on") {
 		luminateExtend.api({
@@ -1457,10 +1457,12 @@
             return '<h1 class="event-name-header">' + $(this).html() + '</h1>';
         });
 
+        /*
         $('span#pt_title_container').replaceWith(function() {
             return '<h1 id="pt_title_container" class="section-header-text">' + $(this).html() + '</h1>';
         });
-
+        */
+        
         $('#part_type_selection_container').wrapInner('<fieldset></fieldset>');
         $('#sel_type_container').wrap('<legend class="aural-only"></legend>');
         $('#part_type_selection_container .manageable-content legend').prependTo('#part_type_selection_container fieldset');
