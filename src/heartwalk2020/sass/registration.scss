@@ -48,6 +48,10 @@ main {
      padding: 0px !important;
 }
 
+.pg_ptype input[type="radio"]:focus {
+	outline: 2px solid $red;
+}
+
 h1#pt_title_container,
 h2#pt_title_container,
 h1.ObjTitle {
