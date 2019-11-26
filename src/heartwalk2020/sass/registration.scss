@@ -907,6 +907,9 @@ div.responsive div.ErrorMessage.page-error>span.field-error-indicator, div.respo
 	color: #c10e21;
 	padding-right: 5px;
 }
+.payment-type-selections input[type=radio]:focus {
+	outline: 5px auto -webkit-focus-ring-color;
+}
 /*
 .app_tr_registration div#discount_code_container,
 .app_tr_registration div#part_type_additional_gift_container,
