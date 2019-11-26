@@ -642,9 +642,10 @@ div#part_type_individual_company_input_container {
   font-size: 18px;
   margin-bottom: 10px;
 }
-div#part_type_fundraising_goal_container input {
+div#participation_options_page input,
+div#participation_options_page select {
     margin-left: 0;
-    max-width: 680px;
+    max-width: 400px;
 }
 div.required-indicator-legend {
     text-align: left;
@@ -770,7 +771,7 @@ div.registration-page-container div.sub-section-body {
   display: none;
 }
 #cons_info_component_container {
-	max-width:680px;
+	max-width:400px;
 }
 span#title_container, h1#title_container {
     font-size: 30px;
@@ -1054,7 +1055,7 @@ div.responsive div.ErrorMessage.page-error>span.field-error-indicator, div.respo
 }
 .app_tr_registration #additional_questions_container .survey-question-container select,
 .app_tr_registration #additional_questions_container .survey-question-container input {
-	max-width: 680px;
+	max-width: 400px;
 }
 .app_tr_registration #reg_options_cons_info_extension_body {
  display:-webkit-box;
