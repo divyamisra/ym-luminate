@@ -1412,9 +1412,9 @@
 		$('.payment-type-selection-container h3').attr("id","payment-type-label");
 		$('.payment-type-selections').attr({"role":"radiogroup","aria-labelledby":"payment-type-label"});
 		$('.payment-type-selections inpyt[type=radio]').attr("role","radio");
-		
+
 		//remove paypal image and put text instead - passes accessibility
-		$('.external-payment .payment-type-label').html("PayPal"); 
+		$('.external-payment .payment-type-label').html("PayPal");
 
 		$('span.field-required').closest('.form-content').find('input:visible').addClass("required");
 
@@ -1422,7 +1422,7 @@
 		    var label = $(this).closest('.form-content').find('label').html();
 		    $(this).attr("title",label.replace(":","") + " is required");
 		});
-		
+
 		$('button.next-step').click(function(){
 			if ($('form').valid()) {
 				return true;
@@ -1431,7 +1431,7 @@
 			}
 		});
 	}
-	    
+
         $('#reg_summary_header_container').insertAfter('.section-header');
         $('#previous_step span').text("Back");
         if ($('input[name=fr_tm_opt]').val() == 'existingnew') {
@@ -1441,7 +1441,7 @@
         $('.part-type-description-text:contains("Free")').html('&nbsp;');
         $('.survey-question-container legend span:contains("Waiver agreement")').parent().parent().addClass('waiverCheck');
         $('.waiverCheck legend').addClass('aural-only');
-        $('.waiverCheck label').html('<span class="field-required"></span> I accept and acknowledge that I have read and understand the HeartWalk <a id="waiverPopLink" href="#">release and indemnification</a> and agree to them voluntarily.');
+        $('.waiverCheck label').html('<span class="field-required"></span> I accept and acknowledge that I have read and understand this Heart Walk <a id="waiverPopLink" href="#">Release with Publicity Consent</a> and agree to them voluntarily.');
         $('.survey-question-container legend span:contains("Healthy for good signup")').parent().parent().addClass('healthyCheck');
         $('.healthyCheck legend').addClass('aural-only');
 
@@ -1487,7 +1487,7 @@
             return '<h1 id="pt_title_container" class="section-header-text">' + $(this).html() + '</h1>';
         });
         */
-        
+
         $('#part_type_selection_container').wrapInner('<fieldset></fieldset>');
         $('#sel_type_container').wrap('<legend class="aural-only"></legend>');
         $('#part_type_selection_container .manageable-content legend').prependTo('#part_type_selection_container fieldset');
