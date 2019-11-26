@@ -781,7 +781,8 @@ div.registration-page-container div.sub-section-header {
     font-weight: 700;
 }
 #user_name_pword_container input#cons_user_name {
-    width: 582px;
+    width: 100%;
+    max-width: 400px;
 }
 div#registration_options_page div#user_name_pword_container {
   width: 100%;
@@ -1117,7 +1118,7 @@ div.responsive div.ErrorMessage.page-error>span.field-error-indicator, div.respo
  }
 }
 #participant_info_body_container #password_component_container {
-	max-width: 600px;
+	max-width: 400px;
 }
 .app_tr_registration #reg_option_custom_html .modal-dialog {
  overflow-y:initial
