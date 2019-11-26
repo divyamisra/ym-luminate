@@ -1411,6 +1411,8 @@
 
         /* Page = paymentForm */
         if ($('input[name="pg"]').val() == 'paymentForm') {
+		$('button.previous-step').attr("formnovalidate","true");
+		
 		$('.payment-type-selection-container h3').attr("id","payment-type-label");
 		$('.payment-type-selections').attr({"role":"radiogroup","aria-labelledby":"payment-type-label"});
 		$('.payment-type-selections inpyt[type=radio]').attr("role","radio");
