@@ -1423,7 +1423,7 @@
 		    $(this).attr("title",label.replace(":","") + " is required");
 		});
 		
-		&('button.next-step').click(function(){
+		$('button.next-step').click(function(){
 			if ($('form').valid()) {
 				return true;
 			} else {
