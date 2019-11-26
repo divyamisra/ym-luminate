@@ -238,7 +238,6 @@
     $('#level_flexible_row2 fieldset').attr('role', 'radiogroup');
     $('input[name="level_flexibleexpanded"]').each(function(){
       $(this).attr({
-        role: 'radio',
         group: 'donation-levels',
         'aria-checked': $(this).is(':checked')
       });
