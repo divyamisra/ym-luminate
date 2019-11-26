@@ -1415,6 +1415,21 @@
 		
 		//remove paypal image and put text instead - passes accessibility
 		$('.external-payment .payment-type-label').html("PayPal"); 
+
+		$('span.field-required').closest('.form-content').find('input:visible').addClass("required");
+
+		$('input.required').each(function(){console.log(this);
+		    var label = $(this).closest('.form-content').find('label').html();
+		    $(this).attr("title",label.replace(":","") + " is required");
+		});
+		
+		&('button.next-step').click(function(){
+			if ($('form').valid()) {
+				return true;
+			} else {
+				return false;
+			}
+		});
 	}
 	    
         $('#reg_summary_header_container').insertAfter('.section-header');
