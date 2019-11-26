@@ -1200,6 +1200,8 @@
 	    messages['cons_rep_password'] = {required: "Please confirm your password",minlength: "Please enter 5 characters or more",equalTo: "Passwords do not match. Please re-enter password."};
 	    messages[optinName] = {required: "Mobile Opt in is selected.<br/>Please enter a mobile number."};
 
+	    $('button.previous-step').attr("formnovalidate","true");
+		
 	    jQuery('form').validate({
                 rules: rules,
                 messages: messages,
