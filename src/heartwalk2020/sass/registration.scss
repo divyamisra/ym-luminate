@@ -1748,13 +1748,13 @@ span.lightboxWiaverClose i.fa-close {
 #reg_payment_page span.external-payment a.payment-type-label img {
 	display:none;
 }
-#reg_payment_page span.external-payment a.payment-type-label::after {
+/*#reg_payment_page span.external-payment a.payment-type-label::after {
 	content: "PayPal";
 	color: #000;
-}
-#reg_payment_page span.external-payment:hover a.payment-type-label::after {
+}*/
+/*#reg_payment_page span.external-payment:hover a.payment-type-label::after {
 	color: #fff;
-}
+}*/
 #reg_payment_page span.internal-payment span.payment-type-option,
 #reg_payment_page span.external-payment span.payment-type-option {
     border-radius: 60px 60px 60px 60px;
