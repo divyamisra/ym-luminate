@@ -1412,6 +1412,9 @@
 		$('.payment-type-selection-container h3').attr("id","payment-type-label");
 		$('.payment-type-selections').attr({"role":"radiogroup","aria-labelledby":"payment-type-label"});
 		$('.payment-type-selections inpyt[type=radio]').attr("role","radio");
+		
+		//remove paypal image and put text instead - passes accessibility
+		$('.external-payment .payment-type-label').html("PayPal"); 
 	}
 	    
         $('#reg_summary_header_container').insertAfter('.section-header');
