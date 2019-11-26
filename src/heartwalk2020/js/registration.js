@@ -1420,7 +1420,7 @@
 
 		$('span.field-required').closest('.form-content').find('input:visible, select').addClass("required");
 
-		$('input.required').each(function(){console.log(this);
+		$('input.required, select.required').each(function(){
 		    var label = $(this).closest('.form-content').find('label').html();
 		    $(this).attr("title",label.replace(":","") + " is required");
 		});
