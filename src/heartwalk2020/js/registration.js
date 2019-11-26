@@ -1418,7 +1418,7 @@
 		//remove paypal image and put text instead - passes accessibility
 		$('.external-payment .payment-type-label').html("PayPal");
 
-		$('span.field-required').closest('.form-content').find('input:visible').addClass("required");
+		$('span.field-required').closest('.form-content').find('input:visible, select').addClass("required");
 
 		$('input.required').each(function(){console.log(this);
 		    var label = $(this).closest('.form-content').find('label').html();
