@@ -1443,7 +1443,7 @@
         $('.part-type-description-text:contains("Free")').html('&nbsp;');
         $('.survey-question-container legend span:contains("Waiver agreement")').parent().parent().addClass('waiverCheck');
         $('.waiverCheck legend').addClass('aural-only');
-        $('.waiverCheck label').html('<span class="field-required"></span> [[S51:reus_heartwalk2020_waiver_question_label_cd]]');
+        $('.waiverCheck label').html('<span class="field-required"></span> I accept and acknowledge that I have read and understand this Heart Walk <a id="waiverPopLink" href="#">Release with Publicity Consent</a> and agree to them voluntarily.');
         $('.survey-question-container legend span:contains("Healthy for good signup")').parent().parent().addClass('healthyCheck');
         $('.healthyCheck legend').addClass('aural-only');
 
