@@ -1813,7 +1813,8 @@ span.lightboxWiaverClose i.fa-close {
 #reg_payment_page #billing_addr_zip_row,
 #reg_payment_page #billing_first_name_row,
 #reg_payment_page #billing_last_name_row {
-	float: left;
+	display:inline-block;
+	vertical-align: top;
 	width: auto;
 	margin-right: 20px;
 }
