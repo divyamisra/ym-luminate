@@ -1422,11 +1422,15 @@
 
 		$('span.field-required').closest('.form-content').find('input:visible, select').addClass("required");
 
-		$('input.required, select.required').each(function(){
+		$('input.required').each(function(){
 		    var label = $(this).closest('.form-content').find('label').html();
 		    $(this).attr("title",label.replace(":","") + " is required");
 		});
-
+		$('select.required').each(function(){
+		    var label = $(this).closest('.form-content').find('label span.label-text').html();
+		    $(this).attr("title",label.replace(":","") + " is required");
+		});
+		
 		$('button.next-step').click(function(){
 			if ($('form').valid()) {
 				return true;
