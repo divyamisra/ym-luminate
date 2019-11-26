@@ -902,7 +902,7 @@ div.responsive div.ErrorMessage.page-error>span.field-error-indicator, div.respo
 .app_tr_registration .part_type_selection_container {
 	text-align:center;
 }
-.app_tr_registration #part_type_selection_container h2#pt_title_container::before {
+.app_tr_registration #part_type_section_container h2#pt_title_container::before {
 	content: "*";
 	color: #c10e21;
 	padding-right: 5px;
