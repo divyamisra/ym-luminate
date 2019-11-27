@@ -1090,7 +1090,7 @@
             $('input.goal').attr('id',$('input.goal').closest('.part-type-decoration-messages').find('label').attr("for"));
 
             /* add role and label to donation buttons */
-            $('.donation-form-fields').attr("role","radiogroup").attr("aria-label","Donation Amounts");
+            $('.donation-form-fields').attr("role","radiogroup").attr({"aria-label":"Donation Amounts","aria-required":"true"});
 
             if (regType === 'startTeam') {
                 $('#part_type_additional_gift_section_header').prepend('<div class="bold-label" id="regDonationLabel">Show your team how it\'s done: kick start your own fundraising with a donation!</div>');
@@ -1100,7 +1100,7 @@
             }
             $('#part_type_additional_gift_section_header').before("<h2>Make a Donation</h2>");
 
-            $('#part_type_donation_level_input_container').wrapInner('<fieldset role="radiogroup" class="donation-form-fields" aria-label="Donation Amounts" />');
+            $('#part_type_donation_level_input_container').wrapInner('<fieldset role="radiogroup" class="donation-form-fields" aria-label="Donation Amounts" aria-required="true" />');
             $('.donation-form-fields').prepend('<legend class="sr-only">Donate Towards Your Goal Now</legend>');
 
             $('#part_type_individual_company_selection_container .input-container').prepend("<span class='hint-text'>Choose your company below. If your company does not show up, you can skip this step.</span>");
@@ -1292,7 +1292,7 @@
         $('#password_component_container #cons_rep_password').parent().parent().parent().addClass('left');
         $('#password_component_container #cons_password').parent().parent().parent().addClass('left');
         $('span.survey-question-label:contains("Would you like to be recognized as a survivor?")').parent().next().children().children().children('input').wrap('<div></div>');
-        $('span.survey-question-label:contains("Would you like to be recognized as a survivor?")').parent().parent().addClass('survivor_yes_no').attr("role","radiogroup").attr("aria-label","Are you a survivor yes/no");
+        $('span.survey-question-label:contains("Would you like to be recognized as a survivor?")').parent().parent().addClass('survivor_yes_no').attr({"role":"radiogroup","aria-label":"Are you a survivor yes/no","aria-required":"true"});
         $('span.input-label:contains("SurvivorQ")').parent().parent().addClass('survivorSelect');
         $('span.input-label:contains("SurvivorQ")').parent().parent().parent().parent().hide();
         if ($('.survivor_yes_no li.input-container input[value="No"]').is(':checked')) {
@@ -1414,7 +1414,7 @@
 		$('button.previous-step').attr("formnovalidate","true");
 		
 		$('.payment-type-selection-container h3').attr("id","payment-type-label");
-		$('.payment-type-selections').attr({"role":"radiogroup","aria-labelledby":"payment-type-label"});
+		$('.payment-type-selections').attr({"role":"radiogroup","aria-labelledby":"payment-type-label","aria-required":"true"});
 		$('.payment-type-selections inpyt[type=radio]').attr("role","radio");
 
 		//remove paypal image and put text instead - passes accessibility
