@@ -1295,6 +1295,7 @@
         $('span.survey-question-label:contains("Would you like to be recognized as a survivor?")').parent().parent().addClass('survivor_yes_no').attr({"role":"radiogroup","aria-label":" Would you like to be recognized as a survivor?","aria-required":"true"});
         $('span.input-label:contains("SurvivorQ")').parent().parent().addClass('survivorSelect');
         $('span.input-label:contains("SurvivorQ")').parent().parent().parent().parent().hide();
+	$('.survivor_yes_no li.input-container input[type="radio"]').attr("aria-required","true");
         if ($('.survivor_yes_no li.input-container input[value="No"]').is(':checked')) {
             $('.survivor_yes_no li.input-container input[value="No"]').parent().parent().addClass('survivor_active');
         } else if ($('.survivor_yes_no li.input-container input[value="Yes"]').is(':checked')) {
