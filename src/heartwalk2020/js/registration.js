@@ -1183,7 +1183,7 @@
 
 	    //Add mobile opt in check box
 	    var optinHTML = '<div id="mobile_optin_outer">' +
-		                '<input type="checkbox" name="mobile_optin" id="mobile_optin" checked="checked">' +
+		                '<input type="checkbox" name="mobile_optin" id="mobile_optin">' +
 		                '<label for="mobile_optin" class="wrapable">' +
 		                    '<span id="optin_label"><strong>Mobile Opt in:</strong> By checking the box, I consent to receive up to 1 - 2 text messages per week from AHA  supporting my Heart Walk efforts at the mobile number above. Selecting text option is not required for my participation. Message and data rates may apply. I can Reply STOP at any time to opt out.</span>' +
 		                '</label>' +
@@ -1412,7 +1412,7 @@
         /* Page = paymentForm */
         if ($('input[name="pg"]').val() == 'paymentForm') {
 		$('button.previous-step').attr("formnovalidate","true");
-		
+
 		$('.payment-type-selection-container h3').attr("id","payment-type-label");
 		$('.payment-type-selections').attr({"role":"radiogroup","aria-labelledby":"payment-type-label","aria-required":"true"});
 		$('.payment-type-selections inpyt[type=radio]').attr("role","radio");
@@ -1430,7 +1430,7 @@
 		    var label = $(this).closest('.form-content').find('label span.label-text').html();
 		    $(this).attr("title",label.replace(":","") + " is required");
 		});
-		
+
 		$('button.next-step').click(function(){
 			if ($('form').valid()) {
 				return true;
