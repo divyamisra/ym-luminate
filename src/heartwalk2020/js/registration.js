@@ -1203,8 +1203,7 @@
 	    $('button.previous-step').attr("formnovalidate","true");
 		
 	    //hide back button and turn into link
-	    var backLabel = $('button#previous_step').html();
-	    $('button#previous_step').after('<a href="javascript:window.history.go(-1)" class="step-button previous-step backBtnReg">'+backLabel+'</a>').hide();
+	    $('button#previous_step').after('<a href="javascript:window.history.go(-1)" class="step-button previous-step backBtnReg">Back</a>').hide();
 	    
 	    jQuery('form').validate({
                 rules: rules,
@@ -1437,8 +1436,7 @@
 		});
 
 		//hide back button and use link instead
-		var backLabel = $('button#btn_prev').html();
-	   	$('button#btn_prev').after('<a href="javascript:window.history.go(-1)" class="step-button previous-step backBtnReg">'+backLabel+'</a>').hide();
+	   	$('button#btn_prev').after('<a href="javascript:window.history.go(-1)" class="step-button previous-step backBtnReg">Back</a>').hide();
 		
 		$('button.next-step').click(function(){
 			if ($('form').valid()) {
