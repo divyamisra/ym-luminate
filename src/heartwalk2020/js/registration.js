@@ -1178,6 +1178,9 @@
 
 	    $('input.required').each(function(){
 		    var label = $(this).closest('.input-container').find('.input-label').html();
+		    if (label == "First" || label == "Last") {
+			    label = label + " Name";
+		    }
 		    $(this).attr("title",label.replace(":","") + " is required");
 	    });
 
