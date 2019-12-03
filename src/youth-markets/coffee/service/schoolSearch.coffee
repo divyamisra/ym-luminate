@@ -167,10 +167,6 @@ angular.module 'ahaLuminateApp'
           if navigator.geolocation then navigator.geolocation.getCurrentPosition(filterGeoSchoolData, showGEOError, e) else console.log('Geolocation is not supported by this browser.')
           return
 
-        #if getLoc not set or set to false then do normal load process of old search
-        if getLoc == true
-          $scope.getLocation()
-          
         SchoolLookupService.getSchoolData()
           .then (response) ->
             schoolDataRows = response.data.getSchoolSearchDataResponse.schoolData
