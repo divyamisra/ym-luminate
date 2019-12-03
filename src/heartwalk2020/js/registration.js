@@ -1467,6 +1467,7 @@
         $('#waiverPopLink').click(function(e) {
             e.preventDefault();
             $('#overlayWaiver, #lightboxWiaver').fadeIn(400);
+	    $('.lightboxWiaverClose').focus();
         });
         $('.healthyCheck label').text('Yes, sign me up for sharable tips, videos and hacks so I can be Healthy For Good.');
         $('#responsive_payment_typecc_numbername').attr('maxlength', '16');
