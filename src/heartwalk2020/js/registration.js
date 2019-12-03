@@ -1108,7 +1108,7 @@
             /* setup form validation - additional donation amount must be >= $25 */
             $('input[name^=donation_level_form_input]').addClass("validDonation").attr("title","Donations of all amounts are greatly appreciated. Online donations have a $25 minimum.");
 
-            $('input[name=fr_part_radio]').addClass("required").attr("title","Please select a participation type");
+            $('input[name=fr_part_radio]').addClass("required").attr("title","Participation type is required");
 
             $('form').validate({
                 errorPlacement: function(error, element) {
