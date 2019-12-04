@@ -3,6 +3,32 @@ body.login-page {
     background: #eeeeee url(/images/content/pagebuilder/BGImageFull2x.jpg) no-repeat 5% center;
     background-size: auto 100%;
   }
+  button.btn-primary {
+    min-width: 190px;
+    height: 60px;
+    padding: 0 20px;
+    line-height: 60px;
+    font-size: 24px;
+    font-weight: 400;
+    background: #d01d20;
+    text-decoration: none;
+    border-radius: 60px 60px 60px 60px;
+    background-clip: padding-box;
+    color: #fff;
+    border: none;
+    font-family: LubDubMedium,Helvetica,Arial,sans-serif !important;
+    margin-right: 10px;
+  }
+  .form-group label.sr-only {
+    position: relative;
+    font-size: 14px;
+    margin: 5px 0;
+    display: block;
+    width: auto;
+    height: auto;
+    color: #000;
+    clip-path: none;
+  }
 }
 
 .heart-page-container--login {
@@ -29,14 +55,15 @@ body.login-page {
   }
   
   .panel-title {
-    font-size: inherit;
+    font-size: 28px;
+    text-align:left;
   }
   
   > .panel-body {
-    padding: 32px 28px 20px;
+    padding: 15px 28px 20px;
     
     @media (min-width: $screen-sm-min) {
-      padding: 32px 48px 28px;
+      padding: 15px 48px 28px;
     }
     
     .alert {
@@ -60,10 +87,10 @@ body.login-page {
       
       .form-control {
         height: 60px;
-        padding: 6px 25px;
+        padding: 6px 10px;
         
         @media (min-width: $screen-sm-min) {
-          padding: 6px 30px;
+          padding: 6px 15px;
         }
       }
     }
