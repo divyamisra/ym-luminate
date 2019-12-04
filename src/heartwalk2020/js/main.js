@@ -727,26 +727,8 @@
             $(this).children('i').addClass('fa-chevron-down');
         }
 
-        // In order for the animation to work we need an absolute
-        // height value, so we calculate that by getting the total
-        // height of the donations-container child divs plus their
-        // margin value
-        var totalHeight = 205;
-        $('.donations-container div').each(function(i, div) {
-            if (i > 4) {
-                totalHeight += ($(div).height() + 20);
-            }
-        });
-
-        if ($('.donations-container').height() == 205) {
-            $('.donations-container').animate({height: totalHeight}, 400);
-        } else {
-            $('.donations-container').animate({height: 205}, 400);
-        }
-      $('.hidden-donor-row').toggleClass('d-none');
-
+      $('.hidden-donor-row').slideToggle(200);
     });
-
     cd.reorderPageForMobile = function () {
         // Reorganize page for mobile views
         if (screenWidth <= 767) {
@@ -825,10 +807,11 @@
     cd.getTeamHonorRoll = function() {
         // populate donor honor roll
         if($('.team-honor-list-row').length > 0){
+          console.log('native honor row length:', $('.team-honor-list-row').length);
             $('.team-honor-list-row').each(function(i, donor){
                 var donorName = $(this).find('.team-honor-list-name').text();
                 var donorAmt = $(this).find('.team-honor-list-value').text();
-                $('.js--donor-roll').append('<div class="donor-row ' + (i > 4 ? 'hidden-donor-row d-none' : '') + '"><span class="name">' + donorName + '</span><span class="amount">' + donorAmt + '</span></div>');
+                $('.js--donor-roll').append('<div ' + (i > 4 ? 'style="display:none;"' : '') + ' class="donor-row ' + (i > 4 ? 'hidden-donor-row' : '') + '"><span class="name">' + donorName + '</span><span class="amount">' + donorAmt + '</span></div>');
                 if(i === 5){
                     $('.js--honor-roll-expander').addClass('d-block').removeClass('hidden');
                 }
