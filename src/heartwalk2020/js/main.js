@@ -727,26 +727,8 @@
             $(this).children('i').addClass('fa-chevron-down');
         }
 
-        // In order for the animation to work we need an absolute
-        // height value, so we calculate that by getting the total
-        // height of the donations-container child divs plus their
-        // margin value
-        var totalHeight = 205;
-        $('.donations-container div').each(function(i, div) {
-            if (i > 4) {
-                totalHeight += ($(div).height() + 20);
-            }
-        });
-
-        if ($('.donations-container').height() == 205) {
-            $('.donations-container').animate({height: totalHeight}, 400);
-        } else {
-            $('.donations-container').animate({height: 205}, 400);
-        }
-      $('.hidden-donor-row').toggleClass('d-none');
-
+      $('.hidden-donor-row').slideToggle(200);
     });
-
     cd.reorderPageForMobile = function () {
         // Reorganize page for mobile views
         if (screenWidth <= 767) {
@@ -825,10 +807,11 @@
     cd.getTeamHonorRoll = function() {
         // populate donor honor roll
         if($('.team-honor-list-row').length > 0){
+          console.log('native honor row length:', $('.team-honor-list-row').length);
             $('.team-honor-list-row').each(function(i, donor){
                 var donorName = $(this).find('.team-honor-list-name').text();
                 var donorAmt = $(this).find('.team-honor-list-value').text();
-                $('.js--donor-roll').append('<div class="donor-row ' + (i > 4 ? 'hidden-donor-row d-none' : '') + '"><span class="name">' + donorName + '</span><span class="amount">' + donorAmt + '</span></div>');
+                $('.js--donor-roll').append('<div ' + (i > 4 ? 'style="display:none;"' : '') + ' class="donor-row ' + (i > 4 ? 'hidden-donor-row' : '') + '"><span class="name">' + donorName + '</span><span class="amount">' + donorAmt + '</span></div>');
                 if(i === 5){
                     $('.js--honor-roll-expander').addClass('d-block').removeClass('hidden');
                 }
@@ -1035,6 +1018,61 @@
           });
         };
         cd.getDonationFormInfo();
+
+
+         // Get events by name or state
+    cd.getPersonalVideo = function (frId, consId) {
+       luminateExtend.api({
+        api: 'teamraiser',
+        data: 'method=getPersonalVideoUrl' +
+          '&fr_id=' + frId +
+          '&cons_id=' + consId +
+          '&response_format=json',
+        callback: {
+          success: function (response) {
+            var videoEmbedHtml;
+            if (response.getPersonalVideoUrlResponse.videoUrl) {
+              var videoUrl = response.getPersonalVideoUrlResponse.videoUrl;
+
+              if (videoUrl && videoUrl.indexOf('vidyard') === -1) {
+                videoUrl = videoUrl.replace('&amp;v=', '&v=');
+                var videoId = '';
+                var personalVideoEmbedUrl = '';
+
+                if (videoUrl.indexOf('?v=') !== -1) {
+                  videoId = videoUrl.split('?v=')[1].split('&')[0];
+                } else if (videoUrl.indexOf('&v=') !== -1) {
+                  videoId = videoUrl.split('&v=')[1].split('&')[0];
+                } else if (videoUrl.indexOf('/embed/') !== -1) {
+                  videoId = videoUrl
+                    .split('/embed/')[1]
+                    .split('/')[0]
+                    .split('?')[0];
+                } else if (videoUrl.indexOf('youtu.be/') !== -1) {
+                  videoId = videoUrl
+                    .split('youtu.be/')[1]
+                    .split('/')[0]
+                    .split('?')[0];
+                }
+                if (videoId !== '') {
+                  personalVideoEmbedUrl = 'https://www.youtube.com/embed/' + videoId + '?wmode=opaque&amp;rel=0&amp;showinfo=0';
+                }
+              }
+              videoEmbedHtml = '<iframe class="embed-responsive-item" src="' + personalVideoEmbedUrl + '" title="American Heart Association Heart Walk Video" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+            } else {
+              // TODO - show default video
+              videoEmbedHtml = '<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/_RHhQFOo4iE" title="American Heart Association Heart Walk Video" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+            }
+            $('.js--personal-video-container').append(videoEmbedHtml);
+          },
+          error: function (response) {
+            console.log('getPersonalVideo error: ' + response.errorResponse.message);
+          }
+        }
+      });
+    };
+    var personalPageConsId = getURLParameter(currentUrl, 'px');
+    cd.getPersonalVideo(evID, personalPageConsId);
     }
 
     if ($('body').is('.pg_team')) {
