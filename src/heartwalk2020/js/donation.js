@@ -424,6 +424,9 @@
                }
             });
 
+	    //remove validation from matching gift search
+	    $('button.action-button').attr("formnovalidate","true");
+		
             $("#ProcessForm").submit(function(e) {
                 //e.preventDefault();
                 if ($('#cover_fee_radio_Yes').is(':checked')) {
