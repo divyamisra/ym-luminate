@@ -1110,6 +1110,9 @@
 
             $('input[name=fr_part_radio]').addClass("required").attr("title","Participation type is required");
 
+	    //hide back button and turn into link
+	    $('button#previous_step').after('<a href="javascript:window.history.go(-1)" class="step-button previous-step backBtnReg">Back</a>').hide();
+
             $('form').validate({
                 errorPlacement: function(error, element) {
 			if ($(element).attr("name") == "fr_part_radio") {
