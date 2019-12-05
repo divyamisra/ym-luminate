@@ -29,6 +29,10 @@ body.login-page {
     color: #000;
     clip-path: none;
   }
+  input[type="text"], 
+  input[type="password"] {
+	  width: 100%;
+  }
 }
 
 .heart-page-container--login {
