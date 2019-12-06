@@ -40,33 +40,25 @@
         $('.formMessage p').removeClass('active');
 	$('.donation-level-container input[type=radio]').attr("aria-checked","false");
 	$(this).find('input[type=radio]').attr("aria-checked","true");
-        if($(this).hasClass('level0')){
-            var level = 'level0';
-        }else if ($(this).hasClass('level1')){
-            var level = 'level1';
-        }else if ($(this).hasClass('level2')){
-            var level = 'level2';
-        }else if ($(this).hasClass('level3')){
-            var level = 'level3';
-        }else if ($(this).hasClass('level4')){
-            var level = 'level4';
-        }
-        document.cookie="level="+level;
         $(this).addClass('active');
+	for (var x=0;x<10;x++) {
+            if($(this).hasClass('level'+x)){
+               var level = 'level'+x;
+	       if($('.donation-level-container.active').hasClass('level'+x)) {
+		   $('.formMessage .level'+x).addClass('active');
+   	       }
+	       break;
+	    }
+        }
+	//check last entry to see if active
+        if($('.donation-level-container.active').hasClass('level'+x)) {
+	       $('.donation-level-user-entered').show();
+        }
+
+	document.cookie="level="+level;
 	$('.donation-level-user-entered').hide();
-        var amt = $(this).find('.donation-level-amount-container').text();
+        //var amt = $(this).find('.donation-level-amount-container').text();
         //$('.donateSubmit').text('Donate '+amt);
-        if($('.donation-level-container.active').hasClass('level0')) {
-            $('.formMessage .level0').addClass('active');
-        }else if ($('.donation-level-container.active').hasClass('level1')) {
-            $('.formMessage .level1').addClass('active');
-        }else if ($('.donation-level-container.active').hasClass('level2')) {
-            $('.formMessage .level2').addClass('active');
-        }else if ($('.donation-level-container.active').hasClass('level3')) {
-            $('.formMessage .level3').addClass('active');
-        }else if ($('.donation-level-container.active').hasClass('level4')) {
-            $('.formMessage .level4').addClass('active');
-	    $('.donation-level-user-entered').show();
         }
     });
 
