@@ -454,7 +454,7 @@
                 }
             });
 	    $('#pstep_finish').click(function(){
-		    if ($('input[name=donor_matching_employersearchBtn]').val() == "submit") {
+		    if ($('input[name=donor_matching_employersearchBtn]').val() == "Search") {
 			    return true;
 		    } else {
 			    if ($('form').valid()) {
