@@ -52,7 +52,7 @@
         }
 	//check last entry to see if active
 	$('.donation-level-user-entered').hide();
-	if($('.donation-level-container.active').hasClass('level'+x)) {
+	if($('.enterAmt.active').hasClass('level'+x)) {
 	       $('.donation-level-user-entered').show();
         }
 
