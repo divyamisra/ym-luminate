@@ -51,12 +51,12 @@
 	    }
         }
 	//check last entry to see if active
-        if($('.donation-level-container.active').hasClass('level'+x)) {
+	$('.donation-level-user-entered').hide();
+	if($('.donation-level-container.active').hasClass('level'+x)) {
 	       $('.donation-level-user-entered').show();
         }
 
 	document.cookie="level="+level;
-	$('.donation-level-user-entered').hide();
         //var amt = $(this).find('.donation-level-amount-container').text();
         //$('.donateSubmit').text('Donate '+amt);
     });
