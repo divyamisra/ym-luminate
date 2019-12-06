@@ -454,10 +454,14 @@
                 }
             });
 	    $('#pstep_finish').click(function(){
-		    if ($('form').valid()) {
+		    if ($('input[name=donor_matching_employersearchBtn]').val() == "submit") {
 			    return true;
 		    } else {
-			    return false;
+			    if ($('form').valid()) {
+				    return true;
+			    } else {
+				    return false;
+			    }
 		    }
 	    });
         });
