@@ -1409,6 +1409,25 @@
 			callback: {
 				success: function (response) {
 					if (response.updateConsResponse === '0') {
+						luminateExtend.api({
+							api: 'cons',
+							useHTTPS: true,
+							requestType: 'POST',
+							requiresAuth: true,
+							data: 'method=update' +
+								'&response_format=json' +
+								'&add_group_ids=' + $('body').data("group-id")
+								'&cons_id=' + $('body').data("cons-id"),
+							callback: {
+								success: function (response) {
+									if (response.updateConsResponse === '0') {
+									}
+								},
+								error: function (response) {
+									console.log(response.errorResponse.message);
+								}
+							}
+						});
 					}
 				},
 				error: function (response) {
