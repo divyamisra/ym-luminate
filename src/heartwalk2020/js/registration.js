@@ -1416,7 +1416,7 @@
 							requiresAuth: true,
 							data: 'method=update' +
 								'&response_format=json' +
-								'&add_group_ids=' + $('body').data("group-id"),
+								'&add_group_ids=' + $('body').data("group-id") + 
 								'&cons_id=' + $('body').data("cons-id"),
 							callback: {
 								success: function (response) {
