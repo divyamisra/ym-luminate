@@ -80,23 +80,15 @@
 	    }
     });
 
-    //make sure to remember values on reload
-    if(amountLevel == 'level0') {
-        $('.level0').addClass('active');
-        $('.level0 .donation-level-label-input-container input').click();
-    }else if (amountLevel == 'level1') {
-        $('.level1').addClass('active');
-        $('.level1 .donation-level-label-input-container input').click();
-    }else if (amountLevel == 'level2') {
-        $('.level2').addClass('active');
-        $('.level2 .donation-level-label-input-container input').click();
-    }else if (amountLevel == 'level3') {
-        $('.level3').addClass('active');
-        $('.level3 .donation-level-label-input-container input').click();
-    }else if (amountLevel == 'level4') {
-        $('.level4').addClass('active');
-        $('.level4 .donation-level-label-input-container input').click();
+    for (var x=0;x<10;x++) {
+	//make sure to remember values on reload
+        if(amountLevel == 'level' + x) {
+           $('.level' + x).addClass('active');
+           $('.level' + x + ' .donation-level-label-input-container input').click();
+	   break;
+        }
     }
+	  
     $('.donateSubmit').click(function(){
         $('#pstep_finish').click();
     });
@@ -104,8 +96,12 @@
     $('#level_flexiblegift_type_Row .form-content fieldset legend').addClass('aural-only');
     $('#level_flexiblegift_type_Row').before("<p><strong>Would you like to donate just once or monthly?</strong></p>");
 
-    $('h2:contains("Matching Gift:")').wrap('<div id="matching_gift_section"></div>');
-    $('.matching-gift-container').appendTo('#matching_gift_section');
+    //$('h2:contains("Matching Gift:")').wrap('<div id="matching_gift_section"></div>');
+    //$('.matching-gift-container').appendTo('#matching_gift_section');
+    //if matching gift section is not there, hide section title.
+    if ($('.matching-gift-container').length == 0) {
+	    $('h2:contains(Matching)').hide();
+    }
     //$('#matching_gift_section').insertAfter('.form-donation-level');
     $('.donation-level-user-entered input').attr("placeholder","Amount").after("<div class='other-amt-note'><em>$25 minimum donation</em></div>");
 
