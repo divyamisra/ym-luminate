@@ -1408,7 +1408,7 @@
 				'&cons_id=' + $('body').data("cons-id"),
 			callback: {
 				success: function (response) {
-					if (response.updateConsResponse === '0') {
+					if (response.updateConsResponse.message == "Interaction logged successfully.") {
 						luminateExtend.api({
 							api: 'cons',
 							useHTTPS: true,
@@ -1420,7 +1420,8 @@
 								'&cons_id=' + $('body').data("cons-id"),
 							callback: {
 								success: function (response) {
-									if (response.updateConsResponse === '0') {
+									if (response.updateConsResponse.message == "User updated.") {
+										console.log("Group added to user");
 									}
 								},
 								error: function (response) {
