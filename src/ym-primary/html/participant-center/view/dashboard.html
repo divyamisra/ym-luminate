@@ -1,5 +1,16 @@
 <div cg-busy="dashboardPromises">
   <div ng-if="participantRegistration.companyInformation.isCompanyCoordinator != 'true' || location == '/dashboard-student'" ng-cloak>
+    <div ng-if="coordinatorMessage.message && coordinatorMessage.message != ''" ng-cloak>
+      <img class="ym-coordinator-message-monster" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/peek_monster.png" alt="Ninja Monster peeking out">
+      <section class="ym-pc-dashboard-coordinators-message-section" aria-label="Note From Your Teacher">
+        <div class="ym-pc-dashboard-section-header">
+          <h2 class="h5">
+            Note From Your Teacher
+          </h2>
+          <div ng-bind-html="coordinatorMessage.message"></div>
+        </div>
+      </section>
+    </div>
     <section class="ym-pc-dashboard-badges-section" aria-label="My Badges" ng-if="prizes && prizes.length > 0" ng-cloak>
       <div class="ym-pc-dashboard-section-header">
         <h2 class="h3">
@@ -8,7 +19,14 @@
       </div>
       <div class="ym-pc-dashboard-badges-header text-center">
         <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/ym-pc-dashboard-badge-header.png" alt="Send Email">
-        <p><strong>You’ve completed <span ng-bind-html="prizesEarned"></span> out of <span ng-bind-html="prizes.length"></span> missions to earn Finn’s charm for your wristband! Keep going!</strong></p>
+        <div ng-if="has_bonus" ng-cloak>
+          <p ng-if="prizesEarned != prizes.length" ng-cloak><strong>You’ve completed <span ng-bind-html="prizesEarned"></span> out of <span ng-bind-html="prizes.length"></span> missions to earn Finn’s charm for your wristband! Keep going!</strong></p>
+          <p ng-if="prizesEarned == prizes.length" ng-cloak><strong>All Missions Accomplished!<br/>You completed all 10 missions and earned Finn’s charm for your wristband. Yahoo!</strong></p>
+        </div>
+        <div ng-if="!has_bonus" ng-cloak>
+          <p ng-if="prizesEarned != prizes.length" ng-cloak><strong>You’ve completed <span ng-bind-html="prizesEarned"></span> out of <span ng-bind-html="prizes.length"></span> missions!<br/>Keep going!</strong></p>
+          <p ng-if="prizesEarned == prizes.length" ng-cloak><strong>All Missions Accomplished!<br/>You completed all 10 missions. Yahoo!</strong></p>
+        </div>
         <em>Please allow 15 minutes for the system to update your badges.</em>
       </div>
       <div class="ym-pc-dashboard-badges-icons" role="list" aria-label="Badge List">
@@ -166,7 +184,7 @@
                   <strong>Send Email</strong>
                 </a> 
                 <a class="btn btn-md-wide btn-primary" ng-href="https://hearttools.heart.org/aha_ym20{{tablePrefix == 'heartdev' ? '_dev' : (tablePrefix == 'heartnew' ? '_testing' : '')}}/?eid={{frId}}&amp;sid={{consId}}&amp;name={{consNameFirst}}" target="_blank">
-                  <strong>Send E-card</strong>
+                  <strong>Send e-card</strong>
                 </a>
               </div>
             </div>
@@ -511,17 +529,6 @@
         </div>
       </div>
     </section>
-    <div ng-if="coordinatorMessage.message && coordinatorMessage.message != ''" ng-cloak>
-      <img class="ym-coordinator-message-monster" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/peek_monster.png" alt="Ninja Monster peeking out">
-      <section class="ym-pc-dashboard-coordinators-message-section" aria-label="Note From Your Teacher">
-        <div class="ym-pc-dashboard-section-header">
-          <h2 class="h5">
-            Note From Your Teacher
-          </h2>
-          <div ng-bind-html="coordinatorMessage.message"></div>
-        </div>
-      </section>
-    </div>
   </div>
   <div ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true' && location != '/dashboard-student'" ng-cloak>
     <section class="ym-pc-dashboard-coordinator-progress-section" aria-label="Fundraising Progress Meters">
@@ -869,7 +876,13 @@
               Check out the reports page to see which students have completed challenges and who has earned donations.
             </p>
             <div class="ym-activity-box-cta">
-              <a class="btn btn-md-wide btn-primary" ng-href="{{baseUrl}}#/reports">
+              <a class="btn btn-md-wide btn-primary" ng-href="https://khc.staging.ootqa.org/coordinator/login/{{authToken}}/{{sessionCookie}}" target="_blank" ng-if="tablePrefix == 'heartdev'" ng-cloak>
+                <strong>View Reports</strong>
+              </a>
+              <a class="btn btn-md-wide btn-primary" ng-href="https://khc.dev.ootqa.org/coordinator/login/{{authToken}}/{{sessionCookie}}" target="_blank" ng-if="tablePrefix == 'heartnew'" ng-cloak>
+                <strong>View Reports</strong>
+              </a>
+              <a class="btn btn-md-wide btn-primary" ng-href="https://kidsheartchallenge.heart.org/coordinator/login/{{authToken}}/{{sessionCookie}}" target="_blank" ng-if="tablePrefix == 'heart'" ng-cloak> 
                 <strong>View Reports</strong>
               </a>
             </div>
@@ -901,7 +914,7 @@
       </div>
       <div class="ym-pc-dashboard-coordinator-resources-options">
         <div class="row">
-          <div class="col-sm-4">
+          <div class="col-sm-6">
             <div class="ym-pc-dashboard-section-header">
               <h3 class="h5">
                 Educational Resources
@@ -914,6 +927,7 @@
               <strong>Download Resources</strong>
             </a>
           </div>
+          <!--
           <div class="col-sm-4">
             <div class="ym-pc-dashboard-section-header">
               <h3 class="h5">
@@ -927,7 +941,8 @@
               <strong>Download Assignment</strong>
             </a>
           </div>
-          <div class="col-sm-4">
+          -->
+          <div class="col-sm-6">
             <div class="ym-pc-dashboard-section-header">
               <h3 class="h5">
                 Homework with Heart
@@ -936,7 +951,7 @@
             <p>
               Download a worksheet for a take-home assignment.
             </p>
-            <a class="btn btn-md-wide btn-primary" href="/site/DocServer/aha-homework-with-heart.pdf" target="_blank">
+            <a class="btn btn-md-wide btn-primary" href="/site/DocServer/FY20_KHC_Homework_with_Heart_FINAL.pdf" target="_blank">
               <strong>Download Homework</strong>
             </a>
           </div>
