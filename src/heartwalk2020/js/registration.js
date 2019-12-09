@@ -1385,6 +1385,7 @@
 
         /* Page = Reg */
         if ($('input[name="pg"]').val() == 'regsummary') {
+            console.log('pg=regsummary');
             // if there is a donation then change button text
             if ($.trim($('.additional-gift-amount').html()) != "$0.00") {
                 $('button.next-step').attr("value","Complete and Donate").find('span').html("Complete and Donate");
@@ -1393,50 +1394,32 @@
             //move custom details into content
             $('.reg-summary-event-info').prepend($('#additionalRegDetails'));
 
-	    //save off mobile opt option
-   	    if (localStorage.mobile_optin == "on") {
-		luminateExtend.api({
-			api: 'cons',
-			useHTTPS: true,
-			requestType: 'POST',
-			requiresAuth: true,
-			data: 'method=logInteraction' +
-				'&response_format=json' +
-				'&interaction_type_id=0' +
-				'&interaction_subject=Hustle-OptIn' +
-				'&interaction_body=\'{"EventId":' + $('body').data("fr-id") + ',"GroupId":' + $('body').data("group-id") + ',"OptIn":"Yes"}\'' +
-				'&cons_id=' + $('body').data("cons-id"),
-			callback: {
-				success: function (response) {
-					if (response.updateConsResponse.message == "Interaction logged successfully.") {
-						luminateExtend.api({
-							api: 'cons',
-							useHTTPS: true,
-							requestType: 'POST',
-							requiresAuth: true,
-							data: 'method=update' +
-								'&response_format=json' +
-								'&add_interest_ids=' + $('body').data("group-id") + 
-								'&cons_id=' + $('body').data("cons-id"),
-							callback: {
-								success: function (response) {
-									if (response.updateConsResponse.message == "User updated.") {
-										console.log("Group added to user");
-									}
-								},
-								error: function (response) {
-									console.log(response.errorResponse.message);
-								}
-							}
-						});
-					}
-				},
-				error: function (response) {
-					console.log(response.errorResponse.message);
-				}
-			}
-		});
-	    }
+    	    //save off mobile opt option
+            if (localStorage.mobile_optin == "on") {
+                console.log('mobile-optin is on');
+                luminateExtend.api({
+                    api: 'cons',
+                    useHTTPS: true,
+                    requestType: 'POST',
+                    requiresAuth: true,
+                    data: 'method=logInteraction' +
+                    '&response_format=json' +
+    				'&interaction_type_id=0' +
+    				'&interaction_subject=Hustle-OptIn' +
+    				'&interaction_body=\'{"EventId":' + $('body').data("fr-id") + ',"GroupId":' + $('body').data("group-id") + ',"OptIn":"Yes"}\'' +
+    				'&cons_id=' + $('body').data("cons-id"),
+                    callback: {
+        				success: function (response) {
+        					if (response.updateConsResponse.message == "Interaction logged successfully.") {
+
+        					}
+        				},
+        				error: function (response) {
+        					console.log(response.errorResponse.message);
+        				}
+                    }
+                });
+    	    }
         }
 
         /* Page = paymentForm */
