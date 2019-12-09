@@ -1419,6 +1419,26 @@
         				}
                     }
                 });
+                luminateExtend.api({
+                    api: 'cons',
+                    useHTTPS: true,
+                    requestType: 'POST',
+                    requiresAuth: true,
+                    data: 'method=update' +
+                        '&response_format=json' +
+                        '&add_interest_ids=' + $('body').data("group-id") +
+                        '&cons_id=' + $('body').data("cons-id"),
+                    callback: {
+                        success: function (response) {
+                            if (response.updateConsResponse.message == "User updated.") {
+                                console.log("Group added to user");
+                            }
+                        },
+                        error: function (response) {
+                            console.log(response.errorResponse.message);
+                        }
+                    }
+                });
     	    }
         }
 
