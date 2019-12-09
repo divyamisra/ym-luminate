@@ -1419,6 +1419,8 @@
         				}
                     }
                 });
+                $('<img width="1" height="1" style="display:none;" src="https://dev2.heart.org/site/SPageServer?pagename=cd_interest_toggle&AddInterest=1222&pgwrap=n" id="interest_toggle">').appendTo($('#fr_reg_summary_page'));
+                /*
                 luminateExtend.api({
                     api: 'cons',
                     useHTTPS: true,
@@ -1439,6 +1441,7 @@
                         }
                     }
                 });
+                */
     	    }
         }
 
