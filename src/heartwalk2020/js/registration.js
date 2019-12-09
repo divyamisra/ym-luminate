@@ -1423,28 +1423,6 @@
 		} else {
 	                $('<img width="1" height="1" style="display:none;" src="https://dev2.heart.org/site/SPageServer?pagename=reus_hw_mobileopt_add_group&group_id=' + $('body').data("group-id") + '&pgwrap=n" id="mobileopt_add_group">').appendTo($('#fr_reg_summary_page'));
 		}
-                /*
-                luminateExtend.api({
-                    api: 'cons',
-                    useHTTPS: true,
-                    requestType: 'POST',
-                    requiresAuth: true,
-                    data: 'method=update' +
-                        '&response_format=json' +
-                        '&add_interest_ids=' + $('body').data("group-id") +
-                        '&cons_id=' + $('body').data("cons-id"),
-                    callback: {
-                        success: function (response) {
-                            if (response.updateConsResponse.message == "User updated.") {
-                                console.log("Group added to user");
-                            }
-                        },
-                        error: function (response) {
-                            console.log(response.errorResponse.message);
-                        }
-                    }
-                });
-                */
     	    }
         }
 
