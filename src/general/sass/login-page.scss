@@ -1,4 +1,5 @@
-body.login-page {
+body.login-page,
+body.myevents-page{
   .Generalmain {
     background: #eeeeee url(/images/content/pagebuilder/BGImage2x.jpg) no-repeat 5% center;
     background-size: auto 100%;
@@ -35,7 +36,8 @@ body.login-page {
   }
 }
 
-.heart-page-container--login {
+.heart-page-container--login,
+body.myevents .Generalmain > .container {
   padding: 20px 20px 72px;
   
   @media (min-width: $screen-md-min) {
