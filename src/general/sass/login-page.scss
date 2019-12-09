@@ -34,6 +34,26 @@ body.myevents-page{
   input[type="password"] {
 	  width: 100%;
   }
+	
+  .myevents-container {
+	padding: 20px;
+	background: #fff;
+	max-width: 480px;
+	margin: 0 auto;
+	box-shadow: 2px 4px 7px #999;
+	border-radius: 5px;
+	font-size: 16px;
+	
+	table.lc_Table {
+	   border:none;
+	}
+	td.lc_Cell {
+	   border:none;
+	}
+        tr.lc_Row1 {
+	   background: none;
+	}
+  }
 }
 
 .heart-page-container--login,
