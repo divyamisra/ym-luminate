@@ -1207,10 +1207,10 @@
 	    messages[optinName] = {required: "Mobile Opt in is selected.<br/>Please enter a mobile number."};
 
 	    $('button.previous-step').attr("formnovalidate","true");
-		
+
 	    //hide back button and turn into link
 	    $('button#previous_step').after('<a href="javascript:window.history.go(-1)" class="step-button previous-step backBtnReg">Back</a>').hide();
-	    
+
 	    jQuery('form').validate({
                 rules: rules,
                 messages: messages,
@@ -1416,7 +1416,7 @@
 							requiresAuth: true,
 							data: 'method=update' +
 								'&response_format=json' +
-								'&add_group_ids=' + $('body').data("group-id") + 
+								'&add_interest_ids=' + $('body').data("group-id") + 
 								'&cons_id=' + $('body').data("cons-id"),
 							callback: {
 								success: function (response) {
@@ -1463,7 +1463,7 @@
 
 		//hide back button and use link instead
 	   	$('button#btn_prev').after('<a href="javascript:window.history.go(-1)" class="step-button previous-step backBtnReg">Back</a>').hide();
-		
+
 		$('button.next-step').click(function(){
 			if ($('form').valid()) {
 				return true;
