@@ -1419,9 +1419,9 @@
                     }
                 });
 		if (isProd) {
-	                $('<img width="1" height="1" style="display:none;" src="https://www2.heart.org/site/SPageServer?pagename=reus_hw_mobileopt_add_group&group_id=" + $('body').data("group-id") + "&pgwrap=n" id="mobileopt_add_group">').appendTo($('#fr_reg_summary_page'));
+	                $('<img width="1" height="1" style="display:none;" src="https://www2.heart.org/site/SPageServer?pagename=reus_hw_mobileopt_add_group&group_id=' + $('body').data("group-id") + '&pgwrap=n" id="mobileopt_add_group">').appendTo($('#fr_reg_summary_page'));
 		} else {
-	                $('<img width="1" height="1" style="display:none;" src="https://dev2.heart.org/site/SPageServer?pagename=reus_hw_mobileopt_add_group&group_id=" + $('body').data("group-id") + "&pgwrap=n" id="mobileopt_add_group">').appendTo($('#fr_reg_summary_page'));
+	                $('<img width="1" height="1" style="display:none;" src="https://dev2.heart.org/site/SPageServer?pagename=reus_hw_mobileopt_add_group&group_id=' + $('body').data("group-id") + '&pgwrap=n" id="mobileopt_add_group">').appendTo($('#fr_reg_summary_page'));
 		}
                 /*
                 luminateExtend.api({
