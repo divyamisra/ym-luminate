@@ -1396,7 +1396,6 @@
 
     	    //save off mobile opt option
             if (localStorage.mobile_optin == "on") {
-                console.log('mobile-optin is on');
                 luminateExtend.api({
                     api: 'cons',
                     useHTTPS: true,
@@ -1409,17 +1408,21 @@
     				'&interaction_body=\'{"EventId":' + $('body').data("fr-id") + ',"GroupId":' + $('body').data("group-id") + ',"OptIn":"Yes"}\'' +
     				'&cons_id=' + $('body').data("cons-id"),
                     callback: {
-        				success: function (response) {
-        					if (response.updateConsResponse.message == "Interaction logged successfully.") {
+			success: function (response) {
+				if (response.updateConsResponse.message == "Interaction logged successfully.") {
 
-        					}
-        				},
-        				error: function (response) {
-        					console.log(response.errorResponse.message);
-        				}
+				}
+			},
+			error: function (response) {
+				console.log(response.errorResponse.message);
+			}
                     }
                 });
-                $('<img width="1" height="1" style="display:none;" src="https://dev2.heart.org/site/SPageServer?pagename=cd_interest_toggle&AddInterest=1222&pgwrap=n" id="interest_toggle">').appendTo($('#fr_reg_summary_page'));
+		if (isProd) {
+	                $('<img width="1" height="1" style="display:none;" src="https://www2.heart.org/site/SPageServer?pagename=reus_hw_mobileopt_add_group&group_id=" + $('body').data("group-id") + "&pgwrap=n" id="mobileopt_add_group">').appendTo($('#fr_reg_summary_page'));
+		} else {
+	                $('<img width="1" height="1" style="display:none;" src="https://dev2.heart.org/site/SPageServer?pagename=reus_hw_mobileopt_add_group&group_id=" + $('body').data("group-id") + "&pgwrap=n" id="mobileopt_add_group">').appendTo($('#fr_reg_summary_page'));
+		}
                 /*
                 luminateExtend.api({
                     api: 'cons',
