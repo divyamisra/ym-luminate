@@ -2887,7 +2887,7 @@
         $('.js__carousel-inner').append('<div class="carousel-item ' + (i === 0 ? 'active' : '') + '"><img src="' + $(this).attr('src') + '" alt="' + $(this).attr('alt') + '"></div>');
       });
       $('.carousel').carousel({
-        interval: 2000
+        interval: 4000
       });
 
       if (viewportWidth < 640) {
