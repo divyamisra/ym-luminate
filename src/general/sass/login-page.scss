@@ -4,6 +4,7 @@ body.myevents-page{
     background: #eeeeee url(/images/content/pagebuilder/BGImage2x.jpg) no-repeat 5% center;
     background-size: auto 100%;
   }
+  input#login,
   button.btn-primary {
     min-width: 190px;
     height: 60px;
@@ -19,6 +20,10 @@ body.myevents-page{
     border: none;
     font-family: LubDubMedium,Helvetica,Arial,sans-serif !important;
     margin-right: 10px;
+  }
+  input#login { 
+    font-size:18px !important;
+    margin-top:10px;
   }
   .form-group label.sr-only {
     position: relative;
