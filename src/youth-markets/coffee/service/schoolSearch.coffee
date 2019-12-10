@@ -67,7 +67,8 @@ angular.module 'ahaLuminateApp'
 
         # if getLoc is passed as true
         # ask for geolocation and load all schools within 10 miles of geolocation
-        #if getLoc is true
+        if getLoc is true
+           $scope.schoolList.geoLocationEnabled = true
         #  $scope.getLocation()
         
         $scope.filterByLocation = ->
