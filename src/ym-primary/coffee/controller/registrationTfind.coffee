@@ -68,13 +68,18 @@ angular.module 'ahaLuminateControllers'
         if not $rootScope.$$phase
           $rootScope.$apply()
           
-      SchoolLookupService.getSchoolData()
-        .then (response) ->
-          schoolDataRows = response.data.getSchoolSearchDataResponse.schoolData
-          angular.forEach schoolDataRows, (schoolDataRow, schoolDataRowIndex) ->
-            if schoolDataRowIndex > 0
-              if regCompanyId is schoolDataRow[0]
-                setCompanyCity schoolDataRow[1]
-                setCompanyState schoolDataRow[2]
-                return
+      if localStorage.companyCity != undefined
+        setCompanyCity localStorage.companyCity
+        setCompanyState localStorage.companyState
+      
+      #
+      #SchoolLookupService.getSchoolData()
+      #  .then (response) ->
+      #    schoolDataRows = response.data.getSchoolSearchDataResponse.schoolData
+      #    angular.forEach schoolDataRows, (schoolDataRow, schoolDataRowIndex) ->
+      #      if schoolDataRowIndex > 0
+      #        if regCompanyId is schoolDataRow[0]
+      #          setCompanyCity schoolDataRow[1]
+      #          setCompanyState schoolDataRow[2]
+      #          return
   ]
