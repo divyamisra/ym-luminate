@@ -25,10 +25,13 @@ body.myevents-page{
   }
 	
   .myevents-container {
-    padding:20px;
-    background:#fff;
-    margin:0 auto;
-    font-size: 14px;
+    padding: 20px;
+    background: #fff;
+    margin: 0 auto;
+    border: 1px solid #999;
+    box-shadow: 3px 4px 4px #ccc;
+    border-radius: 5px;
+
     a {
        font-size: 14px;
     }
