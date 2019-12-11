@@ -31,6 +31,8 @@ angular.module 'ahaLuminateApp'
           SchoolLookupService.getStateByLocation e,
             failure: (response) ->
             success: (response) ->
+              nameFilter = jQuery.trim $scope.schoolList.ng_nameFilter
+              $scope.schoolList.nameFilter = nameFilter
               $scope.schoolList.stateFilter = response.data.company.schoolData.state
               delete $scope.schoolList.schools
               $scope.schoolList.searchPending = true
