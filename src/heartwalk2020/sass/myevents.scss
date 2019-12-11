@@ -2,7 +2,7 @@ body.myevents-page{
   main {
     background: #eeeeee url(/images/content/pagebuilder/BGImage2x.jpg) no-repeat 5% center;
     background-size: auto 100%;
-    .content {
+    > .container {
        background:transparent;
     }
   }
