@@ -32,21 +32,16 @@ angular.module 'ahaLuminateApp'
             failure: (response) ->
             success: (response) ->
               delete $scope.schoolList.schools
-              nameFilter = jQuery.trim $scope.schoolList.ng_nameFilter
-              $scope.schoolList.nameFilter = nameFilter
-              if not nameFilter
-                $scope.schoolList.searchErrorMessage = 'Please specify a search criteria before initiating a search.'
-              else
-                $scope.schoolList.stateFilter = response.data.company.schoolData.state
-                $scope.schoolList.searchPending = true
-                $scope.schoolList.searchSubmitted = true
-                $scope.schoolList.searchByLocation = true
-                $scope.schoolList.geoLocationEnabled = true
-                $scope.getSchoolSearchResults(true)
-                #SchoolLookupService.getGeoSchoolData e,
-                #  failure: (response) ->
-                #  success: (response) ->
-                #    showSchoolSearchResults(response)
+              $scope.schoolList.stateFilter = response.data.company.schoolData.state
+              $scope.schoolList.searchPending = true
+              $scope.schoolList.searchSubmitted = true
+              $scope.schoolList.searchByLocation = true
+              $scope.schoolList.geoLocationEnabled = true
+              $scope.getSchoolSearchResults(true)
+              #SchoolLookupService.getGeoSchoolData e,
+              #  failure: (response) ->
+              #  success: (response) ->
+              #    showSchoolSearchResults(response)
 
         # gelocate call error
         showGEOError = (e) ->
@@ -78,11 +73,15 @@ angular.module 'ahaLuminateApp'
         #  $scope.getLocation()
         
         $scope.filterByLocation = ->
-          $scope.schoolList.ng_nameFilter = ''
-          $scope.schoolList.searchPending = true
-          $scope.schoolList.searchSubmitted = true
-          $scope.schoolList.searchByLocation = true
-          getLocation()
+          nameFilter = jQuery.trim $scope.schoolList.ng_nameFilter
+          $scope.schoolList.nameFilter = nameFilter
+          if not nameFilter
+            $scope.schoolList.searchErrorMessage = 'Please specify a search criteria before initiating a search.'
+          else
+            $scope.schoolList.searchPending = true
+            $scope.schoolList.searchSubmitted = true
+            $scope.schoolList.searchByLocation = true
+            getLocation()
         
         #get school data with getSchoolDataNew service call
         $scope.getSchoolSearchResultsNew = ->
