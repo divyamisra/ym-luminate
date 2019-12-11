@@ -1,0 +1,130 @@
+body.myevents-page{
+  main {
+    background: #eeeeee url(/images/content/pagebuilder/BGImage2x.jpg) no-repeat 5% center;
+    background-size: auto 100%;
+    .content {
+      margin:0 auto;
+    }
+  }
+  input#login {
+    min-width: 190px;
+    height: 60px;
+    padding: 0 20px;
+    line-height: 60px;
+    font-size: 24px !important;
+    font-weight: 400;
+    background: #d01d20;
+    text-decoration: none;
+    border-radius: 60px 60px 60px 60px;
+    background-clip: padding-box;
+    color: #fff;
+    border: none;
+    font-family: LubDubMedium,Helvetica,Arial,sans-serif !important;
+    margin-right: 10px;
+    margin-top:10px;
+  }
+	
+  .myevents-container {
+    padding:20px;
+    background:#fff;
+  	font-size: 14px;
+	  a {
+	     font-size: 14px;
+	  }
+    table.lc_Table {
+       border:none;
+    }
+    td.lc_Cell {
+       border:none;
+    }
+    tr.lc_Row1 {
+       background: none;
+    }
+  }
+}
+
+.heart-page-container--login,
+body.myevents-page .Generalmain > .container {
+  padding: 20px 20px 72px;
+  
+  @media (min-width: $screen-md-min) {
+    padding: 80px 20px;
+  }
+}
+
+.heart-panel--login {
+  margin: 0;
+  
+  > .panel-heading {
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+    text-align: center;
+    padding: 32px 28px 0 28px;
+    
+    @media (min-width: $screen-sm-min) {
+      padding: 42px 48px 0 48px;
+    }
+  }
+  
+  .panel-title {
+    font-size: 28px;
+    text-align:left;
+  }
+  
+  > .panel-body {
+    padding: 15px 28px 20px;
+    
+    @media (min-width: $screen-sm-min) {
+      padding: 15px 48px 28px;
+    }
+    
+    .alert {
+      font-size: 16px;
+      padding: 15px 25px;
+      
+      @media (min-width: $screen-sm-min) {
+        padding: 15px 30px;
+      }
+    }
+    
+    form {
+      .form-group {
+        margin: 0 0 8px;
+      }
+      
+      .checkbox, 
+      .radio {
+        margin: 8px 0;
+      }
+      
+      .form-control {
+        height: 60px;
+        padding: 6px 10px;
+        
+        @media (min-width: $screen-sm-min) {
+          padding: 6px 15px;
+        }
+      }
+    }
+  }
+  
+  > .panel-footer {
+    text-align: center;
+    padding: 32px 28px;
+    
+    @media (min-width: $screen-sm-min) {
+      padding: 32px 48px 48px;
+    }
+    
+    .btn {
+      margin: 10px 0 0;
+    }
+  }
+}
+
+.heart-login-forgot-password {
+  font-size: 12px;
+  text-align: center;
+  margin: 8px 0 0;
+}
