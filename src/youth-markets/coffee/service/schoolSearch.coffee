@@ -23,6 +23,7 @@ angular.module 'ahaLuminateApp'
         $scope.schoolListByState = {}
         $scope.schoolDataMap = {}
         $scope.schoolDataMapByState = {}
+        $scope.searchError = false;
         
         #
         # New Geo Locate code for KHC
@@ -68,7 +69,8 @@ angular.module 'ahaLuminateApp'
         # if getLoc is passed as true
         # ask for geolocation and load all schools within 10 miles of geolocation
         if getLoc is true
-          $scope.getLocation()
+           $scope.schoolList.geoLocationEnabled = true
+        #  $scope.getLocation()
         
         $scope.filterByLocation = ->
           $scope.schoolList.ng_nameFilter = ''
@@ -198,9 +200,8 @@ angular.module 'ahaLuminateApp'
           $scope.schoolList.nameFilter = nameFilter
           #$scope.schoolList.stateFilter = ''
           $scope.schoolList.searchSubmitted = true
-          # if not nameFilter or nameFilter.length < 3
-          if false
-            $scope.schoolList.searchErrorMessage = 'Please enter at least 3 characters to search for.'
+          if not nameFilter
+            $scope.schoolList.searchErrorMessage = 'Please specify a search criteria before initiating a search.'
           else
             delete $scope.schoolList.searchErrorMessage
             $scope.getSchoolSearchResults()
