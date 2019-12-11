@@ -1,6 +1,179 @@
 [[U0:eventLocationMapLink=[[T9:[[E130:"[[E47:[[S334:fr_id]]:fr_info:1:map_link]]" dup 0 swap "|" indexof substring]]]]]]
 [[?xMyEventsx::x[[S334:pagename]]x::
-   [[S51:reus_general_header]]
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<link rel="stylesheet" href="../heartwalk/css/heartwalk-overrides.css">
+<script src="../heartwalk/js/heartwalk-overrides.js"></script>
+<div id="headerWrapper">
+  <div class="container mobile-header d-sm-none d-lg-block">
+    <div class="row">
+      [[?xx::x[[S1:cons_id]]x::
+        <div class="loggedout ml-auto">
+          <div class="button"> 
+            <a href="https://[[S29:SECURE_DOMAIN]][[S29:SECURE_PATH]]UserLogin?NEXTURL=[[T1:[[S8]]]]">Login</a>
+          </div>
+        </div>
+      ::
+        <div class="loggedin ml-auto">
+          <span class="partname">Welcome, [[S1:first_name]]!</span>
+            <div class="button">
+              <a href="ConsProfileUser?dispMode=edit">My Profile</a>
+            </div>
+            <div class="button">
+              <a href="SPageServer?pagename=MyEvents">My Events</a>
+            </div>            
+            
+          <div class="button">
+            [[?xheartwalk_participant_centerx::x[[S334:pagename]]x::
+              <a href="UserLogin?logout=&amp;NEXTURL=[[T1:TR?fr_id=[[S80:trID]]]]">Logout</a>
+            ::
+              <a href="UserLogin?logout=&amp;NEXTURL=[[T1:[[S8]]]]">Logout</a>
+            ]]
+          </div>
+        </div>
+      ]]
+    </div>
+    <div class="row">
+            <a href="http://www.heart.org"><img alt="American Heart Association. Life is Why" class="ahalogo-noborder" src="../images/content/pagebuilder/NEW_Heart_Torch_May_18_152.png"></a>    
+      [[?xxnullx::x[[S80:trID]]x::::
+        [[?
+          [[?xx::x[[S1:cons_id]]x::::
+            [[E48:[[S80:trID]]:if-has-participant-center]]
+          ]]
+        ::TRUE::
+          <div class="col-sm-6"> 
+          </div>
+          <div class="col-sm-6">
+            <div class="additionalHeaderLinks">
+              <div class="col-sm-3 text-center">
+                [[?xheartwalk_participant_centerx::x[[S334:pagename]]x::
+                  <a href="[[S8]]#/dashboard">
+                    My<br>
+                    Dashboard
+                  </a>
+                ::
+                  <a href="TRC?fr_id=[[S80:trID]]">
+                    My<br>
+                    Dashboard
+                  </a>
+                ]]
+              </div>
+              <div class="col-sm-3 text-center">
+                [[?xheartwalk_participant_centerx::x[[S334:pagename]]x::
+                  <a href="[[S8]]#/tools">
+                    Fundraising<br>
+                    Tools
+                  </a>
+                ::
+                  <a href="TRC?fr_id=[[S80:trID]]#/tools">
+                    Fundraising<br>
+                    Tools
+                  </a>
+                ]]
+              </div>
+              <div class="col-sm-3 text-center">
+                [[?xheartwalk_participant_centerx::x[[S334:pagename]]x::
+                  <a href="[[S8]]#/email/compose">
+                    Send<br>
+                    Email
+                  </a>
+                ::
+                  <a href="TRC?fr_id=[[S80:trID]]&amp;pg=mtype">
+                    Send<br>
+                    Email
+                  </a>
+                ]]
+              </div>
+              <div class="col-sm-3 text-center">
+                [[?xTRUEx::x[[E48:[[S80:trID]]-[[S1:cons_id]]:if-is-captain]]x::
+                  <div class="dropdown">
+                    <a data-toggle="dropdown">
+                      Edit My<br>
+                      Pages 
+                      <span class="glyphicon glyphicon-triangle-bottom"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                      <li>
+                        <a href="TR?fr_id=[[S80:trID]]&amp;pg=personal&amp;px=[[S1:cons_id]]">My Personal Page</a>
+                      </li>
+                      <li>
+                        <a href="TR?fr_id=[[S80:trID]]&amp;pg=team&amp;team_id=[[E48:[[S80:trID]]-[[S1:cons_id]]:team-id]]">My Team Page</a>
+                      </li>
+                    </ul>
+                  </div>
+                ::
+                  <a href="TR?fr_id=[[S80:trID]]&amp;pg=personal&amp;px=[[S1:cons_id]]">
+                    Edit My<br>
+                    Page
+                  </a>
+                ]]
+              </div>
+            </div>
+          </div>
+        ::
+          <div class="col-sm-6 col-md-8"> 
+            <a href="http://www.heart.org"><img alt="American Heart Association." class="ahalogo-noborder" src="../images/content/pagebuilder/NEW_Heart_Torch_May_18_152.png"></a> 
+          </div>
+          <div class="col-sm-6 col-md-4">
+            <div class="additionalHeaderLinks">
+              <div class="col-sm-4 text-center">
+                <a href="TR?fr_id=[[S80:trID]]">
+                  Home
+                  <div>for your Heart Walk</div>
+                </a>
+              </div>
+              <div class="col-sm-4 text-center">
+                <a href="SPageServer?pagename=heartwalk_register&amp;fr_id=[[S80:trID]]">
+                  Register
+                  <div>to join Heart Walk</div>
+                </a>
+              </div>
+              <div class="col-sm-4 text-center">
+                <a href="TR?fr_id=[[S80:trID]]&amp;pg=pfind">
+                  Donate
+                  <div>to a Participant</div>
+                </a>
+              </div>
+            </div>
+          </div>
+        ]]
+      ]]
+    </div>
+  </div>
+  <div class="container aha-mobile-header d-lg-none">
+    <div class="row"></div>
+    <div class="row">
+      <div class="col-xs-8 mr-auto">
+        <img alt="American Heart Association. Life is Why" class="ahalogo-noborder" src="../images/content/pagebuilder/NEW_Heart_Torch_May_18_152.png"> 
+      </div>
+      <div class=" col-xs-4">
+        <div class="btn-group ml-auto navbar">
+          <button type="button" class="btn btn-lg navbar-toggler" data-toggle="collapse" data-target="#navbar" style="background: none; font-size: 35px;"><span class="fa fa-align-justify" style="color: #C82933;"></span></button>
+          <ul class="collapse navbar-collapse" id="navbar" role="menu">
+            [[?xx::x[[S1:cons_id]]x::
+              <li class="nav-item">
+                <a class="nav-link" href="https://[[S29:SECURE_DOMAIN]][[S29:SECURE_PATH]]UserLogin?NEXTURL=[[T1:[[S8]]]]">Login</a>
+              </li>
+            ::
+              <li class="nav-item">
+                  <a class="nav-link" href="UserLogin?logout=&amp;NEXTURL=[[T1:[[S8]]]]">Logout</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="ConsProfileUser?dispMode=edit">My Profile</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="SPageServer?pagename=MyEvents">My Events</a>
+              </li>                  
+            ]]
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 ::
 <header aria-label="American Heart Site">
     <!-- NAVIGATION -->
