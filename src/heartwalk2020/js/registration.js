@@ -1194,7 +1194,10 @@
 		                    '<span id="optin_label"><strong>Mobile Opt in:</strong> By checking the box, I consent to receive up to 1 - 2 text messages per week from AHA  supporting my Heart Walk efforts at the mobile number above. Selecting text option is not required for my participation. Message and data rates may apply. I can Reply STOP at any time to opt out.</span>' +
 		                '</label>' +
 		             '</div>';
-	    $('#cons_info_component_container').append(optinHTML);
+	    // only add mobile opt in option if grou pid exists on body tag
+            if ($('body').data("group-id") != undefined) {
+		    $('#cons_info_component_container').append(optinHTML);
+	    }
 
   	    var optinName = $('.input-label:contains(Mobile Phone)').closest('.input-container').find('input').attr("name");
 	    var rules = {};
@@ -1395,7 +1398,7 @@
             $('.reg-summary-event-info').prepend($('#additionalRegDetails'));
 
     	    //save off mobile opt option
-            if (localStorage.mobile_optin == "on" && $('body').data("group-id") != undefined) {
+            if (localStorage.mobile_optin == "on") {
                 luminateExtend.api({
                     api: 'cons',
                     useHTTPS: true,
