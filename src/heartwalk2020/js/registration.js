@@ -1395,7 +1395,7 @@
             $('.reg-summary-event-info').prepend($('#additionalRegDetails'));
 
     	    //save off mobile opt option
-            if (localStorage.mobile_optin == "on") {
+            if (localStorage.mobile_optin == "on" && $('body').data("group-id") != undefined) {
                 luminateExtend.api({
                     api: 'cons',
                     useHTTPS: true,
