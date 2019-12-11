@@ -31,19 +31,22 @@ angular.module 'ahaLuminateApp'
           SchoolLookupService.getStateByLocation e,
             failure: (response) ->
             success: (response) ->
+              delete $scope.schoolList.schools
               nameFilter = jQuery.trim $scope.schoolList.ng_nameFilter
               $scope.schoolList.nameFilter = nameFilter
-              $scope.schoolList.stateFilter = response.data.company.schoolData.state
-              delete $scope.schoolList.schools
-              $scope.schoolList.searchPending = true
-              $scope.schoolList.searchSubmitted = true
-              $scope.schoolList.searchByLocation = true
-              $scope.schoolList.geoLocationEnabled = true
-              $scope.getSchoolSearchResults(true)
-              #SchoolLookupService.getGeoSchoolData e,
-              #  failure: (response) ->
-              #  success: (response) ->
-              #    showSchoolSearchResults(response)
+              if not nameFilter
+                $scope.schoolList.searchErrorMessage = 'Please specify a search criteria before initiating a search.'
+              else
+                $scope.schoolList.stateFilter = response.data.company.schoolData.state
+                $scope.schoolList.searchPending = true
+                $scope.schoolList.searchSubmitted = true
+                $scope.schoolList.searchByLocation = true
+                $scope.schoolList.geoLocationEnabled = true
+                $scope.getSchoolSearchResults(true)
+                #SchoolLookupService.getGeoSchoolData e,
+                #  failure: (response) ->
+                #  success: (response) ->
+                #    showSchoolSearchResults(response)
 
         # gelocate call error
         showGEOError = (e) ->
