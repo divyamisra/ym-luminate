@@ -163,12 +163,12 @@ angular.module 'ahaLuminateApp'
 
         # ask or retrieve current lat/long
         $scope.getLocationAlt = ->
+          $scope.schoolList.searchSubmitted = true
           nameFilter = jQuery.trim $scope.schoolList.ng_nameFilter
           $scope.schoolList.nameFilter = nameFilter
           if not nameFilter
             $scope.schoolList.searchErrorMessage = 'Please specify a search criteria before initiating a search.'
           else
-            $scope.schoolList.searchSubmitted = true
             $scope.schoolList.searchPending = true
             $scope.schoolList.searchByLocation = true
             e = 
