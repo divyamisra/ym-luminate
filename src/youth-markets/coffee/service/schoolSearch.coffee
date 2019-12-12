@@ -31,8 +31,8 @@ angular.module 'ahaLuminateApp'
           SchoolLookupService.getStateByLocation e,
             failure: (response) ->
             success: (response) ->
-              $scope.schoolList.stateFilter = response.data.company.schoolData.state
               delete $scope.schoolList.schools
+              $scope.schoolList.stateFilter = response.data.company.schoolData.state
               $scope.schoolList.searchPending = true
               $scope.schoolList.searchSubmitted = true
               $scope.schoolList.searchByLocation = true
@@ -73,11 +73,16 @@ angular.module 'ahaLuminateApp'
         #  $scope.getLocation()
         
         $scope.filterByLocation = ->
-          $scope.schoolList.ng_nameFilter = ''
-          $scope.schoolList.searchPending = true
-          $scope.schoolList.searchSubmitted = true
-          $scope.schoolList.searchByLocation = true
-          getLocation()
+          nameFilter = jQuery.trim $scope.schoolList.ng_nameFilter
+          $scope.schoolList.nameFilter = nameFilter
+          if not nameFilter
+            $scope.schoolList.searchErrorMessage = 'Please specify a search criteria before initiating a search.'
+          else
+            delete $scope.schoolList.searchErrorMessage
+            $scope.schoolList.searchPending = true
+            $scope.schoolList.searchSubmitted = true
+            $scope.schoolList.searchByLocation = true
+            getLocation()
         
         #get school data with getSchoolDataNew service call
         $scope.getSchoolSearchResultsNew = ->
@@ -160,14 +165,20 @@ angular.module 'ahaLuminateApp'
         # ask or retrieve current lat/long
         $scope.getLocationAlt = ->
           $scope.schoolList.searchSubmitted = true
-          $scope.schoolList.searchPending = true
-          $scope.schoolList.searchByLocation = true
-          e = 
-            enableHighAccuracy: !0
-            timeout: 1e4
-            maximumAge: 'infinity'
-          if navigator.geolocation then navigator.geolocation.getCurrentPosition(filterGeoSchoolData, showGEOError, e) else console.log('Geolocation is not supported by this browser.')
-          return
+          nameFilter = jQuery.trim $scope.schoolList.ng_nameFilter
+          $scope.schoolList.nameFilter = nameFilter
+          if not nameFilter
+            $scope.schoolList.searchErrorMessage = 'Please specify a search criteria before initiating a search.'
+          else
+            delete $scope.schoolList.searchErrorMessage
+            $scope.schoolList.searchPending = true
+            $scope.schoolList.searchByLocation = true
+            e = 
+              enableHighAccuracy: !0
+              timeout: 1e4
+              maximumAge: 'infinity'
+            if navigator.geolocation then navigator.geolocation.getCurrentPosition(filterGeoSchoolData, showGEOError, e) else console.log('Geolocation is not supported by this browser.')
+            return
 
         SchoolLookupService.getSchoolData()
           .then (response) ->
