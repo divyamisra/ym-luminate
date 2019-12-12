@@ -78,6 +78,7 @@ angular.module 'ahaLuminateApp'
           if not nameFilter
             $scope.schoolList.searchErrorMessage = 'Please specify a search criteria before initiating a search.'
           else
+            delete $scope.schoolList.searchErrorMessage
             $scope.schoolList.searchPending = true
             $scope.schoolList.searchSubmitted = true
             $scope.schoolList.searchByLocation = true
@@ -169,6 +170,7 @@ angular.module 'ahaLuminateApp'
           if not nameFilter
             $scope.schoolList.searchErrorMessage = 'Please specify a search criteria before initiating a search.'
           else
+            delete $scope.schoolList.searchErrorMessage
             $scope.schoolList.searchPending = true
             $scope.schoolList.searchByLocation = true
             e = 
