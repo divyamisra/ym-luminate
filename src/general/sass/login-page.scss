@@ -1,8 +1,68 @@
-.heart-page-container--login {
+body.login-page,
+body.myevents-page{
+  .Generalmain {
+    background: #eeeeee url(/images/content/pagebuilder/BGImage2x.jpg) no-repeat 5% center;
+    background-size: auto 100%;
+  }
+  input#login,
+  button.btn-primary {
+    min-width: 190px;
+    height: 60px;
+    padding: 0 20px;
+    line-height: 60px;
+    font-size: 24px;
+    font-weight: 400;
+    background: #d01d20;
+    text-decoration: none;
+    border-radius: 60px 60px 60px 60px;
+    background-clip: padding-box;
+    color: #fff;
+    border: none;
+    font-family: LubDubMedium,Helvetica,Arial,sans-serif !important;
+    margin-right: 10px;
+  }
+  input#login { 
+    font-size:18px !important;
+    margin-top:10px;
+  }
+  .form-group label.sr-only {
+    position: relative;
+    font-size: 14px;
+    margin: 5px 0;
+    display: block;
+    width: auto;
+    height: auto;
+    color: #000;
+    clip-path: none;
+  }
+  input[type="text"], 
+  input[type="password"] {
+	  width: 100%;
+  }
+	
+  .myevents-container {
+	font-size: 14px;
+	a {
+	   font-size: 14px;
+	}
+	table.lc_Table {
+	   border:none;
+	}
+	td.lc_Cell {
+	   border:none;
+	}
+        tr.lc_Row1 {
+	   background: none;
+	}
+  }
+}
+
+.heart-page-container--login,
+body.myevents-page .Generalmain > .container {
   padding: 20px 20px 72px;
   
   @media (min-width: $screen-md-min) {
-    padding: 80px 20px 48px;
+    padding: 80px 20px;
   }
 }
 
@@ -22,14 +82,15 @@
   }
   
   .panel-title {
-    font-size: inherit;
+    font-size: 28px;
+    text-align:left;
   }
   
   > .panel-body {
-    padding: 32px 28px 20px;
+    padding: 15px 28px 20px;
     
     @media (min-width: $screen-sm-min) {
-      padding: 32px 48px 28px;
+      padding: 15px 48px 28px;
     }
     
     .alert {
@@ -53,10 +114,10 @@
       
       .form-control {
         height: 60px;
-        padding: 6px 25px;
+        padding: 6px 10px;
         
         @media (min-width: $screen-sm-min) {
-          padding: 6px 30px;
+          padding: 6px 15px;
         }
       }
     }
