@@ -417,7 +417,7 @@
             $("#ProcessForm").submit(function(e) {
                 //e.preventDefault();
                 if ($('#cover_fee_radio_Yes').is(':checked')) {
-                    $('#additional_amountname').val(getDonationAmount() * 0.029 + .30);
+                    $('#additional_amountname').val(parseFloat((getDonationAmount() * 0.029 + .30).toFixed(2)));
                 } else {
                     $('#additional_amountname').val(0);
                 }
