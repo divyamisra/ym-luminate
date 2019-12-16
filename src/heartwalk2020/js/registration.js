@@ -1215,7 +1215,17 @@
 	    $('button#previous_step').after('<a href="javascript:window.history.go(-1)" class="step-button previous-step backBtnReg">Back</a>').hide();
 
 	    jQuery('form').validate({
-		focusInvalid: true,
+		focusInvalid: false,
+		invalidHandler: function(form, validator) {
+
+			if (!validator.numberOfInvalids())
+				return;
+
+			$('html, body').animate({
+				scrollTop: $(validator.errorList[0].element).offset().top
+			}, 500);
+
+		},
                 rules: rules,
                 messages: messages,
                 errorPlacement: function(error, element) {
