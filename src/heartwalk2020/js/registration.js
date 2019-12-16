@@ -1215,6 +1215,7 @@
 	    $('button#previous_step').after('<a href="javascript:window.history.go(-1)" class="step-button previous-step backBtnReg">Back</a>').hide();
 
 	    jQuery('form').validate({
+		focusInvalid: true,
                 rules: rules,
                 messages: messages,
                 errorPlacement: function(error, element) {
