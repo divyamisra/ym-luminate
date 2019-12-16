@@ -819,6 +819,10 @@ div.registration-page-container div#reg_options_cons_info_extension.sub-section-
 .cons-info-question-container {
     float: left;
 }
+.app_tr_registration .cons-full-address-container .cons-info-question-container {
+	max-width: 100%;
+	float: none !important;
+}
 .survivor_yes_no li.input-container {
   float: left;
   margin-right: 25px;
