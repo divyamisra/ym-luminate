@@ -1323,7 +1323,7 @@
 
         $('.cons-address-street-full-container').hide();
         $('#cons_city').parent().parent().parent().parent().hide();
-        $('#cons_state').parent().parent().parent().parent().hide();
+        $('#cons_state').closest('.cons-full-address-container').hide();
         $('#cons_info_country_container').hide();
 
 
