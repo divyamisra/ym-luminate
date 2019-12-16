@@ -1183,10 +1183,12 @@
 	    
 	    $('input.required').each(function(){
 		    var label = $(this).closest('.input-container').find('.input-label').html();
-		    if (label == "First" || label == "Last") {
-			    label = label + " Name";
+		    if (label != undefined) {
+			    if (label == "First" || label == "Last") {
+				    label = label + " Name";
+			    }
+			    $(this).attr("title",label.replace(":","") + " is required");
 		    }
-		    $(this).attr("title",label.replace(":","") + " is required");
 	    });
 
 	    //Add mobile opt in check box
