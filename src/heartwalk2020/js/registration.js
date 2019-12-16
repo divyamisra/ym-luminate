@@ -1180,7 +1180,8 @@
 
 	    $('label:contains("t-shirt")').closest('.input-container').find('select').addClass("tshirtSize");
 	    $('span.field-required').closest('.form-content').find('input, select').addClass("required");		
-	    
+	    $('input:contains("I accept").addClass("acceptRelease");
+		
 	    $('input.required').each(function(){
 		    var label = $(this).closest('.input-container').find('.input-label').html();
 		    if (label != undefined) {
@@ -1241,11 +1242,15 @@
 			if ($(element).hasClass("survivorq")) {
 				$('fieldset.survivor_yes_no').after(error);
 			} else {
-				var placement = $(element).data('error');
-				if (placement) {
-					$(placement).append(error)
+				if ($(element).hasClass("acceptRelease")) {
+					$('.acceptRelease').after(error);
 				} else {
-					error.insertAfter(element);
+					var placement = $(element).data('error');
+					if (placement) {
+						$(placement).append(error)
+					} else {
+						error.insertAfter(element);
+					}
 				}
 			}
                 }
