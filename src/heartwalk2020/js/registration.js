@@ -1448,7 +1448,9 @@
 		});
 		$('select.required').each(function(){
 		    var label = $(this).closest('.form-content').find('label span.label-text').html();
-		    $(this).attr("title",label.replace(":","") + " is required");
+		    if (label != undefined) {
+		    	$(this).attr("title",label.replace(":","") + " is required");
+		    }
 		});
 
 		//hide back button and use link instead
