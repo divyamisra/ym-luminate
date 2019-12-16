@@ -759,7 +759,6 @@ div.registration-page-container div.sub-section-header {
     background-color: #ffffff;
 }
 .cons-info-question-container.cons-full-name-container.field-required,
-.app_tr_registration .survey-question-container,
 .app_tr_registration .cons-info-question-container {
 	float: left;
 }
@@ -812,16 +811,22 @@ div#cons_info_component_container div#personal_info_section_one, div#cons_info_c
 div.registration-page-container div#reg_options_cons_info_extension.sub-section-container {
     clear: both;
 }
-.cons-info-question-container.cons-address-street-full-container {
+/*.cons-info-question-container.cons-address-street-full-container {
     float: left;
     margin-right: 15px;
-}
-.cons-info-question-container {
+}*/
+/*.cons-info-question-container {
     float: left;
-}
+}*/
 .app_tr_registration .cons-full-address-container .cons-info-question-container {
 	max-width: 100%;
 	float: none !important;
+}
+#contact_info_section_one,
+#personal_info_section_one,
+#personal_info_section_two {
+	display:flex;
+	flex-wrap: wrap;
 }
 .survivor_yes_no li.input-container {
   float: left;
