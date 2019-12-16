@@ -1177,8 +1177,10 @@
 	    if ($(".consZip span.field-required").length === 0) {
 	    	$('label[for="cons_zip_code"]').parent().before('<span class="field-required"></span>');
    	    }
-	    $('span.field-required').next('span').find('input').addClass("required");
 
+	    $('label:contains("t-shirt")').closest('.input-container').find('select').addClass("tshirtSize");
+	    $('span.field-required').closest('.form-content').find('input, select').addClass("required");		
+	    
 	    $('input.required').each(function(){
 		    var label = $(this).closest('.input-container').find('.input-label').html();
 		    if (label == "First" || label == "Last") {
@@ -1200,31 +1202,36 @@
 	    }
 
   	    var optinName = $('.input-label:contains(Mobile Phone)').closest('.input-container').find('input').attr("name");
+	    var tshirtName = $('.input-label:contains("t-shirt")').closest('.input-container').find('select').attr("name");
 	    var rules = {};
 	    rules['cons_password'] = {required: true,minlength: 5};
 	    rules['cons_rep_password'] = {required: true,minlength: 5,equalTo: "#cons_password"};
 	    rules[optinName] = {required: '#mobile_optin:checked',minlength: 2};
+	    rules[tshirtName] = {valueNotEquals: 'NOREPLY'};
 	    var messages = {};
 	    messages['cons_password'] = {minlength: "Please enter 5 characters or more",required: "Please enter a password"};
 	    messages['cons_rep_password'] = {required: "Please confirm your password",minlength: "Please enter 5 characters or more",equalTo: "Passwords do not match. Please re-enter password."};
 	    messages[optinName] = {required: "Mobile Opt in is selected.<br/>Please enter a mobile number."};
+	    messages[tshirtName] = {required: "Please select a t-shirt size."};
 
 	    $('button.previous-step').attr("formnovalidate","true");
 
 	    //hide back button and turn into link
 	    $('button#previous_step').after('<a href="javascript:window.history.go(-1)" class="step-button previous-step backBtnReg">Back</a>').hide();
 
+   	    $.validator.addMethod("valueNotEquals", function(value, element, arg){
+		return arg !== value;
+	    }, "Please select a t-shirt size");
+		
 	    jQuery('form').validate({
 		focusInvalid: false,
 		invalidHandler: function(form, validator) {
-
 			if (!validator.numberOfInvalids())
 				return;
 
 			$('html, body').animate({
 				scrollTop: $(validator.errorList[0].element).offset().top
 			}, 500);
-
 		},
                 rules: rules,
                 messages: messages,
