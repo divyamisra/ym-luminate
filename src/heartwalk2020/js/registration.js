@@ -1180,7 +1180,7 @@
 
 	    $('label:contains("t-shirt")').closest('.input-container').find('select').addClass("tshirtSize");
 	    $('span.field-required').closest('.form-content').find('input, select').addClass("required");		
-	    $('input:contains("I accept")').addClass("acceptRelease");
+	    $('input[value^="I accept"]').addClass("acceptRelease");
 		
 	    $('input.required').each(function(){
 		    var label = $(this).closest('.input-container').find('.input-label').html();
