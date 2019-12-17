@@ -1243,7 +1243,7 @@
 				$('fieldset.survivor_yes_no').after(error);
 			} else {
 				if ($(element).hasClass("acceptRelease")) {
-					$('.acceptRelease').after(error);
+					$('.acceptRelease').closest('.input-container').append(error);
 				} else {
 					var placement = $(element).data('error');
 					if (placement) {
