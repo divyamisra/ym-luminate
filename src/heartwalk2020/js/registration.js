@@ -1114,7 +1114,16 @@
 	    $('button#previous_step').after('<a href="javascript:window.history.go(-1)" class="step-button previous-step backBtnReg">Back</a>').hide();
 
             $('form').validate({
-                errorPlacement: function(error, element) {
+		focusInvalid: false,
+		invalidHandler: function(form, validator) {
+			if (!validator.numberOfInvalids())
+				return;
+
+			$('html, body').animate({
+				scrollTop: $(validator.errorList[0].element).offset().top
+			}, 500);
+		},
+		errorPlacement: function(error, element) {
 			if ($(element).attr("name") == "fr_part_radio") {
 				$('#part_type_selection_container').append(error).css({"display":"block","text-align":"left"});
 			} else {
