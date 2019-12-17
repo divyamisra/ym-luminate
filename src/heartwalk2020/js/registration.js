@@ -710,7 +710,7 @@
                     $('#team_find_new_team_attributes').addClass('no-companies');
                     $('#team_find_new_team_name, #team_find_new_fundraising_goal').addClass('col-md-6');
                 } else {
-                    $('#team_find_new_company_selection_container').append("<span class='hint-text hidden-xs'>If your team is a part of a company, please select the company above. If your company name does not appear, you can skip this step. Can't find your company? Contact your local staff to get your company set up today!</span>");
+                    $('#team_find_new_company_selection_container').append("<span class='hint-text hidden-xs'>If your team is a part of a company, please select the company above. If your company name does not appear, you can skip this step. Can't find your company? <strong>Contact your local staff</strong> to get your company set up today!</span>");
                 }
             } else if (regType === 'joinTeam') {
                 if ($('#team_find_existing').length > 0) {
@@ -1114,7 +1114,16 @@
 	    $('button#previous_step').after('<a href="javascript:window.history.go(-1)" class="step-button previous-step backBtnReg">Back</a>').hide();
 
             $('form').validate({
-                errorPlacement: function(error, element) {
+		focusInvalid: false,
+		invalidHandler: function(form, validator) {
+			if (!validator.numberOfInvalids())
+				return;
+
+			$('html, body').animate({
+				scrollTop: $(validator.errorList[0].element).offset().top
+			}, 500);
+		},
+		errorPlacement: function(error, element) {
 			if ($(element).attr("name") == "fr_part_radio") {
 				$('#part_type_selection_container').append(error).css({"display":"block","text-align":"left"});
 			} else {
