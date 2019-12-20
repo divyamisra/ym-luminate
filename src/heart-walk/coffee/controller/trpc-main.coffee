@@ -58,8 +58,10 @@ angular.module 'trPcControllers'
                   else
                     $rootScope.facebookFundraiserLoginStatus = 'complete'
                     $rootScope.facebookFundraiserCreateStatus = 'pending'
-                    TeamraiserParticipantPageService.getPersonalPageInfo()
-                      .then (response) ->
+                    TeamraiserParticipantPageService.getPersonalPageInfo
+                      error: ->
+                        $rootScope.facebookFundraiserCreateStatus = 'create_fundraiser_error'
+                      success: (response) ->
                         getPersonalPageResponse = response.data.getPersonalPageResponse
                         if not getPersonalPageResponse
                           $rootScope.facebookFundraiserCreateStatus = 'create_fundraiser_error'
