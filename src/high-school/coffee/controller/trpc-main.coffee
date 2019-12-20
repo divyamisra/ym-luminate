@@ -7,8 +7,9 @@ angular.module 'trPcControllers'
     'APP_INFO'
     'TeamraiserParticipantPageService'
     'NgPcTeamraiserEventService'
+    'RichTextService'
     'FacebookFundraiserService'
-    ($rootScope, $scope, $location, $timeout, APP_INFO, TeamraiserParticipantPageService, NgPcTeamraiserEventService, FacebookFundraiserService) ->
+    ($rootScope, $scope, $location, $timeout, APP_INFO, TeamraiserParticipantPageService, NgPcTeamraiserEventService, RichTextService, FacebookFundraiserService) ->
       $rootScope.$location = $location
       $rootScope.baseUrl = $location.absUrl().split('#')[0]
       
