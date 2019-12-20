@@ -1106,7 +1106,7 @@
             $('#part_type_individual_company_selection_container .input-container').prepend("<span class='hint-text'>Choose your company below. If your company does not show up, you can skip this step.</span>");
 
             /* setup form validation - additional donation amount must be >= $25 */
-            $('input[name^=donation_level_form_input]').addClass("validDonation").attr("title","Donations of all amounts are greatly appreciated. Online donations have a $25 minimum.");
+            $('input[name^=donation_level_form_input]').addClass("validDonation").attr("title","Online donations have a $25 minimum.");
 
             $('input[name=fr_part_radio]').addClass("required").attr("title","Participation type is required");
 
