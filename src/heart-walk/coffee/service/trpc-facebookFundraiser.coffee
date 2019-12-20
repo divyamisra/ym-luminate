@@ -1,4 +1,4 @@
-angular.module 'trApp'
+angular.module 'trPcApp'
   .factory 'FacebookFundraiserService', [
     '$rootScope'
     'LuminateRESTService'
