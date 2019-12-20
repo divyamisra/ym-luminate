@@ -682,7 +682,59 @@
                     localStorage.companySelect = "";
                 }
             });
-            $('button.next-step').click(function(){
+
+            $('form').validate({
+		focusInvalid: false,
+		invalidHandler: function(form, validator) {
+			if (!validator.numberOfInvalids())
+				return;
+
+			$('html, body').animate({
+				scrollTop: $(validator.errorList[0].element).offset().top
+			}, 500);
+		},
+		errorPlacement: function(error, element) {
+			if ($(element).attr("name") == "fr_part_radio") {
+				$('#part_type_selection_container').append(error).css({"display":"block","text-align":"left"});
+			} else {
+				if ($(element).attr("name").indexOf("donation_level_form_input") > -1) {
+					$('.enterAmt-other').after(error);
+				} else {
+					var placement = $(element).data('error');
+					if (placement) {
+						$(placement).append(error)
+					} else {
+						error.insertAfter(element);
+					}
+				}
+			}
+                }
+            });
+            $.validator.addMethod("validGoal",function(value, element) {
+                    value = parseInt(value.replace("$","").replace(",",""));
+                    if ($('input[name^=fr_team_goal]') && value < 1) {
+                        return false;
+                    } else {
+                        return true;
+                    }
+                }, "The team goal should be greater than $0."
+            );
+	
+	    $('input#fr_team_goal').addClass("validGoal required");
+	    $('span.field-required').closest('.form-content').find('input, select').addClass("required");	
+		
+	    $('input.required').each(function(){
+		    var label = $(this).closest('.input-container').find('.input-label').html();
+		    if (label != undefined) {
+			    if (label.indexOf("Team Fundraising Goal") > -1) {
+				    $(this).attr("title","The team goal should be greater than $0.");
+			    } else {
+				    $(this).attr("title",label.replace(":","") + " is required");
+			    }
+		    }
+	    });
+		
+	    $('button.next-step').click(function(){
                 if ($('select[name=fr_co_list]').length) {
                     if ($('select[name=fr_co_list] option:selected').text().indexOf("AT&T") > -1) {
                         console.log("found AT&T 6");
@@ -693,10 +745,14 @@
                     }
                 }
                 //store off personal goal in sess var by adding to action url
-                $('form[name=FriendraiserFind').prepend('<input type="hidden" id="teamCaptainSessionVar" name="s_teamCaptain" value="">');
-                $('form[name=FriendraiserFind').prepend('<input type="hidden" id="teamNameSessionVar" name="s_teamName" value="' + $('input#fr_team_name').val() + '">');
-                $('form[name=FriendraiserFind').prepend('<input type="hidden" id="teamGoalSessionVar" name="s_teamGoal" value="' + $('input#fr_team_goal').val() + '">');
-                return true;
+                $('form[name=FriendraiserFind]').prepend('<input type="hidden" id="teamCaptainSessionVar" name="s_teamCaptain" value="">');
+                $('form[name=FriendraiserFind]').prepend('<input type="hidden" id="teamNameSessionVar" name="s_teamName" value="' + $('input#fr_team_name').val() + '">');
+                $('form[name=FriendraiserFind]').prepend('<input type="hidden" id="teamGoalSessionVar" name="s_teamGoal" value="' + $('input#fr_team_goal').val() + '">');
+		if ($('form[name=FriendraiserFind]').valid()) {
+	                return true;
+		} else {
+			return false;
+		}
             });
 
             if (regType === 'startTeam') {
@@ -994,9 +1050,9 @@
 
             var numTeamResults = $('#team_find_search_results_container .list-component-row').length;
 
-            if (numTeamResults < 20) {
-                $('.list-component-paginator').hide();
-            }
+            //if (numTeamResults < 20) {
+            //    $('.list-component-paginator').hide();
+            //}
 
             //$('#friend_potion_next')
             //    .wrap('<div class="order-1 order-sm-2 col-sm-4 offset-md-6 col-md-3 col-8 offset-2 mb-3"/>');
@@ -1005,7 +1061,8 @@
             //    .prepend('<div class="order-2 order-sm-1 col-sm-4 col-md-3 col-8 offset-2 offset-sm-0"><a href="TRR/?pg=tfind&amp;fr_id=' + evID + '" class="button btn-secondary btn-block">Back</a></div>')
 
             // Add minimum validation to LOs team goal input
-            $(loTeamGoal)
+            /*
+	    $(loTeamGoal)
                 .val(2500)
                 .wrap('<div class="input-group" />')
                 .before('<div class="input-group-prepend"><div class="input-group-text py-0 px-1 border-right-0 bg-white">$</div></div>')
@@ -1046,14 +1103,14 @@
                 // add parsley validation to the form AFTER all of the elements have been moved around/created. Since minimum team goal is being set by the bikes step, we really shouldn't validate this until we update that min attribute and the user clicks 'next'
                 $('#team_find_page > form').parsley(teamFindParsleyConfig);
             });
-
+            */
             // if team name submission fails, show system default error messages instead of going back to the bike number selector
-            if ($('.ErrorMessage').length > 0) {
-                $('.js__team-bikes-container').attr('hidden', true);
-                $('form[name=FriendraiserFind]').removeAttr('hidden');
-            }
+            //if ($('.ErrorMessage').length > 0) {
+            //    $('.js__team-bikes-container').attr('hidden', true);
+            //    $('form[name=FriendraiserFind]').removeAttr('hidden');
+            //}
 
-            $('#team_find_page > form').parsley(teamFindParsleyConfig);
+            //$('#team_find_page > form').parsley(teamFindParsleyConfig);
 
             // append session variable setting hidden input to track number of bikes selected so same value can be automatically selected in reg info step
             //$('form[name="FriendraiserFind"]').prepend('<input type="hidden" class="js__numbikes" name="s_numBikes" value="">');
