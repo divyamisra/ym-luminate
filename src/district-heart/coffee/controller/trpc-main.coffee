@@ -65,7 +65,7 @@ angular.module 'trPcControllers'
                       error: ->
                         $rootScope.facebookFundraiserCreateStatus = 'create_fundraiser_error'
                       success: (response) ->
-                        getPersonalPageResponse = response.data.getPersonalPageResponse
+                        getPersonalPageResponse = response.getPersonalPageResponse
                         if not getPersonalPageResponse
                           $rootScope.facebookFundraiserCreateStatus = 'create_fundraiser_error'
                           toggleFacebookFundraiserStatus()
