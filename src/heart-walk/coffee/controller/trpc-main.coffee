@@ -5,8 +5,10 @@ angular.module 'trPcControllers'
     '$location'
     '$timeout'
     'LocaleService'
+    'TeamraiserParticipantPageService'
+    'TeamraiserConfigService'
     'FacebookFundraiserService'
-    ($rootScope, $scope, $location, $timeout, LocaleService, FacebookFundraiserService) ->
+    ($rootScope, $scope, $location, $timeout, LocaleService, TeamraiserParticipantPageService, TeamraiserConfigService, FacebookFundraiserService) ->
       $rootScope.$location = $location
       
       $rootScope.baseUrl = $location.absUrl().split('#')[0]
@@ -55,27 +57,40 @@ angular.module 'trPcControllers'
                     $rootScope.facebookFundraiserLoginStatus = 'declined_manage_fundraisers'
                   else
                     $rootScope.facebookFundraiserLoginStatus = 'complete'
-                    $rootScope.facebookFundraiserUserId = facebookUserId
-                    $rootScope.facebookFundraiserAccessToken = accessToken
                     $rootScope.facebookFundraiserCreateStatus = 'pending'
-                    fundraiserName = 'Help Keep Hearts Beating'
-                    FacebookFundraiserService.createFundraiser fundraiserName
+                    TeamraiserParticipantPageService.getPersonalPageInfo()
                       .then (response) ->
-                        facebookFundraiserId = if response.data.error?.code is '105' then response.data.error.debug?.fundraiserId else response.data.fundraiser?.id
-                        if not facebookFundraiserId
+                        getPersonalPageResponse = response.data.getPersonalPageResponse
+                        if not getPersonalPageResponse
                           $rootScope.facebookFundraiserCreateStatus = 'create_fundraiser_error'
                         else
-                          $rootScope.facebookFundraiserCreateStatus = 'complete'
-                          $rootScope.facebookFundraiserId = facebookFundraiserId
-                          $rootScope.facebookFundraiserUrl =
-                            url: 'https://www.facebook.com/donate/' + $rootScope.facebookFundraiserId + '/'
-                          FacebookFundraiserService.syncDonations()
-                          $rootScope.facebookFundraiserConfirmedStatus = 'confirmed'
-                          $timeout ->
-                            if jQuery('.js--facebook-fundraiser-completed-section').length > 0
-                              jQuery('html, body').animate
-                                scrollTop: jQuery('.js--facebook-fundraiser-completed-section').offset().top - 150
-                              , 250
+                          TeamraiserConfigService.getTeamraiserConfig()
+                            .then (response) ->
+                              getTeamraiserConfigResponse = response.data.getTeamraiserConfigResponse
+                              if not getTeamraiserConfigResponse?.teamraiserConfig
+                                $rootScope.facebookFundraiserCreateStatus = 'create_fundraiser_error'
+                              else
+                                personalPage = getPersonalPageResponse.personalPage
+                                fundraiserName = getTeamraiserConfigResponse.teamraiserConfig.facebookDefaultTitle or ''
+                                fundraiserDescription = getTeamraiserConfigResponse.teamraiserConfig.facebookDefaultDescription or ''
+                                if personalPage?.richText
+                                  fundraiserDescription = RichTextService.richTextToPlainText personalPage.richText
+                                FacebookFundraiserService.createFundraiser 'user_access_token=' + accessToken + '&name=' + fundraiserName + '&description=' + fundraiserDescription
+                                  .then (response) ->
+                                    facebookFundraiserId = response.data.createAndLinkFacebookFundraiserResponse?.fundraiserId
+                                    if not facebookFundraiserId
+                                      $rootScope.facebookFundraiserCreateStatus = 'create_fundraiser_error'
+                                    else
+                                      $rootScope.facebookFundraiserCreateStatus = 'complete'
+                                      $rootScope.facebookFundraiserId = facebookFundraiserId
+                                      $rootScope.facebookFundraiserUrl =
+                                        url: 'https://www.facebook.com/donate/' + $rootScope.facebookFundraiserId + '/'
+                                      $rootScope.facebookFundraiserConfirmedStatus = 'confirmed'
+                                      $timeout ->
+                                        if jQuery('.js--facebook-fundraiser-completed-section').length > 0
+                                          jQuery('html, body').animate
+                                            scrollTop: jQuery('.js--facebook-fundraiser-completed-section').offset().top - 150
+                                          , 250
                   toggleFacebookFundraiserStatus()
           , scope: 'manage_fundraisers'
   ]
