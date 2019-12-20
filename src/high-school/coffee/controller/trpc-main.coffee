@@ -6,9 +6,9 @@ angular.module 'trPcControllers'
     '$timeout'
     'APP_INFO'
     'TeamraiserParticipantPageService'
-    'TeamraiserConfigService'
+    'NgPcTeamraiserEventService'
     'FacebookFundraiserService'
-    ($rootScope, $scope, $location, $timeout, APP_INFO, TeamraiserParticipantPageService, TeamraiserConfigService, FacebookFundraiserService) ->
+    ($rootScope, $scope, $location, $timeout, APP_INFO, TeamraiserParticipantPageService, NgPcTeamraiserEventService, FacebookFundraiserService) ->
       $rootScope.$location = $location
       $rootScope.baseUrl = $location.absUrl().split('#')[0]
       
@@ -64,7 +64,7 @@ angular.module 'trPcControllers'
                           $rootScope.facebookFundraiserCreateStatus = 'create_fundraiser_error'
                           toggleFacebookFundraiserStatus()
                         else
-                          TeamraiserConfigService.getTeamraiserConfig()
+                          NgPcTeamraiserEventService.getConfig()
                             .then (response) ->
                               getTeamraiserConfigResponse = response.data.getTeamraiserConfigResponse
                               if not getTeamraiserConfigResponse?.teamraiserConfig
