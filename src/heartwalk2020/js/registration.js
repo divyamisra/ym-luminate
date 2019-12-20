@@ -726,10 +726,11 @@
 	    $('input.required').each(function(){
 		    var label = $(this).closest('.input-container').find('.input-label').html();
 		    if (label != undefined) {
-			    if (label == "First" || label == "Last") {
-				    label = label + " Name";
+			    if (label.indexOf("Team Fundraising Goal") > -1) {
+				    $(this).attr("title","The team goal should be greater than $0.");
+			    } else {
+				    $(this).attr("title",label.replace(":","") + " is required");
 			    }
-			    $(this).attr("title",label.replace(":","") + " is required");
 		    }
 	    });
 		
