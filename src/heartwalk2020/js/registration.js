@@ -720,7 +720,18 @@
                 }, "The team goal should be greater than $0."
             );
 	
-	    $('input#fr_team_goal').addClass("validGoal");
+	    $('input#fr_team_goal').addClass("validGoal required");
+	    $('span.field-required').closest('.form-content').find('input, select').addClass("required");	
+		
+	    $('input.required').each(function(){
+		    var label = $(this).closest('.input-container').find('.input-label').html();
+		    if (label != undefined) {
+			    if (label == "First" || label == "Last") {
+				    label = label + " Name";
+			    }
+			    $(this).attr("title",label.replace(":","") + " is required");
+		    }
+	    });
 		
 	    $('button.next-step').click(function(){
                 if ($('select[name=fr_co_list]').length) {
