@@ -1065,7 +1065,7 @@
                 $(joinTeamLink).attr('href', updatedJoinTeamLink);
             }
 
-            $('#team_find_new_fundraising_goal_input_hint').text('You can increase your team\'s goal, but the amount shown above is your team\'s required fundraising minimum.');
+            $('#team_find_new_fundraising_goal_input_hint').text('You can increase your team\'s goal, but the amount shown below is your team\'s suggested fundraising minimum.');
             $('#previous_step span').text('Back');
         }
         // END TFIND
