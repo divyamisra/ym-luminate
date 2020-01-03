@@ -6,6 +6,17 @@ body.myevents-page{
        background:transparent;
     }
   }
+  .currEventNotFound {
+    background: #495057;
+    padding: 20px;
+    color: #fff;
+    font-size: 1.2rem;
+	  
+    .btn {
+       display:block;
+       font-size:1.2rem;
+    }
+  }
   input#login {
     min-width: 190px;
     height: 60px;
