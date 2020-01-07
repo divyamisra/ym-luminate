@@ -39,6 +39,9 @@ body.myevents-page{
 	
   .myevents-container {
     padding: 40px;
+    @media (max-width:767px) {
+      padding-top:25px;
+    }
     background: #fff;
     margin: 0 auto;
     box-shadow: 3px 4px 4px #ccc;
