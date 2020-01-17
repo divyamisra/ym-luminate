@@ -1575,7 +1575,7 @@
 
         $('.survey-question-container legend span:contains("Privacy Policy")').parent().parent().addClass('privacyCheck');
         $('.privacyCheck legend').addClass('aural-only');
-        $('.privacyCheck label').html('<span class="field-required"></span> I agree to the <a id="privacyPopLink" href="javascript:void(0)" onclick="window.open(\'DocServer/Donation_Page_159454_2019.04.30_TOS.pdf\',\'_blank\',\'location=yes,height=570,width=520,scrollbars=yes,status=yes\');">Terms and Conditions (PDF) and Privacy Policy</a>.');
+        $('.privacyCheck label').html('<span class="field-required"></span> I agree to the <a href="javascript:void(0)" onclick="window.open(\'DocServer/Donation_Page_159454_2019.04.30_TOS.pdf\',\'_blank\',\'location=yes,height=570,width=520,scrollbars=yes,status=yes\');">Terms and Conditions (PDF)</a> and <a href="javascript:void(0)" onclick="window.open(\'https://www.heart.org/en/about-us/statements-and-policies/privacy-statement\',\'_blank\',\'location=yes,height=570,width=520,scrollbars=yes,status=yes\');">Privacy Policy</a>.');
 	$('.privacyCheck input[type="checkbox"]').attr("aria-required","true");
 	    
 	$('.survey-question-container legend span:contains("Healthy for good signup")').parent().parent().addClass('healthyCheck');
