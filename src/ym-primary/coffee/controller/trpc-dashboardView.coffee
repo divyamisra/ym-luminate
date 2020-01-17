@@ -57,7 +57,14 @@ angular.module 'trPcControllers'
         $scope.dashboardProgressType = 'company'
       $scope.toggleProgressType = (progressType) ->
         $scope.dashboardProgressType = progressType
-      
+
+      if $scope.participantRegistration.companyInformation?.isCompanyCoordinator is 'true'
+        BoundlessService.checkOOTDashboard $scope.consId
+        .then (response) ->
+          $scope.hasOOTDashboard = response.data.coordinatorHasDashboard
+        , (response) ->
+          # TODO
+        
       $scope.refreshFundraisingProgress = ->
         fundraisingProgressPromise = NgPcTeamraiserProgressService.getProgress()
           .then (response) ->
