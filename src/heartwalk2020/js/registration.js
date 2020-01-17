@@ -1247,6 +1247,7 @@
 	    $('label:contains("t-shirt")').closest('.input-container').find('select').addClass("tshirtSize");
 	    $('span.field-required').closest('.form-content').find('input, select').addClass("required");		
 	    $('input[value^="I accept"]').addClass("acceptRelease");
+	    $('input[value^="I agree to the Terms and Conditions"]').addClass("acceptPrivacy");
 		
 	    $('input.required').each(function(){
 		    var label = $(this).closest('.input-container').find('.input-label').html();
@@ -1311,11 +1312,15 @@
 				if ($(element).hasClass("acceptRelease")) {
 					$('.acceptRelease').closest('.input-container').append(error);
 				} else {
-					var placement = $(element).data('error');
-					if (placement) {
-						$(placement).append(error)
+					if ($(element).hasClass("acceptPrivacy")) {
+						$('.acceptPrivacy').closest('.input-container').append(error);
 					} else {
-						error.insertAfter(element);
+						var placement = $(element).data('error');
+						if (placement) {
+							$(placement).append(error)
+						} else {
+							error.insertAfter(element);
+						}
 					}
 				}
 			}
@@ -1567,7 +1572,13 @@
         $('.waiverCheck legend').addClass('aural-only');
         $('.waiverCheck label').html('<span class="field-required"></span> I accept and acknowledge that I have read and understand this Heart Walk <a id="waiverPopLink" href="#">Release with Publicity Consent</a> and agree to them voluntarily.');
 	$('.waiverCheck input[type="checkbox"]').attr("aria-required","true");
-        $('.survey-question-container legend span:contains("Healthy for good signup")').parent().parent().addClass('healthyCheck');
+
+        $('.survey-question-container legend span:contains("Privacy Policy")').parent().parent().addClass('privacyCheck');
+        $('.privacyCheck legend').addClass('aural-only');
+        $('.privacyCheck label').html('<span class="field-required"></span> I agree to the <a id="privacyPopLink" href="javascript:void(0)" onclick="window.open(\'DocServer/Donation_Page_159454_2019.04.30_TOS.pdf?docID=2623\',\'_blank\',\'location=yes,height=570,width=520,scrollbars=yes,status=yes\');">Terms and Conditions (PDF) and Privacy Policy</a>.');
+	$('.privacyCheck input[type="checkbox"]').attr("aria-required","true");
+	    
+	$('.survey-question-container legend span:contains("Healthy for good signup")').parent().parent().addClass('healthyCheck');
         $('.healthyCheck legend').addClass('aural-only');
 
         $('#waiverPopLink').click(function(e) {
@@ -1575,6 +1586,7 @@
             $('#overlayWaiver, #lightboxWiaver').fadeIn(400);
 	    $('.lightboxWiaverClose').focus();
         });
+
         $('.healthyCheck label').text('Yes, sign me up for sharable tips, videos and hacks so I can be Healthy For Good.');
         $('#responsive_payment_typecc_numbername').attr('maxlength', '16');
 
