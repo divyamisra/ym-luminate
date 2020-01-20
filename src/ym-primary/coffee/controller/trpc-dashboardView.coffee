@@ -61,7 +61,7 @@ angular.module 'trPcControllers'
       if $scope.participantRegistration.companyInformation?.isCompanyCoordinator is 'true'
         BoundlessService.checkOOTDashboard $scope.consId
         .then (response) ->
-          $scope.hasOOTDashboard = response.data.coordinatorHasDashboard
+          $rootScope.hasOOTDashboard = response.data.coordinatorHasDashboard
         , (response) ->
           # TODO
         
