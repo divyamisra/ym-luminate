@@ -1,7 +1,10 @@
 body.myevents-page{
   main {
-    background: #eeeeee url(/images/content/pagebuilder/BGImage2x.jpg) no-repeat 5% center;
-    background-size: auto 100%;
+    background-color: #eee;
+    background-image: url(/images/content/pagebuilder/BGImage2x.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: 0 140px;
     > .container {
        background:transparent;
     }
