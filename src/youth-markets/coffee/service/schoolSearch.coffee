@@ -357,7 +357,7 @@ angular.module 'ahaLuminateApp'
                 $scope.orderSchools $scope.schoolList.sortProp, true
                 if nameFilter isnt 'zz'
                   # filter off zz schools
-                  schools = $filter('filter')(schools, ((value) -> value.SCHOOL_NAME.toLowercase().indexOf('zz') > 0), false)
+                  schools = $filter('filter')(schools, ((value) -> value.SCHOOL_NAME.toLowerCase().indexOf('zz') > 0), false)
                   $scope.schoolList.schools = schools
                   $scope.schoolList.totalItems = schools.length
                   $scope.schoolList.totalNumberResults = schools.length
