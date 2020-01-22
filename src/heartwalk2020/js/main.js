@@ -95,6 +95,22 @@
     var searchType = getURLParameter(currentUrl, 'search_type');
     var isCrossEventSearch = getURLParameter(currentUrl, 'cross_event');
 
+    var skipLink = document.getElementById('skip-main');
+    
+    skipLink.addEventListener('click', function(e) {
+      e.preventDefault();
+      document.getElementById('pcBodyContainer').scrollIntoView();
+    });
+
+    if ($('body').is('.pg_HeartWalk_HQ')) {
+      $('.js__skip-to').on('click', function(e){
+        e.preventDefault();
+        $('html, body').animate({
+               scrollTop: $('#pcBodyContainer').offset().top
+          }, 500);
+      });
+    }
+
     var addScrollLinks = function () {
       $('a.scroll-link')
         .on('click', function (event) {

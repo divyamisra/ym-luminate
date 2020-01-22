@@ -34,6 +34,7 @@ body.myevents-page{
     height: auto;
     color: #000;
     clip-path: none;
+    white-space: initial;
   }
   input[type="text"], 
   input[type="password"] {
@@ -67,8 +68,14 @@ body.myevents-page .Generalmain > .container {
 }
 
 .heart-panel--login {
-  margin: 0;
-  
+  background: #fff;
+  margin: 0 auto;
+  -webkit-box-shadow: 3px 4px 4px #ccc;
+  box-shadow: 3px 4px 4px #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+  font-family: LubDubMedium,Helvetica,Arial,sans-serif;
+
   > .panel-heading {
     background: transparent;
     border: 0;
@@ -84,6 +91,7 @@ body.myevents-page .Generalmain > .container {
   .panel-title {
     font-size: 28px;
     text-align:left;
+    font-weight: bold;
   }
   
   > .panel-body {
@@ -121,6 +129,14 @@ body.myevents-page .Generalmain > .container {
         }
       }
     }
+	  
+    .heart-login-forgot-password a {
+      text-decoration: none;
+    }
+    .heart-login-forgot-password a i {
+      font-size: 1.2em;
+    }
+	  
   }
   
   > .panel-footer {
