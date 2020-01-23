@@ -264,6 +264,9 @@ img {
     .achievements {
       svg {
         width: 100%;
+        max-width: 70px;
+        display: block;
+        margin: 0 auto;
       }
     }
   }
