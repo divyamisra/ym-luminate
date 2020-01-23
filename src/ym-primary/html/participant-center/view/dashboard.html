@@ -875,7 +875,10 @@
             <p>
               Check out the reports page to see which students have completed challenges and who has earned donations.
             </p>
-            <div class="ym-activity-box-cta">
+            <p style="color:#c10e21" ng-show="!hasOOTDashboard" ng-scope>
+              Manage your event tool is not currently available. Please try again later.
+            </p>
+            <div class="ym-activity-box-cta" ng-show="hasOOTDashboard" ng-scope>
               <a class="btn btn-md-wide btn-primary" ng-href="https://khc.staging.ootqa.org/coordinator/login/{{authToken}}/{{sessionCookie}}" target="_blank" ng-if="tablePrefix == 'heartdev'" ng-cloak>
                 <strong>View Reports</strong>
               </a>
