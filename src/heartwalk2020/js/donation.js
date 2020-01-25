@@ -51,9 +51,9 @@
 	    }
         }
 	//check last entry to see if active
-	$('.donation-level-user-entered').hide();
+	$('.donation-level-user-entered-new').hide();
 	if($('.enterAmt.active').hasClass('level'+x)) {
-	       $('.donation-level-user-entered').show();
+	       $('.donation-level-user-entered-new').show();
         }
 
 	document.cookie="level="+level;
@@ -103,7 +103,8 @@
 	    $('h2:contains(Matching)').hide();
     }
     //$('#matching_gift_section').insertAfter('.form-donation-level');
-    $('.donation-level-user-entered input').attr("placeholder","Amount").after("<div class='other-amt-note'><em>$25 minimum donation</em></div>");
+    $('.donation-level-user-entered').addClass("donation-level-user-entered-new").removeClass("donation-level-user-entered");
+    $('.donation-level-user-entered-new input').attr("placeholder","Amount").after("<div class='other-amt-note'><em>$25 minimum donation</em></div>");
 
     /*$('#show_employer_match_check').click(function(){
         $('#matching_gift_section').slideToggle();
@@ -398,7 +399,7 @@
                   $('button#pstep_finish').html("Donate $" + initAmt);
                }
             });
-            $('.donation-level-user-entered input').blur(function() {
+            $('.donation-level-user-entered-new input').blur(function() {
                if ($("#cover_fee_radio_Yes").is(':checked')) {
                   var initAmt = parseFloat(getDonationAmount());
                   var toDonate =  initAmt + parseFloat((getDonationAmount() * 0.029 + .30).toFixed(2));
