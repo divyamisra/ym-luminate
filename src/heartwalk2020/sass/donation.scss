@@ -230,7 +230,7 @@ div.responsive select, select[size] {
      background: #ffffff;
      background-color: #ffffff;
 }
-div.responsive .donation-level-user-entered input[type="text"] {
+div.responsive .donation-level-user-entered-new input[type="text"] {
 	margin: 0 0 0 15px;
 	max-width: 90px;
 }
@@ -474,7 +474,7 @@ div.donation-level-container.active,
 div.donation-level-container:hover {
      background-color: #000000;
 }
- label + div.donation-level-user-entered {
+ label + div.donation-level-user-entered-new {
      margin-left: 0px;
      margin-top: 0px;
      display:none;
