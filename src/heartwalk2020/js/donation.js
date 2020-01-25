@@ -3,7 +3,8 @@
   $(document).ready(function () {
 	  
     //add ie11 class to body for specific styling
-    if (!!window.MSInputMethodContext && !!document.documentMode) {
+    var ie11 = false;
+    if (ie11 = !!window.MSInputMethodContext && !!document.documentMode) {
 	    $('body').addClass("ie11");
     }
     
@@ -56,12 +57,15 @@
 	       break;
 	    }
         }
-	//check last entry to see if active
-	$('.donation-level-user-entered').hide();
-	if($('.enterAmt.active').hasClass('level'+x)) {
-	       $('.donation-level-user-entered').show();
-        }
-
+	
+	if (!ie11) {
+		//check last entry to see if active
+		$('.donation-level-user-entered').hide();
+		if($('.enterAmt.active').hasClass('level'+x)) {
+		       $('.donation-level-user-entered').show();
+		}
+	}
+	    
 	document.cookie="level="+level;
         //var amt = $(this).find('.donation-level-amount-container').text();
         //$('.donateSubmit').text('Donate '+amt);
