@@ -1,7 +1,14 @@
 'use strict';
 (function ($) {
   $(document).ready(function () {
-  // Heart Walk 2020 Donation JS
+	  
+    //add ie11 class to body for specific styling
+    var ie11 = false;
+    if (ie11 = !!window.MSInputMethodContext && !!document.documentMode) {
+	    $('body').addClass("ie11");
+    }
+    
+    // Heart Walk 2020 Donation JS
     //Donation Levels
     // var amountLevel = readCookie('level');
     var amountLevel = null;
@@ -50,12 +57,15 @@
 	       break;
 	    }
         }
-	//check last entry to see if active
-	$('.donation-level-user-entered').hide();
-	if($('.enterAmt.active').hasClass('level'+x)) {
-	       $('.donation-level-user-entered').show();
-        }
-
+	
+	if (!ie11) {
+		//check last entry to see if active
+		$('.donation-level-user-entered').hide();
+		if($('.enterAmt.active').hasClass('level'+x)) {
+		       $('.donation-level-user-entered').show();
+		}
+	}
+	    
 	document.cookie="level="+level;
         //var amt = $(this).find('.donation-level-amount-container').text();
         //$('.donateSubmit').text('Donate '+amt);
