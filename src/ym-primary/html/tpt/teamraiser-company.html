@@ -49,12 +49,12 @@
             Our event date is <strong>{{eventDate | date:'MM/dd/yyyy'}}</strong>
           </p>
         </div>
-        <div class="ym-progress__date" ng-if="moneyDueDate && moneyDueDate != '' && moneyDueDate != 'User Provided No Response'" ng-cloak>
+        <div class="ym-progress__moneydue" ng-if="moneyDueDate && moneyDueDate != '' && moneyDueDate != 'User Provided No Response'" ng-cloak>
           <p>
             Our money due date is <strong>{{moneyDueDate | date:'MM/dd/yyyy'}}</strong>
           </p>
         </div>
-        <div class="ym-progress__date" ng-if="schoolStudentGoal && schoolStudentGoal != '' && schoolStudentGoal != 'User Provided No Response'" ng-cloak>
+        <div class="ym-progress__studentgoal" ng-if="schoolStudentGoal && schoolStudentGoal != '' && schoolStudentGoal != 'User Provided No Response'" ng-cloak>
           <p>
             School Student Goal is <strong>{{schoolStudentGoal}}</strong>
           </p>
