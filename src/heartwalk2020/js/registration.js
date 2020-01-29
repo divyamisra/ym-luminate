@@ -1340,7 +1340,7 @@
 
             $('input#cons_user_name').addClass("uncheck");
             $('input#cons_password').addClass("pwcheck");
-	    $('.input-label:contains(Mobile Phone)').closest('label').next('input').addClass("phonecheck");
+	    //$('.input-label:contains(Mobile Phone)').closest('label').next('input').addClass("phonecheck");
 
             //remove label causing acc issues
             $('.cons-zip-label, .cons-full-name-label, .cons-email-label').remove();
