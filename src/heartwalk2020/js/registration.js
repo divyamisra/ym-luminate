@@ -1269,6 +1269,13 @@
 	    // only add mobile opt in option if grou pid exists on body tag
             if ($('body').data("group-id") != undefined) {
 		    $('#cons_info_component_container').append(optinHTML);
+		    $('#mobile_optin').click(function(){
+			    if ($(this).is(":checked")) {
+			    	    $('.input-label:contains(Mobile Phone)').closest('label').next('input').addClass("phonecheck");
+			    } else {
+				    $('.input-label:contains(Mobile Phone)').closest('label').next('input').removeClass("phonecheck");
+			    }
+		    });
 	    }
 
   	    var optinName = $('.input-label:contains(Mobile Phone)').closest('.input-container').find('input').attr("name");
@@ -1340,7 +1347,6 @@
 
             $('input#cons_user_name').addClass("uncheck");
             $('input#cons_password').addClass("pwcheck");
-	    //$('.input-label:contains(Mobile Phone)').closest('label').next('input').addClass("phonecheck");
 
             //remove label causing acc issues
             $('.cons-zip-label, .cons-full-name-label, .cons-email-label').remove();
