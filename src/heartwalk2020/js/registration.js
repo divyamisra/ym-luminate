@@ -1334,8 +1334,13 @@
                return /^[A-Za-z0-9\d=!\-+#\(\)\/$%@,;:=?\[\]^`{|~}._*]*$/.test(value) // consists of only these
             },"Oops. Looks like you are using a character we don't recognize. Valid characters are letters, numbers, and the following symbols: !#$%()*+,-./:;=?@[\]^_`{|}~");
 
+            $.validator.addMethod("phonecheck", function(value) {
+               return /^(((\+1)|1)?(| ))((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,3})|(\(?\d{2,3}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$/.test(value) // consists of only these
+            },"Invalid phone number");
+
             $('input#cons_user_name').addClass("uncheck");
             $('input#cons_password').addClass("pwcheck");
+	    //$('.input-label:contains(Mobile Phone)').closest('label').next('input').addClass("phonecheck");
 
             //remove label causing acc issues
             $('.cons-zip-label, .cons-full-name-label, .cons-email-label').remove();
