@@ -333,7 +333,7 @@ angular.module 'ahaLuminateApp'
           companies = []
           TeamraiserCompanyService.getCompanies 'event_type=' + encodeURIComponent(eventType) + '&company_name=' + encodeURIComponent(nameFilter) + '&list_sort_column=company_name&list_page_size=500', (response) ->
             if response.getCompaniesResponse?.company
-              if response.getCompaniesResponse.totalNumberResults is '1'
+              if response.getCompaniesResponse?.totalNumberResults is '1'
                 companies.push response.getCompaniesResponse.company
               else
                 companies = response.getCompaniesResponse.company
@@ -357,7 +357,7 @@ angular.module 'ahaLuminateApp'
                 $scope.orderSchools $scope.schoolList.sortProp, true
                 if nameFilter isnt 'zz'
                   # filter off zz schools
-                  schools = $filter('filter')(schools, { SCHOOL_NAME: '!ZZ' }, false)
+                  schools = $filter('filter')(schools, ((value) -> value.SCHOOL_NAME.toLowerCase().indexOf('zz') isnt 0), false)
                   $scope.schoolList.schools = schools
                   $scope.schoolList.totalItems = schools.length
                   $scope.schoolList.totalNumberResults = schools.length

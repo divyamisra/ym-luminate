@@ -245,6 +245,9 @@ div.responsive .donation-level-user-entered input[type="text"] {
 	font-style: italic;
 	font-size: 0.8em;
 	text-align:center;
+	color: #000000;
+}
+.active .other-amt-note {
 	color: #ffffff;
 }
 
@@ -478,6 +481,11 @@ div.donation-level-container:hover {
      margin-left: 0px;
      margin-top: 0px;
      display:none;
+}
+body.ie11 label + div.donation-level-user-entered {
+     margin-left: 0px;
+     margin-top: 0px;
+     display:block !important;
 }
 /*div.responsive .donation-levels .enterAmt .donation-level-input-container > label {
 	display: none;

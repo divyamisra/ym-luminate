@@ -58,6 +58,13 @@ angular.module 'trPcControllers'
       $scope.toggleProgressType = (progressType) ->
         $scope.dashboardProgressType = progressType
 
+      if $scope.participantRegistration.companyInformation?.isCompanyCoordinator is 'true'
+        BoundlessService.checkOOTDashboard $scope.consId
+        .then (response) ->
+          $rootScope.hasOOTDashboard = response.data.coordinatorHasDashboard
+        , (response) ->
+          # TODO
+
       $scope.refreshFundraisingProgress = ->
         fundraisingProgressPromise = NgPcTeamraiserProgressService.getProgress()
           .then (response) ->
@@ -433,26 +440,6 @@ angular.module 'trPcControllers'
           $scope.dashboardPromises.push updateTeamUrlPromise
 
       if $scope.participantRegistration.companyInformation and $scope.participantRegistration.companyInformation.companyId and $scope.participantRegistration.companyInformation.companyId isnt -1 and $scope.participantRegistration.companyInformation?.isCompanyCoordinator is 'true'
-        $scope.getCompanyShortcut = ->
-          getCompanyShortcutPromise = NgPcTeamraiserShortcutURLService.getCompanyShortcut()
-            .then (response) ->
-              if response.data.errorResponse
-                # TODO
-              else
-                shortcutItem = response.data.getCompanyShortcutResponse?.shortcutItem
-                if not shortcutItem
-                  # TODO
-                else
-                  if shortcutItem.prefix
-                    shortcutItem.prefix = shortcutItem.prefix
-                  $scope.companyShortcut = shortcutItem
-                  if shortcutItem.url
-                    $scope.companyPageUrl = shortcutItem.url
-                  else
-                    $scope.companyPageUrl = shortcutItem.defaultUrl.split('/site/')[0] + '/site/TR?fr_id=' + $scope.frId + '&pg=company&company_id=' + $scope.participantRegistration.companyInformation.companyId
-              response
-          $scope.dashboardPromises.push getCompanyShortcutPromise
-        $scope.getCompanyShortcut()
 
         $scope.companyUrlInfo = {}
 
