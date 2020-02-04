@@ -719,10 +719,10 @@
                     }
                 }, "The team goal should be greater than $0."
             );
-	
+
 	    $('input#fr_team_goal').addClass("validGoal required");
-	    $('span.field-required').closest('.form-content').find('input, select').addClass("required");	
-		
+	    $('span.field-required').closest('.form-content').find('input, select').addClass("required");
+
 	    $('input.required').each(function(){
 		    var label = $(this).closest('.input-container').find('.input-label').html();
 		    if (label != undefined) {
@@ -733,7 +733,7 @@
 			    }
 		    }
 	    });
-		
+
 	    $('button.next-step').click(function(){
                 if ($('select[name=fr_co_list]').length) {
                     if ($('select[name=fr_co_list] option:selected').text().indexOf("AT&T") > -1) {
@@ -1245,10 +1245,10 @@
    	    }
 
 	    $('label:contains("t-shirt")').closest('.input-container').find('select').addClass("tshirtSize");
-	    $('span.field-required').closest('.form-content').find('input, select').addClass("required");		
+	    $('span.field-required').closest('.form-content').find('input, select').addClass("required");
 	    $('input[value^="I accept"]').addClass("acceptRelease");
 	    $('input[value^="I agree to the Terms and Conditions"]').addClass("acceptPrivacy");
-		
+
 	    $('input.required').each(function(){
 		    var label = $(this).closest('.input-container').find('.input-label').html();
 		    if (label != undefined) {
@@ -1299,7 +1299,7 @@
    	    $.validator.addMethod("valueNotEquals", function(value, element, arg){
 		return arg !== value;
 	    }, "Please select a t-shirt size");
-		
+
 	    jQuery('form').validate({
 		focusInvalid: false,
 		invalidHandler: function(form, validator) {
@@ -1587,7 +1587,7 @@
         $('.privacyCheck legend').addClass('aural-only');
         $('.privacyCheck label').html('<span class="field-required"></span> I agree to the <a href="javascript:void(0)" onclick="window.open(\'DocServer/HeartWalk2019_163605_TOS_texting_2019.11.19.pdf\',\'_blank\',\'location=yes,height=570,width=520,scrollbars=yes,status=yes\');">Terms and Conditions (PDF)</a> and <a href="javascript:void(0)" onclick="window.open(\'https://www.heart.org/en/about-us/statements-and-policies/privacy-statement\',\'_blank\',\'location=yes,height=570,width=520,scrollbars=yes,status=yes\');">Privacy Policy</a>.');
 	$('.privacyCheck input[type="checkbox"]').attr("aria-required","true");
-	    
+
 	$('.survey-question-container legend span:contains("Healthy for good signup")').parent().parent().addClass('healthyCheck');
         $('.healthyCheck legend').addClass('aural-only');
 
@@ -1779,6 +1779,13 @@
         jQuery("a:contains('Join as Individual')").click(function(){
             _gaq.push(['t2._trackEvent', 'Register Landing', 'click', 'Join as Indiv']);
         });
+        jQuery(".regMobilePhone input").blur(function() {
+            _gaq.push(['t2._trackEvent', 'provide details', 'click', 'mobile number']);
+        });
+        jQuery("#mobile_optin").click(function(){
+            _gaq.push(['t2._trackEvent', 'provide details', 'click', 'mobile opt in']);
+        });
+
 
         var radioValue = '';
         $('.survivor_yes_no input').change(function() {
