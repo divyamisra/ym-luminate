@@ -334,6 +334,12 @@
             _gaq.push(['t2._trackEvent', 'payment', 'click', 'transaction fees no']);
         }
     });
+    jQuery(".thankYouShare a:contains('Share on Facebook')").click(function(){
+        _gaq.push(['t2._trackEvent', 'donor ty page', 'click', 'facebook share']);
+    });
+    jQuery(".thankYouShare a:contains('Share on Twitter')").click(function(){
+        _gaq.push(['t2._trackEvent', 'donor ty page', 'click', 'twitter share']);
+    });
 
     // donation form year label
     jQuery('label[for="responsive_payment_typecc_exp_date_YEAR"] span').removeClass('aural-only').text('and Year');
