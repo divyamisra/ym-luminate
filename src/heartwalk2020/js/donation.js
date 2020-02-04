@@ -1,13 +1,13 @@
 'use strict';
 (function ($) {
   $(document).ready(function () {
-	  
+
     //add ie11 class to body for specific styling
     var ie11 = false;
     if (ie11 = !!window.MSInputMethodContext && !!document.documentMode) {
 	    $('body').addClass("ie11");
     }
-    
+
     // Heart Walk 2020 Donation JS
     //Donation Levels
     // var amountLevel = readCookie('level');
@@ -57,7 +57,7 @@
 	       break;
 	    }
         }
-	
+
 	if (!ie11) {
 		//check last entry to see if active
 		$('.donation-level-user-entered').hide();
@@ -65,7 +65,7 @@
 		       $('.donation-level-user-entered').show();
 		}
 	}
-	    
+
 	document.cookie="level="+level;
         //var amt = $(this).find('.donation-level-amount-container').text();
         //$('.donateSubmit').text('Donate '+amt);
@@ -98,7 +98,7 @@
 	   break;
         }
     }
-	  
+
     $('.donateSubmit').click(function(){
         $('#pstep_finish').click();
     });
@@ -145,7 +145,7 @@
 		    $(this).closest('.payment-type-option').click();
 	    }
     });
-	  
+
     $('.level5 .donation-level-label-input-container').addClass('aural-only');
 
 /**** impact statement randomizer *****/
@@ -192,7 +192,7 @@
 
     $('#responsive_payment_typepay_typeradiopaypal').attr('tabindex','-1');
     $('#responsive_payment_typepay_typeradiocredit').attr('tabindex','-1');
-    
+
     /*
     $('label[for="responsive_payment_typepay_typeradiocredit"] a').click(function(e){
         e.preventDefault();
@@ -224,7 +224,7 @@
     $('.HelpLink').insertAfter('#responsive_payment_typecc_cvvname');
 
     $('span.field-required').closest('.form-content').find('input').addClass("required");
-	  
+
     // Moving matching gift widget to top of page if a search has been conducted
     /*if ($('#donor_matching_employer_company_information').length > 0) {
         $('#matching_gift_section').insertAfter($('h1#formTitle').parent().parent());
@@ -327,7 +327,13 @@
     jQuery("#modalDonationButton").blur(function(){
         _gaq.push(['t2._trackEvent', 'Donation form lightbox', 'click', 'Donate Now']);
     });
-
+    jQuery("#cover_fee_radio_Yes").click(function(){
+        if (jQuery("#cover_fee_radio_Yes").is(":checked")) {
+            _gaq.push(['t2._trackEvent', 'payment', 'click', 'transaction fees yes']);
+        } else {
+            _gaq.push(['t2._trackEvent', 'payment', 'click', 'transaction fees no']);
+        }
+    });
 
     // donation form year label
     jQuery('label[for="responsive_payment_typecc_exp_date_YEAR"] span').removeClass('aural-only').text('and Year');
@@ -369,9 +375,9 @@
                     $("#cover_fee_radio_Yes").prop("checked", true);
                 }
             }
-            
+
 	    $('label:contains(Cover Fee)').closest('.form-input-label-block').remove();
-		
+
             if (getDonationAmount() > 0 && $('#cover_fee_radio_Yes').is(':checked')) {
                var initAmt = parseFloat(getDonationAmount());
                var toDonate =  initAmt + parseFloat((getDonationAmount() * 0.029 + .30).toFixed(2));
@@ -423,7 +429,7 @@
 
 	    //remove validation from matching gift search
 	    $('button.action-button').attr("formnovalidate","true");
-		
+
             $("#ProcessForm").submit(function(e) {
                 //e.preventDefault();
                 if ($('#cover_fee_radio_Yes').is(':checked')) {
