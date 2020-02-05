@@ -1132,6 +1132,7 @@
             $('#team_find_section_footer').hide();
         }
 
+
         // PTYPE
         if ($('#F2fRegPartType').length > 0) {
             if ($('.part-type-container').length == 1) {
@@ -1888,4 +1889,133 @@
         }
         return null;
     }
+
+            // on tfind page, alphabetize sub- and sub-sub-company names in company list
+
+
+            function Child(name,val,subChildren) {
+              this.name = name,
+              this.val = val,
+              this.subChildren = subChildren
+            }
+
+            function subChildCompare( a, b ) {
+              if ( a.subName < b.subName ){
+                return -1;
+              }
+              if ( a.subName > b.subName ){
+                return 1;
+              }
+              return 0;
+            }
+
+            function childCompare( a, b ) {
+              if ( a.name < b.name ){
+                return -1;
+              }
+              if ( a.name > b.name ){
+                return 1;
+              }
+              return 0;
+            }
+
+
+            if ($('#fr_co_list').length > 0){
+
+              jQuery('#fr_co_list option').each(function(){
+                var val = jQuery(this).html();
+                if (val.startsWith('&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;') === true){
+                  jQuery(this).addClass('subSubCompany');
+                }
+              });
+
+              jQuery('#fr_co_list option').each(function(){
+                var val = jQuery(this).html();
+                if (val.startsWith('&nbsp;&nbsp;&nbsp;&nbsp;') === true && !jQuery(this).hasClass('subSubCompany')){
+                  jQuery(this).addClass('subCompany');
+                }
+              });
+
+              jQuery('.subSubCompany').each(function(){
+                if (jQuery(this).prev().hasClass('subCompany')){
+                  jQuery(this).prev().addClass('subParentCompany');
+                }
+              });
+
+              jQuery('.subCompany').each(function(){
+                if (!jQuery(this).prev().hasClass('subCompany') && !jQuery(this).prev().hasClass('subSubCompany')){
+                  jQuery(this).prev().addClass('parentCompany');
+                }
+              });
+
+              jQuery('#fr_co_list option').each(function(){
+                if (!jQuery(this).hasClass('parentCompany') && !jQuery(this).hasClass('subCompany') && !jQuery(this).hasClass('subSubCompany')) {
+                  jQuery(this).addClass('parentCompany');
+                }
+              });
+
+              jQuery('.parentCompany').each(function(){
+                if (jQuery(this).next('option').hasClass('subCompany')){
+                  var parentName = jQuery(this).text();
+                  jQuery.parentCompany = jQuery(this);
+
+                  var children = [];
+
+                  jQuery(this).nextUntil('.parentCompany').each(function(){
+                    var name = jQuery(this).text();
+                    var val = jQuery(this).val();
+
+                    if (jQuery(this).hasClass('subParentCompany')){
+
+                      var subChildren = [];
+
+                      jQuery(this).nextUntil('.subCompany').each(function(){
+                        var subName = jQuery(this).text();
+                        var subVal = jQuery(this).val();
+                        subChildren.push({ 
+                          subName: subName,
+                          subVal: subVal
+                        });
+
+                        subChildren.sort( subChildCompare );
+                      });
+
+                      var child = new Child(name,val,subChildren);
+ 
+                      children.push(child);
+                    }
+                    else if (jQuery(this).hasClass('subCompany')){
+                      var child = new Child(name,val);
+                       children.push(child);
+                    }
+                  });
+
+
+                  children.sort( childCompare );
+                  children.reverse();
+
+                  jQuery('.results').append(parentName);
+
+                  jQuery(this).nextUntil('.parentCompany').remove();
+
+                  jQuery.each(children,function(){
+                    var options;
+
+                    option = '<option value="'+this.val+'" class="subCompany">'+this.name+'</option>';
+                    options += option;
+
+                    jQuery(this.subChildren).each(function(){
+                      suboption = '<option value="'+this.subVal+'" class="subSubCompany">'+this.subName+'</option>';
+                      options += suboption;
+                    });
+  
+                    jQuery(jQuery.parentCompany).after(options);
+                  });
+                }
+              });
+            }
+
+
+
+
 })(jQuery);
