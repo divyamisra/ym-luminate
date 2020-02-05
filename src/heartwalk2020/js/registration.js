@@ -1927,7 +1927,6 @@
                 $.coList = $('#fr_part_co_list');
               }
 
-//              $('#fr_co_list option').each(function(){
               $.coList.children('option').each(function(){
                 var val = $(this).html();
                 if (val.startsWith('&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;') === true){
@@ -1935,7 +1934,6 @@
                 }
               });
 
-//              $('#fr_co_list option').each(function(){
               $.coList.children('option').each(function(){
                 var val = jQuery(this).html();
                 if (val.startsWith('&nbsp;&nbsp;&nbsp;&nbsp;') === true && !$(this).hasClass('subSubCompany')){
@@ -1955,7 +1953,6 @@
                 }
               });
 
-//              $('#fr_co_list option').each(function(){
               $.coList.children('option').each(function(){
                 if (!$(this).hasClass('parentCompany') && !$(this).hasClass('subCompany') && !$(this).hasClass('subSubCompany')) {
                   $(this).addClass('parentCompany');
