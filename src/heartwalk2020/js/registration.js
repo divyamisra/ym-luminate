@@ -1890,7 +1890,7 @@
         return null;
     }
 
-            // on tfind page, alphabetize sub- and sub-sub-company names in company list
+            // on tfind and ptype pages, alphabetize sub- and sub-sub-company names in company list
 
 
             function Child(name,val,subChildren) {
@@ -1920,7 +1920,7 @@
             }
 
 
-            if ($('#fr_co_list').length > 0){
+            if ($('#fr_co_list').length > 0 || $('#fr_part_co_list').length > 0){
 
               $('#fr_co_list option').each(function(){
                 var val = $(this).html();
