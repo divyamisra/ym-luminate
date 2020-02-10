@@ -558,24 +558,29 @@
     cd.getTopParticipants = function (eventId) {
       luminateExtend.api({
         api: 'teamraiser',
-        data: 'method=getParticipants&first_name=%25%25%25&event_type=' + eventType + '&fr_id=' + eventId + '&list_sort_column=total&list_ascending=false&list_page_size=5&response_format=json',
+        data: 'method=getParticipants&first_name=%25%25%25&event_type=' + eventType + '&fr_id=' + eventId + '&list_sort_column=total&list_ascending=false&list_page_size=10&response_format=json',
         callback: {
           success: function (response) {
             if (!$.isEmptyObject(response.getParticipantsResponse)) {
+              var counter = 0;
               var participantData = luminateExtend.utils.ensureArray(response.getParticipantsResponse
                 .participant);
 
               $(participantData).each(function () {
-                var participantName = this.name.first + ' ' + this.name.last;
-                var participantRaised = (parseInt(this.amountRaised) * 0.01).toFixed(2);
+                console.log('counter: ' + counter);
+                if (counter <= 4) {
+                    var participantName = this.name.first + ' ' + this.name.last;
+                    var participantRaised = (parseInt(this.amountRaised) * 0.01).toFixed(2);
 
-                var participantRaisedFormmatted = participantRaised.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,").replace('.00', '');
-                var participantId = this.consId;
-                var participantPage = this.personalPageUrl;
-                var isCaptain = this.aTeamCaptain;
-                var topWalkerHtml = '<li><div class="d-flex"><div class="flex-grow-1"><a href="' + participantPage + '">' + participantName + '</a></div><div class="raised">Raised<br><strong>$' + participantRaisedFormmatted + '</strong></div></div></li>';
-                if(participantName !== "null null"){
-                  $('.js--walker-top-list ul').append(topWalkerHtml);
+                    var participantRaisedFormmatted = participantRaised.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,").replace('.00', '');
+                    var participantId = this.consId;
+                    var participantPage = this.personalPageUrl;
+                    var isCaptain = this.aTeamCaptain;
+                    var topWalkerHtml = '<li><div class="d-flex"><div class="flex-grow-1"><a href="' + participantPage + '">' + participantName + '</a></div><div class="raised">Raised<br><strong>$' + participantRaisedFormmatted + '</strong></div></div></li>';
+                    if(participantName !== "null null"){
+                      $('.js--walker-top-list ul').append(topWalkerHtml);
+                      counter = counter + 1;
+                    }
                 }
               });
             }
