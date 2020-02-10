@@ -574,18 +574,8 @@
                 var participantPage = this.personalPageUrl;
                 var isCaptain = this.aTeamCaptain;
                 var topWalkerHtml = '<li><div class="d-flex"><div class="flex-grow-1"><a href="' + participantPage + '">' + participantName + '</a></div><div class="raised">Raised<br><strong>$' + participantRaisedFormmatted + '</strong></div></div></li>';
-                if(participantName !== "Null Null"){
-                  $('.js--walker-top-list ul').append(topWalkerHtml);
-                }
-                if(participantName !== "Null Null"){
-                  console.log('adk participantName !== Null Null');
-                } else {
-                  console.log('ask particpantName is Null Null');
-                }
                 if(participantName !== "null null"){
-                  console.log('adk participantName !== null null');
-                } else {
-                  console.log('ask particpantName is null null');
+                  $('.js--walker-top-list ul').append(topWalkerHtml);
                 }
               });
             }
