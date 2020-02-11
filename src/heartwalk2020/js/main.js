@@ -637,56 +637,59 @@
           success: function (response) {
             var childCompanyIdMap, companyItems, ref, rootAncestorCompanies;
             companyItems = ((ref = response.getCompanyListResponse) != null ? ref.companyItem : void 0) || [];
-            if (!angular.isArray(companyItems)) {
+            if (!$.isArray(companyItems)) {
               companyItems = [companyItems];
             }
             rootAncestorCompanies = [];
             childCompanyIdMap = {};
-            angular.forEach(companyItems, function(companyItem) {
+            $.each(companyItems, function(i, companyItem) {
               var rootAncestorCompany;
-              if (companyItem.parentOrgEventId === '0') {
+              if (companyItem.parentOrgEventId == '0') {
                 rootAncestorCompany = {
-                  eventId: $scope.frId,
+                  eventId: eventId,
                   companyId: companyItem.companyId,
                   companyName: companyItem.companyName,
                   amountRaised: companyItem.amountRaised ? Number(companyItem.amountRaised) : 0
                 };
-                return rootAncestorCompanies.push(rootAncestorCompany);
+                rootAncestorCompanies.push(rootAncestorCompany);
               }
             });
-            angular.forEach(companyItems, function(companyItem) {
+            $.each(companyItems, function(i, companyItem) {
               var parentOrgEventId;
               parentOrgEventId = companyItem.parentOrgEventId;
-              if (parentOrgEventId !== '0') {
-                return childCompanyIdMap['company-' + companyItem.companyId] = parentOrgEventId;
+              if (parentOrgEventId != "0") {
+                childCompanyIdMap['company-' + companyItem.companyId] = parentOrgEventId;
               }
             });
-            angular.forEach(childCompanyIdMap, function(value, key) {
+            $.each(childCompanyIdMap, function(key, value) {
               if (childCompanyIdMap['company-' + value]) {
-                return childCompanyIdMap[key] = childCompanyIdMap['company-' + value];
+                childCompanyIdMap[key] = childCompanyIdMap['company-' + value];
               }
             });
-            angular.forEach(childCompanyIdMap, function(value, key) {
+            $.each(childCompanyIdMap, function(key, value) {
               if (childCompanyIdMap['company-' + value]) {
-                return childCompanyIdMap[key] = childCompanyIdMap['company-' + value];
+                childCompanyIdMap[key] = childCompanyIdMap['company-' + value];
               }
             });
-            angular.forEach(companyItems, function(companyItem) {
+            $.each(companyItems, function(i, companyItem) {
               var childCompanyAmountRaised, rootParentCompanyId;
-              if (companyItem.parentOrgEventId !== '0') {
+              if (companyItem.parentOrgEventId != '0') {
                 rootParentCompanyId = childCompanyIdMap['company-' + companyItem.companyId];
                 childCompanyAmountRaised = companyItem.amountRaised ? Number(companyItem.amountRaised) : 0;
-                return angular.forEach(rootAncestorCompanies, function(rootAncestorCompany, rootAncestorCompanyIndex) {
+                $.each(rootAncestorCompanies, function(rootAncestorCompanyIndex, rootAncestorCompany) {
                   if (rootAncestorCompany.companyId === rootParentCompanyId) {
-                    return rootAncestorCompanies[rootAncestorCompanyIndex].amountRaised = rootAncestorCompanies[rootAncestorCompanyIndex].amountRaised + childCompanyAmountRaised;
+                     rootAncestorCompanies[rootAncestorCompanyIndex].amountRaised = rootAncestorCompanies[rootAncestorCompanyIndex].amountRaised + childCompanyAmountRaised;
                   }
                 });
               }
             });
-            angular.forEach(rootAncestorCompanies, function(rootAncestorCompany, rootAncestorCompanyIndex) {
-              return rootAncestorCompanies[rootAncestorCompanyIndex].amountRaisedFormatted = $filter('currency')(rootAncestorCompany.amountRaised / 100, '$', 0);
-            });
-            var sortedAncestorCompanies = $filter('orderBy')(rootAncestorCompanies, 'amountRaised', true);
+           
+            //$.each(rootAncestorCompanies, function(rootAncestorCompanyIndex, rootAncestorCompany) {
+            //   rootAncestorCompanies[rootAncestorCompanyIndex].amountRaisedFormatted = $filter('currency')(rootAncestorCompany.amountRaised / 100, '$', 0);
+            //});
+            console.log(rootAncestorCompanies);
+            var sortedAncestorCompanies = rootAncestorCompanies.sort(function(a, b){return b.amountRaised-a.amountRaised});
+            //var sortedAncestorCompanies = $filter('orderBy')(rootAncestorCompanies, 'amountRaised', true);
             $(sortedAncestorCompanies).each(function (i) {
               if(i < 5){
                 var companyName = this.companyName;
