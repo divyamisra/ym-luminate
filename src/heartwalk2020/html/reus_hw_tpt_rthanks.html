@@ -13,7 +13,7 @@
             zip: "[[S48:0:cons.home_zip]]",
             email: "[[S48:0:cons.primary_email]]",
             mobile: "[[S48:0:cons.mobile_phone]]",
-            eventid: "[[?xx::x[[S334:fr_id]]x::[[S80:evID]]::[[S334:fr_id]]]]",
+            eventId: "[[?xx::x[[S334:fr_id]]x::[[S80:evID]]::[[S334:fr_id]]]]",
             mobileOptIn: localStorage.mobile_optin=="on" ? true : false
           },
           formatPhone: function(){
@@ -25,7 +25,7 @@
               var xhttp = new XMLHttpRequest();
               xhttp.open("POST", this.vars.postUrl, true);
               xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-              xhttp.send("cons_id="+ this.vars.consId +"&cons_first_name="+ this.vars.fname +"&cons_last_name="+ this.vars.lname +"&cons_email="+ this.vars.email +"&cons_zip_code="+ this.vars.zip +"&cons_mobile="+ this.vars.mobile +"&cons_sms_optin=True&eventid="+ this.vars.eventid +"&platform=Luminate");
+              xhttp.send("cons_id="+ this.vars.consId +"&cons_first_name="+ this.vars.fname +"&cons_last_name="+ this.vars.lname +"&cons_email="+ this.vars.email +"&cons_zip_code="+ this.vars.zip +"&cons_mobile="+ this.vars.mobile +"&cons_sms_optin=True&eventid="+ this.vars.eventId +"&platform=Luminate");
             }
           }
         };
