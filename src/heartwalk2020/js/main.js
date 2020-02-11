@@ -567,7 +567,6 @@
                 .participant);
 
               $(participantData).each(function () {
-                console.log('counter: ' + counter);
                 if (counter <= 4) {
                     var participantName = this.name.first + ' ' + this.name.last;
                     var participantRaised = (parseInt(this.amountRaised) * 0.01).toFixed(2);
