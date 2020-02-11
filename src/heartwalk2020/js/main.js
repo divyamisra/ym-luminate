@@ -687,7 +687,6 @@
             //$.each(rootAncestorCompanies, function(rootAncestorCompanyIndex, rootAncestorCompany) {
             //   rootAncestorCompanies[rootAncestorCompanyIndex].amountRaisedFormatted = $filter('currency')(rootAncestorCompany.amountRaised / 100, '$', 0);
             //});
-            console.log(rootAncestorCompanies);
             var sortedAncestorCompanies = rootAncestorCompanies.sort(function(a, b){return b.amountRaised-a.amountRaised});
             //var sortedAncestorCompanies = $filter('orderBy')(rootAncestorCompanies, 'amountRaised', true);
             $(sortedAncestorCompanies).each(function (i) {
@@ -706,7 +705,7 @@
         }
       });
     };
-
+    
     cd.getTopCompanies = function (eventId) {
       luminateExtend.api({
         api: 'teamraiser',
