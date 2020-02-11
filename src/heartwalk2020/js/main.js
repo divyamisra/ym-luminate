@@ -635,80 +635,67 @@
           '&include_cross_event=true&response_format=json',
         callback: {
           success: function (response) {
-            if (!$.isEmptyObject(response.getCompanyListResponse)) {
-              var companyItems = luminateExtend.utils.ensureArray(response.getCompanyListResponse.companyItem);
-              var rootAncestorCompanies = [];
-              var childCompanyIdMap = {};
-
-              $(companyItems).each(function () {
-                var isParentCompany = (this.parentOrgEventId === '0' ? true : false);
-                if(isParentCompany){
-                  var rootAncestorCompany = {
-                    eventId: eventId,
-                    companyId: this.companyId,
-                    companyName: this.companyName,
-                    amountRaised: (this.amountRaised ? Number(this.amountRaised) : 0)
-                  }
-                  rootAncestorCompanies.push(rootAncestorCompany);
-                }
-              });
-
-              $(companyItems).each(function () {
-                var parentOrgEventId = this.parentOrgEventId;
-                if(parentOrgEventId !== '0'){
-                  childCompanyIdMap['company-' + this.companyId] = parentOrgEventId;
-                }
-              });
-
-            for (var key in childCompanyIdMap) {
-              if (childCompanyIdMap.hasOwnProperty(key)) {
-                  if(childCompanyIdMap[key]){
-                    key = childCompanyIdMap[key]
-                  }
-                }
-              }
-
-              for (var key in childCompanyIdMap) {
-                if (childCompanyIdMap.hasOwnProperty(key)) {
-                    if(childCompanyIdMap[key]){
-                      key = childCompanyIdMap[key]
-                    }
-                  }
-                }
-
-              $(companyItems).each(function () {
-                var parentOrgEventId = this.parentOrgEventId;
-                if(parentOrgEventId !== '0'){
-                  var rootParentCompanyId = (childCompanyIdMap['company-' + this.companyId]);
-
-                  var childCompanyAmountRaised = (this.amountRaised ? Number(this.amountRaised) : 0);
-
-                  $(rootAncestorCompanies).each(function (i) {
-                    if(this.companyId === rootParentCompanyId){
-                      rootAncestorCompanies[i].amountRaised += childCompanyAmountRaised;
-                    }
-                  });
-                }
-              });
-
-              var sortedAncestorCompanies = rootAncestorCompanies.sort(function(b, a){
-                var a1= a.amountRaised, b1= b.amountRaised;
-                if(a1== b1) return 0;
-                return a1> b1? 1: -1;
-              });
-
-              $(sortedAncestorCompanies).each(function (i) {
-                if(i < 5){
-                  var companyName = this.companyName;
-                  var companyRaised = (parseInt(this.amountRaised) * 0.01).toFixed(2);
-                  var companyRaisedFormmatted = companyRaised.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,").replace('.00', '');
-                  var topCompanyHtml = '<li><div class="d-flex"><div class="flex-grow-1"><a href="TR?company_id=' + this.companyId + '&fr_id=' + evID + '&pg=company">' + companyName + '</a></div><div class="raised">Raised<br><strong>$' + companyRaisedFormmatted + '</strong></div></div></li>';
-
-                  $('.js--company-top-list ul').append(topCompanyHtml);
-                }
-              });
-
+            var childCompanyIdMap, companyItems, ref, rootAncestorCompanies;
+            companyItems = ((ref = response.getCompanyListResponse) != null ? ref.companyItem : void 0) || [];
+            if (!angular.isArray(companyItems)) {
+              companyItems = [companyItems];
             }
+            rootAncestorCompanies = [];
+            childCompanyIdMap = {};
+            angular.forEach(companyItems, function(companyItem) {
+              var rootAncestorCompany;
+              if (companyItem.parentOrgEventId === '0') {
+                rootAncestorCompany = {
+                  eventId: $scope.frId,
+                  companyId: companyItem.companyId,
+                  companyName: companyItem.companyName,
+                  amountRaised: companyItem.amountRaised ? Number(companyItem.amountRaised) : 0
+                };
+                return rootAncestorCompanies.push(rootAncestorCompany);
+              }
+            });
+            angular.forEach(companyItems, function(companyItem) {
+              var parentOrgEventId;
+              parentOrgEventId = companyItem.parentOrgEventId;
+              if (parentOrgEventId !== '0') {
+                return childCompanyIdMap['company-' + companyItem.companyId] = parentOrgEventId;
+              }
+            });
+            angular.forEach(childCompanyIdMap, function(value, key) {
+              if (childCompanyIdMap['company-' + value]) {
+                return childCompanyIdMap[key] = childCompanyIdMap['company-' + value];
+              }
+            });
+            angular.forEach(childCompanyIdMap, function(value, key) {
+              if (childCompanyIdMap['company-' + value]) {
+                return childCompanyIdMap[key] = childCompanyIdMap['company-' + value];
+              }
+            });
+            angular.forEach(companyItems, function(companyItem) {
+              var childCompanyAmountRaised, rootParentCompanyId;
+              if (companyItem.parentOrgEventId !== '0') {
+                rootParentCompanyId = childCompanyIdMap['company-' + companyItem.companyId];
+                childCompanyAmountRaised = companyItem.amountRaised ? Number(companyItem.amountRaised) : 0;
+                return angular.forEach(rootAncestorCompanies, function(rootAncestorCompany, rootAncestorCompanyIndex) {
+                  if (rootAncestorCompany.companyId === rootParentCompanyId) {
+                    return rootAncestorCompanies[rootAncestorCompanyIndex].amountRaised = rootAncestorCompanies[rootAncestorCompanyIndex].amountRaised + childCompanyAmountRaised;
+                  }
+                });
+              }
+            });
+            angular.forEach(rootAncestorCompanies, function(rootAncestorCompany, rootAncestorCompanyIndex) {
+              return rootAncestorCompanies[rootAncestorCompanyIndex].amountRaisedFormatted = $filter('currency')(rootAncestorCompany.amountRaised / 100, '$', 0);
+            });
+            var sortedAncestorCompanies = $filter('orderBy')(rootAncestorCompanies, 'amountRaised', true);
+            $(sortedAncestorCompanies).each(function (i) {
+              if(i < 5){
+                var companyName = this.companyName;
+                var companyRaised = (parseInt(this.amountRaised) * 0.01).toFixed(2);
+                var companyRaisedFormmatted = companyRaised.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,").replace('.00', '');
+                var topCompanyHtml = '<li><div class="d-flex"><div class="flex-grow-1"><a href="TR?company_id=' + this.companyId + '&fr_id=' + evID + '&pg=company">' + companyName + '</a></div><div class="raised">Raised<br><strong>$' + companyRaisedFormmatted + '</strong></div></div></li>';
+                $('.js--company-top-list ul').append(topCompanyHtml);
+              }
+            });
           },
           error: function (response) {
             console.log('getCompanyList error: ' + response.errorResponse.message);
