@@ -1303,17 +1303,20 @@
                   });
                 }
 
-                if(companyIndex === numCompanies){
-                  setTimeout(function(){
-                    cd.initializeTeamRosterTable();
-                    var totalTeams = $('.team-name').length;
-                    var totalTeamsText = totalTeams > 1 ? ' Teams' : ' Team';
-                    $('.js--num-company-teams').text(totalTeams + totalTeamsText);
-                    if(totalTeams > 5) {
-                      $('.js--more-team-results').removeAttr('hidden');
-                    }
-                  }, 250);
-                }
+            
+        if(companyIndex === numCompanies){
+          // If there is only 1 company, do not add a timeout because there are no additional cd.getCompanyParticipants calls to wait for
+          var timeoutLength  = (numCompanies === 1 ? 0 : 2500);
+          setTimeout(function(){ 
+            cd.initializeParticipantRosterTable();
+            var totalParticipants = $('.participant-name').length;
+            var totalParticipantsText = totalParticipants > 1 ? ' Walkers' : ' Walker';
+            $('.js--num-company-participants').text(totalParticipants + totalParticipantsText);
+            if (numWalkerRows > 5) {
+              $('.js--more-participant-results').removeAttr('hidden');
+            }
+          }, timeoutLength);
+        }
               }
             },
             error: function (response) {
