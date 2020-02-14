@@ -1340,24 +1340,26 @@ var numWalkerRows = 0;
  // build team roster
  cd.getCompanyParticipants = function (companyId, companyName, numCompanies, companyIndex) {
   $('#participant-roster tbody').html('');
-  luminateExtend.api({
+  var participants = [];
+  cd.getAllParticipants = function(pgcnt) {
+   luminateExtend.api({
+    async: false,
     api: 'teamraiser',
     data: 'method=getParticipants' +
       '&team_name=%25%25%25&fr_id=' + evID +
       '&list_filter_column=team.company_id' +
       '&list_filter_text=' + companyId +
       '&list_page_size=499' +
-      '&list_page_offset=0' +
+      '&list_page_offset=' + pgcnt +
       '&response_format=json',
     callback: {
       success: function (response) {
         if (response.getParticipantsResponse.totalNumberResults === '0') {
           // no search results
-
+          return false;
         } else {
-          var participants = luminateExtend.utils.ensureArray(response.getParticipantsResponse.participant);
-
-          $(participants).each(function (i, participant) {
+          if (typeof(response.getParticipantsResponse.participant) == "undefined") {
+            $(participants).each(function (i, participant) {
             var participantRaised = (parseInt(participant.amountRaised) * 0.01).toFixed(2);
             var participantRaisedFormmatted = participantRaised.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,").replace('.00', '');
 
@@ -1365,38 +1367,43 @@ var numWalkerRows = 0;
               participant.name.first + ' ' + participant.name.last +
               '</a>' + (participant.aTeamCaptain === "true" ? ' <span class="coach">- Coach</span>' : '') + '</td><td class="company-name"> <a href="' + luminateExtend.global.path.secure + 'TR/?pg=company&company_id=' + companyId + '&fr_id=' + participant.eventId + '" data-sort="' + companyName+ '">' + companyName + '</a> </td><td class="raised" data-sort="' + participantRaisedFormmatted + '"><span><strong>$' + participantRaisedFormmatted + '</strong></span></td><td><a href="' + participant.donationUrl + '">' + (screenWidth <= 480 ? 'Donate' : 'Donate to ' + participant.name.first) + '</a></td></tr>');
               numWalkerRows++;
-          });
+            });
 
-          //add call to hook donate button with payment type selections
-          addPaymentTypesOnSearch();
-          $('.js--more-participant-results').on('click', function (e) {
-            e.preventDefault();
-            $('#participant-roster tr').removeClass('d-none');
-            $(this).attr('hidden', true);
-          });
-        }
+            //add call to hook donate button with payment type selections
+            addPaymentTypesOnSearch();
+            $('.js--more-participant-results').on('click', function (e) {
+              e.preventDefault();
+              $('#participant-roster tr').removeClass('d-none');
+              $(this).attr('hidden', true);
+            });
 
-        if(companyIndex === numCompanies){
-          // TODO - replace timeout with promises that check for completion of the total number of cd.getCompanyParticipants calls before it builds the roster table and counts the walkers
-          // If there is only 1 company, do not add a timeout because there are no additional cd.getCompanyParticipants calls to wait for
-          var timeoutLength  = (numCompanies === 1 ? 0 : 2500);
-          setTimeout(function(){
-            cd.initializeParticipantRosterTable();
-            var totalParticipants = $('.participant-name').length;
-            var totalParticipantsText = totalParticipants > 1 ? ' Walkers' : ' Walker';
-            $('.js--num-company-participants').text(totalParticipants + totalParticipantsText);
-            if (numWalkerRows > 5) {
-              $('.js--more-participant-results').removeAttr('hidden');
+            if(companyIndex === numCompanies){
+              setTimeout(function(){
+                cd.initializeParticipantRosterTable();
+                var totalParticipants = $('.participant-name').length;
+                var totalParticipantsText = totalParticipants > 1 ? ' Walkers' : ' Walker';
+                $('.js--num-company-participants').text(totalParticipants + totalParticipantsText);
+                if (numWalkerRows > 5) {
+                  $('.js--more-participant-results').removeAttr('hidden');
+                }
+              }, 250);
             }
-          }, timeoutLength);
+
+          } else {
+             pgcnt++;
+             participants = participants.concat(luminateExtend.utils.ensureArray(response.getParticipantsResponse.participant));
+             cd.getAllParticipants(pgcnt);
+          }
         }
+      },
+      error: function (response) {
+        $('#error-participant').removeAttr('hidden').text(response.errorResponse.message);
+        console.log('error response: ', response);
       }
-    },
-    error: function (response) {
-      $('#error-participant').removeAttr('hidden').text(response.errorResponse.message);
-      console.log('error response: ', response);
     }
-  });
+   });
+ }
+ cd.getAllParticipants(0);
 };
 
 cd.buildCompanyParticipantRoster = function(){
