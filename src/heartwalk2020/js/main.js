@@ -1363,8 +1363,14 @@ var numWalkerRows = 0;
     callback: {
       success: function (response) {
         if (response.getParticipantsResponse.totalNumberResults === '0') {
-          if (participants.length > 0) {
-             cd.buildParticipantList(participants);
+          if (allCompanyData[companyIndex+1] != undefined) {
+              companyIndex = companyIndex + 1;
+              pgcnt = 0;
+              cd.getAllParticipants(pgcnt);
+          } else {
+            if (participants.length > 0) {
+               cd.buildParticipantList(participants);
+            }
           }
           // no search results
           return false;
