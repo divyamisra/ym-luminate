@@ -106,7 +106,11 @@ crossorigin="anonymous"></script>
     if  (jQuery('#tos_radio_true').length > 0){
       jQuery('label[for="tos_dropdown"]').parent().hide();
       jQuery('label[for="tos_dropdown"]').parent().next('fieldset').hide();
-      jQuery('label[for="tos_dropdown"]').parent().before('<input type="checkbox" name="terms-of-service-checkbox" id="terms-of-service-checkbox"><label for="terms-of-service-checkbox">&nbsp;Yes, I agree to the <a href="DocServer/HeartWalk2019_163605_TOS_texting_2019.11.19.pdf?docID=2624" target="_blank">Terms and Conditions (PDF)</a> and <a href="https://www.heart.org/en/about-us/statements-and-policies/privacy-statement" target="_blank">AHA Privacy Policy</a></label>');
+      [[?xheartdevx::x[[S29:TABLE_PREFIX]]x::
+        jQuery('label[for="tos_dropdown"]').parent().before('<input type="checkbox" name="terms-of-service-checkbox" id="terms-of-service-checkbox"><label for="terms-of-service-checkbox">&nbsp;Yes, I agree to the <a href="DocServer/HeartWalk2019_163605_TOS_texting_2019.11.19.pdf?docID=2624" target="_blank">Terms and Conditions (PDF)</a> and <a href="https://www.heart.org/en/about-us/statements-and-policies/privacy-statement" target="_blank">AHA Privacy Policy</a></label>');
+      ::
+        jQuery('label[for="tos_dropdown"]').parent().before('<input type="checkbox" name="terms-of-service-checkbox" id="terms-of-service-checkbox"><label for="terms-of-service-checkbox">&nbsp;Yes, I agree to the <a href="DocServer/HeartWalk2019_163605_TOS_texting_2019.11.19.pdf?docID=5787" target="_blank">Terms and Conditions (PDF)</a> and <a href="https://www.heart.org/en/about-us/statements-and-policies/privacy-statement" target="_blank">AHA Privacy Policy</a></label>');
+      ]]
       jQuery('#terms-of-service-checkbox + label').prepend(jQuery('label[for="tos_dropdown"]').closest('.form-content').find('span.field-required'));
       jQuery('label[for="tos_dropdown"]').attr("for","tos_radio_true");
       jQuery('#terms-of-service-checkbox').change(function(){

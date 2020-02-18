@@ -719,10 +719,10 @@
                     }
                 }, "The team goal should be greater than $0."
             );
-	
+
 	    $('input#fr_team_goal').addClass("validGoal required");
-	    $('span.field-required').closest('.form-content').find('input, select').addClass("required");	
-		
+	    $('span.field-required').closest('.form-content').find('input, select').addClass("required");
+
 	    $('input.required').each(function(){
 		    var label = $(this).closest('.input-container').find('.input-label').html();
 		    if (label != undefined) {
@@ -733,7 +733,7 @@
 			    }
 		    }
 	    });
-		
+
 	    $('button.next-step').click(function(){
                 if ($('select[name=fr_co_list]').length) {
                     if ($('select[name=fr_co_list] option:selected').text().indexOf("AT&T") > -1) {
@@ -1132,6 +1132,7 @@
             $('#team_find_section_footer').hide();
         }
 
+
         // PTYPE
         if ($('#F2fRegPartType').length > 0) {
             if ($('.part-type-container').length == 1) {
@@ -1245,10 +1246,10 @@
    	    }
 
 	    $('label:contains("t-shirt")').closest('.input-container').find('select').addClass("tshirtSize");
-	    $('span.field-required').closest('.form-content').find('input, select').addClass("required");		
+	    $('span.field-required').closest('.form-content').find('input, select').addClass("required");
 	    $('input[value^="I accept"]').addClass("acceptRelease");
 	    $('input[value^="I agree to the Terms and Conditions"]').addClass("acceptPrivacy");
-		
+
 	    $('input.required').each(function(){
 		    var label = $(this).closest('.input-container').find('.input-label').html();
 		    if (label != undefined) {
@@ -1269,6 +1270,13 @@
 	    // only add mobile opt in option if grou pid exists on body tag
             if ($('body').data("group-id") != undefined) {
 		    $('#cons_info_component_container').append(optinHTML);
+		    $('#mobile_optin').click(function(){
+			    if ($(this).is(":checked")) {
+			    	    $('.input-label:contains(Mobile Phone)').closest('label').next('input').addClass("phonecheck");
+			    } else {
+				    $('.input-label:contains(Mobile Phone)').closest('label').next('input').removeClass("phonecheck");
+			    }
+		    });
 	    }
 
   	    var optinName = $('.input-label:contains(Mobile Phone)').closest('.input-container').find('input').attr("name");
@@ -1292,7 +1300,7 @@
    	    $.validator.addMethod("valueNotEquals", function(value, element, arg){
 		return arg !== value;
 	    }, "Please select a t-shirt size");
-		
+
 	    jQuery('form').validate({
 		focusInvalid: false,
 		invalidHandler: function(form, validator) {
@@ -1333,6 +1341,10 @@
             $.validator.addMethod("pwcheck", function(value) {
                return /^[A-Za-z0-9\d=!\-+#\(\)\/$%@,;:=?\[\]^`{|~}._*]*$/.test(value) // consists of only these
             },"Oops. Looks like you are using a character we don't recognize. Valid characters are letters, numbers, and the following symbols: !#$%()*+,-./:;=?@[\]^_`{|}~");
+
+            $.validator.addMethod("phonecheck", function(value) {
+               return /^(((\+1)|1)?(| ))((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,3})|(\(?\d{2,3}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$/.test(value) // consists of only these
+            },"Invalid phone number");
 
             $('input#cons_user_name').addClass("uncheck");
             $('input#cons_password').addClass("pwcheck");
@@ -1382,7 +1394,6 @@
         $('#sel_type_container').parent().addClass('aural-only');
 
         $('span.input-label:contains("Life is Why")').parent().parent().parent().parent().hide();
-        $('.input-label:contains("How many years")').parent().parent().parent().parent().hide();
         $('.input-label:contains("Mobile Phone")').parent().parent().parent().parent().addClass('regMobilePhone');
         $('span.cons_email').parent().parent().addClass('consEmail');
         $('.survey-question-container.regMobilePhone').insertAfter('.cons-info-question-container.consEmail');
@@ -1577,7 +1588,7 @@
         $('.privacyCheck legend').addClass('aural-only');
         $('.privacyCheck label').html('<span class="field-required"></span> I agree to the <a href="javascript:void(0)" onclick="window.open(\'DocServer/HeartWalk2019_163605_TOS_texting_2019.11.19.pdf\',\'_blank\',\'location=yes,height=570,width=520,scrollbars=yes,status=yes\');">Terms and Conditions (PDF)</a> and <a href="javascript:void(0)" onclick="window.open(\'https://www.heart.org/en/about-us/statements-and-policies/privacy-statement\',\'_blank\',\'location=yes,height=570,width=520,scrollbars=yes,status=yes\');">Privacy Policy</a>.');
 	$('.privacyCheck input[type="checkbox"]').attr("aria-required","true");
-	    
+
 	$('.survey-question-container legend span:contains("Healthy for good signup")').parent().parent().addClass('healthyCheck');
         $('.healthyCheck legend').addClass('aural-only');
 
@@ -1769,6 +1780,13 @@
         jQuery("a:contains('Join as Individual')").click(function(){
             _gaq.push(['t2._trackEvent', 'Register Landing', 'click', 'Join as Indiv']);
         });
+        jQuery(".regMobilePhone input").blur(function() {
+            _gaq.push(['t2._trackEvent', 'provide details', 'click', 'mobile number']);
+        });
+        jQuery("#mobile_optin").click(function(){
+            _gaq.push(['t2._trackEvent', 'provide details', 'click', 'mobile opt in']);
+        });
+
 
         var radioValue = '';
         $('.survivor_yes_no input').change(function() {
@@ -1871,4 +1889,136 @@
         }
         return null;
     }
+
+            // on tfind and ptype pages, alphabetize sub- and sub-sub-company names in company list
+
+
+            function Child(name,val,subChildren) {
+              this.name = name,
+              this.val = val,
+              this.subChildren = subChildren
+            }
+
+            function subChildCompare( a, b ) {
+              if ( a.subName < b.subName ){
+                return -1;
+              }
+              if ( a.subName > b.subName ){
+                return 1;
+              }
+              return 0;
+            }
+
+            function childCompare( a, b ) {
+              if ( a.name < b.name ){
+                return -1;
+              }
+              if ( a.name > b.name ){
+                return 1;
+              }
+              return 0;
+            }
+
+
+            if ($('#fr_co_list').length > 0 || $('#fr_part_co_list').length > 0){
+
+              $.coList = $('#fr_co_list');
+              if ($('#fr_part_co_list').length > 0){
+                $.coList = $('#fr_part_co_list');
+              }
+
+              $.coList.children('option').each(function(){
+                var val = $(this).html();
+                if (val.startsWith('&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;') === true){
+                  $(this).addClass('subSubCompany');
+                }
+              });
+
+              $.coList.children('option').each(function(){
+                var val = jQuery(this).html();
+                if (val.startsWith('&nbsp;&nbsp;&nbsp;&nbsp;') === true && !$(this).hasClass('subSubCompany')){
+                  $(this).addClass('subCompany');
+                }
+              });
+
+              $('.subSubCompany').each(function(){
+                if ($(this).prev().hasClass('subCompany')){
+                  $(this).prev().addClass('subParentCompany');
+                }
+              });
+
+              $('.subCompany').each(function(){
+                if (!$(this).prev().hasClass('subCompany') && !$(this).prev().hasClass('subSubCompany')){
+                  $(this).prev().addClass('parentCompany');
+                }
+              });
+
+              $.coList.children('option').each(function(){
+                if (!$(this).hasClass('parentCompany') && !$(this).hasClass('subCompany') && !$(this).hasClass('subSubCompany')) {
+                  $(this).addClass('parentCompany');
+                }
+              });
+
+              $('.parentCompany').each(function(){
+                if ($(this).next('option').hasClass('subCompany')){
+                  var parentName = $(this).text();
+                  $.parentCompany = $(this);
+
+                  var children = [];
+
+                  $(this).nextUntil('.parentCompany').each(function(){
+                    var name = $(this).text();
+                    var val = $(this).val();
+
+                    if ($(this).hasClass('subParentCompany')){
+
+                      var subChildren = [];
+
+                      $(this).nextUntil('.subCompany').each(function(){
+                        var subName = $(this).text();
+                        var subVal = $(this).val();
+                        subChildren.push({ 
+                          subName: subName,
+                          subVal: subVal
+                        });
+
+                        subChildren.sort( subChildCompare );
+                      });
+
+                      var child = new Child(name,val,subChildren);
+ 
+                      children.push(child);
+                    }
+                    else if ($(this).hasClass('subCompany')){
+                      var child = new Child(name,val);
+                       children.push(child);
+                    }
+                  });
+
+
+                  children.sort( childCompare );
+                  children.reverse();
+
+                  $(this).nextUntil('.parentCompany').remove();
+
+                  $.each(children,function(){
+                    var options;
+
+                    var option = '<option value="'+this.val+'" class="subCompany">'+this.name+'</option>';
+                    options += option;
+
+                    $(this.subChildren).each(function(){
+                      var suboption = '<option value="'+this.subVal+'" class="subSubCompany">'+this.subName+'</option>';
+                      options += suboption;
+                    });
+  
+                    $($.parentCompany).after(options);
+                  });
+                }
+              });
+            }
+
+
+
+
 })(jQuery);

@@ -150,10 +150,6 @@ img {
 
 .achievements {
   margin: 0 0 10px;
-
-  svg {
-    margin: 17px 37px 0 0;
-  }
 }
 
 .donor-roll {
@@ -250,7 +246,7 @@ img {
     li {
       border-top: solid 1px $white;
       color: $white;
-      padding: 11px 0 24px 45px;
+      padding: 11px;
       font-size: 0.97rem;
       line-height: 1.4;
 
@@ -267,7 +263,10 @@ img {
 
     .achievements {
       svg {
-        width: 50px;
+        width: 100%;
+        max-width: 70px;
+        display: block;
+        margin: 0 auto;
       }
     }
   }
