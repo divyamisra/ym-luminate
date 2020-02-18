@@ -1418,17 +1418,15 @@ cd.buildParticipantList = function(participants) {
       $(this).attr('hidden', true);
     });
 
-    if(companyIndex === numCompanies){
-      setTimeout(function(){
-        cd.initializeParticipantRosterTable();
-        var totalParticipants = $('.participant-name').length;
-        var totalParticipantsText = totalParticipants > 1 ? ' Walkers' : ' Walker';
-        $('.js--num-company-participants').text(totalParticipants + totalParticipantsText);
-        if (numWalkerRows > 5) {
-          $('.js--more-participant-results').removeAttr('hidden');
-        }
-      }, 250);
-    }
+    setTimeout(function(){
+      cd.initializeParticipantRosterTable();
+      var totalParticipants = $('.participant-name').length;
+      var totalParticipantsText = totalParticipants > 1 ? ' Walkers' : ' Walker';
+      $('.js--num-company-participants').text(totalParticipants + totalParticipantsText);
+      if (numWalkerRows > 5) {
+        $('.js--more-participant-results').removeAttr('hidden');
+      }
+    }, 250);
 
     //add call to hook donate button with payment type selections
     $('a:contains(Donat)').on('click',function(e){
