@@ -1379,7 +1379,12 @@ var numWalkerRows = 0;
             }
           } else {
              pgcnt++;
-             participants = participants.concat(luminateExtend.utils.ensureArray(response.getParticipantsResponse.participant));
+             var participantList = luminateExtend.utils.ensureArray(response.getParticipantsResponse.participant);
+             $(participantList).each(function (i, participant) {
+               participantList[i].companyId = companyId;
+               participantList[i].companyName = companyName;
+             });
+             participants = participants.concat(participantList);
              cd.getAllParticipants(pgcnt);
           }
         }
@@ -1403,7 +1408,7 @@ cd.buildParticipantList = function(participants) {
 
       $('#participant-roster tbody').append('<tr class="' + (numWalkerRows > 4 ? 'd-none' : '') + '"><td class="participant-name"><a href="' + participant.personalPageUrl + '">' +
         participant.name.first + ' ' + participant.name.last +
-        '</a>' + (participant.aTeamCaptain === "true" ? ' <span class="coach">- Coach</span>' : '') + '</td><td class="company-name"> <a href="' + luminateExtend.global.path.secure + 'TR/?pg=company&company_id=' + companyId + '&fr_id=' + participant.eventId + '" data-sort="' + companyName+ '">' + companyName + '</a> </td><td class="raised" data-sort="' + participantRaisedFormmatted + '"><span><strong>$' + participantRaisedFormmatted + '</strong></span></td><td><a href="' + participant.donationUrl + '">' + (screenWidth <= 480 ? 'Donate' : 'Donate to ' + participant.name.first) + '</a></td></tr>');
+        '</a>' + (participant.aTeamCaptain === "true" ? ' <span class="coach">- Coach</span>' : '') + '</td><td class="company-name"> <a href="' + luminateExtend.global.path.secure + 'TR/?pg=company&company_id=' + participant.companyId + '&fr_id=' + participant.eventId + '" data-sort="' + participant.companyName+ '">' + participant.companyName + '</a> </td><td class="raised" data-sort="' + participantRaisedFormmatted + '"><span><strong>$' + participantRaisedFormmatted + '</strong></span></td><td><a href="' + participant.donationUrl + '">' + (screenWidth <= 480 ? 'Donate' : 'Donate to ' + participant.name.first) + '</a></td></tr>');
         numWalkerRows++;
     });
 
