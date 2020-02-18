@@ -59,7 +59,7 @@
         </h2>
       </div>
       <div class="row">
-        <div class="col-sm-6 ym-pc-dashboard-progress-section__column event-secondary-medium">
+        <div class="col-sm-12 ym-pc-dashboard-progress-section__column event-secondary-medium">
           <div class="ym-pc-dashboard-progress-box">
             <div class="ym-pc-dashboard-section-header">
               <h3 class="h5">
@@ -160,6 +160,39 @@
             </div>
           </div>
         </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6 ym-pc-dashboard-progress-section__column event-secondary-medium">
+          <div class="ym-pc-dashboard-email-challenge-box">
+            <div class="ym-pc-dashboard-section-header">
+              <h3 class="h5">
+                Spread the Word!
+              </h3>
+            </div>
+            <div class="text-center">
+              <p>
+                Spread the word! Send 10 emails or e-cards to friends and family.
+              </p>
+              <div class="ym-pc-dashboard-email-challenge-images">
+                <a ng-href="{{baseUrl}}#/email">
+                  <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/pc-challenge-animated-email.gif" alt="Send Email">
+                </a> 
+                <a ng-href="https://hearttools.heart.org/aha_ym20{{tablePrefix == 'heartdev' ? '_dev' : (tablePrefix == 'heartnew' ? '_testing' : '')}}/?eid={{frId}}&amp;sid={{consId}}&amp;name={{consNameFirst}}" target="_blank">
+                  <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/pc-challenge-animated-ecard.gif" alt="Send E-card">
+                </a>
+              </div>
+              <div class="ym-pc-dashboard-email-challenge-buttons">
+                <a class="btn btn-md-wide btn-primary" ng-href="{{baseUrl}}#/email">
+                  <strong>Send Email</strong>
+                </a> 
+                <a class="btn btn-md-wide btn-primary" ng-href="https://hearttools.heart.org/aha_ym20{{tablePrefix == 'heartdev' ? '_dev' : (tablePrefix == 'heartnew' ? '_testing' : '')}}/?eid={{frId}}&amp;sid={{consId}}&amp;name={{consNameFirst}}" target="_blank">
+                  <strong>Send e-card</strong>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
         <div class="col-sm-6 ym-pc-dashboard-progress-section__column event-secondary-medium">
           <div class="ym-pc-dashboard-email-challenge-box">
             <div class="ym-pc-dashboard-section-header">
