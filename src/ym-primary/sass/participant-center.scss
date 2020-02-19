@@ -315,3 +315,22 @@ div[id^="taTextElement"]:focus {
 	padding: 36px;
 	margin: 0 0 30px;
 }
+
+.ym-pc-dashboard-livestream-box {
+	.ym-pc-dashboard-livestream-title {
+		text-align: center;
+		margin-bottom: 20px;
+	}
+	.ym-pc-dashboard-livestream-buttons {
+		margin-top: 10px;
+		padding-top: 10px;
+		border-top: 1px solid #38b5bd;
+		
+		a:nth-child(1) {
+			float:left;
+		}
+		a:nth-child(2) {
+			float:right;
+		}
+	}
+}
