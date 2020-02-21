@@ -25,7 +25,7 @@
               var xhttp = new XMLHttpRequest();
               xhttp.open("POST", this.vars.postUrl, true);
               xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-              xhttp.send("cons_id="+ this.vars.consId +"&cons_first_name="+ this.vars.fname +"&cons_last_name="+ this.vars.lname +"&cons_email="+ this.vars.email +"&cons_zip_code="+ this.vars.zip +"&cons_mobile="+ this.vars.mobile +"&cons_sms_optin=True&eventid="+ this.vars.eventId +"&platform=Luminate");
+              xhttp.send("cons_luminate_id="+ this.vars.consId +"&cons_first_name="+ this.vars.fname +"&cons_last_name="+ this.vars.lname +"&cons_email="+ this.vars.email +"&cons_zip_code="+ this.vars.zip +"&cons_mobile="+ this.vars.mobile +"&cons_sms_opt_in=True&cons_event_id="+ this.vars.eventId +"&platform=Luminate");
             }
           }
         };
