@@ -577,7 +577,7 @@
             });
 
             // show login retrieval form
-            $('.js__show-retrieve-login').on('click', function (e) {
+            $('.js__show-retrieve-login').on('click touchstart', function (e) {
                 e.preventDefault();
                 cd.resetValidation();
                 $('.js__login-container').addClass('d-none');
@@ -585,7 +585,7 @@
             });
 
             // show login form
-            $('.js__show-login').on('click', function (e) {
+            $('.js__show-login').on('click touchstart', function (e) {
                 e.preventDefault();
                 cd.resetValidation();
                 $('.js__retrieve-login-container').addClass('d-none');
@@ -593,7 +593,7 @@
                 $('.js__login-container').removeClass('d-none');
             });
             // show signup form
-            $('.js__show-signup').on('click', function (e) {
+            $('.js__show-signup').on('click touchstart', function (e) {
                 e.preventDefault();
                 cd.resetValidation();
                 $('.js__retrieve-login-container').addClass('d-none');
@@ -601,18 +601,18 @@
                 $('.js__signup-container').removeClass('d-none');
             });
 
-            $('.js__existing-record').on('click', function (e) {
+            $('.js__existing-record').on('click touchstart', function (e) {
                 // existing record. show log in form
                 $('.js__have-we-met-container').addClass('d-none');
                 $('.js__login-container').removeClass('d-none');
             });
-            $('.js__show-have-we-met').on('click', function (e) {
+            $('.js__show-have-we-met').on('click touchstart', function (e) {
                 // existing record. show log in form
                 e.preventDefault();
                 $('.js__login-container').addClass('d-none');
                 $('.js__have-we-met-container').removeClass('d-none');
             });
-            $('.js__new-record').on('click', function (e) {
+            $('.js__new-record').on('click touchstart', function (e) {
             // new participant. continue to tfind step
                 $('#f2fRegPartType #next_step').click();
             });
