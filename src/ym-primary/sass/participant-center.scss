@@ -349,5 +349,12 @@ div[id^="taTextElement"]:focus {
 		a:nth-child(2) {
 			float:right;
 		}
+		a {
+			@media (max-width: 480px) {
+				text-align: center;
+				float: none;
+				margin-bottom: 10px;
+			}
+		}
 	}
 }
