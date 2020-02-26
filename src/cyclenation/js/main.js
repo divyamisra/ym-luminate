@@ -863,7 +863,7 @@
                 var teamRaised = (parseInt(this.amountRaised) * 0.01);
                 console.log('teamRaised: ' + teamRaised);
 
-                teamRaisedTest = teamRaised.toFixed(2);
+                var teamRaisedTest = teamRaised.toFixed(2);
                 console.log('teamRaisedTest: ' + teamRaisedTest);
 
                 teamRaised = teamRaised.toString();
