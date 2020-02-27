@@ -2018,7 +2018,7 @@
 
               if ($('.js__reg-company-name').length > 0) {
                 console.log('regType is startTeam');
-                sortedCoList = $('#fr_co_list').html();
+                var sortedCoList = $('#fr_co_list').html();
                 $('.js__reg-company-name').append(sortedCoList);
               }
 
