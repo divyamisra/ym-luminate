@@ -862,7 +862,7 @@
                 var teamName = this.name;
                 var teamRaised = (parseInt(this.amountRaised) * 0.01);
                 console.log('teamRaised: ' + teamRaised);
-                teamRaised = teamRaised.toFixed(2);
+                teamRaised = teamRaised.toFixed(0);
                 console.log('teamRaised: ' + teamRaised);
                 var teamRaisedFormmatted = teamRaised.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
                 console.log('teamRaisedFormmatted: ' + teamRaisedFormmatted);
