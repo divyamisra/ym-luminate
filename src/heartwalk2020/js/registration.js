@@ -2017,9 +2017,9 @@
               });
 
               if ($('.js__reg-company-name').length > 0) {
-                console.log('regType is startTeam');
-                var sortedCoList = $('#fr_co_list').html();
-                $('.js__reg-company-name').append(sortedCoList);
+                console.log('regType is startTeam' + $('#fr_co_list').length);
+                $.sortedCoList = $('#fr_co_list').html();
+                $('.js__reg-company-name').append($.sortedCoList);
               }
 
 
