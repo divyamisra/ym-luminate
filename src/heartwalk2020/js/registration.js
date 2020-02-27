@@ -873,7 +873,7 @@
                         });
                     };
 
-                    cd.getCompanyList(evID);
+//                    cd.getCompanyList(evID);
                     // END new team find form
 
 
