@@ -873,6 +873,7 @@
                         });
                     };
 
+//                    Do not run getCompanyList for join team page. Use sorting process later in this file
 //                    cd.getCompanyList(evID);
                     // END new team find form
 
@@ -1889,8 +1890,7 @@
         return null;
     }
 
-            // on tfind and ptype pages, alphabetize sub- and sub-sub-company names in company list
-
+            // For Start Team, Join Team, Individual Participation, alphabetize sub- and sub-sub-company names in company list
 
             function Child(name,val,subChildren) {
               this.name = name,
@@ -2017,7 +2017,6 @@
               });
 
               if ($('.js__reg-company-name').length > 0) {
-                console.log('regType is startTeam' + $('#fr_co_list').length);
                 $.sortedCoList = $('#fr_co_list').html();
                 $('.js__reg-company-name').append($.sortedCoList);
               }
