@@ -61,31 +61,12 @@
       <div class="row">
         <div class="col-sm-6 ym-pc-dashboard-progress-section__column event-secondary-medium">
           <div class="ym-pc-dashboard-progress-box">
-            <div class="ym-pc-dashboard-section-header">
-              <h3 class="h5">
-                Progress
-              </h3>
-            </div>
-            <div class="ym-pc-dashboard-progress-types" ng-class="{'ym-pc-dashboard-progress-types--multi-team': companyInfo.teamCount > 1}" role="tablist">
-              <div class="clearfix">
-                <div class="ym-pc-dashboard-progress-type" ng-class="{'active': dashboardProgressType == 'personal'}">
-                  <button type="button" aria-label="Personal Progress" ng-click="toggleProgressType('personal')" role="tab" aria-controls="ym-pc-dashboard-personal-panel--student">
-                    <strong>Personal</strong>
-                  </button>
-                </div>
-                <div class="ym-pc-dashboard-progress-type" ng-class="{'active': dashboardProgressType == 'company'}">
-                  <button type="button" aria-label="School Progress" ng-click="toggleProgressType('company')" role="tab" aria-controls="ym-pc-dashboard-company-panel--student">
-                    <strong>School</strong>
-                  </button>
-                </div>
-                <div class="ym-pc-dashboard-progress-type" ng-class="{'active': dashboardProgressType == 'team'}" ng-if="companyInfo.teamCount > 1">
-                  <button type="button" aria-label="Team Progress" ng-click="toggleProgressType('team')" role="tab" aria-controls="ym-pc-dashboard-team-panel--student">
-                    <strong>Team</strong>
-                  </button>
-                </div>
+            <div id="ym-pc-dashboard-personal-panel--student" aria-label="Personal Progress">
+              <div class="ym-pc-dashboard-section-header">
+                <h3 class="h5">
+                  Personal Progress
+                </h3>
               </div>
-            </div>
-            <div id="ym-pc-dashboard-personal-panel--student" role="tabpanel" aria-label="Personal Panel" ng-show="dashboardProgressType == 'personal'" ng-cloak>
               <div class="ym-progress__thermometer" name="Personal Progress Bar" aria-valuetext="{{participantProgress.percent}} percent of fundraising progress" role="progressbar" aria-valuenow="{{participantProgress.percent}}" aria-valuemin="0" aria-valuemax="100">
                 <div class="ym-progress__thermometer--fill" ng-style="{'width': participantProgress.percent + '%'}"></div>
               </div>
@@ -112,7 +93,16 @@
                 </div>
               </div>
             </div>
-            <div id="ym-pc-dashboard-company-panel--student" role="tabpanel" aria-label="School Panel" ng-show="dashboardProgressType == 'company'" ng-cloak>
+          </div>
+        </div>
+        <div class="col-sm-6 ym-pc-dashboard-progress-section__column event-secondary-medium">
+          <div class="ym-pc-dashboard-progress-box">
+            <div id="ym-pc-dashboard-company-panel--student" aria-label="School Progress">
+              <div class="ym-pc-dashboard-section-header">
+                <h3 class="h5">
+                  School Progress
+                </h3>
+              </div>
               <div class="ym-progress__thermometer" name="School Progress Bar" aria-valuetext="{{companyProgress.percent}} percent of fundraising progress" role="progressbar" aria-valuenow="{{companyProgress.percent}}" aria-valuemin="0" aria-valuemax="100">
                 <div class="ym-progress__thermometer--fill" ng-style="{'width': companyProgress.percent + '%'}"></div>
               </div>
@@ -129,37 +119,10 @@
                 </div>
               </div>
             </div>
-            <div id="ym-pc-dashboard-team-panel--student" role="tabpanel" aria-label="Team Panel" ng-if="companyInfo.teamCount > 1" ng-show="dashboardProgressType == 'team'" ng-cloak>
-              <div class="ym-progress__thermometer" name="Team Progress Bar" aria-valuetext="{{teamProgress.percent}} percent of fundraising progress" role="progressbar" aria-valuenow="{{teamProgress.percent}}" aria-valuemin="0" aria-valuemax="100">
-                <div class="ym-progress__thermometer--fill" ng-style="{'width': teamProgress.percent + '%'}"></div>
-              </div>
-              <div class="ym-progress-related clearfix">
-                <div class="ym-progress-donate">
-                  <a class="btn btn-lg btn-primary" ng-href="Donation2?df_id={{eventInfo.donationFormId}}&amp;FR_ID={{frId}}&amp;PROXY_TYPE=22&amp;PROXY_ID={{participantRegistration.teamId}}">
-                    <strong>Donate to Team Page</strong>
-                  </a>
-                </div>
-                <div class="pull-right">
-                  <p>
-                    <strong><span ng-bind-html="teamProgress.raisedFormatted"></span></strong> raised
-                  </p>
-                  <div ng-if="teamProgress.goalFormatted && teamProgress.goalFormatted != '$0'" ng-cloak>
-                    <p>
-                      <strong><span ng-bind-html="teamProgress.goalFormatted"></span></strong> goal
-                    </p>
-                  </div>
-                  <div ng-if="participantRegistration.aTeamCaptain == 'true' && participantRegistration.companyInformation.isCompanyCoordinator != 'true'" ng-cloak>
-                    <p>
-                      <a href="" ng-click="editTeamGoal()" class="ym-progress-update-goal">
-                        <strong>Update Team Goal</strong>
-                      </a>
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
+      </div>
+      <div class="row">
         <div class="col-sm-6 ym-pc-dashboard-progress-section__column event-secondary-medium">
           <div class="ym-pc-dashboard-email-challenge-box">
             <div class="ym-pc-dashboard-section-header">
@@ -187,6 +150,35 @@
                   <strong>Send e-card</strong>
                 </a>
               </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 ym-pc-dashboard-progress-section__column event-secondary-medium">
+          <div class="ym-pc-dashboard-livestream-box">
+            <div class="ym-pc-dashboard-livestream-title">
+              <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/pc-tiltify-livestream.png" alt="Livestream">
+            </div>
+            <div class="ym-pc-dashboard-section-header">
+              <p>
+                Go live and help save lives, start your charity stream today!
+              </p>
+            </div>
+            <div class="text-center">
+              <div class="ym-pc-dashboard-livestream-images">
+                <img class="pc-livestream-character" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/pc-tiltify-character.png" alt="Livestream Character">
+                &nbsp;
+                <img class="pc-livestream-hearts" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/pc-tiltify-hearts.png" alt="Livestream Hearts">
+              </div>
+              <div class="ym-pc-dashboard-livestream-buttons">
+                <a class="btn btn-md-wide btn-primary" ng-href="https://tiltify.com/@me/dashboard/campaigns" target="_blank">
+                  <strong>Check Your Progress</strong>
+                </a> 
+                <a class="btn btn-md-wide btn-primary" ng-href="https://tiltify.com/aha/start?metadata.uid=LO_ID:{{consId}};EVENT_ID:{{frId}}" target="_blank">
+                  <strong>Get Started</strong>
+                </a>
+              </div>
+              <br/>
+              <p>By clicking these links, you will leave Kids Heart Challenge and be redirected to another site not under the control of the American Heart Association.</p>
             </div>
           </div>
         </div>

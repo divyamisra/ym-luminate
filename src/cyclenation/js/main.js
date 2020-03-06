@@ -825,7 +825,7 @@
               $(participantData).each(function () {
                 var participantName = this.name.first + ' ' + this.name.last;
                 var participantRaised = (parseInt(this.amountRaised) * 0.01);
-                participantRaised = participantRaised.toString();
+                participantRaised = participantRaised.toFixed(0);
                 var participantRaisedFormmatted = participantRaised.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
                 var participantId = this.consId;
                 var participantPage = this.personalPageUrl;
@@ -861,12 +861,10 @@
               $(teamData).each(function (i) {
                 var teamName = this.name;
                 var teamRaised = (parseInt(this.amountRaised) * 0.01);
-                teamRaised = teamRaised.toString();
+                teamRaised = teamRaised.toFixed(0);
                 var teamRaisedFormmatted = teamRaised.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
                 var teamId = this.id;
-
                 var badgeLevel = null;
-
                 if (teamRaised >= 5000) {
                   badgeLevel = "5000";
                 } else if (teamRaised >= 2500) {
@@ -907,7 +905,7 @@
               $(topCompanies).each(function () {
                 var companyName = this.companyName;
                 var companyRaised = (parseInt(this.amountRaised) / 100);
-                companyRaised = companyRaised.toString();
+                companyRaised = companyRaised.toFixed(0);
                 var companyRaisedFormmatted = companyRaised.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
                 var topCompanyHtml = '<div class="top-list-entry row pb-2"> <div class="badges col-2"> </div><div class="names-amounts col-10 pl-0"> <a class="participant-name" href="TR?company_id=' + this.companyId + '&fr_id=' + evID + '&pg=company">' + companyName + '</a> <span class="amount-raised">$' + companyRaisedFormmatted + '</span> </div></div>';
                 $('.js__top-companies-list').append(topCompanyHtml);
