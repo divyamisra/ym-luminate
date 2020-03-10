@@ -577,7 +577,7 @@
             });
 
             // show login retrieval form
-            $('.js__show-retrieve-login').on('click', function (e) {
+            $('.js__show-retrieve-login').on('click touchstart', function (e) {
                 e.preventDefault();
                 cd.resetValidation();
                 $('.js__login-container').addClass('d-none');
@@ -585,7 +585,7 @@
             });
 
             // show login form
-            $('.js__show-login').on('click', function (e) {
+            $('.js__show-login').on('click touchstart', function (e) {
                 e.preventDefault();
                 cd.resetValidation();
                 $('.js__retrieve-login-container').addClass('d-none');
@@ -593,7 +593,7 @@
                 $('.js__login-container').removeClass('d-none');
             });
             // show signup form
-            $('.js__show-signup').on('click', function (e) {
+            $('.js__show-signup').on('click touchstart', function (e) {
                 e.preventDefault();
                 cd.resetValidation();
                 $('.js__retrieve-login-container').addClass('d-none');
@@ -601,18 +601,18 @@
                 $('.js__signup-container').removeClass('d-none');
             });
 
-            $('.js__existing-record').on('click', function (e) {
+            $('.js__existing-record').on('click touchstart', function (e) {
                 // existing record. show log in form
                 $('.js__have-we-met-container').addClass('d-none');
                 $('.js__login-container').removeClass('d-none');
             });
-            $('.js__show-have-we-met').on('click', function (e) {
+            $('.js__show-have-we-met').on('click touchstart', function (e) {
                 // existing record. show log in form
                 e.preventDefault();
                 $('.js__login-container').addClass('d-none');
                 $('.js__have-we-met-container').removeClass('d-none');
             });
-            $('.js__new-record').on('click', function (e) {
+            $('.js__new-record').on('click touchstart', function (e) {
             // new participant. continue to tfind step
                 $('#f2fRegPartType #next_step').click();
             });
@@ -624,7 +624,6 @@
             $('div#user_type_campaign_banner_container').replaceWith(function() {
                 return '<h1 class="campaign-banner-container" id="user_type_campaign_banner_container">' + $(this).html() + '</h1>';
             });
-
         }
         if ($('#reg_payment_page').length > 0) {
             $('.custom-progress-bar').hide();
@@ -1131,6 +1130,7 @@
         if ($('#fr_team_goal').length <= 0) {
             $('#team_find_section_footer').hide();
         }
+
 
         // PTYPE
         if ($('#F2fRegPartType').length > 0) {
@@ -1888,4 +1888,136 @@
         }
         return null;
     }
+
+            // on tfind and ptype pages, alphabetize sub- and sub-sub-company names in company list
+
+
+            function Child(name,val,subChildren) {
+              this.name = name,
+              this.val = val,
+              this.subChildren = subChildren
+            }
+
+            function subChildCompare( a, b ) {
+              if ( a.subName < b.subName ){
+                return -1;
+              }
+              if ( a.subName > b.subName ){
+                return 1;
+              }
+              return 0;
+            }
+
+            function childCompare( a, b ) {
+              if ( a.name < b.name ){
+                return -1;
+              }
+              if ( a.name > b.name ){
+                return 1;
+              }
+              return 0;
+            }
+
+
+            if ($('#fr_co_list').length > 0 || $('#fr_part_co_list').length > 0){
+
+              $.coList = $('#fr_co_list');
+              if ($('#fr_part_co_list').length > 0){
+                $.coList = $('#fr_part_co_list');
+              }
+
+              $.coList.children('option').each(function(){
+                var val = $(this).html();
+                if (val.startsWith('&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;') === true){
+                  $(this).addClass('subSubCompany');
+                }
+              });
+
+              $.coList.children('option').each(function(){
+                var val = jQuery(this).html();
+                if (val.startsWith('&nbsp;&nbsp;&nbsp;&nbsp;') === true && !$(this).hasClass('subSubCompany')){
+                  $(this).addClass('subCompany');
+                }
+              });
+
+              $('.subSubCompany').each(function(){
+                if ($(this).prev().hasClass('subCompany')){
+                  $(this).prev().addClass('subParentCompany');
+                }
+              });
+
+              $('.subCompany').each(function(){
+                if (!$(this).prev().hasClass('subCompany') && !$(this).prev().hasClass('subSubCompany')){
+                  $(this).prev().addClass('parentCompany');
+                }
+              });
+
+              $.coList.children('option').each(function(){
+                if (!$(this).hasClass('parentCompany') && !$(this).hasClass('subCompany') && !$(this).hasClass('subSubCompany')) {
+                  $(this).addClass('parentCompany');
+                }
+              });
+
+              $('.parentCompany').each(function(){
+                if ($(this).next('option').hasClass('subCompany')){
+                  var parentName = $(this).text();
+                  $.parentCompany = $(this);
+
+                  var children = [];
+
+                  $(this).nextUntil('.parentCompany').each(function(){
+                    var name = $(this).text();
+                    var val = $(this).val();
+
+                    if ($(this).hasClass('subParentCompany')){
+
+                      var subChildren = [];
+
+                      $(this).nextUntil('.subCompany').each(function(){
+                        var subName = $(this).text();
+                        var subVal = $(this).val();
+                        subChildren.push({ 
+                          subName: subName,
+                          subVal: subVal
+                        });
+
+                        subChildren.sort( subChildCompare );
+                      });
+
+                      var child = new Child(name,val,subChildren);
+ 
+                      children.push(child);
+                    }
+                    else if ($(this).hasClass('subCompany')){
+                      var child = new Child(name,val);
+                       children.push(child);
+                    }
+                  });
+
+
+                  children.sort( childCompare );
+                  children.reverse();
+
+                  $(this).nextUntil('.parentCompany').remove();
+
+                  $.each(children,function(){
+                    var options;
+
+                    var option = '<option value="'+this.val+'" class="subCompany">'+this.name+'</option>';
+                    options += option;
+
+                    $(this.subChildren).each(function(){
+                      var suboption = '<option value="'+this.subVal+'" class="subSubCompany">'+this.subName+'</option>';
+                      options += suboption;
+                    });
+  
+                    $($.parentCompany).after(options);
+                  });
+                }
+              });
+            }
+
+
+
+
 })(jQuery);
