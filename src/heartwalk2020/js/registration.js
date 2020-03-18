@@ -1918,7 +1918,7 @@
               return 0;
             }
 
-
+//start sort function
             if ($('#fr_co_list').length > 0 || $('#fr_part_co_list').length > 0){
 
               $.coList = $('#fr_co_list');
@@ -1961,6 +1961,7 @@
               $('.parentCompany').each(function(){
                 if ($(this).next('option').hasClass('subCompany')){
                   var parentName = $(this).text();
+                  console.log('parentName x'+parentName+'x');
                   $.parentCompany = $(this);
 
                   var children = [];
@@ -2004,10 +2005,12 @@
                     var options;
 
                     var option = '<option value="'+this.val+'" class="subCompany">'+this.name+'</option>';
+                    console.log('option ' + this.name);
                     options += option;
 
                     $(this.subChildren).each(function(){
                       var suboption = '<option value="'+this.subVal+'" class="subSubCompany">'+this.subName+'</option>';
+                      console.log('optsuboptionion ' + this.name);
                       options += suboption;
                     });
   
