@@ -1969,7 +1969,7 @@
                   $(this).nextUntil('.parentCompany').each(function(){
                     var name = $(this).text();
                     var val = $(this).val();
-
+console.log('subcompany ' + name);
                     if ($(this).hasClass('subParentCompany')){
 
                       var subChildren = [];
@@ -1977,6 +1977,7 @@
                       $(this).nextUntil('.subCompany').each(function(){
                         var subName = $(this).text();
                         var subVal = $(this).val();
+console.log('subParentCompany ' + subName);
                         subChildren.push({ 
                           subName: subName,
                           subVal: subVal
@@ -2010,10 +2011,10 @@
 
                     $(this.subChildren).each(function(){
                       var suboption = '<option value="'+this.subVal+'" class="subSubCompany">'+this.subName+'</option>';
-                      console.log('optsuboptionion ' + this.name);
+                      console.log('suboption ' + this.name);
                       options += suboption;
                     });
-  
+console.log('options ' + options);
                     $($.parentCompany).after(options);
                   });
                 }
