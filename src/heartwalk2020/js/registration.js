@@ -2059,26 +2059,26 @@ console.log('subName ' + subName);
                   children.sort( childCompare );
                   children.reverse();
 
-//                  $(this).nextUntil('.parentCompany').remove();
+                   $(this).nextUntil('.parentCompany').remove();
 
                   $.each(children,function(){
 console.log('children each ' + this.name);
-//                    var options = '';
-//console.log('options 1 ' + options);
-//                    var option = '<option value="'+this.val+'" class="subCompany">'+this.name+'</option>';
-//                    console.log('option ' + option);
-//                    options += option;
-//
+                    var options = '';
+console.log('options 1 ' + options);
+                    var option = '<option value="'+this.val+'" class="subCompany">'+this.name+'</option>';
+                    console.log('option ' + option);
+                    options += option;
+
                     if ($(this.subChildren).length > 0){
-//console.log('found subchildren');
+console.log('found subchildren');
                       $(this.subChildren).each(function(){
-//                        var suboption = '<option value="'+this.subVal+'" class="subSubCompany">'+this.subName+'</option>';
+                        var suboption = '<option value="'+this.subVal+'" class="subSubCompany">'+this.subName+'</option>';
                        console.log('suboption ' + this.subName);
-//                        options += suboption;
+                        options += suboption;
                       });
                     }
-//console.log('options 2 ' + options);
-//                    $($.parentCompany).after(options);
+console.log('options 2 ' + options);
+                    $($.parentCompany).after(options);
                   });
                 }
               });
