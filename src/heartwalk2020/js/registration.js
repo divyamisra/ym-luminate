@@ -1971,9 +1971,13 @@
                 if ($(this).next().hasClass('parentCompany') === true) {
                   $(this).next().addClass('switchCompany');
                 }
+                if ($(this).next().hasClass('subCompany') === true) {
+                  $(this).next().addClass('switchCompany');
+                }
                 if ($(this).next().hasClass('subParentCompany') === true) {
                   $(this).next().addClass('switchCompany');
                 }
+
               });
 
 
