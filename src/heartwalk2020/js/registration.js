@@ -1977,83 +1977,83 @@
               });
 
 
-//              $('.parentCompany').each(function(){
-//                if ($(this).next('option').hasClass('subCompany')){
-//                  var parentName = $(this).text();
-//                  console.log('parentName x'+parentName+'x');
-//                  $.parentCompany = $(this);
-//
-//                  var parentClass = parentName.split(' ');
-//                  parentClass = parentClass[0];
-//                  console.log("parentClass " + parentClass);
-//
-//                  var children = [];
-//
-//                  var subParentNum = 0;
-//                  $('.'+parentClass + '.subParentCompany').each(function(){
-//                    subParentNum ++;
-//                    var subParentClass = String(subParentNum);
-//                    $(this).addClass(subParentClass);
-//                  });
-//
-//console.log('subParentNum ' + subParentNum);
-//
-//                  $(this).nextUntil('.parentCompany').each(function(){
-//                    var name = $(this).text();
-//                    var val = $(this).val();
-//console.log('parent company next until parent company ' + name);
-//                    if ($(this).hasClass('subParentCompany')){
-//console.log('subparentcompany ' + name);
-//                      var subChildren = [];
-//
-//
-// if (subParentNum > 0){
-//
-//                      $(this).nextUntil('.switchCompany').each(function(){
-//                        var subName = $(this).text();
-//                        var subVal = $(this).val();
-//                        subChildren.push({ 
-//                          subName: subName,
-//                          subVal: subVal
-//                        });
-//
-//                        subChildren.sort( subChildCompare );
-//                      });
-//
-//                      var child = new Child(name,val,subChildren);
-// 
-//                      children.push(child);
-// }
-//else{
-//
-//
-//                      $(this).nextUntil('.subCompany').each(function(){
-//                        var subName = $(this).text();
-//                        var subVal = $(this).val();
-//                        subChildren.push({ 
-//                          subName: subName,
-//                          subVal: subVal
-//                        });
-//
-//                        subChildren.sort( subChildCompare );
-//                      });
-//
-//                      var child = new Child(name,val,subChildren);
-// 
-//                      children.push(child);
-//                    }
-//}
-//                    else if ($(this).hasClass('subCompany')){
-//                      var child = new Child(name,val);
-//                       children.push(child);
-//                    }
-//                  });
-//
-//
-//
-//                  children.sort( childCompare );
-//                  children.reverse();
-//
+              $('.parentCompany').each(function(){
+                if ($(this).next('option').hasClass('subCompany')){
+                  var parentName = $(this).text();
+                  console.log('parentName x'+parentName+'x');
+                  $.parentCompany = $(this);
+
+                  var parentClass = parentName.split(' ');
+                  parentClass = parentClass[0];
+                  console.log("parentClass " + parentClass);
+
+                  var children = [];
+
+                  var subParentNum = 0;
+                  $('.'+parentClass + '.subParentCompany').each(function(){
+                    subParentNum ++;
+                    var subParentClass = String(subParentNum);
+                    $(this).addClass(subParentClass);
+                  });
+
+console.log('subParentNum ' + subParentNum);
+
+                  $(this).nextUntil('.parentCompany').each(function(){
+                    var name = $(this).text();
+                    var val = $(this).val();
+console.log('parent company next until parent company ' + name);
+                    if ($(this).hasClass('subParentCompany')){
+console.log('subparentcompany ' + name);
+                      var subChildren = [];
+
+
+ if (subParentNum > 0){
+
+                      $(this).nextUntil('.switchCompany').each(function(){
+                        var subName = $(this).text();
+                        var subVal = $(this).val();
+                        subChildren.push({ 
+                          subName: subName,
+                          subVal: subVal
+                        });
+
+                        subChildren.sort( subChildCompare );
+                      });
+
+                      var child = new Child(name,val,subChildren);
+ 
+                      children.push(child);
+ }
+else{
+
+
+                      $(this).nextUntil('.subCompany').each(function(){
+                        var subName = $(this).text();
+                        var subVal = $(this).val();
+                        subChildren.push({ 
+                          subName: subName,
+                          subVal: subVal
+                        });
+
+                        subChildren.sort( subChildCompare );
+                      });
+
+                      var child = new Child(name,val,subChildren);
+ 
+                      children.push(child);
+                    }
+}
+                    else if ($(this).hasClass('subCompany')){
+                      var child = new Child(name,val);
+                       children.push(child);
+                    }
+                  });
+
+
+
+                  children.sort( childCompare );
+                  children.reverse();
+
 //                  $(this).nextUntil('.parentCompany').remove();
 //
 //                  $.each(children,function(){
@@ -2075,8 +2075,8 @@
 //console.log('options 2 ' + options);
 //                    $($.parentCompany).after(options);
 //                  });
-//                }
-//              });
+                }
+              });
 
               if ($('.js__reg-company-name').length > 0) {
                 $.sortedCoList = $('#fr_co_list').html();
