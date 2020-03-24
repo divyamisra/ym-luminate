@@ -2043,10 +2043,10 @@ else{
                       children.push(child);
                     }
 }
-                    else if ($(this).hasClass('subCompany')){
-                      var child = new Child(name,val);
-                       children.push(child);
-                    }
+//                    else if ($(this).hasClass('subCompany')){
+//                      var child = new Child(name,val);
+//                       children.push(child);
+//                    }
                   });
 
 
