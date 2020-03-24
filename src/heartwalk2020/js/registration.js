@@ -2054,27 +2054,27 @@ else{
                   children.sort( childCompare );
                   children.reverse();
 
-//                  $(this).nextUntil('.parentCompany').remove();
-//
-//                  $.each(children,function(){
-//console.log('children each ' + this.name);
-//                    var options = '';
-//console.log('options 1 ' + options);
-//                    var option = '<option value="'+this.val+'" class="subCompany">'+this.name+'</option>';
-//                    console.log('option ' + option);
-//                    options += option;
-//
-//                    if ($(this.subChildren).length > 0){
-//console.log('found subchildren');
-//                      $(this.subChildren).each(function(){
-//                        var suboption = '<option value="'+this.subVal+'" class="subSubCompany">'+this.subName+'</option>';
-//                        console.log('suboption ' + suboption);
-//                        options += suboption;
-//                      });
-//                    }
-//console.log('options 2 ' + options);
-//                    $($.parentCompany).after(options);
-//                  });
+                  $(this).nextUntil('.parentCompany').remove();
+
+                  $.each(children,function(){
+console.log('children each ' + this.name);
+                    var options = '';
+console.log('options 1 ' + options);
+                    var option = '<option value="'+this.val+'" class="subCompany">'+this.name+'</option>';
+                    console.log('option ' + option);
+                    options += option;
+
+                    if ($(this.subChildren).length > 0){
+console.log('found subchildren');
+                      $(this.subChildren).each(function(){
+                        var suboption = '<option value="'+this.subVal+'" class="subSubCompany">'+this.subName+'</option>';
+                        console.log('suboption ' + suboption);
+                        options += suboption;
+                      });
+                    }
+console.log('options 2 ' + options);
+                    $($.parentCompany).after(options);
+                  });
                 }
               });
 
