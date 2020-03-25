@@ -1962,22 +1962,11 @@
                 var parentName = $(this).text();
                 parentName = parentName.split(' ');
                 parentName = parentName[0];
-                console.log("parentName " + parentName);
                 $(this).nextUntil('.parentCompany').addClass(parentName);
               });
 
 
               $('.subSubCompany').each(function(){
-//                if ($(this).next().hasClass('parentCompany') === true) {
-//                  $(this).next().addClass('switchCompany');
-//                }
-//                if ($(this).next().hasClass('subCompany') === true) {
-//                  $(this).next().addClass('switchCompany');
-//                }
-//                if ($(this).next().hasClass('subParentCompany') === true) {
-//                  $(this).next().addClass('switchCompany');
-//                }
-
                 if ($(this).next().hasClass('parentCompany') === true || $(this).next().hasClass('subCompany') === true || $(this).next().hasClass('subParentCompany') === true) {
                   $(this).next().addClass('switchCompany');
                 }
@@ -1987,12 +1976,10 @@
               $('.parentCompany').each(function(){
                 if ($(this).next('option').hasClass('subCompany')){
                   var parentName = $(this).text();
-                  console.log('parentName x'+parentName+'x');
                   $.parentCompany = $(this);
 
                   var parentClass = parentName.split(' ');
                   parentClass = parentClass[0];
-//                  console.log("parentClass " + parentClass);
 
                   var children = [];
 
@@ -2003,19 +1990,13 @@
                     $(this).addClass(subParentClass);
                   });
 
-//console.log('subParentNum ' + subParentNum);
-
                   $(this).nextUntil('.parentCompany').each(function(){
                     var name = $(this).text();
                     var val = $(this).val();
-//console.log('parent company next until parent company ' + name);
                     if ($(this).hasClass('subParentCompany')){
-//console.log('subparentcompany ' + name);
                       var subChildren = [];
 
-
                       if (subParentNum > 0){
-console.log('subParentNum greater than 0');
                         $(this).nextUntil('.switchCompany').each(function(){
                           var subName = $(this).text();
                           var subVal = $(this).val();
@@ -2023,7 +2004,6 @@ console.log('subParentNum greater than 0');
                             subName: subName,
                             subVal: subVal
                           });
-console.log('subName ' + subName);
                           subChildren.sort( subChildCompare );
                         });
 
@@ -2033,7 +2013,6 @@ console.log('subName ' + subName);
                       }
                       else{
 
-console.log('subParentNum NOT greater than 0');
                         $(this).nextUntil('.subCompany').each(function(){
                           var subName = $(this).text();
                           var subVal = $(this).val();
@@ -2041,7 +2020,6 @@ console.log('subParentNum NOT greater than 0');
                             subName: subName,
                             subVal: subVal
                           });
-console.log('subName ' + subName);
 
                           subChildren.sort( subChildCompare );
                         });
@@ -2057,30 +2035,24 @@ console.log('subName ' + subName);
                     }
                   });
 
-
-
                   children.sort( childCompare );
                   children.reverse();
 
                    $(this).nextUntil('.parentCompany').remove();
 
                   $.each(children,function(){
-console.log('children each ' + this.name);
                     var options = '';
-console.log('options 1 ' + options);
                     var option = '<option value="'+this.val+'" class="subCompany">'+this.name+'</option>';
                     console.log('option ' + option);
                     options += option;
 
                     if ($(this.subChildren).length > 0){
-console.log('found subchildren');
                       $(this.subChildren).each(function(){
                         var suboption = '<option value="'+this.subVal+'" class="subSubCompany">'+this.subName+'</option>';
                        console.log('suboption ' + this.subName);
                         options += suboption;
                       });
                     }
-console.log('options 2 ' + options);
                     $($.parentCompany).after(options);
                   });
                 }
@@ -2090,8 +2062,6 @@ console.log('options 2 ' + options);
                 $.sortedCoList = $('#fr_co_list').html();
                 $('.js__reg-company-name').append($.sortedCoList);
               }
-
-
             }
 
 
