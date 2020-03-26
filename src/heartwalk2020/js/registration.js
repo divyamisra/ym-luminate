@@ -1918,7 +1918,7 @@
               return 0;
             }
 
-
+//start sort function
             if ($('#fr_co_list').length > 0 || $('#fr_part_co_list').length > 0){
 
               $.coList = $('#fr_co_list');
@@ -1959,34 +1959,75 @@
               });
 
               $('.parentCompany').each(function(){
+                var parentName = $(this).text();
+                parentName = parentName.split(' ');
+                parentName = parentName[0];
+                $(this).nextUntil('.parentCompany').addClass(parentName);
+              });
+
+
+              $('.subSubCompany').each(function(){
+                if ($(this).next().hasClass('parentCompany') === true || $(this).next().hasClass('subCompany') === true || $(this).next().hasClass('subParentCompany') === true) {
+                  $(this).next().addClass('switchCompany');
+                }
+              });
+
+
+              $('.parentCompany').each(function(){
                 if ($(this).next('option').hasClass('subCompany')){
                   var parentName = $(this).text();
                   $.parentCompany = $(this);
 
+                  var parentClass = parentName.split(' ');
+                  parentClass = parentClass[0];
+
                   var children = [];
+
+                  var subParentNum = 0;
+                  $('.'+parentClass + '.subParentCompany').each(function(){
+                    subParentNum ++;
+                    var subParentClass = String(subParentNum);
+                    $(this).addClass(subParentClass);
+                  });
 
                   $(this).nextUntil('.parentCompany').each(function(){
                     var name = $(this).text();
                     var val = $(this).val();
-
                     if ($(this).hasClass('subParentCompany')){
-
                       var subChildren = [];
 
-                      $(this).nextUntil('.subCompany').each(function(){
-                        var subName = $(this).text();
-                        var subVal = $(this).val();
-                        subChildren.push({ 
-                          subName: subName,
-                          subVal: subVal
+                      if (subParentNum > 0){
+                        $(this).nextUntil('.switchCompany').each(function(){
+                          var subName = $(this).text();
+                          var subVal = $(this).val();
+                          subChildren.push({ 
+                            subName: subName,
+                            subVal: subVal
+                          });
+                          subChildren.sort( subChildCompare );
                         });
 
-                        subChildren.sort( subChildCompare );
-                      });
-
-                      var child = new Child(name,val,subChildren);
+                        var child = new Child(name,val,subChildren);
  
-                      children.push(child);
+                        children.push(child);
+                      }
+                      else{
+
+                        $(this).nextUntil('.subCompany').each(function(){
+                          var subName = $(this).text();
+                          var subVal = $(this).val();
+                          subChildren.push({ 
+                            subName: subName,
+                            subVal: subVal
+                          });
+
+                          subChildren.sort( subChildCompare );
+                        });
+
+                        var child = new Child(name,val,subChildren);
+ 
+                        children.push(child);
+                      }
                     }
                     else if ($(this).hasClass('subCompany')){
                       var child = new Child(name,val);
@@ -1994,23 +2035,24 @@
                     }
                   });
 
-
                   children.sort( childCompare );
                   children.reverse();
 
-                  $(this).nextUntil('.parentCompany').remove();
+                   $(this).nextUntil('.parentCompany').remove();
 
                   $.each(children,function(){
-                    var options;
-
+                    var options = '';
                     var option = '<option value="'+this.val+'" class="subCompany">'+this.name+'</option>';
+                    console.log('option ' + option);
                     options += option;
 
-                    $(this.subChildren).each(function(){
-                      var suboption = '<option value="'+this.subVal+'" class="subSubCompany">'+this.subName+'</option>';
-                      options += suboption;
-                    });
-  
+                    if ($(this.subChildren).length > 0){
+                      $(this.subChildren).each(function(){
+                        var suboption = '<option value="'+this.subVal+'" class="subSubCompany">'+this.subName+'</option>';
+                       console.log('suboption ' + this.subName);
+                        options += suboption;
+                      });
+                    }
                     $($.parentCompany).after(options);
                   });
                 }
@@ -2020,8 +2062,6 @@
                 $.sortedCoList = $('#fr_co_list').html();
                 $('.js__reg-company-name').append($.sortedCoList);
               }
-
-
             }
 
 
