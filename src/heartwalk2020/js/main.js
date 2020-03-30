@@ -567,7 +567,6 @@
                 .participant);
 
               $(participantData).each(function () {
-                console.log('counter: ' + counter);
                 if (counter <= 4) {
                     var participantName = this.name.first + ' ' + this.name.last;
                     var participantRaised = (parseInt(this.amountRaised) * 0.01).toFixed(2);
@@ -683,7 +682,7 @@
                 });
               }
             });
-           
+
             //$.each(rootAncestorCompanies, function(rootAncestorCompanyIndex, rootAncestorCompany) {
             //   rootAncestorCompanies[rootAncestorCompanyIndex].amountRaisedFormatted = $filter('currency')(rootAncestorCompany.amountRaised / 100, '$', 0);
             //});
@@ -705,7 +704,7 @@
         }
       });
     };
-    
+
     cd.getTopCompanies = function (eventId) {
       luminateExtend.api({
         api: 'teamraiser',
@@ -1339,6 +1338,7 @@ var numWalkerRows = 0;
 
  // build team roster
  cd.getCompanyParticipants = function () {
+     console.log('getCompanyParticipants');
   var numCompanies = allCompanyData.length-1;
   var company = allCompanyData[0];
   var companyIndex = 0;
@@ -1349,7 +1349,9 @@ var numWalkerRows = 0;
   var participants = [];
   cd.getAllParticipants = function(pgcnt) {
    companyId = allCompanyData[companyIndex].id;
+   console.log('companyId = ' + companyId);
    companyName = allCompanyData[companyIndex].name;
+   console.log('companyName = ' + companyName);
    luminateExtend.api({
     async: false,
     api: 'teamraiser',
@@ -1362,28 +1364,38 @@ var numWalkerRows = 0;
       '&response_format=json',
     callback: {
       success: function (response) {
+          console.log('success');
         if (response.getParticipantsResponse.totalNumberResults === '0') {
+            console.log('totalNumberResults is 0');
           if (allCompanyData[companyIndex+1] != undefined) {
+              console.log('allCompanyData is not undefined');
               companyIndex = companyIndex + 1;
               pgcnt = 0;
               cd.getAllParticipants(pgcnt);
           } else {
+              console.log('allCompanyData is unefined');
             if (participants.length > 0) {
+                console.log('participants.length > 0');
                cd.buildParticipantList(participants);
             }
           }
           // no search results
           return false;
         } else {
+            console.log('totalNumberResults is not 0');
           if (typeof(response.getParticipantsResponse.participant) == "undefined") {
+              console.log('getParticipantsResponse.participant is undefined');
             if (allCompanyData[companyIndex+1] != undefined) {
+                console.log('allCompanyData is not undefined');
               companyIndex = companyIndex + 1;
               pgcnt = 0;
               cd.getAllParticipants(pgcnt);
             } else {
+                console.log('allCompanyData is undefined');
               cd.buildParticipantList(participants);
             }
           } else {
+              console.log('getParticipantsResponse.participant is not undefined');
              pgcnt++;
              var participantList = luminateExtend.utils.ensureArray(response.getParticipantsResponse.participant);
              $(participantList).each(function (i, participant) {
