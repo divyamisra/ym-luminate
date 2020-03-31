@@ -1394,9 +1394,9 @@ var numWalkerRows = 0;
                '&list_page_offset=' + pgcnt +
                '&response_format=json',
              callback: {
-               success: function (response) {
+               success: function (indivResponse1) {
                    console.log('success');
-                 if (response.getParticipantsResponse.totalNumberResults === '0') {
+                 if (indivResponse1.getParticipantsResponse.totalNumberResults === '0') {
                      console.log('totalNumberResults (indiv participants) is 0');
                    if (allCompanyData[companyIndex+1] != undefined) {
                        console.log('allCompanyData is not undefined');
@@ -1414,7 +1414,7 @@ var numWalkerRows = 0;
                    return false;
                  } else {
                      console.log('totalNumberResults (indiv participants) is not 0');
-                   if (typeof(response.getParticipantsResponse.participant) == "undefined") {
+                   if (typeof(indivResponse1.getParticipantsResponse.participant) == "undefined") {
                        console.log('getParticipantsResponse.participant is undefined');
                      if (allCompanyData[companyIndex+1] != undefined) {
                          console.log('allCompanyData is not undefined');
@@ -1428,7 +1428,7 @@ var numWalkerRows = 0;
                    } else {
                        console.log('getParticipantsResponse.participant is not undefined');
                       pgcnt++;
-                      var indivParticipantList = luminateExtend.utils.ensureArray(response.getParticipantsResponse.participant);
+                      var indivParticipantList = luminateExtend.utils.ensureArray(indivResponse1.getParticipantsResponse.participant);
                       $(indivParticipantList).each(function (i, participant) {
                         indivParticipantList[i].companyId = companyId;
                         indivParticipantList[i].companyName = companyName;
@@ -1438,9 +1438,9 @@ var numWalkerRows = 0;
                    }
                  }
                },
-               error: function (response) {
-                 $('#error-participant').removeAttr('hidden').text(response.errorResponse.message);
-                 console.log('error response: ', response);
+               error: function (indivResponse1) {
+                 $('#error-participant').removeAttr('hidden').text(indivResponse1.errorResponse.message);
+                 console.log('error response: ', indivResponse1);
                }
              }
             });
@@ -1494,9 +1494,9 @@ var numWalkerRows = 0;
                 '&list_page_offset=' + pgcnt +
                 '&response_format=json',
               callback: {
-                success: function (response) {
+                success: function (indivResponse2) {
                     console.log('success');
-                  if (response.getParticipantsResponse.totalNumberResults === '0') {
+                  if (indivResponse2.getParticipantsResponse.totalNumberResults === '0') {
                       console.log('totalNumberResults is 0');
                     if (allCompanyData[companyIndex+1] != undefined) {
                         console.log('allCompanyData is not undefined');
@@ -1514,7 +1514,7 @@ var numWalkerRows = 0;
                     return false;
                   } else {
                       console.log('totalNumberResults is not 0');
-                    if (typeof(response.getParticipantsResponse.participant) == "undefined") {
+                    if (typeof(indivResponse2.getParticipantsResponse.participant) == "undefined") {
                         console.log('getParticipantsResponse.participant is undefined');
                       if (allCompanyData[companyIndex+1] != undefined) {
                           console.log('allCompanyData is not undefined');
@@ -1528,7 +1528,7 @@ var numWalkerRows = 0;
                     } else {
                         console.log('getParticipantsResponse.participant is not undefined');
                        pgcnt++;
-                       var indivParticipantList = luminateExtend.utils.ensureArray(response.getParticipantsResponse.participant);
+                       var indivParticipantList = luminateExtend.utils.ensureArray(indivResponse2.getParticipantsResponse.participant);
                        $(indivParticipantList).each(function (i, participant) {
                          indivParticipantList[i].companyId = companyId;
                          indivParticipantList[i].companyName = companyName;
@@ -1538,9 +1538,9 @@ var numWalkerRows = 0;
                     }
                   }
                 },
-                error: function (response) {
-                  $('#error-participant').removeAttr('hidden').text(response.errorResponse.message);
-                  console.log('error response: ', response);
+                error: function (indivResponse2) {
+                  $('#error-participant').removeAttr('hidden').text(indivResponse2.errorResponse.message);
+                  console.log('error response: ', indivResponse2);
                 }
               }
              });
