@@ -1366,7 +1366,7 @@ var numWalkerRows = 0;
       success: function (response) {
           console.log('success');
         if (response.getParticipantsResponse.totalNumberResults === '0') {
-            console.log('totalNumberResults is 0');
+            console.log('totalNumberResults (team participants) is 0');
           if (allCompanyData[companyIndex+1] != undefined) {
               console.log('allCompanyData is not undefined');
               companyIndex = companyIndex + 1;
@@ -1397,7 +1397,7 @@ var numWalkerRows = 0;
                success: function (response) {
                    console.log('success');
                  if (response.getParticipantsResponse.totalNumberResults === '0') {
-                     console.log('totalNumberResults is 0');
+                     console.log('totalNumberResults (indiv participants) is 0');
                    if (allCompanyData[companyIndex+1] != undefined) {
                        console.log('allCompanyData is not undefined');
                        //companyIndex = companyIndex + 1;
@@ -1413,7 +1413,7 @@ var numWalkerRows = 0;
                    // no search results
                    return false;
                  } else {
-                     console.log('totalNumberResults is not 0');
+                     console.log('totalNumberResults (indiv participants) is not 0');
                    if (typeof(response.getParticipantsResponse.participant) == "undefined") {
                        console.log('getParticipantsResponse.participant is undefined');
                      if (allCompanyData[companyIndex+1] != undefined) {
@@ -1523,7 +1523,7 @@ var numWalkerRows = 0;
                         //cd.getAllParticipants(pgcnt);
                       } else {
                           console.log('allCompanyData is undefined');
-                        //cd.buildParticipantList(participants);
+                        cd.buildParticipantList(participants);
                       }
                     } else {
                         console.log('getParticipantsResponse.participant is not undefined');
