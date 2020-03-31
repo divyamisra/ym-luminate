@@ -1381,7 +1381,7 @@ var numWalkerRows = 0;
 
 
 
-            console.log('2nd API call b');
+            console.log('2nd API call a');
 
             luminateExtend.api({
              async: false,
@@ -1434,7 +1434,7 @@ var numWalkerRows = 0;
                         indivParticipantList[i].companyName = companyName;
                       });
                       participants = participants.concat(indivParticipantList);
-                      //cd.getAllParticipants(pgcnt);
+                      cd.getAllParticipants(pgcnt);
                    }
                  }
                },
@@ -1534,7 +1534,7 @@ var numWalkerRows = 0;
                          indivParticipantList[i].companyName = companyName;
                        });
                        participants = participants.concat(indivParticipantList);
-                       //cd.getAllParticipants(pgcnt);
+                       cd.getAllParticipants(pgcnt);
                     }
                   }
                 },
@@ -1549,7 +1549,7 @@ var numWalkerRows = 0;
 
 
 
-             cd.getAllParticipants(pgcnt);
+             //cd.getAllParticipants(pgcnt);
           }
         }
       },
