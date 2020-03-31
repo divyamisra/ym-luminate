@@ -1403,71 +1403,78 @@ var numWalkerRows = 0;
                participantList[i].companyName = companyName;
              });
              participants = participants.concat(participantList);
-             cd.getAllParticipants(pgcnt);
-          }
-        }
-      },
-      error: function (response) {
-        $('#error-participant').removeAttr('hidden').text(response.errorResponse.message);
-        console.log('error response: ', response);
-      }
-    }
-   });
 
 
-   console.log('2nd API call');
 
-   luminateExtend.api({
-    async: false,
-    api: 'teamraiser',
-    data: 'method=getParticipants' +
-      '&first_name=%25%25%25&fr_id=' + evID +
-      '&list_filter_column=reg.company_id' +
-      '&list_filter_text=' + companyId +
-      '&list_page_size=499' +
-      '&list_page_offset=' + pgcnt +
-      '&response_format=json',
-    callback: {
-      success: function (response) {
-          console.log('success');
-        if (response.getParticipantsResponse.totalNumberResults === '0') {
-            console.log('totalNumberResults is 0');
-          if (allCompanyData[companyIndex+1] != undefined) {
-              console.log('allCompanyData is not undefined');
-              companyIndex = companyIndex + 1;
-              pgcnt = 0;
-              cd.getAllParticipants(pgcnt);
-          } else {
-              console.log('allCompanyData is undefined');
-            if (participants.length > 0) {
-                console.log('participants.length > 0');
-               cd.buildParticipantList(participants);
-            }
-          }
-          // no search results
-          return false;
-        } else {
-            console.log('totalNumberResults is not 0');
-          if (typeof(response.getParticipantsResponse.participant) == "undefined") {
-              console.log('getParticipantsResponse.participant is undefined');
-            if (allCompanyData[companyIndex+1] != undefined) {
-                console.log('allCompanyData is not undefined');
-              companyIndex = companyIndex + 1;
-              pgcnt = 0;
-              cd.getAllParticipants(pgcnt);
-            } else {
-                console.log('allCompanyData is undefined');
-              cd.buildParticipantList(participants);
-            }
-          } else {
-              console.log('getParticipantsResponse.participant is not undefined');
-             pgcnt++;
-             var participantList = luminateExtend.utils.ensureArray(response.getParticipantsResponse.participant);
-             $(participantList).each(function (i, participant) {
-               participantList[i].companyId = companyId;
-               participantList[i].companyName = companyName;
+
+             console.log('2nd API call');
+
+             luminateExtend.api({
+              async: false,
+              api: 'teamraiser',
+              data: 'method=getParticipants' +
+                '&first_name=%25%25%25&fr_id=' + evID +
+                '&list_filter_column=reg.company_id' +
+                '&list_filter_text=' + companyId +
+                '&list_page_size=499' +
+                '&list_page_offset=' + pgcnt +
+                '&response_format=json',
+              callback: {
+                success: function (response) {
+                    console.log('success');
+                  if (response.getParticipantsResponse.totalNumberResults === '0') {
+                      console.log('totalNumberResults is 0');
+                    if (allCompanyData[companyIndex+1] != undefined) {
+                        console.log('allCompanyData is not undefined');
+                        //companyIndex = companyIndex + 1;
+                        //pgcnt = 0;
+                        //cd.getAllParticipants(pgcnt);
+                    } else {
+                        console.log('allCompanyData is undefined');
+                      if (participants.length > 0) {
+                          console.log('participants.length > 0');
+                         //cd.buildParticipantList(participants);
+                      }
+                    }
+                    // no search results
+                    return false;
+                  } else {
+                      console.log('totalNumberResults is not 0');
+                    if (typeof(response.getParticipantsResponse.participant) == "undefined") {
+                        console.log('getParticipantsResponse.participant is undefined');
+                      if (allCompanyData[companyIndex+1] != undefined) {
+                          console.log('allCompanyData is not undefined');
+                        //companyIndex = companyIndex + 1;
+                        //pgcnt = 0;
+                        //cd.getAllParticipants(pgcnt);
+                      } else {
+                          console.log('allCompanyData is undefined');
+                        //cd.buildParticipantList(participants);
+                      }
+                    } else {
+                        console.log('getParticipantsResponse.participant is not undefined');
+                       pgcnt++;
+                       var indivParticipantList = luminateExtend.utils.ensureArray(response.getParticipantsResponse.participant);
+                       $(indivParticipantList).each(function (i, participant) {
+                         indivParticipantList[i].companyId = companyId;
+                         indivParticipantList[i].companyName = companyName;
+                       });
+                       participants = participants.concat(indivParticipantList);
+                       //cd.getAllParticipants(pgcnt);
+                    }
+                  }
+                },
+                error: function (response) {
+                  $('#error-participant').removeAttr('hidden').text(response.errorResponse.message);
+                  console.log('error response: ', response);
+                }
+              }
              });
-             participants = participants.concat(participantList);
+
+
+
+
+
              cd.getAllParticipants(pgcnt);
           }
         }
@@ -1478,11 +1485,6 @@ var numWalkerRows = 0;
       }
     }
    });
-
-
-
-
-
  }
  cd.getAllParticipants(0);
 };
