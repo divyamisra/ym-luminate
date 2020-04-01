@@ -1472,7 +1472,7 @@ var numWalkerRows = 0;
               console.log('getParticipantsResponse.participant is not undefined');
 
               console.log('2nd API call b');
-
+              var indivpgcnt = 0;
               luminateExtend.api({
                async: false,
                api: 'teamraiser',
@@ -1481,7 +1481,7 @@ var numWalkerRows = 0;
                  '&list_filter_column=reg.company_id' +
                  '&list_filter_text=' + companyId +
                  '&list_page_size=499' +
-                 '&list_page_offset=' + pgcnt +
+                 '&list_page_offset=' + indivpgcnt +
                  '&response_format=json',
                callback: {
                  success: function (indivResponse2) {
@@ -1517,14 +1517,14 @@ var numWalkerRows = 0;
                        }
                      } else {
                          console.log('getParticipantsResponse.participant is not undefined');
-                        pgcnt++;
+                        indivpgcnt++;
                         var indivParticipantList2 = luminateExtend.utils.ensureArray(indivResponse2.getParticipantsResponse.participant);
                         $(indivParticipantList2).each(function (i, participant) {
                           indivParticipantList2[i].companyId = companyId;
                           indivParticipantList2[i].companyName = companyName;
                         });
                         participants = participants.concat(indivParticipantList2);
-                        cd.getAllParticipants(pgcnt);
+                        cd.getAllParticipants(indivpgcnt);
                      }
                    }
                  },
