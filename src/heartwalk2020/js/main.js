@@ -1385,6 +1385,7 @@ var numWalkerRows = 0;
           return false;
         } else {
             console.log('totalNumberResults is not 0');
+            console.log(response.getParticipantsResponse.participant);
           if (typeof(response.getParticipantsResponse.participant) == "undefined") {
               console.log('getParticipantsResponse.participant is undefined');
             if (allCompanyData[companyIndex+1] != undefined) {
@@ -1464,6 +1465,7 @@ var numWalkerRows = 0;
          return false;
        } else {
            console.log('totalNumberResults is not 0');
+           console.log(indivResponse2.getParticipantsResponse.participant);
          if (typeof(indivResponse2.getParticipantsResponse.participant) == "undefined") {
              console.log('getParticipantsResponse.participant is undefined');
            if (allCompanyData[companyIndex+1] != undefined) {
