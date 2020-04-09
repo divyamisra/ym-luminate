@@ -1374,84 +1374,10 @@ var numWalkerRows = 0;
               cd.getAllParticipants(pgcnt);
           } else {
               console.log('allCompanyData is undefined');
-
-
-
-
-
-
-
-            console.log('2nd API call a');
-
-            luminateExtend.api({
-             async: false,
-             api: 'teamraiser',
-             data: 'method=getParticipants' +
-               '&first_name=%25%25%25&fr_id=' + evID +
-               '&list_filter_column=reg.company_id' +
-               '&list_filter_text=' + companyId +
-               '&list_page_size=499' +
-               '&list_page_offset=' + pgcnt +
-               '&response_format=json',
-             callback: {
-               success: function (indivResponse1) {
-                   console.log('success');
-                 if (indivResponse1.getParticipantsResponse.totalNumberResults === '0') {
-                     console.log('totalNumberResults (indiv participants) is 0');
-                   if (allCompanyData[companyIndex+1] != undefined) {
-                       console.log('allCompanyData is not undefined');
-                       //companyIndex = companyIndex + 1;
-                       //pgcnt = 0;
-                       //cd.getAllParticipants(pgcnt);
-                   } else {
-                       console.log('allCompanyData is undefined');
-                     if (participants.length > 0) {
-                         console.log('participants.length > 0');
-                        //cd.buildParticipantList(participants);
-                     }
-                   }
-                   // no search results
-                   return false;
-                 } else {
-                     console.log('totalNumberResults (indiv participants) is not 0');
-                   if (typeof(indivResponse1.getParticipantsResponse.participant) == "undefined") {
-                       console.log('getParticipantsResponse.participant is undefined');
-                     if (allCompanyData[companyIndex+1] != undefined) {
-                         console.log('allCompanyData is not undefined');
-                       //companyIndex = companyIndex + 1;
-                       //pgcnt = 0;
-                       //cd.getAllParticipants(pgcnt);
-                     } else {
-                         console.log('allCompanyData is undefined');
-                       //cd.buildParticipantList(participants);
-                     }
-                   } else {
-                       console.log('getParticipantsResponse.participant is not undefined');
-                      pgcnt++;
-                      var indivParticipantList1 = luminateExtend.utils.ensureArray(indivResponse1.getParticipantsResponse.participant);
-                      $(indivParticipantList1).each(function (i, participant) {
-                        indivParticipantList1[i].companyId = companyId;
-                        indivParticipantList1[i].companyName = companyName;
-                      });
-                      participants = participants.concat(indivParticipantList1);
-                      cd.getAllParticipants(pgcnt);
-                   }
-                 }
-               },
-               error: function (indivResponse1) {
-                 $('#error-participant').removeAttr('hidden').text(indivResponse1.errorResponse.message);
-                 console.log('error response: ', indivResponse1);
-               }
-             }
-            });
-
             if (participants.length > 0) {
                 console.log('participants.length > 0');
-               cd.buildParticipantList(participants);
+               //cd.buildParticipantList(participants);
             }
-
-
-
           }
           // no search results
           return false;
@@ -1466,76 +1392,10 @@ var numWalkerRows = 0;
               cd.getAllParticipants(pgcnt);
             } else {
                 console.log('allCompanyData is undefined');
-              cd.buildParticipantList(participants);
+                //cd.buildParticipantList(participants);
             }
           } else {
               console.log('getParticipantsResponse.participant is not undefined');
-
-              console.log('2nd API call b');
-              var indivpgcnt = 0;
-              luminateExtend.api({
-               async: false,
-               api: 'teamraiser',
-               data: 'method=getParticipants' +
-                 '&first_name=%25%25%25&fr_id=' + evID +
-                 '&list_filter_column=reg.company_id' +
-                 '&list_filter_text=' + companyId +
-                 '&list_page_size=499' +
-                 '&list_page_offset=' + indivpgcnt +
-                 '&response_format=json',
-               callback: {
-                 success: function (indivResponse2) {
-                     console.log('success');
-                   if (indivResponse2.getParticipantsResponse.totalNumberResults === '0') {
-                       console.log('totalNumberResults is 0');
-                     if (allCompanyData[companyIndex+1] != undefined) {
-                         console.log('allCompanyData is not undefined');
-                         //companyIndex = companyIndex + 1;
-                         //pgcnt = 0;
-                         //cd.getAllParticipants(pgcnt);
-                     } else {
-                         console.log('allCompanyData is undefined');
-                       if (participants.length > 0) {
-                           console.log('participants.length > 0');
-                          //cd.buildParticipantList(participants);
-                       }
-                     }
-                     // no search results
-                     return false;
-                   } else {
-                       console.log('totalNumberResults is not 0');
-                     if (typeof(indivResponse2.getParticipantsResponse.participant) == "undefined") {
-                         console.log('getParticipantsResponse.participant is undefined');
-                       if (allCompanyData[companyIndex+1] != undefined) {
-                           console.log('allCompanyData is not undefined');
-                         //companyIndex = companyIndex + 1;
-                         //pgcnt = 0;
-                         //cd.getAllParticipants(pgcnt);
-                       } else {
-                           console.log('allCompanyData is undefined');
-                         cd.buildParticipantList(participants);
-                       }
-                     } else {
-                         console.log('getParticipantsResponse.participant is not undefined');
-                        indivpgcnt++;
-                        var indivParticipantList2 = luminateExtend.utils.ensureArray(indivResponse2.getParticipantsResponse.participant);
-                        $(indivParticipantList2).each(function (i, participant) {
-                          indivParticipantList2[i].companyId = companyId;
-                          indivParticipantList2[i].companyName = companyName;
-                        });
-                        participants = participants.concat(indivParticipantList2);
-                        cd.getAllParticipants(indivpgcnt);
-                     }
-                   }
-                 },
-                 error: function (indivResponse2) {
-                   $('#error-participant').removeAttr('hidden').text(indivResponse2.errorResponse.message);
-                   console.log('error response: ', indivResponse2);
-                 }
-               }
-              });
-
-
              pgcnt++;
              var participantList = luminateExtend.utils.ensureArray(response.getParticipantsResponse.participant);
              $(participantList).each(function (i, participant) {
@@ -1543,17 +1403,7 @@ var numWalkerRows = 0;
                participantList[i].companyName = companyName;
              });
              participants = participants.concat(participantList);
-
-
-
-
-
-
-
-
-
-
-             //cd.getAllParticipants(pgcnt);
+             cd.getAllParticipants(pgcnt);
           }
         }
       },
@@ -1563,6 +1413,81 @@ var numWalkerRows = 0;
       }
     }
    });
+
+
+
+   // console.log('2nd API call b');
+   // var indivpgcnt = 0;
+   // luminateExtend.api({
+   //  async: false,
+   //  api: 'teamraiser',
+   //  data: 'method=getParticipants' +
+   //    '&first_name=%25%25%25&fr_id=' + evID +
+   //    '&list_filter_column=reg.company_id' +
+   //    '&list_filter_text=' + companyId +
+   //    '&list_page_size=499' +
+   //    '&list_page_offset=' + indivpgcnt +
+   //    '&response_format=json',
+   //  callback: {
+   //    success: function (indivResponse2) {
+   //        console.log('success');
+   //      if (indivResponse2.getParticipantsResponse.totalNumberResults === '0') {
+   //          console.log('totalNumberResults is 0');
+   //        if (allCompanyData[companyIndex+1] != undefined) {
+   //            console.log('allCompanyData is not undefined');
+   //            companyIndex = companyIndex + 1;
+   //            pgcnt = 0;
+   //            cd.getAllParticipants(pgcnt);
+   //        } else {
+   //            console.log('allCompanyData is undefined');
+   //          if (participants.length > 0) {
+   //              console.log('participants.length > 0');
+   //             cd.buildParticipantList(participants);
+   //          }
+   //        }
+   //        // no search results
+   //        return false;
+   //      } else {
+   //          console.log('totalNumberResults is not 0');
+   //        if (typeof(indivResponse2.getParticipantsResponse.participant) == "undefined") {
+   //            console.log('getParticipantsResponse.participant is undefined');
+   //          if (allCompanyData[companyIndex+1] != undefined) {
+   //              console.log('allCompanyData is not undefined');
+   //            companyIndex = companyIndex + 1;
+   //            pgcnt = 0;
+   //            cd.getAllParticipants(pgcnt);
+   //          } else {
+   //              console.log('allCompanyData is undefined');
+   //            cd.buildParticipantList(participants);
+   //          }
+   //        } else {
+   //            console.log('getParticipantsResponse.participant is not undefined');
+   //           indivpgcnt++;
+   //           var indivParticipantList2 = luminateExtend.utils.ensureArray(indivResponse2.getParticipantsResponse.participant);
+   //           $(indivParticipantList2).each(function (i, participant) {
+   //             indivParticipantList2[i].companyId = companyId;
+   //             indivParticipantList2[i].companyName = companyName;
+   //           });
+   //           participants = participants.concat(indivParticipantList2);
+   //           cd.getAllParticipants(indivpgcnt);
+   //        }
+   //      }
+   //    },
+   //    error: function (indivResponse2) {
+   //      $('#error-participant').removeAttr('hidden').text(indivResponse2.errorResponse.message);
+   //      console.log('error response: ', indivResponse2);
+   //    }
+   //  }
+   // });
+
+   if (participants.length > 0) {
+       console.log('testing length of participants array - greater than 0');
+       console.log('participants.length = ' + participants.length);
+       cd.buildParticipantList(participants);
+   } else {
+       console.log('testing length of participants array - not greater than 0');
+   }
+
  }
  cd.getAllParticipants(0);
 };
