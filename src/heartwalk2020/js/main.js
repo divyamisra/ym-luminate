@@ -1347,6 +1347,8 @@ var numWalkerRows = 0;
 
   $('#participant-roster tbody').html('');
   var participants = [];
+
+
   cd.getAllParticipants = function(pgcnt) {
    companyId = allCompanyData[companyIndex].id;
    console.log('companyId = ' + companyId);
@@ -1414,82 +1416,100 @@ var numWalkerRows = 0;
     }
    });
 
-
-
-   // console.log('2nd API call b');
-   // var indivpgcnt = 0;
-   // luminateExtend.api({
-   //  async: false,
-   //  api: 'teamraiser',
-   //  data: 'method=getParticipants' +
-   //    '&first_name=%25%25%25&fr_id=' + evID +
-   //    '&list_filter_column=reg.company_id' +
-   //    '&list_filter_text=' + companyId +
-   //    '&list_page_size=499' +
-   //    '&list_page_offset=' + indivpgcnt +
-   //    '&response_format=json',
-   //  callback: {
-   //    success: function (indivResponse2) {
-   //        console.log('success');
-   //      if (indivResponse2.getParticipantsResponse.totalNumberResults === '0') {
-   //          console.log('totalNumberResults is 0');
-   //        if (allCompanyData[companyIndex+1] != undefined) {
-   //            console.log('allCompanyData is not undefined');
-   //            companyIndex = companyIndex + 1;
-   //            pgcnt = 0;
-   //            cd.getAllParticipants(pgcnt);
-   //        } else {
-   //            console.log('allCompanyData is undefined');
-   //          if (participants.length > 0) {
-   //              console.log('participants.length > 0');
-   //             cd.buildParticipantList(participants);
-   //          }
-   //        }
-   //        // no search results
-   //        return false;
-   //      } else {
-   //          console.log('totalNumberResults is not 0');
-   //        if (typeof(indivResponse2.getParticipantsResponse.participant) == "undefined") {
-   //            console.log('getParticipantsResponse.participant is undefined');
-   //          if (allCompanyData[companyIndex+1] != undefined) {
-   //              console.log('allCompanyData is not undefined');
-   //            companyIndex = companyIndex + 1;
-   //            pgcnt = 0;
-   //            cd.getAllParticipants(pgcnt);
-   //          } else {
-   //              console.log('allCompanyData is undefined');
-   //            cd.buildParticipantList(participants);
-   //          }
-   //        } else {
-   //            console.log('getParticipantsResponse.participant is not undefined');
-   //           indivpgcnt++;
-   //           var indivParticipantList2 = luminateExtend.utils.ensureArray(indivResponse2.getParticipantsResponse.participant);
-   //           $(indivParticipantList2).each(function (i, participant) {
-   //             indivParticipantList2[i].companyId = companyId;
-   //             indivParticipantList2[i].companyName = companyName;
-   //           });
-   //           participants = participants.concat(indivParticipantList2);
-   //           cd.getAllParticipants(indivpgcnt);
-   //        }
-   //      }
-   //    },
-   //    error: function (indivResponse2) {
-   //      $('#error-participant').removeAttr('hidden').text(indivResponse2.errorResponse.message);
-   //      console.log('error response: ', indivResponse2);
-   //    }
-   //  }
-   // });
-
-   if (participants.length > 0) {
-       console.log('testing length of participants array - greater than 0');
-       console.log('participants.length = ' + participants.length);
-       cd.buildParticipantList(participants);
-   } else {
-       console.log('testing length of participants array - not greater than 0');
-   }
-
  }
  cd.getAllParticipants(0);
+
+ var numCompanies = allCompanyData.length-1;
+ var company = allCompanyData[0];
+ var companyIndex = 0;
+ var companyId = company.id;
+ var companyName = company.name;
+ var indivpgcnt = 0;
+
+ cd.getCompanyIndividualParticipants = function(indivpgcnt) {
+  companyId = allCompanyData[companyIndex].id;
+  console.log('companyId = ' + companyId);
+  companyName = allCompanyData[companyIndex].name;
+  console.log('companyName = ' + companyName);
+  console.log('2nd API call');
+
+  luminateExtend.api({
+   async: false,
+   api: 'teamraiser',
+   data: 'method=getParticipants' +
+     '&first_name=%25%25%25&fr_id=' + evID +
+     '&list_filter_column=reg.company_id' +
+     '&list_filter_text=' + companyId +
+     '&list_page_size=499' +
+     '&list_page_offset=' + indivpgcnt +
+     '&response_format=json',
+   callback: {
+     success: function (indivResponse2) {
+         console.log('success');
+       if (indivResponse2.getParticipantsResponse.totalNumberResults === '0') {
+           console.log('totalNumberResults is 0');
+         if (allCompanyData[companyIndex+1] != undefined) {
+             console.log('allCompanyData is not undefined');
+             companyIndex = companyIndex + 1;
+             indivpgcnt = 0;
+             cd.getCompanyIndividualParticipants(indivpgcnt);
+         } else {
+             console.log('allCompanyData is undefined');
+           if (participants.length > 0) {
+               console.log('participants.length > 0');
+              //cd.buildParticipantList(participants);
+           }
+         }
+         // no search results
+         return false;
+       } else {
+           console.log('totalNumberResults is not 0');
+         if (typeof(indivResponse2.getParticipantsResponse.participant) == "undefined") {
+             console.log('getParticipantsResponse.participant is undefined');
+           if (allCompanyData[companyIndex+1] != undefined) {
+               console.log('allCompanyData is not undefined');
+             companyIndex = companyIndex + 1;
+             indivpgcnt = 0;
+             cd.getCompanyIndividualParticipants(indivpgcnt);
+           } else {
+               console.log('allCompanyData is undefined');
+             //cd.buildParticipantList(participants);
+           }
+         } else {
+             console.log('getParticipantsResponse.participant is not undefined');
+            indivpgcnt++;
+            var indivParticipantList2 = luminateExtend.utils.ensureArray(indivResponse2.getParticipantsResponse.participant);
+            $(indivParticipantList2).each(function (i, participant) {
+              indivParticipantList2[i].companyId = companyId;
+              indivParticipantList2[i].companyName = companyName;
+            });
+            participants = participants.concat(indivParticipantList2);
+            cd.getCompanyIndividualParticipants(indivpgcnt);
+         }
+       }
+     },
+     error: function (indivResponse2) {
+       $('#error-participant').removeAttr('hidden').text(indivResponse2.errorResponse.message);
+       console.log('error response: ', indivResponse2);
+     }
+   }
+  });
+
+}
+cd.getCompanyIndividualParticipants(0);
+
+if (participants.length > 0) {
+    console.log('testing length of participants array - greater than 0');
+    console.log('participants.length = ' + participants.length);
+    cd.buildParticipantList(participants);
+} else {
+    console.log('testing length of participants array - not greater than 0');
+}
+
+
+
+
+
 };
 
 cd.getCompanyParticipants();
