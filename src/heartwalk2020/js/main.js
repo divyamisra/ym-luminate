@@ -1378,7 +1378,7 @@ var numWalkerRows = 0;
               console.log('allCompanyData is undefined');
             if (participants.length > 0) {
                 console.log('participants.length > 0');
-                let teamPromise = new Promise(function(resolve, reject) {
+                var teamPromise = new Promise(function(resolve, reject) {
                     resolve('teamParticipantsListBuilt');
                 });
                //cd.buildParticipantList(participants);
@@ -1461,7 +1461,7 @@ var numWalkerRows = 0;
              console.log('allCompanyData is undefined');
            if (participants.length > 0) {
                console.log('participants.length > 0');
-               let indivPromise = new Promise(function(resolve, reject) {
+               var indivPromise = new Promise(function(resolve, reject) {
                    resolve('indivParticipantsListBuilt');
                });
               //cd.buildParticipantList(participants);
