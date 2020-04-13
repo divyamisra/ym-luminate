@@ -1378,6 +1378,9 @@ var numWalkerRows = 0;
               console.log('allCompanyData is undefined');
             if (participants.length > 0) {
                 console.log('participants.length > 0');
+                let teamPromise = new Promise(function(resolve, reject) {
+                    resolve('teamParticipantsListBuilt');
+                });
                //cd.buildParticipantList(participants);
             }
           }
@@ -1458,6 +1461,9 @@ var numWalkerRows = 0;
              console.log('allCompanyData is undefined');
            if (participants.length > 0) {
                console.log('participants.length > 0');
+               let indivPromise = new Promise(function(resolve, reject) {
+                   resolve('indivParticipantsListBuilt');
+               });
               //cd.buildParticipantList(participants);
            }
          }
@@ -1499,6 +1505,24 @@ var numWalkerRows = 0;
 
 }
 cd.getCompanyIndividualParticipants(0);
+
+teamPromise.then(
+    result => console.log('teamPromise result: ' + result),
+    error => console.log('teamPromise error: ' + error)
+);
+
+indivPromise.then(
+    result => console.log('teamPromise result: ' + result),
+    error => console.log('teamPromise error: ' + error)
+);
+
+Promise.all([teamPromise, indivPromise])
+    .then(result) => {
+        console.log('Promise.all result: ' + result);
+    })
+    .catch(error) => {
+        console.log('Promise.all error: ' + error);
+    };
 
 if (participants.length > 0) {
     console.log('testing length of participants array - greater than 0');
