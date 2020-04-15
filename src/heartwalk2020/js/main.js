@@ -1344,6 +1344,8 @@ var numWalkerRows = 0;
   var companyIndex = 0;
   var companyId = company.id;
   var companyName = company.name;
+  var teamPromise;
+  var indivPromise;
 
   $('#participant-roster tbody').html('');
   var participants = [];
@@ -1378,7 +1380,7 @@ var numWalkerRows = 0;
               console.log('allCompanyData is undefined');
             if (participants.length > 0) {
                 console.log('participants.length > 0');
-                var teamPromise = new Promise(function(resolve, reject) {
+                teamPromise = new Promise(function(resolve, reject) {
                     resolve('teamParticipantsListBuilt');
                 });
                //cd.buildParticipantList(participants);
@@ -1461,7 +1463,7 @@ var numWalkerRows = 0;
              console.log('allCompanyData is undefined');
            if (participants.length > 0) {
                console.log('participants.length > 0');
-               var indivPromise = new Promise(function(resolve, reject) {
+               indivPromise = new Promise(function(resolve, reject) {
                    resolve('indivParticipantsListBuilt');
                });
               //cd.buildParticipantList(participants);
