@@ -1516,7 +1516,7 @@ cd.getCompanyIndividualParticipants(0);
 //     error => console.log('teamPromise error: ' + error)
 // );
 
-Promise.all([teamPromise, indivPromise]).then(result => {
+Promise.all([teamPromise, indivPromise]).then(function (result) {
     console.log('Promise.all result: ' + result);
     if (participants.length > 0) {
         console.log('testing length of participants array - greater than 0');
@@ -1525,7 +1525,7 @@ Promise.all([teamPromise, indivPromise]).then(result => {
     } else {
         console.log('testing length of participants array - not greater than 0');
     }
-}).catch(error => {
+}).catch(function (error) {
     console.log('Promise.all error: ' + error);
 });
 
