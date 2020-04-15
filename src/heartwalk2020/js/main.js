@@ -1506,16 +1506,6 @@ var numWalkerRows = 0;
 }
 cd.getCompanyIndividualParticipants(0);
 
-// teamPromise.then(
-//     result => console.log('teamPromise result: ' + result),
-//     error => console.log('teamPromise error: ' + error)
-// );
-//
-// indivPromise.then(
-//     result => console.log('teamPromise result: ' + result),
-//     error => console.log('teamPromise error: ' + error)
-// );
-
 Promise.all([teamPromise, indivPromise]).then(function (result) {
     console.log('Promise.all result: ' + result);
     if (participants.length > 0) {
