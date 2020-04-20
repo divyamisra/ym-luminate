@@ -1358,15 +1358,15 @@ cd.getAllParticipants = function(pgcnt) {
    companyName = allCompanyData[companyIndex].name;
    console.log('companyName = ' + companyName);
   var teamPromise = $.Deferred();
-   
+
 return $.ajax({
   type: 'GET',
-  url: luminateExtend.global.path.secure + 'CRTeamraiserAPI', 
+  url: luminateExtend.global.path.secure + 'CRTeamraiserAPI',
   data: {
     method: 'getParticipants',
     api_key: luminateExtend.global.apiKey,
     v: '1.0',
-    team_name: '%25%25%25',
+    team_name: '%%%',
     fr_id: evID,
     list_filter_column: 'team.company_id',
     list_filter_text: companyId,
@@ -1452,16 +1452,16 @@ cd.getCompanyIndividualParticipants = function(indivpgcnt) {
   console.log('companyName = ' + companyName);
   console.log('2nd API call');
 
-  
-// cd.getCompanyIndividualParticipants 
+
+// cd.getCompanyIndividualParticipants
 return $.ajax({
   type: 'GET',
-  url: luminateExtend.global.path.secure + 'CRTeamraiserAPI', 
+  url: luminateExtend.global.path.secure + 'CRTeamraiserAPI',
   data: {
     method: 'getParticipants',
     api_key: luminateExtend.global.apiKey,
     v: '1.0',
-    first_name: '%25%25%25',
+    first_name: '%%%',
     fr_id: evID,
     list_filter_column: 'reg.company_id',
     list_filter_text: companyId,
@@ -1504,7 +1504,7 @@ return indivPromise.promise();
         console.log('allCompanyData is not undefined');
       companyIndex = companyIndex + 1;
       indivpgcnt = 0;
-      
+
       cd.getCompanyIndividualParticipants(indivpgcnt);
     } else {
         console.log('allCompanyData is undefined');
