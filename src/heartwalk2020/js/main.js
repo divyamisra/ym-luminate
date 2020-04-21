@@ -1351,7 +1351,7 @@ var numWalkerRows = 0;
   $('#participant-roster tbody').html('');
   var participants = [];
 
-cd.getAllParticipants = function(pgcnt) {
+cd.getAllParticipants = function(pgcnt, isFinalCall) {
    companyId = allCompanyData[companyIndex].id;
    console.log('companyId = ' + companyId);
    companyName = allCompanyData[companyIndex].name;
@@ -1382,14 +1382,17 @@ return $.ajax({
         console.log('allCompanyData is not undefined');
         companyIndex = companyIndex + 1;
         pgcnt = 0;
-        cd.getAllParticipants(pgcnt);
+        cd.getAllParticipants(pgcnt, false);
+        // console.log('##### EXIT cd.getAllParticipants 1');
+
     } else {
         console.log('allCompanyData is undefined');
       if (participants.length > 0) {
           console.log('participants.length > 0');
-         teamPromise.resolve('teamParticipantsListBuilt');
-          return teamPromise.promise();
-
+          // console.log('##### EXIT cd.getAllParticipants 2');
+        //  teamPromise.resolve('teamParticipantsListBuilt');
+        //   return teamPromise.promise();
+// TODO - confirm that this is truly the final exit point 
           // teamPromise = new Promise(function(resolve, reject) {
           //     resolve('teamParticipantsListBuilt');
           // });
@@ -1397,20 +1400,32 @@ return $.ajax({
       }
     }
     // no search results
+    // console.log('##### EXIT cd.getAllParticipants 5');
     return false;
   } else {
       console.log('totalNumberResults is not 0');
       console.log(response.getParticipantsResponse.participant);
     if (typeof(response.getParticipantsResponse.participant) == "undefined") {
         console.log('getParticipantsResponse.participant is undefined');
+        // console.log('##### EXIT cd.getAllParticipants 6');
+
       if (allCompanyData[companyIndex+1] != undefined) {
           console.log('allCompanyData is not undefined');
         companyIndex = companyIndex + 1;
         pgcnt = 0;
-        cd.getAllParticipants(pgcnt);
+        cd.getAllParticipants(pgcnt, false);
+        // console.log('##### EXIT cd.getAllParticipants 3');
       } else {
           console.log('allCompanyData is undefined');
-          //cd.buildParticipantList(participants);
+        // console.log('##### EXIT cd.getAllParticipants 7');
+        if(isFinalCall === true){
+          console.log('isFinalCall===true. resolve promise');
+          teamPromise.resolve('teamParticipantsListBuilt');
+          return teamPromise.promise();
+        } 
+        // else {
+        //   cd.buildParticipantList(participants);
+        // }
       }
     } else {
         console.log('getParticipantsResponse.participant is not undefined');
@@ -1421,7 +1436,9 @@ return $.ajax({
          participantList[i].companyName = companyName;
        });
        participants = participants.concat(participantList);
-       cd.getAllParticipants(pgcnt);
+     cd.getAllParticipants(pgcnt, true);
+      //  console.log('##### EXIT cd.getAllParticipants 4');
+     
     }
   }
 })
@@ -1434,6 +1451,7 @@ return $.ajax({
 
  }
 
+//  temp disable this call
 //  cd.getAllParticipants(0);
 
  var numCompanies = allCompanyData.length-1;
@@ -1482,7 +1500,7 @@ return $.ajax({
       console.log('allCompanyData is undefined');
     if (participants.length > 0) {
         console.log('participants.length > 0');
-        cd.buildParticipantList(participants);
+        // cd.buildParticipantList(participants);
 indivPromise.resolve('indivParticipantsListBuilt');
 return indivPromise.promise();
 
