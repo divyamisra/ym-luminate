@@ -1351,7 +1351,6 @@ var numWalkerRows = 0;
   $('#participant-roster tbody').html('');
   var participants = [];
 
-
 cd.getAllParticipants = function(pgcnt) {
    companyId = allCompanyData[companyIndex].id;
    console.log('companyId = ' + companyId);
@@ -1435,7 +1434,7 @@ return $.ajax({
 
  }
 
- cd.getAllParticipants(0);
+//  cd.getAllParticipants(0);
 
  var numCompanies = allCompanyData.length-1;
  var company = allCompanyData[0];
