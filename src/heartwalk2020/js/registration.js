@@ -1863,7 +1863,7 @@
         var waiver, waiverHTML;
         $(data).find('participationType').each(function() {
             var nodeName = $(this).find('name').text();
-            var nodeNameTrim = nodeName.replace(/\s/g, "");
+            var nodeNameTrim = nodeName.replace(/\s/g, "").replace(/amp;/g, "");
             if (nodeNameTrim == userParticipationType) {
                 waiver = $(this).find('waiver').text();
                 waiverHTML = waiver.replace(/(?:\r\n\r\n|\r\r|\n\n)/, '<p>').replace(/(?:\r\n\r\n|\r\r|\n\n)/g, '</p><p>').replace('our Privacy Policy', '<a href="http://www.Heart.org/Privacy">our Privacy Policy</a>');
