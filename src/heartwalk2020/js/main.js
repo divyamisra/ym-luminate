@@ -1166,6 +1166,7 @@
 
     }
 
+
     if ($('body').is('.pg_company')) {
       // Company Page
 
@@ -1178,6 +1179,7 @@
         $('.js--company-name').text(currentCompanyName);
         // var isParentCompany = ($('#company_hierarchy_list_component .lc_Row1').length ? true : false)
         var isParentCompany = ($('.js--company-hierarchy-list-container .lc_Row1').length ? true : false)
+console.log('isParentCompany ' + isParentCompany);
 
         var allCompanyData = [{
           id: currentCompanyId,
@@ -1190,6 +1192,7 @@
             var childCompanyLink = $(this).attr('href');
             var childCompanyName = $(this).text();
             var childCompanyId = getURLParameter(childCompanyLink, 'company_id');
+console.log('hierarchy data ' + childCompanyLink + ' ' + childCompanyName + ' ' + childCompanyId);
             allCompanyData.push({id: childCompanyId, name: childCompanyName});
             // allCompanyData.id
           });
@@ -1266,10 +1269,11 @@
         });
 
         // Build company team roster
-         // build team roster
-         var numTeamRows = 0;
+        // build team roster
+        var numTeamRows = 0;
 
-         cd.getCompanyTeams = function (companyId, companyName, numCompanies, companyIndex) {
+        cd.getCompanyTeams = function (companyId, companyName, numCompanies, companyIndex) {
+console.log('cd.getCompanyTeams id' + companyId + ' name ' + companyName + ' number ' + numCompanies + ' index ' + companyIndex);
           luminateExtend.api({
             api: 'teamraiser',
             data: 'method=getTeamsByInfo' +
@@ -1303,6 +1307,7 @@
                 }
 
                 if(companyIndex === numCompanies){
+console.log('compindex = numcompanies, initialize roster');
                   setTimeout(function(){
                     cd.initializeTeamRosterTable();
                     var totalTeams = $('.team-name').length;
@@ -1324,6 +1329,8 @@
 
 cd.buildCompanyTeamRoster = function(){
   var numCompanies = allCompanyData.length;
+console.log('cd.buildCompanyTeamRoster numCompanies ' + numCompanies);
+
   for (var i = 0, l = allCompanyData.length; i < l; i++) {
     var company = allCompanyData[i];
     var companyIndex = i + 1;
@@ -1338,7 +1345,7 @@ var numWalkerRows = 0;
 
  // build team roster
  cd.getCompanyParticipants = function () {
-     console.log('getCompanyParticipants');
+     console.log('cd.getCompanyParticipants');
   var numCompanies = allCompanyData.length-1;
   var company = allCompanyData[0];
   var companyIndex = 0;
@@ -1352,10 +1359,11 @@ var numWalkerRows = 0;
   var participants = [];
 
 cd.getAllParticipants = function(pgcnt, isFinalCall) {
+console.log('cd.getAllParticipants pgcnt ' + pgcnt + ' isFinalCall ' + isFinalCall);
    companyId = allCompanyData[companyIndex].id;
-   console.log('companyId = ' + companyId);
+   console.log('cd.getAllParticipants companyId = ' + companyId);
    companyName = allCompanyData[companyIndex].name;
-   console.log('companyName = ' + companyName);
+   console.log('cd.getAllParticipants companyName = ' + companyName);
   var teamPromise = $.Deferred();
 
 return $.ajax({
@@ -1375,7 +1383,7 @@ return $.ajax({
   },
   dataType: 'json'
 }).done(function(response){
-  console.log('ajax cd.getAllParticipants success:', response);
+  console.log('ajax cd.getAllParticipants filtered on team comp ID success: ', response);
   if (response.getParticipantsResponse.totalNumberResults === '0') {
       console.log('totalNumberResults (team participants) is 0');
     if (allCompanyData[companyIndex+1] != undefined) {
@@ -1452,7 +1460,7 @@ return $.ajax({
  }
 
 //  temp disable this call
-//  cd.getAllParticipants(0);
+  cd.getAllParticipants(0);  
 
  var numCompanies = allCompanyData.length-1;
  var company = allCompanyData[0];
@@ -1462,11 +1470,12 @@ return $.ajax({
  var indivpgcnt = 0;
 
 cd.getCompanyIndividualParticipants = function(indivpgcnt) {
+console.log('cd.getCompanyIndividualParticipants indivpgcnt ' + indivpgcnt);
   var indivPromise = $.Deferred();
   companyId = allCompanyData[companyIndex].id;
-  console.log('companyId = ' + companyId);
+  console.log('cd.getCompanyIndividualParticipant companyId = ' + companyId);
   companyName = allCompanyData[companyIndex].name;
-  console.log('companyName = ' + companyName);
+  console.log('cd.getCompanyIndividualParticipant companyName = ' + companyName);
   console.log('2nd API call');
 
 
