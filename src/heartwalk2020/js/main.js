@@ -1254,7 +1254,7 @@ console.log('hierarchy data ' + childCompanyLink + ' ' + childCompanyName + ' ' 
         var companyGoal = companyoGoalText.split('.');
         $('#goal-amount').html(companyGoal[0]);
 
-        // populate custom personal page content
+        // populate custom company page content
         $('.js--company-text').html($('#fr_rich_text_container').html());
 
         var progress = $('#progress-amount').text();
@@ -1307,7 +1307,7 @@ console.log('cd.getCompanyTeams id' + companyId + ' name ' + companyName + ' num
                 }
 
                 if(companyIndex === numCompanies){
-console.log('compindex = numcompanies, initialize roster');
+//console.log('compindex = numcompanies, initialize roster');
                   setTimeout(function(){
                     cd.initializeTeamRosterTable();
                     var totalTeams = $('.team-name').length;
@@ -1359,11 +1359,9 @@ var numWalkerRows = 0;
   var participants = [];
 
 cd.getAllParticipants = function(pgcnt, isFinalCall) {
-console.log('cd.getAllParticipants pgcnt ' + pgcnt + ' isFinalCall ' + isFinalCall);
+  console.log('cd.getAllParticipants pgcnt ' + pgcnt + ' isFinalCall ' + isFinalCall + ' companyId ' + companyId + ' companyName ' + companyName );
    companyId = allCompanyData[companyIndex].id;
-   console.log('cd.getAllParticipants companyId = ' + companyId);
    companyName = allCompanyData[companyIndex].name;
-   console.log('cd.getAllParticipants companyName = ' + companyName);
   var teamPromise = $.Deferred();
 
 return $.ajax({
@@ -1460,7 +1458,7 @@ return $.ajax({
  }
 
 //  temp disable this call
-  cd.getAllParticipants(0);  
+//  cd.getAllParticipants(0);  
 
  var numCompanies = allCompanyData.length-1;
  var company = allCompanyData[0];
@@ -1470,98 +1468,95 @@ return $.ajax({
  var indivpgcnt = 0;
 
 cd.getCompanyIndividualParticipants = function(indivpgcnt) {
-console.log('cd.getCompanyIndividualParticipants indivpgcnt ' + indivpgcnt);
+  console.log('cd.getCompanyIndividualParticipants indivpgcnt ' + indivpgcnt + ' companyId ' + companyId + ' companyName ' + companyName);
   var indivPromise = $.Deferred();
   companyId = allCompanyData[companyIndex].id;
-  console.log('cd.getCompanyIndividualParticipant companyId = ' + companyId);
   companyName = allCompanyData[companyIndex].name;
-  console.log('cd.getCompanyIndividualParticipant companyName = ' + companyName);
-  console.log('2nd API call');
+//  console.log('2nd API call');
 
 
-// cd.getCompanyIndividualParticipants
-return $.ajax({
-  type: 'GET',
-  url: luminateExtend.global.path.secure + 'CRTeamraiserAPI',
-  data: {
-    method: 'getParticipants',
-    api_key: luminateExtend.global.apiKey,
-    v: '1.0',
-    first_name: '%%%',
-    fr_id: evID,
-    list_filter_column: 'reg.company_id',
-    list_filter_text: companyId,
-    list_page_size: '499',
-    list_page_offset: indivpgcnt,
-    response_format: 'json',
-  },
-  dataType: 'json'
-}).done(function(indivResponse2){
-  console.log('ajax cd.getCompanyIndividualParticipants success:', indivResponse2);
-  if (indivResponse2.getParticipantsResponse.totalNumberResults === '0') {
-    console.log('totalNumberResults is 0');
-  if (allCompanyData[companyIndex+1] != undefined) {
-      console.log('allCompanyData is not undefined');
-      companyIndex = companyIndex + 1;
-      indivpgcnt = 0;
-      cd.getCompanyIndividualParticipants(indivpgcnt);
-  } else {
-      console.log('allCompanyData is undefined');
-    if (participants.length > 0) {
-        console.log('participants.length > 0');
-        // cd.buildParticipantList(participants);
-indivPromise.resolve('indivParticipantsListBuilt');
-return indivPromise.promise();
-
-        // indivPromise = new Promise(function(resolve, reject) {
-        //     resolve('indivParticipantsListBuilt');
-        // });
-       //cd.buildParticipantList(participants);
-    }
-  }
-  // no search results
-  return false;
-} else {
-    console.log('totalNumberResults is not 0');
-    console.log(indivResponse2.getParticipantsResponse.participant);
-  if (typeof(indivResponse2.getParticipantsResponse.participant) == "undefined") {
-      console.log('getParticipantsResponse.participant is undefined');
-    if (allCompanyData[companyIndex+1] != undefined) {
+  // cd.getCompanyIndividualParticipants
+  return $.ajax({
+    type: 'GET',
+    url: luminateExtend.global.path.secure + 'CRTeamraiserAPI',
+    data: {
+      method: 'getParticipants',
+      api_key: luminateExtend.global.apiKey,
+      v: '1.0',
+      first_name: '%%%',
+      fr_id: evID,
+      list_filter_column: 'reg.company_id',
+      list_filter_text: companyId,
+      list_page_size: '499',
+      list_page_offset: indivpgcnt,
+      response_format: 'json',
+    },
+    dataType: 'json'
+  }).done(function(indivResponse2){
+    console.log('ajax cd.getCompanyIndividualParticipants success:', indivResponse2);
+    if (indivResponse2.getParticipantsResponse.totalNumberResults === '0') {
+      console.log('totalNumberResults is 0');
+      if (allCompanyData[companyIndex+1] != undefined) {
         console.log('allCompanyData is not undefined');
-      companyIndex = companyIndex + 1;
-      indivpgcnt = 0;
-
-      cd.getCompanyIndividualParticipants(indivpgcnt);
-    } else {
+        companyIndex = companyIndex + 1;
+        indivpgcnt = 0;
+        cd.getCompanyIndividualParticipants(indivpgcnt);
+      } else {
         console.log('allCompanyData is undefined');
-      //cd.buildParticipantList(participants);
-    }
-  } else {
-      console.log('getParticipantsResponse.participant is not undefined');
-     indivpgcnt++;
-     var indivParticipantList2 = luminateExtend.utils.ensureArray(indivResponse2.getParticipantsResponse.participant);
-     $(indivParticipantList2).each(function (i, participant) {
-       indivParticipantList2[i].companyId = companyId;
-       indivParticipantList2[i].companyName = companyName;
-     });
-     participants = participants.concat(indivParticipantList2);
-     cd.getCompanyIndividualParticipants(indivpgcnt);
-  }
-}
-})
-.fail(function(indivResponse2) {
-  $('#error-participant').removeAttr('hidden').text(indivResponse2.errorResponse.message);
-       console.log('error response: ', indivResponse2);
-});
+        if (participants.length > 0) {
+          console.log('participants.length > 0');
+          // cd.buildParticipantList(participants);
+          indivPromise.resolve('indivParticipantsListBuilt');
+          return indivPromise.promise();
 
+          // indivPromise = new Promise(function(resolve, reject) {
+          //     resolve('indivParticipantsListBuilt');
+          // });
+          //cd.buildParticipantList(participants);
+        }
+      }
+      // no search results
+      return false;
+    } else {
+      console.log('totalNumberResults is not 0');
+      console.log(indivResponse2.getParticipantsResponse.participant);
+      if (typeof(indivResponse2.getParticipantsResponse.participant) == "undefined") {
+        console.log('getParticipantsResponse.participant is undefined');
+        if (allCompanyData[companyIndex+1] != undefined) {
+          console.log('allCompanyData is not undefined');
+          companyIndex = companyIndex + 1;
+          indivpgcnt = 0;
+
+          cd.getCompanyIndividualParticipants(indivpgcnt);
+        } else {
+          console.log('allCompanyData is undefined');
+          //cd.buildParticipantList(participants);
+        }
+      } else {
+        console.log('getParticipantsResponse.participant is not undefined');
+        indivpgcnt++;
+        var indivParticipantList2 = luminateExtend.utils.ensureArray(indivResponse2.getParticipantsResponse.participant);
+        $(indivParticipantList2).each(function (i, participant) {
+          indivParticipantList2[i].companyId = companyId;
+          indivParticipantList2[i].companyName = companyName;
+        });
+        participants = participants.concat(indivParticipantList2);
+        cd.getCompanyIndividualParticipants(indivpgcnt);
+      }
+    }
+  }).fail(function(indivResponse2) {
+    $('#error-participant').removeAttr('hidden').text(indivResponse2.errorResponse.message);
+      console.log('error response: ', indivResponse2);
+  });
 }
+
 // cd.getCompanyIndividualParticipants(0);
 $.when( cd.getCompanyIndividualParticipants(0), cd.getAllParticipants(0)).done(function (result) {
   console.log('$when result');
   if (participants.length > 0) {
-      console.log('testing length of participants array - greater than 0');
-      console.log('participants.length = ' + participants.length);
-      cd.buildParticipantList(participants);
+    console.log('testing length of participants array - greater than 0');
+    console.log('participants.length = ' + participants.length);
+    cd.buildParticipantList(participants);
   } else {
       console.log('testing length of participants array - not greater than 0');
   }
