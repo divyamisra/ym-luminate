@@ -1294,7 +1294,7 @@
                 } else {
                   var teams = luminateExtend.utils.ensureArray(response.getTeamSearchByInfoResponse.team);
                   $(teams).each(function (i, team) {
-                    teams.push(team.id);
+                    teams.push({'teamId':team.id,'companyId':team.companyId});
                     console.log('team.id ' + team.id);
                     var teamRaised = (parseInt(team.amountRaised) * 0.01).toFixed(2);
                     var teamRaisedFormmatted = teamRaised.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,").replace('.00', '');
@@ -1346,14 +1346,15 @@
         cd.buildCompanyTeamRoster();
         var numWalkerRows = 0;
 
-        cd.getParticipantsByTeam = function(teamId){
+        cd.getParticipantsByTeam = function(teamId,companyId){
 
           luminateExtend.api({
             api: 'teamraiser',
             data: 'method=getParticipants' +
               '&team_name=%25%25%25' +
               '&fr_id=' + evID +
-              '&team_id=' + teamId +
+              'list_filter_column=team.company_id' +
+              'list_filter_text='+companyId+
               '&list_page_size=499' +
               '&list_page_offset=0' +
               '&response_format=json' +
@@ -1380,8 +1381,8 @@
         }
 
         $.each(teams, function(){
-          console.log('teams ' + this);
-          cd.getParticipantsByTeam(this);
+          console.log('teams ' + this.teamId + this.companyId);
+          cd.getParticipantsByTeam(this.teamId,this.companyId);
         })
 
 
