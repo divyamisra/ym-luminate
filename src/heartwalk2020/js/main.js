@@ -1346,7 +1346,48 @@
         cd.buildCompanyTeamRoster();
         var numWalkerRows = 0;
 
+        getParticipantsByTeam = function(teamId){
 
+          luminateExtend.api({
+            api: 'teamraiser',
+            data: 'method=getParticipants' +
+              '&team_name=%25%25%25' +
+              '&fr_id=' + evID +
+              '&team_id=' + teamId +
+              '&list_page_size=499' +
+              '&list_page_offset=0' +
+              '&response_format=json' +
+              '&list_sort_column=team_name' +
+              '&list_ascending=true',
+            callback: {
+              success: function (response) {
+                if (response.getTeamSearchByInfoResponse.totalNumberResults === '0') {
+                  // no search results
+
+                } else {
+                  var participants = luminateExtend.utils.ensureArray(response.response.getParticipantsResponse.participant);
+                  console.log('participants.length ' +participants.length);
+                }
+
+              },
+              error: function (response) {
+                $('#error-participant').removeAttr('hidden').text(response.errorResponse.message);
+                console.log('error response: ', response);
+              }
+            }
+          });
+
+
+
+
+
+
+        }
+
+        $.each(teams, function(){
+          console.log('teams ' + this);
+          getParticipantsByTeam(this);
+        })
 
 
 
