@@ -1381,7 +1381,7 @@
 
         $.each(teams, function(){
           console.log('teams ' + this);
-          getParticipantsByTeam(this);
+          cd.getParticipantsByTeam(this);
         })
 
 
