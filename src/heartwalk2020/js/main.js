@@ -1346,7 +1346,7 @@
         cd.buildCompanyTeamRoster();
         var numWalkerRows = 0;
 
-        getParticipantsByTeam = function(teamId){
+        cd.getParticipantsByTeam = function(teamId){
 
           luminateExtend.api({
             api: 'teamraiser',
@@ -1376,11 +1376,6 @@
               }
             }
           });
-
-
-
-
-
 
         }
 
