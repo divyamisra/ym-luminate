@@ -1179,7 +1179,7 @@
         $('.js--company-name').text(currentCompanyName);
         // var isParentCompany = ($('#company_hierarchy_list_component .lc_Row1').length ? true : false)
         var isParentCompany = ($('.js--company-hierarchy-list-container .lc_Row1').length ? true : false)
-console.log('isParentCompany ' + isParentCompany);
+//console.log('isParentCompany ' + isParentCompany);
 
         var allCompanyData = [{
           id: currentCompanyId,
@@ -1192,7 +1192,7 @@ console.log('isParentCompany ' + isParentCompany);
             var childCompanyLink = $(this).attr('href');
             var childCompanyName = $(this).text();
             var childCompanyId = getURLParameter(childCompanyLink, 'company_id');
-console.log('hierarchy data ' + childCompanyLink + ' ' + childCompanyName + ' ' + childCompanyId);
+//console.log('hierarchy data ' + childCompanyLink + ' ' + childCompanyName + ' ' + childCompanyId);
             allCompanyData.push({id: childCompanyId, name: childCompanyName});
             // allCompanyData.id
           });
@@ -1273,7 +1273,7 @@ console.log('hierarchy data ' + childCompanyLink + ' ' + childCompanyName + ' ' 
         var numTeamRows = 0;
 
         cd.getCompanyTeams = function (companyId, companyName, numCompanies, companyIndex) {
-          console.log('cd.getCompanyTeams id' + companyId + ' name ' + companyName + ' number ' + numCompanies + ' index ' + companyIndex);
+//          console.log('cd.getCompanyTeams id' + companyId + ' name ' + companyName + ' number ' + numCompanies + ' index ' + companyIndex);
           luminateExtend.api({
             api: 'teamraiser',
             data: 'method=getTeamsByInfo' +
@@ -1329,7 +1329,7 @@ console.log('hierarchy data ' + childCompanyLink + ' ' + childCompanyName + ' ' 
 
         cd.buildCompanyTeamRoster = function(){
           var numCompanies = allCompanyData.length;
-          console.log('cd.buildCompanyTeamRoster numCompanies ' + numCompanies);
+//          console.log('cd.buildCompanyTeamRoster numCompanies ' + numCompanies);
 
           for (var i = 0, l = allCompanyData.length; i < l; i++) {
             var company = allCompanyData[i];
@@ -1346,13 +1346,13 @@ console.log('hierarchy data ' + childCompanyLink + ' ' + childCompanyName + ' ' 
         // build team roster
         //build participant roster?
         cd.getCompanyParticipants = function () {
-          console.log('cd.getCompanyParticipants');
+//          console.log('cd.getCompanyParticipants');
           var numCompanies = allCompanyData.length-1;
           var company = allCompanyData[0];
           var companyIndex = 0;
           var companyId = company.id;
           var companyName = company.name;
-          console.log('getCompanyParticipants companyName ' + companyName);
+          console.log('getCOMPANYParticipants companyName ' + companyName);
           // var teamPromise;
           // var indivPromise;
           // var teamPromise = $.Deferred();
@@ -1362,7 +1362,7 @@ console.log('hierarchy data ' + childCompanyLink + ' ' + childCompanyName + ' ' 
           console.log('getCompanyParticipants participants.length ' + participants.length);
 
           cd.getAllParticipants = function(pgcnt, isFinalCall) {
-            console.log('cd.getAllParticipants pgcnt ' + pgcnt + ' isFinalCall ' + isFinalCall + ' companyId ' + companyId + ' companyName ' + companyName );
+            console.log('cd.getALLParticipants pgcnt ' + pgcnt + ' isFinalCall ' + isFinalCall + ' companyId ' + companyId + ' companyName ' + companyName );
             companyId = allCompanyData[companyIndex].id;
             companyName = allCompanyData[companyIndex].name;
             var teamPromise = $.Deferred();
@@ -1384,11 +1384,11 @@ console.log('hierarchy data ' + childCompanyLink + ' ' + childCompanyName + ' ' 
             },
             dataType: 'json'
           }).done(function(response){
-            console.log('ajax cd.getAllParticipants filtered on team comp ID success: ', response);
+//            console.log('ajax cd.getAllParticipants filtered on team comp ID success: ', response);
             if (response.getParticipantsResponse.totalNumberResults === '0') {
-              console.log('totalNumberResults (team participants) is 0');
+//              console.log('totalNumberResults (team participants) is 0');
               if (allCompanyData[companyIndex+1] != undefined) {
-                console.log('allCompanyData is not undefined');
+//                console.log('allCompanyData is not undefined');
                 companyIndex = companyIndex + 1;
                 pgcnt = 0;
                 cd.getAllParticipants(pgcnt, false);
@@ -1396,7 +1396,7 @@ console.log('hierarchy data ' + childCompanyLink + ' ' + childCompanyName + ' ' 
               } else {
                 console.log('allCompanyData is undefined');
                 if (participants.length > 0) {
-                  console.log('participants.length > 0');
+//                  console.log('participants.length > 0');
                   // console.log('##### EXIT cd.getAllParticipants 2');
                   //  teamPromise.resolve('teamParticipantsListBuilt');
                   //   return teamPromise.promise();
@@ -1411,20 +1411,20 @@ console.log('hierarchy data ' + childCompanyLink + ' ' + childCompanyName + ' ' 
               // console.log('##### EXIT cd.getAllParticipants 5');
               return false;
             } else {
-              console.log('totalNumberResults is not 0');
-              console.log(response.getParticipantsResponse.participant);
+//              console.log('totalNumberResults is not 0');
+              console.log('getParts response participant ' +response.getParticipantsResponse.participant);
               if (typeof(response.getParticipantsResponse.participant) == "undefined") {
-                console.log('getParticipantsResponse.participant is undefined');
+//                console.log('getParticipantsResponse.participant is undefined');
                 // console.log('##### EXIT cd.getAllParticipants 6');
 
                 if (allCompanyData[companyIndex+1] != undefined) {
-                  console.log('allCompanyData is not undefined');
+//                  console.log('allCompanyData is not undefined');
                   companyIndex = companyIndex + 1;
                   pgcnt = 0;
                   cd.getAllParticipants(pgcnt, false);
                   // console.log('##### EXIT cd.getAllParticipants 3');
                 } else {
-                  console.log('allCompanyData is undefined');
+//                  console.log('allCompanyData is undefined');
                   // console.log('##### EXIT cd.getAllParticipants 7');
                   if(isFinalCall === true){
                     console.log('isFinalCall===true. resolve promise');
@@ -1437,7 +1437,7 @@ console.log('hierarchy data ' + childCompanyLink + ' ' + childCompanyName + ' ' 
                   // }
                 }
               } else {
-                console.log('getParticipantsResponse.participant is not undefined');
+//                console.log('getParticipantsResponse.participant is not undefined');
                 pgcnt++;
                 var participantList = luminateExtend.utils.ensureArray(response.getParticipantsResponse.participant);
                 $(participantList).each(function (i, participant) {
@@ -1455,7 +1455,7 @@ console.log('hierarchy data ' + childCompanyLink + ' ' + childCompanyName + ' ' 
             $('#error-participant').removeAttr('hidden').text(response.errorResponse.message);
             console.log('error response: ', response);
           });
-          console.log('end getCompanyParticipants');
+//          console.log('end getCompanyParticipants');
         }
 
         //  temp disable this call
@@ -1469,7 +1469,7 @@ console.log('hierarchy data ' + childCompanyLink + ' ' + childCompanyName + ' ' 
         var indivpgcnt = 0;
 
         cd.getCompanyIndividualParticipants = function(indivpgcnt) {
-          console.log('cd.getCompanyIndividualParticipants indivpgcnt ' + indivpgcnt + ' companyId ' + companyId + ' companyName ' + companyName);
+          console.log('cd.getCompanyINDIVIDUALParticipants indivpgcnt ' + indivpgcnt + ' companyId ' + companyId + ' companyName ' + companyName);
           var indivPromise = $.Deferred();
           companyId = allCompanyData[companyIndex].id;
           companyName = allCompanyData[companyIndex].name;
@@ -1495,14 +1495,14 @@ console.log('hierarchy data ' + childCompanyLink + ' ' + childCompanyName + ' ' 
           }).done(function(indivResponse2){
             console.log('ajax cd.getCompanyIndividualParticipants success:', indivResponse2);
             if (indivResponse2.getParticipantsResponse.totalNumberResults === '0') {
-              console.log('totalNumberResults is 0');
+//              console.log('totalNumberResults is 0');
               if (allCompanyData[companyIndex+1] != undefined) {
-                console.log('allCompanyData is not undefined');
+//                console.log('allCompanyData is not undefined');
                 companyIndex = companyIndex + 1;
                 indivpgcnt = 0;
                 cd.getCompanyIndividualParticipants(indivpgcnt);
               } else {
-                console.log('allCompanyData is undefined');
+//                console.log('allCompanyData is undefined');
                 if (participants.length > 0) {
                   console.log('participants.length > 0');
                   // cd.buildParticipantList(participants);
@@ -1518,22 +1518,22 @@ console.log('hierarchy data ' + childCompanyLink + ' ' + childCompanyName + ' ' 
               // no search results
               return false;
             } else {
-              console.log('totalNumberResults is not 0');
+//              console.log('totalNumberResults is not 0');
               console.log(indivResponse2.getParticipantsResponse.participant);
               if (typeof(indivResponse2.getParticipantsResponse.participant) == "undefined") {
-                console.log('getParticipantsResponse.participant is undefined');
+//                console.log('getParticipantsResponse.participant is undefined');
                 if (allCompanyData[companyIndex+1] != undefined) {
-                  console.log('allCompanyData is not undefined');
+//                  console.log('allCompanyData is not undefined');
                   companyIndex = companyIndex + 1;
                   indivpgcnt = 0;
 
                   cd.getCompanyIndividualParticipants(indivpgcnt);
                 } else {
-                  console.log('allCompanyData is undefined');
+//                  console.log('allCompanyData is undefined');
                 //cd.buildParticipantList(participants);
                 }
               } else {
-                console.log('getParticipantsResponse.participant is not undefined');
+//                console.log('getParticipantsResponse.participant is not undefined');
                 indivpgcnt++;
                 var indivParticipantList2 = luminateExtend.utils.ensureArray(indivResponse2.getParticipantsResponse.participant);
                 $(indivParticipantList2).each(function (i, participant) {
@@ -1548,7 +1548,7 @@ console.log('hierarchy data ' + childCompanyLink + ' ' + childCompanyName + ' ' 
             $('#error-participant').removeAttr('hidden').text(indivResponse2.errorResponse.message);
             console.log('error response: ', indivResponse2);
           });
-          console.log(' end getCompanyIndividualParticipants ');
+//          console.log(' end getCompanyIndividualParticipants ');
         }
 
         // cd.getCompanyIndividualParticipants(0);
@@ -1556,11 +1556,11 @@ console.log('hierarchy data ' + childCompanyLink + ' ' + childCompanyName + ' ' 
           console.log('$when result');
           console.log('$when result participants.length ' + participants.length);
           if (participants.length > 0) {
-            console.log('testing length of participants array - greater than 0');
-            console.log('participants.length = ' + participants.length);
+//            console.log('testing length of participants array - greater than 0');
+//            console.log('participants.length = ' + participants.length);
             cd.buildParticipantList(participants);
           } else {
-            console.log('testing length of participants array - not greater than 0');
+//            console.log('testing length of participants array - not greater than 0');
           }
         });
       };
