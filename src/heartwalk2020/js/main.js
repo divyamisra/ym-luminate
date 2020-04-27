@@ -1365,8 +1365,8 @@
             data: 'method=getParticipants' +
               '&team_name=%25%25%25' +
               '&fr_id=' + evID +
-              'list_filter_column=team.company_id' +
-              'list_filter_text='+companyId+
+              '&list_filter_column=team.company_id' +
+              '&list_filter_text='+companyId+
               '&list_page_size=499' +
               '&list_page_offset=0' +
               '&response_format=json' +
