@@ -1312,12 +1312,6 @@
 
                   console.log('teams length ' + teams.length);
 
-                  $.each(teamList, function(){
-                    console.log('teamList each function ' + this.teamId + this.companyId);
-                    cd.getParticipantsByTeam(this.teamId,this.companyId);
-                  })
-
-
                 }
 
                 if(companyIndex === numCompanies){
@@ -1374,7 +1368,7 @@
               '&list_ascending=true',
             callback: {
               success: function (response) {
-                if (response.getTeamSearchByInfoResponse.totalNumberResults === '0') {
+                if (response.getParticipantsResponse.totalNumberResults === '0') {
                   // no search results
 
                 } else {
@@ -1392,11 +1386,10 @@
 
         }
 
-//        $.each(teams, function(){
-//          console.log('teams ' + this.teamId + this.companyId);
-//          cd.getParticipantsByTeam(this.teamId,this.companyId);
-//        })
-
+        $.each(teamList, function(){
+          console.log('teamList each function ' + this.teamId + this.companyId);
+          cd.getParticipantsByTeam(this.teamId,this.companyId);
+        })
 
 
 
