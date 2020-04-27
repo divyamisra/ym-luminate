@@ -1353,6 +1353,7 @@
 
         cd.buildCompanyTeamRoster();
         var numWalkerRows = 0;
+        var allParts = [];
 
         cd.getParticipantsByTeam = function(teamId,companyId){
 
@@ -1375,7 +1376,11 @@
 
                 } else {
                   var participants = luminateExtend.utils.ensureArray(response.getParticipantsResponse.participant);
-                  console.log('participants.length ' +participants.length);
+                  //allParts.push({'firstName':participant.name.first,'lastName':participant.name.last,'isCoach':participant.aTeamCaptain,'companyName',});
+                  //teamList.push({'teamId':team.id,'companyId':team.companyId});
+                  allParts = allParts.concat(participants);
+                  numWalkerRows++
+                  console.log('allParts.length ' + allParts.length);
                 }
 
               },
