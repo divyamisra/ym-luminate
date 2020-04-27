@@ -1312,6 +1312,12 @@
 
                   console.log('teams length ' + teams.length);
 
+                  $.each(teamList, function(){
+                    console.log('teamList each function ' + this.teamId + ' ' + this.companyId);
+                    cd.getParticipantsByTeam(this.teamId,this.companyId);
+                  })
+
+
                 }
 
                 if(companyIndex === numCompanies){
@@ -1326,14 +1332,6 @@
                     }
                     }, 250);
                   }
-
-                  $.each(teamList, function(){
-                    console.log('teamList each function ' + this.teamId + ' ' + this.companyId);
-                    cd.getParticipantsByTeam(this.teamId,this.companyId);
-                  })
-
-
-
                 }
 
               },
@@ -1380,7 +1378,7 @@
                   // no search results
 
                 } else {
-                  var participants = luminateExtend.utils.ensureArray(response.response.getParticipantsResponse.participant);
+                  var participants = luminateExtend.utils.ensureArray(response.getParticipantsResponse.participant);
                   console.log('participants.length ' +participants.length);
                 }
 
@@ -1393,7 +1391,6 @@
           });
 
         }
-
 
 
 
