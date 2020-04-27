@@ -1501,13 +1501,13 @@
                 indivpgcnt = 0;
                 cd.getCompanyIndividualParticipants(indivpgcnt);
               } else {
-//                console.log('allCompanyData is undefined');
+                console.log('getCompanyINDIVIDUALParticipants allCompanyData is undefined');
                 if (participants.length > 0) {
-                  console.log('participants.length > 0');
+                  console.log('getCompanyINDIVIDUALParticipants participants.length > 0');
                   // cd.buildParticipantList(participants);
+                  console.log('RESOLVE indivPromise');
                   indivPromise.resolve('indivParticipantsListBuilt');
                   return indivPromise.promise();
-                  console.log('resolve indivPromise');
                   // indivPromise = new Promise(function(resolve, reject) {
                   //     resolve('indivParticipantsListBuilt');
                   // });
@@ -1534,12 +1534,14 @@
               } else {
 //                console.log('getParticipantsResponse.participant is not undefined');
                 indivpgcnt++;
+console.log('INDIVPGCNT ++ ' + indivpgcnt);
                 var indivParticipantList2 = luminateExtend.utils.ensureArray(indivResponse2.getParticipantsResponse.participant);
                 $(indivParticipantList2).each(function (i, participant) {
                   indivParticipantList2[i].companyId = companyId;
                   indivParticipantList2[i].companyName = companyName;
                 });
                 participants = participants.concat(indivParticipantList2);
+console.log('INDIVIDUAL PARTS FUNCTION participants.length ' + participants.length);
                 cd.getCompanyIndividualParticipants(indivpgcnt);
               }
             }
