@@ -1300,7 +1300,7 @@
                     numTeamRows++;
 
                     teamList.push({'teamId':team.id,'companyId':team.companyId});
-                    console.log('push to teamList team.id ' + team.id + company.id);
+                    console.log('push to teamList team.id ' + team.id + team.company.id);
 
                   });
 
