@@ -1302,6 +1302,9 @@
                     teamList.push({'teamId':team.id,'companyId':team.companyId});
                     console.log('push to teamList team.id ' + team.id + ' ' + team.companyId);
 
+                    cd.getParticipantsByTeam(this.teamId,this.companyId);
+
+
                   });
 
                   $('.js--more-team-results').on('click', function(e){
@@ -1311,13 +1314,6 @@
                   });
 
                   console.log('teams length ' + teams.length);
-
-                  $.each(teamList, function(){
-                    console.log('teamList each function ' + this.teamId + ' ' + this.companyId);
-                    cd.getParticipantsByTeam(this.teamId,this.companyId);
-                  })
-
-
                 }
 
                 if(companyIndex === numCompanies){
@@ -1392,7 +1388,13 @@
 
         }
 
+//        cd.buildCompanyParticipantRoster = function(){
 
+//                  $.each(teamList, function(){
+//                    console.log('teamList each function ' + this.teamId + ' ' + this.companyId);
+//                    cd.getParticipantsByTeam(this.teamId,this.companyId);
+//                  })
+//        }
 
     }
 
