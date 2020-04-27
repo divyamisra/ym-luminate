@@ -1294,12 +1294,14 @@
                 } else {
                   var teams = luminateExtend.utils.ensureArray(response.getTeamSearchByInfoResponse.team);
                   $(teams).each(function (i, team) {
-                    teamList.push({'teamId':team.id,'companyId':team.companyId});
-                    console.log('push to teamList team.id ' + team.id + company.id);
                     var teamRaised = (parseInt(team.amountRaised) * 0.01).toFixed(2);
                     var teamRaisedFormmatted = teamRaised.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,").replace('.00', '');
                       $('#team-roster tbody').append('<tr class="' + (numTeamRows > 4 ? 'd-none' : '') + '"> <td class="team-name"> <a href="' + team.teamPageURL + '" data-sort="' + team.name + '">' + team.name + '</a> </td><td class="donor-name"> <a href="TR/?px=' + team.captainConsId + '&pg=personal&fr_id=' + team.EventId + '" data-sort="' + team.captainFirstName + ' ' + team.captainLastName + '">' + team.captainFirstName + ' ' + team.captainLastName + '</a> </td><td class="company-name"> <a href="' + luminateExtend.global.path.secure + 'TR/?pg=company&company_id=' + team.companyId + '&fr_id=' + team.EventId + '" data-sort="' + companyName + '">' + companyName + '</a> </td><td class="raised" data-sort="' + teamRaisedFormmatted + '"> <span><strong>$' + teamRaisedFormmatted + '</strong></span> </td><td> <a href="' + team.joinTeamURL + '">' + (screenWidth <= 480 ? 'Join' : 'Join Team') + '</a> </td></tr>');
                     numTeamRows++;
+
+                    teamList.push({'teamId':team.id,'companyId':team.companyId});
+                    console.log('push to teamList team.id ' + team.id + company.id);
+
                   });
 
                   $('.js--more-team-results').on('click', function(e){
@@ -1390,10 +1392,10 @@
 
         }
 
-        $.each(teams, function(){
-          console.log('teams ' + this.teamId + this.companyId);
-          cd.getParticipantsByTeam(this.teamId,this.companyId);
-        })
+//        $.each(teams, function(){
+//          console.log('teams ' + this.teamId + this.companyId);
+//          cd.getParticipantsByTeam(this.teamId,this.companyId);
+//        })
 
 
 
