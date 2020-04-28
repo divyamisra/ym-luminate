@@ -1444,6 +1444,7 @@ console.log('hierarchy data ' + ' ' + childCompanyName + ' ' + childCompanyId);
                 $(participantList).each(function (i, participant) {
                   participantList[i].companyId = companyId;
                   participantList[i].companyName = companyName;
+                  console.log('getALLParticipants found results. participantList each ' + participant.name.first + ' ' + participant.name.last);
                 });
                 participants = participants.concat(participantList);
                 cd.getAllParticipants(pgcnt, true); 
@@ -1541,6 +1542,7 @@ console.log('INDIVPGCNT ++ ' + indivpgcnt);
                 $(indivParticipantList2).each(function (i, participant) {
                   indivParticipantList2[i].companyId = companyId;
                   indivParticipantList2[i].companyName = companyName;
+                  console.log('getINDIVIDUALParticipants found results. participantList each ' + participant.name.first + ' ' + participant.name.last);
                 });
                 participants = participants.concat(indivParticipantList2);
 console.log('INDIVIDUAL PARTS FUNCTION participants.length ' + participants.length);
