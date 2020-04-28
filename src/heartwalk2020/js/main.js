@@ -1558,7 +1558,7 @@ console.log('INDIVIDUAL PARTS FUNCTION participants.length ' + participants.leng
 
         // cd.getCompanyIndividualParticipants(0);
 //        $.when( cd.getCompanyIndividualParticipants(0), cd.getAllParticipants(0)).done(function (result) {
-        $.when( cd.getAllParticipants(0)).done(function (result) {
+        $.when(cd.getAllParticipants(0)).done(function (result) {
           console.log('$when result');
           console.log('$when result participants.length ' + participants.length);
           if (participants.length > 0) {
