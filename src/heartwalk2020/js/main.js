@@ -1170,6 +1170,8 @@
     if ($('body').is('.pg_company')) {
       // Company Page
 
+$('.js--company-hierarchy-list-container').show();
+
         // Populate company name from page title
         var pageTitle = jQuery('head title').text().trim();
         var start_pos = pageTitle.indexOf(':') + 1;
