@@ -1194,7 +1194,7 @@ $('.js--company-hierarchy-list-container').show();
             var childCompanyLink = $(this).attr('href');
             var childCompanyName = $(this).text();
             var childCompanyId = getURLParameter(childCompanyLink, 'company_id');
-//console.log('hierarchy data ' + childCompanyLink + ' ' + childCompanyName + ' ' + childCompanyId);
+console.log('hierarchy data ' + ' ' + childCompanyName + ' ' + childCompanyId);
             allCompanyData.push({id: childCompanyId, name: childCompanyName});
             // allCompanyData.id
           });
@@ -1386,7 +1386,7 @@ $('.js--company-hierarchy-list-container').show();
             },
             dataType: 'json'
           }).done(function(response){
-            console.log('ajax cd.getAllParticipants filtered on team comp ID success: ', response);
+            console.log('ajax cd.getALLParticipants filtered on team comp ID success:  team.companyId: '+ companyId + ' response: ', response);
             if (response.getParticipantsResponse.totalNumberResults === '0') {
               console.log('totalNumberResults (team participants) is 0');
               if (allCompanyData[companyIndex+1] != undefined) {
@@ -1470,11 +1470,11 @@ $('.js--company-hierarchy-list-container').show();
         var indivpgcnt = 0;
 
         cd.getCompanyIndividualParticipants = function(indivpgcnt) {
-          console.log('cd.getCompanyINDIVIDUALParticipants indivpgcnt ' + indivpgcnt + ' companyId ' + companyId + ' companyName ' + companyName);
           var indivPromise = $.Deferred();
           companyId = allCompanyData[companyIndex].id;
           companyName = allCompanyData[companyIndex].name;
           //  console.log('2nd API call');
+          console.log('cd.getCompanyINDIVIDUALParticipants indivpgcnt ' + indivpgcnt + ' companyId ' + companyId + ' companyName ' + companyName);
 
           // cd.getCompanyIndividualParticipants
           return $.ajax({
