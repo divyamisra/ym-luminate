@@ -1361,6 +1361,9 @@ console.log('hierarchy data ' + ' ' + childCompanyName + ' ' + childCompanyId);
           // var indivPromise = $.Deferred();
           $('#participant-roster tbody').html('');
           var participants = [];
+
+          var finished = false;
+
           console.log('getCompanyParticipants participants.length ' + participants.length);
 
           cd.getAllParticipants = function(pgcnt, isFinalCall) {
@@ -1439,6 +1442,7 @@ console.log('hierarchy data ' + ' ' + childCompanyName + ' ' + childCompanyId);
                 }
               } else {
                 console.log('getParticipantsResponse.participant is not undefined. pgcnt++');
+                finished = false;
                 pgcnt++;
                 var participantList = luminateExtend.utils.ensureArray(response.getParticipantsResponse.participant);
                 $(participantList).each(function (i, participant) {
@@ -1455,7 +1459,8 @@ console.log('hierarchy data ' + ' ' + childCompanyName + ' ' + childCompanyId);
                   cd.getAllParticipants(pgcnt, false);
                 }
                 else {
-                  console.log('no more companies, set finalcall to true');
+                  console.log('no more companies, set finalcall and finished to true');
+                  finished = true;
                   cd.getAllParticipants(pgcnt, true); 
                 }
                 //  console.log('##### EXIT cd.getAllParticipants 4');
@@ -1571,7 +1576,7 @@ console.log('INDIVIDUAL PARTS FUNCTION participants.length ' + participants.leng
         $.when(cd.getAllParticipants(0)).done(function (result) {
           console.log('$when result');
           console.log('$when result participants.length ' + participants.length);
-          if (participants.length > 0) {
+          if (participants.length > 0 && finished === true) {
 //            console.log('testing length of participants array - greater than 0');
 //            console.log('participants.length = ' + participants.length);
             cd.buildParticipantList(participants);
