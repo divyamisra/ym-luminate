@@ -1447,7 +1447,17 @@ console.log('hierarchy data ' + ' ' + childCompanyName + ' ' + childCompanyId);
                   console.log('getALLParticipants found results. participantList each ' + participant.name.first + ' ' + participant.name.last);
                 });
                 participants = participants.concat(participantList);
-                cd.getAllParticipants(pgcnt, true); 
+
+                if (allCompanyData[companyIndex+1] != undefined) {
+                  console.log('found some parts but more companies to go');
+                  companyIndex = companyIndex + 1;
+                  pgcnt = 0;
+                  cd.getAllParticipants(pgcnt, false);
+                }
+                else {
+                  console.log('no more companies, set finalcall to true');
+                  cd.getAllParticipants(pgcnt, true); 
+                }
                 //  console.log('##### EXIT cd.getAllParticipants 4');
      
               }
