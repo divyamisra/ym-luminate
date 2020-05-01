@@ -1,6 +1,7 @@
 'use strict';
 (function($) {
     $(document).ready(function() {
+        console.log('i');
         // BEGIN LANDING PAGES
         /******************/
         /* SEARCH SCRIPTS */
@@ -21,6 +22,8 @@
 
         var currentUrl = window.location.href;
         var searchType = getURLParameter(currentUrl, 'search_type');
+
+        console.log('ii');
 
         cd.getParticipants = function (firstName, lastName, searchAllEvents) {
           luminateExtend.api({
@@ -93,6 +96,8 @@
             }
           });
         };
+
+        console.log('iii');
 
         cd.getTeams = function (teamName, searchType, isCrossEvent, firstName, lastName, companyId) {
           $('.js__team-results-rows').html('');
@@ -196,6 +201,8 @@
           });
         };
 
+        console.log('iv');
+
         cd.getCompanies = function (companyName, isCrossEvent) {
           luminateExtend.api({
             api: 'teamraiser',
@@ -267,6 +274,8 @@
           });
         };
 
+        console.log('v');
+
         // Heart Walk 2020 Registration JS
         var fr_id = $('input[name=fr_id]').val();
 
@@ -274,6 +283,8 @@
             jQuery('#fr_goal').val('$625');
             jQuery('#suggested_goal_container').html("Suggested Goal: $625.00<br>In honor of our 25th anniversary, we invite you to set a goal of $625. That's 25 donations of $25!");
         }
+
+        console.log('vi');
 
         if ($('#user_type_page').length > 0) {
             console.log('1');
@@ -671,6 +682,9 @@
             console.log('21');
 
         }
+
+        console.log('vii');
+
         if ($('#reg_payment_page').length > 0) {
             $('.custom-progress-bar').hide();
             $('div#reg_payment_campaign_banner_container').replaceWith(function() {
@@ -678,6 +692,9 @@
             });
             $('h3#title_container').replaceWith('<h2 class="ObjTitle" id="title_container">Submit Payment</h2>');
         }
+
+        console.log('viii');
+
         $('#reg_total_label').html('Total:');
 
         // ptype page
@@ -689,6 +706,8 @@
                 return '<h2 id="pt_title_container" class="section-header-text">' + $(this).html() + '</h2>';
             });
         }
+
+        console.log('ix');
 
         // reg page
         if ($('#registration_options_page').length > 0) {
@@ -702,6 +721,9 @@
         if ($('#fr_thanks_page').length > 0) {
             $('.custom-progress-bar').hide();
         }
+
+        console.log('x');
+
         //Form a team / join a team
         if ($('#team_find_page').length > 0) {
             $('.custom-progress-bar').hide();
@@ -1177,6 +1199,8 @@
             $('#previous_step span').text('Back');
         }
         // END TFIND
+
+        console.log('xi');
 
 
         if ($('#fr_team_goal').length <= 0) {
