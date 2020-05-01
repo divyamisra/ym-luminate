@@ -728,6 +728,8 @@
                 }
             });
 
+            console.log('A');
+
             $('form').validate({
 		focusInvalid: false,
 		invalidHandler: function(form, validator) {
@@ -755,6 +757,9 @@
 			}
                 }
             });
+
+            console.log('B');
+
             $.validator.addMethod("validGoal",function(value, element) {
                     value = parseInt(value.replace("$","").replace(",",""));
                     if ($('input[name^=fr_team_goal]') && value < 1) {
@@ -1217,6 +1222,8 @@
 	    //hide back button and turn into link
 	    $('button#previous_step').after('<a href="javascript:window.history.go(-1)" class="step-button previous-step backBtnReg">Back</a>').hide();
 
+            console.log('C');
+
             $('form').validate({
 		focusInvalid: false,
 		invalidHandler: function(form, validator) {
@@ -1244,6 +1251,9 @@
 			}
                 }
             });
+
+            console.log('D');
+
             $.validator.addMethod("validDonation",function(value, element) {
                     value = parseInt(value.replace("$","").replace(",",""));
                     if ($('input[name^=donation_level_form]').is(':checked') && value < 25) {
@@ -1347,6 +1357,8 @@
 		return arg !== value;
 	    }, "Please select a t-shirt size");
 
+        console.log('E');
+
 	    jQuery('form').validate({
 		focusInvalid: false,
 		invalidHandler: function(form, validator) {
@@ -1380,6 +1392,9 @@
 			}
                 }
             });
+
+            console.log('F');
+
             $.validator.addMethod("uncheck", function(value) {
                return /^[A-Za-z0-9\d=\-+#@%:,._*]*$/.test(value) // consists of only these
             },"Oops. Looks like you are using a character we don't recognize. Valid characters in your username are: letters, numbers, and these symbols: +, -, _, @, ., %, and :");
@@ -1500,7 +1515,13 @@
             //$('#part_type_anonymous_input_container, #part_type_show_public_input_container').show();
             $('.donation-level-row-container.enterAmt input').val('');
 	    $('.enterAmt-other').addClass("hidden");
+
+        console.log('G');
+
 	    $('form').validate().resetForm();
+
+        console.log('H');
+
         });
         $('.donation-level-row-container.enterAmt').click(function() {
             $(this).find('input').prop('checked', true);
@@ -1519,7 +1540,12 @@
             //$('#part_type_anonymous_input_container, #part_type_show_public_input_container').show();
             $('.donation-level-row-container.enterAmt input').val('');
 	    $('.enterAmt-other').addClass("hidden");
+
+        console.log('I');
+
 	    $('form').validate().resetForm();
+
+        console.log('J');
 	});
 	//check if amounts preselected
         $('.donation-level-row-container.donation-amt input:checked').closest('.donation-level-row-container.donation-amt').addClass("active");
