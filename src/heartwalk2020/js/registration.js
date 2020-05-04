@@ -1587,7 +1587,7 @@
         $('.survey-question-container legend span:contains("Privacy Policy")').parent().parent().addClass('privacyCheck');
         $('.privacyCheck legend').addClass('aural-only');
         var trName = $('.campaign-banner-container').text();
-        console.log('trName ' + trName);
+        trName = trName.replace(/'/g, '');
         if (trName.indexOf('Lawyers') != -1){
           $('.privacyCheck label').html('<span class="field-required"></span> I agree to the <a href="javascript:void(0)" onclick="window.open(\'DocServer/Terms_of_Service_Heart_Walk_LHH_2020.pdf\',\'_blank\',\'location=yes,height=570,width=520,scrollbars=yes,status=yes\');">Terms and Conditions (PDF)</a> and <a href="javascript:void(0)" onclick="window.open(\'https://www.heart.org/en/about-us/statements-and-policies/privacy-statement\',\'_blank\',\'location=yes,height=570,width=520,scrollbars=yes,status=yes\');">Privacy Policy</a>.');
         }
