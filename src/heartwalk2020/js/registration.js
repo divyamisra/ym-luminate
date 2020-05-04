@@ -1593,7 +1593,6 @@
         }
         if (trName.indexOf('Lawyers') != -1){
           $('.privacyCheck label').html('<span class="field-required"></span> I agree to the <a href="javascript:void(0)" onclick="window.open(\'DocServer/2020_LHH_Wellness_Guide.pdf\',\'_blank\',\'location=yes,height=570,width=520,scrollbars=yes,status=yes\');">Terms and Conditions (PDF)</a> and <a href="javascript:void(0)" onclick="window.open(\'https://www.heart.org/en/about-us/statements-and-policies/privacy-statement\',\'_blank\',\'location=yes,height=570,width=520,scrollbars=yes,status=yes\');">Privacy Policy</a>.');
-          <a href="DocServer/2020_LHH_Wellness_Guide.pdf?docID=6349"></a>
         }
         else {
           $('.privacyCheck label').html('<span class="field-required"></span> I agree to the <a href="javascript:void(0)" onclick="window.open(\'DocServer/HeartWalk2019_163605_TOS_texting_2019.11.19.pdf\',\'_blank\',\'location=yes,height=570,width=520,scrollbars=yes,status=yes\');">Terms and Conditions (PDF)</a> and <a href="javascript:void(0)" onclick="window.open(\'https://www.heart.org/en/about-us/statements-and-policies/privacy-statement\',\'_blank\',\'location=yes,height=570,width=520,scrollbars=yes,status=yes\');">Privacy Policy</a>.');
