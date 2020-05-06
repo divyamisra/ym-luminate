@@ -1392,7 +1392,7 @@ return $.ajax({
           // console.log('##### EXIT cd.getAllParticipants 2');
         //  teamPromise.resolve('teamParticipantsListBuilt');
         //   return teamPromise.promise();
-// TODO - confirm that this is truly the final exit point 
+// TODO - confirm that this is truly the final exit point
           // teamPromise = new Promise(function(resolve, reject) {
           //     resolve('teamParticipantsListBuilt');
           // });
@@ -1422,7 +1422,7 @@ return $.ajax({
           console.log('isFinalCall===true. resolve promise');
           teamPromise.resolve('teamParticipantsListBuilt');
           return teamPromise.promise();
-        } 
+        }
         // else {
         //   cd.buildParticipantList(participants);
         // }
@@ -1438,7 +1438,7 @@ return $.ajax({
        participants = participants.concat(participantList);
      cd.getAllParticipants(pgcnt, true);
       //  console.log('##### EXIT cd.getAllParticipants 4');
-     
+
     }
   }
 })
