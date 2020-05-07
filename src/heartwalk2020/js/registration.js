@@ -1969,6 +1969,7 @@
                 var parentName = $(this).text();
                 parentName = parentName.split(' ');
                 parentName = parentName[0];
+                parentName = parentName.replace(/[^a-z0-9]/gi,'');
                 $(this).nextUntil('.parentCompany').addClass(parentName);
               });
 
@@ -1986,6 +1987,7 @@
                   $.parentCompany = $(this);
 
                   var parentClass = parentName.split(' ');
+                  parentClass = parentClass.replace(/[^a-z0-9]/gi,'');
                   parentClass = parentClass[0];
 
                   var children = [];
