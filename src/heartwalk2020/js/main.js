@@ -1475,7 +1475,6 @@ var numWalkerRows = 0;
 
                     $.ajax({
 // cd.getCompanyIndividualParticipants
-return $.ajax({
                         type: 'GET',
                         url: luminateExtend.global.path.secure + 'CRTeamraiserAPI',
                         data: {
