@@ -148,5 +148,18 @@ module.exports = {
         dest: 'dist/heartwalk2020/image/'
       }
     ]
+  },
+
+  "field-day": {
+    files: [
+      {
+        expand: true,
+        cwd: 'src/field-day/image/',
+        src: [
+          '*.{gif,GIF,jpg,JPG,png,PNG,svg,SVG}'
+        ],
+        dest: 'dist/field-day/image/'
+      }
+    ]
   }
 }

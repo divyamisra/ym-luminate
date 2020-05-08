@@ -125,5 +125,22 @@ module.exports = {
         dest: 'dist/heartwalk2020/css/donation.'+ '<%= timestamp %>' +'.min.css'
       }
     ]
+  },
+
+  "field-day": {
+    files: [
+      {
+        src: 'dist/field-day/css/main.css', 
+        dest: 'dist/field-day/css/main.'+ '<%= timestamp %>' +'.min.css'
+      },
+      {
+        src: 'dist/field-day/css/registration.css', 
+        dest: 'dist/field-day/css/registration.'+ '<%= timestamp %>' +'.min.css'
+      },
+      {
+        src: 'dist/field-day/css/donation.css', 
+        dest: 'dist/field-day/css/donation.'+ '<%= timestamp %>' +'.min.css'
+      }
+    ]
   }
 }

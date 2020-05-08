@@ -182,5 +182,18 @@ module.exports = {
         dest: 'dist/heartwalk2020/js/'
       }
     ]
+  },
+
+  "field-day-scripts": {
+    files: [
+      {
+        expand: true,
+        cwd: 'src/field-day/js/',
+        src: [
+          '*.js'
+        ],
+        dest: 'dist/field-day/js/'
+      }
+    ]
   }
 }

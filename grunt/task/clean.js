@@ -347,5 +347,37 @@ module.exports = {
         ]
       }
     ]
+  },
+  "field-day": {
+    files: [
+      {
+        expand: true,
+        cwd: 'dist/field-day/css/',
+        src: [
+          '**/*'
+        ]
+      },
+      {
+        expand: true,
+        cwd: 'dist/field-day/js/',
+        src: [
+          '**/*'
+        ]
+      },
+      {
+        expand: true,
+        cwd: 'dist/field-day/html/',
+        src: [
+          '**/*'
+        ]
+      },
+      {
+        expand: true,
+        cwd: 'dist/field-day/image/',
+        src: [
+          '**/*'
+        ]
+      }
+    ]
   } 
 }
