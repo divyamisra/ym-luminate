@@ -1967,9 +1967,6 @@
 
               $('.parentCompany').each(function(){
                 var parentName = $(this).text();
-//                parentName = parentName.split(' ');
-//                parentName = parentName[0];
-//                parentName = parentName.replace(' ','');
                 parentName = parentName.replace(/\s/g, '');
                 parentName = parentName.replace(/[^a-z0-9]/gi,'');
                 $(this).nextUntil('.parentCompany').addClass(parentName);
@@ -1988,12 +1985,9 @@
                   var parentName = $(this).text();
                   $.parentCompany = $(this);
 
-//                  var parentClass = parentName.split(' ');
                   var parentClass = parentName
-//                  parentClass = parentClass[0];
                   parentClass = parentClass.replace(/\W/g, '');
                   parentClass = parentClass.replace(/\W/g, '');
-console.log('parentClass' + parentClass);
                   var children = [];
 
                   var subParentNum = 0;
