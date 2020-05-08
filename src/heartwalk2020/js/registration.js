@@ -1987,9 +1987,10 @@
                   $.parentCompany = $(this);
 
                   var parentClass = parentName.split(' ');
-                  parentClass = parentClass.replace(/[^a-z0-9]/gi,'');
+//                  var regEx = new Regex('/[^a-z0-9]/gi');
                   parentClass = parentClass[0];
-
+                  parentClass = parentClass.replace(/\W/g, '')
+console.log('parentClass' + parentClass);
                   var children = [];
 
                   var subParentNum = 0;
