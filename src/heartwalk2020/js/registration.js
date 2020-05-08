@@ -2050,7 +2050,7 @@
                   $.each(children,function(){
                     var options = '';
                     var option = '<option value="'+this.val+'" class="subCompany">'+this.name+'</option>';
-                    console.log('option ' + option);
+//                    console.log('option ' + option);
                     options += option;
 
                     if ($(this.subChildren).length > 0){
