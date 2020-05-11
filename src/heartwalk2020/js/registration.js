@@ -1967,8 +1967,8 @@
 
               $('.parentCompany').each(function(){
                 var parentName = $(this).text();
-                parentName = parentName.split(' ');
-                parentName = parentName[0];
+                parentName = parentName.replace(/\s/g, '');
+                parentName = parentName.replace(/[^a-z0-9]/gi,'');
                 $(this).nextUntil('.parentCompany').addClass(parentName);
               });
 
@@ -1985,9 +1985,9 @@
                   var parentName = $(this).text();
                   $.parentCompany = $(this);
 
-                  var parentClass = parentName.split(' ');
-                  parentClass = parentClass[0];
-
+                  var parentClass = parentName
+                  parentClass = parentClass.replace(/\W/g, '');
+                  parentClass = parentClass.replace(/\W/g, '');
                   var children = [];
 
                   var subParentNum = 0;
@@ -2050,7 +2050,7 @@
                   $.each(children,function(){
                     var options = '';
                     var option = '<option value="'+this.val+'" class="subCompany">'+this.name+'</option>';
-                    console.log('option ' + option);
+//                    console.log('option ' + option);
                     options += option;
 
                     if ($(this.subChildren).length > 0){
