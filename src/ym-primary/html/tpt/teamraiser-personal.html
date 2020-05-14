@@ -104,7 +104,7 @@
         </h2>
         <div class="ym-badges__item" ng-repeat="prize in prizes" ng-cloak> <!--  ng-repeat="prize in prizes | limitTo: 3" -->
           <div class="ym-badge__item" ng-if="prize.earned" ng-cloak>
-            <img class="img-responsive" ng-src="//s3.amazonaws.com/aha-oot-production/fy20/assets/badges/khc/{{prize.id}}_delivered.png" alt="{{prize.label}}">
+            <img class="img-responsive" ng-src="//s3.amazonaws.com/aha-oot-production/fy21/assets/badges/khc/{{prize.id}}_delivered.png" alt="{{prize.label}}">
             <span ng-bind-html="prize.label"></span> <span class="sr-only">(earned)</span>
           </div>
         </div>
@@ -116,9 +116,9 @@
         </h2>
         <div class="row challenge-day-streak">
           <div class="col-sm-4">
-            <img class="img-responsive" ng-if="challengeId == 1 || challengeId == 4" src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/ym-primary/image/badge-ready.png" alt="{{challengeName}}" ng-cloak>
-            <img class="img-responsive" ng-if="challengeId == 2" src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/ym-primary/image/badge-move.png" alt="{{challengeName}}" ng-cloak>
-            <img class="img-responsive" ng-if="challengeId == 3" src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/ym-primary/image/badge-kind.png" alt="{{challengeName}}" ng-cloak>
+            <img class="img-responsive" ng-if="challengeId == 1 || challengeId == 4" src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/ym-primary/image/fy21/badge-ready.png" alt="{{challengeName}}" ng-cloak>
+            <img class="img-responsive" ng-if="challengeId == 2" src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/ym-primary/image/fy21/badge-move.png" alt="{{challengeName}}" ng-cloak>
+            <img class="img-responsive" ng-if="challengeId == 3" src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/ym-primary/image/fy21/badge-kind.png" alt="{{challengeName}}" ng-cloak>
           </div>
           <div class="col-sm-8">
             <p class="ym_my_challenge__stats">
@@ -141,7 +141,7 @@
             My Challenge
           </h2>
           <div class="col-sm-4">
-            <img class="img-responsive" src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/ym-primary/image/badge-ready.png" alt="">
+            <img class="img-responsive" src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/ym-primary/image/fy21/badge-ready.png" alt="">
           </div>
           <div class="col-sm-8">
             <p class="ym_my_challenge__description">
@@ -176,7 +176,7 @@
     </div>
     <div class="ym-list" ng-class="!personalDonors.donors || personalDonors.donors.length == 0 ? 'hidden' : 'col-sm-6'" role="list" aria-label="Top Donors List" ng-cloak>
       <h2>
-        <img class="img-responsive" src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/ym-primary/image/hj-donors-graphic.png" alt="Saluting these top donors:">
+        <img class="img-responsive" src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/ym-primary/image/fy21/khc-top-fundraisers.png" alt="Saluting these top donors:">
       </h2>
       <ul class="ym-donor-list">
         <li class="ym-donor-list__row" ng-repeat="personalDonor in personalDonors.donors" role="listitem" ng-if="personalDonors.donors.length > 0" ng-cloak>
