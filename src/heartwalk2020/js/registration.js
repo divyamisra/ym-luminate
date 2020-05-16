@@ -1,6 +1,10 @@
 'use strict';
 (function($) {
     $(document).ready(function() {
+        /*************/
+        /* Namespace */
+        /*************/
+        window.cd = {};
         // BEGIN LANDING PAGES
         /******************/
         /* SEARCH SCRIPTS */
