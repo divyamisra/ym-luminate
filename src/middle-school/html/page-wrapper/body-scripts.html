@@ -1,3 +1,4 @@
+/*
 <script>
   var showDualLogo = true,
   ahaFooterLoadBootstrap = false,
@@ -21,6 +22,21 @@
   footer_contact[3]['body'] = '214-444-6688';
 </script>
 <script id="footerScriptTag" src="//static.heart.org/ahaanywhere/responsive/js/aha-footer-external-responsive.v2.js" data-site-contact="true"></script>
+*/
+<script src="//static.heart.org/ahaanywhere/sitecore/dist/ahaHeaderFooterSitecore.js"></script>
+<!-- Activate header/footer plugin -->
+<script>
+  jQuery(function() {
+    jQuery('#app').ahaHeaderFooterSitecore({
+      showSearch: true,
+      showFooterSupportBar: true,
+      supportBarContent:
+      {'title':'CPR-Related Inquiries:','info':'1-877-AHA-4CPR Or 1-877-242-4277'},
+      supportBarCallToActions:
+      [{'title':'International Inquiries','link':'#'}]
+    });
+  }):
+</script >
 
 <script src="//cdnjs.cloudflare.com/ajax/libs/angular-filter/0.5.17/angular-filter[[?xtruex::x[[S80:debug]]x::::.min]].js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper[[?xtruex::x[[S80:debug]]x::::.min]].js" crossorigin="anonymous"></script>
