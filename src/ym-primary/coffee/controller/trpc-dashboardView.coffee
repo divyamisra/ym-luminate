@@ -916,7 +916,9 @@ angular.module 'trPcControllers'
 
       , (response) ->
         # TODO
-      $scope.schoolYearsInfo = {}
+      
+      #school years, challenge and level update
+      $scope.schoolInfo = {}
 
       if $scope.participantRegistration.companyInformation?.isCompanyCoordinator is 'true'
         ZuriService.getSchoolYears $scope.participantRegistration.companyInformation.companyId,
@@ -934,9 +936,9 @@ angular.module 'trPcControllers'
         delete $scope.schoolYearsInfo.errorMessage
         schoolYears = $scope.companyProgress.schoolYears
         if schoolYears is '' or schoolYears is '0'
-          $scope.schoolYearsInfo.years = ''
+          $scope.schoolInfo.years = ''
         else
-          $scope.schoolYearsInfo.years = schoolYears
+          $scope.schoolInfo.years = schoolYears
         $scope.editSchoolYearsModal = $uibModal.open
           scope: $scope
           templateUrl: APP_INFO.rootPath + 'dist/ym-primary/html/participant-center/modal/editSchoolYears.html'
@@ -945,19 +947,103 @@ angular.module 'trPcControllers'
         $scope.editSchoolYearsModal.close()
 
       $scope.updateSchoolYears = ->
-        delete $scope.schoolYearsInfo.errorMessage
-        newYears = $scope.schoolYearsInfo.years
+        delete $scope.schoolInfo.errorMessage
+        newYears = $scope.schoolInfo.years
         if not newYears or newYears is '' or newYears is '0' or isNaN(newYears)
-          $scope.schoolYearsInfo.errorMessage = 'Please specify a year greater than 0.'
+          $scope.schoolInfo.errorMessage = 'Please specify a year greater than 0.'
         else
           updateSchoolYearPromise = ZuriService.updateSchoolYears $scope.participantRegistration.companyInformation.companyId + '/years-participated/update?value=' + newYears,
             failure: (response) ->
-              $scope.schoolYearsInfo.errorMessage = 'Process failed to save years entered'
+              $scope.schoolInfo.errorMessage = 'Process failed to save years entered'
             error: (response) ->
-              $scope.schoolYearsInfo.errorMessage = 'Error: ' + response.data.message
+              $scope.schoolInfo.errorMessage = 'Error: ' + response.data.message
             success: (response) ->
               $scope.companyProgress.schoolYears = newYears
               $scope.editSchoolYearsModal.close()
+              
+      #school challenge
+      if $scope.participantRegistration.companyInformation?.isCompanyCoordinator is 'true'
+        ZuriService.getSchoolChallenge $scope.participantRegistration.companyInformation.companyId,
+          failure: (response) ->
+            $scope.companyProgress.schoolChallenge = ''
+          error: (response) ->
+            $scope.companyProgress.schoolChallenge = ''
+          success: (response) ->
+            if response.data.value isnt null
+              $scope.companyProgress.schoolChallenge = response.data.value
+            else
+              $scope.companyProgress.schoolChallenge = ''
+
+      $scope.editSchoolChallege = ->
+        delete $scope.schoolInfo.errorMessage
+        schoolChallenge = $scope.companyProgress.schoolChallenge
+        if schoolChallenge is '' or schoolChallenge is '0'
+          $scope.schoolInfo.challenge = ''
+        else
+          $scope.schoolInfo.challenge = schoolChallenge
+        $scope.editSchoolChallengeModal = $uibModal.open
+          scope: $scope
+          templateUrl: APP_INFO.rootPath + 'dist/ym-primary/html/participant-center/modal/editSchoolChallenge.html'
+
+      $scope.cancelEditSchoolChallenge = ->
+        $scope.editSchoolChallengeModal.close()
+
+      $scope.updateSchoolChallenge = ->
+        delete $scope.schoolInfo.errorMessage
+        newChallenge = $scope.schoolInfo.challenge
+        if not newChallenge or newChallenge is '' or newChallenge is '0' or isNaN(newChallenge)
+          $scope.schoolInfo.errorMessage = 'Please select a challenge.'
+        else
+          updateSchoolChallengePromise = ZuriService.updateSchoolChallenge $scope.participantRegistration.companyInformation.companyId + '/school-challenge/update?value=' + newChallenge,
+            failure: (response) ->
+              $scope.schoolInfo.errorMessage = 'Process failed to save challenge entered'
+            error: (response) ->
+              $scope.schoolInfo.errorMessage = 'Error: ' + response.data.message
+            success: (response) ->
+              $scope.companyProgress.schoolChallenge = newChallenge
+              $scope.editSchoolChallengeModal.close()
+
+      #school challenge level
+      if $scope.participantRegistration.companyInformation?.isCompanyCoordinator is 'true'
+        ZuriService.getSchoolChallengeLevel $scope.participantRegistration.companyInformation.companyId,
+          failure: (response) ->
+            $scope.companyProgress.schoolChallengeLevel = ''
+          error: (response) ->
+            $scope.companyProgress.schoolChallengeLevel = ''
+          success: (response) ->
+            if response.data.value isnt null
+              $scope.companyProgress.schoolChallengeLevel = response.data.value
+            else
+              $scope.companyProgress.schoolChallengeLevel = ''
+
+      $scope.editSchoolChallegeLevel = ->
+        delete $scope.schoolInfo.errorMessage
+        schoolChallengeLevel = $scope.companyProgress.schoolChallengeLevel
+        if schoolChallengeLevel is '' or schoolChallengeLevel is '0'
+          $scope.schoolInfo.challenge_level = ''
+        else
+          $scope.schoolInfo.challenge_level = schoolChallengeLevel
+        $scope.editSchoolChallengeLevelModal = $uibModal.open
+          scope: $scope
+          templateUrl: APP_INFO.rootPath + 'dist/ym-primary/html/participant-center/modal/editSchoolChallengeLevel.html'
+
+      $scope.cancelEditSchoolChallengeLevel = ->
+        $scope.editSchoolChallengeLevelModal.close()
+
+      $scope.updateSchoolChallengeLevel = ->
+        delete $scope.schoolInfo.errorMessage
+        newChallengeLevel = $scope.schoolInfo.challenge_level
+        if not newChallengeLevel or newChallengeLevel is '' or newChallengeLevel is '0' or isNaN(newChallengeLevel)
+          $scope.schoolInfo.errorMessage = 'Please select a challenge level.'
+        else
+          updateSchoolChallengeLevelPromise = ZuriService.updateSchoolChallengeLevel $scope.participantRegistration.companyInformation.companyId + '/school-goal/update?value=' + newChallenge,
+            failure: (response) ->
+              $scope.schoolInfo.errorMessage = 'Process failed to save challenge level entered'
+            error: (response) ->
+              $scope.schoolInfo.errorMessage = 'Error: ' + response.data.message
+            success: (response) ->
+              $scope.companyProgress.schoolChallengeLevel = newChallengeLevel
+              $scope.editSchoolChallengeLevelModal.close()
 
       $scope.showMobileApp = ->
         $scope.viewMobileApp = $uibModal.open
