@@ -154,7 +154,39 @@ angular.module 'ahaLuminateApp'
           , (response) ->
             callback.failure response
 
-      updateSchoolYears: (requestData, callback) ->
+      getSchoolChallenge: (requestData, callback) ->
+        if $rootScope.tablePrefix is 'heartdev'
+          url = '//hearttools.heart.org/aha_ym21_dev/api/school/' + requestData + '/school-challenge?key=k7wvZXDpmDpenVcp'
+        else if $rootScope.tablePrefix is 'heartnew'
+          url = '//hearttools.heart.org/aha_ym21_testing/api/school/' + requestData + '/school-challenge?key=XgUnZxvFcjZ4jEMT'
+        else
+          url = '//hearttools.heart.org/aha_ym21/api/school/' + requestData + '/school-challenge?key=XgUnZxvFcjZ4jEMT'
+        $http.jsonp($sce.trustAsResourceUrl(url), jsonpCallbackParam: 'callback')
+          .then (response) ->
+            if response.data.success is false
+              callback.error response
+            else
+              callback.success response
+          , (response) ->
+            callback.failure response
+
+      getSchoolChallengeLevel: (requestData, callback) ->
+        if $rootScope.tablePrefix is 'heartdev'
+          url = '//hearttools.heart.org/aha_ym21_dev/api/school/' + requestData + '/school-goal?key=k7wvZXDpmDpenVcp'
+        else if $rootScope.tablePrefix is 'heartnew'
+          url = '//hearttools.heart.org/aha_ym21_testing/api/school/' + requestData + '/school-goal?key=XgUnZxvFcjZ4jEMT'
+        else
+          url = '//hearttools.heart.org/aha_ym21/api/school/' + requestData + '/school-goal?key=XgUnZxvFcjZ4jEMT'
+        $http.jsonp($sce.trustAsResourceUrl(url), jsonpCallbackParam: 'callback')
+          .then (response) ->
+            if response.data.success is false
+              callback.error response
+            else
+              callback.success response
+          , (response) ->
+            callback.failure response
+
+      updateSchoolData: (requestData, callback) ->
         if $rootScope.tablePrefix is 'heartdev'
           url = '//hearttools.heart.org/aha_ym21_dev/api/school/' + requestData + '&key=k7wvZXDpmDpenVcp'
         else if $rootScope.tablePrefix is 'heartnew'
