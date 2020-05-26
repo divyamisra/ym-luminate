@@ -9,7 +9,6 @@ angular.module 'trPcControllers'
     'ZuriService'
     'BoundlessService'
     'NgPcTeamraiserRegistrationService'
-    'TeamraiserParticipantService'
     'NgPcTeamraiserProgressService'
     'NgPcTeamraiserTeamService'
     'NgPcTeamraiserSchoolService'
@@ -19,7 +18,7 @@ angular.module 'trPcControllers'
     'NgPcInteractionService'
     'NgPcTeamraiserCompanyService'
     'FacebookFundraiserService'
-    ($rootScope, $scope, $filter, $timeout, $uibModal, APP_INFO, ZuriService, BoundlessService, NgPcTeamraiserRegistrationService, TeamraiserParticipantService, NgPcTeamraiserProgressService, NgPcTeamraiserTeamService, NgPcTeamraiserSchoolService, NgPcTeamraiserGiftService, NgPcContactService, NgPcTeamraiserShortcutURLService, NgPcInteractionService, NgPcTeamraiserCompanyService, FacebookFundraiserService) ->
+    ($rootScope, $scope, $filter, $timeout, $uibModal, APP_INFO, ZuriService, BoundlessService, NgPcTeamraiserRegistrationService, NgPcTeamraiserProgressService, NgPcTeamraiserTeamService, NgPcTeamraiserSchoolService, NgPcTeamraiserGiftService, NgPcContactService, NgPcTeamraiserShortcutURLService, NgPcInteractionService, NgPcTeamraiserCompanyService, FacebookFundraiserService) ->
       $scope.dashboardPromises = []
       $scope.totalCompanyParticipants = 0
       
