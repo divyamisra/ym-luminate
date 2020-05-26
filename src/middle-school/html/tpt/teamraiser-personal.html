@@ -125,7 +125,7 @@
           <p class="ym_my_challenge__stats" ng-if="challengeCompleted == 1" ng-cloak>
             I've met my challenge <span>1</span> day!
           </p>
-          <p class="ym_my_challenge__stats" ng-if="challengeCompleted != 1" ng-cloak>
+          <p class="ym_my_challenge__stats" ng-if="challengeCompleted != 1 && challengeCompleted != 0" ng-cloak>
             I've met my challenge <span>{{challengeCompleted}}</span> days!
           </p>
         </div>
