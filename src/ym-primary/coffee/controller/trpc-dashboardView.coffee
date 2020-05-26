@@ -113,13 +113,10 @@ angular.module 'trPcControllers'
                 setCompanyParticipants companyParticipants, totalNumberParticipants, totalFundraisers
         getCompanyParticipants()
       
-      #getCompanyParticipants = ->
-      #  TeamraiserParticipantService.getParticipants 'team_name=' + encodeURIComponent('%') + '&first_name=' + encodeURIComponent('%%') + '&last_name=' + encodeURIComponent('%') + '&list_filter_column=team.company_id&list_filter_text=' + $scope.participantRegistration.companyInformation.companyId + '&list_sort_column=total&list_ascending=false&list_page_size=50',
-      #      error: ->
-      #        $scope.totalCompanyParticipants = '0'
-      #      success: (response) ->
-      #        $scope.totalCompanyParticipants = response.getParticipantsResponse?.totalNumberResults or '0'
-      #getCompanyParticipants()
+      url = 'PageServer?pagename=ym_khc_school_animation&pgwrap=n'
+      if $scope.protocol is 'https:'
+        url = 'S' + url
+      $scope.schoolAnimationURL = $sce.trustAsResourceUrl(url)
       
       $scope.refreshFundraisingProgress = ->
         fundraisingProgressPromise = NgPcTeamraiserProgressService.getProgress()
