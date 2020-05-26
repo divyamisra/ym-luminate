@@ -933,7 +933,7 @@ angular.module 'trPcControllers'
               $scope.companyProgress.schoolYears = 0
 
       $scope.editSchoolYears = ->
-        delete $scope.schoolYearsInfo.errorMessage
+        delete $scope.schoolInfo.errorMessage
         schoolYears = $scope.companyProgress.schoolYears
         if schoolYears is '' or schoolYears is '0'
           $scope.schoolInfo.years = ''
