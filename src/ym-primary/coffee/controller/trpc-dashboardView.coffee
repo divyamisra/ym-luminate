@@ -9,6 +9,7 @@ angular.module 'trPcControllers'
     'ZuriService'
     'BoundlessService'
     'NgPcTeamraiserRegistrationService'
+    'TeamraiserParticipantService'
     'NgPcTeamraiserProgressService'
     'NgPcTeamraiserTeamService'
     'NgPcTeamraiserSchoolService'
@@ -18,9 +19,10 @@ angular.module 'trPcControllers'
     'NgPcInteractionService'
     'NgPcTeamraiserCompanyService'
     'FacebookFundraiserService'
-    ($rootScope, $scope, $filter, $timeout, $uibModal, APP_INFO, ZuriService, BoundlessService, NgPcTeamraiserRegistrationService, NgPcTeamraiserProgressService, NgPcTeamraiserTeamService, NgPcTeamraiserSchoolService, NgPcTeamraiserGiftService, NgPcContactService, NgPcTeamraiserShortcutURLService, NgPcInteractionService, NgPcTeamraiserCompanyService, FacebookFundraiserService) ->
+    ($rootScope, $scope, $filter, $timeout, $uibModal, APP_INFO, ZuriService, BoundlessService, NgPcTeamraiserRegistrationService, TeamraiserParticipantService, NgPcTeamraiserProgressService, NgPcTeamraiserTeamService, NgPcTeamraiserSchoolService, NgPcTeamraiserGiftService, NgPcContactService, NgPcTeamraiserShortcutURLService, NgPcInteractionService, NgPcTeamraiserCompanyService, FacebookFundraiserService) ->
       $scope.dashboardPromises = []
-
+      $scope.totalCompanyParticipants = 0
+      
       $dataRoot = angular.element '[data-embed-root]'
 
       if $scope.participantRegistration.lastPC2Login is '0'
@@ -70,6 +72,14 @@ angular.module 'trPcControllers'
         if $scope.protocol is 'https:'
           url = 'S' + url
         $scope.schoolAnimationURL = $sce.trustAsResourceUrl(url)
+      
+      getCompanyParticipants = ->
+        TeamraiserParticipantService.getParticipants 'team_name=' + encodeURIComponent('%') + '&first_name=' + encodeURIComponent('%%') + '&last_name=' + encodeURIComponent('%') + '&list_filter_column=team.company_id&list_filter_text=' + $scope.participantRegistration.companyInformation.companyId + '&list_sort_column=total&list_ascending=false&list_page_size=50',
+            error: ->
+              $scope.totalCompanyParticipants = '0'
+            success: (response) ->
+              $scope.totalCompanyParticipants = response.getParticipantsResponse?.totalNumberResults or '0'
+      getCompanyParticipants()
       
       $scope.refreshFundraisingProgress = ->
         fundraisingProgressPromise = NgPcTeamraiserProgressService.getProgress()
