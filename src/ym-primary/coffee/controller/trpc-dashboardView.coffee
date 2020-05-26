@@ -9,6 +9,7 @@ angular.module 'trPcControllers'
     'APP_INFO'
     'ZuriService'
     'BoundlessService'
+    'TeamraiserParticipantService'
     'NgPcTeamraiserRegistrationService'
     'NgPcTeamraiserProgressService'
     'NgPcTeamraiserTeamService'
@@ -19,7 +20,7 @@ angular.module 'trPcControllers'
     'NgPcInteractionService'
     'NgPcTeamraiserCompanyService'
     'FacebookFundraiserService'
-    ($rootScope, $scope, $filter, $timeout, $uibModal, $sce, APP_INFO, ZuriService, BoundlessService, NgPcTeamraiserRegistrationService, NgPcTeamraiserProgressService, NgPcTeamraiserTeamService, NgPcTeamraiserSchoolService, NgPcTeamraiserGiftService, NgPcContactService, NgPcTeamraiserShortcutURLService, NgPcInteractionService, NgPcTeamraiserCompanyService, FacebookFundraiserService) ->
+    ($rootScope, $scope, $filter, $timeout, $uibModal, $sce, APP_INFO, ZuriService, BoundlessService, TeamraiserParticipantService, NgPcTeamraiserRegistrationService, NgPcTeamraiserProgressService, NgPcTeamraiserTeamService, NgPcTeamraiserSchoolService, NgPcTeamraiserGiftService, NgPcContactService, NgPcTeamraiserShortcutURLService, NgPcInteractionService, NgPcTeamraiserCompanyService, FacebookFundraiserService) ->
       $scope.dashboardPromises = []
       $scope.totalCompanyParticipants = 0
       
@@ -68,10 +69,49 @@ angular.module 'trPcControllers'
           # TODO
 
       if $scope.participantRegistration.companyInformation?.isCompanyCoordinator isnt 'true' or $scope.location is '/dashboard-student'
-        url = 'PageServer?pagename=ym_khc_school_animation&pgwrap=n'
-        if $scope.protocol is 'https:'
-          url = 'S' + url
-        $scope.schoolAnimationURL = $sce.trustAsResourceUrl(url)
+        participantsString = ''
+        $scope.companyParticipants = {}
+        setCompanyParticipants = (participants, totalNumber, totalFundraisers) ->
+          $scope.companyParticipants.participants = participants or []
+          totalNumber = totalNumber or 0
+          $scope.companyParticipants.totalNumber = Number totalNumber
+          $scope.companyParticipants.totalFundraisers = Number totalFundraisers
+          if not $scope.$$phase
+            $scope.$apply()
+          if participants and participants.length > 0
+            angular.forEach participants, (participant, participantIndex) ->
+              participantsString += '{name: "' + participant.name.first + ' ' + participant.name.last + '", raised: "' + participant.amountRaisedFormatted + '"}'
+              if participantIndex < (participants.length - 1)
+                participantsString += ', '
+            companyParticipantsString = '{participants: [' + participantsString + '], totalNumber: ' + participants.length + '}'
+            angular.element('.ym-school-animation iframe')[0].contentWindow.postMessage companyParticipantsString, domain
+            angular.element('.ym-school-animation iframe').on 'load', ->
+              angular.element('.ym-school-animation iframe')[0].contentWindow.postMessage companyParticipantsString, domain
+        getCompanyParticipants = ->
+          TeamraiserParticipantService.getParticipants 'team_name=' + encodeURIComponent('%') + '&first_name=' + encodeURIComponent('%%') + '&last_name=' + encodeURIComponent('%') + '&list_filter_column=team.company_id&list_filter_text=' + $scope.participantRegistration.companyInformation.companyId + '&list_sort_column=total&list_ascending=false&list_page_size=50',
+              error: ->
+                setCompanyParticipants()
+              success: (response) ->
+                participants = response.getParticipantsResponse?.participant
+                companyParticipants = []
+                totalNumberParticipants = response.getParticipantsResponse?.totalNumberResults or '0'
+                totalFundraisers = 0
+                if participants
+                  participants = [participants] if not angular.isArray participants
+                  angular.forEach participants, (participant) ->
+                    participant.amountRaised = Number participant.amountRaised
+                    if participant.name?.first and participant.amountRaised > 0
+                      participant.firstName = participant.name.first
+                      participant.lastName = participant.name.last || ""
+                      participant.name.last =  participant.lastName.substring(0, 1) + '.'
+                      participant.fullName = participant.name.first + ' ' + participant.name.last
+                      participant.amountRaisedFormatted = $filter('currency')(participant.amountRaised / 100, '$').replace '.00', ''
+                      if participant.donationUrl
+                        participant.donationFormId = participant.donationUrl.split('df_id=')[1].split('&')[0]
+                      companyParticipants.push participant
+                      totalFundraisers++
+                setCompanyParticipants companyParticipants, totalNumberParticipants, totalFundraisers
+        getCompanyParticipants()
       
       #getCompanyParticipants = ->
       #  TeamraiserParticipantService.getParticipants 'team_name=' + encodeURIComponent('%') + '&first_name=' + encodeURIComponent('%%') + '&last_name=' + encodeURIComponent('%') + '&list_filter_column=team.company_id&list_filter_text=' + $scope.participantRegistration.companyInformation.companyId + '&list_sort_column=total&list_ascending=false&list_page_size=50',
