@@ -689,8 +689,11 @@
     </section>
     <section class="ym-pc-dashboard-coordinator-school-challenge-section" aria-label="School Challenge Selection">
       <div class="ym-pc-dashboard-section-header">
-        <h2 class="h3">
+        <h2 class="h3" ng-if="companyProgress.schoolChallenge != ''">
           I am challenging my students to <span ng-bind-html="companyProgress.schoolChallenge"></span>
+        </h2>
+        <h2 class="h3" ng-if="companyProgress.schoolChallenge == ''">
+          Choose a challenge for your students
         </h2>
       </div>
       <div class="ym-pc-dashboard-coordinator-school-challenge-update text-center">
@@ -701,8 +704,11 @@
     </section>
     <section class="ym-pc-dashboard-coordinator-school-level-section" aria-label="School Challenge Level">
       <div class="ym-pc-dashboard-section-header">
-        <h2 class="h3">
+        <h2 class="h3" ng-if="companyProgress.schoolChallengeLevel != ''">
           Students will be able to participate in the school challenge at <span ng-bind-html="companyProgress.schoolChallengeLevel"></span>
+        </h2>
+        <h2 class="h3" ng-if="companyProgress.schoolChallengeLevel == ''">
+          Choose a level at whcih your students will be able to participate.
         </h2>
       </div>
       <div class="ym-pc-dashboard-coordinator-school-level-update text-center">
