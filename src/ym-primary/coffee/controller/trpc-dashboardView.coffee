@@ -974,7 +974,7 @@ angular.module 'trPcControllers'
             else
               $scope.companyProgress.schoolChallenge = ''
 
-      $scope.editSchoolChallege = ->
+      $scope.editSchoolChallenge = ->
         delete $scope.schoolInfo.errorMessage
         schoolChallenge = $scope.companyProgress.schoolChallenge
         if schoolChallenge is '' or schoolChallenge is '0'
@@ -1016,7 +1016,7 @@ angular.module 'trPcControllers'
             else
               $scope.companyProgress.schoolChallengeLevel = ''
 
-      $scope.editSchoolChallegeLevel = ->
+      $scope.editSchoolChallengeLevel = ->
         delete $scope.schoolInfo.errorMessage
         schoolChallengeLevel = $scope.companyProgress.schoolChallengeLevel
         if schoolChallengeLevel is '' or schoolChallengeLevel is '0'
