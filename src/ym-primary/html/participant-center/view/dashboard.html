@@ -523,12 +523,14 @@
         </div>
       </div>
       <div class="row">
-        <hr class="hidden-xs ym-zuri-animation__divider" ng-show="companyInfo.participantCount > 0" ng-cloak>
-        <div class="ym-page-section ym-page-section__main" ng-show="companyInfo.participantCount > 0" ng-cloak>
-          <div class="container">
-            <div class="container hidden-xs">
-              <div class="ym-school-animation">
-                <iframe title="School Animation" id="school-animation"  ng-src="{{schoolAnimationURL}}"></iframe>
+        <div class="col-md-12">
+          <hr class="hidden-xs ym-zuri-animation__divider" ng-show="companyParticipants.totalFundraisers > 0" ng-cloak>
+          <div class="ym-page-section ym-page-section__main" ng-show="companyParticipants.totalFundraisers > 0" ng-cloak>
+            <div class="container">
+              <div class="container hidden-xs">
+                <div class="ym-school-animation">
+                  <iframe title="School Animation" id="school-animation"  ng-src="{{schoolAnimationURL}}"></iframe>
+                </div>
               </div>
             </div>
           </div>
