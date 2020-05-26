@@ -8,7 +8,7 @@
       <a role="listitem" ng-href="{{baseUrl}}#/email" class="ng-pc-nav-item" ng-class="{'active': location.indexOf('/email/') != -1}">
         <span><strong>Email</strong></span>
       </a>
-      <a role="listitem" ng-href="{{baseUrl}}#/reports" class="ng-pc-nav-item" ng-class="{'active': location == '/reports'}">
+      <a role="listitem" ng-href="{{baseUrl}}#/reports" class="ng-pc-nav-item hidden" ng-class="{'active': location == '/reports'}">
         <span><strong>My Donors</strong></span>
       </a>
       <a role="listitem" ng-href="{{baseUrl}}#/student-resources" class="ng-pc-nav-item ng-pc-nav-item--resources" ng-class="{'active': location == '/student-resources'}" ng-if="participantRegistration.companyInformation.isCompanyCoordinator != 'true'" ng-cloak>
@@ -31,6 +31,9 @@
       </a>
       <a role="listitem" ng-href="{{baseUrl}}#/social" class="ng-pc-nav-item" ng-class="{'active': location == '/social'}">
         <span><strong>Social</strong></span>
+      </a>
+      <a role="listitem" ng-href="{{baseUrl}}#/faq" class="ng-pc-nav-item" ng-class="{'active': location == '/faq'}">
+        <span><strong>FAQ</strong></span>
       </a>
     </div>
   </nav>
