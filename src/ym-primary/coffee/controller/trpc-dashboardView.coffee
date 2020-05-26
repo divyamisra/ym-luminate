@@ -952,7 +952,7 @@ angular.module 'trPcControllers'
         if not newYears or newYears is '' or newYears is '0' or isNaN(newYears)
           $scope.schoolInfo.errorMessage = 'Please specify a year greater than 0.'
         else
-          updateSchoolYearPromise = ZuriService.updateSchoolYears $scope.participantRegistration.companyInformation.companyId + '/years-participated/update?value=' + newYears,
+          updateSchoolYearPromise = ZuriService.updateSchoolData $scope.participantRegistration.companyInformation.companyId + '/years-participated/update?value=' + newYears,
             failure: (response) ->
               $scope.schoolInfo.errorMessage = 'Process failed to save years entered'
             error: (response) ->
@@ -994,7 +994,7 @@ angular.module 'trPcControllers'
         if not newChallenge or newChallenge is '' or newChallenge is '0' or isNaN(newChallenge)
           $scope.schoolInfo.errorMessage = 'Please select a challenge.'
         else
-          updateSchoolChallengePromise = ZuriService.updateSchoolChallenge $scope.participantRegistration.companyInformation.companyId + '/school-challenge/update?value=' + newChallenge,
+          updateSchoolChallengePromise = ZuriService.updateSchoolData $scope.participantRegistration.companyInformation.companyId + '/school-challenge/update?value=' + newChallenge,
             failure: (response) ->
               $scope.schoolInfo.errorMessage = 'Process failed to save challenge entered'
             error: (response) ->
@@ -1036,7 +1036,7 @@ angular.module 'trPcControllers'
         if not newChallengeLevel or newChallengeLevel is '' or newChallengeLevel is '0' or isNaN(newChallengeLevel)
           $scope.schoolInfo.errorMessage = 'Please select a challenge level.'
         else
-          updateSchoolChallengeLevelPromise = ZuriService.updateSchoolChallengeLevel $scope.participantRegistration.companyInformation.companyId + '/school-goal/update?value=' + newChallenge,
+          updateSchoolChallengeLevelPromise = ZuriService.updateSchoolData $scope.participantRegistration.companyInformation.companyId + '/school-goal/update?value=' + newChallenge,
             failure: (response) ->
               $scope.schoolInfo.errorMessage = 'Process failed to save challenge level entered'
             error: (response) ->
