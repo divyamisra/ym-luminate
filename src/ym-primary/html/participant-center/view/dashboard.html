@@ -687,6 +687,30 @@
         </div>
       </div>
     </section>
+    <section class="ym-pc-dashboard-coordinator-school-years-section" aria-label="School Challenge Selection">
+      <div class="ym-pc-dashboard-section-header">
+        <h2 class="h3">
+          I am challenging my students to <span ng-bind-html="companyProgress.schoolChallenge"></span>
+        </h2>
+      </div>
+      <div class="ym-pc-dashboard-coordinator-school-challenge-update text-center">
+         <a href="" ng-click="editSchoolChallenge()" class="ym-school-update-years">
+           <strong>Update Challenge</strong>
+         </a> 
+      </div>
+    </section>
+    <section class="ym-pc-dashboard-coordinator-school-years-section" aria-label="School Challenge Level">
+      <div class="ym-pc-dashboard-section-header">
+        <h2 class="h3">
+          Students will be able to participate in the school challenge at <span ng-bind-html="companyProgress.schoolChallengeLevel"></span>
+        </h2>
+      </div>
+      <div class="ym-pc-dashboard-coordinator-school-level-update text-center">
+         <a href="" ng-click="editSchoolLevel()" class="ym-school-update-years">
+           <strong>Update Donation Level</strong>
+         </a> 
+      </div>
+    </section>
     <section class="ym-pc-dashboard-coordinator-school-years-section" aria-label="Years School Participated">
       <div class="ym-pc-dashboard-section-header">
         <h2 class="h3" ng-if="companyProgress.schoolYears > 0">
