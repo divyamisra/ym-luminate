@@ -120,14 +120,14 @@
             <img class="img-responsive" ng-if="challengeId == 2" src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/ym-primary/image/fy21/badge-move.png" alt="{{challengeName}}" ng-cloak>
             <img class="img-responsive" ng-if="challengeId == 3" src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/ym-primary/image/fy21/badge-kind.png" alt="{{challengeName}}" ng-cloak>
           </div>
-          <div class="col-sm-8">
+          <div class="col-sm-8" ng-if="challengeCompleted > 0" ng-cloak>
             <p class="ym_my_challenge__stats">
               <span class="text_with_1px_border">I have a </span>
               <span class="challenge-day-count">{{challengeCompleted}}</span>
               <span class="text_with_1px_border">day streak </span>
-              <span class="text_with_1px_border" ng-if="challengeId == '1'" ng-cloak>for being ready!</span>
-              <span class="text_with_1px_border" ng-if="challengeId == '2'" ng-cloak>for moving more!</span>
-              <span class="text_with_1px_border" ng-if="challengeId == '3'" ng-cloak>for being kind!</span>
+              <span class="text_with_1px_border" ng-if="challengeId == '1'" ng-cloak>for being grateful!</span>
+              <span class="text_with_1px_border" ng-if="challengeId == '2'" ng-cloak>for being active!</span>
+              <span class="text_with_1px_border" ng-if="challengeId == '3'" ng-cloak>for drinking water!</span>
             </p>
           </div>
         </div>
