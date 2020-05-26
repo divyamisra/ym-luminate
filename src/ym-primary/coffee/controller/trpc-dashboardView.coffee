@@ -65,6 +65,12 @@ angular.module 'trPcControllers'
         , (response) ->
           # TODO
 
+      if $scope.participantRegistration.companyInformation?.isCompanyCoordinator isnt 'true' or $scope.location is '/dashboard-student'
+        url = 'PageServer?pagename=ym_khc_school_animation&pgwrap=n'
+        if $scope.protocol is 'https:'
+          url = 'S' + url
+        $scope.schoolAnimationURL = $sce.trustAsResourceUrl(url)
+      
       $scope.refreshFundraisingProgress = ->
         fundraisingProgressPromise = NgPcTeamraiserProgressService.getProgress()
           .then (response) ->
