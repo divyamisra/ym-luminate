@@ -74,25 +74,24 @@ angular.module 'trPcControllers'
         , (response) ->
           # TODO
 
-      if $scope.participantRegistration.companyInformation?.isCompanyCoordinator isnt 'true' or $scope.location is '/dashboard-student'
-        participantsString = ''
-        $scope.companyParticipants = {}
-        setCompanyParticipants = (participants, totalNumber, totalFundraisers) ->
-          $scope.companyParticipants.participants = participants or []
-          totalNumber = totalNumber or 0
-          $scope.companyParticipants.totalNumber = Number totalNumber
-          $scope.companyParticipants.totalFundraisers = Number totalFundraisers
-          if not $scope.$$phase
-            $scope.$apply()
-          if participants and participants.length > 0
-            angular.forEach participants, (participant, participantIndex) ->
-              participantsString += '{name: "' + participant.name.first + ' ' + participant.name.last + '", raised: "' + participant.amountRaisedFormatted + '"}'
-              if participantIndex < (participants.length - 1)
-                participantsString += ', '
-            companyParticipantsString = '{participants: [' + participantsString + '], totalNumber: ' + participants.length + '}'
+      participantsString = ''
+      $scope.companyParticipants = {}
+      setCompanyParticipants = (participants, totalNumber, totalFundraisers) ->
+        $scope.companyParticipants.participants = participants or []
+        totalNumber = totalNumber or 0
+        $scope.companyParticipants.totalNumber = Number totalNumber
+        $scope.companyParticipants.totalFundraisers = Number totalFundraisers
+        if not $scope.$$phase
+          $scope.$apply()
+        if participants and participants.length > 0
+          angular.forEach participants, (participant, participantIndex) ->
+            participantsString += '{name: "' + participant.name.first + ' ' + participant.name.last + '", raised: "' + participant.amountRaisedFormatted + '"}'
+            if participantIndex < (participants.length - 1)
+              participantsString += ', '
+          companyParticipantsString = '{participants: [' + participantsString + '], totalNumber: ' + participants.length + '}'
+          angular.element('.ym-school-animation iframe')[0].contentWindow.postMessage companyParticipantsString, domain
+          angular.element('.ym-school-animation iframe').on 'load', ->
             angular.element('.ym-school-animation iframe')[0].contentWindow.postMessage companyParticipantsString, domain
-            angular.element('.ym-school-animation iframe').on 'load', ->
-              angular.element('.ym-school-animation iframe')[0].contentWindow.postMessage companyParticipantsString, domain
 
         getCompanyParticipants = ->
           TeamraiserParticipantService.getParticipants 'team_name=' + encodeURIComponent('%') + '&first_name=' + encodeURIComponent('%%') + '&last_name=' + encodeURIComponent('%') + '&list_filter_column=team.company_id&list_filter_text=' + $scope.participantRegistration.companyInformation.companyId + '&list_sort_column=total&list_ascending=false&list_page_size=50',
