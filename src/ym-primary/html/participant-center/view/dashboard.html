@@ -696,7 +696,7 @@
           <span ng-if="companyProgress.schoolChallenge == ''">
             Choose a challenge for your students 
           </span>
-          <select class="form-control" id="challenge" ng-model="schoolChallengeInfo.challenge" aria-label="School Challenge" ng-change="updateSchoolChallenge()" required>
+          <select class="form-control" id="challenge" ng-model="companyProgress.schoolChallenge" aria-label="School Challenge" ng-change="updateSchoolChallenge()" required>
             <option value="No School Challenge">No School Challenge</option>
             <option value="Slime Challenge">Slime Challenge</option>
             <option value="Pie in the Face">Pie in the Face</option>
@@ -718,7 +718,7 @@
           <span ng-if="companyProgress.schoolChallengeLevel == ''">
             Choose a level at which your students will be able to participate
           </span>
-          <select class="form-control" id="challengeLevel" ng-model="schoolChallengeInfo.challenge_level" aria-label="School Challenge Level" ng-change="updateSchoolChallengeLevel()" required>
+          <select class="form-control" id="challengeLevel" ng-model="companyProgress.schoolChallengeLevel" aria-label="School Challenge Level" ng-change="updateSchoolChallengeLevel()" required>
             <option value="$100">$100</option>
             <option value="$150">$150</option>
             <option value="$200">$200</option>
