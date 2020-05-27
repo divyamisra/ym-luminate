@@ -363,19 +363,12 @@ div[id^="taTextElement"]:focus {
 
 .ym-pc-dashboard-coordinator-school-challenge-section,
 .ym-pc-dashboard-coordinator-school-level-section{
-	p.schoolChallenge {
-		font-size: 28px;
+	div.schoolChallenge {
+		font-size: 22px;
 		color: indigo;
 		font-family: "Luckiest Guy",cursive;
-		line-height: 34px;
+		line-height: 28px;
 
-		span {
-			display: inline-block;
-			top: 4px;
-			position: relative;
-			padding-right: 10px;
-		}
-		
 		select {
 			width: auto;
 			display: inline-block;
