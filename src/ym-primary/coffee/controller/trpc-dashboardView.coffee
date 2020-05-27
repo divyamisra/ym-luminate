@@ -1010,7 +1010,7 @@ angular.module 'trPcControllers'
         if newChallengeLevel is ''
           $scope.schoolChallengeLevelInfo.errorMessage = 'Please select a challenge level.'
         else
-          updateSchoolChallengeLevelPromise = ZuriService.updateSchoolData $scope.participantRegistration.companyInformation.companyId + '/school-goal/update?value=' + newChallenge,
+          updateSchoolChallengeLevelPromise = ZuriService.updateSchoolData $scope.participantRegistration.companyInformation.companyId + '/school-goal/update?value=' + newChallengeLevel,
             failure: (response) ->
               $scope.schoolChallengeLevelInfo.errorMessage = 'Process failed to save challenge level entered'
             error: (response) ->
