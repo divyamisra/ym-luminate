@@ -24,6 +24,11 @@ angular.module 'trPcControllers'
     ($rootScope, $scope, $location, $filter, $timeout, $uibModal, $sce, APP_INFO, ZuriService, BoundlessService, TeamraiserParticipantService, NgPcTeamraiserRegistrationService, NgPcTeamraiserProgressService, NgPcTeamraiserTeamService, NgPcTeamraiserSchoolService, NgPcTeamraiserGiftService, NgPcContactService, NgPcTeamraiserShortcutURLService, NgPcInteractionService, NgPcTeamraiserCompanyService, FacebookFundraiserService) ->
       $scope.dashboardPromises = []
       domain = $location.absUrl().split('/site/')[0]
+      $scope.studentsPledgedTotal = ''
+      $scope.activity1amt = ''
+      $scope.activity2amt = ''
+      $scope.activity3amt = ''
+      $scope.companyId = $scope.participantRegistration.companyInformation.companyId
       
       $dataRoot = angular.element '[data-embed-root]'
 
@@ -621,9 +626,9 @@ angular.module 'trPcControllers'
               # id: challengeIndex
               # name: challenge
       challengeOptions =
-        "1": "Be Ready"
-        "2": "Move More"
-        "3": "Be Kind"
+        "1": "Be Grateful"
+        "2": "Be Active"
+        "3": "Drink Water"
       angular.forEach challengeOptions, (challenge, challengeIndex) ->
         $scope.challenges.push
           id: challengeIndex
@@ -1018,6 +1023,28 @@ angular.module 'trPcControllers'
             success: (response) ->
               $scope.companyProgress.schoolChallengeLevel = newChallengeLevel
               #$scope.editSchoolChallengeLevelModal.close()
+
+      ZuriService.getSchool $scope.companyId,
+        error: (response) ->
+          $scope.studentsPledgedTotal = 0
+          $scope.activity1amt = 0
+          $scope.activity2amt = 0
+          $scope.activity3amt = 0
+        success: (response) ->
+          $scope.studentsPledgedTotal = response.data.studentsPledged
+          studentsPledgedActivities = response.data.studentsPledgedByActivity
+          if studentsPledgedActivities['1']
+            $scope.activity1amt = studentsPledgedActivities['1'].count
+          else
+            $scope.activity1amt = 0
+          if studentsPledgedActivities['2']
+            $scope.activity2amt = studentsPledgedActivities['2'].count
+          else
+            $scope.activity2amt = 0
+          if studentsPledgedActivities['3']
+            $scope.activity3amt = studentsPledgedActivities['3'].count
+          else
+            $scope.activity3amt = 0
 
       $scope.showMobileApp = ->
         $scope.viewMobileApp = $uibModal.open
