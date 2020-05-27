@@ -691,7 +691,7 @@
                   <span ng-if="schoolStudentRegOnline && schoolStudentRegOnline != 0" ng-cloak><strong>{{schoolStudentReg|number}}</strong> of those <strong>{{schoolStudentRegOnline|number}}</strong> students have registered online.</span>
                 </p>
                 <p>
-                  You have <strong>{{companyParticipant.totalFundraisers|number}}</strong> students fundraising.
+                  You have <strong>{{companyParticipants.totalFundraisers|number}}</strong> student<span ng-if="companyParticipants.totalFundraisers > 1 || companyParticipants.totalFundraisers == 0">s</span> fundraising.
                 </p>
                 <p>
                   <strong>{{activity1amt|number}}</strong> daily challenges for being grateful.
@@ -700,7 +700,7 @@
                   <strong>{{activity2amt|number}}</strong> daily challenges for being active.
                 </p>
                 <p>
-                  <strong>{{activity2amt|number}}</strong> daily challenges for drinking water.
+                  <strong>{{activity3amt|number}}</strong> daily challenges for drinking water.
                 </p>
               </div>
             </div>
