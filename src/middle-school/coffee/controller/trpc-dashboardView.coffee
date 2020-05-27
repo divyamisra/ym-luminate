@@ -711,7 +711,7 @@ angular.module 'trPcControllers'
           $scope.schoolYearsInfo.years = schoolYears
         $scope.editSchoolYearsModal = $uibModal.open
           scope: $scope
-          templateUrl: APP_INFO.rootPath + 'dist/ym-primary/html/participant-center/modal/editSchoolYears.html'
+          templateUrl: APP_INFO.rootPath + 'dist/middle-school/html/participant-center/modal/editSchoolYears.html'
 
       $scope.cancelEditSchoolYears = ->
         $scope.editSchoolYearsModal.close()
