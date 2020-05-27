@@ -360,3 +360,24 @@ div[id^="taTextElement"]:focus {
 		}
 	}
 }
+
+.ym-pc-dashboard-coordinator-school-challenge-section {
+	p.schoolChallenge {
+		font-size: 28px;
+		color: indigo;
+		font-family: "Luckiest Guy",cursive;
+		line-height: 34px;
+
+		span {
+			display: inline-block;
+			top: 7px;
+			position: relative;
+			padding-right: 10px;
+		}
+		
+		select {
+			width: auto;
+			display: inline-block;
+		}
+	}
+}
