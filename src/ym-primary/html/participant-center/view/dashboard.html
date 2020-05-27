@@ -688,14 +688,17 @@
       </div>
     </section>
     <section class="ym-pc-dashboard-coordinator-school-challenge-section" aria-label="School Challenge Selection">
+      <h2 class="h3 text-center">
+          Student Challenge
+      </h2>
       <div class="row">
         <div class="ym-pc-dashboard-section-header col-md-6">
-          <p class="schoolChallenge">
+          <div class="schoolChallenge text-left">
             <div ng-if="companyProgress.schoolChallenge != ''">
-              I am challenging<br/>my students to 
+              I am challenging my students to 
             </div>
             <div ng-if="companyProgress.schoolChallenge == ''">
-              Choose a challenge<br/>for your students 
+              Choose a challenge for your students 
             </div>
             <select class="form-control" id="challenge" ng-model="companyProgress.schoolChallenge" aria-label="School Challenge" ng-change="updateSchoolChallenge()" required>
               <option value="No School Challenge">No School Challenge</option>
@@ -707,15 +710,15 @@
             <div uib-alert class="alert-danger" ng-if="schoolChallengeInfo.errorMessage">
               <div ng-bind-html="schoolChallengeInfo.errorMessage"></div>
             </div>
-          </p>
+          </div>
         </div>
         <div class="ym-pc-dashboard-section-header col-md-6">
-          <p class="schoolChallenge">
+          <div class="schoolChallenge">
             <div ng-if="companyProgress.schoolChallengeLevel != ''">
-              Students will be able to participate in the school challenge at
+              Student Participation Goal
             </div>
             <div ng-if="companyProgress.schoolChallengeLevel == ''">
-              Choose a level at which your students will be able to participate
+              Choose a Student Participation Goal
             </div>
             <select class="form-control" id="challengeLevel" ng-model="companyProgress.schoolChallengeLevel" aria-label="School Challenge Level" ng-change="updateSchoolChallengeLevel()" required>
               <option value="$100">$100</option>
@@ -727,7 +730,7 @@
             <div uib-alert class="alert-danger" ng-if="schoolChallengeLevelInfo.errorMessage">
               <div ng-bind-html="schoolChallengeLevelInfo.errorMessage"></div>
             </div>
-          </p>
+          </div>
         </div>
       </div>
     </section>
