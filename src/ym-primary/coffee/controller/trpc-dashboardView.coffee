@@ -991,7 +991,7 @@ angular.module 'trPcControllers'
       $scope.updateSchoolChallenge = ->
         delete $scope.schoolInfo.errorMessage
         newChallenge = $scope.schoolInfo.challenge
-        if not newChallenge or newChallenge is '' or newChallenge is '0' or isNaN(newChallenge)
+        if newChallenge is ''
           $scope.schoolInfo.errorMessage = 'Please select a challenge.'
         else
           updateSchoolChallengePromise = ZuriService.updateSchoolData $scope.participantRegistration.companyInformation.companyId + '/school-challenge/update?value=' + newChallenge,
@@ -1033,7 +1033,7 @@ angular.module 'trPcControllers'
       $scope.updateSchoolChallengeLevel = ->
         delete $scope.schoolInfo.errorMessage
         newChallengeLevel = $scope.schoolInfo.challenge_level
-        if not newChallengeLevel or newChallengeLevel is '' or newChallengeLevel is '0' or isNaN(newChallengeLevel)
+        if newChallengeLevel is ''
           $scope.schoolInfo.errorMessage = 'Please select a challenge level.'
         else
           updateSchoolChallengeLevelPromise = ZuriService.updateSchoolData $scope.participantRegistration.companyInformation.companyId + '/school-goal/update?value=' + newChallenge,
