@@ -666,22 +666,31 @@
                 My School
               </h2>
             </div>
-            <div>
-              <p>
-                You have <strong>{{companyInfo.participantCount|number}}</strong> students registered. <span ng-if="studentRegGoal && studentRegGoal != 0" ng-cloak>Keep recruiting to meet your goal of <strong>{{studentRegGoal|number}}</strong> students!</span>
-                <span ng-if="schoolStudentRegOnline && schoolStudentRegOnline != 0" ng-cloak><strong>{{schoolStudentReg|number}}</strong> of those <strong>{{schoolStudentRegOnline|number}}</strong> students have registered online.</span>
-              </p>
-              <a class="btn btn-md-wide btn-primary" ng-href="{{baseUrl}}#/email">
-                <strong>Send Emails</strong>
-              </a>
+            <div class="row">
+              <div class="ym-pc-dashboard-coordinator-create-message col-md-6">
+                <p>
+                  Create/Update an <strong>encouraging message</strong> for your students in their Headquarters.
+                </p>
+                <button type="button" class="btn btn-md-wide btn-primary" ng-click="editCoordinatorMessage()">
+                  <strong>Create Message</strong>
+                </button>
+              </div>
+              <div class="col-md-6">
+                <p>
+                  Compose emails to friends and family to come visit your fundraising page.
+                </p>
+                <a class="btn btn-md-wide btn-primary" ng-href="{{baseUrl}}#/email">
+                  <strong>Send Emails</strong>
+                </a>
+              </div>
             </div>
-            <div class="ym-pc-dashboard-coordinator-create-message">
-              <p>
-                Create/Update an <strong>encouraging message</strong> for your students in their Headquarters.
-              </p>
-              <button type="button" class="btn btn-md-wide btn-primary" ng-click="editCoordinatorMessage()">
-                <strong>Create Message</strong>
-              </button>
+            <div class="row">
+              <div class="col-md-12">
+                <p>
+                  You have <strong>{{companyInfo.participantCount|number}}</strong> students registered. <span ng-if="studentRegGoal && studentRegGoal != 0" ng-cloak>Keep recruiting to meet your goal of <strong>{{studentRegGoal|number}}</strong> students!</span>
+                  <span ng-if="schoolStudentRegOnline && schoolStudentRegOnline != 0" ng-cloak><strong>{{schoolStudentReg|number}}</strong> of those <strong>{{schoolStudentRegOnline|number}}</strong> students have registered online.</span>
+                </p>
+              </div>
             </div>
           </div>
         </div>
