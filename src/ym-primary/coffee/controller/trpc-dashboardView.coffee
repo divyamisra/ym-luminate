@@ -989,19 +989,19 @@ angular.module 'trPcControllers'
         $scope.editSchoolChallengeModal.close()
 
       $scope.updateSchoolChallenge = ->
-        delete $scope.schoolInfo.errorMessage
-        newChallenge = $scope.schoolInfo.challenge
+        delete $scope.schoolChallengeInfo.errorMessage
+        newChallenge = $scope.schoolChallengeInfo.challenge
         if newChallenge is ''
-          $scope.schoolInfo.errorMessage = 'Please select a challenge.'
+          $scope.schoolChallengeInfo.errorMessage = 'Please select a challenge.'
         else
           updateSchoolChallengePromise = ZuriService.updateSchoolData $scope.participantRegistration.companyInformation.companyId + '/school-challenge/update?value=' + newChallenge,
             failure: (response) ->
-              $scope.schoolInfo.errorMessage = 'Process failed to save challenge entered'
+              $scope.schoolChallengeInfo.errorMessage = 'Process failed to save challenge entered'
             error: (response) ->
-              $scope.schoolInfo.errorMessage = 'Error: ' + response.data.message
+              $scope.schoolChallengeInfo.errorMessage = 'Error: ' + response.data.message
             success: (response) ->
               $scope.companyProgress.schoolChallenge = newChallenge
-              $scope.editSchoolChallengeModal.close()
+              #$scope.editSchoolChallengeModal.close()
 
       #school challenge level
       if $scope.participantRegistration.companyInformation?.isCompanyCoordinator is 'true'
