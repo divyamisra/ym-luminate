@@ -689,44 +689,46 @@
     </section>
     <section class="ym-pc-dashboard-coordinator-school-challenge-section" aria-label="School Challenge Selection">
       <div class="ym-pc-dashboard-section-header">
-        <h2 class="h3" ng-if="companyProgress.schoolChallenge != ''">
-          I am challenging my students to <span ng-bind-html="companyProgress.schoolChallenge"></span>
-        </h2>
-        <h2 class="h3" ng-if="companyProgress.schoolChallenge == ''">
-          Choose a challenge for your students 
-        </h2>
-        <select class="form-control" id="challenge" ng-model="schoolChallengeInfo.challenge" aria-label="School Challenge" ng-change="updateSchoolChallenge()" required>
-          <option value="No School Challenge">No School Challenge</option>
-          <option value="Slime Challenge">Slime Challenge</option>
-          <option value="Pie in the Face">Pie in the Face</option>
-          <option value="Activity, Party or Event">Activity, Party or Event</option>
-          <option value="Other">Other</option>
-        </select>
-        <div uib-alert class="alert-danger" ng-if="schoolChallengeInfo.errorMessage">
-          <div ng-bind-html="schoolChallengeInfo.errorMessage"></div>
-        </div>
+        <p class="schoolChallenge">
+          <span ng-if="companyProgress.schoolChallenge != ''">
+            I am challenging my students to <span ng-bind-html="companyProgress.schoolChallenge"></span>
+          </span>
+          <span ng-if="companyProgress.schoolChallenge == ''">
+            Choose a challenge for your students 
+          </span>
+          <select class="form-control" id="challenge" ng-model="schoolChallengeInfo.challenge" aria-label="School Challenge" ng-change="updateSchoolChallenge()" required>
+            <option value="No School Challenge">No School Challenge</option>
+            <option value="Slime Challenge">Slime Challenge</option>
+            <option value="Pie in the Face">Pie in the Face</option>
+            <option value="Activity, Party or Event">Activity, Party or Event</option>
+            <option value="Other">Other</option>
+          </select>
+          <div uib-alert class="alert-danger" ng-if="schoolChallengeInfo.errorMessage">
+            <div ng-bind-html="schoolChallengeInfo.errorMessage"></div>
+          </div>
+        </p>
       </div>
-      <!--
-      <div class="ym-pc-dashboard-coordinator-school-challenge-update text-center">
-         <a href="" ng-click="editSchoolChallenge()" class="ym-school-update-challenge">
-           <strong>Update Challenge</strong>
-         </a> 
-      </div>
-      -->
     </section>
     <section class="ym-pc-dashboard-coordinator-school-level-section" aria-label="School Challenge Level">
       <div class="ym-pc-dashboard-section-header">
-        <h2 class="h3" ng-if="companyProgress.schoolChallengeLevel != ''">
-          Students will be able to participate in the school challenge at <span ng-bind-html="companyProgress.schoolChallengeLevel"></span>
-        </h2>
-        <h2 class="h3" ng-if="companyProgress.schoolChallengeLevel == ''">
-          Choose a level at which your students will be able to participate
-        </h2>
-      </div>
-      <div class="ym-pc-dashboard-coordinator-school-level-update text-center">
-         <a href="" ng-click="editSchoolChallengeLevel()" class="ym-school-update-level">
-           <strong>Update Donation Level</strong>
-         </a> 
+        <p class="schoolChallenge">
+          <span ng-if="companyProgress.schoolChallengeLevel != ''">
+            Students will be able to participate in the school challenge at
+          </span>
+          <span ng-if="companyProgress.schoolChallengeLevel == ''">
+            Choose a level at which your students will be able to participate
+          </span>
+          <select class="form-control" id="challengeLevel" ng-model="schoolChallengeInfo.challenge_level" aria-label="School Challenge Level" ng-change="updateSchoolChallengeLevel()" required>
+            <option value="$100">$100</option>
+            <option value="$150">$150</option>
+            <option value="$200">$200</option>
+            <option value="$250">$250</option>
+            <option value="Other">Other</option>
+          </select>
+          <div uib-alert class="alert-danger" ng-if="schoolChallengeLevelInfo.errorMessage">
+            <div ng-bind-html="schoolChallengeLevelInfo.errorMessage"></div>
+          </div>
+        </p>
       </div>
     </section>
     <section class="ym-pc-dashboard-coordinator-school-years-section" aria-label="Years School Participated">
