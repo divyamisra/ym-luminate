@@ -693,14 +693,23 @@
           I am challenging my students to <span ng-bind-html="companyProgress.schoolChallenge"></span>
         </h2>
         <h2 class="h3" ng-if="companyProgress.schoolChallenge == ''">
-          Choose a challenge for your students
+          Choose a challenge for your students 
         </h2>
+        <select class="form-control" id="challenge" ng-model="schoolInfo.challenge" aria-label="School Challenge" ng-change="updateSchoolChallenge()" required>
+          <option value="No School Challenge">No School Challenge</option>
+          <option value="Slime Challenge">Slime Challenge</option>
+          <option value="Pie in the Face">Pie in the Face</option>
+          <option value="Activity, Party or Event">Activity, Party or Event</option>
+          <option value="Other">Other</option>
+        </select>
       </div>
+      <!--
       <div class="ym-pc-dashboard-coordinator-school-challenge-update text-center">
          <a href="" ng-click="editSchoolChallenge()" class="ym-school-update-challenge">
            <strong>Update Challenge</strong>
          </a> 
       </div>
+      -->
     </section>
     <section class="ym-pc-dashboard-coordinator-school-level-section" aria-label="School Challenge Level">
       <div class="ym-pc-dashboard-section-header">
