@@ -674,8 +674,7 @@
                 <button type="button" class="btn btn-md-wide btn-primary" ng-click="editCoordinatorMessage()">
                   <strong>Create Message</strong>
                 </button>
-              </div>
-              <div class="col-md-6">
+                <br/><br/>
                 <p>
                   Compose emails to friends and family to come visit your fundraising page.
                 </p>
@@ -683,24 +682,25 @@
                   <strong>Send Emails</strong>
                 </a>
               </div>
-            </div>
-            <div class="row">
-              <div class="col-md-12">
+              <div class="col-md-6">
+                <h6>School Status</h6>
                 <p>
-                  You have <strong>{{companyInfo.participantCount|number}}</strong> students registered. <span ng-if="studentRegGoal && studentRegGoal != 0" ng-cloak>Keep recruiting to meet your goal of <strong>{{studentRegGoal|number}}</strong> students!</span>
+                  <strong>{{companyInfo.participantCount|number}}</strong> students are registered. <span ng-if="studentRegGoal && studentRegGoal != 0" ng-cloak>Keep recruiting to meet your goal of <strong>{{studentRegGoal|number}}</strong> students!</span>
                   <span ng-if="schoolStudentRegOnline && schoolStudentRegOnline != 0" ng-cloak><strong>{{schoolStudentReg|number}}</strong> of those <strong>{{schoolStudentRegOnline|number}}</strong> students have registered online.</span>
                 </p>
                 <p>
-                  You have <strong>{{companyParticipants.totalFundraisers|number}}</strong> student<span ng-if="companyParticipants.totalFundraisers > 1 || companyParticipants.totalFundraisers == 0">s</span> fundraising.
+                  <strong>{{companyParticipants.totalFundraisers|number}}</strong> student<span ng-if="companyParticipants.totalFundraisers > 1 || companyParticipants.totalFundraisers == 0">s are</span><span ng-if="companyParticipants.totalFundraisers == 1"> is</span> fundraising.
+                </p>
+                <br/>
+                <h6>Daily Challenges</h6>
+                <p>
+                  <strong>{{activity1amt|number}}</strong> student<span ng-if="activity1amt > 1 || activity1amt == 0">s are</span><span ng-if="activity1amt == 1"> is</span> being grateful.
                 </p>
                 <p>
-                  <strong>{{activity1amt|number}}</strong> daily challenges for being grateful.
+                  <strong>{{activity2amt|number}}</strong> student<span ng-if="activity2amt > 1 || activity2amt == 0">s are</span><span ng-if="activity2amt == 1"> is</span> being active.
                 </p>
                 <p>
-                  <strong>{{activity2amt|number}}</strong> daily challenges for being active.
-                </p>
-                <p>
-                  <strong>{{activity3amt|number}}</strong> daily challenges for drinking water.
+                  <strong>{{activity3amt|number}}</strong> student<span ng-if="activity3amt > 1 || activity3amt == 0">s are</span><span ng-if="activity3amt == 1"> is</span> drinking water.
                 </p>
               </div>
             </div>
