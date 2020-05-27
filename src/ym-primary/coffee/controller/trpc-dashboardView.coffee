@@ -976,23 +976,9 @@ angular.module 'trPcControllers'
             else
               $scope.companyProgress.schoolChallenge = ''
 
-      $scope.editSchoolChallenge = ->
-        delete $scope.schoolChallengeLevelInfo.errorMessage
-        schoolChallenge = $scope.companyProgress.schoolChallenge
-        if schoolChallenge is '' or schoolChallenge is '0'
-          $scope.schoolChallengeLevelInfo.challenge = ''
-        else
-          $scope.schoolChallengeLevelInfo.challenge = schoolChallenge
-        $scope.editSchoolChallengeModal = $uibModal.open
-          scope: $scope
-          templateUrl: APP_INFO.rootPath + 'dist/ym-primary/html/participant-center/modal/editSchoolChallenge.html'
-
-      $scope.cancelEditSchoolChallenge = ->
-        $scope.editSchoolChallengeModal.close()
-
       $scope.updateSchoolChallenge = ->
         delete $scope.schoolChallengeInfo.errorMessage
-        newChallenge = $scope.schoolChallengeInfo.challenge
+        newChallenge = $scope.companyProgress.schoolChallenge
         if newChallenge is ''
           $scope.schoolChallengeInfo.errorMessage = 'Please select a challenge.'
         else
@@ -1018,23 +1004,9 @@ angular.module 'trPcControllers'
             else
               $scope.companyProgress.schoolChallengeLevel = ''
 
-      $scope.editSchoolChallengeLevel = ->
-        delete $scope.schoolChallengeLevelInfo.errorMessage
-        schoolChallengeLevel = $scope.companyProgress.schoolChallengeLevel
-        if schoolChallengeLevel is '' or schoolChallengeLevel is '0'
-          $scope.schoolChallengeLevelInfo.challenge_level = ''
-        else
-          $scope.schoolChallengeLevelInfo.challenge_level = schoolChallengeLevel
-        $scope.editSchoolChallengeLevelModal = $uibModal.open
-          scope: $scope
-          templateUrl: APP_INFO.rootPath + 'dist/ym-primary/html/participant-center/modal/editSchoolChallengeLevel.html'
-
-      $scope.cancelEditSchoolChallengeLevel = ->
-        $scope.editSchoolChallengeLevelModal.close()
-
       $scope.updateSchoolChallengeLevel = ->
         delete $scope.schoolChallengeLevelInfo.errorMessage
-        newChallengeLevel = $scope.schoolChallengeLevelInfo.challenge_level
+        newChallengeLevel = $scope.companyProgress.schoolChallengeLevel
         if newChallengeLevel is ''
           $scope.schoolChallengeLevelInfo.errorMessage = 'Please select a challenge level.'
         else
