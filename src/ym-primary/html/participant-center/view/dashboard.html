@@ -702,6 +702,9 @@
           <option value="Activity, Party or Event">Activity, Party or Event</option>
           <option value="Other">Other</option>
         </select>
+        <div uib-alert class="alert-danger" ng-if="schoolChallengeInfo.errorMessage">
+          <div ng-bind-html="schoolChallengeInfo.errorMessage"></div>
+        </div>
       </div>
       <!--
       <div class="ym-pc-dashboard-coordinator-school-challenge-update text-center">
