@@ -1045,7 +1045,7 @@ angular.module 'trPcControllers'
               $scope.schoolChallengeLevelInfo.errorMessage = 'Error: ' + response.data.message
             success: (response) ->
               $scope.companyProgress.schoolChallengeLevel = newChallengeLevel
-              $scope.editSchoolChallengeLevelModal.close()
+              #$scope.editSchoolChallengeLevelModal.close()
 
       $scope.showMobileApp = ->
         $scope.viewMobileApp = $uibModal.open
