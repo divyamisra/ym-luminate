@@ -29,7 +29,7 @@ angular.module 'trPcControllers'
       $scope.activity2amt = ''
       $scope.activity3amt = ''
       $scope.companyId = $scope.participantRegistration.companyInformation.companyId
-      $scope.yearsList = [1..50] # 0 - 50
+      $scope.yearsList = [1..41] # 0 - 50
       
       $dataRoot = angular.element '[data-embed-root]'
 
