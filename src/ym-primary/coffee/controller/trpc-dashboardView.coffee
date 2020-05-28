@@ -955,7 +955,7 @@ angular.module 'trPcControllers'
 
       $scope.updateSchoolYears = ->
         delete $scope.schoolInfo.errorMessage
-        newYears = $scope.schoolInfo.years
+        newYears = $scope.companyProgress.schoolYears
         if not newYears or newYears is '' or newYears is '0' or isNaN(newYears)
           $scope.schoolInfo.errorMessage = 'Please specify a year greater than 0.'
         else
@@ -966,7 +966,7 @@ angular.module 'trPcControllers'
               $scope.schoolInfo.errorMessage = 'Error: ' + response.data.message
             success: (response) ->
               $scope.companyProgress.schoolYears = newYears
-              $scope.editSchoolYearsModal.close()
+              #$scope.editSchoolYearsModal.close()
               
       #school challenge
       if $scope.participantRegistration.companyInformation?.isCompanyCoordinator is 'true'
