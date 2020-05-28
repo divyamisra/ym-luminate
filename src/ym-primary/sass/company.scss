@@ -117,10 +117,12 @@ body.pg-company {
 }
 
 .ym-school-participation-years {
-  position:relative;
-  max-width:180px;
-  padding:5px;
-  
+    position: absolute;
+    max-width: 180px;
+    padding: 5px;
+    bottom: 0;
+    right: 0;
+
   img {
     width: 100%;
   }
