@@ -1,7 +1,7 @@
 <div cg-busy="dashboardPromises">
   <div ng-if="participantRegistration.companyInformation.isCompanyCoordinator != 'true' || location == '/dashboard-student'" ng-cloak>
     <div ng-if="coordinatorMessage.message && coordinatorMessage.message != ''" ng-cloak>
-      <img class="ym-coordinator-message-monster" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/peek_monster.png" alt="Ninja Monster peeking out">
+      <img class="ym-coordinator-message-monster" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy21/note-peek.png" alt="Character peeking out">
       <section class="ym-pc-dashboard-coordinators-message-section" aria-label="Note From Your Teacher">
         <div class="ym-pc-dashboard-section-header">
           <h2 class="h5">
@@ -191,11 +191,11 @@
                 Spread the word! Send 10 emails or e-cards to friends and family.
               </p>
               <div class="ym-pc-dashboard-email-challenge-images">
-                <a ng-href="{{baseUrl}}#/email">
-                  <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/pc-challenge-animated-email.gif" alt="Send Email">
+                <a ng-href="{{baseUrl}}#/email" ng-init="hvImgsrc3='PC_email-static.png';" ng-mouseover="hvImgsrc3='PC_email-animated.gif';" ng-mouseout="hvImgsrc3='PC_email-static.png';">
+                  <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy21/{{hvImgsrc3}}" alt="Send Email">
                 </a> 
-                <a ng-href="https://hearttools.heart.org/aha_ym21{{tablePrefix == 'heartdev' ? '_dev' : (tablePrefix == 'heartnew' ? '_testing' : '')}}/?eid={{frId}}&amp;sid={{consId}}&amp;name={{consNameFirst}}" target="_blank">
-                  <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/pc-challenge-animated-ecard.gif" alt="Send E-card">
+                <a ng-href="https://hearttools.heart.org/aha_ym21{{tablePrefix == 'heartdev' ? '_dev' : (tablePrefix == 'heartnew' ? '_testing' : '')}}/?eid={{frId}}&amp;sid={{consId}}&amp;name={{consNameFirst}}" target="_blank" ng-init="hvImgsrc4='PC_ecard-static.png';" ng-mouseover="hvImgsrc4='PC_ecard-animated.gif';" ng-mouseout="hvImgsrc4='PC_ecard-static.png';">
+                  <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy21/{{hvImgsrc4}}" alt="Send E-card">
                 </a>
               </div>
               <div class="ym-pc-dashboard-email-challenge-buttons">
