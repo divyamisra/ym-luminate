@@ -784,19 +784,19 @@
     </section>
     <section class="ym-pc-dashboard-coordinator-school-years-section" aria-label="Years School Participated">
       <div class="ym-pc-dashboard-section-header">
-        <div ng-if="companyProgress.schoolYears > 0">
+        <h2 class="h3" ng-if="companyProgress.schoolYears > 0">
           Your school has participated for 
           <select class="form-control" id="schoolYears" ng-model="companyProgress.schoolYears" aria-label="School Years" ng-change="updateSchoolYears()" required>
   	        <option ng-repeat="year in yearsList" value="{{year}}">{{year}}</option>
           </select>
           Years
-        </div>
-        <div ng-if="companyProgress.schoolYears == 0">
-          Tell us how many years your school has participated in the program
- 	    	  <select class="form-control" id="schoolYears" ng-model="companyProgress.schoolYears" aria-label="School Years" ng-change="updateSchoolYears()" required>
-		      	<option ng-repeat="year in yearsList" value="{{year}}">{{year}}</option>
-    		  </select>
-        </div>
+        </h2>
+        <h2 class="h3" ng-if="companyProgress.schoolYears == 0">
+          Select how many years your school has participated in the program
+	  <select class="form-control" id="schoolYears" ng-model="companyProgress.schoolYears" aria-label="School Years" ng-change="updateSchoolYears()" required>
+		<option ng-repeat="year in yearsList" value="{{year}}">{{year}}</option>
+	  </select>
+        </h2>
       </div>
     </section>
     <section class="ym-pc-dashboard-coordinator-steps-section" aria-label="Fundraising Steps">
