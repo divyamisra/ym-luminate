@@ -526,7 +526,7 @@
              <strong>Coming Soon!</strong>
              </a>
           </div>
-          <div class="row">
+          <div class="row" ng-if="personalInfo.avatar == ''" ng-cloak>
              <div class="col-md-6">
                 <h3 class="h5">Create your own hero!</h3>
                 <p>Make your own avatar! Unlock features like color, smile and hands and customize your hero.</p>
@@ -537,16 +537,22 @@
                 </div>
              </div>
           </div>
-          <div class="text-center">
-             <!-- <a class="btn btn-lg btn-primary" ng-click="monsterEdit()" target="_new" aria-label="Customize Avatar">
-                <strong>Customize Yours!</strong>
-                </a> -->
+          <div class="row" ng-if="personalInfo.avatar != ''" ng-cloak>
+             <div class="col-md-6">
+                <h3 class="h5">Update your hero!</h3>
+                <p>Change your avatar! Update features like color, smile and hands and customize your hero.</p>
+             </div>
+             <div class="col-md-6">
+                <div class="hv-image">
+                   <img class="list-group"<img ng-src='{{personalInfo.avatar}}'> alt="Customize Avatar">
+                </div>
+             </div>
+          </div>
+	  <div class="text-center">
              <a class="btn btn-lg btn-primary" href="javascript:void(0);">
              <strong>Coming Soon!</strong>
              </a>
           </div>
-          <!-- <a class="entry-button" ng-href="https://hearttools.heart.org/aha_ym21{{tablePrefix == 'heartdev' ? '_dev' : (tablePrefix == 'heartnew' ? '_testing' : '')}}/virtualworld/?fr_id={{frId}}&cons_id={{consId}}&name={{consName}}" target="_new">Enter World!</a> -->
-          <!-- <div class="" ng-if="personalInfo.avatar != ''" ng-cloak>&nbsp;<img ng-src='{{personalInfo.avatar}}'></div> -->
         </div>
       </div>
       <div class="row">
