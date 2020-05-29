@@ -1,8 +1,8 @@
 <div cg-busy="dashboardPromises">
   <div ng-if="participantRegistration.companyInformation.isCompanyCoordinator != 'true' || location == '/dashboard-student'" ng-cloak>
     <div ng-if="coordinatorMessage.message && coordinatorMessage.message != ''" ng-cloak>
-      <div class="hv-image" ng-init="hvImgsrc='note-peek.png';" ng-mouseover="hvImgsrc='note-peep-animated.gif';" ng-mouseout="hvImgsrc='note-peek.png';">
-	<img class="ym-coordinator-message-monster" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy21/{{hvImgsrc}}" alt="Character peeking out">
+      <div class="hv-image" ng-init="hvImgNotesrc='note-peek.png';" ng-mouseover="hvImgNotesrc='note-peep-animated.gif';" ng-mouseout="hvImgNotesrc='note-peek.png';">
+	<img class="ym-coordinator-message-monster" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy21/{{hvImgNotesrc}}" alt="Character peeking out">
       </div>
       <section class="ym-pc-dashboard-coordinators-message-section" aria-label="Note From Your Teacher">
         <div class="ym-pc-dashboard-section-header">
