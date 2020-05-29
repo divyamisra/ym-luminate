@@ -122,12 +122,12 @@
           </div>
           <div class="col-sm-8" ng-if="challengeCompleted > 0" ng-cloak>
             <p class="ym_my_challenge__stats">
-              <span class="text_with_1px_border">I have a </span>
+              I have a
               <span class="challenge-day-count">{{challengeCompleted}}</span>
-              <span class="text_with_1px_border">day streak </span>
-              <span class="text_with_1px_border" ng-if="challengeId == '1'" ng-cloak>for being grateful!</span>
-              <span class="text_with_1px_border" ng-if="challengeId == '2'" ng-cloak>for being active!</span>
-              <span class="text_with_1px_border" ng-if="challengeId == '3'" ng-cloak>for drinking water!</span>
+              day streak
+              <span ng-if="challengeId == '1'" ng-cloak>for being grateful!</span>
+              <span ng-if="challengeId == '2'" ng-cloak>for being active!</span>
+              <span ng-if="challengeId == '3'" ng-cloak>for drinking water!</span>
             </p>
           </div>
         </div>
