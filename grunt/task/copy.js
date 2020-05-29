@@ -184,15 +184,15 @@ module.exports = {
     ]
   },
 
-  "field-day-scripts": {
+  "fieldday-scripts": {
     files: [
       {
         expand: true,
-        cwd: 'src/field-day/js/',
+        cwd: 'src/fieldday/js/',
         src: [
           '*.js'
         ],
-        dest: 'dist/field-day/js/'
+        dest: 'dist/fieldday/js/'
       }
     ]
   }

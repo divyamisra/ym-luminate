@@ -145,13 +145,13 @@ module.exports = {
     ]
   },
 
-  "field-day": {
+  "fieldday": {
     files: [
       {
         expand: true,
-        cwd: "src/field-day/html/",
+        cwd: "src/fieldday/html/",
         src: ["**/*.*"],
-        dest: "dist/field-day/html/"
+        dest: "dist/fieldday/html/"
       }
     ]
   }

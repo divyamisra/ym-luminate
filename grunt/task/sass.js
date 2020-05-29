@@ -111,16 +111,16 @@ module.exports = {
     }
   },
 
-  "field-day": {
+  "fieldday": {
     files: {
-      'dist/field-day/css/main.css': [
-        'src/field-day/sass/main.scss'
+      'dist/fieldday/css/main.css': [
+        'src/fieldday/sass/main.scss'
       ],
-      'dist/field-day/css/registration.css': [
-        'src/field-day/sass/registration.scss'
+      'dist/fieldday/css/registration.css': [
+        'src/fieldday/sass/registration.scss'
       ],
-      'dist/field-day/css/donation.css': [
-        'src/field-day/sass/donation.scss'
+      'dist/fieldday/css/donation.css': [
+        'src/fieldday/sass/donation.scss'
       ]
     }
   }

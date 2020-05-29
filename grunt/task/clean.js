@@ -348,32 +348,32 @@ module.exports = {
       }
     ]
   },
-  "field-day": {
+  "fieldday": {
     files: [
       {
         expand: true,
-        cwd: 'dist/field-day/css/',
+        cwd: 'dist/fieldday/css/',
         src: [
           '**/*'
         ]
       },
       {
         expand: true,
-        cwd: 'dist/field-day/js/',
+        cwd: 'dist/fieldday/js/',
         src: [
           '**/*'
         ]
       },
       {
         expand: true,
-        cwd: 'dist/field-day/html/',
+        cwd: 'dist/fieldday/html/',
         src: [
           '**/*'
         ]
       },
       {
         expand: true,
-        cwd: 'dist/field-day/image/',
+        cwd: 'dist/fieldday/image/',
         src: [
           '**/*'
         ]

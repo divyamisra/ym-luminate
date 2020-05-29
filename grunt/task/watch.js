@@ -226,20 +226,20 @@ module.exports = {
       'notify:heartwalk2020'
     ]
   },
-  "field-day": {
+  "fieldday": {
     files: [
-      'src/field-day/html/**/*',
-      'src/field-day/image/**/*',
-      'src/field-day/sass/**/*',
-      'src/field-day/js/**/*'
+      'src/fieldday/html/**/*',
+      'src/fieldday/image/**/*',
+      'src/fieldday/sass/**/*',
+      'src/fieldday/js/**/*'
     ],
     tasks: [
-      'clean:field-day',
-      'css-dist:field-day',
-      'js-dist:field-day',
-      'html-dist:field-day',
-      'img-copy:field-day-images',
-      'notify:field-day'
+      'clean:fieldday',
+      'css-dist:fieldday',
+      'js-dist:fieldday',
+      'html-dist:fieldday',
+      'img-copy:fieldday-images',
+      'notify:fieldday'
     ]
   }
 }

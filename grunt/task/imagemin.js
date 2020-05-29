@@ -150,15 +150,15 @@ module.exports = {
     ]
   },
 
-  "field-day": {
+  "fieldday": {
     files: [
       {
         expand: true,
-        cwd: 'src/field-day/image/',
+        cwd: 'src/fieldday/image/',
         src: [
           '*.{gif,GIF,jpg,JPG,png,PNG,svg,SVG}'
         ],
-        dest: 'dist/field-day/image/'
+        dest: 'dist/fieldday/image/'
       }
     ]
   }

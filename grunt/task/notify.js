@@ -92,7 +92,7 @@ module.exports = {
     }
   },
 
-  "field-day": {
+  "fieldday": {
     options: {
       title: 'AHA Luminate Framework',
       message: 'Field Day files updated.'

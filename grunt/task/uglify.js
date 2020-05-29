@@ -155,23 +155,23 @@ module.exports = {
     ]
   },
 
-  "field-day": {
+  "fieldday": {
     files: [
       {
-        src: ["src/field-day/js/main.js"],
-        dest: "dist/field-day/js/main." + "<%= timestamp %>" + ".min.js"
+        src: ["src/fieldday/js/main.js"],
+        dest: "dist/fieldday/js/main." + "<%= timestamp %>" + ".min.js"
       },
       {
-        src: ["src/field-day/js/registration.js"],
-        dest: "dist/field-day/js/registration." + "<%= timestamp %>" + ".min.js"
+        src: ["src/fieldday/js/registration.js"],
+        dest: "dist/fieldday/js/registration." + "<%= timestamp %>" + ".min.js"
       },
       {
-        src: ["src/field-day/js/donation.js"],
-        dest: "dist/field-day/js/donation." + "<%= timestamp %>" + ".min.js"
+        src: ["src/fieldday/js/donation.js"],
+        dest: "dist/fieldday/js/donation." + "<%= timestamp %>" + ".min.js"
       },
       {
-        src: ["src/field-day/js/pushy.js"],
-        dest: "dist/field-day/js/pushy.min.js"
+        src: ["src/fieldday/js/pushy.js"],
+        dest: "dist/fieldday/js/pushy.min.js"
       }
     ]
   }

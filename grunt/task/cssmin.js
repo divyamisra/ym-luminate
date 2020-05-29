@@ -127,19 +127,19 @@ module.exports = {
     ]
   },
 
-  "field-day": {
+  "fieldday": {
     files: [
       {
-        src: 'dist/field-day/css/main.css', 
-        dest: 'dist/field-day/css/main.'+ '<%= timestamp %>' +'.min.css'
+        src: 'dist/fieldday/css/main.css', 
+        dest: 'dist/fieldday/css/main.'+ '<%= timestamp %>' +'.min.css'
       },
       {
-        src: 'dist/field-day/css/registration.css', 
-        dest: 'dist/field-day/css/registration.'+ '<%= timestamp %>' +'.min.css'
+        src: 'dist/fieldday/css/registration.css', 
+        dest: 'dist/fieldday/css/registration.'+ '<%= timestamp %>' +'.min.css'
       },
       {
-        src: 'dist/field-day/css/donation.css', 
-        dest: 'dist/field-day/css/donation.'+ '<%= timestamp %>' +'.min.css'
+        src: 'dist/fieldday/css/donation.css', 
+        dest: 'dist/fieldday/css/donation.'+ '<%= timestamp %>' +'.min.css'
       }
     ]
   }

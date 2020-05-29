@@ -194,17 +194,17 @@ module.exports = {
     ]
   },
 
-  "field-day": {
+  "fieldday": {
     files: [
       {
         expand: true,
-        cwd: 'dist/field-day/css/',
+        cwd: 'dist/fieldday/css/',
         src: [
           'main.css',
           'registration.css',
           'donation.css'
         ],
-        dest: 'dist/field-day/css/'
+        dest: 'dist/fieldday/css/'
       }
     ]
   }
