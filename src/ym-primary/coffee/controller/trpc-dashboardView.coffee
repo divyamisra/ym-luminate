@@ -942,10 +942,14 @@ angular.module 'trPcControllers'
             $scope.companyProgress.schoolChallenge = ''
             $scope.companyProgress.schoolChallengeLevel = ''
           success: (response) ->
-            if response.data.value isnt null
-              $scope.companyProgress.schoolYears = response.data['years-participated'].value
-              $scope.companyProgress.schoolChallenge = response.data['school-challenge'].value
-              $scope.companyProgress.schoolChallengeLevel = response.data['school-goal'].value
+            if response.data.length > 0
+              angular.forEach response.data, (meta, key) ->
+                if key == 'years-participated'
+                  $scope.companyProgress.schoolYears = meta.value
+                if key == 'school-challenge'
+                  $scope.companyProgress.schoolChallenge = meta.value
+                if key == 'school-goal'
+                  $scope.companyProgress.schoolChallengeLevel = meta.value
             else
               $scope.companyProgress.schoolYears = 0
               $scope.companyProgress.schoolChallenge = ''
