@@ -181,9 +181,9 @@ angular.module 'trPcControllers'
                     companyProgress.percent = Math.ceil((companyProgress.raised / companyProgress.goal) * 100)
                   if companyProgress.percent > 100
                     companyProgress.percent = 100
-                  companyProgress.schoolYears = if $scope.companyProgress.schoolYears != undefined then $scope.companyProgress.schoolYears else ''
-                  companyProgress.schoolChallenge = if $scope.companyProgress.schoolChallenge != undefined then $scope.companyProgress.schoolChallenge else ''
-                  companyProgress.schoolChallengeLevel = if $scope.companyProgress.schoolChallengeLevel != undefined then $scope.companyProgress.schoolChallengeLevel else ''
+                  companyProgress.schoolYears = $scope.companyProgress?.schoolYears
+                  companyProgress.schoolChallenge = $scope.companyProgress?.schoolChallenge
+                  companyProgress.schoolChallengeLevel = $scope.companyProgress?.schoolChallengeLevel
                   $scope.companyProgress = companyProgress
             response
         $scope.dashboardPromises.push fundraisingProgressPromise
