@@ -74,7 +74,7 @@
         /******************/
         /* SEARCH SCRIPTS */
         /******************/
-        var eventType = 'Heart%20Walk';
+        var eventType = 'Field%20Day';
         var eventType2 = $('body').data('event-type2') ? $('body').data('event-type2') : null;
         var regType = $('body').data('reg-type') ? $('body').data('reg-type') : null;
         var publicEventType = $('body').data('public-event-type') ? $('body').data('public-event-type') : null;
