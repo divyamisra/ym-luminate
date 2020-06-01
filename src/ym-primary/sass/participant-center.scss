@@ -369,7 +369,7 @@ div[id^="taTextElement"]:focus {
 .ym-pc-dashboard-coordinator-school-challenge-section,
 .ym-pc-dashboard-coordinator-school-level-section {
 	div.ym-pc-dashboard-section-header {
-		font-size: 22px;
+		font-size: 20px;
 		color: indigo;
 		font-family: "Luckiest Guy",cursive;
 		line-height: 28px;
@@ -382,6 +382,11 @@ div[id^="taTextElement"]:focus {
 			line-height: 25px;
 			padding-bottom: 5px;
 			padding-top: 13px;
+		}
+		
+		.schoolCreateMessage {
+			font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+			font-size: 18px;
 		}
 	}
 }
