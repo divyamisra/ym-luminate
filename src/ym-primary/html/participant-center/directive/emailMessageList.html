@@ -10,6 +10,9 @@
 	      <span ng-if="!selectMessage">
 		  {{message.subject}}
 	      </span>
+	      <div class="emailRecipients">
+		{{message.recipients}}
+	      </div>
 	  </div>
 	  <div class="col-xs-2 text-right">
 	    {{message.date}}
@@ -19,6 +22,7 @@
 	      <span class="fa fa-trash-o"><span class="sr-only">Delete</span></span>
 	    </button>
 	  </div>
+       </div>
     </div>
   </li>
 </ul>
