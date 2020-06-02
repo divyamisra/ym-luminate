@@ -391,6 +391,11 @@ div[id^="taTextElement"]:focus {
 		.schoolCreateMessage {
 			font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 			font-size: 18px;
+			
+			.coordinatorMessage {
+			  font-size: .8em;
+			  font-style:italic;
+			}
 		}
 	}
 }
