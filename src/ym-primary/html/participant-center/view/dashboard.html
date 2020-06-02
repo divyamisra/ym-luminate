@@ -620,12 +620,21 @@
           </div>
         </div>
         <div class="ym-pc-dashboard-section-header col-md-4">
-          <div class="schoolCreateMessage text-center">
+          <div class="schoolCreateMessage text-center" ng-if="coordinatorMessage.text == ''" ng-cloak>
              <p>
-               Create/Update an <strong>encouraging message</strong> for your students in their Headquarters.
+               Create an <strong>encouraging message</strong> for your students in their Headquarters.
              </p>
              <button type="button" class="btn btn-md-wide btn-primary" ng-click="editCoordinatorMessage()">
                <strong>Create Message</strong>
+             </button>
+          </div>
+          <div class="schoolCreateMessage text-center" ng-if="coordinatorMessage.text && coordinatorMessage.text != ''" ng-cloak>
+             <p>
+               Update <strong>your student message</strong>:<br/>
+	  	       <span class="coordinatorMessage">"{{ coordinatorMessage.text.length > 60 ? coordinatorMessage.text.substring(0,60)+"..." : coordinatorMessage.text }}"</span>
+             </p>
+             <button type="button" class="btn btn-md-wide btn-primary" ng-click="editCoordinatorMessage()">
+               <strong>Update Message</strong>
              </button>
           </div>
         </div>
