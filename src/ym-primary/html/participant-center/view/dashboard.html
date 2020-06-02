@@ -631,7 +631,7 @@
           <div class="schoolCreateMessage text-center" ng-if="coordinatorMessage.text && coordinatorMessage.text != ''" ng-cloak>
              <p>
                Update <strong>your student message</strong>:<br/>
-	  	       <span class="coordinatorMessage">"{{ coordinatorMessage.text.length > 60 ? coordinatorMessage.text.substring(0,60)+"..." : coordinatorMessage.text }}"</span>
+	       <span class="coordinatorMessage">"{{ coordinatorMessage.text.length > 90 ? coordinatorMessage.text.substring(0,90)+"..." : coordinatorMessage.text }}"</span>
              </p>
              <button type="button" class="btn btn-md-wide btn-primary" ng-click="editCoordinatorMessage()">
                <strong>Update Message</strong>
