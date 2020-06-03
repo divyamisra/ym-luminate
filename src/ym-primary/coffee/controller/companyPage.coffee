@@ -440,6 +440,9 @@ angular.module 'ahaLuminateControllers'
         error: (response) ->
           # TO DO
         success: (response) ->
-          $scope.schoolYears = response.data.value
+          if response.data.data.length > 0
+            angular.forEach response.data.data, (meta, key) ->
+              if meta.name == 'years-participated'
+                $scope.schoolYears = meta.value
         
     ]
