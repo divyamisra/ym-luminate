@@ -226,6 +226,7 @@ angular.module 'trPcControllers'
                   $scope.coordinatorMessage.interactionId = interaction.interactionId or ''
 
         $scope.editCoordinatorMessage = ->
+          $scope.coordinatorMessage.original = $scope.coordinatorMessage.text
           if $scope.coordinatorMessage.text == ''
             $scope.coordinatorMessage.text = 'Don\'t forget to complete Finn\'s Mission!'
           $scope.editCoordinatorMessageModal = $uibModal.open
@@ -233,6 +234,7 @@ angular.module 'trPcControllers'
             templateUrl: APP_INFO.rootPath + 'dist/ym-primary/html/participant-center/modal/editCoordinatorMessage.html'
 
         $scope.cancelEditCoordinatorMessage = ->
+          $scope.coordinatorMessage.text = $scope.coordinatorMessage.original
           $scope.editCoordinatorMessageModal.close()
 
         $scope.updateCoordinatorMessage = ->
