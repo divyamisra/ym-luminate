@@ -214,7 +214,7 @@ angular.module 'trPcControllers'
       else
         NgPcInteractionService.getUserInteractions 'interaction_type_id=' + interactionTypeId + '&cons_id=' + $scope.consId + '&list_page_size=1'
           .then (response) ->
-            $scope.coordinatorMessage.text = 'Don\'t forget to complete Finn\'s Mission!'
+            $scope.coordinatorMessage.text = ''
             $scope.coordinatorMessage.interactionId = ''
             if not response.data.errorResponse
               interactions = response.data.getUserInteractionsResponse?.interaction
@@ -226,6 +226,8 @@ angular.module 'trPcControllers'
                   $scope.coordinatorMessage.interactionId = interaction.interactionId or ''
 
         $scope.editCoordinatorMessage = ->
+          if $scope.coordinatorMessage.text == ''
+            $scope.coordinatorMessage.text = 'Don\'t forget to complete Finn\'s Mission!'
           $scope.editCoordinatorMessageModal = $uibModal.open
             scope: $scope
             templateUrl: APP_INFO.rootPath + 'dist/ym-primary/html/participant-center/modal/editCoordinatorMessage.html'
