@@ -436,7 +436,7 @@ angular.module 'ahaLuminateControllers'
                 setCompanyState schoolDataRow[2]
           return
         
-      ZuriService.getSchoolYears $scope.companyId,
+      ZuriService.getSchoolData $scope.companyId,
         error: (response) ->
           # TO DO
         success: (response) ->
