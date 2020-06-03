@@ -86,7 +86,7 @@ angular.module 'ahaLuminateControllers'
         $scope.companyProgress = 
           amountRaised: if amountRaised then Number(amountRaised) else 0
           goal: if goal then Number(goal) else 0
-        $scope.companyProgress.amountRaisedFormatted = $filter('currency')($scope.companyProgress.amountRaised / 100, '$').replace '.00', ''
+        $scope.companyProgress.amountRaisedFormatted = $filter('currency')($scope.companyProgress.amountRaised / 100, '$', 2).replace '.00', ''
         $scope.companyProgress.goalFormatted = $filter('currency')($scope.companyProgress.goal / 100, '$').replace '.00', ''
         $scope.companyProgress.percent = 0
         if not $scope.$$phase
@@ -172,7 +172,7 @@ angular.module 'ahaLuminateControllers'
               companyTeams = [companyTeams] if not angular.isArray companyTeams
               angular.forEach companyTeams, (companyTeam) ->
                 companyTeam.amountRaised = Number companyTeam.amountRaised
-                companyTeam.amountRaisedFormatted = $filter('currency')(companyTeam.amountRaised / 100, '$').replace '.00', ''
+                companyTeam.amountRaisedFormatted = $filter('currency')(companyTeam.amountRaised / 100, '$', 2).replace '.00', ''
               totalNumberTeams = response.getTeamSearchByInfoResponse.totalNumberResults
               setCompanyTeams companyTeams, totalNumberTeams
       getCompanyTeams()
@@ -213,7 +213,7 @@ angular.module 'ahaLuminateControllers'
                     participant.lastName = participant.name.last || ""
                     participant.name.last =  participant.lastName.substring(0, 1) + '.'
                     participant.fullName = participant.name.first + ' ' + participant.name.last
-                    participant.amountRaisedFormatted = $filter('currency')(participant.amountRaised / 100, '$').replace '.00', ''
+                    participant.amountRaisedFormatted = $filter('currency')(participant.amountRaised / 100, '$', 2).replace '.00', ''
                     if participant.donationUrl
                       participant.donationFormId = participant.donationUrl.split('df_id=')[1].split('&')[0]
                     companyParticipants.push participant
