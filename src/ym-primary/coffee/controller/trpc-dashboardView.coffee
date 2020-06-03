@@ -583,7 +583,7 @@ angular.module 'trPcControllers'
         $scope.personalChallenge.numCompleted = numCompleted
         $scope.personalChallenge.completedToday = completedToday
         if id is '-1'
-          $scope.updatedPersonalChallenge.id = ''
+          $scope.updatedPersonalChallenge.id = 0
         else
           $scope.updatedPersonalChallenge.id = id
         if not $scope.$$phase
