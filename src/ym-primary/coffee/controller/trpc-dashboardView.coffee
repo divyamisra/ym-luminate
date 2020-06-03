@@ -137,7 +137,7 @@ angular.module 'trPcControllers'
                 # TODO
               else
                 participantProgress.raised = Number participantProgress.raised
-                participantProgress.raisedFormatted = if participantProgress.raised then $filter('currency')(participantProgress.raised / 100, '$', 0) else '$0'
+                participantProgress.raisedFormatted = if participantProgress.raised then $filter('currency')(participantProgress.raised / 100, '$', 2) else '$0'
                 participantProgress.goal = Number participantProgress.goal
                 participantProgress.goalFormatted = if participantProgress.goal then $filter('currency')(participantProgress.goal / 100, '$', 0) else '$0'
                 participantProgress.percent = 0
@@ -155,7 +155,7 @@ angular.module 'trPcControllers'
                   # TODO
                 else
                   teamProgress.raised = Number teamProgress.raised
-                  teamProgress.raisedFormatted = if teamProgress.raised then $filter('currency')(teamProgress.raised / 100, '$', 0) else '$0'
+                  teamProgress.raisedFormatted = if teamProgress.raised then $filter('currency')(teamProgress.raised / 100, '$', 2) else '$0'
                   teamProgress.goal = Number teamProgress.goal
                   teamProgress.goalFormatted = if teamProgress.goal then $filter('currency')(teamProgress.goal / 100, '$', 0) else '$0'
                   teamProgress.percent = 0
@@ -173,7 +173,7 @@ angular.module 'trPcControllers'
                   # TODO
                 else
                   companyProgress.raised = Number companyProgress.raised
-                  companyProgress.raisedFormatted = if companyProgress.raised then $filter('currency')(companyProgress.raised / 100, '$', 0) else '$0'
+                  companyProgress.raisedFormatted = if companyProgress.raised then $filter('currency')(companyProgress.raised / 100, '$', 2) else '$0'
                   companyProgress.goal = Number companyProgress.goal
                   companyProgress.goalFormatted = if companyProgress.goal then $filter('currency')(companyProgress.goal / 100, '$', 0) else '$0'
                   companyProgress.percent = 0
@@ -387,7 +387,7 @@ angular.module 'trPcControllers'
                     firstName: gift.name.first
                     lastName: gift.name.last
                     email: gift.email
-                  gift.giftAmountFormatted = $filter('currency') gift.giftAmount / 100, '$', 0
+                  gift.giftAmountFormatted = $filter('currency') gift.giftAmount / 100, '$', 2
                   participantGifts.push gift
                 $scope.participantGifts.gifts = participantGifts
               $scope.participantGifts.totalNumber = if response.data.getGiftsResponse.totalNumberResults then Number(response.data.getGiftsResponse.totalNumberResults) else 0
