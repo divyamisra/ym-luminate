@@ -63,6 +63,49 @@
     </div>
     <div class="clearfix"></div>
   </div>
+  <div class="ym-page-section ym-page-section__list ym-accent-color">
+    <div class="ym-story" ng-class="companyParticipants.totalFundraisers > 0 ? 'col-md-6' : 'col-md-12'">
+      <h2 class="ym-headline">
+        Our School is Heart Healthy!
+      </h2>
+      <div class="ym-story-edit-btns" ng-if="participantRegistration.companyInformation.companyId == '[[S334:company_id]]' && participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
+        <button type="button" class="btn btn-md-wide btn-toggle" ng-click="editCompanyPageContent()" ng-if="companyPageContent.mode == 'view'">
+          <span class="fa fa-pencil"></span> Edit Story
+        </button>
+        <div ng-if="companyPageContent.mode == 'edit'" ng-cloak>
+          <button type="button" class="btn btn-md-wide btn-primary" ng-click="saveCompanyPageContent()">
+            <span class="fa fa-pencil"></span> <strong>Save Story</strong>
+          </button> 
+          <button type="button" class="btn btn-md-wide btn-toggle" ng-click="resetCompanyPageContent()">
+            Cancel
+          </button>
+        </div>
+      </div>
+      <div class="hidden js--default-page-content" hidden aria-hidden="true" ng-non-bindable>
+        [[C6:fr_rich_text]]
+      </div>
+      <div ng-show="companyPageContent.mode == 'view'">
+        <div ng-bind-html="companyPageContent.rich_text">
+          <div ng-non-bindable>
+            [[C6:fr_rich_text]]
+          </div>
+        </div>
+      </div>
+      <div class="ym-page-content-editor" ng-show="companyPageContent.mode == 'edit'" ng-cloak>
+        <label for="taHtmlElement{{companyPageContent.serial}}" class="sr-only">Edit your school's story:</label>
+        <div text-angular name="ng_rich_text" ng-model="companyPageContent.ng_rich_text" ta-toolbar="{{companyPageContent.textEditorToolbar}}" serial="{{companyPageContent.serial}}"></div>
+      </div>
+    </div>
+    <div class="ym-list" class="col-md-6" role="list" aria-label="Top Fundraisers List" ng-if="companyParticipants.totalFundraisers > 0" ng-cloak>
+      <h2>
+        <img class="img-responsive" src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/ym-primary/image/fy21/khc-top-fundraisers.png" alt="Saluting these top fundraisers">
+      </h2>
+      <ul class="ym-donor-list">
+        <company-participant-list fr-id="'[[S80:trID]]'" company-id="'[[T6:[[S334:company_id]]]]'" participants="companyParticipants.participants"></company-participant-list>
+      </ul>
+    </div>
+    <div class="clearfix"></div>
+  </div>
   <div class="ym-page-section ym-page-section__main">
     <div ng-class="(topClassRaised.length > 0 || topClassStudents.length > 0) ? 'col-md-6' : ''" ng-show="participantCount > 0 && (activity1amt != 0 || activity2amt != 0 || activity3amt != 0)" ng-cloak>
       <div class="ym-our-stats ym-promo-block">
@@ -155,49 +198,6 @@
         </div>
       </div>
     </div>
-  </div>
-  <div class="ym-page-section ym-page-section__list ym-accent-color">
-    <div class="ym-story" ng-class="companyParticipants.totalFundraisers > 0 ? 'col-md-6' : 'col-md-12'">
-      <h2 class="ym-headline">
-        Our School is Heart Healthy!
-      </h2>
-      <div class="ym-story-edit-btns" ng-if="participantRegistration.companyInformation.companyId == '[[S334:company_id]]' && participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
-        <button type="button" class="btn btn-md-wide btn-toggle" ng-click="editCompanyPageContent()" ng-if="companyPageContent.mode == 'view'">
-          <span class="fa fa-pencil"></span> Edit Story
-        </button>
-        <div ng-if="companyPageContent.mode == 'edit'" ng-cloak>
-          <button type="button" class="btn btn-md-wide btn-primary" ng-click="saveCompanyPageContent()">
-            <span class="fa fa-pencil"></span> <strong>Save Story</strong>
-          </button> 
-          <button type="button" class="btn btn-md-wide btn-toggle" ng-click="resetCompanyPageContent()">
-            Cancel
-          </button>
-        </div>
-      </div>
-      <div class="hidden js--default-page-content" hidden aria-hidden="true" ng-non-bindable>
-        [[C6:fr_rich_text]]
-      </div>
-      <div ng-show="companyPageContent.mode == 'view'">
-        <div ng-bind-html="companyPageContent.rich_text">
-          <div ng-non-bindable>
-            [[C6:fr_rich_text]]
-          </div>
-        </div>
-      </div>
-      <div class="ym-page-content-editor" ng-show="companyPageContent.mode == 'edit'" ng-cloak>
-        <label for="taHtmlElement{{companyPageContent.serial}}" class="sr-only">Edit your school's story:</label>
-        <div text-angular name="ng_rich_text" ng-model="companyPageContent.ng_rich_text" ta-toolbar="{{companyPageContent.textEditorToolbar}}" serial="{{companyPageContent.serial}}"></div>
-      </div>
-    </div>
-    <div class="ym-list" class="col-md-6" role="list" aria-label="Top Fundraisers List" ng-if="companyParticipants.totalFundraisers > 0" ng-cloak>
-      <h2>
-        <img class="img-responsive" src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/ym-primary/image/fy21/khc-top-fundraisers.png" alt="Saluting these top fundraisers">
-      </h2>
-      <ul class="ym-donor-list">
-        <company-participant-list fr-id="'[[S80:trID]]'" company-id="'[[T6:[[S334:company_id]]]]'" participants="companyParticipants.participants"></company-participant-list>
-      </ul>
-    </div>
-    <div class="clearfix"></div>
   </div>
   <div class="ym-page-section ym-page-section__roster" ng-if="companyTeams.totalNumber > 1" ng-cloak>
     <company-team-list fr-id="'[[S80:trID]]'" company-id="'[[T6:[[S334:company_id]]]]'" teams="companyTeams.teams"></company-team-list>
