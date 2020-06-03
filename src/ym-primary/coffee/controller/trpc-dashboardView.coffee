@@ -614,7 +614,7 @@ angular.module 'trPcControllers'
               delete $scope.personalChallenge.updatePending
               $scope.personalChallenge.loadPending = false
               id = personalChallenges.current
-              if id is '0'
+              if id is '0' or id == ''
                 setPersonalChallenge()
               else
                 numCompleted = if personalChallenges.completed then Number(personalChallenges.completed) else 0
