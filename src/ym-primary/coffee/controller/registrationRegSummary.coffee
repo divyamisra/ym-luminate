@@ -36,8 +36,6 @@ angular.module 'ahaLuminateControllers'
         angular.element('.js--default-regsummary-form').submit()
         false
       
-      $scope.submitRegSummary()
-      
       setCompanyCity = (companyCity) ->
         $rootScope.companyCity = companyCity
         if not $rootScope.$$phase
@@ -51,6 +49,8 @@ angular.module 'ahaLuminateControllers'
       if localStorage.companyCity != undefined
         setCompanyCity localStorage.companyCity
         setCompanyState localStorage.companyState
+
+      $scope.submitRegSummary()
       
       #
       #SchoolLookupService.getSchoolData()
