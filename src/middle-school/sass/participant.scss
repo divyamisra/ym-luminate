@@ -196,8 +196,16 @@
   }
 }
 
-.ym-spread-the-word-box,
 .ym-activity-box {
+  h5, 
+  .h5 {
+    text-transform: none;
+    color: $event-secondary-heading;
+  }
+
+}
+
+.ym-spread-the-word-box {
   background: $event-secondary-medium;
   border: 5px solid $event-secondary;
   border-radius: 20px;
@@ -211,15 +219,8 @@
   }
   
   @media (min-width: $screen-md-min) {
-    margin: 25px;
+    margin: 25px 50px;
   }
-
-  h5, 
-  .h5 {
-    text-transform: none;
-    color: $event-secondary-heading;
-  }
-
 }
 
 .ym-pc-dashboard-spread-section {
