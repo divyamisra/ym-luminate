@@ -224,6 +224,10 @@
 }
 
 .ym-pc-dashboard-spread-section {
+  padding: 0;	
+  @media (min-width: $screen-sm-min) {
+    padding: 0;
+  }  
   .ym-pc-dashboard-section-header {
     h3, 
     .h3 {
