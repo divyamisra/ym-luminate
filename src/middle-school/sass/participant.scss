@@ -196,12 +196,30 @@
   }
 }
 
+.ym-spread-the-word-box,
 .ym-activity-box {
+  background: $event-secondary-medium;
+  border: 5px solid $event-secondary;
+  border-radius: 20px;
+  box-shadow: 0 5px 0 0 rgb(50, 50, 50);
+  box-shadow: 0 5px 0 0 rgba(50, 50, 50, 1);
+  padding: 25px 20px;
+  margin: 0 0 20px;
+  
+  @media (min-width: $screen-sm-min) {
+    margin: 0;
+  }
+  
+  @media (min-width: $screen-md-min) {
+    margin: 25px;
+  }
+
   h5, 
   .h5 {
     text-transform: none;
     color: $event-secondary-heading;
   }
+
 }
 
 .ym-pc-dashboard-spread-section {
