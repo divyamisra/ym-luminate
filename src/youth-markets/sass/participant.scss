@@ -1532,11 +1532,7 @@ main > .container {
         margin: 0 auto 15px;
 
         @media (min-width: $screen-sm-min) {
-          display: inline-block;
-          position: absolute;
-          bottom: 0;
           max-width: none;
-          margin: 0;
         }
 
         @media (max-width: $screen-sm-max) {
