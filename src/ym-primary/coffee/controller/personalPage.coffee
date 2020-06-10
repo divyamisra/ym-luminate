@@ -91,8 +91,8 @@ angular.module 'ahaLuminateControllers'
         $scope.personalProgress =
           amountRaised: if amountRaised then Number(amountRaised) else 0
           goal: if goal then Number(goal) else 0
-        $scope.personalProgress.amountRaisedFormatted = $filter('currency')($scope.personalProgress.amountRaised / 100, '$', 2).replace '.00', ''
-        $scope.personalProgress.goalFormatted = $filter('currency')($scope.personalProgress.goal / 100, '$').replace '.00', ''
+        $scope.personalProgress.amountRaisedFormatted = $filter('currency')($scope.personalProgress.amountRaised / 100, '$')
+        $scope.personalProgress.goalFormatted = $filter('currency')($scope.personalProgress.goal / 100, '$')
         $scope.personalProgress.percent = 0
         if not $scope.$$phase
           $scope.$apply()
@@ -137,7 +137,7 @@ angular.module 'ahaLuminateControllers'
             $scope.personalDonors.donors.push
               name: donorName
               amount: donorAmount
-              amountFormatted: if donorAmount is -1 then '' else $filter('currency')(donorAmount / 100, '$', 2).replace '.00', ''
+              amountFormatted: if donorAmount is -1 then '' else $filter('currency')(donorAmount / 100, '$')
           $scope.personalDonors.totalNumber = $defaultResponsivePersonalDonors.length
       else
         $defaultPersonalDonors = angular.element '.js--personal-donors .scrollContent p'
@@ -157,7 +157,7 @@ angular.module 'ahaLuminateControllers'
             $scope.personalDonors.donors.push
               name: donorName
               amount: donorAmount
-              amountFormatted: if donorAmount is -1 then '' else $filter('currency')(donorAmount / 100, '$', 2).replace '.00', ''
+              amountFormatted: if donorAmount is -1 then '' else $filter('currency')(donorAmount / 100, '$')
           $scope.personalDonors.totalNumber = $defaultPersonalDonors.length
 
       $scope.personalPagePhoto1 =
