@@ -2,6 +2,7 @@ angular.module 'trPcControllers'
   .controller 'NgPcDashboardViewCtrl', [
     '$rootScope'
     '$scope'
+    '$sce'
     '$filter'
     '$timeout'
     '$uibModal'
@@ -18,7 +19,7 @@ angular.module 'trPcControllers'
     'NgPcTeamraiserSchoolService'
     'FacebookFundraiserService'
     'ZuriService'
-    ($rootScope, $scope, $filter, $timeout, $uibModal, APP_INFO, BoundlessService, NgPcTeamraiserRegistrationService, NgPcTeamraiserProgressService, NgPcTeamraiserTeamService, NgPcTeamraiserGiftService, NgPcContactService, NgPcTeamraiserShortcutURLService, NgPcInteractionService, NgPcTeamraiserCompanyService, NgPcTeamraiserSchoolService, FacebookFundraiserService, ZuriService) ->
+    ($rootScope, $scope, $sce, $filter, $timeout, $uibModal, APP_INFO, BoundlessService, NgPcTeamraiserRegistrationService, NgPcTeamraiserProgressService, NgPcTeamraiserTeamService, NgPcTeamraiserGiftService, NgPcContactService, NgPcTeamraiserShortcutURLService, NgPcInteractionService, NgPcTeamraiserCompanyService, NgPcTeamraiserSchoolService, FacebookFundraiserService, ZuriService) ->
       $scope.dashboardPromises = []
       $scope.eventDate = ''
       $scope.moneyDueDate = ''
@@ -29,6 +30,12 @@ angular.module 'trPcControllers'
       $scope.notifyEmail = ''
 
       $dataRoot = angular.element '[data-embed-root]'
+
+      urlPrefix = 'bfapps1'
+      if $scope.tablePrefix is 'heartdev'
+        urlPrefix = 'bfstage'
+      url = 'https://' + urlPrefix + '.boundlessfundraising.com/applications/ahatgr/social/app/ui/#/addsocial/' + $scope.consId + '/' + $scope.frId + '/' + $rootScope.authToken + '/' + $rootScope.sessionCookie + '?source=PCSocial'
+      $scope.socialIframeURL = $sce.trustAsResourceUrl url
 
       if $scope.participantRegistration.lastPC2Login is '0'
         if $scope.participantRegistration.companyInformation?.isCompanyCoordinator isnt 'true'
