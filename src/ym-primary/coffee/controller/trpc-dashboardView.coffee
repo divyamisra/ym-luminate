@@ -113,7 +113,7 @@ angular.module 'trPcControllers'
                     participant.lastName = participant.name.last || ""
                     participant.name.last =  participant.lastName.substring(0, 1) + '.'
                     participant.fullName = participant.name.first + ' ' + participant.name.last
-                    participant.amountRaisedFormatted = $filter('currency')(participant.amountRaised / 100, '$').replace '.00', ''
+                    participant.amountRaisedFormatted = $filter('currency')(participant.amountRaised / 100, '$')
                     if participant.donationUrl
                       participant.donationFormId = participant.donationUrl.split('df_id=')[1].split('&')[0]
                     companyParticipants.push participant
@@ -137,9 +137,9 @@ angular.module 'trPcControllers'
                 # TODO
               else
                 participantProgress.raised = Number participantProgress.raised
-                participantProgress.raisedFormatted = if participantProgress.raised then $filter('currency')(participantProgress.raised / 100, '$', 2) else '$0'
+                participantProgress.raisedFormatted = if participantProgress.raised then $filter('currency')(participantProgress.raised / 100, '$') else '$0.00'
                 participantProgress.goal = Number participantProgress.goal
-                participantProgress.goalFormatted = if participantProgress.goal then $filter('currency')(participantProgress.goal / 100, '$', 0) else '$0'
+                participantProgress.goalFormatted = if participantProgress.goal then $filter('currency')(participantProgress.goal / 100, '$') else '$0.00'
                 participantProgress.percent = 0
                 if participantProgress.goal isnt 0
                   participantProgress.percent = Math.ceil((participantProgress.raised / participantProgress.goal) * 100)
@@ -155,9 +155,9 @@ angular.module 'trPcControllers'
                   # TODO
                 else
                   teamProgress.raised = Number teamProgress.raised
-                  teamProgress.raisedFormatted = if teamProgress.raised then $filter('currency')(teamProgress.raised / 100, '$', 2) else '$0'
+                  teamProgress.raisedFormatted = if teamProgress.raised then $filter('currency')(teamProgress.raised / 100, '$') else '$0.00'
                   teamProgress.goal = Number teamProgress.goal
-                  teamProgress.goalFormatted = if teamProgress.goal then $filter('currency')(teamProgress.goal / 100, '$', 0) else '$0'
+                  teamProgress.goalFormatted = if teamProgress.goal then $filter('currency')(teamProgress.goal / 100, '$') else '$0.00'
                   teamProgress.percent = 0
                   if teamProgress.goal isnt 0
                     teamProgress.percent = Math.ceil((teamProgress.raised / teamProgress.goal) * 100)
@@ -173,9 +173,9 @@ angular.module 'trPcControllers'
                   # TODO
                 else
                   companyProgress.raised = Number companyProgress.raised
-                  companyProgress.raisedFormatted = if companyProgress.raised then $filter('currency')(companyProgress.raised / 100, '$', 2) else '$0'
+                  companyProgress.raisedFormatted = if companyProgress.raised then $filter('currency')(companyProgress.raised / 100, '$') else '$0.00'
                   companyProgress.goal = Number companyProgress.goal
-                  companyProgress.goalFormatted = if companyProgress.goal then $filter('currency')(companyProgress.goal / 100, '$', 0) else '$0'
+                  companyProgress.goalFormatted = if companyProgress.goal then $filter('currency')(companyProgress.goal / 100, '$') else '$0.00'
                   companyProgress.percent = 0
                   if companyProgress.goal isnt 0
                     companyProgress.percent = Math.ceil((companyProgress.raised / companyProgress.goal) * 100)
@@ -387,7 +387,7 @@ angular.module 'trPcControllers'
                     firstName: gift.name.first
                     lastName: gift.name.last
                     email: gift.email
-                  gift.giftAmountFormatted = $filter('currency') gift.giftAmount / 100, '$', 2
+                  gift.giftAmountFormatted = $filter('currency') gift.giftAmount / 100, '$'
                   participantGifts.push gift
                 $scope.participantGifts.gifts = participantGifts
               $scope.participantGifts.totalNumber = if response.data.getGiftsResponse.totalNumberResults then Number(response.data.getGiftsResponse.totalNumberResults) else 0
