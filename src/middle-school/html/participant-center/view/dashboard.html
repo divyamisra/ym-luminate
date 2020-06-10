@@ -111,7 +111,7 @@
           </div>
         </div>
         <div class="col-sm-6 ym-pc-dashboard-social-section__column event-secondary-medium">
-          <div class="ym-pc-dashboard-social-box event-secondary-medium" ng-if="prizes && prizes.length > 0" ng-cloak>
+          <div class="ym-pc-dashboard-social-box event-secondary-medium">
             <div class="ym-pc-dashboard-section-header">
               <h2 class="h5">
                 Social
@@ -127,13 +127,13 @@
       </div>
       <div class="row">
         <div class="col-sm-6 ym-pc-dashboard-progress-section__column event-secondary-medium">
-          <div class="ym-pc-dashboard-badges-box event-secondary-medium" ng-if="prizes && prizes.length > 0" ng-cloak>
+          <div class="ym-pc-dashboard-badges-box event-secondary-medium">
             <div class="ym-pc-dashboard-section-header">
               <h2 class="h5">
                 Badges
               </h2>
             </div>
-            <div class="ym-pc-dashboard-badges-icons clearfix">
+            <div class="ym-pc-dashboard-badges-icons clearfix" ng-if="prizes && prizes.length > 0" ng-cloak>
               <div class="ym-pc-dashboard-badges-icon" ng-repeat="prize in prizes" ng-cloak>
                 <div ng-if="prize.earned">
                   <img class="img-responsive" ng-src="//s3.amazonaws.com/cd-aha-oot-production/fy20/assets/badges/ahc/{{prize.id}}_delivered.png" alt="">
