@@ -78,7 +78,7 @@ angular.module 'trPcControllers'
                 participantProgress.raised = Number participantProgress.raised
                 participantProgress.raisedFormatted = if participantProgress.raised then $filter('currency')(participantProgress.raised / 100, '$', 2) else '$0'
                 participantProgress.goal = Number participantProgress.goal
-                participantProgress.goalFormatted = if participantProgress.goal then $filter('currency')(participantProgress.goal / 100, '$', 0) else '$0'
+                participantProgress.goalFormatted = if participantProgress.goal then $filter('currency')(participantProgress.goal / 100, '$', 2) else '$0'
                 participantProgress.percent = 0
                 if participantProgress.goal isnt 0
                   participantProgress.percent = Math.ceil((participantProgress.raised / participantProgress.goal) * 100)
@@ -96,7 +96,7 @@ angular.module 'trPcControllers'
                   teamProgress.raised = Number teamProgress.raised
                   teamProgress.raisedFormatted = if teamProgress.raised then $filter('currency')(teamProgress.raised / 100, '$', 2) else '$0'
                   teamProgress.goal = Number teamProgress.goal
-                  teamProgress.goalFormatted = if teamProgress.goal then $filter('currency')(teamProgress.goal / 100, '$', 0) else '$0'
+                  teamProgress.goalFormatted = if teamProgress.goal then $filter('currency')(teamProgress.goal / 100, '$', 2) else '$0'
                   teamProgress.percent = 0
                   if teamProgress.goal isnt 0
                     teamProgress.percent = Math.ceil((teamProgress.raised / teamProgress.goal) * 100)
@@ -114,7 +114,7 @@ angular.module 'trPcControllers'
                   companyProgress.raised = Number companyProgress.raised
                   companyProgress.raisedFormatted = if companyProgress.raised then $filter('currency')(companyProgress.raised / 100, '$', 2) else '$0'
                   companyProgress.goal = Number companyProgress.goal
-                  companyProgress.goalFormatted = if companyProgress.goal then $filter('currency')(companyProgress.goal / 100, '$', 0) else '$0'
+                  companyProgress.goalFormatted = if companyProgress.goal then $filter('currency')(companyProgress.goal / 100, '$', 2) else '$0'
                   companyProgress.percent = 0
                   if companyProgress.goal isnt 0
                     companyProgress.percent = Math.ceil((companyProgress.raised / companyProgress.goal) * 100)
