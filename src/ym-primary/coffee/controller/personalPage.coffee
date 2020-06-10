@@ -137,7 +137,7 @@ angular.module 'ahaLuminateControllers'
             $scope.personalDonors.donors.push
               name: donorName
               amount: donorAmount
-              amountFormatted: if donorAmount is -1 then '' else $filter('currency')(donorAmount / 100, '$')
+              amountFormatted: if donorAmount is -1 then '' else $filter('currency')(donorAmount / 100, '$', 2)
           $scope.personalDonors.totalNumber = $defaultResponsivePersonalDonors.length
       else
         $defaultPersonalDonors = angular.element '.js--personal-donors .scrollContent p'
@@ -157,7 +157,7 @@ angular.module 'ahaLuminateControllers'
             $scope.personalDonors.donors.push
               name: donorName
               amount: donorAmount
-              amountFormatted: if donorAmount is -1 then '' else $filter('currency')(donorAmount / 100, '$')
+              amountFormatted: if donorAmount is -1 then '' else $filter('currency')(donorAmount / 100, '$', 2)
           $scope.personalDonors.totalNumber = $defaultPersonalDonors.length
 
       $scope.personalPagePhoto1 =
