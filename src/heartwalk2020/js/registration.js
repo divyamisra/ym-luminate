@@ -1568,7 +1568,7 @@
 	   	$('button#btn_prev').after('<a href="javascript:window.history.go(-1)" class="step-button previous-step backBtnReg">Back</a>').hide();
 
 		$('button.next-step').click(function(){
-			if ($('form').valid()) {
+			if ($('form').valid() || $('.payment-type-option.selected input').val() == "paypal") {
 				return true;
 			} else {
 				return false;
