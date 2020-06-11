@@ -1,6 +1,10 @@
 'use strict';
 (function($) {
     $(document).ready(function() {
+        /*************/
+        /* Namespace */
+        /*************/
+        window.cd = {};
         // BEGIN LANDING PAGES
         /******************/
         /* SEARCH SCRIPTS */
@@ -1578,15 +1582,22 @@
             $('#fr_team_goal').val('');
             $('#fr_team_name').val('');
         }
+        
         $('.part-type-description-text:contains("Free")').html('&nbsp;');
         $('.survey-question-container legend span:contains("Waiver agreement")').parent().parent().addClass('waiverCheck');
         $('.waiverCheck legend').addClass('aural-only');
         $('.waiverCheck label').html('<span class="field-required"></span> I accept and acknowledge that I have read and understand this Heart Walk <a id="waiverPopLink" href="#">Release with Publicity Consent</a> and agree to them voluntarily.');
 	$('.waiverCheck input[type="checkbox"]').attr("aria-required","true");
-
         $('.survey-question-container legend span:contains("Privacy Policy")').parent().parent().addClass('privacyCheck');
         $('.privacyCheck legend').addClass('aural-only');
-        $('.privacyCheck label').html('<span class="field-required"></span> I agree to the <a href="javascript:void(0)" onclick="window.open(\'DocServer/HeartWalk2019_163605_TOS_texting_2019.11.19.pdf\',\'_blank\',\'location=yes,height=570,width=520,scrollbars=yes,status=yes\');">Terms and Conditions (PDF)</a> and <a href="javascript:void(0)" onclick="window.open(\'https://www.heart.org/en/about-us/statements-and-policies/privacy-statement\',\'_blank\',\'location=yes,height=570,width=520,scrollbars=yes,status=yes\');">Privacy Policy</a>.');
+        var trName = $('.campaign-banner-container').text();
+        trName = trName.replace(/'/g, '');
+        if (trName.indexOf('Lawyers') != -1){
+          $('.privacyCheck label').html('<span class="field-required"></span> I agree to the <a href="javascript:void(0)" onclick="window.open(\'DocServer/Terms_of_Service_Heart_Walk_LHH_2020.pdf\',\'_blank\',\'location=yes,height=570,width=520,scrollbars=yes,status=yes\');">Terms and Conditions (PDF)</a> and <a href="javascript:void(0)" onclick="window.open(\'https://www.heart.org/en/about-us/statements-and-policies/privacy-statement\',\'_blank\',\'location=yes,height=570,width=520,scrollbars=yes,status=yes\');">Privacy Policy</a>.');
+        }
+        else {
+          $('.privacyCheck label').html('<span class="field-required"></span> I agree to the <a href="javascript:void(0)" onclick="window.open(\'DocServer/HeartWalk2019_163605_TOS_texting_2019.11.19.pdf\',\'_blank\',\'location=yes,height=570,width=520,scrollbars=yes,status=yes\');">Terms and Conditions (PDF)</a> and <a href="javascript:void(0)" onclick="window.open(\'https://www.heart.org/en/about-us/statements-and-policies/privacy-statement\',\'_blank\',\'location=yes,height=570,width=520,scrollbars=yes,status=yes\');">Privacy Policy</a>.');
+        }
 	$('.privacyCheck input[type="checkbox"]').attr("aria-required","true");
 
 	$('.survey-question-container legend span:contains("Healthy for good signup")').parent().parent().addClass('healthyCheck');
@@ -1960,8 +1971,8 @@
 
               $('.parentCompany').each(function(){
                 var parentName = $(this).text();
-                parentName = parentName.split(' ');
-                parentName = parentName[0];
+                parentName = parentName.replace(/\s/g, '');
+                parentName = parentName.replace(/[^a-z0-9]/gi,'');
                 $(this).nextUntil('.parentCompany').addClass(parentName);
               });
 
@@ -1978,9 +1989,9 @@
                   var parentName = $(this).text();
                   $.parentCompany = $(this);
 
-                  var parentClass = parentName.split(' ');
-                  parentClass = parentClass[0];
-
+                  var parentClass = parentName
+                  parentClass = parentClass.replace(/\W/g, '');
+                  parentClass = parentClass.replace(/\W/g, '');
                   var children = [];
 
                   var subParentNum = 0;
@@ -2000,7 +2011,7 @@
                         $(this).nextUntil('.switchCompany').each(function(){
                           var subName = $(this).text();
                           var subVal = $(this).val();
-                          subChildren.push({ 
+                          subChildren.push({
                             subName: subName,
                             subVal: subVal
                           });
@@ -2008,7 +2019,7 @@
                         });
 
                         var child = new Child(name,val,subChildren);
- 
+
                         children.push(child);
                       }
                       else{
@@ -2016,7 +2027,7 @@
                         $(this).nextUntil('.subCompany').each(function(){
                           var subName = $(this).text();
                           var subVal = $(this).val();
-                          subChildren.push({ 
+                          subChildren.push({
                             subName: subName,
                             subVal: subVal
                           });
@@ -2025,7 +2036,7 @@
                         });
 
                         var child = new Child(name,val,subChildren);
- 
+
                         children.push(child);
                       }
                     }
@@ -2043,7 +2054,7 @@
                   $.each(children,function(){
                     var options = '';
                     var option = '<option value="'+this.val+'" class="subCompany">'+this.name+'</option>';
-                    console.log('option ' + option);
+//                    console.log('option ' + option);
                     options += option;
 
                     if ($(this.subChildren).length > 0){
