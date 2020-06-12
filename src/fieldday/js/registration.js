@@ -1563,13 +1563,17 @@
 		//hide back button and use link instead
 	   	$('button#btn_prev').after('<a href="javascript:window.history.go(-1)" class="step-button previous-step backBtnReg">Back</a>').hide();
 
-		$('button.next-step').click(function(){
-			if ($('form').valid()) {
-				return true;
-			} else {
-				return false;
-			}
-		});
+       $('button.next-step').click(function(){
+        if ($('.payment-type-option.selected input').val() == "paypal") {
+            return true;
+        } else {
+            if ($('form').valid()) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    });
 	}
 
         $('#reg_summary_header_container').insertAfter('.section-header');
@@ -1588,6 +1592,7 @@
         $('.privacyCheck legend').addClass('aural-only');
         var trName = $('.campaign-banner-container').text();
         trName = trName.replace(/'/g, '');
+        // TODO - update terms of service code for Field Day
         if (trName.indexOf('Lawyers') != -1){
           $('.privacyCheck label').html('<span class="field-required"></span> I agree to the <a href="javascript:void(0)" onclick="window.open(\'DocServer/Terms_of_Service_Heart_Walk_LHH_2020.pdf\',\'_blank\',\'location=yes,height=570,width=520,scrollbars=yes,status=yes\');">Terms and Conditions (PDF)</a> and <a href="javascript:void(0)" onclick="window.open(\'https://www.heart.org/en/about-us/statements-and-policies/privacy-statement\',\'_blank\',\'location=yes,height=570,width=520,scrollbars=yes,status=yes\');">Privacy Policy</a>.');
         }
