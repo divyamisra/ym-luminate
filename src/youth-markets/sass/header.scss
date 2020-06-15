@@ -194,6 +194,10 @@ header {
       padding: 0;
       z-index: 1000;
       
+      @media (max-width: 1023px) {
+        padding-right: 40px;
+      }
+      
       @media (max-width: $screen-xs-max) {
         left: 0;
         border-left: 0;
