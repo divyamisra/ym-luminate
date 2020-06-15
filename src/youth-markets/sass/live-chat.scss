@@ -7,3 +7,9 @@ body.aha-luminate .SnapABug_Button {
     top: 231px !important;
   }
 }
+
+#designstudio-button {
+  @media (min-width: 991px) {
+    top: 16em !important;
+  }
+}
