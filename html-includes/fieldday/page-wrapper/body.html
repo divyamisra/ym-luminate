@@ -2,7 +2,7 @@
 NOT PART OF DEPLOYMENT PROCESS. MUST BE MANUALLY COPIED TO PAGE WRAPPER EDITOR.
 ]]
 
-[[E84:[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/fieldday/html/set-evid.html]]
+[[E84:[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/field-day/html/set-evid.html]]
 
 <script type="text/javascript">
   var loggedIn = "[[?xx::x[[S1:user_name]]x::Logged Out.::Logged In.]]";
@@ -29,59 +29,55 @@ NOT PART OF DEPLOYMENT PROCESS. MUST BE MANUALLY COPIED TO PAGE WRAPPER EDITOR.
       })();
   // [[LR]]></script>
 
-[[S51:fieldday_header]]
+[[E84:[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/field-day/html/page-wrapper/header.html]]
+[[S51:reus_fieldday_2020_style_overrides]]
 <main>
   <a name="contentStart" id="contentStart" tabindex="-1"></a>
-
-  <div class="heartwalk-hq-outer-container">
+  [[?xentryxpersonalxteamxcompanyx::x[[S334:pg]]x::
+  [[E51:reus_fd_[[S334:pg]]_tpt]]
+  <div class="default-tr-content" style="display:none;">
     [[S63:3]]
   </div>
+  ::
+    [[?xentryxpersonalxteamxcompanyx::x[[S334:pg]]x::
+      <!-- Field Day Landing Page -->
+        <!-- begin content -->
+        [[S63:3]]
+        <!-- end content -->
+    ::
+    <!-- Default Page -->
+    <div class="container">
+      <div class="row">
+        <div class="col-12 content">
+          <!-- begin content -->
+          [[S63:3]]
+          <!-- end content -->
+        </div>
+      </div>
+    </div>
+    ]]
+  ]]
+  
+[[?xentryx::x[[S334:pg]]x::
+  [[S51:reus_fd_why_we_walk_promo]]
+::]]
 
 </main>
-<!-- SPONSORS AND AD SECTION -->
-<div class="bg-white">
-<div class="container container-sm-content">
-[[?x26x27x::x[[S4]]x::
-  [[?xx::x[[E416:[[S334:fr_id]]:HORIZONTAL:100:100]]x::::
-    <div class="sponsors d-flex flex-column text-center">
-      <h3 class="h4">Thanks to Our Local Sponsors</h3>
-      <div class="sponsor-slideshow d-flex justify-content-center sponsor_slider">
-          <div class="local_sponsors">[[E416:[[S334:fr_id]]:HORIZONTAL:50:100]]</div>
-      </div>
-      <!-- <a href="TR?fr_id=[[S334:fr_id]]&pg=informational&type=fr_informational&sid=1073">Learn More About Becoming a Sponsor</a> -->
-    </div>
-    <!-- /.sponsors -->
-  ]]
-::]]
-</div>
-<!-- /.container -->
-</div>
-<!-- /.bg-white -->
-<!-- END SPONSORS AND AD SECTION -->
 
-[[E84:[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/fieldday/html/page-wrapper/footer.html]]
-[[E84:[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/fieldday/html/page-wrapper/body-scripts.html]]
-
-<script src="https://cdn.jsdelivr.net/npm/smart-app-banner@2.0.0/dist/smart-app-banner.js"></script>
-<script type="text/javascript">
-new SmartBanner({
-  daysHidden: 15,   // days to hide banner after close button is clicked (defaults to 15)
-  daysReminder: 90, // days to hide banner after "VIEW" button is clicked (defaults to 90)
-  appStoreLanguage: 'us', // language code for the App Store (defaults to user's browser language)
-  title: 'Heart Walk',
-  author: 'Charity Dynamics',
-  button: 'VIEW',
-  store: {
-      ios: 'On the App Store',
-      android: 'In Google Play',
-  },
-  price: {
-      ios: 'FREE',
-      android: 'FREE',
-  }
-  // , theme: '' // put platform type ('ios', 'android', etc.) here to force single theme on all device
-  // , icon: '' // full path to icon image if not using website icon image
-  // , force: 'ios' // Uncomment for platform emulation
-});
-</script>
-  
+[[E84:[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/field-day/html/page-wrapper/footer.html]]
+[[E84:[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/field-day/html/page-wrapper/body-scripts.html]]
+  [[?x1073x::x[[S334:sid]]x::
+  <!-- add two-click confirmation message to sponsor links on sponsor page -->
+  <script>
+  Y.use('jquery-noconflict', function (Y) {
+    jQuery('#page_body_container a').on('click', function(e){
+      e.preventDefault();
+      var sponsorUrl = jQuery(this).attr('href');
+        if (confirm("These are proud sponsors of the American Heart Association's Heart Walk. By clicking on this link, you will be taken outside American Heart Association and this is not an endorsement of either the linked-to entity or any product or service.")) {
+          window.location.href = sponsorUrl;
+        } 
+    });
+    });
+  </script>
+  ::]]
+[[S51:reus_fieldday_complist_js]]
