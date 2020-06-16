@@ -673,22 +673,23 @@
     <section class="ym-pc-dashboard-coordinator-school-detail-section" aria-label="School Detail Section">
       <div class="row">
         <div class="col-md-6 ym-pc-dashboard-coordinator-school-years-section" aria-label="Years School Participated">
-          <div class="ym-pc-dashboard-section-header">
-            <h2 class="h3" ng-if="companyProgress.schoolYears > 0">
-              Your school has participated for <span ng-bind-html="companyProgress.schoolYears"></span> Years
-            </h2>
-            <h2 class="h3" ng-if="companyProgress.schoolYears == 0">
-              Tell us how many years your school has participated in the program
-            </h2>
-          </div>
-          <div class="ym-pc-dashboard-coordinator-school-years-update text-center">
-             <a href="" ng-click="editSchoolYears()" class="ym-school-update-years">
-               <strong>Update School Years</strong>
-             </a> 
-          </div>
-        </div>
-      <div>
-      <div class="col-md-6 ym-pc-dashboard-coordinator-school-message-section">
+		      <div class="ym-pc-dashboard-section-header">
+						<h2 class="h3" ng-if="companyProgress.schoolYears > 0">
+							Your school has participated for 
+							<select class="form-control" id="schoolYears" ng-model="companyProgress.schoolYears" aria-label="School Years" ng-change="updateSchoolYears()">
+							<option ng-repeat="year in yearsList" value="{{year}}">{{year}}</option>
+							</select>
+							Years
+						</h2>
+						<h2 class="h3" ng-if="companyProgress.schoolYears == 0">
+							Select how many years your school has participated in the program
+							<select class="form-control" id="schoolYears" ng-model="companyProgress.schoolYears" aria-label="School Years" ng-change="updateSchoolYears()">
+							<option ng-repeat="year in yearsList" value="{{year}}">{{year}}</option>
+							</select>
+						</h2>
+		      </div>
+				</div>
+        <div class="col-md-6 ym-pc-dashboard-coordinator-school-message-section">
           <div class="schoolCreateMessage text-center" ng-if="coordinatorMessage.text == ''" ng-cloak>
              <p>
                Create an <strong>encouraging message</strong> for your students in their Headquarters.
