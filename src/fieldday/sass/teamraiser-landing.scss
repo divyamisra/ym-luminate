@@ -1,0 +1,188 @@
+.landing-hero {
+  position: relative;
+}
+.landing-hero__photo {
+  height: 115px;
+  @include media-breakpoint-up(md) {
+    height: 385px;
+  }
+  @include media-breakpoint-up(xl) {
+    height: 685px;
+  }
+  background-image: url(https://secure3.convio.net/heartdev/images/content/pagebuilder/fieldday-landing-hero.jpg);
+  background-position: center;
+  @include media-breakpoint-up(lg) {
+    background-position: center center;
+  }
+  background-size: cover;
+  background-repeat: none;
+}
+
+.landing-hero__content {
+  width: 100%;
+  text-align: center;
+  @include media-breakpoint-up(lg) {
+    background: rgba(73, 80, 87, 0.5);
+   }
+  .container {
+    margin: auto;
+  }
+  h1 {
+      color: #C10E21;
+      font-size: 1.325em;
+      @include media-breakpoint-up(md) {
+          font-size: 5.625em;
+    }
+    @include media-breakpoint-up(lg) {
+        color: #fff;
+  }
+  }
+  p {
+      font-size: 1em;
+      @include media-breakpoint-up(md) {
+          font-size: 1.5em;
+    }
+    @include media-breakpoint-up(lg) {
+        color: #fff;
+  }
+  }
+  @include media-breakpoint-up(lg) {
+    position: absolute;
+    bottom: 0;
+  }
+}
+
+.landing-about {
+  background-color: $red-deep;
+  background-image: url(https://secure3.convio.net/heartdev/images/content/pagebuilder/background-squiggles.png);
+  background-repeat: no-repeat;
+  background-position: right top;
+  background-size: 60%;
+  h2 {
+    display: inline-block;
+    color: $white;
+    font-size: 1.125em;
+    margin: 45px 0;
+  }
+  .card {
+    border-radius: 0;
+    h3{
+      color: $red;
+      font-size: 1.125em;
+      line-height: 1;
+      text-align: center;
+      margin: 0;
+    }
+    @include media-breakpoint-up(lg) {
+     width: 32%;
+    }
+  }
+  .card-header {
+    background-color: $white;
+    padding-top: 16px;
+    padding-bottom: 16px;
+  }
+  .card-body {
+
+  }
+  p {
+    font-size: 0.875em;
+    line-height: 1.25em;
+    display: inline-block;
+    margin-bottom: 25px;
+  }
+  a {
+    display: inline-block;
+    border: 2px solid $red;
+    color: $red;
+    padding: 8px 24px;
+    width: 200px;
+    text-decoration: none;
+    border-radius: 60px;
+    font-weight: bold;
+  }
+}
+
+.form-control {
+  boder-color: #ccc;
+}
+
+.event-city-search {
+  background-color: #fff;
+  h2 {
+    color: $red;
+    font-size: 1.125em;
+  }
+  .form-group-divider{
+    font-size: 1.125em;
+    font-weight: bold;
+  }
+  .event-state-select-container::after {
+      font-family: "Font Awesome 5 Free";
+      font-weight: 600;
+      content: "\f0d7";
+      color: #fff;
+      background-color: #c10e21;
+      right: 0;
+      top: 0;
+      height: 55px;
+      padding-top: 0.4em;
+      border-top-right-radius: 0.25rem;
+      border-bottom-right-radius: 0.25rem;
+      position: absolute;
+      pointer-events: none;
+      text-align: center;
+      font-size: 1.5em;
+      width: 16.667%;
+      display: block;
+  }
+
+  .event-zip-search-submit {
+      height: 55px;
+      background: #c11d20;
+      color: white;
+      border-top-right-radius: 0.25rem;
+      border-bottom-right-radius: 0.25rem;
+      border-color: #c11d20;
+      padding: 16px;
+      padding-right: 16px;
+      padding-left: 16px;
+      border: none;
+      font-size: 1.25em;
+  }
+}
+
+.event-results {
+  .event-results__company {
+    margin-bottom: 40px;
+  }
+  h3 {
+    font-size: 1em;
+    font-weight: 600;
+    display: block;
+  }
+}
+
+.button, .button:visited, .button:link {
+  display: inline-block;
+  border: 2px solid $red;
+  color: $white;
+  background-color: $red;
+  padding: 16px 32px;
+  min-width: 260px;
+  text-decoration: none;
+  border-radius: 60px;
+  font-weight: bold;
+  &.button--inverse {
+    color: $red;
+    background-color: $white;
+    padding-top:8px;
+    padding-bottom: 8px;
+  }
+}
+
+
+
+@include media-breakpoint-up(md) {
+
+}

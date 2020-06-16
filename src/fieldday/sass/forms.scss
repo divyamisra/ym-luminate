@@ -44,7 +44,7 @@
   &.filled {
     display:block;
   }
-} 
+}
 .pg_FieldDay_Search {
   .table {
     &.dataTable {
@@ -94,7 +94,7 @@
         }
       }
     }
-  
+
     .btn-rounded {
       font-size:18px;
       font-weight:bold;
@@ -136,4 +136,9 @@
 
 input[type="radio"], input[type="radio"]:focus {
   outline: none;
+}
+
+input[type="text"],
+select.form-control[size], select.form-control[multiple] {
+  height: 55px;
 }

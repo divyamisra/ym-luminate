@@ -1,6 +1,11 @@
 /* skip nav styles */
-a#skip-main:hover, 
-a#skip-main:active, 
+#skip-main {
+  position: absolute;
+  left:-999999px;
+  top: 0;
+}
+a#skip-main:hover,
+a#skip-main:active,
 a#skip-main:focus {
   left: 0;
   width: 200px;
@@ -8,9 +13,9 @@ a#skip-main:focus {
   margin: 5px;
 }
 
-a#skip-main:active, 
+a#skip-main:active,
 a#skip-main:focus,
-.skip-to:active, 
+.skip-to:active,
 .skip-to:focus  {
 position: static;
 width: auto;
@@ -30,6 +35,12 @@ nav {
   max-width: 1350px;
   padding: 0 !important;
 
+  &.navbar {
+    display: flex!important;
+    margin-top: 0!important;
+    padding-top: 10px!important;
+  }
+
   /* Logo */
   .navbar-brand {
     max-width: 291px;
@@ -41,7 +52,7 @@ nav {
 
   /* Navigation links */
   .nav-link {
-    color: $black;
+    color: $white;
     font-size: 1.4rem;
     text-decoration: none;
     font-family: $font-family-bold;
@@ -50,6 +61,10 @@ nav {
     &:hover {
       color: $red;
       text-decoration: underline;
+    }
+    &.btn-primary {
+      color: $red-deep!important;
+      background-color: $white!important;
     }
   }
 
@@ -72,7 +87,7 @@ nav {
     &:hover {
 
       a.nav-link {
-        color: $red;
+        color: $white;
         text-decoration: underline;
       }
 
@@ -133,7 +148,7 @@ nav {
 
       &:before,
       &:after {
-        left: 166px;
+        left: 146px;
       }
 
     }
@@ -150,11 +165,12 @@ nav {
 
       &:before,
       &:after {
-        left: 383px;
+        left: 368px;
       }
 
       .nav-tabs {
         border: none;
+        justify-content: center;
 
         .nav-link {
           font-size: 1rem;
@@ -199,7 +215,7 @@ nav {
 
   .nav-item.login a {
     color: $white;
-    padding: 9px 35px 13px !important;
+    padding: 9px 35px 9px !important;
     margin: 0 0 0 0;
   }
 
@@ -244,21 +260,22 @@ nav {
     cursor: pointer;
 
     &.active {
-      color: $red;
+      color: $white;
     }
   }
 
   #mobile-search-input {
     padding: 25px;
-    text-align: center;
-    color: $white;
-    background-color: $progress-bar;
+    text-align: left;
+    color: $black;
+    font-weight: 600;
+    background-color: $gray;
     cursor: pointer;
   }
 
   #mobile-toggle {
     .fa-times {
-      color: $red;
+      color: $white;
     }
   }
 
@@ -290,11 +307,14 @@ nav {
   }
 
   #mobile-login a {
-    color: #fff;
-    border-top: solid 1px #fff;
+    color: $red!important;
+    border-top: solid 1px #E3E3E3;
     padding: 18px 0 !important;
     margin: 0 20px 0 0;
     font-size: 1rem !important;
+    font-weight: 600;
+    &:first-child {
+      border: none;
+    }
   }
 }
-

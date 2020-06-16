@@ -47,7 +47,7 @@
     max-width: 100%;
 
     .navbar-brand {
-      margin: 12px 0 0 20px;
+      margin: 12px 0 20px 20px;
     }
 
     li.login {
@@ -55,7 +55,8 @@
     }
 
     #mobile-toggle, #mobile-search {
-      margin: 15px 20px 20px 20px;
+      margin: 25px 20px 0;
+      color: $white;
     }
   }
 
@@ -217,7 +218,7 @@
     display: block !important;
 
     #navbar-container {
-      background-color: $gray-700;
+      background-color: $white;
     }
 
     .nav-link {
@@ -257,10 +258,11 @@
       a {
         padding: 18px 0;
         margin: 0 20px 0 0;
-        color: $white;
-        border-top: solid 1px $white;
+        color: $red;
+        border-top: solid 1px $gray-200;
         font-size: 1rem !important;
         width: auto;
+        font-weight: 600;
       }
     }
   }
@@ -433,7 +435,7 @@
       .dataTables_wrapper tr {
         padding: 0 20px 20px !important;
         font-size:1rem;
-        
+
       }
     }
 
@@ -469,7 +471,7 @@
 
   nav {
     margin: 6px auto 0px !important;
-    
+
     .navbar-brand {
       margin: 0px 0px 0px 20px;
       padding: 0;
@@ -478,7 +480,7 @@
         margin: 0;
         max-width: 200px;;
       }
-      
+
       img {
         max-width: 90%;
       }
@@ -1061,4 +1063,3 @@
     height: 59px;
   }
 }
-
