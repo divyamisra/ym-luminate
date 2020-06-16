@@ -8,6 +8,7 @@ angular.module 'trPcControllers'
     '$uibModal'
     'APP_INFO'
     'BoundlessService'
+    'TeamraiserParticipantService'
     'NgPcTeamraiserRegistrationService'
     'NgPcTeamraiserProgressService'
     'NgPcTeamraiserTeamService'
@@ -19,7 +20,7 @@ angular.module 'trPcControllers'
     'NgPcTeamraiserSchoolService'
     'FacebookFundraiserService'
     'ZuriService'
-    ($rootScope, $scope, $sce, $filter, $timeout, $uibModal, APP_INFO, BoundlessService, NgPcTeamraiserRegistrationService, NgPcTeamraiserProgressService, NgPcTeamraiserTeamService, NgPcTeamraiserGiftService, NgPcContactService, NgPcTeamraiserShortcutURLService, NgPcInteractionService, NgPcTeamraiserCompanyService, NgPcTeamraiserSchoolService, FacebookFundraiserService, ZuriService) ->
+    ($rootScope, $scope, $sce, $filter, $timeout, $uibModal, APP_INFO, BoundlessService, TeamraiserParticipantService, NgPcTeamraiserRegistrationService, NgPcTeamraiserProgressService, NgPcTeamraiserTeamService, NgPcTeamraiserGiftService, NgPcContactService, NgPcTeamraiserShortcutURLService, NgPcInteractionService, NgPcTeamraiserCompanyService, NgPcTeamraiserSchoolService, FacebookFundraiserService, ZuriService) ->
       $scope.dashboardPromises = []
       $scope.eventDate = ''
       $scope.moneyDueDate = ''
@@ -28,7 +29,12 @@ angular.module 'trPcControllers'
       $scope.schoolStudentRegOnline = ''
       $scope.notifyName = ''
       $scope.notifyEmail = ''
-
+      $scope.studentsPledgedTotal = ''
+      $scope.activity1amt = ''
+      $scope.activity2amt = ''
+      $scope.activity3amt = ''
+      $scope.companyId = $scope.participantRegistration.companyInformation.companyId
+      
       $dataRoot = angular.element '[data-embed-root]'
 
       urlPrefix = 'bfapps1'
@@ -71,7 +77,52 @@ angular.module 'trPcControllers'
         $scope.dashboardProgressType = 'company'
       $scope.toggleProgressType = (progressType) ->
         $scope.dashboardProgressType = progressType
+        
+      participantsString = ''
+      $scope.companyParticipants = {}
+      setCompanyParticipants = (participants, totalNumber, totalFundraisers) ->
+        $scope.companyParticipants.participants = participants or []
+        totalNumber = totalNumber or 0
+        $scope.companyParticipants.totalNumber = Number totalNumber
+        $scope.companyParticipants.totalFundraisers = Number totalFundraisers
+        if not $scope.$$phase
+          $scope.$apply()
+        if participants and participants.length > 0
+          angular.forEach participants, (participant, participantIndex) ->
+            participantsString += '{name: "' + participant.name.first + ' ' + participant.name.last + '", raised: "' + participant.amountRaisedFormatted + '"}'
+            if participantIndex < (participants.length - 1)
+              participantsString += ', '
+          companyParticipantsString = '{participants: [' + participantsString + '], totalNumber: ' + participants.length + '}'
+          angular.element('.ym-school-animation iframe')[0].contentWindow.postMessage companyParticipantsString, domain
+          angular.element('.ym-school-animation iframe').on 'load', ->
+            angular.element('.ym-school-animation iframe')[0].contentWindow.postMessage companyParticipantsString, domain
 
+      getCompanyParticipants = ->
+        TeamraiserParticipantService.getParticipants 'team_name=' + encodeURIComponent('%') + '&first_name=' + encodeURIComponent('%%') + '&last_name=' + encodeURIComponent('%') + '&list_filter_column=team.company_id&list_filter_text=' + $scope.participantRegistration.companyInformation.companyId + '&list_sort_column=total&list_ascending=false&list_page_size=50',
+            error: ->
+              setCompanyParticipants()
+            success: (response) ->
+              participants = response.getParticipantsResponse?.participant
+              companyParticipants = []
+              totalNumberParticipants = response.getParticipantsResponse?.totalNumberResults or '0'
+              totalFundraisers = 0
+              if participants
+                participants = [participants] if not angular.isArray participants
+                angular.forEach participants, (participant) ->
+                  participant.amountRaised = Number participant.amountRaised
+                  if participant.name?.first and participant.amountRaised > 0
+                    participant.firstName = participant.name.first
+                    participant.lastName = participant.name.last || ""
+                    participant.name.last =  participant.lastName.substring(0, 1) + '.'
+                    participant.fullName = participant.name.first + ' ' + participant.name.last
+                    participant.amountRaisedFormatted = $filter('currency')(participant.amountRaised / 100, '$')
+                    if participant.donationUrl
+                      participant.donationFormId = participant.donationUrl.split('df_id=')[1].split('&')[0]
+                    companyParticipants.push participant
+                    totalFundraisers++
+              setCompanyParticipants companyParticipants, totalNumberParticipants, totalFundraisers
+      getCompanyParticipants()
+      
       $scope.refreshFundraisingProgress = ->
         fundraisingProgressPromise = NgPcTeamraiserProgressService.getProgress()
           .then (response) ->
@@ -740,4 +791,26 @@ angular.module 'trPcControllers'
             success: (response) ->
               $scope.companyProgress.schoolYears = newYears
               $scope.editSchoolYearsModal.close()
+
+      ZuriService.getSchool $scope.companyId,
+        error: (response) ->
+          $scope.studentsPledgedTotal = 0
+          $scope.activity1amt = 0
+          $scope.activity2amt = 0
+          $scope.activity3amt = 0
+        success: (response) ->
+          $scope.studentsPledgedTotal = response.data.studentsPledged
+          studentsPledgedActivities = response.data.studentsPledgedByActivity
+          if studentsPledgedActivities['1']
+            $scope.activity1amt = studentsPledgedActivities['1'].count
+          else
+            $scope.activity1amt = 0
+          if studentsPledgedActivities['2']
+            $scope.activity2amt = studentsPledgedActivities['2'].count
+          else
+            $scope.activity2amt = 0
+          if studentsPledgedActivities['3']
+            $scope.activity3amt = studentsPledgedActivities['3'].count
+          else
+            $scope.activity3amt = 0
   ]
