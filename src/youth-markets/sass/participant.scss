@@ -403,9 +403,7 @@ main > .container {
   }
 
   .ym-progress-donate {
-    @media (min-width: $screen-sm-min) {
-      float: left;
-    }
+    float: left;
 
     /*.btn-lg,
     a.btn-lg {
