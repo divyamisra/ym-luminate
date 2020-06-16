@@ -37,3 +37,38 @@ select#ym-update-challenge {
 	margin-top:15px;
 	color: $event-grey;
 }
+
+.ym-pc-dashboard-coordinator-school-years-section,
+.ym-pc-dashboard-coordinator-school-detail-section {
+	div.ym-pc-dashboard-section-header {
+		font-size: 20px;
+		color: indigo;
+		font-family: "Luckiest Guy",cursive;
+		line-height: 28px;
+
+		select {
+			width: auto;
+			display: inline-block;
+			padding-right: 25px;
+			font-size: 20px;
+			line-height: 26px;
+			padding-bottom: 5px;
+		}
+		
+		.schoolCreateMessage {
+			font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+			font-size: 18px;
+			
+			.coordinatorMessage {
+			  font-size: .8em;
+			  font-style:italic;
+			}
+		}
+	}
+}
+
+.schoolStatusTitle {
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0 0 15px;
+}
