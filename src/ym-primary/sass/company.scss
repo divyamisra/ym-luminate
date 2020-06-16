@@ -3,6 +3,24 @@
   color:#a41752;
 }
 
+.ym-story {
+	padding: 40px;
+	text-align: center;
+	background: #fff;
+  
+}
+.ym-page-section__list {
+	background: $event-secondary-medium;
+}
+
+.ym-progress {
+  .ym-progress__title {
+    font-size: 48px;
+    color: indigo;
+    font-family: "Luckiest Guy",cursive;
+  }
+}
+
 body.pg-company {
      @media (max-width: $screen-sm-max) {
           .ym-our-stats {
