@@ -750,48 +750,80 @@ angular.module 'trPcControllers'
               break
             i++
 
-      $scope.schoolYearsInfo = {}
+      #school years, challenge and level update
+      $scope.schoolInfo = {}
+      $scope.schoolChallengeInfo = {}
+      $scope.schoolChallengeLevelInfo = {}
 
       if $scope.participantRegistration.companyInformation?.isCompanyCoordinator is 'true'
-        ZuriService.getSchoolYears $scope.participantRegistration.companyInformation.companyId,
+        ZuriService.getSchoolData $scope.participantRegistration.companyInformation.companyId,
           failure: (response) ->
             $scope.companyProgress.schoolYears = 0
+            $scope.companyProgress.schoolChallenge = ''
+            $scope.companyProgress.schoolChallengeLevel = ''
           error: (response) ->
             $scope.companyProgress.schoolYears = 0
+            $scope.companyProgress.schoolChallenge = ''
+            $scope.companyProgress.schoolChallengeLevel = ''
           success: (response) ->
-            if response.data.value isnt null
-              $scope.companyProgress.schoolYears = response.data.value
+            if typeof response.data.data != 'undefined'
+              if response.data.data.length > 0
+                angular.forEach response.data.data, (meta, key) ->
+                  if meta.name == 'years-participated'
+                    $scope.companyProgress.schoolYears = meta.value
+                  if meta.name == 'school-challenge'
+                    $scope.companyProgress.schoolChallenge = meta.value
+                  if meta.name == 'school-goal'
+                    $scope.companyProgress.schoolChallengeLevel = meta.value
             else
               $scope.companyProgress.schoolYears = 0
-
-      $scope.editSchoolYears = ->
-        delete $scope.schoolYearsInfo.errorMessage
-        schoolYears = $scope.companyProgress.schoolYears
-        if schoolYears is '' or schoolYears is '0'
-          $scope.schoolYearsInfo.years = ''
-        else
-          $scope.schoolYearsInfo.years = schoolYears
-        $scope.editSchoolYearsModal = $uibModal.open
-          scope: $scope
-          templateUrl: APP_INFO.rootPath + 'dist/middle-school/html/participant-center/modal/editSchoolYears.html'
-
-      $scope.cancelEditSchoolYears = ->
-        $scope.editSchoolYearsModal.close()
+              $scope.companyProgress.schoolChallenge = ''
+              $scope.companyProgress.schoolChallengeLevel = ''
 
       $scope.updateSchoolYears = ->
-        delete $scope.schoolYearsInfo.errorMessage
-        newYears = $scope.schoolYearsInfo.years
+        delete $scope.schoolInfo.errorMessage
+        newYears = $scope.companyProgress.schoolYears
         if not newYears or newYears is '' or newYears is '0' or isNaN(newYears)
-          $scope.schoolYearsInfo.errorMessage = 'Please specify a year greater than 0.'
+          $scope.schoolInfo.errorMessage = 'Please specify a year greater than 0.'
         else
-          updateSchoolYearPromise = ZuriService.updateSchoolYears $scope.participantRegistration.companyInformation.companyId + '/years-participated/update?value=' + newYears,
+          updateSchoolYearPromise = ZuriService.updateSchoolData $scope.participantRegistration.companyInformation.companyId + '/years-participated/update?value=' + newYears,
             failure: (response) ->
-              $scope.schoolYearsInfo.errorMessage = 'Process failed to save years entered'
+              $scope.schoolInfo.errorMessage = 'Process failed to save years entered'
             error: (response) ->
-              $scope.schoolYearsInfo.errorMessage = 'Error: ' + response.data.message
+              $scope.schoolInfo.errorMessage = 'Error: ' + response.data.message
             success: (response) ->
               $scope.companyProgress.schoolYears = newYears
-              $scope.editSchoolYearsModal.close()
+              #$scope.editSchoolYearsModal.close()
+              
+      $scope.updateSchoolChallenge = ->
+        delete $scope.schoolChallengeInfo.errorMessage
+        newChallenge = $scope.companyProgress.schoolChallenge
+        if newChallenge is ''
+          $scope.schoolChallengeInfo.errorMessage = 'Please select a challenge.'
+        else
+          updateSchoolChallengePromise = ZuriService.updateSchoolData $scope.participantRegistration.companyInformation.companyId + '/school-challenge/update?value=' + newChallenge,
+            failure: (response) ->
+              $scope.schoolChallengeInfo.errorMessage = 'Process failed to save challenge entered'
+            error: (response) ->
+              $scope.schoolChallengeInfo.errorMessage = 'Error: ' + response.data.message
+            success: (response) ->
+              $scope.companyProgress.schoolChallenge = newChallenge
+              #$scope.editSchoolChallengeModal.close()
+
+      $scope.updateSchoolChallengeLevel = ->
+        delete $scope.schoolChallengeLevelInfo.errorMessage
+        newChallengeLevel = $scope.companyProgress.schoolChallengeLevel
+        if newChallengeLevel is ''
+          $scope.schoolChallengeLevelInfo.errorMessage = 'Please select a challenge level.'
+        else
+          updateSchoolChallengeLevelPromise = ZuriService.updateSchoolData $scope.participantRegistration.companyInformation.companyId + '/school-goal/update?value=' + newChallengeLevel,
+            failure: (response) ->
+              $scope.schoolChallengeLevelInfo.errorMessage = 'Process failed to save challenge level entered'
+            error: (response) ->
+              $scope.schoolChallengeLevelInfo.errorMessage = 'Error: ' + response.data.message
+            success: (response) ->
+              $scope.companyProgress.schoolChallengeLevel = newChallengeLevel
+              #$scope.editSchoolChallengeLevelModal.close()
 
       ZuriService.getSchool $scope.companyId,
         error: (response) ->
@@ -814,4 +846,5 @@ angular.module 'trPcControllers'
             $scope.activity3amt = studentsPledgedActivities['3'].count
           else
             $scope.activity3amt = 0
+
   ]
