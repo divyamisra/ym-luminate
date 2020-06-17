@@ -129,11 +129,11 @@ angular.module 'ahaLuminateApp'
 
       getSchoolData: (requestData, callback) ->
         if $rootScope.tablePrefix is 'heartdev'
-          url = '//hearttools.heart.org/aha_ahc21_dev/api/school/' + requestData + '/meta?key=k7wvZXDpmDpenVcp'
+          url = '//hearttools.heart.org/aha_ahc21_dev/api/school/' + requestData + '/meta?key=RByQUbXzYLBchS3n'
         else if $rootScope.tablePrefix is 'heartnew'
           url = '//hearttools.heart.org/aha_ahc21_testing/api/school/' + requestData + '/meta?key=XgUnZxvFcjZ4jEMT'
         else
-          url = '//hearttools.heart.org/aha_ahc21/api/school/' + requestData + '/meta?key=XgUnZxvFcjZ4jEMT'
+          url = '//hearttools.heart.org/aha_ahc21/api/school/' + requestData + '/meta?key=B78AEYxzbU9br6Cq'
         $http.jsonp($sce.trustAsResourceUrl(url), jsonpCallbackParam: 'callback')
           .then (response) ->
             if response.data.success is false
@@ -145,11 +145,11 @@ angular.module 'ahaLuminateApp'
 
       updateSchoolData: (requestData, callback) ->
         if $rootScope.tablePrefix is 'heartdev'
-          url = '//hearttools.heart.org/aha_ahc21_dev/api/school/' + requestData + '&key=k7wvZXDpmDpenVcp'
+          url = '//hearttools.heart.org/aha_ahc21_dev/api/school/' + requestData + '&key=RByQUbXzYLBchS3n'
         else if $rootScope.tablePrefix is 'heartnew'
           url = '//hearttools.heart.org/aha_ahc21_testing/api/school/' + requestData + '&key=XgUnZxvFcjZ4jEMT'
         else
-          url = '//hearttools.heart.org/aha_ahc21/api/school/' + requestData + '&key=XgUnZxvFcjZ4jEMT'
+          url = '//hearttools.heart.org/aha_ahc21/api/school/' + requestData + '&key=B78AEYxzbU9br6Cq'
         $http.jsonp($sce.trustAsResourceUrl(url), jsonpCallbackParam: 'callback')
           .then (response) ->
             callback.success response
