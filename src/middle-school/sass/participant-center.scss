@@ -41,15 +41,20 @@ select#ym-update-challenge {
 	color: $event-grey;
 }
 
-
 .ym-pc-dashboard-coordinator-school-years-section,
 .ym-pc-dashboard-coordinator-school-challenge-section,
 .ym-pc-dashboard-coordinator-school-level-section {
+	background-color: $event-accent-light;
+	padding: 36px;
+	margin: 0 0 30px;
+
+	h2.h3 {
+		margin-bottom: 20px;
+	}
+
 	div.ym-pc-dashboard-section-header {
-		font-size: 20px;
-		color: indigo;
-		font-family: "Luckiest Guy",cursive;
-		line-height: 28px;
+		font-size: 18px;
+		line-height: 22px;
 
 		select {
 			width: auto;
@@ -58,6 +63,7 @@ select#ym-update-challenge {
 			font-size: 20px;
 			line-height: 26px;
 			padding-bottom: 5px;
+			margin-top:10px;
 		}
 		
 		.schoolCreateMessage {
