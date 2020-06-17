@@ -34,6 +34,7 @@ angular.module 'trPcControllers'
       $scope.activity2amt = ''
       $scope.activity3amt = ''
       $scope.companyId = $scope.participantRegistration.companyInformation.companyId
+      theDate = new Date
       $scope.yearsList = [1..(theDate.getFullYear()-1978)] # 0 - 50
       
       $dataRoot = angular.element '[data-embed-root]'
