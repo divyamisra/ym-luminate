@@ -127,13 +127,13 @@ angular.module 'ahaLuminateApp'
           , (response) ->
             callback.failure response
 
-      getSchoolYears: (requestData, callback) ->
+      getSchoolData: (requestData, callback) ->
         if $rootScope.tablePrefix is 'heartdev'
-          url = '//hearttools.heart.org/aha_ahc21_dev/api/school/' + requestData + '/years-participated?key=RByQUbXzYLBchS3n'
+          url = '//hearttools.heart.org/aha_ahc21_dev/api/school/' + requestData + '/meta?key=k7wvZXDpmDpenVcp'
         else if $rootScope.tablePrefix is 'heartnew'
-          url = '//hearttools.heart.org/aha_ahc21_testing/api/school/' + requestData + '/years-participated?key=XgUnZxvFcjZ4jEMT'
+          url = '//hearttools.heart.org/aha_ahc21_testing/api/school/' + requestData + '/meta?key=XgUnZxvFcjZ4jEMT'
         else
-          url = '//hearttools.heart.org/aha_ahc21/api/school/' + requestData + '/years-participated?key=B78AEYxzbU9br6Cq'
+          url = '//hearttools.heart.org/aha_ahc21/api/school/' + requestData + '/meta?key=XgUnZxvFcjZ4jEMT'
         $http.jsonp($sce.trustAsResourceUrl(url), jsonpCallbackParam: 'callback')
           .then (response) ->
             if response.data.success is false
@@ -143,13 +143,13 @@ angular.module 'ahaLuminateApp'
           , (response) ->
             callback.failure response
 
-      updateSchoolYears: (requestData, callback) ->
+      updateSchoolData: (requestData, callback) ->
         if $rootScope.tablePrefix is 'heartdev'
-          url = '//hearttools.heart.org/aha_ahc21_dev/api/school/' + requestData + '&key=RByQUbXzYLBchS3n'
+          url = '//hearttools.heart.org/aha_ahc21_dev/api/school/' + requestData + '&key=k7wvZXDpmDpenVcp'
         else if $rootScope.tablePrefix is 'heartnew'
           url = '//hearttools.heart.org/aha_ahc21_testing/api/school/' + requestData + '&key=XgUnZxvFcjZ4jEMT'
         else
-          url = '//hearttools.heart.org/aha_ahc21/api/school/' + requestData + '&key=B78AEYxzbU9br6Cq'
+          url = '//hearttools.heart.org/aha_ahc21/api/school/' + requestData + '&key=XgUnZxvFcjZ4jEMT'
         $http.jsonp($sce.trustAsResourceUrl(url), jsonpCallbackParam: 'callback')
           .then (response) ->
             callback.success response
