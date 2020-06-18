@@ -719,6 +719,9 @@
                 }, "The team goal should be greater than $0."
             );
 
+	    $('select#fr_co_list').addClass("required");
+	    $('select#fr_co_list option:first').attr("value","");
+
 	    $('input#fr_team_goal').addClass("validGoal required");
 	    $('span.field-required').closest('.form-content').find('input, select').addClass("required");
 
