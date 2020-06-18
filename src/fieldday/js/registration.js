@@ -767,7 +767,9 @@
                 } else {
                     $('#team_find_new_company_selection_container').append("<span class='hint-text hidden-xs'>You can't skip this step! If you don't see your company in the list, please <a href="#">contact your local staff to get your company set up today!</a></span>");
                 }
+		$('#team_find_new_team_attributes').before($('#team_find_new_team_company'));
             } else if (regType === 'joinTeam') {
+    		$('#team_find_new_team_attributes').before($('#team_find_new_team_company'));
                 if ($('#team_find_existing').length > 0) {
 
                     // BEGIN new team find form
