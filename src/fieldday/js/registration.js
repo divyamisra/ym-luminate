@@ -1123,7 +1123,9 @@
                 var updatedJoinTeamLink = $(joinTeamLink).attr('href') + '&s_regType=joinTeam';
                 $(joinTeamLink).attr('href', updatedJoinTeamLink);
             }
-
+	    
+	    $('#team_find_new_team_attributes').before("<div class='mt-3'><p class='text-center'>Now create a fun team name and set your team's goal.</br>A team of 10 easily raises $2,000 so let's do this!</p></div>")
+		
             $('#team_find_new_fundraising_goal_input_hint').hide(); //text('You can increase your team\'s goal, but the amount shown below is your team\'s suggested fundraising minimum.');
             $('#previous_step span').text('Back');
         }
