@@ -765,7 +765,7 @@
                     $('#team_find_new_team_attributes').addClass('no-companies');
                     $('#team_find_new_team_name, #team_find_new_fundraising_goal').addClass('col-md-6');
                 } else {
-                    $('#team_find_new_company_selection_container').append("<span class='hint-text hidden-xs'>You can't skip this step! If you don't see your company in the list, please <a href="#">contact your local staff to get your company set up today!</a></span>");
+                    $('#team_find_new_company_selection_container').append("<span class='hint-text hidden-xs'>You can't skip this step! If you don't see your company in the list, please <a href='#'>contact your local staff to get your company set up today!</a></span>");
                 }
 		$('#team_find_new_team_attributes').before($('#team_find_new_team_company'));
             } else if (regType === 'joinTeam') {
