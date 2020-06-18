@@ -765,7 +765,7 @@
                     $('#team_find_new_team_attributes').addClass('no-companies');
                     $('#team_find_new_team_name, #team_find_new_fundraising_goal').addClass('col-md-6');
                 } else {
-                    $('#team_find_new_company_selection_container').append("<span class='hint-text hidden-xs'>If your team is a part of a company, please select the company above. If your company name does not appear, you can skip this step. Can't find your company? <strong>Contact your local staff</strong> to get your company set up today!</span>");
+                    $('#team_find_new_company_selection_container').append("<span class='hint-text hidden-xs'>You can't skip this step! If you don't see your company in the list, please <a href="#">contact your local staff to get your company set up today!</a></span>");
                 }
             } else if (regType === 'joinTeam') {
                 if ($('#team_find_existing').length > 0) {
@@ -1122,7 +1122,7 @@
                 $(joinTeamLink).attr('href', updatedJoinTeamLink);
             }
 
-            $('#team_find_new_fundraising_goal_input_hint').text('You can increase your team\'s goal, but the amount shown below is your team\'s suggested fundraising minimum.');
+            //$('#team_find_new_fundraising_goal_input_hint').text('You can increase your team\'s goal, but the amount shown below is your team\'s suggested fundraising minimum.');
             $('#previous_step span').text('Back');
         }
         // END TFIND
