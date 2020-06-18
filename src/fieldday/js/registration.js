@@ -1266,8 +1266,23 @@
 
 	    $('label:contains("t-shirt")').closest('.input-container').find('select').addClass("tshirtSize");
 	    $('span.field-required').closest('.form-content').find('input, select').addClass("required");
-	    $('input[value^="I accept"]').addClass("acceptRelease");
-	    $('input[value^="I agree to the Terms and Conditions"]').addClass("acceptPrivacy");
+	    $('input[value^="I accept"]').addClass("acceptRelease").next('label').addClass("acceptReleaseLabel");
+	    var pattern = /\b(Release with Publicity Consent)/gi; // words you want to wrap
+	    var replaceWith = '<a href="#" target="_blank">$1</a>'; // Here's the wap
+    	    $('.acceptReleaseLabel').each(function(){
+		$(this).html($(this).html().replace(pattern,replaceWith));
+ 	    });
+	    $('input[value^="I agree to"]').addClass("acceptPrivacy").next('label').addClass("acceptPrivacyLabel");
+	    var pattern = /\b(Terms and Conditions \(PDF\))/gi; // words you want to wrap
+	    var replaceWith = '<a href="#" target="_blank">$1</a>'; // Here's the wap
+    	    $('.acceptPrivacyLabel').each(function(){
+		$(this).html($(this).html().replace(pattern,replaceWith));
+ 	    });
+	    var pattern = /\b(Privacy Policy)/gi; // words you want to wrap
+	    var replaceWith = '<a href="#" target="_blank">$1</a>'; // Here's the wap
+    	    $('.acceptPrivacyLabel').each(function(){
+		$(this).html($(this).html().replace(pattern,replaceWith));
+ 	    });
 
 	    $('input.required').each(function(){
 		    var label = $(this).closest('.input-container').find('.input-label').html();
