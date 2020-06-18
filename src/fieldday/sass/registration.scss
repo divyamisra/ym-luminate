@@ -725,7 +725,13 @@ div.responsive #team_find_section_footer button.next-step {
 	padding-left:20px;
 }
 #team_find_new_team_attributes, #team_find_new_team_company {
-	width: 50%;
+	width: 100%;
+}
+#team_find_new_team_attributes {
+	display: flex;
+}
+#team_find_page div.input-container {
+	flex: 1 1 50%;
 }
 @media only screen and (max-width: 767px) {
    #team_find_new_team_attributes,
