@@ -1156,7 +1156,7 @@
 		} else {
 	                $('#part_type_section_header').hide();
 		}
-                $('.part-type-container').before("<div class='part_type_one_only'><strong>Set Your Fundraising Goal!</strong></div>");
+                //$('.part-type-container').before("<div class='part_type_one_only'><strong>Set Your Fundraising Goal!</strong></div>");
             } else {
                 $('input[name=fr_part_radio]:checked').removeAttr("checked");
                 $('.part-type-container.selected').removeClass("selected");
