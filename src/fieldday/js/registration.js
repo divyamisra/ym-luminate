@@ -721,6 +721,7 @@
 
 	    $('select#fr_co_list').addClass("required");
 	    $('select#fr_co_list option:first').attr("value","");
+            $('#team_find_new_company_selection_container label').before('<span class="field-required" id="team_find_new_company_selection_required" aria-hidden="true"></span>');	    
 
 	    $('input#fr_team_goal').addClass("validGoal required");
 	    $('span.field-required').closest('.form-content').find('input, select').addClass("required");
