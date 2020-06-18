@@ -647,6 +647,8 @@
             $('#pt_title_container').replaceWith(function() {
                 return '<h2 id="pt_title_container" class="section-header-text">' + $(this).html() + '</h2>';
             });
+		
+ 	    $('#disc_code_container').after("<div><small>Is your company paying for your registration fee? Please enter your company code below.</small></div>")
         }
 
         // reg page
