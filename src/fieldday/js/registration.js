@@ -719,7 +719,7 @@
                 }, "The team goal should be greater than $0."
             );
 
-	    $('select#fr_co_list').addClass("required");
+	    $('select#fr_co_list').addClass("required").attr("title","Team Company is required");
 	    $('select#fr_co_list option:first').attr("value","");
             $('#team_find_new_company_selection_container label').before('<span class="field-required" id="team_find_new_company_selection_required" aria-hidden="true"></span>');	    
 
