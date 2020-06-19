@@ -8,7 +8,7 @@
 	    $('body').addClass("ie11");
     }
 
-    // Heart Walk 2020 Donation JS
+    // Field Day 2020 Donation JS
     //Donation Levels
     // var amountLevel = readCookie('level');
     var amountLevel = null;
