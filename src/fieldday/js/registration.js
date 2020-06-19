@@ -272,7 +272,7 @@
           });
         };
 
-        // Heart Walk 2020 Registration JS
+        // Field Day 2020 Registration JS
         var fr_id = $('input[name=fr_id]').val();
 
         if (fr_id == 3476) {
@@ -1298,7 +1298,7 @@
 	    var optinHTML = '<div id="mobile_optin_outer">' +
 		                '<input type="checkbox" name="mobile_optin" id="mobile_optin">' +
 		                '<label for="mobile_optin" class="wrapable">' +
-		                    '<span id="optin_label"><strong>Mobile Opt in:</strong> By checking the box, I consent to receive up to 1 - 2 text messages per week from AHA  supporting my Heart Walk efforts at the mobile number above. Selecting text option is not required for my participation. Message and data rates may apply. I can Reply STOP at any time to opt out.</span>' +
+		                    '<span id="optin_label"><strong>Mobile Opt in:</strong> By checking the box, I consent to receive up to 1 - 2 text messages per week from AHA supporting my Field Day efforts at the mobile number above. Selecting text option is not required for my participation. Message and data rates may apply. I can Reply STOP at any time to opt out.</span>' +
 		                '</label>' +
 		             '</div>';
 	    // only add mobile opt in option if grou pid exists on body tag
@@ -1620,7 +1620,7 @@
         $('.part-type-description-text:contains("Free")').html('&nbsp;');
         $('.survey-question-container legend span:contains("Waiver agreement")').parent().parent().addClass('waiverCheck');
         $('.waiverCheck legend').addClass('aural-only');
-        $('.waiverCheck label').html('<span class="field-required"></span> I accept and acknowledge that I have read and understand this Heart Walk <a id="waiverPopLink" href="#">Release with Publicity Consent</a> and agree to them voluntarily.');
+        $('.waiverCheck label').html('<span class="field-required"></span> I accept and acknowledge that I have read and understand this Field Day <a id="waiverPopLink" href="#">Release with Publicity Consent</a> and agree to them voluntarily.');
 	$('.waiverCheck input[type="checkbox"]').attr("aria-required","true");
         $('.survey-question-container legend span:contains("Privacy Policy")').parent().parent().addClass('privacyCheck');
         $('.privacyCheck legend').addClass('aural-only');
@@ -1748,10 +1748,10 @@
             _gaq.push(['t2._trackEvent', 'Fundraised Before', 'click', 'No']);
         });
         jQuery("input[name='fr_part_radio']").blur(function() {
-            _gaq.push(['t2._trackEvent', 'Participation Type', 'click', 'Heart Walk']);
+            _gaq.push(['t2._trackEvent', 'Participation Type', 'click', 'Field Day']);
         });
         jQuery("input[name='fr_part_radio']").blur(function() {
-            _gaq.push(['t2._trackEvent', 'Participation Type', 'click', 'Heart Walk']);
+            _gaq.push(['t2._trackEvent', 'Participation Type', 'click', 'Field Day']);
         });
         jQuery("#next_step").blur(function() {
             _gaq.push(['t2._trackEvent', 'Button', 'click', 'Next']);
