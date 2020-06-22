@@ -133,7 +133,7 @@ angular.module 'ahaLuminateControllers'
           if not $scope.$$phase
             $scope.$apply()
             
-          chechkSchoolChallenges(amountRaised)
+          checkSchoolChallenges(amountRaised)
         , 100
 
       TeamraiserParticipantService.getParticipants 'fr_id=' + $scope.frId + '&first_name=' + encodeURIComponent('%%') + '&last_name=' + encodeURIComponent('%') + '&list_filter_column=reg.cons_id&list_filter_text=' + $scope.participantId,
