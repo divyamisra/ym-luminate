@@ -22,6 +22,7 @@ angular.module 'ahaLuminateControllers'
       $rootScope.survivor = false
       
       $scope.prizes = []
+      $scope.schoolChallenges = []
       BoundlessService.getBadges $scope.participantId
         .then (response) ->
           if not response.data.status or response.data.status isnt 'success'
@@ -65,7 +66,22 @@ angular.module 'ahaLuminateControllers'
             if $scope.prizes.length > 0
               $scope.prizes.sort (a, b) ->
                 a.priority - b.priority
-      
+
+      checkSchoolChallenges = (amountRaised) ->
+        amt = amountRaised / 100
+        ZuriService.getSchoolData $scope.companyId,
+          error: (response) ->
+            # TO DO
+          success: (response) ->
+            if response.data.data.length > 0
+              angular.forEach response.data.data, (meta, key) ->
+                if meta.name == 'school-goal'
+                  if amt >= Number((meta.value).replace('$', '').replace(/,/g, ''))
+                    $scope.schoolChallenges.push
+                      id: 'student'
+                      label: 'Student met school challenge goal'
+                      earned: true
+                      
       ZuriService.getStudent $scope.frId + '/' + $scope.participantId,
         error: (response) ->
           $scope.challengeName = null
@@ -85,13 +101,21 @@ angular.module 'ahaLuminateControllers'
         success: (response) ->
           coordinatorId = response.getCompaniesResponse?.company?.coordinatorId
           eventId = response.getCompaniesResponse?.company?.eventId
+          amountRaised = response.getCompaniesResponse?.company?.amountRaised
+          goal = response.getCompaniesResponse?.company?.goal
           $rootScope.numTeams = response.getCompaniesResponse.company?.teamCount
           
           if coordinatorId and coordinatorId isnt '0' and eventId          
             TeamraiserCompanyService.getCoordinatorQuestion coordinatorId, eventId
               .then (response) ->
                 $scope.eventDate = response.data.coordinator?.event_date
-
+                
+          if amountRaised >= goal 
+            $scope.schoolChallenges.push
+              id: 'school'
+              label: 'School raised more than its goal'
+              earned: true
+              
       setParticipantProgress = (amountRaised, goal) ->
         $scope.personalProgress = 
           amountRaised: if amountRaised then Number(amountRaised) else 0
@@ -121,7 +145,8 @@ angular.module 'ahaLuminateControllers'
             setParticipantProgress()
           else
             setParticipantProgress Number(participantInfo.amountRaised), Number(participantInfo.goal)
-      
+          checkSchoolChallenges Number(participantInfo.amountRaised)
+          
       $scope.personalDonors = 
         page: 1
       $defaultResponsivePersonalDonors = angular.element '.js--personal-donors .team-honor-list-row'
