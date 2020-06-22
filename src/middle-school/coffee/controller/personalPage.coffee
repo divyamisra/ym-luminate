@@ -24,48 +24,18 @@ angular.module 'ahaLuminateControllers'
       $scope.prizes = []
       $scope.schoolChallenges = []
       BoundlessService.getBadges $scope.participantId
-        .then (response) ->
-          if not response.data.status or response.data.status isnt 'success'
-            # TODO
-          else
-            prizes = response.data.prizes
-            angular.forEach prizes, (prize) ->
-              if prize.earned_datetime isnt null
-                if prize.id is 1000
-                  $scope.prizes.push
-                    priority: 1
-                    id: prize.id
-                    label: prize.label
-                    sku: prize.sku
-                    status: prize.status
-                    earned: prize.earned_datetime
-                else if prize.id is 1001
-                  $scope.prizes.push
-                    priority: 2
-                    id: prize.id
-                    label: prize.label
-                    sku: prize.sku
-                    status: prize.status
-                    earned: prize.earned_datetime
-                else if prize.id is 1004
-                  $scope.prizes.push
-                    priority: 3
-                    id: prize.id
-                    label: prize.label
-                    sku: prize.sku
-                    status: prize.status
-                    earned: prize.earned_datetime
-                else if prize.id is 1003
-                  $scope.prizes.push
-                    priority: 4
-                    id: prize.id
-                    label: prize.label
-                    sku: prize.sku
-                    status: prize.status
-                    earned: prize.earned_datetime
-            if $scope.prizes.length > 0
-              $scope.prizes.sort (a, b) ->
-                a.priority - b.priority
+      .then (response) ->
+        prizes = response.data.prizes
+        angular.forEach prizes, (prize) ->
+          if prize.status is 1
+            $scope.prizes.push
+              id: prize.id
+              label: prize.label
+              sku: prize.sku
+              status: prize.status
+              earned: prize.earned_datetime
+      , (response) ->
+        # TODO
 
       checkSchoolChallenges = (amountRaised) ->
         amt = amountRaised / 100
