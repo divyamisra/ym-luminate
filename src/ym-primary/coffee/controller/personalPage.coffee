@@ -52,7 +52,7 @@ angular.module 'ahaLuminateControllers'
             if response.data.data.length > 0
               angular.forEach response.data.data, (meta, key) ->
                 if meta.name == 'school-goal'
-                  if amt >= meta.value
+                  if amt >= Number((meta.value).replace('$', '').replace(/,/g, ''))
                     $scope.schoolChallenges.push
                       id: 'student'
                       label: 'Student met school challenge goal'
@@ -132,8 +132,6 @@ angular.module 'ahaLuminateControllers'
           $scope.personalProgress.percent = percent
           if not $scope.$$phase
             $scope.$apply()
-            
-          checkSchoolChallenges(amountRaised)
         , 100
 
       TeamraiserParticipantService.getParticipants 'fr_id=' + $scope.frId + '&first_name=' + encodeURIComponent('%%') + '&last_name=' + encodeURIComponent('%') + '&list_filter_column=reg.cons_id&list_filter_text=' + $scope.participantId,
