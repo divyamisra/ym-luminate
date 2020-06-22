@@ -143,6 +143,7 @@ angular.module 'ahaLuminateControllers'
             setParticipantProgress()
           else
             setParticipantProgress Number(participantInfo.amountRaised), Number(participantInfo.goal)
+          checkSchoolChallenges Number(participantInfo.amountRaised)
 
       $scope.personalDonors =
         page: 1
