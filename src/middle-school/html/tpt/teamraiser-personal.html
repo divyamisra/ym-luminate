@@ -107,6 +107,12 @@
             <span ng-bind-html="prize.label"></span> <span class="sr-only">(earned)</span>
           </div>
         </div>
+        <div class="ym-badges__item" ng-repeat="schoolChallenge in schoolChallenges" ng-cloak>
+          <div class="ym-badge__item" ng-if="schoolChallenge.earned" ng-cloak>
+            <img class="img-responsive" ng-src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/middle-school/image/badge-challenge-{{schoolChallenge.id}}.png" alt="{{schoolChallenge.label}}">
+            <span ng-bind-html="schoolChallenge.label"></span> <span class="sr-only">(earned)</span>
+          </div>
+        </div>
         <div class="clearfix"></div>
       </div>
       <div class="ym-my-challenge ym-secondary-medium-color" ng-if="challengeId != null" ng-cloak>
