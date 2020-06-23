@@ -36,6 +36,7 @@ angular.module 'trPcControllers'
       $scope.companyId = $scope.participantRegistration.companyInformation.companyId
       theDate = new Date
       $scope.yearsList = [1..(theDate.getFullYear()-1978)] # 0 - 50
+      $scope.schoolChallenges = []
       
       $dataRoot = angular.element '[data-embed-root]'
 
@@ -79,7 +80,49 @@ angular.module 'trPcControllers'
         $scope.dashboardProgressType = 'company'
       $scope.toggleProgressType = (progressType) ->
         $scope.dashboardProgressType = progressType
-        
+
+      #school years, challenge and level update
+      $scope.schoolInfo = {}
+      $scope.schoolChallengeInfo = {}
+      $scope.schoolChallengeLevelInfo = {}
+      
+      getSchoolInformation = ->
+        ZuriService.getSchoolData $scope.participantRegistration.companyInformation.companyId,
+          failure: (response) ->
+            $scope.companyProgress.schoolYears = 0
+            $scope.companyProgress.schoolChallenge = ''
+            $scope.companyProgress.schoolChallengeLevel = ''
+          error: (response) ->
+            $scope.companyProgress.schoolYears = 0
+            $scope.companyProgress.schoolChallenge = ''
+            $scope.companyProgress.schoolChallengeLevel = ''
+          success: (response) ->
+            if typeof response.data.data != 'undefined'
+              if response.data.data.length > 0
+                angular.forEach response.data.data, (meta, key) ->
+                  if meta.name == 'years-participated'
+                    $scope.companyProgress.schoolYears = meta.value
+                  if meta.name == 'school-challenge'
+                    $scope.companyProgress.schoolChallenge = meta.value
+                  if meta.name == 'school-goal'
+                    $scope.companyProgress.schoolChallengeLevel = meta.value
+                  amt = $scope.participantProgress.raised / 100
+                  if amt >= Number((meta.value).replace('$', '').replace(/,/g, ''))
+                    # check if student badge already added
+                    schoolChallengeAdded = false
+                    angluar.forEach schoolChallenges, (schoolChallenge, schoolChallengeIndex) ->
+                      if schoolChallenge.id == "student"
+                        schoolChallengeAdded = true
+                    if not schoolChallengeAdded
+                      $scope.schoolChallenges.push
+                        id: 'student'
+                        label: 'Individual Challenge'
+                        earned: true
+            else
+              $scope.companyProgress.schoolYears = 0
+              $scope.companyProgress.schoolChallenge = ''
+              $scope.companyProgress.schoolChallengeLevel = ''
+                      
       participantsString = ''
       $scope.companyParticipants = {}
       setCompanyParticipants = (participants, totalNumber, totalFundraisers) ->
@@ -184,8 +227,14 @@ angular.module 'trPcControllers'
                   companyProgress.schoolChallenge = $scope.companyProgress?.schoolChallenge
                   companyProgress.schoolChallengeLevel = $scope.companyProgress?.schoolChallengeLevel
                   $scope.companyProgress = companyProgress
+                  if companyProgress.raised >= companyProgress.goal 
+                    $scope.schoolChallenges.push
+                      id: 'school'
+                      label: 'School Challenge'
+                      earned: true
             response
         $scope.dashboardPromises.push fundraisingProgressPromise
+        getSchoolInformation()
       $scope.refreshFundraisingProgress()
 
       $scope.emailChallenge = {}
@@ -752,36 +801,6 @@ angular.module 'trPcControllers'
               $scope.notifyEmail = schoolDataRows[i][schoolDataHeaders.YMDE]
               break
             i++
-
-      #school years, challenge and level update
-      $scope.schoolInfo = {}
-      $scope.schoolChallengeInfo = {}
-      $scope.schoolChallengeLevelInfo = {}
-
-      if $scope.participantRegistration.companyInformation?.isCompanyCoordinator is 'true'
-        ZuriService.getSchoolData $scope.participantRegistration.companyInformation.companyId,
-          failure: (response) ->
-            $scope.companyProgress.schoolYears = 0
-            $scope.companyProgress.schoolChallenge = ''
-            $scope.companyProgress.schoolChallengeLevel = ''
-          error: (response) ->
-            $scope.companyProgress.schoolYears = 0
-            $scope.companyProgress.schoolChallenge = ''
-            $scope.companyProgress.schoolChallengeLevel = ''
-          success: (response) ->
-            if typeof response.data.data != 'undefined'
-              if response.data.data.length > 0
-                angular.forEach response.data.data, (meta, key) ->
-                  if meta.name == 'years-participated'
-                    $scope.companyProgress.schoolYears = meta.value
-                  if meta.name == 'school-challenge'
-                    $scope.companyProgress.schoolChallenge = meta.value
-                  if meta.name == 'school-goal'
-                    $scope.companyProgress.schoolChallengeLevel = meta.value
-            else
-              $scope.companyProgress.schoolYears = 0
-              $scope.companyProgress.schoolChallenge = ''
-              $scope.companyProgress.schoolChallengeLevel = ''
 
       $scope.updateSchoolYears = ->
         delete $scope.schoolInfo.errorMessage
