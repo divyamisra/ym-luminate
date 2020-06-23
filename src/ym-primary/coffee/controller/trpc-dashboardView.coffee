@@ -147,8 +147,8 @@ angular.module 'trPcControllers'
                 if participantProgress.percent > 100
                   participantProgress.percent = 100
                 $scope.participantProgress = participantProgress
-              getSchoolInformation()
-              
+                getSchoolInformation()
+
             if $scope.participantRegistration.teamId and $scope.participantRegistration.teamId isnt '-1'
               if response.data.errorResponse
                 # TODO
