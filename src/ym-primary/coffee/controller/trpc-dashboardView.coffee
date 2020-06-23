@@ -31,9 +31,25 @@ angular.module 'trPcControllers'
       $scope.companyId = $scope.participantRegistration.companyInformation.companyId
       theDate = new Date
       $scope.yearsList = [1..(theDate.getFullYear()-1978)] # 0 - 50
+      $scope.schoolChallenges = []
       
       $dataRoot = angular.element '[data-embed-root]'
 
+      checkSchoolChallenges = (amountRaised) ->
+        amt = amountRaised / 100
+        ZuriService.getSchoolData $scope.companyId,
+          error: (response) ->
+            # TO DO
+          success: (response) ->
+            if response.data.data.length > 0
+              angular.forEach response.data.data, (meta, key) ->
+                if meta.name == 'school-goal'
+                  if amt >= Number((meta.value).replace('$', '').replace(/,/g, ''))
+                    $scope.schoolChallenges.push
+                      id: 'student'
+                      label: 'Student met school challenge goal'
+                      earned: true
+                      
       if $scope.participantRegistration.lastPC2Login is '0'
         if $scope.participantRegistration.companyInformation?.isCompanyCoordinator isnt 'true'
           $scope.firstLoginModal = $uibModal.open
@@ -146,6 +162,8 @@ angular.module 'trPcControllers'
                 if participantProgress.percent > 100
                   participantProgress.percent = 100
                 $scope.participantProgress = participantProgress
+                checkSchoolChallenges amountRaised 
+
             if $scope.participantRegistration.teamId and $scope.participantRegistration.teamId isnt '-1'
               if response.data.errorResponse
                 # TODO
@@ -185,6 +203,11 @@ angular.module 'trPcControllers'
                   companyProgress.schoolChallenge = $scope.companyProgress?.schoolChallenge
                   companyProgress.schoolChallengeLevel = $scope.companyProgress?.schoolChallengeLevel
                   $scope.companyProgress = companyProgress
+                  if companyProgress.raised >= companyProgress.goal 
+                    $scope.schoolChallenges.push
+                      id: 'school'
+                      label: 'School raised more than its goal'
+                      earned: true
             response
         $scope.dashboardPromises.push fundraisingProgressPromise
       $scope.refreshFundraisingProgress()
@@ -934,6 +957,7 @@ angular.module 'trPcControllers'
       $scope.schoolInfo = {}
       $scope.schoolChallengeInfo = {}
       $scope.schoolChallengeLevelInfo = {}
+      
 
       if $scope.participantRegistration.companyInformation?.isCompanyCoordinator is 'true'
         ZuriService.getSchoolData $scope.participantRegistration.companyInformation.companyId,
