@@ -34,22 +34,7 @@ angular.module 'trPcControllers'
       $scope.schoolChallenges = []
       
       $dataRoot = angular.element '[data-embed-root]'
-
-      checkSchoolChallenges = (amountRaised) ->
-        amt = amountRaised / 100
-        ZuriService.getSchoolData $scope.companyId,
-          error: (response) ->
-            # TO DO
-          success: (response) ->
-            if response.data.data.length > 0
-              angular.forEach response.data.data, (meta, key) ->
-                if meta.name == 'school-goal'
-                  if amt >= Number((meta.value).replace('$', '').replace(/,/g, ''))
-                    $scope.schoolChallenges.push
-                      id: 'student'
-                      label: 'Student met school challenge goal'
-                      earned: true
-                      
+                     
       if $scope.participantRegistration.lastPC2Login is '0'
         if $scope.participantRegistration.companyInformation?.isCompanyCoordinator isnt 'true'
           $scope.firstLoginModal = $uibModal.open
@@ -162,8 +147,8 @@ angular.module 'trPcControllers'
                 if participantProgress.percent > 100
                   participantProgress.percent = 100
                 $scope.participantProgress = participantProgress
-                checkSchoolChallenges participantProgress.raised 
-
+              getSchoolInformation()
+              
             if $scope.participantRegistration.teamId and $scope.participantRegistration.teamId isnt '-1'
               if response.data.errorResponse
                 # TODO
@@ -957,9 +942,8 @@ angular.module 'trPcControllers'
       $scope.schoolInfo = {}
       $scope.schoolChallengeInfo = {}
       $scope.schoolChallengeLevelInfo = {}
-      
 
-      if $scope.participantRegistration.companyInformation?.isCompanyCoordinator is 'true'
+      getSchoolInformation = ->
         ZuriService.getSchoolData $scope.participantRegistration.companyInformation.companyId,
           failure: (response) ->
             $scope.companyProgress.schoolYears = 0
@@ -979,6 +963,11 @@ angular.module 'trPcControllers'
                     $scope.companyProgress.schoolChallenge = meta.value
                   if meta.name == 'school-goal'
                     $scope.companyProgress.schoolChallengeLevel = meta.value
+                  if amt >= Number((meta.value).replace('$', '').replace(/,/g, ''))
+                    $scope.schoolChallenges.push
+                      id: 'student'
+                      label: 'Student met school challenge goal'
+                      earned: true
             else
               $scope.companyProgress.schoolYears = 0
               $scope.companyProgress.schoolChallenge = ''
