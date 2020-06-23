@@ -133,7 +133,7 @@
                 Badges
               </h2>
             </div>
-            <div class="ym-pc-dashboard-badges-icons clearfix" ng-if="prizes && prizes.length > 0" ng-cloak>
+            <div class="ym-pc-dashboard-badges-icons clearfix" ng-if="prizes && prizes.length > 0 || schoolChallenges && schoolChallenges.length > 0" ng-cloak>
               <div class="ym-pc-dashboard-badges-icon" ng-repeat="prize in prizes" ng-cloak>
                 <div ng-if="prize.earned">
                   <img class="img-responsive" ng-src="//s3.amazonaws.com/cd-aha-oot-production/fy20/assets/badges/ahc/{{prize.id}}_delivered.png" alt="">
@@ -143,6 +143,14 @@
                 </div>
                 <div>
                   <span ng-bind-html="prize.label"></span> <span class="sr-only" ng-if="prize.earned">(earned)</span><span class="sr-only" ng-if="!prize.earned">(not yet earned)</span>
+                </div>
+              </div>
+              <div class="ym-pc-dashboard-badges-icon" ng-repeat="schoolChallenge in schoolChallenges" ng-cloak>
+                <div ng-if="schoolChallenge.earned">
+	          <img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/middle-school/image/badge-challenge-{{schoolChallenge.id}}.png" alt="{{schoolChallenge.label}}">
+                </div>
+                <div>
+                  <span ng-bind-html="schoolChallenge.label"></span> <span class="sr-only" ng-if="schoolChallenge.earned">(earned)</span><span class="sr-only" ng-if="!schoolChallenge.earned">(not yet earned)</span>
                 </div>
               </div>
             </div>
@@ -163,18 +171,18 @@
                 <strong>Send Email</strong>
               </a>
             </div>
+            <form method="POST">
+              <label for="emailChallenge-sampleText" class="sr-only">Email text:</label>
+              <textarea class="form-control" id="emailChallenge-sampleText" name="sampleText" ng-model="emailChallenge.sampleText" readonly></textarea>
+            </form>
             <div class="ym-pc-dashboard-email-challenge-option">
               <p>
-                Or copy and paste the text below into your favorite email client!
+                Or copy and paste the text above into your favorite email client!
               </p>
               <button type="button" class="btn btn-md-wide btn-primary" data-clipboard-target="#emailChallenge-sampleText">
                 <strong>Copy Email Text</strong> 
               </button>
             </div>
-            <form method="POST">
-              <label for="emailChallenge-sampleText" class="sr-only">Email text:</label>
-              <textarea class="form-control" id="emailChallenge-sampleText" name="sampleText" ng-model="emailChallenge.sampleText" readonly></textarea>
-            </form>
           </div>
         </div>
       </div>
