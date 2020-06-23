@@ -55,7 +55,7 @@ angular.module 'ahaLuminateControllers'
                   if amt >= Number((meta.value).replace('$', '').replace(/,/g, ''))
                     $scope.schoolChallenges.push
                       id: 'student'
-                      label: 'Student met school challenge goal'
+                      label: 'Individual Challenge Completed'
                       earned: true
         
       ZuriService.getStudent $scope.frId + '/' + $scope.participantId,
@@ -111,7 +111,7 @@ angular.module 'ahaLuminateControllers'
           if amountRaised >= goal 
             $scope.schoolChallenges.push
               id: 'school'
-              label: 'School raised more than its goal'
+              label: 'School Challenge Completed'
               earned: true
                 
       setParticipantProgress = (amountRaised, goal) ->
