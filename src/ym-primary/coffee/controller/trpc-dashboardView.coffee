@@ -112,7 +112,7 @@ angular.module 'trPcControllers'
                     if not schoolChallengeAdded
                       $scope.schoolChallenges.push
                         id: 'student'
-                        label: 'Individual Challenge Completed'
+                        label: 'Individual Challenge'
                         earned: true
             else
               $scope.companyProgress.schoolYears = 0
@@ -232,7 +232,7 @@ angular.module 'trPcControllers'
                   if companyProgress.raised >= companyProgress.goal 
                     $scope.schoolChallenges.push
                       id: 'school'
-                      label: 'School Challenge Completed'
+                      label: 'School Challenge'
                       earned: true
             response
         $scope.dashboardPromises.push fundraisingProgressPromise
