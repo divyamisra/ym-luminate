@@ -104,10 +104,16 @@ angular.module 'trPcControllers'
                     $scope.companyProgress.schoolChallengeLevel = meta.value
                   amt = $scope.participantProgress.raised / 100
                   if amt >= Number((meta.value).replace('$', '').replace(/,/g, ''))
-                    $scope.schoolChallenges.push
-                      id: 'student'
-                      label: 'Individual Challenge Completed'
-                      earned: true
+                    # check if student badge already added
+                    schoolChallengeAdded = false
+                    angluar.forEach schoolChallenges, (schoolChallenge, schoolChallengeIndex) ->
+                      if schoolChallenge.id == "student"
+                        schoolChallengeAdded = true
+                    if not schoolChallengeAdded
+                      $scope.schoolChallenges.push
+                        id: 'student'
+                        label: 'Individual Challenge Completed'
+                        earned: true
             else
               $scope.companyProgress.schoolYears = 0
               $scope.companyProgress.schoolChallenge = ''
