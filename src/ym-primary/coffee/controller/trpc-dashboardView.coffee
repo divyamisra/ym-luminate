@@ -106,7 +106,7 @@ angular.module 'trPcControllers'
                   if amt >= Number((meta.value).replace('$', '').replace(/,/g, ''))
                     # check if student badge already added
                     schoolChallengeAdded = false
-                    angular.forEach schoolChallenges, (schoolChallenge, schoolChallengeIndex) ->
+                    angular.forEach $scope.schoolChallenges, (schoolChallenge, schoolChallengeIndex) ->
                       if schoolChallenge.id == "student"
                         schoolChallengeAdded = true
                     if not schoolChallengeAdded
