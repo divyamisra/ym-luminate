@@ -52,6 +52,15 @@
             <span class="sr-only" ng-if="prize.earned">(earned)</span><span class="sr-only" ng-if="!prize.earned">(not yet earned)</span>
           </div>
         </div>
+        <div class="ym-pc-dashboard-badges-icon" ng-repeat="schoolChallenge in schoolChallenges" ng-cloak>
+          <div ng-if="schoolChallenge.earned">
+            <img class="img-responsive" ng-src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/ym-primary/image/fy21/badge-challenge-{{schoolChallenge.id}}.png" alt="{{schoolChallenge.label}}">
+          </div>
+          <div ng-if="schoolChallenge.earned">
+            <div class="ym-pc-dashboard-mission-accomplished">Mission Accomplished</div>
+            <span class="ym-pc-dashboard-completed-label">{{schoolChallenge.completed_label}}!</span> <span class="sr-only" ng-if="schoolChallenge.earned">(earned)</span>
+          </div>
+        </div>
       </div>
     </section>
     <section class="ym-pc-dashboard-progress-section" aria-label="Fundraising Progress Meters">
