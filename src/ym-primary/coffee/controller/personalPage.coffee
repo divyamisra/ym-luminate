@@ -51,12 +51,17 @@ angular.module 'ahaLuminateControllers'
           success: (response) ->
             if response.data.data.length > 0
               angular.forEach response.data.data, (meta, key) ->
+                if meta.name == 'years-participated'
+                  $scope.companyProgress.schoolYears = meta.value
+                if meta.name == 'school-challenge'
+                  $scope.companyProgress.schoolChallenge = meta.value
                 if meta.name == 'school-goal'
-                  if amt >= Number((meta.value).replace('$', '').replace(/,/g, ''))
-                    $scope.schoolChallenges.push
-                      id: 'student'
-                      label: 'Individual Challenge Completed'
-                      earned: true
+                  $scope.companyProgress.schoolChallengeLevel = meta.value
+              if amt >= Number(($scope.companyProgress.schoolChallengeLevel).replace('$', '').replace(/,/g, ''))
+                $scope.schoolChallenges.push
+                  id: 'student'
+                  label: 'Individual Challenge Completed'
+                  earned: true
         
       ZuriService.getStudent $scope.frId + '/' + $scope.participantId,
         error: (response) ->
