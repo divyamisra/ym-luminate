@@ -191,7 +191,7 @@ angular.module 'trPcControllers'
                   if companyProgress.raised >= companyProgress.goal 
                     $scope.schoolChallenges.push
                       id: 'school'
-                      label: 'School raised more than its goal'
+                      label: 'School Challenge Completed'
                       earned: true
             response
         $scope.dashboardPromises.push fundraisingProgressPromise
@@ -966,7 +966,7 @@ angular.module 'trPcControllers'
                   if amt >= Number((meta.value).replace('$', '').replace(/,/g, ''))
                     $scope.schoolChallenges.push
                       id: 'student'
-                      label: 'Student met school challenge goal'
+                      label: 'Individual Challenge Completed'
                       earned: true
             else
               $scope.companyProgress.schoolYears = 0
