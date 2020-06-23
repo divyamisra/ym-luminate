@@ -963,6 +963,7 @@ angular.module 'trPcControllers'
                     $scope.companyProgress.schoolChallenge = meta.value
                   if meta.name == 'school-goal'
                     $scope.companyProgress.schoolChallengeLevel = meta.value
+                  amt = $scope.participantProgress.raised / 100
                   if amt >= Number((meta.value).replace('$', '').replace(/,/g, ''))
                     $scope.schoolChallenges.push
                       id: 'student'
