@@ -1,7 +1,7 @@
 <div cg-busy="dashboardPromises">
   <div ng-if="participantRegistration.companyInformation.isCompanyCoordinator != 'true' || location == '/dashboard-student'" ng-cloak>
     <div class="row">
-      <div class="(schoolChallenges && schoolChallenges.length > 0) ? col-sm-6 : col-md-12" ng-if="coordinatorMessage.message && coordinatorMessage.message != ''" ng-cloak> 
+      <div ng-class="(schoolChallenges && schoolChallenges.length > 0) ? col-sm-7 : col-sm-12" ng-if="coordinatorMessage.message && coordinatorMessage.message != ''" ng-cloak> 
         <div class="hv-image" ng-init="hvImgNotesrc='note-peek.png';" ng-mouseover="hvImgNotesrc='note-peek-animated.gif';" ng-mouseout="hvImgNotesrc='note-peek.png';">
 	  <img class="ym-coordinator-message-monster" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy21/{{hvImgNotesrc}}" alt="Character peeking out">
         </div>
@@ -14,7 +14,7 @@
     	  </div>
         </section>
       </div>
-      <div class="col-sm-6 ym-pc-dashboard-badges-section__column event-secondary-medium" ng-if="schoolChallenges && schoolChallenges.length > 0" ng-cloak>
+      <div class="col-sm-5 ym-pc-dashboard-badges-section__column event-secondary-medium" ng-if="schoolChallenges && schoolChallenges.length > 0" ng-cloak>
         <div class="ym-pc-dashboard-badges-box">
           <div id="ym-pc-dashboard-badges-panel--student" aria-label="Your Badges">
             <div class="ym-pc-dashboard-section-header">
@@ -22,13 +22,10 @@
                 Your Badges
               </h3>
             </div>
-            <div class="ym-pc-dashboard-badges-icon" ng-repeat="schoolChallenge in schoolChallenges" ng-cloak>
-              <div ng-if="schoolChallenge.earned">
-                <img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy21/badge-challenge-{{schoolChallenge.id}}.png" alt="{{schoolChallenge.label}}">
-              </div>
-              <div ng-if="schoolChallenge.earned">
-                <div class="ym-pc-dashboard-mission-accomplished">Mission Accomplished</div>
-                <span class="ym-pc-dashboard-completed-label">{{schoolChallenge.label}}!</span> <span class="sr-only" ng-if="schoolChallenge.earned">(earned)</span>
+            <div class="ym-badges__item" ng-repeat="schoolChallenge in schoolChallenges" ng-cloak>
+              <div class="ym-badge__item" ng-if="schoolChallenge.earned" ng-cloak>
+                <img class="img-responsive" ng-src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/ym-primary/image/fy21/badge-challenge-{{schoolChallenge.id}}.png" alt="{{schoolChallenge.label}}">
+                <span ng-bind-html="schoolChallenge.label"></span> <span class="sr-only">(earned)</span>
               </div>
             </div>
           </div>
