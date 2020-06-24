@@ -384,11 +384,13 @@
 
 	    $('label:contains(Cover Fee)').closest('.form-input-label-block').remove();
 
-            if (getDonationAmount() > 0 && $('#cover_fee_radio_Yes').is(':checked')) {
-               var initAmt = parseFloat(getDonationAmount());
-               var toDonate =  initAmt + parseFloat((getDonationAmount() * 0.029 + .30).toFixed(2));
+            if (getDonationAmount() > 0) {
 	       var feeVal = parseFloat((getDonationAmount() * 0.029 + .30).toFixed(2));
 	       $('label[for=cover_fee_radio_Yes]').html($('label[for=cover_fee_radio_Yes]').html().replace("[amt]","$"+feeVal));
+	    }
+	    if (getDonationAmount() > 0 && $('#cover_fee_radio_Yes').is(':checked')) {
+               var initAmt = parseFloat(getDonationAmount());
+               var toDonate =  initAmt + parseFloat((getDonationAmount() * 0.029 + .30).toFixed(2));
                $('button#pstep_finish').html("Donate $" + toDonate);
                $('.bb-additional-amount').text(toDonate)
             } else {
@@ -399,11 +401,11 @@
 	    }
 
             $("#cover_fee_radio_Yes").click(function() {
+	       $('label[for=cover_fee_radio_Yes]').html($('label[for=cover_fee_radio_Yes]').html().replace("[amt]","$"+feeVal));
+               var toDonate =  initAmt + parseFloat((getDonationAmount() * 0.029 + .30).toFixed(2));
                if ($(this).is(':checked')) {
                   var initAmt = parseFloat(getDonationAmount());
 	          var feeVal = parseFloat((getDonationAmount() * 0.029 + .30).toFixed(2));
-	          $('label[for=cover_fee_radio_Yes]').html($('label[for=cover_fee_radio_Yes]').html().replace("[amt]","$"+feeVal));
-                  var toDonate =  initAmt + parseFloat((getDonationAmount() * 0.029 + .30).toFixed(2));
                   $('button#pstep_finish').html("Donate $" + toDonate);
                   $('.bb-additional-amount').text(toDonate)
                } else {
@@ -413,11 +415,11 @@
                }
             });
             jQuery('[id^=level_]').change(function() {
+               var feeVal = parseFloat((getDonationAmount() * 0.029 + .30).toFixed(2));
+	       $('label[for=cover_fee_radio_Yes]').html($('label[for=cover_fee_radio_Yes]').html().replace("[amt]","$"+feeVal));
                if ($("#cover_fee_radio_Yes").is(':checked')) {
                   var initAmt = parseFloat(getDonationAmount());
                   var toDonate =  initAmt + parseFloat((getDonationAmount() * 0.029 + .30).toFixed(2));
-  	          var feeVal = parseFloat((getDonationAmount() * 0.029 + .30).toFixed(2));
-	          $('label[for=cover_fee_radio_Yes]').html($('label[for=cover_fee_radio_Yes]').html().replace("[amt]","$"+feeVal));
                   $('button#pstep_finish').html("Donate $" + toDonate);
                   $('.bb-additional-amount').text(toDonate)
                } else {
@@ -427,11 +429,11 @@
                }
             });
             $('.donation-level-user-entered input').blur(function() {
+	       var feeVal = parseFloat((getDonationAmount() * 0.029 + .30).toFixed(2));
+	       $('label[for=cover_fee_radio_Yes]').html($('label[for=cover_fee_radio_Yes]').html().replace("[amt]","$"+feeVal));
                if ($("#cover_fee_radio_Yes").is(':checked')) {
                   var initAmt = parseFloat(getDonationAmount());
                   var toDonate =  initAmt + parseFloat((getDonationAmount() * 0.029 + .30).toFixed(2));
-	          var feeVal = parseFloat((getDonationAmount() * 0.029 + .30).toFixed(2));
-	          $('label[for=cover_fee_radio_Yes]').html($('label[for=cover_fee_radio_Yes]').html().replace("[amt]","$"+feeVal));
                   $('button#pstep_finish').html("Donate $" + toDonate);
                   $('.bb-additional-amount').text(toDonate)
                } else {
