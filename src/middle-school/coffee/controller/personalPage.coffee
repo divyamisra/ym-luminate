@@ -20,6 +20,7 @@ angular.module 'ahaLuminateControllers'
       $scope.eventDate =''
       $rootScope.numTeams = ''
       $rootScope.survivor = false
+      $scope.companyProgress = {}
       
       $scope.prizes = []
       $scope.schoolChallenges = []
