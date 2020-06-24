@@ -401,11 +401,11 @@
 	    }
 
             $("#cover_fee_radio_Yes").click(function() {
+              var feeVal = parseFloat((getDonationAmount() * 0.029 + .30).toFixed(2));
 	       $('label[for=cover_fee_radio_Yes]').html($('label[for=cover_fee_radio_Yes]').html().replace("[amt]","$"+feeVal));
-               var toDonate =  initAmt + parseFloat((getDonationAmount() * 0.029 + .30).toFixed(2));
                if ($(this).is(':checked')) {
                   var initAmt = parseFloat(getDonationAmount());
-	          var feeVal = parseFloat((getDonationAmount() * 0.029 + .30).toFixed(2));
+                  var toDonate =  initAmt + parseFloat((getDonationAmount() * 0.029 + .30).toFixed(2));
                   $('button#pstep_finish').html("Donate $" + toDonate);
                   $('.bb-additional-amount').text(toDonate)
                } else {
