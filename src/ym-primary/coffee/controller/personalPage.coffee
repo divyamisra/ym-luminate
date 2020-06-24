@@ -26,6 +26,7 @@ angular.module 'ahaLuminateControllers'
       $scope.challengeName = null
       $scope.challengeCompleted = 0
       $rootScope.survivor = false
+      $scope.companyProgress = {}
 
       $scope.prizes = []
       $scope.schoolChallenges = []
