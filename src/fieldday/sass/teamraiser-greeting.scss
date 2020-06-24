@@ -9,7 +9,7 @@
   .event-info-banner {
     min-height: 210px;
     width: 100%;
-    background-image: url("http://localhost:8000/src/fieldday/img/aha-fieldday-greeting-hero@2x.jpg");
+    background-image: url('https://secure3.convio.net/heartdev/images/content/pagebuilder/aha-fieldday-greeting-banner_2x.jpg');
     background-size: cover;
     background-position: top center;
     @include media-breakpoint-up(lg) {
@@ -149,14 +149,14 @@
       height: 623px;
     }
     width: 100%;
-    background-image: url("http://localhost:8000/src/fieldday/img/aha-fieldday-greeting-banner@2x.jpg");
+    background-image: url('https://secure3.convio.net/heartdev/images/content/pagebuilder/aha-fieldday-greeting-banner_2x.jpg');
     background-size: cover;
     background-position: center;
   }
 
   .top-lists {
     background-color: $red-deep;
-    background-image: url(https://secure3.convio.net/heartdev/images/content/pagebuilder/background-squiggles.png);
+    background-image: url('https://secure3.convio.net/heartdev/images/content/pagebuilder/background-squiggles.png');
     background-repeat: no-repeat;
     background-position: right top;
     background-size: 100%;
@@ -252,9 +252,18 @@
     h2 {
       color: $red;
       font-size: 1.3em;
+      @include media-breakpoint-up(lg) {
+        font-size: 2.2em;
+      }
+      @include media-breakpoint-up(lg) {
+        max-width: 32%;
+      }
     }
     p {
       font-size: 0.78em;
+      @include media-breakpoint-up(lg) {
+        font-size: 1em;
+      }
       &.marketing-call-out_button {
         text-align: center;
       }
