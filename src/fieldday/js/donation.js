@@ -387,7 +387,7 @@
 	    $('label[for=cover_fee_radio_Yes]').html($('label[for=cover_fee_radio_Yes]').html().replace("[amt]","<span class='feeVal'>$0</span>"));
             if (getDonationAmount() > 0) {
 	       var feeVal = parseFloat((getDonationAmount() * 0.029 + .30).toFixed(2));
-	       $('.feeVal').html("$"+feeVal);
+	       $('.feeVal').html("$"+feeVal.toFixed(2));
 	    }
 	    if (getDonationAmount() > 0 && $('#cover_fee_radio_Yes').is(':checked')) {
                var initAmt = parseFloat(getDonationAmount());
@@ -403,7 +403,7 @@
 
             $("#cover_fee_radio_Yes").click(function() {
                var feeVal = parseFloat((getDonationAmount() * 0.029 + .30).toFixed(2));
-	       $('.feeVal').html("$"+feeVal);
+	       $('.feeVal').html("$"+feeVal.toFixed(2));
                if ($(this).is(':checked')) {
                   var initAmt = parseFloat(getDonationAmount());
                   var toDonate =  initAmt + parseFloat((getDonationAmount() * 0.029 + .30).toFixed(2));
@@ -417,7 +417,7 @@
             });
             jQuery('[id^=level_]').change(function() {
                var feeVal = parseFloat((getDonationAmount() * 0.029 + .30).toFixed(2));
-	       $('.feeVal').html("$"+feeVal);
+	       $('.feeVal').html("$"+feeVal.toFixed(2));
                if ($("#cover_fee_radio_Yes").is(':checked')) {
                   var initAmt = parseFloat(getDonationAmount());
                   var toDonate =  initAmt + parseFloat((getDonationAmount() * 0.029 + .30).toFixed(2));
@@ -431,7 +431,7 @@
             });
             $('.donation-level-user-entered input').blur(function() {
 	       var feeVal = parseFloat((getDonationAmount() * 0.029 + .30).toFixed(2));
-	       $('.feeVal').html("$"+feeVal);
+	       $('.feeVal').html("$"+feeVal.toFixed(2));
                if ($("#cover_fee_radio_Yes").is(':checked')) {
                   var initAmt = parseFloat(getDonationAmount());
                   var toDonate =  initAmt + parseFloat((getDonationAmount() * 0.029 + .30).toFixed(2));
