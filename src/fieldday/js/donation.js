@@ -384,7 +384,7 @@
 
 	    $('label:contains(Cover Fee)').closest('.form-input-label-block').remove();
 
-	    $('label[for=cover_fee_radio_Yes]').html($('label[for=cover_fee_radio_Yes]').html().replace("[amt]","<span class='feeval'>$0</span>"));
+	    $('label[for=cover_fee_radio_Yes]').html($('label[for=cover_fee_radio_Yes]').html().replace("[amt]","<span class='feeVal'>$0</span>"));
             if (getDonationAmount() > 0) {
 	       var feeVal = parseFloat((getDonationAmount() * 0.029 + .30).toFixed(2));
 	       $('.feeVal').html("$"+feeVal);
