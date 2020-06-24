@@ -1,235 +1,257 @@
 <!-- SESSION TAGS -->
 [[U0:greetingPercentage=[[E130:[[E130:"[[E42:[[S334:fr_id]]:dollars]]" ".00" "" replaceall]] [[E130:"[[E42:[[S334:fr_id]]:goal]]" ".00" "" replaceall]] / 100 * int 100 min]]]]
 
-      <!-- EVENT INFO BOX -->
-      <div class="container d-flex justify-content-center">
-          <div class="event-info box-shadow bg-white">
-              <h1> [[T9:[[E130:"[[E47:[[S334:fr_id]]:fr_info:1:event_title]]" dup 0 swap "Heart" indexof substring]]]] <span class="event-name">[[T9:[[E130:"[[E47:[[S334:fr_id]]:fr_info:1:event_title]]" dup dup "Heart" lastindexof 0 + swap length substring]]]]</span></h1>
-              [[?xMulti-Eventx::x[[E42:[[S80:evID]]:public-event-type]]x::::
-              <h2 class="event-date">[[E47:[[S334:fr_id]]:fr_info:1:event_date]]</h2>
-              ]]
-              [[?xMulti-Eventx::x[[E42:[[S80:evID]]:public-event-type]]x::
+<!-- GREETING HEADER -->
+<section class="greeting-header d-flex flex-column flex-lg-row justify-content-center box-shadow">
+    <div class="event-info-banner"></div>
+    <div class="event-info bg-white">
+      <div class="event-info__header text-center box-shadow">
+        <h1 >2020 Dallas, Texas Field Day</h1>
+      </div>
+      <div class="container">
+        <div class="event-info__content">
+          <div class="row buttons-row d-flex justify-content-center">
+            [[?x1x2x::x[[S42:0:status]]x::
+                [[?xx::x[[S48:0:part-type-id]]x::
+                    <a href="SPageServer/?pagename=fieldday_register&amp;fr_id=[[S334:fr_id]]" class="btn btn-primary col-lg col-sm-12 mx-md-2 mx-sm-0" onclick="_gaq.push(['_trackEvent', 'greeting', 'banner', 'register button']);">Register</a>
+                    ::
+                    <a href="TRC?pg=center&fr_id=[[S334:fr_id]]" class="btn btn-primary col-lg col-sm-12 mx-md-2 mx-sm-0" onclick="_gaq.push(['_trackEvent', 'greeting', 'banner', 'visit my hq button']);">Visit My HQ</a>
+                ]]
+            ::]]
+            [[?x2x3x::x[[S42:0:status]]x::
+              <a href="SPageServer/?pagename=FieldDay_Search&amp;search_type=walker&amp;cross_event=false&amp;fr_id=[[S334:fr_id]]&amp;event_search=false" class="btn btn-primary col-lg col-sm-12 mx-md-2 mx-sm-0" onclick="_gaq.push(['_trackEvent', 'greeting', 'banner', 'donate button']);">Donate</a>
+            ::]]
+          </div>
+          <p class="text-center my-4"><a href="#">View All Companies</a></p>
+          <div class="event-info__details">
+            <h2>Important Market Details</h2>
+            <p>If this will be a completely virtual event, if there are any specific notifications, or get your specific company involved. <strong>Questions?</strong> <a href="#">Contact us</a>.</p>
 
-                <!-- multi-event -->
-                <div class="row buttons-row">
-                        [[?x1x2x::x[[S42:0:status]]x::
-                            [[?xx::x[[S48:0:part-type-id]]x::
-                            <a href="SPageServer/?pagename=fieldday_register&amp;fr_id=[[S334:fr_id]]" class="btn btn-primary col-lg col-sm-12 mx-md-2 mx-sm-0" onclick="_gaq.push(['_trackEvent', 'greeting', 'banner', 'register to walk button']);">Register</a>
-                            ::
-                            <a href="TRC?pg=center&fr_id=[[S334:fr_id]]" class="btn btn-primary col-lg col-sm-12 mx-md-2 mx-sm-0" onclick="_gaq.push(['_trackEvent', 'greeting', 'banner', 'visit my hq button']);">Visit My HQ</a>
-                            ]]
-                        ::]]
-                        [[?x2x3x::x[[S42:0:status]]x::
-                          <a href="SPageServer/?pagename=FieldDay_Search&amp;search_type=walker&amp;cross_event=false&amp;fr_id=[[S334:fr_id]]&amp;event_search=false" class="btn btn-primary col-lg col-sm-12 mx-md-2 mx-sm-0" onclick="_gaq.push(['_trackEvent', 'greeting', 'banner', 'donate button']);">Donate</a>
-                        ::]]
-                    </div>
-                    <span class="multi-event-info-toggler d-none d-sm-block d-md-none" onclick="toggleMultiEventInfo(this)">See All Locations <i class="fas fa-plus float-right" aria-hidden="true"></i><span class="sr-only">Toggle event data and time info</span></span>
-                    <div class="info-columns js--multi-event-locations"></div>
-                    <div class="event-info m-0 p-0">
-                        <div class="row info-columns m-0">
-                            <i class="fas fa-info-circle" aria-hidden="true"></i>&nbsp;
-                            <a href="TR?fr_id=[[S334:fr_id]]&pg=informational&type=fr_informational&sid=1020">More Details</a>
-                        </div>
-                    </div>
-                    
-              ::
-                <!-- single event -->
-                <div class="row buttons-row">
-                        [[?x1x2x::x[[S42:0:status]]x::
-                            [[?xx::x[[S48:0:part-type-id]]x::
-                                <a href="SPageServer/?pagename=fieldday_register&amp;fr_id=[[S334:fr_id]]" class="btn btn-primary col-lg col-sm-12 mx-md-2 mx-sm-0" onclick="_gaq.push(['_trackEvent', 'greeting', 'banner', 'register to walk button']);">Register</a>
-                                ::
-                                <a href="TRC?pg=center&fr_id=[[S334:fr_id]]" class="btn btn-primary col-lg col-sm-12 mx-md-2 mx-sm-0" onclick="_gaq.push(['_trackEvent', 'greeting', 'banner', 'visit my hq button']);">Visit My HQ</a>
-                            ]]
-                        ::]]
-                        [[?x2x3x::x[[S42:0:status]]x::
-                          <a href="SPageServer/?pagename=FieldDay_Search&amp;search_type=walker&amp;cross_event=false&amp;fr_id=[[S334:fr_id]]&amp;event_search=false" class="btn btn-primary col-lg col-sm-12 mx-md-2 mx-sm-0" onclick="_gaq.push(['_trackEvent', 'greeting', 'banner', 'donate button']);">Donate</a>
-                        ::]]
-                    </div>
-                    <div class="row info-columns">
-                        <div class="col-lg col-md col-sm-12 pl-0 event-info-expand">
-                            <h3>Date & Time <span class="d-none d-sm-block d-md-none float-right"><i class="fas fa-plus" aria-hidden="true"></i><span class="sr-only">Toggle event data and time info</span></span></h3>
-                            <div class="event-info-collapse d-sm-none d-xsm-none d-md-block">
-                                <p>
-                                    <span class="tr-event-date">
-                                    [[E47:[[S334:fr_id]]:fr_info:1:event_date]]<br></span>
-                                    <span class="tr-event-checkin">Check-In: [[E47:[[S334:fr_id]]:fr_info:1:sponsor_1]]<br></span>
-                                    <span class="tr-event-start">Start Time: [[E47:[[S334:fr_id]]:fr_info:1:sponsor_2]]</span>
-                                </p>
-                                <div>
-                                    <i class="fas fa-info-circle" aria-hidden="true"></i>
-                                    <a href="TR?fr_id=[[S334:fr_id]]&pg=informational&type=fr_informational&sid=1020" onclick="_gaq.push(['_trackEvent', 'greeting', 'banner', 'more details']);">More Details</a>
-                                    <!-- <a href="TR?fr_id=[[S334:fr_id]]&pg=informational&type=fr_informational&sid=1071">More Details</a> -->
-                                </div>
-                            </div>
-                            <!-- /.event-info-collapse -->
-                        </div>
-                        <!-- /.col -->
-                        <div class="col-lg col-md col-sm-12 pl-md-3 pl-sm-0 event-info-expand">
-                            <h3>Location <span class="d-none d-sm-block d-md-none float-right"><i class="fas fa-plus" aria-hidden="true"></i><span class="sr-only">Toggle Location Info</span></span></h3>
-                            <div class="event-info-collapse d-sm-none d-xsm-none d-md-block">
-                                <p>
-                                    [[E130:"[[T9:[[E47:[[S334:fr_id]]:fr_info:1:event_location]]]]" " | "  "<br>" replaceall]]
-                                </p>
-                                <div>
-                                    <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
-                                    <a href="[[E47:[[S334:fr_id]]:fr_info:1:map_link]]" target="_blank" onclick="_gaq.push(['_trackEvent', 'greeting', 'banner', 'get directions']);">Get Directions</a>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /.col -->
-             
-                  <div class="col-lg col-md col-sm-12 pl-md-3 pl-sm-0 event-info-expand">
-                      <h3>Contact <span class="d-none d-sm-block d-md-none float-right"><i class="fas fa-plus" aria-hidden="true"></i><span class="sr-only">Toggle Contact Info</span></span></h3>
-                      <div class="event-info-collapse d-sm-none d-xsm-none d-md-block">
-                          <p>
-                              [[E47:[[S334:fr_id]]:fr_info:1:coordinator_name]]<br>
-                              [[E47:[[S334:fr_id]]:fr_info:1:coordinator_phone]]
-                          </p>
-                          <div>
-                              <i class="fas fa-envelope" aria-hidden="true"></i>
-                              <a href="mailto:[[E47:[[S334:fr_id]]:fr_info:1:coordinator_email]]" onclick="_gaq.push(['_trackEvent', 'greeting', 'banner', 'email us']);">Email Us</a>
-                          </div>
-                      </div>
-                  </div>
-                  <!-- /.col -->
-              </div>
-              <!-- /.row -->
-              ]]
+            <p><a href="#">Learn More About Field Day</a></p>
 
-              <div class="row fundraising-amounts">
-                  <div class="col-6">
-                      <span class="d-block">Our Progress</span>
-                      <span id="progress-amount" class="amount">
-                          [[E130:"[[E42:[[S334:fr_id]]:dollars]]" ".00" "" replaceall]]
-                      </span>
-                      <!-- /.amount -->
-                  </div>
-                  <!-- /.col-6 -->
-                  <div class="col-6 text-right">
-                      <span class="d-block">Our Goal</span>
-                      <span id="goal-amount" class="amount">
-                          [[E130:"[[E42:[[S334:fr_id]]:goal]]" ".00" "" replaceall]]
-                      </span>
-                      <!-- /.amount -->
-                  </div>
-                  <!-- /.col-6 -->
-                  <div class="col-12">
-                      <div class="thermometer">
-                          <div class="thermometer-inner js__progress-bar"></div>
-                          <!-- /.thermometer-inner -->
-                      </div>
-                      <!-- /.thermometer -->
-                  </div>
-                  <!-- /.col-12 -->
-                  <div class="custom-event-management-link-container hidden col-12 mt-3">
-                    Welcome [[S1:first_name]]. <a href="https://[[S29:SECURE_DOMAIN]][[S29:SECURE_PATH]]TREM?tr.emgmt=em_event_center&amp;fr_id=[[S334:fr_id]]" target="_blank">Manage this event</a>
-                    </div>
-                  <!-- /.col-12 -->
-              </div>
-              <!-- /.row -->
 
 
           </div>
-          <!-- /.event-info -->
+        </div>
+        <div class="row fundraising-amounts">
+            <div class="col-12">
+                <div class="thermometer">
+                    <div class="thermometer-inner js__progress-bar"><svg id="Trophy_Icon" data-name="Trophy Icon" xmlns="http://www.w3.org/2000/svg" width="31.103" height="35.685" viewBox="0 0 31.103 35.685">
+                      <g id="_15" data-name="15" transform="translate(0 0)">
+                        <g id="Group_270" data-name="Group 270" transform="translate(0 2.649)">
+                          <path id="Path_814" data-name="Path 814" d="M30.7,46.985l-.495-.768.384-.247a1.7,1.7,0,0,0,.78-1.43V40.874A9.427,9.427,0,0,1,25.6,36.815a1.941,1.941,0,0,0-.947-.771,10.31,10.31,0,0,1-6.563-8.668l-.009-.1a4.919,4.919,0,0,1,4.9-5.357h.131l-.3-3.137.91-.088.4,4.14H22.98A4.005,4.005,0,0,0,18.99,27.2l.009.1a9.389,9.389,0,0,0,5.977,7.9,2.85,2.85,0,0,1,1.391,1.13,8.5,8.5,0,0,0,5.541,3.734l.373.07V44.54a2.6,2.6,0,0,1-1.2,2.2Z" transform="translate(-18.061 -18.695)"/>
+                        </g>
+                        <g id="Group_271" data-name="Group 271" transform="translate(3.427)">
+                          <rect id="Rectangle_210" data-name="Rectangle 210" width="23.993" height="0.914"/>
+                        </g>
+                        <g id="Group_272" data-name="Group 272" transform="translate(16.628 2.649)">
+                          <path id="Path_815" data-name="Path 815" d="M56.025,46.985l-.384-.247a2.6,2.6,0,0,1-1.2-2.2V40.124l.372-.07A8.51,8.51,0,0,0,60.3,36.4a2.911,2.911,0,0,1,1.48-1.135,9.352,9.352,0,0,0,6.2-7.975l.009-.1A4,4,0,0,0,64,22.835H62.6l.4-4.14.91.088-.3,3.137H64a4.92,4.92,0,0,1,4.9,5.356l-.009.1a10.27,10.27,0,0,1-6.807,8.757,2,2,0,0,0-1.021.777,9.438,9.438,0,0,1-5.705,3.964V44.54a1.694,1.694,0,0,0,.78,1.43l.384.247Z" transform="translate(-54.441 -18.695)"/>
+                        </g>
+                        <g id="Group_273" data-name="Group 273" transform="translate(7.366 32.256)">
+                          <path id="Path_816" data-name="Path 816" d="M50.292,86.9h-.914V84.386H35.09V86.9h-.914V83.472H50.292Z" transform="translate(-34.176 -83.472)"/>
+                        </g>
+                        <g id="Group_274" data-name="Group 274" transform="translate(2.391 8.236)">
+                          <path id="Path_817" data-name="Path 817" d="M28.07,40.457l-.8-.447a7.731,7.731,0,0,1-3.952-6.145l-.016-.191a2.553,2.553,0,0,1,2.544-2.756H27.1l.793,8.172q.019.231.052.458Zm-2.225-8.625A1.638,1.638,0,0,0,24.212,33.6l.016.191a6.812,6.812,0,0,0,2.709,4.916l-.667-6.876Z" transform="translate(-23.292 -30.918)"/>
+                        </g>
+                        <g id="Group_275" data-name="Group 275" transform="translate(23.648 8.236)">
+                          <path id="Path_818" data-name="Path 818" d="M69.8,40.564l.137-.877q.046-.3.072-.6l.793-8.171h1.51a2.552,2.552,0,0,1,2.544,2.757l-.015.19a7.789,7.789,0,0,1-4.247,6.3Zm1.831-8.732-.687,7.073a6.771,6.771,0,0,0,2.984-5.113l.015-.191a1.637,1.637,0,0,0-1.633-1.769Z" transform="translate(-69.8 -30.918)"/>
+                        </g>
+                      </g>
+                      <g id="Group_276" data-name="Group 276" transform="translate(9.777 8.448)">
+                        <path id="Path_819" data-name="Path 819" d="M45.253,41.035h0a11.724,11.724,0,0,1-4.611-3.348,3.976,3.976,0,0,1-.771-3.651,2.99,2.99,0,0,1,2.969-2.4,3.429,3.429,0,0,1,2.418.971,3.42,3.42,0,0,1,2.417-.971,2.934,2.934,0,0,1,2.928,2.4,4,4,0,0,1-.792,3.691,11.616,11.616,0,0,1-4.556,3.307Zm-2.416-8.85A2.448,2.448,0,0,0,40.4,34.2c-.456,1.508.2,3.008,1.941,4.458a13.47,13.47,0,0,0,2.914,1.8,13.35,13.35,0,0,0,2.9-1.8c1.733-1.449,2.38-2.949,1.923-4.457a2.42,2.42,0,0,0-2.4-2.012,2.841,2.841,0,0,0-2.193.987.279.279,0,0,1-.45,0A2.85,2.85,0,0,0,42.837,32.185Z" transform="translate(-39.589 -31.518)"/>
+                        <path id="Path_820" data-name="Path 820" d="M45.138,41.015h-.046l-.015-.007a11.9,11.9,0,0,1-4.666-3.388,4.083,4.083,0,0,1-.789-3.752A3.1,3.1,0,0,1,42.7,31.382a3.551,3.551,0,0,1,2.418.928,3.553,3.553,0,0,1,2.418-.928,3.039,3.039,0,0,1,3.038,2.486,4.109,4.109,0,0,1-.809,3.793,11.718,11.718,0,0,1-4.615,3.349ZM42.7,32.164a2.341,2.341,0,0,0-2.33,1.93c-.442,1.46.2,2.919,1.9,4.337A13.247,13.247,0,0,0,45.116,40.2a13.2,13.2,0,0,0,2.822-1.766c1.694-1.417,2.33-2.876,1.888-4.337a2.316,2.316,0,0,0-2.29-1.93,2.726,2.726,0,0,0-2.1.946.426.426,0,0,1-.306.155.435.435,0,0,1-.319-.155A2.732,2.732,0,0,0,42.7,32.164Z" transform="translate(-39.453 -31.382)"/>
+                      </g>
+                    </svg>
+                  </div>
+                    <!-- /.thermometer-inner -->
+                </div>
+                <!-- /.thermometer -->
+            </div>
+            <!-- /.col-12 -->
+            <div class="col-6">
+                <span class="d-block">Our Progress</span>
+                <span id="progress-amount" class="amount">
+                    [[E130:"[[E42:[[S334:fr_id]]:dollars]]" ".00" "" replaceall]]
+                </span>
+                <!-- /.amount -->
+            </div>
+            <!-- /.col-6 -->
+            <div class="col-6 text-right">
+                <span class="d-block">Our Goal</span>
+                <span id="goal-amount" class="amount">
+                    [[E130:"[[E42:[[S334:fr_id]]:goal]]" ".00" "" replaceall]]
+                </span>
+                <!-- /.amount -->
+            </div>
+            <!-- /.col-6 -->
+            <div class="custom-event-management-link-container hidden col-12 mt-3">
+              Welcome [[S1:first_name]]. <a href="https://[[S29:SECURE_DOMAIN]][[S29:SECURE_PATH]]TREM?tr.emgmt=em_event_center&amp;fr_id=[[S334:fr_id]]" target="_blank">Manage this event</a>
+            </div>
+        </div>
+        <!-- /.row -->
       </div>
-      <!-- /.container -->
-      <!-- END EVENT INFO BOX -->
+    </div>
+    <!-- /.event-info -->
+</section>
+<!-- END GREETING HEADER -->
 
-      <!-- TOP LISTS -->
-      <div class="container container-wide top-lists-container">
-          <h2 class="text-center">Outstanding Fundraisers&nbsp;<span class="d-sm-none d-md-inline">-</span>&nbsp; <br class="d-sm-block d-md-none"/> <span class="event-name">[[E47:[[S334:fr_id]]:fr_info:1:event_title]]</span></h2>
-          <div class="row">
-              <div class="col-lg col-md-12 top-list js--company-top-list">
-                  <h3 class="d-flex bg-gray-700">
-                      <span class="flex-grow-1">
-                          Top 5 Companies
-                      </span>
-                      <!-- /.flex-grow-1 -->
-                      <span class="text-small">Out of <span class="js--num-companies"></span> Total</span>
-                  </h3>
-                  <ul></ul>
-                  <div class="top-list-footer bg-gray-700 d-flex justify-content-center">
-                      <a href="TR?fr_id=[[S334:fr_id]]&pg=complist" class="btn btn-tertiary" onclick="_gaq.push(['_trackEvent', 'greeting', 'leaderboards', 'view all companies']);">View All Companies</a>
-                  </div>
-                  <!-- /.top-list-footer -->
-              </div>
-              <!-- /.col -->
-              <div class="col-lg col-md-12 top-list js--team-top-list">
-                  <h3 class="d-flex bg-gray-700">
-                      <span class="flex-grow-1">Top 5 Teams</span>
-                      <span class="text-small">Out of [[E42:[[S334:fr_id]]:num-teams]] Total</span>
-                  </h3>
-                  <ul></ul>
-                  <div class="top-list-footer bg-gray-700 d-flex justify-content-center">
-                    <form class="js--greeting-team-search-form d-flex w-100" onsubmit="_gaq.push(['_trackEvent', 'greeting', 'leaderboards', 'team search']);">
-                      <div class="input-group mx-5">
-                          <label for="teamName" class="sr-only">Search by team name</label>
-                          <input id="teamName" type="text" class="form-control" placeholder="Search by team name" aria-label="Search by team name">
-                          <div class="input-group-append">
-                              <button class="btn btn-primary btn-outline-secondary" type="submit"><i class="fas fa-search" aria-hidden="true"></i><span class="sr-only">Team Search Button</span></button>
-                          </div>
-                      </div>
-                    </form>
-                  </div>
-                  <!-- /.top-list-footer -->
-              </div>
-              <!-- /.col -->
-              <div class="col-lg col-md-12 top-list js--walker-top-list">
-                  <h3 class="d-flex bg-gray-700">
-                      <span class="flex-grow-1">Top 5 Walkers</span>
-                      <span class="text-small">Out of [[E42:[[S334:fr_id]]:num-participants]] Total</span>
-                  </h3>
-                  <ul></ul>
-                  <div class="top-list-footer bg-gray-700 d-flex justify-content-center">
-                    <form class="js--greeting-walker-search-form d-flex w-100" onsubmit="_gaq.push(['_trackEvent', 'greeting', 'leaderboards', 'participant search']);">
-                      <div class="input-group mx-5">
-                        <label for="walkerFirstName" class="sr-only">Walker First Name</label>
-                          <input id="walkerFirstName" name="walkerFirstName" type="text" placeholder="Search by first name" class="form-control">
-                          <label for="walkerLastName" class="sr-only">Walker Last Name</label>
-                          <input id="walkerLastName" type="text" placeholder="Search by last name" class="form-control">
-                          <div class="input-group-append">
-                              <button class="btn btn-primary btn-outline-secondary" type="submit"><i class="fas fa-search" aria-hidden="true"></i><span class="sr-only">Walker Search Button</span></button>
-                          </div>
-                      </div>
-                    </form>
-                  </div>
-                  <!-- /.top-list-footer -->
-              </div>
-              <!-- /.col -->
-          </div>
-          <!-- /.row -->
-      </div>
-      <!-- /.container container-wide -->
-      <!-- END TOP LISTS -->
+<!--GREETING ABOUT-->
+<section class="greeting-about bg-white mt-5">
+  <div class="container">
+    <h2 class="text-center pb-3 pb-md-5">About Field Day in Dallas, TX</h2>
+    <div class="row">
+      <div class="col-lg-8">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 
-      <!-- ABOUT EVENT SECTION -->
-      <div class="bg-white about-event">
-          <div class="container container-content">
-              <div class="row d-flex flex-lg-row flex-md-column flex-sm-column flex-xsm-column">
-                  <div class="about-image-box">
-                      <img src="[[E47:[[S334:fr_id]]:fr_info:1:sponsor_3]]" alt="About the [[E47:[[S334:fr_id]]:fr_info:1:event_title]]"/>
-                      <div class="bg-black-gradient">
-                          [[?x1x2x::x[[S42:0:status]]x::
-                          <a href="SPageServer/?pagename=fieldday_register&amp;fr_id=[[S334:fr_id]]" class="btn btn-primary" onclick="_gaq.push(['_trackEvent', 'greeting', 'about', 'register to walk button']);">Register</a>
-                          ::]]
-                          <!-- /.btn btn-primary -->
-                          <!-- <a href="TR?fr_id=[[S334:fr_id]]&pg=informational&type=fr_informational&sid=1071" class="btn btn-tertiary">More Details</a> -->
-                          <a href="TR?fr_id=[[S334:fr_id]]&pg=informational&type=fr_informational&sid=1020" class="btn btn-tertiary" onclick="_gaq.push(['_trackEvent', 'greeting', 'about', 'more details button']);">More Details</a>
-                          <!-- /.btn btn-tertiary -->
-                      </div>
-                      <!-- /.bg-black-gradient -->
-                  </div>
-                  <!-- /.about-image-box -->
-                  <div class="about-content-area">
-                      <h2>About the <span class="text-red">[[E47:[[S334:fr_id]]:fr_info:1:event_title]]</span></h2>
-                      <div class="js--greeting-text"></div>
-                  </div>
-                  <!-- /.about-content-area -->
-              </div>
-              <!-- /.row -->
-          </div>
-          <!-- /.container-content -->
+        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis.</p>
+
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+
+        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
       </div>
-      <!-- /.bg-white -->
-      <!-- END ABOUT EVENT SECTION -->
+      <div class="col-lg-4 text-center">
+        <div class="col-12">
+          <svg xmlns="http://www.w3.org/2000/svg" width="153.095" height="253.151" viewBox="0 0 153.095 253.151"><g transform="translate(-22.666 -1.736)"><path d="M59.278,38.605a1.994,1.994,0,0,0-1.993-1.993H24.659a1.993,1.993,0,1,0,0,3.987H57.285A1.992,1.992,0,0,0,59.278,38.605Z" transform="translate(0 56.598)"/><path d="M50.831,42.184a1.993,1.993,0,1,0,2.817-2.82L34.126,19.842a1.994,1.994,0,0,0-2.82,2.82Z" transform="translate(13.074 28.439)"/><path d="M64.6,42.184a1.995,1.995,0,0,0,2.817,0L86.939,22.662a1.993,1.993,0,0,0-2.817-2.82L64.6,39.364A1.993,1.993,0,0,0,64.6,42.184Z" transform="translate(67.105 28.439)"/><path d="M101.7,36.612H69.07a1.993,1.993,0,1,0,0,3.987H101.7a1.993,1.993,0,1,0,0-3.987Z" transform="translate(72.072 56.598)"/><path d="M138.688,250.9h-9.072c-.01-.047-.021-.092-.034-.136l-16.967-60.43-.021-.071-8.23-29.321,3.7-73.82c0-.039.005-.079.005-.118l1.938-38.658a1.994,1.994,0,0,0,1.728-1.091l7.543-14.882a1.992,1.992,0,0,0-3.554-1.8l-1.314,2.591c.165-1.721.16-6.332-4.191-8.585-4.32-2.235-7.59-.231-8.71,1.144a2,2,0,0,0-.388,1.765l-.013.016A13.137,13.137,0,0,0,93.916,15.1l-2.088-.949c1.138-3.263,1.563-9.159-3.974-11.664a6.891,6.891,0,0,0-5.87-.189c-2.8,1.264-4.113,4.215-4.527,5.348a1.434,1.434,0,0,0-1.815.674L65.1,29.113a1.443,1.443,0,0,0,.69,1.965l.8.365a9.048,9.048,0,0,0-1.243,6.166,6.881,6.881,0,0,0,3.617,4.619,7.85,7.85,0,0,0,3.9,1.086c3.853,0,6.893-3.132,8.207-5.3l1.057.48a13.014,13.014,0,0,0,5.9,1.414,13.155,13.155,0,0,0,9.652-4.231,1.94,1.94,0,0,0,.779.774l.323.163a1.758,1.758,0,0,0-.068.309L94.824,64.705a1.992,1.992,0,1,0,3.945.553L102.516,38.5l3.9,1.975L104.2,84.686l-7.378-1.06H96.8A27.485,27.485,0,0,0,96.8,76.98a4.046,4.046,0,0,0,1.186-1.6,3.944,3.944,0,0,0-1.82-4.923c-.121-.058-.241-.11-.362-.155a4.885,4.885,0,0,0-1.689-.26c-.013-.016-.021-.037-.034-.052-2-2.494-4.941-3.863-8.739-4.065a11.082,11.082,0,0,0-8.1,2.712,12.146,12.146,0,0,0-3.772,8.671c-.231,4.679-.852,17.109,7.268,20.233A9.649,9.649,0,0,0,84.2,98.2a9.99,9.99,0,0,0,4.981-1.385,15.952,15.952,0,0,0,6.9-9.3,1.707,1.707,0,0,0,.163.058L104,88.683l-3.2,63.845H69.314L68.37,126.94a1.95,1.95,0,0,0-2.064-1.92,1.994,1.994,0,0,0-1.917,2.064l.034.915a2.007,2.007,0,0,0-.674.388l-1.041.908-7.716-8.38,13.266-14.258c3.027-2.069,15.152-1.849,22.905-1.023a1.993,1.993,0,1,0,.425-3.963c-3.428-.367-20.768-1.993-25.872,1.9a2.511,2.511,0,0,0-.249.226L50.82,119.543l-.01.016L40.048,131.123c-1.212,1.306-3.042,3.281,20.146,35.681a1.993,1.993,0,1,0,3.242-2.319c-9.211-12.87-18.866-27.592-19.957-31.2l8.789-9.447,7.433,8.076L55.027,136a1.993,1.993,0,0,0-.467,2.408L65.6,160.048l.108,2.906-8.162,31.624c-.01.031-.018.063-.026.094L43.031,250.806c-.01.031-.016.066-.024.1H32.935a1.992,1.992,0,1,0,0,3.984H53.858a2,2,0,0,0,1.878-1.322l28.909-81.219,31.7,81.274a1.989,1.989,0,0,0,1.857,1.267h20.482a1.992,1.992,0,1,0,0-3.984ZM81.117,9.24c.223-.708,1.112-2.686,2.521-3.318a3.026,3.026,0,0,1,2.573.2c3.084,1.393,2.429,4.834,1.957,6.371L81.1,9.279C81.1,9.266,81.112,9.256,81.117,9.24ZM70.927,38.757A3.037,3.037,0,0,1,69.251,36.8a5.553,5.553,0,0,1,1-3.7L77.4,36.342C76.59,37.485,74.054,40.52,70.927,38.757Zm26.236-7.331a10.249,10.249,0,0,1-13.788,4.467L68.351,29.077l9.24-18.223,15.081,6.84A10.231,10.231,0,0,1,97.163,31.427Zm11.228-3.3a3.91,3.91,0,0,1,2.027,3.058l-5.812-2.945C104.733,28.093,105.96,26.866,108.392,28.122Zm-8.128,4.768a1.958,1.958,0,0,0-.535-.147l.008-.013v0a12.842,12.842,0,0,0,.863-2.24,2.012,2.012,0,0,0,.627.5l11.367,5.76-.963,1.9-1.684-.852a1.973,1.973,0,0,0-1.262-.64Zm-6.68,52.218A13.185,13.185,0,0,1,87.7,94.223a6.733,6.733,0,0,1-5.886.53c-4.76-1.831-5.534-8.713-5.442-14.7,4.556-.766,9.285-3.667,10.219-6.158,1.516,1.406,4.6,3.5,7.278,3.8A27.8,27.8,0,0,1,93.583,85.108ZM58.817,137.977,64.6,132.93l.65,17.665ZM52.452,250.9H47.12l13.754-53.278,9.526,2.854Zm33.966-84.985a2.138,2.138,0,0,0-1.888-1.267,1.992,1.992,0,0,0-1.846,1.322L71.738,196.718l-9.864-2.953,7.769-30.094a1.925,1.925,0,0,0,.063-.572l-.241-6.583h31.13l-.228,4.556a2.035,2.035,0,0,0,.071.64l7.842,27.923-10.95,4.259Zm33.15,84.985-20.789-53.3,10.583-4.115L125.479,250.9Z" transform="translate(13.431)"/></g></svg>
+        </div>
+        <div class="col-12">
+          [[?x1x2x::x[[S42:0:status]]x::
+          <a href="SPageServer/?pagename=fieldday_register&amp;fr_id=[[S334:fr_id]]" class="btn btn-primary col-9 mt-4 mb-3" onclick="_gaq.push(['_trackEvent', 'greeting', 'about', 'register button']);">Register</a>
+          ::]]
+          <button class="btn btn-secondary col-9">Donate</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--END GREETING ABOUT-->
+
+<!--VISUAL BANNER-->
+<div class="greeting-visual-banner"></div>
+<!--END VISUAL BANNER-->
+
+<!-- TOP LISTS -->
+<section class="top-lists">
+  <div class="container container-wide top-lists-container">
+    <div class="row">
+      <div class="col-12 pt-5 pb-4 text-center">
+              <svg xmlns="http://www.w3.org/2000/svg" width="110.454" height="105.749" viewBox="0 0 110.454 105.749"><g transform="translate(-217.28 -3015.536)"><path d="M266.237,3033.158a4.045,4.045,0,0,0-3.013.889,4.1,4.1,0,0,0-1.5,2.727l-4.025,24.047-.551-.472a7.655,7.655,0,0,0-5.01-1.882,7.776,7.776,0,0,0-7.768,7.768,7.637,7.637,0,0,0,1.841,4.958l.27.322-2,1.6a5.552,5.552,0,0,0-2.084,4.4l.054,5.52-.046.087a4.284,4.284,0,0,0-.3,3.208l2.541,8.467a4.287,4.287,0,0,0,2.089,2.557,4.309,4.309,0,0,0,5.842-1.755,4.284,4.284,0,0,0,.332-3.284l-2.541-8.465a4.268,4.268,0,0,0-4.869-2.986l-.478.083-.033-3.457a2.976,2.976,0,0,1,1.118-2.36l2.5-2.007.232.109a7.634,7.634,0,0,0,3.3.768,7.7,7.7,0,0,0,7.543-9.55l-.03-.125,4.642-27.256a1.516,1.516,0,0,1,1.483-1.351l.184.01a1.511,1.511,0,0,1,1.345,1.6l-4.887,39.22v23.46a1.294,1.294,0,1,0,2.587,0l0-23.4,4.877-39.062A4.084,4.084,0,0,0,266.237,3033.158Zm-8.917,33.078a5.181,5.181,0,1,1-5.181-5.181A5.187,5.187,0,0,1,257.32,3066.236Zm-12.6,18.042a1.728,1.728,0,0,1,3.174.324l2.54,8.465a1.726,1.726,0,0,1-1.159,2.148,1.733,1.733,0,0,1-1.315-.133,1.713,1.713,0,0,1-.833-1.024l-2.541-8.465A1.707,1.707,0,0,1,244.719,3084.277Z" transform="translate(15.864 11.328)" fill="#fff"/><path d="M300.457,3059.113a4.051,4.051,0,0,0-2.9-1.389l-.179,0a4.06,4.06,0,0,0-4.045,3.522l-1.8,11.1-9.788,2.558.288-.748a7.663,7.663,0,0,0,.536-2.778,7.777,7.777,0,0,0-7.768-7.767,7.6,7.6,0,0,0-2.6.481l-.465.166-1.151-7.342,4.362-12.885a4.234,4.234,0,0,0-2.283-5.442,4.153,4.153,0,0,0-1.659-.342,4.322,4.322,0,0,0-3.917,2.544l-5.567,14.285a1.375,1.375,0,0,0-.087.482l.238,22.229-3.565,21a1.215,1.215,0,0,0,.214.934,1.509,1.509,0,0,0,1.062.577,1.286,1.286,0,0,0,1.272-1.078l3.611-21.384-.24-22.06,5.467-14.028a1.7,1.7,0,0,1,2.148-.787,1.668,1.668,0,0,1,.86,2.214l-4.471,13.207a1.3,1.3,0,0,0-.051.615l1.382,8.848-.14.146a7.752,7.752,0,0,0,5.579,13.151,7.565,7.565,0,0,0,1.958-.282L293,3074.638a1.3,1.3,0,0,0,.948-1.045L295.9,3061.6a1.525,1.525,0,0,1,1.548-1.3,1.489,1.489,0,0,1,1.062.51,1.517,1.517,0,0,1,.365,1.1l-2.692,15.955-16.849,6.213a1.282,1.282,0,0,0-.835,1.049l-2.612,20.073a1.293,1.293,0,0,0,1.141,1.451l.145.01a1.3,1.3,0,0,0,1.282-1.126l2.51-19.3,16.818-6.2a1.3,1.3,0,0,0,.827-1l2.844-16.874A4.062,4.062,0,0,0,300.457,3059.113Zm-20.477,12.264a5.18,5.18,0,1,1-5.181-5.18A5.187,5.187,0,0,1,279.98,3071.377Z" transform="translate(26.266 14.618)" fill="#fff"/><path d="M250.072,3075.555l.069-.155a7.659,7.659,0,0,0-1.8-8.787l-.107-.1-3.471-24.562a4.551,4.551,0,0,0-9.016,1.25l3.072,22.556-.205.144a7.677,7.677,0,0,0-2.175,10.393l.358.585-8.827.5-1.565-12.548a4.577,4.577,0,0,0-5.132-4.1,4.588,4.588,0,0,0-3.963,5.087l1.963,15.8a4.988,4.988,0,0,0,4.075,4.25l13.245.48,5.2,19.5a1.287,1.287,0,0,0,1.248.961,1.253,1.253,0,0,0,.335-.044,1.3,1.3,0,0,0,.917-1.583l-5.45-20.423a1.288,1.288,0,0,0-1.2-.959l-14.022-.5-.1-.028a2.354,2.354,0,0,1-1.68-1.974l-1.963-15.794a1.987,1.987,0,1,1,3.956-.365l1.714,13.763a1.311,1.311,0,0,0,1.331,1.132l12.908-.73.092.041a7.666,7.666,0,0,0,7.929-.994l.437-.342,8.419,21.61a1.316,1.316,0,0,0,1.673.736,1.294,1.294,0,0,0,.736-1.675Zm-5.268-10.84a7.66,7.66,0,0,0-1.755-.218,7.76,7.76,0,0,0-1.341.134l-.419.074-2.975-21.853a1.965,1.965,0,0,1,1.732-2.219l.217-.012a1.974,1.974,0,0,1,1.941,1.691l3.184,22.537Zm3.424,7.549a5.18,5.18,0,1,1-5.179-5.18A5.185,5.185,0,0,1,248.227,3072.264Z" transform="translate(0 14.478)" fill="#fff"/><path d="M229.1,3040.912a1.294,1.294,0,1,0,1.552-2.071l-9.486-7.106a1.324,1.324,0,0,0-1.811.26,1.283,1.283,0,0,0-.245.957,1.27,1.27,0,0,0,.5.853Z" transform="translate(1.168 10.268)" fill="#fff"/><path d="M238.874,3034.739a1.3,1.3,0,0,0,1.121.646,1.3,1.3,0,0,0,1.249-.961,1.282,1.282,0,0,0-.132-.981l-6.246-10.794a1.328,1.328,0,0,0-1.767-.471,1.3,1.3,0,0,0-.473,1.77Z" transform="translate(9.766 4.169)" fill="#fff"/><path d="M275.526,3041.171a1.271,1.271,0,0,0,.773-.26l9.487-7.107a1.3,1.3,0,0,0,.261-1.812,1.327,1.327,0,0,0-1.813-.258l-9.484,7.105a1.3,1.3,0,0,0,.776,2.331Z" transform="translate(36.659 10.268)" fill="#fff"/><path d="M262.889,3034.424a1.289,1.289,0,0,0,.6.787,1.273,1.273,0,0,0,.646.175,1.3,1.3,0,0,0,1.121-.646l6.246-10.792a1.3,1.3,0,0,0-.473-1.77,1.325,1.325,0,0,0-1.767.473l-6.246,10.793A1.281,1.281,0,0,0,262.889,3034.424Z" transform="translate(29.329 4.168)" fill="#fff"/><path d="M250.136,3032.744a1.3,1.3,0,0,0,1.294-1.293v-13.194a1.294,1.294,0,1,0-2.587,0v13.194A1.3,1.3,0,0,0,250.136,3032.744Z" transform="translate(20.316 0.918)" fill="#fff"/><rect width="2.588" height="3.973" transform="translate(225.006 3029.874)" fill="#fff"/><rect width="2.588" height="3.972" transform="translate(258.079 3045.734) rotate(-56.323)" fill="#fff"/><rect width="2.588" height="3.972" transform="matrix(0.555, -0.832, 0.832, 0.555, 290.556, 3021.522)" fill="#fff"/><rect width="2.587" height="2.578" transform="translate(218.229 3056.845) rotate(-57.626)" fill="#fff"/><rect width="2.578" height="2.587" transform="translate(227.06 3062.545) rotate(-66.528)" fill="#fff"/><rect width="2.579" height="2.589" transform="translate(281.02 3034.924) rotate(-66.535)" fill="#fff"/><rect width="2.579" height="2.586" transform="matrix(0.889, -0.458, 0.458, 0.889, 309.768, 3062.179)" fill="#fff"/><rect width="4.236" height="2.589" transform="matrix(0.451, -0.892, 0.892, 0.451, 257.873, 3026.44)" fill="#fff"/><rect width="2.588" height="4.235" transform="matrix(0.725, -0.689, 0.689, 0.725, 236.603, 3017.318)" fill="#fff"/><rect width="4.234" height="2.587" transform="translate(312.071 3033.51) rotate(-73.093)" fill="#fff"/><rect width="4.235" height="2.587" transform="translate(319.815 3061.967) rotate(-73.072)" fill="#fff"/></g></svg>
+      </div>
+      <div class="col-12">
+        <h2 class="text-center">Outstanding Fundraisers <span class="d-sm-none d-md-inline">-</span> <br class="d-sm-block d-md-none"/> <span class="event-name">2019 Austin Heart & Stroke Walk</span></h2>
+      </div>
+      </div>
+      <div class="row justify-content-between">
+          <div class="col-lg-4 top-list box-shadow">
+              <h3 class="d-flex box-shadow">
+                  <span class="flex-grow-1">
+                      Top 5 Companies
+                  </span>
+                  <!-- /.flex-grow-1 -->
+                  <span class="text-small">Out of <span class="js--num-companies"></span> Total</span>
+              </h3>
+              <ul></ul>
+              <div class="top-list-footer d-flex justify-content-center">
+                  <a href="TR?fr_id=[[S334:fr_id]]&pg=complist" onclick="_gaq.push(['_trackEvent', 'greeting', 'leaderboards', 'view all companies']);" class="btn btn-tertiary">View All Companies</a>
+              </div>
+              <!-- /.top-list-footer -->
+          </div>
+          <!-- /.col -->
+          <div class="col-lg-4 top-list box-shadow">
+              <h3 class="d-flex box-shadow">
+                  <span class="flex-grow-1">Top 5 Teams</span>
+                  <span class="text-small">Out of [[E42:[[S334:fr_id]]:num-teams]] Total</span>
+              </h3>
+              <ul></ul>
+              <div class="top-list-footer d-flex justify-content-center">
+                  <div class="input-group mx-5">
+                      <input type="text" class="form-control" placeholder="Search by team name" aria-label="Search by team name">
+                      <div class="input-group-append">
+                          <button class="btn btn-primary btn-outline-secondary" type="button"><i class="fas fa-search"aria-hidden="true"></i><span class="sr-only">Team Search Button</span></button>
+                      </div>
+                  </div>
+              </div>
+              <!-- /.top-list-footer -->
+          </div>
+          <!-- /.col -->
+          <div class="col-lg-4 top-list box-shadow">
+              <h3 class="d-flex box-shadow">
+                  <span class="flex-grow-1">Top 5 Participant</span>
+                  <span class="text-small">Out of [[E42:[[S334:fr_id]]:num-participants]] Total</span>
+              </h3>
+              <ul></ul>
+              <div class="top-list-footer d-flex justify-content-center">
+                  <div class="input-group mx-5">
+                      <label for="walkerFirstName" class="sr-only">Participant First Name</label>
+                      <input type="text" placeholder="Search by first name" id="top-walker-first-name" name="top-walker-first-name" class="form-control">
+                      <label for="walkerLastName" class="sr-only">Participant Last Name</label>
+                      <input type="text" placeholder="Search by last name" id="top-walker-last-name" name="top-walker-last-name" class="form-control">
+                      <div class="input-group-append">
+                          <button class="btn btn-primary btn-outline-secondary" type="button"><i class="fas fa-search" aria-hidden="true"></i><span class="sr-only">Participant Search Button</span></button>
+                      </div>
+                  </div>
+              </div>
+              <!-- /.top-list-footer -->
+          </div>
+          <!-- /.col -->
+      </div>
+      <!-- /.row -->
+  </div>
+  <!-- /.container container-wide -->
+</section>
+<!-- END TOP LISTS -->
+
+<!--MARKETING CALL OUT-->
+<section class="marketing-call-out">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <h2 class="pb-3">Marketing Pitch</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+        <p class="text-center text-md-left"><a href="#" class="btn btn-primary col-9 mt-3 mb-3">Register Today!</a></p>
+      </div>
+      <div class="col-md-6">
+        <div class="global-video__wrapper">
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/ymCub7yuFr8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--END MARKETING CALL OUT-->
+
+<!--SPONSORS-->
+<section class="global-sponsors my-5 py-2">
+  <div class="container text-center">
+    <div class="row">
+      <div class="col-12">
+        <h2>Thanks to Our National Sponsors</h2>
+      </div>
+    </div>
+    <div class="d-flex justify-content-around py-3">
+      <img class="my-3" src="https://secure3.convio.net/heartdev/images/content/pagebuilder/aha-fieldday-landing-sponsor-att_2x.png" alt="">
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <p><a href="#">Learn More About Becoming a Sponsor</a></p>
+      </div>
+    </div>
+    </div>
+</section>
+<!--END SPONSORS-->
+<!--PROMO-->
+<section class="global-promo">
+  <div class="container">
+    <div class="row">
+      <div class="global-promo__wrapper col-12 col-lg-6">
+        <img class="global-promo__icon" src="https://secure3.convio.net/heartdev/images/content/pagebuilder/aha-fieldday-landing-promo-icon_2x.png" alt="">
+        <h2>So much more than a finish line.</h2>
+        <p>Thanks to supporters just like you, more than 1 million babies are screened every year for critical congenital heart defects.</p>
+        <a href="#" class="btn btn-primary col-4">Learn More</a>
+      </div>
+      <div class="global-promo__overlay"></div>
+    </div>
+  </div>
+</section>
+<!-- END PROMO -->

@@ -5,10 +5,16 @@
 }
 .thermometer-inner {
   background-color: $red-deep;
-  height: 61px;
+  height: 5px;
   width: 0;
   margin: -1px 0 -1px -1px;
   max-width:100%;
+  position: relative;
+  svg {
+    position: absolute;
+    right: -15px;
+    top: -45px;
+  }
 }
 
 .pg_personal, .pg_team, .pg_company {
@@ -17,6 +23,6 @@
   }
 
   .thermometer-inner {
-    height: 50px;
+    height: 5px;
   }
 }
