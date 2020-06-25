@@ -1617,7 +1617,7 @@
             var zipSearched = encodeURIComponent($('.js--zip-search-val').val());
             cd.getEventsByDistanceLanding(zipSearched);
         });
-        $('.js--state-search').on('submit', function (e) {
+        $('.js--state-search-val').on('change', function (e) {
             e.preventDefault();
             $('.js--event-search-results').html('');
             var eventState = encodeURIComponent($('.js--state-search-val').val());
