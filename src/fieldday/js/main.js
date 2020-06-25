@@ -576,7 +576,7 @@
                                     var isCaptain = this.aTeamCaptain;
                                     var topWalkerHtml = '<li><div class="d-flex"><div class="flex-grow-1"><a href="' + participantPage + '">' + participantName + '</a></div><div class="raised">Raised<br><strong>$' + participantRaisedFormmatted + '</strong></div></div></li>';
                                     if (participantName !== "null null") {
-                                        $('.js--walker-top-list ul').append(topWalkerHtml);
+                                        $('.js--participant-top-list ul').append(topWalkerHtml);
                                         counter = counter + 1;
                                     }
                                 }
