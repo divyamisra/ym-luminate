@@ -429,7 +429,7 @@
 
         // Get events by zip
 
-        cd.getEventsByDistance = function (zipCode) {
+        cd.getEventsByDistanceLanding = function (zipCode) {
             $('.js--no-event-results').addClass('d-none');
             $('.js--loading').show();
 
@@ -497,6 +497,75 @@
             });
         };
         // END getEventsByDistance
+
+        // getEventsByStateLanding
+        cd.getEventsByStateLanding = function (eventState) {
+            $('.js--no-event-results').addClass('d-none');
+            $('.js--loading').show();
+
+            luminateExtend.api({
+                api: 'teamraiser',
+                data: 'method=getTeamraisersByInfo' +
+                    '&state=' + eventState +
+                    '&event_type=' + eventType +
+                    '&search_distance=200' +
+                    '&response_format=json&list_page_size=499&list_page_offset=0&list_sort_column=event_date&list_ascending=true',
+                callback: {
+                    success: function (response) {
+                        if (response.getTeamraisersResponse.totalNumberResults > '0') {
+                            $('.js--loading').hide();
+                            var events = luminateExtend.utils.ensureArray(response.getTeamraisersResponse.teamraiser);
+                            var totalEvents = parseInt(response.getTeamraisersResponse.totalNumberResults);
+
+                            /*if ($.fn.DataTable) {
+                                if ($.fn.DataTable.isDataTable('#eventResultsTable')) {
+                                    $('#eventResultsTable').DataTable().destroy();
+                                }
+                            }*/
+                            /*$('#eventResultsTable tbody').empty();*/
+
+                            /*$('.js--num-event-results').text((totalEvents === 1 ? '1 Result' : totalEvents + ' Results'));*/
+
+                            $(events).each(function (i, event) {
+                                var eventDate = luminateExtend.utils.simpleDateFormat(event.event_date,
+                                    'EEE, MMM d, yyyy');
+                                var eventTimestamp = new Date(event.event_date);
+                                var eventStatus = event.status;
+                                var acceptsRegistration = event.accepting_registrations;
+
+                                var eventRow = '<div class="event-results__company row' + (i > 10 ? ' class="d-none"' : '') + '"><div class="col-12 col-md-6 d-flex align-items-center justify-content-center"><h3>' + event.name + '</h3></div><div class="col-12 col-md-6 d-flex align-items-center justify-content-center"><a href="' +
+                                        event.greeting_url + ' class="button">Find a Company</a></div></div>';
+
+
+                                if (eventStatus === '1' || eventStatus === '2' || eventStatus === '3') {
+                                    $('.js--event-search-results').append(eventRow);
+                                }
+                            });
+
+                            if (totalEvents > 10) {
+                                $('.js--more-event-results').removeAttr('hidden');
+                            }
+
+                            $('.js--more-event-results').on('click', function (e) {
+                                e.preventDefault();
+                                $('.js--event-search-results row').removeClass('d-none');
+                                $(this).attr('hidden', true);
+                                $('.js--end-event-list').removeAttr('hidden');
+                            });
+
+                            $('.js--event-results-container').removeAttr('hidden');
+                        } else {
+                            $('.js--loading').hide();
+                            $('.js--no-event-results').removeClass('d-none');
+                        }
+                    },
+                    error: function (response) {
+                        $('.js--loading').hide();
+                    }
+                }
+            });
+        };
+        // END getEventsByStateLanding
 
 
 
@@ -1546,7 +1615,13 @@
             e.preventDefault();
             $('.js--event-search-results').html('');
             var zipSearched = encodeURIComponent($('.js--zip-search-val').val());
-            cd.getEventsByDistance(zipSearched);
+            cd.getEventsByDistanceLanding(zipSearched);
+        });
+        $('.js--state-search').on('submit', function (e) {
+            e.preventDefault();
+            $('.js--event-search-results').html('');
+            var eventState = encodeURIComponent($('.js--state-search-val').val());
+            cd.getEventsByStateLanding(eventState);
         });
         if ($('body').is('.pg_FieldDay_Search')) {
             // FieldDay Search Page

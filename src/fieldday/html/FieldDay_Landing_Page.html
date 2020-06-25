@@ -22,9 +22,9 @@
 				</div>
 				<p class="form-group-divider col-xs-12 col-md-2 text-center">or</p>
 				<div class="form-group col-xs-12 col-md-5">
-					<form class="row no-gutters ml-0 mr-0 pr-0 pl-0 js__state-search">
+					<form class="row no-gutters ml-0 mr-0 pr-0 pl-0 js--state-search">
 						<div class="col-xs-12 event-state-select-container">
-							<label class="sr-only" for="fr_event_state">Search by State</label> <select class="search form-control col-12" id="fr_event_state" name="fr_event_state" size="1">
+							<label class="sr-only" for="fr_event_state">Search by State</label> <select class="search form-control col-12 js--state-search-val" id="fr_event_state" name="fr_event_state" size="1">
 								<option>
 									Search by State
 								</option>
@@ -191,27 +191,11 @@
 			<div class="js--loading py-4 text-center d-none">
 				Loading...
 			</div>
-			<div aria-atomic="true" class="js--no-event-results alert alert-primary text-center col-md-8 offset-md-2 d-none hidden" role="alert">
-				<span>We’re not seeing anything on the horizon. Maybe try different search terms?</span>
+			<div aria-atomic="true" class="js--no-event-results alert alert-primary text-center col-md-8 offset-md-2 d-none" role="alert">
+				<span>We&rsquo;re not seeing anything on the horizon. Maybe try different search terms?</span>
 			</div>
 			<div class="event-results-wrapper container mt-3 text-center">
 				<div class="js--event-search-results fadein">
-					<div class="event-results__company row">
-						<div class="col-12 col-md-6 d-flex align-items-center justify-content-center">
-							<h3>2020 Austin Field Day</h3>
-						</div>
-						<div class="col-12 col-md-6 d-flex align-items-center justify-content-center">
-							<a class="button" href="#">Find a Company</a>
-						</div>
-					</div>
-					<div class="event-results__company row">
-						<div class="col-12 col-md-6 d-flex align-items-center justify-content-center">
-							<h3>2020 Houston Field Day</h3>
-						</div>
-						<div class="col-12 col-md-6 d-flex align-items-center justify-content-center">
-							<a class="button" href="#">Find a Company</a>
-						</div>
-					</div>
 				</div>
 			</div>
 		</div>
