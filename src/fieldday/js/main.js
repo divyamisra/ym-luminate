@@ -498,6 +498,9 @@
         };
         // END getEventsByDistance
 
+
+
+
         /***********************/
         /* THERMOMETER SCRIPTS */
         /***********************/
@@ -1533,9 +1536,18 @@
 
         }
 
+
+
         if ($('body').is('.pg_informational')) {
             // Custom TR Page
         }
+        // landing page
+        $('.js--zip-search').on('submit', function (e) {
+            e.preventDefault();
+            $('.js--event-search-results').html('');
+            var zipSearched = encodeURIComponent($('.js--zip-search-val').val());
+            cd.getEventsByDistance(zipSearched);
+        });
         if ($('body').is('.pg_FieldDay_Search')) {
             // FieldDay Search Page
             var clearSearchResults = function () {
