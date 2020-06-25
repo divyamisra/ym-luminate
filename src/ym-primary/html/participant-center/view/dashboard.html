@@ -280,7 +280,7 @@
       <div class="ym-pc-dashboard-standard-gifts-icons" role="list" aria-label="Standard Gifts">
         <div class="ym-pc-dashboard-standard-gifts-icon" ng-class="{'not-earned': !upcomingGift.prize_status}" ng-repeat="upcomingGift in upcomingGifts" ng-cloak>
            <a href="" ng-click="showPrize(upcomingGift.prize_sku,upcomingGift.prize_label,upcomingGift.prize_status)">
-              <img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/prizes2020/{{upcomingGift.prize_sku}}.png" alt="{{upcomingGift.prize_label}}">
+              <img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/prizes2021/{{upcomingGift.prize_sku}}.png" alt="{{upcomingGift.prize_label}}">
               <div class="ym-pc-dashboard-standard-gift-earned" ng-if="upcomingGift.prize_status">
                  <h4 class="gift-title" ng-bind-html="upcomingGift.earned_title"></h4>
                  <div class="gift-subtitle1"><span ng-bind-html="upcomingGift.earned_subtitle1"></span></div>
