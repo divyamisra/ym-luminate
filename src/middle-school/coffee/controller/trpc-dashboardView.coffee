@@ -737,9 +737,9 @@ angular.module 'trPcControllers'
               # id: challengeIndex
               # name: challenge
       challengeOptions =
-        "1": "Lead the way. No tobacco or vaping."
-        "2": "Be physically active for 60 minutes a day."
-        "3": "Choose water over sugary beverages."
+        "1": "Be physically active for 60 minutes a day."
+        "2": "Learn hands-only CPR."
+        "3": "Say no to tobacco and vaping."
       angular.forEach challengeOptions, (challenge, challengeIndex) ->
         $scope.challenges.push
           id: challengeIndex
