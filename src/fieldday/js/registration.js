@@ -596,9 +596,6 @@
                 $('.js__retrieve-login-container').addClass('d-none');
                 $('.js__signup-container').addClass('d-none');
                 $('.js__login-container').removeClass('d-none');
-		$('h1#user_type_campaign_banner_container').replaceWith(function() {
-	            return '<h1 class="campaign-banner-container" id="user_type_campaign_banner_container">Welcome Back!</h1>';
-	        });
             });
             // show signup form
             $('.js__show-signup').on('click touchstart', function (e) {
@@ -613,6 +610,9 @@
                 // existing record. show log in form
                 $('.js__have-we-met-container').addClass('d-none');
                 $('.js__login-container').removeClass('d-none');
+		$('h1#user_type_campaign_banner_container').replaceWith(function() {
+	            return '<h1 class="campaign-banner-container" id="user_type_campaign_banner_container">Welcome Back!</h1>';
+	        });
             });
             $('.js__show-have-we-met').on('click touchstart', function (e) {
                 // existing record. show log in form
