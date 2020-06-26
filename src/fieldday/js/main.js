@@ -565,7 +565,7 @@
                     success: function (response) {
                         if (response.getCompaniesResponse.totalNumberResults > '0') {
                             $('.js--participant-loading').hide();
-                            var events = luminateExtend.utils.ensureArray(response.getCompaniesResponse.teamraiser);
+                            var events = luminateExtend.utils.ensureArray(response.getCompaniesResponse.company);
                             var totalEvents = parseInt(response.getCompaniesResponse.totalNumberResults);
 
                             $(events).each(function (i, event) {
@@ -619,7 +619,7 @@
                     success: function (response) {
                         if (response.getParticipantsResponse.totalNumberResults > '0') {
                             $('.js--participant-loading').hide();
-                            var events = luminateExtend.utils.ensureArray(response.getParticipantsResponse.teamraiser);
+                            var events = luminateExtend.utils.ensureArray(response.getParticipantsResponse.participant);
                             var totalEvents = parseInt(response.getParticipantsResponse.totalNumberResults);
 
                             $(events).each(function (i, event) {
