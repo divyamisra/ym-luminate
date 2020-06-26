@@ -603,7 +603,7 @@
 
 
         // getCompaniesLandingPage
-        cd.getParticipantsLanding = function (companyName) {
+        cd.getParticipantsLanding = function (firstName, lastName) {
             $('.js--no-participant-results').addClass('d-none');
             $('.js--participant-loading').show();
 
@@ -1718,9 +1718,9 @@
         $('.js--page-participant-search').on('submit', function (e) {
             e.preventDefault();
             $('.js--participant-search-results').html('');
-            var firstName = encodeURIComponent($('js--page-participant-search-first-val').val());
-            var lastName = encodeURIComponent($('js--page-participant-search-last-val').val());
-            cd.getParticipantsLanding(companyName);
+            var firstName = encodeURIComponent($('.js--page-participant-search-first-val').val());
+            var lastName = encodeURIComponent($('.js--page-participant-search-last-val').val());
+            cd.getParticipantsLanding(firstName, lastName);
         });
 
         if ($('body').is('.pg_FieldDay_Search')) {
