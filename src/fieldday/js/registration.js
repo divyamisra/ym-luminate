@@ -1294,7 +1294,7 @@
 		$(this).html($(this).html().replace(pattern,replaceWith));
  	    });
 	    var pattern = /\b(Privacy Policy)/gi; // words you want to wrap
-	    var replaceWith = '<a href="#" target="_blank">$1</a>'; // Here's the wap
+	    var replaceWith = '<a href="https://www.heart.org/en/about-us/statements-and-policies/privacy-statement" target="_blank">$1</a>'; // Here's the wap
     	    $('.acceptPrivacyLabel').each(function(){
 		$(this).html($(this).html().replace(pattern,replaceWith));
  	    });
