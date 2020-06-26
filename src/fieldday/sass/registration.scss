@@ -1283,11 +1283,14 @@ div.responsive .part-type-container:hover .part-type-decoration-messages label{
 .part-type-name {
     display: inline-block;
 }
+div.part-type-decoration-messages .part-type-name,
+div.part-type-decoration-messages .part-type-name-value-separator,
 div.part-type-decoration-messages .part-type-description-text {
     display: none;
 }
 
-div.part-type-decoration-messages .part-type-description-text, div.part-type-decoration-messages span.part-type-name {
+div.part-type-decoration-messages .part-type-description-text, 
+div.part-type-decoration-messages span.part-type-name {
     font-size: inherit;
     font-weight: 400;
 }
