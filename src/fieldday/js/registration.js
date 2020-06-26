@@ -587,6 +587,9 @@
                 cd.resetValidation();
                 $('.js__login-container').addClass('d-none');
                 $('.js__retrieve-login-container').removeClass('d-none');
+		$('h1#user_type_campaign_banner_container').replaceWith(function() {
+	            return '<h1 class="campaign-banner-container" id="user_type_campaign_banner_container">Welcome Back!</h1>';
+	        });
             });
 
             // show login form
@@ -1146,7 +1149,12 @@
         if ($('#fr_team_goal').length <= 0) {
             $('#team_find_section_footer').hide();
         }
-
+	// UTYPE
+	if (jQuery('input[name=pg]').val() == "utype") {
+   	    $('h1#user_type_campaign_banner_container').replaceWith(function() {
+	        return '<h1 class="campaign-banner-container" id="user_type_campaign_banner_container">Have We Met Before?</h1>';
+            });
+	}
 
         // PTYPE
         if ($('#F2fRegPartType').length > 0) {
