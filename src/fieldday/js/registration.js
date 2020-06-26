@@ -806,7 +806,7 @@
                         var companyId = $('#regCompanyId').val();
                         // cd.getTeams(teamName, searchType);
                         cd.getTeams(teamName, 'registration', false, firstName, lastName, companyId);
-      	                $('.js__reg-team-search-form .button').closest('.col-sm-4').after('<div class="col-sm-12 text-center pt-2">Can\'t find a team at your company? <a href="TRR/?pg=tfind&fr_id=1234&fr_tm_opt=new&s_regType=startTeam">You can start one!</a></div>');
+      	                $('.js__reg-team-search-form .button').closest('.col-sm-4').after('<div class="col-sm-12 text-center pt-2">Can\'t find a team at your company? <a href="TRR/?pg=tfind&fr_id='+evID+'&fr_tm_opt=new&s_regType=startTeam">You can start one!</a></div>');
                     });
 
                     cd.getCompanyList = function(frId, companyId) {
