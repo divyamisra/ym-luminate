@@ -624,7 +624,7 @@
 
                             $(participants).each(function (i, participant) {
 
-                                var eventRow = '<div class="row py-3"><div class="landing-participant-search__name col-12 col-lg-6"><p><a href="'+ participant.name.first +'">'+ participant.name.last +'</a><br>' +
+                                var eventRow = '<div class="row py-3"><div class="landing-participant-search__name col-12 col-lg-6"><p><a href="'+ participant.personalPageUrl + '">' + participant.name.first + ' ' + participant.name.last +'</a><br>' +
                               (participant.teamName ? participant.teamName : "")  + '</p></div><div class="landing-participant-search__register col-12 col-lg-6"><p><a href="'+ participant.donationUrl +'" class="button">Donate</a></p></div>';
 
                                 $('.js--participant-search-results').append(eventRow);
