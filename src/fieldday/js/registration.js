@@ -772,6 +772,7 @@
             });
 
             if (regType === 'startTeam') {
+    		$('.campaign-banner-container').hide();
                 $('#team_find_section_container').addClass("col-12 col-xl-10 offset-xl-1").removeClass("section-container");
                 $('form[name=FriendraiserFind]').removeAttr('hidden');
                 $('#team_find_section_body, #team_find_section_header').show();
@@ -786,6 +787,7 @@
                 }
 		$('#team_find_new_team_attributes').before($('#team_find_new_team_company'));
             } else if (regType === 'joinTeam') {
+		$('.campaign-banner-container').hide();
     		$('#team_find_new_team_attributes').before($('#team_find_new_team_company'));
                 if ($('#team_find_existing').length > 0) {
 
