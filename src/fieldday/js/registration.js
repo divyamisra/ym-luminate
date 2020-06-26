@@ -1184,10 +1184,11 @@
             $('.donation-form-fields').attr("role","radiogroup").attr({"aria-label":"Donation Amounts","aria-required":"true"});
 
             if (regType === 'startTeam') {
-                $('#part_type_additional_gift_section_header').prepend('<div class="bold-label" id="regDonationLabel">Show your team how it\'s done: kick start your own fundraising with a personal donation!</div>');
+                $('#part_type_additional_gift_section_header').html('<div class="bold-label" id="regDonationLabel">Show your team how it\'s done: kick start your own fundraising with a personal donation!</div>');
             }
             if (regType === 'joinTeam') {
-                $('#part_type_additional_gift_section_header').prepend('<div class="bold-label" id="regDonationLabel">Show your dedication and make a donation towards your goal.</div>');
+                $('#part_type_additional_gift_section_header').html('<div class="bold-label" id="regDonationLabel">Show your team how it\'s done: kick start your own fundraising with a personal donation!</div>');
+	        //$('#part_type_additional_gift_section_header').prepend('<div class="bold-label" id="regDonationLabel">Show your dedication and make a donation towards your goal.</div>');
             }
             $('#part_type_additional_gift_section_header').before("<h2>Get Started with a Personal Donation</h2>");
 
