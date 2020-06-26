@@ -559,7 +559,7 @@
                 api: 'teamraiser',
                 data: 'method=getCompaniesByInfo' +
                     '&state=' + companyName +
-                    'event_type=field%20day' +
+                    '&event_type=field%20day' +
                     '&response_format=json&list_page_size=499&list_page_offset=0',
                 callback: {
                     success: function (response) {
