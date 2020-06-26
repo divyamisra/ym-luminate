@@ -53,6 +53,7 @@ module.exports = {
           '*.{gif,GIF,jpg,JPG,png,PNG,svg,SVG}',
           'prizes/*.{gif,GIF,jpg,JPG,png,PNG,svg,SVG}',
           'prizes2020/*.{gif,GIF,jpg,JPG,png,PNG,svg,SVG}',
+          'prizes2021/*.{gif,GIF,jpg,JPG,png,PNG,svg,SVG}',
           'fy21/*.{gif,GIF,jpg,JPG,png,PNG,svg,SVG}'
         ], 
         dest: 'dist/ym-primary/image/'
