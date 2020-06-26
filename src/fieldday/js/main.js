@@ -565,12 +565,12 @@
                     success: function (response) {
                         if (response.getCompaniesResponse.totalNumberResults > '0') {
                             $('.js--participant-loading').hide();
-                            var events = luminateExtend.utils.ensureArray(response.getCompaniesResponse.company);
+                            var companies = luminateExtend.utils.ensureArray(response.getCompaniesResponse.company);
                             var totalEvents = parseInt(response.getCompaniesResponse.totalNumberResults);
 
-                            $(events).each(function (i, event) {
+                            $(companies).each(function (i, company) {
 
-                                var eventRow = '<div class="row py-3"><div class="landing-participant-search__name col-12 col-lg-6"><p><a href="'+ events.companyURL +'">'+ events.companyName +'</a><br>[Company location]</p></div><div class="landing-participant-search__register col-12 col-lg-6"><p><a href="'+ events.companyURL +'" class="button">Register</a></p></div>';
+                                var eventRow = '<div class="row py-3"><div class="landing-participant-search__name col-12 col-lg-6"><p><a href="'+ company.companyURL +'">'+ company.companyName +'</a><br>[Company location]</p></div><div class="landing-participant-search__register col-12 col-lg-6"><p><a href="'+ company.companyURL +'" class="button">Register</a></p></div>';
 
                                 $('.js--participant-search-results').append(eventRow);
 
@@ -619,12 +619,12 @@
                     success: function (response) {
                         if (response.getParticipantsResponse.totalNumberResults > '0') {
                             $('.js--participant-loading').hide();
-                            var events = luminateExtend.utils.ensureArray(response.getParticipantsResponse.participant);
+                            var participants = luminateExtend.utils.ensureArray(response.getParticipantsResponse.participant);
                             var totalEvents = parseInt(response.getParticipantsResponse.totalNumberResults);
 
-                            $(events).each(function (i, event) {
+                            $(participants).each(function (i, participant) {
 
-                                var eventRow = '<div class="row py-3"><div class="landing-participant-search__name col-12 col-lg-6"><p><a href="'+ events.participant.name.first +'">'+ events.participant.name.last +'</a><br>[Company location]</p></div><div class="landing-participant-search__register col-12 col-lg-6"><p><a href="'+ events.participant.donationUrl +'" class="button">Donate</a></p></div>';
+                                var eventRow = '<div class="row py-3"><div class="landing-participant-search__name col-12 col-lg-6"><p><a href="'+ participant.name.first +'">'+ participant.name.last +'</a><br>[Company location]</p></div><div class="landing-participant-search__register col-12 col-lg-6"><p><a href="'+ participant.donationUrl +'" class="button">Donate</a></p></div>';
 
                                 $('.js--participant-search-results').append(eventRow);
 
