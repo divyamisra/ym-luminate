@@ -230,6 +230,12 @@
 .landing-participant-search {
   background-color: $team-roster-bg-gray;
   border-top: 3px solid $red;
+  input {
+    background-color: #fff!important;
+  }
+  .alert {
+    margin-top: 35px;
+  }
   .container{
     max-width: 821px;
   }

@@ -552,14 +552,14 @@
 
         // getCompaniesLandingPage
         cd.getCompaniesLanding = function (companyName) {
-            $('.js--no-participant-results').addClass('d-none');
+            $('.js--no-participant-results, .js--participant-no-event-results').addClass('d-none');
             $('.js--participant-loading').show();
 
             luminateExtend.api({
                 api: 'teamraiser',
                 data: 'method=getCompaniesByInfo' +
                     '&state=' + companyName +
-                    '&event_type=field%20day' +
+                    '&event_type=' + eventType +
                     '&response_format=json&list_page_size=499&list_page_offset=0',
                 callback: {
                     success: function (response) {
@@ -604,15 +604,16 @@
 
         // getCompaniesLandingPage
         cd.getParticipantsLanding = function (firstName, lastName) {
-            $('.js--no-participant-results').addClass('d-none');
+            $('.js--no-participant-results, .js--participant-no-event-results').addClass('d-none');
             $('.js--participant-loading').show();
+
 
             luminateExtend.api({
                 api: 'teamraiser',
                 data: 'method=getParticipants' +
                     '&first_name=' + (firstName ? firstName : '%25%25') +
                     '&lastName=' + (lastName ? lastName : '%25%25') +
-                    '&event_type=field%20day' +
+                    '&event_type=' + eventType +
                     '&response_format=json&list_page_size=499&list_page_offset=0',
                 callback: {
                     success: function (response) {
