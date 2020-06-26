@@ -619,6 +619,9 @@
                 e.preventDefault();
                 $('.js__login-container').addClass('d-none');
                 $('.js__have-we-met-container').removeClass('d-none');
+		$('h1#user_type_campaign_banner_container').replaceWith(function() {
+	            return '<h1 class="campaign-banner-container" id="user_type_campaign_banner_container">Have We Met Before?</h1>';
+	        });
             });
             $('.js__new-record').on('click touchstart', function (e) {
             // new participant. continue to tfind step
