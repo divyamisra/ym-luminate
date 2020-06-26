@@ -96,7 +96,7 @@
         };
 
         cd.getTeams = function (teamName, searchType, isCrossEvent, firstName, lastName, companyId) {
-          $('.js__team-results-rows').html('');
+          $('.js__team-results-rows').html('<p>Can’t find a team at your company? <a href="TRR/?pg=tfind&fr_id='+evID+'&fr_tm_opt=new&s_regType=startTeam">You can start one!</a></p>');
           luminateExtend.api({
             api: 'teamraiser',
             data: 'method=getTeamsByInfo' +
