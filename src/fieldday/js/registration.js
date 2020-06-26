@@ -96,7 +96,7 @@
         };
 
         cd.getTeams = function (teamName, searchType, isCrossEvent, firstName, lastName, companyId) {
-          $('.js__team-results-rows').html('<p>Can\'t find a team at your company? <a href="TRR/?pg=tfind&fr_id='+evID+'&fr_tm_opt=new&s_regType=startTeam">You can start one!</a></p>');
+          $('.js__team-results-rows').html('');
           luminateExtend.api({
             api: 'teamraiser',
             data: 'method=getTeamsByInfo' +
@@ -129,6 +129,7 @@
 
                   $(teams).each(function (i, team) {
                     if (searchType === 'registration') {
+	              $('.js__reg-team-search-form .button').closest('.col-sm-4').after('<div class="col-sm-12 text-center pt-2">Can\'t find a team at your company? <a href="TRR/?pg=tfind&fr_id=1234&fr_tm_opt=new&s_regType=startTeam">You can start one!</a></div>');
 		      if (team.maxTeamSize > team.numMembers) {
 	                      $('.list').append(
         	                '<div class="search-result-details row py-3"><div class="col-md-5"><strong><a href="' + team.teamPageURL + '" class="team-name-label" title="' + team.name + '" target=_blank><span class="team-company-label sr-only">Team Name:</span> ' + team.name + '</a></strong><br><span class="team-captain-label">Coach:</span> <span class="team-captain-name">' + team.captainFirstName + ' ' + team.captainLastName + '</span></div><div class="col-md-5 mt-auto">' + ((team.companyName !== null && team.companyName !== undefined) ? '<span class="team-company-label">Company:</span> <span class="team-company-name">' + team.companyName + '</span>' : '') + '</div><div class="col-md-2"><a href="' + luminateExtend.global.path.secure + 'TRR/?fr_tjoin=' + team.id + '&pg=tfind&fr_id=' + evID + '&s_captainConsId=' + team.captainConsId + '&s_regType=joinTeam&skip_login_page=true&s_teamName=' + team.name + '&s_teamGoal=' + (parseInt(team.goal)/100) + '&s_teamCaptain=' + team.captainFirstName + ' ' + team.captainLastName + '" title="Join ' + team.name + '" aria-label="Join ' + team.name + '" class="btn btn-block btn-primary button team-join-btn">Join</a></div></div>');
