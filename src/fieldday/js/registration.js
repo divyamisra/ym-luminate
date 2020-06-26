@@ -18,7 +18,7 @@
         var subSrcCode = luminateExtend.global.subSrcCode;
         var evID = $('body').data('fr-id') ? $('body').data('fr-id') : null;
         var consID = $('body').data('cons-id') ? $('body').data('cons-id') : null;
-	var coordEmail = $('.coordinator_email').val();
+	var coordEmail = $('input[name=coordinator_email]').val();
 
         var currentUrl = window.location.href;
         var searchType = getURLParameter(currentUrl, 'search_type');
