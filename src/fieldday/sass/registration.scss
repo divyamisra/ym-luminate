@@ -983,6 +983,9 @@ div.responsive div.ErrorMessage.page-error>span.field-error-indicator, div.respo
 .app_tr_registration div.registration-page-container div.section-header {
 	text-align: center;
 }
+.app_tr_registration div.registration-page-container #F2fRegContact div.section-header {
+	text-align: left;
+}
 .app_tr_registration div.registration-page-container div.section-body, .app_tr_registration div.registration-page-container div.section-footer, .app_tr_registration div.registration-page-container div.section-header, .app_tr_registration div.registration-page-container div.section-sub-header {
 	background-color: #fff;
 	border: none;
@@ -1018,7 +1021,7 @@ div.responsive div.ErrorMessage.page-error>span.field-error-indicator, div.respo
 	text-align:center
 }
 .app_tr_registration div.required-indicator-legend {
-	text-align:center;
+	text-align:left;
 	padding:0;
 }
 .app_tr_registration #F2fRegContact,
