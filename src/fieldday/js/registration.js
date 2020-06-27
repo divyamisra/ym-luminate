@@ -1555,8 +1555,7 @@
 
         /* Page = Reg */
         if ($('input[name="pg"]').val() == 'regsummary') {
-            console.log('pg=regsummary');
-	    $('h1.reg_payment_campaign_banner_container').prepend(evDateYear+" ");
+   	    $('h2.cstmTitle').prepend(evDateYear+" ");
             // if there is a donation then change button text
             if ($.trim($('.additional-gift-amount').html()) != "$0.00") {
                 $('button.next-step').attr("value","Complete and Donate").find('span').html("Complete and Donate");
@@ -1599,7 +1598,7 @@
 
         /* Page = paymentForm */
         if ($('input[name="pg"]').val() == 'paymentForm') {
-		$('h2.cstmTitle').prepend(evDateYear+" ");
+		$('h1.reg_payment_campaign_banner_container').prepend(evDateYear+" ");
 		$('button.previous-step').attr("formnovalidate","true");
 
 		$('.payment-type-selection-container h3').attr("id","payment-type-label");
