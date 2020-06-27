@@ -1288,8 +1288,9 @@
 	    $('label:contains("t-shirt")').closest('.input-container').find('select').addClass("tshirtSize");
 	    $('span.field-required').closest('.form-content').find('input, select').addClass("required");
 	    $('input[value^="I accept"]').addClass("acceptRelease").next('label').addClass("acceptReleaseLabel");
-	    var pattern = /\b(Release with Plublicity Consent)/gi; // words you want to wrap
-	    var replaceWith = '<a href="#" target="_blank">$1</a>'; // Here's the wap
+	    /*
+	    var pattern = /\b(Release with Publicity Consent)/gi; // words you want to wrap
+	    var replaceWith = '<a id="waiverPopLink" href="javascript:void(0);">$1</a>'; // Here's the wap
     	    $('.acceptReleaseLabel').each(function(){
 		$(this).html($(this).html().replace(pattern,replaceWith));
  	    });
@@ -1304,7 +1305,8 @@
     	    $('.acceptPrivacyLabel').each(function(){
 		$(this).html($(this).html().replace(pattern,replaceWith));
  	    });
-
+            */
+		
 	    $('input.required').each(function(){
 		    var label = $(this).closest('.input-container').find('.input-label').html();
 		    if (label != undefined) {
@@ -1640,21 +1642,16 @@
         }
         
         $('.part-type-description-text:contains("Free")').html('&nbsp;');
-        $('.survey-question-container legend span:contains("Waiver agreement")').parent().parent().addClass('waiverCheck');
+        $('.survey-question-container legend span:contains("Publicity Release")').parent().parent().addClass('waiverCheck');
         $('.waiverCheck legend').addClass('aural-only');
-        $('.waiverCheck label').html('<span class="field-required"></span> I accept and acknowledge that I have read and understand this Field Day <a id="waiverPopLink" href="#">Release with Publicity Consent</a> and agree to them voluntarily.');
+        $('.waiverCheck label').html('<span class="field-required"></span> I accept and acknowledge that I have read and understand this Field Day <a id="waiverPopLink" href="javascript:void(0);">Release with Publicity Consent</a> and agree to them voluntarily.');
 	$('.waiverCheck input[type="checkbox"]').attr("aria-required","true");
-        $('.survey-question-container legend span:contains("Privacy Policy")').parent().parent().addClass('privacyCheck');
+        $('.survey-question-container legend span:contains("Terms of Service")').parent().parent().addClass('privacyCheck');
         $('.privacyCheck legend').addClass('aural-only');
         var trName = $('.campaign-banner-container').text();
         trName = trName.replace(/'/g, '');
         // TODO - update terms of service code for Field Day
-        if (trName.indexOf('Lawyers') != -1){
-          $('.privacyCheck label').html('<span class="field-required"></span> I agree to the <a href="javascript:void(0)" onclick="window.open(\'DocServer/Terms_of_Service_Heart_Walk_LHH_2020.pdf\',\'_blank\',\'location=yes,height=570,width=520,scrollbars=yes,status=yes\');">Terms and Conditions (PDF)</a> and <a href="javascript:void(0)" onclick="window.open(\'https://www.heart.org/en/about-us/statements-and-policies/privacy-statement\',\'_blank\',\'location=yes,height=570,width=520,scrollbars=yes,status=yes\');">Privacy Policy</a>.');
-        }
-        else {
-          $('.privacyCheck label').html('<span class="field-required"></span> I agree to the <a href="javascript:void(0)" onclick="window.open(\'DocServer/FieldDay2019_163605_TOS_texting_2019.11.19.pdf\',\'_blank\',\'location=yes,height=570,width=520,scrollbars=yes,status=yes\');">Terms and Conditions (PDF)</a> and <a href="javascript:void(0)" onclick="window.open(\'https://www.heart.org/en/about-us/statements-and-policies/privacy-statement\',\'_blank\',\'location=yes,height=570,width=520,scrollbars=yes,status=yes\');">Privacy Policy</a>.');
-        }
+        $('.privacyCheck label').html('<span class="field-required"></span> I agree to the <a href="javascript:void(0)" onclick="window.open(\'DocServer/FieldDay2019_163605_TOS_texting_2019.11.19.pdf\',\'_blank\',\'location=yes,height=570,width=520,scrollbars=yes,status=yes\');">Terms and Conditions (PDF)</a> and <a href="javascript:void(0)" onclick="window.open(\'https://www.heart.org/en/about-us/statements-and-policies/privacy-statement\',\'_blank\',\'location=yes,height=570,width=520,scrollbars=yes,status=yes\');">Privacy Policy</a>.');
 	$('.privacyCheck input[type="checkbox"]').attr("aria-required","true");
 
 	$('.survey-question-container legend span:contains("Healthy for good signup")').parent().parent().addClass('healthyCheck');
