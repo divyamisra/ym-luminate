@@ -1598,7 +1598,7 @@
 
         /* Page = paymentForm */
         if ($('input[name="pg"]').val() == 'paymentForm') {
-		$('h1.reg_payment_campaign_banner_container').prepend(evDateYear+" ");
+		$('h1#reg_payment_campaign_banner_container').prepend(evDateYear+" ");
 		$('button.previous-step').attr("formnovalidate","true");
 
 		$('.payment-type-selection-container h3').attr("id","payment-type-label");
