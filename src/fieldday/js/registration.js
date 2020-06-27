@@ -1442,8 +1442,10 @@
             $('#progressText1').hide();
             $('.p-bar-step-1').css('background', '#f18b21');
         }
-        if ($('#fr_reg_summary_page #FriendraiserUserWaiver').length > 0) {
+        if ($('input[name="pg"]').val() == 'waiver') {
 	    $('h2.cstmTitle').prepend(evDateYear+" ");
+	}
+	if ($('#fr_reg_summary_page #FriendraiserUserWaiver').length > 0) {
             $('.p-bar-step-1, .p-bar-step-2, .p-bar-step-3').show();
             $('#progressText1, #progressText2').hide();
             $('.p-bar-step-1, .p-bar-step-2').css('background', '#f18b21');
