@@ -1556,7 +1556,7 @@
         /* Page = Reg */
         if ($('input[name="pg"]').val() == 'regsummary') {
             console.log('pg=regsummary');
-	    $('h2.cstmTitle').prepend(evDateYear+" ");
+	    $('h1.reg_payment_campaign_banner_container').prepend(evDateYear+" ");
             // if there is a donation then change button text
             if ($.trim($('.additional-gift-amount').html()) != "$0.00") {
                 $('button.next-step').attr("value","Complete and Donate").find('span').html("Complete and Donate");
