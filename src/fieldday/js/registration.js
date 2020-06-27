@@ -1443,7 +1443,7 @@
             $('.p-bar-step-1').css('background', '#f18b21');
         }
         if ($('#fr_reg_summary_page #FriendraiserUserWaiver').length > 0) {
-	    $('h1.campaign-banner-container').prepend(evDateYear+" ");
+	    $('h2.cstmTitle').prepend(evDateYear+" ");
             $('.p-bar-step-1, .p-bar-step-2, .p-bar-step-3').show();
             $('#progressText1, #progressText2').hide();
             $('.p-bar-step-1, .p-bar-step-2').css('background', '#f18b21');
@@ -1554,6 +1554,7 @@
         /* Page = Reg */
         if ($('input[name="pg"]').val() == 'regsummary') {
             console.log('pg=regsummary');
+	    $('h2.cstmTitle').prepend(evDateYear+" ");
             // if there is a donation then change button text
             if ($.trim($('.additional-gift-amount').html()) != "$0.00") {
                 $('button.next-step').attr("value","Complete and Donate").find('span').html("Complete and Donate");
@@ -1596,6 +1597,7 @@
 
         /* Page = paymentForm */
         if ($('input[name="pg"]').val() == 'paymentForm') {
+		$('h2.cstmTitle').prepend(evDateYear+" ");
 		$('button.previous-step').attr("formnovalidate","true");
 
 		$('.payment-type-selection-container h3').attr("id","payment-type-label");
