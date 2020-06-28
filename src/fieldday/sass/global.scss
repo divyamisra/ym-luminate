@@ -258,6 +258,12 @@ img {
       font-size: 0.97rem;
       line-height: 1.4;
       list-style: none;
+      &:not(.sidebar__achievements) {
+        display: flex;
+      }
+      .sidebar__icon {
+        padding-right: 10px;
+      }
 
       p {
         margin: 0;
@@ -297,11 +303,22 @@ img {
 }
 
 .pg_personal, .pg_team, .pg_company {
+  header {
+    height: 450px;
+  }
   main {
     background-image: url("/images/content/pagebuilder/fd_hero_personal2.jpg");
     background-size: 100%;
     background-repeat: no-repeat;
     background-color: $white;
+    position: relative;
+  }
+
+  .tr-page-container {
+    position: relative;
+    top: -200px;
+    margin: auto;
+    background-color: transparent;
   }
 
   .sponsors {
