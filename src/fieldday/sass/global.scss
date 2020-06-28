@@ -157,16 +157,15 @@ img {
   .donor-roll__title {
     background-color: $red;
     padding: 27px 33px 22px;
-    h5 {
+    span.h5 {
       color: $white;
+      font-size: 1rem;
+      margin: 0 0 20px;
+      display: block;
     }
   }
 
-  span.h5 {
-    font-size: 1rem;
-    margin: 0 0 20px;
-    display: block;
-  }
+
 
   span {
     font-size: 0.8889rem;
@@ -295,7 +294,7 @@ img {
     margin: 67px 0 0 40px;
     font-size: 1rem;
 
-    h4 {
+    h2 {
       margin: 0 0 21px;
       color: $red;
     }
@@ -323,6 +322,16 @@ img {
 
   .sponsors {
     border-top: solid 1px $gray-200;
+  }
+  .donation-amount-btn.active,
+  .donation-amount-btn:hover {
+    background-color: $red;
+    border-color: $red;
+    color: $white;
+  }
+
+  .fundraising-amounts {
+    border-bottom: 45px;
   }
 }
 
