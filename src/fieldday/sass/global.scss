@@ -99,14 +99,7 @@ img {
 
   .donation-amounts {
     padding: 0 13px;
-    margin-bottom: 20px;
-
-    .donation-amount-btn.active,
-    .donation-amount-btn:hover {
-      background-color: $red;
-      border-color: $red;
-      color: $white;
-    }
+    margin-bottom: 50px;
 
     .custom-amount {
       margin: -20px 0 0 0;
@@ -156,7 +149,18 @@ img {
 
 .donor-roll {
   margin: 80px 0;
-  padding: 40px 33px 37px;
+
+  .donations-container{
+    padding: 40px 33px 37px;
+  }
+
+  .donor-roll__title {
+    background-color: $red;
+    padding: 27px 33px 22px;
+    h5 {
+      color: $white;
+    }
+  }
 
   span.h5 {
     font-size: 1rem;
@@ -187,11 +191,11 @@ img {
   }
 
   .honor-roll-expander {
-    color: $gray-700;
+    color: $red;
     display: block;
 
     i {
-      border: solid 2px $gray-700;
+      border: solid 2px $red;
       padding: 6px 8px 5px;
       @include border-radius(100%, 100%, 100%, 100%);
     }
@@ -244,32 +248,40 @@ img {
     .sidebar-hero {
       width: 100%;
     }
+    .sidebar-content {
+      padding: 22px 54px 22px 44px;
+    }
 
     li {
-      border-top: solid 1px $white;
-      color: $white;
+      color: $black;
       padding: 11px;
       font-size: 0.97rem;
       line-height: 1.4;
+      list-style: none;
 
       p {
         margin: 0;
       }
 
       a {
-        color: $white;
+        color: $red;
         margin: 0 0 12px;
         display: block;
+        &:hover {
+          color: $red-deep;
+        }
       }
     }
 
     .achievements {
-      svg {
-        width: 100%;
-        max-width: 70px;
+      svg, img {
+        width: 23%;
         display: block;
-        margin: 0 auto;
+        padding: 10px 0;
       }
+      display: flex;
+      flex-wrap: wrap;
+
     }
   }
 
@@ -279,6 +291,7 @@ img {
 
     h4 {
       margin: 0 0 21px;
+      color: $red;
     }
   }
 }

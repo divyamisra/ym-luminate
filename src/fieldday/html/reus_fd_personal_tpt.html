@@ -10,32 +10,54 @@
         alt="[[E48:[[S334:fr_id]]-[[S334:px]]:cons.first_name]]'s fundraising page" />
 ]]
 
-      <div class="bg-gray-700">
+      <div class="sidebar-content box-shadow">
         <ul>
           <li>
-            <p><strong>[[E48:[[S334:fr_id]]-[[S334:px]]:cons.first_name]]'s Event:</strong></p>
-            <p><a href="TR?fr_id=[[S334:fr_id]]&pg=entry" onclick="_gaq.push(['_trackEvent', 'personal', 'details', 'event link']);">[[E47:[[S334:fr_id]]:fr_info:1:event_title]]</a></p>
-            [[?xMulti-Eventx::x[[E42:[[S80:evID]]:public-event-type]]x::::
-            <p>[[E47:[[S334:fr_id]]:fr_info:1:event_date]]</p>
-            ]]
+            <div class="sidebar__icon">
+              <i class="fal fa-flag"></i>
+            </div>
+            <div class="sidebar__details">
+              <p><strong>[[E48:[[S334:fr_id]]-[[S334:px]]:cons.first_name]]'s Event:</strong></p>
+              <p><a href="TR?fr_id=[[S334:fr_id]]&pg=entry" onclick="_gaq.push(['_trackEvent', 'personal', 'details', 'event link']);">[[E47:[[S334:fr_id]]:fr_info:1:event_title]]</a></p>
+            </div>
           </li>
+          [[?xMulti-Eventx::x[[E42:[[S80:evID]]:public-event-type]]x::::
+          <li>
+              <div class="sidebar__icon">
+                <i class="fal fa-clock"></i>
+              </div>
+              <div class="sidebar__details">
+                <p>[[E47:[[S334:fr_id]]:fr_info:1:event_date]]</p>
+              </div>
+          </li>
+          ]]
           [[?xx::x[[E48:[[S334:fr_id]]-[[S334:px]]:team-name]]x::::
           <li>
-            <p><strong>[[E48:[[S334:fr_id]]-[[S334:px]]:cons.first_name]]'s Team:</strong></p>
-            <p><a
-                href="TR/?team_id=[[E48:[[S334:fr_id]]-[[S334:px]]:team-id]]&pg=team&fr_id=[[S334:fr_id]]" onclick="_gaq.push(['_trackEvent', 'personal', 'details', 'team link']);">[[E48:[[S334:fr_id]]-[[S334:px]]:team-name]]</a>
-            </p>
+            <div class="sidebar__icon">
+              <i class="fal fa-megaphone"></i>
+            </div>
+            <div class="sidebar__details">
+              <p><strong>[[E48:[[S334:fr_id]]-[[S334:px]]:cons.first_name]]'s Team:</strong></p>
+              <p><a
+                  href="TR/?team_id=[[E48:[[S334:fr_id]]-[[S334:px]]:team-id]]&pg=team&fr_id=[[S334:fr_id]]" onclick="_gaq.push(['_trackEvent', 'personal', 'details', 'team link']);">[[E48:[[S334:fr_id]]-[[S334:px]]:team-name]]</a>
+              </p>
+            </div>
           </li>
           ]]
           [[?xx::x[[E48:[[S334:fr_id]]-[[S334:px]]:company-name]]x::::
           <li>
-            <p><strong>[[E48:[[S334:fr_id]]-[[S334:px]]:cons.first_name]]'s Company:</strong></p>
-            <p><a
-                href="TR?company_id=[[E43:[[S334:fr_id]]:company-id::[[S334:team_id]]]]&fr_id=[[S334:fr_id]]&pg=company" onclick="_gaq.push(['_trackEvent', 'personal', 'details', 'company link']);">[[E48:[[S334:fr_id]]-[[S334:px]]:company-name]]</a>
-            </p>
+            <div class="sidebar__icon">
+              <i class="fal fa-map-marker-alt"></i>
+            </div>
+            <div class="sidebar__details">
+              <p><strong>[[E48:[[S334:fr_id]]-[[S334:px]]:cons.first_name]]'s Company:</strong></p>
+              <p><a
+                  href="TR?company_id=[[E43:[[S334:fr_id]]:company-id::[[S334:team_id]]]]&fr_id=[[S334:fr_id]]&pg=company" onclick="_gaq.push(['_trackEvent', 'personal', 'details', 'company link']);">[[E48:[[S334:fr_id]]-[[S334:px]]:company-name]]</a>
+              </p>
+            </div>
           </li>
           ]]
-          <li>
+          <li class="sidebar__achievements">
             <p><strong>[[E48:[[S334:fr_id]]-[[S334:px]]:cons.first_name]]'s Achievements:</strong></p>
             <div class="achievements row">
               [[?xTRUEx::x[[E48:[[S334:fr_id]]-[[S334:px]]:if-in-group:[[?xheartdevx::x[[S29:TABLE_PREFIX]]x::230360::241686]]]]x::
@@ -480,8 +502,10 @@
         </ul>
       </div>
       <!-- /.bg-gray-700 -->
-      <div class="donor-roll box-shadow bg-gray-100">
-        <span class="h5">[[E48:[[S334:fr_id]]-[[S334:px]]:cons.first_name]]'s Donors:</span>
+      <div class="donor-roll box-shadow">
+        <div class="donor-roll__title">
+          <span class="h5">[[E48:[[S334:fr_id]]-[[S334:px]]:cons.first_name]]'s Donors:</span>
+        </div>
         <div class="donations-container js--donor-roll"></div>
         <!-- /.donations-container -->
         <a class="honor-roll-expander js--honor-roll-expander text-center hidden" href="javascript:void(0);"><i
