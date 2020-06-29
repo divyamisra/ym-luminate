@@ -280,12 +280,17 @@ img {
 
     .achievements {
       svg, img {
-        width: 23%;
         display: block;
         padding: 10px 0;
       }
       display: flex;
       flex-wrap: wrap;
+      .achievement-badge {
+        width: 23%;
+      }
+      .badge-label {
+        font-size: 10px;
+      }
 
     }
   }
@@ -296,7 +301,9 @@ img {
 
     h2 {
       margin: 0 0 21px;
-      color: $red;
+      &.h4 {
+        color: $red;
+      }
     }
   }
 }
