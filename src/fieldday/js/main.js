@@ -1085,7 +1085,6 @@
             // populate donor honor roll
             cd.getTeamHonorRoll();
 
-
             // Build personal donation form
             cd.getDonationFormInfo = function (options) {
                 luminateExtend.api({
@@ -1225,6 +1224,14 @@
             };
             var personalPageConsId = getURLParameter(currentUrl, 'px');
             cd.getPersonalVideo(evID, personalPageConsId);
+
+            $(window).on('resize', function () {
+              if (screenWidth <= 768) {
+                $('.sidebar-content').insertAfter('.information-box__content').removeClass('box-shadow');
+              } else {
+                $('.sidebar-content').insertAfter('.sidebar img').addClass('box-shadow');
+              }
+            }).resize();
         }
 
         if ($('body').is('.pg_team')) {

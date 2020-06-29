@@ -75,14 +75,21 @@ img {
 
 .information-box {
   @include box-shadow(0px, 15px, 30px, rgba(0,0,0,0.2));
-  padding: 33px 65px 52px 73px;
   width: 805px;
   margin: 0 0 0 30px;
+  padding: 0!important;
+
+  .information-box__content {
+    padding: 33px 65px 52px 73px;
+  }
+  .information-box__name {
+      padding: 17px 65px 9px 73px;
+  }
 
   h1 {
     font-size: 2rem;
     margin: 0 0 5px;
-    float: left;
+    color: $red;
 
     .badges-container {
       margin: -9px 0 0 36px;
@@ -149,6 +156,7 @@ img {
 
 .donor-roll {
   margin: 80px 0;
+  padding-bottom: 15px;
 
   .donations-container{
     padding: 40px 33px 37px;
@@ -159,13 +167,11 @@ img {
     padding: 27px 33px 22px;
     span.h5 {
       color: $white;
-      font-size: 1rem;
-      margin: 0 0 20px;
+      font-size: 1em;
+      margin: 0;
       display: block;
     }
   }
-
-
 
   span {
     font-size: 0.8889rem;
@@ -340,7 +346,7 @@ img {
   .fundraising-amounts {
     border-bottom: 45px;
   }
-}
+}git s
 
 #globalFooter {
   background-color: #e9ecef;
