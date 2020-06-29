@@ -676,6 +676,7 @@
             $('.js__progress-bar')
                 .animate({width: percentRaisedFormatted}, 2000)
                 .attr("aria-valuenow", percentRaised * 100);
+            $('.js__progress-bar svg').show();
             $('.js__percent-raised').each(function () {
                 $(this).prop('Counter', 0).animate({
                     Counter: percentRaisedFormatted
