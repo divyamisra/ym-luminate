@@ -2,7 +2,7 @@
 <div class="container tr-page-container hero">
     <div class="row">
       <div class="col-lg-4 col-md-12 sidebar">
-        [?xx::x[[C4:responsive_company_logo]]x::
+        [[?xx::x[[C4:responsive_company_logo]]x::
            <img class="sidebar-hero" src="[[S80:defaultCompanyImage]]" alt="Company Image" />
          ::
            <img class="sidebar-hero" src="[[C4:responsive_company_logo]]" alt="Company Image" />
@@ -115,15 +115,22 @@
                     <!-- /.col-6 -->
                 </div>
                 <!-- /.row -->
-                </div>
                 [[?x1x2x::x[[S42:0:status]]x::
-                <form>
-                        <div class="row buttons-row justify-content-between">
-                            <a class="btn btn-primary col-lg col-sm-12 mx-md-2 mx-sm-0" href="TRR/FieldDay/General?pg=tfind&fr_id=[[S334:fr_id]]&fr_tm_opt=new&s_regType=startTeam" onclick="_gaq.push(['_trackEvent', 'company', 'banner', 'create team button']);">Create a Team</a>
-                            <a class="btn btn-primary col-lg col-sm-12 mx-md-2 mx-sm-0" href="TRR/FieldDay/General?pg=tfind&fr_id=[[S334:fr_id]]&s_regType=joinTeam" onclick="_gaq.push(['_trackEvent', 'company', 'banner', 'join team button']);">Join a Team</a>
-                        </div>
-                </form>
+                  <div class="row buttons-row justify-content-between">
+                    <a class="btn btn-primary col-lg col-sm-12 mx-md-2 mx-sm-0" href="TRR/FieldDay/General?pg=tfind&fr_id=[[S334:fr_id]]&fr_tm_opt=new&s_regType=startTeam" onclick="_gaq.push(['_trackEvent', 'company', 'banner', 'create team button']);">Create a Team</a>
+                    <a class="btn btn-primary col-lg col-sm-12 mx-md-2 mx-sm-0" href="TRR/FieldDay/General?pg=tfind&fr_id=[[S334:fr_id]]&s_regType=joinTeam" onclick="_gaq.push(['_trackEvent', 'company', 'banner', 'join team button']);">Join a Team</a>
+                  </div>
+
                 ::]]
+                </div>
+
+                <div class="row">
+                  <div class="col-12 text-center px-5">
+                    <p><strong><span class="js--company-name"></span> has multiple event locations.</strong><br>To find the right campus near you, check out the <a href="[[S8]]#our-teams">teams list below</a> to sort by company name!</p>
+                  </div>
+
+                </div>
+
             </div>
             <!-- /.event-info -->
             <!-- END COMPANY PAGE INFO BOX -->
@@ -171,7 +178,7 @@
                         <a class="nav-link active" id="our-teams-tab" data-toggle="tab" href="#our-teams" role="tab" aria-controls="our-teams" aria-selected="true">Our Teams</a>
                     </li>
                     <li class="nav-item w-50">
-                        <a class="nav-link" id="our-walkers-tab" data-toggle="tab" href="#our-walkers" role="tab" aria-controls="our-walkers" aria-selected="false">Our Walkers</a>
+                        <a class="nav-link" id="our-walkers-tab" data-toggle="tab" href="#our-walkers" role="tab" aria-controls="our-walkers" aria-selected="false">Our Participants</a>
                     </li>
                 </ul>
                 <div class="tab-content">
