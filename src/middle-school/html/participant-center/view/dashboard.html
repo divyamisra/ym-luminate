@@ -167,19 +167,20 @@
               <p>
                 Send 10 emails to family and friends to share the message of heart health and ask for their help to save lives.
               </p>
-              <a class="btn btn-md-wide btn-primary" ng-href="{{baseUrl}}#/email">
+              <a class="btn btn-md-wide btn-primary" ng-href="{{baseUrl}}#/email" role="button">
                 <strong>Send Email</strong>
               </a>
             </div>
             <form method="POST">
               <label for="emailChallenge-sampleText" class="sr-only">Email text:</label>
               <textarea class="form-control" id="emailChallenge-sampleText" name="sampleText" ng-model="emailChallenge.sampleText" readonly></textarea>
+	      <input type="submit" name="submit" value="Submit" class="hidden">
             </form>
             <div class="ym-pc-dashboard-email-challenge-option">
               <p>
                 Or copy and paste the text above into your favorite email client!
               </p>
-              <button type="button" class="btn btn-md-wide btn-primary" data-clipboard-target="#emailChallenge-sampleText">
+              <button type="button" class="btn btn-md-wide btn-primary" data-clipboard-target="#emailChallenge-sampleText" role="button">
                 <strong>Copy Email Text</strong> 
               </button>
             </div>
