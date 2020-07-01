@@ -229,7 +229,7 @@ angular.module 'ahaLuminateControllers'
               $scope.participantRegistration = participantRegistration
       
       $scope.companyPagePhoto1 =
-        defaultUrl: APP_INFO.rootPath + 'dist/ym-primary/image/company-default.jpg'
+        defaultUrl: APP_INFO.rootPath + 'dist/ym-primary/image/company-default.png'
       
       $scope.editCompanyPhoto1 = ->
         delete $scope.updateCompanyPhoto1Error
