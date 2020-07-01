@@ -99,10 +99,13 @@ nav {
       }
     }
     &.logged-in {
+      p {
+        color: $white;
+      }
       a {
         display:inline-block;
         font-size:16px;
-        color:$primary;
+        color:$white;
         font-weight:bold;
       }
     }
