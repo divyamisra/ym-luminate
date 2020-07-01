@@ -1,3 +1,15 @@
+#ym-pc-dashboard-badges-panel--student {
+	text-align:center;
+}
+
+.ym-pc-dashboard-school-challange {
+      margin-bottom: 20px;
+}
+.ym-pc-dashboard-coordinators-message-section {
+	.ym-pc-dashboard-section-header {
+		min-height:84px;
+	}
+}
 .ym-activity-box--virtual img {
 	max-width:100%;
 }
@@ -8,6 +20,15 @@ a.ym-progress-update-goal {
 
 a.ym-pc-dashboard-download-certificates {
 	color: $event-primary-acc;
+}
+
+.ym-pc-dashboard-coordinator-create-message {
+  margin: 0px !important;
+	
+  img {
+    max-height: 150px;
+    margin-top: -10px;
+  }
 }
 
 /* Hero Popup Styles */
@@ -310,6 +331,8 @@ div[id^="taTextElement"]:focus {
     box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
 }
 
+.ym-pc-dashboard-coordinator-school-challenge-section,
+.ym-pc-dashboard-coordinator-school-level-section,
 .ym-pc-dashboard-coordinator-school-years-section {
 	background-color: $event-accent-light;
 	padding: 36px;
@@ -357,4 +380,40 @@ div[id^="taTextElement"]:focus {
 			}
 		}
 	}
+}
+
+.ym-pc-dashboard-coordinator-school-years-section,
+.ym-pc-dashboard-coordinator-school-challenge-section,
+.ym-pc-dashboard-coordinator-school-level-section {
+	div.ym-pc-dashboard-section-header {
+		font-size: 20px;
+		color: indigo;
+		font-family: "Luckiest Guy",cursive;
+		line-height: 28px;
+
+		select {
+			width: auto;
+			display: inline-block;
+			padding-right: 25px;
+			font-size: 20px;
+			line-height: 26px;
+			padding-bottom: 5px;
+		}
+		
+		.schoolCreateMessage {
+			font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+			font-size: 18px;
+			
+			.coordinatorMessage {
+			  font-size: .8em;
+			  font-style:italic;
+			}
+		}
+	}
+}
+
+.schoolStatusTitle {
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0 0 15px;
 }

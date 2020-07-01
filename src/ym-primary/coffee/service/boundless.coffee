@@ -137,8 +137,8 @@ angular.module 'ahaLuminateApp'
       defaultStandardGifts: ->
         [
           {
-            "id":"WB-20"
-            "name":"Worded Wristband"
+            "id":"WB1RED-21"
+            "name":"Red Wristband"
             "status":0
             "level":""
             "level_desc":""
@@ -149,8 +149,8 @@ angular.module 'ahaLuminateApp'
             "online_only":0
           }
           {
-            "id":"CLIPPERRIE-20"
-            "name":"Perrie"
+            "id":"DASHCLIP-21"
+            "name":"Dash"
             "status":0
             "level":"$5"
             "instant": 1
@@ -160,7 +160,7 @@ angular.module 'ahaLuminateApp'
             "online_only":0
           }
           {
-            "id":"LVL1WB-20"
+            "id":"LVL1WB-21"
             "name":"Water Bottle"
             "status":0
             "level":"$5"
@@ -171,8 +171,8 @@ angular.module 'ahaLuminateApp'
             "online_only":0
           }
           {
-            "id":"CHARMKNOX-20"
-            "name":"Knox"
+            "id":"SAMCLIP-21"
+            "name":"Sam"
             "status":0
             "level":"$10 online"
             "instant": 1
@@ -182,8 +182,8 @@ angular.module 'ahaLuminateApp'
             "online_only":1
           }
           {
-            "id":"JR-20"
-            "name":"Jump Rope"
+            "id":"YOYO-21"
+            "name":"Spaghetti YoYo"
             "status":0
             "level":"$15"
             "instant": 2
@@ -193,8 +193,8 @@ angular.module 'ahaLuminateApp'
             "online_only":0
           }
           {
-            "id":"CLIPNICO-20"
-            "name":"Nico"
+            "id":"IKERCLIP-21"
+            "name":"Iker"
             "status":0
             "level":"$25"
             "instant": 1
@@ -204,8 +204,8 @@ angular.module 'ahaLuminateApp'
             "online_only":0
           }
           {
-            "id":"CHARMSOFIE-20"
-            "name":"Sofie"
+            "id":"KAICLIP-21"
+            "name":"Kai"
             "status":0
             "level":"$40 online"
             "instant": 1
@@ -226,7 +226,7 @@ angular.module 'ahaLuminateApp'
             "online_only":0
           }
           {
-            "id":"PBALL-20"
+            "id":"PBALL-21"
             "name":"Playground Ball"
             "status":0
             "level":"$75"
@@ -237,8 +237,8 @@ angular.module 'ahaLuminateApp'
             "online_only":0
           }
           {
-            "id":"CLIPCRUSH-20"
-            "name":"Crush"
+            "id":"JOURNEYCLIP-21"
+            "name":"Journey"
             "status":0
             "level":"$100"
             "instant": 1
@@ -248,8 +248,8 @@ angular.module 'ahaLuminateApp'
             "online_only":0
           }
           {
-            "id":"CLIPSUNNY-20"
-            "name":"Sunny"
+            "id":"TAYESCOUTCLIP-21"
+            "name":"Taye & Scout"
             "status":0
             "level":"$200"
             "instant": 1
@@ -259,8 +259,8 @@ angular.module 'ahaLuminateApp'
             "online_only":0
           }
           {
-            "id":"MGRIP-20"
-            "name":"Monster Grip"
+            "id":"SOCKS-21"
+            "name":"Athletic Socks"
             "status":0
             "level":"$250"
             "instant": 2
@@ -270,7 +270,7 @@ angular.module 'ahaLuminateApp'
             "online_only":0
           }
           {
-            "id":"POPPER-20"
+            "id":"POPPER-21"
             "name":"Popper"
             "status":0
             "level":"$500"
@@ -281,8 +281,8 @@ angular.module 'ahaLuminateApp'
             "online_only":0
           }
           {
-            "id":"EARBUDS-20"
-            "name":"Earbuds"
+            "id":"SPEAKER-21"
+            "name":"Speaker"
             "status":0
             "level":"$1,000"
             "instant": 2
@@ -296,233 +296,233 @@ angular.module 'ahaLuminateApp'
       giftLevels_instant: -> 
         {
           "$0": [
-            "WB-20"
+            "WB1RED-21"
           ]
           "$5-$14":[
-            "WB-20"
-            "CLIPPERRIE-20"
-            "CHARMKNOX-20"
+            "WB1RED-21"
+            "DASHCLIP-21"
+            "SAMCLIP-21"
           ]
           "$15-$24":[
-            "WB-20"
-            "CLIPPERRIE-20"
-            "CHARMKNOX-20"
-            "JR-20"
+            "WB1RED-21"
+            "DASHCLIP-21"
+            "SAMCLIP-21"
+            "YOYO-21"
           ]
           "$25-$39":[
-            "WB-20"
-            "CLIPPERRIE-20"
-            "CHARMKNOX-20"
-            "JR-20"
-            "CLIPNICO-20"
+            "WB1RED-21"
+            "DASHCLIP-21"
+            "SAMCLIP-21"
+            "YOYO-21"
+            "IKERCLIP-21"
           ]
           "$40-$49":[
-            "WB-20"
-            "CLIPPERRIE-20"
-            "CHARMKNOX-20"
-            "JR-20"
-            "CLIPNICO-20"
-            "CHARMSOFIE-20"
+            "WB1RED-21"
+            "DASHCLIP-21"
+            "SAMCLIP-21"
+            "YOYO-21"
+            "IKERCLIP-21"
+            "KAICLIP-21"
           ]
           "$50-$74":[
-            "WB-20"
-            "CLIPPERRIE-20"
-            "CHARMKNOX-20"
-            "JR-20"
-            "CLIPNICO-20"
-            "CHARMSOFIE-20"
+            "WB1RED-21"
+            "DASHCLIP-21"
+            "SAMCLIP-21"
+            "YOYO-21"
+            "IKERCLIP-21"
+            "KAICLIP-21"
             "KHC"
           ]
           "Green $75-$99":[
-            "WB-20"
-            "CLIPPERRIE-20"
-            "CHARMKNOX-20"
-            "JR-20"
-            "CLIPNICO-20"
-            "CHARMSOFIE-20"
+            "WB1RED-21"
+            "DASHCLIP-21"
+            "SAMCLIP-21"
+            "YOYO-21"
+            "IKERCLIP-21"
+            "KAICLIP-21"
             "KHC"
-            "PBALL-20"
+            "PBALL-21"
           ]
           "Blue $100-$199":[
-            "WB-20"
-            "CLIPPERRIE-20"
-            "CHARMKNOX-20"
-            "JR-20"
-            "CLIPNICO-20"
-            "CHARMSOFIE-20"
+            "WB1RED-21"
+            "DASHCLIP-21"
+            "SAMCLIP-21"
+            "YOYO-21"
+            "IKERCLIP-21"
+            "KAICLIP-21"
             "KHC"
-            "PBALL-20"
-            "CLIPCRUSH-20"
+            "PBALL-21"
+            "JOURNEYCLIP-21"
           ]
           "Red $200-$249":[
-            "WB-20"
-            "CLIPPERRIE-20"
-            "CHARMKNOX-20"
-            "JR-20"
-            "CLIPNICO-20"
-            "CHARMSOFIE-20"
+            "WB1RED-21"
+            "DASHCLIP-21"
+            "SAMCLIP-21"
+            "YOYO-21"
+            "IKERCLIP-21"
+            "KAICLIP-21"
             "KHC"
-            "PBALL-20"
-            "CLIPCRUSH-20"
-            "CLIPSUNNY-20"
+            "PBALL-21"
+            "JOURNEYCLIP-21"
+            "TAYESCOUTCLIP-21"
           ]
           "Orange $250-$499":[
-            "WB-20"
-            "CLIPPERRIE-20"
-            "CHARMKNOX-20"
-            "JR-20"
-            "CLIPNICO-20"
-            "CHARMSOFIE-20"
+            "WB1RED-21"
+            "DASHCLIP-21"
+            "SAMCLIP-21"
+            "YOYO-21"
+            "IKERCLIP-21"
+            "KAICLIP-21"
             "KHC"
-            "PBALL-20"
-            "CLIPCRUSH-20"
-            "CLIPSUNNY-20"
-            "MGRIP-20"
+            "PBALL-21"
+            "JOURNEYCLIP-21"
+            "TAYESCOUTCLIP-21"
+            "SOCKS-21"
           ]
           "Brown $500-$999":[
-            "WB-20"
-            "CLIPPERRIE-20"
-            "CHARMKNOX-20"
-            "JR-20"
-            "CLIPNICO-20"
-            "CHARMSOFIE-20"
+            "WB1RED-21"
+            "DASHCLIP-21"
+            "SAMCLIP-21"
+            "YOYO-21"
+            "IKERCLIP-21"
+            "KAICLIP-21"
             "KHC"
-            "PBALL-20"
-            "CLIPCRUSH-20"
-            "CLIPSUNNY-20"
-            "MGRIP-20"
-            "POPPER-20"
+            "PBALL-21"
+            "JOURNEYCLIP-21"
+            "TAYESCOUTCLIP-21"
+            "SOCKS-21"
+            "POPPER-21"
           ]
           "Yellow $1000+":[
-            "WB-20"
-            "CLIPPERRIE-20"
-            "CHARMKNOX-20"
-            "JR-20"
-            "CLIPNICO-20"
-            "CHARMSOFIE-20"
+            "WB1RED-21"
+            "DASHCLIP-21"
+            "SAMCLIP-21"
+            "YOYO-21"
+            "IKERCLIP-21"
+            "KAICLIP-21"
             "KHC"
-            "PBALL-20"
-            "CLIPCRUSH-20"
-            "CLIPSUNNY-20"
-            "MGRIP-20"
-            "POPPER-20"
-            "EARBUDS-20"
+            "PBALL-21"
+            "JOURNEYCLIP-21"
+            "TAYESCOUTCLIP-21"
+            "SOCKS-21"
+            "POPPER-21"
+            "SPEAKER-21"
           ]
         }
       giftLevels_noninstant: -> 
         {
           "$0": [
-            "WB-20"
+            "WB1RED-21"
           ]
           "$5-$14":[
-            "WB-20"
-            "LVL1WB-20"
-            "CHARMKNOX-20"
+            "WB1RED-21"
+            "LVL1WB-21"
+            "SAMCLIP-21"
           ]
           "$15-$24":[
-            "WB-20"
-            "LVL1WB-20"
-            "CHARMKNOX-20"
-            "JR-20"
+            "WB1RED-21"
+            "LVL1WB-21"
+            "SAMCLIP-21"
+            "YOYO-21"
           ]
           "$25-$39":[
-            "WB-20"
-            "LVL1WB-20"
-            "CHARMKNOX-20"
-            "JR-20"
-            "CLIPNICO-20"
+            "WB1RED-21"
+            "LVL1WB-21"
+            "SAMCLIP-21"
+            "YOYO-21"
+            "IKERCLIP-21"
           ]
           "$40-$49":[
-            "WB-20"
-            "LVL1WB-20"
-            "CHARMKNOX-20"
-            "JR-20"
-            "CLIPNICO-20"
-            "CHARMSOFIE-20"
+            "WB1RED-21"
+            "LVL1WB-21"
+            "SAMCLIP-21"
+            "YOYO-21"
+            "IKERCLIP-21"
+            "KAICLIP-21"
           ]
           "$50-$74":[
-            "WB-20"
-            "LVL1WB-20"
-            "CHARMKNOX-20"
-            "JR-20"
-            "CLIPNICO-20"
-            "CHARMSOFIE-20"
+            "WB1RED-21"
+            "LVL1WB-21"
+            "SAMCLIP-21"
+            "YOYO-21"
+            "IKERCLIP-21"
+            "KAICLIP-21"
             "KHC"
           ]
           "Green $75-$99":[
-            "WB-20"
-            "LVL1WB-20"
-            "CHARMKNOX-20"
-            "JR-20"
-            "CLIPNICO-20"
-            "CHARMSOFIE-20"
+            "WB1RED-21"
+            "LVL1WB-21"
+            "SAMCLIP-21"
+            "YOYO-21"
+            "IKERCLIP-21"
+            "KAICLIP-21"
             "KHC"
-            "PBALL-20"
+            "PBALL-21"
           ]
           "Blue $100-$199":[
-            "WB-20"
-            "LVL1WB-20"
-            "CHARMKNOX-20"
-            "JR-20"
-            "CLIPNICO-20"
-            "CHARMSOFIE-20"
+            "WB1RED-21"
+            "LVL1WB-21"
+            "SAMCLIP-21"
+            "YOYO-21"
+            "IKERCLIP-21"
+            "KAICLIP-21"
             "KHC"
-            "PBALL-20"
-            "CLIPCRUSH-20"
+            "PBALL-21"
+            "JOURNEYCLIP-21"
           ]
           "Red $200-$249":[
-            "WB-20"
-            "LVL1WB-20"
-            "CHARMKNOX-20"
-            "JR-20"
-            "CLIPNICO-20"
-            "CHARMSOFIE-20"
+            "WB1RED-21"
+            "LVL1WB-21"
+            "SAMCLIP-21"
+            "YOYO-21"
+            "IKERCLIP-21"
+            "KAICLIP-21"
             "KHC"
-            "PBALL-20"
-            "CLIPCRUSH-20"
-            "CLIPSUNNY-20"
+            "PBALL-21"
+            "JOURNEYCLIP-21"
+            "TAYESCOUTCLIP-21"
           ]
           "Orange $250-$499":[
-            "WB-20"
-            "LVL1WB-20"
-            "CHARMKNOX-20"
-            "JR-20"
-            "CLIPNICO-20"
-            "CHARMSOFIE-20"
+            "WB1RED-21"
+            "LVL1WB-21"
+            "SAMCLIP-21"
+            "YOYO-21"
+            "IKERCLIP-21"
+            "KAICLIP-21"
             "KHC"
-            "PBALL-20"
-            "CLIPCRUSH-20"
-            "CLIPSUNNY-20"
-            "MGRIP-20"
+            "PBALL-21"
+            "JOURNEYCLIP-21"
+            "TAYESCOUTCLIP-21"
+            "SOCKS-21"
           ]
           "Brown $500-$999":[
-            "WB-20"
-            "LVL1WB-20"
-            "CHARMKNOX-20"
-            "JR-20"
-            "CLIPNICO-20"
-            "CHARMSOFIE-20"
+            "WB1RED-21"
+            "LVL1WB-21"
+            "SAMCLIP-21"
+            "YOYO-21"
+            "IKERCLIP-21"
+            "KAICLIP-21"
             "KHC"
-            "PBALL-20"
-            "CLIPCRUSH-20"
-            "CLIPSUNNY-20"
-            "MGRIP-20"
-            "POPPER-20"
+            "PBALL-21"
+            "JOURNEYCLIP-21"
+            "TAYESCOUTCLIP-21"
+            "SOCKS-21"
+            "POPPER-21"
           ]
           "Yellow $1000+":[
-            "WB-20"
-            "LVL1WB-20"
-            "CHARMKNOX-20"
-            "JR-20"
-            "CLIPNICO-20"
-            "CHARMSOFIE-20"
+            "WB1RED-21"
+            "LVL1WB-21"
+            "SAMCLIP-21"
+            "YOYO-21"
+            "IKERCLIP-21"
+            "KAICLIP-21"
             "KHC"
-            "PBALL-20"
-            "CLIPCRUSH-20"
-            "CLIPSUNNY-20"
-            "MGRIP-20"
-            "POPPER-20"
-            "EARBUDS-20"
+            "PBALL-21"
+            "JOURNEYCLIP-21"
+            "TAYESCOUTCLIP-21"
+            "SOCKS-21"
+            "POPPER-21"
+            "SPEAKER-21"
           ]
         }
   ]

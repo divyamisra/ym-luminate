@@ -19,13 +19,17 @@ angular.module 'ahaLuminateControllers'
       $scope.companyId = $dataRoot.data('company-id') if $dataRoot.data('company-id') isnt ''
       $scope.teamId = $dataRoot.data('team-id') if $dataRoot.data('team-id') isnt ''
       $scope.eventDate =''
+      $scope.schoolProgress = {}
+      $scope.schoolProgress.amountRaised = 0
       $rootScope.numTeams = ''
       $scope.challengeId = null
       $scope.challengeName = null
       $scope.challengeCompleted = 0
       $rootScope.survivor = false
+      $scope.companyProgress = {}
 
       $scope.prizes = []
+      $scope.schoolChallenges = []
       BoundlessService.getBadges $scope.participantId
       .then (response) ->
         prizes = response.data.prizes
@@ -40,6 +44,26 @@ angular.module 'ahaLuminateControllers'
       , (response) ->
         # TODO
 
+      checkSchoolChallenges = (amountRaised) ->
+        amt = amountRaised / 100
+        ZuriService.getSchoolData $scope.companyId,
+          error: (response) ->
+            # TO DO
+          success: (response) ->
+            if response.data.data.length > 0
+              angular.forEach response.data.data, (meta, key) ->
+                if meta.name == 'years-participated'
+                  $scope.companyProgress.schoolYears = meta.value
+                if meta.name == 'school-challenge'
+                  $scope.companyProgress.schoolChallenge = meta.value
+                if meta.name == 'school-goal'
+                  $scope.companyProgress.schoolChallengeLevel = meta.value
+              if amt >= Number(($scope.companyProgress.schoolChallengeLevel).replace('$', '').replace(/,/g, ''))
+                $scope.schoolChallenges.push
+                  id: 'student'
+                  label: 'Individual Challenge Completed'
+                  earned: true
+        
       ZuriService.getStudent $scope.frId + '/' + $scope.participantId,
         error: (response) ->
           $scope.challengeName = null
@@ -68,11 +92,11 @@ angular.module 'ahaLuminateControllers'
               avatarURL = response.data.student.avatar_url
             else
               if $rootScope.tablePrefix is 'heartdev'
-                avatarURL = 'https://hearttools.heart.org/aha_ym20_dev/virtualworld/img/avatar-charger.png'
+                avatarURL = 'https://hearttools.heart.org/aha_ym21_dev/virtualworld/img/avatar-charger.png'
               else if $rootScope.tablePrefix is 'heartnew'
-                avatarURL = 'https://hearttools.heart.org/aha_ym20_testing/virtualworld/img/avatar-charger.png'
+                avatarURL = 'https://hearttools.heart.org/aha_ym21_testing/virtualworld/img/avatar-charger.png'
               else
-                avatarURL = 'https://hearttools.heart.org/aha_ym20/virtualworld/img/avatar-charger.png'
+                avatarURL = 'https://hearttools.heart.org/aha_ym21/virtualworld/img/avatar-charger.png'
             $scope.personalInfo.avatar = avatarURL
       $scope.getPersonalAvatar()
 
@@ -80,19 +104,28 @@ angular.module 'ahaLuminateControllers'
         success: (response) ->
           coordinatorId = response.getCompaniesResponse?.company?.coordinatorId
           eventId = response.getCompaniesResponse?.company?.eventId
+          amountRaised = response.getCompaniesResponse?.company?.amountRaised
+          goal = response.getCompaniesResponse?.company?.goal
+          $scope.schoolProgress.amountRaised = amountRaised / 100
           $rootScope.numTeams = response.getCompaniesResponse?.company?.teamCount
 
           if coordinatorId and coordinatorId isnt '0' and eventId
             TeamraiserCompanyService.getCoordinatorQuestion coordinatorId, eventId
               .then (response) ->
                 $scope.eventDate = response.data.coordinator?.event_date
-
+                
+          if amountRaised >= goal 
+            $scope.schoolChallenges.push
+              id: 'school'
+              label: 'School Challenge Completed'
+              earned: true
+                
       setParticipantProgress = (amountRaised, goal) ->
         $scope.personalProgress =
           amountRaised: if amountRaised then Number(amountRaised) else 0
           goal: if goal then Number(goal) else 0
-        $scope.personalProgress.amountRaisedFormatted = $filter('currency')($scope.personalProgress.amountRaised / 100, '$').replace '.00', ''
-        $scope.personalProgress.goalFormatted = $filter('currency')($scope.personalProgress.goal / 100, '$').replace '.00', ''
+        $scope.personalProgress.amountRaisedFormatted = $filter('currency')($scope.personalProgress.amountRaised / 100, '$')
+        $scope.personalProgress.goalFormatted = $filter('currency')($scope.personalProgress.goal / 100, '$')
         $scope.personalProgress.percent = 0
         if not $scope.$$phase
           $scope.$apply()
@@ -116,6 +149,7 @@ angular.module 'ahaLuminateControllers'
             setParticipantProgress()
           else
             setParticipantProgress Number(participantInfo.amountRaised), Number(participantInfo.goal)
+          checkSchoolChallenges Number(participantInfo.amountRaised)
 
       $scope.personalDonors =
         page: 1
@@ -137,7 +171,7 @@ angular.module 'ahaLuminateControllers'
             $scope.personalDonors.donors.push
               name: donorName
               amount: donorAmount
-              amountFormatted: if donorAmount is -1 then '' else $filter('currency')(donorAmount / 100, '$').replace '.00', ''
+              amountFormatted: if donorAmount is -1 then '' else $filter('currency')(donorAmount / 100, '$', 2)
           $scope.personalDonors.totalNumber = $defaultResponsivePersonalDonors.length
       else
         $defaultPersonalDonors = angular.element '.js--personal-donors .scrollContent p'
@@ -157,7 +191,7 @@ angular.module 'ahaLuminateControllers'
             $scope.personalDonors.donors.push
               name: donorName
               amount: donorAmount
-              amountFormatted: if donorAmount is -1 then '' else $filter('currency')(donorAmount / 100, '$').replace '.00', ''
+              amountFormatted: if donorAmount is -1 then '' else $filter('currency')(donorAmount / 100, '$', 2)
           $scope.personalDonors.totalNumber = $defaultPersonalDonors.length
 
       $scope.personalPagePhoto1 =
