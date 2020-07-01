@@ -1910,7 +1910,7 @@
                 }
 
                 cd.autoSearchTeam = function () {
-                    var companyName = getURLParameter(currentUrl, 'company) ? getURLParameter(currentUrl, 'company') : '';
+                    var companyName = getURLParameter(currentUrl, 'company') ? getURLParameter(currentUrl, 'company') : '';
                     companyName = decodeURIComponent(companyName);
                     $('#companyNameSearch').val(companyName);
 
