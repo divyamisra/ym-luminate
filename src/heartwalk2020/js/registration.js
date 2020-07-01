@@ -1,6 +1,10 @@
 'use strict';
 (function($) {
     $(document).ready(function() {
+        /*************/
+        /* Namespace */
+        /*************/
+        window.cd = {};
         // BEGIN LANDING PAGES
         /******************/
         /* SEARCH SCRIPTS */
@@ -1564,10 +1568,14 @@
 	   	$('button#btn_prev').after('<a href="javascript:window.history.go(-1)" class="step-button previous-step backBtnReg">Back</a>').hide();
 
 		$('button.next-step').click(function(){
-			if ($('form').valid()) {
+			if ($('.payment-type-option.selected input').val() == "paypal") {
 				return true;
 			} else {
-				return false;
+				if ($('form').valid()) {
+					return true;
+				} else {
+					return false;
+				}
 			}
 		});
 	}
