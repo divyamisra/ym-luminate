@@ -342,6 +342,13 @@
         };
 
         // Header Search Forms
+        //search by company
+        $('.js--header-company-search').on('submit', function (e) {
+            e.preventDefault();
+            var companySearched = encodeURIComponent($('#companySearch').val());
+            window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=FieldDay_Search&search_type=event&cross_event=' + (evID ? 'false' : 'true') + (evID ? '&fr_id=' + evID : '') + '&company=' + companySearched;
+        });
+
         // Search by Event
         $('.js--header-zip-search').on('submit', function (e) {
             e.preventDefault();
@@ -349,12 +356,19 @@
             window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=FieldDay_Search&search_type=event&cross_event=' + (evID ? 'false' : 'true') + (evID ? '&fr_id=' + evID : '') + '&zip=' + zipSearched;
         });
 
-        // Search page by Participant
-        $('.js--header-walker-search').on('submit', function (e) {
+        //
+        $('.js--header-state-search').on('submit', function (e) {
             e.preventDefault();
-            var firstName = encodeURIComponent($('#walkerSearchFirst').val());
-            var lastName = encodeURIComponent($('#walkerSearchLast').val());
-            window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=FieldDay_Search&search_type=walker&cross_event=false&fr_id=' + evID + (firstName ? '&first_name=' + firstName : '') +
+            var zipSearched = encodeURIComponent($('#zipSearch').val());
+            window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=FieldDay_Search&search_type=event&cross_event=' + (evID ? 'false' : 'true') + (evID ? '&fr_id=' + evID : '') + '&zip=' + zipSearched;
+        });
+
+        // Search page by Participant
+        $('.js--header-participant-search').on('submit', function (e) {
+            e.preventDefault();
+            var firstName = encodeURIComponent($('#participantSearchFirst').val());
+            var lastName = encodeURIComponent($('#participantSearchLast').val());
+            window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=FieldDay_Search&search_type=participant&cross_event=false&fr_id=' + evID + (firstName ? '&first_name=' + firstName : '') +
                 (lastName ? '&last_name=' + lastName : '');
         });
 
@@ -1833,6 +1847,14 @@
                 $('.js--team-results-rows').html('');
             }
 
+            // Search by Company
+            $('.js--company-search-form').on('submit', function (e) {
+                e.preventDefault();
+                clearSearchResults();
+                var companySearched = encodeURIComponent($('#companyNameSearch').val());
+                cd.getEventsByDistance(companySearched);
+            });
+
             // Search by Event
             $('.js--zip-search-form').on('submit', function (e) {
                 e.preventDefault();
@@ -1842,11 +1864,11 @@
             });
 
             // Search page by Participant
-            $('.js--walker-search-form').on('submit', function (e) {
+            $('.js--participant-search-form').on('submit', function (e) {
                 e.preventDefault();
                 clearSearchResults();
-                var firstName = encodeURIComponent($('#walkerFirstName').val());
-                var lastName = encodeURIComponent($('#walkerLastName').val());
+                var firstName = encodeURIComponent($('#participantFirstName').val());
+                var lastName = encodeURIComponent($('#participantLastName').val());
 
                 cd.getParticipants(firstName, lastName, (isCrossEventSearch === "true" ? true : false));
             });
