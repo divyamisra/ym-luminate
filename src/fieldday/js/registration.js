@@ -18,7 +18,11 @@
         var subSrcCode = luminateExtend.global.subSrcCode;
         var evID = $('body').data('fr-id') ? $('body').data('fr-id') : null;
         var consID = $('body').data('cons-id') ? $('body').data('cons-id') : null;
+	var evDate = $('body').data('event-date') ? $('body').data('event-date') : null;
+	var evDateYear = /(\d{4})/.test(evDate) ? RegExp.$1 : '2020';
+	var coordEmail = $('input[name=coordinator_email]').val();
 
+ 
         var currentUrl = window.location.href;
         var searchType = getURLParameter(currentUrl, 'search_type');
 
@@ -128,8 +132,13 @@
 
                   $(teams).each(function (i, team) {
                     if (searchType === 'registration') {
-                      $('.list').append(
-                        '<div class="search-result-details row py-3"><div class="col-md-5"><strong><a href="' + team.teamPageURL + '" class="team-name-label" title="' + team.name + '" target=_blank><span class="team-company-label sr-only">Team Name:</span> ' + team.name + '</a></strong><br><span class="team-captain-label">Coach:</span> <span class="team-captain-name">' + team.captainFirstName + ' ' + team.captainLastName + '</span></div><div class="col-md-5 mt-auto">' + ((team.companyName !== null && team.companyName !== undefined) ? '<span class="team-company-label">Company:</span> <span class="team-company-name">' + team.companyName + '</span>' : '') + '</div><div class="col-md-2"><a href="' + luminateExtend.global.path.secure + 'TRR/?fr_tjoin=' + team.id + '&pg=tfind&fr_id=' + evID + '&s_captainConsId=' + team.captainConsId + '&s_regType=joinTeam&skip_login_page=true&s_teamName=' + team.name + '&s_teamGoal=' + (parseInt(team.goal)/100) + '&s_teamCaptain=' + team.captainFirstName + ' ' + team.captainLastName + '" title="Join ' + team.name + '" aria-label="Join ' + team.name + '" class="btn btn-block btn-primary button team-join-btn">Join</a></div></div>');
+		      if (team.maxTeamSize > team.numMembers) {
+	                      $('.list').append(
+        	                '<div class="search-result-details row py-3"><div class="col-md-5"><strong><a href="' + team.teamPageURL + '" class="team-name-label" title="' + team.name + '" target=_blank><span class="team-company-label sr-only">Team Name:</span> ' + team.name + '</a></strong><br><span class="team-captain-label">Coach:</span> <span class="team-captain-name">' + team.captainFirstName + ' ' + team.captainLastName + '</span></div><div class="col-md-5 mt-auto">' + ((team.companyName !== null && team.companyName !== undefined) ? '<span class="team-company-label">Company:</span> <span class="team-company-name">' + team.companyName + '</span>' : '') + '</div><div class="col-md-2"><a href="' + luminateExtend.global.path.secure + 'TRR/?fr_tjoin=' + team.id + '&pg=tfind&fr_id=' + evID + '&s_captainConsId=' + team.captainConsId + '&s_regType=joinTeam&skip_login_page=true&s_teamName=' + team.name + '&s_teamGoal=' + (parseInt(team.goal)/100) + '&s_teamCaptain=' + team.captainFirstName + ' ' + team.captainLastName + '" title="Join ' + team.name + '" aria-label="Join ' + team.name + '" class="btn btn-block btn-primary button team-join-btn">Join</a></div></div>');
+		      } else {
+	                      $('.list').append(
+        	                '<div class="search-result-details row py-3"><div class="col-md-5"><strong><a href="' + team.teamPageURL + '" class="team-name-label" title="' + team.name + '" target=_blank><span class="team-company-label sr-only">Team Name:</span> ' + team.name + '</a></strong><br><span class="team-captain-label">Coach:</span> <span class="team-captain-name">' + team.captainFirstName + ' ' + team.captainLastName + '</span></div><div class="col-md-5 mt-auto">' + ((team.companyName !== null && team.companyName !== undefined) ? '<span class="team-company-label">Company:</span> <span class="team-company-name">' + team.companyName + '</span>' : '') + '</div><div class="col-md-2 text-center"><br/>Team is full</div></div>');
+		      }
                       $('.js__search-results-container').slideDown();
                       // $('.js__search-results-container').show();
 
@@ -267,7 +276,7 @@
           });
         };
 
-        // Heart Walk 2020 Registration JS
+        // Field Day 2020 Registration JS
         var fr_id = $('input[name=fr_id]').val();
 
         if (fr_id == 3476) {
@@ -605,12 +614,18 @@
                 // existing record. show log in form
                 $('.js__have-we-met-container').addClass('d-none');
                 $('.js__login-container').removeClass('d-none');
+		$('h1#user_type_campaign_banner_container').replaceWith(function() {
+	            return '<h1 class="campaign-banner-container" id="user_type_campaign_banner_container">Welcome Back!</h1>';
+	        });
             });
             $('.js__show-have-we-met').on('click touchstart', function (e) {
                 // existing record. show log in form
                 e.preventDefault();
                 $('.js__login-container').addClass('d-none');
                 $('.js__have-we-met-container').removeClass('d-none');
+		$('h1#user_type_campaign_banner_container').replaceWith(function() {
+	            return '<h1 class="campaign-banner-container" id="user_type_campaign_banner_container">Have We Met Before?</h1>';
+	        });
             });
             $('.js__new-record').on('click touchstart', function (e) {
             // new participant. continue to tfind step
@@ -636,12 +651,16 @@
 
         // ptype page
         if ($('#participation_options_page').length > 0) {
+	    $('#part_type_campaign_banner_container').prepend(evDateYear+" ");
+	    $('#part_type_fundraising_goal_input_container').prepend("<h2>Set Your Personal Fundraising Goal!</h2>")
             $('div#part_type_campaign_banner_container').replaceWith(function() {
                 return '<h1 class="campaign-banner-container" id="part_type_campaign_banner_container">' + $(this).html() + '</h1>';
             });
             $('#pt_title_container').replaceWith(function() {
                 return '<h2 id="pt_title_container" class="section-header-text">' + $(this).html() + '</h2>';
             });
+		
+ 	    $('#disc_code_container').append("<div><small>Is your company paying for your registration fee? Please enter your company code below.</small></div>")
         }
 
         // reg page
@@ -719,6 +738,10 @@
                 }, "The team goal should be greater than $0."
             );
 
+	    $('select#fr_co_list').addClass("required").attr("title","Team Company is required");
+	    $('select#fr_co_list option:first').attr("value","");
+            $('#team_find_new_company_selection_container label').before('<span class="field-required" id="team_find_new_company_selection_required" aria-hidden="true"></span>');	    
+
 	    $('input#fr_team_goal').addClass("validGoal required");
 	    $('span.field-required').closest('.form-content').find('input, select').addClass("required");
 
@@ -755,6 +778,7 @@
             });
 
             if (regType === 'startTeam') {
+    		$('.campaign-banner-container').hide();
                 $('#team_find_section_container').addClass("col-12 col-xl-10 offset-xl-1").removeClass("section-container");
                 $('form[name=FriendraiserFind]').removeAttr('hidden');
                 $('#team_find_section_body, #team_find_section_header').show();
@@ -765,9 +789,12 @@
                     $('#team_find_new_team_attributes').addClass('no-companies');
                     $('#team_find_new_team_name, #team_find_new_fundraising_goal').addClass('col-md-6');
                 } else {
-                    $('#team_find_new_company_selection_container').append("<span class='hint-text hidden-xs'>If your team is a part of a company, please select the company above. If your company name does not appear, you can skip this step. Can't find your company? <strong>Contact your local staff</strong> to get your company set up today!</span>");
+                    $('#team_find_new_company_selection_container').append("<span class='hint-text hidden-xs'>You can't skip this step! If you don't see your company in the list, please <a href='mailto:"+coordEmail+"'>contact your local staff</a> to get your company set up today!</span>");
                 }
+		$('#team_find_new_team_attributes').before($('#team_find_new_team_company'));
             } else if (regType === 'joinTeam') {
+		$('.campaign-banner-container').hide();
+    		$('#team_find_new_team_attributes').before($('#team_find_new_team_company'));
                 if ($('#team_find_existing').length > 0) {
 
                     // BEGIN new team find form
@@ -784,7 +811,7 @@
                         var companyId = $('#regCompanyId').val();
                         // cd.getTeams(teamName, searchType);
                         cd.getTeams(teamName, 'registration', false, firstName, lastName, companyId);
-
+      	                $('.js__reg-team-search-form .button').closest('.col-sm-4').after('<div class="col-sm-12 text-center pt-2">Can\'t find a team at your company? <a href="TRR/?pg=tfind&fr_id='+evID+'&fr_tm_opt=new&s_regType=startTeam">You can start one!</a></div>');
                     });
 
                     cd.getCompanyList = function(frId, companyId) {
@@ -1121,8 +1148,10 @@
                 var updatedJoinTeamLink = $(joinTeamLink).attr('href') + '&s_regType=joinTeam';
                 $(joinTeamLink).attr('href', updatedJoinTeamLink);
             }
-
-            $('#team_find_new_fundraising_goal_input_hint').text('You can increase your team\'s goal, but the amount shown below is your team\'s suggested fundraising minimum.');
+	    
+	    $('#team_find_new_team_attributes').before("<div class='mt-3'><p class='text-center'>Now create a fun team name and set your team's fundraising goal. (A team of 10 easily raises $2,000 so let's do this!)</p></div>")
+		
+            $('#team_find_new_fundraising_goal_input_hint').hide(); //text('You can increase your team\'s goal, but the amount shown below is your team\'s suggested fundraising minimum.');
             $('#previous_step span').text('Back');
         }
         // END TFIND
@@ -1131,13 +1160,22 @@
         if ($('#fr_team_goal').length <= 0) {
             $('#team_find_section_footer').hide();
         }
-
+	// UTYPE
+	if (jQuery('input[name=pg]').val() == "utype") {
+   	    $('h1#user_type_campaign_banner_container').replaceWith(function() {
+	        return '<h1 class="campaign-banner-container" id="user_type_campaign_banner_container">Have We Met Before?</h1>';
+            });
+	}
 
         // PTYPE
         if ($('#F2fRegPartType').length > 0) {
             if ($('.part-type-container').length == 1) {
-                $('.part-type-container, #part_type_section_header').hide();
-                $('.part-type-container').before("<div class='part_type_one_only'><strong>Set Your Fundraising Goal!</strong></div>");
+		if ($('input[name=discount_code]').length == 0) {
+	                $('.part-type-container, #part_type_section_header').hide();
+		} else {
+	                $('#part_type_section_header').hide();
+		}
+                //$('.part-type-container').before("<div class='part_type_one_only'><strong>Set Your Fundraising Goal!</strong></div>");
             } else {
                 $('input[name=fr_part_radio]:checked').removeAttr("checked");
                 $('.part-type-container.selected').removeClass("selected");
@@ -1151,12 +1189,13 @@
             $('.donation-form-fields').attr("role","radiogroup").attr({"aria-label":"Donation Amounts","aria-required":"true"});
 
             if (regType === 'startTeam') {
-                $('#part_type_additional_gift_section_header').prepend('<div class="bold-label" id="regDonationLabel">Show your team how it\'s done: kick start your own fundraising with a donation!</div>');
+                $('#part_type_additional_gift_section_header').html('<div class="bold-label" id="regDonationLabel">Show your team how it\'s done: kick start your own fundraising with a personal donation!</div>');
             }
             if (regType === 'joinTeam') {
-                $('#part_type_additional_gift_section_header').prepend('<div class="bold-label" id="regDonationLabel">Show your dedication and make a donation towards your goal.</div>');
+                $('#part_type_additional_gift_section_header').html('<div class="bold-label" id="regDonationLabel">Show your team how it\'s done: kick start your own fundraising with a personal donation!</div>');
+	        //$('#part_type_additional_gift_section_header').prepend('<div class="bold-label" id="regDonationLabel">Show your dedication and make a donation towards your goal.</div>');
             }
-            $('#part_type_additional_gift_section_header').before("<h2>Make a Donation</h2>");
+            $('#part_type_additional_gift_section_header').before("<h2>Get Started with a Personal Donation</h2>");
 
             $('#part_type_donation_level_input_container').wrapInner('<fieldset role="radiogroup" class="donation-form-fields" aria-label="Donation Amounts" aria-required="true" />');
             $('.donation-form-fields').prepend('<legend class="sr-only">Donate Towards Your Goal Now</legend>');
@@ -1238,6 +1277,7 @@
         }
 
         if (jQuery('input[name=pg]').val() == "reg" || jQuery('input[name=pg]').val() == "reganother") {
+	    $('h1.campaign-banner-container').prepend(evDateYear+" ");
 	    /* zip only reg flow */
 	    $('#cons_zip_code').parent().parent().parent().parent().addClass('field-required consZip');
 
@@ -1247,9 +1287,26 @@
 
 	    $('label:contains("t-shirt")').closest('.input-container').find('select').addClass("tshirtSize");
 	    $('span.field-required').closest('.form-content').find('input, select').addClass("required");
-	    $('input[value^="I accept"]').addClass("acceptRelease");
-	    $('input[value^="I agree to the Terms and Conditions"]').addClass("acceptPrivacy");
-
+	    $('input[value^="I accept"]').addClass("acceptRelease").next('label').addClass("acceptReleaseLabel");
+	    /*
+	    var pattern = /\b(Release with Publicity Consent)/gi; // words you want to wrap
+	    var replaceWith = '<a id="waiverPopLink" href="javascript:void(0);">$1</a>'; // Here's the wap
+    	    $('.acceptReleaseLabel').each(function(){
+		$(this).html($(this).html().replace(pattern,replaceWith));
+ 	    });
+	    $('input[value^="I agree to"]').addClass("acceptPrivacy").next('label').addClass("acceptPrivacyLabel");
+	    var pattern = /\b(Terms and Conditions \(PDF\))/gi; // words you want to wrap
+	    var replaceWith = '<a href="#" target="_blank">$1</a>'; // Here's the wap
+    	    $('.acceptPrivacyLabel').each(function(){
+		$(this).html($(this).html().replace(pattern,replaceWith));
+ 	    });
+	    var pattern = /\b(Privacy Policy)/gi; // words you want to wrap
+	    var replaceWith = '<a href="https://www.heart.org/en/about-us/statements-and-policies/privacy-statement" target="_blank">$1</a>'; // Here's the wap
+    	    $('.acceptPrivacyLabel').each(function(){
+		$(this).html($(this).html().replace(pattern,replaceWith));
+ 	    });
+            */
+		
 	    $('input.required').each(function(){
 		    var label = $(this).closest('.input-container').find('.input-label').html();
 		    if (label != undefined) {
@@ -1264,7 +1321,7 @@
 	    var optinHTML = '<div id="mobile_optin_outer">' +
 		                '<input type="checkbox" name="mobile_optin" id="mobile_optin">' +
 		                '<label for="mobile_optin" class="wrapable">' +
-		                    '<span id="optin_label"><strong>Mobile Opt in:</strong> By checking the box, I consent to receive up to 1 - 2 text messages per week from AHA  supporting my Heart Walk efforts at the mobile number above. Selecting text option is not required for my participation. Message and data rates may apply. I can Reply STOP at any time to opt out.</span>' +
+		                    '<span id="optin_label"><strong>Mobile Opt in:</strong> By checking the box, I consent to receive up to 1 - 2 text messages per week from AHA supporting my Field Day efforts at the mobile number above. Selecting text option is not required for my participation. Message and data rates may apply. I can Reply STOP at any time to opt out.</span>' +
 		                '</label>' +
 		             '</div>';
 	    // only add mobile opt in option if grou pid exists on body tag
@@ -1385,7 +1442,10 @@
             $('#progressText1').hide();
             $('.p-bar-step-1').css('background', '#f18b21');
         }
-        if ($('#fr_reg_summary_page #FriendraiserUserWaiver').length > 0) {
+        if ($('input[name="pg"]').val() == 'waiver') {
+	    $('h2.cstmTitle').prepend(evDateYear+" ");
+	}
+	if ($('#fr_reg_summary_page #FriendraiserUserWaiver').length > 0) {
             $('.p-bar-step-1, .p-bar-step-2, .p-bar-step-3').show();
             $('#progressText1, #progressText2').hide();
             $('.p-bar-step-1, .p-bar-step-2').css('background', '#f18b21');
@@ -1495,7 +1555,7 @@
 
         /* Page = Reg */
         if ($('input[name="pg"]').val() == 'regsummary') {
-            console.log('pg=regsummary');
+   	    $('h2.cstmTitle').prepend(evDateYear+" ");
             // if there is a donation then change button text
             if ($.trim($('.additional-gift-amount').html()) != "$0.00") {
                 $('button.next-step').attr("value","Complete and Donate").find('span').html("Complete and Donate");
@@ -1538,6 +1598,7 @@
 
         /* Page = paymentForm */
         if ($('input[name="pg"]').val() == 'paymentForm') {
+		$('h1#reg_payment_campaign_banner_container').prepend(evDateYear+" ");
 		$('button.previous-step').attr("formnovalidate","true");
 
 		$('.payment-type-selection-container h3').attr("id","payment-type-label");
@@ -1584,21 +1645,16 @@
         }
         
         $('.part-type-description-text:contains("Free")').html('&nbsp;');
-        $('.survey-question-container legend span:contains("Waiver agreement")').parent().parent().addClass('waiverCheck');
+        $('.survey-question-container legend span:contains("Publicity Release")').parent().parent().addClass('waiverCheck');
         $('.waiverCheck legend').addClass('aural-only');
-        $('.waiverCheck label').html('<span class="field-required"></span> I accept and acknowledge that I have read and understand this Heart Walk <a id="waiverPopLink" href="#">Release with Publicity Consent</a> and agree to them voluntarily.');
+        $('.waiverCheck label').html('<span class="field-required"></span> I accept and acknowledge that I have read and understand this Field Day <a id="waiverPopLink" href="javascript:void(0);">Release with Publicity Consent</a> and agree to them voluntarily.');
 	$('.waiverCheck input[type="checkbox"]').attr("aria-required","true");
-        $('.survey-question-container legend span:contains("Privacy Policy")').parent().parent().addClass('privacyCheck');
+        $('.survey-question-container legend span:contains("Terms of Service")').parent().parent().addClass('privacyCheck');
         $('.privacyCheck legend').addClass('aural-only');
         var trName = $('.campaign-banner-container').text();
         trName = trName.replace(/'/g, '');
         // TODO - update terms of service code for Field Day
-        if (trName.indexOf('Lawyers') != -1){
-          $('.privacyCheck label').html('<span class="field-required"></span> I agree to the <a href="javascript:void(0)" onclick="window.open(\'DocServer/Terms_of_Service_Heart_Walk_LHH_2020.pdf\',\'_blank\',\'location=yes,height=570,width=520,scrollbars=yes,status=yes\');">Terms and Conditions (PDF)</a> and <a href="javascript:void(0)" onclick="window.open(\'https://www.heart.org/en/about-us/statements-and-policies/privacy-statement\',\'_blank\',\'location=yes,height=570,width=520,scrollbars=yes,status=yes\');">Privacy Policy</a>.');
-        }
-        else {
-          $('.privacyCheck label').html('<span class="field-required"></span> I agree to the <a href="javascript:void(0)" onclick="window.open(\'DocServer/FieldDay2019_163605_TOS_texting_2019.11.19.pdf\',\'_blank\',\'location=yes,height=570,width=520,scrollbars=yes,status=yes\');">Terms and Conditions (PDF)</a> and <a href="javascript:void(0)" onclick="window.open(\'https://www.heart.org/en/about-us/statements-and-policies/privacy-statement\',\'_blank\',\'location=yes,height=570,width=520,scrollbars=yes,status=yes\');">Privacy Policy</a>.');
-        }
+        $('.privacyCheck label').html('<span class="field-required"></span> I agree to the <a href="javascript:void(0)" onclick="window.open(\'DocServer/FieldDay2019_163605_TOS_texting_2019.11.19.pdf\',\'_blank\',\'location=yes,height=570,width=520,scrollbars=yes,status=yes\');">Terms and Conditions (PDF)</a> and <a href="javascript:void(0)" onclick="window.open(\'https://www.heart.org/en/about-us/statements-and-policies/privacy-statement\',\'_blank\',\'location=yes,height=570,width=520,scrollbars=yes,status=yes\');">Privacy Policy</a>.');
 	$('.privacyCheck input[type="checkbox"]').attr("aria-required","true");
 
 	$('.survey-question-container legend span:contains("Healthy for good signup")').parent().parent().addClass('healthyCheck');
@@ -1714,10 +1770,10 @@
             _gaq.push(['t2._trackEvent', 'Fundraised Before', 'click', 'No']);
         });
         jQuery("input[name='fr_part_radio']").blur(function() {
-            _gaq.push(['t2._trackEvent', 'Participation Type', 'click', 'Heart Walk']);
+            _gaq.push(['t2._trackEvent', 'Participation Type', 'click', 'Field Day']);
         });
         jQuery("input[name='fr_part_radio']").blur(function() {
-            _gaq.push(['t2._trackEvent', 'Participation Type', 'click', 'Heart Walk']);
+            _gaq.push(['t2._trackEvent', 'Participation Type', 'click', 'Field Day']);
         });
         jQuery("#next_step").blur(function() {
             _gaq.push(['t2._trackEvent', 'Button', 'click', 'Next']);

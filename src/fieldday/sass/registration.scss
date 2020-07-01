@@ -324,7 +324,7 @@ div#part_type_fundraising_goal_container #suggested_goal_container {
 	    width: 100px;
 	}
 }
-#part_type_instruction_sub_header, .progress-bar-container, .part-type-name-value-separator, .part-type-fee-text {
+#part_type_instruction_sub_header, .progress-bar-container {
     display: none;
 }
 #part_type_anonymous_input_container,
@@ -724,13 +724,27 @@ div.responsive #team_find_section_footer button.next-step {
 .app_tr_registration div.responsive #fr_team_goal {
 	padding-left:20px;
 }
-#team_find_new_team_attributes, #team_find_new_team_company {
-	width: 50%;
+#team_find_new_team_attributes, 
+#team_find_new_team_company {
+	width: 100%;
+	float:none;
+}
+#team_find_new_team_attributes {
+	display: flex;
+}
+#team_find_page div.input-container {
+	flex: 1 1 50%;
+}
+#team_find_new_team_company {
+	max-width:49%;
+	margin-right:10px;
 }
 @media only screen and (max-width: 767px) {
    #team_find_new_team_attributes,
    #team_find_new_team_company {
-	width: auto !important;
+	display:block;
+	width: 100% !important;
+	max-width:none;
    }
    #team_find_section_footer {
 	margin-top:20px;
@@ -969,6 +983,9 @@ div.responsive div.ErrorMessage.page-error>span.field-error-indicator, div.respo
 .app_tr_registration div.registration-page-container div.section-header {
 	text-align: center;
 }
+.app_tr_registration div.registration-page-container #F2fRegContact div.section-header {
+	text-align: left;
+}
 .app_tr_registration div.registration-page-container div.section-body, .app_tr_registration div.registration-page-container div.section-footer, .app_tr_registration div.registration-page-container div.section-header, .app_tr_registration div.registration-page-container div.section-sub-header {
 	background-color: #fff;
 	border: none;
@@ -1004,7 +1021,7 @@ div.responsive div.ErrorMessage.page-error>span.field-error-indicator, div.respo
 	text-align:center
 }
 .app_tr_registration div.required-indicator-legend {
-	text-align:center;
+	text-align:left;
 	padding:0;
 }
 .app_tr_registration #F2fRegContact,
@@ -1257,7 +1274,7 @@ div.responsive .part-type-decoration-messages label {
   display: block;
   font-size: 24px;
   line-height: 32px;
-  padding: 10px 0px;
+  padding: 10px;
   text-align: left;
   cursor:pointer;
   margin: 0px;
@@ -1269,11 +1286,13 @@ div.responsive .part-type-container:hover .part-type-decoration-messages label{
 .part-type-name {
     display: inline-block;
 }
-div.part-type-decoration-messages .part-type-description-text {
+div.part-type-decoration-messages .part-type-name,
+div.part-type-decoration-messages .part-type-name-value-separator {
     display: none;
 }
 
-div.part-type-decoration-messages .part-type-description-text, div.part-type-decoration-messages span.part-type-name {
+div.part-type-decoration-messages .part-type-description-text, 
+div.part-type-decoration-messages span.part-type-name {
     font-size: inherit;
     font-weight: 400;
 }

@@ -8,7 +8,7 @@
 	    $('body').addClass("ie11");
     }
 
-    // Heart Walk 2020 Donation JS
+    // Field Day 2020 Donation JS
     //Donation Levels
     // var amountLevel = readCookie('level');
     var amountLevel = null;
@@ -384,7 +384,12 @@
 
 	    $('label:contains(Cover Fee)').closest('.form-input-label-block').remove();
 
-            if (getDonationAmount() > 0 && $('#cover_fee_radio_Yes').is(':checked')) {
+	    $('label[for=cover_fee_radio_Yes]').html($('label[for=cover_fee_radio_Yes]').html().replace("[amt]","<span class='feeVal'>$0</span>"));
+            if (getDonationAmount() > 0) {
+	       var feeVal = parseFloat((getDonationAmount() * 0.029 + .30).toFixed(2));
+	       $('.feeVal').html("$"+feeVal.toFixed(2));
+	    }
+	    if (getDonationAmount() > 0 && $('#cover_fee_radio_Yes').is(':checked')) {
                var initAmt = parseFloat(getDonationAmount());
                var toDonate =  initAmt + parseFloat((getDonationAmount() * 0.029 + .30).toFixed(2));
                $('button#pstep_finish').html("Donate $" + toDonate);
@@ -397,6 +402,8 @@
 	    }
 
             $("#cover_fee_radio_Yes").click(function() {
+               var feeVal = parseFloat((getDonationAmount() * 0.029 + .30).toFixed(2));
+	       $('.feeVal').html("$"+feeVal.toFixed(2));
                if ($(this).is(':checked')) {
                   var initAmt = parseFloat(getDonationAmount());
                   var toDonate =  initAmt + parseFloat((getDonationAmount() * 0.029 + .30).toFixed(2));
@@ -409,6 +416,8 @@
                }
             });
             jQuery('[id^=level_]').change(function() {
+               var feeVal = parseFloat((getDonationAmount() * 0.029 + .30).toFixed(2));
+	       $('.feeVal').html("$"+feeVal.toFixed(2));
                if ($("#cover_fee_radio_Yes").is(':checked')) {
                   var initAmt = parseFloat(getDonationAmount());
                   var toDonate =  initAmt + parseFloat((getDonationAmount() * 0.029 + .30).toFixed(2));
@@ -421,6 +430,8 @@
                }
             });
             $('.donation-level-user-entered input').blur(function() {
+	       var feeVal = parseFloat((getDonationAmount() * 0.029 + .30).toFixed(2));
+	       $('.feeVal').html("$"+feeVal.toFixed(2));
                if ($("#cover_fee_radio_Yes").is(':checked')) {
                   var initAmt = parseFloat(getDonationAmount());
                   var toDonate =  initAmt + parseFloat((getDonationAmount() * 0.029 + .30).toFixed(2));

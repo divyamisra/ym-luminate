@@ -67,9 +67,10 @@ div.html-caption-container {
          margin: 0 0 20px;
     }
 }
-.tributes-caption + .form-row + .section-header-container {
+/*.tributes-caption + .form-row + .section-header-container {
 	border: none;
 }
+*/
  h1#formTitle {
      font-weight: 600;
      font-size: 30px;
@@ -394,8 +395,8 @@ div.responsive button.finish-step {
 }
 /* --- */
  div.payment-field-container span.payment-type-option.selected {
-     background-color: #000;
-     background: #000;
+     border-color: #c10e21 !important;
+     background: #c10e21;
 }
  div.payment-field-container span.payment-type-option.selected a:link {
      width: 125px;
@@ -472,10 +473,11 @@ div.donation-level-label-container::after {
      margin: 10px 2% 10px 0;
      position: relative;
 }
-.designated-giving-recurring-row.active,
+.donation-form-container #level_flexiblegift_type_Row .designated-giving-recurring-row.active,
 div.donation-level-container.active,
 div.donation-level-container:hover {
-     background-color: #000000;
+     background-color: #c10e21;
+     border-color:#c10e21;
 }
  label + div.donation-level-user-entered {
      margin-left: 0px;
@@ -727,8 +729,8 @@ div.responsive .donation-level-general-ask {
      left: -9999px;
 }*/
  div.responsive .donation-levels .enterAmt .donation-level-input-container label {
-     line-height: initial;
-     top: -25px !important;
+     line-height: 32px;
+     /*top: -25px !important;*/
 }
  div.responsive .donation-levels .enterAmt .donation-level-input-container label.error {
      color: #ff0000;
