@@ -195,7 +195,7 @@ angular.module 'ahaLuminateControllers'
           $scope.personalDonors.totalNumber = $defaultPersonalDonors.length
 
       $scope.personalPagePhoto1 =
-        defaultUrl: APP_INFO.rootPath + 'dist/ym-primary/image/personal-default.jpg'
+        defaultUrl: APP_INFO.rootPath + 'dist/ym-primary/image/personal-default.png'
 
       $scope.editPersonalPhoto1 = ->
         delete $scope.updatePersonalPhoto1Error
