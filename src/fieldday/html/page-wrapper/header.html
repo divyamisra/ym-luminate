@@ -45,11 +45,19 @@
 
 		]]
 	]]
-        <button id="mobile-toggle" class="navbar-toggler float-right" type="button" aria-label="Open Main Navigation">
-            <span class="navbar-toggler-icon fas fa-align-justify"></span>
-        </button>
 
-        [[?xMyEventsx::x[[S334:pagename]]x::
+  <div class="nav-wrapper">
+    <button aria-label="Open Main Navigation" class="navbar-toggler float-right" id="mobile-toggle" type="button"><span class="navbar-toggler-icon fas fa-align-justify"></span></button>
+    [[?xHeartWalk_Searchxheartwalk_registerx::x[[S334:pagename]]x::::
+    [[?
+      [[?x27x9x::x[[S4]]x::::F]]
+    ::F::
+    <a class="d-lg-none d-md-block float-right mobile-search-trigger" id="mobile-search"><i aria-hidden="true" class="fas fa-search"></i>
+    <span class="sr-only">Search</span></a>
+    ::]]
+  </div>
+
+     [[?xMyEventsx::x[[S334:pagename]]x::
 		<ul class="nav navbar-nav ml-auto">
 		    [[?xx::x[[S1:first_name]]x::
 		    <li class="nav-item d-lg-none d-md-block" id="mobile-login">
@@ -69,15 +77,7 @@
 		    ]]
 		</ul>
 	::
-		[[?xFieldDay_Searchxfieldday_registerx::x[[S334:pagename]]x::::
-		[[?
-		  [[?x27x9x::x[[S4]]x::::F]]
-		::F::
-		<a class="d-lg-none d-md-block float-right mobile-search-trigger" id="mobile-search">
-		    <i class="fas fa-search" aria-hidden="true"></i><span class="sr-only">Search</span>
-		</a>
-		::]]
-		]]
+		
 		<div class="clearfix"></div>
 		<!-- /#mobile-search.d-lg-none d-md-block -->
 		<div class="collapse navbar-collapse" id="navbar-container">
