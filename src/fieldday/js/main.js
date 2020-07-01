@@ -326,8 +326,8 @@
                             $('.js--num-companies').text(totalCompanies);
 
                             $(companies).each(function (i, company) {
-                                $('.js__company-results-rows').append('<tr' + (i > 10 ? ' class="d-none"' : '') + '><td><a href="' + company.companyURL + '">' +
-                                    company.companyName + '</a></td><td class="col-cta"><a href="' + company.companyURL + '" aria-label="Visit page for ' + company.companyName + '" class="btn-rounded btn-primary btn-block">View</a></td></tr>');
+                                $('.js--company-results-rows').append('<tr' + (i > 10 ? ' class="d-none"' : '') + '><td><a href="' + company.companyURL + '">' +
+                                    company.companyName + '</a></td><td class="col-cta"><a href="' + company.companyURL + '">{Team Name}</a></td><td class="col-cta"><a href="' + company.companyURL + '">{Company Lead}</a></td></tr>');
                             });
 
                             $('.js--company-results-container').removeAttr('hidden');
@@ -708,7 +708,6 @@
         cd.getParticipantsLanding = function (firstName, lastName) {
             $('.js--no-participant-results, .js--participant-no-event-results').addClass('d-none');
             $('.js--participant-loading').show();
-
 
             luminateExtend.api({
                 api: 'teamraiser',
@@ -1894,8 +1893,8 @@
                         firstNameVal = decodeURIComponent(firstNameVal);
                         lastNameVal = decodeURIComponent(lastNameVal);
 
-                        $('#walkerFirstName').val(firstNameVal);
-                        $('#walkerLastName').val(lastNameVal);
+                        $('#participantFirstName').val(firstNameVal);
+                        $('#participantLastName').val(lastNameVal);
 
                         cd.getParticipants(firstNameVal, lastNameVal, (isCrossEventSearch === "true" ? true : false));
                     }
@@ -1910,6 +1909,14 @@
                     cd.getTeams(teamName, null, (isCrossEventSearch === "true" ? true : false));
                 }
 
+                cd.autoSearchTeam = function () {
+                    var companyName = getURLParameter(currentUrl, 'company) ? getURLParameter(currentUrl, 'company') : '';
+                    companyName = decodeURIComponent(companyName);
+                    $('#companyNameSearch').val(companyName);
+
+                    cd.getCompanies(companyName, null, (isCrossEventSearch === "true" ? true : false));
+                }
+
                 cd.autoSearchEvents = function () {
                     var searchZip = getURLParameter(currentUrl, 'zip') ? getURLParameter(currentUrl, 'zip') : '';
                     $('#zipCodeSearch').val(searchZip);
@@ -1919,14 +1926,16 @@
 
                 if (searchType === 'event') {
                     cd.autoSearchEvents();
-                } else if (searchType === 'walker') {
+                } else if (searchType === 'participant') {
                     cd.autoSearchParticipant();
                     // Switch to walker tab
-                    $('#searchWalkerTab').tab('show');
+                    $('#searchParticipantTab').tab('show');
                 } else if (searchType === 'team') {
                     cd.autoSearchTeam();
                     // Switch to team tab
                     $('#searchTeamTab').tab('show');
+                } else if (searchType === 'company') {
+                   cd.autoSearchCompany();
                 }
             }
         }
