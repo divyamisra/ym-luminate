@@ -1852,7 +1852,7 @@
                 e.preventDefault();
                 clearSearchResults();
                 var companySearched = encodeURIComponent($('#companyNameSearch').val());
-                cd.getEventsByDistance(companySearched);
+                cd.getCompanies(companySearched);
             });
 
             // Search by Event
