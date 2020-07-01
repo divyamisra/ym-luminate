@@ -371,6 +371,94 @@
         /* EVENT SEARCH SCRIPTS */
         /******************************/
 
+        // Get events by zip
+
+        cd.getEventsByDistance = function (zipCode) {
+            $('.js--no-event-results').addClass('d-none');
+            $('.js--loading').show();
+
+            luminateExtend.api({
+                api: 'teamraiser',
+                data: 'method=getTeamraisersByDistance' +
+                    '&starting_postal=' + zipCode +
+                    '&distance_units=mi' +
+                    '&search_distance=200' +
+                    '&event_type=' + eventType +
+                    '&response_format=json&list_page_size=499&list_page_offset=0&list_sort_column=event_date&list_ascending=true',
+                callback: {
+                    success: function (response) {
+                        if (response.getTeamraisersResponse.totalNumberResults > '0') {
+                            $('.js--loading').hide();
+                            var events = luminateExtend.utils.ensureArray(response.getTeamraisersResponse.teamraiser);
+                            var totalEvents = parseInt(response.getTeamraisersResponse.totalNumberResults);
+
+                            if ($.fn.DataTable) {
+                                if ($.fn.DataTable.isDataTable('#eventResultsTable')) {
+                                    $('#eventResultsTable').DataTable().destroy();
+                                }
+                            }
+                            $('#eventResultsTable tbody').empty();
+
+                            $('.js--num-event-results').text((totalEvents === 1 ? '1 Result' : totalEvents + ' Results'));
+
+                            $(events).each(function (i, event) {
+                                var eventDate = luminateExtend.utils.simpleDateFormat(event.event_date,
+                                    'EEE, MMM d, yyyy');
+                                var eventTimestamp = new Date(event.event_date);
+                                var eventStatus = event.status;
+                                var acceptsRegistration = event.accepting_registrations;
+
+                                if (screenWidth >= 768) {
+                                    var eventRow = '<tr' + (i > 10 ? ' class="d-none"' : '') + '><td><a href="' +
+                                        event.greeting_url + '">' + event.name + '</a></td><td data-order="' + event.event_date + '">' + eventDate + '</td><td data-order="' + parseFloat(event.distance) + '">' + event.distance + 'mi</td><td><a href="' + event.greeting_url + '" aria-label="More details about ' + event.name + '" class="btn btn-secondary btn-block btn-rounded">Details</a></td><td class="col-cta">' + (acceptsRegistration === 'true' ? '<a href="SPageServer/?pagename=fieldday_register&fr_id=' + event.id + '" aria-label="Register for ' + event.name + '" class="btn btn-primary btn-block btn-rounded">Register</a>' : 'Registration Closed') + '</td></tr>';
+                                } else {
+                                    $('#eventResultsTable thead').remove();
+                                    $('.js--event-results-rows').addClass('mobile')
+
+                                    var eventRow = '<tr><td><table><tr' + (i > 10 ? ' class="d-none"' : '') + '><td>Event Name</td><td><a href="' +
+                                        event.greeting_url + '">' + event.name + '</a></td></tr>' +
+                                        '</td></tr><tr><td>Date</td><td>' + eventDate + '</td></tr><tr><td>Distance</td><td>' + event.distance + 'mi</td></tr><tr><td colspan="2" class="text-center">' + (acceptsRegistration === 'true' ? '<a href="SPageServer/?pagename=fieldday_register&fr_id=' + event.id + '" class="btn btn-primary btn-block btn-rounded" title="Register for ' + event.name + '" aria-label="Register for ' + event.name + '">Register</a>' : 'Registration Closed') + '</td></tr></table></td></tr>';
+                                }
+
+
+                                if (eventStatus === '1' || eventStatus === '2' || eventStatus === '3') {
+                                    $('.js--event-results-rows').append(eventRow);
+                                }
+                            });
+
+                            if (totalEvents > 10) {
+                                $('.js--more-event-results').removeAttr('hidden');
+                            }
+
+                            $('.js--more-event-results').on('click', function (e) {
+                                e.preventDefault();
+                                $('.js--event-results-rows tr').removeClass('d-none');
+                                $(this).attr('hidden', true);
+                                $('.js--end-event-list').removeAttr('hidden');
+                            });
+                            if (screenWidth >= 768) {
+                                $('#eventResultsTable').DataTable({
+                                    "paging": false,
+                                    "searching": false,
+                                    "info": false
+                                });
+                            }
+                            $('.dataTables_length').addClass('bs-select');
+
+                            $('.js--event-results-container').removeAttr('hidden');
+                        } else {
+                            $('.js--loading').hide();
+                            $('.js--no-event-results').removeClass('d-none');
+                        }
+                    },
+                    error: function (response) {
+                        $('.js--loading').hide();
+                    }
+                }
+            });
+        };
+        // END getEventsByDistance
+
         // Get events by name or state
         cd.getEvents = function (eventName, eventState) {
             $('.js--loading').show();
