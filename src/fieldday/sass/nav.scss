@@ -77,6 +77,11 @@ nav {
     height: 96px;
     list-style:none;
 
+    @include media-breakpoint-up(md) {
+      color: $white;
+    }
+
+
     &.logged-in:hover {
       a {
         text-decoration: none !important;
@@ -90,7 +95,9 @@ nav {
     &:hover {
 
       a.nav-link {
-        color: $white;
+        @include media-breakpoint-up(md) {
+          color: $white;
+        }
         text-decoration: underline;
       }
 
@@ -99,6 +106,7 @@ nav {
       }
     }
     &.logged-in {
+
       p {
         color: $white;
       }
