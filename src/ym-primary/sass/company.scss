@@ -19,6 +19,12 @@ body.pg-company {
 			font-family: "Luckiest Guy",cursive;
 		}
 	}
+	.challenge-slime {
+		background: #fff url('../image/school_challenge_1_alt.png') no-repeat;
+	}
+	.challenge-pie {
+		background: #fff url('../image/school_challenge_2_alt.png') no-repeat;
+	}
 
      @media (max-width: $screen-sm-max) {
           .ym-our-stats {
