@@ -645,6 +645,11 @@
 
   /* PERSONAL, TEAM, COMPANY PAGE STYLES */
   .pg_personal, .pg_team, .pg_company {
+    .content-area {
+      h2 {
+        color: $red;
+      }
+    }
     .tr-page-container {
       &.hero {
         padding:0 15px;

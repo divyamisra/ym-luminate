@@ -373,7 +373,13 @@ img {
   .fundraising-amounts {
     border-bottom: 45px;
   }
-}git s
+
+  .content-area {
+    h2 {
+      color: $red;
+    }
+  }
+}
 
 #globalFooter {
   background-color: #e9ecef;
