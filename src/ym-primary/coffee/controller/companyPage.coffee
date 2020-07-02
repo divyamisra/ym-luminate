@@ -34,6 +34,8 @@ angular.module 'ahaLuminateControllers'
       $scope.activity3amt = ''
       $scope.topClassRaised = []
       $scope.topClassStudents = []
+      $scope.schoolChallenge = ''
+      $scope.schoolChallengeGoal = 0
       $scope.schoolYears = 0
       $scope.unconfirmedAmountRaised = 0
       
@@ -442,6 +444,10 @@ angular.module 'ahaLuminateControllers'
         success: (response) ->
           if response.data.data.length > 0
             angular.forEach response.data.data, (meta, key) ->
+              if meta.name == 'school-challenge'
+                $scope.schoolChallenge = meta.value
+              if meta.name == 'school-goal'
+                $scope.schoolChallengeGoal = meta.value
               if meta.name == 'years-participated'
                 $scope.schoolYears = meta.value
         
