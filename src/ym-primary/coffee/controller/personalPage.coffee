@@ -30,7 +30,7 @@ angular.module 'ahaLuminateControllers'
 
       $scope.prizes = []
       $scope.schoolChallenges = []
-      BoundlessService.getBadges $scope.participantId
+      BoundlessService.getBadges $scope.frId + '/' + $scope.participantId
       .then (response) ->
         prizes = response.data.prizes
         angular.forEach prizes, (prize) ->
