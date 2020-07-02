@@ -2021,3 +2021,27 @@ div.required-indicator-legend {
         padding: 0 1em;
     }
 }
+
+.app_tr_registration {
+  background-color: #900;
+  background-image: url(https://secure3.convio.net/heartdev/images/content/pagebuilder/background-squiggles.png);
+  background-repeat: no-repeat;
+  background-position: right top;
+  background-size: 70%;
+
+  header {
+    background-color: transparent;
+    background-image: none;
+    nav{
+      background-color: transparent;
+    }
+  }
+
+  main {
+    background-color: transparent;
+  }
+
+  #find, #home {
+    display: none!important;
+  }
+}
