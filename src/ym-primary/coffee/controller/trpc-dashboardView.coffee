@@ -71,7 +71,7 @@ angular.module 'trPcControllers'
         $scope.dashboardProgressType = progressType
 
       if $scope.participantRegistration.companyInformation?.isCompanyCoordinator is 'true'
-        BoundlessService.checkOOTDashboard $scope.consId
+        BoundlessService.checkOOTDashboard $scope.frId + '/' + $scope.consId
         .then (response) ->
           $rootScope.hasOOTDashboard = response.data.coordinatorHasDashboard
         , (response) ->
@@ -731,7 +731,7 @@ angular.module 'trPcControllers'
       $scope.prizes = []
       $scope.prizesEarned = 0
       $scope.has_bonus = 0
-      BoundlessService.getBadges $scope.consId
+      BoundlessService.getBadges $scope.frId + '/' + $scope.consId
       .then (response) ->
         prizes = response.data.prizes
         $scope.has_bonus = response.data.has_bonus
