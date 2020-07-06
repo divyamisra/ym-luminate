@@ -30,6 +30,9 @@ padding: 0.625rem 1.25rem;
   margin:0 !important;
 }
 /* Main navigation styles */
+.nav-wrapper {
+  margin-left: auto;
+}
 nav {
   margin: 12px auto 0px !important;
   max-width: 1350px;
@@ -74,6 +77,11 @@ nav {
     height: 96px;
     list-style:none;
 
+    @include media-breakpoint-up(sm) {
+      color: $white;
+    }
+
+
     &.logged-in:hover {
       a {
         text-decoration: none !important;
@@ -87,7 +95,9 @@ nav {
     &:hover {
 
       a.nav-link {
-        color: $white;
+        @include media-breakpoint-up(sm) {
+          color: $white;
+        }
         text-decoration: underline;
       }
 
@@ -96,10 +106,14 @@ nav {
       }
     }
     &.logged-in {
+
+      p {
+        color: $white;
+      }
       a {
         display:inline-block;
         font-size:16px;
-        color:$primary;
+        color:$white;
         font-weight:bold;
       }
     }

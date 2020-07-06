@@ -107,7 +107,6 @@
 
 @media all and (max-width: 1315px) {
   .information-box {
-    padding: 30px;
     width: 95%;
   }
 }
@@ -228,12 +227,13 @@
     }
 
     #home {
-      color: $white;
+      color: $red;
       padding: 18px 0 !important;
       font-size: 1rem;
 
       &:hover {
         text-decoration: none;
+        color: $red-deep;
       }
     }
 
@@ -348,10 +348,7 @@
     }
 
     .information-box {
-      box-shadow: none !important;
-      margin: 0 auto;
-      width: 100% !important;
-      padding: 10px 30px 30px !important;
+
 
       h1 {
         width: 100%;
@@ -511,15 +508,6 @@
     }
 
     .event-info {
-      margin-top: 66px !important;
-      padding: 25px !important;
-      .event-info {
-        margin-top:0 !important;
-        padding: 25px 0 !important;
-      }
-      h1 {
-        font-size: 1.333rem !important;
-      }
 
       .event-date {
         font-size: 1rem !important;
@@ -560,28 +548,9 @@
           padding: 0 0 10px;
         }
       }
-
-      .fundraising-amounts {
-        border: none !important;
-        margin-top: 3px !important;
-
-        span {
-          font-size: 0.9rem !important;
-        }
-
-        span.amount {
-          font-size: 1rem !important;
-        }
-      }
-
-      .thermometer-inner {
-        height: 50px;
-      }
     }
 
     .top-lists-container {
-      margin-top: 25px !important;
-      padding-bottom: 0 !important;
 
       h2 {
         font-size: 1rem !important;
@@ -676,6 +645,11 @@
 
   /* PERSONAL, TEAM, COMPANY PAGE STYLES */
   .pg_personal, .pg_team, .pg_company {
+    .content-area {
+      h2 {
+        color: $red;
+      }
+    }
     .tr-page-container {
       &.hero {
         padding:0 15px;

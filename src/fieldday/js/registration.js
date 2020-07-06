@@ -1,6 +1,7 @@
 'use strict';
 (function($) {
     $(document).ready(function() {
+      
         // BEGIN LANDING PAGES
         /******************/
         /* SEARCH SCRIPTS */
@@ -22,7 +23,7 @@
 	var evDateYear = /(\d{4})/.test(evDate) ? RegExp.$1 : '2020';
 	var coordEmail = $('input[name=coordinator_email]').val();
 
- 
+
         var currentUrl = window.location.href;
         var searchType = getURLParameter(currentUrl, 'search_type');
 
@@ -659,7 +660,7 @@
             $('#pt_title_container').replaceWith(function() {
                 return '<h2 id="pt_title_container" class="section-header-text">' + $(this).html() + '</h2>';
             });
-		
+
  	    $('#disc_code_container').append("<div><small>Is your company paying for your registration fee? Please enter your company code below.</small></div>")
         }
 
@@ -740,7 +741,7 @@
 
 	    $('select#fr_co_list').addClass("required").attr("title","Team Company is required");
 	    $('select#fr_co_list option:first').attr("value","");
-            $('#team_find_new_company_selection_container label').before('<span class="field-required" id="team_find_new_company_selection_required" aria-hidden="true"></span>');	    
+            $('#team_find_new_company_selection_container label').before('<span class="field-required" id="team_find_new_company_selection_required" aria-hidden="true"></span>');
 
 	    $('input#fr_team_goal').addClass("validGoal required");
 	    $('span.field-required').closest('.form-content').find('input, select').addClass("required");
@@ -1148,9 +1149,9 @@
                 var updatedJoinTeamLink = $(joinTeamLink).attr('href') + '&s_regType=joinTeam';
                 $(joinTeamLink).attr('href', updatedJoinTeamLink);
             }
-	    
+
 	    $('#team_find_new_team_attributes').before("<div class='mt-3'><p class='text-center'>Now create a fun team name and set your team's fundraising goal. (A team of 10 easily raises $2,000 so let's do this!)</p></div>")
-		
+
             $('#team_find_new_fundraising_goal_input_hint').hide(); //text('You can increase your team\'s goal, but the amount shown below is your team\'s suggested fundraising minimum.');
             $('#previous_step span').text('Back');
         }
@@ -1306,7 +1307,7 @@
 		$(this).html($(this).html().replace(pattern,replaceWith));
  	    });
             */
-		
+
 	    $('input.required').each(function(){
 		    var label = $(this).closest('.input-container').find('.input-label').html();
 		    if (label != undefined) {
@@ -1643,7 +1644,7 @@
             $('#fr_team_goal').val('');
             $('#fr_team_name').val('');
         }
-        
+
         $('.part-type-description-text:contains("Free")').html('&nbsp;');
         $('.survey-question-container legend span:contains("Publicity Release")').parent().parent().addClass('waiverCheck');
         $('.waiverCheck legend').addClass('aural-only');

@@ -23,7 +23,7 @@
      }
 
      h1 {
-       margin: 40px 0 0 40px;
+       margin: 40px;
      }
      div.row {
       padding: 0 40px 15px;
@@ -55,9 +55,9 @@
    table {
 
     tbody {
-      background-color: $team-roster-bg-gray;
+      background-color: $white;
      tr {
-       border-bottom: solid 1px $white;
+       border-bottom: solid 1px $team-roster-bg-gray;
        font-size: 0.9rem;
        padding: 17px 40px;
 
@@ -74,10 +74,7 @@
  }
 
   .content-area {
-    border-top: solid 1px $thermometer-border;
-    padding: 80px 0;
-    margin-left: 40px;
-    margin-right: 40px;
+    margin: 40px;
 
     .video-container {
       margin: 0;
@@ -89,11 +86,31 @@
   margin: 80px 0 0 30px;
 
   .team-roster-header {
-    padding: 20px 0 0 20px;
+    padding: 20px;
     overflow: hidden;
+    background-color: $red;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
     h1 {
+      color: $white;
       margin: 0 !important;
     }
+    .team-roster__icon {
+      display: flex;
+      align-items: center;
+      p {
+        color: $white;
+        font-size: 0.78em;
+        margin: 0 0 0 7px;
+      }
+    }
   }
+
+  .btn{
+    padding: 11px;
+    width: 260px;
+  }
+
 }
