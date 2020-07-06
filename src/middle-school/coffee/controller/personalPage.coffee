@@ -106,7 +106,7 @@ angular.module 'ahaLuminateControllers'
           if amountRaised >= goal 
             $scope.schoolChallenges.push
               id: 'school'
-              label: 'School raised more than its goal'
+              label: 'School Challenge Completed'
               earned: true
               
       setParticipantProgress = (amountRaised, goal) ->
