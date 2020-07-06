@@ -94,8 +94,8 @@ angular.module 'ahaLuminateControllers'
         success: (response) ->
           coordinatorId = response.getCompaniesResponse?.company?.coordinatorId
           eventId = response.getCompaniesResponse?.company?.eventId
-          amountRaised = response.getCompaniesResponse?.company?.amountRaised
-          goal = response.getCompaniesResponse?.company?.goal
+          amountRaised = Number response.getCompaniesResponse?.company?.amountRaised
+          goal = Number response.getCompaniesResponse?.company?.goal
           $rootScope.numTeams = response.getCompaniesResponse.company?.teamCount
           
           if coordinatorId and coordinatorId isnt '0' and eventId          
