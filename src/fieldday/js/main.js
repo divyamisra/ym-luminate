@@ -348,12 +348,10 @@
                 data: 'method=getTeamCaptains' +
                     '&fr_id=' + evID +
                     '&team_id=' + teamId +
-                    '&response_format=json' +
-                    '&list_sort_column=first_name' +
-                    '&list_ascending=true',
+                    '&response_format=json',
                 callback: {
                     success: function (response) {
-                            var captains = luminateExtend.utils.ensureArray(response.getParticipantsResponse.captain);
+                            var captains = luminateExtend.utils.ensureArray(response.getTeamCaptainsResponse.captain);
 
                             $(captains).each(function (i, captain) {
                               var captainName = captain.name.first + ' ' + captain.name.last;
