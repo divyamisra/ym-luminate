@@ -953,6 +953,7 @@ angular.module 'trPcControllers'
                   earned_title: giftPrev.earned_title
                   earned_subtitle1: giftPrev.earned_subtitle1
                   earned_subtitle2: giftPrev.earned_subtitle2
+                  earned_subtitle3: giftPrev.earned_subtitle3
               # if items need to be added then only add up to 3 after pushing first one
               if startList == 1 and listCnt <= giftToAdd
                 listCnt++
@@ -966,6 +967,7 @@ angular.module 'trPcControllers'
                   earned_title: gift.earned_title
                   earned_subtitle1: gift.earned_subtitle1
                   earned_subtitle2: gift.earned_subtitle2
+                  earned_subtitle3: gift.earned_subtitle3
                 $scope.giftStatus = status
               giftPrev = gift
               prevstatus = status
