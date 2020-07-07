@@ -94,7 +94,7 @@
         var currentUrl = window.location.href;
         var searchType = getURLParameter(currentUrl, 'search_type');
         var isCrossEventSearch = getURLParameter(currentUrl, 'cross_event');
-        var companyId = getURLParameter(currentUrl, 'company_id');
+        var teamId = getURLParameter(currentUrl, 'team_id');
 
         var skipLink = document.getElementById('skip-main');
 
@@ -347,7 +347,7 @@
                 api: 'teamraiser',
                 data: 'method=getTeamCaptains' +
                     '&fr_id=' + evID +
-                    '&fr_id=' + companyId +
+                    '&fr_id=' + teamId +
                     '&response_format=json' +
                     '&list_sort_column=first_name' +
                     '&list_ascending=true',
@@ -359,12 +359,12 @@
                               var captainName = captain.name.first + ' ' + captain.name.last;
                               var captainPage = captain.personalPageUrl;
 
-                              $('<p><a href="'+ captainPage +'">' + captainName +'</p>').appendTo('.js--company-lead');
+                              $('<p><a href="'+ captainPage +'">' + captainName +'</p>').appendTo('.js--team-captain');
                             });
 
                     },
                     error: function (response) {
-                        $('#error-participant').removeAttr('hidden').text(response.errorResponse.message);
+                        console.log(response.errorResponse.message);
                     }
                 }
             });
@@ -1038,7 +1038,6 @@
                     $('.team-roster form .btn').html('<i class="fas fa-search"></i>');
                     $('#participant-roster td:nth-child(3) a').html('Donate');
 
-                    cd.getTeamCaptains();
                 }
             }
         };
@@ -1374,6 +1373,7 @@
             cd.runThermometer(progress, goal);
             cd.setDonorRollHeight();
             cd.reorderPageForMobile();
+            cd.getTeamCaptains();
 
             // populate custom team page content
             $('.js--team-text').html($('#fr_rich_text_container').html());
