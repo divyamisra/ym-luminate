@@ -194,7 +194,7 @@ angular.module 'ahaLuminateApp'
             "earned_title":"You're on a roll"
             "earned_subtitle1":"A spaghetti yoyo is on the way for raising $15!"
             "earned_subtitle2":"Keep working hard towards your goal."
-            "earned_subtitle3":"and you'll earn a spghettin yoyo."
+            "earned_subtitle3":"and you'll earn a spaghetti yoyo."
             "online_only":0
           }
           {
@@ -241,7 +241,7 @@ angular.module 'ahaLuminateApp'
             "instant": 2
             "earned_title":"Have a ball"
             "earned_subtitle1":"Thank for all your hard work for raising $75!"
-            "earned_subtitle2":"Yo've earned a playground ball."
+            "earned_subtitle2":"You've earned a playground ball."
             "earned_subtitle3":"and you'll earn a playbround ball."
             "online_only":0
           }
@@ -253,7 +253,7 @@ angular.module 'ahaLuminateApp'
             "instant": 1
             "earned_title":"Lots o' love for you"
             "earned_subtitle1":"We're so happy you earned Journey for raising $100!"
-            "earned_subtitle2":"Be kind to others just liek Journey."
+            "earned_subtitle2":"Be kind to others just like Journey."
             "earned_subtitle3":"and you'll earn Journey."
             "online_only":0
           }
