@@ -146,6 +146,7 @@ angular.module 'ahaLuminateApp'
             "earned_title":"Get ready for fun"
             "earned_subtitle1":"Thank you for joining Kids Heart Challenge and registering online!"
             "earned_subtitle2":"You earned a wristband."
+            "earned_subtitle3":"and you'll earn a wristband."
             "online_only":0
           }
           {
@@ -157,6 +158,7 @@ angular.module 'ahaLuminateApp'
             "earned_title":"doin' a happy dance"
             "earned_subtitle1":"We're so happy you earned Dash for raising $5!"
             "earned_subtitle2":"It's important to move daily like Dash."
+            "earned_subtitle3":"and you'll earn Dash."
             "online_only":0
           }
           {
@@ -168,6 +170,7 @@ angular.module 'ahaLuminateApp'
             "earned_title":"Stay Hydrated!"
             "earned_subtitle1":"You've raised $5!"
             "earned_subtitle2":"a water bottle"
+            "earned_subtitle3":"and you'll earn a water bottle."
             "online_only":0
           }
           {
@@ -179,6 +182,7 @@ angular.module 'ahaLuminateApp'
             "earned_title":"Kickin' it ninja style"
             "earned_subtitle1":"Take a bow for earning Sam for raising $10 online!"
             "earned_subtitle2":"Always make a good choice like Sam."
+            "earned_subtitle3":"and you'll earn Sam."
             "online_only":1
           }
           {
@@ -190,6 +194,7 @@ angular.module 'ahaLuminateApp'
             "earned_title":"You're on a roll"
             "earned_subtitle1":"A spaghetti yoyo is on the way for raising $15!"
             "earned_subtitle2":"Keep working hard towards your goal."
+            "earned_subtitle3":"and you'll earn a spghettin yoyo."
             "online_only":0
           }
           {
@@ -201,6 +206,7 @@ angular.module 'ahaLuminateApp'
             "earned_title":"Leading the pack"
             "earned_subtitle1":"Be proud you earned Iker for raising $25!"
             "earned_subtitle2":"Stand up for what's right like Iker."
+            "earned_subtitle3":"and you'll earn Iker."
             "online_only":0
           }
           {
@@ -212,6 +218,7 @@ angular.module 'ahaLuminateApp'
             "earned_title":"You're rad dude"
             "earned_subtitle1":"You earned Kai for raising $40 online!"
             "earned_subtitle2":"Keep it cool just like Kai."
+            "earned_subtitle3":"and you'll earn Kai."
             "online_only":1
           }
           {
@@ -223,6 +230,7 @@ angular.module 'ahaLuminateApp'
             "earned_title":"Tee it up"
             "earned_subtitle1":"Because you raised $50 you'll receive a challenge shirt!"
             "earned_subtitle2":"Show off your spirit for being healthy."
+            "earned_subtitle3":"and you'll earn a t-shirt."
             "online_only":0
           }
           {
@@ -234,6 +242,7 @@ angular.module 'ahaLuminateApp'
             "earned_title":"Have a ball"
             "earned_subtitle1":"Thank for all your hard work for raising $75!"
             "earned_subtitle2":"Yo've earned a playground ball."
+            "earned_subtitle3":"and you'll earn a playbround ball."
             "online_only":0
           }
           {
@@ -245,6 +254,7 @@ angular.module 'ahaLuminateApp'
             "earned_title":"Lots o' love for you"
             "earned_subtitle1":"We're so happy you earned Journey for raising $100!"
             "earned_subtitle2":"Be kind to others just liek Journey."
+            "earned_subtitle3":"and you'll earn Journey."
             "online_only":0
           }
           {
@@ -256,6 +266,7 @@ angular.module 'ahaLuminateApp'
             "earned_title":"You're paw-some"
             "earned_subtitle1":"Nice job earning Taye & Scout for raising $200!"
             "earned_subtitle2":"Always help others just like them."
+            "earned_subtitle3":"and you'll earn Taye & Scout."
             "online_only":0
           }
           {
@@ -267,6 +278,7 @@ angular.module 'ahaLuminateApp'
             "earned_title":"Jump in feet first"
             "earned_subtitle1":"You're knocking our socks off so you earned a pair for raising $250!"
             "earned_subtitle2":"Take a walk...with your new socks."
+            "earned_subtitle3":"and you'll earn Athletic Socks."
             "online_only":0
           }
           {
@@ -278,6 +290,7 @@ angular.module 'ahaLuminateApp'
             "earned_title":"Top of the pops"
             "earned_subtitle1":"Your hard work raising $500 earned you a popper!"
             "earned_subtitle2":"Stop drinking pop...pick water instead."
+            "earned_subtitle3":"and you'll earn Popper."
             "online_only":0
           }
           {
@@ -289,6 +302,7 @@ angular.module 'ahaLuminateApp'
             "earned_title":"Way to go!"
             "earned_subtitle1":"Nice job raising $1,000!"
             "earned_subtitle2":"Your hard work earned you a Kai speaker that totally rocks like you."
+            "earned_subtitle3":"and you'll earn a Kai speaker."
             "online_only":0
           }
         ]
