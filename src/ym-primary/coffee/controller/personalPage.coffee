@@ -47,23 +47,40 @@ angular.module 'ahaLuminateControllers'
       checkSchoolChallenges = (amountRaised) ->
         amt = amountRaised / 100
         ZuriService.getSchoolData $scope.companyId,
+          failure: (response) ->
+            $scope.companyProgress.schoolYears = 0
+            $scope.companyProgress.schoolChallenge = ''
+            $scope.companyProgress.schoolChallengeLevel = ''
           error: (response) ->
-            # TO DO
+            $scope.companyProgress.schoolYears = 0
+            $scope.companyProgress.schoolChallenge = ''
+            $scope.companyProgress.schoolChallengeLevel = ''
           success: (response) ->
-            if response.data.data.length > 0
-              angular.forEach response.data.data, (meta, key) ->
-                if meta.name == 'years-participated'
-                  $scope.companyProgress.schoolYears = meta.value
-                if meta.name == 'school-challenge'
-                  $scope.companyProgress.schoolChallenge = meta.value
-                if meta.name == 'school-goal'
-                  $scope.companyProgress.schoolChallengeLevel = meta.value
-              if amt >= Number(($scope.companyProgress.schoolChallengeLevel).replace('$', '').replace(/,/g, ''))
-                $scope.schoolChallenges.push
-                  id: 'student'
-                  label: 'Individual Challenge Completed'
-                  earned: true
-        
+            if typeof response.data.data != 'undefined'
+              if response.data.data.length > 0
+                angular.forEach response.data.data, (meta, key) ->
+                  if meta.name == 'years-participated'
+                    $scope.companyProgress.schoolYears = meta.value
+                  if meta.name == 'school-challenge'
+                    $scope.companyProgress.schoolChallenge = meta.value
+                  if meta.name == 'school-goal'
+                    $scope.companyProgress.schoolChallengeLevel = meta.value
+                if amt >= Number(($scope.companyProgress.schoolChallengeLevel).replace('$', '').replace(/,/g, '')) and $scope.companyProgress.schoolChallenge != "No School Challenge"
+                  # check if student badge already added
+                  schoolChallengeAdded = false
+                  angular.forEach $scope.schoolChallenges, (schoolChallenge, schoolChallengeIndex) ->
+                    if schoolChallenge.id == "student"
+                      schoolChallengeAdded = true
+                  if not schoolChallengeAdded
+                    $scope.schoolChallenges.push
+                      id: 'student'
+                      label: 'Individual Challenge Completed'
+                      earned: true
+            else
+              $scope.companyProgress.schoolYears = 0
+              $scope.companyProgress.schoolChallenge = ''
+              $scope.companyProgress.schoolChallengeLevel = ''
+              
       ZuriService.getStudent $scope.frId + '/' + $scope.participantId,
         error: (response) ->
           $scope.challengeName = null
@@ -104,8 +121,8 @@ angular.module 'ahaLuminateControllers'
         success: (response) ->
           coordinatorId = response.getCompaniesResponse?.company?.coordinatorId
           eventId = response.getCompaniesResponse?.company?.eventId
-          amountRaised = response.getCompaniesResponse?.company?.amountRaised
-          goal = response.getCompaniesResponse?.company?.goal
+          amountRaised = Number response.getCompaniesResponse?.company?.amountRaised
+          goal = Number response.getCompaniesResponse?.company?.goal
           $scope.schoolProgress.amountRaised = amountRaised / 100
           $rootScope.numTeams = response.getCompaniesResponse?.company?.teamCount
 
