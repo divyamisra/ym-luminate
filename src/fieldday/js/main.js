@@ -94,6 +94,7 @@
         var currentUrl = window.location.href;
         var searchType = getURLParameter(currentUrl, 'search_type');
         var isCrossEventSearch = getURLParameter(currentUrl, 'cross_event');
+        var companyId = getURLParameter(currentUrl, 'company_id');
 
         var skipLink = document.getElementById('skip-main');
 
@@ -336,6 +337,34 @@
                     },
                     error: function (response) {
                         $('.js--company-results-container').removeAttr('hidden').text(response.errorResponse.message);
+                    }
+                }
+            });
+        };
+
+        cd.getTeamCaptains = function () {
+            luminateExtend.api({
+                api: 'teamraiser',
+                data: 'method=getTeamCaptains' +
+                    '&fr_id=' + evID +
+                    '&fr_id=' + companyId +
+                    '&response_format=json' +
+                    '&list_sort_column=first_name' +
+                    '&list_ascending=true',
+                callback: {
+                    success: function (response) {
+                            var captains = luminateExtend.utils.ensureArray(response.getParticipantsResponse.captain);
+
+                            $(captains).each(function (i, captain) {
+                              var captainName = captain.name.first + ' ' + captain.name.last;
+                              var captainPage = captain.personalPageUrl;
+
+                              $('<p><a href="'+ captainPage +'">' + captainName +'</p>').appendTo('.js--company-lead');
+                            });
+
+                    },
+                    error: function (response) {
+                        $('#error-participant').removeAttr('hidden').text(response.errorResponse.message);
                     }
                 }
             });
@@ -1008,6 +1037,8 @@
 
                     $('.team-roster form .btn').html('<i class="fas fa-search"></i>');
                     $('#participant-roster td:nth-child(3) a').html('Donate');
+
+                    cd.getTeamCaptains();
                 }
             }
         };
