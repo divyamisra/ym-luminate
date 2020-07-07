@@ -347,7 +347,7 @@
                 api: 'teamraiser',
                 data: 'method=getTeamCaptains' +
                     '&fr_id=' + evID +
-                    '&fr_id=' + teamId +
+                    '&team_id=' + teamId +
                     '&response_format=json' +
                     '&list_sort_column=first_name' +
                     '&list_ascending=true',
