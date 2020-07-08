@@ -1012,7 +1012,7 @@
      		}
 
         cd.getCompanyData = function(companyId){
-          console.log('called company data');
+          console.log('called company data' + companyId);
      		 Papa.parse(companyCSV, {
      		   header: true,
            download: true,
@@ -1038,7 +1038,9 @@
      				 var companyLead = '<p><a href="mailto:' + company.coordinatoremail +'">' + company.coordinatorfirstname + ' ' + company.coordinatorlastname + '</a></p>' ;
      				 $(companyLead).appendTo('.js--company-lead');
 
-     				 var  eventDate = '<p><strong>' + company.eventdate + '<br>' + company.eventtime + '</strong></p>';
+             var eventDateFormatted = moment(company.eventdate).format('MMMM D, YYYY');
+
+     				 var  eventDate = '<p><strong>' + eventDateFormatted + '<br>' + company.eventtime + '</strong></p>';
      				 $(eventDate).appendTo('.js--event-date');
 
      				 var companyLocation = '<p>' + company.eventcity + ', ' + company.eventstate + '</p>'
