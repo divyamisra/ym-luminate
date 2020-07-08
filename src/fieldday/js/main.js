@@ -1060,12 +1060,13 @@
           header: true,
           download: true,
           complete: function(results) {
-            if (results) {
-              var data = results.data;
 
-              var company = cd.getCompanyByID(data, companyId);
+            var data = results.data;
+            var company = cd.getCompanyByID(data, companyId);
 
+            if (company !== undefined) {
               var companyLocation = company.eventcity + ', ' + company.eventstate;
+
               $(companyLocation).appendTo('.js--company-location');
             }
           }
