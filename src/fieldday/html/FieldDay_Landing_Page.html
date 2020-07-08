@@ -17,14 +17,15 @@
 			<div class="row no-gutters">
 				<div class="form-group col-xs-12 col-md-5">
 					<form class="row ml-0 mr-0 pr-0 pl-0 js--zip-search">
-						<label class="sr-only" for="zip">Search by Zip</label> <input class="form-control col-xs-10 js--zip-search-val" name="zip" placeholder="Search by Zip" type="text"> <button class="col-xs-2 event-zip-search-submit action-button search-submit" type="submit"><span class="sr-only">Search by Zip</span><i aria-hidden="true" class="fa fa-search"></i></button>
+						<label for="zip-landing" class="sr-only">Search by Zip</label>
+						<input class="form-control col-xs-10 js--zip-search-val" id="zip-landing" name="zip-landing" placeholder="Search by Zip" type="text"> <button class="col-xs-2 event-zip-search-submit action-button search-submit" type="submit"><span class="sr-only">Search by Zip</span><i aria-hidden="true" class="fa fa-search"></i></button>
 					</form>
 				</div>
 				<p class="form-group-divider col-xs-12 col-md-2 text-center">or</p>
 				<div class="form-group col-xs-12 col-md-5">
 					<form class="row no-gutters ml-0 mr-0 pr-0 pl-0 js--state-search">
 						<div class="col-xs-12 event-state-select-container">
-							<label class="sr-only" for="fr_event_state">Search by State</label> <select class="search form-control col-12 js--state-search-val" id="fr_event_state" name="fr_event_state" size="1">
+							<label class="sr-only" for="landing-state">Search by State</label> <select class="search form-control col-12 js--state-search-val" id="landing-state" name="landing-state" size="1">
 								<option>
 									Search by State
 								</option>
@@ -191,7 +192,7 @@
 			<div class="js--loading py-4 text-center d-none">
 				Loading...
 			</div>
-			<div aria-atomic="true" class="js--no-event-results alert alert-primary text-center col-md-8 offset-md-2 d-none" role="alert">
+			<div class="js--no-event-results alert alert-primary text-center col-md-8 offset-md-2 d-none" role="alert">
 				<span>We&rsquo;re not seeing anything on the horizon. Maybe try different search terms?</span>
 			</div>
 			<div class="event-results-wrapper container mt-3 text-center">
@@ -224,11 +225,11 @@
 					<form class="js--page-company-search">
 						<div class="d-flex flex-column">
 							<div class="col-12">
-									<label for="companySearch">Search by Company Name</label>
+									<label for="company-search-page">Search by Company Name</label>
 							</div>
 							<div class="col-12">
 								<div class="input-group input-group-lg">
-									<input class="form-control js--page-company-search-val" id="companySearch" name="company-search" type="text">
+									<input class="form-control js--page-company-search-val" id="company-search-page" name="company-search-page" type="text">
 									<div class="input-group-append">
 										<button class="btn btn-primary" type="submit"><span class="sr-only">Search</span><i aria-hidden="true" class="fas fa-search"></i></button>
 									</div>
@@ -244,10 +245,10 @@
 						<form class="js--page-participant-search">
 							<div class="d-flex flex-column">
 								<div class="col-12">
-									<label for="participantSearchFirst">Search by First and / or Last Name</label> </div>
+									<label for="participant-search-first-page">Search by First and / or Last Name</label> </div>
 								<div class="col-12">
 									<div class="input-group input-group-lg">
-										<label class="sr-only" for="participantSearchFirst">Participant&rsquo; First Name</label> <input class="form-control js--page-participant-search-first-val" id="participantSearchFirst" name="first-name" type="text"> <label class="sr-only" for="participantSearchLast">Participant&rsquo; Last Name</label> <input class="form-control js--page-participant-search-last-val" id="participantSearchLast" name="last-name" type="text"> <div class="input-group-append"> <button class="btn btn-primary" type="submit"><span class="sr-only">Search</span><i aria-hidden="true" class="fas fa-search"></i></button>
+										<label class="sr-only" for="participant-search-first-page">Participant&rsquo; First Name</label> <input class="form-control js--page-participant-search-first-val" id="participant-search-first-page" name="first-name" type="text"> <label class="sr-only" for="participant-search-last">Participant&rsquo; Last Name</label> <input class="form-control js--page-participant-search-last-val" id="participant-search-last" name="participant-search-last" type="text"> <div class="input-group-append"> <button class="btn btn-primary" type="submit"><span class="sr-only">Search</span><i aria-hidden="true" class="fas fa-search"></i></button>
 										</div>
 									</div>
 								</div>
@@ -256,7 +257,7 @@
 				</div>
 			</div>
 			<div class="js--participant-search-results landing-participant-search__results text-center"></div>
-			<div aria-atomic="true" class="js--participant-no-event-results alert alert-primary text-center col-md-8 offset-md-2 d-none" role="alert">
+			<div class="js--participant-no-event-results alert alert-primary text-center col-md-8 offset-md-2 d-none" role="alert">
 				<span>We&rsquo;re not seeing anything. Maybe try different search term?</span>
 			</div>
 			<div class="js--show-more-container text-center mt-2 mb-5">
