@@ -218,10 +218,11 @@
 	Looking for a Company or Participant?</h2>
 			</div>
 			<div class="nav nav-tabs justify-content-center" role="tablist">
-					<a aria-controls="company-page-search" aria-selected="true" class="nav-item nav-link active" data-toggle="tab" href="#page-search-company" id="page-search-company-tab" role="tab">Company</a> <a aria-controls="team" aria-selected="false" class="nav-item nav-link" data-toggle="tab" href="#page-search-participant" id="page-search-participant-tab"  role="tab">Participant</a>
+					<a aria-controls="company-page-search" aria-selected="true" class="nav-item nav-link active" data-toggle="tab" href="#page-search-company" id="page-search-company-tab" role="tab">Company</a>
+					<a aria-controls="team" aria-selected="false" class="nav-item nav-link" data-toggle="tab" href="#page-search-participant" id="page-search-participant-tab"  role="tab">Participant</a>
 			</div>
 			<div class="tab-content py-3">
-				<div aria-labelledby="company-page-search" class="tab-pane active fade show" id="page-search-company" role="tabpanel">
+				<div aria-labelledby="page-search-company-tab" class="tab-pane active fade show" id="page-search-company" role="tabpanel">
 					<form class="js--page-company-search">
 						<div class="d-flex flex-column">
 							<div class="col-12">
@@ -241,11 +242,12 @@
 				<div class="js--participant-loading py-4 text-center d-none">
 					Loading...
 				</div>
-				<div aria-labelledby="participant-page-search" class="tab-pane fade" id="page-search-participant" role="tabpanel">
+				<div aria-labelledby="page-search-participant-tab" class="tab-pane fade" id="page-search-participant" role="tabpanel">
 						<form class="js--page-participant-search">
 							<div class="d-flex flex-column">
 								<div class="col-12">
-									<label for="participant-search-first-page">Search by First and / or Last Name</label> </div>
+									<p>Search by First and / or Last Name</p> 
+								</div>
 								<div class="col-12">
 									<div class="input-group input-group-lg">
 										<label class="sr-only" for="participant-search-first-page">Participant&rsquo; First Name</label> <input class="form-control js--page-participant-search-first-val" id="participant-search-first-page" name="first-name" type="text"> <label class="sr-only" for="participant-search-last">Participant&rsquo; Last Name</label> <input class="form-control js--page-participant-search-last-val" id="participant-search-last" name="participant-search-last" type="text"> <div class="input-group-append"> <button class="btn btn-primary" type="submit"><span class="sr-only">Search</span><i aria-hidden="true" class="fas fa-search"></i></button>
