@@ -136,7 +136,7 @@ a.ym-pc-dashboard-download-certificates {
    width: 100%;
    padding-bottom: 20px;
    margin-top: 50px;
-   position: relative;
+   position: absolute;
    font-size:20px;
    img {
 	margin-top: -35px;
@@ -155,7 +155,7 @@ a.ym-pc-dashboard-download-certificates {
 }
 .ym-pc-dashboard-badges-icons {
 	position: absolute;
-	top: 0px;
+	top: 10%;
 	left: 0px;
 }
 .ym-pc-dashboard-badges-icon {
