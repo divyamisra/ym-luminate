@@ -1015,6 +1015,7 @@
           console.log('called company data');
      		 Papa.parse(companyCSV, {
      		   header: true,
+           download: true,
      		   complete: function(results) {
      		     console.log(results);
 
