@@ -38,16 +38,17 @@
           Follow the Path to Get Finn's Missions
         </h2>
       </div>
-      <div class="ym-pc-dashboard-badges-header">
-        <p ng-if="prizesEarned != prizes.length" ng-cloak><strong>You’ve completed <span ng-bind-html="prizesEarned"></span> out of <span ng-bind-html="prizes.length"></span> missions to earn Finn’s charm for your wristband! Keep going!</strong></p>
-        <p>You registered & accepted the mission. Now let’s reach out & ask for a donation to reach your goal. 
-	   Or, are you ready to make a donation yourself? You can move around the path however you want by clicking on any square below! 
-           When you do all 9 missions you'll reveal the secret code & get a prize.
-	</p>
-        <em>Please allow 15 minutes for the system to update your badges.</em>
-      </div>
       <div class="ym-pc-dashboard-badge-path">
-	<img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/winding_road.png" alt="Badge Path">
+	<img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/Agengk.png" alt="Agent K">
+        <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/winding_road.svg" alt="Badge Path">
+        <div class="ym-pc-dashboard-badges-header">
+          <p ng-if="prizesEarned != prizes.length" ng-cloak><strong>You’ve completed <span ng-bind-html="prizesEarned"></span> out of <span ng-bind-html="prizes.length"></span> missions to earn Finn’s charm for your wristband! Keep going!</strong></p>
+          <p>You registered & accepted the mission. Now let’s reach out & ask for a donation to reach your goal. 
+	     Or, are you ready to make a donation yourself? You can move around the path however you want by clicking on any square below! 
+             When you do all 9 missions you'll reveal the secret code & get a prize.
+  	  </p>
+          <em>Please allow 15 minutes for the system to update your badges.</em>
+        </div>
         <div class="ym-pc-dashboard-badges-icons" role="list" aria-label="Badge List">
   	  <div class="ym-pc-dashboard-badges-icon" ng-repeat="prize in prizes" ng-cloak>
 	    <div ng-if="prize.earned">
