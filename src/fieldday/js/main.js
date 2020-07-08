@@ -1202,6 +1202,8 @@
         }
         //}
 
+        //Landong Page
+
         if($('body').is('.pg_pg_FieldDay_Landing_Page')) {
           //Search functionality
 
@@ -1233,20 +1235,19 @@
               cd.getParticipantsLanding(firstName, lastName);
           });
 
-          $('.js--card-body').each(function(){
-
+          $('.js--card-content').each(function(){
             var highestBox = 0;
 
-            $('.js--card-content', this).each(function(){
-              if($(this).height() > highestBox) {
-                highestBox = $(this).height();
-              }
-            });
-
-            $('.js--card-content',this).height(highestBox);
-
+            if($(this).height() > highestBox) {
+              highestBox = $(this).height();
+            }
           });
+
+          $('.js--card-content').height(highestBox);
+
+
          }
+         //End Landing Page
 
         if ($('body').is('.pg_entry')) {
             // Greeting Page
