@@ -690,7 +690,7 @@
             luminateExtend.api({
                 api: 'teamraiser',
                 data: 'method=getCompaniesByInfo' +
-                    '&state=' + companyName +
+                    '&company_name=' + companyName +
                     '&event_type=' + eventType +
                     '&response_format=json&list_page_size=499&list_page_offset=0',
                 callback: {
@@ -702,9 +702,11 @@
 
                             $(companies).each(function (i, company) {
 
-                                var eventRow = '<div class="row py-3"><div class="landing-participant-search__name col-12 col-lg-6"><p><a href="'+ company.companyURL +'">'+ company.companyName +'</a><br>[Company location]</p></div><div class="landing-participant-search__register col-12 col-lg-6"><p><a href="'+ company.companyURL +'" class="button">Register</a></p></div>';
+                                var eventRow = '<div class="row py-3"><div class="landing-participant-search__name col-12 col-lg-6"><p><a href="'+ company.companyURL +'">'+ company.companyName +'</a><br><span class="js--company-location"></span></p></div><div class="landing-participant-search__register col-12 col-lg-6"><p><a href="'+ company.companyURL +'" class="button">Register</a></p></div>';
 
                                 $('.js--participant-search-results').append(eventRow);
+
+                                cd.getCompanyLocation(company.companyID);
 
                             });
 
@@ -1051,6 +1053,23 @@
      		   }
      		 });
      	 }
+
+       cd.getCompanyLocation = function(companyId){
+         console.log('called company data' + companyId);
+        Papa.parse(companyCSV, {
+          header: true,
+          download: true,
+          complete: function(results) {
+            var data = results.data;
+
+            var company = cd.getCompanyByID(data, companyId);
+
+            var companyLocation = company.eventcity + ', ' + company.eventstate;
+            $(companyLocation).appendTo('.js--company-location');
+
+          }
+        });
+      }
 
         // EXPANDABLE DONOR ROLL
         $('.js--honor-roll-expander').on('click', function (e) {
