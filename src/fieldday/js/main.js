@@ -702,13 +702,13 @@
 
                             $(companies).each(function (i, company) {
 
-                                var eventRow = '<div class="row py-3"><div class="landing-participant-search__name col-12 col-lg-6"><p><a href="'+ company.companyURL +'">'+ company.companyName +'</a><br><span class="js--company-location"></span></p></div><div class="landing-participant-search__register col-12 col-lg-6"><p><a href="'+ company.companyURL +'" class="button">Register</a></p></div>';
+                                var eventRow = '<div class="row py-3"><div class="landing-participant-search__name col-12 col-lg-6"><p><a href="'+ company.companyURL +'">'+ company.companyName +'</a><br><span class="js--company-location"></span></p></div><div class="landing-participant-search__register col-12 col-lg-6"><p><a href="'+ company.companyURL +'" class="btn btn-primary">Register</a></p></div>';
 
                                 $('.js--participant-search-results').append(eventRow);
 
                                 setTimeout(function(){
                                   cd.getCompanyLocation(company.companyId);
-                                 }, 1000);
+                                }, 2000);
 
                             });
 
@@ -760,7 +760,7 @@
                             $(participants).each(function (i, participant) {
 
                                 var eventRow = '<div class="row py-3"><div class="landing-participant-search__name col-12 col-lg-6"><p><a href="'+ participant.personalPageUrl + '">' + participant.name.first + ' ' + participant.name.last +'</a><br>' +
-                              (participant.teamName ? participant.teamName : "")  + '</p></div><div class="landing-participant-search__register col-12 col-lg-6"><p><a href="'+ participant.donationUrl +'" class="button">Donate</a></p></div>';
+                              (participant.teamName ? participant.teamName : "")  + '</p></div><div class="landing-participant-search__register col-12 col-lg-6"><p><a href="'+ participant.donationUrl +'" class="btn btn-primary">Donate</a></p></div>';
 
                                 $('.js--participant-search-results').append(eventRow);
 
@@ -1203,6 +1203,36 @@
         //}
 
         if($('body').is('.pg_pg_FieldDay_Landing_Page')) {
+          //Search functionality
+
+          //State and Zip search
+          $('.js--zip-search').on('submit', function (e) {
+              e.preventDefault();
+              $('.js--event-search-results').html('');
+              var zipSearched = encodeURIComponent($('.js--zip-search-val').val());
+              cd.getEventsByDistanceLanding(zipSearched);
+          });
+          $('.js--state-search-val').on('change', function () {
+              $('.js--event-search-results').html('');
+              var eventState = encodeURIComponent($('.js--state-search-val').val());
+              cd.getEventsByStateLanding(eventState);
+          });
+
+          //Company and participant search
+          $('.js--page-company-search').on('submit', function (e) {
+              e.preventDefault();
+              $('.js--participant-search-results').html('');
+              var companyName = encodeURIComponent($('.js--page-company-search-val').val());
+              cd.getCompaniesLanding(companyName);
+          });
+          $('.js--page-participant-search').on('submit', function (e) {
+              e.preventDefault();
+              $('.js--participant-search-results').html('');
+              var firstName = encodeURIComponent($('.js--page-participant-search-first-val').val());
+              var lastName = encodeURIComponent($('.js--page-participant-search-last-val').val());
+              cd.getParticipantsLanding(firstName, lastName);
+          });
+
           $('.js--card-body').each(function(){
 
             var highestBox = 0;
@@ -1948,31 +1978,7 @@
         if ($('body').is('.pg_informational')) {
             // Custom TR Page
         }
-        // landing page
-        $('.js--zip-search').on('submit', function (e) {
-            e.preventDefault();
-            $('.js--event-search-results').html('');
-            var zipSearched = encodeURIComponent($('.js--zip-search-val').val());
-            cd.getEventsByDistanceLanding(zipSearched);
-        });
-        $('.js--state-search-val').on('change', function () {
-            $('.js--event-search-results').html('');
-            var eventState = encodeURIComponent($('.js--state-search-val').val());
-            cd.getEventsByStateLanding(eventState);
-        });
-        $('.js--page-company-search').on('submit', function (e) {
-            e.preventDefault();
-            $('.js--participant-search-results').html('');
-            var companyName = encodeURIComponent($('.js--page-company-search-val').val());
-            cd.getCompaniesLanding(companyName);
-        });
-        $('.js--page-participant-search').on('submit', function (e) {
-            e.preventDefault();
-            $('.js--participant-search-results').html('');
-            var firstName = encodeURIComponent($('.js--page-participant-search-first-val').val());
-            var lastName = encodeURIComponent($('.js--page-participant-search-last-val').val());
-            cd.getParticipantsLanding(firstName, lastName);
-        });
+
 
         if ($('body').is('.pg_FieldDay_Search')) {
             // FieldDay Search Page
