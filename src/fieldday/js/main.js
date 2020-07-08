@@ -1202,53 +1202,6 @@
         }
         //}
 
-        //Landong Page
-
-        if($('body').is('.pg_pg_FieldDay_Landing_Page')) {
-          //Search functionality
-
-          //State and Zip search
-          $('.js--zip-search').on('submit', function (e) {
-              e.preventDefault();
-              $('.js--event-search-results').html('');
-              var zipSearched = encodeURIComponent($('.js--zip-search-val').val());
-              cd.getEventsByDistanceLanding(zipSearched);
-          });
-          $('.js--state-search-val').on('change', function () {
-              $('.js--event-search-results').html('');
-              var eventState = encodeURIComponent($('.js--state-search-val').val());
-              cd.getEventsByStateLanding(eventState);
-          });
-
-          //Company and participant search
-          $('.js--page-company-search').on('submit', function (e) {
-              e.preventDefault();
-              $('.js--participant-search-results').html('');
-              var companyName = encodeURIComponent($('.js--page-company-search-val').val());
-              cd.getCompaniesLanding(companyName);
-          });
-          $('.js--page-participant-search').on('submit', function (e) {
-              e.preventDefault();
-              $('.js--participant-search-results').html('');
-              var firstName = encodeURIComponent($('.js--page-participant-search-first-val').val());
-              var lastName = encodeURIComponent($('.js--page-participant-search-last-val').val());
-              cd.getParticipantsLanding(firstName, lastName);
-          });
-
-          $('.js--card-content').each(function(){
-            var highestBox = 0;
-
-            if($(this).height() > highestBox) {
-              highestBox = $(this).height();
-            }
-          });
-
-          $('.js--card-content').height(highestBox);
-
-
-         }
-         //End Landing Page
-
         if ($('body').is('.pg_entry')) {
             // Greeting Page
             // populate greeting page content
@@ -2085,6 +2038,53 @@
                 }
             }
         }
+
+        //Landong Page
+
+        if($('body').is('.pg_FieldDay_Landing_Page')) {
+          //Search functionality
+
+          //State and Zip search
+          $('.js--zip-search').on('submit', function (e) {
+              e.preventDefault();
+              $('.js--event-search-results').html('');
+              var zipSearched = encodeURIComponent($('.js--zip-search-val').val());
+              cd.getEventsByDistanceLanding(zipSearched);
+          });
+          $('.js--state-search-val').on('change', function () {
+              $('.js--event-search-results').html('');
+              var eventState = encodeURIComponent($('.js--state-search-val').val());
+              cd.getEventsByStateLanding(eventState);
+          });
+
+          //Company and participant search
+          $('.js--page-company-search').on('submit', function (e) {
+              e.preventDefault();
+              $('.js--participant-search-results').html('');
+              var companyName = encodeURIComponent($('.js--page-company-search-val').val());
+              cd.getCompaniesLanding(companyName);
+          });
+          $('.js--page-participant-search').on('submit', function (e) {
+              e.preventDefault();
+              $('.js--participant-search-results').html('');
+              var firstName = encodeURIComponent($('.js--page-participant-search-first-val').val());
+              var lastName = encodeURIComponent($('.js--page-participant-search-last-val').val());
+              cd.getParticipantsLanding(firstName, lastName);
+          });
+
+          $('.js--card-content').each(function(){
+            var highestBox = 0;
+
+            if($(this).height() > highestBox) {
+              highestBox = $(this).height();
+            }
+          });
+
+          $('.js--card-content').height(highestBox);
+
+
+         }
+         //End Landing Page
     });
 }(jQuery));
 
