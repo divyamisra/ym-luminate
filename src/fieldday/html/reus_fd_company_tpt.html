@@ -10,22 +10,20 @@
           <div class="sidebar-content box-shadow">
             <ul>
               <li>
-                  <div class="sidebar__icon">
-                    <i class="far fa-flag" aria-hidden="true"></i>
-                  </div>
-                  <div class="sidebar__details">
-                    <p><strong>Field Day Details:</strong></p>
-                    <p>[[E47:[[S334:fr_id]]:fr_info:1:event_location]]</p>
-                    <p>[[E47:[[S334:fr_id]]:fr_info:1:event_location_city]],[[E47:[[S334:fr_id]]:fr_info:1:event_location_state]]</p>
-                  </div>
+                <div class="sidebar__icon">
+                  <i class="far fa-flag" aria-hidden="true"></i>
+                  <!--<i class="fal fa-flag" aria-hidden="true"></i>-->
+                </div>
+                <div class="sidebar__details js--field-day-details">
+                  <p><strong>Field Day Details:</strong></p>
+                </div>
               </li>
               <li>
                   <div class="sidebar__icon">
                     <i class="far fa-clock" aria-hidden="true"></i>
                     <!--<i class="fal fa-clock" aria-hidden="true"></i>-->
                   </div>
-                  <div class="sidebar__details">
-                    <p><strong>[[E47:[[S334:fr_id]]:fr_info:1:event_date]]</strong></p>
+                  <div class="sidebar__details js--event-date">
                   </div>
               </li>
               <li>
@@ -42,9 +40,8 @@
                   <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
                   <!--<i class="fal fa-map-marker-alt" aria-hidden="true"></i>-->
                 </div>
-                <div class="sidebar__details">
+                <div class="sidebar__details js-company-location">
                   <p><strong>Company Location:</strong></p>
-                  <p>{Location}</p>
                 </div>
               </li>
             </ul>
