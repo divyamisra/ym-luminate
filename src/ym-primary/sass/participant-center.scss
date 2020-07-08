@@ -186,13 +186,28 @@ a.ym-pc-dashboard-download-certificates {
 	position:absolute;
    }
    .ym-pc-dashboard-badges-icon:nth-child(1) {
-	offset-path: path("M243 205");
+	offset-path: path("M244 174");
    }
    .ym-pc-dashboard-badges-icon:nth-child(2) {
-	offset-path: path("M379 216");
+	offset-path: path("M379 174");
    }
    .ym-pc-dashboard-badges-icon:nth-child(3) {
-	offset-path: path("M531 255");
+	offset-path: path("M528 212");
+   }
+   .ym-pc-dashboard-badges-icon:nth-child(4) {
+	offset-path: ppath("M528 382");
+   }
+   .ym-pc-dashboard-badges-icon:nth-child(5) {
+	offset-path: path("M379 419");
+   }
+   .ym-pc-dashboard-badges-icon:nth-child(6) {
+	offset-path: path("M244 419");
+   }
+   .ym-pc-dashboard-badges-icon:nth-child(7) {
+	offset-path: path("M95 451");
+   }
+   .ym-pc-dashboard-badges-icon:nth-child(8) {
+	offset-path: path("M95 633");
    }
 }
 
