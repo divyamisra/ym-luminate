@@ -40,6 +40,10 @@
       </div>
       <div class="ym-pc-dashboard-badge-path">
 	<img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/Agentk.png" alt="Agent K" class="agentk">
+	<div class="lets-go">
+	  Let's Go! 
+	  <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/winding_road_arrow.png" alt="Let's Go Arrow">
+ 	</div>
         <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/winding_road.svg" alt="Badge Path">
         <div class="ym-pc-dashboard-badges-header">
           <p ng-if="prizesEarned != prizes.length" ng-cloak><strong>You’ve completed <span ng-bind-html="prizesEarned"></span> out of <span ng-bind-html="prizes.length"></span> missions to earn Finn’s charm for your wristband! Keep going!</strong></p>
@@ -57,6 +61,7 @@
 	    <div ng-if="!prize.earned">
 	      <img class="img-responsive" ng-src="//cd-aha-oot-production.s3.amazonaws.com/fy21/assets/badges/khc/{{prize.id}}_earned.png" alt="{{prize.label}}">
 	    </div>
+	    <!--
 	    <div ng-if="prize.earned">
 	      <div class="ym-pc-dashboard-mission-accomplished">Mission Accomplished</div>
 	      <span class="ym-pc-dashboard-completed-label">{{prize.completed_label}}!</span> <span class="sr-only" ng-if="prize.earned">(earned)</span><span class="sr-only" ng-if="!prize.earned">(not yet earned)</span>
@@ -69,6 +74,7 @@
 	      <a href="" ng-if="prize.url_type=='Modal' && prize.not_completed_url=='app'" ng-click="showMobileApp()" class="btn btn-md-wide btn-primary prizeCTA" target="_blank">{{prize.not_completed_label}}</a>
 	      <span class="sr-only" ng-if="prize.earned">(earned)</span><span class="sr-only" ng-if="!prize.earned">(not yet earned)</span>
 	    </div>
+            -->
 	  </div>
         </div>
       </div>
