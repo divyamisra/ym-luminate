@@ -111,11 +111,6 @@
      padding: 28px 0;
     }
   }
-  .card-text__content {
-    @include media-breakpoint-up(xl) {
-     height: 200px;
-    }
-  }
   .card-body {
     @include media-breakpoint-up(xl) {
      padding: 45px;
