@@ -184,6 +184,9 @@ a.ym-pc-dashboard-download-certificates {
 	padding: 0 25px 25px;
 	max-width:150px;
 	position:absolute;
+	.earned::after {
+	  background: url(../image/badge_earned_check.png) no-repeat;
+	}
    }
    .ym-pc-dashboard-badges-icon:nth-child(1) {
 	offset-path: path("M244 174");
@@ -208,6 +211,9 @@ a.ym-pc-dashboard-download-certificates {
    }
    .ym-pc-dashboard-badges-icon:nth-child(8) {
 	offset-path: path("M95 633");
+   }
+   .secret {
+        position:absolute;
    }
 }
 
