@@ -1081,9 +1081,6 @@
 
                 if ($('body').is('.pg_company')) {
 
-                    cd.getCompanyData(companyIdParam);
-                    console.log('called data');
-
                     $('.team-roster form .btn').html('<i class="fas fa-search"></i>');
                     $('#participant-roster td:nth-child(3) a').html('Donate');
 
@@ -1591,6 +1588,9 @@
             var goal = $('#goal-amount').text();
             cd.runThermometer(progress, goal);
             cd.reorderPageForMobile();
+
+            cd.getCompanyData(companyIdParam);
+            console.log('called data');
 
 
             // Reset selected sort option
