@@ -654,7 +654,7 @@ angular.module 'trPcControllers'
         $scope.getCompanyShortcut()
 
       $scope.prizes = []
-      BoundlessService.getBadges $scope.consId
+      BoundlessService.getBadges $scope.frId + '/' + $scope.consId
         .then (response) ->
           prizes = response.data.prizes
           angular.forEach prizes, (prize) ->
