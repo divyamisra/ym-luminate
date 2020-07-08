@@ -1012,14 +1012,14 @@
      		}
 
         cd.getCompanyData = function(companyId){
+          console.log('called company data');
      		 Papa.parse(companyCSV, {
      		   header: true,
-     		   download: true,
-     		   dynamicTyping: true,
      		   complete: function(results) {
      		     console.log(results);
 
      				 var data = results.data;
+
      				 var company = cd.getCompanyByID(data, companyId);
 
      				 var eventMapLink;
@@ -1082,6 +1082,7 @@
                 if ($('body').is('.pg_company')) {
 
                     cd.getCompanyData(companyIdParam);
+                    console.log('called data');
 
                     $('.team-roster form .btn').html('<i class="fas fa-search"></i>');
                     $('#participant-roster td:nth-child(3) a').html('Donate');
