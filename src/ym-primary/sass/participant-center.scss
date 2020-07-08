@@ -127,7 +127,9 @@ a.ym-pc-dashboard-download-certificates {
 }
 
 .ym-pc-dashboard-badge-path {
-   position:relative;
+   position: relative;
+   max-width: 663px;
+   margin: 0 auto;
 }
 
 .ym-pc-dashboard-badges-header {
@@ -160,6 +162,16 @@ a.ym-pc-dashboard-download-certificates {
 	text-align: center;
 	padding: 0 25px 25px;
 	max-width:150px;
+	position:absolute;
+}
+.ym-pc-dashboard-badges-icon:nth-child(1) {
+    offset-path: path("M243 205");
+}
+.ym-pc-dashboard-badges-icon:nth-child(2) {
+    offset-path: path("M379 216");
+}
+.ym-pc-dashboard-badges-icon:nth-child(3) {
+    offset-path: path("M531 255");
 }
 
 .ym-pc-dashboard-coordinator-resources-contact {
