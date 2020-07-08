@@ -172,6 +172,12 @@ a.ym-pc-dashboard-download-certificates {
  	position: absolute;
 	top: 18%;
 	left: 0px;
+	img {
+	    margin: 0 0 10px;
+	    max-width: none;
+	    height: 100px;
+	    width: 100px;
+	}
    }
    .ym-pc-dashboard-badges-icon {
 	text-align: center;
