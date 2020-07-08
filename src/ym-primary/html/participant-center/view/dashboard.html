@@ -55,10 +55,10 @@
         </div>
         <div class="ym-pc-dashboard-badges-icons" role="list" aria-label="Badge List">
   	  <div class="ym-pc-dashboard-badges-icon" ng-repeat="prize in prizes" ng-cloak>
-	    <div ng-if="prize.earned">
+	    <div ng-if="prize.earned" class="earned">
 	      <img class="img-responsive" ng-src="//cd-aha-oot-production.s3.amazonaws.com/fy21/assets/badges/khc/{{prize.id}}_delivered.png" alt="{{prize.label}}">
 	    </div>
-	    <div ng-if="!prize.earned">
+	    <div ng-if="!prize.earned" class="not-earned">
 	      <img class="img-responsive" ng-src="//cd-aha-oot-production.s3.amazonaws.com/fy21/assets/badges/khc/{{prize.id}}_earned.png" alt="{{prize.label}}">
 	    </div>
 	    <!--
@@ -76,6 +76,12 @@
 	    </div>
             -->
 	  </div>
+          <div class="secret-box" ng-if="prizesEarned != prizes.length" ng-cloak>
+		  <p>Your Secret Code Wil Reveal Here</p>
+ 	  </div>
+          <div class="secret-box" ng-if="prizesEarned == prizes.length" ng-cloak>
+		  <p>Your Are a Real Heart Hero!</p>
+ 	  </div>
         </div>
       </div>
     </section>
