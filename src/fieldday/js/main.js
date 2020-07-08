@@ -706,7 +706,9 @@
 
                                 $('.js--participant-search-results').append(eventRow);
 
-                                cd.getCompanyLocation(company.companyId);
+                                setTimeout(function(){
+                                  cd.getCompanyLocation(company.companyId);
+                                 }, 1000);
 
                             });
 
