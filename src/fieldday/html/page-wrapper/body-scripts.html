@@ -1,6 +1,6 @@
 <!--<script src="https://code.jquery.com/jquery-2.2.4[[?xtruex::x[[S80:debug]]x::::.min]].js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
 crossorigin="anonymous"></script> -->
- 
+
 <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.2.4[[?xtruex::x[[S80:debug]]x::::.min]].js"></script>
 
 [[?x[[?x9x::x[[S4]]x::T::]][[?xpaymentFormx::x[[S334:pg]]x::T::]]::T::
@@ -57,6 +57,7 @@ crossorigin="anonymous"></script> -->
   [[?xFieldDay_Searchx::x[[S334:pagename]]x::T::]]
 ::T::
 <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables[[?xtruex::x[[S80:debug]]x::::.min]].js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.2.0/papaparse.min.js" integrity="sha512-rKFvwjvE4liWPlFnvH4ZhRDfNZ9FOpdkD/BU5gAIA3VS3vOQrQ5BjKgbO3kxebKhHdHcNUHLqxQYSoxee9UwgA==" crossorigin="anonymous"></script>
 ::]]
 
 <script>
@@ -112,7 +113,7 @@ crossorigin="anonymous"></script> -->
       jQuery('label[for="tos_dropdown"]').parent().next('fieldset').hide();
       var trName = '[[E42:[[S120:dc:teamRaiserId]]:title]]';
       if (trName.indexOf('Lawyer') != -1){
-        jQuery('label[for="tos_dropdown"]').parent().before('<input type="checkbox" name="terms-of-service-checkbox" id="terms-of-service-checkbox"><label for="terms-of-service-checkbox">&nbsp;Yes, I agree to the <a href="DocServer/Terms_of_Service_Heart_Walk_LHH_2020.pdf" target="_blank">Terms and Conditions (PDF)</a> and <a href="https://www.heart.org/en/about-us/statements-and-policies/privacy-statement" target="_blank">AHA Privacy Policy</a></label>');          
+        jQuery('label[for="tos_dropdown"]').parent().before('<input type="checkbox" name="terms-of-service-checkbox" id="terms-of-service-checkbox"><label for="terms-of-service-checkbox">&nbsp;Yes, I agree to the <a href="DocServer/Terms_of_Service_Heart_Walk_LHH_2020.pdf" target="_blank">Terms and Conditions (PDF)</a> and <a href="https://www.heart.org/en/about-us/statements-and-policies/privacy-statement" target="_blank">AHA Privacy Policy</a></label>');
       }
       else {
          jQuery('label[for="tos_dropdown"]').parent().before('<input type="checkbox" name="terms-of-service-checkbox" id="terms-of-service-checkbox"><label for="terms-of-service-checkbox">&nbsp;Yes, I agree to the <a href="DocServer/HeartWalk2019_163605_TOS_texting_2019.11.19.pdf" target="_blank">Terms and Conditions (PDF)</a> and <a href="https://www.heart.org/en/about-us/statements-and-policies/privacy-statement" target="_blank">AHA Privacy Policy</a></label>');

@@ -95,8 +95,11 @@
         var searchType = getURLParameter(currentUrl, 'search_type');
         var isCrossEventSearch = getURLParameter(currentUrl, 'cross_event');
         var teamId = getURLParameter(currentUrl, 'team_id');
+        var companyIdParam = getURLParameter(currentUrl, 'company_id');
 
         var skipLink = document.getElementById('skip-main');
+
+        var companyCSV = 'https://dev2.heart.org/fieldday_company_data/supplemental_company_data.csv';
 
         skipLink.addEventListener('click', function (e) {
             e.preventDefault();
@@ -999,6 +1002,51 @@
             });
         };
 
+        //CUSTOM COMPANY DATA FUNCTIONS
+
+
+        cd.getCompanyByID = function(arr, value) {
+     	  for (var i=0, iLen=arr.length; i<iLen; i++) {
+     	    if (arr[i].companyid == value) return arr[i];
+     		 }
+     		}
+
+        cd.getCompanyData = function(companyId){
+     		 Papa.parse(companyCSV, {
+     		   header: true,
+     		   download: true,
+     		   dynamicTyping: true,
+     		   complete: function(results) {
+     		     console.log(results);
+
+     				 var data = results.data;
+     				 var company = cd.getCompanyByID(data, companyId);
+
+     				 var eventMapLink;
+     				 if (company.eventlocationmapurl!== undefined) {
+     					 eventMapLink = company.eventlocationmapurl
+     				 } else {
+     					 eventMapLink = 'https://www.google.com/maps/place/' + company.eventaddress + ',' + company.eventcity + ',' + company.eventstate + ',' + company.eventzip;
+     				 }
+
+     				 var fieldDayDetails = '';
+     				 fieldDayDetails += '<p><a href="' + eventMapLink + '">' + company.eventlocationname + '</a></p>';
+     				 fieldDayDetails += '<p>' + company.eventcity + ',' + company.eventstate + '</p>';
+     				 $(fieldDayDetails).appendTo('.js--field-day-details');
+
+     				 var companyLead = '<p><a href="mailto:' + company.coordinatoremail +'">' + company.coordinatorfirstname + ' ' + company.coordinatorlastname + '</a></p>' ;
+     				 $(companyLead).appendTo('.js--company-lead');
+
+     				 var  eventDate = '<p><strong>' + company.eventdate + '<br>' + company.eventtime + '</strong></p>';
+     				 $(eventDate).appendTo('.js--event-date');
+
+     				 var companyLocation = '<p>' + company.eventcity + ', ' + company.eventstate + '</p>'
+     				 $(companyLocation).appendTo('.js--company-location');
+
+     		   }
+     		 });
+     	 }
+
         // EXPANDABLE DONOR ROLL
         $('.js--honor-roll-expander').on('click', function (e) {
             if ($(this).children('i').hasClass('fa-chevron-down')) {
@@ -1032,6 +1080,8 @@
                 }
 
                 if ($('body').is('.pg_company')) {
+
+                    cd.getCompanyData(companyIdParam);
 
                     $('.team-roster form .btn').html('<i class="fas fa-search"></i>');
                     $('#participant-roster td:nth-child(3) a').html('Donate');
