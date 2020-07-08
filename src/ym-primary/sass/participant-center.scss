@@ -185,7 +185,14 @@ a.ym-pc-dashboard-download-certificates {
 	max-width:150px;
 	position:absolute;
 	.earned::after {
-	  background: url(../image/badge_earned_check.png) no-repeat;
+	    background: url(../image/badge_earned_check.png) no-repeat;
+	    content: '';
+	    width: 40px;
+	    height: 40px;
+	    display: block;
+	    position: absolute;
+	    bottom: 30px;
+	    right: 19px;
 	}
    }
    .ym-pc-dashboard-badges-icon:nth-child(1) {
@@ -199,6 +206,10 @@ a.ym-pc-dashboard-download-certificates {
    }
    .ym-pc-dashboard-badges-icon:nth-child(4) {
 	offset-path: path("M528 382");
+	.earned:after {
+	  bottom: 20px;
+	  right: 82px;
+	}
    }
    .ym-pc-dashboard-badges-icon:nth-child(5) {
 	offset-path: path("M379 419");
@@ -208,12 +219,19 @@ a.ym-pc-dashboard-download-certificates {
    }
    .ym-pc-dashboard-badges-icon:nth-child(7) {
 	offset-path: path("M95 451");
+	.earned:after {
+	  bottom: 20px;
+	  right: 82px;
+	}
    }
    .ym-pc-dashboard-badges-icon:nth-child(8) {
 	offset-path: path("M95 633");
    }
-   .secret {
+   .secret-box {
         position:absolute;
+	color: #fff;
+	font-size:20px;
+	max-width: 100px;
    }
 }
 
