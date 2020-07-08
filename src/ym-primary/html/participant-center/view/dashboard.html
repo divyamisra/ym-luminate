@@ -254,7 +254,7 @@
             </div>
             <div class="text-center">
               <div class="ym-pc-dashboard-livestream-images">
-   	        <span class="hv-image" ng-init="hvImgLSsrc='pc-livestream.png';" ng-mouseover="hvImgLSsrc='pc-livestream-animated.gif';" ng-mouseout="hvImgLSsrc='pc-livestream.png';">
+   	        <span class="hv-image" ng-init="hvImgLSsrc='pc-livestream.png';" ng-mouseover="hvImgLSsrc='pc-livestream-ioed.gif';" ng-mouseout="hvImgLSsrc='pc-livestream.png';">
 		  <img class="pc-livestream-character" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy21/{{hvImgLSsrc}}" alt="Livestream Character">
 	        </span>
                 &nbsp;
@@ -594,15 +594,11 @@
       </div>
       <div class="row">
         <div class="col-md-12">
-          <hr class="hidden-xs ym-zuri-animation__divider" ng-show="companyParticipants.totalFundraisers > 0" ng-cloak>
+          <hr class="ym-zuri-animation__divider" ng-show="companyParticipants.totalFundraisers > 0" ng-cloak>
           <div class="ym-page-section ym-page-section__main" ng-show="companyParticipants.totalFundraisers > 0" ng-cloak>
-            <div class="container">
-              <div class="container hidden-xs">
-                <div class="ym-school-animation">
-                  <iframe title="School Animation" id="school-animation"  ng-src="{{schoolAnimationURL}}"></iframe>
-                </div>
-              </div>
-            </div>
+  	    <div class="ym-school-animation">
+	      <iframe title="School Animation" id="school-animation"  ng-src="{{schoolAnimationURL}}"></iframe>
+	    </div>
           </div>
         </div>
       </div>
