@@ -1031,7 +1031,7 @@
      				 }
 
      				 var fieldDayDetails = '';
-     				 fieldDayDetails += '<p><a href="' + eventMapLink + '">' + company.eventlocationname + '</a></p>';
+     				 fieldDayDetails += '<p>' + company.eventlocationname + '</p>';
      				 fieldDayDetails += '<p>' + company.eventcity + ',' + company.eventstate + '</p>';
      				 $(fieldDayDetails).appendTo('.js--field-day-details');
 
@@ -1045,6 +1045,8 @@
 
      				 var companyLocation = '<p>' + company.eventcity + ', ' + company.eventstate + '</p>'
      				 $(companyLocation).appendTo('.js--company-location');
+
+             $('.js--company-link').attr('href', eventMapLink);
 
      		   }
      		 });
