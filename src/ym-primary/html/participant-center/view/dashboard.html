@@ -35,41 +35,40 @@
     <section class="ym-pc-dashboard-badges-section" aria-label="My Badges" ng-if="prizes && prizes.length > 0" ng-cloak>
       <div class="ym-pc-dashboard-section-header">
         <h2 class="h3">
-          Accept Finn's Missions
+          Follow the Path to Get Finn's Missions
         </h2>
       </div>
-      <div class="ym-pc-dashboard-badges-header text-center">
-        <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/ym-pc-dashboard-badge-header.png" alt="Send Email">
-        <div ng-if="has_bonus" ng-cloak>
-          <p ng-if="prizesEarned != prizes.length" ng-cloak><strong>You’ve completed <span ng-bind-html="prizesEarned"></span> out of <span ng-bind-html="prizes.length"></span> missions to earn Finn’s charm for your wristband! Keep going!</strong></p>
-          <p ng-if="prizesEarned == prizes.length" ng-cloak><strong>All Missions Accomplished!<br/>You completed all 10 missions and earned Finn’s charm for your wristband. Yahoo!</strong></p>
-        </div>
-        <div ng-if="!has_bonus" ng-cloak>
-          <p ng-if="prizesEarned != prizes.length" ng-cloak><strong>You’ve completed <span ng-bind-html="prizesEarned"></span> out of <span ng-bind-html="prizes.length"></span> missions!<br/>Keep going!</strong></p>
-          <p ng-if="prizesEarned == prizes.length" ng-cloak><strong>All Missions Accomplished!<br/>You completed all 10 missions. Yahoo!</strong></p>
-        </div>
+      <div class="ym-pc-dashboard-badges-header">
+        <p ng-if="prizesEarned != prizes.length" ng-cloak><strong>You’ve completed <span ng-bind-html="prizesEarned"></span> out of <span ng-bind-html="prizes.length"></span> missions to earn Finn’s charm for your wristband! Keep going!</strong></p>
+        <p>You registered & accepted the mission. Now let’s reach out & ask for a donation to reach your goal. 
+	   Or, are you ready to make a donation yourself? You can move around the path however you want by clicking on any square below! 
+           When you do all 9 missions you'll reveal the secret code & get a prize.
+	</p>
         <em>Please allow 15 minutes for the system to update your badges.</em>
       </div>
-      <div class="ym-pc-dashboard-badges-icons" role="list" aria-label="Badge List">
-        <div class="ym-pc-dashboard-badges-icon" ng-repeat="prize in prizes" ng-cloak>
-          <div ng-if="prize.earned">
-            <img class="img-responsive" ng-src="//cd-aha-oot-production.s3.amazonaws.com/fy21/assets/badges/khc/{{prize.id}}_delivered.png" alt="{{prize.label}}">
-          </div>
-          <div ng-if="!prize.earned">
-            <img class="img-responsive" ng-src="//cd-aha-oot-production.s3.amazonaws.com/fy21/assets/badges/khc/{{prize.id}}_earned.png" alt="{{prize.label}}">
-          </div>
-          <div ng-if="prize.earned">
-            <div class="ym-pc-dashboard-mission-accomplished">Mission Accomplished</div>
-            <span class="ym-pc-dashboard-completed-label">{{prize.completed_label}}!</span> <span class="sr-only" ng-if="prize.earned">(earned)</span><span class="sr-only" ng-if="!prize.earned">(not yet earned)</span>
-          </div>
-          <div ng-if="!prize.earned">
-            <a ng-if="prize.url_type=='Donate'" ng-href="Donation2?df_id={{eventInfo.donationFormId}}&amp;FR_ID={{frId}}&amp;PROXY_TYPE=20&amp;PROXY_ID={{consId}}" class="btn btn-md-wide btn-primary prizeCTA">{{prize.not_completed_label}}</a>
-            <a ng-if="prize.url_type=='Tab'" ng-href="{{baseUrl}}{{prize.not_completed_url}}" class="btn btn-md-wide btn-primary prizeCTA">{{prize.not_completed_label}}</a>
-            <a ng-if="prize.url_type=='URL'" ng-href="{{prize.not_completed_url}}" class="btn btn-md-wide btn-primary prizeCTA" target="_blank">{{prize.not_completed_label}}</a>
-            <a ng-if="prize.url_type=='Quiz'" ng-href="http://hearttools.heart.org/aha_ym21{{tablePrefix == 'heartdev' ? '_dev' : (tablePrefix == 'heartnew' ? '_testing' : '')}}/quiz/show/{{prize.not_completed_url}}?event_id={{frId}}&user_id={{consId}}&name={{consNameFirst}}" class="btn btn-md-wide btn-primary prizeCTA" target="_blank">{{prize.not_completed_label}}</a>
-            <a href="" ng-if="prize.url_type=='Modal' && prize.not_completed_url=='app'" ng-click="showMobileApp()" class="btn btn-md-wide btn-primary prizeCTA" target="_blank">{{prize.not_completed_label}}</a>
-            <span class="sr-only" ng-if="prize.earned">(earned)</span><span class="sr-only" ng-if="!prize.earned">(not yet earned)</span>
-          </div>
+      <div class="ym-pc-dashboard-badge-path">
+	<img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/winding_road.svg" alt="Badge Path">
+        <div class="ym-pc-dashboard-badges-icons" role="list" aria-label="Badge List">
+  	  <div class="ym-pc-dashboard-badges-icon" ng-repeat="prize in prizes" ng-cloak>
+	    <div ng-if="prize.earned">
+	      <img class="img-responsive" ng-src="//cd-aha-oot-production.s3.amazonaws.com/fy21/assets/badges/khc/{{prize.id}}_delivered.png" alt="{{prize.label}}">
+	    </div>
+	    <div ng-if="!prize.earned">
+	      <img class="img-responsive" ng-src="//cd-aha-oot-production.s3.amazonaws.com/fy21/assets/badges/khc/{{prize.id}}_earned.png" alt="{{prize.label}}">
+	    </div>
+	    <div ng-if="prize.earned">
+	      <div class="ym-pc-dashboard-mission-accomplished">Mission Accomplished</div>
+	      <span class="ym-pc-dashboard-completed-label">{{prize.completed_label}}!</span> <span class="sr-only" ng-if="prize.earned">(earned)</span><span class="sr-only" ng-if="!prize.earned">(not yet earned)</span>
+	    </div>
+	    <div ng-if="!prize.earned">
+	      <a ng-if="prize.url_type=='Donate'" ng-href="Donation2?df_id={{eventInfo.donationFormId}}&amp;FR_ID={{frId}}&amp;PROXY_TYPE=20&amp;PROXY_ID={{consId}}" class="btn btn-md-wide btn-primary prizeCTA">{{prize.not_completed_label}}</a>
+	      <a ng-if="prize.url_type=='Tab'" ng-href="{{baseUrl}}{{prize.not_completed_url}}" class="btn btn-md-wide btn-primary prizeCTA">{{prize.not_completed_label}}</a>
+	      <a ng-if="prize.url_type=='URL'" ng-href="{{prize.not_completed_url}}" class="btn btn-md-wide btn-primary prizeCTA" target="_blank">{{prize.not_completed_label}}</a>
+	      <a ng-if="prize.url_type=='Quiz'" ng-href="http://hearttools.heart.org/aha_ym21{{tablePrefix == 'heartdev' ? '_dev' : (tablePrefix == 'heartnew' ? '_testing' : '')}}/quiz/show/{{prize.not_completed_url}}?event_id={{frId}}&user_id={{consId}}&name={{consNameFirst}}" class="btn btn-md-wide btn-primary prizeCTA" target="_blank">{{prize.not_completed_label}}</a>
+	      <a href="" ng-if="prize.url_type=='Modal' && prize.not_completed_url=='app'" ng-click="showMobileApp()" class="btn btn-md-wide btn-primary prizeCTA" target="_blank">{{prize.not_completed_label}}</a>
+	      <span class="sr-only" ng-if="prize.earned">(earned)</span><span class="sr-only" ng-if="!prize.earned">(not yet earned)</span>
+	    </div>
+	  </div>
         </div>
       </div>
     </section>
