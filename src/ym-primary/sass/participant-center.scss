@@ -131,50 +131,63 @@ a.ym-pc-dashboard-download-certificates {
    max-width: 663px;
    margin: 0 auto;
 
-	.agentk {
-    max-width: 160px;
-    margin-bottom: 10px;
-	}
-	.ym-pc-dashboard-badges-header {
+   .agentk {
+     max-width: 160px;
+     margin-bottom: 10px;
+   }
+   .lets-go {
+     position: absolute;
+     color: #fff;
+     font-size: 20px;
+     max-width: 70px;
+     top: 20%;
+     left: 5%;
+     text-align:center;
+     img {
+         margin-top: 20px;
+	 margin-left: 30px;
+     }
+   }
+   .ym-pc-dashboard-badges-header {
      top: 0;
      position: absolute;
      font-size: 16px;
      left: 29%;
 
-		 img {
-				margin-top: -35px;
-				max-width: 70px;
-				margin-bottom: 20px;
-		 }
-		 p {
-				display: block;
-				color: indigo;
-				margin:0 auto;
-		 }
-		 em {
-				font-size:16px;
-		 }
-	}
-	.ym-pc-dashboard-badges-icons {
-		position: absolute;
-		top: 18%;
-		left: 0px;
-	}
-	.ym-pc-dashboard-badges-icon {
-		text-align: center;
-		padding: 0 25px 25px;
-		max-width:150px;
-		position:absolute;
-	}
-	.ym-pc-dashboard-badges-icon:nth-child(1) {
-			offset-path: path("M243 205");
-	}
-	.ym-pc-dashboard-badges-icon:nth-child(2) {
-			offset-path: path("M379 216");
-	}
-	.ym-pc-dashboard-badges-icon:nth-child(3) {
-			offset-path: path("M531 255");
-	}
+     img {
+	margin-top: -35px;
+	max-width: 70px;
+	margin-bottom: 20px;
+     }
+     p {
+	display: block;
+	color: indigo;
+	margin:0 auto;
+     }
+     em {
+  	font-size:16px;
+     }
+   }
+   .ym-pc-dashboard-badges-icons {
+ 	position: absolute;
+	top: 18%;
+	left: 0px;
+   }
+   .ym-pc-dashboard-badges-icon {
+	text-align: center;
+	padding: 0 25px 25px;
+	max-width:150px;
+	position:absolute;
+   }
+   .ym-pc-dashboard-badges-icon:nth-child(1) {
+	offset-path: path("M243 205");
+   }
+   .ym-pc-dashboard-badges-icon:nth-child(2) {
+	offset-path: path("M379 216");
+   }
+   .ym-pc-dashboard-badges-icon:nth-child(3) {
+	offset-path: path("M531 255");
+   }
 }
 
 .ym-pc-dashboard-coordinator-resources-contact {
