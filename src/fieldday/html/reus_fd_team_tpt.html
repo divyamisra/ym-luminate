@@ -10,24 +10,21 @@
                       alt="[[E43:[[S334:fr_id]]:name:[[S334:team_id]]]] fundraising page" />
               ]]
 
-            <div class="sidebar-content box-shadow">
+            <div data-company="[[E43:[[S334:fr_id]]:company-id]]" class="js--sidebar-content sidebar-content box-shadow">
                 <ul>
                     <li>
                         <div class="sidebar__icon">
                           <i class="far fa-flag" aria-hidden="true"></i>
                         </div>
-                        <div class="sidebar__details">
+                        <div class="sidebar__details js--field-day-details">
                           <p><strong>Field Day Details:</strong></p>
-                          <p>[[E47:[[S334:fr_id]]:fr_info:1:event_location]]</p>
-                          <p>[[E47:[[S334:fr_id]]:fr_info:1:event_location_city]],[[E47:[[S334:fr_id]]:fr_info:1:event_location_state]]</p>
                         </div>
                     </li>
                     <li>
                         <div class="sidebar__icon">
                           <i class="far fa-clock" aria-hidden="true"></i>
                         </div>
-                        <div class="sidebar__details">
-                          <p>[[E47:[[S334:fr_id]]:fr_info:1:event_date]]</p>
+                        <div class="sidebar__details js--event-date">
                         </div>
                     </li>
                     <li>
@@ -42,10 +39,9 @@
                       <div class="sidebar__icon">
                         <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
                       </div>
-                      <div class="sidebar__details">
+                      <div class="sidebar__details js--company-location">
                         <p><strong>Company Location:</strong></p>
-                        <p><a href="#">{Company Link}</a></p>
-                        <p>{Company City, Company State}</p>
+                        <p><a class="js--company-link" href="#">[[E43:[[S334:fr_id]]:type:company-name]]</a></p>
                       </div>
                     </li>
                 </ul>

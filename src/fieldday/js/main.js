@@ -1017,7 +1017,7 @@
      		   header: true,
            download: true,
      		   complete: function(results) {
-     		     console.log(results);
+     		   console.log(results);
 
      				 var data = results.data;
 
@@ -1266,6 +1266,12 @@
             // populate donor honor roll
             cd.getTeamHonorRoll();
 
+            var companyIdParam = $('.js--sidebar-content').data('company');
+            console.log('company id: ' + companyIdParam)
+
+            //fill in company sidebar data
+            cd.getCompanyData(companyIdParam);
+
             // Build personal donation form
             cd.getDonationFormInfo = function (options) {
                 luminateExtend.api({
@@ -1423,6 +1429,12 @@
             cd.setDonorRollHeight();
             cd.reorderPageForMobile();
             cd.getTeamCaptains();
+
+            var companyIdParam = $('.js--sidebar-content').data('company');
+            console.log('company id: ' + companyIdParam)
+
+            //fill in company sidebar data
+            cd.getCompanyData(companyIdParam);
 
             // populate custom team page content
             $('.js--team-text').html($('#fr_rich_text_container').html());
