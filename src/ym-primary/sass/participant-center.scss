@@ -148,18 +148,14 @@ a.ym-pc-dashboard-download-certificates {
    }
 }
 .ym-pc-dashboard-badges-icons {
-	display: flex;
-	flex-wrap: wrap;
-	flex-direction: row;
-	justify-content: center;
-	align-items: flex-start;
-	padding: 20px;
-	background: url(../image/winding_road.svg) no-repeat center center;
+	position: absolute;
+	top: 0px;
+	left: 0px;
 }
 .ym-pc-dashboard-badges-icon {
 	text-align: center;
 	padding: 0 25px 25px;
-	max-width:200px;
+	max-width:150px;
 }
 
 .ym-pc-dashboard-coordinator-resources-contact {
