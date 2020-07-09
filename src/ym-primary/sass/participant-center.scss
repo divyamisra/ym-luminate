@@ -228,10 +228,23 @@ a.ym-pc-dashboard-download-certificates {
 	offset-path: path("M95 633");
    }
    .secret-box {
-        position:absolute;
-	color: #fff;
-	font-size:20px;
-	max-width: 100px;
+     position: absolute;
+     color: #fff;
+     font-size: 20px;
+     max-width: 185px;
+     right: 40px;
+     bottom: 20px;
+     text-align: center;
+     &:before {
+	    background: url(../image/secret_finn.png) no-repeat;
+	    content: '';
+	    width: 96px;
+	    height: 53px;
+	    display: block;
+	    position: absolute;
+	    bottom: 30px;
+	    right: 19px;
+     }
    }
 }
 
