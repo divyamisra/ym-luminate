@@ -702,7 +702,7 @@
 
                             $(companies).each(function (i, company) {
 
-                                var eventRow = '<div class="row py-3"><div class="landing-participant-search__name col-12 col-lg-6"><p><a href="'+ company.companyURL +'">'+ company.companyName +'</a><br><span class="js--company-location"></span></p></div><div class="landing-participant-search__register col-12 col-lg-6"><p><a href="'+ company.companyURL +'" class="btn btn-primary">Register</a></p></div>';
+                                var eventRow = '<div class="row py-3' + (i > 10 ? ' class="d-none"' : '') + '"><div class="landing-participant-search__name col-12 col-lg-6"><p><a href="'+ company.companyURL +'">'+ company.companyName +'</a><br><span class="js--company-location"></span></p></div><div class="landing-participant-search__register col-12 col-lg-6"><p><a href="'+ company.companyURL +'" class="btn btn-primary">Register</a></p></div>';
 
                                 $('.js--participant-search-results').append(eventRow);
 
@@ -718,7 +718,7 @@
 
                             $('.js--participant-more-event-results').on('click', function (e) {
                                 e.preventDefault();
-                                $('.js--participant-search-results row').removeClass('d-none');
+                                $('.js--participant-search-results .row').removeClass('d-none');
                                 $(this).attr('hidden', true);
                                 $('.js--participant-end-event-list').removeAttr('hidden');
                             });
@@ -759,7 +759,7 @@
 
                             $(participants).each(function (i, participant) {
 
-                                var eventRow = '<div class="row py-3"><div class="landing-participant-search__name col-12 col-lg-6"><p><a href="'+ participant.personalPageUrl + '">' + participant.name.first + ' ' + participant.name.last +'</a><br>' +
+                                var eventRow = '<div class="row py-3 ' + (i > 10 ? ' class="d-none"' : '') + '"><div class="landing-participant-search__name col-12 col-lg-6"><p><a href="'+ participant.personalPageUrl + '">' + participant.name.first + ' ' + participant.name.last +'</a><br>' +
                               (participant.teamName ? participant.teamName : "")  + '</p></div><div class="landing-participant-search__register col-12 col-lg-6"><p><a href="'+ participant.donationUrl +'" class="btn btn-primary">Donate</a></p></div>';
 
                                 $('.js--participant-search-results').append(eventRow);
@@ -767,12 +767,12 @@
                             });
 
                             if (totalEvents > 10) {
-                                $('.js--participant-more-event-results').removeAttr('hidden');
+                                $('.js--participant-more-event-results').removeClass('hidden');
                             }
 
-                            $('.js--participant-more-event-results').on('click', function (e) {
+                            $('.js--participant-more-event-result').on('click', function (e) {
                                 e.preventDefault();
-                                $('.js--participant-search-results row').removeClass('d-none');
+                                $('.js--participant-search-results .row').removeClass('d-none');
                                 $(this).attr('hidden', true);
                                 $('.js--participant-end-event-list').removeAttr('hidden');
                             });
