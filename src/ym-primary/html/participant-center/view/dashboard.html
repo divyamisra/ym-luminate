@@ -46,7 +46,9 @@
 	  Let's Go! 
 	  <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/winding_road_arrow.png" alt="Let's Go Arrow">
  	</div>
-        <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/winding_road.svg" alt="Badge Path">
+	<div class="winding-road">
+          <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/winding_road.svg" alt="Badge Path" class="winding-road-svg">
+        </div>
         <div class="ym-pc-dashboard-badges-header">
           <p ng-if="prizesEarned != prizes.length" ng-cloak><strong>You’ve completed <span ng-bind-html="prizesEarned"></span> out of <span ng-bind-html="prizes.length"></span> missions to earn Finn’s charm for your wristband! Keep going!</strong></p>
           <p>You registered & accepted the mission. Now let’s reach out & ask for a donation to reach your goal. 
