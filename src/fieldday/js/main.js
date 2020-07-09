@@ -1629,6 +1629,10 @@
 
             var progress = $('#progress-amount').text();
             var goal = $('#goal-amount').text();
+            if (parseInt(progress) > parseInt(goal) ) {
+              $('.js--thermometer-trophy-goal').removeClass('d-none');
+              $('.js--thermometer-trophy').addClass('d-none');
+            }
             cd.runThermometer(progress, goal);
             cd.reorderPageForMobile();
 
