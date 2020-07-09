@@ -321,17 +321,23 @@
                     '&list_ascending=true',
                 callback: {
                     success: function (response) {
+                      if ($.fn.DataTable) {
+                          if ($.fn.DataTable.isDataTable('#companyResultsTable')) {
+                              $('#companyResultsTable').DataTable().destroy();
+                          }
+                      }
+                      $('#companyResultsTable tbody').empty();
                         if (response.getCompaniesResponse.totalNumberResults === '0') {
                             // no search results
                             $('#error-company').removeAttr('hidden').text('Company not found. Please try different search terms.');
                         } else {
                             var companies = luminateExtend.utils.ensureArray(response.getCompaniesResponse.company);
                             var totalCompanies = parseInt(response.getCompaniesResponse.totalNumberResults);
-                            $('.js--num-companies').text(totalCompanies);
+                            $('.js--num-company-results').text((totalCompanies === 1 ? '1 Result' : totalCompanies + ' Results'));
 
                             $(companies).each(function (i, company) {
                                 $('.js--company-results-rows').append('<tr' + (i > 10 ? ' class="d-none"' : '') + '><td><a href="' + company.companyURL + '">' +
-                                    company.companyName + '</a></td><td class="col-cta"><a href="' + company.companyURL + '">{Team Name}</a></td><td class="col-cta"><a href="' + company.companyURL + '">{Company Lead}</a></td></tr>');
+                                    company.companyName + '</a></td><td class="col-cta"><a href="' + company.companyURL + '">{Company Lead}</a></td><td class="col-cta"><a href="' + company.companyURL + '">{Company Location}</a></td></tr>');
                             });
 
                             $('.js--company-results-container').removeAttr('hidden');
