@@ -211,21 +211,24 @@ a.ym-pc-dashboard-download-certificates {
 	  right: 82px;
 	}
    }
-   .ym-pc-dashboard-badges-icon:nth-child(5) {
+   .ym-pc-dashboard-badges-icon:nth-child(9) {
 	offset-path: path("M379 433");
    }
-   .ym-pc-dashboard-badges-icon:nth-child(6) {
+   .ym-pc-dashboard-badges-icon:nth-child(5) {
 	offset-path: path("M244 433");
    }
-   .ym-pc-dashboard-badges-icon:nth-child(7) {
+   .ym-pc-dashboard-badges-icon:nth-child(6) {
 	offset-path: path("M95 465");
 	.earned:after {
 	  bottom: 20px;
 	  right: 82px;
 	}
    }
-   .ym-pc-dashboard-badges-icon:nth-child(8) {
+   .ym-pc-dashboard-badges-icon:nth-child(7) {
 	offset-path: path("M95 647");
+   }
+   .ym-pc-dashboard-badges-icon:nth-child(8) {
+	offset-path: path("M303 675");
    }
    .secret-box {
      position: absolute;
