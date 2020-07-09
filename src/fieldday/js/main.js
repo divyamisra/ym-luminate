@@ -713,7 +713,7 @@
                             });
 
                             if (totalEvents > 10) {
-                                $('.js--participant-more-event-results').removeAttr('hidden');
+                                $('.js--participant-more-event-results').removeClass('hidden');
                             }
 
                             $('.js--participant-more-event-results').on('click', function (e) {
@@ -1129,7 +1129,7 @@
             $('#team-roster_info').insertBefore($('#team-roster_filter')).wrap('<div class="col-lg-6 col-md-12 sorter pl-md-0"></div>');
             $('#team-roster_filter').wrap('<div class="col-lg-6 col-md-12"></div>');
 
-            $('#team-roster_filter input[type="search"]').attr('id', 'team_search').wrap('<div class="input-group"></div>').addClass('form-control').after('<div class="input-group-append"><button class="btn btn-primary btn-outline-secondary" type="button">Search <i class="fas fa-search"></i></button></div>');
+            $('#team-roster_filter input[type="search"]').attr('id', 'team_search').wrap('<div class="input-group"></div>').addClass('form-control').after('<div class="input-group-append"><button class="btn btn-primary btn-outline-secondary" type="button"><span class="sr-only">Search</span> <i class="fas fa-search"></i></button></div>');
 
             $('#team-roster_filter label').attr('for', 'team_search');
 
@@ -1149,7 +1149,7 @@
                 "autoWidth": false,
                 "order": [[2, 'desc']],
                 "language": {
-                    "search": "Search for a Walker"
+                    "search": "Search for a Participant"
                 }
             });
 
@@ -1157,7 +1157,7 @@
             $('#participant-roster_info').insertBefore($('#participant-roster_filter')).wrap('<div class="col-lg-6 col-md-12 sorter d-flex align-items-end"></div>');
             $('#participant-roster_filter').wrap('<div class="col-lg-6 col-md-12"></div>');
 
-            $('#participant-roster_filter input[type="search"]').attr('id', 'participant_search').wrap('<div class="input-group"></div>').addClass('form-control').after('<div class="input-group-append"><button class="btn btn-primary btn-outline-secondary" type="button">Search <i class="fas fa-search"></i></button></div>');
+            $('#participant-roster_filter input[type="search"]').attr('id', 'participant_search').wrap('<div class="input-group"></div>').addClass('form-control').after('<div class="input-group-append"><button class="btn btn-primary btn-outline-secondary" type="button"><span class="sr-only">Search</span> <i class="fas fa-search"></i></button></div>');
 
             $('#participant-roster_filter label').attr('for', 'participant_search');
 
