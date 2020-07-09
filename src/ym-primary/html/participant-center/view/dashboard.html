@@ -39,7 +39,9 @@
         </h2>
       </div>
       <div class="ym-pc-dashboard-badge-path">
-	<img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/Agentk.png" alt="Agent K" class="agentk">
+        <div class="hv-image" ng-init="hvImgAgentsrc='Agentk.png';" ng-mouseover="hvImgAgentsrc='Agentk.gif';" ng-mouseout="hvImgAgentsrc='Agentk.png';">
+	  <img class="agentk" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/{{hvImgAgentsrc}}" alt="Agent K">
+        </div>
 	<div class="lets-go">
 	  Let's Go! 
 	  <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/winding_road_arrow.png" alt="Let's Go Arrow">
