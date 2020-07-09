@@ -235,11 +235,21 @@ a.ym-pc-dashboard-download-certificates {
      right: 40px;
      bottom: 20px;
      text-align: center;
-     &:before {
-	    background: url(../image/secret_finn.png) no-repeat;
+     &.not-secret-finn:before {
+	    background: url(../image/not_secret_finn.png) no-repeat;
 	    content: '';
 	    width: 96px;
 	    height: 53px;
+	    display: block;
+	    position: absolute;
+	    bottom: 30px;
+	    right: 19px;
+     }
+     &.secret-finn:before {
+	    background: url(../image/secret_finn.png) no-repeat;
+	    content: '';
+	    width: 178px;
+	    height: 96px;
 	    display: block;
 	    position: absolute;
 	    bottom: 30px;
