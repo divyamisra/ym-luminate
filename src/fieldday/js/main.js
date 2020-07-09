@@ -2078,10 +2078,9 @@
             if($(this).height() > highestBox) {
               highestBox = $(this).height();
             }
+
+            $('.js--card-content').height(highestBox);
           });
-
-          $('.js--card-content').height(highestBox);
-
 
          }
          //End Landing Page

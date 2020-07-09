@@ -285,11 +285,16 @@
   }
   .btn-primary {
     height: 55px;
-    line-height: 55px;
-    width: 260px;
   }
   input[type="text"]{
     height: 55px;
+  }
+}
+
+.landing-participant-search__results {
+  .btn-primary {
+    width: 200px;
+    line-height: 55px;
   }
 }
 
