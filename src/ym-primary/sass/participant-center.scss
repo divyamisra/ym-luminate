@@ -140,7 +140,7 @@ a.ym-pc-dashboard-download-certificates {
      color: #fff;
      font-size: 20px;
      max-width: 70px;
-     top: 20%;
+     top: 22%;
      left: 5%;
      text-align:center;
      img {
@@ -195,15 +195,19 @@ a.ym-pc-dashboard-download-certificates {
 	    right: 19px;
 	}
    }
+   /*online registration*/
    .ym-pc-dashboard-badges-icon:nth-child(1) {
 	offset-path: path("M244 188");
    }
+   /*take challenge*/
    .ym-pc-dashboard-badges-icon:nth-child(2) {
 	offset-path: path("M379 188");
    }
+   /*1st donation*/
    .ym-pc-dashboard-badges-icon:nth-child(3) {
 	offset-path: path("M528 226");
    }
+   /*self donation*/
    .ym-pc-dashboard-badges-icon:nth-child(4) {
 	offset-path: path("M528 396");
 	.earned:after {
@@ -211,12 +215,15 @@ a.ym-pc-dashboard-download-certificates {
 	  right: 82px;
 	}
    }
-   .ym-pc-dashboard-badges-icon:nth-child(9) {
+   /*go social*/
+   .ym-pc-dashboard-badges-icon:nth-child(5) {
 	offset-path: path("M379 433");
    }
-   .ym-pc-dashboard-badges-icon:nth-child(5) {
+   /*get active*/
+   .ym-pc-dashboard-badges-icon:nth-child(9) {
 	offset-path: path("M244 433");
    }
+   /*send email*/
    .ym-pc-dashboard-badges-icon:nth-child(6) {
 	offset-path: path("M95 465");
 	.earned:after {
@@ -224,9 +231,11 @@ a.ym-pc-dashboard-download-certificates {
 	  right: 82px;
 	}
    }
+   /*CPR Quiz*/
    .ym-pc-dashboard-badges-icon:nth-child(7) {
 	offset-path: path("M95 647");
    }
+   /*heart facts quiz*/
    .ym-pc-dashboard-badges-icon:nth-child(8) {
 	offset-path: path("M303 675");
    }
