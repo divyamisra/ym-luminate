@@ -96,7 +96,7 @@
         </div>
       ::]]
     </div>
-    <div class="col-md-6 ym-user-interactions" ng-if="prizes.length > 0 || challengeId != null">
+    <div class="col-md-6 ym-user-interactions" ng-if="prizes.length > 0 || schoolChallenges.length > 0 || challengeId != null">
       <div class="ym-badges" ng-if="prizes.length > 0 || schoolChallenges.length > 0">
         <h2 class="ym-headline h3">
           Check Out My Badges
@@ -119,11 +119,6 @@
         <h2 class="ym-headline">
           My Challenge
         </h2>
-        <!-- <div class="col-sm-4">
-          <img class="img-responsive" ng-if="challengeId == 1 || challengeId == 4" src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/middle-school/image/my-challenge-exercise.png" alt="{{challengeName}}" ng-cloak>
-          <img class="img-responsive" ng-if="challengeId == 2" src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/middle-school/image/my-challenge-water.png" alt="{{challengeName}}" ng-cloak>
-          <img class="img-responsive" ng-if="challengeId == 3" src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/middle-school/image/my-challenge-deed.png" alt="{{challengeName}}" ng-cloak>
-        </div> -->
         <div class="col-sm-12">
           <p class="ym_my_challenge__description">
             <strong>{{challengeName}}</strong>
