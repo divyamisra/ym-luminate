@@ -65,7 +65,7 @@
     margin: 50px 0;
   }
   h3 {
-    font-size: 2.67em;
+    font-size: 1.67em;
   }
   h3,
   p {
@@ -75,7 +75,7 @@
     font-size: 1.333em;
     font-weight: normal;
     @include media-breakpoint-up(md) {
-      font-size: 1.667em;
+      font-size: 2.667em;
     }
   }
 }
