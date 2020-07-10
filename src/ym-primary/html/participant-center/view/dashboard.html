@@ -39,6 +39,11 @@
         </h2>
       </div>
       <div class="ym-pc-dashboard-badge-path">
+        <div class="ym-pc-dashboard-badges-header">
+          <p class="ym-pc-dashboard-badges-mission">{{current_mission_title}}</p> 
+          <p>{{current_mission_message}}</p>
+          <em>Please allow 15 minutes for the system to update your badges.</em>
+        </div>
         <div class="hv-image" ng-init="hvImgAgentsrc='Agentk.png';" ng-mouseover="hvImgAgentsrc='Agentk.gif';" ng-mouseout="hvImgAgentsrc='Agentk.png';">
 	  <img class="agentk" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/{{hvImgAgentsrc}}" alt="Agent K">
         </div>
@@ -322,11 +327,6 @@
 			   </g>
 			</svg>
 	</div>
-        <div class="ym-pc-dashboard-badges-header">
-          <p class="ym-pc-dashboard-badges-mission">{{current_mission_title}}</p> 
-          <p>{{current_mission_message}}</p>
-          <em>Please allow 15 minutes for the system to update your badges.</em>
-        </div>
       </div>
     </section>
     <section class="ym-pc-dashboard-progress-section" aria-label="Fundraising Progress Meters">
