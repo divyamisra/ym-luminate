@@ -201,7 +201,7 @@ nav {
           border: none;
           margin: 0 53px 32px 0;
           &:hover {
-            color: $red-deep;
+            color: $red-deep!important;
             text-decoration: underline !important;
           }
         }
