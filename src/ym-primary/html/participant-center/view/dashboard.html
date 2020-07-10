@@ -137,7 +137,7 @@
 				  <pattern id="1_delivered" filterUnits="objectBoundingBox" x="0" y="0" width="1" height="1">
 					<image width="100" height="100"  xlink:href="" ng-href="https://cd-aha-oot-production.s3.amazonaws.com/fy21/assets/badges/khc/{{prizes[0].id}}_delivered.png" title="{{prizes[0].label}}" />
 					<image width="40" height="40" x="60" y="60" ng-href="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/badge_earned_check.png" xlink:href=""  title="Mission Completed Checkmark"/>
-				  </pattern>
+   				  </pattern>
 				  <pattern id="2_delivered" filterUnits="objectBoundingBox" x="0" y="0" width="1" height="1">
 					<image width="100" height="100"  xlink:href="" ng-href="https://cd-aha-oot-production.s3.amazonaws.com/fy21/assets/badges/khc/{{prizes[1].id}}_delivered.png" title="{{prizes[1].label}}" />
 					<image width="40" height="40" x="60" y="60" ng-href="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/badge_earned_check.png" xlink:href=""  title="Mission Completed Checkmark"/>
@@ -229,48 +229,66 @@
 				  </pattern>
 			   </defs>
 			   <g data-name="Winding Road">
-				  <g transform="translate(-.003 -.001)" filter="url(#a)" data-name="Heart Facts Quiz">
+				  <g id="stroke-quiz" transform="translate(-.003 -.001)" filter="url(#a)" data-name="Heart Facts Quiz">
 					 <path data-name="Rectangle 685" fill="{{(prizes[8].earned) ? '#e1eed2' : '#fdda00'}}" d="M207.85 584.65h187.845v116H207.85z"/>
-					 <path data-name="Rectangle 685" fill="url(#9{{(prizes[8].earned) ? '_delivered' : '_earned'}})" d="M250 594v100h100v-100h-100z"/> 
+					 <text fill="#000000" font-size="14" font-weight="bold"><tspan x="290" y="643">Take</tspan></text>
+					 <text fill="#000000" font-size="14" font-weight="bold"><tspan x="270" y="659">Stroke Quiz</tspan></text>
+					 <path class="badge-path" data-name="Rectangle 685" fill="url(#9{{(prizes[8].earned) ? '_delivered' : '_earned'}})" d="M250 594v100h100v-100h-100z"/> 
 				  </g>
-				  <g transform="translate(.003 -.001)" filter="url(#b)" data-name="CPR Quiz">
+				  <g id="cpr-quiz" transform="translate(.003 -.001)" filter="url(#b)" data-name="CPR Quiz">
 					 <path data-name="Path 1518" d="M112.484 524.203H.03c-1.232 99.545 37.375 177.981 196.424 176.749V584.593c-42.308 5.249-85.447-22.73-83.97-60.39z" fill="{{(prizes[7].earned) ? '#e1eed2' : '#e02826'}}"/>
-					 <path data-name="Path 1518" d="M41 560h100v100h-100z" fill="url(#8{{(prizes[7].earned) ? '_delivered' : '_earned'}})"/>
+					 <text fill="#ffffff" font-size="14" font-weight="bold"><tspan x="81" y="610">Take</tspan></text>
+					 <text fill="#ffffff" font-size="14" font-weight="bold"><tspan x="65" y="626">CPR Quiz</tspan></text>
+					 <path class="badge-path" data-name="Path 1518" d="M41 560h100v100h-100z" fill="url(#8{{(prizes[7].earned) ? '_delivered' : '_earned'}})"/>
 				  </g>
-				  <g transform="translate(-.001 -.001)" filter="url(#c)" data-name="Send Email">
+				  <g id="send-email" transform="translate(-.001 -.001)" filter="url(#c)" data-name="Send Email">
 					 <path data-name="Path 1519" d="M171.347 458.657V343.48C78.262 346.407 3.086 421.58.158 514.669h112.844c2.702-30.934 27.411-53.309 58.345-56.012z" fill="{{(prizes[6].earned) ? '#e1eed2' : '#8f4199'}}"/>
-					 <path data-name="Path 1519" d="M41 385h100v100h-100z" fill="url(#7{{(prizes[6].earned) ? '_delivered' : '_earned'}})"/>
+					 <text fill="#444" font-size="14" font-weight="bold"><tspan x="74" y="435">Send</tspan></text>
+					 <text fill="#444" font-size="14" font-weight="bold"><tspan x="74" y="451">Email</tspan></text>
+					 <path class="badge-path" data-name="Path 1519" d="M41 385h100v100h-100z" fill="url(#7{{(prizes[6].earned) ? '_delivered' : '_earned'}})"/>
 				  </g>
-				  <g transform="translate(0 .003)" filter="url(#d)" data-name="Get Active">
+				  <g id="get-active" transform="translate(0 .003)" filter="url(#d)" data-name="Get Active">
 					 <path data-name="Path 1532" d="M181.85 342.65h125v116h-125z" fill="{{(prizes[5].earned) ? '#e1eed2' : '#ff67b3'}}"/>
-					 <path data-name="Path 1532" d="M194 351v100h100v-100h-100z" fill="url(#6{{(prizes[5].earned) ? '_delivered' : '_earned'}})"/>
+					 <text fill="#444" font-size="14" font-weight="bold"><tspan x="233" y="400">Get</tspan></text>
+					 <text fill="#444" font-size="14" font-weight="bold"><tspan x="226" y="416">Active</tspan></text>
+					 <path class="badge-path" data-name="Path 1532" d="M194 351v100h100v-100h-100z" fill="url(#6{{(prizes[5].earned) ? '_delivered' : '_earned'}})"/>
 				  </g>
-				  <g transform="translate(-.001 .003)" filter="url(#e)" data-name="Share on Social">
+				  <g id="share-on-social" transform="translate(-.001 .003)" filter="url(#e)" data-name="Share on Social">
 					 <path data-name="Rectangle 680" fill="{{(prizes[4].earned) ? '#e1eed2' : '#00bed9'}}" d="M316.85 342.65h125v116h-125z"/>
-					 <path data-name="Rectangle 680" fill="url(#5{{(prizes[4].earned) ? '_delivered' : '_earned'}})" d="M330 351v100h100v-100h-100z"/>
+					 <text fill="#444" font-size="14" font-weight="bold"><tspan x="351" y="400">Share on</tspan></text>
+					 <text fill="#444" font-size="14" font-weight="bold"><tspan x="358" y="416">Social</tspan></text>
+					 <path class="badge-path" data-name="Rectangle 680" fill="url(#5{{(prizes[4].earned) ? '_delivered' : '_earned'}})" d="M330 351v100h100v-100h-100z"/>
 				  </g>
-				  <g transform="translate(.005 .002)" filter="url(#f)" data-name="Make a Donation">
+				  <g id="make-a-donation" transform="translate(.005 .002)" filter="url(#f)" data-name="Make a Donation">
 					 <path data-name="Path 1529" d="M615.362 282.968H507.129c-2.592 31.766-26.292 57.139-55.962 59.914v115.874c89.282-3.007 161.386-80.202 164.195-175.788z" fill="{{(prizes[3].earned) ? '#e1eed2' : '#5aba47'}}"/>
-					 <path data-name="Path 1529" d="M475 317h100v100h-100z" fill="url(#4{{(prizes[3].earned) ? '_delivered' : '_earned'}})"/>
+					 <text fill="#444" font-size="14" font-weight="bold"><tspan x="500" y="364">Make a</tspan></text>
+					 <text fill="#444" font-size="14" font-weight="bold"><tspan x="495" y="381">Donation</tspan></text>
+					 <path class="badge-path" data-name="Path 1529" d="M475 317h100v100h-100z" fill="url(#4{{(prizes[3].earned) ? '_delivered' : '_earned'}})"/>
 				  </g>
-				  <g transform="translate(-.004 -.001)" filter="url(#g)" data-name="Ask for a Donation">
+				  <g id="ask-for-a-donation" transform="translate(-.004 -.001)" filter="url(#g)" data-name="Ask for a Donation">
 					 <path data-name="Path 1528" d="M615.362 272.616H507.129c-2.592-31.766-26.292-56.193-55.962-58.967V96.828c89.282 3.007 161.386 80.202 164.195 175.788z" fill="{{(prizes[2].earned) ? '#e1eed2' : '#f48220'}}"/>
-					 <path data-name="Path 1528" d="M478 143h100v100h-100z" fill="url(#3{{(prizes[2].earned) ? '_delivered' : '_earned'}})"/>
+					 <text fill="#444" font-size="14" font-weight="bold"><tspan x="495" y="190">Ask for a</tspan></text>
+					 <text fill="#444" font-size="14" font-weight="bold"><tspan x="495" y="206">Donation</tspan></text>
+					 <path class="badge-path" data-name="Path 1528" d="M478 143h100v100h-100z" fill="url(#3{{(prizes[2].earned) ? '_delivered' : '_earned'}})"/>
 				  </g>
-				  <g transform="translate(-.001 .003)" filter="url(#h)">
+				  <g id="take-challenge" transform="translate(-.001 .003)" filter="url(#h)">
 					 <path data-name="Rectangle 682" fill="#e1eed2" d="M315.85 96.65h125v116h-125z"/>
-					 <path data-name="Rectangle 682" fill="url(#2{{(prizes[1].earned) ? '_delivered' : '_earned'}})" d="M329 106v100h100v-100h-100z"/>
+					 <text fill="#444" font-size="14" font-weight="bold"><tspan x="359" y="155">Take</tspan></text>
+					 <text fill="#444" font-size="14" font-weight="bold"><tspan x="345" y="171">Challenge</tspan></text>
+					 <path class="badge-path" data-name="Rectangle 682" fill="url(#2{{(prizes[1].earned) ? '_delivered' : '_earned'}})" d="M329 106v100h100v-100h-100z"/>
 				  </g>
-				  <g transform="translate(-.001 .003)" filter="url(#i)">
-					 <path data-name="Path 1523" d="M180.85 96.656v116h125v-116h-125z" fill="#e1eed2"/>
-					 <path data-name="Path 1523" d="M194 106v100h100v-100h-100z" fill="url(#1{{(prizes[0].earned) ? '_delivered' : '_earned'}})"/>
-				  </g>
+				  <g id="online-registration" transform="translate(-.001 .003)" filter="url(#i)">
+					 <path data-name="Path 1523" d="M180.85 96.656v116h125v-116h-125z" fill="#e1eed2"></path>
+					 <text fill="#444" font-size="14" font-weight="bold"><tspan x="221" y="155">Online</tspan></text>
+					 <text fill="#444" font-size="14" font-weight="bold"><tspan x="206" y="171">Registration</tspan></text>
+					 <path class="badge-path" data-name="Path 1523" d="M194 106v100h100v-100h-100z" fill="url(#1_delivered)"></path>
+    			  </g>
 				  <g transform="translate(-.001 .003)" filter="url(#j)">
 					 <path data-name="Background" fill="{{(prizesEarned == prizes.length) ? '#c10e21' : '#444'}}" d="M405.85 584.65h250.987v116H405.85z"/>
 				  </g>
 				  <g transform="translate(-.001 .003)" filter="url(#k)">
 					 <path data-name="Path 1533" d="M6.57 0h109.919v42.714L7.613 37.569z" fill="#444"/>
-				  </g>
+    			  </g>
 				  <g transform="translate(-.001 .003)" filter="url(#l)">
 					 <path data-name="Path 1530" d="M7.498 36.916h108.233c2.592 32.209 23.541 56.566 53.211 59.379v117.491C79.66 210.737 10.307 133.835 7.498 36.916z" fill="#444"/>
 				  </g>
