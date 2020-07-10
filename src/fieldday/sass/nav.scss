@@ -30,6 +30,12 @@ padding: 0.625rem 1.25rem;
   margin:0 !important;
 }
 /* Main navigation styles */
+
+#home, #find, #about {
+  &:hover {
+    color: $white!important;
+  }
+}
 .nav-wrapper {
   margin-left: auto;
 }
