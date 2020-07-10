@@ -81,6 +81,16 @@ nav {
       color: $white;
     }
 
+    &.dropdown {
+      a {
+        &.nav-link{
+          &:hover{
+            color: $white;
+          }
+        }
+      }
+    }
+
 
     &.logged-in:hover {
       a {
