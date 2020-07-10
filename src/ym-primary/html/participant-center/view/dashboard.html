@@ -33,7 +33,7 @@
       </div>
     </div>
     <section class="ym-pc-dashboard-badges-section" aria-label="My Badges" ng-if="prizes && prizes.length > 0" ng-cloak>
-     <div class="ym-pc-dashboard-section-header">
+      <div class="ym-pc-dashboard-section-header">
         <h2 class="h3">
           {{current_mission_completed_header}}
         </h2>
@@ -134,67 +134,67 @@
 					 <feComposite in="SourceGraphic"/>
 				  </filter>
 				  <pattern id="1_delivered" filterUnits="objectBoundingBox" x="0" y="0" width="1" height="1">
-					<image width="100" height="100"  xlink:href="https://cd-aha-oot-production.s3.amazonaws.com/fy21/assets/badges/khc/1_delivered.png"/>
+					<image width="100" height="100"  xlink:href="" ng-href="https://cd-aha-oot-production.s3.amazonaws.com/fy21/assets/badges/khc/{{prizes[0].id}}_delivered.png" />
 					<image width="40" height="40" x="60" y="60" ng-href="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/badge_earned_check.png" xlink:href=""/>
 				  </pattern>
 				  <pattern id="2_delivered" filterUnits="objectBoundingBox" x="0" y="0" width="1" height="1">
-					<image width="100" height="100"  xlink:href="https://cd-aha-oot-production.s3.amazonaws.com/fy21/assets/badges/khc/2_delivered.png"/>
+					<image width="100" height="100"  xlink:href="" ng-href="https://cd-aha-oot-production.s3.amazonaws.com/fy21/assets/badges/khc/{{prizes[1].id}}_delivered.png" />
 					<image width="40" height="40" x="60" y="60" ng-href="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/badge_earned_check.png" xlink:href=""/>
 				  </pattern>
 				  <pattern id="3_delivered" filterUnits="objectBoundingBox" x="0" y="0" width="1" height="1">
-					<image width="100" height="100"  xlink:href="https://cd-aha-oot-production.s3.amazonaws.com/fy21/assets/badges/khc/3_delivered.png"/>
+					<image width="100" height="100"  xlink:href="" ng-href="https://cd-aha-oot-production.s3.amazonaws.com/fy21/assets/badges/khc/{{prizes[2].id}}_delivered.png" />
 					<image width="40" height="40" x="60" y="60" ng-href="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/badge_earned_check.png" xlink:href=""/>
 				  </pattern>
 				  <pattern id="4_delivered" filterUnits="objectBoundingBox" x="0" y="0" width="1" height="1">
-					<image width="100" height="100"  xlink:href="https://cd-aha-oot-production.s3.amazonaws.com/fy21/assets/badges/khc/4_delivered.png"/>
+					<image width="100" height="100"  xlink:href="" ng-href="https://cd-aha-oot-production.s3.amazonaws.com/fy21/assets/badges/khc/{{prizes[3].id}}_delivered.png" />
 					<image width="40" height="40" x="60" y="60" ng-href="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/badge_earned_check.png" xlink:href=""/>
 				  </pattern>
 				  <pattern id="5_delivered" filterUnits="objectBoundingBox" x="0" y="0" width="1" height="1">
-					<image width="100" height="100"  xlink:href="https://cd-aha-oot-production.s3.amazonaws.com/fy21/assets/badges/khc/5_delivered.png"/>
+					<image width="100" height="100"  xlink:href="" ng-href="https://cd-aha-oot-production.s3.amazonaws.com/fy21/assets/badges/khc/{{prizes[4].id}}_delivered.png" />
 					<image width="40" height="40" x="60" y="60" ng-href="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/badge_earned_check.png" xlink:href=""/>
 				  </pattern>
 				  <pattern id="6_delivered" filterUnits="objectBoundingBox" x="0" y="0" width="1" height="1">
-					<image width="100" height="100"  xlink:href="https://cd-aha-oot-production.s3.amazonaws.com/fy21/assets/badges/khc/6_delivered.png"/>
+					<image width="100" height="100"  xlink:href="" ng-href="https://cd-aha-oot-production.s3.amazonaws.com/fy21/assets/badges/khc/{{prizes[5].id}}_delivered.png" />
 					<image width="40" height="40" x="60" y="60" ng-href="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/badge_earned_check.png" xlink:href=""/>
 				  </pattern>
 				  <pattern id="7_delivered" filterUnits="objectBoundingBox" x="0" y="0" width="1" height="1">
-					<image width="100" height="100"  xlink:href="https://cd-aha-oot-production.s3.amazonaws.com/fy21/assets/badges/khc/7_delivered.png"/>
+					<image width="100" height="100"  xlink:href="" ng-href="https://cd-aha-oot-production.s3.amazonaws.com/fy21/assets/badges/khc/{{prizes[6].id}}_delivered.png" />
 					<image width="40" height="40" x="60" y="60" ng-href="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/badge_earned_check.png" xlink:href=""/>
 				  </pattern>
 				  <pattern id="8_delivered" filterUnits="objectBoundingBox" x="0" y="0" width="1" height="1">
-					<image width="100" height="100"  xlink:href="https://cd-aha-oot-production.s3.amazonaws.com/fy21/assets/badges/khc/8_delivered.png"/>
+					<image width="100" height="100"  xlink:href="" ng-href="https://cd-aha-oot-production.s3.amazonaws.com/fy21/assets/badges/khc/{{prizes[7].id}}_delivered.png" />
 					<image width="40" height="40" x="60" y="60" ng-href="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/badge_earned_check.png" xlink:href=""/>
 				  </pattern>
 				  <pattern id="9_delivered" filterUnits="objectBoundingBox" x="0" y="0" width="1" height="1">
-					<image width="100" height="100"  xlink:href="https://cd-aha-oot-production.s3.amazonaws.com/fy21/assets/badges/khc/9_delivered.png"/>
+					<image width="100" height="100"  xlink:href="" ng-href="https://cd-aha-oot-production.s3.amazonaws.com/fy21/assets/badges/khc/{{prizes[8].id}}_delivered.png" />
 					<image width="40" height="40" x="60" y="60" ng-href="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/badge_earned_check.png" xlink:href=""/>
 				  </pattern>
 				  <pattern id="1_earned" filterUnits="objectBoundingBox" x="0" y="0" width="1" height="1">
-					<image width="100" height="100"  xlink:href="https://cd-aha-oot-production.s3.amazonaws.com/fy21/assets/badges/khc/1_locked.png"/>
+					<image width="100" height="100"  xlink:href="" ng-href="https://cd-aha-oot-production.s3.amazonaws.com/fy21/assets/badges/khc/{{prizes[0].id}}_locked.png"/>
 				  </pattern>
 				  <pattern id="2_earned" filterUnits="objectBoundingBox" x="0" y="0" width="1" height="1">
-					<image width="100" height="100"  xlink:href="https://cd-aha-oot-production.s3.amazonaws.com/fy21/assets/badges/khc/2_locked.png"/>
+					<image width="100" height="100"  xlink:href="" ng-href="https://cd-aha-oot-production.s3.amazonaws.com/fy21/assets/badges/khc/{{prizes[1].id}}_locked.png"/>
 				  </pattern>
 				  <pattern id="3_earned" filterUnits="objectBoundingBox" x="0" y="0" width="1" height="1">
-					<image width="100" height="100"  xlink:href="https://cd-aha-oot-production.s3.amazonaws.com/fy21/assets/badges/khc/3_locked.png"/>
+					<image width="100" height="100"  xlink:href="" ng-href="https://cd-aha-oot-production.s3.amazonaws.com/fy21/assets/badges/khc/{{prizes[2].id}}_locked.png"/>
 				  </pattern>
 				  <pattern id="4_earned" filterUnits="objectBoundingBox" x="0" y="0" width="1" height="1">
-					<image width="100" height="100"  xlink:href="https://cd-aha-oot-production.s3.amazonaws.com/fy21/assets/badges/khc/4_locked.png"/>
+					<image width="100" height="100"  xlink:href="" ng-href="https://cd-aha-oot-production.s3.amazonaws.com/fy21/assets/badges/khc/{{prizes[3].id}}_locked.png"/>
 				  </pattern>
 				  <pattern id="5_earned" filterUnits="objectBoundingBox" x="0" y="0" width="1" height="1">
-					<image width="100" height="100"  xlink:href="https://cd-aha-oot-production.s3.amazonaws.com/fy21/assets/badges/khc/5_locked.png"/>
+					<image width="100" height="100"  xlink:href="" ng-href="https://cd-aha-oot-production.s3.amazonaws.com/fy21/assets/badges/khc/{{prizes[4].id}}_locked.png"/>
 				  </pattern>
 				  <pattern id="6_earned" filterUnits="objectBoundingBox" x="0" y="0" width="1" height="1">
-					<image width="100" height="100"  xlink:href="https://cd-aha-oot-production.s3.amazonaws.com/fy21/assets/badges/khc/6_locked.png"/>
+					<image width="100" height="100"  xlink:href="" ng-href="https://cd-aha-oot-production.s3.amazonaws.com/fy21/assets/badges/khc/{{prizes[5].id}}_locked.png"/>
 				  </pattern>
 				  <pattern id="7_earned" filterUnits="objectBoundingBox" x="0" y="0" width="1" height="1">
-					<image width="100" height="100"  xlink:href="https://cd-aha-oot-production.s3.amazonaws.com/fy21/assets/badges/khc/7_locked.png"/>
+					<image width="100" height="100"  xlink:href="" ng-href="https://cd-aha-oot-production.s3.amazonaws.com/fy21/assets/badges/khc/{{prizes[6].id}}_locked.png"/>
 				  </pattern>
 				  <pattern id="8_earned" filterUnits="objectBoundingBox" x="0" y="0" width="1" height="1">
-					<image width="100" height="100"  xlink:href="https://cd-aha-oot-production.s3.amazonaws.com/fy21/assets/badges/khc/8_locked.png"/>
+					<image width="100" height="100"  xlink:href="" ng-href="https://cd-aha-oot-production.s3.amazonaws.com/fy21/assets/badges/khc/{{prizes[7].id}}_locked.png"/>
 				  </pattern>
 				  <pattern id="9_earned" filterUnits="objectBoundingBox" x="0" y="0" width="1" height="1">
-					<image width="100" height="100"  xlink:href="https://cd-aha-oot-production.s3.amazonaws.com/fy21/assets/badges/khc/9_locked.png"/>
+					<image width="100" height="100"  xlink:href="" ng-href="https://cd-aha-oot-production.s3.amazonaws.com/fy21/assets/badges/khc/{{prizes[8].id}}_locked.png"/>
 				  </pattern>
 				  <pattern id="not_secret_finn" filterUnits="objectBoundingBox" x="0" y="0" width="1" height="1">
 					<image width="96" height="53" ng-href="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/not_secret_finn.png" xlink:href=""/>
@@ -226,40 +226,40 @@
 			   </defs>
 			   <g data-name="Winding Road">
 				  <g transform="translate(-.003 -.001)" filter="url(#a)" data-name="Heart Facts Quiz">
-					 <path data-name="Rectangle 685" fill="{{(prizes[9].earned) ? '#e1eed2' : '#fdda00'}}" d="M207.85 584.65h187.845v116H207.85z"/>
-					 <path data-name="Rectangle 685" fill="url(#9{{(prizes[9].earned) ? '_delivered' : '_earned'}})" d="M250 594v100h100v-100h-100z"/> 
+					 <path data-name="Rectangle 685" fill="{{(prizes[8].earned) ? '#e1eed2' : '#fdda00'}}" d="M207.85 584.65h187.845v116H207.85z"/>
+					 <path data-name="Rectangle 685" fill="url(#9{{(prizes[8].earned) ? '_delivered' : '_earned'}})" d="M250 594v100h100v-100h-100z"/> 
 				  </g>
 				  <g transform="translate(.003 -.001)" filter="url(#b)" data-name="CPR Quiz">
-					 <path data-name="Path 1518" d="M112.484 524.203H.03c-1.232 99.545 37.375 177.981 196.424 176.749V584.593c-42.308 5.249-85.447-22.73-83.97-60.39z" fill="{{(prizes[8].earned) ? '#e1eed2' : '#e02826'}}"/>
-					 <path data-name="Path 1518" d="M41 560h100v100h-100z" fill="url(#8{{(prizes[8].earned) ? '_delivered' : '_earned'}})"/>
+					 <path data-name="Path 1518" d="M112.484 524.203H.03c-1.232 99.545 37.375 177.981 196.424 176.749V584.593c-42.308 5.249-85.447-22.73-83.97-60.39z" fill="{{(prizes[7].earned) ? '#e1eed2' : '#e02826'}}"/>
+					 <path data-name="Path 1518" d="M41 560h100v100h-100z" fill="url(#8{{(prizes[7].earned) ? '_delivered' : '_earned'}})"/>
 				  </g>
 				  <g transform="translate(-.001 -.001)" filter="url(#c)" data-name="Send Email">
-					 <path data-name="Path 1519" d="M171.347 458.657V343.48C78.262 346.407 3.086 421.58.158 514.669h112.844c2.702-30.934 27.411-53.309 58.345-56.012z" fill="{{(prizes[7].earned) ? '#e1eed2' : '#8f4199'}}"/>
-					 <path data-name="Path 1519" d="M41 385h100v100h-100z" fill="url(#7{{(prizes[7].earned) ? '_delivered' : '_earned'}})"/>
+					 <path data-name="Path 1519" d="M171.347 458.657V343.48C78.262 346.407 3.086 421.58.158 514.669h112.844c2.702-30.934 27.411-53.309 58.345-56.012z" fill="{{(prizes[6].earned) ? '#e1eed2' : '#8f4199'}}"/>
+					 <path data-name="Path 1519" d="M41 385h100v100h-100z" fill="url(#7{{(prizes[6].earned) ? '_delivered' : '_earned'}})"/>
 				  </g>
 				  <g transform="translate(0 .003)" filter="url(#d)" data-name="Get Active">
-					 <path data-name="Path 1532" d="M181.85 342.65h125v116h-125z" fill="{{(prizes[6].earned) ? '#e1eed2' : '#ff67b3'}}"/>
-					 <path data-name="Path 1532" d="M194 351v100h100v-100h-100z" fill="url(#6{{(prizes[6].earned) ? '_delivered' : '_earned'}})"/>
+					 <path data-name="Path 1532" d="M181.85 342.65h125v116h-125z" fill="{{(prizes[5].earned) ? '#e1eed2' : '#ff67b3'}}"/>
+					 <path data-name="Path 1532" d="M194 351v100h100v-100h-100z" fill="url(#6{{(prizes[5].earned) ? '_delivered' : '_earned'}})"/>
 				  </g>
 				  <g transform="translate(-.001 .003)" filter="url(#e)" data-name="Share on Social">
-					 <path data-name="Rectangle 680" fill="{{(prizes[5].earned) ? '#e1eed2' : '#00bed9'}}" d="M316.85 342.65h125v116h-125z"/>
-					 <path data-name="Rectangle 680" fill="url(#5{{(prizes[5].earned) ? '_delivered' : '_earned'}})" d="M330 351v100h100v-100h-100z"/>
+					 <path data-name="Rectangle 680" fill="{{(prizes[4].earned) ? '#e1eed2' : '#00bed9'}}" d="M316.85 342.65h125v116h-125z"/>
+					 <path data-name="Rectangle 680" fill="url(#5{{(prizes[4].earned) ? '_delivered' : '_earned'}})" d="M330 351v100h100v-100h-100z"/>
 				  </g>
 				  <g transform="translate(.005 .002)" filter="url(#f)" data-name="Make a Donation">
-					 <path data-name="Path 1529" d="M615.362 282.968H507.129c-2.592 31.766-26.292 57.139-55.962 59.914v115.874c89.282-3.007 161.386-80.202 164.195-175.788z" fill="{{(prizes[4].earned) ? '#e1eed2' : '#5aba47'}}"/>
-					 <path data-name="Path 1529" d="M475 317h100v100h-100z" fill="url(#4{{(prizes[4].earned) ? '_delivered' : '_earned'}})"/>
+					 <path data-name="Path 1529" d="M615.362 282.968H507.129c-2.592 31.766-26.292 57.139-55.962 59.914v115.874c89.282-3.007 161.386-80.202 164.195-175.788z" fill="{{(prizes[3].earned) ? '#e1eed2' : '#5aba47'}}"/>
+					 <path data-name="Path 1529" d="M475 317h100v100h-100z" fill="url(#4{{(prizes[3].earned) ? '_delivered' : '_earned'}})"/>
 				  </g>
 				  <g transform="translate(-.004 -.001)" filter="url(#g)" data-name="Ask for a Donation">
-					 <path data-name="Path 1528" d="M615.362 272.616H507.129c-2.592-31.766-26.292-56.193-55.962-58.967V96.828c89.282 3.007 161.386 80.202 164.195 175.788z" fill="{{(prizes[3].earned) ? '#e1eed2' : '#f48220'}}"/>
-					 <path data-name="Path 1528" d="M478 143h100v100h-100z" fill="url(#3{{(prizes[3].earned) ? '_delivered' : '_earned'}})"/>
+					 <path data-name="Path 1528" d="M615.362 272.616H507.129c-2.592-31.766-26.292-56.193-55.962-58.967V96.828c89.282 3.007 161.386 80.202 164.195 175.788z" fill="{{(prizes[2].earned) ? '#e1eed2' : '#f48220'}}"/>
+					 <path data-name="Path 1528" d="M478 143h100v100h-100z" fill="url(#3{{(prizes[2].earned) ? '_delivered' : '_earned'}})"/>
 				  </g>
 				  <g transform="translate(-.001 .003)" filter="url(#h)">
 					 <path data-name="Rectangle 682" fill="#e1eed2" d="M315.85 96.65h125v116h-125z"/>
-					 <path data-name="Rectangle 682" fill="url(#2{{(prizes[2].earned) ? '_delivered' : '_earned'}})" d="M329 106v100h100v-100h-100z"/>
+					 <path data-name="Rectangle 682" fill="url(#2{{(prizes[1].earned) ? '_delivered' : '_earned'}})" d="M329 106v100h100v-100h-100z"/>
 				  </g>
 				  <g transform="translate(-.001 .003)" filter="url(#i)">
 					 <path data-name="Path 1523" d="M180.85 96.656v116h125v-116h-125z" fill="#e1eed2"/>
-					 <path data-name="Path 1523" d="M194 106v100h100v-100h-100z" fill="url(#1{{(prizes[1].earned) ? '_delivered' : '_earned'}})"/>
+					 <path data-name="Path 1523" d="M194 106v100h100v-100h-100z" fill="url(#1{{(prizes[0].earned) ? '_delivered' : '_earned'}})"/>
 				  </g>
 				  <g transform="translate(-.001 .003)" filter="url(#j)">
 					 <path data-name="Background" fill="{{(prizesEarned == prizes.length) ? '#c10e21' : '#444'}}" d="M405.85 584.65h250.987v116H405.85z"/>
@@ -280,50 +280,51 @@
 					 <text fill="#ffffff" font-size="20"><tspan x="450" y="635">You are a real</tspan></text>
 					 <text fill="#ffffff" font-size="20"><tspan x="460" y="668">Heart Hero!</tspan></text>
 				  </g>
-				  <g ng-if="!prizes[31].earned" transform="translate(-.001 .003)" ng-cloak>
-					  <a xlink:href="#code"><text fill="#c10e21" font-size="14" font-weight="bold"><tspan x="570" y="105">Ask for a</tspan></text></a>
-					  <a xlink:href="#code"><text fill="#c10e21" font-size="14" font-weight="bold"><tspan x="570" y="122">Donation</tspan></text></a>
+				  <g ng-if="!prizes[2].earned" transform="translate(-.001 .003)" ng-cloak>
+					  <a xlink:href="" ng-href="{{baseUrl}}{{prize.not_completed_url}}"><text fill="#c10e21" font-size="14" font-weight="bold"><tspan x="570" y="105">Ask for a</tspan></text></a>
+					  <a xlink:href="" ng-href="{{baseUrl}}{{prize.not_completed_url}}"><text fill="#c10e21" font-size="14" font-weight="bold"><tspan x="570" y="122">Donation</tspan></text></a>
 					 <path data-name="Path 1523" d="M575 130v23h23v-23h-23z" fill="url(#winding_road_link_arrow_3)"/>
 				  </g>
-				  <g ng-if="!prizes[41].earned" transform="translate(-.001 .003)" class="ng-scope">
+				  <g ng-if="!prizes[3].earned" transform="translate(-.001 .003)" class="ng-scope">
  					 <path data-name="Path 1523" d="M535 435v23h23v-23h-23z" fill="url(#winding_road_link_arrow_4)"></path>
-					  <a xlink:href="#code"><text fill="#c10e21" font-size="14" font-weight="bold"><tspan x="570" y="435">Make a</tspan></text></a>
-					  <a xlink:href="#code"><text fill="#c10e21" font-size="14" font-weight="bold"><tspan x="570" y="455">Donation</tspan></text></a>
+					  <a xlink:href="" ng-href="Donation2?df_id={{eventInfo.donationFormId}}&amp;FR_ID={{frId}}&amp;PROXY_TYPE=20&amp;PROXY_ID={{consId}}"><text fill="#c10e21" font-size="14" font-weight="bold"><tspan x="570" y="435">Make a</tspan></text></a>
+					  <a xlink:href="" ng-href="Donation2?df_id={{eventInfo.donationFormId}}&amp;FR_ID={{frId}}&amp;PROXY_TYPE=20&amp;PROXY_ID={{consId}}"><text fill="#c10e21" font-size="14" font-weight="bold"><tspan x="570" y="455">Donation</tspan></text></a>
 				  </g>
-				  <g ng-if="!prizes[51].earned" transform="translate(-.001 .003)" class="ng-scope">
+				  <g ng-if="!prizes[4].earned" transform="translate(-.001 .003)" class="ng-scope">
  					 <path data-name="Path 1523" d="M335 475v23h23v-23h-23z" fill="url(#winding_road_link_arrow_5)"></path>
-					  <a xlink:href="#code"><text fill="#c10e21" font-size="14" font-weight="bold"><tspan x="370" y="485">Share on</tspan></text></a>
-					  <a xlink:href="#code"><text fill="#c10e21" font-size="14" font-weight="bold"><tspan x="375" y="505">Social</tspan></text></a>
+					  <a xlink:href="" ng-href="{{baseUrl}}#/social"><text fill="#c10e21" font-size="14" font-weight="bold"><tspan x="370" y="485">Share on</tspan></text></a>
+					  <a xlink:href="" ng-href="{{baseUrl}}#/social"><text fill="#c10e21" font-size="14" font-weight="bold"><tspan x="375" y="505">Social</tspan></text></a>
 				  </g>
-				  <g ng-if="!prizes[61].earned" transform="translate(-.001 .003)" ng-cloak>
+				  <g ng-if="!prizes[5].earned" transform="translate(-.001 .003)" ng-cloak>
 					  <a xlink:href="#code"><text fill="#c10e21" font-size="14" font-weight="bold"><tspan x="235" y="305">Get</tspan></text></a>
 					  <a xlink:href="#code"><text fill="#c10e21" font-size="14" font-weight="bold"><tspan x="225" y="325">Active</tspan></text></a>
 					 <path data-name="Path 1523" d="M272 310v23h23v-23h-23z" fill="url(#winding_road_link_arrow_6)"/>
 				  </g>
-				  <g ng-if="!prizes[71].earned" transform="translate(-.001 .003)" class="ng-scope">
-					  <a xlink:href="#code"><text fill="#c10e21" font-size="14" font-weight="bold"><tspan x="0" y="360">Send an</tspan></text></a>
-					  <a xlink:href="#code"><text fill="#c10e21" font-size="14" font-weight="bold"><tspan x="0" y="380">Email</tspan></text></a>
+				  <g ng-if="!prizes[6].earned" transform="translate(-.001 .003)" class="ng-scope">
+					  <a xlink:href="" ng-href="{{baseUrl}}#/email"><text fill="#c10e21" font-size="14" font-weight="bold"><tspan x="0" y="360">Send an</tspan></text></a>
+					  <a xlink:href="" ng-href="{{baseUrl}}#/email"><text fill="#c10e21" font-size="14" font-weight="bold"><tspan x="0" y="380">Email</tspan></text></a>
 					 <path data-name="Path 1523" d="M10 388v23h23v-23h-23z" fill="url(#winding_road_link_arrow_7)"></path>
 				  </g>
-				  <g ng-if="!prizes[81].earned" transform="translate(-.001 .003)" class="ng-scope">
+				  <g ng-if="!prizes[7].earned" transform="translate(-.001 .003)" class="ng-scope">
 					 <path data-name="Path 1523" d="M3 635v23h23v-23h-23z" fill="url(#winding_road_link_arrow_8)"></path>
-					  <a xlink:href="#code"><text fill="#c10e21" font-size="14" font-weight="bold"><tspan x="0" y="675">Take</tspan></text></a>
-					  <a xlink:href="#code"><text fill="#c10e21" font-size="14" font-weight="bold"><tspan x="0" y="695">CPR Quiz</tspan></text></a>
+					  <a xlink:href="" ng-href="http://hearttools.heart.org/aha_ym21{{tablePrefix == 'heartdev' ? '_dev' : (tablePrefix == 'heartnew' ? '_testing' : '')}}/quiz/show/{{prize.not_completed_url}}?event_id={{frId}}&user_id={{consId}}&name={{consNameFirst}}"><text fill="#c10e21" font-size="14" font-weight="bold"><tspan x="0" y="675">Take</tspan></text></a>
+					  <a xlink:href="" ng-href="http://hearttools.heart.org/aha_ym21{{tablePrefix == 'heartdev' ? '_dev' : (tablePrefix == 'heartnew' ? '_testing' : '')}}/quiz/show/{{prize.not_completed_url}}?event_id={{frId}}&user_id={{consId}}&name={{consNameFirst}}"><text fill="#c10e21" font-size="14" font-weight="bold"><tspan x="0" y="695">CPR Quiz</tspan></text></a>
 				  </g>
-				  <g ng-if="!prizes[91].earned" transform="translate(-.001 .003)" class="ng-scope">
+				  <g ng-if="!prizes[8].earned" transform="translate(-.001 .003)" class="ng-scope">
 					 <path data-name="Path 1523" d="M300 710v23h23v-23h-23z" fill="url(#winding_road_link_arrow_9)"></path>
-					  <a xlink:href="#code"><text fill="#c10e21" font-size="14" font-weight="bold"><tspan x="330" y="720">Take</tspan></text></a>
-					  <a xlink:href="#code"><text fill="#c10e21" font-size="14" font-weight="bold"><tspan x="330" y="740">Stroke Quiz</tspan></text></a>
+					  <a xlink:href="" ng-href="http://hearttools.heart.org/aha_ym21{{tablePrefix == 'heartdev' ? '_dev' : (tablePrefix == 'heartnew' ? '_testing' : '')}}/quiz/show/{{prize.not_completed_url}}?event_id={{frId}}&user_id={{consId}}&name={{consNameFirst}}"><text fill="#c10e21" font-size="14" font-weight="bold"><tspan x="330" y="720">Take</tspan></text></a>
+					  <a xlink:href="" ng-href="http://hearttools.heart.org/aha_ym21{{tablePrefix == 'heartdev' ? '_dev' : (tablePrefix == 'heartnew' ? '_testing' : '')}}/quiz/show/{{prize.not_completed_url}}?event_id={{frId}}&user_id={{consId}}&name={{consNameFirst}}"><text fill="#c10e21" font-size="14" font-weight="bold"><tspan x="330" y="740">Stroke Quiz</tspan></text></a>
 				  </g>
 			   </g>
 			</svg>
         </div>
         <div class="ym-pc-dashboard-badges-header">
-          <p><strong>{{current_mission_title}}</strong></p> 
+          <p class="ym-pc-dashboard-badges-mission">{{current_mission_title}}</p> 
           <p>{{current_mission_message}}</p>
           <em>Please allow 15 minutes for the system to update your badges.</em>
         </div>
-      </div>    </section>
+      </div>
+    </section>
     <section class="ym-pc-dashboard-progress-section" aria-label="Fundraising Progress Meters">
       <div class="ym-pc-dashboard-section-header">
         <h2 class="h3">
