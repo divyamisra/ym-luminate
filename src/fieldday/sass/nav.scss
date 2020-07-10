@@ -149,8 +149,6 @@ nav {
 
       &:hover {
         background-color: transparent;
-        color: $red-deep;
-        text-decoration: underline;
       }
     }
 
@@ -166,6 +164,13 @@ nav {
       &:before,
       &:after {
         left: 146px;
+      }
+
+      a {
+        &:hover {
+          color: $red-deep;
+          text-decoration: underline;
+        }
       }
 
     }
