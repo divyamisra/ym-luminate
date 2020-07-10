@@ -101,7 +101,7 @@ nav {
     &.logged-in:hover {
       a {
         text-decoration: none !important;
-
+        color: $white!important;
         &.nav-link.utility-nav-item:hover {
           text-decoration: underline !important;
         }
