@@ -146,6 +146,9 @@ a.ym-pc-dashboard-download-certificates {
      max-width: 25%;
      margin-bottom: 10px;
      width: 100%;
+     @media (min-width: $screen-sm-min) {
+	 margin-top:100px;
+     }
    }
    .ym-pc-dashboard-badges-header {
      top: 0;
@@ -448,6 +451,12 @@ div[id^="taTextElement"]:focus {
 	background-color: $event-accent-light;
 	padding: 36px;
 	margin: 0 0 30px;
+}
+
+.ym-pc-dashboard-coordinator-school-challenge-section {
+	.schoolChallenge {
+	    margin-bottom: 20px;
+	}
 }
 
 .ym-pc-dashboard-livestream-box {
