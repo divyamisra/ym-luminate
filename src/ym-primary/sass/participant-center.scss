@@ -146,7 +146,7 @@ a.ym-pc-dashboard-download-certificates {
      max-width: 25%;
      margin-bottom: 10px;
      width: 100%;
-     @media (min-width: $screen-sm-min) {
+     @media (max-width: $screen-sm-min) {
 	 margin-top:100px;
      }
    }
