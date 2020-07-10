@@ -92,14 +92,14 @@ nav {
       }
     }
 
-    &:hover {
-
-      a.nav-link {
+    a.nav-link:hover {
         @include media-breakpoint-up(sm) {
           color: $white;
         }
         text-decoration: underline;
       }
+
+    &:hover {
 
       .dropdown-menu-container, .dropdown-menu {
         display: block;
