@@ -113,9 +113,17 @@ a.ym-pc-dashboard-download-certificates {
   background: none !important;
   margin: 0px !important;
   padding: 10px 0 0 0 !important;
-  &.confetti {
-    background: url("../image/badges_confetti.png");
-  }
+  position:relative;
+	
+  &.confetti:before {
+    background: url(../image/badge_confetti.png) !important;
+    content: '';
+    width: 100%;
+    height: 100%;
+    display: block;
+    position: absolute;
+    opacity: 0.3;
+ }
   
   .ym-pc-dashboard-mission-accomplished {
     color: $event-secondary;
@@ -137,19 +145,6 @@ a.ym-pc-dashboard-download-certificates {
    .agentk {
      max-width: 160px;
      margin-bottom: 10px;
-   }
-   .lets-go {
-     position: absolute;
-     color: #fff;
-     font-size: 20px;
-     max-width: 70px;
-     top: 22%;
-     left: 5%;
-     text-align:center;
-     img {
-         margin-top: 20px;
-	 margin-left: 30px;
-     }
    }
    .ym-pc-dashboard-badges-header {
      top: 0;
