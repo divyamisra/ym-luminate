@@ -208,7 +208,12 @@ nav {
     width:100%;
     padding:10px 15px !important;
     margin-top:0 !important;
-    color: $black!important;
+    li {
+      &.nav-item {
+        color: $black;
+      }
+    }
+
     a {
       display:inline-block;
       font-size:16px;
