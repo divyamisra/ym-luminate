@@ -94,7 +94,7 @@ nav {
 
     a.nav-link:hover {
         @include media-breakpoint-up(sm) {
-          color: $white;
+          color: $red-deep;
         }
         text-decoration: underline;
       }
@@ -149,6 +149,8 @@ nav {
 
       &:hover {
         background-color: transparent;
+        color: $red-deep;
+        text-decoration: underline;
       }
     }
 
@@ -193,6 +195,10 @@ nav {
           text-decoration: none !important;
           border: none;
           margin: 0 53px 32px 0;
+          &:hover {
+            color: $red-deep;
+            text-decoration: underline !important;
+          }
         }
 
         .nav-link.active {
