@@ -113,6 +113,9 @@ a.ym-pc-dashboard-download-certificates {
   background: none !important;
   margin: 0px !important;
   padding: 10px 0 0 0 !important;
+  &.confetti {
+    background: url("../image/badges_confetti.png");
+  }
   
   .ym-pc-dashboard-mission-accomplished {
     color: $event-secondary;
