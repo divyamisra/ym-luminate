@@ -320,9 +320,11 @@ img {
       justify-content: space-between;
       .achievement-badge {
         width: 23%;
+        p {
+          font-family: $font-family-bold;
+        }
       }
       .badge-label {
-        font-family: LubDubBold,Helvetica,Arial,sans-serif;
         font-size: 10px;
       }
 
