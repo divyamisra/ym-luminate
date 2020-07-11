@@ -114,6 +114,7 @@ a.ym-pc-dashboard-download-certificates {
   margin: 0px !important;
   padding: 10px 0 0 0 !important;
   position:relative;
+  overflow:hidden;
 	
   &.confetti:before {
     background: url(../image/badge_confetti.png) !important;
@@ -123,8 +124,10 @@ a.ym-pc-dashboard-download-certificates {
     display: block;
     position: absolute;
     opacity: 0.3;
+    animation: slide 6s linear infinite;
+    -webkit-animation: slide 6s linear infinite;
+    -ms-animation: slide 6s linear infinite;
  }
-  
   .ym-pc-dashboard-mission-accomplished {
     color: $event-secondary;
     font-weight:bold;
@@ -276,6 +279,21 @@ a.ym-pc-dashboard-download-certificates {
 	    bottom: 96px;
 	    right: -5px;
      }
+   }
+   path.badge-path:hover {
+     	transition: all 0.3s ease-in-out;
+	-webkit-transition: all 0.3s ease-in-out;
+	pointer-events:all;
+	opacity:0;
+   }
+}
+
+@keyframes slide{
+   0%{
+	transform: translate3d(0, -1186px, 0);
+   }
+   100%{
+   	transform: translate3d(0, 0, 0);
    }
 }
 
