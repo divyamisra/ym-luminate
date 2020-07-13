@@ -382,7 +382,7 @@
         $('.js--header-company-search').on('submit', function (e) {
             e.preventDefault();
             var companySearched = encodeURIComponent($('#companySearch').val());
-            window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=FieldDay_Search&search_type=event&cross_event=' + (evID ? 'false' : 'true') + (evID ? '&fr_id=' + evID : '') + '&company=' + companySearched;
+            window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=FieldDay_Search&search_type=company&cross_event=' + (evID ? 'false' : 'true') + (evID ? '&fr_id=' + evID : '') + '&company=' + companySearched;
         });
 
         // Search by Event
@@ -2019,7 +2019,7 @@
                     cd.getTeams(teamName, null, (isCrossEventSearch === "true" ? true : false));
                 }
 
-                cd.autoSearchTeam = function () {
+                cd.autoSearchCompany = function () {
                     var companyName = getURLParameter(currentUrl, 'company') ? getURLParameter(currentUrl, 'company') : '';
                     companyName = decodeURIComponent(companyName);
                     $('#companyNameSearch').val(companyName);
