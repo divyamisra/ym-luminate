@@ -1,6 +1,14 @@
 .ym-pc-dashboard-progress-section .row .ym-pc-dashboard-progress-section__column {
     overflow: hidden;
 }
+.ym-pc-dashboard-progress-section {
+    #ym-pc-dashboard-company-panel--student {
+        margin-top: 25px;
+       .row {
+            margin-bottom: 0;
+       }
+    }
+}
 .ym-pc-dashboard-school-challange {
       margin-bottom: 20px;
 }
