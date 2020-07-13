@@ -342,6 +342,15 @@
 
                             $('.js--company-results-container').removeAttr('hidden');
                             $('.js--company-results-container').removeAttr('hidden');
+
+                            if (screenWidth >= 768) {
+                                $('#companyResultsTable').DataTable({
+                                    "paging": false,
+                                    "searching": false,
+                                    "info": false,
+                                    "autoWidth": false
+                                });
+                            }
                         }
                     },
                     error: function (response) {
