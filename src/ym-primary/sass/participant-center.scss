@@ -2,8 +2,10 @@
     overflow: hidden;
 }
 .ym-pc-dashboard-progress-section {
+    #ym-pc-dashboard-badges-panel--student {
+        margin-top:25px;
+    }
     #ym-pc-dashboard-company-panel--student {
-        margin-top: 25px;
        .row {
             margin-bottom: 0;
        }
