@@ -1960,8 +1960,7 @@
                 e.preventDefault();
                 clearSearchResults();
                 var companySearched = encodeURIComponent($('#companyNameSearch').val());
-                cd.getCompanies(companySearched);
-                cd.getParticipants(firstName, lastName, (isCrossEventSearch === "true" ? true : false));
+                cd.getCompanies(companySearched, isCrossEventSearch === "true" ? true : false);
             });
 
             // Search by Event
