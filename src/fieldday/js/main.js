@@ -2046,6 +2046,8 @@
                     $('#searchTeamTab').tab('show');
                 } else if (searchType === 'company') {
                    cd.autoSearchCompany();
+                   // Switch to company tab
+                   $('#searchCompanyTab').tab('show');
                 }
             }
         }
