@@ -745,7 +745,23 @@ angular.module 'trPcControllers'
         $scope.current_mission_title = response.data.current_mission_title
         $scope.current_mission_message = response.data.current_mission_message
         $scope.has_bonus = response.data.has_bonus
+        final_url = ''
         angular.forEach prizes, (prize) ->
+          if prize.mission_url_type == 'Donate' 
+            final_url = 'Donation2?df_id=' + $scope.eventInfo.donationFormId + "&FR_ID=" + $scope.frId + "&PROXY_TYPE=20&PROXY_ID=" + $scope.consId
+          if prize.mission_url_type == 'Tab' 
+            final_url = $scope.baseUrl + prize.mission_url
+          if prize.mission_url_type == 'URL' 
+            final_url = prize.mission_url
+          if prize.mission_url_type == 'Quiz' 
+            if $scope.tablePrefix == 'heartdev'
+              final_url = 'http://hearttools.heart.org/aha_ym21_dev/quiz/show/' + prize.missionurl + '?event_id=' + $scope.frId + '&user_id=' + $scope.consId + '&name=' + $scope.consNameFirst
+            if $scope.tablePrefix == 'heartnew'
+              final_url = 'http://hearttools.heart.org/aha_ym21_testing/quiz/show/' + prize.missionurl + '?event_id=' + $scope.frId + '&user_id=' + $scope.consId + '&name=' + $scope.consNameFirst
+            if $scope.tablePrefix == 'heart'
+              final_url = 'http://hearttools.heart.org/aha_ym21/quiz/show/' + prize.missionurl + '?event_id=' + $scope.frId + '&user_id=' + $scope.consId + '&name=' + $scope.consNameFirst
+          if prize.mission_url_type == 'Modal' and prize.mission_url == 'app' 
+            final_url = 'showMobileApp()'
           $scope.prizes.push
             id: prize.id
             label: prize.label
@@ -758,21 +774,7 @@ angular.module 'trPcControllers'
             earned_image_url: prize.earned_image_url
             not_earned_image_url: prize.non_earned_image_url
             locked_image_url: prize.locked_image_url
-            if prize.url_type == 'Donate' 
-              final_url: 'Donation2?df_id=' + $scope.eventInfo.donationFormId + "&FR_ID=" + $scope.frId + "&PROXY_TYPE=20&PROXY_ID=" + $scope.consId
-            if prize.url_type == 'Tab' 
-              final_url: $scope.baseUrl + prize.mission_url
-            if prize.url_type == 'URL' 
-              final_url: prize.mission_url
-            if prize.url_type == 'Quiz' 
-              if $scope.tablePrefix == 'heartdev'
-                final_url: 'http://hearttools.heart.org/aha_ym21_dev/quiz/show/' + prize.missionurl + '?event_id=' + $scope.frId + '&user_id=' + $scope.consId + '&name=' + $scope.consNameFirst
-              if $scope.tablePrefix == 'heartnew'
-                final_url: 'http://hearttools.heart.org/aha_ym21_testing/quiz/show/' + prize.missionurl + '?event_id=' + $scope.frId + '&user_id=' + $scope.consId + '&name=' + $scope.consNameFirst
-              if $scope.tablePrefix == 'heart'
-                final_url: 'http://hearttools.heart.org/aha_ym21/quiz/show/' + prize.missionurl + '?event_id=' + $scope.frId + '&user_id=' + $scope.consId + '&name=' + $scope.consNameFirst
-            if prize.url_type=='Modal' && prize.mission_url=='app' 
-              final_url: 'showMobileApp()'
+            final_url: final_url
 
           if prize.status == 1
             $scope.prizesEarned++
