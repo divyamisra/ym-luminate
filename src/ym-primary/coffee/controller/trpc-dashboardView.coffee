@@ -755,7 +755,8 @@ angular.module 'trPcControllers'
             completed_label: prize.completed_label
             not_completed_label: prize.not_completed_label
             not_completed_url: prize.not_completed_url
-            url_type: prize.url_type
+            mission_url: prize.mission_url
+            mission_url_type: prize.mission_url_type
             earned_image_url: prize.earned_image_url
             not_earned_image_url: prize.non_earned_image_url
             locked_image_url: prize.locked_image_url
