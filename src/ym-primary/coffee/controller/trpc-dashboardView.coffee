@@ -756,6 +756,9 @@ angular.module 'trPcControllers'
             not_completed_label: prize.not_completed_label
             not_completed_url: prize.not_completed_url
             url_type: prize.url_type
+            earned_image_url: prize.earned_image_url
+            not_earned_image_url: prize.not_earned_image_url
+            locked_image_url: prize.locked_image_url
           if prize.status == 1
             $scope.prizesEarned++
       , (response) ->
