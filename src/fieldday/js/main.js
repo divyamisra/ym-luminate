@@ -176,7 +176,7 @@
                                         participant.eventName + '</a></td><td class="col-cta"><a href="' + participant.donationUrl + '" aria-label="Donate to ' + participant.name.first + ' ' + participant.name.last + '" class="btn btn-primary btn-block btn-rounded">Donate</a></td></tr>');
                                 } else {
                                     $('#participantResultsTable thead').remove();
-                                    $('.js--participants-results-rows').addClass('mobile').append('<tr><td><table><tr' + (i > 10 ? ' class="d-none"' : '') + '><td>Walker</td><td><a href="' + participant.personalPageUrl + '">' +
+                                    $('.js--participants-results-rows').addClass('mobile').append('<tr><td><table><tr' + (i > 10 ? ' class="d-none"' : '') + '><td>Teammate</td><td><a href="' + participant.personalPageUrl + '">' +
                                         participant.name.first + ' ' + participant.name.last + '</a></td></tr>' +
                                         ((participant.teamName !== null && participant.teamName !== undefined) ? '<tr><td>Team</td><td><a href="' + participant.teamPageUrl + '">' + participant.teamName + '</a>' : '') +
                                         '</td></tr><tr><td>Event Name</td><td><a href="TR/?fr_id=' + participant.eventId + '&pg=entry">' + participant.eventName + '</a></td></tr><tr><td colspan="2" class="text-center"><a href="' + participant.donationUrl + '" class="btn btn-primary btn-block btn-rounded" title="Donate to ' + participant.name.first + ' ' + participant.name.last + '" aria-label="Donate to ' + participant.name.first + ' ' + participant.name.last + '">Donate</a></td></tr></table></td></tr>');
@@ -1901,7 +1901,7 @@
                 setTimeout(function () {
                     cd.initializeParticipantRosterTable();
                     var totalParticipants = $('.participant-name').length;
-                    var totalParticipantsText = totalParticipants > 1 ? ' Walkers' : ' Walker';
+                    var totalParticipantsText = totalParticipants > 1 ? ' Teammates' : ' Teammate';
                     $('.js--num-company-participants').text(totalParticipants + totalParticipantsText);
                     if (numWalkerRows > 5) {
                         $('.js--more-participant-results').removeAttr('hidden');
@@ -1961,6 +1961,7 @@
                 clearSearchResults();
                 var companySearched = encodeURIComponent($('#companyNameSearch').val());
                 cd.getCompanies(companySearched);
+                cd.getParticipants(firstName, lastName, (isCrossEventSearch === "true" ? true : false));
             });
 
             // Search by Event
@@ -1969,6 +1970,7 @@
                 clearSearchResults();
                 var zipSearched = encodeURIComponent($('#zipCodeSearch').val());
                 cd.getEventsByDistance(zipSearched);
+
             });
 
             // Search page by Participant
