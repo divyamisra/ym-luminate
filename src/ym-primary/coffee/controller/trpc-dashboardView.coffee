@@ -753,8 +753,6 @@ angular.module 'trPcControllers'
             status: prize.status
             earned: prize.earned_datetime
             completed_label: prize.completed_label
-            not_completed_label: prize.not_completed_label
-            not_completed_url: prize.not_completed_url
             mission_url: prize.mission_url
             mission_url_type: prize.mission_url_type
             earned_image_url: prize.earned_image_url
