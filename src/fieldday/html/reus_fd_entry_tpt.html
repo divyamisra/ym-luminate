@@ -134,12 +134,15 @@
               </h3>
               <ul></ul>
               <div class="top-list-footer d-flex justify-content-center">
+                <form class="js--greeting-team-search-form">
                   <div class="input-group mx-5">
-                      <input type="text" class="form-control" placeholder="Search by team name" aria-label="Search by team name">
+                      <label for="greeting-search-team" class="sr-only">Team Search</label>
+                      <input id="greeting-search-team" name="greeting-search-team" type="text" class="form-control" placeholder="Search by team name" aria-label="Search by team name">
                       <div class="input-group-append">
                           <button class="btn btn-primary btn-outline-secondary" type="button"><i class="fas fa-search"aria-hidden="true"></i><span class="sr-only">Team Search Button</span></button>
                       </div>
                   </div>
+                </form>
               </div>
               <!-- /.top-list-footer -->
           </div>
@@ -151,15 +154,17 @@
               </h3>
               <ul></ul>
               <div class="top-list-footer d-flex justify-content-center">
+                <form class="js--greeting-participant-search-form">
                   <div class="input-group mx-5">
-                      <label for="walkerFirstName" class="sr-only">Teammate First Name</label>
-                      <input type="text" placeholder="Search by first name" id="top-walker-first-name" name="top-walker-first-name" class="form-control">
-                      <label for="walkerLastName" class="sr-only">Teammate Last Name</label>
-                      <input type="text" placeholder="Search by last name" id="top-walker-last-name" name="top-walker-last-name" class="form-control">
+                      <label for="greeting-search-first-name" class="sr-only">Teammate First Name</label>
+                      <input type="text" placeholder="Search by first name" id="greeting-search-first-name" name="greeting-search-first-name" class="form-control">
+                      <label for="greeting-search-last-name" class="sr-only">Teammate Last Name</label>
+                      <input type="text" placeholder="Search by last name" id="greeting-search-last-name" name="greeting-search-last-name" class="form-control">
                       <div class="input-group-append">
-                          <button class="btn btn-primary btn-outline-secondary" type="button"><i class="fas fa-search" aria-hidden="true"></i><span class="sr-only">Participant Search Button</span></button>
+                          <button class="btn btn-primary btn-outline-secondary" type="button"><i class="fas fa-search" aria-hidden="true"></i><span class="sr-only">Teammate Search Button</span></button>
                       </div>
                   </div>
+                </form>
               </div>
               <!-- /.top-list-footer -->
           </div>

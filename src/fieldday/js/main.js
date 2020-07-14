@@ -1289,8 +1289,8 @@
 
             // Update placeholder text in mobile for top walker search
             if (screenWidth <= 1065) {
-                $('#walkerFirstName').attr('placeholder', 'First Name');
-                $('#walkerLastName').attr('placeholder', 'Last Name');
+                $('#greeting-search-first-name').attr('placeholder', 'First Name');
+                $('#greeting-search-last-name').attr('placeholder', 'Last Name');
             }
 
             // Launch thermometer
@@ -1304,10 +1304,10 @@
             cd.getTopCompanies(evID);
 
             // Walker Search
-            $('.js--greeting-walker-search-form').on('submit', function (e) {
+            $('.js--greeting-participant-search-form').on('submit', function (e) {
                 e.preventDefault();
-                var firstName = encodeURIComponent($('#walkerFirstName').val());
-                var lastName = encodeURIComponent($('#walkerLastName').val());
+                var firstName = encodeURIComponent($('#greeting-search-first-name').val());
+                var lastName = encodeURIComponent($('#greeting-search-last-name').val());
                 window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=FieldDay_Search&search_type=walker&cross_event=false&fr_id=' + evID + (firstName ? '&first_name=' + firstName : '') +
                     (lastName ? '&last_name=' + lastName : '');
             });
@@ -1315,7 +1315,7 @@
             // Team Search
             $('.js--greeting-team-search-form').on('submit', function (e) {
                 e.preventDefault();
-                var teamName = encodeURIComponent($('#teamName').val());
+                var teamName = encodeURIComponent($('#greeting-search-team').val());
                 cd.getTeams(teamName, null, (isCrossEventSearch === "true" ? true : false));
                 window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=FieldDay_Search&search_type=team&cross_event=false&fr_id=' + evID + '&team_name=' + teamName;
             });
