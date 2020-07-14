@@ -322,7 +322,7 @@
                 callback: {
                     success: function (response) {
                       cd.getCompanyData();
-                      
+
                       if ($.fn.DataTable) {
                           if ($.fn.DataTable.isDataTable('#companyResultsTable')) {
                               $('#companyResultsTable').DataTable().destroy();
@@ -347,7 +347,7 @@
                               companyLead = $('#company-id-'+ companyId + ' .js--company-data-coordinator').html();
 
                                 $('.js--company-results-rows').append('<tr' + (i > 10 ? ' class="d-none"' : '') + '><td><a href="' + company.companyURL + '">' +
-                                    company.companyName + '</a></td><td class="col-cta"><a href="' + company.companyURL + '">' + (companyLead !== undefined ? companyLead : '') + '</a></td><td class="col-cta"><a href="' + company.companyURL + '">' + (companyLocation !== undefined ? companyLocation : '') + '</a></td></tr>');
+                                    company.companyName + '</a></td><td class="col-cta">' + (companyLead !== undefined ? companyLead : '') + '</td><td class="col-cta">' + (companyLocation !== undefined ? companyLocation : '') + '</td><td class="col-cta"><a href="<a href="' + company.companyURL + '"> aria-label="Details about ' + company.companyName + ' Field Day" class="btn btn-primary btn-block btn-rounded">Details</a></td></tr>');
                             });
 
                             $('.js--company-results-container').removeAttr('hidden');
