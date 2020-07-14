@@ -345,11 +345,6 @@
 
 
 .global-sponsors {
-  .container {
-    border-top: 1px solid #E3E3E3;
-    @include media-breakpoint-up(lg) {
-      border: none;
-    }
     h2 {
       font-size: 1.333em;
     }
