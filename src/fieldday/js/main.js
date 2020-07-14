@@ -723,8 +723,8 @@
                                 var companyCity;
                                 var companyState;
 
-                                companyState = $('#company-id-'+ companyId + ' .js-company-data-state');
-                                companyCity = $('#company-id-'+ companyId + ' .js-company-data-city');
+                                companyState = $('#company-id-'+ companyId + ' .js-company-data-state').html();
+                                companyCity = $('#company-id-'+ companyId + ' .js-company-data-city').html();
 
                                 var eventRow = '<div class="row py-3' + (i > 10 ? 'd-none' : '') + '"><div class="landing-participant-search__name col-12 col-lg-6"><p><a href="'+ company.companyURL +'">'+ company.companyName +'</a><br><span class="js--company-location">'+ companyCity + ', ' + companyState +'</span></p></div><div class="landing-participant-search__register col-12 col-lg-6"><p><a href="'+ company.companyURL +'" class="btn btn-primary">Register</a></p></div>';
 
