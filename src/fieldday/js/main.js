@@ -322,6 +322,7 @@
                 callback: {
                     success: function (response) {
                       cd.getCompanyData();
+                      
                       if ($.fn.DataTable) {
                           if ($.fn.DataTable.isDataTable('#companyResultsTable')) {
                               $('#companyResultsTable').DataTable().destroy();
@@ -337,6 +338,7 @@
                             $('.js--num-company-results').text((totalCompanies === 1 ? '1 Result' : totalCompanies + ' Results'));
 
                             $(companies).each(function (i, company) {
+
                               var companyId = company.companyId;
                               var companyLocation;
                               var companyLead;
@@ -351,14 +353,14 @@
                             $('.js--company-results-container').removeAttr('hidden');
                             $('.js--company-results-container').removeAttr('hidden');
 
-                            if (screenWidth >= 768) {
+                            /*if (screenWidth >= 768) {
                                 $('#companyResultsTable').DataTable({
                                     "paging": false,
                                     "searching": false,
                                     "info": false,
                                     "autoWidth": false
                                 });
-                            }
+                            }*/
                         }
                     },
                     error: function (response) {
