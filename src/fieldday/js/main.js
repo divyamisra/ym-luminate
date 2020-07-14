@@ -321,6 +321,7 @@
                     '&list_ascending=true',
                 callback: {
                     success: function (response) {
+                      cd.getCompanyData();
                       if ($.fn.DataTable) {
                           if ($.fn.DataTable.isDataTable('#companyResultsTable')) {
                               $('#companyResultsTable').DataTable().destroy();
@@ -336,8 +337,15 @@
                             $('.js--num-company-results').text((totalCompanies === 1 ? '1 Result' : totalCompanies + ' Results'));
 
                             $(companies).each(function (i, company) {
+                              var companyCity;
+                              var companyState;
+                              var companyLead;
+
+                              companyLocation = $('#company-id-'+ companyId + ' .js--company-data-location').html();
+                              companyLead = $('#company-id-'+ companyId + ' .js--company-data-coordinator').html();
+
                                 $('.js--company-results-rows').append('<tr' + (i > 10 ? ' class="d-none"' : '') + '><td><a href="' + company.companyURL + '">' +
-                                    company.companyName + '</a></td><td class="col-cta"><a href="' + company.companyURL + '">{Company Lead}</a></td><td class="col-cta"><a href="' + company.companyURL + '">{Company Location}</a></td></tr>');
+                                    company.companyName + '</a></td><td class="col-cta"><a href="' + company.companyURL + '">' + (companyLead !== undefined ? companyLead : '') + '</a></td><td class="col-cta"><a href="' + company.companyURL + '">' + (companyLocation !== undefined ? companyLocation : '') + '</a></td></tr>');
                             });
 
                             $('.js--company-results-container').removeAttr('hidden');
@@ -720,16 +728,15 @@
 
                                 var companyId = company.companyId;
 
-                                var companyCity;
-                                var companyState;
+                                var companyLocation;
 
-                                companyState = $('#company-id-'+ companyId + ' .js--company-data-state').html();
-                                companyCity = $('#company-id-'+ companyId + ' .js--company-data-city').html();
+                                companyLocation = $('#company-id-'+ companyId + ' .js--company-data-location').html();
+
 
                                 var eventRow = '<div class="row py-3' + (i > 10 ? 'd-none' : '') + '"><div class="landing-participant-search__name col-12 col-lg-6"><p><a href="'+ company.companyURL +'">'+ company.companyName +'</a><br>';
 
-                                if (companyState !== undefined ) {
-                                  eventRow += '<span class="js--company-location">'+ companyCity + ', ' + companyState +'</span>'
+                                if (companyLocation !== undefined ) {
+                                  eventRow += '<span class="js--company-location">'+ companyLocation +'</span>'
                                 }
 
                                 eventRow +='</p></div><div class="landing-participant-search__register col-12 col-lg-6"><p><a href="'+ company.companyURL +'" class="btn btn-primary">Register</a></p></div>';
@@ -1051,8 +1058,7 @@
    					$('<div class="js--company-data hidden"></div>').insertAfter('main');
    			 	  for (var i=0, iLen=companies.length; i<iLen; i++) {
    							var dataOutput = '<div id="company-id-' + companies[i].companyid + '">';
-   							dataOutput += '<div class="js--company-data-city">'+ companies[i].eventcity +'</div>';
-   							dataOutput += '<div class="js--company-data-state">'+ companies[i].eventstate +'</div>';
+   							dataOutput += '<div class="js--company-data-location">'+ companies[i].eventcity + ', ' + companies[i].eventstate + '</div>';
    							dataOutput += '<div class="js--company-data-coordinator">'+ companies[i].coordinatorfirstname + ' ' + companies[i].coordinatorlastname + '</div>';
    							dataOutput += '</div>';
    							$(dataOutput).appendTo('.js--company-data');
