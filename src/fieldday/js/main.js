@@ -726,7 +726,13 @@
                                 companyState = $('#company-id-'+ companyId + ' .js--company-data-state').html();
                                 companyCity = $('#company-id-'+ companyId + ' .js--company-data-city').html();
 
-                                var eventRow = '<div class="row py-3' + (i > 10 ? 'd-none' : '') + '"><div class="landing-participant-search__name col-12 col-lg-6"><p><a href="'+ company.companyURL +'">'+ company.companyName +'</a><br><span class="js--company-location">'+ companyCity + ', ' + companyState +'</span></p></div><div class="landing-participant-search__register col-12 col-lg-6"><p><a href="'+ company.companyURL +'" class="btn btn-primary">Register</a></p></div>';
+                                var eventRow = '<div class="row py-3' + (i > 10 ? 'd-none' : '') + '"><div class="landing-participant-search__name col-12 col-lg-6"><p><a href="'+ company.companyURL +'">'+ company.companyName +'</a><br>';
+
+                                if (companyState !== undefined ) {
+                                  eventRow += '<span class="js--company-location">'+ companyCity + ', ' + companyState +'</span>'
+                                }
+
+                                eventRow +='</p></div><div class="landing-participant-search__register col-12 col-lg-6"><p><a href="'+ company.companyURL +'" class="btn btn-primary">Register</a></p></div>';
 
                                 $('.js--participant-search-results').append(eventRow);
 
