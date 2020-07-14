@@ -308,6 +308,7 @@
         };
 
         cd.getCompanies = function (companyName, isCrossEvent) {
+            cd.getCompanyData();
             luminateExtend.api({
                 api: 'teamraiser',
                 data: 'method=getCompaniesByInfo' +
@@ -321,8 +322,6 @@
                     '&list_ascending=true',
                 callback: {
                     success: function (response) {
-                      cd.getCompanyData();
-
                       if ($.fn.DataTable) {
                           if ($.fn.DataTable.isDataTable('#companyResultsTable')) {
                               $('#companyResultsTable').DataTable().destroy();
