@@ -603,7 +603,7 @@
                                 var acceptsRegistration = event.accepting_registrations;
 
                                 var eventRow = '<div class="event-results__company row' + (i > 10 ? ' class="d-none"' : '') + '"><div class="col-12 col-md-6 d-flex align-items-center justify-content-center"><h3>' + event.name + '</h3></div><div class="col-12 col-md-6 d-flex align-items-center justify-content-center"><a href="' +
-                                        event.greeting_url + ' class="button">Find a Company</a></div></div>';
+                                        event.greeting_url + ' class="btn btn-primary">Find a Company</a></div></div>';
 
 
                                 if (eventStatus === '1' || eventStatus === '2' || eventStatus === '3') {
@@ -662,7 +662,7 @@
                                 var eventStatus = event.status;
                                 var acceptsRegistration = event.accepting_registrations;
 
-                                var eventRow = '<div class="event-results__company row' + (i > 10 ? ' class="d-none"' : '') + '"><div class="col-12 col-md-6 d-flex align-items-center justify-content-center"><h3>' + event.name + '</h3></div><div class="col-12 col-md-6 d-flex align-items-center justify-content-center"><a href="' +
+                                var eventRow = '<div class="event-results__company row' + (i > 10 ? ' class="d-none"' : '') + '"><div class="col-12 col-md-6 d-flex align-items-center justify-content-center"><h3>' + event.name + '</h3></div><div class="col-12 col-md-6 d-flex align-items-center justify-content-center"><a class="btn btn-primary" href="' +
                                         event.greeting_url + ' class="button">Find a Company</a></div></div>';
 
 
@@ -723,10 +723,10 @@
                                 var companyCity;
                                 var companyState;
 
-                                state = $('#company-id-'+ companyId + ' .js-company-data-state');
-                                city = $('#company-id-'+ companyId + ' .js-company-data-city');
+                                companyState = $('#company-id-'+ companyId + ' .js-company-data-state');
+                                companyCity = $('#company-id-'+ companyId + ' .js-company-data-city');
 
-                                var eventRow = '<div class="row py-3' + (i > 10 ? 'd-none' : '') + '"><div class="landing-participant-search__name col-12 col-lg-6"><p><a href="'+ company.companyURL +'">'+ company.companyName +'</a><br><span class="js--company-location">'+ city + ', ' + state +'</span></p></div><div class="landing-participant-search__register col-12 col-lg-6"><p><a href="'+ company.companyURL +'" class="btn btn-primary">Register</a></p></div>';
+                                var eventRow = '<div class="row py-3' + (i > 10 ? 'd-none' : '') + '"><div class="landing-participant-search__name col-12 col-lg-6"><p><a href="'+ company.companyURL +'">'+ company.companyName +'</a><br><span class="js--company-location">'+ companyCity + ', ' + companyState +'</span></p></div><div class="landing-participant-search__register col-12 col-lg-6"><p><a href="'+ company.companyURL +'" class="btn btn-primary">Register</a></p></div>';
 
                                 $('.js--participant-search-results').append(eventRow);
 
