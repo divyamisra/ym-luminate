@@ -338,8 +338,7 @@
 
                             $(companies).each(function (i, company) {
                               var companyId = company.companyId;
-                              var companyCity;
-                              var companyState;
+                              var companyLocation;
                               var companyLead;
 
                               companyLocation = $('#company-id-'+ companyId + ' .js--company-data-location').html();
@@ -407,7 +406,7 @@
         $('.js--header-zip-search').on('submit', function (e) {
             e.preventDefault();
             var zipSearched = encodeURIComponent($('#zipSearch').val());
-            window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=FieldDay_Search&search_type=event&cross_event=' + (evID ? 'false' : 'true') + (evID ? '&fr_id=' + evID : '') + '&zip=' + zipSearched;
+            window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=FieldDay_Search&search_type=zip&cross_event=' + (evID ? 'false' : 'true') + (evID ? '&fr_id=' + evID : '') + '&zip=' + zipSearched;
         });
 
         //
@@ -2082,7 +2081,7 @@
                 }
 
                 if (searchType === 'event') {
-                    cd.autoSearchEvents();
+                    cd.autoSearchZip();
                 } else if (searchType === 'participant') {
                     cd.autoSearchParticipant();
                     // Switch to walker tab
