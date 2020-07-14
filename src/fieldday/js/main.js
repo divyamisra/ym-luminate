@@ -337,6 +337,7 @@
                             $('.js--num-company-results').text((totalCompanies === 1 ? '1 Result' : totalCompanies + ' Results'));
 
                             $(companies).each(function (i, company) {
+                              var companyId = company.companyId;
                               var companyCity;
                               var companyState;
                               var companyLead;
@@ -412,7 +413,7 @@
         //
         $('.js--header-state-search').on('submit', function (e) {
             e.preventDefault();
-            var zipSearched = encodeURIComponent($('#zipSearch').val());
+            var zipSearched = encodeURIComponent($('#stateSearch').val());
             window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=FieldDay_Search&search_type=event&cross_event=' + (evID ? 'false' : 'true') + (evID ? '&fr_id=' + evID : '') + '&zip=' + zipSearched;
         });
 
@@ -2073,7 +2074,7 @@
                     cd.getCompanies(companyName, null, (isCrossEventSearch === "true" ? true : false));
                 }
 
-                cd.autoSearchEvents = function () {
+                cd.autoSearchZip = function () {
                     var searchZip = getURLParameter(currentUrl, 'zip') ? getURLParameter(currentUrl, 'zip') : '';
                     $('#zipCodeSearch').val(searchZip);
 
@@ -2090,7 +2091,15 @@
                     cd.autoSearchTeam();
                     // Switch to team tab
                     $('#searchTeamTab').tab('show');
-                } else if (searchType === 'company') {
+                } else if (searchType === 'zip') {
+                    cd.autoSearchZip();
+                    // Switch to team tab
+                    $('#searchEventTab').tab('show');
+                  } else if (searchType === 'state') {
+                      cd.autoSearchState();
+                      // Switch to team tab
+                      $('#searchEventTab').tab('show');
+                  } else if (searchType === 'company') {
                    cd.autoSearchCompany();
                    // Switch to company tab
                    $('#searchCompanyTab').tab('show');
