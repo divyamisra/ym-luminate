@@ -699,6 +699,7 @@
 
         // getCompaniesLandingPage
         cd.getCompaniesLanding = function (companyName) {
+            cd.getCompanyData();
             $('.js--no-participant-results, .js--participant-no-event-results').addClass('d-none');
             $('.js--participant-loading').show();
 
@@ -717,13 +718,17 @@
 
                             $(companies).each(function (i, company) {
 
-                                var eventRow = '<div class="row py-3' + (i > 10 ? 'd-none' : '') + '"><div class="landing-participant-search__name col-12 col-lg-6"><p><a href="'+ company.companyURL +'">'+ company.companyName +'</a><br><span class="js--company-location"></span></p></div><div class="landing-participant-search__register col-12 col-lg-6"><p><a href="'+ company.companyURL +'" class="btn btn-primary">Register</a></p></div>';
+                                var companyId = company.companyId;
+
+                                var companyCity;
+                                var companyState;
+
+                                state = $('#company-id-'+ companyId + ' .js-company-data-state');
+                                city = $('#company-id-'+ companyId + ' .js-company-data-city');
+
+                                var eventRow = '<div class="row py-3' + (i > 10 ? 'd-none' : '') + '"><div class="landing-participant-search__name col-12 col-lg-6"><p><a href="'+ company.companyURL +'">'+ company.companyName +'</a><br><span class="js--company-location">'+ city + ', ' + state +'</span></p></div><div class="landing-participant-search__register col-12 col-lg-6"><p><a href="'+ company.companyURL +'" class="btn btn-primary">Register</a></p></div>';
 
                                 $('.js--participant-search-results').append(eventRow);
-
-                                setTimeout(function(){
-                                  cd.getCompanyLocation(company.companyId);
-                                }, 2000);
 
                             });
 
@@ -1030,7 +1035,27 @@
      		 }
      		}
 
-        cd.getCompanyData = function(companyId){
+       cd.getCompanyData = function() {
+   			Papa.parse(companyCSV, {
+   				header: true,
+   				download: true,
+   				dynamicTyping: true,
+   				complete: function(results) {
+   					var companies = results.data;
+   					$('<div class="js--company-data hidden"></div>').insertAfter('main');
+   			 	  for (var i=0, iLen=companies.length; i<iLen; i++) {
+   							var dataOutput = '<div id="company-id-' + companies[i].companyid + '">';
+   							dataOutput += '<div class="js--company-data-city">'+ companies[i].eventcity +'</div>';
+   							dataOutput += '<div class="js--company-data-state">'+ companies[i].eventstate +'</div>';
+   							dataOutput += '<div class="js--company-data-coordinator">'+ companies[i].coordinatorfirstname + ' ' + companies[i].coordinatorlastname + '</div>';
+   							dataOutput += '</div>';
+   							$(dataOutput).appendTo('.js--company-data');
+   			 		 }
+     			 }
+     		 });
+    		}
+
+        cd.getCompanyInfo = function(companyId){
           console.log('called company data' + companyId);
      		 Papa.parse(companyCSV, {
      		   header: true,
@@ -1051,7 +1076,7 @@
 
      				 var fieldDayDetails = '';
      				 fieldDayDetails += '<p>' + company.eventlocationname + '</p>';
-     				 fieldDayDetails += '<p>' + company.eventcity + ',' + company.eventstate + '</p>';
+     				 fieldDayDetails += '<p>' + company.eventcity + ', ' + company.eventstate + '</p>';
      				 $(fieldDayDetails).appendTo('.js--field-day-details');
 
      				 var companyLead = '<p><a href="mailto:' + company.coordinatoremail +'">' + company.coordinatorfirstname + ' ' + company.coordinatorlastname + '</a></p>' ;
@@ -1311,7 +1336,7 @@
             console.log('company id: ' + companyIdParam)
 
             //fill in company sidebar data
-            cd.getCompanyData(companyIdParam);
+            cd.getCompanyInfo(companyIdParam);
 
             // Build personal donation form
             cd.getDonationFormInfo = function (options) {
@@ -1475,7 +1500,7 @@
             console.log('company id: ' + companyIdParam)
 
             //fill in company sidebar data
-            cd.getCompanyData(companyIdParam);
+            cd.getCompanyInfo(companyIdParam);
 
             // populate custom team page content
             $('.js--team-text').html($('#fr_rich_text_container').html());
@@ -1651,7 +1676,7 @@
             cd.runThermometer(progress, goal);
             cd.reorderPageForMobile();
 
-            cd.getCompanyData(companyIdParam);
+            cd.getCompanyInfo(companyIdParam);
             console.log('called data');
 
 
