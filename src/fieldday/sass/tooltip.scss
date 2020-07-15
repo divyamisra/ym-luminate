@@ -19,7 +19,9 @@ button[aria-label][data-balloon-pos] {
     font-weight: normal;
     font-style: normal;
     text-shadow: none;
+    font-size: 12px;
     font-size: var(--balloon-font-size);
+    background: rgba(16, 16, 16, 0.95);
     background: var(--balloon-color);
     border-radius: 2px;
     color: #fff;
@@ -32,6 +34,7 @@ button[aria-label][data-balloon-pos] {
     width: 0;
     height: 0;
     border: 5px solid transparent;
+    border-top-color: rgba(16, 16, 16, 0.95);
     border-top-color: var(--balloon-color);
     opacity: 0;
     pointer-events: none;
@@ -55,11 +58,13 @@ button[aria-label][data-balloon-pos] {
     bottom: 100%;
     left: 50%;
     margin-bottom: 10px;
+    transform: translate(-50%, 4px);
     transform: translate(-50%, var(--balloon-move));
     transform-origin: top; }
   [aria-label][data-balloon-pos][data-balloon-pos="up"]:before {
     bottom: 100%;
     left: 50%;
+    transform: translate(-50%, 4px);
     transform: translate(-50%, var(--balloon-move));
     transform-origin: top; }
   [aria-label][data-balloon-pos][data-balloon-pos="up"]:hover:after, [aria-label][data-balloon-pos][data-balloon-pos="up"][data-balloon-visible]:after {
@@ -70,11 +75,13 @@ button[aria-label][data-balloon-pos] {
     bottom: 100%;
     left: 0;
     margin-bottom: 10px;
+    transform: translate(0, 4px);
     transform: translate(0, var(--balloon-move));
     transform-origin: top; }
   [aria-label][data-balloon-pos][data-balloon-pos="up-left"]:before {
     bottom: 100%;
     left: 5px;
+    transform: translate(0, 4px);
     transform: translate(0, var(--balloon-move));
     transform-origin: top; }
   [aria-label][data-balloon-pos][data-balloon-pos="up-left"]:hover:after, [aria-label][data-balloon-pos][data-balloon-pos="up-left"][data-balloon-visible]:after {
@@ -85,11 +92,13 @@ button[aria-label][data-balloon-pos] {
     bottom: 100%;
     right: 0;
     margin-bottom: 10px;
+    transform: translate(0, 4px);
     transform: translate(0, var(--balloon-move));
     transform-origin: top; }
   [aria-label][data-balloon-pos][data-balloon-pos="up-right"]:before {
     bottom: 100%;
     right: 5px;
+    transform: translate(0, 4px);
     transform: translate(0, var(--balloon-move));
     transform-origin: top; }
   [aria-label][data-balloon-pos][data-balloon-pos="up-right"]:hover:after, [aria-label][data-balloon-pos][data-balloon-pos="up-right"][data-balloon-visible]:after {
@@ -100,14 +109,17 @@ button[aria-label][data-balloon-pos] {
     left: 50%;
     margin-top: 10px;
     top: 100%;
+    transform: translate(-50%, calc(4px * -1));
     transform: translate(-50%, calc(var(--balloon-move) * -1)); }
   [aria-label][data-balloon-pos][data-balloon-pos="down"]:before {
     width: 0;
     height: 0;
     border: 5px solid transparent;
+    border-bottom-color: rgba(16, 16, 16, 0.95);
     border-bottom-color: var(--balloon-color);
     left: 50%;
     top: 100%;
+    transform: translate(-50%, calc(4px * -1));
     transform: translate(-50%, calc(var(--balloon-move) * -1)); }
   [aria-label][data-balloon-pos][data-balloon-pos="down"]:hover:after, [aria-label][data-balloon-pos][data-balloon-pos="down"][data-balloon-visible]:after {
     transform: translate(-50%, 0); }
@@ -117,14 +129,17 @@ button[aria-label][data-balloon-pos] {
     left: 0;
     margin-top: 10px;
     top: 100%;
+    transform: translate(0, calc(4px * -1));
     transform: translate(0, calc(var(--balloon-move) * -1)); }
   [aria-label][data-balloon-pos][data-balloon-pos="down-left"]:before {
     width: 0;
     height: 0;
     border: 5px solid transparent;
+    border-bottom-color: rgba(16, 16, 16, 0.95);
     border-bottom-color: var(--balloon-color);
     left: 5px;
     top: 100%;
+    transform: translate(0, calc(4px * -1));
     transform: translate(0, calc(var(--balloon-move) * -1)); }
   [aria-label][data-balloon-pos][data-balloon-pos="down-left"]:hover:after, [aria-label][data-balloon-pos][data-balloon-pos="down-left"][data-balloon-visible]:after {
     transform: translate(0, 0); }
@@ -134,14 +149,17 @@ button[aria-label][data-balloon-pos] {
     right: 0;
     margin-top: 10px;
     top: 100%;
+    transform: translate(0, calc(4px * -1));
     transform: translate(0, calc(var(--balloon-move) * -1)); }
   [aria-label][data-balloon-pos][data-balloon-pos="down-right"]:before {
     width: 0;
     height: 0;
     border: 5px solid transparent;
+    border-bottom-color: rgba(16, 16, 16, 0.95);
     border-bottom-color: var(--balloon-color);
     right: 5px;
     top: 100%;
+    transform: translate(0, calc(4px * -1));
     transform: translate(0, calc(var(--balloon-move) * -1)); }
   [aria-label][data-balloon-pos][data-balloon-pos="down-right"]:hover:after, [aria-label][data-balloon-pos][data-balloon-pos="down-right"][data-balloon-visible]:after {
     transform: translate(0, 0); }
@@ -151,14 +169,17 @@ button[aria-label][data-balloon-pos] {
     margin-right: 10px;
     right: 100%;
     top: 50%;
+    transform: translate(4px, -50%);
     transform: translate(var(--balloon-move), -50%); }
   [aria-label][data-balloon-pos][data-balloon-pos="left"]:before {
     width: 0;
     height: 0;
     border: 5px solid transparent;
+    border-left-color: rgba(16, 16, 16, 0.95);
     border-left-color: var(--balloon-color);
     right: 100%;
     top: 50%;
+    transform: translate(4px, -50%);
     transform: translate(var(--balloon-move), -50%); }
   [aria-label][data-balloon-pos][data-balloon-pos="left"]:hover:after, [aria-label][data-balloon-pos][data-balloon-pos="left"][data-balloon-visible]:after {
     transform: translate(0, -50%); }
@@ -168,14 +189,17 @@ button[aria-label][data-balloon-pos] {
     left: 100%;
     margin-left: 10px;
     top: 50%;
+    transform: translate(calc(4px * -1), -50%);
     transform: translate(calc(var(--balloon-move) * -1), -50%); }
   [aria-label][data-balloon-pos][data-balloon-pos="right"]:before {
     width: 0;
     height: 0;
     border: 5px solid transparent;
+    border-right-color: rgba(16, 16, 16, 0.95);
     border-right-color: var(--balloon-color);
     left: 100%;
     top: 50%;
+    transform: translate(calc(4px * -1), -50%);
     transform: translate(calc(var(--balloon-move) * -1), -50%); }
   [aria-label][data-balloon-pos][data-balloon-pos="right"]:hover:after, [aria-label][data-balloon-pos][data-balloon-pos="right"][data-balloon-visible]:after {
     transform: translate(0, -50%); }
