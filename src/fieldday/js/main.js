@@ -155,7 +155,7 @@
                     success: function (response) {
                         if (response.getParticipantsResponse.totalNumberResults === '0') {
                             // no search results
-                            $('#error-participant').removeAttr('hidden').text('Participant not found. Please try different search terms.');
+                            $('#error-participant').removeAttr('hidden').text('Teammate not found. Please try different search terms.');
                         } else {
                             var participants = luminateExtend.utils.ensureArray(response.getParticipantsResponse.participant);
                             var totalParticipants = parseInt(response.getParticipantsResponse.totalNumberResults);
@@ -1211,7 +1211,7 @@
                 "autoWidth": false,
                 "order": [[2, 'desc']],
                 "language": {
-                    "search": "Search for a Participant"
+                    "search": "Search for a Teammate"
                 }
             });
 
