@@ -23,6 +23,7 @@
                 $('#navbar-container').slideToggle('fast');
             }
             $('.navbar-toggler-icon').toggleClass('fa-align-justify').toggleClass('fa-times');
+            $('.pg_company .tr-page-container, .pg_personal .tr-page-container, .pg_team .tr-page-container').toggleClass('static');
         });
 
         // Mobile search toggle
@@ -1143,6 +1144,7 @@
         cd.reorderPageForMobile = function () {
             // Reorganize page for mobile views
             if (screenWidth <= 767) {
+                $('.js--information-box').prependTo('.js--sidebar-content');
                 $('.tr-page-info').insertAfter('.sidebar-hero');
                 $('.fundraising-amounts').prepend($('.fundraising-amounts .col-12'));
 
@@ -1161,10 +1163,15 @@
                 }
 
                 if ($('body').is('.pg_company')) {
+                    $('.js--information-box').prependTo('.js--sidebar-content');
 
                     $('.team-roster form .btn').html('<i class="fas fa-search"></i>');
                     $('#participant-roster td:nth-child(3) a').html('Donate');
 
+                }
+
+                if $('body').is('.pg_personal') {
+                  $('.js--information-box').prependTo('.js--sidebar-content');
                 }
             }
         };
@@ -1338,6 +1345,8 @@
             cd.runThermometer(progress, goal);
             cd.reorderPageForMobile();
             cd.setDonorRollHeight();
+
+            //mobile placement
 
             // populate custom personal page content
             $('.js--personal-text').html($('#fr_rich_text_container').html());
