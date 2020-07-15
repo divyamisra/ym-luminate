@@ -357,6 +357,9 @@ img {
 .pg_personal, .pg_team, .pg_company {
   header {
     height: 350px;
+    &.mobile-open {
+      height: auto;
+    }
   }
   main {
     background-image: url("/images/content/pagebuilder/fd_hero_personal2.jpg");
