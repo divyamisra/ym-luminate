@@ -1144,7 +1144,7 @@
         cd.reorderPageForMobile = function () {
             // Reorganize page for mobile views
             if (screenWidth <= 767) {
-                $('.js--information-box').prependTo('.js--sidebar-content');
+                $('.js--information-box').appendTo('.sidebar-content');
                 $('.tr-page-info').insertAfter('.sidebar-hero');
                 $('.fundraising-amounts').prepend($('.fundraising-amounts .col-12'));
 
@@ -1163,7 +1163,7 @@
                 }
 
                 if ($('body').is('.pg_company')) {
-                    $('.js--information-box').prependTo('.js--sidebar-content');
+                    $('.js--information-box').appendTo('.sidebar-content');
 
                     $('.team-roster form .btn').html('<i class="fas fa-search"></i>');
                     $('#participant-roster td:nth-child(3) a').html('Donate');
@@ -1171,7 +1171,7 @@
                 }
 
                 if ($('body').is('.pg_personal')) {
-                  $('.js--information-box').prependTo('.js--sidebar-content');
+                  $('.js--information-box').appendTo('.sidebar-content');
                 }
             }
         };
