@@ -1608,7 +1608,7 @@
             // Populate company name from page title
             var pageTitle = jQuery('head title').text().trim();
             var start_pos = pageTitle.indexOf(':') + 1;
-            var end_pos = pageTitle.indexOf('- Heart Walk', start_pos);
+            var end_pos = pageTitle.indexOf('- Field Day', start_pos);
             var currentCompanyName = pageTitle.substring(start_pos, end_pos).trim();
             var currentCompanyId = getURLParameter(currentUrl, 'company_id');
             $('.js--company-name').text(currentCompanyName);
