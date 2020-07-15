@@ -356,7 +356,10 @@ img {
 
 .pg_personal, .pg_team, .pg_company {
   header {
-    height: 350px;
+    height: 250px;
+    @include media-breakpoint-up(md) {
+      height: 350px;
+    }
     &.mobile-open {
       height: auto;
     }
@@ -374,8 +377,12 @@ img {
       position: static;
     }
     position: relative;
-    top: -200px;
-    margin: 0 auto -250px;
+    top: -150px;
+    margin: 0 auto -180px;
+    @include media-breakpoint-up(md) {
+      top: -200px;
+      margin: 0 auto -250px;
+    }
     background-color: transparent;
   }
 
