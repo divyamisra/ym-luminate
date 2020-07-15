@@ -1172,6 +1172,7 @@
 
                 if ($('body').is('.pg_personal')) {
                   $('.js--information-box').appendTo('.sidebar-content');
+                  
                 }
             }
         };
