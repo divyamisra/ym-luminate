@@ -11,9 +11,16 @@
   max-width:100%;
   position: relative;
   svg, img {
+    width: 35px;
+    height: auto;
     position: absolute;
-    right: -30px;
-    top: -75px;
+    right: -20px;
+    top: -60px;
+    @include media-breakpoint-up(md) {
+     width: auto;
+     right: -30px;
+     top: -75px;
+    }
   }
 }
 
