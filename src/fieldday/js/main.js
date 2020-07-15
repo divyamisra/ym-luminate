@@ -1170,7 +1170,7 @@
 
                 }
 
-                if $('body').is('.pg_personal') {
+                if ($('body').is('.pg_personal')) {
                   $('.js--information-box').prependTo('.js--sidebar-content');
                 }
             }
