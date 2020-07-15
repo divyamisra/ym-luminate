@@ -24,7 +24,7 @@
             }
             $('.navbar-toggler-icon').toggleClass('fa-align-justify').toggleClass('fa-times');
             $('.pg_company .tr-page-container, .pg_personal .tr-page-container, .pg_team .tr-page-container').toggleClass('static');
-            $('.pg_company header, .pg_personal header, .pg_team header').toggleClass('.mobile-open');
+            $('.pg_company header, .pg_personal header, .pg_team header').toggleClass('mobile-open');
         });
 
         // Mobile search toggle

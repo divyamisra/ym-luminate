@@ -284,9 +284,10 @@ img {
       width: 100%;
     }
     .sidebar-content {
-      padding: 22px 0;
+      padding: 0;
       @include media-breakpoint-up(md) {
         padding: 22px 54px 22px 44px;
+        padding: 22px 0;
       }
 
       background: #fff;
