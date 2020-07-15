@@ -1652,7 +1652,7 @@
                                             callback: {
                                                 success: function (response) {
                                                     if (response.getCompaniesResponse.totalNumberResults !== '0') {
-                                                        $('.tr-page-info h1').before('<small><a href="' + response.getCompaniesResponse.company.companyURL + '">' + response.getCompaniesResponse.company.companyName + '</a></small>');
+                                                        $('.js--company-name').before('<small><a href="' + response.getCompaniesResponse.company.companyURL + '">' + response.getCompaniesResponse.company.companyName + '</a></small>');
                                                     }
                                                 },
                                                 error: function (response) {
