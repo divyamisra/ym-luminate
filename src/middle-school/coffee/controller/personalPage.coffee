@@ -96,6 +96,7 @@ angular.module 'ahaLuminateControllers'
           eventId = response.getCompaniesResponse?.company?.eventId
           amountRaised = Number response.getCompaniesResponse?.company?.amountRaised
           goal = Number response.getCompaniesResponse?.company?.goal
+          $scope.schoolProgress.amountRaised = amountRaised / 100
           $rootScope.numTeams = response.getCompaniesResponse.company?.teamCount
           
           if coordinatorId and coordinatorId isnt '0' and eventId          
