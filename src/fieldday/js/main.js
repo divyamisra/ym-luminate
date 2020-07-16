@@ -1395,6 +1395,7 @@
             // Walker Search
             $('.js--greeting-participant-search-form').on('submit', function (e) {
                 e.preventDefault();
+                console.log('teammate search');
                 var firstName = encodeURIComponent($('#greeting-search-first-name').val());
                 var lastName = encodeURIComponent($('#greeting-search-last-name').val());
                 window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=FieldDay_Search&search_type=walker&cross_event=false&fr_id=' + evID + (firstName ? '&first_name=' + firstName : '') +
@@ -1405,7 +1406,6 @@
             $('.js--greeting-team-search-form').on('submit', function (e) {
                 e.preventDefault();
                 var teamName = encodeURIComponent($('#greeting-search-team').val());
-                cd.getTeams(teamName, (isCrossEventSearch === "true" ? true : false));
                 window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=FieldDay_Search&search_type=team&cross_event=false&fr_id=' + evID + '&team_name=' + teamName;
             });
         }
