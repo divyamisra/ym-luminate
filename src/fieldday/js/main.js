@@ -220,16 +220,13 @@
             });
         };
 
-        cd.getTeams = function (teamName, isCrossEvent, firstName, lastName, companyId) {
+        cd.getTeams = function (teamName, isCrossEvent) {
             $('.js__team-results-rows').html('');
             luminateExtend.api({
                 api: 'teamraiser',
                 data: 'method=getTeamsByInfo' +
                     '&team_name=' + teamName +
                     (isCrossEvent === true ? '&event_type=' + eventType : '&fr_id=' + evID) +
-                    (firstName ? '&first_name=' + firstName : '') +
-                    (lastName ? '&last_name=' + lastName : '') +
-                    (companyId ? '&team_company_id=' + companyId : '') +
                     '&list_page_size=499' +
                     '&list_page_offset=0' +
                     '&response_format=json' +
@@ -424,7 +421,7 @@
             e.preventDefault();
             var firstName = encodeURIComponent($('#participantSearchFirst').val());
             var lastName = encodeURIComponent($('#participantSearchLast').val());
-            window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=FieldDay_Search&search_type=participant&cross_event=false&fr_id=' + evID + (firstName ? '&first_name=' + firstName : '') +
+            window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=FieldDay_Search&search_type=participant&cross_event=' + (evID ? 'false' : 'true') + (evID ? '&fr_id=' + evID : '') + '&fr_id=' + evID + (firstName ? '&first_name=' + firstName : '') +
                 (lastName ? '&last_name=' + lastName : '');
         });
 
@@ -432,7 +429,7 @@
         $('.js--header-team-search').on('submit', function (e) {
             e.preventDefault();
             var teamName = encodeURIComponent($('#teamSearch').val());
-            cd.getTeams(teamName, null, (isCrossEventSearch === "true" ? true : false));
+            cd.getTeams(teamName, (isCrossEventSearch === "true" ? true : false));
             window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=FieldDay_Search&search_type=team&cross_event=' + (evID ? 'false' : 'true') + (evID ? '&fr_id=' + evID : '') + '&team_name=' + teamName;
         });
 
@@ -1326,7 +1323,7 @@
             $('.js--greeting-team-search-form').on('submit', function (e) {
                 e.preventDefault();
                 var teamName = encodeURIComponent($('#greeting-search-team').val());
-                cd.getTeams(teamName, null, (isCrossEventSearch === "true" ? true : false));
+                cd.getTeams(teamName, (isCrossEventSearch === "true" ? true : false));
                 window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=FieldDay_Search&search_type=team&cross_event=false&fr_id=' + evID + '&team_name=' + teamName;
             });
         }
@@ -2048,7 +2045,7 @@
                 e.preventDefault();
                 clearSearchResults();
                 var teamName = encodeURIComponent($('#teamNameSearch').val());
-                cd.getTeams(teamName, null, (isCrossEventSearch === "true" ? true : false));
+                cd.getTeams(teamName, (isCrossEventSearch === "true" ? true : false));
             });
 
 
@@ -2077,7 +2074,7 @@
                     teamName = decodeURIComponent(teamName);
                     $('#teamNameSearch').val(teamName);
 
-                    cd.getTeams(teamName, null, (isCrossEventSearch === "true" ? true : false));
+                    cd.getTeams(teamName, (isCrossEventSearch === "true" ? true : false));
                 }
 
                 cd.autoSearchCompany = function () {
@@ -2087,7 +2084,7 @@
                     var crossEventSearch = (isCrossEventSearch === "true" ? true : false);
                     console.log(crossEventSearch);
 
-                    cd.getCompanies(companyName, null, (isCrossEventSearch === "true" ? true : false));
+                    cd.getCompanies(companyName, (isCrossEventSearch === "true" ? true : false));
                 }
 
                 cd.autoSearchZip = function () {
