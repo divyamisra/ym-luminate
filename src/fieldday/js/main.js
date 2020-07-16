@@ -1398,7 +1398,7 @@
                 console.log('teammate search');
                 var firstName = encodeURIComponent($('#greeting-search-first-name').val());
                 var lastName = encodeURIComponent($('#greeting-search-last-name').val());
-                window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=FieldDay_Search&search_type=walker&cross_event=false&fr_id=' + evID + (firstName ? '&first_name=' + firstName : '') +
+                window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=FieldDay_Search&search_type=participant&cross_event=false&fr_id=' + evID + (firstName ? '&first_name=' + firstName : '') +
                     (lastName ? '&last_name=' + lastName : '');
             });
 
