@@ -1622,6 +1622,7 @@
             // allCompanyData.push({currentCompanyId, companyName});
             // get child company IDs
             if (isParentCompany) {
+
                 $('.js--company-hierarchy-list-container .trr-td a').each(function () {
                     var childCompanyLink = $(this).attr('href');
                     var childCompanyName = $(this).text();
@@ -1630,6 +1631,8 @@
                     // allCompanyData.id
                 });
             } else {
+
+                $('.js--company-multiple-locations').hide();
 
                 luminateExtend.api({
                     api: 'teamraiser',
