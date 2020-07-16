@@ -81,17 +81,14 @@ angular.module 'trPcControllers'
       $scope.schoolInfo = {}
       $scope.schoolChallengeInfo = {}
       $scope.schoolChallengeLevelInfo = {}
-
+      $scope.companyProgress.schoolYears = 0
+      $scope.companyProgress.schoolChallenge = ''
+      $scope.companyProgress.schoolChallengeLevel = ''
+            
       getSchoolInformation = ->
         ZuriService.getSchoolData $scope.participantRegistration.companyInformation.companyId,
           failure: (response) ->
-            $scope.companyProgress.schoolYears = 0
-            $scope.companyProgress.schoolChallenge = ''
-            $scope.companyProgress.schoolChallengeLevel = ''
           error: (response) ->
-            $scope.companyProgress.schoolYears = 0
-            $scope.companyProgress.schoolChallenge = ''
-            $scope.companyProgress.schoolChallengeLevel = ''
           success: (response) ->
             if typeof response.data.data != 'undefined'
               if response.data.data.length > 0
@@ -114,10 +111,6 @@ angular.module 'trPcControllers'
                       id: 'student'
                       label: 'Individual Challenge Completed'
                       earned: true
-            else
-              $scope.companyProgress.schoolYears = 0
-              $scope.companyProgress.schoolChallenge = ''
-              $scope.companyProgress.schoolChallengeLevel = ''
 
       participantsString = ''
       $scope.companyParticipants = {}
