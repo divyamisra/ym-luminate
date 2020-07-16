@@ -1106,6 +1106,7 @@
      				 $(companyLocation).appendTo('.js--company-location');
 
              $('.js--company-link').attr('href', eventMapLink);
+             $('.js--company-link').html(company.companyname);
 
      		   }
      		 });
