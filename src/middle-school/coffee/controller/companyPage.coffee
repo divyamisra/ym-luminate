@@ -28,6 +28,17 @@ angular.module 'ahaLuminateControllers'
       $scope.notifyName = ''
       $scope.notifyEmail = ''
       $scope.moneyDueDate = ''
+      $scope.totalTeams = ''
+      $scope.teamId = ''
+      $scope.studentsPledgedTotal = ''
+      $scope.activity1amt = ''
+      $scope.activity2amt = ''
+      $scope.activity3amt = ''
+      $scope.topClassRaised = []
+      $scope.topClassStudents = []
+      $scope.schoolChallenge = ''
+      $scope.schoolChallengeGoal = 0
+      $scope.schoolYears = 0
       $scope.unconfirmedAmountRaised = 0
       
       $scope.trustHtml = (html) ->
@@ -367,4 +378,17 @@ angular.module 'ahaLuminateControllers'
             angular.forEach response.data.data, (meta, key) ->
               if meta.name == 'years-participated'
                 $scope.schoolYears = meta.value
-   ]
+                
+      ZuriService.getSchoolData $scope.companyId,
+        error: (response) ->
+          # TO DO
+        success: (response) ->
+          if response.data.data.length > 0
+            angular.forEach response.data.data, (meta, key) ->
+              if meta.name == 'school-challenge'
+                $scope.schoolChallenge = meta.value
+              if meta.name == 'school-goal'
+                $scope.schoolChallengeGoal = meta.value
+              if meta.name == 'years-participated'
+                $scope.schoolYears = meta.value
+  ]

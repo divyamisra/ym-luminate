@@ -18,6 +18,8 @@ angular.module 'ahaLuminateControllers'
       $scope.companyId = $dataRoot.data('company-id') if $dataRoot.data('company-id') isnt ''
       $scope.teamId = $dataRoot.data('team-id') if $dataRoot.data('team-id') isnt ''
       $scope.eventDate =''
+      $scope.schoolProgress = {}
+      $scope.schoolProgress.amountRaised = 0
       $rootScope.numTeams = ''
       $rootScope.survivor = false
       $scope.companyProgress = {}
@@ -96,6 +98,7 @@ angular.module 'ahaLuminateControllers'
           eventId = response.getCompaniesResponse?.company?.eventId
           amountRaised = Number response.getCompaniesResponse?.company?.amountRaised
           goal = Number response.getCompaniesResponse?.company?.goal
+          $scope.schoolProgress.amountRaised = amountRaised / 100
           $rootScope.numTeams = response.getCompaniesResponse.company?.teamCount
           
           if coordinatorId and coordinatorId isnt '0' and eventId          
