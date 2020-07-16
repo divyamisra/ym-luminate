@@ -2082,6 +2082,8 @@
                     var companyName = getURLParameter(currentUrl, 'company') ? getURLParameter(currentUrl, 'company') : '';
                     companyName = decodeURIComponent(companyName);
                     $('#companyNameSearch').val(companyName);
+                    var crossEventSearch = (isCrossEventSearch === "true" ? true : false);
+                    console.log(crossEventSearch);
 
                     cd.getCompanies(companyName, null, (isCrossEventSearch === "true" ? true : false));
                 }
