@@ -153,5 +153,26 @@ module.exports = {
         dest: "dist/heartwalk2020/js/pushy.min.js"
       }
     ]
+  },
+
+  "fieldday": {
+    files: [
+      {
+        src: ["src/fieldday/js/main.js"],
+        dest: "dist/fieldday/js/main." + "<%= timestamp %>" + ".min.js"
+      },
+      {
+        src: ["src/fieldday/js/registration.js"],
+        dest: "dist/fieldday/js/registration." + "<%= timestamp %>" + ".min.js"
+      },
+      {
+        src: ["src/fieldday/js/donation.js"],
+        dest: "dist/fieldday/js/donation." + "<%= timestamp %>" + ".min.js"
+      },
+      {
+        src: ["src/fieldday/js/pushy.js"],
+        dest: "dist/fieldday/js/pushy.min.js"
+      }
+    ]
   }
 }

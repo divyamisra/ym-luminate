@@ -1,0 +1,186 @@
+[[U0:team_goal=[[E130:"[[E43:[[S334:fr_id]]:goal-dollars:[[S334:team_id]]]]" ".00" "" replaceall]]]]
+[[U0:team_raised=[[E130:"[[E43:[[S334:fr_id]]:dollars:[[S334:team_id]]]]" ".00" "" replaceall]]]]
+<div class="container tr-page-container hero">
+    <div class="row">
+        <div class="col-lg-4 col-md-12 sidebar">
+                [[?xx::x[[C4:graphic_upload]]x::
+                <img class="sidebar-hero" src="[[S80:defaultTeamImage]]"
+                      alt="[[E43:[[S334:fr_id]]:name:[[S334:team_id]]]] fundraising page" />
+              ::
+                <img class="sidebar-hero" src="[[C4:graphic_upload]]"
+                      alt="[[E43:[[S334:fr_id]]:name:[[S334:team_id]]]] fundraising page" />
+              ]]
+
+            <div data-company="[[E43:[[S334:fr_id]]:company-id::[[S334:team_id]]]]" class="js--sidebar-content sidebar-content box-shadow">
+                <ul>
+                    <li>
+                        <div class="sidebar__icon">
+                          <i class="far fa-flag" aria-hidden="true"></i>
+                        </div>
+                        <div class="sidebar__details js--field-day-details">
+                          <p><strong>Field Day Details:</strong></p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="sidebar__icon">
+                          <i class="fal fa-clock" aria-hidden="true"></i>
+                        </div>
+                        <div class="sidebar__details js--event-date">
+                        </div>
+                    </li>
+                    <li>
+                      <div class="sidebar__icon">
+                        <i class="fal fa-megaphone" aria-hidden="true"></i>
+                      </div>
+                      <div class="sidebar__details js--team-captain">
+                        <p><strong>Team Captain:</strong></p>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="sidebar__icon">
+                        <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                      </div>
+                      <div class="sidebar__details js--company-location">
+                        <p><strong>Company Location:</strong></p>
+                        <p><a class="js--company-link" target="_blank" href="#">[[E43:[[S334:fr_id]]:type:company-name]]</a></p>
+                      </div>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.sidebar-->
+            <div class="donor-roll box-shadow">
+              <div class="donor-roll__title">
+                <h5>[[E43:[[S334:fr_id]]:name:[[S334:team_id]]]]&rsquo; Donors:</h5>
+              </div>
+                <div class="donations-container js--donor-roll"></div>
+                <!-- /.donations-container -->
+                <a class="honor-roll-expander js--honor-roll-expander text-center hidden" href="javascript:void(0);"><i
+                        class="fas fa-chevron-down"></i></a>
+            </div>
+            <!-- /.donor-roll -->
+        </div>
+        <!-- /.sidebar -->
+        <div class="col-lg-8 col-md-12">
+
+            <!-- TEAM PAGE INFO BOX -->
+            <div class="tr-page-info bg-white information-box js--information-box">
+              <div class="information-box__name box-shadow">
+                <h1>[[E43:[[S334:fr_id]]:name:[[S334:team_id]]]]</h1>
+                <div class="information-box__team-members">[[E43:0:num-members:[[S334:team_id]]]] Members</div>
+              </div>
+                <!--/.information-box__name-->
+              <div class="information-box__content box-shadow">
+                <div class="clearfix"></div>
+                <div class="row fundraising-amounts">
+                  <div class="col-12">
+                      <div class="thermometer">
+                          <div class="thermometer-inner js__progress-bar">
+
+                          [[?[[E:130 [[S80:team_raised]] [[S80:team_goal]] > ]]::T::
+                          <!--insert animated gift-->
+                          <img src="../images/content/pagebuilder/AHA_FieldDayCup_GIF.gif" alt="Goal reached!">
+                          ::
+                          <svg xmlns="http://www.w3.org/2000/svg" width="58.488" height="67.104" viewBox="0 0 58.488 67.104"><g transform="translate(-18.061 -12.899)"><g transform="translate(18.061 12.899)"><g transform="translate(0 4.981)"><path d="M41.821,71.893l-.93-1.445.723-.465a3.187,3.187,0,0,0,1.467-2.689V60.4a17.728,17.728,0,0,1-10.846-7.632,3.65,3.65,0,0,0-1.781-1.45,19.387,19.387,0,0,1-12.341-16.3l-.016-.185A9.25,9.25,0,0,1,27.312,24.76h.246l-.573-5.9,1.711-.166.755,7.784H27.312a7.532,7.532,0,0,0-7.5,8.2l.017.184A17.656,17.656,0,0,0,31.066,49.712a5.359,5.359,0,0,1,2.615,2.125A15.982,15.982,0,0,0,44.1,58.858l.7.132v8.3a4.9,4.9,0,0,1-2.256,4.134Z" transform="translate(-18.061 -18.695)"/></g><g transform="translate(6.445)"><rect width="45.118" height="1.719"/></g><g transform="translate(31.268 4.981)"><path d="M57.42,71.893l-.723-.465a4.894,4.894,0,0,1-2.256-4.134v-8.3l.7-.132A16,16,0,0,0,65.454,52a5.474,5.474,0,0,1,2.783-2.134,17.587,17.587,0,0,0,11.658-15l.016-.186a7.531,7.531,0,0,0-7.5-8.2H69.79l.755-7.784,1.711.166-.572,5.9h.726a9.251,9.251,0,0,1,9.214,10.072l-.016.186a19.313,19.313,0,0,1-12.8,16.467,3.764,3.764,0,0,0-1.92,1.461A17.748,17.748,0,0,1,56.16,60.4v6.894a3.185,3.185,0,0,0,1.467,2.689l.723.465Z" transform="translate(-54.441 -18.695)"/></g><g transform="translate(13.85 60.656)"><path d="M64.482,89.92H62.763V85.191H35.895V89.92H34.176V83.472H64.482Z" transform="translate(-34.176 -83.472)"/></g><g transform="translate(4.497 15.487)"><path d="M32.277,48.856l-1.508-.841A14.537,14.537,0,0,1,23.337,36.46l-.029-.359a4.8,4.8,0,0,1,4.785-5.183H30.45l1.492,15.367q.036.434.1.861ZM28.092,32.637a3.08,3.08,0,0,0-3.071,3.327l.029.358a12.81,12.81,0,0,0,5.094,9.244L28.89,32.637Z" transform="translate(-23.292 -30.918)"/></g><g transform="translate(44.469 15.487)"><path d="M69.8,49.057l.257-1.649q.086-.556.136-1.124l1.491-15.366h2.839A4.8,4.8,0,0,1,79.307,36.1l-.028.358a14.647,14.647,0,0,1-7.986,11.85Zm3.444-16.42-1.291,13.3a12.732,12.732,0,0,0,5.612-9.615l.028-.358a3.079,3.079,0,0,0-3.07-3.327Z" transform="translate(-69.8 -30.918)"/></g></g><g transform="translate(36.447 28.785)"><path d="M50.139,49.313h-.005a22.046,22.046,0,0,1-8.67-6.295,7.476,7.476,0,0,1-1.45-6.866c1.188-3.933,4.008-4.521,5.582-4.521a6.448,6.448,0,0,1,4.548,1.826,6.432,6.432,0,0,1,4.546-1.826c1.888,0,4.377.785,5.507,4.522a7.522,7.522,0,0,1-1.489,6.94,21.844,21.844,0,0,1-8.568,6.219ZM45.6,32.672c-1.571,0-3.642.657-4.587,3.782-.858,2.836.37,5.656,3.649,8.382a25.33,25.33,0,0,0,5.48,3.391,25.1,25.1,0,0,0,5.446-3.391c3.258-2.725,4.475-5.545,3.617-8.382-.759-2.51-2.277-3.783-4.511-3.783a5.342,5.342,0,0,0-4.124,1.856.524.524,0,0,1-.846,0A5.359,5.359,0,0,0,45.6,32.672Z" transform="translate(-39.488 -31.417)"/><path d="M50.144,49.5l-.044,0-.042,0-.028-.014c-.7-.18-6.007-2.64-8.774-6.37a7.678,7.678,0,0,1-1.483-7.055C41,31.99,43.926,31.382,45.56,31.382a6.677,6.677,0,0,1,4.547,1.745,6.68,6.68,0,0,1,4.547-1.745c1.961,0,4.545.811,5.712,4.674a7.726,7.726,0,0,1-1.522,7.132,22.035,22.035,0,0,1-8.679,6.3ZM45.56,32.852c-1.5,0-3.476.63-4.381,3.629-.831,2.746.374,5.489,3.581,8.155A24.911,24.911,0,0,0,50.1,47.956a24.828,24.828,0,0,0,5.307-3.32c3.186-2.664,4.381-5.409,3.55-8.155-.728-2.408-2.177-3.63-4.306-3.63A5.126,5.126,0,0,0,50.7,34.63a.8.8,0,0,1-.576.292.817.817,0,0,1-.6-.291A5.136,5.136,0,0,0,45.56,32.852Z" transform="translate(-39.453 -31.382)"/></g></g></svg>
+                          ]]
+                          </div>
+                          <!-- /.thermometer-inner -->
+                      </div>
+                      <!-- /.thermometer -->
+                  </div>
+                  <!-- /.col-12 -->
+                    <div class="col-6">
+                        <span class="d-block">Fundraising Progress</span>
+                        <span id="progress-amount" class="amount">
+                            [[E130:"[[E43:[[S334:fr_id]]:dollars:[[S334:team_id]]]]" ".00" "" replaceall]]
+                        </span>
+                        <!-- /.amount -->
+                    </div>
+                    <!-- /.col-6 -->
+                    <div class="col-6 text-right">
+                        <span class="d-block">Fundraising Goal</span>
+                        <span id="goal-amount" class="amount">
+                          [[E130:"[[E43:[[S334:fr_id]]:goal-dollars:[[S334:team_id]]]]" ".00" "" replaceall]]
+                      </span>
+                        <!-- /.amount -->
+                    </div>
+                    <!-- /.col-6 -->
+                </div>
+                <!-- /.row -->
+                <div class="row buttons-row">
+                        [[?x2x3x::x[[S42:0:status]]x::
+                        <a class="scroll-link btn btn-primary col-lg col-sm-12 mx-md-2 mx-sm-0 js--team-member-donate" href="#teamRoster" onclick="_gaq.push(['_trackEvent', 'team', 'banner', 'donate to team member button']);">Donate to a Team Member</a>
+                        ::]]
+                        [[?x1x2x::x[[S42:0:status]]x::
+
+                         [[?[[E130:[[E43:[[S334:fr_id]]:num-members:[[S334:team_id]]]] number 9 > ]]::T::
+
+                          <a class="btn btn-secondary col-lg col-sm-12 mx-md-2 mx-sm-0" href="TRR?pg=tfind&fr_tm_opt=new&fr_id=[[S334:fr_id]]" onclick="_gaq.push(['_trackEvent', 'team', 'banner', 'create team button']);">This team is full. Create your own team!</a>
+
+                          ::
+
+                          <a class="btn btn-secondary col-lg col-sm-12 mx-md-2 mx-sm-0" href="TRR/?fr_tjoin=[[S334:team_id]]&pg=tfind&fr_id=[[S334:fr_id]]" onclick="_gaq.push(['_trackEvent', 'team', 'banner', 'join team button']);">Join This Team</a>
+
+                          ]]
+
+                        ::]]
+                  </div>
+
+                <!-- <a href="TRGiftForm?fr_id=[[S334:fr_id]]&px=[[S334:px]]" class="d-block text-small mt-3">Mail in a Donation</a> -->
+                <a href="Donation2?df_id=[[E42:[[S334:fr_id]]:form-id]]&PROXY_ID=[[S334:team_id]]&PROXY_TYPE=22&FR_ID=[[S334:fr_id]]" class="d-block text-small mt-3" onclick="_gaq.push(['_trackEvent', 'team', 'banner', 'donate to team link']);">Make a General Donation to this Team</a>
+            </div>
+          </div>
+          <!--/.information-box-->
+
+          <!-- END TEAM PAGE INFO BOX -->
+          <div class="col-12">
+              <div class="content-area">
+                <h2>Why We Play to WIN</h2>
+                <div class="js--team-text"></div>
+              </div>
+          </div>
+
+            <!-- TEAM ROSTER -->
+            <div id="teamRoster" class="information-box team-roster bg-gray-100">
+                 <div class="team-roster-header">
+                    <h1>Team Roster</h1>
+                    <span class="team-roster__icon"><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="23" height="23" viewBox="0 0 23 23"><defs><pattern id="a" preserveAspectRatio="xMidYMid slice" width="100%" height="100%" viewBox="0 0 441 443"><image width="441" height="443" xlink:href="data:image/png;base64,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"/></pattern></defs><rect width="23" height="23" fill="url(#a)"/></svg><p>Team Captain</p></span>
+                 </div>
+                <!-- /.team-roster-header -->
+                <div class="js--gen-team-don-container" style="display:none;">
+                    <span class="team-donate-label text-small">General Team Donations: <span class="js--gen-team-don-total">$0</span></span>
+                    <a href="Donation2?df_id=[[E42:[[S334:fr_id]]:form-id]]&PROXY_ID=[[S334:team_id]]&PROXY_TYPE=22&FR_ID=[[S334:fr_id]]" class="d-block text-small mb-1" onclick="_gaq.push(['_trackEvent', 'team', 'roster', 'donate to team link']);">Donate to Team</a>
+                </div>
+                <div class="clearfix"></div>
+                <!-- /.clearfix -->
+                <table id="team-roster" class="float-left w-100 table mb-0">
+                    <thead>
+                        <tr>
+                            <th class="border-0">Name</th>
+                            <th class="border-0">Raised</th>
+                            <th class="border-0" data-orderable="false"><span class="sr-only">Donation Link</span></th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+                <div class="clearfix"></div>
+                <!-- /.clearfix -->
+                <div class="d-flex justify-content-center">
+                    <a href="#" class="js--more-participant-results btn btn-tertiary-black" hidden>Show All Team Members</a>
+                </div>
+                <!-- /.d-flex justify-content-center -->
+            </div>
+            <!-- /.information-box -->
+            <!-- END TEAM ROSTER -->
+        </div>
+        <!-- /.col-lg-8 -->
+        <div class="col-12">
+          <div class="video-container embed-responsive embed-responsive-16by9">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/LryhjU1bEC4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+        <!-- /.video-container -->
+      </div>
+        <!-- /.col-12 -->
+    </div>
+    <!-- /.row -->
+</div>
+<!-- /.container -->

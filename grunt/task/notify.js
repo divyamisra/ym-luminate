@@ -90,5 +90,12 @@ module.exports = {
       title: 'AHA Luminate Framework',
       message: 'HeartWalk 2020 files updated.'
     }
+  },
+
+  "fieldday": {
+    options: {
+      title: 'AHA Luminate Framework',
+      message: 'Field Day files updated.'
+    }
   }
 }
