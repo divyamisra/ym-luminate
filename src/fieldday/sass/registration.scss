@@ -24,10 +24,6 @@
 
 /* main styling */
 main {
-    background-image: url("/images/content/pagebuilder/fd_hero_desktop.jpg");
-    background-size: 100%;
-    background-repeat: no-repeat;
-    background-color: $gray-400;
     padding: 48px 76px 67px;
 }
 @media (max-width:767px) {
@@ -62,6 +58,10 @@ h1.ObjTitle {
 	color: #3c3c3c;
 }
 
+.registration-page-container h2 {
+	font-size:24px;
+	color: #000000;
+}
 div.responsive div.ErrorMessage.page-error {
 	width: auto;
 }
