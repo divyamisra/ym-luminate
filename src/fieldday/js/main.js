@@ -536,7 +536,8 @@
             $('.js--no-event-results').addClass('d-none');
             $('.js--loading').show();
 
-          luminateExtend.api({
+            luminateExtend.api({
+            api: 'teamraiser',
             data: 'method=getTeamraisersByInfo' +
                 '&state=' + eventState +
                 (isCrossEvent === true ? '&event_type=' + eventType : '&fr_id=' + evID) +
