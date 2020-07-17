@@ -2125,14 +2125,14 @@
             $('#eventStateSearch').on('change', function () {
                 clearSearchResults();
                 var stateSearched = encodeURIComponent($('#eventStateSearch').val());
-                cd.getEventsByState(eventStateSearched, isCrossEventSearch === "true" ? true : false);
+                cd.getEventsByState(stateSearched, isCrossEventSearch === "true" ? true : false);
             });
 
             $('.js--state-search-form').on('submit', function (e) {
                 e.preventDefault();
                 clearSearchResults();
                 var stateSearched = encodeURIComponent($('#eventStateSearch').val());
-                cd.getEventsByDistance(eventStateSearched, isCrossEventSearch === "true" ? true : false);
+                cd.getEventsByDistance(stateSearched, isCrossEventSearch === "true" ? true : false);
             });
 
 
