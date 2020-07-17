@@ -439,7 +439,7 @@
         /******************************/
 
         // Get events by zip
-        cd.getEventsByDistance = function (zipCode) {
+        cd.getEventsByDistance = function (zipCode, isCrossEvent) {
             $('.js--no-event-results').addClass('d-none');
             $('.js--loading').show();
 
@@ -449,7 +449,7 @@
                     '&starting_postal=' + zipCode +
                     '&distance_units=mi' +
                     '&search_distance=200' +
-                    '&event_type=' + eventType +
+                    (isCrossEvent === true ? '&event_type=' + eventType : '&fr_id=' + evID) +
                     '&response_format=json&list_page_size=499&list_page_offset=0&list_sort_column=event_date&list_ascending=true',
                 callback: {
                     success: function (response) {
@@ -526,14 +526,14 @@
         // END getEventsByDistance
 
         // Get events by state
-        cd.getEventsByState = function (eventState) {
+        cd.getEventsByState = function (eventState, isCrossEvent) {
             $('.js--no-event-results').addClass('d-none');
             $('.js--loading').show();
 
           luminateExtend.api({
             data: 'method=getTeamraisersByInfo' +
                 '&state=' + eventState +
-                '&event_type=' + eventType +
+                (isCrossEvent === true ? '&event_type=' + eventType : '&fr_id=' + evID) +
                 '&search_distance=200' +
                 '&response_format=json&list_page_size=499&list_page_offset=0&list_sort_column=event_date&list_ascending=true',
             callback: {
@@ -2111,9 +2111,18 @@
                 e.preventDefault();
                 clearSearchResults();
                 var zipSearched = encodeURIComponent($('#zipCodeSearch').val());
-                cd.getEventsByDistance(zipSearched);
+                cd.getEventsByDistance(zipSearched, isCrossEventSearch === "true" ? true : false);
 
             });
+
+            $('.js--state-search-form').on('submit', function (e) {
+                e.preventDefault();
+                clearSearchResults();
+                var stateSearched = encodeURIComponent($('#eventStateSearch').val());
+                cd.getEventsByDistance(eventStateSearched, isCrossEventSearch === "true" ? true : false);
+            });
+
+
 
             // Search page by Participant
             $('.js--participant-search-form').on('submit', function (e) {
