@@ -416,8 +416,8 @@
             window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=FieldDay_Search&search_type=event&cross_event=' + (evID ? 'false' : 'true') + (evID ? '&fr_id=' + evID : '') + '&state=' + stateSearch;
         });
 
-        $('#stateSearch').on('change', function (e) {
-            e.preventDefault();
+
+        $('#stateSearch').on('change', function () {
             var stateSearch = encodeURIComponent($('#stateSearch').val());
             window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=FieldDay_Search&search_type=event&cross_event=' + (evID ? 'false' : 'true') + (evID ? '&fr_id=' + evID : '') + '&state=' + stateSearch;
         });
@@ -2122,9 +2122,7 @@
                 cd.getEventsByDistance(zipSearched, isCrossEventSearch === "true" ? true : false);
 
             });
-
-            $('#eventStateSearch').on('change', function (e) {
-                e.preventDefault();
+            $('#eventStateSearch').on('change', function () {
                 clearSearchResults();
                 var stateSearched = encodeURIComponent($('#eventStateSearch').val());
                 cd.getEventsByState(eventStateSearched, isCrossEventSearch === "true" ? true : false);
@@ -2198,12 +2196,14 @@
 
                 cd.autoSearchZip = function () {
                     var searchZip = getURLParameter(currentUrl, 'zip') ? getURLParameter(currentUrl, 'zip') : '';
-                    cd.getEventsByDistance(searchZip);
+                    $('#zipCodeSearch').val(searchZip);
+                    cd.getEventsByDistance(searchZip, (isCrossEventSearch === "true" ? true : false));
                 }
 
                 cd.autoSearchState = function () {
                     var searchState = getURLParameter(currentUrl, 'state') ? getURLParameter(currentUrl, 'state') : '';
-                    cd.getEventsByState(searchState);
+                      $('#eventStateSearch').val(searchState);
+                    cd.getEventsByState(searchState, (isCrossEventSearch === "true" ? true : false));
                 }
 
                 if (searchType === 'event') {
