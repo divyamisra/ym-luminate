@@ -1656,7 +1656,7 @@
                                     var participantRaised = (parseInt(participant.amountRaised) * 0.01).toFixed(2);
                                     var participantRaisedFormmatted = participantRaised.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,").replace('.00', '');
 
-                                    $('#team-roster tbody').append('<tr class="' + (i > 4 ? 'd-none' : '') + '"><td class="donor-name">' + (participant.aTeamCaptain === "true" ? ' <span class="coach"><i class="fal fa-clock" aria-hidden="true"></i> </span>' : '') + '<a href="' + participant.personalPageUrl + '">' +
+                                    $('#team-roster tbody').append('<tr class="' + (i > 4 ? 'd-none' : '') + '"><td class="donor-name">' + (participant.aTeamCaptain === "true" ? ' <span class="coach"><i class="fal fa-megaphone" aria-hidden="true"></i> </span>' : '') + '<a href="' + participant.personalPageUrl + '">' +
                                         participant.name.first + ' ' + participant.name.last +
                                         '</a></td><td class="raised" data-sort="' + participantRaisedFormmatted + '"><span><strong>$' + participantRaisedFormmatted + '</strong></span></td><td><a href="' + participant.donationUrl + '">' + (screenWidth <= 480 ? 'Donate' : 'Donate to ' + participant.name.first) + '</a></td></tr>');
                                     if (participant.aTeamCaptain === 'true') {
