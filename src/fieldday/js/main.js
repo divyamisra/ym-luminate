@@ -1231,13 +1231,14 @@
         cd.reorderPageForMobile = function () {
             // Reorganize page for mobile views
             if (screenWidth <= 767) {
-                $('.js--information-box').prependTo('.sidebar-content');
+
                 $('.tr-page-info').insertAfter('.sidebar-hero');
                 $('.fundraising-amounts').prepend($('.fundraising-amounts .col-12'));
 
                 if ($('body').is('.pg_team')) {
                     $('.team-roster').insertBefore($('.donor-roll'));
-
+                    $('.js--information-box').prependTo('.js--sidebar');
+                    $('.information-box__content').removeClass('box-shadow');
                     $('.team-roster li .raised span').each(function (i, span) {
                         if ($(this).parent().prev('.donor-name').find('span.coach').length !== 0) {
                             $(this).insertAfter($(this).parent().prev('.donor-name').children('.coach'));
@@ -1258,7 +1259,8 @@
                 }
 
                 if ($('body').is('.pg_personal')) {
-                  $('.js--information-box').prependTo('.sidebar-content');
+                  $('.js--information-box').prependTo('.js--sidebar');
+                  $('.information-box__content').removeClass('box-shadow');
 
                 }
             }
