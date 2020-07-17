@@ -17,16 +17,15 @@
      font-weight: normal;
      white-space: nowrap;
 }
-
-main {
-    background-image: url("/images/content/pagebuilder/fd_hero_desktop.jpg");
-    background-size: 100%;
+body {
+    background-color: #900;
+    background-image: url(../images/content/pagebuilder/background-squiggles.png);
     background-repeat: no-repeat;
-    background-color: $gray-400;
-    padding: 48px 76px 67px;
+    background-position: right top;
+    background-size: 70%;
 }
 
- a#skip-main:hover, a#skip-main:active, a#skip-main:focus {
+a#skip-main:hover, a#skip-main:active, a#skip-main:focus {
      left: 0;
      width: auto;
      height: auto;
