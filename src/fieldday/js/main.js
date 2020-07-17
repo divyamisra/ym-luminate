@@ -1259,7 +1259,7 @@
                 }
 
                 if ($('body').is('.pg_personal')) {
-                  $('.js--information-box').prependTo('.js--sidebar');
+                  $('.js--information-box').prependTo('.js--sidebar-content');
                   $('.information-box__content').removeClass('box-shadow');
 
                 }
