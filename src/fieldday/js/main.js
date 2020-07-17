@@ -412,8 +412,14 @@
         //
         $('.js--header-state-search').on('submit', function (e) {
             e.preventDefault();
-            var zipSearched = encodeURIComponent($('#stateSearch').val());
-            window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=FieldDay_Search&search_type=event&cross_event=' + (evID ? 'false' : 'true') + (evID ? '&fr_id=' + evID : '') + '&zip=' + zipSearched;
+            var stateSearch = encodeURIComponent($('#stateSearch').val());
+            window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=FieldDay_Search&search_type=event&cross_event=' + (evID ? 'false' : 'true') + (evID ? '&fr_id=' + evID : '') + '&state=' + stateSearch;
+        });
+
+        $('#stateSearch').on('change', function (e) {
+            e.preventDefault();
+            var stateSearch = encodeURIComponent($('#stateSearch').val());
+            window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=FieldDay_Search&search_type=event&cross_event=' + (evID ? 'false' : 'true') + (evID ? '&fr_id=' + evID : '') + '&state=' + stateSearch;
         });
 
         // Search page by Participant
@@ -2115,6 +2121,13 @@
 
             });
 
+            $('#eventStateSearch').on('change', function (e) {
+                e.preventDefault();
+                clearSearchResults();
+                var stateSearched = encodeURIComponent($('#eventStateSearch').val());
+                cd.getEventsByDistance(eventStateSearched, isCrossEventSearch === "true" ? true : false);
+            });
+
             $('.js--state-search-form').on('submit', function (e) {
                 e.preventDefault();
                 clearSearchResults();
@@ -2183,9 +2196,12 @@
 
                 cd.autoSearchZip = function () {
                     var searchZip = getURLParameter(currentUrl, 'zip') ? getURLParameter(currentUrl, 'zip') : '';
-                    $('#zipCodeSearch').val(searchZip);
-
                     cd.getEventsByDistance(searchZip);
+                }
+
+                cd.autoSearchState = function () {
+                    var searchState = getURLParameter(currentUrl, 'state') ? getURLParameter(currentUrl, 'state') : '';
+                    cd.getEventsByState(searchState);
                 }
 
                 if (searchType === 'event') {
