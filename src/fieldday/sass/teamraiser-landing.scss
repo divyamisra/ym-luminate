@@ -47,6 +47,9 @@
         color: #fff;
   }
   }
+  strong {
+    color: $red;
+  }
   @include media-breakpoint-up(lg) {
     position: absolute;
     bottom: 0;
@@ -168,7 +171,7 @@
       font-weight: 600;
       content: "\f0d7";
       color: #fff;
-      background-color: #c10e21;
+      background-color: $red;
       right: 0;
       top: 0;
       height: 55px;
@@ -181,11 +184,15 @@
       font-size: 1.5em;
       width: 16.667%;
       display: block;
+      cursor: pointer;
+      &:hover {
+        background-color: $red-deep;
+      }
   }
 
   .event-zip-search-submit {
       height: 55px;
-      background: #c11d20;
+      background: $red;
       color: white;
       border-top-right-radius: 0.25rem;
       border-bottom-right-radius: 0.25rem;
@@ -195,6 +202,13 @@
       padding-left: 16px;
       border: none;
       font-size: 1.25em;
+      &:hover {
+        background-color: $red-deep;
+      }
+  }
+
+  .form-control {
+    background-color: #F8F9FA
   }
 }
 
@@ -204,7 +218,7 @@
   }
   h3 {
     font-size: 1em;
-    font-weight: 600;
+    font-weight: 500;
     display: block;
   }
 }
@@ -230,6 +244,9 @@
 .landing-participant-search {
   background-color: $team-roster-bg-gray;
   border-top: 3px solid $red;
+  h2 {
+    color: $red;
+  }
   input {
     background-color: #fff!important;
   }
@@ -274,6 +291,13 @@
   }
 }
 
+.landing-participant-search__results, .event-results__company {
+  .btn-primary {
+    width: 200px;
+    line-height: 55px;
+  }
+}
+
 .landing-video {
   padding-top: 32px;
   padding-bottom: 32px;
@@ -302,6 +326,7 @@
   background-image: url('https://secure3.convio.net/heartdev/images/content/pagebuilder/aha-fieldday-landing-banner_2x.jpg');
   background-size: cover;
   background-position: top center;
+  background-attachment: fixed;
   margin-top: 32px;
   margin-bottom: 32px;
   height: 200px;
@@ -320,19 +345,14 @@
 
 
 .global-sponsors {
-  .container {
-    border-top: 1px solid #E3E3E3;
-    @include media-breakpoint-up(lg) {
-      border: none;
-    }
     h2 {
       font-size: 1.333em;
     }
     img {
       max-width: 160px;
+      height: auto;
     }
   }
-}
 
 .global-promo {
   margin-bottom: 20px;
@@ -346,6 +366,7 @@
     background-repeat: none;
     background-size: cover;
     background-position: cover;
+    padding: 0 15px;
   }
   .btn {
     font-size: 0.875em;

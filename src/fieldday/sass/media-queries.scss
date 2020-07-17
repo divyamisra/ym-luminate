@@ -105,12 +105,6 @@
   }
 }
 
-@media all and (max-width: 1315px) {
-  .information-box {
-    width: 95%;
-  }
-}
-
 @media all and (max-width: 1300px) {
   .top-list-footer .input-group input[type="text"] {
     &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
@@ -185,7 +179,7 @@
 @media all and (max-width: 1035px) {
   .pg_team {
     .information-box {
-      width: 98%;
+      width: 100%;
       margin-left: 0;
       margin-right: 0;
     }

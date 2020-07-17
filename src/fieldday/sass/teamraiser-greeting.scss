@@ -1,5 +1,6 @@
 .pg_entry {
   main {
+    margin-bottom: 60px;
     & > .container {
   	padding: 0 !important;
 	  background: none;
@@ -107,7 +108,7 @@
       }
 
       .fundraising-amounts {
-        margin-top: 70px;
+        margin-top: 90px;
         margin-bottom: 0px;
         padding: 0 72px 67px;
 
@@ -152,6 +153,7 @@
     background-image: url('https://secure3.convio.net/heartdev/images/content/pagebuilder/aha-fieldday-greeting-banner_2x.jpg');
     background-size: cover;
     background-position: center;
+    background-attachment: fixed;
   }
 
   .top-lists {

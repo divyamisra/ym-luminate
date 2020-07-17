@@ -4,16 +4,23 @@
   margin: 4px 0 0;
 }
 .thermometer-inner {
-  background-color: $red-deep;
+  background-color: $red;
   height: 5px;
   width: 0;
   margin: -1px 0 -1px -1px;
   max-width:100%;
   position: relative;
-  svg {
+  svg, img {
+    width: 35px;
+    height: auto;
     position: absolute;
-    right: -15px;
-    top: -45px;
+    right: -20px;
+    top: -50px;
+    @include media-breakpoint-up(md) {
+     width: 55px;
+     right: -30px;
+     top: -75px;
+    }
   }
 }
 

@@ -23,6 +23,8 @@
                 $('#navbar-container').slideToggle('fast');
             }
             $('.navbar-toggler-icon').toggleClass('fa-align-justify').toggleClass('fa-times');
+            $('.pg_company .tr-page-container, .pg_personal .tr-page-container, .pg_team .tr-page-container').toggleClass('static');
+            $('.pg_company header, .pg_personal header, .pg_team header').toggleClass('mobile-open');
         });
 
         // Mobile search toggle
@@ -94,8 +96,12 @@
         var currentUrl = window.location.href;
         var searchType = getURLParameter(currentUrl, 'search_type');
         var isCrossEventSearch = getURLParameter(currentUrl, 'cross_event');
+        var teamId = getURLParameter(currentUrl, 'team_id');
+        var companyIdParam = getURLParameter(currentUrl, 'company_id');
 
         var skipLink = document.getElementById('skip-main');
+
+        var companyCSV = 'https://dev2.heart.org/fieldday_company_data/supplemental_company_data.csv';
 
         skipLink.addEventListener('click', function (e) {
             e.preventDefault();
@@ -149,7 +155,7 @@
                     success: function (response) {
                         if (response.getParticipantsResponse.totalNumberResults === '0') {
                             // no search results
-                            $('#error-participant').removeAttr('hidden').text('Participant not found. Please try different search terms.');
+                            $('#error-participant').removeAttr('hidden').text('Teammate not found. Please try different search terms.');
                         } else {
                             var participants = luminateExtend.utils.ensureArray(response.getParticipantsResponse.participant);
                             var totalParticipants = parseInt(response.getParticipantsResponse.totalNumberResults);
@@ -172,7 +178,7 @@
                                         participant.eventName + '</a></td><td class="col-cta"><a href="' + participant.donationUrl + '" aria-label="Donate to ' + participant.name.first + ' ' + participant.name.last + '" class="btn btn-primary btn-block btn-rounded">Donate</a></td></tr>');
                                 } else {
                                     $('#participantResultsTable thead').remove();
-                                    $('.js--participants-results-rows').addClass('mobile').append('<tr><td><table><tr' + (i > 10 ? ' class="d-none"' : '') + '><td>Walker</td><td><a href="' + participant.personalPageUrl + '">' +
+                                    $('.js--participants-results-rows').addClass('mobile').append('<tr><td><table><tr' + (i > 10 ? ' class="d-none"' : '') + '><td>Teammate</td><td><a href="' + participant.personalPageUrl + '">' +
                                         participant.name.first + ' ' + participant.name.last + '</a></td></tr>' +
                                         ((participant.teamName !== null && participant.teamName !== undefined) ? '<tr><td>Team</td><td><a href="' + participant.teamPageUrl + '">' + participant.teamName + '</a>' : '') +
                                         '</td></tr><tr><td>Event Name</td><td><a href="TR/?fr_id=' + participant.eventId + '&pg=entry">' + participant.eventName + '</a></td></tr><tr><td colspan="2" class="text-center"><a href="' + participant.donationUrl + '" class="btn btn-primary btn-block btn-rounded" title="Donate to ' + participant.name.first + ' ' + participant.name.last + '" aria-label="Donate to ' + participant.name.first + ' ' + participant.name.last + '">Donate</a></td></tr></table></td></tr>');
@@ -214,16 +220,13 @@
             });
         };
 
-        cd.getTeams = function (teamName, isCrossEvent, firstName, lastName, companyId) {
+        cd.getTeams = function (teamName, isCrossEvent) {
             $('.js__team-results-rows').html('');
             luminateExtend.api({
                 api: 'teamraiser',
                 data: 'method=getTeamsByInfo' +
                     '&team_name=' + teamName +
                     (isCrossEvent === true ? '&event_type=' + eventType : '&fr_id=' + evID) +
-                    (firstName ? '&first_name=' + firstName : '') +
-                    (lastName ? '&last_name=' + lastName : '') +
-                    (companyId ? '&team_company_id=' + companyId : '') +
                     '&list_page_size=499' +
                     '&list_page_offset=0' +
                     '&response_format=json' +
@@ -304,6 +307,7 @@
         };
 
         cd.getCompanies = function (companyName, isCrossEvent) {
+            cd.getCompanyData();
             luminateExtend.api({
                 api: 'teamraiser',
                 data: 'method=getCompaniesByInfo' +
@@ -317,25 +321,87 @@
                     '&list_ascending=true',
                 callback: {
                     success: function (response) {
+
+                      if ($.fn.DataTable) {
+                          if ($.fn.DataTable.isDataTable('#companyResultsTable')) {
+                              $('#companyResultsTable').DataTable().destroy();
+                          }
+                      }
+                      $('#companyResultsTable tbody').empty();
                         if (response.getCompaniesResponse.totalNumberResults === '0') {
                             // no search results
                             $('#error-company').removeAttr('hidden').text('Company not found. Please try different search terms.');
                         } else {
                             var companies = luminateExtend.utils.ensureArray(response.getCompaniesResponse.company);
                             var totalCompanies = parseInt(response.getCompaniesResponse.totalNumberResults);
-                            $('.js--num-companies').text(totalCompanies);
+                            $('.js--num-company-results').text((totalCompanies === 1 ? '1 Result' : totalCompanies + ' Results'));
 
                             $(companies).each(function (i, company) {
-                                $('.js--company-results-rows').append('<tr' + (i > 10 ? ' class="d-none"' : '') + '><td><a href="' + company.companyURL + '">' +
-                                    company.companyName + '</a></td><td class="col-cta"><a href="' + company.companyURL + '">{Team Name}</a></td><td class="col-cta"><a href="' + company.companyURL + '">{Company Lead}</a></td></tr>');
+
+                              var companyId = company.companyId;
+                              var companyLocation;
+                              var companyLead;
+
+                              companyLocation = $('#company-id-'+ companyId + ' .js--company-data-location').html();
+                              companyLead = $('#company-id-'+ companyId + ' .js--company-data-coordinator').html();
+
+                              if (screenWidth >= 768) {
+                              $('.js--company-results-rows').append('<tr' + (i > 10 ? ' class="d-none"' : '') + '><td><a href="' + company.companyURL + '">' +
+                                  company.companyName + '</a></td><td class="col-cta">' + (companyLead !== undefined ? companyLead : '') + '</td><td class="col-cta">' + (companyLocation !== undefined ? companyLocation : '') + '</td><td class="col-cta"><a href="' + company.companyURL + '">' + 'Details</a></td></tr>');
+                              } else {
+                                  $('#companyResultsTable thead').remove();
+                                  $('.js--team-results-rows')
+                                      .addClass('mobile')
+                                      .append('<tr><td><table><tr' + (i > 10 ? ' class="d-none"' : '') + '><td>Company</td><td><a href="' + company.companyURL + '">' +
+                                          company.companyName + '</a></td></tr><tr><td>Company Lead</td><td>' + (companyLead !== undefined ? companyLead : '') + '</td></tr>' +
+                                          ((team.companyName !== null && team.companyName !== undefined) ? '<tr><td>Company</td><td><a href="TR?company_id=' + team.companyId + '&fr_id=' + team.EventId + '&pg=company">' + team.companyName + '</a>' : '') +
+                                          '</td></tr><tr><td>Event Location</td><td class="col-cta">' + (companyLocation !== undefined ? companyLocation : '') + '</td></tr><tr><td colspan="2" class="text-center"><td class="col-cta"><a href="<a href="' + company.companyURL + '">' + 'Details</a></td></td></tr></table></td></tr>');
+                              }
                             });
 
                             $('.js--company-results-container').removeAttr('hidden');
                             $('.js--company-results-container').removeAttr('hidden');
+
+                            if (screenWidth >= 768) {
+                                $('#companyResultsTable').DataTable({
+                                    "paging": false,
+                                    "searching": false,
+                                    "info": false,
+                                    "autoWidth": false
+                                });
+                            }
+
+                            $('.dataTables_length').addClass('bs-select');
                         }
                     },
                     error: function (response) {
                         $('.js--company-results-container').removeAttr('hidden').text(response.errorResponse.message);
+                    }
+                }
+            });
+        };
+
+        cd.getTeamCaptains = function () {
+            luminateExtend.api({
+                api: 'teamraiser',
+                data: 'method=getTeamCaptains' +
+                    '&fr_id=' + evID +
+                    '&team_id=' + teamId +
+                    '&response_format=json',
+                callback: {
+                    success: function (response) {
+                            var captains = luminateExtend.utils.ensureArray(response.getTeamCaptainsResponse.captain);
+
+                            $(captains).each(function (i, captain) {
+                              var captainName = captain.name.first + ' ' + captain.name.last;
+                              var captainPage = captain.personalPageUrl;
+
+                              $('<p><a href="'+ captainPage +'">' + captainName +'</p>').appendTo('.js--team-captain');
+                            });
+
+                    },
+                    error: function (response) {
+                        console.log(response.errorResponse.message);
                     }
                 }
             });
@@ -346,21 +412,27 @@
         $('.js--header-company-search').on('submit', function (e) {
             e.preventDefault();
             var companySearched = encodeURIComponent($('#companySearch').val());
-            window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=FieldDay_Search&search_type=event&cross_event=' + (evID ? 'false' : 'true') + (evID ? '&fr_id=' + evID : '') + '&company=' + companySearched;
+            window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=FieldDay_Search&search_type=company&cross_event=' + (evID ? 'false' : 'true') + (evID ? '&fr_id=' + evID : '') + '&company=' + companySearched;
         });
 
         // Search by Event
         $('.js--header-zip-search').on('submit', function (e) {
             e.preventDefault();
             var zipSearched = encodeURIComponent($('#zipSearch').val());
-            window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=FieldDay_Search&search_type=event&cross_event=' + (evID ? 'false' : 'true') + (evID ? '&fr_id=' + evID : '') + '&zip=' + zipSearched;
+            window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=FieldDay_Search&search_type=zip&cross_event=' + (evID ? 'false' : 'true') + (evID ? '&fr_id=' + evID : '') + '&zip=' + zipSearched;
         });
 
         //
         $('.js--header-state-search').on('submit', function (e) {
             e.preventDefault();
-            var zipSearched = encodeURIComponent($('#zipSearch').val());
-            window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=FieldDay_Search&search_type=event&cross_event=' + (evID ? 'false' : 'true') + (evID ? '&fr_id=' + evID : '') + '&zip=' + zipSearched;
+            var stateSearch = encodeURIComponent($('#stateSearch').val());
+            window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=FieldDay_Search&search_type=state&cross_event=' + (evID ? 'false' : 'true') + (evID ? '&fr_id=' + evID : '') + '&state=' + stateSearch;
+        });
+
+
+        $('#stateSearch').on('change', function () {
+            var stateSearch = encodeURIComponent($('#stateSearch').val());
+            window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=FieldDay_Search&search_type=state&cross_event=' + (evID ? 'false' : 'true') + (evID ? '&fr_id=' + evID : '') + '&state=' + stateSearch;
         });
 
         // Search page by Participant
@@ -368,7 +440,7 @@
             e.preventDefault();
             var firstName = encodeURIComponent($('#participantSearchFirst').val());
             var lastName = encodeURIComponent($('#participantSearchLast').val());
-            window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=FieldDay_Search&search_type=participant&cross_event=false&fr_id=' + evID + (firstName ? '&first_name=' + firstName : '') +
+            window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=FieldDay_Search&search_type=participant&cross_event=' + (evID ? 'false' : 'true') + (evID ? '&fr_id=' + evID : '') + '&fr_id=' + evID + (firstName ? '&first_name=' + firstName : '') +
                 (lastName ? '&last_name=' + lastName : '');
         });
 
@@ -376,7 +448,7 @@
         $('.js--header-team-search').on('submit', function (e) {
             e.preventDefault();
             var teamName = encodeURIComponent($('#teamSearch').val());
-            cd.getTeams(teamName, null, (isCrossEventSearch === "true" ? true : false));
+            cd.getTeams(teamName, (isCrossEventSearch === "true" ? true : false));
             window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=FieldDay_Search&search_type=team&cross_event=' + (evID ? 'false' : 'true') + (evID ? '&fr_id=' + evID : '') + '&team_name=' + teamName;
         });
 
@@ -386,8 +458,9 @@
         /******************************/
 
         // Get events by zip
-
-        cd.getEventsByDistance = function (zipCode) {
+        cd.getEventsByDistance = function (zipCode, isCrossEvent) {
+            $('#eventStateResultsTable').addClass('d-none');
+            $('#eventResultsTable').removeClass('d-none');
             $('.js--no-event-results').addClass('d-none');
             $('.js--loading').show();
 
@@ -424,7 +497,7 @@
 
                                 if (screenWidth >= 768) {
                                     var eventRow = '<tr' + (i > 10 ? ' class="d-none"' : '') + '><td><a href="' +
-                                        event.greeting_url + '">' + event.name + '</a></td><td data-order="' + event.event_date + '">' + eventDate + '</td><td data-order="' + parseFloat(event.distance) + '">' + event.distance + 'mi</td><td><a href="' + event.greeting_url + '" aria-label="More details about ' + event.name + '" class="btn btn-secondary btn-block btn-rounded">Details</a></td><td class="col-cta">' + (acceptsRegistration === 'true' ? '<a href="SPageServer/?pagename=fieldday_register&fr_id=' + event.id + '" aria-label="Register for ' + event.name + '" class="btn btn-primary btn-block btn-rounded">Register</a>' : 'Registration Closed') + '</td></tr>';
+                                        event.greeting_url + '">' + event.name + '</a></td><td data-order="' + event.event_date + '">' + event.city + ', ' +  event.state + '</td><td data-order="' + parseFloat(event.distance) + '">' + event.distance + 'mi</td><td><a href="' + event.greeting_url + '" aria-label="More details about ' + event.name + '" class="btn btn-secondary btn-block btn-rounded">Details</a></td><td class="col-cta">' + (acceptsRegistration === 'true' ? '<a href="SPageServer/?pagename=fieldday_register&fr_id=' + event.id + '" aria-label="Register for ' + event.name + '" class="btn btn-primary btn-block btn-rounded">Register</a>' : 'Registration Closed') + '</td></tr>';
                                 } else {
                                     $('#eventResultsTable thead').remove();
                                     $('.js--event-results-rows').addClass('mobile')
@@ -462,7 +535,7 @@
                             $('.js--event-results-container').removeAttr('hidden');
                         } else {
                             $('.js--loading').hide();
-                            $('.js--no-event-results').removeClass('d-none');
+                            $('#error-event').removeClass('d-none');
                         }
                     },
                     error: function (response) {
@@ -472,6 +545,92 @@
             });
         };
         // END getEventsByDistance
+
+        // Get events by state
+        cd.getEventsByState = function (eventState, isCrossEvent) {
+          $('#eventResultsTable').addClass('d-none');
+          $('#eventStateResultsTable').removeClass('d-none');
+            $('.js--no-event-results').addClass('d-none');
+            $('.js--loading').show();
+
+            luminateExtend.api({
+            api: 'teamraiser',
+            data: 'method=getTeamraisersByInfo' +
+                '&state=' + eventState +
+                '&event_type=' + eventType +
+                '&search_distance=200' +
+                '&response_format=json&list_page_size=499&list_page_offset=0&list_sort_column=event_date&list_ascending=true',
+            callback: {
+                    success: function (response) {
+                        if (response.getTeamraisersResponse.totalNumberResults > '0') {
+                            $('.js--loading').hide();
+                            var events = luminateExtend.utils.ensureArray(response.getTeamraisersResponse.teamraiser);
+                            var totalEvents = parseInt(response.getTeamraisersResponse.totalNumberResults);
+
+                            if ($.fn.DataTable) {
+                                if ($.fn.DataTable.isDataTable('#eventResultsTable')) {
+                                    $('#eventStateResultsTable').DataTable().destroy();
+                                }
+                            }
+                            $('#eventStateResultsTable tbody').empty();
+
+                            $('.js--num-event-results').text((totalEvents === 1 ? '1 Result' : totalEvents + ' Results'));
+
+                            $(events).each(function (i, event) {
+
+                                var eventStatus = event.status;
+                                var acceptsRegistration = event.accepting_registrations;
+
+                                if (screenWidth >= 768) {
+                                    var eventRow = '<tr' + (i > 10 ? ' class="d-none"' : '') + '><td><a href="' +
+                                        event.greeting_url + '">' + event.name + '</a></td><td data-order="' + event.event_date + '">' + event.city + ', ' +  event.state + '</td><td><a href="' + event.greeting_url + '" aria-label="More details about ' + event.name + '" class="btn btn-secondary btn-block btn-rounded">Details</a></td><td class="col-cta">' + (acceptsRegistration === 'true' ? '<a href="SPageServer/?pagename=fieldday_register&fr_id=' + event.id + '" aria-label="Register for ' + event.name + '" class="btn btn-primary btn-block btn-rounded">Register</a>' : 'Registration Closed') + '</td></tr>';
+                                } else {
+                                    $('#eventStateResultsTable thead').remove();
+                                    $('.js--event-state-results-rows').addClass('mobile')
+
+                                    var eventRow = '<tr><td><table><tr' + (i > 10 ? ' class="d-none"' : '') + '><td>Event Name</td><td><a href="' +
+                                        event.greeting_url + '">' + event.name + '</a></td></tr>' +
+                                        '</td></tr><tr><td>Date</td><td>' + eventDate + '</td></tr><tr><td colspan="2" class="text-center">' + (acceptsRegistration === 'true' ? '<a href="SPageServer/?pagename=fieldday_register&fr_id=' + event.id + '" class="btn btn-primary btn-block btn-rounded" title="Register for ' + event.name + '" aria-label="Register for ' + event.name + '">Register</a>' : 'Registration Closed') + '</td></tr></table></td></tr>';
+                                }
+
+
+                                if (eventStatus === '1' || eventStatus === '2' || eventStatus === '3') {
+                                    $('.js--event-state-results-rows').append(eventRow);
+                                }
+                            });
+
+                            if (totalEvents > 10) {
+                                $('.js--more-event-results').removeAttr('hidden');
+                            }
+
+                            $('.js--more-event-results').on('click', function (e) {
+                                e.preventDefault();
+                                $('.js--event-results-rows tr').removeClass('d-none');
+                                $(this).attr('hidden', true);
+                                $('.js--end-event-list').removeAttr('hidden');
+                            });
+                            if (screenWidth >= 768) {
+                                $('#eventStateResultsTable').DataTable({
+                                    "paging": false,
+                                    "searching": false,
+                                    "info": false
+                                });
+                            }
+                            $('.dataTables_length').addClass('bs-select');
+
+                            $('.js--event-results-container').removeAttr('hidden');
+                        } else {
+                            $('.js--loading').hide();
+                            $('#error-event').removeClass('d-none');
+                        }
+                    },
+                    error: function (response) {
+                        $('.js--loading').hide();
+                    }
+                }
+            });
+        };
+        // END getEventsByState
 
         // Get events by name or state
         cd.getEvents = function (eventName, eventState) {
@@ -558,7 +717,7 @@
                                 var acceptsRegistration = event.accepting_registrations;
 
                                 var eventRow = '<div class="event-results__company row' + (i > 10 ? ' class="d-none"' : '') + '"><div class="col-12 col-md-6 d-flex align-items-center justify-content-center"><h3>' + event.name + '</h3></div><div class="col-12 col-md-6 d-flex align-items-center justify-content-center"><a href="' +
-                                        event.greeting_url + ' class="button">Find a Company</a></div></div>';
+                                        event.greeting_url + '" class="btn btn-primary">Find a Company</a></div></div>';
 
 
                                 if (eventStatus === '1' || eventStatus === '2' || eventStatus === '3') {
@@ -617,8 +776,8 @@
                                 var eventStatus = event.status;
                                 var acceptsRegistration = event.accepting_registrations;
 
-                                var eventRow = '<div class="event-results__company row' + (i > 10 ? ' class="d-none"' : '') + '"><div class="col-12 col-md-6 d-flex align-items-center justify-content-center"><h3>' + event.name + '</h3></div><div class="col-12 col-md-6 d-flex align-items-center justify-content-center"><a href="' +
-                                        event.greeting_url + ' class="button">Find a Company</a></div></div>';
+                                var eventRow = '<div class="event-results__company row' + (i > 10 ? ' class="d-none"' : '') + '"><div class="col-12 col-md-6 d-flex align-items-center justify-content-center"><h3>' + event.name + '</h3></div><div class="col-12 col-md-6 d-flex align-items-center justify-content-center"><a class="btn btn-primary" href="' +
+                                        event.greeting_url + '" class="btn btn-primary">Find a Company</a></div></div>';
 
 
                                 if (eventStatus === '1' || eventStatus === '2' || eventStatus === '3') {
@@ -654,13 +813,14 @@
 
         // getCompaniesLandingPage
         cd.getCompaniesLanding = function (companyName) {
+            cd.getCompanyData();
             $('.js--no-participant-results, .js--participant-no-event-results').addClass('d-none');
             $('.js--participant-loading').show();
 
             luminateExtend.api({
                 api: 'teamraiser',
                 data: 'method=getCompaniesByInfo' +
-                    '&state=' + companyName +
+                    '&company_name=' + companyName +
                     '&event_type=' + eventType +
                     '&response_format=json&list_page_size=499&list_page_offset=0',
                 callback: {
@@ -672,19 +832,32 @@
 
                             $(companies).each(function (i, company) {
 
-                                var eventRow = '<div class="row py-3"><div class="landing-participant-search__name col-12 col-lg-6"><p><a href="'+ company.companyURL +'">'+ company.companyName +'</a><br>[Company location]</p></div><div class="landing-participant-search__register col-12 col-lg-6"><p><a href="'+ company.companyURL +'" class="button">Register</a></p></div>';
+                                var companyId = company.companyId;
+
+                                var companyLocation;
+
+                                companyLocation = $('#company-id-'+ companyId + ' .js--company-data-location').html();
+
+
+                                var eventRow = '<div class="row py-3' + (i > 10 ? 'd-none' : '') + '"><div class="landing-participant-search__name col-12 col-lg-6"><p><a href="'+ company.companyURL +'">'+ company.companyName +'</a><br>';
+
+                                if (companyLocation !== undefined ) {
+                                  eventRow += '<span class="js--company-location">'+ companyLocation +'</span>'
+                                }
+
+                                eventRow +='</p></div><div class="landing-participant-search__register col-12 col-lg-6"><p><a href="'+ company.companyURL +'" class="btn btn-primary">Register</a></p></div>';
 
                                 $('.js--participant-search-results').append(eventRow);
 
                             });
 
                             if (totalEvents > 10) {
-                                $('.js--participant-more-event-results').removeAttr('hidden');
+                                $('.js--participant-more-event-results').removeClass('hidden');
                             }
 
                             $('.js--participant-more-event-results').on('click', function (e) {
                                 e.preventDefault();
-                                $('.js--participant-search-results row').removeClass('d-none');
+                                $('.js--participant-search-results .row').removeClass('d-none');
                                 $(this).attr('hidden', true);
                                 $('.js--participant-end-event-list').removeAttr('hidden');
                             });
@@ -725,20 +898,20 @@
 
                             $(participants).each(function (i, participant) {
 
-                                var eventRow = '<div class="row py-3"><div class="landing-participant-search__name col-12 col-lg-6"><p><a href="'+ participant.personalPageUrl + '">' + participant.name.first + ' ' + participant.name.last +'</a><br>' +
-                              (participant.teamName ? participant.teamName : "")  + '</p></div><div class="landing-participant-search__register col-12 col-lg-6"><p><a href="'+ participant.donationUrl +'" class="button">Donate</a></p></div>';
+                                var eventRow = '<div class="row py-3 ' + (i > 10 ? ' d-none' : '') + '"><div class="landing-participant-search__name col-12 col-lg-6"><p><a href="'+ participant.personalPageUrl + '">' + participant.name.first + ' ' + participant.name.last +'</a><br>' +
+                              (participant.teamName ? participant.teamName : "")  + '</p></div><div class="landing-participant-search__register col-12 col-lg-6"><p><a href="'+ participant.donationUrl +'" class="btn btn-primary">Donate</a></p></div>';
 
                                 $('.js--participant-search-results').append(eventRow);
 
                             });
 
                             if (totalEvents > 10) {
-                                $('.js--participant-more-event-results').removeAttr('hidden');
+                                $('.js--participant-more-event-results').removeClass('hidden');
                             }
 
-                            $('.js--participant-more-event-results').on('click', function (e) {
+                            $('.js--participant-more-event-result').on('click', function (e) {
                                 e.preventDefault();
-                                $('.js--participant-search-results row').removeClass('d-none');
+                                $('.js--participant-search-results .row').removeClass('d-none');
                                 $(this).attr('hidden', true);
                                 $('.js--participant-end-event-list').removeAttr('hidden');
                             });
@@ -972,6 +1145,95 @@
             });
         };
 
+        //CUSTOM COMPANY DATA FUNCTIONS
+
+
+        cd.getCompanyByID = function(arr, value) {
+     	  for (var i=0, iLen=arr.length; i<iLen; i++) {
+     	    if (arr[i].companyid == value) return arr[i];
+     		 }
+     		}
+
+       cd.getCompanyData = function() {
+   			Papa.parse(companyCSV, {
+   				header: true,
+   				download: true,
+   				dynamicTyping: true,
+   				complete: function(results) {
+   					var companies = results.data;
+   					$('<div class="js--company-data hidden"></div>').insertAfter('main');
+   			 	  for (var i=0, iLen=companies.length; i<iLen; i++) {
+   							var dataOutput = '<div id="company-id-' + companies[i].companyid + '">';
+   							dataOutput += '<div class="js--company-data-location">'+ companies[i].eventcity + ', ' + companies[i].eventstate + '</div>';
+   							dataOutput += '<div class="js--company-data-coordinator">'+ companies[i].coordinatorfirstname + ' ' + companies[i].coordinatorlastname + '</div>';
+   							dataOutput += '</div>';
+   							$(dataOutput).appendTo('.js--company-data');
+   			 		 }
+     			 }
+     		 });
+    		}
+
+        cd.getCompanyInfo = function(companyId){
+          console.log('called company data' + companyId);
+     		 Papa.parse(companyCSV, {
+     		   header: true,
+           download: true,
+     		   complete: function(results) {
+     		   console.log(results);
+
+     				 var data = results.data;
+
+     				 var company = cd.getCompanyByID(data, companyId);
+
+     				 var eventMapLink;
+     				 if (company.eventlocationmapurl!== undefined) {
+     					 eventMapLink = company.eventlocationmapurl
+     				 } else {
+     					 eventMapLink = 'https://www.google.com/maps/place/' + company.eventaddress + ',' + company.eventcity + ',' + company.eventstate + ',' + company.eventzip;
+     				 }
+
+     				 var fieldDayDetails = '';
+     				 fieldDayDetails += '<p>' + company.eventlocationname + '</p>';
+     				 fieldDayDetails += '<p>' + company.eventcity + ', ' + company.eventstate + '</p>';
+     				 $(fieldDayDetails).appendTo('.js--field-day-details');
+
+     				 var companyLead = '<p><a href="mailto:' + company.coordinatoremail +'">' + company.coordinatorfirstname + ' ' + company.coordinatorlastname + '</a></p>' ;
+     				 $(companyLead).appendTo('.js--company-lead');
+
+             var eventDateFormatted = moment(company.eventdate).format('MMMM D, YYYY');
+
+     				 var  eventDate = '<p><strong>' + eventDateFormatted + '<br>' + company.eventtime + '</strong></p>';
+     				 $(eventDate).appendTo('.js--event-date');
+
+     				 var companyLocation = '<p>' + company.eventcity + ', ' + company.eventstate + '</p>'
+     				 $(companyLocation).appendTo('.js--company-location');
+
+             $('.js--company-link').attr('href', eventMapLink);
+             $('.js--company-link').html(company.companyname);
+
+     		   }
+     		 });
+     	 }
+
+       cd.getCompanyLocation = function(companyId){
+         console.log('called company data' + companyId);
+        Papa.parse(companyCSV, {
+          header: true,
+          download: true,
+          complete: function(results) {
+
+            var data = results.data;
+            var company = cd.getCompanyByID(data, companyId);
+
+            if (company !== undefined) {
+              var companyLocation = company.eventcity + ', ' + company.eventstate;
+
+              $(companyLocation).appendTo('.js--company-location');
+            }
+          }
+        });
+      }
+
         // EXPANDABLE DONOR ROLL
         $('.js--honor-roll-expander').on('click', function (e) {
             if ($(this).children('i').hasClass('fa-chevron-down')) {
@@ -987,12 +1249,14 @@
         cd.reorderPageForMobile = function () {
             // Reorganize page for mobile views
             if (screenWidth <= 767) {
+
                 $('.tr-page-info').insertAfter('.sidebar-hero');
                 $('.fundraising-amounts').prepend($('.fundraising-amounts .col-12'));
 
                 if ($('body').is('.pg_team')) {
                     $('.team-roster').insertBefore($('.donor-roll'));
-
+                    $('.js--information-box').prependTo('.js--sidebar');
+                    $('.information-box__content').removeClass('box-shadow');
                     $('.team-roster li .raised span').each(function (i, span) {
                         if ($(this).parent().prev('.donor-name').find('span.coach').length !== 0) {
                             $(this).insertAfter($(this).parent().prev('.donor-name').children('.coach'));
@@ -1005,9 +1269,17 @@
                 }
 
                 if ($('body').is('.pg_company')) {
+                    $('.js--information-box').prependTo('.sidebar-content');
 
                     $('.team-roster form .btn').html('<i class="fas fa-search"></i>');
                     $('#participant-roster td:nth-child(3) a').html('Donate');
+
+                }
+
+                if ($('body').is('.pg_personal')) {
+                  $('.js--information-box').prependTo('.js--sidebar-content');
+                  $('.information-box__content').removeClass('box-shadow');
+
                 }
             }
         };
@@ -1025,7 +1297,7 @@
             $('#team-roster_info').insertBefore($('#team-roster_filter')).wrap('<div class="col-lg-6 col-md-12 sorter pl-md-0"></div>');
             $('#team-roster_filter').wrap('<div class="col-lg-6 col-md-12"></div>');
 
-            $('#team-roster_filter input[type="search"]').attr('id', 'team_search').wrap('<div class="input-group"></div>').addClass('form-control').after('<div class="input-group-append"><button class="btn btn-primary btn-outline-secondary" type="button">Search <i class="fas fa-search"></i></button></div>');
+            $('#team-roster_filter input[type="search"]').attr('id', 'team_search').wrap('<div class="input-group"></div>').addClass('form-control').after('<div class="input-group-append"><button class="btn btn-primary btn-outline-secondary" type="button"><span class="sr-only">Search</span> <i class="fas fa-search"></i></button></div>');
 
             $('#team-roster_filter label').attr('for', 'team_search');
 
@@ -1045,7 +1317,7 @@
                 "autoWidth": false,
                 "order": [[2, 'desc']],
                 "language": {
-                    "search": "Search for a Walker"
+                    "search": "Search for a Teammate"
                 }
             });
 
@@ -1053,7 +1325,7 @@
             $('#participant-roster_info').insertBefore($('#participant-roster_filter')).wrap('<div class="col-lg-6 col-md-12 sorter d-flex align-items-end"></div>');
             $('#participant-roster_filter').wrap('<div class="col-lg-6 col-md-12"></div>');
 
-            $('#participant-roster_filter input[type="search"]').attr('id', 'participant_search').wrap('<div class="input-group"></div>').addClass('form-control').after('<div class="input-group-append"><button class="btn btn-primary btn-outline-secondary" type="button">Search <i class="fas fa-search"></i></button></div>');
+            $('#participant-roster_filter input[type="search"]').attr('id', 'participant_search').wrap('<div class="input-group"></div>').addClass('form-control').after('<div class="input-group-append"><button class="btn btn-primary btn-outline-secondary" type="button"><span class="sr-only">Search</span> <i class="fas fa-search"></i></button></div>');
 
             $('#participant-roster_filter label').attr('for', 'participant_search');
 
@@ -1097,6 +1369,7 @@
             });
         }
         //}
+
         if ($('body').is('.pg_entry')) {
             // Greeting Page
             // populate greeting page content
@@ -1131,8 +1404,8 @@
 
             // Update placeholder text in mobile for top walker search
             if (screenWidth <= 1065) {
-                $('#walkerFirstName').attr('placeholder', 'First Name');
-                $('#walkerLastName').attr('placeholder', 'Last Name');
+                $('#greeting-search-first-name').attr('placeholder', 'First Name');
+                $('#greeting-search-last-name').attr('placeholder', 'Last Name');
             }
 
             // Launch thermometer
@@ -1146,19 +1419,19 @@
             cd.getTopCompanies(evID);
 
             // Walker Search
-            $('.js--greeting-walker-search-form').on('submit', function (e) {
+            $('.js--greeting-participant-search-form').on('submit', function (e) {
                 e.preventDefault();
-                var firstName = encodeURIComponent($('#walkerFirstName').val());
-                var lastName = encodeURIComponent($('#walkerLastName').val());
-                window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=FieldDay_Search&search_type=walker&cross_event=false&fr_id=' + evID + (firstName ? '&first_name=' + firstName : '') +
+                console.log('teammate search');
+                var firstName = encodeURIComponent($('#greeting-search-first-name').val());
+                var lastName = encodeURIComponent($('#greeting-search-last-name').val());
+                window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=FieldDay_Search&search_type=participant&cross_event=false&fr_id=' + evID + (firstName ? '&first_name=' + firstName : '') +
                     (lastName ? '&last_name=' + lastName : '');
             });
 
             // Team Search
             $('.js--greeting-team-search-form').on('submit', function (e) {
                 e.preventDefault();
-                var teamName = encodeURIComponent($('#teamName').val());
-                cd.getTeams(teamName, null, (isCrossEventSearch === "true" ? true : false));
+                var teamName = encodeURIComponent($('#greeting-search-team').val());
                 window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=FieldDay_Search&search_type=team&cross_event=false&fr_id=' + evID + '&team_name=' + teamName;
             });
         }
@@ -1181,11 +1454,19 @@
             cd.reorderPageForMobile();
             cd.setDonorRollHeight();
 
+            //mobile placement
+
             // populate custom personal page content
             $('.js--personal-text').html($('#fr_rich_text_container').html());
 
             // populate donor honor roll
             cd.getTeamHonorRoll();
+
+            var companyIdParam = $('.js--sidebar-content').data('company');
+            console.log('company id: ' + companyIdParam)
+
+            //fill in company sidebar data
+            cd.getCompanyInfo(companyIdParam);
 
             // Build personal donation form
             cd.getDonationFormInfo = function (options) {
@@ -1327,13 +1608,13 @@
             var personalPageConsId = getURLParameter(currentUrl, 'px');
             cd.getPersonalVideo(evID, personalPageConsId);
 
-            $(window).on('resize', function () {
+            /*$(window).on('resize', function () {
               if (screenWidth <= 768) {
                 $('.sidebar-content').insertAfter('.information-box__content').removeClass('box-shadow');
               } else {
                 $('.sidebar-content').insertAfter('.sidebar img').addClass('box-shadow');
               }
-            }).resize();
+            }).resize();*/
         }
 
         if ($('body').is('.pg_team')) {
@@ -1343,6 +1624,13 @@
             cd.runThermometer(progress, goal);
             cd.setDonorRollHeight();
             cd.reorderPageForMobile();
+            cd.getTeamCaptains();
+
+            var companyIdParam = $('.js--sidebar-content').data('company');
+            console.log('company id: ' + companyIdParam)
+
+            //fill in company sidebar data
+            cd.getCompanyInfo(companyIdParam);
 
             // populate custom team page content
             $('.js--team-text').html($('#fr_rich_text_container').html());
@@ -1385,9 +1673,9 @@
                                     var participantRaised = (parseInt(participant.amountRaised) * 0.01).toFixed(2);
                                     var participantRaisedFormmatted = participantRaised.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,").replace('.00', '');
 
-                                    $('#team-roster tbody').append('<tr class="' + (i > 4 ? 'd-none' : '') + '"><td class="donor-name"><a href="' + participant.personalPageUrl + '">' +
+                                    $('#team-roster tbody').append('<tr class="' + (i > 4 ? 'd-none' : '') + '"><td class="donor-name">' + (participant.aTeamCaptain === "true" ? ' <span class="coach"><i class="fal fa-megaphone" aria-hidden="true"></i> </span>' : '') + '<a href="' + participant.personalPageUrl + '">' +
                                         participant.name.first + ' ' + participant.name.last +
-                                        '</a>' + (participant.aTeamCaptain === "true" ? ' <span class="coach">- Coach</span>' : '') + '</td><td class="raised" data-sort="' + participantRaisedFormmatted + '"><span><strong>$' + participantRaisedFormmatted + '</strong></span></td><td><a href="' + participant.donationUrl + '">' + (screenWidth <= 480 ? 'Donate' : 'Donate to ' + participant.name.first) + '</a></td></tr>');
+                                        '</a></td><td class="raised" data-sort="' + participantRaisedFormmatted + '"><span><strong>$' + participantRaisedFormmatted + '</strong></span></td><td><a href="' + participant.donationUrl + '">' + (screenWidth <= 480 ? 'Donate' : 'Donate to ' + participant.name.first) + '</a></td></tr>');
                                     if (participant.aTeamCaptain === 'true') {
                                         $('.js--team-captain-link').attr('href', participant.personalPageUrl).text(participant.name.first + ' ' + participant.name.last);
                                     }
@@ -1418,18 +1706,22 @@
 
         }
 
+
+
         if ($('body').is('.pg_company')) {
             // Company Page
 
             // Populate company name from page title
             var pageTitle = jQuery('head title').text().trim();
             var start_pos = pageTitle.indexOf(':') + 1;
-            var end_pos = pageTitle.indexOf('- Heart Walk', start_pos);
+            var end_pos = pageTitle.indexOf('- Field Day', start_pos);
             var currentCompanyName = pageTitle.substring(start_pos, end_pos).trim();
             var currentCompanyId = getURLParameter(currentUrl, 'company_id');
             $('.js--company-name').text(currentCompanyName);
             // var isParentCompany = ($('#company_hierarchy_list_component .lc_Row1').length ? true : false)
-            var isParentCompany = ($('.js--company-hierarchy-list-container .lc_Row1').length ? true : false)
+            var isParentCompany = ($('.js--company-hierarchy-list-container .lc_Row1').length ? true : false);
+
+            console.log('Parent company: ' + isParentCompany);
 
             var allCompanyData = [{
                 id: currentCompanyId,
@@ -1438,6 +1730,7 @@
             // allCompanyData.push({currentCompanyId, companyName});
             // get child company IDs
             if (isParentCompany) {
+
                 $('.js--company-hierarchy-list-container .trr-td a').each(function () {
                     var childCompanyLink = $(this).attr('href');
                     var childCompanyName = $(this).text();
@@ -1446,6 +1739,8 @@
                     // allCompanyData.id
                 });
             } else {
+
+                $('.js--company-multiple-locations').hide();
 
                 luminateExtend.api({
                     api: 'teamraiser',
@@ -1468,7 +1763,7 @@
                                             callback: {
                                                 success: function (response) {
                                                     if (response.getCompaniesResponse.totalNumberResults !== '0') {
-                                                        $('.tr-page-info h1').before('<small><a href="' + response.getCompaniesResponse.company.companyURL + '">' + response.getCompaniesResponse.company.companyName + '</a></small>');
+                                                        $('.js--company-name').before('<small><a href="' + response.getCompaniesResponse.company.companyURL + '">' + response.getCompaniesResponse.company.companyName + '</a></small>');
                                                     }
                                                 },
                                                 error: function (response) {
@@ -1509,8 +1804,15 @@
 
             var progress = $('#progress-amount').text();
             var goal = $('#goal-amount').text();
+            if (parseInt(progress) > parseInt(goal) ) {
+              $('.js--thermometer-trophy-goal').removeClass('d-none');
+              $('.js--thermometer-trophy').addClass('d-none');
+            }
             cd.runThermometer(progress, goal);
             cd.reorderPageForMobile();
+
+            cd.getCompanyInfo(companyIdParam);
+            console.log('called data');
 
 
             // Reset selected sort option
@@ -1755,7 +2057,7 @@
 
                     $('#participant-roster tbody').append('<tr class="' + (numWalkerRows > 4 ? 'd-none' : '') + '"><td class="participant-name"><a href="' + participant.personalPageUrl + '">' +
                         participant.name.first + ' ' + participant.name.last +
-                        '</a>' + (participant.aTeamCaptain === "true" ? ' <span class="coach">- Coach</span>' : '') + '</td><td class="company-name"> <a href="' + luminateExtend.global.path.secure + 'TR/?pg=company&company_id=' + participant.companyId + '&fr_id=' + participant.eventId + '" data-sort="' + participant.companyName + '">' + participant.companyName + '</a> </td><td class="raised" data-sort="' + participantRaisedFormmatted + '"><span><strong>$' + participantRaisedFormmatted + '</strong></span></td><td><a href="' + participant.donationUrl + '">' + (screenWidth <= 480 ? 'Donate' : 'Donate to ' + participant.name.first) + '</a></td></tr>');
+                        '</a>' + (participant.aTeamCaptain === "true" ? ' <span class="coach">- Team Captain</span>' : '') + '</td><td class="company-name"> <a href="' + luminateExtend.global.path.secure + 'TR/?pg=company&company_id=' + participant.companyId + '&fr_id=' + participant.eventId + '" data-sort="' + participant.companyName + '">' + participant.companyName + '</a> </td><td class="raised" data-sort="' + participantRaisedFormmatted + '"><span><strong>$' + participantRaisedFormmatted + '</strong></span></td><td><a href="' + participant.donationUrl + '">' + (screenWidth <= 480 ? 'Donate' : 'Donate to ' + participant.name.first) + '</a></td></tr>');
                     numWalkerRows++;
                 });
 
@@ -1768,7 +2070,7 @@
                 setTimeout(function () {
                     cd.initializeParticipantRosterTable();
                     var totalParticipants = $('.participant-name').length;
-                    var totalParticipantsText = totalParticipants > 1 ? ' Walkers' : ' Walker';
+                    var totalParticipantsText = totalParticipants > 1 ? ' Teammates' : ' Teammate';
                     $('.js--num-company-participants').text(totalParticipants + totalParticipantsText);
                     if (numWalkerRows > 5) {
                         $('.js--more-participant-results').removeAttr('hidden');
@@ -1809,31 +2111,7 @@
         if ($('body').is('.pg_informational')) {
             // Custom TR Page
         }
-        // landing page
-        $('.js--zip-search').on('submit', function (e) {
-            e.preventDefault();
-            $('.js--event-search-results').html('');
-            var zipSearched = encodeURIComponent($('.js--zip-search-val').val());
-            cd.getEventsByDistanceLanding(zipSearched);
-        });
-        $('.js--state-search-val').on('change', function () {
-            $('.js--event-search-results').html('');
-            var eventState = encodeURIComponent($('.js--state-search-val').val());
-            cd.getEventsByStateLanding(eventState);
-        });
-        $('.js--page-company-search').on('submit', function (e) {
-            e.preventDefault();
-            $('.js--participant-search-results').html('');
-            var companyName = encodeURIComponent($('.js--page-company-search-val').val());
-            cd.getCompaniesLanding(companyName);
-        });
-        $('.js--page-participant-search').on('submit', function (e) {
-            e.preventDefault();
-            $('.js--participant-search-results').html('');
-            var firstName = encodeURIComponent($('.js--page-participant-search-first-val').val());
-            var lastName = encodeURIComponent($('.js--page-participant-search-last-val').val());
-            cd.getParticipantsLanding(firstName, lastName);
-        });
+
 
         if ($('body').is('.pg_FieldDay_Search')) {
             // FieldDay Search Page
@@ -1851,7 +2129,7 @@
                 e.preventDefault();
                 clearSearchResults();
                 var companySearched = encodeURIComponent($('#companyNameSearch').val());
-                cd.getCompanies(companySearched);
+                cd.getCompanies(companySearched, isCrossEventSearch === "true" ? true : false);
             });
 
             // Search by Event
@@ -1859,8 +2137,23 @@
                 e.preventDefault();
                 clearSearchResults();
                 var zipSearched = encodeURIComponent($('#zipCodeSearch').val());
-                cd.getEventsByDistance(zipSearched);
+                cd.getEventsByDistance(zipSearched, isCrossEventSearch === "true" ? true : false);
+
             });
+            $('#eventStateSearch').on('change', function () {
+                clearSearchResults();
+                var stateSearched = encodeURIComponent($('#eventStateSearch').val());
+                cd.getEventsByState(stateSearched, isCrossEventSearch === "true" ? true : false);
+            });
+
+            $('.js--state-search-form').on('submit', function (e) {
+                e.preventDefault();
+                clearSearchResults();
+                var stateSearched = encodeURIComponent($('#eventStateSearch').val());
+                cd.getEventsByDistance(stateSearched, isCrossEventSearch === "true" ? true : false);
+            });
+
+
 
             // Search page by Participant
             $('.js--participant-search-form').on('submit', function (e) {
@@ -1877,7 +2170,7 @@
                 e.preventDefault();
                 clearSearchResults();
                 var teamName = encodeURIComponent($('#teamNameSearch').val());
-                cd.getTeams(teamName, null, (isCrossEventSearch === "true" ? true : false));
+                cd.getTeams(teamName, (isCrossEventSearch === "true" ? true : false));
             });
 
 
@@ -1906,26 +2199,33 @@
                     teamName = decodeURIComponent(teamName);
                     $('#teamNameSearch').val(teamName);
 
-                    cd.getTeams(teamName, null, (isCrossEventSearch === "true" ? true : false));
+                    cd.getTeams(teamName, (isCrossEventSearch === "true" ? true : false));
                 }
 
-                cd.autoSearchTeam = function () {
+                cd.autoSearchCompany = function () {
                     var companyName = getURLParameter(currentUrl, 'company') ? getURLParameter(currentUrl, 'company') : '';
                     companyName = decodeURIComponent(companyName);
                     $('#companyNameSearch').val(companyName);
+                    var crossEventSearch = (isCrossEventSearch === "true" ? true : false);
+                    console.log(crossEventSearch);
 
-                    cd.getCompanies(companyName, null, (isCrossEventSearch === "true" ? true : false));
+                    cd.getCompanies(companyName, (isCrossEventSearch === "true" ? true : false));
                 }
 
-                cd.autoSearchEvents = function () {
+                cd.autoSearchZip = function () {
                     var searchZip = getURLParameter(currentUrl, 'zip') ? getURLParameter(currentUrl, 'zip') : '';
                     $('#zipCodeSearch').val(searchZip);
+                    cd.getEventsByDistance(searchZip, (isCrossEventSearch === "true" ? true : false));
+                }
 
-                    cd.getEventsByDistance(searchZip);
+                cd.autoSearchState = function () {
+                    var searchState = getURLParameter(currentUrl, 'state') ? getURLParameter(currentUrl, 'state') : '';
+                      $('#eventStateSearch').val(searchState);
+                    cd.getEventsByState(searchState, (isCrossEventSearch === "true" ? true : false));
                 }
 
                 if (searchType === 'event') {
-                    cd.autoSearchEvents();
+                    cd.autoSearchZip();
                 } else if (searchType === 'participant') {
                     cd.autoSearchParticipant();
                     // Switch to walker tab
@@ -1934,11 +2234,67 @@
                     cd.autoSearchTeam();
                     // Switch to team tab
                     $('#searchTeamTab').tab('show');
-                } else if (searchType === 'company') {
+                } else if (searchType === 'zip') {
+                    cd.autoSearchZip();
+                    // Switch to team tab
+                    $('#searchEventTab').tab('show');
+                  } else if (searchType === 'state') {
+                      cd.autoSearchState();
+                      // Switch to team tab
+                      $('#searchEventTab').tab('show');
+                  } else if (searchType === 'company') {
                    cd.autoSearchCompany();
+                   // Switch to company tab
+                   $('#searchCompanyTab').tab('show');
                 }
             }
         }
+
+        //Landong Page
+
+        if($('body').is('.pg_FieldDay_Landing_Page')) {
+          //Search functionality
+
+          //State and Zip search
+          $('.js--zip-search').on('submit', function (e) {
+              e.preventDefault();
+              $('.js--event-search-results').html('');
+              var zipSearched = encodeURIComponent($('.js--zip-search-val').val());
+              cd.getEventsByDistanceLanding(zipSearched);
+          });
+          $('.js--state-search-val').on('change', function () {
+              $('.js--event-search-results').html('');
+              var eventState = encodeURIComponent($('.js--state-search-val').val());
+              cd.getEventsByStateLanding(eventState);
+          });
+
+          //Company and participant search
+          $('.js--page-company-search').on('submit', function (e) {
+              e.preventDefault();
+              $('.js--participant-search-results').html('');
+              var companyName = encodeURIComponent($('.js--page-company-search-val').val());
+              cd.getCompaniesLanding(companyName);
+          });
+          $('.js--page-participant-search').on('submit', function (e) {
+              e.preventDefault();
+              $('.js--participant-search-results').html('');
+              var firstName = encodeURIComponent($('.js--page-participant-search-first-val').val());
+              var lastName = encodeURIComponent($('.js--page-participant-search-last-val').val());
+              cd.getParticipantsLanding(firstName, lastName);
+          });
+
+          $('.js--card-content').each(function(){
+            var highestBox = 0;
+
+            if($(this).height() > highestBox) {
+              highestBox = $(this).height();
+            }
+
+            $('.js--card-content').height(highestBox);
+          });
+
+         }
+         //End Landing Page
     });
 }(jQuery));
 

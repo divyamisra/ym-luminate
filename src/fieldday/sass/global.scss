@@ -74,13 +74,19 @@ img {
 }
 
 .information-box {
-  @include box-shadow(0px, 15px, 30px, rgba(0,0,0,0.2));
-  width: 805px;
-  margin: 0 0 0 30px;
+  width: 100%;
+  margin: 0;
+  @include media-breakpoint-up(md) {
+      @include box-shadow(0px, 15px, 30px, rgba(0,0,0,0.2));
+      margin: 0 0 0 30px;
+  }
   padding: 0!important;
 
   .information-box__content {
-    padding: 33px 65px 52px 73px;
+    padding: 50px 25px 0;
+    @include media-breakpoint-up(md) {
+      padding: 50px 65px 52px 73px;
+    }
   }
   .information-box__name {
       padding: 17px 65px 9px 73px;
@@ -152,7 +158,7 @@ img {
       font-family: 'LubDubBold', Helvetica, Arial, sans-serif;
       margin: -6px 0 0 0;
       display: block;
-      color: $red;
+      color: $red-deep;
     }
   }
 
@@ -278,7 +284,11 @@ img {
       width: 100%;
     }
     .sidebar-content {
-      padding: 22px 54px 22px 44px;
+      padding: 0;
+      @include media-breakpoint-up(md) {
+        padding: 22px 54px 22px 44px;
+      }
+
       background: #fff;
     }
 
@@ -293,6 +303,7 @@ img {
       }
       .sidebar__icon {
         padding-right: 10px;
+        color: $red;
       }
 
       p {
@@ -301,7 +312,7 @@ img {
 
       a {
         color: $red;
-        margin: 0 0 12px;
+        //margin: 0 0 12px;
         display: block;
         &:hover {
           color: $red-deep;
@@ -320,6 +331,9 @@ img {
       justify-content: space-between;
       .achievement-badge {
         width: 23%;
+        p {
+          font-family: $font-family-bold;
+        }
       }
       .badge-label {
         font-size: 10px;
@@ -343,7 +357,13 @@ img {
 
 .pg_personal, .pg_team, .pg_company {
   header {
-    height: 350px;
+    height: 250px;
+    @include media-breakpoint-up(md) {
+      height: 350px;
+    }
+    &.mobile-open {
+      height: auto;
+    }
   }
   main {
     background-image: url("/images/content/pagebuilder/fd_hero_personal2.jpg");
@@ -354,9 +374,16 @@ img {
   }
 
   .tr-page-container {
+    &.static {
+      position: static;
+    }
     position: relative;
-    top: -200px;
-    margin: 0 auto -250px;
+    top: -150px;
+    margin: 0 auto -180px;
+    @include media-breakpoint-up(md) {
+      top: -200px;
+      margin: 0 auto -250px;
+    }
     background-color: transparent;
   }
 
