@@ -24,7 +24,9 @@ body {
     background-position: right top;
     background-size: 70%;
 }
-
+header {
+	background:none;
+}
 a#skip-main:hover, a#skip-main:active, a#skip-main:focus {
      left: 0;
      width: auto;
