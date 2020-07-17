@@ -18,11 +18,11 @@
      white-space: nowrap;
 }
 body {
-    background-color: #900;
-    background-image: url(../images/content/pagebuilder/background-squiggles.png);
-    background-repeat: no-repeat;
-    background-position: right top;
-    background-size: 70%;
+  background-color: $red-deep;
+  background-image: url(https://secure3.convio.net/heart/images/content/pagebuilder/background-squiggles.png);
+  background-repeat: no-repeat;
+  background-position: right top;
+  background-size: 70%;
 }
 header {
 	background:none;
