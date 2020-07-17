@@ -446,7 +446,8 @@
 
         // Get events by zip
         cd.getEventsByDistance = function (zipCode, isCrossEvent) {
-            $('#eventStateResultsTable').hide();
+            $('#eventStateResultsTable').addClass('d-none');
+            $('#eventResultsTable').removeClass('d-none');
             $('.js--no-event-results').addClass('d-none');
             $('.js--loading').show();
 
@@ -534,7 +535,8 @@
 
         // Get events by state
         cd.getEventsByState = function (eventState, isCrossEvent) {
-            $('#eventResultsTable').hide();
+          $('#eventResultsTable').addClass('d-none');
+          $('#eventStateResultsTable').removeClass('d-none');
             $('.js--no-event-results').addClass('d-none');
             $('.js--loading').show();
 
