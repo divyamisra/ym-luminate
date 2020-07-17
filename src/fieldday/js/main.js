@@ -1590,13 +1590,13 @@
             var personalPageConsId = getURLParameter(currentUrl, 'px');
             cd.getPersonalVideo(evID, personalPageConsId);
 
-            $(window).on('resize', function () {
+            /*$(window).on('resize', function () {
               if (screenWidth <= 768) {
                 $('.sidebar-content').insertAfter('.information-box__content').removeClass('box-shadow');
               } else {
                 $('.sidebar-content').insertAfter('.sidebar img').addClass('box-shadow');
               }
-            }).resize();
+            }).resize();*/
         }
 
         if ($('body').is('.pg_team')) {
