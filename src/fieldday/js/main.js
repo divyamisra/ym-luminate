@@ -446,6 +446,7 @@
 
         // Get events by zip
         cd.getEventsByDistance = function (zipCode, isCrossEvent) {
+            $('#eventStateResultsTable').hide();
             $('.js--no-event-results').addClass('d-none');
             $('.js--loading').show();
 
@@ -520,7 +521,7 @@
                             $('.js--event-results-container').removeAttr('hidden');
                         } else {
                             $('.js--loading').hide();
-                            $('.js--no-event-results').removeClass('d-none');
+                            $('#error-event').removeClass('d-none');
                         }
                     },
                     error: function (response) {
@@ -533,6 +534,7 @@
 
         // Get events by state
         cd.getEventsByState = function (eventState, isCrossEvent) {
+            $('#eventResultsTable').hide();
             $('.js--no-event-results').addClass('d-none');
             $('.js--loading').show();
 
@@ -540,7 +542,7 @@
             api: 'teamraiser',
             data: 'method=getTeamraisersByInfo' +
                 '&state=' + eventState +
-                (isCrossEvent === true ? '&event_type=' + eventType : '&fr_id=' + evID) +
+                '&event_type=' + eventType +
                 '&search_distance=200' +
                 '&response_format=json&list_page_size=499&list_page_offset=0&list_sort_column=event_date&list_ascending=true',
             callback: {
@@ -604,7 +606,7 @@
                             $('.js--event-results-container').removeAttr('hidden');
                         } else {
                             $('.js--loading').hide();
-                            $('.js--no-event-results').removeClass('d-none');
+                            $('#error-event').removeClass('d-none');
                         }
                     },
                     error: function (response) {
