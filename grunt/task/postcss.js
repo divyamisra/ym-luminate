@@ -192,5 +192,20 @@ module.exports = {
         dest: 'dist/heartwalk2020/css/'
       }
     ]
+  },
+
+  "fieldday": {
+    files: [
+      {
+        expand: true,
+        cwd: 'dist/fieldday/css/',
+        src: [
+          'main.css',
+          'registration.css',
+          'donation.css'
+        ],
+        dest: 'dist/fieldday/css/'
+      }
+    ]
   }
 }

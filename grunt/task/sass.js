@@ -109,5 +109,19 @@ module.exports = {
         'src/heartwalk2020/sass/donation.scss'
       ]
     }
+  },
+
+  "fieldday": {
+    files: {
+      'dist/fieldday/css/main.css': [
+        'src/fieldday/sass/main.scss'
+      ],
+      'dist/fieldday/css/registration.css': [
+        'src/fieldday/sass/registration.scss'
+      ],
+      'dist/fieldday/css/donation.css': [
+        'src/fieldday/sass/donation.scss'
+      ]
+    }
   }
 }
