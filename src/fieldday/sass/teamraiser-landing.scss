@@ -345,14 +345,6 @@
     h2 {
       font-size: 1.333em;
     }
-    img {
-      @include media-breakpoint-up(sm) {
-      max-width: 160px;
-     }
-      width :100%;
-      height: auto;
-      display: block;
-    }
   }
 
 .global-promo {
