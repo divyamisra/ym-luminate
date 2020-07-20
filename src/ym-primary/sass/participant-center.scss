@@ -159,7 +159,11 @@ a.ym-pc-dashboard-download-certificates {
    position: relative;
    max-width: 663px;
    margin: 0 auto 40px;
-
+   svg {
+      @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+         height:750px;
+      }
+   }
    .agentk {
      max-width: 25%;
      margin-bottom: 10px;
