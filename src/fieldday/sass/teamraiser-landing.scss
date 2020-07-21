@@ -235,7 +235,7 @@
   font-weight: bold;
   &.button--inverse {
     color: $red;
-    background-color: $white;
+    background-color: transparent;
     padding-top:8px;
     padding-bottom: 8px;
   }
