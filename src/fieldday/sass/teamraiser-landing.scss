@@ -235,7 +235,7 @@
   font-weight: bold;
   &.button--inverse {
     color: $red;
-    background-color: $white;
+    background-color: transparent;
     padding-top:8px;
     padding-bottom: 8px;
   }
@@ -326,7 +326,6 @@
   background-image: url('https://secure3.convio.net/heartdev/images/content/pagebuilder/aha-fieldday-landing-banner_2x.jpg');
   background-size: cover;
   background-position: top center;
-  background-attachment: fixed;
   margin-top: 32px;
   margin-bottom: 32px;
   height: 200px;
@@ -335,22 +334,17 @@
     margin-top: 86px;
     margin-bottom: 86px;
     background-position: center;
-  }
-  @include media-breakpoint-up(lg) {
+    background-attachment: fixed;
     height: 700px;
   }
   background-color: $red;
-
 }
 
 
 .global-sponsors {
+  width: 95%;
     h2 {
       font-size: 1.333em;
-    }
-    img {
-      max-width: 160px;
-      height: auto;
     }
   }
 

@@ -202,7 +202,7 @@
 		</div>
 		<div class="js--show-more-container text-center mt-2 mb-5">
 			<div class="container">
-				<a class="js--more-event-results button button--inverse hidden" href="#">View More Results</a> <a class="js--show-fewer-events button button--inverse d-none" href="#">View Fewer Results</a>
+				<a class="js--more-event-results button-primary button--inverse hidden" href="#">View More Results</a> 
 			</div>
 		</div>
 	</section>
@@ -219,10 +219,10 @@
 			</div>
 			<div class="nav nav-tabs justify-content-center" role="tablist">
 					<a aria-controls="company-page-search" aria-selected="true" class="nav-item nav-link active" data-toggle="tab" href="#page-search-company" id="page-search-company-tab" role="tab">Company</a>
-					<a aria-controls="team" aria-selected="false" class="nav-item nav-link" data-toggle="tab" href="#page-search-participant" id="page-search-participant-tab"  role="tab">Participant</a>
+					<a aria-controls="participant-page-search" aria-selected="false" class="nav-item nav-link" data-toggle="tab" href="#page-search-participant" id="page-search-participant-tab"  role="tab">Participant</a>
 			</div>
 			<div class="tab-content py-3">
-				<div aria-labelledby="page-search-company-tab" class="tab-pane active fade show" id="page-search-company" role="tabpanel">
+				<div aria-labelledby="company-page-search" class="tab-pane active fade show" id="page-search-company" role="tabpanel">
 					<form class="js--page-company-search">
 						<div class="d-flex flex-column">
 							<div class="col-12">
@@ -242,7 +242,7 @@
 				<div class="js--participant-loading py-4 text-center d-none">
 					Loading...
 				</div>
-				<div aria-labelledby="page-search-participant-tab" class="tab-pane fade" id="page-search-participant" role="tabpanel">
+				<div aria-labelledby="participant-page-search" class="tab-pane fade" id="page-search-participant" role="tabpanel">
 						<form class="js--page-participant-search">
 							<div class="d-flex flex-column">
 								<div class="col-12">
@@ -264,7 +264,7 @@
 			</div>
 			<div class="js--show-more-container text-center mt-2 mb-5">
 				<div class="container">
-					<a class="js--participant-more-event-results button button--inverse hidden" href="#">View More Results</a>
+					<a class="js--participant-more-event-results button-primary button--inverse hidden" href="#">View More Results</a>
 				</div>
 			</div>
 		</div>
@@ -342,7 +342,7 @@
 					</svg>
 
 					<p class="card-text js--card-content">Host a Field Day event for your company and help your employees alleviate workplace stress and burnout. This customizable event allows you to choose your event date, location and games!</p>
-					<p class="card-text"><a class="btn btn-secondary" href="https://dev2.heart.org/site/SPageServer/?pagename=FieldDay_Contact_Us">Contact Us</a></p>
+					<p class="card-text"><a class="btn btn-secondary" href="https://dev2.heart.org/site/SPageServer/?pagename=FieldDay_Contact_Us" aria-label="Contact AHA for more information on Field Day">Contact Us</a></p>
 				</div>
 			</div>
 			<div class="card text-center mb-4">
@@ -368,7 +368,7 @@
 	<section class="landing-video">
 		<div class="container">
 			<div class="global-video__wrapper">
-				<iframe width="560" height="315" src="https://www.youtube.com/embed/LryhjU1bEC4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+				<iframe title="About Field Day" width="560" height="315" src="https://www.youtube.com/embed/LryhjU1bEC4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 			</div>
 		</div>
 	</section>
