@@ -858,8 +858,7 @@
                             $('.js--participant-more-event-results').on('click', function (e) {
                                 e.preventDefault();
                                 $('.js--participant-search-results .row').removeClass('d-none');
-                                $(this).attr('hidden', true);
-                                $('.js--participant-end-event-list').removeAttr('hidden');
+                                $(this).addClass('hidden');
                             });
 
                             $('.js--participant-search-results').removeAttr('hidden');
@@ -912,8 +911,7 @@
                             $('.js--participant-more-event-result').on('click', function (e) {
                                 e.preventDefault();
                                 $('.js--participant-search-results .row').removeClass('d-none');
-                                $(this).attr('hidden', true);
-                                $('.js--participant-end-event-list').removeAttr('hidden');
+                                $(this).addClass('hidden');
                             });
 
                             $('.js--participant-search-results').removeAttr('hidden');
