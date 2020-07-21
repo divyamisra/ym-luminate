@@ -2022,7 +2022,7 @@ div.required-indicator-legend {
     }
 }
 
-.app_tr_registration {
+.app_tr_registration, .pg_fieldday_register {
   background-color: #900;
   background-image: url(https://secure3.convio.net/heartdev/images/content/pagebuilder/background-squiggles.png);
   background-repeat: no-repeat;
@@ -2043,5 +2043,9 @@ div.required-indicator-legend {
 
   .nav-item--about, .nav-item--find {
     display: none!important;
+  }
+
+  .global-sponsors{
+    display: none;
   }
 }
