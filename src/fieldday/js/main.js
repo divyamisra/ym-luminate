@@ -535,7 +535,7 @@
                             $('.js--event-results-container').removeAttr('hidden');
                         } else {
                             $('.js--loading').hide();
-                            $('#error-event').removeClass('d-none');
+                            $('#error-event').removeAttr('hidden');
                         }
                     },
                     error: function (response) {
@@ -621,7 +621,7 @@
                             $('.js--event-results-container').removeAttr('hidden');
                         } else {
                             $('.js--loading').hide();
-                            $('#error-event').removeClass('d-none');
+                            $('#error-event').removeAttr('hidden');
                         }
                     },
                     error: function (response) {
