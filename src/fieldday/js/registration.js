@@ -2133,6 +2133,11 @@
               }
             }
 
+            if ($('body').is('.pg_regsummary')) {
+              $('.reg-summary-address-info .reg-summary-edit-link a').attr('aria-label', 'Edit your contact information');
+              $('.js--edit-ptype').attr('aria-label', 'Edit your registration information');
+            }
+
 
 
 
