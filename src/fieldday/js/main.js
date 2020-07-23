@@ -1185,7 +1185,8 @@
      				 var company = cd.getCompanyByID(data, companyId);
              if (company !== undefined) {
                var eventMapLink;
-       				 if (company.eventlocationmapurl!== undefined) {
+               console.log('company map url: ' + company.eventlocationmapurl);
+       				 if (company.eventlocationmapurl !== undefined) {
        					 eventMapLink = company.eventlocationmapurl
        				 } else {
        					 eventMapLink = 'https://www.google.com/maps/place/' + company.eventaddress + ',' + company.eventcity + ',' + company.eventstate + ',' + company.eventzip;
