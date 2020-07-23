@@ -347,7 +347,7 @@
 
                               if (screenWidth >= 768) {
                               $('.js--company-results-rows').append('<tr' + (i > 10 ? ' class="d-none"' : '') + '><td><a href="' + company.companyURL + '">' +
-                                  company.companyName + '</a></td><td class="col-cta">' + (companyLead !== undefined ? companyLead : '') + '</td><td class="col-cta">' + (companyLocation !== undefined ? companyLocation : '') + '</td><td class="col-cta"><a href="' + company.companyURL + '">' + 'Details</a></td></tr>');
+                                  company.companyName + '</a></td><td class="col-cta">' + (companyLead !== undefined ? companyLead : '') + '</td><td class="col-cta">' + (companyLocation !== undefined ? companyLocation : '') + '</td><td class="col-cta"><a class="btn btn-primary btn-block btn-rounded" title="Details about ' + company.companyName + '" href="' + company.companyURL + '">' + 'Details</a></td></tr>');
                               } else {
                                   $('#companyResultsTable thead').remove();
                                   $('.js--team-results-rows')
@@ -355,7 +355,7 @@
                                       .append('<tr><td><table><tr' + (i > 10 ? ' class="d-none"' : '') + '><td>Company</td><td><a href="' + company.companyURL + '">' +
                                           company.companyName + '</a></td></tr><tr><td>Company Lead</td><td>' + (companyLead !== undefined ? companyLead : '') + '</td></tr>' +
                                           ((team.companyName !== null && team.companyName !== undefined) ? '<tr><td>Company</td><td><a href="TR?company_id=' + team.companyId + '&fr_id=' + team.EventId + '&pg=company">' + team.companyName + '</a>' : '') +
-                                          '</td></tr><tr><td>Event Location</td><td class="col-cta">' + (companyLocation !== undefined ? companyLocation : '') + '</td></tr><tr><td colspan="2" class="text-center"><td class="col-cta"><a href="<a href="' + company.companyURL + '">' + 'Details</a></td></td></tr></table></td></tr>');
+                                          '</td></tr><tr><td>Event Location</td><td class="col-cta">' + (companyLocation !== undefined ? companyLocation : '') + '</td></tr><tr><td colspan="2" class="text-center"><td class="col-cta"><a href="<a class="btn btn-primary btn-block btn-rounded" title="Details about ' + company.companyName + '" href="' + company.companyURL + '">' + 'Details</a></td></td></tr></table></td></tr>');
                               }
                             });
 
