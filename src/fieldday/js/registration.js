@@ -630,7 +630,7 @@
             });
             $('.js__new-record').on('click touchstart', function (e) {
             // new participant. continue to tfind step
-                $('#f2fRegPartType #next_step').click();
+                $('#next_step').click();
             });
 
             $('.janrainEngage').html('<div class="btn-social-login btn-facebook"><i class="fab fa-facebook-f mr-2"></i> Create with Facebook</div><div class="btn-social-login btn-amazon"><i class="fab fa-amazon mr-2"></i> Create with Amazon</div>');
@@ -1937,7 +1937,7 @@
                 waiver = $(this).find('waiver').text();
                 waiverHTML = waiver.replace(/(?:\r\n\r\n|\r\r|\n\n)/, '<p>').replace(/(?:\r\n\r\n|\r\r|\n\n)/g, '</p><p>').replace('our Privacy Policy', '<a href="http://www.Heart.org/Privacy">our Privacy Policy</a>');
                 waiverHTML = waiverHTML + "</p>";
-                $('.lightboxWiaverContent').html(waiverHTML);
+                /*$('.lightboxWiaverContent').html(waiverHTML);*/
             }
         });
     }
