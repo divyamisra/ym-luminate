@@ -138,6 +138,10 @@ input[type="radio"] {
   outline: none;
 }
 
+input[type="radio"]:focus {
+  border: 1px solid $red-deep;
+}
+
 input[type="text"],
 select.form-control[size], select.form-control[multiple] {
   height: 55px;
