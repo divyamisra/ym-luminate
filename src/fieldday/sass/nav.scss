@@ -33,7 +33,9 @@ padding: 0.625rem 1.25rem;
 
 #home, #find, #about {
   &:hover {
-    color: $white!important;
+    @include media-breakpoint-up(md) {
+      color: $white!important;
+    }
   }
 }
 .nav-wrapper {
@@ -354,7 +356,7 @@ nav {
     }
   }
 
-  #mobile-login a {
+  #mobile-login a, #home {
     color: $red!important;
     border-top: solid 1px #E3E3E3;
     padding: 18px 0 !important;
