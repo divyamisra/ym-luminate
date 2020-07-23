@@ -139,7 +139,7 @@ input[type="radio"] {
 }
 
 input[type="radio"]:focus {
-  border: 1px solid $red-deep;
+  outline: 1px solid $red-deep;
 }
 
 input[type="text"],
