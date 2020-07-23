@@ -461,7 +461,8 @@
         cd.getEventsByDistance = function (zipCode, isCrossEvent) {
             $('#eventStateResultsTable').addClass('d-none');
             $('#eventResultsTable').removeClass('d-none');
-            $('.js--no-event-results').addClass('d-none');
+            $('error-event').addClass('d-none');
+
             $('.js--loading').show();
 
             luminateExtend.api({
@@ -535,7 +536,7 @@
                             $('.js--event-results-container').removeAttr('hidden');
                         } else {
                             $('.js--loading').hide();
-                            $('#error-event').removeAttr('hidden');
+                            $('#error-event').removeClass('d-none');
                         }
                     },
                     error: function (response) {
@@ -550,7 +551,7 @@
         cd.getEventsByState = function (eventState, isCrossEvent) {
           $('#eventResultsTable').addClass('d-none');
           $('#eventStateResultsTable').removeClass('d-none');
-            $('.js--no-event-results').addClass('d-none');
+          $('#error-event').addClass('d-none');
             $('.js--loading').show();
 
             luminateExtend.api({
@@ -621,7 +622,7 @@
                             $('.js--event-results-container').removeAttr('hidden');
                         } else {
                             $('.js--loading').hide();
-                            $('#error-event').removeAttr('hidden');
+                            $('#error-event').removeClass('d-none');
                         }
                     },
                     error: function (response) {
