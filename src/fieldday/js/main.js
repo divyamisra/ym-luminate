@@ -1183,6 +1183,7 @@
      				 var data = results.data;
 
      				 var company = cd.getCompanyByID(data, companyId);
+             console.log('comany value: ' + company);
              if (company !== undefined) {
                var eventMapLink;
                console.log('company map url: ' + company.eventlocationmapurl);
