@@ -1,6 +1,6 @@
 .ym-pc-student-view-text {
   float: none;
-  width: auto;
+  width: auto !important;
   margin: 0 3% 0 0;
 
   @media (min-width: $screen-sm-min) {
