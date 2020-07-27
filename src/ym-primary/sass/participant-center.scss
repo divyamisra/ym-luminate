@@ -19,11 +19,12 @@
     @media (min-width: $screen-sm-min) {
       float: none;
       width: 125px;
-      margin: inherit;
+      margin: 0 0 15px;
     }
     @media (min-width: $screen-lg-min) {
       float: right;
       width: 125px;
+      margin: 0 0 15px 10px;
     }
   }
 }
