@@ -12,23 +12,21 @@
       margin: 0 0 32px;
     }
   }
-}
+  .ym-pc-student-view-image {
+    width: 115px;
+    margin: 0 0 15px 10px;
 
-.ym-pc-student-view-image {
-  width: 115px;
-  margin: 0 0 15px 10px;
-
-  @media (min-width: $screen-sm-min) {
-    float: none;
-    width: 125px;
-    margin: inherit;
+    @media (min-width: $screen-sm-min) {
+      float: none;
+      width: 125px;
+      margin: inherit;
+    }
+    @media (min-width: $screen-lg-min) {
+      float: right;
+      width: 125px;
+    }
   }
-  @media (min-width: $screen-lg-min) {
-    float: right;
-    width: 125px;
-  }
 }
-
 
 .ym-pc-dashboard-progress-section .row .ym-pc-dashboard-progress-section__column {
     overflow: hidden;
