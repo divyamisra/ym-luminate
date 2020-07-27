@@ -3,12 +3,12 @@
   width: auto;
   margin: 0 3% 0 0;
 
-  @media (min-width: $screen-lg-min) {
+  @media (min-width: $screen-sm-min) {
     width: auto !important;
   }
 
   p {
-    @media (min-width: $screen-lg-min) {
+    @media (min-width: $screen-sm-min) {
       margin: 0 0 32px;
     }
   }
@@ -18,10 +18,14 @@
   width: 115px;
   margin: 0 0 15px 10px;
 
+  @media (min-width: $screen-sm-min) {
+    float: none;
+    width: 125px;
+    margin: inherit;
+  }
   @media (min-width: $screen-lg-min) {
     float: right;
     width: 125px;
-    margin: 0;
   }
 }
 
