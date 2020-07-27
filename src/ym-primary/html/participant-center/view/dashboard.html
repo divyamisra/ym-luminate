@@ -1117,7 +1117,7 @@
         </h2>
       </div>
       <div class="row">
-        <div class="col-sm-4 ym-activity-box ym-activity-box--coordinator-pages">
+        <div class="col-md-4 ym-activity-box ym-activity-box--coordinator-pages">
           <h3 class="h5 clearfix">
             <span class="ym-activity-box-number">1</span> Edit My Pages
           </h3>
@@ -1261,32 +1261,27 @@
             </div>
           </div>
         </div>
-        <div class="col-sm-4 ym-activity-box ym-activity-box--coordinator-student-view">
+        <div class="col-md-4 ym-activity-box ym-activity-box--coordinator-student-view">
           <h3 class="h5 clearfix">
             <span class="ym-activity-box-number">2</span> Show your Students
           </h3>
           <div class="clearfix">
             <div class="ym-pc-student-view-text">
+              <div class="ym-pc-student-view-image">
+                <img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/student-view-2021.png" alt="Student View">
+              </div>
               <p>
                 Use the "Student View" to show your students all of the great tools and games in their Headquarters and encourage them to fundraise!
               </p>
-              <div class="hidden-xs">
+              <div>
                 <a class="btn btn-md-wide btn-primary" ng-href="{{baseUrl}}#/dashboard-student">
                   <strong>Student View</strong>
                 </a>
               </div>
             </div>
-            <div class="ym-pc-student-view-image">
-              <img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/student-view-2021.png" alt="Student View">
-            </div>
-          </div>
-          <div class="visible-xs">
-            <a class="btn btn-md-wide btn-primary" ng-href="{{baseUrl}}#/dashboard-student">
-              <strong>Student View</strong>
-            </a>
           </div>
         </div>
-        <div class="col-sm-4 ym-activity-box">
+        <div class="col-md-4 ym-activity-box">
           <div class="ym-activity-box--coordinator-reports">
             <h3 class="h5 clearfix">
               <span class="ym-activity-box-number">3</span> Manage Your Event
