@@ -1340,8 +1340,8 @@
             <p>
               Download resources by state to share with your students.
             </p>
-            <a class="btn btn-md-wide btn-primary" href="/site/SPageNavigator/khc_resources_educational_resources.html">
-              <strong>Download Resources</strong>
+            <a class="btn btn-md-wide btn-primary" href="http://www.heart.org/educationalresources">
+              <strong>View Resources</strong>
             </a>
           </div>
           <!--
@@ -1374,12 +1374,14 @@
           </div>
         </div>
       </div>
+      <!--
       <div class="ym-pc-dashboard-coordinator-resources-more">
         <a ng-href="{{baseUrl}}#/teacher-resources">
           <strong>View All Resources</strong>
         </a>
       </div>
-      <div class="ym-pc-dashboard-coordinator-resources-contact" ng-if="notifyName != ''">
+      -->
+      <div class="ym-pc-dashboard-coordinator-resources-contact" ng-if="notifyName != ''" ng-cloak>
         Questions about your program – contact your staff partner at: <a ng-href="mailto:{{notifyEmail}}">
           <strong>{{notifyName}}</strong>
         </a>
