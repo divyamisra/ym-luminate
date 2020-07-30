@@ -151,7 +151,7 @@ angular.module 'trPcControllers'
                               firstName = jQuery.trim reportDataRow[reportDataColumnIndexMap.PARTICIPANT_FIRST_NAME]
                               lastName = jQuery.trim reportDataRow[reportDataColumnIndexMap.PARTICIPANT_LAST_NAME]
                               email = jQuery.trim reportDataRow[reportDataColumnIndexMap.PARTICIPANT_EMAIL]
-                              grade = jQuery.trim reportDataRow[reportDataColumnIndexMap.GRADE]
+                              grade = jQuery.trim reportDataRow[reportDataColumnIndexMap.GRADE_LEVEL]
                               contact =
                                 firstName: firstName
                                 lastName: lastName
