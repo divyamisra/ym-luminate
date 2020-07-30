@@ -15,7 +15,7 @@
     height: auto;
     position: absolute;
     right: -20px;
-    top: -50px;
+    top: -55px;
     @include media-breakpoint-up(md) {
      width: 55px;
      right: -30px;
@@ -29,7 +29,10 @@
 
 .pg_personal, .pg_team, .pg_company {
   .thermometer {
-    margin: 55px 0 0;
+    margin: 20px 0 0;
+    @include media-breakpoint-up(md) {
+     margin-top: 55px;
+    }
   }
 
   .thermometer-inner {
