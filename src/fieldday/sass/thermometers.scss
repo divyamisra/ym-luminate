@@ -15,15 +15,23 @@
     height: auto;
     position: absolute;
     right: -20px;
-    top: -75px;
     @include media-breakpoint-up(md) {
      width: 55px;
      right: -30px;
-     top: -85px;
+    }
+  }
+  svg {
+    top: -60px;
+    @include media-breakpoint-up(md) {
+      top: -70px;
     }
   }
   img {
     mix-blend-mode: multiply;
+    top: -75px;
+    @include media-breakpoint-up(md) {
+     top: -85px;
+    }
   }
 }
 
