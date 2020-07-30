@@ -19,8 +19,11 @@
     @include media-breakpoint-up(md) {
      width: 55px;
      right: -30px;
-     top: -75px;
+     top: -85px;
     }
+  }
+  img {
+    mix-blend-mode: multiply;
   }
 }
 
