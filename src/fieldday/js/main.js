@@ -423,20 +423,32 @@
         $('.js--header-zip-search').on('submit', function (e) {
             e.preventDefault();
             var zipSearched = encodeURIComponent($('#zipSearch').val());
-            window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=FieldDay_Search&search_type=zip&cross_event=' + (evID ? 'false' : 'true') + (evID ? '&fr_id=' + evID : '') + '&zip=' + zipSearched;
+            if ( $('body').is('.pg_FieldDay_General') || $('body').is('.pg_FieldDay_Landing_Page') ) {
+              window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=FieldDay_Search&search_type=zip&cross_event=true&zip=' + zipSearched;
+            } else {
+              window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=FieldDay_Search&search_type=zip'  + (evID ? '&cross_event=false&fr_id=' + evID : '&cross_event=true') + '&zip=' + zipSearched;
+            }
         });
 
         //
         $('.js--header-state-search').on('submit', function (e) {
             e.preventDefault();
             var stateSearch = encodeURIComponent($('#stateSearch').val());
-            window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=FieldDay_Search&search_type=state&cross_event=' + (evID ? 'false' : 'true') + (evID ? '&fr_id=' + evID : '') + '&state=' + stateSearch;
+            if ( $('body').is('.pg_FieldDay_General') || $('body').is('.pg_FieldDay_Landing_Page') ) {
+              window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=FieldDay_Search&search_type=state&cross_event=true&state=' + stateSearched;
+            } else {
+              window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=FieldDay_Search&search_type=state'  + (evID ? '&cross_event=false&fr_id=' + evID : '&cross_event=true') + '&state=' + stateSearched;
+            }
         });
 
 
         $('#stateSearch').on('change', function () {
             var stateSearch = encodeURIComponent($('#stateSearch').val());
-            window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=FieldDay_Search&search_type=state&cross_event=' + (evID ? 'false' : 'true') + (evID ? '&fr_id=' + evID : '') + '&state=' + stateSearch;
+            if ( $('body').is('.pg_FieldDay_General') || $('body').is('.pg_FieldDay_Landing_Page') ) {
+              window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=FieldDay_Search&search_type=state&cross_event=true&state=' + stateSearch;
+            } else {
+              window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=FieldDay_Search&search_type=state'  + (evID ? '&cross_event=false&fr_id=' + evID : '&cross_event=true') + '&state=' + stateSearch;
+            }
         });
 
         // Search page by Participant
@@ -444,8 +456,12 @@
             e.preventDefault();
             var firstName = encodeURIComponent($('#participantSearchFirst').val());
             var lastName = encodeURIComponent($('#participantSearchLast').val());
-            window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=FieldDay_Search&search_type=participant&cross_event=' + (evID ? 'false' : 'true') + (evID ? '&fr_id=' + evID : '') + '&fr_id=' + evID + (firstName ? '&first_name=' + firstName : '') +
-                (lastName ? '&last_name=' + lastName : '');
+
+            if ( $('body').is('.pg_FieldDay_General') || $('body').is('.pg_FieldDay_Landing_Page') ) {
+              window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=FieldDay_Search&search_type=participant&cross_event=true' + (firstName ? '&first_name=' + firstName : '') + (lastName ? '&last_name=' + lastName : '');
+            } else {
+              window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=FieldDay_Search&search_type=participant'  + (evID ? '&cross_event=false&fr_id=' + evID : '&cross_event=true') + (firstName ? '&first_name=' + firstName : '') + (lastName ? '&last_name=' + lastName : '');
+            }
         });
 
         // Search by Team
@@ -453,7 +469,12 @@
             e.preventDefault();
             var teamName = encodeURIComponent($('#teamSearch').val());
             cd.getTeams(teamName, (isCrossEventSearch === "true" ? true : false));
-            window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=FieldDay_Search&search_type=team&cross_event=' + (evID ? 'false' : 'true') + (evID ? '&fr_id=' + evID : '') + '&team_name=' + teamName;
+
+            if ( $('body').is('.pg_FieldDay_General') || $('body').is('.pg_FieldDay_Landing_Page') ) {
+              window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=FieldDay_Search&search_type=team&cross_event=true&team_name=' + teamName;
+            } else {
+              window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=FieldDay_Search&search_type=team'  + (evID ? '&cross_event=false&fr_id=' + evID : '&cross_event=true') + '&team_name=' + teamName;
+            }
         });
 
 
