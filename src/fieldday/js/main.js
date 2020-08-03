@@ -1183,32 +1183,35 @@
      				 var data = results.data;
 
      				 var company = cd.getCompanyByID(data, companyId);
+             console.log('comany value: ' + company);
+             if (company !== undefined) {
+               var eventMapLink;
+               console.log('company map url: ' + company.eventlocationmapurl);
+       				 if (company.eventlocationmapurl !== undefined) {
+       					 eventMapLink = company.eventlocationmapurl
+       				 } else {
+       					 eventMapLink = 'https://www.google.com/maps/place/' + company.eventaddress + ',' + company.eventcity + ',' + company.eventstate + ',' + company.eventzip;
+       				 }
 
-     				 var eventMapLink;
-     				 if (company.eventlocationmapurl!== undefined) {
-     					 eventMapLink = company.eventlocationmapurl
-     				 } else {
-     					 eventMapLink = 'https://www.google.com/maps/place/' + company.eventaddress + ',' + company.eventcity + ',' + company.eventstate + ',' + company.eventzip;
-     				 }
+       				 var fieldDayDetails = '';
+       				 fieldDayDetails += '<p>' + company.eventlocationname + '</p>';
+       				 fieldDayDetails += '<p>' + company.eventcity + ', ' + company.eventstate + '</p>';
+       				 $(fieldDayDetails).appendTo('.js--field-day-details');
 
-     				 var fieldDayDetails = '';
-     				 fieldDayDetails += '<p>' + company.eventlocationname + '</p>';
-     				 fieldDayDetails += '<p>' + company.eventcity + ', ' + company.eventstate + '</p>';
-     				 $(fieldDayDetails).appendTo('.js--field-day-details');
+       				 var companyLead = '<p><a href="mailto:' + company.coordinatoremail +'">' + company.coordinatorfirstname + ' ' + company.coordinatorlastname + '</a></p>' ;
+       				 $(companyLead).appendTo('.js--company-lead');
 
-     				 var companyLead = '<p><a href="mailto:' + company.coordinatoremail +'">' + company.coordinatorfirstname + ' ' + company.coordinatorlastname + '</a></p>' ;
-     				 $(companyLead).appendTo('.js--company-lead');
+               var eventDateFormatted = moment(company.eventdate).format('MMMM D, YYYY');
 
-             var eventDateFormatted = moment(company.eventdate).format('MMMM D, YYYY');
+       				 var  eventDate = '<p><strong>' + eventDateFormatted + '<br>' + company.eventtime + '</strong></p>';
+       				 $(eventDate).appendTo('.js--event-date');
 
-     				 var  eventDate = '<p><strong>' + eventDateFormatted + '<br>' + company.eventtime + '</strong></p>';
-     				 $(eventDate).appendTo('.js--event-date');
+       				 var companyLocation = '<p>' + company.eventcity + ', ' + company.eventstate + '</p>'
+       				 $(companyLocation).appendTo('.js--company-location');
 
-     				 var companyLocation = '<p>' + company.eventcity + ', ' + company.eventstate + '</p>'
-     				 $(companyLocation).appendTo('.js--company-location');
-
-             $('.js--company-link').attr('href', eventMapLink);
-             $('.js--company-link').html(company.companyname);
+               $('.js--company-link').attr('href', eventMapLink);
+               $('.js--company-link').html(company.companyname);
+             }
 
      		   }
      		 });

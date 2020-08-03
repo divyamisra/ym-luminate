@@ -1,5 +1,5 @@
 	<!-- CITIES NEAR YOU -->
-	<section class="event-city-search">
+	<section id="contentStart" class="event-city-search">
 		<div class="event-search-container container">
 			<h2 class="text-center pt-5 pb-4"><svg xmlns="http://www.w3.org/2000/svg" width="60.392" height="68.933" viewBox="0 0 60.392 68.933">
 				<g id="Group_280" data-name="Group 280" transform="translate(-18.186 -24.839)">
@@ -18,7 +18,7 @@
 				<div class="form-group col-xs-12 col-md-5">
 					<form class="row ml-0 mr-0 pr-0 pl-0 js--zip-search">
 						<label for="zip-landing" class="sr-only">Search by Zip</label>
-						<input class="form-control col-xs-10 js--zip-search-val" id="zip-landing" name="zip-landing" placeholder="Search by Zip" type="text"> <button class="col-xs-2 event-zip-search-submit action-button search-submit" type="submit"><span class="sr-only">Search by Zip</span><i aria-hidden="true" class="fa fa-search"></i></button>
+						<input class="form-control col-xs-10 js--zip-search-val" id="zip-landing" name="zip-landing" placeholder="Search by Zip" type="text"> <button class="col-xs-2 btn event-zip-search-submit action-button search-submit" type="submit"><span class="sr-only">Search by Zip</span><i aria-hidden="true" class="fa fa-search"></i></button>
 					</form>
 				</div>
 				<p class="form-group-divider col-xs-12 col-md-2 text-center">or</p>
@@ -182,7 +182,8 @@
 								<option value="WY">
 									WY
 								</option>
-							</select> <button class="sr-only js__state-search-submit" type="submit">Select state combo box collapsed</button>
+							</select>
+							<button class="sr-only js__state-search-submit" type="submit">Select state combo box collapsed</button>
 						</div>
 					</form>
 				</div>
@@ -192,7 +193,7 @@
 			<div class="js--loading py-4 text-center d-none">
 				Loading...
 			</div>
-			<div class="js--no-event-results alert alert-primary text-center col-md-8 offset-md-2 d-none" role="alert">
+			<div class="js--no-event-results alert alert-primary text-center col-md-8 offset-md-2 d-none" role="alert" aria-atomic="true">
 				<span>We&rsquo;re not seeing anything on the horizon. Maybe try different search terms?</span>
 			</div>
 			<div class="event-results-wrapper container mt-3 text-center">
@@ -259,7 +260,7 @@
 				</div>
 			</div>
 			<div class="js--participant-search-results landing-participant-search__results text-center"></div>
-			<div class="js--participant-no-event-results alert alert-primary text-center col-md-8 offset-md-2 d-none" role="alert">
+			<div class="js--participant-no-event-results alert alert-primary text-center col-md-8 offset-md-2 d-none" role="alert" aria-atomic="true">
 				<span>We&rsquo;re not seeing anything. Maybe try different search term?</span>
 			</div>
 			<div class="js--show-more-container text-center mt-2 mb-5">
@@ -357,7 +358,7 @@
 						</g>
 					</svg>
 					<p class="card-text js--card-content">From event details to promotional materials to help you fundraise, we&lsquo;ll be here with you every step of the way.  </p>
-					<p class="card-text"><a class="btn btn-secondary" href="../SPageServer/?pagename=FieldDay_FAQ">FAQ</a></p>
+					<p class="card-text"><a class="btn btn-secondary" href="https://dev2.heart.org/site/SPageServer/?pagename=FieldDay_FAQ">FAQ</a></p>
 				</div>
 			</div>
 		</div><!-- /.container-content -->
