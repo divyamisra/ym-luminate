@@ -726,6 +726,99 @@
             });
         };
 
+        /******************/
+        /* STEPS SCRIPTS */
+        /******************/
+        cd.getTopParticipantsSteps = function (eventId) {
+            luminateExtend.api({
+                api: 'teamraiser',
+                data: 'method=getParticipants&first_name=%25%25%25&event_type=' + eventType + '&fr_id=' + eventId + '&list_sort_column=total&list_ascending=false&list_page_size=10&response_format=json',
+                callback: {
+                    success: function (response) {
+                        if (!$.isEmptyObject(response.getParticipantsResponse)) {
+                            var counter = 0;
+                            var participantData = luminateExtend.utils.ensureArray(response.getParticipantsResponse
+                                .participant);
+
+                            $(participantData).each(function () {
+                                if (counter <= 4) {
+                                    var participantName = this.name.first + ' ' + this.name.last;
+                                    var participantRaised = (parseInt(this.amountRaised) * 0.01).toFixed(2);
+
+                                    var participantRaisedFormmatted = participantRaised.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,").replace('.00', '');
+                                    var participantId = this.consId;
+                                    var participantPage = this.personalPageUrl;
+                                    var isCaptain = this.aTeamCaptain;
+                                    var topWalkerHtml = '<li><div class="d-flex"><div class="flex-grow-1"><a href="' + participantPage + '">' + participantName + '</a></div><div class="raised">Raised<br><strong>$' + participantRaisedFormmatted + '</strong></div></div></li>';
+                                    if (participantName !== "null null") {
+                                        $('.js--walker-top-list-steps ul').append(topWalkerHtml);
+                                        counter = counter + 1;
+                                    }
+                                }
+                            });
+                        }
+                    },
+                    error: function (response) {
+                    }
+                }
+            });
+        };
+        // END TOP PARTICIPANTS STEPS
+
+        // BEGIN TOP TEAMS STEPS
+        cd.getTopTeamsSteps = function (eventId) {
+            luminateExtend.api({
+                api: 'teamraiser',
+                data: 'method=getTeamsByInfo&fr_id=' + eventId + '&list_sort_column=total&list_ascending=false&list_page_size=5&response_format=json',
+                callback: {
+                    success: function (response) {
+                        if (!$.isEmptyObject(response.getTeamSearchByInfoResponse)) {
+                            var teamData = luminateExtend.utils.ensureArray(response.getTeamSearchByInfoResponse.team);
+
+                            $(teamData).each(function (i) {
+                                var teamName = this.name;
+                                var teamRaised = (parseInt(this.amountRaised) * 0.01).toFixed(2);
+
+                                var teamRaisedFormmatted = teamRaised.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,").replace('.00', '');
+                                var teamId = this.id;
+
+                                var topTeamRow = '<li><div class="d-flex"><div class="flex-grow-1"><a href="TR/?team_id=' + teamId + '&amp;pg=team&amp;fr_id=' + evID + '">' + teamName + '</a></div><div class="raised">Raised<br><strong>$' + teamRaisedFormmatted + '</strong></div></div></li>';
+
+                                $('.js--team-top-list-steps ul').append(topTeamRow);
+                            });
+                        }
+                    },
+                    error: function (response) {
+                        // console.log('getTopTeams error: ' + response.errorResponse.message);
+                    }
+                }
+            });
+        };
+
+        // END TOP TEAMS STEPS
+
+        // BEGIN TOP COMPANIES STEPS
+        cd.getTopCompaniesSteps = function (eventId) {
+            luminateExtend.api({
+                api: 'teamraiser',
+                data: 'method=getCompaniesByInfo&fr_id=' + eventId +
+                    '&include_cross_event=true&list_sort_column=total&list_ascending=false&list_page_size=5&response_format=json',
+                callback: {
+                    success: function (response) {
+                        if (!$.isEmptyObject(response.getCompaniesResponse)) {
+                            var topCompanies = luminateExtend.utils.ensureArray(response.getCompaniesResponse
+                                .company);
+                            var totalCompanies = parseInt(response.getCompaniesResponse.totalNumberResults);
+                            $('.js--num-companies').text(totalCompanies);
+                        }
+                    },
+                    error: function (response) {
+                        // console.log('getTopCompanies error: ' + response.errorResponse.message);
+                    }
+                }
+            });
+        };
+
         // EXPANDABLE DONOR ROLL
         $('.js--honor-roll-expander').on('click', function (e) {
             if ($(this).children('i').hasClass('fa-chevron-down')) {
@@ -899,6 +992,11 @@
             cd.getCompanyList(evID);
             cd.getTopCompanies(evID);
 
+            //build steps leaderboard
+            cd.getTopParticipantsSteps(evID);
+            cd.getTopTeamsSteps(evID);
+            cd.getTopCompaniesSteps(evID);
+            
             // Walker Search
             $('.js--greeting-walker-search-form').on('submit', function (e) {
                 e.preventDefault();
