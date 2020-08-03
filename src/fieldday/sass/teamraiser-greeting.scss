@@ -19,7 +19,9 @@
   }
 
   .event-info__content {
-    padding: 0 72px;
+    @include media-breakpoint-up(lg) {
+      padding: 0 72px;
+    }
   }
 
 
