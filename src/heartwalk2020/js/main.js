@@ -90,7 +90,7 @@
         var motion_username = 'motionapi';
         var motion_password = 'PrGkpfQ(^2:d!X4!'; 
         var motionDb = 'democdsb'; 
-        var urlPrefix = (isProd) ? 'loadprod' : 'load';
+        var motion_urlPrefix = (isProd) ? 'loadprod' : 'load';
         
         function getURLParameter(url, name) {
             return (RegExp(name + '=' + '(.+?)(&|$)').exec(url) || [, null])[1];
@@ -747,7 +747,7 @@
                     xhr.setRequestHeader("Authorization", "Basic "+btoa(motion_username+':'+motion_password));
                 },
                 success: function(response){
-                    console.log('getMotionActivityRoster ' + rosterType + ' response', response);
+                    console.log('getMotionActivityRoster participant response', response);
                     $(response).each(function(){
                         var participantName = this.name;
                         var steps = this.total;
