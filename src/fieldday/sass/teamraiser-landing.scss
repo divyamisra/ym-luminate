@@ -167,7 +167,6 @@
     align-self: center;
   }
   .event-state-select__button {
-      font-family: "Font Awesome 5 Free";
       font-weight: 600;
       color: #fff;
       background-color: $red;
@@ -182,7 +181,9 @@
       text-align: center;
       font-size: 1.5em;
       width: 16.667%;
-      display: block;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       cursor: pointer;
       border: none;
       &:hover {
