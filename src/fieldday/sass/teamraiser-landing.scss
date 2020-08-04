@@ -196,6 +196,8 @@
       color: white;
       border-top-right-radius: 0.25rem;
       border-bottom-right-radius: 0.25rem;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
       border-color: #c11d20;
       padding: 16px;
       padding-right: 16px;
@@ -204,6 +206,10 @@
       font-size: 1.25em;
       &:hover {
         background-color: $red-deep;
+      }
+      &.button {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
       }
   }
 

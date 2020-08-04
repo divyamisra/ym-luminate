@@ -33,7 +33,9 @@ padding: 0.625rem 1.25rem;
 
 #home, #find, #about {
   &:hover {
-    color: $white!important;
+    @include media-breakpoint-up(md) {
+      color: $white!important;
+    }
   }
 }
 .nav-wrapper {
