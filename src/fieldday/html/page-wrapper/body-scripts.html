@@ -140,3 +140,30 @@ crossorigin="anonymous"></script> -->
 
 
 ::]]
+
+[[?
+  [[?[[S8]]::FieldDay_Landing_Page::T::]]
+  [[?x19x23x::x[[S4]]x::T::]]
+::T::
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/unslider/2.0.3/js/unslider-min.js" integrity="sha512-mGetBI3EloHb9QY+HpWMJz+ca+gaJB5MnbFm3SqEujV56YyQMoxI8V5GkZvQsHz/srjXrUSLzyz547fTCy0B3A==" crossorigin="anonymous"></script>
+
+<script>
+	Y.use("jquery-noconflict",  function(Y)
+	{
+		jQuery(function($)
+		{
+			$(".global-sponsors__slider img.tr_sponsorship_logo_image").each(function()
+				{
+					var $img = $(this);
+					var h = $img.height();
+					var w = $img.width();
+					$img.css('margin-top', + h / -2 + "px");
+					$img.css('margin-left', + w / -2 + "px");
+				}
+            ).show();
+		});
+	});
+</script>
+
+::]]
