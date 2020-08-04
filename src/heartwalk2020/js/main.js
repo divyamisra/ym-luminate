@@ -754,7 +754,7 @@
                             var steps = this.total;
                             var participantPage = "https://" + ((isProd) ? "www2" : "dev2") + ".heart.org/site/TR?px="+this.id+"&pg=personal&fr_id="+eventId;
 
-                            var topWalkerHtml = '<li><div class="d-flex"><div class="flex-grow-1"><a href="' + participantPage + '">' + participantName + '</a></div><div class="steps">Steps<br><strong>' + steps + '</strong></div></div></li>';
+                            var topWalkerHtml = '<li><div class="d-flex"><div class="flex-grow-1"><a href="' + participantPage + '">' + participantName + '</a></div><div class="raised">Steps<br><strong>' + steps + '</strong></div></div></li>';
                             $('.js--walker-top-list-steps ul').append(topWalkerHtml);
                         });
                     }
