@@ -747,15 +747,16 @@
                     xhr.setRequestHeader("Authorization", "Basic "+btoa(motion_username+':'+motion_password));
                 },
                 success: function(response){
-                    console.log('getMotionActivityRoster participant response', response);
-                    $(response).each(function(){
-                        var participantName = this.name;
-                        var steps = this.total;
-                        var participantPage = "https://" + ((isProd) ? "www2" : "dev2") + ".heart.org/site/TR?px="+this.id+"&pg=personal&fr_id="+eventId;
+                    if (response.activities != undefined) {
+                        $(response.activities).each(function(){
+                            var participantName = this.name;
+                            var steps = this.total;
+                            var participantPage = "https://" + ((isProd) ? "www2" : "dev2") + ".heart.org/site/TR?px="+this.id+"&pg=personal&fr_id="+eventId;
 
-                        var topWalkerHtml = '<li><div class="d-flex"><div class="flex-grow-1"><a href="' + participantPage + '">' + participantName + '</a></div><div class="steps">Steps<br><strong>' + steps + '</strong></div></div></li>';
-                        $('.js--walker-top-list-steps ul').append(topWalkerHtml);
-                    });
+                            var topWalkerHtml = '<li><div class="d-flex"><div class="flex-grow-1"><a href="' + participantPage + '">' + participantName + '</a></div><div class="steps">Steps<br><strong>' + steps + '</strong></div></div></li>';
+                            $('.js--walker-top-list-steps ul').append(topWalkerHtml);
+                        });
+                    }
                 },
                 error: function(err) {
                     console.log('getMotionActivityRoster err', err);
@@ -778,13 +779,14 @@
                     xhr.setRequestHeader("Authorization", "Basic "+btoa(motion_username+':'+motion_password));
                 },
                 success: function(response){
-                    console.log('getMotionActivityRoster team response', response);
-                    $(response).each(function(){
-                        var teamName = this.name;
-                        var steps = this.total;
-                        var topTeamRow = '<li><div class="d-flex"><div class="flex-grow-1"><a href="TR/?team_id=' + this.id + '&amp;pg=team&amp;fr_id=' + evID + '">' + teamName + '</a></div><div class="raised">Raised<br><strong>$' + teamRaisedFormmatted + '</strong></div></div></li>';
-                        $('.js--team-top-list-steps ul').append(topTeamRow);
-                    });
+                    if (response.activities != undefined) {
+                        $(response.activities).each(function(){
+                            var teamName = this.name;
+                            var steps = this.total;
+                            var topTeamRow = '<li><div class="d-flex"><div class="flex-grow-1"><a href="TR/?team_id=' + this.id + '&amp;pg=team&amp;fr_id=' + evID + '">' + teamName + '</a></div><div class="raised">Steps<br><strong>' + steps + '</strong></div></div></li>';
+                            $('.js--team-top-list-steps ul').append(topTeamRow);
+                        });
+                    }
                 },
                 error: function(err) {
                     console.log('getMotionActivityRoster err', err);
@@ -808,13 +810,14 @@
                     xhr.setRequestHeader("Authorization", "Basic "+btoa(motion_username+':'+motion_password));
                 },
                 success: function(response){
-                    console.log('getMotionActivityRoster company response', response);
-                    $(response).each(function(){
-                        var companyName = this.name;
-                        var steps = this.total;
-                        var topCompanyRow = '<li><div class="d-flex"><div class="flex-grow-1"><a href="TR/?team_id=' + this.id + '&amp;pg=team&amp;fr_id=' + evID + '">' + companyName + '</a></div><div class="steps">Steps<br><strong>$' + steps + '</strong></div></div></li>';
-                        $('.js--company-top-list-steps ul').append(topCompanyRow);
-                    });
+                    if (response.activities != undefined) {
+                        $(response.activities).each(function(){
+                            var companyName = this.name;
+                            var steps = this.total;
+                            var topCompanyRow = '<li><div class="d-flex"><div class="flex-grow-1"><a href="TR/?team_id=' + this.id + '&amp;pg=team&amp;fr_id=' + evID + '">' + companyName + '</a></div><div class="steps">Steps<br><strong>' + steps + '</strong></div></div></li>';
+                            $('.js--company-top-list-steps ul').append(topCompanyRow);
+                        });
+                    }
                 },
                 error: function(err) {
                     console.log('getMotionActivityRoster err', err);
