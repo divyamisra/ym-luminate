@@ -18,13 +18,35 @@
      white-space: nowrap;
 }
 
-main {
-    background-image: url("/images/content/pagebuilder/fd_hero_desktop.jpg");
-    background-size: 100%;
-    background-repeat: no-repeat;
-    background-color: $gray-400;
+.app_donation {
+  background-color: #900;
+  background-image: url(https://secure3.convio.net/heartdev/images/content/pagebuilder/background-squiggles.png);
+  background-repeat: no-repeat;
+  background-position: right top;
+  background-size: 70%;
+
+  header {
+    background-color: transparent;
+    background-image: none;
+    nav{
+      background-color: transparent;
+    }
+  }
+
+  main {
+    background-color: transparent;
     padding: 48px 76px 67px;
+  }
+
+  .nav-item--about, .nav-item--find {
+    display: none!important;
+  }
+
+  .global-sponsors, .mobile-utility-nav{
+    display: none;
+  }
 }
+
 
  a#skip-main:hover, a#skip-main:active, a#skip-main:focus {
      left: 0;
