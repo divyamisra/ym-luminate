@@ -169,7 +169,6 @@
   .event-state-select__button {
       font-family: "Font Awesome 5 Free";
       font-weight: 600;
-      content: "\f0d7";
       color: #fff;
       background-color: $red;
       right: 0;
@@ -185,6 +184,7 @@
       width: 16.667%;
       display: block;
       cursor: pointer;
+      border: none;
       &:hover {
         background-color: $red-deep;
       }
