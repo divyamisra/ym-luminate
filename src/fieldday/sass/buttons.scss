@@ -91,6 +91,6 @@ a.btn {
   box-shadow: 0 0 0 .2rem rgba(193,14,33,.5)!important;
 }
 
-#navbar-container a.btn.btn-primary:focus {
+#navbar-container a.btn.btn-primary:focus, .global-promo a.btn.btn-primary:focus {
   outline: 5px auto -webkit-focus-ring-color;
 }
