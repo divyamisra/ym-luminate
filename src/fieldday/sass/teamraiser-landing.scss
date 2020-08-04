@@ -166,7 +166,7 @@
     font-weight: bold;
     align-self: center;
   }
-  .event-state-select-container::after {
+  .event-state-select__button {
       font-family: "Font Awesome 5 Free";
       font-weight: 600;
       content: "\f0d7";
@@ -187,6 +187,10 @@
       cursor: pointer;
       &:hover {
         background-color: $red-deep;
+      }
+      &:focus {
+        -webkit-box-shadow: 0 0 0 .2rem rgba(193,14,33,.5)!important;
+        box-shadow: 0 0 0 .2rem rgba(193,14,33,.5)!important;
       }
   }
 
