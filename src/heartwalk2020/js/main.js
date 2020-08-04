@@ -87,6 +87,11 @@
         var dfID = $('body').data('df-id') ? $('body').data('df-id') : null;
         var consID = $('body').data('cons-id') ? $('body').data('cons-id') : null;
 
+        var motion_username = 'motionapi';
+        var motion_password = 'PrGkpfQ(^2:d!X4!'; 
+        var motionDb = 'democdsb'; 
+        var urlPrefix = (isProd) ? 'loadprod' : 'load';
+        
         function getURLParameter(url, name) {
             return (RegExp(name + '=' + '(.+?)(&|$)').exec(url) || [, null])[1];
         }
@@ -730,36 +735,30 @@
         /* STEPS SCRIPTS */
         /******************/
         cd.getTopParticipantsSteps = function (eventId) {
-            luminateExtend.api({
-                api: 'teamraiser',
-                data: 'method=getParticipants&first_name=%25%25%25&event_type=' + eventType + '&fr_id=' + eventId + '&list_sort_column=total&list_ascending=false&list_page_size=10&response_format=json',
-                callback: {
-                    success: function (response) {
-                        if (!$.isEmptyObject(response.getParticipantsResponse)) {
-                            var counter = 0;
-                            var participantData = luminateExtend.utils.ensureArray(response.getParticipantsResponse
-                                .participant);
+            var motionApiUrl = 'https://' + motion_urlPrefix + '.boundlessfundraising.com/mobiles/' + motionDb + '/getMotionActivityRoster?event_id=' + eventId + '&roster_type=participant&list_size=5';
 
-                            $(participantData).each(function () {
-                                if (counter <= 4) {
-                                    var participantName = this.name.first + ' ' + this.name.last;
-                                    var participantRaised = (parseInt(this.amountRaised) * 0.01).toFixed(2);
+            $.ajax({ 
+                url: motionApiUrl,
+                async: true,
+                type:'GET',
+                dataType: 'json',
+                contentType: 'application/json',
+                beforeSend: function(xhr) {
+                    xhr.setRequestHeader("Authorization", "Basic "+btoa(motion_username+':'+motion_password));
+                },
+                success: function(response){
+                    console.log('getMotionActivityRoster ' + rosterType + ' response', response);
+                    $(response).each(function(){
+                        var participantName = this.name;
+                        var steps = this.total;
+                        var participantPage = "https://" + ((isProd) ? "www2" : "dev2") + ".heart.org/site/TR?px="+this.id+"&pg=personal&fr_id="+eventId;
 
-                                    var participantRaisedFormmatted = participantRaised.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,").replace('.00', '');
-                                    var participantId = this.consId;
-                                    var participantPage = this.personalPageUrl;
-                                    var isCaptain = this.aTeamCaptain;
-                                    var topWalkerHtml = '<li><div class="d-flex"><div class="flex-grow-1"><a href="' + participantPage + '">' + participantName + '</a></div><div class="raised">Raised<br><strong>$' + participantRaisedFormmatted + '</strong></div></div></li>';
-                                    if (participantName !== "null null") {
-                                        $('.js--walker-top-list-steps ul').append(topWalkerHtml);
-                                        counter = counter + 1;
-                                    }
-                                }
-                            });
-                        }
-                    },
-                    error: function (response) {
-                    }
+                        var topWalkerHtml = '<li><div class="d-flex"><div class="flex-grow-1"><a href="' + participantPage + '">' + participantName + '</a></div><div class="steps">Steps<br><strong>' + steps + '</strong></div></div></li>';
+                        $('.js--walker-top-list-steps ul').append(topWalkerHtml);
+                    });
+                },
+                error: function(err) {
+                    console.log('getMotionActivityRoster err', err);
                 }
             });
         };
@@ -767,30 +766,28 @@
 
         // BEGIN TOP TEAMS STEPS
         cd.getTopTeamsSteps = function (eventId) {
-            luminateExtend.api({
-                api: 'teamraiser',
-                data: 'method=getTeamsByInfo&fr_id=' + eventId + '&list_sort_column=total&list_ascending=false&list_page_size=5&response_format=json',
-                callback: {
-                    success: function (response) {
-                        if (!$.isEmptyObject(response.getTeamSearchByInfoResponse)) {
-                            var teamData = luminateExtend.utils.ensureArray(response.getTeamSearchByInfoResponse.team);
+            var motionApiUrl = 'https://' + motion_urlPrefix + '.boundlessfundraising.com/mobiles/' + motionDb + '/getMotionActivityRoster?event_id=' + eventId + '&roster_type=team&list_size=5';
 
-                            $(teamData).each(function (i) {
-                                var teamName = this.name;
-                                var teamRaised = (parseInt(this.amountRaised) * 0.01).toFixed(2);
-
-                                var teamRaisedFormmatted = teamRaised.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,").replace('.00', '');
-                                var teamId = this.id;
-
-                                var topTeamRow = '<li><div class="d-flex"><div class="flex-grow-1"><a href="TR/?team_id=' + teamId + '&amp;pg=team&amp;fr_id=' + evID + '">' + teamName + '</a></div><div class="raised">Raised<br><strong>$' + teamRaisedFormmatted + '</strong></div></div></li>';
-
-                                $('.js--team-top-list-steps ul').append(topTeamRow);
-                            });
-                        }
-                    },
-                    error: function (response) {
-                        // console.log('getTopTeams error: ' + response.errorResponse.message);
-                    }
+            $.ajax({ 
+                url: motionApiUrl,
+                async: true,
+                type:'GET',
+                dataType: 'json',
+                contentType: 'application/json',
+                beforeSend: function(xhr) {
+                    xhr.setRequestHeader("Authorization", "Basic "+btoa(motion_username+':'+motion_password));
+                },
+                success: function(response){
+                    console.log('getMotionActivityRoster team response', response);
+                    $(response).each(function(){
+                        var teamName = this.name;
+                        var steps = this.total;
+                        var topTeamRow = '<li><div class="d-flex"><div class="flex-grow-1"><a href="TR/?team_id=' + this.id + '&amp;pg=team&amp;fr_id=' + evID + '">' + teamName + '</a></div><div class="raised">Raised<br><strong>$' + teamRaisedFormmatted + '</strong></div></div></li>';
+                        $('.js--team-top-list-steps ul').append(topTeamRow);
+                    });
+                },
+                error: function(err) {
+                    console.log('getMotionActivityRoster err', err);
                 }
             });
         };
@@ -799,6 +796,31 @@
 
         // BEGIN TOP COMPANIES STEPS
         cd.getTopCompaniesSteps = function (eventId) {
+            var motionApiUrl = 'https://' + motion_urlPrefix + '.boundlessfundraising.com/mobiles/' + motionDb + '/getMotionActivityRoster?event_id=' + eventId + '&roster_type=team&list_size=5';
+
+            $.ajax({ 
+                url: motionApiUrl,
+                async: true,
+                type:'GET',
+                dataType: 'json',
+                contentType: 'application/json',
+                beforeSend: function(xhr) {
+                    xhr.setRequestHeader("Authorization", "Basic "+btoa(motion_username+':'+motion_password));
+                },
+                success: function(response){
+                    console.log('getMotionActivityRoster company response', response);
+                    $(response).each(function(){
+                        var companyName = this.name;
+                        var steps = this.total;
+                        var topCompanyRow = '<li><div class="d-flex"><div class="flex-grow-1"><a href="TR/?team_id=' + this.id + '&amp;pg=team&amp;fr_id=' + evID + '">' + companyName + '</a></div><div class="steps">Steps<br><strong>$' + steps + '</strong></div></div></li>';
+                        $('.js--company-top-list-steps ul').append(topCompanyRow);
+                    });
+                },
+                error: function(err) {
+                    console.log('getMotionActivityRoster err', err);
+                }
+            });
+
             luminateExtend.api({
                 api: 'teamraiser',
                 data: 'method=getCompaniesByInfo&fr_id=' + eventId +
