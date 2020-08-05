@@ -89,6 +89,7 @@ a.btn {
 #login-div-content a.btn.btn-primary:focus, #login-div-content a.focus.btn.btn-primary, #login-div-content div.responsive a.btn.btn-primary:focus, #login-div-content div.responsive a.focus.btn.btn-primary, .btn-primary.focus, .btn-primary:focus, .btn:focus, a.btn.btn-primary:focus, a.focus.btn.btn-primary, div.responsive #login-div-content a.btn.btn-primary:focus, div.responsive #login-div-content a.focus.btn.btn-primary, div.responsive a.btn.btn-primary:focus, div.responsive a.focus.btn.btn-primary {
   -webkit-box-shadow: 0 0 0 .2rem rgba(193,14,33,.5)!important;
   box-shadow: 0 0 0 .2rem rgba(193,14,33,.5)!important;
+  outline: 5px auto -webkit-focus-ring-color;
 }
 
 #navbar-container a.btn.btn-primary:focus, .global-promo a.btn.btn-primary:focus {
