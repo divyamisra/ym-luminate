@@ -2378,3 +2378,18 @@ var toggleMultiEventInfo = function (elem) {
         $('.multi-event-info-toggler i').removeClass('fa-minus');
     }
 };
+
+
+//main menu hack
+$('nav-item--find a').on('click', function (event) {
+    $(this).parent().toggleClass('open');
+});
+
+$('body').on('click', function (e) {
+    if (!$('nav-item--find').is(e.target)
+        && $('nav-item--find').has(e.target).length === 0
+        && $('.open').has(e.target).length === 0
+    ) {
+        $('nav-item--find').removeClass('open');
+    }
+});
