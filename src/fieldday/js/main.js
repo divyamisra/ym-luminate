@@ -2381,15 +2381,15 @@ var toggleMultiEventInfo = function (elem) {
 
 
 //main menu hack
-$('nav-item--find a').on('click', function (event) {
+$('.nav-item--find a').on('click', function (event) {
     $(this).parent().toggleClass('open');
 });
 
 $('body').on('click', function (e) {
-    if (!$('nav-item--find').is(e.target)
-        && $('nav-item--find').has(e.target).length === 0
+    if (!$('.nav-item--find').is(e.target)
+        && $('.nav-item--find').has(e.target).length === 0
         && $('.open').has(e.target).length === 0
     ) {
-        $('nav-item--find').removeClass('open');
+        $('.nav-item--find').removeClass('open');
     }
 });
