@@ -2295,6 +2295,13 @@
               cd.getEventsByStateLanding(eventState);
           });
 
+          $('.js--state-search').on('submit', function (e) {
+              e.preventDefault();
+              $('.js--event-search-results').html('');
+              var eventState = encodeURIComponent($('.js--state-search-val').val());
+              cd.getEventsByStateLanding(eventState);
+          });
+
           //Company and participant search
           $('.js--page-company-search').on('submit', function (e) {
               e.preventDefault();
