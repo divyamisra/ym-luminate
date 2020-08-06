@@ -630,7 +630,7 @@
             });
             $('.js__new-record').on('click touchstart', function (e) {
             // new participant. continue to tfind step
-                $('#next_step').click();
+                $('#f2fRegPartType #next_step').click();
             });
 
             $('.janrainEngage').html('<div class="btn-social-login btn-facebook"><i class="fab fa-facebook-f mr-2"></i> Create with Facebook</div><div class="btn-social-login btn-amazon"><i class="fab fa-amazon mr-2"></i> Create with Amazon</div>');
