@@ -23,6 +23,7 @@
 
 /* main styling */
 main {
+    background-image: url("/images/content/pagebuilder/hw_hero_desktop.jpg");
     background-size: 100%;
     background-repeat: no-repeat;
     background-color: $gray-400;
@@ -346,6 +347,9 @@ div#part_type_fundraising_goal_container #suggested_goal_container {
     padding-right: 3px;
 }*/
 
+.heart-hero--personal {
+    background-image: url(../images/content/pagebuilder/heartwalk2017_header.jpg);
+}
 .input-container {
   width: auto;
 }
