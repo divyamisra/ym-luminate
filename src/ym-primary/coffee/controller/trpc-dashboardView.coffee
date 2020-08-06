@@ -901,6 +901,9 @@ angular.module 'trPcControllers'
               $scope.hideGifts = schoolDataRows[i][schoolDataHeaders.HG]
               break
             i++
+          if len == 0
+            $scope.hideGifts = "N"
+
       $scope.showPrize = (sku, label, earned) ->
         $scope.prize_sku = sku
         $scope.prize_label = label
