@@ -1223,7 +1223,7 @@
        				 fieldDayDetails += '<p>' + company.eventcity + ', ' + company.eventstate + '</p>';
        				 $(fieldDayDetails).appendTo('.js--field-day-details');
 
-       				 var companyLead = '<p><a href="mailto:' + company.coordinatoremail +'">' + company.coordinatorfirstname + ' ' + company.coordinatorlastname + '</a></p>' ;
+       				 var companyLead = '<p><a aria-label="Email Company Lead ' + company.coordinatorfirstname + ' ' + company.coordinatorlastname +'" href="mailto:' + company.coordinatoremail +'">' + company.coordinatorfirstname + ' ' + company.coordinatorlastname + '</a></p>' ;
        				 $(companyLead).appendTo('.js--company-lead');
 
                var eventDateFormatted = moment(company.eventdate).format('MMMM D, YYYY');
@@ -1519,11 +1519,11 @@
                                     $('.donation-amounts').append('<label class="form-check-label donation-amount-btn btn mb-3" for="personalDonAmt' + i + '" data-level-id="' + levelID + '"> <input class="form-check-input" type="radio" name="personalDonAmt" id="personalDonAmt' + i + '" value="' + levelID + '"> ' + amountFormatted + '</label>');
                                 } else {
                                     // build user-specified level
-                                    $('.donation-amounts').append('<div class="custom-amount"> <input class="form-check-input other-amt-radio sr-only" type="radio" name="personalDonAmt" id="personalDonAmt' + i + '" value="' + levelID + '"> <label class="js--don-amt-other sr-only" for="personalDonAmt' + i + '" data-level-id="' + levelID + '">Enter your own amount</label> <label class="form-label d-inline-block" for="personalOtherAmt">Custom Amount:</label><br/> <input type="text" id="personalOtherAmt" class="form-control d-inline-block js--personal-amt-other" data-parsley-min="25" data-parsley-min-message="Donations of all amounts are greatly appreciated. Online donations have a $25 minimum."/> </div>');
+                                    $('.donation-amounts').append('<div class="custom-amount"> <input class="form-check-input other-amt-radio sr-only" type="radio" name="personalDonAmt" id="personalDonAmt' + i + '" value="' + levelID + '"> <label class="js--don-amt-other sr-only" for="personalDonAmt' + i + '" data-level-id="' + levelID + '">Enter your own amount</label> <label class="form-label d-inline-block" for="personalOtherAmt">Custom Amount:</label><br/> <input type="text" id="personalOtherAmt" class="form-control d-inline-block js--personal-amt-other" data-parsley-min="25" data-parsley-min-message="Donations of all amounts are greatly appreciated. Online donations have a $25 minimum." /> </div>');
                                 }
                             });
 
-                            $('.custom-amount').after('<span class="error-row"></span>');
+                            $('.custom-amount').after('<span role="alert" class="error-row" ></span>');
 
 
                             $('.js--personal-don-form').removeClass('hidden');
@@ -1704,7 +1704,7 @@
                                         participant.name.first + ' ' + participant.name.last +
                                         '</a></td><td class="raised" data-sort="' + participantRaisedFormmatted + '"><span><strong>$' + participantRaisedFormmatted + '</strong></span></td><td><a href="' + participant.donationUrl + '">' + (screenWidth <= 480 ? 'Donate' : 'Donate to ' + participant.name.first) + '</a></td></tr>');
                                     if (participant.aTeamCaptain === 'true') {
-                                        $('.js--team-captain-link').attr('href', participant.personalPageUrl).text(participant.name.first + ' ' + participant.name.last);
+                                        $('.js--team-captain-link').attr('href', participant.personalPageUrl).attr('aria-lablel', "Team Captain " + participant.name.first + ' ' + participant.name.last + "'s fundraising page'" + participant.name.last + ' ').text(participant.name.first + ' ' + participant.name.last);
                                     }
                                 });
 
@@ -2295,6 +2295,13 @@
               cd.getEventsByStateLanding(eventState);
           });
 
+          $('.js--state-search').on('submit', function (e) {
+              e.preventDefault();
+              $('.js--event-search-results').html('');
+              var eventState = encodeURIComponent($('.js--state-search-val').val());
+              cd.getEventsByStateLanding(eventState);
+          });
+
           //Company and participant search
           $('.js--page-company-search').on('submit', function (e) {
               e.preventDefault();
@@ -2371,3 +2378,19 @@ var toggleMultiEventInfo = function (elem) {
         $('.multi-event-info-toggler i').removeClass('fa-minus');
     }
 };
+
+
+//main menu hack
+$('.nav-item--find a').on('click', function (event) {
+    $(this).parent().toggleClass('open');
+});
+
+$('body').on('click, keydown', function (e) {
+    if (!$('.nav-item--find').is(e.target)
+        && $('.nav-item--find').has(e.target).length === 0
+        && $('.open').has(e.target).length === 0
+    ) {
+        $('.nav-item--find').removeClass('open');
+        $('.nav-item--find').removeClass('open');
+    }
+});
