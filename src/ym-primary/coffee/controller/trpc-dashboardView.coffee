@@ -33,6 +33,7 @@ angular.module 'trPcControllers'
       $scope.yearsList = [1..(theDate.getFullYear()-1978)] # 0 - 50
       $scope.schoolChallenges = []
       $scope.companyProgress = []
+      $scope.hideGifts = "Y"
       
       $dataRoot = angular.element '[data-embed-root]'
                      
@@ -897,6 +898,7 @@ angular.module 'trPcControllers'
               $scope.schoolStudentRegOnline = schoolDataRows[i][schoolDataHeaders.RO]
               $scope.notifyName = schoolDataRows[i][schoolDataHeaders.YMDN]
               $scope.notifyEmail = schoolDataRows[i][schoolDataHeaders.YMDE]
+              $scope.hideGifts = schoolDataRows[i][schoolDataHeaders.HG]
               break
             i++
       $scope.showPrize = (sku, label, earned) ->
