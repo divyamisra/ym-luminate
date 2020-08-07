@@ -1489,10 +1489,10 @@
             $(this).addClass('survivor_active');
         });
 
-        $('.cons-address-street-full-container').hide().attr('aria-hidden', 'true');
-        $('#cons_city').parent().parent().parent().parent().hide().attr('aria-hidden', 'true');
-        $('#cons_state').closest('.cons-full-address-container').hide()..attr('aria-hidden', 'true');
-        $('#cons_info_country_container').hide()..attr('aria-hidden', 'true');
+        $('.cons-address-street-full-container').attr('aria-hidden', 'true').hide();
+        $('#cons_city').parent().parent().parent().parent().attr('aria-hidden', 'true').hide();
+        $('#cons_state').closest('.cons-full-address-container').attr('aria-hidden', 'true').hide();
+        $('#cons_info_country_container').attr('aria-hidden', 'true').hide();
 
 
         /*Donation Buttons*/
