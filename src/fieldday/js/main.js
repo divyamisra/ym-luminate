@@ -396,7 +396,7 @@
                               var captainName = captain.name.first + ' ' + captain.name.last;
                               var captainPage = captain.personalPageUrl;
 
-                              $('<p><a href="'+ captainPage +'">' + captainName +'</p>').appendTo('.js--team-captain');
+                            $('<p><a aria-lable="' + captainName + '" href="'+ captainPage +'">Visit fundraising page for Team Captain ' + captainName +' </p>').appendTo('.js--team-captain');
                             });
 
                     },
