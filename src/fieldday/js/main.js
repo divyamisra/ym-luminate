@@ -2410,3 +2410,9 @@ $('body').on('click, keydown', function (e) {
         $('.nav-item--find').removeClass('open');
     }
 });
+
+
+if ( $('body').is('.app_donation') || $('body').is('.app_tr_registration') || $('body').is('.pg_fieldday_register') ) {
+  $('.nav-item--about').attr('aria-hidden', 'true');
+  $('.nav-item--find').attr('aria-hidden', 'true');
+}
