@@ -1467,7 +1467,7 @@
         if ($('input[name="pg"]').val() == 'reg') {
             $('#additional_questions_container .survey-question-container:contains("Facebook Fundraiser ID:")').hide();
             $('input#cons_user_name + span.input-hint').html("You can use your email address or a unique name with any of the following: letters, numbers, and these symbols: +, -, _, @, ., %, and : but no spaces!");
-            $('input#cons_password + span.input-hint').html("This needs to be at least 5 characters long and can contain any of the following: letters, numbers, and these symbols: !#$%()*+,-./:;=?@[\]^_`{|}~ o");
+            $('input#cons_password + span.input-hint').html("This needs to be at least 5 characters long and can contain any of the following: letters, numbers, and these symbols: !#$%()*+,-./:;?@[\]^_`{|}~ o=");
         }
         $('#password_component_container #cons_rep_password').parent().parent().parent().addClass('left');
         $('#password_component_container #cons_password').parent().parent().parent().addClass('left');
@@ -1489,10 +1489,11 @@
             $(this).addClass('survivor_active');
         });
 
-        $('.cons-address-street-full-container').hide();
-        $('#cons_city').parent().parent().parent().parent().hide();
-        $('#cons_state').closest('.cons-full-address-container').hide();
-        $('#cons_info_country_container').hide();
+        $('.cons-address-street-full-container').attr('aria-hidden', 'true').hide();
+        $('#cons_city').parent().parent().parent().parent().attr('aria-hidden', 'true').hide();
+        $('#cons_state').closest('.cons-full-address-container').attr('aria-hidden', 'true').hide();
+        $('#cons_info_country_container').attr('aria-hidden', 'true').hide();
+        $('.cons-city-town-label').attr('aria-hidden', 'true');
 
 
         /*Donation Buttons*/
@@ -1915,7 +1916,7 @@
             jQuery('.list-component-row.list-row').each(function() {
                 var join_link = jQuery(this).find('.list-component-cell-column-team-name a').attr('href');
                 jQuery(this).find('.list-component-cell-column-team-name a').contents().unwrap();
-                jQuery(this).find('.list-component-cell-column-join-link .list-component-cell-data-text a').after('<a href="' + join_link + '" style="background:white;background-color:white !important;border:2px solid #cd181d!important;margin:5px auto 0;display:block;width:132px" target="_blank">View</a>');
+                jQuery(this).find('.list-component-cell-column-join-link .list-component-cell-data-text a').after('<a href="' + join_link + '" style="color:#cd181d!important;background:white;background-color:white !important;border:2px solid #cd181d!important;margin:5px auto 0;display:block;width:132px" target="_blank">View</a>');
             });
             //jQuery('.list-component-cell-column-join-link .list-component-cell-data-text a').css('display','block');
         }

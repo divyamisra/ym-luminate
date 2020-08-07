@@ -33,6 +33,7 @@ angular.module 'trPcControllers'
       $scope.yearsList = [1..(theDate.getFullYear()-1978)] # 0 - 50
       $scope.schoolChallenges = []
       $scope.companyProgress = []
+      $rootScope.hideGifts = "Y"
       
       $dataRoot = angular.element '[data-embed-root]'
                      
@@ -887,6 +888,7 @@ angular.module 'trPcControllers'
           angular.forEach schoolDataRows[0], (schoolDataHeader, schoolDataHeaderIndex) ->
             schoolDataHeaders[schoolDataHeader] = schoolDataHeaderIndex
           i = 0
+          compfnd = false
           len = schoolDataRows.length
           while i < len
             if $rootScope.companyInfo.companyId is schoolDataRows[i][schoolDataHeaders.CID]
@@ -897,8 +899,13 @@ angular.module 'trPcControllers'
               $scope.schoolStudentRegOnline = schoolDataRows[i][schoolDataHeaders.RO]
               $scope.notifyName = schoolDataRows[i][schoolDataHeaders.YMDN]
               $scope.notifyEmail = schoolDataRows[i][schoolDataHeaders.YMDE]
+              $rootScope.hideGifts = schoolDataRows[i][schoolDataHeaders.HG]
+              compfnd = true
               break
             i++
+          if len == 0 or not compfnd
+            $rootScope.hideGifts = "N"
+
       $scope.showPrize = (sku, label, earned) ->
         $scope.prize_sku = sku
         $scope.prize_label = label
