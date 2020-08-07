@@ -166,10 +166,8 @@
     font-weight: bold;
     align-self: center;
   }
-  .event-state-select-container::after {
-      font-family: "Font Awesome 5 Free";
+  .event-state-select__button {
       font-weight: 600;
-      content: "\f0d7";
       color: #fff;
       background-color: $red;
       right: 0;
@@ -183,10 +181,18 @@
       text-align: center;
       font-size: 1.5em;
       width: 16.667%;
-      display: block;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       cursor: pointer;
+      border: none;
       &:hover {
         background-color: $red-deep;
+      }
+      &:focus {
+        -webkit-box-shadow: 0 0 0 .2rem rgba(193,14,33,.5)!important;
+        box-shadow: 0 0 0 .2rem rgba(193,14,33,.5)!important;
+        outline: none;
       }
   }
 
@@ -196,6 +202,8 @@
       color: white;
       border-top-right-radius: 0.25rem;
       border-bottom-right-radius: 0.25rem;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
       border-color: #c11d20;
       padding: 16px;
       padding-right: 16px;
@@ -204,6 +212,10 @@
       font-size: 1.25em;
       &:hover {
         background-color: $red-deep;
+      }
+      &.button {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
       }
   }
 

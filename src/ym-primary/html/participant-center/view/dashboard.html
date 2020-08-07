@@ -531,7 +531,7 @@
         </div>
       </div>
     </section>
-    <section class="ym-pc-dashboard-standard-gifts-section" aria-label="My Gifts">
+    <section class="ym-pc-dashboard-standard-gifts-section" aria-label="My Gifts" ng-if="hideGifts != 'Y'" ng-cloak>
       <div class="ym-pc-dashboard-section-header">
         <h2 class="h3">
           You Earned <span ng-bind-html="giftsEarned"></span> out of <span ng-bind-html="totalGifts"></span> Thank-You Gifts!

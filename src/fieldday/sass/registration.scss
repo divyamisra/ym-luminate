@@ -24,7 +24,6 @@
 
 /* main styling */
 main {
-    background-image: url("/images/content/pagebuilder/fd_hero_desktop.jpg");
     background-size: 100%;
     background-repeat: no-repeat;
     background-color: $gray-400;
@@ -50,7 +49,7 @@ main {
 }
 
 .pg_ptype input[type="radio"]:focus {
-	outline: 2px solid $red;
+	outline: 5px auto -webkit-focus-ring-color;
 }
 
 h1#pt_title_container,
@@ -2022,7 +2021,7 @@ div.required-indicator-legend {
     }
 }
 
-.app_tr_registration, .pg_fieldday_register {
+.app_tr_registration, .pg_fieldday_register, .app_donation {
   background-color: #900;
   background-image: url(https://secure3.convio.net/heartdev/images/content/pagebuilder/background-squiggles.png);
   background-repeat: no-repeat;
@@ -2045,7 +2044,11 @@ div.required-indicator-legend {
     display: none!important;
   }
 
-  .global-sponsors{
+  .global-sponsors, .mobile-utility-nav{
     display: none;
   }
+}
+
+.default-submit-hack {
+  display: none!important;
 }

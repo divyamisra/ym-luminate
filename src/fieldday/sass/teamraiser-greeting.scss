@@ -19,7 +19,9 @@
   }
 
   .event-info__content {
-    padding: 0 72px;
+    @include media-breakpoint-up(lg) {
+      padding: 0 72px;
+    }
   }
 
 
@@ -146,7 +148,7 @@
 
   .greeting-visual-banner {
     height: 200px;
-    @include media-breakpoint-up(md) {
+    @include media-breakpoint-up(lg) {
       height: 623px;
       background-attachment: fixed;
     }
