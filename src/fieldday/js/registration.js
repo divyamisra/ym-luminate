@@ -1495,6 +1495,10 @@
         $('#cons_info_country_container').attr('aria-hidden', 'true').hide();
         $('.cons-city-town-label').attr('aria-hidden', 'true');
 
+        $('.survivorq').focus(function(){
+          $(this).parent().parent().addClass('survivor_active');
+        })
+
 
         /*Donation Buttons*/
         $('.donation-level-row-label').parent().parent().addClass('donation-amt');

@@ -851,6 +851,7 @@
         cd.getCompaniesLanding = function (companyName) {
             cd.getCompanyData();
             $('.js--no-participant-results, .js--participant-no-event-results').addClass('d-none');
+            $('.js--no-participant-results, .js--participant-no-event-results').removeAttr('role');
             $('.js--participant-loading').show();
 
             luminateExtend.api({
@@ -901,6 +902,7 @@
                         } else {
                             $('.js--participant-loading').hide();
                             $('.js--participant-no-event-results').removeClass('d-none');
+                            $('.js--no-participant-results, .js--participant-no-event-results').addAttr('role', 'alert');
                         }
                     },
                     error: function (response) {
@@ -1571,6 +1573,10 @@
                             // Set default donation amount
                             $('input[name="personalDonAmt"]').eq(1).click().prop('checked', true).closest('.donation-amount-btn').addClass('active');
                             // $('.js--don-amt').text($('.form-check-label').eq(1).text().trim());
+
+                            $('.other-amt-radio').focus(function(){
+                              $('.js--personal-amt-other').focus();
+                            });
 
 
                             // redirect is now managed in amazonpay.js
@@ -2404,3 +2410,9 @@ $('body').on('click, keydown', function (e) {
         $('.nav-item--find').removeClass('open');
     }
 });
+
+
+if ( $('body').is('.app_donation') || $('body').is('.app_tr_registration') || $('body').is('.pg_fieldday_register') ) {
+  $('.nav-item--about').attr('aria-hidden', 'true');
+  $('.nav-item--find').attr('aria-hidden', 'true');
+}
