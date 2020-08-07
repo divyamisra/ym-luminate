@@ -662,6 +662,9 @@
         cd.getEvents = function (eventName, eventState) {
             $('.js--loading').show();
             $('.js--no-event-results').addClass('d-none');
+            $('.js--no-event-results').removeAttr('role');
+
+
             luminateExtend.api({
                 api: 'teamraiser',
                 data: 'method=getTeamraisersByInfo' +
@@ -705,6 +708,7 @@
                         } else {
                             $('.js--loading').hide();
                             $('.js--no-event-results').removeClass('d-none').html('<span>We&rsquo;re not seeing anything. Maybe try different search term?</span>');
+                            $('.js--no-event-results').attr('role', 'alert');
                         }
                     },
                     error: function (response) {
@@ -718,6 +722,8 @@
 
         cd.getEventsByDistanceLanding = function (zipCode) {
             $('.js--no-event-results').addClass('d-none');
+            $('.js--no-event-results').removeAttr('role');
+
             $('.js--loading').show();
 
             luminateExtend.api({
@@ -766,6 +772,7 @@
                         } else {
                             $('.js--loading').hide();
                             $('.js--no-event-results').removeClass('d-none');
+                            $('.js--no-event-results').attr('role', 'alert');
                         }
                     },
                     error: function (response) {
@@ -779,6 +786,8 @@
         // getEventsByStateLanding
         cd.getEventsByStateLanding = function (eventState) {
             $('.js--no-event-results').addClass('d-none');
+            $('.js--no-event-results').removeAttr('role');
+
             $('.js--loading').show();
 
             luminateExtend.api({
@@ -826,6 +835,7 @@
                         } else {
                             $('.js--loading').hide();
                             $('.js--no-event-results').removeClass('d-none');
+                            $('.js--no-event-results').attr('role', 'alert');
                         }
                     },
                     error: function (response) {
