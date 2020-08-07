@@ -851,6 +851,7 @@
         cd.getCompaniesLanding = function (companyName) {
             cd.getCompanyData();
             $('.js--no-participant-results, .js--participant-no-event-results').addClass('d-none');
+            $('.js--no-participant-results, .js--participant-no-event-results').removeAttr('role');
             $('.js--participant-loading').show();
 
             luminateExtend.api({
@@ -901,6 +902,7 @@
                         } else {
                             $('.js--participant-loading').hide();
                             $('.js--participant-no-event-results').removeClass('d-none');
+                            $('.js--no-participant-results, .js--participant-no-event-results').addAttr('role', 'alert');
                         }
                     },
                     error: function (response) {
