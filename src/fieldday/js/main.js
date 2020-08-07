@@ -1574,6 +1574,10 @@
                             $('input[name="personalDonAmt"]').eq(1).click().prop('checked', true).closest('.donation-amount-btn').addClass('active');
                             // $('.js--don-amt').text($('.form-check-label').eq(1).text().trim());
 
+                            $('input[name="personalDonAmt"]').focus(function(){
+                              $('.js--personal-amt-other').focus();
+                            });
+
 
                             // redirect is now managed in amazonpay.js
                             // $('.js--personal-don-form').on('submit', function(e){
