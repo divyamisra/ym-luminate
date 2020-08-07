@@ -888,6 +888,7 @@ angular.module 'trPcControllers'
           angular.forEach schoolDataRows[0], (schoolDataHeader, schoolDataHeaderIndex) ->
             schoolDataHeaders[schoolDataHeader] = schoolDataHeaderIndex
           i = 0
+          compfnd = false
           len = schoolDataRows.length
           while i < len
             if $rootScope.companyInfo.companyId is schoolDataRows[i][schoolDataHeaders.CID]
@@ -899,9 +900,10 @@ angular.module 'trPcControllers'
               $scope.notifyName = schoolDataRows[i][schoolDataHeaders.YMDN]
               $scope.notifyEmail = schoolDataRows[i][schoolDataHeaders.YMDE]
               $rootScope.hideGifts = schoolDataRows[i][schoolDataHeaders.HG]
+              compfnd = true
               break
             i++
-          if len == 0
+          if len == 0 or not compfnd
             $rootScope.hideGifts = "N"
 
       $scope.showPrize = (sku, label, earned) ->
