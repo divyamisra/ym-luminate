@@ -1467,7 +1467,7 @@
         if ($('input[name="pg"]').val() == 'reg') {
             $('#additional_questions_container .survey-question-container:contains("Facebook Fundraiser ID:")').hide();
             $('input#cons_user_name + span.input-hint').html("You can use your email address or a unique name with any of the following: letters, numbers, and these symbols: +, -, _, @, ., %, and : but no spaces!");
-            $('input#cons_password + span.input-hint').html("This needs to be at least 5 characters long and can contain any of the following: letters, numbers, and these symbols: !#$%()*+,-./:;=?@[\]^_`{|}~ o");
+            $('input#cons_password + span.input-hint').html("This needs to be at least 5 characters long and can contain any of the following: letters, numbers, and these symbols: !#$%()*+,-./:;?@[\]^_`{|}~ o=");
         }
         $('#password_component_container #cons_rep_password').parent().parent().parent().addClass('left');
         $('#password_component_container #cons_password').parent().parent().parent().addClass('left');
