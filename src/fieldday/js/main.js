@@ -2300,6 +2300,12 @@
         if($('body').is('.pg_FieldDay_Landing_Page')) {
           //Search functionality
 
+          $('#company-page-search, #participant-page-search').on('click', function(){
+            $('.js--participant-search-results').html('');
+            $('.js--participant-no-event-results').addClass('d-none');
+            $('.js--participant-more-event-results').addAttr('hidden');
+          });
+
           //State and Zip search
           $('.js--zip-search').on('submit', function (e) {
               e.preventDefault();
