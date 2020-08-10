@@ -1535,7 +1535,7 @@
                                 }
                             });
 
-                            $('.custom-amount').after('<span role="alert" class="error-row" ></span>');
+                            $('.custom-amount').after('<span aria-atomic="true" role="alert" class="error-row" ></span>');
 
 
                             $('.js--personal-don-form').removeClass('hidden');
