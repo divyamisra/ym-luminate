@@ -658,6 +658,8 @@ angular.module 'trPcControllers'
               sku: prize.sku
               status: prize.status
               earned: prize.earned_datetime
+              earned_image_url: prize.earned_image_url
+              non_earned_image_url: prize.non_earned_image_url
         , (response) ->
           # TODO
         $scope.personalChallenge = {}
