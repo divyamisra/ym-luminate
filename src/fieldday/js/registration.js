@@ -1617,8 +1617,14 @@
 		$('span.field-required').closest('.form-content').find('input:visible, select').addClass("required");
 
 		$('input.required').each(function(){
-		    var label = $(this).closest('.form-content').find('label').html();
-		    $(this).attr("title",label.replace(":","") + " is required");
+        if ($('input').attr('id') === 'fr_team_name') {
+          var label = $(this).closest('.form-content').find('label').html();
+  		    $(this).attr("title","Team Name is required");
+        } else {
+          var label = $(this).closest('.form-content').find('label').html();
+  		    $(this).attr("title",label.replace(":","") + " is required");
+        }
+
 		});
 		$('select.required').each(function(){
 		    var label = $(this).closest('.form-content').find('label span.label-text').html();
@@ -2139,7 +2145,7 @@
             }
 
             if ($('body').is('.pg_regsummary')) {
-              $('.reg-summary-address-info .reg-summary-edit-link a').attr('aria-label', 'Edit your contact information');
+              $('.reg-summary-address-info .reg-summary-edit-link a').attr('aria-label', 'Edit your registration information');
               $('.js--edit-ptype').attr('aria-label', 'Edit your registration information');
             }
 
