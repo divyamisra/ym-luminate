@@ -2145,7 +2145,7 @@
             }
 
             if ($('body').is('.pg_regsummary')) {
-              $('.reg-summary-address-info .reg-summary-edit-link a').attr('aria-label', 'Edit your contact information');
+              $('.reg-summary-address-info .reg-summary-edit-link a').attr('aria-label', 'Edit your registration information');
               $('.js--edit-ptype').attr('aria-label', 'Edit your registration information');
             }
 
