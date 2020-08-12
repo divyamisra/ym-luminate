@@ -392,6 +392,18 @@ img {
     background-color: transparent;
   }
 
+  &.logged-in {
+    .tr-page-container {
+      top: -80px;
+      margin: 0 auto -110px;
+      @include media-breakpoint-up(md) {
+        top: -130px;
+        margin: 0 auto -180px;
+      }
+      background-color: transparent;
+    }
+  }
+
   .sponsors {
     border-top: solid 1px $gray-200;
   }
@@ -413,19 +425,7 @@ img {
   }
 }
 
-.logged-in {
-  .pg_personal, .pg_team, .pg_company {
-    .tr-page-container {
-      top: -80px;
-      margin: 0 auto -110px;
-      @include media-breakpoint-up(md) {
-        top: -130px;
-        margin: 0 auto -180px;
-      }
-      background-color: transparent;
-    }
-  }
-}
+
 
 #globalFooter {
   background-color: #e9ecef;
