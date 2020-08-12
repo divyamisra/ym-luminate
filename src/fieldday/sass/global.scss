@@ -328,9 +328,15 @@ img {
       }
       display: flex;
       flex-wrap: wrap;
-      justify-content: flex-start;
+      justify-content: space-between;
+      @include media-breakpoint-up(lg) {
+        justify-content: flex-start;
+      }
       .achievement-badge {
-        width: 23%;
+        width: 48%;
+        @include media-breakpoint-up(lg) {
+          width: 23%;
+        }
         margin: 1%;
         p {
           font-family: $font-family-bold;
