@@ -87,9 +87,9 @@
         var dfID = $('body').data('df-id') ? $('body').data('df-id') : null;
         var consID = $('body').data('cons-id') ? $('body').data('cons-id') : null;
 
-        var motion_username = 'motionapi';
-        var motion_password = 'PrGkpfQ(^2:d!X4!'; 
-        var motionDb = 'democdsb'; 
+        var motion_username = 'heartwalkapi';
+        var motion_password = 'jPOHc5J4qMVVSj7P'; 
+        var motionDb = 'ahahw'; 
         var motion_urlPrefix = (isProd) ? 'loadprod' : 'load';
         
         function getURLParameter(url, name) {
@@ -735,8 +735,7 @@
         /* STEPS SCRIPTS */
         /******************/
         cd.getTopParticipantsSteps = function (eventId) {
-            //var motionApiUrl = 'https://' + motion_urlPrefix + '.boundlessfundraising.com/mobiles/' + motionDb + '/getMotionActivityRoster?event_id=' + eventId + '&roster_type=participant&list_size=5';
-            var motionApiUrl = 'https://' + motion_urlPrefix + '.boundlessfundraising.com/mobiles/' + motionDb + '/getMotionActivityRoster?event_id=1061&roster_type=participant&list_size=5';
+            var motionApiUrl = 'https://' + motion_urlPrefix + '.boundlessfundraising.com/mobiles/' + motionDb + '/getMotionActivityRoster?event_id=' + eventId + '&roster_type=participant&list_size=5';
 
             $.ajax({ 
                 url: motionApiUrl,
@@ -768,8 +767,7 @@
 
         // BEGIN TOP TEAMS STEPS
         cd.getTopTeamsSteps = function (eventId) {
-            //var motionApiUrl = 'https://' + motion_urlPrefix + '.boundlessfundraising.com/mobiles/' + motionDb + '/getMotionActivityRoster?event_id=' + eventId + '&roster_type=team&list_size=5';
-            var motionApiUrl = 'https://' + motion_urlPrefix + '.boundlessfundraising.com/mobiles/' + motionDb + '/getMotionActivityRoster?event_id=1061&roster_type=team&list_size=5';
+            var motionApiUrl = 'https://' + motion_urlPrefix + '.boundlessfundraising.com/mobiles/' + motionDb + '/getMotionActivityRoster?event_id=' + eventId + '&roster_type=team&list_size=5';
 
             $.ajax({ 
                 url: motionApiUrl,
@@ -800,8 +798,7 @@
 
         // BEGIN TOP COMPANIES STEPS
         cd.getTopCompaniesSteps = function (eventId) {
-            //var motionApiUrl = 'https://' + motion_urlPrefix + '.boundlessfundraising.com/mobiles/' + motionDb + '/getMotionActivityRoster?event_id=' + eventId + '&roster_type=team&list_size=5';
-            var motionApiUrl = 'https://' + motion_urlPrefix + '.boundlessfundraising.com/mobiles/' + motionDb + '/getMotionActivityRoster?event_id=1061&roster_type=company&list_size=5';
+            var motionApiUrl = 'https://' + motion_urlPrefix + '.boundlessfundraising.com/mobiles/' + motionDb + '/getMotionActivityRoster?event_id=' + eventId + '&roster_type=team&list_size=5';
 
             $.ajax({ 
                 url: motionApiUrl,
