@@ -1278,9 +1278,11 @@
             if ($(this).children('i').hasClass('fa-chevron-down')) {
                 $(this).children('i').removeClass('fa-chevron-down');
                 $(this).children('i').addClass('fa-chevron-up');
+                $(this).attr('aria-label', 'View less donors');
             } else {
                 $(this).children('i').removeClass('fa-chevron-up');
                 $(this).children('i').addClass('fa-chevron-down');
+                $(this).attr('aria-label', 'View more donors');
             }
 
             $('.hidden-donor-row').slideToggle(200);
@@ -1336,7 +1338,7 @@
             $('#team-roster_info').insertBefore($('#team-roster_filter')).wrap('<div class="col-lg-6 col-md-12 sorter pl-md-0"></div>');
             $('#team-roster_filter').wrap('<div class="col-lg-6 col-md-12"></div>');
 
-            $('#team-roster_filter input[type="search"]').attr('id', 'team_search').wrap('<div class="input-group"></div>').addClass('form-control').after('<div class="input-group-append"><button class="btn btn-primary btn-outline-secondary" type="button"><span class="sr-only">Search</span> <i class="fas fa-search"></i></button></div>');
+            $('#team-roster_filter input[type="search"]').attr('id', 'team_search').wrap('<div class="input-group"></div>').addClass('form-control').after('<div class="input-group-append"><button tabindex="-1" aria-hidden="true"  class="btn btn-primary btn-outline-secondary" type="button"><i class="fas fa-search"></i></button></div>');
 
             $('#team-roster_filter label').attr('for', 'team_search');
 
@@ -1364,7 +1366,7 @@
             $('#participant-roster_info').insertBefore($('#participant-roster_filter')).wrap('<div class="col-lg-6 col-md-12 sorter d-flex align-items-end"></div>');
             $('#participant-roster_filter').wrap('<div class="col-lg-6 col-md-12"></div>');
 
-            $('#participant-roster_filter input[type="search"]').attr('id', 'participant_search').wrap('<div class="input-group"></div>').addClass('form-control').after('<div class="input-group-append"><button class="btn btn-primary btn-outline-secondary" type="button"><span class="sr-only">Search</span> <i class="fas fa-search"></i></button></div>');
+            $('#participant-roster_filter input[type="search"]').attr('id', 'participant_search').wrap('<div class="input-group"></div>').addClass('form-control').after('<div class="input-group-append"><button tabindex="-1" aria-hidden="true" class="btn btn-primary btn-outline-secondary" type="button"><i class="fas fa-search"></i></button></div>');
 
             $('#participant-roster_filter label').attr('for', 'participant_search');
 
@@ -1635,10 +1637,10 @@
                                         personalVideoEmbedUrl = 'https://www.youtube.com/embed/' + videoId + '?wmode=opaque&amp;rel=0&amp;showinfo=0';
                                     }
                                 }
-                                videoEmbedHtml = '<iframe class="embed-responsive-item" src="' + personalVideoEmbedUrl + '" title="American Heart Association Field Day Video" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+                                videoEmbedHtml = '<iframe cc_load_policy=1 class="embed-responsive-item" src="' + personalVideoEmbedUrl + '" title="American Heart Association Field Day Video" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
                             } else {
                                 // TODO - show default video
-                                videoEmbedHtml = '<iframe width="560" height="315" src="https://www.youtube.com/embed/LryhjU1bEC4" title="About American Heart Association Field Day" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+                                videoEmbedHtml = '<iframe cc_load_policy=1 width="560" height="315" src="https://www.youtube.com/embed/LryhjU1bEC4" title="About American Heart Association Field Day" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
                             }
                             $('.js--personal-video-container').append(videoEmbedHtml);
                         },
@@ -2132,7 +2134,7 @@
                             var px = $.getCustomQuerystring(dlink, "PROXY_ID");
                             var pt = $.getCustomQuerystring(dlink, "PROXY_TYPE");
 
-                            var html = "<div class='paymentSelType text-center' style='padding-top:10px;'>" +
+                            var html = "<div aria-live='polite' class='paymentSelType text-center' style='padding-top:10px;'>" +
                                 "<h2 class='h6'>How would you like to donate?</h2>" +
                                 "<div class='payment-options-container'><a href='" + dlink + "'><img src='https://www2.heart.org/images/content/pagebuilder/credit-card-logos2.png' alt='Donate with Visa, MasterCard, American Express or Discover cards'/></a>" +
                                 "<a href='" + default_path + "/site/SPageNavigator/fieldday_donate_amazon.html?FR_ID=" + fr_id + "&mfc_pref=T&PROXY_ID=" + px + "&PROXY_TYPE=" + pt + "' class='amazon'><img src='https://donatenow.heart.org/images/amazon-payments_inactive.png' alt='Donate with Amazon Pay'/></a>" +
@@ -2297,6 +2299,12 @@
 
         if($('body').is('.pg_FieldDay_Landing_Page')) {
           //Search functionality
+
+          $('#company-page-search, #participant-page-search').on('click', function(){
+            $('.js--participant-search-results').html('');
+            $('.js--participant-no-event-results').addClass('d-none');
+            $('.js--participant-more-event-results').addAttr('hidden');
+          });
 
           //State and Zip search
           $('.js--zip-search').on('submit', function (e) {
