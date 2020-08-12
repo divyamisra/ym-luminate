@@ -449,3 +449,9 @@ img {
     width: 100%;
   }
 }
+
+.table-responsive {
+  @include media-breakpoint-up(sm) {
+    display: table!important;
+  }
+}
