@@ -29,6 +29,7 @@
 
         // Mobile search toggle
         $('.mobile-search-trigger').click(function () {
+            $('.pg_company .tr-page-container, .pg_personal .tr-page-container, .pg_team .tr-page-container').toggleClass('static');
             if ($('.navbar-toggler-icon').hasClass('fa-times')) {
                 $('#navbar-container').addClass('is-search');
                 $('.mobile-search-trigger').addClass('active');
