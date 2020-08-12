@@ -148,7 +148,7 @@
 
   .greeting-visual-banner {
     height: 200px;
-    @include media-breakpoint-up(lg) {
+    @include media-breakpoint-up(xl) {
       height: 623px;
       background-attachment: fixed;
     }

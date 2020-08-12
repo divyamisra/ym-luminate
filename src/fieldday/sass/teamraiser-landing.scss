@@ -341,7 +341,7 @@
   margin-top: 32px;
   margin-bottom: 32px;
   height: 200px;
-  @include media-breakpoint-up(lg) {
+  @include media-breakpoint-up(xl) {
     height: 300px;
     margin-top: 86px;
     margin-bottom: 86px;
