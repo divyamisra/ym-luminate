@@ -1277,7 +1277,7 @@
             });
         }
 
-        if (jQuery('input[name=pg]').val() == "reg" || jQuery('input[name=pg]').val() == "reganother") {
+      if ($('input[name=pg]').val() == "reg" || $('input[name=pg]').val() == "reganother") {
 	    $('h1.campaign-banner-container').prepend(evDateYear+" ");
 	    /* zip only reg flow */
 	    $('#cons_zip_code').parent().parent().parent().parent().addClass('field-required consZip');
@@ -1318,6 +1318,14 @@
 		    }
 	    });
 
+      if ($('input').attr('id') === 'fr_team_name') {
+        var label = $(this).closest('.form-content').find('label').html("Team Name is required");
+      }
+
+      /*Removing Mobile Opt-in Option*/
+
+      /*
+
 	    //Add mobile opt in check box
 	    var optinHTML = '<div id="mobile_optin_outer">' +
 		                '<input type="checkbox" name="mobile_optin" id="mobile_optin">' +
@@ -1336,8 +1344,11 @@
 			    }
 		    });
 	    }
+      */
 
-  	    var optinName = $('.input-label:contains(Mobile Phone)').closest('.input-container').find('input').attr("name");
+        var optinName = $('.input-label:contains(Mobile Phone)').hide().attr('aria-hidden', 'true');
+
+
 	    var tshirtName = $('.input-label:contains("t-shirt")').closest('.input-container').find('select').attr("name");
 	    var rules = {};
 	    rules['cons_password'] = {required: true,minlength: 5};
@@ -1563,9 +1574,7 @@
         if ($('input[name="pg"]').val() == 'regsummary') {
 
         console.log('reg page updates');
-        if ($('input').attr('id') === 'fr_team_name') {
-          var label = $(this).closest('.form-content').find('label').html("Team Name is required");
-        }
+
    	    $('h2.cstmTitle').prepend(evDateYear+" ");
             // if there is a donation then change button text
             if ($.trim($('.additional-gift-amount').html()) != "$0.00") {
