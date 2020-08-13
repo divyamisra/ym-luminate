@@ -1343,7 +1343,8 @@
 	    }
       */
 
-        var optinName = $('.input-label:contains(Mobile Phone)').hide().attr('aria-hidden', 'true');
+      $('.input-label:contains(Mobile Phone)').hide().attr('aria-hidden', 'true');
+      $('.regMobilePhone').hide().attr('aria-hidden', 'true');
 
 
 	    var tshirtName = $('.input-label:contains("t-shirt")').closest('.input-container').find('select').attr("name");
