@@ -49,7 +49,7 @@ main {
 }
 
 .pg_ptype input[type="radio"]:focus {
-	outline: 2px solid -webkit-focus-ring-color;
+	outline: 2px solid $outline-blue;
   outline-offset: 2px;
 }
 
@@ -240,7 +240,7 @@ div.responsive .survivor_yes_no .input-container input[type=radio] {
     top:15px;
 }
 div.responsive .survivor_yes_no .input-container input[type=radio]:focus {
-	outline: 2px solid -webkit-focus-ring-color;
+	outline: 2px solid $outline-blue;
   outline-offset: 2px;
 }
 
@@ -943,7 +943,7 @@ div.responsive div.ErrorMessage.page-error>span.field-error-indicator, div.respo
 	padding-right: 5px;
 }
 .payment-type-selections input[type=radio]:focus {
-	outline: 2px solid -webkit-focus-ring-color;
+	outline: 2px solid $outline-blue;
 }
 /*
 .app_tr_registration div#discount_code_container,
@@ -1250,7 +1250,7 @@ div.part-type-container:hover {
     background-color: #000;
     margin-top:0;
     margin-bottom: 20px;
-    outline: 2px solid -webkit-focus-ring-color;
+    outline: 2px solid $outline-blue;
     border: 2px solid #000;
     border-radius: 0px;
 }
@@ -1545,7 +1545,7 @@ div#fr_thanks_page #part_ctr_container:hover {
 [type="radio"]:checked:focus + label:before,
 [type="radio"]:not(:checked):focus + label:before*/ {
   outline-offset: 2px;
-  outline: 2px solid -webkit-focus-ring-color;
+  outline: 2px solid $outline-blue;
 }
 /*
 @media (max-width: 1010px) {
@@ -1686,7 +1686,7 @@ div.donation-level-row-container {
 .donation-level-row-container.donation-amt .donation-level-row-decoration-container:hover, .donation-level-row-container.donation-amt.active .donation-level-row-decoration-container {
     background-color: #000000 !important;
     color: #ffffff !important;
-    outline: 2px solid -webkit-focus-ring-color;
+    outline: 2px solid $outline-blue;
     outline-offset: 2px;
 }
 .donation-level-row-container.donation-amt:hover, .donation-level-row-label:hover {

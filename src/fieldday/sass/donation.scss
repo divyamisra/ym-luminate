@@ -641,7 +641,7 @@ body.ie11 label + div.donation-level-user-entered {
 }
 /* checked mark aspect changes */
 input[type=radio]:focus {
-    outline: 2px solid -webkit-focus-ring-color;
+    outline: 2px solid $outline-blue;
     outline-offset: 2px;
     /*outline: 2px solid #c10e21;*/
 }
@@ -692,7 +692,7 @@ input[type=radio]:focus {
 [type="checkbox"]:checked:focus + .form-input-label-block > label:before,
 [type="checkbox"]:not(:checked):focus + .form-input-label-block > label:before {
      outline-offset: 2px;
-     outline: 2px solid -webkit-focus-ring-color;
+     outline: 2px solid $outline-blue;
 }
  .designated-giving-recurring-row input:checked, .designated-giving-recurring-row input:not(:checked) {
      left: 0;

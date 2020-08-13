@@ -139,7 +139,7 @@ input[type="radio"] {
 }
 
 input[type="radio"]:focus, input[type="checkbox"] {
-  outline: 2px solid -webkit-focus-ring-color;
+  outline: 2px solid $outline-blue;
 }
 
 input[type="text"],
