@@ -1277,7 +1277,7 @@
             });
         }
 
-      if ($('input[name=pg]').val() == "reg" || $('input[name=pg]').val() == "reganother") {
+      if ($('body').is('.pg_reg') {
 	    $('h1.campaign-banner-container').prepend(evDateYear+" ");
 	    /* zip only reg flow */
 	    $('#cons_zip_code').parent().parent().parent().parent().addClass('field-required consZip');
