@@ -1250,7 +1250,7 @@
 
                console.log(eventMapLink);
 
-               if (eventMapLink !== null) {
+               if (eventMapLink !== undefined) {
                  var companyMap = '<a target="_blank" aria-title="Google map for '+ company.companyname +' location" href="' + eventMapLink + '">' + company.companyname + '</a>';
                  $('.js--company-link').html(companyMap);
                } else {
