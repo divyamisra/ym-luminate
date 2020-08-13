@@ -1318,9 +1318,6 @@
 		    }
 	    });
 
-      if ($('input').attr('id') === 'fr_team_name') {
-        var label = $(this).closest('.form-content').find('label').html("Team Name is required");
-      }
 
       /*Removing Mobile Opt-in Option*/
 
@@ -1346,7 +1343,8 @@
 	    }
       */
 
-        var optinName = $('.input-label:contains(Mobile Phone)').hide().attr('aria-hidden', 'true');
+      $('.input-label:contains(Mobile Phone)').hide().attr('aria-hidden', 'true');
+      $('.regMobilePhone').hide().attr('aria-hidden', 'true');
 
 
 	    var tshirtName = $('.input-label:contains("t-shirt")').closest('.input-container').find('select').attr("name");
@@ -2155,6 +2153,12 @@
             if ($('body').is('.pg_regsummary')) {
               $('.reg-summary-address-info .reg-summary-edit-link a').attr('aria-label', 'Edit your registration information');
               $('.js--edit-ptype').attr('aria-label', 'Edit your registration information');
+            }
+
+
+
+            if ($('body').is('.pg_tfind')) {
+              $('#fr_team_name').attr('title', 'Team Name required');
             }
 
 

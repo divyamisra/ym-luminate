@@ -94,11 +94,11 @@ a.btn {
 
 #navbar-container a.btn.btn-primary:focus, .global-promo a.btn.btn-primary:focus {
   outline: 2px solid $outline-blue;
-  -webkit-box-shadow: 0 0 0 .2rem rgba(193,14,33,.5)!important;
-  box-shadow: 0 0 0 .2rem rgba(193,14,33,.5)!important;
+  -webkit-box-shadow: 0 0 0 .2rem rgba(0,0,0,.5)!important;
+  box-shadow: 0 0 0 .2rem rgba(0,0,0,.5)!important;
 }
 
-.login .btn:focus, .login a.btn.btn-primary:focus {
+#navbar-container a.btn.btn-primary:focus {
   -webkit-box-shadow: 0 0 0 .2rem rgba(0,0,0,.75)!important;
   box-shadow: 0 0 0 .2rem rgba(0,0,0,.75)!important;
 }
