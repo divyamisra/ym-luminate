@@ -1226,9 +1226,12 @@
                var eventMapLink;
                console.log('company map url: ' + company.eventlocationmapurl);
        				 if (company.eventlocationmapurl !== undefined) {
-       					 eventMapLink = company.eventlocationmapurl
+       					 $('.js--company-link').remove();
        				 } else {
        					 eventMapLink = 'https://www.google.com/maps/place/' + company.eventaddress + ',' + company.eventcity + ',' + company.eventstate + ',' + company.eventzip;
+
+                 var companyMap = '<a target="_blank" aria-title="Google map for '+ company.companyname +' location" href="' + eventMapLink + '">' + company.companyname + '</a>';
+                 $('.js--company-link').html(companyMap);
        				 }
 
        				 var fieldDayDetails = '';
@@ -1247,8 +1250,6 @@
        				 var companyLocation = '<p>' + company.eventcity + ', ' + company.eventstate + '</p>'
        				 $(companyLocation).appendTo('.js--company-location');
 
-               $('.js--company-link').attr('href', eventMapLink);
-               $('.js--company-link').html(company.companyname);
              }
 
      		   }
