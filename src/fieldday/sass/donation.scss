@@ -256,8 +256,15 @@ div.responsive select, select[size] {
 }
 @media all and (max-width: 480px) {
   #tr_recognition_namerec_namename {
-    width: 230px;
+    width: 200px;
   }
+  div.responsive input[type="text"],
+ div.responsive input[type="number"],
+ div.responsive input[type="password"],
+ div.responsive textarea, select,
+ div.responsive select, select[size] {
+   width: 220px;
+ }
 }
 div.responsive .donation-level-user-entered input[type="text"] {
 	margin: 0 0 0 15px;
