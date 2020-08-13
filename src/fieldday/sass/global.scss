@@ -436,7 +436,6 @@ img {
   }
 }
 
-
 .pg_informational {
   .tr-page-container {
     max-width: 814px;
@@ -448,4 +447,14 @@ img {
   svg {
     width: 100%;
   }
+}
+
+.table-responsive {
+  @include media-breakpoint-up(sm) {
+    display: table!important;
+  }
+}
+
+div.form-input-label-block, div.donation-level-expanded-label {
+  overflow: visible;
 }
