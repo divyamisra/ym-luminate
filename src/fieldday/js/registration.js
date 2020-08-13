@@ -1351,12 +1351,12 @@
 	    var rules = {};
 	    rules['cons_password'] = {required: true,minlength: 5};
 	    rules['cons_rep_password'] = {required: true,minlength: 5,equalTo: "#cons_password"};
-	    rules[optinName] = {required: '#mobile_optin:checked',minlength: 2};
+	    //rules[optinName] = {required: '#mobile_optin:checked',minlength: 2};
 	    rules[tshirtName] = {valueNotEquals: 'NOREPLY'};
 	    var messages = {};
 	    messages['cons_password'] = {minlength: "Please enter 5 characters or more",required: "Please enter a password"};
 	    messages['cons_rep_password'] = {required: "Please confirm your password",minlength: "Please enter 5 characters or more",equalTo: "Passwords do not match. Please re-enter password."};
-	    messages[optinName] = {required: "Mobile Opt in is selected.<br/>Please enter a mobile number."};
+	    //messages[optinName] = {required: "Mobile Opt in is selected.<br/>Please enter a mobile number."};
 	    messages[tshirtName] = {required: "Please select a t-shirt size."};
 
 	    $('button.previous-step').attr("formnovalidate","true");
