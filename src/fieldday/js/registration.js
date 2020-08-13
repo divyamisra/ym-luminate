@@ -1561,6 +1561,11 @@
 
         /* Page = Reg */
         if ($('input[name="pg"]').val() == 'regsummary') {
+
+        console.log('reg page updates');
+        if ($('input').attr('id') === 'fr_team_name') {
+          var label = $(this).closest('.form-content').find('label').html("Team Name is required");
+        }
    	    $('h2.cstmTitle').prepend(evDateYear+" ");
             // if there is a donation then change button text
             if ($.trim($('.additional-gift-amount').html()) != "$0.00") {
@@ -1603,7 +1608,7 @@
         }
 
         /* Page = paymentForm */
-        if ($('input[name="pg"]').val() == 'paymentForm') {
+  if ($('input[name="pg"]').val() == 'paymentForm') {
 		$('h1#reg_payment_campaign_banner_container').prepend(evDateYear+" ");
 		$('button.previous-step').attr("formnovalidate","true");
 
@@ -1617,14 +1622,8 @@
 		$('span.field-required').closest('.form-content').find('input:visible, select').addClass("required");
 
 		$('input.required').each(function(){
-        if ($('input').attr('id') === 'fr_team_name') {
-          var label = $(this).closest('.form-content').find('label').html();
-  		    $(this).attr("title","Team Name is required");
-        } else {
-          var label = $(this).closest('.form-content').find('label').html();
-  		    $(this).attr("title",label.replace(":","") + " is required");
-        }
-
+      var label = $(this).closest('.form-content').find('label').html();
+  		$(this).attr("title",label.replace(":","") + " is required");
 		});
 		$('select.required').each(function(){
 		    var label = $(this).closest('.form-content').find('label span.label-text').html();
