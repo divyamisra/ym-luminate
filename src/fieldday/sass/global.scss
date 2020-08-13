@@ -454,3 +454,7 @@ img {
     display: table!important;
   }
 }
+
+div.form-input-label-block, div.donation-level-expanded-label {
+  overflow: visible;
+}
