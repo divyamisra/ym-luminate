@@ -254,6 +254,11 @@ div.responsive select, select[size] {
      background: #ffffff;
      background-color: #ffffff;
 }
+@media all and (max-width: 480px) {
+  #tr_recognition_namerec_namename {
+    width: 230px;
+  }
+}
 div.responsive .donation-level-user-entered input[type="text"] {
 	margin: 0 0 0 15px;
 	max-width: 90px;
