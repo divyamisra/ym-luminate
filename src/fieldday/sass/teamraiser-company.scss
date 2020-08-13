@@ -80,8 +80,8 @@
   }
 }
 
-@media (max-width: 767px)
-th.trr-Heading.trr-table-monetary-amount,
-th.trr-Heading.trr-table-participant-amount {
+@media (max-width: 767px) {
+th.trr-table-participant-amount,
+th.trr-table-participant-amount {
     display: none;
 }
