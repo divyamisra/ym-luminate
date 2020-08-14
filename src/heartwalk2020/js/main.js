@@ -805,7 +805,7 @@
 
         // BEGIN TOP COMPANIES STEPS
         cd.getTopCompaniesSteps = function (eventId) {
-            var motionApiUrl = 'https://' + motion_urlPrefix + '.boundlessfundraising.com/mobiles/' + motionDb + '/getMotionActivityRoster?event_id=' + motion_event + '&roster_type=team&list_size=5';
+            var motionApiUrl = 'https://' + motion_urlPrefix + '.boundlessfundraising.com/mobiles/' + motionDb + '/getMotionActivityRoster?event_id=' + motion_event + '&roster_type=company&list_size=5';
 
             $.ajax({ 
                 url: motionApiUrl,
@@ -821,7 +821,7 @@
                         $(response.activities).each(function(){
                             var companyName = this.name;
                             var steps = this.total;
-                            var topCompanyRow = '<li><div class="d-flex"><div class="flex-grow-1"><a href="TR/?team_id=' + this.id + '&amp;pg=team&amp;fr_id=' + evID + '">' + companyName + '</a></div><div class="steps">Steps<br><strong>' + steps + '</strong></div></div></li>';
+                            var topCompanyRow = '<li><div class="d-flex"><div class="flex-grow-1"><a href="TR/?team_id=' + this.id + '&amp;pg=team&amp;fr_id=' + evID + '">' + companyName + '</a></div><div class="raised">Steps<br><strong>' + steps + '</strong></div></div></li>';
                             $('.js--company-top-list-steps ul').append(topCompanyRow);
                         });
                     }
