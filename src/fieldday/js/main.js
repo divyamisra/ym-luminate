@@ -357,7 +357,7 @@
                                       .append('<tr><td><table><tr' + (i > 10 ? ' class="d-none"' : '') + '><td>Company</td><td><a href="' + company.companyURL + '">' +
                                           company.companyName + '</a></td></tr><tr><td>Company Lead</td><td>' + (companyLead !== undefined ? companyLead : '') + '</td></tr>' +
                                           ((team.companyName !== null && team.companyName !== undefined) ? '<tr><td>Company</td><td><a href="TR?company_id=' + team.companyId + '&fr_id=' + team.EventId + '&pg=company">' + team.companyName + '</a>' : '') +
-                                          '</td></tr><tr><td>Event Location</td><td class="col-cta">' + (companyLocation !== undefined ? companyLocation : '') + '</td></tr><tr><td colspan="2" class="text-center"><td class="col-cta"><a href="<a class="btn btn-primary btn-block btn-rounded" title="Details about ' + company.companyName + '" href="' + company.companyURL + '">' + 'Details</a></td></td></tr></table></td></tr>');
+                                          '</td></tr><tr><td>Event Location</td><td class="col-cta">' + (companyLocation !== undefined ? companyLocation : '') + '</td></tr><tr><td colspan="2" class="text-center"><td class="col-cta"><a class="btn btn-primary btn-block btn-rounded" title="Details about ' + company.companyName + '" href="' + company.companyURL + '">' + 'Details</a></td></td></tr></table></td></tr>');
                               }
                             });
 
@@ -488,7 +488,7 @@
         cd.getEventsByDistance = function (zipCode, isCrossEvent) {
             $('#eventStateResultsTable').addClass('d-none');
             $('#eventResultsTable').removeClass('d-none');
-            $('error-event').addClass('d-none');
+            $('#error-event').addClass('d-none');
 
             $('.js--loading').show();
 
@@ -517,22 +517,19 @@
                             $('.js--num-event-results').text((totalEvents === 1 ? '1 Result' : totalEvents + ' Results'));
 
                             $(events).each(function (i, event) {
-                                var eventDate = luminateExtend.utils.simpleDateFormat(event.event_date,
-                                    'EEE, MMM d, yyyy');
-                                var eventTimestamp = new Date(event.event_date);
                                 var eventStatus = event.status;
                                 var acceptsRegistration = event.accepting_registrations;
 
                                 if (screenWidth >= 768) {
                                     var eventRow = '<tr' + (i > 10 ? ' class="d-none"' : '') + '><td><a href="' +
-                                        event.greeting_url + '">' + event.name + '</a></td><td data-order="' + event.event_date + '">' + event.city + ', ' +  event.state + '</td><td data-order="' + parseFloat(event.distance) + '">' + event.distance + 'mi</td><td><a href="' + event.greeting_url + '" aria-label="More details about ' + event.name + '" class="btn btn-secondary btn-block btn-rounded">Details</a></td><td class="col-cta">' + (acceptsRegistration === 'true' ? '<a href="SPageServer/?pagename=fieldday_register&fr_id=' + event.id + '" aria-label="Register for ' + event.name + '" class="btn btn-primary btn-block btn-rounded">Register</a>' : 'Registration Closed') + '</td></tr>';
+                                        event.greeting_url + '">' + event.name + '</a></td><td>' + event.city + ', ' +  event.state + '</td><td data-order="' + parseFloat(event.distance) + '">' + event.distance + 'mi</td><td><a href="' + event.greeting_url + '" aria-label="More details about ' + event.name + '" class="btn btn-secondary btn-block btn-rounded">Details</a></td><td class="col-cta">' + (acceptsRegistration === 'true' ? '<a href="SPageServer/?pagename=fieldday_register&fr_id=' + event.id + '" aria-label="Register for ' + event.name + '" class="btn btn-primary btn-block btn-rounded">Register</a>' : 'Registration Closed') + '</td></tr>';
                                 } else {
                                     $('#eventResultsTable thead').remove();
                                     $('.js--event-results-rows').addClass('mobile')
 
                                     var eventRow = '<tr><td><table><tr' + (i > 10 ? ' class="d-none"' : '') + '><td>Event Name</td><td><a href="' +
                                         event.greeting_url + '">' + event.name + '</a></td></tr>' +
-                                        '</td></tr><tr><td>Date</td><td>' + eventDate + '</td></tr><tr><td>Distance</td><td>' + event.distance + 'mi</td></tr><tr><td colspan="2" class="text-center">' + (acceptsRegistration === 'true' ? '<a href="SPageServer/?pagename=fieldday_register&fr_id=' + event.id + '" class="btn btn-primary btn-block btn-rounded" title="Register for ' + event.name + '" aria-label="Register for ' + event.name + '">Register</a>' : 'Registration Closed') + '</td></tr></table></td></tr>';
+                                        '</td></tr><tr><td>Date</td></tr><tr><td>Distance</td><td>' + event.distance + 'mi</td></tr><tr><td colspan="2" class="text-center">' + (acceptsRegistration === 'true' ? '<a href="SPageServer/?pagename=fieldday_register&fr_id=' + event.id + '" class="btn btn-primary btn-block btn-rounded" title="Register for ' + event.name + '" aria-label="Register for ' + event.name + '">Register</a>' : 'Registration Closed') + '</td></tr></table></td></tr>';
                                 }
 
 
@@ -564,6 +561,7 @@
                         } else {
                             $('.js--loading').hide();
                             $('#error-event').removeClass('d-none');
+                            $('#error-event').removeAttr('hidden');
                         }
                     },
                     error: function (response) {
@@ -596,7 +594,7 @@
                             var totalEvents = parseInt(response.getTeamraisersResponse.totalNumberResults);
 
                             if ($.fn.DataTable) {
-                                if ($.fn.DataTable.isDataTable('#eventResultsTable')) {
+                                if ($.fn.DataTable.isDataTable('#eventStateResultsTable')) {
                                     $('#eventStateResultsTable').DataTable().destroy();
                                 }
                             }
@@ -611,14 +609,14 @@
 
                                 if (screenWidth >= 768) {
                                     var eventRow = '<tr' + (i > 10 ? ' class="d-none"' : '') + '><td><a href="' +
-                                        event.greeting_url + '">' + event.name + '</a></td><td data-order="' + event.event_date + '">' + event.city + ', ' +  event.state + '</td><td><a href="' + event.greeting_url + '" aria-label="More details about ' + event.name + '" class="btn btn-secondary btn-block btn-rounded">Details</a></td><td class="col-cta">' + (acceptsRegistration === 'true' ? '<a href="SPageServer/?pagename=fieldday_register&fr_id=' + event.id + '" aria-label="Register for ' + event.name + '" class="btn btn-primary btn-block btn-rounded">Register</a>' : 'Registration Closed') + '</td></tr>';
+                                        event.greeting_url + '">' + event.name + '</a></td><td>' + event.city + ', ' +  event.state + '</td><td><a href="' + event.greeting_url + '" aria-label="More details about ' + event.name + '" class="btn btn-secondary btn-block btn-rounded">Details</a></td><td class="col-cta">' + (acceptsRegistration === 'true' ? '<a href="SPageServer/?pagename=fieldday_register&fr_id=' + event.id + '" aria-label="Register for ' + event.name + '" class="btn btn-primary btn-block btn-rounded">Register</a>' : 'Registration Closed') + '</td></tr>';
                                 } else {
                                     $('#eventStateResultsTable thead').remove();
                                     $('.js--event-state-results-rows').addClass('mobile')
 
                                     var eventRow = '<tr><td><table><tr' + (i > 10 ? ' class="d-none"' : '') + '><td>Event Name</td><td><a href="' +
                                         event.greeting_url + '">' + event.name + '</a></td></tr>' +
-                                        '</td></tr><tr><td>Date</td><td>' + eventDate + '</td></tr><tr><td colspan="2" class="text-center">' + (acceptsRegistration === 'true' ? '<a href="SPageServer/?pagename=fieldday_register&fr_id=' + event.id + '" class="btn btn-primary btn-block btn-rounded" title="Register for ' + event.name + '" aria-label="Register for ' + event.name + '">Register</a>' : 'Registration Closed') + '</td></tr></table></td></tr>';
+                                        '</td></tr><tr><td>Date</td></tr><tr><td colspan="2" class="text-center">' + (acceptsRegistration === 'true' ? '<a href="SPageServer/?pagename=fieldday_register&fr_id=' + event.id + '" class="btn btn-primary btn-block btn-rounded" title="Register for ' + event.name + '" aria-label="Register for ' + event.name + '">Register</a>' : 'Registration Closed') + '</td></tr></table></td></tr>';
                                 }
 
 
@@ -633,7 +631,7 @@
 
                             $('.js--more-event-results').on('click', function (e) {
                                 e.preventDefault();
-                                $('.js--event-results-rows tr').removeClass('d-none');
+                                $('.js--event-state-results-rows tr').removeClass('d-none');
                                 $(this).addClass('hidden');
                                 $('.js--end-event-list').removeAttr('hidden');
                             });
@@ -648,8 +646,9 @@
 
                             $('.js--event-results-container').removeAttr('hidden');
                         } else {
-                            $('.js--loading').hide();
-                            $('#error-event').removeClass('d-none');
+                          $('.js--loading').hide();
+                          $('#error-event').removeClass('d-none');
+                          $('#error-event').removeAttr('hidden');
                         }
                     },
                     error: function (response) {
@@ -683,9 +682,6 @@
                             $(events).each(function (i, event) {
                                 var eventId = event.id;
                                 var eventName = event.name;
-                                var eventDate = luminateExtend.utils.simpleDateFormat(event.event_date,
-                                    'EEEE, MMMM d, yyyy');
-                                var eventTimestamp = new Date(event.event_date);
                                 var eventCity = event.city;
                                 var eventStateAbbr = event.state;
                                 var eventStateFull = event.mail_state;
@@ -699,8 +695,7 @@
                                     greetingUrl + '" aria-label="Visit ' + eventCity + ' ' + eventType + ' Event"><span class="city">' +
                                     eventCity + '</span>, <span class="fullstate">' +
                                     eventStateAbbr + '</span></a><span class="eventtype d-block">' +
-                                    eventType + ' Event</span><span class="event-date d-block">' +
-                                    eventDate + '</span></div><a href="' +
+                                    eventType + ' Event</span></div><a href="' +
                                     greetingUrl + '" class="event-detail-button btn col-2" aria-label="Visit event page for CycleNation ' + eventCity + '"><i class="fas fa-angle-right" aria-hidden="true" alt=""></i></a></li>';
 
                                 if (eventStatus === '1' || eventStatus === '2' || eventStatus === '3') {
@@ -744,9 +739,7 @@
                             var totalEvents = parseInt(response.getTeamraisersResponse.totalNumberResults);
 
                             $(events).each(function (i, event) {
-                                var eventDate = luminateExtend.utils.simpleDateFormat(event.event_date,
-                                    'EEE, MMM d, yyyy');
-                                var eventTimestamp = new Date(event.event_date);
+
                                 var eventStatus = event.status;
                                 var acceptsRegistration = event.accepting_registrations;
 
@@ -807,9 +800,7 @@
                             var totalEvents = parseInt(response.getTeamraisersResponse.totalNumberResults);
 
                             $(events).each(function (i, event) {
-                                var eventDate = luminateExtend.utils.simpleDateFormat(event.event_date,
-                                    'EEE, MMM d, yyyy');
-                                var eventTimestamp = new Date(event.event_date);
+
                                 var eventStatus = event.status;
                                 var acceptsRegistration = event.accepting_registrations;
 
