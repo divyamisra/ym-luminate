@@ -488,7 +488,7 @@
         cd.getEventsByDistance = function (zipCode, isCrossEvent) {
             $('#eventStateResultsTable').addClass('d-none');
             $('#eventResultsTable').removeClass('d-none');
-            $('error-event').addClass('d-none');
+            $('#error-event').addClass('d-none');
 
             $('.js--loading').show();
 
@@ -564,6 +564,7 @@
                         } else {
                             $('.js--loading').hide();
                             $('#error-event').removeClass('d-none');
+                            $('#error-event').removeAttr('hidden');
                         }
                     },
                     error: function (response) {
@@ -596,7 +597,7 @@
                             var totalEvents = parseInt(response.getTeamraisersResponse.totalNumberResults);
 
                             if ($.fn.DataTable) {
-                                if ($.fn.DataTable.isDataTable('#eventResultsTable')) {
+                                if ($.fn.DataTable.isDataTable('#eventStateResultsTable')) {
                                     $('#eventStateResultsTable').DataTable().destroy();
                                 }
                             }
@@ -633,7 +634,7 @@
 
                             $('.js--more-event-results').on('click', function (e) {
                                 e.preventDefault();
-                                $('.js--event-results-rows tr').removeClass('d-none');
+                                $('.js--event-state-results-rows tr').removeClass('d-none');
                                 $(this).addClass('hidden');
                                 $('.js--end-event-list').removeAttr('hidden');
                             });
@@ -646,10 +647,11 @@
                             }
                             $('.dataTables_length').addClass('bs-select');
 
-                            $('.js--event-results-container').removeAttr('hidden');
+                            $('.js--event-state-results-rows').removeAttr('hidden');
                         } else {
-                            $('.js--loading').hide();
-                            $('#error-event').removeClass('d-none');
+                          $('.js--loading').hide();
+                          $('#error-event').removeClass('d-none');
+                          $('#error-event').removeAttr('hidden');
                         }
                     },
                     error: function (response) {
