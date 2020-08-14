@@ -644,7 +644,7 @@
                             }
                             $('.dataTables_length').addClass('bs-select');
 
-                            $('.js--event-state-results-rows').removeAttr('hidden');
+                            $('.js--event-results-container').removeAttr('hidden');
                         } else {
                           $('.js--loading').hide();
                           $('#error-event').removeClass('d-none');
