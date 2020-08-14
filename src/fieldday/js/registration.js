@@ -1278,17 +1278,17 @@
         }
 
       if ($('body').is('.pg_reg')) {
-	    $('h1.campaign-banner-container').prepend(evDateYear+" ");
-	    /* zip only reg flow */
-	    $('#cons_zip_code').parent().parent().parent().parent().addClass('field-required consZip');
+  	    $('h1.campaign-banner-container').prepend(evDateYear+" ");
+  	    /* zip only reg flow */
+  	    $('#cons_zip_code').parent().parent().parent().parent().addClass('field-required consZip');
 
-	    if ($(".consZip span.field-required").length === 0) {
-	    	$('label[for="cons_zip_code"]').parent().before('<span class="field-required"></span>');
-   	    }
+  	    if ($(".consZip span.field-required").length === 0) {
+  	    	$('label[for="cons_zip_code"]').parent().before('<span class="field-required"></span>');
+     	    }
 
-	    $('label:contains("t-shirt")').closest('.input-container').find('select').addClass("tshirtSize");
-	    $('span.field-required').closest('.form-content').find('input, select').addClass("required");
-	    $('input[value^="I accept"]').addClass("acceptRelease").next('label').addClass("acceptReleaseLabel");
+  	    $('label:contains("t-shirt")').closest('.input-container').find('select').addClass("tshirtSize");
+  	    $('span.field-required').closest('.form-content').find('input, select').addClass("required");
+  	    $('input[value^="I accept"]').addClass("acceptRelease").next('label').addClass("acceptReleaseLabel");
 	    /*
 	    var pattern = /\b(Release with Publicity Consent)/gi; // words you want to wrap
 	    var replaceWith = '<a id="waiverPopLink" href="javascript:void(0);">$1</a>'; // Here's the wap
@@ -1368,7 +1368,7 @@
 		return arg !== value;
 	    }, "Please select a t-shirt size");
 
-	    jQuery('form').validate({
+	    jQuery('#F2fRegContact').validate({
 		focusInvalid: false,
 		invalidHandler: function(form, validator) {
 			if (!validator.numberOfInvalids())
