@@ -612,7 +612,7 @@
 
                                 if (screenWidth >= 768) {
                                     var eventRow = '<tr' + (i > 10 ? ' class="d-none"' : '') + '><td><a href="' +
-                                        event.greeting_url + '">' + event.name + '</a></td><td data-order="' + event.event_date + '">' + event.city + ', ' +  event.state + '</td><td><a href="' + event.greeting_url + '" aria-label="More details about ' + event.name + '" class="btn btn-secondary btn-block btn-rounded">Details</a></td><td class="col-cta">' + (acceptsRegistration === 'true' ? '<a href="SPageServer/?pagename=fieldday_register&fr_id=' + event.id + '" aria-label="Register for ' + event.name + '" class="btn btn-primary btn-block btn-rounded">Register</a>' : 'Registration Closed') + '</td></tr>';
+                                        event.greeting_url + '">' + event.name + '</a></td><td>' + event.city + ', ' +  event.state + '</td><td><a href="' + event.greeting_url + '" aria-label="More details about ' + event.name + '" class="btn btn-secondary btn-block btn-rounded">Details</a></td><td class="col-cta">' + (acceptsRegistration === 'true' ? '<a href="SPageServer/?pagename=fieldday_register&fr_id=' + event.id + '" aria-label="Register for ' + event.name + '" class="btn btn-primary btn-block btn-rounded">Register</a>' : 'Registration Closed') + '</td></tr>';
                                 } else {
                                     $('#eventStateResultsTable thead').remove();
                                     $('.js--event-state-results-rows').addClass('mobile')
