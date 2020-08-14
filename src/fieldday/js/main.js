@@ -106,7 +106,8 @@
 
         skipLink.addEventListener('click', function (e) {
             e.preventDefault();
-            $('#contentStart').focus();
+            $('#contentStart').focus().scrollIntoView();
+
         });
 
         if ($('body').is('.pg_FieldDay_HQ')) {
