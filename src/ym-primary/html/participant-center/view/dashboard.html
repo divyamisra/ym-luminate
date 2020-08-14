@@ -280,15 +280,16 @@
 					 <text fill="#ffffff" font-size="20"><tspan x="50" y="72">Go!</tspan></text>
 					 <path data-name="Path 1523" d="M70 100v62h76v-62h-76z" fill="url(#letsgo_arrow)"/>
 				  </g>
-				  <g ng-if="prizesEarned != prizes.length" transform="translate(-.001 .003)" ng-cloak>
-					 <path data-name="Path 1523" d="M484 532v53h96v-52h-96z" fill="url(#not_secret_finn)"/>
-					 <text fill="#ffffff" font-size="20"><tspan x="450" y="635">Your Secret Code</tspan></text>
-					 <text fill="#ffffff" font-size="20"><tspan x="456" y="668">Will Reveal Here</tspan></text>
+ 				  <g ng-if="prizesEarned != prizes.length" transform="translate(-.001 .003)" class="finn-text" ng-cloak>
+				 	<path data-name="Path 1523" d="M484 532v53h96v-52h-96z" fill="url(#not_secret_finn)"></path>
+					<text fill="#ffffff" font-size="20"><tspan x="456" y="620">FINN'S SPECIAL</tspan></text>
+					<text fill="#ffffff" font-size="20"><tspan x="460" y="650">MESSAGE WILL</tspan></text>
+					<text fill="#ffffff" font-size="20"><tspan x="464" y="680">REVEAL HERE!</tspan></text>
 				  </g>
-				  <g ng-if="prizesEarned == prizes.length" transform="translate(-.001 .003)" ng-cloak>
+				  <g ng-if="prizesEarned == prizes.length" transform="translate(-.001 .003)" class="finn-text" ng-cloak>
 					 <path data-name="Path 1523" d="M450 489v96h178v-96h-178z" fill="url(#secret_finn)"/>
-					 <text fill="#ffffff" font-size="20"><tspan x="465" y="635">You are a real</tspan></text>
-					 <text fill="#ffffff" font-size="20"><tspan x="478" y="668">Heart Hero!</tspan></text>
+					 <text fill="#ffffff" font-size="20"><tspan x="455" y="635">YOU ARE A REAL</tspan></text>
+					 <text fill="#ffffff" font-size="20"><tspan x="468" y="668">HEART HERO!</tspan></text>
 				  </g>
 				  <g ng-if="!prizes[2].earned" transform="translate(-.001 .003)" ng-cloak>
 					  <a xlink:href="" ng-href="{{prizes[2].final_url}}" title="Ask for a donation"><text fill="#c10e21" font-size="14" font-weight="bold"><tspan x="570" y="105">Ask for a</tspan></text></a>
