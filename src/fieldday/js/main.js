@@ -106,7 +106,7 @@
 
         skipLink.addEventListener('click', function (e) {
             e.preventDefault();
-            $('#contentStart').focus().scrollIntoView();
+            document.getElementById('contentStart').scrollIntoView().focus();
 
         });
 
