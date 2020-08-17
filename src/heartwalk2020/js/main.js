@@ -496,7 +496,9 @@
                 "paging":   false,
                 "searching":false,
                 "info":     false,
-                "ordering": [[ 2, 'asc' ], [ 1, 'asc' ], [ 0, 'asc' ]]
+                "colReorder": {
+                    "order": [ 2, 1, 0 ]
+                }
               });
             }
               $('.dataTables_length').addClass('bs-select');
