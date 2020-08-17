@@ -151,3 +151,12 @@ div.responsive input[type="text"], div.responsive input[type="number"], div.resp
     box-shadow: 0 0 0 .2rem rgba(193,14,33,.25);
     outline: 2px solid $outline-blue;
 }
+
+div.responsive button, div.responsive .payment-type-selections label {
+  box-shadow: 0 0 0 .2rem rgba(193,14,33,.25);
+  outline: 2px solid $outline-blue;
+}
+
+.radio-button-container {
+  padding: 4px;
+}
