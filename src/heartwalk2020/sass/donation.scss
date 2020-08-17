@@ -169,7 +169,23 @@ div.donation-level-container {
 // #tr_show_gift_to_public_row {
 // 	margin-left: 35px;
 // }
-
+/*** Matching Gift Widget ***/
+#dd-container .mg-forms-button, 
+#dd-container .mg-guidelines-button,
+#dd-container button.lets-check {
+	background-color:$red;
+	border-color: $red;
+}
+#dd-container .mg-forms-button:active,
+#dd-container .mg-forms-button:hover,
+#dd-container .mg-guidelines-button:active,
+#dd-container .mg-guidelines-button:hover,
+#dd-container button.lets-check:active,
+#dd-container button.lets-check:hover,
+{
+	background-color:$red-deep;
+	border-color: $red-deep;
+}
 
 .matching-gift-container ul {
      margin-left: 30px;
