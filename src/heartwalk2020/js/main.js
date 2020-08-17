@@ -439,7 +439,7 @@
           '&distance_units=mi' +
           '&search_distance=200' +
           '&event_type=' + eventType +
-          '&response_format=json&list_page_size=499&list_page_offset=0&list_sort_column=distance&list_ascending=true',
+          '&response_format=json&list_page_size=499&list_page_offset=0&list_sort_column=distance&list_ascending=false',
         callback: {
           success: function (response) {
             if (response.getTeamraisersResponse.totalNumberResults > '0') {
@@ -495,7 +495,8 @@
               $('#eventResultsTable').DataTable({
                 "paging":   false,
                 "searching":false,
-                "info":     false
+                "info":     false,
+                "ordering": [[ 2, 'asc' ]]
               });
             }
               $('.dataTables_length').addClass('bs-select');
