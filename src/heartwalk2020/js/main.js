@@ -94,10 +94,10 @@
         var motion_urlPrefix = (isProd) ? 'loadprod' : 'load';
         
         //override to test bm
-        motion_username = 'motionapi';
-        motion_password = 'jPOHc5J4qMVVSj7P'; 
-        motionDb = 'democdsb'; 
-        motion_event = 1061;
+        //motion_username = 'motionapi';
+        //motion_password = 'jPOHc5J4qMVVSj7P'; 
+        //motionDb = 'democdsb'; 
+        //motion_event = 1061;
         
         function getURLParameter(url, name) {
             return (RegExp(name + '=' + '(.+?)(&|$)').exec(url) || [, null])[1];
