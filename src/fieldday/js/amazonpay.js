@@ -40,11 +40,6 @@ function addPaymentOptions() {
 		var teamid = jQuery.getCustomQuerystring(location.href,"team_id");
 		var px = jQuery.getCustomQuerystring(location.href,"px");
 		var selectedAmt = 50;
-		if ($('.custom-amount input[name="personalDonAmt"]').prop('checked')) {
-			selectedAmt = $('#personalOtherAmt').val();
-		} else {
-			selectedAmt = $('.donation-amount-btn.active').text().trim().replace('$','').replace(',','');
-		};
     
     		/* personal page */
 		if (jQuery('body.pg_personal').length > 0) {
@@ -104,6 +99,17 @@ function addPaymentOptions() {
 					jQuery('.js--cc-btn').attr('href', updatedDlink);
 					var updatedPPdlink = updatedDlink + '&paypal=true';
 					jQuery('.js--paypal-btn').attr('href', updatedPPdlink);
+					// update form link with amount
+					var selectedAmt = 50;
+					if ($('.custom-amount input[name="personalDonAmt"]').prop('checked')) {
+						selectedAmt = $('#personalOtherAmt').val();
+					} else {
+						selectedAmt = $('.donation-amount-btn.active').text().trim().replace('$','').replace(',','');
+					};
+					$('.applepay, .googlepay, .venmo, .amazon').each(function(){
+						var extLink = $(this).attr('href').replace(/&amount=([^]*)/, '&amount='+selectedAmt);
+						$(this).attr('href', extLink);
+					});
 					jQuery('.tr-page-container .paymentSelType').removeClass('hidden');
 					jQuery('.tr-page-container .paymentSelType').slideDown();
 					return false;
