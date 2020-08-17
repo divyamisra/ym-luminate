@@ -154,13 +154,13 @@ div.responsive input[type="text"], div.responsive input[type="number"], div.resp
   }
 }
 
-div.responsive button, div.responsive .payment-type-selections label {
+div.responsive button, div.responsive a.payment-type-label {
   &:focus{
     box-shadow: 0 0 0 .2rem rgba(193,14,33,.25);
     outline: 2px solid $outline-blue;
   }
 }
 
-div.responsive .radio-button-container, div.responsive .form-content {
+div.responsive .radio-button-container, div.responsive #terms-of-service-checkbox {
   padding: 4px;
 }
