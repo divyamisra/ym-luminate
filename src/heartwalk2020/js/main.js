@@ -496,7 +496,7 @@
                 "paging":   false,
                 "searching":false,
                 "info":     false,
-                "ordering": [[ 2, 'asc' ], , [ 1, 'asc' ]]
+                "ordering": [[ 2, 'asc' ], [ 1, 'asc' ], [ 0, 'asc' ]]
               });
             }
               $('.dataTables_length').addClass('bs-select');
