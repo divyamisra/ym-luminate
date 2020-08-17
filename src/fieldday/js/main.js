@@ -23,19 +23,23 @@
                 $('#navbar-container').slideToggle('fast');
             }
             $('.navbar-toggler-icon').toggleClass('fa-align-justify').toggleClass('fa-times');
+
             $('.pg_company .tr-page-container, .pg_personal .tr-page-container, .pg_team .tr-page-container').toggleClass('static');
+
             $('.pg_company header, .pg_personal header, .pg_team header').toggleClass('mobile-open');
         });
 
         // Mobile search toggle
         $('.mobile-search-trigger').click(function () {
-            $('.pg_company .tr-page-container, .pg_personal .tr-page-container, .pg_team .tr-page-container').toggleClass('static');
+          $('.pg_company .tr-page-container, .pg_personal .tr-page-container, .pg_team .tr-page-container').removeClass('static');
+            
             if ($('.navbar-toggler-icon').hasClass('fa-times')) {
                 $('#navbar-container').addClass('is-search');
                 $('.mobile-search-trigger').addClass('active');
                 $('.navbar-toggler-icon').toggleClass('fa-align-justify').toggleClass('fa-times');
             } else {
                 $('.mobile-search-trigger').toggleClass('active');
+                $('.pg_company .tr-page-container, .pg_personal .tr-page-container, .pg_team .tr-page-container').addClass('static');
                 if ($('#navbar-container').hasClass('is-search')) {
                     // Wait to toggle is-search class until the container
                     // is fully closed so that the user doesn't see the
