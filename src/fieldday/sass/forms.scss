@@ -147,16 +147,20 @@ select.form-control[size], select.form-control[multiple] {
   height: 55px;
 }
 
-div.responsive input[type="text"], div.responsive input[type="number"], div.responsive input[type="password"], div.responsive textarea, div.repsonsive select {
-    box-shadow: 0 0 0 .2rem rgba(193,14,33,.25);
-    outline: 2px solid $outline-blue;
+div.responsive input[type="text"], div.responsive input[type="number"], div.responsive input[type="password"], div.responsive textarea, div.responsive select {
+  &:focus{
+    box-shadow: 0 0 0 .2rem rgba(193,14,33,.25)!important;
+    outline: 2px solid $outline-blue!important;
+  }
 }
 
 div.responsive button, div.responsive .payment-type-selections label {
-  box-shadow: 0 0 0 .2rem rgba(193,14,33,.25);
-  outline: 2px solid $outline-blue;
+  &:focus{
+    box-shadow: 0 0 0 .2rem rgba(193,14,33,.25);
+    outline: 2px solid $outline-blue;
+  }
 }
 
-.radio-button-container {
+div.responsive .radio-button-container, div.responsive .form-content {
   padding: 4px;
 }
