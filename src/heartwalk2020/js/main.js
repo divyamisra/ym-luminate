@@ -88,7 +88,7 @@
         var consID = $('body').data('cons-id') ? $('body').data('cons-id') : null;
 
         var motion_username = 'heartwalkapi';
-        var motion_password = 'jPOHc5J4qMVVSj7P'; 
+        var motion_password = 'toYEaJuV98VJdIEn'; 
         var motionDb = 'ahahw';
         var motion_event = evID;
         var motion_urlPrefix = (isProd) ? 'loadprod' : 'load';
