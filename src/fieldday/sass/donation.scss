@@ -45,6 +45,12 @@
   .global-sponsors, .mobile-utility-nav{
     display: none;
   }
+
+  &.logged-in {
+    .mobile-utility-nav {
+      display: none;
+    }
+  }
 }
 
 
