@@ -127,6 +127,18 @@
     var evID = $('body').data('fr-id') ? $('body').data('fr-id') : null;
     var consID = $('body').data('cons-id') ? $('body').data('cons-id') : null;
 
+    var motion_username = 'heartwalkapi';
+    var motion_password = 'toYEaJuV98VJdIEn'; 
+    var motionDb = 'ahahw';
+    var motion_event = evID;
+    var motion_urlPrefix = (isProd) ? 'loadprod' : 'load';
+
+    //override to test bm
+    motion_username = 'motionapi';
+    motion_password = 'jPOHc5J4qMVVSj7P'; 
+    motionDb = 'democdsb'; 
+    motion_event = 1061;
+    
     function getURLParameter(url, name) {
       return (RegExp(name + '=' + '(.+?)(&|$)').exec(url) || [, null])[1];
     }
@@ -919,6 +931,119 @@
       }); // end luminateExtend
     } // end getTopCompanies
 
+    /******************/
+    /* STEPS SCRIPTS */
+    /******************/
+    cd.getTopParticipantsSteps = function (eventId) {
+        var motionApiUrl = 'https://' + motion_urlPrefix + '.boundlessfundraising.com/mobiles/' + motionDb + '/getMotionActivityRoster?event_id=' + motion_event + '&roster_type=participant&list_size=5';
+
+        $.ajax({ 
+            url: motionApiUrl,
+            async: true,
+            type:'GET',
+            dataType: 'json',
+            contentType: 'application/json',
+            beforeSend: function(xhr) {
+                xhr.setRequestHeader("Authorization", "Basic "+btoa(motion_username+':'+motion_password));
+            },
+            success: function(response){
+                if (response.activities != undefined) {
+                    $(response.activities).each(function(){
+                        var participantName = this.name;
+                        var steps = this.total;
+                        var participantPage = "https://" + ((isProd) ? "www2" : "dev2") + ".heart.org/site/TR?px="+this.id+"&pg=personal&fr_id="+eventId;
+
+                        var topWalkerHtml = '<li><div class="d-flex"><div class="flex-grow-1"><a href="' + participantPage + '">' + participantName + '</a></div><div class="raised">Steps<br><strong>' + steps + '</strong></div></div></li>';
+                        $('.js--walker-top-list-steps ul').append(topWalkerHtml);
+                    });
+                }
+            },
+            error: function(err) {
+                console.log('getMotionActivityRoster err', err);
+            }
+        });
+    };
+    // END TOP PARTICIPANTS STEPS
+
+    // BEGIN TOP TEAMS STEPS
+    cd.getTopTeamsSteps = function (eventId) {
+        var motionApiUrl = 'https://' + motion_urlPrefix + '.boundlessfundraising.com/mobiles/' + motionDb + '/getMotionActivityRoster?event_id=' + motion_event + '&roster_type=team&list_size=5';
+
+        $.ajax({ 
+            url: motionApiUrl,
+            async: true,
+            type:'GET',
+            dataType: 'json',
+            contentType: 'application/json',
+            beforeSend: function(xhr) {
+                xhr.setRequestHeader("Authorization", "Basic "+btoa(motion_username+':'+motion_password));
+            },
+            success: function(response){
+                if (response.activities != undefined) {
+                    $(response.activities).each(function(){
+                        var teamName = this.name;
+                        var steps = this.total;
+                        var topTeamRow = '<li><div class="d-flex"><div class="flex-grow-1"><a href="TR/?team_id=' + this.id + '&amp;pg=team&amp;fr_id=' + evID + '">' + teamName + '</a></div><div class="raised">Steps<br><strong>' + steps + '</strong></div></div></li>';
+                        $('.js--team-top-list-steps ul').append(topTeamRow);
+                    });
+                }
+            },
+            error: function(err) {
+                console.log('getMotionActivityRoster err', err);
+            }
+        });
+    };
+
+    // END TOP TEAMS STEPS
+
+    // BEGIN TOP COMPANIES STEPS
+    cd.getTopCompaniesSteps = function (eventId) {
+        var motionApiUrl = 'https://' + motion_urlPrefix + '.boundlessfundraising.com/mobiles/' + motionDb + '/getMotionActivityRoster?event_id=' + motion_event + '&roster_type=company&list_size=5';
+
+        $.ajax({ 
+            url: motionApiUrl,
+            async: true,
+            type:'GET',
+            dataType: 'json',
+            contentType: 'application/json',
+            beforeSend: function(xhr) {
+                xhr.setRequestHeader("Authorization", "Basic "+btoa(motion_username+':'+motion_password));
+            },
+            success: function(response){
+                if (response.activities != undefined) {
+                    $(response.activities).each(function(){
+                        var companyName = this.name;
+                        var steps = this.total;
+                        var topCompanyRow = '<li><div class="d-flex"><div class="flex-grow-1"><a href="TR/?team_id=' + this.id + '&amp;pg=team&amp;fr_id=' + evID + '">' + companyName + '</a></div><div class="raised">Steps<br><strong>' + steps + '</strong></div></div></li>';
+                        $('.js--company-top-list-steps ul').append(topCompanyRow);
+                    });
+                }
+            },
+            error: function(err) {
+                console.log('getMotionActivityRoster err', err);
+            }
+        });
+
+        luminateExtend.api({
+            api: 'teamraiser',
+            data: 'method=getCompaniesByInfo&fr_id=' + eventId +
+                '&include_cross_event=true&list_sort_column=total&list_ascending=false&list_page_size=5&response_format=json',
+            callback: {
+                success: function (response) {
+                    if (!$.isEmptyObject(response.getCompaniesResponse)) {
+                        var topCompanies = luminateExtend.utils.ensureArray(response.getCompaniesResponse
+                            .company);
+                        var totalCompanies = parseInt(response.getCompaniesResponse.totalNumberResults);
+                        $('.js--num-companies').text(totalCompanies);
+                    }
+                },
+                error: function (response) {
+                    // console.log('getTopCompanies error: ' + response.errorResponse.message);
+                }
+            }
+        });
+    };
+
     function getLocation() {
       var options = {
         enableHighAccuracy: true,
@@ -932,6 +1057,7 @@
       }
     }
 
+    
     function showPosition(position) {
       var input = position.coords.latitude + "," + position.coords.longitude;
       var latlngStr = input.split(',', 2);
@@ -1153,6 +1279,9 @@
       cd.getTopParticipants(evID);
       cd.getTopTeams(evID);
       cd.getTopCompanies(evID);
+      cd.getTopParticipantsSteps(evID);
+      cd.getTopTeamsSteps(evID);
+      cd.getTopCompaniesSteps(evID);
     }
 
     // TODO - rename to make clear that this is a redirect search form with single field
