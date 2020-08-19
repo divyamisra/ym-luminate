@@ -952,9 +952,11 @@
                         var participantName = this.name;
                         var steps = this.total;
                         var participantPage = "https://" + ((isProd) ? "www2" : "dev2") + ".heart.org/site/TR?px="+this.id+"&pg=personal&fr_id="+eventId;
+                        var topParticipantHtml = '<div class="top-list-entry row pb-2"><div class="badges col-2"> </div><div class="names-amounts col-10 pl-0"><a class="participant-name" href="' + participantPage + '">' + participantName + '</a><span class="amount-raised">Steps ' + steps + '</span></div></div>';
+                        $('.js__top-participants-list').append(topParticipantHtml);
 
                         var topWalkerHtml = '<li><div class="d-flex"><div class="flex-grow-1"><a href="' + participantPage + '">' + participantName + '</a></div><div class="raised">Steps<br><strong>' + steps + '</strong></div></div></li>';
-                        $('.js--walker-top-list-steps ul').append(topWalkerHtml);
+                        $('.js__top-participants-steps ul').append(topWalkerHtml);
                     });
                 }
             },
@@ -983,8 +985,8 @@
                     $(response.activities).each(function(){
                         var teamName = this.name;
                         var steps = this.total;
-                        var topTeamRow = '<li><div class="d-flex"><div class="flex-grow-1"><a href="TR/?team_id=' + this.id + '&amp;pg=team&amp;fr_id=' + evID + '">' + teamName + '</a></div><div class="raised">Steps<br><strong>' + steps + '</strong></div></div></li>';
-                        $('.js--team-top-list-steps ul').append(topTeamRow);
+                        var topTeamRow = '<div class="top-list-entry row pb-2"><div class="badges col-2"> </div><div class="names-amounts col-10 pl-0"> <a class="participant-name" href="TR/?team_id=' + teamId + '&amp;pg=team&amp;fr_id=' + evID + '">' + teamName + '</a> <span class="amount-raised">Steps ' + steps + '</span> </div></div>';
+                        $('.js__top-teams-steps').append(topTeamRow);
                     });
                 }
             },
@@ -1014,8 +1016,8 @@
                     $(response.activities).each(function(){
                         var companyName = this.name;
                         var steps = this.total;
-                        var topCompanyRow = '<li><div class="d-flex"><div class="flex-grow-1"><a href="TR/?team_id=' + this.id + '&amp;pg=team&amp;fr_id=' + evID + '">' + companyName + '</a></div><div class="raised">Steps<br><strong>' + steps + '</strong></div></div></li>';
-                        $('.js--company-top-list-steps ul').append(topCompanyRow);
+                        var topCompanyHtml = '<div class="top-list-entry row pb-2"> <div class="badges col-2"> </div><div class="names-amounts col-10 pl-0"> <a class="participant-name" href="TR?company_id=' + this.id + '&fr_id=' + evID + '&pg=company">' + companyName + '</a> <span class="amount-raised">Steps ' + steps + '</span> </div></div>';
+                        $('.js__top-companies-steps').append(topCompanyHtml);
                     });
                 }
             },
