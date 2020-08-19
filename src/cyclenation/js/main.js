@@ -932,9 +932,9 @@
     } // end getTopCompanies
 
     /******************/
-    /* STEPS SCRIPTS */
+    /* MILES SCRIPTS */
     /******************/
-    cd.getTopParticipantsSteps = function (eventId) {
+    cd.getTopParticipantsMiles = function (eventId) {
         var motionApiUrl = 'https://' + motion_urlPrefix + '.boundlessfundraising.com/mobiles/' + motionDb + '/getMotionActivityRoster?event_id=' + motion_event + '&roster_type=participant&list_size=5';
 
         $.ajax({ 
@@ -950,13 +950,10 @@
                 if (response.activities != undefined) {
                     $(response.activities).each(function(){
                         var participantName = this.name;
-                        var steps = this.total;
+                        var miles = this.total;
                         var participantPage = "https://" + ((isProd) ? "www2" : "dev2") + ".heart.org/site/TR?px="+this.id+"&pg=personal&fr_id="+eventId;
-                        var topParticipantHtml = '<div class="top-list-entry row pb-2"><div class="badges col-2"> </div><div class="names-amounts col-10 pl-0"><a class="participant-name" href="' + participantPage + '">' + participantName + '</a><span class="amount-raised">Steps ' + steps + '</span></div></div>';
-                        $('.js__top-participants-list').append(topParticipantHtml);
-
-                        var topWalkerHtml = '<li><div class="d-flex"><div class="flex-grow-1"><a href="' + participantPage + '">' + participantName + '</a></div><div class="raised">Steps<br><strong>' + steps + '</strong></div></div></li>';
-                        $('.js__top-participants-steps ul').append(topWalkerHtml);
+                        var topParticipantHtml = '<div class="top-list-entry row pb-2"><div class="badges col-2"> </div><div class="names-amounts col-10 pl-0"><a class="participant-name" href="' + participantPage + '">' + participantName + '</a><span class="amount-raised">Miles ' + miles + '</span></div></div>';
+                        $('.js__top-participants-miles').append(topParticipantHtml);
                     });
                 }
             },
@@ -965,10 +962,10 @@
             }
         });
     };
-    // END TOP PARTICIPANTS STEPS
+    // END TOP PARTICIPANTS MILES
 
-    // BEGIN TOP TEAMS STEPS
-    cd.getTopTeamsSteps = function (eventId) {
+    // BEGIN TOP TEAMS MILES
+    cd.getTopTeamsMiles = function (eventId) {
         var motionApiUrl = 'https://' + motion_urlPrefix + '.boundlessfundraising.com/mobiles/' + motionDb + '/getMotionActivityRoster?event_id=' + motion_event + '&roster_type=team&list_size=5';
 
         $.ajax({ 
@@ -984,9 +981,9 @@
                 if (response.activities != undefined) {
                     $(response.activities).each(function(){
                         var teamName = this.name;
-                        var steps = this.total;
-                        var topTeamRow = '<div class="top-list-entry row pb-2"><div class="badges col-2"> </div><div class="names-amounts col-10 pl-0"> <a class="participant-name" href="TR/?team_id=' + teamId + '&amp;pg=team&amp;fr_id=' + evID + '">' + teamName + '</a> <span class="amount-raised">Steps ' + steps + '</span> </div></div>';
-                        $('.js__top-teams-steps').append(topTeamRow);
+                        var miles = this.total;
+                        var topTeamRow = '<div class="top-list-entry row pb-2"><div class="badges col-2"> </div><div class="names-amounts col-10 pl-0"> <a class="participant-name" href="TR/?team_id=' + teamId + '&amp;pg=team&amp;fr_id=' + evID + '">' + teamName + '</a> <span class="amount-raised">Miles ' + miles + '</span> </div></div>';
+                        $('.js__top-teams-miles').append(topTeamRow);
                     });
                 }
             },
@@ -996,10 +993,10 @@
         });
     };
 
-    // END TOP TEAMS STEPS
+    // END TOP TEAMS MILES
 
-    // BEGIN TOP COMPANIES STEPS
-    cd.getTopCompaniesSteps = function (eventId) {
+    // BEGIN TOP COMPANIES MILES
+    cd.getTopCompaniesMiles = function (eventId) {
         var motionApiUrl = 'https://' + motion_urlPrefix + '.boundlessfundraising.com/mobiles/' + motionDb + '/getMotionActivityRoster?event_id=' + motion_event + '&roster_type=company&list_size=5';
 
         $.ajax({ 
@@ -1015,9 +1012,9 @@
                 if (response.activities != undefined) {
                     $(response.activities).each(function(){
                         var companyName = this.name;
-                        var steps = this.total;
-                        var topCompanyHtml = '<div class="top-list-entry row pb-2"> <div class="badges col-2"> </div><div class="names-amounts col-10 pl-0"> <a class="participant-name" href="TR?company_id=' + this.id + '&fr_id=' + evID + '&pg=company">' + companyName + '</a> <span class="amount-raised">Steps ' + steps + '</span> </div></div>';
-                        $('.js__top-companies-steps').append(topCompanyHtml);
+                        var miles = this.total;
+                        var topCompanyHtml = '<div class="top-list-entry row pb-2"> <div class="badges col-2"> </div><div class="names-amounts col-10 pl-0"> <a class="participant-name" href="TR?company_id=' + this.id + '&fr_id=' + evID + '&pg=company">' + companyName + '</a> <span class="amount-raised">Miles ' + miles + '</span> </div></div>';
+                        $('.js__top-companies-miles').append(topCompanyHtml);
                     });
                 }
             },
@@ -1281,9 +1278,9 @@
       cd.getTopParticipants(evID);
       cd.getTopTeams(evID);
       cd.getTopCompanies(evID);
-      cd.getTopParticipantsSteps(evID);
-      cd.getTopTeamsSteps(evID);
-      cd.getTopCompaniesSteps(evID);
+      cd.getTopParticipantsMiles(evID);
+      cd.getTopTeamsMiles(evID);
+      cd.getTopCompaniesMiles(evID);
     }
 
     // TODO - rename to make clear that this is a redirect search form with single field
