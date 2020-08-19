@@ -750,11 +750,11 @@ angular.module 'trPcControllers'
             final_url = prize.mission_url
           if prize.mission_url_type == 'Quiz' 
             if $scope.tablePrefix == 'heartdev'
-              final_url = 'http://hearttools.heart.org/aha_ym21_dev/quiz/show/' + prize.mission_url + '?event_id=' + $scope.frId + '&user_id=' + $scope.consId + '&name=' + $scope.consNameFirst
+              final_url = 'https://tools.heart.org/aha_ym21_dev/quiz/show/' + prize.mission_url + '?event_id=' + $scope.frId + '&user_id=' + $scope.consId + '&name=' + $scope.consNameFirst
             if $scope.tablePrefix == 'heartnew'
-              final_url = 'http://hearttools.heart.org/aha_ym21_testing/quiz/show/' + prize.mission_url + '?event_id=' + $scope.frId + '&user_id=' + $scope.consId + '&name=' + $scope.consNameFirst
+              final_url = 'https://tools.heart.org/aha_ym21_testing/quiz/show/' + prize.mission_url + '?event_id=' + $scope.frId + '&user_id=' + $scope.consId + '&name=' + $scope.consNameFirst
             if $scope.tablePrefix == 'heart'
-              final_url = 'http://hearttools.heart.org/aha_ym21/quiz/show/' + prize.mission_url + '?event_id=' + $scope.frId + '&user_id=' + $scope.consId + '&name=' + $scope.consNameFirst
+              final_url = 'https://tools.heart.org/aha_ym21/quiz/show/' + prize.mission_url + '?event_id=' + $scope.frId + '&user_id=' + $scope.consId + '&name=' + $scope.consNameFirst
           if prize.mission_url_type == 'Modal' and prize.mission_url == 'app' 
             final_url = 'showMobileApp()'
           $scope.prizes.push
@@ -838,11 +838,11 @@ angular.module 'trPcControllers'
               avatarURL = response.data.student.avatar_url
             else
               if $rootScope.tablePrefix is 'heartdev'
-                avatarURL = 'https://hearttools.heart.org/aha_ym21_dev/virtualworld/img/avatar-charger.png'
+                avatarURL = 'https://tools.heart.org/aha_ym21_dev/virtualworld/img/avatar-charger.png'
               else if $rootScope.tablePrefix is 'heartnew'
-                avatarURL = 'https://hearttools.heart.org/aha_ym21_testing/virtualworld/img/avatar-charger.png'
+                avatarURL = 'https://tools.heart.org/aha_ym21_testing/virtualworld/img/avatar-charger.png'
               else
-                avatarURL = 'https://hearttools.heart.org/aha_ym21/virtualworld/img/avatar-charger.png'
+                avatarURL = 'https://tools.heart.org/aha_ym21/virtualworld/img/avatar-charger.png'
             $scope.personalInfo.avatar = avatarURL
       $scope.getPersonalAvatar()
 
