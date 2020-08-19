@@ -417,28 +417,6 @@ angular.module 'ahaLuminateControllers'
               students: students.students | 0
               msg: '# Students'
 
-      BoundlessService.getLeaderboardStudents $scope.companyId
-        .then (response) ->
-          teachers = response.data.teachers
-          angular.forEach teachers, (teacher) ->
-            grade = teacher.grade_name
-            if grade is null
-              grade = "N/A"
-            $scope.topClassStudents.push
-              name: teacher.teacher_name
-              grade: grade
-              students: teacher.students | 0
-              msg: '# Online Students'
-          ###
-          i = $scope.topClassStudents.length
-          while i < 5
-            $scope.topClassStudents.push
-              name: ''
-              grade: ''
-              students: ''
-              msg: ''
-            i++
-          ###
       getLeaderboards()
               
       setCompanyCity = (companyCity) ->
