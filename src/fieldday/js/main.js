@@ -126,7 +126,17 @@
 
         var skipLink = document.getElementById('skip-main');
 
-        var companyCSV = 'https://dev2.heart.org/fieldday_company_data/supplemental_company_data.csv';
+        var isProd = (luminateExtend.global.tablePrefix === 'heartdev' ? false : true);
+
+        var companyCSV;
+
+        if (isProd) {
+          companyCSV = 'https://www2.heart.org/fieldday_company_data/supplemental_company_data.csv';
+        } else {
+          companyCSV = 'https://dev2.heart.org/fieldday_company_data/supplemental_company_data.csv';
+        }
+
+
 
         skipLink.addEventListener('click', function (e) {
             e.preventDefault();
