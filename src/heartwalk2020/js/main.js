@@ -486,7 +486,6 @@
               $(pastEvents).each(function (i, pastEvent) {
                 $('.js--event-results-rows').append(pastEvent);
               });
-
               if(totalEvents > 10) {
                 $('.js--more-event-results').removeAttr('hidden');
               }
