@@ -1475,8 +1475,14 @@
         /* Page = Reg */
         if ($('input[name="pg"]').val() == 'reg') {
             $('#additional_questions_container .survey-question-container:contains("Facebook Fundraiser ID:")').hide();
-            $('input#cons_user_name + span.input-hint').html("You can use your email address or a unique name with any of the following: letters, numbers, and these symbols: +, -, _, @, ., %, and : but no spaces!");
-            $('input#cons_password + span.input-hint').html("This needs to be at least 5 characters long and can contain any of the following: letters, numbers, and these symbols: !#$%()*+,-./:;?@[\]^_`{|}~ o=");
+
+            var screenReaderNameHint = '<p class="sr-only">You can use your email address or a unique name with any of the following: letters, numbers, and these symbols: plus, dash, underscore, at, period, percentage, and colon but no spaces!</p>';
+
+            $('input#cons_user_name + span.input-hint').att('aria-hidden', 'true').html("You can use your email address or a unique name with any of the following: letters, numbers, and these symbols: +, -, _, @, ., %, and : but no spaces!").after(screenReaderNameHint);
+
+            var passwordHint = '<p class="sr-only">This needs to be at least 5 characters long and can contain any of the following: letters, numbers, and these symbols: exclamation, pound, dollar sign, left parenthesis, right parenthesis, asterisk, plus, minus, period, slash, colon, semi-colon, question mar, at, left bracket, right bracket, caret, underscore, left brace, right brach, pipe, tilda, degrees, and equal.</p>';
+
+            $('input#cons_password + span.input-hint').attr('aria-hidden', 'true').html("This needs to be at least 5 characters long and can contain any of the following: letters, numbers, and these symbols: !#$%()*+,-./:;?@[\]^_`{|}~ o=").after(passwordHint);
         }
         $('#password_component_container #cons_rep_password').parent().parent().parent().addClass('left');
         $('#password_component_container #cons_password').parent().parent().parent().addClass('left');
