@@ -476,7 +476,7 @@
                   '</td></tr><tr><td>Date</td><td>' + eventDate + '</td></tr><tr><td>Distance</td><td>' + event.distance + 'mi</td></tr><tr><td colspan="2" class="text-center">' + (acceptsRegistration === 'true' ? '<a href="SPageServer/?pagename=heartwalk_register&fr_id=' + event.id + '" class="btn btn-primary btn-block btn-rounded" title="Register for ' + event.name + '" aria-label="Register for ' + event.name + '">Register</a>' : 'Registration Closed') + '</td></tr></table></td></tr>';
               }
 
-                if (eventStatus === '1' || eventStatus === '2' || eventStatus === '3') {
+                if (eventStatus === '1' || eventStatus === '2') {
                   $('.js--event-results-rows').append(eventRow);
                 } else if (eventStatus === '3') {
                   pastEvents.push(eventRow);
