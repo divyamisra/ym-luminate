@@ -481,7 +481,7 @@
                 if (eventStatus === '1' || eventStatus === '2' || eventStatus === '3') {
                   $('.js--event-results-rows').append(eventRow);
                 } else if (eventStatus === '3') {
-                  pastEvent.push(eventRow);
+                  pastEvents.push(eventRow);
                 }
               });
 
