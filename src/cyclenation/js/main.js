@@ -127,17 +127,17 @@
     var evID = $('body').data('fr-id') ? $('body').data('fr-id') : null;
     var consID = $('body').data('cons-id') ? $('body').data('cons-id') : null;
 
-    var motion_username = 'heartwalkapi';
-    var motion_password = 'toYEaJuV98VJdIEn'; 
-    var motionDb = 'ahahw';
+    var motion_username = 'cyclenationapi';
+    var motion_password = 'oNNuWown5A8MeJco'; 
+    var motionDb = 'ahacycle';
     var motion_event = evID;
     var motion_urlPrefix = (isProd) ? 'loadprod' : 'load';
 
     //override to test bm
-    motion_username = 'motionapi';
-    motion_password = 'jPOHc5J4qMVVSj7P'; 
-    motionDb = 'democdsb'; 
-    motion_event = 1061;
+    //motion_username = 'motionapi';
+    //motion_password = 'jPOHc5J4qMVVSj7P'; 
+    //motionDb = 'democdsb'; 
+    //motion_event = 1061;
     
     function getURLParameter(url, name) {
       return (RegExp(name + '=' + '(.+?)(&|$)').exec(url) || [, null])[1];
