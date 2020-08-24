@@ -1382,6 +1382,7 @@
                 rules: rules,
                 messages: messages,
                 errorPlacement: function(error, element) {
+
 			if ($(element).hasClass("survivorq")) {
 				$('fieldset.survivor_yes_no').after(error);
 			} else {
@@ -1400,7 +1401,13 @@
 					}
 				}
 			}
-                }
+
+      console.log('adding role alert to validation errors');
+
+      $(error).attr('role', 'alert')
+      }
+
+
             });
             $.validator.addMethod("uncheck", function(value) {
                return /^[A-Za-z0-9\d=\-+#@%:,._*]*$/.test(value) // consists of only these
