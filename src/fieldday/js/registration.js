@@ -747,8 +747,7 @@
 	    $('span.field-required').closest('.form-content').find('input, select').addClass("required");
 
 	    $('input.required').each(function(){
-        var requiredInputContainer = $(this).closest('.input-container');
-        requiredInputContainer.attr('role', 'alert');
+
 		    var label = $(this).closest('.input-container').find('.input-label').html();
 		    if (label != undefined) {
 			    if (label.indexOf("Team Fundraising Goal") > -1) {
@@ -2170,6 +2169,12 @@
 
             if ($('body').is('.pg_tfind')) {
               $('#fr_team_name').attr('title', 'Team Name required');
+            }
+
+            if ($('#F2fRegContact').length > 0 ) {
+              console.log('adding alerts');
+
+              $('#F2fRegContact .section-container').attr('role', 'alert');
             }
 
 
