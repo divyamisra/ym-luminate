@@ -747,6 +747,8 @@
 	    $('span.field-required').closest('.form-content').find('input, select').addClass("required");
 
 	    $('input.required').each(function(){
+        var requiredInputContainer = $(this).closest('.input-container');
+        requiredInputContainer.attr('role', 'alert');
 		    var label = $(this).closest('.input-container').find('.input-label').html();
 		    if (label != undefined) {
 			    if (label.indexOf("Team Fundraising Goal") > -1) {
