@@ -1384,19 +1384,23 @@
                 errorPlacement: function(error, element) {
 
 			if ($(element).hasClass("survivorq")) {
-				$('fieldset.survivor_yes_no').after(error);
+        var a11yError = error.attr('role', 'alter');
+				$('fieldset.survivor_yes_no').after(a11yError);
 			} else {
 				if ($(element).hasClass("acceptRelease")) {
-					$('.acceptRelease').closest('.input-container').append(error);
+          var a11yError = error.attr('role', 'alter');
+					$('.acceptRelease').closest('.input-container').append(a11yError);
 				} else {
 					if ($(element).hasClass("acceptPrivacy")) {
-						$('.acceptPrivacy').closest('.input-container').append(error);
+            var a11yError = error.attr('role', 'alter');
+						$('.acceptPrivacy').closest('.input-container').append(a11yError);
 					} else {
 						var placement = $(element).data('error');
 						if (placement) {
-							$(placement).append(error)
+              var a11yError = error.attr('role', 'alter');
+							$(placement).append(a11yError)
 						} else {
-							error.insertAfter(element);
+							error.insertAfter(element).attr('role', 'alter');
 						}
 					}
 				}
