@@ -133,6 +133,12 @@
     var motion_event = evID;
     var motion_urlPrefix = (isProd) ? 'loadprod' : 'load';
 
+    function getURLParameter(url, name) {
+      return (RegExp(name + '=' + '(.+?)(&|$)').exec(url) || [, null])[1];
+    }
+    var currentUrl = window.location.href;
+    var searchType = getURLParameter(currentUrl, 'search_type');
+
     if (getURLParameter(currentUrl, 'demo') == "true") {
        //override to test bm
        motion_username = 'motionapi';
@@ -140,12 +146,6 @@
        motionDb = 'democdsb'; 
        motion_event = 1061;
     }
-    
-    function getURLParameter(url, name) {
-      return (RegExp(name + '=' + '(.+?)(&|$)').exec(url) || [, null])[1];
-    }
-    var currentUrl = window.location.href;
-    var searchType = getURLParameter(currentUrl, 'search_type');
 
     cd.getParticipants = function (firstName, lastName, searchAllEvents) {
       luminateExtend.api({
