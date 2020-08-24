@@ -93,14 +93,6 @@
         var motion_event = evID;
         var motion_urlPrefix = (isProd) ? 'loadprod' : 'load';
         
-        if (getURLParameter(currentUrl, 'demo') == "true") {
-           //override to test bm
-           motion_username = 'motionapi';
-           motion_password = 'jPOHc5J4qMVVSj7P'; 
-           motionDb = 'democdsb'; 
-           motion_event = 1061;
-        }
-        
         function getURLParameter(url, name) {
             return (RegExp(name + '=' + '(.+?)(&|$)').exec(url) || [, null])[1];
         }
@@ -108,6 +100,14 @@
         var currentUrl = window.location.href;
         var searchType = getURLParameter(currentUrl, 'search_type');
         var isCrossEventSearch = getURLParameter(currentUrl, 'cross_event');
+
+        if (getURLParameter(currentUrl, 'demo') == "true") {
+           //override to test bm
+           motion_username = 'motionapi';
+           motion_password = 'jPOHc5J4qMVVSj7P'; 
+           motionDb = 'democdsb'; 
+           motion_event = 1061;
+        }
 
         var skipLink = document.getElementById('skip-main');
 
