@@ -1376,7 +1376,7 @@
 				return;
 
 			$('html, body').animate({
-				scrollTop: $(validator.errorList[0].element).offset().top
+				scrollTop: $(validator.errorList[0].element).focus().offset().top
 			}, 500);
 		},
                 rules: rules,
