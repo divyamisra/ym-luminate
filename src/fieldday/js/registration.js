@@ -2172,9 +2172,8 @@
             }
 
             if ($('#F2fRegContact').length > 0 ) {
+              $('.field-required .input-container').attr('role', 'alert');
               console.log('adding alerts');
-
-              $('#F2fRegContact .section-container').attr('role', 'alert');
             }
 
 
