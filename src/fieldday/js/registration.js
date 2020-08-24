@@ -2173,6 +2173,7 @@
 
             if ($('#F2fRegContact').length > 0 ) {
               $('.field-required .input-container').attr('role', 'alert');
+              $('.consZip .input-container').attr('role', 'alert');
               console.log('adding alerts');
             }
 
