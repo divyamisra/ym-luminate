@@ -1385,23 +1385,36 @@
 
 			if ($(element).hasClass("survivorq")) {
         var a11yError = error.attr('role', 'alert');
-        var describedBy = error.attr('id');
 				$('fieldset.survivor_yes_no').after(a11yError);
+
+        var describedBy = error.attr('id');
+        $(element).attr('aria-describedby', describedBy);
 			} else {
 				if ($(element).hasClass("acceptRelease")) {
           var a11yError = error.attr('role', 'alert');
 					$('.acceptRelease').closest('.input-container').append(a11yError);
+
+          var describedBy = error.attr('id');
+          $(element).attr('aria-describedby', describedBy);
 				} else {
 					if ($(element).hasClass("acceptPrivacy")) {
             var a11yError = error.attr('role', 'alert');
 						$('.acceptPrivacy').closest('.input-container').append(a11yError);
+
+            var describedBy = error.attr('id');
+            $(element).attr('aria-describedby', describedBy);
 					} else {
 						var placement = $(element).data('error');
 						if (placement) {
               var a11yError = error.attr('role', 'alert');
-							$(placement).append(a11yError)
+							$(placement).append(a11yError);
+
+              var describedBy = error.attr('id');
+              $(element).attr('aria-describedby', describedBy);
 						} else {
 							error.insertAfter(element).attr('role', 'alert');
+              var describedBy = error.attr('id');
+              $(element).attr('aria-describedby', describedBy);
 						}
 					}
 				}
