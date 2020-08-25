@@ -828,7 +828,7 @@ angular.module 'trPcControllers'
       $scope.personalInfo = {}
       $scope.personalInfo.avatar = ''
       $scope.getPersonalAvatar = ->
-        ZuriService.getAvatar $scope.consId,
+        ZuriService.getAvatar $scope.frId + '/' + $scope.consId,
           failure: (response) ->
             # TODO
           error: (response) ->
