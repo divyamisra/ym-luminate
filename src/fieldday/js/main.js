@@ -23,18 +23,33 @@
                 $('#navbar-container').slideToggle('fast');
             }
             $('.navbar-toggler-icon').toggleClass('fa-align-justify').toggleClass('fa-times');
-            $('.pg_company .tr-page-container, .pg_personal .tr-page-container, .pg_team .tr-page-container').toggleClass('static');
+
+            $('.pg_company .tr-page-container, .pg_personal .tr-page-container, .pg_tea .tr-page-container').toggleClass('static');
+
             $('.pg_company header, .pg_personal header, .pg_team header').toggleClass('mobile-open');
+
+            if ( $('#navbar-container').is(':visible') ) {
+              $('.pg_company .tr-page-container, .pg_personal .tr-page-container, .pg_tea .tr-page-container').addClass('static');
+
+              $('.pg_company header, .pg_personal header, .pg_team header').addClass('mobile-open');
+            } else {
+              $('.pg_company .tr-page-container, .pg_personal .tr-page-container, .pg_tea .tr-page-container').removeClass('static');
+
+              $('.pg_company header, .pg_personal header, .pg_team header').removeClass('mobile-open');
+            }
         });
 
         // Mobile search toggle
         $('.mobile-search-trigger').click(function () {
+
+
             if ($('.navbar-toggler-icon').hasClass('fa-times')) {
                 $('#navbar-container').addClass('is-search');
                 $('.mobile-search-trigger').addClass('active');
                 $('.navbar-toggler-icon').toggleClass('fa-align-justify').toggleClass('fa-times');
             } else {
                 $('.mobile-search-trigger').toggleClass('active');
+                $('.pg_company .tr-page-container, .pg_personal .tr-page-container, .pg_team .tr-page-container').addClass('static');
                 if ($('#navbar-container').hasClass('is-search')) {
                     // Wait to toggle is-search class until the container
                     // is fully closed so that the user doesn't see the
@@ -46,6 +61,16 @@
                     $('#navbar-container').toggleClass('is-search');
                     $('#navbar-container').slideToggle('fast');
                 }
+            }
+
+            if ( $('.mobile-search-trigger').removeClass('active') ) {
+              $('.pg_company .tr-page-container, .pg_personal .tr-page-container, .pg_tea .tr-page-container').addClass('static');
+
+              $('.pg_company header, .pg_personal header, .pg_team header').addClass('mobile-open');
+            } else {
+              $('.pg_company .tr-page-container, .pg_personal .tr-page-container, .pg_tea .tr-page-container').removeClass('static');
+
+              $('.pg_company header, .pg_personal header, .pg_team header').removeClass('mobile-open');
             }
         });
 
@@ -101,11 +126,22 @@
 
         var skipLink = document.getElementById('skip-main');
 
-        var companyCSV = 'https://dev2.heart.org/fieldday_company_data/supplemental_company_data.csv';
+        var isProd = (luminateExtend.global.tablePrefix === 'heartdev' ? false : true);
+
+        var companyCSV;
+
+        if (isProd) {
+          companyCSV = 'https://www2.heart.org/fieldday_company_data/supplemental_company_data.csv';
+        } else {
+          companyCSV = 'https://dev2.heart.org/fieldday_company_data/supplemental_company_data.csv';
+        }
+
+
 
         skipLink.addEventListener('click', function (e) {
             e.preventDefault();
-            document.getElementById('pcBodyContainer').scrollIntoView();
+            document.getElementById('contentStart').focus();
+            document.getElementById('contentStart').scrollIntoView();
         });
 
         if ($('body').is('.pg_FieldDay_HQ')) {
@@ -355,7 +391,7 @@
                                       .append('<tr><td><table><tr' + (i > 10 ? ' class="d-none"' : '') + '><td>Company</td><td><a href="' + company.companyURL + '">' +
                                           company.companyName + '</a></td></tr><tr><td>Company Lead</td><td>' + (companyLead !== undefined ? companyLead : '') + '</td></tr>' +
                                           ((team.companyName !== null && team.companyName !== undefined) ? '<tr><td>Company</td><td><a href="TR?company_id=' + team.companyId + '&fr_id=' + team.EventId + '&pg=company">' + team.companyName + '</a>' : '') +
-                                          '</td></tr><tr><td>Event Location</td><td class="col-cta">' + (companyLocation !== undefined ? companyLocation : '') + '</td></tr><tr><td colspan="2" class="text-center"><td class="col-cta"><a href="<a class="btn btn-primary btn-block btn-rounded" title="Details about ' + company.companyName + '" href="' + company.companyURL + '">' + 'Details</a></td></td></tr></table></td></tr>');
+                                          '</td></tr><tr><td>Event Location</td><td class="col-cta">' + (companyLocation !== undefined ? companyLocation : '') + '</td></tr><tr><td class="col-cta"><a class="btn btn-primary btn-block btn-rounded" title="Details about ' + company.companyName + '" href="' + company.companyURL + '">' + 'Details</a></td></tr></table></td></tr>');
                               }
                             });
 
@@ -486,7 +522,7 @@
         cd.getEventsByDistance = function (zipCode, isCrossEvent) {
             $('#eventStateResultsTable').addClass('d-none');
             $('#eventResultsTable').removeClass('d-none');
-            $('error-event').addClass('d-none');
+            $('#error-event').addClass('d-none');
 
             $('.js--loading').show();
 
@@ -515,22 +551,19 @@
                             $('.js--num-event-results').text((totalEvents === 1 ? '1 Result' : totalEvents + ' Results'));
 
                             $(events).each(function (i, event) {
-                                var eventDate = luminateExtend.utils.simpleDateFormat(event.event_date,
-                                    'EEE, MMM d, yyyy');
-                                var eventTimestamp = new Date(event.event_date);
                                 var eventStatus = event.status;
                                 var acceptsRegistration = event.accepting_registrations;
 
                                 if (screenWidth >= 768) {
                                     var eventRow = '<tr' + (i > 10 ? ' class="d-none"' : '') + '><td><a href="' +
-                                        event.greeting_url + '">' + event.name + '</a></td><td data-order="' + event.event_date + '">' + event.city + ', ' +  event.state + '</td><td data-order="' + parseFloat(event.distance) + '">' + event.distance + 'mi</td><td><a href="' + event.greeting_url + '" aria-label="More details about ' + event.name + '" class="btn btn-secondary btn-block btn-rounded">Details</a></td><td class="col-cta">' + (acceptsRegistration === 'true' ? '<a href="SPageServer/?pagename=fieldday_register&fr_id=' + event.id + '" aria-label="Register for ' + event.name + '" class="btn btn-primary btn-block btn-rounded">Register</a>' : 'Registration Closed') + '</td></tr>';
+                                        event.greeting_url + '">' + event.name + '</a></td><td>' + event.city + ', ' +  event.state + '</td><td data-order="' + parseFloat(event.distance) + '">' + event.distance + 'mi</td><td><a href="' + event.greeting_url + '" aria-label="More details about ' + event.name + '" class="btn btn-secondary btn-block btn-rounded">Details</a></td><td class="col-cta">' + (acceptsRegistration === 'true' ? '<a href="SPageServer/?pagename=fieldday_register&fr_id=' + event.id + '" aria-label="Register for ' + event.name + '" class="btn btn-primary btn-block btn-rounded">Register</a>' : 'Registration Closed') + '</td></tr>';
                                 } else {
                                     $('#eventResultsTable thead').remove();
                                     $('.js--event-results-rows').addClass('mobile')
 
                                     var eventRow = '<tr><td><table><tr' + (i > 10 ? ' class="d-none"' : '') + '><td>Event Name</td><td><a href="' +
                                         event.greeting_url + '">' + event.name + '</a></td></tr>' +
-                                        '</td></tr><tr><td>Date</td><td>' + eventDate + '</td></tr><tr><td>Distance</td><td>' + event.distance + 'mi</td></tr><tr><td colspan="2" class="text-center">' + (acceptsRegistration === 'true' ? '<a href="SPageServer/?pagename=fieldday_register&fr_id=' + event.id + '" class="btn btn-primary btn-block btn-rounded" title="Register for ' + event.name + '" aria-label="Register for ' + event.name + '">Register</a>' : 'Registration Closed') + '</td></tr></table></td></tr>';
+                                        '</td></tr><tr><td>Date</td></tr><tr><td>Distance</td><td>' + event.distance + 'mi</td></tr><tr><td colspan="2" class="text-center">' + (acceptsRegistration === 'true' ? '<a href="SPageServer/?pagename=fieldday_register&fr_id=' + event.id + '" class="btn btn-primary btn-block btn-rounded" title="Register for ' + event.name + '" aria-label="Register for ' + event.name + '">Register</a>' : 'Registration Closed') + '</td></tr></table></td></tr>';
                                 }
 
 
@@ -562,6 +595,7 @@
                         } else {
                             $('.js--loading').hide();
                             $('#error-event').removeClass('d-none');
+                            $('#error-event').removeAttr('hidden');
                         }
                     },
                     error: function (response) {
@@ -594,7 +628,7 @@
                             var totalEvents = parseInt(response.getTeamraisersResponse.totalNumberResults);
 
                             if ($.fn.DataTable) {
-                                if ($.fn.DataTable.isDataTable('#eventResultsTable')) {
+                                if ($.fn.DataTable.isDataTable('#eventStateResultsTable')) {
                                     $('#eventStateResultsTable').DataTable().destroy();
                                 }
                             }
@@ -609,14 +643,14 @@
 
                                 if (screenWidth >= 768) {
                                     var eventRow = '<tr' + (i > 10 ? ' class="d-none"' : '') + '><td><a href="' +
-                                        event.greeting_url + '">' + event.name + '</a></td><td data-order="' + event.event_date + '">' + event.city + ', ' +  event.state + '</td><td><a href="' + event.greeting_url + '" aria-label="More details about ' + event.name + '" class="btn btn-secondary btn-block btn-rounded">Details</a></td><td class="col-cta">' + (acceptsRegistration === 'true' ? '<a href="SPageServer/?pagename=fieldday_register&fr_id=' + event.id + '" aria-label="Register for ' + event.name + '" class="btn btn-primary btn-block btn-rounded">Register</a>' : 'Registration Closed') + '</td></tr>';
+                                        event.greeting_url + '">' + event.name + '</a></td><td>' + event.city + ', ' +  event.state + '</td><td><a href="' + event.greeting_url + '" aria-label="More details about ' + event.name + '" class="btn btn-secondary btn-block btn-rounded">Details</a></td><td class="col-cta">' + (acceptsRegistration === 'true' ? '<a href="SPageServer/?pagename=fieldday_register&fr_id=' + event.id + '" aria-label="Register for ' + event.name + '" class="btn btn-primary btn-block btn-rounded">Register</a>' : 'Registration Closed') + '</td></tr>';
                                 } else {
                                     $('#eventStateResultsTable thead').remove();
                                     $('.js--event-state-results-rows').addClass('mobile')
 
                                     var eventRow = '<tr><td><table><tr' + (i > 10 ? ' class="d-none"' : '') + '><td>Event Name</td><td><a href="' +
                                         event.greeting_url + '">' + event.name + '</a></td></tr>' +
-                                        '</td></tr><tr><td>Date</td><td>' + eventDate + '</td></tr><tr><td colspan="2" class="text-center">' + (acceptsRegistration === 'true' ? '<a href="SPageServer/?pagename=fieldday_register&fr_id=' + event.id + '" class="btn btn-primary btn-block btn-rounded" title="Register for ' + event.name + '" aria-label="Register for ' + event.name + '">Register</a>' : 'Registration Closed') + '</td></tr></table></td></tr>';
+                                        '</td></tr><tr><td>Date</td></tr><tr><td colspan="2" class="text-center">' + (acceptsRegistration === 'true' ? '<a href="SPageServer/?pagename=fieldday_register&fr_id=' + event.id + '" class="btn btn-primary btn-block btn-rounded" title="Register for ' + event.name + '" aria-label="Register for ' + event.name + '">Register</a>' : 'Registration Closed') + '</td></tr></table></td></tr>';
                                 }
 
 
@@ -631,7 +665,7 @@
 
                             $('.js--more-event-results').on('click', function (e) {
                                 e.preventDefault();
-                                $('.js--event-results-rows tr').removeClass('d-none');
+                                $('.js--event-state-results-rows tr').removeClass('d-none');
                                 $(this).addClass('hidden');
                                 $('.js--end-event-list').removeAttr('hidden');
                             });
@@ -646,8 +680,9 @@
 
                             $('.js--event-results-container').removeAttr('hidden');
                         } else {
-                            $('.js--loading').hide();
-                            $('#error-event').removeClass('d-none');
+                          $('.js--loading').hide();
+                          $('#error-event').removeClass('d-none');
+                          $('#error-event').removeAttr('hidden');
                         }
                     },
                     error: function (response) {
@@ -662,6 +697,9 @@
         cd.getEvents = function (eventName, eventState) {
             $('.js--loading').show();
             $('.js--no-event-results').addClass('d-none');
+            $('.js--no-event-results').removeAttr('role');
+
+
             luminateExtend.api({
                 api: 'teamraiser',
                 data: 'method=getTeamraisersByInfo' +
@@ -678,9 +716,6 @@
                             $(events).each(function (i, event) {
                                 var eventId = event.id;
                                 var eventName = event.name;
-                                var eventDate = luminateExtend.utils.simpleDateFormat(event.event_date,
-                                    'EEEE, MMMM d, yyyy');
-                                var eventTimestamp = new Date(event.event_date);
                                 var eventCity = event.city;
                                 var eventStateAbbr = event.state;
                                 var eventStateFull = event.mail_state;
@@ -694,8 +729,7 @@
                                     greetingUrl + '" aria-label="Visit ' + eventCity + ' ' + eventType + ' Event"><span class="city">' +
                                     eventCity + '</span>, <span class="fullstate">' +
                                     eventStateAbbr + '</span></a><span class="eventtype d-block">' +
-                                    eventType + ' Event</span><span class="event-date d-block">' +
-                                    eventDate + '</span></div><a href="' +
+                                    eventType + ' Event</span></div><a href="' +
                                     greetingUrl + '" class="event-detail-button btn col-2" aria-label="Visit event page for CycleNation ' + eventCity + '"><i class="fas fa-angle-right" aria-hidden="true" alt=""></i></a></li>';
 
                                 if (eventStatus === '1' || eventStatus === '2' || eventStatus === '3') {
@@ -705,6 +739,7 @@
                         } else {
                             $('.js--loading').hide();
                             $('.js--no-event-results').removeClass('d-none').html('<span>We&rsquo;re not seeing anything. Maybe try different search term?</span>');
+                            $('.js--no-event-results').attr('role', 'alert');
                         }
                     },
                     error: function (response) {
@@ -718,6 +753,8 @@
 
         cd.getEventsByDistanceLanding = function (zipCode) {
             $('.js--no-event-results').addClass('d-none');
+            $('.js--no-event-results').removeAttr('role');
+
             $('.js--loading').show();
 
             luminateExtend.api({
@@ -736,9 +773,7 @@
                             var totalEvents = parseInt(response.getTeamraisersResponse.totalNumberResults);
 
                             $(events).each(function (i, event) {
-                                var eventDate = luminateExtend.utils.simpleDateFormat(event.event_date,
-                                    'EEE, MMM d, yyyy');
-                                var eventTimestamp = new Date(event.event_date);
+
                                 var eventStatus = event.status;
                                 var acceptsRegistration = event.accepting_registrations;
 
@@ -766,6 +801,7 @@
                         } else {
                             $('.js--loading').hide();
                             $('.js--no-event-results').removeClass('d-none');
+                            $('.js--no-event-results').attr('role', 'alert');
                         }
                     },
                     error: function (response) {
@@ -779,6 +815,8 @@
         // getEventsByStateLanding
         cd.getEventsByStateLanding = function (eventState) {
             $('.js--no-event-results').addClass('d-none');
+            $('.js--no-event-results').removeAttr('role');
+
             $('.js--loading').show();
 
             luminateExtend.api({
@@ -796,9 +834,7 @@
                             var totalEvents = parseInt(response.getTeamraisersResponse.totalNumberResults);
 
                             $(events).each(function (i, event) {
-                                var eventDate = luminateExtend.utils.simpleDateFormat(event.event_date,
-                                    'EEE, MMM d, yyyy');
-                                var eventTimestamp = new Date(event.event_date);
+
                                 var eventStatus = event.status;
                                 var acceptsRegistration = event.accepting_registrations;
 
@@ -826,6 +862,7 @@
                         } else {
                             $('.js--loading').hide();
                             $('.js--no-event-results').removeClass('d-none');
+                            $('.js--no-event-results').attr('role', 'alert');
                         }
                     },
                     error: function (response) {
@@ -841,6 +878,7 @@
         cd.getCompaniesLanding = function (companyName) {
             cd.getCompanyData();
             $('.js--no-participant-results, .js--participant-no-event-results').addClass('d-none');
+            $('.js--no-participant-results, .js--participant-no-event-results').removeAttr('role');
             $('.js--participant-loading').show();
 
             luminateExtend.api({
@@ -891,6 +929,7 @@
                         } else {
                             $('.js--participant-loading').hide();
                             $('.js--participant-no-event-results').removeClass('d-none');
+                            $('.js--no-participant-results, .js--participant-no-event-results').addAttr('role', 'alert');
                         }
                     },
                     error: function (response) {
@@ -1216,6 +1255,7 @@
        					 eventMapLink = company.eventlocationmapurl
        				 } else {
        					 eventMapLink = 'https://www.google.com/maps/place/' + company.eventaddress + ',' + company.eventcity + ',' + company.eventstate + ',' + company.eventzip;
+
        				 }
 
        				 var fieldDayDetails = '';
@@ -1234,8 +1274,15 @@
        				 var companyLocation = '<p>' + company.eventcity + ', ' + company.eventstate + '</p>'
        				 $(companyLocation).appendTo('.js--company-location');
 
-               $('.js--company-link').attr('href', eventMapLink);
-               $('.js--company-link').html(company.companyname);
+               console.log(eventMapLink);
+
+               if (eventMapLink !== undefined) {
+                 var companyMap = '<a target="_blank" aria-title="Google map for '+ company.companyname +' location" href="' + eventMapLink + '">' + company.companyname + '</a>';
+                 $('.js--company-link').html(companyMap);
+               } else {
+                 $('.js--company-link').remove();
+               }
+
              }
 
      		   }
@@ -1266,9 +1313,11 @@
             if ($(this).children('i').hasClass('fa-chevron-down')) {
                 $(this).children('i').removeClass('fa-chevron-down');
                 $(this).children('i').addClass('fa-chevron-up');
+                $(this).attr('aria-label', 'View less donors');
             } else {
                 $(this).children('i').removeClass('fa-chevron-up');
                 $(this).children('i').addClass('fa-chevron-down');
+                $(this).attr('aria-label', 'View more donors');
             }
 
             $('.hidden-donor-row').slideToggle(200);
@@ -1324,7 +1373,7 @@
             $('#team-roster_info').insertBefore($('#team-roster_filter')).wrap('<div class="col-lg-6 col-md-12 sorter pl-md-0"></div>');
             $('#team-roster_filter').wrap('<div class="col-lg-6 col-md-12"></div>');
 
-            $('#team-roster_filter input[type="search"]').attr('id', 'team_search').wrap('<div class="input-group"></div>').addClass('form-control').after('<div class="input-group-append"><button class="btn btn-primary btn-outline-secondary" type="button"><span class="sr-only">Search</span> <i class="fas fa-search"></i></button></div>');
+            $('#team-roster_filter input[type="search"]').attr('id', 'team_search').wrap('<div class="input-group"></div>').addClass('form-control').after('<div class="input-group-append"><button tabindex="-1" aria-hidden="true"  class="btn btn-primary btn-outline-secondary" type="button"><i class="fas fa-search"></i></button></div>');
 
             $('#team-roster_filter label').attr('for', 'team_search');
 
@@ -1352,7 +1401,7 @@
             $('#participant-roster_info').insertBefore($('#participant-roster_filter')).wrap('<div class="col-lg-6 col-md-12 sorter d-flex align-items-end"></div>');
             $('#participant-roster_filter').wrap('<div class="col-lg-6 col-md-12"></div>');
 
-            $('#participant-roster_filter input[type="search"]').attr('id', 'participant_search').wrap('<div class="input-group"></div>').addClass('form-control').after('<div class="input-group-append"><button class="btn btn-primary btn-outline-secondary" type="button"><span class="sr-only">Search</span> <i class="fas fa-search"></i></button></div>');
+            $('#participant-roster_filter input[type="search"]').attr('id', 'participant_search').wrap('<div class="input-group"></div>').addClass('form-control').after('<div class="input-group-append"><button tabindex="-1" aria-hidden="true" class="btn btn-primary btn-outline-secondary" type="button"><i class="fas fa-search"></i></button></div>');
 
             $('#participant-roster_filter label').attr('for', 'participant_search');
 
@@ -1523,7 +1572,7 @@
                                 }
                             });
 
-                            $('.custom-amount').after('<span role="alert" class="error-row" ></span>');
+                            $('.custom-amount').after('<span aria-atomic="true" role="alert" class="error-row" ></span>');
 
 
                             $('.js--personal-don-form').removeClass('hidden');
@@ -1561,6 +1610,10 @@
                             // Set default donation amount
                             $('input[name="personalDonAmt"]').eq(1).click().prop('checked', true).closest('.donation-amount-btn').addClass('active');
                             // $('.js--don-amt').text($('.form-check-label').eq(1).text().trim());
+
+                            $('.other-amt-radio').focus(function(){
+                              $('.js--personal-amt-other').focus();
+                            });
 
 
                             // redirect is now managed in amazonpay.js
@@ -1619,10 +1672,10 @@
                                         personalVideoEmbedUrl = 'https://www.youtube.com/embed/' + videoId + '?wmode=opaque&amp;rel=0&amp;showinfo=0';
                                     }
                                 }
-                                videoEmbedHtml = '<iframe class="embed-responsive-item" src="' + personalVideoEmbedUrl + '" title="American Heart Association Field Day Video" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+                                videoEmbedHtml = '<iframe cc_load_policy=1 class="embed-responsive-item" src="' + personalVideoEmbedUrl + '" title="American Heart Association Field Day Video" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
                             } else {
                                 // TODO - show default video
-                                videoEmbedHtml = '<iframe width="560" height="315" src="https://www.youtube.com/embed/LryhjU1bEC4" title="About American Heart Association Field Day" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+                                videoEmbedHtml = '<iframe cc_load_policy=1 width="560" height="315" src="https://www.youtube.com/embed/LryhjU1bEC4" title="About American Heart Association Field Day" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
                             }
                             $('.js--personal-video-container').append(videoEmbedHtml);
                         },
@@ -1873,7 +1926,7 @@
                                 $(teams).each(function (i, team) {
                                     var teamRaised = (parseInt(team.amountRaised) * 0.01).toFixed(2);
                                     var teamRaisedFormmatted = teamRaised.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,").replace('.00', '');
-                                    $('#team-roster tbody').append('<tr class="' + (numTeamRows > 4 ? 'd-none' : '') + '"> <td class="team-name"> <a href="' + team.teamPageURL + '" data-sort="' + team.name + '">' + team.name + '</a> </td><td class="donor-name"> <a href="TR/?px=' + team.captainConsId + '&pg=personal&fr_id=' + team.EventId + '" data-sort="' + team.captainFirstName + ' ' + team.captainLastName + '">' + team.captainFirstName + ' ' + team.captainLastName + '</a> </td><td class="company-name"> <a href="' + luminateExtend.global.path.secure + 'TR/?pg=company&company_id=' + team.companyId + '&fr_id=' + team.EventId + '" data-sort="' + companyName + '">' + companyName + '</a> </td><td class="raised" data-sort="' + teamRaisedFormmatted + '"> <span><strong>$' + teamRaisedFormmatted + '</strong></span> </td><td> <a href="' + team.joinTeamURL + '">' + (screenWidth <= 480 ? 'Join' : 'Join Team') + '</a> </td></tr>');
+                                    $('#team-roster tbody').append('<tr class="' + (numTeamRows > 4 ? 'd-none' : '') + '"> <td class="team-name"> <a href="' + team.teamPageURL + '" data-sort="' + team.name + '">' + team.name + '</a> </td><td class="donor-name"> <a href="TR/?px=' + team.captainConsId + '&pg=personal&fr_id=' + team.EventId + '" data-sort="' + team.captainFirstName + ' ' + team.captainLastName + '">' + team.captainFirstName + ' ' + team.captainLastName + '</a> </td><td class="company-name"> <a href="' + luminateExtend.global.path.secure + 'TR/?pg=company&company_id=' + team.companyId + '&fr_id=' + team.EventId + '" data-sort="' + companyName + '">' + companyName + '</a> </td><td class="raised" data-sort="' + teamRaisedFormmatted + '"> <span><strong>$' + teamRaisedFormmatted + '</strong></span> </td><td> <a href="' + team.joinTeamURL + '" aria-label="Join Team ' + team.name + '">' + (screenWidth <= 480 ? 'Join' : 'Join Team') + '</a> </td></tr>');
                                     numTeamRows++;
                                 });
 
@@ -2116,7 +2169,7 @@
                             var px = $.getCustomQuerystring(dlink, "PROXY_ID");
                             var pt = $.getCustomQuerystring(dlink, "PROXY_TYPE");
 
-                            var html = "<div class='paymentSelType text-center' style='padding-top:10px;'>" +
+                            var html = "<div aria-live='polite' class='paymentSelType' style='padding-top:10px;'>" +
                                 "<h2 class='h6'>How would you like to donate?</h2>" +
                                 "<div class='payment-options-container'><a href='" + dlink + "'><img src='https://www2.heart.org/images/content/pagebuilder/credit-card-logos2.png' alt='Donate with Visa, MasterCard, American Express or Discover cards'/></a>" +
                                 "<a href='" + default_path + "/site/SPageNavigator/fieldday_donate_amazon.html?FR_ID=" + fr_id + "&mfc_pref=T&PROXY_ID=" + px + "&PROXY_TYPE=" + pt + "' class='amazon'><img src='https://donatenow.heart.org/images/amazon-payments_inactive.png' alt='Donate with Amazon Pay'/></a>" +
@@ -2282,6 +2335,12 @@
         if($('body').is('.pg_FieldDay_Landing_Page')) {
           //Search functionality
 
+          $('#company-page-search, #participant-page-search').on('click', function(){
+            $('.js--participant-search-results').html('');
+            $('.js--participant-no-event-results').addClass('d-none');
+            $('.js--participant-more-event-results').addAttr('hidden');
+          });
+
           //State and Zip search
           $('.js--zip-search').on('submit', function (e) {
               e.preventDefault();
@@ -2394,3 +2453,9 @@ $('body').on('click, keydown', function (e) {
         $('.nav-item--find').removeClass('open');
     }
 });
+
+
+if ( $('body').is('.app_donation') || $('body').is('.app_tr_registration') || $('body').is('.pg_fieldday_register') ) {
+  $('.nav-item--about').attr('aria-hidden', 'true');
+  $('.nav-item--find').attr('aria-hidden', 'true');
+}

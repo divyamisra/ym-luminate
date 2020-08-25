@@ -1277,18 +1277,18 @@
             });
         }
 
-        if (jQuery('input[name=pg]').val() == "reg" || jQuery('input[name=pg]').val() == "reganother") {
-	    $('h1.campaign-banner-container').prepend(evDateYear+" ");
-	    /* zip only reg flow */
-	    $('#cons_zip_code').parent().parent().parent().parent().addClass('field-required consZip');
+      if ($('body').is('.pg_reg')) {
+  	    $('h1.campaign-banner-container').prepend(evDateYear+" ");
+  	    /* zip only reg flow */
+  	    $('#cons_zip_code').parent().parent().parent().parent().addClass('field-required consZip');
 
-	    if ($(".consZip span.field-required").length === 0) {
-	    	$('label[for="cons_zip_code"]').parent().before('<span class="field-required"></span>');
-   	    }
+  	    if ($(".consZip span.field-required").length === 0) {
+  	    	$('label[for="cons_zip_code"]').parent().before('<span class="field-required"></span>');
+     	    }
 
-	    $('label:contains("t-shirt")').closest('.input-container').find('select').addClass("tshirtSize");
-	    $('span.field-required').closest('.form-content').find('input, select').addClass("required");
-	    $('input[value^="I accept"]').addClass("acceptRelease").next('label').addClass("acceptReleaseLabel");
+  	    $('label:contains("t-shirt")').closest('.input-container').find('select').addClass("tshirtSize");
+  	    $('span.field-required').closest('.form-content').find('input, select').addClass("required");
+  	    $('input[value^="I accept"]').addClass("acceptRelease").next('label').addClass("acceptReleaseLabel");
 	    /*
 	    var pattern = /\b(Release with Publicity Consent)/gi; // words you want to wrap
 	    var replaceWith = '<a id="waiverPopLink" href="javascript:void(0);">$1</a>'; // Here's the wap
@@ -1318,6 +1318,11 @@
 		    }
 	    });
 
+
+      /*Removing Mobile Opt-in Option*/
+
+      /*
+
 	    //Add mobile opt in check box
 	    var optinHTML = '<div id="mobile_optin_outer">' +
 		                '<input type="checkbox" name="mobile_optin" id="mobile_optin">' +
@@ -1336,18 +1341,22 @@
 			    }
 		    });
 	    }
+      */
 
-  	    var optinName = $('.input-label:contains(Mobile Phone)').closest('.input-container').find('input').attr("name");
+      //$('.input-label:contains(Mobile Phone)').hide().attr('aria-hidden', 'true');
+      //$('.regMobilePhone').hide().attr('aria-hidden', 'true');
+
+
 	    var tshirtName = $('.input-label:contains("t-shirt")').closest('.input-container').find('select').attr("name");
 	    var rules = {};
 	    rules['cons_password'] = {required: true,minlength: 5};
 	    rules['cons_rep_password'] = {required: true,minlength: 5,equalTo: "#cons_password"};
-	    rules[optinName] = {required: '#mobile_optin:checked',minlength: 2};
+	    //rules[optinName] = {required: '#mobile_optin:checked',minlength: 2};
 	    rules[tshirtName] = {valueNotEquals: 'NOREPLY'};
 	    var messages = {};
 	    messages['cons_password'] = {minlength: "Please enter 5 characters or more",required: "Please enter a password"};
 	    messages['cons_rep_password'] = {required: "Please confirm your password",minlength: "Please enter 5 characters or more",equalTo: "Passwords do not match. Please re-enter password."};
-	    messages[optinName] = {required: "Mobile Opt in is selected.<br/>Please enter a mobile number."};
+	    //messages[optinName] = {required: "Mobile Opt in is selected.<br/>Please enter a mobile number."};
 	    messages[tshirtName] = {required: "Please select a t-shirt size."};
 
 	    $('button.previous-step').attr("formnovalidate","true");
@@ -1359,7 +1368,7 @@
 		return arg !== value;
 	    }, "Please select a t-shirt size");
 
-	    jQuery('form').validate({
+	    jQuery('#F2fRegContact').validate({
 		focusInvalid: false,
 		invalidHandler: function(form, validator) {
 			if (!validator.numberOfInvalids())
@@ -1466,8 +1475,14 @@
         /* Page = Reg */
         if ($('input[name="pg"]').val() == 'reg') {
             $('#additional_questions_container .survey-question-container:contains("Facebook Fundraiser ID:")').hide();
-            $('input#cons_user_name + span.input-hint').html("You can use your email address or a unique name with any of the following: letters, numbers, and these symbols: +, -, _, @, ., %, and : but no spaces!");
-            $('input#cons_password + span.input-hint').html("This needs to be at least 5 characters long and can contain any of the following: letters, numbers, and these symbols: !#$%()*+,-./:;?@[\]^_`{|}~ o=");
+
+            var screenReaderNameHint = '<p class="sr-only">You can use your email address or a unique name with any of the following: letters, numbers, and these symbols: plus, dash, underscore, at, period, percentage, and colon but no spaces!</p>';
+
+            $('input#cons_user_name + span.input-hint').attr('aria-hidden', 'true').html("You can use your email address or a unique name with any of the following: letters, numbers, and these symbols: +, -, _, @, ., %, and : but no spaces!").after(screenReaderNameHint);
+
+            var passwordHint = '<p class="sr-only">This needs to be at least 5 characters long and can contain any of the following: letters, numbers, and these symbols: exclamation, pound, dollar sign, left parenthesis, right parenthesis, asterisk, plus, minus, period, slash, colon, semi-colon, question mar, at, left bracket, right bracket, caret, underscore, left brace, right brach, pipe, tilda, degrees, and equal.</p>';
+
+            $('input#cons_password + span.input-hint').attr('aria-hidden', 'true').html("This needs to be at least 5 characters long and can contain any of the following: letters, numbers, and these symbols: !#$%()*+,-./:;?@[\]^_`{|}~ o=").after(passwordHint);
         }
         $('#password_component_container #cons_rep_password').parent().parent().parent().addClass('left');
         $('#password_component_container #cons_password').parent().parent().parent().addClass('left');
@@ -1494,6 +1509,10 @@
         $('#cons_state').closest('.cons-full-address-container').attr('aria-hidden', 'true').hide();
         $('#cons_info_country_container').attr('aria-hidden', 'true').hide();
         $('.cons-city-town-label').attr('aria-hidden', 'true');
+
+        $('.survivorq').focus(function(){
+          $(this).parent().parent().addClass('survivor_active');
+        })
 
 
         /*Donation Buttons*/
@@ -1557,6 +1576,9 @@
 
         /* Page = Reg */
         if ($('input[name="pg"]').val() == 'regsummary') {
+
+        console.log('reg page updates');
+
    	    $('h2.cstmTitle').prepend(evDateYear+" ");
             // if there is a donation then change button text
             if ($.trim($('.additional-gift-amount').html()) != "$0.00") {
@@ -1599,7 +1621,7 @@
         }
 
         /* Page = paymentForm */
-        if ($('input[name="pg"]').val() == 'paymentForm') {
+  if ($('input[name="pg"]').val() == 'paymentForm') {
 		$('h1#reg_payment_campaign_banner_container').prepend(evDateYear+" ");
 		$('button.previous-step').attr("formnovalidate","true");
 
@@ -1613,8 +1635,8 @@
 		$('span.field-required').closest('.form-content').find('input:visible, select').addClass("required");
 
 		$('input.required').each(function(){
-		    var label = $(this).closest('.form-content').find('label').html();
-		    $(this).attr("title",label.replace(":","") + " is required");
+      var label = $(this).closest('.form-content').find('label').html();
+  		$(this).attr("title",label.replace(":","") + " is required");
 		});
 		$('select.required').each(function(){
 		    var label = $(this).closest('.form-content').find('label span.label-text').html();
@@ -2135,8 +2157,17 @@
             }
 
             if ($('body').is('.pg_regsummary')) {
-              $('.reg-summary-address-info .reg-summary-edit-link a').attr('aria-label', 'Edit your contact information');
+              $('.reg-summary-address-info .reg-summary-edit-link a').attr('aria-label', 'Edit your registration information');
               $('.js--edit-ptype').attr('aria-label', 'Edit your registration information');
+              if ( $('.team-status').html() === 'You are Starting a Team') {
+                $('#another_button').remove();
+              }
+            }
+
+
+
+            if ($('body').is('.pg_tfind')) {
+              $('#fr_team_name').attr('title', 'Team Name required');
             }
 
 

@@ -658,6 +658,8 @@ angular.module 'trPcControllers'
               sku: prize.sku
               status: prize.status
               earned: prize.earned_datetime
+              earned_image_url: prize.earned_image_url
+              non_earned_image_url: prize.non_earned_image_url
         , (response) ->
           # TODO
         $scope.personalChallenge = {}
@@ -732,7 +734,7 @@ angular.module 'trPcControllers'
               # name: challenge
       challengeOptions =
         "1": "Be physically active for 60 minutes a day."
-        "2": "Learn hands-only CPR."
+        "2": "Learn Hands-Only CPR."
         "3": "Say no to tobacco and vaping."
       angular.forEach challengeOptions, (challenge, challengeIndex) ->
         $scope.challenges.push

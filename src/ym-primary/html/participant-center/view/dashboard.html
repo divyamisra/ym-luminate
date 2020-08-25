@@ -280,47 +280,48 @@
 					 <text fill="#ffffff" font-size="20"><tspan x="50" y="72">Go!</tspan></text>
 					 <path data-name="Path 1523" d="M70 100v62h76v-62h-76z" fill="url(#letsgo_arrow)"/>
 				  </g>
-				  <g ng-if="prizesEarned != prizes.length" transform="translate(-.001 .003)" ng-cloak>
-					 <path data-name="Path 1523" d="M484 532v53h96v-52h-96z" fill="url(#not_secret_finn)"/>
-					 <text fill="#ffffff" font-size="20"><tspan x="450" y="635">Your Secret Code</tspan></text>
-					 <text fill="#ffffff" font-size="20"><tspan x="456" y="668">Will Reveal Here</tspan></text>
+ 				  <g ng-if="prizesEarned != prizes.length" transform="translate(-.001 .003)" class="finn-text" ng-cloak>
+				 	<path data-name="Path 1523" d="M484 532v53h96v-52h-96z" fill="url(#not_secret_finn)"></path>
+					<text fill="#ffffff" font-size="20"><tspan x="456" y="620">FINN'S SPECIAL</tspan></text>
+					<text fill="#ffffff" font-size="20"><tspan x="460" y="650">MESSAGE WILL</tspan></text>
+					<text fill="#ffffff" font-size="20"><tspan x="464" y="680">REVEAL HERE!</tspan></text>
 				  </g>
-				  <g ng-if="prizesEarned == prizes.length" transform="translate(-.001 .003)" ng-cloak>
+				  <g ng-if="prizesEarned == prizes.length" transform="translate(-.001 .003)" class="finn-text" ng-cloak>
 					 <path data-name="Path 1523" d="M450 489v96h178v-96h-178z" fill="url(#secret_finn)"/>
-					 <text fill="#ffffff" font-size="20"><tspan x="465" y="635">You are a real</tspan></text>
-					 <text fill="#ffffff" font-size="20"><tspan x="478" y="668">Heart Hero!</tspan></text>
+					 <text fill="#ffffff" font-size="20"><tspan x="455" y="635">YOU ARE A REAL</tspan></text>
+					 <text fill="#ffffff" font-size="20"><tspan x="468" y="668">HEART HERO!</tspan></text>
 				  </g>
-				  <g ng-if="!prizes[2].earned" transform="translate(-.001 .003)" ng-cloak>
+				  <g transform="translate(-.001 .003)" ng-cloak>
 					  <a xlink:href="" ng-href="{{prizes[2].final_url}}" title="Ask for a donation"><text fill="#c10e21" font-size="14" font-weight="bold"><tspan x="570" y="105">Ask for a</tspan></text></a>
 					  <a xlink:href="" ng-href="{{prizes[2].final_url}}" title="Ask for a donation"><text fill="#c10e21" font-size="14" font-weight="bold"><tspan x="570" y="122">Donation</tspan></text></a>
 					 <path data-name="Path 1523" d="M575 130v23h23v-23h-23z" fill="url(#winding_road_link_arrow_3)"/>
 				  </g>
-				  <g ng-if="!prizes[3].earned" transform="translate(-.001 .003)" class="ng-scope">
+				  <g transform="translate(-.001 .003)" class="ng-scope">
  					 <path data-name="Path 1523" d="M535 435v23h23v-23h-23z" fill="url(#winding_road_link_arrow_4)"></path>
 					  <a xlink:href="" ng-href="{{prizes[3].final_url}}" title="Make a donation"><text fill="#c10e21" font-size="14" font-weight="bold"><tspan x="570" y="435">Make a</tspan></text></a>
 					  <a xlink:href="" ng-href="{{prizes[3].final_url}}" title="Make a donation"><text fill="#c10e21" font-size="14" font-weight="bold"><tspan x="570" y="455">Donation</tspan></text></a>
 				  </g>
-				  <g ng-if="!prizes[4].earned" transform="translate(-.001 .003)" class="ng-scope">
+				  <g transform="translate(-.001 .003)" class="ng-scope">
  					 <path data-name="Path 1523" d="M335 475v23h23v-23h-23z" fill="url(#winding_road_link_arrow_5)"></path>
 					  <a xlink:href="" ng-href="{{prizes[4].final_url}}"><text fill="#c10e21" font-size="14" font-weight="bold"><tspan x="370" y="485" title="Share on social">Share on</tspan></text></a>
 					  <a xlink:href="" ng-href="{{prizes[4].final_url}}"><text fill="#c10e21" font-size="14" font-weight="bold"><tspan x="375" y="505" title="Share on social">Social</tspan></text></a>
 				  </g>
-				  <g ng-if="!prizes[5].earned" transform="translate(-.001 .003)" ng-cloak>
+				  <g transform="translate(-.001 .003)" ng-cloak>
 					  <a xlink:href="" ng-click="showMobileApp()" href="javascript:void(0)"><text fill="#c10e21" font-size="14" font-weight="bold" title="Move More"><tspan x="235" y="305">Move</tspan></text></a>
 					  <a xlink:href="" ng-click="showMobileApp()" href="javascript:void(0)"><text fill="#c10e21" font-size="14" font-weight="bold" title="Move More"><tspan x="235" y="325">More</tspan></text></a>
 					 <path data-name="Path 1523" d="M272 310v23h23v-23h-23z" fill="url(#winding_road_link_arrow_6)"/>
 				  </g>
-				  <g ng-if="!prizes[6].earned" transform="translate(-.001 .003)" class="ng-scope">
+				  <g transform="translate(-.001 .003)" class="ng-scope">
 					  <a xlink:href="" ng-href="{{prizes[6].final_url}}" title="Send an email"><text fill="#c10e21" font-size="14" font-weight="bold"><tspan x="0" y="360">Send an</tspan></text></a>
 					  <a xlink:href="" ng-href="{{prizes[6].final_url}}" title="Send an email"><text fill="#c10e21" font-size="14" font-weight="bold"><tspan x="0" y="380">Email</tspan></text></a>
 					 <path data-name="Path 1523" d="M10 388v23h23v-23h-23z" fill="url(#winding_road_link_arrow_7)"></path>
 				  </g>
-				  <g ng-if="!prizes[7].earned" transform="translate(-.001 .003)" class="ng-scope">
+				  <g transform="translate(-.001 .003)" class="ng-scope">
 					 <path data-name="Path 1523" d="M3 635v23h23v-23h-23z" fill="url(#winding_road_link_arrow_8)"></path>
 					  <a xlink:href="" ng-href="{{prizes[7].final_url}}" title="Take CPR Quiz"><text fill="#c10e21" font-size="14" font-weight="bold"><tspan x="0" y="675">Take</tspan></text></a>
 					  <a xlink:href="" ng-href="{{prizes[7].final_url}}" title="Take CPR Quiz"><text fill="#c10e21" font-size="14" font-weight="bold"><tspan x="0" y="695">CPR Quiz</tspan></text></a>
 				  </g>
-				  <g ng-if="!prizes[8].earned" transform="translate(-.001 .003)" class="ng-scope">
+				  <g transform="translate(-.001 .003)" class="ng-scope">
 					 <path data-name="Path 1523" d="M300 710v23h23v-23h-23z" fill="url(#winding_road_link_arrow_9)"></path>
 					  <a xlink:href="" ng-href="{{prizes[8].final_url}}" title="Take Stroke Quiz"><text fill="#c10e21" font-size="14" font-weight="bold"><tspan x="330" y="720">Take</tspan></text></a>
 					  <a xlink:href="" ng-href="{{prizes[8].final_url}}" title="Take Stroke Quiz"><text fill="#c10e21" font-size="14" font-weight="bold"><tspan x="330" y="740">Stroke Quiz</tspan></text></a>
@@ -481,7 +482,7 @@
                 <a ng-href="{{baseUrl}}#/email" ng-init="hvImgsrc3='PC_email-static.png';" ng-mouseover="hvImgsrc3='PC_email-animated.gif';" ng-mouseout="hvImgsrc3='PC_email-static.png';">
                   <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy21/{{hvImgsrc3}}" alt="Send Email">
                 </a> 
-                <a ng-href="https://hearttools.heart.org/aha_ym21{{tablePrefix == 'heartdev' ? '_dev' : (tablePrefix == 'heartnew' ? '_testing' : '')}}/?eid={{frId}}&amp;sid={{consId}}&amp;name={{consNameFirst}}" target="_blank" ng-init="hvImgsrc4='PC_ecard-static.png';" ng-mouseover="hvImgsrc4='PC_ecard-animated.gif';" ng-mouseout="hvImgsrc4='PC_ecard-static.png';">
+                <a ng-href="https://tools.heart.org/aha_ym21{{tablePrefix == 'heartdev' ? '_dev' : (tablePrefix == 'heartnew' ? '_testing' : '')}}/?eid={{frId}}&amp;sid={{consId}}&amp;name={{consNameFirst}}" target="_blank" ng-init="hvImgsrc4='PC_ecard-static.png';" ng-mouseover="hvImgsrc4='PC_ecard-animated.gif';" ng-mouseout="hvImgsrc4='PC_ecard-static.png';">
                   <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy21/{{hvImgsrc4}}" alt="Send E-card">
                 </a>
               </div>
@@ -489,7 +490,7 @@
                 <a class="btn btn-md-wide btn-primary" ng-href="{{baseUrl}}#/email">
                   <strong>Send Email</strong>
                 </a> 
-                <a class="btn btn-md-wide btn-primary" ng-href="https://hearttools.heart.org/aha_ym21{{tablePrefix == 'heartdev' ? '_dev' : (tablePrefix == 'heartnew' ? '_testing' : '')}}/?eid={{frId}}&amp;sid={{consId}}&amp;name={{consNameFirst}}" target="_blank">
+                <a class="btn btn-md-wide btn-primary" ng-href="https://tools.heart.org/aha_ym21{{tablePrefix == 'heartdev' ? '_dev' : (tablePrefix == 'heartnew' ? '_testing' : '')}}/?eid={{frId}}&amp;sid={{consId}}&amp;name={{consNameFirst}}" target="_blank">
                   <strong>Send e-card</strong>
                 </a>
               </div>
@@ -508,7 +509,7 @@
             </div>
             <div class="text-center">
               <div class="ym-pc-dashboard-livestream-images">
-   	        <span class="hv-image" ng-init="hvImgLSsrc='pc-livestream.png';" ng-mouseover="hvImgLSsrc='pc-livestream-ioed.gif';" ng-mouseout="hvImgLSsrc='pc-livestream.png';">
+   	        <span class="hv-image" ng-init="hvImgLSsrc='pc-livestream.png';" ng-mouseover="hvImgLSsrc='pc-livestream-animated.gif';" ng-mouseout="hvImgLSsrc='pc-livestream.png';">
 		  <img class="pc-livestream-character" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy21/{{hvImgLSsrc}}" alt="Livestream Character">
 	        </span>
                 &nbsp;
@@ -810,7 +811,7 @@
              </div>
           </div>
           <div class="text-center" style="margin-bottom:35px;">
-             <a class="btn btn-lg btn-primary" ng-href="https://hearttools.heart.org/aha_ym21{{tablePrefix == 'heartdev' ? '_dev' : (tablePrefix == 'heartnew' ? '_testing' : '')}}/virtualworld/?fr_id={{frId}}&cons_id={{consId}}&name={{consNameFirst}}" target="_new" aria-label="Enter Heartsville World">
+             <a class="btn btn-lg btn-primary" ng-href="https://tools.heart.org/aha_ym21{{tablePrefix == 'heartdev' ? '_dev' : (tablePrefix == 'heartnew' ? '_testing' : '')}}/virtualworld/?fr_id={{frId}}&cons_id={{consId}}&name={{consNameFirst}}" target="_new" aria-label="Enter Heartsville World">
                 <strong>Enter World!</strong>
              </a>
              <!-- <a class="btn btn-lg btn-primary" href="javascript:void(0);">
@@ -840,9 +841,12 @@
              </div>
           </div>
 	  <div class="text-center">
-             <a class="btn btn-lg btn-primary" href="javascript:void(0);">
-             <strong>Coming Soon!</strong>
+             <a class="btn btn-lg btn-primary" ng-click="monsterEdit()">
+                <strong>Customize Hero!</strong>
              </a>
+             <!--<a class="btn btn-lg btn-primary" href="javascript:void(0);">
+             <strong>Coming Soon!</strong>
+             </a>-->
           </div>
         </div>
       </div>
