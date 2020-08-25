@@ -1381,6 +1381,7 @@
 		},
                 rules: rules,
                 messages: messages,
+                errorElement: 'span',
                 errorPlacement: function(error, element) {
 
 			if ($(element).hasClass("survivorq")) {
