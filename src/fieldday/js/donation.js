@@ -69,7 +69,7 @@
 	document.cookie="level="+level;
         //var amt = $(this).find('.donation-level-amount-container').text();
         //$('.donateSubmit').text('Donate '+amt);
-        
+
     });
 
     $('.designated-giving-recurring-row input[type=radio]:checked').closest('.designated-giving-recurring-row').addClass("active");
@@ -147,7 +147,7 @@
 	    }
     });
 
-    $('.level5 .donation-level-label-input-container').addClass('aural-only');
+    //$('.level5 .donation-level-label-input-container').addClass('aural-only');
 
 /**** impact statement randomizer *****/
       var $all = $(".impactStatement").hide();
