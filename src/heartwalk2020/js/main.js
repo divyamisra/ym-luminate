@@ -1035,7 +1035,7 @@
             cd.getCompanyList(evID);
             cd.getTopCompanies(evID);
 
-            if (currDate >= fourWeek && currDate =< eventDate) {
+            if (currDate >= fourWeek && currDate <= eventDate) {
                 //build steps leaderboard
                 cd.getTopParticipantsSteps(evID);
                 cd.getTopTeamsSteps(evID);
