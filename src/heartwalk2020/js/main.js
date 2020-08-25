@@ -86,6 +86,15 @@
         var evID = $('body').data('fr-id') ? $('body').data('fr-id') : null;
         var dfID = $('body').data('df-id') ? $('body').data('df-id') : null;
         var consID = $('body').data('cons-id') ? $('body').data('cons-id') : null;
+        var eventDate = $('body').data('ev-date') ? new Date($('body').data('ev-date')) : null;
+        if (eventDate != null) {
+           eventDate.setDate(eventDate.getDate() + 1);
+        }
+        var currDate = $('body').data('curr-date') ? new Date($('body').data('curr-date')) : null;
+        var fourWeek = $('body').data('ev-date') ? new Date($('body').data('ev-date')) : null;
+        if (fourWeek != null) {
+           fourWeek.setDate(fourWeek.getDate() - 28);
+        }
 
         var motion_username = 'heartwalkapi';
         var motion_password = 'toYEaJuV98VJdIEn'; 
@@ -1026,10 +1035,14 @@
             cd.getCompanyList(evID);
             cd.getTopCompanies(evID);
 
-            //build steps leaderboard
-            cd.getTopParticipantsSteps(evID);
-            cd.getTopTeamsSteps(evID);
-            cd.getTopCompaniesSteps(evID);
+            if (currDate >= fourWeek && currDate =< eventDate) {
+                //build steps leaderboard
+                cd.getTopParticipantsSteps(evID);
+                cd.getTopTeamsSteps(evID);
+                cd.getTopCompaniesSteps(evID);
+            } else {
+                $('.top-steps').hide();
+            }
             
             // Walker Search
             $('.js--greeting-walker-search-form').on('submit', function (e) {
