@@ -143,5 +143,16 @@ module.exports = {
         dest: "dist/heartwalk2020/html/"
       }
     ]
+  },
+
+  "fieldday": {
+    files: [
+      {
+        expand: true,
+        cwd: "src/fieldday/html/",
+        src: ["**/*.*"],
+        dest: "dist/fieldday/html/"
+      }
+    ]
   }
 }

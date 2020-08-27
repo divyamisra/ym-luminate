@@ -2,12 +2,15 @@ angular.module 'trPcControllers'
   .controller 'NgPcDashboardViewCtrl', [
     '$rootScope'
     '$scope'
+    '$location'
     '$filter'
     '$timeout'
     '$uibModal'
+    '$sce'
     'APP_INFO'
     'ZuriService'
     'BoundlessService'
+    'TeamraiserParticipantService'
     'NgPcTeamraiserRegistrationService'
     'NgPcTeamraiserProgressService'
     'NgPcTeamraiserTeamService'
@@ -18,11 +21,22 @@ angular.module 'trPcControllers'
     'NgPcInteractionService'
     'NgPcTeamraiserCompanyService'
     'FacebookFundraiserService'
-    ($rootScope, $scope, $filter, $timeout, $uibModal, APP_INFO, ZuriService, BoundlessService, NgPcTeamraiserRegistrationService, NgPcTeamraiserProgressService, NgPcTeamraiserTeamService, NgPcTeamraiserSchoolService, NgPcTeamraiserGiftService, NgPcContactService, NgPcTeamraiserShortcutURLService, NgPcInteractionService, NgPcTeamraiserCompanyService, FacebookFundraiserService) ->
+    ($rootScope, $scope, $location, $filter, $timeout, $uibModal, $sce, APP_INFO, ZuriService, BoundlessService, TeamraiserParticipantService, NgPcTeamraiserRegistrationService, NgPcTeamraiserProgressService, NgPcTeamraiserTeamService, NgPcTeamraiserSchoolService, NgPcTeamraiserGiftService, NgPcContactService, NgPcTeamraiserShortcutURLService, NgPcInteractionService, NgPcTeamraiserCompanyService, FacebookFundraiserService) ->
       $scope.dashboardPromises = []
-
+      domain = $location.absUrl().split('/site/')[0]
+      $scope.studentsPledgedTotal = ''
+      $scope.activity1amt = ''
+      $scope.activity2amt = ''
+      $scope.activity3amt = ''
+      $scope.companyId = $scope.participantRegistration.companyInformation.companyId
+      theDate = new Date
+      $scope.yearsList = [1..(theDate.getFullYear()-1978)] # 0 - 50
+      $scope.schoolChallenges = []
+      $scope.companyProgress = []
+      $rootScope.hideGifts = "Y"
+      
       $dataRoot = angular.element '[data-embed-root]'
-
+                     
       if $scope.participantRegistration.lastPC2Login is '0'
         if $scope.participantRegistration.companyInformation?.isCompanyCoordinator isnt 'true'
           $scope.firstLoginModal = $uibModal.open
@@ -59,12 +73,97 @@ angular.module 'trPcControllers'
         $scope.dashboardProgressType = progressType
 
       if $scope.participantRegistration.companyInformation?.isCompanyCoordinator is 'true'
-        BoundlessService.checkOOTDashboard $scope.consId
+        BoundlessService.checkOOTDashboard $scope.frId + '/' + $scope.consId
         .then (response) ->
           $rootScope.hasOOTDashboard = response.data.coordinatorHasDashboard
         , (response) ->
           # TODO
 
+      #school years, challenge and level update
+      $scope.schoolInfo = {}
+      $scope.schoolChallengeInfo = {}
+      $scope.schoolChallengeLevelInfo = {}
+      $scope.companyProgress.schoolYears = 0
+      $scope.companyProgress.schoolChallenge = ''
+      $scope.companyProgress.schoolChallengeLevel = ''
+            
+      getSchoolInformation = ->
+        ZuriService.getSchoolData $scope.participantRegistration.companyInformation.companyId,
+          failure: (response) ->
+          error: (response) ->
+          success: (response) ->
+            if typeof response.data.data != 'undefined'
+              if response.data.data.length > 0
+                angular.forEach response.data.data, (meta, key) ->
+                  if meta.name == 'years-participated'
+                    $scope.companyProgress.schoolYears = meta.value
+                  if meta.name == 'school-challenge'
+                    $scope.companyProgress.schoolChallenge = meta.value
+                  if meta.name == 'school-goal'
+                    $scope.companyProgress.schoolChallengeLevel = meta.value
+                amt = $scope.participantProgress.raised / 100
+                if amt >= Number(($scope.companyProgress.schoolChallengeLevel).replace('$', '').replace(/,/g, '')) and $scope.companyProgress.schoolChallenge != "No School Challenge"
+                  # check if student badge already added
+                  schoolChallengeAdded = false
+                  angular.forEach $scope.schoolChallenges, (schoolChallenge, schoolChallengeIndex) ->
+                    if schoolChallenge.id == "student"
+                      schoolChallengeAdded = true
+                  if not schoolChallengeAdded
+                    $scope.schoolChallenges.push
+                      id: 'student'
+                      label: 'Individual Challenge Completed'
+                      earned: true
+
+      participantsString = ''
+      $scope.companyParticipants = {}
+      setCompanyParticipants = (participants, totalNumber, totalFundraisers) ->
+        $scope.companyParticipants.participants = participants or []
+        totalNumber = totalNumber or 0
+        $scope.companyParticipants.totalNumber = Number totalNumber
+        $scope.companyParticipants.totalFundraisers = Number totalFundraisers
+        if not $scope.$$phase
+          $scope.$apply()
+        if participants and participants.length > 0
+          angular.forEach participants, (participant, participantIndex) ->
+            participantsString += '{name: "' + participant.name.first + ' ' + participant.name.last + '", raised: "' + participant.amountRaisedFormatted + '"}'
+            if participantIndex < (participants.length - 1)
+              participantsString += ', '
+          companyParticipantsString = '{participants: [' + participantsString + '], totalNumber: ' + participants.length + '}'
+          angular.element('.ym-school-animation iframe')[0].contentWindow.postMessage companyParticipantsString, domain
+          angular.element('.ym-school-animation iframe').on 'load', ->
+            angular.element('.ym-school-animation iframe')[0].contentWindow.postMessage companyParticipantsString, domain
+
+      getCompanyParticipants = ->
+        TeamraiserParticipantService.getParticipants 'team_name=' + encodeURIComponent('%') + '&first_name=' + encodeURIComponent('%%') + '&last_name=' + encodeURIComponent('%') + '&list_filter_column=team.company_id&list_filter_text=' + $scope.participantRegistration.companyInformation.companyId + '&list_sort_column=total&list_ascending=false&list_page_size=50',
+            error: ->
+              setCompanyParticipants()
+            success: (response) ->
+              participants = response.getParticipantsResponse?.participant
+              companyParticipants = []
+              totalNumberParticipants = response.getParticipantsResponse?.totalNumberResults or '0'
+              totalFundraisers = 0
+              if participants
+                participants = [participants] if not angular.isArray participants
+                angular.forEach participants, (participant) ->
+                  participant.amountRaised = Number participant.amountRaised
+                  if participant.name?.first and participant.amountRaised > 0
+                    participant.firstName = participant.name.first
+                    participant.lastName = participant.name.last || ""
+                    participant.name.last =  participant.lastName.substring(0, 1) + '.'
+                    participant.fullName = participant.name.first + ' ' + participant.name.last
+                    participant.amountRaisedFormatted = $filter('currency')(participant.amountRaised / 100, '$')
+                    if participant.donationUrl
+                      participant.donationFormId = participant.donationUrl.split('df_id=')[1].split('&')[0]
+                    companyParticipants.push participant
+                    totalFundraisers++
+              setCompanyParticipants companyParticipants, totalNumberParticipants, totalFundraisers
+      getCompanyParticipants()
+      
+      url = 'PageServer?pagename=ym_khc_school_animation&pgwrap=n'
+      if $scope.protocol is 'https:'
+        url = 'S' + url
+      $scope.schoolAnimationURL = $sce.trustAsResourceUrl(url)
+      
       $scope.refreshFundraisingProgress = ->
         fundraisingProgressPromise = NgPcTeamraiserProgressService.getProgress()
           .then (response) ->
@@ -76,15 +175,16 @@ angular.module 'trPcControllers'
                 # TODO
               else
                 participantProgress.raised = Number participantProgress.raised
-                participantProgress.raisedFormatted = if participantProgress.raised then $filter('currency')(participantProgress.raised / 100, '$', 0) else '$0'
+                participantProgress.raisedFormatted = if participantProgress.raised then $filter('currency')(participantProgress.raised / 100, '$') else '$0.00'
                 participantProgress.goal = Number participantProgress.goal
-                participantProgress.goalFormatted = if participantProgress.goal then $filter('currency')(participantProgress.goal / 100, '$', 0) else '$0'
+                participantProgress.goalFormatted = if participantProgress.goal then $filter('currency')(participantProgress.goal / 100, '$') else '$0.00'
                 participantProgress.percent = 0
                 if participantProgress.goal isnt 0
                   participantProgress.percent = Math.ceil((participantProgress.raised / participantProgress.goal) * 100)
                 if participantProgress.percent > 100
                   participantProgress.percent = 100
                 $scope.participantProgress = participantProgress
+
             if $scope.participantRegistration.teamId and $scope.participantRegistration.teamId isnt '-1'
               if response.data.errorResponse
                 # TODO
@@ -94,9 +194,9 @@ angular.module 'trPcControllers'
                   # TODO
                 else
                   teamProgress.raised = Number teamProgress.raised
-                  teamProgress.raisedFormatted = if teamProgress.raised then $filter('currency')(teamProgress.raised / 100, '$', 0) else '$0'
+                  teamProgress.raisedFormatted = if teamProgress.raised then $filter('currency')(teamProgress.raised / 100, '$') else '$0.00'
                   teamProgress.goal = Number teamProgress.goal
-                  teamProgress.goalFormatted = if teamProgress.goal then $filter('currency')(teamProgress.goal / 100, '$', 0) else '$0'
+                  teamProgress.goalFormatted = if teamProgress.goal then $filter('currency')(teamProgress.goal / 100, '$') else '$0.00'
                   teamProgress.percent = 0
                   if teamProgress.goal isnt 0
                     teamProgress.percent = Math.ceil((teamProgress.raised / teamProgress.goal) * 100)
@@ -112,17 +212,26 @@ angular.module 'trPcControllers'
                   # TODO
                 else
                   companyProgress.raised = Number companyProgress.raised
-                  companyProgress.raisedFormatted = if companyProgress.raised then $filter('currency')(companyProgress.raised / 100, '$', 0) else '$0'
+                  companyProgress.raisedFormatted = if companyProgress.raised then $filter('currency')(companyProgress.raised / 100, '$') else '$0.00'
                   companyProgress.goal = Number companyProgress.goal
-                  companyProgress.goalFormatted = if companyProgress.goal then $filter('currency')(companyProgress.goal / 100, '$', 0) else '$0'
+                  companyProgress.goalFormatted = if companyProgress.goal then $filter('currency')(companyProgress.goal / 100, '$') else '$0.00'
                   companyProgress.percent = 0
                   if companyProgress.goal isnt 0
                     companyProgress.percent = Math.ceil((companyProgress.raised / companyProgress.goal) * 100)
                   if companyProgress.percent > 100
                     companyProgress.percent = 100
+                  companyProgress.schoolYears = $scope.companyProgress?.schoolYears
+                  companyProgress.schoolChallenge = $scope.companyProgress?.schoolChallenge
+                  companyProgress.schoolChallengeLevel = $scope.companyProgress?.schoolChallengeLevel
                   $scope.companyProgress = companyProgress
+                  if companyProgress.raised >= companyProgress.goal 
+                    $scope.schoolChallenges.push
+                      id: 'school'
+                      label: 'School Challenge Completed'
+                      earned: true
             response
         $scope.dashboardPromises.push fundraisingProgressPromise
+        getSchoolInformation()
       $scope.refreshFundraisingProgress()
 
       interactionTypeId = $dataRoot.data 'coordinator-message-id'
@@ -162,11 +271,15 @@ angular.module 'trPcControllers'
                   $scope.coordinatorMessage.interactionId = interaction.interactionId or ''
 
         $scope.editCoordinatorMessage = ->
+          $scope.coordinatorMessage.original = $scope.coordinatorMessage.text
+          if $scope.coordinatorMessage.text == ''
+            $scope.coordinatorMessage.text = 'Don\'t forget to complete Finn\'s Mission!'
           $scope.editCoordinatorMessageModal = $uibModal.open
             scope: $scope
             templateUrl: APP_INFO.rootPath + 'dist/ym-primary/html/participant-center/modal/editCoordinatorMessage.html'
 
         $scope.cancelEditCoordinatorMessage = ->
+          $scope.coordinatorMessage.text = $scope.coordinatorMessage.original
           $scope.editCoordinatorMessageModal.close()
 
         $scope.updateCoordinatorMessage = ->
@@ -319,7 +432,7 @@ angular.module 'trPcControllers'
                     firstName: gift.name.first
                     lastName: gift.name.last
                     email: gift.email
-                  gift.giftAmountFormatted = $filter('currency') gift.giftAmount / 100, '$', 0
+                  gift.giftAmountFormatted = $filter('currency') gift.giftAmount / 100, '$'
                   participantGifts.push gift
                 $scope.participantGifts.gifts = participantGifts
               $scope.participantGifts.totalNumber = if response.data.getGiftsResponse.totalNumberResults then Number(response.data.getGiftsResponse.totalNumberResults) else 0
@@ -515,7 +628,7 @@ angular.module 'trPcControllers'
         $scope.personalChallenge.numCompleted = numCompleted
         $scope.personalChallenge.completedToday = completedToday
         if id is '-1'
-          $scope.updatedPersonalChallenge.id = ''
+          $scope.updatedPersonalChallenge.id = 0
         else
           $scope.updatedPersonalChallenge.id = id
         if not $scope.$$phase
@@ -546,7 +659,7 @@ angular.module 'trPcControllers'
               delete $scope.personalChallenge.updatePending
               $scope.personalChallenge.loadPending = false
               id = personalChallenges.current
-              if id is '0'
+              if id is '0' or id == ''
                 setPersonalChallenge()
               else
                 numCompleted = if personalChallenges.completed then Number(personalChallenges.completed) else 0
@@ -566,9 +679,9 @@ angular.module 'trPcControllers'
               # id: challengeIndex
               # name: challenge
       challengeOptions =
-        "1": "Be Ready"
-        "2": "Move More"
-        "3": "Be Kind"
+        "1": "Be Grateful"
+        "2": "Be Active"
+        "3": "Drink Water"
       angular.forEach challengeOptions, (challenge, challengeIndex) ->
         $scope.challenges.push
           id: challengeIndex
@@ -613,11 +726,37 @@ angular.module 'trPcControllers'
       $scope.prizes = []
       $scope.prizesEarned = 0
       $scope.has_bonus = 0
-      BoundlessService.getBadges $scope.consId
+      $scope.current_mission_completed_count = ''
+      $scope.current_mission_completed_header = ''
+      $scope.current_mission_action = ''
+      $scope.current_mission_title = ''
+      $scope.current_mission_message = ''
+      BoundlessService.getBadges $scope.frId + '/' + $scope.consId
       .then (response) ->
         prizes = response.data.prizes
+        $scope.current_mission_completed_count = response.data.current_mission_completed_count
+        $scope.current_mission_completed_header = response.data.current_mission_completed_header
+        $scope.current_mission_action = response.data.current_mission_action
+        $scope.current_mission_title = response.data.current_mission_title
+        $scope.current_mission_message = response.data.current_mission_message
         $scope.has_bonus = response.data.has_bonus
+        final_url = ''
         angular.forEach prizes, (prize) ->
+          if prize.mission_url_type == 'Donate' 
+            final_url = 'Donation2?df_id=' + $scope.eventInfo.donationFormId + "&FR_ID=" + $scope.frId + "&PROXY_TYPE=20&PROXY_ID=" + $scope.consId
+          if prize.mission_url_type == 'Tab' 
+            final_url = $scope.baseUrl + prize.mission_url
+          if prize.mission_url_type == 'URL' 
+            final_url = prize.mission_url
+          if prize.mission_url_type == 'Quiz' 
+            if $scope.tablePrefix == 'heartdev'
+              final_url = 'https://tools.heart.org/aha_ym21_dev/quiz/show/' + prize.mission_url + '?event_id=' + $scope.frId + '&user_id=' + $scope.consId + '&name=' + $scope.consNameFirst
+            if $scope.tablePrefix == 'heartnew'
+              final_url = 'https://tools.heart.org/aha_ym21_testing/quiz/show/' + prize.mission_url + '?event_id=' + $scope.frId + '&user_id=' + $scope.consId + '&name=' + $scope.consNameFirst
+            if $scope.tablePrefix == 'heart'
+              final_url = 'https://tools.heart.org/aha_ym21/quiz/show/' + prize.mission_url + '?event_id=' + $scope.frId + '&user_id=' + $scope.consId + '&name=' + $scope.consNameFirst
+          if prize.mission_url_type == 'Modal' and prize.mission_url == 'app' 
+            final_url = 'showMobileApp()'
           $scope.prizes.push
             id: prize.id
             label: prize.label
@@ -625,9 +764,13 @@ angular.module 'trPcControllers'
             status: prize.status
             earned: prize.earned_datetime
             completed_label: prize.completed_label
-            not_completed_label: prize.not_completed_label
-            not_completed_url: prize.not_completed_url
-            url_type: prize.url_type
+            mission_url: prize.mission_url
+            mission_url_type: prize.mission_url_type
+            earned_image_url: prize.earned_image_url
+            not_earned_image_url: prize.non_earned_image_url
+            locked_image_url: prize.locked_image_url
+            final_url: final_url
+
           if prize.status == 1
             $scope.prizesEarned++
       , (response) ->
@@ -685,7 +828,7 @@ angular.module 'trPcControllers'
       $scope.personalInfo = {}
       $scope.personalInfo.avatar = ''
       $scope.getPersonalAvatar = ->
-        ZuriService.getAvatar $scope.consId,
+        ZuriService.getAvatar $scope.frId + '/' + $scope.consId,
           failure: (response) ->
             # TODO
           error: (response) ->
@@ -695,11 +838,11 @@ angular.module 'trPcControllers'
               avatarURL = response.data.student.avatar_url
             else
               if $rootScope.tablePrefix is 'heartdev'
-                avatarURL = 'https://hearttools.heart.org/aha_ym20_dev/virtualworld/img/avatar-charger.png'
+                avatarURL = 'https://tools.heart.org/aha_ym21_dev/virtualworld/img/avatar-charger.png'
               else if $rootScope.tablePrefix is 'heartnew'
-                avatarURL = 'https://hearttools.heart.org/aha_ym20_testing/virtualworld/img/avatar-charger.png'
+                avatarURL = 'https://tools.heart.org/aha_ym21_testing/virtualworld/img/avatar-charger.png'
               else
-                avatarURL = 'https://hearttools.heart.org/aha_ym20/virtualworld/img/avatar-charger.png'
+                avatarURL = 'https://tools.heart.org/aha_ym21/virtualworld/img/avatar-charger.png'
             $scope.personalInfo.avatar = avatarURL
       $scope.getPersonalAvatar()
 
@@ -745,6 +888,7 @@ angular.module 'trPcControllers'
           angular.forEach schoolDataRows[0], (schoolDataHeader, schoolDataHeaderIndex) ->
             schoolDataHeaders[schoolDataHeader] = schoolDataHeaderIndex
           i = 0
+          compfnd = false
           len = schoolDataRows.length
           while i < len
             if $rootScope.companyInfo.companyId is schoolDataRows[i][schoolDataHeaders.CID]
@@ -755,8 +899,13 @@ angular.module 'trPcControllers'
               $scope.schoolStudentRegOnline = schoolDataRows[i][schoolDataHeaders.RO]
               $scope.notifyName = schoolDataRows[i][schoolDataHeaders.YMDN]
               $scope.notifyEmail = schoolDataRows[i][schoolDataHeaders.YMDE]
+              $rootScope.hideGifts = schoolDataRows[i][schoolDataHeaders.HG]
+              compfnd = true
               break
             i++
+          if len == 0 or not compfnd
+            $rootScope.hideGifts = "N"
+
       $scope.showPrize = (sku, label, earned) ->
         $scope.prize_sku = sku
         $scope.prize_label = label
@@ -835,6 +984,7 @@ angular.module 'trPcControllers'
                   earned_title: giftPrev.earned_title
                   earned_subtitle1: giftPrev.earned_subtitle1
                   earned_subtitle2: giftPrev.earned_subtitle2
+                  earned_subtitle3: giftPrev.earned_subtitle3
               # if items need to be added then only add up to 3 after pushing first one
               if startList == 1 and listCnt <= giftToAdd
                 listCnt++
@@ -848,6 +998,7 @@ angular.module 'trPcControllers'
                   earned_title: gift.earned_title
                   earned_subtitle1: gift.earned_subtitle1
                   earned_subtitle2: gift.earned_subtitle2
+                  earned_subtitle3: gift.earned_subtitle3
                 $scope.giftStatus = status
               giftPrev = gift
               prevstatus = status
@@ -861,48 +1012,73 @@ angular.module 'trPcControllers'
 
       , (response) ->
         # TODO
-      $scope.schoolYearsInfo = {}
-
-      if $scope.participantRegistration.companyInformation?.isCompanyCoordinator is 'true'
-        ZuriService.getSchoolYears $scope.participantRegistration.companyInformation.companyId,
-          failure: (response) ->
-            $scope.companyProgress.schoolYears = 0
-          error: (response) ->
-            $scope.companyProgress.schoolYears = 0
-          success: (response) ->
-            if response.data.value isnt null
-              $scope.companyProgress.schoolYears = response.data.value
-            else
-              $scope.companyProgress.schoolYears = 0
-
-      $scope.editSchoolYears = ->
-        delete $scope.schoolYearsInfo.errorMessage
-        schoolYears = $scope.companyProgress.schoolYears
-        if schoolYears is '' or schoolYears is '0'
-          $scope.schoolYearsInfo.years = ''
-        else
-          $scope.schoolYearsInfo.years = schoolYears
-        $scope.editSchoolYearsModal = $uibModal.open
-          scope: $scope
-          templateUrl: APP_INFO.rootPath + 'dist/ym-primary/html/participant-center/modal/editSchoolYears.html'
-
-      $scope.cancelEditSchoolYears = ->
-        $scope.editSchoolYearsModal.close()
-
+      
       $scope.updateSchoolYears = ->
-        delete $scope.schoolYearsInfo.errorMessage
-        newYears = $scope.schoolYearsInfo.years
+        delete $scope.schoolInfo.errorMessage
+        newYears = $scope.companyProgress.schoolYears
         if not newYears or newYears is '' or newYears is '0' or isNaN(newYears)
-          $scope.schoolYearsInfo.errorMessage = 'Please specify a year greater than 0.'
+          $scope.schoolInfo.errorMessage = 'Please specify a year greater than 0.'
         else
-          updateSchoolYearPromise = ZuriService.updateSchoolYears $scope.participantRegistration.companyInformation.companyId + '/years-participated/update?value=' + newYears,
+          updateSchoolYearPromise = ZuriService.updateSchoolData $scope.participantRegistration.companyInformation.companyId + '/years-participated/update?value=' + newYears,
             failure: (response) ->
-              $scope.schoolYearsInfo.errorMessage = 'Process failed to save years entered'
+              $scope.schoolInfo.errorMessage = 'Process failed to save years entered'
             error: (response) ->
-              $scope.schoolYearsInfo.errorMessage = 'Error: ' + response.data.message
+              $scope.schoolInfo.errorMessage = 'Error: ' + response.data.message
             success: (response) ->
               $scope.companyProgress.schoolYears = newYears
-              $scope.editSchoolYearsModal.close()
+              #$scope.editSchoolYearsModal.close()
+              
+      $scope.updateSchoolChallenge = ->
+        delete $scope.schoolChallengeInfo.errorMessage
+        newChallenge = $scope.companyProgress.schoolChallenge
+        if newChallenge is ''
+          $scope.schoolChallengeInfo.errorMessage = 'Please select a challenge.'
+        else
+          updateSchoolChallengePromise = ZuriService.updateSchoolData $scope.participantRegistration.companyInformation.companyId + '/school-challenge/update?value=' + newChallenge,
+            failure: (response) ->
+              $scope.schoolChallengeInfo.errorMessage = 'Process failed to save challenge entered'
+            error: (response) ->
+              $scope.schoolChallengeInfo.errorMessage = 'Error: ' + response.data.message
+            success: (response) ->
+              $scope.companyProgress.schoolChallenge = newChallenge
+              #$scope.editSchoolChallengeModal.close()
+
+      $scope.updateSchoolChallengeLevel = ->
+        delete $scope.schoolChallengeLevelInfo.errorMessage
+        newChallengeLevel = $scope.companyProgress.schoolChallengeLevel
+        if newChallengeLevel is ''
+          $scope.schoolChallengeLevelInfo.errorMessage = 'Please select a challenge level.'
+        else
+          updateSchoolChallengeLevelPromise = ZuriService.updateSchoolData $scope.participantRegistration.companyInformation.companyId + '/school-goal/update?value=' + newChallengeLevel,
+            failure: (response) ->
+              $scope.schoolChallengeLevelInfo.errorMessage = 'Process failed to save challenge level entered'
+            error: (response) ->
+              $scope.schoolChallengeLevelInfo.errorMessage = 'Error: ' + response.data.message
+            success: (response) ->
+              $scope.companyProgress.schoolChallengeLevel = newChallengeLevel
+              #$scope.editSchoolChallengeLevelModal.close()
+
+      ZuriService.getSchool $scope.companyId,
+        error: (response) ->
+          $scope.studentsPledgedTotal = 0
+          $scope.activity1amt = 0
+          $scope.activity2amt = 0
+          $scope.activity3amt = 0
+        success: (response) ->
+          $scope.studentsPledgedTotal = response.data.studentsPledged
+          studentsPledgedActivities = response.data.studentsPledgedByActivity
+          if studentsPledgedActivities['1']
+            $scope.activity1amt = studentsPledgedActivities['1'].count
+          else
+            $scope.activity1amt = 0
+          if studentsPledgedActivities['2']
+            $scope.activity2amt = studentsPledgedActivities['2'].count
+          else
+            $scope.activity2amt = 0
+          if studentsPledgedActivities['3']
+            $scope.activity3amt = studentsPledgedActivities['3'].count
+          else
+            $scope.activity3amt = 0
 
       $scope.showMobileApp = ->
         $scope.viewMobileApp = $uibModal.open

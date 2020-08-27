@@ -225,5 +225,21 @@ module.exports = {
       'img-copy:heartwalk2020-images',
       'notify:heartwalk2020'
     ]
+  },
+  "fieldday": {
+    files: [
+      'src/fieldday/html/**/*',
+      'src/fieldday/image/**/*',
+      'src/fieldday/sass/**/*',
+      'src/fieldday/js/**/*'
+    ],
+    tasks: [
+      'clean:fieldday',
+      'css-dist:fieldday',
+      'js-dist:fieldday',
+      'html-dist:fieldday',
+      'img-copy:fieldday-images',
+      'notify:fieldday'
+    ]
   }
 }
