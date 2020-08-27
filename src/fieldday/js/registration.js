@@ -1172,7 +1172,7 @@
         // PTYPE
         if ($('#F2fRegPartType').length > 0) {
             if ($('.part-type-container').length == 1) {
-              
+
 		/*if ($('input[name=discount_code]').length == 0) {
 	                $('.part-type-container, #part_type_section_header').hide();
 		} else {
@@ -2039,6 +2039,15 @@
             }
 
 //start sort function
+            if (!String.prototype.startsWith) {
+             Object.defineProperty(String.prototype, 'startsWith', {
+                 value: function(search, rawPos) {
+                     var pos = rawPos > 0 ? rawPos|0 : 0;
+                     return this.substring(pos, pos + search.length) === search;
+                 }
+             });
+            }
+            
             if ($('#fr_co_list').length > 0 || $('#fr_part_co_list').length > 0){
 
               $.coList = $('#fr_co_list');
