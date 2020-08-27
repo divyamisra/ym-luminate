@@ -88,7 +88,7 @@
         var consID = $('body').data('cons-id') ? $('body').data('cons-id') : null;
         var eventDate = $('body').data('ev-date') ? new Date($('body').data('ev-date')) : null;
         if (eventDate != null) {
-           eventDate.setDate(eventDate.getDate() + 2);
+           eventDate.setDate(eventDate.getDate() + 15);
         }
         var currDate = $('body').data('curr-date') ? new Date($('body').data('curr-date')) : null;
         var fourWeek = $('body').data('ev-date') ? new Date($('body').data('ev-date')) : null;
