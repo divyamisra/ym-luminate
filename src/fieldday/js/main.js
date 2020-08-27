@@ -1251,11 +1251,11 @@
              if (company !== undefined) {
                var eventMapLink;
                console.log('company map url: ' + company.eventlocationmapurl);
-       				 if (company.eventlocationmapurl !== undefined) {
-       					 eventMapLink = company.eventlocationmapurl
+
+               if (company.eventlocationmapurl !== undefined || company.eventlocationmapurl !== null) {
+       					 eventMapLink = company.eventlocationmapurl;
        				 } else {
        					 eventMapLink = 'https://www.google.com/maps/place/' + company.eventaddress + ',' + company.eventcity + ',' + company.eventstate + ',' + company.eventzip;
-
        				 }
 
        				 var fieldDayDetails = '';
