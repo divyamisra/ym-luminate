@@ -477,6 +477,7 @@
                   pastEvents.push(eventRow);
                 }
               });
+            }
 
               $(pastEvents).each(function (i, pastEvent) {
                 $('.js--event-results-rows').append(pastEvent);
