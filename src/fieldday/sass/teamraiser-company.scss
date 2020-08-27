@@ -88,7 +88,8 @@
   }
 }
 
-@media only screen and (max-width: 991px) and (min-width: 768px)
-.mobile div.tr-page-container div#team_page_main_content, .mobile div.tr-page-container div.tr-page-main-content {
-    width: 100%;
+@media only screen and (max-width: 991px) and (min-width: 768px) {
+  .mobile div.tr-page-container div#team_page_main_content, .mobile div.tr-page-container div.tr-page-main-content {
+      width: 100%;
+  }
 }
