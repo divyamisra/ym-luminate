@@ -126,7 +126,16 @@
     var subSrcCode = luminateExtend.global.subSrcCode;
     var evID = $('body').data('fr-id') ? $('body').data('fr-id') : null;
     var consID = $('body').data('cons-id') ? $('body').data('cons-id') : null;
-
+    var eventDate = $('body').data('ev-date') ? new Date($('body').data('ev-date')) : null;
+    if (eventDate != null) {
+       eventDate.setDate(eventDate.getDate() + 15);
+    }
+    var currDate = $('body').data('curr-date') ? new Date($('body').data('curr-date')) : null;
+    var fourWeek = $('body').data('ev-date') ? new Date($('body').data('ev-date')) : null;
+    if (fourWeek != null) {
+       fourWeek.setDate(fourWeek.getDate() - 28);
+    }
+    
     var motion_username = 'cyclenationapi';
     var motion_password = 'oNNuWown5A8MeJco'; 
     var motionDb = 'ahacycle';
@@ -1280,9 +1289,14 @@
       cd.getTopParticipants(evID);
       cd.getTopTeams(evID);
       cd.getTopCompanies(evID);
-      cd.getTopParticipantsMiles(evID);
-      cd.getTopTeamsMiles(evID);
-      cd.getTopCompaniesMiles(evID);
+      if (currDate >= fourWeek && currDate <= eventDate) {
+          //build steps leaderboard
+          cd.getTopParticipantsMiles(evID);
+          cd.getTopTeamsMiles(evID);
+          cd.getTopCompaniesMiles(evID);
+      } else {
+          $('#fundraiserMiles').hide();
+      }
     }
 
     // TODO - rename to make clear that this is a redirect search form with single field
