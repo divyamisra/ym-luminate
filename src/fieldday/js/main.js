@@ -24,16 +24,16 @@
             }
             $('.navbar-toggler-icon').toggleClass('fa-align-justify').toggleClass('fa-times');
 
-            $('.pg_company .tr-page-container, .pg_personal .tr-page-container, .pg_tea .tr-page-container').toggleClass('static');
+            $('.pg_company .tr-page-container, .pg_personal .tr-page-container, .pg_team.tr-page-container').toggleClass('static');
 
             $('.pg_company header, .pg_personal header, .pg_team header').toggleClass('mobile-open');
 
             if ( $('#navbar-container').is(':visible') ) {
-              $('.pg_company .tr-page-container, .pg_personal .tr-page-container, .pg_tea .tr-page-container').addClass('static');
+              $('.pg_company .tr-page-container, .pg_personal .tr-page-container, .pg_team .tr-page-container').addClass('static');
 
               $('.pg_company header, .pg_personal header, .pg_team header').addClass('mobile-open');
             } else {
-              $('.pg_company .tr-page-container, .pg_personal .tr-page-container, .pg_tea .tr-page-container').removeClass('static');
+              $('.pg_company .tr-page-container, .pg_personal .tr-page-container, .pg_team .tr-page-container').removeClass('static');
 
               $('.pg_company header, .pg_personal header, .pg_team header').removeClass('mobile-open');
             }
@@ -64,11 +64,11 @@
             }
 
             if ( $('.mobile-search-trigger').removeClass('active') ) {
-              $('.pg_company .tr-page-container, .pg_personal .tr-page-container, .pg_tea .tr-page-container').addClass('static');
+              $('.pg_company .tr-page-container, .pg_personal .tr-page-container, .pg_team .tr-page-container').addClass('static');
 
               $('.pg_company header, .pg_personal header, .pg_team header').addClass('mobile-open');
             } else {
-              $('.pg_company .tr-page-container, .pg_personal .tr-page-container, .pg_tea .tr-page-container').removeClass('static');
+              $('.pg_company .tr-page-container, .pg_personal .tr-page-container, .pg_team  .tr-page-container').removeClass('static');
 
               $('.pg_company header, .pg_personal header, .pg_team header').removeClass('mobile-open');
             }
