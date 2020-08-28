@@ -1250,12 +1250,32 @@
              console.log('comany value: ' + company);
              if (company !== undefined) {
                var eventMapLink;
-               console.log('company map url: ' + company.eventlocationmapurl);
 
-               if (company.eventlocationmapurl !== undefined && company.eventlocationmapurl !== null) {
+               if (company.eventlocationmapurl !== "") {
+
        					 eventMapLink = company.eventlocationmapurl;
+
+                 if ( eventMapLink.indexOf("http://") == 0 || eventMapLink.indexOf("https://") == 0)  {
+
+                   var companyMap = '<a target="_blank" aria-title="Google map for '+ company.companyname +' location" href="' + eventMapLink + '">' + company.companyname + '</a>';
+                   $('.js--company-link').html(companyMap);
+
+                 }
+
        				 } else {
-       					 eventMapLink = 'https://www.google.com/maps/place/' + company.eventaddress + ',' + company.eventcity + ',' + company.eventstate + ',' + company.eventzip;
+
+                 if (company.eventstate !== "") {
+                   var companyAddress = company.eventaddress + ', ' + company.eventcity + ', ' + company.eventstate + ', ' + company.eventzip;
+
+                   companyAddress = encodeURIComponent(companyAddress);
+
+                   var eventMapLink = 'https://www.google.com/maps/place/' + companyAddress;
+
+                   var companyMap = '<a target="_blank" href="' + eventMapLink + '">' + company.companyname + '</a>';
+
+                   $('.js--company-link').html(companyMap);
+                 }
+
        				 }
 
        				 var fieldDayDetails = '';
@@ -1273,15 +1293,6 @@
 
        				 var companyLocation = '<p>' + company.eventcity + ', ' + company.eventstate + '</p>'
        				 $(companyLocation).appendTo('.js--company-location');
-
-               console.log(eventMapLink);
-
-               if (eventMapLink !== undefined) {
-                 var companyMap = '<a target="_blank" aria-title="Google map for '+ company.companyname +' location" href="' + eventMapLink + '">' + company.companyname + '</a>';
-                 $('.js--company-link').html(companyMap);
-               } else {
-                 $('.js--company-link').remove();
-               }
 
              }
 
