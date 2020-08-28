@@ -133,6 +133,10 @@
 
                   $(teams).each(function (i, team) {
                     if (searchType === 'registration') {
+
+                      console.log('search type is reg. Team max size:' + team.maxTeamSize + ' and team members: ' + team.numMembers);
+                      console.log(team.maxTeamSize + ' > ' + team.numMembers);
+                      
 		      if (team.maxTeamSize > team.numMembers) {
 	                      $('.list').append(
         	                '<div class="search-result-details row py-3"><div class="col-md-5"><strong><a href="' + team.teamPageURL + '" class="team-name-label" title="' + team.name + '" target=_blank><span class="team-company-label sr-only">Team Name:</span> ' + team.name + '</a></strong><br><span class="team-captain-label">Coach:</span> <span class="team-captain-name">' + team.captainFirstName + ' ' + team.captainLastName + '</span></div><div class="col-md-5 mt-auto">' + ((team.companyName !== null && team.companyName !== undefined) ? '<span class="team-company-label">Company:</span> <span class="team-company-name">' + team.companyName + '</span>' : '') + '</div><div class="col-md-2"><a href="' + luminateExtend.global.path.secure + 'TRR/?fr_tjoin=' + team.id + '&pg=tfind&fr_id=' + evID + '&s_captainConsId=' + team.captainConsId + '&s_regType=joinTeam&skip_login_page=true&s_teamName=' + team.name + '&s_teamGoal=' + (parseInt(team.goal)/100) + '&s_teamCaptain=' + team.captainFirstName + ' ' + team.captainLastName + '" title="Join ' + team.name + '" aria-label="Join ' + team.name + '" class="btn btn-block btn-primary button team-join-btn">Join</a></div></div>');
@@ -2047,7 +2051,7 @@
                  }
              });
             }
-            
+
             if ($('#fr_co_list').length > 0 || $('#fr_part_co_list').length > 0){
 
               $.coList = $('#fr_co_list');
