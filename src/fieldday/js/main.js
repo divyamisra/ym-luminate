@@ -1255,7 +1255,7 @@
 
        					 eventMapLink = company.eventlocationmapurl;
 
-                 if ( eventMapLink.indexOf("http://") == 0 || eventMapLink.indexOf("https://") == 0)  {
+                 if ( eventMapLink.indexOf("http://") == 0 || eventMapLink.indexOf("https://") == 0 || eventMapLink.indexOf("www") == 0)  {
 
                    var companyMap = '<a target="_blank" aria-title="Google map for '+ company.companyname +' location" href="' + eventMapLink + '">' + company.companyname + '</a>';
                    $('.js--company-link').html(companyMap);
