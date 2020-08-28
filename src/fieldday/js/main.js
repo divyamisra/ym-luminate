@@ -1251,38 +1251,31 @@
              if (company !== undefined) {
                var eventMapLink;
 
-               if  (company.eventlocationmapurl === undefined) {
-                 console.log('eventlocationmapurl is undefined')
-               }
-
-               if  (company.eventlocationmapurl === null) {
-                 console.log('eventlocationmapurl is null')
-               }
-
-               var companyAddress = company.eventaddress + ',' + company.eventcity + ',' + company.eventstate + ',' + company.eventzip;
-
-               companyAddress = encodeURIComponent(companyAddress);
-
-               var mapAddress = 'https://www.google.com/maps/place/' + companyAddress;
-
-               console.log('map address: ' + mapAddress);
-
                if (company.eventlocationmapurl !== "") {
-                 console.log('map url defined');
+
        					 eventMapLink = company.eventlocationmapurl;
-                 var companyMap = '<a target="_blank" aria-title="Google map for '+ company.companyname +' location" href="' + eventMapLink + '">' + company.companyname + '</a>';
-                 $('.js--company-link').html(companyMap);
+
+                 if ( eventMapLink.indexOf("http://") == 0 || eventMapLink.indexOf("https://") == 0)  {
+
+                   var companyMap = '<a target="_blank" aria-title="Google map for '+ company.companyname +' location" href="' + eventMapLink + '">' + company.companyname + '</a>';
+                   $('.js--company-link').html(companyMap);
+
+                 }
+
        				 } else {
-                 console.log('map url undefined');
-                 var companyAddress = company.eventaddress + ',' + company.eventcity + ',' + company.eventstate + ',' + company.eventzip;
 
-                 companyAddress = encodeURIComponent(companyAddress);
+                 if (company.eventstate !== "") {
+                   var companyAddress = company.eventaddress + ', ' + company.eventcity + ', ' + company.eventstate + ', ' + company.eventzip;
 
-                 var eventMapLink = 'https://www.google.com/maps/place/' + companyAddress;
-                 console.log('map link: ' + eventMapLink);
-                 var companyMap = '<a target="_blank" aria-title="Google map for '+ company.companyname +' location" href="' + eventMapLink + '">' + company.companyname + '</a>';
-                 console.log('company map: ' + companyMap);
-                 $('.js--company-link').html(companyMap);
+                   companyAddress = encodeURIComponent(companyAddress);
+
+                   var eventMapLink = 'https://www.google.com/maps/place/' + companyAddress;
+
+                   var companyMap = '<a target="_blank" href="' + eventMapLink + '">' + company.companyname + '</a>';
+
+                   $('.js--company-link').html(companyMap);
+                 }
+
        				 }
 
        				 var fieldDayDetails = '';
