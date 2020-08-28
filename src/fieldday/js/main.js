@@ -1252,6 +1252,18 @@
                var eventMapLink;
                console.log('company map url: ' + company.eventlocationmapurl);
 
+               if  (company.eventlocationmapurl === undefined) {
+                 console.log('eventlocationmapurl is undefined')
+               }
+
+               if  (company.eventlocationmapurl === null) {
+                 console.log('eventlocationmapurl is null')
+               }
+
+               var mapAddress = 'https://www.google.com/maps/place/' + company.eventaddress + ',' + company.eventcity + ',' + company.eventstate + ',' + company.eventzip;
+
+               console.log('map address: ' + mapAddress);
+
                if (company.eventlocationmapurl !== undefined && company.eventlocationmapurl !== null) {
        					 eventMapLink = company.eventlocationmapurl;
        				 } else {
