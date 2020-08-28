@@ -1282,9 +1282,6 @@ div.responsive .part-type-decoration-messages label {
   .part-type-fee-text {
     font-size: 24px;
     line-height: 32px;
-    &::before {
-      content: 'Registration fee: ';
-    }
   }
   .part-type-description-text {
     font-size: 0.8em;
