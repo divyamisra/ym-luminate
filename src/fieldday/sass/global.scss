@@ -336,15 +336,19 @@ img {
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
-      @include media-breakpoint-up(lg) {
-        justify-content: flex-start;
-      }
+
       .achievement-badge {
         width: 31%;
-        @include media-breakpoint-up(lg) {
-          width: 23%;
+        @include media-breakpoint-up(md) {
+          width: 48%;
+        }
+        @include media-breakpoint-up(xl) {
+          width: 22%;
         }
         margin: 1%;
+        &:last-child {
+          margin-right: auto;
+        }
         p {
           font-family: $font-family-bold;
         }
