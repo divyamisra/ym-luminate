@@ -747,6 +747,7 @@
 	    $('span.field-required').closest('.form-content').find('input, select').addClass("required");
 
 	    $('input.required').each(function(){
+
 		    var label = $(this).closest('.input-container').find('.input-label').html();
 		    if (label != undefined) {
 			    if (label.indexOf("Team Fundraising Goal") > -1) {
@@ -1171,11 +1172,12 @@
         // PTYPE
         if ($('#F2fRegPartType').length > 0) {
             if ($('.part-type-container').length == 1) {
-		if ($('input[name=discount_code]').length == 0) {
+
+		/*if ($('input[name=discount_code]').length == 0) {
 	                $('.part-type-container, #part_type_section_header').hide();
 		} else {
 	                $('#part_type_section_header').hide();
-		}
+		}*/
                 //$('.part-type-container').before("<div class='part_type_one_only'><strong>Set Your Fundraising Goal!</strong></div>");
             } else {
                 $('input[name=fr_part_radio]:checked').removeAttr("checked");
@@ -1375,31 +1377,57 @@
 				return;
 
 			$('html, body').animate({
-				scrollTop: $(validator.errorList[0].element).offset().top
+				scrollTop: $(validator.errorList[0].element).focus().offset().top
 			}, 500);
 		},
                 rules: rules,
                 messages: messages,
+                errorElement: 'span',
                 errorPlacement: function(error, element) {
+
 			if ($(element).hasClass("survivorq")) {
-				$('fieldset.survivor_yes_no').after(error);
+        var a11yError = error.attr('role', 'alert');
+				$('fieldset.survivor_yes_no').after(a11yError);
+
+        var describedBy = error.attr('id');
+        $(element).attr('aria-describedby', describedBy);
 			} else {
 				if ($(element).hasClass("acceptRelease")) {
-					$('.acceptRelease').closest('.input-container').append(error);
+          var a11yError = error.attr('role', 'alert');
+					$('.acceptRelease').closest('.input-container').append(a11yError);
+
+          var describedBy = error.attr('id');
+          $(element).attr('aria-describedby', describedBy);
 				} else {
 					if ($(element).hasClass("acceptPrivacy")) {
-						$('.acceptPrivacy').closest('.input-container').append(error);
+            var a11yError = error.attr('role', 'alert');
+						$('.acceptPrivacy').closest('.input-container').append(a11yError);
+
+            var describedBy = error.attr('id');
+            $(element).attr('aria-describedby', describedBy);
 					} else {
 						var placement = $(element).data('error');
 						if (placement) {
-							$(placement).append(error)
+              var a11yError = error.attr('role', 'alert');
+							$(placement).append(a11yError);
+
+              var describedBy = error.attr('id');
+              $(element).attr('aria-describedby', describedBy);
 						} else {
-							error.insertAfter(element);
+							error.insertAfter(element).attr('role', 'alert');
+              var describedBy = error.attr('id');
+              $(element).attr('aria-describedby', describedBy);
 						}
 					}
 				}
 			}
-                }
+
+      console.log('adding role alert to validation errors');
+
+      $(error).attr('role', 'alert')
+      }
+
+
             });
             $.validator.addMethod("uncheck", function(value) {
                return /^[A-Za-z0-9\d=\-+#@%:,._*]*$/.test(value) // consists of only these
@@ -2011,6 +2039,15 @@
             }
 
 //start sort function
+            if (!String.prototype.startsWith) {
+             Object.defineProperty(String.prototype, 'startsWith', {
+                 value: function(search, rawPos) {
+                     var pos = rawPos > 0 ? rawPos|0 : 0;
+                     return this.substring(pos, pos + search.length) === search;
+                 }
+             });
+            }
+            
             if ($('#fr_co_list').length > 0 || $('#fr_part_co_list').length > 0){
 
               $.coList = $('#fr_co_list');
@@ -2168,6 +2205,12 @@
 
             if ($('body').is('.pg_tfind')) {
               $('#fr_team_name').attr('title', 'Team Name required');
+            }
+
+            if ($('#F2fRegContact').length > 0 ) {
+              $('.error').attr('role', 'alert');
+              $('.consZip .input-container').attr('role', 'alert');
+              console.log('adding alerts');
             }
 
 
