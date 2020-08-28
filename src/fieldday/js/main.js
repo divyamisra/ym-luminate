@@ -1260,7 +1260,11 @@
                  console.log('eventlocationmapurl is null')
                }
 
-               var mapAddress = 'https://www.google.com/maps/place/' + company.eventaddress + ',' + company.eventcity + ',' + company.eventstate + ',' + company.eventzip;
+               var companyAddress = company.eventaddress + ',' + company.eventcity + ',' + company.eventstate + ',' + company.eventzip;
+
+               companyAddress = encodeURIComponent(companyAddress);
+
+               var mapAddress = 'https://www.google.com/maps/place/' + companyAddress;
 
                console.log('map address: ' + mapAddress);
 
