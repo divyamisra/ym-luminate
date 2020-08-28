@@ -1250,7 +1250,6 @@
              console.log('comany value: ' + company);
              if (company !== undefined) {
                var eventMapLink;
-               console.log('company map url: ' + company.eventlocationmapurl);
 
                if  (company.eventlocationmapurl === undefined) {
                  console.log('eventlocationmapurl is undefined')
@@ -1268,14 +1267,22 @@
 
                console.log('map address: ' + mapAddress);
 
-               if (company.eventlocationmapurl !== undefined) {
+               if (company.eventlocationmapurl !== "") {
+                 console.log('map url defined');
        					 eventMapLink = company.eventlocationmapurl;
+                 var companyMap = '<a target="_blank" aria-title="Google map for '+ company.companyname +' location" href="' + eventMapLink + '">' + company.companyname + '</a>';
+                 $('.js--company-link').html(companyMap);
        				 } else {
+                 console.log('map url undefined');
                  var companyAddress = company.eventaddress + ',' + company.eventcity + ',' + company.eventstate + ',' + company.eventzip;
 
                  companyAddress = encodeURIComponent(companyAddress);
 
                  var eventMapLink = 'https://www.google.com/maps/place/' + companyAddress;
+                 console.log('map link: ' + eventMapLink);
+                 var companyMap = '<a target="_blank" aria-title="Google map for '+ company.companyname +' location" href="' + eventMapLink + '">' + company.companyname + '</a>';
+                 console.log('company map: ' + companyMap);
+                 $('.js--company-link').html(companyMap);
        				 }
 
        				 var fieldDayDetails = '';
@@ -1293,15 +1300,6 @@
 
        				 var companyLocation = '<p>' + company.eventcity + ', ' + company.eventstate + '</p>'
        				 $(companyLocation).appendTo('.js--company-location');
-
-               console.log('event map link: ' + eventMapLink);
-
-               if (eventMapLink !== undefined) {
-                 var companyMap = '<a target="_blank" aria-title="Google map for '+ company.companyname +' location" href="' + eventMapLink + '">' + company.companyname + '</a>';
-                 $('.js--company-link').html(companyMap);
-               } else {
-                 $('.js--company-link').remove();
-               }
 
              }
 
