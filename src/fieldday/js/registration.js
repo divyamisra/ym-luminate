@@ -1177,11 +1177,11 @@
         if ($('#F2fRegPartType').length > 0) {
             if ($('.part-type-container').length == 1) {
 
-		/*if ($('input[name=discount_code]').length == 0) {
+		 if ($('input[name=discount_code]').length == 0) {
 	                $('.part-type-container, #part_type_section_header').hide();
 		} else {
 	                $('#part_type_section_header').hide();
-		}*/
+		}
                 //$('.part-type-container').before("<div class='part_type_one_only'><strong>Set Your Fundraising Goal!</strong></div>");
             } else {
                 $('input[name=fr_part_radio]:checked').removeAttr("checked");
@@ -2215,6 +2215,10 @@
               $('.error').attr('role', 'alert');
               $('.consZip .input-container').attr('role', 'alert');
               console.log('adding alerts');
+            }
+
+            if ( $('.part-type-fee-text').is(':empty') ) {
+              $('.part-type-fee-text').remove();
             }
 
 
