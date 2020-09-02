@@ -107,13 +107,10 @@ angular.module 'ahaLuminateControllers'
           success: (response) ->
             if response.data.student.student_id isnt null and typeof response.data.student.avatar_url isnt 'undefined'
               avatarURL = response.data.student.avatar_url
+              if avatarURL.indexOf("default") > 0
+                avatarURL = ""
             else
-              if $rootScope.tablePrefix is 'heartdev'
-                avatarURL = 'https://hearttools.heart.org/aha_ym21_dev/virtualworld/img/avatar-charger.png'
-              else if $rootScope.tablePrefix is 'heartnew'
-                avatarURL = 'https://hearttools.heart.org/aha_ym21_testing/virtualworld/img/avatar-charger.png'
-              else
-                avatarURL = 'https://hearttools.heart.org/aha_ym21/virtualworld/img/avatar-charger.png'
+              avatarURL = ""
             $scope.personalInfo.avatar = avatarURL
       $scope.getPersonalAvatar()
 
