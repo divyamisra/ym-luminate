@@ -109,9 +109,9 @@
     //$('h2:contains("Matching Gift:")').wrap('<div id="matching_gift_section"></div>');
     //$('.matching-gift-container').appendTo('#matching_gift_section');
     //if matching gift section is not there, hide section title.
-    if ($('.matching-gift-container').length == 0) {
-	    $('h2:contains(Matching)').hide();
-    }
+    //if ($('.matching-gift-container').length == 0) {
+	    //$('h2:contains(Matching)').hide();
+    //}
     //$('#matching_gift_section').insertAfter('.form-donation-level');
     $('.donation-level-user-entered input').attr("placeholder","Amount").after("<div class='other-amt-note'><em>$25 minimum donation</em></div>");
 
