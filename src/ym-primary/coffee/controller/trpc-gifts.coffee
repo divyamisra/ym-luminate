@@ -67,6 +67,7 @@ angular.module 'trPcControllers'
                 earned_title: gift.earned_title
                 earned_subtitle1: gift.earned_subtitle1
                 earned_subtitle2: gift.earned_subtitle2
+                earned_subtitle3: gift.earned_subtitle3
               $scope.giftStatus = status
               prevstatus = status
               if status == 1

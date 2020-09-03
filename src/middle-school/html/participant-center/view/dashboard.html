@@ -39,9 +39,10 @@
               </div>
               <div class="ym-progress-related clearfix">
                 <div class="ym-progress-donate">
-                  <a class="btn btn-lg btn-primary" ng-href="Donation2?df_id={{eventInfo.donationFormId}}&amp;FR_ID={{frId}}&amp;PROXY_TYPE=20&amp;PROXY_ID={{consId}}">
+                  <p><a class="btn btn-lg btn-primary" ng-href="{{baseUrl}}#/reports" title="Click to view your donation reports"><strong>Donation Reports</strong></a></p>
+                  <p><a class="btn btn-lg btn-primary" ng-href="Donation2?df_id={{eventInfo.donationFormId}}&amp;FR_ID={{frId}}&amp;PROXY_TYPE=20&amp;PROXY_ID={{consId}}">
                     <strong>Donate to Personal Page</strong>
-                  </a>
+                    </a></p>
                 </div>
                 <div class="pull-right">
                   <p>
@@ -83,9 +84,10 @@
               </div>
               <div class="ym-progress-related clearfix">
                 <div class="ym-progress-donate">
-                  <a class="btn btn-lg btn-primary" ng-href="Donation2?df_id={{eventInfo.donationFormId}}&amp;FR_ID={{frId}}&amp;PROXY_TYPE=22&amp;PROXY_ID={{participantRegistration.teamId}}">
+                  <p><a class="btn btn-lg btn-primary" ng-href="{{baseUrl}}#/reports" title="Click to view your donation reports"><strong>Donation Reports</strong></a></p>
+                  <p><a class="btn btn-lg btn-primary" ng-href="Donation2?df_id={{eventInfo.donationFormId}}&amp;FR_ID={{frId}}&amp;PROXY_TYPE=22&amp;PROXY_ID={{participantRegistration.teamId}}">
                     <strong>Donate to Team Page</strong>
-                  </a>
+                    </a></p>
                 </div>
                 <div class="pull-right">
                   <p>
@@ -107,22 +109,48 @@
               </div>
             </div>
           </div>
-          <div class="ym-pc-dashboard-badges-box event-secondary-medium" ng-if="prizes && prizes.length > 0" ng-cloak>
+        </div>
+        <div class="col-sm-6 ym-pc-dashboard-social-section__column event-secondary-medium">
+          <div class="ym-pc-dashboard-social-box event-secondary-medium">
+            <div class="ym-pc-dashboard-section-header">
+              <h2 class="h5">
+                Social
+              </h2>
+            </div>
+            <div class="ym-pc-dashboard-social-iframe clearfix">
+              <div class="ng-scope embed-responsive embed-responsive-16by9 dashboard-social-iframe">
+                <iframe ng-src="{{socialIframeURL}}" style="border:0;" title="Social Iframe"></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6 ym-pc-dashboard-progress-section__column event-secondary-medium">
+          <div class="ym-pc-dashboard-badges-box event-secondary-medium">
             <div class="ym-pc-dashboard-section-header">
               <h2 class="h5">
                 Badges
               </h2>
             </div>
-            <div class="ym-pc-dashboard-badges-icons clearfix">
+            <div class="ym-pc-dashboard-badges-icons clearfix" ng-if="prizes && prizes.length > 0 || schoolChallenges && schoolChallenges.length > 0" ng-cloak>
               <div class="ym-pc-dashboard-badges-icon" ng-repeat="prize in prizes" ng-cloak>
                 <div ng-if="prize.earned">
-                  <img class="img-responsive" ng-src="//s3.amazonaws.com/cd-aha-oot-production/fy20/assets/badges/ahc/{{prize.id}}_delivered.png" alt="">
+                  <img class="img-responsive" ng-src="{{prize.earned_image_url}}" alt="{{prize.label}}">
                 </div>
                 <div ng-if="!prize.earned">
-                  <img class="img-responsive" ng-src="//s3.amazonaws.com/cd-aha-oot-production/fy20/assets/badges/ahc/{{prize.id}}_earned.png" alt="">
+                  <img class="img-responsive" ng-src="{{prize.non_earned_image_url}}" alt="{{prize.label}}">
                 </div>
                 <div>
                   <span ng-bind-html="prize.label"></span> <span class="sr-only" ng-if="prize.earned">(earned)</span><span class="sr-only" ng-if="!prize.earned">(not yet earned)</span>
+                </div>
+              </div>
+              <div class="ym-pc-dashboard-badges-icon" ng-repeat="schoolChallenge in schoolChallenges" ng-cloak>
+                <div ng-if="schoolChallenge.earned">
+	          <img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/middle-school/image/badge-challenge-{{schoolChallenge.id}}.png" alt="{{schoolChallenge.label}}">
+                </div>
+                <div>
+                  <span ng-bind-html="schoolChallenge.label"></span> <span class="sr-only" ng-if="schoolChallenge.earned">(earned)</span><span class="sr-only" ng-if="!schoolChallenge.earned">(not yet earned)</span>
                 </div>
               </div>
             </div>
@@ -137,24 +165,25 @@
             </div>
             <div class="ym-pc-dashboard-email-challenge-option">
               <p>
-                Send 10 emails to friends and family and share the message of heart health.
+                Send 10 emails to family and friends to share the message of heart health and ask for their help to save lives.
               </p>
-              <a class="btn btn-md-wide btn-primary" ng-href="{{baseUrl}}#/email">
+              <a class="btn btn-md-wide btn-primary" ng-href="{{baseUrl}}#/email" role="button">
                 <strong>Send Email</strong>
               </a>
-            </div>
-            <div class="ym-pc-dashboard-email-challenge-option">
-              <p>
-                Or copy and paste the text below into your favorite email client!
-              </p>
             </div>
             <form method="POST">
               <label for="emailChallenge-sampleText" class="sr-only">Email text:</label>
               <textarea class="form-control" id="emailChallenge-sampleText" name="sampleText" ng-model="emailChallenge.sampleText" readonly></textarea>
-              <button type="button" class="btn btn-md-wide btn-primary" data-clipboard-target="#emailChallenge-sampleText">
-                <strong>Copy Email Text</strong>
-              </button>
+	      <input type="submit" name="submit" value="Submit" class="hidden">
             </form>
+            <div class="ym-pc-dashboard-email-challenge-option">
+              <p>
+                Or copy and paste the text above into your favorite email client!
+              </p>
+              <button type="button" class="btn btn-md-wide btn-primary" data-clipboard-target="#emailChallenge-sampleText" role="button">
+                <strong>Copy Email Text</strong> 
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -430,6 +459,47 @@
           </div>
           <div class="col-sm-12 text-center">To learn more about how you and your child can meet your daily challenge <a href="SPageServer?pagename=khc_resources_parents_corner" target="_blank" title="Click here to learn more about how you and your child can meet your daily challenge" aria-label="Click here to learn more about how you and your child can meet your daily challenge">click here</a>.</div>
         </div>
+        <div class="col-sm-6 ym-activity-box ym-activity-box--spread-the-word">
+          <section class="ym-pc-dashboard-spread-section" aria-label="Resources for Spreading the Word">
+            <div class="ym-pc-dashboard-section-header">
+              <h3 class="h5">
+                Spread the Word
+              </h3>
+            </div>
+            <div class="ym-pc-dashboard-spread-options">
+              <div class="ym-pc-dashboard-section-header">
+                <h4 class="h5">
+                  Download Mobile App
+                </h4>
+              </div>
+              <p>
+                Download our Mobile Fundraising App today!
+              </p>
+              <div class="ym-pc-dashboard-mobile-downloads">
+                <a href="https://itunes.apple.com/us/app/aha-middle-school/id1274201161?mt=8" target="_blank">
+                  <img ng-src="../{{dev_branch != '' ? dev_branch+'/' : ''}}aha-luminate/dist/youth-markets/image/apple-store-logo.png" alt="Download the iPhone App">
+                </a> 
+                <a href="https://play.google.com/store/apps/details?id=com.charitydynamics.ahatgr" target="_blank">
+                  <img ng-src="../{{dev_branch != '' ? dev_branch+'/' : ''}}aha-luminate/dist/youth-markets/image/google-play-logo.png" alt="Download the Android App">
+                </a>
+              </div>
+              <br/>
+              <div class="ym-pc-dashboard-section-header">
+                <h4 class="h5">
+                  Social Share
+                </h4>
+              </div>
+              <p>
+                Share on Facebook, Twitter, LinkedIn and even text messaging!
+              </p>
+              <div class="text-center hidden">
+                <a class="btn btn-md-wide btn-secondary" ng-href="{{baseUrl}}#/social">
+                  <strong>Go Social</strong> 
+                </a>
+              </div>
+            </div>
+          </section>
+        </div>
       </div>
     </section>
     <div ng-if="coordinatorMessage.message && coordinatorMessage.message != ''" ng-cloak>
@@ -444,9 +514,92 @@
     </div>
   </div>
   <div ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true' && location != '/dashboard-student'" ng-cloak>
+    <section class="ym-pc-dashboard-coordinator-school-challenge-section" aria-label="School Challenge Selection">
+      <h2 class="h3 text-center">
+          School Challenge
+      </h2>
+      <div class="row">
+        <div class="ym-pc-dashboard-section-header col-md-4">
+          <div class="schoolChallenge text-center">
+            <div ng-if="companyProgress.schoolChallenge != ''">
+              I am challenging my students to 
+            </div>
+            <div ng-if="companyProgress.schoolChallenge == ''">
+              Choose a challenge for your students 
+            </div>
+            <select class="form-control" id="challenge" ng-model="companyProgress.schoolChallenge" aria-label="School Challenge" ng-change="updateSchoolChallenge()">
+              <option value="Slime Challenge">Slime Challenge</option>
+              <option value="Pie in the Face">Pie in the Face</option>
+              <option value="Activity, Party or Event">Activity, Party or Event</option>
+              <option value="Other">Other</option>
+              <option value="No School Challenge">No School Challenge</option>
+            </select>
+            <div uib-alert class="alert-danger" ng-if="schoolChallengeInfo.errorMessage">
+              <div ng-bind-html="schoolChallengeInfo.errorMessage"></div>
+            </div>
+          </div>
+        </div>
+        <div class="ym-pc-dashboard-section-header col-md-4">
+          <div class="schoolChallenge text-center">
+            <div ng-if="companyProgress.schoolChallengeLevel != ''">
+              Student level to achieve
+            </div>
+            <div ng-if="companyProgress.schoolChallengeLevel == ''">
+              Choose a student level to achieve
+            </div>
+            <select class="form-control" id="challengeLevel" ng-model="companyProgress.schoolChallengeLevel" aria-label="School Challenge Level" ng-change="updateSchoolChallengeLevel()">
+              <option value="$100">$100</option>
+              <option value="$150">$150</option>
+              <option value="$200">$200</option>
+              <option value="$250">$250</option>
+              <option value="Other">Other</option>
+            </select>
+            <div uib-alert class="alert-danger" ng-if="schoolChallengeLevelInfo.errorMessage">
+              <div ng-bind-html="schoolChallengeLevelInfo.errorMessage"></div>
+            </div>
+          </div>
+        </div>
+        <div class="ym-pc-dashboard-section-header col-md-4">
+          <div class="schoolCreateMessage text-center" ng-if="coordinatorMessage.text == ''" ng-cloak>
+             <p>
+               Create an <strong>encouraging message</strong> for your students in their Headquarters.
+             </p>
+             <button type="button" class="btn btn-md-wide btn-primary" ng-click="editCoordinatorMessage()">
+               <strong>Create Message</strong>
+             </button>
+          </div>
+          <div class="schoolCreateMessage text-center" ng-if="coordinatorMessage.text && coordinatorMessage.text != ''" ng-cloak>
+             <p>
+               Update your <strong>student message</strong>:<br/>
+	       <span class="coordinatorMessage">"{{ coordinatorMessage.text.length > 90 ? coordinatorMessage.text.substring(0,90)+"..." : coordinatorMessage.text }}"</span>
+             </p>
+             <button type="button" class="btn btn-md-wide btn-primary" ng-click="editCoordinatorMessage()">
+               <strong>Update Message</strong>
+             </button>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="ym-pc-dashboard-coordinator-school-years-section" aria-label="Years School Participated">
+      <div class="ym-pc-dashboard-section-header">
+        <h2 class="h3" ng-if="companyProgress.schoolYears > 0">
+          Your school has participated for 
+          <select class="form-control" id="schoolYears" ng-model="companyProgress.schoolYears" aria-label="School Years" ng-change="updateSchoolYears()">
+  	        <option ng-repeat="year in yearsList" value="{{year}}">{{year}}</option>
+          </select>
+          Years
+        </h2>
+        <h2 class="h3" ng-if="companyProgress.schoolYears == 0">
+          Select how many years your school has participated in the program
+	  <select class="form-control" id="schoolYears" ng-model="companyProgress.schoolYears" aria-label="School Years" ng-change="updateSchoolYears()">
+		<option ng-repeat="year in yearsList" value="{{year}}">{{year}}</option>
+	  </select>
+        </h2>
+      </div>
+    </section>
     <section class="ym-pc-dashboard-coordinator-progress-section" aria-label="Fundraising Progress Meters">
       <div class="row">
-        <div class="col-sm-6 ym-pc-dashboard-coordinator-progress-section__column event-secondary-medium">
+        <div class="col-sm-5 ym-pc-dashboard-coordinator-progress-section__column event-secondary-medium">
           <div class="ym-pc-dashboard-coordinator-progress-box">
             <div class="ym-pc-dashboard-section-header">
               <h2 class="h5">
@@ -504,9 +657,10 @@
               </div>
               <div class="ym-progress-related clearfix">
                 <div class="ym-progress-donate">
-                  <a class="btn btn-lg btn-primary" ng-href="Donation2?df_id={{eventInfo.donationFormId}}&amp;FR_ID={{frId}}&amp;PROXY_TYPE=22&amp;PROXY_ID={{participantRegistration.teamId}}">
+                  <p><a class="btn btn-lg btn-primary" ng-href="{{baseUrl}}#/reports" title="Click to view your donation reports"><strong>Donation Reports</strong></a></p>
+                  <p><a class="btn btn-lg btn-primary" ng-href="Donation2?df_id={{eventInfo.donationFormId}}&amp;FR_ID={{frId}}&amp;PROXY_TYPE=22&amp;PROXY_ID={{participantRegistration.teamId}}">
                     <strong>Donate to Team Page</strong>
-                  </a>
+                    </a></p>
                 </div>
                 <div class="pull-right">
                   <p>
@@ -538,9 +692,10 @@
               </div>
               <div class="ym-progress-related clearfix">
                 <div class="ym-progress-donate">
-                  <a class="btn btn-lg btn-primary" ng-href="Donation2?df_id={{eventInfo.donationFormId}}&amp;FR_ID={{frId}}&amp;PROXY_TYPE=20&amp;PROXY_ID={{consId}}">
+                  <p><a class="btn btn-lg btn-primary" ng-href="{{baseUrl}}#/reports" title="Click to view your donation reports"><strong>Donation Reports</strong></a></p>
+                  <p><a class="btn btn-lg btn-primary" ng-href="Donation2?df_id={{eventInfo.donationFormId}}&amp;FR_ID={{frId}}&amp;PROXY_TYPE=20&amp;PROXY_ID={{consId}}">
                     <strong>Donate to Personal Page</strong>
-                  </a>
+                    </a></p>
                 </div>
                 <div class="pull-right">
                   <p>
@@ -553,7 +708,7 @@
                   </div>
                   <p>
                     <a href="" ng-click="editPersonalGoal()">
-                      <strong>Update Personal Goal</strong>
+                      <strong>Update Goal</strong>
                     </a>
                   </p>
                 </div>
@@ -561,46 +716,49 @@
             </div>
           </div>
         </div>
-        <div class="col-sm-6 ym-pc-dashboard-coordinator-progress-section__column event-secondary-medium">
+        <div class="col-sm-7 ym-pc-dashboard-coordinator-progress-section__column event-secondary-medium">
           <div class="ym-pc-dashboard-coordinator-students-box" ng-if="companyInfo.participantCount" ng-cloak>
             <div class="ym-pc-dashboard-section-header">
               <h2 class="h5">
-                My Students
+                My School
               </h2>
             </div>
-            <div>
-              <p>
-                You have <strong>{{companyInfo.participantCount|number}}</strong> students registered. <span ng-if="studentRegGoal && studentRegGoal != 0" ng-cloak>Keep recruiting to meet your goal of <strong>{{studentRegGoal|number}}</strong> students!</span>
-              </p>
-              <a class="btn btn-md-wide btn-primary" ng-href="{{baseUrl}}#/email">
-                <strong>Send Emails</strong>
-              </a>
-            </div>
-            <div class="ym-pc-dashboard-coordinator-create-message">
-              <p>
-                Create/Update an <strong>encouraging message</strong> for your students in their Headquarters.
-              </p>
-              <button type="button" class="btn btn-md-wide btn-primary" ng-click="editCoordinatorMessage()">
-                <strong>Create Message</strong>
-              </button>
+            <div class="row">
+              <div class="ym-pc-dashboard-coordinator-create-message col-md-6">
+       		<p>
+                  <strong>Compose emails</strong> to friends and family to come visit your fundraising page.
+                </p>
+                <a class="btn btn-md-wide btn-primary" ng-href="{{baseUrl}}#/email">
+                  <strong>Send Emails</strong>
+                </a>
+              </div>
+              <div class="col-md-6">
+                <div class="schoolStatusTitle">School Status</div>
+                <p>
+                  <strong>{{companyInfo.participantCount|number}}</strong> students are registered 
+                </p>
+                <p>
+                  <span ng-if="studentRegGoal && studentRegGoal != 0" ng-cloak>Keep recruiting to meet your goal of <strong>{{studentRegGoal|number}}</strong> students!</span>
+                  <span ng-if="schoolStudentRegOnline && schoolStudentRegOnline != 0" ng-cloak><strong>{{schoolStudentReg|number}}</strong> of those <strong>{{schoolStudentRegOnline|number}}</strong> students have registered online.</span>
+                </p>
+                <p>
+                  <strong>{{companyParticipants.totalFundraisers|number}}</strong> student<span ng-if="companyParticipants.totalFundraisers > 1 || companyParticipants.totalFundraisers == 0">s are</span><span ng-if="companyParticipants.totalFundraisers == 1"> is</span> fundraising
+                </p>
+                <br/>
+                <div class="schoolStatusTitle">Daily Challenges</div>
+                <p>
+                  <strong>{{activity1amt|number}}</strong> student<span ng-if="activity1amt > 1 || activity1amt == 0">s</span>&nbsp;being physically active
+                </p>
+                <p>
+                  <strong>{{activity2amt|number}}</strong> student<span ng-if="activity2amt > 1 || activity2amt == 0">s</span>&nbsp;learning Hands-Only CPR
+                </p>
+                <p>
+                  <strong>{{activity3amt|number}}</strong> student<span ng-if="activity3amt > 1 || activity3amt == 0">s</span>&nbsp;saying no to tobacco
+                </p>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
-    <section class="ym-pc-dashboard-coordinator-school-years-section" aria-label="Years School Participated">
-      <div class="ym-pc-dashboard-section-header">
-        <h2 class="h3" ng-if="companyProgress.schoolYears > 0">
-          Your school has participated for <span ng-bind-html="companyProgress.schoolYears"></span> Years
-        </h2>
-        <h2 class="h3" ng-if="companyProgress.schoolYears == 0">
-          Tell us how many years your school has participated in the program
-        </h2>
-      </div>
-      <div class="ym-pc-dashboard-coordinator-school-years-update text-center">
-         <a href="" ng-click="editSchoolYears()" class="ym-school-update-years">
-           <strong>Update School Years</strong>
-         </a> 
       </div>
     </section>
     <section class="ym-pc-dashboard-coordinator-steps-section" aria-label="Fundraising Steps">
@@ -802,10 +960,10 @@
             Visit our Thank-You Gift portal to manage and order gifts for your students.
           </p>
           <div class="ym-activity-box-cta">
-            <a class="btn btn-md-wide btn-primary" ng-href="https://ahc.staging.ootqa.org/coordinator/login/{{authToken}}/{{sessionCookie}}" target="_blank" ng-if="tablePrefix == 'heartdev'" ng-cloak>
+            <a class="btn btn-md-wide btn-primary" ng-href="https://ahc.staging.ootqa.org/coordinator/login/{{frId}}/{{authToken}}/{{sessionCookie}}" target="_blank" ng-if="tablePrefix == 'heartdev'" ng-cloak>
               <strong>Thank-You Gifts</strong>
             </a>
-            <a class="btn btn-md-wide btn-primary" ng-href="https://middleschool.heart.org/coordinator/login/{{authToken}}/{{sessionCookie}}" target="_blank" ng-if="tablePrefix == 'heart'" ng-cloak>
+            <a class="btn btn-md-wide btn-primary" ng-href="https://middleschool.heart.org/coordinator/login/{{frId}}/{{authToken}}/{{sessionCookie}}" target="_blank" ng-if="tablePrefix == 'heart'" ng-cloak>
               <strong>Thank-You Gifts</strong>
             </a>
           </div>
@@ -863,49 +1021,53 @@
         </a>
       </div>
     </section>
-  </div>
-  <section class="ym-pc-dashboard-spread-section event-secondary-medium--diagonal" aria-label="Resources for Spreading the Word">
-    <div class="ym-pc-dashboard-section-header">
-      <h2 class="h3">
-        Spread the Word
-      </h2>
-    </div>
-    <div class="ym-pc-dashboard-spread-options">
-      <div class="row">
-        <div class="col-sm-6">
+    <div class="row ym-spread-the-word-box">
+      <div class="col-sm-12">
+        <section class="ym-pc-dashboard-spread-section" aria-label="Resources for Spreading the Word">
           <div class="ym-pc-dashboard-section-header">
-            <h3 class="h5">
-              Download Mobile App
-            </h3>
+            <h2 class="h3">
+              Spread the Word
+            </h2>
           </div>
-          <p>
-            Download our Mobile Fundraising App today!
-          </p>
-          <div class="ym-pc-dashboard-mobile-downloads">
-            <a href="https://itunes.apple.com/us/app/aha-middle-school/id1274201161?mt=8" target="_blank">
-              <img ng-src="../{{dev_branch != '' ? dev_branch+'/' : ''}}aha-luminate/dist/youth-markets/image/apple-store-logo.png" alt="Download the iPhone App">
-            </a> 
-            <a href="https://play.google.com/store/apps/details?id=com.charitydynamics.ahatgr" target="_blank">
-              <img ng-src="../{{dev_branch != '' ? dev_branch+'/' : ''}}aha-luminate/dist/youth-markets/image/google-play-logo.png" alt="Download the Android App">
-            </a>
+          <div class="ym-pc-dashboard-spread-options">
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="ym-pc-dashboard-section-header">
+                  <h3 class="h5">
+                    Download Mobile App
+                  </h3>
+                </div>
+                <p>
+                  Download our Mobile Fundraising App today!
+                </p>
+                <div class="ym-pc-dashboard-mobile-downloads">
+                  <a href="https://itunes.apple.com/us/app/aha-middle-school/id1274201161?mt=8" target="_blank">
+		    <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/youth-markets/image/apple-store-logo.png" alt="Download the iPhone App">
+                  </a> 
+                  <a href="https://play.google.com/store/apps/details?id=com.charitydynamics.ahatgr" target="_blank">
+		    <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/youth-markets/image/google-play-logo.png" alt="Download the Android App">
+                  </a>
+		</div>
+              </div>
+              <div class="col-sm-6">
+                <div class="ym-pc-dashboard-section-header">
+                  <h3 class="h5">
+                    Social Share
+                  </h3>
+                </div>
+                <p>
+                  Share on Facebook, Twitter, LinkedIn and even text messaging!
+                </p>
+                <div class="text-center hidden">
+                  <a class="btn btn-md-wide btn-secondary" ng-href="{{baseUrl}}#/social">
+                    <strong>Go Social</strong> 
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="col-sm-6">
-          <div class="ym-pc-dashboard-section-header">
-            <h3 class="h5">
-              Social Share
-            </h3>
-          </div>
-          <p>
-            Share on Facebook, Twitter, LinkedIn and even text messaging!
-          </p>
-          <div class="text-center">
-            <a class="btn btn-md-wide btn-secondary" ng-href="{{baseUrl}}#/social">
-              <strong>Go Social</strong> 
-            </a>
-          </div>
-        </div>
+        </section>
       </div>
     </div>
-  </section>
+  </div>
 </div>

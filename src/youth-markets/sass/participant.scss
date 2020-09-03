@@ -403,11 +403,9 @@ main > .container {
   }
 
   .ym-progress-donate {
-    @media (min-width: $screen-sm-min) {
-      float: left;
-    }
+    float: left;
 
-    .btn-lg,
+    /*.btn-lg,
     a.btn-lg {
       &,
       &:link,
@@ -440,7 +438,7 @@ main > .container {
           font-size: 18px;
         }
       }
-    }
+    }*/
   }
 
   .pull-right {
@@ -894,7 +892,7 @@ main > .container {
         display: inline-block;
         text-align: right;
         vertical-align: top;
-        width: 200px;
+        width: 185px;
       }
       
       .btn,
@@ -1532,11 +1530,7 @@ main > .container {
         margin: 0 auto 15px;
 
         @media (min-width: $screen-sm-min) {
-          display: inline-block;
-          position: absolute;
-          bottom: 0;
           max-width: none;
-          margin: 0;
         }
 
         @media (max-width: $screen-sm-max) {
@@ -1574,7 +1568,7 @@ main > .container {
         }
 
         @media (min-width: $screen-md-min) {
-          max-width: 140px;
+          max-width: 175px;
         }
 
         @media (min-width: $screen-lg-min) {

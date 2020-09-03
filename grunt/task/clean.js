@@ -347,5 +347,37 @@ module.exports = {
         ]
       }
     ]
+  },
+  "fieldday": {
+    files: [
+      {
+        expand: true,
+        cwd: 'dist/fieldday/css/',
+        src: [
+          '**/*'
+        ]
+      },
+      {
+        expand: true,
+        cwd: 'dist/fieldday/js/',
+        src: [
+          '**/*'
+        ]
+      },
+      {
+        expand: true,
+        cwd: 'dist/fieldday/html/',
+        src: [
+          '**/*'
+        ]
+      },
+      {
+        expand: true,
+        cwd: 'dist/fieldday/image/',
+        src: [
+          '**/*'
+        ]
+      }
+    ]
   } 
 }

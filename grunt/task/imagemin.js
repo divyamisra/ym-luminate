@@ -52,7 +52,9 @@ module.exports = {
         src: [
           '*.{gif,GIF,jpg,JPG,png,PNG,svg,SVG}',
           'prizes/*.{gif,GIF,jpg,JPG,png,PNG,svg,SVG}',
-          'prizes2020/*.{gif,GIF,jpg,JPG,png,PNG,svg,SVG}'
+          'prizes2020/*.{gif,GIF,jpg,JPG,png,PNG,svg,SVG}',
+          'prizes2021/*.{gif,GIF,jpg,JPG,png,PNG,svg,SVG}',
+          'fy21/*.{gif,GIF,jpg,JPG,png,PNG,svg,SVG}'
         ], 
         dest: 'dist/ym-primary/image/'
       }
@@ -146,6 +148,19 @@ module.exports = {
           '*.{gif,GIF,jpg,JPG,png,PNG,svg,SVG}'
         ],
         dest: 'dist/heartwalk2020/image/'
+      }
+    ]
+  },
+
+  "fieldday": {
+    files: [
+      {
+        expand: true,
+        cwd: 'src/fieldday/image/',
+        src: [
+          '*.{gif,GIF,jpg,JPG,png,PNG,svg,SVG}'
+        ],
+        dest: 'dist/fieldday/image/'
       }
     ]
   }

@@ -4,17 +4,34 @@
 }
 
 body.pg-company {
+	.ym-story {
+		padding: 40px;
+		text-align: center;
+		background: #fff;
+	}
+	.ym-page-section__list {
+		background: $event-secondary-medium;
+	}
+	.ym-progress {
+		.ym-progress__title {
+			font-size: 48px;
+			color: indigo;
+			font-family: "Luckiest Guy",cursive;
+		}
+	}
+	.challenge-slime {
+		background: #fff url('../image/school_challenge_1_alt.png') no-repeat center bottom / 100% 100%;
+	}
+	.challenge-pie {
+		background: #fff url('../image/school_challenge_2_alt.png') no-repeat center bottom / 100% 100%;
+	}
+	.challenge-activity {
+		background: #fff url('../image/school_challenge_3_alt.png') no-repeat center bottom / 100% 100%;
+	}
+
      @media (max-width: $screen-sm-max) {
           .ym-our-stats {
                margin-bottom:40px;
-          }
-     }
-     .ym-promo-block__item {
-          margin: 10px;
-          width: 200px;
-          height: 200px;
-          @media (max-width: $screen-sm-max) {
-               height: auto;
           }
      }
      .ym-page-section__main > .col-md-6 {
@@ -117,10 +134,12 @@ body.pg-company {
 }
 
 .ym-school-participation-years {
-  position:relative;
-  max-width:180px;
-  padding:5px;
-  
+    position: absolute;
+    max-width: 180px;
+    padding: 5px;
+    bottom: 0;
+    right: 0;
+
   img {
     width: 100%;
   }
