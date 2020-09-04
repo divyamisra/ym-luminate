@@ -3,6 +3,9 @@
   a {
      display: block;
      margin: 25px 15px;
+     @media (min-width: 768px) {
+       width:25%;
+     }
   }
   img {
      max-width:100%;
