@@ -1251,32 +1251,44 @@
              if (company !== undefined) {
                var eventMapLink;
 
-               if (company.eventlocationmapurl !== "") {
+               var eventLocationURL = company.eventlocationmapurl;
+               eventLocationURL = eventLocationURL.trim();
 
-       					 eventMapLink = company.eventlocationmapurl;
+               if ( eventLocationURL === "virtual" || eventLocationURL === "Virtual" ) {
 
-                 if ( eventMapLink.indexOf("http://") == 0 || eventMapLink.indexOf("https://") == 0 || eventMapLink.indexOf("www") == 0)  {
-
-                   var companyMap = '<a target="_blank" aria-title="Google map for '+ company.companyname +' location" href="' + eventMapLink + '">' + company.companyname + '</a>';
-                   $('.js--company-link').html(companyMap);
-
-                 }
+                 var companyMap = 'Virtual';
+                 $('.js--company-link').html(companyMap);
 
        				 } else {
+                 if (company.eventlocationmapurl !== "") {
 
-                 if (company.eventstate !== "") {
-                   var companyAddress = company.eventaddress + ', ' + company.eventcity + ', ' + company.eventstate + ', ' + company.eventzip;
+                   eventMapLink = company.eventlocationmapurl;
 
-                   companyAddress = encodeURIComponent(companyAddress);
+                   if ( eventMapLink.indexOf("http://") == 0 || eventMapLink.indexOf("https://") == 0 || eventMapLink.indexOf("www") == 0)  {
 
-                   var eventMapLink = 'https://www.google.com/maps/place/' + companyAddress;
+                     var companyMap = '<a target="_blank" aria-title="Google map for '+ company.companyname +' location" href="' + eventMapLink + '">' + company.companyname + '</a>';
+                     $('.js--company-link').html(companyMap);
 
-                   var companyMap = '<a target="_blank" href="' + eventMapLink + '">' + company.companyname + '</a>';
+                   }
 
-                   $('.js--company-link').html(companyMap);
+                 } else {
+
+                   if (company.eventstate !== "") {
+                     var companyAddress = company.eventaddress + ', ' + company.eventcity + ', ' + company.eventstate + ', ' + company.eventzip;
+
+                     companyAddress = encodeURIComponent(companyAddress);
+
+                     var eventMapLink = 'https://www.google.com/maps/place/' + companyAddress;
+
+                     var companyMap = '<a target="_blank" href="' + eventMapLink + '">' + company.companyname + '</a>';
+
+                     $('.js--company-link').html(companyMap);
+                   }
+
                  }
 
-       				 }
+               }
+
 
        				 var fieldDayDetails = '';
        				 fieldDayDetails += '<p>' + company.eventlocationname + '</p>';

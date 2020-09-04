@@ -134,7 +134,9 @@
 
     var xname = $('#part_name_donform').text()
     if (xname != ''){
-    $('#tr_show_gift_to_public_row label').text('Would you like your name displayed on '+xname+'\'s page.');
+    //$('#tr_show_gift_to_public_row label').text('Would you like your name displayed on '+xname+'\'s page.');
+    $('#tr_show_gift_to_public_row label').text('Yes, you can display the amount of my donation publicly');
+
     $('#tr_recognition_nameanonymous_row label').text('Hide my name from lists on '+xname+'\'s page. \('+xname+' will still see your name regardless of your choice.\)');}
 
     $('.external-payment label a').text('PayPal');
