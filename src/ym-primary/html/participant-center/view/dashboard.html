@@ -840,13 +840,16 @@
                 </div>
              </div>
           </div>
-	  <div class="text-center">
+	  <div class="text-center" ng-show="hasOOTDashboard" ng-scope>
              <a class="btn btn-lg btn-primary" ng-click="monsterEdit()">
                 <strong>Customize Hero!</strong>
              </a>
              <!--<a class="btn btn-lg btn-primary" href="javascript:void(0);">
              <strong>Coming Soon!</strong>
              </a>-->
+          </div>
+	  <div class="text-center" ng-show="!hasOOTDashboard" ng-scope>
+             We're building your heart hero customizer
           </div>
         </div>
       </div>
