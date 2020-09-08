@@ -535,7 +535,7 @@
         var greetingInfo = $('.js-greeting-intro').html();
         var greetingIntroContainer = '';
         greetingIntroContainer += '<div class="row">';
-        greetingIntroContainer += '<div class="col-12 pb-5">';
+        greetingIntroContainer += '<div class="col-12 px-5 px-md-0 pb-5">';
         greetingIntroContainer += greetingInfo;
         greetingIntroContainer += '</div>';
         greetingIntroContainer += '</div>';
