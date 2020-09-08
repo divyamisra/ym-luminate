@@ -529,6 +529,20 @@
           }
         });
       }
+
+      //look for greeting page content
+      if ( $('.js-greeting-intro').length > 0 ) {
+        var greetingInfo = $('.js-greeting-intro').html();
+        var greetingIntroContainer = '';
+        greetingIntroContainer += '<div class="row">';
+        greetingIntroContainer += '<div class="col-12 pb-5">';
+        greetingIntroContainer += greetingInfo;
+        greetingIntroContainer += '</div>';
+        greetingIntroContainer += '</div>';
+
+        $(greetingIntroContainer).insertAfter('.details-container');
+      }
+
     }
 
 
