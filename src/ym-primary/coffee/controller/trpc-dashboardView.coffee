@@ -78,6 +78,8 @@ angular.module 'trPcControllers'
           $rootScope.hasOOTDashboard = response.data.coordinatorHasDashboard
         , (response) ->
           # TODO
+      else
+        $rootScope.hasOOTDashboard = true
 
       #school years, challenge and level update
       $scope.schoolInfo = {}
