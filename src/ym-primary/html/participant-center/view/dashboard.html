@@ -248,9 +248,9 @@
 					 <text fill="#444" font-size="14" font-weight="bold"><tspan x="495" y="381">Donation</tspan></text>
 					 <path class="badge-path" data-name="Path 1529" d="M475 317h100v100h-100z" fill="url(#4{{(prizes[3].earned) ? '_delivered' : '_earned'}})"/>
 				  </g>
-				  <g id="ask-for-a-donation" transform="translate(-.004 -.001)" filter="url(#g)" data-name="Ask for a Donation">
+				  <g id="ask-for-a-donation" transform="translate(-.004 -.001)" filter="url(#g)" data-name="Receive a Donation">
 					 <path data-name="Path 1528" d="M615.362 272.616H507.129c-2.592-31.766-26.292-56.193-55.962-58.967V96.828c89.282 3.007 161.386 80.202 164.195 175.788z" fill="{{(prizes[2].earned) ? '#e1eed2' : '#f48220'}}"/>
-					 <text fill="#444" font-size="14" font-weight="bold"><tspan x="495" y="190">Ask for a</tspan></text>
+					 <text fill="#444" font-size="14" font-weight="bold"><tspan x="492" y="190">Receive a</tspan></text>
 					 <text fill="#444" font-size="14" font-weight="bold"><tspan x="495" y="206">Donation</tspan></text>
 					 <path class="badge-path" data-name="Path 1528" d="M478 143h100v100h-100z" fill="url(#3{{(prizes[2].earned) ? '_delivered' : '_earned'}})"/>
 				  </g>
@@ -292,8 +292,8 @@
 					 <text fill="#ffffff" font-size="20"><tspan x="468" y="668">HEART HERO!</tspan></text>
 				  </g>
 				  <g transform="translate(-.001 .003)" ng-cloak>
-					  <a xlink:href="" ng-href="{{prizes[2].final_url}}" title="Ask for a donation"><text fill="#c10e21" font-size="14" font-weight="bold"><tspan x="570" y="105">Ask for a</tspan></text></a>
-					  <a xlink:href="" ng-href="{{prizes[2].final_url}}" title="Ask for a donation"><text fill="#c10e21" font-size="14" font-weight="bold"><tspan x="570" y="122">Donation</tspan></text></a>
+					  <a xlink:href="" ng-href="{{prizes[2].final_url}}" title="Receive a donation"><text fill="#c10e21" font-size="14" font-weight="bold"><tspan x="567" y="105">Receive a</tspan></text></a>
+					  <a xlink:href="" ng-href="{{prizes[2].final_url}}" title="Receive a donation"><text fill="#c10e21" font-size="14" font-weight="bold"><tspan x="570" y="122">Donation</tspan></text></a>
 					 <path data-name="Path 1523" d="M575 130v23h23v-23h-23z" fill="url(#winding_road_link_arrow_3)"/>
 				  </g>
 				  <g transform="translate(-.001 .003)" class="ng-scope">
@@ -840,13 +840,16 @@
                 </div>
              </div>
           </div>
-	  <div class="text-center">
+	  <div class="text-center" ng-show="hasOOTDashboard" ng-scope>
              <a class="btn btn-lg btn-primary" ng-click="monsterEdit()">
                 <strong>Customize Hero!</strong>
              </a>
              <!--<a class="btn btn-lg btn-primary" href="javascript:void(0);">
              <strong>Coming Soon!</strong>
              </a>-->
+          </div>
+	  <div class="text-center" ng-show="!hasOOTDashboard" ng-scope>
+             We're building your heart hero customizer
           </div>
         </div>
       </div>

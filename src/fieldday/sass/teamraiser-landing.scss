@@ -284,6 +284,12 @@
   }
   .nav-tabs .nav-link {
     border-bottom: none;
+    text-decoration: none;
+    color: #495057;
+    &.active {
+      color: #c10e21;
+      text-decoration: underline;
+    }
   }
   .nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
     background-color: transparent;
