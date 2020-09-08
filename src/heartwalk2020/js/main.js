@@ -838,7 +838,7 @@
                         $(response.activities).each(function(){
                             var companyName = this.name;
                             var steps = this.total;
-                            var topCompanyRow = '<li><div class="d-flex"><div class="flex-grow-1"><a title="' + companyName + ' Steps" href="TR/?team_id=' + this.id + '&amp;pg=team&amp;fr_id=' + evID + '">' + companyName + '</a></div><div class="raised">Steps<br><strong>' + steps + '</strong></div></div></li>';
+                            var topCompanyRow = '<li><div class="d-flex"><div class="flex-grow-1"><a title="' + companyName + ' Steps" href="TR/?company_id=' + this.id + '&amp;pg=company&amp;fr_id=' + evID + '">' + companyName + '</a></div><div class="raised">Steps<br><strong>' + steps + '</strong></div></div></li>';
                             $('.js--company-top-list-steps ul').append(topCompanyRow);
                         });
                     }
