@@ -122,15 +122,15 @@ angular.module 'ahaLuminateApp'
             response
             
       getBMLeaderboard: ->
-        motion_password = 'toYEaJuV98VJdIEn'; 
-        motionDb = 'ahahw';
+        motion_username = 'heartwalkapi'
+        motion_password = 'toYEaJuV98VJdIEn'
         
         if $rootScope.tablePrefix is 'heartdev'
-          url = 'https://load.boundlessfundraising.com/mobiles/heartwalkapi/getMotionActivityRoster?event_id=' + $rootScope.frId + '&roster_type=participant&list_size=5'
+          url = 'https://load.boundlessfundraising.com/mobiles/ahahw/getMotionActivityRoster?event_id=' + $rootScope.frId + '&roster_type=participant&list_size=5'
         else 
-          url = 'https://loadprod.boundlessfundraising.com/mobiles/heartwalkapi/getMotionActivityRoster?event_id=' + $rootScope.frId + '&roster_type=participant&list_size=5'
+          url = 'https://loadprod.boundlessfundraising.com/mobiles/ahahw/getMotionActivityRoster?event_id=' + $rootScope.frId + '&roster_type=participant&list_size=5'
         $.ajax
-          url: $sce.trustAsResourceUrl(motionApiUrl)
+          url: $sce.trustAsResourceUrl(url)
           async: true
           type: 'GET'
           dataType: 'json'
