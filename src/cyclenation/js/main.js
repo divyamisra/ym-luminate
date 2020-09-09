@@ -126,12 +126,35 @@
     var subSrcCode = luminateExtend.global.subSrcCode;
     var evID = $('body').data('fr-id') ? $('body').data('fr-id') : null;
     var consID = $('body').data('cons-id') ? $('body').data('cons-id') : null;
+    var eventDate = $('body').data('ev-date') ? new Date($('body').data('ev-date')) : null;
+    if (eventDate != null) {
+       eventDate.setDate(eventDate.getDate() + 15);
+    }
+    var currDate = $('body').data('curr-date') ? new Date($('body').data('curr-date')) : null;
+    var fourWeek = $('body').data('ev-date') ? new Date($('body').data('ev-date')) : null;
+    if (fourWeek != null) {
+       fourWeek.setDate(fourWeek.getDate() - 28);
+    }
+    
+    var motion_username = 'cyclenationapi';
+    var motion_password = 'oNNuWown5A8MeJco'; 
+    var motionDb = 'ahacycle';
+    var motion_event = evID;
+    var motion_urlPrefix = (isProd) ? 'loadprod' : 'load';
 
     function getURLParameter(url, name) {
       return (RegExp(name + '=' + '(.+?)(&|$)').exec(url) || [, null])[1];
     }
     var currentUrl = window.location.href;
     var searchType = getURLParameter(currentUrl, 'search_type');
+
+    if (getURLParameter(currentUrl, 'demo') == "true") {
+       //override to test bm
+       motion_username = 'motionapi';
+       motion_password = 'jPOHc5J4qMVVSj7P'; 
+       motionDb = 'democdsb'; 
+       motion_event = 1061;
+    }
 
     cd.getParticipants = function (firstName, lastName, searchAllEvents) {
       luminateExtend.api({
@@ -529,6 +552,20 @@
           }
         });
       }
+
+      //look for greeting page content
+      if ( $('.js-greeting-intro').length > 0 ) {
+        var greetingInfo = $('.js-greeting-intro').html();
+        var greetingIntroContainer = '';
+        greetingIntroContainer += '<div class="row">';
+        greetingIntroContainer += '<div class="col-12 px-5 px-md-0 pb-5">';
+        greetingIntroContainer += greetingInfo;
+        greetingIntroContainer += '</div>';
+        greetingIntroContainer += '</div>';
+
+        $(greetingIntroContainer).insertAfter('.details-container');
+      }
+
     }
 
 
@@ -919,6 +956,118 @@
       }); // end luminateExtend
     } // end getTopCompanies
 
+    /******************/
+    /* MILES SCRIPTS */
+    /******************/
+    cd.getTopParticipantsMiles = function (eventId) {
+        var motionApiUrl = 'https://' + motion_urlPrefix + '.boundlessfundraising.com/mobiles/' + motionDb + '/getMotionActivityRoster?event_id=' + motion_event + '&roster_type=participant&list_size=5';
+
+        $.ajax({ 
+            url: motionApiUrl,
+            async: true,
+            type:'GET',
+            dataType: 'json',
+            contentType: 'application/json',
+            beforeSend: function(xhr) {
+                xhr.setRequestHeader("Authorization", "Basic "+btoa(motion_username+':'+motion_password));
+            },
+            success: function(response){
+                if (response.activities != undefined) {
+                    $(response.activities).each(function(){
+                        var participantName = this.name;
+                        var miles = this.total;
+                        var participantPage = "https://" + ((isProd) ? "www2" : "dev2") + ".heart.org/site/TR?px="+this.id+"&pg=personal&fr_id="+eventId;
+                        var topParticipantHtml = '<div class="top-list-entry row pb-2"><div class="badges col-2"> </div><div class="names-amounts col-10 pl-0"><a class="participant-name" href="' + participantPage + '">' + participantName + '</a><span class="amount-raised">Miles ' + miles + '</span></div></div>';
+                        $('.js__top-participants-miles').append(topParticipantHtml);
+                    });
+                }
+            },
+            error: function(err) {
+                console.log('getMotionActivityRoster err', err);
+            }
+        });
+    };
+    // END TOP PARTICIPANTS MILES
+
+    // BEGIN TOP TEAMS MILES
+    cd.getTopTeamsMiles = function (eventId) {
+        var motionApiUrl = 'https://' + motion_urlPrefix + '.boundlessfundraising.com/mobiles/' + motionDb + '/getMotionActivityRoster?event_id=' + motion_event + '&roster_type=team&list_size=5';
+
+        $.ajax({ 
+            url: motionApiUrl,
+            async: true,
+            type:'GET',
+            dataType: 'json',
+            contentType: 'application/json',
+            beforeSend: function(xhr) {
+                xhr.setRequestHeader("Authorization", "Basic "+btoa(motion_username+':'+motion_password));
+            },
+            success: function(response){
+                if (response.activities != undefined) {
+                    $(response.activities).each(function(){
+                        var teamName = this.name;
+                        var miles = this.total;
+                        var topTeamRow = '<div class="top-list-entry row pb-2"><div class="badges col-2"> </div><div class="names-amounts col-10 pl-0"> <a class="participant-name" href="TR/?team_id=' + teamId + '&amp;pg=team&amp;fr_id=' + evID + '">' + teamName + '</a> <span class="amount-raised">Miles ' + miles + '</span> </div></div>';
+                        $('.js__top-teams-miles').append(topTeamRow);
+                    });
+                }
+            },
+            error: function(err) {
+                console.log('getMotionActivityRoster err', err);
+            }
+        });
+    };
+
+    // END TOP TEAMS MILES
+
+    // BEGIN TOP COMPANIES MILES
+    cd.getTopCompaniesMiles = function (eventId) {
+        var motionApiUrl = 'https://' + motion_urlPrefix + '.boundlessfundraising.com/mobiles/' + motionDb + '/getMotionActivityRoster?event_id=' + motion_event + '&roster_type=company&list_size=5';
+
+        $.ajax({ 
+            url: motionApiUrl,
+            async: true,
+            type:'GET',
+            dataType: 'json',
+            contentType: 'application/json',
+            beforeSend: function(xhr) {
+                xhr.setRequestHeader("Authorization", "Basic "+btoa(motion_username+':'+motion_password));
+            },
+            success: function(response){
+                if (response.activities != undefined) {
+                    $(response.activities).each(function(){
+                        var companyName = this.name;
+                        var miles = this.total;
+                        var topCompanyHtml = '<div class="top-list-entry row pb-2"> <div class="badges col-2"> </div><div class="names-amounts col-10 pl-0"> <a class="participant-name" href="TR?company_id=' + this.id + '&fr_id=' + evID + '&pg=company">' + companyName + '</a> <span class="amount-raised">Miles ' + miles + '</span> </div></div>';
+                        $('.js__top-companies-miles').append(topCompanyHtml);
+                    });
+                }
+            },
+            error: function(err) {
+                console.log('getMotionActivityRoster err', err);
+            }
+        });
+
+        luminateExtend.api({
+            api: 'teamraiser',
+            data: 'method=getCompaniesByInfo&fr_id=' + eventId +
+                '&include_cross_event=true&list_sort_column=total&list_ascending=false&list_page_size=5&response_format=json',
+            callback: {
+                success: function (response) {
+                    if (!$.isEmptyObject(response.getCompaniesResponse)) {
+                        var topCompanies = luminateExtend.utils.ensureArray(response.getCompaniesResponse
+                            .company);
+                        var totalCompanies = parseInt(response.getCompaniesResponse.totalNumberResults);
+                        $('.js--num-companies').text(totalCompanies);
+                    }
+                },
+                error: function (response) {
+                    // console.log('getTopCompanies error: ' + response.errorResponse.message);
+                }
+            }
+        });
+    };
+
     function getLocation() {
       var options = {
         enableHighAccuracy: true,
@@ -932,6 +1081,7 @@
       }
     }
 
+    
     function showPosition(position) {
       var input = position.coords.latitude + "," + position.coords.longitude;
       var latlngStr = input.split(',', 2);
@@ -1153,6 +1303,14 @@
       cd.getTopParticipants(evID);
       cd.getTopTeams(evID);
       cd.getTopCompanies(evID);
+      if (currDate >= fourWeek && currDate <= eventDate) {
+          //build steps leaderboard
+          cd.getTopParticipantsMiles(evID);
+          cd.getTopTeamsMiles(evID);
+          cd.getTopCompaniesMiles(evID);
+      } else {
+          $('#fundraiserMiles').hide();
+      }
     }
 
     // TODO - rename to make clear that this is a redirect search form with single field
