@@ -107,7 +107,7 @@
     <div class="clearfix"></div>
   </div>
   <div class="ym-page-section ym-page-section__main">
-    <div ng-class="(topClassRaised.length > 0 || topClassStudents.length > 0) ? 'col-md-6' : ''" ng-show="participantCount > 0 && (activity1amt != 0 || activity2amt != 0 || activity3amt != 0)" ng-cloak>
+    <div ng-class="col-md-12" ng-show="participantCount > 0 && (activity1amt != 0 || activity2amt != 0 || activity3amt != 0)" ng-cloak>
       <div class="ym-our-stats ym-promo-block">
         <h2 class="ym-headline">
           Our Stats
@@ -153,12 +153,12 @@
         </div>
       </div>
     </div>
-    <div class="col-md-6" ng-show="topClassRaised.length > 0 || topClassStudents.length > 0" ng-cloak>
+    <div class="col-md-12" ng-show="topClassRaised.length > 0 || topClassStudents.length > 0" ng-cloak>
         <div class="container ym-teachers-leaderboard-block">
             <div class="ym-teachers-leaderboard ym-promo-block">
                 <h2 class="ym-headline">Teachers' Leaderboard</h2>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-3">
         		    <h3>Top class for<br/>dollars raised</h3>
                 <div class="ym-tl-dollars-raised col-md-12">
                     <div class="row" ng-repeat="topRaised in topClassRaised" role="listitem" ng-if="topClassRaised.length > 0" ng-cloak>
@@ -167,12 +167,12 @@
                             <div class="top-name">{{topRaised.name}}</div>
                             <div class="top-grade">{{topRaised.grade}}</div>
                             <div class="top-raised">{{topRaised.raised | currency:"$":0}}</div>
-				                    <div class="top-msg">{{topRaised.msg}}</div>
+		            <div class="top-msg">{{topRaised.msg}}</div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-3">
           		  <h3>Top class for<br/>registered students</h3>
   		          <div class="ym-tl-registered-students col-md-12">
                     <div class="row" ng-repeat="topStudent in topClassStudents" role="listitem" ng-if="topClassStudents.length > 0" ng-cloak>
@@ -182,6 +182,34 @@
                             <div class="top-grade">{{topStudent.grade}}</div>
                             <div class="top-students">{{topStudent.students}}</div>
                     				<div class="top-msg">{{topStudent.msg}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <h3>Top grade for<br/>dollars raised</h3>
+  		<div class="ym-tl-registered-students col-md-12">
+                    <div class="row" ng-repeat="topRaised in topGradeRaised" role="listitem" ng-if="topGradeRaised.length > 0" ng-cloak>
+                        <div class="col-xs-2 col-sm-2 col-md-2 top-index">#{{$index+1}}</div>
+                        <div class="col-xs-10 col-sm-10 col-md-10 top-detail">
+                            <div class="top-name">{{topRaised.name}}</div>
+                            <div class="top-grade">{{topRaised.grade}}</div>
+                            <div class="top-raised">{{topRaised.raised | currency:"$":0}}</div>
+		            <div class="top-msg">{{topRaised.msg}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <h3>Top grade for<br/>registered students</h3>
+  		<div class="ym-tl-registered-students col-md-12">
+                    <div class="row" ng-repeat="topStudent in topGradeStudents" role="listitem" ng-if="topClassStudents.length > 0" ng-cloak>
+                        <div class="col-xs-2 col-sm-2 col-md-2 top-index">#{{$index+1}}</div>
+                        <div class="col-xs-10 col-sm-10 col-md-10 top-detail">
+                            <div class="top-name">{{topStudent.name}}</div>
+                            <div class="top-grade">{{topStudent.grade}}</div>
+                            <div class="top-students">{{topStudent.students}}</div>
+                    	    <div class="top-msg">{{topStudent.msg}}</div>
                         </div>
                     </div>
                 </div>
