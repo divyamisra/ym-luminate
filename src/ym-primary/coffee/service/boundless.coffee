@@ -130,7 +130,7 @@ angular.module 'ahaLuminateApp'
         else 
           url = 'https://loadprod.boundlessfundraising.com/mobiles/heartwalkapi/getMotionActivityRoster?event_id=' + $rootScope.frId + '&roster_type=participant&list_size=5'
         $.ajax
-          url: motionApiUrl
+          url: $sce.trustAsResourceUrl(motionApiUrl)
           async: true
           type: 'GET'
           dataType: 'json'
