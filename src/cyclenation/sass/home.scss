@@ -1,0 +1,6 @@
+.background-red {
+	background: #c10e21;
+	background: -webkit-gradient(linear,left top,left bottom,color-stop(60%,#c10e21),to(black));
+	background: linear-gradient(180deg,#c10e21 60%,#000 100%);
+	border-top: 6px solid #000;
+}
