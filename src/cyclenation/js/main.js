@@ -1322,7 +1322,7 @@
       });
       
       //Get boundless motion totals
-      if ($('body').is('.pg_cn_home') {
+      if ($('body').is('.pg_cn_home')) {
         cd.getTopEventMiles();
       }
 
