@@ -4,11 +4,27 @@
 	background: linear-gradient(180deg,#c10e21 60%,#000 100%);
 	border-top: 6px solid #000;
 }
-.pg_cn_home .section-leaderboard .leaderboard-container .top-list .top-list-title {
-	background-color: #000;
-}
-.pg_cn_home .section-leaderboard .leaderboard-container .top-list .top-list-container {
-	background-color: #fff;
-	border: 0 none;
-	min-height: 312px;
+.pg_cn_home .section-leaderboard {
+   .leaderboard-container {
+      .top-list {
+         .top-list-title {
+	    background-color: #000;
+	 }
+        .top-list-container {
+  	   background-color: #fff;
+	   border: 0 none;
+	   min-height: 312px;
+         
+	   .top-list-entry .names-amounts {
+   	      overflow: hidden;
+	      white-space: nowrap;
+	      word-wrap: break-word;
+	      text-overflow: ellipsis;
+           }
+           .top-list-entry .names-amounts .amount-raised {
+	      display: block;
+           }
+	}
+     }
+   }
 }
