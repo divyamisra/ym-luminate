@@ -1054,6 +1054,43 @@
         });
     };
 
+    // BEGIN TOP EVENT MILES
+    cd.getTopEventMiles = function () {
+      var topEventHtml = '';
+      $.getJSON("/site/SPageNavigator/reus_cn_leaderboard_ids.html?pgwrap=n&callback=?",function(data){
+        $.each(data.ids,function(){
+          motion_event = this.id;
+          var event_city = this.city;
+          var event_state = this.state;
+          var event_name = this.name;
+          var motionApiUrl = 'https://' + motion_urlPrefix + '.boundlessfundraising.com/mobiles/' + motionDb + '/getActivitySummary?event_id=' + motion_event + '&list_size=5';
+
+          $.ajax({ 
+              url: motionApiUrl,
+              async: true,
+              type:'GET',
+              dataType: 'json',
+              contentType: 'application/json',
+              beforeSend: function(xhr) {
+                  xhr.setRequestHeader("Authorization", "Basic "+btoa(motion_username+':'+motion_password));
+              },
+              success: function(response){
+                  if (response.metric != undefined) {
+                    topEventHtml += '<li class="event-detail row col-12 col-lg-4 mb-4 fadein">';
+                    topEventHtml += '<div class="event-detail-content col-10"><a class="js__event-name" href="https://www2.heart.org/site/TR?fr_id='+motion_event+'&amp;pg=entry" aria-label="Visit Event '+event_name+'"><span class="city">'+event_city+'</span>, <span class="fullstate">'+event_state+'</span></a><span class="eventtype d-block">Miles: '+response.total+'</span></div>';
+                    topEventHtml += '<a href="https://www2.heart.org/site/TR?fr_id='+motion_event+'&amp;pg=entry" class="event-detail-button btn col-2" aria-label="Visit event page '+event_name+'"><i class="fas fa-angle-right" aria-hidden="true" alt=""></i></a>
+                    topEventHtml += '</li>';
+                  }
+              },
+              error: function(err) {
+                  console.log('getMotionActivityRoster err', err);
+              }
+          });
+        });
+        $('.js__leaderboard-search-results').append(topEventHtml);
+      });
+    };
+    
     function getLocation() {
       var options = {
         enableHighAccuracy: true,
@@ -1283,7 +1320,11 @@
 
         e.preventDefault();
       });
-
+      
+      //Get boundless motion totals
+      if ($('body').is('.pg_cn_home') {
+        cd.getTopEventMiles();
+      }
 
     } else if ($('body').is('.pg_entry')) {
       cd.getTopParticipants(evID);
