@@ -1,6 +1,12 @@
 .ym-teachers-leaderboard h2 {
   font-size:42px;
   color:#a41752;
+  .ym-teachers-leaderboard-block {
+    h3 {
+      max-width:70%;
+      margin:0 auto 10px;
+    }
+  }
 }
 
 body.pg-company {
