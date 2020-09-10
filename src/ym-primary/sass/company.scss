@@ -68,6 +68,7 @@ body.pg-company {
          text-align: center;
          color: $brand-primary-darker;
          margin:0 auto 10px;
+	 max-width:200px;
     }
     > [class*="col-"] {
          padding-left: 0 !important;
