@@ -1063,7 +1063,7 @@
           var event_city = this.city;
           var event_state = this.state;
           var event_name = this.name;
-          var motionApiUrl = 'https://' + motion_urlPrefix + '.boundlessfundraising.com/mobiles/' + motionDb + '/getMotionActivitySummary?event_id=' + motion_event + '&list_size=5';
+          var motionApiUrl = 'https://' + motion_urlPrefix + '.boundlessfundraising.com/mobiles/' + motionDb + '/getMotionActivitySummary?event_id=' + motion_event + '&activity_scope=event&list_size=5';
 
           $.ajax({ 
               url: motionApiUrl,
