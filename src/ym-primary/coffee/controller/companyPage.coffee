@@ -36,6 +36,7 @@ angular.module 'ahaLuminateControllers'
       $scope.topClassStudents = []
       $scope.topGradeRaised = []
       $scope.topGradeStudents = []
+      $scope.topCompanySteps = []
       $scope.schoolChallenge = ''
       $scope.schoolChallengeGoal = 0
       $scope.schoolYears = 0
@@ -422,11 +423,7 @@ angular.module 'ahaLuminateControllers'
       BoundlessService.getBMLeaderboard().then (response) ->
         if response.activities != undefined
           angular.forEach response.activities, (activity) ->
-            participantPage = undefined
-            topWalkerHtml = undefined
-            participantPage = 'https://' + (if $scope.tablePrefix == 'heart' then 'www2' else 'dev2') + '.heart.org/site/TR?px=' + activity.id + '&pg=personal&fr_id=' + $rootScope.frId
-            topWalkerHtml = '<li><div class="d-flex"><div class="flex-grow-1"><a title="' + activity.name + ' Steps" href="' + participantPage + '">' + activity.name + '</a></div><div class="raised">Steps<br><strong>' + activity.total + '</strong></div></div></li>'
-            console.log topWalkerHtml
+            $scope.topCompanySteps.push activity
 
       setCompanyCity = (companyCity) ->
         $rootScope.companyCity = companyCity
