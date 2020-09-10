@@ -1107,7 +1107,7 @@
             topEventHtml += '    <a class="event-name" href="/site/TR?pg=entry&fr_id='+event_id+'"><span class="city">'+event_city+'</span>, <span class="fullstate">'+event_state+'</span></a>';
             topEventHtml += '  </div>';
             topEventHtml += '  <div class="names-amounts col-4 pl-0">';
-            topEventHtml += '    <span class="amount-raised">'+parseInt(this.total).toFixed(2)+'</span>';
+            topEventHtml += '    <span class="distance">'+parseInt(this.total).formatMoney(2)+' Miles</span>';
             topEventHtml += '  </div>';
             topEventHtml += '</div>';
         });
