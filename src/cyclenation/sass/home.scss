@@ -1,6 +1,14 @@
-.background-red {
+.pg_cn_home .background-red {
 	background: #c10e21;
 	background: -webkit-gradient(linear,left top,left bottom,color-stop(60%,#c10e21),to(black));
 	background: linear-gradient(180deg,#c10e21 60%,#000 100%);
 	border-top: 6px solid #000;
+}
+.pg_cn_home .section-leaderboard .leaderboard-container .top-list .top-list-title {
+	background-color: #000;
+}
+.pg_cn_home .section-leaderboard .leaderboard-container .top-list .top-list-container {
+	background-color: #fff;
+	border: 0 none;
+	min-height: 312px;
 }
