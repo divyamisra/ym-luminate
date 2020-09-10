@@ -1067,7 +1067,7 @@
 
           $.ajax({ 
               url: motionApiUrl,
-              async: true,
+              async: false,
               type:'GET',
               dataType: 'json',
               contentType: 'application/json',
@@ -1077,7 +1077,7 @@
               success: function(response){
                   if (response.metric != undefined) {
                     topEventHtml += '<li class="event-detail row col-12 col-lg-4 mb-4 fadein">';
-                    topEventHtml += '<div class="event-detail-content col-10"><a class="js__event-name" href="TR?fr_id='+motion_event+'&pg=entry" aria-label="Visit Event '+event_name+'"><span class="city">'+event_city+'</span>, <span class="fullstate">'+event_state+'</span></a><span class="eventtype d-block">Miles: '+response.total+'</span></div>';
+                    topEventHtml += '<div class="event-detail-content col-10"><a class="js__event-name" href="TR?fr_id='+motion_event+'&pg=entry" aria-label="Visit Event '+event_name+'"><span class="city">'+event_city+'</span>, <span class="fullstate">'+event_state+'</span></a><span class="eventtype d-block">Miles: '+parseInt(response.total).toFixed(2)+'</span></div>';
                     topEventHtml += '<a href="TR?fr_id='+motion_event+'&pg=entry" class="event-detail-button btn col-2" aria-label="Visit event page '+event_name+'"><i class="fas fa-angle-right" aria-hidden="true" alt=""></i></a>';
                     topEventHtml += '</li>';
                   }
