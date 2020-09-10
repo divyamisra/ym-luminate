@@ -1101,13 +1101,12 @@
             var event_state = this.event_state;
             var event_name = this.event_name;
 
-            topEventHtml += '<li class="event-detail row col-12 col-lg-4 mb-4 fadein">';
-            topEventHtml += '<div class="event-detail-content col-10"><a class="js__event-name" href="TR?fr_id='+event_id+'&pg=entry" aria-label="Visit Event '+event_name+'"><span class="city">'+event_city+'</span>, <span class="fullstate">'+event_state+'</span></a><span class="eventtype d-block">Miles: '+parseInt(this.total).toFixed(2)+'</span></div>';
-            topEventHtml += '<a href="TR?fr_id='+event_id+'&pg=entry" class="event-detail-button btn col-2" aria-label="Visit event page '+event_name+'"><i class="fas fa-angle-right" aria-hidden="true" alt=""></i></a>';
-            topEventHtml += '</li>';
-
+            topEventHtml += '<div class="top-list-entry row pb-2">';
+            topEventHtml += '  <div class="badges col-2"></div>';
+            topEventHtml += '  <div class="names-amounts col-10 pl-0"><a class="event-name" href="/site/TR?pg=entry&fr_id='+event_id+'"><span class="city">'+event_city+'</span>, <span class="fullstate">'+event_state+'</span></a><span class="amount-raised">'+parseInt(this.total).toFixed(2)+'</span></div>';
+            topEventHtml += '</div>';
         });
-        $('.js__leaderboard-search-results').append(topEventHtml);
+        $('.js__top-events-list').append(topEventHtml);
       });
     };
     
