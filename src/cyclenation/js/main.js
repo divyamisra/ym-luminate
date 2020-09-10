@@ -1057,8 +1057,9 @@
     // BEGIN TOP EVENT MILES
     cd.getTopEventMiles = function () {
       var topEventHtml = '';
+      var topEventList = [];
       $.getJSON("/site/SPageNavigator/reus_cn_leaderboard_ids.html?pgwrap=n&callback=?",function(data){
-        $.each(data.ids,function(){
+        $.each(data.ids,function(i){
           motion_event = this.id;
           var event_city = this.city;
           var event_state = this.state;
@@ -1076,16 +1077,35 @@
               },
               success: function(response){
                   if (response.metric != undefined) {
-                    topEventHtml += '<li class="event-detail row col-12 col-lg-4 mb-4 fadein">';
-                    topEventHtml += '<div class="event-detail-content col-10"><a class="js__event-name" href="TR?fr_id='+motion_event+'&pg=entry" aria-label="Visit Event '+event_name+'"><span class="city">'+event_city+'</span>, <span class="fullstate">'+event_state+'</span></a><span class="eventtype d-block">Miles: '+parseInt(response.total).toFixed(2)+'</span></div>';
-                    topEventHtml += '<a href="TR?fr_id='+motion_event+'&pg=entry" class="event-detail-button btn col-2" aria-label="Visit event page '+event_name+'"><i class="fas fa-angle-right" aria-hidden="true" alt=""></i></a>';
-                    topEventHtml += '</li>';
+                    response.event_id = motion_event;
+                    response.event_name = event_name;
+                    response.event_city = event_city;
+                    response.event_state = event_state;
+                    topEventList[i] = response;
                   }
               },
               error: function(err) {
                   console.log('getMotionActivityRoster err', err);
               }
           });
+        });
+        //sort totals highest to lowest
+        topEventList.sort(function(a, b) {
+            if (a.total === b.total) {return 0;}
+            else {return (a.total < b.total) ? 1 : -1;}
+        });
+        //write out totals
+        $.each(topEventList,function(){
+            var event_id = this.event_id;
+            var event_city = this.event_city;
+            var event_state = this.event_state;
+            var event_name = this.event_name;
+
+            topEventHtml += '<li class="event-detail row col-12 col-lg-4 mb-4 fadein">';
+            topEventHtml += '<div class="event-detail-content col-10"><a class="js__event-name" href="TR?fr_id='+event_id+'&pg=entry" aria-label="Visit Event '+event_name+'"><span class="city">'+event_city+'</span>, <span class="fullstate">'+event_state+'</span></a><span class="eventtype d-block">Miles: '+parseInt(this.total).toFixed(2)+'</span></div>';
+            topEventHtml += '<a href="TR?fr_id='+event_id+'&pg=entry" class="event-detail-button btn col-2" aria-label="Visit event page '+event_name+'"><i class="fas fa-angle-right" aria-hidden="true" alt=""></i></a>';
+            topEventHtml += '</li>';
+
         });
         $('.js__leaderboard-search-results').append(topEventHtml);
       });
