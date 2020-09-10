@@ -74,19 +74,11 @@ body.pg-company {
          padding-left: 0 !important;
          padding-right: 0 !important;
     } 
-    /*
-    .ym-tl-dollars-raised .row {
-         margin-right: 2px;
-    }
-     .ym-tl-registered-students .row {
-         margin-left:2px;
-    } 
-    */
-     .ym-tl-dollars-raised, .ym-tl-registered-students {
+    .ym-tl-dollars-raised, .ym-tl-registered-students {
          .row {
              padding: 10px;
              color: #000;
-             margin-bottom: 5px;
+             margin: 0 2px 5px 2px;
              &:nth-child(1) {
                  background: #94C960;
             }
