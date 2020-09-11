@@ -1086,8 +1086,8 @@
                     response.event_state = event_state;
                     response.event_raised - event_raised;
                     topEventList[i] = response;
-                    totalMiles += parseInt(response.total);
-                    totalRaised += parseInt(event_raised);
+                    totalMiles += parseFloat(response.total);
+                    totalRaised += parseFloat(event_raised);
                   }
               },
               error: function(err) {
