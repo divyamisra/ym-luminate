@@ -1097,9 +1097,11 @@
         });
         $('.therm-raised').html("$"+totalRaised.formatMoney(0));
         $('.therm-miles').html(totalMiles.formatMoney(0));
+        var goalRaised = parseInt($('#therm-progress').data("goal"));
+        var goalMiles = parseInt($('#therm2-progress').data("goal"));
         
-        $('#therm-progress').css("width",((totalRaised/1000000) * 100).toFixed(2)+'%');
-        $('#therm2-progress').css("width",((totalMiles/1000000) * 100).toFixed(2)+'%');
+        $('#therm-progress').css("width",((totalRaised/goalRaised) * 100).toFixed(2)+'%');
+        $('#therm2-progress').css("width",((totalMiles/goalMiles) * 100).toFixed(2)+'%');
         
         //sort totals highest to lowest
         topEventList.sort(function(a, b) {
