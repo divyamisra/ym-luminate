@@ -1114,8 +1114,7 @@
             var event_name = this.event_name;
 
             topEventHtml += '<div class="top-list-entry row pb-2">';
-            topEventHtml += '  <div class="badges col-1"></div>';
-            topEventHtml += '  <div class="names-amounts col-7 pl-0">';
+            topEventHtml += '  <div class="names-amounts col-8 pl-0">';
             topEventHtml += '    <a class="event-name" href="/site/TR?pg=entry&fr_id='+event_id+'"><span class="city">'+event_city+'</span>, <span class="fullstate">'+event_state+'</span></a>';
             topEventHtml += '  </div>';
             topEventHtml += '  <div class="names-amounts col-4 pl-0 text-right">';
