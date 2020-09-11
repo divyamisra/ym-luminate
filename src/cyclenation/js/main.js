@@ -1058,12 +1058,15 @@
     cd.getTopEventMiles = function () {
       var topEventHtml = '';
       var topEventList = [];
+      var totalRaised = 0;
+      var totalMiles = 0;
       $.getJSON("/site/SPageNavigator/reus_cn_leaderboard_ids.html?pgwrap=n&callback=?",function(data){
         $.each(data.ids,function(i){
           motion_event = this.id;
           var event_city = this.city;
           var event_state = this.state;
           var event_name = this.name;
+          var event_raised = parseInt((this.raised).replace(/[,]+/g, "").replace("$","")).toFixed(0);
           var motionApiUrl = 'https://' + motion_urlPrefix + '.boundlessfundraising.com/mobiles/' + motionDb + '/getMotionActivitySummary?event_id=' + motion_event + '&activity_scope=event&list_size=5';
 
           $.ajax({ 
@@ -1081,7 +1084,10 @@
                     response.event_name = event_name;
                     response.event_city = event_city;
                     response.event_state = event_state;
+                    response.event_raised - event_raised;
                     topEventList[i] = response;
+                    totalMiles += parseInt(response.total);
+                    totalRaised += parseInt(event_raised);
                   }
               },
               error: function(err) {
@@ -1089,6 +1095,12 @@
               }
           });
         });
+        $('.therm-raised').html("$"+totalRaised.formatMoney(0));
+        $('.therm-miles').html(totalMiles.formatMoney(0));
+        
+        $('#therm-progress').css("width",((totalRaised/1000000) * 100).toFixed(2)+'%');
+        $('#therm2-progress').css("width",((totalMiles/1000000) * 100).toFixed(2)+'%');
+        
         //sort totals highest to lowest
         topEventList.sort(function(a, b) {
             if (a.total === b.total) {return 0;}
