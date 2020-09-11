@@ -28,3 +28,35 @@
      }
    }
 }
+.pg_cn_home .thermometers {
+	text-align: center;
+	padding: 0;
+	background: #111f46;
+	font-size: 20px;
+	display: block;
+	p {
+	  font-size: 20px;
+          color: #fff;
+          margin-top: 5px;
+	}
+	.therm--bar {
+  	  position: relative;
+	  width: 100%;
+	  height: 40px;
+	  background-color: #e7edf4;
+	  border-radius: 100px;
+        }
+	.therm--rounded {
+	  height: 100%;
+	  border-radius: 100px;
+	  overflow: hidden;
+	  transform: translateZ(0);
+        }
+	.therm--progress {
+	  position: relative;
+	  max-width: 100%;
+	  height: 100%;
+	  background-color: #c10e21;
+	  transition: width 2s linear;
+        }
+}
