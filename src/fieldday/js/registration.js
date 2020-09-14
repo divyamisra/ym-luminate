@@ -2221,7 +2221,8 @@
               $('.part-type-fee-text').remove();
             }
 
-
-
+            if ($('body').is('.pg_tfind')) {
+              setTimeout(function(){ document.getElementById('fr_team_name').title = 'Team Name required'; }, 1000);
+            }
 
 })(jQuery);
