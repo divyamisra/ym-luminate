@@ -2207,7 +2207,7 @@
 
 
 
-            if ($('body').is('.pg_tfind')) {
+            if ($('#fr_team_name').length > 0) {
               $('#fr_team_name').attr('title', 'Team Name required');
             }
 
