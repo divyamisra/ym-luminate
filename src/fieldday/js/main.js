@@ -738,8 +738,8 @@
                             });
                         } else {
                             $('.js--loading').hide();
-                            $('.js--no-event-results').removeClass('d-none').html('<span>We&rsquo;re not seeing anything. Maybe try different search term?</span>');
-                            $('.js--no-event-results').attr('role', 'alert');
+                            $('.js--no-event-results').attr('role', 'alert').removeClass('d-none').html('<span>We&rsquo;re not seeing anything. Maybe try different search term?</span>');
+
                         }
                     },
                     error: function (response) {
@@ -800,8 +800,8 @@
                             $('.js--event-results-container').removeAttr('hidden');
                         } else {
                             $('.js--loading').hide();
-                            $('.js--no-event-results').removeClass('d-none');
-                            $('.js--no-event-results').attr('role', 'alert');
+                            $('.js--no-event-results').attr('role', 'alert').removeClass('d-none');
+
                         }
                     },
                     error: function (response) {
@@ -861,8 +861,8 @@
                             $('.js--event-results-container').removeAttr('hidden');
                         } else {
                             $('.js--loading').hide();
-                            $('.js--no-event-results').removeClass('d-none');
-                            $('.js--no-event-results').attr('role', 'alert');
+                            $('.js--no-event-results').attr('role', 'alert').removeClass('d-none');
+
                         }
                     },
                     error: function (response) {
@@ -928,8 +928,7 @@
                             $('.js--participant-search-results').removeAttr('hidden');
                         } else {
                             $('.js--participant-loading').hide();
-                            $('.js--participant-no-event-results').removeClass('d-none');
-                            $('.js--no-participant-results, .js--participant-no-event-results').attr('role', 'alert');
+                            $('.js--participant-no-event-results').attr('role', 'alert').removeClass('d-none');
                         }
                     },
                     error: function (response) {
@@ -982,7 +981,7 @@
                             $('.js--participant-search-results').removeAttr('hidden');
                         } else {
                             $('.js--participant-loading').hide();
-                            $('.js--participant-no-event-results').removeClass('d-none');
+                            $('.js--participant-no-event-results').attr('role', 'alert').removeClass('d-none');
                         }
                     },
                     error: function (response) {
