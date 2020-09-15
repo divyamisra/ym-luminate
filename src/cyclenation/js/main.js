@@ -1103,28 +1103,30 @@
         $('#therm-progress').css("width",((totalRaised/goalRaised) * 100).toFixed(2)+'%');
         $('#therm2-progress').css("width",((totalMiles/goalMiles) * 100).toFixed(2)+'%');
         
-        //sort totals highest to lowest
-        topEventList.sort(function(a, b) {
-            if (a.total === b.total) {return 0;}
-            else {return (a.total < b.total) ? 1 : -1;}
-        });
-        //write out totals
-        $.each(topEventList,function(){
-            var event_id = this.event_id;
-            var event_city = this.event_city;
-            var event_state = this.event_state;
-            var event_name = this.event_name;
+        if ($('body').is('.pg_cn_home')) {
+          //sort totals highest to lowest
+          topEventList.sort(function(a, b) {
+              if (a.total === b.total) {return 0;}
+              else {return (a.total < b.total) ? 1 : -1;}
+          });
+          //write out totals
+          $.each(topEventList,function(){
+              var event_id = this.event_id;
+              var event_city = this.event_city;
+              var event_state = this.event_state;
+              var event_name = this.event_name;
 
-            topEventHtml += '<div class="top-list-entry row pb-2">';
-            topEventHtml += '  <div class="names-amounts col-8 pl-0">';
-            topEventHtml += '    <a class="event-name" href="/site/TR?pg=entry&fr_id='+event_id+'"><span class="city">'+event_city+'</span>, <span class="fullstate">'+event_state+'</span></a>';
-            topEventHtml += '  </div>';
-            topEventHtml += '  <div class="names-amounts col-4 pl-0 text-right">';
-            topEventHtml += '    <span class="distance">'+parseInt(this.total).formatMoney(2)+' Miles</span>';
-            topEventHtml += '  </div>';
-            topEventHtml += '</div>';
+              topEventHtml += '<div class="top-list-entry row pb-2">';
+              topEventHtml += '  <div class="names-amounts col-8 pl-0">';
+              topEventHtml += '    <a class="event-name" href="/site/TR?pg=entry&fr_id='+event_id+'"><span class="city">'+event_city+'</span>, <span class="fullstate">'+event_state+'</span></a>';
+              topEventHtml += '  </div>';
+              topEventHtml += '  <div class="names-amounts col-4 pl-0 text-right">';
+              topEventHtml += '    <span class="distance">'+parseInt(this.total).formatMoney(2)+' Miles</span>';
+              topEventHtml += '  </div>';
+              topEventHtml += '</div>';
+          });
+          $('.js__top-events-list').append(topEventHtml);
         });
-        $('.js__top-events-list').append(topEventHtml);
       });
     };
     
@@ -1359,9 +1361,7 @@
       });
       
       //Get boundless motion totals
-      if ($('body').is('.pg_cn_home')) {
-        cd.getTopEventMiles();
-      }
+      cd.getTopEventMiles();
 
     } else if ($('body').is('.pg_entry')) {
       cd.getTopParticipants(evID);
