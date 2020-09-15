@@ -840,7 +840,7 @@
                 </div>
              </div>
           </div>
-	  <div class="text-center" ng-show="hasOOTDashboard" ng-scope>
+	  <div class="text-center" ng-if="prizes && prizes.length > 0" ng-cloak>
              <a class="btn btn-lg btn-primary" ng-click="monsterEdit()">
                 <strong>Customize Hero!</strong>
              </a>
@@ -848,7 +848,7 @@
              <strong>Coming Soon!</strong>
              </a>-->
           </div>
-	  <div class="text-center" ng-show="!hasOOTDashboard" ng-scope>
+	  <div class="text-center"  ng-if="!prizes || prizes.length == 0" ng-cloak>
              We're building your heart hero customizer
           </div>
         </div>
