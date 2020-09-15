@@ -1097,8 +1097,8 @@
         });
         $('.therm-raised').html("$"+totalRaised.formatMoney(0));
         $('.therm-miles').html(totalMiles.formatMoney(0));
-        var goalRaised = parseInt($('#therm-progress').data("goal"));
-        var goalMiles = parseInt($('#therm2-progress').data("goal"));
+        var goalRaised = parseFloat($('#therm-progress').data("goal"));
+        var goalMiles = parseFloat($('#therm2-progress').data("goal"));
         
         $('#therm-progress').css("width",((totalRaised/goalRaised) * 100).toFixed(2)+'%');
         $('#therm2-progress').css("width",((totalMiles/goalMiles) * 100).toFixed(2)+'%');
@@ -1121,7 +1121,7 @@
               topEventHtml += '    <a class="event-name" href="/site/TR?pg=entry&fr_id='+event_id+'"><span class="city">'+event_city+'</span>, <span class="fullstate">'+event_state+'</span></a>';
               topEventHtml += '  </div>';
               topEventHtml += '  <div class="names-amounts col-4 pl-0 text-right">';
-              topEventHtml += '    <span class="distance">'+parseInt(this.total).formatMoney(2)+' Miles</span>';
+              topEventHtml += '    <span class="distance">'+parseFloat(this.total).formatMoney(2)+' Miles</span>';
               topEventHtml += '  </div>';
               topEventHtml += '</div>';
           });
