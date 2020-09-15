@@ -1126,7 +1126,7 @@
               topEventHtml += '</div>';
           });
           $('.js__top-events-list').append(topEventHtml);
-        });
+        }
       });
     };
     
