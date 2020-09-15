@@ -733,7 +733,7 @@
                                     greetingUrl + '" class="event-detail-button btn col-2" aria-label="Visit event page for CycleNation ' + eventCity + '"><i class="fas fa-angle-right" aria-hidden="true" alt=""></i></a></li>';
 
                                 if (eventStatus === '1' || eventStatus === '2' || eventStatus === '3') {
-                                    $('.js--event-search-results').append(eventRow);
+                                    $('.js--event-search-results').addAttr('aria-live', 'polite').append(eventRow);
                                 }
                             });
                         } else {
@@ -782,7 +782,7 @@
 
 
                                 if (eventStatus === '1' || eventStatus === '2' || eventStatus === '3') {
-                                    $('.js--event-search-results').append(eventRow);
+                                    $('.js--event-search-results').addAttr('aria-live', 'polite').append(eventRow);
                                 }
                             });
 
@@ -843,7 +843,7 @@
 
 
                                 if (eventStatus === '1' || eventStatus === '2' || eventStatus === '3') {
-                                    $('.js--event-search-results').append(eventRow);
+                                    $('.js--event-search-results').addAttr('aria-live', 'polite').append(eventRow);
                                 }
                             });
 
@@ -911,7 +911,7 @@
 
                                 eventRow +='</p></div><div class="landing-participant-search__register col-12 col-lg-6"><p><a href="'+ company.companyURL +'" class="btn btn-primary">Register</a></p></div>';
 
-                                $('.js--participant-search-results').append(eventRow);
+                                $('.js--participant-search-results').addAttr('aria-live', 'polite').append(eventRow);
 
                             });
 
@@ -965,7 +965,7 @@
                                 var eventRow = '<div class="row py-3 ' + (i > 10 ? ' d-none' : '') + '"><div class="landing-participant-search__name col-12 col-lg-6"><p><a href="'+ participant.personalPageUrl + '">' + participant.name.first + ' ' + participant.name.last +'</a><br>' +
                               (participant.teamName ? participant.teamName : "")  + '</p></div><div class="landing-participant-search__register col-12 col-lg-6"><p><a href="'+ participant.donationUrl +'" class="btn btn-primary">Donate</a></p></div>';
 
-                                $('.js--participant-search-results').append(eventRow);
+                                $('.js--participant-search-results').addAttr('aria-live', 'polite').append(eventRow);
 
                             });
 
