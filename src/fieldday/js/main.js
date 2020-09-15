@@ -733,7 +733,7 @@
                                     greetingUrl + '" class="event-detail-button btn col-2" aria-label="Visit event page for CycleNation ' + eventCity + '"><i class="fas fa-angle-right" aria-hidden="true" alt=""></i></a></li>';
 
                                 if (eventStatus === '1' || eventStatus === '2' || eventStatus === '3') {
-                                    $('.js--event-search-results').addAttr('aria-live', 'polite').append(eventRow);
+                                    $('.js--event-search-results').attr('aria-live', 'polite').append(eventRow);
                                 }
                             });
                         } else {
@@ -782,7 +782,7 @@
 
 
                                 if (eventStatus === '1' || eventStatus === '2' || eventStatus === '3') {
-                                    $('.js--event-search-results').addAttr('aria-live', 'polite').append(eventRow);
+                                    $('.js--event-search-results').attr('aria-live', 'polite').append(eventRow);
                                 }
                             });
 
@@ -843,7 +843,7 @@
 
 
                                 if (eventStatus === '1' || eventStatus === '2' || eventStatus === '3') {
-                                    $('.js--event-search-results').addAttr('aria-live', 'polite').append(eventRow);
+                                    $('.js--event-search-results').attr('aria-live', 'polite').append(eventRow);
                                 }
                             });
 
@@ -911,7 +911,7 @@
 
                                 eventRow +='</p></div><div class="landing-participant-search__register col-12 col-lg-6"><p><a href="'+ company.companyURL +'" class="btn btn-primary">Register</a></p></div>';
 
-                                $('.js--participant-search-results').addAttr('aria-live', 'polite').append(eventRow);
+                                $('.js--participant-search-results').attr('aria-live', 'polite').append(eventRow);
 
                             });
 
@@ -929,7 +929,7 @@
                         } else {
                             $('.js--participant-loading').hide();
                             $('.js--participant-no-event-results').removeClass('d-none');
-                            $('.js--no-participant-results, .js--participant-no-event-results').addAttr('role', 'alert');
+                            $('.js--no-participant-results, .js--participant-no-event-results').attr('role', 'alert');
                         }
                     },
                     error: function (response) {
@@ -965,7 +965,7 @@
                                 var eventRow = '<div class="row py-3 ' + (i > 10 ? ' d-none' : '') + '"><div class="landing-participant-search__name col-12 col-lg-6"><p><a href="'+ participant.personalPageUrl + '">' + participant.name.first + ' ' + participant.name.last +'</a><br>' +
                               (participant.teamName ? participant.teamName : "")  + '</p></div><div class="landing-participant-search__register col-12 col-lg-6"><p><a href="'+ participant.donationUrl +'" class="btn btn-primary">Donate</a></p></div>';
 
-                                $('.js--participant-search-results').addAttr('aria-live', 'polite').append(eventRow);
+                                $('.js--participant-search-results').attr('aria-live', 'polite').append(eventRow);
 
                             });
 
@@ -2361,7 +2361,7 @@
           $('#company-page-search, #participant-page-search').on('click', function(){
             $('.js--participant-search-results').html('');
             $('.js--participant-no-event-results').addClass('d-none');
-            $('.js--participant-more-event-results').addAttr('hidden');
+            $('.js--participant-more-event-results').attr('hidden');
           });
 
           //State and Zip search
