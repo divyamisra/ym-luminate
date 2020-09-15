@@ -1360,9 +1360,6 @@
         e.preventDefault();
       });
       
-      //Get boundless motion totals
-      cd.getTopEventMiles();
-
     } else if ($('body').is('.pg_entry')) {
       cd.getTopParticipants(evID);
       cd.getTopTeams(evID);
@@ -1376,6 +1373,9 @@
           $('#fundraiserMiles').hide();
       }
     }
+
+    //Get boundless motion totals
+    cd.getTopEventMiles();
 
     // TODO - rename to make clear that this is a redirect search form with single field
     $('.js__rider-search').on('submit', function (e) {
