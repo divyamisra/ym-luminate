@@ -1405,7 +1405,7 @@
                 }
             });
 
-            $('#team-roster_filter input[type="search"]').attr('id', 'js--team_search').wrap('<div class="input-group"></div>').addClass('form-control').after('<div class="input-group-append"><button id="js--team-search" aria-label="Search for a Team"  class="btn btn-primary btn-outline-secondary" type="button"><i class="fas fa-search"></i></button></div>');
+            $('#team-roster_filter input[type="search"]').attr('id', 'team_search').wrap('<div class="input-group"></div>').addClass('form-control').hide().after('<div class="input-group"><input type="text" id="js--team-search-text" val=""></div><div class="input-group-append"><button id="js--team-search" aria-label="Search for a Team"  class="btn btn-primary btn-outline-secondary" type="button"><i class="fas fa-search"></i></button></div>');
 
             $('#team-roster_filter label').attr('for', 'team_search');
 
