@@ -78,6 +78,8 @@ angular.module 'trPcControllers'
           $rootScope.hasOOTDashboard = response.data.coordinatorHasDashboard
         , (response) ->
           # TODO
+      else
+        $rootScope.hasOOTDashboard = true
 
       #school years, challenge and level update
       $scope.schoolInfo = {}
@@ -836,13 +838,10 @@ angular.module 'trPcControllers'
           success: (response) ->
             if response.data.student.student_id isnt null and typeof response.data.student.avatar_url isnt 'undefined'
               avatarURL = response.data.student.avatar_url
+              if avatarURL.indexOf('default/monster') > 0
+                avatarURL = ""
             else
-              if $rootScope.tablePrefix is 'heartdev'
-                avatarURL = 'https://tools.heart.org/aha_ym21_dev/virtualworld/img/avatar-charger.png'
-              else if $rootScope.tablePrefix is 'heartnew'
-                avatarURL = 'https://tools.heart.org/aha_ym21_testing/virtualworld/img/avatar-charger.png'
-              else
-                avatarURL = 'https://tools.heart.org/aha_ym21/virtualworld/img/avatar-charger.png'
+                avatarURL = ""
             $scope.personalInfo.avatar = avatarURL
       $scope.getPersonalAvatar()
 

@@ -121,6 +121,28 @@ angular.module 'ahaLuminateApp'
           , (response) ->
             response
             
+      getBMLeaderboard: ->
+        motion_username = 'heartwalkapi'
+        motion_password = 'toYEaJuV98VJdIEn'
+        if $rootScope.tablePrefix == 'heartdev'
+          url = 'https://load.boundlessfundraising.com/mobiles/ahahw/getMotionActivityRoster?event_id=' + $rootScope.frId + '&roster_type=participant&list_size=5'
+        else
+          url = 'https://loadprod.boundlessfundraising.com/mobiles/ahahw/getMotionActivityRoster?event_id=' + $rootScope.frId + '&roster_type=participant&list_size=5'
+        jQuery.ajax
+          url: $sce.trustAsResourceUrl(url)
+          async: true
+          type: 'GET'
+          dataType: 'json'
+          contentType: 'application/json'
+          beforeSend: (xhr) ->
+            xhr.setRequestHeader 'Authorization', 'Basic ' + btoa(motion_username + ':' + motion_password)
+            return
+          success: (response) ->
+            response
+          error: (err) ->
+            console.log 'getMotionActivityRoster err', err
+            response
+
       defaultStandardGifts: ->
         [
           {
