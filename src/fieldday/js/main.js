@@ -1395,7 +1395,7 @@
             $('#team-roster_info').insertBefore($('#team-roster_filter')).wrap('<div class="col-lg-6 col-md-12 sorter pl-md-0"></div>');
             $('#team-roster_filter').wrap('<div class="col-lg-6 col-md-12"></div>');
 
-            $('#team-roster_filter input[type="search"]').attr('id', 'team_search').wrap('<div class="input-group"></div>').addClass('form-control').hide().after('<div class="input-group"><input type="text" name="js--team-search-text" id="js--team-search-text" val=""></div><div class="input-group-append"><button id="js--team-search-button" aria-label="Search for a Team"  class="btn btn-primary btn-outline-secondary" type="button"><i class="fas fa-search"></i></button></div>');
+            $('#team-roster_filter input[type="search"]').attr('id', 'team_search').wrap('<div class="input-group"></div>').addClass('form-control').hide().after('<div class="input-group"><input class="form-control" type="text" name="js--team-search-text" id="js--team-search-text" val=""></div><div class="input-group-append"><button id="js--team-search-button" aria-label="Search for a Team"  class="btn btn-primary btn-outline-secondary" type="button"><i class="fas fa-search"></i></button></div>');
 
             $('#team-roster_filter label').attr('for', 'js--team-search-text');
 
@@ -1403,7 +1403,7 @@
                 window.cdTeamRosterTable.search($("#js--team-search-text").val()).draw();
             });
 
-            $('#js--team-search-button').keypress(function(event){
+            $('#js--team-search-text').keypress(function(event){
                 var keycode = (event.keyCode ? event.keyCode : event.which);
                 if(keycode == '13'){
                     window.cdTeamRosterTable.search($("#js--team-search-text").val()).draw();
@@ -1441,13 +1441,13 @@
             $('#participant-roster_filter label').attr('for', 'js--participant-search-text');
 
             $('#js--participant-search-button').click(function () {
-                window.cdTeamRosterTable.search($("#js--participant-search-text").val()).draw();
+                window.cdParticipantRosterTable.search($("#js--participant-search-text").val()).draw();
             });
 
             $('#js--participant-search-text').keypress(function(event){
                 var keycode = (event.keyCode ? event.keyCode : event.which);
                 if(keycode == '13'){
-                    window.cdTeamRosterTable.search($("#js--participant-search-text").val()).draw();
+                    window.cdParticipantRosterTable.search($("#js--participant-search-text").val()).draw();
                     $('#js--participant-search-button').focus();
                 }
             });
