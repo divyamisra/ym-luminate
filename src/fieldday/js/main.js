@@ -1401,12 +1401,14 @@
 
             $('#js--team-search-button').click(function () {
                 window.cdTeamRosterTable.search($("#js--team-search-text").val()).draw();
+                $('#team-roster').att('aria-live', 'polite');
             });
 
             $('#js--team-search-text').keypress(function(event){
                 var keycode = (event.keyCode ? event.keyCode : event.which);
                 if(keycode == '13'){
                     window.cdTeamRosterTable.search($("#js--team-search-text").val()).draw();
+                    $('#team-roster').att('aria-live', 'polite');
                 }
             });
 
@@ -1441,12 +1443,14 @@
 
             $('#js--participant-search-button').click(function () {
                 window.cdParticipantRosterTable.search($("#js--participant-search-text").val()).draw();
+                $('#participant-roster').att('aria-live', 'polite');
             });
 
             $('#js--participant-search-text').keypress(function(event){
                 var keycode = (event.keyCode ? event.keyCode : event.which);
                 if(keycode == '13'){
                     window.cdParticipantRosterTable.search($("#js--participant-search-text").val()).draw();
+                    $('#participant-roster').att('aria-live', 'polite');
                 }
             });
 
