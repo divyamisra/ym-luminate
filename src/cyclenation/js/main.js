@@ -1007,7 +1007,7 @@
                     $(response.activities).each(function(){
                         var teamName = this.name;
                         var miles = parseFloat(this.total).formatMoney(0);
-                        var topTeamRow = '<div class="top-list-entry row pb-2"><div class="badges col-2"> </div><div class="names-amounts col-10 pl-0"> <a class="participant-name" href="TR/?team_id=' + teamId + '&amp;pg=team&amp;fr_id=' + evID + '">' + teamName + '</a> <span class="amount-raised">' + miles + ' Miles</span> </div></div>';
+                        var topTeamRow = '<div class="top-list-entry row pb-2"><div class="badges col-2"> </div><div class="names-amounts col-10 pl-0"> <a class="team-name" href="TR/?team_id=' + this.id + '&amp;pg=team&amp;fr_id=' + evID + '">' + teamName + '</a> <span class="amount-raised">' + miles + ' Miles</span> </div></div>';
                         $('.js__top-teams-miles').append(topTeamRow);
                     });
                 }
@@ -1038,7 +1038,7 @@
                     $(response.activities).each(function(){
                         var companyName = this.name;
                         var miles = parseFloat(this.total).formatMoney(0);
-                        var topCompanyHtml = '<div class="top-list-entry row pb-2"> <div class="badges col-2"> </div><div class="names-amounts col-10 pl-0"> <a class="participant-name" href="TR?company_id=' + this.id + '&fr_id=' + evID + '&pg=company">' + companyName + '</a> <span class="amount-raised">' + miles + ' Miles</span> </div></div>';
+                        var topCompanyHtml = '<div class="top-list-entry row pb-2"> <div class="badges col-2"> </div><div class="names-amounts col-10 pl-0"> <a class="company-name" href="TR?company_id=' + this.id + '&fr_id=' + evID + '&pg=company">' + companyName + '</a> <span class="amount-raised">' + miles + ' Miles</span> </div></div>';
                         $('.js__top-companies-miles').append(topCompanyHtml);
                     });
                 }
