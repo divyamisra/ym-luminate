@@ -36,6 +36,7 @@ angular.module 'ahaLuminateControllers'
       $scope.topClassStudents = []
       $scope.topGradeRaised = []
       $scope.topGradeStudents = []
+      $scope.topCompanySteps = []
       $scope.schoolChallenge = ''
       $scope.schoolChallengeGoal = 0
       $scope.schoolYears = 0
@@ -192,7 +193,7 @@ angular.module 'ahaLuminateControllers'
           $scope.$apply()
         if participants and participants.length > 0
           angular.forEach participants, (participant, participantIndex) ->
-            participantsString += '{name: "' + participant.name.first + ' ' + participant.name.last + '", raised: "' + participant.amountRaisedFormatted + '"}'
+            participantsString += '{name: "' + participant.name.first + ' ' + participant.name.last + '", raised: "' + participant.amountRaisedFormatted + '", cons_id: ' + participant.consId + '}'
             if participantIndex < (participants.length - 1)
               participantsString += ', '
           companyParticipantsString = '{participants: [' + participantsString + '], totalNumber: ' + participants.length + '}'
@@ -418,7 +419,12 @@ angular.module 'ahaLuminateControllers'
               msg: '# Students'
 
       getLeaderboards()
-              
+
+      BoundlessService.getBMLeaderboard().then (response) ->
+        if response.activities != undefined
+          angular.forEach response.activities, (activity) ->
+            $scope.topCompanySteps.push activity
+
       setCompanyCity = (companyCity) ->
         $rootScope.companyCity = companyCity
         if not $rootScope.$$phase

@@ -30,6 +30,9 @@
     background-image: none;
     nav{
       background-color: transparent;
+      &.mobile-utility-nav {
+        background-color: #eee;
+      }
     }
   }
 
