@@ -367,6 +367,9 @@ nav {
 }
 
 .nav-item--find {
+  a {
+    cursor: pointer;
+  }
   &.open {
     .dropdown-menu {
       display: block;
