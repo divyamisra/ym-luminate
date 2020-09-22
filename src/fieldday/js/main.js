@@ -1856,14 +1856,23 @@
         if ($('body').is('.pg_company')) {
             // Company Page
 
+            console.log('assigning company vars');
+
             // Populate company name from page title
             var pageTitle = jQuery('head title').text().trim();
             var start_pos = pageTitle.indexOf(':') + 1;
             var end_pos = pageTitle.indexOf('- Field Day', start_pos);
             var currentCompanyName = pageTitle.substring(start_pos, end_pos).trim();
             var currentCompanyId = getURLParameter(currentUrl, 'company_id');
-            $('.js--company-name').text(currentCompanyName);
+
+            console.log('finished assigning company vars');
+
+            if ( $('.js--company-name').length > 0 ) {
+                $('.js--company-name').text(currentCompanyName);
+            }
+
             // var isParentCompany = ($('#company_hierarchy_list_component .lc_Row1').length ? true : false)
+            
             var isParentCompany = ($('.js--company-hierarchy-list-container .lc_Row1').length ? true : false);
 
             console.log('Parent company: ' + isParentCompany);
