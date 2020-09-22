@@ -2489,22 +2489,29 @@ var toggleMultiEventInfo = function (elem) {
 
 
 //main menu hack
-$('.nav-item--find a').on('click', function (event) {
-    $(this).parent().toggleClass('open');
-});
+if ( $('.nav-item--find').length > 0 ) {
 
-$('body').on('click, keydown', function (e) {
-    if (!$('.nav-item--find').is(e.target)
-        && $('.nav-item--find').has(e.target).length === 0
-        && $('.open').has(e.target).length === 0
-    ) {
-        $('.nav-item--find').removeClass('open');
-        $('.nav-item--find').removeClass('open');
-    }
-});
+  $('.nav-item--find a').on('click', function (event) {
+      $(this).parent().toggleClass('open');
+  });
 
+  $('body').on('click, keydown', function (e) {
+      if (!$('.nav-item--find').is(e.target)
+          && $('.nav-item--find').has(e.target).length === 0
+          && $('.open').has(e.target).length === 0
+      ) {
+          $('.nav-item--find').removeClass('open');
+          $('.nav-item--find').removeClass('open');
+      }
+  });
+
+}
 
 if ( $('body').is('.app_donation') || $('body').is('.app_tr_registration') || $('body').is('.pg_fieldday_register') ) {
-  $('.nav-item--about').attr('aria-hidden', 'true');
-  $('.nav-item--find').attr('aria-hidden', 'true');
+  if ( $('.nav-item--about').length > 0 ) {
+    $('.nav-item--about').attr('aria-hidden', 'true');
+  }
+  if ( $('.nav-item--about').length > 0 ) {
+    $('.nav-item--find').attr('aria-hidden', 'true');
+  }
 }
