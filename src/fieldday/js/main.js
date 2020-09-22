@@ -2491,7 +2491,7 @@ var toggleMultiEventInfo = function (elem) {
 //main menu hack
 if ( $('.nav-item--find').length > 0 ) {
 
-  $('.nav-item--find a').on('click', function (event) {
+  $('#find').click(function () {
       $(this).parent().toggleClass('open');
   });
 
