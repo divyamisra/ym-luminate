@@ -3,6 +3,8 @@
 (function ($) {
     $(document).ready(function ($) {
 
+        console.log('loading main.js file');
+
         /*************/
         /* Namespace */
         /*************/
@@ -1872,7 +1874,7 @@
             }
 
             // var isParentCompany = ($('#company_hierarchy_list_component .lc_Row1').length ? true : false)
-            
+
             var isParentCompany = ($('.js--company-hierarchy-list-container .lc_Row1').length ? true : false);
 
             console.log('Parent company: ' + isParentCompany);
