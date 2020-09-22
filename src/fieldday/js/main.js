@@ -2,6 +2,14 @@
 
 (function ($) {
     $(document).ready(function ($) {
+      $('script').each(function () {
+        console.log($(this).attr('src'));
+        if ($(this).attr('src') == '../yui3/yui/yui-min.js') {
+          console.log('removing yui');
+          $(this).remove();
+        }
+      });
+
       setTimeout(function() {
         /*************/
         /* Namespace */
