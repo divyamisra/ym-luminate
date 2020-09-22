@@ -8,7 +8,7 @@
           console.log('removing yui');
           $(this).remove();
           console.log('add jquery back in');
-          $(body).append('<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.2.4.min.js"></script>');
+          $('body').append('<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.2.4.min.js"></script>');
         }
       });
 
