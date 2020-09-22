@@ -10,6 +10,8 @@
         /*************/
         window.cd = {};
 
+        console.log('window.cd assigned');
+
         /*******************/
         /* WRAPPER SCRIPTS */
         /*******************/
@@ -103,6 +105,7 @@
         /******************/
         /* SEARCH SCRIPTS */
         /******************/
+        console.log('begin search scripts');
         var eventType = 'Field%20Day';
         var eventType2 = $('body').data('event-type2') ? $('body').data('event-type2') : null;
         var regType = $('body').data('reg-type') ? $('body').data('reg-type') : null;
@@ -137,6 +140,8 @@
         } else {
           companyCSV = 'https://dev2.heart.org/fieldday_company_data/supplemental_company_data.csv';
         }
+
+          console.log('end search scripts');
 
 
 
