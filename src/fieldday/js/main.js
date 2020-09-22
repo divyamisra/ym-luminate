@@ -1222,18 +1222,26 @@
    				download: true,
    				dynamicTyping: true,
    				complete: function(results) {
-   					var companies = results.data;
-   					$('<div class="js--company-data hidden"></div>').insertAfter('main');
-   			 	  for (var i=0, iLen=companies.length; i<iLen; i++) {
-   							var dataOutput = '<div id="company-id-' + companies[i].companyid + '">';
-   							dataOutput += '<div class="js--company-data-location">'+ companies[i].eventcity + ', ' + companies[i].eventstate + '</div>';
-   							dataOutput += '<div class="js--company-data-coordinator">'+ companies[i].coordinatorfirstname + ' ' + companies[i].coordinatorlastname + '</div>';
-   							dataOutput += '</div>';
-   							$(dataOutput).appendTo('.js--company-data');
-   			 		 }
-     			 }
+   	        var companies = results.data;
+            generateCompanyInfo(companies);
+          },
+          error: function(err, file, inputElem, reason)
+        	{
+        		console.log('PapaPars error:' + err + ', ' + file + ', ' + inputElem + ', ' + reason )
+        	},
      		 });
     		}
+
+        var generateCompanyInfo = function(companies){
+          $('<div class="js--company-data hidden"></div>').insertAfter('main');
+          for (var i=0, iLen=companies.length; i<iLen; i++) {
+              var dataOutput = '<div id="company-id-' + companies[i].companyid + '">';
+              dataOutput += '<div class="js--company-data-location">'+ companies[i].eventcity + ', ' + companies[i].eventstate + '</div>';
+              dataOutput += '<div class="js--company-data-coordinator">'+ companies[i].coordinatorfirstname + ' ' + companies[i].coordinatorlastname + '</div>';
+              dataOutput += '</div>';
+              $(dataOutput).appendTo('.js--company-data');
+           }
+        }
 
         cd.getCompanyInfo = function(companyId){
           console.log('called company data' + companyId);
@@ -1244,72 +1252,80 @@
      		   console.log(results);
 
      				 var data = results.data;
-
      				 var company = cd.getCompanyByID(data, companyId);
+             displayCompanyInfo(company);
+
              console.log('comany value: ' + company);
-             if (company !== undefined) {
-               var eventMapLink;
 
-               var eventLocationURL = company.eventlocationmapurl;
-               eventLocationURL = eventLocationURL.trim();
+     		   },
+           error: function(err, file, inputElem, reason)
+         	{
+         		console.log('PapaPars error:' + err + ', ' + file + ', ' + inputElem + ', ' + reason )
+         	},
+     		 });
+     	 }
 
-               if ( eventLocationURL === "virtual" || eventLocationURL === "Virtual" ) {
+       var displayCompanyInfo = function(company){
+         if (company !== undefined) {
+           var eventMapLink;
 
-                 var companyMap = 'Virtual';
+           var eventLocationURL = company.eventlocationmapurl;
+           eventLocationURL = eventLocationURL.trim();
+
+           if ( eventLocationURL === "virtual" || eventLocationURL === "Virtual" ) {
+
+             var companyMap = 'Virtual';
+             $('.js--company-link').html(companyMap);
+
+           } else {
+             if (company.eventlocationmapurl !== "") {
+
+               eventMapLink = company.eventlocationmapurl;
+
+               if ( eventMapLink.indexOf("http://") == 0 || eventMapLink.indexOf("https://") == 0 || eventMapLink.indexOf("www") == 0)  {
+
+                 var companyMap = '<a target="_blank" aria-title="Google map for '+ company.companyname +' location" href="' + eventMapLink + '">' + company.companyname + '</a>';
                  $('.js--company-link').html(companyMap);
-
-       				 } else {
-                 if (company.eventlocationmapurl !== "") {
-
-                   eventMapLink = company.eventlocationmapurl;
-
-                   if ( eventMapLink.indexOf("http://") == 0 || eventMapLink.indexOf("https://") == 0 || eventMapLink.indexOf("www") == 0)  {
-
-                     var companyMap = '<a target="_blank" aria-title="Google map for '+ company.companyname +' location" href="' + eventMapLink + '">' + company.companyname + '</a>';
-                     $('.js--company-link').html(companyMap);
-
-                   }
-
-                 } else {
-
-                   if (company.eventstate !== "") {
-                     var companyAddress = company.eventaddress + ', ' + company.eventcity + ', ' + company.eventstate + ', ' + company.eventzip;
-
-                     companyAddress = encodeURIComponent(companyAddress);
-
-                     var eventMapLink = 'https://www.google.com/maps/place/' + companyAddress;
-
-                     var companyMap = '<a target="_blank" href="' + eventMapLink + '">' + company.companyname + '</a>';
-
-                     $('.js--company-link').html(companyMap);
-                   }
-
-                 }
 
                }
 
+             } else {
 
-       				 var fieldDayDetails = '';
-       				 fieldDayDetails += '<p>' + company.eventlocationname + '</p>';
-       				 fieldDayDetails += '<p>' + company.eventcity + ', ' + company.eventstate + '</p>';
-       				 $(fieldDayDetails).appendTo('.js--field-day-details');
+               if (company.eventstate !== "") {
+                 var companyAddress = company.eventaddress + ', ' + company.eventcity + ', ' + company.eventstate + ', ' + company.eventzip;
 
-       				 var companyLead = '<p><a aria-label="Email Company Lead ' + company.coordinatorfirstname + ' ' + company.coordinatorlastname +'" href="mailto:' + company.coordinatoremail +'">' + company.coordinatorfirstname + ' ' + company.coordinatorlastname + '</a></p>' ;
-       				 $(companyLead).appendTo('.js--company-lead');
+                 companyAddress = encodeURIComponent(companyAddress);
 
-               var eventDateFormatted = moment(company.eventdate).format('MMMM D, YYYY');
+                 var eventMapLink = 'https://www.google.com/maps/place/' + companyAddress;
 
-       				 var  eventDate = '<p><strong>' + eventDateFormatted + '<br>' + company.eventtime + '</strong></p>';
-       				 $(eventDate).appendTo('.js--event-date');
+                 var companyMap = '<a target="_blank" href="' + eventMapLink + '">' + company.companyname + '</a>';
 
-       				 var companyLocation = '<p>' + company.eventcity + ', ' + company.eventstate + '</p>'
-       				 $(companyLocation).appendTo('.js--company-location');
+                 $('.js--company-link').html(companyMap);
+               }
 
              }
 
-     		   }
-     		 });
-     	 }
+           }
+
+
+           var fieldDayDetails = '';
+           fieldDayDetails += '<p>' + company.eventlocationname + '</p>';
+           fieldDayDetails += '<p>' + company.eventcity + ', ' + company.eventstate + '</p>';
+           $(fieldDayDetails).appendTo('.js--field-day-details');
+
+           var companyLead = '<p><a aria-label="Email Company Lead ' + company.coordinatorfirstname + ' ' + company.coordinatorlastname +'" href="mailto:' + company.coordinatoremail +'">' + company.coordinatorfirstname + ' ' + company.coordinatorlastname + '</a></p>' ;
+           $(companyLead).appendTo('.js--company-lead');
+
+           var eventDateFormatted = moment(company.eventdate).format('MMMM D, YYYY');
+
+           var  eventDate = '<p><strong>' + eventDateFormatted + '<br>' + company.eventtime + '</strong></p>';
+           $(eventDate).appendTo('.js--event-date');
+
+           var companyLocation = '<p>' + company.eventcity + ', ' + company.eventstate + '</p>'
+           $(companyLocation).appendTo('.js--company-location');
+
+         }
+       }
 
        cd.getCompanyLocation = function(companyId){
          console.log('called company data' + companyId);
