@@ -56,6 +56,7 @@
             }
         };
 
+
         if ( $('body').is('.pg_company') || $('body').is('.pg_team') || $('body').is('.pg_personal') ) {
           cd.reorderPageForMobile();
         }
@@ -1564,7 +1565,7 @@
             // Launch thermometer
             var progress = $('#progress-amount').text();
             var goal = $('#goal-amount').text();
-            cd.runThermometer(progress, goal);
+            //cd.runThermometer(progress, goal);
             // Build roster on greeting page
             cd.getTopParticipants(evID);
             cd.getTopTeams(evID);
@@ -1603,7 +1604,7 @@
             // Personal Page
             var progress = $('#progress-amount').text();
             var goal = $('#goal-amount').text();
-            cd.runThermometer(progress, goal);
+            //cd.runThermometer(progress, goal);
             cd.setDonorRollHeight();
 
             //mobile placement
@@ -1777,7 +1778,7 @@
             // Team Page
             var progress = $('#progress-amount').text();
             var goal = $('#goal-amount').text();
-            cd.runThermometer(progress, goal);
+            //cd.runThermometer(progress, goal);
             cd.setDonorRollHeight();
             cd.getTeamCaptains();
 
@@ -1972,7 +1973,7 @@
               $('.js--thermometer-trophy-goal').removeClass('d-none');
               $('.js--thermometer-trophy').addClass('d-none');
             }
-            cd.runThermometer(progress, goal);
+            //cd.runThermometer(progress, goal);
 
             cd.getCompanyInfo(companyIdParam);
             console.log('called data');
