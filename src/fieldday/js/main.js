@@ -184,9 +184,6 @@
           companyCSV = '../../fieldday_company_data/supplemental_company_data.csv';
         }
 
-          console.log('end search scripts');
-
-
 
         skipLink.addEventListener('click', function (e) {
             e.preventDefault();
