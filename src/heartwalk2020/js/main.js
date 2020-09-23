@@ -1189,8 +1189,6 @@
                         '&response_format=json',
                     callback: {
                         success: function (response) {
-                            console.log('getPersonalVideo evID ' + evID + typeof evID);
-                            console.log('isprod?  ' + isProd +typeof isProd);
                             var videoEmbedHtml;
                             if (response.getPersonalVideoUrlResponse.videoUrl) {
                                 var videoUrl = response.getPersonalVideoUrlResponse.videoUrl;
@@ -1231,7 +1229,6 @@
                                   }
                                 }
                                 else {
-                                  console.log("evID " + evID);
                                   if (evID === 4412 || evID === 4413 || evID === 4414) {
                                     videoEmbedHtml = '<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/TnjvKjkANPI?wmode=opaque&amp;rel=0&amp;showinfo=0" title="American Heart Association Heart Walk Video" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
                                   }
