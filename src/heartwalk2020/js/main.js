@@ -1189,7 +1189,7 @@
                         '&response_format=json',
                     callback: {
                         success: function (response) {
-                            console.log('getPersonalVideo evId ' + evId);
+                            console.log('getPersonalVideo evID ' + evID);
                             var videoEmbedHtml;
                             if (response.getPersonalVideoUrlResponse.videoUrl) {
                                 var videoUrl = response.getPersonalVideoUrlResponse.videoUrl;
