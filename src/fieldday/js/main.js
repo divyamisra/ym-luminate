@@ -179,9 +179,9 @@
         var companyCSV;
 
         if (isProd) {
-          companyCSV = 'https://www2.heart.org/fieldday_company_data/supplemental_company_data.csv';
+          companyCSV = '../../fieldday_company_data/supplemental_company_data.csv';
         } else {
-          companyCSV = 'https://dev2.heart.org/fieldday_company_data/supplemental_company_data.csv';
+          companyCSV = '../../fieldday_company_data/supplemental_company_data.csv';
         }
 
           console.log('end search scripts');
@@ -487,7 +487,7 @@
 
                     },
                     error: function (response) {
-                        //console.log('Error: ' + response.errorResponse.message);
+                        console.log(response.errorResponse.message);
                     }
                 }
             });
@@ -650,7 +650,7 @@
                     },
                     error: function (response) {
                         $('.js--loading').hide();
-                        //console.log('Error: ' + response.errorResponse.message);
+                        console.log(response.errorResponse.message);
                     }
                 }
             });
@@ -738,7 +738,7 @@
                     },
                     error: function (response) {
                         $('.js--loading').hide();
-                        //console.log('Error: ' + response.errorResponse.message);
+                        console.log(response.errorResponse.message);
                     }
                 }
             });
@@ -796,7 +796,7 @@
                     },
                     error: function (response) {
                         $('.js--loading').hide();
-                        //console.log('Error: ' + response.errorResponse.message);
+                        console.log(response.errorResponse.message);
                     }
                 }
             });
@@ -859,7 +859,7 @@
                     },
                     error: function (response) {
                         $('.js--loading').hide();
-                        //console.log('Error: ' + response.errorResponse.message);
+                        console.log(response.errorResponse.message);
                     }
                 }
             });
@@ -921,7 +921,7 @@
                     },
                     error: function (response) {
                         $('.js--loading').hide();
-                        //console.log('Error: ' + response.errorResponse.message);
+                        console.log(response.errorResponse.message);
                     }
                 }
             });
@@ -988,7 +988,7 @@
                     },
                     error: function (response) {
                         $('.js--participant-loading').hide();
-                        //console.log('Error: ' + response.errorResponse.message);
+                        console.log(response.errorResponse.message);
                     }
                 }
             });
@@ -1042,7 +1042,7 @@
                     },
                     error: function (response) {
                         $('.js--participant-loading').hide();
-                        //console.log('Error: ' + response.errorResponse.message);
+                        console.log(response.errorResponse.message);
                     }
                 }
             });
@@ -1122,7 +1122,7 @@
                         }
                     },
                     error: function (response) {
-                      //console.log('Error: ' + response.errorResponse.message);
+                      console.log(response.errorResponse.message);
                     }
                 }
             });
@@ -1268,7 +1268,7 @@
         //CUSTOM COMPANY DATA FUNCTIONS
 
 
-        cd.getCompanyByID = function(arr, value) {
+       cd.getCompanyByID = function(arr, value) {
      	  for (var i=0, iLen=arr.length; i<iLen; i++) {
      	    if (arr[i].companyid == value) return arr[i];
      		 }
@@ -1277,16 +1277,14 @@
        cd.getCompanyData = function() {
    			Papa.parse(companyCSV, {
    				header: true,
-   				download: true,
-   				dynamicTyping: true,
-   				complete: function(results) {
-   	        var companies = results.data;
-            generateCompanyInfo(companies);
-          },
           error: function(err, file, inputElem, reason)
         	{
         		console.log('PapaPars error:' + err + ', ' + file + ', ' + inputElem + ', ' + reason )
         	},
+          complete: function(results) {
+   	        var companies = results.data;
+            generateCompanyInfo(companies);
+          },
      		 });
     		}
 
@@ -1305,21 +1303,20 @@
           console.log('called company data' + companyId);
      		 Papa.parse(companyCSV, {
      		   header: true,
-           download: true,
-     		   complete: function(results) {
-     		   console.log(results);
-
-     				 var data = results.data;
-     				 var company = cd.getCompanyByID(data, companyId);
-             displayCompanyInfo(company);
-
-             console.log('comany value: ' + company);
-
-     		   },
            error: function(err, file, inputElem, reason)
          	{
          		console.log('PapaPars error:' + err + ', ' + file + ', ' + inputElem + ', ' + reason )
          	},
+          complete: function(results) {
+          console.log(results);
+
+            var data = results.data;
+            var company = cd.getCompanyByID(data, companyId);
+            displayCompanyInfo(company);
+
+            console.log('comany value: ' + company);
+
+          },
      		 });
      	 }
 
@@ -1389,7 +1386,10 @@
          console.log('called company data' + companyId);
         Papa.parse(companyCSV, {
           header: true,
-          download: true,
+          error: function(err, file, inputElem, reason)
+           {
+             console.log('PapaPars error:' + err + ', ' + file + ', ' + inputElem + ', ' + reason )
+           },
           complete: function(results) {
 
             var data = results.data;
@@ -1573,7 +1573,7 @@
             // Launch thermometer
             var progress = $('#progress-amount').text();
             var goal = $('#goal-amount').text();
-            //cd.runThermometer(progress, goal);
+            cd.runThermometer(progress, goal);
             // Build roster on greeting page
             cd.getTopParticipants(evID);
             cd.getTopTeams(evID);
@@ -1612,8 +1612,8 @@
             // Personal Page
             var progress = $('#progress-amount').text();
             var goal = $('#goal-amount').text();
-            //cd.runThermometer(progress, goal);
-            //cd.setDonorRollHeight();
+            cd.runThermometer(progress, goal);
+            cd.setDonorRollHeight();
 
             //mobile placement
 
@@ -1621,13 +1621,13 @@
             $('.js--personal-text').html($('#fr_rich_text_container').html());
 
             // populate donor honor roll
-            //cd.getTeamHonorRoll();
+            cd.getTeamHonorRoll();
 
             var companyIdParam = $('.js--sidebar-content').data('company');
             console.log('company id: ' + companyIdParam)
 
             //fill in company sidebar data
-            //cd.getCompanyInfo(companyIdParam);
+            cd.getCompanyInfo(companyIdParam);
 
             // Build personal donation form
             cd.getDonationFormInfo = function (options) {
@@ -1712,7 +1712,7 @@
                         error: function (response) {
                             // $('.field-error-text').text(response.errorResponse.message);
                             // $('.ErrorContainer').removeClass('hidden');
-                            //console.log('Error: ' + response.errorResponse.message);
+                            console.log(response.errorResponse.message);
                         }
                     }
                 });
@@ -1787,20 +1787,20 @@
             // Team Page
             var progress = $('#progress-amount').text();
             var goal = $('#goal-amount').text();
-            //cd.runThermometer(progress, goal);
-            //cd.setDonorRollHeight();
+            cd.runThermometer(progress, goal);
+            cd.setDonorRollHeight();
             cd.getTeamCaptains();
 
             var companyIdParam = $('.js--sidebar-content').data('company');
             console.log('company id: ' + companyIdParam)
 
             //fill in company sidebar data
-            //cd.getCompanyInfo(companyIdParam);
+            cd.getCompanyInfo(companyIdParam);
 
             // populate custom team page content
             $('.js--team-text').html($('#fr_rich_text_container').html());
             // populate donor honor roll
-            //cd.getTeamHonorRoll();
+            cd.getTeamHonorRoll();
 
             // build team roster
             cd.getTeamRoster = function () {
@@ -1943,7 +1943,7 @@
                                                 error: function (response) {
                                                     $('.js--company-results-container').removeAttr('hidden').text(response.errorResponse.message);
 
-                                                    //console.log('Error: ' + response.errorResponse.message);
+
                                                 }
                                             }
                                         });
@@ -1984,9 +1984,9 @@
               $('.js--thermometer-trophy-goal').removeClass('d-none');
               $('.js--thermometer-trophy').addClass('d-none');
             }
-            //cd.runThermometer(progress, goal);
+            cd.runThermometer(progress, goal);
 
-            //cd.getCompanyInfo(companyIdParam);
+            cd.getCompanyInfo(companyIdParam);
             console.log('called data');
 
 
