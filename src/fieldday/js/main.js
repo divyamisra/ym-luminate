@@ -487,7 +487,7 @@
 
                     },
                     error: function (response) {
-                        console.log(response.errorResponse.message);
+                        console.log('Error: ' + response.errorResponse.message);
                     }
                 }
             });
@@ -650,6 +650,7 @@
                     },
                     error: function (response) {
                         $('.js--loading').hide();
+                        console.log('Error: ' + response.errorResponse.message);
                     }
                 }
             });
@@ -737,6 +738,7 @@
                     },
                     error: function (response) {
                         $('.js--loading').hide();
+                        console.log('Error: ' + response.errorResponse.message);
                     }
                 }
             });
@@ -794,6 +796,7 @@
                     },
                     error: function (response) {
                         $('.js--loading').hide();
+                        console.log('Error: ' + response.errorResponse.message);
                     }
                 }
             });
@@ -856,6 +859,7 @@
                     },
                     error: function (response) {
                         $('.js--loading').hide();
+                        console.log('Error: ' + response.errorResponse.message);
                     }
                 }
             });
@@ -917,6 +921,7 @@
                     },
                     error: function (response) {
                         $('.js--loading').hide();
+                        console.log('Error: ' + response.errorResponse.message);
                     }
                 }
             });
@@ -983,6 +988,7 @@
                     },
                     error: function (response) {
                         $('.js--participant-loading').hide();
+                        console.log('Error: ' + response.errorResponse.message);
                     }
                 }
             });
@@ -1036,6 +1042,7 @@
                     },
                     error: function (response) {
                         $('.js--participant-loading').hide();
+                        console.log('Error: ' + response.errorResponse.message);
                     }
                 }
             });
@@ -1115,6 +1122,7 @@
                         }
                     },
                     error: function (response) {
+                      console.log('Error: ' + response.errorResponse.message);
                     }
                 }
             });
@@ -1145,7 +1153,7 @@
                         }
                     },
                     error: function (response) {
-                        // console.log('getTopTeams error: ' + response.errorResponse.message);
+                        console.log('getTopTeams error: ' + response.errorResponse.message);
                     }
                 }
             });
@@ -1230,7 +1238,7 @@
                         });
                     },
                     error: function (response) {
-                        // console.log('getCompanyList error: ' + response.errorResponse.message);
+                        console.log('getCompanyList error: ' + response.errorResponse.message);
                     }
                 }
             });
@@ -1251,7 +1259,7 @@
                         }
                     },
                     error: function (response) {
-                        // console.log('getTopCompanies error: ' + response.errorResponse.message);
+                        console.log('getTopCompanies error: ' + response.errorResponse.message);
                     }
                 }
             });
@@ -1704,6 +1712,7 @@
                         error: function (response) {
                             // $('.field-error-text').text(response.errorResponse.message);
                             // $('.ErrorContainer').removeClass('hidden');
+                            console.log('Error: ' + response.errorResponse.message);
                         }
                     }
                 });
@@ -1757,7 +1766,7 @@
                             $('.js--personal-video-container').append(videoEmbedHtml);
                         },
                         error: function (response) {
-                            // console.log('getPersonalVideo error: ' + response.errorResponse.message);
+                            console.log('getPersonalVideo error: ' + response.errorResponse.message);
                         }
                     }
                 });
@@ -1854,7 +1863,7 @@
                     },
                     error: function (response) {
                         $('#error-participant').removeAttr('hidden').text(response.errorResponse.message);
-                        // console.log('error response: ', response);
+                        console.log('error response: ', response);
                     }
                 });
             };
@@ -1933,6 +1942,8 @@
                                                 },
                                                 error: function (response) {
                                                     $('.js--company-results-container').removeAttr('hidden').text(response.errorResponse.message);
+
+                                                    console.log('Error: ' + response.errorResponse.message);
                                                 }
                                             }
                                         });
@@ -1942,7 +1953,7 @@
                             }
                         },
                         error: function (response) {
-                            // console.log('getCompanyList error: ' + response.errorResponse.message);
+                            console.log('getCompanyList error: ' + response.errorResponse.message);
                         }
                     }
                 });
@@ -2036,7 +2047,7 @@
                     },
                     error: function (response) {
                         $('#error-participant').removeAttr('hidden').text(response.errorResponse.message);
-                        // console.log('error response: ', response);
+                        console.log('error response: ', response);
                     }
                 });
             };
