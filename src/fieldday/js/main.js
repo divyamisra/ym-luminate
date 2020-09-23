@@ -18,6 +18,44 @@
 
         var screenWidth = $(window).innerWidth();
 
+        cd.reorderPageForMobile = function () {
+            // Reorganize page for mobile views
+            if (screenWidth <= 767) {
+
+                $('.tr-page-info').insertAfter('.sidebar-hero');
+                $('.fundraising-amounts').prepend($('.fundraising-amounts .col-12'));
+
+                if ($('body').is('.pg_team')) {
+                    $('.team-roster').insertBefore($('.donor-roll'));
+                    $('.js--information-box').prependTo('.js--sidebar');
+                    $('.information-box__content').removeClass('box-shadow');
+                    $('.team-roster li .raised span').each(function (i, span) {
+                        if ($(this).parent().prev('.donor-name').find('span.coach').length !== 0) {
+                            $(this).insertAfter($(this).parent().prev('.donor-name').children('.coach'));
+                        } else {
+                            $(this).insertAfter($(this).parent().prev('.donor-name').children('a'));
+                        }
+                    });
+
+                    $('.team-roster form .btn').html($('.team-roster form .btn i'));
+                }
+
+                if ($('body').is('.pg_company')) {
+                    $('.js--information-box').prependTo('.sidebar-content');
+
+                    $('.team-roster form .btn').html('<i class="fas fa-search"></i>');
+                    $('#participant-roster td:nth-child(3) a').html('Donate');
+
+                }
+
+                if ($('body').is('.pg_personal')) {
+                  $('.js--information-box').prependTo('.js--sidebar-content');
+                  $('.information-box__content').removeClass('box-shadow');
+
+                }
+            }
+        };
+
         if ( $('body').is('.pg_company') || $('body').is('.pg_team') || $('body').is('.pg_personal') ) {
           cd.reorderPageForMobile();
         }
@@ -1371,43 +1409,6 @@
 
             $('.hidden-donor-row').slideToggle(200);
         });
-        cd.reorderPageForMobile = function () {
-            // Reorganize page for mobile views
-            if (screenWidth <= 767) {
-
-                $('.tr-page-info').insertAfter('.sidebar-hero');
-                $('.fundraising-amounts').prepend($('.fundraising-amounts .col-12'));
-
-                if ($('body').is('.pg_team')) {
-                    $('.team-roster').insertBefore($('.donor-roll'));
-                    $('.js--information-box').prependTo('.js--sidebar');
-                    $('.information-box__content').removeClass('box-shadow');
-                    $('.team-roster li .raised span').each(function (i, span) {
-                        if ($(this).parent().prev('.donor-name').find('span.coach').length !== 0) {
-                            $(this).insertAfter($(this).parent().prev('.donor-name').children('.coach'));
-                        } else {
-                            $(this).insertAfter($(this).parent().prev('.donor-name').children('a'));
-                        }
-                    });
-
-                    $('.team-roster form .btn').html($('.team-roster form .btn i'));
-                }
-
-                if ($('body').is('.pg_company')) {
-                    $('.js--information-box').prependTo('.sidebar-content');
-
-                    $('.team-roster form .btn').html('<i class="fas fa-search"></i>');
-                    $('#participant-roster td:nth-child(3) a').html('Donate');
-
-                }
-
-                if ($('body').is('.pg_personal')) {
-                  $('.js--information-box').prependTo('.js--sidebar-content');
-                  $('.information-box__content').removeClass('box-shadow');
-
-                }
-            }
-        };
 
         cd.initializeTeamRosterTable = function () {
             window.cdTeamRosterTable = $('#team-roster').DataTable({
