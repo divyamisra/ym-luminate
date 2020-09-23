@@ -51,14 +51,79 @@
                 if ($('body').is('.pg_personal')) {
                   $('.js--information-box').prependTo('.js--sidebar-content');
                   $('.information-box__content').removeClass('box-shadow');
-
                 }
             }
         };
 
-        if ( $('body').is('.pg_company') || $('body').is('.pg_team') || $('body').is('.pg_personal') ) {
-          cd.reorderPageForMobile();
-        }
+
+       cd.reorderPageForMobile();
+
+       cd.getCompanyByID = function(arr, value) {
+     	  for (var i=0, iLen=arr.length; i<iLen; i++) {
+     	    if (arr[i].companyid == value) return arr[i];
+     		 }
+     		}
+
+       cd.getCompanyData = function() {
+   			Papa.parse(companyCSV, {
+   				header: true,
+          download: true,
+          error: function(err, file, inputElem, reason)
+        	{
+        		console.log('PapaPars error:' + err + ', ' + file + ', ' + inputElem + ', ' + reason )
+        	},
+          complete: function(results) {
+   	        var companies = results.data;
+            cd.generateCompanyInfo(companies);
+          },
+     		 });
+    		}
+
+        cd.getCompanyInfo = function(companyId){
+          console.log('called company data' + companyId);
+     		 Papa.parse(companyCSV, {
+     		   header: true,
+           download: true,
+           error: function(err, file, inputElem, reason)
+         	{
+         		console.log('PapaPars error:' + err + ', ' + file + ', ' + inputElem + ', ' + reason )
+         	},
+          complete: function(results) {
+          console.log(results);
+
+            var data = results.data;
+            var company = cd.getCompanyByID(data, companyId);
+            cd.displayCompanyInfo(company);
+
+            console.log('comany value: ' + company);
+
+          },
+     		 });
+     	 }
+
+       cd.getCompanyLocation = function(companyId){
+        console.log('called company data' + companyId);
+        Papa.parse(companyCSV, {
+          header: true,
+          download: true,
+          error: function(err, file, inputElem, reason)
+           {
+             console.log('PapaPars error:' + err + ', ' + file + ', ' + inputElem + ', ' + reason )
+           },
+          complete: function(results) {
+
+            var data = results.data;
+            var company = cd.getCompanyByID(data, companyId);
+
+            if (company !== undefined) {
+              var companyLocation = company.eventcity + ', ' + company.eventstate;
+
+              $(companyLocation).appendTo('.js--company-location');
+            }
+          }
+        });
+      }
+
 
         //pulls company data onto page
        cd.generateCompanyInfo = function(companies){
@@ -113,7 +178,6 @@
               }
 
             }
-
 
             var fieldDayDetails = '';
             fieldDayDetails += '<p>' + company.eventlocationname + '</p>';
@@ -464,7 +528,7 @@
         };
 
         cd.getCompanies = function (companyName, isCrossEvent) {
-            cd.getCompanyData();
+            //cd.getCompanyData();
             luminateExtend.api({
                 api: 'teamraiser',
                 data: 'method=getCompaniesByInfo' +
@@ -1335,74 +1399,6 @@
                 }
             });
         };
-
-        //CUSTOM COMPANY DATA FUNCTIONS
-
-       cd.getCompanyByID = function(arr, value) {
-     	  for (var i=0, iLen=arr.length; i<iLen; i++) {
-     	    if (arr[i].companyid == value) return arr[i];
-     		 }
-     		}
-
-       cd.getCompanyData = function() {
-   			Papa.parse(companyCSV, {
-   				header: true,
-          download: true,
-          error: function(err, file, inputElem, reason)
-        	{
-        		console.log('PapaPars error:' + err + ', ' + file + ', ' + inputElem + ', ' + reason )
-        	},
-          complete: function(results) {
-   	        var companies = results.data;
-            cd.generateCompanyInfo(companies);
-          },
-     		 });
-    		}
-
-        cd.getCompanyInfo = function(companyId){
-          console.log('called company data' + companyId);
-     		 Papa.parse(companyCSV, {
-     		   header: true,
-           download: true,
-           error: function(err, file, inputElem, reason)
-         	{
-         		console.log('PapaPars error:' + err + ', ' + file + ', ' + inputElem + ', ' + reason )
-         	},
-          complete: function(results) {
-          console.log(results);
-
-            var data = results.data;
-            var company = cd.getCompanyByID(data, companyId);
-            cd.displayCompanyInfo(company);
-
-            console.log('comany value: ' + company);
-
-          },
-     		 });
-     	 }
-
-       cd.getCompanyLocation = function(companyId){
-         console.log('called company data' + companyId);
-        Papa.parse(companyCSV, {
-          header: true,
-          download: true,
-          error: function(err, file, inputElem, reason)
-           {
-             console.log('PapaPars error:' + err + ', ' + file + ', ' + inputElem + ', ' + reason )
-           },
-          complete: function(results) {
-
-            var data = results.data;
-            var company = cd.getCompanyByID(data, companyId);
-
-            if (company !== undefined) {
-              var companyLocation = company.eventcity + ', ' + company.eventstate;
-
-              $(companyLocation).appendTo('.js--company-location');
-            }
-          }
-        });
-      }
 
         // EXPANDABLE DONOR ROLL
         $('.js--honor-roll-expander').on('click', function (e) {
