@@ -1190,7 +1190,7 @@
                     callback: {
                         success: function (response) {
                             console.log('getPersonalVideo evID ' + evID);
-                            console.log('isprod?  ' + isProd());
+                            console.log('isprod?  ' + isProd);
                             var videoEmbedHtml;
                             if (response.getPersonalVideoUrlResponse.videoUrl) {
                                 var videoUrl = response.getPersonalVideoUrlResponse.videoUrl;
