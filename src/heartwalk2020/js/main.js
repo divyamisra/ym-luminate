@@ -1222,8 +1222,8 @@
                                 videoEmbedHtml = '<iframe class="embed-responsive-item" src="' + personalVideoEmbedUrl + '" title="American Heart Association Heart Walk Video" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
                             } else {
                                 // TODO - show default video
-                                if (isProd === 'true') {
-                                  if (evID === '5612' || evID === '4854' || evID === '5731') {
+                                if (isProd) {
+                                  if (evID === 5612 || evID === 4854 || evID === 5731) {
                                     videoEmbedHtml = '<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/TnjvKjkANPI?wmode=opaque&amp;rel=0&amp;showinfo=0" title="American Heart Association Heart Walk Video" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
                                   }
                                   else {
@@ -1232,7 +1232,7 @@
                                 }
                                 else {
                                   console.log("evID " + evID);
-                                  if (evID === '4412' || evID === '4413' || evID === '4414') {
+                                  if (evID === 4412 || evID === 4413 || evID === 4414) {
                                     videoEmbedHtml = '<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/TnjvKjkANPI?wmode=opaque&amp;rel=0&amp;showinfo=0" title="American Heart Association Heart Walk Video" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
                                   }
                                   else {
