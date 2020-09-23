@@ -12,15 +12,15 @@
 
         console.log('window.cd assigned');
 
-        if ( $('body').is('.pg_company') || $('body').is('.pg_team') || $('body').is('.pg_personal') ) {
-          cd.reorderPageForMobile();
-        }
-
         /*******************/
         /* WRAPPER SCRIPTS */
         /*******************/
 
         var screenWidth = $(window).innerWidth();
+
+        if ( $('body').is('.pg_company') || $('body').is('.pg_team') || $('body').is('.pg_personal') ) {
+          cd.reorderPageForMobile();
+        }
 
         // Mobile nav toggle
         $('#mobile-toggle').click(function () {
