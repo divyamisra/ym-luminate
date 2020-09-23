@@ -12,6 +12,10 @@
 
         console.log('window.cd assigned');
 
+        if ( $('body').is('.pg_company') || $('body').is('.pg_team') || $('body').is('.pg_personal') ) {
+          cd.reorderPageForMobile();
+        }
+
         /*******************/
         /* WRAPPER SCRIPTS */
         /*******************/
@@ -1599,7 +1603,6 @@
             var progress = $('#progress-amount').text();
             var goal = $('#goal-amount').text();
             cd.runThermometer(progress, goal);
-            cd.reorderPageForMobile();
             cd.setDonorRollHeight();
 
             //mobile placement
@@ -1775,7 +1778,6 @@
             var goal = $('#goal-amount').text();
             cd.runThermometer(progress, goal);
             cd.setDonorRollHeight();
-            cd.reorderPageForMobile();
             cd.getTeamCaptains();
 
             var companyIdParam = $('.js--sidebar-content').data('company');
@@ -1970,7 +1972,6 @@
               $('.js--thermometer-trophy').addClass('d-none');
             }
             cd.runThermometer(progress, goal);
-            cd.reorderPageForMobile();
 
             cd.getCompanyInfo(companyIdParam);
             console.log('called data');
