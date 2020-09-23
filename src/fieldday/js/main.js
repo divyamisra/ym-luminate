@@ -487,7 +487,7 @@
 
                     },
                     error: function (response) {
-                        console.log('Error: ' + response.errorResponse.message);
+                        //console.log('Error: ' + response.errorResponse.message);
                     }
                 }
             });
@@ -650,7 +650,7 @@
                     },
                     error: function (response) {
                         $('.js--loading').hide();
-                        console.log('Error: ' + response.errorResponse.message);
+                        //console.log('Error: ' + response.errorResponse.message);
                     }
                 }
             });
@@ -738,7 +738,7 @@
                     },
                     error: function (response) {
                         $('.js--loading').hide();
-                        console.log('Error: ' + response.errorResponse.message);
+                        //console.log('Error: ' + response.errorResponse.message);
                     }
                 }
             });
@@ -796,7 +796,7 @@
                     },
                     error: function (response) {
                         $('.js--loading').hide();
-                        console.log('Error: ' + response.errorResponse.message);
+                        //console.log('Error: ' + response.errorResponse.message);
                     }
                 }
             });
@@ -859,7 +859,7 @@
                     },
                     error: function (response) {
                         $('.js--loading').hide();
-                        console.log('Error: ' + response.errorResponse.message);
+                        //console.log('Error: ' + response.errorResponse.message);
                     }
                 }
             });
@@ -921,7 +921,7 @@
                     },
                     error: function (response) {
                         $('.js--loading').hide();
-                        console.log('Error: ' + response.errorResponse.message);
+                        //console.log('Error: ' + response.errorResponse.message);
                     }
                 }
             });
@@ -988,7 +988,7 @@
                     },
                     error: function (response) {
                         $('.js--participant-loading').hide();
-                        console.log('Error: ' + response.errorResponse.message);
+                        //console.log('Error: ' + response.errorResponse.message);
                     }
                 }
             });
@@ -1042,7 +1042,7 @@
                     },
                     error: function (response) {
                         $('.js--participant-loading').hide();
-                        console.log('Error: ' + response.errorResponse.message);
+                        //console.log('Error: ' + response.errorResponse.message);
                     }
                 }
             });
@@ -1122,7 +1122,7 @@
                         }
                     },
                     error: function (response) {
-                      console.log('Error: ' + response.errorResponse.message);
+                      //console.log('Error: ' + response.errorResponse.message);
                     }
                 }
             });
@@ -1613,7 +1613,7 @@
             var progress = $('#progress-amount').text();
             var goal = $('#goal-amount').text();
             //cd.runThermometer(progress, goal);
-            cd.setDonorRollHeight();
+            //cd.setDonorRollHeight();
 
             //mobile placement
 
@@ -1621,13 +1621,13 @@
             $('.js--personal-text').html($('#fr_rich_text_container').html());
 
             // populate donor honor roll
-            cd.getTeamHonorRoll();
+            //cd.getTeamHonorRoll();
 
             var companyIdParam = $('.js--sidebar-content').data('company');
             console.log('company id: ' + companyIdParam)
 
             //fill in company sidebar data
-            cd.getCompanyInfo(companyIdParam);
+            //cd.getCompanyInfo(companyIdParam);
 
             // Build personal donation form
             cd.getDonationFormInfo = function (options) {
@@ -1712,7 +1712,7 @@
                         error: function (response) {
                             // $('.field-error-text').text(response.errorResponse.message);
                             // $('.ErrorContainer').removeClass('hidden');
-                            console.log('Error: ' + response.errorResponse.message);
+                            //console.log('Error: ' + response.errorResponse.message);
                         }
                     }
                 });
@@ -1788,19 +1788,19 @@
             var progress = $('#progress-amount').text();
             var goal = $('#goal-amount').text();
             //cd.runThermometer(progress, goal);
-            cd.setDonorRollHeight();
+            //cd.setDonorRollHeight();
             cd.getTeamCaptains();
 
             var companyIdParam = $('.js--sidebar-content').data('company');
             console.log('company id: ' + companyIdParam)
 
             //fill in company sidebar data
-            cd.getCompanyInfo(companyIdParam);
+            //cd.getCompanyInfo(companyIdParam);
 
             // populate custom team page content
             $('.js--team-text').html($('#fr_rich_text_container').html());
             // populate donor honor roll
-            cd.getTeamHonorRoll();
+            //cd.getTeamHonorRoll();
 
             // build team roster
             cd.getTeamRoster = function () {
@@ -1943,7 +1943,7 @@
                                                 error: function (response) {
                                                     $('.js--company-results-container').removeAttr('hidden').text(response.errorResponse.message);
 
-                                                    console.log('Error: ' + response.errorResponse.message);
+                                                    //console.log('Error: ' + response.errorResponse.message);
                                                 }
                                             }
                                         });
@@ -1986,7 +1986,7 @@
             }
             //cd.runThermometer(progress, goal);
 
-            cd.getCompanyInfo(companyIdParam);
+            //cd.getCompanyInfo(companyIdParam);
             console.log('called data');
 
 
