@@ -2137,7 +2137,7 @@
         $(loTeamGoal)
         .addClass('pl-0 border-left-0')
         .wrap('<div class="input-group" />')
-        .before('<div class="input-group-prepend"><div class="input-group-text py-0 px-1 border-right-0 bg-white">$</div></div>');
+        .before('<div class="input-group-prepend"><div class="input-group-text py-0 px-1 border-right-0 bg-white"></div></div>');
       }
 
 
