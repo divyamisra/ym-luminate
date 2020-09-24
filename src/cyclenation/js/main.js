@@ -135,9 +135,9 @@
     if (fourWeek != null) {
        fourWeek.setDate(fourWeek.getDate() - 28);
     }
-    
+
     var motion_username = 'cyclenationapi';
-    var motion_password = 'oNNuWown5A8MeJco'; 
+    var motion_password = 'oNNuWown5A8MeJco';
     var motionDb = 'ahacycle';
     var motion_event = evID;
     var motion_urlPrefix = (isProd) ? 'loadprod' : 'load';
@@ -151,8 +151,8 @@
     if (getURLParameter(currentUrl, 'demo') == "true") {
        //override to test bm
        motion_username = 'motionapi';
-       motion_password = 'jPOHc5J4qMVVSj7P'; 
-       motionDb = 'democdsb'; 
+       motion_password = 'jPOHc5J4qMVVSj7P';
+       motionDb = 'democdsb';
        motion_event = 1061;
     }
 
@@ -962,7 +962,7 @@
     cd.getTopParticipantsMiles = function (eventId) {
         var motionApiUrl = 'https://' + motion_urlPrefix + '.boundlessfundraising.com/mobiles/' + motionDb + '/getMotionActivityRoster?event_id=' + motion_event + '&roster_type=participant&list_size=5';
 
-        $.ajax({ 
+        $.ajax({
             url: motionApiUrl,
             async: true,
             type:'GET',
@@ -993,7 +993,7 @@
     cd.getTopTeamsMiles = function (eventId) {
         var motionApiUrl = 'https://' + motion_urlPrefix + '.boundlessfundraising.com/mobiles/' + motionDb + '/getMotionActivityRoster?event_id=' + motion_event + '&roster_type=team&list_size=5';
 
-        $.ajax({ 
+        $.ajax({
             url: motionApiUrl,
             async: true,
             type:'GET',
@@ -1024,7 +1024,7 @@
     cd.getTopCompaniesMiles = function (eventId) {
         var motionApiUrl = 'https://' + motion_urlPrefix + '.boundlessfundraising.com/mobiles/' + motionDb + '/getMotionActivityRoster?event_id=' + motion_event + '&roster_type=company&list_size=5';
 
-        $.ajax({ 
+        $.ajax({
             url: motionApiUrl,
             async: true,
             type:'GET',
@@ -1081,7 +1081,7 @@
       }
     }
 
-    
+
     function showPosition(position) {
       var input = position.coords.latitude + "," + position.coords.longitude;
       var latlngStr = input.split(',', 2);
@@ -2132,40 +2132,12 @@
       $('#team_find_section_footer')
         .prepend('<div class="order-2 order-sm-1 col-sm-4 col-md-3 col-8 offset-2 offset-sm-0"><a href="TRR/?pg=tfind&amp;fr_id=' + evID + '" class="button btn-secondary btn-block">Back</a></div>')
 
-      // Add minimum validation to LOs team goal input
+      // Style LOs team goal input
       if (eventType2 === 'StationaryV2') {
         $(loTeamGoal)
-        .val(goalPerBike)
         .addClass('pl-0 border-left-0')
         .wrap('<div class="input-group" />')
-        .before('<div class="input-group-prepend"><div class="input-group-text py-0 px-1 border-right-0 bg-white">$</div></div>')
-        .attr({
-          "min": goalPerBike,
-          "step": "100",
-          "aria-label": "Goal amount (to the nearest dollar)",
-          "data-parsley-validation-threshold": "1",
-          "data-parsley-trigger": "keyup",
-          "data-parsley-type": "number",
-          "data-parsley-min-message": minTeamGoalMsg
-        });
-      } else {
-        var minTeamGoal = $(loTeamGoal).val();
-        minTeamGoal = Number(minTeamGoal.replace(/[^0-9\.-]+/g, ""));
-
-        $(loTeamGoal)
-        .val(minTeamGoal)
-        .addClass('pl-0 border-left-0')
-        .wrap('<div class="input-group" />')
-        .before('<div class="input-group-prepend"><div class="input-group-text py-0 px-1 border-right-0 bg-white">$</div></div>')
-        .attr({
-          "min": minTeamGoal,
-          "step": "100",
-          "aria-label": "Goal amount (to the nearest dollar)",
-          "data-parsley-validation-threshold": "1",
-          "data-parsley-trigger": "keyup",
-          "data-parsley-type": "number",
-          "data-parsley-min-message": minTeamGoalMsg
-        });
+        .before('<div class="input-group-prepend"><div class="input-group-text py-0 px-1 border-right-0 bg-white">$</div></div>');
       }
 
 
