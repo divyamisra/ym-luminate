@@ -190,8 +190,10 @@
             }
         };
 
+        setTimeout(function(){
+          cd.reorderPageForMobile();
+        }, 500);
 
-       cd.reorderPageForMobile();
 
        cd.getCompanyByID = function(arr, value) {
      	  for (var i=0, iLen=arr.length; i<iLen; i++) {
