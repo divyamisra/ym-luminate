@@ -10,11 +10,146 @@
         /*************/
         window.cd = {};
 
-        console.log('window.cd assigned');
+
+        /*************/
+        /* Gobal Vars */
+        /*************/
+
+        var eventType = 'Field%20Day';
+        var eventType2 = $('body').data('event-type2') ? $('body').data('event-type2') : null;
+        var regType = $('body').data('reg-type') ? $('body').data('reg-type') : null;
+        var publicEventType = $('body').data('public-event-type') ? $('body').data('public-event-type') : null;
+
+        var isProd = (luminateExtend.global.tablePrefix === 'heartdev' ? false : true);
+        var eventName = luminateExtend.global.eventName;
+        var srcCode = luminateExtend.global.srcCode;
+        var subSrcCode = luminateExtend.global.subSrcCode;
+        var evID = $('body').data('fr-id') ? $('body').data('fr-id') : null;
+        var dfID = $('body').data('df-id') ? $('body').data('df-id') : null;
+        var consID = $('body').data('cons-id') ? $('body').data('cons-id') : null;
+
+        function getURLParameter(url, name) {
+            return (RegExp(name + '=' + '(.+?)(&|$)').exec(url) || [, null])[1];
+        }
+
+        var currentUrl = window.location.href;
+        var searchType = getURLParameter(currentUrl, 'search_type');
+        var isCrossEventSearch = getURLParameter(currentUrl, 'cross_event');
+        var teamId = getURLParameter(currentUrl, 'team_id');
+        var companyIdParam = getURLParameter(currentUrl, 'company_id');
+
+        var skipLink = document.getElementById('skip-main');
+
+        var isProd = (luminateExtend.global.tablePrefix === 'heartdev' ? false : true);
+
+        var companyCSV;
+
+        if (isProd) {
+          companyCSV = 'https://www2.heart.org/fieldday_company_data/supplemental_company_data.csv';
+        } else {
+          companyCSV = 'https://dev2.heart.org/fieldday_company_data/supplemental_company_data.csv';
+        }
 
         /*******************/
         /* WRAPPER SCRIPTS */
         /*******************/
+
+        // Mobile nav toggle
+        $('#mobile-toggle').click(function () {
+            if ($('#navbar-container').hasClass('is-search')) {
+                $('#navbar-container').removeClass('is-search');
+                $('.mobile-search-trigger').removeClass('active');
+            } else {
+                $('#navbar-container').slideToggle('fast');
+            }
+            $('.navbar-toggler-icon').toggleClass('fa-align-justify').toggleClass('fa-times');
+
+            $('.pg_company .tr-page-container, .pg_personal .tr-page-container, .pg_team.tr-page-container').toggleClass('static');
+
+            $('.pg_company header, .pg_personal header, .pg_team header').toggleClass('mobile-open');
+
+            if ( $('#navbar-container').is(':visible') ) {
+              $('.pg_company .tr-page-container, .pg_personal .tr-page-container, .pg_team .tr-page-container').addClass('static');
+
+              $('.pg_company header, .pg_personal header, .pg_team header').addClass('mobile-open');
+            } else {
+              $('.pg_company .tr-page-container, .pg_personal .tr-page-container, .pg_team .tr-page-container').removeClass('static');
+
+              $('.pg_company header, .pg_personal header, .pg_team header').removeClass('mobile-open');
+            }
+        });
+
+        // Mobile search toggle
+        $('.mobile-search-trigger').click(function () {
+
+
+            if ($('.navbar-toggler-icon').hasClass('fa-times')) {
+                $('#navbar-container').addClass('is-search');
+                $('.mobile-search-trigger').addClass('active');
+                $('.navbar-toggler-icon').toggleClass('fa-align-justify').toggleClass('fa-times');
+            } else {
+                $('.mobile-search-trigger').toggleClass('active');
+                $('.pg_company .tr-page-container, .pg_personal .tr-page-container, .pg_team .tr-page-container').addClass('static');
+                if ($('#navbar-container').hasClass('is-search')) {
+                    // Wait to toggle is-search class until the container
+                    // is fully closed so that the user doesn't see the
+                    // gray navigation appear as it closes
+                    $('#navbar-container').slideToggle('fast', function () {
+                        $('#navbar-container').toggleClass('is-search');
+                    });
+                } else {
+                    $('#navbar-container').toggleClass('is-search');
+                    $('#navbar-container').slideToggle('fast');
+                }
+            }
+
+            if ( $('.mobile-search-trigger').removeClass('active') ) {
+              $('.pg_company .tr-page-container, .pg_personal .tr-page-container, .pg_team .tr-page-container').addClass('static');
+
+              $('.pg_company header, .pg_personal header, .pg_team header').addClass('mobile-open');
+            } else {
+              $('.pg_company .tr-page-container, .pg_personal .tr-page-container, .pg_team  .tr-page-container').removeClass('static');
+
+              $('.pg_company header, .pg_personal header, .pg_team header').removeClass('mobile-open');
+            }
+        });
+
+        skipLink.addEventListener('click', function (e) {
+            e.preventDefault();
+            document.getElementById('contentStart').focus();
+            document.getElementById('contentStart').scrollIntoView();
+        });
+
+        if ($('body').is('.pg_FieldDay_HQ')) {
+            $('.js__skip-to').on('click', function (e) {
+                e.preventDefault();
+                $('html, body').animate({
+                    scrollTop: $('#pcBodyContainer').offset().top
+                }, 500);
+            });
+        }
+
+        var addScrollLinks = function () {
+            $('a.scroll-link')
+                .on('click', function (event) {
+                    // On-page links
+                    // Figure out element to scroll to
+                    var target = $(this.hash);
+                    target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+                    // Does a scroll target exist?
+                    if (target.length) {
+                        // Only prevent default if animation is actually gonna happen
+                        event.preventDefault();
+                        var scrollLocation = target.offset().top;
+                        // var scrollLocation = target.offset().top - 230;
+                        $('html, body').animate({
+                            scrollTop: scrollLocation
+                        }, 1000, function () {
+                        });
+                    }
+                });
+        }
+        addScrollLinks();
 
         var screenWidth = $(window).innerWidth();
 
@@ -198,168 +333,11 @@
           }
         }
 
-        // Mobile nav toggle
-        $('#mobile-toggle').click(function () {
-            if ($('#navbar-container').hasClass('is-search')) {
-                $('#navbar-container').removeClass('is-search');
-                $('.mobile-search-trigger').removeClass('active');
-            } else {
-                $('#navbar-container').slideToggle('fast');
-            }
-            $('.navbar-toggler-icon').toggleClass('fa-align-justify').toggleClass('fa-times');
-
-            $('.pg_company .tr-page-container, .pg_personal .tr-page-container, .pg_team.tr-page-container').toggleClass('static');
-
-            $('.pg_company header, .pg_personal header, .pg_team header').toggleClass('mobile-open');
-
-            if ( $('#navbar-container').is(':visible') ) {
-              $('.pg_company .tr-page-container, .pg_personal .tr-page-container, .pg_team .tr-page-container').addClass('static');
-
-              $('.pg_company header, .pg_personal header, .pg_team header').addClass('mobile-open');
-            } else {
-              $('.pg_company .tr-page-container, .pg_personal .tr-page-container, .pg_team .tr-page-container').removeClass('static');
-
-              $('.pg_company header, .pg_personal header, .pg_team header').removeClass('mobile-open');
-            }
-        });
-
-        // Mobile search toggle
-        $('.mobile-search-trigger').click(function () {
-
-
-            if ($('.navbar-toggler-icon').hasClass('fa-times')) {
-                $('#navbar-container').addClass('is-search');
-                $('.mobile-search-trigger').addClass('active');
-                $('.navbar-toggler-icon').toggleClass('fa-align-justify').toggleClass('fa-times');
-            } else {
-                $('.mobile-search-trigger').toggleClass('active');
-                $('.pg_company .tr-page-container, .pg_personal .tr-page-container, .pg_team .tr-page-container').addClass('static');
-                if ($('#navbar-container').hasClass('is-search')) {
-                    // Wait to toggle is-search class until the container
-                    // is fully closed so that the user doesn't see the
-                    // gray navigation appear as it closes
-                    $('#navbar-container').slideToggle('fast', function () {
-                        $('#navbar-container').toggleClass('is-search');
-                    });
-                } else {
-                    $('#navbar-container').toggleClass('is-search');
-                    $('#navbar-container').slideToggle('fast');
-                }
-            }
-
-            if ( $('.mobile-search-trigger').removeClass('active') ) {
-              $('.pg_company .tr-page-container, .pg_personal .tr-page-container, .pg_team .tr-page-container').addClass('static');
-
-              $('.pg_company header, .pg_personal header, .pg_team header').addClass('mobile-open');
-            } else {
-              $('.pg_company .tr-page-container, .pg_personal .tr-page-container, .pg_team  .tr-page-container').removeClass('static');
-
-              $('.pg_company header, .pg_personal header, .pg_team header').removeClass('mobile-open');
-            }
-        });
-
-        // $('#find').on('click', function(e){
-        //   e.preventDefault();
-        //   $('.dropdown-menu-container.find, .dropdown-menu-container.find .dropdown-menu').toggle();
-        // });
-
-        // $('.js--nav-about').on('click', function(e){
-        //   e.preventDefault();
-        //   $('.dropdown-menu-container.about, .dropdown-menu-container.about .dropdown-menu').toggle();
-        // });
-
-        // $( "#find" ).focusin(function() {
-        //   $('.dropdown-menu-container.find, .dropdown-menu-container.find .dropdown-menu').show();
-        // });
-
-        // $( ".js--nav-about" ).focusin(function() {
-        //   $('.dropdown-menu-container.find, .dropdown-menu-container.find .dropdown-menu').hide();
-        //   $('.dropdown-menu-container.about, .dropdown-menu-container.about .dropdown-menu').show();
-        // });
-
-        // $( ".js--top-menu-contact" ).focusout(function() {
-        //   $('.dropdown-menu-container.about, .dropdown-menu-container.about .dropdown-menu').hide();
-        // });
 
 
         /******************/
         /* SEARCH SCRIPTS */
         /******************/
-        console.log('begin search scripts');
-        var eventType = 'Field%20Day';
-        var eventType2 = $('body').data('event-type2') ? $('body').data('event-type2') : null;
-        var regType = $('body').data('reg-type') ? $('body').data('reg-type') : null;
-        var publicEventType = $('body').data('public-event-type') ? $('body').data('public-event-type') : null;
-
-        var isProd = (luminateExtend.global.tablePrefix === 'heartdev' ? false : true);
-        var eventName = luminateExtend.global.eventName;
-        var srcCode = luminateExtend.global.srcCode;
-        var subSrcCode = luminateExtend.global.subSrcCode;
-        var evID = $('body').data('fr-id') ? $('body').data('fr-id') : null;
-        var dfID = $('body').data('df-id') ? $('body').data('df-id') : null;
-        var consID = $('body').data('cons-id') ? $('body').data('cons-id') : null;
-
-        function getURLParameter(url, name) {
-            return (RegExp(name + '=' + '(.+?)(&|$)').exec(url) || [, null])[1];
-        }
-
-        var currentUrl = window.location.href;
-        var searchType = getURLParameter(currentUrl, 'search_type');
-        var isCrossEventSearch = getURLParameter(currentUrl, 'cross_event');
-        var teamId = getURLParameter(currentUrl, 'team_id');
-        var companyIdParam = getURLParameter(currentUrl, 'company_id');
-
-        var skipLink = document.getElementById('skip-main');
-
-        var isProd = (luminateExtend.global.tablePrefix === 'heartdev' ? false : true);
-
-        var companyCSV;
-
-        if (isProd) {
-          companyCSV = 'https://www2.heart.org/fieldday_company_data/supplemental_company_data.csv';
-        } else {
-          companyCSV = 'https://dev2.heart.org/fieldday_company_data/supplemental_company_data.csv';
-        }
-
-          console.log('end search scripts');
-
-        skipLink.addEventListener('click', function (e) {
-            e.preventDefault();
-            document.getElementById('contentStart').focus();
-            document.getElementById('contentStart').scrollIntoView();
-        });
-
-        if ($('body').is('.pg_FieldDay_HQ')) {
-            $('.js__skip-to').on('click', function (e) {
-                e.preventDefault();
-                $('html, body').animate({
-                    scrollTop: $('#pcBodyContainer').offset().top
-                }, 500);
-            });
-        }
-
-        var addScrollLinks = function () {
-            $('a.scroll-link')
-                .on('click', function (event) {
-                    // On-page links
-                    // Figure out element to scroll to
-                    var target = $(this.hash);
-                    target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
-                    // Does a scroll target exist?
-                    if (target.length) {
-                        // Only prevent default if animation is actually gonna happen
-                        event.preventDefault();
-                        var scrollLocation = target.offset().top;
-                        // var scrollLocation = target.offset().top - 230;
-                        $('html, body').animate({
-                            scrollTop: scrollLocation
-                        }, 1000, function () {
-                        });
-                    }
-                });
-        }
-        addScrollLinks();
-
         cd.getParticipants = function (firstName, lastName, isCrossEvent) {
             luminateExtend.api({
                 api: 'teamraiser',
@@ -1795,6 +1773,7 @@
 
             // populate custom team page content
             $('.js--team-text').html($('#fr_rich_text_container').html());
+
             // populate donor honor roll
             cd.getTeamHonorRoll();
 
@@ -1868,12 +1847,8 @@
         }
 
 
-
         if ($('body').is('.pg_company')) {
             // Company Page
-
-            console.log('assigning company vars');
-
             // Populate company name from page title
             var pageTitle = jQuery('head title').text().trim();
             var start_pos = pageTitle.indexOf(':') + 1;
@@ -1889,7 +1864,7 @@
 
             // var isParentCompany = ($('#company_hierarchy_list_component .lc_Row1').length ? true : false)
 
-            var isParentCompany = ($('.js--company-hierarchy-list-container .lc_Row1').length ? true : false);
+            var isParentCompany = ( $('.js--company-hierarchy-list-container .lc_Row1').length ? true : false );
 
             console.log('Parent company: ' + isParentCompany);
 
@@ -1981,10 +1956,6 @@
               $('.js--thermometer-trophy').addClass('d-none');
             }
             cd.runThermometer(progress, goal);
-
-            cd.getCompanyInfo(companyIdParam);
-            console.log('called data');
-
 
             // Reset selected sort option
             $('.nav-tabs .nav-link').click(function () {
@@ -2277,6 +2248,13 @@
 
         }
 
+        if ($('body').is('.pg_company')) {
+
+          setTimeout(function(){
+            cd.getCompanyInfo(companyIdParam);
+          }, 500)
+
+        }
 
 
         if ($('body').is('.pg_informational')) {
@@ -2514,7 +2492,6 @@ var setIconDirection = function (element) {
         icon.addClass('fa-chevron-down');
     }
 };
-
 
 var toggleMultiEventInfo = function (elem) {
     $(elem).toggleClass('open');
