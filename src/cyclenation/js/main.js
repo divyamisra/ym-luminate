@@ -2166,18 +2166,9 @@
 
       $('.js__show-team-details').on('click', function (e) {
         e.preventDefault();
-        $('#fr_team_goal')
-          .attr({
-            "data-parsley-min-message": minTeamGoalMsg
-          });
         $('.js__team-bikes-container').attr('hidden', true);
         $('form[name=FriendraiserFind]').removeAttr('hidden');
         cd.calculateRegProgress();
-
-        // add parsley validation to the form AFTER all of the elements have been moved around/created. Since minimum team goal is being set by the bikes step, we really shouldn't validate this until we update that min attribute and the user clicks 'next'
-        if (eventType2 === 'Stationary') {
-          $('#team_find_page > form').parsley(teamFindParsleyConfig);
-        }
       });
 
       // if team name submission fails, show system default error messages instead of going back to the bike number selector
@@ -2208,7 +2199,10 @@
         $(numBikeSelector).html(bikesSelectedText);
         $(dynTeamGoal).val(currentTeamGoalFormatted);
         $('.js__numbikes').val(bikesSelected);
-        $('#fr_team_goal').val(currentTeamGoal);
+        //removing min goal calc from eventType2
+        if (eventType2 !== 'StationaryV2') {
+          $('#fr_team_goal').val(currentTeamGoal);
+        }
         $('.js__show-team-details').prop('disabled', false);
       });
 
@@ -2220,7 +2214,7 @@
       }
 
       if (eventType2 === 'StationaryV2') {
-        $('#team_find_new_fundraising_goal_input_hint').text('You can increase your team\'s goal, but the amount shown above is your team\'s required fundraising minimum.');
+        $('#team_find_new_fundraising_goal_input_hint').text('');
       } else {
         $('#team_find_new_fundraising_goal_input_hint').text('You can increase your team\'s goal, but the amount shown above is your required fundraising minimum based off of the number of reserved bikes you selected.');
       }
