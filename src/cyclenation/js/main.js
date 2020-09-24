@@ -2135,7 +2135,6 @@
       // Style LOs team goal input
       if (eventType2 === 'StationaryV2') {
         $(loTeamGoal)
-        .addClass('pl-0 border-left-0')
         .wrap('<div class="input-group" />');
       }
 
