@@ -1358,8 +1358,10 @@
       }
     }
 
-    //Get boundless motion totals
-    cd.getTopEventMiles();
+    //Get boundless motion totals if therm exists
+    if ($('.headerTherm').length > 0) {
+      cd.getTopEventMiles();
+    }
 
     // TODO - rename to make clear that this is a redirect search form with single field
     $('.js__rider-search').on('submit', function (e) {
