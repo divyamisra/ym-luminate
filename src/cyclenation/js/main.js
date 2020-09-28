@@ -1124,6 +1124,7 @@
               else {return (a.total < b.total) ? 1 : -1;}
           });
           //write out totals
+          var cnt = 0;
           $.each(topEventList,function(){
               var event_id = this.event_id;
               var event_city = this.event_city;
@@ -1138,6 +1139,8 @@
               topEventHtml += '    <span class="distance">'+parseFloat(this.total).formatMoney(2)+' Miles</span>';
               topEventHtml += '  </div>';
               topEventHtml += '</div>';
+              if (cnt >= 4) return false;
+              cnt++;
           });
           $('.js__top-events-list').append(topEventHtml);
         }
