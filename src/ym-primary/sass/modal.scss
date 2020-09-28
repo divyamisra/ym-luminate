@@ -1,6 +1,11 @@
 .modal-title {
   text-shadow: none;
 }
+.modal-body {
+  video {
+    max-width:100%;
+  }
+}
 .ym-pc-dashboard-mobile-downloads a:focus {
     outline: red 1px solid;
 }
