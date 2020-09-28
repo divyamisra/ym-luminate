@@ -1111,11 +1111,11 @@
         });
         $('.therm-raised').html("$"+totalRaised.formatMoney(0));
         $('.therm-miles').html(totalMiles.formatMoney(0));
-        var goalRaised = parseFloat($('#therm-progress').data("goal"));
-        var goalMiles = parseFloat($('#therm2-progress').data("goal"));
+        var goalRaised = parseFloat($('#therm--progress').data("goal"));
+        var goalMiles = parseFloat($('#therm2--progress').data("goal"));
         
-        $('#therm-progress').css("width",((totalRaised/goalRaised) * 100).toFixed(2)+'%');
-        $('#therm2-progress').css("width",((totalMiles/goalMiles) * 100).toFixed(2)+'%');
+        $('#therm--progress').css("width",((totalRaised/goalRaised) * 100).toFixed(2)+'%');
+        $('#therm2--progress').css("width",((totalMiles/goalMiles) * 100).toFixed(2)+'%');
         
         if ($('body').is('.pg_cn_home')) {
           //sort totals highest to lowest
