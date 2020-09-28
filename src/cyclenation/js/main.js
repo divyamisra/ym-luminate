@@ -1074,73 +1074,40 @@
       var topEventList = [];
       var totalRaised = 0;
       var totalMiles = 0;
-      $.getJSON("/site/SPageNavigator/reus_cn_leaderboard_ids.html?pgwrap=n&callback=?",function(data){
-        $.each(data.ids,function(i){
-          motion_event = this.id;
-          var event_city = this.city;
-          var event_state = this.state;
-          var event_name = this.name;
-          var event_raised = parseInt((this.raised).replace(/[,]+/g, "").replace("$","")).toFixed(0);
-          var motionApiUrl = 'https://' + motion_urlPrefix + '.boundlessfundraising.com/mobiles/' + motionDb + '/getMotionActivitySummary?event_id=' + motion_event + '&activity_scope=event&list_size=5';
-
-          $.ajax({ 
-              url: motionApiUrl,
-              async: false,
-              type:'GET',
-              dataType: 'json',
-              contentType: 'application/json',
-              beforeSend: function(xhr) {
-                  xhr.setRequestHeader("Authorization", "Basic "+btoa(motion_username+':'+motion_password));
-              },
-              success: function(response){
-                  if (response.metric != undefined) {
-                    response.event_id = motion_event;
-                    response.event_name = event_name;
-                    response.event_city = event_city;
-                    response.event_state = event_state;
-                    response.event_raised = event_raised;
-                    topEventList[i] = response;
-                    totalMiles += parseFloat(response.total);
-                    totalRaised += parseFloat(event_raised);
-                  }
-              },
-              error: function(err) {
-                  console.log('getMotionActivityRoster err', err);
-              }
-          });
-        });
+  	  $.getJSON("//tools.heart.org/cn_leaderboard/getTotals.php?isProd="+isProd+"&callback=?",function(data){
+        totalRaised = parseFloat(data.totalRaised);
+        totalMiles = parseFloat(data.totalMiles);
         $('.therm-raised').html("$"+totalRaised.formatMoney(0));
         $('.therm-miles').html(totalMiles.formatMoney(0));
         var goalRaised = parseFloat($('#therm--progress').data("goal"));
         var goalMiles = parseFloat($('#therm2--progress').data("goal"));
-        
         $('#therm--progress').css("width",((totalRaised/goalRaised) * 100).toFixed(2)+'%');
         $('#therm2--progress').css("width",((totalMiles/goalMiles) * 100).toFixed(2)+'%');
-        
+        topEventList = data.topEventList;
         if ($('body').is('.pg_cn_home')) {
           //sort totals highest to lowest
           topEventList.sort(function(a, b) {
-              if (a.total === b.total) {return 0;}
-              else {return (a.total < b.total) ? 1 : -1;}
+            if (a.total === b.total) {return 0;}
+            else {return (a.total < b.total) ? 1 : -1;}
           });
           //write out totals
           var cnt = 0;
           $.each(topEventList,function(){
-              var event_id = this.event_id;
-              var event_city = this.event_city;
-              var event_state = this.event_state;
-              var event_name = this.event_name;
+            var event_id = this.event_id;
+            var event_city = this.event_city;
+            var event_state = this.event_state;
+            var event_name = this.event_name;
 
-              topEventHtml += '<div class="top-list-entry row pb-2">';
-              topEventHtml += '  <div class="names-amounts col-8 pl-0">';
-              topEventHtml += '    <a class="event-name" href="/site/TR?pg=entry&fr_id='+event_id+'"><span class="city">'+event_city+'</span>, <span class="fullstate">'+event_state+'</span></a>';
-              topEventHtml += '  </div>';
-              topEventHtml += '  <div class="names-amounts col-4 pl-0 text-right">';
-              topEventHtml += '    <span class="distance">'+parseFloat(this.total).formatMoney(2)+' Miles</span>';
-              topEventHtml += '  </div>';
-              topEventHtml += '</div>';
-              if (cnt >= 4) return false;
-              cnt++;
+            topEventHtml += '<div class="top-list-entry row pb-2">';
+            topEventHtml += '  <div class="names-amounts col-8 pl-0">';
+            topEventHtml += '    <a class="event-name" href="/site/TR?pg=entry&fr_id='+event_id+'"><span class="city">'+event_city+'</span>, <span class="fullstate">'+event_state+'</span></a>';
+            topEventHtml += '  </div>';
+            topEventHtml += '  <div class="names-amounts col-4 pl-0 text-right">';
+            topEventHtml += '    <span class="distance">'+parseFloat(this.total).formatMoney(2)+' Miles</span>';
+            topEventHtml += '  </div>';
+            topEventHtml += '</div>';
+            if (cnt >= 4) return false;
+            cnt++;
           });
           $('.js__top-events-list').append(topEventHtml);
         }
