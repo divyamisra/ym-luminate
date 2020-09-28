@@ -1098,7 +1098,7 @@
                     response.event_name = event_name;
                     response.event_city = event_city;
                     response.event_state = event_state;
-                    response.event_raised - event_raised;
+                    response.event_raised = event_raised;
                     topEventList[i] = response;
                     totalMiles += parseFloat(response.total);
                     totalRaised += parseFloat(event_raised);
