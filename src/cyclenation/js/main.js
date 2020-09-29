@@ -867,7 +867,7 @@
                 var participantId = this.consId;
                 var participantPage = this.personalPageUrl;
                 var isCaptain = this.aTeamCaptain;
-                var topParticipantHtml = '<div class="top-list-entry row pb-2"><div class="badges col-2">' + (isCaptain === "true" ? '<svg version="1.1" class="team-captain-badge" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 110 110" style="enable-background:new 0 0 110 110;" xml:space="preserve" alt=""><circle class="st0" cx="55" cy="55" r="55"></circle><polygon class="st1" points="55,72.8 32.1,87.2 38.7,61 18,43.7 44.9,41.9 55,16.8 65.1,41.9 92,43.7 71.3,61 77.9,87.2 "></polygon></svg>' : '') + '</div><div class="names-amounts col-10 pl-0"><a class="participant-name" href="' + participantPage + '">' + participantName + '</a><span class="amount-raised">$' + participantRaisedFormmatted + '</span></div></div>';
+                var topParticipantHtml = '<div class="top-list-entry row pb-2"><div class="badges col-2">' + (isCaptain === "true" ? '<svg version="1.1" class="team-captain-badge" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 110 110" style="enable-background:new 0 0 110 110;" xml:space="preserve" alt=""><circle class="st0" cx="55" cy="55" r="55"></circle><polygon class="st1" points="55,72.8 32.1,87.2 38.7,61 18,43.7 44.9,41.9 55,16.8 65.1,41.9 92,43.7 71.3,61 77.9,87.2 "></polygon></svg>' : '') + '</div><div class="names-amounts col-10 pl-0"><a class="participant-name" href="' + participantPage + '">' + participantName + ' <span class="hidden" aria-hidden="true">Participant</span></a><span class="amount-raised">$' + participantRaisedFormmatted + '</span></div></div>';
 
                 $('.js__top-participants-list').append(topParticipantHtml);
 
@@ -910,7 +910,7 @@
                   badgeLevel = "1000";
                 }
 //                var topTeamRow = '<div class="top-list-entry row pb-2"><div class="badges col-2"> ' + (badgeLevel ? '<img src="http://' + window.location.host + '/aha-luminate/dist/cyclenation/image/badge_team_' + badgeLevel + '.svg" aria-hidden="true">' : '') + '</div><div class="names-amounts col-10 pl-0"> <a class="participant-name" href="TR/?team_id=' + teamId + '&amp;pg=team&amp;fr_id=' + evID + '">' + teamName + '</a> <span class="amount-raised">$' + teamRaisedFormmatted + '</span> </div></div>';
-                var topTeamRow = '<div class="top-list-entry row pb-2"><div class="badges col-2"> ' + (badgeLevel ? '<img src="https://' + window.location.host + '/aha-luminate/dist/cyclenation/image/badge_team_' + badgeLevel + '.svg" aria-hidden="true" alt="">' : '') + '</div><div class="names-amounts col-10 pl-0"> <a class="participant-name" href="TR/?team_id=' + teamId + '&amp;pg=team&amp;fr_id=' + evID + '">' + teamName + '</a> <span class="amount-raised">$' + teamRaisedFormmatted + '</span> </div></div>';
+                var topTeamRow = '<div class="top-list-entry row pb-2"><div class="badges col-2"> ' + (badgeLevel ? '<img src="https://' + window.location.host + '/aha-luminate/dist/cyclenation/image/badge_team_' + badgeLevel + '.svg" aria-hidden="true" alt="">' : '') + '</div><div class="names-amounts col-10 pl-0"> <a class="participant-name" href="TR/?team_id=' + teamId + '&amp;pg=team&amp;fr_id=' + evID + '">' + teamName + ' <span class="hidden" aria-hidden="true">Team</span></a> <span class="amount-raised">$' + teamRaisedFormmatted + '</span> </div></div>';
 
                 $('.js__top-teams-list').append(topTeamRow);
               });
@@ -944,7 +944,7 @@
                 var companyRaised = (parseInt(this.amountRaised) / 100);
                 companyRaised = companyRaised.toFixed(0);
                 var companyRaisedFormmatted = companyRaised.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
-                var topCompanyHtml = '<div class="top-list-entry row pb-2"> <div class="badges col-2"> </div><div class="names-amounts col-10 pl-0"> <a class="participant-name" href="TR?company_id=' + this.companyId + '&fr_id=' + evID + '&pg=company">' + companyName + '</a> <span class="amount-raised">$' + companyRaisedFormmatted + '</span> </div></div>';
+                var topCompanyHtml = '<div class="top-list-entry row pb-2"> <div class="badges col-2"> </div><div class="names-amounts col-10 pl-0"> <a class="participant-name" href="TR?company_id=' + this.companyId + '&fr_id=' + evID + '&pg=company">' + companyName + ' <span class="hidden" aria-hidden="true">Company</span></a> <span class="amount-raised">$' + companyRaisedFormmatted + '</span> </div></div>';
                 $('.js__top-companies-list').append(topCompanyHtml);
               });
             }
@@ -975,9 +975,9 @@
                 if (response.activities != undefined) {
                     $(response.activities).each(function(){
                         var participantName = this.name;
-                        var miles = this.total;
+                        var miles = parseFloat(this.total).formatMoney(0);
                         var participantPage = "https://" + ((isProd) ? "www2" : "dev2") + ".heart.org/site/TR?px="+this.id+"&pg=personal&fr_id="+eventId;
-                        var topParticipantHtml = '<div class="top-list-entry row pb-2"><div class="badges col-2"> </div><div class="names-amounts col-10 pl-0"><a class="participant-name" href="' + participantPage + '">' + participantName + '</a><span class="amount-raised">Miles ' + miles + '</span></div></div>';
+                        var topParticipantHtml = '<div class="top-list-entry row pb-2"><div class="badges col-2"> </div><div class="names-amounts col-10 pl-0"><a class="participant-name" href="' + participantPage + '">' + participantName + ' <span class="hidden" aria-hidden="true">Participant Miles</span></a><span class="amount-raised">' + miles + ' Miles</span></div></div>';
                         $('.js__top-participants-miles').append(topParticipantHtml);
                     });
                 }
@@ -1006,8 +1006,8 @@
                 if (response.activities != undefined) {
                     $(response.activities).each(function(){
                         var teamName = this.name;
-                        var miles = this.total;
-                        var topTeamRow = '<div class="top-list-entry row pb-2"><div class="badges col-2"> </div><div class="names-amounts col-10 pl-0"> <a class="participant-name" href="TR/?team_id=' + teamId + '&amp;pg=team&amp;fr_id=' + evID + '">' + teamName + '</a> <span class="amount-raised">Miles ' + miles + '</span> </div></div>';
+                        var miles = parseFloat(this.total).formatMoney(0);
+                        var topTeamRow = '<div class="top-list-entry row pb-2"><div class="badges col-2"> </div><div class="names-amounts col-10 pl-0"> <a class="team-name" href="TR/?team_id=' + this.id + '&amp;pg=team&amp;fr_id=' + evID + '">' + teamName + ' <span class="hidden" aria-hidden="true">Team Miles</span></a> <span class="amount-raised">' + miles + ' Miles</span> </div></div>';
                         $('.js__top-teams-miles').append(topTeamRow);
                     });
                 }
@@ -1037,8 +1037,8 @@
                 if (response.activities != undefined) {
                     $(response.activities).each(function(){
                         var companyName = this.name;
-                        var miles = this.total;
-                        var topCompanyHtml = '<div class="top-list-entry row pb-2"> <div class="badges col-2"> </div><div class="names-amounts col-10 pl-0"> <a class="participant-name" href="TR?company_id=' + this.id + '&fr_id=' + evID + '&pg=company">' + companyName + '</a> <span class="amount-raised">Miles ' + miles + '</span> </div></div>';
+                        var miles = parseFloat(this.total).formatMoney(0);
+                        var topCompanyHtml = '<div class="top-list-entry row pb-2"> <div class="badges col-2"> </div><div class="names-amounts col-10 pl-0"> <a class="company-name" href="TR?company_id=' + this.id + '&fr_id=' + evID + '&pg=company">' + companyName + ' <span class="hidden" aria-hidden="true">Company Miles</span></a> <span class="amount-raised">' + miles + ' Miles</span> </div></div>';
                         $('.js__top-companies-miles').append(topCompanyHtml);
                     });
                 }
@@ -1068,6 +1068,52 @@
         });
     };
 
+    // BEGIN TOP EVENT MILES
+    cd.getTopEventMiles = function () {
+      var topEventHtml = '';
+      var topEventList = [];
+      var totalRaised = 0;
+      var totalMiles = 0;
+  	  $.getJSON("//tools.heart.org/cn_leaderboard/getTotals.php?isProd="+isProd+"&callback=?",function(data){
+        totalRaised = parseFloat(data.totalRaised);
+        totalMiles = parseFloat(data.totalMiles);
+        $('.therm-raised').html("$"+totalRaised.formatMoney(0));
+        $('.therm-miles').html(totalMiles.formatMoney(0));
+        var goalRaised = parseFloat($('#therm--progress').data("goal"));
+        var goalMiles = parseFloat($('#therm2--progress').data("goal"));
+        $('#therm--progress').css("width",((totalRaised/goalRaised) * 100).toFixed(2)+'%');
+        $('#therm2--progress').css("width",((totalMiles/goalMiles) * 100).toFixed(2)+'%');
+        topEventList = data.topEventList;
+        if ($('body').is('.pg_cn_home')) {
+          //sort totals highest to lowest
+          topEventList.sort(function(a, b) {
+            if (a.total === b.total) {return 0;}
+            else {return (a.total < b.total) ? 1 : -1;}
+          });
+          //write out totals
+          var cnt = 0;
+          $.each(topEventList,function(){
+            var event_id = this.event_id;
+            var event_city = this.event_city;
+            var event_state = this.event_state;
+            var event_name = this.event_name;
+
+            topEventHtml += '<div class="top-list-entry row pb-2">';
+            topEventHtml += '  <div class="names-amounts col-8 pl-0">';
+            topEventHtml += '    <a class="event-name" href="/site/TR?pg=entry&fr_id='+event_id+'"><span class="city">'+event_city+'</span>, <span class="fullstate">'+event_state+'</span></a>';
+            topEventHtml += '  </div>';
+            topEventHtml += '  <div class="names-amounts col-4 pl-0 text-right">';
+            topEventHtml += '    <span class="distance">'+parseFloat(this.total).formatMoney(2)+' Miles</span>';
+            topEventHtml += '  </div>';
+            topEventHtml += '</div>';
+            if (cnt >= 4) return false;
+            cnt++;
+          });
+          $('.js__top-events-list').append(topEventHtml);
+        }
+      });
+    };
+    
     function getLocation() {
       var options = {
         enableHighAccuracy: true,
@@ -1297,8 +1343,7 @@
 
         e.preventDefault();
       });
-
-
+      
     } else if ($('body').is('.pg_entry')) {
       cd.getTopParticipants(evID);
       cd.getTopTeams(evID);
@@ -1311,6 +1356,11 @@
       } else {
           $('#fundraiserMiles').hide();
       }
+    }
+
+    //Get boundless motion totals if therm exists
+    if ($('.headerTherm').length > 0) {
+      cd.getTopEventMiles();
     }
 
     // TODO - rename to make clear that this is a redirect search form with single field
