@@ -1087,8 +1087,8 @@
         if ($('body').is('.pg_cn_home')) {
           //sort totals highest to lowest
           topEventList.sort(function(a, b) {
-            if (a.total === b.total) {return 0;}
-            else {return (a.total < b.total) ? 1 : -1;}
+            if (parseFloat(a.total) === parseFloat(b.total)) {return 0;}
+            else {return (parseFloat(a.total) < parseFloat(b.total)) ? 1 : -1;}
           });
           //write out totals
           var cnt = 0;
