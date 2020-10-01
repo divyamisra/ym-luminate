@@ -1396,46 +1396,81 @@
       </div>
     </section>
   </div>
-  <section class="ym-pc-dashboard-spread-section event-secondary-medium--diagonal" aria-label="Resources for Spreading the Word">
-    <div class="ym-pc-dashboard-section-header">
-      <h2 class="h3">
-        Spread the Word
-      </h2>
-    </div>
-    <div class="ym-pc-dashboard-spread-options">
-      <div class="row">
-        <div class="col-sm-6">
-          <div class="ym-pc-dashboard-section-header">
-            <h3 class="h5">
-              Download Mobile App
-            </h3>
-          </div>
-          <p>
-            Download our Mobile Fundraising App today!
-          </p>
-          <div class="ym-pc-dashboard-mobile-downloads">
-            <a href="https://itunes.apple.com/us/app/ym-primary/id548389448?mt=8" target="_blank" title="Download the iPhone App">
-              <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/youth-markets/image/apple-store-logo.png" alt="Download the iPhone App">
-            </a> 
-            <a href="https://play.google.com/store/apps/details?id=com.aha_jump.android.communicator&amp;hl=en" target="_blank" title="Download the Android App">
-              <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/youth-markets/image/google-play-logo.png" alt="Download the Android App">
-            </a>
-          </div>
+  <section class="row ym-pc-dashboard-bottom-section" aria-label="Top 5 list and Spreading the Word">
+      <div class="col-md-6" ng-show="topClassRaised.length > 0 || topClassStudents.length > 0" style="margin-top:20px;" ng-cloak>
+         <div class="container ym-teachers-leaderboard-block">
+            <div class="ym-teachers-leaderboard ym-promo-block">
+               <h2 class="ym-headline">Leaderboard</h2>
+            </div>
+            <div class="row">
+               <div class="col-md-3">
+                  <h3>Top class for dollars raised</h3>
+                  <div class="ym-tl-dollars-raised">
+                     <div class="row" ng-repeat="topRaised in topClassRaised" role="listitem" ng-if="topClassRaised.length > 0" ng-cloak>
+                        <div class="col-xs-2 col-sm-2 col-md-2 top-index">#{{$index+1}}</div>
+                        <div class="col-xs-10 col-sm-10 col-md-10 top-detail">
+                           <div class="top-name">{{topRaised.name}}</div>
+                           <div class="top-grade">{{topRaised.grade}}</div>
+                           <div class="top-raised">{{topRaised.raised | currency:"$":0}}</div>
+                           <div class="top-msg">{{topRaised.msg}}</div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-md-3">
+                  <h3>Top grade for dollars raised</h3>
+                  <div class="ym-tl-dollars-raised">
+                     <div class="row" ng-repeat="topRaised in topGradeRaised" role="listitem" ng-if="topGradeRaised.length > 0" ng-cloak>
+                        <div class="col-xs-2 col-sm-2 col-md-2 top-index">#{{$index+1}}</div>
+                        <div class="col-xs-10 col-sm-10 col-md-10 top-detail">
+                           <div class="top-name">{{topRaised.name}}</div>
+                           <div class="top-grade">{{topRaised.grade}}</div>
+                           <div class="top-raised">{{topRaised.raised | currency:"$":0}}</div>
+                           <div class="top-msg">{{topRaised.msg}}</div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <div class="col-md-6 ym-pc-dashboard-spread-section event-secondary-medium--diagonal">
+      <div class="ym-pc-dashboard-section-header">
+        <h2 class="h3">
+          Spread the Word
+        </h2>
+      </div>
+      <div class="ym-pc-dashboard-spread-options">
+        <div class="ym-pc-dashboard-section-header">
+          <h3 class="h5">
+            Download Mobile App
+          </h3>
         </div>
-        <div class="col-sm-6">
-          <div class="ym-pc-dashboard-section-header">
-            <h3 class="h5">
-              Social Share
-            </h3>
-          </div>
-          <p>
-            Share on Facebook, Twitter, LinkedIn and even text messaging!
-          </p>
-          <div class="text-center">
-            <a class="btn btn-md-wide btn-secondary" ng-href="{{baseUrl}}#/social">
-              <strong>Go Social</strong> 
-            </a>
-          </div>
+        <p>
+          Download our Mobile Fundraising App today!
+        </p>
+        <div class="ym-pc-dashboard-mobile-downloads">
+          <a href="https://itunes.apple.com/us/app/ym-primary/id548389448?mt=8" target="_blank" title="Download the iPhone App">
+            <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/youth-markets/image/apple-store-logo.png" alt="Download the iPhone App">
+          </a> 
+          <a href="https://play.google.com/store/apps/details?id=com.aha_jump.android.communicator&amp;hl=en" target="_blank" title="Download the Android App">
+            <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/youth-markets/image/google-play-logo.png" alt="Download the Android App">
+          </a>
+        </div>
+        <br/><br/>
+        <div class="ym-pc-dashboard-section-header">
+          <h3 class="h5">
+            Social Share
+          </h3>
+        </div>
+        <p>
+          Share on Facebook, Twitter, LinkedIn and even text messaging!
+        </p>
+        <div class="text-center">
+          <a class="btn btn-md-wide btn-secondary" ng-href="{{baseUrl}}#/social">
+            <strong>Go Social</strong> 
+          </a>
         </div>
       </div>
     </div>
