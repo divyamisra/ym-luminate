@@ -1397,37 +1397,36 @@
     </section>
   </div>
   <section class="row ym-pc-dashboard-bottom-section" aria-label="Top 5 list and Spreading the Word">
-      <div class="col-md-6" ng-show="topClassRaised.length > 0 || topClassStudents.length > 0" style="margin-top:20px;" ng-cloak>
-         <div class="container ym-teachers-leaderboard-block">
-            <div class="ym-teachers-leaderboard ym-promo-block">
-               <h2 class="ym-headline">Leaderboard</h2>
-            </div>
-            <div class="row">
-               <div class="col-md-3">
-                  <h3>Top class for dollars raised</h3>
-                  <div class="ym-tl-dollars-raised">
-                     <div class="row" ng-repeat="topRaised in topClassRaised" role="listitem" ng-if="topClassRaised.length > 0" ng-cloak>
-                        <div class="col-xs-2 col-sm-2 col-md-2 top-index">#{{$index+1}}</div>
-                        <div class="col-xs-10 col-sm-10 col-md-10 top-detail">
-                           <div class="top-name">{{topRaised.name}}</div>
-                           <div class="top-grade">{{topRaised.grade}}</div>
-                           <div class="top-raised">{{topRaised.raised | currency:"$":0}}</div>
-                           <div class="top-msg">{{topRaised.msg}}</div>
-                        </div>
+    <div class="col-md-6" ng-show="topClassRaised.length > 0 || topClassStudents.length > 0" style="margin-top:20px;" ng-cloak>
+      <div class="container ym-teachers-leaderboard-block">
+        <div class="ym-teachers-leaderboard ym-promo-block">
+            <h2 class="ym-headline">Leaderboard</h2>
+         </div>
+         <div class="row">
+            <div class="col-md-6">
+               <h3>Top class for dollars raised</h3>
+               <div class="ym-tl-dollars-raised">
+                  <div class="row" ng-repeat="topRaised in topClassRaised" role="listitem" ng-if="topClassRaised.length > 0" ng-cloak>
+                     <div class="col-xs-2 col-sm-2 col-md-2 top-index">#{{$index+1}}</div>
+                     <div class="col-xs-10 col-sm-10 col-md-10 top-detail">
+                        <div class="top-name">{{topRaised.name}}</div>
+                        <div class="top-grade">{{topRaised.grade}}</div>
+                        <div class="top-raised">{{topRaised.raised | currency:"$":0}}</div>
+                        <div class="top-msg">{{topRaised.msg}}</div>
                      </div>
                   </div>
                </div>
-               <div class="col-md-3">
-                  <h3>Top grade for dollars raised</h3>
-                  <div class="ym-tl-dollars-raised">
-                     <div class="row" ng-repeat="topRaised in topGradeRaised" role="listitem" ng-if="topGradeRaised.length > 0" ng-cloak>
-                        <div class="col-xs-2 col-sm-2 col-md-2 top-index">#{{$index+1}}</div>
-                        <div class="col-xs-10 col-sm-10 col-md-10 top-detail">
-                           <div class="top-name">{{topRaised.name}}</div>
-                           <div class="top-grade">{{topRaised.grade}}</div>
-                           <div class="top-raised">{{topRaised.raised | currency:"$":0}}</div>
-                           <div class="top-msg">{{topRaised.msg}}</div>
-                        </div>
+            </div>
+            <div class="col-md-6">
+               <h3>Top grade for dollars raised</h3>
+               <div class="ym-tl-dollars-raised">
+                  <div class="row" ng-repeat="topRaised in topGradeRaised" role="listitem" ng-if="topGradeRaised.length > 0" ng-cloak>
+                     <div class="col-xs-2 col-sm-2 col-md-2 top-index">#{{$index+1}}</div>
+                     <div class="col-xs-10 col-sm-10 col-md-10 top-detail">
+                        <div class="top-name">{{topRaised.name}}</div>
+                        <div class="top-grade">{{topRaised.grade}}</div>
+                        <div class="top-raised">{{topRaised.raised | currency:"$":0}}</div>
+                        <div class="top-msg">{{topRaised.msg}}</div>
                      </div>
                   </div>
                </div>
@@ -1435,7 +1434,7 @@
          </div>
       </div>
    </div>
-   <div class="col-md-6 ym-pc-dashboard-spread-section event-secondary-medium--diagonal">
+   <div ng-class="(topCompanySteps > 1) ? 'col-md-6' : 'col-md-12'" class="ym-pc-dashboard-spread-section event-secondary-medium--diagonal">
       <div class="ym-pc-dashboard-section-header">
         <h2 class="h3">
           Spread the Word
