@@ -131,6 +131,25 @@ body.pg-company {
      }
 }
 
+.ym-steps-leaderboard-block {
+     h3 {
+         font-size: 17px;
+         text-align: center;
+         color: $brand-primary-darker;
+         margin:0 auto 10px;
+	 max-width:200px;
+    }
+    > [class*="col-"] {
+         padding-left: 0 !important;
+         padding-right: 0 !important;
+    } 
+     .top-msg {
+        font-size:10px;
+    }
+     @media (max-width: $screen-sm-max) {
+     }
+}
+
 .ym-school-participation-years {
     position: absolute;
     max-width: 180px;
