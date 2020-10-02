@@ -154,15 +154,15 @@
          </div>
       </div>
       <div class="row" ng-show="topClassRaised.length > 0 || topClassStudents.length > 0" style="margin-top:20px;" ng-cloak>
-         <div class="col-md-12 ym-teachers-leaderboard ym-promo-block">
+         <div class="col-md-12 ym-teachers-leaderboard text-center">
             <h2 class="ym-headline">Leaderboard</h2>
          </div>
-         <div class="container ym-teachers-leaderboard-block" ng-class="(topCompanySteps.length > 1) ? 'col-md-9' : 'col-md-12'">
-            <div class="row">
+         <div class="ym-teachers-leaderboard-block" ng-class="(topCompanySteps.length > 1) ? 'col-md-9' : 'col-md-12'">
+            <div class="row" style="margin:0;">
                <div class="col-md-3">
                   <h3>Top class for dollars raised</h3>
                   <div class="ym-tl-dollars-raised">
-                     <div class="row" ng-repeat="topRaised in topClassRaised" role="listitem" ng-if="topClassRaised.length > 0" ng-cloak>
+                     <div class="row" style="margin:0;" ng-repeat="topRaised in topClassRaised" role="listitem" ng-if="topClassRaised.length > 0" ng-cloak>
                         <div class="col-xs-2 col-sm-2 col-md-2 top-index">#{{$index+1}}</div>
                         <div class="col-xs-10 col-sm-10 col-md-10 top-detail">
                            <div class="top-name">{{topRaised.name}}</div>
@@ -217,9 +217,9 @@
                </div>
             </div>
          </div>
-         <div class="col-md-3" ng-show="topCompanySteps.length > 0" style="margin-top:20px;" ng-cloak>
-           <div class="container ym-teachers-leaderboard-block">
-             <h3>Top students by steps</h3>
+         <div class="col-md-3" ng-show="topCompanySteps.length > 0" style="margin:0px;" ng-cloak>
+           <div class="ym-teachers-leaderboard-block">
+             <h3>Top students<br/>by steps</h3>
              <div class="ym-tl-registered-students">
                <div class="row" ng-repeat="topActivity in topCompanySteps" role="listitem" ng-if="topCompanySteps.length > 0" ng-cloak>
                   <div class="col-xs-2 col-sm-2 col-md-2 top-index">#{{$index+1}}</div>
