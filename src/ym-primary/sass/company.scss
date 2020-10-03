@@ -143,6 +143,37 @@ body.pg-company {
          padding-left: 0 !important;
          padding-right: 0 !important;
     } 
+    .ym-tl-registered-students {
+         .row {
+             padding: 10px;
+             color: #000;
+             margin: 0 2px 5px 2px;
+             &:nth-child(1) {
+                 background: #94C960;
+            }
+             &:nth-child(2) {
+                 background: #A8D180;
+            }
+             &:nth-child(3) {
+                 background: #BDDC9D;
+            }
+             &:nth-child(4) {
+                 background: #D2E6BB;
+            }
+             &:nth-child(5) {
+                 background: #E7F1DB;
+            }
+        }
+    }
+     .top-index {
+         text-align:left;
+    }
+     .top-detail {
+         text-align:center;
+    }
+     .top-index, .top-detail {
+         padding-left:0px;
+    }
      .top-msg {
         font-size:10px;
     }
