@@ -117,7 +117,10 @@ body.pg-company {
         font-size:10px;
     }
      @media (max-width: $screen-sm-max) {
-         .ym-tl-dollars-raised {
+          .row > div:nth-child(odd) {
+		padding-left: 0;
+          }         
+	  .ym-tl-dollars-raised {
               margin-bottom: 20px;
               .row {
                     margin-right: -15px;
@@ -132,6 +135,9 @@ body.pg-company {
 }
 
 .ym-steps-leaderboard-block {
+     padding-right: 45px;
+     margin: 0px;
+	
      h3 {
          font-size: 17px;
          text-align: center;
@@ -178,6 +184,7 @@ body.pg-company {
         font-size:10px;
     }
      @media (max-width: $screen-sm-max) {
+	padding-right:0px;
      }
 }
 
