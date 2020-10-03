@@ -58,6 +58,10 @@ body.pg-company {
 .ym-teachers-leaderboard-block {
      padding-right: 0px;
      padding-left:30px;
+	
+     &.col-md-12 {
+	 padding-right: 15px;
+     }
      h2 {
          font-size:42px;
          color:$brand-primary-darker;
