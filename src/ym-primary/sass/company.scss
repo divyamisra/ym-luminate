@@ -56,6 +56,8 @@ body.pg-company {
      }
 }
 .ym-teachers-leaderboard-block {
+     padding-right: 0px;
+     padding-left:30px;
      h2 {
          font-size:42px;
          color:$brand-primary-darker;
@@ -117,6 +119,7 @@ body.pg-company {
         font-size:10px;
     }
      @media (max-width: $screen-sm-max) {
+	  padding-left:0px;
           .row > div:nth-child(odd) {
 		padding-left: 0;
           }         
