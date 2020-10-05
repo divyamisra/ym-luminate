@@ -2685,7 +2685,7 @@
       }
 
       var termsHtml = $('.input-container label:contains("Terms and Conditions")').html();
-      termsHtml = termsHtml.replace(/Terms and Conditions/ig, '<a href="javascript:void(0)" onclick="window.open(\'DocServer/HeartWalk2019_163605_TOS_texting_2019.11.19.pdf\',\'_blank\',\'location=yes,height=570,width=520,scrollbars=yes,status=yes\');">Terms and Conditions (PDF)</a>');
+      termsHtml = termsHtml.replace(/Terms and Conditions/ig, '<a href="javascript:void(0)" onclick="window.open(\'https://www.heart.org/en/about-us/statements-and-policies/terms-of-service\',\'_blank\',\'location=yes,height=570,width=520,scrollbars=yes,status=yes\');">Terms and Conditions</a>');
       termsHtml = termsHtml.replace(/Privacy Policy/ig, '<a href="javascript:void(0)" onclick="window.open(\'https://www.heart.org/en/about-us/statements-and-policies/privacy-statement\',\'_blank\',\'location=yes,height=570,width=520,scrollbars=yes,status=yes\');">Privacy Policy</a>');
       $('.input-container label:contains("Terms and Conditions")').html(termsHtml);
 
