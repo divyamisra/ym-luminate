@@ -2711,7 +2711,7 @@
 
       var addressComplete = (regType === 'startTeam' ? false : true);
 
-      var waiverCheckbox = $('.input-container label:contains("terms and conditions")').prev('input[type=checkbox]');
+      var waiverCheckbox = $('.input-container label:contains("Release with Publicity")').prev('input[type=checkbox]');
 
       cd.regInfoVerification = function () {
         if ($(waiverCheckbox).is(':checked') === true && addressComplete === true) {
