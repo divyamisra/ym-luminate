@@ -2684,13 +2684,24 @@
         }
       }
 
-      $('.input-container label:contains("terms and conditions")').html('We have to make sure that you have read and understand these <a href="#" class="js__terms-conditions">terms and conditions</a> and that you agree to them voluntarily.');
+      var termsHtml = $('.input-container label:contains("Terms and Conditions")').html();
+      if (termsHtml != undefined) {
+         termsHtml = termsHtml.replace(/Terms and Conditions/ig, '<a href="javascript:void(0)" onclick="window.open(\'https://www.heart.org/en/about-us/statements-and-policies/terms-of-service\',\'_blank\',\'location=yes,height=570,width=520,scrollbars=yes,status=yes\');">Terms and Conditions</a>');
+         termsHtml = termsHtml.replace(/Privacy Policy/ig, '<a href="javascript:void(0)" onclick="window.open(\'https://www.heart.org/en/about-us/statements-and-policies/privacy-statement\',\'_blank\',\'location=yes,height=570,width=520,scrollbars=yes,status=yes\');">Privacy Policy</a>');
+         $('.input-container label:contains("Terms and Conditions")').html(termsHtml);
+      }
 
+      var releaseHtml = $('.input-container label:contains("Release with Publicity Consent")').html();
+      if (releaseHtml != undefined) {
+         releaseHtml = releaseHtml.replace(/Release with Publicity Consent/ig, '<a href="#" class="js__terms-conditions">Release with Publicity Consent</a>');
+         $('.input-container label:contains("Release with Publicity Consent")').html(releaseHtml);
+      }
 
       $('.js__terms-conditions').on('click', function (e) {
         e.preventDefault();
         $('#termsModal').modal();
       });
+
       // disable next step button unless terms have been checked
       $('#next_step')
         .attr('disabled', true)
