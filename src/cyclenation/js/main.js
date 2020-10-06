@@ -2685,13 +2685,17 @@
       }
 
       var termsHtml = $('.input-container label:contains("Terms and Conditions")').html();
-      termsHtml = termsHtml.replace(/Terms and Conditions/ig, '<a href="javascript:void(0)" onclick="window.open(\'https://www.heart.org/en/about-us/statements-and-policies/terms-of-service\',\'_blank\',\'location=yes,height=570,width=520,scrollbars=yes,status=yes\');">Terms and Conditions</a>');
-      termsHtml = termsHtml.replace(/Privacy Policy/ig, '<a href="javascript:void(0)" onclick="window.open(\'https://www.heart.org/en/about-us/statements-and-policies/privacy-statement\',\'_blank\',\'location=yes,height=570,width=520,scrollbars=yes,status=yes\');">Privacy Policy</a>');
-      $('.input-container label:contains("Terms and Conditions")').html(termsHtml);
+      if (termsHtml != undefined) {
+         termsHtml = termsHtml.replace(/Terms and Conditions/ig, '<a href="javascript:void(0)" onclick="window.open(\'https://www.heart.org/en/about-us/statements-and-policies/terms-of-service\',\'_blank\',\'location=yes,height=570,width=520,scrollbars=yes,status=yes\');">Terms and Conditions</a>');
+         termsHtml = termsHtml.replace(/Privacy Policy/ig, '<a href="javascript:void(0)" onclick="window.open(\'https://www.heart.org/en/about-us/statements-and-policies/privacy-statement\',\'_blank\',\'location=yes,height=570,width=520,scrollbars=yes,status=yes\');">Privacy Policy</a>');
+         $('.input-container label:contains("Terms and Conditions")').html(termsHtml);
+      }
 
       var releaseHtml = $('.input-container label:contains("Release with Publicity Consent")').html();
-      releaseHtml = releaseHtml.replace(/Release with Publicity Consent/ig, '<a href="#" class="js__terms-conditions">Release with Publicity Consent</a>');
-      $('.input-container label:contains("Release with Publicity Consent")').html(releaseHtml);
+      if (releaseHtml != undefined) {
+         releaseHtml = releaseHtml.replace(/Release with Publicity Consent/ig, '<a href="#" class="js__terms-conditions">Release with Publicity Consent</a>');
+         $('.input-container label:contains("Release with Publicity Consent")').html(releaseHtml);
+      }
 
       $('.js__terms-conditions').on('click', function (e) {
         e.preventDefault();
