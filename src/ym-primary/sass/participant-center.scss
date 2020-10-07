@@ -623,3 +623,14 @@ div[id^="taTextElement"]:focus {
        text-transform:uppercase;
     }
 }
+
+.play-circle {
+    position: absolute;
+    top: 2%;
+    left: 4%;
+    font-size: 24px;
+    border: 2px solid #c10e21;
+    padding: 5px 11px 5px 15px;
+    border-radius: 28px; 
+    display:none;
+}
