@@ -798,7 +798,7 @@
                     $('#team_find_new_company_selection_container').append("<span class='hint-text hidden-xs'>You can't skip this step! If you don't see your company in the list, please <a href='mailto:"+coordEmail+"'>contact your local staff</a> to get your company set up today!</span>");
                 }
                 $('#team_find_new_team_attributes').before($('#team_find_new_team_company'));
-                $('#fr_team_name').attr('title','Team Name');
+                $('#fr_team_name').attr('title','Team Name is required');
             } else if (regType === 'joinTeam') {
 		$('.campaign-banner-container').hide();
     		$('#team_find_new_team_attributes').before($('#team_find_new_team_company'));
@@ -2205,7 +2205,6 @@
                 $('#another_button').remove();
               }
             }
-
 
 
             if ($('body').is('.pg_tfind')) {
