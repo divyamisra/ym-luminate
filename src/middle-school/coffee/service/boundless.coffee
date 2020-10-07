@@ -4,6 +4,19 @@ angular.module 'ahaLuminateApp'
     '$http'
     '$sce'
     ($rootScope, $http, $sce) ->
+      checkOOTDashboard: (requestData) ->
+        if $rootScope.tablePrefix is 'heartdev'
+          url = 'https://ahc.staging.ootqa.org/api/coordinator/dashboard/check/' + requestData
+        else if $rootScope.tablePrefix is 'heartnew'
+          url = 'https://ahc.dev.ootqa.org/api/coordinator/dashboard/check/' + requestData
+        else
+          url = 'https://middleschool.heart.org/api/coordinator/dashboard/check/' + requestData
+        $http.jsonp($sce.trustAsResourceUrl(url), jsonpCallbackParam: 'callback')
+          .then (response) ->
+            response
+          , (response) ->
+            response
+            
       getBadges: (requestData) ->
         if $rootScope.tablePrefix is 'heartdev'
           url = 'https://ahc.staging.ootqa.org/api/badges/student/' + requestData 
