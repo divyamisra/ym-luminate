@@ -634,3 +634,9 @@ div[id^="taTextElement"]:focus {
     border-radius: 28px; 
     display:none;
 }
+
+@media (min-width: 992px) {
+  .ym-pc-dashboard-bottom-section {
+	display:flex;
+  }
+}
