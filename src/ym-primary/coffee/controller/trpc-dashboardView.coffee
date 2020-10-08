@@ -34,6 +34,11 @@ angular.module 'trPcControllers'
       $scope.schoolChallenges = []
       $scope.companyProgress = []
       $rootScope.hideGifts = "Y"
+      $scope.topClassRaised = []
+      $scope.topClassStudents = []
+      $scope.topGradeRaised = []
+      $scope.topGradeStudents = []
+      $scope.topCompanySteps = []
       
       $dataRoot = angular.element '[data-embed-root]'
                      
@@ -1086,4 +1091,50 @@ angular.module 'trPcControllers'
 
       $scope.cancelMobileApp = ->
         $scope.viewMobileApp.close()
+        
+      getLeaderboards = ->
+        BoundlessService.getLeaderboards $scope.companyId
+        .then (response) ->
+          teachers_raised = response.data.most_dollars_by_teacher
+          angular.forEach teachers_raised, (teacher) ->
+            grade = teacher.grade_name
+            if grade is null
+              grade = "N/A"
+            $scope.topClassRaised.push
+              name: teacher.teacher_name
+              grade: grade
+              raised: teacher.total | 0
+              msg: 'Amount Raised'
+          teachers_students = response.data.most_students_by_teacher
+          angular.forEach teachers_students, (teacher) ->
+            grade = teacher.grade_name
+            if grade is null
+              grade = "N/A"
+            $scope.topClassStudents.push
+              name: teacher.teacher_name
+              grade: grade
+              students: teacher.students | 0
+              msg: '# Online Students'
+          grade_raised = response.data.most_dollars_by_grade
+          angular.forEach grade_raised, (sgrade) ->
+            grade = sgrade.grade_name
+            if grade is null
+              grade = "N/A"
+            $scope.topGradeRaised.push
+              name: sgrade.teacher_name
+              grade: grade
+              raised: sgrade.total | 0
+              msg: 'Amount Raised'
+          grade_students = response.data.most_students_by_grade
+          angular.forEach grade_students, (students) ->
+            grade = students.grade_name
+            if grade is null
+              grade = "N/A"
+            $scope.topGradeStudents.push
+              name: students.teacher_name
+              grade: grade
+              students: students.students | 0
+              msg: '# Students'
+
+      getLeaderboards()
   ]
