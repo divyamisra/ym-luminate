@@ -47,13 +47,14 @@ angular.module 'ahaLuminateControllers'
         $scope.current_mission_message = response.data.current_mission_message
         $scope.has_bonus = response.data.has_bonus
         angular.forEach prizes, (prize) ->
+          $scope.prizes.push
+            id: prize.id
+            label: prize.label
+            sku: prize.sku
+            status: prize.status
+            earned: prize.earned_datetime
+
           if prize.status is 1
-            $scope.prizes.push
-              id: prize.id
-              label: prize.label
-              sku: prize.sku
-              status: prize.status
-              earned: prize.earned_datetime
             $scope.prizesEarned++
       , (response) ->
         # TODO
