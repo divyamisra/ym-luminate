@@ -1606,7 +1606,7 @@
                                     $('.donation-amounts').append('<label class="form-check-label donation-amount-btn btn mb-3" for="personalDonAmt' + i + '" data-level-id="' + levelID + '"> <input class="form-check-input" type="radio" name="personalDonAmt" id="personalDonAmt' + i + '" value="' + levelID + '"> ' + amountFormatted + '</label>');
                                 } else {
                                     // build user-specified level
-                                    $('.donation-amounts').append('<div class="custom-amount"> <input class="form-check-input other-amt-radio sr-only" type="radio" name="personalDonAmt" id="personalDonAmt' + i + '" value="' + levelID + '"> <label class="js--don-amt-other sr-only" for="personalDonAmt' + i + '" data-level-id="' + levelID + '">Enter your own amount</label> <label class="form-label d-inline-block" for="personalOtherAmt">Custom Amount:</label><br/> <input type="text" id="personalOtherAmt" class="form-control d-inline-block js--personal-amt-other" data-parsley-min="25" data-parsley-min-message="Donations of all amounts are greatly appreciated. Online donations have a $25 minimum." /> </div>');
+                                    $('.donation-amounts').append('<div class="custom-amount"> <input class="form-check-input other-amt-radio" type="radio" name="personalDonAmt" id="personalDonAmt' + i + '" value="' + levelID + '"> <label class="js--don-amt-other" for="personalDonAmt' + i + '" data-level-id="' + levelID + '">Custom Amount:</label> <div class="js--personal-amt-other-wrap"><label class="form-label d-inline-block sr-only" for="personalOtherAmt">Enter your own amount</label><input type="text" id="personalOtherAmt" class="form-control d-inline-block js--personal-amt-other" data-parsley-min="25" data-parsley-min-message="Donations of all amounts are greatly appreciated. Online donations have a $25 minimum." /></div> </div>');
                                 }
                             });
 
@@ -1627,8 +1627,15 @@
                                 // $('.js--don-amt').text($(this).text());
                                 finalDonUrl = defaultDonUrl + '&set.DonationLevel=' + $(this).data('level-id');
                                 $('.js--personal-don-submit').attr('data-final-don-url', finalDonUrl);
-
+                                $('.js--personal-amt-other-wrap').hide();
                             });
+
+                            $('.custom-amount input:radio').change(
+                                function(){
+                                    if ($(this).is(':checked')) {
+                                        $('.js--personal-amt-other-wrap').show();
+                                    }
+                                });                       
 
                             $('.js--personal-amt-other').on('keyup', function (e) {
                                 var keyCode = (e.keyCode ? e.keyCode : e.which);
@@ -1649,9 +1656,10 @@
                             $('input[name="personalDonAmt"]').eq(1).click().prop('checked', true).closest('.donation-amount-btn').addClass('active');
                             // $('.js--don-amt').text($('.form-check-label').eq(1).text().trim());
 
-                            $('.other-amt-radio').focus(function(){
-                              $('.js--personal-amt-other').focus();
-                            });
+                            // removed to account for hiding he input for accessibitliy
+                            // $('.other-amt-radio').focus(function(){
+                            //   $('.js--personal-amt-other').focus();
+                            // });
 
 
                             // redirect is now managed in amazonpay.js

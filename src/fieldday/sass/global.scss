@@ -141,18 +141,25 @@ img {
     margin-bottom: 50px;
 
     .custom-amount {
-      margin: -20px 0 0 0;
+      //margin: -20px 0 0 0;
       label {
         font-size: 0.75rem;
         margin: 0;
+        padding-left: 20px;
       }
-      input {
+      input.js--personal-amt-other {
         width: 100px;
         background-color: #f8f9fa;
         height: 40px;
       }
+      .other-amt-radio {
+        margin: auto;
+        margin-top: 6px;
+      }
     }
   }
+
+
 
   .fundraising-amounts {
     margin-bottom: 45px;
