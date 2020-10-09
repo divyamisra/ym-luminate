@@ -483,6 +483,7 @@
                   <img ng-src="../{{dev_branch != '' ? dev_branch+'/' : ''}}aha-luminate/dist/youth-markets/image/google-play-logo.png" alt="Download the Android App">
                 </a>
               </div>
+	      <!--
               <br/>
               <div class="ym-pc-dashboard-section-header">
                 <h4 class="h5">
@@ -497,6 +498,7 @@
                   <strong>Go Social</strong> 
                 </a>
               </div>
+              -->
             </div>
           </section>
         </div>
@@ -753,7 +755,7 @@
                   <strong>{{activity2amt|number}}</strong> student<span ng-if="activity2amt > 1 || activity2amt == 0">s</span>&nbsp;learning Hands-Only CPR
                 </p>
                 <p>
-                  <strong>{{activity3amt|number}}</strong> student<span ng-if="activity3amt > 1 || activity3amt == 0">s</span>&nbsp;saying no to tobacco
+                  <strong>{{activity3amt|number}}</strong> student<span ng-if="activity3amt > 1 || activity3amt == 0">s</span>&nbsp;saying no to tobacco and vaping
                 </p>
               </div>
             </div>
@@ -939,86 +941,91 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-sm-6 ym-activity-box ym-activity-box--coordinator-reports">
-          <h3 class="h5 clearfix">
-            <span class="ym-activity-box-number">3</span> Check Progress
-          </h3>
-          <p>
-            Check out the reports page to see which students have completed challenges and who has earned donations.
-          </p>
-          <div class="ym-activity-box-cta">
-            <a class="btn btn-md-wide btn-primary" ng-href="{{baseUrl}}#/reports">
-              <strong>View Reports</strong>
-            </a>
+	<div class="col-sm-6 ym-activity-box ym-activity-box--coordinator-reports">
+          <div class="ym-activity-box--coordinator-reports">
+            <h3 class="h5 clearfix">
+              <span class="ym-activity-box-number">3</span> Manage Your Event
+            </h3>
+            <p>
+              Check out the reports page to see which students have completed challenges and who has earned donations.
+            </p>
+            <p style="color:#c10e21" ng-show="!hasOOTDashboard" ng-scope>
+              Manage your event tool is not currently available. Please try again later.
+            </p>
+            <div class="ym-activity-box-cta" ng-show="hasOOTDashboard" ng-scope>
+              <a class="btn btn-md-wide btn-primary" ng-href="https://khc.staging.ootqa.org/coordinator/login/{{frId}}/{{authToken}}/{{sessionCookie}}" target="_blank" ng-if="tablePrefix == 'heartdev'" ng-cloak>
+                <strong>View Reports</strong>
+              </a>
+              <a class="btn btn-md-wide btn-primary" ng-href="https://khc.dev.ootqa.org/coordinator/login/{{frId}}/{{authToken}}/{{sessionCookie}}" target="_blank" ng-if="tablePrefix == 'heartnew'" ng-cloak>
+                <strong>View Reports</strong>
+              </a>
+              <a class="btn btn-md-wide btn-primary" ng-href="https://kidsheartchallenge.heart.org/coordinator/login/{{frId}}/{{authToken}}/{{sessionCookie}}" target="_blank" ng-if="tablePrefix == 'heart'" ng-cloak> 
+                <strong>View Reports</strong>
+              </a>
+            </div>
+          </div>
+          <div class="ym-activity-box--coordinator-prizes" ng-show="hasOOTDashboard" ng-scope>
+            <p>
+              Visit our Thank-You Gift portal to manage and order gifts for your students.
+            </p>
+            <div class="ym-activity-box-cta">
+              <a class="btn btn-md-wide btn-primary" ng-href="https://ahc.staging.ootqa.org/coordinator/login/{{frId}}/{{authToken}}/{{sessionCookie}}" target="_blank" ng-if="tablePrefix == 'heartdev'" ng-cloak>
+                <strong>Thank-You Gifts</strong>
+              </a>
+              <a class="btn btn-md-wide btn-primary" ng-href="https://ahc.dev.ootqa.org/coordinator/login/{{frId}}/{{authToken}}/{{sessionCookie}}" target="_blank" ng-if="tablePrefix == 'heartnew'" ng-cloak>
+                <strong>Thank-You Gifts</strong>
+              </a>
+              <a class="btn btn-md-wide btn-primary" ng-href="https://middleschool.heart.org/coordinator/login/{{frId}}/{{authToken}}/{{sessionCookie}}" target="_blank" ng-if="tablePrefix == 'heart'" ng-cloak> 
+                <strong>Thank-You Gifts</strong>
+              </a>
+            </div>
           </div>
         </div>
-        <div class="col-sm-6 ym-activity-box ym-activity-box--coordinator-prizes">
-          <h3 class="h5 clearfix">
-            <span class="ym-activity-box-number">4</span> Order Thank-You Gifts
-          </h3>
-          <p>
-            Visit our Thank-You Gift portal to manage and order gifts for your students.
-          </p>
-          <div class="ym-activity-box-cta">
-            <a class="btn btn-md-wide btn-primary" ng-href="https://ahc.staging.ootqa.org/coordinator/login/{{frId}}/{{authToken}}/{{sessionCookie}}" target="_blank" ng-if="tablePrefix == 'heartdev'" ng-cloak>
-              <strong>Thank-You Gifts</strong>
-            </a>
-            <a class="btn btn-md-wide btn-primary" ng-href="https://middleschool.heart.org/coordinator/login/{{frId}}/{{authToken}}/{{sessionCookie}}" target="_blank" ng-if="tablePrefix == 'heart'" ng-cloak>
-              <strong>Thank-You Gifts</strong>
-            </a>
-          </div>
+        <div class="col-sm-6 ym-activity-box ym-activity-box--coordinator-resources">
+	  <div class="ym-pc-dashboard-section-header">
+	    <h2 class="h3" style="margin-bottom:20px;">
+		Coordinator Resources
+	    </h2>
+	  </div>
+	  <div class="ym-pc-dashboard-coordinator-resources-options">
+	    <div class="ym-pc-dashboard-section-header">
+		<h3 class="h5">
+		Activation Guides
+		</h3>
+	    </div>
+	    <a class="btn btn-md-wide btn-primary" href="SPageServer?pagename=ahc_resources_activation_guides" target="_blank">
+	      <strong>Download</strong> <span class="sr-only">Activation Guides</span>
+	    </a>
+	    <br/><br/>
+	    <div class="ym-pc-dashboard-section-header">
+	      <h3 class="h5">
+		Online Resources
+	      </h3>
+	    </div>
+	    <a class="btn btn-md-wide btn-primary" href="SPageServer?pagename=ahc_resources_technology" target="_blank">
+		<strong>Download</strong> <span class="sr-only">Online Resources</span>
+	    </a>
+	    <br/><br/>
+	    <div class="ym-pc-dashboard-section-header">
+	      <h3 class="h5">
+		Volunteer Planning
+	      </h3>
+	    </div>
+	    <a class="btn btn-md-wide btn-primary" href="DocServer/AHC_Activation_Planning_Guide.pdf" target="_blank">
+		<strong>Download</strong> <span class="sr-only">Volunteer Planning</span>
+	    </a>
+	  </div>
+	  <div class="ym-pc-dashboard-coordinator-resources-more">
+	    <a ng-href="{{baseUrl}}#/teacher-resources">
+	      <strong>View All Resources</strong>
+	    </a>
+	  </div>
+	  <div class="ym-pc-dashboard-coordinator-resources-contact" ng-if="notifyName != ''" ng-cloak>
+	    Questions about your program – contact your staff partner at: <a ng-href="mailto:{{notifyEmail}}">
+	    <strong>{{notifyName}}</strong>
+	    </a>
+	  </div>
         </div>
-      </div>
-    </section>
-    <section class="ym-pc-dashboard-coordinator-resources-section" aria-label="Fundriasing Resources">
-      <div class="ym-pc-dashboard-section-header">
-        <h2 class="h3">
-          Coordinator Resources
-        </h2>
-      </div>
-      <div class="ym-pc-dashboard-coordinator-resources-options">
-        <div class="row">
-          <div class="col-sm-4">
-            <div class="ym-pc-dashboard-section-header">
-              <h3 class="h5">
-                Activation Guide
-              </h3>
-            </div>
-            <a class="btn btn-md-wide btn-primary" href="http://american.heart.org/americanheartchallenge/resources/for-teachers/activation-guide.html" target="_blank">
-              <strong>Download</strong> <span class="sr-only">Activation Guide</span>
-            </a>
-          </div>
-          <div class="col-sm-4">
-            <div class="ym-pc-dashboard-section-header">
-              <h3 class="h5">
-                Volunteer Guide
-              </h3>
-            </div>
-            <a class="btn btn-md-wide btn-primary" href="http://american.heart.org/americanheartchallenge/resources/for-teachers/ahc-volunteer-guide.pdf" target="_blank">
-              <strong>Download</strong> <span class="sr-only">Volunteer Guide</span>
-            </a>
-          </div>
-          <div class="col-sm-4">
-            <div class="ym-pc-dashboard-section-header">
-              <h3 class="h5">
-                Online Instruction Sheet
-              </h3>
-            </div>
-            <a class="btn btn-md-wide btn-primary" href="http://american.heart.org/americanheartchallenge/resources/thegreatreplayonlineinstructionsheet.pdf" target="_blank">
-              <strong>Download</strong> <span class="sr-only">Online Instruction Sheet</span>
-            </a>
-          </div>
-        </div>
-      </div>
-      <div class="ym-pc-dashboard-coordinator-resources-more">
-        <a ng-href="{{baseUrl}}#/teacher-resources">
-          <strong>View All Resources</strong>
-        </a>
-      </div>
-      <div class="ym-pc-dashboard-coordinator-resources-contact" ng-if="notifyName != ''" ng-cloak>
-        Questions about your program – contact your staff partner at: <a ng-href="mailto:{{notifyEmail}}">
-          <strong>{{notifyName}}</strong>
-        </a>
       </div>
     </section>
     <div class="row ym-spread-the-word-box">
@@ -1031,7 +1038,7 @@
           </div>
           <div class="ym-pc-dashboard-spread-options">
             <div class="row">
-              <div class="col-sm-6">
+              <div class="col-sm-12">
                 <div class="ym-pc-dashboard-section-header">
                   <h3 class="h5">
                     Download Mobile App
@@ -1049,6 +1056,7 @@
                   </a>
 		</div>
               </div>
+	      <!--
               <div class="col-sm-6">
                 <div class="ym-pc-dashboard-section-header">
                   <h3 class="h5">
@@ -1064,6 +1072,7 @@
                   </a>
                 </div>
               </div>
+              -->
             </div>
           </div>
         </section>
