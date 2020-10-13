@@ -29,18 +29,33 @@ angular.module 'ahaLuminateControllers'
       $scope.companyProgress = {}
 
       $scope.prizes = []
+      $scope.prizesEarned = 0
+      $scope.has_bonus = 0
+      $scope.current_mission_completed_count = ''
+      $scope.current_mission_completed_header = ''
+      $scope.current_mission_action = ''
+      $scope.current_mission_title = ''
+      $scope.current_mission_message = ''      
       $scope.schoolChallenges = []
       BoundlessService.getBadges $scope.frId + '/' + $scope.participantId
       .then (response) ->
         prizes = response.data.prizes
+        $scope.current_mission_completed_count = response.data.current_mission_completed_count
+        $scope.current_mission_completed_header = response.data.current_mission_completed_header
+        $scope.current_mission_action = response.data.current_mission_action
+        $scope.current_mission_title = response.data.current_mission_title
+        $scope.current_mission_message = response.data.current_mission_message
+        $scope.has_bonus = response.data.has_bonus
         angular.forEach prizes, (prize) ->
+          $scope.prizes.push
+            id: prize.id
+            label: prize.label
+            sku: prize.sku
+            status: prize.status
+            earned: prize.earned_datetime
+
           if prize.status is 1
-            $scope.prizes.push
-              id: prize.id
-              label: prize.label
-              sku: prize.sku
-              status: prize.status
-              earned: prize.earned_datetime
+            $scope.prizesEarned++
       , (response) ->
         # TODO
 

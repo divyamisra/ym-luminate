@@ -135,9 +135,9 @@
     if (fourWeek != null) {
        fourWeek.setDate(fourWeek.getDate() - 28);
     }
-    
+
     var motion_username = 'cyclenationapi';
-    var motion_password = 'oNNuWown5A8MeJco'; 
+    var motion_password = 'oNNuWown5A8MeJco';
     var motionDb = 'ahacycle';
     var motion_event = evID;
     var motion_urlPrefix = (isProd) ? 'loadprod' : 'load';
@@ -151,8 +151,8 @@
     if (getURLParameter(currentUrl, 'demo') == "true") {
        //override to test bm
        motion_username = 'motionapi';
-       motion_password = 'jPOHc5J4qMVVSj7P'; 
-       motionDb = 'democdsb'; 
+       motion_password = 'jPOHc5J4qMVVSj7P';
+       motionDb = 'democdsb';
        motion_event = 1061;
     }
 
@@ -867,7 +867,7 @@
                 var participantId = this.consId;
                 var participantPage = this.personalPageUrl;
                 var isCaptain = this.aTeamCaptain;
-                var topParticipantHtml = '<div class="top-list-entry row pb-2"><div class="badges col-2">' + (isCaptain === "true" ? '<svg version="1.1" class="team-captain-badge" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 110 110" style="enable-background:new 0 0 110 110;" xml:space="preserve" alt=""><circle class="st0" cx="55" cy="55" r="55"></circle><polygon class="st1" points="55,72.8 32.1,87.2 38.7,61 18,43.7 44.9,41.9 55,16.8 65.1,41.9 92,43.7 71.3,61 77.9,87.2 "></polygon></svg>' : '') + '</div><div class="names-amounts col-10 pl-0"><a class="participant-name" href="' + participantPage + '">' + participantName + '</a><span class="amount-raised">$' + participantRaisedFormmatted + '</span></div></div>';
+                var topParticipantHtml = '<div class="top-list-entry row pb-2"><div class="badges col-2">' + (isCaptain === "true" ? '<svg version="1.1" class="team-captain-badge" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 110 110" style="enable-background:new 0 0 110 110;" xml:space="preserve" alt=""><circle class="st0" cx="55" cy="55" r="55"></circle><polygon class="st1" points="55,72.8 32.1,87.2 38.7,61 18,43.7 44.9,41.9 55,16.8 65.1,41.9 92,43.7 71.3,61 77.9,87.2 "></polygon></svg>' : '') + '</div><div class="names-amounts col-10 pl-0"><a class="participant-name" href="' + participantPage + '">' + participantName + ' <span class="hidden" aria-hidden="true">Participant</span></a><span class="amount-raised">$' + participantRaisedFormmatted + '</span></div></div>';
 
                 $('.js__top-participants-list').append(topParticipantHtml);
 
@@ -910,7 +910,7 @@
                   badgeLevel = "1000";
                 }
 //                var topTeamRow = '<div class="top-list-entry row pb-2"><div class="badges col-2"> ' + (badgeLevel ? '<img src="http://' + window.location.host + '/aha-luminate/dist/cyclenation/image/badge_team_' + badgeLevel + '.svg" aria-hidden="true">' : '') + '</div><div class="names-amounts col-10 pl-0"> <a class="participant-name" href="TR/?team_id=' + teamId + '&amp;pg=team&amp;fr_id=' + evID + '">' + teamName + '</a> <span class="amount-raised">$' + teamRaisedFormmatted + '</span> </div></div>';
-                var topTeamRow = '<div class="top-list-entry row pb-2"><div class="badges col-2"> ' + (badgeLevel ? '<img src="https://' + window.location.host + '/aha-luminate/dist/cyclenation/image/badge_team_' + badgeLevel + '.svg" aria-hidden="true" alt="">' : '') + '</div><div class="names-amounts col-10 pl-0"> <a class="participant-name" href="TR/?team_id=' + teamId + '&amp;pg=team&amp;fr_id=' + evID + '">' + teamName + '</a> <span class="amount-raised">$' + teamRaisedFormmatted + '</span> </div></div>';
+                var topTeamRow = '<div class="top-list-entry row pb-2"><div class="badges col-2"> ' + (badgeLevel ? '<img src="https://' + window.location.host + '/aha-luminate/dist/cyclenation/image/badge_team_' + badgeLevel + '.svg" aria-hidden="true" alt="">' : '') + '</div><div class="names-amounts col-10 pl-0"> <a class="participant-name" href="TR/?team_id=' + teamId + '&amp;pg=team&amp;fr_id=' + evID + '">' + teamName + ' <span class="hidden" aria-hidden="true">Team</span></a> <span class="amount-raised">$' + teamRaisedFormmatted + '</span> </div></div>';
 
                 $('.js__top-teams-list').append(topTeamRow);
               });
@@ -944,7 +944,7 @@
                 var companyRaised = (parseInt(this.amountRaised) / 100);
                 companyRaised = companyRaised.toFixed(0);
                 var companyRaisedFormmatted = companyRaised.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
-                var topCompanyHtml = '<div class="top-list-entry row pb-2"> <div class="badges col-2"> </div><div class="names-amounts col-10 pl-0"> <a class="participant-name" href="TR?company_id=' + this.companyId + '&fr_id=' + evID + '&pg=company">' + companyName + '</a> <span class="amount-raised">$' + companyRaisedFormmatted + '</span> </div></div>';
+                var topCompanyHtml = '<div class="top-list-entry row pb-2"> <div class="badges col-2"> </div><div class="names-amounts col-10 pl-0"> <a class="participant-name" href="TR?company_id=' + this.companyId + '&fr_id=' + evID + '&pg=company">' + companyName + ' <span class="hidden" aria-hidden="true">Company</span></a> <span class="amount-raised">$' + companyRaisedFormmatted + '</span> </div></div>';
                 $('.js__top-companies-list').append(topCompanyHtml);
               });
             }
@@ -962,7 +962,7 @@
     cd.getTopParticipantsMiles = function (eventId) {
         var motionApiUrl = 'https://' + motion_urlPrefix + '.boundlessfundraising.com/mobiles/' + motionDb + '/getMotionActivityRoster?event_id=' + motion_event + '&roster_type=participant&list_size=5';
 
-        $.ajax({ 
+        $.ajax({
             url: motionApiUrl,
             async: true,
             type:'GET',
@@ -975,9 +975,9 @@
                 if (response.activities != undefined) {
                     $(response.activities).each(function(){
                         var participantName = this.name;
-                        var miles = this.total;
+                        var miles = parseFloat(this.total).formatMoney(0);
                         var participantPage = "https://" + ((isProd) ? "www2" : "dev2") + ".heart.org/site/TR?px="+this.id+"&pg=personal&fr_id="+eventId;
-                        var topParticipantHtml = '<div class="top-list-entry row pb-2"><div class="badges col-2"> </div><div class="names-amounts col-10 pl-0"><a class="participant-name" href="' + participantPage + '">' + participantName + '</a><span class="amount-raised">Miles ' + miles + '</span></div></div>';
+                        var topParticipantHtml = '<div class="top-list-entry row pb-2"><div class="badges col-2"> </div><div class="names-amounts col-10 pl-0"><a class="participant-name" href="' + participantPage + '">' + participantName + ' <span class="hidden" aria-hidden="true">Participant Miles</span></a><span class="amount-raised">' + miles + ' Miles</span></div></div>';
                         $('.js__top-participants-miles').append(topParticipantHtml);
                     });
                 }
@@ -993,7 +993,7 @@
     cd.getTopTeamsMiles = function (eventId) {
         var motionApiUrl = 'https://' + motion_urlPrefix + '.boundlessfundraising.com/mobiles/' + motionDb + '/getMotionActivityRoster?event_id=' + motion_event + '&roster_type=team&list_size=5';
 
-        $.ajax({ 
+        $.ajax({
             url: motionApiUrl,
             async: true,
             type:'GET',
@@ -1006,8 +1006,8 @@
                 if (response.activities != undefined) {
                     $(response.activities).each(function(){
                         var teamName = this.name;
-                        var miles = this.total;
-                        var topTeamRow = '<div class="top-list-entry row pb-2"><div class="badges col-2"> </div><div class="names-amounts col-10 pl-0"> <a class="participant-name" href="TR/?team_id=' + teamId + '&amp;pg=team&amp;fr_id=' + evID + '">' + teamName + '</a> <span class="amount-raised">Miles ' + miles + '</span> </div></div>';
+                        var miles = parseFloat(this.total).formatMoney(0);
+                        var topTeamRow = '<div class="top-list-entry row pb-2"><div class="badges col-2"> </div><div class="names-amounts col-10 pl-0"> <a class="team-name" href="TR/?team_id=' + this.id + '&amp;pg=team&amp;fr_id=' + evID + '">' + teamName + ' <span class="hidden" aria-hidden="true">Team Miles</span></a> <span class="amount-raised">' + miles + ' Miles</span> </div></div>';
                         $('.js__top-teams-miles').append(topTeamRow);
                     });
                 }
@@ -1024,7 +1024,7 @@
     cd.getTopCompaniesMiles = function (eventId) {
         var motionApiUrl = 'https://' + motion_urlPrefix + '.boundlessfundraising.com/mobiles/' + motionDb + '/getMotionActivityRoster?event_id=' + motion_event + '&roster_type=company&list_size=5';
 
-        $.ajax({ 
+        $.ajax({
             url: motionApiUrl,
             async: true,
             type:'GET',
@@ -1037,8 +1037,8 @@
                 if (response.activities != undefined) {
                     $(response.activities).each(function(){
                         var companyName = this.name;
-                        var miles = this.total;
-                        var topCompanyHtml = '<div class="top-list-entry row pb-2"> <div class="badges col-2"> </div><div class="names-amounts col-10 pl-0"> <a class="participant-name" href="TR?company_id=' + this.id + '&fr_id=' + evID + '&pg=company">' + companyName + '</a> <span class="amount-raised">Miles ' + miles + '</span> </div></div>';
+                        var miles = parseFloat(this.total).formatMoney(0);
+                        var topCompanyHtml = '<div class="top-list-entry row pb-2"> <div class="badges col-2"> </div><div class="names-amounts col-10 pl-0"> <a class="company-name" href="TR?company_id=' + this.id + '&fr_id=' + evID + '&pg=company">' + companyName + ' <span class="hidden" aria-hidden="true">Company Miles</span></a> <span class="amount-raised">' + miles + ' Miles</span> </div></div>';
                         $('.js__top-companies-miles').append(topCompanyHtml);
                     });
                 }
@@ -1068,6 +1068,52 @@
         });
     };
 
+    // BEGIN TOP EVENT MILES
+    cd.getTopEventMiles = function () {
+      var topEventHtml = '';
+      var topEventList = [];
+      var totalRaised = 0;
+      var totalMiles = 0;
+  	  $.getJSON("//tools.heart.org/cn_leaderboard/getTotals.php?isProd="+isProd+"&callback=?",function(data){
+        totalRaised = parseFloat(data.totalRaised);
+        totalMiles = parseFloat(data.totalMiles);
+        $('.therm-raised').html("$"+totalRaised.formatMoney(0));
+        $('.therm-miles').html(totalMiles.formatMoney(0));
+        var goalRaised = parseFloat($('#therm--progress').data("goal"));
+        var goalMiles = parseFloat($('#therm2--progress').data("goal"));
+        $('#therm--progress').css("width",((totalRaised/goalRaised) * 100).toFixed(2)+'%');
+        $('#therm2--progress').css("width",((totalMiles/goalMiles) * 100).toFixed(2)+'%');
+        topEventList = data.topEventList;
+        if ($('body').is('.pg_cn_home')) {
+          //sort totals highest to lowest
+          topEventList.sort(function(a, b) {
+            if (parseFloat(a.total) === parseFloat(b.total)) {return 0;}
+            else {return (parseFloat(a.total) < parseFloat(b.total)) ? 1 : -1;}
+          });
+          //write out totals
+          var cnt = 0;
+          $.each(topEventList,function(){
+            var event_id = this.event_id;
+            var event_city = this.event_city;
+            var event_state = this.event_state;
+            var event_name = this.event_name;
+
+            topEventHtml += '<div class="top-list-entry row pb-2">';
+            topEventHtml += '  <div class="names-amounts col-8 pl-0">';
+            topEventHtml += '    <a class="event-name" href="/site/TR?pg=entry&fr_id='+event_id+'"><span class="city">'+event_city+'</span>, <span class="fullstate">'+event_state+'</span></a>';
+            topEventHtml += '  </div>';
+            topEventHtml += '  <div class="names-amounts col-4 pl-0 text-right">';
+            topEventHtml += '    <span class="distance">'+parseFloat(this.total).formatMoney(2)+' Miles</span>';
+            topEventHtml += '  </div>';
+            topEventHtml += '</div>';
+            if (cnt >= 4) return false;
+            cnt++;
+          });
+          $('.js__top-events-list').append(topEventHtml);
+        }
+      });
+    };
+    
     function getLocation() {
       var options = {
         enableHighAccuracy: true,
@@ -1081,7 +1127,7 @@
       }
     }
 
-    
+
     function showPosition(position) {
       var input = position.coords.latitude + "," + position.coords.longitude;
       var latlngStr = input.split(',', 2);
@@ -1297,8 +1343,7 @@
 
         e.preventDefault();
       });
-
-
+      
     } else if ($('body').is('.pg_entry')) {
       cd.getTopParticipants(evID);
       cd.getTopTeams(evID);
@@ -1311,6 +1356,11 @@
       } else {
           $('#fundraiserMiles').hide();
       }
+    }
+
+    //Get boundless motion totals if therm exists
+    if ($('.headerTherm').length > 0) {
+      cd.getTopEventMiles();
     }
 
     // TODO - rename to make clear that this is a redirect search form with single field
@@ -2132,40 +2182,10 @@
       $('#team_find_section_footer')
         .prepend('<div class="order-2 order-sm-1 col-sm-4 col-md-3 col-8 offset-2 offset-sm-0"><a href="TRR/?pg=tfind&amp;fr_id=' + evID + '" class="button btn-secondary btn-block">Back</a></div>')
 
-      // Add minimum validation to LOs team goal input
+      // Style LOs team goal input
       if (eventType2 === 'StationaryV2') {
         $(loTeamGoal)
-        .val(goalPerBike)
-        .addClass('pl-0 border-left-0')
-        .wrap('<div class="input-group" />')
-        .before('<div class="input-group-prepend"><div class="input-group-text py-0 px-1 border-right-0 bg-white">$</div></div>')
-        .attr({
-          "min": goalPerBike,
-          "step": "100",
-          "aria-label": "Goal amount (to the nearest dollar)",
-          "data-parsley-validation-threshold": "1",
-          "data-parsley-trigger": "keyup",
-          "data-parsley-type": "number",
-          "data-parsley-min-message": minTeamGoalMsg
-        });
-      } else {
-        var minTeamGoal = $(loTeamGoal).val();
-        minTeamGoal = Number(minTeamGoal.replace(/[^0-9\.-]+/g, ""));
-
-        $(loTeamGoal)
-        .val(minTeamGoal)
-        .addClass('pl-0 border-left-0')
-        .wrap('<div class="input-group" />')
-        .before('<div class="input-group-prepend"><div class="input-group-text py-0 px-1 border-right-0 bg-white">$</div></div>')
-        .attr({
-          "min": minTeamGoal,
-          "step": "100",
-          "aria-label": "Goal amount (to the nearest dollar)",
-          "data-parsley-validation-threshold": "1",
-          "data-parsley-trigger": "keyup",
-          "data-parsley-type": "number",
-          "data-parsley-min-message": minTeamGoalMsg
-        });
+        .wrap('<div class="input-group" />');
       }
 
 
@@ -2194,18 +2214,9 @@
 
       $('.js__show-team-details').on('click', function (e) {
         e.preventDefault();
-        $('#fr_team_goal')
-          .attr({
-            "data-parsley-min-message": minTeamGoalMsg
-          });
         $('.js__team-bikes-container').attr('hidden', true);
         $('form[name=FriendraiserFind]').removeAttr('hidden');
         cd.calculateRegProgress();
-
-        // add parsley validation to the form AFTER all of the elements have been moved around/created. Since minimum team goal is being set by the bikes step, we really shouldn't validate this until we update that min attribute and the user clicks 'next'
-        if (eventType2 === 'Stationary') {
-          $('#team_find_page > form').parsley(teamFindParsleyConfig);
-        }
       });
 
       // if team name submission fails, show system default error messages instead of going back to the bike number selector
@@ -2236,7 +2247,10 @@
         $(numBikeSelector).html(bikesSelectedText);
         $(dynTeamGoal).val(currentTeamGoalFormatted);
         $('.js__numbikes').val(bikesSelected);
-        $('#fr_team_goal').val(currentTeamGoal);
+        //removing min goal calc from eventType2
+        if (eventType2 !== 'StationaryV2') {
+          $('#fr_team_goal').val(currentTeamGoal);
+        }
         $('.js__show-team-details').prop('disabled', false);
       });
 
@@ -2248,7 +2262,7 @@
       }
 
       if (eventType2 === 'StationaryV2') {
-        $('#team_find_new_fundraising_goal_input_hint').text('You can increase your team\'s goal, but the amount shown above is your team\'s required fundraising minimum.');
+        $('#team_find_new_fundraising_goal_input_hint').text('');
       } else {
         $('#team_find_new_fundraising_goal_input_hint').text('You can increase your team\'s goal, but the amount shown above is your required fundraising minimum based off of the number of reserved bikes you selected.');
       }
@@ -2670,13 +2684,24 @@
         }
       }
 
-      $('.input-container label:contains("terms and conditions")').html('We have to make sure that you have read and understand these <a href="#" class="js__terms-conditions">terms and conditions</a> and that you agree to them voluntarily.');
+      var termsHtml = $('.input-container label:contains("Terms and Conditions")').html();
+      if (termsHtml != undefined) {
+         termsHtml = termsHtml.replace(/Terms and Conditions/ig, '<a href="javascript:void(0)" onclick="window.open(\'https://www.heart.org/en/about-us/statements-and-policies/terms-of-service\',\'_blank\',\'location=yes,height=570,width=520,scrollbars=yes,status=yes\');">Terms and Conditions</a>');
+         termsHtml = termsHtml.replace(/Privacy Policy/ig, '<a href="javascript:void(0)" onclick="window.open(\'https://www.heart.org/en/about-us/statements-and-policies/privacy-statement\',\'_blank\',\'location=yes,height=570,width=520,scrollbars=yes,status=yes\');">Privacy Policy</a>');
+         $('.input-container label:contains("Terms and Conditions")').html(termsHtml);
+      }
 
+      var releaseHtml = $('.input-container label:contains("Release with Publicity Consent")').html();
+      if (releaseHtml != undefined) {
+         releaseHtml = releaseHtml.replace(/Release with Publicity Consent/ig, '<a href="#" class="js__terms-conditions">Release with Publicity Consent</a>');
+         $('.input-container label:contains("Release with Publicity Consent")').html(releaseHtml);
+      }
 
       $('.js__terms-conditions').on('click', function (e) {
         e.preventDefault();
         $('#termsModal').modal();
       });
+
       // disable next step button unless terms have been checked
       $('#next_step')
         .attr('disabled', true)
@@ -2686,7 +2711,7 @@
 
       var addressComplete = (regType === 'startTeam' ? false : true);
 
-      var waiverCheckbox = $('.input-container label:contains("terms and conditions")').prev('input[type=checkbox]');
+      var waiverCheckbox = $('.input-container label:contains("Release with Publicity")').prev('input[type=checkbox]');
 
       cd.regInfoVerification = function () {
         if ($(waiverCheckbox).is(':checked') === true && addressComplete === true) {

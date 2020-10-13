@@ -1143,7 +1143,7 @@
                                 $('.js--participant-more-event-results').removeClass('hidden');
                             }
 
-                            $('.js--participant-more-event-result').on('click', function (e) {
+                            $('.js--participant-more-event-results').on('click', function (e) {
                                 e.preventDefault();
                                 $('.js--participant-search-results .row').removeClass('d-none');
                                 $(this).addClass('hidden');
