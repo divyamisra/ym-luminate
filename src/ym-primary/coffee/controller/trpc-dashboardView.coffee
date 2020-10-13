@@ -732,7 +732,7 @@ angular.module 'trPcControllers'
 
       $scope.prizes = []
       $scope.prizesEarned = 0
-      $scope.has_bonus = 0
+      $rootScope.has_bonus = 0
       $scope.current_mission_completed_count = ''
       $scope.current_mission_completed_header = ''
       $scope.current_mission_action = ''
@@ -746,7 +746,7 @@ angular.module 'trPcControllers'
         $scope.current_mission_action = response.data.current_mission_action
         $scope.current_mission_title = response.data.current_mission_title
         $scope.current_mission_message = response.data.current_mission_message
-        $scope.has_bonus = response.data.has_bonus
+        $rootScope.has_bonus = response.data.has_bonus
         final_url = ''
         angular.forEach prizes, (prize) ->
           if prize.mission_url_type == 'Donate' 
