@@ -94,6 +94,7 @@ a.btn {
 
 .card-facebook .btn:focus {
   box-shadow: 0 0 0 .2rem rgba(0,0,0,.95) !important;
+  outline: 4px solid #000;
 }
 
 #navbar-container a.btn.btn-primary:focus, .global-promo a.btn.btn-primary:focus {
