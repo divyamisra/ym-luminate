@@ -2198,14 +2198,12 @@
             }
 
             if ($('body').is('.pg_regsummary')) {
-              $('.reg-summary-address-info .reg-summary-edit-link a').attr('aria-label', 'Edit your registration information');
-              $('.js--edit-ptype').attr('aria-label', 'Edit your registration information');
+              $('.reg-summary-address-info .reg-summary-edit-link a').remove();
+              $('.js--edit-ptype').attr('aria-label', 'Edit your registration').html('Edit your registration');
               if ( $('.team-status').html() === 'You are Starting a Team') {
                 $('#another_button').remove();
               }
             }
-
-
 
             if ($('#fr_team_name').length > 0) {
               $('#fr_team_name').attr('title', 'Team Name required');
