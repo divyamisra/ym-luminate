@@ -1400,7 +1400,7 @@
 			} else {
 				if ($(element).hasClass("acceptRelease")) {
           var a11yError = error.attr('role', 'alert');
-					$('.acceptRelease').closest('.input-container').append(a11yError);
+					$('.acceptRelease').closest('.input-container').append(a11yError).css('display, block');
 
           var describedBy = error.attr('id');
           $(element).attr('aria-describedby', describedBy);
