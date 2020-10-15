@@ -1295,6 +1295,8 @@
   	    $('label:contains("t-shirt")').closest('.input-container').find('select').addClass("tshirtSize");
   	    $('span.field-required').closest('.form-content').find('input, select').addClass("required");
   	    $('input[value^="I accept"]').addClass("acceptRelease").next('label').addClass("acceptReleaseLabel");
+        $('input[value^="I agree to"]').addClass("acceptPrivacy").next('label').addClass("acceptPrivacyLabel");
+
 	    /*
 	    var pattern = /\b(Release with Publicity Consent)/gi; // words you want to wrap
 	    var replaceWith = '<a id="waiverPopLink" href="javascript:void(0);">$1</a>'; // Here's the wap
@@ -1402,7 +1404,13 @@
 
           var describedBy = error.attr('id');
           $(element).attr('aria-describedby', describedBy);
-				} else {
+				} else if ($(element).hasClass("acceptPrivacy")) {
+          var a11yError = error.attr('role', 'alert');
+					$('.acceptPrivacy').closest('.input-container').append(a11yError);
+
+          var describedBy = error.attr('id');
+          $(element).attr('aria-describedby', describedBy);
+        } else {
           if ($(element).parents('.privacyCheck').length) {
 
             var a11yError = error.attr('role', 'alert');
