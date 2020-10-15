@@ -1374,7 +1374,7 @@
 		return arg !== value;
 	    }, "Please select a t-shirt size");
 
-	    jQuery('#F2fRegContact').validate({
+	  jQuery('#F2fRegContact').validate({
 		focusInvalid: false,
 		invalidHandler: function(form, validator) {
 			if (!validator.numberOfInvalids())
@@ -1404,7 +1404,7 @@
           $(element).attr('aria-describedby', describedBy);
 				} else {
 					if ($(element).hasClass("acceptPrivacy")) {
-            var a11yError = error.attr('role', 'alert');
+            var a11yError = error.attr('role', 'alert').css('display, block');
 						$('.acceptPrivacy').closest('.input-container').append(a11yError);
 
             var describedBy = error.attr('id');
@@ -1425,9 +1425,6 @@
 					}
 				}
 			}
-
-      console.log('adding role alert to validation errors');
-
       $(error).attr('role', 'alert')
       }
 
@@ -2198,8 +2195,9 @@
             }
 
             if ($('body').is('.pg_regsummary')) {
-              $('.reg-summary-address-info .reg-summary-edit-link a').remove();
-              $('.js--edit-ptype').attr('aria-label', 'Edit your registration').html('Edit your registration');
+              $('.progress-bar-container')
+              $('.reg-summary-address-info .reg-summary-edit-link a').attr('aria-label', 'Edit your Information').html('Edit your information').attr('src', '');
+              $('.js--edit-ptype').attr('aria-label', 'Edit your fundraising goal').html('Edit your fundraising goal');
               if ( $('.team-status').html() === 'You are Starting a Team') {
                 $('#another_button').remove();
               }
