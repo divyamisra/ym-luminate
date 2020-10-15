@@ -1403,7 +1403,15 @@
           var describedBy = error.attr('id');
           $(element).attr('aria-describedby', describedBy);
 				} else {
-					if ($(element).hasClass("acceptPrivacy")) {
+          if ($(element).parents('.privacyCheck').length) {
+
+            var a11yError = error.attr('role', 'alert');
+  					$('.privacyCheck').closest('.li').append(a11yError).css('display, block');
+
+            var describedBy = error.attr('id');
+            $(element).attr('aria-describedby', describedBy);
+
+          } else if ($(element).hasClass("acceptPrivacy")) {
             var a11yError = error.attr('role', 'alert').css('display, block');
 						$('.acceptPrivacy').closest('.input-container').append(a11yError);
 
