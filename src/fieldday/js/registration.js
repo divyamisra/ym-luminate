@@ -2212,7 +2212,7 @@
 
             if ($('body').is('.pg_regsummary')) {
               $('.progress-bar-container')
-              $('.reg-summary-address-info .reg-summary-edit-link a').attr('aria-label', 'Edit your Information').html('Edit your information').attr('src', '');
+              $('.reg-summary-address-info .reg-summary-edit-link a').remove();
               $('.js--edit-ptype').attr('aria-label', 'Edit your fundraising goal').html('Edit your fundraising goal');
               if ( $('.team-status').html() === 'You are Starting a Team') {
                 $('#another_button').remove();
