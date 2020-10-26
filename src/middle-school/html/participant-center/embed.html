@@ -20,9 +20,6 @@
       <a role="listitem" ng-href="{{baseUrl}}#/dashboard-student" class="ng-pc-nav-item ng-pc-nav-item--student-view" ng-class="{'active': location == '/dashboard-student'}" ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
         <span><strong>Student View</strong></span>
       </a>
-      <a role="listitem" ng-href="{{baseUrl}}#/social" class="ng-pc-nav-item hidden" ng-class="{'active': location == '/social'}">
-        <span><strong>Social</strong></span>
-      </a>
     </div>
   </nav>
   <div ng-view class="ng-pc-view-container"></div>
