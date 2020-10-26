@@ -39,6 +39,12 @@ main > .container {
     max-width: 320px;
     margin: 0 auto 7px;
   }
+
+  @media (min-width: 670px) {
+    > div {
+      display:flex;
+    }
+  }
   
   a {
     &,
@@ -57,6 +63,7 @@ main > .container {
       padding: 12px 0 0;
       margin: 0 3px 5px;
       vertical-align: bottom;
+      flex: 1 1 0;
       
       @media (max-width: 350px) {
         max-width: 85px;
