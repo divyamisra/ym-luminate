@@ -248,9 +248,9 @@
 					 <text fill="#444" font-size="14" font-weight="bold"><tspan x="495" y="381">Donation</tspan></text>
 					 <path class="badge-path" data-name="Path 1529" d="M475 317h100v100h-100z" fill="url(#4{{(prizes[3].earned) ? '_delivered' : '_earned'}})"/>
 				  </g>
-				  <g id="ask-for-a-donation" transform="translate(-.004 -.001)" filter="url(#g)" data-name="Ask for a Donation">
+				  <g id="ask-for-a-donation" transform="translate(-.004 -.001)" filter="url(#g)" data-name="Receive a Donation">
 					 <path data-name="Path 1528" d="M615.362 272.616H507.129c-2.592-31.766-26.292-56.193-55.962-58.967V96.828c89.282 3.007 161.386 80.202 164.195 175.788z" fill="{{(prizes[2].earned) ? '#e1eed2' : '#f48220'}}"/>
-					 <text fill="#444" font-size="14" font-weight="bold"><tspan x="495" y="190">Ask for a</tspan></text>
+					 <text fill="#444" font-size="14" font-weight="bold"><tspan x="492" y="190">Receive a</tspan></text>
 					 <text fill="#444" font-size="14" font-weight="bold"><tspan x="495" y="206">Donation</tspan></text>
 					 <path class="badge-path" data-name="Path 1528" d="M478 143h100v100h-100z" fill="url(#3{{(prizes[2].earned) ? '_delivered' : '_earned'}})"/>
 				  </g>
@@ -292,8 +292,8 @@
 					 <text fill="#ffffff" font-size="20"><tspan x="468" y="668">HEART HERO!</tspan></text>
 				  </g>
 				  <g transform="translate(-.001 .003)" ng-cloak>
-					  <a xlink:href="" ng-href="{{prizes[2].final_url}}" title="Ask for a donation"><text fill="#c10e21" font-size="14" font-weight="bold"><tspan x="570" y="105">Ask for a</tspan></text></a>
-					  <a xlink:href="" ng-href="{{prizes[2].final_url}}" title="Ask for a donation"><text fill="#c10e21" font-size="14" font-weight="bold"><tspan x="570" y="122">Donation</tspan></text></a>
+					  <a xlink:href="" ng-href="{{prizes[2].final_url}}" title="Receive a donation"><text fill="#c10e21" font-size="14" font-weight="bold"><tspan x="567" y="105">Receive a</tspan></text></a>
+					  <a xlink:href="" ng-href="{{prizes[2].final_url}}" title="Receive a donation"><text fill="#c10e21" font-size="14" font-weight="bold"><tspan x="570" y="122">Donation</tspan></text></a>
 					 <path data-name="Path 1523" d="M575 130v23h23v-23h-23z" fill="url(#winding_road_link_arrow_3)"/>
 				  </g>
 				  <g transform="translate(-.001 .003)" class="ng-scope">
@@ -532,7 +532,7 @@
         </div>
       </div>
     </section>
-    <section class="ym-pc-dashboard-standard-gifts-section" aria-label="My Gifts" ng-if="hideGifts != 'Y'" ng-cloak>
+    <section class="ym-pc-dashboard-standard-gifts-section" aria-label="My Gifts" ng-if="hideGifts != 'Y' && has_bonus != 3" ng-cloak>
       <div class="ym-pc-dashboard-section-header">
         <h2 class="h3">
           You Earned <span ng-bind-html="giftsEarned"></span> out of <span ng-bind-html="totalGifts"></span> Thank-You Gifts!
@@ -548,6 +548,7 @@
         <div class="ym-pc-dashboard-standard-gifts-icon" ng-class="{'not-earned': !upcomingGift.prize_status}" ng-repeat="upcomingGift in upcomingGifts" ng-cloak>
            <a href="" ng-click="showPrize(upcomingGift.prize_sku,upcomingGift.prize_label,upcomingGift.prize_status)">
               <img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/prizes2021/{{upcomingGift.prize_sku}}.png" alt="{{upcomingGift.prize_label}}">
+	      <div class="play-circle"><i class="fa fa-play"></i></div>
               <div class="ym-pc-dashboard-standard-gift-earned" ng-if="upcomingGift.prize_status">
                  <h4 class="gift-title" ng-bind-html="upcomingGift.earned_title"></h4>
                  <div class="gift-subtitle1"><span ng-bind-html="upcomingGift.earned_subtitle1"></span></div>
@@ -840,7 +841,7 @@
                 </div>
              </div>
           </div>
-	  <div class="text-center">
+	  <div class="text-center" ng-if="prizes && prizes.length > 0" ng-cloak>
              <a class="btn btn-lg btn-primary" ng-click="monsterEdit()">
                 <strong>Customize Hero!</strong>
              </a>
@@ -848,6 +849,14 @@
              <strong>Coming Soon!</strong>
              </a>-->
           </div>
+	  <div class="text-center"  ng-if="!prizes || prizes.length == 0" ng-cloak>
+             We're building your heart hero customizer
+          </div>
+	  <div class="text-center" style="margin-top:20px;">
+	     <a class="btn btn-lg btn-secondary" href="DocServer/Agent_KHC_Decoder.pdf" target="_blank">
+		<strong>Agent KHC Decoder</strong>
+	     </a>
+	  </div>
         </div>
       </div>
       <div class="row">
@@ -858,6 +867,84 @@
 	      <iframe title="School Animation" id="school-animation"  ng-src="{{schoolAnimationURL}}"></iframe>
 	    </div>
           </div>
+        </div>
+      </div>
+    </section>
+    <section class="row ym-pc-dashboard-bottom-section" aria-label="Top 5 list and Spreading the Word">
+      <div class="col-md-6" ng-show="topClassRaised.length > 0 || topClassStudents.length > 0" ng-cloak>
+        <div class="container ym-teachers-leaderboard-block">
+	  <div class="ym-teachers-leaderboard ym-promo-block">
+	      <h2 class="ym-headline">Leaderboard</h2>
+  	   </div>
+ 	   <div class="row">
+	      <div class="col-md-6">
+	         <h3>Top class for dollars raised</h3>
+	         <div class="ym-tl-dollars-raised">
+		    <div class="row" ng-repeat="topRaised in topClassRaised" role="listitem" ng-if="topClassRaised.length > 0" ng-cloak>
+		       <div class="col-xs-2 col-sm-2 col-md-2 top-index">#{{$index+1}}</div>
+		       <div class="col-xs-10 col-sm-10 col-md-10 top-detail">
+			  <div class="top-name">{{topRaised.name}}</div>
+			  <div class="top-grade">{{topRaised.grade}}</div>
+			  <div class="top-raised">{{topRaised.raised | currency:"$":0}}</div>
+			  <div class="top-msg">{{topRaised.msg}}</div>
+		       </div>
+		    </div>
+	         </div>
+ 	      </div>
+	      <div class="col-md-6">
+	         <h3>Top grade for dollars raised</h3>
+	         <div class="ym-tl-dollars-raised">
+		    <div class="row" ng-repeat="topRaised in topGradeRaised" role="listitem" ng-if="topGradeRaised.length > 0" ng-cloak>
+		       <div class="col-xs-2 col-sm-2 col-md-2 top-index">#{{$index+1}}</div>
+		       <div class="col-xs-10 col-sm-10 col-md-10 top-detail">
+			  <div class="top-name">{{topRaised.name}}</div>
+			  <div class="top-grade">{{topRaised.grade}}</div>
+			  <div class="top-raised">{{topRaised.raised | currency:"$":0}}</div>
+			  <div class="top-msg">{{topRaised.msg}}</div>
+		       </div>
+		    </div>
+	         </div>
+	      </div>
+	   </div>
+        </div>
+     </div>
+     <div ng-class="(topClassRaised.length > 0 || topClassStudents.length > 0) ? 'col-md-6' : 'col-md-12'" class="ym-pc-dashboard-spread-section event-secondary-medium--diagonal">
+        <div class="ym-pc-dashboard-section-header">
+	  <h2 class="h3">
+	    Spread the Word
+	  </h2>
+        </div>
+        <div class="ym-pc-dashboard-spread-options">
+  	  <div class="ym-pc-dashboard-section-header">
+	    <h3 class="h5">
+	      Download Mobile App
+	    </h3>
+	  </div>
+	  <p>
+	    Download our Mobile Fundraising App today!
+	  </p>
+	  <div class="ym-pc-dashboard-mobile-downloads">
+	    <a href="https://itunes.apple.com/us/app/ym-primary/id548389448?mt=8" target="_blank" title="Download the iPhone App">
+	      <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/youth-markets/image/apple-store-logo.png" alt="Download the iPhone App">
+	    </a> 
+	    <a href="https://play.google.com/store/apps/details?id=com.aha_jump.android.communicator&amp;hl=en" target="_blank" title="Download the Android App">
+	      <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/youth-markets/image/google-play-logo.png" alt="Download the Android App">
+	    </a>
+	  </div>
+	  <br/><br/>
+	  <div class="ym-pc-dashboard-section-header">
+	    <h3 class="h5">
+	      Social Share
+	    </h3>
+	  </div>
+	  <p>
+	    Share on Facebook, Twitter, LinkedIn and even text messaging!
+	  </p>
+	  <div class="text-center">
+	    <a class="btn btn-md-wide btn-secondary" ng-href="{{baseUrl}}#/social">
+	      <strong>Go Social</strong> 
+	    </a>
+	  </div>
         </div>
       </div>
     </section>
@@ -1087,28 +1174,28 @@
               </div>
               <div class="col-md-6">
                 <div class="schoolStatusTitle">School Status</div>
-                <p>
+                <p class="students-registered">
                   <strong>{{companyInfo.participantCount|number}}</strong> students are registered 
                 </p>
-                <p>
+                <p class="students-registered-online">
                   <span ng-if="studentRegGoal && studentRegGoal != 0" ng-cloak>Keep recruiting to meet your goal of <strong>{{studentRegGoal|number}}</strong> students!</span>
                   <span ng-if="schoolStudentRegOnline && schoolStudentRegOnline != 0" ng-cloak><strong>{{schoolStudentReg|number}}</strong> of those <strong>{{schoolStudentRegOnline|number}}</strong> students have registered online.</span>
                 </p>
-                <p>
+                <p class="students-fundraising">
                   <strong>{{companyParticipants.totalFundraisers|number}}</strong> student<span ng-if="companyParticipants.totalFundraisers > 1 || companyParticipants.totalFundraisers == 0">s are</span><span ng-if="companyParticipants.totalFundraisers == 1"> is</span> fundraising
                 </p>
                 <br/>
                 <div class="schoolStatusTitle">Daily Challenges</div>
-                <p>
+                <p class="students-challenge1">
                   <strong>{{activity1amt|number}}</strong> student<span ng-if="activity1amt > 1 || activity1amt == 0">s are</span><span ng-if="activity1amt == 1"> is</span> being kind
                 </p>
-                <p>
+                <p class="students-challenge2">
                   <strong>{{activity2amt|number}}</strong> student<span ng-if="activity2amt > 1 || activity2amt == 0">s are</span><span ng-if="activity2amt == 1"> is</span> moving more
                 </p>
-                <p>
+                <p class="students-challenge3">
                   <strong>{{activity3amt|number}}</strong> student<span ng-if="activity3amt > 1 || activity3amt == 0">s are</span><span ng-if="activity3amt == 1"> is</span> choosing water
                 </p>
-              </div>
+	      </div>
             </div>
           </div>
         </div>
@@ -1342,7 +1429,7 @@
               </h3>
             </div>
             <p>
-              Download resources by state to share with your students.
+              Download resources to share with your students.
             </p>
             <a class="btn btn-md-wide btn-primary" href="http://www.heart.org/educationalresources">
               <strong>View Resources</strong>
@@ -1391,49 +1478,49 @@
         </a>
       </div>
     </section>
-  </div>
-  <section class="ym-pc-dashboard-spread-section event-secondary-medium--diagonal" aria-label="Resources for Spreading the Word">
-    <div class="ym-pc-dashboard-section-header">
-      <h2 class="h3">
-        Spread the Word
-      </h2>
-    </div>
-    <div class="ym-pc-dashboard-spread-options">
-      <div class="row">
-        <div class="col-sm-6">
-          <div class="ym-pc-dashboard-section-header">
-            <h3 class="h5">
-              Download Mobile App
-            </h3>
+    <section class="ym-pc-dashboard-spread-section event-secondary-medium--diagonal" aria-label="Resources for Spreading the Word">
+      <div class="ym-pc-dashboard-section-header">
+        <h2 class="h3">
+          Spread the Word
+        </h2>
+      </div>
+      <div class="ym-pc-dashboard-spread-options">
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="ym-pc-dashboard-section-header">
+              <h3 class="h5">
+                Download Mobile App
+              </h3>
+            </div>
+            <p>
+              Download our Mobile Fundraising App today!
+            </p>
+            <div class="ym-pc-dashboard-mobile-downloads">
+              <a href="https://itunes.apple.com/us/app/ym-primary/id548389448?mt=8" target="_blank" title="Download the iPhone App">
+                <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/youth-markets/image/apple-store-logo.png" alt="Download the iPhone App">
+              </a> 
+              <a href="https://play.google.com/store/apps/details?id=com.aha_jump.android.communicator&amp;hl=en" target="_blank" title="Download the Android App">
+                <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/youth-markets/image/google-play-logo.png" alt="Download the Android App">
+              </a>
+            </div>
           </div>
-          <p>
-            Download our Mobile Fundraising App today!
-          </p>
-          <div class="ym-pc-dashboard-mobile-downloads">
-            <a href="https://itunes.apple.com/us/app/ym-primary/id548389448?mt=8" target="_blank" title="Download the iPhone App">
-              <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/youth-markets/image/apple-store-logo.png" alt="Download the iPhone App">
-            </a> 
-            <a href="https://play.google.com/store/apps/details?id=com.aha_jump.android.communicator&amp;hl=en" target="_blank" title="Download the Android App">
-              <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/youth-markets/image/google-play-logo.png" alt="Download the Android App">
-            </a>
-          </div>
-        </div>
-        <div class="col-sm-6">
-          <div class="ym-pc-dashboard-section-header">
-            <h3 class="h5">
-              Social Share
-            </h3>
-          </div>
-          <p>
-            Share on Facebook, Twitter, LinkedIn and even text messaging!
-          </p>
-          <div class="text-center">
-            <a class="btn btn-md-wide btn-secondary" ng-href="{{baseUrl}}#/social">
-              <strong>Go Social</strong> 
-            </a>
+          <div class="col-sm-6">
+            <div class="ym-pc-dashboard-section-header">
+              <h3 class="h5">
+                Social Share
+              </h3>
+            </div>
+            <p>
+              Share on Facebook, Twitter, LinkedIn and even text messaging!
+            </p>
+            <div class="text-center">
+              <a class="btn btn-md-wide btn-secondary" ng-href="{{baseUrl}}#/social">
+                <strong>Go Social</strong> 
+              </a>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+  </div>
 </div>

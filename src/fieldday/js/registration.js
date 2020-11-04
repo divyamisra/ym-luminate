@@ -133,7 +133,11 @@
 
                   $(teams).each(function (i, team) {
                     if (searchType === 'registration') {
-		      if (team.maxTeamSize > team.numMembers) {
+
+                      console.log('search type is reg. Team max size:' + team.maxTeamSize + ' and team members: ' + team.numMembers);
+                      console.log(team.maxTeamSize + ' > ' + team.numMembers);
+
+		      if (parseInt(team.maxTeamSize) > parseInt(team.numMembers)) {
 	                      $('.list').append(
         	                '<div class="search-result-details row py-3"><div class="col-md-5"><strong><a href="' + team.teamPageURL + '" class="team-name-label" title="' + team.name + '" target=_blank><span class="team-company-label sr-only">Team Name:</span> ' + team.name + '</a></strong><br><span class="team-captain-label">Coach:</span> <span class="team-captain-name">' + team.captainFirstName + ' ' + team.captainLastName + '</span></div><div class="col-md-5 mt-auto">' + ((team.companyName !== null && team.companyName !== undefined) ? '<span class="team-company-label">Company:</span> <span class="team-company-name">' + team.companyName + '</span>' : '') + '</div><div class="col-md-2"><a href="' + luminateExtend.global.path.secure + 'TRR/?fr_tjoin=' + team.id + '&pg=tfind&fr_id=' + evID + '&s_captainConsId=' + team.captainConsId + '&s_regType=joinTeam&skip_login_page=true&s_teamName=' + team.name + '&s_teamGoal=' + (parseInt(team.goal)/100) + '&s_teamCaptain=' + team.captainFirstName + ' ' + team.captainLastName + '" title="Join ' + team.name + '" aria-label="Join ' + team.name + '" class="btn btn-block btn-primary button team-join-btn">Join</a></div></div>');
 		      } else {
@@ -747,6 +751,7 @@
 	    $('span.field-required').closest('.form-content').find('input, select').addClass("required");
 
 	    $('input.required').each(function(){
+
 		    var label = $(this).closest('.input-container').find('.input-label').html();
 		    if (label != undefined) {
 			    if (label.indexOf("Team Fundraising Goal") > -1) {
@@ -779,7 +784,7 @@
             });
 
             if (regType === 'startTeam') {
-    		$('.campaign-banner-container').hide();
+    		        $('.campaign-banner-container').hide();
                 $('#team_find_section_container').addClass("col-12 col-xl-10 offset-xl-1").removeClass("section-container");
                 $('form[name=FriendraiserFind]').removeAttr('hidden');
                 $('#team_find_section_body, #team_find_section_header').show();
@@ -792,7 +797,8 @@
                 } else {
                     $('#team_find_new_company_selection_container').append("<span class='hint-text hidden-xs'>You can't skip this step! If you don't see your company in the list, please <a href='mailto:"+coordEmail+"'>contact your local staff</a> to get your company set up today!</span>");
                 }
-		$('#team_find_new_team_attributes').before($('#team_find_new_team_company'));
+                $('#team_find_new_team_attributes').before($('#team_find_new_team_company'));
+                $('#fr_team_name').attr('title','Team Name is required');
             } else if (regType === 'joinTeam') {
 		$('.campaign-banner-container').hide();
     		$('#team_find_new_team_attributes').before($('#team_find_new_team_company'));
@@ -1171,7 +1177,8 @@
         // PTYPE
         if ($('#F2fRegPartType').length > 0) {
             if ($('.part-type-container').length == 1) {
-		if ($('input[name=discount_code]').length == 0) {
+
+		 if ($('input[name=discount_code]').length == 0) {
 	                $('.part-type-container, #part_type_section_header').hide();
 		} else {
 	                $('#part_type_section_header').hide();
@@ -1289,6 +1296,8 @@
   	    $('label:contains("t-shirt")').closest('.input-container').find('select').addClass("tshirtSize");
   	    $('span.field-required').closest('.form-content').find('input, select').addClass("required");
   	    $('input[value^="I accept"]').addClass("acceptRelease").next('label').addClass("acceptReleaseLabel");
+        $('input[value^="I agree to"]').addClass("acceptPrivacy").next('label').addClass("acceptPrivacyLabel");
+
 	    /*
 	    var pattern = /\b(Release with Publicity Consent)/gi; // words you want to wrap
 	    var replaceWith = '<a id="waiverPopLink" href="javascript:void(0);">$1</a>'; // Here's the wap
@@ -1368,38 +1377,75 @@
 		return arg !== value;
 	    }, "Please select a t-shirt size");
 
-	    jQuery('#F2fRegContact').validate({
+	  jQuery('#F2fRegContact').validate({
 		focusInvalid: false,
 		invalidHandler: function(form, validator) {
 			if (!validator.numberOfInvalids())
 				return;
 
 			$('html, body').animate({
-				scrollTop: $(validator.errorList[0].element).offset().top
+				scrollTop: $(validator.errorList[0].element).focus().offset().top
 			}, 500);
 		},
                 rules: rules,
                 messages: messages,
+                errorElement: 'span',
                 errorPlacement: function(error, element) {
+
 			if ($(element).hasClass("survivorq")) {
-				$('fieldset.survivor_yes_no').after(error);
+        var a11yError = error.attr('role', 'alert');
+				$('fieldset.survivor_yes_no').after(a11yError);
+
+        var describedBy = error.attr('id');
+        $(element).attr('aria-describedby', describedBy);
 			} else {
 				if ($(element).hasClass("acceptRelease")) {
-					$('.acceptRelease').closest('.input-container').append(error);
-				} else {
-					if ($(element).hasClass("acceptPrivacy")) {
-						$('.acceptPrivacy').closest('.input-container').append(error);
+          var a11yError = error.attr('role', 'alert');
+					$('.acceptRelease').closest('.input-container').append(a11yError).css('display, block');
+
+          var describedBy = error.attr('id');
+          $(element).attr('aria-describedby', describedBy);
+				} else if ($(element).hasClass("acceptPrivacy")) {
+          var a11yError = error.attr('role', 'alert');
+					$('.acceptPrivacy').closest('.input-container').append(a11yError);
+
+          var describedBy = error.attr('id');
+          $(element).attr('aria-describedby', describedBy);
+        } else {
+          if ($(element).parents('.privacyCheck').length) {
+
+            var a11yError = error.attr('role', 'alert');
+  					$('.privacyCheck').closest('.li').append(a11yError).css('display, block');
+
+            var describedBy = error.attr('id');
+            $(element).attr('aria-describedby', describedBy);
+
+          } else if ($(element).hasClass("acceptPrivacy")) {
+            var a11yError = error.attr('role', 'alert').css('display, block');
+						$('.acceptPrivacy').closest('.input-container').append(a11yError);
+
+            var describedBy = error.attr('id');
+            $(element).attr('aria-describedby', describedBy);
 					} else {
 						var placement = $(element).data('error');
 						if (placement) {
-							$(placement).append(error)
+              var a11yError = error.attr('role', 'alert');
+							$(placement).append(a11yError);
+
+              var describedBy = error.attr('id');
+              $(element).attr('aria-describedby', describedBy);
 						} else {
-							error.insertAfter(element);
+							error.insertAfter(element).attr('role', 'alert');
+              var describedBy = error.attr('id');
+              $(element).attr('aria-describedby', describedBy);
 						}
 					}
 				}
 			}
-                }
+      $(error).attr('role', 'alert')
+      }
+
+
             });
             $.validator.addMethod("uncheck", function(value) {
                return /^[A-Za-z0-9\d=\-+#@%:,._*]*$/.test(value) // consists of only these
@@ -2011,6 +2057,15 @@
             }
 
 //start sort function
+            if (!String.prototype.startsWith) {
+             Object.defineProperty(String.prototype, 'startsWith', {
+                 value: function(search, rawPos) {
+                     var pos = rawPos > 0 ? rawPos|0 : 0;
+                     return this.substring(pos, pos + search.length) === search;
+                 }
+             });
+            }
+
             if ($('#fr_co_list').length > 0 || $('#fr_part_co_list').length > 0){
 
               $.coList = $('#fr_co_list');
@@ -2157,20 +2212,31 @@
             }
 
             if ($('body').is('.pg_regsummary')) {
-              $('.reg-summary-address-info .reg-summary-edit-link a').attr('aria-label', 'Edit your registration information');
-              $('.js--edit-ptype').attr('aria-label', 'Edit your registration information');
+              $('.progress-bar-container')
+              $('.reg-summary-address-info .reg-summary-edit-link a').remove();
+              $('.js--edit-ptype').attr('aria-label', 'Edit your fundraising goal').html('Edit your fundraising goal');
               if ( $('.team-status').html() === 'You are Starting a Team') {
                 $('#another_button').remove();
               }
             }
 
 
-
             if ($('body').is('.pg_tfind')) {
               $('#fr_team_name').attr('title', 'Team Name required');
             }
 
+            if ($('#F2fRegContact').length > 0 ) {
+              $('.error').attr('role', 'alert');
+              $('.consZip .input-container').attr('role', 'alert');
+              console.log('adding alerts');
+            }
 
+            if ( $('.part-type-fee-text').is(':empty') ) {
+              $('.part-type-fee-text').remove();
+            }
 
+            if ($('body').is('.pg_tfind')) {
+              setTimeout(function(){ document.getElementById('fr_team_name').title = 'Team Name required'; }, 1000);
+            }
 
 })(jQuery);

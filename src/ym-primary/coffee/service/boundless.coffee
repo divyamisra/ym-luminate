@@ -121,6 +121,28 @@ angular.module 'ahaLuminateApp'
           , (response) ->
             response
             
+      getBMLeaderboard: ->
+        motion_username = 'kidsheartapi'
+        motion_password = 'mYhtYeBWCrA7cTST'
+        if $rootScope.tablePrefix == 'heartdev'
+          url = 'https://load.boundlessfundraising.com/mobiles/ahakhc/getMotionActivityRoster?event_id=' + $rootScope.frId + '&roster_type=participant&list_size=5'
+        else
+          url = 'https://loadprod.boundlessfundraising.com/mobiles/ahakhc/getMotionActivityRoster?event_id=' + $rootScope.frId + '&roster_type=participant&list_size=5'
+        jQuery.ajax
+          url: $sce.trustAsResourceUrl(url)
+          async: true
+          type: 'GET'
+          dataType: 'json'
+          contentType: 'application/json'
+          beforeSend: (xhr) ->
+            xhr.setRequestHeader 'Authorization', 'Basic ' + btoa(motion_username + ':' + motion_password)
+            return
+          success: (response) ->
+            response
+          error: (err) ->
+            console.log 'getMotionActivityRoster err', err
+            response
+
       defaultStandardGifts: ->
         [
           {
@@ -164,10 +186,10 @@ angular.module 'ahaLuminateApp'
             "id":"SAMCLIP-21"
             "name":"Sam"
             "status":0
-            "level":"$10 online"
+            "level":"$10"
             "instant": 1
             "earned_title":"Kickin' it ninja style"
-            "earned_subtitle1":"Take a bow for earning Sam for raising $10 online!"
+            "earned_subtitle1":"Take a bow for earning Sam for raising $10!"
             "earned_subtitle2":"Always make a good choice like Sam."
             "earned_subtitle3":"and you'll earn Sam."
             "online_only":1
@@ -200,10 +222,10 @@ angular.module 'ahaLuminateApp'
             "id":"KAICLIP-21"
             "name":"Kai"
             "status":0
-            "level":"$40 online"
+            "level":"$40"
             "instant": 1
             "earned_title":"You're rad dude"
-            "earned_subtitle1":"You earned Kai for raising $40 online!"
+            "earned_subtitle1":"You earned Kai for raising $40!"
             "earned_subtitle2":"Keep it cool just like Kai."
             "earned_subtitle3":"and you'll earn Kai."
             "online_only":1

@@ -116,7 +116,7 @@
 <section id="eventDetails" class="section-event-details">
   <div class="container">
     <div class="row">
-      <div class="details-container col-12 pb-5">
+      <div class="js-details-container details-container col-12 pb-3">
         <h2 class="h1">Details</h2>
         <div id="event-details-accordion" class="details-items-container accordion col-12 pt-4 row">
           [[?xx::x[[E47:[[S334:fr_id]]:fr_info:1:event_location]]x::::
@@ -601,7 +601,7 @@
           <div class="row">
             <div class="col-2"></div>
             <div class="col-10 pl-0">
-              <h2 class="h4 py-3 section-fundraiser-list-title"><a class="text-white" href="https://[[S29:SECURE_DOMAIN]][[S29:SECURE_PATH]]TR?fr_id=[[S80:evID]]&pg=teamlist" onclick="_gaq.push(['_trackEvent', 'event homepage', 'click', 'leaderboard teams top see all']);">Top Teams<i class="fas fa-angle-right" aria-hidden="true" alt=""></i></a></h2>
+              <h2 class="h4 py-3 section-fundraiser-list-title"><a class="text-white" href="https://[[S29:SECURE_DOMAIN]][[S29:SECURE_PATH]]TR?fr_id=[[S80:evID]]&pg=teamlist" onclick="_gaq.push(['_trackEvent', 'event homepage', 'click', 'leaderboard teams top see all']);">Top Teams <i class="fas fa-angle-right" aria-hidden="true" alt=""></i></a></h2>
             </div>
           </div>
         </div>
@@ -678,6 +678,102 @@
   </div>
 </section>
 <!-- END TOP FUNDRAISERS SECTION -->
+
+<!-- TOP FUNDRAISERS MILES SECTION -->
+<section id="fundraiserMiles" class="section-fundraiser pt-4 pb-5">
+  <div class="leaderboard-container container">
+    <div class="row">
+      <div class="col-md-12">
+          <h2 class="h1 pb-4 text-white">[[E47:[[S334:fr_id]]:fr_info:1:event_location_city]] Cyclenation Distance Challenge Leaderboard</h2>
+          <p class="text-center"><a href="DocServer/CycleNation_Distance_Challenge_Toolkit.pdf" target="_blank" class="text-white">To learn more about distance challenge, click here</a></p>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <!-- TOP INDIVIDUALS -->
+      <div class="top-list individuals col-lg-4 row mx-0 mb-5 mb-lg-0">
+        <!-- TITLE -->
+        <div class="top-list-title col-12">
+          <div class="row">
+            <div class="col-2"></div>
+            <div class="col-10 pl-0">
+              <h2 class="h4 py-3 section-fundraiser-list-title"><a class="text-white" href="https://[[S29:SECURE_DOMAIN]][[S29:SECURE_PATH]]SPageNavigator/cyclenation_activity_leaderboard.html?search_type=participant&fr_id=[[S80:evID]]" onclick="_gaq.push(['_trackEvent', 'event homepage', 'click', 'leaderboard riders top see all miles']);">Top Individuals <span class="hidden" aria-hidden="true">Distance Challenge Leaderboard</span><i class="fas fa-angle-right" aria-hidden="true" alt=""></i></a></h2>
+            </div>
+          </div>
+        </div>
+        <!-- END TITLE -->
+        <!-- LIST -->
+        <div class="top-list-container col-12 px-3 py-3">
+          <div class="js__top-participants-miles">
+          </div>
+        </div>
+        <!-- END LIST -->
+        <!-- LIST LINK -->
+        <div class="top-list-link pt-2 pl-3">
+          <span class="sr-only" id="seeAllIndividualsMiles">See all Individuals</span>
+          <a class="text-white" href="https://[[S29:SECURE_DOMAIN]][[S29:SECURE_PATH]]SPageNavigator/cyclenation_activity_leaderboard.html?search_type=participant&fr_id=[[S80:evID]]" aria-labelledby="seeAllIndividuals" onclick="_gaq.push(['_trackEvent', 'event homepage', 'click', 'leaderboard riders bottom see all miles']);">See All Individuals<i class="fas fa-angle-right" aria-hidden="true" alt=""></i></a>
+        </div>
+        <!-- END LINK -->
+      </div>
+      <!-- END TOP INDIVIDUALS -->
+      <!-- TOP TEAMS -->
+      <div class="top-list teams col-lg-4 row mx-0 mb-5 mb-lg-0">
+        <!-- TITLE -->
+        <div class="top-list-title col-12">
+          <div class="row">
+            <div class="col-2"></div>
+            <div class="col-10 pl-0">
+              <h2 class="h4 py-3 section-fundraiser-list-title"><a class="text-white" href="https://[[S29:SECURE_DOMAIN]][[S29:SECURE_PATH]]SPageNavigator/cyclenation_activity_leaderboard.html?search_type=team&fr_id=[[S80:evID]]" onclick="_gaq.push(['_trackEvent', 'event homepage', 'click', 'leaderboard teams top see all miles']);">Top Teams <span class="hidden" aria-hidden="true">Distance Challenge Leaderboard</span><i class="fas fa-angle-right" aria-hidden="true" alt=""></i></a></h2>
+            </div>
+          </div>
+        </div>
+        <!-- END TITLE -->
+        <!-- LIST -->
+        <div class="top-list-container col-12 px-3 py-3">
+          <div class="js__top-teams-miles">
+          </div>
+        </div>
+        <!-- END LIST -->
+        <!-- LIST LINK -->
+        <div class="top-list-link pt-2 pl-3">
+          <span class="sr-only" id="seeAllTeamsMiles">See all teams</span>
+          <a class="text-white" href="https://[[S29:SECURE_DOMAIN]][[S29:SECURE_PATH]]SPageNavigator/cyclenation_activity_leaderboard.html?search_type=team&fr_id=[[S80:evID]]" aria-labelledby="seeAllTeams" onclick="_gaq.push(['_trackEvent', 'event homepage', 'click', 'leaderboard teams bottom see all miles']);">See All Teams<i class="fas fa-angle-right" aria-hidden="true" alt=""></i></a>
+        </div>
+        <!-- END LINK -->
+      </div>
+      <!-- END TOP TEAMS -->
+      [[?xx::x[[E42:[[S334:fr_id]]:top-companies-rollup]]x::::
+      <!-- TOP COMPANIES -->
+      <div class="top-list companies col-lg-4 row mx-0 mb-5 mb-lg-0">
+        <!-- TITLE -->
+        <div class="top-list-title col-12">
+          <div class="row">
+            <div class="col-2"></div>
+            <div class="col-10 pl-0">
+              <h2 class="h4 py-3 section-fundraiser-list-title"><a class="text-white" href="https://[[S29:SECURE_DOMAIN]][[S29:SECURE_PATH]]SPageNavigator/cyclenation_activity_leaderboard.html?search_type=company&fr_id=[[S80:evID]]" onclick="_gaq.push(['_trackEvent', 'event homepage', 'click', 'leaderboard company top see all miles']);">Top Companies <span class="hidden" aria-hidden="true">Distance Challenge Leaderboard</span><i class="fas fa-angle-right" aria-hidden="true" alt=""></i></a></h2>
+            </div>
+          </div>
+        </div>
+        <!-- END TITLE -->
+        <!-- LIST -->
+        <div class="top-list-container col-12 px-3 py-3">
+          <div class="js__top-companies-miles">
+          </div>
+        </div>
+        <!-- END LIST -->
+        <!-- LIST LINK -->
+        <div class="top-list-link pt-2 pl-3">
+          <span class="sr-only" id="seeAllCompaniesMiles">See all companies</span>
+          <a class="text-white" href="https://[[S29:SECURE_DOMAIN]][[S29:SECURE_PATH]]SPageNavigator/cyclenation_activity_leaderboard.html?search_type=company&fr_id=[[S80:evID]]" aria-labelledby="seeAllCompanies" onclick="_gaq.push(['_trackEvent', 'event homepage', 'click', 'leaderboard company bottom see all miles']);">See All Companies<i class="fas fa-angle-right" aria-hidden="true" alt=""></i></a>
+        </div>
+        <!-- END LINK -->
+      </div>
+      <!-- END TOP COMPANIES -->
+      ]]
+    </div>
+  </div>
+</section>
+<!-- END TOP FUNDRAISERS MILES SECTION -->
+
 [[?xx{unassigned}x::x[[E47:[[S334:fr_id]]:fr_info:1:sponsor_4]]x::::
 <!-- SOCIAL FEED SECTION -->
 <section id="social-feed" class="section-social-feed gray-background" data-album-id="[[S80:albumId]]" data-album-url="AjaxProxy?cnv_url=[[T1:http://[[S29:DOMAIN]][[S29:PATH]]PhotoAlbumUser?view=UserAlbum&AlbumID=[[S80:albumId]]&pgwrap=n]]&auth=[[S86:true]]">
