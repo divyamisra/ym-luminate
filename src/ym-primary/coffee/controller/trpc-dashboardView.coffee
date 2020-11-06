@@ -241,7 +241,7 @@ angular.module 'trPcControllers'
         getSchoolInformation()
       $scope.refreshFundraisingProgress()
 
-      interactionMoveMoreId = $dataRoot.data 'more-more-flag-id'
+      interactionMoveMoreId = $dataRoot.data 'move-more-flag-id'
 
       $scope.moveMoreFlag =
         text: ''
