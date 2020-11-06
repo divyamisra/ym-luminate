@@ -19,13 +19,14 @@
        If you’re unable or prefer not to download the app, <a href="#" target="_blank">click here</a> to notify us when you’ve completed the Move More Challenge.
     </p>
     <p>&nbsp;</p>
-    <div class="checkbox" custom-checkbox ng-class="{'checked': registrationInfo.fr_check_move_more}">
+    <div class="checkbox" custom-checkbox ng-class="{'checked': moveMoreFlag.message}">
         <label for="registrationInfo-fr_check_move_more">
-          <input type="checkbox" name="fr_check_move_more" id="registrationInfo-fr_check_move_more" ng-model="registrationInfo.fr_check_move_more"> 
+          <input type="checkbox" name="fr_check_move_more" id="registrationInfo-fr_check_move_more" ng-model="moveMoreFlag.message" ng-click="updateMoveMoreFlag()"> 
           <span>I have completed 150 minutes of activity over a 7 day period during this event.</span>
         </label>
-      </div>
-
+        <span ng-if="moveMoreFlag.successMessage" ng-cloak>{{moveMoreFlag.message}}</span>
+        <span ng-bind="moveMoreFlag.errorMessage" ng-cloak></span>
+    </div>
   </div>
   <div class="modal-footer">
     <div class="clearfix">
