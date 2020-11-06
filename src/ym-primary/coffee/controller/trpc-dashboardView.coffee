@@ -277,21 +277,21 @@ angular.module 'trPcControllers'
                   $scope.moveMoreFlag.text = interaction.note?.text or ''
                   $scope.moveMoreFlag.interactionId = interaction.interactionId or ''
 
-        $scope.updateMoveMoreFlag = ->
-          if $scope.moveMoreFlag.interactionId is ''
-            NgPcInteractionService.logInteraction 'interaction_type_id=' + interactionMoveMoreId + '&cons_id=' + $scope.consId + '&interaction_subject=' + $scope.participantRegistration.companyInformation.companyId + '&interaction_body=' + ($scope.coordinatorMessage?.text or '')
-                .then (response) ->
-                  if response.data.updateConsResponse?.message
-                    $scope.moveMoreFlag.successMessage = true
-                  else
-                    $scope.moveMoreFlag.errorMessage = 'There was an error processing your update. Please try again later.'
-          else
-            NgPcInteractionService.updateInteraction 'interaction_id=' + $scope.moveMoreFlag.interactionId + '&cons_id=' + $scope.consId + '&interaction_subject=' + $scope.participantRegistration.companyInformation.companyId + '&interaction_body=' + ($scope.coordinatorMessage?.text or '')
+      $scope.updateMoveMoreFlag = ->
+        if $scope.moveMoreFlag.interactionId is ''
+          NgPcInteractionService.logInteraction 'interaction_type_id=' + interactionMoveMoreId + '&cons_id=' + $scope.consId + '&interaction_subject=' + $scope.participantRegistration.companyInformation.companyId + '&interaction_body=true'
               .then (response) ->
-                if response.data.errorResponse
-                  $scope.moveMoreFlag.errorMessage = 'There was an error processing your update. Please try again later.'
-                else
+                if response.data.updateConsResponse?.message
                   $scope.moveMoreFlag.successMessage = true
+                else
+                  $scope.moveMoreFlag.errorMessage = 'There was an error processing your update. Please try again later.'
+        else
+          NgPcInteractionService.updateInteraction 'interaction_id=' + $scope.moveMoreFlag.interactionId + '&cons_id=' + $scope.consId + '&interaction_subject=' + $scope.participantRegistration.companyInformation.companyId + '&interaction_body=true'
+            .then (response) ->
+              if response.data.errorResponse
+                $scope.moveMoreFlag.errorMessage = 'There was an error processing your update. Please try again later.'
+              else
+                $scope.moveMoreFlag.successMessage = true
 
       interactionTypeId = $dataRoot.data 'coordinator-message-id'
 
