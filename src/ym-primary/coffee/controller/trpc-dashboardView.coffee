@@ -241,6 +241,58 @@ angular.module 'trPcControllers'
         getSchoolInformation()
       $scope.refreshFundraisingProgress()
 
+      interactionMoveMoreId = $dataRoot.data 'more-more-flag-id'
+
+      $scope.moveMoreFlag =
+        text: ''
+        errorMessage: null
+        successMessage: false
+        message: ''
+        interactionId: ''
+
+      if $scope.participantRegistration.companyInformation?.isCompanyCoordinator isnt 'true' or $scope.location is '/dashboard-student'
+        NgPcInteractionService.listInteractions 'interaction_type_id=' + interactionMoveMoreId + '&interaction_subject=' + $scope.participantRegistration.companyInformation.companyId
+          .then (response) ->
+            $scope.moveMoreFlag.message = ''
+            $scope.moveMoreFlag.interactionId = ''
+            if not response.data.errorResponse
+              interactions = response.data.listInteractionsResponse?.interaction
+              if interactions
+                interactions = [interactions] if not angular.isArray interactions
+                if interactions.length > 0
+                  interaction = interactions[0]
+                  $scope.moveMoreFlag.message = interaction.note?.text or ''
+                  $scope.moveMoreFlag.interactionId = interaction.interactionId or ''
+      else
+        NgPcInteractionService.getUserInteractions 'interaction_type_id=' + interactionMoveMoreId + '&cons_id=' + $scope.consId + '&list_page_size=1'
+          .then (response) ->
+            $scope.moveMoreFlag.text = ''
+            $scope.moveMoreFlag.interactionId = ''
+            if not response.data.errorResponse
+              interactions = response.data.getUserInteractionsResponse?.interaction
+              if interactions
+                interactions = [interactions] if not angular.isArray interactions
+                if interactions.length > 0
+                  interaction = interactions[0]
+                  $scope.moveMoreFlag.text = interaction.note?.text or ''
+                  $scope.moveMoreFlag.interactionId = interaction.interactionId or ''
+
+        $scope.updateMoveMoreFlag = ->
+          if $scope.moveMoreFlag.interactionId is ''
+            NgPcInteractionService.logInteraction 'interaction_type_id=' + interactionMoveMoreId + '&cons_id=' + $scope.consId + '&interaction_subject=' + $scope.participantRegistration.companyInformation.companyId + '&interaction_body=' + ($scope.coordinatorMessage?.text or '')
+                .then (response) ->
+                  if response.data.updateConsResponse?.message
+                    $scope.moveMoreFlag.successMessage = true
+                  else
+                    $scope.moveMoreFlag.errorMessage = 'There was an error processing your update. Please try again later.'
+          else
+            NgPcInteractionService.updateInteraction 'interaction_id=' + $scope.moveMoreFlag.interactionId + '&cons_id=' + $scope.consId + '&interaction_subject=' + $scope.participantRegistration.companyInformation.companyId + '&interaction_body=' + ($scope.coordinatorMessage?.text or '')
+              .then (response) ->
+                if response.data.errorResponse
+                  $scope.moveMoreFlag.errorMessage = 'There was an error processing your update. Please try again later.'
+                else
+                  $scope.moveMoreFlag.successMessage = true
+
       interactionTypeId = $dataRoot.data 'coordinator-message-id'
 
       $scope.coordinatorMessage =
