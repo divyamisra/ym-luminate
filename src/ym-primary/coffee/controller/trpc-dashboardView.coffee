@@ -250,32 +250,43 @@ angular.module 'trPcControllers'
         message: ''
         interactionId: ''
 
-      if $scope.participantRegistration.companyInformation?.isCompanyCoordinator isnt 'true' or $scope.location is '/dashboard-student'
-        NgPcInteractionService.listInteractions 'interaction_type_id=' + interactionMoveMoreId + '&interaction_subject=' + $scope.participantRegistration.companyInformation.companyId
-          .then (response) ->
-            $scope.moveMoreFlag.message = ''
-            $scope.moveMoreFlag.interactionId = ''
-            if not response.data.errorResponse
-              interactions = response.data.listInteractionsResponse?.interaction
-              if interactions
-                interactions = [interactions] if not angular.isArray interactions
-                if interactions.length > 0
-                  interaction = interactions[0]
-                  $scope.moveMoreFlag.message = interaction.note?.text or ''
-                  $scope.moveMoreFlag.interactionId = interaction.interactionId or ''
-      else
-        NgPcInteractionService.getUserInteractions 'interaction_type_id=' + interactionMoveMoreId + '&cons_id=' + $scope.consId + '&list_page_size=1'
-          .then (response) ->
-            $scope.moveMoreFlag.text = ''
-            $scope.moveMoreFlag.interactionId = ''
-            if not response.data.errorResponse
-              interactions = response.data.getUserInteractionsResponse?.interaction
-              if interactions
-                interactions = [interactions] if not angular.isArray interactions
-                if interactions.length > 0
-                  interaction = interactions[0]
-                  $scope.moveMoreFlag.text = interaction.note?.text or ''
-                  $scope.moveMoreFlag.interactionId = interaction.interactionId or ''
+      $scope.getMoveMoreFlag = ->
+        if $scope.participantRegistration.companyInformation?.isCompanyCoordinator isnt 'true' or $scope.location is '/dashboard-student'
+          NgPcInteractionService.listInteractions 'interaction_type_id=' + interactionMoveMoreId + '&interaction_subject=' + $scope.participantRegistration.companyInformation.companyId
+            .then (response) ->
+              $scope.moveMoreFlag.message = ''
+              $scope.moveMoreFlag.interactionId = ''
+              if not response.data.errorResponse
+                interactions = response.data.listInteractionsResponse?.interaction
+                if interactions
+                  interactions = [interactions] if not angular.isArray interactions
+                  if interactions.length > 0
+                    interaction = interactions[0]
+                    $scope.moveMoreFlag.message = interaction.note?.text or ''
+                    $scope.moveMoreFlag.interactionId = interaction.interactionId or ''
+                    if $scope.moveMoreFlag.message != ''
+                      jQuery.each $scope.prizes, (item, key) ->
+                        if key.sku == "BDG-9"
+                          key.status = 1
+                          key.earned = Date()
+        else
+          NgPcInteractionService.getUserInteractions 'interaction_type_id=' + interactionMoveMoreId + '&cons_id=' + $scope.consId + '&list_page_size=1'
+            .then (response) ->
+              $scope.moveMoreFlag.text = ''
+              $scope.moveMoreFlag.interactionId = ''
+              if not response.data.errorResponse
+                interactions = response.data.getUserInteractionsResponse?.interaction
+                if interactions
+                  interactions = [interactions] if not angular.isArray interactions
+                  if interactions.length > 0
+                    interaction = interactions[0]
+                    $scope.moveMoreFlag.text = interaction.note?.text or ''
+                    $scope.moveMoreFlag.interactionId = interaction.interactionId or ''
+                    if $scope.moveMoreFlag.text != ''
+                      jQuery.each $scope.prizes, (item, key) ->
+                        if key.sku == "BDG-9"
+                          key.status = 1
+                          key.earned = Date()
 
       $scope.updateMoveMoreFlag = ->
         if $scope.moveMoreFlag.interactionId is ''
@@ -283,6 +294,10 @@ angular.module 'trPcControllers'
               .then (response) ->
                 if response.data.updateConsResponse?.message
                   $scope.moveMoreFlag.successMessage = true
+                  jQuery.each $scope.prizes, (item, key) ->
+                    if key.sku == "BDG-9"
+                      key.status = 1
+                      key.earned = Date()
                 else
                   $scope.moveMoreFlag.errorMessage = 'There was an error processing your update. Please try again later.'
         else
@@ -292,6 +307,10 @@ angular.module 'trPcControllers'
                 $scope.moveMoreFlag.errorMessage = 'There was an error processing your update. Please try again later.'
               else
                 $scope.moveMoreFlag.successMessage = true
+                jQuery.each $scope.prizes, (item, key) ->
+                  if key.sku == "BDG-9"
+                    key.status = 1
+                    key.earned = Date()
 
       interactionTypeId = $dataRoot.data 'coordinator-message-id'
 
@@ -832,6 +851,7 @@ angular.module 'trPcControllers'
 
           if prize.status == 1
             $scope.prizesEarned++
+        $scope.getMoveMoreFlag()
       , (response) ->
         # TODO
 
