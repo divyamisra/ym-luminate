@@ -5,7 +5,7 @@
   </div>
   <div class="modal-body">
     <p>
-      Download our Mobile Fundraising App today!
+      Download our free KHC app to join our Move More Challenge and be physically active as a family for 150 minutes each week.
     </p>
     <div class="ym-pc-dashboard-mobile-downloads">
       <a href="https://itunes.apple.com/us/app/ym-primary/id548389448?mt=8" target="_blank">
@@ -15,6 +15,17 @@
         <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/youth-markets/image/google-play-logo.png" alt="Download the Android App">
       </a>
     </div>
+    <p>
+       If you’re unable or prefer not to download the app, <a href="#" target="_blank">click here</a> to notify us when you’ve completed the Move More Challenge.
+    </p>
+    <p>&nbsp;</p>
+    <div class="checkbox" custom-checkbox ng-class="{'checked': registrationInfo.fr_check_move_more}">
+        <label for="registrationInfo-fr_check_move_more">
+          <input type="checkbox" name="fr_check_move_more" id="registrationInfo-fr_check_move_more" ng-model="registrationInfo.fr_check_move_more"> 
+          <span>I have completed 150 minutes of activity over a 7 day period during this event.</span>
+        </label>
+      </div>
+
   </div>
   <div class="modal-footer">
     <div class="clearfix">
