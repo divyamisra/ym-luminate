@@ -264,7 +264,7 @@ angular.module 'trPcControllers'
                     interaction = interactions[0]
                     $scope.moveMoreFlag.message = interaction.note?.text or ''
                     $scope.moveMoreFlag.interactionId = interaction.interactionId or ''
-                    if $scope.moveMoreFlag.message != ''
+                    if $scope.moveMoreFlag.message
                       jQuery.each $scope.prizes, (item, key) ->
                         if key.sku == "BDG-9"
                           key.status = 1
@@ -282,7 +282,7 @@ angular.module 'trPcControllers'
                     interaction = interactions[0]
                     $scope.moveMoreFlag.text = interaction.note?.text or ''
                     $scope.moveMoreFlag.interactionId = interaction.interactionId or ''
-                    if $scope.moveMoreFlag.text != ''
+                    if $scope.moveMoreFlag.text
                       jQuery.each $scope.prizes, (item, key) ->
                         if key.sku == "BDG-9"
                           key.status = 1
@@ -290,18 +290,17 @@ angular.module 'trPcControllers'
 
       $scope.updateMoveMoreFlag = ->
         if $scope.moveMoreFlag.interactionId is ''
-          NgPcInteractionService.logInteraction 'interaction_type_id=' + interactionMoveMoreId + '&cons_id=' + $scope.consId + '&interaction_subject=' + $scope.participantRegistration.companyInformation.companyId + '&interaction_body=' + $scope.moveMoreFlag.message
+          NgPcInteractionService.logInteraction 'interaction_type_id=' + interactionMoveMoreId + '&cons_id=' + $scope.consId + '&interaction_subject=' + $scope.participantRegistration.companyInformation.companyId + '&interaction_body=' + ($scope.moveMoreFlag.message ? 1 : 0)
               .then (response) ->
                 if response.data.updateConsResponse?.message
                   $scope.moveMoreFlag.successMessage = true
                   jQuery.each $scope.prizes, (item, key) ->
                     if key.sku == "BDG-9"
-                      key.status = 1
-                      key.earned = Date()
+                      key.status = ($scope.moveMoreFlag.message ? 1 : 0)
                 else
                   $scope.moveMoreFlag.errorMessage = 'There was an error processing your update. Please try again later.'
         else
-          NgPcInteractionService.updateInteraction 'interaction_id=' + $scope.moveMoreFlag.interactionId + '&cons_id=' + $scope.consId + '&interaction_subject=' + $scope.participantRegistration.companyInformation.companyId + '&interaction_body=' + $scope.moveMoreFlag.message
+          NgPcInteractionService.updateInteraction 'interaction_id=' + $scope.moveMoreFlag.interactionId + '&cons_id=' + $scope.consId + '&interaction_subject=' + $scope.participantRegistration.companyInformation.companyId + '&interaction_body=' + ($scope.moveMoreFlag.message ? 1 : 0)
             .then (response) ->
               if response.data.errorResponse
                 $scope.moveMoreFlag.errorMessage = 'There was an error processing your update. Please try again later.'
@@ -309,8 +308,7 @@ angular.module 'trPcControllers'
                 $scope.moveMoreFlag.successMessage = true
                 jQuery.each $scope.prizes, (item, key) ->
                   if key.sku == "BDG-9"
-                    key.status = 1
-                    key.earned = Date()
+                    key.status = ($scope.moveMoreFlag.message ? 1 : 0)
 
       interactionTypeId = $dataRoot.data 'coordinator-message-id'
 
