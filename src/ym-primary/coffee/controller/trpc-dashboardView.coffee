@@ -272,6 +272,7 @@ angular.module 'trPcControllers'
                         if key.sku == "BDG-9"
                           key.status = 1
                           key.earned = Date()
+                      $scope.prizesEarned = $scope.prizesEarned + 1
         else
           NgPcInteractionService.getUserInteractions 'interaction_type_id=' + interactionMoveMoreId + '&cons_id=' + $scope.consId + '&list_page_size=1'
             .then (response) ->
@@ -293,6 +294,7 @@ angular.module 'trPcControllers'
                         if key.sku == "BDG-9"
                           key.status = 1
                           key.earned = Date()
+                      $scope.prizesEarned = $scope.prizesEarned + 1
 
       $scope.updateMoveMoreFlag = ->
         if $scope.moveMoreFlag.interactionId is ''
@@ -305,9 +307,11 @@ angular.module 'trPcControllers'
                       if $scope.moveMoreFlag.message
                         key.status = 1
                         key.earned = Date()
+                        $scope.prizesEarned = $scope.prizesEarned + 1
                       else 
                         key.status = 0
                         key.earned = ''
+                        $scope.prizesEarned = $scope.prizesEarned - 1
                 else
                   $scope.moveMoreFlag.errorMessage = 'There was an error processing your update. Please try again later.'
         else
@@ -322,9 +326,11 @@ angular.module 'trPcControllers'
                     if $scope.moveMoreFlag.message
                       key.status = 1
                       key.earned = Date()
+                      $scope.prizesEarned = $scope.prizesEarned + 1
                     else 
                       key.status = 0
                       key.earned = ''
+                      $scope.prizesEarned = $scope.prizesEarned - 1
 
       interactionTypeId = $dataRoot.data 'coordinator-message-id'
 
