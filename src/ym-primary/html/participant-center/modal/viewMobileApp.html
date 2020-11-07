@@ -24,9 +24,9 @@
           <input ng-change="updateMoveMoreFlag()" type="checkbox" name="fr_check_move_more" id="registrationInfo-fr_check_move_more" ng-model="moveMoreFlag.message"> 
           <span>I have completed 150 minutes of activity over a 7 day period during this event.</span>
         </label>
-        <span ng-if="moveMoreFlag.successMessage" ng-cloak>Your selection has been recorded. Your Move More Activity is now completed!</span>
         <span ng-bind="moveMoreFlag.errorMessage" ng-cloak></span>
     </div>
+    <div ng-if="moveMoreFlag.successMessage" ng-cloak>Your selection has been recorded. Your Move More Activity is now completed!</div>
   </div>
   <div class="modal-footer">
     <div class="clearfix">
