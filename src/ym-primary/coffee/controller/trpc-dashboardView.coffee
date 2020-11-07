@@ -296,7 +296,10 @@ angular.module 'trPcControllers'
                   $scope.moveMoreFlag.successMessage = true
                   jQuery.each $scope.prizes, (item, key) ->
                     if key.sku == "BDG-9"
-                      key.status = ($scope.moveMoreFlag.message == "true" ? 1 : 0)
+                      if $scope.moveMoreFlag.message
+                        key.status = 1
+                      else 
+                        key.status = 0
                 else
                   $scope.moveMoreFlag.errorMessage = 'There was an error processing your update. Please try again later.'
         else
@@ -308,7 +311,10 @@ angular.module 'trPcControllers'
                 $scope.moveMoreFlag.successMessage = true
                 jQuery.each $scope.prizes, (item, key) ->
                   if key.sku == "BDG-9"
-                    key.status = ($scope.moveMoreFlag.message == "true" ? 1 : 0)
+                    if $scope.moveMoreFlag.message
+                      key.status = 1
+                    else 
+                      key.status = 0
 
       interactionTypeId = $dataRoot.data 'coordinator-message-id'
 
