@@ -262,7 +262,10 @@ angular.module 'trPcControllers'
                   interactions = [interactions] if not angular.isArray interactions
                   if interactions.length > 0
                     interaction = interactions[0]
-                    $scope.moveMoreFlag.message = interaction.note?.text or ''
+                    if interaction.note?.text == "true"
+                       $scope.moveMoreFlag.message = true
+                    else
+                       $scope.moveMoreFlag.message = false
                     $scope.moveMoreFlag.interactionId = interaction.interactionId or ''
                     if $scope.moveMoreFlag.message == "true"
                       jQuery.each $scope.prizes, (item, key) ->
@@ -280,7 +283,10 @@ angular.module 'trPcControllers'
                   interactions = [interactions] if not angular.isArray interactions
                   if interactions.length > 0
                     interaction = interactions[0]
-                    $scope.moveMoreFlag.text = interaction.note?.text or ''
+                    if interaction.note?.text == "true"
+                       $scope.moveMoreFlag.text = true
+                    else
+                       $scope.moveMoreFlag.text = false
                     $scope.moveMoreFlag.interactionId = interaction.interactionId or ''
                     if $scope.moveMoreFlag.text == "true"
                       jQuery.each $scope.prizes, (item, key) ->
