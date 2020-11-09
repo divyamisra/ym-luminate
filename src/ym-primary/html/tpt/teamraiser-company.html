@@ -224,7 +224,7 @@
                <div class="row" ng-repeat="topActivity in topCompanySteps" role="listitem" ng-if="topCompanySteps.length > 0" ng-cloak>
                   <div class="col-xs-2 col-sm-2 col-md-2 top-index">#{{$index+1}}</div>
                   <div class="col-xs-10 col-sm-10 col-md-10 top-detail">
-                     <div class="top-name">{{topActivity.name}}</div>
+                     <div class="top-name">{{topActivity.first_name}} {{topActivity.last_name.substr(0,1)}}.</div>
                      <div class="top-steps">{{topActivity.total}}</div>
                      <div class="top-msg">Minutes</div>
                   </div>
