@@ -142,7 +142,7 @@ angular.module 'ahaLuminateApp'
           success: (response) ->
             response
           error: (err) ->
-            console.log 'getMotionActivityRoster err', err
+            console.log 'getMotionKhcCompanyRoster err', err
             response
 
       defaultStandardGifts: ->
