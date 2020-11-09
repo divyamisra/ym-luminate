@@ -421,7 +421,7 @@ angular.module 'ahaLuminateControllers'
       getLeaderboards()
 
       BoundlessService.getBMLeaderboard('event_id=' + $scope.frId + '&company_id=' + $scope.companyId).then (response) ->
-        if response.activities != undefined
+        if response.company_member_list != undefined
           angular.forEach response.company_member_list, (company_member_list) ->
             $scope.topCompanySteps.push company_member_list
 
