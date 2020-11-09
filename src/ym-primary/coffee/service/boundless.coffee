@@ -124,10 +124,12 @@ angular.module 'ahaLuminateApp'
       getBMLeaderboard: ->
         motion_username = 'kidsheartapi'
         motion_password = 'mYhtYeBWCrA7cTST'
-        if $rootScope.tablePrefix == 'heartdev'
-          url = 'https://load.boundlessfundraising.com/mobiles/ahakhc/getMotionActivityRoster?event_id=' + $rootScope.frId + '&roster_type=participant&list_size=5'
+        if $rootScope.tablePrefix == 'heartdev'getMotionKhcCompanyRoster?event_id=4267&company_id=1533
+
+
+          url = 'https://load.boundlessfundraising.com/mobiles/ahakhc/getMotionKhcCompanyRoster?event_id=' + $rootScope.frId + '&company_id=' + $scope.companyId + '&roster_type=participant&list_size=5'
         else
-          url = 'https://loadprod.boundlessfundraising.com/mobiles/ahakhc/getMotionActivityRoster?event_id=' + $rootScope.frId + '&roster_type=participant&list_size=5'
+          url = 'https://loadprod.boundlessfundraising.com/mobiles/ahakhc/getMotionKhcCompanyRoster?event_id=' + $rootScope.frId + '&company_id=' + $scope.companyId + '&roster_type=participant&list_size=5'
         jQuery.ajax
           url: $sce.trustAsResourceUrl(url)
           async: true
