@@ -153,11 +153,11 @@
             </div>
          </div>
       </div>
-      <div class="row" ng-show="topClassRaised.length > 0 || topClassStudents.length > 0" style="margin-top:20px;" ng-cloak>
+      <div class="row" ng-show="topClassRaised.length > 0 || topClassStudents.length > 0 || topCompanySteps.length > 0" style="margin-top:20px;" ng-cloak>
          <div class="col-md-12 ym-teachers-leaderboard text-center">
             <h2 class="ym-headline">Leaderboard</h2>
          </div>
-         <div class="ym-teachers-leaderboard-block" ng-class="(topCompanySteps.length > 0) ? 'col-md-9' : 'col-md-12'">
+         <div class="ym-teachers-leaderboard-block" ng-show="topClassRaised.length > 0 || topClassStudents.length > 0" ng-class="(topCompanySteps.length > 0) ? 'col-md-9' : 'col-md-12'" ng-cloak>
             <div class="row" style="margin:0;">
                <div class="col-md-3">
                   <h3>Top class for dollars raised</h3>
