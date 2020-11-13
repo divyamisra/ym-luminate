@@ -174,26 +174,5 @@ module.exports = {
         dest: "dist/fieldday/js/pushy.min.js"
       }
     ]
-  },
-
-  "heartwalklawyers": {
-    files: [
-      {
-        src: ["src/heartwalklawyers/js/main.js"],
-        dest: "dist/heartwalklawyers/js/main." + "<%= timestamp %>" + ".min.js"
-      },
-      {
-        src: ["src/heartwalklawyers/js/registration.js"],
-        dest: "dist/heartwalklawyers/js/registration." + "<%= timestamp %>" + ".min.js"
-      },
-      {
-        src: ["src/heartwalklawyers/js/donation.js"],
-        dest: "dist/heartwalklawyers/js/donation." + "<%= timestamp %>" + ".min.js"
-      },
-      {
-        src: ["src/heartwalklawyers/js/pushy.js"],
-        dest: "dist/heartwalklawyers/js/pushy.min.js"
-      }
-    ]
   }
 }

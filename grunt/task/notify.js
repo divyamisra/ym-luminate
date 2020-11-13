@@ -97,12 +97,5 @@ module.exports = {
       title: 'AHA Luminate Framework',
       message: 'Field Day files updated.'
     }
-  },
-
-  "heartwalklawyers": {
-    options: {
-      title: 'AHA Luminate Framework',
-      message: 'Lawyers Have Heart files updated.'
-    }
   }
 }

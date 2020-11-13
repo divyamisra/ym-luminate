@@ -241,21 +241,5 @@ module.exports = {
       'img-copy:fieldday-images',
       'notify:fieldday'
     ]
-  },
-  "heartwalklawyers": {
-    files: [
-      'src/heartwalklawyers/html/**/*',
-      'src/heartwalklawyers/image/**/*',
-      'src/heartwalklawyers/sass/**/*',
-      'src/heartwalklawyers/js/**/*'
-    ],
-    tasks: [
-      'clean:heartwalklawyers',
-      'css-dist:heartwalklawyers',
-      'js-dist:heartwalklawyers',
-      'html-dist:heartwalklawyers',
-      'img-copy:heartwalklawyers-images',
-      'notify:heartwalklawyers'
-    ]
   }
 }

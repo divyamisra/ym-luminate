@@ -379,38 +379,5 @@ module.exports = {
         ]
       }
     ]
-  },
-
-  "heartwalklawyers": {
-    files: [
-      {
-        expand: true,
-        cwd: 'dist/heartwalklawyers/css/',
-        src: [
-          '**/*'
-        ]
-      },
-      {
-        expand: true,
-        cwd: 'dist/heartwalklawyers/js/',
-        src: [
-          '**/*'
-        ]
-      },
-      {
-        expand: true,
-        cwd: 'dist/heartwalklawyers/html/',
-        src: [
-          '**/*'
-        ]
-      },
-      {
-        expand: true,
-        cwd: 'dist/heartwalklawyers/image/',
-        src: [
-          '**/*'
-        ]
-      }
-    ]
   }
 }

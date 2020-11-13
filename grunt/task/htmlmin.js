@@ -167,18 +167,5 @@ module.exports = {
         dest: "dist/fieldday/html/"
       }
     ]
-  },
-
-  "heartwalklawyers": {
-    files: [
-      {
-        expand: true,
-        cwd: 'dist/heartwalklawyers/html/',
-        src: [
-          '**/*.*'
-        ],
-        dest: "dist/heartwalklawyers/html/"
-      }
-    ]
   }
 }

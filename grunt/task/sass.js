@@ -123,19 +123,5 @@ module.exports = {
         'src/fieldday/sass/donation.scss'
       ]
     }
-  },
-
-  "heartwalklawyers": {
-    files: {
-      'dist/heartwalklawyers/css/main.css': [
-        'src/heartwalklawyers/sass/main.scss'
-      ],
-      'dist/heartwalklawyers/css/registration.css': [
-        'src/heartwalklawyers/sass/registration.scss'
-      ],
-      'dist/heartwalklawyers/css/donation.css': [
-        'src/heartwalklawyers/sass/donation.scss'
-      ]
-    }
   }
 }
