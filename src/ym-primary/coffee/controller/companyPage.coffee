@@ -420,10 +420,10 @@ angular.module 'ahaLuminateControllers'
 
       getLeaderboards()
 
-      BoundlessService.getBMLeaderboard().then (response) ->
-        if response.activities != undefined
-          angular.forEach response.activities, (activity) ->
-            $scope.topCompanySteps.push activity
+      BoundlessService.getBMLeaderboard('event_id=' + $scope.frId + '&company_id=' + $scope.companyId).then (response) ->
+        if response.company_member_list != undefined
+          angular.forEach response.company_member_list, (company_member_list) ->
+            $scope.topCompanySteps.push company_member_list
 
       setCompanyCity = (companyCity) ->
         $rootScope.companyCity = companyCity

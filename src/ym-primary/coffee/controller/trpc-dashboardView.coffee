@@ -241,6 +241,74 @@ angular.module 'trPcControllers'
         getSchoolInformation()
       $scope.refreshFundraisingProgress()
 
+      interactionMoveMoreId = $dataRoot.data 'move-more-flag-id'
+
+      $scope.moveMoreFlag =
+        text: ''
+        errorMessage: null
+        successMessage: false
+        message: ''
+        interactionId: ''
+
+      $scope.getMoveMoreFlag = ->
+        NgPcInteractionService.getUserInteractions 'interaction_type_id=' + interactionMoveMoreId + '&cons_id=' + $scope.consId + '&list_page_size=1'
+          .then (response) ->
+            $scope.moveMoreFlag.text = ''
+            $scope.moveMoreFlag.interactionId = ''
+            if not response.data.errorResponse
+              interactions = response.data.getUserInteractionsResponse?.interaction
+              if interactions
+                interactions = [interactions] if not angular.isArray interactions
+                if interactions.length > 0
+                  interaction = interactions[0]
+                  if interaction.note?.text == "true"
+                     $scope.moveMoreFlag.text = true
+                  else
+                     $scope.moveMoreFlag.text = false
+                  $scope.moveMoreFlag.interactionId = interaction.interactionId or ''
+                  if $scope.moveMoreFlag.text
+                    jQuery.each $scope.prizes, (item, key) ->
+                      if key.sku == "BDG-9"
+                        key.status = 1
+                        key.earned = Date()
+                    $scope.prizesEarned = $scope.prizesEarned + 1
+
+      $scope.updateMoveMoreFlag = ->
+        if $scope.moveMoreFlag.interactionId is ''
+          NgPcInteractionService.logInteraction 'interaction_type_id=' + interactionMoveMoreId + '&cons_id=' + $scope.consId + '&interaction_subject=' + $scope.participantRegistration.companyInformation.companyId + '&interaction_body=' + $scope.moveMoreFlag.message
+              .then (response) ->
+                if response.data.updateConsResponse?.message
+                  $scope.moveMoreFlag.successMessage = true
+                  jQuery.each $scope.prizes, (item, key) ->
+                    if key.sku == "BDG-9"
+                      if $scope.moveMoreFlag.message
+                        key.status = 1
+                        key.earned = Date()
+                        $scope.prizesEarned = $scope.prizesEarned + 1
+                      else 
+                        key.status = 0
+                        key.earned = ''
+                        $scope.prizesEarned = $scope.prizesEarned - 1
+                else
+                  $scope.moveMoreFlag.errorMessage = 'There was an error processing your update. Please try again later.'
+        else
+          NgPcInteractionService.updateInteraction 'interaction_id=' + $scope.moveMoreFlag.interactionId + '&cons_id=' + $scope.consId + '&interaction_subject=' + $scope.participantRegistration.companyInformation.companyId + '&interaction_body=' + $scope.moveMoreFlag.message
+            .then (response) ->
+              if response.data.errorResponse
+                $scope.moveMoreFlag.errorMessage = 'There was an error processing your update. Please try again later.'
+              else
+                $scope.moveMoreFlag.successMessage = true
+                jQuery.each $scope.prizes, (item, key) ->
+                  if key.sku == "BDG-9"
+                    if $scope.moveMoreFlag.message
+                      key.status = 1
+                      key.earned = Date()
+                      $scope.prizesEarned = $scope.prizesEarned + 1
+                    else 
+                      key.status = 0
+                      key.earned = ''
+                      $scope.prizesEarned = $scope.prizesEarned - 1
+
       interactionTypeId = $dataRoot.data 'coordinator-message-id'
 
       $scope.coordinatorMessage =
@@ -780,6 +848,7 @@ angular.module 'trPcControllers'
 
           if prize.status == 1
             $scope.prizesEarned++
+        $scope.getMoveMoreFlag()
       , (response) ->
         # TODO
 
