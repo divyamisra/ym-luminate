@@ -142,5 +142,22 @@ module.exports = {
         dest: 'dist/fieldday/css/donation.'+ '<%= timestamp %>' +'.min.css'
       }
     ]
+  },
+
+  "heartwalklawyers": {
+    files: [
+      {
+        src: 'dist/heartwalklawyers/css/main.css',
+        dest: 'dist/heartwalklawyers/css/main.'+ '<%= timestamp %>' +'.min.css'
+      },
+      {
+        src: 'dist/heartwalklawyers/css/registration.css',
+        dest: 'dist/heartwalklawyers/css/registration.'+ '<%= timestamp %>' +'.min.css'
+      },
+      {
+        src: 'dist/heartwalklawyers/css/donation.css',
+        dest: 'dist/heartwalklawyers/css/donation.'+ '<%= timestamp %>' +'.min.css'
+      }
+    ]
   }
 }
