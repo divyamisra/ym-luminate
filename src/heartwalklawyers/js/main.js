@@ -97,11 +97,11 @@
         }
 
         var motion_username = 'heartwalkapi';
-        var motion_password = 'toYEaJuV98VJdIEn';
+        var motion_password = 'toYEaJuV98VJdIEn'; 
         var motionDb = 'ahahw';
         var motion_event = evID;
         var motion_urlPrefix = (isProd) ? 'loadprod' : 'load';
-
+        
         function getURLParameter(url, name) {
             return (RegExp(name + '=' + '(.+?)(&|$)').exec(url) || [, null])[1];
         }
@@ -113,8 +113,8 @@
         if (getURLParameter(currentUrl, 'demo') == "true") {
            //override to test bm
            motion_username = 'motionapi';
-           motion_password = 'jPOHc5J4qMVVSj7P';
-           motionDb = 'democdsb';
+           motion_password = 'jPOHc5J4qMVVSj7P'; 
+           motionDb = 'democdsb'; 
            motion_event = 1061;
         }
 
@@ -369,7 +369,7 @@
         $('.js--header-zip-search').on('submit', function (e) {
             e.preventDefault();
             var zipSearched = encodeURIComponent($('#zipSearch').val());
-            window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=HeartWalk_LHH_Search&search_type=event&cross_event=' + (evID ? 'false' : 'true') + (evID ? '&fr_id=' + evID : '') + '&zip=' + zipSearched;
+            window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=HeartWalk_Search&search_type=event&cross_event=' + (evID ? 'false' : 'true') + (evID ? '&fr_id=' + evID : '') + '&zip=' + zipSearched;
         });
 
         // Search page by Participant
@@ -377,7 +377,7 @@
             e.preventDefault();
             var firstName = encodeURIComponent($('#walkerSearchFirst').val());
             var lastName = encodeURIComponent($('#walkerSearchLast').val());
-            window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=HeartWalk_LHH_Search&search_type=walker&cross_event=false&fr_id=' + evID + (firstName ? '&first_name=' + firstName : '') +
+            window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=HeartWalk_Search&search_type=walker&cross_event=false&fr_id=' + evID + (firstName ? '&first_name=' + firstName : '') +
                 (lastName ? '&last_name=' + lastName : '');
         });
 
@@ -386,7 +386,7 @@
             e.preventDefault();
             var teamName = encodeURIComponent($('#teamSearch').val());
             cd.getTeams(teamName, null, (isCrossEventSearch === "true" ? true : false));
-            window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=HeartWalk_LHH_Search&search_type=team&cross_event=' + (evID ? 'false' : 'true') + (evID ? '&fr_id=' + evID : '') + '&team_name=' + teamName;
+            window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=HeartWalk_Search&search_type=team&cross_event=' + (evID ? 'false' : 'true') + (evID ? '&fr_id=' + evID : '') + '&team_name=' + teamName;
         });
 
 
@@ -761,7 +761,7 @@
         cd.getTopParticipantsSteps = function (eventId) {
             var motionApiUrl = 'https://' + motion_urlPrefix + '.boundlessfundraising.com/mobiles/' + motionDb + '/getMotionActivityRoster?event_id=' + motion_event + '&roster_type=participant&list_size=5';
 
-            $.ajax({
+            $.ajax({ 
                 url: motionApiUrl,
                 async: true,
                 type:'GET',
@@ -793,7 +793,7 @@
         cd.getTopTeamsSteps = function (eventId) {
             var motionApiUrl = 'https://' + motion_urlPrefix + '.boundlessfundraising.com/mobiles/' + motionDb + '/getMotionActivityRoster?event_id=' + motion_event + '&roster_type=team&list_size=5';
 
-            $.ajax({
+            $.ajax({ 
                 url: motionApiUrl,
                 async: true,
                 type:'GET',
@@ -824,7 +824,7 @@
         cd.getTopCompaniesSteps = function (eventId) {
             var motionApiUrl = 'https://' + motion_urlPrefix + '.boundlessfundraising.com/mobiles/' + motionDb + '/getMotionActivityRoster?event_id=' + motion_event + '&roster_type=company&list_size=5';
 
-            $.ajax({
+            $.ajax({ 
                 url: motionApiUrl,
                 async: true,
                 type:'GET',
@@ -1049,13 +1049,13 @@
             } else {
                 $('.top-steps').hide();
             }
-
+            
             // Walker Search
             $('.js--greeting-walker-search-form').on('submit', function (e) {
                 e.preventDefault();
                 var firstName = encodeURIComponent($('#walkerFirstName').val());
                 var lastName = encodeURIComponent($('#walkerLastName').val());
-                window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=HeartWalk_LHH_Search&search_type=walker&cross_event=false&fr_id=' + evID + (firstName ? '&first_name=' + firstName : '') +
+                window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=HeartWalk_Search&search_type=walker&cross_event=false&fr_id=' + evID + (firstName ? '&first_name=' + firstName : '') +
                     (lastName ? '&last_name=' + lastName : '');
             });
 
@@ -1064,7 +1064,7 @@
                 e.preventDefault();
                 var teamName = encodeURIComponent($('#teamName').val());
                 cd.getTeams(teamName, null, (isCrossEventSearch === "true" ? true : false));
-                window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=HeartWalk_LHH_Search&search_type=team&cross_event=false&fr_id=' + evID + '&team_name=' + teamName;
+                window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=HeartWalk_Search&search_type=team&cross_event=false&fr_id=' + evID + '&team_name=' + teamName;
             });
         }
 
@@ -1235,7 +1235,7 @@
                                   else {
                                     videoEmbedHtml = '<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/b3K5LcaPzvE?wmode=opaque&amp;rel=0&amp;showinfo=0" title="American Heart Association Heart Walk Video" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
                                   }
-                                }
+                                }                                
                             }
                             $('.js--personal-video-container').append(videoEmbedHtml);
                         },
