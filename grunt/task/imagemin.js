@@ -163,5 +163,18 @@ module.exports = {
         dest: 'dist/fieldday/image/'
       }
     ]
+  },
+
+  "heartwalklawyers": {
+    files: [
+      {
+        expand: true,
+        cwd: 'src/heartwalklawyers/image/',
+        src: [
+          '*.{gif,GIF,jpg,JPG,png,PNG,svg,SVG}'
+        ],
+        dest: 'dist/heartwalklawyers/image/'
+      }
+    ]
   }
 }

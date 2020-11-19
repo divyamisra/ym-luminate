@@ -205,6 +205,19 @@ module.exports = (grunt) ->
     runTargetedTask [
       'copy'
     ], 'fieldday-scripts'
+    runTargetedTask [
+      'clean'
+      'sass'
+      'postcss'
+      'cssmin'
+      'uglify'
+      'replace'
+      'htmlmin'
+      'imagemin'
+    ], 'fieldday'
+    runTargetedTask [
+      'copy'
+    ], 'heartwalklawyers-scripts'
     return
   grunt.registerTask 'dev', ->
     devTasks = [
@@ -244,6 +257,9 @@ module.exports = (grunt) ->
       if task.indexOf('notify:') is -1
         devTasks.push task
     config.watch['fieldday'].tasks.forEach (task) ->
+      if task.indexOf('notify:') is -1
+        devTasks.push task
+    config.watch['heartwalklawyers'].tasks.forEach (task) ->
       if task.indexOf('notify:') is -1
         devTasks.push task
     devTasks.push 'watch'

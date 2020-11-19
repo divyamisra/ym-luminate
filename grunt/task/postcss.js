@@ -207,5 +207,20 @@ module.exports = {
         dest: 'dist/fieldday/css/'
       }
     ]
+  },
+
+  "heartwalklawyers": {
+    files: [
+      {
+        expand: true,
+        cwd: 'dist/heartwalklawyers/css/',
+        src: [
+          'main.css',
+          'registration.css',
+          'donation.css'
+        ],
+        dest: 'dist/heartwalklawyers/css/'
+      }
+    ]
   }
 }

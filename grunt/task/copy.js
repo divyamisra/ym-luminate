@@ -195,5 +195,19 @@ module.exports = {
         dest: 'dist/fieldday/js/'
       }
     ]
+  },
+
+  "heartwalklawyers-scripts": {
+    files: [
+      {
+        expand: true,
+        cwd: 'src/fieldday/js/',
+        src: [
+          '*.js'
+        ],
+        dest: 'dist/fieldday/js/'
+      }
+    ]
   }
+
 }
