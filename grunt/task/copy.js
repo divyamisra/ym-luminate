@@ -201,11 +201,11 @@ module.exports = {
     files: [
       {
         expand: true,
-        cwd: 'src/fieldday/js/',
+        cwd: 'src/heartwalklawyers/js/',
         src: [
           '*.js'
         ],
-        dest: 'dist/fieldday/js/'
+        dest: 'dist/heartwalklawyers/js/'
       }
     ]
   }

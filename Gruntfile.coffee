@@ -214,7 +214,7 @@ module.exports = (grunt) ->
       'replace'
       'htmlmin'
       'imagemin'
-    ], 'fieldday'
+    ], 'heartwalklawyers'
     runTargetedTask [
       'copy'
     ], 'heartwalklawyers-scripts'
