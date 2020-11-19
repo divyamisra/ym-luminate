@@ -1719,7 +1719,7 @@
         if ($('body').is('.pg_informational')) {
             // Custom TR Page
         }
-        if ($('body').is('.pg_HeartWalk_LHH_Search')) {
+        if ($('body').is('.pg_HeartWalk_Search')) {
             // HeartWalk Search Page
             var clearSearchResults = function () {
                 $('.js--event-results-container, .alert').attr('hidden', true);
