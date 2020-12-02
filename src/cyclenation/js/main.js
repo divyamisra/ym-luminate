@@ -1103,7 +1103,7 @@
             topEventHtml += '    <a class="event-name" href="/site/TR?pg=entry&fr_id='+event_id+'"><span class="city">'+event_city+'</span>, <span class="fullstate">'+event_state+'</span></a>';
             topEventHtml += '  </div>';
             topEventHtml += '  <div class="names-amounts col-4 pl-0 text-right">';
-            topEventHtml += '    <span class="distance">'+parseFloat(this.total).formatMoney(2)+' Miles</span>';
+            topEventHtml += '    <span class="distance">'+parseFloat(this.total).formatMoney(2)+' Minutes</span>';
             topEventHtml += '  </div>';
             topEventHtml += '</div>';
             if (cnt >= 4) return false;
