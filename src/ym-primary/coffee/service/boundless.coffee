@@ -249,7 +249,7 @@ angular.module 'ahaLuminateApp'
             "level":"$75"
             "instant": 2
             "earned_title":"Have a ball"
-            "earned_subtitle1":"Thank for all your hard work and raising $75!"
+            "earned_subtitle1":"Thanks for all your hard work and raising $75!"
             "earned_subtitle2":"You've earned a playground ball."
             "earned_subtitle3":"and you'll earn a playground ball."
             "online_only":0
