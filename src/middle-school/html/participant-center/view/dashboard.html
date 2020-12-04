@@ -155,10 +155,10 @@
 					<image width="76" height="62" ng-href="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/middle-school/image/winding_road_arrow_red.png" xlink:href="" title="Lets Go Arrow"/>
 				  </pattern>
 				  <pattern id="not_secret_finn" filterUnits="objectBoundingBox" x="0" y="0" width="1" height="1">
-					<image width="96" height="53" ng-href="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/middle-school/image/not_secret_finn.png" xlink:href="" title="no secret finn"/>
+					<image width="96" height="53" ng-href="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/middle-school/image/pc-finn-notearned.jpg" xlink:href="" title="no secret finn"/>
 				  </pattern>
 				  <pattern id="secret_finn" filterUnits="objectBoundingBox" x="0" y="0" width="1" height="1">
-					<image width="178" height="96" ng-href="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/middle-school/image/secret_finn.png" xlink:href="" title="secret finn"/>
+					<image width="178" height="96" ng-href="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/middle-school/image/pc-finn-earned.jpg" xlink:href="" title="secret finn"/>
 				  </pattern>
 				  <pattern id="winding_road_link_arrow_3" filterUnits="objectBoundingBox" x="0" y="0" width="1" height="1">
 					<image width="23" height="23" ng-href="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/middle-school/image/winding_road_link_arrow.png" xlink:href="" title="Winding Road Link Arrow"/>
@@ -183,11 +183,8 @@
 				  </pattern>
 			   </defs>
 			   <g data-name="Winding Road">
-				  <g id="stroke-quiz" transform="translate(-.003 -.001)" filter="url(#a)" data-name="Heart Facts Quiz">
+				  <g id="finn-image" transform="translate(-.003 -.001)" filter="url(#a)" data-name="Heart Facts Quiz">
 					 <path data-name="Rectangle 685" fill="{{(prizes[8].earned) ? '#f2f2f2' : '#d9d9d9'}}" d="M207.85 584.65h187.845v116H207.85z"/>
-					 <text fill="{{(prizes[8].earned) ? '#444' : '#000000'}}" font-size="14" font-weight="bold"><tspan x="290" y="643">Take</tspan></text>
-					 <text fill="{{(prizes[8].earned) ? '#444' : '#000000'}}" font-size="14" font-weight="bold"><tspan x="270" y="659">Stroke Quiz</tspan></text>
-					 <path class="badge-path" data-name="Rectangle 685" fill="url(#9{{(prizes[8].earned) ? '_delivered' : '_earned'}})" d="M250 594v100h100v-100h-100z"/> 
 				  </g>
 				  <g id="cpr-quiz" transform="translate(.003 -.001)" filter="url(#b)" data-name="CPR Quiz">
 					 <path data-name="Path 1518" d="M112.484 524.203H.03c-1.232 99.545 37.375 177.981 196.424 176.749V584.593c-42.308 5.249-85.447-22.73-83.97-60.39z" fill="{{(prizes[7].earned) ? '#f2f2f2' : '#d9d9d9'}}"/>
@@ -237,9 +234,6 @@
 					 <text fill="#444" font-size="14" font-weight="bold"><tspan x="206" y="171">Registration</tspan></text>
 					 <path class="badge-path" data-name="Path 1523" d="M194 106v100h100v-100h-100z" fill="url(#1_delivered)"></path>
     			  </g>
-				  <g transform="translate(-.001 .003)" filter="url(#j)">
-					 <path data-name="Background" fill="{{(prizesEarned == prizes.length) ? '#c10e21' : '#444'}}" d="M405.85 584.65h250.987v116H405.85z"/>
-				  </g>
 				  <g transform="translate(-.001 .003)" ng-cloak>
 					 <text fill="#c10d20" font-size="20"><tspan x="43" y="45">Let's</tspan></text>
 					 <text fill="#c10d20" font-size="20"><tspan x="50" y="72">Go!</tspan></text>
@@ -285,11 +279,6 @@
 					 <path data-name="Path 1523" d="M3 635v23h23v-23h-23z" fill="url(#winding_road_link_arrow_8)"></path>
 					  <a xlink:href="" ng-href="{{prizes[7].final_url}}" title="Take CPR Quiz"><text fill="#c10e21" font-size="14" font-weight="bold"><tspan x="0" y="675">Take</tspan></text></a>
 					  <a xlink:href="" ng-href="{{prizes[7].final_url}}" title="Take CPR Quiz"><text fill="#c10e21" font-size="14" font-weight="bold"><tspan x="0" y="695">CPR Quiz</tspan></text></a>
-				  </g>
-				  <g transform="translate(-.001 .003)" class="ng-scope">
-					 <path data-name="Path 1523" d="M300 710v23h23v-23h-23z" fill="url(#winding_road_link_arrow_9)"></path>
-					  <a xlink:href="" ng-href="{{prizes[8].final_url}}" title="Take Stroke Quiz"><text fill="#c10e21" font-size="14" font-weight="bold"><tspan x="330" y="720">Take</tspan></text></a>
-					  <a xlink:href="" ng-href="{{prizes[8].final_url}}" title="Take Stroke Quiz"><text fill="#c10e21" font-size="14" font-weight="bold"><tspan x="330" y="740">Stroke Quiz</tspan></text></a>
 				  </g>
 			   </g>
 			</svg>
