@@ -88,20 +88,6 @@
 					 <feComposite operator="in" in2="blur-10"/>
 					 <feComposite in="SourceGraphic"/>
 				  </filter>
-				  <filter id="k" x="6.565" y="0" width="110.919" height="43.714" filterUnits="userSpaceOnUse">
-					 <feOffset dx="1" dy="1"/>
-					 <feGaussianBlur result="blur-11"/>
-					 <feFlood flood-opacity=".161"/>
-					 <feComposite operator="in" in2="blur-11"/>
-					 <feComposite in="SourceGraphic"/>
-				  </filter>
-				  <filter id="l" x="7.496" y="36.917" width="162.444" height="177.87" filterUnits="userSpaceOnUse">
-					 <feOffset dx="1" dy="1"/>
-					 <feGaussianBlur result="blur-12"/>
-					 <feFlood flood-opacity=".161"/>
-					 <feComposite operator="in" in2="blur-12"/>
-					 <feComposite in="SourceGraphic"/>
-				  </filter>
 				  <pattern id="1_delivered" filterUnits="objectBoundingBox" x="0" y="0" width="1" height="1">
 					<image width="100" height="100"  xlink:href="" ng-href="{{prizes[0].earned_image_url}}" title="{{prizes[0].label}}" />
 					<image width="40" height="40" x="60" y="60" ng-href="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/badge_earned_check.png" xlink:href=""  title="Mission Completed Checkmark"/>
@@ -166,7 +152,7 @@
 					<image width="100" height="100"  xlink:href="" ng-href="{{prizes[8].locked_image_url}}" title="{{prizes[8].label}}"/>
 				  </pattern>
 				  <pattern id="letsgo_arrow" filterUnits="objectBoundingBox" x="0" y="0" width="1" height="1">
-					<image width="76" height="62" ng-href="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/winding_road_arrow.png" xlink:href="" title="Lets Go Arrow"/>
+					<image width="76" height="62" ng-href="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/winding_road_arrow_red.png" xlink:href="" title="Lets Go Arrow"/>
 				  </pattern>
 				  <pattern id="not_secret_finn" filterUnits="objectBoundingBox" x="0" y="0" width="1" height="1">
 					<image width="96" height="53" ng-href="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/not_secret_finn.png" xlink:href="" title="no secret finn"/>
@@ -240,13 +226,13 @@
 					 <path class="badge-path" data-name="Path 1528" d="M478 143h100v100h-100z" fill="url(#3{{(prizes[2].earned) ? '_delivered' : '_earned'}})"/>
 				  </g>
 				  <g id="take-challenge" transform="translate(-.001 .003)" filter="url(#h)">
-					 <path data-name="Rectangle 682" fill="#e1eed2" d="M315.85 96.65h125v116h-125z"/>
+					 <path data-name="Rectangle 682" fill="#f2f2f2" d="M315.85 96.65h125v116h-125z"/>
 					 <text fill="#444" font-size="14" font-weight="bold"><tspan x="359" y="155">Take</tspan></text>
 					 <text fill="#444" font-size="14" font-weight="bold"><tspan x="345" y="171">Challenge</tspan></text>
 					 <path class="badge-path" data-name="Rectangle 682" fill="url(#2{{(prizes[1].earned) ? '_delivered' : '_earned'}})" d="M329 106v100h100v-100h-100z"/>
 				  </g>
 				  <g id="online-registration" transform="translate(-.001 .003)" filter="url(#i)">
-					 <path data-name="Path 1523" d="M180.85 96.656v116h125v-116h-125z" fill="#e1eed2"></path>
+					 <path data-name="Path 1523" d="M180.85 96.656v116h125v-116h-125z" fill="#f2f2f2"></path>
 					 <text fill="#444" font-size="14" font-weight="bold"><tspan x="221" y="155">Online</tspan></text>
 					 <text fill="#444" font-size="14" font-weight="bold"><tspan x="206" y="171">Registration</tspan></text>
 					 <path class="badge-path" data-name="Path 1523" d="M194 106v100h100v-100h-100z" fill="url(#1_delivered)"></path>
@@ -254,15 +240,9 @@
 				  <g transform="translate(-.001 .003)" filter="url(#j)">
 					 <path data-name="Background" fill="{{(prizesEarned == prizes.length) ? '#c10e21' : '#444'}}" d="M405.85 584.65h250.987v116H405.85z"/>
 				  </g>
-				  <g transform="translate(-.001 .003)" filter="url(#k)">
-					 <path data-name="Path 1533" d="M6.57 0h109.919v42.714L7.613 37.569z" fill="#444"/>
-    			  </g>
-				  <g transform="translate(-.001 .003)" filter="url(#l)">
-					 <path data-name="Path 1530" d="M7.498 36.916h108.233c2.592 32.209 23.541 56.566 53.211 59.379v117.491C79.66 210.737 10.307 133.835 7.498 36.916z" fill="#444"/>
-				  </g>
 				  <g transform="translate(-.001 .003)" ng-cloak>
-					 <text fill="#ffffff" font-size="20"><tspan x="43" y="45">Let's</tspan></text>
-					 <text fill="#ffffff" font-size="20"><tspan x="50" y="72">Go!</tspan></text>
+					 <text fill="#c10d20" font-size="20"><tspan x="43" y="45">Let's</tspan></text>
+					 <text fill="#c10d20" font-size="20"><tspan x="50" y="72">Go!</tspan></text>
 					 <path data-name="Path 1523" d="M70 100v62h76v-62h-76z" fill="url(#letsgo_arrow)"/>
 				  </g>
  				  <g ng-if="prizesEarned != prizes.length" transform="translate(-.001 .003)" class="finn-text" ng-cloak>
