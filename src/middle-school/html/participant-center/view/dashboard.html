@@ -81,7 +81,7 @@
 					 <feComposite operator="in" in2="blur-9"/>
 					 <feComposite in="SourceGraphic"/>
 				  </filter>
-				  <filter id="j" x="405.849" y="584.653" width="251.987" height="117" filterUnits="userSpaceOnUse">
+				  <filter id="j" x="357" y="584.653" width="251.987" height="117" filterUnits="userSpaceOnUse">
 					 <feOffset dx="1" dy="1"/>
 					 <feGaussianBlur result="blur-10"/>
 					 <feFlood flood-opacity=".161"/>
@@ -185,8 +185,8 @@
 			   <g data-name="Winding Road">
 				  <g id="cpr-quiz" transform="translate(.003 -.001)" filter="url(#b)" data-name="Stroke Quiz">
 					 <path data-name="Path 1518" d="M112.484 524.203H.03c-1.232 99.545 37.375 177.981 196.424 176.749V584.593c-42.308 5.249-85.447-22.73-83.97-60.39z" fill="{{(prizes[7].earned) ? '#f2f2f2' : '#d9d9d9'}}"/>
-					 <text fill="{{(prizes[7].earned) ? '#444' : '#ffffff'}}" font-size="14" font-weight="bold"><tspan x="81" y="610">Take</tspan></text>
-					 <text fill="{{(prizes[7].earned) ? '#444' : '#ffffff'}}" font-size="14" font-weight="bold"><tspan x="65" y="626">Stroke Quiz</tspan></text>
+					 <text fill="#444" font-size="14" font-weight="bold"><tspan x="81" y="610">Take</tspan></text>
+					 <text fill="#444" font-size="14" font-weight="bold"><tspan x="65" y="626">Stroke Quiz</tspan></text>
 					 <path class="badge-path" data-name="Path 1518" d="M41 560h100v100h-100z" fill="url(#8{{(prizes[7].earned) ? '_delivered' : '_earned'}})"/>
 				  </g>
 				  <g id="send-email" transform="translate(-.001 -.001)" filter="url(#c)" data-name="CPR Quiz">
@@ -232,23 +232,22 @@
 					 <path class="badge-path" data-name="Path 1523" d="M194 106v100h100v-100h-100z" fill="url(#1_delivered)"></path>
     			  </g>
 				  <g transform="translate(-.001 .003)" filter="url(#j)">
-					 <path data-name="Background" fill="{{(prizesEarned == prizes.length) ? '#c10e21' : '#444'}}" d="M405.85 584.65h250.987v116H405.85z"/>
+					 <path data-name="Background" fill="#c10e21" d="M355 584.65h250.987v116H355z"/>
 				  </g>    			  
 				  <g transform="translate(-.001 .003)" ng-cloak>
-					 <text fill="#c10d20" font-size="20"><tspan x="43" y="45">Let's</tspan></text>
-					 <text fill="#c10d20" font-size="20"><tspan x="50" y="72">Go!</tspan></text>
+					 <text fill="#c10d20" font-size="20" font-weight="bold"><tspan x="43" y="45">Let's</tspan></text>
+					 <text fill="#c10d20" font-size="20" font-weight="bold"><tspan x="50" y="72">Go!</tspan></text>
 					 <path data-name="Path 1523" d="M70 100v62h76v-62h-76z" fill="url(#letsgo_arrow)"/>
 				  </g>
  				  <g ng-if="prizesEarned != prizes.length" transform="translate(-.001 .003)" class="finn-text" ng-cloak>
-				 	<path data-name="Path 1523" d="M209 649v53h150v-117h-150z" fill="url(#not_secret_finn)"></path>
-					<text fill="#ffffff" font-size="20"><tspan x="456" y="620">FINN'S SPECIAL</tspan></text>
-					<text fill="#ffffff" font-size="20"><tspan x="460" y="650">MESSAGE WILL</tspan></text>
-					<text fill="#ffffff" font-size="20"><tspan x="464" y="680">REVEAL HERE!</tspan></text>
+				 	<path data-name="Path 1523" d="M207 649v53h150v-117h-150z" fill="url(#not_secret_finn)"></path>
+					 <text fill="#ffffff" font-size="20"><tspan x="405" y="635"># of 8 DONE.</tspan></text>
+					 <text fill="#ffffff" font-size="20"><tspan x="405" y="668">KEEP GOING!</tspan></text>
 				  </g>
 				  <g ng-if="prizesEarned == prizes.length" transform="translate(-.001 .003)" class="finn-text" ng-cloak>
-					 <path data-name="Path 1523" d="M209 649v53h150v-117h-150z" fill="url(#secret_finn)"/>
-					 <text fill="#ffffff" font-size="20"><tspan x="455" y="635">YOU ARE A REAL</tspan></text>
-					 <text fill="#ffffff" font-size="20"><tspan x="468" y="668">HEART HERO!</tspan></text>
+					 <path data-name="Path 1523" d="M207 649v53h150v-117h-150z" fill="url(#secret_finn)"/>
+					 <text fill="#ffffff" font-size="20"><tspan x="405" y="635">YOU ARE A REAL</tspan></text>
+					 <text fill="#ffffff" font-size="20"><tspan x="418" y="668">HEART HERO!</tspan></text>
 				  </g>
 				  <g transform="translate(-.001 .003)" ng-cloak>
 					  <a xlink:href="" ng-href="{{prizes[2].final_url}}" title="Receive a donation"><text fill="#c10e21" font-size="14" font-weight="bold"><tspan x="567" y="105">Receive a</tspan></text></a>
