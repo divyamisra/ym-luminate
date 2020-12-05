@@ -656,6 +656,7 @@ angular.module 'trPcControllers'
           $scope.dashboardPromises.push getCompanyShortcutPromise
         $scope.getCompanyShortcut()
 
+      ###
       $scope.prizes = []
       BoundlessService.getBadges $scope.frId + '/' + $scope.consId
         .then (response) ->
@@ -672,6 +673,7 @@ angular.module 'trPcControllers'
         , (response) ->
           # TODO
         $scope.personalChallenge = {}
+      ###
       $scope.updatedPersonalChallenge = {}
       setPersonalChallenge = (id, name = '', numCompleted = 0, completedToday = false) ->
         if id is null or id is ''
