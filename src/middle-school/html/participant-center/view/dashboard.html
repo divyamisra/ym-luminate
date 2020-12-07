@@ -12,9 +12,9 @@
           <p>{{current_mission_message}}</p>
           <em>Please allow 15 minutes for the system to update your badges.</em>
         </div>
-        <div class="hv-image" ng-init="hvImgAgentsrc='Agentk.png';" ng-mouseover="hvImgAgentsrc='Agentk.gif';" ng-mouseout="hvImgAgentsrc='Agentk.png';">
-	  <img class="agentk" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/{{hvImgAgentsrc}}" alt="Agent K">
-        </div>
+        <!-- <div class="hv-image" ng-init="hvImgAgentsrc='Agentk.png';" ng-mouseover="hvImgAgentsrc='Agentk.gif';" ng-mouseout="hvImgAgentsrc='Agentk.png';">
+  	       <img class="agentk" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/{{hvImgAgentsrc}}" alt="Agent K">
+        </div> -->
 		<div class="winding-road">
 			<svg xmlns="http://www.w3.org/2000/svg"  width="100%" height="100%" viewBox="0 0 658 750" preserveAspectRatio="xMidYMid meet">
 			   <defs>
@@ -152,7 +152,7 @@
 					<image width="100" height="100"  xlink:href="" ng-href="{{prizes[8].locked_image_url}}" title="{{prizes[8].label}}"/>
 				  </pattern>
 				  <pattern id="letsgo_arrow" filterUnits="objectBoundingBox" x="0" y="0" width="1" height="1">
-					<image width="76" height="62" ng-href="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/middle-school/image/winding_road_arrow_red.png" xlink:href="" title="Lets Go Arrow"/>
+					<image width="76" height="62" x="0" y="0" ng-href="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/middle-school/image/winding_road_arrow_red.png" xlink:href="" title="Lets Go Arrow"/>
 				  </pattern>
 				  <pattern id="not_secret_finn" filterUnits="objectBoundingBox" x="0" y="0" width="1" height="1">
 					<image width="150" height="133" ng-href="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/middle-school/image/pc-finn-unearned.jpg" xlink:href="" title="no secret finn"/>
@@ -185,8 +185,8 @@
 			   <g data-name="Winding Road">
 				  <g id="cpr-quiz" transform="translate(.003 -.001)" filter="url(#b)" data-name="Stroke Quiz">
 					 <path data-name="Path 1518" d="M112.484 524.203H.03c-1.232 99.545 37.375 177.981 196.424 176.749V584.593c-42.308 5.249-85.447-22.73-83.97-60.39z" fill="{{(prizes[7].earned) ? '#f2f2f2' : '#d9d9d9'}}"/>
-					 <text fill="#444" font-size="14" font-weight="bold"><tspan x="81" y="610">Take</tspan></text>
-					 <text fill="#444" font-size="14" font-weight="bold"><tspan x="65" y="626">Stroke Quiz</tspan></text>
+					 <text fill="#444" font-size="14" font-weight="bold"><tspan x="75" y="610">Take</tspan></text>
+					 <text fill="#444" font-size="14" font-weight="bold"><tspan x="55" y="626">Stroke Quiz</tspan></text>
 					 <path class="badge-path" data-name="Path 1518" d="M41 560h100v100h-100z" fill="url(#8{{(prizes[7].earned) ? '_delivered' : '_earned'}})"/>
 				  </g>
 				  <g id="send-email" transform="translate(-.001 -.001)" filter="url(#c)" data-name="CPR Quiz">
@@ -235,14 +235,13 @@
 					 <path data-name="Background" fill="#c10e21" d="M355 584.65h250.987v116H355z"/>
 				  </g>    			  
 				  <g transform="translate(-.001 .003)" ng-cloak>
-					 <text fill="#c10d20" font-size="20" font-weight="bold"><tspan x="43" y="45">Let's</tspan></text>
-					 <text fill="#c10d20" font-size="20" font-weight="bold"><tspan x="50" y="72">Go!</tspan></text>
-					 <path data-name="Path 1523" d="M70 100v62h76v-62h-76z" fill="url(#letsgo_arrow)"/>
+					 <text fill="#c10d20" font-size="20" font-weight="bold"><tspan x="50" y="92">Let's Go!</tspan></text>
+					 <path data-name="Path 1523a" d="M70 120v62h76v-62h-76z" fill="url(#letsgo_arrow)"/>
 				  </g>
  				  <g ng-if="prizesEarned != prizes.length" transform="translate(-.001 .003)" class="finn-text" ng-cloak>
 				 	<path data-name="Path 1523" d="M207 649v53h150v-117h-150z" fill="url(#not_secret_finn)"></path>
-					 <text fill="#ffffff" font-size="20"><tspan x="405" y="635"># of 8 DONE.</tspan></text>
-					 <text fill="#ffffff" font-size="20"><tspan x="405" y="668">KEEP GOING!</tspan></text>
+					 <text fill="#ffffff" font-size="20"><tspan x="425" y="635">{{prizesEarned}} of {{prizes.length}} DONE.</tspan></text>
+					 <text fill="#ffffff" font-size="20"><tspan x="425" y="668">KEEP GOING!</tspan></text>
 				  </g>
 				  <g ng-if="prizesEarned == prizes.length" transform="translate(-.001 .003)" class="finn-text" ng-cloak>
 					 <path data-name="Path 1523" d="M207 649v53h150v-117h-150z" fill="url(#secret_finn)"/>
