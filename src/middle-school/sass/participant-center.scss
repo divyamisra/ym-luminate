@@ -139,10 +139,7 @@ select#ym-update-challenge {
      width: 100%;
    }
    .ym-pc-dashboard-badges-header {
-     top: 0;
-     position: absolute;
-     font-size: 16px;
-     left: 29%;
+
      @media (max-width: $screen-sm-min) {
 	position: relative;
 	left: auto;
@@ -156,7 +153,6 @@ select#ym-update-challenge {
      }
      p {
 	display: block;
-	color: indigo;
 	margin:0 auto;
      }
      em {
