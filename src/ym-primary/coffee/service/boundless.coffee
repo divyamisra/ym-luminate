@@ -125,9 +125,9 @@ angular.module 'ahaLuminateApp'
         motion_username = 'kidsheartapi'
         motion_password = 'mYhtYeBWCrA7cTST'
         if $rootScope.tablePrefix == 'heartdev'
-          url = 'https://load.boundlessfundraising.com/mobiles/ahakhc/getMotionKhcCompanyRoster?' + requestData + '&roster_type=participant&list_size=5'
+          url = 'https://load.boundlessfundraising.com/mobiles/ahakhc/getMotionKhcCompanyRoster?' + requestData + '&list_size=5'
         else
-          url = 'https://loadprod.boundlessfundraising.com/mobiles/ahakhc/getMotionKhcCompanyRoster?' + requestData + '&roster_type=participant&list_size=5'
+          url = 'https://loadprod.boundlessfundraising.com/mobiles/ahakhc/getMotionKhcCompanyRoster?' + requestData + '&list_size=5'
         jQuery.ajax
           url: $sce.trustAsResourceUrl(url)
           async: true
@@ -154,7 +154,7 @@ angular.module 'ahaLuminateApp'
             "instant": 1
             "earned_title":"Get ready for fun"
             "earned_subtitle1":"Thank you for joining Kids Heart Challenge and registering online!"
-            "earned_subtitle2":"You earned a wristband."
+            "earned_subtitle2":"You earned a wristband with a secret message!"
             "earned_subtitle3":"and you'll earn a wristband."
             "online_only":0
           }
@@ -190,7 +190,7 @@ angular.module 'ahaLuminateApp'
             "instant": 1
             "earned_title":"Kickin' it ninja style"
             "earned_subtitle1":"Take a bow for earning Sam for raising $10!"
-            "earned_subtitle2":"Always make a good choice like Sam."
+            "earned_subtitle2":"Always make a good choice like Sam and say NO to vaping and tobacco."
             "earned_subtitle3":"and you'll earn Sam."
             "online_only":1
           }
@@ -213,7 +213,7 @@ angular.module 'ahaLuminateApp'
             "level":"$25"
             "instant": 1
             "earned_title":"Leading the pack"
-            "earned_subtitle1":"Be proud you earned Iker for raising $25!"
+            "earned_subtitle1":"Be proud you earned Iker by raising $25!"
             "earned_subtitle2":"Stand up for what's right like Iker."
             "earned_subtitle3":"and you'll earn Iker."
             "online_only":0
@@ -224,7 +224,7 @@ angular.module 'ahaLuminateApp'
             "status":0
             "level":"$40"
             "instant": 1
-            "earned_title":"You're rad dude"
+            "earned_title":"You're rad"
             "earned_subtitle1":"You earned Kai for raising $40!"
             "earned_subtitle2":"Keep it cool just like Kai."
             "earned_subtitle3":"and you'll earn Kai."
@@ -249,9 +249,9 @@ angular.module 'ahaLuminateApp'
             "level":"$75"
             "instant": 2
             "earned_title":"Have a ball"
-            "earned_subtitle1":"Thank for all your hard work for raising $75!"
+            "earned_subtitle1":"Thanks for all your hard work and raising $75!"
             "earned_subtitle2":"You've earned a playground ball."
-            "earned_subtitle3":"and you'll earn a playbround ball."
+            "earned_subtitle3":"and you'll earn a playground ball."
             "online_only":0
           }
           {
@@ -261,7 +261,7 @@ angular.module 'ahaLuminateApp'
             "level":"$100"
             "instant": 1
             "earned_title":"Lots o' love for you"
-            "earned_subtitle1":"We're so happy you earned Journey for raising $100!"
+            "earned_subtitle1":"We're so happy you earned Journey by raising $100!"
             "earned_subtitle2":"Be kind to others just like Journey."
             "earned_subtitle3":"and you'll earn Journey."
             "online_only":0
@@ -280,26 +280,26 @@ angular.module 'ahaLuminateApp'
           }
           {
             "id":"SOCKS-21"
-            "name":"Athletic Socks"
+            "name":"Dash's Socks"
             "status":0
             "level":"$250"
             "instant": 2
             "earned_title":"Jump in feet first"
             "earned_subtitle1":"You're knocking our socks off so you earned a pair for raising $250!"
             "earned_subtitle2":"Take a walk...with your new socks."
-            "earned_subtitle3":"and you'll earn Athletic Socks."
+            "earned_subtitle3":"and you'll earn Dash's Socks."
             "online_only":0
           }
           {
             "id":"POPPER-21"
-            "name":"Popper"
+            "name":"Ball Launcher"
             "status":0
             "level":"$500"
             "instant": 2
             "earned_title":"Top of the pops"
-            "earned_subtitle1":"Your hard work raising $500 earned you a popper!"
+            "earned_subtitle1":"Your hard work raising $500 earned you a Ball Launcher!"
             "earned_subtitle2":"Stop drinking pop...pick water instead."
-            "earned_subtitle3":"and you'll earn Popper."
+            "earned_subtitle3":"and you'll earn a Ball Launcher."
             "online_only":0
           }
           {
