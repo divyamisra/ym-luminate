@@ -753,7 +753,7 @@
                     </div>
                     <div class="col-xs-9 col-sm-8">
                        <div class="challenge-day-title text_with_1px_border">Day Streak</div>
-                       <div class="challenge-day-challenge text_with_1px_border" ng-if="personalChallenge.id == '1'" ng-cloak>for being kind</div>
+                       <div class="challenge-day-challenge text_with_1px_border" ng-if="personalChallenge.id == '1'" ng-cloak>for being ready</div>
                        <div class="challenge-day-challenge text_with_1px_border" ng-if="personalChallenge.id == '2'" ng-cloak>for moving more</div>
                        <div class="challenge-day-challenge text_with_1px_border" ng-if="personalChallenge.id == '3'" ng-cloak>for choosing water</div>
                    </div>
@@ -775,9 +775,9 @@
               <div class="col-sm-12">
                 <div class="col-xs-12 col-sm-4">
                   <a href="" ng-click="updateDayChallenge(1)" class="text-center" ng-class="{'selected': personalChallenge.id == '1','disabled': personalChallenge.updatePending}" ng-disabled="personalChallenge.updatePending" ng-init="imghover1=false">
-                    <img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy21/pc-challenge-be-grateful{{personalChallenge.id == '1' ? '-hover':''}}.png" ng-mouseover="imghover1=true" ng-mouseout="imghover1=false" alt="Being Kind" ng-show="!imghover1" ng-cloak>
-                    <img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy21/pc-challenge-be-grateful-hover.png" ng-mouseover="imghover1=true" ng-mouseout="imghover1=false" alt="Being Kind" ng-show="imghover1" ng-cloak>
-                    Be<br/>Kind
+                    <img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy21/pc-challenge-be-grateful{{personalChallenge.id == '1' ? '-hover':''}}.png" ng-mouseover="imghover1=true" ng-mouseout="imghover1=false" alt="Being Ready" ng-show="!imghover1" ng-cloak>
+                    <img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy21/pc-challenge-be-grateful-hover.png" ng-mouseover="imghover1=true" ng-mouseout="imghover1=false" alt="Being Ready" ng-show="imghover1" ng-cloak>
+                    Be<br/>Ready
                   </a>
                 </div>
                 <div class="col-xs-12 col-sm-4">
@@ -1187,7 +1187,7 @@
                 <br/>
                 <div class="schoolStatusTitle">Daily Challenges</div>
                 <p class="students-challenge1">
-                  <strong>{{activity1amt|number}}</strong> student<span ng-if="activity1amt > 1 || activity1amt == 0">s are</span><span ng-if="activity1amt == 1"> is</span> being kind
+                  <strong>{{activity1amt|number}}</strong> student<span ng-if="activity1amt > 1 || activity1amt == 0">s are</span><span ng-if="activity1amt == 1"> is</span> ready
                 </p>
                 <p class="students-challenge2">
                   <strong>{{activity2amt|number}}</strong> student<span ng-if="activity2amt > 1 || activity2amt == 0">s are</span><span ng-if="activity2amt == 1"> is</span> moving more
