@@ -10,13 +10,12 @@
         <div class="ym-pc-dashboard-badges-header">
           <p class="ym-pc-dashboard-badges-mission">{{current_mission_title}}</p> 
           <p>{{current_mission_message}}</p>
-          <em>Please allow 15 minutes for the system to update your badges.</em>
         </div>
         <!-- <div class="hv-image" ng-init="hvImgAgentsrc='Agentk.png';" ng-mouseover="hvImgAgentsrc='Agentk.gif';" ng-mouseout="hvImgAgentsrc='Agentk.png';">
   	       <img class="agentk" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/{{hvImgAgentsrc}}" alt="Agent K">
         </div> -->
 		<div class="winding-road">
-			<svg xmlns="http://www.w3.org/2000/svg"  width="100%" height="100%" viewBox="0 0 658 750" preserveAspectRatio="xMidYMid meet">
+			<svg xmlns="http://www.w3.org/2000/svg"  width="100%" height="100%" viewBox="0 0 658 675" preserveAspectRatio="xMidYMid meet">
 			   <defs>
 				  <filter id="b" x="0" y="524.202" width="197.453" height="177.764" filterUnits="userSpaceOnUse">
 					 <feOffset dx="1" dy="1"/>
@@ -182,7 +181,7 @@
 					<image width="23" height="23" ng-href="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/middle-school/image/winding_road_link_arrow.png" xlink:href="" title="Winding Road Link Arrow"/>
 				  </pattern>
 			   </defs>
-			   <g data-name="Winding Road">
+			   <g data-name="Winding Road" transform="translate(0 -50)">
 				  <g id="cpr-quiz" transform="translate(.003 -.001)" filter="url(#b)" data-name="Stroke Quiz">
 					 <path data-name="Path 1518" d="M112.484 524.203H.03c-1.232 99.545 37.375 177.981 196.424 176.749V584.593c-42.308 5.249-85.447-22.73-83.97-60.39z" fill="{{(prizes[7].earned) ? '#f2f2f2' : '#d9d9d9'}}"/>
 					 <text fill="#444" font-size="14" font-weight="bold"><tspan x="75" y="610">Take</tspan></text>
@@ -239,12 +238,12 @@
 					 <path data-name="Path 1523a" d="M70 120v62h76v-62h-76z" fill="url(#letsgo_arrow)" stroke="white"/>
 				  </g>
  				  <g ng-if="prizesEarned != prizes.length" transform="translate(-.001 .003)" class="finn-text" ng-cloak>
-				 	<path data-name="Path 1523" d="M207 649v53h150v-117h-150z" fill="url(#not_secret_finn)"></path>
+				 	<path data-name="Path 1523" d="M207 649v53h150v-117h-150z" fill="url(#not_secret_finn)" stroke="white"></path>
 					 <text fill="#ffffff" font-size="20"><tspan x="425" y="635">{{prizesEarned}} of {{prizes.length}} DONE.</tspan></text>
 					 <text fill="#ffffff" font-size="20"><tspan x="425" y="668">KEEP GOING!</tspan></text>
 				  </g>
 				  <g ng-if="prizesEarned == prizes.length" transform="translate(-.001 .003)" class="finn-text" ng-cloak>
-					 <path data-name="Path 1523" d="M207 649v53h150v-117h-150z" fill="url(#secret_finn)"/>
+					 <path data-name="Path 1523" d="M207 649v53h150v-117h-150z" fill="url(#secret_finn)" stroke="white"/>
 					 <text fill="#ffffff" font-size="20"><tspan x="405" y="635">YOU ARE A REAL</tspan></text>
 					 <text fill="#ffffff" font-size="20"><tspan x="418" y="668">HEART HERO!</tspan></text>
 				  </g>
@@ -281,6 +280,7 @@
 			   </g>
 			</svg>
 	      </div>
+	      <p class="text-center"><em>Please allow 15 minutes for the system to update your badges.</em></p>
       </div>
     </section>
     <section class="ym-pc-dashboard-progress-section" aria-label="Fundraising Progress Meters">
