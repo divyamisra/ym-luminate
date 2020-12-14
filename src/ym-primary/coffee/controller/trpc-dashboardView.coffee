@@ -250,6 +250,10 @@ angular.module 'trPcControllers'
         message: ''
         interactionId: ''
 
+      mm_current_mission_completed_header = "Congratulations, " + $scope.consNameFirst + "!"
+      mm_current_mission_title = "You've completed all of Finn's Missions!"
+      mm_current_mission_message = "You unlocked the secret code & your prize: a medal for your Heart Hero avatar! Visit your avatar to add your new, cool medal bling."
+      
       $scope.getMoveMoreFlag = ->
         NgPcInteractionService.getUserInteractions 'interaction_type_id=' + interactionMoveMoreId + '&cons_id=' + $scope.consId + '&list_page_size=1'
           .then (response) ->
@@ -272,6 +276,10 @@ angular.module 'trPcControllers'
                         key.status = 1
                         key.earned = Date()
                     $scope.prizesEarned = $scope.prizesEarned + 1
+                    if $scope.prizesEarned == $scope.prizes.length
+                      $scope.current_mission_completed_header = mm_current_mission_completed_header
+                      $scope.current_mission_title = mm_current_mission_title
+                      $scope.current_mission_message = mm_current_mission_message
 
       $scope.updateMoveMoreFlag = ->
         if $scope.moveMoreFlag.interactionId is ''
@@ -289,6 +297,11 @@ angular.module 'trPcControllers'
                         key.status = 0
                         key.earned = ''
                         $scope.prizesEarned = $scope.prizesEarned - 1
+
+                  if $scope.prizesEarned == $scope.prizes.length
+                    $scope.current_mission_completed_header = mm_current_mission_completed_header
+                    $scope.current_mission_title = mm_current_mission_title
+                    $scope.current_mission_message = mm_current_mission_message
                 else
                   $scope.moveMoreFlag.errorMessage = 'There was an error processing your update. Please try again later.'
         else
@@ -308,6 +321,10 @@ angular.module 'trPcControllers'
                       key.status = 0
                       key.earned = ''
                       $scope.prizesEarned = $scope.prizesEarned - 1
+                if $scope.prizesEarned == $scope.prizes.length
+                  $scope.current_mission_completed_header = mm_current_mission_completed_header
+                  $scope.current_mission_title = mm_current_mission_title
+                  $scope.current_mission_message = mm_current_mission_message
 
       interactionTypeId = $dataRoot.data 'coordinator-message-id'
 
