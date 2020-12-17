@@ -139,10 +139,10 @@
 
       <!-- TOP LISTS -->
       <div class="container container-wide top-lists-container">
-          <h2 class="text-center">Outstanding Fundraisers&nbsp;<span class="d-sm-none d-md-inline">-</span>&nbsp; <br class="d-sm-block d-md-none"/> <span class="event-name">[[E47:[[S334:fr_id]]:fr_info:1:event_title]]</span></h2>
+          <h2 class="text-center" id="packLeaderboard">Outstanding Fundraisers&nbsp;<span class="d-sm-none d-md-inline">-</span>&nbsp; <br class="d-sm-block d-md-none"/> <span class="event-name">[[E47:[[S334:fr_id]]:fr_info:1:event_title]]</span></h2>
           <div class="row">
               <div class="col-lg col-md-12 top-list js--company-top-list">
-                  <h3 class="d-flex bg-gray-700">
+                  <h3 class="d-flex bg-gray-700" aria-describedby="packLeaderboard">
                       <span class="flex-grow-1">
                           Top 5 Companies
                       </span>
@@ -157,7 +157,7 @@
               </div>
               <!-- /.col -->
               <div class="col-lg col-md-12 top-list js--team-top-list">
-                  <h3 class="d-flex bg-gray-700">
+                  <h3 class="d-flex bg-gray-700" aria-describedby="packLeaderboard">
                       <span class="flex-grow-1">Top 5 Teams</span>
                       <span class="text-small">Out of [[E42:[[S334:fr_id]]:num-teams]] Total</span>
                   </h3>
@@ -177,7 +177,7 @@
               </div>
               <!-- /.col -->
               <div class="col-lg col-md-12 top-list js--walker-top-list">
-                  <h3 class="d-flex bg-gray-700">
+                  <h3 class="d-flex bg-gray-700" aria-describedby="packLeaderboard">
                       <span class="flex-grow-1">Top 5  [[?x4234x::x[[S80:evID]]x::Participants::Walkers]]</span>
                       <span class="text-small">Out of [[E42:[[S334:fr_id]]:num-participants]] Total</span>
                   </h3>
@@ -206,11 +206,11 @@
 
       <!-- TOP LISTS - STEPS TAKEN -->
       <div class="container container-wide top-lists-container top-steps">
-          <h2 class="text-center"><span class="event-name">[[E47:[[S334:fr_id]]:fr_info:1:event_title]]</span> Move More Challenge Leaderboard</h2>
+          <h2 class="text-center" id="durationLeaderboard"><span class="event-name">[[E47:[[S334:fr_id]]:fr_info:1:event_title]]</span> Move More Challenge Leaderboard</h2>
           <p class="text-center"><a href="DocServer/Heart_Walk_Move_More_Toolkit.pdf" target="_new">To learn more about Move More Challenge, click here</a></p>
           <div class="row">
               <div class="col-lg col-md-12 top-list js--company-top-list-steps">
-                  <h3 class="d-flex bg-gray-700">
+                  <h3 class="d-flex bg-gray-700" aria-describedby="durationLeaderboard">
                       <span class="flex-grow-1">
                           Top 5 Companies
                       </span>
@@ -225,7 +225,7 @@
               </div>
               <!-- /.col -->
               <div class="col-lg col-md-12 top-list js--team-top-list-steps">
-                  <h3 class="d-flex bg-gray-700">
+                  <h3 class="d-flex bg-gray-700" aria-describedby="durationLeaderboard">
                       <span class="flex-grow-1">Top 5 Teams</span>
                       <span class="text-small">Out of [[E42:[[S334:fr_id]]:num-teams]] Total</span>
                   </h3>
@@ -237,7 +237,7 @@
               </div>
               <!-- /.col -->
               <div class="col-lg col-md-12 top-list js--walker-top-list-steps">
-                  <h3 class="d-flex bg-gray-700">
+                  <h3 class="d-flex bg-gray-700" aria-describedby="durationLeaderboard">
                       <span class="flex-grow-1">Top 5 [[?x4234x::x[[S80:evID]]x::Participants::Walkers]]</span>
                       <span class="text-small">Out of [[E42:[[S334:fr_id]]:num-participants]] Total</span>
                   </h3>
