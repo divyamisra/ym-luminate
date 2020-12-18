@@ -126,7 +126,7 @@ angular.module 'ahaLuminateApp'
         if $rootScope.tablePrefix is 'heartdev'
           url = '//khc.staging.ootqa.org/api/points/student/' + requestData
         else if $rootScope.tablePrefix is 'heartnew'
-          url = '//khc.dev.ootqa.org/api/points/student/' + requestData
+          url = '//khc.staging.ootqa.org/api/points/student/' + requestData
         else
           url = '//kidsheartchallenge.heart.org/api/points/student/' + requestData
         $http.jsonp($sce.trustAsResourceUrl(url), jsonpCallbackParam: 'callback')
