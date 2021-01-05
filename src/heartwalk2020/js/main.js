@@ -759,7 +759,7 @@
         /* STEPS SCRIPTS */
         /******************/
         cd.getTopParticipantsSteps = function (eventId) {
-            var motionApiUrl = 'https://' + motion_urlPrefix + '.boundlessfundraising.com/mobiles/' + motionDb + '/getMotionActivityRoster?event_id=' + motion_event + '&roster_type=participant&list_size=5';
+            var motionApiUrl = 'https://' + motion_urlPrefix + '.boundlessfundraising.com/mobiles/' + motionDb + '/getMotionActivityRoster?event_id=' + motion_event + '&roster_type=participant';
             var participantsFound = 0;
             
             $.ajax({ 
