@@ -354,7 +354,6 @@
                             });
 
                             $('.js--company-results-container').removeAttr('hidden');
-                            $('.js--company-results-container').removeAttr('hidden');
                         }
                     },
                     error: function (response) {
@@ -759,8 +758,9 @@
         /* STEPS SCRIPTS */
         /******************/
         cd.getTopParticipantsSteps = function (eventId) {
-            var motionApiUrl = 'https://' + motion_urlPrefix + '.boundlessfundraising.com/mobiles/' + motionDb + '/getMotionActivityRoster?event_id=' + motion_event + '&roster_type=participant&list_size=5';
-
+            var motionApiUrl = 'https://' + motion_urlPrefix + '.boundlessfundraising.com/mobiles/' + motionDb + '/getMotionActivityRoster?event_id=' + motion_event + '&roster_type=participant&list_size=5000';
+            var participantsFound = 0;
+            
             $.ajax({ 
                 url: motionApiUrl,
                 async: true,
@@ -773,13 +773,17 @@
                 success: function(response){
                     if (response.activities != undefined) {
                         $(response.activities).each(function(){
-                            var participantName = this.name;
-                            var steps = this.total;
-                            var participantPage = "https://" + ((isProd) ? "www2" : "dev2") + ".heart.org/site/TR?px="+this.id+"&pg=personal&fr_id="+eventId;
+                            if (participantsFound < 5) {
+                                var participantName = this.name;
+                                var steps = parseFloat(this.total).formatMoney(0);
+                                var participantPage = "https://" + ((isProd) ? "www2" : "dev2") + ".heart.org/site/TR?px="+this.id+"&pg=personal&fr_id="+eventId;
 
-                            var topWalkerHtml = '<li><div class="d-flex"><div class="flex-grow-1"><a title="' + participantName + ' Steps" href="' + participantPage + '">' + participantName + '</a></div><div class="raised">Steps<br><strong>' + steps + '</strong></div></div></li>';
-                            $('.js--walker-top-list-steps ul').append(topWalkerHtml);
+                                var topWalkerHtml = '<li><div class="d-flex"><div class="flex-grow-1"><a title="' + participantName + ' Minutes" href="' + participantPage + '">' + participantName + '</a></div><div class="raised"><strong>' + steps + '</strong><br/>Minutes</div></div></li>';
+                                $('.js--walker-top-list-steps ul').append(topWalkerHtml);
+                            }
+                            participantsFound++;
                         });
+                        $('.js--num-participants-steps').text(participantsFound);
                     }
                 },
                 error: function(err) {
@@ -791,8 +795,9 @@
 
         // BEGIN TOP TEAMS STEPS
         cd.getTopTeamsSteps = function (eventId) {
-            var motionApiUrl = 'https://' + motion_urlPrefix + '.boundlessfundraising.com/mobiles/' + motionDb + '/getMotionActivityRoster?event_id=' + motion_event + '&roster_type=team&list_size=5';
-
+            var motionApiUrl = 'https://' + motion_urlPrefix + '.boundlessfundraising.com/mobiles/' + motionDb + '/getMotionActivityRoster?event_id=' + motion_event + '&roster_type=team&list_size=5000';
+            var teamsFound = 0;
+            
             $.ajax({ 
                 url: motionApiUrl,
                 async: true,
@@ -805,11 +810,15 @@
                 success: function(response){
                     if (response.activities != undefined) {
                         $(response.activities).each(function(){
-                            var teamName = this.name;
-                            var steps = this.total;
-                            var topTeamRow = '<li><div class="d-flex"><div class="flex-grow-1"><a title="' + teamName + ' Steps" href="TR/?team_id=' + this.id + '&amp;pg=team&amp;fr_id=' + evID + '">' + teamName + '</a></div><div class="raised">Steps<br><strong>' + steps + '</strong></div></div></li>';
-                            $('.js--team-top-list-steps ul').append(topTeamRow);
+                            if (teamsFound < 5) {
+                                var teamName = this.name;
+                                var steps = parseFloat(this.total).formatMoney(0);
+                                var topTeamRow = '<li><div class="d-flex"><div class="flex-grow-1"><a title="' + teamName + ' Minutes" href="TR/?team_id=' + this.id + '&amp;pg=team&amp;fr_id=' + evID + '">' + teamName + '</a></div><div class="raised"><strong>' + steps + '</strong><br/>Minutes</div></div></li>';
+                                $('.js--team-top-list-steps ul').append(topTeamRow);
+                            }
+                            teamsFound++;
                         });
+                        $('.js--num-teams-steps').text(teamsFound);
                     }
                 },
                 error: function(err) {
@@ -822,8 +831,9 @@
 
         // BEGIN TOP COMPANIES STEPS
         cd.getTopCompaniesSteps = function (eventId) {
-            var motionApiUrl = 'https://' + motion_urlPrefix + '.boundlessfundraising.com/mobiles/' + motionDb + '/getMotionActivityRoster?event_id=' + motion_event + '&roster_type=company&list_size=5';
-
+            var motionApiUrl = 'https://' + motion_urlPrefix + '.boundlessfundraising.com/mobiles/' + motionDb + '/getMotionActivityRoster?event_id=' + motion_event + '&roster_type=company&list_size=5000';
+            var companiesFound = 0;
+            
             $.ajax({ 
                 url: motionApiUrl,
                 async: true,
@@ -836,18 +846,22 @@
                 success: function(response){
                     if (response.activities != undefined) {
                         $(response.activities).each(function(){
-                            var companyName = this.name;
-                            var steps = this.total;
-                            var topCompanyRow = '<li><div class="d-flex"><div class="flex-grow-1"><a title="' + companyName + ' Steps" href="TR/?company_id=' + this.id + '&amp;pg=company&amp;fr_id=' + evID + '">' + companyName + '</a></div><div class="raised">Steps<br><strong>' + steps + '</strong></div></div></li>';
-                            $('.js--company-top-list-steps ul').append(topCompanyRow);
+                            if (companiesFound < 5) {
+                                var companyName = this.name;
+                                var steps = parseFloat(this.total).formatMoney(0);
+                                var topCompanyRow = '<li><div class="d-flex"><div class="flex-grow-1"><a title="' + companyName + ' Minutes" href="TR/?company_id=' + this.id + '&amp;pg=company&amp;fr_id=' + evID + '">' + companyName + '</a></div><div class="raised"><strong>' + steps + '</strong><br/>Minutes</div></div></li>';
+                                $('.js--company-top-list-steps ul').append(topCompanyRow);
+                            }
+                            companiesFound++;
                         });
+                        $('.js--num-companies-steps').text(companiesFound);
                     }
                 },
                 error: function(err) {
                     console.log('getMotionActivityRoster err', err);
                 }
             });
-
+            /*
             luminateExtend.api({
                 api: 'teamraiser',
                 data: 'method=getCompaniesByInfo&fr_id=' + eventId +
@@ -858,7 +872,7 @@
                             var topCompanies = luminateExtend.utils.ensureArray(response.getCompaniesResponse
                                 .company);
                             var totalCompanies = parseInt(response.getCompaniesResponse.totalNumberResults);
-                            $('.js--num-companies').text(totalCompanies);
+                            $('.js--num-companies-steps').text(totalCompanies);
                         }
                     },
                     error: function (response) {
@@ -866,6 +880,7 @@
                     }
                 }
             });
+            */
         };
 
         // EXPANDABLE DONOR ROLL
@@ -1807,6 +1822,18 @@
         }
     });
 }(jQuery));
+
+Number.prototype.formatMoney = function (c, d, t) {
+  var n = this,
+    c = isNaN(c = Math.abs(c)) ? 2 : c,
+    d = d == undefined ? "." : d,
+    t = t == undefined ? "," : t,
+    s = n < 0 ? "-" : "",
+    i = String(parseInt(n = Math.abs(Number(n) || 0).toFixed(c))),
+    j = (j = i.length) > 3 ? j % 3 : 0;
+  return s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d +
+    Math.abs(n - i).toFixed(c).slice(2) : "");
+};
 
 var cdSortByColumnNumber = 1;
 var cdSortByText = 'Amount Raised';

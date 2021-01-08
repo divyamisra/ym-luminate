@@ -1074,7 +1074,7 @@
       var topEventList = [];
       var totalRaised = 0;
       var totalMiles = 0;
-  	  $.getJSON("//tools.heart.org/cn_leaderboard/getTotals.php?isProd="+isProd+"&callback=?",function(data){
+  	  $.getJSON("//tools.heart.org/cn_leaderboard/getTotals.php?isProd="+((isProd) ? 1 : 0)+"&callback=?",function(data){
         totalRaised = parseFloat(data.totalRaised);
         totalMiles = parseFloat(data.totalMiles);
         $('.therm-raised').html("$"+totalRaised.formatMoney(0));
