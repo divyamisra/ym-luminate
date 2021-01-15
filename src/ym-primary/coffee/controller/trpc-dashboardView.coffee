@@ -996,10 +996,11 @@ angular.module 'trPcControllers'
           if len == 0 or not compfnd
             $rootScope.hideGifts = "N"
 
-      $scope.showPrize = (sku, label, earned) ->
+      $scope.showPrize = (sku, label, earned, video) ->
         $scope.prize_sku = sku
         $scope.prize_label = label
         $scope.prize_status = earned
+        $scope.prize_video = video
         $scope.viewPrizeModal = $uibModal.open
           scope: $scope
           templateUrl: APP_INFO.rootPath + 'dist/ym-primary/html/participant-center/modal/viewPrize.html'
@@ -1067,6 +1068,7 @@ angular.module 'trPcControllers'
                 $scope.upcomingGifts.push
                   prize_label: giftPrev.name
                   prize_sku: giftPrev.id
+                  prize_video: giftPrev.video
                   prize_status: prevstatus
                   lastItem: 1
                   randomID: getRandomID()
@@ -1081,6 +1083,7 @@ angular.module 'trPcControllers'
                 $scope.upcomingGifts.push
                   prize_label: gift.name
                   prize_sku: gift.id
+                  prize_video: gift.video
                   prize_status: status
                   lastItem: lastItem
                   randomID: getRandomID()
