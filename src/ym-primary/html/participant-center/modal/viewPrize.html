@@ -4,17 +4,6 @@
     </h2>
   </div>
   <div class="modal-body text-center">
-      <iframe ng-if="prize_video != ''" class="gift_video"
-               data-src="{{prize_video}}?autoplay=1&loop=1&autopause=0&api=1&controls=0&muted=1?playsinline=0"
-               width="640" 
-               height="300" 
-               frameborder="0" 
-               allow="autoplay; 
-               fullscreen" 
-               allowfullscreen 
-               muted 
-               playsinline>
-      </iframe>
       <video ng-if="prize_video != ''" type="video/mp4" ng-src="{{prize_video}}" ng-attr-poster="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/prizes2021/{{prize_sku}}.png" height="300" controls autoplay alt="{{prize_label}}">
          <p>Your browser doesn't support HTML5 video. Here is a <a href="{{prize_video}}">link to the video</a> instead.</p>
       </video> 
