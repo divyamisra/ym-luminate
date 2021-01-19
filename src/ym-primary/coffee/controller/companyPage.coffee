@@ -193,15 +193,15 @@ angular.module 'ahaLuminateControllers'
           $scope.$apply()
         if participants and participants.length > 0
           angular.forEach participants, (participant, participantIndex) ->
-            participantsString += '{name: "' + participant.name.first + ' ' + participant.name.last + '", raised: "' + participant.amountRaisedFormatted + '", cons_id: ' + participant.consId + '}'
+            participantsString += '{"name": "' + participant.name.first + ' ' + participant.name.last + '", "raised": "' + participant.amountRaisedFormatted + '", "cons_id": ' + participant.consId + '}'
             if participantIndex < (participants.length - 1)
               participantsString += ', '
-          companyParticipantsString = '{participants: [' + participantsString + '], totalNumber: ' + participants.length + '}'
+          companyParticipantsString = '{"participants": [' + participantsString + '], "totalNumber": ' + participants.length + '}'
           angular.element('.ym-school-animation iframe')[0].contentWindow.postMessage companyParticipantsString, domain
           angular.element('.ym-school-animation iframe').on 'load', ->
             angular.element('.ym-school-animation iframe')[0].contentWindow.postMessage companyParticipantsString, domain
       getCompanyParticipants = ->
-        TeamraiserParticipantService.getParticipants 'team_name=' + encodeURIComponent('%') + '&first_name=' + encodeURIComponent('%%') + '&last_name=' + encodeURIComponent('%') + '&list_filter_column=team.company_id&list_filter_text=' + $scope.companyId + '&list_sort_column=total&list_ascending=false&list_page_size=50',
+        TeamraiserParticipantService.getParticipants 'team_name=' + encodeURIComponent('%') + '&first_name=' + encodeURIComponent('%%') + '&last_name=' + encodeURIComponent('%') + '&list_filter_column=team.company_id&list_filter_text=' + $scope.companyId + '&list_sort_column=total&list_ascending=false&list_page_size=500',
             error: ->
               setCompanyParticipants()
             success: (response) ->
@@ -420,10 +420,11 @@ angular.module 'ahaLuminateControllers'
 
       getLeaderboards()
 
-      BoundlessService.getBMLeaderboard().then (response) ->
-        if response.activities != undefined
-          angular.forEach response.activities, (activity) ->
-            $scope.topCompanySteps.push activity
+      BoundlessService.getBMLeaderboard('event_id=' + $scope.frId + '&company_id=' + $scope.companyId).then (response) ->
+        if response.company_member_list != undefined
+          angular.forEach response.company_member_list, (company_member_list) ->
+            if company_member_list.total > 0
+              $scope.topCompanySteps.push company_member_list
 
       setCompanyCity = (companyCity) ->
         $rootScope.companyCity = companyCity

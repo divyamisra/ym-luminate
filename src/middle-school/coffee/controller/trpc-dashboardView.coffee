@@ -47,6 +47,15 @@ angular.module 'trPcControllers'
       url = 'https://' + urlPrefix + '.boundlessfundraising.com/applications/ahatgr/social/app/ui/#/addsocial/' + $scope.consId + '/' + $scope.frId + '/' + $rootScope.authToken + '/' + $rootScope.sessionCookie + '?source=PCSocial'
       $scope.socialIframeURL = $sce.trustAsResourceUrl url
 
+      if $scope.participantRegistration.companyInformation?.isCompanyCoordinator is 'true'
+        BoundlessService.checkOOTDashboard $scope.frId + '/' + $scope.consId
+        .then (response) ->
+          $rootScope.hasOOTDashboard = response.data.coordinatorHasDashboard
+        , (response) ->
+          # TODO
+      else
+        $rootScope.hasOOTDashboard = true
+        
       if $scope.participantRegistration.lastPC2Login is '0'
         if $scope.participantRegistration.companyInformation?.isCompanyCoordinator isnt 'true'
           $scope.firstLoginModal = $uibModal.open
@@ -137,7 +146,7 @@ angular.module 'trPcControllers'
             angular.element('.ym-school-animation iframe')[0].contentWindow.postMessage companyParticipantsString, domain
 
       getCompanyParticipants = ->
-        TeamraiserParticipantService.getParticipants 'team_name=' + encodeURIComponent('%') + '&first_name=' + encodeURIComponent('%%') + '&last_name=' + encodeURIComponent('%') + '&list_filter_column=team.company_id&list_filter_text=' + $scope.participantRegistration.companyInformation.companyId + '&list_sort_column=total&list_ascending=false&list_page_size=50',
+        TeamraiserParticipantService.getParticipants 'team_name=' + encodeURIComponent('%') + '&first_name=' + encodeURIComponent('%%') + '&last_name=' + encodeURIComponent('%') + '&list_filter_column=team.company_id&list_filter_text=' + $scope.participantRegistration.companyInformation.companyId + '&list_sort_column=total&list_ascending=false&list_page_size=500',
             error: ->
               setCompanyParticipants()
             success: (response) ->

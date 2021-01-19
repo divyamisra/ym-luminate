@@ -1,8 +1,8 @@
 <!--<script src="https://code.jquery.com/jquery-2.2.4[[?xtruex::x[[S80:debug]]x::::.min]].js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
 crossorigin="anonymous"></script> -->
-<!-- script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.2.4[[?xtruex::x[[S80:debug]]x::::.min]].js"></script -->
-<script src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/fieldday/js/jquery-2.2.4[[?xtruex::x[[S80:debug]]x::::.min]].js"></script>
-<script>console.log('2a',jQuery().jquery);</script>
+
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.2.4[[?xtruex::x[[S80:debug]]x::::.min]].js"></script>
+
 [[?x[[?x9x::x[[S4]]x::T::]][[?xpaymentFormx::x[[S334:pg]]x::T::]]::T::
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/1.4.1/jquery-migrate.min.js" integrity="sha256-SOuLUArmo4YXtXONKz+uxIGSKneCJG4x0nVcA0pFzV0=" crossorigin="anonymous"></script>
 ::]]
@@ -16,12 +16,6 @@ crossorigin="anonymous"></script> -->
   [[?x26x27x9x::x[[S4]]x::T::]]
 ::T::
   <script src="https://cdnjs.cloudflare.com/ajax/libs/unslider/2.0.3/js/unslider-min.js" defer integrity="sha256-5cLCHHHqQX2x3pQpjWwAtBL54U9EGWOHe8tDkXuxPTI=" crossorigin="anonymous"></script>
-::]]
-
-[[?
-  [[?[[S8]]::fieldday_donate::T::]]
-  [[?x27x9x::x[[S4]]x::T::]]
-::T::
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/additional-methods.min.js" defer></script>
 ::]]
@@ -31,9 +25,22 @@ crossorigin="anonymous"></script> -->
 ::]]
 
 [[?[[S8]]::fieldday_donate_amazon::
+  <script src="https://static-na.payments-amazon.com/checkout.js"></script>
+  <script src="../amazonpay/fieldday/js/amazon-pay-v2.js"></script>
   <script src="../amazonpay/fieldday/js/luminateExtend-custom.js"></script>
-  <script src="../amazonpay/fieldday/js/amazon-pay.js"></script>
   <script src="../amazonpay/fieldday/js/donation.js"></script>
+  <script src="https://doublethedonation.com/api/js/ddplugin.js"></script>
+  <script>
+  var amazonPayButton = amazon.Pay.renderButton('.amazon-pay', {
+     merchantId: 'A1ZM7MXG16NQQB',
+     ledgerCurrency: 'USD',
+     sandbox: [[?x[[S334:df_preview]]x::xtruex::true::false]],
+     checkoutLanguage: 'en_US',
+     productType: 'PayOnly',
+     placement: 'Cart',
+     buttonColor: 'Gold'
+  });
+  </script>
 ::]]
 [[?[[S8]]::fieldday_donate_applepay::
   <script src="https://js.braintreegateway.com/web/3.64.2/js/client.min.js"></script>
@@ -42,6 +49,7 @@ crossorigin="anonymous"></script> -->
   <script src="../amazonpay/fieldday/js/braintree-luminate.js"></script>
   <script src="../amazonpay/fieldday/js/donation-applepay.js"></script>
   <script src="../amazonpay/fieldday/js/donation.js"></script>
+  <script src="https://doublethedonation.com/api/js/ddplugin.js"></script>
 ::]]
 [[?[[S8]]::fieldday_donate_venmo::
   <script src="https://js.braintreegateway.com/web/3.64.2/js/client.min.js"></script>
@@ -50,6 +58,7 @@ crossorigin="anonymous"></script> -->
   <script src="../amazonpay/fieldday/js/braintree-luminate.js"></script>
   <script src="../amazonpay/fieldday/js/donation-venmo.js"></script>
   <script src="../amazonpay/fieldday/js/donation.js"></script>
+  <script src="https://doublethedonation.com/api/js/ddplugin.js"></script>
 ::]]
 [[?[[S8]]::fieldday_donate_googlepay::
   <script src="https://pay.google.com/gp/p/js/pay.js"></script>
@@ -59,6 +68,7 @@ crossorigin="anonymous"></script> -->
   <script src="../amazonpay/fieldday/js/braintree-luminate.js"></script>
   <script src="../amazonpay/fieldday/js/donation-googlepay.js"></script>
   <script src="../amazonpay/fieldday/js/donation.js"></script>
+  <script src="https://doublethedonation.com/api/js/ddplugin.js"></script>
 ::]]
 
 [[?
@@ -88,15 +98,15 @@ crossorigin="anonymous"></script> -->
 });
 
 </script>
-<script>console.log('3',jQuery().jquery);</script>
+
 <script src="[[S666:template_macros/aha_luminate_filepath.tpt::fieldday/js/main::js::@@buildTimestamp]]"></script>
 
 [[?xentryxteamxcompanyxpersonalx::x[[S334:pg]]x::::
   [[?x27x9x::x[[S4]]x::::
-    <script src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/fieldday/js/pushy.js"></script>    
+    <script src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/fieldday/js/pushy.js"></script>
   ]]
 ]]
-<script>console.log('4',jQuery().jquery);</script>
+
 
 [[?x27x::x[[S4]]x::
 <script src="[[S666:template_macros/aha_luminate_filepath.tpt::fieldday/js/registration::js::@@buildTimestamp]]"></script>
@@ -111,7 +121,7 @@ crossorigin="anonymous"></script> -->
 ]]
 
 
-<script>console.log('5',jQuery().jquery);</script>
+
 [[?xheartdevx::x[[S29:TABLE_PREFIX]]x::
 <script src="https://static.heart.org/ahaanywhere/sitecore/dist/ahaHeaderFooterSitecore.dev.js"></script>
 ::

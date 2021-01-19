@@ -34,6 +34,11 @@ angular.module 'trPcControllers'
       $scope.schoolChallenges = []
       $scope.companyProgress = []
       $rootScope.hideGifts = "Y"
+      $scope.topClassRaised = []
+      $scope.topClassStudents = []
+      $scope.topGradeRaised = []
+      $scope.topGradeStudents = []
+      $scope.topCompanySteps = []
       
       $dataRoot = angular.element '[data-embed-root]'
                      
@@ -136,7 +141,7 @@ angular.module 'trPcControllers'
             angular.element('.ym-school-animation iframe')[0].contentWindow.postMessage companyParticipantsString, domain
 
       getCompanyParticipants = ->
-        TeamraiserParticipantService.getParticipants 'team_name=' + encodeURIComponent('%') + '&first_name=' + encodeURIComponent('%%') + '&last_name=' + encodeURIComponent('%') + '&list_filter_column=team.company_id&list_filter_text=' + $scope.participantRegistration.companyInformation.companyId + '&list_sort_column=total&list_ascending=false&list_page_size=50',
+        TeamraiserParticipantService.getParticipants 'team_name=' + encodeURIComponent('%') + '&first_name=' + encodeURIComponent('%%') + '&last_name=' + encodeURIComponent('%') + '&list_filter_column=team.company_id&list_filter_text=' + $scope.participantRegistration.companyInformation.companyId + '&list_sort_column=total&list_ascending=false&list_page_size=500',
             error: ->
               setCompanyParticipants()
             success: (response) ->
@@ -235,6 +240,74 @@ angular.module 'trPcControllers'
         $scope.dashboardPromises.push fundraisingProgressPromise
         getSchoolInformation()
       $scope.refreshFundraisingProgress()
+
+      interactionMoveMoreId = $dataRoot.data 'move-more-flag-id'
+
+      $scope.moveMoreFlag =
+        text: ''
+        errorMessage: null
+        successMessage: false
+        message: ''
+        interactionId: ''
+
+      $scope.getMoveMoreFlag = ->
+        NgPcInteractionService.getUserInteractions 'interaction_type_id=' + interactionMoveMoreId + '&cons_id=' + $scope.consId + '&list_page_size=1'
+          .then (response) ->
+            $scope.moveMoreFlag.text = ''
+            $scope.moveMoreFlag.interactionId = ''
+            if not response.data.errorResponse
+              interactions = response.data.getUserInteractionsResponse?.interaction
+              if interactions
+                interactions = [interactions] if not angular.isArray interactions
+                if interactions.length > 0
+                  interaction = interactions[0]
+                  if interaction.note?.text == "true"
+                     $scope.moveMoreFlag.text = true
+                  else
+                     $scope.moveMoreFlag.text = false
+                  $scope.moveMoreFlag.interactionId = interaction.interactionId or ''
+                  if $scope.moveMoreFlag.text
+                    jQuery.each $scope.prizes, (item, key) ->
+                      if key.sku == "BDG-9"
+                        key.status = 1
+                        key.earned = Date()
+                    $scope.prizesEarned = $scope.prizesEarned + 1
+
+      $scope.updateMoveMoreFlag = ->
+        if $scope.moveMoreFlag.interactionId is ''
+          NgPcInteractionService.logInteraction 'interaction_type_id=' + interactionMoveMoreId + '&cons_id=' + $scope.consId + '&interaction_subject=' + $scope.participantRegistration.companyInformation.companyId + '&interaction_body=' + $scope.moveMoreFlag.message
+              .then (response) ->
+                if response.data.updateConsResponse?.message
+                  $scope.moveMoreFlag.successMessage = true
+                  jQuery.each $scope.prizes, (item, key) ->
+                    if key.sku == "BDG-9"
+                      if $scope.moveMoreFlag.message
+                        key.status = 1
+                        key.earned = Date()
+                        $scope.prizesEarned = $scope.prizesEarned + 1
+                      else 
+                        key.status = 0
+                        key.earned = ''
+                        $scope.prizesEarned = $scope.prizesEarned - 1
+                else
+                  $scope.moveMoreFlag.errorMessage = 'There was an error processing your update. Please try again later.'
+        else
+          NgPcInteractionService.updateInteraction 'interaction_id=' + $scope.moveMoreFlag.interactionId + '&cons_id=' + $scope.consId + '&interaction_subject=' + $scope.participantRegistration.companyInformation.companyId + '&interaction_body=' + $scope.moveMoreFlag.message
+            .then (response) ->
+              if response.data.errorResponse
+                $scope.moveMoreFlag.errorMessage = 'There was an error processing your update. Please try again later.'
+              else
+                $scope.moveMoreFlag.successMessage = true
+                jQuery.each $scope.prizes, (item, key) ->
+                  if key.sku == "BDG-9"
+                    if $scope.moveMoreFlag.message
+                      key.status = 1
+                      key.earned = Date()
+                      $scope.prizesEarned = $scope.prizesEarned + 1
+                    else 
+                      key.status = 0
+                      key.earned = ''
+                      $scope.prizesEarned = $scope.prizesEarned - 1
 
       interactionTypeId = $dataRoot.data 'coordinator-message-id'
 
@@ -727,7 +800,7 @@ angular.module 'trPcControllers'
 
       $scope.prizes = []
       $scope.prizesEarned = 0
-      $scope.has_bonus = 0
+      $rootScope.has_bonus = 0
       $scope.current_mission_completed_count = ''
       $scope.current_mission_completed_header = ''
       $scope.current_mission_action = ''
@@ -741,7 +814,7 @@ angular.module 'trPcControllers'
         $scope.current_mission_action = response.data.current_mission_action
         $scope.current_mission_title = response.data.current_mission_title
         $scope.current_mission_message = response.data.current_mission_message
-        $scope.has_bonus = response.data.has_bonus
+        $rootScope.has_bonus = response.data.has_bonus
         final_url = ''
         angular.forEach prizes, (prize) ->
           if prize.mission_url_type == 'Donate' 
@@ -775,6 +848,7 @@ angular.module 'trPcControllers'
 
           if prize.status == 1
             $scope.prizesEarned++
+        $scope.getMoveMoreFlag()
       , (response) ->
         # TODO
 
@@ -874,7 +948,7 @@ angular.module 'trPcControllers'
         if $rootScope.tablePrefix is 'heartdev'
           url = 'https://khc.staging.ootqa.org'
         else if $rootScope.tablePrefix is 'heartnew'
-          url = 'https://khc.dev.ootqa.org'
+          url = 'https://khc.staging.ootqa.org'
         else
           url = 'https://kidsheartchallenge.heart.org'
         window.open url + '/student/login/' + $scope.authToken + '/' + $scope.sessionCookie
@@ -1086,4 +1160,50 @@ angular.module 'trPcControllers'
 
       $scope.cancelMobileApp = ->
         $scope.viewMobileApp.close()
+        
+      getLeaderboards = ->
+        BoundlessService.getLeaderboards $scope.companyId
+        .then (response) ->
+          teachers_raised = response.data.most_dollars_by_teacher
+          angular.forEach teachers_raised, (teacher) ->
+            grade = teacher.grade_name
+            if grade is null
+              grade = "N/A"
+            $scope.topClassRaised.push
+              name: teacher.teacher_name
+              grade: grade
+              raised: teacher.total | 0
+              msg: 'Amount Raised'
+          teachers_students = response.data.most_students_by_teacher
+          angular.forEach teachers_students, (teacher) ->
+            grade = teacher.grade_name
+            if grade is null
+              grade = "N/A"
+            $scope.topClassStudents.push
+              name: teacher.teacher_name
+              grade: grade
+              students: teacher.students | 0
+              msg: '# Online Students'
+          grade_raised = response.data.most_dollars_by_grade
+          angular.forEach grade_raised, (sgrade) ->
+            grade = sgrade.grade_name
+            if grade is null
+              grade = "N/A"
+            $scope.topGradeRaised.push
+              name: sgrade.teacher_name
+              grade: grade
+              raised: sgrade.total | 0
+              msg: 'Amount Raised'
+          grade_students = response.data.most_students_by_grade
+          angular.forEach grade_students, (students) ->
+            grade = students.grade_name
+            if grade is null
+              grade = "N/A"
+            $scope.topGradeStudents.push
+              name: students.teacher_name
+              grade: grade
+              students: students.students | 0
+              msg: '# Students'
+
+      getLeaderboards()
   ]

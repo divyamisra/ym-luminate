@@ -784,7 +784,7 @@
             });
 
             if (regType === 'startTeam') {
-    		$('.campaign-banner-container').hide();
+    		        $('.campaign-banner-container').hide();
                 $('#team_find_section_container').addClass("col-12 col-xl-10 offset-xl-1").removeClass("section-container");
                 $('form[name=FriendraiserFind]').removeAttr('hidden');
                 $('#team_find_section_body, #team_find_section_header').show();
@@ -797,7 +797,8 @@
                 } else {
                     $('#team_find_new_company_selection_container').append("<span class='hint-text hidden-xs'>You can't skip this step! If you don't see your company in the list, please <a href='mailto:"+coordEmail+"'>contact your local staff</a> to get your company set up today!</span>");
                 }
-		$('#team_find_new_team_attributes').before($('#team_find_new_team_company'));
+                $('#team_find_new_team_attributes').before($('#team_find_new_team_company'));
+                $('#fr_team_name').attr('title','Team Name is required');
             } else if (regType === 'joinTeam') {
 		$('.campaign-banner-container').hide();
     		$('#team_find_new_team_attributes').before($('#team_find_new_team_company'));
@@ -1295,6 +1296,8 @@
   	    $('label:contains("t-shirt")').closest('.input-container').find('select').addClass("tshirtSize");
   	    $('span.field-required').closest('.form-content').find('input, select').addClass("required");
   	    $('input[value^="I accept"]').addClass("acceptRelease").next('label').addClass("acceptReleaseLabel");
+        $('input[value^="I agree to"]').addClass("acceptPrivacy").next('label').addClass("acceptPrivacyLabel");
+
 	    /*
 	    var pattern = /\b(Release with Publicity Consent)/gi; // words you want to wrap
 	    var replaceWith = '<a id="waiverPopLink" href="javascript:void(0);">$1</a>'; // Here's the wap
@@ -1374,7 +1377,7 @@
 		return arg !== value;
 	    }, "Please select a t-shirt size");
 
-	    jQuery('#F2fRegContact').validate({
+	  jQuery('#F2fRegContact').validate({
 		focusInvalid: false,
 		invalidHandler: function(form, validator) {
 			if (!validator.numberOfInvalids())
@@ -1398,13 +1401,27 @@
 			} else {
 				if ($(element).hasClass("acceptRelease")) {
           var a11yError = error.attr('role', 'alert');
-					$('.acceptRelease').closest('.input-container').append(a11yError);
+					$('.acceptRelease').closest('.input-container').append(a11yError).css('display, block');
 
           var describedBy = error.attr('id');
           $(element).attr('aria-describedby', describedBy);
-				} else {
-					if ($(element).hasClass("acceptPrivacy")) {
+				} else if ($(element).hasClass("acceptPrivacy")) {
+          var a11yError = error.attr('role', 'alert');
+					$('.acceptPrivacy').closest('.input-container').append(a11yError);
+
+          var describedBy = error.attr('id');
+          $(element).attr('aria-describedby', describedBy);
+        } else {
+          if ($(element).parents('.privacyCheck').length) {
+
             var a11yError = error.attr('role', 'alert');
+  					$('.privacyCheck').closest('.li').append(a11yError).css('display, block');
+
+            var describedBy = error.attr('id');
+            $(element).attr('aria-describedby', describedBy);
+
+          } else if ($(element).hasClass("acceptPrivacy")) {
+            var a11yError = error.attr('role', 'alert').css('display, block');
 						$('.acceptPrivacy').closest('.input-container').append(a11yError);
 
             var describedBy = error.attr('id');
@@ -1425,9 +1442,6 @@
 					}
 				}
 			}
-
-      console.log('adding role alert to validation errors');
-
       $(error).attr('role', 'alert')
       }
 
@@ -2198,13 +2212,13 @@
             }
 
             if ($('body').is('.pg_regsummary')) {
-              $('.reg-summary-address-info .reg-summary-edit-link a').attr('aria-label', 'Edit your registration information');
-              $('.js--edit-ptype').attr('aria-label', 'Edit your registration information');
+              $('.progress-bar-container')
+              $('.reg-summary-address-info .reg-summary-edit-link a').remove();
+              $('.js--edit-ptype').attr('aria-label', 'Edit your fundraising goal').html('Edit your fundraising goal');
               if ( $('.team-status').html() === 'You are Starting a Team') {
                 $('#another_button').remove();
               }
             }
-
 
 
             if ($('body').is('.pg_tfind')) {
@@ -2221,7 +2235,8 @@
               $('.part-type-fee-text').remove();
             }
 
-
-
+            if ($('body').is('.pg_tfind')) {
+              setTimeout(function(){ document.getElementById('fr_team_name').title = 'Team Name required'; }, 1000);
+            }
 
 })(jQuery);
