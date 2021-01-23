@@ -8,7 +8,7 @@ angular.module 'ahaLuminateApp'
         if $rootScope.tablePrefix is 'heartdev'
           url = 'https://khc.staging.ootqa.org/api/coordinator/dashboard/check/' + requestData
         else if $rootScope.tablePrefix is 'heartnew'
-          url = 'https://khc.dev.ootqa.org/api/coordinator/dashboard/check/' + requestData
+          url = 'https://khc.staging.ootqa.org/api/coordinator/dashboard/check/' + requestData
         else
           url = 'https://kidsheartchallenge.heart.org/api/coordinator/dashboard/check/' + requestData
         $http.jsonp($sce.trustAsResourceUrl(url), jsonpCallbackParam: 'callback')
@@ -21,7 +21,7 @@ angular.module 'ahaLuminateApp'
         if $rootScope.tablePrefix is 'heartdev'
           url = 'https://khc.staging.ootqa.org/api/points/leaders/school/' + requestData + '/teachers/all'
         else if $rootScope.tablePrefix is 'heartnew'
-          url = 'https://khc.dev.ootqa.org/api/points/leaders/school/' + requestData + '/teachers/all'
+          url = 'https://khc.staging.ootqa.org/api/points/leaders/school/' + requestData + '/teachers/all'
         else
           url = 'https://kidsheartchallenge.heart.org/api/points/leaders/school/' + requestData + '/teachers/all'
         $http.jsonp($sce.trustAsResourceUrl(url), jsonpCallbackParam: 'callback')
@@ -34,7 +34,7 @@ angular.module 'ahaLuminateApp'
         if $rootScope.tablePrefix is 'heartdev'
           url = 'https://khc.staging.ootqa.org/api/points/leaders/school/' + requestData + '/teachers/all?limit=5'
         else if $rootScope.tablePrefix is 'heartnew'
-          url = 'https://khc.dev.ootqa.org/api/points/leaders/school/' + requestData + '/teachers/all?limit=5'
+          url = 'https://khc.staging.ootqa.org/api/points/leaders/school/' + requestData + '/teachers/all?limit=5'
         else
           url = 'https://kidsheartchallenge.heart.org/api/points/leaders/school/' + requestData + '/teachers/all?limit=5'
         $http.jsonp($sce.trustAsResourceUrl(url), jsonpCallbackParam: 'callback')
@@ -47,7 +47,7 @@ angular.module 'ahaLuminateApp'
         if $rootScope.tablePrefix is 'heartdev'
           url = 'https://khc.staging.ootqa.org/api/badges/student/' + requestData
         else if $rootScope.tablePrefix is 'heartnew'
-          url = 'https://khc.dev.ootqa.org/api/badges/student/' + requestData
+          url = 'https://khc.staging.ootqa.org/api/badges/student/' + requestData
         else
           url = 'https://kidsheartchallenge.heart.org/api/badges/student/' + requestData
         $http.jsonp($sce.trustAsResourceUrl(url), jsonpCallbackParam: 'callback')
@@ -60,7 +60,7 @@ angular.module 'ahaLuminateApp'
         if $rootScope.tablePrefix is 'heartdev'
           url = 'https://khc.staging.ootqa.org/api/coordinator/students/standard-prizes/' +  + $rootScope.frId + '/' + $rootScope.consId 
         else if $rootScope.tablePrefix is 'heartnew'
-          url = 'https://khc.dev.ootqa.org/api/coordinator/students/standard-prizes/' +  + $rootScope.frId + '/' + $rootScope.consId
+          url = 'https://khc.staging.ootqa.org/api/coordinator/students/standard-prizes/' +  + $rootScope.frId + '/' + $rootScope.consId
         else
           url = 'https://kidsheartchallenge.heart.org/api/coordinator/students/standard-prizes/' +  + $rootScope.frId + '/' + $rootScope.consId
         $http.jsonp($sce.trustAsResourceUrl(url), jsonpCallbackParam: 'callback')
@@ -73,7 +73,7 @@ angular.module 'ahaLuminateApp'
         if $rootScope.tablePrefix is 'heartdev'
           url = 'https://khc.staging.ootqa.org/api/schools/totals/'
         else if $rootScope.tablePrefix is 'heartnew'
-          url = 'https://khc.dev.ootqa.org/api/schools/totals/'
+          url = 'https://khc.staging.ootqa.org/api/schools/totals/'
         else
           url = 'https://kidsheartchallenge.heart.org/api/schools/totals/'
         $http.jsonp($sce.trustAsResourceUrl(url), jsonpCallbackParam: 'callback')
@@ -86,7 +86,7 @@ angular.module 'ahaLuminateApp'
         if $rootScope.tablePrefix is 'heartdev'
           url = 'https://khc.staging.ootqa.org/api/points/activity/log/' + $rootScope.frId + '/' + $rootScope.consId + '/2/ecard_sent'
         else if $rootScope.tablePrefix is 'heartnew'
-          url = 'https://khc.dev.ootqa.org/api/points/activity/log/' + $rootScope.frId + '/' + $rootScope.consId + '/2/ecard_sent'
+          url = 'https://khc.staging.ootqa.org/api/points/activity/log/' + $rootScope.frId + '/' + $rootScope.consId + '/2/ecard_sent'
         else
           url = 'https://kidsheartchallenge.heart.org/api/points/activity/log/' + $rootScope.frId + '/' + $rootScope.consId + '/2/ecard_sent'
         $http.jsonp($sce.trustAsResourceUrl(url), jsonpCallbackParam: 'callback')
@@ -99,7 +99,7 @@ angular.module 'ahaLuminateApp'
         if $rootScope.tablePrefix is 'heartdev'
           url = 'https://khc.staging.ootqa.org/api/webhooks/student/personal-page-updated/' + $rootScope.frId + '/' + $rootScope.consId
         else if $rootScope.tablePrefix is 'heartnew'
-          url = 'https://khc.dev.ootqa.org/api/webhooks/student/personal-page-updated/' + $rootScope.frId + '/' + $rootScope.consId
+          url = 'https://khc.staging.ootqa.org/api/webhooks/student/personal-page-updated/' + $rootScope.frId + '/' + $rootScope.consId
         else
           url = 'https://kidsheartchallenge.heart.org/api/webhooks/student/personal-page-updated/' + $rootScope.frId + '/' + $rootScope.consId
         $http.jsonp($sce.trustAsResourceUrl(url), jsonpCallbackParam: 'callback')
@@ -112,7 +112,7 @@ angular.module 'ahaLuminateApp'
         if $rootScope.tablePrefix is 'heartdev'
           url = 'https://khc.staging.ootqa.org/api/points/activity/log/' + $rootScope.frId + '/' + $rootScope.consId + '/10/fundraiser_created'
         else if $rootScope.tablePrefix is 'heartnew'
-          url = 'https://khc.dev.ootqa.org/api/points/activity/log/' + $rootScope.frId + '/' + $rootScope.consId + '/10/fundraiser_created'
+          url = 'https://khc.staging.ootqa.org/api/points/activity/log/' + $rootScope.frId + '/' + $rootScope.consId + '/10/fundraiser_created'
         else
           url = 'https://kidsheartchallenge.heart.org/api/points/activity/log/' + $rootScope.frId + '/' + $rootScope.consId + '/10/fundraiser_created'
         $http.jsonp($sce.trustAsResourceUrl(url), jsonpCallbackParam: 'callback')
@@ -157,6 +157,7 @@ angular.module 'ahaLuminateApp'
             "earned_subtitle2":"You earned a wristband with a secret message!"
             "earned_subtitle3":"and you'll earn a wristband."
             "online_only":0
+            "video": ""
           }
           {
             "id":"DASHCLIP-21"
@@ -169,6 +170,7 @@ angular.module 'ahaLuminateApp'
             "earned_subtitle2":"It's important to move daily like Dash."
             "earned_subtitle3":"and you'll earn Dash."
             "online_only":0
+            "video": ""
           }
           {
             "id":"LVL1WB-21"
@@ -181,6 +183,7 @@ angular.module 'ahaLuminateApp'
             "earned_subtitle2":"a water bottle"
             "earned_subtitle3":"and you'll earn a water bottle."
             "online_only":0
+            "video": ""
           }
           {
             "id":"SAMCLIP-21"
@@ -193,6 +196,7 @@ angular.module 'ahaLuminateApp'
             "earned_subtitle2":"Always make a good choice like Sam and say NO to vaping and tobacco."
             "earned_subtitle3":"and you'll earn Sam."
             "online_only":1
+            "video": ""
           }
           {
             "id":"YOYO-21"
@@ -205,6 +209,7 @@ angular.module 'ahaLuminateApp'
             "earned_subtitle2":"Keep working hard towards your goal."
             "earned_subtitle3":"and you'll earn a spaghetti yoyo."
             "online_only":0
+            "video": "https://vimeo.com/americanheartassociation/review/453777085/ab8611f4ce"
           }
           {
             "id":"IKERCLIP-21"
@@ -217,6 +222,7 @@ angular.module 'ahaLuminateApp'
             "earned_subtitle2":"Stand up for what's right like Iker."
             "earned_subtitle3":"and you'll earn Iker."
             "online_only":0
+            "video": "https://video.link/w/D17X"
           }
           {
             "id":"KAICLIP-21"
@@ -229,6 +235,7 @@ angular.module 'ahaLuminateApp'
             "earned_subtitle2":"Keep it cool just like Kai."
             "earned_subtitle3":"and you'll earn Kai."
             "online_only":1
+            "video": "https://vimeo.com/americanheartassociation/review/453778802/c7317f5ef3"
           }
           {
             "id":"KHC"
@@ -241,6 +248,7 @@ angular.module 'ahaLuminateApp'
             "earned_subtitle2":"Show off your spirit for being healthy."
             "earned_subtitle3":"and you'll earn a t-shirt."
             "online_only":0
+            "video": ""
           }
           {
             "id":"PBALL-21"
@@ -253,6 +261,7 @@ angular.module 'ahaLuminateApp'
             "earned_subtitle2":"You've earned a playground ball."
             "earned_subtitle3":"and you'll earn a playground ball."
             "online_only":0
+            "video": ""
           }
           {
             "id":"JOURNEYCLIP-21"
@@ -265,6 +274,7 @@ angular.module 'ahaLuminateApp'
             "earned_subtitle2":"Be kind to others just like Journey."
             "earned_subtitle3":"and you'll earn Journey."
             "online_only":0
+            "video": ""
           }
           {
             "id":"TAYESCOUTCLIP-21"
@@ -277,6 +287,7 @@ angular.module 'ahaLuminateApp'
             "earned_subtitle2":"Always help others just like them."
             "earned_subtitle3":"and you'll earn Taye & Scout."
             "online_only":0
+            "video": "https://vimeo.com/americanheartassociation/review/453776957/cde52d6c23"
           }
           {
             "id":"SOCKS-21"
@@ -289,6 +300,7 @@ angular.module 'ahaLuminateApp'
             "earned_subtitle2":"Take a walk...with your new socks."
             "earned_subtitle3":"and you'll earn Dash's Socks."
             "online_only":0
+            "video": "https://vimeo.com/americanheartassociation/review/453778215/f7dc25f047"
           }
           {
             "id":"POPPER-21"
@@ -301,6 +313,7 @@ angular.module 'ahaLuminateApp'
             "earned_subtitle2":"Stop drinking pop...pick water instead."
             "earned_subtitle3":"and you'll earn a Ball Launcher."
             "online_only":0
+            "video": ""
           }
           {
             "id":"SPEAKER-21"
@@ -313,6 +326,7 @@ angular.module 'ahaLuminateApp'
             "earned_subtitle2":"Your hard work earned you a Kai speaker that totally rocks like you."
             "earned_subtitle3":"and you'll earn a Kai speaker."
             "online_only":0
+            "video": "https://video.link/w/On7X"
           }
         ]
 
