@@ -193,10 +193,10 @@ angular.module 'ahaLuminateControllers'
           $scope.$apply()
         if participants and participants.length > 0
           angular.forEach participants, (participant, participantIndex) ->
-            participantsString += '{name: "' + participant.name.first + ' ' + participant.name.last + '", raised: "' + participant.amountRaisedFormatted + '", cons_id: ' + participant.consId + '}'
+            participantsString += '{"name": "' + participant.name.first + ' ' + participant.name.last + '", "raised": "' + participant.amountRaisedFormatted + '", "cons_id": ' + participant.consId + '}'
             if participantIndex < (participants.length - 1)
               participantsString += ', '
-          companyParticipantsString = '{participants: [' + participantsString + '], totalNumber: ' + participants.length + '}'
+          companyParticipantsString = '{"participants": [' + participantsString + '], "totalNumber": ' + participants.length + '}'
           angular.element('.ym-school-animation iframe')[0].contentWindow.postMessage companyParticipantsString, domain
           angular.element('.ym-school-animation iframe').on 'load', ->
             angular.element('.ym-school-animation iframe')[0].contentWindow.postMessage companyParticipantsString, domain

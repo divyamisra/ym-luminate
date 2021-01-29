@@ -25,11 +25,23 @@ crossorigin="anonymous"></script> -->
 ::]]
 
 [[?[[S8]]::heartwalk_donate_amazon::
+  <script src="https://static-na.payments-amazon.com/checkout.js"></script>
+  <script src="../amazonpay/heartwalk/amazon/js/amazon-pay-v2.js"></script>  
   <script src="../amazonpay/heartwalk/amazon/js/luminateExtend-custom.js"></script>
-  <script src="../amazonpay/heartwalk/amazon/js/amazon-pay.js"></script>
   <script src="../amazonpay/heartwalk/js/donation.js"></script>
   <script src="https://doublethedonation.com/api/js/ddplugin.js"></script>
   <link href="https://doublethedonation.com/api/css/ddplugin.css" rel="stylesheet" />
+  <script>
+  var amazonPayButton = amazon.Pay.renderButton('.amazon-pay', {
+     merchantId: 'A1ZM7MXG16NQQB',
+     ledgerCurrency: 'USD',
+     sandbox: [[?x[[S334:df_preview]]x::xtruex::true::false]],
+     checkoutLanguage: 'en_US',
+     productType: 'PayOnly',
+     placement: 'Cart',
+     buttonColor: 'Gold'
+  });
+  </script>
 ::]]
 [[?[[S8]]::heartwalk_donate_applepay::
   <script src="https://js.braintreegateway.com/web/3.64.2/js/client.min.js"></script>
