@@ -93,7 +93,7 @@
         var currDate = $('body').data('curr-date') ? new Date($('body').data('curr-date')) : null;
         var fourWeek = $('body').data('ev-date') ? new Date($('body').data('ev-date')) : null;
         if (fourWeek != null) {
-           fourWeek.setDate(fourWeek.getDate() - 28);
+           fourWeek.setDate(fourWeek.getDate() - 30);
         }
 
         var motion_username = 'heartwalkapi';
