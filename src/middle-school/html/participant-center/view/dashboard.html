@@ -292,6 +292,38 @@
         </h2>
       </div>
       <div class="row">
+         <div class="col-sm-12 ym-pc-dashboard-email-section__column event-secondary-medium">
+          <div class="ym-pc-dashboard-email-challenge-box">
+            <div class="ym-pc-dashboard-section-header">
+              <h3 class="h5">
+                Email Challenge
+              </h3>
+            </div>
+            <div class="ym-pc-dashboard-email-challenge-option">
+              <p>
+                Send 10 emails to family and friends to share the message of heart health and ask for their help to save lives.
+              </p>
+              <a class="btn btn-md-wide btn-primary" ng-href="{{baseUrl}}#/email" role="button">
+                <strong>Send Email</strong>
+              </a>
+            </div>
+            <form method="POST">
+              <label for="emailChallenge-sampleText" class="sr-only">Email text:</label>
+              <textarea class="form-control" id="emailChallenge-sampleText" name="sampleText" ng-model="emailChallenge.sampleText" readonly></textarea>
+	      <input type="submit" name="submit" value="Submit" class="hidden">
+            </form>
+            <div class="ym-pc-dashboard-email-challenge-option">
+              <p>
+                Or copy and paste the text above into your favorite email client!
+              </p>
+              <button type="button" class="btn btn-md-wide btn-primary" data-clipboard-target="#emailChallenge-sampleText" role="button">
+                <strong>Copy Email Text</strong> 
+              </button>
+            </div>
+          </div>
+        </div>
+     </div>
+      <div class="row">
   	      <div class="col-sm-6">
 			<div class="col-sm-12 ym-pc-dashboard-progress-section__column">
 			  <div class="ym-pc-dashboard-progress-box event-secondary-medium">
@@ -411,36 +443,22 @@
 			  </div>
 			</div>
 		</div>
-        <div class="col-sm-6 ym-pc-dashboard-progress-section__column event-secondary-medium">
-          <div class="ym-pc-dashboard-email-challenge-box">
-            <div class="ym-pc-dashboard-section-header">
-              <h3 class="h5">
-                Email Challenge
-              </h3>
-            </div>
-            <div class="ym-pc-dashboard-email-challenge-option">
-              <p>
-                Send 10 emails to family and friends to share the message of heart health and ask for their help to save lives.
-              </p>
-              <a class="btn btn-md-wide btn-primary" ng-href="{{baseUrl}}#/email" role="button">
-                <strong>Send Email</strong>
-              </a>
-            </div>
-            <form method="POST">
-              <label for="emailChallenge-sampleText" class="sr-only">Email text:</label>
-              <textarea class="form-control" id="emailChallenge-sampleText" name="sampleText" ng-model="emailChallenge.sampleText" readonly></textarea>
-	      <input type="submit" name="submit" value="Submit" class="hidden">
-            </form>
-            <div class="ym-pc-dashboard-email-challenge-option">
-              <p>
-                Or copy and paste the text above into your favorite email client!
-              </p>
-              <button type="button" class="btn btn-md-wide btn-primary" data-clipboard-target="#emailChallenge-sampleText" role="button">
-                <strong>Copy Email Text</strong> 
-              </button>
-            </div>
-          </div>
-        </div>
+	        <div class="col-sm-6 ym-pc-dashboard-progress-section__column event-secondary-medium">
+			<div class="col-sm-12 ym-pc-dashboard-social-section__column event-secondary-medium">
+			  <div class="ym-pc-dashboard-social-box event-secondary-medium">
+				<div class="ym-pc-dashboard-section-header">
+				  <h2 class="h5">
+					Livestream
+				  </h2>
+				</div>
+				<div class="ym-pc-dashboard-social-iframe clearfix">
+				  <div class="ng-scope embed-responsive embed-responsive-16by9 dashboard-social-iframe">
+					
+				  </div>
+				</div>
+			  </div>
+			</div>
+	        </div>
       </div>
       <div ng-show="facebookFundraisersEnabled" ng-cloak>
         <div class="ym-pc-dashboard-facebook-box" ng-show="!facebookFundraiserId">
