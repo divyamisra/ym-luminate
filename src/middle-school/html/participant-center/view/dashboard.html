@@ -293,6 +293,7 @@
       </div>
       <div class="row">
         <div class="col-sm-6 ym-pc-dashboard-progress-section__column event-secondary-medium">
+	  <div class="col-sm-12 ym-pc-dashboard-progress-section__column">
           <div class="ym-pc-dashboard-progress-box">
             <div id="ym-pc-dashboard-personal-panel--student" aria-label="Personal Progress">
               <div class="ym-pc-dashboard-section-header">
@@ -330,6 +331,8 @@
               </div>
             </div>
           </div>
+		</div>
+		<div class="col-sm-12 ym-pc-dashboard-progress-section__column">
           <div class="ym-pc-dashboard-progress-box">
             <div id="ym-pc-dashboard-company-panel--student" aria-label="School Progress">
               <div class="ym-pc-dashboard-section-header">
@@ -363,6 +366,7 @@
  	      </div>
             </div>
           </div>
+		</div>
 			<div class="col-sm-12 ym-pc-dashboard-social-section__column event-secondary-medium">
 			  <div class="ym-pc-dashboard-social-box event-secondary-medium">
 				<div class="ym-pc-dashboard-section-header">
@@ -409,6 +413,7 @@
             </div>
           </div>
         </div>
+		<div class="col-sm-12 ym-pc-dashboard-progress-section__column">
 	<div class="ym-pc-dashboard-livestream-box">
             <div class="ym-pc-dashboard-livestream-title">
               <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/pc-tiltify-livestream.png" alt="Livestream">
@@ -443,6 +448,7 @@
             </div>
           </div>
         </div>
+	      </div>
       </div>
       <div ng-show="facebookFundraisersEnabled" ng-cloak>
         <div class="ym-pc-dashboard-facebook-box" ng-show="!facebookFundraiserId">
