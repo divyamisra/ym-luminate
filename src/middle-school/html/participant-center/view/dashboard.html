@@ -443,22 +443,41 @@
 			  </div>
 			</div>
 		</div>
-	        <div class="col-sm-6 ym-pc-dashboard-progress-section__column event-secondary-medium">
-			<div class="col-sm-12 ym-pc-dashboard-social-section__column event-secondary-medium">
-			  <div class="ym-pc-dashboard-social-box event-secondary-medium">
-				<div class="ym-pc-dashboard-section-header">
-				  <h2 class="h5">
-					Livestream
-				  </h2>
-				</div>
-				<div class="ym-pc-dashboard-social-iframe clearfix">
-				  <div class="ng-scope embed-responsive embed-responsive-16by9 dashboard-social-iframe">
-					
-				  </div>
-				</div>
-			  </div>
-			</div>
-	        </div>
+        <div class="col-sm-6 ym-pc-dashboard-progress-section__column event-secondary-medium">
+          <div class="ym-pc-dashboard-livestream-box">
+            <div class="ym-pc-dashboard-livestream-title">
+              <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/pc-tiltify-livestream.png" alt="Livestream">
+            </div>
+            <div class="ym-pc-dashboard-section-header">
+              <p>
+                Go live and help save lives. Start your charity stream today.
+              </p>
+            </div>
+            <div class="text-center">
+	      <!--
+              <div class="ym-pc-dashboard-livestream-images">
+   	        <span class="hv-image" ng-init="hvImgLSsrc='pc-livestream.png';" ng-mouseover="hvImgLSsrc='pc-livestream-animated.gif';" ng-mouseout="hvImgLSsrc='pc-livestream.png';">
+		  <img class="pc-livestream-character" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy21/{{hvImgLSsrc}}" alt="Livestream Character">
+	        </span>
+                &nbsp;
+   	        <span class="hv-image" ng-init="hvImgLSHsrc='pc-tiltify-hearts.png';" ng-mouseover="hvImgLSHsrc='pc-tiltify-hearts-animated.gif';" ng-mouseout="hvImgLSHsrc='pc-tiltify-hearts.png';">
+		  <img class="pc-livestream-hearts" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy21/{{hvImgLSHsrc}}" alt="Livestream Hearts">
+	        </span>
+              </div>
+              -->
+              <div class="ym-pc-dashboard-livestream-buttons">
+                <a class="btn btn-md-wide btn-primary" ng-href="https://tiltify.com/aha/start?metadata.uid=LO_ID:{{consId}};EVENT_ID:{{frId}}" target="_blank">
+                  <strong>Get Started</strong>
+                </a>
+                 <a class="btn btn-md-wide btn-primary" ng-href="https://tiltify.com/@me/dashboard/campaigns" target="_blank">
+                  <strong>Check Your Progress</strong>
+                </a> 
+	      </div>
+              <br/>
+              <p>By clicking these links, you will leave Kids Heart Challenge and be redirected to another site not under the control of the American Heart Association.</p>
+            </div>
+          </div>
+        </div>
       </div>
       <div ng-show="facebookFundraisersEnabled" ng-cloak>
         <div class="ym-pc-dashboard-facebook-box" ng-show="!facebookFundraiserId">
