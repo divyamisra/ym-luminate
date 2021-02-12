@@ -25,9 +25,22 @@ crossorigin="anonymous"></script> -->
 ::]]
 
 [[?[[S8]]::fieldday_donate_amazon::
+  <script src="https://static-na.payments-amazon.com/checkout.js"></script>
+  <script src="../amazonpay/fieldday/js/amazon-pay-v2.js"></script>
   <script src="../amazonpay/fieldday/js/luminateExtend-custom.js"></script>
-  <script src="../amazonpay/fieldday/js/amazon-pay.js"></script>
   <script src="../amazonpay/fieldday/js/donation.js"></script>
+  <script src="https://doublethedonation.com/api/js/ddplugin.js"></script>
+  <script>
+  var amazonPayButton = amazon.Pay.renderButton('.amazon-pay', {
+     merchantId: 'A1ZM7MXG16NQQB',
+     ledgerCurrency: 'USD',
+     sandbox: [[?x[[S334:df_preview]]x::xtruex::true::false]],
+     checkoutLanguage: 'en_US',
+     productType: 'PayOnly',
+     placement: 'Cart',
+     buttonColor: 'Gold'
+  });
+  </script>
 ::]]
 [[?[[S8]]::fieldday_donate_applepay::
   <script src="https://js.braintreegateway.com/web/3.64.2/js/client.min.js"></script>
@@ -36,6 +49,7 @@ crossorigin="anonymous"></script> -->
   <script src="../amazonpay/fieldday/js/braintree-luminate.js"></script>
   <script src="../amazonpay/fieldday/js/donation-applepay.js"></script>
   <script src="../amazonpay/fieldday/js/donation.js"></script>
+  <script src="https://doublethedonation.com/api/js/ddplugin.js"></script>
 ::]]
 [[?[[S8]]::fieldday_donate_venmo::
   <script src="https://js.braintreegateway.com/web/3.64.2/js/client.min.js"></script>
@@ -44,6 +58,7 @@ crossorigin="anonymous"></script> -->
   <script src="../amazonpay/fieldday/js/braintree-luminate.js"></script>
   <script src="../amazonpay/fieldday/js/donation-venmo.js"></script>
   <script src="../amazonpay/fieldday/js/donation.js"></script>
+  <script src="https://doublethedonation.com/api/js/ddplugin.js"></script>
 ::]]
 [[?[[S8]]::fieldday_donate_googlepay::
   <script src="https://pay.google.com/gp/p/js/pay.js"></script>
@@ -53,6 +68,7 @@ crossorigin="anonymous"></script> -->
   <script src="../amazonpay/fieldday/js/braintree-luminate.js"></script>
   <script src="../amazonpay/fieldday/js/donation-googlepay.js"></script>
   <script src="../amazonpay/fieldday/js/donation.js"></script>
+  <script src="https://doublethedonation.com/api/js/ddplugin.js"></script>
 ::]]
 
 [[?
@@ -87,10 +103,10 @@ crossorigin="anonymous"></script> -->
 
 [[?xentryxteamxcompanyxpersonalx::x[[S334:pg]]x::::
   [[?x27x9x::x[[S4]]x::::
-    <script src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/fieldday/js/pushy.js"></script>    
+    <script src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/fieldday/js/pushy.js"></script>
   ]]
 ]]
-<script>console.log('all',jQuery().jquery);</script>
+
 
 [[?x27x::x[[S4]]x::
 <script src="[[S666:template_macros/aha_luminate_filepath.tpt::fieldday/js/registration::js::@@buildTimestamp]]"></script>
