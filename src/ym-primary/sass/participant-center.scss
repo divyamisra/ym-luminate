@@ -560,7 +560,10 @@ div[id^="taTextElement"]:focus {
 		padding-top: 10px;
 		border-top: 1px solid #38b5bd;
 		overflow: hidden;
-		
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-around;
+
 		a:nth-child(1) {
 			float:left;
 		}
@@ -568,6 +571,7 @@ div[id^="taTextElement"]:focus {
 			float:right;
 		}
 		a {
+			margin-bottom: 10px;
 			@media (max-width: 480px) {
 				text-align: center;
 				float: none !important;
