@@ -541,7 +541,7 @@ div[id^="taTextElement"]:focus {
 	}
 	.ym-pc-dashboard-livestream-images {
 		display:flex;
-		justify-content: flex-end;
+		justify-content: space-evenly;
 		.pc-livestream-character {
 			max-width:210px;
 			margin-right:50px;
