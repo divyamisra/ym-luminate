@@ -1427,6 +1427,8 @@
 
         $('.survivor_yes_no input[type=radio]').addClass("required survivorq");
 
+        $('.survivor_yes_no .survey-question-label').after('<small id="isSurvivor" class="form-text text-muted">Answering "Yes" will display a small banner on your fundraising photo that says "I\'m a survivor".</small>');
+
         $('.survivor_yes_no li').click(function() {
             $('.survivor_yes_no li').removeClass('survivor_active');
             $(this).addClass('survivor_active');
