@@ -541,10 +541,9 @@ div[id^="taTextElement"]:focus {
 	}
 	.ym-pc-dashboard-livestream-images {
 		display:flex;
-		justify-content: space-evenly;
+		justify-content: space-around;
 		.pc-livestream-character {
 			max-width:210px;
-			margin-right:50px;
 			@media (max-width: 992px) {
 				max-width:130px;
 			}
@@ -552,6 +551,7 @@ div[id^="taTextElement"]:focus {
 		.pc-livestream-hearts {
 			max-height: 210px;
 			margin-bottom: 10px;
+			margin-left: 50px;
 			@media (max-width: 992px) {
 				max-height:130px;
 			}
@@ -566,12 +566,6 @@ div[id^="taTextElement"]:focus {
 		flex-wrap: wrap;
 		justify-content: space-around;
 
-		a:nth-child(1) {
-			float:left;
-		}
-		a:nth-child(2) {
-			float:right;
-		}
 		a {
 			margin-bottom: 10px;
 			@media (max-width: 480px) {
