@@ -158,7 +158,7 @@
 
     function convertMinutes(mins) {
         mins = mins.replace(/,/g,'');
-        totalMinutes = parseFloat(mins);
+        var totalMinutes = parseFloat(mins);
         var hours = Math.floor(totalMinutes / 60);          
         var minutes = totalMinutes % 60;
         return hours + " hr " + minutes + " min";
