@@ -287,6 +287,7 @@ angular.module 'trPcControllers'
                         if key.sku == "BDG-9"
                           key.status = 1
                           key.earned = Date()
+                      jQuery('<img width="1" height="1" style="display:none;" src="SPageServer?pagename=reus_khc_add_group&group_id=' + jQuery('body').data("mm-group-id") + '&pgwrap=n" id="move_more_add_group">').appendTo(jQuery('.ng-pc-view-container'));
                       $scope.prizesEarned = $scope.prizesEarned + 1
                       if $scope.prizesEarned == $scope.prizes.length
                         $scope.current_mission_completed_header = mm_current_mission_completed_header
