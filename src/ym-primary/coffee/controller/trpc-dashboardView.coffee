@@ -282,6 +282,7 @@ angular.module 'trPcControllers'
                       $scope.current_mission_message = mm_current_mission_message
 
       $scope.updateMoveMoreFlag = ->
+        jQuery('<img width="1" height="1" style="display:none;" src="SPageServer?pagename=reus_khc_add_group&group_id=' + $('body').data("mm-group-id") + '&pgwrap=n" id="move_more_add_group">').appendTo(jQuery('.ng-pc-view-container'));
         if $scope.moveMoreFlag.interactionId is ''
           NgPcInteractionService.logInteraction 'interaction_type_id=' + interactionMoveMoreId + '&cons_id=' + $scope.consId + '&interaction_subject=' + $scope.participantRegistration.companyInformation.companyId + '&interaction_body=' + $scope.moveMoreFlag.message
               .then (response) ->
