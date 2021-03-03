@@ -5,3 +5,9 @@
 .container-wide {
   max-width: 1630px;
 }
+
+@media (min-width: 768px) {
+  .navbar-nav {
+    margin-right: 15px;
+  }
+}
