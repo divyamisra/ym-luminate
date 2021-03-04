@@ -255,33 +255,47 @@ angular.module 'trPcControllers'
       mm_current_mission_message = "You unlocked the secret code & your prize: a medal for your Heart Hero avatar! Visit your avatar to add your new, cool medal bling."
       
       $scope.getMoveMoreFlag = ->
-        NgPcInteractionService.getUserInteractions 'interaction_type_id=' + interactionMoveMoreId + '&cons_id=' + $scope.consId + '&list_page_size=1'
-          .then (response) ->
-            $scope.moveMoreFlag.text = ''
-            $scope.moveMoreFlag.interactionId = ''
-            if not response.data.errorResponse
-              interactions = response.data.getUserInteractionsResponse?.interaction
-              if interactions
-                interactions = [interactions] if not angular.isArray interactions
-                if interactions.length > 0
-                  interaction = interactions[0]
-                  if interaction.note?.text == "true"
-                     $scope.moveMoreFlag.text = true
-                  else
-                     $scope.moveMoreFlag.text = false
-                  $scope.moveMoreFlag.interactionId = interaction.interactionId or ''
-                  if $scope.moveMoreFlag.text
-                    jQuery.each $scope.prizes, (item, key) ->
-                      if key.sku == "BDG-9"
-                        key.status = 1
-                        key.earned = Date()
-                    $scope.prizesEarned = $scope.prizesEarned + 1
-                    if $scope.prizesEarned == $scope.prizes.length
-                      $scope.current_mission_completed_header = mm_current_mission_completed_header
-                      $scope.current_mission_title = mm_current_mission_title
-                      $scope.current_mission_message = mm_current_mission_message
+        if jQuery('body').data("in-mm-group") == "TRUE" 
+          $scope.moveMoreFlag.text = true
+          jQuery.each $scope.prizes, (item, key) ->
+            if key.sku == "BDG-9"
+              key.status = 1
+              key.earned = Date()
+          $scope.prizesEarned = $scope.prizesEarned + 1
+          if $scope.prizesEarned == $scope.prizes.length
+            $scope.current_mission_completed_header = mm_current_mission_completed_header
+            $scope.current_mission_title = mm_current_mission_title
+            $scope.current_mission_message = mm_current_mission_message
+        else
+          NgPcInteractionService.getUserInteractions 'interaction_type_id=' + interactionMoveMoreId + '&cons_id=' + $scope.consId + '&list_page_size=1'
+            .then (response) ->
+              $scope.moveMoreFlag.text = ''
+              $scope.moveMoreFlag.interactionId = ''
+              if not response.data.errorResponse
+                interactions = response.data.getUserInteractionsResponse?.interaction
+                if interactions
+                  interactions = [interactions] if not angular.isArray interactions
+                  if interactions.length > 0
+                    interaction = interactions[0]
+                    if interaction.note?.text == "true"
+                       $scope.moveMoreFlag.text = true
+                    else
+                       $scope.moveMoreFlag.text = false
+                    $scope.moveMoreFlag.interactionId = interaction.interactionId or ''
+                    if $scope.moveMoreFlag.text
+                      jQuery.each $scope.prizes, (item, key) ->
+                        if key.sku == "BDG-9"
+                          key.status = 1
+                          key.earned = Date()
+                      jQuery('<img width="1" height="1" style="display:none;" src="SPageServer?pagename=reus_khc_add_group&group_id=' + jQuery('body').data("mm-group-id") + '&pgwrap=n" id="move_more_add_group">').appendTo(jQuery('.ng-pc-view-container'));
+                      $scope.prizesEarned = $scope.prizesEarned + 1
+                      if $scope.prizesEarned == $scope.prizes.length
+                        $scope.current_mission_completed_header = mm_current_mission_completed_header
+                        $scope.current_mission_title = mm_current_mission_title
+                        $scope.current_mission_message = mm_current_mission_message
 
       $scope.updateMoveMoreFlag = ->
+        jQuery('<img width="1" height="1" style="display:none;" src="SPageServer?pagename=reus_khc_add_group&group_id=' + jQuery('body').data("mm-group-id") + '&pgwrap=n" id="move_more_add_group">').appendTo(jQuery('.ng-pc-view-container'));
         if $scope.moveMoreFlag.interactionId is ''
           NgPcInteractionService.logInteraction 'interaction_type_id=' + interactionMoveMoreId + '&cons_id=' + $scope.consId + '&interaction_subject=' + $scope.participantRegistration.companyInformation.companyId + '&interaction_body=' + $scope.moveMoreFlag.message
               .then (response) ->
