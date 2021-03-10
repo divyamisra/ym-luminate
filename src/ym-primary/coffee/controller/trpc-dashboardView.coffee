@@ -298,8 +298,8 @@ angular.module 'trPcControllers'
       ###
       $scope.updateMoveMoreFlag = ->
         BoundlessService.setMoveMoreFlag $scope.frId + '/' + $scope.consId
-        .then(response) ->
-          if response.status == "success"
+        .then (response) ->
+          if response.data.status == "success"
             $scope.moveMoreFlag.successMessage = true
           else
             $scope.moveMoreFlag.errorMessage = 'There was an error processing your update. Please try again later.'
