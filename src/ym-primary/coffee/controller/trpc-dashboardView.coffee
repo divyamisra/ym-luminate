@@ -298,6 +298,11 @@ angular.module 'trPcControllers'
       ###
       $scope.updateMoveMoreFlag = ->
         BoundlessService.setMoveMoreFlag $scope.frId + '/' + $scope.consId
+        .then(response) ->
+          if response.status == "success"
+            $scope.moveMoreFlag.successMessage = true
+          else
+            $scope.moveMoreFlag.errorMessage = 'There was an error processing your update. Please try again later.'
         refreshBadges()
       ###
         jQuery('<img width="1" height="1" style="display:none;" src="SPageServer?pagename=reus_khc_add_group&group_id=' + jQuery('body').data("mm-group-id") + '&pgwrap=n" id="move_more_add_group">').appendTo(jQuery('.ng-pc-view-container'));
