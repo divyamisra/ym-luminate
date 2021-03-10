@@ -254,7 +254,7 @@ angular.module 'trPcControllers'
       mm_current_mission_title = "You've completed all of Finn's Missions!"
       mm_current_mission_message = "You unlocked the secret code & your prize: a medal for your Heart Hero avatar! Visit your avatar to add your new, cool medal bling."
       
-###
+      ###
       $scope.getMoveMoreFlag = ->
         if jQuery('body').data("in-mm-group") == "TRUE" 
           $scope.moveMoreFlag.text = true
@@ -295,11 +295,11 @@ angular.module 'trPcControllers'
                         $scope.current_mission_completed_header = mm_current_mission_completed_header
                         $scope.current_mission_title = mm_current_mission_title
                         $scope.current_mission_message = mm_current_mission_message
-###
+      ###
       $scope.updateMoveMoreFlag = ->
         BoundlessService.setMoveMoreFlag $scope.frId + '/' + $scope.consId
         refreshBadges()
-###
+      ###
         jQuery('<img width="1" height="1" style="display:none;" src="SPageServer?pagename=reus_khc_add_group&group_id=' + jQuery('body').data("mm-group-id") + '&pgwrap=n" id="move_more_add_group">').appendTo(jQuery('.ng-pc-view-container'));
         if $scope.moveMoreFlag.interactionId is ''
           NgPcInteractionService.logInteraction 'interaction_type_id=' + interactionMoveMoreId + '&cons_id=' + $scope.consId + '&interaction_subject=' + $scope.participantRegistration.companyInformation.companyId + '&interaction_body=' + $scope.moveMoreFlag.message
@@ -344,7 +344,7 @@ angular.module 'trPcControllers'
                   $scope.current_mission_completed_header = mm_current_mission_completed_header
                   $scope.current_mission_title = mm_current_mission_title
                   $scope.current_mission_message = mm_current_mission_message
-###
+      ###
       interactionTypeId = $dataRoot.data 'coordinator-message-id'
 
       $scope.coordinatorMessage =
