@@ -610,10 +610,14 @@ body.ie11 label + div.donation-level-user-entered {
 /*.form-content > .form-input-label-block {
 	display:none;
 }*/
- [type="checkbox"]:not(:checked), [type="checkbox"]:checked, [type="radio"]:not(:checked), [type="radio"]:checked {
+ [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
      position: absolute;
      left: 0;
-     opacity: 0;
+     opacity: 0;	 
+}
+[type="radio"]:not(:checked), [type="radio"]:checked {
+     position: absolute;
+     left: -999px;
 }
 [type="checkbox"]:not(:checked) + label,
 [type="checkbox"]:checked + label,
