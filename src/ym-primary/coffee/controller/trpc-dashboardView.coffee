@@ -814,7 +814,7 @@ angular.module 'trPcControllers'
 
         , (response) ->
           # TODO
-      $scope.getMoveMoreFlag()
+      #$scope.getMoveMoreFlag()
       refreshFinnsMission()
 
       initCarousel = ->
