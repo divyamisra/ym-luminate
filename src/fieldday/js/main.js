@@ -1651,12 +1651,14 @@
                                 finalDonUrl = defaultDonUrl + '&set.DonationLevel=' + $(this).data('level-id');
                                 $('.js--personal-don-submit').attr('data-final-don-url', finalDonUrl);
                                 $('.js--personal-amt-other-wrap').hide();
+                                $('.information-box .donation-amounts .custom-amount').attr("style","max-height: 50px;");
                             });
 
                             $('.custom-amount input:radio').change(
                                 function(){
                                     if ($(this).is(':checked')) {
                                         $('.js--personal-amt-other-wrap').show();
+                                        $('.information-box .donation-amounts .custom-amount').attr("style","max-height: none;");
                                     }
                                 });                       
 
