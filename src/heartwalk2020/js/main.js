@@ -93,7 +93,7 @@
         var currDate = $('body').data('curr-date') ? new Date($('body').data('curr-date')) : null;
         var fourWeek = $('body').data('ev-date') ? new Date($('body').data('ev-date')) : null;
         if (fourWeek != null) {
-           fourWeek.setDate(fourWeek.getDate() - 28);
+           fourWeek.setDate(fourWeek.getDate() - 30);
         }
 
         var motion_username = 'heartwalkapi';
@@ -1312,12 +1312,14 @@
 
                                     var participantRaised = (parseInt(participant.amountRaised) * 0.01).toFixed(2);
                                     var participantRaisedFormmatted = participantRaised.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,").replace('.00', '');
-
-                                    $('#team-roster tbody').append('<tr class="' + (i > 4 ? 'd-none' : '') + '"><td class="donor-name"><a href="' + participant.personalPageUrl + '">' +
-                                        participant.name.first + ' ' + participant.name.last +
-                                        '</a>' + (participant.aTeamCaptain === "true" ? ' <span class="coach">- Coach</span>' : '') + '</td><td class="raised" data-sort="' + participantRaisedFormmatted + '"><span><strong>$' + participantRaisedFormmatted + '</strong></span></td><td><a href="' + participant.donationUrl + '">' + (screenWidth <= 480 ? 'Donate' : 'Donate to ' + participant.name.first) + '</a></td></tr>');
-                                    if (participant.aTeamCaptain === 'true') {
-                                        $('.js--team-captain-link').attr('href', participant.personalPageUrl).text(participant.name.first + ' ' + participant.name.last);
+                                    
+                                    if (participant.name.first != null) {
+                                        $('#team-roster tbody').append('<tr class="' + (i > 4 ? 'd-none' : '') + '"><td class="donor-name"><a href="' + participant.personalPageUrl + '">' +
+                                            participant.name.first + ' ' + participant.name.last +
+                                            '</a>' + (participant.aTeamCaptain === "true" ? ' <span class="coach">- Coach</span>' : '') + '</td><td class="raised" data-sort="' + participantRaisedFormmatted + '"><span><strong>$' + participantRaisedFormmatted + '</strong></span></td><td><a href="' + participant.donationUrl + '">' + (screenWidth <= 480 ? 'Donate' : 'Donate to ' + participant.name.first) + '</a></td></tr>');
+                                        if (participant.aTeamCaptain === 'true') {
+                                            $('.js--team-captain-link').attr('href', participant.personalPageUrl).text(participant.name.first + ' ' + participant.name.last);
+                                        }
                                     }
                                 });
 
