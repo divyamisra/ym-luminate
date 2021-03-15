@@ -1164,17 +1164,6 @@
             </div>
             <div class="row">
               <div class="ym-pc-dashboard-coordinator-create-message col-md-6">
-                <a ng-href="{{baseUrl}}#/email" ng-init="hvImgsrc6='PC_email-static.png';" ng-mouseover="hvImgsrc6='PC_email-animated.gif';" ng-mouseout="hvImgsrc6='PC_email-static.png';">
-                  <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy21/{{hvImgsrc6}}" alt="Send Email">
-                </a> 
-		<p>
-                  <strong>Compose emails</strong> to friends and family to come visit your fundraising page.
-                </p>
-                <a class="btn btn-md-wide btn-primary" ng-href="{{baseUrl}}#/email">
-                  <strong>Send Emails</strong>
-                </a>
-              </div>
-              <div class="col-md-6">
                 <div class="schoolStatusTitle">School Status</div>
                 <p class="students-registered">
                   <strong>{{companyInfo.participantCount|number}}</strong> students are registered 
@@ -1186,7 +1175,8 @@
                 <p class="students-fundraising">
                   <strong>{{companyParticipants.totalFundraisers|number}}</strong> student<span ng-if="companyParticipants.totalFundraisers > 1 || companyParticipants.totalFundraisers == 0">s are</span><span ng-if="companyParticipants.totalFundraisers == 1"> is</span> fundraising
                 </p>
-                <br/>
+              </div>
+              <div class="col-md-6">
                 <div class="schoolStatusTitle">Daily Challenges</div>
                 <p class="students-challenge1">
                   <strong>{{activity1amt|number}}</strong> student<span ng-if="activity1amt > 1 || activity1amt == 0">s are</span><span ng-if="activity1amt == 1"> is</span> being kind
@@ -1197,6 +1187,16 @@
                 <p class="students-challenge3">
                   <strong>{{activity3amt|number}}</strong> student<span ng-if="activity3amt > 1 || activity3amt == 0">s are</span><span ng-if="activity3amt == 1"> is</span> choosing water
                 </p>
+                <br/>
+		<a ng-href="{{baseUrl}}#/email" ng-init="hvImgsrc6='PC_email-static.png';" ng-mouseover="hvImgsrc6='PC_email-animated.gif';" ng-mouseout="hvImgsrc6='PC_email-static.png';">
+                  <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy21/{{hvImgsrc6}}" alt="Send Email">
+                </a> 
+		<p>
+                  <strong>Compose emails</strong> to friends and family to come visit your fundraising page.
+                </p>
+                <a class="btn btn-md-wide btn-primary" ng-href="{{baseUrl}}#/email">
+                  <strong>Send Emails</strong>
+                </a>
 	      </div>
             </div>
           </div>
