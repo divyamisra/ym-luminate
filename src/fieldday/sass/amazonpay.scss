@@ -40,6 +40,10 @@
 .paymentSelType .applepay {
     display: block !important;
 }
+.paymentSelType a:focus {
+  outline: 2px solid $outline-blue;
+  outline-offset: 2px;
+}
 }
 
 /*
