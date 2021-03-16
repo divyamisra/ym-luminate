@@ -1187,8 +1187,7 @@
                 <p class="students-challenge3">
                   <strong>{{activity3amt|number}}</strong> student<span ng-if="activity3amt > 1 || activity3amt == 0">s are</span><span ng-if="activity3amt == 1"> is</span> choosing water
                 </p>
-                <br/>
-		<a ng-href="{{baseUrl}}#/email" ng-init="hvImgsrc6='PC_email-static.png';" ng-mouseover="hvImgsrc6='PC_email-animated.gif';" ng-mouseout="hvImgsrc6='PC_email-static.png';">
+		<a class="students-challenge-image" ng-href="{{baseUrl}}#/email" ng-init="hvImgsrc6='PC_email-static.png';" ng-mouseover="hvImgsrc6='PC_email-animated.gif';" ng-mouseout="hvImgsrc6='PC_email-static.png';">
                   <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy21/{{hvImgsrc6}}" alt="Send Email">
                 </a> 
 		<p>
