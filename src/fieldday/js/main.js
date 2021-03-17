@@ -68,6 +68,12 @@
 
             $('.pg_company header, .pg_personal header, .pg_team header').toggleClass('mobile-open');
 
+            if ( $('.navbar-toggler-icon').hasClass('fa-align-justify') ) {
+                $('#mobile-toggle').attr('aria-label','Open Main Navigation');
+            } else {
+                $('#mobile-toggle').attr('aria-label','Close Main Navigation');
+            }
+
             if ( $('#navbar-container').is(':visible') ) {
               $('.pg_company .tr-page-container, .pg_personal .tr-page-container, .pg_team .tr-page-container').addClass('static');
 
