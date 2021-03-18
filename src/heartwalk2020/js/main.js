@@ -898,7 +898,7 @@
         cd.reorderPageForMobile = function () {
             // Reorganize page for mobile views
             if (screenWidth <= 767) {
-                $('.tr-page-info').insertAfter('.sidebar-hero');
+                $('.tr-page-info').insertAfter('.personal-image-container');
                 $('.fundraising-amounts').prepend($('.fundraising-amounts .col-12'));
 
                 if ($('body').is('.pg_team')) {
