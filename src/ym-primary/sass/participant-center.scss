@@ -648,3 +648,11 @@ div[id^="taTextElement"]:focus {
 	display:flex;
   }
 }
+
+.ym-pc-dashboard-school-badges-box {
+  .ym-badges__item {
+    img {
+      max-width:65px;
+    }
+  }
+}
