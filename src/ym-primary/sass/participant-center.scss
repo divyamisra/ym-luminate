@@ -650,9 +650,19 @@ div[id^="taTextElement"]:focus {
 }
 
 .ym-pc-dashboard-school-badges-box {
-  .ym-badges__item {
-    img {
-      max-width:65px;
+  .school-badges {
+    margin-top:20px;
+
+    .ym-badges__item {
+        max-width:75px;
+	margin: 10px 15px 5px;
+	    
+        .text.ng-binding {
+	    font-size: 14px;
+	    font-weight: bold;
+	    display: block;
+	    margin-top: 5px;
+	    margin-bottom: 10px;
+	}
     }
-  }
 }
