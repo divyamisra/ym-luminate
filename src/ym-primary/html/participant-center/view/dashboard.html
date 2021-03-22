@@ -1175,11 +1175,15 @@
                 <p class="students-fundraising">
                   <strong>{{companyParticipants.totalFundraisers|number}}</strong> student<span ng-if="companyParticipants.totalFundraisers > 1 || companyParticipants.totalFundraisers == 0">s are</span><span ng-if="companyParticipants.totalFundraisers == 1"> is</span> fundraising
                 </p>
-		<div class="row school-badges" ng-repeat="badge in schoolBadges" role="listitem" ng-if="schoolBadges.length > 0" ng-cloak>
-		  <div class="col-xs-12 col-sm-6 col-md-6 badge-status">
-		    <div class="school-badge-image"><img ng-src="{{badge.image_url}}" /></div>
-		    <div class="school-badge-text">{{badge.text}}</div>
-		  </div>
+		<div class="row school-badges" ng-if="schoolBadges.length > 0" ng-cloak>
+		    <div class="ym-pc-dashboard-badges-box col-xs-12">
+   		        <div id="ym-pc-dashboard-badges-panel--school" aria-label="School Badges">
+			    <div class="ym-badges__item" ng-repeat="schoolBadge in schoolBadges" ng-cloak>
+				<img class="img-responsive" ng-src="{{schoolBadge.image_url}}" alt="{{schoolChallenge.text}}">
+				<div class="text">{{schoolChallenge.text}}</div>
+		  	    </div>
+			</div>
+		    </div>
 		</div>
               </div>
               <div class="ym-pc-dashboard-coordinator-daily-challenges col-md-6">
