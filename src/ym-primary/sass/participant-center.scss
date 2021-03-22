@@ -53,7 +53,7 @@
 		min-height:84px;
 	}
 }
-.ym-activity-box--virtual img {
+.ym-activity --virtual img {
 	max-width:100%;
 }
 
@@ -649,6 +649,12 @@ div[id^="taTextElement"]:focus {
   }
 }
 
+.ym-pc-dashboard-coordinator-students-box 
+  a.students-challenge-image img {
+    max-width: 170px;
+  }
+}
+
 .ym-pc-dashboard-school-badges-box {
   .school-badges {
     margin-top:20px;
@@ -665,4 +671,5 @@ div[id^="taTextElement"]:focus {
 	    margin-bottom: 10px;
 	}
     }
+  }
 }
