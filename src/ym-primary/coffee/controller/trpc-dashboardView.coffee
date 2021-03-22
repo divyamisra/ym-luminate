@@ -32,6 +32,7 @@ angular.module 'trPcControllers'
       theDate = new Date
       $scope.yearsList = [1..(theDate.getFullYear()-1978)] # 0 - 50
       $scope.schoolChallenges = []
+      $scope.schoolBadges = []
       $scope.companyProgress = []
       $rootScope.hideGifts = "Y"
       $scope.topClassRaised = []
@@ -817,6 +818,10 @@ angular.module 'trPcControllers'
       #$scope.getMoveMoreFlag()
       refreshFinnsMission()
 
+      BoundlessService.getSchoolBadges $scope.frId + '/' + $scope.consId
+      .then (response) ->
+        $scope.schoolBadges = response.data
+          
       initCarousel = ->
         owl = jQuery '.owl-carousel'
         owl.owlCarousel
