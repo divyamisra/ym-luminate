@@ -650,7 +650,7 @@ div[id^="taTextElement"]:focus {
 }
 
 .ym-pc-dashboard-coordinator-students-box {
-  img {
+  .students-challenge-image img {
     max-width: 170px;
   }
 }
@@ -662,6 +662,9 @@ div[id^="taTextElement"]:focus {
     .ym-badges__item {
         max-width:75px;
 	margin: 10px 15px 5px;
+        img.img-responsive {
+          max-width: 80px;
+        }
 	    
         .text.ng-binding {
 	    font-size: 14px;
