@@ -655,10 +655,10 @@ div[id^="taTextElement"]:focus {
   }
 }
 
-.ym-pc-dashboard-school-badges-box {
-  .school-badges {
-    margin-top:20px;
-
+.school-badges {
+  margin-top:20px;
+  
+  .ym-pc-dashboard-school-badges-box {
     .ym-badges__item {
         max-width:75px;
 	margin: 10px 15px 5px;
