@@ -30,11 +30,11 @@ angular.module 'ahaLuminateApp'
 
       getSchoolBadges: (requestData) ->
         if $rootScope.tablePrefix is 'heartdev'
-          url = 'https://khc.staging.ootqa.org/api/badges/school/' + requestData
+          url = 'https://ahc.staging.ootqa.org/api/badges/school/' + requestData
         else if $rootScope.tablePrefix is 'heartnew'
-          url = 'https://khc.staging.ootqa.org/api/badges/school/' + requestData
+          url = 'https://ahc.dev.ootqa.org/api/badges/school/' + requestData
         else
-          url = 'https://kidsheartchallenge.heart.org/api/badges/school/' + requestData
+          url = 'https://middleschool.heart.org/api/badges/school/' + requestData
         $http.jsonp($sce.trustAsResourceUrl(url), jsonpCallbackParam: 'callback')
           .then (response) ->
             response
