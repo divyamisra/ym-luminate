@@ -1,31 +1,86 @@
-div.company-list-table-container {
-  background-color:$white;
-}
+// div.company-list-table-container {
+//   background-color:$white;
+// }
 
-div.responsive div.list-row {
-  border:none;
-}
+// div.responsive div.list-row {
+//   border:none;
+// }
 
-#company_page_header {
-  display:none;
-}
+// #company_page_header {
+//   display:none;
+// }
 
-#local_company_page {
-  p.cstmTitle {
-    @extend h2;
+// #local_company_page {
+//   p.cstmTitle {
+//     @extend h2;
+//   }
+//   p.righted {
+//     margin-bottom:0;
+//     padding: 5px 5px;
+//   }
+//   tr.lc_Row1 {
+//     background-color:$white;
+//   }
+// }
+
+// .top-participants-container {
+//   div.trr-table-more {
+//     display:none;
+//   }
+// }
+
+.pg_company {
+  .tr-page-container {
+    .information-box {
+      .buttons-row {
+        margin: 28px 0;
+
+        .btn {
+          max-width: 350px;
+        }
+      }
+    }
+
+    .nav-tabs {
+      border: none;
+
+      .nav-link {
+        font-size: 2rem;
+        color: $white;
+        background-color: $gray-700;
+        border-top: solid 5px $gray-background;
+        border-bottom: none;
+        text-align: center;
+        text-decoration: none;
+        font-family: $font-family-bold;
+        @include border-radius(0,0,0,0);
+
+        &.active {
+          background-color: $gray-100;
+          color: $black;
+          border-top: solid 5px $red;
+        }
+      }
+    }
+
+    .tab-content {
+      margin: 25px 0 0 0;
+    }
+
+    .team-roster .btn-tertiary-black {
+      width: 260px;
+    }
+
   }
-  p.righted {
-    margin-bottom:0;
-    padding: 5px 5px;
-  }
-  tr.lc_Row1 {
-    background-color:$white;
-  }
 }
 
-.top-participants-container {
-  div.trr-table-more {
-    display:none;
+.evenly-like {
+  display: flex;
+  justify-content: space-between;
+
+  &:before,
+  &:after {
+    content: '';
+    display: block;
   }
 }
-
