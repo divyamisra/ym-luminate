@@ -3,13 +3,13 @@ body {
   font-size: 18px;
 }
 
-main {
-    background-image: url("/images/content/pagebuilder/hw_hero_desktop.jpg");
-    background-size: 100%;
-    background-repeat: no-repeat;
-    background-color: $gray-400;
-    padding: 48px 76px 67px;
-}
+// main {
+//     background-image: url("/images/content/pagebuilder/hw_hero_desktop.jpg");
+//     background-size: 100%;
+//     background-repeat: no-repeat;
+//     background-color: $gray-400;
+//     padding: 48px 76px 67px;
+// }
 @media (max-width:767px) {
   main {
     padding-right:5px;
