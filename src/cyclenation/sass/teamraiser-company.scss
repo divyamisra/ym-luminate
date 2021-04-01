@@ -53,7 +53,7 @@
         text-align: center;
         text-decoration: none;
         font-family: $font-family-bold;
-        @include border-radius(0);
+        @include border-radius(0,0,0,0);
 
         &.active {
           background-color: $gray-100;

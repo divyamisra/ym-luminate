@@ -33,8 +33,7 @@
 
    .dataTables_wrapper {
      .btn {
-       @include border-radius(4px);
-      //  @include border-radius(0, 4px, 4px, 0);
+       @include border-radius(0, 4px, 4px, 0);
      }
 
      h1 {
