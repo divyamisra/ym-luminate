@@ -818,7 +818,7 @@ angular.module 'trPcControllers'
       #$scope.getMoveMoreFlag()
       refreshFinnsMission()
 
-      BoundlessService.getSchoolBadges $scope.frId + '/' + $scope.consId
+      BoundlessService.getSchoolBadges $scope.frId + '/' + $scope.participantRegistration.companyInformation.companyId
       .then (response) ->
         $scope.schoolBadges = response.data.badges
           
