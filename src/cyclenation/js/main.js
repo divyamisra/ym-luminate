@@ -9,6 +9,7 @@
     window.cd = {};
 
     // BEGIN WRAPPER JS
+    var screenWidth = $(window).innerWidth();
 
     // GREETING PAGE - HIDE CALENDAR IN IOS
     var iOS = false,
