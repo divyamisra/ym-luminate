@@ -470,39 +470,70 @@
     }
 
 
-    /******************************/
+    /***********************/
     /* THERMOMETER SCRIPTS */
-    /******************************/
+    /***********************/
+
+    cd.runThermometer = function (raised, goal) {
+      var fundraiserRaised = Number(raised.replace(/[^0-9.-]+/g, ''));
+      var fundraiserGoal = Number(goal.replace(/[^0-9.-]+/g, ''));
+
+      var percentRaised = (fundraiserRaised / fundraiserGoal);
+      if (isNaN(percentRaised)) {
+          percentRaised = 0;
+      }
+      var percentRaisedFormatted = (percentRaised * 100) + '%';
+
+      $('.js__progress-bar')
+          .animate({width: percentRaisedFormatted}, 2000)
+          .attr("aria-valuenow", percentRaised * 100);
+      $('.js__percent-raised').each(function () {
+          $(this).prop('Counter', 0).animate({
+              Counter: percentRaisedFormatted
+          }, {
+              duration: 1000,
+              easing: 'swing',
+              step: function (now) {
+                  $(this).text(Math.ceil(now) + '%');
+                  if (now > 80 && now <= 100) {
+                      $(this).addClass('invert-percent-raised');
+                  } else if (now > 100) {
+                      $(this).addClass('progress-goal-met');
+                  }
+              }
+          });
+      });
+    };
     // GREETING PAGE
     if ($('body').is('.pg_entry')) {
-      cd.runThermometer = function (raised, goal) {
-        var fundraiserRaised = parseInt(raised.replace('$', '').replace(',', ''));
-        var fundraiserGoal = parseInt(goal.replace('$', '').replace(',', ''));
-        var percentRaised = (fundraiserRaised / fundraiserGoal);
-        if (isNaN(percentRaised)) {
-          percentRaised = 0;
-        }
-        var percentRaisedFormatted = (percentRaised * 100) + '%';
-        $('.js__progress-bar')
-          .css('width', percentRaisedFormatted)
-          .attr("aria-valuenow", percentRaisedFormatted);
-        $('.js__percent-raised').each(function () {
-          $(this).prop('Counter', 0).animate({
-            Counter: percentRaisedFormatted
-          }, {
-            duration: 1000,
-            easing: 'swing',
-            step: function (now) {
-              $(this).text(Math.ceil(now) + '%');
-              if (now > 80 && now <= 100) {
-                $(this).addClass('invert-percent-raised');
-              } else if (now > 100) {
-                $(this).addClass('progress-goal-met');
-              }
-            }
-          });
-        });
-      }
+      // cd.runThermometer = function (raised, goal) {
+      //   var fundraiserRaised = parseInt(raised.replace('$', '').replace(',', ''));
+      //   var fundraiserGoal = parseInt(goal.replace('$', '').replace(',', ''));
+      //   var percentRaised = (fundraiserRaised / fundraiserGoal);
+      //   if (isNaN(percentRaised)) {
+      //     percentRaised = 0;
+      //   }
+      //   var percentRaisedFormatted = (percentRaised * 100) + '%';
+      //   $('.js__progress-bar')
+      //     .css('width', percentRaisedFormatted)
+      //     .attr("aria-valuenow", percentRaisedFormatted);
+      //   $('.js__percent-raised').each(function () {
+      //     $(this).prop('Counter', 0).animate({
+      //       Counter: percentRaisedFormatted
+      //     }, {
+      //       duration: 1000,
+      //       easing: 'swing',
+      //       step: function (now) {
+      //         $(this).text(Math.ceil(now) + '%');
+      //         if (now > 80 && now <= 100) {
+      //           $(this).addClass('invert-percent-raised');
+      //         } else if (now > 100) {
+      //           $(this).addClass('progress-goal-met');
+      //         }
+      //       }
+      //     });
+      //   });
+      // }
       $('.js__toggle-calendar').on('click', function (e) {
         e.preventDefault();
         $('.js__calendar-menu').slideToggle();
