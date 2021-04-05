@@ -504,36 +504,60 @@
           });
       });
     };
+
+    cd.reorderPageForMobile = function () {
+      // Reorganize page for mobile views
+      if (screenWidth <= 767) {
+          $('.tr-page-info').insertAfter('.sidebar-hero');
+          $('.fundraising-amounts').prepend($('.fundraising-amounts .col-12'));
+
+          if ($('body').is('.pg_team')) {
+              $('.team-roster').insertBefore($('.donor-roll'));
+
+              $('.team-roster li .raised span').each(function (i, span) {
+                  if ($(this).parent().prev('.donor-name').find('span.coach').length !== 0) {
+                      $(this).insertAfter($(this).parent().prev('.donor-name').children('.coach'));
+                  } else {
+                      $(this).insertAfter($(this).parent().prev('.donor-name').children('a'));
+                  }
+              });
+
+              $('.team-roster form .btn').html($('.team-roster form .btn i'));
+          }
+
+          if ($('body').is('.pg_company')) {
+
+              $('.team-roster form .btn').html('<i class="fas fa-search"></i>');
+              $('#participant-roster td:nth-child(3) a').html('Donate');
+          }
+      }
+    };
+
+    cd.setDonorRollHeight = function () {
+      $('.donations-container div').each(function (i, div) {
+          if (i > 4) {
+              $('.donations-container').css('height', '205px');
+          }
+      });
+    };
+
+    cd.getTeamHonorRoll = function () {
+      // populate donor honor roll
+      if ($('.team-honor-list-row').length > 0) {
+          // console.log('native honor row length:', $('.team-honor-list-row').length);
+          $('.team-honor-list-row').each(function (i, donor) {
+              var donorName = $(this).find('.team-honor-list-name').text();
+              var donorAmt = $(this).find('.team-honor-list-value').text();
+              $('.js--donor-roll').append('<div ' + (i > 4 ? 'style="display:none;"' : '') + ' class="donor-row ' + (i > 4 ? 'hidden-donor-row' : '') + '"><span class="name">' + donorName + '</span><span class="amount">' + donorAmt + '</span></div>');
+              if (i === 5) {
+                  $('.js--honor-roll-expander').addClass('d-block').removeClass('hidden');
+              }
+          });
+      }
+    };
+
     // GREETING PAGE
     if ($('body').is('.pg_entry')) {
-      // cd.runThermometer = function (raised, goal) {
-      //   var fundraiserRaised = parseInt(raised.replace('$', '').replace(',', ''));
-      //   var fundraiserGoal = parseInt(goal.replace('$', '').replace(',', ''));
-      //   var percentRaised = (fundraiserRaised / fundraiserGoal);
-      //   if (isNaN(percentRaised)) {
-      //     percentRaised = 0;
-      //   }
-      //   var percentRaisedFormatted = (percentRaised * 100) + '%';
-      //   $('.js__progress-bar')
-      //     .css('width', percentRaisedFormatted)
-      //     .attr("aria-valuenow", percentRaisedFormatted);
-      //   $('.js__percent-raised').each(function () {
-      //     $(this).prop('Counter', 0).animate({
-      //       Counter: percentRaisedFormatted
-      //     }, {
-      //       duration: 1000,
-      //       easing: 'swing',
-      //       step: function (now) {
-      //         $(this).text(Math.ceil(now) + '%');
-      //         if (now > 80 && now <= 100) {
-      //           $(this).addClass('invert-percent-raised');
-      //         } else if (now > 100) {
-      //           $(this).addClass('progress-goal-met');
-      //         }
-      //       }
-      //     });
-      //   });
-      // }
       $('.js__toggle-calendar').on('click', function (e) {
         e.preventDefault();
         $('.js__calendar-menu').slideToggle();
