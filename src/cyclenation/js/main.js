@@ -3291,6 +3291,7 @@
 
                    },
                    error: function (response) {
+                       console.log('donarion error response', response)
                        // $('.field-error-text').text(response.errorResponse.message);
                        // $('.ErrorContainer').removeClass('hidden');
                    }
