@@ -3162,8 +3162,10 @@
                requiresAuth: true,
                callback: {
                    success: function (response) {
+                     console.log('donation from api response', response)
                        var i = 0,
                            donationLevels = luminateExtend.utils.ensureArray(response.getDonationFormInfoResponse.donationLevels.donationLevel);
+                           console.log('donation levels', donationLevels)
 
                        $.each(donationLevels, function (i) {
                            var userSpecified = this.userSpecified,
@@ -3171,6 +3173,8 @@
                                levelID = this.level_id;
 
                            i++;
+
+                           console.log('user specified', userSpecified)
 
                            if (userSpecified == 'false') {
                                // build pre-defined giving levels
