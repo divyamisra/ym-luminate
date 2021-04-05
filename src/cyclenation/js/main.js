@@ -126,6 +126,7 @@
     var srcCode = luminateExtend.global.srcCode;
     var subSrcCode = luminateExtend.global.subSrcCode;
     var evID = $('body').data('fr-id') ? $('body').data('fr-id') : null;
+    var dfID = $('body').data('df-id') ? $('body').data('df-id') : null;
     var consID = $('body').data('cons-id') ? $('body').data('cons-id') : null;
     var eventDate = $('body').data('ev-date') ? new Date($('body').data('ev-date')) : null;
     if (eventDate != null) {
