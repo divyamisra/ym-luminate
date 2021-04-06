@@ -821,6 +821,7 @@ angular.module 'trPcControllers'
       BoundlessService.getSchoolBadges $scope.frId + '/' + $scope.participantRegistration.companyInformation.companyId
       .then (response) ->
         $scope.schoolBadges = response.data.badges
+        $scope.companyInfo.participantCount = response.data.students_registered
           
       initCarousel = ->
         owl = jQuery '.owl-carousel'
