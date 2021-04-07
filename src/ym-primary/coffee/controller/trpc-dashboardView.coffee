@@ -823,8 +823,10 @@ angular.module 'trPcControllers'
         $scope.schoolBadgesRegistrations = response.data.badges_registrations
         $scope.schoolBadgesFundraising = response.data.badges_fundraising
         $scope.companyInfo.participantCount = response.data.students_registered
-        $scope.participantProgress.amountRaised = $filter('currency')(response.data.total_amount, '$')
-        $scope.participantProgress.goal = $filter('currency')(response.data.goal, '$')
+        $scope.companyProgress.raised = response.data.total_amount
+        $scope.companyProgress.raisedFormatted = $filter('currency')(response.data.total_amount, '$')
+        $scope.companyProgress.goal = response.data.goal
+        $scope.companyProgress.goalFormatted = $filter('currency')(response.data.goal, '$')
           
       initCarousel = ->
         owl = jQuery '.owl-carousel'
