@@ -820,7 +820,8 @@ angular.module 'trPcControllers'
 
       BoundlessService.getSchoolBadges $scope.frId + '/' + $scope.participantRegistration.companyInformation.companyId
       .then (response) ->
-        $scope.schoolBadges = response.data.badges
+        $scope.schoolBadgesRegistrations = response.data.badges_registrations
+        $scope.schoolBadgesFundraising = response.data.badges_fundraising
         $scope.companyInfo.participantCount = response.data.students_registered
         $scope.participantProgress.amountRaised = $filter('currency')(response.data.total_amount, '$')
         $scope.participantProgress.goal = $filter('currency')(response.data.goal, '$')
