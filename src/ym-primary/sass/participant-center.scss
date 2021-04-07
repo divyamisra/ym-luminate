@@ -676,3 +676,15 @@ div[id^="taTextElement"]:focus {
     }
   }
 }
+#ym-pc-dashboard-company-panel--coordinator {
+    margin-bottom:20px;
+}
+.fundraisingStatusTitle {
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0 0 15px;
+    text-align:center;
+}
+.fundraisingStatusTitle + .ym-progress__thermometer {
+    margin-bottom: 0px;
+}
