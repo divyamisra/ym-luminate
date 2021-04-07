@@ -688,3 +688,6 @@ div[id^="taTextElement"]:focus {
 .fundraisingStatusTitle + .ym-progress__thermometer {
     margin-top: 0px;
 }
+.fundraisingStatusTitle + .ym-progress__thermometer + .ym-progress-related {
+    margin-top: 15px;
+}
