@@ -24,8 +24,8 @@ a.btn {
   }
 }
 
-.btn-primary {
-  background-color: $red;
+.btn-primary, a.btn.btn-primary {
+  background-color: $red !important;
 
   &:hover {
     background-color: $red-deep;
