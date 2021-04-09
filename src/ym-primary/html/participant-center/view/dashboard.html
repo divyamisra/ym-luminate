@@ -1148,7 +1148,10 @@
             <div class="row">
               <div class="ym-pc-dashboard-coordinator-create-message col-md-6">
                 <div class="schoolStatusTitle">School Achievement</div>
-    		<p class="students-fundraising">
+                <p class="students-registered">
+                  <strong>{{companyInfo.participantCount|number}}</strong> students are registered 
+                </p>
+		<p class="students-fundraising">
 		   <strong>{{companyParticipants.totalFundraisers|number}}</strong> student<span ng-if="companyParticipants.totalFundraisers > 1 || companyParticipants.totalFundraisers == 0">s are</span><span ng-if="companyParticipants.totalFundraisers == 1"> is</span> fundraising
 	        </p>
 		<div ng-if="schoolBadgesRegistrations.length > 0" ng-cloak>
