@@ -84,3 +84,42 @@
     display: block;
   }
 }
+
+@media (max-width: $screen-xs) {
+
+  .pg_company .team-roster table tbody tr {
+    padding: 0!important;
+  }
+
+  .pg_company .team-roster table tbody tr td {
+    display: inline-block!important;
+    text-align: left!important;
+  }
+
+  .pg_company .team-roster table tbody tr td:last-of-type {
+    display: none!important;
+  }
+
+  .pg_company .team-roster table tbody tr .team-name {
+    width: 15%!important;
+  }
+
+  .pg_company .team-roster table tbody tr .donor-name {
+    width: 30%!important;
+  }
+
+  .pg_company .team-roster table tbody tr .company-name {
+    width: 40%!important;
+  }
+
+  .pg_company .team-roster table tbody tr .raised {
+    width: 15%!important;
+  }
+
+  .pg_company .team-roster thead th {
+    display: inline-block!important;
+  }
+  .pg_company .team-roster thead th:first-of-type {
+    width: 25%!important;
+  }
+}
