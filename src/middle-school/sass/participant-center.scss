@@ -368,3 +368,18 @@ select#ym-update-challenge {
     }
   }
 }
+#ym-pc-dashboard-company-panel--coordinator {
+    margin-bottom:20px;
+}
+.fundraisingStatusTitle {
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0 0 15px;
+    text-align:center;
+}
+.fundraisingStatusTitle + .ym-progress__thermometer {
+    margin-top: 0px;
+}
+.fundraisingStatusTitle + .ym-progress__thermometer + .ym-progress-related {
+    margin-top: 15px;
+}
