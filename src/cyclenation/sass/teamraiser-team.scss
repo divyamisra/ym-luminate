@@ -112,7 +112,7 @@
   }
 }
 
-@media (min-width: $screen-md-max) {
+@media (max-width: $screen-md-max) {
 
   .pg_team .team-roster table tbody tr {
     padding: 0!important;
@@ -129,5 +129,9 @@
 
   .pg_team .team-roster table tbody tr .raised {
     width: 30%!important;
+  }
+
+  .pg_team .team-roster th {
+    display: inline-block!important;
   }
 }
