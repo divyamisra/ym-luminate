@@ -289,7 +289,9 @@ img {
     background-size: 100%;
     background-repeat: no-repeat;
     background-color: $white;
-    padding: 48px 76px 67px;
+    @media (min-width: $screen-md-min) {
+      padding: 48px 76px 67px;
+    }
   }
 
   .sponsors {
