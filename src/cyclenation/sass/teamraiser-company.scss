@@ -118,8 +118,25 @@
 
   .pg_company .team-roster thead th {
     display: inline-block!important;
+    text-align: left;
+    font-size: 1rem!important;
   }
-  .pg_company .team-roster thead th:first-of-type {
-    width: 25%!important;
+  .pg_company .team-roster thead {
+    th:first-of-type {
+    width: 15%!important;
+    }
+    th:nth-last-of-type(2) {
+      width: 25%!important;
+    }
+    th:nth-last-of-type(3) {
+      width: 30%!important;
+    }
+    th:nth-last-of-type(4) {
+      width: 15%!important;
+    }
+    th:last-of-type {
+      display: none!important;
+    }
   }
+
 }
