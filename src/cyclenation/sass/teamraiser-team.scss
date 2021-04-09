@@ -111,3 +111,23 @@
     }
   }
 }
+
+@media (min-width: $screen-md-min) {
+
+  .pg_team .team-roster table tbody tr {
+    padding: 0!important;
+  }
+
+  .pg_team .team-roster table tbody tr .donor-name, .pg_team .team-roster table tbody tr .raised {
+    display: inline-block!important;
+    text-align: left!important;
+  }
+
+  .pg_team .team-roster table tbody tr .donor-name {
+    width: 45%!important;
+  }
+
+  .pg_team .team-roster table tbody tr .raised {
+    width: 30%!important;
+  }
+}
