@@ -112,13 +112,13 @@
   }
 }
 
-@media (max-width: $screen-md-max) {
+@media (max-width: $screen-xs) {
 
   .pg_team .team-roster table tbody tr {
     padding: 0!important;
   }
 
-  .pg_team .team-roster table tbody tr .donor-name, .pg_team .team-roster table tbody tr .raised {
+  .pg_team .team-roster table tbody tr td {
     display: inline-block!important;
     text-align: left!important;
   }
@@ -131,7 +131,10 @@
     width: 30%!important;
   }
 
-  .pg_team .team-roster th {
+  .pg_team .team-roster thead th {
     display: inline-block!important;
+  }
+  .pg_team .team-roster thead th:first-of-type {
+    width: 45%!important;
   }
 }

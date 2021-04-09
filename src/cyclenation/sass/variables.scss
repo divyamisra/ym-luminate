@@ -130,6 +130,9 @@ $display-line-height:         $headings-line-height !default;
 $input-padding-y: 0;
 // $input-border-radius: $border-radius-base !default;
 
+$screen-xs: 450px !default;
+$screen-xs-min: $screen-xs !default;
+
 $screen-sm: 768px !default;
 $screen-sm-min: $screen-sm !default;
 
