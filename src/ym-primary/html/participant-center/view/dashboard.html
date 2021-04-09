@@ -1149,7 +1149,7 @@
               <div class="ym-pc-dashboard-coordinator-create-message col-md-6">
                 <div class="schoolStatusTitle">School Achievement</div>
                 <p class="students-registered">
-                  <strong>{{companyInfo.participantCount|number}}</strong> students are registered 
+                  <strong>{{companyInfo.participantCount|number}}</strong> student<span ng-if="companyInfo.participantCount > 1 || activity1amt == 0">s are</span><span ng-if="companyInfo.participantCount == 1"> is</span> registered 
                 </p>
 		<p class="students-fundraising">
 		   <strong>{{companyParticipants.totalFundraisers|number}}</strong> student<span ng-if="companyParticipants.totalFundraisers > 1 || companyParticipants.totalFundraisers == 0">s are</span><span ng-if="companyParticipants.totalFundraisers == 1"> is</span> fundraising
