@@ -40,6 +40,8 @@ angular.module 'ahaLuminateControllers'
       $scope.schoolChallengeGoal = 0
       $scope.schoolYears = 0
       $scope.unconfirmedAmountRaised = 0
+      $scope.schoolBadgesRegistrations = []
+      $scope.schoolBadgesFundraising = []
       
       $scope.trustHtml = (html) ->
         return $sce.trustAsHtml(html)
@@ -391,4 +393,12 @@ angular.module 'ahaLuminateControllers'
                 $scope.schoolChallengeGoal = meta.value
               if meta.name == 'years-participated'
                 $scope.schoolYears = meta.value
-  ]
+                
+      BoundlessService.getSchoolBadges $scope.frId + '/' + $scope.participantRegistration.companyInformation.companyId
+      .then (response) ->
+        $scope.schoolBadgesRegistrations = response.data.registration_badges
+        $scope.schoolBadgesFundraising = response.data.fundraising_badges
+        $scope.companyInfo.participantCount = response.data.students_registered
+        $scope.companyProgress.raised = response.data.total_amount
+        $scope.companyProgress.raisedFormatted = $filter('currency')(response.data.total_amount, '$') 
+    ]
