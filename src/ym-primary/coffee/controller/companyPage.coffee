@@ -461,7 +461,7 @@ angular.module 'ahaLuminateControllers'
               if meta.name == 'years-participated'
                 $scope.schoolYears = meta.value
                 
-      BoundlessService.getSchoolBadges $scope.frId + '/' + $scope.participantRegistration.companyInformation.companyId
+      BoundlessService.getSchoolBadges $scope.frId + '/' + $scope.companyId
       .then (response) ->
         $scope.schoolBadgesRegistrations = response.data.registration_badges
         $scope.schoolBadgesFundraising = response.data.fundraising_badges
