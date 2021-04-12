@@ -463,9 +463,5 @@ angular.module 'ahaLuminateControllers'
                 
       BoundlessService.getSchoolBadges $scope.frId + '/' + $scope.companyId
       .then (response) ->
-        $scope.schoolBadgesRegistrations = response.data.registration_badges
-        $scope.schoolBadgesFundraising = response.data.fundraising_badges
-        $scope.companyInfo.participantCount = response.data.students_registered
-        $scope.companyProgress.raised = response.data.total_amount
         $scope.companyProgress.amountRaisedFormatted = $filter('currency')(response.data.total_amount, '$')        
     ]
