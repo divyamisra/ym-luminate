@@ -3368,7 +3368,8 @@
            });
        };
        var personalPageConsId = getURLParameter(currentUrl, 'px');
-       cd.getPersonalVideo(evID, personalPageConsId);
+      //  TODO - commented out video code until CN delivers new video
+      //  cd.getPersonalVideo(evID, personalPageConsId);
     }
     if ($('body').is('.pg_team')) {
 // Team Page
