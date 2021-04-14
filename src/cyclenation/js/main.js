@@ -3891,10 +3891,10 @@ cd.getTeamHonorRoll();
                 api: 'teamraiser',
                 data: 'method=getCompaniesByInfo' +
                   '&company_name=' + companyName +
-                  (isCrossEvent === true ? '&event_type=' + eventType : '&fr_id=' + evID) +
+                  '&event_type=' + eventType +
                   '&list_page_size=499' +
                   '&list_page_offset=0' +
-                  (isCrossEvent === true ? '&include_cross_event=true' : '') +
+                  '&include_cross_event=true' +
                   '&response_format=json' +
                   '&list_sort_column=company_name' +
                   '&list_ascending=true',
