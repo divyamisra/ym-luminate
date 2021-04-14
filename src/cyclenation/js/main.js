@@ -3371,7 +3371,7 @@
       //  TODO - commented out video code until CN delivers new video
       //  cd.getPersonalVideo(evID, personalPageConsId);
     }
-    if ($('body').is('.pg_team')) {
+if ($('body').is('.pg_team')) {
 // Team Page
 var progress = $('#progress-amount').text();
 var goal = $('#goal-amount').text();
@@ -3384,8 +3384,8 @@ $('.js--team-text').html($('#fr_rich_text_container').html());
 // populate donor honor roll
 cd.getTeamHonorRoll();
 
-// build team roster
-cd.getTeamRoster = function () {
+  // build team roster
+  cd.getTeamRoster = function () {
     var teamId = getURLParameter(currentUrl, 'team_id');
     luminateExtend.api({
         api: 'teamraiser',
@@ -3449,10 +3449,13 @@ cd.getTeamRoster = function () {
             $('#error-participant').removeAttr('hidden').text(response.errorResponse.message);
             // console.log('error response: ', response);
         }
-    });
-};
-cd.getTeamRoster();
-    }
+      });
+    };
+  cd.getTeamRoster();
+
+  if($('.achievements .achievement-badge').length == 0) {
+    $('.achievements').parent().hide();
+  }
     if ($('body').is('.pg_company')) {
  // Company Page
 
