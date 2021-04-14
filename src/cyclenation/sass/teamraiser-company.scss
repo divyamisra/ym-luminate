@@ -85,6 +85,13 @@
   }
 }
 
+.pg_company {
+  #our-walkers-tab.active, #our-teams-tab.active, #our-walkers-tab:hover, #our-teams-tab:hover {
+    border-left: none!important;
+    border-right: none!important;
+  }
+}
+
 @media (max-width: $screen-md) {
 
   .pg_company .team-roster table tbody tr {
@@ -100,12 +107,6 @@
     display: none!important;
   }
 
-  .pg_company {
-    #our-walkers-tab.active, #our-teams-tab.active, #our-walkers-tab:hover, #our-teams-tab:hover {
-      border-left: none!important;
-      border-right: none!important;
-    }
-  }
   .pg_company #our-teams {
     .team-roster table tbody tr {
       .team-name {

@@ -3574,29 +3574,46 @@ cd.getTeamHonorRoll();
                 });
             }
 
-            var raised = $('.indicator-title:contains("Company Fundraising Status")').parent().find('.amount-raised-value').text();
+            cd.getCompaniesGoal = function (companyId) {
+              console.log('company name', companyId)
+              luminateExtend.api({
+                api: 'teamraiser',
+                data: 'method=getCompaniesByInfo' +
+                  '&company_id=' + companyId +
+                  '&event_type=' + eventType +
+                  '&include_cross_event=true' +
+                  '&response_format=json',
+                callback: {
+                  success: function (response) {
+                    console.log('company goal success:', response)
 
-            if (raised) {
-                $('#progress-amount').html(raised);
+                    var raised = response.company.amountRaised
+
+                    if (raised) {
+                        $('#progress-amount').html(raised);
+                    }
+
+                    // Get company goal
+                    var companyGoal = response.company.goal
+                    $('#goal-amount').html(companyGoal);
+
+                    // populate custom personal page content
+                    $('.js--company-text').html($('#fr_rich_text_container').html());
+
+                    var progress = $('#progress-amount').text();
+                    var goal = $('#goal-amount').text();
+                    cd.runThermometer(progress, goal);
+                    cd.reorderPageForMobile();
+                  },
+                  error: function (response) {
+                    console.log('company goal fail', response)
+                  }
+                }
+              });
             }
-
-            // Get company goal
-            $('.indicator-title:contains("Company Fundraising")').closest('.tr-status-indicator-container').addClass('default-company-thermometer');
-            // var companyoGoalText = $('.default-company-thermometer .total-goal-value').text();
-            var companyoGoalText = $('.indicator-title:contains("Company Fundraising Status")').parent().find('.total-goal-value').text();
-
-
-            var companyGoal = companyoGoalText.split('.');
-            $('#goal-amount').html(companyGoal[0]);
-
-            // populate custom personal page content
-            $('.js--company-text').html($('#fr_rich_text_container').html());
-
-            var progress = $('#progress-amount').text();
-            var goal = $('#goal-amount').text();
-            cd.runThermometer(progress, goal);
-            cd.reorderPageForMobile();
-
+            var getCompanyId = getURLParameter(currentUrl, 'company_id');
+            console.log(getCompanyId)
+            cd.getCompaniesGoal(getCompanyId);
 
             // Reset selected sort option
             $('.nav-tabs .nav-link').click(function () {
@@ -3886,28 +3903,6 @@ cd.getTeamHonorRoll();
                 // });
 
             }
-            cd.getCompaniesGoal = function (companyId) {
-              console.log('company name', companyId)
-              luminateExtend.api({
-                api: 'teamraiser',
-                data: 'method=getCompaniesByInfo' +
-                  '&company_id=' + companyId +
-                  '&event_type=' + eventType +
-                  '&include_cross_event=true' +
-                  '&response_format=json',
-                callback: {
-                  success: function (response) {
-                    console.log('company goal success:', response)
-                  },
-                  error: function (response) {
-                    console.log('company goal fail', response)
-                  }
-                }
-              });
-            }
-            var getCompanyId = getURLParameter(currentUrl, 'company_id');
-            console.log(getCompanyId)
-            cd.getCompaniesGoal(getCompanyId);
     }
     if ($('body').is('.app_donation')) {
       /* 2019 DF UPDATES */
