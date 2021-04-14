@@ -1021,6 +1021,53 @@
       }); // end luminateExtend
     } // end getTopCompanies
 
+    cd.initializeTeamRosterTable = function () {
+      window.cdTeamRosterTable = $('#team-roster').DataTable({
+          "paging": false,
+          "autoWidth": false,
+          "order": [[1, 'desc']],
+          "language": {
+              "search": "Search for a Team"
+          }
+      });
+      $('#team-roster_info, #team-roster_filter').wrapAll('<div class="row"></div>');
+      $('#team-roster_info').insertBefore($('#team-roster_filter')).wrap('<div class="col-lg-6 col-md-12 sorter pl-md-0"></div>');
+      $('#team-roster_filter').wrap('<div class="col-lg-6 col-md-12"></div>');
+
+      $('#team-roster_filter input[type="search"]').attr('id', 'team_search').wrap('<div class="input-group"></div>').addClass('form-control').after('<div class="input-group-append"><button class="btn btn-primary btn-outline-secondary" type="button">Search <i class="fas fa-search"></i></button></div>');
+
+      $('#team-roster_filter label').attr('for', 'team_search');
+
+      // Add general team donation total and link
+      var genTeamDonAmt = $('.team-roster-participant-name:contains("Team Gifts")').next().text();
+      $('.js--gen-team-don-total').text(genTeamDonAmt);
+
+      $('#team-roster_wrapper .sorter').prepend($('.js--gen-team-don-container'));
+
+      $('.js--gen-team-don-container').show();
+
+    };
+
+  cd.initializeParticipantRosterTable = function () {
+      window.cdParticipantRosterTable = $('#participant-roster').DataTable({
+          "paging": false,
+          "autoWidth": false,
+          "order": [[2, 'desc']],
+          "language": {
+              "search": "Search for a Walker"
+          }
+      });
+
+      $('#participant-roster_info, #participant-roster_filter').wrapAll('<div class="row"></div>');
+      $('#participant-roster_info').insertBefore($('#participant-roster_filter')).wrap('<div class="col-lg-6 col-md-12 sorter d-flex align-items-end"></div>');
+      $('#participant-roster_filter').wrap('<div class="col-lg-6 col-md-12"></div>');
+
+      $('#participant-roster_filter input[type="search"]').attr('id', 'participant_search').wrap('<div class="input-group"></div>').addClass('form-control').after('<div class="input-group-append"><button class="btn btn-primary btn-outline-secondary" type="button">Search <i class="fas fa-search"></i></button></div>');
+
+      $('#participant-roster_filter label').attr('for', 'participant_search');
+
+  };
+
     /******************/
     /* MILES SCRIPTS */
     /******************/
