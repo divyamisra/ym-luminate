@@ -3886,6 +3886,31 @@ cd.getTeamHonorRoll();
                 // });
 
             }
+            cd.getCompaniesGoal = function (companyName) {
+              luminateExtend.api({
+                api: 'teamraiser',
+                data: 'method=getCompaniesByInfo' +
+                  '&company_name=' + companyName +
+                  (isCrossEvent === true ? '&event_type=' + eventType : '&fr_id=' + evID) +
+                  '&list_page_size=499' +
+                  '&list_page_offset=0' +
+                  (isCrossEvent === true ? '&include_cross_event=true' : '') +
+                  '&response_format=json' +
+                  '&list_sort_column=company_name' +
+                  '&list_ascending=true',
+                callback: {
+                  success: function (response) {
+                    console.log('company goal success:', response)
+                  },
+                  error: function (response) {
+                    console.log('company goal fail', response)
+                  }
+                }
+              });
+            }
+        
+            var  companyNameAndGoal = pageTitle.substring(start_pos, end_pos).trim();
+            cd.getCompaniesGoal(companyNameAndGoal);
     }
     if ($('body').is('.app_donation')) {
       /* 2019 DF UPDATES */
