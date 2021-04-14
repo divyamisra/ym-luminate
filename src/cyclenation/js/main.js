@@ -3887,6 +3887,7 @@ cd.getTeamHonorRoll();
 
             }
             cd.getCompaniesGoal = function (companyName) {
+              console.log('company name', companyName)
               luminateExtend.api({
                 api: 'teamraiser',
                 data: 'method=getCompaniesByInfo' +
@@ -3910,6 +3911,7 @@ cd.getTeamHonorRoll();
             }
         
             var  companyNameAndGoal = pageTitle.substring(start_pos, end_pos).trim();
+            console.log(companyNameAndGoal)
             cd.getCompaniesGoal(companyNameAndGoal);
     }
     if ($('body').is('.app_donation')) {
