@@ -100,11 +100,9 @@
     display: none!important;
   }
 
-  .pg_company {
-    #our-walkers-tab, #our-teams-tab {
-      border-left: none!important;
-      border-right: none!important;
-  }
+  .pg_company #our-walkers-tab, .pg_company #our-teams-tab {
+    border-left: none!important;
+    border-right: none!important;
   }
   .pg_company #our-teams {
     .team-roster table tbody tr {

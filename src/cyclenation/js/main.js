@@ -3859,7 +3859,7 @@ cd.getTeamHonorRoll();
                         $('.js--more-participant-results').removeAttr('hidden');
                     }
                 }, 250);
-
+                //removing team donat button call
                 //add call to hook donate button with payment type selections
                 // $('a:contains(Donat)').on('click', function (e) {
                 //     e.preventDefault();
