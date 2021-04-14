@@ -3456,6 +3456,7 @@ cd.getTeamHonorRoll();
   if($('.achievements .achievement-badge').length == 0) {
     $('.achievements').parent().hide();
   }
+}
     if ($('body').is('.pg_company')) {
  // Company Page
 
