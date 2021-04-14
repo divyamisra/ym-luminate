@@ -3587,14 +3587,14 @@ cd.getTeamHonorRoll();
                   success: function (response) {
                     console.log('company goal success:', response)
 
-                    var raised = response.getCompaniesResponse.company.amountRaised
+                    var raised = response.getCompaniesResponse.company.amountRaised / 100
 
                     if (raised) {
                         $('#progress-amount').html(raised);
                     }
 
                     // Get company goal
-                    var companyGoal = response.getCompaniesResponse.company.goal
+                    var companyGoal = response.getCompaniesResponse.company.goal / 100
                     $('#goal-amount').html(companyGoal);
 
                     // populate custom personal page content
