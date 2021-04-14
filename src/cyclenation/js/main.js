@@ -3513,7 +3513,6 @@ cd.getTeamHonorRoll();
             var end_pos = pageTitle.indexOf('- Heart Walk', start_pos);
             var currentCompanyName = pageTitle.substring(start_pos, end_pos).trim();
             var currentCompanyId = getURLParameter(currentUrl, 'company_id');
-            $('.js--company-name').text(currentCompanyName);
             // var isParentCompany = ($('#company_hierarchy_list_component .lc_Row1').length ? true : false)
             var isParentCompany = ($('.js--company-hierarchy-list-container .lc_Row1').length ? true : false)
 
@@ -3587,15 +3586,17 @@ cd.getTeamHonorRoll();
                   success: function (response) {
                     console.log('company goal success:', response)
 
-                    var raised = response.getCompaniesResponse.company.amountRaised / 100
+                    $('.js--company-name').text(response.getCompaniesResponse.company.companyName);
+
+                    var raised = numberWithCommas(response.getCompaniesResponse.company.amountRaised / 100);
 
                     if (raised) {
-                        $('#progress-amount').html(raised);
+                        $('#progress-amount').html('$' + raised);
                     }
 
                     // Get company goal
-                    var companyGoal = response.getCompaniesResponse.company.goal / 100
-                    $('#goal-amount').html(companyGoal);
+                    var companyGoal = numberWithCommas(response.getCompaniesResponse.company.goal / 100);
+                    $('#goal-amount').html('$' + companyGoal);
 
                     // populate custom personal page content
                     $('.js--company-text').html($('#fr_rich_text_container').html());
@@ -3604,6 +3605,10 @@ cd.getTeamHonorRoll();
                     var goal = $('#goal-amount').text();
                     cd.runThermometer(progress, goal);
                     cd.reorderPageForMobile();
+
+                    function numberWithCommas(x) {
+                      return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                    }
                   },
                   error: function (response) {
                     console.log('company goal fail', response)
