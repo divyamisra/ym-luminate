@@ -130,7 +130,7 @@ padding: 0.625rem 1.25rem;
     border-bottom: 2px solid transparent;
     font-size: $font-size-24;
     font-weight: $font-weight-medium;
-    text-decoration: none;
+    text-decoration: none !important;
   }
   
   .navbar-nav a.nav-link:hover, .nav-item.active a {

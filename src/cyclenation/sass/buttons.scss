@@ -48,12 +48,16 @@ a.btn {
   padding: 5px 20px !important;
 }
 
-.btn-secondary, .btn-tertiary, .btn-tertiary-black, a.btn.btn-secondary:hover, a.btn.btn-secondary:visited {
+.btn-secondary, .btn-tertiary, .btn-tertiary-black, a.btn.btn-secondary:hover {
   &:hover {
     background-color: $red !important;
     border: solid 2px $red !important;
     color: $white !important;
   }
+}
+
+a.btn.btn-secondary:visited {
+  background: $red !important;
 }
 
 .input-group-append .btn {
