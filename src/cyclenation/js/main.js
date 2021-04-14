@@ -3886,19 +3886,15 @@ cd.getTeamHonorRoll();
                 // });
 
             }
-            cd.getCompaniesGoal = function (companyName) {
-              console.log('company name', companyName)
+            cd.getCompaniesGoal = function (companyId) {
+              console.log('company name', companyId)
               luminateExtend.api({
                 api: 'teamraiser',
                 data: 'method=getCompaniesByInfo' +
-                  '&company_name=' + companyName +
+                  '&company_id=' + companyId +
                   '&event_type=' + eventType +
-                  '&list_page_size=499' +
-                  '&list_page_offset=0' +
                   '&include_cross_event=true' +
-                  '&response_format=json' +
-                  '&list_sort_column=company_name' +
-                  '&list_ascending=true',
+                  '&response_format=json',
                 callback: {
                   success: function (response) {
                     console.log('company goal success:', response)
@@ -3909,10 +3905,9 @@ cd.getTeamHonorRoll();
                 }
               });
             }
-        
-            var  companyNameAndGoal = pageTitle.substring(start_pos, end_pos).trim();
-            console.log(companyNameAndGoal)
-            cd.getCompaniesGoal(companyNameAndGoal);
+            var getCompanyId = getURLParameter(currentUrl, 'company_id');
+            console.log(getCompanyId)
+            cd.getCompaniesGoal(getCompanyId);
     }
     if ($('body').is('.app_donation')) {
       /* 2019 DF UPDATES */
