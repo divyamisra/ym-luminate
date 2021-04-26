@@ -195,6 +195,12 @@ padding: 0.625rem 1.25rem;
     #mainNav {
       display: none!important;
     }
+    .navbar-expand-lg .navbar-toggler {
+      display: block!important;
+    }
+    .navbar button .fas.fa-bars {
+      font-size: 2.5rem!important;
+    }
   }
   small,
   .small {
