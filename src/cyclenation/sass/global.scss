@@ -205,6 +205,10 @@ img {
 .sponsors {
   padding: 81px 0 0;
 
+  @media (max-width:767px) {
+    padding: 40px 0 0;
+  }
+
   h4 {
     margin: 0 0 5px;
   }
