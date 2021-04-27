@@ -94,8 +94,6 @@
               } else {
                 var scrollLocation = target.offset().top - 250;
               }
-            } else if($('body').is('.pg_team') && screenWidth <= 767) {
-              var scrollLocation = target.offset().top - 250;
             } else {
               var scrollLocation = target.offset().top;
             }
