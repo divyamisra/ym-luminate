@@ -152,6 +152,8 @@ if (jQuery('body.pg_team').length == 0) {
       if(!jQuery(this).hasClass('js--team-member-donate')){
         if (jQuery(this).next('.paymentSelType').length > 0) {
           jQuery(this).next('.paymentSelType').remove();
+        } else if (jQuery(this).parent().parent().next('.paymentSelType').length > 0) {
+          jQuery(this).parent().parent().next('.paymentSelType').remove();
         } else {
           var dlink = jQuery(this).attr("href");
           var fr_id = jQuery.getCustomQuerystring(dlink,"FR_ID");
@@ -159,7 +161,7 @@ if (jQuery('body.pg_team').length == 0) {
           var pt = jQuery.getCustomQuerystring(dlink,"PROXY_TYPE");
 
           if(jQuery(this).parent().parent().parent().parent().hasClass('table')) {
-            var html = "<tr><td class='teamDonTable'><div class='paymentSelType text-center' style='padding-top:10px;'>" +
+            var html = "<tr class='paymentSelType'><td class='teamDonTable'><div class='paymentSelType text-center' style='padding-top:10px;'>" +
               "<p class='text-dark'>How would you like to donate?</p>" +
               "<a href='"+dlink+"'><img src='https://www2.heart.org/images/content/pagebuilder/credit-card-logos2.png' alt='Donate with Visa, MasterCard, American Express or Discover cards'/></a>" +
               "<a href='"+default_path+"/site/SPageNavigator/cyclenation_donate_amazon.html?FR_ID="+fr_id+"&mfc_pref=T&PROXY_ID="+px+"&PROXY_TYPE="+pt+"' class='amazon'><img src='https://donatenow.heart.org/images/amazon-payments_inactive.png' alt='Donate with Amazon Pay'/></a>" +
