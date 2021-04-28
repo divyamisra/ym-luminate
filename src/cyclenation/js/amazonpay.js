@@ -145,7 +145,7 @@ function addPCPaymentOptions() {
 	}
 }
 
-if (jQuery('body.pg_team').length == 0) {
+if (jQuery('body.pg_team').length > 0) {
   function addPaymentTypesOnSearch() {
     jQuery('a:contains(Donat)').on('click',function(e){
       e.preventDefault();
