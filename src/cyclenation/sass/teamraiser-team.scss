@@ -123,6 +123,11 @@
     text-align: left!important;
   }
 
+  .pg_team .team-roster table tbody tr td.raised {
+    display: inline-block!important;
+    text-align: center!important;
+  }
+
   .pg_team .team-roster table tbody tr .donor-name {
     width: 45%!important;
   }
@@ -143,6 +148,6 @@
     display: inline-block!important;
   }
   .pg_team .team-roster thead th:first-of-type {
-    width: 45%!important;
+    width: 48%!important;
   }
 }
