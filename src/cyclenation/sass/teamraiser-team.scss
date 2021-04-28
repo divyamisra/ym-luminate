@@ -112,6 +112,14 @@
   }
 }
 
+#team-roster > thead > tr > th:nth-of-type(2) {
+  text-align: center;
+}
+
+#team-roster > tbody > tr > td.raised {
+  text-align: center;
+}
+
 @media (max-width: $screen-md) {
 
   .pg_team .team-roster table tbody tr {
