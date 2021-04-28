@@ -85,8 +85,14 @@
   }
 }
 
-.pg_company #our-walkers #participant-roster_wrapper > div.row {
+.pg_company #our-teams #participant-roster_wrapper > div.row, .pg_company #our-walkers #participant-roster_wrapper > div.row {
   font-size: 1rem!important;
+}
+
+@media (max-width: $screen-md) {
+  .pg_company span.fullTeamCaptain {
+    display: none;
+  }
 }
 
 .pg_company {
