@@ -195,3 +195,26 @@
     }
   }
 }
+
+.pg_company {
+  .table.dataTable thead .sorting:after {
+    font-family: 'Font Awesome 5 Free';
+    content: "\f0dc";
+    font-weight: 800;
+    margin-left: 10px;
+  }
+
+  .table.dataTable thead .sorting_asc:after {
+    font-family: 'Font Awesome 5 Free';
+    content: "\f0dd";
+    font-weight: 800;
+    margin-left: 10px;
+  }
+
+  .table.dataTable thead .sorting_desc:after {
+    font-family: 'Font Awesome 5 Free';
+    content: "\f0de";
+    font-weight: 800;
+    margin-left: 10px;
+  }
+}
