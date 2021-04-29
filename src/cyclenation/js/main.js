@@ -3877,7 +3877,7 @@ cd.getTeamHonorRoll();
                 setTimeout(function () {
                     cd.initializeParticipantRosterTable();
                     var totalParticipants = $('.participant-name').length;
-                    var totalParticipantsText = totalParticipants > 1 ? ' Walkers' : ' Walker';
+                    var totalParticipantsText = totalParticipants > 1 ? ' Participants' : ' Participant';
                     $('.js--num-company-participants').text(totalParticipants + totalParticipantsText);
                     if (numWalkerRows > 5) {
                         $('.js--more-participant-results').removeAttr('hidden');
