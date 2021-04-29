@@ -3857,8 +3857,8 @@ cd.getTeamHonorRoll();
             cd.getCompanyParticipants();
 
             cd.buildParticipantList = function (participants) {
-              console.log(participants)
                 $(participants).each(function (i, participant) {
+                   console.log('particiant: ', participant)
                     var participantRaised = (parseInt(participant.amountRaised) * 0.01).toFixed(2);
                     var participantRaisedFormmatted = participantRaised.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,").replace('.00', '');
 

@@ -202,6 +202,9 @@
     content: "\f0dc";
     font-weight: 800;
     margin-left: 10px;
+      @media (max-width: $screen-md) {
+        margin-left: 2px;
+      }
   }
 
   .table.dataTable thead .sorting_asc:after {
@@ -209,6 +212,9 @@
     content: "\f0dd";
     font-weight: 800;
     margin-left: 10px;
+      @media (max-width: $screen-md) {
+        margin-left: 2px;
+      }
   }
 
   .table.dataTable thead .sorting_desc:after {
@@ -216,5 +222,8 @@
     content: "\f0de";
     font-weight: 800;
     margin-left: 10px;
+      @media (max-width: $screen-md) {
+        margin-left: 2px;
+      }
   }
 }
