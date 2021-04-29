@@ -298,6 +298,11 @@ img {
     }
   }
 
+  .achievements .achievement-badge {
+    height: 100px;
+    margin: 10px 0!important;
+  }
+
   .achievements .achievement-badge:only-of-type {
     flex: 0 0 100%;
     max-width: 100%;
