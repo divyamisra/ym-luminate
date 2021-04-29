@@ -100,6 +100,9 @@
     border-left: none!important;
     border-right: none!important;
   }
+  #our-teams .raised {
+    text-align: left!important;
+  }
 }
 
 @media (max-width: $screen-md) {
@@ -131,6 +134,7 @@
       }
       .raised {
         width: 15%!important;
+        text-align: center!important;
       }
     }
   } 
