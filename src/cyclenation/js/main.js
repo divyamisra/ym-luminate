@@ -3422,92 +3422,94 @@
       //  TODO - commented out video code until CN delivers new video
       //  cd.getPersonalVideo(evID, personalPageConsId);
     }
-if ($('body').is('.pg_team')) {
-// Team Page
-var progress = $('#progress-amount').text();
-var goal = $('#goal-amount').text();
-cd.runThermometer(progress, goal);
-cd.setDonorRollHeight();
-cd.reorderPageForMobile();
+setTimeout(function(){ 
+  if ($('body').is('.pg_team')) {
+  // Team Page
+  var progress = $('#progress-amount').text();
+  var goal = $('#goal-amount').text();
+  cd.runThermometer(progress, goal);
+  cd.setDonorRollHeight();
+  cd.reorderPageForMobile();
 
-// populate custom team page content
-$('.js--team-text').html($('#fr_rich_text_container').html());
-// populate donor honor roll
-cd.getTeamHonorRoll();
+  // populate custom team page content
+  $('.js--team-text').html($('#fr_rich_text_container').html());
+  // populate donor honor roll
+  cd.getTeamHonorRoll();
 
-  // build team roster
-  cd.getTeamRoster = function () {
-    var teamId = getURLParameter(currentUrl, 'team_id');
-    luminateExtend.api({
-        api: 'teamraiser',
-        data: 'method=getParticipants' +
-            '&first_name=%25%25%25&fr_id=' + evID +
-            '&list_filter_column=reg.team_id' +
-            '&list_filter_text=' + teamId +
-            '&list_page_size=499' +
-            '&list_page_offset=0' +
-            '&response_format=json' +
-            '&list_sort_column=first_name' +
-            '&list_ascending=true',
-        callback: {
-            success: function (response) {
-                if (response.getParticipantsResponse.totalNumberResults === '0') {
-                    // no search results
+    // build team roster
+    cd.getTeamRoster = function () {
+      var teamId = getURLParameter(currentUrl, 'team_id');
+      luminateExtend.api({
+          api: 'teamraiser',
+          data: 'method=getParticipants' +
+              '&first_name=%25%25%25&fr_id=' + evID +
+              '&list_filter_column=reg.team_id' +
+              '&list_filter_text=' + teamId +
+              '&list_page_size=499' +
+              '&list_page_offset=0' +
+              '&response_format=json' +
+              '&list_sort_column=first_name' +
+              '&list_ascending=true',
+          callback: {
+              success: function (response) {
+                  if (response.getParticipantsResponse.totalNumberResults === '0') {
+                      // no search results
 
-                } else {
-                    var participants = luminateExtend.utils.ensureArray(response.getParticipantsResponse.participant);
-                    var totalParticipants = parseInt(response.getParticipantsResponse.totalNumberResults);
+                  } else {
+                      var participants = luminateExtend.utils.ensureArray(response.getParticipantsResponse.participant);
+                      var totalParticipants = parseInt(response.getParticipantsResponse.totalNumberResults);
 
-                    // if ( $.fn.DataTable ) {
-                    //   if ( $.fn.DataTable.isDataTable('#participantResultsTable') ) {
-                    //     $('#participantResultsTable').DataTable().destroy();
-                    //   }              }
-                    // $('#participantResultsTable tbody').empty();
+                      // if ( $.fn.DataTable ) {
+                      //   if ( $.fn.DataTable.isDataTable('#participantResultsTable') ) {
+                      //     $('#participantResultsTable').DataTable().destroy();
+                      //   }              }
+                      // $('#participantResultsTable tbody').empty();
 
-                    // $('.js--num-participant-results').text((totalParticipants === 1 ? '1 Result' : totalParticipants + ' Results'));
+                      // $('.js--num-participant-results').text((totalParticipants === 1 ? '1 Result' : totalParticipants + ' Results'));
 
-                    $(participants).each(function (i, participant) {
+                      $(participants).each(function (i, participant) {
 
-                        var participantRaised = (parseInt(participant.amountRaised) * 0.01).toFixed(2);
-                        var participantRaisedFormmatted = participantRaised.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,").replace('.00', '');
-                        
-                        if (participant.name.first != null) {
-                            $('#team-roster tbody').append('<tr class="' + (i > 4 ? 'd-none' : '') + '"><td class="donor-name"><a href="' + participant.personalPageUrl + '">' +
-                                participant.name.first + ' ' + participant.name.last +
-                                '</a>' + (participant.aTeamCaptain === "true" ? ' <span class="coach">- Team Captain</span>' : '') + '</td><td class="raised" data-sort="' + participantRaisedFormmatted + '"><span><strong>$' + participantRaisedFormmatted + '</strong></span></td><td><a href="' + participant.donationUrl + '">' + (screenWidth <= 480 ? 'Donate' : 'Donate to ' + participant.name.first) + '</a></td></tr>');
-                            if (participant.aTeamCaptain === 'true') {
-                                $('.js--team-captain-link').attr('href', participant.personalPageUrl).text(participant.name.first + ' ' + participant.name.last);
-                            }
-                        }
-                    });
+                          var participantRaised = (parseInt(participant.amountRaised) * 0.01).toFixed(2);
+                          var participantRaisedFormmatted = participantRaised.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,").replace('.00', '');
+                          
+                          if (participant.name.first != null) {
+                              $('#team-roster tbody').append('<tr class="' + (i > 4 ? 'd-none' : '') + '"><td class="donor-name"><a href="' + participant.personalPageUrl + '">' +
+                                  participant.name.first + ' ' + participant.name.last +
+                                  '</a>' + (participant.aTeamCaptain === "true" ? ' <span class="coach">- Team Captain</span>' : '') + '</td><td class="raised" data-sort="' + participantRaisedFormmatted + '"><span><strong>$' + participantRaisedFormmatted + '</strong></span></td><td><a href="' + participant.donationUrl + '">' + (screenWidth <= 480 ? 'Donate' : 'Donate to ' + participant.name.first) + '</a></td></tr>');
+                              if (participant.aTeamCaptain === 'true') {
+                                  $('.js--team-captain-link').attr('href', participant.personalPageUrl).text(participant.name.first + ' ' + participant.name.last);
+                              }
+                          }
+                      });
 
-                    if (totalParticipants > 5) {
-                        $('.js--more-participant-results').removeAttr('hidden');
-                    }
-                    // cd.initializeTeamRosterTable();
+                      if (totalParticipants > 5) {
+                          $('.js--more-participant-results').removeAttr('hidden');
+                      }
+                      // cd.initializeTeamRosterTable();
 
-                    //add call to hook donate button with payment type selections
-                    addPaymentTypesOnSearch();
-                    $('.js--more-participant-results').on('click', function (e) {
-                        e.preventDefault();
-                        $('#team-roster tr').removeClass('d-none');
-                        $(this).attr('hidden', true);
-                    });
-                }
-            }
-        },
-        error: function (response) {
-            $('#error-participant').removeAttr('hidden').text(response.errorResponse.message);
-            // console.log('error response: ', response);
-        }
-      });
-    };
-  cd.getTeamRoster();
+                      //add call to hook donate button with payment type selections
+                      addPaymentTypesOnSearch();
+                      $('.js--more-participant-results').on('click', function (e) {
+                          e.preventDefault();
+                          $('#team-roster tr').removeClass('d-none');
+                          $(this).attr('hidden', true);
+                      });
+                  }
+              }
+          },
+          error: function (response) {
+              $('#error-participant').removeAttr('hidden').text(response.errorResponse.message);
+              // console.log('error response: ', response);
+          }
+        });
+      };
+    cd.getTeamRoster();
 
-  if($('.achievements .achievement-badge').length == 0) {
-    $('.achievements').parent().hide();
+    if($('.achievements .achievement-badge').length == 0) {
+      $('.achievements').parent().hide();
+    }
   }
-}
+}, 1000);
     if ($('body').is('.pg_company')) {
  // Company Page
 
