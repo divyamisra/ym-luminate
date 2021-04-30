@@ -10,6 +10,7 @@
 
     // BEGIN WRAPPER JS
     var screenWidth = $(window).innerWidth();
+    console.log(screenWidth)
 
     // GREETING PAGE - HIDE CALENDAR IN IOS
     var iOS = false,
@@ -511,7 +512,7 @@
     cd.reorderPageForMobile = function () {
       console.log('reorder function is running')
       // Reorganize page for mobile views
-      if (screenWidth <= 767 && $('body').is('testClass')) {
+      if (screenWidth <= 767) {
           console.log('screenwidth adjustment')
           $('.tr-page-info').insertAfter('.sidebar-hero');
           $('.fundraising-amounts').prepend($('.fundraising-amounts .col-12'));
