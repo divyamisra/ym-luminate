@@ -509,12 +509,14 @@
     };
 
     cd.reorderPageForMobile = function () {
+      console('reorder function is running')
       // Reorganize page for mobile views
-      if (screenWidth <= 767) {
+      if (screenWidth <= 767 && $('body').is('testClass')) {
+          console.log('screenwidth adjustment')
           $('.tr-page-info').insertAfter('.sidebar-hero');
           $('.fundraising-amounts').prepend($('.fundraising-amounts .col-12'));
 
-          if ($('body').is('.pg_team1')) {
+          if ($('body').is('.pg_team')) {
               $('.team-roster').insertBefore($('.donor-roll'));
 
               $('.team-roster li .raised span').each(function (i, span) {
