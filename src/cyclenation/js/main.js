@@ -2,6 +2,8 @@
 
 (function ($) {
   $(document).ready(function ($) {
+    console.log('is anything running?')
+    setTimeout(function(){ 
 
     /*************/
     /* Namespace */
@@ -510,10 +512,8 @@
     };
 
     cd.reorderPageForMobile = function () {
-      console.log('reorder function is running')
       // Reorganize page for mobile views
       if (screenWidth <= 767) {
-          console.log('screenwidth adjustment')
           $('.tr-page-info').insertAfter('.sidebar-hero');
           $('.fundraising-amounts').prepend($('.fundraising-amounts .col-12'));
 
@@ -3422,94 +3422,93 @@
       //  TODO - commented out video code until CN delivers new video
       //  cd.getPersonalVideo(evID, personalPageConsId);
     }
-setTimeout(function(){ 
-  if ($('body').is('.pg_team')) {
-  // Team Page
-  var progress = $('#progress-amount').text();
-  var goal = $('#goal-amount').text();
-  cd.runThermometer(progress, goal);
-  cd.setDonorRollHeight();
-  cd.reorderPageForMobile();
 
-  // populate custom team page content
-  $('.js--team-text').html($('#fr_rich_text_container').html());
-  // populate donor honor roll
-  cd.getTeamHonorRoll();
+if ($('body').is('.pg_team')) {
+// Team Page
+var progress = $('#progress-amount').text();
+var goal = $('#goal-amount').text();
+cd.runThermometer(progress, goal);
+cd.setDonorRollHeight();
+cd.reorderPageForMobile();
 
-    // build team roster
-    cd.getTeamRoster = function () {
-      var teamId = getURLParameter(currentUrl, 'team_id');
-      luminateExtend.api({
-          api: 'teamraiser',
-          data: 'method=getParticipants' +
-              '&first_name=%25%25%25&fr_id=' + evID +
-              '&list_filter_column=reg.team_id' +
-              '&list_filter_text=' + teamId +
-              '&list_page_size=499' +
-              '&list_page_offset=0' +
-              '&response_format=json' +
-              '&list_sort_column=first_name' +
-              '&list_ascending=true',
-          callback: {
-              success: function (response) {
-                  if (response.getParticipantsResponse.totalNumberResults === '0') {
-                      // no search results
+// populate custom team page content
+$('.js--team-text').html($('#fr_rich_text_container').html());
+// populate donor honor roll
+cd.getTeamHonorRoll();
 
-                  } else {
-                      var participants = luminateExtend.utils.ensureArray(response.getParticipantsResponse.participant);
-                      var totalParticipants = parseInt(response.getParticipantsResponse.totalNumberResults);
+  // build team roster
+  cd.getTeamRoster = function () {
+    var teamId = getURLParameter(currentUrl, 'team_id');
+    luminateExtend.api({
+        api: 'teamraiser',
+        data: 'method=getParticipants' +
+            '&first_name=%25%25%25&fr_id=' + evID +
+            '&list_filter_column=reg.team_id' +
+            '&list_filter_text=' + teamId +
+            '&list_page_size=499' +
+            '&list_page_offset=0' +
+            '&response_format=json' +
+            '&list_sort_column=first_name' +
+            '&list_ascending=true',
+        callback: {
+            success: function (response) {
+                if (response.getParticipantsResponse.totalNumberResults === '0') {
+                    // no search results
 
-                      // if ( $.fn.DataTable ) {
-                      //   if ( $.fn.DataTable.isDataTable('#participantResultsTable') ) {
-                      //     $('#participantResultsTable').DataTable().destroy();
-                      //   }              }
-                      // $('#participantResultsTable tbody').empty();
+                } else {
+                    var participants = luminateExtend.utils.ensureArray(response.getParticipantsResponse.participant);
+                    var totalParticipants = parseInt(response.getParticipantsResponse.totalNumberResults);
 
-                      // $('.js--num-participant-results').text((totalParticipants === 1 ? '1 Result' : totalParticipants + ' Results'));
+                    // if ( $.fn.DataTable ) {
+                    //   if ( $.fn.DataTable.isDataTable('#participantResultsTable') ) {
+                    //     $('#participantResultsTable').DataTable().destroy();
+                    //   }              }
+                    // $('#participantResultsTable tbody').empty();
 
-                      $(participants).each(function (i, participant) {
+                    // $('.js--num-participant-results').text((totalParticipants === 1 ? '1 Result' : totalParticipants + ' Results'));
 
-                          var participantRaised = (parseInt(participant.amountRaised) * 0.01).toFixed(2);
-                          var participantRaisedFormmatted = participantRaised.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,").replace('.00', '');
-                          
-                          if (participant.name.first != null) {
-                              $('#team-roster tbody').append('<tr class="' + (i > 4 ? 'd-none' : '') + '"><td class="donor-name"><a href="' + participant.personalPageUrl + '">' +
-                                  participant.name.first + ' ' + participant.name.last +
-                                  '</a>' + (participant.aTeamCaptain === "true" ? ' <span class="coach">- Team Captain</span>' : '') + '</td><td class="raised" data-sort="' + participantRaisedFormmatted + '"><span><strong>$' + participantRaisedFormmatted + '</strong></span></td><td><a href="' + participant.donationUrl + '">' + (screenWidth <= 480 ? 'Donate' : 'Donate to ' + participant.name.first) + '</a></td></tr>');
-                              if (participant.aTeamCaptain === 'true') {
-                                  $('.js--team-captain-link').attr('href', participant.personalPageUrl).text(participant.name.first + ' ' + participant.name.last);
-                              }
-                          }
-                      });
+                    $(participants).each(function (i, participant) {
 
-                      if (totalParticipants > 5) {
-                          $('.js--more-participant-results').removeAttr('hidden');
-                      }
-                      // cd.initializeTeamRosterTable();
+                        var participantRaised = (parseInt(participant.amountRaised) * 0.01).toFixed(2);
+                        var participantRaisedFormmatted = participantRaised.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,").replace('.00', '');
+                        
+                        if (participant.name.first != null) {
+                            $('#team-roster tbody').append('<tr class="' + (i > 4 ? 'd-none' : '') + '"><td class="donor-name"><a href="' + participant.personalPageUrl + '">' +
+                                participant.name.first + ' ' + participant.name.last +
+                                '</a>' + (participant.aTeamCaptain === "true" ? ' <span class="coach">- Team Captain</span>' : '') + '</td><td class="raised" data-sort="' + participantRaisedFormmatted + '"><span><strong>$' + participantRaisedFormmatted + '</strong></span></td><td><a href="' + participant.donationUrl + '">' + (screenWidth <= 480 ? 'Donate' : 'Donate to ' + participant.name.first) + '</a></td></tr>');
+                            if (participant.aTeamCaptain === 'true') {
+                                $('.js--team-captain-link').attr('href', participant.personalPageUrl).text(participant.name.first + ' ' + participant.name.last);
+                            }
+                        }
+                    });
 
-                      //add call to hook donate button with payment type selections
-                      addPaymentTypesOnSearch();
-                      $('.js--more-participant-results').on('click', function (e) {
-                          e.preventDefault();
-                          $('#team-roster tr').removeClass('d-none');
-                          $(this).attr('hidden', true);
-                      });
-                  }
-              }
-          },
-          error: function (response) {
-              $('#error-participant').removeAttr('hidden').text(response.errorResponse.message);
-              // console.log('error response: ', response);
-          }
-        });
-      };
-    cd.getTeamRoster();
+                    if (totalParticipants > 5) {
+                        $('.js--more-participant-results').removeAttr('hidden');
+                    }
+                    // cd.initializeTeamRosterTable();
 
-    if($('.achievements .achievement-badge').length == 0) {
-      $('.achievements').parent().hide();
-    }
+                    //add call to hook donate button with payment type selections
+                    addPaymentTypesOnSearch();
+                    $('.js--more-participant-results').on('click', function (e) {
+                        e.preventDefault();
+                        $('#team-roster tr').removeClass('d-none');
+                        $(this).attr('hidden', true);
+                    });
+                }
+            }
+        },
+        error: function (response) {
+            $('#error-participant').removeAttr('hidden').text(response.errorResponse.message);
+            // console.log('error response: ', response);
+        }
+      });
+    };
+  cd.getTeamRoster();
+
+  if($('.achievements .achievement-badge').length == 0) {
+    $('.achievements').parent().hide();
   }
-}, 1000);
+}
     if ($('body').is('.pg_company')) {
  // Company Page
 
@@ -4154,6 +4153,6 @@ setTimeout(function(){
       });
 
     }
-
+  }, 1000);
   });
 }(jQuery));
