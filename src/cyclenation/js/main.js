@@ -509,7 +509,7 @@
     };
 
     cd.reorderPageForMobile = function () {
-      console('reorder function is running')
+      console.log('reorder function is running')
       // Reorganize page for mobile views
       if (screenWidth <= 767 && $('body').is('testClass')) {
           console.log('screenwidth adjustment')
