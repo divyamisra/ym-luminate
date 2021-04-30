@@ -2,8 +2,6 @@
 
 (function ($) {
   $(document).ready(function ($) {
-    console.log('is anything running?')
-    setTimeout(function(){ 
 
     /*************/
     /* Namespace */
@@ -12,7 +10,6 @@
 
     // BEGIN WRAPPER JS
     var screenWidth = $(window).innerWidth();
-    console.log(screenWidth)
 
     // GREETING PAGE - HIDE CALENDAR IN IOS
     var iOS = false,
@@ -4153,6 +4150,5 @@ cd.getTeamHonorRoll();
       });
 
     }
-  }, 1000);
   });
 }(jQuery));
