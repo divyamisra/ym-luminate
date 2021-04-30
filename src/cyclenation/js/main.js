@@ -514,7 +514,7 @@
           $('.tr-page-info').insertAfter('.sidebar-hero');
           $('.fundraising-amounts').prepend($('.fundraising-amounts .col-12'));
 
-          if ($('body').is('.pg_team')) {
+          if ($('body').is('.pg_team1')) {
               $('.team-roster').insertBefore($('.donor-roll'));
 
               $('.team-roster li .raised span').each(function (i, span) {
