@@ -2380,7 +2380,7 @@
         minFundraisingGoal = $('#fr_goal').val().replace('.00', '');
       }
       $('#fr_goal').val(minFundraisingGoal);
-      $('#part_type_fundraising_goal_container .form-content').append('<p class="small">All riders commit to fundraising <span class="min-fundraising-goal">' + minFundraisingGoal + '</span>. You can increase your fundraising goal, but the amount shown above is your required fundraising minimum.</p>');
+      // $('#part_type_fundraising_goal_container .form-content').append('<p class="small">All riders commit to fundraising <span class="min-fundraising-goal">' + minFundraisingGoal + '</span>. You can increase your fundraising goal, but the amount shown above is your required fundraising minimum.</p>');
 
       if (eventType2 === 'Stationary' || eventType2 === 'StationaryV2') {
         var numPtypesShown = $('.part-type-container:visible').length;
