@@ -20,6 +20,7 @@ angular.module 'ahaLuminateApp'
         if window.location.protocol is 'https:'
           requestUrl = luminateExtend.global.path.secure + 'S'
         requestUrl += 'PageServer?pagename=reus_ym_khc_school_data_csv&pgwrap=n'
+        $http.defaults.headers.post["Content-Type"] = "application/json";
         $http.jsonp($sce.trustAsResourceUrl(requestUrl), jsonpCallbackParam: 'callback')
           .then (response) ->
             response
