@@ -296,6 +296,10 @@ img {
     @media (min-width: $screen-md-min) {
       padding: 48px 76px 0;
     }
+    
+  .tr-page-container.hero {
+    background-color: transparent!important;
+    }
   }
 
   .achievements .achievement-badge {
