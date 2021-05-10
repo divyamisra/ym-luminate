@@ -185,11 +185,11 @@ padding: 0.625rem 1.25rem;
       margin-left: 1rem;
     }
   }
-  // @media only screen and (min-width: 1025px) {
-  //   .navbar-toggler {
-  //     display: none;
-  //   }
-  // }
+  @media only screen and (min-width: 1025px) {
+    a.navbar-brand + button.navbar-toggler {
+      display: none;
+    }
+  }
 
   @media only screen and (max-width: 1024px) {
     #mainNav {
