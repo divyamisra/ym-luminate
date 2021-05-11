@@ -896,13 +896,13 @@
             ::
              [[?xx::x[[S334:fr_id]]x::
              <!-- not a tr page, redirect to CN home page and scroll to event search form -->
-             <a href="SPageServer/?pagename=cn_home#eventSearch" target="_blank" onclick="_gaq.push(['_trackEvent', 'header', 'click', 'nav register']);">
+             <a href="SPageServer/?pagename=cn_home#eventSearch" onclick="_gaq.push(['_trackEvent', 'header', 'click', 'nav register']);">
                Register
              </a>
              ::
                <!-- on a tr page, direct to general reg step for that particular event -->
                [[?x1x2x::x[[E42:[[S334:fr_id]]:status]]x::
-               <a href="SPageServer/?pagename=cn_register&amp;fr_id=[[S334:fr_id]]&amp;s_regType=" target="_blank" onclick="_gaq.push(['_trackEvent', 'header', 'click', 'nav register']);">
+               <a href="SPageServer/?pagename=cn_register&amp;fr_id=[[S334:fr_id]]&amp;s_regType=" onclick="_gaq.push(['_trackEvent', 'header', 'click', 'nav register']);">
                  Register
                </a>
                ::]]
@@ -945,12 +945,12 @@
                    ::
                      [[?x[[S334:fr_id]]x::xx::
                        <!-- not a tr page, redirect to CN home page and scroll to cross-event fundraiserSearch -->
-                       <a href="SPageServer/?pagename=cn_home#fundraiserSearch" aria-label="Donate to CycleNation" target="_blank">
+                       <a href="SPageServer/?pagename=cn_home#fundraiserSearch" aria-label="Donate to CycleNation">
                          Donate
                        </a>
                      ::
                        <!-- on a tr page, redirect to tr greeting page and scroll to event-specific fundraiserSearch -->
-                       <a href="TR/CycleNation/General?fr_id=[[S334:fr_id]]&amp;pg=entry#fundraiserSearch" aria-label="Donate to CycleNation" target="_blank" onclick="_gaq.push(['_trackEvent', 'header', 'click', 'nav donate']);">
+                       <a href="TR/CycleNation/General?fr_id=[[S334:fr_id]]&amp;pg=entry#fundraiserSearch" aria-label="Donate to CycleNation" onclick="_gaq.push(['_trackEvent', 'header', 'click', 'nav donate']);">
                          Donate
                        </a>
                      ]]
