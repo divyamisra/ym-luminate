@@ -2,12 +2,12 @@
   "name": "aha-luminate",
   "description": "The framework used on American Heart Association's Luminate Online web properties.",
   "version": "1.0.0",
-  "repository": [
+  "repository": 
     {
       "type": "git",
       "url": "https://github.com/chiragchhita/aha-luminate.git"
     }
-  ],
+  ,
   "engines": {
     "node": "^12.14.0"
   },
