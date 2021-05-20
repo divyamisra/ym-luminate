@@ -56,9 +56,11 @@ a.btn {
   }
 }
 
-// a.btn.btn-secondary:visited {
-//   background: $red !important;
-// }
+.pg_team, .pg_personal {
+  a.btn.btn-secondary:visited {
+    background: $red !important;
+  }
+}
 
 .input-group-append .btn {
   @include border-radius(4px, 4px, 0, 0);
