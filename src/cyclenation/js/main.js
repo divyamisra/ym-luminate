@@ -3590,6 +3590,13 @@ cd.getTeamHonorRoll();
 
                     $('.js--company-name').text(response.getCompaniesResponse.company.companyName);
 
+                    if($(".js--company-name:contains(&amp;)")) {
+                      console.log('contains &')
+                      var ampersand = response.getCompaniesResponse.company.companyName;
+                      var newAmpersand = ampersand.replace(/&amp;/g, "&");
+                      $('.js--company-name').text(newAmpersand);
+                    }
+
                     var raised = numberWithCommas(response.getCompaniesResponse.company.amountRaised / 100);
 
                     if (raised) {
