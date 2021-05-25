@@ -62,10 +62,17 @@ a.btn {
   }
 }
 
+
 .pg_company {
-  #our-teams a.btn.js--more-participant-results, #our-walkers a.btn.js--more-participant-results {
+  #our-teams a.btn.js--more-team-results, #our-walkers a.btn.js--more-participant-results {
     background: #FFF!important;
     background-image: none!important;
+  }
+}
+
+.pg_company {
+  #our-teams a.btn.js--more-team-results:hover, #our-walkers a.btn.js--more-participant-results:hover {
+  color: #c10e21!important;
   }
 }
 
