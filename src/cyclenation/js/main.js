@@ -3588,7 +3588,7 @@ cd.getTeamHonorRoll();
                   success: function (response) {
                     console.log('company goal success:', response)
 
-                    $('.js--company-name').text(response.getCompaniesResponse.company.companyName);
+                    $('.js--company-name').text('company name');
 
                     var raised = numberWithCommas(response.getCompaniesResponse.company.amountRaised / 100);
 
