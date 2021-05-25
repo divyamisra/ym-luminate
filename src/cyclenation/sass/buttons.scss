@@ -98,6 +98,10 @@ a.btn {
   .form-check-input {
     margin-left:auto;
     left:5px;
+      @media all and (max-width: 480px) {
+        left:2px;
+      }
+    }
   }
 }
 

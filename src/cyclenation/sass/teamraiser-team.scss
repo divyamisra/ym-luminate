@@ -159,3 +159,16 @@
     width: 48%!important;
   }
 }
+
+
+@media all and (max-width: 767px) {
+
+  .pg-team .team-roster {
+    padding: 10px 30px!important;
+  }
+
+  .pg_team .team-roster .team-roster-header {
+    padding-left: 0;
+  }
+
+}
