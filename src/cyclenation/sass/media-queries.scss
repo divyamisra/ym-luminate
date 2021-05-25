@@ -1054,7 +1054,19 @@
 @media all and (max-width: 767px) {
   .sidebar {
     li {
-      padding: 20px 30px;
+      padding: 20px 30px!important;
     }
+  }
+
+  .pg_team .team-roster table tbody tr .donor-name,  .pg_team .team-roster table th{
+    padding-left: 20px;
+  }
+
+  .pg_team .team-roster table th{
+    font-size: 1rem;
+  }
+
+  .pg_team .team-roster .team-roster-header {
+    padding-left: 20px!important;
   }
 }
