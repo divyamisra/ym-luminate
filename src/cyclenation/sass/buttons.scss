@@ -64,7 +64,8 @@ a.btn {
 
 .pg_company {
   .our-teams a.btn.js--more-participant-results, .our-walkers a.btn.js--more-participant-results {
-    background: #FFF;
+    background: #FFF!important;
+    background-image: none!important;
   }
 }
 
