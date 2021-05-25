@@ -1050,3 +1050,11 @@
   }
 }
 
+
+@media all and (max-width: 767px) {
+  .sidebar {
+    li {
+      padding: 20px 30px;
+    }
+  }
+}
