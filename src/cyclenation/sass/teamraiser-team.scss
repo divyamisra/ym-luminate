@@ -31,6 +31,10 @@
    padding: 0;
    overflow: hidden;
 
+   a.btn {
+     background: #fff;
+   }
+
    .dataTables_wrapper {
      .btn {
        @include border-radius(0, 4px, 4px, 0);
