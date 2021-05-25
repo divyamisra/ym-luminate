@@ -3933,7 +3933,9 @@ cd.getTeamHonorRoll();
             }
             // var getCompanyId = getURLParameter(currentUrl, 'company_id');
             // console.log(getCompanyId)
-            cd.getCompanyName(getCompanyId);
+            setTimeout(function () {
+              cd.getCompanyName(getCompanyId);
+            }, 1000);
     }
     if ($('body').is('.app_donation')) {
       /* 2019 DF UPDATES */
