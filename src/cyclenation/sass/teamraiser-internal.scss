@@ -716,12 +716,6 @@
         background-position: bottom;
       }
     }
-
-    .mobile .donation-form-content div:nth-of-type(3) .html-caption-container {
-      width: 100%;
-    }
-
-
   }
 
   form {
@@ -1272,6 +1266,10 @@
       display: inline;
     }
   }
+}
+
+.pg_internal.mobile .donation-form-content div:nth-of-type(3) .html-caption-container {
+  width: 100%;
 }
 
 #faq_search_form:focus {
