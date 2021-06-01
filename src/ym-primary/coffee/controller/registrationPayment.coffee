@@ -120,11 +120,22 @@ angular.module 'ahaLuminateControllers'
           $scope.submitPayment()
         , 500
         false
-      
+
       $scope.submitPayment = ->
         angular.element('.js--default-payment-form').submit()
         false
-        
+
+      submitted = false
+
+      $scope.submitCheck = ->
+        if submitted
+          alert 'You have already submitted this payment. Please wait....'
+          #false
+        else
+          submitted = true
+          #true
+          angular.element('.js--default-payment-form').submit()
+
       setCompanyCity = (companyCity) ->
         $rootScope.companyCity = companyCity
         if not $rootScope.$$phase
