@@ -1206,6 +1206,7 @@
                         success: function (response) {
                             var videoEmbedHtml;
                             if (response.getPersonalVideoUrlResponse.videoUrl) {
+                                console.log('found a personal video');
                                 var videoUrl = response.getPersonalVideoUrlResponse.videoUrl;
 
                                 if (videoUrl && videoUrl.indexOf('vidyard') === -1) {
@@ -1236,13 +1237,14 @@
                             } else {
                                 // get page title
                                 var pageTitle = $('head title').text().trim();
+                                console.log('pageTitle ' + pageTitle);
 
                                 // TODO - show default video
                                 if (isProd) {
                                   if (evID === 5612 || evID === 4854 || evID === 5731) {
                                     videoEmbedHtml = '<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/TnjvKjkANPI?wmode=opaque&amp;rel=0&amp;showinfo=0" title="American Heart Association Heart Walk Video" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
                                   }
-                                  else if(pageTitle.indexOf('Lawyers') != -1){
+                                  else if (pageTitle.indexOf('Lawyers') != -1){
                                     videoEmbedHtml = '<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/Z0LO1pgspH8?wmode=opaque&amp;rel=0&amp;showinfo=0" title="American Heart Association Heart Walk Video" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
                                   }
                                   else {
@@ -1253,10 +1255,12 @@
                                   if (evID === 4412 || evID === 4413 || evID === 4414) {
                                     videoEmbedHtml = '<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/TnjvKjkANPI?wmode=opaque&amp;rel=0&amp;showinfo=0" title="American Heart Association Heart Walk Video" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
                                   }
-                                  else if(pageTitle.indexOf('Lawyers') != -1){
+                                  else if (pageTitle.indexOf('Lawyers') != -1){
+                                    console.log('pageTitle contains Lawyers');
                                     videoEmbedHtml = '<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/Z0LO1pgspH8?wmode=opaque&amp;rel=0&amp;showinfo=0" title="American Heart Association Heart Walk Video" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
                                   }
                                   else {
+                                    console.log('pageTitle DOES NOT contain Lawyers');
                                     videoEmbedHtml = '<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/b3K5LcaPzvE?wmode=opaque&amp;rel=0&amp;showinfo=0" title="American Heart Association Heart Walk Video" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
                                   }
                                 }                                
