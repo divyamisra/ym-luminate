@@ -126,20 +126,18 @@ angular.module 'ahaLuminateControllers'
         false
 
       submitted = false
-      console.log('submitted' + submitted);
+      console.log('submitted ' + submitted)
 
       $scope.submitCheck = ->
-        console.log("submitCheck");
+        console.log("submitcheck")
         if submitted
-          console.log('submitted is true')
+          console.log("already submitted")
           alert 'You have already submitted this payment. Please wait....'
-          #false
-        else
-          console.log('submitted is fakse')
-          submitted = true
-          #true
-          angular.element('.js--default-payment-form').submit()
           false
+        else
+          console.log("NOT already submitted")
+          submitted = true
+          true
 
       setCompanyCity = (companyCity) ->
         $rootScope.companyCity = companyCity
