@@ -128,11 +128,11 @@ angular.module 'ahaLuminateControllers'
         if submitted
           console.log("already submitted")
           alert 'You have already submitted this payment. Please wait....'
-          //false
+          #false
         else
           console.log("NOT already submitted")
           submitted = true
-          //true
+          #true
           angular.element('.js--default-payment-form').submit()
           false
 
