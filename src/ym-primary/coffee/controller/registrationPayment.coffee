@@ -125,7 +125,7 @@ angular.module 'ahaLuminateControllers'
       console.log('submitted ' + submitted)
 
       $scope.submitPayment = ->
-        if submitted
+        if submitted === true
           console.log("already submitted")
           alert 'You have already submitted this payment. Please wait....'
           #false
