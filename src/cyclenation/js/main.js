@@ -3930,7 +3930,9 @@ cd.getTeamHonorRoll();
                 callback: {
                   success: function (response) {
                     console.log('company participant name success:', response)
-                    $('#participant-roster .company-name a').text(response.getCompaniesResponse.company.companyName);
+                    var companyNameStr = response.getCompaniesResponse.company.companyName;
+                    var companyNameStrReplace = companyNameStr.replace("&amp;", "&");
+                    $('#participant-roster .company-name a').text(companyNameStrReplace);
                   },
                   error: function (response) {
                     console.log('company name fail', response)
