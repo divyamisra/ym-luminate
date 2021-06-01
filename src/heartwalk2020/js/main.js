@@ -1196,6 +1196,7 @@
 
             // Get events by name or state
             cd.getPersonalVideo = function (frId, consId) {
+                console.log('getpersonalvideo')
                 luminateExtend.api({
                     api: 'teamraiser',
                     data: 'method=getPersonalVideoUrl' +
