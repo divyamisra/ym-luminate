@@ -122,6 +122,7 @@ angular.module 'ahaLuminateControllers'
         false
 
       $scope.submitPayment = ->
+        console.log('submit payment')
         angular.element('.js--default-payment-form').submit()
         false
 
