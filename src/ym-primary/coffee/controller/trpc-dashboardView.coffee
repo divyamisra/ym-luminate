@@ -822,7 +822,7 @@ angular.module 'trPcControllers'
       .then (response) ->
         $scope.schoolBadgesRegistrations = response.data.registration_badges
         $scope.schoolBadgesFundraising = response.data.fundraising_badges
-        $scope.companyInfo.participantCount = response.data.students_registered
+        $rootScope.companyInfo.participantCount = response.data.students_registered
         $scope.companyProgress.raised = response.data.total_amount
         $scope.companyProgress.raisedFormatted = $filter('currency')(response.data.total_amount, '$')
           
