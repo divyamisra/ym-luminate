@@ -121,13 +121,22 @@ angular.module 'ahaLuminateControllers'
         , 500
         false
 
-      $scope.submitPayment = ->
-        angular.element('.js--default-payment-form').submit()
-        false
-        console.log('submit payment')
-
       submitted = false
       console.log('submitted ' + submitted)
+
+      $scope.submitPayment = ->
+
+        console.log("submitPayment")
+        if submitted
+          console.log("already submitted")
+          alert 'You have already submitted this payment. Please wait....'
+          #false
+        else
+          console.log("NOT already submitted")
+          submitted = true
+          #true
+          angular.element('.js--default-payment-form').submit()
+          false
 
       $scope.submitCheck = ->
         console.log("submitcheck")
