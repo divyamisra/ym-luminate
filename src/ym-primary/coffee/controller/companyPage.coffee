@@ -39,7 +39,7 @@ angular.module 'ahaLuminateControllers'
       $scope.topCompanySteps = []
       $scope.schoolChallenge = ''
       $scope.schoolChallengeGoal = 0
-      $scope.schoolYears = 0
+      $scope.schoolYears = 5
       $scope.unconfirmedAmountRaised = 0
       $scope.schoolBadgesRegistrations = []
       $scope.schoolBadgesFundraising = []
