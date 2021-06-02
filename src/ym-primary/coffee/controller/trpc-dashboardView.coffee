@@ -91,7 +91,7 @@ angular.module 'trPcControllers'
       $scope.schoolInfo = {}
       $scope.schoolChallengeInfo = {}
       $scope.schoolChallengeLevelInfo = {}
-      $scope.companyProgress.schoolYears = 5
+      $scope.companyProgress.schoolYears = '5'
       $scope.companyProgress.schoolChallenge = ''
       $scope.companyProgress.schoolChallengeLevel = ''
             
