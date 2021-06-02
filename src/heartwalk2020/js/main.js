@@ -1234,6 +1234,7 @@
                                 }
                                 videoEmbedHtml = '<iframe class="embed-responsive-item" src="' + personalVideoEmbedUrl + '" title="American Heart Association Heart Walk Video" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
                             } else {
+
                                 // TODO - show default video
                                 if (isProd) {
                                   if (evID === 5612 || evID === 4854 || evID === 5731) {
