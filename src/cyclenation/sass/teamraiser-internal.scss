@@ -1268,6 +1268,17 @@
   }
 }
 
+.pg_internal.mobile .donation-form-content div:nth-of-type(3) .html-caption-container {
+  width: 100%; 
+    h1 {
+      word-wrap: break-word;
+    }
+}
+
+.mobile.donation .internal-page {
+  padding: 10px 0 0!important;
+}
+
 #faq_search_form:focus {
   -webkit-box-shadow: 0 0 0 0.2rem rgba(77, 144, 254, 0.5);
   box-shadow: 0 0 0 0.2rem rgba(77, 144, 254, 0.5);
