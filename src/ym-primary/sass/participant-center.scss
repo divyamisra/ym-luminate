@@ -550,6 +550,7 @@ div[id^="taTextElement"]:focus {
 	.ym-pc-dashboard-livestream-images {
 		display:flex;
 		justify-content: space-around;
+		align-items:center;
 		.pc-livestream-character {
 			max-width:210px;
 			@media (max-width: 992px) {
