@@ -481,8 +481,13 @@
                 Spread the word! Send 10 emails or e-cards to friends and family.
               </p>
               <div class="ym-pc-dashboard-email-challenge-images">
-                <img src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy22/spread-the-word-icons.ong" alt="Spread the word Icons">
-              </div>
+                <a ng-href="{{baseUrl}}#/email">
+                  <img src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy22/spread-the-word-mail-icon.png" alt="Send Email">
+                </a> 
+                <a ng-href="https://tools.heart.org/aha_ym22{{tablePrefix == 'heartdev' ? '_dev' : (tablePrefix == 'heartnew' ? '_testing' : '')}}/?eid={{frId}}&amp;sid={{consId}}&amp;name={{consNameFirst}}" target="_blank">
+                  <img src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy22/spread-the-word-ecard-icon.png" alt="Send E-card">
+                </a>
+	      </div>
               <div class="ym-pc-dashboard-email-challenge-buttons">
                 <a class="btn btn-md-wide btn-primary" ng-href="{{baseUrl}}#/email">
                   <strong>Send Email</strong>
