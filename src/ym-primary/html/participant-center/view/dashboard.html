@@ -3,7 +3,7 @@
     <div class="row ym-pc-dashboard-school-challange">
       <div ng-class="col-sm-12" ng-if="coordinatorMessage.message && coordinatorMessage.message != ''" ng-cloak> 
         <div class="hv-image" ng-init="hvImgNotesrc='note-peek.png';" ng-mouseover="hvImgNotesrc='note-peek-animated.gif';" ng-mouseout="hvImgNotesrc='note-peek.png';">
-	  <img class="ym-coordinator-message-monster" src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy22/teacher-note.png" alt="Teacher Note Sign">
+	  <img class="ym-coordinator-message-monster" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy22/teacher-note.png" alt="Teacher Note Sign">
         </div>
         <section class="ym-pc-dashboard-coordinators-message-section" aria-label="Note From Your Teacher">
 	  <div class="ym-pc-dashboard-section-header">
@@ -482,10 +482,10 @@
               </p>
               <div class="ym-pc-dashboard-email-challenge-images">
                 <a ng-href="{{baseUrl}}#/email">
-                  <img src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy22/spread-the-word-mail-icon.png" alt="Send Email">
+                  <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy22/spread-the-word-mail-icon.png" alt="Send Email">
                 </a> 
                 <a ng-href="https://tools.heart.org/aha_ym22{{tablePrefix == 'heartdev' ? '_dev' : (tablePrefix == 'heartnew' ? '_testing' : '')}}/?eid={{frId}}&amp;sid={{consId}}&amp;name={{consNameFirst}}" target="_blank">
-                  <img src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy22/spread-the-word-ecard-icon.png" alt="Send E-card">
+                  <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy22/spread-the-word-ecard-icon.png" alt="Send E-card">
                 </a>
 	      </div>
               <div class="ym-pc-dashboard-email-challenge-buttons">
@@ -515,7 +515,7 @@
 		  <img class="pc-livestream-hearts" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy21/{{hvImgLSHsrc}}" alt="Livestream Hearts">
 	        </span>
                 &nbsp;
-	        <img class="pc-livestream-character" src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy22/livestream-heading.png" alt="Livestream Icon">
+	        <img class="pc-livestream-character" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy22/livestream-heading.png" alt="Livestream Icon">
               </div>
               <div class="ym-pc-dashboard-livestream-buttons">
                 <a class="btn btn-md-wide btn-primary" ng-href="https://tiltify.com/aha/kids-heart-challengeamerican-heart-challenge-c4ba88cc-eefb-495f-8230-05fa82e1db98/start/ownership" target="_blank">
