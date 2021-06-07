@@ -320,28 +320,28 @@
             console.log('coor date', company.eventdate);
             console.log('coor location', company.eventlocationname);
 
-            if (company.coordinatorfirstname === "") {
-              var companyLead = '<p><strong>TBD</strong></p>' ;
-            } else {
+            if (company.coordinatorfirstname !== "") {
               var companyLead = '<p><a aria-label="Email Company Lead ' + company.coordinatorfirstname + ' ' + company.coordinatorlastname +'" href="mailto:' + company.coordinatoremail +'">' + company.coordinatorfirstname + ' ' + company.coordinatorlastname + '</a></p>' ;
+            } else {
+              var companyLead = '<p><strong>TBD</strong></p>' ;
             }
             $(companyLead).appendTo('.js--company-lead');
 
-            if (company.eventdate === "") {
-              var  eventDate = '<p><strong>TBD</strong></p>';
-            } else {
+            if (company.eventdate !== "") {
               var eventDateFormatted = moment(company.eventdate).format('MMMM D, YYYY');
               var  eventDate = '<p>' + eventDateFormatted + ' at ' + company.eventtime + '</p>';
+            } else {
+              var  eventDate = '<p><strong>TBD</strong></p>';
             }
             $(eventDate).appendTo('.js--event-date');
 
             var fieldDayDetails = '';
-            if (company.eventlocationname === "") {
-              fieldDayDetails += '<p>TBD</p>';
-              fieldDayDetails += '<p>TBD</p>';
-            } else {
+            if (company.eventlocationname !== "") {
               fieldDayDetails += '<p>' + company.eventlocationname + '</p>';
               fieldDayDetails += '<p>' + company.eventcity + ', ' + company.eventstate + '</p>';
+            } else {
+              fieldDayDetails += '<p>TBD</p>';
+              fieldDayDetails += '<p>TBD</p>';
             }
 
             $(fieldDayDetails).appendTo('.js--field-day-details');
