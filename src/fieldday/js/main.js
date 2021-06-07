@@ -316,6 +316,10 @@
 
             }
 
+            console.log('coor first name', company.coordinatorfirstname);
+            console.log('coor date', company.eventdate);
+            console.log('coor location', company.eventlocationname);
+
             if (company.coordinatorfirstname === "") {
               var companyLead = '<p><strong>TBD</strong></p>' ;
             } else {
@@ -337,7 +341,7 @@
               fieldDayDetails += '<p>TBD</p>';
             } else {
               fieldDayDetails += '<p>' + company.eventlocationname + '</p>';
-              Details += '<p>' + company.eventcity + ', ' + company.eventstate + '</p>';
+              fieldDayDetails += '<p>' + company.eventcity + ', ' + company.eventstate + '</p>';
             }
 
             $(fieldDayDetails).appendTo('.js--field-day-details');
