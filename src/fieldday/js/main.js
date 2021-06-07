@@ -232,7 +232,7 @@
             var company = cd.getCompanyByID(data, companyId);
             cd.displayCompanyInfo(company);
 
-            console.log('comany value: ' + company);
+            console.log('company value: ' + company);
 
           },
      		 });
@@ -349,6 +349,19 @@
             // var companyLocation = '<p>' + company.eventcity + ', ' + company.eventstate + '</p>'
             // $(companyLocation).appendTo('.js--company-location');
 
+          //TO DO - do we need to add all companies to the csv file? If so, we can remove the 'else' code below
+          } else {
+            var companyLead = '<p><strong>TBD</strong></p>' ;
+            $(companyLead).appendTo('.js--company-lead');
+
+            var eventDate = '<p><strong>TBD</strong></p>';
+            $(eventDate).appendTo('.js--event-date');
+
+            var fieldDayDetails = '';
+              fieldDayDetails += '<p>TBD</p>';
+              fieldDayDetails += '<p>TBD</p>';
+
+            $(fieldDayDetails).appendTo('.js--field-day-details');
           }
         }
 
