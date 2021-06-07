@@ -754,8 +754,7 @@ main > .container {
 
   .btn,
   a.btn {
-    width:150px;
-    
+   
     &,
     &:link,
     &:visited,
@@ -769,6 +768,17 @@ main > .container {
         padding: 7px 25px;
         margin: 0 10px;
       }
+    }
+    @media (min-width: $screen-sm-min) {
+      width: auto;
+    }
+
+    @media (min-width: $screen-md-min) {
+      width: auto;
+    }
+
+    @media (min-width: $screen-lg-min) {
+      width: 150px;
     }
   }
 }
