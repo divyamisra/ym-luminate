@@ -326,7 +326,7 @@
 
             var eventDateFormatted = moment(company.eventdate).format('MMMM D, YYYY');
 
-            var  eventDate = '<p><strong>' + eventDateFormatted + '<br>' + company.eventtime + '</strong></p>';
+            var  eventDate = '<p>' + eventDateFormatted + ' at ' + company.eventtime + '</p>';
             $(eventDate).appendTo('.js--event-date');
 
             var companyLocation = '<p>' + company.eventcity + ', ' + company.eventstate + '</p>'
