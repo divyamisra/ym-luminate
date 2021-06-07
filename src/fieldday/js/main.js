@@ -316,21 +316,34 @@
 
             }
 
-            var fieldDayDetails = '';
-            fieldDayDetails += '<p>' + company.eventlocationname + '</p>';
-            fieldDayDetails += '<p>' + company.eventcity + ', ' + company.eventstate + '</p>';
-            $(fieldDayDetails).appendTo('.js--field-day-details');
-
-            var companyLead = '<p><a aria-label="Email Company Lead ' + company.coordinatorfirstname + ' ' + company.coordinatorlastname +'" href="mailto:' + company.coordinatoremail +'">' + company.coordinatorfirstname + ' ' + company.coordinatorlastname + '</a></p>' ;
+            if (company.coordinatorfirstname === "") {
+              var companyLead = '<p><strong>TBD</strong></p>' ;
+            } else {
+              var companyLead = '<p><a aria-label="Email Company Lead ' + company.coordinatorfirstname + ' ' + company.coordinatorlastname +'" href="mailto:' + company.coordinatoremail +'">' + company.coordinatorfirstname + ' ' + company.coordinatorlastname + '</a></p>' ;
+            }
             $(companyLead).appendTo('.js--company-lead');
 
-            var eventDateFormatted = moment(company.eventdate).format('MMMM D, YYYY');
-
-            var  eventDate = '<p>' + eventDateFormatted + ' at ' + company.eventtime + '</p>';
+            if (company.eventdate === "") {
+              var  eventDate = '<p><strong>TBD</strong></p>';
+            } else {
+              var eventDateFormatted = moment(company.eventdate).format('MMMM D, YYYY');
+              var  eventDate = '<p>' + eventDateFormatted + ' at ' + company.eventtime + '</p>';
+            }
             $(eventDate).appendTo('.js--event-date');
 
-            var companyLocation = '<p>' + company.eventcity + ', ' + company.eventstate + '</p>'
-            $(companyLocation).appendTo('.js--company-location');
+            var fieldDayDetails = '';
+            if (company.eventlocationname === "") {
+              fieldDayDetails += '<p>TBD</p>';
+              fieldDayDetails += '<p>TBD</p>';
+            } else {
+              fieldDayDetails += '<p>' + company.eventlocationname + '</p>';
+              Details += '<p>' + company.eventcity + ', ' + company.eventstate + '</p>';
+            }
+
+            $(fieldDayDetails).appendTo('.js--field-day-details');
+
+            // var companyLocation = '<p>' + company.eventcity + ', ' + company.eventstate + '</p>'
+            // $(companyLocation).appendTo('.js--company-location');
 
           }
         }
