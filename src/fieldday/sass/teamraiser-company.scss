@@ -53,6 +53,12 @@
     .nav-item {
       width: 33.33%;
 
+      .nav-link {
+        @include media-breakpoint-down(md) {
+          font-size: 1.75rem;
+        }
+      }
+
       a span:first-of-type {
         display: block;
         @include media-breakpoint-down(lg) {
@@ -63,11 +69,6 @@
         display: none;
         @include media-breakpoint-down(lg) {
           display: block;
-        }
-      }
-      a span {
-        @include media-breakpoint-down(md) {
-          font-size: 1.75rem;
         }
       }
     }
