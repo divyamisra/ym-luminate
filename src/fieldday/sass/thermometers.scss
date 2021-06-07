@@ -35,7 +35,7 @@
   }
 }
 
-.pg_personal, .pg_team, .pg_company {
+.pg_personal, .pg_team {
   .thermometer {
     margin: 40px 0 0;
     @include media-breakpoint-up(md) {
@@ -45,5 +45,18 @@
 
   .thermometer-inner {
     height: 5px;
+  }
+}
+
+.pg_company {
+  .thermometer {
+    margin: 40px 0 0;
+    @include media-breakpoint-up(md) {
+     margin-top: 55px;
+    }
+  }
+
+  .thermometer-inner {
+    height: 40px;
   }
 }
