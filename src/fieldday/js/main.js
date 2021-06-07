@@ -351,10 +351,10 @@
 
           //TO DO - do we need to add all companies to the csv file? If so, we can remove the 'else' code below
           } else {
-            var companyLead = '<p><strong>TBD</strong></p>' ;
+            var companyLead = '<p>TBD</p>' ;
             $(companyLead).appendTo('.js--company-lead');
 
-            var eventDate = '<p><strong>TBD</strong></p>';
+            var eventDate = '<p>TBD</p>';
             $(eventDate).appendTo('.js--event-date');
 
             var fieldDayDetails = '';

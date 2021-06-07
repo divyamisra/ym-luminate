@@ -50,6 +50,27 @@
       width: 260px;
     }
 
+    .nav-item {
+      width: 33.33%;
+
+      a span:first-of-type {
+        display: block;
+        @include media-breakpoint-up(lg) {
+          display: none;
+        }
+      }
+      a span:last-of-type {
+        display: none;
+        @include media-breakpoint-up(lg) {
+          display: block;
+        }
+      }
+      a span {
+        @include media-breakpoint-up(md) {
+          font-size: 1.75rem;
+        }
+      }
+    }
   }
 
   .company-message {
