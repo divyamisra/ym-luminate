@@ -3326,12 +3326,8 @@
                        });
 
                        // Set default donation amount
-                      $('.donation-level-container input').each(function() {
-                        if($(this).prop("checked") == true){
-                          $(this).parent().parent().find('.donation-level-amount-container').addClass('active');
-                        }
-                      });
-                      //  $('input[name="personalDonAmt"]').eq(1).click().prop('checked', true).closest('.donation-amount-btn').addClass('active');
+    
+                       $('input[name="personalDonAmt"]').eq(1).click().prop('checked', true).closest('.donation-amount-btn').addClass('active');
                        // $('.js--don-amt').text($('.form-check-label').eq(1).text().trim());
 
 
@@ -4175,6 +4171,12 @@ cd.getTeamHonorRoll();
       $('.external-payment').on('click', function (e) {
         $('#responsive_payment_typecc_numbername').removeAttr('data-parsley-required');
         $('#responsive_payment_typecc_cvvname').removeAttr('data-parsley-required');
+      });
+
+      $('.donation-level-container input').each(function() {
+        if($(this).prop("checked") == true){
+          $(this).parent().parent().find('.donation-level-amount-container').addClass('active');
+        }
       });
 
       $('#pstep_finish').on('click', function (e) {
