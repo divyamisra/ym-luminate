@@ -3326,7 +3326,12 @@
                        });
 
                        // Set default donation amount
-                       $('input[name="personalDonAmt"]').eq(1).click().prop('checked', true).closest('.donation-amount-btn').addClass('active');
+                      $('.donation-level-container input').each(function() {
+                        if($(this).prop("checked") == true){
+                          $(this).parent().parent().find('.donation-level-amount-container').addClass('active');
+                        }
+                      });
+                      //  $('input[name="personalDonAmt"]').eq(1).click().prop('checked', true).closest('.donation-amount-btn').addClass('active');
                        // $('.js--don-amt').text($('.form-check-label').eq(1).text().trim());
 
 
