@@ -293,8 +293,9 @@
 
                 if ( eventMapLink.indexOf("http://") == 0 || eventMapLink.indexOf("https://") == 0 || eventMapLink.indexOf("www") == 0)  {
 
-                  var companyMap = '<a target="_blank" aria-title="Google map for '+ company.companyname +' location" href="' + eventMapLink + '">' + '<p>' + company.eventlocationname + '</p><p>' + company.eventcity + ', ' + company.eventstate + '</p>' + '</a>';
-                  companyMap.appendTo('.js--company-link');
+                  var companyMap = '<a target="_blank" aria-title="Google map for '+ company.companyname +' location" href="' + eventMapLink + '">' + company.companyname + '</a>';
+                  $('.js--company-link').html(companyMap);
+
                 }
 
               } else {
@@ -306,9 +307,9 @@
 
                   var eventMapLink = 'https://www.google.com/maps/place/' + companyAddress;
 
-                  var companyMap = '<a target="_blank" href="' + eventMapLink + '">' + '<p>' + company.eventlocationname + '</p><p>' + company.eventcity + ', ' + company.eventstate + '</p>' + '</a>';
+                  var companyMap = '<a target="_blank" href="' + eventMapLink + '">' + company.companyname + '</a>';
 
-                  companyMap.appendTo('.js--company-link');
+                  $('.js--company-link').html(companyMap);
                 }
 
               }
