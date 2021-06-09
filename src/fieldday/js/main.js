@@ -293,9 +293,8 @@
 
                 if ( eventMapLink.indexOf("http://") == 0 || eventMapLink.indexOf("https://") == 0 || eventMapLink.indexOf("www") == 0)  {
 
-                  var companyMap = '<a target="_blank" aria-title="Google map for '+ company.companyname +' location" href="' + eventMapLink + '">' + company.companyname + '</a>';
-                  $('.js--company-link').html(companyMap);
-
+                  var companyMap = '<a target="_blank" aria-title="Google map for '+ company.companyname +' location" href="' + eventMapLink + '">' + '<p>' + company.eventlocationname + '</p><p>' + company.eventcity + ', ' + company.eventstate + '</p>' + '</a>';
+                  companyMap.appendTo('.js--company-link');
                 }
 
               } else {
@@ -309,7 +308,7 @@
 
                   var companyMap = '<a target="_blank" href="' + eventMapLink + '">' + '<p>' + company.eventlocationname + '</p><p>' + company.eventcity + ', ' + company.eventstate + '</p>' + '</a>';
 
-                  $('.js--company-link').html(companyMap);
+                  companyMap.appendTo('.js--company-link');
                 }
 
               }
