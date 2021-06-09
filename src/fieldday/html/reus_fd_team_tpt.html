@@ -18,15 +18,9 @@
                         <div class="sidebar__icon">
                           <i class="far fa-flag" aria-hidden="true"></i>
                         </div>
-                        <div class="sidebar__details js--field-day-details">
-                          <p><strong>Field Day Details:</strong></p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="sidebar__icon">
-                          <i class="fal fa-clock" aria-hidden="true"></i>
-                        </div>
-                        <div class="sidebar__details js--event-date">
+                        <div class="sidebar__details js--company-location">
+                          <p><strong>Company:</strong></p>
+                          <p class="js--company-link"></p>
                         </div>
                     </li>
                     <li>
@@ -39,11 +33,18 @@
                     </li>
                     <li>
                       <div class="sidebar__icon">
+                        <i class="fal fa-clock" aria-hidden="true"></i>
+                      </div>
+                      <div class="sidebar__details js--event-date">
+                        <p><strong>Field Day Details:</strong></p>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="sidebar__icon">
                         <i class="fal fa-map-marker-alt" aria-hidden="true"></i>
                       </div>
-                      <div class="sidebar__details js--company-location">
-                        <p><strong>Company Location:</strong></p>
-                        <p class="js--company-link"></p>
+                      <div class="sidebar__details js--field-day-details">
+                        <p><strong>Field Day Location:</strong></p>
                       </div>
                     </li>
                 </ul>
@@ -66,7 +67,10 @@
             <!-- TEAM PAGE INFO BOX -->
             <div class="tr-page-info bg-white information-box js--information-box">
               <div class="information-box__name box-shadow">
-                <h1>[[E43:[[S334:fr_id]]:name:[[S334:team_id]]]]</h1>
+                <div>
+                  <p class="m-0"><strong>Team:<strong></p>
+                  <h1>[[E43:[[S334:fr_id]]:name:[[S334:team_id]]]]</h1>
+                </div>
                 <div class="information-box__team-members">[[E43:0:num-members:[[S334:team_id]]]] Members</div>
               </div>
                 <!--/.information-box__name-->
