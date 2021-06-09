@@ -307,7 +307,7 @@
 
                   var eventMapLink = 'https://www.google.com/maps/place/' + companyAddress;
 
-                  var companyMap = '<a target="_blank" href="' + eventMapLink + '">' + company.companyname + '</a>';
+                  var companyMap = '<a target="_blank" href="' + eventMapLink + '">' + '<p>' + company.eventlocationname + '</p><p>' + company.eventcity + ', ' + company.eventstate + '</p>' + '</a>';
 
                   $('.js--company-link').html(companyMap);
                 }
