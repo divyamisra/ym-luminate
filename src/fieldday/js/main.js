@@ -293,8 +293,8 @@
 
                 if ( eventMapLink.indexOf("http://") == 0 || eventMapLink.indexOf("https://") == 0 || eventMapLink.indexOf("www") == 0)  {
 
-                  var companyMap = '<a target="_blank" aria-title="Google map for '+ company.companyname +' location" href="' + eventMapLink + '">' + company.companyname + '</a>';
-                  $('.js--company-link').html(companyMap);
+                  var companyMap = '"<a target="_blank" aria-title="Google map for '+ company.companyname +' location" href="' + eventMapLink + '">' + '<p>' + company.eventlocationname + '</p> <p>' + company.eventcity + ', ' + company.eventstate + '</p>' + '</a>"';
+                  $(companyMap).appendTo('.js--company-link')
 
                 }
 
@@ -307,9 +307,11 @@
 
                   var eventMapLink = 'https://www.google.com/maps/place/' + companyAddress;
 
-                  var companyMap = '<a target="_blank" href="' + eventMapLink + '">' + company.companyname + '</a>';
+                  var companyMap = '"<a target="_blank" href="' + eventMapLink + '">' + '<p>' + company.eventlocationname + '</p> <p>' + company.eventcity + ', ' + company.eventstate + '</p>' + '</a>"';
 
-                  $('.js--company-link').html(companyMap);
+                  $(companyMap).appendTo('.js--company-link')
+
+                  // $('.js--company-link').html(companyMap);
                 }
 
               }
@@ -322,28 +324,20 @@
 
             if (company.coordinatorfirstname !== "") {
               var companyLead = '<p><a aria-label="Email Company Lead ' + company.coordinatorfirstname + ' ' + company.coordinatorlastname +'" href="mailto:' + company.coordinatoremail +'">' + company.coordinatorfirstname + ' ' + company.coordinatorlastname + '</a></p>' ;
-            } else {
-              var companyLead = '<p><strong>TBD</strong></p>' ;
-            }
+            } 
             $(companyLead).appendTo('.js--company-lead');
 
             if (company.eventdate !== "") {
               var eventDateFormatted = moment(company.eventdate).format('MMMM D, YYYY');
               var  eventDate = '<p>' + eventDateFormatted + ' at ' + company.eventtime + '</p>';
-            } else {
-              var  eventDate = '<p><strong>TBD</strong></p>';
-            }
+            } 
             $(eventDate).appendTo('.js--event-date');
 
             var fieldDayDetails = '';
             if (company.eventlocationname !== "") {
               fieldDayDetails += '<p>' + company.eventlocationname + '</p>';
               fieldDayDetails += '<p>' + company.eventcity + ', ' + company.eventstate + '</p>';
-            } else {
-              fieldDayDetails += '<p>TBD</p>';
-              fieldDayDetails += '<p>TBD</p>';
-            }
-
+            } 
             $(fieldDayDetails).appendTo('.js--field-day-details');
 
             // var companyLocation = '<p>' + company.eventcity + ', ' + company.eventstate + '</p>'
