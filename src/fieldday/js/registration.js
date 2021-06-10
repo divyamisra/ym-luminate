@@ -781,6 +781,9 @@
               $('form[name=FriendraiserFind]').prepend('<input type="hidden" id="teamCaptainSessionVar" name="s_teamCaptain" value="">');
               $('form[name=FriendraiserFind]').prepend('<input type="hidden" id="teamNameSessionVar" name="s_teamName" value="' + $('input#fr_team_name').val() + '">');
               $('form[name=FriendraiserFind]').prepend('<input type="hidden" id="teamGoalSessionVar" name="s_teamGoal" value="' + $('input#fr_team_goal').val() + '">');
+              if (regCompanyName === "") {
+                $('form[name=FriendraiserFind]').prepend('<input type="hidden" id="regCompanyNameSessionVar" name="s_regCompanyName" value="' + regCompanyName + '">');
+              }
                 if ($('form[name=FriendraiserFind]').valid()) {
                   return true;
                 } else {
