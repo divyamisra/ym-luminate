@@ -658,7 +658,8 @@
 
         // ptype page
         if ($('#participation_options_page').length > 0) {
-	    $('#part_type_campaign_banner_container').prepend(evDateYear+" ");
+      $('#part_type_campaign_banner_container').prepend(evDateYear+" ");
+      //Add company name
 	    $('#part_type_fundraising_goal_input_container').prepend("<h2>Set Your Personal Fundraising Goal!</h2>")
             $('div#part_type_campaign_banner_container').replaceWith(function() {
               console.log('reg title 3', $(this).html())
@@ -777,6 +778,7 @@
                         localStorage.companySelect = "";
                     }
                 }
+                //grab company name and id and set as hidden input
                 //store off personal goal in sess var by adding to action url
                 $('form[name=FriendraiserFind]').prepend('<input type="hidden" id="teamCaptainSessionVar" name="s_teamCaptain" value="">');
                 $('form[name=FriendraiserFind]').prepend('<input type="hidden" id="teamNameSessionVar" name="s_teamName" value="' + $('input#fr_team_name').val() + '">');
