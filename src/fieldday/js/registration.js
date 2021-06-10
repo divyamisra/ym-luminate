@@ -19,9 +19,11 @@
         var subSrcCode = luminateExtend.global.subSrcCode;
         var evID = $('body').data('fr-id') ? $('body').data('fr-id') : null;
         var consID = $('body').data('cons-id') ? $('body').data('cons-id') : null;
-	var evDate = $('body').data('event-date') ? $('body').data('event-date') : null;
-	var evDateYear = /(\d{4})/.test(evDate) ? RegExp.$1 : '2020';
-	var coordEmail = $('input[name=coordinator_email]').val();
+        var evDate = $('body').data('event-date') ? $('body').data('event-date') : null;
+        var evDateYear = /(\d{4})/.test(evDate) ? RegExp.$1 : '2020';
+        var coordEmail = $('input[name=coordinator_email]').val();
+        var regCompanyId = $('body').data("companyid");
+        var regCompanyName = $('body').data("companyname");
 
 
         var currentUrl = window.location.href;
@@ -658,7 +660,6 @@
         if ($('#participation_options_page').length > 0) {
       $('#part_type_campaign_banner_container').prepend(evDateYear+" ");
       //Add company name
-      var regCompanyName = $('body').data("companyname");
 	    $('#part_type_fundraising_goal_input_container').prepend("<h2>Set Your Personal Fundraising Goal!</h2>")
         $('div#part_type_campaign_banner_container').replaceWith(function() {
             return '<h2 class="text-center">'+regCompanyName+'</h2><h1 class="campaign-banner-container" id="part_type_campaign_banner_container">' + $(this).html() + '</h1>';
@@ -697,7 +698,6 @@
                     localStorage.companySelect = "";
                 }
             });
-            var regCompanyId = $('body').data('companyid');
             $('select[name=fr_co_list]').val(regCompanyId);
             $('.list-component-cell-column-join-link a').click(function(){
                 var compSel = $(this).closest('.list-component-row').find('.list-component-cell-column-company-name .list-component-cell-data-text').html();
