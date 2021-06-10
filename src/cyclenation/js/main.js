@@ -508,6 +508,19 @@
       });
     };
 
+     // EXPANDABLE DONOR ROLL
+     $('.js--honor-roll-expander').on('click', function (e) {
+      if ($(this).children('i').hasClass('fa-chevron-down')) {
+          $(this).children('i').removeClass('fa-chevron-down');
+          $(this).children('i').addClass('fa-chevron-up');
+      } else {
+          $(this).children('i').removeClass('fa-chevron-up');
+          $(this).children('i').addClass('fa-chevron-down');
+      }
+
+      $('.hidden-donor-row').slideToggle(200);
+    });
+
     cd.reorderPageForMobile = function () {
       // Reorganize page for mobile views
       if (screenWidth <= 767) {
