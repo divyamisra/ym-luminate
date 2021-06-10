@@ -812,6 +812,9 @@
 		$('.campaign-banner-container').hide();
         $('#team_find_new_team_attributes').before($('#team_find_new_team_company'));
         $('.js__start-team-company-name').text(regCompanyName)
+                if(regCompanyId !== "") {
+                  $('select[name=regCompanyId]').val(regCompanyId);
+                }
                 if ($('#team_find_existing').length > 0) {
 
                     // BEGIN new team find form
