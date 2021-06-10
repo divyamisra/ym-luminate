@@ -697,6 +697,8 @@
                     localStorage.companySelect = "";
                 }
             });
+            var regCompanyId = $('body').data('companyid');
+            $('select[name=fr_co_list]').val(regCompanyId);
             $('.list-component-cell-column-join-link a').click(function(){
                 var compSel = $(this).closest('.list-component-row').find('.list-component-cell-column-company-name .list-component-cell-data-text').html();
                 if (compSel.indexOf("AT&amp;T") > -1 || compSel.indexOf("AT&T") > -1) {
@@ -709,82 +711,82 @@
             });
 
             $('form').validate({
-		focusInvalid: false,
-		invalidHandler: function(form, validator) {
-			if (!validator.numberOfInvalids())
-				return;
+              focusInvalid: false,
+              invalidHandler: function(form, validator) {
+                if (!validator.numberOfInvalids())
+                  return;
 
-			$('html, body').animate({
-				scrollTop: $(validator.errorList[0].element).offset().top
-			}, 500);
-		},
-		errorPlacement: function(error, element) {
-			if ($(element).attr("name") == "fr_part_radio") {
-				$('#part_type_selection_container').append(error).css({"display":"block","text-align":"left"});
-			} else {
-				if ($(element).attr("name").indexOf("donation_level_form_input") > -1) {
-					$('.enterAmt-other').after(error);
-				} else {
-					var placement = $(element).data('error');
-					if (placement) {
-						$(placement).append(error)
-					} else {
-						error.insertAfter(element);
-					}
-				}
-			}
+                $('html, body').animate({
+                  scrollTop: $(validator.errorList[0].element).offset().top
+                }, 500);
+              },
+              errorPlacement: function(error, element) {
+                if ($(element).attr("name") == "fr_part_radio") {
+                  $('#part_type_selection_container').append(error).css({"display":"block","text-align":"left"});
+                } else {
+                  if ($(element).attr("name").indexOf("donation_level_form_input") > -1) {
+                    $('.enterAmt-other').after(error);
+                  } else {
+                    var placement = $(element).data('error');
+                    if (placement) {
+                      $(placement).append(error)
+                    } else {
+                      error.insertAfter(element);
+                    }
+                  }
                 }
+              }
             });
             $.validator.addMethod("validGoal",function(value, element) {
-                    value = parseInt(value.replace("$","").replace(",",""));
-                    if ($('input[name^=fr_team_goal]') && value < 1) {
-                        return false;
-                    } else {
-                        return true;
-                    }
-                }, "The team goal should be greater than $0."
+              value = parseInt(value.replace("$","").replace(",",""));
+              if ($('input[name^=fr_team_goal]') && value < 1) {
+                  return false;
+              } else {
+                  return true;
+              }
+            }, "The team goal should be greater than $0."
             );
 
-	    $('select#fr_co_list').addClass("required").attr("title","Team Company is required");
-	    $('select#fr_co_list option:first').attr("value","");
+            $('select#fr_co_list').addClass("required").attr("title","Team Company is required");
+            $('select#fr_co_list option:first').attr("value","");
             $('#team_find_new_company_selection_container label').before('<span class="field-required" id="team_find_new_company_selection_required" aria-hidden="true"></span>');
 
-	    $('input#fr_team_goal').addClass("validGoal required");
-	    $('span.field-required').closest('.form-content').find('input, select').addClass("required");
+            $('input#fr_team_goal').addClass("validGoal required");
+            $('span.field-required').closest('.form-content').find('input, select').addClass("required");
 
-	    $('input.required').each(function(){
+            $('input.required').each(function(){
 
-		    var label = $(this).closest('.input-container').find('.input-label').html();
-		    if (label != undefined) {
-			    if (label.indexOf("Team Fundraising Goal") > -1) {
-				    $(this).attr("title","The team goal should be greater than $0.");
-			    } else {
-				    $(this).attr("title",label.replace(":","") + " is required");
-			    }
-		    }
-	    });
-
-	    $('button.next-step').click(function(){
-                if ($('select[name=fr_co_list]').length) {
-                    if ($('select[name=fr_co_list] option:selected').text().indexOf("AT&T") > -1) {
-                        console.log("found AT&T 6");
-                        localStorage.companySelect = "AT&T";
-                    } else {
-                        console.log("reset AT&T 6");
-                        localStorage.companySelect = "";
-                    }
+              var label = $(this).closest('.input-container').find('.input-label').html();
+              if (label != undefined) {
+                if (label.indexOf("Team Fundraising Goal") > -1) {
+                  $(this).attr("title","The team goal should be greater than $0.");
+                } else {
+                  $(this).attr("title",label.replace(":","") + " is required");
                 }
-                //grab company name and id and set as hidden input
-                //store off personal goal in sess var by adding to action url
-                $('form[name=FriendraiserFind]').prepend('<input type="hidden" id="teamCaptainSessionVar" name="s_teamCaptain" value="">');
-                $('form[name=FriendraiserFind]').prepend('<input type="hidden" id="teamNameSessionVar" name="s_teamName" value="' + $('input#fr_team_name').val() + '">');
-                $('form[name=FriendraiserFind]').prepend('<input type="hidden" id="teamGoalSessionVar" name="s_teamGoal" value="' + $('input#fr_team_goal').val() + '">');
-		if ($('form[name=FriendraiserFind]').valid()) {
-	                return true;
-		} else {
-			return false;
-		}
+              }
             });
+
+	          $('button.next-step').click(function(){
+              if ($('select[name=fr_co_list]').length) {
+                  if ($('select[name=fr_co_list] option:selected').text().indexOf("AT&T") > -1) {
+                      console.log("found AT&T 6");
+                      localStorage.companySelect = "AT&T";
+                  } else {
+                      console.log("reset AT&T 6");
+                      localStorage.companySelect = "";
+                  }
+              }
+              //grab company name and id and set as hidden input
+              //store off personal goal in sess var by adding to action url
+              $('form[name=FriendraiserFind]').prepend('<input type="hidden" id="teamCaptainSessionVar" name="s_teamCaptain" value="">');
+              $('form[name=FriendraiserFind]').prepend('<input type="hidden" id="teamNameSessionVar" name="s_teamName" value="' + $('input#fr_team_name').val() + '">');
+              $('form[name=FriendraiserFind]').prepend('<input type="hidden" id="teamGoalSessionVar" name="s_teamGoal" value="' + $('input#fr_team_goal').val() + '">');
+                if ($('form[name=FriendraiserFind]').valid()) {
+                  return true;
+                } else {
+                  return false;
+                }
+                });
 
             if (regType === 'startTeam') {
     		        $('.campaign-banner-container').hide();
@@ -804,7 +806,8 @@
                 $('#fr_team_name').attr('title','Team Name is required');
             } else if (regType === 'joinTeam') {
 		$('.campaign-banner-container').hide();
-    		$('#team_find_new_team_attributes').before($('#team_find_new_team_company'));
+        $('#team_find_new_team_attributes').before($('#team_find_new_team_company'));
+        $('.js__start-team-company-name').text(regCompanyName)
                 if ($('#team_find_existing').length > 0) {
 
                     // BEGIN new team find form
