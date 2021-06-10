@@ -662,7 +662,7 @@
 	    $('#part_type_fundraising_goal_input_container').prepend("<h2>Set Your Personal Fundraising Goal!</h2>")
             $('div#part_type_campaign_banner_container').replaceWith(function() {
               console.log('reg title 3', $(this).html())
-                return '<h1 class="campaign-banner-container" id="part_type_campaign_banner_container">' + $(this).html() + '</h1><p>'+regCompanyName+'</p>';
+                return '<h1 class="campaign-banner-container" id="part_type_campaign_banner_container">' + $(this).html() + '</h1><h2 class="text-center">'+regCompanyName+'</h2>';
             });
             $('#pt_title_container').replaceWith(function() {
               console.log('reg title 4', $(this).html())
