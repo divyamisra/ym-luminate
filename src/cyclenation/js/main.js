@@ -3257,6 +3257,7 @@
       }
     }
     if ($('body').is('.pg_personal')) {
+      console.log('image src', $('.sidebar-hero').attr('src'));
        // Personal Page
        var progress = $('#progress-amount').text();
        var goal = $('#goal-amount').text();
