@@ -782,6 +782,7 @@
               $('form[name=FriendraiserFind]').prepend('<input type="hidden" id="teamNameSessionVar" name="s_teamName" value="' + $('input#fr_team_name').val() + '">');
               $('form[name=FriendraiserFind]').prepend('<input type="hidden" id="teamGoalSessionVar" name="s_teamGoal" value="' + $('input#fr_team_goal').val() + '">');
               if (regCompanyName === "") {
+                regCompanyName = $('.app_tr_registration #fr_co_list option:selected').text();
                 $('form[name=FriendraiserFind]').prepend('<input type="hidden" id="regCompanyNameSessionVar" name="s_regCompanyName" value="' + regCompanyName + '">');
               }
                 if ($('form[name=FriendraiserFind]').valid()) {
