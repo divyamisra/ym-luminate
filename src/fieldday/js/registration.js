@@ -783,7 +783,7 @@
               $('form[name=FriendraiserFind]').prepend('<input type="hidden" id="teamGoalSessionVar" name="s_teamGoal" value="' + $('input#fr_team_goal').val() + '">');
               if (regCompanyName === "") {
                 regCompanyName = $('.app_tr_registration #fr_co_list option:selected').text();
-                $('form[name=FriendraiserFind]').prepend('<input type="hidden" id="regCompanyNameSessionVar" name="s_regCompanyName" value="' + regCompanyName + '">');
+                $('form[name=FriendraiserFind]').prepend('<input type="hidden" id="regCompanyNameSessionVar" name="s_companyName" value="' + regCompanyName + '">');
               }
                 if ($('form[name=FriendraiserFind]').valid()) {
                   return true;
