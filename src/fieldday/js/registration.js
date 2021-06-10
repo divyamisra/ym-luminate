@@ -660,14 +660,12 @@
       //Add company name
       var regCompanyName = $('body').data("companyname");
 	    $('#part_type_fundraising_goal_input_container').prepend("<h2>Set Your Personal Fundraising Goal!</h2>")
-            $('div#part_type_campaign_banner_container').replaceWith(function() {
-              console.log('reg title 3', $(this).html())
-                return '<h1 class="campaign-banner-container" id="part_type_campaign_banner_container">' + $(this).html() + '</h1><h2 class="text-center">'+regCompanyName+'</h2>';
-            });
-            $('#pt_title_container').replaceWith(function() {
-              console.log('reg title 4', $(this).html())
-                return '<h2 id="pt_title_container" class="section-header-text">' + $(this).html() + '</h2>';
-            });
+        $('div#part_type_campaign_banner_container').replaceWith(function() {
+            return '<h2 class="text-center">'+regCompanyName+'</h2><h1 class="campaign-banner-container" id="part_type_campaign_banner_container">' + $(this).html() + '</h1>';
+        });
+        $('#pt_title_container').replaceWith(function() {
+            return '<h2 id="pt_title_container" class="section-header-text">' + $(this).html() + '</h2>';
+        });
 
  	    $('#disc_code_container').append("<div><small>Is your company paying for your registration fee? Please enter your company code below.</small></div>")
         }
@@ -675,8 +673,7 @@
         // reg page
         if ($('#registration_options_page').length > 0) {
             $('#registration_options_page .header-container .campaign-banner-container').replaceWith(function() {
-              console.log('reg title 5', $(this))
-                return '<h1 class="campaign-banner-container">' + $(this).html() + '</h1>';
+                return '<h2 class="text-center">'+regCompanyName+'<h1 class="campaign-banner-container">' + $(this).html() + '</h1>';
             });
             $('#title_container').replaceWith('<h2 class="ObjTitle" id="title_container">Tell us about you:</h2>');
         }
@@ -1512,6 +1509,7 @@
             $('#progressText1, #progressText2').hide();
             $('.p-bar-step-1, .p-bar-step-2').css('background', '#f18b21');
             $('h3#title_container').replaceWith('<h1 class="ObjTitle" id="title_container">You are registering for:</h1>');
+            $('.campaign-banner-container').prepend('<h1>'+regCompanyName+'</h1>');
         }
         $('#sel_type_container').parent().addClass('aural-only');
 
