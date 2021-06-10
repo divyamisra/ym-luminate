@@ -642,14 +642,12 @@
             $('#janrainModal img').attr('alt', 'Close social login lightbox');
 
             $('div#user_type_campaign_banner_container').replaceWith(function() {
-                console.log('reg title 1', $(this))
                 return '<h1 class="campaign-banner-container" id="user_type_campaign_banner_container">' + $(this).html() + '</h1>';
             });
         }
         if ($('#reg_payment_page').length > 0) {
             $('.custom-progress-bar').hide();
             $('div#reg_payment_campaign_banner_container').replaceWith(function() {
-                console.log('reg title 2', $(this))
                 return '<h1 class="campaign-banner-container" id="reg_payment_campaign_banner_container">' + $(this).html() + '</h1>';
             });
             $('h3#title_container').replaceWith('<h2 class="ObjTitle" id="title_container">Submit Payment</h2>');
@@ -660,10 +658,11 @@
         if ($('#participation_options_page').length > 0) {
       $('#part_type_campaign_banner_container').prepend(evDateYear+" ");
       //Add company name
+      var regCompanyName = $('body').data("companyname");
 	    $('#part_type_fundraising_goal_input_container').prepend("<h2>Set Your Personal Fundraising Goal!</h2>")
             $('div#part_type_campaign_banner_container').replaceWith(function() {
               console.log('reg title 3', $(this).html())
-                return '<h1 class="campaign-banner-container" id="part_type_campaign_banner_container">' + $(this).html() + '</h1>';
+                return '<h1 class="campaign-banner-container" id="part_type_campaign_banner_container">' + $(this).html() + '</h1><p>'+regCompanyName+'</p>';
             });
             $('#pt_title_container').replaceWith(function() {
               console.log('reg title 4', $(this).html())
