@@ -90,6 +90,7 @@ angular.module 'ahaLuminateControllers'
                     $scope.schoolChallenges.push
                       id: 'student'
                       label: 'Individual Challenge Completed'
+                      goal: 'You raised more than your goal!'
                       earned: true
             else
               $scope.companyProgress.schoolYears = 0
@@ -147,6 +148,7 @@ angular.module 'ahaLuminateControllers'
             $scope.schoolChallenges.push
               id: 'school'
               label: 'School Challenge Completed'
+              goal: 'Your school raised more than it\'s goal and earned the ' + $scope.companyProgress.schoolChallenge
               earned: true
                 
       setParticipantProgress = (amountRaised, goal) ->
