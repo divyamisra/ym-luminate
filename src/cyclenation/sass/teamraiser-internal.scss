@@ -1266,13 +1266,12 @@
       display: inline;
     }
   }
-}
-
-.pg_internal.mobile .donation-form-content div:nth-of-type(3) .html-caption-container {
-  width: 100%; 
+  .mobile div.html-caption-container {
+    width: 100%!important;
     h1 {
       word-wrap: break-word;
     }
+  }
 }
 
 .mobile.donation .internal-page {

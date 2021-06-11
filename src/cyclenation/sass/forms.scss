@@ -47,6 +47,11 @@
     }
   }
 }
+.invalid-feedback {
+  &.filled {
+    display:block;
+  }
+} 
 // .has-success input,
 // .has-success select,
 // input.parsley-success,

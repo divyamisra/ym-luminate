@@ -508,6 +508,19 @@
       });
     };
 
+     // EXPANDABLE DONOR ROLL
+     $('.js--honor-roll-expander').on('click', function (e) {
+      if ($(this).children('i').hasClass('fa-chevron-down')) {
+          $(this).children('i').removeClass('fa-chevron-down');
+          $(this).children('i').addClass('fa-chevron-up');
+      } else {
+          $(this).children('i').removeClass('fa-chevron-up');
+          $(this).children('i').addClass('fa-chevron-down');
+      }
+
+      $('.hidden-donor-row').slideToggle(200);
+    });
+
     cd.reorderPageForMobile = function () {
       // Reorganize page for mobile views
       if (screenWidth <= 767) {
@@ -3259,6 +3272,7 @@
       }
     }
     if ($('body').is('.pg_personal')) {
+      console.log('image src', $('.sidebar-hero').attr('src'));
        // Personal Page
        var progress = $('#progress-amount').text();
        var goal = $('#goal-amount').text();
@@ -3341,6 +3355,7 @@
                        });
 
                        // Set default donation amount
+    
                        $('input[name="personalDonAmt"]').eq(1).click().prop('checked', true).closest('.donation-amount-btn').addClass('active');
                        // $('.js--don-amt').text($('.form-check-label').eq(1).text().trim());
 
@@ -4185,6 +4200,12 @@ cd.getTeamHonorRoll();
       $('.external-payment').on('click', function (e) {
         $('#responsive_payment_typecc_numbername').removeAttr('data-parsley-required');
         $('#responsive_payment_typecc_cvvname').removeAttr('data-parsley-required');
+      });
+
+      $('.donation-level-container input').each(function() {
+        if($(this).prop("checked") == true){
+          $(this).parent().parent().find('.donation-level-amount-container').addClass('active');
+        }
       });
 
       $('#pstep_finish').on('click', function (e) {
