@@ -25,16 +25,22 @@ body.pg-company {
 		    margin: 10px auto 0;
 		}
 	}
+	.challenge-ice {
+		background: #fff url('../image/fy22/school_challenge_splash.jpg') no-repeat center bottom / 100% 100%;
+	}
 	.challenge-slime {
-		background: #fff url('../image/school_challenge_1_alt.png') no-repeat center bottom / 100% 100%;
+		background: #fff url('../image/fy22/school_challenge_ooze.jpg') no-repeat center bottom / 100% 100%;
 	}
 	.challenge-pie {
-		background: #fff url('../image/school_challenge_2_alt.png') no-repeat center bottom / 100% 100%;
+		background: #fff url('../image/fy22/school_challenge_splat.jpg') no-repeat center bottom / 100% 100%;
 	}
 	.challenge-activity {
-		background: #fff url('../image/school_challenge_3_alt.png') no-repeat center bottom / 100% 100%;
+		background: #fff url('../image/fy22/school_challenge_bubbles.jpg') no-repeat center bottom / 100% 100%;
 	}
-
+	.challenge-color {
+		background: #fff url('../image/fy22/school_challenge_chalk.jpg') no-repeat center bottom / 100% 100%;
+	}
+	
      @media (max-width: $screen-sm-max) {
           .ym-our-stats {
                margin-bottom:40px;
