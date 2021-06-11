@@ -465,7 +465,7 @@ angular.module 'ahaLuminateControllers'
       getBoundlessSchoolData = () ->
         BoundlessService.getSchoolBadges $scope.frId + '/' + $scope.companyId
         .then (response) ->
-          if typeof response.data != "undefined"
+          if response.data.success
             $scope.companyProgress = 
               amountRaised: if response.data.total_amount then Number(response.data.total_amount) else 0
               goal: if response.data.goal then Number(response.data.goal) else 0
