@@ -35,10 +35,13 @@
 .ym-pc-dashboard-progress-section {
     #ym-pc-dashboard-badges-panel--student {
         margin-top:25px;
-	max-width: 100px;
-	text-align:center;
-	.ym-badges__item img {
+        .ym-badges__item {
+	  max-width: 100px;
+	  text-align:center;
+	  
+	  img {
 	    max-width:100px;
+	  }
 	}
     }
     #ym-pc-dashboard-company-panel--student {
