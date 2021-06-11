@@ -35,6 +35,8 @@
 .ym-pc-dashboard-progress-section {
     #ym-pc-dashboard-badges-panel--student {
         margin-top:25px;
+	max-width: 100px;
+	text-align:center;
 	.ym-badges__item img {
 	    max-width:100px;
 	}
