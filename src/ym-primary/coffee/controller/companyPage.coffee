@@ -107,6 +107,7 @@ angular.module 'ahaLuminateControllers'
           $scope.companyProgress.percent = percent
           if not $scope.$$phase
             $scope.$apply()
+          getBoundlessSchoolData()
         , 500
       
       getCompanyTotals = ->
@@ -461,24 +462,25 @@ angular.module 'ahaLuminateControllers'
               if meta.name == 'years-participated'
                 $scope.schoolYears = meta.value
                 
-      BoundlessService.getSchoolBadges $scope.frId + '/' + $scope.companyId
-      .then (response) ->
-        $scope.companyProgress = 
-          amountRaised: if response.data.total_amount then Number(response.data.total_amount) else 0
-          goal: if response.data.goal then Number(response.data.goal) else 0
-        $scope.companyProgress.amountRaisedFormatted = $filter('currency')($scope.companyProgress.amountRaised, '$')
-        $scope.companyProgress.goalFormatted = $filter('currency')($scope.companyProgress.goal / 100, '$')
-        $scope.companyProgress.percent = 0
-        if not $scope.$$phase
-          $scope.$apply()
-        $timeout ->
-          percent = $scope.companyProgress.percent
-          if $scope.companyProgress.goal isnt 0
-            percent = Math.ceil(($scope.companyProgress.amountRaised / $scope.companyProgress.goal) * 100)
-          if percent > 100
-            percent = 100
-          $scope.companyProgress.percent = percent
+      getBoundlessSchoolData = () ->
+        BoundlessService.getSchoolBadges $scope.frId + '/' + $scope.companyId
+        .then (response) ->
+          $scope.companyProgress = 
+            amountRaised: if response.data.total_amount then Number(response.data.total_amount) else 0
+            goal: if response.data.goal then Number(response.data.goal) else 0
+          $scope.companyProgress.amountRaisedFormatted = $filter('currency')($scope.companyProgress.amountRaised, '$')
+          $scope.companyProgress.goalFormatted = $filter('currency')($scope.companyProgress.goal / 100, '$')
+          $scope.companyProgress.percent = 0
           if not $scope.$$phase
             $scope.$apply()
+          $timeout ->
+            percent = $scope.companyProgress.percent
+            if $scope.companyProgress.goal isnt 0
+              percent = Math.ceil(($scope.companyProgress.amountRaised / $scope.companyProgress.goal) * 100)
+            if percent > 100
+              percent = 100
+            $scope.companyProgress.percent = percent
+            if not $scope.$$phase
+              $scope.$apply()
   
     ]
