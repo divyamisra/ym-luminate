@@ -396,6 +396,9 @@
 		    <div class="ym-badges__item" ng-repeat="schoolChallenge in schoolChallenges" ng-cloak>
 		      <div class="ym-badge__item" ng-if="schoolChallenge.earned" ng-cloak>
 			<img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy22/badge-challenge-{{schoolChallenge.id}}.png" alt="{{schoolChallenge.label}}">
+			<div class="ym-badge__label">
+	  		  {{schoolChallenge.label}}
+		        </div>
 		      </div>
 		    </div>
 		  </div>
