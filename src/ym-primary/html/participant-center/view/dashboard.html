@@ -428,7 +428,7 @@
                 </div>
  	      </div>
    	      <div class="row">
-	        <div class="col-md-12 ym-pc-dashboard-school-challenge" ng-if="schoolChallenge && schoolChallengeBadge" ng-cloak>
+	        <div class="col-md-12 ym-pc-dashboard-school-challenge" ng-if="schoolChallenge && schoolChallengeBadge && companyProgress.schoolChallenge != 'No School Challenge'" ng-cloak>
 		  <strong>School Challenge:</strong><br/>
 		  {{companyProgress.schoolChallenge}} has been earned since you raised more than {{companyProgress.schoolChallengeLevel}} and helped your school reach it's goal of {{companyProgress.goalFormatted}}.
  		</div>
