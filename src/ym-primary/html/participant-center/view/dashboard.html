@@ -416,11 +416,11 @@
 		    </div>
 		    <div class="ym-pc-dashboard-school-challenge" ng-if="schoolChallenge && schoolChallengeBadge" ng-cloak>
 		      <strong>School Challenge:</strong><br/>
-		      You raised more than {{companyProgress.schoolChallengeLevel}} and helped your school reach it's goal of {{companyProgress.goalFormatted}} so you earned the {{companyProgress.schoolChallenge}}.
+		      {{companyProgress.schoolChallenge}} challenge has been earned since you raised more than {{companyProgress.schoolChallengeLevel}} and helped your school reach it's goal of {{companyProgress.goalFormatted}}.
  		    </div>
 		    <div class="ym-pc-dashboard-school-challenge" ng-if="!schoolChallenge || !schoolChallengeBadge" ng-cloak>
 		      <strong>School Challenge:</strong><br/>
-		      Raise more than {{companyProgress.schoolChallengeLevel}} and help your school raise more than it's goal of {{companyProgress.goalFormatted}} to earn the {{companyProgress.schoolChallenge}}.
+		      Raise more than {{companyProgress.schoolChallengeLevel}} and help your school raise more than it's goal of {{companyProgress.goalFormatted}} to earn the {{companyProgress.schoolChallenge}} challenge.
  		    </div>
 		  </div>
 		</div>
