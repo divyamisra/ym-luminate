@@ -374,6 +374,12 @@
                       <strong>Update Personal Goal</strong>
                     </a>
                   </p>
+		  <div class="ym-badge__item" ng-if="studentChallenge" ng-cloak>
+		    <img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy22/badge-challenge-student.png" alt="Individual Challenge Completed">
+		    <div class="ym-badge__label">
+	  		Individual Challenge Completed
+		    </div>
+		  </div>
                 </div>
               </div>
             </div>
@@ -392,13 +398,20 @@
               </div>
 	      <div class="row">
 	        <div class="ym-pc-dashboard-badges-box col-xs-8">
-	          <div id="ym-pc-dashboard-badges-panel--student" aria-label="School Badges">
-		    <div class="ym-badges__item" ng-repeat="schoolChallenge in schoolChallenges" ng-cloak>
-		      <div class="ym-badge__item" ng-if="schoolChallenge.earned" ng-cloak>
-			<img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy22/badge-challenge-{{schoolChallenge.id}}.png" alt="{{schoolChallenge.label}}">
-			<div class="ym-badge__label">
-	  		  {{schoolChallenge.label}}
-		        </div>
+	          <div id="ym-pc-dashboard-badges-panel--student" aria-label="School Challenge Badge">
+		    <div class="ym-pc-dashboard-badges-challenge">
+			<strong>Individual School Challenge:</strong><br/>
+	 	        Raise more than {{companyProgress.schoolChallengeLevel}} and earn your badge!
+		    </div>
+		    <div class="ym-badge__item" ng-if="schoolChallenge" ng-cloak>
+		      <img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy22/badge-challenge-school.png" alt="School Challenge Completed">
+		      <div class="ym-badge__label">
+	  		You completed the school challenge
+		      </div>
+		    </div>
+		    <div class="ym-badge__item" ng-if="!schoolChallenge" ng-cloak>
+		      <div class="ym-badge__label">
+	  		Challenge not completed yet
 		      </div>
 		    </div>
 		  </div>
