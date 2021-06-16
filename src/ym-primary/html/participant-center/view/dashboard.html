@@ -414,6 +414,14 @@
 	  		Challenge not completed yet
 		      </div>
 		    </div>
+		    <div class="ym-pc-dashboard-school-challenge" ng-if="schoolChallenge && schoolChallengeBadge" ng-cloak>
+		      <strong>School Challenge:</strong><br/>
+		      You raised more than {{companyProgress.schoolChallengeLevel}} and helped your school reach it's goal of {{companyProgress.goalFormatted}} so you earned the {{companyProgress.schoolChallenge}}.
+ 		    </div>
+		    <div class="ym-pc-dashboard-school-challenge" ng-if="!schoolChallenge || !schoolChallengeBadge" ng-cloak>
+		      <strong>School Challenge:</strong><br/>
+		      Raise more than {{companyProgress.schoolChallengeLevel}} and help your school raise more than it's goal of {{companyProgress.goalFormatted}} to earn the {{companyProgress.schoolChallenge}}.
+ 		    </div>
 		  </div>
 		</div>
                 <div class="ym-progress-related col-xs-4 pull-right">
