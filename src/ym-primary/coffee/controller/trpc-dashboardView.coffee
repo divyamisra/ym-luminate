@@ -31,7 +31,8 @@ angular.module 'trPcControllers'
       $scope.companyId = $scope.participantRegistration.companyInformation.companyId
       theDate = new Date
       $scope.yearsList = [1..(theDate.getFullYear()-1978)] # 0 - 50
-      $scope.schoolChallenges = []
+      $scope.schoolChallenge = false
+      $scope.studentChallenge = false
       $scope.schoolBadges = []
       $scope.companyProgress = []
       $rootScope.hideGifts = "Y"
@@ -111,16 +112,8 @@ angular.module 'trPcControllers'
                     $scope.companyProgress.schoolChallengeLevel = meta.value
                 amt = $scope.participantProgress.raised / 100
                 if amt >= Number(($scope.companyProgress.schoolChallengeLevel).replace('$', '').replace(/,/g, '')) and $scope.companyProgress.schoolChallenge != "No School Challenge"
-                  # check if student badge already added
-                  schoolChallengeAdded = false
-                  angular.forEach $scope.schoolChallenges, (schoolChallenge, schoolChallengeIndex) ->
-                    if schoolChallenge.id == "student"
-                      schoolChallengeAdded = true
-                  if not schoolChallengeAdded
-                    $scope.schoolChallenges.push
-                      id: 'student'
-                      label: 'Individual Challenge Completed'
-                      earned: true
+                  # student challenge completed
+                  $scope.studentChallenge = true
 
       participantsString = ''
       $scope.companyParticipants = {}
@@ -233,10 +226,7 @@ angular.module 'trPcControllers'
                   companyProgress.schoolChallengeLevel = $scope.companyProgress?.schoolChallengeLevel
                   $scope.companyProgress = companyProgress
                   if companyProgress.raised >= companyProgress.goal 
-                    $scope.schoolChallenges.push
-                      id: 'school'
-                      label: 'School Challenge Completed'
-                      earned: true
+                    $scope.schoolChallenge = true
             response
         $scope.dashboardPromises.push fundraisingProgressPromise
         getSchoolInformation()
