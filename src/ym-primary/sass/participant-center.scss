@@ -697,3 +697,11 @@ div[id^="taTextElement"]:focus {
 .fundraisingStatusTitle + .ym-progress__thermometer + .ym-progress-related {
     margin-top: 15px;
 }
+
+.ym-student-challenge-badge {
+	margin: 20px 0 0 auto;
+	max-width:125px;
+	.ym-badge__label {
+		text-align:center;
+	}
+}
