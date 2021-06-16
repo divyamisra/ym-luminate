@@ -374,7 +374,7 @@
                       <strong>Update Personal Goal</strong>
                     </a>
                   </p>
-		  <div class="ym-badge__item" ng-if="studentChallenge" ng-cloak>
+		  <div class="ym-badge__item" ng-if="studentChallengeBadge" ng-cloak>
 		    <img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy22/badge-challenge-student.png" alt="Individual Challenge Completed">
 		    <div class="ym-badge__label">
 	  		Individual Challenge Completed
@@ -403,13 +403,13 @@
 			<strong>Individual School Challenge:</strong><br/>
 	 	        Raise more than {{companyProgress.schoolChallengeLevel}} and earn your badge!
 		    </div>
-		    <div class="ym-badge__item" ng-if="schoolChallenge" ng-cloak>
+		    <div class="ym-badge__item" ng-if="schoolChallengeBadge" ng-cloak>
 		      <img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy22/badge-challenge-school.png" alt="School Challenge Completed">
 		      <div class="ym-badge__label">
 	  		You completed the school challenge
 		      </div>
 		    </div>
-		    <div class="ym-badge__item" ng-if="!schoolChallenge" ng-cloak>
+		    <div class="ym-badge__item" ng-if="!schoolChallengeBadge" ng-cloak>
 		      <div class="ym-badge__label">
 	  		Challenge not completed yet
 		      </div>
