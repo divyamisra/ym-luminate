@@ -699,7 +699,7 @@ div[id^="taTextElement"]:focus {
 }
 
 .ym-student-challenge-badge {
-	margin: 20px 0 0 auto;
+	margin: 20px 0 10px auto;
 	max-width:125px;
 	.ym-badge__label {
 		text-align:center;
@@ -711,4 +711,7 @@ div[id^="taTextElement"]:focus {
     justify-content: space-between;
     align-items: center;
     margin: 20px 0;
+    img {
+	    marging-right:20px;
+    }
 }
