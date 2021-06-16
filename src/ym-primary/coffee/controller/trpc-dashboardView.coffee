@@ -111,8 +111,11 @@ angular.module 'trPcControllers'
                   if meta.name == 'school-goal'
                     $scope.companyProgress.schoolChallengeLevel = meta.value
                 amt = $scope.participantProgress.raised / 100
+                amt = $scope.participantProgress.raised / 100
                 if amt >= Number(($scope.companyProgress.schoolChallengeLevel).replace('$', '').replace(/,/g, '')) and $scope.companyProgress.schoolChallenge != "No School Challenge"
                   # student challenge completed
+                  $scope.schoolChallenge = true
+                if amt >= goal
                   $scope.studentChallenge = true
 
       participantsString = ''
@@ -225,8 +228,6 @@ angular.module 'trPcControllers'
                   companyProgress.schoolChallenge = $scope.companyProgress?.schoolChallenge
                   companyProgress.schoolChallengeLevel = $scope.companyProgress?.schoolChallengeLevel
                   $scope.companyProgress = companyProgress
-                  if companyProgress.raised >= companyProgress.goal 
-                    $scope.schoolChallenge = true
             response
         $scope.dashboardPromises.push fundraisingProgressPromise
         getSchoolInformation()
