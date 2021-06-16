@@ -31,6 +31,7 @@ angular.module 'trPcControllers'
       $scope.companyId = $scope.participantRegistration.companyInformation.companyId
       theDate = new Date
       $scope.yearsList = [1..(theDate.getFullYear()-1978)] # 0 - 50
+      $scope.schoolChallenge = false
       $scope.schoolChallengeBadge = false
       $scope.studentChallengeBadge = false
       $scope.schoolBadges = []
@@ -228,6 +229,8 @@ angular.module 'trPcControllers'
                   companyProgress.schoolChallenge = $scope.companyProgress?.schoolChallenge
                   companyProgress.schoolChallengeLevel = $scope.companyProgress?.schoolChallengeLevel
                   $scope.companyProgress = companyProgress
+                  if companyProgress.raised >= companyProgress.goal 
+                    $scope.schoolChallenge = true
             response
         $scope.dashboardPromises.push fundraisingProgressPromise
         getSchoolInformation()
