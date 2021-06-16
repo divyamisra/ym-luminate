@@ -98,10 +98,6 @@ angular.module 'trPcControllers'
       $scope.companyProgress.schoolChallengeLevel = ''
             
       getSchoolInformation = ->
-        amt = $scope.participantProgress.raised / 100
-        goal = $scope.participantProgress.goal / 100
-        if amt >= goal
-          $scope.studentChallengeBadge = true
         ZuriService.getSchoolData $scope.participantRegistration.companyInformation.companyId,
           failure: (response) ->
           error: (response) ->
@@ -115,6 +111,7 @@ angular.module 'trPcControllers'
                     $scope.companyProgress.schoolChallenge = meta.value
                   if meta.name == 'school-goal'
                     $scope.companyProgress.schoolChallengeLevel = meta.value
+                amt = $scope.participantProgress.raised / 100
                 if amt >= Number(($scope.companyProgress.schoolChallengeLevel).replace('$', '').replace(/,/g, '')) and $scope.companyProgress.schoolChallenge != "No School Challenge"
                   # student challenge completed
                   $scope.schoolChallengeBadge = true
@@ -189,6 +186,10 @@ angular.module 'trPcControllers'
                 if participantProgress.percent > 100
                   participantProgress.percent = 100
                 $scope.participantProgress = participantProgress
+                amt = $scope.participantProgress.raised / 100
+                goal = $scope.participantProgress.goal / 100
+                if amt >= goal
+                  $scope.studentChallengeBadge = true
 
             if $scope.participantRegistration.teamId and $scope.participantRegistration.teamId isnt '-1'
               if response.data.errorResponse
