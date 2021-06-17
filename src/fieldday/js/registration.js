@@ -24,7 +24,7 @@
         var coordEmail = $('input[name=coordinator_email]').val();
         var regCompanyId = $('body').data("companyid");
         var regCompanyName = $('body').data("companyname");
-        console.log(coordEmail);
+        console.log('coordinator email: ', coordEmail);
 
 
         var currentUrl = window.location.href;
