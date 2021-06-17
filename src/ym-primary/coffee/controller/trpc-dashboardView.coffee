@@ -114,7 +114,7 @@ angular.module 'trPcControllers'
                 amt = $scope.participantProgress.raised / 100
                 if amt >= Number(($scope.companyProgress.schoolChallengeLevel).replace('$', '').replace(/,/g, ''))
                   # student challenge completed
-                  $scope.schoolChallengeBadge = true
+                  $scope.studentChallengeBadge = true
 
       participantsString = ''
       $scope.companyParticipants = {}
@@ -186,10 +186,6 @@ angular.module 'trPcControllers'
                 if participantProgress.percent > 100
                   participantProgress.percent = 100
                 $scope.participantProgress = participantProgress
-                amt = $scope.participantProgress.raised / 100
-                goal = $scope.participantProgress.goal / 100
-                if amt >= goal
-                  $scope.studentChallengeBadge = true
 
             if $scope.participantRegistration.teamId and $scope.participantRegistration.teamId isnt '-1'
               if response.data.errorResponse
@@ -230,7 +226,14 @@ angular.module 'trPcControllers'
                   companyProgress.schoolChallenge = $scope.companyProgress?.schoolChallenge
                   companyProgress.schoolChallengeLevel = $scope.companyProgress?.schoolChallengeLevel
                   $scope.companyProgress = companyProgress
-                  if companyProgress.raised >= companyProgress.goal and $scope.companyProgress.schoolChallenge != "No School Challenge"
+                  #if school raised more than goal then student sees school badge achieved
+                  if companyProgress.raised >= companyProgress.goal
+                    $scope.schoolChallengeBadge = true
+                  #if school raised more than goal then student sees school badge achieved
+                  amt = $scope.participantProgress.raised / 100
+                  if companyProgress.raised >= companyProgress.goal and 
+                    amt >= Number(($scope.companyProgress.schoolChallengeLevel).replace('$', '').replace(/,/g, '')) and 
+                    $scope.companyProgress.schoolChallenge != "No School Challenge"
                     $scope.schoolChallenge = true
             response
         $scope.dashboardPromises.push fundraisingProgressPromise
