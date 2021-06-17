@@ -658,17 +658,18 @@
 
         // ptype page
         if ($('#participation_options_page').length > 0) {
-      $('#part_type_campaign_banner_container').prepend(evDateYear+" ");
-      //Add company name
-	    $('#part_type_fundraising_goal_input_container').prepend("<h2>Set Your Personal Fundraising Goal!</h2>")
-        $('div#part_type_campaign_banner_container').replaceWith(function() {
-            return '<h2 class="text-center">'+regCompanyName+'</h2><h1 class="campaign-banner-container" id="part_type_campaign_banner_container">' + $(this).html() + '</h1>';
-        });
-        $('#pt_title_container').replaceWith(function() {
-            return '<h2 id="pt_title_container" class="section-header-text">' + $(this).html() + '</h2>';
-        });
+          $('#part_type_campaign_banner_container').prepend(evDateYear+" ");
+          //Add company name
+          $('#part_type_fundraising_goal_input_container').prepend("<h2>Set Your Personal Fundraising Goal!</h2>")
+            $('div#part_type_campaign_banner_container').replaceWith(function() {
+                return '<h2 class="text-center">'+regCompanyName+'</h2><h1 class="campaign-banner-container" id="part_type_campaign_banner_container">' + $(this).html() + '</h1>';
+            });
+            $('#pt_title_container').replaceWith(function() {
+                return '<h2 id="pt_title_container" class="section-header-text">' + $(this).html() + '</h2>';
+            });
 
- 	    $('#disc_code_container').append("<div><small>Is your company paying for your registration fee? Please enter your company code below.</small></div>")
+          $('#disc_code_container').append("<div><small>Is your company paying for your registration fee? Please enter your company code below.</small></div>");
+          $('#part_type_discount_code_section_row_container').append(`<div class="my-2"><a href="`+coordEmail+`" target="_blank">I don't see my company code</a></div>`);
         }
 
         // reg page
