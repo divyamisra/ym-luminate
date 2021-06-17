@@ -233,8 +233,8 @@ angular.module 'trPcControllers'
                   if companyProgress.raised >= companyProgress.goal
                     $scope.schoolChallengeBadge = true
             response
+            getSchoolInformation()
         $scope.dashboardPromises.push fundraisingProgressPromise
-        getSchoolInformation()
       $scope.refreshFundraisingProgress()
 
       interactionMoveMoreId = $dataRoot.data 'move-more-flag-id'
