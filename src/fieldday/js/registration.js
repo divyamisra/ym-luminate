@@ -679,7 +679,7 @@
             $('#registration_options_page .header-container .campaign-banner-container').replaceWith(function() {
                 return '<h2 class="text-center">'+regCompanyName+'<h1 class="campaign-banner-container">' + $(this).html() + '</h1>';
             });
-            $('#title_container').replaceWith('<h2 class="ObjTitle" id="title_container">Tell us about you:</h2>');
+            $('#title_container').replaceWith('<h2 id="title_container">Tell us about you:</h2>');
         }
 
         //Rthanks

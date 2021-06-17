@@ -2069,3 +2069,12 @@ div.required-indicator-legend {
 .default-submit-hack {
   display: none!important;
 }
+
+.pg_reg #password_hdr_container, .pg_reg .sub-section-header {
+  font-family: LubDubBold,Helvetica,Arial,sans-serif;
+  font-weight: 700;
+  font-size: 2rem;
+  margin-top: 0;
+  margin-bottom: .5rem;
+  line-height: 1.2;
+}
