@@ -412,7 +412,7 @@
               <div class="ym-progress__thermometer" name="School Progress Bar" aria-label="{{participantProgress.percent}} percent of fundraising progress" aria-valuetext="{{companyProgress.percent}} percent of fundraising progress" role="progressbar" aria-valuenow="{{companyProgress.percent}}" aria-valuemin="0" aria-valuemax="100">
                 <div class="ym-progress__thermometer--fill" ng-style="{'width': companyProgress.percent + '%'}"></div>
               </div>
-	      <div class="row">
+	      <div class="ym-progress-related row">
 	        <div class="ym-pc-dashboard-badges-box col-xs-8">
 	          <div id="ym-pc-dashboard-badges-panel--student" aria-label="School Challenge Badge">
 		    <div class="ym-pc-dashboard-badges-challenge">
@@ -432,7 +432,7 @@
 		    </div>
 		  </div>
 		</div>
-                <div class="ym-progress-related col-xs-4 pull-right">
+                <div class="col-xs-4 pull-right">
   		  <p>
 		    <strong><span ng-bind-html="companyProgress.raisedFormatted"></span></strong> raised
 		  </p>
