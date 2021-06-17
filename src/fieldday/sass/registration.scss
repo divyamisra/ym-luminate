@@ -2070,11 +2070,17 @@ div.required-indicator-legend {
   display: none!important;
 }
 
-.pg_reg #password_hdr_container, .pg_reg .sub-section-header {
-  font-family: LubDubBold,Helvetica,Arial,sans-serif;
-  font-weight: 700;
-  font-size: 2rem;
-  margin-top: 0;
-  margin-bottom: .5rem;
-  line-height: 1.2;
+.pg_reg {
+  #password_hdr_container, .sub-section-header {
+    font-family: LubDubBold,Helvetica,Arial,sans-serif;
+    font-weight: 700;
+    font-size: 2rem;
+    margin-top: 0;
+    margin-bottom: .5rem;
+    line-height: 1.2;
+  }
+  .section-header, .sub-section-header, #additional_questions_container .survey-question-container {
+    margin: 2rem 0!important;
+  }
 }
+
