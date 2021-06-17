@@ -573,19 +573,19 @@
     };
 
     // EXPANDABLE DONOR ROLL
-    $('.js--honor-roll-expander').on('click', function (e) {
-      if ($(this).children('i').hasClass('fa-chevron-down')) {
-        $(this).children('i').removeClass('fa-chevron-down');
-        $(this).children('i').addClass('fa-chevron-up');
-        $(this).attr('aria-label', 'View less donors');
-      } else {
-        $(this).children('i').removeClass('fa-chevron-up');
-        $(this).children('i').addClass('fa-chevron-down');
-        $(this).attr('aria-label', 'View more donors');
-      }
+    // $('.js--honor-roll-expander').on('click', function (e) {
+    //   if ($(this).children('i').hasClass('fa-chevron-down')) {
+    //     $(this).children('i').removeClass('fa-chevron-down');
+    //     $(this).children('i').addClass('fa-chevron-up');
+    //     $(this).attr('aria-label', 'View less donors');
+    //   } else {
+    //     $(this).children('i').removeClass('fa-chevron-up');
+    //     $(this).children('i').addClass('fa-chevron-down');
+    //     $(this).attr('aria-label', 'View more donors');
+    //   }
 
-      $('.hidden-donor-row').slideToggle(200);
-    });
+    //   $('.hidden-donor-row').slideToggle(200);
+    // });
 
     // GREETING PAGE
     if ($('body').is('.pg_entry')) {
