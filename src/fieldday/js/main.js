@@ -2357,6 +2357,7 @@
                 clearSearchResults();
                 var teamName = encodeURIComponent($('#teamNameSearch').val());
                 cd.getTeams(teamName, (isCrossEventSearch === "true" ? true : false));
+                $('.js--num-team-results').attr("role", "status");
             });
 
 
