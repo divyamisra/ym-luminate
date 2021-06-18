@@ -990,7 +990,13 @@
             <div uib-alert class="alert-danger" ng-if="schoolChallengeInfo.errorMessage">
               <div ng-bind-html="schoolChallengeInfo.errorMessage"></div>
             </div>
-          </div>
+	    <div class="form-group" ng-if="companyProgress.schoolChallenge == 'Other'" ng-cloak>
+		<label for="schoolChallengeOther" class="sr-only">
+  		  Other Challenge:
+		</label>
+		<input placeholder="Specify Other Challenge" type="text" id="schoolChallengeOther" class="form-control" ng-model="companyProgress.schoolChallengeOther" aria-label="Other School Challenge" ng-blur="updateSchoolChallenge()">
+	    </div>
+	  </div>
         </div>
         <div class="ym-pc-dashboard-section-header col-md-4">
           <div class="schoolChallenge text-center">
