@@ -1093,7 +1093,11 @@ angular.module 'trPcControllers'
             error: (response) ->
               $scope.schoolChallengeInfo.errorMessage = 'Error: ' + response.data.message
             success: (response) ->
-              $scope.companyProgress.schoolChallenge = newChallenge
+              if newChallenge.charAt(0) == '*'
+                $scope.companyProgress.schoolChallenge = "Other"
+                $scope.companyProgress.schoolChallengeOther = newChallenge.slice(1)
+              else
+                $scope.companyProgress.schoolChallenge = newChallenge
               #$scope.editSchoolChallengeModal.close()
 
       $scope.updateSchoolChallengeLevel = ->
