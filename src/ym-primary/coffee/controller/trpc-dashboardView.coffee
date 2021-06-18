@@ -95,6 +95,7 @@ angular.module 'trPcControllers'
       $scope.schoolChallengeLevelInfo = {}
       $scope.companyProgress.schoolYears = '5'
       $scope.companyProgress.schoolChallenge = ''
+      $scope.companyProgress.schoolChallengeOther = ''
       $scope.companyProgress.schoolChallengeLevel = ''
             
       getSchoolInformation = ->
@@ -108,6 +109,9 @@ angular.module 'trPcControllers'
                   if meta.name == 'years-participated'
                     $scope.companyProgress.schoolYears = meta.value
                   if meta.name == 'school-challenge'
+                    if meta.value.charAt(0) == '*'
+                      $scope.companyProgress.schoolChallenge = "Other"
+                      $scope.companyProgress.schoolChallengeOther = meta.value
                     $scope.companyProgress.schoolChallenge = meta.value
                   if meta.name == 'school-goal'
                     $scope.companyProgress.schoolChallengeLevel = meta.value
@@ -1077,6 +1081,8 @@ angular.module 'trPcControllers'
       $scope.updateSchoolChallenge = ->
         delete $scope.schoolChallengeInfo.errorMessage
         newChallenge = $scope.companyProgress.schoolChallenge
+        if newChallenge == 'Other'
+          newChallenge = "*" + $scope.companyProgress.schoolChallengeOther
         if newChallenge is ''
           $scope.schoolChallengeInfo.errorMessage = 'Please select a challenge.'
         else
