@@ -994,7 +994,7 @@
 		<label for="schoolChallengeOther" class="sr-only">
   		  Other Challenge:
 		</label>
-		<input ng-change="omit_special_char($event)" placeholder="Specify Other Challenge" type="text" id="schoolChallengeOther" class="form-control" ng-model="companyProgress.schoolChallengeOther" aria-label="Other School Challenge" ng-blur="updateSchoolChallenge()">
+		<input ng-keypress="omit_special_char($event)" placeholder="Specify Other Challenge" type="text" id="schoolChallengeOther" class="form-control" ng-model="companyProgress.schoolChallengeOther" aria-label="Other School Challenge" ng-blur="updateSchoolChallenge()">
 	    </div>
 	  </div>
         </div>
