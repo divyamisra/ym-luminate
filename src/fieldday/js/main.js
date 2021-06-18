@@ -2316,6 +2316,8 @@
                 clearSearchResults();
                 var companySearched = encodeURIComponent($('#companyNameSearch').val());
                 cd.getCompanies(companySearched, isCrossEventSearch === "true" ? true : false);
+                //add role="status" for screen reading the number of search results
+                $('.js--num-company-results').attr("role", "status");
             });
 
             // Search by Event
@@ -2324,12 +2326,16 @@
                 clearSearchResults();
                 var zipSearched = encodeURIComponent($('#zipCodeSearch').val());
                 cd.getEventsByDistance(zipSearched, isCrossEventSearch === "true" ? true : false);
+                //add role="status" for screen reading the number of search results
+                $('.js--num-events-results').attr("role", "status");
 
             });
             $('#eventStateSearch').on('change', function () {
                 clearSearchResults();
                 var stateSearched = encodeURIComponent($('#eventStateSearch').val());
                 cd.getEventsByState(stateSearched, isCrossEventSearch === "true" ? true : false);
+                //add role="status" for screen reading the number of search results
+                $('.js--num-events-results').attr("role", "status");
             });
 
             $('.js--state-search-form').on('submit', function (e) {
@@ -2337,8 +2343,9 @@
                 clearSearchResults();
                 var stateSearched = encodeURIComponent($('#eventStateSearch').val());
                 cd.getEventsByDistance(stateSearched, isCrossEventSearch === "true" ? true : false);
+                //add role="status" for screen reading the number of search results
+                $('.js--num-events-results').attr("role", "status");
             });
-
 
 
             // Search page by Participant
@@ -2349,6 +2356,8 @@
                 var lastName = encodeURIComponent($('#participantLastName').val());
 
                 cd.getParticipants(firstName, lastName, (isCrossEventSearch === "true" ? true : false));
+                //add role="status" for screen reading the number of search results
+                $('.js--num-participant-results').attr("role", "status");
             });
 
             // Search by Team
@@ -2357,6 +2366,7 @@
                 clearSearchResults();
                 var teamName = encodeURIComponent($('#teamNameSearch').val());
                 cd.getTeams(teamName, (isCrossEventSearch === "true" ? true : false));
+                //add role="status" for screen reading the number of search results
                 $('.js--num-team-results').attr("role", "status");
             });
 
