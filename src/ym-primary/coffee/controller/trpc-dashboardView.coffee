@@ -1083,7 +1083,7 @@ angular.module 'trPcControllers'
         delete $scope.schoolChallengeInfo.errorMessage
         newChallenge = $scope.companyProgress.schoolChallenge
         if newChallenge == 'Other'
-          if typof $scope.companyProgress.schoolChallengeOther == "undefined"
+          if typeof $scope.companyProgress.schoolChallengeOther is "undefined"
             $scope.companyProgress.schoolChallengeOther = ''
           newChallenge = "*" + $scope.companyProgress.schoolChallengeOther
         if newChallenge is ''
