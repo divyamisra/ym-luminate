@@ -2327,7 +2327,7 @@
                 var zipSearched = encodeURIComponent($('#zipCodeSearch').val());
                 cd.getEventsByDistance(zipSearched, isCrossEventSearch === "true" ? true : false);
                 //add role="status" for screen reading the number of search results
-                $('.js--num-events-results').attr("role", "status");
+                $('.js--num-event-results').attr("role", "status");
 
             });
             $('#eventStateSearch').on('change', function () {
@@ -2335,7 +2335,7 @@
                 var stateSearched = encodeURIComponent($('#eventStateSearch').val());
                 cd.getEventsByState(stateSearched, isCrossEventSearch === "true" ? true : false);
                 //add role="status" for screen reading the number of search results
-                $('.js--num-events-results').attr("role", "status");
+                $('.js--num-event-results').attr("role", "status");
             });
 
             $('.js--state-search-form').on('submit', function (e) {
@@ -2344,7 +2344,7 @@
                 var stateSearched = encodeURIComponent($('#eventStateSearch').val());
                 cd.getEventsByDistance(stateSearched, isCrossEventSearch === "true" ? true : false);
                 //add role="status" for screen reading the number of search results
-                $('.js--num-events-results').attr("role", "status");
+                $('.js--num-event-results').attr("role", "status");
             });
 
 
