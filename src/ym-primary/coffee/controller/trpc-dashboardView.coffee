@@ -1191,8 +1191,8 @@ angular.module 'trPcControllers'
 
       getLeaderboards()
       
-      omit_special_char = (e) ->
-        if (/^[a-zA-Z0-9\s]*$/.test(e.key)) 
+      $scope.omit_special_char = (e) ->
+        if (/^[a-zA-Z0-9\s']*$/.test(e.key)) 
           return true
         else
           e.preventDefault()
