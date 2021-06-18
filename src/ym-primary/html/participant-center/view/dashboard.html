@@ -446,11 +446,11 @@
    	      <div class="row">
 	        <div class="col-md-12 ym-pc-dashboard-school-challenge" ng-if="schoolChallenge" ng-cloak>
 		  <strong>School Challenge:</strong><br/>
-		  {{companyProgress.schoolChallenge}} has been earned since you raised more than {{companyProgress.schoolChallengeLevel}} and helped your school reach it's goal of {{companyProgress.goalFormatted}}.
+		  {{companyProgress.schoolChallenge == "Other" ? companyProgress.schoolChallengeOther : companyProgress.schoolChallenge}} has been earned since you raised more than {{companyProgress.schoolChallengeLevel}} and helped your school reach it's goal of {{companyProgress.goalFormatted}}.
  		</div>
 		<div class="col-md-12 ym-pc-dashboard-school-challenge" ng-if="!schoolChallenge" ng-cloak>
 		  <strong>School Challenge:</strong><br/>
-		  Raise more than {{companyProgress.schoolChallengeLevel}} and help your school raise more than it's goal of {{companyProgress.goalFormatted}} to earn the {{companyProgress.schoolChallenge}}.
+		  Raise more than {{companyProgress.schoolChallengeLevel}} and help your school raise more than it's goal of {{companyProgress.goalFormatted}} to earn the {{companyProgress.schoolChallenge == "Other" ? companyProgress.schoolChallengeOther : companyProgress.schoolChallenge}}.
  		 </div>
 	      </div>
             </div>
