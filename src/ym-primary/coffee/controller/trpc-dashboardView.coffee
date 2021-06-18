@@ -1190,4 +1190,12 @@ angular.module 'trPcControllers'
               msg: '# Students'
 
       getLeaderboards()
+      
+      omit_special_char = (e) ->
+        if (/^[a-zA-Z0-9\s]*$/.test(e.key)) 
+          return true
+        else
+          e.preventDefault()
+          return false
+
   ]
