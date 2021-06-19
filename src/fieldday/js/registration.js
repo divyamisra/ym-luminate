@@ -664,7 +664,7 @@
           //Add company name
           $('#part_type_fundraising_goal_input_container').prepend("<h2>Set Your Personal Fundraising Goal!</h2>")
             $('div#part_type_campaign_banner_container').replaceWith(function() {
-                return '<h1 class="campaign-banner-container" id="part_type_campaign_banner_container"><h2 class="text-center">My Company: '+regCompanyName+'</h2>' + $(this).html() + '</h1>';
+                return '<h1 class="campaign-banner-container" id="part_type_campaign_banner_container">' + $(this).html() + '</h1><h2 class="text-center">My Company: '+regCompanyName+'</h2>';
             });
             $('#pt_title_container').replaceWith(function() {
                 return '<h2 id="pt_title_container" class="section-header-text">' + $(this).html() + '</h2>';
