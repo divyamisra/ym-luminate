@@ -798,7 +798,7 @@
                 $('#team_find_section_container').addClass("col-12 col-xl-10 offset-xl-1").removeClass("section-container");
                 $('form[name=FriendraiserFind]').removeAttr('hidden');
                 $('#team_find_section_body, #team_find_section_header').show();
-                $('.js__start-team-company-name').text(regCompanyName);
+                $('.js__start-team-company-name').text('MyCompany: ' + regCompanyName);
                 var trCompanyCount = $('#fr_co_list > option').length;
                 if (trCompanyCount < 2) {
                     // no companies associated with this TR yet. Hide the team_find_new_team_company column
@@ -813,7 +813,7 @@
             } else if (regType === 'joinTeam') {
 		$('.campaign-banner-container').hide();
         $('#team_find_new_team_attributes').before($('#team_find_new_team_company'));
-        $('.js__join-team-company-name').text(regCompanyName);
+        $('.js__join-team-company-name').text('MyCompany: ' + regCompanyName);
                 if(regCompanyId !== "") {
                   $('select[name=regCompanyId]').val(regCompanyId);
                 }
