@@ -671,7 +671,7 @@
             });
 
           $('#disc_code_container').append("<div><small>Is your company paying for your registration fee? Please enter your company code below.</small></div>");
-          $('#part_type_discount_code_section_row_container').append(`<div class="my-2"><a href="mailto:`+coordEmailReg+`" target="_blank">I don't see my company code</a></div>`);
+          $('#part_type_discount_code_section_row_container').append('<div class="my-2"><a href="mailto:'+coordEmailReg+'" target="_blank">I don\'t see my company code</a></div>');
         }
 
         // reg page
