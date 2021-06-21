@@ -130,3 +130,13 @@
       width: 100%;
   }
 }
+
+#game-points-roster {
+  td {
+    text-align: center;
+    .games-team-name,
+    .games-captain-name {
+      text-align: left;
+    }
+  }
+}

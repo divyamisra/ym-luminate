@@ -1494,6 +1494,17 @@
 
         };
 
+        cd.initializeGamePointsRosterTable = function () {
+            window.cdPGamePointsRosterTable = $('#game-points-roster').DataTable({
+                "paging": false,
+                "autoWidth": false,
+                "order": [[0, 'asc']],
+                "searching": false,
+                "info": false
+            });
+
+        };
+
         cd.getTeamHonorRoll = function () {
             // populate donor honor roll
             if ($('.team-honor-list-row').length > 0) {
@@ -2283,6 +2294,73 @@
 
             }
 
+            var numGamePointsRows = 0;
+
+            cd.getCompanyGamePoints = function (companyId, companyName, numCompanies, companyIndex) {
+
+
+                    $.ajax({
+                        type: 'GET',
+                        url: 'https://fd.staging.ootqa.org/api/points/leaders/company/'+evID+'/'+companyId,
+                        dataType: 'json',
+                        success: function (response) {
+                            console.log(response);
+                            if (response.teams.length === '0') {
+                                // no search results
+
+                            } else {
+                                var teams = luminateExtend.utils.ensureArray(response.teams);
+                                console.log(teams);
+                                $(teams).each(function (i, team) {
+                                    console.log("each team", team)
+
+                                    team.teamPageURL = "#";
+
+                                    $('#game-points-roster tbody').append('<tr class="' + (numGamePointsRows > 4 ? 'd-none' : '') + '"> <td class="games-team-rank" data-sort="'+team.team_rank+'">' + team.team_rank + '</td> <td class="games-team-name"> <a href="' + team.teamPageURL + '" data-sort="' + team.team_name + '">' + team.team_name + '</a> </td><td class="games-captain-name"> <a href="TR/?px=' + team.team_captain_consid + '&pg=personal&fr_id=' + evID + '" data-sort="' + team.team_captain_name + '">' + team.team_captain_name + '</a> </td><td class="games-fundraising-points" data-sort="'+team.fundraising_points+'">'+team.fundraising_points+'</td> <td class="games-game-points" data-sort="'+team.game_points+'">'+team.game_points+'</td><td class="games-total-points" data-sort="'+team.total_points+'">'+team.total_points+'</td></tr>');
+
+                                    numGamePointsRows++;
+                                });
+
+                                $('.js--more-game-points-results').on('click', function (e) {
+                                    e.preventDefault();
+                                    $('#game-points-roster tr').removeClass('d-none');
+                                    $(this).attr('hidden', true);
+                                });
+                            }
+
+                            if (companyIndex === numCompanies) {
+                                setTimeout(function () {
+                                    cd.initializeGamePointsRosterTable();
+                                    var totalTeams = $('.games-team-name').length;
+                                    // var totalTeamsText = totalTeams > 1 ? ' Teams' : ' Team';
+                                    // $('.js--num-company-teams').text(totalTeams + totalTeamsText);
+                                    if (totalTeams > 5) {
+                                        $('.js--more-game-points-results').removeAttr('hidden');
+                                    }
+                                }, 250);
+                            }
+                        },
+                        error: function (xhr, status, error) {
+                            //$('#error-participant').removeAttr('hidden').text(response.errorResponse.message);
+                            console.log('error response: ', response);
+                        }
+                });
+
+            };
+
+            cd.buildCompanyGamePointsRoster = function () {
+                var numCompanies = allCompanyData.length;
+                for (var i = 0, l = allCompanyData.length; i < l; i++) {
+                    var company = allCompanyData[i];
+                    var companyIndex = i + 1;
+                    var companyId = company.id;
+                    var companyName = company.name;
+                    cd.getCompanyGamePoints(companyId, companyName, numCompanies, companyIndex);
+                }
+            }
+
+            cd.buildCompanyGamePointsRoster();
+            
         }
 
         if ($('body').is('.pg_company')) {
