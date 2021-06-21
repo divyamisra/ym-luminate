@@ -13,6 +13,10 @@
       margin: 0 0 40px;
     }
 
+    p {
+      color: #000;
+    }
+
     .team-members {
       font-family: $font-family-light;
       font-size: 1.333rem;
@@ -26,6 +30,7 @@
    .dataTables_wrapper {
      .btn {
        @include border-radius(0, 4px, 4px, 0);
+       width: 40px;
      }
 
      h1 {
@@ -86,6 +91,10 @@
       margin: 0;
     }
   }
+}
+
+.coach {
+  margin-right: 3px;
 }
 
 .coach i {

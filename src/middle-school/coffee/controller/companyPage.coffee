@@ -28,6 +28,17 @@ angular.module 'ahaLuminateControllers'
       $scope.notifyName = ''
       $scope.notifyEmail = ''
       $scope.moneyDueDate = ''
+      $scope.totalTeams = ''
+      $scope.teamId = ''
+      $scope.studentsPledgedTotal = ''
+      $scope.activity1amt = ''
+      $scope.activity2amt = ''
+      $scope.activity3amt = ''
+      $scope.topClassRaised = []
+      $scope.topClassStudents = []
+      $scope.schoolChallenge = ''
+      $scope.schoolChallengeGoal = 0
+      $scope.schoolYears = 0
       $scope.unconfirmedAmountRaised = 0
       
       $scope.trustHtml = (html) ->
@@ -90,8 +101,8 @@ angular.module 'ahaLuminateControllers'
         $scope.companyProgress = 
           amountRaised: if amountRaised then Number(amountRaised) else 0
           goal: if goal then Number(goal) else 0
-        $scope.companyProgress.amountRaisedFormatted = $filter('currency')($scope.companyProgress.amountRaised / 100, '$').replace '.00', ''
-        $scope.companyProgress.goalFormatted = $filter('currency')($scope.companyProgress.goal / 100, '$').replace '.00', ''
+        $scope.companyProgress.amountRaisedFormatted = $filter('currency')($scope.companyProgress.amountRaised / 100, '$')
+        $scope.companyProgress.goalFormatted = $filter('currency')($scope.companyProgress.goal / 100, '$')
         $scope.companyProgress.percent = 0
         if not $scope.$$phase
           $scope.$apply()
@@ -177,7 +188,7 @@ angular.module 'ahaLuminateControllers'
               companyTeams = [companyTeams] if not angular.isArray companyTeams
               angular.forEach companyTeams, (companyTeam) ->
                 companyTeam.amountRaised = Number companyTeam.amountRaised
-                companyTeam.amountRaisedFormatted = $filter('currency')(companyTeam.amountRaised / 100, '$').replace '.00', ''
+                companyTeam.amountRaisedFormatted = $filter('currency')(companyTeam.amountRaised / 100, '$')
               totalNumberTeams = response.getTeamSearchByInfoResponse.totalNumberResults
               setCompanyTeams companyTeams, totalNumberTeams
       getCompanyTeams()
@@ -191,7 +202,7 @@ angular.module 'ahaLuminateControllers'
         if not $scope.$$phase
           $scope.$apply()
       getCompanyParticipants = ->
-        TeamraiserParticipantService.getParticipants 'team_name=' + encodeURIComponent('%') + '&first_name=' + encodeURIComponent('%%') + '&last_name=' + encodeURIComponent('%') + '&list_filter_column=team.company_id&list_filter_text=' + $scope.companyId + '&list_sort_column=total&list_ascending=false&list_page_size=50',
+        TeamraiserParticipantService.getParticipants 'team_name=' + encodeURIComponent('%') + '&first_name=' + encodeURIComponent('%%') + '&last_name=' + encodeURIComponent('%') + '&list_filter_column=team.company_id&list_filter_text=' + $scope.companyId + '&list_sort_column=total&list_ascending=false&list_page_size=500',
             error: ->
               setCompanyParticipants()
             success: (response) ->
@@ -208,7 +219,7 @@ angular.module 'ahaLuminateControllers'
                     participant.lastName = participant.name.last || ""
                     participant.name.last = participant.lastName.substring(0, 1) + '.'
                     participant.fullName = participant.name.first + ' ' + participant.name.last
-                    participant.amountRaisedFormatted = $filter('currency')(participant.amountRaised / 100, '$').replace '.00', ''
+                    participant.amountRaisedFormatted = $filter('currency')(participant.amountRaised / 100, '$')
                     if participant.donationUrl
                       participant.donationFormId = participant.donationUrl.split('df_id=')[1].split('&')[0]
                     companyParticipants.push participant
@@ -224,7 +235,7 @@ angular.module 'ahaLuminateControllers'
               $scope.participantRegistration = participantRegistration
       
       $scope.companyPagePhoto1 =
-        defaultUrl: APP_INFO.rootPath + 'dist/middle-school/image/company-default.jpg'
+        defaultUrl: APP_INFO.rootPath + 'dist/middle-school/image/company-default.png'
       
       $scope.editCompanyPhoto1 = ->
         delete $scope.updateCompanyPhoto1Error
@@ -359,9 +370,25 @@ angular.module 'ahaLuminateControllers'
                 if not $scope.$$phase
                   $scope.$apply()
                   
-      ZuriService.getSchoolYears $scope.companyId,
+      ZuriService.getSchoolData $scope.companyId,
         error: (response) ->
           # TO DO
         success: (response) ->
-          $scope.schoolYears = response.data.value
-   ]
+          if response.data.data.length > 0
+            angular.forEach response.data.data, (meta, key) ->
+              if meta.name == 'years-participated'
+                $scope.schoolYears = meta.value
+                
+      ZuriService.getSchoolData $scope.companyId,
+        error: (response) ->
+          # TO DO
+        success: (response) ->
+          if response.data.data.length > 0
+            angular.forEach response.data.data, (meta, key) ->
+              if meta.name == 'school-challenge'
+                $scope.schoolChallenge = meta.value
+              if meta.name == 'school-goal'
+                $scope.schoolChallengeGoal = meta.value
+              if meta.name == 'years-participated'
+                $scope.schoolYears = meta.value
+  ]
