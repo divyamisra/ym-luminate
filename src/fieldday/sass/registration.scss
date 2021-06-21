@@ -10,19 +10,6 @@
 	}
 }
 */
-body {
-  background-color: $red-deep;
-  background-image: url(https://secure3.convio.net/heart/images/content/pagebuilder/background-squiggles.png);
-  background-repeat: no-repeat;
-  background-position: right top;
-  background-size: 70%;
-}
-header {
-	background:none;
-}
-.ObjTitle {
-    font-family: LubDubBold,Helvetica,Arial,sans-serif;
-}
 
 /* validation styling */
  input.error, select.error {
@@ -75,11 +62,6 @@ h1.ObjTitle {
 	color: #3c3c3c;
 }
 
-.registration-page-container h2 {
-	font-size:24px;
-	color: #000000;
-	font-family: LubDubBold,Helvetica,Arial,sans-serif;
-}
 div.responsive div.ErrorMessage.page-error {
 	width: auto;
 }
@@ -122,10 +104,6 @@ div.registration-page-container span.option-label {
 }
 #fr_reg_summary_page button.cancel-step {
 	display:none;
-}
-.js__reg-type-container a.btn, 
-.js__reg-type-container a.btn:visited {
-    font-size: 16px;
 }
 
 
@@ -335,7 +313,6 @@ div#part_type_fundraising_goal_container, div#part_type_additional_gift_containe
 div#part_type_fundraising_goal_container #suggested_goal_container {
 	margin-left: 0px;
 	color: #555555;
-	font-size:16px;
 }
 /*#part_type_additional_gift_container .enterAmt label {
 	display: inline-block;
@@ -421,8 +398,9 @@ div.progressText {
 div.registration-page-container div.section-container {
     border: none;
     padding: 0 10px;
-    font-size: 16px !important;
-    color: #000000;
+}
+div.registration-page-container div.section-container {
+    font-size: 18px !important;
 }
 
 .app_tr_registration .search-result-details {
@@ -670,7 +648,7 @@ div#part_type_individual_company_input_container {
 #part_type_additional_gift_section_header {
   font-weight: 400;
   padding: 0;
-  font-size: 16px;
+  font-size: 18px;
   margin-bottom: 10px;
 }
 div#participation_options_page input,
@@ -821,9 +799,8 @@ span#title_container, h1#title_container {
     font-size: 30px;
 }
 div.registration-page-container div.sub-section-header {
-    font-size: 24px;
+    font-size: 30px;
     font-weight: 700;
-    font-family: LubDubBold,Helvetica,Arial,sans-serif;
 }
 #user_name_pword_container input#cons_user_name {
     width: 100%;
