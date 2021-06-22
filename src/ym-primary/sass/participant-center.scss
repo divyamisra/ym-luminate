@@ -602,6 +602,7 @@ div[id^="taTextElement"]:focus {
 
 		select {
 			width: auto;
+			max-width:100%;
 			display: inline-block;
 			padding-right: 25px;
 			font-size: 20px;
