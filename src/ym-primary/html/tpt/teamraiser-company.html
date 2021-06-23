@@ -3,13 +3,13 @@
    <div class="ym-page-section ym-page-section__top">
       <div class="col-md-6 ym-user-image" ng-style="{'background-image': (companyPagePhoto1.customUrl && companyPagePhoto1.customUrl != '') ? ('url(' + companyPagePhoto1.customUrl + ')') : ('url(' + companyPagePhoto1.defaultUrl + ')')}">
          <div class="ym-user-image-inner">
+            <button type="button" class="btn btn-md-wide btn-toggle" ng-click="editCompanyPhoto1()" ng-if="participantRegistration.companyInformation.companyId == '[[S334:company_id]]' && participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
+            <span class="fa fa-camera"></span> Edit Photo
+            </button>
             <div class="ym-school-participation-years" ng-if="schoolYears > 0">
                <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/ym-school-participation-years.png" alt="School Participation Years">
                <div class="ym-school-participation-years-text"><span ng-bind-html="schoolYears"></span> Years Participating</div>
             </div>
-            <button type="button" class="btn btn-md-wide btn-toggle" ng-click="editCompanyPhoto1()" ng-if="participantRegistration.companyInformation.companyId == '[[S334:company_id]]' && participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
-            <span class="fa fa-camera"></span> Edit Photo
-            </button>
             <img class="hidden-md hidden-lg" ng-src="{{companyPagePhoto1.customUrl && companyPagePhoto1.customUrl != '' ? companyPagePhoto1.customUrl : companyPagePhoto1.defaultUrl}}" alt="School Photo" ng-cloak>
          </div>
       </div>
