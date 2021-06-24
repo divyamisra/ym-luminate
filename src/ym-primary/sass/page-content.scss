@@ -142,3 +142,15 @@ hr.ym-zuri-animation__divider {
     width: 100%;
   }
 }
+
+.social-icons {
+  & > div {
+    display:flex;
+  }
+  a {
+    text-decoration:none;
+    img {
+	max-width: 50px;
+    }
+  }
+}
