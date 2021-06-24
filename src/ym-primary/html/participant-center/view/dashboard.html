@@ -446,19 +446,19 @@
    	      <div class="row">
 	        <div class="col-md-12 ym-pc-dashboard-school-challenge" ng-if="schoolChallenge == 1" ng-cloak>
 		  <strong>School Challenge:</strong><br/>
-		  Raise more than {{participantProgress.goalFormatted}} and help your school raise more than it's goal of {{companyProgress.goalFormatted}} to earn the {{companyProgress.schoolChallenge == "Other" ? companyProgress.schoolChallengeOther : companyProgress.schoolChallenge}}.
+		  Raise more than {{participantProgress.goalFormatted}} to participate in {{companyProgress.schoolChallenge == "Other" ? companyProgress.schoolChallengeOther : companyProgress.schoolChallenge}}. Keep fundraising to help your school reach it's goal of {{companyProgress.goalFormatted}}.
  		</div>
 	        <div class="col-md-12 ym-pc-dashboard-school-challenge" ng-if="schoolChallenge == 2" ng-cloak>
 		  <strong>School Challenge:</strong><br/>
-		  {{companyProgress.schoolChallenge == "Other" ? companyProgress.schoolChallengeOther : companyProgress.schoolChallenge}} has been earned since you raised more than {{participantProgress.goalFormatted}}. Keep fundraising to help your school reach it's goal of {{companyProgress.goalFormatted}}.
+		  Since you raised more than your {{participantProgress.goalFormatted}} you can now participate in {{companyProgress.schoolChallenge == "Other" ? companyProgress.schoolChallengeOther : companyProgress.schoolChallenge}}. Keep fundraising to help your school reach it's goal of {{companyProgress.goalFormatted}}.
  		</div>
 	        <div class="col-md-12 ym-pc-dashboard-school-challenge" ng-if="schoolChallenge == 3" ng-cloak>
 		  <strong>School Challenge:</strong><br/>
-	 	  Raise more than {{participantProgress.goalFormatted}} to earn {{companyProgress.schoolChallenge == "Other" ? companyProgress.schoolChallengeOther : companyProgress.schoolChallenge}}. Keep fundraising to help your school raise more than it's goal of {{companyProgress.goalFormatted}}.
+	 	  Raise more than {{participantProgress.goalFormatted}} to participate in {{companyProgress.schoolChallenge == "Other" ? companyProgress.schoolChallengeOther : companyProgress.schoolChallenge}}. Keep fundraising to help your school raise more than it's goal of {{companyProgress.goalFormatted}}.
  		</div>
 		<div class="col-md-12 ym-pc-dashboard-school-challenge" ng-if="!schoolChallenge" ng-cloak>
 		  <strong>School Challenge:</strong><br/>
-		  {{companyProgress.schoolChallenge == "Other" ? companyProgress.schoolChallengeOther : companyProgress.schoolChallenge}} has been earned since you raised more than {{participantProgress.goalFormatted}}. Keep fundraising to help your school raise more it's goal of {{companyProgress.goalFormatted}}.
+		  Since you raised more than your {{participantProgress.goalFormatted}} you can now participate in {{companyProgress.schoolChallenge == "Other" ? companyProgress.schoolChallengeOther : companyProgress.schoolChallenge}}. Keep fundraising to help your school raise more it's goal of {{companyProgress.goalFormatted}}.
  		 </div>
 	      </div>
             </div>
