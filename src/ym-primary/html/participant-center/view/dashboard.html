@@ -456,7 +456,7 @@
 		  <strong>School Challenge:</strong><br/>
 	 	  Raise more than {{participantProgress.goalFormatted}} to participate in {{companyProgress.schoolChallenge == "Other" ? companyProgress.schoolChallengeOther : companyProgress.schoolChallenge}}. Keep fundraising to help your school raise more than it's goal of {{companyProgress.goalFormatted}}.
  		</div>
-		<div class="col-md-12 ym-pc-dashboard-school-challenge" ng-if="!schoolChallenge" ng-cloak>
+		<div class="col-md-12 ym-pc-dashboard-school-challenge" ng-if="schoolChallenge == 4" ng-cloak>
 		  <strong>School Challenge:</strong><br/>
 		  Since you raised more than your {{participantProgress.goalFormatted}} you can now participate in {{companyProgress.schoolChallenge == "Other" ? companyProgress.schoolChallengeOther : companyProgress.schoolChallenge}}. Keep fundraising to help your school raise more it's goal of {{companyProgress.goalFormatted}}.
  		 </div>
