@@ -120,9 +120,18 @@ angular.module 'trPcControllers'
                 if amt >= Number(($scope.companyProgress.schoolChallengeLevel).replace('$', '').replace(/,/g, ''))
                   # student challenge completed
                   $scope.studentChallengeBadge = true
-                #if school raised more than goal then student sees school badge achieved
+                #if neither school or student goal met
+                if $scope.companyProgress.raised < $scope.companyProgress.goal and amt < Number(($scope.companyProgress.schoolChallengeLevel).replace('$', '').replace(/,/g, '')) and $scope.companyProgress.schoolChallenge != "No School Challenge"
+                  $scope.schoolChallenge = 1
+                #if student goal met but not school goal
+                if $scope.companyProgress.raised >= $scope.companyProgress.goal and amt < Number(($scope.companyProgress.schoolChallengeLevel).replace('$', '').replace(/,/g, '')) and $scope.companyProgress.schoolChallenge != "No School Challenge"
+                  $scope.schoolChallenge = 2
+                #if school goal met but not student goal
+                if $scope.companyProgress.raised < $scope.companyProgress.goal and amt >= Number(($scope.companyProgress.schoolChallengeLevel).replace('$', '').replace(/,/g, '')) and $scope.companyProgress.schoolChallenge != "No School Challenge"
+                  $scope.schoolChallenge = 3
+                #if both student and school goals met
                 if $scope.companyProgress.raised >= $scope.companyProgress.goal and amt >= Number(($scope.companyProgress.schoolChallengeLevel).replace('$', '').replace(/,/g, '')) and $scope.companyProgress.schoolChallenge != "No School Challenge"
-                  $scope.schoolChallenge = true
+                  $scope.schoolChallenge = 4
                     
       participantsString = ''
       $scope.companyParticipants = {}
