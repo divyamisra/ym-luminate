@@ -1,0 +1,11 @@
+.social-icons {
+  > div {
+    display:flex;
+  }
+  a {
+    text-decoration:none;
+    img {
+	max-width: 50px;
+    }
+  }
+}
