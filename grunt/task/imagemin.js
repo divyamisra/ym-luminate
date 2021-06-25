@@ -68,7 +68,8 @@ module.exports = {
         expand: true,
         cwd: 'src/middle-school/image/',
         src: [
-          '*.{gif,GIF,jpg,JPG,png,PNG,svg,SVG}'
+          '*.{gif,GIF,jpg,JPG,png,PNG,svg,SVG}',
+          'fy22/*.{gif,GIF,jpg,JPG,png,PNG,svg,SVG}'
         ],
         dest: 'dist/middle-school/image/'
       }
