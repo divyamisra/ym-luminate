@@ -5,7 +5,10 @@
     a,
     a:link,
     a:visited {
-      color: $event-grey;
+      color: #ffffff;
     }
+  }
+  &:last-child {
+      color: #ffffff;
   }
 }
