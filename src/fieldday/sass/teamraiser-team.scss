@@ -180,6 +180,12 @@
        .information-box__team-members {
          font-size: 18px;
        }
+       .js--sidebar-content {
+          -webkit-box-shadow: 0px 15px 15px rgba(0,0,0,.2);
+          -ms-box-shadow: 0 15px 15px rgba(0,0,0,.2);
+          -o-box-shadow: 0 15px 15px rgba(0,0,0,.2);     
+          box-shadow: 0 15px 15px rgba(0,0,0,.2); 
+       }
     }
   }
 }
