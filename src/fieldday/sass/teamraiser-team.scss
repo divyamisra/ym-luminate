@@ -10,7 +10,7 @@
     padding: 40px;
 
     h1 {
-      margin: 0 0 40px;
+      margin-top: -4px!important;
     }
 
     p {
@@ -135,4 +135,13 @@
     width: 260px;
   }
 
+}
+
+.pg_team {
+  .fundraising-amounts {
+    margin-bottom: 25px;
+  }
+  .buttons-row {
+    margin-bottom: 35px;
+  }
 }
