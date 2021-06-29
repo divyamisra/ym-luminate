@@ -43,13 +43,18 @@
       tr {
         font-size: 0.8rem;
         padding: 0 40px;
+        th:first-of-type {
+          padding-left: 30px!important;
+        }
       }
     }
      tbody {
       tr {
        font-size: 0.8rem;
        padding: 0 40px 15px;
-
+        td.donor-name {
+          padding-left: 30px!important;
+        }
        label {
          margin: 0;
        }
@@ -105,7 +110,7 @@
   margin: 40px 0 0 30px;
 
   .team-roster-header {
-    padding: 20px;
+    padding: 30px;
     overflow: hidden;
     background-color: $red;
     display: flex;
@@ -144,7 +149,7 @@
   .buttons-row {
     margin-bottom: 35px;
     a {
-      font-size: 18px;
+      font-size: 18px!important;
     }
   }
 }
