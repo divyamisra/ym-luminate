@@ -157,4 +157,29 @@
   .buttons-row + a {
     font-size: 18px
   }
+  @media (max-width: 767px) {
+    .tr-page-container .sidebar-hero {
+      width: 100%!important;
+    }
+    .tr-page-container .sidebar {
+      padding: 0 10px;
+    }
+    .fundraising-amounts > div {
+      padding-left: 5px;
+      padding-right: 5px;
+    }
+    .information-box .information-box__name {
+      padding: 15px;
+       p {
+         text-align: left;
+         font-size: 18px;
+       }
+       h1 {
+         padding: 5px 0;
+       }
+       .information-box__team-members {
+         font-size: 18px;
+       }
+    }
+  }
 }
