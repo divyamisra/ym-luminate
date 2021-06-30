@@ -10,3 +10,9 @@
   background: url('../image/middle-school-therm-fill.png') no-repeat top left;
   height: 35px;
 }
+
+.ym-progress__stats {
+  p {
+    color: $event-secondary-heading;
+  }
+}
