@@ -130,6 +130,9 @@ select#ym-update-challenge {
   .btn {
     white-space:normal;
   }
+  h2, .h3 {
+    color: $event-secondary-heading;
+  }
 }
 
 .ym-pc-dashboard-badge-path {
