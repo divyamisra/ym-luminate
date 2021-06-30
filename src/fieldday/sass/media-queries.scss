@@ -725,10 +725,10 @@
           -ms-box-shadow: 0 15px 15px rgba(0,0,0,.2);
           -o-box-shadow: 0 15px 15px rgba(0,0,0,.2);     
           box-shadow: 0 15px 15px rgba(0,0,0,.2); 
-          ul li p {
-            font-size: 1.125!important;
-          }
       }
+    }
+    .sidebar__details p {
+      font-size: 1.125!important;
     }
     .team-roster {
       thead tr th {
