@@ -55,12 +55,14 @@ select#ym-update-challenge {
 .ym-pc-dashboard-coordinator-school-years-section,
 .ym-pc-dashboard-coordinator-school-challenge-section,
 .ym-pc-dashboard-coordinator-school-level-section {
-	background-color: $event-accent-light;
+	background-color: $event-secondary-medium;
 	padding: 36px;
 	margin: 0 0 30px;
+	color: $event-secondary-heading;
 
 	h2.h3 {
 		margin-bottom: 20px;
+		color: $event-secondary-heading;
 	}
 
 	div.ym-pc-dashboard-section-header {
