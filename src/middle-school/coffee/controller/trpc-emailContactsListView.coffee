@@ -86,6 +86,8 @@ angular.module 'trPcControllers'
       ]
       if $scope.participantRegistration.companyInformation?.isCompanyCoordinator is 'true'
         contactFilters.push 'email_rpt_show_company_coordinator_participants'
+        contactFilters.push 'email_custom_rpt_show_company_coordinator_0_dollar_participants'
+        contactFilters.push 'email_custom_rpt_show_company_coordinator_250_dollar_participants'
         contactFilters.push 'email_custom_rpt_show_past_company_coordinator_participants'
       $scope.addressBookContacts = 
         page: 1
@@ -194,6 +196,70 @@ angular.module 'trPcControllers'
                             $scope.addressBookContacts.allContactsSelected = isAllContactsSelected()
                           else
                             getPrev2Contacts()
+            else if filter is 'email_custom_rpt_show_company_coordinator_0_dollar_participants' or filter is 'email_custom_rpt_show_company_coordinator_250_dollar_participants'
+              if $scope.participantRegistration.companyInformation?.isCompanyCoordinator isnt 'true'
+                $scope.addressBookContacts.contacts = []
+                $scope.addressBookContacts.totalNumber = 0
+                $scope.addressBookContacts.allContacts = []
+                $scope.addressBookContacts.allContactsSelected = isAllContactsSelected()
+              else
+                if $scope.addressBookContacts.contacts
+                  delete $scope.addressBookContacts.contacts
+                filteredParticipants = []
+                totalNumberResults = 0
+                NgPcTeamraiserReportsService.getSchoolDetailReport()
+                  .then (response) ->
+                    reportData = response.data.getSchoolDetailReport?.reportData
+                    handleReportData reportData
+                    $scope.addressBookContacts.contacts = filteredParticipants
+                    $scope.addressBookContacts.totalNumber = totalNumberResults
+                    $scope.addressBookContacts.allContacts = filteredParticipants
+                    $scope.addressBookContacts.allContactsSelected = isAllContactsSelected()
+                handleReportData = (reportData) ->
+                  if reportData
+                    reportDataRows = []
+                    angular.forEach reportData, (reportDataRow) ->
+                      if reportDataRow.length > 1
+                        reportDataRows.push reportDataRow
+                    if reportDataRows.length > 1
+                      reportDataColumnIndexMap = {}
+                      angular.forEach reportDataRows[0], (reportDataHeader, reportDataHeaderIndex) ->
+                        reportDataColumnIndexMap[reportDataHeader] = reportDataHeaderIndex
+                      angular.forEach reportDataRows, (reportDataRow, reportDataRowIndex) ->
+                        if reportDataRowIndex > 0
+                          firstName = jQuery.trim reportDataRow[reportDataColumnIndexMap.PARTICIPANT_FIRST_NAME]
+                          lastName = jQuery.trim reportDataRow[reportDataColumnIndexMap.PARTICIPANT_LAST_NAME]
+                          email = jQuery.trim reportDataRow[reportDataColumnIndexMap.PARTICIPANT_EMAIL]
+                          amountRaised = Number reportDataRow[reportDataColumnIndexMap.TRX_AMT]
+                          contact =
+                            firstName: firstName
+                            lastName: lastName
+                            email: email
+                            amountRaised: amountRaised
+                          contact.selected = isContactSelected contact
+                          contactIsUnique = true
+                          angular.forEach filteredParticipants, (filteredParticipant) ->
+                            contactString = firstName.toLowerCase() + ' ' + lastName.toLowerCase() + ' <' + email.toLowerCase() + '>'
+                            filteredParticipantString = filteredParticipant.firstName.toLowerCase() + ' ' + filteredParticipant.lastName.toLowerCase() + ' <' + filteredParticipant.email.toLowerCase() + '>'
+                            if contactString is filteredParticipantString
+                              contactIsUnique = false
+                          contactMeetsCustomFilter = false
+                          if filter is 'email_custom_rpt_show_company_coordinator_0_dollar_participants' and amountRaised is 0
+                            contactMeetsCustomFilter = true
+                          else if filter is 'email_custom_rpt_show_company_coordinator_250_dollar_participants' and amountRaised >= 250
+                            contactMeetsCustomFilter = true
+                          if contactIsUnique and contactMeetsCustomFilter
+                            totalNumberResults++
+                            filteredParticipants.push contact
+                      filteredParticipants.sort (a, b) ->
+                        aFullName = a.firstName.toLowerCase() + ' ' + a.lastName.toLowerCase()
+                        bFullName = b.firstName.toLowerCase() + ' ' + b.lastName.toLowerCase()
+                        if aFullName < bFullName
+                          return -1
+                        else if aFullName > bFullName
+                          return 1
+                        else
+                          return 0
             else
               contactsPromise = NgPcContactService.getTeamraiserAddressBookContacts 'tr_ab_filter=' + filter + '&skip_groups=true&list_page_size=10&list_page_offset=' + pageNumber
                 .then (response) ->
@@ -219,7 +285,7 @@ angular.module 'trPcControllers'
               $scope.addressBookContacts.allContacts = []
               $scope.addressBookContacts.getAllPage = 0
             pageNumber = $scope.addressBookContacts.getAllPage
-            if filter is 'email_custom_rpt_show_past_company_coordinator_participants'
+            if filter is 'email_custom_rpt_show_company_coordinator_0_dollar_participants' or filter is 'email_custom_rpt_show_company_coordinator_250_dollar_participants' or filter is 'email_custom_rpt_show_past_company_coordinator_participants'
               delete $scope.addressBookContacts.getAllPage
             else
               allContactsPromise = NgPcContactService.getTeamraiserAddressBookContacts 'tr_ab_filter=' + filter + '&skip_groups=true&list_page_size=200&list_page_offset=' + pageNumber
@@ -246,7 +312,7 @@ angular.module 'trPcControllers'
               $scope.emailPromises.push allContactsPromise
           $scope.getAllContacts()
         else
-          if filter is 'email_custom_rpt_show_past_company_coordinator_participants'
+          if filter is 'email_custom_rpt_show_company_coordinator_0_dollar_participants' or filter is 'email_custom_rpt_show_company_coordinator_250_dollar_participants' or filter is 'email_custom_rpt_show_past_company_coordinator_participants'
             $scope.contactCounts[filter] = ''
           else
             # contactCountPromise = NgPcContactService.getTeamraiserAddressBookContacts 'tr_ab_filter=' + filter + '&skip_groups=true&list_page_size=1'
@@ -264,6 +330,8 @@ angular.module 'trPcControllers'
         email_rpt_show_donors: 'Donors'
         email_rpt_show_nondonors: 'Non-Donors'
         email_rpt_show_company_coordinator_participants: 'School Participants'
+        email_custom_rpt_show_company_coordinator_0_dollar_participants: '$0 School Participants'
+        email_custom_rpt_show_company_coordinator_250_dollar_participants: '$250 School Participants'
         email_custom_rpt_show_past_company_coordinator_participants: 'Past School Participants'
       
       $scope.filterName = filterNames[$scope.filter]
