@@ -228,6 +228,8 @@
 
 .ym-pc-dashboard-spread-section {
   padding: 0;	
+  color: $event-secondary-heading;
+	
   @media (min-width: $screen-sm-min) {
     padding: 0;
   }  
