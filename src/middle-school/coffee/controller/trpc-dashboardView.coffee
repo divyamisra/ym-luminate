@@ -241,6 +241,20 @@ angular.module 'trPcControllers'
         getSchoolInformation()
       $scope.refreshFundraisingProgress()
 
+      if $scope.prev1FrId
+        NgPcTeamraiserProgressService.getProgress $scope.prev1FrId
+          .then (response) ->
+            if response.data.errorResponse
+              angular.noop()
+            else
+              participantPrevProgress = response.data.getParticipantProgressResponse.personalProgress
+              if not participantPrevProgress
+                angular.noop()
+              else
+                participantPrevProgress.raised = Number participantPrevProgress.raised
+                participantPrevProgress.raisedFormatted = if participantPrevProgress.raised then $filter('currency')(participantPrevProgress.raised / 100, '$') else '$0.00'
+                $scope.participantPrevProgress = participantPrevProgress
+
       BoundlessService.getSchoolBadges $scope.frId + '/' + $scope.participantRegistration.companyInformation.companyId
       .then (response) ->
         $scope.schoolBadgesRegistrations = response.data.registration_badges
