@@ -15,7 +15,7 @@
     &:focus,
     &:active {
       background: $brand-white;
-      color: $event-secondary;
+      color: $event-secondary-medium;
       
       @media (min-width: 560px) {
         background: $brand-white;
@@ -23,7 +23,7 @@
     }
     &.active {
       background: $brand-white;
-      color: $event-secondary;
+      color: $event-secondary-medium;
     }
   }
 }
