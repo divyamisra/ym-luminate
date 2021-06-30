@@ -59,8 +59,7 @@
   }
 }
 
-.ym-pc-dashboard-captain-page-type, 
-.ym-pc-dashboard-coordinator-page-type {
+.ym-pc-dashboard-captain-page-type {
   a,
   button {
     &, 
@@ -70,6 +69,18 @@
       background-color: rgba(40, 79, 73, 0.2);
       color: rgb(255, 255, 255);
       color: rgba(40, 79, 73, 1);
+    }
+  }
+}
+
+.ym-pc-dashboard-coordinator-page-type {
+  a,
+  button {
+    &, 
+    &:link, 
+    &:visited {
+      background-color: $event-primary;
+      color: $event-secondary-heading;
     }
   }
 }
