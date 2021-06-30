@@ -15,11 +15,15 @@
     &:focus,
     &:active {
       background: $brand-white;
-      color: $event-secondary-heading;
+      color: $event-secondary;
       
       @media (min-width: 560px) {
         background: $brand-white;
       }
+    }
+    &.active {
+      background: $brand-white;
+      color: $event-secondary;
     }
   }
 }
