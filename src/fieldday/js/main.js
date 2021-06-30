@@ -295,7 +295,7 @@
 
                   var companyMap = '<a target="_blank" aria-label="Google map for '+ company.companyname +' location" href="' + eventMapLink + '">' + '<p>' + company.eventlocationname + '</p> <p>' + company.eventcity + ', ' + company.eventstate + '</p>' + '</a>';
 
-                  $('.js--company-link').html(companyMap)
+                   $('.js--company-link').html(companyMap)
 
                 }
 
