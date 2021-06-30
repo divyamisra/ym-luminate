@@ -84,6 +84,9 @@
        }
        td.donor-name {
         padding-left: 30px!important;
+        @media all and (max-width: 767px) {
+          padding-left: 0!important;
+        }
       }
      }
    }

@@ -766,7 +766,7 @@
     .fundraising-amounts div span:first-of-type {
       font-size: .87rem!important
     }
-    .information-box ul {
+    .information-box + ul {
       padding-left: 2.5rem!important
     }
     td.donor-name {
@@ -980,7 +980,7 @@
         .buttons-row {
           .btn {
             max-width: 100% !important;
-            margin: 0px 10px 10px !important;
+            margin: 10px 0 !important;
           }
         }
       }
