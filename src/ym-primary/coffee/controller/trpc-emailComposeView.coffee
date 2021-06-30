@@ -140,10 +140,16 @@ angular.module 'trPcControllers'
             if message.active is 'true'
               if $scope.participantRegistration.companyInformation?.isCompanyCoordinator isnt 'true'
                 if message.name.indexOf('Coordinator:') is -1
+                  if not $scope.suggestedMessageCountByType[message.messageType]
+                    $scope.suggestedMessageCountByType[message.messageType] = 0
+                  $scope.suggestedMessageCountByType[message.messageType] = $scope.suggestedMessageCountByType[message.messageType] + 1
                   message.name = message.name.split('Student: ')[1] or message.name
                   $scope.suggestedMessages.push message
               else
                 if message.name.indexOf('Student:') is -1
+                  if not $scope.suggestedMessageCountByType[message.messageType]
+                    $scope.suggestedMessageCountByType[message.messageType] = 0
+                  $scope.suggestedMessageCountByType[message.messageType] = $scope.suggestedMessageCountByType[message.messageType] + 1
                   message.name = message.name.split('Coordinator: ')[1] or message.name
                   $scope.suggestedMessages.push message
           response
