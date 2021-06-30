@@ -753,6 +753,23 @@
       }
     }
   }
+  .pg_company {
+    .fundraising-amounts {
+      margin-bottom: 25px!important;
+    }
+    .buttons-row {
+      margin: 0 0 28px!important;
+    }
+    .information-box__content {
+      padding: 80px 35px 20px!important;
+    }
+    .fundraising-amounts div span:first-of-type {
+      font-size: .87rem!important
+    }
+    .information-box ul {
+      padding-left: 2.5rem!important
+    }
+  }
   /* END PERSONAL, TEAM, COMPANY PAGE STYLES */
 
   .pg_FieldDay_Search {
