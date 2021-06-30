@@ -15,7 +15,29 @@
   document.hide_addons = [];
 </script>
 <div class="ym-registration-page-container ym-registration-page-container--ptype" ng-controller="RegistrationPtypeCtrl">
-  <div class="hidden" hidden aria-hidden="true" ng-init="participationOptions.fr_goal = '[[?xx::x[[A15]]x::[[T6:[[A18]]]]::[[T6:[[A15]]]]]]'; participationOptions.min_donation = '$10.00'"></div>
+  [[?
+    [[?[[S42:0:classification]]::YM Kids Heart Challenge::T::]]
+    [[?[[S42:0:classification]]::American Heart Challenge::T::]]
+  ::T::
+    <!-- kids heart challenge and american heart challenge -->
+    [[?
+      [[?xxUnrecognized type parameterx::x[[S42:0:prev-fr-id]]x::T::]]
+      [[?xx::x[[E48:[[S42:0:prev-fr-id]]:part-type]]x::T::]]
+      [[?xx::x[[A21]]x::::
+        [[?x1x::x[[E130:[[A21]] 0 <]]x::::T]]
+      ]]
+    ::T::
+      <!-- not a returning participant in this event -->
+      <div class="hidden" hidden aria-hidden="true" ng-init="participationOptions.fr_goal = '[[?xx::x[[A15]]x::[[T6:[[A18]]]]::[[T6:[[A15]]]]]]'"></div>
+    ::
+      <!-- returning participant in this event -->
+      <div class="hidden" hidden aria-hidden="true" ng-init="participationOptions.fr_goal = '[[E48:[[S42:0:prev-fr-id]]:dollars]]'"></div>
+    ]]
+  ::
+    <!-- not kids heart challenge or american heart challenge -->
+    <div class="hidden" hidden aria-hidden="true" ng-init="participationOptions.fr_goal = '[[?xx::x[[A15]]x::[[T6:[[A18]]]]::[[T6:[[A15]]]]]]'"></div>
+  ]]
+  <div class="hidden" hidden aria-hidden="true" ng-init="participationOptions.min_donation = '$10.00'"></div>
   <div class="ym-registration-page-header">
     <div class="manageable-content" data-container="edit_pt_title_container">
       [[?xx::x[[S1:cons_id]]x::::
