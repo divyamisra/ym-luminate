@@ -1037,10 +1037,11 @@
 
     #our-teams, #our-walkers, .team-roster {
       .team-roster-header {
-        padding: 20px 0 0 32px !important;
+        padding: 15px 0 !important;
 
         h1 {
-          margin: 0 0 15px 0 !important;
+          max-width: 150px;
+          margin: 0 0 0 25px!important
         }
       }
 
@@ -1066,15 +1067,6 @@
     &.dataTable {
       th, td {
         padding: 0.7rem;
-      }
-    }
-  }
-  .pg_team {
-    .team-roster-header {
-      padding: 15px 0!important;
-      h1 {
-        max-width: 150px;
-        margin: 0 0 0 25px!important
       }
     }
   }
