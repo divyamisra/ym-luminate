@@ -730,13 +730,6 @@
     .sidebar__details p {
       font-size: 1.125rem!important;
     }
-    .team-roster-header {
-      padding: 15px 0!important;
-      h1 {
-        max-width: 150px;
-        margin: 0 0 0 25px!important
-      }
-    }
     .team-roster__icon p {
       font-size: 1rem!important;
       margin-right: 5px!important;
@@ -1073,6 +1066,15 @@
     &.dataTable {
       th, td {
         padding: 0.7rem;
+      }
+    }
+  }
+  .pg_team {
+    .team-roster-header {
+      padding: 15px 0!important;
+      h1 {
+        max-width: 150px;
+        margin: 0 0 0 25px!important
       }
     }
   }
