@@ -409,12 +409,13 @@ main > .container {
   
   .ym-progress-related {
     position: relative;
+    display: flex;
     margin: 30px 0 0;
   }
 
   .ym-progress-donate {
-    float: left;
-
+    padding-right: 18px;
+    
     /*.btn-lg,
     a.btn-lg {
       &,
@@ -451,8 +452,9 @@ main > .container {
     }*/
   }
 
-  .pull-right {
+  .ym-progress-amounts {
     text-align: right;
+    margin-left: auto;
 
     p {
       margin: 0;
@@ -1518,14 +1520,13 @@ main > .container {
 
   .ym-progress-related {
     position: relative;
+    display: flex;
     margin: 30px 0 0;
   }
 
   .ym-progress-donate {
-    @media (min-width: $screen-sm-min) {
-      float: left;
-    }
-
+    padding-right: 18px;
+    
     .btn-lg,
     a.btn-lg {
       &,
@@ -1558,8 +1559,9 @@ main > .container {
     }
   }
 
-  .pull-right {
+  .ym-progress-amounts {
     text-align: right;
+    margin-left: auto;
 
     p {
       margin: 0;
