@@ -742,7 +742,11 @@
       }
     }
     .donor-roll {
-      margin-top: 50px;
+      margin-top: 50px!important;
+      span {
+        font-size: 1rem;
+        font-weight: 700;
+      }
     }
   }
   /* END PERSONAL, TEAM, COMPANY PAGE STYLES */
