@@ -42,6 +42,21 @@
     }
   }
 }
+.ym-pc-dashboard-progress-section,
+.ym-pc-dashboard-activities-section {
+  a {
+    &:link,
+    &:visited {
+      color: $event-primary-acc;
+    }
+
+    &:hover,
+    &:focus,
+    &:active {
+      color: $event-primary-acc;
+    }
+  }
+}
 
 .ym-pc-dashboard-progress-box {
   padding: 20px;
