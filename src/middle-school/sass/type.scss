@@ -4,14 +4,14 @@ a {
   &:link,
   &:visited {
     text-decoration: underline;
-    color: $event-primary-acc;
+    color: $event-primary;
   }
 
   &:hover,
   &:focus,
   &:active {
     text-decoration: none;
-    color: $event-primary-acc;
+    color: $event-primary;
   }
 }
 
