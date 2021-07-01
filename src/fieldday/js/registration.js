@@ -664,7 +664,7 @@
           //Add company name
           $('#part_type_fundraising_goal_input_container').prepend("<h2>Set Your Personal Fundraising Goal!</h2>")
             $('div#part_type_campaign_banner_container').replaceWith(function() {
-                return '<h1 class="campaign-banner-container" id="part_type_campaign_banner_container">' + $(this).html() + '</h1><h2 class="campaign-banner-container">My Company: '+regCompanyName+'</h2>';
+                return '<h2 class="campaign-banner-container">My Company: '+regCompanyName+'</h2>';
             });
             $('#pt_title_container').replaceWith(function() {
                 return '<h2 id="pt_title_container" class="section-header-text">' + $(this).html() + '</h2>';
@@ -677,7 +677,7 @@
         // reg page
         if ($('#registration_options_page').length > 0) {
             $('#registration_options_page .header-container .campaign-banner-container').replaceWith(function() {
-                return '<h1 class="campaign-banner-container">' + $(this).html() + '</h1><h2 class="campaign-banner-container">My Company: '+regCompanyName+'</h2>';
+                return '<h2 class="campaign-banner-container">My Company: '+regCompanyName+'</h2>';
             });
             $('#title_container').replaceWith('<h2 id="title_container">Tell us about you:</h2>');
         }
