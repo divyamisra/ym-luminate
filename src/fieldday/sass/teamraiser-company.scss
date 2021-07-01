@@ -139,9 +139,21 @@
 #game-points-roster {
   td {
     text-align: center;
-    .games-team-name,
-    .games-captain-name {
+    &.games-team-name,
+    &.games-captain-name {
       text-align: left;
+    }
+  }
+  @media (min-width: 1024px) { 
+    .games-team-rank {
+      width: 5%
+    }
+    .games-fundraising-points {
+      width: 15%;
+    }
+    .games-game-points,
+    .games-total-points {
+      width: 11%;
     }
   }
 }
