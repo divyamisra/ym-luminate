@@ -1550,7 +1550,7 @@
         $('#password_component_container #cons_rep_password').parent().parent().parent().addClass('left');
         $('#password_component_container #cons_password').parent().parent().parent().addClass('left');
         $('span.survey-question-label:contains("Would you like to be recognized as a survivor of heart disease or stroke?")').parent().next().children().children().children('input').wrap('<div></div>');
-        $('span.survey-question-label:contains("Would you like to be recognized as a survivor of heart disease or stroke?")').parent().parent().addClass('survivor_yes_no').attr({"role":"radiogroup","aria-label":" Would you like to be recognized as a survivor of heart disease or stroke?","aria-required":"true"});
+        $('span.survey-question-label:contains("Would you like to be recognized as a survivor of heart disease or stroke?")').parent().parent().addClass('survivor_yes_no').attr({"aria-label":" Would you like to be recognized as a survivor of heart disease or stroke?","aria-required":"true"});
         $('span.input-label:contains("SurvivorQ")').parent().parent().addClass('survivorSelect');
         $('span.input-label:contains("SurvivorQ")').parent().parent().parent().parent().hide();
 	$('.survivor_yes_no li.input-container input[type="radio"]').attr("aria-required","true");
@@ -1561,7 +1561,7 @@
         }
 
         $('.survivor_yes_no input[type=radio]').addClass("required survivorq");
-        $('.survivorq').attr({"role":"radiogroupitem"})
+        // $('.survivorq').attr({"role":"radiogroupitem"})
 
         $('.survivor_yes_no li').click(function() {
             $('.survivor_yes_no li').removeClass('survivor_active');
