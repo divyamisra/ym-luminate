@@ -293,7 +293,7 @@
 
                 if ( eventMapLink.indexOf("http://") == 0 || eventMapLink.indexOf("https://") == 0 || eventMapLink.indexOf("www") == 0)  {
 
-                  var companyMap = '<a target="_blank" aria-label="'+company.eventlocationname+'\xa0'+company.eventcity+','+company.eventstate+'" href="' + eventMapLink + '">' + '<p>' + company.eventlocationname + '</p> <p>' + company.eventcity + ', ' + company.eventstate + '</p>' + '</a>';
+                  var companyMap = '<a target="_blank" aria-label="'+company.eventlocationname+''+company.eventcity+','+company.eventstate+'" href="' + eventMapLink + '">' + '<p>' + company.eventlocationname + '</p> <p>' + company.eventcity + ', ' + company.eventstate + '</p>' + '</a>';
 
                    $('.js--company-link').html(companyMap)
 
@@ -308,7 +308,7 @@
 
                   var eventMapLink = 'https://www.google.com/maps/place/' + companyAddress;
 
-                  var companyMap = '<a target="_blank" aria-label="'+company.eventlocationname+'\xa0'+company.eventcity+','+company.eventstate+'" href="' + eventMapLink + '">' + '<p>' + company.eventlocationname + '</p> <p>' + company.eventcity + ', ' + company.eventstate + '</p>' + '</a>';
+                  var companyMap = '<a target="_blank" aria-label="'+company.eventlocationname+''+company.eventcity+','+company.eventstate+'" href="' + eventMapLink + '">' + '<p>' + company.eventlocationname + '</p> <p>' + company.eventcity + ', ' + company.eventstate + '</p>' + '</a>';
 
                   // $("'"+companyMap+"'").appendTo('.js--company-link')
 
