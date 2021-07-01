@@ -1578,6 +1578,8 @@
           $(this).parent().parent().addClass('survivor_active');
         })
 
+        $('.reg-summary-part-type').prepend('<div class="confirmReg" aria-label="Confirm your registration total:">Confirm your registration total:</div>')
+
 
         /*Donation Buttons*/
         $('.donation-level-row-label').parent().parent().addClass('donation-amt');
