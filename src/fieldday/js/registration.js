@@ -1561,7 +1561,7 @@
         }
 
         $('.survivor_yes_no input[type=radio]').addClass("required survivorq");
-        $('.survivorq').attr({"role":"radio"})
+        $('.survivorq').attr({"role":"radiogroupradio"})
 
         $('.survivor_yes_no li').click(function() {
             $('.survivor_yes_no li').removeClass('survivor_active');
