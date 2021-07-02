@@ -2316,12 +2316,6 @@
 
                                     team.teamPageURL = "#";
 
-                                    // TR/?team_id=2705&pg=team&fr_id=4474
-
-                                    // <a href="TR/?px=' + team.team_captain_consid + '&pg=personal&fr_id=' + evID + '" data-sort="' + team.team_captain_name + '">
-
-                                    
-
                                     $('#game-points-roster tbody').append('<tr class="' + (numGamePointsRows > 4 ? 'd-none' : '') + '"> <td class="games-team-rank" data-sort="'+team.team_rank+'">' + team.team_rank + '</td> <td class="games-team-name"> <a href="TR/?team_id=' + team.team_id + '&pg=team&fr_id=' + evID + '" data-sort="' + team.team_name + '">' + team.team_name + '</a> </td><td class="games-captain-name"> <a href="TR/?px=' + team.team_captain_consid + '&pg=personal&fr_id=' + evID + '" data-sort="' + team.team_captain_name + '">' + team.team_captain_name + '</a> </td><td class="games-fundraising-points" data-sort="'+team.fundraising_points+'">'+team.fundraising_points+'</td> <td class="games-game-points" data-sort="'+team.game_points+'">'+team.game_points+'</td><td class="games-total-points" data-sort="'+team.total_points+'">'+team.total_points+'</td></tr>');
 
                                     numGamePointsRows++;
