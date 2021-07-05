@@ -1901,6 +1901,11 @@
             var end_pos = pageTitle.indexOf('- Field Day', start_pos);
             var currentCompanyName = pageTitle.substring(start_pos, end_pos).trim();
             var currentCompanyId = getURLParameter(currentUrl, 'company_id');
+            var visitedFromHQ = getURLParameter(currentUrl, 'ourstats');
+
+            if (visitedFromHQ) {
+                $('#our-points-tab').click();
+            }
 
             console.log('finished assigning company vars');
 
