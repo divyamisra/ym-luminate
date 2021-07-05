@@ -671,7 +671,7 @@
             });
 
           $('#disc_code_container').append("<div><small>Is your company paying for your registration fee? Please enter your company code below.</small></div>");
-          $('#part_type_discount_code_section_row_container').append('<div class="my-2"><a href="mailto:'+coordEmailReg+'" target="_blank">I don\'t see my company code</a></div>');
+          $('#part_type_discount_code_section_row_container').append('<div class="my-2"><a href="mailto:'+coordEmailReg+'" target="_blank"> I don\'t know my company code</a></div>');
         }
 
         // reg page
@@ -1551,6 +1551,7 @@
         $('#password_component_container #cons_password').parent().parent().parent().addClass('left');
         $('span.survey-question-label:contains("Would you like to be recognized as a survivor of heart disease or stroke?")').parent().next().children().children().children('input').wrap('<div></div>');
         $('span.survey-question-label:contains("Would you like to be recognized as a survivor of heart disease or stroke?")').parent().parent().addClass('survivor_yes_no').attr({"aria-label":" Would you like to be recognized as a survivor of heart disease or stroke?","aria-required":"true"});
+        $('span.survey-question-label:contains("Would you like to be recognized as a survivor?")').parent().parent().find('input').prop("checked", true);
         $('span.survey-question-label:contains("Would you like to be recognized as a survivor?")').parent().parent().parent().parent().parent().hide();
         $('span.input-label:contains("SurvivorQ")').parent().parent().addClass('survivorSelect');
         $('span.input-label:contains("SurvivorQ")').parent().parent().parent().parent().hide();
