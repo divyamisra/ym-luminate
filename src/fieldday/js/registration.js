@@ -1551,6 +1551,7 @@
         $('#password_component_container #cons_password').parent().parent().parent().addClass('left');
         $('span.survey-question-label:contains("Would you like to be recognized as a survivor of heart disease or stroke?")').parent().next().children().children().children('input').wrap('<div></div>');
         $('span.survey-question-label:contains("Would you like to be recognized as a survivor of heart disease or stroke?")').parent().parent().addClass('survivor_yes_no').attr({"aria-label":" Would you like to be recognized as a survivor of heart disease or stroke?","aria-required":"true"});
+        $('span.survey-question-label:contains("Would you like to be recognized as a survivor?")').parent().parent().parent().parent().parent().hide();
         $('span.input-label:contains("SurvivorQ")').parent().parent().addClass('survivorSelect');
         $('span.input-label:contains("SurvivorQ")').parent().parent().parent().parent().hide();
 	$('.survivor_yes_no li.input-container input[type="radio"]').attr("aria-required","true");
