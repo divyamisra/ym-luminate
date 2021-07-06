@@ -1555,6 +1555,7 @@
         $('span.survey-question-label:contains("Would you like to be recognized as a survivor of heart disease or stroke?")').parent().parent().addClass('survivor_yes_no').attr({"aria-label":" Would you like to be recognized as a survivor of heart disease or stroke?","aria-required":"true"});
 
         //Remove next 2 lines of code after survivor question is fixed in blueprint
+        
         $('span.survey-question-label:contains("Would you like to be recognized as a survivor?")').parent().parent().find('input').prop("checked", true);
         $('span.survey-question-label:contains("Would you like to be recognized as a survivor?")').parent().parent().parent().parent().parent().hide();
 
