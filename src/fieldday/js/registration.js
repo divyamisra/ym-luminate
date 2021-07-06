@@ -1598,7 +1598,7 @@
         $('.donation-level-row-container.enterAmt label.donation-level-row-label').text('Other Amount');
 	$('.donation-level-row-label-no-gift').parent().addClass('notTime');
   $('.enterAmt .input-container > span').next('input').andSelf().wrapAll("<div class='enterAmt-other hidden'></div>");
-  $('.donation-level-row-container').attr('tabindex', '0');
+  // $('.donation-level-row-container').attr('tabindex', '0');
 
         $(".donation-level-amount-text").each(function() {
             $(this).text($(this).text().replace(".00", ""));
