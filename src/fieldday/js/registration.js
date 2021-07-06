@@ -834,7 +834,9 @@
                         var companyId = $('#regCompanyId').val();
                         // cd.getTeams(teamName, searchType);
                         cd.getTeams(teamName, 'registration', false, firstName, lastName, companyId);
-      	                $('.js__reg-team-search-form .button').closest('.col-sm-4').after('<div class="col-sm-12 text-center pt-2">Can\'t find a team at your company? <a href="TRR/?pg=tfind&fr_id='+evID+'&fr_tm_opt=new&s_regType=startTeam">You can start one!</a></div>');
+                        if($('.regSearchResults').length === 0) {
+                          $('.js__reg-team-search-form .button').closest('.col-sm-4').after('<div class="regSearchResults col-sm-12 text-center pt-2">Can\'t find a team at your company? <a href="TRR/?pg=tfind&fr_id='+evID+'&fr_tm_opt=new&s_regType=startTeam">You can start one!</a></div>');
+                        }
                     });
 
                     cd.getCompanyList = function(frId, companyId) {
@@ -1555,7 +1557,7 @@
         //Remove next 2 lines of code after survivor question is fixed in blueprint
         $('span.survey-question-label:contains("Would you like to be recognized as a survivor?")').parent().parent().find('input').prop("checked", true);
         $('span.survey-question-label:contains("Would you like to be recognized as a survivor?")').parent().parent().parent().parent().parent().hide();
-        
+
         $('span.input-label:contains("SurvivorQ")').parent().parent().addClass('survivorSelect');
         $('span.input-label:contains("SurvivorQ")').parent().parent().parent().parent().hide();
 	$('.survivor_yes_no li.input-container input[type="radio"]').attr("aria-required","true");
