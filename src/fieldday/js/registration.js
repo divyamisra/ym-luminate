@@ -122,36 +122,44 @@
               success: function (response) {
 
                 if ($.fn.DataTable) {
+                  console.log('a');
                   if ($.fn.DataTable.isDataTable('#teamResultsTable')) {
+                    console.log('b');
                     $('#teamResultsTable').DataTable().destroy();
                   }
                 }
                 $('#teamResultsTable tbody').empty();
 
                 if (response.getTeamSearchByInfoResponse.totalNumberResults === '0') {
+                  console.log('c');
                   // no search results
                   $('#error-team').removeAttr('hidden').text('Team not found. Please try different search terms.');
                   $('.js__error-team-search').show();
                 } else {
+                  console.log('d');
                   var teams = luminateExtend.utils.ensureArray(response.getTeamSearchByInfoResponse.team);
 
                   $(teams).each(function (i, team) {
                     if (searchType === 'registration') {
+                      console.log('e');
 
                       console.log('search type is reg. Team max size:' + team.maxTeamSize + ' and team members: ' + team.numMembers);
                       console.log(team.maxTeamSize + ' > ' + team.numMembers);
 
-		      if (parseInt(team.maxTeamSize) > parseInt(team.numMembers)) {
-	                      $('.list').append(
-        	                '<div class="search-result-details row py-3"><div class="col-md-5"><strong><a href="' + team.teamPageURL + '" class="team-name-label" title="' + team.name + '" target=_blank><span class="team-company-label sr-only">Team Name:</span> ' + team.name + '</a></strong><br><span class="team-captain-label">Coach:</span> <span class="team-captain-name">' + team.captainFirstName + ' ' + team.captainLastName + '</span></div><div class="col-md-5 mt-auto">' + ((team.companyName !== null && team.companyName !== undefined) ? '<span class="team-company-label">Company:</span> <span class="team-company-name">' + team.companyName + '</span>' : '') + '</div><div class="col-md-2"><a href="' + luminateExtend.global.path.secure + 'TRR/?fr_tjoin=' + team.id + '&pg=tfind&fr_id=' + evID + '&s_captainConsId=' + team.captainConsId + '&s_regType=joinTeam&skip_login_page=true&s_teamName=' + team.name + '&s_teamGoal=' + (parseInt(team.goal)/100) + '&s_teamCaptain=' + team.captainFirstName + ' ' + team.captainLastName + '&s_companyName=' + team.companyName +'" title="Join ' + team.name + '" aria-label="Join ' + team.name + '" class="btn btn-block btn-primary button team-join-btn">Join</a></div></div>');
-		      } else {
-	                      $('.list').append(
-        	                '<div class="search-result-details row py-3"><div class="col-md-5"><strong><a href="' + team.teamPageURL + '" class="team-name-label" title="' + team.name + '" target=_blank><span class="team-company-label sr-only">Team Name:</span> ' + team.name + '</a></strong><br><span class="team-captain-label">Coach:</span> <span class="team-captain-name">' + team.captainFirstName + ' ' + team.captainLastName + '</span></div><div class="col-md-5 mt-auto">' + ((team.companyName !== null && team.companyName !== undefined) ? '<span class="team-company-label">Company:</span> <span class="team-company-name">' + team.companyName + '</span>' : '') + '</div><div class="col-md-2 text-center"><br/>Team is full</div></div>');
-		      }
+                      if (parseInt(team.maxTeamSize) > parseInt(team.numMembers)) {
+                        console.log('f');
+                                    $('.list').append(
+                                      '<div class="search-result-details row py-3"><div class="col-md-5"><strong><a href="' + team.teamPageURL + '" class="team-name-label" title="' + team.name + '" target=_blank><span class="team-company-label sr-only">Team Name:</span> ' + team.name + '</a></strong><br><span class="team-captain-label">Coach:</span> <span class="team-captain-name">' + team.captainFirstName + ' ' + team.captainLastName + '</span></div><div class="col-md-5 mt-auto">' + ((team.companyName !== null && team.companyName !== undefined) ? '<span class="team-company-label">Company:</span> <span class="team-company-name">' + team.companyName + '</span>' : '') + '</div><div class="col-md-2"><a href="' + luminateExtend.global.path.secure + 'TRR/?fr_tjoin=' + team.id + '&pg=tfind&fr_id=' + evID + '&s_captainConsId=' + team.captainConsId + '&s_regType=joinTeam&skip_login_page=true&s_teamName=' + team.name + '&s_teamGoal=' + (parseInt(team.goal)/100) + '&s_teamCaptain=' + team.captainFirstName + ' ' + team.captainLastName + '&s_companyName=' + team.companyName +'" title="Join ' + team.name + '" aria-label="Join ' + team.name + '" class="btn btn-block btn-primary button team-join-btn">Join</a></div></div>');
+                      } else {
+                        console.log('g');
+                                    $('.list').append(
+                                      '<div class="search-result-details row py-3"><div class="col-md-5"><strong><a href="' + team.teamPageURL + '" class="team-name-label" title="' + team.name + '" target=_blank><span class="team-company-label sr-only">Team Name:</span> ' + team.name + '</a></strong><br><span class="team-captain-label">Coach:</span> <span class="team-captain-name">' + team.captainFirstName + ' ' + team.captainLastName + '</span></div><div class="col-md-5 mt-auto">' + ((team.companyName !== null && team.companyName !== undefined) ? '<span class="team-company-label">Company:</span> <span class="team-company-name">' + team.companyName + '</span>' : '') + '</div><div class="col-md-2 text-center"><br/>Team is full</div></div>');
+                      }
                       $('.js__search-results-container').slideDown();
                       // $('.js__search-results-container').show();
 
                     } else {
+                      console.log('h');
                       $('.js__team-results-rows')
                         .append('<tr' + (i > 10 ? ' class="d-none"' : '') + '><td><a href="' + team.teamPageURL + '">' +
                           team.name + '</a></td><td><a href="TR/?px=' + team.captainConsId + '&pg=personal&fr_id=' + team.EventId + '">' + team.captainFirstName + ' ' + team.captainLastName + '</a></td><td>' +
@@ -161,6 +169,7 @@
                   });
 
                   if (searchType === 'registration') {
+                    console.log('i');
                     var options = {
                       valueNames: [
                         'team-name-label',
@@ -171,10 +180,12 @@
                     var teamsList = new List('custom_team_find', options);
 
                     if ($('.team-company-name').length > 0) {
+                      console.log('j');
                       $('.js__company-sort').show();
                     }
 
                   } else {
+                    console.log('h');
                     var totalTeams = parseInt(response.getTeamSearchByInfoResponse.totalNumberResults);
 
                     $('.js__num-team-results').text((totalTeams === 1 ? '1 Result' : totalTeams + ' Results'));
@@ -812,9 +823,9 @@
                 $('#team_find_new_team_attributes').before($('#team_find_new_team_company'));
                 $('#fr_team_name').attr('title','Team Name is required');
             } else if (regType === 'joinTeam') {
-		$('.campaign-banner-container').hide();
-        $('#team_find_new_team_attributes').before($('#team_find_new_team_company'));
-        $('.js__join-team-company-name').text('MyCompany: ' + regCompanyName);
+		          $('.campaign-banner-container').hide();
+              $('#team_find_new_team_attributes').before($('#team_find_new_team_company'));
+              $('.js__join-team-company-name').text('MyCompany: ' + regCompanyName);
                 if(regCompanyId !== "") {
                   $('select[name=regCompanyId]').val(regCompanyId);
                 }
