@@ -122,7 +122,7 @@
               success: function (response) {
 
                 if ($.fn.DataTable) {
-                  console.log('a');
+                  console.log('a. test');
                   if ($.fn.DataTable.isDataTable('#teamResultsTable')) {
                     console.log('b');
                     $('#teamResultsTable').DataTable().destroy();
