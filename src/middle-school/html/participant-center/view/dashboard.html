@@ -750,33 +750,33 @@
 					<div class="col-sm-6 ym-pc-dashboard-coordinator-progress-section__column event-secondary-medium">
 						<div class="ym-pc-dashboard-coordinator-progress-box">
 							<div id="ym-pc-dashboard-personal-panel--coordinator">
-								<div class="fundraisingStatusTitle ">
+								<div class="fundraisingStatusTitle">
 									Personal Progress
 								</div>
-								<div class="ym-progress__thermometer " name="Personal Progress Bar " aria-label="{{participantProgress.percent}} percent of fundraising progress " aria-valuetext="{{participantProgress.percent}} percent of fundraising progress " role="progressbar " aria-valuenow="{{participantProgress.percent}} " aria-valuemin="0 " aria-valuemax="100 ">
-									<div class="ym-progress__thermometer--fill " ng-style="{ 'width': participantProgress.percent + '%'} ">
+								<div class="ym-progress__thermometer" name="Personal Progress Bar" aria-label="{{participantProgress.percent}} percent of fundraising progress" aria-valuetext="{{participantProgress.percent}} percent of fundraising progress" role="progressbar" aria-valuenow="{{participantProgress.percent}}" aria-valuemin="0" aria-valuemax="100">
+									<div class="ym-progress__thermometer--fill" ng-style="{ 'width': participantProgress.percent + '%'}">
 									</div>
 								</div>
-								<div class="ym-progress-related clearfix ">
-									<div class="ym-progress-donate ">
+								<div class="ym-progress-related clearfix">
+									<div class="ym-progress-donate">
 										<p>
-											<a class="btn btn-lg btn-primary " ng-href="{{baseUrl}}#/reports " title="Click to view your donation reports "><strong>Donation Reports</strong></a>
+											<a class="btn btn-lg btn-primary" ng-href="{{baseUrl}}#/reports" title="Click to view your donation reports"><strong>Donation Reports</strong></a>
 										</p>
 										<p>
-											<a class="btn btn-lg btn-primary " ng-href="Donation2?df_id={{eventInfo.donationFormId}}&amp;FR_ID={{frId}}&amp;PROXY_TYPE=20&amp;PROXY_ID={{consId}} "> <strong>Donate to Personal Page</strong> </a> 
+											<a class="btn btn-lg btn-primary" ng-href="Donation2?df_id={{eventInfo.donationFormId}}&amp;FR_ID={{frId}}&amp;PROXY_TYPE=20&amp;PROXY_ID={{consId}}"> <strong>Donate to Personal Page</strong> </a> 
 										</p>
 									</div>
-									<div class="pull-right ">
+									<div class="pull-right">
 										<p>
-											<strong><span ng-bind-html="participantProgress.raisedFormatted "></span></strong> raised 
+											<strong><span ng-bind-html="participantProgress.raisedFormatted"></span></strong> raised 
 										</p>
-										<div ng-if="participantProgress.goalFormatted &amp;&amp; participantProgress.goalFormatted !='$0' " ng-cloak>
+										<div ng-if="participantProgress.goalFormatted &amp;&amp; participantProgress.goalFormatted !='$0'" ng-cloak>
 											<p>
-												<strong><span ng-bind-html="participantProgress.goalFormatted "></span></strong> goal 
+												<strong><span ng-bind-html="participantProgress.goalFormatted"></span></strong> goal 
 											</p>
 										</div>
 										<p>
-											<a href=" " ng-click="editPersonalGoal() " class="ym-progress-update-goal " aria-label="Update Personal Goal "> <strong>Update Goal</strong> </a> 
+											<a href="" ng-click="editPersonalGoal()" class="ym-progress-update-goal" aria-label="Update Personal Goal"> <strong>Update Goal</strong> </a> 
 										</p>
 									</div>
 								</div>
@@ -784,19 +784,19 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-sm-12 ym-pc-dashboard-coordinator-progress-section__column event-secondary-medium ">
-					<div class="ym-pc-dashboard-coordinator-students-box " ng-if="companyInfo.participantCount " ng-cloak>
-						<div class="ym-pc-dashboard-section-header ">
+				<div class="col-sm-12 ym-pc-dashboard-coordinator-progress-section__column event-secondary-medium">
+					<div class="ym-pc-dashboard-coordinator-students-box" ng-if="companyInfo.participantCount" ng-cloak>
+						<div class="ym-pc-dashboard-section-header">
 							<h2 class="h5 ">
 								My School Stats 
 							</h2>
 						</div>
-						<div class="row ">
-							<div class="col-md-6 ">
-								<div class="schoolStatusTitle ">
+						<div class="row">
+							<div class="col-md-6">
+								<div class="schoolStatusTitle">
 									School Achievement 
 								</div>
-								<p class="students-registered hidden ">
+								<p class="students-registered hidden">
 									<strong>{{companyInfo.participantCount|number}}</strong> student<span ng-if="companyInfo.participantCount> 1 || activity1amt == 0">s are</span><span ng-if="companyInfo.participantCount == 1"> is</span> registered 
 								</p>
 								<p>
