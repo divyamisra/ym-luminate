@@ -1,3 +1,19 @@
+.ng-pc-view-container {
+  a {
+    &,
+    &:link,
+    &:visited {
+      color: $event-primary-acc;
+    }
+
+    &:hover,
+    &:focus,
+    &:active {
+      color: $event-primary-acc;
+    }
+  }
+}
+
 .ym-pc-dashboard-coordinator-steps-section {
   .h3 {
     color: $event-secondary-medium;
