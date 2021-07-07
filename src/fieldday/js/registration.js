@@ -124,7 +124,7 @@
                 if ($.fn.DataTable) {
                   console.log('a');
                   if ($.fn.DataTable.isDataTable('#teamResultsTable')) {
-                    console.log('b');
+                    console.log('b.');
                     $('#teamResultsTable').DataTable().destroy();
                   }
                 }
