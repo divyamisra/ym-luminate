@@ -18,8 +18,12 @@
   .h3 {
     color: $event-secondary-medium;
   }
+  .ym-activity-box {
+    h2.h3 {
+      color: $event-secondary-heading;
+    } 
 }
-
+	
 .social-iframe {
 	min-height: 950px;
 }
