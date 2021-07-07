@@ -30,6 +30,7 @@
         color: $black;
         background-color: #EFEFEF;
         border-bottom: none;
+        padding: 0.75rem 1rem;
         text-align: center;
         text-decoration: none;
         font-family: $font-family-bold;
@@ -76,6 +77,10 @@
       }
     }
   }
+  
+  .sidebar__details p {
+    line-height: 1.5rem;
+  }
 
   .company-message {
     h2 {
@@ -117,7 +122,7 @@
   }
 }
 
-//view all companies page
+//view all companies page2
 @media (max-width: 767px) {
   th.trr-table-participant-amount,
   th.trr-table-number-amount {
@@ -128,5 +133,30 @@
 @media only screen and (max-width: 991px) and (min-width: 768px) {
   .mobile div.tr-page-container div#team_page_main_content, .mobile div.tr-page-container div.tr-page-main-content {
       width: 100%;
+  }
+}
+.gamess-help-text {
+  padding: .8rem;
+  font-size: .8rem;
+}
+#game-points-roster {
+  td {
+    text-align: center;
+    &.games-team-name,
+    &.games-captain-name {
+      text-align: left;
+    }
+  }
+  @media (min-width: 1024px) { 
+    .games-team-rank {
+      width: 5%
+    }
+    .games-fundraising-points {
+      width: 15%;
+    }
+    .games-game-points,
+    .games-total-points {
+      width: 11%;
+    }
   }
 }

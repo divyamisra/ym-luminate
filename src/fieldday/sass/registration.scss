@@ -94,14 +94,24 @@ div.registration-page-container div.section-body {
 div.registration-page-container span.option-label {
 	margin-right: 10px;
 }
-.reg-summary-part-type::before {
-	content: "Confirm your registration total:";
-	font-size: 1.1em;
+
+.confirmReg {
+  font-size: 1.1em;
 	font-weight: bold;
 	display: block;
 	margin-bottom: 10px;
 	margin-top: 20px;
 }
+
+// .reg-summary-part-type::before {
+// 	content: "Confirm your registration total:";
+// 	font-size: 1.1em;
+// 	font-weight: bold;
+// 	display: block;
+// 	margin-bottom: 10px;
+// 	margin-top: 20px;
+// }
+
 #fr_reg_summary_page button.cancel-step {
 	display:none;
 }
@@ -1284,7 +1294,8 @@ div.responsive .part-type-decoration-messages label {
   margin: 0;
 
   .part-type-fee-text {
-    font-size: 24px;
+    font-size: 2rem;
+    font-weight: bold;
     line-height: 32px;
     &::before {
       content: 'Registration fee: ';

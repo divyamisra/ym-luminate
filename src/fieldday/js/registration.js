@@ -122,36 +122,44 @@
               success: function (response) {
 
                 if ($.fn.DataTable) {
+                  console.log('a');
                   if ($.fn.DataTable.isDataTable('#teamResultsTable')) {
+                    console.log('b');
                     $('#teamResultsTable').DataTable().destroy();
                   }
                 }
                 $('#teamResultsTable tbody').empty();
 
                 if (response.getTeamSearchByInfoResponse.totalNumberResults === '0') {
+                  console.log('c');
                   // no search results
                   $('#error-team').removeAttr('hidden').text('Team not found. Please try different search terms.');
                   $('.js__error-team-search').show();
                 } else {
+                  console.log('d');
                   var teams = luminateExtend.utils.ensureArray(response.getTeamSearchByInfoResponse.team);
 
                   $(teams).each(function (i, team) {
                     if (searchType === 'registration') {
+                      console.log('e');
 
                       console.log('search type is reg. Team max size:' + team.maxTeamSize + ' and team members: ' + team.numMembers);
                       console.log(team.maxTeamSize + ' > ' + team.numMembers);
 
-		      if (parseInt(team.maxTeamSize) > parseInt(team.numMembers)) {
-	                      $('.list').append(
-        	                '<div class="search-result-details row py-3"><div class="col-md-5"><strong><a href="' + team.teamPageURL + '" class="team-name-label" title="' + team.name + '" target=_blank><span class="team-company-label sr-only">Team Name:</span> ' + team.name + '</a></strong><br><span class="team-captain-label">Coach:</span> <span class="team-captain-name">' + team.captainFirstName + ' ' + team.captainLastName + '</span></div><div class="col-md-5 mt-auto">' + ((team.companyName !== null && team.companyName !== undefined) ? '<span class="team-company-label">Company:</span> <span class="team-company-name">' + team.companyName + '</span>' : '') + '</div><div class="col-md-2"><a href="' + luminateExtend.global.path.secure + 'TRR/?fr_tjoin=' + team.id + '&pg=tfind&fr_id=' + evID + '&s_captainConsId=' + team.captainConsId + '&s_regType=joinTeam&skip_login_page=true&s_teamName=' + team.name + '&s_teamGoal=' + (parseInt(team.goal)/100) + '&s_teamCaptain=' + team.captainFirstName + ' ' + team.captainLastName + '&s_companyName=' + team.companyName +'" title="Join ' + team.name + '" aria-label="Join ' + team.name + '" class="btn btn-block btn-primary button team-join-btn">Join</a></div></div>');
-		      } else {
-	                      $('.list').append(
-        	                '<div class="search-result-details row py-3"><div class="col-md-5"><strong><a href="' + team.teamPageURL + '" class="team-name-label" title="' + team.name + '" target=_blank><span class="team-company-label sr-only">Team Name:</span> ' + team.name + '</a></strong><br><span class="team-captain-label">Coach:</span> <span class="team-captain-name">' + team.captainFirstName + ' ' + team.captainLastName + '</span></div><div class="col-md-5 mt-auto">' + ((team.companyName !== null && team.companyName !== undefined) ? '<span class="team-company-label">Company:</span> <span class="team-company-name">' + team.companyName + '</span>' : '') + '</div><div class="col-md-2 text-center"><br/>Team is full</div></div>');
-		      }
+                      if (parseInt(team.maxTeamSize) > parseInt(team.numMembers)) {
+                        console.log('f');
+                                    $('.list').append(
+                                      '<div class="search-result-details row py-3"><div class="col-md-5"><strong><a href="' + team.teamPageURL + '" class="team-name-label" title="' + team.name + '" target=_blank><span class="team-company-label sr-only">Team Name:</span> ' + team.name + '</a></strong><br><span class="team-captain-label">Coach:</span> <span class="team-captain-name">' + team.captainFirstName + ' ' + team.captainLastName + '</span></div><div class="col-md-5 mt-auto">' + ((team.companyName !== null && team.companyName !== undefined) ? '<span class="team-company-label">Company:</span> <span class="team-company-name">' + team.companyName + '</span>' : '') + '</div><div class="col-md-2"><a href="' + luminateExtend.global.path.secure + 'TRR/?fr_tjoin=' + team.id + '&pg=tfind&fr_id=' + evID + '&s_captainConsId=' + team.captainConsId + '&s_regType=joinTeam&skip_login_page=true&s_teamName=' + team.name + '&s_teamGoal=' + (parseInt(team.goal)/100) + '&s_teamCaptain=' + team.captainFirstName + ' ' + team.captainLastName + '&s_companyName=' + team.companyName +'" title="Join ' + team.name + '" aria-label="Join ' + team.name + '" class="btn btn-block btn-primary button team-join-btn">Join</a></div></div>');
+                      } else {
+                        console.log('g');
+                                    $('.list').append(
+                                      '<div class="search-result-details row py-3"><div class="col-md-5"><strong><a href="' + team.teamPageURL + '" class="team-name-label" title="' + team.name + '" target=_blank><span class="team-company-label sr-only">Team Name:</span> ' + team.name + '</a></strong><br><span class="team-captain-label">Coach:</span> <span class="team-captain-name">' + team.captainFirstName + ' ' + team.captainLastName + '</span></div><div class="col-md-5 mt-auto">' + ((team.companyName !== null && team.companyName !== undefined) ? '<span class="team-company-label">Company:</span> <span class="team-company-name">' + team.companyName + '</span>' : '') + '</div><div class="col-md-2 text-center"><br/>Team is full</div></div>');
+                      }
                       $('.js__search-results-container').slideDown();
                       // $('.js__search-results-container').show();
 
                     } else {
+                      console.log('h');
                       $('.js__team-results-rows')
                         .append('<tr' + (i > 10 ? ' class="d-none"' : '') + '><td><a href="' + team.teamPageURL + '">' +
                           team.name + '</a></td><td><a href="TR/?px=' + team.captainConsId + '&pg=personal&fr_id=' + team.EventId + '">' + team.captainFirstName + ' ' + team.captainLastName + '</a></td><td>' +
@@ -161,6 +169,7 @@
                   });
 
                   if (searchType === 'registration') {
+                    console.log('i');
                     var options = {
                       valueNames: [
                         'team-name-label',
@@ -171,10 +180,12 @@
                     var teamsList = new List('custom_team_find', options);
 
                     if ($('.team-company-name').length > 0) {
+                      console.log('j');
                       $('.js__company-sort').show();
                     }
 
                   } else {
+                    console.log('h');
                     var totalTeams = parseInt(response.getTeamSearchByInfoResponse.totalNumberResults);
 
                     $('.js__num-team-results').text((totalTeams === 1 ? '1 Result' : totalTeams + ' Results'));
@@ -664,22 +675,23 @@
           //Add company name
           $('#part_type_fundraising_goal_input_container').prepend("<h2>Set Your Personal Fundraising Goal!</h2>")
             $('div#part_type_campaign_banner_container').replaceWith(function() {
-                return '<h1 class="campaign-banner-container" id="part_type_campaign_banner_container">' + $(this).html() + '</h1><h2 class="campaign-banner-container">My Company: '+regCompanyName+'</h2>';
+                return '<h2 class="campaign-banner-container">My Company: '+regCompanyName+'</h2>';
             });
             $('#pt_title_container').replaceWith(function() {
                 return '<h2 id="pt_title_container" class="section-header-text">' + $(this).html() + '</h2>';
             });
 
           $('#disc_code_container').append("<div><small>Is your company paying for your registration fee? Please enter your company code below.</small></div>");
-          $('#part_type_discount_code_section_row_container').append('<div class="my-2"><a href="mailto:'+coordEmailReg+'" target="_blank">I don\'t see my company code</a></div>');
+          $('#part_type_discount_code_section_row_container').append('<div class="my-2"><a href="mailto:'+coordEmailReg+'" target="_blank"> I don\'t know my company code</a></div>');
         }
 
         // reg page
         if ($('#registration_options_page').length > 0) {
             $('#registration_options_page .header-container .campaign-banner-container').replaceWith(function() {
-                return '<h1 class="campaign-banner-container">' + $(this).html() + '</h1><h2 class="campaign-banner-container">My Company: '+regCompanyName+'</h2>';
+                return '<h2 class="campaign-banner-container">My Company: '+regCompanyName+'</h2>';
             });
             $('#title_container').replaceWith('<h2 id="title_container">Tell us about you:</h2>');
+            $('#registration_options_page #reg_options_cons_info_extension #opt_in_label').attr("aria-label", "I would like to be emailed when a gift is made on my behalf");
         }
 
         //Rthanks
@@ -811,9 +823,9 @@
                 $('#team_find_new_team_attributes').before($('#team_find_new_team_company'));
                 $('#fr_team_name').attr('title','Team Name is required');
             } else if (regType === 'joinTeam') {
-		$('.campaign-banner-container').hide();
-        $('#team_find_new_team_attributes').before($('#team_find_new_team_company'));
-        $('.js__join-team-company-name').text('MyCompany: ' + regCompanyName);
+		          $('.campaign-banner-container').hide();
+              $('#team_find_new_team_attributes').before($('#team_find_new_team_company'));
+              $('.js__join-team-company-name').text('MyCompany: ' + regCompanyName);
                 if(regCompanyId !== "") {
                   $('select[name=regCompanyId]').val(regCompanyId);
                 }
@@ -833,7 +845,9 @@
                         var companyId = $('#regCompanyId').val();
                         // cd.getTeams(teamName, searchType);
                         cd.getTeams(teamName, 'registration', false, firstName, lastName, companyId);
-      	                $('.js__reg-team-search-form .button').closest('.col-sm-4').after('<div class="col-sm-12 text-center pt-2">Can\'t find a team at your company? <a href="TRR/?pg=tfind&fr_id='+evID+'&fr_tm_opt=new&s_regType=startTeam">You can start one!</a></div>');
+                        if($('.regSearchResults').length === 0) {
+                          $('.js__reg-team-search-form .button').closest('.col-sm-4').after('<div class="regSearchResults col-sm-12 text-center pt-2">Can\'t find a team at your company? <a href="TRR/?pg=tfind&fr_id='+evID+'&fr_tm_opt=new&s_regType=startTeam">You can start one!</a></div>');
+                        }
                     });
 
                     cd.getCompanyList = function(frId, companyId) {
@@ -1549,7 +1563,13 @@
         $('#password_component_container #cons_rep_password').parent().parent().parent().addClass('left');
         $('#password_component_container #cons_password').parent().parent().parent().addClass('left');
         $('span.survey-question-label:contains("Would you like to be recognized as a survivor of heart disease or stroke?")').parent().next().children().children().children('input').wrap('<div></div>');
-        $('span.survey-question-label:contains("Would you like to be recognized as a survivor of heart disease or stroke?")').parent().parent().addClass('survivor_yes_no').attr({"role":"radiogroup","aria-label":" Would you like to be recognized as a survivor of heart disease or stroke?","aria-required":"true"});
+        $('span.survey-question-label:contains("Would you like to be recognized as a survivor of heart disease or stroke?")').parent().parent().addClass('survivor_yes_no').attr({"aria-label":" Would you like to be recognized as a survivor of heart disease or stroke?","aria-required":"true"});
+
+        //Remove next 2 lines of code after survivor question is fixed in blueprint
+        
+        $('span.survey-question-label:contains("Would you like to be recognized as a survivor?")').parent().parent().find('input').prop("checked", true);
+        $('span.survey-question-label:contains("Would you like to be recognized as a survivor?")').parent().parent().parent().parent().parent().hide();
+
         $('span.input-label:contains("SurvivorQ")').parent().parent().addClass('survivorSelect');
         $('span.input-label:contains("SurvivorQ")').parent().parent().parent().parent().hide();
 	$('.survivor_yes_no li.input-container input[type="radio"]').attr("aria-required","true");
@@ -1560,6 +1580,7 @@
         }
 
         $('.survivor_yes_no input[type=radio]').addClass("required survivorq");
+        // $('.survivorq').attr({"role":"radiogroupitem"})
 
         $('.survivor_yes_no li').click(function() {
             $('.survivor_yes_no li').removeClass('survivor_active');
@@ -1576,6 +1597,8 @@
           $(this).parent().parent().addClass('survivor_active');
         })
 
+        $('.reg-summary-part-type').prepend('<div class="confirmReg" aria-label="Confirm your registration total:">Confirm your registration total:</div>')
+
 
         /*Donation Buttons*/
         $('.donation-level-row-label').parent().parent().addClass('donation-amt');
@@ -1585,7 +1608,8 @@
         $('.donation-level-row-label-no-gift').insertBefore(jQuery('.donation-level-row-label-no-gift').parent());
         $('.donation-level-row-container.enterAmt label.donation-level-row-label').text('Other Amount');
 	$('.donation-level-row-label-no-gift').parent().addClass('notTime');
-	$('.enterAmt .input-container > span').next('input').andSelf().wrapAll("<div class='enterAmt-other hidden'></div>");
+  $('.enterAmt .input-container > span').next('input').andSelf().wrapAll("<div class='enterAmt-other hidden'></div>");
+  // $('.donation-level-row-container').attr('tabindex', '0');
 
         $(".donation-level-amount-text").each(function() {
             $(this).text($(this).text().replace(".00", ""));
