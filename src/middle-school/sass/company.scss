@@ -1,15 +1,27 @@
 body.pg-company {
 	.challenge-slime {
 		background: #fff url('../image/fy22/school_challenge_slime.jpg') no-repeat center bottom / 100% 100%;
+		.ym-progress__title {
+			color: $event-secondary-medium;
+		}
 	}
 	.challenge-pie {
 		background: #fff url('../image/fy22/school_challenge_pie_in_face.jpg') no-repeat center bottom / 100% 100%;
+		.ym-progress__title {
+			color: $event-secondary-medium;
+		}
 	}
 	.challenge-color {
 		background: #fff url('../image/fy22/school_challenge_chalk.jpg') no-repeat center bottom / 100% 100%;
+		.ym-progress__title {
+			color: $event-secondary-medium;
+		}
 	}
 	.challenge-hair {
 		background: #fff url('../image/fy22/school_challenge_hair_dye.jpg') no-repeat center bottom / 100% 100%;
+		.ym-progress__title {
+			color: $event-secondary-medium;
+		}
 	}
 }
 .ym-school-participation-years {
