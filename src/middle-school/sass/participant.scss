@@ -9,6 +9,7 @@
     &:link,
     &:visited {
       color: $event-secondary-heading;
+      background: $event-secondary-medium;
     }
 
     &:hover,
@@ -25,6 +26,18 @@
     &.active {
       background: $brand-white;
       color: $event-secondary-medium;
+    }
+  }
+}
+
+@media (max-width:669px) {
+  .ng-pc-nav--coordinator {
+    a { 
+      &:link,
+      &:visited {
+        background: $event-secondary-medium;
+        color: $brand-white;
+      }
     }
   }
 }
