@@ -53,7 +53,7 @@ a.btn-compose {
 a.btn.btn-secondary:active, 
 a.btn.btn-secondary:focus, 
 a.btn.btn-secondary:hover {
-	background: #337ab7;
+	background: $event-primary;
 }
 
 div[id^="taTextElement"]:focus {
