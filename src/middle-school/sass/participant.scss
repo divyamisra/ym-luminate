@@ -100,6 +100,14 @@
       color: rgba(40, 79, 73, 1);
     }
   }
+  a, 
+  button {
+    &,
+    &:hover {
+      background-color: $event-secondary;
+      color: $event-secondary-medium;
+    }
+  }
   &.active {
     a, 
     button {
@@ -122,6 +130,14 @@
     &:visited {
       background-color: $event-primary;
       color: $event-secondary-heading;
+    }
+  }
+  a, 
+  button {
+    &,
+    &:hover {
+      background-color: $event-secondary;
+      color: $event-secondary-medium;
     }
   }
   &.active {
@@ -157,7 +173,14 @@
       color: $event-secondary-medium;
     }
   }
-  
+  a, 
+  button {
+    &,
+    &:hover {
+      background-color: $event-secondary;
+      color: $event-secondary-medium;
+    }
+  }
   &.active {
     a, 
     button {
