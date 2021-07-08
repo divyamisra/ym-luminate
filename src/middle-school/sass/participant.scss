@@ -17,8 +17,9 @@
       background: $brand-white;
       color: $event-secondary-medium;
       
-      @media (min-width: 560px) {
+      @media (max-width: 560px) {
         background: $brand-white;
+        color: $event-secondary-medium;
       }
     }
     &.active {
