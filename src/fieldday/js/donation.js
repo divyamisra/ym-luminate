@@ -503,7 +503,6 @@
               return /^\d{5}(?:-\d{4})?$/.test(value);
             }, "Please provide a valid zipcode.");
 
-            console.log('donation form script is running')
 
             $('.donation-form').validate({
               rules: {'zip': {zipcheck: true} },
@@ -511,7 +510,7 @@
               errorPlacement: function(error, element) {
                 if ($(element).hasClass("postal_code")) {
                   var a11yError = error.attr('role', 'alert');
-                  $('.postal_code').after(a11yError);
+                  $('.postal_code').before(a11yError);
                 }
               }
             });
