@@ -106,7 +106,8 @@
       &,
       &:link,
       &:visited {
-        background-color: $event-primary;
+        background-color: $event-secondary;
+        color: $event-secondary-medium;
       }
     }
   }
@@ -128,7 +129,8 @@
       &,
       &:link,
       &:visited {
-        background-color: $event-primary;
+        background-color: $event-secondary;
+        color: $event-secondary-medium;
       }
     }
   }
@@ -160,7 +162,8 @@
       &,
       &:link,
       &:visited {
-        background-color: $event-primary;
+        background-color: $event-secondary;
+        color: $event-secondary-medium;
       }
     }
   }
