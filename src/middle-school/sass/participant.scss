@@ -358,3 +358,16 @@
 	  margin-bottom: 20px;
   }
 }
+
+.ym-pc-dashboard-spread-section {
+  .ym-pc-dashboard-section-header {
+    h2,.h3 {
+	    color: $event-secondary-heading;
+    }
+  }
+}
+
+.schoolChallenge, 
+.schoolCreateMessage {
+    color: $event-secondary-heading;
+}
