@@ -130,7 +130,7 @@
     &:focus,
     &:active {
       background-color: $event-primary;
-      color: $brand-white;
+      color: $brand-secondary-medium;
     }
   }
   
@@ -244,8 +244,11 @@
   .h5 {
     text-transform: none;
     color: $event-secondary-heading;
-  }
 
+    .ym-activity-box-number {
+       background: $event-primary;
+    }
+  }
 }
 
 .ym-spread-the-word-box {
