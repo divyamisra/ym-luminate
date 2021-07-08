@@ -1394,23 +1394,25 @@
 
 
 	    var tshirtName = $('.input-label:contains("t-shirt")').closest('.input-container').find('select').attr("name");
-	    var rules = {};
+      var rules = {};
 	    rules['cons_password'] = {required: true,minlength: 5};
-	    rules['cons_rep_password'] = {required: true,minlength: 5,equalTo: "#cons_password"};
+      rules['cons_rep_password'] = {required: true,minlength: 5,equalTo: "#cons_password"};
+      rules['cons_zip_code'] = { zipcheck: true }
 	    //rules[optinName] = {required: '#mobile_optin:checked',minlength: 2};
 	    rules[tshirtName] = {valueNotEquals: 'NOREPLY'};
 	    var messages = {};
 	    messages['cons_password'] = {minlength: "Please enter 5 characters or more",required: "Please enter a password"};
 	    messages['cons_rep_password'] = {required: "Please confirm your password",minlength: "Please enter 5 characters or more",equalTo: "Passwords do not match. Please re-enter password."};
 	    //messages[optinName] = {required: "Mobile Opt in is selected.<br/>Please enter a mobile number."};
-	    messages[tshirtName] = {required: "Please select a t-shirt size."};
+      messages[tshirtName] = {required: "Please select a t-shirt size."};
+      messages['cons_zip_code'] = {zipcheck: "Please provide a valid zipcode."};
 
 	    $('button.previous-step').attr("formnovalidate","true");
 
 	    //hide back button and turn into link
 	    $('button#previous_step').after('<a href="javascript:window.history.go(-1)" class="step-button previous-step backBtnReg">Back</a>').hide();
 
-   	    $.validator.addMethod("valueNotEquals", function(value, element, arg){
+   	  $.validator.addMethod("valueNotEquals", function(value, element, arg){
 		return arg !== value;
 	    }, "Please select a t-shirt size");
 
@@ -1496,9 +1498,9 @@
                return /^(((\+1)|1)?(| ))((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,3})|(\(?\d{2,3}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$/.test(value) // consists of only these
             },"Invalid phone number");
 
-            // $.validator.addMethod("consZip", function(value, element) {
-            //   return this.optional(element) || /^\d{5}(?:-\d{4})?$/.test(value);
-            // }, "Please provide a valid zipcode.");
+            $.validator.addMethod("zipcheck", function(value) {
+              return /^\d{5}(?:-\d{4})?$/.test(value);
+            }, "Please provide a valid zipcode.");
 
             $('input#cons_user_name').addClass("uncheck");
             $('input#cons_password').addClass("pwcheck");
