@@ -84,7 +84,9 @@ select#ym-update-challenge {
 }
 
 .ym-pc-dashboard-section-header {
+  h2,.h3 {
 	color: $event-secondary-medium;
+  }
 }
 
 .ym-pc-dashboard-coordinator-school-years-section,
