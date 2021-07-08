@@ -100,11 +100,12 @@
       color: rgba(40, 79, 73, 1);
     }
   }
-  a, 
+  a,
   button {
-    &,
-    &:hover {
-      background-color: $event-secondary;
+    &:hover,
+    &:focus,
+    &:active {
+      background-color: $event-primary;
       color: $event-secondary-medium;
     }
   }
@@ -132,11 +133,12 @@
       color: $event-secondary-heading;
     }
   }
-  a, 
+  a,
   button {
-    &,
-    &:hover {
-      background-color: $event-secondary;
+    &:hover,
+    &:focus,
+    &:active {
+      background-color: $event-primary;
       color: $event-secondary-medium;
     }
   }
@@ -170,14 +172,6 @@
     &:focus,
     &:active {
       background-color: $event-primary;
-      color: $event-secondary-medium;
-    }
-  }
-  a, 
-  button {
-    &,
-    &:hover {
-      background-color: $event-secondary;
       color: $event-secondary-medium;
     }
   }
