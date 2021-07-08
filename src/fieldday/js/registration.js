@@ -133,6 +133,8 @@
                 if (response.getTeamSearchByInfoResponse.totalNumberResults === '0') {
                   console.log('c');
                   // no search results
+                  $('.js__num-team-results').text('0 Results');
+                  $('.js__num-team-results').attr("role", "status");
                   $('#error-team').removeAttr('hidden').text('Team not found. Please try different search terms.');
                   $('.js__error-team-search').show();
                 } else {
@@ -170,6 +172,9 @@
 
                   if (searchType === 'registration') {
                     console.log('i');
+                    var totalTeams = parseInt(response.getTeamSearchByInfoResponse.totalNumberResults);
+                    $('.js__num-team-results').text((totalTeams === 1 ? '1 Result' : totalTeams + ' Results'));
+                    $('.js__num-team-results').attr("role", "status");
                     var options = {
                       valueNames: [
                         'team-name-label',
@@ -674,14 +679,17 @@
           $('#part_type_campaign_banner_container').prepend(evDateYear+" ");
           //Add company name
           $('#part_type_fundraising_goal_input_container').prepend("<h2>Set Your Personal Fundraising Goal!</h2>")
-            $('div#part_type_campaign_banner_container').replaceWith(function() {
-                return '<h2 class="campaign-banner-container">My Company: '+regCompanyName+'</h2>';
-            });
-            $('#pt_title_container').replaceWith(function() {
-                return '<h2 id="pt_title_container" class="section-header-text">' + $(this).html() + '</h2>';
-            });
+          
+          $('div#part_type_campaign_banner_container').replaceWith(function() {
+            return '<h2 class="campaign-banner-container">My Company: '+regCompanyName+'</h2>';
+          });
+
+          $('#pt_title_container').replaceWith(function() {
+            return '<h2 id="pt_title_container" class="section-header-text">' + $(this).html() + '</h2>';
+          });
 
           $('#disc_code_container').append("<div><small>Is your company paying for your registration fee? Please enter your company code below.</small></div>");
+
           $('#part_type_discount_code_section_row_container').append('<div class="my-2"><a href="mailto:'+coordEmailReg+'" target="_blank"> I don\'t know my company code</a></div>');
         }
 
@@ -1407,70 +1415,70 @@
 	    }, "Please select a t-shirt size");
 
 	  jQuery('#F2fRegContact').validate({
-		focusInvalid: false,
-		invalidHandler: function(form, validator) {
-			if (!validator.numberOfInvalids())
-				return;
+      focusInvalid: false,
+      invalidHandler: function(form, validator) {
+        if (!validator.numberOfInvalids())
+          return;
 
-			$('html, body').animate({
-				scrollTop: $(validator.errorList[0].element).focus().offset().top
-			}, 500);
-		},
-                rules: rules,
-                messages: messages,
-                errorElement: 'span',
-                errorPlacement: function(error, element) {
+        $('html, body').animate({
+          scrollTop: $(validator.errorList[0].element).focus().offset().top
+        }, 500);
+      },
+        rules: rules,
+        messages: messages,
+        errorElement: 'span',
 
-			if ($(element).hasClass("survivorq")) {
-        var a11yError = error.attr('role', 'alert');
-				$('fieldset.survivor_yes_no').after(a11yError);
-
-        var describedBy = error.attr('id');
-        $(element).attr('aria-describedby', describedBy);
-			} else {
-				if ($(element).hasClass("acceptRelease")) {
+      errorPlacement: function(error, element) {
+        if ($(element).hasClass("survivorq")) {
           var a11yError = error.attr('role', 'alert');
-					$('.acceptRelease').closest('.input-container').append(a11yError).css('display, block');
-
-          var describedBy = error.attr('id');
-          $(element).attr('aria-describedby', describedBy);
-				} else if ($(element).hasClass("acceptPrivacy")) {
-          var a11yError = error.attr('role', 'alert');
-					$('.acceptPrivacy').closest('.input-container').append(a11yError);
+          $('fieldset.survivor_yes_no').after(a11yError);
 
           var describedBy = error.attr('id');
           $(element).attr('aria-describedby', describedBy);
         } else {
-          if ($(element).parents('.privacyCheck').length) {
-
+          if ($(element).hasClass("acceptRelease")) {
             var a11yError = error.attr('role', 'alert');
-  					$('.privacyCheck').closest('.li').append(a11yError).css('display, block');
+            $('.acceptRelease').closest('.input-container').append(a11yError).css('display, block');
 
             var describedBy = error.attr('id');
             $(element).attr('aria-describedby', describedBy);
-
           } else if ($(element).hasClass("acceptPrivacy")) {
-            var a11yError = error.attr('role', 'alert').css('display, block');
-						$('.acceptPrivacy').closest('.input-container').append(a11yError);
+            var a11yError = error.attr('role', 'alert');
+            $('.acceptPrivacy').closest('.input-container').append(a11yError);
 
             var describedBy = error.attr('id');
             $(element).attr('aria-describedby', describedBy);
-					} else {
-						var placement = $(element).data('error');
-						if (placement) {
+          } else {
+            if ($(element).parents('.privacyCheck').length) {
+
               var a11yError = error.attr('role', 'alert');
-							$(placement).append(a11yError);
+              $('.privacyCheck').closest('.li').append(a11yError).css('display, block');
 
               var describedBy = error.attr('id');
               $(element).attr('aria-describedby', describedBy);
-						} else {
-							error.insertAfter(element).attr('role', 'alert');
+
+            } else if ($(element).hasClass("acceptPrivacy")) {
+              var a11yError = error.attr('role', 'alert').css('display, block');
+              $('.acceptPrivacy').closest('.input-container').append(a11yError);
+
               var describedBy = error.attr('id');
               $(element).attr('aria-describedby', describedBy);
-						}
-					}
-				}
-			}
+            } else {
+              var placement = $(element).data('error');
+              if (placement) {
+                var a11yError = error.attr('role', 'alert');
+                $(placement).append(a11yError);
+
+                var describedBy = error.attr('id');
+                $(element).attr('aria-describedby', describedBy);
+              } else {
+                error.insertAfter(element).attr('role', 'alert');
+                var describedBy = error.attr('id');
+                $(element).attr('aria-describedby', describedBy);
+              }
+            }
+          }
+        }
       $(error).attr('role', 'alert')
       }
 
@@ -1487,6 +1495,10 @@
             $.validator.addMethod("phonecheck", function(value) {
                return /^(((\+1)|1)?(| ))((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,3})|(\(?\d{2,3}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$/.test(value) // consists of only these
             },"Invalid phone number");
+
+            // $.validator.addMethod("consZip", function(value, element) {
+            //   return this.optional(element) || /^\d{5}(?:-\d{4})?$/.test(value);
+            // }, "Please provide a valid zipcode.");
 
             $('input#cons_user_name').addClass("uncheck");
             $('input#cons_password').addClass("pwcheck");
@@ -2027,6 +2039,14 @@
                 jQuery(this).find('.list-component-cell-column-join-link .list-component-cell-data-text a').after('<a href="' + join_link + '" style="color:#cd181d!important;background:white;background-color:white !important;border:2px solid #cd181d!important;margin:5px auto 0;display:block;width:132px" target="_blank">View</a>');
             });
             //jQuery('.list-component-cell-column-join-link .list-component-cell-data-text a').css('display','block');
+        }
+
+
+        // ptype page
+        if ($('#participation_options_page').length > 0) {
+          //Removing ID from hidden participation type fields
+          $("input[name*='part_type_goal_'], input[name*='part_type_for_fundraising_']").removeAttr("id");
+          console.log('hidden input code is running')
         }
 
     });

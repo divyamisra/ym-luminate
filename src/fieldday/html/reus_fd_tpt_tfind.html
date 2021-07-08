@@ -105,8 +105,15 @@
             </div>
             <div id="custom_team_find">
               Sort by:<br>
-              <button class="sort button btn-light btn-sm" data-sort="team-name-label" tabindex="0">Team name</button>
-              <button class="sort button btn-light btn-sm" data-sort="team-captain-name" tabindex="0">Team Captain</button>
+              <div class="d-flex flex-row flex-wrap justify-content-between">
+                <div>
+                  <button class="sort button btn-light btn-sm" data-sort="team-name-label" tabindex="0">Team name</button>
+                  <button class="sort button btn-light btn-sm" data-sort="team-captain-name" tabindex="0">Team Captain</button>
+                </div>
+                <div>
+                  <span class="js__num-team-results"></span>
+                </div>
+              </div>
               <!--hiding the company sort per user story request for 2021 event -->
               <!-- <button class="sort button btn-light btn-sm js__company-sort" data-sort="team-company-name" style="display:none;" tabindex="0">Company</button> -->
               <div class="list results-table py-4"></div>
