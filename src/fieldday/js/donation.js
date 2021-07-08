@@ -490,18 +490,18 @@
 
             $('#ProcessForm').validate({
               rules: {'billing_addr_zipname': {zipcheck: true} },
-              messages: {'billing_addr_zipname': 'Please provide a valid zipcode.'},
+              messages: {'billing_addr_zipname': 'Please provide a valid zipcode!!'},
               errorPlacement: function(error, element) {
                 if ($(element).hasClass("zipname")) {
                   var a11yError = error.attr('role', 'alert');
-                  $('.zipname').after(a11yError);
+                  $('.zipname').before(a11yError);
                 }
               }
             });
 
             $.validator.addMethod("zipcheck", function(value) {
               return /^\d{5}(?:-\d{4})?$/.test(value);
-            }, "Please provide a valid zipcode.");
+            }, "Please provide a valid zipcode!");
 
 
             $('.donation-form').validate({
@@ -510,7 +510,7 @@
               errorPlacement: function(error, element) {
                 if ($(element).hasClass("postal_code")) {
                   var a11yError = error.attr('role', 'alert');
-                  $('.postal_code').before(a11yError);
+                  $('.postal_code').after(a11yError);
                 }
               }
             });
