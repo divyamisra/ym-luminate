@@ -104,6 +104,7 @@
     a, 
     button {
       &,
+      &:hover,
       &:link,
       &:visited {
         background-color: $event-secondary;
@@ -127,6 +128,7 @@
     a, 
     button {
       &,
+      &:hover,
       &:link,
       &:visited {
         background-color: $event-secondary;
@@ -160,6 +162,7 @@
     a, 
     button {
       &,
+      &:hover,
       &:link,
       &:visited {
         background-color: $event-secondary;
