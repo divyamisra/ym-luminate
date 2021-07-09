@@ -24,8 +24,14 @@ div.donation-form-container label[for="terms-of-service-checkbox"] {
     font-size: 1.5em;
     padding-left: 5px;
   }
-  
 } 
+
+div.donation-form-container {
+  .section-header-container,
+  h2 {
+    color: $event-secondary-medium;
+    border-color: $event-secondary-medium;
+}
 
 div.donation-form-container .custom-field-container.has-error .checkbox label:before,
 div.donation-form-container .custom-field-container.has-error input[type=checkbox]+label:before {
