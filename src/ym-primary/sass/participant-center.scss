@@ -53,7 +53,7 @@
 		min-height:84px;
 	}
 }
-.ym-activity-box--virtual img {
+.ym-activity --virtual img {
 	max-width:100%;
 }
 
@@ -71,6 +71,14 @@ a.ym-pc-dashboard-download-certificates {
   img {
     max-height: 150px;
     margin-top: -10px;
+  }
+}
+
+.ym-pc-dashboard-coordinator-daily-challenges {
+  margin: 0px !important;
+	
+  img.students-challenge-image {
+    max-height: 120px;
   }
 }
 
@@ -639,4 +647,47 @@ div[id^="taTextElement"]:focus {
   .ym-pc-dashboard-bottom-section {
 	display:flex;
   }
+}
+
+.ym-pc-dashboard-coordinator-students-box {
+  .students-challenge-image img {
+    max-width: 170px;
+  }
+}
+
+.school-badges {
+  margin-top:20px;
+  
+  .ym-pc-dashboard-school-badges-box {
+    .ym-badges__item {
+        max-width:75px;
+	margin: 10px 15px 5px;
+        img.img-responsive {
+          max-width: 80px;
+        }
+	    
+        .text.ng-binding {
+	    font-size: 14px;
+	    font-weight: bold;
+	    display: block;
+	    margin-top: 5px;
+	    margin-bottom: 10px;
+	}
+    }
+  }
+}
+#ym-pc-dashboard-company-panel--coordinator {
+    margin-bottom:20px;
+}
+.fundraisingStatusTitle {
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0 0 15px;
+    text-align:center;
+}
+.fundraisingStatusTitle + .ym-progress__thermometer {
+    margin-top: 0px;
+}
+.fundraisingStatusTitle + .ym-progress__thermometer + .ym-progress-related {
+    margin-top: 15px;
 }
