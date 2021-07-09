@@ -1500,7 +1500,7 @@
 
             $.validator.addMethod("zipcheck", function(value) {
               return /^\d{5}(?:-\d{4})?$/.test(value);
-            }, "Please provide a valid zipcode.");
+            }, "Please provide a valid zipcode");
 
             $('input#cons_user_name').addClass("uncheck");
             $('input#cons_password').addClass("pwcheck");
