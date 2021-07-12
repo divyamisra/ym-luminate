@@ -1900,7 +1900,7 @@
             var start_pos = pageTitle.indexOf(':') + 1;
             var end_pos = pageTitle.indexOf('- Field Day', start_pos);
             var currentCompanyName = pageTitle.substring(start_pos, end_pos).trim();
-            text = text.replace("lollypops", "marshmellows");
+
             if (currentCompanyName.includes('&')) {
               currentCompanyName = currentCompanyName.replace("&", "ampersand")
             }
