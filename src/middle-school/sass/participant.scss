@@ -5,7 +5,8 @@
 @import "../../youth-markets/sass/participant.scss";
 
 .list-group-item.active {
-  &:focus, 
+  &:focus,
+  &.active,
   &.active:hover {
     background-color: $event-primary;
     border-color: $event-primary;
