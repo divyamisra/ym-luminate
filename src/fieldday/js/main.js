@@ -354,7 +354,7 @@
 
             var fieldDayDetails = '';
               fieldDayDetails += '<p>TBD</p>';
-              fieldDayDetails += '<p>TBD</p>';
+              // fieldDayDetails += '<p>TBD</p>';
 
             $(fieldDayDetails).appendTo('.js--field-day-details');
           }
