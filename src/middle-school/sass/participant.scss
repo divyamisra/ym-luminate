@@ -4,6 +4,14 @@
 
 @import "../../youth-markets/sass/participant.scss";
 
+.list-group-item.active {
+  &:focus, 
+  &.active:hover {
+    background-color: $event-primary;
+    border-color: $event-primary;
+  }
+}
+
 .ng-pc-nav {
   a {
     &:link,
