@@ -344,9 +344,12 @@ svg.fa-info-circle {
  
 
 // tfind step
-#team_find_new_team_recruiting_goal,
 #team_find_registration_type_container {
   display:none;
+}
+// tfind step, hiding team recruit goal till aha ready
+#team_find_new_team_recruiting_goal {
+  display: none!important;
 }
 // #team_find_search_button_container {
 //   @extend .mt-2;
