@@ -25,6 +25,9 @@
         var coordEmailReg = $('body').data('coord-email') ? $('body').data('coord-email') : null;
         var regCompanyId = $('body').data("companyid");
         var regCompanyName = $('body').data("companyname");
+        if (regCompanyName.includes('ampersand')) {
+          regCompanyName = regCompanyName.replace("ampersand", "&")
+        }
         console.log('coordinator email: ', coordEmail);
 
 
