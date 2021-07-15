@@ -3225,7 +3225,7 @@
       // BEGIN custom sponsor script
 
       if ($('.tr_sponsorship_logos').length) {
-        $('.tr_sponsorship_logo').each(function (i, sponsor) {
+        $('.tr_sponsorship_logos:first .tr_sponsorship_logo').each(function (i, sponsor) {
           var sponsorAlt = $(this).find('img').attr('alt');
           var sponsorImg = $(this).find('img').attr('src');
           var sponsorUrl = $(this).find('a').attr('href');
