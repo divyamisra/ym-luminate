@@ -832,7 +832,8 @@ angular.module 'trPcControllers'
 
             if prize.status == 1
               $scope.prizesEarned++
-          if prizes[5].earned  
+              
+          if $scope.prizes[5].earned  
             $scope.moveMoreFlag.message = true
 
         , (response) ->
