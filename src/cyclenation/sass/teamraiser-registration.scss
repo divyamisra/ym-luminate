@@ -659,6 +659,12 @@ div.part-type-container {
       display:none;
     }
   }
+  .join-team-ptype-container.selected {
+    width: 50%;
+    border: 1px solid #c10e21!important;
+    color: #FFF!important;
+    text-align: center;
+  }
 }
 
 div#part_type_fundraising_goal_container {
