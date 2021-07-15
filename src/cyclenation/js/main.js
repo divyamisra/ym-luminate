@@ -3624,7 +3624,7 @@ cd.getTeamHonorRoll();
                   success: function (response) {
                     console.log('company goal success:', response)
 
-                    $('.js--company-name').text(response.getCompaniesResponse.company.companyName);
+                    // $('.js--company-name').text(response.getCompaniesResponse.company.companyName);
 
                     if($(".js--company-name:contains(&amp;)")) {
                       console.log('contains &')
