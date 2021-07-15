@@ -2432,7 +2432,9 @@
         }
         if (eventType2 === 'StationaryV2') {
           var ptypeName = $(this).find('.part-type-name').text();
+          console.log(ptypeName);
           var newPtypeName = ptypeName.replace("Start a Team - ", "").replace("Join a Team - ", "").replace("Breakaway - ", "").replace("VIP", "").replace(", ", " from ");
+          console.log(newPtypeName);
           // Hide and disable participation types that don't apply to this particular registration path
           $(this).parent().find('input[type=radio]').attr('aria-hidden', 'true').prop('checked', false).prop('disabled', true);
 
