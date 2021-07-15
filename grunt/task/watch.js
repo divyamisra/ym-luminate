@@ -257,5 +257,21 @@ module.exports = {
       'img-copy:heartwalklawyers-images',
       'notify:heartwalklawyers'
     ]
+  },
+  "leaders-for-life": {
+    files: [
+      'src/leaders-for-life/html/**/*',
+      'src/leaders-for-life/image/**/*',
+      'src/leaders-for-life/sass/**/*',
+      'src/leaders-for-life/js/**/*'
+    ],
+    tasks: [
+      'clean:leaders-for-life',
+      'css-dist:leaders-for-life',
+      'js-dist:leaders-for-life',
+      'html-dist:leaders-for-life',
+      'img-copy:leaders-for-life-images',
+      'notify:leaders-for-life'
+    ]
   }
 }

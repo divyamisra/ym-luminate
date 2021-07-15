@@ -137,5 +137,19 @@ module.exports = {
         'src/heartwalklawyers/sass/donation.scss'
       ]
     }
+  },
+
+  "leaders-for-life": {
+    files: {
+      'dist/leaders-for-life/css/main.css': [
+        'src/leaders-for-life/sass/main.scss'
+      ],
+      'dist/leaders-for-life/css/registration.css': [
+        'src/leaders-for-life/sass/registration.scss'
+      ],
+      'dist/leaders-for-life/css/donation.css': [
+        'src/leaders-for-life/sass/donation.scss'
+      ]
+    }
   }
 }

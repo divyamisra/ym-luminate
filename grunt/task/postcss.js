@@ -222,5 +222,20 @@ module.exports = {
         dest: 'dist/heartwalklawyers/css/'
       }
     ]
+  },
+
+  "leaders-for-life": {
+    files: [
+      {
+        expand: true,
+        cwd: 'dist/leaders-for-life/css/',
+        src: [
+          'main.css',
+          'registration.css',
+          'donation.css'
+        ],
+        dest: 'dist/leaders-for-life/css/'
+      }
+    ]
   }
 }

@@ -195,5 +195,26 @@ module.exports = {
         dest: "dist/heartwalklawyers/js/pushy.min.js"
       }
     ]
+  },
+
+  "leaders-for-life": {
+    files: [
+      {
+        src: ["src/leaders-for-life/js/main.js"],
+        dest: "dist/leaders-for-life/js/main." + "<%= timestamp %>" + ".min.js"
+      },
+      {
+        src: ["src/leaders-for-life/js/registration.js"],
+        dest: "dist/leaders-for-life/js/registration." + "<%= timestamp %>" + ".min.js"
+      },
+      {
+        src: ["src/leaders-for-life/js/donation.js"],
+        dest: "dist/leaders-for-life/js/donation." + "<%= timestamp %>" + ".min.js"
+      },
+      {
+        src: ["src/leaders-for-life/js/pushy.js"],
+        dest: "dist/leaders-for-life/js/pushy.min.js"
+      }
+    ]
   }
 }
