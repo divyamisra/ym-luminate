@@ -256,6 +256,8 @@
               var companyLocation = company.eventcity + ', ' + company.eventstate;
 
               $(companyLocation).appendTo('.js--company-location');
+            } else {
+              $('<p>TBD</p>').appendTo('.js--company-location p');
             }
           }
         });
@@ -266,9 +268,12 @@
        cd.generateCompanyInfo = function(companies){
           $('<div class="js--company-data hidden"></div>').insertAfter('main');
           for (var i=0, iLen=companies.length; i<iLen; i++) {
+              var companyLocation = companies[i].eventcity !== "" || companies[i].eventstate !== "" ? companies[i].eventcity + ', ' + companies[i].eventstate : 'TBD';
+              var companyCoordinator = companies[i].coordinatorfirstname !== "" ? companies[i].coordinatorfirstname + ' ' + companies[i].coordinatorlastname : 'TBD';
+
               var dataOutput = '<div id="company-id-' + companies[i].companyid + '">';
-              dataOutput += '<div class="js--company-data-location">'+ companies[i].eventcity + ', ' + companies[i].eventstate + '</div>';
-              dataOutput += '<div class="js--company-data-coordinator">'+ companies[i].coordinatorfirstname + ' ' + companies[i].coordinatorlastname + '</div>';
+              dataOutput += '<div class="js--company-data-location">'+ companyLocation + '</div>';
+              dataOutput += '<div class="js--company-data-coordinator">'+ companyCoordinator + '</div>';
               dataOutput += '</div>';
               $(dataOutput).appendTo('.js--company-data');
            }
@@ -323,26 +328,35 @@
             console.log('coor date', company.eventdate);
             console.log('coor location', company.eventlocationname);
 
+            var companyLead
             if (company.coordinatorfirstname !== "") {
-              var companyLead = '<p><a aria-label="Email Company Lead ' + company.coordinatorfirstname + ' ' + company.coordinatorlastname +'" href="mailto:' + company.coordinatoremail +'">' + company.coordinatorfirstname + ' ' + company.coordinatorlastname + '</a></p>' ;
-            } 
+              companyLead = '<p><a aria-label="Email Company Lead ' + company.coordinatorfirstname + ' ' + company.coordinatorlastname +'" href="mailto:' + company.coordinatoremail +'">' + company.coordinatorfirstname + ' ' + company.coordinatorlastname + '</a></p>' ;
+            } else {
+              companyLead = '<p>TBD</p>';
+            }
             $(companyLead).appendTo('.js--company-lead');
 
+            var eventDateFormatted;
+            var eventDate;
+
             if (company.eventdate !== "") {
-              var eventDateFormatted = moment(company.eventdate).format('MMMM D, YYYY');
-              var  eventDate = '<p>' + eventDateFormatted + ' at ' + company.eventtime + '</p>';
-            } 
+              eventDateFormatted = moment(company.eventdate).format('MMMM D, YYYY');
+              eventDate = '<p>' + eventDateFormatted + ' at ' + company.eventtime + '</p>';
+            } else {
+              eventDate = '<p>TBD</p>';
+            }
+
             $(eventDate).appendTo('.js--event-date');
 
             var fieldDayDetails = '';
             if (company.eventlocationname !== "") {
               fieldDayDetails += '<p>' + company.eventlocationname + '</p>';
               fieldDayDetails += '<p>' + company.eventcity + ', ' + company.eventstate + '</p>';
-            } 
+            } else {
+              fieldDayDetails += '<p>TBD</p>';
+            }
             $(fieldDayDetails).appendTo('.js--field-day-details');
 
-            // var companyLocation = '<p>' + company.eventcity + ', ' + company.eventstate + '</p>'
-            // $(companyLocation).appendTo('.js--company-location');
 
           //TO DO - do we need to add all companies to the csv file? If so, we can remove the 'else' code below
           } else {
@@ -353,8 +367,7 @@
             $(eventDate).appendTo('.js--event-date');
 
             var fieldDayDetails = '';
-              fieldDayDetails += '<p>TBD</p>';
-              // fieldDayDetails += '<p>TBD</p>';
+            fieldDayDetails += '<p>TBD</p>';
 
             $(fieldDayDetails).appendTo('.js--field-day-details');
           }
