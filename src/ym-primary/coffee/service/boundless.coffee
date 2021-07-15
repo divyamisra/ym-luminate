@@ -69,13 +69,26 @@ angular.module 'ahaLuminateApp'
           , (response) ->
             response
 
-      setMoveMoreFlag: (requestData) ->
+      earnMoveMoreFlag: (requestData) ->
         if $rootScope.tablePrefix is 'heartdev'
           url = 'https://khc.staging.ootqa.org/api/badges/earn/motion/' + requestData
         else if $rootScope.tablePrefix is 'heartnew'
           url = 'https://khc.staging.ootqa.org/api/badges/earn/motion/' + requestData
         else
           url = 'https://kidsheartchallenge.heart.org/api/badges/earn/motion/' + requestData
+        $http.jsonp($sce.trustAsResourceUrl(url), jsonpCallbackParam: 'callback')
+          .then (response) ->
+            response
+          , (response) ->
+            response
+            
+      unearnMoveMoreFlag: (requestData) ->
+        if $rootScope.tablePrefix is 'heartdev'
+          url = 'https://khc.staging.ootqa.org/api/badges/unearn/motion/' + requestData
+        else if $rootScope.tablePrefix is 'heartnew'
+          url = 'https://khc.staging.ootqa.org/api/badges/unearn/motion/' + requestData
+        else
+          url = 'https://kidsheartchallenge.heart.org/api/badges/unearn/motion/' + requestData
         $http.jsonp($sce.trustAsResourceUrl(url), jsonpCallbackParam: 'callback')
           .then (response) ->
             response
