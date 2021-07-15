@@ -104,5 +104,12 @@ module.exports = {
       title: 'AHA Luminate Framework',
       message: 'Lawyers Have Heart files updated.'
     }
+  },
+
+  "leaders-for-life": {
+    options: {
+      title: 'AHA Luminate Framework',
+      message: 'Lawyers Have Heart files updated.'
+    }
   }
 }

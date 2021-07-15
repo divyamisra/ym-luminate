@@ -208,6 +208,19 @@ module.exports = {
         dest: 'dist/heartwalklawyers/js/'
       }
     ]
+  },
+
+  "leaders-for-life-scripts": {
+    files: [
+      {
+        expand: true,
+        cwd: 'src/leaders-for-life/js/',
+        src: [
+          '*.js'
+        ],
+        dest: 'dist/leaders-for-life/js/'
+      }
+    ]
   }
 
 }
