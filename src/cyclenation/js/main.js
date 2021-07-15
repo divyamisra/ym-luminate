@@ -2471,7 +2471,7 @@
         if (regType === 'joinTeam') {
           $('#sel_type_container').text('What time do you want to ride?');
           if ($('.join-team-ptype-container').hasClass('join-team-ptype-time')) {
-            $('.join-team-ptype-container').addClass('d-inline-block col-md-6');
+            // $('.join-team-ptype-container').addClass('d-inline-block col-md-6');
             // ensure the relevant ptypes are visiable and accessible from keyboard navigation
             $('.join-team-ptype-time').find('input[name=fr_part_radio]').attr('aria-hidden', 'false').prop('disabled', false).eq(0).prop('checked', true);
             // only display the ptype that matches the coach's ptype
