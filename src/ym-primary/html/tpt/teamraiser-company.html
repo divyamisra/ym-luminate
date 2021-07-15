@@ -98,11 +98,11 @@
             </div>
          </div>
       </div>
-      <div class="ym-list col-md-6" role="list" aria-label="Top Fundraisers List" ng-if="companyParticipants.totalFundraisers > 0" ng-cloak>
+      <div class="ym-list col-md-6" aria-label="Top Fundraisers List" ng-if="companyParticipants.totalFundraisers > 0" ng-cloak>
          <h2>
             <img class="img-responsive" src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/ym-primary/image/fy22/top-fundraising-fy22.png" alt="Saluting these top fundraisers">
          </h2>
-         <ul class="ym-donor-list">
+         <ul class="ym-donor-list" role="list">
             <company-participant-list fr-id="'[[S80:trID]]'" company-id="'[[T6:[[S334:company_id]]]]'" participants="companyParticipants.participants"></company-participant-list>
          </ul>
       </div>
