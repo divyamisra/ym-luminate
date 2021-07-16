@@ -1616,7 +1616,7 @@
 	    $('.lightboxWiaverClose').focus();
         });
 
-        $('.healthyCheck label').text('Yes, sign me up for sharable tips, videos and hacks so I can be Healthy For Good.');
+        $('.healthyCheck label').text('Yes, sign me up for sharable tips, videos and hacks so I can be Healthy for Good.');
         $('#responsive_payment_typecc_numbername').attr('maxlength', '16');
 
         //access
