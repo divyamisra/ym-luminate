@@ -1905,9 +1905,7 @@
             var start_pos = pageTitle.indexOf(':') + 1;
             var end_pos = pageTitle.indexOf('- Field Day', start_pos);
             var currentCompanyName = pageTitle.substring(start_pos, end_pos).trim();
-            if (currentCompanyName.includes('&')) {
-              newCurrentCompanyName = currentCompanyName.replace("&", "ampersand")
-            }
+
             var currentCompanyId = getURLParameter(currentUrl, 'company_id');
             var visitedFromHQ = getURLParameter(currentUrl, 'ourstats');
 
@@ -1915,14 +1913,18 @@
                 $('#our-points-tab').click();
             }
 
-            console.log('new current', newCurrentCompanyName);
-
             console.log('finished assigning company vars');
 
             if ( $('.js--company-name').length > 0 ) {
                 $('.js--company-name').text(currentCompanyName);
-                $('.company-page-create').attr("href", "TRR/FieldDay/General?pg=tfind&fr_id="+evID+"&fr_tm_opt=new&s_regType=startTeam&s_companyId="+currentCompanyId+"&s_companyName="+newCurrentCompanyName ? newCurrentCompanyName : currentCompanyName);
-                $('.company-page-join').attr("href", "TRR/FieldDay/General?pg=tfind&fr_id="+evID+"&s_regType=joinTeam&s_companyId="+currentCompanyId+"&s_companyName="+newCurrentCompanyName ? newCurrentCompanyName : currentCompanyName)
+                if (currentCompanyName.includes('&')) {
+                  var newCurrentCompanyName = currentCompanyName.replace("&", "ampersand")
+                  $('.company-page-create').attr("href", "TRR/FieldDay/General?pg=tfind&fr_id="+evID+"&fr_tm_opt=new&s_regType=startTeam&s_companyId="+currentCompanyId+"&s_companyName="+newCurrentCompanyName);
+                  $('.company-page-join').attr("href", "TRR/FieldDay/General?pg=tfind&fr_id="+evID+"&s_regType=joinTeam&s_companyId="+currentCompanyId+"&s_companyName="+newCurrentCompanyName);
+                } else {
+                  $('.company-page-create').attr("href", "TRR/FieldDay/General?pg=tfind&fr_id="+evID+"&fr_tm_opt=new&s_regType=startTeam&s_companyId="+currentCompanyId+"&s_companyName="+currentCompanyName);
+                  $('.company-page-join').attr("href", "TRR/FieldDay/General?pg=tfind&fr_id="+evID+"&s_regType=joinTeam&s_companyId="+currentCompanyId+"&s_companyName="+currentCompanyName);
+                }
             }
 
             // var isParentCompany = ($('#company_hierarchy_list_component .lc_Row1').length ? true : false)
