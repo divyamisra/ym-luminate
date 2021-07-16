@@ -21,16 +21,19 @@
   ::T::
     <!-- kids heart challenge and american heart challenge -->
     [[?
-      [[?xxUnrecognized type parameterx::x[[S42:0:prev-fr-id]]x::T::]]
-      [[?xx::x[[E48:[[S42:0:prev-fr-id]]:part-type]]x::T::]]
+      [[?xxUnrecognized type parameterx::x[[S42:0:prev-fr-id]]x::T::
+        [[?xx::x[[E48:[[S42:0:prev-fr-id]]:part-type]]x::T::
+          [[?x1x::x[[E130:[[E48:[[S42:0:prev-fr-id]]:dollars]] 250 <]]x::T::]]
+        ]]
+      ]]
       [[?xx::x[[A21]]x::::
         [[?x1x::x[[E130:[[A21]] 0 <]]x::::T]]
       ]]
     ::T::
-      <!-- not a returning participant in this event -->
+      <!-- not a returning participant in this event or previous amount raised is below $250 -->
       <div class="hidden" hidden aria-hidden="true" ng-init="participationOptions.fr_goal = '[[?xx::x[[A15]]x::[[T6:[[A18]]]]::[[T6:[[A15]]]]]]'"></div>
     ::
-      <!-- returning participant in this event -->
+      <!-- returning participant in this event and previous amount raised is above $250 -->
       <div class="hidden" hidden aria-hidden="true" ng-init="participationOptions.fr_goal = '[[?xx::x[[A15]]x::[[T6:[[E48:[[S42:0:prev-fr-id]]:dollars]]]]::[[T6:[[A15]]]]]]'"></div>
     ]]
   ::
