@@ -1906,9 +1906,9 @@
             var end_pos = pageTitle.indexOf('- Field Day', start_pos);
             var currentCompanyName = pageTitle.substring(start_pos, end_pos).trim();
 
-            if (currentCompanyName.includes('&')) {
-              currentCompanyName = currentCompanyName.replace("&", "ampersand")
-            }
+            // if (currentCompanyName.includes('&')) {
+            //   currentCompanyName = currentCompanyName.replace("&", "ampersand")
+            // }
             var currentCompanyId = getURLParameter(currentUrl, 'company_id');
             var visitedFromHQ = getURLParameter(currentUrl, 'ourstats');
 
