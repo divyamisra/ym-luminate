@@ -334,3 +334,14 @@ img {
     padding: 0;
   }
 }
+
+.js--personal-text, .js--team-text, .js--company-text {
+  p {
+    font-family: LubDubMedium, Helvetica, Arial, sans-serif!important;
+    font-size: 16px!important;
+    span {
+      font-family: LubDubMedium, Helvetica, Arial, sans-serif!important;
+      font-size: 16px!important;
+    }
+  }
+}
