@@ -144,6 +144,8 @@
                   console.log('d');
                   var teams = luminateExtend.utils.ensureArray(response.getTeamSearchByInfoResponse.team);
 
+                  console.log('team search info', teams)
+
                   $(teams).each(function (i, team) {
                     if (searchType === 'registration') {
                       console.log('e');
