@@ -1915,7 +1915,9 @@
                 $('#our-points-tab').click();
             }
 
-            console.log('finished assigning company vars');
+            console.log('finished assigning company vars 071621');
+
+            $('.tooltip-trigger').tooltip();
 
             if ( $('.js--company-name').length > 0 ) {
                 $('.js--company-name').text(currentCompanyName);
