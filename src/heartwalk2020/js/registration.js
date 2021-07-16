@@ -1617,6 +1617,7 @@
         });
 
         $('.healthyCheck label').text('Yes, sign me up for sharable tips, videos and hacks so I can be Healthy for Good.');
+	$('.healthyCheck input[type=checkbox]').removeAttr('checked');
         $('#responsive_payment_typecc_numbername').attr('maxlength', '16');
 
         //access
