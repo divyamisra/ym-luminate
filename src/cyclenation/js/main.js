@@ -2432,7 +2432,9 @@
         }
         if (eventType2 === 'StationaryV2') {
           var ptypeName = $(this).find('.part-type-name').text();
+          console.log(ptypeName);
           var newPtypeName = ptypeName.replace("Start a Team - ", "").replace("Join a Team - ", "").replace("Breakaway - ", "").replace("VIP", "").replace(", ", " from ");
+          console.log(newPtypeName);
           // Hide and disable participation types that don't apply to this particular registration path
           $(this).parent().find('input[type=radio]').attr('aria-hidden', 'true').prop('checked', false).prop('disabled', true);
 
@@ -2469,6 +2471,7 @@
         if (regType === 'joinTeam') {
           $('#sel_type_container').text('What time do you want to ride?');
           if ($('.join-team-ptype-container').hasClass('join-team-ptype-time')) {
+            // $('.join-team-ptype-container').addClass('d-inline-block col-md-6');
             // ensure the relevant ptypes are visiable and accessible from keyboard navigation
             $('.join-team-ptype-time').find('input[name=fr_part_radio]').attr('aria-hidden', 'false').prop('disabled', false).eq(0).prop('checked', true);
             // only display the ptype that matches the coach's ptype
@@ -3222,7 +3225,7 @@
       // BEGIN custom sponsor script
 
       if ($('.tr_sponsorship_logos').length) {
-        $('.tr_sponsorship_logo').each(function (i, sponsor) {
+        $('.tr_sponsorship_logos:first .tr_sponsorship_logo').each(function (i, sponsor) {
           var sponsorAlt = $(this).find('img').attr('alt');
           var sponsorImg = $(this).find('img').attr('src');
           var sponsorUrl = $(this).find('a').attr('href');
@@ -3697,6 +3700,9 @@ cd.getTeamHonorRoll();
                                     //$('#team-roster tbody').append('<tr class="' + (numTeamRows > 4 ? 'd-none' : '') + '"> <td class="team-name"> <a href="' + team.teamPageURL + '" data-sort="' + team.name + '">' + team.name + '</a> </td><td class="donor-name"> <a href="TR/?px=' + team.captainConsId + '&pg=personal&fr_id=' + team.EventId + '" data-sort="' + team.captainFirstName + ' ' + team.captainLastName + '">' + team.captainFirstName + ' ' + team.captainLastName + '</a> </td><td class="company-name"> <a href="' + luminateExtend.global.path.secure + 'TR/?pg=company&company_id=' + team.companyId + '&fr_id=' + team.EventId + '" data-sort="' + team.companyName + '">' + team.companyName + '</a> </td><td class="raised" data-sort="' + teamRaisedFormmatted + '"> <span><strong>$' + teamRaisedFormmatted + '</strong></span> </td><td> <a href="' + team.joinTeamURL + '">' + (screenWidth <= 480 ? 'Join' : 'Join Team') + '</a> </td></tr>');
                                     $('#team-roster tbody').append('<tr> <td class="team-name"> <a href="' + team.teamPageURL + '" data-sort="' + team.name + '">' + team.name + '</a> </td><td class="donor-name"> <a href="TR/?px=' + team.captainConsId + '&pg=personal&fr_id=' + team.EventId + '" data-sort="' + team.captainFirstName + ' ' + team.captainLastName + '">' + team.captainFirstName + ' ' + team.captainLastName + '</a> </td><td class="company-name"> <a href="' + luminateExtend.global.path.secure + 'TR/?pg=company&company_id=' + team.companyId + '&fr_id=' + team.EventId + '" data-sort="' + team.companyName + '">' + team.companyName + '</a> </td><td class="raised" data-sort="' + teamRaisedFormmatted + '"> <span><strong>$' + teamRaisedFormmatted + '</strong></span> </td><td> <a href="' + team.joinTeamURL + '">' + (screenWidth <= 480 ? 'Join' : 'Join Team') + '</a> </td></tr>');
                                     numTeamRows++;
+                                    console.log('company name', team.companyName);
+                                    var companyNameInsert = $('.js--company-name').text();
+                                    $('.company-name a').text(companyNameInsert);
                                 });
 
                                 $('.js--more-team-results').on('click', function (e) {

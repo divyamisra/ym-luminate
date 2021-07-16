@@ -661,6 +661,17 @@ div.part-type-container {
   }
 }
 
+.part-type-container.join-team-ptype-time.selected {
+  width: 50%;
+  border: 1px solid #c10e21!important;
+  color: #FFF!important;
+  text-align: center;
+}
+
+#custom_team_find button {
+  color: #212529!important;
+}
+
 div#part_type_fundraising_goal_container {
   input {
     margin-left: 0;
