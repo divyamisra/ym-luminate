@@ -1915,12 +1915,14 @@
                 $('#our-points-tab').click();
             }
 
+            console.log('new current', newCurrentCompanyName);
+
             console.log('finished assigning company vars');
 
             if ( $('.js--company-name').length > 0 ) {
                 $('.js--company-name').text(currentCompanyName);
-                $('.company-page-create').attr("href", "TRR/FieldDay/General?pg=tfind&fr_id="+evID+"&fr_tm_opt=new&s_regType=startTeam&s_companyId="+currentCompanyId+"&s_companyName="+(newCurrentCompanyName) ? newCurrentCompanyName : currentCompanyName);
-                $('.company-page-join').attr("href", "TRR/FieldDay/General?pg=tfind&fr_id="+evID+"&s_regType=joinTeam&s_companyId="+currentCompanyId+"&s_companyName="+(newCurrentCompanyName) ? newCurrentCompanyName : currentCompanyName)
+                $('.company-page-create').attr("href", "TRR/FieldDay/General?pg=tfind&fr_id="+evID+"&fr_tm_opt=new&s_regType=startTeam&s_companyId="+currentCompanyId+"&s_companyName="+newCurrentCompanyName ? newCurrentCompanyName : currentCompanyName);
+                $('.company-page-join').attr("href", "TRR/FieldDay/General?pg=tfind&fr_id="+evID+"&s_regType=joinTeam&s_companyId="+currentCompanyId+"&s_companyName="+newCurrentCompanyName ? newCurrentCompanyName : currentCompanyName)
             }
 
             // var isParentCompany = ($('#company_hierarchy_list_component .lc_Row1').length ? true : false)
