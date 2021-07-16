@@ -35,7 +35,7 @@
     <div class="ym-donation-levels__type" role="list" aria-label="Choose your gift type">
       <button role="listitem" type="button" class="btn btn-toggle btn-lg ym-donation-levels__type--onetime" ng-class="{'active': donationInfo.giftType == 'onetime'}" ng-click="giftType('onetime')">One-time Gift</button>
       <button role="listitem" type="button" class="btn btn-toggle btn-lg ym-donation-levels__type--monthly" ng-class="{'active': donationInfo.giftType == 'monthly'}" ng-click="giftType('monthly')" ng-if="donationGiftType == 'installment'" ng-cloak>Installment Gift</button>
-      <button role="listitem" type="button" class="btn btn-toggle btn-lg ym-donation-levels__type--monthly" ng-class="{'active': donationInfo.giftType == 'monthly'}" ng-click="giftType('monthly')" ng-if="donationGiftType == 'flexible'" ng-cloak>Sustaining Gift</button>
+      <button role="listitem" type="button" class="btn btn-toggle btn-lg ym-donation-levels__type--monthly" ng-class="{'active': donationInfo.giftType == 'monthly'}" ng-click="giftType('monthly')" ng-if="donationGiftType == 'flexible'" ng-cloak>Recurring Gift</button>
     </div>
     <hr>
     <fieldset>
@@ -66,7 +66,7 @@
     </div>
     <div class="ym-donation-levels__message--sustaining level--sustaining"  ng-class="{'hidden': donationInfo.giftType != 'monthly'}" ng-if="donationGiftType == 'flexible'" ng-cloak>
       <p>
-        A sustaining gift allows you the flexibility to choose the duration of your donations.
+        A recurring gift allows you the flexibility to choose the duration of your donations.
       </p>
     </div>
   </div>
