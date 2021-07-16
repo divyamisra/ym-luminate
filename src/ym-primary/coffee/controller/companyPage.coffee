@@ -41,6 +41,8 @@ angular.module 'ahaLuminateControllers'
       $scope.schoolChallengeGoal = 0
       $scope.schoolYears = 0
       $scope.unconfirmedAmountRaised = 0
+      $scope.schoolBadgesRegistrations = []
+      $scope.schoolBadgesFundraising = []
       
       $scope.trustHtml = (html) ->
         return $sce.trustAsHtml(html)
@@ -193,10 +195,10 @@ angular.module 'ahaLuminateControllers'
           $scope.$apply()
         if participants and participants.length > 0
           angular.forEach participants, (participant, participantIndex) ->
-            participantsString += '{name: "' + participant.name.first + ' ' + participant.name.last + '", raised: "' + participant.amountRaisedFormatted + '", "cons_id": ' + participant.consId + '}'
+            participantsString += '{"name": "' + participant.name.first + ' ' + participant.name.last + '", "raised": "' + participant.amountRaisedFormatted + '", "cons_id": ' + participant.consId + '}'
             if participantIndex < (participants.length - 1)
               participantsString += ', '
-          companyParticipantsString = '{participants: [' + participantsString + '], totalNumber: ' + participants.length + '}'
+          companyParticipantsString = '{"participants": [' + participantsString + '], "totalNumber": ' + participants.length + '}'
           angular.element('.ym-school-animation iframe')[0].contentWindow.postMessage companyParticipantsString, domain
           angular.element('.ym-school-animation iframe').on 'load', ->
             angular.element('.ym-school-animation iframe')[0].contentWindow.postMessage companyParticipantsString, domain
@@ -458,5 +460,25 @@ angular.module 'ahaLuminateControllers'
                 $scope.schoolChallengeGoal = meta.value
               if meta.name == 'years-participated'
                 $scope.schoolYears = meta.value
-        
+                
+      BoundlessService.getSchoolBadges $scope.frId + '/' + $scope.companyId
+      .then (response) ->
+        $scope.companyProgress = 
+          amountRaised: if response.data.total_amount then Number(response.data.total_amount) else 0
+          goal: if response.data.goal then Number(response.data.goal) else 0
+        $scope.companyProgress.amountRaisedFormatted = $filter('currency')($scope.companyProgress.amountRaised, '$')
+        $scope.companyProgress.goalFormatted = $filter('currency')($scope.companyProgress.goal / 100, '$')
+        $scope.companyProgress.percent = 0
+        if not $scope.$$phase
+          $scope.$apply()
+        $timeout ->
+          percent = $scope.companyProgress.percent
+          if $scope.companyProgress.goal isnt 0
+            percent = Math.ceil(($scope.companyProgress.amountRaised / $scope.companyProgress.goal) * 100)
+          if percent > 100
+            percent = 100
+          $scope.companyProgress.percent = percent
+          if not $scope.$$phase
+            $scope.$apply()
+  
     ]

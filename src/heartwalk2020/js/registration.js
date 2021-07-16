@@ -1427,6 +1427,9 @@
 
         $('.survivor_yes_no input[type=radio]').addClass("required survivorq");
 
+        $('.survivor_yes_no .survey-question-label').after('<small id="isSurvivor" class="form-text text-muted">Answering yes will display a small banner over your personal photo on your fundraising page that will proudly say, "I\'m a survivor."</small>');
+        
+
         $('.survivor_yes_no li').click(function() {
             $('.survivor_yes_no li').removeClass('survivor_active');
             $(this).addClass('survivor_active');
@@ -1613,7 +1616,8 @@
 	    $('.lightboxWiaverClose').focus();
         });
 
-        $('.healthyCheck label').text('Yes, sign me up for sharable tips, videos and hacks so I can be Healthy For Good.');
+        $('.healthyCheck label').text('Yes, sign me up for sharable tips, videos and hacks so I can be Healthy for Good.');
+	$('.healthyCheck input[type=checkbox]').removeAttr('checked');
         $('#responsive_payment_typecc_numbername').attr('maxlength', '16');
 
         //access

@@ -68,6 +68,12 @@
 
             $('.pg_company header, .pg_personal header, .pg_team header').toggleClass('mobile-open');
 
+            if ( $('.navbar-toggler-icon').hasClass('fa-align-justify') ) {
+                $('#mobile-toggle').attr('aria-label','Open Main Navigation');
+            } else {
+                $('#mobile-toggle').attr('aria-label','Close Main Navigation');
+            }
+
             if ( $('#navbar-container').is(':visible') ) {
               $('.pg_company .tr-page-container, .pg_personal .tr-page-container, .pg_team .tr-page-container').addClass('static');
 
@@ -1405,7 +1411,7 @@
             });
         };
 
-        // EXPANDABLE DONOR ROLL
+        // EXPANDABLE DONOR ROLL SECTION
         $('.js--honor-roll-expander').on('click', function (e) {
             if ($(this).children('i').hasClass('fa-chevron-down')) {
                 $(this).children('i').removeClass('fa-chevron-down');
@@ -1687,12 +1693,14 @@
                                 finalDonUrl = defaultDonUrl + '&set.DonationLevel=' + $(this).data('level-id');
                                 $('.js--personal-don-submit').attr('data-final-don-url', finalDonUrl);
                                 $('.js--personal-amt-other-wrap').hide();
+                                $('.information-box .donation-amounts .custom-amount').attr("style","max-height: 50px;");
                             });
 
                             $('.custom-amount input:radio').change(
                                 function(){
                                     if ($(this).is(':checked')) {
                                         $('.js--personal-amt-other-wrap').show();
+                                        $('.information-box .donation-amounts .custom-amount').attr("style","max-height: none;");
                                     }
                                 });                       
 
@@ -1712,7 +1720,7 @@
                             });
 
                             // Set default donation amount
-                            $('input[name="personalDonAmt"]').eq(1).click().prop('checked', true).closest('.donation-amount-btn').addClass('active');
+                            $('input[name="personalDonAmt"]').eq(2).click().prop('checked', true).closest('.donation-amount-btn').addClass('active');
                             // $('.js--don-amt').text($('.form-check-label').eq(1).text().trim());
 
                             // removed to account for hiding he input for accessibitliy
