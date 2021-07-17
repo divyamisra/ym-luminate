@@ -344,9 +344,12 @@ svg.fa-info-circle {
  
 
 // tfind step
-#team_find_new_team_recruiting_goal,
 #team_find_registration_type_container {
   display:none;
+}
+// tfind step, hiding team recruit goal till aha ready
+#team_find_new_team_recruiting_goal {
+  display: none!important;
 }
 // #team_find_search_button_container {
 //   @extend .mt-2;
@@ -656,6 +659,17 @@ div.part-type-container {
       display:none;
     }
   }
+}
+
+.part-type-container.join-team-ptype-time.selected {
+  width: 50%;
+  border: 1px solid #c10e21!important;
+  color: #FFF!important;
+  text-align: center;
+}
+
+#custom_team_find button {
+  color: #212529!important;
 }
 
 div#part_type_fundraising_goal_container {
