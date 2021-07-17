@@ -16,14 +16,15 @@
       </a>
     </div>
     <p>&nbsp;</p>
-    <div class="checkbox" custom-checkbox ng-class="{'checked': moveMoreFlag.message}" ng-if="!prizes[5].earned" ng-cloak>
+    <div class="checkbox" custom-checkbox ng-class="{'checked': moveMoreFlag.message}">
         <label for="registrationInfo-fr_check_move_more">
-          <input ng-change="updateMoveMoreFlag()" type="checkbox" name="fr_check_move_more" id="registrationInfo-fr_check_move_more" ng-model="moveMoreFlag.message"> 
+          <input ng-change="setMoveMoreFlag(this)" type="checkbox" name="fr_check_move_more" id="registrationInfo-fr_check_move_more" ng-model="moveMoreFlag.message"> 
           <span>I have completed 150 minutes of activity over a 7 day period during this event.</span>
         </label>
         <span ng-bind="moveMoreFlag.errorMessage" ng-cloak></span>
     </div>
-    <div ng-if="moveMoreFlag.successMessage" ng-cloak>Your selection has been recorded. Your Move More Activity is now completed!</div>
+    <div ng-if="moveMoreFlag.successMessage && moveMoreFlag.message" ng-cloak>Your selection has been recorded. Your Move More Activity is now completed!</div>
+    <div ng-if="moveMoreFlag.successMessage && !moveMoreFlag.message" ng-cloak>Your selection has been recorded. Your Move More Activity is now removed!</div>
   </div>
   <div class="modal-footer">
     <div class="clearfix">
