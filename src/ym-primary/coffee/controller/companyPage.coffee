@@ -39,7 +39,7 @@ angular.module 'ahaLuminateControllers'
       $scope.topCompanySteps = []
       $scope.schoolChallenge = ''
       $scope.schoolChallengeGoal = 0
-      $scope.schoolYears = 0
+      $scope.schoolYears = 5
       $scope.unconfirmedAmountRaised = 0
       $scope.schoolBadgesRegistrations = []
       $scope.schoolBadgesFundraising = []
@@ -107,6 +107,7 @@ angular.module 'ahaLuminateControllers'
           $scope.companyProgress.percent = percent
           if not $scope.$$phase
             $scope.$apply()
+          getBoundlessSchoolData()
         , 500
       
       getCompanyTotals = ->
@@ -236,7 +237,7 @@ angular.module 'ahaLuminateControllers'
               $scope.participantRegistration = participantRegistration
       
       $scope.companyPagePhoto1 =
-        defaultUrl: APP_INFO.rootPath + 'dist/ym-primary/image/company-default.png'
+        defaultUrl: APP_INFO.rootPath + 'dist/ym-primary/image/fy22/company-default.jpg'
       
       $scope.editCompanyPhoto1 = ->
         delete $scope.updateCompanyPhoto1Error
@@ -461,24 +462,26 @@ angular.module 'ahaLuminateControllers'
               if meta.name == 'years-participated'
                 $scope.schoolYears = meta.value
                 
-      BoundlessService.getSchoolBadges $scope.frId + '/' + $scope.companyId
-      .then (response) ->
-        $scope.companyProgress = 
-          amountRaised: if response.data.total_amount then Number(response.data.total_amount) else 0
-          goal: if response.data.goal then Number(response.data.goal) else 0
-        $scope.companyProgress.amountRaisedFormatted = $filter('currency')($scope.companyProgress.amountRaised, '$')
-        $scope.companyProgress.goalFormatted = $filter('currency')($scope.companyProgress.goal / 100, '$')
-        $scope.companyProgress.percent = 0
-        if not $scope.$$phase
-          $scope.$apply()
-        $timeout ->
-          percent = $scope.companyProgress.percent
-          if $scope.companyProgress.goal isnt 0
-            percent = Math.ceil(($scope.companyProgress.amountRaised / $scope.companyProgress.goal) * 100)
-          if percent > 100
-            percent = 100
-          $scope.companyProgress.percent = percent
-          if not $scope.$$phase
-            $scope.$apply()
+      getBoundlessSchoolData = () ->
+        BoundlessService.getSchoolBadges $scope.frId + '/' + $scope.companyId
+        .then (response) ->
+          if response.data.success
+            $scope.companyProgress = 
+              amountRaised: if response.data.total_amount then Number(response.data.total_amount) else 0
+              goal: if response.data.goal then Number(response.data.goal) else 0
+            $scope.companyProgress.amountRaisedFormatted = $filter('currency')($scope.companyProgress.amountRaised, '$')
+            $scope.companyProgress.goalFormatted = $filter('currency')($scope.companyProgress.goal, '$')
+            $scope.companyProgress.percent = 0
+            if not $scope.$$phase
+              $scope.$apply()
+            $timeout ->
+              percent = $scope.companyProgress.percent
+              if $scope.companyProgress.goal isnt 0
+                percent = Math.ceil($scope.companyProgress.amountRaised / $scope.companyProgress.goal)
+              if percent > 100
+                percent = 100
+              $scope.companyProgress.percent = percent
+              if not $scope.$$phase
+                $scope.$apply()
   
     ]
