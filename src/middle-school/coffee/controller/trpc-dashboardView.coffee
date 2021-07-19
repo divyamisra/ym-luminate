@@ -237,8 +237,9 @@ angular.module 'trPcControllers'
                       label: 'School Challenge'
                       earned: true
             response
+            getSchoolInformation()
         $scope.dashboardPromises.push fundraisingProgressPromise
-        getSchoolInformation()
+        
       $scope.refreshFundraisingProgress()
 
       BoundlessService.getSchoolBadges $scope.frId + '/' + $scope.participantRegistration.companyInformation.companyId
