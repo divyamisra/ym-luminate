@@ -118,16 +118,18 @@ angular.module 'trPcControllers'
                   .then (response) ->
                     previousParticipants = []
                     totalNumberResults = 0
+                    setAddressBookContacts = ->
+                      $scope.addressBookContacts.contacts = previousParticipants
+                      $scope.addressBookContacts.totalNumber = totalNumberResults
+                      $scope.addressBookContacts.allContacts = previousParticipants
+                      $scope.addressBookContacts.allContactsSelected = isAllContactsSelected()
                     getPrev2Contacts = ->
                       companyId = prev1CompanyId or $scope.participantRegistration.companyInformation.companyId
                       NgPcTeamraiserCompanyService.getCompanies 'fr_id=' + $scope.prev2FrId + '&company_name=' + encodeURIComponent('org_for_company_id=' + companyId)
                         .then (response) ->
                           prev2Companies = response.data.getCompaniesResponse?.company
                           if not prev2Companies
-                            $scope.addressBookContacts.contacts = previousParticipants
-                            $scope.addressBookContacts.totalNumber = totalNumberResults
-                            $scope.addressBookContacts.allContacts = previousParticipants
-                            $scope.addressBookContacts.allContactsSelected = isAllContactsSelected()
+                            setAddressBookContacts()
                           else
                             prev2Companies = [prev2Companies] if not angular.isArray prev2Companies
                             prev2Company = prev2Companies[0]
@@ -136,10 +138,7 @@ angular.module 'trPcControllers'
                               .then (response) ->
                                 report2Data = response.data.getSchoolDetailReport?.reportData
                                 handleReportData report2Data
-                                $scope.addressBookContacts.contacts = previousParticipants
-                                $scope.addressBookContacts.totalNumber = totalNumberResults
-                                $scope.addressBookContacts.allContacts = previousParticipants
-                                $scope.addressBookContacts.allContactsSelected = isAllContactsSelected()
+                                setAddressBookContacts()
                     handleReportData = (reportData) ->
                       if reportData
                         reportDataRows = []
@@ -186,10 +185,7 @@ angular.module 'trPcControllers'
                       prev1CompanyId = prev1Company.companyId
                     if not prev1CompanyId
                       if not $scope.prev2FrId or $scope.prev2FrId is ''
-                        $scope.addressBookContacts.contacts = previousParticipants
-                        $scope.addressBookContacts.totalNumber = totalNumberResults
-                        $scope.addressBookContacts.allContacts = previousParticipants
-                        $scope.addressBookContacts.allContactsSelected = isAllContactsSelected()
+                        setAddressBookContacts()
                       else
                         getPrev2Contacts()
                     else
@@ -198,10 +194,7 @@ angular.module 'trPcControllers'
                           report1Data = response.data.getSchoolDetailReport?.reportData
                           handleReportData report1Data
                           if not $scope.prev2FrId or $scope.prev2FrId is ''
-                            $scope.addressBookContacts.contacts = previousParticipants
-                            $scope.addressBookContacts.totalNumber = totalNumberResults
-                            $scope.addressBookContacts.allContacts = previousParticipants
-                            $scope.addressBookContacts.allContactsSelected = isAllContactsSelected()
+                            setAddressBookContacts()
                           else
                             getPrev2Contacts()
             else if filter is 'email_custom_rpt_show_company_coordinator_weekly_participants' or filter is 'email_custom_rpt_show_company_coordinator_0_dollar_participants' or filter is 'email_custom_rpt_show_company_coordinator_250_dollar_participants'
