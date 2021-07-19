@@ -124,49 +124,65 @@
             callback: {
               success: function (response) {
 
+                console.log('team search response full', response)
+
                 if ($.fn.DataTable) {
-                  console.log('a. test');
                   if ($.fn.DataTable.isDataTable('#teamResultsTable')) {
-                    console.log('b');
                     $('#teamResultsTable').DataTable().destroy();
                   }
                 }
                 $('#teamResultsTable tbody').empty();
 
                 if (response.getTeamSearchByInfoResponse.totalNumberResults === '0') {
-                  console.log('c');
                   // no search results
                   $('.js__num-team-results').text('0 Results');
                   $('.js__num-team-results').attr("role", "status");
                   $('#error-team').removeAttr('hidden').text('Team not found. Please try different search terms.');
                   $('.js__error-team-search').show();
                 } else {
-                  console.log('d');
                   var teams = luminateExtend.utils.ensureArray(response.getTeamSearchByInfoResponse.team);
 
                   console.log('team search info', teams)
 
                   $(teams).each(function (i, team) {
                     if (searchType === 'registration') {
-                      console.log('e');
 
                       console.log('search type is reg. Team max size:' + team.maxTeamSize + ' and team members: ' + team.numMembers);
                       console.log(team.maxTeamSize + ' > ' + team.numMembers);
 
                       if (parseInt(team.maxTeamSize) > parseInt(team.numMembers)) {
-                        console.log('f');
                                     $('.list').append(
                                       '<div class="search-result-details row py-3"><div class="col-md-5"><strong><a href="' + team.teamPageURL + '" class="team-name-label" title="' + team.name + '" target=_blank><span class="team-company-label sr-only">Team Name:</span> ' + team.name + '</a></strong><br><span class="team-captain-label">Coach:</span> <span class="team-captain-name">' + team.captainFirstName + ' ' + team.captainLastName + '</span></div><div class="col-md-5 mt-auto">' + ((team.companyName !== null && team.companyName !== undefined) ? '<span class="team-company-label">Company:</span> <span class="team-company-name">' + team.companyName + '</span>' : '') + '</div><div class="col-md-2"><a href="' + luminateExtend.global.path.secure + 'TRR/?fr_tjoin=' + team.id + '&pg=tfind&fr_id=' + evID + '&s_captainConsId=' + team.captainConsId + '&s_regType=joinTeam&skip_login_page=true&s_teamName=' + team.name + '&s_teamGoal=' + (parseInt(team.goal)/100) + '&s_teamCaptain=' + team.captainFirstName + ' ' + team.captainLastName + '&s_companyName=' + team.companyName +'" title="Join ' + team.name + '" aria-label="Join ' + team.name + '" class="btn btn-block btn-primary button team-join-btn">Join</a></div></div>');
                       } else {
-                        console.log('g');
                                     $('.list').append(
                                       '<div class="search-result-details row py-3"><div class="col-md-5"><strong><a href="' + team.teamPageURL + '" class="team-name-label" title="' + team.name + '" target=_blank><span class="team-company-label sr-only">Team Name:</span> ' + team.name + '</a></strong><br><span class="team-captain-label">Coach:</span> <span class="team-captain-name">' + team.captainFirstName + ' ' + team.captainLastName + '</span></div><div class="col-md-5 mt-auto">' + ((team.companyName !== null && team.companyName !== undefined) ? '<span class="team-company-label">Company:</span> <span class="team-company-name">' + team.companyName + '</span>' : '') + '</div><div class="col-md-2 text-center"><br/>Team is full</div></div>');
                       }
                       $('.js__search-results-container').slideDown();
                       // $('.js__search-results-container').show();
 
+                      // cd.etCompaniesTitle = function (companyName, isCrossEvent) {
+                      //   luminateExtend.api({
+                      //     api: 'teamraiser',
+                      //     data: 'method=getCompaniesByInfo' +
+                      //       '&company_name=' + companyName +
+                      //       (isCrossEvent === true ? '&event_type=' + eventType : '&fr_id=' + evID) +
+                      //       '&list_page_size=499' +
+                      //       '&list_page_offset=0' +
+                      //       (isCrossEvent === true ? '&include_cross_event=true' : '') +
+                      //       '&response_format=json' +
+                      //       '&list_sort_column=company_name' +
+                      //       '&list_ascending=true',
+                      //     callback: {
+                      //       success: function (response) {},
+
+                      //       error: function (response) {}
+                      //     }
+                      //   });
+                      // };
+
+                      // cd.getCompaniesTitle(teamName, 'registration', false, firstName, lastName, companyId);
+
                     } else {
-                      console.log('h');
                       $('.js__team-results-rows')
                         .append('<tr' + (i > 10 ? ' class="d-none"' : '') + '><td><a href="' + team.teamPageURL + '">' +
                           team.name + '</a></td><td><a href="TR/?px=' + team.captainConsId + '&pg=personal&fr_id=' + team.EventId + '">' + team.captainFirstName + ' ' + team.captainLastName + '</a></td><td>' +
@@ -176,7 +192,6 @@
                   });
 
                   if (searchType === 'registration') {
-                    console.log('i');
                     var totalTeams = parseInt(response.getTeamSearchByInfoResponse.totalNumberResults);
                     $('.js__num-team-results').text((totalTeams === 1 ? '1 Result' : totalTeams + ' Results'));
                     $('.js__num-team-results').attr("role", "status");
@@ -190,12 +205,10 @@
                     var teamsList = new List('custom_team_find', options);
 
                     if ($('.team-company-name').length > 0) {
-                      console.log('j');
                       $('.js__company-sort').show();
                     }
 
                   } else {
-                    console.log('h');
                     var totalTeams = parseInt(response.getTeamSearchByInfoResponse.totalNumberResults);
 
                     $('.js__num-team-results').text((totalTeams === 1 ? '1 Result' : totalTeams + ' Results'));
