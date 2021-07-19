@@ -117,7 +117,7 @@ angular.module 'trPcControllers'
                   if meta.name == 'school-goal'
                     $scope.companyProgress.schoolChallengeLevel = meta.value
                 amt = $scope.participantProgress.raised / 100
-                if amt >= Number(($scope.companyProgress.schoolChallengeLevel).replace('$', '').replace(/,/g, ''))
+                if amt > 0 and amt >= Number(($scope.companyProgress.schoolChallengeLevel).replace('$', '').replace(/,/g, ''))
                   # student challenge completed
                   $scope.studentChallengeBadge = true
                 #if neither school or student goal met
