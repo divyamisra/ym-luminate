@@ -3,17 +3,17 @@
    <div class="ym-page-section ym-page-section__top">
       <div class="col-md-6 ym-user-image" ng-style="{'background-image': (companyPagePhoto1.customUrl && companyPagePhoto1.customUrl != '') ? ('url(' + companyPagePhoto1.customUrl + ')') : ('url(' + companyPagePhoto1.defaultUrl + ')')}">
          <div class="ym-user-image-inner">
+            <button type="button" class="btn btn-md-wide btn-toggle" ng-click="editCompanyPhoto1()" ng-if="participantRegistration.companyInformation.companyId == '[[S334:company_id]]' && participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
+            <span class="fa fa-camera"></span> Edit Photo
+            </button>
             <div class="ym-school-participation-years" ng-if="schoolYears > 0">
                <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/ym-school-participation-years.png" alt="School Participation Years">
                <div class="ym-school-participation-years-text"><span ng-bind-html="schoolYears"></span> Years Participating</div>
             </div>
-            <button type="button" class="btn btn-md-wide btn-toggle" ng-click="editCompanyPhoto1()" ng-if="participantRegistration.companyInformation.companyId == '[[S334:company_id]]' && participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
-            <span class="fa fa-camera"></span> Edit Photo
-            </button>
             <img class="hidden-md hidden-lg" ng-src="{{companyPagePhoto1.customUrl && companyPagePhoto1.customUrl != '' ? companyPagePhoto1.customUrl : companyPagePhoto1.defaultUrl}}" alt="School Photo" ng-cloak>
          </div>
       </div>
-      <div class="ym-story col-md-6 ym-secondary-medium-color" ng-class="{'challenge-slime': schoolChallenge == 'Slime Challenge','challenge-pie': schoolChallenge == 'Pie in the Face','challenge-activity': schoolChallenge == 'Activity, Party or Event'}">
+      <div class="ym-story col-md-6 ym-secondary-medium-color" ng-class="{'challenge-ice': schoolChallenge == 'Ice Bucket/Water Challenge','challenge-color': schoolChallenge == 'Color Blast','challenge-slime': schoolChallenge == 'Slime Challenge','challenge-pie': schoolChallenge == 'Pie in the Face','challenge-activity': schoolChallenge == 'Activity, Party or Event'}">
          <h2 class="ym-headline">
             Our School is Heart Healthy!
          </h2>
@@ -64,9 +64,27 @@
          <h2 class="ym-progress__title h4">
             [[C1:title]]
          </h2>
-         <div class="ym-progress__thermometer" name="School Progress Bar" role="progressbar" aria-valuetext="{{companyProgress.percent}} percent of fundraising goal" aria-valuenow="{{companyProgress.percent}}" aria-valuemin="0" aria-valuemax="100" ng-if="companyProgress.goal && companyProgress.goal != 0" ng-cloak>
+         <div class="ym-progress__stats">
+            <div class="ym-progress__date" ng-if="eventDate && eventDate != '' && eventDate != 'User Provided No Response'" ng-cloak>
+               <p>
+                  Our event date is <strong>{{eventDate | date:'MM/dd/yyyy'}}</strong>
+               </p>
+            </div>
+            <div class="ym-progress__moneydue" ng-if="moneyDueDate && moneyDueDate != '' && moneyDueDate != 'User Provided No Response'" ng-cloak>
+               <p>
+                  Our envelope turn in date is <strong>{{moneyDueDate | date:'MM/dd/yyyy'}}</strong>
+               </p>
+            </div>
+            <div class="ym-progress__studentgoal" ng-if="schoolStudentGoal && schoolStudentGoal != '' && schoolStudentGoal != 'User Provided No Response'" ng-cloak>
+               <p>
+                  School Student Goal is <strong>{{schoolStudentGoal}}</strong>
+               </p>
+            </div>
+         </div>
+         <div class="ym-progress__thermometer" name="School Progress Bar" role="progressbar" aria-label="{{companyProgress.percent}} percent of fundraising progress" aria-valuetext="{{companyProgress.percent}} percent of fundraising goal" aria-valuenow="{{companyProgress.percent}}" aria-valuemin="0" aria-valuemax="100" ng-if="companyProgress.goal && companyProgress.goal != 0" ng-cloak>
             <div class="ym-progress__thermometer--fill" ng-style="{'width': companyProgress.percent + '%'}"></div>
          </div>
+         <div class="clearfix"></div>
          <div class="ym-progress__stats">
             <div ng-if="hideAmount != 'Y'" class="ym-progress__amount" ng-class="(companyProgress.goalFormatted && companyProgress.goalFormatted != '' && companyProgress.goalFormatted != '$0') ? 'col-md-6' : 'col-md-12'" ng-cloak>
                <p>
@@ -78,29 +96,13 @@
                   Our goal is <strong><span ng-bind-html="companyProgress.goalFormatted"></span></strong>
                </p>
             </div>
-            <div class="clearfix"></div>
-            <div class="ym-progress__date" ng-if="eventDate && eventDate != '' && eventDate != 'User Provided No Response'" ng-cloak>
-               <p>
-                  Our event date is <strong>{{eventDate | date:'MM/dd/yyyy'}}</strong>
-               </p>
-            </div>
-            <div class="ym-progress__moneydue" ng-if="moneyDueDate && moneyDueDate != '' && moneyDueDate != 'User Provided No Response'" ng-cloak>
-               <p>
-                  Our money due date is <strong>{{moneyDueDate | date:'MM/dd/yyyy'}}</strong>
-               </p>
-            </div>
-            <div class="ym-progress__studentgoal" ng-if="schoolStudentGoal && schoolStudentGoal != '' && schoolStudentGoal != 'User Provided No Response'" ng-cloak>
-               <p>
-                  School Student Goal is <strong>{{schoolStudentGoal}}</strong>
-               </p>
-            </div>
          </div>
       </div>
-      <div class="ym-list" class="col-md-6" role="list" aria-label="Top Fundraisers List" ng-if="companyParticipants.totalFundraisers > 0" ng-cloak>
+      <div class="ym-list col-md-6" aria-label="Top Fundraisers List" ng-if="companyParticipants.totalFundraisers > 0" ng-cloak>
          <h2>
-            <img class="img-responsive" src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/ym-primary/image/fy21/khc-top-fundraisers.png" alt="Saluting these top fundraisers">
+            <img class="img-responsive" src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/ym-primary/image/fy22/top-fundraising-fy22.png" alt="Saluting these top fundraisers">
          </h2>
-         <ul class="ym-donor-list">
+         <ul class="ym-donor-list" role="list">
             <company-participant-list fr-id="'[[S80:trID]]'" company-id="'[[T6:[[S334:company_id]]]]'" participants="companyParticipants.participants"></company-participant-list>
          </ul>
       </div>
