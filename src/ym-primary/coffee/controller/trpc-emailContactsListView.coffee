@@ -86,6 +86,7 @@ angular.module 'trPcControllers'
       ]
       if $scope.participantRegistration.companyInformation?.isCompanyCoordinator is 'true'
         contactFilters.push 'email_rpt_show_company_coordinator_participants'
+        contactFilters.push 'email_custom_rpt_show_company_coordinator_weekly_participants'
         contactFilters.push 'email_custom_rpt_show_company_coordinator_0_dollar_participants'
         contactFilters.push 'email_custom_rpt_show_company_coordinator_250_dollar_participants'
         contactFilters.push 'email_custom_rpt_show_past_company_coordinator_participants'
@@ -198,7 +199,7 @@ angular.module 'trPcControllers'
                             $scope.addressBookContacts.allContactsSelected = isAllContactsSelected()
                           else
                             getPrev2Contacts()
-            else if filter is 'email_custom_rpt_show_company_coordinator_0_dollar_participants' or filter is 'email_custom_rpt_show_company_coordinator_250_dollar_participants'
+            else if filter is 'email_custom_rpt_show_company_coordinator_weekly_participants' or filter is 'email_custom_rpt_show_company_coordinator_0_dollar_participants' or filter is 'email_custom_rpt_show_company_coordinator_250_dollar_participants'
               if $scope.participantRegistration.companyInformation?.isCompanyCoordinator isnt 'true'
                 $scope.addressBookContacts.contacts = []
                 $scope.addressBookContacts.totalNumber = 0
@@ -234,12 +235,17 @@ angular.module 'trPcControllers'
                           email = jQuery.trim reportDataRow[reportDataColumnIndexMap.PARTICIPANT_EMAIL]
                           grade = jQuery.trim reportDataRow[reportDataColumnIndexMap.GRADE_LEVEL]
                           amountRaised = Number reportDataRow[reportDataColumnIndexMap.TRX_AMT]
+                          registrationDateFormatted = reportDataRow[reportDataColumnIndexMap.REGISTRATION_DATE]
+                          registrationDate = null
+                          if registrationDateFormatted and registrationDateFormatted.split('/').length is 3
+                            registrationDate = new Date(registrationDateFormatted.split('/')[2], Number(registrationDateFormatted.split('/')[0]) - 1, registrationDateFormatted.split('/')[1])
                           contact =
                             firstName: firstName
                             lastName: lastName
                             email: email
                             grade: grade
                             amountRaised: amountRaised
+                            registrationDateFormatted: registrationDateFormatted
                           contact.selected = isContactSelected contact
                           contactIsUnique = true
                           angular.forEach filteredParticipants, (filteredParticipant) ->
@@ -248,7 +254,9 @@ angular.module 'trPcControllers'
                             if contactString is filteredParticipantString
                               contactIsUnique = false
                           contactMeetsCustomFilter = false
-                          if filter is 'email_custom_rpt_show_company_coordinator_0_dollar_participants' and amountRaised is 0
+                          if filter is 'email_custom_rpt_show_company_coordinator_weekly_participants' and registrationDate and moment(registrationDate).isBetween(moment().startOf('isoweek'), moment().endOf('isoweek'), null, '[]')
+                            contactMeetsCustomFilter = true
+                          else if filter is 'email_custom_rpt_show_company_coordinator_0_dollar_participants' and amountRaised is 0
                             contactMeetsCustomFilter = true
                           else if filter is 'email_custom_rpt_show_company_coordinator_250_dollar_participants' and amountRaised >= 250
                             contactMeetsCustomFilter = true
@@ -289,7 +297,7 @@ angular.module 'trPcControllers'
               $scope.addressBookContacts.allContacts = []
               $scope.addressBookContacts.getAllPage = 0
             pageNumber = $scope.addressBookContacts.getAllPage
-            if filter is 'email_custom_rpt_show_company_coordinator_0_dollar_participants' or filter is 'email_custom_rpt_show_company_coordinator_250_dollar_participants' or filter is 'email_custom_rpt_show_past_company_coordinator_participants'
+            if filter is 'email_custom_rpt_show_company_coordinator_weekly_participants' or filter is 'email_custom_rpt_show_company_coordinator_0_dollar_participants' or filter is 'email_custom_rpt_show_company_coordinator_250_dollar_participants' or filter is 'email_custom_rpt_show_past_company_coordinator_participants'
               delete $scope.addressBookContacts.getAllPage
             else
               allContactsPromise = NgPcContactService.getTeamraiserAddressBookContacts 'tr_ab_filter=' + filter + '&skip_groups=true&list_page_size=200&list_page_offset=' + pageNumber
@@ -316,7 +324,7 @@ angular.module 'trPcControllers'
               $scope.emailPromises.push allContactsPromise
           $scope.getAllContacts()
         else
-          if filter is 'email_custom_rpt_show_company_coordinator_0_dollar_participants' or filter is 'email_custom_rpt_show_company_coordinator_250_dollar_participants' or filter is 'email_custom_rpt_show_past_company_coordinator_participants'
+          if filter is 'email_custom_rpt_show_company_coordinator_weekly_participants' or filter is 'email_custom_rpt_show_company_coordinator_0_dollar_participants' or filter is 'email_custom_rpt_show_company_coordinator_250_dollar_participants' or filter is 'email_custom_rpt_show_past_company_coordinator_participants'
             $scope.contactCounts[filter] = ''
           else
             # contactCountPromise = NgPcContactService.getTeamraiserAddressBookContacts 'tr_ab_filter=' + filter + '&skip_groups=true&list_page_size=1'
@@ -334,6 +342,7 @@ angular.module 'trPcControllers'
         email_rpt_show_donors: 'Donors'
         email_rpt_show_nondonors: 'Non-Donors'
         email_rpt_show_company_coordinator_participants: 'School Participants'
+        email_custom_rpt_show_company_coordinator_weekly_participants: 'Weekly School Participants'
         email_custom_rpt_show_company_coordinator_0_dollar_participants: '$0 School Participants'
         email_custom_rpt_show_company_coordinator_250_dollar_participants: '$250 School Participants'
         email_custom_rpt_show_past_company_coordinator_participants: 'Past School Participants'
