@@ -116,20 +116,29 @@ angular.module 'trPcControllers'
                   delete $scope.addressBookContacts.contacts
                 NgPcTeamraiserCompanyService.getCompanies 'fr_id=' + $scope.prev1FrId + '&company_name=' + encodeURIComponent('org_for_company_id=' + $scope.participantRegistration.companyInformation.companyId)
                   .then (response) ->
-                    previousParticipants = []
+                    participants = []
                     totalNumberResults = 0
                     setAddressBookContacts = ->
-                      $scope.addressBookContacts.contacts = previousParticipants
+                      $scope.addressBookContacts.contacts = participants
                       $scope.addressBookContacts.totalNumber = totalNumberResults
-                      $scope.addressBookContacts.allContacts = previousParticipants
+                      $scope.addressBookContacts.allContacts = participants
                       $scope.addressBookContacts.allContactsSelected = isAllContactsSelected()
+                    getCurrentContacts = ->
+                      NgPcTeamraiserReportsService.getSchoolDetailReport $rootScope.frId, $scope.participantRegistration.companyInformation.companyId
+                        .then (response) ->
+                          reportCurrentData = response.data.getSchoolDetailReport?.reportData
+                          handleReportData reportCurrentData, true
+                          setAddressBookContacts()
                     getPrev2Contacts = ->
                       companyId = prev1CompanyId or $scope.participantRegistration.companyInformation.companyId
                       NgPcTeamraiserCompanyService.getCompanies 'fr_id=' + $scope.prev2FrId + '&company_name=' + encodeURIComponent('org_for_company_id=' + companyId)
                         .then (response) ->
                           prev2Companies = response.data.getCompaniesResponse?.company
                           if not prev2Companies
-                            setAddressBookContacts()
+                            if filter is 'email_custom_rpt_show_past_company_coordinator_participants'
+                              setAddressBookContacts()
+                            else
+                              getCurrentContacts()
                           else
                             prev2Companies = [prev2Companies] if not angular.isArray prev2Companies
                             prev2Company = prev2Companies[0]
@@ -138,9 +147,15 @@ angular.module 'trPcControllers'
                               .then (response) ->
                                 report2Data = response.data.getSchoolDetailReport?.reportData
                                 handleReportData report2Data
-                                setAddressBookContacts()
-                    handleReportData = (reportData) ->
+                                if filter is 'email_custom_rpt_show_past_company_coordinator_participants'
+                                  setAddressBookContacts()
+                                else
+                                  getCurrentContacts()
+                    handleReportData = (reportData, newOnly) ->
                       if reportData
+                        if newOnly
+                          newParticipants = []
+                          totalNumberNewResults = 0
                         reportDataRows = []
                         angular.forEach reportData, (reportDataRow) ->
                           if reportDataRow.length > 1
@@ -162,23 +177,29 @@ angular.module 'trPcControllers'
                                 grade: grade
                               contact.selected = isContactSelected contact
                               contactIsUnique = true
-                              angular.forEach previousParticipants, (previousParticipant) ->
+                              angular.forEach participants, (participant) ->
                                 contactString = firstName.toLowerCase() + ' ' + lastName.toLowerCase() + ' <' + email.toLowerCase() + '>'
-                                previousParticipantString = previousParticipant.firstName.toLowerCase() + ' ' + previousParticipant.lastName.toLowerCase() + ' <' + previousParticipant.email.toLowerCase() + '>'
-                                if contactString is previousParticipantString
+                                participantString = participant.firstName.toLowerCase() + ' ' + participant.lastName.toLowerCase() + ' <' + participant.email.toLowerCase() + '>'
+                                if contactString is participantString
                                   contactIsUnique = false
                               if contactIsUnique
                                 totalNumberResults++
-                                previousParticipants.push contact
-                          previousParticipants.sort (a, b) ->
-                            aFullName = a.firstName.toLowerCase() + ' ' + a.lastName.toLowerCase()
-                            bFullName = b.firstName.toLowerCase() + ' ' + b.lastName.toLowerCase()
-                            if aFullName < bFullName
-                              return -1
-                            else if aFullName > bFullName
-                              return 1
-                            else
-                              return 0
+                                participants.push contact
+                                if newOnly
+                                  totalNumberNewResults++
+                                  newParticipants.push contact
+                        if newOnly
+                          participants = newParticipants
+                          totalNumberResults = totalNumberNewResults
+                        participants.sort (a, b) ->
+                          aFullName = a.firstName.toLowerCase() + ' ' + a.lastName.toLowerCase()
+                          bFullName = b.firstName.toLowerCase() + ' ' + b.lastName.toLowerCase()
+                          if aFullName < bFullName
+                            return -1
+                          else if aFullName > bFullName
+                            return 1
+                          else
+                            return 0
                     prev1Companies = response.data.getCompaniesResponse?.company
                     prev1CompanyId = null
                     if prev1Companies
@@ -187,7 +208,10 @@ angular.module 'trPcControllers'
                       prev1CompanyId = prev1Company.companyId
                     if not prev1CompanyId
                       if not $scope.prev2FrId or $scope.prev2FrId is ''
-                        setAddressBookContacts()
+                        if filter is 'email_custom_rpt_show_past_company_coordinator_participants'
+                          setAddressBookContacts()
+                        else
+                          getCurrentContacts()
                       else
                         getPrev2Contacts()
                     else
@@ -196,7 +220,10 @@ angular.module 'trPcControllers'
                           report1Data = response.data.getSchoolDetailReport?.reportData
                           handleReportData report1Data
                           if not $scope.prev2FrId or $scope.prev2FrId is ''
-                            setAddressBookContacts()
+                            if filter is 'email_custom_rpt_show_past_company_coordinator_participants'
+                              setAddressBookContacts()
+                            else
+                              getCurrentContacts()
                           else
                             getPrev2Contacts()
             else if filter is 'email_custom_rpt_show_company_coordinator_weekly_participants' or filter is 'email_custom_rpt_show_company_coordinator_0_dollar_participants' or filter is 'email_custom_rpt_show_company_coordinator_250_dollar_participants'
