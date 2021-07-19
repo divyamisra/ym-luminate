@@ -135,7 +135,7 @@ angular.module 'ahaLuminateControllers'
               .then (response) ->
                 $scope.eventDate = response.data.coordinator?.event_date
                 
-          if amountRaised >= goal 
+          if amountRaised >= goal and goal > 0
             $scope.schoolChallengeBadge = true
                 
       setParticipantProgress = (amountRaised, goal) ->
