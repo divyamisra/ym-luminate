@@ -81,7 +81,7 @@ angular.module 'ahaLuminateControllers'
                     $scope.companyProgress.schoolChallenge = meta.value
                   if meta.name == 'school-goal'
                     $scope.companyProgress.schoolChallengeLevel = meta.value
-                if amt > 0 and amt >= Number(($scope.companyProgress.schoolChallengeLevel).replace('$', '').replace(/,/g, ''))
+                if amt >= Number(($scope.companyProgress.schoolChallengeLevel).replace('$', '').replace(/,/g, ''))
                   $scope.studentChallengeBadge = true
             else
               $scope.companyProgress.schoolYears = 0
@@ -135,7 +135,7 @@ angular.module 'ahaLuminateControllers'
               .then (response) ->
                 $scope.eventDate = response.data.coordinator?.event_date
                 
-          if amountRaised >= goal 
+          if amountRaised >= goal and goal > 0
             $scope.schoolChallengeBadge = true
                 
       setParticipantProgress = (amountRaised, goal) ->
