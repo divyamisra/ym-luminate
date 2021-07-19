@@ -2099,8 +2099,13 @@ div.required-indicator-legend {
   .part-type-container {
     display: none;
   }
-  .discount_code_container {
+  #discount_code_container {
     margin-top: 1.5rem;
   }
 }
 
+.pg_regsummary {
+  .contact-info-first, .contact-info-middle.regMiddleName {
+    margin-right: 5px;
+  }
+}

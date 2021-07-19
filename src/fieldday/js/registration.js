@@ -2298,6 +2298,9 @@
               if ( $('.team-status').html() === 'You are Starting a Team') {
                 $('#another_button').remove();
               }
+              if($('.contact-info-middle').text() !== ""){
+                $('.contact-info-middle').addClass('regMiddleName');
+              }
             }
 
 
