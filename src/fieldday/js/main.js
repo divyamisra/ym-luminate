@@ -262,6 +262,8 @@
               var companyLocation = company.eventcity + ', ' + company.eventstate;
 
               $(companyLocation).appendTo('.js--company-location');
+            } else {
+              $('<p>TBD</p>').appendTo('.js--company-location p');
             }
           }
         });
@@ -272,9 +274,12 @@
        cd.generateCompanyInfo = function(companies){
           $('<div class="js--company-data hidden"></div>').insertAfter('main');
           for (var i=0, iLen=companies.length; i<iLen; i++) {
+              var companyLocation = companies[i].eventcity !== "" || companies[i].eventstate !== "" ? companies[i].eventcity + ', ' + companies[i].eventstate : 'TBD';
+              var companyCoordinator = companies[i].coordinatorfirstname !== "" ? companies[i].coordinatorfirstname + ' ' + companies[i].coordinatorlastname : 'TBD';
+
               var dataOutput = '<div id="company-id-' + companies[i].companyid + '">';
-              dataOutput += '<div class="js--company-data-location">'+ companies[i].eventcity + ', ' + companies[i].eventstate + '</div>';
-              dataOutput += '<div class="js--company-data-coordinator">'+ companies[i].coordinatorfirstname + ' ' + companies[i].coordinatorlastname + '</div>';
+              dataOutput += '<div class="js--company-data-location">'+ companyLocation + '</div>';
+              dataOutput += '<div class="js--company-data-coordinator">'+ companyCoordinator + '</div>';
               dataOutput += '</div>';
               $(dataOutput).appendTo('.js--company-data');
            }
@@ -298,57 +303,56 @@
                 eventMapLink = company.eventlocationmapurl;
 
                 if ( eventMapLink.indexOf("http://") == 0 || eventMapLink.indexOf("https://") == 0 || eventMapLink.indexOf("www") == 0)  {
-
-                  var companyMap = '<a target="_blank" aria-label="'+company.eventlocationname+''+company.eventcity+', '+company.eventstate+'" href="' + eventMapLink + '">' + '<p>' + company.eventlocationname + '</p> <p>' + company.eventcity + ', ' + company.eventstate + '</p>' + '</a>';
-
+                  var companyMap = '<a target="_blank" aria-label="'+company.eventlocationname+''+company.eventcity+', '+company.eventstate+'" href="' + eventMapLink + '">' + '<p>' + company.eventlocationname + '</p><p>' + company.eventaddress +  '</p><p>' + company.eventcity + ', ' + company.eventstate + '</p>' + '</a>';
                    $('.js--company-link').html(companyMap)
-
                 }
 
               } else {
 
-                if (company.eventstate !== "") {
+                if (company.eventstate !== "" && company.eventlocationname !== "") {
                   var companyAddress = company.eventaddress + ', ' + company.eventcity + ', ' + company.eventstate + ', ' + company.eventzip;
-
                   companyAddress = encodeURIComponent(companyAddress);
-
                   var eventMapLink = 'https://www.google.com/maps/place/' + companyAddress;
-
-                  var companyMap = '<a target="_blank" aria-label="'+company.eventlocationname+''+company.eventcity+', '+company.eventstate+'" href="' + eventMapLink + '">' + '<p>' + company.eventlocationname + '</p> <p>' + company.eventcity + ', ' + company.eventstate + '</p>' + '</a>';
-
-                  // $("'"+companyMap+"'").appendTo('.js--company-link')
-
+                  var companyMap = '<a target="_blank" aria-label="'+company.eventlocationname+''+company.eventcity+', '+company.eventstate+'" href="' + eventMapLink + '">' + '<p>' + company.eventlocationname + '</p><p>' + company.eventaddress +  '</p><p>' + company.eventcity + ', ' + company.eventstate + '</p>' + '</a>';
                   $('.js--company-link').html(companyMap);
+                } else {
+                  $('.js--company-link').html('<p>TBD</p>');
                 }
-
               }
 
             }
 
-            console.log('coor first name', company.coordinatorfirstname);
-            console.log('coor date', company.eventdate);
-            console.log('coor location', company.eventlocationname);
-
+            var companyLead
             if (company.coordinatorfirstname !== "") {
-              var companyLead = '<p><a aria-label="Email Company Lead ' + company.coordinatorfirstname + ' ' + company.coordinatorlastname +'" href="mailto:' + company.coordinatoremail +'">' + company.coordinatorfirstname + ' ' + company.coordinatorlastname + '</a></p>' ;
-            } 
+              companyLead = '<p><a aria-label="Email Company Lead ' + company.coordinatorfirstname + ' ' + company.coordinatorlastname +'" href="mailto:' + company.coordinatoremail +'">' + company.coordinatorfirstname + ' ' + company.coordinatorlastname + '</a></p>' ;
+            } else {
+              companyLead = '<p>TBD</p>';
+            }
             $(companyLead).appendTo('.js--company-lead');
 
-            if (company.eventdate !== "") {
-              var eventDateFormatted = moment(company.eventdate).format('MMMM D, YYYY');
-              var  eventDate = '<p>' + eventDateFormatted + ' at ' + company.eventtime + '</p>';
-            } 
+            var eventDateFormatted;
+            var eventDate;
+            eventDateFormatted = moment(company.eventdate).format('MMMM D, YYYY');
+
+            if (company.eventdate !== "" && company.eventtime !== "") {
+              eventDate = '<p>' + eventDateFormatted + ' at ' + company.eventtime + '</p>';
+            } else if (company.eventdate !== "" && company.eventtime === "") {
+              eventDate = '<p>' + eventDateFormatted  + '</p>';
+            } else {
+              eventDate = '<p>TBD</p>';
+            }
+
             $(eventDate).appendTo('.js--event-date');
 
             var fieldDayDetails = '';
-            if (company.eventlocationname !== "") {
+            if ( company.eventlocationname !== "" || (company.eventcity !== "" || company.eventstate !== "") ) {
               fieldDayDetails += '<p>' + company.eventlocationname + '</p>';
               fieldDayDetails += '<p>' + company.eventcity + ', ' + company.eventstate + '</p>';
-            } 
+            } else {
+              fieldDayDetails += '<p>TBD</p>';
+            }
             $(fieldDayDetails).appendTo('.js--field-day-details');
 
-            // var companyLocation = '<p>' + company.eventcity + ', ' + company.eventstate + '</p>'
-            // $(companyLocation).appendTo('.js--company-location');
 
           //TO DO - do we need to add all companies to the csv file? If so, we can remove the 'else' code below
           } else {
@@ -359,8 +363,9 @@
             $(eventDate).appendTo('.js--event-date');
 
             var fieldDayDetails = '';
-              fieldDayDetails += '<p>TBD</p>';
-              fieldDayDetails += '<p>TBD</p>';
+            fieldDayDetails += '<p>TBD</p>';
+
+            $('.js--company-link').html('<p>TBD</p>');
 
             $(fieldDayDetails).appendTo('.js--field-day-details');
           }
@@ -1908,6 +1913,7 @@
             var start_pos = pageTitle.indexOf(':') + 1;
             var end_pos = pageTitle.indexOf('- Field Day', start_pos);
             var currentCompanyName = pageTitle.substring(start_pos, end_pos).trim();
+
             var currentCompanyId = getURLParameter(currentUrl, 'company_id');
             var visitedFromHQ = getURLParameter(currentUrl, 'ourstats');
 
@@ -1921,8 +1927,14 @@
 
             if ( $('.js--company-name').length > 0 ) {
                 $('.js--company-name').text(currentCompanyName);
-                $('.company-page-create').attr("href", "TRR/FieldDay/General?pg=tfind&fr_id="+evID+"&fr_tm_opt=new&s_regType=startTeam&s_companyId="+currentCompanyId+"&s_companyName="+currentCompanyName);
-                $('.company-page-join').attr("href", "TRR/FieldDay/General?pg=tfind&fr_id="+evID+"&s_regType=joinTeam&s_companyId="+currentCompanyId+"&s_companyName="+currentCompanyName)
+                if (currentCompanyName.includes('&')) {
+                  var newCurrentCompanyName = currentCompanyName.replace("&", "ampersand")
+                  $('.company-page-create').attr("href", "TRR/FieldDay/General?pg=tfind&fr_id="+evID+"&fr_tm_opt=new&s_regType=startTeam&s_companyId="+currentCompanyId+"&s_companyName="+newCurrentCompanyName);
+                  $('.company-page-join').attr("href", "TRR/FieldDay/General?pg=tfind&fr_id="+evID+"&s_regType=joinTeam&s_companyId="+currentCompanyId+"&s_companyName="+newCurrentCompanyName);
+                } else {
+                  $('.company-page-create').attr("href", "TRR/FieldDay/General?pg=tfind&fr_id="+evID+"&fr_tm_opt=new&s_regType=startTeam&s_companyId="+currentCompanyId+"&s_companyName="+currentCompanyName);
+                  $('.company-page-join').attr("href", "TRR/FieldDay/General?pg=tfind&fr_id="+evID+"&s_regType=joinTeam&s_companyId="+currentCompanyId+"&s_companyName="+currentCompanyName);
+                }
             }
 
             // var isParentCompany = ($('#company_hierarchy_list_component .lc_Row1').length ? true : false)
