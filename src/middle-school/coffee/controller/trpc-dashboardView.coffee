@@ -52,6 +52,14 @@ angular.module 'trPcControllers'
         BoundlessService.checkOOTDashboard $scope.frId + '/' + $scope.consId
         .then (response) ->
           $rootScope.hasOOTDashboard = response.data.coordinatorHasDashboard
+          if $rootScope.hasOOTDashboard
+            BoundlessService.getSchoolBadges $scope.frId + '/' + $scope.participantRegistration.companyInformation.companyId
+            .then (response) ->
+              $scope.schoolBadgesRegistrations = response.data.registration_badges
+              $scope.schoolBadgesFundraising = response.data.fundraising_badges
+              $scope.companyInfo.participantCount = response.data.students_registered
+              $scope.companyProgress.raised = response.data.total_amount
+              $scope.companyProgress.raisedFormatted = $filter('currency')(response.data.total_amount, '$')
         , (response) ->
           # TODO
       else
@@ -242,14 +250,6 @@ angular.module 'trPcControllers'
         
       $scope.refreshFundraisingProgress()
 
-      BoundlessService.getSchoolBadges $scope.frId + '/' + $scope.participantRegistration.companyInformation.companyId
-      .then (response) ->
-        $scope.schoolBadgesRegistrations = response.data.registration_badges
-        $scope.schoolBadgesFundraising = response.data.fundraising_badges
-        $scope.companyInfo.participantCount = response.data.students_registered
-        $scope.companyProgress.raised = response.data.total_amount
-        $scope.companyProgress.raisedFormatted = $filter('currency')(response.data.total_amount, '$')
-        
       $scope.emailChallenge = {}
       setEmailSampleText = ->
         sampleText = 'What if I told you that together, we can help save the lives of millions of people? Seriously, we can!\n\n' +
@@ -754,9 +754,9 @@ angular.module 'trPcControllers'
               # id: challengeIndex
               # name: challenge
       challengeOptions =
-        "1": "Be physically active for 60 minutes a day."
-        "2": "Learn Hands-Only CPR."
-        "3": "Say no to tobacco and vaping."
+        "1": "Get your ZZZs, aiming for 8-10 hours of sleep every night."
+        "2": "Complete an act of kindness each day."
+        "3": "Move for one hour every day for a physical and mental boost."
       angular.forEach challengeOptions, (challenge, challengeIndex) ->
         $scope.challenges.push
           id: challengeIndex
