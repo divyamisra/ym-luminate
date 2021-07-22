@@ -1223,4 +1223,20 @@ angular.module 'trPcControllers'
           e.preventDefault()
           return false
 
+      $scope.mouseover = (tip, xPos, yPos, sel, offset) ->
+        document.getElementById("tRct").style.fill = "#206EBA"
+        document.getElementById("tRct").x.baseVal.value = xPos
+        document.getElementById("tRct").y.baseVal.value = yPos
+
+        jQuery("#tTip div").html(tip)
+        document.getElementById("tTip").setAttribute('x',xPos)
+        document.getElementById("tTip").setAttribute('y',yPos)
+
+        document.getElementById("tTri").setAttribute('points',(parseInt(xPos)+53+parseInt(offset)) + ' ' + (parseInt(yPos)+60) + ' ' + (parseInt(xPos)+62+parseInt(offset)) + ' ' + (parseInt(yPos)+60) + ' ' + (parseInt(xPos)+58+parseInt(offset)) + ' ' + (parseInt(yPos)+66))
+
+      $scope.mouseout = ->
+        document.getElementById("tRct").x.baseVal.value = -99999
+        jQuery("#tTip div").html("")
+        document.getElementById("tTri").setAttribute('points','0 0 0 0 0 0')
+
   ]
