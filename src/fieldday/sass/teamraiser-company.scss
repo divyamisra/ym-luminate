@@ -84,9 +84,15 @@
 
   .company-message {
     h2 {
-      font-size: 1.5em;
+      font-size: 27px;
+      line-height: 32px;
       color: $red;
     }
+  }
+  .js--company-text p, .js--company-text p span {
+    font-family: "LubDubBold", Helvetica, Arial, sans-serif!important;
+    font-size: 18px!important;
+    line-height: 27px!important;
   }
 }
 
@@ -138,6 +144,10 @@
 .gamess-help-text {
   padding: .8rem;
   font-size: .8rem;
+  p {
+    font-size: 18px!important;
+    line-height: 27px!important;
+  }
 }
 #game-points-roster {
   td {
@@ -161,4 +171,8 @@
       width: 13%;
     }
   }
+}
+
+.pg_company #ourstats {
+  font-weight: 700!important;
 }
