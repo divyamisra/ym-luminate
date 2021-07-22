@@ -369,10 +369,10 @@ angular.module 'trPcControllers'
         email_rpt_show_donors: 'Donors'
         email_rpt_show_nondonors: 'Non-Donors'
         email_rpt_show_company_coordinator_participants: 'School Participants'
-        email_custom_rpt_show_company_coordinator_new_participants: 'New to Kids Heart Challenge'
-        email_custom_rpt_show_company_coordinator_weekly_participants: 'New Registrations'
-        email_custom_rpt_show_company_coordinator_0_dollar_participants: '$0 Participants'
-        email_custom_rpt_show_company_coordinator_250_dollar_participants: '$0 Participants'
+        email_custom_rpt_show_company_coordinator_new_participants: 'New to Kids Heart Challenge - ' + $rootScope.companyInfo.companyName
+        email_custom_rpt_show_company_coordinator_weekly_participants: 'New Registrations - ' + $rootScope.companyInfo.companyName
+        email_custom_rpt_show_company_coordinator_0_dollar_participants: '$0 Participants - ' + $rootScope.companyInfo.companyName
+        email_custom_rpt_show_company_coordinator_250_dollar_participants: '$250 Participants - ' + $rootScope.companyInfo.companyName
         email_custom_rpt_show_past_company_coordinator_participants: 'Past School Participants'
       
       $scope.filterName = filterNames[$scope.filter]
