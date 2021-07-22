@@ -24,7 +24,7 @@ angular.module 'ahaLuminateControllers'
       
       $scope.toggleUserType = (userType) ->
         $scope.userType = userType
-        angular.element('#existingUser-username').focus()
+        jQuery('#existingUser-username:first').focus()
         if userType is 'new'
           angular.element('.js--default-utype-new-form').submit()
           false
