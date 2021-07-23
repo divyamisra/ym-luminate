@@ -2704,6 +2704,6 @@ $('.dropdown-menu.find #nav-tab a:first-of-type').addClass('firstNavTab');
 
 $('.firstNavTab').on('keydown',function(e) {
     if(e.which == 27) {
-        alert('You pressed escape!');
+      $('.nav-item--find').removeClass('open');
     }
 });
