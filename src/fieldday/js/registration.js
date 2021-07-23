@@ -699,7 +699,7 @@
           $('#part_type_fundraising_goal_input_container').prepend("<h2>Set Your Personal Fundraising Goal!</h2>")
           
           $('div#part_type_campaign_banner_container').replaceWith(function() {
-            return '<h2 class="campaign-banner-container">My Company: '+regCompanyName+'</h2>';
+            return '<h2 class="campaign-banner-container">You are registering for: </h2><h2 class="campaign-banner-container">My Company: '+regCompanyName+'</h2>';
           });
 
           $('#pt_title_container').replaceWith(function() {
