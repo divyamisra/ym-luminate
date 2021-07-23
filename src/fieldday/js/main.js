@@ -2699,3 +2699,11 @@ if ( $('body').is('.app_donation') || $('body').is('.app_tr_registration') || $(
     $('.nav-item--find').attr('aria-hidden', 'true');
   }
 }
+
+$('.dropdown-menu.find #nav-tab a:first-of-type').addClass('firstNavTab');
+
+$('.firstNavTab').on('keydown',function(e) {
+    if(e.which == 27) {
+        alert('You pressed escape!');
+    }
+});
