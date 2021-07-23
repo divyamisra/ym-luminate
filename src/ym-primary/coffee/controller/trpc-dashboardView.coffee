@@ -1248,7 +1248,7 @@ angular.module 'trPcControllers'
         jQuery("#tTipm div").html(tip)
         document.getElementById("tTipm").setAttribute('x',xPos)
         document.getElementById("tTipm").setAttribute('y',yPos)
-33 600 48 600 42 606
+
         document.getElementById("tTrim").setAttribute('points',(parseInt(xPos)+53+parseInt(offset)) + ' ' + (parseInt(yPos)+100) + ' ' + (parseInt(xPos)+68+parseInt(offset)) + ' ' + (parseInt(yPos)+100) + ' ' + (parseInt(xPos)+62+parseInt(offset)) + ' ' + (parseInt(yPos)+106))
 
       $scope.mouseoutm = ->
