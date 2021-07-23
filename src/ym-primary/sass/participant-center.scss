@@ -738,6 +738,14 @@ div[id^="taTextElement"]:focus {
     color: $event-secondary;
 }
 
+.winding-road, .winding-road-mobile {display:none;}
+@media (min-width:1024px) {
+	.winding-road {display:block;}
+}
+@media (max-width:1023px) {
+	.winding-road-mobile {display:block;}
+}
+
 .animated {
 	animation-timing-function: linear;
 	animation-iteration-count: infinite;
