@@ -222,14 +222,17 @@
 				  <pattern id="captainm" filterUnits="objectBoundingBox" x="0" y="0" width="1" height="1">
 						<image width="310"  ng-href="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy22/Captain-Mobile.png" xlink:href="" title="Captain"></image>
 				  </pattern>
-				  <pattern id="captainm-arms" filterUnits="objectBoundingBox" x="0" y="0" width="1" height="1">
-						<image width="225"  ng-href="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy22/Captain-Arms.png" xlink:href="" title="Captains Arms"></image>
+				  <pattern id="captainm-arms-finish" filterUnits="objectBoundingBox" x="0" y="0" width="1" height="1">
+						<image width="250"  ng-href="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy22/Captain-Mobile-Arms.png" xlink:href="" title="Captains Arms"></image>
 				  </pattern>
-				  <pattern id="finn-finishm" filterUnits="objectBoundingBox" x="0" y="0" width="1" height="1">
-						<image width="100"  ng-href="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy22/Finn-Float.png" xlink:href="" title="Finn"></image>
+				  <pattern id="finnm-finish" filterUnits="objectBoundingBox" x="0" y="0" width="1" height="1">
+						<image width="200"  ng-href="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy22/Finn-Float.png" xlink:href="" title="Finn"></image>
 				  </pattern>
-				  <pattern id="captain-finishm" filterUnits="objectBoundingBox" x="0" y="0" width="1" height="1">
-						<image width="140"  ng-href="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy22/Captain-noarms.png" xlink:href="" title="Captain"></image>
+				  <pattern id="captainm-finish" filterUnits="objectBoundingBox" x="0" y="0" width="1" height="1">
+						<image width="225"  ng-href="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy22/Captain-noarms.png" xlink:href="" title="Captain"></image>
+				  </pattern>
+				  <pattern id="captainm-bubble" filterUnits="objectBoundingBox" x="0" y="0" width="1" height="1">
+						<image width="150"  ng-href="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy22/Captain-Mobile-Bubble.png" xlink:href="" title="Bubble"></image>
 				  </pattern>
  					<pattern id="1_deliveredm" filterunits="objectBoundingBox" x="0" y="0" width="1" height="1">
 						<image width="100" height="100" xlink:href="" ng-href="{{prizes[0].earned_image_url}}" title="{{prizes[0].label}}" /> 
@@ -304,16 +307,17 @@
 					 <text fill="#fff" font-size="24" font-weight="bold"><tspan x="143" y="802">9</tspan></text>
 					 <text fill="#fff" font-size="20" font-weight="bold"><tspan x="57" y="830">steps complete!</tspan></text>
 				  </g>
-					<g ng-if="prizesEarned != prizes.length" transform="translate(-.001 .003)" ng-cloak>
+					<g ng-if="prizesEarned != prizes.length" ng-cloak>
 					 <path fill="url(#finnm)" d="M459 35v200h200v-200h-200z"></path>
 					 <path fill="url(#captainm)" d="M330 809v290h310v-290h-310z"></path>
 				  </g>
-				  <g ng-if="prizesEarned == prizes.length" transform="translate(-.001 .003)" ng-cloak>
-					 <path fill="url(#finn-finishm)" d="M559 35v101h101v-101h-101z"></path>
-					 <path fill="url(#captainm-arms-finish)" d="M518 250v225h95v-225h-95z"></path>
-					 <path fill="url(#captainm-finish)" d="M518 250v195h225v-195h-225z"></path>
+					<g ng-if="prizesEarned == prizes.length" ng-cloak>
+					 <path fill="url(#finnm-finish)" d="M450 85v200h200v-200h-200z" class="animated wobble"></path>
+					 <path fill="url(#captainm-bubble)" d="M515 750v290h310v-290h-310z" class="animated wiggle"></path>
+					 <path fill="url(#captainm-arms-finish)" d="M390 923v125h250v-125h-250z" class="animated wiggle"></path>
+				   <path fill="url(#captainm-finish)" d="M400 821v290h310v-290h-310z"></path>
 				  </g>
-				  <g ng-if="prizesEarned == prizes.length" transform="translate(-.001 .003)" ng-cloak>
+				  <g ng-if="prizesEarned == prizes.length" ng-cloak>
 					 <path fill="url(#captain-finishm)" d="M518 250v195h225v-195h-225z"></path>
 				  </g>
 				  <g id="stroke-quiz" data-name="Stroke Quiz">
