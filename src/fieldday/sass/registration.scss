@@ -2110,6 +2110,6 @@ div.required-indicator-legend {
   }
 }
 
-#F2fRegContact .error {
+#F2fRegContact input.error + span {
   color: #c10e21;
 }
