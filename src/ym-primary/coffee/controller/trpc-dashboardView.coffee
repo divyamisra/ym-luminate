@@ -1249,7 +1249,7 @@ angular.module 'trPcControllers'
         document.getElementById("tTipm").setAttribute('x',xPos)
         document.getElementById("tTipm").setAttribute('y',yPos)
 
-        document.getElementById("tTrim").setAttribute('points',(parseInt(xPos)+53+parseInt(offset)) + ' ' + (parseInt(yPos)+100) + ' ' + (parseInt(xPos)+68+parseInt(offset)) + ' ' + (parseInt(yPos)+100) + ' ' + (parseInt(xPos)+62+parseInt(offset)) + ' ' + (parseInt(yPos)+106))
+        document.getElementById("tTrim").setAttribute('points', (parseInt(xPos) + 83 + parseInt(offset)) + ' ' + (parseInt(yPos) + 100) + ' ' + (parseInt(xPos) + 97 + parseInt(offset)) + ' ' + (parseInt(yPos) + 100) + ' ' + (parseInt(xPos) + 92 + parseInt(offset)) + ' ' + (parseInt(yPos) + 106))
 
       $scope.mouseoutm = ->
         document.getElementById("tRctm").x.baseVal.value = -99999
