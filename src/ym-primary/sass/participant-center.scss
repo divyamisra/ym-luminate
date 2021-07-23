@@ -210,7 +210,6 @@ a.ym-pc-dashboard-download-certificates {
 
 .ym-pc-dashboard-badge-path {
    position: relative;
-   max-width: 663px;
    margin: 0 auto 40px;
    svg {
       @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
@@ -228,16 +227,10 @@ a.ym-pc-dashboard-download-certificates {
      width: 100%;
    }
    .ym-pc-dashboard-badges-header {
-     top: 0;
-     position: absolute;
      font-size: 16px;
-     left: 29%;
-     @media (max-width: $screen-sm-min) {
-	position: relative;
-	left: auto;
-        margin-bottom: 10px;
-     }
-	   
+     text-align: center;
+     margin-bottom: 20px;
+
      img {
 	margin-top: -35px;
 	max-width: 70px;
