@@ -1239,4 +1239,20 @@ angular.module 'trPcControllers'
         jQuery("#tTip div").html("")
         document.getElementById("tTri").setAttribute('points','0 0 0 0 0 0')
 
+
+      $scope.mouseoverm = (tip, xPos, yPos, sel, offset) ->
+        document.getElementById("tRctm").style.fill = "#206EBA"
+        document.getElementById("tRctm").x.baseVal.value = xPos
+        document.getElementById("tRctm").y.baseVal.value = yPos
+
+        jQuery("#tTipm div").html(tip)
+        document.getElementById("tTipm").setAttribute('x',xPos)
+        document.getElementById("tTipm").setAttribute('y',yPos)
+
+        document.getElementById("tTrim").setAttribute('points',(parseInt(xPos)+53+parseInt(offset)) + ' ' + (parseInt(yPos)+60) + ' ' + (parseInt(xPos)+62+parseInt(offset)) + ' ' + (parseInt(yPos)+60) + ' ' + (parseInt(xPos)+58+parseInt(offset)) + ' ' + (parseInt(yPos)+66))
+
+      $scope.mouseoutm = ->
+        document.getElementById("tRctm").x.baseVal.value = -99999
+        jQuery("#tTipm div").html("")
+        document.getElementById("tTrim").setAttribute('points','0 0 0 0 0 0')
   ]
