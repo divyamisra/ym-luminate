@@ -699,7 +699,7 @@
           $('#part_type_fundraising_goal_input_container').prepend("<h2>Set Your Personal Fundraising Goal!</h2>")
           
           $('div#part_type_campaign_banner_container').replaceWith(function() {
-            return '<h2 class="campaign-banner-container">My Company: '+regCompanyName+'</h2>';
+            return '<h2 class="campaign-banner-container">You are registering for: </h2><h2 class="campaign-banner-container">My Company: '+regCompanyName+'</h2>';
           });
 
           $('#pt_title_container').replaceWith(function() {
@@ -714,7 +714,7 @@
         // reg page
         if ($('#registration_options_page').length > 0) {
             $('#registration_options_page .header-container .campaign-banner-container').replaceWith(function() {
-                return '<h2 class="campaign-banner-container">My Company: '+regCompanyName+'</h2>';
+                return '<h2 class="campaign-banner-container">You are registering for: </h2><h2 class="campaign-banner-container">My Company: '+regCompanyName+'</h2>';
             });
             $('#title_container').replaceWith('<h2 id="title_container">Tell us about you:</h2>');
             $('#registration_options_page #reg_options_cons_info_extension #opt_in_label').attr("aria-label", "I would like to be emailed when a gift is made on my behalf");
