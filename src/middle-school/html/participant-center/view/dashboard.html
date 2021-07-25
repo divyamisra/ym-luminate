@@ -329,9 +329,9 @@
 										<p>
 											<a href="" ng-click="editPersonalGoal()" class="ym-progress-update-goal"> <strong>Update Personal Goal</strong> </a> 
 										</p>
-                    <p>
-                      <strong><span ng-bind-html="participantPrevProgress.raisedFormatted"></span></strong> raised last year
-                    </p>
+										<p>
+											<strong><span ng-bind-html="participantPrevProgress.raisedFormatted"></span></strong> raised last year
+										</p>
 									</div>
 								</div>
 							</div>
@@ -354,20 +354,24 @@
 										<div id="ym-pc-dashboard-badges-panel--student" aria-label="School Badges">
 											<div class="ym-badges__item" ng-repeat="schoolChallenge in schoolChallenges" ng-cloak>
 												<div class="ym-badge__item" ng-if="schoolChallenge.earned" ng-cloak>
-													<img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy21/badge-challenge-{{schoolChallenge.id}}.png" alt="{{schoolChallenge.label}}"> 
+													<img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy21/badge-challenge-{{schoolChallenge.id}}.png" alt="{{schoolChallenge.label}}">
 												</div>
 											</div>
 										</div>
 									</div>
-									<div class="ym-progress-related col-xs-4 pull-right">
-										<p>
-											<strong><span ng-bind-html="companyProgress.raisedFormatted"></span></strong> raised 
-										</p>
-										<div ng-if="companyProgress.goalFormatted &amp;&amp; companyProgress.goalFormatted != '$0'" ng-cloak>
-											<p>
-												<strong><span ng-bind-html="companyProgress.goalFormatted"></span></strong> goal 
-											</p>
-										</div>
+									<div class="col-xs-4">
+                    <div class="ym-progress-related">
+                      <div class="ym-progress-amounts">
+    										<p>
+    											<strong><span ng-bind-html="companyProgress.raisedFormatted"></span></strong> raised
+    										</p>
+    										<div ng-if="companyProgress.goalFormatted &amp;&amp; companyProgress.goalFormatted != '$0'" ng-cloak>
+    											<p>
+    												<strong><span ng-bind-html="companyProgress.goalFormatted"></span></strong> goal 
+    											</p>
+    										</div>
+                      </div>
+                    </div>
 									</div>
 								</div>
 							</div>
@@ -732,8 +736,8 @@
 									<div class="ym-progress__thermometer--fill" ng-style="{'width': companyProgress.percent + '%'}">
 									</div>
 								</div>
-								<div class="ym-progress-related clearfix">
-									<div class="pull-right">
+								<div class="ym-progress-related">
+									<div class="ym-progress-amounts">
 										<p>
 											<strong><span ng-bind-html="companyProgress.raisedFormatted"></span></strong> raised 
 										</p>
@@ -760,7 +764,7 @@
 									<div class="ym-progress__thermometer--fill" ng-style="{ 'width': participantProgress.percent + '%'}">
 									</div>
 								</div>
-								<div class="ym-progress-related clearfix">
+								<div class="ym-progress-related">
 									<div class="ym-progress-donate">
 										<p>
 											<a class="btn btn-lg btn-primary" ng-href="{{baseUrl}}#/reports" title="Click to view your donation reports"><strong>Donation Reports</strong></a>
@@ -769,17 +773,20 @@
 											<a class="btn btn-lg btn-primary" ng-href="Donation2?df_id={{eventInfo.donationFormId}}&amp;FR_ID={{frId}}&amp;PROXY_TYPE=20&amp;PROXY_ID={{consId}}"> <strong>Donate to Personal Page</strong> </a> 
 										</p>
 									</div>
-									<div class="pull-right">
+									<div class="ym-progress-amounts">
 										<p>
 											<strong><span ng-bind-html="participantProgress.raisedFormatted"></span></strong> raised 
 										</p>
-										<div ng-if="participantProgress.goalFormatted &amp;&amp; participantProgress.goalFormatted !='$0'" ng-cloak>
+										<div ng-if="participantProgress.goalFormatted &amp;&amp; participantProgress.goalFormatted != '$0'" ng-cloak>
 											<p>
 												<strong><span ng-bind-html="participantProgress.goalFormatted"></span></strong> goal 
 											</p>
 										</div>
 										<p>
 											<a href="" ng-click="editPersonalGoal()" class="ym-progress-update-goal" aria-label="Update Personal Goal"> <strong>Update Goal</strong> </a> 
+										</p>
+										<p>
+											<strong><span ng-bind-html="participantPrevProgress.raisedFormatted"></span></strong> raised last year
 										</p>
 									</div>
 								</div>
