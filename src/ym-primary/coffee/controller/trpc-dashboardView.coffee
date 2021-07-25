@@ -31,7 +31,9 @@ angular.module 'trPcControllers'
       $scope.companyId = $scope.participantRegistration.companyInformation.companyId
       theDate = new Date
       $scope.yearsList = [1..(theDate.getFullYear()-1978)] # 0 - 50
-      $scope.schoolChallenges = []
+      $scope.schoolChallenge = false
+      $scope.schoolChallengeBadge = false
+      $scope.studentChallengeBadge = false
       $scope.schoolBadges = []
       $scope.companyProgress = []
       $rootScope.hideGifts = "Y"
@@ -91,8 +93,9 @@ angular.module 'trPcControllers'
       $scope.schoolInfo = {}
       $scope.schoolChallengeInfo = {}
       $scope.schoolChallengeLevelInfo = {}
-      $scope.companyProgress.schoolYears = 0
+      $scope.companyProgress.schoolYears = '5'
       $scope.companyProgress.schoolChallenge = ''
+      $scope.companyProgress.schoolChallengeOther = ''
       $scope.companyProgress.schoolChallengeLevel = ''
             
       getSchoolInformation = ->
@@ -106,22 +109,30 @@ angular.module 'trPcControllers'
                   if meta.name == 'years-participated'
                     $scope.companyProgress.schoolYears = meta.value
                   if meta.name == 'school-challenge'
-                    $scope.companyProgress.schoolChallenge = meta.value
+                    if (meta.value).charAt(0) == '*'
+                      $scope.companyProgress.schoolChallenge = "Other"
+                      $scope.companyProgress.schoolChallengeOther = (meta.value).slice(1)
+                    else
+                      $scope.companyProgress.schoolChallenge = meta.value
                   if meta.name == 'school-goal'
                     $scope.companyProgress.schoolChallengeLevel = meta.value
                 amt = $scope.participantProgress.raised / 100
-                if amt >= Number(($scope.companyProgress.schoolChallengeLevel).replace('$', '').replace(/,/g, '')) and $scope.companyProgress.schoolChallenge != "No School Challenge"
-                  # check if student badge already added
-                  schoolChallengeAdded = false
-                  angular.forEach $scope.schoolChallenges, (schoolChallenge, schoolChallengeIndex) ->
-                    if schoolChallenge.id == "student"
-                      schoolChallengeAdded = true
-                  if not schoolChallengeAdded
-                    $scope.schoolChallenges.push
-                      id: 'student'
-                      label: 'Individual Challenge Completed'
-                      earned: true
-
+                if amt >= Number(($scope.companyProgress.schoolChallengeLevel).replace('$', '').replace(/,/g, ''))
+                  # student challenge completed
+                  $scope.studentChallengeBadge = true
+                #if neither school or student goal met
+                if $scope.companyProgress.raised < $scope.companyProgress.goal and $scope.companyProgress.goal > 0 and amt < Number(($scope.companyProgress.schoolChallengeLevel).replace('$', '').replace(/,/g, '')) and $scope.companyProgress.schoolChallenge != "No School Challenge"
+                  $scope.schoolChallenge = 1
+                #if student goal met but not school goal
+                if $scope.companyProgress.raised >= $scope.companyProgress.goal and $scope.companyProgress.goal > 0 and amt < Number(($scope.companyProgress.schoolChallengeLevel).replace('$', '').replace(/,/g, '')) and $scope.companyProgress.schoolChallenge != "No School Challenge"
+                  $scope.schoolChallenge = 2
+                #if school goal met but not student goal
+                if $scope.companyProgress.raised < $scope.companyProgress.goal and $scope.companyProgress.goal > 0 and amt >= Number(($scope.companyProgress.schoolChallengeLevel).replace('$', '').replace(/,/g, '')) and $scope.companyProgress.schoolChallenge != "No School Challenge"
+                  $scope.schoolChallenge = 3
+                #if both student and school goals met
+                if $scope.companyProgress.raised >= $scope.companyProgress.goal and $scope.companyProgress.goal > 0 and amt >= Number(($scope.companyProgress.schoolChallengeLevel).replace('$', '').replace(/,/g, '')) and $scope.companyProgress.schoolChallenge != "No School Challenge"
+                  $scope.schoolChallenge = 4
+                    
       participantsString = ''
       $scope.companyParticipants = {}
       setCompanyParticipants = (participants, totalNumber, totalFundraisers) ->
@@ -232,14 +243,12 @@ angular.module 'trPcControllers'
                   companyProgress.schoolChallenge = $scope.companyProgress?.schoolChallenge
                   companyProgress.schoolChallengeLevel = $scope.companyProgress?.schoolChallengeLevel
                   $scope.companyProgress = companyProgress
-                  if companyProgress.raised >= companyProgress.goal 
-                    $scope.schoolChallenges.push
-                      id: 'school'
-                      label: 'School Challenge Completed'
-                      earned: true
+                  #if school raised more than goal then student sees school badge achieved
+                  if companyProgress.raised >= companyProgress.goal and companyProgress.goal > 0
+                    $scope.schoolChallengeBadge = true
             response
+            getSchoolInformation()
         $scope.dashboardPromises.push fundraisingProgressPromise
-        getSchoolInformation()
       $scope.refreshFundraisingProgress()
 
       if $scope.prev1FrId
@@ -276,15 +285,26 @@ angular.module 'trPcControllers'
           #add user to group in luminate
           jQuery('<img width="1" height="1" style="display:none;" src="SPageServer?pagename=reus_khc_add_group&group_id=' + jQuery('body').data("mm-group-id") + '&pgwrap=n" id="move_more_add_group">').appendTo(jQuery('.ng-pc-view-container'));
       
-      $scope.updateMoveMoreFlag = ->
-        BoundlessService.setMoveMoreFlag $scope.frId + '/' + $scope.consId
-        .then (response) ->
-          if response.data.status == "success"
-            $scope.moveMoreFlag.successMessage = true
-            jQuery('<img width="1" height="1" style="display:none;" src="SPageServer?pagename=reus_khc_add_group&group_id=' + jQuery('body').data("mm-group-id") + '&pgwrap=n" id="move_more_add_group">').appendTo(jQuery('.ng-pc-view-container'));
-            refreshFinnsMission()
-          else
-            $scope.moveMoreFlag.errorMessage = 'There was an error processing your update. Please try again later.'
+      $scope.setMoveMoreFlag = ->
+        if $scope.moveMoreFlag.message
+          BoundlessService.earnMoveMoreFlag $scope.frId + '/' + $scope.consId
+          .then (response) ->
+            if response.data.status == "success"
+              $scope.moveMoreFlag.successMessage = true
+              jQuery('<img width="1" height="1" style="display:none;" src="SPageServer?pagename=reus_khc_add_group&group_id=' + jQuery('body').data("mm-group-id") + '&pgwrap=n" id="move_more_add_group">').appendTo(jQuery('.ng-pc-view-container'));
+              refreshFinnsMission()
+            else
+              $scope.moveMoreFlag.errorMessage = 'There was an error processing your update. Please try again later.'
+        if !$scope.moveMoreFlag.message
+          BoundlessService.unearnMoveMoreFlag $scope.frId + '/' + $scope.consId
+          .then (response) ->
+            if response.data.status == "success"
+              $scope.moveMoreFlag.successMessage = true
+              jQuery('<img width="1" height="1" style="display:none;" src="SPageServer?pagename=reus_khc_remove_group&group_id=' + jQuery('body').data("mm-group-id") + '&pgwrap=n" id="move_more_remove_group">').appendTo(jQuery('.ng-pc-view-container'));
+              refreshFinnsMission()
+            else
+              $scope.moveMoreFlag.errorMessage = 'There was an error processing your update. Please try again later.'
+             
 
       interactionTypeId = $dataRoot.data 'coordinator-message-id'
 
@@ -803,11 +823,11 @@ angular.module 'trPcControllers'
               final_url = prize.mission_url
             if prize.mission_url_type == 'Quiz' 
               if $scope.tablePrefix == 'heartdev'
-                final_url = 'https://tools.heart.org/aha_ym21_dev/quiz/show/' + prize.mission_url + '?event_id=' + $scope.frId + '&user_id=' + $scope.consId + '&name=' + $scope.consNameFirst
+                final_url = 'https://tools.heart.org/aha_ym22_dev/quiz/show/' + prize.mission_url + '?event_id=' + $scope.frId + '&user_id=' + $scope.consId + '&name=' + $scope.consNameFirst
               if $scope.tablePrefix == 'heartnew'
-                final_url = 'https://tools.heart.org/aha_ym21_testing/quiz/show/' + prize.mission_url + '?event_id=' + $scope.frId + '&user_id=' + $scope.consId + '&name=' + $scope.consNameFirst
+                final_url = 'https://tools.heart.org/aha_ym22_testing/quiz/show/' + prize.mission_url + '?event_id=' + $scope.frId + '&user_id=' + $scope.consId + '&name=' + $scope.consNameFirst
               if $scope.tablePrefix == 'heart'
-                final_url = 'https://tools.heart.org/aha_ym21/quiz/show/' + prize.mission_url + '?event_id=' + $scope.frId + '&user_id=' + $scope.consId + '&name=' + $scope.consNameFirst
+                final_url = 'https://tools.heart.org/aha_ym22/quiz/show/' + prize.mission_url + '?event_id=' + $scope.frId + '&user_id=' + $scope.consId + '&name=' + $scope.consNameFirst
             if prize.mission_url_type == 'Modal' and prize.mission_url == 'app' 
               final_url = 'showMobileApp()'
             $scope.prizes.push
@@ -826,6 +846,9 @@ angular.module 'trPcControllers'
 
             if prize.status == 1
               $scope.prizesEarned++
+              
+          if $scope.prizes[8].earned 
+            $scope.moveMoreFlag.message = true
 
         , (response) ->
           # TODO
@@ -834,11 +857,12 @@ angular.module 'trPcControllers'
 
       BoundlessService.getSchoolBadges $scope.frId + '/' + $scope.participantRegistration.companyInformation.companyId
       .then (response) ->
-        $scope.schoolBadgesRegistrations = response.data.registration_badges
-        $scope.schoolBadgesFundraising = response.data.fundraising_badges
-        $scope.companyInfo.participantCount = response.data.students_registered
-        $scope.companyProgress.raised = response.data.total_amount
-        $scope.companyProgress.raisedFormatted = $filter('currency')(response.data.total_amount, '$')
+        if response.data.success == "true"
+          $scope.schoolBadgesRegistrations = response.data.registration_badges
+          $scope.schoolBadgesFundraising = response.data.fundraising_badges
+          $rootScope.companyInfo.participantCount = response.data.students_registered
+          $scope.companyProgress.raised = response.data.total_amount
+          $scope.companyProgress.raisedFormatted = $filter('currency')(response.data.total_amount, '$')
           
       initCarousel = ->
         owl = jQuery '.owl-carousel'
@@ -1095,6 +1119,10 @@ angular.module 'trPcControllers'
       $scope.updateSchoolChallenge = ->
         delete $scope.schoolChallengeInfo.errorMessage
         newChallenge = $scope.companyProgress.schoolChallenge
+        if newChallenge == 'Other'
+          if typeof $scope.companyProgress.schoolChallengeOther is "undefined"
+            $scope.companyProgress.schoolChallengeOther = ''
+          newChallenge = "*" + $scope.companyProgress.schoolChallengeOther
         if newChallenge is ''
           $scope.schoolChallengeInfo.errorMessage = 'Please select a challenge.'
         else
@@ -1104,7 +1132,11 @@ angular.module 'trPcControllers'
             error: (response) ->
               $scope.schoolChallengeInfo.errorMessage = 'Error: ' + response.data.message
             success: (response) ->
-              $scope.companyProgress.schoolChallenge = newChallenge
+              if newChallenge.charAt(0) == '*'
+                $scope.companyProgress.schoolChallenge = "Other"
+                $scope.companyProgress.schoolChallengeOther = newChallenge.slice(1)
+              else
+                $scope.companyProgress.schoolChallenge = newChallenge
               #$scope.editSchoolChallengeModal.close()
 
       $scope.updateSchoolChallengeLevel = ->
@@ -1197,4 +1229,12 @@ angular.module 'trPcControllers'
               msg: '# Students'
 
       getLeaderboards()
+      
+      $scope.omit_special_char = (e) ->
+        if (/^[a-zA-Z0-9\s']*$/.test(e.key)) 
+          return true
+        else
+          e.preventDefault()
+          return false
+
   ]
