@@ -361,16 +361,14 @@
 									</div>
 									<div class="col-xs-4">
                     <div class="ym-progress-related">
-                      <div class="ym-progress-amounts">
-    										<p>
-    											<strong><span ng-bind-html="companyProgress.raisedFormatted"></span></strong> raised
-    										</p>
-    										<div ng-if="companyProgress.goalFormatted &amp;&amp; companyProgress.goalFormatted != '$0'" ng-cloak>
-    											<p>
-    												<strong><span ng-bind-html="companyProgress.goalFormatted"></span></strong> goal 
-    											</p>
-    										</div>
-                      </div>
+                    	<p>
+  											<strong><span ng-bind-html="companyProgress.raisedFormatted"></span></strong> raised
+  										</p>
+  										<div ng-if="companyProgress.goalFormatted &amp;&amp; companyProgress.goalFormatted != '$0'" ng-cloak>
+  											<p>
+  												<strong><span ng-bind-html="companyProgress.goalFormatted"></span></strong> goal 
+  											</p>
+  										</div>
                     </div>
 									</div>
 								</div>
@@ -737,19 +735,17 @@
 									</div>
 								</div>
 								<div class="ym-progress-related">
-									<div class="ym-progress-amounts">
+									<p>
+										<strong><span ng-bind-html="companyProgress.raisedFormatted"></span></strong> raised 
+									</p>
+									<div ng-if="companyProgress.goalFormatted &amp;&amp; companyProgress.goalFormatted != '$0'" ng-cloak>
 										<p>
-											<strong><span ng-bind-html="companyProgress.raisedFormatted"></span></strong> raised 
-										</p>
-										<div ng-if="companyProgress.goalFormatted &amp;&amp; companyProgress.goalFormatted != '$0'" ng-cloak>
-											<p>
-												<strong><span ng-bind-html="companyProgress.goalFormatted"></span></strong> goal 
-											</p>
-										</div>
-										<p>
-											<a href="" ng-click="editSchoolGoal()" class="ym-progress-update-goal" aria-label="Update School Goal"> <strong>Update School Goal</strong> </a> &nbsp; 
+											<strong><span ng-bind-html="companyProgress.goalFormatted"></span></strong> goal 
 										</p>
 									</div>
+									<p>
+										<a href="" ng-click="editSchoolGoal()" class="ym-progress-update-goal" aria-label="Update School Goal"> <strong>Update School Goal</strong> </a> &nbsp; 
+									</p>
 								</div>
 							</div>
 						</div>
