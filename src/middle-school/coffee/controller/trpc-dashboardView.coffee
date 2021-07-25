@@ -64,7 +64,7 @@ angular.module 'trPcControllers'
           # TODO
       else
         $rootScope.hasOOTDashboard = true
-        
+      
       if $scope.participantRegistration.lastPC2Login is '0'
         if $scope.participantRegistration.companyInformation?.isCompanyCoordinator isnt 'true'
           $scope.firstLoginModal = $uibModal.open
