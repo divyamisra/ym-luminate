@@ -308,7 +308,7 @@
 									<div class="ym-progress__thermometer--fill" ng-style="{'width': participantProgress.percent + '%'}">
 									</div>
 								</div>
-								<div class="ym-progress-related clearfix">
+								<div class="ym-progress-related">
 									<div class="ym-progress-donate">
 										<p>
 											<a class="btn btn-lg btn-primary" ng-href="{{baseUrl}}#/reports" title="Click to view your donation reports"><strong>Donation Reports</strong></a>
@@ -317,7 +317,7 @@
 											<a class="btn btn-lg btn-primary" ng-href="Donation2?df_id={{eventInfo.donationFormId}}&amp;FR_ID={{frId}}&amp;PROXY_TYPE=20&amp;PROXY_ID={{consId}}"> <strong>Donate to Personal Page</strong> </a> 
 										</p>
 									</div>
-									<div class="pull-right">
+									<div class="ym-progress-amounts">
 										<p>
 											<strong><span ng-bind-html="participantProgress.raisedFormatted"></span></strong> raised 
 										</p>
@@ -329,6 +329,9 @@
 										<p>
 											<a href="" ng-click="editPersonalGoal()" class="ym-progress-update-goal"> <strong>Update Personal Goal</strong> </a> 
 										</p>
+                    <p>
+                      <strong><span ng-bind-html="participantPrevProgress.raisedFormatted"></span></strong> raised last year
+                    </p>
 									</div>
 								</div>
 							</div>
