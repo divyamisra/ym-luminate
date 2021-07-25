@@ -249,7 +249,21 @@ angular.module 'trPcControllers'
         $scope.dashboardPromises.push fundraisingProgressPromise
         
       $scope.refreshFundraisingProgress()
-
+      
+      if $scope.prev1FrId
+        NgPcTeamraiserProgressService.getProgress $scope.prev1FrId
+          .then (response) ->
+            if response.data.errorResponse
+              angular.noop()
+            else
+              participantPrevProgress = response.data.getParticipantProgressResponse.personalProgress
+              if not participantPrevProgress
+                angular.noop()
+              else
+                participantPrevProgress.raised = Number participantPrevProgress.raised
+                participantPrevProgress.raisedFormatted = if participantPrevProgress.raised then $filter('currency')(participantPrevProgress.raised / 100, '$') else '$0.00'
+                $scope.participantPrevProgress = participantPrevProgress
+      
       $scope.emailChallenge = {}
       setEmailSampleText = ->
         sampleText = 'What if I told you that together, we can help save the lives of millions of people? Seriously, we can!\n\n' +
