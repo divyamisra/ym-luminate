@@ -10,6 +10,14 @@ option {
     width: auto !important;
   }
 
+.closeMobileApp {
+  position: absolute;
+  right: 30px;
+  top: 10px;
+  color:#08c0de;
+  text-decoration:none;
+}
+	
   p {
     @media (min-width: $screen-sm-min) {
       margin: 0 0 32px;
