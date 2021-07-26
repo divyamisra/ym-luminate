@@ -35,8 +35,9 @@ angular.module 'ahaLuminateControllers'
       $scope.current_mission_completed_header = ''
       $scope.current_mission_action = ''
       $scope.current_mission_title = ''
-      $scope.current_mission_message = ''      
-      $scope.schoolChallenges = []
+      $scope.current_mission_message = ''
+      $scope.studentChallengeBadge = false
+      $scope.schoolChallengeBadge = false
       BoundlessService.getBadges $scope.frId + '/' + $scope.participantId
       .then (response) ->
         prizes = response.data.prizes
@@ -80,17 +81,8 @@ angular.module 'ahaLuminateControllers'
                     $scope.companyProgress.schoolChallenge = meta.value
                   if meta.name == 'school-goal'
                     $scope.companyProgress.schoolChallengeLevel = meta.value
-                if amt >= Number(($scope.companyProgress.schoolChallengeLevel).replace('$', '').replace(/,/g, '')) and $scope.companyProgress.schoolChallenge != "No School Challenge"
-                  # check if student badge already added
-                  schoolChallengeAdded = false
-                  angular.forEach $scope.schoolChallenges, (schoolChallenge, schoolChallengeIndex) ->
-                    if schoolChallenge.id == "student"
-                      schoolChallengeAdded = true
-                  if not schoolChallengeAdded
-                    $scope.schoolChallenges.push
-                      id: 'student'
-                      label: 'Individual Challenge Completed'
-                      earned: true
+                if amt >= Number(($scope.companyProgress.schoolChallengeLevel).replace('$', '').replace(/,/g, ''))
+                  $scope.studentChallengeBadge = true
             else
               $scope.companyProgress.schoolYears = 0
               $scope.companyProgress.schoolChallenge = ''
@@ -143,11 +135,8 @@ angular.module 'ahaLuminateControllers'
               .then (response) ->
                 $scope.eventDate = response.data.coordinator?.event_date
                 
-          if amountRaised >= goal 
-            $scope.schoolChallenges.push
-              id: 'school'
-              label: 'School Challenge Completed'
-              earned: true
+          if amountRaised >= goal and goal > 0
+            $scope.schoolChallengeBadge = true
                 
       setParticipantProgress = (amountRaised, goal) ->
         $scope.personalProgress =
@@ -224,7 +213,7 @@ angular.module 'ahaLuminateControllers'
           $scope.personalDonors.totalNumber = $defaultPersonalDonors.length
 
       $scope.personalPagePhoto1 =
-        defaultUrl: APP_INFO.rootPath + 'dist/ym-primary/image/personal-default.png'
+        defaultUrl: APP_INFO.rootPath + 'dist/ym-primary/image/fy22/personal-default.jpg'
 
       $scope.editPersonalPhoto1 = ->
         delete $scope.updatePersonalPhoto1Error

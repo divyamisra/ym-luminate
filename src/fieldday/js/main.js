@@ -1386,7 +1386,7 @@
             });
         };
 
-        // EXPANDABLE DONOR ROLL
+        // EXPANDABLE DONOR ROLL SECTION
         $('.js--honor-roll-expander').on('click', function (e) {
             if ($(this).children('i').hasClass('fa-chevron-down')) {
                 $(this).children('i').removeClass('fa-chevron-down');

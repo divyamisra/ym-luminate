@@ -52,11 +52,19 @@ angular.module 'trPcControllers'
         BoundlessService.checkOOTDashboard $scope.frId + '/' + $scope.consId
         .then (response) ->
           $rootScope.hasOOTDashboard = response.data.coordinatorHasDashboard
+          if $rootScope.hasOOTDashboard
+            BoundlessService.getSchoolBadges $scope.frId + '/' + $scope.participantRegistration.companyInformation.companyId
+            .then (response) ->
+              $scope.schoolBadgesRegistrations = response.data.registration_badges
+              $scope.schoolBadgesFundraising = response.data.fundraising_badges
+              $scope.companyInfo.participantCount = response.data.students_registered
+              $scope.companyProgress.raised = response.data.total_amount
+              $scope.companyProgress.raisedFormatted = $filter('currency')(response.data.total_amount, '$')
         , (response) ->
           # TODO
       else
         $rootScope.hasOOTDashboard = true
-        
+      
       if $scope.participantRegistration.lastPC2Login is '0'
         if $scope.participantRegistration.companyInformation?.isCompanyCoordinator isnt 'true'
           $scope.firstLoginModal = $uibModal.open
@@ -237,18 +245,25 @@ angular.module 'trPcControllers'
                       label: 'School Challenge'
                       earned: true
             response
+            getSchoolInformation()
         $scope.dashboardPromises.push fundraisingProgressPromise
-        getSchoolInformation()
-      $scope.refreshFundraisingProgress()
-
-      BoundlessService.getSchoolBadges $scope.frId + '/' + $scope.participantRegistration.companyInformation.companyId
-      .then (response) ->
-        $scope.schoolBadgesRegistrations = response.data.registration_badges
-        $scope.schoolBadgesFundraising = response.data.fundraising_badges
-        $scope.companyInfo.participantCount = response.data.students_registered
-        $scope.companyProgress.raised = response.data.total_amount
-        $scope.companyProgress.raisedFormatted = $filter('currency')(response.data.total_amount, '$')
         
+      $scope.refreshFundraisingProgress()
+      
+      if $scope.prev1FrId
+        NgPcTeamraiserProgressService.getProgress $scope.prev1FrId
+          .then (response) ->
+            if response.data.errorResponse
+              angular.noop()
+            else
+              participantPrevProgress = response.data.getParticipantProgressResponse.personalProgress
+              if not participantPrevProgress
+                angular.noop()
+              else
+                participantPrevProgress.raised = Number participantPrevProgress.raised
+                participantPrevProgress.raisedFormatted = if participantPrevProgress.raised then $filter('currency')(participantPrevProgress.raised / 100, '$') else '$0.00'
+                $scope.participantPrevProgress = participantPrevProgress
+      
       $scope.emailChallenge = {}
       setEmailSampleText = ->
         sampleText = 'What if I told you that together, we can help save the lives of millions of people? Seriously, we can!\n\n' +
@@ -753,9 +768,9 @@ angular.module 'trPcControllers'
               # id: challengeIndex
               # name: challenge
       challengeOptions =
-        "1": "Be physically active for 60 minutes a day."
-        "2": "Learn Hands-Only CPR."
-        "3": "Say no to tobacco and vaping."
+        "1": "Get your ZZZs, aiming for 8-10 hours of sleep every night."
+        "2": "Complete an act of kindness each day."
+        "3": "Move for one hour every day for a physical and mental boost."
       angular.forEach challengeOptions, (challenge, challengeIndex) ->
         $scope.challenges.push
           id: challengeIndex

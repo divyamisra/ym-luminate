@@ -7,3 +7,36 @@ button.btn {
     }
   }
 }
+
+.btn,
+a.btn {
+  &.btn-primary {
+    &,
+    &:link,
+    &:visited {
+      background: $event-primary;
+      color: $brand-white;
+    }
+    
+    &:hover,
+    &:focus,
+    &:active {
+      background: $event-primary-dark;
+      color: $event-secondary-medium;
+    }
+  }
+  &.btn-secondary {
+    &,
+    &:link,
+    &:visited {
+      background: $event-primary;
+      color: $brand-white;
+    }
+    
+    &:hover,
+    &:focus,
+    &:active {
+      background: $event-secondary-dark;
+    }
+  }
+}

@@ -1,3 +1,6 @@
+option {
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
 .ym-pc-student-view-text {
   float: none;
   width: auto !important;
@@ -29,14 +32,25 @@
   }
 }
 
+.ym-progress-donate {
+    a.btn {
+        margin-bottom:5px;
+    }
+}
+
 .ym-pc-dashboard-progress-section .row .ym-pc-dashboard-progress-section__column {
     overflow: hidden;
 }
 .ym-pc-dashboard-progress-section {
     #ym-pc-dashboard-badges-panel--student {
-        margin-top:25px;
-	.ym-badges__item img {
+
+        .ym-badges__item {
+	  max-width: 100px;
+	  text-align:center;
+	  
+	  img {
 	    max-width:100px;
+	  }
 	}
     }
     #ym-pc-dashboard-company-panel--student {
@@ -550,6 +564,7 @@ div[id^="taTextElement"]:focus {
 	.ym-pc-dashboard-livestream-images {
 		display:flex;
 		justify-content: space-around;
+		align-items:center;
 		.pc-livestream-character {
 			max-width:210px;
 			@media (max-width: 992px) {
@@ -596,6 +611,7 @@ div[id^="taTextElement"]:focus {
 
 		select {
 			width: auto;
+			max-width:100%;
 			display: inline-block;
 			padding-right: 25px;
 			font-size: 20px;
@@ -690,4 +706,34 @@ div[id^="taTextElement"]:focus {
 }
 .fundraisingStatusTitle + .ym-progress__thermometer + .ym-progress-related {
     margin-top: 15px;
+}
+
+.ym-student-challenge-badge {
+	margin: 20px 0 0px auto;
+	max-width:125px;
+	.ym-badge__label {
+		text-align:center;
+		margin-top:10px;
+	}
+}
+
+.ym-school-challenge-badge {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 0;
+    img {
+	    margin-right:20px;
+	    min-width:100px;
+    }
+}
+
+#schoolChallengeOther {
+    margin: 8px 5px;
+    width: 97%;
+    font-size: 18px;
+    height: auto;
+    line-height: 18px;
+    padding-top: 14px;
+    color: $event-secondary;
 }
