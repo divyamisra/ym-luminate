@@ -2113,3 +2113,9 @@ div.required-indicator-legend {
 #F2fRegContact input.error + span {
   color: #c10e21;
 }
+
+.pg_reg {
+  .privacyCheck legend, .waiverCheck legend {
+    display: none;
+  }
+}
