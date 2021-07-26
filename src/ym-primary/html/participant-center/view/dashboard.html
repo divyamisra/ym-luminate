@@ -301,10 +301,15 @@
 				  <g>
 					 <path fill="url(#roadm)" d="M0 295v525h658v-525h-658z"></path>
 				  </g>
-					<g id="into-text" filter="url(#am)" data-name="Intro Text">
+					<g id="into-text" filter="url(#am)" data-name="Intro Text" ng-if="prizesEarned != prizes.length" ng-cloak>
 					 <text fill="#fff" font-size="16" font-weight="normal"><tspan x="220" y="155">Click the icons in any order</tspan></text>
 					 <text fill="#fff" font-size="16" font-weight="normal"><tspan x="220" y="177">to complete the path andx</tspan></text>
 					 <text fill="#fff" font-size="16" font-weight="normal"><tspan x="220" y="199">reveal Finn's message here!</tspan></text>
+				  </g>
+					<g id="into-text" filter="url(#am)" data-name="Intro Text" ng-if="prizesEarned == prizes.length" ng-cloak>
+					 <text fill="#fff" font-size="16" font-weight="normal"><tspan x="220" y="155">You did it! Thank you</tspan></text>
+					 <text fill="#fff" font-size="16" font-weight="normal"><tspan x="220" y="177">for being a hero for</tspan></text>
+					 <text fill="#fff" font-size="16" font-weight="normal"><tspan x="220" y="199">Kids Heart Challenge!</tspan></text>
 				  </g>
 					<g id="status-text" filter="url(#bm)" data-name="Status Text">
  				   <text fill="#fff" font-size="24" font-weight="bold"><tspan x="57" y="802" class="ng-binding">3</tspan></text>
