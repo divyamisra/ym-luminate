@@ -51,7 +51,7 @@
 						<image width="225"  ng-href="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy22/Captain.png" xlink:href="" title="Captain"></image>
 				  </pattern>
 				  <pattern id="captain-bubble" filterUnits="objectBoundingBox" x="0" y="0" width="1" height="1">
-						<image width="100"  ng-href="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy22/Bubble-Desktop.png" xlink:href="" title="Bubble"></image>
+						<image width="100"  ng-href="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy22/GreatJob-Desktop.svg" xlink:href="" title="Bubble"></image>
 				  </pattern>
 				  <pattern id="finn-finish" filterUnits="objectBoundingBox" x="0" y="0" width="1" height="1">
 						<image width="130"  ng-href="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy22/Finn-Float.png" xlink:href="" title="Finn"></image>
@@ -237,7 +237,7 @@
 						<image width="225"  ng-href="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy22/Captain-noarms.png" xlink:href="" title="Captain"></image>
 				  </pattern>
 				  <pattern id="captainm-bubble" filterUnits="objectBoundingBox" x="0" y="0" width="1" height="1">
-						<image width="150"  ng-href="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy22/Captain-Mobile-Bubble.png" xlink:href="" title="Bubble"></image>
+						<image width="150"  ng-href="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy22/GreatJob-Mobile.svg" xlink:href="" title="Bubble"></image>
 				  </pattern>
  					<pattern id="1_deliveredm" filterunits="objectBoundingBox" x="0" y="0" width="1" height="1">
 						<image width="100" height="100" xlink:href="" ng-href="{{prizes[0].earned_image_url}}" title="{{prizes[0].label}}" /> 
@@ -312,7 +312,7 @@
 					 <text fill="#fff" font-size="16" font-weight="normal"><tspan x="220" y="199">Kids Heart Challenge!</tspan></text>
 				  </g>
 					<g id="status-text" filter="url(#bm)" data-name="Status Text">
- 				   <text fill="#fff" font-size="24" font-weight="bold"><tspan x="57" y="802" class="ng-binding">3</tspan></text>
+ 				   <text fill="#fff" font-size="24" font-weight="bold"><tspan x="57" y="802">{{prizesEarned}}</tspan></text>
 					 <text fill="#fff" font-size="20" font-weight="bold"><tspan x="78" y="805">out of</tspan></text>
 					 <text fill="#fff" font-size="24" font-weight="bold"><tspan x="143" y="802">9</tspan></text>
 					 <text fill="#fff" font-size="20" font-weight="bold"><tspan x="57" y="830">steps complete!</tspan></text>
