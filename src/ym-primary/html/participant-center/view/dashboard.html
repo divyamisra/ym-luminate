@@ -124,10 +124,15 @@
 				  <g transform="translate(-.001 .003)">
 					 <path fill="url(#road)" d="M0 180v45h658v-45h-658z"></path>
 				  </g>
-				  <g id="into-text" filter="url(#a)" data-name="Intro Text">
+				  <g id="into-text" filter="url(#a)" data-name="Intro Text" ng-if="prizesEarned != prizes.length" ng-cloak>
 					 <text fill="#fff" font-size="9" font-weight="normal"><tspan x="144" y="73">Click the icons in any order</tspan></text>
 					 <text fill="#fff" font-size="9" font-weight="normal"><tspan x="144" y="85">to complete the path and</tspan></text>
 					 <text fill="#fff" font-size="9" font-weight="normal"><tspan x="144" y="97">reveal Finn's message here!</tspan></text>
+				  </g>
+		                  <g id="into-text" filter="url(#a)" data-name="Intro Text" ng-if="prizesEarned == prizes.length" ng-cloak>
+					 <text fill="#fff" font-size="9" font-weight="normal"><tspan x="144" y="73">You did it! Thank you</tspan></text>
+					 <text fill="#fff" font-size="9" font-weight="normal"><tspan x="144" y="85">for being a hero for</tspan></text>
+					 <text fill="#fff" font-size="9" font-weight="normal"><tspan x="144" y="97">Kids Heart Challenge!</tspan></text>
 				  </g>
 				  <g id="status-text" filter="url(#b)" data-name="Status Text">
  				   <text fill="#fff" font-size="18" font-weight="bold"><tspan x="57" y="132">{{prizesEarned}}</tspan></text>
