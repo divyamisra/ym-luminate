@@ -260,38 +260,30 @@ angular.module 'trPcControllers'
         message: ''
         interactionId: ''
 
-      mm_current_mission_completed_header = "Congratulations, " + $scope.consNameFirst + "!"
-      mm_current_mission_title = "You've completed all of Finn's Missions!"
-      mm_current_mission_message = "You unlocked the secret code & your prize: a medal for your Heart Hero avatar! Visit your avatar to add your new, cool medal bling."
-      
-      $scope.getMoveMoreFlag = ->
-        if jQuery('body').data("in-mm-group") == "TRUE" 
-          #update boundless
-          $scope.updateMoveMoreFlag()
-          #add user to group in luminate
-          jQuery('<img width="1" height="1" style="display:none;" src="SPageServer?pagename=reus_khc_add_group&group_id=' + jQuery('body').data("mm-group-id") + '&pgwrap=n" id="move_more_add_group">').appendTo(jQuery('.ng-pc-view-container'));
+      #mm_current_mission_completed_header = "Congratulations, " + $scope.consNameFirst + "!"
+      #mm_current_mission_title = "You've completed all of Finn's Missions!"
+      #mm_current_mission_message = "You unlocked the secret code & your prize: a medal for your Heart Hero avatar! Visit your avatar to add your new, cool medal bling."
       
       $scope.setMoveMoreFlag = ->
         if $scope.moveMoreFlag.message == 1 or $scope.moveMoreFlag.message == 2
-          BoundlessService.earnMoveMoreFlag $scope.frId + '/' + $scope.consId + '/' + $scope.moveMoreFlag.message
+          BoundlessService.setMoveMoreFlag $scope.frId + '/' + $scope.consId + '/' + $scope.moveMoreFlag.message
           .then (response) ->
             if response.data.status == "success"
               $scope.moveMoreFlag.successMessage = true
-              jQuery('<img width="1" height="1" style="display:none;" src="SPageServer?pagename=reus_khc_add_group&group_id=' + jQuery('body').data("mm-group-id") + '&pgwrap=n" id="move_more_add_group">').appendTo(jQuery('.ng-pc-view-container'));
+              #jQuery('<img width="1" height="1" style="display:none;" src="SPageServer?pagename=reus_khc_add_group&group_id=' + jQuery('body').data("mm-group-id") + '&pgwrap=n" id="move_more_add_group">').appendTo(jQuery('.ng-pc-view-container'));
               refreshFinnsMission()
             else
               $scope.moveMoreFlag.errorMessage = 'There was an error processing your update. Please try again later.'
         if $scope.moveMoreFlag.message == 0
-          BoundlessService.unearnMoveMoreFlag $scope.frId + '/' + $scope.consId + '/' + 0
+          BoundlessService.setMoveMoreFlag $scope.frId + '/' + $scope.consId + '/' + 0
           .then (response) ->
             if response.data.status == "success"
               $scope.moveMoreFlag.successMessage = true
-              jQuery('<img width="1" height="1" style="display:none;" src="SPageServer?pagename=reus_khc_remove_group&group_id=' + jQuery('body').data("mm-group-id") + '&pgwrap=n" id="move_more_remove_group">').appendTo(jQuery('.ng-pc-view-container'));
+              #jQuery('<img width="1" height="1" style="display:none;" src="SPageServer?pagename=reus_khc_remove_group&group_id=' + jQuery('body').data("mm-group-id") + '&pgwrap=n" id="move_more_remove_group">').appendTo(jQuery('.ng-pc-view-container'));
               refreshFinnsMission()
             else
               $scope.moveMoreFlag.errorMessage = 'There was an error processing your update. Please try again later.'
              
-
       interactionTypeId = $dataRoot.data 'coordinator-message-id'
 
       $scope.coordinatorMessage =
