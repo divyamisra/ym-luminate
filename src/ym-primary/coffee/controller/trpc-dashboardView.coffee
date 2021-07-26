@@ -272,8 +272,8 @@ angular.module 'trPcControllers'
           jQuery('<img width="1" height="1" style="display:none;" src="SPageServer?pagename=reus_khc_add_group&group_id=' + jQuery('body').data("mm-group-id") + '&pgwrap=n" id="move_more_add_group">').appendTo(jQuery('.ng-pc-view-container'));
       
       $scope.setMoveMoreFlag = ->
-        if $scope.moveMoreFlag.message
-          BoundlessService.earnMoveMoreFlag $scope.frId + '/' + $scope.consId
+        if $scope.moveMoreFlag.message == 1 or $scope.moveMoreFlag.message == 2
+          BoundlessService.earnMoveMoreFlag $scope.frId + '/' + $scope.consId + '/' + $scope.moveMoreFlag.message
           .then (response) ->
             if response.data.status == "success"
               $scope.moveMoreFlag.successMessage = true
@@ -281,8 +281,8 @@ angular.module 'trPcControllers'
               refreshFinnsMission()
             else
               $scope.moveMoreFlag.errorMessage = 'There was an error processing your update. Please try again later.'
-        if !$scope.moveMoreFlag.message
-          BoundlessService.unearnMoveMoreFlag $scope.frId + '/' + $scope.consId
+        if $scope.moveMoreFlag.message == 0
+          BoundlessService.unearnMoveMoreFlag $scope.frId + '/' + $scope.consId + '/' + 0
           .then (response) ->
             if response.data.status == "success"
               $scope.moveMoreFlag.successMessage = true
