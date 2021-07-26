@@ -11,7 +11,7 @@
 			</p>
 			<div class="checkbox" custom-checkbox ng-class="{'checked': moveMoreFlag.message == 2}">
 				<label for="registrationInfo-fr_check_move_more2">
-					<input ng-change="setMoveMoreFlag(this)" type="checkbox" name="fr_check_move_more" id="registrationInfo-fr_check_move_more2" ng-model="moveMoreFlag.message" value="2"> 
+					<input ng-change="setMoveMoreFlag(this)" type="checkbox" name="fr_check_move_more" id="registrationInfo-fr_check_move_more2" ng-model="moveMoreFlag.message" ng-true-value="2"> 
 					<span>
 						YES! We did it and feeling great!
 					</span>
@@ -19,7 +19,7 @@
 			</div>
 			<div class="checkbox" custom-checkbox ng-class="{'checked': moveMoreFlag.message == 1}">
 				<label for="registrationInfo-fr_check_move_more1">
-					<input ng-change="setMoveMoreFlag(this)" type="checkbox" name="fr_check_move_more" id="registrationInfo-fr_check_move_more1" ng-model="moveMoreFlag.message" value="1"> 
+					<input ng-change="setMoveMoreFlag(this)" type="checkbox" name="fr_check_move_more" id="registrationInfo-fr_check_move_more1" ng-model="moveMoreFlag.message" ng-true-value="1"> 
 					<span>
 						We haven't done it yet, but we have a family plan!
 					</span>
@@ -27,14 +27,13 @@
 			</div>
 			<div class="checkbox" custom-checkbox ng-class="{'checked': moveMoreFlag.message == 0}">
 				<label for="registrationInfo-fr_check_move_more0">
-					<input ng-change="setMoveMoreFlag(this)" type="checkbox" name="fr_check_move_more" id="registrationInfo-fr_check_move_more0" ng-model="moveMoreFlag.message" value="0"> 
+					<input ng-change="setMoveMoreFlag(this)" type="checkbox" name="fr_check_move_more" id="registrationInfo-fr_check_move_more0" ng-model="moveMoreFlag.message" ng-true-value="0"> 
 					<span>
 						Still working on the plan!
 					</span>
 				</label>
 			</div>
-			<div ng-if="moveMoreFlag.errorMessage" ng-bind="moveMoreFlag.errorMessage" ng-cloak>
-			</div>
+			<div ng-if="moveMoreFlag.errorMessage" ng-bind="moveMoreFlag.errorMessage" ng-cloak></div>
 			<div ng-if="moveMoreFlag.successMessage &amp;&amp; moveMoreFlag.message" ng-cloak>
 				Your selection has been recorded. Your Move More Activity is now completed!
 			</div>
@@ -44,9 +43,9 @@
 		</div>
 	</div>
 	<div class="col-md-6 hidden-sm">
-		<a style="position: absolute;right: 10px;top: 10px;" ng-href="cancelMobileApp()">
+		<a class="closeMobileApp" ng-href="cancelMobileApp()">
 			Close
 		</a>
-		<img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy22/khc-move-more-modal.jpg" alt="Move More Family"> 
+		<img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy22/khc-move-more-modal.jpg" alt="Move More Family" style="width:100%"> 
 	</div>
 </div>
