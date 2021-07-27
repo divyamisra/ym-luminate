@@ -39,4 +39,8 @@ div.donation-form-container .custom-field-container.has-error input[type=checkbo
   background-color: #fcddde;
 }
 
-
+div.donation-form-container .ym-donation-levels {
+    p {
+      color: $event-primary;
+    }
+}
