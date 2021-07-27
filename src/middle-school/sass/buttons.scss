@@ -40,3 +40,16 @@ a.btn {
     }
   }
 }
+
+div.responsive {
+  .btn,
+  a.btn,
+  .step-button,
+  button.step-button {
+    &:hover,
+    &:focus,
+    &:active {
+      color: $event-secondary-medium;
+    }
+  }
+}
