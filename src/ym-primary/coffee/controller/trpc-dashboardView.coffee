@@ -821,8 +821,9 @@ angular.module 'trPcControllers'
               not_earned_image_url: prize.non_earned_image_url
               locked_image_url: prize.locked_image_url
               final_url: final_url
+              hover_msg: (prize.status != 0) ? prize.earned_hover : prize.unearned_hover
 
-            if prize.status == 1
+            if prize.status != 0
               $scope.prizesEarned++
               
           if $scope.prizes[7].earned 
