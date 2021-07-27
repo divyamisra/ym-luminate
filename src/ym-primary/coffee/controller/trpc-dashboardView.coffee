@@ -808,6 +808,10 @@ angular.module 'trPcControllers'
                 final_url = 'https://tools.heart.org/aha_ym22/quiz/show/' + prize.mission_url + '?event_id=' + $scope.frId + '&user_id=' + $scope.consId + '&name=' + $scope.consNameFirst
             if prize.mission_url_type == 'Modal' and prize.mission_url == 'app' 
               final_url = 'showMobileApp()'
+            if prize.status != 0
+              hover_msg = prize.earned_hover
+            else 
+              hover_msg = prize.unearned_hover
             $scope.prizes.push
               id: prize.id
               label: prize.label
@@ -821,7 +825,7 @@ angular.module 'trPcControllers'
               not_earned_image_url: prize.non_earned_image_url
               locked_image_url: prize.locked_image_url
               final_url: final_url
-              hover_msg: (prize.status != 0) ? prize.earned_hover : prize.unearned_hover
+              hover_msg: hover_msg
 
             if prize.status != 0
               $scope.prizesEarned++
