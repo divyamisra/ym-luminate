@@ -2700,9 +2700,9 @@ if ( $('body').is('.app_donation') || $('body').is('.app_tr_registration') || $(
   }
 }
 
-$('.dropdown-menu.find #nav-tab a:first-of-type').addClass('firstNavTab');
+$('.dropdown-menu.find #nav-tab a').addClass('NavTabSub');
 
-$('.firstNavTab').on('keydown',function(e) {
+$('.NavTabSub').on('keydown',function(e) {
     if(e.which == 27) {
       $('.nav-item--find').removeClass('open');
     }
