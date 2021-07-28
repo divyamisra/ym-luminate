@@ -87,10 +87,16 @@
       font-size: 27px;
       line-height: 32px;
       color: $red;
+      font-family: LubDubMedium,Helvetica,Arial,sans-serif!important;
     }
   }
   .js--company-text p, .js--company-text p span {
     font-family: "LubDubBold", Helvetica, Arial, sans-serif!important;
+    font-size: 18px!important;
+    line-height: 27px!important;
+  }
+  
+  #team-roster_info, label[for=js--team-search-text], #participant-roster_info, label[for=js--participant-search-text] {
     font-size: 18px!important;
     line-height: 27px!important;
   }
