@@ -2702,7 +2702,7 @@ if ( $('body').is('.app_donation') || $('body').is('.app_tr_registration') || $(
 
 $('.dropdown-menu.find #nav-tab a').addClass('NavTabSub');
 
-$('.NavTabSub').on('keydown',function(e) {
+$('.NavTabSub, #companySearch').on('keydown',function(e) {
     if(e.which == 27) {
       $('.nav-item--find').removeClass('open');
     }
