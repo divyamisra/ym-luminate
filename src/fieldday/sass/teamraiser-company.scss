@@ -95,7 +95,7 @@
     font-size: 18px!important;
     line-height: 27px!important;
   }
-  
+
   #team-roster_info, label[for=js--team-search-text], #participant-roster_info, label[for=js--participant-search-text] {
     font-size: 18px!important;
     line-height: 27px!important;
@@ -181,4 +181,5 @@
 
 .pg_company #ourstats {
   font-weight: 700!important;
+  overflow-x: hidden!important;
 }
