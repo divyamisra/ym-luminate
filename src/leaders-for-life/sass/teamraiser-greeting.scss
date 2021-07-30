@@ -12,9 +12,9 @@
     width: 100%;
     background-image: url('https://secure3.convio.net/heartdev/images/content/pagebuilder/leaders_entry.jpg');
     background-size: cover;
-    background-position: top center;
+    background-position: center;
     @include media-breakpoint-up(lg) {
-      background-position: top center;
+      background-position: center;
     }
   }
 
@@ -34,7 +34,7 @@
       }
 
       .event-info__header h1 {
-        font-size: 1em;
+        font-size: 1.25em;
         color: $red;
         background-color: $white;
         padding: 20px;
@@ -45,10 +45,11 @@
       }
 
       .event-info__details h2 {
-        font-family: $font-family-bold;
-        color: $red;
-        font-size: 1.25em;
+        font-family: $font-family-light;
+        font-size: 1.5em;
         line-height: 1.5;
+        text-align: center;
+        font-weight: normal;
       }
 
       .event-info__details p {
@@ -134,8 +135,8 @@
     }
 
   .greeting-about {
-    padding-top: 30px;
-    padding-bottom: 80px;
+    padding-top: 0;
+    padding-bottom: 36px;
     h2 {
       color: $red;
     }
@@ -195,9 +196,10 @@
     .top-list {
       background-color: $white;
       padding: 0;
+      box-shadow: 0 15px 30px rgba(0,0,0,.5);
 
       h3 {
-        font-size: 1.4rem;
+        font-size: 2rem;
         color: $red;
         padding: 38px 43px 37px 45px;
         font-family: $font-family-bold;
