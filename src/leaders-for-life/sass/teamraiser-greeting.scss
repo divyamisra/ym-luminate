@@ -54,8 +54,9 @@
 
       .event-info__details p {
         font-size: 0.875em!important;
+        margin: 1em 0;
         @include media-breakpoint-up(md) {
-          font-size: 1em!important;
+          font-size: 1.25em!important;
         }
       }
 
@@ -164,12 +165,13 @@
   }
 
   .top-lists {
-    background-color: $red-deep;
+    background-color: #c10e21;
     background-repeat: no-repeat;
     background-position: right top;
     background-size: 100%;
     @include media-breakpoint-up(md) {
-      background-size: 60%;
+      background-image: url(../img/leaders-heartbeat.svg);
+      background-size: cover;
     }
   }
 
