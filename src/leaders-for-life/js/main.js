@@ -1566,6 +1566,9 @@
                 var teamName = encodeURIComponent($('#greeting-search-team').val());
                 window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=Leaders_For_Life_Search&search_type=team&cross_event=false&fr_id=' + evID + '&team_name=' + teamName;
             });
+
+            //Adding aria labels for additional nav
+            $('.unslider-nav').attr('aria-label','unslider navigation');
         }
 
         if ($('.tr_sponsorship_logos').length > 0) {
