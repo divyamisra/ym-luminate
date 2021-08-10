@@ -3132,6 +3132,9 @@
 
     $('#team_find_new_team_recruiting_goal label.input-label').attr('for', 'fr_team_member_goal');
 
+    //Hardcoding value to test recruitment goal settings 
+    $('#team_find_new_team_recruiting_goal').find('input').val('3');
+
     // ptype
     // $('#part_type_selection_container').wrapInner('<fieldset role="radiogroup" class="ptype-selection"/>');
 
