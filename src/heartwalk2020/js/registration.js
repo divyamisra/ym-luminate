@@ -1172,35 +1172,35 @@
 
             $('input[name=fr_part_radio]').addClass("required").attr("title","Participation type is required");
 
-	    //hide back button and turn into link
-	    $('button#previous_step').after('<a href="javascript:window.history.go(-1)" class="step-button previous-step backBtnReg">Back</a>').hide();
+            //hide back button and turn into link
+            $('button#previous_step').after('<a href="javascript:window.history.go(-1)" class="step-button previous-step backBtnReg">Back</a>').hide();
 
             $('form').validate({
-		focusInvalid: false,
-		invalidHandler: function(form, validator) {
-			if (!validator.numberOfInvalids())
-				return;
+              focusInvalid: false,
+              invalidHandler: function(form, validator) {
+                if (!validator.numberOfInvalids())
+                  return;
 
-			$('html, body').animate({
-				scrollTop: $(validator.errorList[0].element).offset().top
-			}, 500);
-		},
-		errorPlacement: function(error, element) {
-			if ($(element).attr("name") == "fr_part_radio") {
-				$('#part_type_selection_container').append(error).css({"display":"block","text-align":"left"});
-			} else {
-				if ($(element).attr("name").indexOf("donation_level_form_input") > -1) {
-					$('.enterAmt-other').after(error);
-				} else {
-					var placement = $(element).data('error');
-					if (placement) {
-						$(placement).append(error)
-					} else {
-						error.insertAfter(element);
-					}
-				}
-			}
+                $('html, body').animate({
+                  scrollTop: $(validator.errorList[0].element).offset().top
+                }, 500);
+              },
+              errorPlacement: function(error, element) {
+                if ($(element).attr("name") == "fr_part_radio") {
+                  $('#part_type_selection_container').append(error).css({"display":"block","text-align":"left"});
+                } else {
+                  if ($(element).attr("name").indexOf("donation_level_form_input") > -1) {
+                    $('.enterAmt-other').after(error);
+                  } else {
+                    var placement = $(element).data('error');
+                    if (placement) {
+                      $(placement).append(error)
+                    } else {
+                      error.insertAfter(element);
+                    }
+                  }
                 }
+              }
             });
             $.validator.addMethod("validDonation",function(value, element) {
                     value = parseInt(value.replace("$","").replace(",",""));
@@ -1230,6 +1230,15 @@
                         console.log("reset AT&T 3");
                         localStorage.companySelect = "";
                     }
+                }
+                if ($('input[name="doublethedonation_company_id"]').val().length > 0){
+                    console.log('found dtd value');
+                    var dtdCoId = $('input[name="doublethedonation_company_id"]').val();
+                    localStorage.dtdCompanyId = dtdCoId;
+                }
+                else {
+                    console.log('clear dtd company id')
+                    localStorage.dtdCompanyId = "";
                 }
                 if ($('form').valid()) {
                     //store off personal goal in sess var by adding to action url
