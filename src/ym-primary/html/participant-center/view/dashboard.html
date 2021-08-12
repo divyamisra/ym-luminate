@@ -21,7 +21,7 @@
           <em>Please allow 15 minutes for the system to update your badges.</em>
         </div>
 		<div class="winding-road" >
-			<svg xmlns="http://www.w3.org/2000/svg"  width="100%" height="100%" viewBox="0 0 658 422" preserveAspectRatio="xMidYMid meet" role="img" aria-labelledby="finns_mission_title finns_mission_desc">
+			<svg xmlns="http://www.w3.org/2000/svg"  width="100%" height="100%" viewBox="0 0 658 422" preserveAspectRatio="xMidYMid meet" aria-labelledby="finns_mission_title finns_mission_desc">
 			   <title id="finns_mission_title">Finn's Mission</title>
 			   <desc id="finns_mission_desc">Your mission is to complete the challenges listed for Finn</desc>
 			   <defs>
@@ -158,6 +158,7 @@
 					  <a xlink:href="" ng-href="{{prizes[3].final_url}}" title="Go Social" ng-focus="mouseover(3, 196, 110, this, 0)" ng-blur="mouseout()" aria-labelledby="self-donation">
 						 <path class="badge-path" d="M226 174v53h53v-53x-53z" fill="url(#4{{(prizes[3].earned) ? '_delivered' : '_earned'}})" ng-mouseover="mouseover(3, 196, 110, this, 0)" ng-mouseout="mouseout()"/>
 						</a>
+					  <text fill="#fff" font-size="18" font-weight="bold"><tspan x="57" y="135">{{prizesEarned}}</tspan></text>
 				  </g>
 				  <g id="share-on-social" data-name="Send email/ecard" role="button" aria-label="{{prizes[4].label}}: {{(prizes[4].status == 0) ? 'Unearned' : 'Earned'}} - {{prizes[4].hover_msg}}">
 					  <a xlink:href="" ng-href="{{prizes[4].final_url}}" title="Send email/ecard" ng-focus="mouseover(4, 268, 110, this, 0)" ng-blur="mouseout()" aria-labelledby="share-on-social">
@@ -195,7 +196,7 @@
 			</svg>
 	</div>
 		<div class="winding-road-mobile" >
-			<svg xmlns="http://www.w3.org/2000/svg"  width="100%" height="100%" viewBox="0 0 658 1094" preserveAspectRatio="xMidYMid meet" role="img" aria-labelledby="finns_mission_title_mobile finns_mission_desc_mobile">
+			<svg xmlns="http://www.w3.org/2000/svg"  width="100%" height="100%" viewBox="0 0 658 1094" preserveAspectRatio="xMidYMid meet" aria-labelledby="finns_mission_title_mobile finns_mission_desc_mobile">
 			   <title id="finns_mission_title_mobile">Finn's Mission</title>
 			   <desc id="finns_mission_desc_mobile">Your mission is to complete the challenges listed for Finn</desc>
 			   <defs>
