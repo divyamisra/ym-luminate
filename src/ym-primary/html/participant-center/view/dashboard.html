@@ -155,8 +155,8 @@
 				  <g id="take-challenge" role="button" data-name="Take Challenge" tabindex="0" ng-focus="mouseover(1, 45, 110, this, 0)" ng-blur="mouseout()" aria-label="{{prizes[1].label}}: {{(prizes[1].status == 0) ? 'Unearned' : 'Earned'}} - {{prizes[1].hover_msg}}">
 					 <path class="badge-path" d="M75 174v53h53v-53x-53z" fill="url(#2{{(prizes[1].earned) ? '_delivered' : '_earned'}})" ng-mouseover="mouseover(1, 45, 110, this, 0)" ng-mouseout="mouseout()" aria-labelledby="take-challenge"/>
 				  </g>
-				  <g id="250-donation" data-name="250 Donor" role="button" aria-label="{{prizes[2].label}}: {{(prizes[2].status == 0) ? 'Unearned' : 'Earned'}} - {{prizes[2].hover_msg}}">
-					  <a xlink:href="" ng-href="{{prizes[2].final_url}}" title="250 Donor" ng-focus="mouseover(2, 109, 110, this, 0)" ng-blur="mouseout()" aria-labelledby="250-donation">
+				  <g id="personal-page" data-name="Personal Page" role="button" aria-label="{{prizes[2].label}}: {{(prizes[2].status == 0) ? 'Unearned' : 'Earned'}} - {{prizes[2].hover_msg}}">
+					  <a xlink:href="" ng-href="{{prizes[2].final_url}}" title="Personal Page" ng-focus="mouseover(2, 109, 110, this, 0)" ng-blur="mouseout()" aria-labelledby="250-donation">
 						 <path class="badge-path" d="M140 174v53h53v-53x-53z" fill="url(#3{{(prizes[2].earned) ? '_delivered' : '_earned'}})" ng-mouseover="mouseover(2, 109, 110, this, 0)" ng-mouseout="mouseout()"/>
 					  </a>
 				  </g>
@@ -321,14 +321,14 @@
 				  <g role="button" id="take-challenge-mobile" data-name="Take Challenge" tabindex="0" ng-focus="mouseoverm(1, 22, 320, this, 0)" ng-blur="mouseoutm()" aria-label="{{prizes[1].label}}: {{(prizes[1].status == 0) ? 'Unearned' : 'Earned'}} - {{prizes[1].hover_msg}}">
 						 <path class="badge-path" d="M62 440v100h100v-100x-100z" fill="url(#2{{(prizes[1].earned) ? '_deliveredm' : '_earnedm'}})" ng-mouseover="mouseoverm(1, 22, 320, this, 0)" ng-mouseout="mouseoutm()" aria-labelledby="take-challenge-mobile"/>
 				  </g>
-				  <g id="self-donor-mobile" role="button" data-name="Self Donor">
-					  <a xlink:href="" ng-href="{{prizes[2].final_url}}" title="Self Donor" ng-focus="mouseoverm(2, 67, 185, this, 0)" ng-blur="mouseoutm()" aria-label="{{prizes[2].label}}: {{(prizes[2].status == 0) ? 'Unearned' : 'Earned'}} - {(prizes[2].hover_msg}}">
-						 <path class="badge-path" d="M100 300v100h100v-100x-100z" fill="url(#3{{(prizes[2].earned) ? '_deliveredm' : '_earnedm'}})" ng-mouseover="mouseoverm(2, 67, 185, this, 0)" ng-mouseout="mouseoutm()" aria-labelledby="self-donor-mobile"/>
+				  <g id="personal-page-mobile" role="button" data-name="Self Donor">
+					  <a xlink:href="" ng-href="{{prizes[2].final_url}}" title="Personal Page" ng-focus="mouseoverm(2, 67, 185, this, 0)" ng-blur="mouseoutm()" aria-label="{{prizes[2].label}}: {{(prizes[2].status == 0) ? 'Unearned' : 'Earned'}} - {(prizes[2].hover_msg}}">
+						 <path class="badge-path" d="M100 300v100h100v-100x-100z" fill="url(#3{{(prizes[2].earned) ? '_deliveredm' : '_earnedm'}})" ng-mouseover="mouseoverm(2, 67, 185, this, 0)" ng-mouseout="mouseoutm()" aria-labelledby="personal-page-mobile"/>
 						</a>
 				  </g>
-				  <g id="personal-page-mobile" role="button" data-name="Personal Page">
-					  <a xlink:href="" ng-href="{{prizes[2].final_url}}" title="Personal Page" ng-focus="mouseoverm(2, 230, 200, this, 0)" ng-blur="mouseoutm()" aria-label="{{prizes[2].label}}: {{(prizes[2].status == 0) ? 'Unearned' : 'Earned'}} - {(prizes[2].hover_msg}}">
-						 <path class="badge-path" d="M260 320v100h100v-100x-100z" fill="url(#3{{(prizes[2].earned) ? '_deliveredm' : '_earnedm'}})" ng-mouseover="mouseoverm(2, 230, 200, this, 0)" ng-mouseout="mouseoutm()" aria-labelledby="personal-page-mobile"/>
+				  <g id="self-donor-mobile" role="button" data-name="Self Donor">
+					  <a xlink:href="" ng-href="{{prizes[2].final_url}}" title="Self Donor" ng-focus="mouseoverm(2, 230, 200, this, 0)" ng-blur="mouseoutm()" aria-label="{{prizes[2].label}}: {{(prizes[2].status == 0) ? 'Unearned' : 'Earned'}} - {(prizes[2].hover_msg}}">
+						 <path class="badge-path" d="M260 320v100h100v-100x-100z" fill="url(#3{{(prizes[2].earned) ? '_deliveredm' : '_earnedm'}})" ng-mouseover="mouseoverm(2, 230, 200, this, 0)" ng-mouseout="mouseoutm()" aria-labelledby="self-donor-mobile"/>
 						</a>
 				  </g>
 				  <g id="go-social-mobile" role="button" data-name="Go Social" aria-label="{{prizes[3].label}}: {{(prizes[3].status == 0) ? 'Unearned' : 'Earned'}} - {(prizes[3].hover_msg}}">
