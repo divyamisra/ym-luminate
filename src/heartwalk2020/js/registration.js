@@ -1557,7 +1557,8 @@
                 if ($('.additional-gift-amount').text() != '$0.00'){
                     console.log('there is a gift value');
                     var addlGiftAmt = $('.additional-gift-amount').text();
-                    addlGiftAmt.replace(/\r?\n|\r/g, "");
+                    //addlGiftAmt.replace(/\r?\n|\r/g, "");
+                    addlGiftAmt.trim();
                     console.log('addlGiftAmt' + addlGiftAmt);
                     localStorage.addlGiftAmt = addlGiftAmt;
                 }
