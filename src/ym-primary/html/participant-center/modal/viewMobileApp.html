@@ -1,4 +1,7 @@
 <div class="row">
+	<button class="closeMobileApp" ng-click="cancelMobileApp()" class="btn">
+		Close
+	</button>
 	<div class="col-md-6 col-sm-12">
 		<div class="modal-header">
 			<h2 class="h5 modal-title">
@@ -42,10 +45,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="col-md-6 hidden-sm">
-		<button class="closeMobileApp" ng-click="cancelMobileApp()" class="btn">
-			Close
-		</button>
+	<div class="col-md-6 hidden-xs hidden-sm">
 		<img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy22/khc-move-more-modal.jpg" alt="Move More Family" style="width:100%"> 
 	</div>
 </div>
