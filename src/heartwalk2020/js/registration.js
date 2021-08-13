@@ -1231,16 +1231,19 @@
                         localStorage.companySelect = "";
                     }
                 }
-                if ($('input[name="doublethedonation_company_id"]').val().length > 0){
-                    console.log('found dtd value');
-                    var dtdCoId = $('input[name="doublethedonation_company_id"]').val();
-                    console.log('dtdCoId ' + dtdCoId);
-                    localStorage.dtdCompanyId = dtdCoId;
-                }
-                else {
-                    console.log('clear dtd company id'); 
-                    localStorage.dtdCompanyId = "";
-                }
+                if ($('.donation-level-container').find('.donation-level-row-container.active').length > 0 || $('.donation-level-container').find('.donation-level-row-container.active').hasClass('notTime') === false) {
+
+                  if ($('input[name="doublethedonation_company_id"]').val().length > 0){
+                      console.log('found dtd value');
+                      var dtdCoId = $('input[name="doublethedonation_company_id"]').val();
+                      console.log('dtdCoId ' + dtdCoId);
+                      localStorage.dtdCompanyId = dtdCoId;
+                  }
+                  else {
+                      console.log('clear dtd company id'); 
+                      localStorage.dtdCompanyId = "";
+                  }
+                }        
                 if ($('form').valid()) {
                     //store off personal goal in sess var by adding to action url
                     $('#F2fRegPartType').prepend('<input type="hidden" id="personalGoal" name="s_personalGoal" value="' + $('input#fr_goal').val() + '">');
