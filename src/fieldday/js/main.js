@@ -41,7 +41,7 @@
         var skipLink = document.getElementById('skip-main');
 
         // var isProd = (luminateExtend.global.tablePrefix === 'heartdev' ? false : true);
-        isProd == true;
+        isProd = true;
 
         var companyCSV;
 
