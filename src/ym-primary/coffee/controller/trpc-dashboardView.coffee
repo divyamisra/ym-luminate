@@ -813,9 +813,12 @@ angular.module 'trPcControllers'
             if prize.mission_url_type == 'Modal' and prize.mission_url == 'app' 
               final_url = 'showMobileApp()'
             if prize.status != 0
+              earned_status = 'Earned'
               hover_msg = prize.earned_hover
             else 
+              earned_status = 'Unearned'
               hover_msg = prize.unearned_hover
+            aria_label = prize.label + ": " + earned_status + " - " + hover_msg
             $scope.prizes.push
               id: prize.id
               label: prize.label
@@ -830,6 +833,7 @@ angular.module 'trPcControllers'
               locked_image_url: prize.locked_image_url
               final_url: final_url
               hover_msg: hover_msg
+              aria_label: aria_label
 
             if prize.status != 0
               $scope.prizesEarned++
