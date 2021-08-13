@@ -1,5 +1,5 @@
 <div class="row">
-	<button class="closeMobileApp" ng-click="cancelMobileApp()" class="btn" autofocus>
+	<button class="closeMobileApp" ng-click="cancelMobileApp()" autofocus>
 		Close
 	</button>
 	<div class="col-md-6 col-sm-12">
@@ -58,3 +58,7 @@
 		<img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy22/khc-move-more-modal.jpg" alt="Move More Family" style="width:100%"> 
 	</div>
 </div>
+<script>
+//set focus on close button
+jQuery('button.closeMobileApp').focus();
+</script>
