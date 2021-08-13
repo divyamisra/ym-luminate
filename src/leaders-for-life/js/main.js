@@ -1657,7 +1657,7 @@
                                         $('.js--personal-amt-other-wrap').show();
                                         $('.information-box .donation-amounts .custom-amount').attr("style","max-height: none;");
                                     }
-                                });                       
+                                });
 
                             $('.js--personal-amt-other').on('keyup', function (e) {
                                 var keyCode = (e.keyCode ? e.keyCode : e.which);
