@@ -1237,7 +1237,7 @@
                     localStorage.dtdCompanyId = dtdCoId;
                 }
                 else {
-                    console.log('clear dtd company id')
+                    console.log('clear dtd company id'); 
                     localStorage.dtdCompanyId = "";
                 }
                 if ($('form').valid()) {
@@ -1520,7 +1520,7 @@
             //move custom details into content
             $('.reg-summary-event-info').prepend($('#additionalRegDetails'));
 
-    	    //save off mobile opt option
+    	       //save off mobile opt option
             if (localStorage.mobile_optin == "on") {
                 luminateExtend.api({
                     api: 'cons',
@@ -1529,32 +1529,47 @@
                     requiresAuth: true,
                     data: 'method=logInteraction' +
                     '&response_format=json' +
-    				'&interaction_type_id=0' +
-    				'&interaction_subject=Hustle-OptIn' +
-    				'&interaction_body=\'{"EventId":' + $('body').data("fr-id") + ',"GroupId":' + $('body').data("group-id") + ',"OptIn":"Yes"}\'' +
-    				'&cons_id=' + $('body').data("cons-id"),
+                    '&interaction_type_id=0' +
+                    '&interaction_subject=Hustle-OptIn' +
+                    '&interaction_body=\'{"EventId":' + $('body').data("fr-id") + ',"GroupId":' + $('body').data("group-id") + ',"OptIn":"Yes"}\'' +
+                    '&cons_id=' + $('body').data("cons-id"),
                     callback: {
-			success: function (response) {
-				if (response.updateConsResponse.message == "Interaction logged successfully.") {
-
-				}
-			},
-			error: function (response) {
-				console.log(response.errorResponse.message);
-			}
+                      success: function (response) {
+                        if (response.updateConsResponse.message == "Interaction logged successfully.") {
+                        }
+                      },
+                      error: function (response) {
+                        console.log(response.errorResponse.message);
+                      }
                     }
                 });
-		if (isProd) {
-	                $('<img width="1" height="1" style="display:none;" src="https://www2.heart.org/site/SPageServer?pagename=reus_hw_mobileopt_add_group&group_id=' + $('body').data("group-id") + '&pgwrap=n" id="mobileopt_add_group">').appendTo($('#fr_reg_summary_page'));
-		} else {
-	                $('<img width="1" height="1" style="display:none;" src="https://dev2.heart.org/site/SPageServer?pagename=reus_hw_mobileopt_add_group&group_id=' + $('body').data("group-id") + '&pgwrap=n" id="mobileopt_add_group">').appendTo($('#fr_reg_summary_page'));
-		}
-    	    }
-        }
+                if (isProd) {
+                    $('<img width="1" height="1" style="display:none;" src="https://www2.heart.org/site/SPageServer?pagename=reus_hw_mobileopt_add_group&group_id=' + $('body').data("group-id") + '&pgwrap=n" id="mobileopt_add_group">').appendTo($('#fr_reg_summary_page'));
+                } else {
+                    $('<img width="1" height="1" style="display:none;" src="https://dev2.heart.org/site/SPageServer?pagename=reus_hw_mobileopt_add_group&group_id=' + $('body').data("group-id") + '&pgwrap=n" id="mobileopt_add_group">').appendTo($('#fr_reg_summary_page'));
+                }
+               }
+
+
+               $('button.next-step').click(function(){
+
+                if ($('.additional-gift-amount').text() != '$0.00'){
+                    console.log('there is a gift value');
+                    var addlGiftAmt = $('.additional-gift-amount').text();
+                    localStorage.addlGiftAmt = addlGiftAmt;
+                }
+                else {
+                    console.log('clear addGiftAmt'); 
+                    localStorage.addlGiftAmt = "";
+                }
+
+            });
+
+          }
 
         /* Page = paymentForm */
         if ($('input[name="pg"]').val() == 'paymentForm') {
-		$('button.previous-step').attr("formnovalidate","true");
+          $('button.previous-step').attr("formnovalidate","true");
 
 		$('.payment-type-selection-container h3').attr("id","payment-type-label");
 		$('.payment-type-selections').attr({"role":"radiogroup","aria-labelledby":"payment-type-label","aria-required":"true"});
