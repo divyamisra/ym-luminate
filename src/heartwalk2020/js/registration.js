@@ -1557,10 +1557,10 @@
                 if ($('.additional-gift-amount').text() != '$0.00'){
                     console.log('there is a gift value');
                     var addlGiftAmt = $('.additional-gift-amount').text();
-                    //addlGiftAmt.replace(/\r?\n|\r/g, "");
-                    addlGiftAmt.trim();
-                    console.log('addlGiftAmt' + addlGiftAmt);
-                    localStorage.addlGiftAmt = addlGiftAmt;
+                    var addlGiftAmtClean = addlGiftAmt.replace(/[^0-9.]/g, '');
+                    var addlGiftAmtFormatted = '$'.concat(addlGiftAmtClean);
+                    console.log('addlGiftAmtFormatted' + addlGiftAmtFormatted);
+                    localStorage.addlGiftAmt = addlGiftAmtFormatted;
                 }
                 else {
                     console.log('clear addGiftAmt'); 
