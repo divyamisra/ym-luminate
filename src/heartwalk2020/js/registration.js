@@ -1234,6 +1234,7 @@
                 if ($('input[name="doublethedonation_company_id"]').val().length > 0){
                     console.log('found dtd value');
                     var dtdCoId = $('input[name="doublethedonation_company_id"]').val();
+                    console.log('dtdCoId ' + dtdCoId);
                     localStorage.dtdCompanyId = dtdCoId;
                 }
                 else {
@@ -1556,6 +1557,8 @@
                 if ($('.additional-gift-amount').text() != '$0.00'){
                     console.log('there is a gift value');
                     var addlGiftAmt = $('.additional-gift-amount').text();
+                    addlGiftAmt.replace(/\r?\n|\r/g, "");
+                    console.log('addlGiftAmt' + addlGiftAmt);
                     localStorage.addlGiftAmt = addlGiftAmt;
                 }
                 else {
