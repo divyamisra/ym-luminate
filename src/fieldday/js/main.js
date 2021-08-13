@@ -2323,12 +2323,14 @@
 
             var numGamePointsRows = 0;
 
+            var urlPrefix = (isProd === true ? 'fieldday.rewardscenter.info' : 'fd.staging.ootqa.org');
+
             cd.getCompanyGamePoints = function (companyId, companyName, numCompanies, companyIndex) {
 
 
                     $.ajax({
                         type: 'GET',
-                        url: 'https://fd.staging.ootqa.org/api/points/leaders/company/'+evID+'/'+companyId,
+                        url: 'https://'+urlPrefix+'/api/points/leaders/company/'+evID+'/'+companyId,
                         dataType: 'json',
                         success: function (response) {
                             console.log(response);
