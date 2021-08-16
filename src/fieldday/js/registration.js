@@ -19,9 +19,16 @@
         var subSrcCode = luminateExtend.global.subSrcCode;
         var evID = $('body').data('fr-id') ? $('body').data('fr-id') : null;
         var consID = $('body').data('cons-id') ? $('body').data('cons-id') : null;
-	var evDate = $('body').data('event-date') ? $('body').data('event-date') : null;
-	var evDateYear = /(\d{4})/.test(evDate) ? RegExp.$1 : '2020';
-	var coordEmail = $('input[name=coordinator_email]').val();
+        var evDate = $('body').data('event-date') ? $('body').data('event-date') : null;
+        var evDateYear = /(\d{4})/.test(evDate) ? RegExp.$1 : '2020';
+        var coordEmail = $('input[name=coordinator_email]').val();
+        var coordEmailReg = $('body').data('coord-email') ? $('body').data('coord-email') : null;
+        var regCompanyId = $('body').data("companyid");
+        var regCompanyName = $('body').data("companyname");
+        if (regCompanyName.includes('ampersand')) {
+          regCompanyName = regCompanyName.replace("ampersand", "&")
+        }
+        console.log('coordinator email: ', coordEmail);
 
 
         var currentUrl = window.location.href;
@@ -126,10 +133,14 @@
 
                 if (response.getTeamSearchByInfoResponse.totalNumberResults === '0') {
                   // no search results
+                  $('.js__num-team-results').text('0 Results');
+                  $('.js__num-team-results').attr("role", "status");
                   $('#error-team').removeAttr('hidden').text('Team not found. Please try different search terms.');
                   $('.js__error-team-search').show();
                 } else {
                   var teams = luminateExtend.utils.ensureArray(response.getTeamSearchByInfoResponse.team);
+
+                  console.log('team search info', teams)
 
                   $(teams).each(function (i, team) {
                     if (searchType === 'registration') {
@@ -137,15 +148,39 @@
                       console.log('search type is reg. Team max size:' + team.maxTeamSize + ' and team members: ' + team.numMembers);
                       console.log(team.maxTeamSize + ' > ' + team.numMembers);
 
-		      if (parseInt(team.maxTeamSize) > parseInt(team.numMembers)) {
-	                      $('.list').append(
-        	                '<div class="search-result-details row py-3"><div class="col-md-5"><strong><a href="' + team.teamPageURL + '" class="team-name-label" title="' + team.name + '" target=_blank><span class="team-company-label sr-only">Team Name:</span> ' + team.name + '</a></strong><br><span class="team-captain-label">Coach:</span> <span class="team-captain-name">' + team.captainFirstName + ' ' + team.captainLastName + '</span></div><div class="col-md-5 mt-auto">' + ((team.companyName !== null && team.companyName !== undefined) ? '<span class="team-company-label">Company:</span> <span class="team-company-name">' + team.companyName + '</span>' : '') + '</div><div class="col-md-2"><a href="' + luminateExtend.global.path.secure + 'TRR/?fr_tjoin=' + team.id + '&pg=tfind&fr_id=' + evID + '&s_captainConsId=' + team.captainConsId + '&s_regType=joinTeam&skip_login_page=true&s_teamName=' + team.name + '&s_teamGoal=' + (parseInt(team.goal)/100) + '&s_teamCaptain=' + team.captainFirstName + ' ' + team.captainLastName + '" title="Join ' + team.name + '" aria-label="Join ' + team.name + '" class="btn btn-block btn-primary button team-join-btn">Join</a></div></div>');
-		      } else {
-	                      $('.list').append(
-        	                '<div class="search-result-details row py-3"><div class="col-md-5"><strong><a href="' + team.teamPageURL + '" class="team-name-label" title="' + team.name + '" target=_blank><span class="team-company-label sr-only">Team Name:</span> ' + team.name + '</a></strong><br><span class="team-captain-label">Coach:</span> <span class="team-captain-name">' + team.captainFirstName + ' ' + team.captainLastName + '</span></div><div class="col-md-5 mt-auto">' + ((team.companyName !== null && team.companyName !== undefined) ? '<span class="team-company-label">Company:</span> <span class="team-company-name">' + team.companyName + '</span>' : '') + '</div><div class="col-md-2 text-center"><br/>Team is full</div></div>');
-		      }
+                      if (parseInt(team.maxTeamSize) > parseInt(team.numMembers)) {
+                        var teamNameSearch = team.companyName;
+                        if (teamNameSearch.includes('&')) {
+                          teamNameSearch = teamNameSearch.replace("&", "ampersand")
+                        }
+                                    $('.list').append(
+                                      '<div class="search-result-details row py-3"><div class="col-md-5"><strong><a href="' + team.teamPageURL + '" class="team-name-label" title="' + team.name + '" target=_blank><span class="team-company-label sr-only">Team Name:</span> ' + team.name + '</a></strong><br><span class="team-captain-label">Coach:</span> <span class="team-captain-name">' + team.captainFirstName + ' ' + team.captainLastName + '</span></div><div class="col-md-5 mt-auto">' + ((team.companyName !== null && team.companyName !== undefined) ? '<span class="team-company-label">Company:</span> <span class="team-company-name">' + team.companyName + '</span>' : '') + '</div><div class="col-md-2"><a href="' + luminateExtend.global.path.secure + 'TRR/?fr_tjoin=' + team.id + '&pg=tfind&fr_id=' + evID + '&s_captainConsId=' + team.captainConsId + '&s_regType=joinTeam&skip_login_page=true&s_teamName=' + team.name + '&s_teamGoal=' + (parseInt(team.goal)/100) + '&s_teamCaptain=' + team.captainFirstName + ' ' + team.captainLastName + '&s_companyName=' + teamNameSearch +'" title="Join ' + team.name + '" aria-label="Join ' + team.name + '" class="btn btn-block btn-primary button team-join-btn">Join</a></div></div>');
+                      } else {
+                                    $('.list').append(
+                                      '<div class="search-result-details row py-3"><div class="col-md-5"><strong><a href="' + team.teamPageURL + '" class="team-name-label" title="' + team.name + '" target=_blank><span class="team-company-label sr-only">Team Name:</span> ' + team.name + '</a></strong><br><span class="team-captain-label">Coach:</span> <span class="team-captain-name">' + team.captainFirstName + ' ' + team.captainLastName + '</span></div><div class="col-md-5 mt-auto">' + ((team.companyName !== null && team.companyName !== undefined) ? '<span class="team-company-label">Company:</span> <span class="team-company-name">' + team.companyName + '</span>' : '') + '</div><div class="col-md-2 text-center"><br/>Team is full</div></div>');
+                      }
                       $('.js__search-results-container').slideDown();
                       // $('.js__search-results-container').show();
+
+                      //Trying to pull company public name
+                      // cd.getCompanyPublicName = function (companyId) {
+                      //   luminateExtend.api({
+                      //     api: 'teamraiser',
+                      //     data: 'method=getLocalCompany' +
+                      //       '&company_id=' + companyId,
+                      //     callback: {
+                      //       success: function (response) {
+                      //         console.log('company page success response', response)
+                      //       },
+
+                      //       error: function (response) {
+                      //         console.log('company page error response', response)
+                      //       }
+                      //     }
+                      //   });
+                      // };
+
+                      // cd.getCompanyPublicName(team.companyId);
 
                     } else {
                       $('.js__team-results-rows')
@@ -157,6 +192,9 @@
                   });
 
                   if (searchType === 'registration') {
+                    var totalTeams = parseInt(response.getTeamSearchByInfoResponse.totalNumberResults);
+                    $('.js__num-team-results').text((totalTeams === 1 ? '1 Result' : totalTeams + ' Results'));
+                    $('.js__num-team-results').attr("role", "status");
                     var options = {
                       valueNames: [
                         'team-name-label',
@@ -656,24 +694,30 @@
 
         // ptype page
         if ($('#participation_options_page').length > 0) {
-	    $('#part_type_campaign_banner_container').prepend(evDateYear+" ");
-	    $('#part_type_fundraising_goal_input_container').prepend("<h2>Set Your Personal Fundraising Goal!</h2>")
-            $('div#part_type_campaign_banner_container').replaceWith(function() {
-                return '<h1 class="campaign-banner-container" id="part_type_campaign_banner_container">' + $(this).html() + '</h1>';
-            });
-            $('#pt_title_container').replaceWith(function() {
-                return '<h2 id="pt_title_container" class="section-header-text">' + $(this).html() + '</h2>';
-            });
+          $('#part_type_campaign_banner_container').prepend(evDateYear+" ");
+          //Add company name
+          $('#part_type_fundraising_goal_input_container').prepend("<h2>Set Your Personal Fundraising Goal!</h2>")
+          
+          $('div#part_type_campaign_banner_container').replaceWith(function() {
+            return '<h2 class="campaign-banner-container">You are registering for: </h2><h2 class="campaign-banner-container">'+regCompanyName+'</h2>';
+          });
 
- 	    $('#disc_code_container').append("<div><small>Is your company paying for your registration fee? Please enter your company code below.</small></div>")
+          $('#pt_title_container').replaceWith(function() {
+            return '<h2 id="pt_title_container" class="section-header-text">' + $(this).html() + '</h2>';
+          });
+
+          $('#disc_code_container').append("<div><small>Is your company paying for your registration fee? Please enter your company code below.</small></div>");
+
+          $('#part_type_discount_code_section_row_container').append('<div class="my-2"><a href="mailto:'+coordEmailReg+'" target="_blank"> I don\'t know my company code</a></div>');
         }
 
         // reg page
         if ($('#registration_options_page').length > 0) {
             $('#registration_options_page .header-container .campaign-banner-container').replaceWith(function() {
-                return '<h1 class="campaign-banner-container">' + $(this).html() + '</h1>';
+                return '<h2 class="campaign-banner-container">You are registering for: </h2><h2 class="campaign-banner-container">'+regCompanyName+'</h2>';
             });
-            $('#title_container').replaceWith('<h2 class="ObjTitle" id="title_container">Tell us about you:</h2>');
+            $('#title_container').replaceWith('<h2 id="title_container">Tell us about you:</h2>');
+            $('#registration_options_page #reg_options_cons_info_extension #opt_in_label').attr("aria-label", "I would like to be emailed when a gift is made on my behalf");
         }
 
         //Rthanks
@@ -695,6 +739,7 @@
                     localStorage.companySelect = "";
                 }
             });
+            $('select[name=fr_co_list]').val(regCompanyId);
             $('.list-component-cell-column-join-link a').click(function(){
                 var compSel = $(this).closest('.list-component-row').find('.list-component-cell-column-company-name .list-component-cell-data-text').html();
                 if (compSel.indexOf("AT&amp;T") > -1 || compSel.indexOf("AT&T") > -1) {
@@ -707,87 +752,91 @@
             });
 
             $('form').validate({
-		focusInvalid: false,
-		invalidHandler: function(form, validator) {
-			if (!validator.numberOfInvalids())
-				return;
+              focusInvalid: false,
+              invalidHandler: function(form, validator) {
+                if (!validator.numberOfInvalids())
+                  return;
 
-			$('html, body').animate({
-				scrollTop: $(validator.errorList[0].element).offset().top
-			}, 500);
-		},
-		errorPlacement: function(error, element) {
-			if ($(element).attr("name") == "fr_part_radio") {
-				$('#part_type_selection_container').append(error).css({"display":"block","text-align":"left"});
-			} else {
-				if ($(element).attr("name").indexOf("donation_level_form_input") > -1) {
-					$('.enterAmt-other').after(error);
-				} else {
-					var placement = $(element).data('error');
-					if (placement) {
-						$(placement).append(error)
-					} else {
-						error.insertAfter(element);
-					}
-				}
-			}
+                $('html, body').animate({
+                  scrollTop: $(validator.errorList[0].element).offset().top
+                }, 500);
+              },
+              errorPlacement: function(error, element) {
+                if ($(element).attr("name") == "fr_part_radio") {
+                  $('#part_type_selection_container').append(error).css({"display":"block","text-align":"left"});
+                } else {
+                  if ($(element).attr("name").indexOf("donation_level_form_input") > -1) {
+                    $('.enterAmt-other').after(error);
+                  } else {
+                    var placement = $(element).data('error');
+                    if (placement) {
+                      $(placement).append(error)
+                    } else {
+                      error.insertAfter(element);
+                    }
+                  }
                 }
+              }
             });
             $.validator.addMethod("validGoal",function(value, element) {
-                    value = parseInt(value.replace("$","").replace(",",""));
-                    if ($('input[name^=fr_team_goal]') && value < 1) {
-                        return false;
-                    } else {
-                        return true;
-                    }
-                }, "The team goal should be greater than $0."
+              value = parseInt(value.replace("$","").replace(",",""));
+              if ($('input[name^=fr_team_goal]') && value < 1) {
+                  return false;
+              } else {
+                  return true;
+              }
+            }, "The team goal should be greater than $0."
             );
 
-	    $('select#fr_co_list').addClass("required").attr("title","Team Company is required");
-	    $('select#fr_co_list option:first').attr("value","");
+            $('select#fr_co_list').addClass("required").attr("title","Team Company is required");
+            $('select#fr_co_list option:first').attr("value","");
             $('#team_find_new_company_selection_container label').before('<span class="field-required" id="team_find_new_company_selection_required" aria-hidden="true"></span>');
 
-	    $('input#fr_team_goal').addClass("validGoal required");
-	    $('span.field-required').closest('.form-content').find('input, select').addClass("required");
+            $('input#fr_team_goal').addClass("validGoal required");
+            $('span.field-required').closest('.form-content').find('input, select').addClass("required");
 
-	    $('input.required').each(function(){
+            $('input.required').each(function(){
 
-		    var label = $(this).closest('.input-container').find('.input-label').html();
-		    if (label != undefined) {
-			    if (label.indexOf("Team Fundraising Goal") > -1) {
-				    $(this).attr("title","The team goal should be greater than $0.");
-			    } else {
-				    $(this).attr("title",label.replace(":","") + " is required");
-			    }
-		    }
-	    });
-
-	    $('button.next-step').click(function(){
-                if ($('select[name=fr_co_list]').length) {
-                    if ($('select[name=fr_co_list] option:selected').text().indexOf("AT&T") > -1) {
-                        console.log("found AT&T 6");
-                        localStorage.companySelect = "AT&T";
-                    } else {
-                        console.log("reset AT&T 6");
-                        localStorage.companySelect = "";
-                    }
+              var label = $(this).closest('.input-container').find('.input-label').html();
+              if (label != undefined) {
+                if (label.indexOf("Team Fundraising Goal") > -1) {
+                  $(this).attr("title","The team goal should be greater than $0.");
+                } else {
+                  $(this).attr("title",label.replace(":","") + " is required");
                 }
-                //store off personal goal in sess var by adding to action url
-                $('form[name=FriendraiserFind]').prepend('<input type="hidden" id="teamCaptainSessionVar" name="s_teamCaptain" value="">');
-                $('form[name=FriendraiserFind]').prepend('<input type="hidden" id="teamNameSessionVar" name="s_teamName" value="' + $('input#fr_team_name').val() + '">');
-                $('form[name=FriendraiserFind]').prepend('<input type="hidden" id="teamGoalSessionVar" name="s_teamGoal" value="' + $('input#fr_team_goal').val() + '">');
-		if ($('form[name=FriendraiserFind]').valid()) {
-	                return true;
-		} else {
-			return false;
-		}
+              }
             });
+
+	          $('button.next-step').click(function(){
+              if ($('select[name=fr_co_list]').length) {
+                  if ($('select[name=fr_co_list] option:selected').text().indexOf("AT&T") > -1) {
+                      console.log("found AT&T 6");
+                      localStorage.companySelect = "AT&T";
+                  } else {
+                      console.log("reset AT&T 6");
+                      localStorage.companySelect = "";
+                  }
+              }
+              //grab company name and id and set as hidden input
+              //store off personal goal in sess var by adding to action url
+              $('form[name=FriendraiserFind]').prepend('<input type="hidden" id="teamCaptainSessionVar" name="s_teamCaptain" value="">');
+              $('form[name=FriendraiserFind]').prepend('<input type="hidden" id="teamNameSessionVar" name="s_teamName" value="' + $('input#fr_team_name').val() + '">');
+              $('form[name=FriendraiserFind]').prepend('<input type="hidden" id="teamGoalSessionVar" name="s_teamGoal" value="' + $('input#fr_team_goal').val() + '">');
+                regCompanyName = $('.app_tr_registration #fr_co_list option:selected').text();
+                $('form[name=FriendraiserFind]').prepend('<input type="hidden" id="regCompanyNameSessionVar" name="s_companyName" value="' + regCompanyName + '">');
+                if ($('form[name=FriendraiserFind]').valid()) {
+                  return true;
+                } else {
+                  return false;
+                }
+                });
 
             if (regType === 'startTeam') {
     		        $('.campaign-banner-container').hide();
                 $('#team_find_section_container').addClass("col-12 col-xl-10 offset-xl-1").removeClass("section-container");
                 $('form[name=FriendraiserFind]').removeAttr('hidden');
                 $('#team_find_section_body, #team_find_section_header').show();
+                $('.js__start-team-company-name').text('My Company: ' + regCompanyName);
                 var trCompanyCount = $('#fr_co_list > option').length;
                 if (trCompanyCount < 2) {
                     // no companies associated with this TR yet. Hide the team_find_new_team_company column
@@ -800,8 +849,12 @@
                 $('#team_find_new_team_attributes').before($('#team_find_new_team_company'));
                 $('#fr_team_name').attr('title','Team Name is required');
             } else if (regType === 'joinTeam') {
-		$('.campaign-banner-container').hide();
-    		$('#team_find_new_team_attributes').before($('#team_find_new_team_company'));
+		          $('.campaign-banner-container').hide();
+              $('#team_find_new_team_attributes').before($('#team_find_new_team_company'));
+              $('.js__join-team-company-name').text('My Company: ' + regCompanyName);
+                if(regCompanyId !== "") {
+                  $('select[name=regCompanyId]').val(regCompanyId);
+                }
                 if ($('#team_find_existing').length > 0) {
 
                     // BEGIN new team find form
@@ -818,7 +871,9 @@
                         var companyId = $('#regCompanyId').val();
                         // cd.getTeams(teamName, searchType);
                         cd.getTeams(teamName, 'registration', false, firstName, lastName, companyId);
-      	                $('.js__reg-team-search-form .button').closest('.col-sm-4').after('<div class="col-sm-12 text-center pt-2">Can\'t find a team at your company? <a href="TRR/?pg=tfind&fr_id='+evID+'&fr_tm_opt=new&s_regType=startTeam">You can start one!</a></div>');
+                        if($('.regSearchResults').length === 0) {
+                          $('.js__reg-team-search-form .button').closest('.col-sm-4').after('<div class="regSearchResults col-sm-12 text-center pt-2">Can\'t find a team at your company? <a href="TRR/?pg=tfind&fr_id='+evID+'&fr_tm_opt=new&s_regType=startTeam">You can start one!</a></div>');
+                        }
                     });
 
                     cd.getCompanyList = function(frId, companyId) {
@@ -1197,13 +1252,13 @@
             $('.donation-form-fields').attr("role","radiogroup").attr({"aria-label":"Donation Amounts","aria-required":"true"});
 
             if (regType === 'startTeam') {
-                $('#part_type_additional_gift_section_header').html('<div class="bold-label" id="regDonationLabel">Show your team how it\'s done: kick start your own fundraising with a personal donation!</div>');
+                $('#part_type_additional_gift_section_header').html('<div class="bold-label" id="regDonationLabel">Your registration fee gets you in the game - your donation helps end heart disease and stroke. Add a personal donation to kickstart your own fundraising and show your team how it\'s done.</div>');
             }
             if (regType === 'joinTeam') {
-                $('#part_type_additional_gift_section_header').html('<div class="bold-label" id="regDonationLabel">Show your team how it\'s done: kick start your own fundraising with a personal donation!</div>');
+                $('#part_type_additional_gift_section_header').html('<div class="bold-label" id="regDonationLabel">Your registration fee gets you in the game - your donation helps end heart disease and stroke. Add a personal donation to kickstart your own fundraising and show your team how it\'s done.</div>');
 	        //$('#part_type_additional_gift_section_header').prepend('<div class="bold-label" id="regDonationLabel">Show your dedication and make a donation towards your goal.</div>');
             }
-            $('#part_type_additional_gift_section_header').before("<h2>Get Started with a Personal Donation</h2>");
+            $('#part_type_additional_gift_section_header').before("<h2>Add on a personal donation</h2>");
 
             $('#part_type_donation_level_input_container').wrapInner('<fieldset role="radiogroup" class="donation-form-fields" aria-label="Donation Amounts" aria-required="true" />');
             $('.donation-form-fields').prepend('<legend class="sr-only">Donate Towards Your Goal Now</legend>');
@@ -1357,91 +1412,93 @@
 
 
 	    var tshirtName = $('.input-label:contains("t-shirt")').closest('.input-container').find('select').attr("name");
-	    var rules = {};
+      var rules = {};
 	    rules['cons_password'] = {required: true,minlength: 5};
-	    rules['cons_rep_password'] = {required: true,minlength: 5,equalTo: "#cons_password"};
+      rules['cons_rep_password'] = {required: true,minlength: 5,equalTo: "#cons_password"};
+      rules['cons_zip_code'] = { zipcheck: true }
 	    //rules[optinName] = {required: '#mobile_optin:checked',minlength: 2};
 	    rules[tshirtName] = {valueNotEquals: 'NOREPLY'};
 	    var messages = {};
 	    messages['cons_password'] = {minlength: "Please enter 5 characters or more",required: "Please enter a password"};
 	    messages['cons_rep_password'] = {required: "Please confirm your password",minlength: "Please enter 5 characters or more",equalTo: "Passwords do not match. Please re-enter password."};
 	    //messages[optinName] = {required: "Mobile Opt in is selected.<br/>Please enter a mobile number."};
-	    messages[tshirtName] = {required: "Please select a t-shirt size."};
+      messages[tshirtName] = {required: "Please select a t-shirt size."};
+      messages['cons_zip_code'] = {zipcheck: "Please provide a valid zipcode."};
 
 	    $('button.previous-step').attr("formnovalidate","true");
 
 	    //hide back button and turn into link
 	    $('button#previous_step').after('<a href="javascript:window.history.go(-1)" class="step-button previous-step backBtnReg">Back</a>').hide();
 
-   	    $.validator.addMethod("valueNotEquals", function(value, element, arg){
+   	  $.validator.addMethod("valueNotEquals", function(value, element, arg){
 		return arg !== value;
 	    }, "Please select a t-shirt size");
 
 	  jQuery('#F2fRegContact').validate({
-		focusInvalid: false,
-		invalidHandler: function(form, validator) {
-			if (!validator.numberOfInvalids())
-				return;
+      focusInvalid: false,
+      invalidHandler: function(form, validator) {
+        if (!validator.numberOfInvalids())
+          return;
 
-			$('html, body').animate({
-				scrollTop: $(validator.errorList[0].element).focus().offset().top
-			}, 500);
-		},
-                rules: rules,
-                messages: messages,
-                errorElement: 'span',
-                errorPlacement: function(error, element) {
+        $('html, body').animate({
+          scrollTop: $(validator.errorList[0].element).focus().offset().top
+        }, 500);
+      },
+        rules: rules,
+        messages: messages,
+        errorElement: 'span',
 
-			if ($(element).hasClass("survivorq")) {
-        var a11yError = error.attr('role', 'alert');
-				$('fieldset.survivor_yes_no').after(a11yError);
-
-        var describedBy = error.attr('id');
-        $(element).attr('aria-describedby', describedBy);
-			} else {
-				if ($(element).hasClass("acceptRelease")) {
+      errorPlacement: function(error, element) {
+        if ($(element).hasClass("survivorq")) {
           var a11yError = error.attr('role', 'alert');
-					$('.acceptRelease').closest('.input-container').append(a11yError).css('display, block');
-
-          var describedBy = error.attr('id');
-          $(element).attr('aria-describedby', describedBy);
-				} else if ($(element).hasClass("acceptPrivacy")) {
-          var a11yError = error.attr('role', 'alert');
-					$('.acceptPrivacy').closest('.input-container').append(a11yError);
+          $('fieldset.survivor_yes_no').after(a11yError);
 
           var describedBy = error.attr('id');
           $(element).attr('aria-describedby', describedBy);
         } else {
-          if ($(element).parents('.privacyCheck').length) {
-
+          if ($(element).hasClass("acceptRelease")) {
             var a11yError = error.attr('role', 'alert');
-  					$('.privacyCheck').closest('.li').append(a11yError).css('display, block');
+            $('.acceptRelease').closest('.input-container').append(a11yError).css('display, block');
 
             var describedBy = error.attr('id');
             $(element).attr('aria-describedby', describedBy);
-
           } else if ($(element).hasClass("acceptPrivacy")) {
-            var a11yError = error.attr('role', 'alert').css('display, block');
-						$('.acceptPrivacy').closest('.input-container').append(a11yError);
+            var a11yError = error.attr('role', 'alert');
+            $('.acceptPrivacy').closest('.input-container').append(a11yError);
 
             var describedBy = error.attr('id');
             $(element).attr('aria-describedby', describedBy);
-					} else {
-						var placement = $(element).data('error');
-						if (placement) {
+          } else {
+            if ($(element).parents('.privacyCheck').length) {
+
               var a11yError = error.attr('role', 'alert');
-							$(placement).append(a11yError);
+              $('.privacyCheck').closest('.li').append(a11yError).css('display, block');
 
               var describedBy = error.attr('id');
               $(element).attr('aria-describedby', describedBy);
-						} else {
-							error.insertAfter(element).attr('role', 'alert');
+
+            } else if ($(element).hasClass("acceptPrivacy")) {
+              var a11yError = error.attr('role', 'alert').css('display, block');
+              $('.acceptPrivacy').closest('.input-container').append(a11yError);
+
               var describedBy = error.attr('id');
               $(element).attr('aria-describedby', describedBy);
-						}
-					}
-				}
-			}
+            } else {
+              var placement = $(element).data('error');
+              if (placement) {
+                var a11yError = error.attr('role', 'alert');
+                $(placement).append(a11yError);
+
+                var describedBy = error.attr('id');
+                $(element).attr('aria-describedby', describedBy);
+              } else {
+                error.insertAfter(element).attr('role', 'alert');
+                var describedBy = error.attr('id');
+                $(element).attr('aria-describedby', describedBy);
+              }
+            }
+          }
+        }
       $(error).attr('role', 'alert')
       }
 
@@ -1458,6 +1515,10 @@
             $.validator.addMethod("phonecheck", function(value) {
                return /^(((\+1)|1)?(| ))((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,3})|(\(?\d{2,3}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$/.test(value) // consists of only these
             },"Invalid phone number");
+
+            $.validator.addMethod("zipcheck", function(value) {
+              return /^\d{5}(?:-\d{4})?$/.test(value);
+            }, "Please provide a valid zipcode");
 
             $('input#cons_user_name').addClass("uncheck");
             $('input#cons_password').addClass("pwcheck");
@@ -1506,6 +1567,7 @@
             $('#progressText1, #progressText2').hide();
             $('.p-bar-step-1, .p-bar-step-2').css('background', '#f18b21');
             $('h3#title_container').replaceWith('<h1 class="ObjTitle" id="title_container">You are registering for:</h1>');
+            $('.campaign-banner-container').prepend('<h1>'+regCompanyName+'</h1>');
         }
         $('#sel_type_container').parent().addClass('aural-only');
 
@@ -1532,8 +1594,14 @@
         }
         $('#password_component_container #cons_rep_password').parent().parent().parent().addClass('left');
         $('#password_component_container #cons_password').parent().parent().parent().addClass('left');
-        $('span.survey-question-label:contains("Would you like to be recognized as a survivor?")').parent().next().children().children().children('input').wrap('<div></div>');
-        $('span.survey-question-label:contains("Would you like to be recognized as a survivor?")').parent().parent().addClass('survivor_yes_no').attr({"role":"radiogroup","aria-label":" Would you like to be recognized as a survivor?","aria-required":"true"});
+        $('span.survey-question-label:contains("Would you like to be recognized as a survivor of heart disease or stroke?")').parent().next().children().children().children('input').wrap('<div></div>');
+        $('span.survey-question-label:contains("Would you like to be recognized as a survivor of heart disease or stroke?")').parent().parent().addClass('survivor_yes_no').attr({"aria-label":" Would you like to be recognized as a survivor of heart disease or stroke?","aria-required":"true"});
+
+        //Remove next 2 lines of code after survivor question is fixed in blueprint
+        
+        $('span.survey-question-label:contains("Would you like to be recognized as a survivor?")').parent().parent().find('input').prop("checked", true);
+        $('span.survey-question-label:contains("Would you like to be recognized as a survivor?")').parent().parent().parent().parent().parent().hide();
+
         $('span.input-label:contains("SurvivorQ")').parent().parent().addClass('survivorSelect');
         $('span.input-label:contains("SurvivorQ")').parent().parent().parent().parent().hide();
 	$('.survivor_yes_no li.input-container input[type="radio"]').attr("aria-required","true");
@@ -1544,6 +1612,7 @@
         }
 
         $('.survivor_yes_no input[type=radio]').addClass("required survivorq");
+        // $('.survivorq').attr({"role":"radiogroupitem"})
 
         $('.survivor_yes_no li').click(function() {
             $('.survivor_yes_no li').removeClass('survivor_active');
@@ -1560,6 +1629,8 @@
           $(this).parent().parent().addClass('survivor_active');
         })
 
+        $('.reg-summary-part-type').prepend('<div class="confirmReg" aria-label="Confirm your registration total:">Confirm your registration total:</div>')
+
 
         /*Donation Buttons*/
         $('.donation-level-row-label').parent().parent().addClass('donation-amt');
@@ -1569,7 +1640,8 @@
         $('.donation-level-row-label-no-gift').insertBefore(jQuery('.donation-level-row-label-no-gift').parent());
         $('.donation-level-row-container.enterAmt label.donation-level-row-label').text('Other Amount');
 	$('.donation-level-row-label-no-gift').parent().addClass('notTime');
-	$('.enterAmt .input-container > span').next('input').andSelf().wrapAll("<div class='enterAmt-other hidden'></div>");
+  $('.enterAmt .input-container > span').next('input').andSelf().wrapAll("<div class='enterAmt-other hidden'></div>");
+  // $('.donation-level-row-container').attr('tabindex', '0');
 
         $(".donation-level-amount-text").each(function() {
             $(this).text($(this).text().replace(".00", ""));
@@ -1659,9 +1731,9 @@
                     }
                 });
 		if (isProd) {
-	                $('<img width="1" height="1" style="display:none;" src="https://www2.heart.org/site/SPageServer?pagename=reus_fd_mobileopt_add_group&group_id=' + $('body').data("group-id") + '&pgwrap=n" id="mobileopt_add_group">').appendTo($('#fr_reg_summary_page'));
+	                $('<img width="1" height="1" style="display:none;" src="https://www2.heart.org/site/SPageServer?pagename=reus_leaders_mobileopt_add_group&group_id=' + $('body').data("group-id") + '&pgwrap=n" id="mobileopt_add_group">').appendTo($('#fr_reg_summary_page'));
 		} else {
-	                $('<img width="1" height="1" style="display:none;" src="https://dev2.heart.org/site/SPageServer?pagename=reus_fd_mobileopt_add_group&group_id=' + $('body').data("group-id") + '&pgwrap=n" id="mobileopt_add_group">').appendTo($('#fr_reg_summary_page'));
+	                $('<img width="1" height="1" style="display:none;" src="https://dev2.heart.org/site/SPageServer?pagename=reus_leaders_mobileopt_add_group&group_id=' + $('body').data("group-id") + '&pgwrap=n" id="mobileopt_add_group">').appendTo($('#fr_reg_summary_page'));
 		}
     	    }
         }
@@ -1825,7 +1897,7 @@
             _gaq.push(['t2._trackEvent', 'Register', 'click', 'Search for a team']);
         });
         jQuery("#friend_potion_next").blur(function() {
-            _gaq.push(['t2._trackEvent', 'Register', 'click', 'Start a team']);
+            _gaq.push(['t2._trackEvent', 'Register', 'click', 'geteam']);
         });
         jQuery("a:contains('Join a Team')").blur(function() {
             _gaq.push(['t2._trackEvent', 'SwitchRegister', 'click', 'Join a team']);
@@ -1987,6 +2059,14 @@
                 jQuery(this).find('.list-component-cell-column-join-link .list-component-cell-data-text a').after('<a href="' + join_link + '" style="color:#cd181d!important;background:white;background-color:white !important;border:2px solid #cd181d!important;margin:5px auto 0;display:block;width:132px" target="_blank">View</a>');
             });
             //jQuery('.list-component-cell-column-join-link .list-component-cell-data-text a').css('display','block');
+        }
+
+
+        // ptype page
+        if ($('#participation_options_page').length > 0) {
+          //Removing ID from hidden participation type fields
+          $("input[name*='part_type_goal_'], input[name*='part_type_for_fundraising_']").removeAttr("id");
+          console.log('hidden input code is running')
         }
 
     });
@@ -2217,6 +2297,9 @@
               $('.js--edit-ptype').attr('aria-label', 'Edit your fundraising goal').html('Edit your fundraising goal');
               if ( $('.team-status').html() === 'You are Starting a Team') {
                 $('#another_button').remove();
+              }
+              if($('.contact-info-middle').text() !== ""){
+                $('.contact-info-middle').addClass('regMiddleName');
               }
             }
 
