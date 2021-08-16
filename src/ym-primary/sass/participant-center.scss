@@ -236,26 +236,11 @@ a.ym-pc-dashboard-download-certificates {
 	    font-size: 24px;
 	}
    }
-   .agentk {
-     max-width: 25%;
-     margin-bottom: 10px;
-     width: 100%;
-   }
    .ym-pc-dashboard-badges-header {
      font-size: 16px;
      text-align: center;
      margin-bottom: 20px;
 
-     img {
-	margin-top: -35px;
-	max-width: 70px;
-	margin-bottom: 20px;
-     }
-     p {
-	display: block;
-	color: indigo;
-	margin:0 auto;
-     }
      em {
   	font-size:16px;
      }
@@ -264,17 +249,6 @@ a.ym-pc-dashboard-download-certificates {
 	 margin-bottom: 16px;
 	 font-weight:bold;
      }
-   }
-   .ym-pc-dashboard-badges-icons {
- 	position: absolute;
-	top: 18%;
-	left: 0px;
-	img {
-	    margin: 0 0 10px;
-	    max-width: none;
-	    height: 100px;
-	    width: 100px;
-	}
    }
 }
 
