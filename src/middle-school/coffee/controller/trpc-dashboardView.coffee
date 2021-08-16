@@ -1025,4 +1025,37 @@ angular.module 'trPcControllers'
         , (response) ->
           # TODO
       refreshFinnsMission()
+
+      $scope.mouseover = (prize, xPos, yPos, sel, offset) ->
+        document.getElementById("tRct").style.fill = "#206EBA"
+        document.getElementById("tRct").x.baseVal.value = xPos
+        document.getElementById("tRct").y.baseVal.value = yPos
+
+        jQuery("#tTip div").attr("aria-description",$scope.prizes[prize].hover_msg).html($scope.prizes[prize].hover_msg)
+        document.getElementById("tTip").setAttribute('x',xPos)
+        document.getElementById("tTip").setAttribute('y',yPos)
+
+        document.getElementById("tTri").setAttribute('points',(parseInt(xPos)+53+parseInt(offset)) + ' ' + (parseInt(yPos)+60) + ' ' + (parseInt(xPos)+62+parseInt(offset)) + ' ' + (parseInt(yPos)+60) + ' ' + (parseInt(xPos)+58+parseInt(offset)) + ' ' + (parseInt(yPos)+66))
+
+      $scope.mouseout = ->
+        document.getElementById("tRct").x.baseVal.value = -99999
+        jQuery("#tTip div").html("")
+        document.getElementById("tTri").setAttribute('points','0 0 0 0 0 0')
+
+
+      $scope.mouseoverm = (prize, xPos, yPos, sel, offset) ->
+        document.getElementById("tRctm").style.fill = "#206EBA"
+        document.getElementById("tRctm").x.baseVal.value = xPos
+        document.getElementById("tRctm").y.baseVal.value = yPos
+
+        jQuery("#tTipm div").attr("aria-description",$scope.prizes[prize].hover_msg).html($scope.prizes[prize].hover_msg)
+        document.getElementById("tTipm").setAttribute('x',xPos)
+        document.getElementById("tTipm").setAttribute('y',yPos)
+
+        document.getElementById("tTrim").setAttribute('points', (parseInt(xPos) + 83 + parseInt(offset)) + ' ' + (parseInt(yPos) + 100) + ' ' + (parseInt(xPos) + 97 + parseInt(offset)) + ' ' + (parseInt(yPos) + 100) + ' ' + (parseInt(xPos) + 92 + parseInt(offset)) + ' ' + (parseInt(yPos) + 106))
+
+      $scope.mouseoutm = ->
+        document.getElementById("tRctm").x.baseVal.value = -99999
+        jQuery("#tTipm div").html("")
+        document.getElementById("tTrim").setAttribute('points','0 0 0 0 0 0')
   ]
