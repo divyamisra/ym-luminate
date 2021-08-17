@@ -837,9 +837,9 @@ angular.module 'trPcControllers'
 
             if prize.status != 0
               $scope.prizesEarned++
-              
-          if $scope.prizes[7].earned 
-            $scope.moveMoreFlag.message = $scope.prizes[7].status
+            #get move more flag status  
+            if prize.id == 9 
+              $scope.moveMoreFlag.message = prize.status
 
         , (response) ->
           # TODO
