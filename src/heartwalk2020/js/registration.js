@@ -1386,7 +1386,7 @@
                 localStorage.hfg = jQuery('label:contains(Healthy For Good)').prev('input:checked').length;
                 localStorage.hfg_firstname = jQuery('input[name=cons_first_name]').val();
                 localStorage.hfg_email = jQuery('input[name=cons_email]').val();
-	        localStorage.mobile_optin = jQuery('input[name=mobile_optin]:checked').val();
+                localStorage.mobile_optin = jQuery('input[name=mobile_optin]:checked').val();
                 if (jQuery('input[name=pg]').val() == "reg") {
                     if (jQuery('form').valid()) {
                         return true;
@@ -1556,7 +1556,7 @@
 
 
                $('button.next-step').click(function(){
-
+                 // Add additional amount to local storage for Double the Donation 
                 if ($('.additional-gift-amount').text() != '$0.00'){
                     console.log('there is a gift value');
                     var addlGiftAmt = $('.additional-gift-amount').text();
