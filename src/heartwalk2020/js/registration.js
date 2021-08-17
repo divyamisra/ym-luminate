@@ -1232,7 +1232,8 @@
                     }
                 }
                 if ($('.donation-level-container').find('.donation-level-row-container.active').length > 0 || $('.donation-level-container').find('.donation-level-row-container.active').hasClass('notTime') === false) {
-
+                  // If the participant chooses to make a gift, check for the Double the Donation field
+                  // and record the chosen company in local storage if it exists
                   if ($('input[name="doublethedonation_company_id"]').val().length > 0){
                       console.log('found dtd value');
                       var dtdCoId = $('input[name="doublethedonation_company_id"]').val();
