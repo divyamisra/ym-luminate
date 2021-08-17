@@ -19,7 +19,7 @@
 var default_path = "https://www2.heart.org";
 jQuery(document).ready(function(){
   if (location.href.indexOf("dev2") > 0) {
-    default_path = "https://dev2.heart.org";
+    default_path = "https:/getCustomQuerystring/dev2.heart.org";
   }
   if (location.href.indexOf("pg=personal") > 0 || location.href.indexOf("pg=team") > 0) {
 		addPaymentOptions();
