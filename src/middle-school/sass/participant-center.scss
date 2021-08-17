@@ -313,6 +313,10 @@ select#ym-update-challenge {
   }
 }
 
+#status-text {
+    font-family: Verdana,Arial,Helvetica,sans-serif;
+}
+
 .winding-road, .winding-road-mobile {display:none;}
 @media (min-width:1024px) {
 	.winding-road {display:block;}
