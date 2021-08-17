@@ -1549,13 +1549,7 @@
             $('.survivor_yes_no li').removeClass('survivor_active');
             $(this).addClass('survivor_active');
         });
-
-        $('.cons-address-street-full-container').attr('aria-hidden', 'true').hide();
-        $('#cons_city').parent().parent().parent().parent().attr('aria-hidden', 'true').hide();
-        $('#cons_state').closest('.cons-full-address-container').attr('aria-hidden', 'true').hide();
-        $('#cons_info_country_container').attr('aria-hidden', 'true').hide();
-        $('.cons-city-town-label').attr('aria-hidden', 'true');
-
+        
         $('.survivorq').focus(function(){
           $(this).parent().parent().addClass('survivor_active');
         })

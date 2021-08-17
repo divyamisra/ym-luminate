@@ -404,7 +404,7 @@
                             }
                             $('.dataTables_length').addClass('bs-select');
                             //add call to hook donate button with payment type selections
-                            addPaymentTypesOnSearch();
+                            //addPaymentTypesOnSearch();
                             $('.js--participant-results-container').removeAttr('hidden');
 
                             $('.js--more-participant-results').on('click', function (e) {
@@ -491,7 +491,7 @@
                             }
                             $('.dataTables_length').addClass('bs-select');
                             //add call to hook donate button with payment type selections
-                            addPaymentTypesOnSearch();
+                            //addPaymentTypesOnSearch();
                             $('.js--team-results-container').removeAttr('hidden');
 
                         }
@@ -1636,7 +1636,9 @@
                             $('.js--personal-don-form').removeClass('hidden');
                             var defaultDonUrl = $('.js--personal-don-submit').data('don-url');
                             var finalDonUrl = null;
-                            $('.js--personal-don-submit').attr('data-final-don-url', defaultDonUrl);
+                            var levelID = $('label.active').data('level-id');
+                            finalDonUrl = defaultDonUrl + '&set.DonationLevel=' + levelID;
+                            $('.js--personal-don-submit').attr('href', finalDonUrl);
 
                             // define donation widget button behavior
                             $('.js--personal-don-form label').on('click', function () {
@@ -1646,7 +1648,7 @@
                                 $(this).addClass('active');
                                 // $('.js--don-amt').text($(this).text());
                                 finalDonUrl = defaultDonUrl + '&set.DonationLevel=' + $(this).data('level-id');
-                                $('.js--personal-don-submit').attr('data-final-don-url', finalDonUrl);
+                                $('.js--personal-don-submit').attr('href', finalDonUrl);
                                 $('.js--personal-amt-other-wrap').hide();
                                 $('.information-box .donation-amounts .custom-amount').attr("style","max-height: 50px;");
                             });
@@ -1836,7 +1838,7 @@
                                 // cd.initializeTeamRosterTable();
 
                                 //add call to hook donate button with payment type selections
-                                addPaymentTypesOnSearch();
+                                //addPaymentTypesOnSearch();
                                 $('.js--more-participant-results').on('click', function (e) {
                                     e.preventDefault();
                                     $('#team-roster tr').removeClass('d-none');
@@ -2229,7 +2231,7 @@
                 }, 250);
 
                 //add call to hook donate button with payment type selections
-                $('a:contains(Donat)').on('click', function (e) {
+                /*$('a:contains(Donat)').on('click', function (e) {
                     e.preventDefault();
                     if (!$(this).hasClass('js--team-member-donate')) {
                         if ($(this).next('.paymentSelType').length > 0) {
@@ -2251,7 +2253,7 @@
                             $(this).after(html);
                         }
                     }
-                });
+                });*/
 
             }
 
