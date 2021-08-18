@@ -333,6 +333,7 @@ angular.module 'ahaLuminateApp'
           "SOCKS-22"
           "POPPER-22"
           "SPEAKERS-22"
+          "CHARM-22"
         ]
 
       giftLevels_noninstant: -> 
