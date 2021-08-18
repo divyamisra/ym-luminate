@@ -218,7 +218,7 @@ angular.module 'ahaLuminateApp'
             "video": ""
           }
           {
-            "id":"CLIPLEE-25"
+            "id":"CLIPLEE-22"
             "name":"Lee"
             "status":0
             "level":"$25"
