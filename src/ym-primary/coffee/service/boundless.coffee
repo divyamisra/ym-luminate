@@ -236,15 +236,6 @@ angular.module 'ahaLuminateApp'
             "video": "https://vimeo.com/americanheartassociation/review/453777085/ab8611f4ce"
           }
           {
-            "id":"CHARM-22"
-            "name":"Mystery Gift"
-            "status":0
-            "level":"Every $50"
-            "instant": 2
-            "online_only":0
-            "video": ""
-          }
-          {
             "id":"KHC"
             "name":"T-Shirt"
             "status":0
@@ -312,6 +303,15 @@ angular.module 'ahaLuminateApp'
             "name":"Finn's Lifesaver"
             "status":0
             "level":"Complete Finn's Mission"
+            "instant": 2
+            "online_only":0
+            "video": ""
+          }
+          {
+            "id":"CHARM-22"
+            "name":"Mystery Gift"
+            "status":0
+            "level":"Every $50"
             "instant": 2
             "online_only":0
             "video": ""
@@ -384,6 +384,7 @@ angular.module 'ahaLuminateApp'
             "CLIPLEE-22"
             "CLIPFLASH-22"
             "KHC"
+            "CHARM-22"
           ]
           "Green $75-$99":[
             "KWB-22"
@@ -394,6 +395,7 @@ angular.module 'ahaLuminateApp'
             "CLIPFLASH-22"
             "KHC"
             "PBALL-22"
+            "CHARM-22"
           ]
           "Blue $100-$199":[
             "KWB-22"
@@ -405,6 +407,7 @@ angular.module 'ahaLuminateApp'
             "KHC"
             "PBALL-22"
             "CLIPBANKS-22"
+            "CHARM-22"
           ]
           "Red $200-$249":[
             "KWB-22"
@@ -417,6 +420,7 @@ angular.module 'ahaLuminateApp'
             "PBALL-22"
             "CLIPBANKS-22"
             "CLIPAMOR-22"
+            "CHARM-22"
           ]
           "Orange $250-$499":[
             "KWB-22"
@@ -430,6 +434,7 @@ angular.module 'ahaLuminateApp'
             "CLIPBANKS-22"
             "CLIPAMOR-22"
             "SOCKS-22"
+            "CHARM-22"
           ]
           "Brown $500-$999":[
             "KWB-22"
@@ -444,6 +449,7 @@ angular.module 'ahaLuminateApp'
             "CLIPAMOR-22"
             "SOCKS-22"
             "POPPER-22"
+            "CHARM-22"
           ]
           "Yellow $1000+":[
             "KWB-22"
@@ -459,6 +465,7 @@ angular.module 'ahaLuminateApp'
             "SOCKS-22"
             "POPPER-22"
             "SPEAKERS-22"
+            "CHARM-22"
           ]
         }
       giftLevels_noninstant_earned: -> 
