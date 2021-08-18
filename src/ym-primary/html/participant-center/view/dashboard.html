@@ -650,14 +650,12 @@
               <img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/prizes2022/{{upcomingGift.prize_sku}}.png" alt="{{upcomingGift.prize_label}}">
 	      <div class="play-circle"><i class="fa fa-play"></i></div>
               <div class="ym-pc-dashboard-standard-gift-earned" ng-if="upcomingGift.prize_status">
-                 <h4 class="gift-title" ng-bind-html="upcomingGift.earned_title"></h4>
-                 <div class="gift-subtitle1"><span ng-bind-html="upcomingGift.earned_subtitle1"></span></div>
-                 <div class="gift-subtitle2"><span ng-bind-html="upcomingGift.earned_subtitle2"></span></div>
+                 <h4 class="gift-title" ng-bind-html="upcomingGift.prize_label"></h4>
+                 <div class="gift-subtitle1"><span ng-bind-html="upcomingGift.prize_level"></span> Raised</div>
               </div>
-              <div class="ym-pc-dashboard-standard-gift-notearned" ng-if="!upcomingGift.prize_status">
-                 <h4 class="gift-title">Up next...</h4>
+              <div class="ym-pc-dashboard-standard-gift-notearned" ng-if="!standardGift.prize_status">
+                 <h4 class="gift-title" ng-bind-html="upcomingGift.prize_label"></h4>
                  <div class="gift-subtitle1">Raise <span ng-bind-html="upcomingGift.prize_level"></span></div>
-                 <div class="gift-subtitle2"><span ng-bind-html="upcomingGift.earned_subtitle3"></span></div>
               </div>
               <div class="ym-pc-dashboard-standard-gifts-text">
                 <span class="sr-only" ng-if="upcomingGift.prize_status">(earned)</span><span class="sr-only" ng-if="!upcomingGift.prize_status">(not yet earned)</span>
