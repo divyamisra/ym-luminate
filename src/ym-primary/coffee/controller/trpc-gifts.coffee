@@ -56,24 +56,24 @@ angular.module 'trPcControllers'
                       status = 1
                       return false
                     return
-              if prevstatus == 1 and status == 0
-                $scope.standardGifts[$scope.standardGifts.length-1].lastItem = 1
-              $scope.standardGifts.push
-                prize_label: gift.name
-                prize_sku: gift.id
-                prize_video: gift.video
-                prize_status: status
-                lastItem: lastItem
-                randomID: getRandomID()
-                prize_level: gift.level
-                earned_title: gift.earned_title
-                earned_subtitle1: gift.earned_subtitle1
-                earned_subtitle2: gift.earned_subtitle2
-                earned_subtitle3: gift.earned_subtitle3
-              $scope.giftStatus = status
-              prevstatus = status
-              if status == 1
-                $scope.giftsEarned++
+                if prevstatus == 1 and status == 0
+                  $scope.standardGifts[$scope.standardGifts.length-1].lastItem = 1
+                $scope.standardGifts.push
+                  prize_label: gift.name
+                  prize_sku: gift.id
+                  prize_video: gift.video
+                  prize_status: status
+                  lastItem: lastItem
+                  randomID: getRandomID()
+                  prize_level: gift.level
+                  earned_title: gift.earned_title
+                  earned_subtitle1: gift.earned_subtitle1
+                  earned_subtitle2: gift.earned_subtitle2
+                  earned_subtitle3: gift.earned_subtitle3
+                $scope.giftStatus = status
+                prevstatus = status
+                if status == 1
+                  $scope.giftsEarned++
 
             if $scope.giftStatus == 1
               $scope.standardGifts[$scope.standardGifts.length-1].lastItem = 1
