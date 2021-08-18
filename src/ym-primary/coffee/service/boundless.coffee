@@ -319,8 +319,8 @@ angular.module 'ahaLuminateApp'
         ]
 
       giftLevels_instant: -> 
-				[
-					{
+				{
+					"levels": [
 						"KWB-22"
 						"CLIPCREW-22"
 						"CLIPSKY-22"
@@ -334,20 +334,20 @@ angular.module 'ahaLuminateApp'
 						"SOCKS-22"
 						"POPPER-22"
 						"SPEAKERS-22"
-					}
-				]
+					]
+				}
 
       giftLevels_noninstant: -> 
-				[
-					{
+				{
+					"levels": [
 						"LVL1WB-18"
 						"JR-22"
 						"KHC"
 						"SOCKS-22"
 						"POPPER-22"
 						"SPEAKERS-22"
-					}
-				]
+					]
+				}
 
       giftLevels_instant_earned: -> 
         {
