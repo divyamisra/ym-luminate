@@ -126,6 +126,12 @@
             <span>School Goal Challenge Completed</span> <span class="sr-only">(earned)</span>
           </div>
         </div>
+        <div class="ym-badges__item" ng-if="personalProgress.amountRaised > 25000" ng-cloak>
+          <div class="ym-badge__item" ng-cloak>
+            <img class="img-responsive" ng-src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/ym-primary/image/fy22/badge-raised-250.png" alt="You've raised more than $250.">
+            <span>Raised over $250</span> <span class="sr-only">(earned)</span>
+          </div>
+        </div>
         <div class="clearfix"></div>
       </div>
       <div class="ym-my-challenge ym-secondary-medium-color" ng-if="challengeId != null" ng-cloak>
