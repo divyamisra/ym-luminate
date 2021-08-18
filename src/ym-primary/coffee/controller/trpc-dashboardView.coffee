@@ -1039,7 +1039,7 @@ angular.module 'trPcControllers'
               if student.has_bonus and (gift.instant == 1 or gift.instant == 2) or !student.has_bonus and (gift.instant == 0 or gift.instant == 2)
                 status = 0
                 lastItem = 0
-                if jQuery.inArray(gift.id,giftLevels[current_level]) isnt -1
+                if jQuery.inArray(gift.id,giftLevelsEarned[current_level]) isnt -1
                   status = 1
                   if gift.online_only
                     status = 0
