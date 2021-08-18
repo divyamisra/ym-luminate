@@ -39,23 +39,28 @@ angular.module 'trPcControllers'
         angular.forEach students, (student) ->
           if student.has_bonus
              giftLevels = BoundlessService.giftLevels_instant()
+             giftLevelsEarned = BoundlessService.giftLevels_instant_earned()
           else
              giftLevels = BoundlessService.giftLevels_noninstant()
+             giftLevelsEarned = BoundlessService.giftLevels_noninstant_earned()
+              
           current_level = if student.current_level != null then student.current_level else '$0'
           prevstatus = 0
           angular.forEach defaultStandardGifts, (gift, key) ->
-            if student.has_bonus and (gift.instant == 1 or gift.instant == 2) or !student.has_bonus and (gift.instant == 0 or gift.instant == 2)
-              status = 0
-              lastItem = 0
-              if jQuery.inArray(gift.id,giftLevels[current_level]) isnt -1
-                status = 1
-                if gift.online_only
-                  status = 0
-                  jQuery.each student.prizes, (item, key) ->
-                    if key.prize_sku.indexOf(gift.id) isnt -1
-                      status = 1
-                      return false
-                    return
+            #check if gift is part of gifts allowed to receive
+            if jQuery.inArray(gift.id,giftLevels.levels) is 1
+              if student.has_bonus and (gift.instant == 1 or gift.instant == 2) or !student.has_bonus and (gift.instant == 0 or gift.instant == 2)
+                status = 0
+                lastItem = 0
+                if jQuery.inArray(gift.id,giftLevelsEarned[current_level]) isnt -1
+                  status = 1
+                  if gift.online_only
+                    status = 0
+                    jQuery.each student.prizes, (item, key) ->
+                      if key.prize_sku.indexOf(gift.id) isnt -1
+                        status = 1
+                        return false
+                      return
                 if prevstatus == 1 and status == 0
                   $scope.standardGifts[$scope.standardGifts.length-1].lastItem = 1
                 $scope.standardGifts.push
@@ -75,8 +80,8 @@ angular.module 'trPcControllers'
                 if status == 1
                   $scope.giftsEarned++
 
-            if $scope.giftStatus == 1
-              $scope.standardGifts[$scope.standardGifts.length-1].lastItem = 1
+              if $scope.giftStatus == 1
+                $scope.standardGifts[$scope.standardGifts.length-1].lastItem = 1
       , (response) ->
         # TODO
 
