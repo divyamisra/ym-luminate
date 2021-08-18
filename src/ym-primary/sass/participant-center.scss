@@ -643,7 +643,7 @@ div[id^="taTextElement"]:focus {
 	animation-fill-mode: both; 
 }
 
-@-webkit-keyframes wiggle { 
+@-webkit-keyframes wiggle2 { 
     0% { -webkit-transform: skew(0deg, 0deg);}
     10% { -webkit-transform: skew(-1deg, -1deg); }
     20% { -webkit-transform: skew(1.5deg, 1.5deg); }
@@ -657,7 +657,7 @@ div[id^="taTextElement"]:focus {
     100% { -webkit-transform: skew(0deg, 0deg); } 
 }
 
-@keyframes wiggle { 
+@keyframes wiggle2 { 
     0% { transform: skew(0deg, 0deg); } 
     10% { transform: skew(-1deg, -1eg); } 
     20% { transform: skew(1.5deg, 1.5deg); } 
@@ -671,9 +671,9 @@ div[id^="taTextElement"]:focus {
     100% { transform: skew(0deg, 0deg); } 
  }
 
-.wiggle { 
-    -webkit-animation-name: wiggle;
-    animation-name: wiggle; 
+.wiggle2 { 
+    -webkit-animation-name: wiggle2;
+    animation-name: wiggle2; 
     -webkit-animation-timing-function: ease-in;
     animation-timing-function: ease-in;
     transform-origin: center;
@@ -684,7 +684,7 @@ div[id^="taTextElement"]:focus {
     transform: rotate(-20deg);
 }
 
-.animated.wiggle { 
+.animated.wiggle2 { 
     -webkit-animation-duration: 3s; 
     animation-duration: 3s;
 }
