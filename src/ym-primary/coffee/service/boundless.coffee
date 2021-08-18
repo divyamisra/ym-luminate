@@ -223,7 +223,7 @@ angular.module 'ahaLuminateApp'
             "status":0
             "level":"$25"
             "instant": 1
-            "online_only":1
+            "online_only":0
             "video": ""
           }
           {
@@ -286,7 +286,7 @@ angular.module 'ahaLuminateApp'
             "status":0
             "level":"$200"
             "instant": 2
-            "online_only":1
+            "online_only":0
             "video": "https://vimeo.com/americanheartassociation/review/453778802/c7317f5ef3"
           }
           {
