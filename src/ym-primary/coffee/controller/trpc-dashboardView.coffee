@@ -1016,6 +1016,7 @@ angular.module 'trPcControllers'
               
           current_level = if student.current_level != null then student.current_level else '$0'
           prevstatus = 0
+          giftsInList = 0
           angular.forEach defaultStandardGifts, (gift, key) ->
             #check if gift is part of gifts allowed to receive
             if jQuery.inArray(gift.id,giftLevels) isnt -1
