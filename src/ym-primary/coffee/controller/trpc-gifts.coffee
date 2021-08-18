@@ -48,7 +48,7 @@ angular.module 'trPcControllers'
           prevstatus = 0
           angular.forEach defaultStandardGifts, (gift, key) ->
             #check if gift is part of gifts allowed to receive
-            if jQuery.inArray(gift.id,giftLevels) is 1
+            if jQuery.inArray(gift.id,giftLevels) isnt -1
               if student.has_bonus and (gift.instant == 1 or gift.instant == 2) or !student.has_bonus and (gift.instant == 0 or gift.instant == 2)
                 status = 0
                 lastItem = 0
