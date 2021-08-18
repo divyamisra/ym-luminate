@@ -139,16 +139,6 @@
 					 <text fill="#fff" font-size="18" font-weight="bold"><tspan x="126" y="135">{{prizes.length}}</tspan></text>
 					 <text fill="#fff" font-size="14" font-weight="bold"><tspan x="57" y="155">steps complete!</tspan></text>
 				  </g>
-				  <g ng-if="prizesEarned != prizes.length" ng-cloak>
-					 <path fill="url(#finn)" d="M559 35v101h101v-101h-101z"></path>
-					 <path fill="url(#captain)" d="M433 226v195h225v-195h-225z"></path>
-				  </g>
-				  <g ng-if="prizesEarned == prizes.length" ng-cloak>
-					 <path fill="url(#finn-finish)" d="M529 35v90h130v-90h-130z" class="animated wobble"></path>
-					 <path fill="url(#captain-bubble)" d="M445 230v195h225v-195h-225z" class="animated wiggle"></path>
-					 <path fill="url(#captain-arms-finish)" d="M473 290v98h225v-98h-225z" class="animated wiggle"></path>
-					 <path fill="url(#captain-finish)" d="M518 250v195h225v-195h-225z"></path>
-				  </g>
 		 		  <g transform="rotate(-10 40 182)" id="online-registration" role="button" tabindex="0" ng-focus="mouseover(0, 0, 110, this, -20)" ng-blur="mouseout()" aria-label="{{prizes[0].aria_label}}">
 				    <path class="badge-path" d="M10 174v53h53v-53x-53z" fill="url(#1_delivered)" ng-mouseover="mouseover(0, 0, 110, this, -20)" ng-mouseout="mouseout()" aria-labelledby="online-registration"></path>
    			  </g>
@@ -196,6 +186,16 @@
 					  <a role="button" xlink:href="" ng-href="{{prizes[9].final_url}}" title="Stroke Quiz" ng-focus="mouseover(9, 535, 110, this, 20)" ng-blur="mouseout()" aria-labelledby="stroke-quiz">
 						 <path class="badge-path" d="M595 174v53h53v-53x-53z" fill="url(#10{{(prizes[9].earned) ? '_delivered' : '_earned'}})" ng-mouseover="mouseover(9, 535, 110, this, 30)" ng-mouseout="mouseout()"/> 
 				  	  </a>
+				  </g>
+				  <g ng-if="prizesEarned != prizes.length" ng-cloak>
+					 <path fill="url(#finn)" d="M559 35v101h101v-101h-101z"></path>
+					 <path fill="url(#captain)" d="M433 226v195h225v-195h-225z"></path>
+				  </g>
+				  <g ng-if="prizesEarned == prizes.length" ng-cloak>
+					 <path fill="url(#finn-finish)" d="M529 35v90h130v-90h-130z" class="animated wobble"></path>
+					 <path fill="url(#captain-bubble)" d="M445 230v195h225v-195h-225z" class="animated wiggle2"></path>
+					 <path fill="url(#captain-arms-finish)" d="M473 290v98h225v-98h-225z" class="animated wiggle2"></path>
+					 <path fill="url(#captain-finish)" d="M518 250v195h225v-195h-225z"></path>
 				  </g>
 				</g>
 				<g id="tooltip" font-size="25">
@@ -380,8 +380,8 @@
 				  </g>
 					<g ng-if="prizesEarned == prizes.length" ng-cloak>
 					 <path aria-hidden="true" fill="url(#finnm-finish)" d="M450 85v200h200v-200h-200z" class="animated wobble"></path>
-					 <path aria-hidden="true" fill="url(#captainm-bubble)" d="M515 750v290h310v-290h-310z" class="animated wiggle"></path>
-					 <path aria-hidden="true" fill="url(#captainm-arms-finish)" d="M390 923v125h250v-125h-250z" class="animated wiggle"></path>
+					 <path aria-hidden="true" fill="url(#captainm-bubble)" d="M515 750v290h310v-290h-310z" class="animated wiggle2"></path>
+					 <path aria-hidden="true" fill="url(#captainm-arms-finish)" d="M390 923v125h250v-125h-250z" class="animated wiggle2"></path>
 				   <path aria-hidden="true" fill="url(#captainm-finish)" d="M400 821v290h310v-290h-310z"></path>
 				  </g>
 				</g>
