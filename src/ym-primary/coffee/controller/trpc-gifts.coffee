@@ -39,7 +39,7 @@ angular.module 'trPcControllers'
       BoundlessService.getBadges $scope.frId + '/' + $scope.consId
         .then (response) ->
           $scope.badges = response.data.prizes
-          angular.forEach badges, (badge) ->
+          angular.forEach $scope.badges, (badge) ->
             if badge.status != 0
               $scope.badgesEarned++
           
