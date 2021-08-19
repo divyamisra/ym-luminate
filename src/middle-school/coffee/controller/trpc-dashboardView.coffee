@@ -1025,6 +1025,14 @@ angular.module 'trPcControllers'
           # TODO
       refreshFinnsMission()
 
+      $scope.showMobileApp = ->
+        $scope.viewMobileApp = $uibModal.open
+          scope: $scope
+          templateUrl: APP_INFO.rootPath + 'dist/middle-school/html/participant-center/modal/viewMobileApp.html'
+
+      $scope.cancelMobileApp = ->
+        $scope.viewMobileApp.close()
+        
       $scope.mouseover = (prize, xPos, yPos, sel, offset) ->
         document.getElementById("tRct").style.fill = "#800971"
         document.getElementById("tRct").x.baseVal.value = xPos
