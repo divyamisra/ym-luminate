@@ -651,11 +651,11 @@
 	      <div class="play-circle"><i class="fa fa-play"></i></div>
 	      <div class="ym-pc-dashboard-standard-gift-earned" ng-if="upcomingGift.prize_status">
                  <h4 class="gift-title" ng-bind-html="upcomingGift.prize_label"></h4>
-                 <div class="gift-subtitle1"><span ng-bind-html="upcomingGift.prize_level"></span> Raised</div>
+                 <div class="gift-subtitle1"><span ng-bind-html="upcomingGift.msg_earned"></span></div>
               </div>
               <div class="ym-pc-dashboard-standard-gift-notearned" ng-if="!upcomingGift.prize_status">
                  <h4 class="gift-title" ng-bind-html="upcomingGift.prize_label"></h4>
-                 <div class="gift-subtitle1">Raise <span ng-bind-html="upcomingGift.prize_level"></span></div>
+                 <div class="gift-subtitle1"><span ng-bind-html="upcomingGift.msg_unearned"></span></div>
               </div>
               <div class="ym-pc-dashboard-standard-gifts-text">
                 <span class="sr-only" ng-if="upcomingGift.prize_status">(earned)</span><span class="sr-only" ng-if="!upcomingGift.prize_status">(not yet earned)</span>
