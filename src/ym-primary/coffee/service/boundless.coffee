@@ -173,11 +173,11 @@ angular.module 'ahaLuminateApp'
         [
           {
             "id":"KWB-22"
-            "name":"Registration"
+            "name":"Wristband"
             "status":0
             "level":"Wristband"
-            "msg_earned":"Wristband"
-            "msg_unearned":""
+            "msg_earned":"Registration Completed"
+            "msg_unearned":"Complete Registration"
             "instant": 1
             "online_only":0
             "video": ""
