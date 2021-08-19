@@ -842,7 +842,8 @@ angular.module 'trPcControllers'
             #get move more flag status  
             if prize.id == 9 
               $scope.moveMoreFlag.message = prize.status
-
+          $scope.buildGiftCatalog()
+          
         , (response) ->
           # TODO
       #$scope.getMoveMoreFlag()
@@ -1001,100 +1002,102 @@ angular.module 'trPcControllers'
 
       defaultStandardGifts = BoundlessService.defaultStandardGifts()
 
-      $scope.upcomingGifts = []
-      $scope.giftsEarned = 0
-      $scope.totalGifts = 0
+      $scope.buildGiftCatalog = ->
+        $scope.upcomingGifts = []
+        $scope.giftsEarned = 0
+        $scope.totalGifts = 0
+        BoundlessService.getPrizes $scope.consId
+        .then (response) ->
+          students = response.data.student
+          angular.forEach students, (student) ->
+            if student.has_bonus
+               giftLevels = BoundlessService.giftLevels_instant()
+               giftLevelsEarned = BoundlessService.giftLevels_instant_earned()
+            else
+               giftLevels = BoundlessService.giftLevels_noninstant()
+               giftLevelsEarned = BoundlessService.giftLevels_noninstant_earned()
 
-      BoundlessService.getPrizes $scope.consId
-      .then (response) ->
-        students = response.data.student
-        angular.forEach students, (student) ->
-          if student.has_bonus
-             giftLevels = BoundlessService.giftLevels_instant()
-             giftLevelsEarned = BoundlessService.giftLevels_instant_earned()
-          else
-             giftLevels = BoundlessService.giftLevels_noninstant()
-             giftLevelsEarned = BoundlessService.giftLevels_noninstant_earned()
-              
-          current_level = if student.current_level != null then student.current_level else '$0'
-          prevstatus = 0
-          giftsInList = 0
-          angular.forEach defaultStandardGifts, (gift, key) ->
-            #check if gift is part of gifts allowed to receive
-            if jQuery.inArray(gift.id,giftLevels) isnt -1
-              if student.has_bonus and (gift.instant == 1 or gift.instant == 2) or !student.has_bonus and (gift.instant == 0 or gift.instant == 2)
-                if gift.online_only
-                  jQuery.each student.prizes, (item, key) ->
-                    if key.prize_sku.indexOf(gift.id) isnt -1
-                      giftsInList++
-                      return false
-                    return
-                if !gift.online_only
-                  giftsInList++
-
-          prevstatus = -1
-          startList = 0
-          listCnt = 1
-          giftPrev = ""
-          giftToAdd = 3 # after adding first one - add 3 more
-          angular.forEach defaultStandardGifts, (gift, key) ->
-            if jQuery.inArray(gift.id,giftLevels) isnt -1
-              if student.has_bonus and (gift.instant == 1 or gift.instant == 2) or !student.has_bonus and (gift.instant == 0 or gift.instant == 2)
-                status = 0
-                lastItem = 0
-                if jQuery.inArray(gift.id,giftLevelsEarned[current_level]) isnt -1
-                  status = 1
+            current_level = if student.current_level != null then student.current_level else '$0'
+            prevstatus = 0
+            giftsInList = 0
+            angular.forEach defaultStandardGifts, (gift, key) ->
+              #check if gift is part of gifts allowed to receive
+              if jQuery.inArray(gift.id,giftLevels) isnt -1
+                if student.has_bonus and (gift.instant == 1 or gift.instant == 2) or !student.has_bonus and (gift.instant == 0 or gift.instant == 2)
                   if gift.online_only
-                    status = 0
                     jQuery.each student.prizes, (item, key) ->
-                      if key.prize_sku.indexOf(gift.id) > -1
-                        status = 1
+                      if key.prize_sku.indexOf(gift.id) isnt -1
+                        giftsInList++
                         return false
                       return
+                  if !gift.online_only
+                    giftsInList++
 
-                # if nothing has been earned yet
-                if prevstatus == -1 and status == 0 and $scope.giftsEarned == 0
-                  startList = 1
-                  giftToAdd = 4 # need to add next 4 to list
-                # if prev item is the last item earned then add and start pusing in items
-                if prevstatus == 1 and status == 0 and startList == 0
-                  startList = 1
-                  $scope.upcomingGifts.push
-                    prize_label: giftPrev.name
-                    prize_sku: giftPrev.id
-                    prize_video: giftPrev.video
-                    prize_status: prevstatus
-                    lastItem: 1
-                    randomID: getRandomID()
-                    prize_level: giftPrev.level
-                    msg_earned: giftPrev.msg_earned
-                    msg_unearned: giftPrev.msg_unearned
-                # if items need to be added then only add up to 3 after pushing first one
-                if startList == 1 and listCnt <= giftToAdd
-                  listCnt++
-                  $scope.upcomingGifts.push
-                    prize_label: gift.name
-                    prize_sku: gift.id
-                    prize_video: gift.video
-                    prize_status: status
-                    lastItem: lastItem
-                    randomID: getRandomID()
-                    prize_level: gift.level
-                    msg_earned: gift.msg_earned
-                    msg_unearned: gift.msg_unearned
-                  $scope.giftStatus = status
-                giftPrev = gift
-                prevstatus = status
-                # add last 4 no matter what
-                if $scope.totalGifts >= giftsInList - 5 and status == 1 and startList == 0
-                  startList = 1
-                  giftToAdd = 4
-                $scope.totalGifts++
-                if status == 1
-                  $scope.giftsEarned++
+            prevstatus = -1
+            startList = 0
+            listCnt = 1
+            giftPrev = ""
+            giftToAdd = 3 # after adding first one - add 3 more
+            angular.forEach defaultStandardGifts, (gift, key) ->
+              if jQuery.inArray(gift.id,giftLevels) isnt -1
+                if student.has_bonus and (gift.instant == 1 or gift.instant == 2) or !student.has_bonus and (gift.instant == 0 or gift.instant == 2)
+                  status = 0
+                  lastItem = 0
+                  if jQuery.inArray(gift.id,giftLevelsEarned[current_level]) isnt -1
+                    status = 1
+                    if gift.online_only
+                      status = 0
+                      jQuery.each student.prizes, (item, key) ->
+                        if key.prize_sku.indexOf(gift.id) > -1
+                          status = 1
+                          return false
+                        return
 
-      , (response) ->
-        # TODO
+                  # if nothing has been earned yet
+                  if prevstatus == -1 and status == 0 and $scope.giftsEarned == 0
+                    startList = 1
+                    giftToAdd = 4 # need to add next 4 to list
+                  # if prev item is the last item earned then add and start pusing in items
+                  if prevstatus == 1 and status == 0 and startList == 0
+                    startList = 1
+                    $scope.upcomingGifts.push
+                      prize_label: giftPrev.name
+                      prize_sku: giftPrev.id
+                      prize_video: giftPrev.video
+                      prize_status: prevstatus
+                      lastItem: 1
+                      randomID: getRandomID()
+                      prize_level: giftPrev.level
+                      msg_earned: giftPrev.msg_earned
+                      msg_unearned: giftPrev.msg_unearned
+                  # if items need to be added then only add up to 3 after pushing first one
+                  if startList == 1 and listCnt <= giftToAdd
+                    if gift.id == "FINNLS-22" and $scope.prizes.length == $scope.prizesEarned
+                      status = 1
+                    listCnt++
+                    $scope.upcomingGifts.push
+                      prize_label: gift.name
+                      prize_sku: gift.id
+                      prize_video: gift.video
+                      prize_status: status
+                      lastItem: lastItem
+                      randomID: getRandomID()
+                      prize_level: gift.level
+                      msg_earned: gift.msg_earned
+                      msg_unearned: gift.msg_unearned
+                    $scope.giftStatus = status
+                  giftPrev = gift
+                  prevstatus = status
+                  # add last 4 no matter what
+                  if $scope.totalGifts >= giftsInList - 5 and status == 1 and startList == 0
+                    startList = 1
+                    giftToAdd = 4
+                  $scope.totalGifts++
+                  if status == 1
+                    $scope.giftsEarned++
+
+        , (response) ->
+          # TODO
       
       $scope.updateSchoolYears = ->
         delete $scope.schoolInfo.errorMessage
