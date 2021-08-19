@@ -71,10 +71,8 @@ angular.module 'trPcControllers'
                   lastItem: lastItem
                   randomID: getRandomID()
                   prize_level: gift.level
-                  earned_title: gift.earned_title
-                  earned_subtitle1: gift.earned_subtitle1
-                  earned_subtitle2: gift.earned_subtitle2
-                  earned_subtitle3: gift.earned_subtitle3
+                  msg_earned: gift.msg_earned
+                  msg_unearned: gift.msg_unearned
                 $scope.giftStatus = status
                 prevstatus = status
                 if status == 1
