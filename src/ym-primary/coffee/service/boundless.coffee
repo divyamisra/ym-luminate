@@ -271,17 +271,6 @@ angular.module 'ahaLuminateApp'
             "video": ""
           }
           {
-            "id":"SOCKS-22"
-            "name":"Socks"
-            "status":0
-            "level":"$100"
-            "msg_earned":"$100 Raised"
-            "msg_unearned":"Raise $100"
-            "instant": 2
-            "online_only":0
-            "video": ""
-          }
-          {
             "id":"CLIPBANKS-22"
             "name":"Banks"
             "status":0
@@ -299,6 +288,17 @@ angular.module 'ahaLuminateApp'
             "level":"$200"
             "msg_earned":"$200 Raised"
             "msg_unearned":"Raise $200"
+            "instant": 2
+            "online_only":0
+            "video": ""
+          }
+          {
+            "id":"SOCKS-22"
+            "name":"Socks"
+            "status":0
+            "level":"$250"
+            "msg_earned":"$250 Raised"
+            "msg_unearned":"Raise $250"
             "instant": 2
             "online_only":0
             "video": ""
