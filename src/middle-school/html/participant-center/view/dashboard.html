@@ -126,8 +126,8 @@
 									<path class="badge-path" d="M140 125v73h73v-73x-73z" fill="url(#3{{(prizes[2].earned) ? '_delivered' : '_earned'}})" ng-mouseover="mouseover(2, 118, 60, this, 0)" ng-mouseout="mouseout()" /> 
 								</a>
 							</g>
-							<g transform="rotate(-10 239 217)" id="self-donation" data-name="Self Donor" aria-label="{{prizes[3].aria_label}}">
-								<a role="button" xlink:href="" ng-href="{{prizes[3].final_url}}" title="Self Donor" ng-focus="mouseover(3, 178, 130, this, 0)" ng-blur="mouseout()" aria-labelledby="self-donation">
+							<g transform="rotate(-10 239 217)" id="mobile-app" data-name="Mobile App" aria-label="{{prizes[3].aria_label}}">
+								<a role="button" xlink:href="" ng-click="showMobileApp()" href="javascript:void(0)" title="Self Donor" ng-focus="mouseover(3, 178, 130, this, 0)" ng-blur="mouseout()" aria-labelledby="mboile-app">
 									<path class="badge-path" d="M200 195v73h73v-73x-73z" fill="url(#4{{(prizes[3].earned) ? '_delivered' : '_earned'}})" ng-mouseover="mouseover(3, 178, 130, this, 0)" ng-mouseout="mouseout()" /> 
 								</a>
 							</g>
@@ -146,13 +146,13 @@
 									<path class="badge-path" d="M380 125v73h73v-73x-73z" fill="url(#7{{(prizes[6].earned) ? '_delivered' : '_earned'}})" ng-mouseover="mouseover(6, 358, 60, this, 0)" ng-mouseout="mouseout()" /> 
 								</a>
 							</g>
-							<g transform="rotate(10 440 195)" id="cpr-quiz" data-name="CPR Quiz" aria-label="{{prizes[7].aria_label}}">
-								<a role="button" xlink:href="" ng-href="{{prizes[7].final_url}}" title="CPR Quiz" ng-focus="mouseover(7, 418, 130, this, 0)" ng-blur="mouseout()" aria-labelledby="cpr-quiz">
+							<g transform="rotate(10 440 195)" id="three-donations" data-name="3+ Donations" aria-label="{{prizes[7].aria_label}}">
+								<a role="button" xlink:href="" ng-href="{{prizes[7].final_url}}" title="3+ Donations" ng-focus="mouseover(7, 418, 130, this, 0)" ng-blur="mouseout()" aria-labelledby="three-donations">
 									<path class="badge-path" d="M440 195v73h73v-73x-73z" fill="url(#8{{(prizes[7].earned) ? '_delivered' : '_earned'}})" ng-mouseover="mouseover(7, 418, 130, this, 0)" ng-mouseout="mouseout()" /> 
 								</a>
 							</g>
-							<g transform="rotate(10 500 125)" id="move-more" data-name="Move More" aria-label="{{prizes[8].aria_label}}">
-								<a role="button" xlink:href="" ng-click="showMobileApp()" href="javascript:void(0)" title="Move More" ng-focus="mouseover(8, 483, 60, this, 0)" ng-blur="mouseout()" aria-labelledby="move-more">
+							<g transform="rotate(10 500 125)" id="cpr-quiz" data-name="CPR Quiz" aria-label="{{prizes[8].aria_label}}">
+								<a role="button" xlink:href="" ng-href="{{prizes[8].final_url}}" title="CPR Quiz" ng-focus="mouseover(8, 483, 60, this, 0)" ng-blur="mouseout()" aria-labelledby="cpr-quiz">
 									<path class="badge-path" d="M505 125v73h73v-73x-73z" fill="url(#9{{(prizes[8].earned) ? '_delivered' : '_earned'}})" ng-mouseover="mouseover(8, 483, 60, this, 0)" ng-mouseout="mouseout()" /> 
 								</a>
 							</g>
@@ -316,8 +316,8 @@
 									<path class="badge-path" d="M455 320v130h153v-130x-153z" fill="url(#3{{(prizes[2].earned) ? '_deliveredm' : '_earnedm'}})" ng-mouseover="mouseoverm(2, 445, 205, this, 0)" ng-mouseout="mouseoutm()" /> 
 								</a>
 							</g>
-							<g transform="rotate(-10 40 515)" id="self-donor-mobile" data-name="Self Donor" aria-label="{{prizes[3].aria_label}}">
-								<a role="button" xlink:href="" ng-href="{{prizes[3].final_url}}" title="Self Donor" ng-focus="mouseoverm(3, 30, 400, this, 0)" ng-blur="mouseoutm()" aria-labelledby="self-donor-mobile">
+							<g transform="rotate(-10 40 515)" id="mobile-app-mobile" data-name="Self Donor" aria-label="{{prizes[3].aria_label}}">
+								<a role="button" xlink:href="" ng-click="showMobileApp()" href="javascript:void(0)" title="Mobile App" ng-focus="mouseoverm(3, 30, 400, this, 0)" ng-blur="mouseoutm()" aria-labelledby="mobile-app-mobile">
 									<path class="badge-path" d="M40 515v130h153v-130x-153z" fill="url(#4{{(prizes[3].earned) ? '_deliveredm' : '_earnedm'}})" ng-mouseover="mouseoverm(3, 30, 400, this, 0)" ng-mouseout="mouseoutm()" /> 
 								</a>
 							</g>
@@ -336,13 +336,13 @@
 									<path class="badge-path" d="M50 700v130h153v-130x-153z" fill="url(#7{{(prizes[6].earned) ? '_deliveredm' : '_earnedm'}})" ng-mouseover="mouseoverm(6, 40, 585, this, 0)" ng-mouseout="mouseoutm()" /> 
 								</a>
 							</g>
-							<g transform="rotate(10 295 720)" id="cpr-quiz-mobile" data-name="CPR Quiz" aria-label="{{prizes[7].aria_label}}">
-								<a role="button" xlink:href="" ng-href="{{prizes[7].final_url}}" title="CPR Quiz" ng-focus="mouseoverm(7, 285, 605, this, 0)" ng-blur="mouseoutm()" aria-labelledby="cpr-quiz-mobile">
+							<g transform="rotate(10 295 720)" id="three-donations-mobile" data-name="3+ Donations" aria-label="{{prizes[7].aria_label}}">
+								<a role="button" xlink:href="" ng-href="{{prizes[7].final_url}}" title="3+ Donations" ng-focus="mouseoverm(7, 285, 605, this, 0)" ng-blur="mouseoutm()" aria-labelledby="three-donations-mobile">
 									<path class="badge-path" d="M295 720v130h153v-130x-153z" fill="url(#8{{(prizes[7].earned) ? '_deliveredm' : '_earnedm'}})" ng-mouseover="mouseoverm(7, 285, 605, this, 0)" ng-mouseout="mouseoutm()" /> 
 								</a>
 							</g>
-							<g transform="rotate(10 150 885)" id="move-more-mobile" data-name="Move More" aria-label="{{prizes[8].aria_label}}">
-								<a role="button" xlink:href="" ng-click="showMobileApp()" href="javascript:void(0)" title="Move More" ng-focus="mouseoverm(8, 140, 770, this, 0)" ng-blur="mouseoutm()" aria-labelledby="move-more-mobile">
+							<g transform="rotate(10 150 885)" id="cpr-quiz-mobile" data-name="CPR Quiz" aria-label="{{prizes[8].aria_label}}">
+								<a role="button" xlink:href="" ng-href="{{prizes[8].final_url}}" title="CPR Quiz" ng-focus="mouseoverm(8, 140, 770, this, 0)" ng-blur="mouseoutm()" aria-labelledby="cpr-quiz-mobile">
 									<path class="badge-path" d="M150 885v130h153v-130x-153z" fill="url(#9{{(prizes[8].earned) ? '_deliveredm' : '_earnedm'}})" ng-mouseover="mouseoverm(8, 140, 770, this, 0)" ng-mouseout="mouseoutm()" /> 
 								</a>
 							</g>
