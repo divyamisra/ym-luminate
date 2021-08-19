@@ -176,7 +176,8 @@ angular.module 'ahaLuminateApp'
             "name":"Registration"
             "status":0
             "level":"Wristband"
-            "level_desc":""
+            "msg_earned":"Wristband"
+            "msg_unearned":""
             "instant": 1
             "online_only":0
             "video": ""
@@ -186,6 +187,8 @@ angular.module 'ahaLuminateApp'
             "name":"Crew"
             "status":0
             "level":"$5"
+            "msg_earned":"$5 Raised"
+            "msg_unearned":"Raise $5"
             "instant": 1
             "online_only":0
             "video": ""
@@ -195,6 +198,8 @@ angular.module 'ahaLuminateApp'
             "name":"Water Bottle"
             "status":0
             "level":"$5"
+            "msg_earned":"$5 Raised"
+            "msg_unearned":"Raise $5"
             "instant": 0
             "online_only":0
             "video": ""
@@ -204,6 +209,8 @@ angular.module 'ahaLuminateApp'
             "name":"Sky"
             "status":0
             "level":"$10"
+            "msg_earned":"$10 Raised"
+            "msg_unearned":"Raise $10"
             "instant": 1
             "online_only":0
             "video": ""
@@ -213,6 +220,8 @@ angular.module 'ahaLuminateApp'
             "name":"Jump Rope"
             "status":0
             "level":"$15"
+            "msg_earned":"$15 Raised"
+            "msg_unearned":"Raise $15"
             "instant": 1
             "online_only":0
             "video": ""
@@ -222,6 +231,8 @@ angular.module 'ahaLuminateApp'
             "name":"Lee"
             "status":0
             "level":"$25"
+            "msg_earned":"$25 Raised"
+            "msg_unearned":"Raise $25"
             "instant": 1
             "online_only":0
             "video": ""
@@ -231,6 +242,8 @@ angular.module 'ahaLuminateApp'
             "name":"Flash"
             "status":0
             "level":"$40"
+            "msg_earned":"$40 Raised"
+            "msg_unearned":"Raise $40"
             "instant": 1
             "online_only":0
             "video": "https://vimeo.com/americanheartassociation/review/453777085/ab8611f4ce"
@@ -240,6 +253,8 @@ angular.module 'ahaLuminateApp'
             "name":"T-Shirt"
             "status":0
             "level":"$50"
+            "msg_earned":"$50 Raised"
+            "msg_unearned":"Raise $50"
             "instant": 2
             "online_only":0
             "video": ""
@@ -249,6 +264,8 @@ angular.module 'ahaLuminateApp'
             "name":"Playground Ball"
             "status":0
             "level":"$75"
+            "msg_earned":"$75 Raised"
+            "msg_unearned":"Raise $75"
             "instant": 2
             "online_only":0
             "video": ""
@@ -258,6 +275,8 @@ angular.module 'ahaLuminateApp'
             "name":"Socks"
             "status":0
             "level":"$100"
+            "msg_earned":"$100 Raised"
+            "msg_unearned":"Raise $100"
             "instant": 2
             "online_only":0
             "video": ""
@@ -267,24 +286,30 @@ angular.module 'ahaLuminateApp'
             "name":"Banks"
             "status":0
             "level":"$100"
+            "msg_earned":"$100 Raised"
+            "msg_unearned":"Raise $100"
             "instant": 2
             "online_only":0
-            "video": "https://video.link/w/D17X"
+            "video": ""
           }
           {
             "id":"CLIPAMOR-22"
             "name":"Amor & Max"
             "status":0
             "level":"$200"
+            "msg_earned":"$200 Raised"
+            "msg_unearned":"Raise $200"
             "instant": 2
             "online_only":0
-            "video": "https://vimeo.com/americanheartassociation/review/453778802/c7317f5ef3"
+            "video": ""
           }
           {
             "id":"POPPER-22"
             "name":"Ball Launcher"
             "status":0
             "level":"$500"
+            "msg_earned":"$500 Raised"
+            "msg_unearned":"Raise $500"
             "instant": 2
             "online_only":0
             "video": "https://vimeo.com/americanheartassociation/review/453776957/cde52d6c23"
@@ -294,15 +319,19 @@ angular.module 'ahaLuminateApp'
             "name":"2 Speaker Set"
             "status":0
             "level":"$1,000"
+            "msg_earned":"$1,000 Raised"
+            "msg_unearned":"Raise $1,000"
             "instant": 2
             "online_only":0
             "video": "https://video.link/w/On7X"
           }
           {
             "id":"FINNLS-22"
-            "name":"Finn's Lifesaver"
+            "name":"Finn's Lifesaver Award"
             "status":0
             "level":"Complete Finn's Mission"
+            "msg_earned":"Finn's Mission Completed"
+            "msg_unearned":"Complete Finn's Mission"
             "instant": 2
             "online_only":0
             "video": ""
@@ -312,6 +341,8 @@ angular.module 'ahaLuminateApp'
             "name":"Mystery Gift"
             "status":0
             "level":"Every $50"
+            "msg_earned":"Every $50 Raised"
+            "msg_unearned":"Raise $50"
             "instant": 2
             "online_only":0
             "video": ""
