@@ -1065,10 +1065,8 @@ angular.module 'trPcControllers'
                     lastItem: 1
                     randomID: getRandomID()
                     prize_level: giftPrev.level
-                    earned_title: giftPrev.earned_title
-                    earned_subtitle1: giftPrev.earned_subtitle1
-                    earned_subtitle2: giftPrev.earned_subtitle2
-                    earned_subtitle3: giftPrev.earned_subtitle3
+                    msg_earned: giftPrev.msg_earned
+                    msg_unearned: giftPrev.msg_unearned
                 # if items need to be added then only add up to 3 after pushing first one
                 if startList == 1 and listCnt <= giftToAdd
                   listCnt++
@@ -1080,10 +1078,8 @@ angular.module 'trPcControllers'
                     lastItem: lastItem
                     randomID: getRandomID()
                     prize_level: gift.level
-                    earned_title: gift.earned_title
-                    earned_subtitle1: gift.earned_subtitle1
-                    earned_subtitle2: gift.earned_subtitle2
-                    earned_subtitle3: gift.earned_subtitle3
+                    msg_earned: gift.msg_earned
+                    msg_unearned: gift.msg_unearned
                   $scope.giftStatus = status
                 giftPrev = gift
                 prevstatus = status
