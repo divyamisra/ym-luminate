@@ -72,7 +72,7 @@
             </div>
             <div class="ym-progress__moneydue" ng-if="moneyDueDate && moneyDueDate != '' && moneyDueDate != 'User Provided No Response'" ng-cloak>
                <p>
-                  Our envelope turn in date is <strong>{{moneyDueDate | date:'MM/dd/yyyy'}}</strong>
+                  Our donation date is <strong>{{moneyDueDate | date:'MM/dd/yyyy'}}</strong>
                </p>
             </div>
             <div class="ym-progress__studentgoal" ng-if="schoolStudentGoal && schoolStudentGoal != '' && schoolStudentGoal != 'User Provided No Response'" ng-cloak>
@@ -163,7 +163,7 @@
             <div class="row" style="margin:0;">
                <div class="col-md-3">
                   <h3>Top class for dollars raised</h3>
-                  <div class="ym-tl-dollars-raised">
+                  <div class="ym-tl-dollars-raised" role="list">
                      <div class="row" style="margin:0;" ng-repeat="topRaised in topClassRaised" role="listitem" ng-if="topClassRaised.length > 0" ng-cloak>
                         <div class="col-xs-2 col-sm-2 col-md-2 top-index">#{{$index+1}}</div>
                         <div class="col-xs-10 col-sm-10 col-md-10 top-detail">
@@ -177,7 +177,7 @@
                </div>
                <div class="col-md-3">
                   <h3>Top class for registered students</h3>
-                  <div class="ym-tl-registered-students">
+                  <div class="ym-tl-registered-students" role="list">
                      <div class="row" ng-repeat="topStudent in topClassStudents" role="listitem" ng-if="topClassStudents.length > 0" ng-cloak>
                         <div class="col-xs-2 col-sm-2 col-md-2 top-index">#{{$index+1}}</div>
                         <div class="col-xs-10 col-sm-10 col-md-10 top-detail">
@@ -191,7 +191,7 @@
                </div>
                <div class="col-md-3">
                   <h3>Top grade for dollars raised</h3>
-                  <div class="ym-tl-dollars-raised">
+                  <div class="ym-tl-dollars-raised" role="list">
                      <div class="row" ng-repeat="topRaised in topGradeRaised" role="listitem" ng-if="topGradeRaised.length > 0" ng-cloak>
                         <div class="col-xs-2 col-sm-2 col-md-2 top-index">#{{$index+1}}</div>
                         <div class="col-xs-10 col-sm-10 col-md-10 top-detail">
@@ -205,7 +205,7 @@
                </div>
                <div class="col-md-3">
                   <h3>Top grade for registered students</h3>
-                  <div class="ym-tl-registered-students">
+                  <div class="ym-tl-registered-students" role="list">
                      <div class="row" ng-repeat="topStudent in topGradeStudents" role="listitem" ng-if="topClassStudents.length > 0" ng-cloak>
                         <div class="col-xs-2 col-sm-2 col-md-2 top-index">#{{$index+1}}</div>
                         <div class="col-xs-10 col-sm-10 col-md-10 top-detail">
@@ -222,7 +222,7 @@
          <div class="col-md-3" ng-show="topCompanySteps.length > 0" ng-cloak>
            <div class="ym-steps-leaderboard-block">
              <h3>Top students<br/>by minutes</h3>
-             <div class="ym-tl-registered-students">
+             <div class="ym-tl-registered-students" role="list">
                <div class="row" ng-repeat="topActivity in topCompanySteps" role="listitem" ng-if="topCompanySteps.length > 0" ng-cloak>
                   <div class="col-xs-2 col-sm-2 col-md-2 top-index">#{{$index+1}}</div>
                   <div class="col-xs-10 col-sm-10 col-md-10 top-detail">
