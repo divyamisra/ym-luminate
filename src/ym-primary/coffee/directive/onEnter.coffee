@@ -1,14 +1,11 @@
 angular.module 'ahaLuminateApp'
-  .directive('ngEnter', function () {
-    return function (scope, element, attrs) {
-        element.bind("keydown keypress", function (event) {
-            if(event.which === 13) {
-                scope.$apply(function (){
-                    scope.$eval(attrs.ngEnter);
-                });
-
-                event.preventDefault();
-            }
-        });
-    };
-});
+  .directive 'ngEnter', ->
+    (scope, element, attrs) ->
+      element.bind 'keydown keypress', (event) ->
+        if event.which == 13
+          scope.$apply ->
+            scope.$eval attrs.ngEnter
+            return
+          event.preventDefault()
+        return
+      return
