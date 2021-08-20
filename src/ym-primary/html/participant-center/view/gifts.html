@@ -9,17 +9,15 @@
       <div class="ym-pc-dashboard-standard-gifts-icons" role="list" aria-label="Standard Gifts">
         <div class="ym-pc-dashboard-standard-gifts-icon" ng-class="{'not-earned': !standardGift.prize_status}" ng-repeat="standardGift in standardGifts" ng-cloak>
            <a href="" ng-click="showPrize(standardGift.prize_sku,standardGift.prize_label,standardGift.prize_status,standardGift.prize_video)">
-              <img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/prizes2021/{{standardGift.prize_sku}}.png" alt="{{standardGift.prize_label}}">
+              <img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/prizes2022/{{standardGift.prize_sku}}.png" alt="{{standardGift.prize_label}}">
               <div class="play-circle"><i class="fa fa-play"></i></div>
               <div class="ym-pc-dashboard-standard-gift-earned" ng-if="standardGift.prize_status">
-                 <h4 class="gift-title" ng-bind-html="standardGift.earned_title"></h4>
-                 <div class="gift-subtitle1"><span ng-bind-html="standardGift.earned_subtitle1"></span></div>
-                 <div class="gift-subtitle2"><span ng-bind-html="standardGift.earned_subtitle2"></span></div>
+                 <h4 class="gift-title" ng-bind-html="standardGift.prize_label"></h4>
+                 <div class="gift-subtitle1"><span ng-bind-html="standardGift.msg_earned"></span></div>
               </div>
               <div class="ym-pc-dashboard-standard-gift-notearned" ng-if="!standardGift.prize_status">
-                 <h4 class="gift-title">Up next...</h4>
-                 <div class="gift-subtitle1">Raise <span ng-bind-html="standardGift.prize_level"></span></div>
-                 <div class="gift-subtitle2"><span ng-bind-html="standardGift.earned_subtitle3"></span></div>
+                 <h4 class="gift-title" ng-bind-html="standardGift.prize_label"></h4>
+                 <div class="gift-subtitle1"><span ng-bind-html="standardGift.msg_unearned"></span></div>
               </div>
               <div class="ym-pc-dashboard-standard-gifts-text">
                 <span class="sr-only" ng-if="standardGift.prize_status">(earned)</span><span class="sr-only" ng-if="!standardGift.prize_status">(not yet earned)</span>

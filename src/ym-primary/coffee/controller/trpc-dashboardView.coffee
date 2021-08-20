@@ -274,38 +274,30 @@ angular.module 'trPcControllers'
         message: ''
         interactionId: ''
 
-      mm_current_mission_completed_header = "Congratulations, " + $scope.consNameFirst + "!"
-      mm_current_mission_title = "You've completed all of Finn's Missions!"
-      mm_current_mission_message = "You unlocked the secret code & your prize: a medal for your Heart Hero avatar! Visit your avatar to add your new, cool medal bling."
-      
-      $scope.getMoveMoreFlag = ->
-        if jQuery('body').data("in-mm-group") == "TRUE" 
-          #update boundless
-          $scope.updateMoveMoreFlag()
-          #add user to group in luminate
-          jQuery('<img width="1" height="1" style="display:none;" src="SPageServer?pagename=reus_khc_add_group&group_id=' + jQuery('body').data("mm-group-id") + '&pgwrap=n" id="move_more_add_group">').appendTo(jQuery('.ng-pc-view-container'));
+      #mm_current_mission_completed_header = "Congratulations, " + $scope.consNameFirst + "!"
+      #mm_current_mission_title = "You've completed all of Finn's Missions!"
+      #mm_current_mission_message = "You unlocked the secret code & your prize: a medal for your Heart Hero avatar! Visit your avatar to add your new, cool medal bling."
       
       $scope.setMoveMoreFlag = ->
-        if $scope.moveMoreFlag.message
-          BoundlessService.earnMoveMoreFlag $scope.frId + '/' + $scope.consId
+        if $scope.moveMoreFlag.message == 1 or $scope.moveMoreFlag.message == 2
+          BoundlessService.setMoveMoreFlag $scope.frId + '/' + $scope.consId + '/' + $scope.moveMoreFlag.message
           .then (response) ->
             if response.data.status == "success"
               $scope.moveMoreFlag.successMessage = true
-              jQuery('<img width="1" height="1" style="display:none;" src="SPageServer?pagename=reus_khc_add_group&group_id=' + jQuery('body').data("mm-group-id") + '&pgwrap=n" id="move_more_add_group">').appendTo(jQuery('.ng-pc-view-container'));
+              #jQuery('<img width="1" height="1" style="display:none;" src="SPageServer?pagename=reus_khc_add_group&group_id=' + jQuery('body').data("mm-group-id") + '&pgwrap=n" id="move_more_add_group">').appendTo(jQuery('.ng-pc-view-container'));
               refreshFinnsMission()
             else
               $scope.moveMoreFlag.errorMessage = 'There was an error processing your update. Please try again later.'
-        if !$scope.moveMoreFlag.message
-          BoundlessService.unearnMoveMoreFlag $scope.frId + '/' + $scope.consId
+        if $scope.moveMoreFlag.message == 0
+          BoundlessService.setMoveMoreFlag $scope.frId + '/' + $scope.consId + '/' + 0
           .then (response) ->
             if response.data.status == "success"
               $scope.moveMoreFlag.successMessage = true
-              jQuery('<img width="1" height="1" style="display:none;" src="SPageServer?pagename=reus_khc_remove_group&group_id=' + jQuery('body').data("mm-group-id") + '&pgwrap=n" id="move_more_remove_group">').appendTo(jQuery('.ng-pc-view-container'));
+              #jQuery('<img width="1" height="1" style="display:none;" src="SPageServer?pagename=reus_khc_remove_group&group_id=' + jQuery('body').data("mm-group-id") + '&pgwrap=n" id="move_more_remove_group">').appendTo(jQuery('.ng-pc-view-container'));
               refreshFinnsMission()
             else
               $scope.moveMoreFlag.errorMessage = 'There was an error processing your update. Please try again later.'
              
-
       interactionTypeId = $dataRoot.data 'coordinator-message-id'
 
       $scope.coordinatorMessage =
@@ -799,24 +791,16 @@ angular.module 'trPcControllers'
         $scope.prizes = []
         $scope.prizesEarned = 0
         $rootScope.has_bonus = 0
-        $scope.current_mission_completed_count = ''
-        $scope.current_mission_completed_header = ''
-        $scope.current_mission_action = ''
-        $scope.current_mission_title = ''
-        $scope.current_mission_message = ''
         BoundlessService.getBadges $scope.frId + '/' + $scope.consId
         .then (response) ->
           prizes = response.data.prizes
-          $scope.current_mission_completed_count = response.data.current_mission_completed_count
-          $scope.current_mission_completed_header = response.data.current_mission_completed_header
-          $scope.current_mission_action = response.data.current_mission_action
-          $scope.current_mission_title = response.data.current_mission_title
-          $scope.current_mission_message = response.data.current_mission_message
           $rootScope.has_bonus = response.data.has_bonus
           final_url = ''
           angular.forEach prizes, (prize) ->
             if prize.mission_url_type == 'Donate' 
               final_url = 'Donation2?df_id=' + $scope.eventInfo.donationFormId + "&FR_ID=" + $scope.frId + "&PROXY_TYPE=20&PROXY_ID=" + $scope.consId
+            if prize.mission_url_type == 'Personal' 
+              final_url = 'TR?fr_id=' + $scope.frId + '&pg=personal&px=' + $scope.consId
             if prize.mission_url_type == 'Tab' 
               final_url = $scope.baseUrl + prize.mission_url
             if prize.mission_url_type == 'URL' 
@@ -830,6 +814,13 @@ angular.module 'trPcControllers'
                 final_url = 'https://tools.heart.org/aha_ym22/quiz/show/' + prize.mission_url + '?event_id=' + $scope.frId + '&user_id=' + $scope.consId + '&name=' + $scope.consNameFirst
             if prize.mission_url_type == 'Modal' and prize.mission_url == 'app' 
               final_url = 'showMobileApp()'
+            if prize.status != 0
+              earned_status = 'Earned'
+              hover_msg = prize.earned_hover
+            else 
+              earned_status = 'Unearned'
+              hover_msg = prize.unearned_hover
+            aria_label = prize.label + ": " + earned_status + " - " + hover_msg
             $scope.prizes.push
               id: prize.id
               label: prize.label
@@ -843,13 +834,16 @@ angular.module 'trPcControllers'
               not_earned_image_url: prize.non_earned_image_url
               locked_image_url: prize.locked_image_url
               final_url: final_url
+              hover_msg: hover_msg
+              aria_label: aria_label
 
-            if prize.status == 1
+            if prize.status != 0
               $scope.prizesEarned++
-              
-          if $scope.prizes[8].earned 
-            $scope.moveMoreFlag.message = true
-
+            #get move more flag status  
+            if prize.id == 9 
+              $scope.moveMoreFlag.message = prize.status
+          $scope.buildGiftCatalog()
+          
         , (response) ->
           # TODO
       #$scope.getMoveMoreFlag()
@@ -1008,98 +1002,102 @@ angular.module 'trPcControllers'
 
       defaultStandardGifts = BoundlessService.defaultStandardGifts()
 
-      $scope.upcomingGifts = []
-      $scope.giftsEarned = 0
-      $scope.totalGifts = 0
+      $scope.buildGiftCatalog = ->
+        $scope.upcomingGifts = []
+        $scope.giftsEarned = 0
+        $scope.totalGifts = 0
+        BoundlessService.getPrizes $scope.consId
+        .then (response) ->
+          students = response.data.student
+          angular.forEach students, (student) ->
+            if student.has_bonus
+               giftLevels = BoundlessService.giftLevels_instant()
+               giftLevelsEarned = BoundlessService.giftLevels_instant_earned()
+            else
+               giftLevels = BoundlessService.giftLevels_noninstant()
+               giftLevelsEarned = BoundlessService.giftLevels_noninstant_earned()
 
-      BoundlessService.getPrizes $scope.consId
-      .then (response) ->
-        students = response.data.student
-        angular.forEach students, (student) ->
-          if student.has_bonus
-             giftLevels = BoundlessService.giftLevels_instant()
-          else
-             giftLevels = BoundlessService.giftLevels_noninstant()
-          current_level = if student.current_level != null then student.current_level else '$0'
-          #get total number of gifts student can get
-          giftsInList = 0
-          angular.forEach defaultStandardGifts, (gift, key) ->
-            if student.has_bonus and (gift.instant == 1 or gift.instant == 2) or !student.has_bonus and (gift.instant == 0 or gift.instant == 2)
-              if gift.online_only
-                jQuery.each student.prizes, (item, key) ->
-                  if key.prize_sku.indexOf(gift.id) isnt -1
+            current_level = if student.current_level != null then student.current_level else '$0'
+            prevstatus = 0
+            giftsInList = 0
+            angular.forEach defaultStandardGifts, (gift, key) ->
+              #check if gift is part of gifts allowed to receive
+              if jQuery.inArray(gift.id,giftLevels) isnt -1
+                if student.has_bonus and (gift.instant == 1 or gift.instant == 2) or !student.has_bonus and (gift.instant == 0 or gift.instant == 2)
+                  if gift.online_only
+                    jQuery.each student.prizes, (item, key) ->
+                      if key.prize_sku.indexOf(gift.id) isnt -1
+                        giftsInList++
+                        return false
+                      return
+                  if !gift.online_only
                     giftsInList++
-                    return false
-                  return
-              if !gift.online_only
-                giftsInList++
 
-          prevstatus = -1
-          startList = 0
-          listCnt = 1
-          giftPrev = ""
-          giftToAdd = 3 # after adding first one - add 3 more
-          angular.forEach defaultStandardGifts, (gift, key) ->
-            if student.has_bonus and (gift.instant == 1 or gift.instant == 2) or !student.has_bonus and (gift.instant == 0 or gift.instant == 2)
-              status = 0
-              lastItem = 0
-              if jQuery.inArray(gift.id,giftLevels[current_level]) isnt -1
-                status = 1
-                if gift.online_only
+            prevstatus = -1
+            startList = 0
+            listCnt = 1
+            giftPrev = ""
+            giftToAdd = 3 # after adding first one - add 3 more
+            angular.forEach defaultStandardGifts, (gift, key) ->
+              if jQuery.inArray(gift.id,giftLevels) isnt -1
+                if student.has_bonus and (gift.instant == 1 or gift.instant == 2) or !student.has_bonus and (gift.instant == 0 or gift.instant == 2)
                   status = 0
-                  jQuery.each student.prizes, (item, key) ->
-                    if key.prize_sku.indexOf(gift.id) > -1
+                  lastItem = 0
+                  if jQuery.inArray(gift.id,giftLevelsEarned[current_level]) isnt -1
+                    status = 1
+                    if gift.online_only
+                      status = 0
+                      jQuery.each student.prizes, (item, key) ->
+                        if key.prize_sku.indexOf(gift.id) > -1
+                          status = 1
+                          return false
+                        return
+
+                  # if nothing has been earned yet
+                  if prevstatus == -1 and status == 0 and $scope.giftsEarned == 0
+                    startList = 1
+                    giftToAdd = 4 # need to add next 4 to list
+                  # if prev item is the last item earned then add and start pusing in items
+                  if prevstatus == 1 and status == 0 and startList == 0
+                    startList = 1
+                    $scope.upcomingGifts.push
+                      prize_label: giftPrev.name
+                      prize_sku: giftPrev.id
+                      prize_video: giftPrev.video
+                      prize_status: prevstatus
+                      lastItem: 1
+                      randomID: getRandomID()
+                      prize_level: giftPrev.level
+                      msg_earned: giftPrev.msg_earned
+                      msg_unearned: giftPrev.msg_unearned
+                  # if items need to be added then only add up to 3 after pushing first one
+                  if startList == 1 and listCnt <= giftToAdd
+                    if gift.id == "FINNLS-22" and $scope.prizes.length == $scope.prizesEarned
                       status = 1
-                      return false
-                    return
+                    listCnt++
+                    $scope.upcomingGifts.push
+                      prize_label: gift.name
+                      prize_sku: gift.id
+                      prize_video: gift.video
+                      prize_status: status
+                      lastItem: lastItem
+                      randomID: getRandomID()
+                      prize_level: gift.level
+                      msg_earned: gift.msg_earned
+                      msg_unearned: gift.msg_unearned
+                    $scope.giftStatus = status
+                  giftPrev = gift
+                  prevstatus = status
+                  # add last 4 no matter what
+                  if $scope.totalGifts >= giftsInList - 5 and status == 1 and startList == 0
+                    startList = 1
+                    giftToAdd = 4
+                  $scope.totalGifts++
+                  if status == 1
+                    $scope.giftsEarned++
 
-              # if nothing has been earned yet
-              if prevstatus == -1 and status == 0 and $scope.giftsEarned == 0
-                startList = 1
-                giftToAdd = 4 # need to add next 4 to list
-              # if prev item is the last item earned then add and start pusing in items
-              if prevstatus == 1 and status == 0 and startList == 0
-                startList = 1
-                $scope.upcomingGifts.push
-                  prize_label: giftPrev.name
-                  prize_sku: giftPrev.id
-                  prize_video: giftPrev.video
-                  prize_status: prevstatus
-                  lastItem: 1
-                  randomID: getRandomID()
-                  prize_level: giftPrev.level
-                  earned_title: giftPrev.earned_title
-                  earned_subtitle1: giftPrev.earned_subtitle1
-                  earned_subtitle2: giftPrev.earned_subtitle2
-                  earned_subtitle3: giftPrev.earned_subtitle3
-              # if items need to be added then only add up to 3 after pushing first one
-              if startList == 1 and listCnt <= giftToAdd
-                listCnt++
-                $scope.upcomingGifts.push
-                  prize_label: gift.name
-                  prize_sku: gift.id
-                  prize_video: gift.video
-                  prize_status: status
-                  lastItem: lastItem
-                  randomID: getRandomID()
-                  prize_level: gift.level
-                  earned_title: gift.earned_title
-                  earned_subtitle1: gift.earned_subtitle1
-                  earned_subtitle2: gift.earned_subtitle2
-                  earned_subtitle3: gift.earned_subtitle3
-                $scope.giftStatus = status
-              giftPrev = gift
-              prevstatus = status
-              # add last 4 no matter what
-              if $scope.totalGifts >= giftsInList - 5 and status == 1 and startList == 0
-                startList = 1
-                giftToAdd = 4
-              $scope.totalGifts++
-              if status == 1
-                $scope.giftsEarned++
-
-      , (response) ->
-        # TODO
+        , (response) ->
+          # TODO
       
       $scope.updateSchoolYears = ->
         delete $scope.schoolInfo.errorMessage
@@ -1237,4 +1235,36 @@ angular.module 'trPcControllers'
           e.preventDefault()
           return false
 
+      $scope.mouseover = (prize, xPos, yPos, sel, offset) ->
+        document.getElementById("tRct").style.fill = "#206EBA"
+        document.getElementById("tRct").x.baseVal.value = xPos
+        document.getElementById("tRct").y.baseVal.value = yPos
+
+        jQuery("#tTip div").attr("aria-description",$scope.prizes[prize].hover_msg).html($scope.prizes[prize].hover_msg)
+        document.getElementById("tTip").setAttribute('x',xPos)
+        document.getElementById("tTip").setAttribute('y',yPos)
+
+        document.getElementById("tTri").setAttribute('points',(parseInt(xPos)+53+parseInt(offset)) + ' ' + (parseInt(yPos)+60) + ' ' + (parseInt(xPos)+62+parseInt(offset)) + ' ' + (parseInt(yPos)+60) + ' ' + (parseInt(xPos)+58+parseInt(offset)) + ' ' + (parseInt(yPos)+66))
+
+      $scope.mouseout = ->
+        document.getElementById("tRct").x.baseVal.value = -99999
+        jQuery("#tTip div").html("")
+        document.getElementById("tTri").setAttribute('points','0 0 0 0 0 0')
+
+
+      $scope.mouseoverm = (prize, xPos, yPos, sel, offset) ->
+        document.getElementById("tRctm").style.fill = "#206EBA"
+        document.getElementById("tRctm").x.baseVal.value = xPos
+        document.getElementById("tRctm").y.baseVal.value = yPos
+
+        jQuery("#tTipm div").attr("aria-description",$scope.prizes[prize].hover_msg).html($scope.prizes[prize].hover_msg)
+        document.getElementById("tTipm").setAttribute('x',xPos)
+        document.getElementById("tTipm").setAttribute('y',yPos)
+
+        document.getElementById("tTrim").setAttribute('points', (parseInt(xPos) + 83 + parseInt(offset)) + ' ' + (parseInt(yPos) + 100) + ' ' + (parseInt(xPos) + 97 + parseInt(offset)) + ' ' + (parseInt(yPos) + 100) + ' ' + (parseInt(xPos) + 92 + parseInt(offset)) + ' ' + (parseInt(yPos) + 106))
+
+      $scope.mouseoutm = ->
+        document.getElementById("tRctm").x.baseVal.value = -99999
+        jQuery("#tTipm div").html("")
+        document.getElementById("tTrim").setAttribute('points','0 0 0 0 0 0')
   ]
