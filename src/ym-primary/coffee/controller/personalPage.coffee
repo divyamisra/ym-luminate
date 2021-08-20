@@ -244,9 +244,10 @@ angular.module 'ahaLuminateControllers'
           delete $scope.updatePersonalPhoto1Error
           if not $scope.$$phase
             $scope.$apply()
+          BoundlessService.logPersonalPageUpdated()
           successResponse = response.successResponse
           photoNumber = successResponse.photoNumber
-
+          
           TeamraiserParticipantPageService.getPersonalPhotos
             error: (response) ->
               # TODO
@@ -265,7 +266,7 @@ angular.module 'ahaLuminateControllers'
               if not $scope.$$phase
                 $scope.$apply()
               $scope.closePersonalPhoto1Modal()
-
+      
       $scope.personalPageContent =
         mode: 'view'
         serial: new Date().getTime()

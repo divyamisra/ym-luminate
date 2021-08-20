@@ -159,5 +159,22 @@ module.exports = {
         dest: 'dist/heartwalklawyers/css/donation.'+ '<%= timestamp %>' +'.min.css'
       }
     ]
+  },
+
+  "leaders-for-life": {
+    files: [
+      {
+        src: 'dist/leaders-for-life/css/main.css',
+        dest: 'dist/leaders-for-life/css/main.'+ '<%= timestamp %>' +'.min.css'
+      },
+      {
+        src: 'dist/leaders-for-life/css/registration.css',
+        dest: 'dist/leaders-for-life/css/registration.'+ '<%= timestamp %>' +'.min.css'
+      },
+      {
+        src: 'dist/leaders-for-life/css/donation.css',
+        dest: 'dist/leaders-for-life/css/donation.'+ '<%= timestamp %>' +'.min.css'
+      }
+    ]
   }
 }

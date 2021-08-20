@@ -11,21 +11,6 @@
             <ul>
               <li>
                 <div class="sidebar__icon">
-                  <i class="fal fa-flag" aria-hidden="true"></i>
-                </div>
-                <div class="sidebar__details js--field-day-details">
-                  <p><strong>Field Day Details:</strong></p>
-                </div>
-              </li>
-              <li>
-                  <div class="sidebar__icon">
-                    <i class="fal fa-clock" aria-hidden="true"></i>
-                  </div>
-                  <div class="sidebar__details js--event-date">
-                  </div>
-              </li>
-              <li>
-                <div class="sidebar__icon">
                   <i class="fal fa-megaphone" aria-hidden="true"></i>
                 </div>
                 <div class="sidebar__details js--company-lead">
@@ -34,12 +19,29 @@
               </li>
               <li>
                 <div class="sidebar__icon">
+                  <i class="fal fa-clock" aria-hidden="true"></i>
+                </div>
+                <div class="sidebar__details js--event-date">
+                  <p><strong>Field Day Details:</strong></p>
+                </div>
+            </li>
+              <li>
+                <div class="sidebar__icon">
+                  <i class="fal fa-map-marker-alt" aria-hidden="true"></i>
+                </div>
+                <div class="sidebar__details">
+                  <p><strong>Field Day Location:</strong></p>
+                  <p class="js--company-link"></p>
+                </div>
+              </li>
+              <!-- <li>
+                <div class="sidebar__icon">
                   <i class="fal fa-map-marker-alt" aria-hidden="true"></i>
                 </div>
                 <div class="sidebar__details js--company-location">
                   <p><strong>Company Location:</strong></p>
                 </div>
-              </li>
+              </li> -->
             </ul>
           </div>
       </div>
@@ -49,9 +51,12 @@
             <!-- COMPANY PAGE INFO BOX -->
             <div class="tr-page-info bg-white information-box js--information-box">
               <div class="information-box__name box-shadow">
-                <h1 class="js--company-name"></h1>
+                <div>
+                  <p class="m-0"><strong>Company:<strong></p>
+                  <h1 class="js--company-name"></h1>
+                </div>
                 <div class="information-box__team-members">
-                    <span class="js--num-company-teams"></span> | <span class="js--num-company-participants"></span>
+                    <span class="js--num-company-teams"></span>&nbsp;&nbsp; | &nbsp;&nbsp;<span class="js--num-company-participants"></span>
                 </div>
               </div>
                 <!--/.information-box__name-->
@@ -87,10 +92,9 @@
                 <!-- /.row -->
                 [[?x1x2x::x[[S42:0:status]]x::
                   <div class="row buttons-row justify-content-between">
-                    <a class="btn btn-primary col-lg col-sm-12 mx-md-2 mx-sm-0" href="TRR/FieldDay/General?pg=tfind&fr_id=[[S334:fr_id]]&fr_tm_opt=new&s_regType=startTeam" onclick="_gaq.push(['_trackEvent', 'company', 'banner', 'create team button']);">Create a Team</a>
-                    <a class="btn btn-primary col-lg col-sm-12 mx-md-2 mx-sm-0" href="TRR/FieldDay/General?pg=tfind&fr_id=[[S334:fr_id]]&s_regType=joinTeam" onclick="_gaq.push(['_trackEvent', 'company', 'banner', 'join team button']);">Join a Team</a>
+                    <a class="btn btn-primary col-lg col-sm-12 md-2 mx-sm-0 company-page-create" href="TRR/FieldDay/General?pg=tfind&fr_id=[[S334:fr_id]]&fr_tm_opt=new&s_regType=startTeam&s_companyId=[[S334:company_id]]" onclick="_gaq.push(['_trackEvent', 'company', 'banner', 'create team button']);">Create a Team</a>
+                    <a class="btn btn-primary col-lg col-sm-12 md-2 mx-sm-0 company-page-join" href="TRR/FieldDay/General?pg=tfind&fr_id=[[S334:fr_id]]&s_regType=joinTeam&s_companyId=[[S334:company_id]]" onclick="_gaq.push(['_trackEvent', 'company', 'banner', 'join team button']);">Join a Team</a>
                   </div>
-
                 ::]]
                   <div class="row js--company-multiple-locations">
                     <div class="col-12 text-center px-5">
@@ -108,7 +112,7 @@
        <!-- /.row -->
         <div class="row fieldday-cheer d-flex justify-content-center align-items-center">
           <div class="col-md-5 text-center">
-            <h3>We're In It to Win It!</h3>
+            <p>We're In It to Win It!</p>
           </div>
           <div class="col-md-2 text-center">
             <svg focusable="false" xmlns="http://www.w3.org/2000/svg" width="121.166" height="200.354" viewBox="0 0 121.166 200.354">
@@ -122,7 +126,7 @@
             </svg>
           </div>
           <div class="col-md-5 text-center">
-            <p>#PlayWithHeart</p>
+            <p aria-label="hashtag filed day trophy">#FIELDDAYTROPHY</p>
           </div>
         </div>
 
@@ -131,23 +135,26 @@
 
           </div>
           <div class="col-md-6">
-            <h2>Let the Games Begin!</h2>
+            <h2>Why We Play to WIN</h2>
             <div class="js--company-text"></div>
           </div>
         </div>
 
-       <div class="row">
+       <div id="ourstats" class="row">
 
         <div class="col-12 mt-5">
 
             <div class="box-shadow">
-                <ul class="nav nav-tabs w-100" role="list">
-                    <li class="nav-item w-50">
-                        <a class="nav-link active" id="our-teams-tab" data-toggle="tab" href="#our-teams" role="tab" aria-controls="our-teams" aria-selected="true">Our Teams</a>
+                <ul class="nav nav-tabs w-100" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="our-teams-tab" data-toggle="tab" href="#our-teams" aria-controls="our-teams" aria-selected="true" role="tab"><span>Our Teams</span><span>Our <br> Teams</span></a>
                     </li>
-                    <li class="nav-item w-50">
-                        <a class="nav-link" id="our-walkers-tab" data-toggle="tab" href="#our-walkers" role="tab" aria-controls="our-walkers" aria-selected="false">Our Teammates</a>
+                    <li class="nav-item">
+                        <a class="nav-link" id="our-walkers-tab" data-toggle="tab" href="#our-walkers" aria-controls="our-walkers" aria-selected="false" role="tab"><span>Our Teammates</span><span>Our <br> Teammates</span></a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="our-points-tab" data-toggle="tab" href="#our-points" aria-controls="our-points" aria-selected="false" role="tab"><span>Our Game Points</span><span>Our Game<br>Points</span></a>
+                  </li>
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane fade show active" id="our-teams" role="tabpanel">
@@ -200,6 +207,37 @@
                         <!-- /.information-box -->
                         <!-- END PARTICIPANT ROSTER -->
                     </div>
+                    <div class="tab-pane fade" id="our-points" role="tabpanel" aria-labelledby="our-points-tab">
+                      <!-- GAME POINTS ROSTER -->
+                      <div class="gamess-help-text">
+                        <p>
+                          Each team wins points based on how much they fundraise and how many points they win at the games.
+                        </p>
+                      </div>
+                       <div class="team-roster">
+                          <table id="game-points-roster" class="table-responsive float-left w-100 table mb-0">
+                              <thead>
+                              <tr>
+                                  <th class="border-0 games-team-rank">Rank:</th>
+                                  <th class="border-0 games-team-name">Team:</th>
+                                  <th class="border-0 games-captain-name">Team Captain:</th>
+                                  <th class="border-0 games-fundraising-points tooltip-trigger" data-toggle="tooltip" data-placement="top" title="" data-original-title="Fundraising Points are based on dollars raised for the American Heart Association through the Field Day website."><i aria-hidden="true" class="fas fa-info-circle"></i> Fundraising Points:</th>
+                                  <th class="border-0 games-game-points tooltip-trigger" data-toggle="tooltip" data-placement="top" title="" data-original-title="Game Points are awarded for each Field Day Game. See your company leader for how game points are calculated."><i aria-hidden="true" class="fas fa-info-circle"></i> Game Points:</th>
+                                  <th class="border-0 games-total-points tooltip-trigger" data-toggle="tooltip" data-placement="top" title="" data-original-title="Total Points are the combination of Fundraising Points and Game Points."><i aria-hidden="true" class="fas fa-info-circle"></i> Total Points:</th>
+                              </tr>
+                              </thead>
+                              <tbody></tbody>
+                          </table>
+                          <div class="clearfix"></div>
+                          <!-- /.clearfix -->
+                          <div class="d-flex justify-content-center">
+                              <a href="#" class="js--more-game-points-results btn btn-tertiary-black" hidden>Show All Teams</a>
+                          </div>
+                          <!-- /.d-flex justify-content-center -->
+                      </div>
+                      <!-- /.information-box -->
+                      <!-- END GAME POINTS ROSTER -->
+                  </div>
                 </div>
             </div>
             <!-- /.box-shadow -->

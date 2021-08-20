@@ -179,5 +179,18 @@ module.exports = {
         dest: 'dist/heartwalklawyers/image/'
       }
     ]
+  },
+
+  "leaders-for-life": {
+    files: [
+      {
+        expand: true,
+        cwd: 'src/leaders-for-life/image/',
+        src: [
+          '*.{gif,GIF,jpg,JPG,png,PNG,svg,SVG}'
+        ],
+        dest: 'dist/leaders-for-life/image/'
+      }
+    ]
   }
 }
