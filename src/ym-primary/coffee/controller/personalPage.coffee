@@ -46,7 +46,7 @@ angular.module 'ahaLuminateControllers'
             earned: prize.earned_datetime
             image_url: prize.earned_image_url
 
-          if prize.status is 1
+          if prize.status isnt 0
             $scope.prizesEarned++
       , (response) ->
         # TODO
