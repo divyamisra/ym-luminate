@@ -1181,6 +1181,7 @@ angular.module 'trPcControllers'
 
       $scope.cancelMobileApp = ->
         $scope.viewMobileApp.close()
+        delete $scope.viewMobileApp
         
       getLeaderboards = ->
         BoundlessService.getLeaderboards $scope.companyId

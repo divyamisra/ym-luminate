@@ -1,5 +1,5 @@
 <div class="row">
-	<button class="closeMobileApp" ng-click="cancelMobileApp()" autofocus>
+	<button class="closeMobileApp" ng-click="cancelMobileApp()" ng-enter="cancelMobileApp()" autofocus>
 		Close
 	</button>
 	<div class="col-md-6 col-sm-12">
@@ -47,7 +47,7 @@
 		<div class="modal-footer visible-xs visible-sm">
 	    <div class="clearfix">
 				<div class="text-center">
-					<button ng-click="cancelMobileApp()" class="btn btn-primary">
+					<button ng-click="cancelMobileApp()" ng-enter="cancelMobileApp()" class="btn btn-primary">
 						<strong>OK</strong>
 					</button>
 				</div>
