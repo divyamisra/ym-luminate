@@ -1175,9 +1175,10 @@ angular.module 'trPcControllers'
             $scope.activity3amt = 0
 
       $scope.showMobileApp = ->
-        $scope.viewMobileApp = $uibModal.open
-          scope: $scope
-          templateUrl: APP_INFO.rootPath + 'dist/ym-primary/html/participant-center/modal/viewMobileApp.html'
+        if not $scope.viewMobileApp
+          $scope.viewMobileApp = $uibModal.open
+            scope: $scope
+            templateUrl: APP_INFO.rootPath + 'dist/ym-primary/html/participant-center/modal/viewMobileApp.html'
 
       $scope.cancelMobileApp = ->
         $scope.viewMobileApp.close()
