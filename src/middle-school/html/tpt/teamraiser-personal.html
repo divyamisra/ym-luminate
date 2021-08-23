@@ -103,25 +103,25 @@
         </h2>
         <div class="ym-badges__item" ng-if="prizesEarned == prizes.length && prizes.length != 0"  ng-cloak>
           <div class="ym-badge__item">
-            <img class="img-responsive" src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/middle-school/image/fy22/badge-finns-mission-complete.png" alt="Finn's Mission is Completed">
+            <img class="img-responsive" src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/middle-school/image/fy22/badge-finns-mission-complete.png" alt="Finn's Mission is Completed - Badge Earned">
             <span>Completed Finn's Mission!</span> <span class="sr-only">(earned)</span>
           </div>
         </div>
         <div class="ym-badges__item" ng-repeat="prize in prizes" ng-cloak> <!--  ng-repeat="prize in prizes | limitTo: 3" -->
           <div class="ym-badge__item" ng-if="prize.earned" ng-cloak>
-            <img class="img-responsive" ng-src="{{prize.image_url}}" alt="{{prize.label}}">
+            <img class="img-responsive" ng-src="{{prize.image_url}}" alt="{{prize.label}} Badge Earned">
             <span ng-bind-html="prize.label"></span> <span class="sr-only">(earned)</span>
           </div>
         </div>
         <div class="ym-badges__item" ng-if="studentChallengeBadge" ng-cloak>
           <div class="ym-badge__item" ng-cloak>
-            <img class="img-responsive" ng-src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/middle-school/image/fy22/badge-challenge-student.png" alt="Individual School Challenge Completed">
+            <img class="img-responsive" ng-src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/middle-school/image/fy22/badge-challenge-student.png" alt="Individual School Challenge Badge Earned">
             <span>Individual School Challenge Completed</span> <span class="sr-only">(earned)</span>
           </div>
         </div>
         <div class="ym-badges__item" ng-if="schoolChallengeBadge" ng-cloak>
           <div class="ym-badge__item" ng-cloak>
-            <img class="img-responsive" ng-src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/middle-school/image/fy22/badge-challenge-school.png" alt="School Goal Challenge Completed">
+            <img class="img-responsive" ng-src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/middle-school/image/fy22/badge-challenge-school.png" alt="School Goal Challenge Badge Earned">
             <span>School Goal Challenge Completed</span> <span class="sr-only">(earned)</span>
           </div>
         </div>
