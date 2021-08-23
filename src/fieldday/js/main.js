@@ -2393,8 +2393,8 @@
             // Accessible Nav Tabs:
             console.log("new tab solution in 01.03");
             window.addEventListener("DOMContentLoaded", () => {
-                const tabs = document.querySelectorAll('#js--company-page-tabs button[role="tab"]');
-                const tabList = document.querySelector('#js--company-page-tabs[role="tablist"]');
+                const tabs = document.querySelectorAll('.js--company-page-tabs button[role="tab"]');
+                const tabList = document.querySelector('.js--company-page-tabs[role="tablist"]');
               
                 // Add a click event handler to each tab
                 tabs.forEach(tab => {
