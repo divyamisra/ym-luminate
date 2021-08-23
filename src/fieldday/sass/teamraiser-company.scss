@@ -99,6 +99,18 @@
         @media all and (max-width: 620px) {
           font-size: 1rem!important;
         }
+        span:first-of-type {
+          display: block;
+          @include media-breakpoint-down(lg) {
+            display: none;
+          }
+        }
+        span:last-of-type {
+          display: none;
+          @include media-breakpoint-down(lg) {
+            display: block;
+          }
+        }
       }
       button[aria-selected="true"] {
         background-color: #c10e21;
