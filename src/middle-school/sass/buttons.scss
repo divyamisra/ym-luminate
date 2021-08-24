@@ -49,7 +49,8 @@ div.responsive {
     &:hover,
     &:focus,
     &:active {
-      color: $event-secondary-medium;
+      background: $event-primary-acc;
+      color: #ffffff;
     }
   }
 }
