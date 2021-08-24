@@ -9,3 +9,14 @@
     color: $event-grey;
   }
 }
+
+
+.ym-school-search {
+  #school-state-filter,
+  #school-state-filter2,
+  #search-sort {
+    &:hover {
+      color: $event-secondary-medium;
+    }
+  }
+}
