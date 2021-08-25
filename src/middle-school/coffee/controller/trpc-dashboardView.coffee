@@ -1038,7 +1038,7 @@ angular.module 'trPcControllers'
         document.getElementById("tRct").x.baseVal.value = xPos
         document.getElementById("tRct").y.baseVal.value = yPos
 
-        jQuery("#tTip div").attr("aria-description",$scope.prizes[prize].hover_msg).html($scope.prizes[prize].hover_msg)
+        jQuery("#tTip div").attr("aria-label",$scope.prizes[prize].hover_msg).html($scope.prizes[prize].hover_msg)
         document.getElementById("tTip").setAttribute('x',xPos)
         document.getElementById("tTip").setAttribute('y',yPos)
 
@@ -1055,7 +1055,7 @@ angular.module 'trPcControllers'
         document.getElementById("tRctm").x.baseVal.value = xPos
         document.getElementById("tRctm").y.baseVal.value = yPos
 
-        jQuery("#tTipm div").attr("aria-description",$scope.prizes[prize].hover_msg).html($scope.prizes[prize].hover_msg)
+        jQuery("#tTipm div").attr("aria-label",$scope.prizes[prize].hover_msg).html($scope.prizes[prize].hover_msg)
         document.getElementById("tTipm").setAttribute('x',xPos)
         document.getElementById("tTipm").setAttribute('y',yPos)
 
