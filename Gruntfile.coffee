@@ -231,6 +231,19 @@ module.exports = (grunt) ->
     runTargetedTask [
       'copy'
     ], 'leaders-for-life-scripts'
+        runTargetedTask [
+      'clean'
+      'sass'
+      'postcss'
+      'cssmin'
+      'uglify'
+      'replace'
+      'htmlmin'
+      'imagemin'
+    ], 'social-stem'
+    runTargetedTask [
+      'copy'
+    ], 'stem-scripts'
     return
   grunt.registerTask 'dev', ->
     devTasks = [
@@ -276,6 +289,9 @@ module.exports = (grunt) ->
       if task.indexOf('notify:') is -1
         devTasks.push task
     config.watch['leaders-for-life'].tasks.forEach (task) ->
+      if task.indexOf('notify:') is -1
+        devTasks.push task
+    config.watch['social-stem'].tasks.forEach (task) ->
       if task.indexOf('notify:') is -1
         devTasks.push task
     devTasks.push 'watch'
