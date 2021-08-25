@@ -1013,32 +1013,28 @@
 											<div class="ym-progress__thermometer--fill" ng-style="{'width': companyProgress.percent + '%'}">
 											</div>
 										</div>
-										<div class="ym-progress-related">
-											<p>
-												<strong>
-													<span ng-bind-html="companyProgress.raisedFormatted">
-													</span>
-												</strong>
-												raised 
-											</p>
-											<div ng-if="companyProgress.goalFormatted &amp;&amp; companyProgress.goalFormatted != '$0'" ng-cloak>
-												<p>
-													<strong>
-														<span ng-bind-html="companyProgress.goalFormatted">
-														</span>
-													</strong>
-													goal 
-												</p>
+									       <div class="ym-progress-related">
+											<div class="ym-progress-amounts">
+											  <p>
+											    <strong><span ng-bind-html="companyProgress.raisedFormatted"></span></strong> raised
+											  </p>
+											  <div ng-if="companyProgress.goalFormatted && companyProgress.goalFormatted != '$0'" ng-cloak>
+											    <p>
+											      <strong><span ng-bind-html="companyProgress.goalFormatted"></span></strong> goal
+											    </p>
+											  </div>
+											  <p>
+											      <a href="" ng-click="editSchoolGoal()" class="ym-progress-update-goal" aria-label="Update School Goal">
+												<strong>Update School Goal</strong>
+											      </a>
+											    <!-- <a ng-href="NTM?tr.ntmgmt=company_cservice_main&amp;company_id={{participantRegistration.companyInformation.companyId}}">
+											      <strong>Update School Goal</strong>
+											    </a> -->
+											    &nbsp;
+											  </p>
 											</div>
-											<p>
-												<a href="" ng-click="editSchoolGoal()" class="ym-progress-update-goal" aria-label="Update School Goal">
-													<strong>
-														Update School Goal
-													</strong>
-												</a>
-												&nbsp; 
-											</p>
-										</div>
+									      </div>
+
 									</div>
 								</div>
 							</div>
