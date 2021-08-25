@@ -191,5 +191,17 @@ module.exports = {
         dest: 'dist/leaders-for-life/image/'
       }
     ]
+  },
+  "social-stem": {
+    files: [
+      {
+        expand: true,
+        cwd: 'src/social-stem/image/',
+        src: [
+          '*.{gif,GIF,jpg,JPG,png,PNG,svg,SVG}'
+        ],
+        dest: 'dist/social-stem/image/'
+      }
+    ]
   }
 }

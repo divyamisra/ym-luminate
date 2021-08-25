@@ -111,5 +111,11 @@ module.exports = {
       title: 'AHA Luminate Framework',
       message: 'Lawyers Have Heart files updated.'
     }
+  },
+  "social-stem": {
+    options: {
+      title: 'AHA Luminate Framework',
+      message: 'Lawyers Have Heart files updated.'
+    }
   }
 }

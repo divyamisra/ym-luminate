@@ -231,7 +231,7 @@ module.exports = (grunt) ->
     runTargetedTask [
       'copy'
     ], 'leaders-for-life-scripts'
-        runTargetedTask [
+    runTargetedTask [
       'clean'
       'sass'
       'postcss'
@@ -243,7 +243,7 @@ module.exports = (grunt) ->
     ], 'social-stem'
     runTargetedTask [
       'copy'
-    ], 'stem-scripts'
+    ], 'social-stem-scripts'
     return
   grunt.registerTask 'dev', ->
     devTasks = [

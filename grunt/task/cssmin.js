@@ -176,5 +176,21 @@ module.exports = {
         dest: 'dist/leaders-for-life/css/donation.'+ '<%= timestamp %>' +'.min.css'
       }
     ]
+  },
+  "social-stem": {
+    files: [
+      {
+        src: 'dist/social-stem/css/main.css',
+        dest: 'dist/leaders-for-life/css/main.'+ '<%= timestamp %>' +'.min.css'
+      },
+      {
+        src: 'dist/social-stem/css/registration.css',
+        dest: 'dist/social-stem/css/registration.'+ '<%= timestamp %>' +'.min.css'
+      },
+      {
+        src: 'dist/social-stem/css/donation.css',
+        dest: 'dist/social-stem/css/donation.'+ '<%= timestamp %>' +'.min.css'
+      }
+    ]
   }
 }
