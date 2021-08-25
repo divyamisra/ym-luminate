@@ -4,6 +4,21 @@
 
 @import "../../youth-markets/sass/participant.scss";
 
+.ym-pc-dashboard-coordinators-tobacco-endgame-section {
+  background-color: $event-accent;
+  text-align: center;
+  margin: 0 0 24px;
+  padding: 12px;
+
+  @media (min-width: $screen-sm-min) {
+    padding: 24px 172px;
+  }
+
+  .ym-pc-dashboard-section-header {
+    color: $event-grey;
+  }
+}
+
 .list-group-item.active {
   &:focus,
   &.active,
