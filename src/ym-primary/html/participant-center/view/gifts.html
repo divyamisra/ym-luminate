@@ -6,8 +6,8 @@
      Congratulations on earning all of your gifts! Keep going to help save special hearts.
    </h3>   <em class="text-center" style="display: block;">You have raised {{participantProgress.raisedFormatted}}.<br/>Please allow 15 minutes for the system to update your donation.<br/>Please note that prizes can take up to 6 weeks to be delivered after the event has completed.</em>
    <section class="ym-pc-dashboard-standard-gifts-section" aria-label="My Standard Gifts" ng-if="standardGifts && standardGifts.length > 0" ng-cloak>
-      <div class="ym-pc-dashboard-standard-gifts-icons" aria-label="Standard Gifts">
-        <div class="ym-pc-dashboard-standard-gifts-icon" ng-class="{'not-earned': !standardGift.prize_status}" ng-repeat="standardGift in standardGifts" ng-cloak>
+      <div class="ym-pc-dashboard-standard-gifts-icons" role="list" aria-label="Standard Gifts">
+        <div class="ym-pc-dashboard-standard-gifts-icon" ng-class="{'not-earned': !standardGift.prize_status}" ng-repeat="standardGift in standardGifts" role="listitem" ng-cloak>
            <a href="" ng-click="showPrize(standardGift.prize_sku,standardGift.prize_label,standardGift.prize_status,standardGift.prize_video)">
               <img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/prizes2022/{{standardGift.prize_sku}}.png" alt="{{standardGift.prize_label}}">
               <div class="play-circle"><i class="fa fa-play"></i></div>
