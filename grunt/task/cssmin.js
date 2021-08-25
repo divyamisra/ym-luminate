@@ -181,7 +181,7 @@ module.exports = {
     files: [
       {
         src: 'dist/social-stem/css/main.css',
-        dest: 'dist/leaders-for-life/css/main.'+ '<%= timestamp %>' +'.min.css'
+        dest: 'dist/social-stem/css/main.'+ '<%= timestamp %>' +'.min.css'
       },
       {
         src: 'dist/social-stem/css/registration.css',
