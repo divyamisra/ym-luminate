@@ -126,7 +126,7 @@
             document.getElementById('contentStart').scrollIntoView();
         });
 
-        if ($('body').is('.pg_Leaders_HQ')) {
+        if ($('body').is('.pg_Stem_HQ')) {
             $('.js__skip-to').on('click', function (e) {
                 e.preventDefault();
                 $('html, body').animate({
@@ -612,9 +612,9 @@
             e.preventDefault();
             var companySearched = encodeURIComponent($('#companySearch').val());
             if ( $('body').is('.pg_Leader_For_Life_General') || $('body').is('.pg_Leader_For_Life_Landing_Page') ) {
-              window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=Leaders_For_Life_Search&search_type=company&cross_event=true&company=' + companySearched;
+              window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=Stem_Search&search_type=company&cross_event=true&company=' + companySearched;
             } else {
-              window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=Leaders_For_Life_Search&search_type=company'  + (evID ? '&cross_event=false&fr_id=' + evID : '&cross_event=true') + '&company=' + companySearched;
+              window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=Stem_Search&search_type=company'  + (evID ? '&cross_event=false&fr_id=' + evID : '&cross_event=true') + '&company=' + companySearched;
             }
         });
 
@@ -623,9 +623,9 @@
             e.preventDefault();
             var zipSearched = encodeURIComponent($('#zipSearch').val());
             if ( $('body').is('.pg_Leader_For_Life_General') || $('body').is('.pg_Leader_For_Life_Landing_Page') ) {
-              window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=Leaders_For_Life_Search&search_type=zip&cross_event=true&zip=' + zipSearched;
+              window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=Stem_Search&search_type=zip&cross_event=true&zip=' + zipSearched;
             } else {
-              window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=Leaders_For_Life_Search&search_type=zip'  + (evID ? '&cross_event=false&fr_id=' + evID : '&cross_event=true') + '&zip=' + zipSearched;
+              window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=Stem_Search&search_type=zip'  + (evID ? '&cross_event=false&fr_id=' + evID : '&cross_event=true') + '&zip=' + zipSearched;
             }
         });
 
@@ -634,9 +634,9 @@
             e.preventDefault();
             var stateSearch = encodeURIComponent($('#stateSearch').val());
             if ( $('body').is('.pg_Leader_For_Life_General') || $('body').is('.pg_Leader_For_Life_Landing_Page') ) {
-              window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=Leaders_For_Life_Search&search_type=state&cross_event=true&state=' + stateSearched;
+              window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=Stem_Search&search_type=state&cross_event=true&state=' + stateSearched;
             } else {
-              window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=Leaders_For_Life_Search&search_type=state'  + (evID ? '&cross_event=false&fr_id=' + evID : '&cross_event=true') + '&state=' + stateSearched;
+              window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=Stem_Search&search_type=state'  + (evID ? '&cross_event=false&fr_id=' + evID : '&cross_event=true') + '&state=' + stateSearched;
             }
         });
 
@@ -644,9 +644,9 @@
         $('#stateSearch').on('change', function () {
             var stateSearch = encodeURIComponent($('#stateSearch').val());
             if ( $('body').is('.pg_Leader_For_Life_General') || $('body').is('.pg_Leader_For_Life_Landing_Page') ) {
-              window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=Leaders_For_Life_Search&search_type=state&cross_event=true&state=' + stateSearch;
+              window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=Stem_Search&search_type=state&cross_event=true&state=' + stateSearch;
             } else {
-              window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=Leaders_For_Life_Search&search_type=state'  + (evID ? '&cross_event=false&fr_id=' + evID : '&cross_event=true') + '&state=' + stateSearch;
+              window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=Stem_Search&search_type=state'  + (evID ? '&cross_event=false&fr_id=' + evID : '&cross_event=true') + '&state=' + stateSearch;
             }
         });
 
@@ -657,9 +657,9 @@
             var lastName = encodeURIComponent($('#participantSearchLast').val());
 
             if ( $('body').is('.pg_Leader_For_Life_General') || $('body').is('.pg_Leader_For_Life_Landing_Page') ) {
-              window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=Leaders_For_Life_Search&search_type=participant&cross_event=true' + (firstName ? '&first_name=' + firstName : '') + (lastName ? '&last_name=' + lastName : '');
+              window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=Stem_Search&search_type=participant&cross_event=true' + (firstName ? '&first_name=' + firstName : '') + (lastName ? '&last_name=' + lastName : '');
             } else {
-              window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=Leaders_For_Life_Search&search_type=participant'  + (evID ? '&cross_event=false&fr_id=' + evID : '&cross_event=true') + (firstName ? '&first_name=' + firstName : '') + (lastName ? '&last_name=' + lastName : '');
+              window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=Stem_Search&search_type=participant'  + (evID ? '&cross_event=false&fr_id=' + evID : '&cross_event=true') + (firstName ? '&first_name=' + firstName : '') + (lastName ? '&last_name=' + lastName : '');
             }
         });
 
@@ -670,9 +670,9 @@
             cd.getTeams(teamName, (isCrossEventSearch === "true" ? true : false));
 
             if ( $('body').is('.pg_Leader_For_Life_General') || $('body').is('.pg_Leader_For_Life_Landing_Page') ) {
-              window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=Leaders_For_Life_Search&search_type=team&cross_event=true&team_name=' + teamName;
+              window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=Stem_Search&search_type=team&cross_event=true&team_name=' + teamName;
             } else {
-              window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=Leaders_For_Life_Search&search_type=team'  + (evID ? '&cross_event=false&fr_id=' + evID : '&cross_event=true') + '&team_name=' + teamName;
+              window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=Stem_Search&search_type=team'  + (evID ? '&cross_event=false&fr_id=' + evID : '&cross_event=true') + '&team_name=' + teamName;
             }
         });
 
@@ -1556,7 +1556,7 @@
                 console.log('teammate search');
                 var firstName = encodeURIComponent($('#greeting-search-first-name').val());
                 var lastName = encodeURIComponent($('#greeting-search-last-name').val());
-                window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=Leaders_For_Life_Search&search_type=participant&cross_event=false&fr_id=' + evID + (firstName ? '&first_name=' + firstName : '') +
+                window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=Stem_Search&search_type=participant&cross_event=false&fr_id=' + evID + (firstName ? '&first_name=' + firstName : '') +
                     (lastName ? '&last_name=' + lastName : '');
             });
 
@@ -1564,7 +1564,7 @@
             $('.js--greeting-team-search-form').on('submit', function (e) {
                 e.preventDefault();
                 var teamName = encodeURIComponent($('#greeting-search-team').val());
-                window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=Leaders_For_Life_Search&search_type=team&cross_event=false&fr_id=' + evID + '&team_name=' + teamName;
+                window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=Stem_Search&search_type=team&cross_event=false&fr_id=' + evID + '&team_name=' + teamName;
             });
 
             //Adding aria labels for additional nav
@@ -2273,7 +2273,7 @@
         }
 
 
-        if ($('body').is('.pg_Leaders_For_Life_Search')) {
+        if ($('body').is('.pg_Stem_Search')) {
             // Leader_For_Life Search Page
             var clearSearchResults = function () {
                 $('.js--event-results-container, .alert').attr('hidden', true);
