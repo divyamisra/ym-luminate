@@ -611,7 +611,7 @@
         $('.js--header-company-search').on('submit', function (e) {
             e.preventDefault();
             var companySearched = encodeURIComponent($('#companySearch').val());
-            if ( $('body').is('.pg_Leader_For_Life_General') || $('body').is('.pg_Leader_For_Life_Landing_Page') ) {
+            if ( $('body').is('.pg_Stem_General') || $('body').is('.pg_Stem_Landing_Page') ) {
               window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=Stem_Search&search_type=company&cross_event=true&company=' + companySearched;
             } else {
               window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=Stem_Search&search_type=company'  + (evID ? '&cross_event=false&fr_id=' + evID : '&cross_event=true') + '&company=' + companySearched;
@@ -622,7 +622,7 @@
         $('.js--header-zip-search').on('submit', function (e) {
             e.preventDefault();
             var zipSearched = encodeURIComponent($('#zipSearch').val());
-            if ( $('body').is('.pg_Leader_For_Life_General') || $('body').is('.pg_Leader_For_Life_Landing_Page') ) {
+            if ( $('body').is('.pg_Stem_General') || $('body').is('.pg_Stem_Landing_Page') ) {
               window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=Stem_Search&search_type=zip&cross_event=true&zip=' + zipSearched;
             } else {
               window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=Stem_Search&search_type=zip'  + (evID ? '&cross_event=false&fr_id=' + evID : '&cross_event=true') + '&zip=' + zipSearched;
@@ -633,7 +633,7 @@
         $('.js--header-state-search').on('submit', function (e) {
             e.preventDefault();
             var stateSearch = encodeURIComponent($('#stateSearch').val());
-            if ( $('body').is('.pg_Leader_For_Life_General') || $('body').is('.pg_Leader_For_Life_Landing_Page') ) {
+            if ( $('body').is('.pg_Stem_General') || $('body').is('.pg_Stem_Landing_Page') ) {
               window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=Stem_Search&search_type=state&cross_event=true&state=' + stateSearched;
             } else {
               window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=Stem_Search&search_type=state'  + (evID ? '&cross_event=false&fr_id=' + evID : '&cross_event=true') + '&state=' + stateSearched;
@@ -643,7 +643,7 @@
 
         $('#stateSearch').on('change', function () {
             var stateSearch = encodeURIComponent($('#stateSearch').val());
-            if ( $('body').is('.pg_Leader_For_Life_General') || $('body').is('.pg_Leader_For_Life_Landing_Page') ) {
+            if ( $('body').is('.pg_Stem_General') || $('body').is('.pg_Stem_Landing_Page') ) {
               window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=Stem_Search&search_type=state&cross_event=true&state=' + stateSearch;
             } else {
               window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=Stem_Search&search_type=state'  + (evID ? '&cross_event=false&fr_id=' + evID : '&cross_event=true') + '&state=' + stateSearch;
@@ -656,7 +656,7 @@
             var firstName = encodeURIComponent($('#participantSearchFirst').val());
             var lastName = encodeURIComponent($('#participantSearchLast').val());
 
-            if ( $('body').is('.pg_Leader_For_Life_General') || $('body').is('.pg_Leader_For_Life_Landing_Page') ) {
+            if ( $('body').is('.pg_Stem_General') || $('body').is('.pg_Stem_Landing_Page') ) {
               window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=Stem_Search&search_type=participant&cross_event=true' + (firstName ? '&first_name=' + firstName : '') + (lastName ? '&last_name=' + lastName : '');
             } else {
               window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=Stem_Search&search_type=participant'  + (evID ? '&cross_event=false&fr_id=' + evID : '&cross_event=true') + (firstName ? '&first_name=' + firstName : '') + (lastName ? '&last_name=' + lastName : '');
@@ -669,7 +669,7 @@
             var teamName = encodeURIComponent($('#teamSearch').val());
             cd.getTeams(teamName, (isCrossEventSearch === "true" ? true : false));
 
-            if ( $('body').is('.pg_Leader_For_Life_General') || $('body').is('.pg_Leader_For_Life_Landing_Page') ) {
+            if ( $('body').is('.pg_Stem_General') || $('body').is('.pg_Stem_Landing_Page') ) {
               window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=Stem_Search&search_type=team&cross_event=true&team_name=' + teamName;
             } else {
               window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=Stem_Search&search_type=team'  + (evID ? '&cross_event=false&fr_id=' + evID : '&cross_event=true') + '&team_name=' + teamName;
@@ -1743,10 +1743,10 @@
                                         personalVideoEmbedUrl = 'https://www.youtube.com/embed/' + videoId + '?wmode=opaque&amp;rel=0&amp;showinfo=0';
                                     }
                                 }
-                                videoEmbedHtml = '<iframe cc_load_policy=1 class="embed-responsive-item" src="' + personalVideoEmbedUrl + '" title="American Heart Association Leader For Life Video" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+                                videoEmbedHtml = '<iframe cc_load_policy=1 class="embed-responsive-item" src="' + personalVideoEmbedUrl + '" title="American Heart Association STEM Video" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
                             } else {
                                 // TODO - show default video
-                                videoEmbedHtml = '<iframe cc_load_policy=1 width="560" height="315" src="https://www.youtube.com/embed/LryhjU1bEC4" title="About American Heart Association Leader For Life" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+                                videoEmbedHtml = '<iframe cc_load_policy=1 width="560" height="315" src="https://www.youtube.com/embed/LryhjU1bEC4" title="About American Heart Association STEM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
                             }
                             $('.js--personal-video-container').append(videoEmbedHtml);
                         },
@@ -1863,7 +1863,7 @@
             // Populate company name from page title
             var pageTitle = jQuery('head title').text().trim();
             var start_pos = pageTitle.indexOf(':') + 1;
-            var end_pos = pageTitle.indexOf('- Leader For Life', start_pos);
+            var end_pos = pageTitle.indexOf('- STEM', start_pos);
             var currentCompanyName = pageTitle.substring(start_pos, end_pos).trim();
             var currentCompanyId = getURLParameter(currentUrl, 'company_id');
 
@@ -2412,7 +2412,7 @@
 
         //Landong Page
 
-        if($('body').is('.pg_Leader_For_Life_Landing_Page')) {
+        if($('body').is('.pg_Stem_Landing_Page')) {
           //Search functionality
 
           $('#company-page-search, #participant-page-search').on('click', function(){
