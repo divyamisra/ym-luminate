@@ -2328,6 +2328,7 @@
             // Search by Team
             $('.js--team-search-form').on('submit', function (e) {
                 e.preventDefault();
+                console.log('team search')
                 clearSearchResults();
                 var teamName = encodeURIComponent($('#teamNameSearch').val());
                 cd.getTeams(teamName, (isCrossEventSearch === "true" ? true : false));
