@@ -424,6 +424,7 @@
         };
 
         cd.getTeams = function (teamName, isCrossEvent) {
+            console.log('getTeams API is false')
             $('.js__team-results-rows').html('');
             luminateExtend.api({
                 api: 'teamraiser',
@@ -437,6 +438,7 @@
                     '&list_ascending=true',
                 callback: {
                     success: function (response) {
+                      console.log('getTeams API is true', response)
 
                         if ($.fn.DataTable) {
                             if ($.fn.DataTable.isDataTable('#teamResultsTable')) {
