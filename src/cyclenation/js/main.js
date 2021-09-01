@@ -3544,15 +3544,14 @@ cd.getTeamHonorRoll();
   if($('.achievements .achievement-badge').length == 0) {
     $('.achievements').parent().hide();
   }
-
+  var teamId = getURLParameter(currentUrl, 'team_id');
   luminateExtend.api({
     api: 'teamraiser',
     data: 'method=getTeamCaptains&response_format=json&fr_id=' + evID + '&team_id=' + teamId,
     callback: {
       success: function success(response) {
         var captainArray = luminateExtend.utils.ensureArray(response.getTeamCaptainsResponse.captain);
-        var joinTeamName = 'Join ' + captainArray[0].teamName;
-        captainConsId = captainArray[0].consId;
+        var captainConsId = captainArray[0].consId;
         console.log('this is captainID', captainConsId)
       },
       error: function error(response) {}
