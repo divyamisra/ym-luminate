@@ -3553,6 +3553,8 @@ cd.getTeamHonorRoll();
         var captainArray = luminateExtend.utils.ensureArray(response.getTeamCaptainsResponse.captain);
         var captainConsId = captainArray[0].consId;
         console.log('this is captainID', captainConsId)
+        console.log('TRR/?fr_tjoin='+teamId+'&pg=tfind&fr_id='+evID+'&s_regType=joinTeam&s_captainConsId='+captainConsId)
+        $('.team-page-join-link').attr("href", 'TRR/?fr_tjoin='+teamId+'&pg=tfind&fr_id='+evID+'&s_regType=joinTeam&s_captainConsId='+captainConsId);
       },
       error: function error(response) {}
     }
