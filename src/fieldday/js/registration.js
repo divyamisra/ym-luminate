@@ -12,6 +12,7 @@
         var publicEventType = $('body').data('public-event-type') ? $('body').data('public-event-type') : null;
         var viewportWidth = window.innerWidth || document.documentElement.clientWidth;
 
+        var cd = {};
 
         var isProd = (luminateExtend.global.tablePrefix === 'heartdev' ? false : true);
         var eventName = luminateExtend.global.eventName;
@@ -25,7 +26,7 @@
         var coordEmailReg = $('body').data('coord-email') ? $('body').data('coord-email') : null;
         var regCompanyId = $('body').data("companyid");
         var regCompanyName = $('body').data("companyname");
-        console.log("dev test outside2");
+        console.log("dev test outside3");
         // if (regCompanyName.includes('ampersand')) {
         //   regCompanyName = regCompanyName.replace("ampersand", "&");
         // }
