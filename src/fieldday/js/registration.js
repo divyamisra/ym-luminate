@@ -689,6 +689,16 @@
 
             $('#janrainModal img').attr('alt', 'Close social login lightbox');
 
+            console.log("begin watch janrain");
+            $('.janrainEngage').on('click touchstart', function (e) {
+              console.log("janrain was clicked");
+              setTimeout(function(){
+                console.log("draw focus to header");
+                document.querySelector('.janrainHeader').focus();
+            },500);
+
+            })
+
             $('div#user_type_campaign_banner_container').replaceWith(function() {
                 return '<h1 class="campaign-banner-container" id="user_type_campaign_banner_container">' + $(this).html() + '</h1>';
             });

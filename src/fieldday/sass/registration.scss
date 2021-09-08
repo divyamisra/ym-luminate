@@ -644,6 +644,10 @@ div#user_type_login_email_container #user_type_login_email_button {
 	margin-bottom: 10px;
 }
 
+.janrainPage li a:focus {
+  outline: 4px solid #0064bd;
+  outline-offset: initial;
+}
 
 /*** ptype  ***/
 
