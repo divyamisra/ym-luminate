@@ -12,6 +12,7 @@
         var publicEventType = $('body').data('public-event-type') ? $('body').data('public-event-type') : null;
         var viewportWidth = window.innerWidth || document.documentElement.clientWidth;
 
+        var cd = {};
 
         var isProd = (luminateExtend.global.tablePrefix === 'heartdev' ? false : true);
         var eventName = luminateExtend.global.eventName;
@@ -25,8 +26,12 @@
         var coordEmailReg = $('body').data('coord-email') ? $('body').data('coord-email') : null;
         var regCompanyId = $('body').data("companyid");
         var regCompanyName = $('body').data("companyname");
-        if (regCompanyName.includes('ampersand')) {
-          regCompanyName = regCompanyName.replace("ampersand", "&")
+        console.log("dev test outside3");
+        // if (regCompanyName.includes('ampersand')) {
+        //   regCompanyName = regCompanyName.replace("ampersand", "&");
+        // }
+        if (regCompanyName.indexOf('ampersand') != -1) {
+          regCompanyName = regCompanyName.replace("ampersand", "&");
         }
         console.log('coordinator email: ', coordEmail);
 
@@ -150,8 +155,11 @@
 
                       if (parseInt(team.maxTeamSize) > parseInt(team.numMembers)) {
                         var teamNameSearch = team.companyName;
-                        if (teamNameSearch.includes('&')) {
-                          teamNameSearch = teamNameSearch.replace("&", "ampersand")
+                        // if (teamNameSearch.includes('&')) {
+                        //   teamNameSearch = teamNameSearch.replace("&", "ampersand");
+                        // }
+                        if (teamNameSearch.indexOf('&') != -1) {
+                          teamNameSearch = teamNameSearch.replace("&", "ampersand");
                         }
                                     $('.list').append(
                                       '<div class="search-result-details row py-3"><div class="col-md-5"><strong><a href="' + team.teamPageURL + '" class="team-name-label" title="' + team.name + '" target=_blank><span class="team-company-label sr-only">Team Name:</span> ' + team.name + '</a></strong><br><span class="team-captain-label">Coach:</span> <span class="team-captain-name">' + team.captainFirstName + ' ' + team.captainLastName + '</span></div><div class="col-md-5 mt-auto">' + ((team.companyName !== null && team.companyName !== undefined) ? '<span class="team-company-label">Company:</span> <span class="team-company-name">' + team.companyName + '</span>' : '') + '</div><div class="col-md-2"><a href="' + luminateExtend.global.path.secure + 'TRR/?fr_tjoin=' + team.id + '&pg=tfind&fr_id=' + evID + '&s_captainConsId=' + team.captainConsId + '&s_regType=joinTeam&skip_login_page=true&s_teamName=' + team.name + '&s_teamGoal=' + (parseInt(team.goal)/100) + '&s_teamCaptain=' + team.captainFirstName + ' ' + team.captainLastName + '&s_companyName=' + teamNameSearch +'" title="Join ' + team.name + '" aria-label="Join ' + team.name + '" class="btn btn-block btn-primary button team-join-btn">Join</a></div></div>');
