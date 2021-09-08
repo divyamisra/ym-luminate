@@ -26,7 +26,6 @@
         var coordEmailReg = $('body').data('coord-email') ? $('body').data('coord-email') : null;
         var regCompanyId = $('body').data("companyid");
         var regCompanyName = $('body').data("companyname");
-        console.log("dev test outside3");
         // if (regCompanyName.includes('ampersand')) {
         //   regCompanyName = regCompanyName.replace("ampersand", "&");
         // }
@@ -689,7 +688,7 @@
 
             $('#janrainModal img').attr('alt', 'Close social login lightbox');
 
-            console.log("begin watch janrain");
+            console.log("begin watch janrain 02");
             $('.janrainEngage').on('click touchstart', function (e) {
               console.log("janrain was clicked");
               setTimeout(function(){
