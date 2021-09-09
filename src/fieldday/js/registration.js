@@ -688,12 +688,12 @@
 
             $('#janrainModal img').attr('alt', 'Close social login lightbox');
 
-            console.log("begin watch janrain 02");
+            console.log("begin watch janrain 03");
             $('.janrainEngage').on('click touchstart', function (e) {
-              console.log("janrain was clicked");
+              console.log("janrain was clicked 03");
               setTimeout(function(){
-                console.log("draw focus to header");
-                document.querySelector('.janrainHeader').focus();
+                console.log("draw focus to header 03");
+                $('.janrainHeader').focus();
             },500);
 
             })
