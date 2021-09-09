@@ -76,6 +76,35 @@
         }
       }
     }
+    .tabs {
+      button[role="tab"] {
+        width: 33.33%;
+        font-size: 2rem;
+        color: #000;
+        background-color: #efefef;
+        border-bottom: none;
+        padding: .75rem 1rem;
+        text-align: center;
+        text-decoration: none;
+        font-family: LubDubBold,Helvetica,Arial,sans-serif;
+        border-radius: 0;
+        background-clip: padding-box;
+        border: 1px solid transparent;
+        @include media-breakpoint-down(md) {
+          font-size: 1.75rem;
+        }
+        @include media-breakpoint-down(sm) {
+          padding: .5rem .25rem!important;
+        }
+        @media all and (max-width: 620px) {
+          font-size: 1rem!important;
+        }
+      }
+      button[aria-selected="true"] {
+        background-color: #c10e21;
+        color: #fff;
+      }
+    }
   }
   
   .sidebar__details p {
@@ -90,7 +119,7 @@
       font-family: LubDubMedium,Helvetica,Arial,sans-serif!important;
     }
   }
-  .js--company-text p, .js--company-text p span {
+  .js--company-text p, .js--company-text p span, .js--company-text span {
     font-family: "LubDubMedium", Helvetica, Arial, sans-serif!important;
     font-size: 18px!important;
     line-height: 27px!important;

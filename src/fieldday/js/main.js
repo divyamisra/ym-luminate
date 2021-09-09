@@ -2309,7 +2309,7 @@
                             var html = "<div aria-live='polite' class='paymentSelType' style='padding-top:10px;'>" +
                                 "<h2 class='h6'>How would you like to donate?</h2>" +
                                 "<div class='payment-options-container'><a href='" + dlink + "'><img src='https://www2.heart.org/images/content/pagebuilder/credit-card-logos2.png' alt='Donate with Visa, MasterCard, American Express or Discover cards'/></a>" +
-                                "<a href='" + default_path + "/site/SPageNavigator/fieldday_donate_amazon.html?FR_ID=" + fr_id + "&mfc_pref=T&PROXY_ID=" + px + "&PROXY_TYPE=" + pt + "' class='amazon'><img src='https://donatenow.heart.org/images/amazon-payments_inactive.png' alt='Donate with Amazon Pay'/></a>" +
+                                "<a href='" + default_path + "/site/SPageNavigator/fieldday_donate_amazon.html?FR_ID=" + fr_id + "&mfc_pref=T&PROXY_ID=" + px + "&PROXY_TYPE=" + pt + "' class='amazon'><img src='https://www2.heart.org/images/content/pagebuilder/amazon-payments.png' alt='Donate with Amazon Pay'/></a>" +
                                 "<a href='" + default_path + "/site/SPageNavigator/fieldday_donate_googlepay.html?FR_ID=" + fr_id + "&mfc_pref=T&PROXY_ID=" + px + "&PROXY_TYPE=" + pt + "' class='googlepay'><img src='https://www2.heart.org/donation-forms/donatenow/images/googlepay-button.png' alt='Donate with Google Pay'/></a>" +
                                 "<a href='" + default_path + "/site/SPageNavigator/fieldday_donate_applepay.html?FR_ID=" + fr_id + "&mfc_pref=T&PROXY_ID=" + px + "&PROXY_TYPE=" + pt + "' class='applepay hidden-md hidden-lg'><img src='https://www2.heart.org/donation-forms-braintree/donatenow/images/DonateBlack_32pt_@2x.png' alt='ApplePay'/></a>" +
                                 "<a href='" + default_path + "/site/SPageNavigator/fieldday_donate_venmo.html?FR_ID=" + fr_id + "&mfc_pref=T&PROXY_ID=" + px + "&PROXY_TYPE=" + pt + "' class='venmo hidden-md hidden-lg'><img src='https://www2.heart.org/donation-forms/donatenow/images/venmo-button.png' alt='Venmo'/></a>" +
@@ -2389,6 +2389,70 @@
             }
 
             cd.buildCompanyGamePointsRoster();
+
+            // Accessible Nav Tabs:
+            console.log("new tab solution in 01.03");
+            window.addEventListener("DOMContentLoaded", () => {
+                const tabs = document.querySelectorAll('.js--company-page-tabs button[role="tab"]');
+                const tabList = document.querySelector('.js--company-page-tabs[role="tablist"]');
+              
+                // Add a click event handler to each tab
+                tabs.forEach(tab => {
+                  tab.addEventListener("click", changeTabs);
+                });
+              
+                // Enable arrow navigation between tabs in the tab list
+                let tabFocus = 0;
+              
+                tabList.addEventListener("keydown", e => {
+                  // Move right
+                  if (e.keyCode === 39 || e.keyCode === 37) {
+                    tabs[tabFocus].setAttribute("tabindex", -1);
+                    if (e.keyCode === 39) {
+                      tabFocus++;
+                      // If we're at the end, go to the start
+                      if (tabFocus >= tabs.length) {
+                        tabFocus = 0;
+                      }
+                      // Move left
+                    } else if (e.keyCode === 37) {
+                      tabFocus--;
+                      // If we're at the start, move to the end
+                      if (tabFocus < 0) {
+                        tabFocus = tabs.length - 1;
+                      }
+                    }
+              
+                    tabs[tabFocus].setAttribute("tabindex", 0);
+                    tabs[tabFocus].focus();
+                  }
+                });
+              });
+              
+              function changeTabs(e) {
+                const target = e.target;
+                const parent = target.parentNode;
+                const grandparent = parent.parentNode;
+              
+                // Remove all current selected tabs
+                parent
+                  .querySelectorAll('[aria-selected="true"]')
+                  .forEach(t => t.setAttribute("aria-selected", false));
+              
+                // Set this tab as selected
+                target.setAttribute("aria-selected", true);
+              
+                // Hide all tab panels
+                grandparent
+                  .querySelectorAll('[role="tabpanel"]')
+                  .forEach(p => p.setAttribute("hidden", true));
+              
+                // Show the selected panel
+                grandparent.parentNode
+                  .querySelector(`#${target.getAttribute("aria-controls")}`)
+                  .removeAttribute("hidden");
+              }
+            
             
         }
 

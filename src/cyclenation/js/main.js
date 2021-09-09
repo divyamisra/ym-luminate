@@ -3132,6 +3132,9 @@
 
     $('#team_find_new_team_recruiting_goal label.input-label').attr('for', 'fr_team_member_goal');
 
+    //Hardcoding value to test recruitment goal settings 
+    // $('#team_find_new_team_recruiting_goal').find('input').val('3');
+
     // ptype
     // $('#part_type_selection_container').wrapInner('<fieldset role="radiogroup" class="ptype-selection"/>');
 
@@ -3541,6 +3544,21 @@ cd.getTeamHonorRoll();
   if($('.achievements .achievement-badge').length == 0) {
     $('.achievements').parent().hide();
   }
+  var teamId = getURLParameter(currentUrl, 'team_id');
+  luminateExtend.api({
+    api: 'teamraiser',
+    data: 'method=getTeamCaptains&response_format=json&fr_id=' + evID + '&team_id=' + teamId,
+    callback: {
+      success: function success(response) {
+        var captainArray = luminateExtend.utils.ensureArray(response.getTeamCaptainsResponse.captain);
+        var captainConsId = captainArray[0].consId;
+        console.log('this is captainID', captainConsId)
+        console.log('TRR/?fr_tjoin='+teamId+'&pg=tfind&fr_id='+evID+'&s_regType=joinTeam&s_captainConsId='+captainConsId)
+        $('.team-page-join-link').attr("href", 'TRR/?fr_tjoin='+teamId+'&pg=tfind&fr_id='+evID+'&s_regType=joinTeam&s_captainConsId='+captainConsId);
+      },
+      error: function error(response) {}
+    }
+  });
 }
     if ($('body').is('.pg_company')) {
  // Company Page
@@ -3949,7 +3967,7 @@ cd.getTeamHonorRoll();
                 //             var html = "<div class='paymentSelType text-center' style='padding-top:10px;'>" +
                 //                 "<h2 class='h6'>How would you like to donate?</h2>" +
                 //                 "<div class='payment-options-container'><a href='" + dlink + "'><img src='https://www2.heart.org/images/content/pagebuilder/credit-card-logos2.png' alt='Donate with Visa, MasterCard, American Express or Discover cards'/></a>" +
-                //                 "<a href='" + default_path + "/site/SPageNavigator/cyclenation_donate_amazon.html?FR_ID=" + fr_id + "&mfc_pref=T&PROXY_ID=" + px + "&PROXY_TYPE=" + pt + "' class='amazon'><img src='https://donatenow.heart.org/images/amazon-payments_inactive.png' alt='Donate with Amazon Pay'/></a>" +
+                //                 "<a href='" + default_path + "/site/SPageNavigator/cyclenation_donate_amazon.html?FR_ID=" + fr_id + "&mfc_pref=T&PROXY_ID=" + px + "&PROXY_TYPE=" + pt + "' class='amazon'><img src='https://www2.heart.org/images/content/pagebuilder/amazon-payments.png' alt='Donate with Amazon Pay'/></a>" +
                 //                 "<a href='" + default_path + "/site/SPageNavigator/cyclenation_donate_googlepay.html?FR_ID=" + fr_id + "&mfc_pref=T&PROXY_ID=" + px + "&PROXY_TYPE=" + pt + "' class='googlepay'><img src='https://www2.heart.org/donation-forms/donatenow/images/googlepay-button.png' alt='Donate with Google Pay'/></a>" +
                 //                 "<a href='" + default_path + "/site/SPageNavigator/cyclenation_donate_applepay.html?FR_ID=" + fr_id + "&mfc_pref=T&PROXY_ID=" + px + "&PROXY_TYPE=" + pt + "' class='applepay hidden-md hidden-lg'><img src='https://www2.heart.org/donation-forms-braintree/donatenow/images/DonateBlack_32pt_@2x.png' alt='ApplePay'/></a>" +
                 //                 "<a href='" + default_path + "/site/SPageNavigator/cyclenation_donate_venmo.html?FR_ID=" + fr_id + "&mfc_pref=T&PROXY_ID=" + px + "&PROXY_TYPE=" + pt + "' class='venmo hidden-md hidden-lg'><img src='https://www2.heart.org/donation-forms/donatenow/images/venmo-button.png' alt='Venmo'/></a>" +
