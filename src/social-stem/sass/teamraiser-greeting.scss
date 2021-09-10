@@ -16,6 +16,9 @@
     @include media-breakpoint-up(lg) {
       background-position: center;
     }
+    @include media-breakpoint-up(md) {
+      background-image: url('http://www2.heart.org/images/content/pagebuilder/stem_entry_small.png');
+    }
   }
 
   .event-info__content {
