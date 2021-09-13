@@ -462,17 +462,6 @@ angular.module 'trPcControllers'
               $scope.refreshFundraisingProgress()
           $scope.dashboardPromises.push updateSchoolGoalPromise
 
-      if $scope.facebookFundraisersEnabled and $rootScope.facebookFundraiserId and $rootScope.facebookFundraiserId isnt ''
-        $rootScope.facebookFundraiserConfirmedStatus = 'pending'
-        FacebookFundraiserService.confirmFundraiserStatus()
-          .then (response) ->
-            confirmOrUnlinkFacebookFundraiserResponse = response.data.confirmOrUnlinkFacebookFundraiserResponse
-            if confirmOrUnlinkFacebookFundraiserResponse?.active is 'false'
-              delete $rootScope.facebookFundraiserId
-              $rootScope.facebookFundraiserConfirmedStatus = 'deleted'
-            else
-              $rootScope.facebookFundraiserConfirmedStatus = 'confirmed'
-
       $scope.participantGifts =
         sortColumn: 'date_recorded'
         sortAscending: false
@@ -814,6 +803,12 @@ angular.module 'trPcControllers'
                 final_url = 'https://tools.heart.org/aha_ym22/quiz/show/' + prize.mission_url + '?event_id=' + $scope.frId + '&user_id=' + $scope.consId + '&name=' + $scope.consNameFirst
             if prize.mission_url_type == 'Modal' and prize.mission_url == 'app' 
               final_url = 'showMobileApp()'
+            if prize.label == 'Go Social' and $rootScope.facebookFundraiserConfirmedStatus == 'confirmed'
+              if $rootScope.facebookFundraiserId
+                final_url = '//facebook.com/donate/' + $rootScope.facebookFundraiserId + '/'
+              else
+                prize.mission_url = 'Modal'
+                final_url = 'loginToFacebook()'
             if prize.status != 0
               earned_status = 'Earned'
               hover_msg = prize.earned_hover
@@ -847,8 +842,24 @@ angular.module 'trPcControllers'
         , (response) ->
           # TODO
       #$scope.getMoveMoreFlag()
-      refreshFinnsMission()
+      #refreshFinnsMission()
 
+      
+      $rootScope.facebookFundraiserConfirmedStatus = ''
+      if $scope.facebookFundraisersEnabled and $rootScope.facebookFundraiserId and $rootScope.facebookFundraiserId isnt ''
+        $rootScope.facebookFundraiserConfirmedStatus = 'pending'
+        FacebookFundraiserService.confirmFundraiserStatus()
+          .then (response) ->
+            confirmOrUnlinkFacebookFundraiserResponse = response.data.confirmOrUnlinkFacebookFundraiserResponse
+            if confirmOrUnlinkFacebookFundraiserResponse?.active is 'false'
+              delete $rootScope.facebookFundraiserId
+              $rootScope.facebookFundraiserConfirmedStatus = 'deleted'
+            else
+              $rootScope.facebookFundraiserConfirmedStatus = 'confirmed'
+            refreshFinnsMission()
+      else
+        refreshFinnsMission()
+        
       BoundlessService.getSchoolBadges $scope.frId + '/' + $scope.participantRegistration.companyInformation.companyId
       .then (response) ->
         if response.data.success == "true"
