@@ -688,15 +688,29 @@
 
             $('#janrainModal img').attr('alt', 'Close social login lightbox');
 
-            console.log("begin watch janrain 03");
-            $('.janrainEngage').on('click touchstart', function (e) {
-              console.log("janrain was clicked 03");
-              setTimeout(function(){
-                console.log("draw focus to header 03");
-                $('.janrainHeader').focus();
-            },500);
+            console.log("begin watch janrain 04");
+            // $('.janrainEngage').on('click touchstart', function (e) {
+            //   console.log("janrain was clicked 03");
+            //   setTimeout(function(){
+            //     console.log("draw focus to header 03");
+            //     $('.janrainHeader').focus();
+            //   },500);
+            // });
 
-            })
+            // var socialHTML = '<div class="btn-social-login btn-facebook"><i class="fa fa-facebook-f mr-2"></i> Log In with Facebook</div><div class="btn-social-login btn-amazon"><i class="fa fa-amazon mr-2"></i> Log In with Amazon</div>';
+            // jQuery('div.js--default-social-login div.loginText a.janrainEngage.loginHref').html(jQuery('div.js--default-social-login div.loginText a.janrainEngage.loginHref div.loginLinks.janrainEngage'));
+            // jQuery('div.js--default-social-login div.loginText a.janrainEngage.loginHref div.loginLinks.janrainEngage').html(socialHTML);
+            setTimeout(function(){
+               jQuery('a.janrainEngage.loginHref').click(function(){
+                  var btnStyle = jQuery('.janrainContent + img').attr("style");
+                  jQuery('.janrainContent + img').attr({"title":"Click to Close popup","alt":"Click to Close popup"});
+                  jQuery('.janrainContent + img').clone().insertBefore('.janrainContent').wrap('<button type="button" class="accBtn" style="'+btnStyle+';border:none;background:none;" tabindex=1></button>');
+                  jQuery('.janrainContent + img').hide();
+                  jQuery('.accBtn').click(function(e){jQuery('.janrainContent + img').click();jQuery('.accBtn').remove();});
+                  jQuery('.accBtn img').removeAttr("style");
+                  jQuery('.accBtn').show().focus();
+               });
+            },1000);
 
             $('div#user_type_campaign_banner_container').replaceWith(function() {
                 return '<h1 class="campaign-banner-container" id="user_type_campaign_banner_container">' + $(this).html() + '</h1>';

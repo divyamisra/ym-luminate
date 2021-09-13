@@ -645,8 +645,11 @@ div#user_type_login_email_container #user_type_login_email_button {
 }
 
 .janrainPage li a:focus {
-  outline: 4px solid #0064bd;
-  outline-offset: initial;
+  /* outline: 4px solid #0064bd; 
+    outline-offset: initial;
+  */
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
 }
 
 /*** ptype  ***/
