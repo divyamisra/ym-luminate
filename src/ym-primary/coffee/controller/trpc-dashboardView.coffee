@@ -1248,6 +1248,11 @@ angular.module 'trPcControllers'
           e.preventDefault()
           return false
 
+      $scope.jumpToFacebook = ->
+        if jQuery('.ym-pc-dashboard-facebook-section').length > 0
+          jQuery('html, body').animate
+            scrollTop: jQuery('.ym-pc-dashboard-facebook-section').offset().top - 150
+
       $scope.mouseover = (prize, xPos, yPos, sel, offset) ->
         document.getElementById("tRct").style.fill = "#206EBA"
         document.getElementById("tRct").x.baseVal.value = xPos
