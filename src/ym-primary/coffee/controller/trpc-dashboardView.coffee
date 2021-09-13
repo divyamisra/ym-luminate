@@ -462,21 +462,6 @@ angular.module 'trPcControllers'
               $scope.refreshFundraisingProgress()
           $scope.dashboardPromises.push updateSchoolGoalPromise
 
-      $rootScope.facebookFundraiserConfirmedStatus = ''
-      if $scope.facebookFundraisersEnabled and $rootScope.facebookFundraiserId and $rootScope.facebookFundraiserId isnt ''
-        $rootScope.facebookFundraiserConfirmedStatus = 'pending'
-        FacebookFundraiserService.confirmFundraiserStatus()
-          .then (response) ->
-            confirmOrUnlinkFacebookFundraiserResponse = response.data.confirmOrUnlinkFacebookFundraiserResponse
-            if confirmOrUnlinkFacebookFundraiserResponse?.active is 'false'
-              delete $rootScope.facebookFundraiserId
-              $rootScope.facebookFundraiserConfirmedStatus = 'deleted'
-            else
-              $rootScope.facebookFundraiserConfirmedStatus = 'confirmed'
-            refreshFinnsMission()
-      else
-        refreshFinnsMission()
-
       $scope.participantGifts =
         sortColumn: 'date_recorded'
         sortAscending: false
@@ -859,6 +844,22 @@ angular.module 'trPcControllers'
       #$scope.getMoveMoreFlag()
       #refreshFinnsMission()
 
+      
+      $rootScope.facebookFundraiserConfirmedStatus = ''
+      if $scope.facebookFundraisersEnabled and $rootScope.facebookFundraiserId and $rootScope.facebookFundraiserId isnt ''
+        $rootScope.facebookFundraiserConfirmedStatus = 'pending'
+        FacebookFundraiserService.confirmFundraiserStatus()
+          .then (response) ->
+            confirmOrUnlinkFacebookFundraiserResponse = response.data.confirmOrUnlinkFacebookFundraiserResponse
+            if confirmOrUnlinkFacebookFundraiserResponse?.active is 'false'
+              delete $rootScope.facebookFundraiserId
+              $rootScope.facebookFundraiserConfirmedStatus = 'deleted'
+            else
+              $rootScope.facebookFundraiserConfirmedStatus = 'confirmed'
+            refreshFinnsMission()
+      else
+        refreshFinnsMission()
+        
       BoundlessService.getSchoolBadges $scope.frId + '/' + $scope.participantRegistration.companyInformation.companyId
       .then (response) ->
         if response.data.success == "true"
