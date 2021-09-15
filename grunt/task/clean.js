@@ -443,5 +443,37 @@ module.exports = {
         ]
       }
     ]
+  },
+  "social-stem": {
+    files: [
+      {
+        expand: true,
+        cwd: 'dist/social-stem/css/',
+        src: [
+          '**/*'
+        ]
+      },
+      {
+        expand: true,
+        cwd: 'dist/social-stem/js/',
+        src: [
+          '**/*'
+        ]
+      },
+      {
+        expand: true,
+        cwd: 'dist/social-stem/html/',
+        src: [
+          '**/*'
+        ]
+      },
+      {
+        expand: true,
+        cwd: 'dist/social-stem/image/',
+        src: [
+          '**/*'
+        ]
+      }
+    ]
   }
 }

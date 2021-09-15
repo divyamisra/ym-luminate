@@ -221,6 +221,18 @@ module.exports = {
         dest: 'dist/leaders-for-life/js/'
       }
     ]
+  },
+  "social-stem-scripts": {
+    files: [
+      {
+        expand: true,
+        cwd: 'src/social-stem/js/',
+        src: [
+          '*.js'
+        ],
+        dest: 'dist/social-stem/js/'
+      }
+    ]
   }
 
 }
