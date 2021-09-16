@@ -237,5 +237,19 @@ module.exports = {
         dest: 'dist/leaders-for-life/css/'
       }
     ]
+  },
+  "social-stem": {
+    files: [
+      {
+        expand: true,
+        cwd: 'dist/social-stem/css/',
+        src: [
+          'main.css',
+          'registration.css',
+          'donation.css'
+        ],
+        dest: 'dist/social-stem/css/'
+      }
+    ]
   }
 }
