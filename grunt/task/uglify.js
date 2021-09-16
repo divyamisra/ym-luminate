@@ -216,5 +216,25 @@ module.exports = {
         dest: "dist/leaders-for-life/js/pushy.min.js"
       }
     ]
+  },
+  "social-stem": {
+    files: [
+      {
+        src: ["src/social-stem/js/main.js"],
+        dest: "dist/social-stem/js/main." + "<%= timestamp %>" + ".min.js"
+      },
+      {
+        src: ["src/social-stem/js/registration.js"],
+        dest: "dist/social-stem/js/registration." + "<%= timestamp %>" + ".min.js"
+      },
+      {
+        src: ["src/social-stem/js/donation.js"],
+        dest: "dist/social-stem/js/donation." + "<%= timestamp %>" + ".min.js"
+      },
+      {
+        src: ["src/social-stem/js/pushy.js"],
+        dest: "dist/social-stem/js/pushy.min.js"
+      }
+    ]
   }
 }
