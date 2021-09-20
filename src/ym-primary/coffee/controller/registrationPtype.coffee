@@ -108,7 +108,7 @@ angular.module 'ahaLuminateControllers'
 
             # If the participant chooses to make a gift, check for the Double the Donation field
             # and record the chosen company in local storage if it exists
-            if $document.find('input[name="doublethedonation_company_id"]').val().length > 0
+            if angular.element(document).find('input[name="doublethedonation_company_id"]').val().length > 0
               console.log('found dtd value');
               var dtdCoId = $('input[name="doublethedonation_company_id"]').val();
               console.log('dtdCoId ' + dtdCoId);
