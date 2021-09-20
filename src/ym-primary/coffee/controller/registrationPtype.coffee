@@ -43,17 +43,7 @@ angular.module 'ahaLuminateControllers'
             if donationLevel.amount is levelAmount
               console.log("donationLevel.amount is same as levelAmount")
               $scope.donationLevels.activeLevel = donationLevel
-
-              angular.element(document).find('.dtd-content').slideDown('slow',function(){
-                # animation complete
-              })
-            else 
-              angular.element(document).find('.dtd-content').slideUp('slow',function(){
-                #animation complete
-                localStorage.dtdCompanyId = "";
-              })
-
-
+ 
         if levelAmount isnt '-1'
           console.log('levelAmount is not -1')
           $scope.participationOptions.ng_donation_level_other_amount = ''
