@@ -43,6 +43,8 @@ angular.module 'ahaLuminateControllers'
             if donationLevel.amount is levelAmount
               console.log("donationLevel.amount is same as levelAmount")
               $scope.donationLevels.activeLevel = donationLevel
+              if type is 'other' and $scope.participationOptions.ng_donation_level_other_amount isnt ''
+                toggleDtd()
  
         if levelAmount isnt '-1'
           console.log('levelAmount is not -1')
