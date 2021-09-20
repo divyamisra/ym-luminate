@@ -21,7 +21,7 @@ angular.module 'ahaLuminateControllers'
       #    if not companies
       #      # TODO
       #    else
-      #      companies = [companies] if not angular.isArray companies
+      #      companies = [companies] if not angurlar.isArray companies
       #      companyInfo = companies[0]
       #      setCompanyName companyInfo.companyName
       setCompanyName localStorage.companyName
@@ -105,6 +105,21 @@ angular.module 'ahaLuminateControllers'
         else
           if $scope.donationLevels.activeLevel is undefined
             $scope.toggleDonationLevel '$0.00'
+
+            # If the participant chooses to make a gift, check for the Double the Donation field
+            # and record the chosen company in local storage if it exists
+            if ($document.find('input[name="doublethedonation_company_id"]').val().length > 0){
+                console.log('found dtd value');
+                var dtdCoId = $('input[name="doublethedonation_company_id"]').val();
+                console.log('dtdCoId ' + dtdCoId);
+                localStorage.dtdCompanyId = dtdCoId;
+            }
+            else {
+                console.log('clear dtd company id'); 
+                localStorage.dtdCompanyId = "";
+            }
+          }   
+
           angular.element('.js--default-ptype-form').submit()
           false
           
