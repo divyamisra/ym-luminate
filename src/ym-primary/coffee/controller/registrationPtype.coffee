@@ -33,14 +33,19 @@ angular.module 'ahaLuminateControllers'
       $scope.participationOptions.fr_part_radio = $participationType.val()
       
       $scope.toggleDonationLevel = (event, type, levelAmount) ->
+        console.log('toggleDonationLevel type ' + type + ' levelAmount ' + levelAmount)
         if type is 'level' or (type is 'other' and $scope.participationOptions.ng_donation_level_other_amount isnt '') 
+          console.log('type is level or type is other and other is not blank')
           $scope.participationOptions.ng_donation_level = levelAmount
           $scope.participationOptionsForm.ng_donation_level_other_amount.$setValidity('amount', true)
           angular.forEach $scope.donationLevels.levels, (donationLevel, donationLevelIndex) ->
+            console.log('donation level each function')
             if donationLevel.amount is levelAmount
+              console.log("donationLevel.amount is same as levelAmount")
               $scope.donationLevels.activeLevel = donationLevel
  
         if levelAmount isnt '-1'
+          console.log('levelAmount is not -1')
           $scope.participationOptions.ng_donation_level_other_amount = ''
       
       $scope.donationLevels = 
