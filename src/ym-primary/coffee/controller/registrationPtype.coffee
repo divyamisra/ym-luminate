@@ -110,7 +110,7 @@ angular.module 'ahaLuminateControllers'
             # and record the chosen company in local storage if it exists
             if angular.element(document).find('input[name="doublethedonation_company_id"]').val().length > 0
               console.log('found dtd value');
-              var dtdCoId = $('input[name="doublethedonation_company_id"]').val();
+              dtdCoId = $('input[name="doublethedonation_company_id"]').val();
               console.log('dtdCoId ' + dtdCoId);
               localStorage.dtdCompanyId = dtdCoId;
             else
