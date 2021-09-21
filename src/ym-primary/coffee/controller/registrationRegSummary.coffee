@@ -50,7 +50,16 @@ angular.module 'ahaLuminateControllers'
         setCompanyCity localStorage.companyCity
         setCompanyState localStorage.companyState
 
-      $scope.submitRegSummary()
+      # if there is an additional gift amount, put it in local storage for DtD
+      if angular.element(document).find('.additional-gift-amount').text() != '$0.00'
+        console.log 'there is a gift value'
+        addlGiftAmt = angular.element(document).find('.additional-gift-amount').text()
+        localStorage.addlGiftAmt = addlGiftAmt
+      else
+        console.log 'clear addGiftAmt'
+        localStorage.addlGiftAmt = ''
+
+      #$scope.submitRegSummary()
       
       #
       #SchoolLookupService.getSchoolData()
