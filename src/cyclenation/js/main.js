@@ -218,8 +218,8 @@
               });
               $('.dataTables_length').addClass('bs-select');
               //add call to hook donate button with payment type selections
-              addPaymentTypesOnSearch();
               $('.js__participant-results-container').removeAttr('hidden');
+              addPaymentTypesOnSearch();
 
               $('.js__more-participant-results').on('click', function (e) {
                 e.preventDefault();
