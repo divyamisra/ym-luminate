@@ -186,5 +186,15 @@ module.exports = {
         dest: "dist/social-stem/html/"
       }
     ]
+  },
+  "women-of-impact": {
+    files: [
+      {
+        expand: true,
+        cwd: "src/women-of-impact/html/",
+        src: ["**/*.*"],
+        dest: "dist/women-of-impact/html/"
+      }
+    ]
   }
 }

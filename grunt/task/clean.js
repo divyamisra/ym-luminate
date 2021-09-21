@@ -475,5 +475,37 @@ module.exports = {
         ]
       }
     ]
+  },
+  "women-of-impact": {
+    files: [
+      {
+        expand: true,
+        cwd: 'dist/women-of-impact/css/',
+        src: [
+          '**/*'
+        ]
+      },
+      {
+        expand: true,
+        cwd: 'dist/women-of-impact/js/',
+        src: [
+          '**/*'
+        ]
+      },
+      {
+        expand: true,
+        cwd: 'dist/women-of-impact/html/',
+        src: [
+          '**/*'
+        ]
+      },
+      {
+        expand: true,
+        cwd: 'dist/women-of-impact/image/',
+        src: [
+          '**/*'
+        ]
+      }
+    ]
   }
 }

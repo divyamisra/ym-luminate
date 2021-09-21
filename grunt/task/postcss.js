@@ -251,5 +251,19 @@ module.exports = {
         dest: 'dist/social-stem/css/'
       }
     ]
+  },
+  "women-of-impact": {
+    files: [
+      {
+        expand: true,
+        cwd: 'dist/women-of-impact/css/',
+        src: [
+          'main.css',
+          'registration.css',
+          'donation.css'
+        ],
+        dest: 'dist/women-of-impact/css/'
+      }
+    ]
   }
 }

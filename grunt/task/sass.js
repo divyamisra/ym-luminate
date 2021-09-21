@@ -164,5 +164,18 @@ module.exports = {
         'src/social-stem/sass/donation.scss'
       ]
     }
+  },
+  "women-of-impact": {
+    files: {
+      'dist/women-of-impact/css/main.css': [
+        'src/women-of-impact/sass/main.scss'
+      ],
+      'dist/women-of-impact/css/registration.css': [
+        'src/women-of-impact/sass/registration.scss'
+      ],
+      'dist/women-of-impact/css/donation.css': [
+        'src/women-of-impact/sass/donation.scss'
+      ]
+    }
   }
 }
