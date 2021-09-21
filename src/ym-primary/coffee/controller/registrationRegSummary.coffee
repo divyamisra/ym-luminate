@@ -59,7 +59,7 @@ angular.module 'ahaLuminateControllers'
         console.log 'clear addGiftAmt'
         localStorage.addlGiftAmt = ''
 
-      #$scope.submitRegSummary()
+      $scope.submitRegSummary()
       
       #
       #SchoolLookupService.getSchoolData()
