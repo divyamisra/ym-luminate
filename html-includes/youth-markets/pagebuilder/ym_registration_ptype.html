@@ -127,7 +127,7 @@
             </fieldset>
           </div>
           <fieldset>
-            <legend class="aural-only">Select Gift Amount</legend>
+            <legend class="hidden">Select Gift Amount</legend>
           <div class="ym-registration-ptype-donation-levels ym-donation-levels__levels" ng-class="{'active': donationLevels.activeLevel, 'has-error': (participationOptionsForm.$submitted && participationOptionsForm.ng_donation_level_other_amount.$invalid)}" role="list">
             <button role="listitem" type="button" class="btn btn-toggle" ng-class="{'active': donationLevels.activeLevel.amount == donationLevel.amount}" aria-describedby="ym-registration-ptype-donation-message-{{$index}}" ng-repeat="donationLevel in donationLevels.levels" ng-click="toggleDonationLevel($event, 'level', donationLevel.amount)" ng-if="!donationLevel.isOtherAmount && !donationLevel.isNoDonation" title="{{donationLevel.amount}}" ng-cloak>
               <span ng-bind-html="donationLevel.amountFormatted"></span>
@@ -151,8 +151,10 @@
             </div>
           </div>
           </fieldset>
+          <div class="dtd-content" ng-class="{'hidden': !donationLevels.activeLevel || donationLevels.activeLevel.isNoDonation}"></div>
         ]]
       </div>
+
     ::]]
     [[?xTx::x[[A17]]x::
       <div class="ym-registration-ptype-goal-container">
@@ -222,6 +224,11 @@
     </form>
   </div>
 </div>
+
+[[?x4556x4561x::x[[A2]]x::
+  [[S51:reus_ym_tr_360matchpro_donation_widget]]
+::]]
+
 [[?xTx::x[[A24]]x::
   <!-- manage mode -->
   <div id="edit_pt_title_container" class="EditContainer" style="display: none;">
