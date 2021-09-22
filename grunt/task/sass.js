@@ -164,5 +164,18 @@ module.exports = {
         'src/social-stem/sass/donation.scss'
       ]
     }
+  },
+  "teens-of-impact": {
+    files: {
+      'dist/teens-of-impact/css/main.css': [
+        'src/teens-of-impact/sass/main.scss'
+      ],
+      'dist/teens-of-impact/css/registration.css': [
+        'src/teens-of-impact/sass/registration.scss'
+      ],
+      'dist/teens-of-impact/css/donation.css': [
+        'src/teens-of-impact/sass/donation.scss'
+      ]
+    }
   }
 }

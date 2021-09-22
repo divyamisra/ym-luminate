@@ -475,5 +475,37 @@ module.exports = {
         ]
       }
     ]
+  },
+  "teens-of-impact": {
+    files: [
+      {
+        expand: true,
+        cwd: 'dist/teens-of-impact/css/',
+        src: [
+          '**/*'
+        ]
+      },
+      {
+        expand: true,
+        cwd: 'dist/teens-of-impact/js/',
+        src: [
+          '**/*'
+        ]
+      },
+      {
+        expand: true,
+        cwd: 'dist/teens-of-impact/html/',
+        src: [
+          '**/*'
+        ]
+      },
+      {
+        expand: true,
+        cwd: 'dist/teens-of-impact/image/',
+        src: [
+          '**/*'
+        ]
+      }
+    ]
   }
 }

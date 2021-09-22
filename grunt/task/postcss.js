@@ -251,5 +251,19 @@ module.exports = {
         dest: 'dist/social-stem/css/'
       }
     ]
+  },  
+  "teens-of-impact": {
+    files: [
+      {
+        expand: true,
+        cwd: 'dist/teens-of-impact/css/',
+        src: [
+          'main.css',
+          'registration.css',
+          'donation.css'
+        ],
+        dest: 'dist/teens-of-impact/css/'
+      }
+    ]
   }
 }
