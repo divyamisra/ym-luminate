@@ -244,6 +244,19 @@ module.exports = (grunt) ->
     runTargetedTask [
       'copy'
     ], 'social-stem-scripts'
+    runTargetedTask [
+      'clean'
+      'sass'
+      'postcss'
+      'cssmin'
+      'uglify'
+      'replace'
+      'htmlmin'
+      'imagemin'
+    ], 'teens-of-impact'
+    runTargetedTask [
+      'copy'
+    ], 'teens-of-impact-scripts'
     return
   grunt.registerTask 'dev', ->
     devTasks = [
