@@ -234,7 +234,7 @@ module.exports = {
       }
     ]
   },
-  "teens-of-impact": {
+  "teens-of-impact-scripts": {
     files: [
       {
         expand: true,
