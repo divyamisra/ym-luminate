@@ -2273,7 +2273,7 @@
         }
 
 
-        if ($('body').is('.pg_Woi_Search')) {
+        if ($('body').is('.pg_WOI_Search')) {
             // Leader_For_Life Search Page
             var clearSearchResults = function () {
                 $('.js--event-results-container, .alert').attr('hidden', true);

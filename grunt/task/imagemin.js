@@ -209,11 +209,11 @@ module.exports = {
     files: [
       {
         expand: true,
-        cwd: 'src/women-of-impact/image/',
+        cwd: 'src/women-of-impact/img/',
         src: [
           '*.{gif,GIF,jpg,JPG,png,PNG,svg,SVG}'
         ],
-        dest: 'dist/women-of-impact/image/'
+        dest: 'dist/women-of-impact/img/'
       }
     ]
   }
