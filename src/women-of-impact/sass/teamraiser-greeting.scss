@@ -10,15 +10,15 @@
   .event-info-banner {
     min-height: 410px;
     width: 100%;
-    background-image: url('http://www2.heart.org/images/content/pagebuilder/stem_entry.png');
+    background-image: url(../img/WOI-Banner.svg);
     background-size: cover;
     background-position: center;
     @include media-breakpoint-up(lg) {
       background-position: center;
     }
-    @include media-breakpoint-down(md) {
-      background-image: url('http://www2.heart.org/images/content/pagebuilder/stem_entry_small.png');
-    }
+    // @include media-breakpoint-down(md) {
+    //   background-image: url('http://www2.heart.org/images/content/pagebuilder/stem_entry_small.png');
+    // }
   }
 
   .event-info__content {
