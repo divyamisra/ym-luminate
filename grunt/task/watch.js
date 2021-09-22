@@ -292,10 +292,10 @@ module.exports = {
   },
   "teens-of-impact": {
     files: [
-      'src/teens-of-impact"/html/**/*',
-      'src/teens-of-impact"/image/**/*',
-      'src/teens-of-impact"/sass/**/*',
-      'src/teens-of-impact"/js/**/*'
+      'src/teens-of-impact/html/**/*',
+      'src/teens-of-impact/image/**/*',
+      'src/teens-of-impact/sass/**/*',
+      'src/teens-of-impact/js/**/*'
     ],
     tasks: [
       'clean:teens-of-impact',
