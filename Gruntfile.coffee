@@ -294,6 +294,9 @@ module.exports = (grunt) ->
     config.watch['social-stem'].tasks.forEach (task) ->
       if task.indexOf('notify:') is -1
         devTasks.push task
+    config.watch['teens-of-impact'].tasks.forEach (task) ->
+      if task.indexOf('notify:') is -1
+        devTasks.push task
     devTasks.push 'watch'
     grunt.task.run devTasks
     return
