@@ -10,7 +10,7 @@
   .event-info-banner {
     min-height: 410px;
     width: 100%;
-    background-image: url(../img/WOI-Banner.svg);
+    background-image: url(../img/WOI-Banner_1.svg);
     background-size: cover;
     background-position: center;
     @include media-breakpoint-up(lg) {
@@ -173,7 +173,7 @@
     background-position: right top;
     background-size: 100%;
     @include media-breakpoint-up(md) {
-      background-image: url(../img/leaders-heartbeat.svg);
+      background-image: url(https://secure3.convio.net/heartdev/images/content/pagebuilder/background-stem.png);
       background-size: cover;
     }
   }
