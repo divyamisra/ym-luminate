@@ -672,7 +672,7 @@
             if ( $('body').is('.pg_Toi_General') || $('body').is('.pg_Toi_Landing_Page') ) {
               window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=TOI_Search&search_type=team&cross_event=true&team_name=' + teamName;
             } else {
-              window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=toi_Search&search_type=team'  + (evID ? '&cross_event=false&fr_id=' + evID : '&cross_event=true') + '&team_name=' + teamName;
+              window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=TOI_Search&search_type=team'  + (evID ? '&cross_event=false&fr_id=' + evID : '&cross_event=true') + '&team_name=' + teamName;
             }
         });
 
