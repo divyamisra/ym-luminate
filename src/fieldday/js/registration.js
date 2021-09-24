@@ -701,10 +701,11 @@
             // jQuery('div.js--default-social-login div.loginText a.janrainEngage.loginHref').html(jQuery('div.js--default-social-login div.loginText a.janrainEngage.loginHref div.loginLinks.janrainEngage'));
             // jQuery('div.js--default-social-login div.loginText a.janrainEngage.loginHref div.loginLinks.janrainEngage').html(socialHTML);
             setTimeout(function(){
+               jQuery('a:contains("Social Login by Janrain")').attr('tabindex','3');
                jQuery('a.janrainEngage.loginHref').click(function(){
                   var btnStyle = jQuery('.janrainContent + img').attr("style");
                   jQuery('.janrainContent + img').attr({"title":"Click to Close popup","alt":"Click to Close popup"});
-                  jQuery('.janrainContent + img').clone().insertBefore('.janrainContent').wrap('<button type="button" class="accBtn" style="'+btnStyle+';border:none;background:none;" tabindex=1></button>');
+                  jQuery('.janrainContent + img').clone().insertBefore('.janrainContent').wrap('<button type="button" class="accBtn" style="'+btnStyle+';border:none;background:none;" tabindex=4></button>');
                   jQuery('.janrainContent + img').hide();
                   jQuery('.accBtn').click(function(e){jQuery('.janrainContent + img').click();jQuery('.accBtn').remove();});
                   jQuery('.accBtn img').removeAttr("style");
