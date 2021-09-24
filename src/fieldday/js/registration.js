@@ -688,7 +688,7 @@
 
             $('#janrainModal img').attr('alt', 'Close social login lightbox');
 
-            console.log("begin watch janrain 04");
+            console.log("begin watch janrain 05");
             // $('.janrainEngage').on('click touchstart', function (e) {
             //   console.log("janrain was clicked 03");
             //   setTimeout(function(){
