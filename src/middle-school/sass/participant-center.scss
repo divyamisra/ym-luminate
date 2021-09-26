@@ -325,3 +325,22 @@ select#ym-update-challenge {
 @media (max-width:1023px) {
 	.winding-road-mobile {display:block;}
 }
+
+.middleschool {
+	display: block;
+	/*justify-content: flex-start;
+	flex-wrap: wrap;*/
+}
+.box {
+	margin: 10px;
+	max-width: 300px;
+	border: 1px solid #d3d3d3;
+	padding: 10px;
+}
+.box a {text-decoration:none;}
+.box > a {
+    display: block;
+    height: 25px;
+}
+.box img {max-width:235px;width:100%;}
+.box .item-title {text-align:center;color:#000;font-weight:bold;height:40px;color:#c10e21;}
