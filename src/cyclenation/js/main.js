@@ -3144,7 +3144,7 @@
     //   recruitGoalMax = '8'
     // }
 
-    var recruitGoalMax = 10
+    var recruitGoalMax = '10'
 
     $('#team_find_new_team_recruiting_goal input')
         .val(6)
