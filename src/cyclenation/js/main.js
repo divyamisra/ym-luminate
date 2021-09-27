@@ -3132,6 +3132,18 @@
 
     $('#team_find_new_team_recruiting_goal label.input-label').attr('for', 'fr_team_member_goal');
 
+    $('#team_find_new_fundraising_goal input')
+      .attr('data-parsley-required', '')
+      .attr('data-parsley-required-message', 'Fundraising goal is required');
+
+    $('#team_find_new_team_recruiting_goal input')
+        .attr('data-parsley-required', '')
+        .attr('data-parsley-required-message', 'Recruitment goal is required')
+        .attr('data-parsley-minlength', '2')
+        .attr('data-parsley-maxlength', '8')
+        .attr('data-parsley-minlength-message', 'Your recruitment goal must be at lest 2 members')
+        .attr('data-parsley-maxlength-message', 'Your recruitment goal must be fewer than 9 members');
+
     //Hardcoding value to test recruitment goal settings 
     // $('#team_find_new_team_recruiting_goal').find('input').val('3');
 
