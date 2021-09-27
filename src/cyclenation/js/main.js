@@ -3136,13 +3136,15 @@
       .attr('data-parsley-required', '')
       .attr('data-parsley-required-message', 'Fundraising goal is required');
 
-    var recruitGoalMax = $('body').data("reg-recruit-max");
+    // var recruitGoalMax = $('body').data("reg-recruit-max");
 
-    console.log('Recruitment goal max', recruitGoalMax)
+    // console.log('Recruitment goal max', recruitGoalMax)
 
-    if(recruitGoalMax = '') {
-      recruitGoalMax = '8'
-    }
+    // if(recruitGoalMax = '') {
+    //   recruitGoalMax = '8'
+    // }
+
+    var recruitGoalMax = 10
 
     $('#team_find_new_team_recruiting_goal input')
         .val(6)
