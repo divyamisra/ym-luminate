@@ -3138,6 +3138,8 @@
 
     var recruitGoalMax = $('body').data("reg-recruit-max");
 
+    console.log('Recruitment goal max', recruitGoalMax)
+
     if(recruitGoalMax = '') {
       recruitGoalMax = '8'
     }
