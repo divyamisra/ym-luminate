@@ -3136,23 +3136,24 @@
       .attr('data-parsley-required', '')
       .attr('data-parsley-required-message', 'Fundraising goal is required');
 
-    // var recruitGoalMax = $('body').data("reg-recruit-max");
 
-    // console.log('Recruitment goal max', recruitGoalMax)
+    var recruitGoalMax = $('body').data("reg-recruit-max");
+    console.log('Recruitment goal max', recruitGoalMax)
 
     // if(recruitGoalMax = '') {
     //   recruitGoalMax = '8'
     // }
 
-    var recruitGoalMax = '10'
+    // var recruitGoalMax = '10'
 
+    setTimeout(function() { 
     $('#team_find_new_team_recruiting_goal input')
         .val(6)
         .attr('data-parsley-required', '')
         .attr('data-parsley-required-message', 'Recruitment goal is required')
         .attr('data-parsley-range', '[2, '+recruitGoalMax+']')
         .attr('data-parsley-range-message', 'Your recruitment goal should be between 2 and '+recruitGoalMax+' members')
-
+    }, 2000);
     //Hardcoding value to test recruitment goal settings 
     // $('#team_find_new_team_recruiting_goal').find('input').val('3');
 
