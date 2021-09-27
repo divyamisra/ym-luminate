@@ -3153,7 +3153,7 @@
         .attr('data-parsley-required-message', 'Recruitment goal is required')
         .attr('data-parsley-range', '[2, '+recruitGoalMax+']')
         .attr('data-parsley-range-message', 'Your recruitment goal should be between 2 and '+recruitGoalMax+' members')
-    }, 2000);
+    }, 1000);
     //Hardcoding value to test recruitment goal settings 
     // $('#team_find_new_team_recruiting_goal').find('input').val('3');
 
