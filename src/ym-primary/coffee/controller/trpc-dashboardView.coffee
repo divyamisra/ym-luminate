@@ -462,17 +462,6 @@ angular.module 'trPcControllers'
               $scope.refreshFundraisingProgress()
           $scope.dashboardPromises.push updateSchoolGoalPromise
 
-      if $scope.facebookFundraisersEnabled and $rootScope.facebookFundraiserId and $rootScope.facebookFundraiserId isnt ''
-        $rootScope.facebookFundraiserConfirmedStatus = 'pending'
-        FacebookFundraiserService.confirmFundraiserStatus()
-          .then (response) ->
-            confirmOrUnlinkFacebookFundraiserResponse = response.data.confirmOrUnlinkFacebookFundraiserResponse
-            if confirmOrUnlinkFacebookFundraiserResponse?.active is 'false'
-              delete $rootScope.facebookFundraiserId
-              $rootScope.facebookFundraiserConfirmedStatus = 'deleted'
-            else
-              $rootScope.facebookFundraiserConfirmedStatus = 'confirmed'
-
       $scope.participantGifts =
         sortColumn: 'date_recorded'
         sortAscending: false
@@ -847,8 +836,24 @@ angular.module 'trPcControllers'
         , (response) ->
           # TODO
       #$scope.getMoveMoreFlag()
-      refreshFinnsMission()
+      #refreshFinnsMission()
 
+      
+      $rootScope.facebookFundraiserConfirmedStatus = ''
+      if $scope.facebookFundraisersEnabled and $rootScope.facebookFundraiserId and $rootScope.facebookFundraiserId isnt ''
+        $rootScope.facebookFundraiserConfirmedStatus = 'pending'
+        FacebookFundraiserService.confirmFundraiserStatus()
+          .then (response) ->
+            confirmOrUnlinkFacebookFundraiserResponse = response.data.confirmOrUnlinkFacebookFundraiserResponse
+            if confirmOrUnlinkFacebookFundraiserResponse?.active is 'false'
+              delete $rootScope.facebookFundraiserId
+              $rootScope.facebookFundraiserConfirmedStatus = 'deleted'
+            else
+              $rootScope.facebookFundraiserConfirmedStatus = 'confirmed'
+            refreshFinnsMission()
+      else
+        refreshFinnsMission()
+        
       BoundlessService.getSchoolBadges $scope.frId + '/' + $scope.participantRegistration.companyInformation.companyId
       .then (response) ->
         if response.data.success == "true"
@@ -1236,6 +1241,12 @@ angular.module 'trPcControllers'
         else
           e.preventDefault()
           return false
+
+      $scope.jumpToFacebook = ->
+        if jQuery('.ym-pc-dashboard-facebook-section').length > 0
+          jQuery('html, body').animate
+            scrollTop: jQuery('.ym-pc-dashboard-facebook-section').offset().top - 150
+            jQuery('.ym-pc-dashboard-facebook-section button').focus()
 
       $scope.mouseover = (prize, xPos, yPos, sel, offset) ->
         document.getElementById("tRct").style.fill = "#206EBA"

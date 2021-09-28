@@ -193,5 +193,17 @@ module.exports = {
         dest: "dist/leaders-for-life/html/"
       }
     ]
+  },
+  "social-stem": {
+    files: [
+      {
+        expand: true,
+        cwd: 'dist/social-stem/html/',
+        src: [
+          '**/*.*'
+        ],
+        dest: "dist/social-stem/html/"
+      }
+    ]
   }
 }

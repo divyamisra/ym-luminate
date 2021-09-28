@@ -218,8 +218,8 @@
               });
               $('.dataTables_length').addClass('bs-select');
               //add call to hook donate button with payment type selections
-              addPaymentTypesOnSearch();
               $('.js__participant-results-container').removeAttr('hidden');
+              addPaymentTypesOnSearch();
 
               $('.js__more-participant-results').on('click', function (e) {
                 e.preventDefault();
@@ -3132,6 +3132,9 @@
 
     $('#team_find_new_team_recruiting_goal label.input-label').attr('for', 'fr_team_member_goal');
 
+    //Hardcoding value to test recruitment goal settings 
+    // $('#team_find_new_team_recruiting_goal').find('input').val('3');
+
     // ptype
     // $('#part_type_selection_container').wrapInner('<fieldset role="radiogroup" class="ptype-selection"/>');
 
@@ -3541,6 +3544,21 @@ cd.getTeamHonorRoll();
   if($('.achievements .achievement-badge').length == 0) {
     $('.achievements').parent().hide();
   }
+  var teamId = getURLParameter(currentUrl, 'team_id');
+  luminateExtend.api({
+    api: 'teamraiser',
+    data: 'method=getTeamCaptains&response_format=json&fr_id=' + evID + '&team_id=' + teamId,
+    callback: {
+      success: function success(response) {
+        var captainArray = luminateExtend.utils.ensureArray(response.getTeamCaptainsResponse.captain);
+        var captainConsId = captainArray[0].consId;
+        console.log('this is captainID', captainConsId)
+        console.log('TRR/?fr_tjoin='+teamId+'&pg=tfind&fr_id='+evID+'&s_regType=joinTeam&s_captainConsId='+captainConsId)
+        $('.team-page-join-link').attr("href", 'TRR/?fr_tjoin='+teamId+'&pg=tfind&fr_id='+evID+'&s_regType=joinTeam&s_captainConsId='+captainConsId);
+      },
+      error: function error(response) {}
+    }
+  });
 }
     if ($('body').is('.pg_company')) {
  // Company Page

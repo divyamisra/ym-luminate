@@ -273,5 +273,21 @@ module.exports = {
       'img-copy:leaders-for-life-images',
       'notify:leaders-for-life'
     ]
+  },
+  "social-stem": {
+    files: [
+      'src/social-stem/html/**/*',
+      'src/social-stem/image/**/*',
+      'src/social-stem/sass/**/*',
+      'src/social-stem/js/**/*'
+    ],
+    tasks: [
+      'clean:social-stem',
+      'css-dist:social-stem',
+      'js-dist:social-stem',
+      'html-dist:social-stem',
+      'img-copy:social-stem-images',
+      'notify:social-stem'
+    ]
   }
 }

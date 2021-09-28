@@ -151,5 +151,18 @@ module.exports = {
         'src/leaders-for-life/sass/donation.scss'
       ]
     }
+  },
+  "social-stem": {
+    files: {
+      'dist/social-stem/css/main.css': [
+        'src/social-stem/sass/main.scss'
+      ],
+      'dist/social-stem/css/registration.css': [
+        'src/social-stem/sass/registration.scss'
+      ],
+      'dist/social-stem/css/donation.css': [
+        'src/social-stem/sass/donation.scss'
+      ]
+    }
   }
 }

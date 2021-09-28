@@ -154,7 +154,10 @@
 					  </a>
 				  </g>
 				  <g transform="rotate(-10 300 200)" id="go-social" data-name="Go Social" aria-label="{{prizes[4].aria_label}}">
-					  <a role="button" xlink:href="" ng-href="{{prizes[4].final_url}}" title="Go Social" ng-focus="mouseover(4, 238, 110, this, 0)" ng-blur="mouseout()" aria-labelledby="go-social">
+					  <a role="button" xlink:href="" ng-click="jumpToFacebook()" href="javascript:void(0)" title="Go Social" ng-focus="mouseover(4, 238, 110, this, 0)" ng-blur="mouseout()" aria-labelledby="go-social" ng-show="facebookFundraisersEnabled" ng-cloak>
+						 <path class="badge-path" d="M270 174v53h53v-53x-53z" fill="url(#5{{(prizes[4].earned) ? '_delivered' : '_earned'}})" ng-mouseover="mouseover(4, 238, 110, this, 0)" ng-mouseout="mouseout()"/>
+						</a> 
+					  <a role="button" xlink:href="" ng-href="{{prizes[4].final_url}}" title="Go Social" ng-focus="mouseover(4, 238, 110, this, 0)" ng-blur="mouseout()" aria-labelledby="go-social" ng-show="!facebookFundraisersEnabled" ng-cloak>
 						 <path class="badge-path" d="M270 174v53h53v-53x-53z" fill="url(#5{{(prizes[4].earned) ? '_delivered' : '_earned'}})" ng-mouseover="mouseover(4, 238, 110, this, 0)" ng-mouseout="mouseout()"/>
 						</a> 
 				  </g>
@@ -333,7 +336,10 @@
 						</a>
 				  </g>
 				  <g id="go-social-mobile" data-name="Go Social" aria-label="{{prizes[4].aria_label}}">
-					  <a role="button" xlink:href="" ng-href="{{prizes[4].final_url}}" title="Go Social" ng-focus="mouseoverm(4, 220, 360, this, 0)" ng-blur="mouseoutm()" aria-labelledby="go-social-mobile">
+					  <a role="button" xlink:href="" ng-click="jumpToFacebook()" href="javascript:void(0)" title="Go Social" ng-focus="mouseoverm(4, 220, 360, this, 0)" ng-blur="mouseoutm()" aria-labelledby="go-social-mobile" ng-show="facebookFundraisersEnabled" ng-cloak>
+						 <path class="badge-path" d="M263 474v100h100v-100x-100z" fill="url(#5{{(prizes[4].earned) ? '_deliveredm' : '_earnedm'}})" ng-mouseover="mouseoverm(4, 220, 360, this, 0)" ng-mouseout="mouseoutm()"/>
+						</a>
+					  <a role="button" xlink:href="" ng-href="{{prizes[4].final_url}}" title="Go Social" ng-focus="mouseoverm(4, 220, 360, this, 0)" ng-blur="mouseoutm()" aria-labelledby="go-social-mobile" ng-show="!facebookFundraisersEnabled" ng-cloak>
 						 <path class="badge-path" d="M263 474v100h100v-100x-100z" fill="url(#5{{(prizes[4].earned) ? '_deliveredm' : '_earnedm'}})" ng-mouseover="mouseoverm(4, 220, 360, this, 0)" ng-mouseout="mouseoutm()"/>
 						</a>
 				  </g>
