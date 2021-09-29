@@ -3147,12 +3147,21 @@
     // var recruitGoalMax = '10'
 
     setTimeout(function() { 
-    $('#team_find_new_team_recruiting_goal input')
+      $('#team_find_new_team_recruiting_goal input').parent().append('Your recruitment goal should be between 2 and '+recruitGoalMax+' members')
+      if($('#team_find_new_team_recruiting_goal input').val() != '') {
+        $('#team_find_new_team_recruiting_goal input')
+        .attr('data-parsley-required', '')
+        .attr('data-parsley-required-message', 'Recruitment goal is required')
+        .attr('data-parsley-range', '[2, '+recruitGoalMax+']')
+        .attr('data-parsley-range-message', 'Your recruitment goal should be between 2 and '+recruitGoalMax+' members')
+      } else {
+        $('#team_find_new_team_recruiting_goal input')
         .val(6)
         .attr('data-parsley-required', '')
         .attr('data-parsley-required-message', 'Recruitment goal is required')
         .attr('data-parsley-range', '[2, '+recruitGoalMax+']')
         .attr('data-parsley-range-message', 'Your recruitment goal should be between 2 and '+recruitGoalMax+' members')
+      }
     }, 1000);
     //Hardcoding value to test recruitment goal settings 
     // $('#team_find_new_team_recruiting_goal').find('input').val('3');
