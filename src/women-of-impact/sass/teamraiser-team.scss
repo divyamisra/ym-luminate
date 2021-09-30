@@ -151,6 +151,10 @@
 
 .pg_team {
   .js--team-text {
+    ul {
+      list-style-position: inside;
+      margin-bottom: 1em;
+      }
     p em {
       font-style: italic;
     }
