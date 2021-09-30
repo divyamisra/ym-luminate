@@ -1619,6 +1619,9 @@
 
         console.log('reg page updates');
 
+        var regSumFirstName = $('.contact-info-first').html() + '&nbsp;'
+        $('.contact-info-first').html(regSumFirstName);
+
    	    $('h2.cstmTitle').prepend(evDateYear+" ");
             // if there is a donation then change button text
             if ($.trim($('.additional-gift-amount').html()) != "$0.00") {
