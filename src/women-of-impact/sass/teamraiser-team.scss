@@ -148,3 +148,11 @@
       font-size: 1rem;
     }
 }
+
+.pg_team {
+  .js--team-text {
+    p em {
+      font-style: italic;
+    }
+  }
+}
