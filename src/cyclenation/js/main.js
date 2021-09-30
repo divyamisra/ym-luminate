@@ -3147,22 +3147,28 @@
     // var recruitGoalMax = '10'
 
     setTimeout(function() { 
-      $('#team_find_new_team_recruiting_goal input').parent().append('Your recruitment goal should be between 2 and '+recruitGoalMax+' members')
-      if($('#team_find_new_team_recruiting_goal input').val() != '') {
+      // $('#team_find_new_team_recruiting_goal').children().prepend('<div class="regError"></div><span class="field-required" id="team_find_new_team_recruiting_goal_required"></span>');
+      $('#team_find_new_team_recruiting_goal').children().prepend('<span class="field-required" id="team_find_new_team_recruiting_goal_required"></span>');
+      $('#team_find_new_fundraising_goal').children().prepend('<span class="field-required" id="team_find_new_fundraising_goal_required"></span>');
+      $('#team_find_new_team_recruiting_goal input').parent().append('<div class="recruit-description">You must have at least 2 but no more than '+recruitGoalMax+' people on your team</div>');
+      $('#team_find_new_fundraising_goal .form-content').parent().append('<div class="recruit-description">Suggested $1,000 minimum goal</div>')
+      if($('#team_find_new_team_recruiting_goal input').val() !== '') {
         $('#team_find_new_team_recruiting_goal input')
         .attr('data-parsley-required', '')
         .attr('data-parsley-required-message', 'Recruitment goal is required')
         .attr('data-parsley-range', '[2, '+recruitGoalMax+']')
-        .attr('data-parsley-range-message', 'Your recruitment goal should be between 2 and '+recruitGoalMax+' members')
+        .attr('data-parsley-range-message', 'Error: Please enter a number from 2-'+recruitGoalMax);
+        // .attr('data-parsley-errors-container', '.regError')
       } else {
         $('#team_find_new_team_recruiting_goal input')
         .val(6)
         .attr('data-parsley-required', '')
         .attr('data-parsley-required-message', 'Recruitment goal is required')
         .attr('data-parsley-range', '[2, '+recruitGoalMax+']')
-        .attr('data-parsley-range-message', 'Your recruitment goal should be between 2 and '+recruitGoalMax+' members')
+        .attr('data-parsley-range-message', 'Error: Please enter a number from 2-'+recruitGoalMax);
+        // .attr('data-parsley-errors-container', '.regError')
       }
-    }, 1000);
+    }, 500);
     //Hardcoding value to test recruitment goal settings 
     // $('#team_find_new_team_recruiting_goal').find('input').val('3');
 
