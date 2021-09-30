@@ -1,7 +1,7 @@
 <div cg-busy="dashboardPromises">
   <div ng-if="participantRegistration.companyInformation.isCompanyCoordinator != 'true' || location == '/dashboard-student'" ng-cloak>
     <div class="row ym-pc-dashboard-coordinators-message-section" ng-if="startDate || moneyDueDate" ng-cloak>
-	<div class="ym-pc-dashboard-event-date" ng-if="startDate" ng-cloak>Event Date: <span ng-bind-html="startDate"></span> <span ng-if="startDate != endDate && endDate != ''" ng-cloak> thru  <span ng-bind-html="endDate"></span></span></div>
+	<div class="ym-pc-dashboard-event-date" ng-if="startDate" ng-cloak>Event Date: {{startDate | date:'MM/dd/yyyy'}} <span ng-if="startDate != endDate && endDate != ''" ng-cloak> thru  {{endDate | date:'MM/dd/yyyy'}}</span></div>
 	<div class="ym-pc-dashboard-money-date" ng-if="moneyDueDate" ng-cloak>Donation Due Date: <span ng-bind-html="moneyDueDate"></span></div>
     </div>  
     <div class="row ym-pc-dashboard-school-challange">
