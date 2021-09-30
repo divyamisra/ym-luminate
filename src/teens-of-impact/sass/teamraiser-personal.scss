@@ -4,8 +4,13 @@
     font-size: 16px!important;
     line-height: 24px!important;
   }
-  .js--personal-text ul {
+  .js--personal-text {
+    ul {
     list-style-position: inside;
     margin-bottom: 1em;
+    }
+    p em {
+      font-style: italic;
+    }
   }
 }
