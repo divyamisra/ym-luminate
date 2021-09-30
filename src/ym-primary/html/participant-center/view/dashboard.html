@@ -1,5 +1,8 @@
 <div cg-busy="dashboardPromises">
   <div ng-if="participantRegistration.companyInformation.isCompanyCoordinator != 'true' || location == '/dashboard-student'" ng-cloak>
+    <div class="row ym-pc-dashboard-school-dates" ng-if="startDate" ng-cloak>
+	    Event Date: <span ng-bind-html="startDate"></span> <span ng-if="startDate != endDate" ng-cloak> -  <span ng-bind-html="endDate"></span></span>
+    </div>  
     <div class="row ym-pc-dashboard-school-challange">
       <div ng-class="col-sm-12" ng-if="coordinatorMessage.message && coordinatorMessage.message != ''" ng-cloak> 
         <div class="hv-image" ng-init="hvImgNotesrc='note-peek.png';" ng-mouseover="hvImgNotesrc='note-peek-animated.gif';" ng-mouseout="hvImgNotesrc='note-peek.png';">
