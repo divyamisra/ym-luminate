@@ -25,6 +25,8 @@ angular.module 'ahaLuminateControllers'
       $scope.notifyName = ''
       $scope.notifyEmail = ''
       $scope.eventDate = ''
+      $scope.startDate = ''
+      $scope.endDate = ''
       $scope.moneyDueDate = ''
       $scope.totalTeams = ''
       $scope.teamId = ''
@@ -144,6 +146,8 @@ angular.module 'ahaLuminateControllers'
                   while i < len
                     if $scope.companyId is schoolDataRows[i][schoolDataHeaders.CID]
                       $scope.eventDate = schoolDataRows[i][schoolDataHeaders.ED]
+                      $scope.startDate = schoolDataRows[i][schoolDataHeaders.EDS]
+                      $scope.endDate = schoolDataRows[i][schoolDataHeaders.EDE]
                       $scope.moneyDueDate = schoolDataRows[i][schoolDataHeaders.MDD]
                       $scope.schoolStudentGoal = schoolDataRows[i][schoolDataHeaders.PG]
                       $scope.hideAmount = schoolDataRows[i][schoolDataHeaders.HA]
