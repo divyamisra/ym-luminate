@@ -54,12 +54,14 @@ angular.module 'ahaLuminateControllers'
       if angular.element(document).find('.additional-gift-amount').text() != '$0.00'
         console.log 'there is a gift value'
         addlGiftAmt = angular.element(document).find('.additional-gift-amount').text()
-        localStorage.addlGiftAmt = addlGiftAmt
+        addlGiftAmtClean = addlGiftAmt.replace(/[^0-9.]/g, '');
+        addlGiftAmtFormatted = '$'.concat(addlGiftAmtClean);
+        localStorage.addlGiftAmt = addlGiftAmtFormatted
       else
         console.log 'clear addGiftAmt'
         localStorage.addlGiftAmt = ''
 
-      $scope.submitRegSummary()
+      #$scope.submitRegSummary()
       
       #
       #SchoolLookupService.getSchoolData()
