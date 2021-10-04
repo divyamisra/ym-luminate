@@ -1257,7 +1257,7 @@
                             $(teamData).each(function (i) {
                                 var teamName = this.name;
                                 var teamId = this.id;
-                                var topTeamRow = '<li class="'+teamListColumnLength+'"><div class="d-flex"><div class="flex-grow-1"><a href="TR/?team_id=' + teamId + '&amp;pg=team&amp;fr_id=' + evID + '">' + teamName + '</a></div><div class="raised"></div></div></li>';
+                                var topTeamRow = '<li class="'+teamListColumnLength+'"><div class="d-flex"><div class="flex-grow-1"><a href="TR/?team_id=' + teamId + '&amp;pg=team&amp;fr_id=' + evID + '">' + teamName + '</a></div></div></li>';
 
                                 $('.js--team-top-list ul').append(topTeamRow);
                             });
