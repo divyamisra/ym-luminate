@@ -1246,16 +1246,18 @@
         cd.getTopTeams = function (eventId) {
             luminateExtend.api({
                 api: 'teamraiser',
-                data: 'method=getTeamsByInfo&fr_id=' + eventId + '&list_sort_column=total&list_ascending=false&list_page_size=5&response_format=json',
+                data: 'method=getTeamsByInfo&fr_id=' + eventId + '&list_sort_column=total&list_ascending=false&list_page_size=15&response_format=json',
                 callback: {
                     success: function (response) {
                         if (!$.isEmptyObject(response.getTeamSearchByInfoResponse)) {
                             var teamData = luminateExtend.utils.ensureArray(response.getTeamSearchByInfoResponse.team);
+                            var teamListColumnLength = teamData.length > 5 && teamData.length < 10 ? 'two-column-team-list' : teamData.length > 10 ? 'three-column-team-list' : 'one-column-team-list';
+                            console.log('this is the team data', teamData.length)
 
                             $(teamData).each(function (i) {
                                 var teamName = this.name;
                                 var teamId = this.id;
-                                var topTeamRow = '<li><div class="d-flex"><div class="flex-grow-1"><a href="TR/?team_id=' + teamId + '&amp;pg=team&amp;fr_id=' + evID + '">' + teamName + '</a></div><div class="raised"></div></div></li>';
+                                var topTeamRow = '<li class="'+teamListColumnLength+'"><div class="d-flex"><div class="flex-grow-1"><a href="TR/?team_id=' + teamId + '&amp;pg=team&amp;fr_id=' + evID + '">' + teamName + '</a></div><div class="raised"></div></div></li>';
 
                                 $('.js--team-top-list ul').append(topTeamRow);
                             });
