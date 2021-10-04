@@ -411,5 +411,69 @@ module.exports = {
         ]
       }
     ]
+  },
+  "leaders-for-life": {
+    files: [
+      {
+        expand: true,
+        cwd: 'dist/leaders-for-life/css/',
+        src: [
+          '**/*'
+        ]
+      },
+      {
+        expand: true,
+        cwd: 'dist/leaders-for-life/js/',
+        src: [
+          '**/*'
+        ]
+      },
+      {
+        expand: true,
+        cwd: 'dist/leaders-for-life/html/',
+        src: [
+          '**/*'
+        ]
+      },
+      {
+        expand: true,
+        cwd: 'dist/leaders-for-life/image/',
+        src: [
+          '**/*'
+        ]
+      }
+    ]
+  },
+  "social-stem": {
+    files: [
+      {
+        expand: true,
+        cwd: 'dist/social-stem/css/',
+        src: [
+          '**/*'
+        ]
+      },
+      {
+        expand: true,
+        cwd: 'dist/social-stem/js/',
+        src: [
+          '**/*'
+        ]
+      },
+      {
+        expand: true,
+        cwd: 'dist/social-stem/html/',
+        src: [
+          '**/*'
+        ]
+      },
+      {
+        expand: true,
+        cwd: 'dist/social-stem/image/',
+        src: [
+          '**/*'
+        ]
+      }
+    ]
   }
 }

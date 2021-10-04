@@ -54,7 +54,9 @@ module.exports = {
           'prizes/*.{gif,GIF,jpg,JPG,png,PNG,svg,SVG}',
           'prizes2020/*.{gif,GIF,jpg,JPG,png,PNG,svg,SVG}',
           'prizes2021/*.{gif,GIF,jpg,JPG,png,PNG,svg,SVG}',
-          'fy21/*.{gif,GIF,jpg,JPG,png,PNG,svg,SVG}'
+          'prizes2022/*.{gif,GIF,jpg,JPG,png,PNG,svg,SVG}',
+          'fy21/*.{gif,GIF,jpg,JPG,png,PNG,svg,SVG}',
+          'fy22/*.{gif,GIF,jpg,JPG,png,PNG,svg,SVG}'
         ],
         dest: 'dist/ym-primary/image/'
       }
@@ -67,7 +69,8 @@ module.exports = {
         expand: true,
         cwd: 'src/middle-school/image/',
         src: [
-          '*.{gif,GIF,jpg,JPG,png,PNG,svg,SVG}'
+          '*.{gif,GIF,jpg,JPG,png,PNG,svg,SVG}',
+          'fy22/*.{gif,GIF,jpg,JPG,png,PNG,svg,SVG}'
         ],
         dest: 'dist/middle-school/image/'
       }
@@ -174,6 +177,31 @@ module.exports = {
           '*.{gif,GIF,jpg,JPG,png,PNG,svg,SVG}'
         ],
         dest: 'dist/heartwalklawyers/image/'
+      }
+    ]
+  },
+
+  "leaders-for-life": {
+    files: [
+      {
+        expand: true,
+        cwd: 'src/leaders-for-life/image/',
+        src: [
+          '*.{gif,GIF,jpg,JPG,png,PNG,svg,SVG}'
+        ],
+        dest: 'dist/leaders-for-life/image/'
+      }
+    ]
+  },
+  "social-stem": {
+    files: [
+      {
+        expand: true,
+        cwd: 'src/social-stem/image/',
+        src: [
+          '*.{gif,GIF,jpg,JPG,png,PNG,svg,SVG}'
+        ],
+        dest: 'dist/social-stem/image/'
       }
     ]
   }

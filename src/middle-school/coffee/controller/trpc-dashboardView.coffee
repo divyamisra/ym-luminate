@@ -33,6 +33,7 @@ angular.module 'trPcControllers'
       $scope.activity1amt = ''
       $scope.activity2amt = ''
       $scope.activity3amt = ''
+      $scope.schoolBadges = ''
       $scope.companyProgress = []
       $scope.companyId = $scope.participantRegistration.companyInformation.companyId
       theDate = new Date
@@ -51,11 +52,19 @@ angular.module 'trPcControllers'
         BoundlessService.checkOOTDashboard $scope.frId + '/' + $scope.consId
         .then (response) ->
           $rootScope.hasOOTDashboard = response.data.coordinatorHasDashboard
+          if $rootScope.hasOOTDashboard
+            BoundlessService.getSchoolBadges $scope.frId + '/' + $scope.participantRegistration.companyInformation.companyId
+            .then (response) ->
+              $scope.schoolBadgesRegistrations = response.data.registration_badges
+              $scope.schoolBadgesFundraising = response.data.fundraising_badges
+              $scope.companyInfo.participantCount = response.data.students_registered
+              $scope.companyProgress.raised = response.data.total_amount
+              $scope.companyProgress.raisedFormatted = $filter('currency')(response.data.total_amount, '$')
         , (response) ->
           # TODO
       else
         $rootScope.hasOOTDashboard = true
-        
+      
       if $scope.participantRegistration.lastPC2Login is '0'
         if $scope.participantRegistration.companyInformation?.isCompanyCoordinator isnt 'true'
           $scope.firstLoginModal = $uibModal.open
@@ -236,10 +245,25 @@ angular.module 'trPcControllers'
                       label: 'School Challenge'
                       earned: true
             response
+            getSchoolInformation()
         $scope.dashboardPromises.push fundraisingProgressPromise
-        getSchoolInformation()
+        
       $scope.refreshFundraisingProgress()
-
+      
+      if $scope.prev1FrId
+        NgPcTeamraiserProgressService.getProgress $scope.prev1FrId
+          .then (response) ->
+            if response.data.errorResponse
+              angular.noop()
+            else
+              participantPrevProgress = response.data.getParticipantProgressResponse.personalProgress
+              if not participantPrevProgress
+                angular.noop()
+              else
+                participantPrevProgress.raised = Number participantPrevProgress.raised
+                participantPrevProgress.raisedFormatted = if participantPrevProgress.raised then $filter('currency')(participantPrevProgress.raised / 100, '$') else '$0.00'
+                $scope.participantPrevProgress = participantPrevProgress
+      
       $scope.emailChallenge = {}
       setEmailSampleText = ->
         sampleText = 'What if I told you that together, we can help save the lives of millions of people? Seriously, we can!\n\n' +
@@ -744,9 +768,9 @@ angular.module 'trPcControllers'
               # id: challengeIndex
               # name: challenge
       challengeOptions =
-        "1": "Be physically active for 60 minutes a day."
-        "2": "Learn Hands-Only CPR."
-        "3": "Say no to tobacco and vaping."
+        "1": "Get your ZZZs, aiming for 8-10 hours of sleep every night."
+        "2": "Complete an act of kindness each day."
+        "3": "Move for one hour every day for a physical and mental boost."
       angular.forEach challengeOptions, (challenge, challengeIndex) ->
         $scope.challenges.push
           id: challengeIndex
@@ -944,58 +968,101 @@ angular.module 'trPcControllers'
                       key.earned = ''
                       $scope.prizesEarned = $scope.prizesEarned - 1
 
-      $scope.prizes = []
-      $scope.prizesEarned = 0
-      $rootScope.has_bonus = 0
-      $scope.current_mission_completed_count = ''
-      $scope.current_mission_completed_header = ''
-      $scope.current_mission_action = ''
-      $scope.current_mission_title = ''
-      $scope.current_mission_message = ''
-      BoundlessService.getBadges $scope.frId + '/' + $scope.consId
-      .then (response) ->
-        prizes = response.data.prizes
-        $scope.current_mission_completed_count = response.data.current_mission_completed_count
-        $scope.current_mission_completed_header = response.data.current_mission_completed_header
-        $scope.current_mission_action = response.data.current_mission_action
-        $scope.current_mission_title = response.data.current_mission_title
-        $scope.current_mission_message = response.data.current_mission_message
-        $rootScope.has_bonus = response.data.has_bonus
-        final_url = ''
-        angular.forEach prizes, (prize) ->
-          if prize.mission_url_type == 'Donate' 
-            final_url = 'Donation2?df_id=' + $scope.eventInfo.donationFormId + "&FR_ID=" + $scope.frId + "&PROXY_TYPE=20&PROXY_ID=" + $scope.consId
-          if prize.mission_url_type == 'Tab' 
-            final_url = $scope.baseUrl + prize.mission_url
-          if prize.mission_url_type == 'URL' 
-            final_url = prize.mission_url
-          if prize.mission_url_type == 'Quiz' 
-            if $scope.tablePrefix == 'heartdev'
-              final_url = 'https://tools.heart.org/aha_ahc21_dev/quiz/show/' + prize.mission_url + '?event_id=' + $scope.frId + '&user_id=' + $scope.consId + '&name=' + $scope.consNameFirst
-            if $scope.tablePrefix == 'heartnew'
-              final_url = 'https://tools.heart.org/aha_ahc21_testing/quiz/show/' + prize.mission_url + '?event_id=' + $scope.frId + '&user_id=' + $scope.consId + '&name=' + $scope.consNameFirst
-            if $scope.tablePrefix == 'heart'
-              final_url = 'https://tools.heart.org/aha_ahc21/quiz/show/' + prize.mission_url + '?event_id=' + $scope.frId + '&user_id=' + $scope.consId + '&name=' + $scope.consNameFirst
-          if prize.mission_url_type == 'Modal' and prize.mission_url == 'app' 
-            final_url = 'showMobileApp()'
-          $scope.prizes.push
-            id: prize.id
-            label: prize.label
-            sku: prize.sku
-            status: prize.status
-            earned: prize.earned_datetime
-            completed_label: prize.completed_label
-            mission_url: prize.mission_url
-            mission_url_type: prize.mission_url_type
-            earned_image_url: prize.earned_image_url
-            not_earned_image_url: prize.non_earned_image_url
-            locked_image_url: prize.locked_image_url
-            final_url: final_url
+      refreshFinnsMission = ->
+        $scope.prizes = []
+        $scope.prizesEarned = 0
+        $rootScope.has_bonus = 0
+        BoundlessService.getBadges $scope.frId + '/' + $scope.consId
+        .then (response) ->
+          prizes = response.data.prizes
+          $rootScope.has_bonus = response.data.has_bonus
+          final_url = ''
+          angular.forEach prizes, (prize) ->
+            if prize.mission_url_type == 'Donate' 
+              final_url = 'Donation2?df_id=' + $scope.eventInfo.donationFormId + "&FR_ID=" + $scope.frId + "&PROXY_TYPE=20&PROXY_ID=" + $scope.consId
+            if prize.mission_url_type == 'Personal' 
+              final_url = 'TR?fr_id=' + $scope.frId + '&pg=personal&px=' + $scope.consId
+            if prize.mission_url_type == 'Tab' 
+              final_url = $scope.baseUrl + prize.mission_url
+            if prize.mission_url_type == 'URL' 
+              final_url = prize.mission_url
+            if prize.mission_url_type == 'Quiz' 
+              if $scope.tablePrefix == 'heartdev'
+                final_url = 'https://tools.heart.org/aha_ahc22_dev/quiz/show/' + prize.mission_url + '?event_id=' + $scope.frId + '&user_id=' + $scope.consId + '&name=' + $scope.consNameFirst
+              if $scope.tablePrefix == 'heartnew'
+                final_url = 'https://tools.heart.org/aha_ahc22_testing/quiz/show/' + prize.mission_url + '?event_id=' + $scope.frId + '&user_id=' + $scope.consId + '&name=' + $scope.consNameFirst
+              if $scope.tablePrefix == 'heart'
+                final_url = 'https://tools.heart.org/aha_ahc22/quiz/show/' + prize.mission_url + '?event_id=' + $scope.frId + '&user_id=' + $scope.consId + '&name=' + $scope.consNameFirst
+            if prize.mission_url_type == 'Modal' and prize.mission_url == 'app' 
+              final_url = 'showMobileApp()'
+            if prize.status != 0
+              earned_status = 'Earned'
+              hover_msg = prize.earned_hover
+            else 
+              earned_status = 'Unearned'
+              hover_msg = prize.unearned_hover
+            aria_label = prize.label + ": " + earned_status + " - " + hover_msg
+            $scope.prizes.push
+              id: prize.id
+              label: prize.label
+              sku: prize.sku
+              status: prize.status
+              earned: prize.earned_datetime
+              completed_label: prize.completed_label
+              mission_url: prize.mission_url
+              mission_url_type: prize.mission_url_type
+              earned_image_url: prize.earned_image_url
+              not_earned_image_url: prize.non_earned_image_url
+              locked_image_url: prize.locked_image_url
+              final_url: final_url
+              hover_msg: hover_msg
+              aria_label: aria_label
 
-          if prize.status == 1
-            $scope.prizesEarned++
-        $scope.getMoveMoreFlag()
-      , (response) ->
-        # TODO
+            if prize.status != 0
+              $scope.prizesEarned++
+            
+        , (response) ->
+          # TODO
+      refreshFinnsMission()
 
+      $scope.showMobileApp = ->
+        $scope.viewMobileApp = $uibModal.open
+          scope: $scope
+          templateUrl: APP_INFO.rootPath + 'dist/middle-school/html/participant-center/modal/viewMobileApp.html'
+
+      $scope.cancelMobileApp = ->
+        $scope.viewMobileApp.close()
+        
+      $scope.mouseover = (prize, xPos, yPos, sel, offset) ->
+        document.getElementById("tRct").style.fill = "#800971"
+        document.getElementById("tRct").x.baseVal.value = xPos
+        document.getElementById("tRct").y.baseVal.value = yPos
+
+        jQuery("#tTip div").attr("aria-label",$scope.prizes[prize].hover_msg).html($scope.prizes[prize].hover_msg)
+        document.getElementById("tTip").setAttribute('x',xPos)
+        document.getElementById("tTip").setAttribute('y',yPos)
+
+        document.getElementById("tTri").setAttribute('points',(parseInt(xPos)+53+parseInt(offset)) + ' ' + (parseInt(yPos)+60) + ' ' + (parseInt(xPos)+62+parseInt(offset)) + ' ' + (parseInt(yPos)+60) + ' ' + (parseInt(xPos)+58+parseInt(offset)) + ' ' + (parseInt(yPos)+66))
+
+      $scope.mouseout = ->
+        document.getElementById("tRct").x.baseVal.value = -99999
+        jQuery("#tTip div").html("")
+        document.getElementById("tTri").setAttribute('points','0 0 0 0 0 0')
+
+
+      $scope.mouseoverm = (prize, xPos, yPos, sel, offset) ->
+        document.getElementById("tRctm").style.fill = "#800971"
+        document.getElementById("tRctm").x.baseVal.value = xPos
+        document.getElementById("tRctm").y.baseVal.value = yPos
+
+        jQuery("#tTipm div").attr("aria-label",$scope.prizes[prize].hover_msg).html($scope.prizes[prize].hover_msg)
+        document.getElementById("tTipm").setAttribute('x',xPos)
+        document.getElementById("tTipm").setAttribute('y',yPos)
+
+        document.getElementById("tTrim").setAttribute('points', (parseInt(xPos) + 83 + parseInt(offset)) + ' ' + (parseInt(yPos) + 100) + ' ' + (parseInt(xPos) + 97 + parseInt(offset)) + ' ' + (parseInt(yPos) + 100) + ' ' + (parseInt(xPos) + 92 + parseInt(offset)) + ' ' + (parseInt(yPos) + 106))
+
+      $scope.mouseoutm = ->
+        document.getElementById("tRctm").x.baseVal.value = -99999
+        jQuery("#tTipm div").html("")
+        document.getElementById("tTrim").setAttribute('points','0 0 0 0 0 0')
   ]

@@ -165,5 +165,26 @@ module.exports = {
         dest: "dist/heartwalklawyers/html/"
       }
     ]
+  },
+
+  "leaders-for-life": {
+    files: [
+      {
+        expand: true,
+        cwd: "src/leaders-for-life/html/",
+        src: ["**/*.*"],
+        dest: "dist/leaders-for-life/html/"
+      }
+    ]
+  },
+  "social-stem": {
+    files: [
+      {
+        expand: true,
+        cwd: "src/social-stem/html/",
+        src: ["**/*.*"],
+        dest: "dist/social-stem/html/"
+      }
+    ]
   }
 }

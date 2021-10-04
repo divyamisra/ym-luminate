@@ -1,3 +1,27 @@
+option {
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+#status-text,
+#status-text-mobile {
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+.closeMobileApp {
+  position: absolute;
+  right: 30px;
+  top: 10px;
+  color:#000000;
+  background:#FFFFFF;
+  text-decoration:none;
+  z-index:99999;
+}
+
+.ym-pc-dashboard-event-date,
+.ym-pc-dashboard-money-date {
+   font-weight:bold;
+}
+
 .ym-pc-student-view-text {
   float: none;
   width: auto !important;
@@ -29,14 +53,25 @@
   }
 }
 
+.ym-progress-donate {
+    a.btn {
+        margin-bottom:5px;
+    }
+}
+
 .ym-pc-dashboard-progress-section .row .ym-pc-dashboard-progress-section__column {
     overflow: hidden;
 }
 .ym-pc-dashboard-progress-section {
     #ym-pc-dashboard-badges-panel--student {
-        margin-top:25px;
-	.ym-badges__item img {
+
+        .ym-badges__item {
+	  max-width: 100px;
+	  text-align:center;
+	  
+	  img {
 	    max-width:100px;
+	  }
 	}
     }
     #ym-pc-dashboard-company-panel--student {
@@ -53,7 +88,7 @@
 		min-height:84px;
 	}
 }
-.ym-activity-box--virtual img {
+.ym-activity --virtual img {
 	max-width:100%;
 }
 
@@ -71,6 +106,14 @@ a.ym-pc-dashboard-download-certificates {
   img {
     max-height: 150px;
     margin-top: -10px;
+  }
+}
+
+.ym-pc-dashboard-coordinator-daily-challenges {
+  margin: 0px !important;
+	
+  img.students-challenge-image {
+    max-height: 120px;
   }
 }
 
@@ -188,7 +231,6 @@ a.ym-pc-dashboard-download-certificates {
 
 .ym-pc-dashboard-badge-path {
    position: relative;
-   max-width: 663px;
    margin: 0 auto 40px;
    svg {
       @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
@@ -200,32 +242,11 @@ a.ym-pc-dashboard-download-certificates {
 	    font-size: 24px;
 	}
    }
-   .agentk {
-     max-width: 25%;
-     margin-bottom: 10px;
-     width: 100%;
-   }
    .ym-pc-dashboard-badges-header {
-     top: 0;
-     position: absolute;
      font-size: 16px;
-     left: 29%;
-     @media (max-width: $screen-sm-min) {
-	position: relative;
-	left: auto;
-        margin-bottom: 10px;
-     }
-	   
-     img {
-	margin-top: -35px;
-	max-width: 70px;
-	margin-bottom: 20px;
-     }
-     p {
-	display: block;
-	color: indigo;
-	margin:0 auto;
-     }
+     text-align: center;
+     margin-bottom: 20px;
+
      em {
   	font-size:16px;
      }
@@ -234,112 +255,6 @@ a.ym-pc-dashboard-download-certificates {
 	 margin-bottom: 16px;
 	 font-weight:bold;
      }
-   }
-   .ym-pc-dashboard-badges-icons {
- 	position: absolute;
-	top: 18%;
-	left: 0px;
-	img {
-	    margin: 0 0 10px;
-	    max-width: none;
-	    height: 100px;
-	    width: 100px;
-	}
-   }
-   .ym-pc-dashboard-badges-icon {
-	text-align: center;
-	padding: 0 25px 25px;
-	max-width:150px;
-	position:absolute;
-	.earned::after {
-	    background: url(../image/badge_earned_check.png) no-repeat;
-	    content: '';
-	    width: 40px;
-	    height: 40px;
-	    display: block;
-	    position: absolute;
-	    bottom: 30px;
-	    right: 19px;
-	}
-   }
-   /*online registration*/
-   .ym-pc-dashboard-badges-icon:nth-child(1) {
-	offset-path: path("M244 188");
-   }
-   /*take challenge*/
-   .ym-pc-dashboard-badges-icon:nth-child(2) {
-	offset-path: path("M379 188");
-   }
-   /*1st donation*/
-   .ym-pc-dashboard-badges-icon:nth-child(3) {
-	offset-path: path("M528 226");
-   }
-   /*self donation*/
-   .ym-pc-dashboard-badges-icon:nth-child(4) {
-	offset-path: path("M528 396");
-	.earned:after {
-	  bottom: 20px;
-	  right: 82px;
-	}
-   }
-   /*go social*/
-   .ym-pc-dashboard-badges-icon:nth-child(5) {
-	offset-path: path("M379 433");
-   }
-   /*get active*/
-   .ym-pc-dashboard-badges-icon:nth-child(9) {
-	offset-path: path("M244 433");
-   }
-   /*send email*/
-   .ym-pc-dashboard-badges-icon:nth-child(6) {
-	offset-path: path("M95 465");
-	.earned:after {
-	  bottom: 20px;
-	  right: 82px;
-	}
-   }
-   /*CPR Quiz*/
-   .ym-pc-dashboard-badges-icon:nth-child(7) {
-	offset-path: path("M95 647");
-   }
-   /*heart facts quiz*/
-   .ym-pc-dashboard-badges-icon:nth-child(8) {
-	offset-path: path("M303 675");
-   }
-   .secret-box {
-     position: absolute;
-     color: #fff;
-     font-size: 20px;
-     max-width: 185px;
-     right: 40px;
-     bottom: 26px;
-     text-align: center;
-     &.not-secret-finn:before {
-	    background: url(../image/not_secret_finn.png) no-repeat;
-	    content: '';
-	    width: 96px;
-	    height: 53px;
-	    display: block;
-	    position: absolute;
-	    bottom: 97px;
-	    right: 39px;
-     }
-     &.secret-finn:before {
-	    background: url(../image/secret_finn.png) no-repeat;
-	    content: '';
-	    width: 178px;
-	    height: 96px;
-	    display: block;
-	    position: absolute;
-	    bottom: 96px;
-	    right: -5px;
-     }
-   }
-   path.badge-path:hover {
-     	transition: all 0.3s ease-in-out;
-	-webkit-transition: all 0.3s ease-in-out;
-	pointer-events:all;
-	opacity:0;
    }
 }
 
@@ -542,6 +457,7 @@ div[id^="taTextElement"]:focus {
 	.ym-pc-dashboard-livestream-images {
 		display:flex;
 		justify-content: space-around;
+		align-items:center;
 		.pc-livestream-character {
 			max-width:210px;
 			@media (max-width: 992px) {
@@ -588,6 +504,7 @@ div[id^="taTextElement"]:focus {
 
 		select {
 			width: auto;
+			max-width:100%;
 			display: inline-block;
 			padding-right: 25px;
 			font-size: 20px;
@@ -639,4 +556,206 @@ div[id^="taTextElement"]:focus {
   .ym-pc-dashboard-bottom-section {
 	display:flex;
   }
+}
+
+.ym-pc-dashboard-coordinator-students-box {
+  .students-challenge-image img {
+    max-width: 170px;
+  }
+}
+
+.school-badges {
+  margin-top:20px;
+  
+  .ym-pc-dashboard-school-badges-box {
+    .ym-badges__item {
+        max-width:75px;
+	margin: 10px 15px 5px;
+        img.img-responsive {
+          max-width: 80px;
+        }
+	    
+        .text.ng-binding {
+	    font-size: 14px;
+	    font-weight: bold;
+	    display: block;
+	    margin-top: 5px;
+	    margin-bottom: 10px;
+	}
+    }
+  }
+}
+#ym-pc-dashboard-company-panel--coordinator {
+    margin-bottom:20px;
+}
+.fundraisingStatusTitle {
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0 0 15px;
+    text-align:center;
+}
+.fundraisingStatusTitle + .ym-progress__thermometer {
+    margin-top: 0px;
+}
+.fundraisingStatusTitle + .ym-progress__thermometer + .ym-progress-related {
+    margin-top: 15px;
+}
+
+.ym-student-challenge-badge {
+	margin: 20px 0 0px auto;
+	max-width:125px;
+	.ym-badge__label {
+		text-align:center;
+		margin-top:10px;
+	}
+}
+
+.ym-school-challenge-badge {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 0;
+    img {
+	    margin-right:20px;
+	    min-width:100px;
+    }
+}
+
+#schoolChallengeOther {
+    margin: 8px 5px;
+    width: 97%;
+    font-size: 18px;
+    height: auto;
+    line-height: 18px;
+    padding-top: 14px;
+    color: $event-secondary;
+}
+
+.winding-road, .winding-road-mobile {display:none;}
+@media (min-width:1024px) {
+	.winding-road {display:block;}
+}
+@media (max-width:1023px) {
+	.winding-road-mobile {display:block;}
+}
+
+.animated {
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+	-webkit-animation-duration: 10s; 
+	animation-duration: 10s; 
+	-webkit-animation-fill-mode: both;
+	animation-fill-mode: both; 
+}
+
+@-webkit-keyframes wiggle2 { 
+    0% { -webkit-transform: skew(0deg, 0deg);}
+    10% { -webkit-transform: skew(-1deg, -1deg); }
+    20% { -webkit-transform: skew(1.5deg, 1.5deg); }
+    30% { -webkit-transform: skew(-1deg, -1deg); }
+    40% { -webkit-transform: skew(1deg, 1deg); } 
+    50% { -webkit-transform: skew(-0.5deg, -0.5deg); } 
+    60% { -webkit-transform: skew(1deg, 1deg); }
+    70% { -webkit-transform: skew(-1deg, -1deg); } 
+    80% { -webkit-transform: skew(1.5deg, 1.5deg); } 
+    90% { -webkit-transform: skew(1deg, 1deg); }
+    100% { -webkit-transform: skew(0deg, 0deg); } 
+}
+
+@keyframes wiggle2 { 
+    0% { transform: skew(0deg, 0deg); } 
+    10% { transform: skew(-1deg, -1eg); } 
+    20% { transform: skew(1.5deg, 1.5deg); } 
+    30% { transform: skew(-1deg, -1deg); } 
+    40% { transform: skew(1deg, 1deg); } 
+    50% { transform: skew(-0.5deg, -0.5deg); } 
+    60% { transform: skew(1deg, 1deg); } 
+    70% { transform: skew(-1deg, -1deg); } 
+    80% { transform: skew(1.5deg, 1.5deg); } 
+    90% { transform: skew(1deg, 1deg); } 
+    100% { transform: skew(0deg, 0deg); } 
+ }
+
+.wiggle2 { 
+    -webkit-animation-name: wiggle2;
+    animation-name: wiggle2; 
+    -webkit-animation-timing-function: ease-in;
+    animation-timing-function: ease-in;
+    transform-origin: center;
+}
+
+.skew { 
+    -webkit-transform: rotate(-20deg);
+    transform: rotate(-20deg);
+}
+
+.animated.wiggle2 { 
+    -webkit-animation-duration: 3s; 
+    animation-duration: 3s;
+}
+
+ /* Wobble To Bottom Right */
+@-webkit-keyframes hvr-wobble-to-bottom-right {
+  16.65% {
+    -webkit-transform: translate(8px, 8px);
+    transform: translate(8px, 8px);
+  }
+  33.3% {
+    -webkit-transform: translate(-6px, -6px);
+    transform: translate(-6px, -6px);
+  }
+  49.95% {
+    -webkit-transform: translate(4px, 4px);
+    transform: translate(4px, 4px);
+  }
+  66.6% {
+    -webkit-transform: translate(-2px, -2px);
+    transform: translate(-2px, -2px);
+  }
+  83.25% {
+    -webkit-transform: translate(1px, 1px);
+    transform: translate(1px, 1px);
+  }
+  100% {
+    -webkit-transform: translate(0, 0);
+    transform: translate(0, 0);
+  }
+}
+@keyframes hvr-wobble-to-bottom-right {
+  16.65% {
+    -webkit-transform: translate(8px, 8px);
+    transform: translate(8px, 8px);
+  }
+  33.3% {
+    -webkit-transform: translate(-6px, -6px);
+    transform: translate(-6px, -6px);
+  }
+  49.95% {
+    -webkit-transform: translate(4px, 4px);
+    transform: translate(4px, 4px);
+  }
+  66.6% {
+    -webkit-transform: translate(-2px, -2px);
+    transform: translate(-2px, -2px);
+  }
+  83.25% {
+    -webkit-transform: translate(1px, 1px);
+    transform: translate(1px, 1px);
+  }
+  100% {
+    -webkit-transform: translate(0, 0);
+    transform: translate(0, 0);
+  }
+}
+.wobble {
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  -webkit-animation-name: hvr-wobble-to-bottom-right;
+  animation-name: hvr-wobble-to-bottom-right;
+  -webkit-animation-duration: 2s;
+  animation-duration: 2s;
+  -webkit-animation-timing-function: ease-in-out;
+  animation-timing-function: ease-in-out;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
 }
