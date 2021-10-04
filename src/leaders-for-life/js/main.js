@@ -1251,7 +1251,7 @@
                     success: function (response) {
                         if (!$.isEmptyObject(response.getTeamSearchByInfoResponse)) {
                             var teamData = luminateExtend.utils.ensureArray(response.getTeamSearchByInfoResponse.team);
-                            var teamListColumnLength = teamData.length > 5 && teamData.length < 10 ? 'two-column-team-list' : teamData.length > 10 ? 'three-column-team-list' : 'one-column-team-list';
+                            var teamListColumnLength = teamData.length > 5 && teamData.length < 11 ? 'two-column-team-list' : teamData.length > 10 ? 'three-column-team-list' : 'one-column-team-list';
                             console.log('this is the team data', teamData.length)
 
                             $(teamData).each(function (i) {
