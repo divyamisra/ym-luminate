@@ -21,7 +21,7 @@ angular.module 'ahaLuminateControllers'
       #    if not companies
       #      # TODO
       #    else
-      #      companies = [companies] if not angular.isArray companies
+      #      companies = [companies] if not angurlar.isArray companies
       #      companyInfo = companies[0]
       #      setCompanyName companyInfo.companyName
       setCompanyName localStorage.companyName
@@ -33,14 +33,19 @@ angular.module 'ahaLuminateControllers'
       $scope.participationOptions.fr_part_radio = $participationType.val()
       
       $scope.toggleDonationLevel = (event, type, levelAmount) ->
+        console.log('toggleDonationLevel type ' + type + ' levelAmount ' + levelAmount)
         if type is 'level' or (type is 'other' and $scope.participationOptions.ng_donation_level_other_amount isnt '') 
+          console.log('type is level or type is other and other is not blank')
           $scope.participationOptions.ng_donation_level = levelAmount
           $scope.participationOptionsForm.ng_donation_level_other_amount.$setValidity('amount', true)
           angular.forEach $scope.donationLevels.levels, (donationLevel, donationLevelIndex) ->
+            console.log('donation level each function')
             if donationLevel.amount is levelAmount
+              console.log("donationLevel.amount is same as levelAmount")
               $scope.donationLevels.activeLevel = donationLevel
  
         if levelAmount isnt '-1'
+          console.log('levelAmount is not -1')
           $scope.participationOptions.ng_donation_level_other_amount = ''
       
       $scope.donationLevels = 
@@ -100,6 +105,19 @@ angular.module 'ahaLuminateControllers'
         else
           if $scope.donationLevels.activeLevel is undefined
             $scope.toggleDonationLevel '$0.00'
+
+          # If the participant chooses to make a gift, check for the Double the Donation field
+          # and record the chosen company in local storage if it exists
+          console.log('ptype submit function')
+          if angular.element(document).find('input[name="doublethedonation_company_id"]').val().length > 0
+            console.log('found dtd value!')
+            dtdCoId = angular.element(document).find('input[name="doublethedonation_company_id"]').val()
+            console.log('dtdCoId ' + dtdCoId)
+            localStorage.dtdCompanyId = dtdCoId
+          else
+            console.log('clear dtd company id');
+            localStorage.dtdCompanyId = ''
+
           angular.element('.js--default-ptype-form').submit()
           false
           
