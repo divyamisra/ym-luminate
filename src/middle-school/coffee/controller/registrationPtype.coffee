@@ -101,14 +101,15 @@ angular.module 'ahaLuminateControllers'
           # If the participant chooses to make a gift, check for the Double the Donation field
           # and record the chosen company in local storage if it exists
           console.log('ptype submit function')
-          if angular.element(document).find('input[name="doublethedonation_company_id"]').val().length > 0
-            console.log('found dtd value!')
-            dtdCoId = angular.element(document).find('input[name="doublethedonation_company_id"]').val()
-            console.log('dtdCoId ' + dtdCoId)
-            localStorage.dtdCompanyId = dtdCoId
-          else
-            console.log('clear dtd company id');
-            localStorage.dtdCompanyId = ''
+          if angular.element(document).find('input[name="doublethedonation_company_id"]').length > 0
+            if angular.element(document).find('input[name="doublethedonation_company_id"]').val().length > 0
+              console.log('found dtd value!')
+              dtdCoId = angular.element(document).find('input[name="doublethedonation_company_id"]').val()
+              console.log('dtdCoId ' + dtdCoId)
+              localStorage.dtdCompanyId = dtdCoId
+            else
+              console.log('clear dtd company id');
+              localStorage.dtdCompanyId = ''
             
           angular.element('.js--default-ptype-form').submit()
           false
