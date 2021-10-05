@@ -294,12 +294,29 @@
       align-content: center;
       max-height: 400px;
       position: relative;
+      @include media-breakpoint-down(md) {
+        flex-flow: column nowrap;
+        height: auto!important;
+        max-height: 100%!important;
+        min-height: auto!important;
+      }
     }
 
     li {
       position: relative;
       width: 250px;
-      border-bottom: none!important
+      border-bottom: none!important;
+      @include media-breakpoint-down(md) {
+        width: 100%; 
+      }
+
+      a {
+        padding: 26px 0 23px;
+        text-align: center;
+        @include media-breakpoint-down(md) {
+          padding: 15px 0;
+        }
+      }
     }
 
     li.two-column-team-list:nth-of-type(n + 2):nth-of-type(-n + 4) {
@@ -342,9 +359,10 @@
       bottom: 35px;
     }
 
-    li a {
-      padding: 26px 0 23px;
-      text-align: center;
+    @include media-breakpoint-down(md) {
+      li:nth-of-type(n + 6) {
+        display: none;
+      }
     }
   }
 }
