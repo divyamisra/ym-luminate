@@ -158,7 +158,35 @@ angular.module 'trPcControllers'
                   $scope.suggestedMessages.push message
           response
       $scope.emailPromises.push suggestedMessagesPromise
+
+      sortOrder = {
+        'Get a Jump Start Email/Past Participants with Teaser Video': 0,
+        'Get a Jump Start Email/Past Participants (No Teaser Video)': 1,
+        '1 week before Kick off': 2,
+        'Non Kick off Event/All School Kick off Email': 3,
+        'Mid Event Reminder': 4,
+        'Help Our School Conquer Finn\'s Mission': 5,
+        'Send 10': 6,
+        'Last Chance Reminder': 7,
+        'Donation #1': 8,
+        'Donation #2': 9,
+        'Team Member Thank You': 10,
+        'Help me become a FINN’s Mission Heart Hero': 11,
+        'Donation Email: I\'m trying to get a donation from every state!': 12,
+        'Donation #1 – Help me save lives': 13,
+        'Donation #2 – Have a heart, lend a hand': 14,
+        'Donation #3 – Your BIG heart can help save lives': 15,
+        'Get 10 Donations Emails': 16,
+        'Donation Reminder': 17,
+        'Donation Thank you Email:': 18,
+        'Thanks for helping me be a Heart Hero':19
+      }
       
+      angular.forEach suggestedMessages, (suggestedMessage, suggestedMessageIndex) ->
+        if sortOrder[suggestedMessage.name]
+          suggestedMessages[suggestedMessageIndex].sortOrder = sortOrder[suggestedMessage.name]
+        return
+            
       personalizedGreetingEnabledPromise = NgPcTeamraiserEventService.getEventDataParameter 'edp_type=boolean&edp_name=F2F_CENTER_TAF_PERSONALIZED_SALUTATION_ENABLED'
         .then (response) ->
           $scope.personalizedSalutationEnabled = response.data.getEventDataParameterResponse.booleanValue is 'true'
