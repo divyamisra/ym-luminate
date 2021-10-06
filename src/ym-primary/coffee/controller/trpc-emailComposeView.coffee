@@ -134,28 +134,28 @@ angular.module 'trPcControllers'
                 $scope.emailComposer.subject = messageInfo.subject
                 messageBody = messageInfo.messageBody
                 setEmailMessageBody messageBody
-      sortOrder = {
-        "Get a Jump Start Email/Past Participants with Teaser Video": 0,
-        "Get a Jump Start Email/Past Participants (No Teaser Video)": 1,
-        "1 week before Kick off": 2,
-        "Non Kick off Event/All School Kick off Email": 3,
-        "Mid Event Reminder": 4,
-        "Help Our School Conquer Finn's Mission": 5,
-        "Send 10": 6,
-        "Last Chance Reminder": 7,
-        "Donation #1": 8,
-        "Donation #2": 9,
-        "Team Member Thank You": 10,
-        "Help me become a FINN’s Mission Heart Hero": 11,
-        "Donation Email: I'm trying to get a donation from every state!": 12,
-        "Donation #1 – Help me save lives": 13,
-        "Donation #2 – Have a heart, lend a hand": 14,
-        "Donation #3 – Your BIG heart can help save lives": 15,
-        "Get 10 Donations Emails": 16,
-        "Donation Reminder": 17,
-        "Donation Thank you Email:": 18,
-        "Thanks for helping me be a Heart Hero":19
-      }
+      # sortOrder = {
+      #   "Get a Jump Start Email/Past Participants with Teaser Video": 0,
+      #   "Get a Jump Start Email/Past Participants (No Teaser Video)": 1,
+      #   "1 week before Kick off": 2,
+      #   "Non Kick off Event/All School Kick off Email": 3,
+      #   "Mid Event Reminder": 4,
+      #   "Help Our School Conquer Finn's Mission": 5,
+      #   "Send 10": 6,
+      #   "Last Chance Reminder": 7,
+      #   "Donation #1": 8,
+      #   "Donation #2": 9,
+      #   "Team Member Thank You": 10,
+      #   "Help me become a FINN’s Mission Heart Hero": 11,
+      #   "Donation Email: I'm trying to get a donation from every state!": 12,
+      #   "Donation #1 – Help me save lives": 13,
+      #   "Donation #2 – Have a heart, lend a hand": 14,
+      #   "Donation #3 – Your BIG heart can help save lives": 15,
+      #   "Get 10 Donations Emails": 16,
+      #   "Donation Reminder": 17,
+      #   "Donation Thank you Email:": 18,
+      #   "Thanks for helping me be a Heart Hero":19
+      # }
       suggestedMessagesPromise = NgPcTeamraiserEmailService.getSuggestedMessages()
         .then (response) ->
           suggestedMessages = response.data.getSuggestedMessagesResponse.suggestedMessage
@@ -169,9 +169,9 @@ angular.module 'trPcControllers'
                     $scope.suggestedMessageCountByType[message.messageType] = 0
                   $scope.suggestedMessageCountByType[message.messageType] = $scope.suggestedMessageCountByType[message.messageType] + 1
                   message.name = message.name.split('Student: ')[1] or message.name
-                  if sortOrder[suggestedMessage.name]
-                    message.sortOrder = sortOrder[suggestedMessage.name]
-                    console.log('message.sortOrder ' + message.sortOrder)
+                  # if sortOrder[suggestedMessage.name]
+                  #   message.sortOrder = sortOrder[suggestedMessage.name]
+                  #   console.log('message.sortOrder ' + message.sortOrder)
                   $scope.suggestedMessages.push message
               else
                 if message.name.indexOf('Student:') is -1
@@ -179,9 +179,9 @@ angular.module 'trPcControllers'
                     $scope.suggestedMessageCountByType[message.messageType] = 0
                   $scope.suggestedMessageCountByType[message.messageType] = $scope.suggestedMessageCountByType[message.messageType] + 1
                   message.name = message.name.split('Coordinator: ')[1] or message.name
-                  if sortOrder[suggestedMessage.name]
-                    message.sortOrder = sortOrder[suggestedMessage.name]
-                    console.log('message.sortOrder ' + message.sortOrder)
+                  # if sortOrder[suggestedMessage.name]
+                  #   message.sortOrder = sortOrder[suggestedMessage.name]
+                  #   console.log('message.sortOrder ' + message.sortOrder)
                   $scope.suggestedMessages.push message
               
               # angular.forEach suggestedMessages, (suggestedMessage, suggestedMessageIndex) ->
