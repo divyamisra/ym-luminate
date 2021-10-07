@@ -187,7 +187,7 @@
           <select class="form-control input-lg" id="emailComposer-suggested_message_id" name="suggested_message_id" ng-model="emailComposer.suggested_message_id" ng-change="loadSuggestedMessage()">
             <option value="">Choose a sample message</option>
             <option ng-repeat="suggestedMessage in suggestedMessages | orderBy:'-sortOrder'" value="{{suggestedMessage.messageId}}">
-              {{suggestedMessage.name}}
+              {{suggestedMessage.name}} {{suggestedMessage.sortOrder}}
             </option>
             <!-- <optgroup label="Build Your Team" ng-if="suggestedMessageCountByType.RECRUIT > 0">
               <option value="{{suggestedMessage.messageId}}" ng-repeat="suggestedMessage in suggestedMessages|filter:{messageType: 'RECRUIT'}">
