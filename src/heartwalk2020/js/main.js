@@ -775,7 +775,7 @@
                         $(response.activities).each(function(){
                             if (participantsFound < 5) {
                                 var participantName = this.name;
-                                var steps = parseFloat(this.total).formatMoney(2);
+                                var steps = parseFloat(this.total).formatMoney(0);
                                 var participantPage = "https://" + ((isProd) ? "www2" : "dev2") + ".heart.org/site/TR?px="+this.id+"&pg=personal&fr_id="+eventId;
 
                                 var topWalkerHtml = '<li><div class="d-flex"><div class="flex-grow-1"><a title="' + participantName + ' Minutes" href="' + participantPage + '">' + participantName + '</a></div><div class="raised"><strong>' + steps + '</strong><br/>Minutes</div></div></li>';
@@ -812,7 +812,7 @@
                         $(response.activities).each(function(){
                             if (teamsFound < 5) {
                                 var teamName = this.name;
-                                var steps = parseFloat(this.total).formatMoney(2);
+                                var steps = parseFloat(this.total).formatMoney(0);
                                 var topTeamRow = '<li><div class="d-flex"><div class="flex-grow-1"><a title="' + teamName + ' Minutes" href="TR/?team_id=' + this.id + '&amp;pg=team&amp;fr_id=' + evID + '">' + teamName + '</a></div><div class="raised"><strong>' + steps + '</strong><br/>Minutes</div></div></li>';
                                 $('.js--team-top-list-steps ul').append(topTeamRow);
                             }
@@ -848,7 +848,7 @@
                         $(response.activities).each(function(){
                             if (companiesFound < 5) {
                                 var companyName = this.name;
-                                var steps = parseFloat(this.total).formatMoney(2);
+                                var steps = parseFloat(this.total).formatMoney(0);
                                 var topCompanyRow = '<li><div class="d-flex"><div class="flex-grow-1"><a title="' + companyName + ' Minutes" href="TR/?company_id=' + this.id + '&amp;pg=company&amp;fr_id=' + evID + '">' + companyName + '</a></div><div class="raised"><strong>' + steps + '</strong><br/>Minutes</div></div></li>';
                                 $('.js--company-top-list-steps ul').append(topCompanyRow);
                             }
