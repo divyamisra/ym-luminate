@@ -170,6 +170,7 @@ angular.module 'trPcControllers'
                   #   $scope.suggestedMessageCountByType[message.messageType] = 0
                   # $scope.suggestedMessageCountByType[message.messageType] = $scope.suggestedMessageCountByType[message.messageType] + 1
                   message.name = message.name.split('Student: ')[1] or message.name
+                  message.name = message.name.trim()
                   console.log('message.name ' + message.name)
                   if sortOrder[message.name]
                     message.sortOrder = sortOrder[message.name]
@@ -181,6 +182,7 @@ angular.module 'trPcControllers'
                   #   $scope.suggestedMessageCountByType[message.messageType] = 0
                   # $scope.suggestedMessageCountByType[message.messageType] = $scope.suggestedMessageCountByType[message.messageType] + 1
                   message.name = message.name.split('Coordinator: ')[1] or message.name
+                  message.name = message.name.trim()
                   if sortOrder[message.name]
                     message.sortOrder = sortOrder[message.name]
                     console.log('message.sortOrder ' + message.sortOrder)
