@@ -146,7 +146,7 @@ angular.module 'trPcControllers'
         "Donation Solicitation Email 1": 8,
         "Donation Solicitation Email 2": 9,
         "Team Member Thank You Email": 10,
-        "Help me become a FINN’s Mission Heart Hero": 11,
+        "Help me become a FINN's Mission Heart Hero": 11,
         "I'm Trying to get a Donation from every state!": 12,
         "Help Me Save Lives": 13,
         "Have a heart, lend a hand": 14,
@@ -154,8 +154,9 @@ angular.module 'trPcControllers'
         "Get 10 Donations Emails": 16,
         "Donation Reminder": 17,
         "Donation Thank you Email": 18,
-        "Thanks for helping me be a Heart Hero":19
+        "Thanks for helping me be a Heart Hero": 19
       }
+
       suggestedMessagesPromise = NgPcTeamraiserEmailService.getSuggestedMessages()
         .then (response) ->
           suggestedMessages = response.data.getSuggestedMessagesResponse.suggestedMessage
@@ -169,9 +170,10 @@ angular.module 'trPcControllers'
                   #   $scope.suggestedMessageCountByType[message.messageType] = 0
                   # $scope.suggestedMessageCountByType[message.messageType] = $scope.suggestedMessageCountByType[message.messageType] + 1
                   message.name = message.name.split('Student: ')[1] or message.name
+                  console.log('message.name ' + message.name)
                   if sortOrder[message.name]
                     message.sortOrder = sortOrder[message.name]
-                    console.log('message.sortOrder ' + message.sortOrder)
+                    console.log('message.sortOrder ' + message.sortOrder + typeof message.sortOrder)
                   $scope.suggestedMessages.push message
               else
                 if message.name.indexOf('Student:') is -1
