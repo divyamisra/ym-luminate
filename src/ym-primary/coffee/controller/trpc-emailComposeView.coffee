@@ -135,11 +135,11 @@ angular.module 'trPcControllers'
                 messageBody = messageInfo.messageBody
                 setEmailMessageBody messageBody
       sortOrder = {
-        "Get a Jump Start Email/Past Participants with Teaser Video": 0,
-        "Get a Jump Start Email/Past Participants (No Teaser Video)": 1,
-        "One week before Kick off": 2,
-        "Non Kick off Event/All School Kick off Email": 3,
-        "Mid Event Reminder": 4,
+        "Get a Jump Start/Past Participant w Teaser Video": 0,
+        "Get a Jump Start/Past Participant (No Teaser Video)": 1,
+        "One week before Kick-off": 2,
+        "Non Kick-off Event Email/All School Kick-off Email": 3,
+        "Mid-Event Reminder": 4,
         "Help Our School Conquer Finn's Mission": 5,
         "Send 10": 6,
         "Last Chance Reminder": 7,
