@@ -32,7 +32,7 @@
                   Students
                 </a>
               </li>
-              <li>
+              <li ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
                 <a href="http://www.heart.org/educationalresources">
                   Teachers
                 </a>
@@ -157,7 +157,7 @@
                       For Students
                     </a>
                   </li>
-                  <li>
+                  <li ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
                     <a href="http://www.heart.org/educationalresources">
                       For Teachers
                     </a>

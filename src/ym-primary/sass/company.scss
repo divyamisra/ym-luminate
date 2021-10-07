@@ -19,18 +19,28 @@ body.pg-company {
 			font-size: 48px;
 			color: indigo;
 			font-family: "Luckiest Guy",cursive;
+			margin: 10px 0 0;
+		}
+		.ym-progress__stats {
+		    margin: 10px auto 0;
 		}
 	}
+	.challenge-ice {
+		background: #fff url('../image/fy22/school_challenge_splash.jpg') no-repeat center top / 100% 100%;
+	}
 	.challenge-slime {
-		background: #fff url('../image/school_challenge_1_alt.png') no-repeat center bottom / 100% 100%;
+		background: #fff url('../image/fy22/school_challenge_ooze.jpg') no-repeat center top / 100% 100%;
 	}
 	.challenge-pie {
-		background: #fff url('../image/school_challenge_2_alt.png') no-repeat center bottom / 100% 100%;
+		background: #fff url('../image/fy22/school_challenge_splat.jpg') no-repeat center top / 100% 100%;
 	}
 	.challenge-activity {
-		background: #fff url('../image/school_challenge_3_alt.png') no-repeat center bottom / 100% 100%;
+		background: #fff url('../image/fy22/school_challenge_bubbles.jpg') no-repeat center top / 100% 100%;
 	}
-
+	.challenge-color {
+		background: #fff url('../image/fy22/school_challenge_chalk.jpg') no-repeat center top / 100% 100%;
+	}
+	
      @media (max-width: $screen-sm-max) {
           .ym-our-stats {
                margin-bottom:40px;
@@ -56,6 +66,12 @@ body.pg-company {
      }
 }
 .ym-teachers-leaderboard-block {
+     padding-right: 0px;
+     padding-left:30px;
+	
+     &.col-md-12 {
+	 padding-right: 15px;
+     }
      h2 {
          font-size:42px;
          color:$brand-primary-darker;
@@ -117,7 +133,11 @@ body.pg-company {
         font-size:10px;
     }
      @media (max-width: $screen-sm-max) {
-         .ym-tl-dollars-raised {
+	  padding-left:15px;
+          & > .row > div:nth-child(odd) {
+		padding-left: 0;
+          }         
+	  .ym-tl-dollars-raised {
               margin-bottom: 20px;
               .row {
                     margin-right: -15px;
@@ -128,6 +148,60 @@ body.pg-company {
                     margin-left:-15px;
                }
           }
+     }
+}
+
+.ym-steps-leaderboard-block {
+     padding-right: 30px;
+     margin: 0px;
+	
+     h3 {
+         font-size: 17px;
+         text-align: center;
+         color: $brand-primary-darker;
+         margin:0 auto 10px;
+	 max-width:200px;
+    }
+    > [class*="col-"] {
+         padding-left: 0 !important;
+         padding-right: 0 !important;
+    } 
+    .ym-tl-registered-students {
+         .row {
+             padding: 10px;
+             color: #000;
+             margin: 0 2px 5px 2px;
+             &:nth-child(1) {
+                 background: #94C960;
+            }
+             &:nth-child(2) {
+                 background: #A8D180;
+            }
+             &:nth-child(3) {
+                 background: #BDDC9D;
+            }
+             &:nth-child(4) {
+                 background: #D2E6BB;
+            }
+             &:nth-child(5) {
+                 background: #E7F1DB;
+            }
+        }
+    }
+     .top-index {
+         text-align:left;
+    }
+     .top-detail {
+         text-align:center;
+    }
+     .top-index, .top-detail {
+         padding-left:0px;
+    }
+     .top-msg {
+        font-size:10px;
+    }
+     @media (max-width: $screen-sm-max) {
+	padding-right:0px;
      }
 }
 

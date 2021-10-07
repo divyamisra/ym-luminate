@@ -40,6 +40,8 @@ angular.module 'ahaLuminateControllers'
       $scope.schoolChallengeGoal = 0
       $scope.schoolYears = 0
       $scope.unconfirmedAmountRaised = 0
+      $scope.schoolBadgesRegistrations = []
+      $scope.schoolBadgesFundraising = []
       
       $scope.trustHtml = (html) ->
         return $sce.trustAsHtml(html)
@@ -115,6 +117,7 @@ angular.module 'ahaLuminateControllers'
           $scope.companyProgress.percent = percent
           if not $scope.$$phase
             $scope.$apply()
+          getBoundlessSchoolData()
         , 500
       
       getCompanyTotals = ->
@@ -202,7 +205,7 @@ angular.module 'ahaLuminateControllers'
         if not $scope.$$phase
           $scope.$apply()
       getCompanyParticipants = ->
-        TeamraiserParticipantService.getParticipants 'team_name=' + encodeURIComponent('%') + '&first_name=' + encodeURIComponent('%%') + '&last_name=' + encodeURIComponent('%') + '&list_filter_column=team.company_id&list_filter_text=' + $scope.companyId + '&list_sort_column=total&list_ascending=false&list_page_size=50',
+        TeamraiserParticipantService.getParticipants 'team_name=' + encodeURIComponent('%') + '&first_name=' + encodeURIComponent('%%') + '&last_name=' + encodeURIComponent('%') + '&list_filter_column=team.company_id&list_filter_text=' + $scope.companyId + '&list_sort_column=total&list_ascending=false&list_page_size=500',
             error: ->
               setCompanyParticipants()
             success: (response) ->
@@ -235,7 +238,7 @@ angular.module 'ahaLuminateControllers'
               $scope.participantRegistration = participantRegistration
       
       $scope.companyPagePhoto1 =
-        defaultUrl: APP_INFO.rootPath + 'dist/middle-school/image/company-default.png'
+        defaultUrl: APP_INFO.rootPath + 'dist/middle-school/image/fy22/company-default.jpg'
       
       $scope.editCompanyPhoto1 = ->
         delete $scope.updateCompanyPhoto1Error
@@ -391,4 +394,26 @@ angular.module 'ahaLuminateControllers'
                 $scope.schoolChallengeGoal = meta.value
               if meta.name == 'years-participated'
                 $scope.schoolYears = meta.value
+      
+      getBoundlessSchoolData = () ->
+        BoundlessService.getSchoolBadges $scope.frId + '/' + $scope.companyId
+        .then (response) ->
+          $scope.companyProgress = 
+            amountRaised: if response.data.total_amount then Number(response.data.total_amount) else 0
+            goal: if response.data.goal then Number(response.data.goal) else 0
+          $scope.companyProgress.amountRaisedFormatted = $filter('currency')($scope.companyProgress.amountRaised, '$')
+          $scope.companyProgress.goalFormatted = $filter('currency')($scope.companyProgress.goal, '$')
+          $scope.companyProgress.percent = 0
+          if not $scope.$$phase
+            $scope.$apply()
+          $timeout ->
+            percent = $scope.companyProgress.percent
+            if $scope.companyProgress.goal isnt 0
+              percent = Math.ceil($scope.companyProgress.amountRaised / $scope.companyProgress.goal)
+            if percent > 100
+              percent = 100
+            $scope.companyProgress.percent = percent
+            if not $scope.$$phase
+              $scope.$apply()
+
   ]
