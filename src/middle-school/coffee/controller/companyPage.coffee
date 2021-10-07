@@ -409,7 +409,7 @@ angular.module 'ahaLuminateControllers'
           $timeout ->
             percent = $scope.companyProgress.percent
             if $scope.companyProgress.goal isnt 0
-              percent = Math.ceil($scope.companyProgress.amountRaised / $scope.companyProgress.goal)
+              percent = Math.ceil(($scope.companyProgress.amountRaised / $scope.companyProgress.goal) * 100)
             if percent > 100
               percent = 100
             $scope.companyProgress.percent = percent
