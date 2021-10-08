@@ -305,6 +305,7 @@
     li {
       position: relative;
       width: 250px;
+      height: 70px;
       border-bottom: none!important;
       @include media-breakpoint-down(md) {
         width: 100%; 
