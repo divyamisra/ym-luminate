@@ -3157,7 +3157,7 @@
         .attr('data-parsley-required', '')
         .attr('data-parsley-required-message', 'Recruitment goal is required')
         .attr('data-parsley-range', '[2, '+recruitGoalMax+']')
-        .attr('data-parsley-range-message', 'Error: Please enter a number from 2-'+recruitGoalMax);
+        .attr('data-parsley-range-message', 'Error: Please enter a number from 2 to '+recruitGoalMax);
         // .attr('data-parsley-errors-container', '.regError')
       } else {
         $('#team_find_new_team_recruiting_goal input')
@@ -3165,7 +3165,7 @@
         .attr('data-parsley-required', '')
         .attr('data-parsley-required-message', 'Recruitment goal is required')
         .attr('data-parsley-range', '[2, '+recruitGoalMax+']')
-        .attr('data-parsley-range-message', 'Error: Please enter a number from 2-'+recruitGoalMax);
+        .attr('data-parsley-range-message', 'Error: Please enter a number from 2 to '+recruitGoalMax);
         // .attr('data-parsley-errors-container', '.regError')
       }
     }, 500);
