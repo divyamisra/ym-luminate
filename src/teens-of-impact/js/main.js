@@ -1243,29 +1243,31 @@
         // END TOP PARTICIPANTS
 
         // BEGIN TOP TEAMS
-        cd.getTopTeams = function (eventId) {
-            luminateExtend.api({
-                api: 'teamraiser',
-                data: 'method=getTeamsByInfo&fr_id=' + eventId + '&list_sort_column=total&list_ascending=false&list_page_size=5&response_format=json',
-                callback: {
-                    success: function (response) {
-                        if (!$.isEmptyObject(response.getTeamSearchByInfoResponse)) {
-                            var teamData = luminateExtend.utils.ensureArray(response.getTeamSearchByInfoResponse.team);
+        cd.getTopTeams = function (eventId, listCount) {
+          luminateExtend.api({
+              api: 'teamraiser',
+              data: 'method=getTeamsByInfo&fr_id=' + eventId + '&list_sort_column=total&list_ascending=false&list_page_size=' + listCount + '&response_format=json',
+              callback: {
+                  success: function (response) {
+                      if (!$.isEmptyObject(response.getTeamSearchByInfoResponse)) {
+                          var teamData = luminateExtend.utils.ensureArray(response.getTeamSearchByInfoResponse.team);
+                          var teamListColumnLength = teamData.length > 5 && teamData.length < 11 ? 'two-column-team-list' : teamData.length > 10 ? 'three-column-team-list' : 'one-column-team-list';
+                          console.log('this is the team data', teamData.length)
 
-                            $(teamData).each(function (i) {
-                                var teamName = this.name;
-                                var teamId = this.id;
-                                var topTeamRow = '<li><div class="d-flex"><div class="flex-grow-1"><a href="TR/?team_id=' + teamId + '&amp;pg=team&amp;fr_id=' + evID + '">' + teamName + '</a></div><div class="raised"></div></div></li>';
+                          $(teamData).each(function (i) {
+                              var teamName = this.name;
+                              var teamId = this.id;
+                              var topTeamRow = '<li class="'+teamListColumnLength+'"><div class="d-flex"><div class="flex-grow-1"><a href="TR/?team_id=' + teamId + '&amp;pg=team&amp;fr_id=' + evID + '">' + teamName + '</a></div></div></li>';
 
-                                $('.js--team-top-list ul').append(topTeamRow);
-                            });
-                        }
-                    },
-                    error: function (response) {
-                        console.log('getTopTeams error: ' + response.errorResponse.message);
-                    }
-                }
-            });
+                              $('.js--team-top-list ul').append(topTeamRow);
+                          });
+                      }
+                  },
+                  error: function (response) {
+                      console.log('getTopTeams error: ' + response.errorResponse.message);
+                  }
+              }
+          });
         };
 
         // END TOP TEAMS
@@ -1545,8 +1547,16 @@
             var goal = $('#goal-amount').text();
             cd.runThermometer(progress, goal);
             // Build roster on greeting page
+            var listCount
+            if($('body').hasClass('pg_team_list_15')) {
+              listCount = 15
+            } else if($('body').hasClass('pg_team_list_10')) {
+              listCount = 10
+            } else {
+              listCount = 5
+            }
             cd.getTopParticipants(evID);
-            cd.getTopTeams(evID);
+            cd.getTopTeams(evID, listCount);
             cd.getCompanyList(evID);
             cd.getTopCompanies(evID);
 
