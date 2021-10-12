@@ -51,3 +51,12 @@
   }
 
 }
+
+.pg_search_list {
+    .search-menu > div:nth-of-type(2) {
+      display: none;
+  }
+    .js--team-results-rows .col-cta a {
+      display: none;
+    }
+}
