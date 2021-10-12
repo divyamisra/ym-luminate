@@ -1243,10 +1243,10 @@
         // END TOP PARTICIPANTS
 
         // BEGIN TOP TEAMS
-        cd.getTopTeams = function (eventId, listCount) {
+        cd.getTopTeams = function (eventId) {
             luminateExtend.api({
                 api: 'teamraiser',
-                data: 'method=getTeamsByInfo&fr_id=' + eventId + '&list_sort_column=total&list_ascending=false&list_page_size=' + listCount + '&response_format=json',
+                data: 'method=getTeamsByInfo&fr_id=' + eventId + '&list_sort_column=total&list_ascending=false&list_page_size=15&response_format=json',
                 callback: {
                     success: function (response) {
                         if (!$.isEmptyObject(response.getTeamSearchByInfoResponse)) {
@@ -1547,16 +1547,8 @@
             var goal = $('#goal-amount').text();
             cd.runThermometer(progress, goal);
             // Build roster on greeting page
-            var listCount
-            if($('body').hasClass('pg_team_list_15')) {
-              listCount = 15
-            } else if($('body').hasClass('pg_team_list_10')) {
-              listCount = 10
-            } else {
-              listCount = 5
-            }
             cd.getTopParticipants(evID);
-            cd.getTopTeams(evID, listCount);
+            cd.getTopTeams(evID);
             cd.getCompanyList(evID);
             cd.getTopCompanies(evID);
 
