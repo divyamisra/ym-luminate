@@ -281,3 +281,90 @@
     }
   }
 }
+
+.pg_entry {
+
+  .top-lists-container .top-list {
+
+    ul {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      flex-flow: column wrap;
+      align-content: center;
+      max-height: 400px;
+      position: relative;
+      @include media-breakpoint-down(md) {
+        flex-flow: column nowrap;
+        height: auto!important;
+        max-height: 100%!important;
+        min-height: auto!important;
+      }
+    }
+
+    li {
+      position: relative;
+      width: 250px;
+      height: 70px;
+      border-bottom: none!important;
+      @include media-breakpoint-down(md) {
+        width: 100%; 
+        height: 100%;
+      }
+
+      a {
+        padding: 26px 0 23px;
+        text-align: center;
+        @include media-breakpoint-down(md) {
+          padding: 15px 0;
+        }
+      }
+    }
+
+    li.two-column-team-list:nth-of-type(n + 2):nth-of-type(-n + 4) {
+      border-right: 1px solid #d2d7da;
+    }
+
+    li.two-column-team-list:nth-of-type(1):after, li.two-column-team-list:nth-of-type(5):after {
+      border-right: 1px solid #d2d7da;
+      position: absolute;
+      content: '';
+      height: 100%;
+      right: 0
+    }
+
+    li.two-column-team-list:nth-of-type(1):after {
+      bottom: -35px;
+    }
+
+    li.two-column-team-list:nth-of-type(5):after {
+      bottom: 35px;
+    }
+
+    li.three-column-team-list:nth-of-type(n + 2):nth-of-type(-n + 4), li.three-column-team-list:nth-of-type(n + 7):nth-of-type(-n + 9) {
+      border-right: 1px solid #d2d7da;
+    }
+
+    li.three-column-team-list:nth-of-type(1):after, li.three-column-team-list:nth-of-type(5):after, li.three-column-team-list:nth-of-type(6):after, li.three-column-team-list:nth-of-type(10):after {
+      border-right: 1px solid #d2d7da;
+      position: absolute;
+      content: '';
+      height: 100%;
+      right: 0;
+    }
+
+    li.three-column-team-list:nth-of-type(1):after, li.three-column-team-list:nth-of-type(6):after {
+      bottom: -35px;
+    }
+
+    li.three-column-team-list:nth-of-type(5):after, li.three-column-team-list:nth-of-type(10):after {
+      bottom: 35px;
+    }
+
+    @include media-breakpoint-down(md) {
+      li:nth-of-type(n + 6) {
+        display: none;
+      }
+    }
+  }
+}
