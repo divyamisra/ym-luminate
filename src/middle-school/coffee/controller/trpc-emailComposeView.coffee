@@ -149,8 +149,8 @@ angular.module 'trPcControllers'
         "ASK 1: Donation Request": 10,
         "Ask 2: Donation Reminder": 11,
         "Ask 3: Help Me Reach my Goal": 12,
-        # "Ask 4: Stepping Up for Health Equity": 13,
-        "Ask 5: Email to Past Donors", 14,
+        "Ask 4: Stepping Up for Health Equity": 13,
+        "Ask 5: Email to Past Donors": 14,
         "ASK 6: Thank You for your Donation": 15,
         "ASK 7: Recruit your Friends!": 16
       }
