@@ -185,8 +185,6 @@ angular.module 'trPcControllers'
                   message.name = message.name.split('Coordinator: ')[1] or message.name
                   message.name = message.name.trim()
                   console.log('message.name x' + message.name + 'x')
-                  message.name = encodeURI(message.name)
-                  console.log('encoded message.name ' + encodeURI(message.name))
                   if sortOrder[message.name]
                     message.sortOrder = sortOrder[message.name]
                     console.log('message.sortOrder ' + message.sortOrder)
