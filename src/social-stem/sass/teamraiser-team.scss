@@ -148,3 +148,9 @@
       font-size: 1rem;
     }
 }
+
+.pg_team {
+  #team-roster + .clearfix {
+    display: block!important;
+  }
+}
