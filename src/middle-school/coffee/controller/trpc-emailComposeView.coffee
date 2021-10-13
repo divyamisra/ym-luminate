@@ -152,7 +152,7 @@ angular.module 'trPcControllers'
         "Ask 4: Stepping Up for Health Equity": 13,
         "Ask 5: Email to Past Donors", 14,
         "ASK 6: Thank You for your Donation": 15,
-        "Student: ASK 7: Recruit your Friends!": 16
+        "ASK 7: Recruit your Friends!": 16
       }
 
       $scope.suggestedMessageCountByType = {}
