@@ -184,8 +184,8 @@ angular.module 'trPcControllers'
                   # $scope.suggestedMessageCountByType[message.messageType] = $scope.suggestedMessageCountByType[message.messageType] + 1
                   message.name = message.name.split('Coordinator: ')[1] or message.name
                   message.name = message.name.trim()
-                  message.name = message.name.replace(/\r?\n|\r/g)
                   console.log('message.name x' + message.name + 'x')
+                  console.log('encoded message.name ' + encodeURI(message.name))
                   if sortOrder[message.name]
                     message.sortOrder = sortOrder[message.name]
                     console.log('message.sortOrder ' + message.sortOrder)
