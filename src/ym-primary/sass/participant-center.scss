@@ -759,3 +759,7 @@ div[id^="taTextElement"]:focus {
   -webkit-animation-iteration-count: infinite;
   animation-iteration-count: infinite;
 }
+
+form[name=emailComposerForm] .containFull td {
+    text-align: left !important;
+}
