@@ -137,7 +137,7 @@ angular.module 'trPcControllers'
 
       sortOrder = {
         #"Registration - Past Participants Email (Prepare for Kickoff and Sign-Up)": 0,
-        "Past Participants Email": 0,
+        "Testing": 0,
         "Step 1: Ask Students to Join": 1,
         "Staff Announcement Email": 2,
         "Email 1  THANK YOU FOR JOINING OUR TEAM (Post Kickoff Next Steps)": 3, 
