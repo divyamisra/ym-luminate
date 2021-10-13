@@ -134,7 +134,27 @@ angular.module 'trPcControllers'
                 $scope.emailComposer.subject = messageInfo.subject
                 messageBody = messageInfo.messageBody
                 setEmailMessageBody messageBody
-      
+
+      sortOrder = {
+        "Registration - Past Participants Email (Prepare for Kickoff and Sign-Up)": 0,
+        "Step 1: Ask Students to Join": 1,
+        "Staff Announcement Email": 2,
+        "Email 1  THANK YOU FOR JOINING OUR TEAM (Post Kickoff Next Steps)": 3, 
+        "Email 2  Midway Point to Event": 4,
+        "Email 3 - 1 Week Left": 5,
+        "Email 4 - Two Days Before Event": 6,
+        "Email 5-Post Event Wrap-Up": 7,
+        "Donation Thank You": 8,
+        "THANK YOU to Students": 9,
+        "ASK 1: Donation Request": 10,
+        "Ask 2: Donation Reminder": 11,
+        "Ask 3: Help Me Reach my Goal": 12,
+        "Ask 4: Stepping Up for Health Equity": 13,
+        "Ask 5: Email to Past Donors", 14,
+        "ASK 6: Thank You for your Donation": 15,
+        "Student: ASK 7: Recruit your Friends!": 16
+      }
+
       $scope.suggestedMessageCountByType = {}
       suggestedMessagesPromise = NgPcTeamraiserEmailService.getSuggestedMessages()
         .then (response) ->
@@ -145,17 +165,26 @@ angular.module 'trPcControllers'
             if message.active is 'true'
               if $scope.participantRegistration.companyInformation?.isCompanyCoordinator isnt 'true'
                 if message.name.indexOf('Coordinator:') is -1
-                  if not $scope.suggestedMessageCountByType[message.messageType]
-                    $scope.suggestedMessageCountByType[message.messageType] = 0
-                  $scope.suggestedMessageCountByType[message.messageType] = $scope.suggestedMessageCountByType[message.messageType] + 1
+                  # if not $scope.suggestedMessageCountByType[message.messageType]
+                  #   $scope.suggestedMessageCountByType[message.messageType] = 0
+                  # $scope.suggestedMessageCountByType[message.messageType] = $scope.suggestedMessageCountByType[message.messageType] + 1
                   message.name = message.name.split('Student: ')[1] or message.name
+                  message.name = message.name.trim()
+                  console.log('message.name ' + message.name)
+                  if sortOrder[message.name]
+                    message.sortOrder = sortOrder[message.name]
+                    console.log('message.sortOrder ' + message.sortOrder + typeof message.sortOrder)
                   $scope.suggestedMessages.push message
               else
                 if message.name.indexOf('Student:') is -1
-                  if not $scope.suggestedMessageCountByType[message.messageType]
-                    $scope.suggestedMessageCountByType[message.messageType] = 0
-                  $scope.suggestedMessageCountByType[message.messageType] = $scope.suggestedMessageCountByType[message.messageType] + 1
+                  # if not $scope.suggestedMessageCountByType[message.messageType]
+                  #   $scope.suggestedMessageCountByType[message.messageType] = 0
+                  # $scope.suggestedMessageCountByType[message.messageType] = $scope.suggestedMessageCountByType[message.messageType] + 1
                   message.name = message.name.split('Coordinator: ')[1] or message.name
+                  message.name = message.name.trim()
+                  if sortOrder[message.name]
+                    message.sortOrder = sortOrder[message.name]
+                    console.log('message.sortOrder ' + message.sortOrder)
                   $scope.suggestedMessages.push message
           response
       $scope.emailPromises.push suggestedMessagesPromise

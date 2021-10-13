@@ -134,6 +134,7 @@ angular.module 'trPcControllers'
                 $scope.emailComposer.subject = messageInfo.subject
                 messageBody = messageInfo.messageBody
                 setEmailMessageBody messageBody
+
       sortOrder = {
         "Get a Jump Start/Past Participant w Teaser Video": 0,
         "Get a Jump Start/Past Participant (No Teaser Video)": 1,
