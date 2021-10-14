@@ -24,7 +24,6 @@ angular.module 'ahaLuminateControllers'
       $scope.hideAmount = ''
       $scope.notifyName = ''
       $scope.notifyEmail = ''
-      $scope.eventDate = ''
       $scope.startDate = ''
       $scope.endDate = ''
       $scope.moneyDueDate = ''
@@ -145,7 +144,6 @@ angular.module 'ahaLuminateControllers'
                   len = schoolDataRows.length
                   while i < len
                     if $scope.companyId is schoolDataRows[i][schoolDataHeaders.CID]
-                      $scope.eventDate = schoolDataRows[i][schoolDataHeaders.ED]
                       $scope.startDate = schoolDataRows[i][schoolDataHeaders.EDS]
                       $scope.endDate = schoolDataRows[i][schoolDataHeaders.EDE]
                       $scope.moneyDueDate = schoolDataRows[i][schoolDataHeaders.MDD]
