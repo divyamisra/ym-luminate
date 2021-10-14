@@ -836,8 +836,7 @@ angular.module 'trPcControllers'
         , (response) ->
           # TODO
       #$scope.getMoveMoreFlag()
-      #refreshFinnsMission()
-
+      refreshFinnsMission()
       
       $rootScope.facebookFundraiserConfirmedStatus = ''
       if $scope.facebookFundraisersEnabled and $rootScope.facebookFundraiserId and $rootScope.facebookFundraiserId isnt ''
@@ -850,9 +849,6 @@ angular.module 'trPcControllers'
               $rootScope.facebookFundraiserConfirmedStatus = 'deleted'
             else
               $rootScope.facebookFundraiserConfirmedStatus = 'confirmed'
-            refreshFinnsMission()
-      else
-        refreshFinnsMission()
         
       BoundlessService.getSchoolBadges $scope.frId + '/' + $scope.participantRegistration.companyInformation.companyId
       .then (response) ->
