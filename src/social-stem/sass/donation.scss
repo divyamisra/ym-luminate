@@ -32,6 +32,9 @@
       &.mobile-utility-nav {
         background-color: #eee;
       }
+      #mobile-login, #desktop-login {
+        display: none!important;
+      }
     }
   }
 
