@@ -136,7 +136,7 @@ angular.module 'trPcControllers'
                 setEmailMessageBody messageBody
 
       sortOrder = {
-        "Prepare for Kickof and Sign-Up": 0,
+        "Prepare for Kickoff and Sign-Up": 0,
         #"Registration - Past Participants Email (Prepare for Kickoff and Sign-Up)": 0,
         "Step 1: Ask Students to Join": 1,
         "Staff Announcement Email": 2,
@@ -158,7 +158,7 @@ angular.module 'trPcControllers'
 
       $scope.suggestedMessageCountByType = {}
       suggestedMessagesPromise = NgPcTeamraiserEmailService.getSuggestedMessages()
-        .then (response) ->
+        .then (response) -> 
           suggestedMessages = response.data.getSuggestedMessagesResponse.suggestedMessage
           suggestedMessages = [suggestedMessages] if not angular.isArray suggestedMessages
           $scope.suggestedMessages = []
