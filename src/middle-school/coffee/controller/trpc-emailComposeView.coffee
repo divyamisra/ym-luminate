@@ -136,7 +136,8 @@ angular.module 'trPcControllers'
                 setEmailMessageBody messageBody
 
       sortOrder = {
-        "Registration - Past Participants Email (Prepare for Kickoff and Sign-Up)": 0,
+        "Prepare for Kickof and Sign-Up": 0,
+        #"Registration - Past Participants Email (Prepare for Kickoff and Sign-Up)": 0,
         "Step 1: Ask Students to Join": 1,
         "Staff Announcement Email": 2,
         "Email 1  THANK YOU FOR JOINING OUR TEAM (Post Kickoff Next Steps)": 3, 
@@ -152,8 +153,7 @@ angular.module 'trPcControllers'
         "Ask 4: Stepping Up for Health Equity": 13,
         "Ask 5: Email to Past Donors": 14,
         "ASK 6: Thank You for your Donation": 15,
-        "ASK 7: Recruit your Friends!": 16,
-        "First message": 17
+        "ASK 7: Recruit your Friends!": 16        
       }
 
       $scope.suggestedMessageCountByType = {}
