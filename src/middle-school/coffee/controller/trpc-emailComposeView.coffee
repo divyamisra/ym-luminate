@@ -185,6 +185,9 @@ angular.module 'trPcControllers'
                   message.name = message.name.split('Coordinator: ')[1] or message.name
                   message.name = message.name.trim()
                   console.log('message.name x' + message.name + 'x' + 'message type ' + message.messageType)
+                  if message.name == 'Registration - Past Participants Email (Prepare for Kickoff and Sign-Up)'
+                    console.log('gotcha!')
+                    message.sortOrder = 0
                   if sortOrder[message.name]
                     message.sortOrder = sortOrder[message.name]
                     console.log('message.sortOrder ' + message.sortOrder)
