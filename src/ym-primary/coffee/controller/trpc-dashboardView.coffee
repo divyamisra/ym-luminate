@@ -791,7 +791,10 @@ angular.module 'trPcControllers'
             if prize.mission_url_type == 'Personal' 
               final_url = 'TR?fr_id=' + $scope.frId + '&pg=personal&px=' + $scope.consId
             if prize.mission_url_type == 'Tab' 
-              final_url = $scope.baseUrl + prize.mission_url
+              if facebookFundraisersEnabled is true
+                final_url = $scope.baseUrl + prize.mission_url + 'fb'
+              else
+                final_url = $scope.baseUrl + prize.mission_url
             if prize.mission_url_type == 'URL' 
               final_url = prize.mission_url
             if prize.mission_url_type == 'Quiz' 
