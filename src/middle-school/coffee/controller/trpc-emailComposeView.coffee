@@ -136,7 +136,7 @@ angular.module 'trPcControllers'
                 setEmailMessageBody messageBody
 
       sortOrder = {
-        "Prepare for Kickoff and Sign-Up": 0,
+        "Test": 0,
         #"Registration - Past Participants Email (Prepare for Kickoff and Sign-Up)": 0,
         "Step 1: Ask Students to Join": 1,
         "Staff Announcement Email": 2,
