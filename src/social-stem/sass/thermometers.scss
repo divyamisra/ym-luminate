@@ -5,7 +5,7 @@
 }
 .thermometer-inner {
   background-color: $red;
-  height: 5px;
+  height: 25px;
   width: 0;
   margin: -1px 0 -1px -1px;
   max-width:100%;
@@ -44,6 +44,6 @@
   }
 
   .thermometer-inner {
-    height: 5px;
+    height: 25px;
   }
 }
