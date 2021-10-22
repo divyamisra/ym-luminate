@@ -1110,7 +1110,7 @@
 								</div>
 								<div class="row">
 									<div class="col-md-6">
-										<div class="schoolStatusTitle">School Achievement</div>
+										<div class="schoolStatusTitle">Achievements</div>
 										<p class="students-registered hidden">
 										   <strong>{{companyInfo.participantCount|number}}</strong> student<span ng-if="companyInfo.participantCount> 1 || activity1amt == 0">s are</span><span ng-if="companyInfo.participantCount == 1"> is</span> registered 
 										</p>
@@ -1136,6 +1136,12 @@
 														<img class="img-responsive" ng-src="{{schoolBadge.image_url}}" alt="{{schoolBadge.image_name}}"> 
 														<div class="text">
 															{{schoolBadge.text}} 
+														</div>
+													</div>
+													<div class="ym-badges__item" ng-repeat="coordinatorBadge in coordinatorBadges" ng-cloak>
+														<img class="img-responsive" ng-src="{{(coordinatorBadge.status == 0) ? coordinatorBadge.not_earned_image_url : coordinatorBadge.earned_image_url}}" alt="{{coordinatorBadge.aria_label}}"> 
+														<div class="text">
+															{{coordinatorBadge.label}} 
 														</div>
 													</div>
 												</div>
