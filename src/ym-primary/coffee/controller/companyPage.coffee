@@ -152,6 +152,10 @@ angular.module 'ahaLuminateControllers'
                       $scope.notifyName = schoolDataRows[i][schoolDataHeaders.YMDN]
                       $scope.notifyEmail = schoolDataRows[i][schoolDataHeaders.YMDE]
                       $scope.unconfirmedAmountRaised = schoolDataRows[i][schoolDataHeaders.UCR]
+                      $scope.highestGift = schoolDataRows[i][schoolDataHeaders.HG]
+                      $scope.top25school = schoolDataRows[i][schoolDataHeaders.T25]
+                      $scope.highestRaisedAmount = schoolDataRows[i][schoolDataHeaders.HRR]
+                      $scope.highestRaisedYear = schoolDataRows[i][schoolDataHeaders.HRRY]
                       break
                     i++
                   #setCompanyProgress Number(amountRaised) + Number(($scope.unconfirmedAmountRaised) * 100), goal
