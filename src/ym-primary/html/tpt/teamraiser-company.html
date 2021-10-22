@@ -119,7 +119,7 @@
 			 <div class="ym-school-badge-heartsaver" ng-cloak>
 					<img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy22/badge-heartsaver-school.png" alt="Heartsaver School">
 			 </div>
-			 <div style="position:relative;" class="ym-school-badge-best-year" ng-if="highestRaisedAmount != ''" ng-cloak>
+			 <div style="position:relative;" class="ym-school-badge-best-year" ng-if="highestRaisedYear > 0" ng-cloak>
 					<img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy22/badge-bestyear.png" alt="Best Year and Amount">
 					<div class="ym-school-badge-best-year-date">{{highestRaisedYear}}</div>
 					<div class="ym-school-badge-best-year-amount">{{highestRaisedAmount | currency:"$":0}}</div>
