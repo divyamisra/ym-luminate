@@ -6,10 +6,6 @@
             <button type="button" class="btn btn-md-wide btn-toggle" ng-click="editCompanyPhoto1()" ng-if="participantRegistration.companyInformation.companyId == '[[S334:company_id]]' && participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
             <span class="fa fa-camera"></span> Edit Photo
             </button>
-            <div class="ym-school-participation-years" ng-if="schoolYears > 0">
-               <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/ym-school-participation-years.png" alt="School Participation Years">
-               <div class="ym-school-participation-years-text"><span ng-bind-html="schoolYears"></span> Years Participating</div>
-            </div>
             <img class="hidden-md hidden-lg" ng-src="{{companyPagePhoto1.customUrl && companyPagePhoto1.customUrl != '' ? companyPagePhoto1.customUrl : companyPagePhoto1.defaultUrl}}" alt="School Photo" ng-cloak>
          </div>
       </div>
@@ -108,6 +104,28 @@
       </div>
       <div class="clearfix"></div>
    </div>
+ 	 <div class="ym-page-section ym-page-section__main" style="text-align:center;">
+     <h2 class="ym-headline">
+        School Achievements
+     </h2>
+     <div class="ym-school-achievements">
+			 <div class="ym-school-badge-participation-years" ng-if="schoolYears > 0" ng-cloak>
+					<img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy22/badge-years.png" alt="School Participation Years">
+					<div class="ym-school-participation-years-text">{{schoolYears}}</div>
+			 </div>
+			 <div class="ym-school-badge-top25-school" ng-if="top25school != 'N'" ng-cloak>
+					<img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy22/badge-top25school.png" alt="Top 25 School">
+			 </div>
+			 <div class="ym-school-badge-heartsaver" ng-cloak>
+					<img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy22/badge-heartsaver-school.png" alt="Heartsaver School">
+			 </div>
+			 <div style="position:relative;" class="ym-school-badge-best-year" ng-if="highestRaisedAmount != 'N'" ng-cloak>
+					<img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy22/badge-bestyear.png" alt="Best Year and Amount">
+					<div class="ym-school-badge-best-year-date">{{highestRaisedYear}}</div>
+					<div class="ym-school-badge-best-year-amount">{{highestRaisedAmount | currency:"$":0}}</div>
+			 </div>
+     </div>
+	 </div>
    <div class="ym-page-section ym-page-section__main">
       <div ng-class="col-md-12" ng-show="participantCount > 0 && (activity1amt != 0 || activity2amt != 0 || activity3amt != 0)" ng-cloak>
          <div class="ym-our-stats ym-promo-block">
