@@ -1139,10 +1139,7 @@
 														</div>
 													</div>
 													<div class="ym-badges__item" ng-repeat="coordinatorBadge in coordinatorBadges" ng-cloak>
-														<img class="img-responsive" ng-src="{{(coordinatorBadge.status == 0) ? coordinatorBadge.not_earned_image_url : coordinatorBadge.earned_image_url}}" alt="{{coordinatorBadge.aria_label}}"> 
-														<div class="text">
-															{{coordinatorBadge.label}} 
-														</div>
+														<img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/middle-school/image/fy22/badge{{coordinatorBadge.id}}{{(coordinatorBadge.status == 0) ? '_not' : ''}}_earned.png" alt="{{coordinatorBadge.aria_label}}"> 
 													</div>
 												</div>
 											</div>
