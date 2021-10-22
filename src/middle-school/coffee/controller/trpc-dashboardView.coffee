@@ -1022,6 +1022,7 @@ angular.module 'trPcControllers'
             if prize.id == 3 or prize.id == 6 or prize.id == 9 or prize.id == 10
               $scope.coordinatorBadges.push
                 id: prize.id
+                status: prize.status
                 label: prize.label
                 earned_image_url: prize.earned_image_url
                 not_earned_image_url: prize.non_earned_image_url
