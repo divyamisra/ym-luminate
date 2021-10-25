@@ -1547,16 +1547,9 @@
             var goal = $('#goal-amount').text();
             cd.runThermometer(progress, goal);
             // Build roster on greeting page
-            var listCount
-            if($('body').hasClass('pg_team_list_15')) {
-              listCount = 15
-            } else if($('body').hasClass('pg_team_list_10')) {
-              listCount = 10
-            } else {
-              listCount = 5
-            }
+
             cd.getTopParticipants(evID);
-            cd.getTopTeams(evID, listCount);
+            cd.getTopTeams(evID, 15);
             cd.getCompanyList(evID);
             cd.getTopCompanies(evID);
 
