@@ -454,9 +454,15 @@
 
                             $(teams).each(function (i, team) {
                                 if (screenWidth >= 768) {
+                                  if ($('body').hasClass('pg_search_list')) {
+                                    $('.js--team-results-rows')
+                                        .append('<tr' + (i > 10 ? ' class="d-none"' : '') + '><td><a href="' + team.teamPageURL + '">' +
+                                            team.name + '</a></td></tr>');
+                                  } else {
                                     $('.js--team-results-rows')
                                         .append('<tr' + (i > 10 ? ' class="d-none"' : '') + '><td><a href="' + team.teamPageURL + '">' +
                                             team.name + '</a></td><td></td><td></td><td></td><td class="col-cta text-right"><a href="' + team.teamDonateURL + '" class="btn btn-primary btn-block btn-rounded" title="Donate to ' + team.name + '" aria-label="Donate to ' + team.name + '">Donate</a></td></tr>');
+                                  }
                                 } else {
                                     $('#teamResultsTable thead').remove();
                                     $('.js--team-results-rows')
