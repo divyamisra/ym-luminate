@@ -1132,13 +1132,13 @@
 														</div>
 													</div>
 													<div class="ym-badges__item" ng-repeat="coordinatorBadge in coordinatorBadges" ng-cloak>
-														<img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/middle-school/image/fy22/badge_{{coordinatorBadge.id}}{{(coordinatorBadge.status == 0) ? '_not' : ''}}_earned.png" alt="{{coordinatorBadge.label}} - {{(coordinatorBadge.status == 0) ? 'not earned' : 'earned'}}"> 
+														<img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/middle-school/image/fy22/badge_{{coordinatorBadge.id}}{{(coordinatorBadge.status == 0) ? '_not' : ''}}_earned.png" alt="{{coordinatorBadge.label}} Badge - {{(coordinatorBadge.status == 0) ? 'not earned' : 'earned'}}"> 
 														<div class="text">
 															{{coordinatorBadge.label}} 
 														</div>
 													</div>
 													<div class="ym-badges__item" ng-if="participantProgress.goal > 0" ng-cloak>
-														<img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/middle-school/image/fy22/badge_goal{{(participantProgress.percent < 100) ? '_not' : ''}}_met.png" alt="Personal Goal - {{(participantProgress.percent < 100) ? 'not earned' : 'earned'}}"> 
+														<img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/middle-school/image/fy22/badge_goal{{(participantProgress.percent < 100) ? '_not' : ''}}_met.png" alt="Personal Goal Badge - {{(participantProgress.percent < 100) ? 'not earned' : 'earned'}}"> 
 														<div class="text">
 															Personal Goal 
 														</div>
