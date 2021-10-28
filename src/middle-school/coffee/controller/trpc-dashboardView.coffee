@@ -970,6 +970,7 @@ angular.module 'trPcControllers'
 
       refreshFinnsMission = ->
         $scope.prizes = []
+        $scope.coordinatorBadges = []
         $scope.prizesEarned = 0
         $rootScope.has_bonus = 0
         BoundlessService.getBadges $scope.frId + '/' + $scope.consId
@@ -1018,6 +1019,23 @@ angular.module 'trPcControllers'
               hover_msg: hover_msg
               aria_label: aria_label
 
+            if prize.id == 3 or prize.id == 6 or prize.id == 9 or prize.id == 10
+              if prize.id == 3
+                prize.label = 'Made a Donation'
+              if prize.id == 6
+                prize.label = 'Sent Kickoff Email'
+              if prize.id == 9
+                prize.label = 'Mobile App User'
+              if prize.id == 10
+                prize.label = 'Updated School Page'
+              $scope.coordinatorBadges.push
+                id: prize.id
+                status: prize.status
+                label: prize.label
+                earned_image_url: prize.earned_image_url
+                not_earned_image_url: prize.non_earned_image_url
+                aria_label: aria_label
+              
             if prize.status != 0
               $scope.prizesEarned++
             

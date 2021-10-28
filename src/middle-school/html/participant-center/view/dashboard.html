@@ -450,7 +450,7 @@
 												</strong>
 											</a>
 										</p>
-										<p>
+										<p ng-if="participantPrevProgress.raised > 0" ng-cloak>
 											<strong>
 												<span ng-bind-html="participantPrevProgress.raisedFormatted">
 												</span>
@@ -485,16 +485,16 @@
 										</div>
 									</div>
 									<div class="col-xs-4">
-										<div class="ym-progress-related">
-											<p>
+										<div class="ym-progress-related-school">
+											<div class="text-right">
 												<strong>
 													<span ng-bind-html="companyProgress.raisedFormatted">
 													</span>
 												</strong>
 												raised 
-											</p>
+											</div>
 											<div ng-if="companyProgress.goalFormatted &amp;&amp; companyProgress.goalFormatted != '$0'" ng-cloak>
-												<p>
+												<p class="text-right">
 													<strong>
 														<span ng-bind-html="companyProgress.goalFormatted">
 														</span>
@@ -937,13 +937,6 @@
 								</button>
 							</form>
 						</div>
-						<div class="col-sm-12 text-center">
-							To learn more about how you and your child can meet your daily challenge 
-							<a href="SPageServer?pagename=khc_resources_parents_corner" target="_blank" title="Click here to learn more about how you and your child can meet your daily challenge" aria-label="Click here to learn more about how you and your child can meet your daily challenge">
-								click here
-							</a>
-							. 
-						</div>
 					</div>
 					<div class="col-sm-6 ym-activity-box ym-activity-box--spread-the-word">
 						<section class="ym-pc-dashboard-spread-section" aria-label="Resources for Spreading the Word">
@@ -1088,7 +1081,7 @@
 														</strong>
 													</a>
 												</p>
-												<p>
+												<p ng-if="participantPrevProgress.raised > 0" ng-cloak>
 													<strong>
 														<span ng-bind-html="participantPrevProgress.raisedFormatted">
 														</span>
@@ -1110,7 +1103,7 @@
 								</div>
 								<div class="row">
 									<div class="col-md-6">
-										<div class="schoolStatusTitle">School Achievement</div>
+										<div class="schoolStatusTitle">Achievements</div>
 										<p class="students-registered hidden">
 										   <strong>{{companyInfo.participantCount|number}}</strong> student<span ng-if="companyInfo.participantCount> 1 || activity1amt == 0">s are</span><span ng-if="companyInfo.participantCount == 1"> is</span> registered 
 										</p>
@@ -1136,6 +1129,18 @@
 														<img class="img-responsive" ng-src="{{schoolBadge.image_url}}" alt="{{schoolBadge.image_name}}"> 
 														<div class="text">
 															{{schoolBadge.text}} 
+														</div>
+													</div>
+													<div class="ym-badges__item" ng-repeat="coordinatorBadge in coordinatorBadges" ng-cloak>
+														<img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/middle-school/image/fy22/badge_{{coordinatorBadge.id}}{{(coordinatorBadge.status == 0) ? '_not' : ''}}_earned.png" alt="{{coordinatorBadge.label}} Badge - {{(coordinatorBadge.status == 0) ? 'not earned' : 'earned'}}"> 
+														<div class="text">
+															{{coordinatorBadge.label}} 
+														</div>
+													</div>
+													<div class="ym-badges__item" ng-if="participantProgress.goal > 0" ng-cloak>
+														<img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/middle-school/image/fy22/badge_goal{{(participantProgress.percent < 100) ? '_not' : ''}}_met.png" alt="Personal Goal Badge - {{(participantProgress.percent < 100) ? 'not earned' : 'earned'}}"> 
+														<div class="text ng-binding">
+															Personal Goal 
 														</div>
 													</div>
 												</div>
