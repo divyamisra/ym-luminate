@@ -3,10 +3,6 @@
   <div class="ym-page-section ym-page-section__top">
     <div class="col-md-6 ym-user-image" ng-style="{'background-image': (companyPagePhoto1.customUrl && companyPagePhoto1.customUrl != '') ? ('url(' + companyPagePhoto1.customUrl + ')') : ('url(' + companyPagePhoto1.defaultUrl + ')')}">
       <div class="ym-user-image-inner">
-      	<div class="ym-school-participation-years" ng-if="schoolYears > 0">
-      	  <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/middle-school/image/ym-school-participation-years.png" alt="School Participation Years">
-    	    <div class="ym-school-participation-years-text"><span ng-bind-html="schoolYears"></span> Years Participating</div>
-      	</div>
         <button type="button" class="btn btn-md-wide btn-toggle" ng-click="editCompanyPhoto1()" ng-if="participantRegistration.companyInformation.companyId == '[[S334:company_id]]' && participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
           <span class="fa fa-camera"></span> Edit Photo
         </button>
@@ -127,6 +123,21 @@
           <p>
             daily challenges of moving for one hour every day.
           </p>
+        </div>
+        <div class="ym-promo-block__item ym-promo-block--circle" ng-if="schoolYears > 0" ng-cloak>
+          <div class="h2 ym-headline">
+            <span>{{schoolYears}}</span>
+          </div>
+          <div ng-if="participantCount == 1" ng-cloak>
+            <p>
+              year participating
+            </p>
+          </div>
+          <div ng-if="participantCount != 1" ng-cloak>
+            <p>
+              years participating
+            </p>
+          </div>
         </div>
       </div>
     </div>
