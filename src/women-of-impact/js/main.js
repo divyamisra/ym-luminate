@@ -2527,12 +2527,11 @@ var toggleMultiEventInfo = function (elem) {
 
 //main menu hack
 if ( $('.nav-item--find').length > 0 ) {
-
   $('#find').click(function () {
       $(this).parent().toggleClass('open');
   });
 
-  $('body').keypress(function (e) {
+  $('body').keyup(function (e) {
       if (!$('.nav-item--find').is(e.target)
           && $('.nav-item--find').has(e.target).length === 0
           && $('.open').has(e.target).length === 0
@@ -2551,9 +2550,6 @@ if ( $('.nav-item--find').length > 0 ) {
           $('.nav-item--find').removeClass('open');
       }
   });
-
-
-
 }
 
 if ( $('body').is('.app_donation') || $('body').is('.app_tr_registration') || $('body').is('.pg_fieldday_register') ) {
