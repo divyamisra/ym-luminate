@@ -2537,8 +2537,8 @@ if ( $('.nav-item--find').length > 0 ) {
           && $('.nav-item--find').has(e.target).length === 0
           && $('.open').has(e.target).length === 0
       ) {
-          $('.nav-item--find').removeClass('open');
-          $('.nav-item--find').removeClass('open');
+        $('.nav-item--find').removeClass('open');
+        $('.dropdown-menu.find').removeClass('show');
       }
   });
 
