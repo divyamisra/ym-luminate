@@ -2159,6 +2159,8 @@
 
       // tfind
 
+      $('#fr_team_goal').attr("placeholder", "$");
+
       // begin StationaryV2 event conditional
       if (eventType2 === 'StationaryV2') {
         var loDefaultGoal = $('#fr_team_goal').val();

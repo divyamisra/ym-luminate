@@ -546,9 +546,11 @@ div.responsive div.ErrorMessage.page-error>span.field-error-text {
       margin-left: inherit;
       font-size: inherit;
     }
-    #team_find_section_header,
     #team_find_section_body {
       display:none;
+    }
+    #team_find_section_header {
+      display:none!important;
     }
   }
 
