@@ -132,7 +132,8 @@ angular.module 'trPcControllers'
                 #if both student and school goals met
                 if $scope.companyProgress.raised >= $scope.companyProgress.goal and $scope.companyProgress.goal > 0 and amt >= Number(($scope.companyProgress.schoolChallengeLevel).replace('$', '').replace(/,/g, '')) and $scope.companyProgress.schoolChallenge != "No School Challenge"
                   $scope.schoolChallenge = 4
-                    
+            $scope.getSchoolBadges()
+            
       participantsString = ''
       $scope.companyParticipants = {}
       setCompanyParticipants = (participants, totalNumber, totalFundraisers) ->
@@ -850,6 +851,7 @@ angular.module 'trPcControllers'
             else
               $rootScope.facebookFundraiserConfirmedStatus = 'confirmed'
         
+    $scope.getSchoolBadges = ->
       BoundlessService.getSchoolBadges $scope.frId + '/' + $scope.participantRegistration.companyInformation.companyId
       .then (response) ->
         if response.data.success == "true"
