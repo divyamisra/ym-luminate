@@ -3000,7 +3000,9 @@
               cd.updateRegProgress(2, 8);
             }
           }
+
         }
+
 
         // Ptype Step
         if ($('#F2fRegPartType').length > 0) {
@@ -3153,7 +3155,8 @@
       $('#team_find_new_team_recruiting_goal').children().prepend('<span class="field-required" id="team_find_new_team_recruiting_goal_required"></span>');
       $('#team_find_new_fundraising_goal').children().prepend('<span class="field-required" id="team_find_new_fundraising_goal_required"></span>');
       $('#team_find_new_team_recruiting_goal input').parent().append('<div class="recruit-description">You must have at least 2 but no more than '+recruitGoalMax+' people on your team</div>');
-      $('#team_find_new_fundraising_goal .form-content').parent().append('<div class="recruit-description">Suggested $1,000 minimum goal</div>')
+      $('#team_find_new_fundraising_goal .form-content').parent().append('<div class="recruit-description">Suggested $1,000 minimum goal</div>');
+      $('#team_find_new_team_recruiting_goal label').text('Team Recruitment Goal');
       if($('#team_find_new_team_recruiting_goal input').val() !== '') {
         $('#team_find_new_team_recruiting_goal input')
         .attr('data-parsley-required', '')
