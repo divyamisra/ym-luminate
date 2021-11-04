@@ -289,5 +289,21 @@ module.exports = {
       'img-copy:social-stem-images',
       'notify:social-stem'
     ]
+  },
+  "women-of-impact": {
+    files: [
+      'src/women-of-impact/html/**/*',
+      'src/women-of-impact/image/**/*',
+      'src/women-of-impact/sass/**/*',
+      'src/women-of-impact/js/**/*'
+    ],
+    tasks: [
+      'clean:women-of-impact',
+      'css-dist:women-of-impact',
+      'js-dist:women-of-impact',
+      'html-dist:women-of-impact',
+      'img-copy:women-of-impact',
+      'notify:women-of-impact'
+    ]
   }
 }

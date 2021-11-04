@@ -204,5 +204,17 @@ module.exports = {
         dest: 'dist/social-stem/image/'
       }
     ]
+  },
+  "women-of-impact": {
+    files: [
+      {
+        expand: true,
+        cwd: 'src/women-of-impact/img/',
+        src: [
+          '*.{gif,GIF,jpg,JPG,png,PNG,svg,SVG}'
+        ],
+        dest: 'dist/women-of-impact/img/'
+      }
+    ]
   }
 }
