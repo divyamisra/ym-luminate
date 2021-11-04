@@ -92,7 +92,7 @@ angular.module 'trPcControllers'
       $scope.getSchoolBadges = ->
         BoundlessService.getSchoolBadges $scope.frId + '/' + $scope.participantRegistration.companyInformation.companyId
         .then (response) ->
-          if response.data.success == "true"
+          if response.data.success is true
             $scope.schoolBadgesRegistrations = response.data.registration_badges
             $scope.schoolBadgesFundraising = response.data.fundraising_badges
             $rootScope.companyInfo.participantCount = response.data.students_registered
