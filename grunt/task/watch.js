@@ -305,5 +305,21 @@ module.exports = {
       'img-copy:women-of-impact',
       'notify:women-of-impact'
     ]
+  },
+  "teens-of-impact": {
+    files: [
+      'src/teens-of-impact/html/**/*',
+      'src/teens-of-impact/image/**/*',
+      'src/teens-of-impact/sass/**/*',
+      'src/teens-of-impact/js/**/*'
+    ],
+    tasks: [
+      'clean:teens-of-impact',
+      'css-dist:teens-of-impact',
+      'js-dist:teens-of-impact',
+      'html-dist:teens-of-impact',
+      'img-copy:teens-of-impact',
+      'notify:teens-of-impact'
+    ]
   }
 }

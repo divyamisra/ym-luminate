@@ -257,6 +257,28 @@ module.exports = (grunt) ->
     runTargetedTask [
       'copy'
     ], 'women-of-impact-scripts'
+    runTargetedTask [
+      'clean'
+      'sass'
+      'postcss'
+      'cssmin'
+      'uglify'
+      'replace'
+      'htmlmin'
+      'imagemin'
+    ], 'teens-of-impact'
+    runTargetedTask [
+      'copy'
+    ], 'teens-of-impact-scripts'
+    runTargetedTask [
+      'clean'
+      'sass'
+      'postcss'
+      'cssmin'
+      'uglify'
+      'replace'
+      'htmlmin'
+      'imagemin']
     return
   grunt.registerTask 'dev', ->
     devTasks = [
@@ -308,6 +330,9 @@ module.exports = (grunt) ->
       if task.indexOf('notify:') is -1
         devTasks.push task
     config.watch['women-of-impact'].tasks.forEach (task) ->
+      if task.indexOf('notify:') is -1
+        devTasks.push task
+    config.watch['teens-of-impact'].tasks.forEach (task) ->
       if task.indexOf('notify:') is -1
         devTasks.push task
     devTasks.push 'watch'

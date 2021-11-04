@@ -216,5 +216,17 @@ module.exports = {
         dest: 'dist/women-of-impact/img/'
       }
     ]
+  },
+  "teens-of-impact": {
+    files: [
+      {
+        expand: true,
+        cwd: 'src/teens-of-impact/img/',
+        src: [
+          '*.{gif,GIF,jpg,JPG,png,PNG,svg,SVG}'
+        ],
+        dest: 'dist/teens-of-impact/img/'
+      }
+    ]
   }
 }
