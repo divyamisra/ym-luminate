@@ -262,7 +262,7 @@ module.exports = {
           'registration.css',
           'donation.css'
         ],
-        dest: 'dist/social-stem/css/'
+        dest: 'dist/women-of-impact/css/'
       }
     ]
   },
