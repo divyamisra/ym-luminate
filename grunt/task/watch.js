@@ -289,5 +289,37 @@ module.exports = {
       'img-copy:social-stem-images',
       'notify:social-stem'
     ]
+  },
+  "women-of-impact": {
+    files: [
+      'src/women-of-impact/html/**/*',
+      'src/women-of-impact/image/**/*',
+      'src/women-of-impact/sass/**/*',
+      'src/women-of-impact/js/**/*'
+    ],
+    tasks: [
+      'clean:women-of-impact',
+      'css-dist:women-of-impact',
+      'js-dist:women-of-impact',
+      'html-dist:women-of-impact',
+      'img-copy:women-of-impact',
+      'notify:women-of-impact'
+    ]
+  },
+  "teens-of-impact": {
+    files: [
+      'src/teens-of-impact/html/**/*',
+      'src/teens-of-impact/image/**/*',
+      'src/teens-of-impact/sass/**/*',
+      'src/teens-of-impact/js/**/*'
+    ],
+    tasks: [
+      'clean:teens-of-impact',
+      'css-dist:teens-of-impact',
+      'js-dist:teens-of-impact',
+      'html-dist:teens-of-impact',
+      'img-copy:teens-of-impact',
+      'notify:teens-of-impact'
+    ]
   }
 }

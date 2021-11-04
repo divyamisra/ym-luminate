@@ -192,5 +192,37 @@ module.exports = {
         dest: 'dist/social-stem/css/donation.'+ '<%= timestamp %>' +'.min.css'
       }
     ]
+  },
+  "women-of-impact": {
+    files: [
+      {
+        src: 'dist/women-of-impact/css/main.css',
+        dest: 'dist/women-of-impact/css/main.'+ '<%= timestamp %>' +'.min.css'
+      },
+      {
+        src: 'dist/women-of-impact/css/registration.css',
+        dest: 'dist/women-of-impact/css/registration.'+ '<%= timestamp %>' +'.min.css'
+      },
+      {
+        src: 'dist/women-of-impact/css/donation.css',
+        dest: 'dist/women-of-impact/css/donation.'+ '<%= timestamp %>' +'.min.css'
+      }
+    ]
+  },
+  "teens-of-impact": {
+    files: [
+      {
+        src: 'dist/teens-of-impact/css/main.css',
+        dest: 'dist/teens-of-impact/css/main.'+ '<%= timestamp %>' +'.min.css'
+      },
+      {
+        src: 'dist/teens-of-impact/css/registration.css',
+        dest: 'dist/teens-of-impact/css/registration.'+ '<%= timestamp %>' +'.min.css'
+      },
+      {
+        src: 'dist/teens-of-impact/css/donation.css',
+        dest: 'dist/teens-of-impact/css/donation.'+ '<%= timestamp %>' +'.min.css'
+      }
+    ]
   }
 }

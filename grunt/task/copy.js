@@ -233,6 +233,30 @@ module.exports = {
         dest: 'dist/social-stem/js/'
       }
     ]
+  },
+  "women-of-impact-scripts": {
+    files: [
+      {
+        expand: true,
+        cwd: 'src/women-of-impact/js/',
+        src: [
+          '*.js'
+        ],
+        dest: 'dist/women-of-impact/js/'
+      }
+    ]
+  },
+  "teens-of-impact-scripts": {
+    files: [
+      {
+        expand: true,
+        cwd: 'src/teens-of-impact/js/',
+        src: [
+          '*.js'
+        ],
+        dest: 'dist/teens-of-impact/js/'
+      }
+    ]
   }
 
 }

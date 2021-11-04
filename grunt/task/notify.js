@@ -117,5 +117,17 @@ module.exports = {
       title: 'AHA Luminate Framework',
       message: 'Lawyers Have Heart files updated.'
     }
+  },
+  "women-of-impact": {
+    options: {
+      title: 'AHA Luminate Framework',
+      message: 'Lawyers Have Heart files updated.'
+    }
+  },
+  "teens-of-impact": {
+    options: {
+      title: 'AHA Luminate Framework',
+      message: 'Lawyers Have Heart files updated.'
+    }
   }
 }
