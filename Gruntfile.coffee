@@ -270,15 +270,6 @@ module.exports = (grunt) ->
     runTargetedTask [
       'copy'
     ], 'teens-of-impact-scripts'
-    runTargetedTask [
-      'clean'
-      'sass'
-      'postcss'
-      'cssmin'
-      'uglify'
-      'replace'
-      'htmlmin'
-      'imagemin']
     return
   grunt.registerTask 'dev', ->
     devTasks = [
