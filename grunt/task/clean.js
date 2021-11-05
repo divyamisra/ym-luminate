@@ -475,5 +475,69 @@ module.exports = {
         ]
       }
     ]
-  }
+  },
+  "women-of-impact": {
+    files: [
+      {
+        expand: true,
+        cwd: 'dist/women-of-impact/css/',
+        src: [
+          '**/*'
+        ]
+      },
+      {
+        expand: true,
+        cwd: 'dist/women-of-impact/js/',
+        src: [
+          '**/*'
+        ]
+      },
+      {
+        expand: true,
+        cwd: 'dist/women-of-impact/html/',
+        src: [
+          '**/*'
+        ]
+      },
+      {
+        expand: true,
+        cwd: 'dist/women-of-impact/image/',
+        src: [
+          '**/*'
+        ]
+      }
+    ]
+  },
+  "teens-of-impact": {
+    files: [
+      {
+        expand: true,
+        cwd: 'dist/teens-of-impact/css/',
+        src: [
+          '**/*'
+        ]
+      },
+      {
+        expand: true,
+        cwd: 'dist/teens-of-impact/js/',
+        src: [
+          '**/*'
+        ]
+      },
+      {
+        expand: true,
+        cwd: 'dist/teens-of-impact/html/',
+        src: [
+          '**/*'
+        ]
+      },
+      {
+        expand: true,
+        cwd: 'dist/teens-of-impact/image/',
+        src: [
+          '**/*'
+        ]
+      }
+    ]
+  },
 }

@@ -236,5 +236,45 @@ module.exports = {
         dest: "dist/social-stem/js/pushy.min.js"
       }
     ]
+  },
+  "women-of-impact": {
+    files: [
+      {
+        src: ["src/women-of-impact/js/main.js"],
+        dest: "dist/women-of-impact/js/main." + "<%= timestamp %>" + ".min.js"
+      },
+      {
+        src: ["src/women-of-impact/js/registration.js"],
+        dest: "dist/women-of-impact/js/registration." + "<%= timestamp %>" + ".min.js"
+      },
+      {
+        src: ["src/women-of-impact/js/donation.js"],
+        dest: "dist/women-of-impact/js/donation." + "<%= timestamp %>" + ".min.js"
+      },
+      {
+        src: ["src/women-of-impact/js/pushy.js"],
+        dest: "dist/women-of-impact/js/pushy.min.js"
+      }
+    ]
+  },
+  "teens-of-impact": {
+    files: [
+      {
+        src: ["src/teens-of-impact/js/main.js"],
+        dest: "dist/teens-of-impact/js/main." + "<%= timestamp %>" + ".min.js"
+      },
+      {
+        src: ["src/teens-of-impact/js/registration.js"],
+        dest: "dist/teens-of-impact/js/registration." + "<%= timestamp %>" + ".min.js"
+      },
+      {
+        src: ["src/teens-of-impact/js/donation.js"],
+        dest: "dist/teens-of-impact/js/donation." + "<%= timestamp %>" + ".min.js"
+      },
+      {
+        src: ["src/teens-of-impact/js/pushy.js"],
+        dest: "dist/teens-of-impact/js/pushy.min.js"
+      }
+    ]
   }
 }

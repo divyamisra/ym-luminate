@@ -164,5 +164,31 @@ module.exports = {
         'src/social-stem/sass/donation.scss'
       ]
     }
+  },
+  "women-of-impact": {
+    files: {
+      'dist/women-of-impact/css/main.css': [
+        'src/women-of-impact/sass/main.scss'
+      ],
+      'dist/women-of-impact/css/registration.css': [
+        'src/women-of-impact/sass/registration.scss'
+      ],
+      'dist/women-of-impact/css/donation.css': [
+        'src/women-of-impact/sass/donation.scss'
+      ]
+    }
+  },
+  "teens-of-impact": {
+    files: {
+      'dist/teens-of-impact/css/main.css': [
+        'src/teens-of-impact/sass/main.scss'
+      ],
+      'dist/teens-of-impact/css/registration.css': [
+        'src/teens-of-impact/sass/registration.scss'
+      ],
+      'dist/teens-of-impact/css/donation.css': [
+        'src/teens-of-impact/sass/donation.scss'
+      ]
+    }
   }
 }

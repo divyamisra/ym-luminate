@@ -2527,13 +2527,15 @@ if ( $('.nav-item--find').length > 0 ) {
       $(this).parent().toggleClass('open');
   });
 
-  $('body').keypress(function (e) {
+  $('body').keyup(function (e) {
       if (!$('.nav-item--find').is(e.target)
           && $('.nav-item--find').has(e.target).length === 0
           && $('.open').has(e.target).length === 0
       ) {
-          $('.nav-item--find').removeClass('open');
-          $('.nav-item--find').removeClass('open');
+        $('.nav-item--find').removeClass('open');
+        $('.nav-item--find').removeClass('show');
+        $('.dropdown-menu.find').removeClass('open');
+        $('.dropdown-menu.find').removeClass('show');
       }
   });
 
