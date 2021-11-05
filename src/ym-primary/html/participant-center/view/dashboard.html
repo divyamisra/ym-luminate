@@ -1015,75 +1015,92 @@
   </div>
   <div ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true' && location != '/dashboard-student'" ng-cloak>
     <section class="ym-pc-dashboard-coordinator-school-challenge-section" aria-label="School Challenge Selection">
-      <h2 class="h3 text-center">
-          School Challenge
-      </h2>
       <div class="row">
-        <div class="ym-pc-dashboard-section-header col-md-4">
-          <div class="schoolChallenge text-center">
-            <div ng-if="companyProgress.schoolChallenge != ''">
-              I am challenging my students to 
-            </div>
-            <div ng-if="companyProgress.schoolChallenge == ''">
-              Choose a challenge for your students 
-            </div>
-            <select class="form-control" id="challenge" ng-model="companyProgress.schoolChallenge" aria-label="School Challenge" ng-change="updateSchoolChallenge()">
-	      <option value="Ice Bucket/Water Challenge">Ice Bucket/Water Challenge</option>
-	      <option value="Color Blast">Color Blast</option>
-              <option value="Slime Challenge">Slime Challenge</option>
-              <option value="Pie in the Face">Pie Toss</option>
-              <option value="Activity, Party or Event">Activity, Party or Event</option>
-              <option value="Other">Other</option>
-              <option value="No School Challenge">No School Challenge</option>
-            </select>
-            <div uib-alert class="alert-danger" ng-if="schoolChallengeInfo.errorMessage">
-              <div ng-bind-html="schoolChallengeInfo.errorMessage"></div>
-            </div>
-	    <div class="form-group" ng-if="companyProgress.schoolChallenge == 'Other'" ng-cloak>
-		<label for="schoolChallengeOther" class="sr-only">
-  		  Other Challenge:
-		</label>
-		<input ng-keypress="omit_special_char($event)" placeholder="Specify Other Challenge" type="text" id="schoolChallengeOther" class="form-control" ng-model="companyProgress.schoolChallengeOther" aria-label="Other School Challenge" ng-blur="updateSchoolChallenge()">
+        <div class="col-sm-6 ym-pc-dashboard-coordinator-progress-section__column event-secondary-medium">
+          <div class="ym-pc-dashboard-coordinator-progress-box">
+	    <h2 class="h3 text-center">
+		  School Plan
+	    </h2>
+	    <div class="row">
+	      <div class="ym-pc-dashboard-section-header col-md-12">
+	      </div>
 	    </div>
 	  </div>
         </div>
-        <div class="ym-pc-dashboard-section-header col-md-4">
-          <div class="schoolChallenge text-center">
-            <div ng-if="companyProgress.schoolChallengeLevel != ''">
-              Student level to achieve
-            </div>
-            <div ng-if="companyProgress.schoolChallengeLevel == ''">
-              Choose a student level to achieve
-            </div>
-            <select class="form-control" id="challengeLevel" ng-model="companyProgress.schoolChallengeLevel" aria-label="School Challenge Level" ng-change="updateSchoolChallengeLevel()">
-              <option value="$100">$100</option>
-              <option value="$150">$150</option>
-              <option value="$200">$200</option>
-              <option value="$250">$250</option>
-              <option value="Other">Other</option>
-            </select>
-            <div uib-alert class="alert-danger" ng-if="schoolChallengeLevelInfo.errorMessage">
-              <div ng-bind-html="schoolChallengeLevelInfo.errorMessage"></div>
-            </div>
-          </div>
-        </div>
-        <div class="ym-pc-dashboard-section-header col-md-4">
-          <div class="schoolCreateMessage text-center" ng-if="coordinatorMessage.text == ''" ng-cloak>
-             <p>
-               Create an <strong>encouraging message</strong> for your students in their Headquarters.
-             </p>
-             <button type="button" class="btn btn-md-wide btn-primary" ng-click="editCoordinatorMessage()">
-               <strong>Create Message</strong>
-             </button>
-          </div>
-          <div class="schoolCreateMessage text-center" ng-if="coordinatorMessage.text && coordinatorMessage.text != ''" ng-cloak>
-             <p>
-               Update your <strong>student message</strong>:<br/>
-	       <span class="coordinatorMessage">"{{ coordinatorMessage.text.length > 90 ? coordinatorMessage.text.substring(0,90)+"..." : coordinatorMessage.text }}"</span>
-             </p>
-             <button type="button" class="btn btn-md-wide btn-primary" ng-click="editCoordinatorMessage()">
-               <strong>Update Message</strong>
-             </button>
+        <div class="col-sm-6 ym-pc-dashboard-coordinator-progress-section__column event-secondary-medium">
+          <div class="ym-pc-dashboard-coordinator-progress-box">
+	    <h2 class="h3 text-center">
+		  School Challenge
+	    </h2>
+	    <div class="row">
+	      <div class="ym-pc-dashboard-section-header col-md-12">
+		<div class="schoolChallenge text-center">
+		  <div ng-if="companyProgress.schoolChallenge != ''">
+		    I am challenging my students to 
+		  </div>
+		  <div ng-if="companyProgress.schoolChallenge == ''">
+		    Choose a challenge for your students 
+		  </div>
+		  <select class="form-control" id="challenge" ng-model="companyProgress.schoolChallenge" aria-label="School Challenge" ng-change="updateSchoolChallenge()">
+		    <option value="Ice Bucket/Water Challenge">Ice Bucket/Water Challenge</option>
+		    <option value="Color Blast">Color Blast</option>
+		    <option value="Slime Challenge">Slime Challenge</option>
+		    <option value="Pie in the Face">Pie Toss</option>
+		    <option value="Activity, Party or Event">Activity, Party or Event</option>
+		    <option value="Other">Other</option>
+		    <option value="No School Challenge">No School Challenge</option>
+		  </select>
+		  <div uib-alert class="alert-danger" ng-if="schoolChallengeInfo.errorMessage">
+		    <div ng-bind-html="schoolChallengeInfo.errorMessage"></div>
+		  </div>
+		  <div class="form-group" ng-if="companyProgress.schoolChallenge == 'Other'" ng-cloak>
+		    <label for="schoolChallengeOther" class="sr-only">
+			Other Challenge:
+		    </label>
+		    <input ng-keypress="omit_special_char($event)" placeholder="Specify Other Challenge" type="text" id="schoolChallengeOther" class="form-control" ng-model="companyProgress.schoolChallengeOther" aria-label="Other School Challenge" ng-blur="updateSchoolChallenge()">
+		  </div>
+		</div>
+	      </div>
+	      <div class="ym-pc-dashboard-section-header col-md-12">
+		<div class="schoolChallenge text-center">
+		  <div ng-if="companyProgress.schoolChallengeLevel != ''">
+		    Student level to achieve
+		  </div>
+		  <div ng-if="companyProgress.schoolChallengeLevel == ''">
+		    Choose a student level to achieve
+		  </div>
+		  <select class="form-control" id="challengeLevel" ng-model="companyProgress.schoolChallengeLevel" aria-label="School Challenge Level" ng-change="updateSchoolChallengeLevel()">
+		    <option value="$100">$100</option>
+		    <option value="$150">$150</option>
+		    <option value="$200">$200</option>
+		    <option value="$250">$250</option>
+		    <option value="Other">Other</option>
+		  </select>
+		  <div uib-alert class="alert-danger" ng-if="schoolChallengeLevelInfo.errorMessage">
+		    <div ng-bind-html="schoolChallengeLevelInfo.errorMessage"></div>
+		  </div>
+		</div>
+	      </div>
+	      <div class="ym-pc-dashboard-section-header col-md-12">
+		<div class="schoolCreateMessage text-center" ng-if="coordinatorMessage.text == ''" ng-cloak>
+		   <p>
+		     Create an <strong>encouraging message</strong> for your students in their Headquarters.
+		   </p>
+		   <button type="button" class="btn btn-md-wide btn-primary" ng-click="editCoordinatorMessage()">
+		     <strong>Create Message</strong>
+		   </button>
+		</div>
+		<div class="schoolCreateMessage text-center" ng-if="coordinatorMessage.text && coordinatorMessage.text != ''" ng-cloak>
+		   <p>
+		     Update your <strong>student message</strong>:<br/>
+		     <span class="coordinatorMessage">"{{ coordinatorMessage.text.length > 90 ? coordinatorMessage.text.substring(0,90)+"..." : coordinatorMessage.text }}"</span>
+		   </p>
+		   <button type="button" class="btn btn-md-wide btn-primary" ng-click="editCoordinatorMessage()">
+		     <strong>Update Message</strong>
+		   </button>
+		</div>
+	      </div>
+	    </div>
           </div>
         </div>
       </div>
