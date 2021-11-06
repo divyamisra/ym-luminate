@@ -485,7 +485,8 @@ angular.module 'trPcControllers'
 
       $scope.updateSchoolPlan = ->
         delete $scope.schoolPlanInfo.errorMessage
-        $scope.refreshFundraisingProgress()
+        
+        $scope.getSchoolPlan()
         $scope.editSchoolPlanModal.close()
           
       $scope.participantGifts =
@@ -1006,7 +1007,7 @@ angular.module 'trPcControllers'
           $scope.getSchoolPlan()
 
       $scope.getSchoolPlan = () ->
-        ZuriService.getSchoolPlanData '&school_id=' + $scope.participantRegistration.companyInformation.companyId + '&event_id=' + $scope.frId,
+        ZuriService.schoolPlanData '&method=GetSchoolPlan&school_id=' + $scope.participantRegistration.companyInformation.companyId + '&event_id=' + $scope.frId,
           failure: (response) ->
           error: (response) ->
           success: (response) ->
@@ -1020,7 +1021,26 @@ angular.module 'trPcControllers'
               $scope.schoolGoal = school.school_goal
               $scope.sendEmail = school.send_email
               $scope.textMessage = school.text_messages
-                                                             
+
+      $scope.updateSchoolPlan = () ->
+        schoolParams = '&startDate=' + $scope.startDate?
+        console.log schoolParams
+        ###
+        ZuriService.schoolPlanData '&method=UpdateSchoolPlan&school_id=' + $scope.participantRegistration.companyInformation.companyId + '&event_id=' + $scope.frId + schoolParams,
+          failure: (response) ->
+          error: (response) ->
+          success: (response) ->
+            angular.forEach response.data.company, (school) ->
+              $scope.startDate = school.event_start_date
+              $scope.endDate = school.event_end_date
+              $scope.moneyDueDate = school.donation_due_date
+              $scope.assemblyDate = school.assembly_date
+              $scope.studentGoal = school.student_goal
+              $scope.missionGoal = school.mission_goal
+              $scope.schoolGoal = school.school_goal
+              $scope.sendEmail = school.send_email
+              $scope.textMessage = school.text_messages
+        ###      
       $scope.showPrize = (sku, label, earned, video) ->
         $scope.prize_sku = sku
         $scope.prize_label = label
