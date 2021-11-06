@@ -1030,12 +1030,12 @@ angular.module 'trPcControllers'
         $scope.missionGoal = angular.element('input#missionGoal').val();
         $scope.schoolGoal = angular.element('input#schoolGoal').val();
         
-        schoolParams = '&event_start_date=' + $scope.startDate
-                       '&event_end_date=' + $scope.endDate
-                       '&assembly_date=' + $scope.assemblyDate
-                       '&donation_due_date=' + $scope.moneyDueDate
-                       '&student_goal=' + $scope.studentGoal
-                       '&mission_goal=' + $scope.missionGoal
+        schoolParams = '&event_start_date=' + $scope.startDate +
+                       '&event_end_date=' + $scope.endDate +
+                       '&assembly_date=' + $scope.assemblyDate +
+                       '&donation_due_date=' + $scope.moneyDueDate +
+                       '&student_goal=' + $scope.studentGoal +
+                       '&mission_goal=' + $scope.missionGoal +
                        '&school_goal=' + $scope.schoolGoal
         console.log schoolParams
         $scope.getSchoolPlan()
