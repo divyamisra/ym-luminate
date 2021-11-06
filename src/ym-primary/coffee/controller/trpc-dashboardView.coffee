@@ -1011,10 +1011,10 @@ angular.module 'trPcControllers'
           error: (response) ->
           success: (response) ->
             angular.forEach response.data.company, (school) ->
-              $scope.startDate = new Date school.event_start_date + ' 00:01 am'
-              $scope.endDate = new Date school.event_end_date + ' 00:01 am'
-              $scope.moneyDueDate = new Date school.donation_due_date + ' 00:01 am'
-              $scope.assemblyDate = new Date school.assembly_date + ' 00:01 am'
+              $scope.startDate = new Date school.event_start_date + ' 00:01'
+              $scope.endDate = new Date school.event_end_date + ' 00:01'
+              $scope.moneyDueDate = new Date school.donation_due_date + ' 00:01'
+              $scope.assemblyDate = new Date school.assembly_date + ' 00:01'
               $scope.studentGoal = school.student_goal
               $scope.missionGoal = school.mission_goal
               $scope.schoolGoal = school.school_goal
@@ -1022,20 +1022,20 @@ angular.module 'trPcControllers'
               $scope.textMessage = school.text_messages
 
       $scope.putSchoolPlan = () ->
-        $scope.startDate = new Date angular.element('input#startDate').val() + ' 00:01 am';
-        $scope.endDate = new Date angular.element('input#endDate').val() + ' 00:01 am';
-        $scope.assemblyDate = new Date angular.element('input#assemblyDate').val() + ' 00:01 am';
-        $scope.moneyDueDate = new Date angular.element('input#moneyDueDate').val() + ' 00:01 am';
+        $scope.startDate = new Date angular.element('input#startDate').val() + ' 00:01';
+        $scope.endDate = new Date angular.element('input#endDate').val() + ' 00:01';
+        $scope.assemblyDate = new Date angular.element('input#assemblyDate').val() + ' 00:01';
+        $scope.moneyDueDate = new Date angular.element('input#moneyDueDate').val() + ' 00:01';
         $scope.studentGoal = angular.element('input#studentGoal').val();
         $scope.missionGoal = angular.element('input#missionGoal').val();
         $scope.schoolGoal = angular.element('input#schoolGoal').val();
         $scope.sendEmail = angular.element('input#sendEmail').is(':checked');
         $scope.textMessage = angular.element('input#textMessage').is(':checked');
         
-        schoolParams = '&event_start_date=' + $scope.startDate +
-                       '&event_end_date=' + $scope.endDate +
-                       '&assembly_date=' + $scope.assemblyDate +
-                       '&donation_due_date=' + $scope.moneyDueDate +
+        schoolParams = '&event_start_date=' + formatDateString($scope.startDate) +
+                       '&event_end_date=' + formatDateString($scope.endDate) +
+                       '&assembly_date=' + formatDateString($scope.assemblyDate) +
+                       '&donation_due_date=' + formatDateString($scope.moneyDueDate) +
                        '&student_goal=' + $scope.studentGoal +
                        '&mission_goal=' + $scope.missionGoal +
                        '&school_goal=' + $scope.schoolGoal +
@@ -1048,7 +1048,12 @@ angular.module 'trPcControllers'
           error: (response) ->
           success: (response) ->
             $scope.getSchoolPlan()
-     
+            
+      formatDateString = (dateVal) ->
+        regex = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2}).*$/
+        token_array = regex.exec(dateVal.toJSON());
+        return token_array[1] + "-" + token_array[2] + "-" + token_array[3]
+      
       $scope.showPrize = (sku, label, earned, video) ->
         $scope.prize_sku = sku
         $scope.prize_label = label
