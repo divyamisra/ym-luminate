@@ -1335,7 +1335,8 @@ angular.module 'trPcControllers'
         document.getElementById("tTrim").setAttribute('points','0 0 0 0 0 0')
         
       # Datepicker
-      $scope.popup1 = {}
+      $scope.popup1 = 
+        opened: false
       
       $scope.dateOptions =
         dateDisabled: true
@@ -1356,7 +1357,5 @@ angular.module 'trPcControllers'
 
       $scope.openDatepicker = ->
         $scope.popup1.opened = true
-
-      $scope.popup1.opened = false
 
 ]
