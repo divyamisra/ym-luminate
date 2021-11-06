@@ -1,0 +1,54 @@
+<form method="POST" novalidate ng-submit="updateSchoolPlan()">
+  <div class="modal-header">
+    <h2 class="h5 modal-title">
+      Update School Plan
+    </h2>
+  </div>
+  <div class="modal-body">
+    <div uib-alert class="alert-danger" ng-if="schoolPlanInfo.errorMessage">
+      <div ng-bind-html="schoolPlanInfo.errorMessage"></div>
+    </div>
+    <div class="form-group">
+      <label for="startDate" class="sr-only">Event Start Date</label>
+      <div class="input-group">
+        <input type="text" class="form-control" id="goal" ng-model="startDate" aria-label="Event Start Date" required>
+      </div>
+    </div>
+    <div class="form-group">
+			<div class="checkbox" custom-checkbox="" ng-class="{'checked': sendEmails}">
+				<label for="sendEmails">
+					<input type="checkbox" name="sendEmails" id="sendEmails" ng-model="sendEmails" aria-invalid="false"> 
+					<span class="manageable-content" data-container="edit_opt_in_container">
+						<span id="opt_in_label">
+								AHA Send Emails on my behalf:
+						</span>
+					</span>
+				</label>
+			</div>
+			<div class="checkbox" custom-checkbox="" ng-class="{'checked': textMessage}">
+				<label for="textMessage">
+					<input type="checkbox" name="textMessage" id="textMessage" ng-model="textMessage" aria-invalid="false"> 
+					<span class="manageable-content" data-container="edit_opt_in_container">
+						<span id="opt_in_label">
+								Consent to receive text messages:
+						</span>
+					</span>
+				</label>
+			</div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <div class="clearfix">
+      <div class="pull-left">
+        <button type="button" class="btn btn-toggle" ng-click="cancelEditSchoolPlan()">
+          Cancel
+        </button>
+      </div>
+      <div class="pull-right">
+        <button type="submit" class="btn btn-primary">
+          <strong>Save</strong>
+        </button>
+      </div>
+    </div>
+  </div>
+<form>
