@@ -1029,8 +1029,8 @@ angular.module 'trPcControllers'
         $scope.studentGoal = angular.element('input#studentGoal').val();
         $scope.missionGoal = angular.element('input#missionGoal').val();
         $scope.schoolGoal = angular.element('input#schoolGoal').val();
-        $scope.send_email = angular.element('input#sendEmail').is(':checked');
-        $scope.text_message = angular.element('input#textMessage').is(':checked');
+        $scope.sendEmail = angular.element('input#sendEmail').is(':checked');
+        $scope.textMessage = angular.element('input#textMessage').is(':checked');
         
         schoolParams = '&event_start_date=' + $scope.startDate +
                        '&event_end_date=' + $scope.endDate +
@@ -1039,8 +1039,8 @@ angular.module 'trPcControllers'
                        '&student_goal=' + $scope.studentGoal +
                        '&mission_goal=' + $scope.missionGoal +
                        '&school_goal=' + $scope.schoolGoal +
-                       '&send_email=' + $scope.send_email +
-                       '&text_messages=' + $scope.text_message
+                       '&send_email=' + $scope.sendEmail +
+                       '&text_messages=' + $scope.textMessage
 
         ZuriService.schoolPlanData '&method=UpdateSchoolPlan&school_id=' + $scope.participantRegistration.companyInformation.companyId + 
                                    '&event_id=' + $scope.frId + schoolParams,
