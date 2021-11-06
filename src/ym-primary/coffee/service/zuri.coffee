@@ -167,4 +167,20 @@ angular.module 'ahaLuminateApp'
           , (response) ->
             callback.failure response
             
+      getSchoolPlanData: (requestData, callback) ->
+        if $rootScope.tablePrefix is 'heartdev'
+          url = '//tools.heart.org/ym-school-plan/schoolPlan.php?env=_dev&challenge=KHC&method=GetSchoolPlan' + requestData
+        else if $rootScope.tablePrefix is 'heartnew'
+          url = '//tools.heart.org/ym-school-plan/schoolPlan.php?env=_new&challenge=KHC&method=GetSchoolPlan' + requestData
+        else
+          url = '//tools.heart.org/ym-school-plan/schoolPlan.php?challenge=KHC&method=GetSchoolPlan' + requestData
+        $http.jsonp($sce.trustAsResourceUrl(url), jsonpCallbackParam: 'callback')
+          .then (response) ->
+            if response.data.success is false
+              callback.error response
+            else
+              callback.success response
+          , (response) ->
+            callback.failure response
+            
   ]
