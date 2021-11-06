@@ -473,6 +473,7 @@ angular.module 'trPcControllers'
               $scope.refreshFundraisingProgress()
           $scope.dashboardPromises.push updateSchoolGoalPromise
 
+      $scope.schoolPlanInfo = {}
       $scope.editSchoolPlan = ->
         delete $scope.schoolPlanInfo.errorMessage
         $scope.editSchoolPlanModal = $uibModal.open
@@ -484,7 +485,8 @@ angular.module 'trPcControllers'
 
       $scope.updateSchoolPlan = ->
         delete $scope.schoolPlanInfo.errorMessage
-        $scope.editSchoolGoalModal.close()
+        $scope.refreshFundraisingProgress()
+        $scope.editSchoolPlanModal.close()
           
       $scope.participantGifts =
         sortColumn: 'date_recorded'
