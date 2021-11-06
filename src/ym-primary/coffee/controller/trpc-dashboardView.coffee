@@ -473,6 +473,19 @@ angular.module 'trPcControllers'
               $scope.refreshFundraisingProgress()
           $scope.dashboardPromises.push updateSchoolGoalPromise
 
+      $scope.editSchoolPlan = ->
+        delete $scope.schoolPlanInfo.errorMessage
+        $scope.editSchoolPlanModal = $uibModal.open
+          scope: $scope
+          templateUrl: APP_INFO.rootPath + 'dist/ym-primary/html/participant-center/modal/editSchoolPlan.html'
+
+      $scope.cancelEditSchoolPlan = ->
+        $scope.editSchoolPlanModal.close()
+
+      $scope.updateSchoolPlan = ->
+        delete $scope.schoolPlanInfo.errorMessage
+        $scope.editSchoolGoalModal.close()
+          
       $scope.participantGifts =
         sortColumn: 'date_recorded'
         sortAscending: false
