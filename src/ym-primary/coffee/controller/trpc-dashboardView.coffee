@@ -485,8 +485,7 @@ angular.module 'trPcControllers'
 
       $scope.updateSchoolPlan = ->
         delete $scope.schoolPlanInfo.errorMessage
-        
-        $scope.getSchoolPlan()
+        $scope.putSchoolPlan()
         $scope.editSchoolPlanModal.close()
           
       $scope.participantGifts =
@@ -1022,9 +1021,10 @@ angular.module 'trPcControllers'
               $scope.sendEmail = school.send_email
               $scope.textMessage = school.text_messages
 
-      $scope.updateSchoolPlan = () ->
+      $scope.putSchoolPlan = () ->
         schoolParams = '&startDate=' + $scope.startDate?
         console.log schoolParams
+        $scope.getSchoolPlan()
         ###
         ZuriService.schoolPlanData '&method=UpdateSchoolPlan&school_id=' + $scope.participantRegistration.companyInformation.companyId + '&event_id=' + $scope.frId + schoolParams,
           failure: (response) ->
