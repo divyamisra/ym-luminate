@@ -1357,5 +1357,5 @@ angular.module 'trPcControllers'
         $scope.popup1.opened = true
         return
 
-      $scope.popup1 = opened: false
+      $scope.popup1.opened = false
   ]
