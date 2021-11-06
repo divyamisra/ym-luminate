@@ -8,33 +8,89 @@
     <div uib-alert class="alert-danger" ng-if="schoolPlanInfo.errorMessage">
       <div ng-bind-html="schoolPlanInfo.errorMessage"></div>
     </div>
-    <div class="form-group">
-      <label for="startDate" class="sr-only">Event Start Date</label>
-      <div class="input-group">
-        <input type="text" class="form-control" id="goal" ng-model="startDate" aria-label="Event Start Date" required>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="startDate">Event Start Date</label>
+          <div class="input-group">
+            <input type="text" class="form-control" id="startDate" ng-model="startDate" aria-label="Event Start Date" required>
+ 	  </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="endDate">Event End Date</label>
+          <div class="input-group">
+            <input type="text" class="form-control" id="endDate" ng-model="endDate" aria-label="Event End Date" required>
+ 	  </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="assemblyDate">Kick Off/Assembly Date</label>
+          <div class="input-group">
+            <input type="text" class="form-control" id="assemblyDate" ng-model="assemblyDate" aria-label="Kick Off/Assembly Date" required>
+ 	  </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="moneyDueDate">Donation Due Date</label>
+          <div class="input-group">
+            <input type="text" class="form-control" id="moneyDueDate" ng-model="moneyDueDate" aria-label="Donation Due Date" required>
+ 	  </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="studentGoal">Student Goal</label>
+          <div class="input-group">
+            <input type="text" class="form-control" id="studentGoal" ng-model="studentGoal" aria-label="Student Goal" required>
+ 	  </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="missionGoal">Finn's Mission Goal</label>
+          <div class="input-group">
+            <input type="text" class="form-control" id="missionGoal" ng-model="missionGoal" aria-label="Finn's Mission Goal" required>
+ 	  </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <label for="schoolGoal">School Goal</label>
+          <div class="input-group">
+            <input type="text" class="form-control" id="schoolGoal" ng-model="schoolGoal" aria-label="School Goal" required>
+ 	  </div>
+        </div>
       </div>
     </div>
     <div class="form-group">
-			<div class="checkbox" custom-checkbox="" ng-class="{'checked': sendEmails}">
-				<label for="sendEmails">
-					<input type="checkbox" name="sendEmails" id="sendEmails" ng-model="sendEmails" aria-invalid="false"> 
-					<span class="manageable-content" data-container="edit_opt_in_container">
-						<span id="opt_in_label">
-								AHA Send Emails on my behalf:
-						</span>
-					</span>
-				</label>
-			</div>
-			<div class="checkbox" custom-checkbox="" ng-class="{'checked': textMessage}">
-				<label for="textMessage">
-					<input type="checkbox" name="textMessage" id="textMessage" ng-model="textMessage" aria-invalid="false"> 
-					<span class="manageable-content" data-container="edit_opt_in_container">
-						<span id="opt_in_label">
-								Consent to receive text messages:
-						</span>
-					</span>
-				</label>
-			</div>
+      <div class="checkbox" custom-checkbox="" ng-class="{'checked': sendEmails}">
+        <label for="sendEmails"> 
+          <input type="checkbox" name="sendEmails" id="sendEmails" ng-model="sendEmails" aria-invalid="false"> 
+          <span class="manageable-content" data-container="edit_opt_in_container">
+            <span id="opt_in_label">
+              AHA Send Emails on my behalf:
+            </span>
+          </span>
+        </label>
+      </div>
+      <div class="checkbox" custom-checkbox="" ng-class="{'checked': textMessage}">
+        <label for="textMessage">
+          <input type="checkbox" name="textMessage" id="textMessage" ng-model="textMessage" aria-invalid="false"> 
+          <span class="manageable-content" data-container="edit_opt_in_container">
+            <span id="opt_in_label">
+              Consent to receive text messages:
+            </span>
+          </span>
+        </label>
+      </div>
     </div>
   </div>
   <div class="modal-footer">
