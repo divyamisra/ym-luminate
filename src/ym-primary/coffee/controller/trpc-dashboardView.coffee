@@ -1345,8 +1345,8 @@ angular.module 'trPcControllers'
         minDate: new Date
         startingDay: 1
 
-      $scope.inlineOptions = {
-        minDate: new Date(),
+      $scope.inlineOptions = 
+        minDate: new Date()
         showWeeks: true
 
       $scope.toggleMin = ->
