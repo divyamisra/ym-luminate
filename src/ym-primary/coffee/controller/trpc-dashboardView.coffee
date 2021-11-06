@@ -1358,4 +1358,4 @@ angular.module 'trPcControllers'
       $scope.openDatepicker = ->
         $scope.popup1.opened = true
 
-]
+  ]
