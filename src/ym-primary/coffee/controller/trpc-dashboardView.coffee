@@ -1011,10 +1011,10 @@ angular.module 'trPcControllers'
           error: (response) ->
           success: (response) ->
             angular.forEach response.data.company, (school) ->
-              $scope.startDate = school.event_start_date
-              $scope.endDate = school.event_end_date
-              $scope.moneyDueDate = school.donation_due_date
-              $scope.assemblyDate = school.assembly_date
+              $scope.startDate = new Date school.event_start_date
+              $scope.endDate = new Date school.event_end_date
+              $scope.moneyDueDate = new Date school.donation_due_date
+              $scope.assemblyDate = new Date school.assembly_date
               $scope.studentGoal = school.student_goal
               $scope.missionGoal = school.mission_goal
               $scope.schoolGoal = school.school_goal
