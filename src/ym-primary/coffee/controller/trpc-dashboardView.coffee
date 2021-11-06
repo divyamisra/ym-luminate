@@ -1025,7 +1025,6 @@ angular.module 'trPcControllers'
         $scope.startDate = angular.element('input#startDate').val();
         $scope.endDate = angular.element('input#endDate').val();
         $scope.assemblyDate = angular.element('input#assemblyDate').val();
-        $scope.missionDate = angular.element('input#missionDate').val();
         $scope.moneyDueDate = angular.element('input#moneyDueDate').val();
         $scope.studentGoal = angular.element('input#studentGoal').val();
         $scope.missionGoal = angular.element('input#missionGoal').val();
