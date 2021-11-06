@@ -1349,13 +1349,11 @@ angular.module 'trPcControllers'
       $scope.toggleMin = ->
         $scope.inlineOptions.minDate = if $scope.inlineOptions.minDate then null else new Date
         $scope.dateOptions.minDate = $scope.inlineOptions.minDate
-        return
 
       $scope.toggleMin()
 
       $scope.openDatepicker = ->
         $scope.popup1.opened = true
-        return
-
+      
       $scope.popup1.opened = false
   ]
