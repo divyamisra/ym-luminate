@@ -1335,6 +1335,8 @@ angular.module 'trPcControllers'
         document.getElementById("tTrim").setAttribute('points','0 0 0 0 0 0')
         
       # Datepicker
+      $scope.popup1 = {}
+      
       $scope.dateOptions =
         dateDisabled: true
         formatYear: 'yyyy'
