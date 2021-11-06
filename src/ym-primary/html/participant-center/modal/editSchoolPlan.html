@@ -11,18 +11,18 @@
     <div class="row">
       <div class="col-md-6">
         <div class="form-group">
-          <label for="startDate">Event Start Date</label>
+          <label for="startDate">Event Start Date</label>{{theDate | date:yyyy-MM-dd}}
           <div class="input-group">
-            <input type="text" class="form-control" id="startDate" ng-model="startDate" aria-label="Event Start Date" required>
- 	  </div>
+            <input type="date" min="theDate" class="form-control" id="startDate" ng-model="startDate" aria-label="Event Start Date" />
+  	      </div>
         </div>
       </div>
       <div class="col-md-6">
         <div class="form-group">
           <label for="endDate">Event End Date</label>
           <div class="input-group">
-            <input type="text" class="form-control" id="endDate" ng-model="endDate" aria-label="Event End Date" required>
- 	  </div>
+            <input type="date" min="theDate" class="form-control" id="endDate" ng-model="endDate" aria-label="Event End Date" />
+       	  </div>
         </div>
       </div>
     </div>
@@ -31,16 +31,16 @@
         <div class="form-group">
           <label for="assemblyDate">Kick Off/Assembly Date</label>
           <div class="input-group">
-            <input type="text" class="form-control" id="assemblyDate" ng-model="assemblyDate" aria-label="Kick Off/Assembly Date" required>
- 	  </div>
+            <input type="date" min="theDate" class="form-control" id="assemblyDate" ng-model="assemblyDate" aria-label="Kick Off/Assembly Date" />
+       	  </div>
         </div>
       </div>
       <div class="col-md-6">
         <div class="form-group">
           <label for="moneyDueDate">Donation Due Date</label>
           <div class="input-group">
-            <input type="text" class="form-control" id="moneyDueDate" ng-model="moneyDueDate" aria-label="Donation Due Date" required>
- 	  </div>
+            <input type="date" min="theDate" class="form-control" id="moneyDueDate" ng-model="moneyDueDate" aria-label="Donation Due Date" />
+      	  </div>
         </div>
       </div>
     </div>
