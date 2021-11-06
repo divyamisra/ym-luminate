@@ -1022,10 +1022,10 @@ angular.module 'trPcControllers'
               $scope.textMessage = school.text_messages
 
       $scope.putSchoolPlan = () ->
-        $scope.startDate = angular.element('input#startDate').val();
-        $scope.endDate = angular.element('input#endDate').val();
-        $scope.assemblyDate = angular.element('input#assemblyDate').val();
-        $scope.moneyDueDate = angular.element('input#moneyDueDate').val();
+        $scope.startDate = new Date angular.element('input#startDate').val() + ' 00:01 am';
+        $scope.endDate = new Date angular.element('input#endDate').val() + ' 00:01 am';
+        $scope.assemblyDate = new Date angular.element('input#assemblyDate').val() + ' 00:01 am';
+        $scope.moneyDueDate = new Date angular.element('input#moneyDueDate').val() + ' 00:01 am';
         $scope.studentGoal = angular.element('input#studentGoal').val();
         $scope.missionGoal = angular.element('input#missionGoal').val();
         $scope.schoolGoal = angular.element('input#schoolGoal').val();
