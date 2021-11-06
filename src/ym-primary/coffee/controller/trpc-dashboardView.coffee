@@ -1008,16 +1008,17 @@ angular.module 'trPcControllers'
           failure: (response) ->
           error: (response) ->
           success: (response) ->
-            $scope.startDate = school.event_start_date
-            $scope.endDate = school.event_end_date
-            $scope.moneyDueDate = school.donation_due_date
-            $scope.assemblyDate = school.assembly_date
-            $scope.studentGoal = school.student_goal
-            $scope.missionGoal = school.mission_goal
-            $scope.schoolGoal = school.school_goal
-            $scope.sendEmail = school.send_email
-            $scope.textMessage = school.text_messages
-            
+            angular.forEach response.data.company, (school) ->
+              $scope.startDate = school.event_start_date
+              $scope.endDate = school.event_end_date
+              $scope.moneyDueDate = school.donation_due_date
+              $scope.assemblyDate = school.assembly_date
+              $scope.studentGoal = school.student_goal
+              $scope.missionGoal = school.mission_goal
+              $scope.schoolGoal = school.school_goal
+              $scope.sendEmail = school.send_email
+              $scope.textMessage = school.text_messages
+                                                             
       $scope.showPrize = (sku, label, earned, video) ->
         $scope.prize_sku = sku
         $scope.prize_label = label
