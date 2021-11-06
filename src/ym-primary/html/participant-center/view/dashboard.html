@@ -1021,15 +1021,21 @@
 	    <h2 class="h3 text-center">
 		  School Plan
 	    </h2>
+            <p>
+	      <a href="" ng-click="editSchoolPlan()" class="ym-progress-update-plan" aria-label="Update School Plan">
+		<strong>Update School Plan</strong>
+	      </a>
+	      &nbsp;
+  	    </p>
             <div class="ym-pc-dashboard-section-plan">
-	      <div class="ym-pc-dashboard-event-date" ng-if="startDate" ng-cloak>Event Date: {{startDate | date:'MM/dd/yyyy'}} <span ng-if="startDate != endDate && endDate != ''" ng-cloak> thru  {{endDate | date:'MM/dd/yyyy'}}</span></div>
+	      <div class="ym-pc-dashboard-event-dates" ng-if="startDate" ng-cloak>Event Date: {{startDate | date:'MM/dd/yyyy'}} <span ng-if="startDate != endDate && endDate != ''" ng-cloak> thru  {{endDate | date:'MM/dd/yyyy'}}</span></div>
 	      <div class="ym-pc-dashboard-assembly-date" ng-if="assemblyDate" ng-cloak>Kick Off/Assembly Date: {{assemblyDate | date:'MM/dd/yyyy'}}</div>
-	      <div class="ym-pc-dashboard-money-date" ng-if="moneyDueDate" ng-cloak>Donation Due Date: {{moneyDueDate | date:'MM/dd/yyyy'}}</div>
+	      <div class="ym-pc-dashboard-donation-due-date" ng-if="moneyDueDate" ng-cloak>Donation Due Date: {{moneyDueDate | date:'MM/dd/yyyy'}}</div>
 	      <div class="ym-pc-dashboard-student-goal" ng-if="studentGoal" ng-cloak>Student Goal: {{studentGoal}}</div>
 	      <div class="ym-pc-dashboard-mission-goal" ng-if="missionGoal" ng-cloak>Finn's Mission Goal: {{missionGoal}}</div>
 	      <div class="ym-pc-dashboard-school-goal" ng-if="schoolGoal" ng-cloak>School Goal: {{schoolGoal}}</div>
-	      <div class="ym-pc-dashboard-send-emails" ng-if="sendEmails" ng-cloak>AHA Send Emails on my behalf: {{sendEmails}}</div>
-	      <div class="ym-pc-dashboard-text-message" ng-if="textMessage" ng-cloak>Consent to receive text messages: {{textMessages}}</div>
+	      <div class="ym-pc-dashboard-send-emails" ng-cloak>AHA Send Emails on my behalf: {{(sendEmails) ? "Yes" : "No"}}</div>
+	      <div class="ym-pc-dashboard-text-messages" ng-cloak>Consent to receive text messages: {{(textMessage) ? "Yes" : "No"}}</div>
 	    </div>
 	  </div>
         </div>
