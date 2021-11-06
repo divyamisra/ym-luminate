@@ -29,8 +29,8 @@ angular.module 'trPcControllers'
       $scope.activity2amt = ''
       $scope.activity3amt = ''
       $scope.companyId = $scope.participantRegistration.companyInformation.companyId
-      theDate = new Date
-      $scope.yearsList = [1..(theDate.getFullYear()-1978)] # 0 - 50
+      $scope.theDate = new Date
+      $scope.yearsList = [1..($scope.theDate.getFullYear()-1978)] # 0 - 50
       $scope.schoolChallenge = false
       $scope.schoolChallengeBadge = false
       $scope.studentChallengeBadge = false
@@ -1011,10 +1011,10 @@ angular.module 'trPcControllers'
           error: (response) ->
           success: (response) ->
             angular.forEach response.data.company, (school) ->
-              $scope.startDate = new Date school.event_start_date
-              $scope.endDate = new Date school.event_end_date
-              $scope.moneyDueDate = new Date school.donation_due_date
-              $scope.assemblyDate = new Date school.assembly_date
+              $scope.startDate = new Date school.event_start_date + ' 00:01 am'
+              $scope.endDate = new Date school.event_end_date + ' 00:01 am'
+              $scope.moneyDueDate = new Date school.donation_due_date + ' 00:01 am'
+              $scope.assemblyDate = new Date school.assembly_date + ' 00:01 am'
               $scope.studentGoal = school.student_goal
               $scope.missionGoal = school.mission_goal
               $scope.schoolGoal = school.school_goal
