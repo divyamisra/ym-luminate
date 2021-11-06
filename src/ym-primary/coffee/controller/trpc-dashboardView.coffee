@@ -988,7 +988,15 @@ angular.module 'trPcControllers'
             i++
           if len == 0 or not compfnd
             $rootScope.hideGifts = "N"
+          $scope.getSchoolPlan()
 
+      $scope.getSchoolPlan = () ->
+        ZuriService.getSchoolPlanData '&school_id=' + $scope.participantRegistration.companyInformation.companyId + '&event_id=' + $scope.frId,
+          failure: (response) ->
+          error: (response) ->
+          success: (response) ->
+            console.log responser
+            
       $scope.showPrize = (sku, label, earned, video) ->
         $scope.prize_sku = sku
         $scope.prize_label = label
