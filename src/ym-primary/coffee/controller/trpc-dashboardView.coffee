@@ -1339,21 +1339,11 @@ angular.module 'trPcControllers'
         opened: false
       
       $scope.dateOptions =
-        dateDisabled: true
+        dateDisabled: disabled
         formatYear: 'yyyy'
         maxDate: new Date(2022, 6, 30)
         minDate: new Date
         startingDay: 1
-
-      $scope.inlineOptions = 
-        minDate: new Date()
-        showWeeks: true
-
-      $scope.toggleMin = ->
-        $scope.inlineOptions.minDate = if $scope.inlineOptions.minDate then null else new Date
-        $scope.dateOptions.minDate = $scope.inlineOptions.minDate
-
-      $scope.toggleMin()
 
       $scope.openDatepicker = ->
         $scope.popup1.opened = true
