@@ -1333,19 +1333,5 @@ angular.module 'trPcControllers'
         document.getElementById("tRctm").x.baseVal.value = -99999
         jQuery("#tTipm div").html("")
         document.getElementById("tTrim").setAttribute('points','0 0 0 0 0 0')
-        
-      # Datepicker
-      $scope.popup1 = 
-        opened: false
-      
-      $scope.dateOptions =
-        dateDisabled: disabled
-        formatYear: 'yyyy'
-        maxDate: new Date(2022, 6, 30)
-        minDate: new Date
-        startingDay: 1
-
-      $scope.openDatepicker = ->
-        $scope.popup1.opened = true
 
   ]
