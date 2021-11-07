@@ -1063,7 +1063,7 @@
 	      </div>
 	      <hr>
 	      <div class="row ym-pc-dashboard-student-goal" ng-if="studentGoal" ng-cloak>
-		<div class="col-md-8" style="padding:0"><strong>Students Recruited Online:</strong> 0 of {{studentGoal}}</div>
+		<div class="col-md-8" style="padding:0"><strong>Students Recruited Online:</strong> {{studentsPledgedTotal}} of {{studentGoal}}</div>
 		<div class="col-md-4 text-right" style="padding:0">{{points.students}} Points<br/>1 point for each 25</div>
 	      </div>
 	      <hr>
@@ -1079,10 +1079,12 @@
 	      <hr>
 	      <div class="ym-pc-dashboard-send-emails clearfix" ng-cloak>AHA Send Emails on my behalf: {{(sendEmail) ? "Yes" : "No"}}</div>
 	      <div class="ym-pc-dashboard-text-messages" ng-cloak>Consent to receive text messages: {{(textMessage) ? "Yes" : "No"}}</div>
-	      <br/>
-	      <div class="ym-pc-dashboard-text-messages" ng-cloak>
-	        <strong>Total Points:</strong> 
-		{{points.dates + points.assembly_date + points.planning_meeting + points.prev_raised + points.behalf + points.mission + points.students + points.school_challenge + points.classroom_challenge}}
+	      <hr>
+	      <div class="row ym-pc-dashboard-total-points" ng-cloak>
+		<div class="col-md-8" style="padding:0"><strong>Total Points:</strong></div>
+		<div class="col-md-4 text-right" style="padding:0">
+		  {{points.dates + points.assembly_date + points.planning_meeting + points.prev_raised + points.behalf + points.mission + points.students + points.school_challenge + points.classroom_challenge}}
+		</div>
 	      </div>
 	    </div>
 	  </div>
