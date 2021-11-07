@@ -1038,6 +1038,8 @@ angular.module 'trPcControllers'
               $scope.points.dates = 25
             if $scope.assemblyDate != ""
               $scope.points.assembly_date = 5
+            if $scope.sendEmail is true
+              $scope.points.behalf = 5
 
       $scope.putSchoolPlan = () ->
         $scope.startDate = new Date angular.element('input#startDate').val() + ' 00:01';
