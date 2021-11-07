@@ -49,6 +49,7 @@ angular.module 'trPcControllers'
         prev_raised: 0
         behalf: 0
         students: 0
+        missions: 0
         school_challenge: 0
         classroom_challenge: 0
         
