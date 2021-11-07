@@ -1021,23 +1021,65 @@
 	    <h2 class="h3 text-center">
 		  School Plan
 	    </h2>
-            <p>
+	    <p>
 	      <a href="" ng-click="editSchoolPlan()" class="ym-progress-update-plan" aria-label="Update School Plan">
-		<strong>Update School Plan</strong>
+	        <strong>Update School Dates and Goals</strong>
 	      </a>
 	      &nbsp;
-  	    </p>
-            <div class="ym-pc-dashboard-section-plan">
-	      <div class="ym-pc-dashboard-event-dates" ng-if="startDate" ng-cloak>Event Date: {{startDate | date:'MM/dd/yyyy'}} <span ng-if="startDate != endDate && endDate != ''" ng-cloak> thru  {{endDate | date:'MM/dd/yyyy'}}</span></div>
-	      <div class="ym-pc-dashboard-assembly-date" ng-if="assemblyDate" ng-cloak>Kick Off/Assembly Date: {{assemblyDate | date:'MM/dd/yyyy'}}</div>
-	      <div class="ym-pc-dashboard-donation-due-date" ng-if="moneyDueDate" ng-cloak>Donation Due Date: {{moneyDueDate | date:'MM/dd/yyyy'}}</div>
-	      <div class="ym-pc-dashboard-student-goal" ng-if="studentGoal" ng-cloak>Student Goal: {{studentGoal}}</div>
-	      <div class="ym-pc-dashboard-mission-goal" ng-if="missionGoal" ng-cloak>Finn's Mission Goal: {{missionGoal}}</div>
-	      <div class="ym-pc-dashboard-school-goal" ng-if="schoolGoal" ng-cloak>School Goal: {{schoolGoal}}</div>
-	      <div class="ym-pc-dashboard-send-emails" ng-cloak>AHA Send Emails on my behalf: {{(sendEmail) ? "Yes" : "No"}}</div>
-	      <div class="ym-pc-dashboard-text-messages" ng-cloak>Consent to receive text messages: {{(textMessage) ? "Yes" : "No"}}</div>
-	    </div>
-	  </div>
+	    </p>
+	    <div class="ym-pc-dashboard-section-plan">
+	      <div class="row ym-pc-dashboard-event-dates" ng-if="startDate || moneyDueDate" ng-cloak>
+		<div class="col-md-8" style="padding:0">
+		  <div ng-if="startDate" ng-cloak><strong>Event Date:</strong><br/>{{startDate | date:'MM/dd/yyyy'}} <span ng-if="startDate != endDate && endDate != ''" ng-cloak> thru  {{endDate | date:'MM/dd/yyyy'}}</span></div>
+		  <div ng-if="moneyDueDate" ng-cloak><strong>Donation Due Date:</strong><br/>{{moneyDueDate | date:'MM/dd/yyyy'}}</div>
+		  <div ng-if="schoolGoal" ng-cloak><strong>School Goal:</strong> {{companyProgress.goalFormatted}}</div>
+		</div>
+		<div class="col-md-4 text-right" style="padding:0">{{points.dates}} of 25 Points</div>
+	      </div>
+	      <hr>
+	      <div class="row ym-pc-dashboard-assembly-date" ng-if="assemblyDate" ng-cloak>
+		<div class="col-md-8" style="padding:0"><strong>Kick Off/Assembly Date:</strong><br/>{{assemblyDate | date:'MM/dd/yyyy'}}</div>
+		  <div class="col-md-4 text-right" style="padding:0">{{points.assembly_Date}} of 5 Points</div>
+		</div>
+		<hr>
+		<div class="row ym-pc-dashboard-assembly-date" ng-cloak>
+		  <div class="col-md-8" style="padding:0"><strong>Complete Planning Meeting:</strong></div>
+		  <div class="col-md-4 text-right" style="padding:0">{{points.planning_meeting}} of 5 Points</div>
+		</div>
+		<hr>
+		<div class="row ym-pc-dashboard-assembly-date" ng-cloak>
+		  <div class="col-md-8" style="padding:0"><strong>Raise over Previous Year:<br>10 Point Bonus if you hit HRR</strong></div>
+		  <div class="col-md-4 text-right" style="padding:0">{{points.prev_raised}} Points</div>
+		</div>
+		<hr>
+		<div class="row ym-pc-dashboard-assembly-date" ng-cloak>
+		  <div class="col-md-8" style="padding:0"><strong>On Behalf of Coordinator:</strong></div>
+		  <div class="col-md-4 text-right" style="padding:0">{{points.behalf}} of 5 Points</div>
+		</div>
+		<hr>
+		<div class="row ym-pc-dashboard-student-mission" ng-if="missionGoal" ng-cloak>
+		  <div class="col-md-8" style="padding:0"><strong>Finn's Mission Completions:</strong> 0 of {{missionGoal}}</div>
+		  <div class="col-md-4 text-right" style="padding:0">{{points.missions}} Points</div>
+		</div>
+		<hr>
+		<div class="row ym-pc-dashboard-student-goal" ng-if="studentGoal" ng-cloak>
+		  <div class="col-md-8" style="padding:0"><strong>Students Recruited Online:</strong> 0 of {{studentGoal}}</div>
+		  <div class="col-md-4 text-right" style="padding:0">{{points.students}} Points<br/>1 point for each 25</div>
+		</div>
+		<hr>
+		<div class="row ym-pc-dashboard-assembly-date" ng-cloak>
+		  <div class="col-md-8" style="padding:0"><strong>Select School Challenge with Amount:</strong></div>
+		  <div class="col-md-4 text-right" style="padding:0">{{points.school_challenge}} of 5 Points</div>
+		</div>
+		<hr>
+		<div class="row ym-pc-dashboard-assembly-date" ng-cloak>
+		  <div class="col-md-8" style="padding:0"><strong>Classroom Challenge:</strong></div>
+		  <div class="col-md-4 text-right" style="padding:0">{{points.classroom_challenge}} of 5 Points</div>
+		</div>
+		<hr>
+		<div class="ym-pc-dashboard-send-emails clearfix" ng-cloak>AHA Send Emails on my behalf: {{(sendEmail) ? "Yes" : "No"}}</div>
+		<div class="ym-pc-dashboard-text-messages" ng-cloak>Consent to receive text messages: {{(textMessage) ? "Yes" : "No"}}</div>
+	      </div>
         </div>
         <div class="col-sm-6 ym-pc-dashboard-coordinator-progress-section__column">
           <div class="ym-pc-dashboard-coordinator-progress-box">
