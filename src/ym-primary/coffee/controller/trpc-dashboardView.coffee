@@ -152,7 +152,7 @@ angular.module 'trPcControllers'
                 if $scope.companyProgress.raised >= $scope.companyProgress.goal and $scope.companyProgress.goal > 0 and amt >= Number(($scope.companyProgress.schoolChallengeLevel).replace('$', '').replace(/,/g, '')) and $scope.companyProgress.schoolChallenge != "No School Challenge"
                   $scope.schoolChallenge = 4
             #add points
-            if $scope.companyProgress.schoolChallenge != "" and $scope.companyProgress.schoolChallengeLevel ! =""
+            if $scope.companyProgress.schoolChallenge != "" and $scope.companyProgress.schoolChallengeLevel != ""
               $scope.points.school_challenge = 5
               
             $scope.getSchoolBadges()
