@@ -1079,6 +1079,11 @@
 	      <hr>
 	      <div class="ym-pc-dashboard-send-emails clearfix" ng-cloak>AHA Send Emails on my behalf: {{(sendEmail) ? "Yes" : "No"}}</div>
 	      <div class="ym-pc-dashboard-text-messages" ng-cloak>Consent to receive text messages: {{(textMessage) ? "Yes" : "No"}}</div>
+	      <br/>
+	      <div class="ym-pc-dashboard-text-messages" ng-cloak>
+	        <strong>Total Points:</strong> 
+		{{points.dates + points.assembly_date + points.planning_meeting + points.prev_raised + points.behalf + points.mission + points.students + points.school_challenge + points.classroom_challenge}}
+	      </div>
 	    </div>
 	  </div>
         </div>
