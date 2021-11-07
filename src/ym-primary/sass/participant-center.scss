@@ -448,8 +448,10 @@ div[id^="taTextElement"]:focus {
 	padding: 0px;
 	
 	.row {
-		display:flex;
-		margin: 0px;
+		@media (min-width:768px) {
+			display:flex;
+			margin: 0px;
+		}
 		
 		.ym-pc-dashboard-coordinator-progress-section__column {
 			background-color: $event-accent-light;
