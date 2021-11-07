@@ -447,6 +447,11 @@ div[id^="taTextElement"]:focus {
 	background: none;
 	padding: 0px;
 	
+	h5 {
+		margin-top: 5px;
+		margin-bottom:5px;
+	}
+
 	.row {
 		@media (min-width:768px) {
 			display:flex;
