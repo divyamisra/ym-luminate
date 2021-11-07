@@ -151,6 +151,10 @@ angular.module 'trPcControllers'
                 #if both student and school goals met
                 if $scope.companyProgress.raised >= $scope.companyProgress.goal and $scope.companyProgress.goal > 0 and amt >= Number(($scope.companyProgress.schoolChallengeLevel).replace('$', '').replace(/,/g, '')) and $scope.companyProgress.schoolChallenge != "No School Challenge"
                   $scope.schoolChallenge = 4
+            #add points
+            if $scope.companyProgress.schoolChallenge != "" and $scope.companyProgress.schoolChallengeLevel ! =""
+              $scope.points.school_challenge = 5
+              
             $scope.getSchoolBadges()
             
       participantsString = ''
@@ -1029,6 +1033,9 @@ angular.module 'trPcControllers'
               $scope.schoolGoal = school.school_goal
               $scope.sendEmail = school.send_email
               $scope.textMessage = school.text_messages
+            #add points
+            if $scope.startDate != "" and $scope.endDate != "" and $scope.moneyDueDate != "" and $scope.companyProgress.goal > 0
+              $scope.points.dates = 25
 
       $scope.putSchoolPlan = () ->
         $scope.startDate = new Date angular.element('input#startDate').val() + ' 00:01';
@@ -1251,6 +1258,8 @@ angular.module 'trPcControllers'
             $scope.activity3amt = studentsPledgedActivities['3'].count
           else
             $scope.activity3amt = 0
+          #add points
+          $scope.points.students = Math.floor $scope.studentsPledgedTotal/25
 
       $scope.showMobileApp = ->
         if not $scope.viewMobileApp
