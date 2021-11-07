@@ -1064,7 +1064,7 @@
 	      <hr>
 	      <div class="row ym-pc-dashboard-student-goal" ng-if="studentGoal" ng-cloak>
 		<div class="col-md-8" style="padding:0"><strong>Students Recruited Online:</strong> {{studentsPledgedTotal}} of {{studentGoal}}</div>
-		<div class="col-md-4 text-right" style="padding:0">{{points.students}} Points<br/>1 point for each 25</div>
+		<div class="col-md-4 text-right" style="padding:0">{{points.students}} Point{{points.students != 1 ? 's' : ''}}<br/>1 point for each 25</div>
 	      </div>
 	      <hr>
 	      <div class="row ym-pc-dashboard-assembly-date" ng-cloak>
