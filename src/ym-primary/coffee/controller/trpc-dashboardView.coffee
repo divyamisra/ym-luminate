@@ -42,7 +42,16 @@ angular.module 'trPcControllers'
       $scope.topGradeRaised = []
       $scope.topGradeStudents = []
       $scope.topCompanySteps = []
-      
+      $scope.points =
+        dates: 0
+        assembly_date: 0
+        planning_meeting: 0
+        prev_raised: 0
+        behalf: 0
+        students: 0
+        school_challenge: 0
+        classroom_challenge: 0
+        
       $dataRoot = angular.element '[data-embed-root]'
                      
       if $scope.participantRegistration.lastPC2Login is '0'
