@@ -1036,6 +1036,8 @@ angular.module 'trPcControllers'
             #add points
             if $scope.startDate != "" and $scope.endDate != "" and $scope.moneyDueDate != "" and $scope.companyProgress.goal > 0
               $scope.points.dates = 25
+            if $scope.assemblyDate != ""
+              $scope.points.assembly_date = 5
 
       $scope.putSchoolPlan = () ->
         $scope.startDate = new Date angular.element('input#startDate').val() + ' 00:01';
