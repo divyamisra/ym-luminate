@@ -155,6 +155,8 @@ angular.module 'trPcControllers'
             #add points
             if $scope.companyProgress.schoolChallenge != "" and $scope.companyProgress.schoolChallengeLevel != ""
               $scope.points.school_challenge = 5
+            else
+              $scope.points.school_challenge = 0
               
             $scope.getSchoolBadges()
             
