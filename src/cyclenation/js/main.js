@@ -1991,6 +1991,7 @@
         if (eventType2 === 'Road' || eventType2 === 'Executive Challenge' || eventType2 === 'StationaryV2') {
           $('form[name=FriendraiserFind]').removeAttr('hidden');
           $('#team_find_section_body, #team_find_section_header').show();
+          console.log('start team script is running');
           $('.section-footer div:first-of-type a').attr('href','TRR/?pg=tfind&fr_id='+evID+'&fr_tm_opt=new');
         }
         var trCompanyCount = $('#fr_co_list > option').length;
