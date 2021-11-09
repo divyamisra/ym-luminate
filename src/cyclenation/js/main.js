@@ -1991,8 +1991,6 @@
         if (eventType2 === 'Road' || eventType2 === 'Executive Challenge' || eventType2 === 'StationaryV2') {
           $('form[name=FriendraiserFind]').removeAttr('hidden');
           $('#team_find_section_body, #team_find_section_header').show();
-          console.log('start team script is running');
-          $('.section-footer div:first-of-type a').attr('href','TRR/?pg=tfind&fr_id='+evID+'&fr_tm_opt=new');
         }
         var trCompanyCount = $('#fr_co_list > option').length;
         if (trCompanyCount < 2) {
@@ -2326,9 +2324,13 @@
 
       $('#friend_potion_next')
         .wrap('<div class="order-1 order-sm-2 col-sm-4 offset-md-6 col-md-3 col-8 offset-2 mb-3"/>');
-
+      if(regType === 'startTeam') {
       $('#team_find_section_footer')
-        .prepend('<div class="order-2 order-sm-1 col-sm-4 col-md-3 col-8 offset-2 offset-sm-0"><a href="TRR/?pg=tfind&amp;fr_id=' + evID + '" class="button btn-secondary btn-block">Back</a></div>')
+        .prepend('<div class="order-2 order-sm-1 col-sm-4 col-md-3 col-8 offset-2 offset-sm-0"><a href="TRR/?pg=tfind&amp;fr_id=' + evID + '&fr_tm_opt=new" class="button btn-secondary btn-block">Back</a></div>');
+      } else {
+        $('#team_find_section_footer')
+        .prepend('<div class="order-2 order-sm-1 col-sm-4 col-md-3 col-8 offset-2 offset-sm-0"><a href="TRR/?pg=tfind&amp;fr_id=' + evID + '" class="button btn-secondary btn-block">Back</a></div>');
+      }
 
       // Style LOs team goal input
       if (eventType2 === 'StationaryV2') {
