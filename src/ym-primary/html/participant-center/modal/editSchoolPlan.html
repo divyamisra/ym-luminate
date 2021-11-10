@@ -8,91 +8,63 @@
     <div uib-alert class="alert-danger" ng-if="schoolPlanInfo.errorMessage">
       <div ng-bind-html="schoolPlanInfo.errorMessage"></div>
     </div>
-    <div class="row">
-      <div class="col-md-6">
-        <div class="form-group">
-          <label for="startDate">Event Start Date</label>
-          <div class="input-group">
-            <input type="date" min="{{theDate | date:'yyyy-MM-dd'}}" class="form-control" id="startDate" ng-model="startDate" aria-label="Event Start Date" />
-  	      </div>
-        </div>
+    <div class="row ym-pc-dashboard-event-dates" ng-if="startDate || moneyDueDate" ng-cloak>
+      <div class="col-md-8" style="padding:0">
+        <div ng-if="startDate" ng-cloak><strong>Event Date:</strong><br/>{{startDate | date:'MM/dd/yyyy'}} <span ng-if="startDate != endDate && endDate != ''" ng-cloak> thru  {{endDate | date:'MM/dd/yyyy'}}</span></div>
+        <div ng-if="moneyDueDate" ng-cloak><strong>Donation Due Date:</strong><br/>{{moneyDueDate | date:'MM/dd/yyyy'}}</div>
+        <div ng-if="schoolGoal" ng-cloak><strong>School Goal:</strong> {{companyProgress.goalFormatted}}</div>
       </div>
-      <div class="col-md-6">
-        <div class="form-group">
-          <label for="endDate">Event End Date</label>
-          <div class="input-group">
-            <input type="date" min="{{theDate | date:'yyyy-MM-dd'}}" class="form-control" id="endDate" ng-model="endDate" aria-label="Event End Date" />
-       	  </div>
-        </div>
-      </div>
+      <div class="col-md-4 text-right" style="padding:0">{{points.dates}} of 25 Points</div>
     </div>
-    <div class="row">
-      <div class="col-md-6">
-        <div class="form-group">
-          <label for="assemblyDate">Kick Off/Assembly Date</label>
-          <div class="input-group">
-            <input type="date" min="{{theDate | date:'yyyy-MM-dd'}}" class="form-control" id="assemblyDate" ng-model="assemblyDate" aria-label="Kick Off/Assembly Date" />
-       	  </div>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="form-group">
-          <label for="moneyDueDate">Donation Due Date</label>
-          <div class="input-group">
-            <input type="date" min="{{theDate | date:'yyyy-MM-dd'}}" class="form-control" id="moneyDueDate" ng-model="moneyDueDate" aria-label="Donation Due Date" />
-      	  </div>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-4">
-        <div class="form-group">
-          <label for="studentGoal">Student Goal</label>
-          <div class="input-group">
-            <input type="number" class="form-control" id="studentGoal" ng-model="studentGoal" aria-label="Student Goal" required>
- 	  </div>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="form-group">
-          <label for="missionGoal">Finn's Mission Goal</label>
-          <div class="input-group">
-            <input type="number" class="form-control" id="missionGoal" ng-model="missionGoal" aria-label="Finn's Mission Goal" required>
- 	  </div>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="form-group">
-          <label for="schoolGoal">School Goal</label>
-          <div class="input-group">
-            <input type="number" class="form-control" id="schoolGoal" ng-model="schoolGoal" aria-label="School Goal" required>
- 	  </div>
-        </div>
-      </div>
-    </div>
-    <div class="form-group">
-      <div class="checkbox" custom-checkbox="" ng-class="{'checked': sendEmail}">
-        <label for="sendEmail"> 
-          <input type="checkbox" name="sendEmail" id="sendEmail" ng-model="sendEmail" aria-invalid="false"> 
-          <span class="manageable-content" data-container="edit_opt_in_container">
-            <span id="opt_in_label">
-              AHA Send Emails on my behalf
-            </span>
-          </span>
-        </label>
-      </div>
-      <div class="checkbox" custom-checkbox="" ng-class="{'checked': textMessage}">
-        <label for="textMessage">
-          <input type="checkbox" name="textMessage" id="textMessage" ng-model="textMessage" aria-invalid="false"> 
-          <span class="manageable-content" data-container="edit_opt_in_container">
-            <span id="opt_in_label">
-              Consent to receive text messages
-            </span>
-          </span>
-        </label>
-      </div>
-    </div>
-  </div>
+    <hr>
+    <div class="row ym-pc-dashboard-assembly-date" ng-if="assemblyDate" ng-cloak>
+  		<div class="col-md-8" style="padding:0"><strong>Kick Off/Assembly Date:</strong><br/>{{assemblyDate | date:'MM/dd/yyyy'}}</div>
+	  	<div class="col-md-4 text-right" style="padding:0">{{points.assembly_date}} of 5 Points</div>
+	  </div>
+	  <hr>
+	  <div class="row ym-pc-dashboard-point-field" ng-cloak>
+	    <div class="col-md-8" style="padding:0"><strong>Complete Planning Meeting:</strong></div>
+		  <div class="col-md-4 text-right" style="padding:0">{{points.planning_meeting}} of 5 Points</div>
+	  </div>
+	  <hr>
+	  <div class="row ym-pc-dashboard-assembly-date" ng-cloak>
+		  <div class="col-md-8" style="padding:0"><strong>Raise over Previous Year:<br>10 Point Bonus if you hit HRR</strong></div>
+		  <div class="col-md-4 text-right" style="padding:0">{{points.prev_raised}} Points</div>
+	  </div>
+	  <hr>
+	  <div class="row ym-pc-dashboard-assembly-date" ng-cloak>
+		  <div class="col-md-8" style="padding:0"><strong>Allow AHA to Send Emails on my behalf: {{(sendEmail) ? "Yes" : "No"}}</strong></div>
+		  <div class="col-md-4 text-right" style="padding:0">{{points.behalf}} of 5 Points</div>
+	  </div>
+	  <hr>
+	  <div class="row ym-pc-dashboard-student-mission" ng-if="missionGoal" ng-cloak>
+		  <div class="col-md-8" style="padding:0"><strong>Finn's Mission Completions:</strong> 0 of {{missionGoal}}</div>
+		  <div class="col-md-4 text-right" style="padding:0">{{points.missions}} Points</div>
+	  </div>
+	  <hr>
+	  <div class="row ym-pc-dashboard-student-goal" ng-if="studentGoal" ng-cloak>
+		  <div class="col-md-8" style="padding:0"><strong>Students Recruited Online:</strong> {{studentsPledgedTotal}} of {{studentGoal}}</div>
+		  <div class="col-md-4 text-right" style="padding:0">{{points.students}} Point{{points.students != 1 ? 's' : ''}}<br/>1 point for each 25</div>
+	  </div>
+	  <hr>
+	  <div class="row ym-pc-dashboard-assembly-date" ng-cloak>
+		  <div class="col-md-8" style="padding:0"><strong>Select School Challenge with Amount:</strong></div>
+		  <div class="col-md-4 text-right" style="padding:0">{{points.school_challenge}} of 5 Points</div>
+	  </div>
+	  <hr>
+	  <div class="row ym-pc-dashboard-assembly-date" ng-cloak>
+		  <div class="col-md-8" style="padding:0"><strong>Classroom Challenge:</strong></div>
+		  <div class="col-md-4 text-right" style="padding:0">{{points.classroom_challenge}} of 5 Points</div>
+	  </div>
+	  <hr>
+	  <div class="ym-pc-dashboard-text-messages" ng-cloak>Consent to receive text messages: {{(textMessage) ? "Yes" : "No"}}</div>
+	  <hr>
+	  <div class="row ym-pc-dashboard-total-points" ng-cloak>
+		  <div class="col-md-8" style="padding:0"><strong>Total Points:</strong></div>
+		  <div class="col-md-4 text-right" style="padding:0">
+		  {{points.dates + points.assembly_date + points.planning_meeting + points.prev_raised + points.behalf + points.mission + points.students + points.school_challenge + points.classroom_challenge}}
+		</div>
+	</div>
   <div class="modal-footer">
     <div class="clearfix">
       <div class="pull-left">
