@@ -1547,16 +1547,9 @@
             var goal = $('#goal-amount').text();
             cd.runThermometer(progress, goal);
             // Build roster on greeting page
-            var listCount
-            if($('body').hasClass('pg_team_list_15')) {
-              listCount = 15
-            } else if($('body').hasClass('pg_team_list_10')) {
-              listCount = 10
-            } else {
-              listCount = 5
-            }
+
             cd.getTopParticipants(evID);
-            cd.getTopTeams(evID, listCount);
+            cd.getTopTeams(evID, 15);
             cd.getCompanyList(evID);
             cd.getTopCompanies(evID);
 
@@ -2536,13 +2529,15 @@ if ( $('.nav-item--find').length > 0 ) {
       $(this).parent().toggleClass('open');
   });
 
-  $('body').keypress(function (e) {
+  $('body').keyup(function (e) {
       if (!$('.nav-item--find').is(e.target)
           && $('.nav-item--find').has(e.target).length === 0
           && $('.open').has(e.target).length === 0
       ) {
-          $('.nav-item--find').removeClass('open');
-          $('.nav-item--find').removeClass('open');
+        $('.nav-item--find').removeClass('open');
+        $('.nav-item--find').removeClass('show');
+        $('.dropdown-menu.find').removeClass('open');
+        $('.dropdown-menu.find').removeClass('show');
       }
   });
 
