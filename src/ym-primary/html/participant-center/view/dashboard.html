@@ -1071,7 +1071,7 @@
 					</div>
 					<div class="form-group">
 						<label for="school_goal">Fundraising Goal:</label>
-						<input type="text" class="form-control" id="school_goal" ng-model="companyProgress.goalFormatted" aria-label="School Fundraising Goal" ng-blur="putSchoolPlan($event)" required>
+						<input type="text" class="form-control" id="school_goal" ng-model="companyProgress.goalFormatted" aria-label="School Fundraising Goal" ng-blur="putSchoolPlan($event)" onkeypress="return event.charCode == 36 || event.charCode == 44 || event.charCode == 46 || (event.charCode >= 48 && event.charCode <= 57)" required>
 					</div>
 	      </div>
 	      <hr>
