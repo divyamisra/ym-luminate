@@ -1000,7 +1000,7 @@ angular.module 'trPcControllers'
           $scope.getSchoolPlan()
 
       $scope.getSchoolPlan = () ->
-        ZuriService.schoolPlanData '&method=GetSchoolPlan&school_id=' + $scope.participantRegistration.companyInformation.companyId + '&event_id=' + $scope.frId,
+        ZuriService.schoolPlanData '&method=GetSchoolPlan&CompanyId=' + $scope.participantRegistration.companyInformation.companyId + '&EventId=' + $scope.frId,
           failure: (response) ->
           error: (response) ->
           success: (response) ->
