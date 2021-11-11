@@ -42,17 +42,7 @@ angular.module 'trPcControllers'
       $scope.topGradeRaised = []
       $scope.topGradeStudents = []
       $scope.topCompanySteps = []
-      $scope.points =
-        dates: 0
-        assembly_date: 0
-        planning_meeting: 0
-        prev_raised: 0
-        behalf: 0
-        students: 0
-        missions: 0
-        school_challenge: 0
-        classroom_challenge: 0
-        
+       
       $dataRoot = angular.element '[data-embed-root]'
                      
       if $scope.participantRegistration.lastPC2Login is '0'
@@ -152,12 +142,6 @@ angular.module 'trPcControllers'
                 #if both student and school goals met
                 if $scope.companyProgress.raised >= $scope.companyProgress.goal and $scope.companyProgress.goal > 0 and amt >= Number(($scope.companyProgress.schoolChallengeLevel).replace('$', '').replace(/,/g, '')) and $scope.companyProgress.schoolChallenge != "No School Challenge"
                   $scope.schoolChallenge = 4
-            #add points
-            if $scope.companyProgress.schoolChallenge != "" and $scope.companyProgress.schoolChallengeLevel != ""
-              $scope.points.school_challenge = 5
-            else
-              $scope.points.school_challenge = 0
-              
             $scope.getSchoolBadges()
             
       participantsString = ''
@@ -1021,30 +1005,17 @@ angular.module 'trPcControllers'
           error: (response) ->
           success: (response) ->
             angular.forEach response.data.company, (school) ->
-              $scope.startDate = new Date school.event_start_date + ' 00:01'
-              $scope.endDate = new Date school.event_end_date + ' 00:01'
-              $scope.moneyDueDate = new Date school.donation_due_date + ' 00:01'
-              $scope.assemblyDate = new Date school.assembly_date + ' 00:01'
-              $scope.studentGoal = school.student_goal
-              $scope.missionGoal = school.mission_goal
-              $scope.schoolGoal = school.school_goal
-              $scope.sendEmail = school.send_email
-              $scope.textMessage = school.text_messages
-            #add points
-            if $scope.startDate != "" and $scope.endDate != "" and $scope.moneyDueDate != "" and $scope.companyProgress.goal > 0
-              $scope.points.dates = 25
-            else
-              $scope.points.dates = 0
-            if $scope.assemblyDate != ""
-              $scope.points.assembly_date = 5
-            else
-              $scope.points.assembly_date = 0
-            if $scope.sendEmail is true
-              $scope.points.behalf = 5
-            else 
-              $scope.points.behalf = 0
+              $scope.EventStartDate = new Date school.EventStartDate + ' 00:01'
+              $scope.EventEndDate = new Date school.EventEndDate + ' 00:01'
+              $scope.DonationDueDate = new Date school.DonationDueDate + ' 00:01'
+              $scope.KickOffDate = new Date school.KickOffDate + ' 00:01'
+              $scope.studentGoal = school.StudentRecruitmentGoal
+              $scope.missionGoal = school.FinnsMissionCompletionGoal
 
       $scope.putSchoolPlan = () ->
+        console.log $event.target.attributes.id
+        return
+        ###
         $scope.startDate = new Date angular.element('input#startDate').val() + ' 00:01';
         $scope.endDate = new Date angular.element('input#endDate').val() + ' 00:01';
         $scope.assemblyDate = new Date angular.element('input#assemblyDate').val() + ' 00:01';
@@ -1071,7 +1042,8 @@ angular.module 'trPcControllers'
           error: (response) ->
           success: (response) ->
             $scope.getSchoolPlan()
-            
+        ###
+        
       formatDateString = (dateVal) ->
         regex = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2}).*$/
         token_array = regex.exec(dateVal.toJSON());
