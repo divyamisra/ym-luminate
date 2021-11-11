@@ -471,6 +471,7 @@ angular.module 'trPcControllers'
             .then (response) ->
               $scope.editSchoolGoalModal.close()
               $scope.refreshFundraisingProgress()
+          $scope.getSchoolPlan()
           $scope.dashboardPromises.push updateSchoolGoalPromise
 
       $scope.schoolPlanInfo = {}
@@ -1013,12 +1014,16 @@ angular.module 'trPcControllers'
               $scope.FinnsMissionCompletedGoal = school.FinnsMissionCompletedGoal
 
       $scope.putSchoolPlan = ($event) ->
-        schoolParams = '&field_id=' + $event.currentTarget.id + '&value=' + $event.currentTarget.value + '&type=' + $event.currentTarget.type
-        ZuriService.schoolPlanData '&method=UpdateSchoolPlan&CompanyId=' + $scope.participantRegistration.companyInformation.companyId + '&EventId=' + $scope.frId + schoolParams,
-          failure: (response) ->
-          error: (response) ->
-          success: (response) ->
-            $scope.getSchoolPlan()
+        if $event.currentTarget.id == "school_goal"
+	        $scope.schoolGoalInfo.goal = $event.currentTarget.value
+	        $scope.updateSchoolGoal()
+        else
+          schoolParams = '&field_id=' + $event.currentTarget.id + '&value=' + $event.currentTarget.value + '&type=' + $event.currentTarget.type
+          ZuriService.schoolPlanData '&method=UpdateSchoolPlan&CompanyId=' + $scope.participantRegistration.companyInformation.companyId + '&EventId=' + $scope.frId + schoolParams,
+            failure: (response) ->
+            error: (response) ->
+            success: (response) ->
+              $scope.getSchoolPlan()
             
       formatDateString = (dateVal) ->
         regex = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2}).*$/
