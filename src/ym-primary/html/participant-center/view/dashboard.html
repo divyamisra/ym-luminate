@@ -1027,7 +1027,7 @@
             <div class="form-group">
               <label for="EventStartDate">Event Start Date</label>
               <div class="input-group">
-                <input type="date" min="{{theDate | date:'yyyy-MM-dd'}}" class="form-control" id="EventStartDate" ng-model="EventStartDate" aria-label="Event Start Date" />
+                <input type="date" min="{{theDate | date:'yyyy-MM-dd'}}" class="form-control" id="EventStartDate" ng-model="EventStartDate" aria-label="Event Start Date" ng-blur="putSchoolPlan($event)" />
               </div>
             </div>
  					</div>
@@ -1035,7 +1035,7 @@
 						<div class="form-group">
 							<label for="EventEndDate">Event End Date</label>
 							<div class="input-group">
-								<input type="date" min="{{theDate | date:'yyyy-MM-dd'}}" class="form-control" id="EventEndDate" ng-model="EventEndDate" aria-label="Event End Date" />
+								<input type="date" min="{{theDate | date:'yyyy-MM-dd'}}" class="form-control" id="EventEndDate" ng-model="EventEndDate" aria-label="Event End Date" ng-blur="putSchoolPlan($event)" />
 							</div>
 						</div>
 					</div>
@@ -1046,7 +1046,7 @@
 						<div class="form-group">
 							<label for="KickOffDate">Kick Off/Assembly Date</label>
 							<div class="input-group">
-								<input type="date" min="{{theDate | date:'yyyy-MM-dd'}}" class="form-control" id="KickOffDate" ng-model="KickOffDate" aria-label="Kick Off/Assembly Date" />
+								<input type="date" min="{{theDate | date:'yyyy-MM-dd'}}" class="form-control" id="KickOffDate" ng-model="KickOffDate" aria-label="Kick Off/Assembly Date" ng-blur="putSchoolPlan($event)" />
 							</div>
 						</div>
 					</div>
@@ -1054,7 +1054,7 @@
 						<div class="form-group">
 							<label for="DonationDueDate">Donation Due Date</label>
 							<div class="input-group">
-								<input type="date" min="{{theDate | date:'yyyy-MM-dd'}}" class="form-control" id="DonationDueDate" ng-model="DonationDueDate" aria-label="Donation Due Date" />
+								<input type="date" min="{{theDate | date:'yyyy-MM-dd'}}" class="form-control" id="DonationDueDate" ng-model="DonationDueDate" aria-label="Donation Due Date" ng-blur="putSchoolPlan($event)" />
 							</div>
 						</div>
 					</div>
@@ -1063,15 +1063,15 @@
 	      <div class="ym-pc-dashboard-school-goals" ng-cloak>
 					<div class="form-group">
 						<label for="StudentRecruitmentGoal">Recruitment Goal:</label>
-						<input type="text" class="form-control" id="StudentRecruitmentGoal" ng-model="StudentRecruitmentGoal" aria-label="Student Goal" required>
+						<input type="text" class="form-control" id="StudentRecruitmentGoal" ng-model="StudentRecruitmentGoal" aria-label="Student Recruitment Goal" ng-blur="putSchoolPlan($event)" required>
 					</div>
 					<div class="form-group">
 						<label for="FinnsMissionCompletionGoal">Finn's Mission Completion Goal:</label>
-						<input type="text" class="form-control" id="FinnsMissionCompletionGoal" ng-model="FinnsMissionCompletionGoal" aria-label="Finn's Mission Goal" required>
+						<input type="text" class="form-control" id="FinnsMissionCompletionGoal" ng-model="FinnsMissionCompletionGoal" aria-label="Finn's Mission Completion Goal" ng-blur="putSchoolPlan($event)" required>
 					</div>
 					<div class="form-group">
 						<label for="school_goal">Fundraising Goal:</label>
-						<input type="text" class="form-control" id="school_goal" ng-model="companyProgress.goalFormatted" aria-label="School Goal" required>
+						<input type="text" class="form-control" id="school_goal" ng-model="companyProgress.goalFormatted" aria-label="School Fundraising Goal" ng-blur="putSchoolPlan($event)" required>
 					</div>
 	      </div>
 	      <hr>
