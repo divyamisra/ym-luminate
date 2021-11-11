@@ -1009,8 +1009,8 @@ angular.module 'trPcControllers'
               $scope.EventEndDate = new Date school.EventEndDate + ' 00:01'
               $scope.DonationDueDate = new Date school.DonationDueDate + ' 00:01'
               $scope.KickOffDate = new Date school.KickOffDate + ' 00:01'
-              $scope.studentGoal = school.StudentRecruitmentGoal
-              $scope.missionGoal = school.FinnsMissionCompletionGoal
+              $scope.StudentRecruitmentGoal = school.StudentRecruitmentGoal
+              $scope.FinnsMissionCompletionGoal = school.FinnsMissionCompletionGoal
 
       $scope.putSchoolPlan = ($event) ->
         console.log $event.target.attributes.id
