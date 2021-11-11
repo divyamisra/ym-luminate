@@ -1012,7 +1012,7 @@ angular.module 'trPcControllers'
               $scope.studentGoal = school.StudentRecruitmentGoal
               $scope.missionGoal = school.FinnsMissionCompletionGoal
 
-      $scope.putSchoolPlan = () ->
+      $scope.putSchoolPlan = ($event) ->
         console.log $event.target.attributes.id
         return
         ###
