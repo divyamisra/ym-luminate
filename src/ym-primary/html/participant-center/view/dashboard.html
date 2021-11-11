@@ -1060,16 +1060,16 @@
 	      </div>
 	      <div class="ym-pc-dashboard-school-goals" ng-cloak>
 					<div class="form-group">
-						<label for="StudentRecruitmentGoal">Recruitment Goal:</label>
-						<input type="number" class="form-control" id="StudentRecruitmentGoal" ng-model="StudentRecruitmentGoal" aria-label="Student Recruitment Goal" ng-blur="putSchoolPlan($event)" required>
+						<label for="StudentRecruitmentGoal">Student Recruitment Goal:</label>
+						<input type="number" class="form-control" id="StudentRecruitmentGoal" ng-model="StudentRecruitmentGoal" aria-label="Student Recruitment Goal" ng-blur="putSchoolPlan($event)">
 					</div>
 					<div class="form-group">
 						<label for="FinnsMissionCompletedGoal">Finn's Mission Completion Goal:</label>
-						<input type="number" class="form-control" id="FinnsMissionCompletedGoal" ng-model="FinnsMissionCompletedGoal" aria-label="Finn's Mission Completion Goal" ng-blur="putSchoolPlan($event)" required>
+						<input type="number" class="form-control" id="FinnsMissionCompletedGoal" ng-model="FinnsMissionCompletedGoal" aria-label="Finn's Mission Completion Goal" ng-blur="putSchoolPlan($event)">
 					</div>
 					<div class="form-group">
 						<label for="school_goal">Fundraising Goal:</label>
-						<input type="text" class="form-control" id="school_goal" ng-model="companyProgress.goalFormatted" aria-label="School Fundraising Goal" ng-blur="putSchoolPlan($event)" onkeypress="return event.charCode == 36 || event.charCode == 44 || event.charCode == 46 || (event.charCode >= 48 && event.charCode <= 57)" required>
+						<input type="text" class="form-control" id="school_goal" ng-model="companyProgress.goalFormatted" aria-label="School Fundraising Goal" ng-blur="putSchoolPlan($event)" onkeypress="return event.charCode == 36 || event.charCode == 44 || event.charCode == 46 || (event.charCode >= 48 && event.charCode <= 57)">
 					</div>
 	      </div>
 	      <div class="ym-pc-dashboard-send-emails" ng-cloak>{{(SendEmailOnBehalfOfCoordinator) ? "I do" : "I currently don't"}} allow AHA to Send Emails on my behalf</div>
