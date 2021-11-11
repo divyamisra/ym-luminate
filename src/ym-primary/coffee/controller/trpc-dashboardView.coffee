@@ -470,7 +470,7 @@ angular.module 'trPcControllers'
           updateSchoolGoalPromise = NgPcTeamraiserSchoolService.updateSchoolGoal(newGoal, $scope)
             .then (response) ->
 	      $scope.companyProgress.goal = newGoal
-	      $scope.companyProgresss.goalFormatted = $filter('currency')(newGoal, '$') else '$0.00'
+	      $scope.companyProgress.goalFormatted = $filter('currency')(newGoal, '$') else '$0.00'
               $scope.editSchoolGoalModal.close()
               $scope.refreshFundraisingProgress()
           $scope.dashboardPromises.push updateSchoolGoalPromise
