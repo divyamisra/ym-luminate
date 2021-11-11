@@ -1040,7 +1040,6 @@
 						</div>
 					</div>
 	      </div>
-	      <hr>
 	      <div class="row ym-pc-dashboard-point-field" ng-cloak>
 					<div class="col-md-6" style="padding:0">
 						<div class="form-group">
@@ -1059,7 +1058,6 @@
 						</div>
 					</div>
 	      </div>
-	      <hr>
 	      <div class="ym-pc-dashboard-school-goals" ng-cloak>
 					<div class="form-group">
 						<label for="StudentRecruitmentGoal">Recruitment Goal:</label>
@@ -1074,8 +1072,7 @@
 						<input type="text" class="form-control" id="school_goal" ng-model="companyProgress.goalFormatted" aria-label="School Fundraising Goal" ng-blur="putSchoolPlan($event)" onkeypress="return event.charCode == 36 || event.charCode == 44 || event.charCode == 46 || (event.charCode >= 48 && event.charCode <= 57)" required>
 					</div>
 	      </div>
-	      <hr>
-	      <div class="ym-pc-dashboard-send-emails" ng-cloak>Allow AHA to Send Emails on my behalf: {{(SendEmailOnBehalfOfCoordinator) ? "Yes" : "No"}}</div>
+	      <div class="ym-pc-dashboard-send-emails" ng-cloak>{{(SendEmailOnBehalfOfCoordinator) ? "I do" : "I currently don't"}} allow AHA to Send Emails on my behalf</div>
 	    </div>
 	  </div>
  </div>
