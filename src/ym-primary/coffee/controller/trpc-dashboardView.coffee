@@ -1013,37 +1013,13 @@ angular.module 'trPcControllers'
               $scope.FinnsMissionCompletedGoal = school.FinnsMissionCompletedGoal
 
       $scope.putSchoolPlan = ($event) ->
-        console.log $event.target.attributes.id
-        return
-        ###
-        $scope.startDate = new Date angular.element('input#startDate').val() + ' 00:01';
-        $scope.endDate = new Date angular.element('input#endDate').val() + ' 00:01';
-        $scope.assemblyDate = new Date angular.element('input#assemblyDate').val() + ' 00:01';
-        $scope.moneyDueDate = new Date angular.element('input#moneyDueDate').val() + ' 00:01';
-        $scope.studentGoal = angular.element('input#studentGoal').val();
-        $scope.missionGoal = angular.element('input#missionGoal').val();
-        $scope.schoolGoal = angular.element('input#schoolGoal').val();
-        $scope.sendEmail = angular.element('input#sendEmail').is(':checked');
-        $scope.textMessage = angular.element('input#textMessage').is(':checked');
-        
-        schoolParams = '&event_start_date=' + formatDateString($scope.startDate) +
-                       '&event_end_date=' + formatDateString($scope.endDate) +
-                       '&assembly_date=' + formatDateString($scope.assemblyDate) +
-                       '&donation_due_date=' + formatDateString($scope.moneyDueDate) +
-                       '&student_goal=' + $scope.studentGoal +
-                       '&mission_goal=' + $scope.missionGoal +
-                       '&school_goal=' + $scope.schoolGoal +
-                       '&send_email=' + $scope.sendEmail +
-                       '&text_messages=' + $scope.textMessage
-
-        ZuriService.schoolPlanData '&method=UpdateSchoolPlan&school_id=' + $scope.participantRegistration.companyInformation.companyId + 
-                                   '&event_id=' + $scope.frId + schoolParams,
+        schoolParams = '&field_id=' + $event.currentTarget.id + '&value=' + $event.currentTarget.value + '&type=' + $event.currentTarget.type
+        ZuriService.schoolPlanData '&method=UpdateSchoolPlan&CompanyId=' + $scope.participantRegistration.companyInformation.companyId + '&EventId=' + $scope.frId + schoolParams,
           failure: (response) ->
           error: (response) ->
           success: (response) ->
             $scope.getSchoolPlan()
-        ###
-        
+            
       formatDateString = (dateVal) ->
         regex = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2}).*$/
         token_array = regex.exec(dateVal.toJSON());
