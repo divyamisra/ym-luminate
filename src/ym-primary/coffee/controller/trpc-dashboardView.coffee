@@ -19,9 +19,10 @@ angular.module 'trPcControllers'
     'NgPcContactService'
     'NgPcTeamraiserShortcutURLService'
     'NgPcInteractionService'
+    'NgPcConstituentService'
     'NgPcTeamraiserCompanyService'
     'FacebookFundraiserService'
-    ($rootScope, $scope, $location, $filter, $timeout, $uibModal, $sce, APP_INFO, ZuriService, BoundlessService, TeamraiserParticipantService, NgPcTeamraiserRegistrationService, NgPcTeamraiserProgressService, NgPcTeamraiserTeamService, NgPcTeamraiserSchoolService, NgPcTeamraiserGiftService, NgPcContactService, NgPcTeamraiserShortcutURLService, NgPcInteractionService, NgPcTeamraiserCompanyService, FacebookFundraiserService) ->
+    ($rootScope, $scope, $location, $filter, $timeout, $uibModal, $sce, APP_INFO, ZuriService, BoundlessService, TeamraiserParticipantService, NgPcTeamraiserRegistrationService, NgPcTeamraiserProgressService, NgPcTeamraiserTeamService, NgPcTeamraiserSchoolService, NgPcTeamraiserGiftService, NgPcContactService, NgPcTeamraiserShortcutURLService, NgPcInteractionService, NgPcConstituentService, NgPcTeamraiserCompanyService, FacebookFundraiserService) ->
       $scope.dashboardPromises = []
       domain = $location.absUrl().split('/site/')[0]
       $scope.studentsPledgedTotal = ''
@@ -1015,16 +1016,27 @@ angular.module 'trPcControllers'
               $scope.FinnsMissionCompletedGoal = school.FinnsMissionCompletedGoal
 
       $scope.putSchoolPlan = ($event) ->
-        if $event.currentTarget.id == "school_goal"
-	        $scope.schoolGoalInfo.goal = $event.currentTarget.value
-	        $scope.updateSchoolGoal()
+        if $event.currentTarget.id == 'school_goal'
+          $scope.schoolGoalInfo.goal = $event.currentTarget.value
+          $scope.updateSchoolGoal()
+          $scope.getSchoolPlan()
         else
-          schoolParams = '&field_id=' + $event.currentTarget.id + '&value=' + $event.currentTarget.value + '&type=' + $event.currentTarget.type
+          if $event.currentTarget.type == 'checkbox'
+            schoolParams = '&field_id=' + $event.currentTarget.id + '&value=' + angular.element($event.currentTarget).is(':checked') + '&type=' + $event.currentTarget.type
+          else
+            schoolParams = '&field_id=' + $event.currentTarget.id + '&value=' + $event.currentTarget.value + '&type=' + $event.currentTarget.type
           ZuriService.schoolPlanData '&method=UpdateSchoolPlan&CompanyId=' + $scope.participantRegistration.companyInformation.companyId + '&EventId=' + $scope.frId + schoolParams,
             failure: (response) ->
             error: (response) ->
             success: (response) ->
-              $scope.getSchoolPlan()
+              if $event.currentTarget.id == 'SendEmailOnBehalfOfCoordinator'
+                updateUserProfilePromise = NgPcInteractionService.updateUserRecord('custom_boolean2=' + angular.element($event.currentTarget).is(':checked') + '&cons_id=' + $scope.consId).then (response) ->
+                if response.data.errorResponse
+                  console.log 'There was an error processing your update. Please try again later.'
+		$scope.dashboardPromises.push updateUserProfilePromise
+                $scope.getSchoolPlan()
+              else
+                $scope.getSchoolPlan()
             
       formatDateString = (dateVal) ->
         regex = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2}).*$/
