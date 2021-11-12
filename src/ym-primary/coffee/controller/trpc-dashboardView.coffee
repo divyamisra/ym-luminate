@@ -1015,7 +1015,7 @@ angular.module 'trPcControllers'
               $scope.StudentRecruitmentGoal = school.StudentRecruitmentGoal
               $scope.FinnsMissionCompletedGoal = school.FinnsMissionCompletedGoal
  
-            NgPcInteractionService.getUserRecord('fields=custom_boolean2&cons_id=' + $scope.consId).then (response) ->
+            NgPcConstituentService.getUserRecord('fields=custom_boolean2&cons_id=' + $scope.consId).then (response) ->
               if response.data.errorResponse
                 console.log 'There was an error getting user profile. Please try again later.'
               $scope.SendEmailOnBehalfOfCoordinator = response.data.getConsResponse.custom_boolean2
@@ -1028,7 +1028,7 @@ angular.module 'trPcControllers'
           $scope.getSchoolPlan()
         else
           if $event.currentTarget.type == 'checkbox'
-            updateUserProfilePromise = NgPcInteractionService.updateUserRecord('custom_boolean2=' + angular.element($event.currentTarget).is(':checked') + '&cons_id=' + $scope.consId).then (response) ->
+            updateUserProfilePromise = NgPcConstituentService.updateUserRecord('custom_boolean2=' + angular.element($event.currentTarget).is(':checked') + '&cons_id=' + $scope.consId).then (response) ->
               if response.data.errorResponse
                 console.log 'There was an error processing your update. Please try again later.'
               $scope.dashboardPromises.push updateUserProfilePromise
