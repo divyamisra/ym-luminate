@@ -1072,8 +1072,12 @@
 						<input type="text" class="form-control" id="school_goal" ng-model="companyProgress.goalFormatted" aria-label="School Fundraising Goal" ng-blur="putSchoolPlan($event)" onkeypress="return event.charCode == 36 || event.charCode == 44 || event.charCode == 46 || (event.charCode >= 48 && event.charCode <= 57)">
 					</div>
 	      </div>
-	      <div class="ym-pc-dashboard-send-emails" ng-cloak>{{(SendEmailOnBehalfOfCoordinator) ? "I do" : "I currently don't"}} allow AHA to Send Emails on my behalf</div>
-	    </div>
+	      <div class="ym-pc-dashboard-send-emails checkbox" ng-class="{'checked': SendEmailOnBehalfOfCoordinator == true}" ng-cloak>
+	        <label for="SendEmailOnBehalfOfCoordinator">
+          	<input type="checkbox" name="SendEmailOnBehalfOfCoordinator" id="SendEmailOnBehalfOfCoordinator" ng-model="SendEmailOnBehalfOfCoordinator" ng-true-value="1" ng-false-value="0" ng-click="putSchoolPlan($event)"> 
+          	Allow AHA to Send Emails to my students on my behalf
+        	</label>
+	      </div>    
 	  </div>
  </div>
  <div class="col-sm-6 ym-pc-dashboard-coordinator-progress-section__column">
