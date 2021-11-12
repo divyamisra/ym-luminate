@@ -47,7 +47,7 @@ angular.module 'trPcControllers'
       if $scope.tablePrefix is 'heartdev' or $scope.tablePrefix is 'heartnew'
         urlPrefix = 'load'
       else
-        urlPrefix = 'loadaha'
+        urlPrefix = 'loadprod'
       url = 'https://' + urlPrefix + '.boundlessfundraising.com/applications/ahatgr/social/app/ui/#/addsocial/' + $scope.consId + '/' + $scope.frId + '/' + $rootScope.authToken + '/' + $rootScope.sessionCookie + '?source=PCSocial'
       $scope.socialIframeURL = $sce.trustAsResourceUrl url
 
