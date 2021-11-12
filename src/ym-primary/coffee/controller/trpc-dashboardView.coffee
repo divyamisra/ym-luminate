@@ -1014,10 +1014,11 @@ angular.module 'trPcControllers'
               $scope.KickOffDate = new Date school.KickOffDate + ' 00:01'
               $scope.StudentRecruitmentGoal = school.StudentRecruitmentGoal
               $scope.FinnsMissionCompletedGoal = school.FinnsMissionCompletedGoal
-              NgPcInteractionService.getUserRecord('fields=custom_boolean2&cons_id=' + $scope.consId).then (response) ->
-                if response.data.errorResponse
-                  console.log 'There was an error getting user profile. Please try again later.'
-		$scope.SendEmailOnBehalfOfCoordinator = response.data.getConsResponse.custom_boolean2
+ 
+            NgPcInteractionService.getUserRecord('fields=custom_boolean2&cons_id=' + $scope.consId).then (response) ->
+              if response.data.errorResponse
+                console.log 'There was an error getting user profile. Please try again later.'
+              $scope.SendEmailOnBehalfOfCoordinator = response.data.getConsResponse.custom_boolean2
 	      
 
       $scope.putSchoolPlan = ($event) ->
