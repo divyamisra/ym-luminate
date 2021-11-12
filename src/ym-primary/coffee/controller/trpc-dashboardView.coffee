@@ -1014,6 +1014,11 @@ angular.module 'trPcControllers'
               $scope.KickOffDate = new Date school.KickOffDate + ' 00:01'
               $scope.StudentRecruitmentGoal = school.StudentRecruitmentGoal
               $scope.FinnsMissionCompletedGoal = school.FinnsMissionCompletedGoal
+              NgPcInteractionService.getUserRecord('fields=custom_boolean2&cons_id=' + $scope.consId).then (response) ->
+                if response.data.errorResponse
+                  console.log 'There was an error getting user profile. Please try again later.'
+		$scope.SendEmailOnBehalfOfCoordinator = response.data.getConsResponse.custom_boolean2
+	      
 
       $scope.putSchoolPlan = ($event) ->
         if $event.currentTarget.id == 'school_goal'
@@ -1022,20 +1027,17 @@ angular.module 'trPcControllers'
           $scope.getSchoolPlan()
         else
           if $event.currentTarget.type == 'checkbox'
-            schoolParams = '&field_id=' + $event.currentTarget.id + '&value=' + angular.element($event.currentTarget).is(':checked') + '&type=' + $event.currentTarget.type
+            updateUserProfilePromise = NgPcInteractionService.updateUserRecord('custom_boolean2=' + angular.element($event.currentTarget).is(':checked') + '&cons_id=' + $scope.consId).then (response) ->
+              if response.data.errorResponse
+                console.log 'There was an error processing your update. Please try again later.'
+	      $scope.dashboardPromises.push updateUserProfilePromise
+              $scope.getSchoolPlan()
           else
             schoolParams = '&field_id=' + $event.currentTarget.id + '&value=' + $event.currentTarget.value + '&type=' + $event.currentTarget.type
-          ZuriService.schoolPlanData '&method=UpdateSchoolPlan&CompanyId=' + $scope.participantRegistration.companyInformation.companyId + '&EventId=' + $scope.frId + schoolParams,
-            failure: (response) ->
-            error: (response) ->
-            success: (response) ->
-              if $event.currentTarget.id == 'SendEmailOnBehalfOfCoordinator'
-                updateUserProfilePromise = NgPcInteractionService.updateUserRecord('custom_boolean2=' + angular.element($event.currentTarget).is(':checked') + '&cons_id=' + $scope.consId).then (response) ->
-                if response.data.errorResponse
-                  console.log 'There was an error processing your update. Please try again later.'
-		$scope.dashboardPromises.push updateUserProfilePromise
-                $scope.getSchoolPlan()
-              else
+            ZuriService.schoolPlanData '&method=UpdateSchoolPlan&CompanyId=' + $scope.participantRegistration.companyInformation.companyId + '&EventId=' + $scope.frId + schoolParams,
+              failure: (response) ->
+              error: (response) ->
+              success: (response) ->
                 $scope.getSchoolPlan()
             
       formatDateString = (dateVal) ->
