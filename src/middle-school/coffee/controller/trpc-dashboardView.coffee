@@ -42,9 +42,12 @@ angular.module 'trPcControllers'
       
       $dataRoot = angular.element '[data-embed-root]'
 
-      urlPrefix = 'bfapps1'
-      if $scope.tablePrefix is 'heartdev'
-        urlPrefix = 'bfstage'
+      #setup social iframe
+      urlPrefix = ''
+      if $scope.tablePrefix is 'heartdev' or $scope.tablePrefix is 'heartnew'
+        urlPrefix = 'load'
+      else
+        urlPrefix = 'loadaha'
       url = 'https://' + urlPrefix + '.boundlessfundraising.com/applications/ahatgr/social/app/ui/#/addsocial/' + $scope.consId + '/' + $scope.frId + '/' + $rootScope.authToken + '/' + $rootScope.sessionCookie + '?source=PCSocial'
       $scope.socialIframeURL = $sce.trustAsResourceUrl url
 
