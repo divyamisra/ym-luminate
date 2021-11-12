@@ -1031,7 +1031,7 @@ angular.module 'trPcControllers'
             updateUserProfilePromise = NgPcInteractionService.updateUserRecord('custom_boolean2=' + angular.element($event.currentTarget).is(':checked') + '&cons_id=' + $scope.consId).then (response) ->
               if response.data.errorResponse
                 console.log 'There was an error processing your update. Please try again later.'
-	      $scope.dashboardPromises.push updateUserProfilePromise
+              $scope.dashboardPromises.push updateUserProfilePromise
               $scope.getSchoolPlan()
           else
             schoolParams = '&field_id=' + $event.currentTarget.id + '&value=' + $event.currentTarget.value + '&type=' + $event.currentTarget.type
