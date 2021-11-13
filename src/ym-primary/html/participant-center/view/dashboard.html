@@ -1021,8 +1021,8 @@
 	    <h2 class="h3 text-center">
 		  School Plan
 	    </h2>
-	    <div class="ym-pc-dashboard-section-plan">
-	      <div class="row ym-pc-dashboard-event-dates" ng-if="startDate || moneyDueDate" ng-cloak>
+	    <div class="ym-pc-dashboard-section-plan" ng-if="EventStartDate" ng-cloak>
+	      <div class="row ym-pc-dashboard-event-dates">
 					<div class="col-md-6" style="padding:0">
             <div class="form-group">
               <label for="EventStartDate">Event Start Date</label>
@@ -1086,7 +1086,10 @@
 						</a>
 					</p>
 				</div>
-	  </div>
+	     </div>
+     </div>
+     <div class="ym-pc-dashboard-section-plan text-center" ng-if="!EventStartDate" ng-cloak>
+       <p>No plan data available for this School.</p>
      </div>
  </div>
  <div class="col-sm-6 ym-pc-dashboard-coordinator-progress-section__column">
