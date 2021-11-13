@@ -1237,8 +1237,6 @@ angular.module 'trPcControllers'
             $scope.activity3amt = studentsPledgedActivities['3'].count
           else
             $scope.activity3amt = 0
-          #add points
-          $scope.points.students = Math.floor $scope.studentsPledgedTotal/25
 
       $scope.showMobileApp = ->
         if not $scope.viewMobileApp
