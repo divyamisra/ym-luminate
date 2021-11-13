@@ -1015,7 +1015,8 @@ angular.module 'trPcControllers'
               $scope.StudentRecruitmentGoal = school.StudentRecruitmentGoal
               $scope.FinnsMissionCompletedGoal = school.FinnsMissionCompletedGoal
               $scope.coordinatorPoints = JSON.parse(school.PointsDetail);
- 
+              $scope.TotalPointsEarned = school.TotalPointsEarned; 
+						
             NgPcConstituentService.getUserRecord('fields=custom_boolean2&cons_id=' + $scope.consId).then (response) ->
               if response.data.errorResponse
                 console.log 'There was an error getting user profile. Please try again later.'
