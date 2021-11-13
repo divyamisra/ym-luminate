@@ -443,6 +443,28 @@ div[id^="taTextElement"]:focus {
 	margin: 0 0 30px;
 }
 
+.ym-pc-dashboard-total-points {
+	margin-top:20px;
+	border:1px solid $event-secondary;
+	padding:10px;
+	border-radius:10px;
+}
+
+.ym-pc-dashboard-school-plan {
+	max-height:600px;
+	overflow:scroll;
+	
+  hr {
+		margin-top:5px;
+		margin-bottom:5px;
+	}
+	
+	.plan-heading {
+    color: $event-secondary;
+    font-weight: bold;
+	}
+}
+
 .ym-pc-dashboard-coordinator-school-challenge-section {
 	background: none;
 	padding: 0px;
