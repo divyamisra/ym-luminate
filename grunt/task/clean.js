@@ -540,4 +540,36 @@ module.exports = {
       }
     ]
   },
+  "ym-rewards": {
+    files: [
+      {
+        expand: true,
+        cwd: 'dist/ym-rewards/css/',
+        src: [
+          '**/*'
+        ]
+      },
+      {
+        expand: true,
+        cwd: 'dist/ym-rewards/js/',
+        src: [
+          '**/*'
+        ]
+      },
+      {
+        expand: true,
+        cwd: 'dist/ym-rewards/html/',
+        src: [
+          '**/*'
+        ]
+      },
+      {
+        expand: true,
+        cwd: 'dist/ym-rewards/image/',
+        src: [
+          '**/*'
+        ]
+      }
+    ]
+  },
 }
