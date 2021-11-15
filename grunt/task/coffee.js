@@ -187,5 +187,20 @@ module.exports = {
         'src/jump-hoops/coffee/**/*.*',
       ]
     }
+  },
+  "ym-rewards": {
+    files: {
+      'dist/ym-rewards/js/main.js': [
+        'src/ym-rewards/coffee/init.coffee',
+        'src/ym-rewards/coffee/config/*.*',
+        'src/global/coffee/service/*.*',
+        'src/youth-markets/coffee/service/*.*',
+        'src/youth-markets/coffee/controller/*.*',
+        'src/ym-rewards/coffee/service/*.*',
+        'src/global/coffee/directive/*.*',
+        'src/ym-rewards/coffee/directive/*.*',
+        'src/ym-rewards/coffee/**/*.*'
+      ]
+    }
   }
 }
