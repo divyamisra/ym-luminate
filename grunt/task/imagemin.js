@@ -228,5 +228,17 @@ module.exports = {
         dest: 'dist/teens-of-impact/img/'
       }
     ]
+  },
+  "ym-rewards": {
+    files: [
+      {
+        expand: true,
+        cwd: 'src/ym-rewards/images/',
+        src: [
+          '*.{gif,GIF,jpg,JPG,png,PNG,svg,SVG}'
+        ],
+        dest: 'dist/ym-rewards/images/'
+      }
+    ]
   }
 }
