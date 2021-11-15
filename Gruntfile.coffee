@@ -270,6 +270,16 @@ module.exports = (grunt) ->
     runTargetedTask [
       'copy'
     ], 'teens-of-impact-scripts'
+    runTargetedTask [
+      'clean'
+      'sass'
+      'postcss'
+      'cssmin'
+      'uglify'
+      'replace'
+      'htmlmin'
+      'imagemin'
+    ], 'ym-rewards'
     return
   grunt.registerTask 'dev', ->
     devTasks = [
@@ -324,6 +334,9 @@ module.exports = (grunt) ->
       if task.indexOf('notify:') is -1
         devTasks.push task
     config.watch['teens-of-impact'].tasks.forEach (task) ->
+      if task.indexOf('notify:') is -1
+        devTasks.push task
+    config.watch['ym-rewards'].tasks.forEach (task) ->
       if task.indexOf('notify:') is -1
         devTasks.push task
     devTasks.push 'watch'
