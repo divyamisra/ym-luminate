@@ -276,5 +276,15 @@ module.exports = {
         dest: "dist/teens-of-impact/js/pushy.min.js"
       }
     ]
+  },
+  "ym-rewards": {
+    files: [
+      {
+        src: [
+          'dist/ym-rewards/js/main.js'
+        ],
+        dest: 'dist/ym-rewards/js/main.' + '<%= timestamp %>' + '.min.js'
+      }
+    ]
   }
 }
