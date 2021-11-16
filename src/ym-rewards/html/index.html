@@ -44,13 +44,13 @@
   		<div class="col-md-8">
 				<h2>Products</h2>
 				<product ng-repeat="product in productList" [product]="product" (productAdded)="addProductToCart($event)">
-					<div>{{product.name}} <a href="" name="{{product.name}}" points="{{product.points}}" ng-click="addProductToCart($event)">Add</a></div>
+					<div>{{product.productName}} <a href="" name="{{product.productName}}" points="{{product.points}}" ng-click="addProductToCart($event)">Add</a></div>
 				</product>
 			</div>
 			<div class="col-md-3">
 			  <h2>Basket</h2>
 				<shopping-cart ng-repeat="cartProduct in cartProductList" (productRemoved)="removeProduct($event)">
-					<div>{{cartProduct.name}} - {{cartProduct.points}}  <a href="" name="{{cartProduct.name}}" ng-click="removeProduct($event)">Remove</a></div>
+					<div>{{cartProduct.productName}} - {{cartProduct.points}}  <a href="" name="{{cartProduct.productName}}" ng-click="removeProduct($event)">Remove</a></div>
 				</shopping-cart>
 				Total Points in cart: {{totalPoints}}
 			</div>
