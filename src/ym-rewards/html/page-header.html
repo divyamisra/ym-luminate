@@ -1,0 +1,158 @@
+[[?x9x19x23x200x201x26x27x::x[[S4]]x::
+  <div class="ym-page-header ym-accent-color">
+    <div class="container">
+      <!-- [[?x9x::x[[S4]]x:: -->
+        <div class="col-sm-12">
+      <!-- ::
+        <div class="col-sm-9">
+      ]] -->
+        [[?x9x::x[[S4]]x::
+          [[?xcompletedx::x[[E334:[[S334:df_id]].donation]]x::
+          ::
+            <!-- Donation2 -->
+            <h1>
+              Your Gift to our Mission
+            </h1>
+            <p class="text-large">
+              With your lifesaving gift, we can build healthier lives, free of cardiovascular disease and stroke. Thank you!
+            </p>
+          ]]
+        ::]]
+        [[?x19x23x200x201x::x[[S4]]x::
+          <!-- PageServer and SPageServer -->
+          [[?xym_khc_participant_centerx::x[[S334:pagename]]x::
+            <!-- participant center -->
+            <h1>
+              [[S1:first_name]]'s Headquarters
+            </h1>
+            [[?xx::x[[E48:[[S80:trID]]-[[S1:cons_id]]:team-id]]x::
+              <!-- team ID is null -->
+              <p class="school-name">&nbsp;
+                
+              </p>
+              <p class="team-name">&nbsp;
+                
+              </p>
+            ::
+              <!-- team ID is non-null -->
+              [[?xx::x[[E43:[[S80:trID]]:company-id:[[E48:[[S80:trID]]-[[S1:cons_id]]:team-id]]]]x::
+                <!-- company ID is null -->
+                <p class="school-name">&nbsp;
+                  
+                </p>
+              ::
+                <!-- company ID is non-null -->
+                <p class="school-name">
+                  My School: <a title="[[E43:[[S80:trID]]:company-name:[[E48:[[S80:trID]]-[[S1:cons_id]]:team-id]]]]" href="TR?fr_id=[[S80:trID]]&pg=company&company_id=[[E43:[[S80:trID]]:company-id:[[E48:[[S80:trID]]-[[S1:cons_id]]:team-id]]]]">[[E43:[[S80:trID]]:company-name:[[E48:[[S80:trID]]-[[S1:cons_id]]:team-id]]]]</a>
+                </p>
+              ]]
+              <p class="team-name" ng-if="companyInfo.teamCount > 1" ng-cloak>
+                My Team: <a title="[[E48:[[S80:trID]]-[[S1:cons_id]]:team-name]]" href="TR?fr_id=[[S80:trID]]&pg=team&team_id=[[E48:[[S80:trID]]-[[S1:cons_id]]:team-id]]">[[E48:[[S80:trID]]-[[S1:cons_id]]:team-name]]</a>
+              </p>
+            ]]
+          ::
+            <!-- all other PageBuilder pages -->
+            [[?xx::x[[S24]]x::::
+              <!-- page title is non-null -->
+              <h1>
+                [[S24]]
+              </h1>
+            ]]
+          ]]
+        ::]]
+        [[?x26x::x[[S4]]x::
+          <!-- TR -->
+          [[?xpersonalxteamxcompanyx::x[[S334:pg]]x::
+            [[?xpersonalx::x[[S334:pg]]x::
+              <!-- personal page -->
+              <h1>
+                [[E48:[[S80:trID]]-[[S334:px]]:cons.first_name]] [[E130:[[T8:[[E48:[[S80:trID]]-[[S334:px]]:cons.last_name]]]] 0 1 substring]].
+              </h1>
+              [[?xx::x[[E48:[[S80:trID]]-[[S334:px]]:team-id]]x::::
+                <!-- team ID is non-null -->
+                [[?xx::x[[E43:[[S80:trID]]:company-id:[[E48:[[S80:trID]]-[[S334:px]]:team-id]]]]x::::
+                  <!-- company ID is non-null -->
+                  <p class="school-name">
+                    My School: <a title="[[E43:[[S80:trID]]:company-name:[[E48:[[S80:trID]]-[[S334:px]]:team-id]]]]" href="TR?fr_id=[[S80:trID]]&pg=company&company_id=[[E43:[[S80:trID]]:company-id:[[E48:[[S80:trID]]-[[S334:px]]:team-id]]]]">[[E43:[[S80:trID]]:company-name:[[E48:[[S80:trID]]-[[S334:px]]:team-id]]]]</a>
+                  </p>
+                ]]
+                <p class="team-name" ng-if="numTeams > 1" ng-cloak>
+                  My Team: <a title="[[E48:[[S80:trID]]-[[S334:px]]:team-name]]" href="TR?pg=team&fr_id=[[S80:trID]]&team_id=[[E48:[[S80:trID]]-[[S334:px]]:team-id]]">[[E48:[[S80:trID]]-[[S334:px]]:team-name]]</a>
+                </p>
+              ]]
+            ::]]
+            [[?xteamx::x[[S334:pg]]x::
+              <!-- team page -->
+              <h1>
+                [[E43:[[S80:trID]]:name:[[S334:team_id]]]]
+              </h1>
+              [[?xx::x[[E43:[[S80:trID]]:company-id:[[S334:team_id]]]]x::::
+                <!-- company ID is non-null -->
+                <p class="school-name">
+                  School: <a title="[[E43:[[S80:trID]]:company-name:[[S334:team_id]]]]" href="TR?fr_id=[[S80:trID]]&pg=company&company_id=[[E43:[[S80:trID]]:company-id:[[S334:team_id]]]]">[[E43:[[S80:trID]]:company-name:[[S334:team_id]]]]</a>
+                </p>
+              ]]
+            ::]]
+            [[?xcompanyx::x[[S334:pg]]x::
+              <!-- company page -->
+              <h1>
+                <span ng-bind-html="companyName"></span>
+              </h1>
+              <p class="school-location h5" ng-if="companyCity" ng-cloak>
+                Located in <span ng-bind-html="companyCity"></span>, <span ng-bind-html="companyState"></span>
+              </p>
+            ::]]
+          ::
+            <!-- all other TR pages -->
+            <h1>
+            </h1>
+          ]]
+        ::]]
+        [[?x27x::x[[S4]]x::
+          <!-- TRR -->
+          [[?xrthanksx::x[[S334:pg]]x::
+            <h1>
+              Thank You
+            </h1>
+          ::
+            <h1>
+              Sign Up
+            </h1>
+            [[?xx::x[[S80:frCompanyId]]x::::
+              <div ng-if="companyName" ng-cloak>
+                <div ng-if="!companyCity" ng-cloak>
+                  <p class="school-name">
+                    My School: <a title="{{companyName}}" href="TR?fr_id=[[S80:trID]]&pg=company&company_id=[[S80:frCompanyId]]"><span ng-bind-html="companyName"></span></a>
+                  </p>
+                [[?xx::x[[S80:frTJoin]]x::::
+                  <p class="team-name hidden">
+                    My Team: <a title="[[E43:[[S80:trID]]:name:[[S80:frTJoin]]]]" href="TR?fr_id=[[S80:trID]]&pg=team&team_id=[[S80:frTJoin]]">[[E43:[[S80:trID]]:name:[[S80:frTJoin]]]]</a>
+                  </p>
+                ]]
+                </div>
+                <div ng-if="companyCity" ng-cloak>
+                  <p class="school-name-center text-center h5">
+                    <a title="{{companyName}}" href="TR?fr_id=[[S80:trID]]&pg=company&company_id=[[S80:frCompanyId]]"><span ng-bind-html="companyName"></span></a>
+                  </p>
+                  <p class="school-location text-center h5" ng-if="companyCity" ng-cloak>
+                    Located in <span ng-bind-html="companyCity"></span>, <span ng-bind-html="companyState"></span>
+                  </p>
+                </div>
+              </div>
+            ]]
+          ]]
+        ::]]
+      </div>
+      [[?
+        [[?xpersonalxteamxcompanyx::x[[S334:pg]]x::T::]]
+        [[?xym_khc_participant_centerx::x[[S334:pagename]]x::T::]]
+      ::T::
+        <div class="ym-page-header-related hidden-xs">
+          <div class="ym-page-header-monster">
+            <img src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/ym-primary/image/fy22/header-hearthealthy-fy22.png" alt="Our 2021-2022 Heart Healthy Heroes">
+          </div>
+        </div>
+      ::]]
+    </div>
+  </div>
+::]]
