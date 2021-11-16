@@ -9,9 +9,48 @@ angular.module 'ahaLuminateControllers'
     ($rootScope, $scope, $httpParamSerializer, AuthService, CatalogService, $timeout) ->
       $dataRoot = angular.element '[data-aha-luminate-root]'
       consId = $dataRoot.data('cons-id') if $dataRoot.data('cons-id') isnt ''
-      $scope.regEventId = ''
       $scope.protocol = window.location.protocol
 
+      $scope.productList = []
+      $scope.cartProductList = []
+
+      $scope.getSchoolPlan = ->
+        ZuriService.schoolPlanData '&method=GetSchoolPlan&CompanyId=' + $scope.participantRegistration.companyInformation.companyId + '&EventId=' + $scope.frId,
+          failure: (response) ->
+          error: (response) ->
+          success: (response) ->
+            angular.forEach response.data.company, (school) ->
+              $scope.coordinatorPoints = JSON.parse(school.PointsDetail)
+              $scope.TotalPointsEarned = school.TotalPointsEarned
+
+      $scope.getProducts = ->
+        ZuriService.schoolPlanData '&method=GetSchoolProducts&CompanyId=' + $scope.participantRegistration.companyInformation.companyId + '&EventId=' + $scope.frId,
+          failure: (response) ->
+          error: (response) ->
+          success: (response) ->
+            $scope.productList = response.data.company.products
+
+      $scope.addProductToCart = (product) ->
+        productExistInCart = $scope.cartProductList.find(name of name: name == product.currentTarget.name)
+        if !productExistInCart
+          $scope.cartProductList.push
+            name: product.currentTarget.name
+            points: product.currentTarget.attributes.points.value
+            num: 1
+          # enhance "porduct" opject with "num" property
+          getTotalPoints()
+          return
+        productExistInCart.num += 1
+        productExistInCart.points = productExistInCart.points * productExistInCart.num
+        getTotalPoints()
+
+      $scope.removeProduct = (product) ->
+        $scope.cartProductList = $scope.cartProductList.filter(name of name: name != product.currentTarget.name)
+        getTotalPoints()
+
+      getTotalPoints = ->
+        $scope.totalPoints = $scope.cartProductList.map(Number.parseInt(item.points)).reduce((acc + curr of acc) curr of item, 0)
+      
       $scope.headerLoginInfo = 
         user_name: ''
         password: ''
