@@ -6,8 +6,9 @@ angular.module 'ahaLuminateControllers'
     'AuthService'
     'TeamraiserParticipantService'
     'TeamraiserRegistrationService'
+    'CatalogService'
     '$timeout'
-    ($rootScope, $scope, $httpParamSerializer, AuthService, TeamraiserParticipantService, TeamraiserRegistrationService, $timeout) ->
+    ($rootScope, $scope, $httpParamSerializer, AuthService, TeamraiserParticipantService, TeamraiserRegistrationService, CatalogService, $timeout) ->
       $dataRoot = angular.element '[data-aha-luminate-root]'
       consId = $dataRoot.data('cons-id') if $dataRoot.data('cons-id') isnt ''
       $scope.regEventId = ''
@@ -28,7 +29,7 @@ angular.module 'ahaLuminateControllers'
       if not consId or not luminateExtend.global.isParticipant
         setRegEventId()
       else
-        TeamraiserParticipantService.getRegisteredTeamraisers 'cons_id=' + consId + '&event_type=' + encodeURIComponent('YM Kids Heart Challenge 2022'),
+        CatalogService.getRegisteredTeamraisers 'cons_id=' + consId + '&event_type=' + encodeURIComponent('YM Kids Heart Challenge 2022'),
           error: ->
             setRegEventId()
           success: (response) ->
@@ -42,20 +43,5 @@ angular.module 'ahaLuminateControllers'
               if numberEvents is 1
                 regEventId = teamraisers[0].id
               setRegEventId numberEvents, regEventId
-     
-      $scope.headerLoginInfo = 
-        user_name: ''
-        password: ''
-      
-      $scope.submitHeaderLogin = ->
-        AuthService.login $httpParamSerializer($scope.headerLoginInfo), 
-          error: ->
-            angular.element('.js--default-header-login-form').submit()
-          success: ->
-            if not $scope.headerLoginInfo.ng_nexturl or $scope.headerLoginInfo.ng_nexturl is ''
-#              window.location = window.location.href
-              window.location = $rootScope.secureDomain + 'site/SPageServer?pagename=ym_khc_my_events'
-            else
-              window.location = $scope.headerLoginInfo.ng_nexturl
-            
+                
   ]
