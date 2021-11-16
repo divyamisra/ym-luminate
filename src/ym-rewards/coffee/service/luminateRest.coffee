@@ -45,7 +45,22 @@ angular.module 'ahaLuminateApp'
                   $q.reject()
                 else
                   response
-      
+                  
+      luminateExtendRequest: (apiServlet, requestData, includeAuth, includeFrId, callback) ->
+        if not luminateExtend
+          # TODO
+        else
+          if not requestData
+            # TODO
+          else
+            if includeFrId
+              requestData += '&fr_id=' + $rootScope.frId + '&s_trID=' + $rootScope.frId
+            luminateExtend.api 
+              api: apiServlet
+              data: requestData
+              requiresAuth: includeAuth
+              callback: callback or angular.noop
+                  
       addressBookRequest: (requestData, includeAuth) ->
         this.request 'CRAddressBookAPI', requestData, includeAuth, false
       
