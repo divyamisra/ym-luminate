@@ -63,12 +63,12 @@
          <div class="ym-progress__stats">
             <div class="ym-progress__date" ng-if="startDate && startDate != '' && startDate != 'User Provided No Response'" ng-cloak>
                <p>
-                  Our event date is <strong>{{startDate | date:'MM/dd/yyyy'}} <span ng-if="startDate != endDate && endDate != ''" ng-cloak> thru {{endDate | date:'MM/dd/yyyy'}}</span></strong>
+                  Our event date is <strong>{{EventStartDate | date:'MM/dd/yyyy'}} <span ng-if="EventStartDate != EventEndDate && EventEndDate != ''" ng-cloak> thru {{EventEndDate | date:'MM/dd/yyyy'}}</span></strong>
                </p>
             </div>
-            <div class="ym-progress__moneydue" ng-if="moneyDueDate && moneyDueDate != '' && moneyDueDate != 'User Provided No Response'" ng-cloak>
+            <div class="ym-progress__moneydue" ng-if="DonationDueDate && DonationDueDate != '' && DonationDueDate != 'User Provided No Response'" ng-cloak>
                <p>
-                  Our donation due date is <strong>{{moneyDueDate | date:'MM/dd/yyyy'}}</strong>
+                  Our donation due date is <strong>{{DonationDueDate | date:'MM/dd/yyyy'}}</strong>
                </p>
             </div>
             <div class="ym-progress__studentgoal" ng-if="schoolStudentGoal && schoolStudentGoal != '' && schoolStudentGoal != 'User Provided No Response'" ng-cloak>
