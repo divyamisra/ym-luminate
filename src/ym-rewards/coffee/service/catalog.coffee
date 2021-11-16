@@ -3,7 +3,8 @@ angular.module 'ahaLuminateApp'
     '$rootScope'
     '$http'
     '$sce'
-    ($rootScope, $http, $sce) ->
+    'LuminateRESTService'
+    ($rootScope, $http, $sce, LuminateRESTService) ->
       getSchoolData: (requestData, callback) ->
         if $rootScope.tablePrefix is 'heartdev'
           url = '//tools.heart.org/aha_ym22_dev/api/school/' + requestData + '/meta?key=k7wvZXDpmDpenVcp'
