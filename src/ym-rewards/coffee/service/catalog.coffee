@@ -39,11 +39,11 @@ angular.module 'ahaLuminateApp'
           .then (response) ->
             participantRegistration = response.data.getRegistrationResponse?.registration
             if not participantRegistration
-              $rootScope.participantRegistration = -1
+              $scope.participantRegistration = -1
             else
               participantRegistration.goalFormatted = if participantRegistration.goal then $filter('currency')(participantRegistration.goal / 100, '$').replace('.00', '') else '$0'
-              $rootScope.participantRegistration = participantRegistration
+              $scope.participantRegistration = participantRegistration
               if not participantRegistration.companyInformation?.companyId
-                $rootScope.companyInfo = -1
+                $scope.companyInfo = -1
             response
   ]
