@@ -29,7 +29,7 @@ angular.module 'ahaLuminateControllers'
           failure: (response) ->
           error: (response) ->
           success: (response) ->
-            $scope.productList = response.data.company.products
+            $scope.productList = response.data.company
 
       $scope.addProductToCart = (product) ->
         productExistInCart = $scope.cartProductList.find(name of name: name == product.currentTarget.name)
