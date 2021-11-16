@@ -160,7 +160,6 @@ angular.module 'ahaLuminateControllers'
                   len = schoolDataRows.length
                   while i < len
                     if $scope.companyId is schoolDataRows[i][schoolDataHeaders.CID]
-                      $scope.schoolStudentGoal = schoolDataRows[i][schoolDataHeaders.PG]
                       $scope.hideAmount = schoolDataRows[i][schoolDataHeaders.HA]
                       $scope.notifyName = schoolDataRows[i][schoolDataHeaders.YMDN]
                       $scope.notifyEmail = schoolDataRows[i][schoolDataHeaders.YMDE]
