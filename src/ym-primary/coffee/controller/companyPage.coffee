@@ -91,7 +91,7 @@ angular.module 'ahaLuminateControllers'
             $scope.activity3amt = 0
 
       $scope.getSchoolPlan = () ->
-        ZuriService.schoolPlanData '&method=GetSchoolPlan&CompanyId=' + $scope.participantRegistration.companyInformation.companyId + '&EventId=' + $scope.frId,
+        ZuriService.schoolPlanData '&method=GetSchoolPlan&CompanyId=' + $scope.companyId + '&EventId=' + $scope.frId,
           failure: (response) ->
           error: (response) ->
           success: (response) ->
