@@ -5,8 +5,9 @@ angular.module 'ahaLuminateControllers'
     '$httpParamSerializer'
     'AuthService'
     'CatalogService'
+    'TeamraiserRegistrationService'
     '$timeout'
-    ($rootScope, $scope, $httpParamSerializer, AuthService, CatalogService, $timeout) ->
+    ($rootScope, $scope, $httpParamSerializer, AuthService, CatalogService, TeamraiserRegistrationService, $timeout) ->
       $dataRoot = angular.element '[data-aha-luminate-root]'
       consId = $dataRoot.data('cons-id') if $dataRoot.data('cons-id') isnt ''
       $scope.protocol = window.location.protocol
@@ -66,10 +67,11 @@ angular.module 'ahaLuminateControllers'
               window.location = $scope.headerLoginInfo.ng_nexturl
       
       if $scope.consId
-        CatalogService.getRegistration
+        TeamraiserRegistrationService.getRegistration
           success: (response) ->
             participantRegistration = response.getRegistrationResponse?.registration
             if participantRegistration
               $rootScope.participantRegistration = participantRegistration
-                
+              $scope.getSchoolPlan()
+              $scope.getSchoolProducts()
   ]
