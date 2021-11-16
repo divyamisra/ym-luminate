@@ -15,7 +15,7 @@ angular.module 'ahaLuminateControllers'
       $scope.cartProductList = []
 
       $scope.getSchoolPlan = ->
-        ZuriService.schoolPlanData '&method=GetSchoolPlan&CompanyId=' + $scope.participantRegistration.companyInformation.companyId + '&EventId=' + $scope.frId,
+        CatalogService.schoolPlanData '&method=GetSchoolPlan&CompanyId=' + $scope.participantRegistration.companyInformation.companyId + '&EventId=' + $scope.frId,
           failure: (response) ->
           error: (response) ->
           success: (response) ->
@@ -24,7 +24,7 @@ angular.module 'ahaLuminateControllers'
               $scope.TotalPointsEarned = school.TotalPointsEarned
 
       $scope.getProducts = ->
-        ZuriService.schoolPlanData '&method=GetSchoolProducts&CompanyId=' + $scope.participantRegistration.companyInformation.companyId + '&EventId=' + $scope.frId,
+        CatalogService.schoolPlanData '&method=GetSchoolProducts&CompanyId=' + $scope.participantRegistration.companyInformation.companyId + '&EventId=' + $scope.frId,
           failure: (response) ->
           error: (response) ->
           success: (response) ->
