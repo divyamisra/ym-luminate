@@ -28,7 +28,7 @@ angular.module 'ahaLuminateApp'
       else
         rootPath = '../aha-luminate/'
       rootPath
-    programKey: 'ym-primary'
+    programKey: 'ym-rewards'
 
 angular.module 'ahaLuminateApp'
   .run [
@@ -36,7 +36,7 @@ angular.module 'ahaLuminateApp'
     '$sce'
     'APP_INFO'
     ($rootScope, $sce, APP_INFO) ->
-      $rootScope.eventType = 'ym-primary'
+      $rootScope.eventType = 'ym-rewards'
       $rootScope.tablePrefix = luminateExtend.global.tablePrefix
       $rootScope.nonSecureDomain = luminateExtend.global.path.nonsecure.split('/site/')[0] + '/'
       $rootScope.secureDomain = luminateExtend.global.path.secure.split('/site/')[0] + '/'
@@ -50,18 +50,10 @@ angular.module 'ahaLuminateApp'
       $rootScope.authToken = $dataRoot.data('auth-token') if $dataRoot.data('auth-token') isnt ''
       $rootScope.sessionCookie = $dataRoot.data('session-cookie') if $dataRoot.data('session-cookie') isnt ''
       $rootScope.dev_branch = $dataRoot.data('dev-branch') if $dataRoot.data('dev-branch') isnt ''
-      $rootScope.facebookFundraisersEnabled = $dataRoot.data('facebook-fundraisers-enabled') is 'TRUE'
-      $rootScope.facebookFundraiserId = $dataRoot.data('facebook-fundraiser-id') if $dataRoot.data('facebook-fundraiser-id') isnt ''
   ]
 
 angular.element(document).ready ->
   appModules = [
     'ahaLuminateApp'
   ]
-
-  try
-    angular.module 'trPcApp'
-    appModules.push 'trPcApp'
-  catch error
-
   angular.bootstrap document, appModules
