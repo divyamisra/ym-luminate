@@ -1,4 +1,4 @@
-angular.module 'trPcApp'
+angular.module 'ahaLuminateApp'
   .factory 'LuminateRESTService', [
     '$rootScope'
     '$q'
