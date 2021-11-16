@@ -1,5 +1,5 @@
 angular.module 'trPcApp'
-  .factory 'NgPcLuminateRESTService', [
+  .factory 'LuminateRESTService', [
     '$rootScope'
     '$q'
     '$http'
