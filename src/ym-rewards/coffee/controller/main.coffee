@@ -34,7 +34,7 @@ angular.module 'ahaLuminateControllers'
           success: (response) ->
             participantRegistration = response.getRegistrationResponse?.registration
             if participantRegistration
-              $scope.participantRegistration = participantRegistration
+              $rootScope.participantRegistration = participantRegistration
 
       setRegEventId = (numberEvents = 0, regEventId = '') ->
         $scope.numberEvents = numberEvents
