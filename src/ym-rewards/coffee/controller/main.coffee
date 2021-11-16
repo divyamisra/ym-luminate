@@ -13,6 +13,21 @@ angular.module 'ahaLuminateControllers'
       consId = $dataRoot.data('cons-id') if $dataRoot.data('cons-id') isnt ''
       $scope.regEventId = ''
       $scope.protocol = window.location.protocol
+
+      $scope.headerLoginInfo = 
+        user_name: ''
+        password: ''
+      
+      $scope.submitHeaderLogin = ->
+        AuthService.login $httpParamSerializer($scope.headerLoginInfo), 
+          error: ->
+            angular.element('.js--default-header-login-form').submit()
+          success: ->
+            if not $scope.headerLoginInfo.ng_nexturl or $scope.headerLoginInfo.ng_nexturl is ''
+#              window.location = window.location.href
+              window.location = $rootScope.secureDomain + 'site/SPageServer?pagename=ym_coordinator_reward_center'
+            else
+              window.location = $scope.headerLoginInfo.ng_nexturl
       
       if $scope.consId
         TeamraiserRegistrationService.getRegistration
