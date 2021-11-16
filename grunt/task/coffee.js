@@ -194,8 +194,6 @@ module.exports = {
         'src/ym-rewards/coffee/init.coffee',
         'src/ym-rewards/coffee/config/*.*',
         'src/global/coffee/service/*.*',
-        'src/youth-markets/coffee/service/*.*',
-        'src/youth-markets/coffee/controller/*.*',
         'src/ym-rewards/coffee/service/*.*',
         'src/global/coffee/directive/*.*',
         'src/ym-rewards/coffee/directive/*.*',
