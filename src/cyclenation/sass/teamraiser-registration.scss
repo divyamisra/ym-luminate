@@ -342,15 +342,28 @@ svg.fa-info-circle {
   
 }
  
-
 // tfind step
 #team_find_registration_type_container {
   display:none;
 }
-// tfind step, hiding team recruit goal till aha ready
-#team_find_new_team_recruiting_goal {
-  display: none!important;
+
+#team_find_new_team_attributes {
+  flex: 0 0 100%!important;
+  max-width: 100%!important;
 }
+
+.recruit-description {
+  font-size: 16px;
+  font-style: italic;
+}
+
+#team_find_new_fundraising_goal .form-content {
+  margin-bottom: 0!important;
+}
+// tfind step, hiding team recruit goal till aha ready
+// #team_find_new_team_recruiting_goal {
+//   display: none!important;
+// }
 // #team_find_search_button_container {
 //   @extend .mt-2;
 // }
@@ -533,9 +546,11 @@ div.responsive div.ErrorMessage.page-error>span.field-error-text {
       margin-left: inherit;
       font-size: inherit;
     }
-    #team_find_section_header,
     #team_find_section_body {
       display:none;
+    }
+    #team_find_section_header {
+      display:none!important;
     }
   }
 
