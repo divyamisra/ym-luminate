@@ -275,6 +275,7 @@ module.exports = (grunt) ->
       'sass'
       'postcss'
       'cssmin'
+      'coffee'
       'uglify'
       'replace'
       'htmlmin'
