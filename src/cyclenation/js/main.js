@@ -3146,13 +3146,12 @@
 
 
     var recruitGoalMax = $('body').data("reg-recruit-max");
+    
+    if (recruitGoalMax == '') {
+      recruitGoalMax = '8';
+    }
+
     console.log('Recruitment goal max', recruitGoalMax)
-
-    // if(recruitGoalMax = '') {
-    //   recruitGoalMax = '8'
-    // }
-
-    // var recruitGoalMax = '10'
 
     setTimeout(function() { 
       // $('#team_find_new_team_recruiting_goal').children().prepend('<div class="regError"></div><span class="field-required" id="team_find_new_team_recruiting_goal_required"></span>');
