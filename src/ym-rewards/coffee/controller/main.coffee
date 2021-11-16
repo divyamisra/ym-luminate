@@ -30,7 +30,7 @@ angular.module 'ahaLuminateControllers'
               window.location = $scope.headerLoginInfo.ng_nexturl
       
       if $scope.consId
-        TeamraiserRegistrationService.getRegistration
+        CatalogService.getRegistration
           success: (response) ->
             participantRegistration = response.getRegistrationResponse?.registration
             if participantRegistration
