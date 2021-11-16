@@ -32,17 +32,17 @@ angular.module 'ahaLuminateControllers'
             $scope.productList = response.data.company[0]
 
       $scope.addProductToCart = (product) ->
-        productExistInCart = $scope.cartProductList.find(name of name: name == product.currentTarget.name)
+        productExistInCart = $scope.cartProductList.find((element) ->
+          element.name == product.currentTarget.name
+        )
         if !productExistInCart
           $scope.cartProductList.push
-            name: product.currentTarget.name
+            productName: product.currentTarget.name
             points: product.currentTarget.attributes.points.value
             num: 1
-          # enhance "porduct" opject with "num" property
-          getTotalPoints()
-          return
-        productExistInCart.num += 1
-        productExistInCart.points = productExistInCart.points * productExistInCart.num
+        else
+          productExistInCart.num += 1
+          productExistInCart.points = productExistInCart.points * productExistInCart.num
         getTotalPoints()
 
       $scope.removeProduct = (product) ->
@@ -50,7 +50,11 @@ angular.module 'ahaLuminateControllers'
         getTotalPoints()
 
       getTotalPoints = ->
-        $scope.totalPoints = $scope.cartProductList.map(Number.parseInt(item.points)).reduce((acc + curr of acc) curr of item, 0)
+        $scope.totalPoints = $scope.cartProductList.map((item) ->
+          Number.parseInt item.points
+        ).reduce(((acc, curr) ->
+          acc + curr
+        ), 0)
       
       $scope.headerLoginInfo = 
         user_name: ''
