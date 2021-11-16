@@ -61,7 +61,7 @@
             [[C1:title]]
          </h2>
          <div class="ym-progress__stats">
-            <div class="ym-progress__date" ng-if="startDate && startDate != '' && startDate != 'User Provided No Response'" ng-cloak>
+            <div class="ym-progress__date" ng-if="EventStartDate && EventStartDate != '' && EventStartDate != 'User Provided No Response'" ng-cloak>
                <p>
                   Our event date is <strong>{{EventStartDate | date:'MM/dd/yyyy'}} <span ng-if="EventStartDate != EventEndDate && EventEndDate != ''" ng-cloak> thru {{EventEndDate | date:'MM/dd/yyyy'}}</span></strong>
                </p>
