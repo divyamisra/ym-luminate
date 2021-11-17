@@ -14,7 +14,7 @@ angular.module 'ahaLuminateControllers'
 
       $scope.productList = []
       $scope.cartProductList = []
-      $scope.TotalPoints = 0
+      $scope.TotalPointsInCart = 0
       
       $scope.getSchoolPlan = ->
         CatalogService.schoolPlanData '&method=GetSchoolPlan&CompanyId=' + $scope.participantRegistration.companyInformation.companyId + '&EventId=' + $scope.frId,
@@ -57,12 +57,12 @@ angular.module 'ahaLuminateControllers'
         getTotalPoints()
 
       getTotalPoints = ->
-        $scope.TotalPoints = $scope.cartProductList.map((item) ->
+        $scope.TotalPointsInCart = $scope.cartProductList.map((item) ->
           Number.parseInt item.points
         ).reduce(((acc, curr) ->
           acc + curr
         ), 0)
-        $scope.TotalPointsAvailable = $scope.TotalPointsEarned - $scope.TotalPoints
+        $scope.TotalPointsAvailable = $scope.TotalPointsEarned - $scope.TotalPointsInCart
       
       $scope.headerLoginInfo = 
         user_name: ''
