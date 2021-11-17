@@ -46,7 +46,11 @@
   		<div class="col-md-8">
 				<h2>Products</h2>
 				<product ng-repeat="product in productList" [product]="product" (productAdded)="addProductToCart($event)">
-					<div>{{product.productName}} <a href="" name="{{product.productName}}" points="{{product.points}}" ng-click="addProductToCart($event)">Add</a></div>
+					<div style="margin-bottom:20px;">{{product.productName}}<br/>
+					     {{product.productDesc}}<Br/>
+					     Quantity Available: {{product.quantity}}<br/>
+					     <a href="" name="{{product.productName}}" points="{{product.points}}" ng-click="addProductToCart($event)">Add</a>
+					</div>
 				</product>
 			</div>
 			<div class="col-md-3">
@@ -54,7 +58,7 @@
 				<shopping-cart ng-repeat="cartProduct in cartProductList" (productRemoved)="removeProduct($event)">
 					<div>{{cartProduct.productName}} - {{cartProduct.points}}  <a href="" name="{{cartProduct.productName}}" ng-click="removeProduct($event)">Remove</a></div>
 				</shopping-cart>
-				Total Points in cart: {{TotalPoints}}
+				Total Points in cart: {{TotalPointsInCart}}
 			</div>
    </div>
 	</div>
