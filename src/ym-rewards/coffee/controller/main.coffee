@@ -24,7 +24,7 @@ angular.module 'ahaLuminateControllers'
               $scope.coordinatorPoints = JSON.parse(school.PointsDetail)
               $scope.TotalPointsEarned = school.TotalPointsEarned
 
-      $scope.getProducts = ->
+      $scope.getSchoolProducts = ->
         CatalogService.schoolPlanData '&method=GetSchoolProducts&CompanyId=' + $scope.participantRegistration.companyInformation.companyId + '&EventId=' + $scope.frId,
           failure: (response) ->
           error: (response) ->
