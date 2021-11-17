@@ -33,7 +33,7 @@ angular.module 'ahaLuminateControllers'
             $scope.productList = response.data.company[0]
 
       $scope.addProductToCart = (product) ->
-        if product.currentTarget.attributes.points.value > $scope.TotalPointsAvailable
+        if product.currentTarget.attributes.points.value <= $scope.TotalPointsAvailable
           productExistInCart = $scope.cartProductList.find((element) ->
             return element.productName == product.currentTarget.name
           )
