@@ -14,7 +14,8 @@ angular.module 'ahaLuminateControllers'
 
       $scope.productList = []
       $scope.cartProductList = []
-
+      $scope.TotalPoints = 0
+      
       $scope.getSchoolPlan = ->
         CatalogService.schoolPlanData '&method=GetSchoolPlan&CompanyId=' + $scope.participantRegistration.companyInformation.companyId + '&EventId=' + $scope.frId,
           failure: (response) ->
