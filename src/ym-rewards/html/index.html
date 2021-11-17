@@ -54,7 +54,7 @@
 				<shopping-cart ng-repeat="cartProduct in cartProductList" (productRemoved)="removeProduct($event)">
 					<div>{{cartProduct.productName}} - {{cartProduct.points}}  <a href="" name="{{cartProduct.productName}}" ng-click="removeProduct($event)">Remove</a></div>
 				</shopping-cart>
-				Total Points in cart: {{totalPoints}}
+				Total Points in cart: {{TotalPoints}}
 			</div>
    </div>
 	</div>
