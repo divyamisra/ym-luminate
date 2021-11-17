@@ -33,18 +33,21 @@ angular.module 'ahaLuminateControllers'
             $scope.productList = response.data.company[0]
 
       $scope.addProductToCart = (product) ->
-        productExistInCart = $scope.cartProductList.find((element) ->
-          element.name == product.currentTarget.name
-        )
-        if !productExistInCart
-          $scope.cartProductList.push
-            productName: product.currentTarget.name
-            points: product.currentTarget.attributes.points.value
-            num: 1
+        if product.currentTarget.attributes.points.value > $scope.totalPointsAvailable
+          productExistInCart = $scope.cartProductList.find((element) ->
+            element.name == product.currentTarget.name
+          )
+          if !productExistInCart
+            $scope.cartProductList.push
+              productName: product.currentTarget.name
+              points: product.currentTarget.attributes.points.value
+              num: 1
+          else
+            productExistInCart.num += 1
+            productExistInCart.points = productExistInCart.points * productExistInCart.num
+          getTotalPoints()
         else
-          productExistInCart.num += 1
-          productExistInCart.points = productExistInCart.points * productExistInCart.num
-        getTotalPoints()
+          alert "Not enough points available"
 
       $scope.removeProduct = (product) ->
         $scope.cartProductList = $scope.cartProductList.filter(name of name: name != product.currentTarget.name)
@@ -56,6 +59,7 @@ angular.module 'ahaLuminateControllers'
         ).reduce(((acc, curr) ->
           acc + curr
         ), 0)
+        $scope.totalPointsAvailable = $scope.totalPointsEarned - $scope.totalPoints
       
       $scope.headerLoginInfo = 
         user_name: ''
