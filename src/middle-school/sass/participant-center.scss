@@ -153,6 +153,11 @@ select#ym-update-challenge {
     font-weight: bold;
   }
 
+  .ym-pc-dashboard-school-goals {
+    input {
+      max-width:200px;
+    }
+  }
   .ym-pc-dashboard-total-points {
     margin-top:20px;
     border:1px solid $event-secondary-heading;
