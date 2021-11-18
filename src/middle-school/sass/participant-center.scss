@@ -134,6 +134,32 @@ select#ym-update-challenge {
 	}
 }
 
+.ym-pc-dashboard-coordinator-school-plan-section {
+  max-height:600px;
+  overflow:scroll;
+	
+  h2.h3 {
+    color: $event-secondary-heading;
+  }
+  
+  hr {
+    margin-top:5px;
+    margin-bottom:5px;
+  }
+	
+  .plan-heading {
+    color: $event-secondary-heading;
+    font-weight: bold;
+  }
+
+  .ym-pc-dashboard-total-points {
+    margin-top:20px;
+    border:1px solid $event-secondary-heading;
+    padding:10px;
+    border-radius:10px;
+  }
+}
+
 .schoolStatusTitle {
     font-size: 18px;
     font-weight: 700;
