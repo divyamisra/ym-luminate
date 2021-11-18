@@ -992,6 +992,87 @@
 			</div>
 		</div>
 		<div ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true' &amp;&amp; location != '/dashboard-student'" ng-cloak>
+			<section class="ym-pc-dashboard-coordinator-school-plan-section" aria-label="School Plan Selection">
+				    <div class="ym-pc-dashboard-coordinator-progress-box">
+					<h2 class="h3 text-center">
+					    School Plan
+					</h2>
+			    <div class="row">
+				<div class="col-sm-6 ym-pc-dashboard-coordinator-progress-section__column">
+					<div class="ym-pc-dashboard-section-plan" ng-if="EventStartDate" ng-cloak>
+					    <div class="row ym-pc-dashboard-event-dates">
+						<div class="col-md-6" style="padding:0">
+						    <div class="form-group">
+							<label for="EventStartDate">Event Start Date</label>
+							<div class="input-group">
+							    <input type="date" min="{{theDate | date:'yyyy-MM-dd'}}" class="form-control" id="EventStartDate" ng-model="EventStartDate" aria-label="Event Start Date" ng-blur="putSchoolPlan($event)" />
+							</div>
+						    </div>
+						</div>
+						<div class="col-md-6" style="padding:0">
+						    <div class="form-group">
+							<label for="EventEndDate">Event End Date</label>
+							<div class="input-group">
+							    <input type="date" min="{{theDate | date:'yyyy-MM-dd'}}" class="form-control" id="EventEndDate" ng-model="EventEndDate" aria-label="Event End Date" ng-blur="putSchoolPlan($event)" />
+							</div>
+						    </div>
+						</div>
+					    </div>
+					    <div class="row ym-pc-dashboard-point-field" ng-cloak>
+						<div class="col-md-6" style="padding:0">
+						    <div class="form-group">
+							<label for="KickOffDate">Kick Off/Assembly Date</label>
+							<div class="input-group">
+							    <input type="date" min="{{theDate | date:'yyyy-MM-dd'}}" class="form-control" id="KickOffDate" ng-model="KickOffDate" aria-label="Kick Off/Assembly Date" ng-blur="putSchoolPlan($event)" />
+							</div>
+						    </div>
+						</div>
+						<div class="col-md-6" style="padding:0">
+						    <div class="form-group">
+							<label for="DonationDueDate">Donation Due Date</label>
+							<div class="input-group">
+							    <input type="date" min="{{theDate | date:'yyyy-MM-dd'}}" class="form-control" id="DonationDueDate" ng-model="DonationDueDate" aria-label="Donation Due Date" ng-blur="putSchoolPlan($event)" />
+							</div>
+						    </div>
+						</div>
+					    </div>
+					</div>
+					<div class="col-sm-6 ym-pc-dashboard-coordinator-progress-section__column">
+					    <div class="ym-pc-dashboard-school-goals" ng-cloak>
+						<div class="form-group">
+						    <label for="StudentRecruitmentGoal">Student Recruitment Goal:</label>
+						    <input type="number" class="form-control" id="StudentRecruitmentGoal" ng-model="StudentRecruitmentGoal" aria-label="Student Recruitment Goal" ng-blur="putSchoolPlan($event)">
+						</div>
+						<div class="form-group">
+						    <label for="FinnsMissionCompletedGoal">Finn's Mission Completion Goal:</label>
+						    <input type="number" class="form-control" id="FinnsMissionCompletedGoal" ng-model="FinnsMissionCompletedGoal" aria-label="Finn's Mission Completion Goal" ng-blur="putSchoolPlan($event)">
+						</div>
+						<div class="form-group">
+						    <label for="school_goal">Fundraising Goal:</label>
+						    <input type="text" class="form-control" id="school_goal" ng-model="companyProgress.goalFormatted" aria-label="School Fundraising Goal" ng-blur="putSchoolPlan($event)" onkeypress="return event.charCode == 36 || event.charCode == 44 || event.charCode == 46 || (event.charCode >= 48 && event.charCode <= 57)">
+						</div>
+					    </div>
+					    <div class="ym-pc-dashboard-send-emails checkbox" ng-class="{'checked': SendEmailOnBehalfOfCoordinator == true}" ng-cloak>
+						<label for="SendEmailOnBehalfOfCoordinator">
+					<input type="checkbox" name="SendEmailOnBehalfOfCoordinator" id="SendEmailOnBehalfOfCoordinator" ng-model="SendEmailOnBehalfOfCoordinator" ng-true-value="1" ng-false-value="0" ng-click="putSchoolPlan($event)"> 
+					Allow AHA to Send Emails to my students on my behalf
+					</label>
+					    </div>
+					    <div class="ym-pc-dashboard-total-points text-center">
+						<div><strong>Total Points: <span ng-bind-html="TotalPointsEarned"></span></strong></div>
+						<p>Points updated nightly at 3am<br/>
+						    <a href="" ng-click="showSchoolPlan()" class="ym-progress-update-plan" aria-label="Show School Plan">
+							<strong>Click here for more information</strong>
+						    </a>
+						</p>
+					    </div>
+					</div>
+				    </div>
+				    <div class="ym-pc-dashboard-section-plan text-center" ng-if="!EventStartDate" ng-cloak>
+					<p>No plan data available for this School.</p>
+				    </div>
+				</div>
+			</section>
 			<section class="ym-pc-dashboard-coordinator-progress-section" aria-label="Fundraising Progress Meters">
 				<div class="row">
 					<div class="col-sm-12 ym-pc-dashboard-coordinator-progress-section__column">
