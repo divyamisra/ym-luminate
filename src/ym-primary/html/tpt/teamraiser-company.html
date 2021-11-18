@@ -132,17 +132,17 @@
             <h2 class="ym-headline">
                Our Stats
             </h2>
-	    <div class="ym-promo-block__item ym-promo-block--circle" ng-if="FinnsMissionCompletedGoal != 0" ng-cloak>
+	    <div class="ym-promo-block__item ym-promo-block--circle" ng-if="CountOfStudentsCompletingFinnsMission != 0" ng-cloak>
 	      <div class="h2 ym-headline">
-    	        <span ng-if="FinnsMissionCompletedGoal < 1000" ng-cloak>{{FinnsMissionCompletedGoal}}</span>
-	        <span ng-if="FinnsMissionCompletedGoal > 999" ng-cloak>{{FinnsMissionCompletedGoal}}</span>
+    	        <span ng-if="FinnsMissionCompletedGoal < 1000" ng-cloak>{{CountOfStudentsCompletingFinnsMission}}</span>
+	        <span ng-if="FinnsMissionCompletedGoal > 999" ng-cloak>{{CountOfStudentsCompletingFinnsMission}}</span>
 	      </div>
-	      <div ng-if="FinnsMissionCompletedGoal == 1" ng-cloak>
+	      <div ng-if="CountOfStudentsCompletingFinnsMission == 1" ng-cloak>
 	        <p>
 	          student completed Finn's mission
 	        </p>
 	      </div>
-	      <div ng-if="FinnsMissionCompletedGoal != 1" ng-cloak>
+	      <div ng-if="CountOfStudentsCompletingFinnsMission != 1" ng-cloak>
 	        <p>
 	          students completed Finn's mission
 	        </p>
