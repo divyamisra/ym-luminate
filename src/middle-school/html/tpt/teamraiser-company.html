@@ -62,8 +62,8 @@
         </h2>
         <div class="ym-promo-block__item ym-promo-block--circle" ng-if="CountOfStudentsCompletingFinnsMission != 0" ng-cloak>
           <div class="h2 ym-headline">
-            <span ng-if="FinnsMissionCompletedGoal < 1000" ng-cloak>{{CountOfStudentsCompletingFinnsMission}}</span>
-            <span ng-if="FinnsMissionCompletedGoal > 999" ng-cloak>{{CountOfStudentsCompletingFinnsMission}}</span>
+            <span ng-if="CountOfStudentsCompletingFinnsMission < 1000" ng-cloak>{{CountOfStudentsCompletingFinnsMission}}</span>
+            <span ng-if="CountOfStudentsCompletingFinnsMission > 999" ng-cloak>{{CountOfStudentsCompletingFinnsMission}}</span>
           </div>
           <div ng-if="CountOfStudentsCompletingFinnsMission == 1" ng-cloak>
             <p>
