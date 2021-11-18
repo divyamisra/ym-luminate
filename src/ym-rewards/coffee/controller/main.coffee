@@ -78,6 +78,7 @@ angular.module 'ahaLuminateControllers'
               productName: product.currentTarget.name
               points: parseInt(product.currentTarget.attributes.points.value)
               totalPoints: quantity * product.currentTarget.attributes.points.value
+              quantity: parseInt(product.currentTarget.attributes.limit.value),
               origNum: quantity
               num: quantity
           else
