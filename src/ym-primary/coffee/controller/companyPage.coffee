@@ -98,6 +98,7 @@ angular.module 'ahaLuminateControllers'
               $scope.DonationDueDate = new Date school.DonationDueDate + ' 00:01'
               $scope.KickOffDate = new Date school.KickOffDate + ' 00:01'
               $scope.StudentRecruitmentGoal = school.StudentRecruitmentGoal
+              $scope.CountOfStudentsCompletingFinnsMission = school.CountOfStudentsCompletingFinnsMission
               $scope.FinnsMissionCompletedGoal = school.FinnsMissionCompletedGoal
               $scope.coordinatorPoints = JSON.parse(school.PointsDetail);
               $scope.TotalPointsEarned = school.TotalPointsEarned; 
