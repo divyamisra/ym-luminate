@@ -452,6 +452,15 @@ angular.module 'trPcControllers'
               $scope.refreshFundraisingProgress()
           $scope.dashboardPromises.push updateSchoolGoalPromise
 
+      $scope.schoolPlanInfo = {}
+      $scope.showSchoolPlan = ->
+        $scope.showSchoolPlanModal = $uibModal.open
+          scope: $scope
+          templateUrl: APP_INFO.rootPath + 'dist/middle-school/html/participant-center/modal/viewSchoolPlan.html'
+
+      $scope.cancelShowSchoolPlan = ->
+        $scope.showSchoolPlanModal.close()
+          
       if $scope.facebookFundraisersEnabled and $rootScope.facebookFundraiserId and $rootScope.facebookFundraiserId isnt ''
         $rootScope.facebookFundraiserConfirmedStatus = 'pending'
         FacebookFundraiserService.confirmFundraiserStatus()
@@ -835,7 +844,50 @@ angular.module 'trPcControllers'
               $scope.notifyEmail = schoolDataRows[i][schoolDataHeaders.YMDE]
               break
             i++
+          $scope.getSchoolPlan()
 
+      $scope.getSchoolPlan = () ->
+        ZuriService.schoolPlanData '&method=GetSchoolPlan&CompanyId=' + $scope.participantRegistration.companyInformation.companyId + '&EventId=' + $scope.frId,
+          failure: (response) ->
+          error: (response) ->
+          success: (response) ->
+            angular.forEach response.data.company, (school) ->
+              $scope.EventStartDate = new Date school.EventStartDate + ' 00:01'
+              $scope.EventEndDate = new Date school.EventEndDate + ' 00:01'
+              $scope.DonationDueDate = new Date school.DonationDueDate + ' 00:01'
+              $scope.KickOffDate = new Date school.KickOffDate + ' 00:01'
+              $scope.StudentRecruitmentGoal = school.StudentRecruitmentGoal
+              $scope.FinnsMissionCompletedGoal = school.FinnsMissionCompletedGoal
+              $scope.coordinatorPoints = JSON.parse(school.PointsDetail);
+              $scope.TotalPointsEarned = school.TotalPointsEarned; 
+						
+            NgPcConstituentService.getUserRecord('fields=custom_boolean2&cons_id=' + $scope.consId).then (response) ->
+              if response.data.errorResponse
+                console.log 'There was an error getting user profile. Please try again later.'
+              $scope.constituent = response.data.getConsResponse
+              $scope.SendEmailOnBehalfOfCoordinator = $scope.constituent.custom.boolean.content == 'true'
+	      
+
+      $scope.putSchoolPlan = ($event) ->
+        if $event.currentTarget.id == 'school_goal'
+          $scope.schoolGoalInfo.goal = $event.currentTarget.value
+          $scope.updateSchoolGoal()
+          $scope.getSchoolPlan()
+        else
+          if $event.currentTarget.type == 'checkbox'
+            updateUserProfilePromise = NgPcConstituentService.updateUserRecord('custom_boolean2=' + angular.element($event.currentTarget).is(':checked') + '&cons_id=' + $scope.consId).then (response) ->
+              if response.data.errorResponse
+                console.log 'There was an error processing your update. Please try again later.'
+              $scope.dashboardPromises.push updateUserProfilePromise
+              $scope.getSchoolPlan()
+          else
+            schoolParams = '&field_id=' + $event.currentTarget.id + '&value=' + $event.currentTarget.value + '&type=' + $event.currentTarget.type
+            ZuriService.schoolPlanData '&method=UpdateSchoolPlan&CompanyId=' + $scope.participantRegistration.companyInformation.companyId + '&EventId=' + $scope.frId + schoolParams,
+              failure: (response) ->
+              error: (response) ->
+              success: (response) ->
+                $scope.getSchoolPlan()
+                
       $scope.updateSchoolYears = ->
         delete $scope.schoolInfo.errorMessage
         newYears = $scope.companyProgress.schoolYears
