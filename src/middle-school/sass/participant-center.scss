@@ -164,7 +164,7 @@ select#ym-update-challenge {
     padding:10px;
     border-radius:10px;
     
-    a:active, a:focus, a:hover {
+    a, a:active, a:focus, a:hover {
       color: $event-primary-acc;
     }
   }
