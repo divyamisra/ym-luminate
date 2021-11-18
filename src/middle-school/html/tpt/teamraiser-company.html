@@ -60,7 +60,7 @@
         <h2 class="ym-headline">
           Our Stats
         </h2>
-        <div class="ym-promo-block__item ym-promo-block--circle">
+        <div class="ym-promo-block__item ym-promo-block--circle" ng-if="FinnsMissionCompletedGoal != 0" ng-cloak>
           <div class="h2 ym-headline">
             <span ng-if="FinnsMissionCompletedGoal < 1000" ng-cloak>{{FinnsMissionCompletedGoal}}</span>
             <span ng-if="FinnsMissionCompletedGoal > 999" ng-cloak>{{FinnsMissionCompletedGoal}}</span>
