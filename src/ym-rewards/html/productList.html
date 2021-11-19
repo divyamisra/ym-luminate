@@ -28,15 +28,15 @@
 					     {{product.productName}}<br/>
 					     {{product.productDesc}}<Br/>
 							 <div ng-if="product.detail.length > 0" ng-cloak>
-								 Sizes: <select id="{{product.productId}}" name="size">
-         				 <div ng-repeat="size in product.detail">
+								 Sizes: 
+         				 <span ng-repeat="detail in product.detail">
 						  			 {{detail.size}}
-					       </div>
+					       </span> 
 							 </div>
 							 {{product.points}} Points<Br/>
 					     Quantity Available: {{product.quantity}}<br/>
-					     <a class="btn btn-primary" href="" name="{{product.productName}}" limit="{{product.quantity}}" productid="{{product.productId}}" ng-click="addProductToCart($event)">Edit</a>
-					     <a class="btn btn-primary" href="" name="{{product.productName}}" limit="{{product.quantity}}" productid="{{product.productId}}" ng-click="addProductToCart($event)">Delete</a>
+					     <a class="btn btn-primary" href="/site/SPageNavigator/ym_coordinator_reward_center_predit.html?product={{product.productId}}" name="{{product.productName}}">Edit</a>
+					     <!-- <a class="btn btn-primary" href="" name="{{product.productName}}" productid="{{product.productId}}" ng-click="delProduct($event)">Delete</a> -->
           </div>
 				</product>
 				</div>
