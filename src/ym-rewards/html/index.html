@@ -6,10 +6,9 @@
   </div> 
   <div ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
 	<p>Total Points Earned: {{TotalPointsEarned}}</p>
-	<p>Total Points Available to Spend: {{TotalPointsAvailable}}</p>
-	<p ng-if="TotalPointsSpent > 0" ng-cloak>Total Points Spent: {{TotalPointsSpent}}</p>
-  	<div class="row">
-  		<div class="" ng-class="(TotalPointsSpent == 0) ? 'col-md-8' : 'col-md-12'" ng-cloak>
+	<p ng-if="TotalPointsSpent == 0" ng-cloak>Total Points Available to Spend: {{TotalPointsAvailable}}</p>
+	 	<div class="row">
+  		<div class="" ng-class="(TotalPointsSpent == 0) ? 'col-md-8' : 'd-none'" ng-cloak>
 				<h2>Products</h2>
 				<style>
 				.btn.btn-primary {
@@ -46,8 +45,21 @@
 				</product>
 				</div>
 			</div>
+  		<div class="" ng-class="(TotalPointsSpent > 0) ? 'col-md-12' : 'd-none'" ng-cloak>
+				<h2>Purchase Summary</h2>
+  		  <div class="productList">
+					<product class="pointSummary" ng-repeat="product in productSummary">
+						<div>{{product.ProductId}}<br/>{{product.productName}}</div>
+						<div ng-if="product.size != null" ng-cloak>Selected Size: {{product.size}}</div>
+						<div>Quantity: {{product.Quantity}}</div>
+						<div>Points Spent: {{product.TotalPoints}}</div>
+					</product>
+				</div>
+				<p ng-if="TotalPointsSpent > 0" ng-cloak>Total Points Spent: {{TotalPointsSpent}}</p>
+				<a class="btn btn-primary" href="" name="delPurchase" ng-click="deletePurchase($event)">TEST ONLY: Remove Purchase</a>
+      </div>
 			<style>
-			.shoppingCart {margin-bottom:10px;}
+			.shoppingCart {margin-bottom:10px;} 
 			</style>
 			<div class="col-md-3" ng-if="TotalPointsSpent == 0" ng-cloak>
 			  <h2>Basket</h2>
