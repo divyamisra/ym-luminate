@@ -5,7 +5,7 @@
   	You must be a coordinator to access this page
   </div> 
   <div ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
-	<p>Total Points Earned: {{TotalPointsEarned}}</p>
+	<p>Points Balance: {{TotalPointsEarned}}</p>
 	<p ng-if="TotalPointsSpent == 0" ng-cloak>Total Points Available to Spend: {{TotalPointsAvailable}}</p>
 	 	<div class="row">
   		<div class="" ng-class="(TotalPointsSpent == 0) ? 'col-md-8' : 'd-none'" ng-cloak>
@@ -35,7 +35,7 @@
 								        </select>
 								  <br/>
 							 </div>
-							 Points: {{product.points}}<Br/>
+							 {{product.points}} Points<Br/>
 					     Quantity Available: {{product.quantity}}<br/>
 					     Quantity: <select name="quantity">
 					                  <option ng-repeat="n in [].constructor(product.quantity) track by $index+1" value="{{$index+1}}">{{$index+1}}</option>
@@ -65,8 +65,8 @@
 			  <h2>Basket</h2>
 				<div class="shoppingCart" ng-repeat="cartProduct in cartProductList">
 					<div>{{cartProduct.productId}}<br/>{{cartProduct.productName}} - {{cartProduct.points}}</div>
-					<div ng-if="productSize != ''" ng-cloak>Selected Size: {{cartProduct.productSize}}<br/>
-					Quantity: <select name="quantity" productid="{{cartProduct.productId}}" points="{{cartProduct.points}}" ng-model="cartProduct.num" ng-options="option for option in [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]" ng-change="updateProductInCart($event)"></select><br/>
+					<div ng-if="cartProduct.productSize != ''" ng-cloak>Selected Size: {{cartProduct.productSize}}</div>
+					<div>Quantity: <select name="quantity" productid="{{cartProduct.productId}}" points="{{cartProduct.points}}" ng-model="cartProduct.num" ng-options="option for option in [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]" ng-change="updateProductInCart($event)"></select><br/>
 				  <a class="btn btn-primary" href="" name="{{cartProduct.productName}}" productid="{{cartProduct.productId}}" ng-click="removeProduct($event)">Remove</a></div>
 				</div>
 				Total Points in cart: {{TotalPointsInCart}}
