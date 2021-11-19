@@ -46,7 +46,7 @@ angular.module 'ahaLuminateControllers'
           $scope.saveProductCart()
         $scope.TotalPointsAvailable = ($scope.TotalPointsEarned - $scope.TotalPointsSpent) - $scope.TotalPointsInCart
 
-        $scope.getSchoolProducts = ->
+      $scope.getSchoolProducts = ->
         CatalogService.schoolPlanData '&method=GetSchoolProducts&CompanyId=' + $scope.participantRegistration.companyInformation.companyId + '&EventId=' + $scope.frId,
           failure: (response) ->
           error: (response) ->
