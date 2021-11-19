@@ -1082,9 +1082,9 @@
 										<input type="text" class="form-control" id="school_goal" ng-model="companyProgress.goalFormatted" aria-label="School Fundraising Goal" ng-blur="putSchoolPlan($event)" onkeypress="return event.charCode == 36 || event.charCode == 44 || event.charCode == 46 || (event.charCode &gt;= 48 &amp;&amp; event.charCode &lt;= 57)">
 									</div>
 								</div>
-								<div class="ym-pc-dashboard-send-emails checkbox" ng-class="{'checked': SendEmailOnBehalfOfCoordinator == true}" ng-cloak>
+								<div class="ym-pc-dashboard-send-emails checkbox" custom-checkbox ng-class="{'checked': SendEmailOnBehalfOfCoordinator == true}" ng-cloak>
 									<label for="SendEmailOnBehalfOfCoordinator">
-										<input type="checkbox" custom-checkbox name="SendEmailOnBehalfOfCoordinator" id="SendEmailOnBehalfOfCoordinator" ng-model="SendEmailOnBehalfOfCoordinator" ng-true-value="1" ng-false-value="0" ng-click="putSchoolPlan($event)">
+										<input type="checkbox" name="SendEmailOnBehalfOfCoordinator" id="SendEmailOnBehalfOfCoordinator" ng-model="SendEmailOnBehalfOfCoordinator" ng-true-value="1" ng-false-value="0" ng-click="putSchoolPlan($event)">
 										Allow AHA to Send Emails to my students on my behalf 
 									</label>
 								</div>
