@@ -25,7 +25,10 @@ angular.module 'ahaLuminateControllers'
               $scope.TotalPointsEarned = school.TotalPointsEarned
               $scope.TotalPointsSpent = school.pointsUsed
               $scope.TotalPointsAvailable = school.TotalPointsEarned - school.pointsUsed
-            $scope.getProductCart()
+            if $scope.TotalPointsSpent > 0
+              $scope.getProductSummary()
+            else
+	            $scope.getProductCart()
 
       $scope.getProductCart = ->
         CatalogService.schoolPlanData '&method=GetProductCart&CompanyId=' + $scope.participantRegistration.companyInformation.companyId,
@@ -119,6 +122,25 @@ angular.module 'ahaLuminateControllers'
         )
         getTotalPoints true      
 
+      $scope.getProductSummary = ->
+        CatalogService.schoolPlanData '&method=PurchaseSummary&CompanyId=' + $scope.participantRegistration.companyInformation.companyId,
+          failure: (response) ->
+          error: (response) ->
+          success: (response) ->
+            if response.data.company[0] != null
+              $scope.productSummary = response.data.company[0]
+              getTotalPoints(false)
+
+      $scope.deletePurchase = ->
+        CatalogService.schoolPlanData '&method=DelPurchase&CompanyId=' + $scope.participantRegistration.companyInformation.companyId,
+          failure: (response) ->
+          error: (response) ->
+          success: (response) ->
+            $scope.cartProductList = []
+            $scope.TotalPointsInCart = 0
+            $scope.getSchoolPlan()
+            $scope.getSchoolProducts()
+      
       $scope.redeemProducts = ->
         if confirm('Are you ready to redeem?')
           CatalogService.schoolPlanData '&method=RedeemProducts&ConsId=' + $rootScope.consId + '&CompanyId=' + $scope.participantRegistration.companyInformation.companyId + '&cart=' + angular.toJson($scope.cartProductList),
