@@ -1,47 +1,3 @@
-[[?xx::x[[S1:cons_id]]x::::
-<!-- logged in -->
-<div cg-busy="dashboardPromises">
-  <div ng-if="participantRegistration.companyInformation.isCompanyCoordinator != 'true'" ng-cloak>
-  	You must be a coordinator to access this page
-  </div>
-  <div ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
-	<p>Total Points Earned: {{TotalPointsEarned}}</p>
-	<p>Total Points Available: {{TotalPointsAvailable}}</p>
-  	<div class="row">
-  		<div class="col-md-8">
-				<h2>Products</h2>
-				<product ng-repeat="product in productList">
-					<div style="margin-bottom:20px;" class="{{product.productId}}">
-					     {{product.productName}}<br/>
-					     {{product.productDesc}}<Br/>
-							 <div ng-if="product.detail.length > 0" ng-cloak>
-								 Sizes: <select id="{{product.productId}}" name="size">
-									  			 <option ng-repeat="detail in product.detail" value="{{detail.productSizeId}}">{{detail.size}}</option>
-								        </select>
-								  <br/>
-							 </div>
-							 Points: {{product.points}}<Br/>
-					     Quantity Available: {{product.quantity}}<br/>
-					     Quantity: <select name="quantity">
-					                  <option ng-repeat="x in [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]" value="{{x}}">{{x}}</option>
-					               </select><br/>
-					     <a href="" name="{{product.productName}}" productid="{{product.productId}}" sizeexists="{{product.detail.length > 0}}" points="{{product.points}}" ng-click="addProductToCart($event)">Add</a>
-					</div>
-				</product>
-			</div>
-			<div class="col-md-3">
-			  <h2>Basket</h2>
-				<shopping-cart ng-repeat="cartProduct in cartProductList">
-					<div>{{cartProduct.productId}}<br/>{{cartProduct.productName}} - {{cartProduct.points}}<br/>
-					Quantity: <select name="quantity" productid="{{cartProduct.productId}}" points="{{cartProduct.points}}" ng-model="cartProduct.num" ng-options="option for option in [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]" ng-change="updateProductInCart($event)"></select><br/>
-				  <a href="" name="{{cartProduct.productName}}" productid="{{cartProduct.productId}}" ng-click="removeProduct($event)">Remove</a></div>
-				</shopping-cart>
-				Total Points in cart: {{TotalPointsInCart}}
-			</div>
-   </div>
-	</div>
-</div>
-]]
 [[?xx::x[[S1:cons_id]]x::
   <!-- logged out -->
   <div class="ym-login">
@@ -77,4 +33,62 @@
       <a class="btn btn-global-primary ym-header-login-toggle" href="[[T7:https://[[S29:SECURE_DOMAIN]][[S29:SECURE_PATH]]UserLogin?NEXTURL=[[T1:SPageServer?pagename=ym_coordinator_reward_center]]]]">Coordinator Log In</a>
     ]]
   </div>
-::]]
+::
+<!-- logged in -->
+<div cg-busy="dashboardPromises">
+  <div ng-if="participantRegistration.companyInformation.isCompanyCoordinator != 'true'" ng-cloak>
+  	You must be a coordinator to access this page
+  </div>
+  <div ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
+	<p>Total Points Earned: {{TotalPointsEarned}}</p>
+	<p>Total Points Available: {{TotalPointsAvailable}}</p>
+	<p ng-if="TotalPointsSpent > 0" ng-cloak>Total Points Spent: {{TotalPointsSpent}}</p>
+  	<div class="row">
+  		<div class="" ng-class="(TotalPointsSpent == 0) ? 'col-md-8' : 'col-md-12'" ng-cloak">
+				<h2>Products</h2>
+				<style>
+				div.productList {display:flex; flex-wrap:wrap;justify-content:space-between; }
+				div.productList product {
+						max-width: 50%;
+						flex: 0 0 46%;
+						border: 1px solid #000;
+						padding: 10px;
+						margin-bottom: 20px;
+				}
+				</style>
+				<div class="productList">
+				<product ng-repeat="product in productList">
+					<div style="margin-bottom:20px;" class="{{product.productId}}">
+					     {{product.productName}}<br/>
+					     {{product.productDesc}}<Br/>
+							 <div ng-if="product.detail.length > 0" ng-cloak>
+								 Sizes: <select id="{{product.productId}}" name="size">
+									  			 <option ng-repeat="detail in product.detail" value="{{detail.productSizeId}}">{{detail.size}}</option>
+								        </select>
+								  <br/>
+							 </div>
+							 Points: {{product.points}}<Br/>
+					     Quantity Available: {{product.quantity}}<br/>
+					     Quantity: <select name="quantity">
+					                  <option ng-repeat="n in [].constructor(product.quantity) track by $index+1" value="{{$index+1}}">{{$index+1}}</option>
+					               </select><br/>
+					     <a ng-if="TotalPointsSpent == 0" ng-cloak href="" name="{{product.productName}}" limit="{{product.quantity}}" productid="{{product.productId}}" sizeexists="{{product.detail.length > 0}}" points="{{product.points}}" ng-click="addProductToCart($event)">Add</a>
+					</div>
+				</product>
+				</div>
+			</div>
+			<div class="col-md-3" ng-if="TotalPointsSpent == 0" ng-cloak>
+			  <h2>Basket</h2>
+				<shopping-cart ng-repeat="cartProduct in cartProductList">
+					<div>{{cartProduct.productId}}<br/>{{cartProduct.productName}} - {{cartProduct.points}}<br/>
+					Quantity: <select name="quantity" productid="{{cartProduct.productId}}" points="{{cartProduct.points}}" ng-model="cartProduct.num" ng-options="option for option in [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]" ng-change="updateProductInCart($event)"></select><br/>
+				  <a href="" name="{{cartProduct.productName}}" productid="{{cartProduct.productId}}" ng-click="removeProduct($event)">Remove</a></div>
+				</shopping-cart>
+				Total Points in cart: {{TotalPointsInCart}}
+				<div style="margin-top: 20px;" ng-if="cartProductList.length > 0" ng-cloak>
+				<a href="" name="redeemProducts" ng-click="redeemProducts($event)">Redeem</a>
+			</div>
+   </div>
+	</div>
+</div>
+]]
