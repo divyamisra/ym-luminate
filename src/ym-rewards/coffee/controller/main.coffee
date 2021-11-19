@@ -136,7 +136,7 @@ angular.module 'ahaLuminateControllers'
             angular.element('.js--default-header-login-form').submit()
           success: ->
             if not $scope.headerLoginInfo.ng_nexturl or $scope.headerLoginInfo.ng_nexturl is ''
-              window.location = $rootScope.secureDomain + 'site/SPageServer?pagename=ym_coordinator_reward_center'
+              window.location = $rootScope.secureDomain + 'site/SPageServer?pagename=ym_coordinator_reward_center&fr_id=' + $rootScope.frId
             else
               window.location = $scope.headerLoginInfo.ng_nexturl
       
