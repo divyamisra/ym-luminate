@@ -1,0 +1,83 @@
+[[?xx::x[[S1:cons_id]]x::::
+<!-- logged in -->
+<div cg-busy="dashboardPromises">
+  <div ng-if="participantRegistration.companyInformation.isCompanyCoordinator != 'true'" ng-cloak>
+  	You must be a coordinator to access this page
+  </div> 
+  <div ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
+	 	<div class="row">
+  		<div class="col-md-12">
+				<h2>Products</h2>
+				<style>
+				.btn.btn-primary {
+						margin-top: 10px;
+						display: inline-block;
+				}
+				div.productList {display:flex; flex-wrap:wrap;justify-content:space-between; }
+				div.productList product {
+						max-width: 50%;
+						flex: 0 0 46%;
+						border: 1px solid #000;
+						padding: 10px;
+						margin-bottom: 20px;
+				}
+				</style>
+				<div class="productList">
+				<product ng-repeat="product in productList">
+					<div style="margin-bottom:20px;" class="{{product.productId}}">
+					     {{product.productName}}<br/>
+					     {{product.productDesc}}<Br/>
+							 <div ng-if="product.detail.length > 0" ng-cloak>
+								 Sizes: <select id="{{product.productId}}" name="size">
+         				 <div ng-repeat="size in product.detail">
+						  			 {{detail.size}}
+					       </div>
+							 </div>
+							 {{product.points}} Points<Br/>
+					     Quantity Available: {{product.quantity}}<br/>
+					     <a class="btn btn-primary" href="" name="{{product.productName}}" limit="{{product.quantity}}" productid="{{product.productId}}" ng-click="addProductToCart($event)">Edit</a>
+					     <a class="btn btn-primary" href="" name="{{product.productName}}" limit="{{product.quantity}}" productid="{{product.productId}}" ng-click="addProductToCart($event)">Delete</a>
+          </div>
+				</product>
+				</div>
+			</div>
+   </div>
+	</div>
+</div>
+]]
+[[?xx::x[[S1:cons_id]]x::
+  <!-- logged out -->
+  <div class="ym-login">
+    [[?xx[[S8]]::xxhttps::
+      <!-- secure page -->
+      Coordinator Log In
+      <div class="ym-header-login-form">
+          <form method="POST" name="headerLoginForm" ng-submit="submitHeaderLogin()" novalidate>
+            <input type="hidden" name="ng_nexturl" ng-model="headerLoginInfo.ng_nexturl" value="[[E130:[[T8:[[S8]]]] [[T8:&amp;]] [[T8:&]] replaceall]]">
+            <div class="form-group">
+              <label class="sr-only" for="headerLoginInfo-user_name">Username:</label>
+              <input type="text" class="form-control" name="USERNAME" id="headerLoginInfo-user_name" ng-model="headerLoginInfo.user_name" placeholder="Username" maxlength="[[S0:USER_MAX_LOGIN_LEN]]" autocorrect="off" autocapitalize="off" spellcheck="false" required>
+            </div>
+            <div class="form-group">
+              <label class="sr-only" for="headerLoginInfo-password">Password:</label>
+              <input type="password" class="form-control" name="Password" id="headerLoginInfo-password" ng-model="headerLoginInfo.password" placeholder="Password" maxlength="[[S0:USER_MAX_PASSWD_LEN]]" autocorrect="off" autocapitalize="off" spellcheck="false" required>
+            </div>
+            <div class="ym-header-login-footer clearfix">
+              <button type="submit" class="btn btn-global-primary pull-left">
+                Log In
+              </button>
+              <a class="pull-right ym-header-login__help-link" href="UserLogin?CMD=ForgotLogin">Need Help?</a>
+            </div>
+          </form>
+          <form class="hidden js--default-header-login-form" action="UserLogin" method="POST" hidden aria-hidden="true">
+            <input type="hidden" name="NEXTURL" value="{{headerLoginInfo.ng_nexturl}}">
+            <input type="hidden" name="USERNAME" value="{{headerLoginInfo.user_name}}">
+            <input type="hidden" name="Password" value="{{headerLoginInfo.password}}">
+          </form>
+      </div>
+    ::
+      <!-- non-secure page -->
+      <a class="btn btn-global-primary ym-header-login-toggle" href="[[T7:https://[[S29:SECURE_DOMAIN]][[S29:SECURE_PATH]]UserLogin?NEXTURL=[[T1:SPageServer?pagename=ym_coordinator_reward_center&fr_id=[[S334:fr_id]]]]]]">Coordinator Log In</a>
+    ]]
+  </div>
+::]]
