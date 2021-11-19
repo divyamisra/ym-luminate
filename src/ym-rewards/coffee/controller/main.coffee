@@ -15,16 +15,6 @@ angular.module 'ahaLuminateControllers'
       $scope.cartProductList = []
       $scope.TotalPointsInCart = 0
 
-      getTotalPoints = (save) ->
-        $scope.TotalPointsInCart = $scope.cartProductList.map((item) ->
-          Number.parseInt item.totalPoints
-        ).reduce(((acc, curr) ->
-          acc + curr
-        ), 0)
-        if save
-          $scope.saveProductCart()
-        $scope.TotalPointsAvailable = ($scope.TotalPointsEarned - $scope.TotalPointsSpent) - $scope.TotalPointsInCart
-
       $scope.getSchoolPlan = ->
         CatalogService.schoolPlanData '&method=GetSchoolPlan&CompanyId=' + $scope.participantRegistration.companyInformation.companyId + '&EventId=' + $scope.frId,
           failure: (response) ->
@@ -35,17 +25,7 @@ angular.module 'ahaLuminateControllers'
               $scope.TotalPointsEarned = school.TotalPointsEarned
               $scope.TotalPointsSpent = school.pointsUsed
               $scope.TotalPointsAvailable = school.TotalPointsEarned - school.pointsUsed
-
-      $scope.getSchoolProducts = ->
-        CatalogService.schoolPlanData '&method=GetSchoolProducts&CompanyId=' + $scope.participantRegistration.companyInformation.companyId + '&EventId=' + $scope.frId,
-          failure: (response) ->
-          error: (response) ->
-          success: (response) ->
-            $scope.productList = response.data.company['list']
-            angular.forEach $scope.productList, (product, index) ->
-              $scope.productList[index].detail = response.data.company['detail'].filter((element) ->
-                element.productId == product.productId
-              )
+            $scope.getProductCart()
 
       $scope.getProductCart = ->
         CatalogService.schoolPlanData '&method=GetProductCart&CompanyId=' + $scope.participantRegistration.companyInformation.companyId,
@@ -55,6 +35,27 @@ angular.module 'ahaLuminateControllers'
             if response.data.company[0] != null
               $scope.cartProductList = JSON.parse(response.data.company[0].cart)
               getTotalPoints(false)
+
+      getTotalPoints = (save) ->
+        $scope.TotalPointsInCart = $scope.cartProductList.map((item) ->
+          Number.parseInt item.totalPoints
+        ).reduce(((acc, curr) ->
+          acc + curr
+        ), 0)
+        if save
+          $scope.saveProductCart()
+        $scope.TotalPointsAvailable = ($scope.TotalPointsEarned - $scope.TotalPointsSpent) - $scope.TotalPointsInCart
+
+        $scope.getSchoolProducts = ->
+        CatalogService.schoolPlanData '&method=GetSchoolProducts&CompanyId=' + $scope.participantRegistration.companyInformation.companyId + '&EventId=' + $scope.frId,
+          failure: (response) ->
+          error: (response) ->
+          success: (response) ->
+            $scope.productList = response.data.company['list']
+            angular.forEach $scope.productList, (product, index) ->
+              $scope.productList[index].detail = response.data.company['detail'].filter((element) ->
+                element.productId == product.productId
+              )
 
       $scope.saveProductCart = ->
         CatalogService.schoolPlanData '&method=SaveProductCart&CompanyId=' + $scope.participantRegistration.companyInformation.companyId + '&cart=' + angular.toJson($scope.cartProductList),
@@ -150,6 +151,5 @@ angular.module 'ahaLuminateControllers'
             if participantRegistration
               $rootScope.participantRegistration = participantRegistration
               $scope.getSchoolPlan()
-              $scope.getProductCart()
               $scope.getSchoolProducts()
   ]
