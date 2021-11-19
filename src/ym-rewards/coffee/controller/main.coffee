@@ -23,7 +23,7 @@ angular.module 'ahaLuminateControllers'
         ), 0)
         if save
           $scope.saveProductCart()
-        $scope.TotalPointsAvailable = $scope.TotalPointsEarned - ($scope.TotalPointsInCart)
+        $scope.TotalPointsAvailable = ($scope.TotalPointsEarned - $scope.TotalPointsSpent) - $scope.TotalPointsInCart
 
       $scope.getSchoolPlan = ->
         CatalogService.schoolPlanData '&method=GetSchoolPlan&CompanyId=' + $scope.participantRegistration.companyInformation.companyId + '&EventId=' + $scope.frId,
@@ -33,7 +33,8 @@ angular.module 'ahaLuminateControllers'
             angular.forEach response.data.company, (school) ->
               $scope.coordinatorPoints = JSON.parse(school.PointsDetail)
               $scope.TotalPointsEarned = school.TotalPointsEarned
-              $scope.TotalPointsAvailable = school.TotalPointsEarned
+              $scope.TotalPointsSpent = school.pointsUsed
+              $scope.TotalPointsAvailable = school.TotalPointsEarned - school.pointsUsed
 
       $scope.getSchoolProducts = ->
         CatalogService.schoolPlanData '&method=GetSchoolProducts&CompanyId=' + $scope.participantRegistration.companyInformation.companyId + '&EventId=' + $scope.frId,
@@ -63,6 +64,7 @@ angular.module 'ahaLuminateControllers'
 
       $scope.addProductToCart = (product) ->
         productExistInCart = undefined
+        productId = product.currentTarget.attributes.productid.value
         productIdx = product.currentTarget.attributes.productid.value
         sizeExists = product.currentTarget.attributes.sizeexists.value
         quantity = parseInt(angular.element('div.' + productIdx + ' select[name=quantity]').find('option:selected').val())
@@ -75,6 +77,7 @@ angular.module 'ahaLuminateControllers'
           if !productExistInCart
             $scope.cartProductList.push
               productId: productIdx
+              topProduct: productId
               productName: product.currentTarget.name
               points: parseInt(product.currentTarget.attributes.points.value)
               totalPoints: quantity * product.currentTarget.attributes.points.value
@@ -111,7 +114,18 @@ angular.module 'ahaLuminateControllers'
           element.productId != product.currentTarget.attributes.productid.value
         )
         getTotalPoints true      
-      
+
+      $scope.redeemProducts = ->
+        if confirm('Are you ready to redeem?')
+          CatalogService.schoolPlanData '&method=RedeemProducts&ConsId=' + $rootScope.consId + '&CompanyId=' + $scope.participantRegistration.companyInformation.companyId + '&cart=' + angular.toJson($scope.cartProductList),
+            failure: (response) ->
+            error: (response) ->
+            success: (response) ->
+              $scope.cartProductList = []
+              $scope.TotalPointsInCart = 0
+              $scope.getSchoolPlan()
+              $scope.getSchoolProducts()
+
       $scope.headerLoginInfo = 
         user_name: ''
         password: ''
