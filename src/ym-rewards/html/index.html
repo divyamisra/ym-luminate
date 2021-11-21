@@ -31,14 +31,14 @@
 					Product List
 				</h3>
 				<div class="filterList">
-					<product ng-repeat="product in allProducts" ng-if="product.quantity > 0">
-						<div style="margin-bottom:20px;" class="{{product.productId}}">
-							<a href="" ng-click="filterProducts($event)">{{product.productName}}</a>
-						</div>
-					</product>
 					<product>
 						<div style="margin-bottom:20px;" class="all">
 							<a href="" ng-click="filterProducts($event)">All</a>
+						</div>
+					</product>
+					<product ng-repeat="product in allProducts" ng-if="product.quantity > 0">
+						<div style="margin-bottom:20px;" class="{{product.productId}}">
+							<a href="" ng-click="filterProducts($event)">{{product.productName}}</a>
 						</div>
 					</product>
 				</div>
