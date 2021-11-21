@@ -28,7 +28,7 @@ angular.module 'ahaLuminateControllers'
             if $scope.TotalPointsSpent > 0
               $scope.getProductSummary()
             else
-	            $scope.getProductCart()
+              $scope.getProductCart()
 
       $scope.getProductCart = ->
         CatalogService.schoolPlanData '&method=GetProductCart&CompanyId=' + $scope.participantRegistration.companyInformation.companyId,
@@ -59,6 +59,8 @@ angular.module 'ahaLuminateControllers'
               $scope.productList[index].detail = response.data.company['detail'].filter((element) ->
                 element.productId == product.productId
               )
+            $scope.allProducts = $scope.productList
+            $scope.productSizes = response.data.company['sizes']
 
       $scope.saveProductCart = ->
         CatalogService.schoolPlanData '&method=SaveProductCart&CompanyId=' + $scope.participantRegistration.companyInformation.companyId + '&cart=' + angular.toJson($scope.cartProductList),
@@ -89,6 +91,7 @@ angular.module 'ahaLuminateControllers'
               points: parseInt(product.currentTarget.attributes.points.value)
               totalPoints: quantity * product.currentTarget.attributes.points.value
               quantity: parseInt(product.currentTarget.attributes.limit.value),
+              imageSrc: product.currentTarget.attributes.imgsrc.value,
               origNum: quantity
               num: quantity
           else
@@ -121,6 +124,80 @@ angular.module 'ahaLuminateControllers'
           element.productId != product.currentTarget.attributes.productid.value
         )
         getTotalPoints true      
+
+      $scope.addProductToList = ->
+        uniqueId = 'id' + (new Date).getTime()
+        $scope.productList.push
+          origProductId: uniqueId
+          productId: uniqueId
+          productName: ''
+          productDesc: ''
+          accTitle: ''
+          quantity: 0
+          points: 0
+          detail: []
+
+      $scope.addSizeToProduct = ->
+        uniqueId = 'id' + (new Date).getTime()
+        @product.detail.push
+          productId: @product.productId
+          origProductSizeId: ''
+          productSizeId: uniqueId
+          productSizeText: ''
+          quantity: 0
+          productType: 0
+
+      $scope.saveProductToList = ->
+        saveRecord = this
+        CatalogService.schoolPlanData '&method=UpdateProduct&productId=' + @product.productId + '&data=' + angular.toJson(@product),
+          failure: (response) ->
+          error: (response) ->
+          success: (response) ->
+            saveRecord.product.origProductId = saveRecord.product.productId
+            angular.forEach saveRecord.product.detail, (detail) ->
+              detail.origProductSizeId = detail.productSizeId
+            alert 'product saved'
+
+      $scope.filterProducts = (event) ->
+        if event.currentTarget.innerHTML != 'All'
+          product = @product
+          angular.forEach $scope.productList, (record) ->
+            $scope.productList = $scope.allProducts.filter((element) ->
+              element.productId == product.productId
+            )
+        else
+          $scope.productList = $scope.allProducts
+
+      $scope.filterProductsBySize = (event) ->
+        if angular.element('input[id^=chk_]:checked').length > 0
+          sizes = []
+          angular.forEach angular.element('input[id^=chk_]:checked'), (box) ->
+            sizes.push box.value
+          productList = []
+          productList = $scope.allProducts.filter((element) ->
+            element.detail.filter((detail) ->
+              sizes.includes detail.productSizeText
+            ).length
+          )
+          $scope.productList = productList
+        else
+          $scope.productList = $scope.allProducts
+
+      $scope.onFileChange = (event) ->
+        data = this
+        $scope.status = false
+        file = event.target.files[0]
+        $scope.status = if event.target.files.length > 0 then true else false
+        if $scope.status == true
+          reader = new FileReader
+          reader.readAsDataURL file
+          reader.onload = ->
+            $http.post($sce.trustAsResourceUrl('https://tools.heart.org/ym-school-plan/imageUpload.php'), 'image': reader.result).then (response) ->
+            if response.data.errors
+              console.log 'error', response
+            else
+              data.product.imageSrc = 'https://tools.heart.org/ym-school-plan/' + response.data.file
+              console.log 'good', response
 
       $scope.getProductSummary = ->
         CatalogService.schoolPlanData '&method=PurchaseSummary&CompanyId=' + $scope.participantRegistration.companyInformation.companyId,
