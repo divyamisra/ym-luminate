@@ -1,16 +1,54 @@
-[[?xx::x[[S1:cons_id]]x::::
+[[?xx::x[[S1:cons_id]]x:::: 
 <!-- logged in -->
 <div cg-busy="dashboardPromises">
-  <div ng-if="participantRegistration.companyInformation.isCompanyCoordinator != 'true'" ng-cloak>
-  	You must be a coordinator to access this page
-  </div> 
-  <div ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
-	<p>Points Balance: {{TotalPointsEarned}}</p>
-	<p ng-if="TotalPointsSpent == 0" ng-cloak>Total Points Available to Spend: {{TotalPointsAvailable}}</p>
-	 	<div class="row">
-  		<div class="" ng-class="(TotalPointsSpent == 0) ? 'col-md-8' : 'd-none'" ng-cloak>
-				<h2>Products</h2>
+	<div ng-if="participantRegistration.companyInformation.isCompanyCoordinator != 'true'" ng-cloak>
+		You must be a coordinator to access this page 
+	</div>
+	<div ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
+		<p>
+			Points Balance: {{TotalPointsEarned}}
+		</p>
+		<p ng-if="TotalPointsSpent == 0" ng-cloak>
+			Total Points Available to Spend: {{TotalPointsAvailable}}
+		</p>
+		<div class="row" ng-if="TotalPointsSpent == 0" ng-cloak>
+			<div class="col-md-2">
+				<h2>
+					Filters
+				</h2>
+				<h3>
+					Product Sizes
+				</h3>
+				<div class="filterList">
+					<div class="checkbox" custom-checkbox  ng-repeat="size in productSizes" ng-class="{'checked': size.status == true}" ng-click="filterProductsBySize($event)" ng-cloak>
+						<label for="chk_{{size.productSizeText}}">
+							<input type="checkbox" name="chk-{{size.productSizeText}}" id="chk_{{size.productSizeText}}" ng-model="size.status" value="{{size.productSizeText}}"> 
+							{{size.productSizeText}}
+						</label>
+					</div>
+				</div>
+				<h3>
+					Product List
+				</h3>
+				<div class="filterList">
+					<product ng-repeat="product in allProducts" ng-if="product.quantity > 0">
+						<div style="margin-bottom:20px;" class="{{product.productId}}">
+							<a href="" ng-click="filterProducts($event)">{{product.productName}}</a>
+						</div>
+					</product>
+					<product>
+						<div style="margin-bottom:20px;" class="all">
+							<a href="" ng-click="filterProducts($event)">All</a>
+						</div>
+					</product>
+				</div>
+			</div>
+			<div class="col-md-8">
+				<h2>
+					Products
+				</h2>
 				<style>
+
 				.btn.btn-primary {
 						margin-top: 10px;
 						display: inline-block;
@@ -18,98 +56,160 @@
 				div.productList {display:flex; flex-wrap:wrap;justify-content:space-between; }
 				div.productList product {
 						max-width: 50%;
-						flex: 0 0 46%;
+						flex: 0 0 48%;
 						border: 1px solid #000;
 						padding: 10px;
 						margin-bottom: 20px;
 				}
+				
 				</style>
 				<div class="productList">
-				<product ng-repeat="product in productList">
-					<div style="margin-bottom:20px;" class="{{product.productId}}">
-					     {{product.productName}}<br/>
-					     {{product.productDesc}}<Br/>
-							 <div ng-if="product.detail.length > 0" ng-cloak>
-								 Sizes: <select id="{{product.productId}}" name="size">
-									  			 <option ng-repeat="detail in product.detail" value="{{detail.productSizeId}}">{{detail.size}}</option>
-								        </select>
-								  <br/>
-							 </div>
-							 {{product.points}} Points<Br/>
-					     Quantity Available: {{product.quantity}}<br/>
-					     Quantity: <select name="quantity">
-					                  <option ng-repeat="n in [].constructor(product.quantity) track by $index+1" value="{{$index+1}}">{{$index+1}}</option>
-					               </select><br/>
-					     <a class="btn btn-primary" ng-if="TotalPointsSpent == 0" ng-cloak href="" name="{{product.productName}}" limit="{{product.quantity}}" productid="{{product.productId}}" sizeexists="{{product.detail.length > 0}}" points="{{product.points}}" ng-click="addProductToCart($event)">Add</a>
-					</div>
-				</product>
-				</div>
-			</div>
-  		<div class="" ng-class="(TotalPointsSpent > 0) ? 'col-md-12' : 'd-none'" ng-cloak>
-				<h2>Purchase Summary</h2>
-  		  <div class="productList">
-					<product class="pointSummary" ng-repeat="product in productSummary">
-						<div>{{product.ProductId}}<br/>{{product.productName}}</div>
-						<div ng-if="product.size != null" ng-cloak>Selected Size: {{product.size}}</div>
-						<div>Quantity: {{product.Quantity}}</div>
-						<div>Points Spent: {{product.TotalPoints}}</div>
+					<product ng-repeat="product in productList" ng-if="product.quantity > 0">
+						<div style="margin-bottom:20px;" class="{{product.productId}}">
+							<div class="float-start me-2" style="min-height:150px;">
+								<img ng-src="{{(product.imageSrc != '') ? product.imageSrc : 'https://via.placeholder.com/500'}}" width="150" />
+							</div>
+							<div>
+								{{product.productName}}<br /> 
+								{{product.productDesc}}<br /> 
+								<div ng-if="product.detail.length > 0" ng-cloak>
+									Sizes: 
+									<select id="{{product.productId}}" name="size">
+										<option ng-repeat="detail in product.detail" value="{{detail.productSizeId}}">{{detail.productSizeText}}</option>
+									</select>
+									<br /> 
+								</div>
+								{{product.points}} Points<br /> 
+								Quantity: 
+								<select name="quantity">
+									<option ng-repeat="n in [].constructor(15) track by $index+1" value="{{$index+1}}">{{$index+1}}</option>
+								</select>
+								<br /> 
+								<a class="btn btn-primary" ng-if="TotalPointsSpent == 0" href="" ng-model="product.productName" name="{{product.productName}}" limit="{{product.quantity}}" productid="{{product.productId}}" sizeexists="{{product.detail.length > 0}}" points="{{product.points}}" imgsrc="{{product.imageSrc}}" ng-click="addProductToCart($event)">
+									Add to Basket
+								</a>
+							</div>
+						</div>
 					</product>
 				</div>
-				<p ng-if="TotalPointsSpent > 0" ng-cloak>Total Points Spent: {{TotalPointsSpent}}</p>
-				<a class="btn btn-primary" href="" name="delPurchase" ng-click="deletePurchase($event)">TEST ONLY: Remove Purchase</a>
-      </div>
-			<style>
-			.shoppingCart {margin-bottom:10px;} 
-			</style>
-			<div class="col-md-3" ng-if="TotalPointsSpent == 0" ng-cloak>
-			  <h2>Basket</h2>
-				<div class="shoppingCart" ng-repeat="cartProduct in cartProductList">
-					<div>{{cartProduct.productId}}<br/>{{cartProduct.productName}} - {{cartProduct.points}}</div>
-					<div ng-if="cartProduct.productSize != ''" ng-cloak>Selected Size: {{cartProduct.productSize}}</div>
-					<div>Quantity: <select name="quantity" productid="{{cartProduct.productId}}" points="{{cartProduct.points}}" ng-model="cartProduct.num" ng-options="option for option in [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]" ng-change="updateProductInCart($event)"></select><br/>
-				  <a class="btn btn-primary" href="" name="{{cartProduct.productName}}" productid="{{cartProduct.productId}}" ng-click="removeProduct($event)">Remove</a></div>
-				</div>
-				Total Points in cart: {{TotalPointsInCart}}
-				<div style="margin-top: 20px;" ng-if="cartProductList.length > 0" ng-cloak>
-				<a class="btn btn-primary" href="" name="redeemProducts" ng-click="redeemProducts($event)">Redeem</a>
 			</div>
-   </div>
+			<style>
+			div.shoppingCart {display:flex; flex-wrap:wrap;justify-content:space-between;margin-bottom:10px; }
+			div.shoppingCart > div {
+					max-width: 100%;
+					flex: 0 0 96%;
+					border: 1px solid #000;
+					padding: 10px;
+					margin-bottom: 20px;
+			}
+			</style>
+			<div class="col-md-2">
+				<h2>
+					Basket
+				</h2>
+				<div class="shoppingCart">
+				  <div ng-repeat="cartProduct in cartProductList">
+						<div>
+							<img ng-src="{{cartProduct.imageSrc}}" width="50" />
+						</div>
+						<div>
+							{{cartProduct.productId}}<br />{{cartProduct.productName}} - {{cartProduct.points}}
+						</div>
+						<div ng-if="cartProduct.productSize != ''" ng-cloak>
+							Selected Size: {{cartProduct.productSize}}
+						</div>
+						<div>
+							Quantity: 
+							<select name="quantity" productid="{{cartProduct.productId}}" points="{{cartProduct.points}}" ng-model="cartProduct.num" ng-options="option for option in [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]" ng-change="updateProductInCart($event)"></select>
+							<br /> 
+							<a class="btn btn-primary" href="" name="{{cartProduct.productName}}" productid="{{cartProduct.productId}}" ng-click="removeProduct($event)">
+								Remove
+							</a>
+						</div>
+					</div>
+				</div>
+				Total Points in cart: {{TotalPointsInCart}} 
+				<div style="margin-top: 20px;" ng-if="cartProductList.length > 0" ng-cloak>
+					<a class="btn btn-primary" href="" name="redeemProducts" ng-click="redeemProducts($event)">
+						Redeem
+					</a>
+				</div>
+			</div>
+		</div>
+		<div class="row" ng-if="TotalPointsSpent > 0" ng-cloak>
+			<div class="col-md-12">
+				<h2>
+					Purchase Summary
+				</h2>
+				<div class="productList">
+					<product class="pointSummary" ng-repeat="product in productSummary">
+						<div>
+							<img ng-src="{{product.imageSrc}}" width="50" />
+						</div>
+						<div>
+							{{product.ProductId}}<br />{{product.productName}}
+						</div>
+						<div ng-if="product.productSizeText != null" ng-cloak>
+							Selected Size: {{product.productSizeText}}
+						</div>
+						<div>
+							Quantity: {{product.Quantity}}
+						</div>
+						<div>
+							Points Spent: {{product.TotalPoints}}
+						</div>
+					</product>
+				</div>
+				<p ng-if="TotalPointsSpent > 0" ng-cloak>
+					Total Points Spent: {{TotalPointsSpent}}
+				</p>
+				<a class="btn btn-primary" href="" name="delPurchase" ng-click="deletePurchase($event)">
+					TEST ONLY: Remove Purchase
+				</a>
+			</div>
+    </div>
 	</div>
-</div>
-]]
-[[?xx::x[[S1:cons_id]]x::
-  <!-- logged out -->
-  <div class="ym-login">
-    [[?xx[[S8]]::xxhttps::
-      <!-- secure page -->
-      Coordinator Log In
-      <div class="ym-header-login-form">
-          <form method="POST" name="headerLoginForm" ng-submit="submitHeaderLogin()" novalidate>
-            <input type="hidden" name="ng_nexturl" ng-model="headerLoginInfo.ng_nexturl" value="[[E130:[[T8:[[S8]]]] [[T8:&amp;]] [[T8:&]] replaceall]]">
-            <div class="form-group">
-              <label class="sr-only" for="headerLoginInfo-user_name">Username:</label>
-              <input type="text" class="form-control" name="USERNAME" id="headerLoginInfo-user_name" ng-model="headerLoginInfo.user_name" placeholder="Username" maxlength="[[S0:USER_MAX_LOGIN_LEN]]" autocorrect="off" autocapitalize="off" spellcheck="false" required>
-            </div>
-            <div class="form-group">
-              <label class="sr-only" for="headerLoginInfo-password">Password:</label>
-              <input type="password" class="form-control" name="Password" id="headerLoginInfo-password" ng-model="headerLoginInfo.password" placeholder="Password" maxlength="[[S0:USER_MAX_PASSWD_LEN]]" autocorrect="off" autocapitalize="off" spellcheck="false" required>
-            </div>
-            <div class="ym-header-login-footer clearfix">
-              <button type="submit" class="btn btn-global-primary pull-left">
-                Log In
-              </button>
-              <a class="pull-right ym-header-login__help-link" href="UserLogin?CMD=ForgotLogin">Need Help?</a>
-            </div>
-          </form>
-          <form class="hidden js--default-header-login-form" action="UserLogin" method="POST" hidden aria-hidden="true">
-            <input type="hidden" name="NEXTURL" value="{{headerLoginInfo.ng_nexturl}}">
-            <input type="hidden" name="USERNAME" value="{{headerLoginInfo.user_name}}">
-            <input type="hidden" name="Password" value="{{headerLoginInfo.password}}">
-          </form>
-      </div>
-    ::
-      <!-- non-secure page -->
-      <a class="btn btn-global-primary ym-header-login-toggle" href="[[T7:https://[[S29:SECURE_DOMAIN]][[S29:SECURE_PATH]]UserLogin?NEXTURL=[[T1:SPageServer?pagename=ym_coordinator_reward_center&fr_id=[[S334:fr_id]]]]]]">Coordinator Log In</a>
-    ]]
-  </div>
-::]]
+	]] [[?xx::x[[S1:cons_id]]x:: 
+<!-- logged out -->
+	<div class="ym-login">
+		[[?xx[[S8]]::xxhttps:: 
+<!-- secure page -->
+		Coordinator Log In 
+		<div class="ym-header-login-form">
+			<form method="POST" name="headerLoginForm" ng-submit="submitHeaderLogin()" novalidate>
+				<input type="hidden" name="ng_nexturl" ng-model="headerLoginInfo.ng_nexturl" value="[[E130:[[T8:[[S8]]]] [[T8:&amp;]] [[T8:&amp;]] replaceall]]">
+					<div class="form-group">
+						<label class="sr-only" for="headerLoginInfo-user_name">
+							Username:
+						</label>
+						<input type="text" class="form-control" name="USERNAME" id="headerLoginInfo-user_name" ng-model="headerLoginInfo.user_name" placeholder="Username" maxlength="[[S0:USER_MAX_LOGIN_LEN]]" autocorrect="off" autocapitalize="off" spellcheck="false" required>
+						</div>
+						<div class="form-group">
+							<label class="sr-only" for="headerLoginInfo-password">
+								Password:
+							</label>
+							<input type="password" class="form-control" name="Password" id="headerLoginInfo-password" ng-model="headerLoginInfo.password" placeholder="Password" maxlength="[[S0:USER_MAX_PASSWD_LEN]]" autocorrect="off" autocapitalize="off" spellcheck="false" required>
+							</div>
+							<div class="ym-header-login-footer clearfix">
+								<button type="submit" class="btn btn-global-primary pull-left">
+									Log In 
+								</button>
+								<a class="pull-right ym-header-login__help-link" href="UserLogin?CMD=ForgotLogin">
+									Need Help?
+								</a>
+							</div>
+						</form>
+						<form class="hidden js--default-header-login-form" action="UserLogin" method="POST" hidden aria-hidden="true">
+							<input type="hidden" name="NEXTURL" value="{{headerLoginInfo.ng_nexturl}}">
+								<input type="hidden" name="USERNAME" value="{{headerLoginInfo.user_name}}">
+									<input type="hidden" name="Password" value="{{headerLoginInfo.password}}">
+									</form>
+								</div>
+								:: 
+<!-- non-secure page -->
+								<a class="btn btn-global-primary ym-header-login-toggle" href="[[T7:https://[[S29:SECURE_DOMAIN]][[S29:SECURE_PATH]]UserLogin?NEXTURL=[[T1:SPageServer?pagename=ym_coordinator_reward_center&amp;fr_id=[[S334:fr_id]]]]]]">
+									Coordinator Log In
+								</a>
+								]] 
+							</div>
+							::]]
