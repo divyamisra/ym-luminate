@@ -61,6 +61,7 @@ angular.module 'ahaLuminateControllers'
               )
             $scope.allProducts = $scope.productList
             $scope.productSizes = response.data.company['sizes']
+            $scope.productPoints = response.data.company['points']
 
       $scope.saveProductCart = ->
         CatalogService.schoolPlanData '&method=SaveProductCart&CompanyId=' + $scope.participantRegistration.companyInformation.companyId + '&cart=' + angular.toJson($scope.cartProductList),
@@ -159,28 +160,29 @@ angular.module 'ahaLuminateControllers'
             alert 'product saved'
 
       $scope.filterProducts = (event) ->
-        if event.currentTarget.innerHTML != 'All'
-          product = @product
-          angular.forEach $scope.productList, (record) ->
-            $scope.productList = $scope.allProducts.filter((element) ->
-              element.productId == product.productId
-            )
-        else
-          $scope.productList = $scope.allProducts
-
-      $scope.filterProductsBySize = (event) ->
-        if angular.element('input[id^=chk_]:checked').length > 0
-          sizes = []
-          angular.forEach angular.element('input[id^=chk_]:checked'), (box) ->
-            sizes.push box.value
-          productList = []
+        productList = []
+        sizes = []
+        points = []
+        $scope.productList = []
+        angular.forEach angular.element('.sizes input[id^=chk_]:checked'), (box) ->
+          sizes.push box.value
+        angular.forEach angular.element('.points input[id^=chk_]:checked'), (box) ->
+          points.push box.value
+        if sizes.length > 0 and points.length > 0
           productList = $scope.allProducts.filter((element) ->
             element.detail.filter((detail) ->
               sizes.includes detail.productSizeText
-            ).length
+            ).length and points.includes(element.points.toString())
           )
           $scope.productList = productList
         else
+          productList = $scope.allProducts.filter((element) ->
+            return element.detail.filter((detail) ->
+              sizes.includes detail.productSizeText
+            ).length or points.includes(element.points.toString())
+          )
+          $scope.productList = productList
+        if angular.element('.sizes input[id^=chk_]:checked').length == 0 and angular.element('.points input[id^=chk_]:checked').length == 0
           $scope.productList = $scope.allProducts
 
       $scope.onFileChange = (event) ->
