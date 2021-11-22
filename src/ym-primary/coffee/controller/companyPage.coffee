@@ -24,9 +24,6 @@ angular.module 'ahaLuminateControllers'
       $scope.hideAmount = ''
       $scope.notifyName = ''
       $scope.notifyEmail = ''
-      $scope.startDate = ''
-      $scope.endDate = ''
-      $scope.moneyDueDate = ''
       $scope.totalTeams = ''
       $scope.teamId = ''
       $scope.studentsPledgedTotal = ''
@@ -89,7 +86,24 @@ angular.module 'ahaLuminateControllers'
             $scope.activity3amt = studentsPledgedActivities['3'].count
           else
             $scope.activity3amt = 0
-      
+
+      $scope.getSchoolPlan = () ->
+        ZuriService.schoolPlanData '&method=GetSchoolPlan&CompanyId=' + $scope.companyId + '&EventId=' + $scope.frId,
+          failure: (response) ->
+          error: (response) ->
+          success: (response) ->
+            angular.forEach response.data.company, (school) ->
+              $scope.EventStartDate = new Date school.EventStartDate + ' 00:01'
+              $scope.EventEndDate = new Date school.EventEndDate + ' 00:01'
+              $scope.DonationDueDate = new Date school.DonationDueDate + ' 00:01'
+              $scope.KickOffDate = new Date school.KickOffDate + ' 00:01'
+              $scope.StudentRecruitmentGoal = school.StudentRecruitmentGoal
+              $scope.CountOfStudentsCompletingFinnsMission = school.CountOfStudentsCompletingFinnsMission
+              $scope.FinnsMissionCompletedGoal = school.FinnsMissionCompletedGoal
+              $scope.coordinatorPoints = JSON.parse(school.PointsDetail);
+              $scope.TotalPointsEarned = school.TotalPointsEarned; 
+      $scope.getSchoolPlan()
+              
       setCompanyProgress = (amountRaised, goal) ->
         $scope.companyProgress = 
           amountRaised: if amountRaised then Number(amountRaised) else 0
@@ -144,10 +158,6 @@ angular.module 'ahaLuminateControllers'
                   len = schoolDataRows.length
                   while i < len
                     if $scope.companyId is schoolDataRows[i][schoolDataHeaders.CID]
-                      $scope.startDate = schoolDataRows[i][schoolDataHeaders.EDS]
-                      $scope.endDate = schoolDataRows[i][schoolDataHeaders.EDE]
-                      $scope.moneyDueDate = schoolDataRows[i][schoolDataHeaders.MDD]
-                      $scope.schoolStudentGoal = schoolDataRows[i][schoolDataHeaders.PG]
                       $scope.hideAmount = schoolDataRows[i][schoolDataHeaders.HA]
                       $scope.notifyName = schoolDataRows[i][schoolDataHeaders.YMDN]
                       $scope.notifyEmail = schoolDataRows[i][schoolDataHeaders.YMDE]
