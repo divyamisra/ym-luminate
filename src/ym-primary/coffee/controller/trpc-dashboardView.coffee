@@ -19,9 +19,10 @@ angular.module 'trPcControllers'
     'NgPcContactService'
     'NgPcTeamraiserShortcutURLService'
     'NgPcInteractionService'
+    'NgPcConstituentService'
     'NgPcTeamraiserCompanyService'
     'FacebookFundraiserService'
-    ($rootScope, $scope, $location, $filter, $timeout, $uibModal, $sce, APP_INFO, ZuriService, BoundlessService, TeamraiserParticipantService, NgPcTeamraiserRegistrationService, NgPcTeamraiserProgressService, NgPcTeamraiserTeamService, NgPcTeamraiserSchoolService, NgPcTeamraiserGiftService, NgPcContactService, NgPcTeamraiserShortcutURLService, NgPcInteractionService, NgPcTeamraiserCompanyService, FacebookFundraiserService) ->
+    ($rootScope, $scope, $location, $filter, $timeout, $uibModal, $sce, APP_INFO, ZuriService, BoundlessService, TeamraiserParticipantService, NgPcTeamraiserRegistrationService, NgPcTeamraiserProgressService, NgPcTeamraiserTeamService, NgPcTeamraiserSchoolService, NgPcTeamraiserGiftService, NgPcContactService, NgPcTeamraiserShortcutURLService, NgPcInteractionService, NgPcConstituentService, NgPcTeamraiserCompanyService, FacebookFundraiserService) ->
       $scope.dashboardPromises = []
       domain = $location.absUrl().split('/site/')[0]
       $scope.studentsPledgedTotal = ''
@@ -29,8 +30,8 @@ angular.module 'trPcControllers'
       $scope.activity2amt = ''
       $scope.activity3amt = ''
       $scope.companyId = $scope.participantRegistration.companyInformation.companyId
-      theDate = new Date
-      $scope.yearsList = [1..(theDate.getFullYear()-1978)] # 0 - 50
+      $scope.theDate = new Date
+      $scope.yearsList = [1..($scope.theDate.getFullYear()-1978)] # 0 - 50
       $scope.schoolChallenge = false
       $scope.schoolChallengeBadge = false
       $scope.studentChallengeBadge = false
@@ -42,7 +43,7 @@ angular.module 'trPcControllers'
       $scope.topGradeRaised = []
       $scope.topGradeStudents = []
       $scope.topCompanySteps = []
-      
+       
       $dataRoot = angular.element '[data-embed-root]'
                      
       if $scope.participantRegistration.lastPC2Login is '0'
@@ -469,10 +470,21 @@ angular.module 'trPcControllers'
         else
           updateSchoolGoalPromise = NgPcTeamraiserSchoolService.updateSchoolGoal(newGoal, $scope)
             .then (response) ->
+              $scope.companyProgress.goal = newGoal
+              $scope.companyProgress.goalFormatted = $filter('currency') newGoal, '$'
               $scope.editSchoolGoalModal.close()
               $scope.refreshFundraisingProgress()
           $scope.dashboardPromises.push updateSchoolGoalPromise
 
+      $scope.schoolPlanInfo = {}
+      $scope.showSchoolPlan = ->
+        $scope.showSchoolPlanModal = $uibModal.open
+          scope: $scope
+          templateUrl: APP_INFO.rootPath + 'dist/ym-primary/html/participant-center/modal/viewSchoolPlan.html'
+
+      $scope.cancelShowSchoolPlan = ->
+        $scope.showSchoolPlanModal.close()
+         
       $scope.participantGifts =
         sortColumn: 'date_recorded'
         sortAscending: false
@@ -988,7 +1000,55 @@ angular.module 'trPcControllers'
             i++
           if len == 0 or not compfnd
             $rootScope.hideGifts = "N"
+          $scope.getSchoolPlan()
 
+      $scope.getSchoolPlan = () ->
+        ZuriService.schoolPlanData '&method=GetSchoolPlan&CompanyId=' + $scope.participantRegistration.companyInformation.companyId + '&EventId=' + $scope.frId,
+          failure: (response) ->
+          error: (response) ->
+          success: (response) ->
+            angular.forEach response.data.company, (school) ->
+              $scope.EventStartDate = new Date school.EventStartDate + ' 00:01'
+              $scope.EventEndDate = new Date school.EventEndDate + ' 00:01'
+              $scope.DonationDueDate = new Date school.DonationDueDate + ' 00:01'
+              $scope.KickOffDate = new Date school.KickOffDate + ' 00:01'
+              $scope.StudentRecruitmentGoal = school.StudentRecruitmentGoal
+              $scope.FinnsMissionCompletedGoal = school.FinnsMissionCompletedGoal
+              $scope.coordinatorPoints = JSON.parse(school.PointsDetail);
+              $scope.TotalPointsEarned = school.TotalPointsEarned; 
+						
+            NgPcConstituentService.getUserRecord('fields=custom_boolean2&cons_id=' + $scope.consId).then (response) ->
+              if response.data.errorResponse
+                console.log 'There was an error getting user profile. Please try again later.'
+              $scope.constituent = response.data.getConsResponse
+              $scope.SendEmailOnBehalfOfCoordinator = $scope.constituent.custom.boolean.content == 'true'
+	      
+
+      $scope.putSchoolPlan = ($event) ->
+        if $event.currentTarget.id == 'school_goal'
+          $scope.schoolGoalInfo.goal = $event.currentTarget.value
+          $scope.updateSchoolGoal()
+          $scope.getSchoolPlan()
+        else
+          if $event.currentTarget.type == 'checkbox'
+            updateUserProfilePromise = NgPcConstituentService.updateUserRecord('custom_boolean2=' + angular.element($event.currentTarget).is(':checked') + '&cons_id=' + $scope.consId).then (response) ->
+              if response.data.errorResponse
+                console.log 'There was an error processing your update. Please try again later.'
+              $scope.dashboardPromises.push updateUserProfilePromise
+              $scope.getSchoolPlan()
+          else
+            schoolParams = '&field_id=' + $event.currentTarget.id + '&value=' + $event.currentTarget.value + '&type=' + $event.currentTarget.type
+            ZuriService.schoolPlanData '&method=UpdateSchoolPlan&CompanyId=' + $scope.participantRegistration.companyInformation.companyId + '&EventId=' + $scope.frId + schoolParams,
+              failure: (response) ->
+              error: (response) ->
+              success: (response) ->
+                $scope.getSchoolPlan()
+            
+      formatDateString = (dateVal) ->
+        regex = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2}).*$/
+        token_array = regex.exec(dateVal.toJSON());
+        return token_array[1] + "-" + token_array[2] + "-" + token_array[3]
+      
       $scope.showPrize = (sku, label, earned, video) ->
         $scope.prize_sku = sku
         $scope.prize_label = label
@@ -1273,4 +1333,5 @@ angular.module 'trPcControllers'
         document.getElementById("tRctm").x.baseVal.value = -99999
         jQuery("#tTipm div").html("")
         document.getElementById("tTrim").setAttribute('points','0 0 0 0 0 0')
+
   ]
