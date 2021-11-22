@@ -1996,8 +1996,8 @@
         if (trCompanyCount < 2) {
           // no companies associated with this TR yet. Hide the team_find_new_team_company column
           $('#team_find_new_team_company').hide();
-          $('#team_find_new_team_attributes').addClass('no-companies');
-          $('#team_find_new_team_name, #team_find_new_fundraising_goal').addClass('col-md-6');
+          // $('#team_find_new_team_attributes').addClass('no-companies');
+          // $('#team_find_new_team_name, #team_find_new_fundraising_goal').addClass('col-md-6');
         }
       } else if (regType === 'joinTeam') {
         if ($('#team_find_existing').length > 0) {
@@ -3146,13 +3146,12 @@
 
 
     var recruitGoalMax = $('body').data("reg-recruit-max");
+    
+    if (recruitGoalMax == '') {
+      recruitGoalMax = '8';
+    }
+
     console.log('Recruitment goal max', recruitGoalMax)
-
-    // if(recruitGoalMax = '') {
-    //   recruitGoalMax = '8'
-    // }
-
-    // var recruitGoalMax = '10'
 
     setTimeout(function() { 
       // $('#team_find_new_team_recruiting_goal').children().prepend('<div class="regError"></div><span class="field-required" id="team_find_new_team_recruiting_goal_required"></span>');
