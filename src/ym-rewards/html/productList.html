@@ -23,8 +23,8 @@
 				}
 				div.sizes {display:flex; flex-wrap:wrap;justify-content:space-around; }
 				div.sizes > div {
-						max-width: 50%;
-						flex: 0 0 46%;
+						max-width: 25%;
+						flex: 0 0 22%;
 						border: 1px solid #000;
 						padding: 10px;
 						margin-bottom: 20px;
@@ -61,7 +61,7 @@
 							 </div>
 					     <a class="btn btn-primary" style="margin-top:50px" href="" name="{{product.productName}}" productid="{{product.productId}}" ng-click="saveProductToList($event)">Save Product Details</a>
 					  </div>
-            <div class="col-md-3">
+            <div class="col-md-2">
 							 <div ng-if="product.imageSrc != ''" ng-cloak>
 							   <label for="i_{{product.productId}}">Image:</label>
 							   <img id="i_{{product.productId}}" ng-src="{{product.imageSrc}}" width="150"> <a href="" ng-click="product.imageSrc=''">Clear</a>
@@ -71,7 +71,7 @@
                	<input  onchange="angular.element(this).scope().onFileChange(event)" id="file" type="file">         
                </div>
 					  </div>
-            <div class="col-md-6">
+            <div class="col-md-7">
   			       <h3>Sizes:</h3>
 					     <div  class="sizes form-group">
          				 <div ng-repeat="detail in product.detail">
