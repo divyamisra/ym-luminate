@@ -9,7 +9,7 @@
 			Points Balance: {{TotalPointsEarned}}
 		</p>
 		<p ng-if="TotalPointsSpent == 0" ng-cloak>
-			Total Points Available to Spend: {{TotalPointsAvailable}}
+			Total Points Available: {{TotalPointsAvailable}}
 		</p>
 		<div class="row" ng-if="TotalPointsSpent == 0" ng-cloak>
 			<div class="col-md-2">
@@ -17,16 +17,28 @@
 					Filters
 				</h2>
 				<h3>
-					Product Sizes
+					Sizes
 				</h3>
-				<div class="filterList">
-					<div class="checkbox" custom-checkbox  ng-repeat="size in productSizes" ng-class="{'checked': size.status == true}" ng-click="filterProductsBySize($event)" ng-cloak>
+				<div class="filterList sizes">
+					<div class="checkbox" custom-checkbox  ng-repeat="size in productSizes" ng-class="{'checked': size.status == true}" ng-click="filterProducts($event)" ng-cloak>
 						<label for="chk_{{size.productSizeText}}">
 							<input type="checkbox" name="chk-{{size.productSizeText}}" id="chk_{{size.productSizeText}}" ng-model="size.status" value="{{size.productSizeText}}"> 
 							{{size.productSizeText}}
 						</label>
 					</div>
 				</div>
+				<h3>
+					Points
+				</h3>
+				<div class="filterList points">
+					<div class="checkbox" custom-checkbox  ng-repeat="point in productPoints" ng-class="{'checked': point.status == true}" ng-click="filterProducts($event)" ng-cloak>
+						<label for="chk_point{{point.points}}">
+							<input type="checkbox" name="chk-point{{point.points}}" id="chk_point{{point.points}}" ng-model="point.status" value="{{point.points}}"> 
+							{{point.points}}
+						</label>
+					</div>
+				</div>
+				<!--
 				<h3>
 					Product List
 				</h3>
@@ -42,6 +54,7 @@
 						</div>
 					</product>
 				</div>
+				-->
 			</div>
 			<div class="col-md-8">
 				<h2>
