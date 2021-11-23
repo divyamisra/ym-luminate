@@ -118,21 +118,18 @@ angular.module 'ahaLuminateControllers'
           getBoundlessSchoolData()
         , 500
 
+
       $scope.getSchoolPlan = () ->
         ZuriService.schoolPlanData '&method=GetSchoolPlan&CompanyId=' + $scope.companyId + '&EventId=' + $scope.frId,
           failure: (response) ->
           error: (response) ->
           success: (response) ->
-            angular.forEach response.data.company, (school) ->
-              $scope.EventStartDate = new Date school.EventStartDate + ' 00:01'
-              $scope.EventEndDate = new Date school.EventEndDate + ' 00:01'
-              $scope.DonationDueDate = new Date school.DonationDueDate + ' 00:01'
-              $scope.KickOffDate = new Date school.KickOffDate + ' 00:01'
-              $scope.StudentRecruitmentGoal = school.StudentRecruitmentGoal
-              $scope.CountOfStudentsCompletingFinnsMission = school.CountOfStudentsCompletingFinnsMission
-              $scope.FinnsMissionCompletedGoal = school.FinnsMissionCompletedGoal
-              $scope.coordinatorPoints = JSON.parse(school.PointsDetail);
-              $scope.TotalPointsEarned = school.TotalPointsEarned; 
+            $scope.schoolPlan = response.data.company[0]
+            $scope.schoolPlan.EventStartDate = new Date($scope.schoolPlan.EventStartDate + ' 00:01')
+            $scope.schoolPlan.EventEndDate = new Date($scope.schoolPlan.EventEndDate + ' 00:01')
+            $scope.schoolPlan.DonationDueDate = new Date($scope.schoolPlan.DonationDueDate + ' 00:01')
+            $scope.schoolPlan.KickOffDate = new Date($scope.schoolPlan.KickOffDate + ' 00:01')
+            $scope.coordinatorPoints = JSON.parse($scope.schoolPlan.PointsDetail)
       $scope.getSchoolPlan()
       
       getCompanyTotals = ->
