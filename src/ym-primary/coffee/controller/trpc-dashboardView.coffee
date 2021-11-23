@@ -1014,8 +1014,9 @@ angular.module 'trPcControllers'
               $scope.KickOffDate = new Date school.KickOffDate + ' 00:01'
               $scope.StudentRecruitmentGoal = school.StudentRecruitmentGoal
               $scope.FinnsMissionCompletedGoal = school.FinnsMissionCompletedGoal
-              $scope.coordinatorPoints = JSON.parse(school.PointsDetail);
-              $scope.TotalPointsEarned = school.TotalPointsEarned; 
+              $scope.MultipleCoordinators = school.MultipleCoordinators
+              $scope.coordinatorPoints = JSON.parse(school.PointsDetail)
+              $scope.TotalPointsEarned = school.TotalPointsEarned;
 						
             NgPcConstituentService.getUserRecord('fields=custom_boolean2&cons_id=' + $scope.consId).then (response) ->
               if response.data.errorResponse
