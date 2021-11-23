@@ -1007,43 +1007,41 @@ angular.module 'trPcControllers'
           failure: (response) ->
           error: (response) ->
           success: (response) ->
-            angular.forEach response.data.company, (school) ->
-              $scope.EventStartDate = new Date school.EventStartDate + ' 00:01'
-              $scope.EventEndDate = new Date school.EventEndDate + ' 00:01'
-              $scope.DonationDueDate = new Date school.DonationDueDate + ' 00:01'
-              $scope.KickOffDate = new Date school.KickOffDate + ' 00:01'
-              $scope.StudentRecruitmentGoal = school.StudentRecruitmentGoal
-              $scope.FinnsMissionCompletedGoal = school.FinnsMissionCompletedGoal
-              $scope.MultipleCoordinators = school.MultipleCoordinators
-              $scope.coordinatorPoints = JSON.parse(school.PointsDetail)
-              $scope.TotalPointsEarned = school.TotalPointsEarned;
+            $scope.schoolPlan = response.data.company[0]
+            $scope.schoolPlan.EventStartDate = new Date($scope.schoolPlan.EventStartDate + ' 00:01')
+            $scope.schoolPlan.EventEndDate = new Date($scope.schoolPlan.EventEndDate + ' 00:01')
+            $scope.schoolPlan.DonationDueDate = new Date($scope.schoolPlan.DonationDueDate + ' 00:01')
+            $scope.schoolPlan.KickOffDate = new Date($scope.schoolPlan.KickOffDate + ' 00:01')
+            $scope.coordinatorPoints = JSON.parse($scope.schoolPlan.PointsDetail)
 						
             NgPcConstituentService.getUserRecord('fields=custom_boolean2&cons_id=' + $scope.consId).then (response) ->
               if response.data.errorResponse
                 console.log 'There was an error getting user profile. Please try again later.'
               $scope.constituent = response.data.getConsResponse
-              $scope.SendEmailOnBehalfOfCoordinator = $scope.constituent.custom.boolean.content == 'true'
+              $scope.schoolPlan.SendEmailOnBehalfOfCoordinator = $scope.constituent.custom.boolean.content == 'true'
 	      
-
       $scope.putSchoolPlan = ($event) ->
+	school = @schoolPlan
         if $event.currentTarget.id == 'school_goal'
           $scope.schoolGoalInfo.goal = $event.currentTarget.value
           $scope.updateSchoolGoal()
           $scope.getSchoolPlan()
         else
-          if $event.currentTarget.type == 'checkbox' && $event.currentTarget.id == 'SendEmailOnBehalfOfCoordinator'
+          if $event.currentTarget.type == 'checkbox' and $event.currentTarget.id == 'SendEmailOnBehalfOfCoordinator'
             updateUserProfilePromise = NgPcConstituentService.updateUserRecord('custom_boolean2=' + angular.element($event.currentTarget).is(':checked') + '&cons_id=' + $scope.consId).then (response) ->
               if response.data.errorResponse
                 console.log 'There was an error processing your update. Please try again later.'
               $scope.dashboardPromises.push updateUserProfilePromise
               $scope.getSchoolPlan()
           else
-            schoolParams = '&field_id=' + $event.currentTarget.id + '&value=' + $event.currentTarget.value + '&type=' + $event.currentTarget.type
+            if $event.currentTarget.type == 'date'
+              schoolParams = '&field_id=' + $event.currentTarget.id + '&value=' + $event.currentTarget.value + '&type=' + $event.currentTarget.type
+            else
+              schoolParams = '&field_id=' + $event.currentTarget.id + '&value=' + school[$event.currentTarget.id] + '&type=' + $event.currentTarget.type
             ZuriService.schoolPlanData '&method=UpdateSchoolPlan&CompanyId=' + $scope.participantRegistration.companyInformation.companyId + '&EventId=' + $scope.frId + schoolParams,
               failure: (response) ->
               error: (response) ->
               success: (response) ->
-                $scope.getSchoolPlan()
             
       formatDateString = (dateVal) ->
         regex = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2}).*$/
