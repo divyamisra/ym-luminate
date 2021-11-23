@@ -1020,24 +1020,24 @@ angular.module 'trPcControllers'
               $scope.constituent = response.data.getConsResponse
               $scope.schoolPlan.SendEmailOnBehalfOfCoordinator = $scope.constituent.custom.boolean.content == 'true'
 	      
-      $scope.putSchoolPlan = ($event) ->
+      $scope.putSchoolPlan = (event) ->
 	school = @schoolPlan
-        if $event.currentTarget.id == 'school_goal'
-          $scope.schoolGoalInfo.goal = $event.currentTarget.value
+        if event.currentTarget.id == 'school_goal'
+          $scope.schoolGoalInfo.goal = event.currentTarget.value
           $scope.updateSchoolGoal()
           $scope.getSchoolPlan()
         else
-          if $event.currentTarget.type == 'checkbox' and $event.currentTarget.id == 'SendEmailOnBehalfOfCoordinator'
-            updateUserProfilePromise = NgPcConstituentService.updateUserRecord('custom_boolean2=' + angular.element($event.currentTarget).is(':checked') + '&cons_id=' + $scope.consId).then (response) ->
+          if event.currentTarget.type == 'checkbox' and event.currentTarget.id == 'SendEmailOnBehalfOfCoordinator'
+            updateUserProfilePromise = NgPcConstituentService.updateUserRecord('custom_boolean2=' + angular.element(event.currentTarget).is(':checked') + '&cons_id=' + $scope.consId).then (response) ->
               if response.data.errorResponse
                 console.log 'There was an error processing your update. Please try again later.'
               $scope.dashboardPromises.push updateUserProfilePromise
               $scope.getSchoolPlan()
           else
-            if $event.currentTarget.type == 'date'
-              schoolParams = '&field_id=' + $event.currentTarget.id + '&value=' + $event.currentTarget.value + '&type=' + $event.currentTarget.type
+            if event.currentTarget.type == 'date'
+              schoolParams = '&field_id=' + event.currentTarget.id + '&value=' + event.currentTarget.value + '&type=' + event.currentTarget.type
             else
-              schoolParams = '&field_id=' + $event.currentTarget.id + '&value=' + school[$event.currentTarget.id] + '&type=' + $event.currentTarget.type
+              schoolParams = '&field_id=' + event.currentTarget.id + '&value=' + school[event.currentTarget.id] + '&type=' + event.currentTarget.type
             ZuriService.schoolPlanData '&method=UpdateSchoolPlan&CompanyId=' + $scope.participantRegistration.companyInformation.companyId + '&EventId=' + $scope.frId + schoolParams,
               failure: (response) ->
               error: (response) ->
