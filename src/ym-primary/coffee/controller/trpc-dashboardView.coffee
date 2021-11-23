@@ -1021,7 +1021,7 @@ angular.module 'trPcControllers'
               $scope.schoolPlan.SendEmailOnBehalfOfCoordinator = $scope.constituent.custom.boolean.content == 'true'
 	      
       $scope.putSchoolPlan = (event) ->
-	school = @schoolPlan
+        school = @schoolPlan
         if event.currentTarget.id == 'school_goal'
           $scope.schoolGoalInfo.goal = event.currentTarget.value
           $scope.updateSchoolGoal()
