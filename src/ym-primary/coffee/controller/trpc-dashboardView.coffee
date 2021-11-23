@@ -1030,7 +1030,7 @@ angular.module 'trPcControllers'
           $scope.updateSchoolGoal()
           $scope.getSchoolPlan()
         else
-          if $event.currentTarget.type == 'checkbox'
+          if $event.currentTarget.type == 'checkbox' && $event.currentTarget.id == 'SendEmailOnBehalfOfCoordinator'
             updateUserProfilePromise = NgPcConstituentService.updateUserRecord('custom_boolean2=' + angular.element($event.currentTarget).is(':checked') + '&cons_id=' + $scope.consId).then (response) ->
               if response.data.errorResponse
                 console.log 'There was an error processing your update. Please try again later.'
