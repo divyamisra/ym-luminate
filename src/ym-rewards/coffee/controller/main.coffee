@@ -7,7 +7,9 @@ angular.module 'ahaLuminateControllers'
     'CatalogService'
     'TeamraiserRegistrationService'
     '$timeout'
-    ($rootScope, $scope, $httpParamSerializer, AuthService, CatalogService, TeamraiserRegistrationService, $timeout) ->
+    '$http'
+    '$sce'
+    ($rootScope, $scope, $httpParamSerializer, AuthService, CatalogService, TeamraiserRegistrationService, $timeout, $http, $sce) ->
       $dataRoot = angular.element '[data-aha-luminate-root]'
       consId = $dataRoot.data('cons-id') if $dataRoot.data('cons-id') isnt ''
       $scope.protocol = window.location.protocol
