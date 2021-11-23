@@ -1080,10 +1080,17 @@
 	      </div>
 				<div class="ym-pc-dashboard-total-points text-center">
 					<div><strong>Total Points: <span ng-bind-html="TotalPointsEarned"></span></strong></div>
-					<p>Points updated nightly at 3am<br/>
-						<a href="" ng-click="showSchoolPlan()" class="ym-progress-show-plan" aria-label="Click here for more information">
-							<strong>Click here for more information</strong>
-						</a>
+					<p>Points updated nightly at 3am</p>
+				        <div class="ym-pc-dashboard-multi-coord checkbox" custom-checkbox ng-class="{'checked': MultipleCoordinators == true}" ng-cloak>
+					  <label for="MultipleCoordinators">
+					  <input type="checkbox" name="MultipleCoordinators" id="MultipleCoordinators" ng-model="MultipleCoordinators" ng-true-value="1" ng-false-value="0" ng-click="putSchoolPlan($event)"> 
+					  My school has two or more coordinators responsible for the Kids Heart Challenge program.
+					  </label>
+				        </div>
+             				<p>			 
+					  <a href="" ng-click="showSchoolPlan()" class="ym-progress-show-plan" aria-label="Click here for more information">
+					    <strong>Click here for more information</strong>
+					  </a>
 					</p>
 				</div>
 	     </div>
