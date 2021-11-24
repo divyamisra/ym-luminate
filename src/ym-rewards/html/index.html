@@ -1,38 +1,48 @@
-[[?xx::x[[S1:cons_id]]x:::: 
+[[?xx::x[[S1:cons_id]]x::::
 <!-- logged in -->
 <div cg-busy="dashboardPromises">
-	<div ng-if="participantRegistration.companyInformation.isCompanyCoordinator != 'true'" ng-cloak>
-		You must be a coordinator to access this page 
-	</div>
-	<div ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
-		<div class="row" ng-if="TotalPointsSpent == 0" ng-cloak>
-			<div class="col-md-1">
-				<h2>
-					Filters
-				</h2>
-				<h3>
-					Sizes
-				</h3>
-				<div class="filterList sizes">
-					<div class="checkbox" custom-checkbox  ng-repeat="size in productSizes" ng-class="{'checked': size.status == true}" ng-click="filterProducts($event)" ng-cloak>
-						<label for="chk_{{size.productSizeText}}">
-							<input type="checkbox" name="chk-{{size.productSizeText}}" id="chk_{{size.productSizeText}}" ng-model="size.status" value="{{size.productSizeText}}"> 
-							{{size.productSizeText}}
-						</label>
-					</div>
-				</div>
-				<h3>
-					Points
-				</h3>
-				<div class="filterList points">
-					<div class="checkbox" custom-checkbox  ng-repeat="point in productPoints" ng-class="{'checked': point.status == true}" ng-click="filterProducts($event)" ng-cloak>
-						<label for="chk_point{{point.points}}">
-							<input type="checkbox" name="chk-point{{point.points}}" id="chk_point{{point.points}}" ng-model="point.status" value="{{point.points}}"> 
-							{{point.points}}
-						</label>
-					</div>
-				</div>
-				<!--
+    <div ng-if="participantRegistration.companyInformation.isCompanyCoordinator != 'true'" ng-cloak>
+        You must be a coordinator to access this page
+    </div>
+    <style>
+        .filterTitle {
+        		font-size:1.1em;
+        		font-weight:bold;
+        	}
+    </style>
+    <div ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
+        <div class="row" ng-if="TotalPointsSpent == 0" ng-cloak>
+            <div class="col-md-1">
+                <h3>
+                    Filters
+                </h3>
+                <div class="sizeFilter mt-3">
+                    <div class="filterTitle">
+                        Sizes
+                    </div>
+                    <div class="filterList sizes">
+                        <div class="checkbox" custom-checkbox ng-repeat="size in productSizes" ng-class="{'checked': size.status == true}" ng-click="filterProducts($event)" ng-cloak>
+                            <label for="chk_{{size.productSizeText}}">
+														<input type="checkbox" name="chk-{{size.productSizeText}}" id="chk_{{size.productSizeText}}" ng-model="size.status" value="{{size.productSizeText}}">
+															{{size.productSizeText}} 
+														</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="pointsFilter mt-3">
+                    <div class="filterTitle">
+                        Points
+                    </div>
+                    <div class="filterList points">
+                        <div class="checkbox" custom-checkbox ng-repeat="point in productPoints" ng-class="{'checked': point.status == true}" ng-click="filterProducts($event)" ng-cloak>
+                            <label for="chk_point{{point.points}}">
+														<input type="checkbox" name="chk-point{{point.points}}" id="chk_point{{point.points}}" ng-model="point.status" value="{{point.points}}">
+															{{point.points}} 
+														</label>
+                        </div>
+                    </div>
+                </div>
+                <!--
 				<h3>
 					Product List
 				</h3>
@@ -49,208 +59,225 @@
 					</product>
 				</div>
 				-->
-			</div>
-			<div class="col-md-8">
-				<h2>
-					Products
-				</h2>
-				<style>
-
-				.btn.btn-primary {
-						margin-top: 10px;
-						display: inline-block;
-				}
-				div.productList product {
-						border: 1px solid #ccc;
-						padding: 25px;
-						margin-bottom: 20px;
-						border-radius: 20px;
-				}
-				div.productList .productName {font-size: 20px;font-weight: bold;}
-				div.productList .productDesc {margin-bottom:10px;}
-				div.productList .productSize, div.productList .productSizes {margin-bottom:10px;}
-				div.productList .productSizes span {display:inline-block;margin-right:3px;}
-				div.productList .productQuantity {margin-bottom:10px;}
-				div.productList .productPoints, div.productList .productPointsTotal {margin-bottom:10px;font-weight:bold;}
-				div.productList .productPointsTotal div {font-size:10px;}
-				div.productList .sizeText {font-size:10px;border:1px solid #ccc;padding:2px;}
-				@media (min-width:768px) {
-					div.productList {display:flex; flex-wrap:wrap;justify-content:space-between; }
-					div.productList product {
-							max-width: 50%;
-							flex: 0 0 48%;
-					}			
-				}
-				</style>
-				<div class="productList">
-					<product ng-repeat="product in productList" ng-if="product.quantity > 0">
-						<div style="margin-bottom:20px;" class="{{product.productId}}">
-							<div class="float-start me-4" style="min-height:150px;">
-								<div class="productImage">
-									<img ng-src="{{(product.imageSrc != '') ? product.imageSrc : 'https://via.placeholder.com/500'}}" width="150" />
-								</div>
-								<div class="addToBasket">
-									<button type="button" ng-disabled="(product.detail.length > 0 && product.productSize == '') || ((product.quantitySel * product.points) > TotalPointsAvailable)" class="btn btn-primary" ng-if="TotalPointsSpent == 0" href="" ng-model="product.productSize" name="{{product.productName}}" limit="{{product.quantity}}" productid="{{product.productId}}" sizeexists="{{product.detail.length > 0}}" points="{{product.points}}" imgsrc="{{product.imageSrc}}" ng-click="addProductToCart($event)">
-										Add to Basket
-									</button>
-								</div>
-							</div>
-							<div>
-								<div class="productName">{{product.productName}}</div>
-								<div class="productDesc">{{product.productDesc}}</div>
-								<div class="productSizes" ng-if="product.detail.length > 0" ng-cloak>
-									Sizes: 
-									<span class="sizeText" ng-repeat="detail in product.detail">{{detail.productSizeText}}</span><br/>
-								</div>
-								<div class="productSize" ng-if="product.detail.length > 0" ng-cloak>
-									Size:
-									<select id="size_{{product.productId}}" name="size" ng-model="product.productSize" ng-options="detail.productSizeId as detail.productSizeText for detail in product.detail track by detail.productSizeId"></select>
-									<br /> 
-								</div>
-								<div class="productQuantity">
-  									Quantity: 
-									<select name="quantity" ng-model="product.quantitySel"  ng-options="item for item in quantityList track by item"></select>
-								</div>
-								<div class="productPoints">{{product.points}} Points per Item</div>
-								<div class="productPointsTotal">{{product.quantitySel * product.points}} Total Points <div ng-if="((product.quantitySel * product.points) > TotalPointsAvailable)"><em>Not enough available</em></div></div>
-								<div class="d-none">On hand: {{product.quantity}} *will hide when live</div>
-							</div>
-						</div>
-					</product>
-				</div>
-			</div>
-			<style>
-			div.shoppingCart .products {display:flex; flex-wrap:wrap;justify-content:space-between;margin-bottom:10px; }
-			div.shoppingCart .products > div {
-					max-width: 100%;
-					flex: 0 0 96%;
-						border: 1px solid #ccc;
-						padding: 25px;
-						margin-bottom: 20px;
-						border-radius: 20px;
-			}
-			.shoppingCart .totalPoints {font-weight:bold;}
-			</style>
-			<div class="col-md-3 ps-4">
-				<h2>
-					Basket
-				</h2>
-				<div class="shoppingCart">
-				<div class="products">
-				  <div ng-repeat="cartProduct in cartProductList">
-						<div class="float-start me-4" style="min-height:150px;">
-							<div class="productImage">
-								<img ng-src="{{(cartProduct.imageSrc != '') ? cartProduct.imageSrc : 'https://via.placeholder.com/500'}}" width="50" />
-							</div>
-						</div>						
-						<div>
-							<div>
-								{{cartProduct.productName}}
-							</div>
-							<div ng-if="cartProduct.productSize != ''" ng-cloak>
-								Selected Size: {{cartProduct.productSize}}
-							</div>
-							<div>
-								Quantity: 
-								<select name="quantity" productid="{{cartProduct.productId}}" points="{{cartProduct.points}}" ng-model="cartProduct.num" ng-options="option for option in quantityList" ng-change="updateProductInCart($event)"></select>
-							</div>
-							<div>
-								 {{cartProduct.points}} Points
-							</div>
-							<div>
-								 {{cartProduct.points * cartProduct.num}} Total Points
-							</div>
-								<br /> 
-								<a class="btn btn-primary" href="" name="{{cartProduct.productName}}" productid="{{cartProduct.productId}}" ng-click="removeProduct($event)">
-									Remove
-								</a>
-							</div>
-						</div>
-				</div>
-				<div class="totalPoints" ng-if="TotalPointsInCart > 0" ng-cloak>
-					Total Points in cart: {{TotalPointsInCart}} 
-				</div>
-				<div class="totalPoints" ng-if="TotalPointsInCart == 0" ng-cloak>
-					No items in Basket 
-				</div>
-				</div>
-			</div>
-					</div>
-		</div>
-		<div class="row" ng-if="TotalPointsSpent > 0" ng-cloak>
-			<div class="col-md-12">
-				<h2>
-					Purchase Summary
-				</h2>
-				<div class="productList">
-					<product class="pointSummary" ng-repeat="product in productSummary">
-						<div>
-							<img ng-src="{{product.imageSrc}}" width="50" />
-						</div>
-						<div>
-							{{product.ProductId}}<br />{{product.productName}}
-						</div>
-						<div ng-if="product.productSizeText != null" ng-cloak>
-							Selected Size: {{product.productSizeText}}
-						</div>
-						<div>
-							Quantity: {{product.Quantity}}
-						</div>
-						<div>
-							Points Spent: {{product.TotalPoints}}
-						</div>
-					</product>
-				</div>
-				<p ng-if="TotalPointsSpent > 0" ng-cloak>
-					Total Points Spent: {{TotalPointsSpent}}
-				</p>
-				<a class="btn btn-primary" href="" name="delPurchase" ng-click="deletePurchase($event)">
-					TEST ONLY: Remove Purchase
-				</a>
-			</div>
+            </div>
+            <div class="col-md-8">
+                <h3>
+                    Products
+                </h3>
+                <style>
+                    .btn.btn-primary {
+												margin-top: 10px;
+												display: inline-block;
+										}
+										div.productList product {
+												border: 1px solid #ccc;
+												padding: 25px;
+												margin-bottom: 20px;
+												border-radius: 20px;
+										}
+										div.productList .productName {font-size: 20px;font-weight: bold;}
+										div.productList .productDesc {margin-bottom:10px;}
+										div.productList .productSize, div.productList .productSizes {margin-bottom:10px;}
+										div.productList .productSizes span {display:inline-block;margin-right:3px;}
+										div.productList .productQuantity {margin-bottom:10px;}
+										div.productList .productPoints, div.productList .productPointsTotal {margin-bottom:10px;font-weight:bold;}
+										div.productList .productPointsTotal div {font-size:10px;}
+										div.productList .sizeText {font-size:10px;border:1px solid #ccc;padding:2px;}
+										@media (min-width:768px) {
+											div.productList {display:flex; flex-wrap:wrap;justify-content:space-between; }
+											div.productList product {
+													max-width: 50%;
+													flex: 0 0 48%;
+											}			
+										}
+                </style>
+                <div class="productList">
+                    <product ng-repeat="product in productList" ng-if="product.quantity > 0">
+                        <div style="margin-bottom:20px;" class="{{product.productId}}">
+                            <div class="float-start me-4" style="min-height:150px;">
+                                <div class="productImage">
+                                    <img ng-src="{{(product.imageSrc != '') ? product.imageSrc : 'https://via.placeholder.com/500'}}" width="150" />
+                                </div>
+                                <div class="addToBasket">
+                                    <button type="button" ng-disabled="(product.detail.length &gt; 0 &amp;&amp; product.productSize == '') || ((product.quantitySel * product.points) &gt; TotalPointsAvailable)" class="btn btn-primary" ng-if="TotalPointsSpent == 0" href="" ng-model="product.productSize" name="{{product.productName}}" limit="{{product.quantity}}" productid="{{product.productId}}" sizeexists="{{product.detail.length > 0}}" points="{{product.points}}" imgsrc="{{product.imageSrc}}" ng-click="addProductToCart($event)">
+																			Add to Basket 
+																		</button>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="productName">
+                                    {{product.productName}}
+                                </div>
+                                <div class="productDesc">
+                                    {{product.productDesc}}
+                                </div>
+                                <div class="productSizes" ng-if="product.detail.length > 0" ng-cloak>
+                                    Sizes:
+                                    <span class="sizeText" ng-repeat="detail in product.detail">
+																			{{detail.productSizeText}}
+																		</span>
+                                    <br />
+                                </div>
+                                <div class="productSize" ng-if="product.detail.length > 0" ng-cloak>
+                                    Size:
+                                    <select id="size_{{product.productId}}" name="size" ng-model="product.productSize" ng-options="detail.productSizeId as detail.productSizeText for detail in product.detail track by detail.productSizeId"></select>
+                                    <br />
+                                </div>
+                                <div class="productQuantity">
+                                    Quantity:
+                                    <select name="quantity" ng-model="product.quantitySel" ng-options="item for item in quantityList track by item"></select>
+                                </div>
+                                <div class="productPoints">
+                                    {{product.points}} Points per Item
+                                </div>
+                                <div class="productPointsTotal">
+                                    {{product.quantitySel * product.points}} Total Points
+                                    <div ng-if="((product.quantitySel * product.points) > TotalPointsAvailable)">
+                                        <em>
+																					Not enough available
+																				</em>
+                                    </div>
+                                </div>
+                                <div class="d-none">
+                                    On hand: {{product.quantity}} *will hide when live
+                                </div>
+                            </div>
+                        </div>
+                    </product>
+                </div>
+            </div>
+            <style>
+                div.shoppingCart .products {display:flex; flex-wrap:wrap;justify-content:space-between;margin-bottom:10px; }
+								div.shoppingCart .products > div {
+										max-width: 100%;
+										flex: 0 0 96%;
+											border-bottom: 1px solid #ccc;
+											padding: 25px;
+											margin-bottom: 20px;
+								}
+								.shoppingCart .totalPoints {font-weight:bold;}
+            </style>
+            <div class="col-md-3 ps-4">
+                <h3>
+                    Basket
+                </h3>
+                <div class="shoppingCart">
+                    <div class="products">
+                        <div ng-repeat="cartProduct in cartProductList">
+                            <div class="float-start me-4" style="min-height:150px;">
+                                <div class="productImage">
+                                    <img ng-src="{{(cartProduct.imageSrc != '') ? cartProduct.imageSrc : 'https://via.placeholder.com/500'}}" width="50" />
+                                </div>
+                            </div>
+                            <div>
+                                <div>
+                                    {{cartProduct.productName}}
+                                </div>
+                                <div ng-if="cartProduct.productSize != ''" ng-cloak>
+                                    Selected Size: {{cartProduct.productSize}}
+                                </div>
+                                <div>
+                                    Quantity:
+                                    <select name="quantity" productid="{{cartProduct.productId}}" points="{{cartProduct.points}}" ng-model="cartProduct.num" ng-options="option for option in quantityList" ng-change="updateProductInCart($event)"></select>
+                                </div>
+                                <div>
+                                    {{cartProduct.points}} Points
+                                </div>
+                                <div>
+                                    {{cartProduct.points * cartProduct.num}} Total Points
+                                </div>
+                                <br />
+                                <a class="btn btn-primary" href="" name="{{cartProduct.productName}}" productid="{{cartProduct.productId}}" ng-click="removeProduct($event)">
+																	Remove 
+																</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="totalPoints" ng-if="TotalPointsInCart > 0" ng-cloak>
+                        Total Points in cart: {{TotalPointsInCart}}
+                    </div>
+                    <div class="totalPoints" ng-if="TotalPointsInCart == 0" ng-cloak>
+                        No items in Basket
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-	</div>
-	]] [[?xx::x[[S1:cons_id]]x:: 
+    <div class="row" ng-if="TotalPointsSpent > 0" ng-cloak>
+        <div class="col-md-12">
+            <h2>
+                Purchase Summary
+            </h2>
+            <div class="productList">
+                <product class="pointSummary" ng-repeat="product in productSummary">
+                    <div>
+                        <img ng-src="{{product.imageSrc}}" width="50" />
+                    </div>
+                    <div>
+                        {{product.ProductId}}<br />{{product.productName}}
+                    </div>
+                    <div ng-if="product.productSizeText != null" ng-cloak>
+                        Selected Size: {{product.productSizeText}}
+                    </div>
+                    <div>
+                        Quantity: {{product.Quantity}}
+                    </div>
+                    <div>
+                        Points Spent: {{product.TotalPoints}}
+                    </div>
+                </product>
+            </div>
+            <p ng-if="TotalPointsSpent > 0" ng-cloak>
+                Total Points Spent: {{TotalPointsSpent}}
+            </p>
+            <a class="btn btn-primary" href="" name="delPurchase" ng-click="deletePurchase($event)">
+						TEST ONLY: Remove Purchase 
+					</a>
+        </div>
+    </div>
+</div>
+]] 
+[[?xx::x[[S1:cons_id]]x::
 <!-- logged out -->
-	<div class="ym-login">
-		[[?xx[[S8]]::xxhttps:: 
-<!-- secure page -->
-		Coordinator Log In 
-		<div class="ym-header-login-form">
-			<form method="POST" name="headerLoginForm" ng-submit="submitHeaderLogin()" novalidate>
-				<input type="hidden" name="ng_nexturl" ng-model="headerLoginInfo.ng_nexturl" value="[[E130:[[T8:[[S8]]]] [[T8:&amp;]] [[T8:&amp;]] replaceall]]">
-					<div class="form-group">
-						<label class="sr-only" for="headerLoginInfo-user_name">
-							Username:
-						</label>
-						<input type="text" class="form-control" name="USERNAME" id="headerLoginInfo-user_name" ng-model="headerLoginInfo.user_name" placeholder="Username" maxlength="[[S0:USER_MAX_LOGIN_LEN]]" autocorrect="off" autocapitalize="off" spellcheck="false" required>
-						</div>
-						<div class="form-group">
-							<label class="sr-only" for="headerLoginInfo-password">
-								Password:
+<div class="ym-login">
+    [[?xx[[S8]]::xxhttps::
+    <!-- secure page -->
+    Coordinator Log In
+    <div class="ym-header-login-form">
+        <form method="POST" name="headerLoginForm" ng-submit="submitHeaderLogin()" novalidate>
+            <input type="hidden" name="ng_nexturl" ng-model="headerLoginInfo.ng_nexturl" value="[[E130:[[T8:[[S8]]]] [[T8:&amp;]] [[T8:&amp;]] replaceall]]">
+            <div class="form-group">
+                <label class="sr-only" for="headerLoginInfo-user_name">
+								Username: 
 							</label>
-							<input type="password" class="form-control" name="Password" id="headerLoginInfo-password" ng-model="headerLoginInfo.password" placeholder="Password" maxlength="[[S0:USER_MAX_PASSWD_LEN]]" autocorrect="off" autocapitalize="off" spellcheck="false" required>
-							</div>
-							<div class="ym-header-login-footer clearfix">
-								<button type="submit" class="btn btn-global-primary pull-left">
-									Log In 
-								</button>
-								<a class="pull-right ym-header-login__help-link" href="UserLogin?CMD=ForgotLogin">
-									Need Help?
-								</a>
-							</div>
-						</form>
-						<form class="hidden js--default-header-login-form" action="UserLogin" method="POST" hidden aria-hidden="true">
-							<input type="hidden" name="NEXTURL" value="{{headerLoginInfo.ng_nexturl}}">
-								<input type="hidden" name="USERNAME" value="{{headerLoginInfo.user_name}}">
-									<input type="hidden" name="Password" value="{{headerLoginInfo.password}}">
-									</form>
-								</div>
-								:: 
-<!-- non-secure page -->
-								<a class="btn btn-global-primary ym-header-login-toggle" href="[[T7:https://[[S29:SECURE_DOMAIN]][[S29:SECURE_PATH]]UserLogin?NEXTURL=[[T1:SPageServer?pagename=ym_coordinator_reward_center&amp;fr_id=[[S334:fr_id]]]]]]">
-									Coordinator Log In
-								</a>
-								]] 
-							</div>
-							::]]
+                <input type="text" class="form-control" name="USERNAME" id="headerLoginInfo-user_name" ng-model="headerLoginInfo.user_name" placeholder="Username" maxlength="[[S0:USER_MAX_LOGIN_LEN]]" autocorrect="off" autocapitalize="off" spellcheck="false" required>
+            </div>
+            <div class="form-group">
+                <label class="sr-only" for="headerLoginInfo-password">
+									Password: 
+								</label>
+                <input type="password" class="form-control" name="Password" id="headerLoginInfo-password" ng-model="headerLoginInfo.password" placeholder="Password" maxlength="[[S0:USER_MAX_PASSWD_LEN]]" autocorrect="off" autocapitalize="off" spellcheck="false" required>
+            </div>
+            <div class="ym-header-login-footer clearfix">
+                <button type="submit" class="btn btn-global-primary pull-left">
+										Log In 
+									</button>
+                <a class="pull-right ym-header-login__help-link" href="UserLogin?CMD=ForgotLogin">
+										Need Help? 
+									</a>
+            </div>
+        </form>
+        <form class="hidden js--default-header-login-form" action="UserLogin" method="POST" hidden aria-hidden="true">
+            <input type="hidden" name="NEXTURL" value="{{headerLoginInfo.ng_nexturl}}">
+            <input type="hidden" name="USERNAME" value="{{headerLoginInfo.user_name}}">
+            <input type="hidden" name="Password" value="{{headerLoginInfo.password}}">
+        </form>
+    </div>
+    ::
+    <!-- non-secure page -->
+    <a class="btn btn-global-primary ym-header-login-toggle" href="[[T7:https://[[S29:SECURE_DOMAIN]][[S29:SECURE_PATH]]UserLogin?NEXTURL=[[T1:SPageServer?pagename=ym_coordinator_reward_center&amp;fr_id=[[S334:fr_id]]]]]]">
+			Coordinator Log In 
+		</a>
+]]
+</div>
+::]]
