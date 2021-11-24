@@ -1,6 +1,6 @@
   <div class="ym-page-header ym-accent-color">
     <div class="container-fluid row">
-      <div class="col-sm-6">
+      <div class="col-sm-8">
       [[?xx::x[[S24]]x::::
         <!-- page title is non-null -->
         <h1>
@@ -8,13 +8,21 @@
         </h1>
       ]]
       </div>
-      <div class="col-sm-6 text-end">
-        <p>
-    			Points Balance: {{TotalPointsEarned}}
-		    </p>
-        <p ng-if="TotalPointsSpent == 0" ng-cloak>
-          Total Points Available: {{TotalPointsAvailable}}
-        </p>
+      <div class="col-sm-4 text-end d-sm-flex justify-content-around">
+	<div class="header-totals p-2">
+		<p>
+			Points Balance: {{TotalPointsEarned}}
+		</p>
+		<p ng-if="TotalPointsSpent == 0" ng-cloak>
+			Total Points Available: {{TotalPointsAvailable}}
+		</p>
+	</div>
+	<div class="totalPoints p-2">
+		<p>Total Points in cart: {{TotalPointsInCart}} </p>
+		<button type="button" ng-disabled="cartProductList.length == 0" class="btn btn-primary" href="" name="redeemProducts" ng-click="redeemProducts($event)" ng-cloak>
+			Redeem
+		</button>
+	</div>
       </div>
     </div>
   </div>
