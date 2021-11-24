@@ -82,7 +82,7 @@ angular.module 'ahaLuminateControllers'
         productIdx = product.productId
         sizeExists = product.detail.length > 0
         quantity = parseInt(product.quantitySel)
-        if sizeExists == 'true'
+        if sizeExists == true
           productIdx = product.productSize
           productSize = angular.element('div.' + productId + ' select[name=size]').find('option:selected').text()
         if (quantity * product.points) <= $scope.TotalPointsAvailable
