@@ -152,7 +152,7 @@
 							</div>
 							<div>
 								Quantity: 
-								<select name="quantity" productid="{{cartProduct.productId}}" points="{{cartProduct.points}}" ng-model="cartProduct.num" ng-options="option for option in [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]" ng-change="updateProductInCart($event)"></select>
+								<select name="quantity" productid="{{cartProduct.productId}}" points="{{cartProduct.points}}" ng-model="cartProduct.num" ng-options="option for option in quantityList" ng-change="updateProductInCart($event)"></select>
 							</div>
 							<div>
 								 {{cartProduct.points}} Points
