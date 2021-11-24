@@ -85,7 +85,7 @@ angular.module 'ahaLuminateControllers'
         if sizeExists == 'true'
           productIdx = product.productSize
           productSize = angular.element('div.' + productId + ' select[name=size]').find('option:selected').text()
-        if (quantity * product.currentTarget.attributes.points.value) <= $scope.TotalPointsAvailable
+        if (quantity * product.points) <= $scope.TotalPointsAvailable
           productExistInCart = $scope.cartProductList.find((element) ->
             element.productId == productIdx
           )
@@ -93,18 +93,18 @@ angular.module 'ahaLuminateControllers'
             $scope.cartProductList.push
               productId: productIdx
               topProduct: productId
-              productName: product.currentTarget.name
+              productName: product.productName
               productSize: productSize
-              points: parseInt(product.currentTarget.attributes.points.value)
-              totalPoints: quantity * product.currentTarget.attributes.points.value
-              quantity: parseInt(product.currentTarget.attributes.limit.value),
-              imageSrc: product.currentTarget.attributes.imgsrc.value,
+              points: product.points
+              totalPoints: quantity * product.points
+              quantity: product.quantity
+              imageSrc: product.imageSrc
               origNum: quantity
               num: quantity
           else
             productExistInCart.num += quantity
             productExistInCart.origNum = productExistInCart.num
-            productExistInCart.totalPoints = product.currentTarget.attributes.points.value * productExistInCart.num
+            productExistInCart.totalPoints = product.points * productExistInCart.num
           getTotalPoints true
         else
           alert 'Not enough points available'
