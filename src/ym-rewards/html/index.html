@@ -68,9 +68,12 @@
 				}
 				div.productList .productName {font-size: 20px;font-weight: bold;}
 				div.productList .productDesc {margin-bottom:10px;}
-				div.productList .productSize {margin-bottom:10px;}
+				div.productList .productSize, div.productList .productSizes {margin-bottom:10px;}
+				div.productList .productSizes span {display:inline-block;margin-right:3px;}
 				div.productList .productQuantity {margin-bottom:10px;}
-				div.productList .productPoints {font-weight:bold;}
+				div.productList .productPoints, div.productList .productPointsTotal {margin-bottom:10px;font-weight:bold;}
+				div.productList .productPointsTotal div {font-size:10px;}
+				div.productList .sizeText {font-size:10px;border:1px solid #ccc;padding:2px;}
 				@media (min-width:768px) {
 					div.productList {display:flex; flex-wrap:wrap;justify-content:space-between; }
 					div.productList product {
@@ -87,7 +90,7 @@
 									<img ng-src="{{(product.imageSrc != '') ? product.imageSrc : 'https://via.placeholder.com/500'}}" width="150" />
 								</div>
 								<div class="addToBasket">
-									<button type="button" ng-disabled="product.detail.length > 0 && product.productSize == ''" class="btn btn-primary" ng-if="TotalPointsSpent == 0" href="" ng-model="product.productSize" name="{{product.productName}}" limit="{{product.quantity}}" productid="{{product.productId}}" sizeexists="{{product.detail.length > 0}}" points="{{product.points}}" imgsrc="{{product.imageSrc}}" ng-click="addProductToCart($event)">
+									<button type="button" ng-disabled="(product.detail.length > 0 && product.productSize == '') || ((product.quantitySel * product.points) > TotalPointsAvailable)" class="btn btn-primary" ng-if="TotalPointsSpent == 0" href="" ng-model="product.productSize" name="{{product.productName}}" limit="{{product.quantity}}" productid="{{product.productId}}" sizeexists="{{product.detail.length > 0}}" points="{{product.points}}" imgsrc="{{product.imageSrc}}" ng-click="addProductToCart($event)">
 										Add to Basket
 									</button>
 								</div>
@@ -95,8 +98,12 @@
 							<div>
 								<div class="productName">{{product.productName}}</div>
 								<div class="productDesc">{{product.productDesc}}</div>
-								<div class="productSize" ng-if="product.detail.length > 0" ng-cloak>
+								<div class="productSizes" ng-if="product.detail.length > 0" ng-cloak>
 									Sizes: 
+									<span class="sizeText" ng-repeat="detail in product.detail">{{detail.productSizeText}}</span><br/>
+								</div>
+								<div class="productSize" ng-if="product.detail.length > 0" ng-cloak>
+									Size:
 									<select id="size_{{product.productId}}" name="size" ng-model="product.productSize" ng-options="detail.productSizeId as detail.productSizeText for detail in product.detail track by detail.productSizeId"></select>
 									<br /> 
 								</div>
@@ -104,8 +111,9 @@
   									Quantity: 
 									<select name="quantity" ng-model="product.quantitySel"  ng-options="item for item in quantityList track by item"></select>
 								</div>
-								<div class="productPoints">{{product.points}} Points</div>
-								<div class="">On hand: {{product.quantity}} (will remove when live)</div>
+								<div class="productPoints">{{product.points}} Points per Item</div>
+								<div class="productPointsTotal">{{product.quantitySel * product.points}} Total Points <div ng-if="((product.quantitySel * product.points) > TotalPointsAvailable)"><em>Not enough available</em></div></div>
+								<div class="d-none">On hand: {{product.quantity}} *will hide when live</div>
 							</div>
 						</div>
 					</product>
@@ -159,13 +167,11 @@
 							</div>
 						</div>
 				</div>
-				<div class="totalPoints">
+				<div class="totalPoints" ng-if="TotalPointsInCart > 0" ng-cloak>
 					Total Points in cart: {{TotalPointsInCart}} 
-					<div style="margin-top: 20px;" ng-if="cartProductList.length > 0" ng-cloak>
-						<a class="btn btn-primary" href="" name="redeemProducts" ng-click="redeemProducts($event)">
-							Redeem
-						</a>
-					</div>
+				</div>
+				<div class="totalPoints" ng-if="TotalPointsInCart == 0" ng-cloak>
+					No items in Basket 
 				</div>
 				</div>
 			</div>
