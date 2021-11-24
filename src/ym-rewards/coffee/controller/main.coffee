@@ -15,6 +15,7 @@ angular.module 'ahaLuminateControllers'
       $scope.protocol = window.location.protocol
       $scope.productList = []
       $scope.cartProductList = []
+      $scope.quantityList = [1..15]
       $scope.TotalPointsInCart = 0
 
       $scope.getSchoolPlan = ->
@@ -58,6 +59,8 @@ angular.module 'ahaLuminateControllers'
           success: (response) ->
             $scope.productList = response.data.company['list']
             angular.forEach $scope.productList, (product, index) ->
+              product.productSize = ''
+              product.quantitySel = 1
               $scope.productList[index].detail = response.data.company['detail'].filter((element) ->
                 element.productId == product.productId
               )
@@ -72,16 +75,17 @@ angular.module 'ahaLuminateControllers'
           success: (response) ->
 
       $scope.addProductToCart = (product) ->
+        product = @product
         productExistInCart = undefined
         productSize = ''
-        productId = product.currentTarget.attributes.productid.value
-        productIdx = product.currentTarget.attributes.productid.value
-        sizeExists = product.currentTarget.attributes.sizeexists.value
-        quantity = parseInt(angular.element('div.' + productIdx + ' select[name=quantity]').find('option:selected').val())
+        productId = product.productId
+        productIdx = product.productId
+        sizeExists = product.detail.length > 0
+        quantity = parseInt(product.quantitySel)
         if sizeExists == 'true'
-          productIdx = angular.element('div.' + productIdx + ' select[name=size]').find('option:selected').val()
+          productIdx = product.productSize
           productSize = angular.element('div.' + productId + ' select[name=size]').find('option:selected').text()
-        if quantity * product.currentTarget.attributes.points.value <= $scope.TotalPointsAvailable
+        if (quantity * product.currentTarget.attributes.points.value) <= $scope.TotalPointsAvailable
           productExistInCart = $scope.cartProductList.find((element) ->
             element.productId == productIdx
           )
