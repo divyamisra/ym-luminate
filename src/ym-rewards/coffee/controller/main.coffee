@@ -197,11 +197,11 @@ angular.module 'ahaLuminateControllers'
           reader.readAsDataURL file
           reader.onload = ->
             $http.post($sce.trustAsResourceUrl('https://tools.heart.org/ym-school-plan/imageUpload.php'), 'image': reader.result).then (response) ->
-            if response.data.errors
-              console.log 'error', response
-            else
-              data.product.imageSrc = 'https://tools.heart.org/ym-school-plan/' + response.data.file
-              console.log 'good', response
+              if response.data.errors
+                console.log 'error', response
+              else
+                data.product.imageSrc = 'https://tools.heart.org/ym-school-plan/' + response.data.file
+                console.log 'good', response
 
       $scope.getProductSummary = ->
         CatalogService.schoolPlanData '&method=PurchaseSummary&CompanyId=' + $scope.participantRegistration.companyInformation.companyId,
