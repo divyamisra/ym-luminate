@@ -1996,8 +1996,8 @@
         if (trCompanyCount < 2) {
           // no companies associated with this TR yet. Hide the team_find_new_team_company column
           $('#team_find_new_team_company').hide();
-          $('#team_find_new_team_attributes').addClass('no-companies');
-          $('#team_find_new_team_name, #team_find_new_fundraising_goal').addClass('col-md-6');
+          // $('#team_find_new_team_attributes').addClass('no-companies');
+          // $('#team_find_new_team_name, #team_find_new_fundraising_goal').addClass('col-md-6');
         }
       } else if (regType === 'joinTeam') {
         if ($('#team_find_existing').length > 0) {
@@ -2158,6 +2158,8 @@
       var promoCode = ($('body').data('promocode') !== undefined ? $('body').data('promocode') : "");
 
       // tfind
+
+      $('#fr_team_goal').attr("placeholder", "$");
 
       // begin StationaryV2 event conditional
       if (eventType2 === 'StationaryV2') {
@@ -2322,9 +2324,13 @@
 
       $('#friend_potion_next')
         .wrap('<div class="order-1 order-sm-2 col-sm-4 offset-md-6 col-md-3 col-8 offset-2 mb-3"/>');
-
+      if(regType === 'startTeam') {
       $('#team_find_section_footer')
-        .prepend('<div class="order-2 order-sm-1 col-sm-4 col-md-3 col-8 offset-2 offset-sm-0"><a href="TRR/?pg=tfind&amp;fr_id=' + evID + '" class="button btn-secondary btn-block">Back</a></div>')
+        .prepend('<div class="order-2 order-sm-1 col-sm-4 col-md-3 col-8 offset-2 offset-sm-0"><a href="TRR/?pg=tfind&amp;fr_id=' + evID + '&fr_tm_opt=new" class="button btn-secondary btn-block">Back</a></div>');
+      } else {
+        $('#team_find_section_footer')
+        .prepend('<div class="order-2 order-sm-1 col-sm-4 col-md-3 col-8 offset-2 offset-sm-0"><a href="TRR/?pg=tfind&amp;fr_id=' + evID + '" class="button btn-secondary btn-block">Back</a></div>');
+      }
 
       // Style LOs team goal input
       if (eventType2 === 'StationaryV2') {
@@ -2704,7 +2710,7 @@
       if (regType === 'virtual' || regType === 'individual') {
         $('#part_type_section_footer').append('<div class="order-2 order-sm-1 col-sm-4 col-8 offset-2 offset-sm-0"><a href="SPageServer/?pagename=cn_register&fr_id=' + evID + '&s_regType=" class="button btn-secondary btn-block">Back</a></div>');
       } else if (regType === 'startTeam') {
-        $('#previous_step').replaceWith('<div class="order-2 order-sm-1 col-sm-4 col-8 offset-2 offset-sm-0"><a href="TRR/?pg=tfind&amp;fr_id=' + evID + '&amp;fr_tm_opt=new&amp;skip_login_page=true" class="button btn-secondary btn-block">Back</a></div>');
+        $('#previous_step').replaceWith('<div class="order-2 order-sm-1 col-sm-4 col-8 offset-2 offset-sm-0"><a href="TRR/?pg=tfind&amp;fr_id=' + evID + '&fr_tm_opt=new&skip_login_page=true" class="button btn-secondary btn-block">Back</a></div>');
       } else if (regType === 'joinTeam') {
         $('#previous_step').replaceWith('<div class="order-2 order-sm-1 col-sm-4 col-8 offset-2 offset-sm-0"><a href="TRR/?pg=tfind&amp;fr_id=' + evID + '&amp;fr_tm_opt=existing&amp;skip_login_page=true" class="button btn-secondary btn-block">Back</a></div>');
       } else {
@@ -2998,7 +3004,9 @@
               cd.updateRegProgress(2, 8);
             }
           }
+
         }
+
 
         // Ptype Step
         if ($('#F2fRegPartType').length > 0) {
@@ -3132,6 +3140,43 @@
 
     $('#team_find_new_team_recruiting_goal label.input-label').attr('for', 'fr_team_member_goal');
 
+    $('#team_find_new_fundraising_goal input')
+      .attr('data-parsley-required', '')
+      .attr('data-parsley-required-message', 'Fundraising goal is required');
+
+
+    var recruitGoalMax = $('body').data("reg-recruit-max");
+    
+    if (recruitGoalMax == '') {
+      recruitGoalMax = '8';
+    }
+
+    console.log('Recruitment goal max', recruitGoalMax)
+
+    setTimeout(function() { 
+      // $('#team_find_new_team_recruiting_goal').children().prepend('<div class="regError"></div><span class="field-required" id="team_find_new_team_recruiting_goal_required"></span>');
+      $('#team_find_new_team_recruiting_goal').children().prepend('<span class="field-required" id="team_find_new_team_recruiting_goal_required"></span>');
+      $('#team_find_new_fundraising_goal').children().prepend('<span class="field-required" id="team_find_new_fundraising_goal_required"></span>');
+      $('#team_find_new_team_recruiting_goal input').parent().append('<div class="recruit-description">You must have at least 2 but no more than '+recruitGoalMax+' people on your team</div>');
+      $('#team_find_new_fundraising_goal .form-content').parent().append('<div class="recruit-description">Suggested $1,000 minimum goal</div>');
+      $('#team_find_new_team_recruiting_goal label').text('Team Recruitment Goal');
+      if($('#team_find_new_team_recruiting_goal input').val() !== '') {
+        $('#team_find_new_team_recruiting_goal input')
+        .attr('data-parsley-required', '')
+        .attr('data-parsley-required-message', 'Recruitment goal is required')
+        .attr('data-parsley-range', '[2, '+recruitGoalMax+']')
+        .attr('data-parsley-range-message', 'Error: Please enter a number from 2 to '+recruitGoalMax);
+        // .attr('data-parsley-errors-container', '.regError')
+      } else {
+        $('#team_find_new_team_recruiting_goal input')
+        .val(6)
+        .attr('data-parsley-required', '')
+        .attr('data-parsley-required-message', 'Recruitment goal is required')
+        .attr('data-parsley-range', '[2, '+recruitGoalMax+']')
+        .attr('data-parsley-range-message', 'Error: Please enter a number from 2 to '+recruitGoalMax);
+        // .attr('data-parsley-errors-container', '.regError')
+      }
+    }, 500);
     //Hardcoding value to test recruitment goal settings 
     // $('#team_find_new_team_recruiting_goal').find('input').val('3');
 
