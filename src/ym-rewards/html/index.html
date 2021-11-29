@@ -12,7 +12,7 @@
     </style>
     <div ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
         <div class="row" ng-if="TotalPointsSpent == 0" ng-cloak>
-            <div class="col-md-1">
+            <div class="col-md-1" style="min-width:10%;">
                 <h3>
                     Filters
                 </h3>
@@ -73,7 +73,8 @@
 												border: 1px solid #ccc;
 												padding: 25px;
 												margin-bottom: 20px;
-												border-radius: 20px;
+												border-radius: 5px;
+												background: #f1f1f1;
 										}
 										div.productList .productName {font-size: 20px;font-weight: bold;}
 										div.productList .productDesc {margin-bottom:10px;}
@@ -120,7 +121,7 @@
                                 </div>
                                 <div class="productSize" ng-if="product.detail.length > 0" ng-cloak>
                                     Size:
-                                    <select id="size_{{product.productId}}" name="size" ng-model="product.productSize" ng-options="detail.productSizeId as detail.productSizeText for detail in product.detail track by detail.productSizeId"></select>
+                                    <select id="size_{{product.productId}}" name="size" ng-model="product.productSize" ng-options="detail.productSizeId as detail.sizeName for detail in product.detail track by detail.productSizeId"></select>
                                     <br />
                                 </div>
                                 <div class="productQuantity">
@@ -157,7 +158,7 @@
 								}
 								.shoppingCart .totalPoints {font-weight:bold;}
             </style>
-            <div class="col-md-3 ps-4">
+            <div class="col-md-3 ps-4" style="max-width: 22%">
                 <h3>
                     Basket
                 </h3>
@@ -194,11 +195,12 @@
                         </div>
                     </div>
                     <div class="totalPoints" ng-if="TotalPointsInCart > 0" ng-cloak>
-                        Total Points in cart: {{TotalPointsInCart}}
+                        Total Points in Basket: {{TotalPointsInCart}}
                     </div>
                     <div class="totalPoints" ng-if="TotalPointsInCart == 0" ng-cloak>
                         No items in Basket
                     </div>
+           					<p><em>Unused points will carry over to next year.</em></p>
                 </div>
             </div>
         </div>
@@ -216,19 +218,19 @@
                     <div>
                         {{product.ProductId}}<br />{{product.productName}}
                     </div>
-                    <div ng-if="product.productSizeText != null" ng-cloak>
-                        Selected Size: {{product.productSizeText}}
+                    <div ng-if="product.productSizeText != ''" ng-cloak>
+                        Selected Size: {{product.sizeName}}
                     </div>
                     <div>
                         Quantity: {{product.Quantity}}
                     </div>
                     <div>
-                        Points Spent: {{product.TotalPoints}}
+                        Points Used: {{product.TotalPoints}}
                     </div>
                 </product>
             </div>
             <p ng-if="TotalPointsSpent > 0" ng-cloak>
-                Total Points Spent: {{TotalPointsSpent}}
+                <strong>Total Points Used: {{TotalPointsSpent}}</strong>
             </p>
             <a class="btn btn-primary" href="" name="delPurchase" ng-click="deletePurchase($event)">
 						TEST ONLY: Remove Purchase 
