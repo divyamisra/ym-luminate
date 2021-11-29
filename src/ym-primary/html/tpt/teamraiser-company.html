@@ -61,19 +61,19 @@
             [[C1:title]]
          </h2>
          <div class="ym-progress__stats">
-            <div class="ym-progress__date" ng-if="EventStartDate && EventStartDate != '' && EventStartDate != 'User Provided No Response'" ng-cloak>
+            <div class="ym-progress__date" ng-if="schoolPlan.EventStartDate && schoolPlan.EventStartDate != '' && schoolPlan.EventStartDate != 'User Provided No Response'" ng-cloak>
                <p>
-                  Our event date is <strong>{{EventStartDate | date:'MM/dd/yyyy'}} <span ng-if="EventStartDate != EventEndDate && EventEndDate != ''" ng-cloak> thru {{EventEndDate | date:'MM/dd/yyyy'}}</span></strong>
+                  Our event date is <strong>{{schoolPlan.EventStartDate | date:'MM/dd/yyyy'}} <span ng-if="schoolPlan.EventStartDate != schoolPlan.EventEndDate && schoolPlan.EventEndDate != ''" ng-cloak> thru {{schoolPlan.EventEndDate | date:'MM/dd/yyyy'}}</span></strong>
                </p>
             </div>
-            <div class="ym-progress__moneydue" ng-if="DonationDueDate && DonationDueDate != '' && DonationDueDate != 'User Provided No Response'" ng-cloak>
+            <div class="ym-progress__moneydue" ng-if="schoolPlan.DonationDueDate && schoolPlan.DonationDueDate != '' && schoolPlan.DonationDueDate != 'User Provided No Response'" ng-cloak>
                <p>
-                  Our donation due date is <strong>{{DonationDueDate | date:'MM/dd/yyyy'}}</strong>
+                  Our donation due date is <strong>{{schoolPlan.DonationDueDate | date:'MM/dd/yyyy'}}</strong>
                </p>
             </div>
-            <div class="ym-progress__studentgoal" ng-if="StudentRecruitmentGoal && StudentRecruitmentGoal != '' && StudentRecruitmentGoal != 'User Provided No Response'" ng-cloak>
+            <div class="ym-progress__studentgoal" ng-if="schoolPlan.StudentRecruitmentGoal && schoolPlan.StudentRecruitmentGoal != '' && schoolPlan.StudentRecruitmentGoal != 'User Provided No Response'" ng-cloak>
                <p>
-                  School Student Goal is <strong>{{StudentRecruitmentGoal}}</strong>
+                  School Student Goal is <strong>{{schoolPlan.StudentRecruitmentGoal}}</strong>
                </p>
             </div>
          </div>
