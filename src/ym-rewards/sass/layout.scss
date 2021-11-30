@@ -2,11 +2,10 @@
 	font-size: 1.1em;
 	font-weight: bold;
 }
-.filter-column {
-	min-width: 180px;
-}
-.basket-column {
-	max-width: 22%;
+@media (min-width:1024px) {
+	.filter-column {
+		min-width: 180px;
+	}
 }
 .btn.btn-primary {
 	margin-top: 10px;
@@ -61,9 +60,6 @@ div.productList {
 }
 div.shoppingCart {
 	.products {
-		display: flex;
-		flex-wrap: wrap;
-		justify-content: space-between;
 		margin-bottom: 10px;
 		>div {
 			max-width: 100%;
@@ -81,9 +77,6 @@ div.shoppingCart {
 }
 @media (min-width:768px) {
 	div.productList {
-		display: flex;
-		flex-wrap: wrap;
-		justify-content: space-between;
 		product {
 			max-width: 50%;
 			flex: 0 0 48%;
