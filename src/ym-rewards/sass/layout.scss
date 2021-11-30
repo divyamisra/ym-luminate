@@ -17,52 +17,51 @@
 	margin-top: 10px;
 	display: inline-block;
 }
-div.productList {
-	product {
-		border: 1px solid #ccc;
-		padding: 25px;
-		margin-bottom: 20px;
-		border-radius: 5px;
-		background: #f1f1f1;
-		display:block;
-		overflow:hidden;
+
+product {
+	border: 1px solid #ccc;
+	padding: 25px;
+	margin-bottom: 20px;
+	border-radius: 5px;
+	background: #f1f1f1;
+	display:block;
+	overflow:hidden;
+}
+.productName {
+	font-size: 20px;
+	font-weight: bold;
+}
+.productDesc {
+	margin-bottom: 10px;
+}
+.productSize {
+	margin-bottom: 10px;
+}
+.productSizes {
+	margin-bottom: 10px;
+	span {
+		display: inline-block;
+		margin-right: 3px;
 	}
-	.productName {
-		font-size: 20px;
-		font-weight: bold;
-	}
-	.productDesc {
-		margin-bottom: 10px;
-	}
-	.productSize {
-		margin-bottom: 10px;
-	}
-	.productSizes {
-		margin-bottom: 10px;
-		span {
-			display: inline-block;
-			margin-right: 3px;
-		}
-	}
-	.productQuantity {
-		margin-bottom: 10px;
-	}
-	.productPoints {
-		margin-bottom: 10px;
-		font-weight: bold;
-	}
-	.productPointsTotal {
-		margin-bottom: 10px;
-		font-weight: bold;
-		div {
-			font-size: 10px;
-		}
-	}
-	.sizeText {
+}
+.productQuantity {
+	margin-bottom: 10px;
+}
+.productPoints {
+	margin-bottom: 10px;
+	font-weight: bold;
+}
+.productPointsTotal {
+	margin-bottom: 10px;
+	font-weight: bold;
+	div {
 		font-size: 10px;
-		border: 1px solid #ccc;
-		padding: 2px;
 	}
+}
+.sizeText {
+	font-size: 10px;
+	border: 1px solid #ccc;
+	padding: 2px;
 }
 div.shoppingCart {
 	.products {
