@@ -17,7 +17,7 @@
                     <div class="filterList sizes d-flex flex-wrap d-lg-block">
                         <div class="checkbox pe-2 pb-2" custom-checkbox ng-repeat="size in productSizes" ng-class="{'checked': size.status == true}" ng-click="filterProducts($event)" ng-cloak>
                             <label for="chk_{{size.productSizeText}}">
-														<input type="checkbox" name="chk-{{size.productSizeText}}" id="chk_{{size.productSizeText}}" ng-model="size.status" value="{{size.productSizeText}}">
+														<input type="checkbox" name="chk-{{size.productSizeText}}" id="chk_{{size.productSizeText}}" ng-model="size.status" value="{{size.sizeId}}">
 															{{size.productSizeText}} 
 														</label>
                         </div>
