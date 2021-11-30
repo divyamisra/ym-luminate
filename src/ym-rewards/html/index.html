@@ -5,17 +5,17 @@
         You must be a coordinator to access this page
     </div>
     <div ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
-        <div class="row" ng-if="TotalPointsSpent == 0" ng-cloak>
-            <div class="col-sm-12 col-md-1 filter-column">
-                <h3>
+        <div class="d-lg-flex" ng-if="TotalPointsSpent == 0" ng-cloak>
+            <div class="filter-column">
+                <div class="h3">
                     Filters
-                </h3>
+                </div>
                 <div class="sizeFilter mt-3">
-                    <div class="filterTitle">
+                    <div class="filterTitle"> 
                         Sizes
                     </div>
-                    <div class="filterList sizes">
-                        <div class="checkbox" custom-checkbox ng-repeat="size in productSizes" ng-class="{'checked': size.status == true}" ng-click="filterProducts($event)" ng-cloak>
+                    <div class="filterList sizes d-flex flex-wrap d-lg-block">
+                        <div class="checkbox pe-2 pb-2" custom-checkbox ng-repeat="size in productSizes" ng-class="{'checked': size.status == true}" ng-click="filterProducts($event)" ng-cloak>
                             <label for="chk_{{size.productSizeText}}">
 														<input type="checkbox" name="chk-{{size.productSizeText}}" id="chk_{{size.productSizeText}}" ng-model="size.status" value="{{size.productSizeText}}">
 															{{size.productSizeText}} 
@@ -27,8 +27,8 @@
                     <div class="filterTitle">
                         Points
                     </div>
-                    <div class="filterList points">
-                        <div class="checkbox" custom-checkbox ng-repeat="point in productPoints" ng-class="{'checked': point.status == true}" ng-click="filterProducts($event)" ng-cloak>
+                    <div class="filterList points d-flex flex-wrap d-lg-block">
+                        <div class="checkbox pe-2 pb-2" custom-checkbox ng-repeat="point in productPoints" ng-class="{'checked': point.status == true}" ng-click="filterProducts($event)" ng-cloak>
                             <label for="chk_point{{point.points}}">
 														<input type="checkbox" name="chk-point{{point.points}}" id="chk_point{{point.points}}" ng-model="point.status" value="{{point.points}}">
 															{{point.points}} 
@@ -37,16 +37,16 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-8 product-column">
-                <h3>
+            <div class="product-column">
+                <div class="h3">
                     Products
-                </h3>
-                <div class="productList">
+                </div>
+                <div class="productList d-lg-flex flex-wrap d-md-block justify-content-between">
                     <product ng-repeat="product in productList" ng-if="product.quantity > 0">
-                        <div style="margin-bottom:20px;" class="{{product.productId}}">
+                        <div style="margin-bottom:20px;" class="{{product.productId}} d-block overflow-hidden">
                             <div class="float-start me-4" style="min-height:150px;">
                                 <div class="productImage">
-                                    <img ng-src="{{(product.imageSrc != '') ? product.imageSrc : 'https://via.placeholder.com/500'}}" width="150" title="{{product.productName}}" />
+                                    <img ng-src="{{(product.imageSrc != '') ? product.imageSrc : 'https://via.placeholder.com/500'}}" width="150" alt="{{product.productName}}" />
                                 </div>
                                 <div class="addToBasket">
                                     <button type="button" ng-disabled="(product.detail.length &gt; 0 &amp;&amp; product.productSize == '') || ((product.quantitySel * product.points) &gt; TotalPointsAvailable)" class="btn btn-primary" ng-if="TotalPointsSpent == 0" href="" ng-model="product.productSize" name="{{product.productName}}" limit="{{product.quantity}}" productid="{{product.productId}}" sizeexists="{{product.detail.length > 0}}" points="{{product.points}}" imgsrc="{{product.imageSrc}}" ng-click="addProductToCart($event)">
@@ -54,7 +54,7 @@
 																		</button>
                                 </div>
                             </div>
-                            <div>
+                            <div class="productInfo">
                                 <div class="productName">
                                     {{product.productName}}
                                 </div>
@@ -70,12 +70,12 @@
                                 </div>
                                 <div class="productSize" ng-if="product.detail.length > 0" ng-cloak>
                                     Size:
-                                    <select id="size_{{product.productId}}" name="size" ng-model="product.productSize" ng-options="detail.productSizeId as detail.sizeName for detail in product.detail track by detail.productSizeId"></select>
+                                    <select aria-label="Product Size" id="size_{{product.productId}}" name="size" ng-model="product.productSize" ng-options="detail.productSizeId as detail.sizeName for detail in product.detail track by detail.productSizeId"></select>
                                     <br />
                                 </div>
                                 <div class="productQuantity">
                                     Quantity:
-                                    <select name="quantity" ng-model="product.quantitySel" ng-options="item for item in quantityList track by item"></select>
+                                    <select aria-label="Product Quantity" name="quantity" ng-model="product.quantitySel" ng-options="item for item in quantityList track by item"></select>
                                 </div>
                                 <div class="productPoints">
                                     {{product.points}} Points per Item
@@ -90,22 +90,22 @@
                                 </div>
                                 <div class="d-none">
                                     On hand: {{product.quantity}} *will hide when live
-                                </div>
+                                </div> 
                             </div>
                         </div>
                     </product>
                 </div>
             </div>
-            <div class="col-md-3 ps-4 basket-column">
-                <h3>
+            <div class="ps-4 basket-column">
+                <div class="h3">
                     Basket
-                </h3>
+                </div>
                 <div class="shoppingCart">
                     <div class="products">
-                        <div ng-repeat="cartProduct in cartProductList">
+                        <div ng-repeat="cartProduct in cartProductList" class="d-lg-flex d-md-block"> 
                             <div class="float-start me-4" style="min-height:150px;">
                                 <div class="productImage">
-                                    <img ng-src="{{(cartProduct.imageSrc != '') ? cartProduct.imageSrc : 'https://via.placeholder.com/500'}}" width="50" />
+                                    <img ng-src="{{(cartProduct.imageSrc != '') ? cartProduct.imageSrc : 'https://via.placeholder.com/500'}}" width="50" alt="{{cartProduct.productName}}" />
                                 </div>
                             </div>
                             <div>
@@ -117,7 +117,7 @@
                                 </div>
                                 <div class="productQuantity">
                                     Quantity:
-                                    <select name="quantity" productid="{{cartProduct.productId}}" points="{{cartProduct.points}}" ng-model="cartProduct.num" ng-options="option for option in quantityList" ng-change="updateProductInCart($event)"></select>
+                                    <select aria-label="Product Quantity" name="quantity" productid="{{cartProduct.productId}}" points="{{cartProduct.points}}" ng-model="cartProduct.num" ng-options="option for option in quantityList" ng-change="updateProductInCart($event)"></select>
                                 </div>
                                 <div class="productPoints">
                                     {{cartProduct.points}} Points
@@ -145,13 +145,13 @@
     </div>
     <div class="row" ng-if="TotalPointsSpent > 0" ng-cloak>
         <div class="col-md-12">
-            <h2>
+            <div class="h3">
                 Purchase Summary
-            </h2>
+            </div>
             <div class="productList">
                 <product class="pointSummary" ng-repeat="product in productSummary">
                     <div class="productImage">
-                        <img ng-src="{{product.imageSrc}}" width="50" />
+                        <img ng-src="{{product.imageSrc}}" width="50" alt="{{product.productName}}" />
                     </div>
                     <div class="productName">
                         {{product.productName}}
@@ -160,7 +160,7 @@
                         Selected Size: {{product.sizeName}}
                     </div>
                     <div class="productQuantity">
-                        Quantity: {{product.Quantity}}
+                        Quantity: {{product.Quantity}} 
                     </div>
                     <div class="pointsUsed">
                         Points Used: {{product.TotalPoints}}
