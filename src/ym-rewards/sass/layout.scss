@@ -2,6 +2,15 @@
 	font-size: 1.1em;
 	font-weight: bold;
 }
+.filter-column {
+	flex: 0;
+}
+.product-column {
+	flex: 1;
+}
+.basket-column {
+	flex: 0;
+}
 @media (min-width:992px) {
 	.filter-column {
 		min-width: 180px;
@@ -83,7 +92,6 @@ div.shoppingCart {
 @media (min-width:992px) {
 	div.productList {
 		product {
-			max-width: 50%;
 			flex: 0 0 48%;
 		}
 	}
