@@ -187,7 +187,7 @@ angular.module 'trPcControllers'
                   console.log('message.name x' + message.name + 'x' + 'message type ' + message.messageType)
                   message.name = message.name.trim()
                   console.log('message.name x' + message.name + 'x' + 'message type ' + message.messageType)
-                  if message.name == 'Get a Jump Start/Past Participant w Teaser Video'
+                  if message.name == 'Get a Jump Start/Past Participant wTeaser Video'
                     console.log('gotcha!')
                     message.sortOrder = 0
                   if sortOrder[message.name]
