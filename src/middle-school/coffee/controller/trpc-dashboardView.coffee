@@ -850,7 +850,7 @@ angular.module 'trPcControllers'
           error: (response) ->
           success: (response) ->
             $scope.schoolPlan = response.data.company[0]
-            if $scope.schoolPlan.EventStartDate is not null
+            if $scope.schoolPlan.EventStartDate is not undefined
               $scope.schoolPlan.EventStartDate = new Date($scope.schoolPlan.EventStartDate + ' 00:01')
               $scope.schoolPlan.EventEndDate = new Date($scope.schoolPlan.EventEndDate + ' 00:01')
               $scope.schoolPlan.DonationDueDate = new Date($scope.schoolPlan.DonationDueDate + ' 00:01')
