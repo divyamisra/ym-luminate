@@ -5,23 +5,22 @@
   </div>
   <div class="modal-body">
     <div class="form-group">
-      <p>Total Points Available: {{TotalPointsAvailable}}</p>
-      <p>Points in Basket to Redeem: {{TotalPointsInCart}} </p>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean aliquet sem dolor, 
-         nec consequat mi accumsan sed. Nullam et suscipit diam. Vestibulum consequat lectus et est tempus, 
-        malesuada pretium quam placerat. Mauris fringilla hendrerit nisl at facilisis. 
-        Aliquam ornare tellus non risus tincidunt convallis.</p>
+      <p>Total Points Available: <strong>{{TotalPointsAvailable}}</strong></p>
+      <p>Points in Basket to Redeem: <strong>{{TotalPointsInCart}}</strong></p>
+      <p>Points to redeem will be subtracted from your total points available.
+         Any unused points will be carried over to next year.</p>
+         <p>Press Submit below to confirm redemption of the selected products.</p>
     </div>
   </div>
   <div class="modal-footer">
-    <div class="clearfix">
-      <div class="pull-left">
-        <button type="button" class="btn btn-toggle" ng-click="cancelConfirmation()">
+    <div class="d-flex justify-content-between w-100">
+      <div class="cancelButton">
+        <button type="button" class="btn btn-toggle" ng-click="cancelConfirmation()" aria-label="Click to Close Confirmation">
           Cancel
         </button>
       </div>
-      <div class="pull-right">
-        <button type="button" class="btn btn-toggle" ng-click="acceptConfirmation()">
+      <div class="submitButton">
+        <button type="button" class="btn btn-toggle active" ng-click="acceptConfirmation()" aria-label="Click to Confirm Product Redemption">
           Submit
         </button>
       </div>
