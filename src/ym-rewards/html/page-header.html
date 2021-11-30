@@ -19,11 +19,11 @@
 					<p ng-if="TotalPointsSpent == 0" ng-cloak>
 						Total Points Available: {{TotalPointsAvailable}}
 					</p>
-					<p ng-if="TotalPointsSpent == 0" ng-cloak>Total Points in cart: {{TotalPointsInCart}} </p>
+					<p ng-if="TotalPointsSpent == 0" ng-cloak>Total Points in Basket: {{TotalPointsInCart}} </p>
 				</div>
 				<div ng-if="TotalPointsSpent == 0" ng-cloak class="totalPoints p-2">
 					<button type="button" ng-disabled="cartProductList.length == 0" class="btn btn-primary" href="" name="redeemProducts" ng-click="redeemProducts($event)" ng-cloak>
-						Redeem
+						Redeem Items<br/>in Basket
 					</button>
 				</div>
       </div>
