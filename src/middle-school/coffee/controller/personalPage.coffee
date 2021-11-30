@@ -25,18 +25,25 @@ angular.module 'ahaLuminateControllers'
       $scope.companyProgress = {}
       
       $scope.prizes = []
-      $scope.schoolChallenges = []
+      $scope.prizesEarned = 0
+      $scope.has_bonus = 0
+      $scope.studentChallengeBadge = false
+      $scope.schoolChallengeBadge = false
       BoundlessService.getBadges $scope.frId + '/' + $scope.participantId
       .then (response) ->
         prizes = response.data.prizes
+        $scope.has_bonus = response.data.has_bonus
         angular.forEach prizes, (prize) ->
+          $scope.prizes.push
+            id: prize.id
+            label: prize.label
+            sku: prize.sku
+            status: prize.status
+            earned: prize.earned_datetime
+            image_url: prize.earned_image_url
+
           if prize.status is 1
-            $scope.prizes.push
-              id: prize.id
-              label: prize.label
-              sku: prize.sku
-              status: prize.status
-              earned: prize.earned_datetime
+            $scope.prizesEarned++
       , (response) ->
         # TODO
 
@@ -61,21 +68,12 @@ angular.module 'ahaLuminateControllers'
                     $scope.companyProgress.schoolChallenge = meta.value
                   if meta.name == 'school-goal'
                     $scope.companyProgress.schoolChallengeLevel = meta.value
-                if amt >= Number(($scope.companyProgress.schoolChallengeLevel).replace('$', '').replace(/,/g, '')) and $scope.companyProgress.schoolChallenge != "No School Challenge"
-                  # check if student badge already added
-                  schoolChallengeAdded = false
-                  angular.forEach $scope.schoolChallenges, (schoolChallenge, schoolChallengeIndex) ->
-                    if schoolChallenge.id == "student"
-                      schoolChallengeAdded = true
-                  if not schoolChallengeAdded
-                    $scope.schoolChallenges.push
-                      id: 'student'
-                      label: 'Individual Challenge Completed'
-                      earned: true
+                if amt >= Number(($scope.companyProgress.schoolChallengeLevel).replace('$', '').replace(/,/g, ''))
+                  $scope.studentChallengeBadge = true
             else
               $scope.companyProgress.schoolYears = 0
               $scope.companyProgress.schoolChallenge = ''
-              $scope.companyProgress.schoolChallengeLevel = ''   
+              $scope.companyProgress.schoolChallengeLevel = ''
               
       ZuriService.getStudent $scope.frId + '/' + $scope.participantId,
         error: (response) ->
@@ -227,6 +225,7 @@ angular.module 'ahaLuminateControllers'
           delete $scope.updatePersonalPhoto1Error
           if not $scope.$$phase
             $scope.$apply()
+          BoundlessService.logPersonalPageUpdated()
           successResponse = response.successResponse
           photoNumber = successResponse.photoNumber
           

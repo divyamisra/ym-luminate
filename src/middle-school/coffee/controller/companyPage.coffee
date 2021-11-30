@@ -21,13 +21,11 @@ angular.module 'ahaLuminateControllers'
     ($scope, $rootScope, $location, $filter, $timeout, $uibModal, APP_INFO, TeamraiserCompanyService, TeamraiserTeamService, TeamraiserParticipantService, BoundlessService, ZuriService, TeamraiserRegistrationService, TeamraiserCompanyPageService, PageContentService, CompanyService, $sce, $http) ->
       $scope.companyId = $location.absUrl().split('company_id=')[1].split('&')[0].split('#')[0]
       $rootScope.companyName = ''
-      $scope.eventDate = ''
       $scope.totalTeams = ''
       $scope.teamId = ''
       $scope.hideAmount = ''
       $scope.notifyName = ''
       $scope.notifyEmail = ''
-      $scope.moneyDueDate = ''
       $scope.totalTeams = ''
       $scope.teamId = ''
       $scope.studentsPledgedTotal = ''
@@ -119,6 +117,20 @@ angular.module 'ahaLuminateControllers'
             $scope.$apply()
           getBoundlessSchoolData()
         , 500
+
+
+      $scope.getSchoolPlan = () ->
+        ZuriService.schoolPlanData '&method=GetSchoolPlan&CompanyId=' + $scope.companyId + '&EventId=' + $scope.frId,
+          failure: (response) ->
+          error: (response) ->
+          success: (response) ->
+            $scope.schoolPlan = response.data.company[0]
+            $scope.schoolPlan.EventStartDate = new Date($scope.schoolPlan.EventStartDate + ' 00:01')
+            $scope.schoolPlan.EventEndDate = new Date($scope.schoolPlan.EventEndDate + ' 00:01')
+            $scope.schoolPlan.DonationDueDate = new Date($scope.schoolPlan.DonationDueDate + ' 00:01')
+            $scope.schoolPlan.KickOffDate = new Date($scope.schoolPlan.KickOffDate + ' 00:01')
+            $scope.coordinatorPoints = JSON.parse($scope.schoolPlan.PointsDetail)
+      $scope.getSchoolPlan()
       
       getCompanyTotals = ->
         TeamraiserCompanyService.getCompanies 'company_id=' + $scope.companyId,
@@ -153,9 +165,6 @@ angular.module 'ahaLuminateControllers'
                   len = schoolDataRows.length
                   while i < len
                     if $scope.companyId is schoolDataRows[i][schoolDataHeaders.CID]
-                      $scope.eventDate = schoolDataRows[i][schoolDataHeaders.ED]
-                      $scope.moneyDueDate = schoolDataRows[i][schoolDataHeaders.MDD]
-                      $scope.schoolStudentGoal = schoolDataRows[i][schoolDataHeaders.PG]
                       $scope.hideAmount = schoolDataRows[i][schoolDataHeaders.HA]
                       $scope.notifyName = schoolDataRows[i][schoolDataHeaders.YMDN]
                       $scope.notifyEmail = schoolDataRows[i][schoolDataHeaders.YMDE]
@@ -409,7 +418,7 @@ angular.module 'ahaLuminateControllers'
           $timeout ->
             percent = $scope.companyProgress.percent
             if $scope.companyProgress.goal isnt 0
-              percent = Math.ceil($scope.companyProgress.amountRaised / $scope.companyProgress.goal)
+              percent = Math.ceil(($scope.companyProgress.amountRaised / $scope.companyProgress.goal) * 100)
             if percent > 100
               percent = 100
             $scope.companyProgress.percent = percent

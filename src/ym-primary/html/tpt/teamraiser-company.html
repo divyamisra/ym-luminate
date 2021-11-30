@@ -6,10 +6,6 @@
             <button type="button" class="btn btn-md-wide btn-toggle" ng-click="editCompanyPhoto1()" ng-if="participantRegistration.companyInformation.companyId == '[[S334:company_id]]' && participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
             <span class="fa fa-camera"></span> Edit Photo
             </button>
-            <div class="ym-school-participation-years" ng-if="schoolYears > 0">
-               <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/ym-school-participation-years.png" alt="School Participation Years">
-               <div class="ym-school-participation-years-text"><span ng-bind-html="schoolYears"></span> Years Participating</div>
-            </div>
             <img class="hidden-md hidden-lg" ng-src="{{companyPagePhoto1.customUrl && companyPagePhoto1.customUrl != '' ? companyPagePhoto1.customUrl : companyPagePhoto1.defaultUrl}}" alt="School Photo" ng-cloak>
          </div>
       </div>
@@ -65,19 +61,19 @@
             [[C1:title]]
          </h2>
          <div class="ym-progress__stats">
-            <div class="ym-progress__date" ng-if="eventDate && eventDate != '' && eventDate != 'User Provided No Response'" ng-cloak>
+            <div class="ym-progress__date" ng-if="schoolPlan.EventStartDate && schoolPlan.EventStartDate != '' && schoolPlan.EventStartDate != 'User Provided No Response'" ng-cloak>
                <p>
-                  Our event date is <strong>{{eventDate | date:'MM/dd/yyyy'}}</strong>
+                  Our event date is <strong>{{schoolPlan.EventStartDate | date:'MM/dd/yyyy'}} <span ng-if="schoolPlan.EventStartDate != schoolPlan.EventEndDate && schoolPlan.EventEndDate != ''" ng-cloak> thru {{schoolPlan.EventEndDate | date:'MM/dd/yyyy'}}</span></strong>
                </p>
             </div>
-            <div class="ym-progress__moneydue" ng-if="moneyDueDate && moneyDueDate != '' && moneyDueDate != 'User Provided No Response'" ng-cloak>
+            <div class="ym-progress__moneydue" ng-if="schoolPlan.DonationDueDate && schoolPlan.DonationDueDate != '' && schoolPlan.DonationDueDate != 'User Provided No Response'" ng-cloak>
                <p>
-                  Our envelope turn in date is <strong>{{moneyDueDate | date:'MM/dd/yyyy'}}</strong>
+                  Our donation due date is <strong>{{schoolPlan.DonationDueDate | date:'MM/dd/yyyy'}}</strong>
                </p>
             </div>
-            <div class="ym-progress__studentgoal" ng-if="schoolStudentGoal && schoolStudentGoal != '' && schoolStudentGoal != 'User Provided No Response'" ng-cloak>
+            <div class="ym-progress__studentgoal" ng-if="schoolPlan.StudentRecruitmentGoal && schoolPlan.StudentRecruitmentGoal != '' && schoolPlan.StudentRecruitmentGoal != 'User Provided No Response'" ng-cloak>
                <p>
-                  School Student Goal is <strong>{{schoolStudentGoal}}</strong>
+                  School Student Goal is <strong>{{schoolPlan.StudentRecruitmentGoal}}</strong>
                </p>
             </div>
          </div>
@@ -108,13 +104,51 @@
       </div>
       <div class="clearfix"></div>
    </div>
+ 	 <div class="ym-page-section ym-page-section__main" style="text-align:center;">
+     <h2 class="ym-headline">
+        School Achievements
+     </h2>
+     <div class="ym-school-achievements">
+			 <div class="ym-school-badge-participation-years" ng-if="schoolYears > 0" ng-cloak>
+					<img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy22/badge-years.png" alt="School Participation Years">
+					<div class="ym-school-participation-years-text">{{schoolYears}}</div>
+			 </div>
+			 <div class="ym-school-badge-top25-school" ng-if="top25school == 'Y'" ng-cloak>
+					<img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy22/badge-top25school.png" alt="Top 25 School">
+			 </div>
+			 <div class="ym-school-badge-heartsaver" ng-cloak>
+					<img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy22/badge-heartsaver-school.png" alt="Heartsaver School">
+			 </div>
+			 <div style="position:relative;" class="ym-school-badge-best-year" ng-if="highestRaisedYear > 0" ng-cloak>
+					<img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy22/badge-bestyear.png" alt="Best Year and Amount">
+					<div class="ym-school-badge-best-year-date">{{highestRaisedYear}}</div>
+					<div class="ym-school-badge-best-year-amount">{{highestRaisedAmount | currency:"$":0}}</div>
+			 </div>
+     </div>
+	 </div>
    <div class="ym-page-section ym-page-section__main">
       <div ng-class="col-md-12" ng-show="participantCount > 0 && (activity1amt != 0 || activity2amt != 0 || activity3amt != 0)" ng-cloak>
          <div class="ym-our-stats ym-promo-block">
             <h2 class="ym-headline">
                Our Stats
             </h2>
-            <div class="ym-promo-block__item ym-promo-block__item--members ym-promo-block--circle">
+	    <div class="ym-promo-block__item ym-promo-block--circle" ng-if="CountOfStudentsCompletingFinnsMission != 0" ng-cloak>
+	      <div class="h2 ym-headline">
+    	        <span ng-if="CountOfStudentsCompletingFinnsMission < 1000" ng-cloak>{{CountOfStudentsCompletingFinnsMission}}</span>
+	        <span ng-if="CountOfStudentsCompletingFinnsMission > 999" ng-cloak>{{CountOfStudentsCompletingFinnsMission}}</span>
+	      </div>
+	      <div ng-if="CountOfStudentsCompletingFinnsMission == 1" ng-cloak>
+	        <p>
+	          student completed Finn's mission
+	        </p>
+	      </div>
+	      <div ng-if="CountOfStudentsCompletingFinnsMission != 1" ng-cloak>
+	        <p>
+	          students completed Finn's mission
+	        </p>
+	      </div>
+	    </div>
+	    <div class="ym-promo-block__item ym-promo-block__item--members ym-promo-block--circle">
                <div class="h2 ym-headline">
                   {{participantCount}}
                </div>
@@ -163,7 +197,7 @@
             <div class="row" style="margin:0;">
                <div class="col-md-3">
                   <h3>Top class for dollars raised</h3>
-                  <div class="ym-tl-dollars-raised">
+                  <div class="ym-tl-dollars-raised" role="list">
                      <div class="row" style="margin:0;" ng-repeat="topRaised in topClassRaised" role="listitem" ng-if="topClassRaised.length > 0" ng-cloak>
                         <div class="col-xs-2 col-sm-2 col-md-2 top-index">#{{$index+1}}</div>
                         <div class="col-xs-10 col-sm-10 col-md-10 top-detail">
@@ -177,7 +211,7 @@
                </div>
                <div class="col-md-3">
                   <h3>Top class for registered students</h3>
-                  <div class="ym-tl-registered-students">
+                  <div class="ym-tl-registered-students" role="list">
                      <div class="row" ng-repeat="topStudent in topClassStudents" role="listitem" ng-if="topClassStudents.length > 0" ng-cloak>
                         <div class="col-xs-2 col-sm-2 col-md-2 top-index">#{{$index+1}}</div>
                         <div class="col-xs-10 col-sm-10 col-md-10 top-detail">
@@ -191,7 +225,7 @@
                </div>
                <div class="col-md-3">
                   <h3>Top grade for dollars raised</h3>
-                  <div class="ym-tl-dollars-raised">
+                  <div class="ym-tl-dollars-raised" role="list">
                      <div class="row" ng-repeat="topRaised in topGradeRaised" role="listitem" ng-if="topGradeRaised.length > 0" ng-cloak>
                         <div class="col-xs-2 col-sm-2 col-md-2 top-index">#{{$index+1}}</div>
                         <div class="col-xs-10 col-sm-10 col-md-10 top-detail">
@@ -205,7 +239,7 @@
                </div>
                <div class="col-md-3">
                   <h3>Top grade for registered students</h3>
-                  <div class="ym-tl-registered-students">
+                  <div class="ym-tl-registered-students" role="list">
                      <div class="row" ng-repeat="topStudent in topGradeStudents" role="listitem" ng-if="topClassStudents.length > 0" ng-cloak>
                         <div class="col-xs-2 col-sm-2 col-md-2 top-index">#{{$index+1}}</div>
                         <div class="col-xs-10 col-sm-10 col-md-10 top-detail">
@@ -222,7 +256,7 @@
          <div class="col-md-3" ng-show="topCompanySteps.length > 0" ng-cloak>
            <div class="ym-steps-leaderboard-block">
              <h3>Top students<br/>by minutes</h3>
-             <div class="ym-tl-registered-students">
+             <div class="ym-tl-registered-students" role="list">
                <div class="row" ng-repeat="topActivity in topCompanySteps" role="listitem" ng-if="topCompanySteps.length > 0" ng-cloak>
                   <div class="col-xs-2 col-sm-2 col-md-2 top-index">#{{$index+1}}</div>
                   <div class="col-xs-10 col-sm-10 col-md-10 top-detail">

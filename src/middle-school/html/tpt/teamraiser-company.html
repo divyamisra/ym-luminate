@@ -3,17 +3,13 @@
   <div class="ym-page-section ym-page-section__top">
     <div class="col-md-6 ym-user-image" ng-style="{'background-image': (companyPagePhoto1.customUrl && companyPagePhoto1.customUrl != '') ? ('url(' + companyPagePhoto1.customUrl + ')') : ('url(' + companyPagePhoto1.defaultUrl + ')')}">
       <div class="ym-user-image-inner">
-      	<div class="ym-school-participation-years" ng-if="schoolYears > 0">
-      	  <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/middle-school/image/ym-school-participation-years.png" alt="School Participation Years">
-    	    <div class="ym-school-participation-years-text"><span ng-bind-html="schoolYears"></span> Years Participating</div>
-      	</div>
         <button type="button" class="btn btn-md-wide btn-toggle" ng-click="editCompanyPhoto1()" ng-if="participantRegistration.companyInformation.companyId == '[[S334:company_id]]' && participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
           <span class="fa fa-camera"></span> Edit Photo
         </button>
         <img class="hidden-md hidden-lg" ng-src="{{companyPagePhoto1.customUrl && companyPagePhoto1.customUrl != '' ? companyPagePhoto1.customUrl : companyPagePhoto1.defaultUrl}}" alt="School Photo" ng-cloak>
       </div>
     </div>
-    <div class="col-md-6 ym-progress ym-secondary-medium-color" ng-class="{'challenge-slime': schoolChallenge == 'Slime Challenge','challenge-pie': schoolChallenge == 'Pie in the Face','challenge-hair': schoolChallenge == 'Dye my Hair','challenge-color': schoolChallenge == 'Color Blast'}">
+    <div class="col-md-6 ym-progress ym-secondary-medium-color" ng-class="{'challenge-slime': schoolChallenge == 'Slime Challenge','challenge-pie': schoolChallenge == 'Pie in the Face','challenge-hair': schoolChallenge == 'Dye my Hair','challenge-color': schoolChallenge == 'Color Blast','challenge-none': schoolChallenge == ''}">
       <h2 class="ym-progress__title h4">
         [[C1:title]]
       </h2>
@@ -64,6 +60,22 @@
         <h2 class="ym-headline">
           Our Stats
         </h2>
+        <div class="ym-promo-block__item ym-promo-block--circle" ng-if="CountOfStudentsCompletingFinnsMission != 0" ng-cloak>
+          <div class="h2 ym-headline">
+            <span ng-if="CountOfStudentsCompletingFinnsMission < 1000" ng-cloak>{{CountOfStudentsCompletingFinnsMission}}</span>
+            <span ng-if="CountOfStudentsCompletingFinnsMission > 999" ng-cloak>{{CountOfStudentsCompletingFinnsMission}}</span>
+          </div>
+          <div ng-if="CountOfStudentsCompletingFinnsMission == 1" ng-cloak>
+            <p>
+              student completed Finn's mission
+            </p>
+          </div>
+          <div ng-if="CountOfStudentsCompletingFinnsMission != 1" ng-cloak>
+            <p>
+              students completed Finn's mission
+            </p>
+          </div>
+        </div>
         <div class="ym-promo-block__item ym-promo-block--circle">
           <div class="h2 ym-headline">
             <span ng-if="participantCount < 1000" ng-cloak>{{participantCount}}</span>
@@ -127,6 +139,21 @@
           <p>
             daily challenges of moving for one hour every day.
           </p>
+        </div>
+        <div class="ym-promo-block__item ym-promo-block--circle" ng-if="schoolYears > 0" ng-cloak>
+          <div class="h2 ym-headline">
+            <span>{{schoolYears}}</span>
+          </div>
+          <div ng-if="participantCount == 1" ng-cloak>
+            <p>
+              year participating
+            </p>
+          </div>
+          <div ng-if="participantCount != 1" ng-cloak>
+            <p>
+              years participating
+            </p>
+          </div>
         </div>
       </div>
     </div>

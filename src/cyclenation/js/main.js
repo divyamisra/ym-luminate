@@ -218,8 +218,8 @@
               });
               $('.dataTables_length').addClass('bs-select');
               //add call to hook donate button with payment type selections
-              addPaymentTypesOnSearch();
               $('.js__participant-results-container').removeAttr('hidden');
+              addPaymentTypesOnSearch();
 
               $('.js__more-participant-results').on('click', function (e) {
                 e.preventDefault();
@@ -1996,8 +1996,8 @@
         if (trCompanyCount < 2) {
           // no companies associated with this TR yet. Hide the team_find_new_team_company column
           $('#team_find_new_team_company').hide();
-          $('#team_find_new_team_attributes').addClass('no-companies');
-          $('#team_find_new_team_name, #team_find_new_fundraising_goal').addClass('col-md-6');
+          // $('#team_find_new_team_attributes').addClass('no-companies');
+          // $('#team_find_new_team_name, #team_find_new_fundraising_goal').addClass('col-md-6');
         }
       } else if (regType === 'joinTeam') {
         if ($('#team_find_existing').length > 0) {
@@ -2158,6 +2158,8 @@
       var promoCode = ($('body').data('promocode') !== undefined ? $('body').data('promocode') : "");
 
       // tfind
+
+      $('#fr_team_goal').attr("placeholder", "$");
 
       // begin StationaryV2 event conditional
       if (eventType2 === 'StationaryV2') {
@@ -2322,9 +2324,13 @@
 
       $('#friend_potion_next')
         .wrap('<div class="order-1 order-sm-2 col-sm-4 offset-md-6 col-md-3 col-8 offset-2 mb-3"/>');
-
+      if(regType === 'startTeam') {
       $('#team_find_section_footer')
-        .prepend('<div class="order-2 order-sm-1 col-sm-4 col-md-3 col-8 offset-2 offset-sm-0"><a href="TRR/?pg=tfind&amp;fr_id=' + evID + '" class="button btn-secondary btn-block">Back</a></div>')
+        .prepend('<div class="order-2 order-sm-1 col-sm-4 col-md-3 col-8 offset-2 offset-sm-0"><a href="TRR/?pg=tfind&amp;fr_id=' + evID + '&fr_tm_opt=new" class="button btn-secondary btn-block">Back</a></div>');
+      } else {
+        $('#team_find_section_footer')
+        .prepend('<div class="order-2 order-sm-1 col-sm-4 col-md-3 col-8 offset-2 offset-sm-0"><a href="TRR/?pg=tfind&amp;fr_id=' + evID + '" class="button btn-secondary btn-block">Back</a></div>');
+      }
 
       // Style LOs team goal input
       if (eventType2 === 'StationaryV2') {
@@ -2704,7 +2710,7 @@
       if (regType === 'virtual' || regType === 'individual') {
         $('#part_type_section_footer').append('<div class="order-2 order-sm-1 col-sm-4 col-8 offset-2 offset-sm-0"><a href="SPageServer/?pagename=cn_register&fr_id=' + evID + '&s_regType=" class="button btn-secondary btn-block">Back</a></div>');
       } else if (regType === 'startTeam') {
-        $('#previous_step').replaceWith('<div class="order-2 order-sm-1 col-sm-4 col-8 offset-2 offset-sm-0"><a href="TRR/?pg=tfind&amp;fr_id=' + evID + '&amp;fr_tm_opt=new&amp;skip_login_page=true" class="button btn-secondary btn-block">Back</a></div>');
+        $('#previous_step').replaceWith('<div class="order-2 order-sm-1 col-sm-4 col-8 offset-2 offset-sm-0"><a href="TRR/?pg=tfind&amp;fr_id=' + evID + '&fr_tm_opt=new&skip_login_page=true" class="button btn-secondary btn-block">Back</a></div>');
       } else if (regType === 'joinTeam') {
         $('#previous_step').replaceWith('<div class="order-2 order-sm-1 col-sm-4 col-8 offset-2 offset-sm-0"><a href="TRR/?pg=tfind&amp;fr_id=' + evID + '&amp;fr_tm_opt=existing&amp;skip_login_page=true" class="button btn-secondary btn-block">Back</a></div>');
       } else {
@@ -2998,7 +3004,9 @@
               cd.updateRegProgress(2, 8);
             }
           }
+
         }
+
 
         // Ptype Step
         if ($('#F2fRegPartType').length > 0) {
@@ -3131,6 +3139,46 @@
     $('#team_find_new_team_company label.input-label').attr('for', 'fr_co_list');
 
     $('#team_find_new_team_recruiting_goal label.input-label').attr('for', 'fr_team_member_goal');
+
+    $('#team_find_new_fundraising_goal input')
+      .attr('data-parsley-required', '')
+      .attr('data-parsley-required-message', 'Fundraising goal is required');
+
+
+    var recruitGoalMax = $('body').data("reg-recruit-max");
+    
+    if (recruitGoalMax == '') {
+      recruitGoalMax = '8';
+    }
+
+    console.log('Recruitment goal max', recruitGoalMax)
+
+    setTimeout(function() { 
+      // $('#team_find_new_team_recruiting_goal').children().prepend('<div class="regError"></div><span class="field-required" id="team_find_new_team_recruiting_goal_required"></span>');
+      $('#team_find_new_team_recruiting_goal').children().prepend('<span class="field-required" id="team_find_new_team_recruiting_goal_required"></span>');
+      $('#team_find_new_fundraising_goal').children().prepend('<span class="field-required" id="team_find_new_fundraising_goal_required"></span>');
+      $('#team_find_new_team_recruiting_goal input').parent().append('<div class="recruit-description">You must have at least 2 but no more than '+recruitGoalMax+' people on your team</div>');
+      $('#team_find_new_fundraising_goal .form-content').parent().append('<div class="recruit-description">Suggested $1,000 minimum goal</div>');
+      $('#team_find_new_team_recruiting_goal label').text('Team Recruitment Goal');
+      if($('#team_find_new_team_recruiting_goal input').val() !== '') {
+        $('#team_find_new_team_recruiting_goal input')
+        .attr('data-parsley-required', '')
+        .attr('data-parsley-required-message', 'Recruitment goal is required')
+        .attr('data-parsley-range', '[2, '+recruitGoalMax+']')
+        .attr('data-parsley-range-message', 'Error: Please enter a number from 2 to '+recruitGoalMax);
+        // .attr('data-parsley-errors-container', '.regError')
+      } else {
+        $('#team_find_new_team_recruiting_goal input')
+        .val(6)
+        .attr('data-parsley-required', '')
+        .attr('data-parsley-required-message', 'Recruitment goal is required')
+        .attr('data-parsley-range', '[2, '+recruitGoalMax+']')
+        .attr('data-parsley-range-message', 'Error: Please enter a number from 2 to '+recruitGoalMax);
+        // .attr('data-parsley-errors-container', '.regError')
+      }
+    }, 500);
+    //Hardcoding value to test recruitment goal settings 
+    // $('#team_find_new_team_recruiting_goal').find('input').val('3');
 
     // ptype
     // $('#part_type_selection_container').wrapInner('<fieldset role="radiogroup" class="ptype-selection"/>');
@@ -3541,6 +3589,21 @@ cd.getTeamHonorRoll();
   if($('.achievements .achievement-badge').length == 0) {
     $('.achievements').parent().hide();
   }
+  var teamId = getURLParameter(currentUrl, 'team_id');
+  luminateExtend.api({
+    api: 'teamraiser',
+    data: 'method=getTeamCaptains&response_format=json&fr_id=' + evID + '&team_id=' + teamId,
+    callback: {
+      success: function success(response) {
+        var captainArray = luminateExtend.utils.ensureArray(response.getTeamCaptainsResponse.captain);
+        var captainConsId = captainArray[0].consId;
+        console.log('this is captainID', captainConsId)
+        console.log('TRR/?fr_tjoin='+teamId+'&pg=tfind&fr_id='+evID+'&s_regType=joinTeam&s_captainConsId='+captainConsId)
+        $('.team-page-join-link').attr("href", 'TRR/?fr_tjoin='+teamId+'&pg=tfind&fr_id='+evID+'&s_regType=joinTeam&s_captainConsId='+captainConsId);
+      },
+      error: function error(response) {}
+    }
+  });
 }
     if ($('body').is('.pg_company')) {
  // Company Page
@@ -3949,7 +4012,7 @@ cd.getTeamHonorRoll();
                 //             var html = "<div class='paymentSelType text-center' style='padding-top:10px;'>" +
                 //                 "<h2 class='h6'>How would you like to donate?</h2>" +
                 //                 "<div class='payment-options-container'><a href='" + dlink + "'><img src='https://www2.heart.org/images/content/pagebuilder/credit-card-logos2.png' alt='Donate with Visa, MasterCard, American Express or Discover cards'/></a>" +
-                //                 "<a href='" + default_path + "/site/SPageNavigator/cyclenation_donate_amazon.html?FR_ID=" + fr_id + "&mfc_pref=T&PROXY_ID=" + px + "&PROXY_TYPE=" + pt + "' class='amazon'><img src='https://donatenow.heart.org/images/amazon-payments_inactive.png' alt='Donate with Amazon Pay'/></a>" +
+                //                 "<a href='" + default_path + "/site/SPageNavigator/cyclenation_donate_amazon.html?FR_ID=" + fr_id + "&mfc_pref=T&PROXY_ID=" + px + "&PROXY_TYPE=" + pt + "' class='amazon'><img src='https://www2.heart.org/images/content/pagebuilder/amazon-payments.png' alt='Donate with Amazon Pay'/></a>" +
                 //                 "<a href='" + default_path + "/site/SPageNavigator/cyclenation_donate_googlepay.html?FR_ID=" + fr_id + "&mfc_pref=T&PROXY_ID=" + px + "&PROXY_TYPE=" + pt + "' class='googlepay'><img src='https://www2.heart.org/donation-forms/donatenow/images/googlepay-button.png' alt='Donate with Google Pay'/></a>" +
                 //                 "<a href='" + default_path + "/site/SPageNavigator/cyclenation_donate_applepay.html?FR_ID=" + fr_id + "&mfc_pref=T&PROXY_ID=" + px + "&PROXY_TYPE=" + pt + "' class='applepay hidden-md hidden-lg'><img src='https://www2.heart.org/donation-forms-braintree/donatenow/images/DonateBlack_32pt_@2x.png' alt='ApplePay'/></a>" +
                 //                 "<a href='" + default_path + "/site/SPageNavigator/cyclenation_donate_venmo.html?FR_ID=" + fr_id + "&mfc_pref=T&PROXY_ID=" + px + "&PROXY_TYPE=" + pt + "' class='venmo hidden-md hidden-lg'><img src='https://www2.heart.org/donation-forms/donatenow/images/venmo-button.png' alt='Venmo'/></a>" +

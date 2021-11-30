@@ -215,6 +215,7 @@
           <label for="emailComposer-subject" class="sr-only">Subject</label>
           <input type="text" class="form-control input-lg" id="emailComposer-subject" name="subject" ng-model="emailComposer.subject" placeholder="Subject" autocorrect="on" autocapitalize="on" spellcheck="true">
         </div>
+        <p><em>To add a photo - Click the photo icon and add image URL and click OK, or drag and drop a photo into body of email and resize as needed. Click image to resize and choose 25%.</em></p>
         <div class="form-group" ng-if="personalizedSalutationEnabled && false">
           <div class="checkbox" custom-checkbox ng-class="{'checked': emailComposer.prepend_salutation}">
             <label>

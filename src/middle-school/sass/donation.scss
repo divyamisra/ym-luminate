@@ -44,3 +44,15 @@ div.donation-form-container .ym-donation-levels {
       color: $event-primary;
     }
 }
+
+.ym-donation-thanks {
+   .ym-secondary-medium-color {
+      p {
+         color: $brand-white;
+      }
+      a,
+      a:link {
+         color: #c10e21;
+      }
+   }
+}
