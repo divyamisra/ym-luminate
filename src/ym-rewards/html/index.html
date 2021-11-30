@@ -11,7 +11,7 @@
                     Filters
                 </div>
                 <div class="sizeFilter mt-3">
-                    <div class="filterTitle"> 
+                    <div class="filterTitle mb-2"> 
                         Sizes
                     </div>
                     <div class="filterList sizes d-flex flex-wrap d-lg-block">
@@ -24,7 +24,7 @@
                     </div>
                 </div>
                 <div class="pointsFilter mt-3">
-                    <div class="filterTitle">
+                    <div class="filterTitle mb-2">
                         Points
                     </div>
                     <div class="filterList points d-flex flex-wrap d-lg-block">
@@ -38,7 +38,7 @@
                 </div>
             </div>
             <div class="product-column">
-                <div class="h3">
+                <div class="h3 mb-4">
                     Products
                 </div>
                 <div class="productList d-lg-flex flex-wrap d-md-block justify-content-between">
@@ -97,18 +97,21 @@
                 </div>
             </div>
             <div class="ps-4 basket-column">
-                <div class="h3">
+                <div class="h3 mb-4">
                     Basket
                 </div>
                 <div class="shoppingCart">
                     <div class="products">
-                        <div ng-repeat="cartProduct in cartProductList" class="d-lg-flex d-md-block"> 
-                            <div class="float-start me-4" style="min-height:150px;">
+                        <div ng-repeat="cartProduct in cartProductList" class="d-lg-flex d-md-block position-relative"> 
+                            <div class="position-absolute top-0 end-0 me-2 mt-3">
+                                <button type="button" class="btn btn-primary py-1 px-2" href="" name="{{cartProduct.productName}}" productid="{{cartProduct.productId}}" ng-click="removeProduct($event)">
+																	X
+																</button>
+														</div>
+                            <div class="me-4" style="min-height:150px;">
                                 <div class="productImage">
-                                    <img ng-src="{{(cartProduct.imageSrc != '') ? cartProduct.imageSrc : 'https://via.placeholder.com/500'}}" width="50" alt="{{cartProduct.productName}}" />
+                                    <img ng-src="{{(cartProduct.imageSrc != '') ? cartProduct.imageSrc : 'https://via.placeholder.com/500'}}" width="100" alt="{{cartProduct.productName}}" />
                                 </div>
-                            </div>
-                            <div>
                                 <div class="productName">
                                     {{cartProduct.productName}}
                                 </div>
@@ -122,13 +125,9 @@
                                 <div class="productPoints">
                                     {{cartProduct.points}} Points
                                 </div>
-                                <div class="totalProductPoints">
+                                <div class="productPointsTotal">
                                     {{cartProduct.points * cartProduct.num}} Total Points
                                 </div>
-                                <br />
-                                <a class="btn btn-primary" href="" name="{{cartProduct.productName}}" productid="{{cartProduct.productId}}" ng-click="removeProduct($event)">
-																	Remove 
-																</a>
                             </div>
                         </div>
                     </div>
@@ -145,18 +144,18 @@
     </div>
     <div class="row" ng-if="TotalPointsSpent > 0" ng-cloak>
         <div class="col-md-12">
-            <div class="h3">
+            <div class="h3 mb-4">
                 Purchase Summary
             </div>
-            <div class="productList">
-                <product class="pointSummary" ng-repeat="product in productSummary">
+            <div class="productSummary d-lg-flex flex-wrap justify-content-start">
+                <product class="pointSummary flex-grow-0 p-2 me-3" ng-repeat="product in productSummary">
                     <div class="productImage">
-                        <img ng-src="{{product.imageSrc}}" width="50" alt="{{product.productName}}" />
+                        <img ng-src="{{(product.imageSrc != '') ? product.imageSrc : 'https://via.placeholder.com/500'}}" width="150" alt="{{product.productName}}" />
                     </div>
                     <div class="productName">
                         {{product.productName}}
                     </div>
-                    <div class="selectedSize" ng-if="product.productSizeText != ''" ng-cloak>
+                    <div class="selectedSize" ng-if="product.sizeName != null" ng-cloak>
                         Selected Size: {{product.sizeName}}
                     </div>
                     <div class="productQuantity">
@@ -170,6 +169,7 @@
             <p class="totalPointsUsed" ng-if="TotalPointsSpent > 0" ng-cloak>
                 <strong>Total Points Used: {{TotalPointsSpent}}</strong>
             </p>
+            <p><em>Unused points will carry over to next year.</em></p>
             <a class="btn btn-primary" href="" name="delPurchase" ng-click="deletePurchase($event)">
 						TEST ONLY: Remove Purchase 
 					</a>
