@@ -89,10 +89,16 @@ div.shoppingCart {
 		font-weight: bold;
 	}
 }
+
 @media (min-width:992px) {
 	div.productList {
 		product {
 			flex: 0 0 48%;
+		}
+	}
+	.productSummary {
+		product {
+			flex: 1 0 29%;
 		}
 	}
 }
