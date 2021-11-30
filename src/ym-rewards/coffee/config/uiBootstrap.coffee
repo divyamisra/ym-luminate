@@ -3,5 +3,5 @@ angular.module 'ahaLuminateApp'
     '$uibModalProvider'
     ($uibModalProvider) ->
       angular.extend $uibModalProvider.options, 
-        windowClass: 'rc-modal'
+        windowClass: 'rc-modal show'
   ]
