@@ -2,9 +2,15 @@
 	font-size: 1.1em;
 	font-weight: bold;
 }
-@media (min-width:1024px) {
+@media (min-width:992px) {
 	.filter-column {
 		min-width: 180px;
+	}
+	.product-column {
+		min-width: 300px;
+	}
+	.basket-column {
+		min-width: 300px;
 	}
 }
 .btn.btn-primary {
