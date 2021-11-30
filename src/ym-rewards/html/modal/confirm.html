@@ -1,0 +1,29 @@
+  <div class="modal-header">
+    <h2 class="h5 modal-title">
+      Confirm Redemption of Points
+    </h2>
+  </div>
+  <div class="modal-body">
+    <div class="form-group">
+      <p>Total Points Available: {{TotalPointsAvailable}}</p>
+      <p>Points in Basket to Redeem: {{TotalPointsInCart}} </p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean aliquet sem dolor, 
+         nec consequat mi accumsan sed. Nullam et suscipit diam. Vestibulum consequat lectus et est tempus, 
+        malesuada pretium quam placerat. Mauris fringilla hendrerit nisl at facilisis. 
+        Aliquam ornare tellus non risus tincidunt convallis.</p>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <div class="clearfix">
+      <div class="pull-left">
+        <button type="button" class="btn btn-toggle" ng-click="cancelConfirmation()">
+          Cancel
+        </button>
+      </div>
+      <div class="pull-right">
+        <button type="button" class="btn btn-toggle" ng-click="acceptConfirmation()">
+          Submit
+        </button>
+      </div>
+    </div>
+  </div>
