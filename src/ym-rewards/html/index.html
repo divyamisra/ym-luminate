@@ -45,7 +45,7 @@
                     <product ng-repeat="product in productList" ng-if="product.quantity > 0">
                         <div style="margin-bottom:20px;" class="{{product.productId}} d-block overflow-hidden">
                             <div class="float-start me-4" style="min-height:150px;">
-                                <div class="productImage">
+                                <div class="productImage mb-3">
                                     <img ng-src="{{(product.imageSrc != '') ? product.imageSrc : 'https://via.placeholder.com/500'}}" width="150" alt="{{product.productName}}" />
                                 </div>
                                 <div class="addToBasket">
