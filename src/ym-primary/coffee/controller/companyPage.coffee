@@ -93,11 +93,16 @@ angular.module 'ahaLuminateControllers'
           error: (response) ->
           success: (response) ->
             $scope.schoolPlan = response.data.company[0]
-            $scope.schoolPlan.EventStartDate = new Date($scope.schoolPlan.EventStartDate + ' 00:01')
-            $scope.schoolPlan.EventEndDate = new Date($scope.schoolPlan.EventEndDate + ' 00:01')
-            $scope.schoolPlan.DonationDueDate = new Date($scope.schoolPlan.DonationDueDate + ' 00:01')
-            $scope.schoolPlan.KickOffDate = new Date($scope.schoolPlan.KickOffDate + ' 00:01')
-            $scope.coordinatorPoints = JSON.parse($scope.schoolPlan.PointsDetail)
+            if $scope.schoolPlan.EventStartDate != undefined
+              $scope.schoolPlan.EventStartDate = new Date($scope.schoolPlan.EventStartDate + ' 00:01')
+              $scope.schoolPlan.EventEndDate = new Date($scope.schoolPlan.EventEndDate + ' 00:01')
+              $scope.schoolPlan.DonationDueDate = new Date($scope.schoolPlan.DonationDueDate + ' 00:01')
+              $scope.schoolPlan.KickOffDate = new Date($scope.schoolPlan.KickOffDate + ' 00:01')
+              $scope.coordinatorPoints = JSON.parse($scope.schoolPlan.PointsDetail)
+            else
+              $scope.schoolPlan.EventStartDate = ''
+              $scope.schoolPlan.DonationDueDate = ''
+              $scope.schoolPlan.KickOffDate = ''
       $scope.getSchoolPlan()
               
       setCompanyProgress = (amountRaised, goal) ->
