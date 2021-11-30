@@ -73,6 +73,10 @@ product {
 	padding: 2px;
 }
 div.shoppingCart {
+	border: 1px solid #ccc;
+	border-radius: 7px;
+	padding: 10px;
+	
 	.products {
 		margin-bottom: 10px;
 		>div {
@@ -83,8 +87,7 @@ div.shoppingCart {
 			margin-bottom: 20px;
 		}
 	}
-}
-.shoppingCart {
+
 	.totalPoints {
 		font-weight: bold;
 	}
