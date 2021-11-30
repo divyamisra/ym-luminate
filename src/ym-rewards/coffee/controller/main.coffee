@@ -9,7 +9,8 @@ angular.module 'ahaLuminateControllers'
     '$timeout'
     '$http'
     '$sce'
-    ($rootScope, $scope, $httpParamSerializer, AuthService, CatalogService, TeamraiserRegistrationService, $timeout, $http, $sce) ->
+    '$uibModal'
+    ($rootScope, $scope, $httpParamSerializer, AuthService, CatalogService, TeamraiserRegistrationService, $timeout, $http, $sce, $uibModal) ->
       $dataRoot = angular.element '[data-aha-luminate-root]'
       consId = $dataRoot.data('cons-id') if $dataRoot.data('cons-id') isnt ''
       $scope.protocol = window.location.protocol
@@ -227,15 +228,23 @@ angular.module 'ahaLuminateControllers'
             $scope.getSchoolProducts()
       
       $scope.redeemProducts = ->
-        if confirm('Are you ready to redeem?')
-          CatalogService.schoolPlanData '&method=RedeemProducts&ConsId=' + $rootScope.consId + '&CompanyId=' + $scope.participantRegistration.companyInformation.companyId + '&cart=' + angular.toJson($scope.cartProductList),
-            failure: (response) ->
-            error: (response) ->
-            success: (response) ->
-              $scope.cartProductList = []
-              $scope.TotalPointsInCart = 0
-              $scope.getSchoolPlan()
-              $scope.getSchoolProducts()
+        $scope.redeemConfirm = $uibModal.open
+          scope: $scope
+          templateUrl: APP_INFO.rootPath + 'dist/ym-rewards/html/modal/confirm.html'
+
+      $scope.cancelConfirmation = ->
+        $scope.redeemConfirm.close()
+          
+      $scope.acceptConfirmation = ->
+        CatalogService.schoolPlanData '&method=RedeemProducts&ConsId=' + $rootScope.consId + '&CompanyId=' + $scope.participantRegistration.companyInformation.companyId + '&cart=' + angular.toJson($scope.cartProductList),
+          failure: (response) ->
+          error: (response) ->
+          success: (response) ->
+            $scope.redeemConfirm.close()
+            $scope.cartProductList = []
+            $scope.TotalPointsInCart = 0
+            $scope.getSchoolPlan()
+            $scope.getSchoolProducts()
 
       $scope.headerLoginInfo = 
         user_name: ''
