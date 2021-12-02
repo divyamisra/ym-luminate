@@ -1008,7 +1008,8 @@
 												<strong>Event Start Date</strong>
 											</label>
 											<div class="input-group">
-												{{schoolPlan.EventStartDate | date:'MM/dd/yyyy'}}
+								<span ng-if="schoolPlan.EventStartDate == '0000-00-00'" ng-cloak>--/--/----</span>
+								<span ng-if="schoolPlan.EventStartDate != '0000-00-00'" ng-cloak>{{schoolPlan.EventStartDate | date:'MM/dd/yyyy'}}</span>
 												<input type="date" min="{{theDate | date:'yyyy-MM-dd'}}" class="form-control hidden" id="EventStartDate" ng-model="schoolPlan.EventStartDate" aria-label="Event Start Date" ng-blur="putSchoolPlan($event)" /> 
 											</div>
 										</div>
@@ -1019,7 +1020,8 @@
 												<strong>Event End Date</strong>
 											</label>
 											<div class="input-group">
-												{{schoolPlan.EventEndDate | date:'MM/dd/yyyy'}}
+								<span ng-if="schoolPlan.EventEndDate == '0000-00-00'" ng-cloak>--/--/----</span>
+								<span ng-if="schoolPlan.EventEndDate != '0000-00-00'" ng-cloak>{{schoolPlan.EventEndDate | date:'MM/dd/yyyy'}}</span>
 												<input type="date" min="{{theDate | date:'yyyy-MM-dd'}}" class="form-control hidden" id="EventEndDate" ng-model="schoolPlan.EventEndDate" aria-label="Event End Date" ng-blur="putSchoolPlan($event)" /> 
 											</div>
 										</div>
@@ -1032,7 +1034,8 @@
 												<strong>Kick Off/Assembly Date</strong>
 											</label>
 											<div class="input-group">
-												{{schoolPlan.KickOffDate | date:'MM/dd/yyyy'}}
+								<span ng-if="schoolPlan.KickOffDate == '0000-00-00'" ng-cloak>--/--/----</span>
+								<span ng-if="schoolPlan.KickOffDate != '0000-00-00'" ng-cloak>{{schoolPlan.KickOffDate | date:'MM/dd/yyyy'}}</span>
 												<input type="date" min="{{theDate | date:'yyyy-MM-dd'}}" class="form-control hidden" id="KickOffDate" ng-model="schoolPlan.KickOffDate" aria-label="Kick Off/Assembly Date" ng-blur="putSchoolPlan($event)" /> 
 											</div>
 										</div>
@@ -1043,7 +1046,8 @@
 												<strong>Donation Due Date</strong>
 											</label>
 											<div class="input-group">
-												{{schoolPlan.DonationDueDate | date:'MM/dd/yyyy'}}
+								<span ng-if="schoolPlan.DonationDueDate == '0000-00-00'" ng-cloak>--/--/----</span>
+								<span ng-if="schoolPlan.DonationDueDate != '0000-00-00'" ng-cloak>{{schoolPlan.DonationDueDate | date:'MM/dd/yyyy'}}</span>
 												<input type="date" min="{{theDate | date:'yyyy-MM-dd'}}" class="form-control hidden" id="DonationDueDate" ng-model="schoolPlan.DonationDueDate" aria-label="Donation Due Date" ng-blur="putSchoolPlan($event)" /> 
 											</div>
 										</div>
