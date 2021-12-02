@@ -1010,13 +1010,13 @@ angular.module 'trPcControllers'
             $scope.schoolPlan = response.data.company[0]
             if $scope.schoolPlan.EventStartDate != undefined
               if $scope.schoolPlan.EventStartDate != '0000-00-00'
-                $scope.schoolPlan.EventStartDate = new Date($scope.schoolPlan.EventStartDate + ' 00:01')
+                $scope.schoolPlan.EventStartDate = new Date($scope.schoolPlan.EventStartDate.replace(/-/g, "/") + ' 00:01')
               if $scope.schoolPlan.EventEndDate != '0000-00-00'
-                $scope.schoolPlan.EventEndDate = new Date($scope.schoolPlan.EventEndDate + ' 00:01')
+                $scope.schoolPlan.EventEndDate = new Date($scope.schoolPlan.EventEndDate.replace(/-/g, "/") + ' 00:01')
               if $scope.schoolPlan.DonationDueDate != '0000-00-00'
-                $scope.schoolPlan.DonationDueDate = new Date($scope.schoolPlan.DonationDueDate + ' 00:01')
+                $scope.schoolPlan.DonationDueDate = new Date($scope.schoolPlan.DonationDueDate.replace(/-/g, "/") + ' 00:01')
               if $scope.schoolPlan.KickOffDate != '0000-00-00'
-                $scope.schoolPlan.KickOffDate = new Date($scope.schoolPlan.KickOffDate + ' 00:01')
+                $scope.schoolPlan.KickOffDate = new Date($scope.schoolPlan.KickOffDate.replace(/-/g, "/") + ' 00:01')
               $scope.coordinatorPoints = JSON.parse($scope.schoolPlan.PointsDetail)
             else
               $scope.schoolPlan.EventStartDate = ''
