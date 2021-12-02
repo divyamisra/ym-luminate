@@ -1008,7 +1008,8 @@
 												Event Start Date 
 											</label>
 											<div class="input-group">
-												<input type="date" min="{{theDate | date:'yyyy-MM-dd'}}" class="form-control" id="EventStartDate" ng-model="schoolPlan.EventStartDate" aria-label="Event Start Date" ng-blur="putSchoolPlan($event)" /> 
+												{{schoolPlan.EventStartDate | date:'MM/dd/yyyy'}}
+												<input type="date" min="{{theDate | date:'yyyy-MM-dd'}}" class="form-control hidden" id="EventStartDate" ng-model="schoolPlan.EventStartDate" aria-label="Event Start Date" ng-blur="putSchoolPlan($event)" /> 
 											</div>
 										</div>
 									</div>
@@ -1018,7 +1019,8 @@
 												Event End Date 
 											</label>
 											<div class="input-group">
-												<input type="date" min="{{theDate | date:'yyyy-MM-dd'}}" class="form-control" id="EventEndDate" ng-model="schoolPlan.EventEndDate" aria-label="Event End Date" ng-blur="putSchoolPlan($event)" /> 
+												{{schoolPlan.EventEndDate | date:'MM/dd/yyyy'}}
+												<input type="date" min="{{theDate | date:'yyyy-MM-dd'}}" class="form-control hidden" id="EventEndDate" ng-model="schoolPlan.EventEndDate" aria-label="Event End Date" ng-blur="putSchoolPlan($event)" /> 
 											</div>
 										</div>
 									</div>
@@ -1030,7 +1032,8 @@
 												Kick Off/Assembly Date 
 											</label>
 											<div class="input-group">
-												<input type="date" min="{{theDate | date:'yyyy-MM-dd'}}" class="form-control" id="KickOffDate" ng-model="schoolPlan.KickOffDate" aria-label="Kick Off/Assembly Date" ng-blur="putSchoolPlan($event)" /> 
+												{{schoolPlan.KickOffDate | date:'MM/dd/yyyy'}}
+												<input type="date" min="{{theDate | date:'yyyy-MM-dd'}}" class="form-control hidden" id="KickOffDate" ng-model="schoolPlan.KickOffDate" aria-label="Kick Off/Assembly Date" ng-blur="putSchoolPlan($event)" /> 
 											</div>
 										</div>
 									</div>
@@ -1040,13 +1043,14 @@
 												Donation Due Date 
 											</label>
 											<div class="input-group">
-												<input type="date" min="{{theDate | date:'yyyy-MM-dd'}}" class="form-control" id="DonationDueDate" ng-model="schoolPlan.DonationDueDate" aria-label="Donation Due Date" ng-blur="putSchoolPlan($event)" /> 
+												{{schoolPlan.DonationDueDate | date:'MM/dd/yyyy'}}
+												<input type="date" min="{{theDate | date:'yyyy-MM-dd'}}" class="form-control hidden" id="DonationDueDate" ng-model="schoolPlan.DonationDueDate" aria-label="Donation Due Date" ng-blur="putSchoolPlan($event)" /> 
 											</div>
 										</div>
 									</div>
 								</div>
 							</div>
-							<div class="ym-pc-dashboard-total-points text-center">
+							<div class="ym-pc-dashboard-total-points text-center hidden">
 								<div>
 									<strong>
 										Total Points: 
@@ -1074,7 +1078,7 @@
 										</label>
 										<input type="number" class="form-control" id="FinnsMissionCompletedGoal" ng-model="schoolPlan.FinnsMissionCompletedGoal" aria-label="Finn's Mission Completion Goal" ng-blur="putSchoolPlan($event)">
 									</div>
-									<div class="form-group">
+									<div class="form-group hidden">
 										<label for="school_goal">
 											Fundraising Goal: 
 										</label>
@@ -1087,7 +1091,7 @@
 										Allow AHA to Send Emails to my students on my behalf 
 									</label>
 								</div>
-				        <div class="ym-pc-dashboard-multi-coord checkbox" custom-checkbox ng-class="{'checked': schoolPlan.MultipleCoordinators == true}" ng-cloak>
+				        <div class="ym-pc-dashboard-multi-coord checkbox hidden" custom-checkbox ng-class="{'checked': schoolPlan.MultipleCoordinators == true}" ng-cloak>
 					  <label for="MultipleCoordinators">
 					  <input type="checkbox" name="MultipleCoordinators" id="MultipleCoordinators" ng-model="schoolPlan.MultipleCoordinators" ng-true-value="1" ng-false-value="0" ng-click="putSchoolPlan($event)"> 
 					  My school has two or more coordinators responsible for the American Heart Challenge program.
