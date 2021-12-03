@@ -1023,37 +1023,45 @@
 	    </h2>
 	    <div class="ym-pc-dashboard-section-plan" ng-if="schoolPlan.EventStartDate != ''" ng-cloak>
 	      <div class="row ym-pc-dashboard-event-dates">
-					<div class="col-md-6" style="padding:0">
+					<div class="col-sm-6" style="padding:0;margin-right:10px;">
             <div class="form-group">
-              <label for="EventStartDate">Event Start Date</label>
+              <label for="EventStartDate"><strong>Event Start Date</strong></label>
               <div class="input-group">
-                <input type="date" min="{{theDate | date:'yyyy-MM-dd'}}" class="form-control" id="EventStartDate" ng-model="schoolPlan.EventStartDate" aria-label="Event Start Date" ng-blur="putSchoolPlan($event)" />
+								<span ng-if="schoolPlan.EventStartDate == '0000-00-00'" ng-cloak>--/--/----</span>
+								<span ng-if="schoolPlan.EventStartDate != '0000-00-00'" ng-cloak>{{schoolPlan.EventStartDate | date:'MM/dd/yyyy'}}</span>
+                <input type="date" min="{{theDate | date:'yyyy-MM-dd'}}" class="form-control hidden" id="EventStartDate" ng-model="schoolPlan.EventStartDate" aria-label="Event Start Date" ng-blur="putSchoolPlan($event)" />
               </div>
             </div>
  					</div>
-					<div class="col-md-6" style="padding:0">
+					<div class="col-sm-6" style="padding:0;">
 						<div class="form-group">
-							<label for="EventEndDate">Event End Date</label>
+							<label for="EventEndDate"><strong>Event End Date</strong></label>
 							<div class="input-group">
-								<input type="date" min="{{theDate | date:'yyyy-MM-dd'}}" class="form-control" id="EventEndDate" ng-model="schoolPlan.EventEndDate" aria-label="Event End Date" ng-blur="putSchoolPlan($event)" />
+								<span ng-if="schoolPlan.EventEndDate == '0000-00-00'" ng-cloak>--/--/----</span>
+								<span ng-if="schoolPlan.EventEndDate != '0000-00-00'" ng-cloak>{{schoolPlan.EventEndDate | date:'MM/dd/yyyy'}}</span>
+								<input type="date" min="{{theDate | date:'yyyy-MM-dd'}}" class="form-control hidden" id="EventEndDate" ng-model="schoolPlan.EventEndDate" aria-label="Event End Date" ng-blur="putSchoolPlan($event)" />
 							</div>
 						</div>
 					</div>
 	      </div>
 	      <div class="row ym-pc-dashboard-point-field" ng-cloak>
-					<div class="col-md-6" style="padding:0">
+					<div class="col-sm-6" style="padding:0;margin-right:10px;">
 						<div class="form-group">
-							<label for="KickOffDate">Kick Off/Assembly Date</label>
+							<label for="KickOffDate"><strong>Kick Off/Assembly Date</strong></label>
 							<div class="input-group">
-								<input type="date" min="{{theDate | date:'yyyy-MM-dd'}}" class="form-control" id="KickOffDate" ng-model="schoolPlan.KickOffDate" aria-label="Kick Off/Assembly Date" ng-blur="putSchoolPlan($event)" />
+								<span ng-if="schoolPlan.KickOffDate == '0000-00-00'" ng-cloak>--/--/----</span>
+								<span ng-if="schoolPlan.KickOffDate != '0000-00-00'" ng-cloak>{{schoolPlan.KickOffDate | date:'MM/dd/yyyy'}}</span>
+								<input type="date" min="{{theDate | date:'yyyy-MM-dd'}}" class="form-control hidden" id="KickOffDate" ng-model="schoolPlan.KickOffDate" aria-label="Kick Off/Assembly Date" ng-blur="putSchoolPlan($event)" />
 							</div>
 						</div>
 					</div>
-					<div class="col-md-6" style="padding:0">
+					<div class="col-sm-6" style="padding:0">
 						<div class="form-group">
-							<label for="DonationDueDate">Donation Due Date</label>
+							<label for="DonationDueDate"><strong>Donation Due Date</strong></label>
 							<div class="input-group">
-								<input type="date" min="{{theDate | date:'yyyy-MM-dd'}}" class="form-control" id="DonationDueDate" ng-model="schoolPlan.DonationDueDate" aria-label="Donation Due Date" ng-blur="putSchoolPlan($event)" />
+								<span ng-if="schoolPlan.DonationDueDate == '0000-00-00'" ng-cloak>--/--/----</span>
+								<span ng-if="schoolPlan.DonationDueDate != '0000-00-00'" ng-cloak>{{schoolPlan.DonationDueDate | date:'MM/dd/yyyy'}}</span>
+								<input type="date" min="{{theDate | date:'yyyy-MM-dd'}}" class="form-control hidden" id="DonationDueDate" ng-model="schoolPlan.DonationDueDate" aria-label="Donation Due Date" ng-blur="putSchoolPlan($event)" />
 							</div>
 						</div>
 					</div>
@@ -1067,7 +1075,7 @@
 						<label for="FinnsMissionCompletedGoal">Finn's Mission Completion Goal:</label>
 						<input type="number" class="form-control" id="FinnsMissionCompletedGoal" ng-model="schoolPlan.FinnsMissionCompletedGoal" aria-label="Finn's Mission Completion Goal" ng-blur="putSchoolPlan($event)">
 					</div>
-					<div class="form-group">
+					<div class="form-group hidden">
 						<label for="school_goal">Fundraising Goal:</label>
 						<input type="text" class="form-control" id="school_goal" ng-model="companyProgress.goalFormatted" aria-label="School Fundraising Goal" ng-blur="putSchoolPlan($event)" onkeypress="return event.charCode == 36 || event.charCode == 44 || event.charCode == 46 || (event.charCode >= 48 && event.charCode <= 57)">
 					</div>
@@ -1078,7 +1086,7 @@
           	Allow AHA to Send Emails to my students on my behalf
         	</label>
 	      </div>
-				<div class="ym-pc-dashboard-total-points text-center">
+				<div class="ym-pc-dashboard-total-points text-center hidden">
 					<div><strong>Total Points: <span ng-bind-html="schoolPlan.TotalPointsEarned"></span></strong></div>
 					<p>Points updated nightly at 3am<br/>
 					  <a href="" ng-click="showSchoolPlan()" class="ym-progress-show-plan" aria-label="Click here for more information">
@@ -1086,7 +1094,7 @@
 					  </a>
 					</p>
 				</div>
-				        <div class="ym-pc-dashboard-multi-coord checkbox" custom-checkbox ng-class="{'checked': schoolPlan.MultipleCoordinators == true}" ng-cloak>
+				        <div class="ym-pc-dashboard-multi-coord checkbox hidden" custom-checkbox ng-class="{'checked': schoolPlan.MultipleCoordinators == true}" ng-cloak>
 					  <label for="MultipleCoordinators">
 					  <input type="checkbox" name="MultipleCoordinators" id="MultipleCoordinators" ng-model="schoolPlan.MultipleCoordinators" ng-true-value="1" ng-false-value="0" ng-click="putSchoolPlan($event)"> 
 					  My school has two or more coordinators responsible for the Kids Heart Challenge program.

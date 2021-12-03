@@ -1836,6 +1836,7 @@
                                 // $('.js--num-participant-results').text((totalParticipants === 1 ? '1 Result' : totalParticipants + ' Results'));
 
                                 $(participants).each(function (i, participant) {
+                                    console.log('team page particiapnts', participant)
 
                                     var participantRaised = (parseInt(participant.amountRaised) * 0.01).toFixed(2);
                                     var participantRaisedFormmatted = participantRaised.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,").replace('.00', '');
@@ -1844,7 +1845,7 @@
                                         participant.name.first + ' ' + participant.name.last +
                                         '</a></td><td class="raised" data-sort="' + participantRaisedFormmatted + '"><span></span></td><td><a href="' + participant.donationUrl + '">' + (screenWidth <= 480 ? 'Donate' : 'Donate to ' + participant.name.first) + '</a></td></tr>');
                                     if (participant.aTeamCaptain === 'true') {
-                                        $('.js--team-captain-link').attr('href', participant.personalPageUrl).attr('aria-lablel', "Team Captain " + participant.name.first + ' ' + participant.name.last + "'s fundraising page'" + participant.name.last + ' ').text(participant.name.first + ' ' + participant.name.last);
+                                        $('.js--team-captain-link').attr('href', participant.donationUrl).attr('aria-lablel', "Team Captain " + participant.name.first + ' ' + participant.name.last + "'s donation page'");
                                     }
                                 });
 
