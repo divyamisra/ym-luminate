@@ -2,6 +2,11 @@ option {
   font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 
+.btn.btn-secondary:focus, 
+a.btn.btn-secondary:focus {
+    outline-color: $event-primary;
+}
+
 #status-text,
 #status-text-mobile {
   font-family: Verdana, Arial, Helvetica, sans-serif;
