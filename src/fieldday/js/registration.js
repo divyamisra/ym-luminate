@@ -21,7 +21,7 @@
         var evID = $('body').data('fr-id') ? $('body').data('fr-id') : null;
         var consID = $('body').data('cons-id') ? $('body').data('cons-id') : null;
         var evDate = $('body').data('event-date') ? $('body').data('event-date') : null;
-        var evDateYear = /(\d{4})/.test(evDate) ? RegExp.$1 : '2020';
+        var evDateYear = /(\d{4})/.test(evDate) ? RegExp.$1 : '2021';
         var coordEmail = $('input[name=coordinator_email]').val();
         var coordEmailReg = $('body').data('coord-email') ? $('body').data('coord-email') : null;
         var regCompanyId = $('body').data("companyid");
