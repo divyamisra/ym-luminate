@@ -21,7 +21,8 @@
         var evID = $('body').data('fr-id') ? $('body').data('fr-id') : null;
         var consID = $('body').data('cons-id') ? $('body').data('cons-id') : null;
         var evDate = $('body').data('event-date') ? $('body').data('event-date') : null;
-        var evDateYear = /(\d{4})/.test(evDate) ? RegExp.$1 : '2022';
+        var evDateProper = $('body').data('event-date-proper') ? $('body').data('event-date-proper') : null;
+        var evDateYear = /(\d{4})/.test(evDateProper) ? RegExp.$1 : ((evDateProper) ? evDateProper.substr(6,4) : '');
         var coordEmail = $('input[name=coordinator_email]').val();
         var coordEmailReg = $('body').data('coord-email') ? $('body').data('coord-email') : null;
         var regCompanyId = $('body').data("companyid");
