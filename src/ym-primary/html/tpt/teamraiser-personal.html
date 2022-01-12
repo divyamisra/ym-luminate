@@ -42,9 +42,9 @@
           </p>
         </div>
         <div class="clearfix"></div>
-        <div class="ym-progress__date" ng-if="eventDate && eventDate != '' && eventDate != 'User Provided No Response'" ng-cloak>
+        <div class="ym-progress__date" ng-if="schoolPlan.EventStartDate && schoolPlan.EventStartDate != '' && schoolPlan.EventStartDate != 'User Provided No Response'" ng-cloak>
           <p>
-            My event is <strong><span ng-bind-html="eventDate"></span></strong>
+            Our event is <strong>{{schoolPlan.EventStartDate | date:'MM/dd/yyyy'}} <span ng-if="schoolPlan.EventStartDate != schoolPlan.EventEndDate && schoolPlan.EventEndDate != ''" ng-cloak> thru {{schoolPlan.EventEndDate | date:'MM/dd/yyyy'}}</span></strong>
           </p>
         </div>
       </div>
