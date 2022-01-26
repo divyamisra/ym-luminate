@@ -1055,8 +1055,8 @@ angular.module 'trPcControllers'
           console.log 'There was an error getting user profile. Please try again later.'
         $scope.participatingNextYear = response.data.getConsResponse.custom.string.content
 
-      $scope.updateParticipatingNextYear = (event) ->
-        updateUserProfilePromise = NgPcConstituentService.updateUserRecord('custom_string18=' + angular.element(event.currentTarget).val() + '&cons_id=' + $scope.consId).then (response) ->
+      $scope.updateParticipatingNextYear = ->
+        updateUserProfilePromise = NgPcConstituentService.updateUserRecord('custom_string18=' + $scope.participatingNextYear + '&cons_id=' + $scope.consId).then (response) ->
           if response.data.errorResponse
             console.log 'There was an error processing your update. Please try again later.'
           $scope.dashboardPromises.push updateUserProfilePromise
