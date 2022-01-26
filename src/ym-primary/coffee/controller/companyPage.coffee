@@ -495,6 +495,7 @@ angular.module 'ahaLuminateControllers'
               goal: if response.data.goal then Number(response.data.goal) else 0
               percent: percent
               participantCount: response.data.students_registered
+            $scope.participantCount = response.data.students_registered
             $scope.companyProgress.amountRaisedFormatted = $filter('currency')($scope.companyProgress.amountRaised, '$')
             $scope.companyProgress.goalFormatted = $filter('currency')($scope.companyProgress.goal, '$')
             #if not $scope.$$phase
