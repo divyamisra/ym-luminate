@@ -334,8 +334,8 @@ angular.module 'ahaLuminateApp'
           $scope.schoolList.searchPending = true
           $scope.schoolList.currentPage = 1
           nameFilter = $scope.schoolList.nameFilter or '%'
-          nameFilter = (nameFilter.toLowercase()).replace "elementary", ""
-          nameFilter = (nameFilter.toLowercase()).replace "school", ""
+          nameFilter = (nameFilter.toLowerCase()).replace " elementary", ""
+          nameFilter = (nameFilter.toLowerCase()).replace " school", ""
           companies = []
           TeamraiserCompanyService.getCompanies 'event_type=' + encodeURIComponent(eventType) + '&company_name=' + encodeURIComponent(nameFilter) + '&list_sort_column=company_name&list_page_size=500', (response) ->
             if response.getCompaniesResponse?.company
