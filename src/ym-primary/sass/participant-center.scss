@@ -12,6 +12,16 @@ a.btn.btn-secondary:focus {
   font-family: Verdana, Arial, Helvetica, sans-serif;
 }
 
+.participatingNextYear {
+   margin-top:20px;
+   > div:nth-child(1) {
+     padding: 0px;
+   }
+   > div:nth-child(2) {
+     padding-right: 0px;
+   }
+}
+
 .closeMobileApp {
   position: absolute;
   right: 30px;
