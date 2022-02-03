@@ -1049,7 +1049,18 @@ angular.module 'trPcControllers'
               failure: (response) ->
               error: (response) ->
               success: (response) ->
-            
+
+      NgPcConstituentService.getUserRecord('fields=custom_string18&cons_id=' + $scope.consId).then (response) ->
+        if response.data.errorResponse
+          console.log 'There was an error getting user profile. Please try again later.'
+        $scope.participatingNextYear = response.data.getConsResponse.custom.string.content
+
+      $scope.updateParticipatingNextYear = ->
+        updateUserProfilePromise = NgPcConstituentService.updateUserRecord('custom_string18=' + this.participatingNextYear + '&cons_id=' + $scope.consId).then (response) ->
+          if response.data.errorResponse
+            console.log 'There was an error processing your update. Please try again later.'
+          $scope.dashboardPromises.push updateUserProfilePromise
+		
       formatDateString = (dateVal) ->
         regex = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2}).*$/
         token_array = regex.exec(dateVal.toJSON());
