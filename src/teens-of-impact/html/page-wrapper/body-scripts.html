@@ -135,7 +135,7 @@ crossorigin="anonymous"></script> -->
   });
 </script>
 
-[[?x9x::x[[S4]]x::
+<!-- [[?x9x::x[[S4]]x::
 
 <script>
   jQuery(document).ready(function() {
@@ -148,15 +148,21 @@ crossorigin="anonymous"></script> -->
           'Field_Days_165966_2020.03.20_TOS.pdf" target="_blank">Terms and Conditions (PDF)</a> and <a href="https://www.heart.org/en/about-us/statements-and-policies/privacy-statement" target="_blank">AHA Privacy Policy</a></label>');
       }
       else {
+         console.log('a');
          jQuery('label[for="tos_dropdown"]').parent().before('<input type="checkbox" name="terms-of-service-checkbox" id="terms-of-service-checkbox"><label for="terms-of-service-checkbox">&nbsp;Yes, I agree to the <a href="DocServer/Field_Days_165966_2020.03.20_TOS.pdf" target="_blank">Terms and Conditions (PDF)</a> and <a href="https://www.heart.org/en/about-us/statements-and-policies/privacy-statement" target="_blank">AHA Privacy Policy</a></label>');
       }
+      console.log('b');
       jQuery('#terms-of-service-checkbox + label').prepend(jQuery('label[for="tos_dropdown"]').closest('.form-content').find('span.field-required'));
+      console.log('c');
       jQuery('label[for="tos_dropdown"]').attr("for","tos_radio_true");
+      console.log('d');
       jQuery('#terms-of-service-checkbox').change(function(){
         if(jQuery(this).is(':checked')){
+          console.log('e');
           jQuery('#tos_radio_true').prop('checked',true);
         }
         else {
+          console.log('r');
           $('#tos_radio_true').prop('checked',false);
         }
       });
@@ -165,7 +171,7 @@ crossorigin="anonymous"></script> -->
 </script>
 
 
-::]]
+::]] -->
 
 [[?
   [[?[[S8]]::Teens of Impact::T::]]

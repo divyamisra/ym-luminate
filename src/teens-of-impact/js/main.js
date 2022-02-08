@@ -457,7 +457,7 @@
                                   if ($('body').hasClass('pg_search_list')) {
                                     $('.js--team-results-rows')
                                         .append('<tr' + (i > 10 ? ' class="d-none"' : '') + '><td><a href="' + team.teamPageURL + '">' +
-                                            team.name + '</a></td></tr>');
+                                            team.name + '</a></td><td></td><td></td><td></td><td></td></tr>');
                                   } else {
                                     $('.js--team-results-rows')
                                         .append('<tr' + (i > 10 ? ' class="d-none"' : '') + '><td><a href="' + team.teamPageURL + '">' +

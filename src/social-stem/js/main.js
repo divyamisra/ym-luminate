@@ -1831,7 +1831,7 @@
                                         participant.name.first + ' ' + participant.name.last +
                                         '</a></td><td class="raised" data-sort="' + participantRaisedFormmatted + '"><span></span></td><td><a href="' + participant.donationUrl + '">' + (screenWidth <= 480 ? 'Donate' : 'Donate to ' + participant.name.first) + '</a></td></tr>');
                                     if (participant.aTeamCaptain === 'true') {
-                                        $('.js--team-captain-link').attr('href', participant.personalPageUrl).attr('aria-lablel', "Team Captain " + participant.name.first + ' ' + participant.name.last + "'s fundraising page'" + participant.name.last + ' ').text(participant.name.first + ' ' + participant.name.last);
+                                      $('.js--team-captain-link').attr('href', participant.personalPageUrl).attr('aria-lablel', "Team Captain " + participant.name.first + ' ' + participant.name.last + "'s fundraising page'" + participant.name.last + ' ').text(participant.name.first + ' ' + participant.name.last);
                                     }
                                 });
 
