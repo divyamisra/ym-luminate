@@ -437,7 +437,6 @@
                     '&list_ascending=true',
                 callback: {
                     success: function (response) {
-
                         if ($.fn.DataTable) {
                             if ($.fn.DataTable.isDataTable('#teamResultsTable')) {
                                 $('#teamResultsTable').DataTable().destroy();
@@ -456,7 +455,7 @@
                                 if (screenWidth >= 768) {
                                   if ($('body').hasClass('pg_search_list')) {
                                     $('.js--team-results-rows')
-                                        .append('<tr' + (i > 10 ? ' class="d-none"' : '') + '><td><a href="' + team.teamPageURL + '">' + team.name + '</a></td></tr>');
+                                        .append('<tr' + (i > 10 ? ' class="d-none"' : '') + '><td><a href="' + team.teamPageURL + '">' + team.name + '</a></td><td></td><td></td><td></td><td></td></tr>');
                                   } else {
                                     $('.js--team-results-rows')
                                         .append('<tr' + (i > 10 ? ' class="d-none"' : '') + '><td><a href="' + team.teamPageURL + '">' + team.name + '</a></td><td></td><td></td><td></td><td class="col-cta text-right"><a href="' + team.teamDonateURL + '" class="btn btn-primary btn-block btn-rounded" title="Donate to ' + team.name + '" aria-label="Donate to ' + team.name + '">Donate</a></td></tr>');
@@ -2334,7 +2333,6 @@
             // Search by Team
             $('.js--team-search-form').on('submit', function (e) {
                 e.preventDefault();
-                console.log('team search')
                 clearSearchResults();
                 var teamName = encodeURIComponent($('#teamNameSearch').val());
                 cd.getTeams(teamName, (isCrossEventSearch === "true" ? true : false));
