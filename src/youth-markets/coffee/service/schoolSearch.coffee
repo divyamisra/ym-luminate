@@ -379,12 +379,19 @@ angular.module 'ahaLuminateApp'
             
             getAdditionalPages = (filter, totalNumber) ->
               additionalPages = []
-              angular.forEach [1, 2, 3], (additionalPage) ->
+              angular.forEach [1..Math.ceil(totalNumber / 2)], (additionalPage) ->
                 if totalNumber > additionalPage * 500
                   additionalPages.push additionalPage
               additionalPagesComplete = 0
               angular.forEach additionalPages, (additionalPage) ->
                 TeamraiserCompanyService.getCompanies 'event_type=' + encodeURIComponent(eventType) + '&company_name=' + encodeURIComponent(filter) + '&list_sort_column=company_name&list_page_size=500&list_page_offset=' + additionalPage, (response) ->
+                  if response.getCompaniesResponse?.company
+                    if response.getCompaniesResponse.company.length is undefined
+                      companies.push response.getCompaniesResponse.company
+                    else
+                      angular.forEach response.getCompaniesResponse.company, (company) ->
+                        companies.push company
+
                   moreCompanies = response.getCompaniesResponse?.company
                   moreSchools = []
                   if moreCompanies
