@@ -672,7 +672,7 @@
                     localStorage.companySelect = "AT&T";
                 } else {
                     console.log("reset AT&T 4");
-                    localStorage.companySelect = "";
+                    localStorage.companySelect = $(this).find('option:selected').text();
                 }
             });
             $('.list-component-cell-column-join-link a').click(function(){
@@ -682,7 +682,7 @@
                     localStorage.companySelect = "AT&T";
                 } else {
                     console.log("reset AT&T 5");
-                    localStorage.companySelect = "";
+                    localStorage.companySelect = compSel;
                 }
             });
 
@@ -744,7 +744,7 @@
                         localStorage.companySelect = "AT&T";
                     } else {
                         console.log("reset AT&T 6");
-                        localStorage.companySelect = "";
+                        localStorage.companySelect = $('select[name=fr_co_list] option:selected').text();
                     }
                 }
                 //store off personal goal in sess var by adding to action url
@@ -1218,7 +1218,7 @@
                     localStorage.companySelect = "AT&T";
                 } else {
                     console.log("reset AT&T 2");
-                    localStorage.companySelect = "";
+                    localStorage.companySelect = jQuery(this).find('option:selected').text();
                 }
             });
             $('button.next-step').click(function(){
@@ -1228,7 +1228,7 @@
                         localStorage.companySelect = "AT&T";
                     } else {
                         console.log("reset AT&T 3");
-                        localStorage.companySelect = "";
+                        localStorage.companySelect = $('select[name=fr_part_co_list] option:selected').text();
                     }
                 }
                 if ($('.donation-level-container').find('.donation-level-row-container.active').length > 0 || $('.donation-level-container').find('.donation-level-row-container.active').hasClass('notTime') === false) {
@@ -1372,6 +1372,7 @@
             //for AT&T company - a question will be displayed for their employee id
             //first it must be hidden though
             jQuery('label span.input-label:contains(By submitting the information requested in this form)').closest('.survey-question-container').addClass("att_id").hide();
+            jQuery('label span.input-label:contains(Cleveland Clinic Care Giver Program)').closest('.survey-question-container').addClass("cleveland_id").hide();
             //jQuery('label span.input-label:contains(Clear Vidyard ID)').closest('.survey-question-container').addClass("vidyard_id").hide();
             //add additional code here for saving company name and displaying field if company selected was AT&T
 
@@ -1381,6 +1382,10 @@
                     jQuery('.att_id .input-container label .input-label').html(jQuery('.att_id .input-container label .input-label').html().replace("AT&amp;T Services, Inc.","<span class='att_id_blue'>AT&T Services, Inc.</span>"));
                     jQuery('.att_id .input-container label .input-label').prepend("<div class='att_id_title att_id_blue'>AT&T Employees:</div>");
                     localStorage.companySelect = "";
+                }
+                if (localStorage.companySelect == "Cleveland Clinic") {
+                    jQuery('.cleveland_id').show();
+                    //localStorage.companySelect = "";
                 }
             },500);
             jQuery('button.next-step').click(function(){
