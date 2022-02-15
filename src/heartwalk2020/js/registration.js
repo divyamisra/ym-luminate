@@ -1383,7 +1383,7 @@
                     jQuery('.att_id .input-container label .input-label').prepend("<div class='att_id_title att_id_blue'>AT&T Employees:</div>");
                     localStorage.companySelect = "";
                 }
-                if (localStorage.companySelect == "Cleveland Clinic") {
+                if (localStorage.companySelect.indexOf("Cleveland Clinic") > -1) {
                     jQuery('.cleveland_id').show();
                     //localStorage.companySelect = "";
                 }
