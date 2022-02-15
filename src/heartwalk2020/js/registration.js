@@ -1172,35 +1172,35 @@
 
             $('input[name=fr_part_radio]').addClass("required").attr("title","Participation type is required");
 
-	    //hide back button and turn into link
-	    $('button#previous_step').after('<a href="javascript:window.history.go(-1)" class="step-button previous-step backBtnReg">Back</a>').hide();
+            //hide back button and turn into link
+            $('button#previous_step').after('<a href="javascript:window.history.go(-1)" class="step-button previous-step backBtnReg">Back</a>').hide();
 
             $('form').validate({
-		focusInvalid: false,
-		invalidHandler: function(form, validator) {
-			if (!validator.numberOfInvalids())
-				return;
+              focusInvalid: false,
+              invalidHandler: function(form, validator) {
+                if (!validator.numberOfInvalids())
+                  return;
 
-			$('html, body').animate({
-				scrollTop: $(validator.errorList[0].element).offset().top
-			}, 500);
-		},
-		errorPlacement: function(error, element) {
-			if ($(element).attr("name") == "fr_part_radio") {
-				$('#part_type_selection_container').append(error).css({"display":"block","text-align":"left"});
-			} else {
-				if ($(element).attr("name").indexOf("donation_level_form_input") > -1) {
-					$('.enterAmt-other').after(error);
-				} else {
-					var placement = $(element).data('error');
-					if (placement) {
-						$(placement).append(error)
-					} else {
-						error.insertAfter(element);
-					}
-				}
-			}
+                $('html, body').animate({
+                  scrollTop: $(validator.errorList[0].element).offset().top
+                }, 500);
+              },
+              errorPlacement: function(error, element) {
+                if ($(element).attr("name") == "fr_part_radio") {
+                  $('#part_type_selection_container').append(error).css({"display":"block","text-align":"left"});
+                } else {
+                  if ($(element).attr("name").indexOf("donation_level_form_input") > -1) {
+                    $('.enterAmt-other').after(error);
+                  } else {
+                    var placement = $(element).data('error');
+                    if (placement) {
+                      $(placement).append(error)
+                    } else {
+                      error.insertAfter(element);
+                    }
+                  }
                 }
+              }
             });
             $.validator.addMethod("validDonation",function(value, element) {
                     value = parseInt(value.replace("$","").replace(",",""));
@@ -1231,6 +1231,20 @@
                         localStorage.companySelect = "";
                     }
                 }
+                if ($('.donation-level-container').find('.donation-level-row-container.active').length > 0 || $('.donation-level-container').find('.donation-level-row-container.active').hasClass('notTime') === false) {
+                  // If the participant chooses to make a gift, check for the Double the Donation field
+                  // and record the chosen company in local storage if it exists
+                  if ($('input[name="doublethedonation_company_id"]').val().length > 0){
+                      console.log('found dtd value');
+                      var dtdCoId = $('input[name="doublethedonation_company_id"]').val();
+                      console.log('dtdCoId ' + dtdCoId);
+                      localStorage.dtdCompanyId = dtdCoId;
+                  }
+                  else {
+                      console.log('clear dtd company id'); 
+                      localStorage.dtdCompanyId = "";
+                  }
+                }        
                 if ($('form').valid()) {
                     //store off personal goal in sess var by adding to action url
                     $('#F2fRegPartType').prepend('<input type="hidden" id="personalGoal" name="s_personalGoal" value="' + $('input#fr_goal').val() + '">');
@@ -1373,7 +1387,7 @@
                 localStorage.hfg = jQuery('label:contains(Healthy For Good)').prev('input:checked').length;
                 localStorage.hfg_firstname = jQuery('input[name=cons_first_name]').val();
                 localStorage.hfg_email = jQuery('input[name=cons_email]').val();
-	        localStorage.mobile_optin = jQuery('input[name=mobile_optin]:checked').val();
+                localStorage.mobile_optin = jQuery('input[name=mobile_optin]:checked').val();
                 if (jQuery('input[name=pg]').val() == "reg") {
                     if (jQuery('form').valid()) {
                         return true;
@@ -1426,6 +1440,9 @@
         }
 
         $('.survivor_yes_no input[type=radio]').addClass("required survivorq");
+
+        $('.survivor_yes_no .survey-question-label').after('<small id="isSurvivor" class="form-text text-muted">Answering yes will display a small banner over your personal photo on your fundraising page that will proudly say, "I\'m a survivor."</small>');
+        
 
         $('.survivor_yes_no li').click(function() {
             $('.survivor_yes_no li').removeClass('survivor_active');
@@ -1508,7 +1525,7 @@
             //move custom details into content
             $('.reg-summary-event-info').prepend($('#additionalRegDetails'));
 
-    	    //save off mobile opt option
+    	       //save off mobile opt option
             if (localStorage.mobile_optin == "on") {
                 luminateExtend.api({
                     api: 'cons',
@@ -1517,32 +1534,50 @@
                     requiresAuth: true,
                     data: 'method=logInteraction' +
                     '&response_format=json' +
-    				'&interaction_type_id=0' +
-    				'&interaction_subject=Hustle-OptIn' +
-    				'&interaction_body=\'{"EventId":' + $('body').data("fr-id") + ',"GroupId":' + $('body').data("group-id") + ',"OptIn":"Yes"}\'' +
-    				'&cons_id=' + $('body').data("cons-id"),
+                    '&interaction_type_id=0' +
+                    '&interaction_subject=Hustle-OptIn' +
+                    '&interaction_body=\'{"EventId":' + $('body').data("fr-id") + ',"GroupId":' + $('body').data("group-id") + ',"OptIn":"Yes"}\'' +
+                    '&cons_id=' + $('body').data("cons-id"),
                     callback: {
-			success: function (response) {
-				if (response.updateConsResponse.message == "Interaction logged successfully.") {
-
-				}
-			},
-			error: function (response) {
-				console.log(response.errorResponse.message);
-			}
+                      success: function (response) {
+                        if (response.updateConsResponse.message == "Interaction logged successfully.") {
+                        }
+                      },
+                      error: function (response) {
+                        console.log(response.errorResponse.message);
+                      }
                     }
                 });
-		if (isProd) {
-	                $('<img width="1" height="1" style="display:none;" src="https://www2.heart.org/site/SPageServer?pagename=reus_hw_mobileopt_add_group&group_id=' + $('body').data("group-id") + '&pgwrap=n" id="mobileopt_add_group">').appendTo($('#fr_reg_summary_page'));
-		} else {
-	                $('<img width="1" height="1" style="display:none;" src="https://dev2.heart.org/site/SPageServer?pagename=reus_hw_mobileopt_add_group&group_id=' + $('body').data("group-id") + '&pgwrap=n" id="mobileopt_add_group">').appendTo($('#fr_reg_summary_page'));
-		}
-    	    }
-        }
+                if (isProd) {
+                    $('<img width="1" height="1" style="display:none;" src="https://www2.heart.org/site/SPageServer?pagename=reus_hw_mobileopt_add_group&group_id=' + $('body').data("group-id") + '&pgwrap=n" id="mobileopt_add_group">').appendTo($('#fr_reg_summary_page'));
+                } else {
+                    $('<img width="1" height="1" style="display:none;" src="https://dev2.heart.org/site/SPageServer?pagename=reus_hw_mobileopt_add_group&group_id=' + $('body').data("group-id") + '&pgwrap=n" id="mobileopt_add_group">').appendTo($('#fr_reg_summary_page'));
+                }
+               }
+
+
+               $('button.next-step').click(function(){
+                 // Add additional amount to local storage for Double the Donation 
+                if ($('.additional-gift-amount').text() != '$0.00'){
+                    console.log('there is a gift value');
+                    var addlGiftAmt = $('.additional-gift-amount').text();
+                    var addlGiftAmtClean = addlGiftAmt.replace(/[^0-9.]/g, '');
+                    var addlGiftAmtFormatted = '$'.concat(addlGiftAmtClean);
+                    console.log('addlGiftAmtFormatted' + addlGiftAmtFormatted);
+                    localStorage.addlGiftAmt = addlGiftAmtFormatted;
+                }
+                else {
+                    console.log('clear addGiftAmt'); 
+                    localStorage.addlGiftAmt = "";
+                }
+
+            });
+
+          }
 
         /* Page = paymentForm */
         if ($('input[name="pg"]').val() == 'paymentForm') {
-		$('button.previous-step').attr("formnovalidate","true");
+          $('button.previous-step').attr("formnovalidate","true");
 
 		$('.payment-type-selection-container h3').attr("id","payment-type-label");
 		$('.payment-type-selections').attr({"role":"radiogroup","aria-labelledby":"payment-type-label","aria-required":"true"});
@@ -1613,7 +1648,8 @@
 	    $('.lightboxWiaverClose').focus();
         });
 
-        $('.healthyCheck label').text('Yes, sign me up for sharable tips, videos and hacks so I can be Healthy For Good.');
+        $('.healthyCheck label').text('Yes, sign me up for sharable tips, videos and hacks so I can be Healthy for Good.');
+	$('.healthyCheck input[type=checkbox]').removeAttr('checked');
         $('#responsive_payment_typecc_numbername').attr('maxlength', '16');
 
         //access

@@ -21,13 +21,11 @@ angular.module 'ahaLuminateControllers'
     ($scope, $rootScope, $location, $filter, $timeout, $uibModal, APP_INFO, TeamraiserCompanyService, TeamraiserTeamService, TeamraiserParticipantService, BoundlessService, ZuriService, TeamraiserRegistrationService, TeamraiserCompanyPageService, PageContentService, CompanyService, $sce, $http) ->
       $scope.companyId = $location.absUrl().split('company_id=')[1].split('&')[0].split('#')[0]
       $rootScope.companyName = ''
-      $scope.eventDate = ''
       $scope.totalTeams = ''
       $scope.teamId = ''
       $scope.hideAmount = ''
       $scope.notifyName = ''
       $scope.notifyEmail = ''
-      $scope.moneyDueDate = ''
       $scope.totalTeams = ''
       $scope.teamId = ''
       $scope.studentsPledgedTotal = ''
@@ -40,6 +38,8 @@ angular.module 'ahaLuminateControllers'
       $scope.schoolChallengeGoal = 0
       $scope.schoolYears = 0
       $scope.unconfirmedAmountRaised = 0
+      $scope.schoolBadgesRegistrations = []
+      $scope.schoolBadgesFundraising = []
       
       $scope.trustHtml = (html) ->
         return $sce.trustAsHtml(html)
@@ -115,7 +115,27 @@ angular.module 'ahaLuminateControllers'
           $scope.companyProgress.percent = percent
           if not $scope.$$phase
             $scope.$apply()
+          getBoundlessSchoolData()
         , 500
+
+
+      $scope.getSchoolPlan = () ->
+        ZuriService.schoolPlanData '&method=GetSchoolPlan&CompanyId=' + $scope.companyId + '&EventId=' + $scope.frId,
+          failure: (response) ->
+          error: (response) ->
+          success: (response) ->
+            $scope.schoolPlan = response.data.company[0]
+            if $scope.schoolPlan.EventStartDate != undefined
+              if $scope.schoolPlan.EventStartDate != '0000-00-00'
+                $scope.schoolPlan.EventStartDate = new Date($scope.schoolPlan.EventStartDate.replace(/-/g, "/") + ' 00:01')
+              if $scope.schoolPlan.EventEndDate != '0000-00-00'
+                $scope.schoolPlan.EventEndDate = new Date($scope.schoolPlan.EventEndDate.replace(/-/g, "/") + ' 00:01')
+              if $scope.schoolPlan.DonationDueDate != '0000-00-00'
+                $scope.schoolPlan.DonationDueDate = new Date($scope.schoolPlan.DonationDueDate.replace(/-/g, "/") + ' 00:01')
+              if $scope.schoolPlan.KickOffDate != '0000-00-00'
+                $scope.schoolPlan.KickOffDate = new Date($scope.schoolPlan.KickOffDate.replace(/-/g, "/") + ' 00:01')
+            $scope.coordinatorPoints = JSON.parse($scope.schoolPlan.PointsDetail)
+      $scope.getSchoolPlan()
       
       getCompanyTotals = ->
         TeamraiserCompanyService.getCompanies 'company_id=' + $scope.companyId,
@@ -150,9 +170,6 @@ angular.module 'ahaLuminateControllers'
                   len = schoolDataRows.length
                   while i < len
                     if $scope.companyId is schoolDataRows[i][schoolDataHeaders.CID]
-                      $scope.eventDate = schoolDataRows[i][schoolDataHeaders.ED]
-                      $scope.moneyDueDate = schoolDataRows[i][schoolDataHeaders.MDD]
-                      $scope.schoolStudentGoal = schoolDataRows[i][schoolDataHeaders.PG]
                       $scope.hideAmount = schoolDataRows[i][schoolDataHeaders.HA]
                       $scope.notifyName = schoolDataRows[i][schoolDataHeaders.YMDN]
                       $scope.notifyEmail = schoolDataRows[i][schoolDataHeaders.YMDE]
@@ -202,7 +219,7 @@ angular.module 'ahaLuminateControllers'
         if not $scope.$$phase
           $scope.$apply()
       getCompanyParticipants = ->
-        TeamraiserParticipantService.getParticipants 'team_name=' + encodeURIComponent('%') + '&first_name=' + encodeURIComponent('%%') + '&last_name=' + encodeURIComponent('%') + '&list_filter_column=team.company_id&list_filter_text=' + $scope.companyId + '&list_sort_column=total&list_ascending=false&list_page_size=50',
+        TeamraiserParticipantService.getParticipants 'team_name=' + encodeURIComponent('%') + '&first_name=' + encodeURIComponent('%%') + '&last_name=' + encodeURIComponent('%') + '&list_filter_column=team.company_id&list_filter_text=' + $scope.companyId + '&list_sort_column=total&list_ascending=false&list_page_size=500',
             error: ->
               setCompanyParticipants()
             success: (response) ->
@@ -235,7 +252,7 @@ angular.module 'ahaLuminateControllers'
               $scope.participantRegistration = participantRegistration
       
       $scope.companyPagePhoto1 =
-        defaultUrl: APP_INFO.rootPath + 'dist/middle-school/image/company-default.png'
+        defaultUrl: APP_INFO.rootPath + 'dist/middle-school/image/fy22/company-default.jpg'
       
       $scope.editCompanyPhoto1 = ->
         delete $scope.updateCompanyPhoto1Error
@@ -391,4 +408,26 @@ angular.module 'ahaLuminateControllers'
                 $scope.schoolChallengeGoal = meta.value
               if meta.name == 'years-participated'
                 $scope.schoolYears = meta.value
+      
+      getBoundlessSchoolData = () ->
+        BoundlessService.getSchoolBadges $scope.frId + '/' + $scope.companyId
+        .then (response) ->
+          $scope.companyProgress = 
+            amountRaised: if response.data.total_amount then Number(response.data.total_amount) else 0
+            goal: if response.data.goal then Number(response.data.goal) else 0
+          $scope.companyProgress.amountRaisedFormatted = $filter('currency')($scope.companyProgress.amountRaised, '$')
+          $scope.companyProgress.goalFormatted = $filter('currency')($scope.companyProgress.goal, '$')
+          $scope.companyProgress.percent = 0
+          if not $scope.$$phase
+            $scope.$apply()
+          $timeout ->
+            percent = $scope.companyProgress.percent
+            if $scope.companyProgress.goal isnt 0
+              percent = Math.ceil(($scope.companyProgress.amountRaised / $scope.companyProgress.goal) * 100)
+            if percent > 100
+              percent = 100
+            $scope.companyProgress.percent = percent
+            if not $scope.$$phase
+              $scope.$apply()
+
   ]

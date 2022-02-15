@@ -184,9 +184,11 @@
     $('#responsive_payment_typecc_numbername, #responsive_payment_typecc_cvvname, #billing_first_namename, #billing_last_namename, #billing_addr_street1name, #billing_addr_cityname, #billing_addr_zipname, #donor_email_addressname, #responsive_payment_typecc_exp_date_MONTH, #responsive_payment_typecc_exp_date_YEAR, #billing_addr_state, #billing_addr_country').attr('aria-required','true');
     $('#billing_addr_street1_row, #billing_addr_street2_row, #billing_addr_city_row, #billing_addr_state_row, #billing_addr_zip_row, #billing_addr_country_row').wrapAll('<div class="billing-fields-container"></div>');
 
-    if ( $('.ErrorMessage').length > 0 ) {
-      $('.ErrorMessage').attr('role', 'alert');
-    }
+     setTimeout(function(){
+       if ( $('.ErrorMessage').length > 0 ) {
+         $('.ErrorMessage').attr('role', 'alert').attr('aria-atomic', 'true');
+       }
+     }, 1000);
 
     /*if ($('.errorMessageContainer .ErrorMessage.page-error .field-error-text').length > 0) {
         $('.errorMessageContainer .ErrorMessage.page-error .field-error-text').attr('role','alert');
@@ -271,6 +273,8 @@
             }
         });
         jQuery('.entry-label:contains("Total Gift Amount:")').attr('aria-label','Total Gift Amount');
+        jQuery('.donation-form-content').prepend('<p class="submission_message" role="alert">Your form was successfully submitted.</p>');
+        jQuery('.submission_message').css({'color' : '#c10e21', 'text-align' : 'center'});
     }
 
 
@@ -468,19 +472,54 @@
             });
 
             $('form').validate({
-                errorPlacement: function(error, element) {
-			if ($(element).attr("name") == "terms-of-service-checkbox") {
-				$('#terms-of-service-checkbox').closest('.form-content').after(error);
-			} else {
-				var placement = $(element).data('error');
-				if (placement) {
-					$(placement).append(error)
-				} else {
-					error.insertAfter(element);
-				}
-			}
+              errorPlacement: function(error, element) {
+                if ($(element).attr("name") == "terms-of-service-checkbox") {
+                  $('#terms-of-service-checkbox').closest('.form-content').after(error);
+                } else {
+                  var placement = $(element).data('error');
+                  if (placement) {
+                    $(placement).append(error)
+                  } else {
+                    error.insertAfter(element);
+                  }
                 }
+              }
             });
+
+            $('#billing_addr_zipname').addClass('zipname');
+
+            $('#ProcessForm').validate({
+              rules: {'billing_addr_zipname': {zipcheck: true} },
+              messages: {'billing_addr_zipname': 'Please provide a valid zipcode.'},
+              errorPlacement: function(error, element) {
+                if ($(element).hasClass("zipname")) {
+                  var a11yError = error.attr('role', 'alert');
+                  $('.zipname').before(a11yError);
+                  $('#billing_addr_zipname-error').wrap('<div></div>');
+                }
+              }
+            });
+
+            $.validator.addMethod("zipcheck", function(value) {
+              return /^\d{5}(?:-\d{4})?$/.test(value);
+            }, "Please provide a valid zipcode.");
+
+
+            $('.donation-form').validate({
+              rules: {'zip': {zipcheck: true} },
+              messages: {'zip': 'Please provide a valid zipcode.'},
+              errorPlacement: function(error, element) {
+                if ($(element).hasClass("postal_code")) {
+                  var a11yError = error.attr('role', 'alert');
+                  $('.postal_code').after(a11yError);
+                }
+              }
+            });
+
+            $.validator.addMethod("zipcheck", function(value) {
+              return /^\d{5}(?:-\d{4})?$/.test(value);
+            }, "Please provide a valid zipcode.");
+
 	    $('#pstep_finish').click(function(){
 		    if ($('input[name=donor_matching_employersearchBtn]').val() == "Search") {
 			    return true;
