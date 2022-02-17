@@ -999,9 +999,15 @@
 						School Plan 
 					</h2>
 					<div class="row" ng-if="schoolPlan.EventStartDate != ''" ng-cloak>
+						<div class="schoolPlanDates text-center">
+						  <p>
+						    Your event is kicking off on <strong>{{schoolPlan.EventStartDate | date:'MM/dd/yyyy'}}</strong><span ng-if="(schoolPlan.EventStartDate | date:'MM/dd/yyyy') !== (schoolPlan.EventEndDate | date:'MM/dd/yyyy') && schoolPlan.EventEndDate != ''" ng-cloak> and will conclude on <strong>{{schoolPlan.EventEndDate | date:'MM/dd/yyyy'}}</strong></span>.
+						    <span ng-if="schoolPlan.DonationDueDate != '0000-00-00'" ng-cloak>All donations are due on <strong>{{schoolPlan.DonationDueDate | date:'MM/dd/yyyy'}}</strong>.</span>
+						  </p>
+						</div>
 						<div class="col-sm-6 ym-pc-dashboard-coordinator-progress-section__column">
 							<div class="ym-pc-dashboard-section-plan">
-								<div class="row ym-pc-dashboard-event-dates">
+								<div class="row ym-pc-dashboard-event-dates hidden">
 									<div class="col-sm-6" style="padding:0">
 										<div class="form-group">
 											<label for="EventStartDate">
@@ -1014,7 +1020,7 @@
 											</div>
 										</div>
 									</div>
-									<div class="col-sm-6" style="padding:0">
+									<div class="col-sm-6 hidden" style="padding:0">
 										<div class="form-group">
 											<label for="EventEndDate">
 												<strong>Event End Date</strong>
@@ -1040,7 +1046,7 @@
 											</div>
 										</div>
 									</div>
-									<div class="col-sm-6" style="padding:0">
+									<div class="col-sm-6 hidden" style="padding:0">
 										<div class="form-group">
 											<label for="DonationDueDate">
 												<strong>Donation Due Date</strong>
