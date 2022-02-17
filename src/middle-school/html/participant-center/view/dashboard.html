@@ -1005,9 +1005,9 @@
 						    <span ng-if="schoolPlan.DonationDueDate != '0000-00-00'" ng-cloak>All donations are due on <strong>{{schoolPlan.DonationDueDate | date:'MM/dd/yyyy'}}</strong>.</span>
 						  </p>
 						</div>
-						<div class="col-sm-6 hidden ym-pc-dashboard-coordinator-progress-section__column">
+						<div class="col-sm-6 ym-pc-dashboard-coordinator-progress-section__column">
 							<div class="ym-pc-dashboard-section-plan">
-								<div class="row ym-pc-dashboard-event-dates">
+								<div class="row ym-pc-dashboard-event-dates hidden">
 									<div class="col-sm-6" style="padding:0">
 										<div class="form-group">
 											<label for="EventStartDate">
@@ -1034,7 +1034,7 @@
 									</div>
 								</div>
 								<div class="row ym-pc-dashboard-point-field" ng-cloak>
-									<div class="col-sm-6 text-center" style="padding:0">
+									<div class="col-sm-6" style="padding:0">
 										<div class="form-group">
 											<label for="KickOffDate">
 												<strong>Kick Off/Assembly Date</strong>
