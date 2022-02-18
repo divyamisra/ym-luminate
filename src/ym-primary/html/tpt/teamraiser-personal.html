@@ -42,9 +42,9 @@
           </p>
         </div>
         <div class="clearfix"></div>
-        <div class="ym-progress__date" ng-if="eventDate && eventDate != '' && eventDate != 'User Provided No Response'" ng-cloak>
+        <div class="ym-progress__date" ng-if="schoolPlan.EventStartDate && schoolPlan.EventStartDate != '' && schoolPlan.EventStartDate != 'User Provided No Response'" ng-cloak>
           <p>
-            My event date is <strong><span ng-bind-html="eventDate"></span></strong>
+	          Our event is kicking off on <strong>{{schoolPlan.EventStartDate | date:'MM/dd/yyyy'}}</strong><span ng-if="(schoolPlan.EventStartDate | date:'MM/dd/yyyy') !== (schoolPlan.EventEndDate | date:'MM/dd/yyyy') && schoolPlan.EventEndDate != ''" ng-cloak> and will conclude on <strong>{{schoolPlan.EventEndDate | date:'MM/dd/yyyy'}}</strong></span>.
           </p>
         </div>
       </div>
@@ -103,27 +103,33 @@
           Check Out My Badges
         </h2>
         <div class="ym-badges__item" ng-if="prizesEarned == prizes.length && prizes.length != 0"  ng-cloak>
-          <div class="ym-badge__item">
+          <div class="ym-badge__item" tabindex="0" aria-label="Finn's Mission is completed Badge Earned">
             <img class="img-responsive" src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/ym-primary/image/fy22/badge_Finns_Mission.png" alt="Finn's Mission is Completed">
-            <span>Completed Finn's Mission!</span> <span class="sr-only">(earned)</span>
+            <span>Completed Finn's Mission!</span>
           </div>
         </div>
         <div class="ym-badges__item" ng-repeat="prize in prizes | filter: {status: 1}" ng-cloak> <!--  ng-repeat="prize in prizes | limitTo: 3" -->
-          <div class="ym-badge__item" ng-if="prize.earned" ng-cloak>
-            <img class="img-responsive" ng-src="//cd-aha-oot-production.s3.amazonaws.com/fy22/assets/badges/khc/{{prize.id}}_delivered.png" alt="{{prize.label}}">
-            <span ng-bind-html="prize.label"></span> <span class="sr-only">(earned)</span>
+          <div class="ym-badge__item" ng-if="prize.earned" tabindex="0" aria-label="{{prize.label}} Badge Earned" ng-cloak>
+            <img class="img-responsive" ng-src="{{prize.image_url}}" alt="{{prize.label}} Badge Earned">
+            <span ng-bind-html="prize.label"></span>
           </div>
         </div>
         <div class="ym-badges__item" ng-if="studentChallengeBadge" ng-cloak>
-          <div class="ym-badge__item" ng-cloak>
-            <img class="img-responsive" ng-src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/ym-primary/image/fy22/badge-challenge-student.png" alt="Individual School Challenge Completed">
-            Individual School Challenge Completed <span class="sr-only">(earned)</span>
+          <div class="ym-badge__item" tabindex="0" aria-label="Individual School Challenge Badge Earned" ng-cloak>
+            <img class="img-responsive" ng-src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/ym-primary/image/fy22/badge-challenge-student.png" alt="Individual School Challenge Badge Earned">
+            <span>Individual School Challenge Completed</span>
           </div>
         </div>
         <div class="ym-badges__item" ng-if="schoolChallengeBadge" ng-cloak>
-          <div class="ym-badge__item" ng-cloak>
-            <img class="img-responsive" ng-src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/ym-primary/image/fy22/badge-challenge-school.png" alt="School Goal Challenge Completed">
-            School Goal Challenge Completed <span class="sr-only">(earned)</span>
+          <div class="ym-badge__item" tabindex="0" aria-label="School Goal Challenge Badge Earned" ng-cloak>
+            <img class="img-responsive" ng-src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/ym-primary/image/fy22/badge-challenge-school.png" alt="School Goal Challenge Badge Earned">
+            <span>School Goal Challenge Completed</span>
+          </div>
+        </div>
+        <div class="ym-badges__item" ng-if="personalProgress.amountRaised > 25000" ng-cloak>
+          <div class="ym-badge__item" tabindex="0" aria-label="You've raised more than $250 Badge Earned" ng-cloak>
+            <img class="img-responsive" ng-src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/ym-primary/image/fy22/badge-raised-250.png" alt="You've raised more than $250 Badge Earned">
+            <span>Raised more than $250</span>
           </div>
         </div>
         <div class="clearfix"></div>
@@ -190,9 +196,9 @@
         Donate
       </a>
     </div>
-    <div class="ym-list" ng-class="!personalDonors.donors || personalDonors.donors.length == 0 ? 'hidden' : 'col-sm-6'" aria-label="Top Donors List" ng-cloak>
+    <div class="ym-list" ng-class="!personalDonors.donors || personalDonors.donors.length == 0 ? 'hidden' : 'col-sm-6'" aria-label="Top Fundraisers List" ng-cloak>
       <h2>
-        <img class="img-responsive" src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/ym-primary/image/fy22/top-fundraising-fy22.png" alt="Saluting these top donors:">
+        <img class="img-responsive" src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/ym-primary/image/fy22/top-fundraising-fy22.png" alt="Saluting these top fundraisers:">
       </h2>
       <ul class="ym-donor-list" role="list">
         <li class="ym-donor-list__row" ng-repeat="personalDonor in personalDonors.donors" role="listitem" ng-if="personalDonors.donors.length > 0" ng-cloak>

@@ -31,21 +31,11 @@ angular.module 'ahaLuminateControllers'
       $scope.prizes = []
       $scope.prizesEarned = 0
       $scope.has_bonus = 0
-      $scope.current_mission_completed_count = ''
-      $scope.current_mission_completed_header = ''
-      $scope.current_mission_action = ''
-      $scope.current_mission_title = ''
-      $scope.current_mission_message = ''
       $scope.studentChallengeBadge = false
       $scope.schoolChallengeBadge = false
       BoundlessService.getBadges $scope.frId + '/' + $scope.participantId
       .then (response) ->
         prizes = response.data.prizes
-        $scope.current_mission_completed_count = response.data.current_mission_completed_count
-        $scope.current_mission_completed_header = response.data.current_mission_completed_header
-        $scope.current_mission_action = response.data.current_mission_action
-        $scope.current_mission_title = response.data.current_mission_title
-        $scope.current_mission_message = response.data.current_mission_message
         $scope.has_bonus = response.data.has_bonus
         angular.forEach prizes, (prize) ->
           $scope.prizes.push
@@ -54,12 +44,35 @@ angular.module 'ahaLuminateControllers'
             sku: prize.sku
             status: prize.status
             earned: prize.earned_datetime
+            image_url: prize.earned_image_url
 
-          if prize.status is 1
+          if prize.status isnt 0
             $scope.prizesEarned++
       , (response) ->
         # TODO
 
+      $scope.getSchoolPlan = () ->
+        ZuriService.schoolPlanData '&method=GetSchoolPlan&CompanyId=' + $scope.companyId + '&EventId=' + $scope.frId,
+          failure: (response) ->
+          error: (response) ->
+          success: (response) ->
+            $scope.schoolPlan = response.data.company[0]
+            if $scope.schoolPlan.EventStartDate != undefined
+              if $scope.schoolPlan.EventStartDate != '0000-00-00'
+                $scope.schoolPlan.EventStartDate = new Date($scope.schoolPlan.EventStartDate.replace(/-/g, "/") + ' 00:01')
+              if $scope.schoolPlan.EventEndDate != '0000-00-00'
+                $scope.schoolPlan.EventEndDate = new Date($scope.schoolPlan.EventEndDate.replace(/-/g, "/") + ' 00:01')
+              if $scope.schoolPlan.DonationDueDate != '0000-00-00'
+                $scope.schoolPlan.DonationDueDate = new Date($scope.schoolPlan.DonationDueDate.replace(/-/g, "/") + ' 00:01')
+              if $scope.schoolPlan.KickOffDate != '0000-00-00'
+                $scope.schoolPlan.KickOffDate = new Date($scope.schoolPlan.KickOffDate.replace(/-/g, "/") + ' 00:01')
+              $scope.coordinatorPoints = JSON.parse($scope.schoolPlan.PointsDetail)
+            else
+              $scope.schoolPlan.EventStartDate = ''
+              $scope.schoolPlan.DonationDueDate = ''
+              $scope.schoolPlan.KickOffDate = ''
+      $scope.getSchoolPlan()
+      
       checkSchoolChallenges = (amountRaised) ->
         amt = amountRaised / 100
         ZuriService.getSchoolData $scope.companyId,
@@ -135,7 +148,7 @@ angular.module 'ahaLuminateControllers'
               .then (response) ->
                 $scope.eventDate = response.data.coordinator?.event_date
                 
-          if amountRaised >= goal 
+          if amountRaised >= goal and goal > 0
             $scope.schoolChallengeBadge = true
                 
       setParticipantProgress = (amountRaised, goal) ->
@@ -253,9 +266,10 @@ angular.module 'ahaLuminateControllers'
           delete $scope.updatePersonalPhoto1Error
           if not $scope.$$phase
             $scope.$apply()
+          BoundlessService.logPersonalPageUpdated()
           successResponse = response.successResponse
           photoNumber = successResponse.photoNumber
-
+          
           TeamraiserParticipantPageService.getPersonalPhotos
             error: (response) ->
               # TODO
@@ -274,7 +288,7 @@ angular.module 'ahaLuminateControllers'
               if not $scope.$$phase
                 $scope.$apply()
               $scope.closePersonalPhoto1Modal()
-
+      
       $scope.personalPageContent =
         mode: 'view'
         serial: new Date().getTime()
