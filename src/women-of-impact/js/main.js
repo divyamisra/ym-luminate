@@ -452,21 +452,23 @@
                             var teams = luminateExtend.utils.ensureArray(response.getTeamSearchByInfoResponse.team);
 
                             $(teams).each(function (i, team) {
-                                console.log("woi - in teams each from find = ", team);
+                                console.log("2 woi - in teams each from find = ", team);
+                                var personalDonateURLCustom = team.teamDonateURL.replace(/(PROXY_ID=)[^\&]+/, '$1' + team.captainConsId).replace(/(PROXY_TYPE=)[^\&]+/, '$1' + "20");
+                                console.log(personalDonateURLCustom);
                                 if (screenWidth >= 768) {
                                   if ($('body').hasClass('pg_search_list')) {
                                     $('.js--team-results-rows')
                                         .append('<tr' + (i > 10 ? ' class="d-none"' : '') + '><td><a href="' + team.teamPageURL + '">' + team.name + '</a></td><td></td><td></td><td></td><td></td></tr>');
                                   } else {
                                     $('.js--team-results-rows')
-                                        .append('<tr' + (i > 10 ? ' class="d-none"' : '') + '><td><a href="' + team.teamPageURL + '">' + team.name + '</a></td><td></td><td></td><td></td><td class="col-cta text-right"><a href="' + team.teamDonateURL + '" class="btn btn-primary btn-block btn-rounded" title="Donate to ' + team.name + '" aria-label="Donate to ' + team.name + '">Donate</a></td></tr>');
+                                        .append('<tr' + (i > 10 ? ' class="d-none"' : '') + '><td><a href="' + team.teamPageURL + '">' + team.name + '</a></td><td></td><td></td><td></td><td class="col-cta text-right"><a href="' + personalDonateURLCustom + '" class="btn btn-primary btn-block btn-rounded" title="Donate to ' + team.name + '" aria-label="Donate to ' + team.name + '">Donate</a></td></tr>');
                                   }
                                 } else {
                                     $('#teamResultsTable thead').remove();
                                     $('.js--team-results-rows')
                                         .addClass('mobile')
                                         .append('<tr><td><table><tr' + (i > 10 ? ' class="d-none"' : '') + '><td>Team</td><td><a href="' + team.teamPageURL + '">' +
-                                            team.name + '</a></td></tr><tr><td></td><td></td></tr></td></tr><tr><td></td><td><a href="TR/?fr_id=' + team.EventId + '&pg=entry">' + team.eventName + '</a></td></tr><tr><td colspan="2" class="text-center"><a href="' + team.teamDonateURL + '" class="btn btn-primary btn-block btn-rounded" title="Donate to ' + team.name + '" aria-label="Donate to ' + team.name + '">Donate</a></td></tr></table></td></tr>');
+                                            team.name + '</a></td></tr><tr><td></td><td></td></tr></td></tr><tr><td></td><td><a href="TR/?fr_id=' + team.EventId + '&pg=entry">' + team.eventName + '</a></td></tr><tr><td colspan="2" class="text-center"><a href="' + personalDonateURLCustom + '" class="btn btn-primary btn-block btn-rounded" title="Donate to ' + team.name + '" aria-label="Donate to ' + team.name + '">Donate</a></td></tr></table></td></tr>');
                                 }
                             });
 
