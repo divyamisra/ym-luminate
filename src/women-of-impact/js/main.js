@@ -452,6 +452,7 @@
                             var teams = luminateExtend.utils.ensureArray(response.getTeamSearchByInfoResponse.team);
 
                             $(teams).each(function (i, team) {
+                                console.log("woi - in teams each from find = ", team);
                                 if (screenWidth >= 768) {
                                   if ($('body').hasClass('pg_search_list')) {
                                     $('.js--team-results-rows')
