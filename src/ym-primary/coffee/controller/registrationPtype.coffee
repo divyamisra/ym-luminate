@@ -76,7 +76,9 @@ angular.module 'ahaLuminateControllers'
           otherAmount = $donationLevel.find('input[name^="donation_level_form_input_"]').val()
           if otherAmount
             $scope.participationOptions.ng_donation_level_other_amount = otherAmount
-      
+
+      $scope.coverFee = ->      
+
       $scope.previousStep = ->
         $scope.ng_go_back = true
         $timeout ->

@@ -45,7 +45,7 @@
     <div class="manageable-content" data-container="edit_pt_title_container">
       [[?xx::x[[S1:cons_id]]x::::
         <div class="alert alert-info" role="alert">
-          You are currently logged in as <strong>[[S1:first_name]] [[S1:last_name]]</strong>. If you are trying to register someone else, please <a href="UserLogin?logout=&NEXTURL=[[T1:TRR?fr_id=[[S80:trID]]&pg=tfind&fr_tm_opt=existing&company_id=[[S80:frCompanyId]]&s_frCompanyId=[[S80:frCompanyId]]]]">logout</a> before continuing.
+          You are currently logged in as <strong>[[S1:first_name]] [[S1:last_name]]</strong>. If you are trying to register someone else, please <a href="UserLogin?logout=&NEXTURL=[[T1:TRR?fr_id=[[S80:trID]]&pg=tfind&fr_tm_opt=existing&company_id=[[S80:frCompanyId]]&s_frCompanyId=[[S80:frCompanyId]]]]">logout</a> before continuing. <a href="https://kidsheartchallenge.zendesk.com/hc/en-us/articles/4406678498707-How-do-I-register-more-than-one-student-" target="_blank">Here are directions for registering multiple students.</a
         </div>
       ]]
       <h2 class="h4" id="pt_title_container">
@@ -151,6 +151,17 @@
             </div>
           </div>
           </fieldset>
+
+          [[?xaha-962x::x[[s80:dev_branch]]x::
+            <div class="cover-fee-content">
+              <label for="cover-fee-checkbox">
+                <input type="checkbox" name="cover-fee-checkbox" id="cover-fee-checkbox" class="" aria-invalid="false"> 
+                Yes, I would like to cover the fee for my donation. 
+              </label>
+            </div>
+            
+          ::]]
+
           <div class="dtd-content" ng-class="{'hidden': !donationLevels.activeLevel || donationLevels.activeLevel.isNoDonation}"></div>
         ]]
       </div>
