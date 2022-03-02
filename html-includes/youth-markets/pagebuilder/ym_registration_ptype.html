@@ -152,10 +152,10 @@
           </div>
           </fieldset>
 
-          [[?xaha-962x::x[[s80:dev_branch]]x::
-            <div class="cover-fee-content">
+          [[?xaha-962x::x[[S80:dev_branch]]x::
+            <div class="cover-fee-content checkbox" custom-checkbox  ng-class="{'checked': coverFee == true}" >
               <label for="cover-fee-checkbox">
-                <input type="checkbox" name="cover-fee-checkbox" id="cover-fee-checkbox" class="" aria-invalid="false"> 
+                <input type="checkbox" name="cover-fee-checkbox" id="cover-fee-checkbox" class="" ng-model="coverFee"> 
                 Yes, I would like to cover the fee for my donation. 
               </label>
             </div>

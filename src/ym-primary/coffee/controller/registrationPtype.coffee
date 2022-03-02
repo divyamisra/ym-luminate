@@ -37,6 +37,7 @@ angular.module 'ahaLuminateControllers'
         if type is 'level' or (type is 'other' and $scope.participationOptions.ng_donation_level_other_amount isnt '') 
           console.log('type is level or type is other and other is not blank')
           $scope.participationOptions.ng_donation_level = levelAmount
+          $selectedDonAmt = levelAmount
           $scope.participationOptionsForm.ng_donation_level_other_amount.$setValidity('amount', true)
           angular.forEach $scope.donationLevels.levels, (donationLevel, donationLevelIndex) ->
             console.log('donation level each function')
@@ -77,7 +78,38 @@ angular.module 'ahaLuminateControllers'
           if otherAmount
             $scope.participationOptions.ng_donation_level_other_amount = otherAmount
 
-      $scope.coverFee = ->      
+      $scope.coverFee = false
+      if angular.element('input[name="cover-fee-checkbox"]').attr('checked') is true
+        $scope.coverFee = true
+      console.log("coverFee " + $scope.coverFee)
+
+      angular.element('#cover-fee-checkbox').on 'change', (e) ->
+        if angular.element('#cover-fee-checkbox').prop('checked') is true
+          console.log('cover fee click function')
+          coverFeeAmt = 2
+          originalGiftAmt = angular.element('.ym-registration-ptype-donation-levels .btn.active').prop('title')
+          console.log("originalGiftAmt " + originalGiftAmt)
+          if originalGiftAmt == 'Other Amount'
+            originalGiftAmt = angular.element('.btn-enter').val()
+            console.log("OTHER originalGiftAmt " + originalGiftAmt)
+          else
+            originalGiftAmt = originalGiftAmt.split('$')[1]
+            console.log("originalGiftAmt " + originalGiftAmt)
+
+          originalGiftAmt = Number(originalGiftAmt)
+          console.log("originalGiftAmt " + originalGiftAmt)
+        
+          newGiftAmt = originalGiftAmt + coverFeeAmt
+          console.log("newGiftAmt " + newGiftAmt)
+
+          angular.element('.ym-registration-ptype-donation-levels .btn.active').removeClass('active')
+          angular.element('.ym-registration-ptype-donation-levels .btn-enter').val(newGiftAmt)
+          angular.element('.ym-registration-ptype-donation-levels .btn-enter').addClass('active')
+          angular.element('.ym-registration-ptype-donation-levels .btn-enter').trigger('blur')
+          #$scope.toggleDonationLevel 'other', -1
+          #angular.element('.ym-registration-ptype-donation-levels .btn-enter').val(originalGiftAmt)
+
+
 
       $scope.previousStep = ->
         $scope.ng_go_back = true
