@@ -1024,7 +1024,7 @@ angular.module 'trPcControllers'
             NgPcConstituentService.getUserRecord('fields=custom_boolean2,custom_boolean8,custom_string18&cons_id=' + $scope.consId).then (response) ->
               if response.data.errorResponse
                 console.log 'There was an error getting user profile. Please try again later.'
-	      $scope.consitituent = response.data.getConsResponse;
+	      $scope.constituent = response.data.getConsResponse
               angular.forEach $scope.constituent.custom.boolean, (field) ->
                 if field.id == 'custom_boolean2'
                   $scope.schoolPlan.SendEmailOnBehalfOfCoordinator = field.content == 'true'
