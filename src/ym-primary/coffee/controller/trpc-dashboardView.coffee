@@ -1053,7 +1053,7 @@ angular.module 'trPcControllers'
                 $scope.dashboardPromises.push updateUserProfilePromise
                 $scope.getSchoolPlan()
             else
-	      if event.currentTarget.type == 'date'
+              if event.currentTarget.type == 'date'
                 schoolParams = '&field_id=' + event.currentTarget.id + '&value=' + event.currentTarget.value + '&type=' + event.currentTarget.type
               else
                 schoolParams = '&field_id=' + event.currentTarget.id + '&value=' + school[event.currentTarget.id] + '&type=' + event.currentTarget.type
