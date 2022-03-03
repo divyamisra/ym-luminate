@@ -1021,12 +1021,17 @@ angular.module 'trPcControllers'
             else
               $scope.schoolPlan.EventStartDate = ''
 						
-            NgPcConstituentService.getUserRecord('fields=custom_boolean2&cons_id=' + $scope.consId).then (response) ->
+            NgPcConstituentService.getUserRecord('fields=custom_boolean2,custom_boolean8&cons_id=' + $scope.consId).then (response) ->
               if response.data.errorResponse
                 console.log 'There was an error getting user profile. Please try again later.'
-              $scope.constituent = response.data.getConsResponse
-              $scope.schoolPlan.SendEmailOnBehalfOfCoordinator = $scope.constituent.custom.boolean.content == 'true'
-	      
+              angular.forEach $scope.constituent.custom.boolean, (field) ->
+                if field.id == 'custom_boolean2'
+                  $scope.schoolPlan.SendEmailOnBehalfOfCoordinator = field.content == 'true'
+                if field.id == 'custom_boolean8'
+                  $scope.schoolPlan.MaterialsNeeded = field.content == 'true'
+                return
+              $scope.participatingNextYear = $scope.constituent.custom.string.content
+
       $scope.putSchoolPlan = (event) ->
         school = @schoolPlan
         if event.currentTarget.id == 'school_goal'
@@ -1041,24 +1046,29 @@ angular.module 'trPcControllers'
               $scope.dashboardPromises.push updateUserProfilePromise
               $scope.getSchoolPlan()
           else
-            if event.currentTarget.type == 'date'
-              schoolParams = '&field_id=' + event.currentTarget.id + '&value=' + event.currentTarget.value + '&type=' + event.currentTarget.type
+            if event.currentTarget.type == 'checkbox' and event.currentTarget.id == 'MaterialNeeded'
+              updateUserProfilePromise = NgPcConstituentService.updateUserRecord('custom_boolean8=' + angular.element(event.currentTarget).is(':checked') + '&cons_id=' + $scope.consId).then (response) ->
+                if response.data.errorResponse
+                  console.log 'There was an error processing your update. Please try again later.'
+                $scope.dashboardPromises.push updateUserProfilePromise
+                $scope.getSchoolPlan()
             else
-              schoolParams = '&field_id=' + event.currentTarget.id + '&value=' + school[event.currentTarget.id] + '&type=' + event.currentTarget.type
-            ZuriService.schoolPlanData '&method=UpdateSchoolPlan&CompanyId=' + $scope.participantRegistration.companyInformation.companyId + '&EventId=' + $scope.frId + schoolParams,
-              failure: (response) ->
-              error: (response) ->
-              success: (response) ->
-
-      NgPcConstituentService.getUserRecord('fields=custom_string18&cons_id=' + $scope.consId).then (response) ->
-        if response.data.errorResponse
-          console.log 'There was an error getting user profile. Please try again later.'
-        $scope.participatingNextYear = response.data.getConsResponse.custom.string.content
+	      if event.currentTarget.type == 'date'
+                schoolParams = '&field_id=' + event.currentTarget.id + '&value=' + event.currentTarget.value + '&type=' + event.currentTarget.type
+              else
+                schoolParams = '&field_id=' + event.currentTarget.id + '&value=' + school[event.currentTarget.id] + '&type=' + event.currentTarget.type
+              ZuriService.schoolPlanData '&method=UpdateSchoolPlan&CompanyId=' + $scope.participantRegistration.companyInformation.companyId + '&EventId=' + $scope.frId + schoolParams,
+                failure: (response) ->
+                error: (response) ->
+                success: (response) ->
 
       $scope.updateParticipatingNextYear = ->
         updateUserProfilePromise = NgPcConstituentService.updateUserRecord('custom_string18=' + this.participatingNextYear + '&cons_id=' + $scope.consId).then (response) ->
           if response.data.errorResponse
             console.log 'There was an error processing your update. Please try again later.'
+          updateUserProfilePromise = NgPcConstituentService.updateUserRecord('custom_date5=' + $scope.theDate + '&cons_id=' + $scope.consId).then (response) ->
+            if response.data.errorResponse
+              console.log 'There was an error processing your update. Please try again later.'
           $scope.dashboardPromises.push updateUserProfilePromise
 		
       formatDateString = (dateVal) ->
