@@ -1106,7 +1106,21 @@
           	Allow AHA to Send Emails to my students on my behalf
         	</label>
 	      </div>
-				<div class="ym-pc-dashboard-total-points text-center hidden">
+              <div class="ym-pc-dashboard-section-header">
+		<div class="row participatingNextYear text-left">
+		  <div class="col-md-8">
+			  <strong>My student will be participating in Kids Heart Challenge next year!</strong>
+		  </div>
+		  <div class="col-md-4">
+  		    <select class="form-control" id="challenge" ng-model="participatingNextYear" aria-label="Next Year Participation" ng-change="updateParticipatingNextYear()">
+		      <option value="Yes">Yes</option>
+		      <option value="No">No</option>
+		      <option value="Still Considering">Still Considering</option>
+		    </select>
+ 		  </div>
+		</div>
+	      </div>
+		    <div class="ym-pc-dashboard-total-points text-center hidden">
 					<div><strong>Total Points: <span ng-bind-html="schoolPlan.TotalPointsEarned"></span></strong></div>
 					<p>Points updated nightly at 3am<br/>
 					  <a href="" ng-click="showSchoolPlan()" class="ym-progress-show-plan" aria-label="Click here for more information">
