@@ -1120,6 +1120,12 @@
  		  </div>
 		</div>
 	      </div>
+	      <div class="ym-pc-dashboard-materials-needed checkbox" custom-checkbox ng-class="{'checked': schoolPlan.MaterialsNeeded == true}" ng-cloak>
+	        <label for="MaterialsNeeded">
+          	<input type="checkbox" name="MaterialsNeeded" id="MaterialsNeeded" ng-model="schoolPlan.MaterialsNeeded" ng-true-value="true" ng-false-value="false" ng-click="putSchoolPlan($event)"> 
+          	Materials Needed
+        	</label>
+	      </div>
 		    <div class="ym-pc-dashboard-total-points text-center hidden">
 					<div><strong>Total Points: <span ng-bind-html="schoolPlan.TotalPointsEarned"></span></strong></div>
 					<p>Points updated nightly at 3am<br/>
