@@ -1120,11 +1120,18 @@
  		  </div>
 		</div>
 	      </div>
-	      <div class="ym-pc-dashboard-materials-needed checkbox" custom-checkbox ng-class="{'checked': schoolPlan.MaterialsNeeded == true}" ng-cloak>
-	        <label for="MaterialsNeeded">
-          	<input type="checkbox" name="MaterialsNeeded" id="MaterialsNeeded" ng-model="schoolPlan.MaterialsNeeded" ng-true-value="true" ng-false-value="false" ng-click="putSchoolPlan($event)"> 
-          	Materials Needed
-        	</label>
+              <div class="ym-pc-dashboard-materials-needed">
+		<div class="row materialsNeeded text-left">
+		  <div class="col-md-8 pl-0">
+		    My school would like materials in the form of
+		  </div>
+		  <div class="col-md-4 pr-0">
+  		    <select class="form-control" id="challenge" ng-model="schoolPlan.MaterialsNeeded" aria-label="Materials Needed" ng-change="updateMaterialsNeeded()">
+		      <option value="Envelope">Envelope</option>
+		      <option value="Parent Letter">Parent Letter</option>
+		    </select>
+ 		  </div>
+		</div>
 	      </div>
 		    <div class="ym-pc-dashboard-total-points text-center hidden">
 					<div><strong>Total Points: <span ng-bind-html="schoolPlan.TotalPointsEarned"></span></strong></div>
