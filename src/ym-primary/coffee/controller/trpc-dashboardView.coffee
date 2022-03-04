@@ -1021,17 +1021,17 @@ angular.module 'trPcControllers'
             else
               $scope.schoolPlan.EventStartDate = ''
 						
-            NgPcConstituentService.getUserRecord('fields=custom_boolean2,custom_boolean8,custom_string18&cons_id=' + $scope.consId).then (response) ->
+            NgPcConstituentService.getUserRecord('fields=custom_boolean2,custom_string18,custom_string19&cons_id=' + $scope.consId).then (response) ->
               if response.data.errorResponse
                 console.log 'There was an error getting user profile. Please try again later.'
               $scope.constituent = response.data.getConsResponse
-              angular.forEach $scope.constituent.custom.boolean, (field) ->
-                if field.id == 'custom_boolean2'
-                  $scope.schoolPlan.SendEmailOnBehalfOfCoordinator = field.content == 'true'
-                if field.id == 'custom_boolean8'
-                  $scope.schoolPlan.MaterialsNeeded = field.content == 'true'
+              $scope.schoolPlan.SendEmailOnBehalfOfCoordinator = $scope.constituent.custom.boolean.content == 'true'
+              angular.forEach $scope.constituent.custom.string, (field) ->
+                if field.id == 'custom_string18'
+                  $scope.participatingNextYear = field.content
+                if field.id == 'custom_string19'
+                  $scope.schoolPlan.MaterialsNeeded = field.content
                 return
-              $scope.participatingNextYear = $scope.constituent.custom.string.content
 
       $scope.putSchoolPlan = (event) ->
         school = @schoolPlan
