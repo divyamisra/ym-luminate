@@ -135,7 +135,7 @@
             <div class="ym-donation-levels__amount" ng-class="{'active': donationLevels.activeLevel.amount == donationLevel.amount}" aria-describedby="ym-registration-ptype-donation-message-other" ng-repeat="donationLevel in donationLevels.levels" ng-if="donationLevel.isOtherAmount" ng-cloak>
               <label class="sr-only" for="participationOptions-ng_donation_level_other_amount">Other Amount</label>
               <span class="ym-donation-levels__dollar-sign">$</span>
-              <input type="text" class="btn btn-enter" ng-class="{'active': donationLevels.activeLevel.amount == donationLevel.amount}" name="ng_donation_level_other_amount" id="participationOptions-ng_donation_level_other_amount" ng-model="participationOptions.ng_donation_level_other_amount" ng-repeat="donationLevel in donationLevels.levels" placeholder="Other" ng-blur="toggleDonationLevel($event, 'other', donationLevel.amount)" ng-if="donationLevel.isOtherAmount" title="Other Amount" ng-cloak>
+              <input type="text" class="btn btn-enter" ng-class="{'active': donationLevels.activeLevel.amount == donationLevel.amount}" name="ng_donation_level_other_amount" id="participationOptions-ng_donation_level_other_amount" ng-model="participationOptions.ng_donation_level_other_amount" ng-repeat="donationLevel in donationLevels.levels" placeholder="Other" ng-blur="toggleDonationLevel($event, 'other', donationLevel.amount)" ng-if="donationLevel.isOtherAmount" title="Other Amount" ng-cloak ng-keydown="disableCoverFee()">
             </div>
             <button type="button" class="btn btn-toggle" ng-class="{'active': donationLevels.activeLevel.amount == donationLevel.amount}" ng-repeat="donationLevel in donationLevels.levels" ng-click="toggleDonationLevel($event, 'level', donationLevel.amount)" ng-if="donationLevel.isNoDonation" title="No Thanks" ng-cloak>
               <span>No, Thanks</span>
@@ -153,13 +153,15 @@
           </fieldset>
 
           [[?xaha-962x::x[[S80:dev_branch]]x::
-            <div class="cover-fee-content checkbox" custom-checkbox  ng-class="{'checked': coverFee == true}" >
-              <label for="cover-fee-checkbox">
-                <input type="checkbox" name="cover-fee-checkbox" id="cover-fee-checkbox" class="" ng-model="coverFee"> 
-                Yes, I would like to cover the fee for my donation. 
-              </label>
+            <div class="cover-fee-content" ng-class="{'has-error': coverFee == 'disabled' && (!donationLevels.activeLevel.amount || donationLevels.activeLevel.amount == '$0.00')}">
+              <span class="help-block" role="alert" ng-show="coverFee == 'disabled' && (!donationLevels.activeLevel.amount || donationLevels.activeLevel.amount == '$0.00')">Please choose a gift amount.</span>
+              <div class="checkbox" custom-checkbox  ng-class="{'checked': coverFee == true, 'disabled': !donationLevels.activeLevel.amount || donationLevels.activeLevel.amount == '$0.00'}" >
+                <label for="cover-fee-checkbox" ng-click="coverFeeMsg()">
+                  <input type="checkbox" name="cover-fee-checkbox" id="cover-fee-checkbox" class="" ng-model="coverFee" ng-change="toggleCoverFee()" disabled> 
+                  Yes, I would like to cover the fee for my donation. 
+                </label>
+              </div>
             </div>
-            
           ::]]
 
           <div class="dtd-content" ng-class="{'hidden': !donationLevels.activeLevel || donationLevels.activeLevel.isNoDonation}"></div>

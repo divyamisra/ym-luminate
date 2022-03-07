@@ -33,21 +33,36 @@ angular.module 'ahaLuminateControllers'
       $scope.participationOptions.fr_part_radio = $participationType.val()
       
       $scope.toggleDonationLevel = (event, type, levelAmount) ->
-        console.log('toggleDonationLevel type ' + type + ' levelAmount ' + levelAmount)
+        console.log('TOGGLEDONATIONLEVEL type ' + type + ' levelAmount ' + levelAmount)
+
+        if levelAmount != '$0.00'
+          console.log('removing coverfee check box disabled')
+          angular.element('input[name="cover-fee-checkbox"]').removeAttr('disabled')
+        else if levelAmount == '$0.00'
+          console.log('adding coverfee check box disabled')
+          angular.element('input[name="cover-fee-checkbox"]').attr('disabled',true)
+
+        if type is 'level' and $scope.coverFee == true
+          $scope.coverFee = false
+
+        if type is 'level' and $scope.coverFee == false
+          console.log('TOGGLEDONATIONLEVEL coverfee ' + $scope.coverFee)
+          angular.element('.ym-registration-ptype-donation-levels .btn-enter').val('')
+          angular.element('.ym-registration-ptype-donation-levels .btn-enter').removeClass('active')
+
         if type is 'level' or (type is 'other' and $scope.participationOptions.ng_donation_level_other_amount isnt '') 
           console.log('type is level or type is other and other is not blank')
           $scope.participationOptions.ng_donation_level = levelAmount
           $selectedDonAmt = levelAmount
           $scope.participationOptionsForm.ng_donation_level_other_amount.$setValidity('amount', true)
           angular.forEach $scope.donationLevels.levels, (donationLevel, donationLevelIndex) ->
-            console.log('donation level each function')
             if donationLevel.amount is levelAmount
-              console.log("donationLevel.amount is same as levelAmount")
               $scope.donationLevels.activeLevel = donationLevel
  
         if levelAmount isnt '-1'
-          console.log('levelAmount is not -1')
           $scope.participationOptions.ng_donation_level_other_amount = ''
+
+
       
       $scope.donationLevels = 
         levels: []
@@ -78,17 +93,38 @@ angular.module 'ahaLuminateControllers'
           if otherAmount
             $scope.participationOptions.ng_donation_level_other_amount = otherAmount
 
+  
+      angular.element('btn-enter').keydown ->
+        console.log('btn-enger keydown function')
+        $scope.coverFee = false
+
       $scope.coverFee = false
       if angular.element('input[name="cover-fee-checkbox"]').attr('checked') is true
         $scope.coverFee = true
+      else if angular.element('input[name="cover-fee-checkbox"]').attr('disabled') is true
+        $scope.coverFee = 'disabled'
       console.log("coverFee " + $scope.coverFee)
 
-      angular.element('#cover-fee-checkbox').on 'change', (e) ->
-        if angular.element('#cover-fee-checkbox').prop('checked') is true
-          console.log('cover fee click function')
-          coverFeeAmt = 2
+      $scope.coverFeeMsg = ->
+        console.log('cover fee message ')
+        if angular.element('input[name="cover-fee-checkbox"]').attr('disabled') is 'disabled'
+          $scope.coverFee = 'disabled'
+          console.log("$scope.coverFee " + $scope.coverFee)
+  
+      $scope.disableCoverFee = ->
+        $scope.coverFee = false
+
+
+      $scope.getAmount = (levelAmt) ->
+        if levelAmt
+          originalGiftAmt = levelAmt
+        else
           originalGiftAmt = angular.element('.ym-registration-ptype-donation-levels .btn.active').prop('title')
-          console.log("originalGiftAmt " + originalGiftAmt)
+        console.log('getamount function original gift amount ' + originalGiftAmt)
+        #coverFeeAmt = 2
+
+        if $scope.coverFee == true
+
           if originalGiftAmt == 'Other Amount'
             originalGiftAmt = angular.element('.btn-enter').val()
             console.log("OTHER originalGiftAmt " + originalGiftAmt)
@@ -99,16 +135,61 @@ angular.module 'ahaLuminateControllers'
           originalGiftAmt = Number(originalGiftAmt)
           console.log("originalGiftAmt " + originalGiftAmt)
         
-          newGiftAmt = originalGiftAmt + coverFeeAmt
+          #newGiftAmt = originalGiftAmt + coverFeeAmt
+          newGiftAmt =  (originalGiftAmt * 2.6 / 100 + 0.26 + originalGiftAmt).toFixed 2
           console.log("newGiftAmt " + newGiftAmt)
+          return newGiftAmt
 
-          angular.element('.ym-registration-ptype-donation-levels .btn.active').removeClass('active')
-          angular.element('.ym-registration-ptype-donation-levels .btn-enter').val(newGiftAmt)
-          angular.element('.ym-registration-ptype-donation-levels .btn-enter').addClass('active')
-          angular.element('.ym-registration-ptype-donation-levels .btn-enter').trigger('blur')
-          #$scope.toggleDonationLevel 'other', -1
-          #angular.element('.ym-registration-ptype-donation-levels .btn-enter').val(originalGiftAmt)
+        else
+          currentGiftAmt = angular.element('.ym-registration-ptype-donation-levels .btn.active').prop('title')
+          console.log("currentGiftAmt " + currentGiftAmt)
+          if currentGiftAmt == 'Other Amount'
+            currentGiftAmt = angular.element('.btn-enter').val()
+            console.log("OTHER originalGiftAmt " + currentGiftAmt)
+          else
+            currentGiftAmt = currentGiftAmt.split('$')[1]
+            console.log("originalGiftAmt " + originalGiftAmt)
 
+          #oldGiftAmt = currentGiftAmt - coverFeeAmt
+          oldGiftAmt = (Math.round(currentGiftAmt / 1.026 - 0.26)).toFixed 2
+          return oldGiftAmt
+
+
+      $scope.toggleCoverFee = ->
+        console.log('$scope.coverFee ' + $scope.coverFee)
+        #angular.element('.cover-fee-content').removeClass('has-error')
+        #angular.element('.cover-fee-content .help-block').addClass('hidden')
+        #coverFeeAmt = 2
+
+        console.log(' is any level chosen? ' + angular.element('.ym-registration-ptype-donation-levels .btn.active').length + angular.element('.ym-registration-ptype-donation-levels .btn.active').prop('title'))
+
+        if angular.element('.ym-registration-ptype-donation-levels .btn.active').length != 0 and angular.element('.ym-registration-ptype-donation-levels .btn.active').prop('title') != 'No Thanks'
+        #if $scope.donationLevels.activeLevel.amount && $scope.donationLevels.activeLevel.amount != '$0.00'
+
+          if angular.element('#cover-fee-checkbox').prop('checked') is true
+            console.log('cover fee click function')
+
+            amount = $scope.getAmount()
+            console.log('amount ' + amount)
+
+            angular.element('.ym-registration-ptype-donation-levels .btn.active').removeClass('active')
+            angular.element('.ym-registration-ptype-donation-levels .btn-enter').val(amount)
+            angular.element('.ym-registration-ptype-donation-levels .btn-enter').addClass('active')
+            angular.element('.ym-registration-ptype-donation-levels .btn-enter').trigger('blur')
+
+          else
+            console.log('turn off cover fee')
+            amount = $scope.getAmount()
+            console.log('amount ' + amount)
+
+            angular.element('.ym-registration-ptype-donation-levels .btn-enter').val(amount)
+            angular.element('.ym-registration-ptype-donation-levels .btn-enter').addClass('active')
+            angular.element('.ym-registration-ptype-donation-levels .btn-enter').trigger('blur')
+
+        else
+          #$scope.coverFee = false
+          #angular.element('.cover-fee-content').addClass('has-error')
+          #angular.element('.cover-fee-content .checkbox .help-block').removeClass('hidden')
 
 
       $scope.previousStep = ->
