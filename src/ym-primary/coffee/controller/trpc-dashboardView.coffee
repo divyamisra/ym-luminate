@@ -277,6 +277,14 @@ angular.module 'trPcControllers'
                 participantPrevProgress.raisedFormatted = if participantPrevProgress.raised then $filter('currency')(participantPrevProgress.raised / 100, '$') else '$0.00'
                 $scope.participantPrevProgress = participantPrevProgress
 
+      $scope.showMaterialTypes = ->
+        $scope.showMaterialTypesModal = $uibModal.open
+          scope: $scope
+          templateUrl: APP_INFO.rootPath + 'dist/ym-primary/html/participant-center/modal/viewMaterialTypes.html'
+
+      $scope.cancelShowMaterialsTypes = ->
+        $scope.showMaterialTypesModal.close()
+		
       interactionMoveMoreId = $dataRoot.data 'move-more-flag-id'
 
       $scope.moveMoreFlag =
