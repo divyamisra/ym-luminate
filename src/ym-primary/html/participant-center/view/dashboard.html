@@ -1121,10 +1121,10 @@
 		</div>
 	      </div>
               <div class="ym-pc-dashboard-materials-needed mt-sm">
-		<div class="row materialsNeeded text-left">
+		<div class="row materialsNeeded text-left"> 
 		  <div class="col-md-8 pl-0">
 		    My school would like materials in the form of:
-		    <button aria-label="Click the icon to see an example of the materials." data-balloon-pos="up" data-balloon-length="large" onclick="window.open('DocServer/ym-materials-2022.pdf','_blank','location=yes,height=570,width=520,scrollbars=yes,status=yes');"><i class="fa fa-info-circle"></i></button>
+		    <button aria-label="Click the icon to see an example of the materials." data-balloon-pos="up" data-balloon-length="large" ng-click="showMaterialTypes()"><i class="fa fa-info-circle"></i></button> 
 		  </div>
 		  <div class="col-md-4 pr-0">
  		    <select class="form-control" id="MaterialsNeeded" ng-model="schoolPlan.MaterialsNeeded" aria-label="Materials Needed" ng-change="updateMaterialsNeeded()">
