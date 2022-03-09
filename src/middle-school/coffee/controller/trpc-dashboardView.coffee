@@ -914,7 +914,15 @@ angular.module 'trPcControllers'
           if response.data.errorResponse
             console.log 'There was an error processing your update. Please try again later.'
           $scope.dashboardPromises.push updateUserProfilePromise
-			
+
+      $scope.showMaterialTypes = ->
+        $scope.showMaterialTypesModal = $uibModal.open
+          scope: $scope
+          templateUrl: APP_INFO.rootPath + 'dist/middle-school/html/participant-center/modal/viewMaterialTypes.html'
+
+      $scope.cancelShowMaterialsTypes = ->
+        $scope.showMaterialTypesModal.close()
+	
       $scope.updateSchoolYears = ->
         delete $scope.schoolInfo.errorMessage
         newYears = $scope.companyProgress.schoolYears
