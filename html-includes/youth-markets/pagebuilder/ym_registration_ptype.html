@@ -153,7 +153,7 @@
           </fieldset>
 
           [[?xaha-962x::x[[S80:dev_branch]]x::
-            <div class="cover-fee-content" ng-class="{'has-error': coverFee == 'disabled' && (!donationLevels.activeLevel.amount || donationLevels.activeLevel.amount == '$0.00')}">
+            <div class="cover-fee-content" ng-class="{'has-error': coverFee == 'disabled' && (!donationLevels.activeLevel.amount || donationLevels.activeLevel.amount == '$0.00')}" ng-show="donationLevels.activeLevel.amount && donationLevels.activeLevel.amount != '$0.00'">
               <span class="help-block" role="alert" ng-show="coverFee == 'disabled' && (!donationLevels.activeLevel.amount || donationLevels.activeLevel.amount == '$0.00')">Please choose a gift amount.</span>
               <div class="checkbox" custom-checkbox  ng-class="{'checked': coverFee == true, 'disabled': !donationLevels.activeLevel.amount || donationLevels.activeLevel.amount == '$0.00'}" >
                 <label for="cover-fee-checkbox" ng-click="coverFeeMsg()">
