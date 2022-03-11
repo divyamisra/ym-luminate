@@ -135,7 +135,7 @@ angular.module 'ahaLuminateControllers'
 
           originalGiftAmt = Number(originalGiftAmt)
           console.log("originalGiftAmt " + originalGiftAmt)
-          localStorage.setItem('storedAmt', originalGiftAmt);
+          localStorage.setItem('storedAmt', originalGiftAmt)
         
           newGiftAmt =  (originalGiftAmt * 2.6 / 100 + 0.26 + originalGiftAmt).toFixed 2
           console.log("newGiftAmt " + newGiftAmt)
