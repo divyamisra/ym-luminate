@@ -863,11 +863,17 @@ angular.module 'trPcControllers'
             else
               $scope.schoolPlan.EventStartDate = ''
 						
-            NgPcConstituentService.getUserRecord('fields=custom_boolean2&cons_id=' + $scope.consId).then (response) ->
+            NgPcConstituentService.getUserRecord('fields=custom_boolean2,custom_string18,custom_string19&cons_id=' + $scope.consId).then (response) ->
               if response.data.errorResponse
                 console.log 'There was an error getting user profile. Please try again later.'
               $scope.constituent = response.data.getConsResponse
               $scope.schoolPlan.SendEmailOnBehalfOfCoordinator = $scope.constituent.custom.boolean.content == 'true'
+              angular.forEach $scope.constituent.custom.string, (field) ->
+                if field.id == 'custom_string18'
+                  $scope.participatingNextYear = field.content
+                if field.id == 'custom_string19'
+                  $scope.schoolPlan.MaterialsNeeded = field.content
+                return
 	      
       $scope.putSchoolPlan = (event) ->
         school = @schoolPlan
@@ -893,7 +899,30 @@ angular.module 'trPcControllers'
               failure: (response) ->
               error: (response) ->
               success: (response) ->
-                
+
+      $scope.updateParticipatingNextYear = ->
+        updateUserProfilePromise = NgPcConstituentService.updateUserRecord('custom_string18=' + this.participatingNextYear + '&cons_id=' + $scope.consId).then (response) ->
+          if response.data.errorResponse
+            console.log 'There was an error processing your update. Please try again later.'
+          updateUserProfilePromise = NgPcConstituentService.updateUserRecord('custom_date5_MONTH='+(($scope.theDate).getMonth()+1)+'&custom_date5_DAY='+($scope.theDate).getDate()+'&custom_date5_YEAR='+($scope.theDate).getFullYear()+'&cons_id=' + $scope.consId).then (response) ->
+            if response.data.errorResponse
+              console.log 'There was an error processing your update. Please try again later.'
+          $scope.dashboardPromises.push updateUserProfilePromise
+		
+      $scope.updateMaterialsNeeded = ->
+        updateUserProfilePromise = NgPcConstituentService.updateUserRecord('custom_string19=' + this.schoolPlan.MaterialsNeeded + '&cons_id=' + $scope.consId).then (response) ->
+          if response.data.errorResponse
+            console.log 'There was an error processing your update. Please try again later.'
+          $scope.dashboardPromises.push updateUserProfilePromise
+
+      $scope.showMaterialTypes = ->
+        $scope.showMaterialTypesModal = $uibModal.open
+          scope: $scope
+          templateUrl: APP_INFO.rootPath + 'dist/middle-school/html/participant-center/modal/viewMaterialTypes.html'
+
+      $scope.cancelShowMaterialsTypes = ->
+        $scope.showMaterialTypesModal.close()
+	
       $scope.updateSchoolYears = ->
         delete $scope.schoolInfo.errorMessage
         newYears = $scope.companyProgress.schoolYears
