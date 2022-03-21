@@ -654,6 +654,49 @@
                 return '<h1 class="campaign-banner-container">' + $(this).html() + '</h1>';
             });
             $('#title_container').replaceWith('<h2 class="ObjTitle" id="title_container">Tell us about you:</h2>');
+
+            var emailInput = $("#cons_email")
+            var errorLabelHTML = '<label id="cons_email-error" class="error" for="cons_email" style="display: none;"></label>'
+
+            $("#cons_email").blur(function() {
+              var email = $(this).val()
+              var emailVerifyApi = "https://api.emailverifyapi.com/v3/lookups/JSON?key=D107AB8B6EC24117&email=" + encodeURIComponent(email)
+
+              $.getJSON(emailVerifyApi, {})
+                .done(function(response) {
+                  console.log("response", response)
+
+                  validateEmail(response)
+                })
+                .fail(function (jqxhr, textStatus, error) {
+                  var errorMessage = textStatus + ", " + error
+
+                  console.log("Request failed: " + errorMessage)
+                })
+            })
+
+            function validateEmail(data) {
+              var errorMessage = "Please check the spelling of your email address."
+              var hasError = data["validFormat"] === false || data["deliverable"] === false
+              var errorLabel = $("#cons_email-error")
+
+              if (hasError) {
+                if (errorLabel.length > 0) {
+                  errorLabel.text(errorMessage).css("display", "block")
+
+                  return
+                }
+
+                if (errorLabel.length === 0) {
+                  errorInput.parent().append(errorLabelHTML)
+                  errorLabel.text(errorMessage).css("display", "block")
+
+                  return
+                }
+              }
+
+              errorLabel.text("").css("display", "none")
+            }
         }
 
         //Rthanks
@@ -1241,10 +1284,10 @@
                       localStorage.dtdCompanyId = dtdCoId;
                   }
                   else {
-                      console.log('clear dtd company id'); 
+                      console.log('clear dtd company id');
                       localStorage.dtdCompanyId = "";
                   }
-                }        
+                }
                 if ($('form').valid()) {
                     //store off personal goal in sess var by adding to action url
                     $('#F2fRegPartType').prepend('<input type="hidden" id="personalGoal" name="s_personalGoal" value="' + $('input#fr_goal').val() + '">');
@@ -1442,7 +1485,7 @@
         $('.survivor_yes_no input[type=radio]').addClass("required survivorq");
 
         $('.survivor_yes_no .survey-question-label').after('<small id="isSurvivor" class="form-text text-muted">Answering yes will display a small banner over your personal photo on your fundraising page that will proudly say, "I\'m a survivor."</small>');
-        
+
 
         $('.survivor_yes_no li').click(function() {
             $('.survivor_yes_no li').removeClass('survivor_active');
@@ -1557,7 +1600,7 @@
 
 
                $('button.next-step').click(function(){
-                 // Add additional amount to local storage for Double the Donation 
+                 // Add additional amount to local storage for Double the Donation
                 if ($('.additional-gift-amount').text() != '$0.00'){
                     console.log('there is a gift value');
                     var addlGiftAmt = $('.additional-gift-amount').text();
@@ -1567,7 +1610,7 @@
                     localStorage.addlGiftAmt = addlGiftAmtFormatted;
                 }
                 else {
-                    console.log('clear addGiftAmt'); 
+                    console.log('clear addGiftAmt');
                     localStorage.addlGiftAmt = "";
                 }
 
@@ -1621,7 +1664,7 @@
             $('#fr_team_goal').val('');
             $('#fr_team_name').val('');
         }
-        
+
         $('.part-type-description-text:contains("Free")').html('&nbsp;');
         $('.survey-question-container legend span:contains("Waiver agreement")').parent().parent().addClass('waiverCheck');
         $('.waiverCheck legend').addClass('aural-only');
@@ -2127,3 +2170,5 @@
 
 
 })(jQuery);
+
+console.log("testing");
