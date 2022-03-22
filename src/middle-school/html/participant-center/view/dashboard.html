@@ -1060,6 +1060,35 @@
 									</div>
 								</div>
 							</div>
+											      <div class="ym-pc-dashboard-participate-next-year">
+					<div class="row participatingNextYear text-left">
+					  <div class="col-md-8 pl-0">
+					    My school will be participating in Kids Heart Challenge next year!
+					  </div>
+					  <div class="col-md-4 pr-0">
+					    <select class="form-control" id="participatingNextYear" ng-model="participatingNextYear" aria-label="Next Year Participation" ng-change="updateParticipatingNextYear()">
+					      <option value="Yes">Yes</option>
+					      <option value="No">No</option>
+					      <option value="Still Considering">Still Considering</option>
+					    </select>
+					  </div>
+					</div>
+				      </div>
+				      <div class="ym-pc-dashboard-materials-needed mt-sm">
+					<div class="row materialsNeeded text-left"> 
+					  <div class="col-md-8 pl-0">
+					    My school would like materials in the form of:
+					    <button aria-label="Click the icon to see an example of the materials." data-balloon-pos="up" data-balloon-length="large" ng-click="showMaterialTypes()"><i class="fa fa-info-circle"></i></button> 
+					  </div>
+					  <div class="col-md-4 pr-0">
+					    <select class="form-control" id="MaterialsNeeded" ng-model="schoolPlan.MaterialsNeeded" aria-label="Materials Needed" ng-change="updateMaterialsNeeded()">
+					      <option value="Envelope">Envelope</option>
+					      <option value="Parent Letter">Parent Letter</option>
+					    </select>
+					  </div>
+					</div>
+				      </div>
+
 							<div class="ym-pc-dashboard-total-points text-center hidden">
 								<div>
 									<strong>
@@ -1106,34 +1135,6 @@
 					  My school has two or more coordinators responsible for the American Heart Challenge program.
 					  </label>
 				        </div>
-				      <div class="ym-pc-dashboard-participate-next-year">
-					<div class="row participatingNextYear text-left">
-					  <div class="col-md-8 pl-0">
-					    My school will be participating in Kids Heart Challenge next year!
-					  </div>
-					  <div class="col-md-4 pr-0">
-					    <select class="form-control" id="participatingNextYear" ng-model="participatingNextYear" aria-label="Next Year Participation" ng-change="updateParticipatingNextYear()">
-					      <option value="Yes">Yes</option>
-					      <option value="No">No</option>
-					      <option value="Still Considering">Still Considering</option>
-					    </select>
-					  </div>
-					</div>
-				      </div>
-				      <div class="ym-pc-dashboard-materials-needed mt-sm">
-					<div class="row materialsNeeded text-left"> 
-					  <div class="col-md-8 pl-0">
-					    My school would like materials in the form of:
-					    <button aria-label="Click the icon to see an example of the materials." data-balloon-pos="up" data-balloon-length="large" ng-click="showMaterialTypes()"><i class="fa fa-info-circle"></i></button> 
-					  </div>
-					  <div class="col-md-4 pr-0">
-					    <select class="form-control" id="MaterialsNeeded" ng-model="schoolPlan.MaterialsNeeded" aria-label="Materials Needed" ng-change="updateMaterialsNeeded()">
-					      <option value="Envelope">Envelope</option>
-					      <option value="Parent Letter">Parent Letter</option>
-					    </select>
-					  </div>
-					</div>
-				      </div>
 						</div>
 					   </div>
 				 	   <div class="ym-pc-dashboard-section-plan text-center" ng-if="schoolPlan.EventStartDate == ''" ng-cloak>
