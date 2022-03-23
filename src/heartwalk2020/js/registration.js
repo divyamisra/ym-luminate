@@ -1372,8 +1372,7 @@
             //for AT&T company - a question will be displayed for their employee id
             //first it must be hidden though
             jQuery('label span.input-label:contains(By submitting the information requested in this form)').closest('.survey-question-container').addClass("att_id").hide();
-            jQuery('label span.input-label:contains(Cleveland Clinic Care Giver Program)').closest('.survey-question-container').addClass("cleveland_id").hide();
- 	    jQuery('label span.input-label:contains(work email address so Cleveland Clinic)').closest('.survey-question-container').addClass("cleveland_id").hide();
+            jQuery('label span.input-label:contains(Cleveland Clinic)').closest('.survey-question-container').addClass("cleveland_id").hide();
             //jQuery('label span.input-label:contains(Clear Vidyard ID)').closest('.survey-question-container').addClass("vidyard_id").hide();
             //add additional code here for saving company name and displaying field if company selected was AT&T
 
