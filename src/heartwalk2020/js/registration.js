@@ -655,6 +655,9 @@
             });
             $('#title_container').replaceWith('<h2 class="ObjTitle" id="title_container">Tell us about you:</h2>');
 
+            var emailInput = $("#cons_email")
+            var errorLabel = $("#cons_email-error")
+
             $("#cons_email").blur(function() {
               var email = $(this).val()
               var emailVerifyApi = "https://api.emailverifyapi.com/v3/lookups/JSON?key=D107AB8B6EC24117&email=" + encodeURIComponent(email)
@@ -663,7 +666,24 @@
                 .done(function(response) {
                   console.log("response", response)
 
-                  handleEmailValidation(response)
+                  var isValidFormat = response.validFormat
+                  var isDeliverable = response.deliverable
+
+                  if (!isValidFormat) {
+                    handleValidation()
+
+                    return
+                  }
+
+                  if (!isDeliverable) {
+                    handleValidation()
+
+                    return
+                  }
+
+                  if (errorLabel.length > 0) {
+                    errorLabel.text("").css("display", "none")
+                  }
                 })
                 .fail(function (jqxhr, textStatus, error) {
                   var errorMessage = textStatus + ", " + error
@@ -672,31 +692,18 @@
                 })
             })
 
-            function handleEmailValidation(data) {
-              var emailInput = $("#cons_email")
-              var errorLabel = $("#cons_email-error")
-
+            function handleValidation() {
               var errorLabelHTML = '<label id="cons_email-error" class="error" for="cons_email" style="display: none;"></label>'
-
               var errorMessage = "Please check the spelling of your email address."
-              var hasError = data["validFormat"] === false || data["deliverable"] === false
 
-              if (hasError) {
-                if (errorLabel.length > 0) {
-                  errorLabel.text(errorMessage).css("display", "block")
+              if (errorLabel.length === 0) {
+                emailInput.parent().find(".ungrouped").append(errorLabelHTML)
+                errorLabel.text(errorMessage).css("display", "block")
 
-                  return
-                }
-
-                if (errorLabel.length === 0) {
-                  emailInput.parent().find(".ungrouped").append(errorLabelHTML)
-                  errorLabel.text(errorMessage).css("display", "block")
-
-                  return
-                }
+                return
               }
 
-              errorLabel.text("").css("display", "none")
+              errorLabel.text(errorMessage).css("display", "block")
             }
         }
 
