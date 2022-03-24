@@ -277,6 +277,14 @@ angular.module 'trPcControllers'
                 participantPrevProgress.raisedFormatted = if participantPrevProgress.raised then $filter('currency')(participantPrevProgress.raised / 100, '$') else '$0.00'
                 $scope.participantPrevProgress = participantPrevProgress
 
+      $scope.showMaterialTypes = ->
+        $scope.showMaterialTypesModal = $uibModal.open
+          scope: $scope
+          templateUrl: APP_INFO.rootPath + 'dist/ym-primary/html/participant-center/modal/viewMaterialTypes.html'
+
+      $scope.cancelShowMaterialsTypes = ->
+        $scope.showMaterialTypesModal.close()
+		
       interactionMoveMoreId = $dataRoot.data 'move-more-flag-id'
 
       $scope.moveMoreFlag =
@@ -1021,12 +1029,18 @@ angular.module 'trPcControllers'
             else
               $scope.schoolPlan.EventStartDate = ''
 						
-            NgPcConstituentService.getUserRecord('fields=custom_boolean2&cons_id=' + $scope.consId).then (response) ->
+            NgPcConstituentService.getUserRecord('fields=custom_boolean2,custom_string18,custom_string19&cons_id=' + $scope.consId).then (response) ->
               if response.data.errorResponse
                 console.log 'There was an error getting user profile. Please try again later.'
               $scope.constituent = response.data.getConsResponse
               $scope.schoolPlan.SendEmailOnBehalfOfCoordinator = $scope.constituent.custom.boolean.content == 'true'
-	      
+              angular.forEach $scope.constituent.custom.string, (field) ->
+                if field.id == 'custom_string18'
+                  $scope.participatingNextYear = field.content
+                if field.id == 'custom_string19'
+                  $scope.schoolPlan.MaterialsNeeded = field.content
+                return
+
       $scope.putSchoolPlan = (event) ->
         school = @schoolPlan
         if event.currentTarget.id == 'school_goal'
@@ -1050,13 +1064,17 @@ angular.module 'trPcControllers'
               error: (response) ->
               success: (response) ->
 
-      NgPcConstituentService.getUserRecord('fields=custom_string18&cons_id=' + $scope.consId).then (response) ->
-        if response.data.errorResponse
-          console.log 'There was an error getting user profile. Please try again later.'
-        $scope.participatingNextYear = response.data.getConsResponse.custom.string.content
-
       $scope.updateParticipatingNextYear = ->
         updateUserProfilePromise = NgPcConstituentService.updateUserRecord('custom_string18=' + this.participatingNextYear + '&cons_id=' + $scope.consId).then (response) ->
+          if response.data.errorResponse
+            console.log 'There was an error processing your update. Please try again later.'
+          updateUserProfilePromise = NgPcConstituentService.updateUserRecord('custom_date5_MONTH='+(($scope.theDate).getMonth()+1)+'&custom_date5_DAY='+($scope.theDate).getDate()+'&custom_date5_YEAR='+($scope.theDate).getFullYear()+'&cons_id=' + $scope.consId).then (response) ->
+            if response.data.errorResponse
+              console.log 'There was an error processing your update. Please try again later.'
+          $scope.dashboardPromises.push updateUserProfilePromise
+		
+      $scope.updateMaterialsNeeded = ->
+        updateUserProfilePromise = NgPcConstituentService.updateUserRecord('custom_string19=' + this.schoolPlan.MaterialsNeeded + '&cons_id=' + $scope.consId).then (response) ->
           if response.data.errorResponse
             console.log 'There was an error processing your update. Please try again later.'
           $scope.dashboardPromises.push updateUserProfilePromise
