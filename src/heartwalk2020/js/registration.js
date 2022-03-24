@@ -663,7 +663,7 @@
                 .done(function(response) {
                   console.log("response", response)
 
-                  validateEmail(response)
+                  handleEmailValidation(response)
                 })
                 .fail(function (jqxhr, textStatus, error) {
                   var errorMessage = textStatus + ", " + error
@@ -672,10 +672,11 @@
                 })
             })
 
-            function validateEmail(data) {
+            function handleEmailValidation(data) {
               var emailInput = $("#cons_email")
-              var errorLabelHTML = '<label id="cons_email-error" class="error" for="cons_email" style="display: none;"></label>'
               var errorLabel = $("#cons_email-error")
+
+              var errorLabelHTML = '<label id="cons_email-error" class="error" for="cons_email" style="display: none;"></label>'
 
               var errorMessage = "Please check the spelling of your email address."
               var hasError = data["validFormat"] === false || data["deliverable"] === false
@@ -688,7 +689,7 @@
                 }
 
                 if (errorLabel.length === 0) {
-                  errorInput.parent().append(errorLabelHTML)
+                  emailInput.parent().find(".ungrouped").append(errorLabelHTML)
                   errorLabel.text(errorMessage).css("display", "block")
 
                   return
