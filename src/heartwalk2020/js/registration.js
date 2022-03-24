@@ -655,9 +655,6 @@
             });
             $('#title_container').replaceWith('<h2 class="ObjTitle" id="title_container">Tell us about you:</h2>');
 
-            var emailInput = $("#cons_email")
-            var errorLabelHTML = '<label id="cons_email-error" class="error" for="cons_email" style="display: none;"></label>'
-
             $("#cons_email").blur(function() {
               var email = $(this).val()
               var emailVerifyApi = "https://api.emailverifyapi.com/v3/lookups/JSON?key=D107AB8B6EC24117&email=" + encodeURIComponent(email)
@@ -676,11 +673,14 @@
             })
 
             function validateEmail(data) {
-              var errorMessage = "Please check the spelling of your email address."
-              var hasError = data["validFormat"] === false || data["deliverable"] === false
+              var emailInput = $("#cons_email")
+              var errorLabelHTML = '<label id="cons_email-error" class="error" for="cons_email" style="display: none;"></label>'
               var errorLabel = $("#cons_email-error")
 
-              if (hasError) {
+              var errorMessage = "Please check the spelling of your email address."
+              var hasError = data["validFormat"] === false || data["deliverable"] === false
+
+              if (hasError || data["Message"] === "No response received from mail server") {
                 if (errorLabel.length > 0) {
                   errorLabel.text(errorMessage).css("display", "block")
 
