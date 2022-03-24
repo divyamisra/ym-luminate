@@ -680,7 +680,7 @@
               var errorMessage = "Please check the spelling of your email address."
               var hasError = data["validFormat"] === false || data["deliverable"] === false
 
-              if (hasError || data["Message"] === "No response received from mail server") {
+              if (hasError) {
                 if (errorLabel.length > 0) {
                   errorLabel.text(errorMessage).css("display", "block")
 
