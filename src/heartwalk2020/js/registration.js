@@ -664,24 +664,18 @@
                   console.log("response", response)
 
                   if (response.validFormat === false) {
-                    console.log("not valid")
-
                     handleValidation()
 
                     return
                   }
 
                   if (response.deliverable === false) {
-                    console.log("not deliverable")
-
                     handleValidation()
 
                     return
                   }
 
                   if ($("#cons_email-error").length != 0) {
-                    console.log("no issues")
-
                     $("#cons_email-error").text("").css("display", "none")
                   }
                 })
@@ -695,11 +689,7 @@
             function handleValidation() {
               var errorLabel = '<label id="cons_email-error" class="error" for="cons_email">Please check the spelling of your email address.</label>'
 
-              console.log("handleValidation")
-
               if ($("#cons_email-error").length === 0) {
-                console.log("error span doesn't exist yet")
-
                 $("#cons_email").after(errorLabel)
 
                 return
