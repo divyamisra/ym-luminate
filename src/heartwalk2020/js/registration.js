@@ -666,16 +666,13 @@
                 .done(function(response) {
                   console.log("response", response)
 
-                  var isValidFormat = response.validFormat
-                  var isDeliverable = response.deliverable
-
-                  if (!isValidFormat) {
+                  if (response.validFormat === false) {
                     handleValidation()
 
                     return
                   }
 
-                  if (!isDeliverable) {
+                  if (response.deliverable === false) {
                     handleValidation()
 
                     return
@@ -697,7 +694,7 @@
               var errorMessage = "Please check the spelling of your email address."
 
               if (errorLabel.length === 0) {
-                emailInput.parent().find(".ungrouped").append(errorLabelHTML)
+                emailInput.parent().append(errorLabelHTML)
                 errorLabel.text(errorMessage).css("display", "block")
 
                 return
