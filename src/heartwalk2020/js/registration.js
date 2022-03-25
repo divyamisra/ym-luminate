@@ -655,9 +655,6 @@
             });
             $('#title_container').replaceWith('<h2 class="ObjTitle" id="title_container">Tell us about you:</h2>');
 
-            var emailInput = $("#cons_email")
-            var errorLabel = $("#cons_email-error")
-
             $("#cons_email").blur(function() {
               var email = $(this).val()
               var emailVerifyApi = "https://api.emailverifyapi.com/v3/lookups/JSON?key=D107AB8B6EC24117&email=" + encodeURIComponent(email)
@@ -667,19 +664,25 @@
                   console.log("response", response)
 
                   if (response.validFormat === false) {
+                    console.log("not valid")
+
                     handleValidation()
 
                     return
                   }
 
                   if (response.deliverable === false) {
+                    console.log("not deliverable")
+
                     handleValidation()
 
                     return
                   }
 
-                  if (errorLabel.length > 0) {
-                    errorLabel.text("").css("display", "none")
+                  if ($("#cons_email-error").length != 0) {
+                    console.log("no issues")
+
+                    $("#cons_email-error").text("").css("display", "none")
                   }
                 })
                 .fail(function (jqxhr, textStatus, error) {
@@ -690,17 +693,19 @@
             })
 
             function handleValidation() {
-              var errorLabelHTML = '<label id="cons_email-error" class="error" for="cons_email" style="display: none;"></label>'
-              var errorMessage = "Please check the spelling of your email address."
+              var errorLabel = '<label id="cons_email-error" class="error" for="cons_email">Please check the spelling of your email address.</label>'
 
-              if (errorLabel.length === 0) {
-                emailInput.parent().append(errorLabelHTML)
-                errorLabel.text(errorMessage).css("display", "block")
+              console.log("handleValidation")
+
+              if ($("#cons_email-error").length === 0) {
+                console.log("error span doesn't exist yet")
+
+                $("#cons_email").after(errorLabel)
 
                 return
               }
 
-              errorLabel.text(errorMessage).css("display", "block")
+              $("#cons_email-error").text("Please check the spelling of your email address.").css("display", "block")
             }
         }
 
