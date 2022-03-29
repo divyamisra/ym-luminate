@@ -1037,7 +1037,7 @@
 	    </h2>
 	    <div class="ym-pc-dashboard-section-plan" ng-if="schoolPlan.EventStartDate != ''" ng-cloak>
 	      <div class="row ym-pc-dashboard-event-dates">
-		<div class="schoolPlanDates text-center">
+		<div class="schoolPlanDates col-sm-12 text-center">
 		  <p>
 		    Your event is kicking off on <strong>{{schoolPlan.EventStartDate | date:'MM/dd/yyyy'}}</strong><span ng-if="(schoolPlan.EventStartDate | date:'MM/dd/yyyy') !== (schoolPlan.EventEndDate | date:'MM/dd/yyyy') && schoolPlan.EventEndDate != ''" ng-cloak> and will conclude on <strong>{{schoolPlan.EventEndDate | date:'MM/dd/yyyy'}}</strong></span>.
 		    <span ng-if="schoolPlan.DonationDueDate != '0000-00-00'" ng-cloak>All donations are due on <strong>{{schoolPlan.DonationDueDate | date:'MM/dd/yyyy'}}</strong>.</span>
@@ -1075,13 +1075,13 @@
 							</div>
 						</div>
 					</div>
-					<div class="col-sm-6" style="padding:0">
+					<div class="col-sm-6">
 						<div class="form-group">
 							<label for="DonationDueDate"><strong>Donation Due Date</strong></label>
 							<div class="input-group">
 								<!-- <span ng-if="schoolPlan.DonationDueDate == '0000-00-00'" ng-cloak>--/--/----</span>
 								<span ng-if="schoolPlan.DonationDueDate != '0000-00-00'" ng-cloak>{{schoolPlan.DonationDueDate | date:'MM/dd/yyyy'}}</span> -->
-								<input type="date" min="{{theDate | date:'yyyy-MM-dd'}}" class="form-control hidden" id="DonationDueDate" ng-model="schoolPlan.DonationDueDate" aria-label="Donation Due Date" ng-blur="putSchoolPlan($event)" />
+								<input type="date" min="{{theDate | date:'yyyy-MM-dd'}}" class="form-control" id="DonationDueDate" ng-model="schoolPlan.DonationDueDate" aria-label="Donation Due Date" ng-blur="putSchoolPlan($event)" />
 							</div>
 						</div>
 					</div>
