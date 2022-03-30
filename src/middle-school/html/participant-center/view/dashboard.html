@@ -1088,20 +1088,6 @@
 					  </div>
 					</div>
 				      </div>
-
-							<div class="ym-pc-dashboard-total-points text-center">
-								<div>
-									<strong>
-										Total Points: 
-										<span ng-bind-html="schoolPlan.TotalPointsEarned"></span>
-									</strong>
-								</div>
-								<p>Points updated nightly at 3am<br/>
-								   <a href="" ng-click="showSchoolPlan()" class="ym-progress-show-plan" aria-label="Click here for more information"">
-									<strong>Click here for more information</strong>
-								   </a>
-								</p>
-							</div>
 									</div>
 						<div class="col-sm-6 ym-pc-dashboard-coordinator-progress-section__column">
 							<div class="ym-pc-dashboard-school-goals" ng-cloak>
@@ -1136,7 +1122,20 @@
 					  </label>
 				        </div>
 						</div>
-					   </div>
+							<div class="ym-pc-dashboard-total-points text-center">
+								<div>
+									<strong>
+										Total Points: 
+										<span ng-bind-html="schoolPlan.TotalPointsEarned"></span>
+									</strong>
+								</div>
+								<p>Points updated nightly at 3am<br/>
+								   <a href="" ng-click="showSchoolPlan()" class="ym-progress-show-plan" aria-label="Click here for more information"">
+									<strong>Click here for more information</strong>
+								   </a>
+								</p>
+							</div>
+						</div>
 				 	   <div class="ym-pc-dashboard-section-plan text-center" ng-if="schoolPlan.EventStartDate == ''" ng-cloak>
 						<p>
 							No plan data available for this School. 
