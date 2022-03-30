@@ -1252,7 +1252,7 @@
         cd.getTopTeams = function (eventId, listCount) {
           luminateExtend.api({
               api: 'teamraiser',
-              data: 'method=getTeamsByInfo&fr_id=' + eventId + '&list_sort_column=total&list_ascending=false&list_page_size=' + listCount + '&response_format=json',
+              data: 'method=getTeamsByInfo&fr_id=' + eventId + '&list_sort_column=name&list_ascending=true&list_page_size=' + listCount + '&response_format=json',
               callback: {
                   success: function (response) {
                       if (!$.isEmptyObject(response.getTeamSearchByInfoResponse)) {
