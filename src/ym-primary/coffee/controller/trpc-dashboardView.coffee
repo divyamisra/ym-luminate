@@ -400,15 +400,16 @@ angular.module 'trPcControllers'
 
       $scope.saveFeedbackMessage = ->
         $scope.postFeedbackMessageModal.close()
-	console.log $scope.feedbackMessage.text
-        ###
-	NgPcSurveyService.submitSurvey 'interaction_type_id=' + interactionTypeId + '&cons_id=' + $scope.consId + '&interaction_subject=' + $scope.participantRegistration.companyInformation.companyId + '&interaction_body=' + ($scope.coordinatorMessage?.text or '')
+        console.log $scope.feedbackMessage.text
+###
+        NgPcSurveyService.submitSurvey 'interaction_type_id=' + interactionTypeId + '&cons_id=' + $scope.consId + '&interaction_subject=' + $scope.participantRegistration.companyInformation.companyId + '&interaction_body=' + ($scope.coordinatorMessage?.text or '')
           .then (response) ->
             if response.data.submitSurveyResponse?.message
+              $scope.feedbackMessage.successMessage = true
               $scope.postFeedbackMessageModal.close()
             else
               $scope.feedbackMessage.errorMessage = 'There was an error processing your update. Please try again later.'
-        ###
+###
 	
       $scope.personalGoalInfo = {}
 
