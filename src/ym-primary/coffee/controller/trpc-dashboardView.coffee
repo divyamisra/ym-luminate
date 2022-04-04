@@ -404,10 +404,10 @@ angular.module 'trPcControllers'
         NgPcSurveyService.submitSurvey 'survey_id=' + feedbackSurveyParams[0] + '&cons_email=dean@dhwebworks.com&question_'+feedbackSurveyParams[1] + '=' + $scope.consId + '&question_'+feedbackSurveyParams[2] + '=' + $scope.eventInfo.name + '&question_'+feedbackSurveyParams[3] + '=' + ($scope.feedbackMessage?.text or '')
           .then (response) ->
             if response.data.submitSurveyResponse?.message
-	      $scope.feedbackMessage.message = 'Thank you for your feedback.'
+              $scope.feedbackMessage.message = 'Thank you for your feedback.'
             else
               $scope.feedbackMessage.errorMessage = 'There was an error processing your feedback.'
-	      $scope.feedbackMessage.message = 'Please try again later.'
+              $scope.feedbackMessage.message = 'Please try again later.'
 	
       $scope.personalGoalInfo = {}
 
