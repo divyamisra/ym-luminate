@@ -1,0 +1,26 @@
+<form method="POST" novalidate ng-submit="postFeedbackMessage()">
+  <div class="modal-body">
+    <div uib-alert class="alert-danger" role="alert" ng-if="feedbackMessage.errorMessage">
+      <div ng-bind-html="feedbackMessage.errorMessage"></div>
+    </div>
+    <div class="form-group">
+      <label for="feedbackMessage" class="sr-only">Please provide any feeedback about the Kids Heart Challenge Program. 
+          If you need assistance with your page or fundraising efforts, please <a href="#" target="_blank">click here</a>.</label>
+      <input type="text" class="form-control" id="feedbackMessage" ng-model="feedbackMessage.text" aria-label="Feedback Message" ng-value="feedbackMessage.text">
+    </div>
+  </div>
+  <div class="modal-footer">
+    <div class="clearfix">
+      <div class="pull-left">
+        <button type="button" class="btn btn-toggle" ng-click="cancelPostFeedbackMessage()">
+          Cancel
+        </button>
+      </div>
+      <div class="pull-right">
+        <button type="submit" class="btn btn-primary">
+          <strong>Submit</strong>
+        </button>
+      </div>
+    </div>
+  </div>
+<form>
