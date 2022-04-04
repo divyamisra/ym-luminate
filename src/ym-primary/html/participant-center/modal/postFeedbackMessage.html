@@ -27,7 +27,7 @@
   <div uib-alert class="alert-danger" role="alert" ng-if="feedbackMessage.errorMessage">
     <div ng-bind-html="feedbackMessage.errorMessage"></div>
   </div>
-  <div uib-alert class="alert-danger" role="alert" ng-if="feedbackMessage.message">
+  <div ng-if="feedbackMessage.message">
     <div ng-bind-html="feedbackMessage.message"></div>
   </div>
   <div class="modal-footer">
