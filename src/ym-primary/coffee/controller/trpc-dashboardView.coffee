@@ -390,7 +390,7 @@ angular.module 'trPcControllers'
         errorMessage: null
         successMessage: false
         
-      feedbackSurveyParams = JSON.parse($dataRoot.data 'feedback-survey')
+      feedbackSurveyParams = ($dataRoot.data 'feedback-survey').split ','
 	
       $scope.postFeedbackMessage = ->
         $scope.postFeedbackMessageModal = $uibModal.open
