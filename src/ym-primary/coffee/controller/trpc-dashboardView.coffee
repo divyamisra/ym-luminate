@@ -388,7 +388,7 @@ angular.module 'trPcControllers'
       $scope.feedbackMessage =
         text: ''
         errorMessage: null
-	message: ''
+        message: ''
         
       feedbackSurveyParams = ($dataRoot.data 'feedback-survey').split ','
 	
