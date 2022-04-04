@@ -385,6 +385,11 @@ angular.module 'trPcControllers'
                   $scope.coordinatorMessage.successMessage = true
                   $scope.editCoordinatorMessageModal.close()
 
+      $scope.feedbackMessage =
+        text: ''
+        errorMessage: null
+        successMessage: false
+	
       $scope.postFeedbackMessage = ->
         $scope.postFeedbackMessageModal = $uibModal.open
           scope: $scope
@@ -395,6 +400,7 @@ angular.module 'trPcControllers'
 
       $scope.saveFeedbackMessage = ->
         $scope.postFeedbackMessageModal.close()
+	console.log $scope.feedbackMessage.text
         ###
 	NgPcSurveyService.submitSurvey 'interaction_type_id=' + interactionTypeId + '&cons_id=' + $scope.consId + '&interaction_subject=' + $scope.participantRegistration.companyInformation.companyId + '&interaction_body=' + ($scope.coordinatorMessage?.text or '')
           .then (response) ->
