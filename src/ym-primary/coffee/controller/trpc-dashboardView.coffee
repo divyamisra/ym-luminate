@@ -389,6 +389,7 @@ angular.module 'trPcControllers'
         text: ''
         errorMessage: null
         successMessage: false
+	message: ''
         
       feedbackSurveyParams = ($dataRoot.data 'feedback-survey').split ','
 	
@@ -401,14 +402,14 @@ angular.module 'trPcControllers'
         $scope.postFeedbackMessageModal.close()
 
       $scope.saveFeedbackMessage = ->
-        $scope.postFeedbackMessageModal.close()
-        NgPcSurveyService.submitSurvey 'survey_id=' + feedbackSurveyParams[0] + '&cons_email=dean@dhwebworks.com&quest_'+feedbackSurveyParams[1] + '=' + $scope.consId + '&quest_'+feedbackSurveyParams[2] + '=' + $scope.eventInfo.name + '&quest_'+feedbackSurveyParams[3] + '=' + ($scope.feedbackMessage?.text or '')
+        NgPcSurveyService.submitSurvey 'survey_id=' + feedbackSurveyParams[0] + '&cons_email=dean@dhwebworks.com&question_'+feedbackSurveyParams[1] + '=' + $scope.consId + '&question_'+feedbackSurveyParams[2] + '=' + $scope.eventInfo.name + '&question_'+feedbackSurveyParams[3] + '=' + ($scope.feedbackMessage?.text or '')
           .then (response) ->
             if response.data.submitSurveyResponse?.message
               $scope.feedbackMessage.successMessage = true
-              $scope.postFeedbackMessageModal.close()
+	      $scope.feedbackMessage.message = 'Thank you for your feedback.'
             else
               $scope.feedbackMessage.errorMessage = 'There was an error processing your update. Please try again later.'
+	      $scope.feedbackMessage.message = ''
 	
       $scope.personalGoalInfo = {}
 
