@@ -30,4 +30,13 @@
   <div uib-alert class="alert-danger" role="alert" ng-if="feedbackMessage.message">
     <div ng-bind-html="feedbackMessage.message"></div>
   </div>
+  <div class="modal-footer">
+    <div class="clearfix">
+      <div class="pull-right">
+        <button type="button" class="btn btn-toggle" ng-click="cancelPostFeedbackMessage()">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
 </div>
