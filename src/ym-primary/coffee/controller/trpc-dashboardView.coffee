@@ -21,8 +21,9 @@ angular.module 'trPcControllers'
     'NgPcInteractionService'
     'NgPcConstituentService'
     'NgPcTeamraiserCompanyService'
+    'NgPcSurveyService'
     'FacebookFundraiserService'
-    ($rootScope, $scope, $location, $filter, $timeout, $uibModal, $sce, APP_INFO, ZuriService, BoundlessService, TeamraiserParticipantService, NgPcTeamraiserRegistrationService, NgPcTeamraiserProgressService, NgPcTeamraiserTeamService, NgPcTeamraiserSchoolService, NgPcTeamraiserGiftService, NgPcContactService, NgPcTeamraiserShortcutURLService, NgPcInteractionService, NgPcConstituentService, NgPcTeamraiserCompanyService, FacebookFundraiserService) ->
+    ($rootScope, $scope, $location, $filter, $timeout, $uibModal, $sce, APP_INFO, ZuriService, BoundlessService, TeamraiserParticipantService, NgPcTeamraiserRegistrationService, NgPcTeamraiserProgressService, NgPcTeamraiserTeamService, NgPcTeamraiserSchoolService, NgPcTeamraiserGiftService, NgPcContactService, NgPcTeamraiserShortcutURLService, NgPcInteractionService, NgPcConstituentService, NgPcTeamraiserCompanyService, NgPcSurveyService, FacebookFundraiserService) ->
       $scope.dashboardPromises = []
       domain = $location.absUrl().split('/site/')[0]
       $scope.studentsPledgedTotal = ''
@@ -384,6 +385,25 @@ angular.module 'trPcControllers'
                   $scope.coordinatorMessage.successMessage = true
                   $scope.editCoordinatorMessageModal.close()
 
+      $scope.postFeedbackMessage = ->
+        $scope.postFeedbackMessageModal = $uibModal.open
+          scope: $scope
+          templateUrl: APP_INFO.rootPath + 'dist/ym-primary/html/participant-center/modal/postFeedbackMessage.html'
+
+      $scope.cancelPostFeedbackMessage = ->
+        $scope.postFeedbackMessageModal.close()
+
+      $scope.saveFeedbackMessage = ->
+        $scope.postFeedbackMessageModal.close()
+        ###
+	NgPcSurveyService.submitSurvey 'interaction_type_id=' + interactionTypeId + '&cons_id=' + $scope.consId + '&interaction_subject=' + $scope.participantRegistration.companyInformation.companyId + '&interaction_body=' + ($scope.coordinatorMessage?.text or '')
+          .then (response) ->
+            if response.data.submitSurveyResponse?.message
+              $scope.postFeedbackMessageModal.close()
+            else
+              $scope.feedbackMessage.errorMessage = 'There was an error processing your update. Please try again later.'
+        ###
+	
       $scope.personalGoalInfo = {}
 
       $scope.editPersonalGoal = ->
