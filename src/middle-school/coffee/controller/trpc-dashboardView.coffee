@@ -329,6 +329,7 @@ angular.module 'trPcControllers'
                   $scope.coordinatorMessage.text = interaction.note?.text or ''
                   $scope.coordinatorMessage.interactionId = interaction.interactionId or ''
 
+
         $scope.editCoordinatorMessage = ->
           $scope.editCoordinatorMessageModal = $uibModal.open
             scope: $scope
@@ -355,6 +356,30 @@ angular.module 'trPcControllers'
                   $scope.coordinatorMessage.successMessage = true
                   $scope.editCoordinatorMessageModal.close()
 
+      $scope.feedbackMessage =
+        text: ''
+        errorMessage: null
+        message: ''
+        
+      feedbackSurveyParams = ($dataRoot.data 'feedback-survey').split ','
+	
+      $scope.postFeedbackMessage = ->
+        $scope.postFeedbackMessageModal = $uibModal.open
+          scope: $scope
+          templateUrl: APP_INFO.rootPath + 'dist/middle-school/html/participant-center/modal/postFeedbackMessage.html'
+
+      $scope.cancelPostFeedbackMessage = ->
+        $scope.postFeedbackMessageModal.close()
+
+      $scope.saveFeedbackMessage = ->
+        NgPcSurveyService.submitSurvey 'survey_id=' + feedbackSurveyParams[0] + '&question_'+feedbackSurveyParams[1] + '=' + $scope.consId + '&question_'+feedbackSurveyParams[2] + '=' + $scope.eventInfo.name + '&question_'+feedbackSurveyParams[3] + '=' + ($scope.feedbackMessage?.text or '')
+          .then (response) ->
+            if response.data.submitSurveyResponse?.success == 'true'
+              $scope.feedbackMessage.message = response.data.submitSurveyResponse?.thankYouPageContent
+            else
+              $scope.feedbackMessage.errorMessage = 'There was an error processing your feedback.'
+              $scope.feedbackMessage.message = 'Please try again later.'
+  
       $scope.personalGoalInfo = {}
 
       $scope.editPersonalGoal = ->
