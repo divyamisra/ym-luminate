@@ -361,7 +361,7 @@ angular.module 'trPcControllers'
         text: ''
         errorMessage: null
         message: ''
-        
+      ###
       feedbackSurveyParams = ($dataRoot.data 'feedback-survey').split ','
 	
       $scope.postFeedbackMessage = ->
@@ -380,7 +380,7 @@ angular.module 'trPcControllers'
             else
               $scope.feedbackMessage.errorMessage = 'There was an error processing your feedback.'
               $scope.feedbackMessage.message = 'Please try again later.'
-  
+      ###
       $scope.personalGoalInfo = {}
 
       $scope.editPersonalGoal = ->
