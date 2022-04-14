@@ -459,6 +459,11 @@
 										</p>
 									</div>
 								</div>
+								<div class="ym-pc-feedback text-center hidden">
+									<button type="button" class="btn btn-md-wide btn-primary" ng-click="postFeedbackMessage()">
+								  		<strong>Provide Feedback</strong>
+									</button>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -1083,7 +1088,7 @@
 					  <div class="col-md-4 pr-0">
 					    <select class="form-control" id="MaterialsNeeded" ng-model="schoolPlan.MaterialsNeeded" aria-label="Materials Needed" ng-change="updateMaterialsNeeded()">
 					      <option value="Envelope">Envelope</option>
-					      <option value="Parent Letter">Parent Letter</option>
+					      <option value="Parent Letter">Digital Parent Letter</option>
 					    </select>
 					  </div>
 					</div>
