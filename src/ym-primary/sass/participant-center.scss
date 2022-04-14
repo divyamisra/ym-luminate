@@ -835,3 +835,11 @@ div[id^="taTextElement"]:focus {
 form[name=emailComposerForm] .containFull td {
     text-align: left !important;
 }
+
+.ym-pc-feedback {
+	margin-top:10px;
+}
+
+textarea#feedbackMessage {
+	height: 30vh;
+}
