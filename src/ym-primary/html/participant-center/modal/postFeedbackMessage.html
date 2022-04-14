@@ -1,5 +1,4 @@
 <style>div.appArea{width:auto;}.Button {display:none;}</style>
-<div ng-if="feedbackMessage.message == ''" ng-cloak>
   <form method="POST" novalidate ng-submit="saveFeedbackMessage()">
     <div class="modal-body">
       <div class="form-group">
@@ -23,21 +22,3 @@
       </div>
     </div>
   <form>
-</div>
-<div ng-if="feedbackMessage.message != ''" ng-cloak>
-  <div uib-alert class="alert-danger" role="alert" ng-if="feedbackMessage.errorMessage">
-    <div ng-bind-html="feedbackMessage.errorMessage"></div>
-  </div>
-  <div ng-if="feedbackMessage.message">
-    <div ng-bind-html="feedbackMessage.message"></div>
-  </div>
-  <div class="modal-footer">
-    <div class="clearfix">
-      <div class="pull-right">
-        <button type="button" class="btn btn-toggle" ng-click="cancelPostFeedbackMessage()" autofocus>
-          Close
-        </button>
-      </div>
-    </div>
-  </div>
-</div>
