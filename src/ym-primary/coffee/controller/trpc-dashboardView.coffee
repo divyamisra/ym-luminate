@@ -286,7 +286,7 @@ angular.module 'trPcControllers'
       $scope.cancelShowMaterialsTypes = ->
         $scope.showMaterialTypesModal.close()
 		
-      interactionMoveMoreId = $dataRoot.data 'move-more-flag-id'
+      #interactionMoveMoreId = $dataRoot.data 'move-more-flag-id'
 
       $scope.moveMoreFlag =
         text: ''
