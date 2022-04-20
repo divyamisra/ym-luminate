@@ -1,9 +1,6 @@
 main {
-  background: #bddd98;
-  
-  @media (min-width: $screen-md-min) {
-    background: repeating-linear-gradient(135deg, transparent, transparent 10px, #bddd98 10px, #bddd98 20px), linear-gradient(to bottom, #c2bfd7, #c2bfd7);
-  }
+  background: url(../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy22/teacher-note.png) no-repeat;
+  background-size: cover;
 }
 
 .event-secondary-medium--diagonal {
