@@ -64,7 +64,7 @@
             <div class="col-md-2">
 							 <div ng-if="product.imageSrc != ''" ng-cloak>
 							   <label for="i_{{product.productId}}">Image:</label>
-							   <img id="i_{{product.productId}}" ng-src="{{product.imageSrc}}" width="150"> <a href="" ng-click="product.imageSrc=''">Clear</a>
+							   <img id="i_{{product.productId}}" ng-src="{{product.imageSrc}}" title="{{product.productName}}" width="150"> <a href="" ng-click="product.imageSrc=''">Clear</a>
 							 </div>
 							 <div ng-if="product.imageSrc == ''" ng-cloak>
 							 	<label for="file">Select Image</label>
