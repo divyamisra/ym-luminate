@@ -19,6 +19,7 @@ angular.module 'ahaLuminateControllers'
       $scope.cartProductList = []
       $scope.quantityList = [1..15]
       $scope.TotalPointsInCart = 0
+      $scope.productView = 'list'
 
       $scope.getSchoolPlan = ->
         CatalogService.schoolPlanData '&method=GetSchoolPlan&CompanyId=' + $scope.participantRegistration.companyInformation.companyId + '&EventId=' + $scope.frId,
@@ -228,6 +229,12 @@ angular.module 'ahaLuminateControllers'
             $scope.getSchoolPlan()
             $scope.getSchoolProducts()
       
+      $scope.viewProducts = ->
+        $scope.productView = 'list'
+      
+      $scope.viewBasket = ->
+        $scope.productView = 'basket'
+
       $scope.redeemProducts = ->
         $scope.redeemConfirm = $uibModal.open
           scope: $scope
