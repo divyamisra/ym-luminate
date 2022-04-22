@@ -77,14 +77,15 @@
                                 </div>
                                 <div class="productPointsTotal" tabindex="0">
 				    <strong>Cost:</strong> {{product.quantitySel * product.points}} Points
+				    <div ng-if="(product.detail.length > 0 && product.productSize == '') && ((product.quantitySel * product.points) <= TotalPointsAvailable)">
+                                        <em>Choose a size before adding to basket</em>
+                                    </div>
                                     <div ng-if="((product.quantitySel * product.points) > TotalPointsAvailable)">
-                                        <em>
-					Not enough points available
-					</em>
+                                        <em>Not enough points available</em>
                                     </div>
                                 </div>
                                 <div class="addToBasket">
-                                    <button title="Product {{product.productName}}" type="button" ng-disabled="(product.detail.length &gt; 0 &amp;&amp; product.productSize == '') || ((product.quantitySel * product.points) &gt; TotalPointsAvailable)" class="btn btn-primary" ng-if="TotalPointsSpent == 0" href="" ng-model="product.productSize" name="{{product.productName}}" limit="{{product.quantity}}" productid="{{product.productId}}" sizeexists="{{product.detail.length > 0}}" points="{{product.points}}" imgsrc="{{product.imageSrc}}" ng-click="addProductToCart($event)">
+                                    <button title="Product {{product.productName}}" type="button" ng-disabled="(product.detail.length > 0 && product.productSize == '') || ((product.quantitySel * product.points) > TotalPointsAvailable)" class="btn btn-primary" ng-if="TotalPointsSpent == 0" href="" ng-model="product.productSize" name="{{product.productName}}" limit="{{product.quantity}}" productid="{{product.productId}}" sizeexists="{{product.detail.length > 0}}" points="{{product.points}}" imgsrc="{{product.imageSrc}}" ng-click="addProductToCart($event)">
 					Add to Basket
   				    </button><br/><em></em>
                                 </div>
