@@ -76,7 +76,7 @@
                                     <select aria-label="Product Quantity" name="quantity" ng-model="product.quantitySel" ng-options="item for item in quantityList track by item"></select>
                                 </div>
                                 <div class="productPointsTotal" tabindex="0">
-                                    Cost: {{product.quantitySel * product.points}} Points
+				    <strong>Cost:</strong> {{product.quantitySel * product.points}} Points
                                     <div ng-if="((product.quantitySel * product.points) > TotalPointsAvailable)">
                                         <em>
 					Not enough points available
