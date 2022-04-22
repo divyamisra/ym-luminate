@@ -96,6 +96,19 @@ div.shoppingCart {
 	}
 }
 
+@media (min-width:1400px) {
+	div.productList {
+		product {
+			flex: 0 0 33%;
+		}
+	}
+	.productSummary {
+		product {
+			flex: 1 0 29%;
+		}
+	}
+}
+
 @media (min-width:992px) {
 	div.productList {
 		product {
