@@ -5,7 +5,7 @@
         You must be a coordinator to access this page
     </div>
     <div ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
-        <div class="d-lg-flex" ng-if="TotalPointsSpent == 0" ng-cloak>
+        <div class="d-lg-flex" ng-if="TotalPointsSpent == 0 && productView == 'list'" ng-cloak>
             <div class="filter-column">
                 <div class="h3">
                     Filters
@@ -76,7 +76,7 @@
                                     <select aria-label="Product Quantity" name="quantity" ng-model="product.quantitySel" ng-options="item for item in quantityList track by item"></select>
                                 </div>
                                 <div class="productPointsTotal" tabindex="0">
-				    <strong>Cost:</strong> {{product.quantitySel * product.points}} Points
+                                    Cost: {{product.quantitySel * product.points}} Points
                                     <div ng-if="((product.quantitySel * product.points) > TotalPointsAvailable)">
                                         <em>
 					Not enough points available
@@ -96,18 +96,16 @@
                     </product>
                 </div>
             </div>
-            <div class="ps-4 basket-column">
+          </div>
+        <div class="d-lg-flex" ng-if="TotalPointsSpent == 0 && productView == 'basket'" ng-cloak>
+            <div class="ps-4">
+                <a href="" ng-click="viewProducts($event)">Return to Catalog</a>
                 <div class="h3 mb-4">
                     Basket
                 </div>
                 <div class="shoppingCart">
-              			<div ng-if="TotalPointsSpent == 0" ng-cloak class="totalPoints p-2">
-  										<button type="button" ng-disabled="cartProductList.length == 0" class="btn btn-primary" href="" name="redeemProducts" ng-click="redeemProducts($event)" ng-cloak>
-	  										Redeem Items<br/>in Basket
-		  								</button>
-			  						</div>
-                    <div class="products">
-                        <div ng-repeat="cartProduct in cartProductList" class="d-lg-flex d-md-block position-relative"> 
+                    <div class="productList d-lg-flex flex-wrap d-md-block justify-content-between">
+                        <product ng-repeat="cartProduct in cartProductList" class="position-relative"> 
                             <div class="position-absolute top-0 end-0 me-2 mt-3">
                                 <button type="button" class="btn btn-primary py-1 px-2" href="" name="{{cartProduct.productName}}" productid="{{cartProduct.productId}}" ng-click="removeProduct($event)">
 			  	X
@@ -134,8 +132,11 @@
                                     {{cartProduct.points * cartProduct.num}} Total Points
                                 </div>
                             </div>
-                        </div>
+                        </product>
                     </div>
+                    <button type="button" ng-disabled="cartProductList.length == 0" class="btn btn-primary mb-2" href="" name="redeemProducts" ng-click="redeemProducts($event)" ng-cloak>
+  						        Redeem Products
+          					</button>
                     <div class="totalPoints pointsInCart" ng-if="TotalPointsInCart > 0" ng-cloak>
                         Total Points in Basket: {{TotalPointsInCart}}
                     </div>
