@@ -233,11 +233,13 @@ angular.module 'ahaLuminateControllers'
             $scope.getSchoolProducts()
       
       $scope.viewProducts = ->
-        if typeof $scope.addedToBasket == 'object' $scope.addedToBasket.close()
+        if typeof $scope.addedToBasket == 'object' 
+          $scope.addedToBasket.close()
         $scope.productView = 'list'
       
       $scope.viewBasket = ->
-        if typeof $scope.addedToBasket == 'object' $scope.addedToBasket.close()
+        if typeof $scope.addedToBasket == 'object' 
+          $scope.addedToBasket.close()
         $scope.productView = 'basket'
 
       $scope.redeemProducts = ->
