@@ -107,7 +107,7 @@
                     <div class="productList d-lg-flex flex-wrap d-md-block justify-content-between">
                         <product ng-repeat="cartProduct in cartProductList" class="position-relative"> 
                             <div class="position-absolute top-0 end-0 me-2 mt-3">
-                                <button type="button" class="btn btn-primary py-1 px-2" href="" name="{{cartProduct.productName}}" productid="{{cartProduct.productId}}" ng-click="removeProduct($event)">
+                                <button title="Remove {{cartProduct.productName}} from Basket" type="button" class="btn btn-primary py-1 px-2" href="" name="{{cartProduct.productName}}" productid="{{cartProduct.productId}}" ng-click="removeProduct($event)">
 			  	X
 				</button>
 			    </div>
@@ -192,13 +192,13 @@
     <div class="ym-header-login-form">
         <form method="POST" name="headerLoginForm" ng-submit="submitHeaderLogin()" novalidate>
             <input type="hidden" name="ng_nexturl" ng-model="headerLoginInfo.ng_nexturl" value="[[E130:[[T8:[[S8]]]] [[T8:&amp;]] [[T8:&amp;]] replaceall]]">
-            <div class="form-group">
+            <div class="form-group mb-2">
                 <label class="sr-only" for="headerLoginInfo-user_name">
 			Username: 
 		</label>
                 <input type="text" class="form-control" name="USERNAME" id="headerLoginInfo-user_name" ng-model="headerLoginInfo.user_name" placeholder="Username" maxlength="[[S0:USER_MAX_LOGIN_LEN]]" autocorrect="off" autocapitalize="off" spellcheck="false" required>
             </div>
-            <div class="form-group">
+            <div class="form-group mb-2">
                 <label class="sr-only" for="headerLoginInfo-password">
 			Password: 
 		</label>
