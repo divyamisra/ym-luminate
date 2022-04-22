@@ -20,6 +20,7 @@ angular.module 'ahaLuminateControllers'
       $scope.quantityList = [1..15]
       $scope.TotalPointsInCart = 0
       $scope.productView = 'list'
+      $scope.productSelected = ''
 
       $scope.getSchoolPlan = ->
         CatalogService.schoolPlanData '&method=GetSchoolPlan&CompanyId=' + $scope.participantRegistration.companyInformation.companyId + '&EventId=' + $scope.frId,
@@ -79,6 +80,7 @@ angular.module 'ahaLuminateControllers'
 
       $scope.addProductToCart = (product) ->
         product = @product
+        $scope.productSelected = product
         productExistInCart = undefined
         productSize = ''
         productId = product.productId
