@@ -81,10 +81,10 @@ div.shoppingCart {
 	}
 }
 
-@media (min-width:1400px) {
+@media (min-width:992px) {
 	div.productList {
 		product {
-			flex: 0 0 33%;
+			flex: 0 0 48%;
 		}
 	}
 	.productSummary {
@@ -94,10 +94,10 @@ div.shoppingCart {
 	}
 }
 
-@media (min-width:992px) {
+@media (min-width:1400px) {
 	div.productList {
 		product {
-			flex: 0 0 48%;
+			flex: 0 0 33%;
 		}
 	}
 	.productSummary {
