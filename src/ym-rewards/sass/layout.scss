@@ -76,21 +76,6 @@ product {
 	padding: 2px;
 }
 div.shoppingCart {
-	border: 1px solid #ccc;
-	border-radius: 7px;
-	padding: 10px;
-	
-	.products {
-		margin-bottom: 10px;
-		>div {
-			max-width: 100%;
-			flex: 0 0 96%;
-			border-bottom: 1px solid #ccc;
-			padding: 25px;
-			margin-bottom: 20px;
-		}
-	}
-
 	.totalPoints {
 		font-weight: bold;
 	}
