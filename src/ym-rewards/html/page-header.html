@@ -10,7 +10,7 @@
       </div>
       <div class="col-md-12 col-lg-5 text-end d-sm-flex justify-content-end">
 	<div class="header-totals p-2">
-          <button type="button" ng-disabled="cartProductList.length == 0" class="btn btn-primary mb-2" href="" name="redeemProducts" ng-click="redeemProducts($event)" ng-cloak>
+          <button type="button" ng-disabled="cartProductList.length == 0" class="btn btn-primary mb-2" href="" name="redeemProducts" ng-click="viewBasket($event)" ng-cloak>
 	    Your Basket: {{cartProductList.length}} ({{TotalPointsInCart}} Points)
           </button>
           <p ng-if="TotalPointsEarned > 0" ng-cloak>
