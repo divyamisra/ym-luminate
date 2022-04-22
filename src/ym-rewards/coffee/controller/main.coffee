@@ -109,6 +109,9 @@ angular.module 'ahaLuminateControllers'
             productExistInCart.origNum = productExistInCart.num
             productExistInCart.totalPoints = product.points * productExistInCart.num
           getTotalPoints true
+          $scope.addedToBasket = $uibModal.open
+            scope: $scope
+            templateUrl: APP_INFO.rootPath + 'dist/ym-rewards/html/modal/addedToBasket.html'
         else
           alert 'Not enough points available'
 
@@ -230,9 +233,11 @@ angular.module 'ahaLuminateControllers'
             $scope.getSchoolProducts()
       
       $scope.viewProducts = ->
+        if typeof $scope.addedToBasket == 'object' $scope.addedToBasket.close()
         $scope.productView = 'list'
       
       $scope.viewBasket = ->
+        if typeof $scope.addedToBasket == 'object' $scope.addedToBasket.close()
         $scope.productView = 'basket'
 
       $scope.redeemProducts = ->
