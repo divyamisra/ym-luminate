@@ -238,11 +238,13 @@ angular.module 'ahaLuminateControllers'
         if typeof $scope.addedToBasket == 'object' 
           $scope.addedToBasket.close()
         $scope.productView = 'list'
+        jQuery('html,body').animate({ scrollTop: 0 }, 'fast');
       
       $scope.viewBasket = ->
         if typeof $scope.addedToBasket == 'object' 
           $scope.addedToBasket.close()
         $scope.productView = 'basket'
+        jQuery('html,body').animate({ scrollTop: 0 }, 'fast');
 
       $scope.redeemProducts = ->
         $scope.redeemConfirm = $uibModal.open
