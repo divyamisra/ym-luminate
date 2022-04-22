@@ -17,9 +17,9 @@
                     <div class="filterList sizes d-flex flex-wrap d-lg-block">
                         <div class="checkbox pe-2 pb-2" custom-checkbox ng-repeat="size in productSizes" ng-class="{'checked': size.status == true}" ng-click="filterProducts($event)" ng-cloak>
                             <label for="chk_{{size.productSizeText}}">
-														<input type="checkbox" name="chk-{{size.productSizeText}}" id="chk_{{size.productSizeText}}" ng-model="size.status" value="{{size.sizeId}}">
-															{{size.productSizeText}} 
-														</label>
+			    <input type="checkbox" name="chk-{{size.productSizeText}}" id="chk_{{size.productSizeText}}" ng-model="size.status" value="{{size.sizeId}}">
+				{{size.productSizeText}} 
+			    </label>
                         </div>
                     </div>
                 </div>
@@ -30,9 +30,9 @@
                     <div class="filterList points d-flex flex-wrap d-lg-block">
                         <div class="checkbox pe-2 pb-2" custom-checkbox ng-repeat="point in productPoints" ng-class="{'checked': point.status == true}" ng-click="filterProducts($event)" ng-cloak>
                             <label for="chk_point{{point.points}}">
-														<input type="checkbox" name="chk-point{{point.points}}" id="chk_point{{point.points}}" ng-model="point.status" value="{{point.points}}">
-															{{point.points}} 
-														</label>
+			    <input type="checkbox" name="chk-point{{point.points}}" id="chk_point{{point.points}}" ng-model="point.status" value="{{point.points}}">
+				{{point.points}} 
+			    </label>
                         </div>
                     </div>
                 </div>
@@ -43,15 +43,10 @@
                 </div>
                 <div class="productList d-lg-flex flex-wrap d-md-block justify-content-between">
                     <product ng-repeat="product in productList" ng-if="product.quantity > 0">
-                        <div style="margin-bottom:20px;" class="{{product.productId}} d-block overflow-hidden">
-                            <div class="float-start me-4" style="min-height:150px;">
-                                <div class="productImage mb-3">
-                                    <img ng-src="{{(product.imageSrc != '') ? product.imageSrc : 'https://via.placeholder.com/500'}}" width="150" alt="{{product.productName}}" />
-                                </div>
-                                <div class="addToBasket">
-                                    <button type="button" ng-disabled="(product.detail.length &gt; 0 &amp;&amp; product.productSize == '') || ((product.quantitySel * product.points) &gt; TotalPointsAvailable)" class="btn btn-primary" ng-if="TotalPointsSpent == 0" href="" ng-model="product.productSize" name="{{product.productName}}" limit="{{product.quantity}}" productid="{{product.productId}}" sizeexists="{{product.detail.length > 0}}" points="{{product.points}}" imgsrc="{{product.imageSrc}}" ng-click="addProductToCart($event)">
-																			Add to Basket 
-																		</button>
+                        <div style="margin-bottom:20px;" class="{{product.productId}} d-flex overflow-hidden">
+                            <div class="me-4" style="min-height:150px;">
+                                <div class="productImage mb-3" tabindex="0">
+                                    <img ng-src="{{(product.imageSrc != '') ? product.imageSrc : 'https://via.placeholder.com/500'}}" width="150" alt="Product {{product.productName}} {{product.points}} Points Each" />
                                 </div>
                             </div>
                             <div class="productInfo">
@@ -61,11 +56,14 @@
                                 <div class="productDesc">
                                     {{product.productDesc}}
                                 </div>
+                                <div class="productPoints">
+                                    {{product.points}} Points Each
+                                </div>
                                 <div class="productSizes" ng-if="product.detail.length > 0" ng-cloak>
                                     Sizes:
                                     <span class="sizeText" ng-repeat="detail in product.detail">
-																			{{detail.productSizeText}}
-																		</span>
+					{{detail.productSizeText}}
+				    </span>
                                     <br />
                                 </div>
                                 <div class="productSize" ng-if="product.detail.length > 0" ng-cloak>
@@ -77,16 +75,18 @@
                                     Quantity:
                                     <select aria-label="Product Quantity" name="quantity" ng-model="product.quantitySel" ng-options="item for item in quantityList track by item"></select>
                                 </div>
-                                <div class="productPoints">
-                                    {{product.points}} Points per Item
-                                </div>
-                                <div class="productPointsTotal">
-                                    {{product.quantitySel * product.points}} Total Points
+                                <div class="productPointsTotal" tabindex="0">
+				    <strong>Cost:</strong> {{product.quantitySel * product.points}} Points
                                     <div ng-if="((product.quantitySel * product.points) > TotalPointsAvailable)">
                                         <em>
-																					Not enough available
-																				</em>
+					Not enough points available
+					</em>
                                     </div>
+                                </div>
+                                <div class="addToBasket">
+                                    <button title="Product {{product.productName}}" type="button" ng-disabled="(product.detail.length &gt; 0 &amp;&amp; product.productSize == '') || ((product.quantitySel * product.points) &gt; TotalPointsAvailable)" class="btn btn-primary" ng-if="TotalPointsSpent == 0" href="" ng-model="product.productSize" name="{{product.productName}}" limit="{{product.quantity}}" productid="{{product.productId}}" sizeexists="{{product.detail.length > 0}}" points="{{product.points}}" imgsrc="{{product.imageSrc}}" ng-click="addProductToCart($event)">
+					Add to Basket
+  				    </button><br/><em></em>
                                 </div>
                                 <div class="d-none">
                                     On hand: {{product.quantity}} *will hide when live
@@ -101,13 +101,18 @@
                     Basket
                 </div>
                 <div class="shoppingCart">
+              			<div ng-if="TotalPointsSpent == 0" ng-cloak class="totalPoints p-2">
+  										<button type="button" ng-disabled="cartProductList.length == 0" class="btn btn-primary" href="" name="redeemProducts" ng-click="redeemProducts($event)" ng-cloak>
+	  										Redeem Items<br/>in Basket
+		  								</button>
+			  						</div>
                     <div class="products">
                         <div ng-repeat="cartProduct in cartProductList" class="d-lg-flex d-md-block position-relative"> 
                             <div class="position-absolute top-0 end-0 me-2 mt-3">
                                 <button type="button" class="btn btn-primary py-1 px-2" href="" name="{{cartProduct.productName}}" productid="{{cartProduct.productId}}" ng-click="removeProduct($event)">
-																	X
-																</button>
-														</div>
+			  	X
+				</button>
+			    </div>
                             <div class="me-4" style="min-height:150px;">
                                 <div class="productImage">
                                     <img ng-src="{{(cartProduct.imageSrc != '') ? cartProduct.imageSrc : 'https://via.placeholder.com/500'}}" width="100" alt="{{cartProduct.productName}}" />
@@ -137,7 +142,7 @@
                     <div class="totalPoints noPointsInCart" ng-if="TotalPointsInCart == 0" ng-cloak>
                         No items in Basket
                     </div>
-           					<p><em>Unused points will carry over to next year.</em></p>
+           	    <p><em>Unused points will carry over to next year.</em></p>
                 </div>
             </div>
         </div>
@@ -171,8 +176,8 @@
             </p>
             <p><em>Unused points will carry over to next year.<br/>Gifts will be included in the Thank-You Gifts you receive for your students.</em></p>
             <a class="btn btn-primary" href="" name="delPurchase" ng-click="deletePurchase($event)">
-						TEST ONLY: Remove Purchase 
-					</a>
+		TEST ONLY: Remove Purchase 
+  	    </a>
         </div>
     </div>
 </div>
@@ -188,23 +193,23 @@
             <input type="hidden" name="ng_nexturl" ng-model="headerLoginInfo.ng_nexturl" value="[[E130:[[T8:[[S8]]]] [[T8:&amp;]] [[T8:&amp;]] replaceall]]">
             <div class="form-group">
                 <label class="sr-only" for="headerLoginInfo-user_name">
-								Username: 
-							</label>
+			Username: 
+		</label>
                 <input type="text" class="form-control" name="USERNAME" id="headerLoginInfo-user_name" ng-model="headerLoginInfo.user_name" placeholder="Username" maxlength="[[S0:USER_MAX_LOGIN_LEN]]" autocorrect="off" autocapitalize="off" spellcheck="false" required>
             </div>
             <div class="form-group">
                 <label class="sr-only" for="headerLoginInfo-password">
-									Password: 
-								</label>
+			Password: 
+		</label>
                 <input type="password" class="form-control" name="Password" id="headerLoginInfo-password" ng-model="headerLoginInfo.password" placeholder="Password" maxlength="[[S0:USER_MAX_PASSWD_LEN]]" autocorrect="off" autocapitalize="off" spellcheck="false" required>
             </div>
             <div class="ym-header-login-footer clearfix">
                 <button type="submit" class="btn btn-global-primary pull-left">
-										Log In 
-									</button>
+			Log In 
+		</button>
                 <a class="pull-right ym-header-login__help-link" href="UserLogin?CMD=ForgotLogin">
-										Need Help? 
-									</a>
+			Need Help? 
+		</a>
             </div>
         </form>
         <form class="hidden js--default-header-login-form" action="UserLogin" method="POST" hidden aria-hidden="true">
@@ -216,8 +221,8 @@
     ::
     <!-- non-secure page -->
     <a class="btn btn-global-primary ym-header-login-toggle" href="[[T7:https://[[S29:SECURE_DOMAIN]][[S29:SECURE_PATH]]UserLogin?NEXTURL=[[T1:SPageServer?pagename=ym_coordinator_reward_center&amp;fr_id=[[S334:fr_id]]]]]]">
-			Coordinator Log In 
-		</a>
+	Coordinator Log In 
+    </a>
 ]]
 </div>
 ::]]
