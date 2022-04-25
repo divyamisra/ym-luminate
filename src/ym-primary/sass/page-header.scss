@@ -21,11 +21,12 @@
   }
   
   p {
+    color: $brand-white;
     a {
         &,
         &:link,
         &:visited {
-          color: $acc-purple;
+          color: $brand-white;
         }
     }
   }
