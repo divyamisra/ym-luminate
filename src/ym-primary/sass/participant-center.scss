@@ -319,7 +319,7 @@ section.ym-pc-dashboard-standard-gifts-section {
            vertical-align: top;
    	   position:relative;
 	   text-align:center;
-	   background: #eafbd7;
+	   background: $event-secondary-medium;
 	   padding: 20px;
 	   flex: 1 100%;
   
@@ -335,7 +335,7 @@ section.ym-pc-dashboard-standard-gifts-section {
 	   }
            
 	   &.not-earned {
-	      background: #d7d5e9;
+	      background: $event-secondary-light;
 		   
 	      img {
 		 opacity: 0.5;
@@ -349,12 +349,12 @@ section.ym-pc-dashboard-standard-gifts-section {
 
 	   .ym-pc-dashboard-standard-gift-earned {
 		   h4 {
-	              color: #440075;
+	              color: $event-secondary;
         	      font-family: "Luckiest Guy",cursive;
 	              font-size: 20px;
 		   }
 		   .gift-subtitle1 {
-			   color:#440075;
+			   color:$event-secondary;
 			   font-weight:bold;
 		   }
 		   .gift-subtitle2 {
@@ -363,16 +363,16 @@ section.ym-pc-dashboard-standard-gifts-section {
            }
 	   .ym-pc-dashboard-standard-gift-notearned {
 		   h4 {
-	              color: #2d2d2d;
+	              color: $event-secondary;
         	      font-family: "Luckiest Guy",cursive;
 	              font-size: 20px;
 		   }
 		   .gift-subtitle1 {
-			   color:#2d2d2d;
+			   color:$event-secondary;
 			   font-weight:bold;
 		   }
 		   .gift-subtitle2 {
-			   color:#2d2d2d;
+			   color:$event-secondary;
 		   }
            }
 	   .more-details-button {
