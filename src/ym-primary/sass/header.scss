@@ -28,3 +28,13 @@ header {
 header nav .ym-header-welcome-toggle:focus {
   outline: 5px auto -webkit-focus-ring-color;
 }
+
+.ym-page-header .ym-page-header-related {
+    top: -25px;
+}
+
+.ym-page-header-monster {
+  img {
+    max-height:135px;
+  }
+}
