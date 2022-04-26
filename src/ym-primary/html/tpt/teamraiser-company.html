@@ -132,7 +132,7 @@
             <h2 class="ym-headline">
                Our Stats
             </h2>
-	    <div class="ym-promo-block__item ym-promo-block--circle" ng-if="schoolPlan.CountOfStudentsCompletingFinnsMission > 0" ng-cloak>
+	    <div class="ym-promo-block__item" ng-if="schoolPlan.CountOfStudentsCompletingFinnsMission > 0" ng-cloak>
 	      <div class="h2 ym-headline">
     	        <span ng-if="schoolPlan.CountOfStudentsCompletingFinnsMission < 1000" ng-cloak>{{schoolPlan.CountOfStudentsCompletingFinnsMission}}</span>
 	        <span ng-if="schoolPlan.CountOfStudentsCompletingFinnsMission > 999" ng-cloak>{{schoolPlan.CountOfStudentsCompletingFinnsMission}}</span>
@@ -148,7 +148,7 @@
 	        </p>
 	      </div>
 	    </div>
-	    <div class="ym-promo-block__item ym-promo-block__item--members ym-promo-block--circle">
+	    <div class="ym-promo-block__item ym-promo-block__item--members">
                <div class="h2 ym-headline">
                   {{participantCount}}
                </div>
@@ -163,7 +163,7 @@
                   </p>
                </div>
             </div>
-            <div class="ym-promo-block__item ym-promo-block--circle" ng-if="activity1amt != 0" ng-cloak>
+            <div class="ym-promo-block__item" ng-if="activity1amt != 0" ng-cloak>
                <div class="h2 ym-headline">
                   {{activity1amt}}
                </div>
@@ -171,7 +171,7 @@
                   challenge for being kind.
                </p>
             </div>
-            <div class="ym-promo-block__item ym-promo-block--circle" ng-if="activity2amt != 0" ng-cloak>
+            <div class="ym-promo-block__item" ng-if="activity2amt != 0" ng-cloak>
                <div class="h2 ym-headline">
                   {{activity2amt}}
                </div>
