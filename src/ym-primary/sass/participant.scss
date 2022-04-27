@@ -129,7 +129,7 @@
 	background: #83bf37;
 	width: 100%;
 	font-size: 20px;
-	color: indigo;
+	color: $event-secondary;
       }
       .challenge-day-add-day {
 	position:relative;
@@ -197,7 +197,7 @@
       }
    }
    .ym_my_challenge__description {
-      color: indigo;
+      color: $event-secondary;
       font-size: 26px;
       margin-top:0px;
    }
