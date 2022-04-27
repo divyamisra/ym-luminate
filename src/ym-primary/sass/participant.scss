@@ -101,49 +101,38 @@
    a {
       color: $event-primary-acc;
    }
+   .ym-activity-box .row {
+      display: flex;
+      @media (max-width:767px) {
+        display:block;
+      }
+   }
    .challenge-days {
       position:relative;
-      /*background: url(../image/pc-challenge-days-bg.png) no-repeat top / 100% auto;*/
-      /*@media only screen and (max-width: $screen-md-max) { 
-	 background: #ed1c24;
-      }*/
+      flex: 0 0 50%;
       overflow:hidden;
       .challenge-day-streak {
 	position:relative;
 	z-index: 1;
 	margin-bottom:20px;
         &::before {
-  	  background: #ed1c24;
+  	  background: $event-primary;
   	  content: " ";
 	  height: 100%;
 	  width: 101%;
 	  display: block;
 	  position: absolute;
-	  transform: rotate(-2deg);
 	  margin-top: 9px;
 	  left: -2px;
         }
 	   }
       button.btn {
 	margin: 20px 0 60px 0;
-	background: #83bf37;
 	width: 100%;
 	font-size: 20px;
-	color: $event-secondary;
       }
       .challenge-day-add-day {
 	position:relative;
-        &::before {
-  	  background: #253c91;
-  	  content: " ";
-	  height: 100%;
-	  width: 101%;
-	  display: block;
-	  position: absolute;
-	  transform: rotate(2deg);
-	  margin-top: -30px;
-          left:-2px;
-       }
      }
      .challenge-day-add-icon {
 	position: relative;
