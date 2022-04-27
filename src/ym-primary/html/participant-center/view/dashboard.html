@@ -29,10 +29,10 @@
  			    <filter id="a" x="75" y="320" width="210" height="100" filterUnits="userSpaceOnUse">
 					 <feOffset dx="1" dy="1"/>
 				  </filter>
- 			    <filter id="b" x="0" y="10" width="250" height="50" filterUnits="userSpaceOnUse">
+				  <filter id="b" x="470" y="130" width="250" height="70" filterUnits="userSpaceOnUse">
 					 <feOffset dx="1" dy="1"/>
-				  </filter>
-				  <pattern id="bg" filterUnits="objectBoundingBox" x="0" y="0" width="1" height="1">
+				   </filter>
+				   <pattern id="bg" filterUnits="objectBoundingBox" x="0" y="0" width="1" height="1">
 						<image aria-hidden="true" width="100%"  ng-href="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy23/fy23-finns-mission-desktop.png" xlink:href="" alt="Finn's Mission Background"></image>
 				  </pattern>
 				  <pattern id="road" filterUnits="objectBoundingBox" x="0" y="0" width="1" height="1">
@@ -135,9 +135,6 @@
 					 <text fill="#000" font-size="9" font-weight="bold"><tspan x="75" y="330">You did it! Thank you for being</tspan></text>
 					 <text fill="#000" font-size="9" font-weight="bold"><tspan x="75" y="342">a hero for Kids Heart Challenge!</tspan></text>
 				  </g>
-				  <g id="status-text" filter="url(#b)" data-name="Status Text" tabindex="0" aria-label="{{prizesEarned}} our of {{prizes.length}} steps complete!">
- 				   <text fill="#009d4f" font-size="12" font-weight="bold"><tspan x="10" y="25">{{prizesEarned}} out of {{prizes.length}} steps complete!</tspan></text>
-				  </g>
 		 		  <g id="online-registration" role="button" tabindex="0" ng-focus="mouseover(0, 0, 110, this, -20)" ng-blur="mouseout()" aria-label="{{prizes[0].aria_label}}">
 				    <path class="badge-path" d="M22 129v53h53v-53x-53z" fill="url(#1_delivered)" ng-mouseover="mouseover(0, 0, 110, this, -20)" ng-mouseout="mouseout()"/>
    			  </g>
@@ -212,6 +209,10 @@
 						<div class="template shine small"></div>
 					 </foreignObject>
 				  </g>
+		                  <g id="status-text" filter="url(#b)" data-name="Status Text" tabindex="0" aria-label="{{prizesEarned}} our of {{prizes.length}} steps complete!" transform="rotate(24 300 182)">
+					<text fill="#000" font-size="9" font-weight="bold"><tspan x="498" y="150" class="ng-binding">{{prizesEarned}} our of {{prizes.length}}</tspan></text>
+                                        <text fill="#000" font-size="9" font-weight="bold"><tspan x="485" y="161" class="ng-binding">steps complete!</tspan></text></g>
+	                          </g>
 				</g>
 				<g font-size="25">
 				</g>
