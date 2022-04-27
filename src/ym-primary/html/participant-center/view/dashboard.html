@@ -44,6 +44,12 @@
 				  <pattern id="finn-logo" filterUnits="objectBoundingBox" x="0" y="0" width="1" height="1">
 						<image aria-hidden="true" width="130"  ng-href="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy23/map-finn.png" xlink:href="" alt="Finn on Map"></image>
 				  </pattern>
+				  <pattern id="finn-wing-left" filterUnits="objectBoundingBox" x="0" y="0" width="1" height="1">
+						<image class="wing-left wings-move" aria-hidden="true" height="40"  ng-href="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy23/map-finn-wing-left.png" xlink:href="" alt="Finn Wings on Map"></image>
+				  </pattern>
+				  <pattern id="finn-wing-right" filterUnits="objectBoundingBox" x="0" y="0" width="1" height="1">
+						<image class="wing-right wings-move" aria-hidden="true" height="40"  ng-href="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy23/map-finn-wing-right.png" xlink:href="" alt="Finn Wings on Map"></image>
+				  </pattern>
 				  <pattern id="finn-mouth" filterUnits="objectBoundingBox" x="0" y="0" width="1" height="1">
 						<image aria-hidden="true" width="20"  ng-href="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy23/map-finn-mouth.png" xlink:href="" alt="Finn on Map"></image>
 				  </pattern>
@@ -180,9 +186,11 @@
 				  	  </a>
 				  </g>
 				  -->
-					<g>
-					 <path fill="url(#finn-logo)" d="M335 15v80h130v-80h-130z"></path>
-					 <path class="mouth-open mouth" fill="url(#finn-mouth)" d="M435 57v20h20v-20h-20z"></path>
+				  <g>
+					 <path fill="url(#finn-wing-right)" d="M385 10v80h130v-80h-130z"></path>
+					 <path fill="url(#finn-logo)" d="M335 17v80h130v-80h-130z"></path>
+					 <path fill="url(#finn-wing-left)" d="M365 15v80h130v-80h-130z"></path>
+					 <path fill="url(#finn-mouth)" d="M435 57v20h20v-20h-20z"></path>
 				  </g>
 				  <g ng-if="prizesEarned != prizes.length" ng-cloak>
 					 <path fill="url(#finn)" d="M105 45v101h101v-101h-101z"></path>
