@@ -184,11 +184,11 @@
 					 <path fill="url(#finn-logo)" d="M335 15v80h130v-80h-130z"></path>
 					 <path class="mouth-open mouth" fill="url(#finn-mouth)" d="M435 57v20h20v-20h-20z"></path>
 				  </g>
-				  <g ng-if="prizesEarned == prizes.length" ng-cloak>
+				  <g ng-if="prizesEarned != prizes.length" ng-cloak>
 					 <path fill="url(#finn)" d="M105 45v101h101v-101h-101z"></path>
 					 <path fill="url(#chest-closed)" d="M460 210v195h225v-195h-225z"></path>
 				  </g>
-				  <g ng-if="prizesEarned != prizes.length" ng-cloak>
+				  <g ng-if="prizesEarned == prizes.length" ng-cloak>
 					 <path fill="url(#finn)" d="M105 45v101h101v-101h-101z"></path>
 					 <path fill="url(#chest-open)" d="M460 160v195h225v-195h-225z"></path>
   			   <foreignObject width="30" height="30" x="520" y="220">
