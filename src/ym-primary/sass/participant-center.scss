@@ -877,6 +877,33 @@ div[id^="taTextElement"]:focus {
   -o-animation: glitter 8s linear 0s infinite normal;
 }
 
+.mouth-open {
+  animation: mouth 6s linear 0s infinite normal;
+  -webkit-animation: mouth 20s linear 0s infinite normal;
+  -moz-animation: mouth 8s linear 0s infinite normal;
+  -ms-animation: mouth 8s linear 0s infinite normal;
+  -o-animation: mouth 8s linear 0s infinite normal;
+  transition: all 0s linear;
+}
+
+.wing-left {
+  animation: wings-move 6s linear 0s infinite normal;
+  -webkit-animation: wings-move 6s linear 0s infinite normal;
+  -moz-animation: wings-move 6s linear 0s infinite normal;
+  -ms-animation: wings-move 6s linear 0s infinite normal;
+  -o-animation: wings-move 6s linear 0s infinite normal;
+  transition: all 0s linear;
+  }
+
+.wing-right {
+  animation: wings-move 3s linear 0s infinite normal;
+  -webkit-animation: wings-move 3s linear 0s infinite normal;
+  -moz-animation: wings-move 3s linear 0s infinite normal;
+  -ms-animation: wings-move 3s linear 0s infinite normal;
+  -o-animation: wings-move 3s linear 0s infinite normal;
+  transition: all 0s linear;
+  }
+  
 /*CSS3 keyframes for glittering effect*/
 @-webkit-keyframes glitter {
   0% {
@@ -894,6 +921,34 @@ div[id^="taTextElement"]:focus {
   100% {
     -webkit-transform: scale(0.3) rotate(0deg);
     opacity: 0;
+  }
+}
+@-webkit-keyframes mouth {
+  0% {
+  height: 8px;
+  }
+  10% {
+  height:12px;
+  }
+  75% {
+  height: 10px;
+  }
+  100% {
+  height: 8px;
+  }
+}
+@-webkit-keyframes wings-move {
+  0% {
+  transform: scaleY(1.03) skewY(5deg);
+  }
+  10% {
+  transform: scaleY(1) skewY(1deg);
+  }
+  75% {
+  transform: scaleY(1.02) skewY(10deg);
+  }
+  100% {
+  transform: scaleY(1.03) skewY(5deg);
   }
 }
 
