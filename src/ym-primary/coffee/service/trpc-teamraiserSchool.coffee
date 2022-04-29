@@ -29,7 +29,7 @@ angular.module 'ahaLuminateApp'
                 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
     
       # call returns QRCode image
-      getQRCode: (callback) ->
+      getSchoolQRCode: (callback) ->
         requestUrl = 'https://chart.googleapis.com/chart?cht=qr&chs=300x300&chl='+$rootScope.nonSecureDomain+'site/TR?pg=company&fr_id='+$scope.frId+'&company_id='+$scope.companyInfo.companyId+'&coe=UTF-8'
         $http
           method: 'GET'
