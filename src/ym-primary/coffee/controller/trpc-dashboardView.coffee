@@ -1301,19 +1301,24 @@ angular.module 'trPcControllers'
           e.preventDefault()
           return false
 
-      $scope.mouseover = (prize, xPos, yPos, sel, offset) ->
+      $scope.mouseover = (prize, xPos, yPos, sel, offset, width=120, height=60) ->
         document.getElementById("tRct").style.fill = "#206EBA"
         document.getElementById("tRct").x.baseVal.value = xPos
         document.getElementById("tRct").y.baseVal.value = yPos
+
+	document.getElementById("tRct").setAttribute('width',width).setAttribute('height',height)
+	document.getElementById("tTip").setAttribute('width',width).setAttribute('height',height)
 
         jQuery("#tTip div").attr("aria-label",$scope.prizes[prize].hover_msg).html($scope.prizes[prize].hover_msg)
         document.getElementById("tTip").setAttribute('x',xPos)
         document.getElementById("tTip").setAttribute('y',yPos)
 
-        document.getElementById("tTri").setAttribute('points',(parseInt(xPos)+53+parseInt(offset)) + ' ' + (parseInt(yPos)+60) + ' ' + (parseInt(xPos)+62+parseInt(offset)) + ' ' + (parseInt(yPos)+60) + ' ' + (parseInt(xPos)+58+parseInt(offset)) + ' ' + (parseInt(yPos)+66))
+        document.getElementById("tTri").setAttribute('points',(parseInt(xPos)+(height-7)+parseInt(offset)) + ' ' + (parseInt(yPos)+height) + ' ' + (parseInt(xPos)+(height+2)+parseInt(offset)) + ' ' + (parseInt(yPos)+height) + ' ' + (parseInt(xPos)+(height-2)+parseInt(offset)) + ' ' + (parseInt(yPos)+(height+6)))
 
       $scope.mouseout = ->
         document.getElementById("tRct").x.baseVal.value = -99999
+	document.getElementById("tRct").setAttribute('width',120).setAttribute('height',60)
+	document.getElementById("tTip").setAttribute('width',120).setAttribute('height',60)
         jQuery("#tTip div").html("")
         document.getElementById("tTri").setAttribute('points','0 0 0 0 0 0')
 
