@@ -30,7 +30,7 @@ angular.module 'ahaLuminateApp'
     
       # call returns QRCode image
       getQRCode: (e, callback) ->
-        requestUrl = 'https://chart.googleapis.com/chart?cht=qr&chs=300x300&chl=160%20FSU728F29G&coe=UTF-8'
+        requestUrl = 'https://chart.googleapis.com/chart?cht=qr&chs=300x300&chl='+$rootScope.nonSecureDomain+'site/TR?pg=company&fr_id='+$scope.frId+'&company_id='+$scope.companyInfo.companyId+'&coe=UTF-8'
         $http
           method: 'GET'
           url: $sce.trustAsResourceUrl(requestUrl)
