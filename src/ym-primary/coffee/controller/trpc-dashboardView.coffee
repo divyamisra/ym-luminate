@@ -1306,8 +1306,10 @@ angular.module 'trPcControllers'
         document.getElementById("tRct").x.baseVal.value = xPos
         document.getElementById("tRct").y.baseVal.value = yPos
 
-        document.getElementById("tRct").setAttribute('width',width).setAttribute('height',height)
-        document.getElementById("tTip").setAttribute('width',width).setAttribute('height',height)
+        document.getElementById("tRct").setAttribute('width',width)
+        document.getElementById("tRct").setAttribute('height',height)
+        document.getElementById("tTip").setAttribute('width',width)
+        document.getElementById("tTip").setAttribute('height',height)
 
         jQuery("#tTip div").attr("aria-label",$scope.prizes[prize].hover_msg).html($scope.prizes[prize].hover_msg)
         document.getElementById("tTip").setAttribute('x',xPos)
@@ -1317,8 +1319,10 @@ angular.module 'trPcControllers'
 
       $scope.mouseout = ->
         document.getElementById("tRct").x.baseVal.value = -99999
-        document.getElementById("tRct").setAttribute('width',120).setAttribute('height',60)
-        document.getElementById("tTip").setAttribute('width',120).setAttribute('height',60)
+        document.getElementById("tRct").setAttribute('width',120)
+        document.getElementById("tRct").setAttribute('height',60)
+        document.getElementById("tTip").setAttribute('width',120)
+        document.getElementById("tTip").setAttribute('height',60)
         jQuery("#tTip div").html("")
         document.getElementById("tTri").setAttribute('points','0 0 0 0 0 0')
 
