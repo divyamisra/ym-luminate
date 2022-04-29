@@ -27,4 +27,14 @@ angular.module 'ahaLuminateApp'
               data: params
               headers:
                 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+    
+      # call returns QRCode image
+      getQRCode: (e, callback) ->
+        requestUrl = 'https://chart.googleapis.com/chart?cht=qr&chs=300x300&chl=160%20FSU728F29G&coe=UTF-8'
+        $http
+          method: 'GET'
+          url: $sce.trustAsResourceUrl(requestUrl)
+          headers:
+            'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+            
   ]
