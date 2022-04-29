@@ -1306,8 +1306,8 @@ angular.module 'trPcControllers'
         document.getElementById("tRct").x.baseVal.value = xPos
         document.getElementById("tRct").y.baseVal.value = yPos
 
-	document.getElementById("tRct").setAttribute('width',width).setAttribute('height',height)
-	document.getElementById("tTip").setAttribute('width',width).setAttribute('height',height)
+        document.getElementById("tRct").setAttribute('width',width).setAttribute('height',height)
+        document.getElementById("tTip").setAttribute('width',width).setAttribute('height',height)
 
         jQuery("#tTip div").attr("aria-label",$scope.prizes[prize].hover_msg).html($scope.prizes[prize].hover_msg)
         document.getElementById("tTip").setAttribute('x',xPos)
