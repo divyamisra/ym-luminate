@@ -1302,7 +1302,7 @@ angular.module 'trPcControllers'
           return false
 
       $scope.mouseover = (prize, xPos, yPos, sel, offset, width=120, height=60) ->
-        document.getElementById("tRct").style.fill = "#206EBA"
+        document.getElementById("tRct").style.fill = "#850BAA"
         document.getElementById("tRct").x.baseVal.value = xPos
         document.getElementById("tRct").y.baseVal.value = yPos
 
@@ -1328,7 +1328,7 @@ angular.module 'trPcControllers'
 
 
       $scope.mouseoverm = (prize, xPos, yPos, sel, offset) ->
-        document.getElementById("tRctm").style.fill = "#206EBA"
+        document.getElementById("tRctm").style.fill = "#850BAA"
         document.getElementById("tRctm").x.baseVal.value = xPos
         document.getElementById("tRctm").y.baseVal.value = yPos
 
