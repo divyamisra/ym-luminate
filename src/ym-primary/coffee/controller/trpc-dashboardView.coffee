@@ -21,9 +21,8 @@ angular.module 'trPcControllers'
     'NgPcInteractionService'
     'NgPcConstituentService'
     'NgPcTeamraiserCompanyService'
-    'NgPcSurveyService'
     'FacebookFundraiserService'
-    ($rootScope, $scope, $location, $filter, $timeout, $uibModal, $sce, APP_INFO, ZuriService, BoundlessService, TeamraiserParticipantService, NgPcTeamraiserRegistrationService, NgPcTeamraiserProgressService, NgPcTeamraiserTeamService, NgPcTeamraiserSchoolService, NgPcTeamraiserGiftService, NgPcContactService, NgPcTeamraiserShortcutURLService, NgPcInteractionService, NgPcConstituentService, NgPcTeamraiserCompanyService, NgPcSurveyService, FacebookFundraiserService) ->
+    ($rootScope, $scope, $location, $filter, $timeout, $uibModal, $sce, APP_INFO, ZuriService, BoundlessService, TeamraiserParticipantService, NgPcTeamraiserRegistrationService, NgPcTeamraiserProgressService, NgPcTeamraiserTeamService, NgPcTeamraiserSchoolService, NgPcTeamraiserGiftService, NgPcContactService, NgPcTeamraiserShortcutURLService, NgPcInteractionService, NgPcConstituentService, NgPcTeamraiserCompanyService, FacebookFundraiserService) ->
       $scope.dashboardPromises = []
       domain = $location.absUrl().split('/site/')[0]
       $scope.studentsPledgedTotal = ''
@@ -278,15 +277,7 @@ angular.module 'trPcControllers'
                 participantPrevProgress.raisedFormatted = if participantPrevProgress.raised then $filter('currency')(participantPrevProgress.raised / 100, '$') else '$0.00'
                 $scope.participantPrevProgress = participantPrevProgress
 
-      $scope.showMaterialTypes = ->
-        $scope.showMaterialTypesModal = $uibModal.open
-          scope: $scope
-          templateUrl: APP_INFO.rootPath + 'dist/ym-primary/html/participant-center/modal/viewMaterialTypes.html'
-
-      $scope.cancelShowMaterialsTypes = ->
-        $scope.showMaterialTypesModal.close()
-		
-      #interactionMoveMoreId = $dataRoot.data 'move-more-flag-id'
+      interactionMoveMoreId = $dataRoot.data 'move-more-flag-id'
 
       $scope.moveMoreFlag =
         text: ''
@@ -384,37 +375,6 @@ angular.module 'trPcControllers'
                 else
                   $scope.coordinatorMessage.successMessage = true
                   $scope.editCoordinatorMessageModal.close()
-
-      $scope.feedbackMessage =
-        text: ''
-        errorMessage: null
-        message: ''
-        
-      feedbackSurveyParams = ($dataRoot.data 'feedback-survey').split ','
-	
-      $scope.postFeedbackMessage = ->
-        $scope.postFeedbackMessageModal = $uibModal.open
-          scope: $scope
-          templateUrl: APP_INFO.rootPath + 'dist/ym-primary/html/participant-center/modal/postFeedbackMessage.html'
-
-      $scope.cancelPostFeedbackMessage = ->
-        $scope.postFeedbackMessageModal.close()
-
-      $scope.saveFeedbackMessage = ->
-        NgPcSurveyService.submitSurvey 'survey_id=' + feedbackSurveyParams[0] + '&question_'+feedbackSurveyParams[1] + '=' + $scope.consId + '&question_'+feedbackSurveyParams[2] + '=' + $scope.eventInfo.name + '&question_'+feedbackSurveyParams[3] + '=' + ($scope.feedbackMessage?.text or '')
-          .then (response) ->
-            $scope.postFeedbackMessageModal.close()
-            if response.data.submitSurveyResponse?.success == 'true'
-              $scope.feedbackMessage.message = response.data.submitSurveyResponse?.thankYouPageContent
-            else
-              $scope.feedbackMessage.errorMessage = 'There was an error processing your feedback.'
-              $scope.feedbackMessage.message = 'Please try again later.'
-            $scope.postFeedbackMessageModalConfirm = $uibModal.open
-              scope: $scope
-              templateUrl: APP_INFO.rootPath + 'dist/ym-primary/html/participant-center/modal/postFeedbackMessageConfirm.html'
-	
-      $scope.cancelPostFeedbackMessageConfirm = ->
-        $scope.postFeedbackMessageModalConfirm.close()
 
       $scope.personalGoalInfo = {}
 
@@ -859,11 +819,11 @@ angular.module 'trPcControllers'
               final_url = prize.mission_url
             if prize.mission_url_type == 'Quiz' 
               if $scope.tablePrefix == 'heartdev'
-                final_url = 'https://tools.heart.org/aha_ym23_dev/quiz/show/' + prize.mission_url + '?event_id=' + $scope.frId + '&user_id=' + $scope.consId + '&name=' + $scope.consNameFirst
+                final_url = 'https://tools.heart.org/aha_ym22_dev/quiz/show/' + prize.mission_url + '?event_id=' + $scope.frId + '&user_id=' + $scope.consId + '&name=' + $scope.consNameFirst
               if $scope.tablePrefix == 'heartnew'
-                final_url = 'https://tools.heart.org/aha_ym23_testing/quiz/show/' + prize.mission_url + '?event_id=' + $scope.frId + '&user_id=' + $scope.consId + '&name=' + $scope.consNameFirst
+                final_url = 'https://tools.heart.org/aha_ym22_testing/quiz/show/' + prize.mission_url + '?event_id=' + $scope.frId + '&user_id=' + $scope.consId + '&name=' + $scope.consNameFirst
               if $scope.tablePrefix == 'heart'
-                final_url = 'https://tools.heart.org/aha_ym23/quiz/show/' + prize.mission_url + '?event_id=' + $scope.frId + '&user_id=' + $scope.consId + '&name=' + $scope.consNameFirst
+                final_url = 'https://tools.heart.org/aha_ym22/quiz/show/' + prize.mission_url + '?event_id=' + $scope.frId + '&user_id=' + $scope.consId + '&name=' + $scope.consNameFirst
             if prize.mission_url_type == 'Modal' and prize.mission_url == 'app' 
               final_url = 'showMobileApp()'
             if prize.status != 0
@@ -1047,70 +1007,43 @@ angular.module 'trPcControllers'
           failure: (response) ->
           error: (response) ->
           success: (response) ->
-            $scope.schoolPlan = response.data.company[0]
-            if $scope.schoolPlan.EventStartDate != undefined
-              if $scope.schoolPlan.EventStartDate != '0000-00-00'
-                $scope.schoolPlan.EventStartDate = new Date($scope.schoolPlan.EventStartDate.replace(/-/g, "/") + ' 00:01')
-              if $scope.schoolPlan.EventEndDate != '0000-00-00'
-                $scope.schoolPlan.EventEndDate = new Date($scope.schoolPlan.EventEndDate.replace(/-/g, "/") + ' 00:01')
-              if $scope.schoolPlan.DonationDueDate != '0000-00-00'
-                $scope.schoolPlan.DonationDueDate = new Date($scope.schoolPlan.DonationDueDate.replace(/-/g, "/") + ' 00:01')
-              if $scope.schoolPlan.KickOffDate != '0000-00-00'
-                $scope.schoolPlan.KickOffDate = new Date($scope.schoolPlan.KickOffDate.replace(/-/g, "/") + ' 00:01')
-              $scope.coordinatorPoints = JSON.parse($scope.schoolPlan.PointsDetail)
-            else
-              $scope.schoolPlan.EventStartDate = ''
+            angular.forEach response.data.company, (school) ->
+              $scope.EventStartDate = new Date school.EventStartDate + ' 00:01'
+              $scope.EventEndDate = new Date school.EventEndDate + ' 00:01'
+              $scope.DonationDueDate = new Date school.DonationDueDate + ' 00:01'
+              $scope.KickOffDate = new Date school.KickOffDate + ' 00:01'
+              $scope.StudentRecruitmentGoal = school.StudentRecruitmentGoal
+              $scope.FinnsMissionCompletedGoal = school.FinnsMissionCompletedGoal
+              $scope.coordinatorPoints = JSON.parse(school.PointsDetail);
+              $scope.TotalPointsEarned = school.TotalPointsEarned; 
 						
-            NgPcConstituentService.getUserRecord('fields=custom_boolean2,custom_string18,custom_string19&cons_id=' + $scope.consId).then (response) ->
+            NgPcConstituentService.getUserRecord('fields=custom_boolean2&cons_id=' + $scope.consId).then (response) ->
               if response.data.errorResponse
                 console.log 'There was an error getting user profile. Please try again later.'
               $scope.constituent = response.data.getConsResponse
-              $scope.schoolPlan.SendEmailOnBehalfOfCoordinator = $scope.constituent.custom.boolean.content == 'true'
-              angular.forEach $scope.constituent.custom.string, (field) ->
-                if field.id == 'custom_string18'
-                  $scope.participatingNextYear = field.content
-                if field.id == 'custom_string19'
-                  $scope.schoolPlan.MaterialsNeeded = field.content
-                return
+              $scope.SendEmailOnBehalfOfCoordinator = $scope.constituent.custom.boolean.content == 'true'
+	      
 
-      $scope.putSchoolPlan = (event) ->
-        school = @schoolPlan
-        if event.currentTarget.id == 'school_goal'
-          $scope.schoolGoalInfo.goal = event.currentTarget.value
+      $scope.putSchoolPlan = ($event) ->
+        if $event.currentTarget.id == 'school_goal'
+          $scope.schoolGoalInfo.goal = $event.currentTarget.value
           $scope.updateSchoolGoal()
           $scope.getSchoolPlan()
         else
-          if event.currentTarget.type == 'checkbox' and event.currentTarget.id == 'SendEmailOnBehalfOfCoordinator'
-            updateUserProfilePromise = NgPcConstituentService.updateUserRecord('custom_boolean2=' + angular.element(event.currentTarget).is(':checked') + '&cons_id=' + $scope.consId).then (response) ->
+          if $event.currentTarget.type == 'checkbox'
+            updateUserProfilePromise = NgPcConstituentService.updateUserRecord('custom_boolean2=' + angular.element($event.currentTarget).is(':checked') + '&cons_id=' + $scope.consId).then (response) ->
               if response.data.errorResponse
                 console.log 'There was an error processing your update. Please try again later.'
               $scope.dashboardPromises.push updateUserProfilePromise
               $scope.getSchoolPlan()
           else
-            if event.currentTarget.type == 'date'
-              schoolParams = '&field_id=' + event.currentTarget.id + '&value=' + event.currentTarget.value + '&type=' + event.currentTarget.type
-            else
-              schoolParams = '&field_id=' + event.currentTarget.id + '&value=' + school[event.currentTarget.id] + '&type=' + event.currentTarget.type
+            schoolParams = '&field_id=' + $event.currentTarget.id + '&value=' + $event.currentTarget.value + '&type=' + $event.currentTarget.type
             ZuriService.schoolPlanData '&method=UpdateSchoolPlan&CompanyId=' + $scope.participantRegistration.companyInformation.companyId + '&EventId=' + $scope.frId + schoolParams,
               failure: (response) ->
               error: (response) ->
               success: (response) ->
-
-      $scope.updateParticipatingNextYear = ->
-        updateUserProfilePromise = NgPcConstituentService.updateUserRecord('custom_string18=' + this.participatingNextYear + '&cons_id=' + $scope.consId).then (response) ->
-          if response.data.errorResponse
-            console.log 'There was an error processing your update. Please try again later.'
-          updateUserProfilePromise = NgPcConstituentService.updateUserRecord('custom_date5_MONTH='+(($scope.theDate).getMonth()+1)+'&custom_date5_DAY='+($scope.theDate).getDate()+'&custom_date5_YEAR='+($scope.theDate).getFullYear()+'&cons_id=' + $scope.consId).then (response) ->
-            if response.data.errorResponse
-              console.log 'There was an error processing your update. Please try again later.'
-          $scope.dashboardPromises.push updateUserProfilePromise
-		
-      $scope.updateMaterialsNeeded = ->
-        updateUserProfilePromise = NgPcConstituentService.updateUserRecord('custom_string19=' + this.schoolPlan.MaterialsNeeded + '&cons_id=' + $scope.consId).then (response) ->
-          if response.data.errorResponse
-            console.log 'There was an error processing your update. Please try again later.'
-          $scope.dashboardPromises.push updateUserProfilePromise
-		
+                $scope.getSchoolPlan()
+            
       formatDateString = (dateVal) ->
         regex = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2}).*$/
         token_array = regex.exec(dateVal.toJSON());
@@ -1368,25 +1301,30 @@ angular.module 'trPcControllers'
           e.preventDefault()
           return false
 
-      $scope.mouseover = (prize, xPos, yPos, sel, offset) ->
-        document.getElementById("tRct").style.fill = "#850BAA"
+      $scope.mouseover = (prize, xPos, yPos, sel, offset, width=120, height=60) ->
+        document.getElementById("tRct").style.fill = "#206EBA"
         document.getElementById("tRct").x.baseVal.value = xPos
         document.getElementById("tRct").y.baseVal.value = yPos
+
+	document.getElementById("tRct").setAttribute('width',width).setAttribute('height',height)
+	document.getElementById("tTip").setAttribute('width',width).setAttribute('height',height)
 
         jQuery("#tTip div").attr("aria-label",$scope.prizes[prize].hover_msg).html($scope.prizes[prize].hover_msg)
         document.getElementById("tTip").setAttribute('x',xPos)
         document.getElementById("tTip").setAttribute('y',yPos)
 
-        document.getElementById("tTri").setAttribute('points',(parseInt(xPos)+53+parseInt(offset)) + ' ' + (parseInt(yPos)+60) + ' ' + (parseInt(xPos)+62+parseInt(offset)) + ' ' + (parseInt(yPos)+60) + ' ' + (parseInt(xPos)+58+parseInt(offset)) + ' ' + (parseInt(yPos)+66))
+        document.getElementById("tTri").setAttribute('points',(parseInt(xPos)+(height-7)+parseInt(offset)) + ' ' + (parseInt(yPos)+height) + ' ' + (parseInt(xPos)+(height+2)+parseInt(offset)) + ' ' + (parseInt(yPos)+height) + ' ' + (parseInt(xPos)+(height-2)+parseInt(offset)) + ' ' + (parseInt(yPos)+(height+6)))
 
       $scope.mouseout = ->
         document.getElementById("tRct").x.baseVal.value = -99999
+	document.getElementById("tRct").setAttribute('width',120).setAttribute('height',60)
+	document.getElementById("tTip").setAttribute('width',120).setAttribute('height',60)
         jQuery("#tTip div").html("")
         document.getElementById("tTri").setAttribute('points','0 0 0 0 0 0')
 
 
       $scope.mouseoverm = (prize, xPos, yPos, sel, offset) ->
-        document.getElementById("tRctm").style.fill = "#850BAA"
+        document.getElementById("tRctm").style.fill = "#206EBA"
         document.getElementById("tRctm").x.baseVal.value = xPos
         document.getElementById("tRctm").y.baseVal.value = yPos
 
