@@ -46,7 +46,11 @@ angular.module 'trPcControllers'
       $scope.topCompanySteps = []
        
       $dataRoot = angular.element '[data-embed-root]'
-                     
+
+      SchoolLookupService.getGeoState(e)
+        .then (response) ->
+          $scope.qrcode = response
+		
       if $scope.participantRegistration.lastPC2Login is '0'
         if $scope.participantRegistration.companyInformation?.isCompanyCoordinator isnt 'true'
           $scope.firstLoginModal = $uibModal.open
