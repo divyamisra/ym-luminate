@@ -47,7 +47,7 @@ angular.module 'trPcControllers'
        
       $dataRoot = angular.element '[data-embed-root]'
 
-      SchoolLookupService.getGeoState(e)
+      SchoolLookupService.getSchoolQRCode()
         .then (response) ->
           $scope.qrcode = response
 		
