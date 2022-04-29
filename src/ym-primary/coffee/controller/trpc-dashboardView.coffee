@@ -1317,8 +1317,8 @@ angular.module 'trPcControllers'
 
       $scope.mouseout = ->
         document.getElementById("tRct").x.baseVal.value = -99999
-	document.getElementById("tRct").setAttribute('width',120).setAttribute('height',60)
-	document.getElementById("tTip").setAttribute('width',120).setAttribute('height',60)
+        document.getElementById("tRct").setAttribute('width',120).setAttribute('height',60)
+        document.getElementById("tTip").setAttribute('width',120).setAttribute('height',60)
         jQuery("#tTip div").html("")
         document.getElementById("tTri").setAttribute('points','0 0 0 0 0 0')
 
