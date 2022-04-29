@@ -224,5 +224,13 @@ module.exports = {
         dest: 'dist/teens-of-impact/css/donation.'+ '<%= timestamp %>' +'.min.css'
       }
     ]
+  },
+  "ym-rewards": {
+    files: [
+      {
+        src: 'dist/ym-rewards/css/main.css',
+        dest: 'dist/ym-rewards/css/main.'+ '<%= timestamp %>' +'.min.css'
+      }
+    ]
   }
 }
