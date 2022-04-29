@@ -185,14 +185,19 @@
 				  </g>
 				  <g>
 					 <path fill="url(#finn)" d="M105 45v101h101v-101h-101z"></path>
-          </g>
+                                  </g>
 				  <g ng-if="prizesEarned != prizes.length" ng-cloak>
 					 <path fill="url(#finn)" d="M105 45v101h101v-101h-101z"></path>
 					 <path fill="url(#chest-closed)" d="M460 210v195h225v-195h-225z"></path>
-		       <g id="status-text" filter="url(#b)" data-name="Status Text" tabindex="0" aria-label="{{prizesEarned}} out of {{prizes.length}} steps complete!" transform="rotate(24 300 182)">
-					   <text fill="#fff" font-size="9" font-weight="bold"><tspan x="498" y="150" class="ng-binding">{{prizesEarned}} out of {{prizes.length}}</tspan></text>
-             <text fill="#fff" font-size="9" font-weight="bold"><tspan x="485" y="161" class="ng-binding">steps complete!</tspan></text></g>
-  	       </g>
+		                         <g id="status-text" filter="url(#b)" data-name="Status Text" tabindex="0" aria-label="{{prizesEarned}} out of {{prizes.length}} steps complete!" transform="rotate(24 300 182)">
+					   <text fill="#fff" font-size="9" font-weight="bold" font-style="italic">
+				             <tspan x="498" y="150" class="ng-binding">{{prizesEarned}} out of {{prizes.length}}</tspan>
+					   </text>
+                                           <text fill="#fff" font-size="9" font-weight="bold" font-style="italic">
+					     <tspan x="485" y="161" class="ng-binding">steps complete!</tspan>
+					   </text>
+					  </g>
+  	                           </g>
 				  </g>
 				  <g ng-if="prizesEarned == prizes.length" ng-cloak>
 					 <path fill="url(#chest-open)" d="M460 160v195h225v-195h-225z"></path>
@@ -367,8 +372,8 @@
 				  <g ng-if="prizesEarned != prizes.length" ng-cloak>
 					 <path fill="url(#chest-closedm)" d="M327 950v285h300v-285h-300z"></path>
            <g id="status-text-mobile" filter="url(#bm)" data-name="Status Text" tabindex="0" arial-label="{{prizesEarned}} out of {{prizes.length}} steps complete!" transform="rotate(25 468 370)">
- 				     <text fill="#fff" font-size="14" font-weight="bold"><tspan x="647" y="975">{{prizesEarned}} out of {{prizes.length}}</tspan></text>
-					   <text fill="#fff" font-size="14" font-weight="bold"><tspan x="625" y="995">steps complete!</tspan></text>
+ 				     <text fill="#fff" font-size="14" font-weight="bold" font-style="italic"><tspan x="647" y="975">{{prizesEarned}} out of {{prizes.length}}</tspan></text>
+					   <text fill="#fff" font-size="14" font-weight="bold" font-style="italic"><tspan x="625" y="995">steps complete!</tspan></text>
 				   </g>
 				  </g>
 				  <g ng-if="prizesEarned == prizes.length" ng-cloak>
