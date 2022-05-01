@@ -48,7 +48,7 @@ angular.module 'trPcControllers'
        
       $dataRoot = angular.element '[data-embed-root]'
 
-      if $scope.participantRegistration.companyInformation?.isCompanyCoordinator isnt 'true'
+      if $scope.participantRegistration.companyInformation?.isCompanyCoordinator is 'true'
         jQuery('#QRCodeWithLogo').qrcode
           mode: 3
           image: APP_INFO.rootPath + 'dist/ym-primary/image/fy21/khc-logo-2021.png'
