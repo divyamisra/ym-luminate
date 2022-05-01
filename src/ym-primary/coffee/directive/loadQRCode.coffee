@@ -1,10 +1,11 @@
 angular.module 'ahaLuminateApp'
   .directive 'loadQrcode', [
     'APP_INFO'
-    (APP_INFO) ->
+    '$rootScope'
+    (APP_INFO, $rootScope) ->
       (scope, element, attrs) ->
         if $scope.participantRegistration.companyInformation?.isCompanyCoordinator is 'true'
-          jQuery(element).qrcode
+          jQuery(element).kjua
             mode: 3
             image: APP_INFO.rootPath + 'dist/ym-primary/image/fy21/khc-logo-2021.png'
             size: 150
