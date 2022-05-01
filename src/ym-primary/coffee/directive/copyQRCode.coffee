@@ -1,5 +1,5 @@
 angular.module 'ahaLuminateApp'
-  .directive 'copyImage', ->
+  .directive 'copyQrcode', ->
     (scope, element, attrs) ->
       element.bind 'click', (event) ->
         #CopyImageClipboard.copyImageToClipboard attrs.copyImage
@@ -15,4 +15,6 @@ angular.module 'ahaLuminateApp'
         document.execCommand 'Copy'
         angular.element(div).remove()
         element.html 'Copied!'
+        angular.element('.clipboard-copy').remove()
+        element.after '<div class="clipboard-copy text-center small" role="alert" aria-atomic="true">QR Code copied to clipboard</div>'
       return
