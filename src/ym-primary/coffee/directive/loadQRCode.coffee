@@ -1,5 +1,5 @@
 angular.module 'ahaLuminateApp'
-  .directive 'load-qrcode', ->
+  .directive 'loadQrcode', ->
     (scope, element, attrs) ->
       if $scope.participantRegistration.companyInformation?.isCompanyCoordinator is 'true'
         jQuery(element).qrcode
