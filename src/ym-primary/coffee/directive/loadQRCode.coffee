@@ -2,7 +2,8 @@ angular.module 'ahaLuminateApp'
   .directive 'loadQrcode', [
     'APP_INFO'
     '$rootScope'
-    (APP_INFO, $rootScope) ->
+    '$timeout'
+    (APP_INFO, $rootScope, $timeout) ->
       (scope, element, attrs) ->
         $timeout ->
           if $scope.participantRegistration.companyInformation?.isCompanyCoordinator is 'true'
@@ -17,12 +18,12 @@ angular.module 'ahaLuminateApp'
               'size': 300
               'rounded': 300
               'quiet': 1
-              'mode': 'label'
+              'mode': 'image'
               'mSize': 20
               'mPosX': 50
               'mPosY': 50
               'label': 'KHC'
               'fontname': 'Luckiest Guy'
               'fontcolor': '#c10e21'
-              'image': {}
+              'image': angular.element('.qrcode-logo').get(0)
   ]
