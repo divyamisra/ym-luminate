@@ -3,4 +3,5 @@ angular.module 'ahaLuminateApp'
     (scope, element, attrs) ->
       element.bind 'click', (event) ->
         CopyImageClipboard.copyImageToClipboard attrs.copyImage
+        element.html 'Copied!'
       return
