@@ -1244,6 +1244,17 @@
 	      </div>
           </div>
         </div>
+	<div class="ym-pc-dashboard-qrcode">
+          <div class="ym-pc-dashboard-section-header">
+       	    <div class="schoolChallenge text-center">
+               School QR Code
+	    </div>
+	    <p>Click the Copy or Print buttons to use this QR code to link back to your school page.</p>
+  	    <img id="qrcode" ng-src='https://chart.googleapis.com/chart?cht=qr&chs=300x300&chl=http://heartdev.convio.net/site/TR?pg=company&fr_id={{frId}}&company_id={{participantRegistration.companyInformation.companyId}}&coe=UTF-8'/>
+            <button type="button" class="btn btn-md-wide btn-primary" id="copyable" role="button"><strong>Copy</strong></button>
+	    <button type="button" class="btn btn-md-wide btn-primary" id="printable" role="button"><strong>Print</strong></button>
+	  </div>
+	</div>
       </div>
     </section>
     <section class="ym-pc-dashboard-coordinator-school-years-section" aria-label="Years School Participated">
