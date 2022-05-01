@@ -46,10 +46,6 @@ angular.module 'trPcControllers'
       $scope.topCompanySteps = []
        
       $dataRoot = angular.element '[data-embed-root]'
-
-      $scope.getSchoolQRCode()
-        .then (response) ->
-          $scope.qrcode = response
 		
       if $scope.participantRegistration.lastPC2Login is '0'
         if $scope.participantRegistration.companyInformation?.isCompanyCoordinator isnt 'true'
