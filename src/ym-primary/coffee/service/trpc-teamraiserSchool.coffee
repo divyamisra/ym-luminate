@@ -26,11 +26,5 @@ angular.module 'ahaLuminateApp'
               url: 'NTM'
               data: params
               headers:
-                'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
-    
-      # call returns QRCode image
-      getSchoolQRCode: (callback) ->
-        $http.get('https://chart.googleapis.com/chart?cht=qr&chs=300x300&chl='+$rootScope.nonSecureDomain+'site/TR?pg=company&fr_id='+$scope.frId+'&company_id='+$scope.companyInfo.companyId+'&coe=UTF-8')
-          .then (response) ->
-            return response            
+                'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'     
   ]
