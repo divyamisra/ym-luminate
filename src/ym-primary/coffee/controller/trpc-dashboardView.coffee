@@ -47,7 +47,12 @@ angular.module 'trPcControllers'
       $scope.canCopyQRCode = canCopyImagesToClipboard()
        
       $dataRoot = angular.element '[data-embed-root]'
-		
+
+      if $scope.participantRegistration.companyInformation?.isCompanyCoordinator isnt 'true'
+        jQuery('#QRCodeWithLogo').qrcode
+          mode: 3
+          image: APP_INFO.rootPath + 'dist/ym-primary/image/fy21/khc-logo-2021.png'
+
       if $scope.participantRegistration.lastPC2Login is '0'
         if $scope.participantRegistration.companyInformation?.isCompanyCoordinator isnt 'true'
           $scope.firstLoginModal = $uibModal.open
