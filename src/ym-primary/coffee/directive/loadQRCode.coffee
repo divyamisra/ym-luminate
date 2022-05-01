@@ -6,9 +6,22 @@ angular.module 'ahaLuminateApp'
       (scope, element, attrs) ->
         if $scope.participantRegistration.companyInformation?.isCompanyCoordinator is 'true'
           jQuery(element).kjua
-            mode: 3
-            image: APP_INFO.rootPath + 'dist/ym-primary/image/fy21/khc-logo-2021.png'
-            size: 150
-            fill: '#212121'
-            text: $rootScope.secureDomain + '/site/TR?pg=company&fr_id='+$scope.frId + '&company_id=' + $scope.participantRegistration.companyInformation.companyId
+            'render': 'canvas'
+            'crisp': true
+            'ecLevel': 'H'
+            'minVersion': 1
+            'fill': '#333333'
+            'back': '#ffffff'
+            'text': $rootScope.secureDomain + '/site/TR?pg=company&fr_id=' + $scope.frId + '&company_id=' + $scope.participantRegistration.companyInformation.companyId
+            'size': 400
+            'rounded': 100
+            'quiet': 1
+            'mode': 'label'
+            'mSize': 20
+            'mPosX': 50
+            'mPosY': 50
+            'label': 'KHC'
+            'fontname': 'Ubuntu Mono'
+            'fontcolor': '#c10e21'
+            'image': {}
   ]
