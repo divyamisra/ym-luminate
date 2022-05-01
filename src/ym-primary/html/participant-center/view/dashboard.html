@@ -1249,9 +1249,8 @@
                  School QR Code
 	      </div>
 	      <p>Click the Copy button to use this QR code to link back to your school page.</p>
- 	      <div id="QRCodeWithLogo" load-qrcode></div>
-  	      <img id="qrcode" ng-src='https://chart.googleapis.com/chart?cht=qr&chs=100x100&chl=https://[[S29:SECURE_DOMAIN]][[S29:SECURE_PATH]]TR?pg=company&fr_id={{frId}}&company_id={{participantRegistration.companyInformation.companyId}}&coe=UTF-8'/>
-              <button type="button" class="btn btn-md-wide btn-primary" id="copyable" copy-image="https://chart.googleapis.com/chart?cht=qr&chs=300x300&chl=http://heartdev.convio.net/site/TR?pg=company&fr_id={{frId}}&company_id={{participantRegistration.companyInformation.companyId}}&coe=UTF-8" role="button"><strong>Copy</strong></button>
+ 	      <div id="qrcode" load-qrcode></div>
+              <button type="button" class="btn btn-md-wide btn-primary" id="copyable" role="button" copy-image><strong>Copy</strong></button>
 	    </div>
 	  </div>
         </div>
