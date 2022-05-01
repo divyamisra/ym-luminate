@@ -13,8 +13,8 @@ angular.module 'ahaLuminateApp'
             'fill': '#333333'
             'back': '#ffffff'
             'text': $rootScope.secureDomain + '/site/TR?pg=company&fr_id=' + $scope.frId + '&company_id=' + $scope.participantRegistration.companyInformation.companyId
-            'size': 400
-            'rounded': 100
+            'size': 150
+            'rounded': 150
             'quiet': 1
             'mode': 'label'
             'mSize': 20
