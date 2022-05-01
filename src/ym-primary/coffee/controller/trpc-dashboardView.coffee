@@ -44,6 +44,7 @@ angular.module 'trPcControllers'
       $scope.topGradeRaised = []
       $scope.topGradeStudents = []
       $scope.topCompanySteps = []
+      $scope.canCopyQRCode = canCopyImagesToClipboard()
        
       $dataRoot = angular.element '[data-embed-root]'
 		
