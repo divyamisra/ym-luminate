@@ -17,7 +17,7 @@ angular.module 'ahaLuminateApp'
                 'minVersion': 1
                 'fill': '#333333'
                 'back': '#ffffff'
-                'text': $rootScope.secureDomain + '/site/TR?pg=company&fr_id=' + $rootScope.frId + '&company_id=' + $rootScope.participantRegistration.companyInformation.companyId
+                'text': $attrs.loadQrcode
                 'size': 300
                 'rounded': 300
                 'quiet': 1
