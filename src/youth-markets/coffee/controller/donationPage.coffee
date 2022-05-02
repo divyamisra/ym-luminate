@@ -440,36 +440,37 @@ angular.module 'ahaLuminateControllers'
           angular.element('#billing_info_same_as_donorname').prop 'checked', false
 
       $scope.submitDonationForm = (e) ->
-        # remove any credit card numbers from input fields other than the cc field
-        r = /((?:\d{4}[ -]?){3}\d{3,4})/gm
-        jQuery('[type=text]:not(#responsive_payment_typecc_numbername)').each ->
-          jQuery(this).val jQuery(this).val().replace(r, '')
-          return
+        if angular.element('form[name=process]').valid()
+          # remove any credit card numbers from input fields other than the cc field
+          r = /((?:\d{4}[ -]?){3}\d{3,4})/gm
+          jQuery('[type=text]:not(#responsive_payment_typecc_numbername)').each ->
+            jQuery(this).val jQuery(this).val().replace(r, '')
+            return
 
-        loading = '<div class="ym-loading text-center h3">Processing Gift <i class="fa fa-spinner fa-spin"></i></div>'
-        angular.element('.button-sub-container').append loading
-        angular.element('#pstep_finish').addClass 'hidden'
+          loading = '<div class="ym-loading text-center h3">Processing Gift <i class="fa fa-spinner fa-spin"></i></div>'
+          angular.element('.button-sub-container').append loading
+          angular.element('#pstep_finish').addClass 'hidden'
 
-#        console.log('level type ' + $scope.donationInfo.levelType)
-#        console.log('other amt ' + $scope.donationInfo.otherAmt)
-#        console.log('parseint other amt ' + parseInt($scope.donationInfo.otherAmt))
-#        console.log('amount in the damned field ' + angular.element('#other_amount').val())
+#          console.log('level type ' + $scope.donationInfo.levelType)
+#          console.log('other amt ' + $scope.donationInfo.otherAmt)
+#          console.log('parseint other amt ' + parseInt($scope.donationInfo.otherAmt))
+#          console.log('amount in the damned field ' + angular.element('#other_amount').val())
 
-        if $scope.donationInfo.levelType is 'other' || $scope.donationInfo.levelType is 'addFee'
-#          console.log('level type is other or addFee')
-          if $scope.donationInfo.otherAmt is undefined or !(parseInt($scope.donationInfo.otherAmt) >= 10)
-#            console.log('otheramt ' + $scope.donationInfo.otherAmt)
-#            console.log('parseint otheramt ' + parseInt($scope.donationInfo.otherAmt))
-            e.preventDefault()
-            jQuery('html, body').animate
-              scrollTop: jQuery('a[name="donationLevels"]').offset().top
-            , 0
-            $scope.otherAmtError = true
-            if not $scope.$$phase
-              $scope.$apply()
-            angular.element('#pstep_finish').removeClass 'hidden'
-            angular.element('.ym-loading').addClass 'hidden'
-#          console.log('amount in the damned field 2 ' + angular.element('#other_amount').val())
+          if $scope.donationInfo.levelType is 'other' || $scope.donationInfo.levelType is 'addFee'
+#           console.log('level type is other or addFee')
+            if $scope.donationInfo.otherAmt is undefined or !(parseInt($scope.donationInfo.otherAmt) >= 10)
+#             console.log('otheramt ' + $scope.donationInfo.otherAmt)
+#             console.log('parseint otheramt ' + parseInt($scope.donationInfo.otherAmt))
+              e.preventDefault()
+              jQuery('html, body').animate
+                scrollTop: jQuery('a[name="donationLevels"]').offset().top
+              , 0
+              $scope.otherAmtError = true
+              if not $scope.$$phase
+                $scope.$apply()
+              angular.element('#pstep_finish').removeClass 'hidden'
+              angular.element('.ym-loading').addClass 'hidden'
+#            console.log('amount in the damned field 2 ' + angular.element('#other_amount').val())
       angular.element("#ProcessForm").submit $scope.submitDonationForm
 
       loggedInForm = ->
@@ -598,6 +599,9 @@ angular.module 'ahaLuminateControllers'
           angular.element('#cover_fee_radio_Yes').hide()
           $compile(elmAddFeeCheckbox) $scope
 
+      markRequired = ->
+        jQuery('span.field-required').closest('.form-content').find('input:not(:hidden), select:not(:hidden)').addClass('required')
+        
       loadLevels().then ->
         $scope.otherAmtError = false
         if $scope.paymentInfoErrors.errors.length > 0
@@ -624,6 +628,7 @@ angular.module 'ahaLuminateControllers'
         billingAddressFields()
         donorRecognitionFields()
         ariaAdjustments()
+        markRequired()
         if angular.element('body').is '.cons-logged-in'
           hideDonorInfo = true
           $reqInput = angular.element '.form-row-required input[type="text"]'
