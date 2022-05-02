@@ -1246,7 +1246,7 @@
                  School QR Code
 	      </div>
 	      <p>Click the Copy button to use this QR Code to link back to your school page.</p>
- 	      <div id="qrcode" load-qrcode></div>
+ 	      <div id="qrcode" load-qrcode="https://[[S29:SECURE_DOMAIN]][[S29:SECURE_PATH]]TR?pg=company&fr_id={{frId}}&company_id={{companyId}}"></div>
 	      <img src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/khc-logo-qrcode.png" class="qrcode-logo hidden">
               <button type="button" class="btn btn-md-wide btn-primary" id="copyable" role="button" copy-qrcode><strong>Copy</strong></button>
 	    </div>
