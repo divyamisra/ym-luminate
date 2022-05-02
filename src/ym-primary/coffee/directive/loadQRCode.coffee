@@ -17,7 +17,7 @@ angular.module 'ahaLuminateApp'
                 'minVersion': 1
                 'fill': '#333333'
                 'back': '#ffffff'
-                'text': $attrs.loadQrcode
+                'text': attrs.loadQrcode
                 'size': 300
                 'rounded': 300
                 'quiet': 1
