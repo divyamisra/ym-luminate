@@ -259,6 +259,7 @@ a.ym-pc-dashboard-download-certificates {
 	   g.finn-text text {
 	    font-family: $headline-font;
 	    font-size: 24px;
+            font-weight:bold;
 	}
    }
    .ym-pc-dashboard-badges-header {
@@ -353,6 +354,7 @@ section.ym-pc-dashboard-standard-gifts-section {
 	              color: $event-secondary;
         	      font-family: $headline-font;
 	              font-size: 20px;
+		      font-weight:bold;
 		   }
 		   .gift-subtitle1 {
 			   color:$event-secondary;
@@ -367,6 +369,7 @@ section.ym-pc-dashboard-standard-gifts-section {
 	              color: $event-secondary;
         	      font-family: $headline-font;
 	              font-size: 20px;
+ 		      font-weight:bold;
 		   }
 		   .gift-subtitle1 {
 			   color:$event-secondary;
@@ -408,6 +411,7 @@ div.ta-editor table.containFull table {
       font-family: $headline-font;
       font-size: 30px;
       text-align:center;
+      font-weight:bold;
    }
    img.prize-image {
       margin:0 auto;
@@ -575,6 +579,7 @@ div[id^="taTextElement"]:focus {
 		color: $event-secondary;
 		font-family: $headline-font;
 		line-height: 28px;
+		font-weight:bold;
 
 		select {
 			width: auto;
@@ -612,6 +617,7 @@ div[id^="taTextElement"]:focus {
        color: #440075;
        font-family: $headline-font;
        text-transform:uppercase;
+       font-weight:bold;
     }
 }
 
