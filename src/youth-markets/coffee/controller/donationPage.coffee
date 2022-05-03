@@ -430,6 +430,10 @@ angular.module 'ahaLuminateControllers'
           angular.element('.btn--credit').addClass 'active'
           angular.element('.btn--paypal').removeClass 'active'
 
+      jQuery.validator.addMethod 'zipcode', ((value, element) ->
+        @optional(element) or ! !value.trim().match(/^\d{5}(?:[-\s]\d{4})?$/)
+      ), 'Invalid zip code'
+
       $scope.toggleBillingInfo = ->
         angular.element('.billing-info').toggleClass 'hidden'
         inputStatus = angular.element('#billing_info').prop 'checked'
@@ -617,7 +621,8 @@ angular.module 'ahaLuminateControllers'
           $compile(elmAddFeeCheckbox) $scope
 
       markRequired = ->
-        jQuery('span.field-required').closest('.form-content').find('input:not(:hidden), select:not(:hidden)').addClass('required')
+        angular.element('span.field-required').closest('.form-content').find('input:not(:hidden), select:not(:hidden)').addClass('required')
+        angular.element('input#donor_addr_zipname').addClass("zipcode");
         
       loadLevels().then ->
         $scope.otherAmtError = false
