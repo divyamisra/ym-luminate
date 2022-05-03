@@ -623,6 +623,7 @@ angular.module 'ahaLuminateControllers'
       markRequired = ->
         angular.element('span.field-required').closest('.form-content').find('input:not(:hidden), select:not(:hidden)').addClass('required')
         angular.element('input#donor_addr_zipname').addClass("zipcode");
+        angular.element('input#responsive_payment_typecc_numbername').addClass("creditcard")
         
       loadLevels().then ->
         $scope.otherAmtError = false
