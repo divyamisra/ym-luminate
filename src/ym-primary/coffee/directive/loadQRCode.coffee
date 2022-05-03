@@ -21,7 +21,7 @@ angular.module 'ahaLuminateApp'
               'rounded': 300
               'quiet': 1
               'mode': 'image'
-              'mSize': 40
+              'mSize': 30
               'mPosX': 50
               'mPosY': 50
               'label': 'KHC'
