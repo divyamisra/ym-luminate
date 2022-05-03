@@ -76,7 +76,7 @@
 	line-height:28px;
 	padding:10px 20px;
 	color:#fff;
-	font-family: 'Luckiest Guy', cursive;
+	font-family: $headline-font;
 }
 .entry-division .title-banner-link {
 	color:#ffffff;
@@ -223,7 +223,7 @@
 	line-height:28px;
 	padding:5px 20px;
 	color:#fff;
-	font-family: 'Luckiest Guy', cursive;
+	font-family: $headline-font;
 	background:#ff0096;
 	border-radius:5px;
 	text-decoration: none;
