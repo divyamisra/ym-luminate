@@ -257,7 +257,7 @@ a.ym-pc-dashboard-download-certificates {
       }
 	   
 	   g.finn-text text {
-	    font-family: "Luckiest Guy",cursive;
+	    font-family: $headline-font;
 	    font-size: 24px;
 	}
    }
@@ -351,7 +351,7 @@ section.ym-pc-dashboard-standard-gifts-section {
 	   .ym-pc-dashboard-standard-gift-earned {
 		   h4 {
 	              color: $event-secondary;
-        	      font-family: "Luckiest Guy",cursive;
+        	      font-family: $headline-font;
 	              font-size: 20px;
 		   }
 		   .gift-subtitle1 {
@@ -365,7 +365,7 @@ section.ym-pc-dashboard-standard-gifts-section {
 	   .ym-pc-dashboard-standard-gift-notearned {
 		   h4 {
 	              color: $event-secondary;
-        	      font-family: "Luckiest Guy",cursive;
+        	      font-family: $headline-font;
 	              font-size: 20px;
 		   }
 		   .gift-subtitle1 {
@@ -405,7 +405,7 @@ div.ta-editor table.containFull table {
 .modal-dialog {
    .ym-pc-dashboard-gift-earned {
       color: #440075;
-      font-family: "Luckiest Guy",cursive;
+      font-family: $headline-font;
       font-size: 30px;
       text-align:center;
    }
@@ -573,7 +573,7 @@ div[id^="taTextElement"]:focus {
 	div.ym-pc-dashboard-section-header {
 		font-size: 20px;
 		color: $event-secondary;
-		font-family: "Luckiest Guy",cursive;
+		font-family: $headline-font;
 		line-height: 28px;
 
 		select {
@@ -610,7 +610,7 @@ div[id^="taTextElement"]:focus {
     text-align: center;
     h3.h5 {
        color: #440075;
-       font-family: "Luckiest Guy",cursive;
+       font-family: $headline-font;
        text-transform:uppercase;
     }
 }
