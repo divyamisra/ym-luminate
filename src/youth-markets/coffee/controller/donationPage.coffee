@@ -439,13 +439,19 @@ angular.module 'ahaLuminateControllers'
         else
           angular.element('#billing_info_same_as_donorname').prop 'checked', false
 
-      angular.element('#ProcessForm').validate errorPlacement: (error, element) ->
-        if element.attr('name') == 'terms-of-service-checkbox'
-          # do whatever you need to place label where you want
-          angular.element(element).next('label').after error
-        else
-          # the default error placement for the rest
-          error.insertAfter element
+      angular.element('#ProcessForm').validate 
+        errorPlacement: (error, element) ->
+          if element.attr('name') == 'terms-of-service-checkbox'
+            # do whatever you need to place label where you want
+            angular.element(element).next('label').after error
+          else
+            # the default error placement for the rest
+            error.insertAfter element
+        showErrors: (errorMap, errorList) ->
+          if typeof errorList[0] != 'undefined'
+            position = angular.element(errorList[0].element).position().top
+            angular.element('html, body').animate { scrollTop: position }, 300
+          @defaultShowErrors()
 
       $scope.submitDonationForm = (e) ->
         if angular.element("#ProcessForm").valid()
