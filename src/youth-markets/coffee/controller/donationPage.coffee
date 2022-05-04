@@ -445,6 +445,7 @@ angular.module 'ahaLuminateControllers'
 
       angular.element('#ProcessForm').validate 
         errorPlacement: (error, element) ->
+          angular.element(error).attr("role","alert");
           if element.attr('name') == 'terms-of-service-checkbox'
             # do whatever you need to place label where you want
             angular.element(element).next('label').after error
