@@ -48,16 +48,6 @@ angular.module 'trPcControllers'
        
       $dataRoot = angular.element '[data-embed-root]'
 		
-      $scope.schoolChallengeReport = ->
-	participants = companyParticipants.participants
-        if participants and participants.length > 0
-          angular.forEach participants, (participant, participantIndex) ->
-            participantsString += '{name: "' + participant.name.first + ' ' + participant.name.last + '", raised: "' + participant.amountRaisedFormatted + '"}'
-            if participantIndex < (participants.length - 1)
-              participantsString += ', '
-          $scope.companyParticipantList = '{participants: [' + participantsString + '], totalNumber: ' + participants.length + '}'
-      $scope.schoolChallengeReport()
-				
       if $scope.participantRegistration.lastPC2Login is '0'
         if $scope.participantRegistration.companyInformation?.isCompanyCoordinator isnt 'true'
           $scope.firstLoginModal = $uibModal.open
@@ -199,9 +189,19 @@ angular.module 'trPcControllers'
                       participant.donationFormId = participant.donationUrl.split('df_id=')[1].split('&')[0]
                     companyParticipants.push participant
                     totalFundraisers++
+                schoolChallengeReportData()
               setCompanyParticipants companyParticipants, totalNumberParticipants, totalFundraisers
       getCompanyParticipants()
-      
+
+      schoolChallengeReportData = ->
+	participants = companyParticipants.participants
+        if participants and participants.length > 0
+          angular.forEach participants, (participant, participantIndex) ->
+            participantsString += '{name: "' + participant.name.first + ' ' + participant.name.last + '", raised: "' + participant.amountRaisedFormatted + '"}'
+            if participantIndex < (participants.length - 1)
+              participantsString += ', '
+          $scope.companyParticipantList = '{participants: [' + participantsString + '], totalNumber: ' + participants.length + '}'
+					
       url = 'PageServer?pagename=ym_khc_school_animation&pgwrap=n'
       if $scope.protocol is 'https:'
         url = 'S' + url
