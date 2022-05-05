@@ -47,7 +47,17 @@ angular.module 'trPcControllers'
       $scope.canCopyQRCode = CopyImageClipboard.canCopyImagesToClipboard()
        
       $dataRoot = angular.element '[data-embed-root]'
-
+		
+      $scope.schoolChallengeReport = ->
+	participants = companyParticipants.participants
+        if participants and participants.length > 0
+          angular.forEach participants, (participant, participantIndex) ->
+            participantsString += '{name: "' + participant.name.first + ' ' + participant.name.last + '", raised: "' + participant.amountRaisedFormatted + '"}'
+            if participantIndex < (participants.length - 1)
+              participantsString += ', '
+          $scope.companyParticipantList = '{participants: [' + participantsString + '], totalNumber: ' + participants.length + '}'
+      $scope.schoolChallengeReport()
+				
       if $scope.participantRegistration.lastPC2Login is '0'
         if $scope.participantRegistration.companyInformation?.isCompanyCoordinator isnt 'true'
           $scope.firstLoginModal = $uibModal.open
