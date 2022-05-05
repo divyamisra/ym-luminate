@@ -194,7 +194,7 @@ angular.module 'trPcControllers'
       getCompanyParticipants()
 
       schoolChallengeReportData = ->
-	participants = $scope.companyParticipants.participants
+        participants = $scope.companyParticipants.participants
         if participants and participants.length > 0
           angular.forEach participants, (participant, participantIndex) ->
             participantsString += '{name: "' + participant.name.first + ' ' + participant.name.last + '", raised: "' + participant.amountRaisedFormatted + '"}'
