@@ -229,6 +229,33 @@ angular.module 'ahaLuminateControllers'
                     setRegistrationQuestionSurveyKey registrationQuestion.ng_questionName, registrationQuestion.key
               initCustomQuestions()
       
+      prevTrId = '4558'
+
+      $scope.getPrevSurveyResponses = ()->
+        console.log('getPrevSurveyResponses')
+        TeamraiserRegistrationService.getSurveyResponses 'fr_id=' + prevTrId,
+            error: ->
+              # TODO
+            success: (response) ->
+              surveyResponses = response.responses?.question
+              if surveyResponses
+                console.log('got responses')
+                surveyResponses = [surveyResponses] if not angular.isArray surveyResponses
+                angular.forEach surveyResponses, (surveyResponse, serveyResponseIndex) ->
+                  surveyResponseKey = surveyResponse.key
+                  console.log('surveyResponseKey ' + surveyResponseKey)
+                  surveyResponseId = surveyResponse.id
+                  console.log('surveyResponseId ' + surveyResponseId)
+                #   angular.forEach $scope.registrationQuestions, (questionObj, questionName) ->
+                #     if questionName.match('_' + registrationQuestionId + '$')
+                #       registrationQuestions[registrationQuestionIndex].ng_questionName = questionName
+                # registrationQuestions = $filter('orderBy') registrationQuestions, 'ng_questionName', false
+                # angular.forEach registrationQuestions, (registrationQuestion) ->
+                #   if registrationQuestion.ng_questionName
+                #     setRegistrationQuestionSurveyKey registrationQuestion.ng_questionName, registrationQuestion.key
+
+      $scope.getPrevSurveyResponses()
+
       $scope.toggleAcceptWaiver = (acceptWaiver) ->
         $scope.acceptWaiver = acceptWaiver
       

@@ -14,4 +14,9 @@ angular.module 'ahaLuminateApp'
       getRegistration: (callback) ->
         dataString = 'method=getRegistration'
         LuminateRESTService.luminateExtendTeamraiserRequest dataString, true, true, callback
+
+      getSurveyResponses: (callback) ->
+        dataString = 'method=getSurveyResponses'
+        LuminateRESTService.luminateExtendTeamraiserRequest dataString, true, true, callback
+      
   ]
