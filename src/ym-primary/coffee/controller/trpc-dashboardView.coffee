@@ -145,6 +145,7 @@ angular.module 'trPcControllers'
                 #if both student and school goals met
                 if $scope.companyProgress.raised >= $scope.companyProgress.goal and $scope.companyProgress.goal > 0 and amt >= Number(($scope.companyProgress.schoolChallengeLevel).replace('$', '').replace(/,/g, '')) and $scope.companyProgress.schoolChallenge != "No School Challenge"
                   $scope.schoolChallenge = 4
+              schoolChallengeReportData();
             $scope.getSchoolBadges()
             
       participantsString = ''
@@ -165,7 +166,6 @@ angular.module 'trPcControllers'
           angular.element('.ym-school-animation iframe')[0].contentWindow.postMessage companyParticipantsString, domain
           angular.element('.ym-school-animation iframe').on 'load', ->
             angular.element('.ym-school-animation iframe')[0].contentWindow.postMessage companyParticipantsString, domain
-        schoolChallengeReportData()
 
       getCompanyParticipants = ->
         TeamraiserParticipantService.getParticipants 'team_name=' + encodeURIComponent('%') + '&first_name=' + encodeURIComponent('%%') + '&last_name=' + encodeURIComponent('%') + '&list_filter_column=team.company_id&list_filter_text=' + $scope.participantRegistration.companyInformation.companyId + '&list_sort_column=total&list_ascending=false&list_page_size=500',
@@ -194,14 +194,16 @@ angular.module 'trPcControllers'
       getCompanyParticipants()
 
       schoolChallengeReportData = ->
+        participantsString = ''
         participants = $scope.companyParticipants.participants
+        level = Number($scope.companyProgress.schoolChallengeLevel.replace(/[^0-9.-]+/g, ''))
         if participants and participants.length > 0
           angular.forEach participants, (participant, participantIndex) ->
-            participantsString += '{name: "' + participant.name.first + ' ' + participant.name.last + '", raised: "' + participant.amountRaisedFormatted + '"}'
-            if participantIndex < (participants.length - 1)
+            participantsString += '{"first_name": "' + participant.firstName + '", "last_name":"' + participant.lastName + '", "teacher":"", "grade":"", "raised": "' + participant.amountRaised / 100 + '", "completed":' + ((participant.amountRaised / 100) > level) + '}'
+            if participantIndex < participants.length - 1
               participantsString += ', '
-          $scope.companyParticipantList = '{participants: [' + participantsString + '], totalNumber: ' + participants.length + '}'
-					
+          $scope.companyParticipantList = angular.fromJson('{"participants": [' + participantsString + '], "totalNumber": ' + participants.length + '}')
+
       url = 'PageServer?pagename=ym_khc_school_animation&pgwrap=n'
       if $scope.protocol is 'https:'
         url = 'S' + url
