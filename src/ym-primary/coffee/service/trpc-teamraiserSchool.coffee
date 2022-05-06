@@ -28,14 +28,19 @@ angular.module 'ahaLuminateApp'
               headers:
                 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'     
   
-      getRegistrationQuestions: (requestData) ->
-        requestUrl = luminateExtend.global.path.nonsecure
-        if window.location.protocol is 'https:'
-          requestUrl = luminateExtend.global.path.secure + 'S'
-        requestUrl += 'PageServer?pagename=reus_khc_reginfo_js&pgwrap=n' + requestData
-        $http.jsonp($sce.trustAsResourceUrl(requestUrl), jsonpCallbackParam: 'callback')
+      getRegistrationQuestions: (requestData, callback) ->
+        if $rootScope.tablePrefix is 'heartdev'
+          url = '//tools.heart.org/reporting/reportProcessing.php?pgwrap=n&env=dev' + requestData
+        else if $rootScope.tablePrefix is 'heartnew'
+          url = '//tools.heart.org/reporting/reportProcessing.php?pgwrap=n&env=new' + requestData
+        else
+          url = '//tools.heart.org/reporting/reportProcessing.php?pgwrap=n' + requestData
+        $http.jsonp($sce.trustAsResourceUrl(url), jsonpCallbackParam: 'callback')
           .then (response) ->
-            response
+            if response.data.success is false
+              callback.error response
+            else
+              callback.success response
           , (response) ->
-            response
+            callback.failure response
   ]
