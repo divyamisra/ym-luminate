@@ -1220,7 +1220,10 @@
 		  </div>
 		</div>
 	      </div>
-	      <div class="ym-pc-dashboard-section-header">
+  	   <div class="ym-pc-dashboard-school-report text-center" ng-cloak>
+ 	     <button type="button" class="btn btn-md-wide btn-primary" ng-click="showSchoolChallengeReport()">Generate School Challenge Report</button>
+ 	   </div>
+	   <div class="ym-pc-dashboard-section-header">
 		<div class="schoolCreateMessage text-center" ng-if="coordinatorMessage.text == ''" ng-cloak>
 		   <p>
 		     Create an <strong>encouraging message</strong> for your students in their Headquarters.
@@ -1240,9 +1243,6 @@
 		</div>
 	      </div>
           </div>
-  	  <div class="ym-pc-dashboard-school-report" ng-cloak>
- 	    <button type="button" class="btn btn-md-wide btn-primary" ng-csv="companyParticipantList.participants" filename="school_challenge_report.csv" csv-header="['First Name', 'Last Name', 'Teacher', 'Grade', 'Completed']" charset="utf-8"><span class="glyphicon glyphicon-download-alt">&nbsp;</span>Download CSV</button>
-	 </div>
   	  <div class="ym-pc-dashboard-qrcode hidden-xs hidden-sm" ng-cloak>
             <div class="ym-pc-dashboard-section-header">
        	      <div class="schoolQRCode text-center">
