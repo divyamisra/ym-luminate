@@ -201,7 +201,7 @@ angular.module 'trPcControllers'
           angular.forEach participants, (participant, participantIndex) ->
             participantsString += participant.consId
             if participantIndex < participants.length - 1
-              participantsString += ', '
+              participantsString += ','
           $scope.challenges = []
           NgPcTeamraiserSchoolService.getRegistrationQuestions '&trID=' + $scope.frId + '&px=' + participantsString + '&level=' + level,
             failure: (response) ->
