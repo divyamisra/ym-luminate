@@ -1221,7 +1221,9 @@
 		</div>
 	      </div>
   	   <div class="ym-pc-dashboard-school-report text-center" ng-cloak>
- 	     <button type="button" class="btn btn-md-wide btn-primary" ng-class="{'disabled': companyProgress.schoolChallengeLevel == ''}" ng-click="showSchoolChallengeReport()" ng-disabled="companyProgress.schoolChallengeLevel == ''">Generate School Challenge Report</button>
+ 	     <button type="button" class="btn btn-md-wide btn-primary" ng-class="{'disabled': companyProgress.schoolChallengeLevel == ''}" ng-click="showSchoolChallengeReport()" ng-disabled="companyProgress.schoolChallengeLevel == ''">
+	       <strong>Generate School Challenge Report</strong>
+	     </button>
  	   </div>
 	   <div class="ym-pc-dashboard-section-header">
 		<div class="schoolCreateMessage text-center" ng-if="coordinatorMessage.text == ''" ng-cloak>
