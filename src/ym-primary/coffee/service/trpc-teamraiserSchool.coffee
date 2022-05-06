@@ -27,4 +27,15 @@ angular.module 'ahaLuminateApp'
               data: params
               headers:
                 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'     
+  
+      getRegistrationQuestions: (requestData) ->
+        requestUrl = luminateExtend.global.path.nonsecure
+        if window.location.protocol is 'https:'
+          requestUrl = luminateExtend.global.path.secure + 'S'
+        requestUrl += 'PageServer?pagename=reus_khc_reginfo_js&pgwrap=n' + requestData
+        $http.jsonp($sce.trustAsResourceUrl(requestUrl), jsonpCallbackParam: 'callback')
+          .then (response) ->
+            response
+          , (response) ->
+            response
   ]
