@@ -147,7 +147,6 @@ angular.module 'trPcControllers'
                   $scope.schoolChallenge = 4
               if $scope.participantRegistration.companyInformation?.isCompanyCoordinator is 'true'
                 schoolChallengeReportData();
-              }
             $scope.getSchoolBadges()
             
       participantsString = ''
