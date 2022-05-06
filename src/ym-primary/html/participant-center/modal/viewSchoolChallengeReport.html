@@ -4,11 +4,19 @@
     </h2>
   </div>
   <div class="modal-body text-center" ng-if="schoolReportPending" ng-cloak>
-      <div class="ym-school-report-status">Report is being generated...</div>
+    <div class="ym-school-report-status">Report is being generated...
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="margin: auto; background: rgb(241, 242, 243) none repeat scroll 0% 0%; display: block;" width="187px" height="187px" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
+        <g>
+          <path d="M50 40A10 10 0 1 0 57.071067811865476 42.928932188134524" fill="none" stroke="#04287b" stroke-width="2"></path>
+          <path d="M49 37L49 43L52 40L49 37" fill="#04287b"></path>
+          <animateTransform attributeName="transform" type="rotate" repeatCount="indefinite" dur="1.923076923076923s" values="0 50 50;360 50 50" keyTimes="0;1"></animateTransform>
+        </g>
+      </svg>  
+    </div>
   </div>
   <div class="modal-body text-center" ng-if="!schoolReportPending" ng-cloak>
     <div class="ym-school-report-status">
-      Report generation is completed.<br/>
+      Report generation is completed.<br/><br/>
       <button type="button" class="btn btn-md-wide btn-primary" ng-csv="companyParticipantList.participants" filename="school_challenge_report.csv" csv-header="['First Name', 'Last Name', 'Teacher', 'Grade', 'Completed']" charset="utf-8"><span class="glyphicon glyphicon-download-alt">&nbsp;</span>Download CSV</button>
     </div>
   </div>
