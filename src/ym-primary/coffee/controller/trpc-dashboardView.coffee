@@ -194,9 +194,11 @@ angular.module 'trPcControllers'
       getCompanyParticipants()
 
       $scope.showSchoolChallengeReport = ->
+        $scope.schoolReportPending = true
         $scope.showSchoolChallengeReportModal = $uibModal.open
           scope: $scope
           templateUrl: APP_INFO.rootPath + 'dist/ym-primary/html/participant-center/modal/viewSchoolChallengeReport.html'
+        $scope.schoolChallengeReportData()
 
       $scope.cancelShowMaterialsTypes = ->
         $scope.showSchoolChallengeReportModal.close()
@@ -217,6 +219,7 @@ angular.module 'trPcControllers'
             error: (response) ->
               # TODO
             success: (response) ->
+              $scope.schoolReportPending = false
               $scope.companyParticipantList = {"participants": response.data.data, "totalNumber": participants.length}
 
       url = 'PageServer?pagename=ym_khc_school_animation&pgwrap=n'
