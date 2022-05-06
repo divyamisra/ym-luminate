@@ -199,10 +199,17 @@ angular.module 'trPcControllers'
         level = Number($scope.companyProgress.schoolChallengeLevel.replace(/[^0-9.-]+/g, ''))
         if participants and participants.length > 0
           angular.forEach participants, (participant, participantIndex) ->
-            participantsString += '{"first_name": "' + participant.firstName + '", "last_name":"' + participant.lastName + '", "teacher":"", "grade":"", "raised": "' + participant.amountRaised / 100 + '", "completed":' + ((participant.amountRaised / 100) > level) + '}'
+            participantsString += participant.consId
             if participantIndex < participants.length - 1
               participantsString += ', '
-          $scope.companyParticipantList = angular.fromJson('{"participants": [' + participantsString + '], "totalNumber": ' + participants.length + '}')
+          $scope.challenges = []
+          NgPcTeamraiserSchoolService.getRegistrationQuestions '&trID=' + $scope.frId + '&px=' + participantsString + '&level=' + level,
+            failure: (response) ->
+              # TODO
+            error: (response) ->
+              # TODO
+            success: (response) ->
+              $scope.companyParticipantList = angular.fromJson('{"participants": [' + response.data + '], "totalNumber": ' + participants.length + '}')
 
       url = 'PageServer?pagename=ym_khc_school_animation&pgwrap=n'
       if $scope.protocol is 'https:'
