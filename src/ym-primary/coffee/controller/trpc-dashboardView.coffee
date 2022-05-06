@@ -146,7 +146,6 @@ angular.module 'trPcControllers'
                 if $scope.companyProgress.raised >= $scope.companyProgress.goal and $scope.companyProgress.goal > 0 and amt >= Number(($scope.companyProgress.schoolChallengeLevel).replace('$', '').replace(/,/g, '')) and $scope.companyProgress.schoolChallenge != "No School Challenge"
                   $scope.schoolChallenge = 4
               if $scope.participantRegistration.companyInformation?.isCompanyCoordinator is 'true'
-                schoolChallengeReportData();
             $scope.getSchoolBadges()
             
       participantsString = ''
@@ -194,7 +193,15 @@ angular.module 'trPcControllers'
               setCompanyParticipants companyParticipants, totalNumberParticipants, totalFundraisers
       getCompanyParticipants()
 
-      schoolChallengeReportData = ->
+      $scope.showSchoolChallengeReport = ->
+        $scope.showSchoolChallengeReportModal = $uibModal.open
+          scope: $scope
+          templateUrl: APP_INFO.rootPath + 'dist/ym-primary/html/participant-center/modal/viewSchoolChallengeReport.html'
+
+      $scope.cancelShowMaterialsTypes = ->
+        $scope.showSchoolChallengeReportModal.close()
+	
+      $scope.schoolChallengeReportData = ->
         participantsString = ''
         participants = $scope.companyParticipants.participants
         level = Number($scope.companyProgress.schoolChallengeLevel.replace(/[^0-9.-]+/g, ''))
