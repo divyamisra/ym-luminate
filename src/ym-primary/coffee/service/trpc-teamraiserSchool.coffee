@@ -30,11 +30,11 @@ angular.module 'ahaLuminateApp'
   
       getRegistrationQuestions: (requestData, callback) ->
         if $rootScope.tablePrefix is 'heartdev'
-          url = '//tools.heart.org/reporting/reportProcessing.php?pgwrap=n&env=dev' + requestData
+          url = '//tools.heart.org/reporting/reportProcessing.php?method=GetFieldData&pgwrap=n&env=dev' + requestData
         else if $rootScope.tablePrefix is 'heartnew'
-          url = '//tools.heart.org/reporting/reportProcessing.php?pgwrap=n&env=new' + requestData
+          url = '//tools.heart.org/reporting/reportProcessing.php?method=GetFieldData&pgwrap=n&env=new' + requestData
         else
-          url = '//tools.heart.org/reporting/reportProcessing.php?pgwrap=n' + requestData
+          url = '//tools.heart.org/reporting/reportProcessing.php?method=GetFieldData&pgwrap=n' + requestData
         $http.jsonp($sce.trustAsResourceUrl(url), jsonpCallbackParam: 'callback')
           .then (response) ->
             if response.data.success is false
