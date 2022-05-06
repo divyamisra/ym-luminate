@@ -145,7 +145,9 @@ angular.module 'trPcControllers'
                 #if both student and school goals met
                 if $scope.companyProgress.raised >= $scope.companyProgress.goal and $scope.companyProgress.goal > 0 and amt >= Number(($scope.companyProgress.schoolChallengeLevel).replace('$', '').replace(/,/g, '')) and $scope.companyProgress.schoolChallenge != "No School Challenge"
                   $scope.schoolChallenge = 4
-              schoolChallengeReportData();
+              if $scope.participantRegistration.companyInformation?.isCompanyCoordinator is 'true'
+                schoolChallengeReportData();
+              }
             $scope.getSchoolBadges()
             
       participantsString = ''
@@ -209,7 +211,7 @@ angular.module 'trPcControllers'
             error: (response) ->
               # TODO
             success: (response) ->
-              $scope.companyParticipantList = angular.fromJson('{"participants": [' + response.data + '], "totalNumber": ' + participants.length + '}')
+              $scope.companyParticipantList = {"participants": response.data.data, "totalNumber": participants.length}
 
       url = 'PageServer?pagename=ym_khc_school_animation&pgwrap=n'
       if $scope.protocol is 'https:'
