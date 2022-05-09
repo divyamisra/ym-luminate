@@ -17,7 +17,11 @@
 
 .therm-text-black {
   color: $event-font-color;
-  text-indent: 45px;
+  text-indent: 100%;
+  
+  &::before {
+    content: " ";
+    margin-left: 5px;
 }
 
 .therm-text-white {
