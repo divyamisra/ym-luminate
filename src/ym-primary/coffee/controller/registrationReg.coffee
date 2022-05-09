@@ -32,11 +32,12 @@ angular.module 'ahaLuminateControllers'
       #      companyInfo = companies[0]
       #      setCompanyName companyInfo.companyName
       setCompanyName localStorage.companyName
-      
+
       $scope.registrationInfoErrors =
         errors: []
       $fieldErrors = angular.element '.ErrorMessage'
       angular.forEach $fieldErrors, (fieldError) ->
+        console.log('REGISTRATION ERRORS')
         $fieldError = angular.element fieldError
         $fieldErrorLabel = $fieldError.closest('.form-error').find('label .input-label')
         $fieldErrorText = $fieldError.find('.field-error-text')
@@ -141,6 +142,7 @@ angular.module 'ahaLuminateControllers'
       angular.forEach $additionalInfoQuestions, (additionalInfoQuestion) ->
         $additionalInfoQuestion = angular.element additionalInfoQuestion
         questionType = $additionalInfoQuestion.prop('tagName').toLowerCase()
+        # console.log('questionType ' + questionType)
         questionName = $additionalInfoQuestion.attr 'name'
         questionId = $additionalInfoQuestion.attr 'id'
         $questionLabel = angular.element 'label[for="' + questionId + '"]'
@@ -149,9 +151,12 @@ angular.module 'ahaLuminateControllers'
           $questionLegend = $additionalInfoQuestion.closest('fieldset').find 'legend'
           if $questionLegend.find('.input-label').length > 0
             questionLegend = jQuery.trim $questionLegend.find('.input-label').text()
+        # console.log('questionLegend ' + questionLegend)
         questionLabel = undefined
         if $questionLabel.find('.input-label').length > 0
           questionLabel = jQuery.trim $questionLabel.find('.input-label').text()
+        # console.log('questionLabel ' + questionLabel)
+        # console.log('questionName ' + questionName)
         questionOptions = []
         if questionType is 'select'
           $questionOptions = $additionalInfoQuestion.find 'option'
@@ -162,9 +167,21 @@ angular.module 'ahaLuminateControllers'
             questionOptions.push
               value: questionOptionValue
               text: questionOptionText
+          
+        if questionLabel && questionLabel.indexOf('Grade') != -1
+          angular.element('select[name="'+questionName+'"]').addClass('std_ym_khc_grade')
+        else if questionLabel && questionLabel.indexOf('Parent First')!= -1
+          angular.element('input[name="'+questionName+'"]').addClass('std_ym_khc_parentfirstname')
+        else if questionLabel && questionLabel.indexOf('Parent Last')!= -1
+          angular.element('input[name="'+questionName+'"]').addClass('std_ym_khc_parentlastname')
+        else if questionLabel && questionLabel.indexOf('State') != -1
+          angular.element('select[name="'+questionName+'"]').addClass('std_ym_khc_student_state')
+
         questionValue = $additionalInfoQuestion.val() or ''
+        console.log('field in error? ' + questionLabel)
         questionMaxLength = $additionalInfoQuestion.attr('maxlength') or ''
         questionHasError = $additionalInfoQuestion.is '.form-error *'
+        console.log('field in error? ' + questionHasError)
         $scope.registrationQuestions[questionName] =
           type: questionType
           legend: questionLegend
@@ -174,9 +191,30 @@ angular.module 'ahaLuminateControllers'
           maxLength: questionMaxLength
           hasError: questionHasError
         $scope.registrationInfo[questionName] = questionValue
-      
+
+      # on page load, ensure that answers to hidden prev event questions are in custom event inputs
+      # # grade, parent first name, parent last name, state
+
+      # if angular.element(document).find('.std_ym_khc_parentfirstname').val() != ''
+      #   val = angular.element(document).find('.std_ym_khc_parentfirstname').val()
+      #   console.log('val ' + val)
+      #   angular.element(document).find('.ym_khc_parentfirstname').val(val)
+  
+      # if angular.element(document).find('.std_ym_khc_parentlastname').val() != ''
+      #   val = angular.element(document).find('.std_ym_khc_parentlastname').val()
+      #   angular.element(document).find('.ym_khc_parentlastname').val(val)
+
+      # if angular.element(document).find('.std_ym_khc_student_state').val() != ''
+      #   val = angular.element(document).find('.std_ym_khc_student_state').val()
+      #   angular.element(document).find('.ym_khc_student_state').val(val)
+
+      # if angular.element(document).find('.std_ym_khc_grade').val() != ''
+      #   val = angular.element(document).find('.std_ym_khc_grade').val()
+      #   angular.element(document).find('.ym_khc_grade').val(val)
+
       $scope.participationType = {}
       setParticipationType = (participationType) ->
+        console.log('SET PARTICIPATION TYPE')
         $scope.participationType = participationType
         if not $scope.$$phase
           $scope.$apply()
@@ -192,8 +230,10 @@ angular.module 'ahaLuminateControllers'
             participationType.waiver.content = waiverContent.replace /(?:\r\n|\r|\n)/g, '<br />'
           setParticipationType participationType
       $scope.$watch 'participationType.id', (newValue) ->
+        console.log('WATCH PARTICIPATION TYPE participationType.id')
         if newValue
           initCustomQuestions = ->
+            console.log('INIT CUSTOM QUESTIONS ')
             if not $scope.registrationCustomQuestions
               $scope.registrationCustomQuestions = {}
             if not $scope.$$phase
@@ -203,6 +243,7 @@ angular.module 'ahaLuminateControllers'
             questionLegend = $scope.registrationQuestions[questionName].legend
             if surveyKey is 'ym_khc_email_type' or surveyKey is 'ym_khc_grade' or surveyKey is 'ym_khc_school' or surveyKey is 'ym_khc_teacher_title' or surveyKey is 'ym_khc_teacher_name' or surveyKey is 'ym_khc_school_city' or surveyKey is 'ym_khc_school_state' or surveyKey is 'ym_khc_parentfirstname' or surveyKey is 'ym_khc_parentlastname' or surveyKey is 'ym_khc_student_state' or surveyKey is 'ym_khc_instruction_type' or surveyKey is 'ym_khc_email_consent_text' or surveyKey is 'ym_khc_future_middleschool'
               initCustomQuestions()
+              console.log('questionName ' + questionName)
               $scope.registrationCustomQuestions[surveyKey] = questionName
             else if questionLegend isnt 'Event Date' and surveyKey isnt 'ym_khc_challenge_info' and surveyKey isnt 'ym_khc_ecards_sent' and surveyKey isnt 'ym_khc_ecards_shared' and surveyKey isnt 'ym_khc_ecards_open' and surveyKey isnt 'ym_khc_ecards_clicked' and surveyKey isnt 'ym_khc_ym_game_points' and surveyKey isnt 'bb_facebook_connector_id'
               if not $scope.registrationAdditionalQuestions
@@ -214,6 +255,7 @@ angular.module 'ahaLuminateControllers'
             error: ->
               # TODO
             success: (response) ->
+              # is this the key????
               registrationQuestions = response.processRegistrationRequest?.primaryRegistration?.question
               if registrationQuestions
                 registrationQuestions = [registrationQuestions] if not angular.isArray registrationQuestions
@@ -228,8 +270,12 @@ angular.module 'ahaLuminateControllers'
                   if registrationQuestion.ng_questionName
                     setRegistrationQuestionSurveyKey registrationQuestion.ng_questionName, registrationQuestion.key
               initCustomQuestions()
-      
-      prevTrId = '4558'
+
+
+
+
+      #prevTrId = '4558'
+      prevTrId = angular.element(document).find('.prev-tr-id').text()
 
       $scope.getPrevSurveyResponses = ()->
         console.log('getPrevSurveyResponses')
@@ -237,24 +283,51 @@ angular.module 'ahaLuminateControllers'
             error: ->
               # TODO
             success: (response) ->
-              surveyResponses = response.responses?.question
+              surveyResponses = response.getSurveyResponsesResponse.responses
               if surveyResponses
                 console.log('got responses')
                 surveyResponses = [surveyResponses] if not angular.isArray surveyResponses
                 angular.forEach surveyResponses, (surveyResponse, serveyResponseIndex) ->
                   surveyResponseKey = surveyResponse.key
                   console.log('surveyResponseKey ' + surveyResponseKey)
-                  surveyResponseId = surveyResponse.id
-                  console.log('surveyResponseId ' + surveyResponseId)
-                #   angular.forEach $scope.registrationQuestions, (questionObj, questionName) ->
-                #     if questionName.match('_' + registrationQuestionId + '$')
-                #       registrationQuestions[registrationQuestionIndex].ng_questionName = questionName
-                # registrationQuestions = $filter('orderBy') registrationQuestions, 'ng_questionName', false
-                # angular.forEach registrationQuestions, (registrationQuestion) ->
-                #   if registrationQuestion.ng_questionName
-                #     setRegistrationQuestionSurveyKey registrationQuestion.ng_questionName, registrationQuestion.key
+                  # surveyResponseId = surveyResponse.questionId
+                  # console.log('surveyResponseId ' + surveyResponseId)
+                  surveyResponseAnswer = surveyResponse.responseValue
+                  console.log('surveyResponseAnswer ' + surveyResponseAnswer)
 
-      $scope.getPrevSurveyResponses()
+                  if surveyResponseKey == 'ym_khc_parentfirstname'
+                    angular.element(document).find('.ym_khc_parentfirstname').val(surveyResponseAnswer)
+                    angular.element(document).find('.std_ym_khc_parentfirstname').val(surveyResponseAnswer)
+
+                  if surveyResponseKey == 'ym_khc_parentlastname'
+                    angular.element(document).find('.ym_khc_parentlastname').val(surveyResponseAnswer)
+                    angular.element(document).find('.std_ym_khc_parentlastname').val(surveyResponseAnswer)
+
+                  if surveyResponseKey == 'ym_khc_student_state'
+                    angular.element(document).find('.ym_khc_student_state').val(surveyResponseAnswer)
+                    angular.element(document).find('.std_ym_khc_student_state').val(surveyResponseAnswer)
+
+                  if surveyResponseKey == 'ym_khc_grade'
+                    newGrade
+                    if surveyResponseAnswer == 'Pre-School'
+                      newGrade = 'Kindergarten'
+                    if surveyResponseAnswer ==  'Kindergarten'
+                      newGrade = '1st'
+                    if surveyResponseAnswer ==  '2nd'
+                      newGrade = '3rd'
+                    if surveyResponseAnswer ==  '3rd'
+                      newGrade = '4th'
+                    if surveyResponseAnswer == '4th' || surveyResponseAnswer == '5th' || surveyResponseAnswer ==  '6th'|| surveyResponseAnswer == '7th' || surveyResponseAnswer == '8th' || surveyResponseAnswer == '9th' || surveyResponseAnswer == '10th' || surveyResponseAnswer == '11th'
+                      newGrade = Number(surveyResponseAnswer.split('th')[0]) + 1
+                      newGrade = newGrade+'th'
+                    if surveyResponseAnswer ==  '12th'
+                      newGrade = 'College'
+                    if surveyResponseAnswer ==  'College' || surveyResponseAnswer == 'Other'
+                      newGrade = 'Other'
+                    angular.element(document).find('.ym_khc_grade').val(newGrade)
+                    angular.element(document).find('.std_ym_khc_grade').val(newGrade)
+
+      # $scope.getPrevSurveyResponses()
 
       $scope.toggleAcceptWaiver = (acceptWaiver) ->
         $scope.acceptWaiver = acceptWaiver
@@ -285,6 +358,7 @@ angular.module 'ahaLuminateControllers'
               scope: $scope
               templateUrl: APP_INFO.rootPath + 'dist/ym-primary/html/modal/showFamilyChallengePopup.html'
           else 
+            console.log('standard grade field value ' +  jQuery('.std_ym_khc_grade').val())
             angular.element('.js--default-reg-form').submit()
         false
 
