@@ -1,3 +1,110 @@
+:root {
+  --nav-width: 3.5rem;
+}
+
+.ahc-sidebar {
+  background: linear-gradient(180deg, #990000 42.19%, #660000 100%);
+
+  .nav-link {
+    align-items: center;
+    display: flex;
+  }
+}
+
+@include media-breakpoint-down(lg) {
+  .ahc-sidebar {
+    left: 0;
+    padding: $spacer * 0.75 $spacer * 0.5 $spacer * 0.5;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 1030;
+
+    .nav {
+      justify-content: space-evenly;
+      width: 100%;
+    }
+
+    .nav-item {
+      max-width: 25%;
+      text-align: center;
+    }
+
+    .nav-link {
+      flex-direction: column;
+      font-size: clamp(12px, 2.5vw, 16px);
+      padding: 0;
+    }
+
+    i {
+      font-size: 1.5em;
+    }
+  }
+}
+
+@include media-breakpoint-up(lg) {
+  body > .container-fluid,
+  body > .container-fluid > .row,
+  .ahc-sidebar {
+    min-height: 100%;
+  }
+
+  .ahc-sidebar {
+    font-size: clamp(#{$font-size-sm}, 1.5vw, #{$h4-font-size});
+    max-width: calc(var(--nav-width) + 10rem);
+    overflow: hidden;
+    padding-inline: clamp(1em, 2.15vw, 3em);
+    transition: max-width 0.35s ease;
+
+    .nav {
+      flex-direction: column !important;
+      margin-top: clamp(1rem, 2.5vw, 3rem);
+    }
+
+    .nav-link {
+      padding-inline: 0;
+      transition: $transition-base;
+
+      &:hover,
+      &:focus,
+      &.active {
+        position: relative;
+
+        &::before {
+          background-color: $white;
+          border-radius: $border-radius-sm;
+          content: "";
+          height: 1em;
+          left: -0.5em;
+          opacity: 0.75;
+          position: absolute;
+          width: 0.25rem;
+        }
+      }
+
+      &:hover,
+      &:focus {
+        &::before {
+          background-color: $white;
+        }
+      }
+
+      &.active {
+        color: $yellow;
+
+        &::before {
+          background-color: $yellow;
+        }
+      }
+    }
+
+    i {
+      display: none;
+    }
+  }
+}
+
+
 .ym-pc-dashboard-coordinator-progress-section,
 .ym-pc-dashboard-coordinator-steps-section,
 .ym-pc-dashboard-coordinator-school-challenge-section,
