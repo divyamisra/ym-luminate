@@ -17,3 +17,6 @@ $border-gray: #e8e8e8;
 $inactive-grey: #c2c2c2;
 $error-color: #fcddde;
 
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
