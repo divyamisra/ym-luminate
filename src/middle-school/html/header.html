@@ -13,7 +13,7 @@
       <div class="container-fluid">
         <div class="clearfix">
           [[?x27x::x[[S4]]x::::
-            <ul class="ym-site-nav hidden-xs">
+            <ul class="ym-site-nav d-none d-md-block">
               <li>
                 <a href="https://[[S29:SECURE_DOMAIN]][[S29:SECURE_PATH]]SPageNavigator/ahc_resources_search.html">
                   Home
@@ -126,15 +126,15 @@
                     My Events
                   </a>
                   <a class="btn btn-global-primary ym-header-hq-btn" ng-href="TRSC?fr_id={{regEventId}}" ng-if="numberEvents == 1">
-                    <span class="visible-xs visible-sm">My HQ</span>
-                    <span class="hidden-xs hidden-sm">My Headquarters</span>
+                    <span class="d-block d-md-none">My HQ</span>
+                    <span class="d-none d-md-block">My Headquarters</span>
                   </a>
                 </div>
               </div>
             </div>
           ]]
           [[?x27x::x[[S4]]x::::
-            <div class="ym-site-menu visible-xs">
+            <div class="ym-site-menu d-block d-md-none">
               <button type="button" class="btn btn-default ym-site-menu-toggle" ng-click="toggleSiteMenu()">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="ym-site-menu-bar"></span>
