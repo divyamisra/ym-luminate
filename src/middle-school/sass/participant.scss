@@ -268,11 +268,11 @@
 }
 
 .ym-activity-box {
-  color: #ffffff;
+  color: $event-grey;
   h5, 
   .h5 {
     text-transform: none;
-    color: $event-secondary-heading;
+    color: $title-color;
 
     .ym-activity-box-number {
        background: $event-primary;
@@ -300,7 +300,6 @@
 
 .ym-pc-dashboard-spread-section {
   padding: 0;	
-  color: $event-secondary-heading;
 	
   @media (min-width: $screen-sm-min) {
     padding: 0;
