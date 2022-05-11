@@ -7,10 +7,10 @@
   }
 }
 
-@include media-breakpoint-down(lg) {
+@media (min-width:992px) {
   .ahc-sidebar {
     left: 0;
-    padding: $spacer * 0.75 $spacer * 0.5 $spacer * 0.5;
+    padding: 1rem * 0.75 1rem * 0.5 1rem * 0.5;
     position: sticky;
     top: 0;
     width: 100%;
@@ -38,7 +38,7 @@
   }
 }
 
-@include media-breakpoint-up(lg) {
+@media (max-width:991px) {
   body > .container-fluid,
   body > .container-fluid > .row,
   .ahc-sidebar {
