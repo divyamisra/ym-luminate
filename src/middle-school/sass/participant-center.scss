@@ -46,8 +46,8 @@
   }
 
   .ahc-sidebar {
-    font-size: clamp(#{$font-size-sm}, 1.5vw, #{$h4-font-size});
-    max-width: calc(var(--nav-width) + 10rem);
+    font-size: clamp(.875rem,1.5vw,1.5rem);
+    max-width: calc(3.5rem + 10rem);
     overflow: hidden;
     padding-inline: clamp(1em, 2.15vw, 3em);
     transition: max-width 0.35s ease;
@@ -59,7 +59,7 @@
 
     .nav-link {
       padding-inline: 0;
-      transition: $transition-base;
+      transition: all .2s ease-in-out;
 
       &:hover,
       &:focus,
@@ -67,8 +67,8 @@
         position: relative;
 
         &::before {
-          background-color: $white;
-          border-radius: $border-radius-sm;
+          background-color: #ffffff;
+          border-radius: .2rem;
           content: "";
           height: 1em;
           left: -0.5em;
@@ -81,15 +81,15 @@
       &:hover,
       &:focus {
         &::before {
-          background-color: $white;
+          background-color: #ffffff;
         }
       }
 
       &.active {
-        color: $yellow;
+        color: #f8b416;
 
         &::before {
-          background-color: $yellow;
+          background-color: #f8b416;
         }
       }
     }
