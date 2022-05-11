@@ -7,7 +7,7 @@
   }
 }
 
-@media (min-width:992px) {
+@media (max-width:991px) {
   .ahc-sidebar {
     left: 0;
     padding: 1rem * 0.75 1rem * 0.5 1rem * 0.5;
@@ -38,7 +38,7 @@
   }
 }
 
-@media (max-width:991px) {
+@media (min-width:992px) {
   body > .container-fluid,
   body > .container-fluid > .row,
   .ahc-sidebar {
