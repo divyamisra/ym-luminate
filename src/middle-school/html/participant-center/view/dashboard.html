@@ -1012,54 +1012,54 @@
 						</div>
 						<div class="col-sm-6 ym-pc-dashboard-coordinator-progress-section__column">
 							<div class="ym-pc-dashboard-section-plan">
-								<div class="row ym-pc-dashboard-event-dates hidden">
-									<div class="col-sm-6" style="padding:0">
+								<div class="row ym-pc-dashboard-event-dates">
+									<div class="col-sm-6">
 										<div class="form-group">
 											<label for="EventStartDate">
 												<strong>Event Start Date</strong>
 											</label>
-											<div class="input-group">
-								<span ng-if="schoolPlan.EventStartDate == '0000-00-00'" ng-cloak>--/--/----</span>
-								<span ng-if="schoolPlan.EventStartDate != '0000-00-00'" ng-cloak>{{schoolPlan.EventStartDate | date:'MM/dd/yyyy'}}</span>
-												<input type="date" min="{{theDate | date:'yyyy-MM-dd'}}" class="form-control hidden" id="EventStartDate" ng-model="schoolPlan.EventStartDate" aria-label="Event Start Date" ng-blur="putSchoolPlan($event)" /> 
+											<div class="input-group-old">
+								<!-- <span ng-if="schoolPlan.EventStartDate == '0000-00-00'" ng-cloak>--/--/----</span>
+								<span ng-if="schoolPlan.EventStartDate != '0000-00-00'" ng-cloak>{{schoolPlan.EventStartDate | date:'MM/dd/yyyy'}}</span> -->
+												<input type="date" class="form-control" id="EventStartDate" ng-model="schoolPlan.EventStartDate" aria-label="Event Start Date" ng-blur="putSchoolPlan($event)" /> 
 											</div>
 										</div>
 									</div>
-									<div class="col-sm-6 hidden" style="padding:0">
+									<div class="col-sm-6">
 										<div class="form-group">
 											<label for="EventEndDate">
 												<strong>Event End Date</strong>
 											</label>
-											<div class="input-group">
-								<span ng-if="schoolPlan.EventEndDate == '0000-00-00'" ng-cloak>--/--/----</span>
-								<span ng-if="schoolPlan.EventEndDate != '0000-00-00'" ng-cloak>{{schoolPlan.EventEndDate | date:'MM/dd/yyyy'}}</span>
-												<input type="date" min="{{theDate | date:'yyyy-MM-dd'}}" class="form-control hidden" id="EventEndDate" ng-model="schoolPlan.EventEndDate" aria-label="Event End Date" ng-blur="putSchoolPlan($event)" /> 
+											<div class="input-group-old">
+								<!-- <span ng-if="schoolPlan.EventEndDate == '0000-00-00'" ng-cloak>--/--/----</span>
+								<span ng-if="schoolPlan.EventEndDate != '0000-00-00'" ng-cloak>{{schoolPlan.EventEndDate | date:'MM/dd/yyyy'}}</span> -->
+												<input type="date" class="form-control" id="EventEndDate" ng-model="schoolPlan.EventEndDate" aria-label="Event End Date" ng-blur="putSchoolPlan($event)" /> 
 											</div>
 										</div>
 									</div>
 								</div>
 								<div class="row ym-pc-dashboard-point-field" ng-cloak>
-									<div class="col-sm-6" style="padding:0">
+									<div class="col-sm-6">
 										<div class="form-group">
 											<label for="KickOffDate">
 												<strong>Kick Off/Assembly Date</strong>
 											</label>
-											<div class="input-group">
-								<span ng-if="schoolPlan.KickOffDate == '0000-00-00'" ng-cloak>--/--/----</span>
-								<span ng-if="schoolPlan.KickOffDate != '0000-00-00'" ng-cloak>{{schoolPlan.KickOffDate | date:'MM/dd/yyyy'}}</span>
-												<input type="date" min="{{theDate | date:'yyyy-MM-dd'}}" class="form-control hidden" id="KickOffDate" ng-model="schoolPlan.KickOffDate" aria-label="Kick Off/Assembly Date" ng-blur="putSchoolPlan($event)" /> 
+											<div class="input-group-old">
+								<!-- <span ng-if="schoolPlan.KickOffDate == '0000-00-00'" ng-cloak>--/--/----</span>
+								<span ng-if="schoolPlan.KickOffDate != '0000-00-00'" ng-cloak>{{schoolPlan.KickOffDate | date:'MM/dd/yyyy'}}</span> -->
+												<input type="date" class="form-control" id="KickOffDate" ng-model="schoolPlan.KickOffDate" aria-label="Kick Off/Assembly Date" ng-blur="putSchoolPlan($event)" /> 
 											</div>
 										</div>
 									</div>
-									<div class="col-sm-6 hidden" style="padding:0">
+									<div class="col-sm-6">
 										<div class="form-group">
 											<label for="DonationDueDate">
 												<strong>Donation Due Date</strong>
 											</label>
-											<div class="input-group">
-								<span ng-if="schoolPlan.DonationDueDate == '0000-00-00'" ng-cloak>--/--/----</span>
-								<span ng-if="schoolPlan.DonationDueDate != '0000-00-00'" ng-cloak>{{schoolPlan.DonationDueDate | date:'MM/dd/yyyy'}}</span>
-												<input type="date" min="{{theDate | date:'yyyy-MM-dd'}}" class="form-control hidden" id="DonationDueDate" ng-model="schoolPlan.DonationDueDate" aria-label="Donation Due Date" ng-blur="putSchoolPlan($event)" /> 
+											<div class="input-group-old">
+								<!-- <span ng-if="schoolPlan.DonationDueDate == '0000-00-00'" ng-cloak>--/--/----</span>
+								<span ng-if="schoolPlan.DonationDueDate != '0000-00-00'" ng-cloak>{{schoolPlan.DonationDueDate | date:'MM/dd/yyyy'}}</span> -->
+												<input type="date" class="form-control" id="DonationDueDate" ng-model="schoolPlan.DonationDueDate" aria-label="Donation Due Date" ng-blur="putSchoolPlan($event)" /> 
 											</div>
 										</div>
 									</div>
@@ -1093,20 +1093,6 @@
 					  </div>
 					</div>
 				      </div>
-
-							<div class="ym-pc-dashboard-total-points text-center hidden">
-								<div>
-									<strong>
-										Total Points: 
-										<span ng-bind-html="schoolPlan.TotalPointsEarned"></span>
-									</strong>
-								</div>
-								<p>Points updated nightly at 3am<br/>
-								   <a href="" ng-click="showSchoolPlan()" class="ym-progress-show-plan" aria-label="Click here for more information"">
-									<strong>Click here for more information</strong>
-								   </a>
-								</p>
-							</div>
 									</div>
 						<div class="col-sm-6 ym-pc-dashboard-coordinator-progress-section__column">
 							<div class="ym-pc-dashboard-school-goals" ng-cloak>
@@ -1141,7 +1127,20 @@
 					  </label>
 				        </div>
 						</div>
-					   </div>
+							<div class="ym-pc-dashboard-total-points text-center">
+								<div>
+									<strong>
+										Total Points: 
+										<span ng-bind-html="schoolPlan.TotalPointsEarned"></span>
+									</strong>
+								</div>
+								<p>Points updated nightly at 3am<br/>
+								   <a href="" ng-click="showSchoolPlan()" class="ym-progress-show-plan" aria-label="Click here for more information"">
+									<strong>Click here for more information</strong>
+								   </a>
+								</p>
+							</div>
+						</div>
 				 	   <div class="ym-pc-dashboard-section-plan text-center" ng-if="schoolPlan.EventStartDate == ''" ng-cloak>
 						<p>
 							No plan data available for this School. 

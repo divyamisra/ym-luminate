@@ -1,3 +1,9 @@
+.error {
+    color: #ff0000;
+    display: block;
+    margin-top: 0px !important;
+}
+
 select {
   &, 
   &.form-control {

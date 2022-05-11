@@ -9,7 +9,7 @@
             <img class="hidden-md hidden-lg" ng-src="{{companyPagePhoto1.customUrl && companyPagePhoto1.customUrl != '' ? companyPagePhoto1.customUrl : companyPagePhoto1.defaultUrl}}" alt="School Photo" ng-cloak>
          </div>
       </div>
-      <div class="ym-story col-md-6 ym-secondary-medium-color" ng-class="{'challenge-ice': schoolChallenge == 'Ice Bucket/Water Challenge','challenge-color': schoolChallenge == 'Color Blast','challenge-slime': schoolChallenge == 'Slime Challenge','challenge-pie': schoolChallenge == 'Pie in the Face','challenge-activity': schoolChallenge == 'Activity, Party or Event'}">
+      <div class="ym-story col-md-6 ym-secondary-medium-color" ng-class="{'challenge-ice': schoolChallenge == 'Ice Bucket/Water Challenge','challenge-color': schoolChallenge == 'Color Blast','challenge-slime': schoolChallenge == 'Slime Challenge','challenge-pie': schoolChallenge == 'Pie in the Face','challenge-activity': schoolChallenge == 'Activity, Party or Event','challenge-other': schoolChallenge.indexOf('*') >= 0}">
          <h2 class="ym-headline">
             Our School is Heart Healthy!
          </h2>
@@ -96,7 +96,7 @@
       </div>
       <div class="ym-list col-md-6" aria-label="Top Fundraisers List" ng-if="companyParticipants.totalFundraisers > 0" ng-cloak>
          <h2>
-            <img class="img-responsive" src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/ym-primary/image/fy22/top-fundraising-fy22.png" alt="Saluting these top fundraisers">
+            <img class="img-responsive" src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/ym-primary/image/fy23/top-fundraisers.png" alt="Saluting these top fundraisers">
          </h2>
          <ul class="ym-donor-list" role="list">
             <company-participant-list fr-id="'[[S80:trID]]'" company-id="'[[T6:[[S334:company_id]]]]'" participants="companyParticipants.participants"></company-participant-list>
@@ -132,7 +132,7 @@
             <h2 class="ym-headline">
                Our Stats
             </h2>
-	    <div class="ym-promo-block__item ym-promo-block--circle" ng-if="schoolPlan.CountOfStudentsCompletingFinnsMission > 0" ng-cloak>
+	    <div class="ym-promo-block__item" ng-if="schoolPlan.CountOfStudentsCompletingFinnsMission > 0" ng-cloak>
 	      <div class="h2 ym-headline">
     	        <span ng-if="schoolPlan.CountOfStudentsCompletingFinnsMission < 1000" ng-cloak>{{schoolPlan.CountOfStudentsCompletingFinnsMission}}</span>
 	        <span ng-if="schoolPlan.CountOfStudentsCompletingFinnsMission > 999" ng-cloak>{{schoolPlan.CountOfStudentsCompletingFinnsMission}}</span>
@@ -148,7 +148,7 @@
 	        </p>
 	      </div>
 	    </div>
-	    <div class="ym-promo-block__item ym-promo-block__item--members ym-promo-block--circle">
+	    <div class="ym-promo-block__item ym-promo-block__item--members">
                <div class="h2 ym-headline">
                   {{participantCount}}
                </div>
@@ -163,7 +163,7 @@
                   </p>
                </div>
             </div>
-            <div class="ym-promo-block__item ym-promo-block--circle" ng-if="activity1amt != 0" ng-cloak>
+            <div class="ym-promo-block__item" ng-if="activity1amt != 0" ng-cloak>
                <div class="h2 ym-headline">
                   {{activity1amt}}
                </div>
@@ -171,7 +171,7 @@
                   challenge for being kind.
                </p>
             </div>
-            <div class="ym-promo-block__item ym-promo-block--circle" ng-if="activity2amt != 0" ng-cloak>
+            <div class="ym-promo-block__item" ng-if="activity2amt != 0" ng-cloak>
                <div class="h2 ym-headline">
                   {{activity2amt}}
                </div>
@@ -191,7 +191,7 @@
                <div class="col-md-3">
                   <h3>Top class for dollars raised</h3>
                   <div class="ym-tl-dollars-raised" role="list">
-                     <div class="row" style="margin:0;" ng-repeat="topRaised in topClassRaised" role="listitem" ng-if="topClassRaised.length > 0" ng-cloak>
+                     <div class="row" ng-repeat="topRaised in topClassRaised" role="listitem" ng-if="topClassRaised.length > 0" ng-cloak>
                         <div class="col-xs-2 col-sm-2 col-md-2 top-index">#{{$index+1}}</div>
                         <div class="col-xs-10 col-sm-10 col-md-10 top-detail">
                            <div class="top-name">{{topRaised.name}}</div>

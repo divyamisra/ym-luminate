@@ -190,5 +190,12 @@ module.exports = {
         'src/teens-of-impact/sass/donation.scss'
       ]
     }
+  },
+  "ym-rewards": {
+    files: {
+      'dist/ym-rewards/css/main.css': [
+        'src/ym-rewards/sass/main.scss'
+      ]
+    }
   }
 }
