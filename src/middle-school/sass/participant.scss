@@ -1,4 +1,8 @@
+@import "../../youth-markets/sass/variables.scss";
 @import "variables.scss";
+@import "../../youth-markets/sass/mixins.scss";
+
+@import "../../youth-markets/sass/participant.scss";
 	
 .ym-pc-dashboard-coordinators-tobacco-endgame-section {
   background-color: $event-accent;
