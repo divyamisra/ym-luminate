@@ -42,7 +42,7 @@
 @media (min-width:992px) {
   body > .container-fluid,
   body > .container-fluid > .row,
-  .ahc-sidebar {
+  .ahc-sidebar.ng-pc-nav {
     min-height: 100%;
     font-size: clamp(.875rem,1.5vw,1.5rem);
     max-width: calc(3.5rem + 10rem);
@@ -58,6 +58,8 @@
     a.nav-link {
       padding-inline: 0;
       transition: all .2s ease-in-out;
+      color: #fff;
+      background: transparent;
 
       &:hover,
       &:focus,
