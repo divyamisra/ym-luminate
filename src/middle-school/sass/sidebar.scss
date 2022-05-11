@@ -63,41 +63,42 @@
         padding-inline: 0;
         transition: all .2s ease-in-out;
 
-      &:hover,
-      &:focus,
-      &.active {
-        position: relative;
+        &:hover,
+        &:focus,
+        &.active {
+          position: relative;
 
-        &::before {
-          background-color: #ffffff;
-          border-radius: .2rem;
-          content: "";
-          height: 1em;
-          left: -0.5em;
-          opacity: 0.75;
-          position: absolute;
-          width: 0.25rem;
+          &::before {
+            background-color: #ffffff;
+            border-radius: .2rem;
+            content: "";
+            height: 1em;
+            left: -0.5em;
+            opacity: 0.75;
+            position: absolute;
+            width: 0.25rem;
+          }
+        }
+
+        &:hover,
+        &:focus {
+          &::before {
+            background-color: #ffffff;
+          }
+        }
+
+        &.active {
+          color: #f8b416;
+
+          &::before {
+            background-color: #f8b416;
+          }
         }
       }
 
-      &:hover,
-      &:focus {
-        &::before {
-          background-color: #ffffff;
-        }
+      i {
+        display: none;
       }
-
-      &.active {
-        color: #f8b416;
-
-        &::before {
-          background-color: #f8b416;
-        }
-      }
-    }
-
-    i {
-      display: none;
     }
   }
 }
