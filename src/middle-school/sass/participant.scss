@@ -27,45 +27,7 @@
     border-color: $event-primary;
   }
 }
-/*
-.ng-pc-nav {
-  a {
-    &:link,
-    &:visited {
-      color: $event-secondary-heading;
-      background: $event-secondary-medium;
-    }
 
-    &:hover,
-    &:focus,
-    &:active {
-      background: $brand-white;
-      color: $event-secondary-medium;
-      
-      @media (max-width: 560px) {
-        background: $brand-white;
-        color: $event-secondary-medium;
-      }
-    }
-    &.active {
-      background: $brand-white;
-      color: $event-secondary-medium;
-    }
-  }
-}
-
-@media (max-width:669px) {
-  .ng-pc-nav--coordinator {
-    a { 
-      &:link,
-      &:visited {
-        background: $event-secondary-medium;
-        color: $brand-white;
-      }
-    }
-  }
-}
-*/
 .ym-pc-dashboard-section-header {
   h2, 
   .h2 {
