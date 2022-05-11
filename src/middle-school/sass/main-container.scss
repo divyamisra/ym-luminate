@@ -1,0 +1,9 @@
+main {
+  > .container {
+    margin: 0px auto 0;
+    
+    @media (max-width: $screen-xs-max) {
+      margin-top: -100px;
+    }
+  }
+}
