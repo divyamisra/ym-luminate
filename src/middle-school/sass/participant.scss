@@ -377,3 +377,32 @@
 .schoolCreateMessage {
     color: $event-secondary-heading;
 }
+
+/* generic styles */
+.white-box {
+  box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
+  overflow: hidden;
+  word-wrap: break-word;
+  background-clip: border-box;
+  background-color: #fff;
+  border: 1px solid rgba(0,0,0,.125);
+  border-radius: .3333rem;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  position: relative;
+}
+
+.red-border-left {
+	border-left-color: #c10e21 !important;
+	border-left-width: 1rem !important;
+}
+
+.red-border-bottom {
+	border-bottom-color: #c10e21 !important;
+	border-bottom-width: 1rem !important;
+}
+
+.red-bg-gradient {
+	background-image: var(--bs-gradient) !important;
+}
