@@ -198,7 +198,11 @@ angular.module 'ahaLuminateControllers'
           $scope.productList = productList
         if angular.element('.sizes input[id^=chk_]:checked').length == 0 and angular.element('.points input[id^=chk_]:checked').length == 0
           $scope.productList = $scope.allProducts
-
+          
+      $scope.quantityFilter = function(row){
+        return parseInt(row['quantity']) > 0;
+      }
+    
       $scope.onFileChange = (event) ->
         data = this
         $scope.status = false
