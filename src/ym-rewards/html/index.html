@@ -152,7 +152,7 @@
     <div class="row" ng-if="TotalPointsSpent > 0" ng-cloak>
         <div class="col-md-12">
             <div class="h3 mb-4">
-                Purchase Summary
+                Redemption Summary
             </div>
             <div class="productSummary d-lg-flex flex-wrap justify-content-start">
                 <product class="pointSummary flex-grow-0 p-2 me-3" ng-repeat="product in productSummary">
@@ -176,7 +176,9 @@
             <p class="totalPointsUsed" ng-if="TotalPointsSpent > 0" ng-cloak>
                 <strong>Total Points Used: {{TotalPointsSpent}}</strong>
             </p>
-            <p><em>Unused points will carry over to next year.<br/>Gifts will be included in the Thank-You Gifts you receive for your students.</em></p>
+            <p><em>Unused points will carry over to next year.<br/>
+		    Thank you for your redemption. 
+		    Rewards will be included in the Thank-You Gifts you receive for your students post program.</em></p>
             <a class="btn btn-primary" href="" name="delPurchase" ng-click="deletePurchase($event)">
 		TEST ONLY: Remove Purchase 
   	    </a>
