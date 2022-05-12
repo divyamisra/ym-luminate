@@ -81,7 +81,7 @@
           background-color: #ffffff;
           border-radius: .2rem;
           content: "";
-          height: 1em;
+          height: 1.5em;
           left: -0.5em;
           opacity: 0.75;
           position: absolute;
@@ -101,7 +101,7 @@
         background-color: #cccccc;
 
         &::before {
-          background-color: $event-secondary-heading;
+          background-color: #cccccc;
         }
       }
 
