@@ -963,8 +963,8 @@
 		</div>
 		<div ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true' && location != '/dashboard-student'" ng-cloak>
  
-			<section class="ym-pc-dashboard-coordinator-school-plan-section" aria-label="School Plan Selection">
-				<div class="ym-pc-dashboard-coordinator-progress-section__column ym-activity-box white-box">
+			<section class="ym-pc-dashboard-coordinator-school-plan-section mb-4" aria-label="School Plan Selection">
+				<div class="ym-pc-dashboard-coordinator-progress-section__column white-box m-2">
 					<h2 class="h3 text-center">
 						School Plan 
 					</h2>
@@ -1114,10 +1114,11 @@
 				        </div>
 				</div>
 			</section>
-			<section class="ym-pc-dashboard-coordinator-progress-section" aria-label="Fundraising Progress Meters">
+			<section class="ym-pc-dashboard-coordinator-progress-section pb-5" aria-label="Fundraising Progress Meters">
 				<div class="ym-pc-dashboard-coordinator-progress-section__column">
-						<div class="d-flex align-items-baseline">
-							<div class="ym-pc-dashboard-coordinator-progress-section__column ym-activity-box white-box">
+						<div class="d-flex align-items-start flex-wrap justify-content-between mb-4">
+						  <div class="col-md-6 p-2">
+								<div class="ym-pc-dashboard-coordinator-progress-section__column white-box">
 								<div class="ym-pc-dashboard-coordinator-progress-box">
 									<div id="ym-pc-dashboard-company-panel--coordinator">
 										<div class="fundraisingStatusTitle">
@@ -1151,7 +1152,9 @@
 									</div>
 								</div>
 							</div>
-							<div class="ym-pc-dashboard-coordinator-progress-section__column ym-activity-box white-box">
+							</div>
+							<div class="col-md-6 p-2">
+								<div class="ym-pc-dashboard-coordinator-progress-section__column white-box">
 								<div class="ym-pc-dashboard-coordinator-progress-box">
 									<div id="ym-pc-dashboard-personal-panel--coordinator">
 										<div class="fundraisingStatusTitle">
@@ -1214,8 +1217,9 @@
 									</div>
 								</div>
 							</div>
+							</div>
 						</div>
-						<div class="ym-pc-dashboard-coordinator-progress-section__column ym-activity-box white-box">
+						<div class="ym-pc-dashboard-coordinator-progress-section__column white-box m-2">
 							<div class="ym-pc-dashboard-coordinator-students-box" ng-if="companyInfo.participantCount" ng-cloak>
 								<div class="ym-pc-dashboard-section-header">
 									<h2 class="h5 ">
@@ -1289,14 +1293,15 @@
 						</div>
 					</div>
 			</section>
-			<section class="ym-pc-dashboard-coordinator-steps-section" aria-label="Fundraising Steps">
+			<section class="ym-pc-dashboard-coordinator-steps-section mb-4" aria-label="Fundraising Steps">
 				<div class="ym-pc-dashboard-section-header">
 					<h2 class="h3">
 						Coordinator Fundraising Steps 
 					</h2>
 				</div>
-				<div class="d-flex align-items-baseline">
-					<div class="ym-activity-box ym-activity-box--coordinator-pages white-box">
+				<div class="d-flex align-items-start flex-wrap justify-content-between mb-4">
+				  <div class="col-md-4 p-2">
+						<div class="ym-activity-box--coordinator-pages white-box">
 						<h3 class="h5 clearfix">
 							<span class="ym-activity-box-number">
 								1
@@ -1476,7 +1481,9 @@
 							</div>
 						</div>
 					</div>
-					<div class="ym-activity-box ym-activity-box--coordinator-student-view white-box">
+					</div>
+				  <div class="col-md-4 p-2">
+						<div class="ym-activity-box--coordinator-student-view white-box">
 						<h3 class="h5 clearfix">
 							<span class="ym-activity-box-number">
 								2
@@ -1503,7 +1510,9 @@
 							</p>
 						</div>
 					</div>
-					<div class="ym-activity-box ym-activity-box--coordinator-reports white-box">
+					</div>
+				  <div class="col-md-4 p-2">
+						<div class="ym-activity-box--coordinator-reports white-box">
 						<div class="ym-activity-box--coordinator-reports">
 							<h3 class="h5 clearfix">
 								<span class="ym-activity-box-number">
@@ -1558,74 +1567,81 @@
 							</div>
 						</div>
 					</div>
-					<div class="ym-activity-box ym-activity-box--coordinator-resources white-box">
+					</div>
+				</div>
+				<div class="ym-activity-box--coordinator-resources white-box">
+					<div class="ym-pc-dashboard-section-header">
+						<h2 class="h3" style="margin-bottom:20px;">
+							Coordinator Resources 
+						</h2>
+					</div>
+					<div class="ym-pc-dashboard-coordinator-resources-options">
+					  <div class="d-md-flex justify-content-between">
+					  <div class="col-md-4">
 						<div class="ym-pc-dashboard-section-header">
-							<h2 class="h3" style="margin-bottom:20px;">
-								Coordinator Resources 
-							</h2>
+							<h3 class="h5">
+								Activation Guides 
+							</h3>
 						</div>
-						<div class="ym-pc-dashboard-coordinator-resources-options">
-							<div class="ym-pc-dashboard-section-header">
-								<h3 class="h5">
-									Activation Guides 
-								</h3>
-							</div>
-							<a class="btn btn-md-wide btn-primary" href="SPageServer?pagename=ahc_resources_activation_guides" target="_blank">
-								<strong>
-									Download
-								</strong>
-								<span class="sr-only">
-									Activation Guides
-								</span>
-							</a>
-							<br /> <br /> 
-							<div class="ym-pc-dashboard-section-header">
-								<h3 class="h5">
-									Online Resources 
-								</h3>
-							</div>
-							<a class="btn btn-md-wide btn-primary" href="SPageServer?pagename=ahc_resources_technology" target="_blank">
-								<strong>
-									Download
-								</strong>
-								<span class="sr-only">
-									Online Resources
-								</span>
-							</a>
-							<br /> <br /> 
-							<div class="ym-pc-dashboard-section-header">
-								<h3 class="h5">
-									Volunteer Planning 
-								</h3>
-							</div>
-							<a class="btn btn-md-wide btn-primary" href="DocServer/AHC_Planning_Guide_Timeline.pdf" target="_blank">
-								<strong>
-									Download
-								</strong>
-								<span class="sr-only">
-									Volunteer Planning
-								</span>
-							</a>
+ 							<a class="btn btn-md-wide btn-primary" href="SPageServer?pagename=ahc_resources_activation_guides" target="_blank">
+							<strong>
+								Download
+							</strong>
+							<span class="sr-only">
+								Activation Guides
+							</span>
+						</a>
 						</div>
-						<div class="ym-pc-dashboard-coordinator-resources-more">
-							<a ng-href="{{baseUrl}}#/teacher-resources">
-								<strong>
-									View All Resources
-								</strong>
-							</a>
+					  <div class="col-md-4">
+						<div class="ym-pc-dashboard-section-header">
+							<h3 class="h5">
+								Online Resources 
+							</h3>
 						</div>
-						<div class="ym-pc-dashboard-coordinator-resources-contact" ng-if="notifyName != ''" ng-cloak>
-							Questions about your program – contact your staff partner at: 
-							<a ng-href="mailto:{{notifyEmail}}">
-								<strong>
-									{{notifyName}}
-								</strong>
-							</a>
+						<a class="btn btn-md-wide btn-primary" href="SPageServer?pagename=ahc_resources_technology" target="_blank">
+							<strong>
+								Download
+							</strong>
+							<span class="sr-only">
+								Online Resources
+							</span>
+						</a>
 						</div>
+					  <div class="col-md-4">
+						<div class="ym-pc-dashboard-section-header">
+							<h3 class="h5">
+								Volunteer Planning 
+							</h3>
+						</div>
+						<a class="btn btn-md-wide btn-primary" href="DocServer/AHC_Planning_Guide_Timeline.pdf" target="_blank">
+							<strong>
+								Download
+							</strong>
+							<span class="sr-only">
+								Volunteer Planning
+							</span>
+						</a>
+						</div>
+						</div>
+					</div>
+					<div class="ym-pc-dashboard-coordinator-resources-more">
+						<a ng-href="{{baseUrl}}#/teacher-resources">
+							<strong>
+								View All Resources
+							</strong>
+						</a>
+					</div>
+					<div class="ym-pc-dashboard-coordinator-resources-contact" ng-if="notifyName != ''" ng-cloak>
+						Questions about your program – contact your staff partner at: 
+						<a ng-href="mailto:{{notifyEmail}}">
+							<strong>
+								{{notifyName}}
+							</strong>
+						</a>
 					</div>
 				</div>
 			</section>
-			<section class="ym-pc-dashboard-coordinator-school-challenge-section ym-activity-box white-box" aria-label="School Challenge Selection">
+			<section class="ym-pc-dashboard-coordinator-school-challenge-section white-box mb-4" aria-label="School Challenge Selection">
 				<h2 class="h3 text-center">
 					School Challenge 
 				</h2>
@@ -1733,7 +1749,7 @@
 					</div>
 				</div>
 			</section>
-			<section class="ym-pc-dashboard-coordinator-school-years-section ym-activity-box white-box" aria-label="Years School Participated">
+			<section class="ym-pc-dashboard-coordinator-school-years-section white-box mb-4" aria-label="Years School Participated">
 				<div class="ym-pc-dashboard-section-header">
 					<h2 class="h3" ng-if="companyProgress.schoolYears > 0">
 						Your school has participated for 
@@ -1754,7 +1770,7 @@
 					</h2>
 				</div>
 			</section>
-			<div class="row ym-spread-the-word-box white-box">
+			<div class="ym-spread-the-word-box white-box">
 					<section class="ym-pc-dashboard-spread-section" aria-label="Resources for Spreading the Word">
 						<div class="ym-pc-dashboard-section-header">
 							<h2 class="h3">
