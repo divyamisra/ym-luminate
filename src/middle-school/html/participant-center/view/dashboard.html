@@ -395,9 +395,8 @@
 					My Fundraising 
 				</h2>
 			</div>
-			<div class="row">
-				<div class="col-sm-6">
-					<div class="col-sm-12 ym-pc-dashboard-progress-section__column">
+			<div class="d-md-flex align-items-start flex-wrap justify-content-between">
+					<div class="ym-pc-dashboard-progress-section__column col-md-4">
 						<div class="ym-pc-dashboard-progress-box white-box">
 							<div id="ym-pc-dashboard-personal-panel--student" aria-label="Personal Progress">
 								<div class="ym-pc-dashboard-section-header">
@@ -465,11 +464,8 @@
 									</button>
 								</div>
 							</div>
-						</div>
-					</div>
-					<div class="col-sm-12 ym-pc-dashboard-progress-section__column">
-						<div class="ym-pc-dashboard-progress-box white-box">
-							<div id="ym-pc-dashboard-company-panel--student" aria-label="School Progress">
+							<hr>
+							<div id="ym-pc-dashboard-company-panel--school" aria-label="School Progress">
 								<div class="ym-pc-dashboard-section-header">
 									<h3 class="h5">
 										School Progress 
@@ -513,10 +509,9 @@
 							</div>
 						</div>
 					</div>
-				</div>
-				<div class="col-sm-6">
-					<div class="ym-pc-dashboard-email-section__column white-box">
-						<div class="ym-pc-dashboard-email-challenge-box">
+					<div class="col-md-7">
+					<div class="ym-pc-dashboard-progress-section__column white-box mb-4">
+						<div class="ym-pc-dashboard-progress-box">
 							<div class="ym-pc-dashboard-section-header">
 								<h3 class="h5">
 									Email Challenge 
@@ -538,62 +533,51 @@
 								</label>
 								<textarea class="form-control" id="emailChallenge-sampleText" name="sampleText" ng-model="emailChallenge.sampleText" readonly></textarea> 
 								<input type="submit" name="submit" value="Submit" class="d-none">
-								</form>
-								<div class="ym-pc-dashboard-email-challenge-option">
-									<p>
-										Or copy and paste the text above into your favorite email client! 
-									</p>
-									<button type="button" class="btn btn-md-wide btn-primary" data-clipboard-target="#emailChallenge-sampleText" role="button">
-										<strong>
-											Copy Email Text
-										</strong>
-									</button>
-								</div>
+							</form>
+							<div class="ym-pc-dashboard-email-challenge-option">
+								<p>
+									Or copy and paste the text above into your favorite email client! 
+								</p>
+								<button type="button" class="btn btn-md-wide btn-primary" data-clipboard-target="#emailChallenge-sampleText" role="button">
+									<strong>
+										Copy Email Text
+									</strong>
+								</button>
 							</div>
 						</div>
-						<div class="col-sm-12 ym-pc-dashboard-progress-section__column white-box">
-							<div class="ym-pc-dashboard-livestream-box">
-								<div class="ym-pc-dashboard-livestream-title">
-									<img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/middle-school/image/pc-tiltify-livestream.png" alt="Livestream"> 
+						</div>
+					<div class="ym-pc-dashboard-progress-section__column white-box">
+						<div class="ym-pc-dashboard-livestream-box">
+							<div class="ym-pc-dashboard-livestream-title">
+								<img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/middle-school/image/pc-tiltify-livestream.png" alt="Livestream"> 
+							</div>
+							<div class="ym-pc-dashboard-section-header">
+								<p>
+									Go live and help save lives. Start your charity stream today. 
+								</p>
+							</div>
+							<div class="text-center">
+								<div class="ym-pc-dashboard-livestream-buttons">
+									<a class="btn btn-md-wide btn-primary" ng-href="https://tiltify.com/aha/american-heart-challenge-e15ea11c-9812-4c1a-b18a-3f502c3bb54f/start/registration/address" target="_blank">
+										<strong>
+											Get Started
+										</strong>
+									</a>
+									<a class="btn btn-md-wide btn-primary" ng-href="https://dashboard.tiltify.com/@me" target="_blank">
+										<strong>
+											Check Your Progress
+										</strong>
+									</a>
 								</div>
-								<div class="ym-pc-dashboard-section-header">
-									<p>
-										Go live and help save lives. Start your charity stream today. 
-									</p>
-								</div>
-								<div class="text-center">
-<!--
-								<div class="ym-pc-dashboard-livestream-images">
-									<span class="hv-image" ng-init="hvImgLSsrc='pc-livestream.png';" ng-mouseover="hvImgLSsrc='pc-livestream-animated.gif';" ng-mouseout="hvImgLSsrc='pc-livestream.png';">
-										<img class="pc-livestream-character" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy21/{{hvImgLSsrc}}" alt="Livestream Character">
-									</span>
-									&nbsp;
-									<span class="hv-image" ng-init="hvImgLSHsrc='pc-tiltify-hearts.png';" ng-mouseover="hvImgLSHsrc='pc-tiltify-hearts-animated.gif';" ng-mouseout="hvImgLSHsrc='pc-tiltify-hearts.png';">
-										<img class="pc-livestream-hearts" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy21/{{hvImgLSHsrc}}" alt="Livestream Hearts">
-									</span>
-								</div>
-								-->
-									<div class="ym-pc-dashboard-livestream-buttons">
-										<a class="btn btn-md-wide btn-primary" ng-href="https://tiltify.com/aha/american-heart-challenge-e15ea11c-9812-4c1a-b18a-3f502c3bb54f/start/registration/address" target="_blank">
-											<strong>
-												Get Started
-											</strong>
-										</a>
-										<a class="btn btn-md-wide btn-primary" ng-href="https://dashboard.tiltify.com/@me" target="_blank">
-											<strong>
-												Check Your Progress
-											</strong>
-										</a>
-									</div>
-									<br /> 
-									<p>
-										By clicking these links, you will leave American Heart Challenge and be redirected to another site not under the control of the American Heart Association. 
-									</p>
-								</div>
+								<br /> 
+								<p>
+									By clicking these links, you will leave American Heart Challenge and be redirected to another site not under the control of the American Heart Association. 
+								</p>
 							</div>
 						</div>
 					</div>
-				</div>
+					</div>
+					</div>
 				<div ng-show="facebookFundraisersEnabled" ng-cloak>
 					<div class="ym-pc-dashboard-facebook-box" ng-show="!facebookFundraiserId">
 						<div class="container">
@@ -666,8 +650,9 @@
 						My Activities 
 					</h2>
 				</div>
-				<div class="d-flex align-items-baseline">
-					<div class="ym-activity-box ym-activity-box--next-step white-box">
+				<div class="d-flex align-items-start flex-wrap justify-content-between">
+				  <div class="col-md-6 p-2">
+					<div class="ym-activity-box--next-step white-box mb-4">
 						<h3 class="h5">
 							My Donors 
 						</h3>
@@ -800,65 +785,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="ym-activity-box ym-activity-box--page white-box">
-						<h3 class="h5">
-							My Page 
-						</h3>
-						<p>
-							Personalize your fundraising page to share your heart-healthy journey. Students who personalize their page raise more money! 
-						</p>
-						<div class="text-center">
-							<a class="btn btn-md-wide btn-primary" ng-href="TR?fr_id={{frId}}&amp;pg=personal&amp;px={{consId}}">
-								<strong>
-									View and Edit Your Page
-								</strong>
-							</a>
-						</div>
-						<div class="row">
-							<div class="col-sm-7">
-								<div class="ym-activity-url">
-									<p>
-										<strong>
-											Personal Page URL:
-										</strong>
-									</p>
-									<p class="small">
-										<span ng-bind-html="personalPageUrl">
-										</span>
-									</p>
-									<button type="button" class="btn btn-md-wide btn-primary" aria-label="Edit Personal Page URL" ng-click="editPersonalUrl()">
-										<strong>
-											Edit
-										</strong>
-									</button>
-								</div>
-							</div>
-							<div class="col-sm-5">
-								<div class="clearfix">
-									<div class="ym-activity-share-page">
-										<p>
-											<strong>
-												Share My Personal&nbsp;Page:
-											</strong>
-										</p>
-<!--<a target="_new" ng-href="https://www.facebook.com/sharer/sharer.php?u={{personalPageUrlEsc}}">
-                    <img src="../aha-luminate/dist/youth-markets/image/facebook-logo.png" alt="Facebook">
-                  </a> 
-                  <a target="_new" ng-href="https://twitter.com/home?status={{personalPageUrlEsc}}">
-                    <img src="../aha-luminate/dist/youth-markets/image/twitter-logo.png" alt="Twitter">
-                  </a>-->
-										<a ng-href="{{baseUrl}}#" ng-click="delegatedAddThis('.js--personal-social-share', 'facebook')">
-											<img src="../aha-luminate/dist/youth-markets/image/facebook-logo.png" alt="Facebook"> 
-										</a>
-										<a ng-href="{{baseUrl}}#" ng-click="delegatedAddThis('.js--personal-social-share', 'twitter')">
-											<img src="../aha-luminate/dist/youth-markets/image/twitter-logo.png" alt="Twitter"> 
-										</a>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="ym-activity-box ym-activity-box--challenge white-box">
+					<div class="ym-activity-box--challenge white-box">
 						<h3 class="h5">
 							Daily Heart-Healthy Challenge 
 						</h3>
@@ -926,7 +853,61 @@
 							</form>
 						</div>
 					</div>
-					<div class="ym-activity-box ym-activity-box--spread-the-word white-box">
+          </div>
+          <div class="col-md-6 p-2">
+					<div class="ym-activity-box--page white-box mb-4">
+						<h3 class="h5">
+							My Page 
+						</h3>
+						<p>
+							Personalize your fundraising page to share your heart-healthy journey. Students who personalize their page raise more money! 
+						</p>
+						<div class="text-center">
+							<a class="btn btn-md-wide btn-primary" ng-href="TR?fr_id={{frId}}&amp;pg=personal&amp;px={{consId}}">
+								<strong>
+									View and Edit Your Page
+								</strong>
+							</a>
+						</div>
+						<div class="row">
+							<div class="col-sm-7">
+								<div class="ym-activity-url">
+									<p>
+										<strong>
+											Personal Page URL:
+										</strong>
+									</p>
+									<p class="small">
+										<span ng-bind-html="personalPageUrl">
+										</span>
+									</p>
+									<button type="button" class="btn btn-md-wide btn-primary" aria-label="Edit Personal Page URL" ng-click="editPersonalUrl()">
+										<strong>
+											Edit
+										</strong>
+									</button>
+								</div>
+							</div>
+							<div class="col-sm-5">
+								<div class="clearfix">
+									<div class="ym-activity-share-page">
+										<p>
+											<strong>
+												Share My Personal&nbsp;Page:
+											</strong>
+										</p>
+										<a ng-href="{{baseUrl}}#" ng-click="delegatedAddThis('.js--personal-social-share', 'facebook')">
+											<img src="../aha-luminate/dist/youth-markets/image/facebook-logo.png" alt="Facebook"> 
+										</a>
+										<a ng-href="{{baseUrl}}#" ng-click="delegatedAddThis('.js--personal-social-share', 'twitter')">
+											<img src="../aha-luminate/dist/youth-markets/image/twitter-logo.png" alt="Twitter"> 
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="ym-activity-box--spread-the-word white-box">
 						<section class="ym-pc-dashboard-spread-section" aria-label="Resources for Spreading the Word">
 							<div class="ym-pc-dashboard-section-header">
 								<h3 class="h5">
@@ -952,6 +933,7 @@
 								</div>
 							</div>
 						</section>
+					</div>
 					</div>
 				</div>
 			</section>
@@ -1133,10 +1115,9 @@
 				</div>
 			</section>
 			<section class="ym-pc-dashboard-coordinator-progress-section" aria-label="Fundraising Progress Meters">
-				<div class="row">
-					<div class="col-sm-12 ym-pc-dashboard-coordinator-progress-section__column">
-						<div class="row">
-							<div class="col-sm-6 ym-pc-dashboard-coordinator-progress-section__column ym-activity-box white-box">
+				<div class="ym-pc-dashboard-coordinator-progress-section__column">
+						<div class="d-flex align-items-baseline">
+							<div class="ym-pc-dashboard-coordinator-progress-section__column ym-activity-box white-box">
 								<div class="ym-pc-dashboard-coordinator-progress-box">
 									<div id="ym-pc-dashboard-company-panel--coordinator">
 										<div class="fundraisingStatusTitle">
@@ -1170,7 +1151,7 @@
 									</div>
 								</div>
 							</div>
-							<div class="col-sm-6 ym-pc-dashboard-coordinator-progress-section__column ym-activity-box white-box">
+							<div class="ym-pc-dashboard-coordinator-progress-section__column ym-activity-box white-box">
 								<div class="ym-pc-dashboard-coordinator-progress-box">
 									<div id="ym-pc-dashboard-personal-panel--coordinator">
 										<div class="fundraisingStatusTitle">
@@ -1234,7 +1215,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="col-sm-12 ym-pc-dashboard-coordinator-progress-section__column ym-activity-box white-box">
+						<div class="ym-pc-dashboard-coordinator-progress-section__column ym-activity-box white-box">
 							<div class="ym-pc-dashboard-coordinator-students-box" ng-if="companyInfo.participantCount" ng-cloak>
 								<div class="ym-pc-dashboard-section-header">
 									<h2 class="h5 ">
@@ -1307,7 +1288,6 @@
 							</div>
 						</div>
 					</div>
-				</div>
 			</section>
 			<section class="ym-pc-dashboard-coordinator-steps-section" aria-label="Fundraising Steps">
 				<div class="ym-pc-dashboard-section-header">
@@ -1315,8 +1295,8 @@
 						Coordinator Fundraising Steps 
 					</h2>
 				</div>
-				<div class="row">
-					<div class="col-sm-6 ym-activity-box ym-activity-box--coordinator-pages white-box">
+				<div class="d-flex align-items-baseline">
+					<div class="ym-activity-box ym-activity-box--coordinator-pages white-box">
 						<h3 class="h5 clearfix">
 							<span class="ym-activity-box-number">
 								1
@@ -1496,7 +1476,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="col-sm-6 ym-activity-box ym-activity-box--coordinator-student-view white-box">
+					<div class="ym-activity-box ym-activity-box--coordinator-student-view white-box">
 						<h3 class="h5 clearfix">
 							<span class="ym-activity-box-number">
 								2
@@ -1523,9 +1503,7 @@
 							</p>
 						</div>
 					</div>
-				</div>
-				<div class="row">
-					<div class="col-sm-6 ym-activity-box ym-activity-box--coordinator-reports white-box">
+					<div class="ym-activity-box ym-activity-box--coordinator-reports white-box">
 						<div class="ym-activity-box--coordinator-reports">
 							<h3 class="h5 clearfix">
 								<span class="ym-activity-box-number">
@@ -1580,7 +1558,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="col-sm-6 ym-activity-box ym-activity-box--coordinator-resources white-box">
+					<div class="ym-activity-box ym-activity-box--coordinator-resources white-box">
 						<div class="ym-pc-dashboard-section-header">
 							<h2 class="h3" style="margin-bottom:20px;">
 								Coordinator Resources 
@@ -1651,8 +1629,8 @@
 				<h2 class="h3 text-center">
 					School Challenge 
 				</h2>
-				<div class="row">
-					<div class="ym-pc-dashboard-section-header col-md-4">
+				<div class="d-flex">
+					<div class="ym-pc-dashboard-section-header">
 						<div class="schoolChallenge text-center">
 							<div ng-if="companyProgress.schoolChallenge != ''">
 								I am challenging my students to 
@@ -1689,7 +1667,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="ym-pc-dashboard-section-header col-md-4">
+					<div class="ym-pc-dashboard-section-header">
 						<div class="schoolChallenge text-center">
 							<div ng-if="companyProgress.schoolChallengeLevel != ''">
 								Student level to achieve 
@@ -1720,7 +1698,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="ym-pc-dashboard-section-header col-md-4">
+					<div class="ym-pc-dashboard-section-header">
 						<div class="schoolCreateMessage text-center" ng-if="coordinatorMessage.text == ''" ng-cloak>
 							<p>
 								Create an 
@@ -1777,7 +1755,6 @@
 				</div>
 			</section>
 			<div class="row ym-spread-the-word-box white-box">
-				<div class="col-sm-12">
 					<section class="ym-pc-dashboard-spread-section" aria-label="Resources for Spreading the Word">
 						<div class="ym-pc-dashboard-section-header">
 							<h2 class="h3">
@@ -1807,7 +1784,6 @@
 							</div>
 						</div>
 					</section>
-				</div>
 			</div>
 		</div>
 	</div>
