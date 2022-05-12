@@ -47,7 +47,7 @@
     font-size: clamp(.875rem,1.5vw,1.5rem);
     max-width: calc(3.5rem + 10rem);
     overflow: hidden;
-    padding-inline: clamp(1em, 2.15vw, 3em);
+    /*padding-inline: clamp(1em, 2.15vw, 3em);*/
     transition: max-width 0.35s ease;
 
     .nav {
@@ -58,9 +58,14 @@
     a.nav-link {
       padding-inline: 0;
       transition: all .2s ease-in-out;
-      color: #fff;
-      background: transparent;
+      color: $event-secondary-heading;
+      background: #ffffff;
       text-align:left;
+      padding: 10px 20px 25px 20px;
+      line-height:30px;
+      width:100%;
+      margin-bottom:5px;
+      padding-right:15px;
 
       &:hover,
       &:focus,
@@ -87,11 +92,11 @@
       }
 
       &.active {
-        color: #f8b416;
-        background-color: transparent;
+        color: $event-secondary-heading;
+        background-color: #cccccc;
 
         &::before {
-          background-color: #f8b416;
+          background-color: $event-secondary-heading;
         }
       }
 
