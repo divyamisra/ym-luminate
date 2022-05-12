@@ -22,6 +22,14 @@ select {
   }
 }
 
+.form-control, 
+div.responsive input[type="text"], 
+div.responsive select, 
+div.responsive textarea {
+  margin-bottom:10px;
+}
+
+
 .form-control {
   &:focus {
     border-width: 2px;
