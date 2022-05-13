@@ -74,6 +74,17 @@
   }
 }
 
+span.ym-activity-box-number {
+    padding: 10px;
+    background: $event-primary;
+    text-align: center;
+    border-radius: 50px;
+    width: 50px;
+    display: inline-block;
+    margin-right: 10px;
+    color: #fff;
+}
+
 .ym-pc-dashboard-captain-page-type {
   a,
   button {
