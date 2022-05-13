@@ -855,9 +855,9 @@
 										<p>
 										   <strong>{{companyParticipants.totalFundraisers|number}}</strong> student<span ng-if="companyParticipants.totalFundraisers > 1 || companyParticipants.totalFundraisers == 0">s</span>	fundraising online 
 										</p>
-										<div class="row school-badges">
-											<div class="ym-pc-dashboard-school-badges-box col-xs-12">
-												<div id="ym-pc-dashboard-school-registration-badges-panel--school" aria-label="School Registration and Fundraising Badges">
+										<div class="school-badges">
+											<div class="ym-pc-dashboard-school-badges-box">
+												<div class="d-flex flex-wrap justify-content-center" id="ym-pc-dashboard-school-registration-badges-panel--school" aria-label="School Registration and Fundraising Badges">
 													<div class="ym-badges__item" ng-repeat="schoolBadge in schoolBadgesRegistrations" ng-cloak>
 														<img class="img-responsive" ng-src="{{schoolBadge.image_url}}" alt="{{schoolBadge.image_name}}"> 
 														<div class="text">
