@@ -907,12 +907,10 @@
 						</div>
 					</div>
 			</section>
-			<section class="ym-pc-dashboard-coordinator-steps-section mb-4" aria-label="Fundraising Steps">
-				<div class="ym-pc-dashboard-section-header">
-					<h2 class="h3">
-						Coordinator Fundraising Steps 
-					</h2>
-				</div>
+			<section class="ym-pc-dashboard-coordinator-downloads-section mb-4" aria-label="Fundraising Steps">
+				<h2 class="h3 text-center pb-3">
+					Coordinator Fundraising Steps 
+				</h2>
 				<div class="d-flex flex-wrap justify-content-between mb-4">
 				  <div class="col-md-4 p-2">
 						<div class="ym-activity-box--coordinator-pages white-box h-100">
@@ -1184,11 +1182,9 @@
 					</div>
 				</div>
 				<div class="ym-activity-box--coordinator-resources white-box">
-					<div class="ym-pc-dashboard-section-header">
-						<h2 class="h3" style="margin-bottom:20px;">
-							Coordinator Resources 
-						</h2>
-					</div>
+					<h2 class="h3 text-center pb-3">
+						Coordinator Resources 
+					</h2>
 					<div class="ym-pc-dashboard-coordinator-resources-options">
 					  <div class="d-md-flex justify-content-between">
 					  <div class="col-md-4">
@@ -1370,33 +1366,27 @@
 				</div>
 			</section>
 			<section class="ym-pc-dashboard-coordinator-school-years-section white-box mb-4" aria-label="Years School Participated">
-				<div class="ym-pc-dashboard-section-header">
-					<h2 class="h3" ng-if="companyProgress.schoolYears > 0">
-						Your school has participated for 
-						<select class="form-control" id="schoolYears" ng-model="companyProgress.schoolYears" aria-label="School Years" ng-change="updateSchoolYears()">
-							<option ng-repeat="year in yearsList" value="{{year}}">
-								{{year}}
-							</option>
-						</select>
-						Years 
-					</h2>
-					<h2 class="h3" ng-if="companyProgress.schoolYears == 0">
-						Select how many years your school has participated in the program 
-						<select class="form-control" id="schoolYears" ng-model="companyProgress.schoolYears" aria-label="School Years" ng-change="updateSchoolYears()">
-							<option ng-repeat="year in yearsList" value="{{year}}">
-								{{year}}
-							</option>
-						</select>
-					</h2>
+			   <div class="d-flex justify-content-center">
+				<h2 class="h3" ng-if="companyProgress.schoolYears > 0">
+					Your school has participated for 
+				</h2>
+				<h2 class="h3" ng-if="companyProgress.schoolYears == 0">
+					Select how many years your school has participated in the program 
+				</h2>
+				<div class="ms-5 col-md-1">
+					<select class="form-control" id="schoolYears" ng-model="companyProgress.schoolYears" aria-label="School Years" ng-change="updateSchoolYears()">
+						<option ng-repeat="year in yearsList" value="{{year}}">
+							{{year}}
+						</option>
+					</select>
+					Years 
 				</div>
 			</section>
 			<div class="ym-spread-the-word-box white-box">
 					<section class="ym-pc-dashboard-spread-section" aria-label="Resources for Spreading the Word">
-						<div class="ym-pc-dashboard-section-header">
-							<h2 class="h3">
-								Spread the Word 
-							</h2>
-						</div>
+						<h2 class="h3 text-center mb-3">
+							Spread the Word 
+						</h2>
 						<div class="ym-pc-dashboard-spread-options">
 							<div class="row">
 								<div class="col-sm-12">
