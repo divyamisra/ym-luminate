@@ -22,7 +22,6 @@ a.btn {
     &:focus,
     &:active {
       background: $event-primary-dark;
-      color: $event-secondary-medium;
     }
   }
   &.btn-secondary {
@@ -59,7 +58,7 @@ div.responsive {
     &:hover,
     &:focus,
     &:active {
-      color: $event-secondary-medium;
+      color: $ffffff;
     }
   }
 }
