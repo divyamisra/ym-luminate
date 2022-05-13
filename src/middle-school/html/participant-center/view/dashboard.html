@@ -835,13 +835,11 @@
 						</div>
 						<div class="ym-pc-dashboard-coordinator-progress-section__column white-box h-100 m-2">
 							<div class="ym-pc-dashboard-coordinator-students-box" ng-if="companyInfo.participantCount" ng-cloak>
-								<div class="ym-pc-dashboard-section-header">
-									<h2 class="h5 ">
-										My School Stats 
-									</h2>
-								</div>
-								<div class="row">
-									<div class="col-md-6">
+								<h2 class="h3 text-center mb-3 ">
+									My School Stats 
+								</h2>
+								<div class="d-md-flex justify-content-center flex-wrap">
+									<div class="col-md-6 mb-5">
 										<div class="schoolStatusTitle">Achievements</div>
 										<p class="students-registered d-none">
 										   <strong>{{companyInfo.participantCount|number}}</strong> student<span ng-if="companyInfo.participantCount> 1 || activity1amt == 0">s are</span><span ng-if="companyInfo.participantCount == 1"> is</span> registered 
