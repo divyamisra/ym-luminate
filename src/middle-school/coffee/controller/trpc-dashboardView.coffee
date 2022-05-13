@@ -334,6 +334,7 @@ angular.module 'trPcControllers'
         $scope.editCoordinatorMessage = ->
           $scope.editCoordinatorMessageModal = $uibModal.open
             scope: $scope
+            size: 'lg'
             templateUrl: APP_INFO.rootPath + 'dist/middle-school/html/participant-center/modal/editCoordinatorMessage.html'
 
         $scope.cancelEditCoordinatorMessage = ->
@@ -483,6 +484,7 @@ angular.module 'trPcControllers'
       $scope.showSchoolPlan = ->
         $scope.showSchoolPlanModal = $uibModal.open
           scope: $scope
+          size: 'lg'
           templateUrl: APP_INFO.rootPath + 'dist/middle-school/html/participant-center/modal/viewSchoolPlan.html'
 
       $scope.cancelShowSchoolPlan = ->
@@ -944,6 +946,7 @@ angular.module 'trPcControllers'
       $scope.showMaterialTypes = ->
         $scope.showMaterialTypesModal = $uibModal.open
           scope: $scope
+          size: 'lg'
           templateUrl: APP_INFO.rootPath + 'dist/middle-school/html/participant-center/modal/viewMaterialTypes.html'
 
       $scope.cancelShowMaterialsTypes = ->
