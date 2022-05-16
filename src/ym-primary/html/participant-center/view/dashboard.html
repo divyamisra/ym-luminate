@@ -1,15 +1,15 @@
 <div cg-busy="dashboardPromises">
   <div ng-if="participantRegistration.companyInformation.isCompanyCoordinator != 'true' || location == '/dashboard-student'" ng-cloak>
-    <div class="row ym-pc-dashboard-coordinators-message-section" ng-if="EventStartDate || DonationDueDate" ng-cloak>
+    <div class="row ym-pc-dashboard-coordinators-message-section mb-2" ng-if="EventStartDate || DonationDueDate" ng-cloak>
 	<div class="ym-pc-dashboard-event-date" ng-if="EventStartDate" ng-cloak>Event Date: {{EventStartDate | date:'MM/dd/yyyy'}} <span ng-if="EventStartDate != EventEndDate && EventEndDate != ''" ng-cloak> thru  {{EventEndDate | date:'MM/dd/yyyy'}}</span></div>
 	<div class="ym-pc-dashboard-money-date" ng-if="DonationDueDate" ng-cloak>Donation Due Date: {{DonationDueDate | date:'MM/dd/yyyy'}}</div>
     </div>  
-    <div class="row ym-pc-dashboard-school-challange">
+    <div class="row ym-pc-dashboard-school-challange mb-2">
       <div ng-class="col-sm-12" ng-if="coordinatorMessage.message && coordinatorMessage.message != ''" ng-cloak> 
         <div class="hv-image" ng-init="hvImgNotesrc='note-peek.png';" ng-mouseover="hvImgNotesrc='note-peek-animated.gif';" ng-mouseout="hvImgNotesrc='note-peek.png';">
 	  <img class="ym-coordinator-message-monster" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy23/teacher-note.png" alt="Teacher Note Sign">
         </div>
-        <section class="ym-pc-dashboard-coordinators-message-section" aria-label="Note From Your Teacher">
+        <section class="ym-pc-dashboard-coordinators-message-section mb-2" aria-label="Note From Your Teacher">
 	  <div class="ym-pc-dashboard-section-header">
 	    <div ng-bind-html="coordinatorMessage.message"></div>
     	  </div>
@@ -406,8 +406,9 @@
           My Fundraising
         </h2>
       </div>
-      <div class="row">
-        <div class="col-sm-6 ym-pc-dashboard-progress-section__column event-secondary-medium">
+      <div class="d-md-flex justify-content-between flex-wrap">
+        <div class="col-sm-6 p-2">
+	        <div class="ym-pc-dashboard-progress-section__column event-secondary-medium p-3 h-100">
           <div class="ym-pc-dashboard-progress-box">
             <div id="ym-pc-dashboard-personal-panel--student" aria-label="Personal Progress">
               <div class="ym-pc-dashboard-section-header">
@@ -470,7 +471,9 @@
             </div>
           </div>
         </div>
-        <div class="col-sm-6 ym-pc-dashboard-progress-section__column event-secondary-medium">
+        </div>
+        <div class="col-sm-6 p-2">
+  	      <div class="ym-pc-dashboard-progress-section__column event-secondary-medium p-3 h-100">
           <div class="ym-pc-dashboard-progress-box">
             <div id="ym-pc-dashboard-company-panel--student" aria-label="School Progress">
               <div class="ym-pc-dashboard-section-header">
@@ -537,13 +540,14 @@
             </div>
           </div>
         </div>
+        </div>
       </div>
     </section>
-    <section class="ym-pc-dashboard-facebook-section" aria-label="Facebook Fundraising" ng-show="facebookFundraisersEnabled" ng-cloak>
+    <section class="ym-pc-dashboard-facebook-section p-2 mb-2" aria-label="Facebook Fundraising" ng-show="facebookFundraisersEnabled" ng-cloak>
       <div class="ym-pc-dashboard-facebook-box" ng-show="!facebookFundraiserId">
         <div class="container">
           <div class="ym-pc-dashboard-section-header">
-            <h3 class="h5">
+            <h3 class="h5 text-white">
               Let's Get Fundraising<span ng-if="consNameFirst && consNameFirst != ''">, <span ng-bind-html="consNameFirst"></span></span>!
             </h3>
           </div>
@@ -590,9 +594,10 @@
         </div>
       </div>
     </section>
-    <section class="ym-pc-dashboard-progress-section" aria-label="Spread the Word and Livestream Sections">
-      <div class="row">
-        <div class="col-sm-6 ym-pc-dashboard-progress-section__column event-secondary-medium">
+    <section class="ym-pc-dashboard-progress-section mb-2" aria-label="Spread the Word and Livestream Sections">
+      <div class="d-md-flex justify-content-between flex-wrap">
+        <div class="col-sm-6 p-2">
+	        <div class="ym-pc-dashboard-progress-section__column event-secondary-medium p-3 h-100">
           <div class="ym-pc-dashboard-email-challenge-box">
             <div class="ym-pc-dashboard-section-header">
               <h3 class="h5">
@@ -621,6 +626,7 @@
               </div>
             </div>
           </div>
+        </div>
         </div>
         <!-- 
         <div class="col-sm-6 ym-pc-dashboard-progress-section__column event-secondary-medium">
@@ -657,7 +663,7 @@
         -->
       </div>
     </section>
-    <section class="ym-pc-dashboard-standard-gifts-section" aria-label="My Gifts" ng-if="hideGifts != 'Y' && has_bonus != 3" ng-cloak>
+    <section class="ym-pc-dashboard-standard-gifts-section mb-2" aria-label="My Gifts" ng-if="hideGifts != 'Y' && has_bonus != 3" ng-cloak>
       <div class="ym-pc-dashboard-section-header">
         <h2 class="h3">
           You Earned <span ng-bind-html="giftsEarned"></span> out of <span ng-bind-html="totalGifts"></span> Thank-You Gifts!
@@ -672,7 +678,7 @@
       <div class="ym-pc-dashboard-standard-gifts-icons" role="list" aria-label="Standard Gifts">
         <div class="ym-pc-dashboard-standard-gifts-icon" role="listitem" ng-class="{'not-earned': !upcomingGift.prize_status}" ng-repeat="upcomingGift in upcomingGifts" aria-label="{{standardGift.prize_label}}" ng-cloak>
            <a href="" ng-click="showPrize(upcomingGift.prize_sku,upcomingGift.prize_label,upcomingGift.prize_status,upcomingGift.prize_video)">
-              <img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/prizes2022/{{upcomingGift.prize_sku}}.png" alt="{{upcomingGift.prize_label}}">
+              <img class="img-fluid" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/prizes2022/{{upcomingGift.prize_sku}}.png" alt="{{upcomingGift.prize_label}}">
 	      <div class="play-circle"><i class="fa fa-play"></i></div>
 	      <div class="ym-pc-dashboard-standard-gift-earned" ng-if="upcomingGift.prize_status" aria-label="Earned">
                  <h4 class="gift-title" ng-bind-html="upcomingGift.prize_label"></h4>
@@ -692,14 +698,15 @@
         </a>
       </div>
     </section>
-    <section class="ym-pc-dashboard-activities-section" aria-label="My Fundraising Activities">
+    <section class="ym-pc-dashboard-activities-section mb-2" aria-label="My Fundraising Activities">
       <div class="ym-pc-dashboard-section-header">
         <h2 class="h3">
           My Activities
         </h2>
       </div>
-      <div class="row">
-        <div class="col-sm-6 ym-activity-box ym-activity-box--next-step">
+      <div class="d-md-flex justify-content-between flex-wrap">
+        <div class="col-sm-6 p-2">
+        	<div class="ym-activity-box ym-activity-box--next-step p-3 h-100 m-0">
           <h3 class="h5">
             My Donors
           </h3>
@@ -812,7 +819,9 @@
             </div>
           </div>
         </div>
-        <div class="col-sm-6 ym-activity-box ym-activity-box--page">
+        </div>
+        <div class="col-sm-6 p-2">
+        	<div class="ym-activity-box ym-activity-box--page p-3 h-100 m-0">
           <h3 class="h5">
             My Page
           </h3>
@@ -855,9 +864,9 @@
             </div>
           </div>
         </div>
+        </div>
       </div>
-      <div class="row">
-        <div class="col-sm-12 ym-activity-box ym-activity-box--challenge">
+      <div class="ym-activity-box ym-activity-box--challenge p-2 mx-2">
           <h3 class="h5">
             Family Heart-Healthy Challenge
           </h3>
@@ -865,19 +874,19 @@
             Loading Your Challenge...
           </div>
           <div class="ym_my_challenge__current" ng-if="personalChallenge.id != '-1'" ng-cloak>
-            <div class="row">
-               <div class="challenge-days">
-                  <div class="row challenge-day-streak">
+            <div class="d-md-flex justify-content-between flex-wrap">
+              <div class="col-6 challenge-days">
+                  <div class="d-flex challenge-day-streak px-3">
                      <div class="col-xs-3 col-sm-4">
                        <div class="challenge-day-count"><span ng-bind-html="personalChallenge.numCompleted"></span></div>
                     </div>
-                    <div class="col-xs-9 col-sm-8">
+                    <div class="col-xs-9 col-sm-8" style="z-index:9999">
                        <div class="challenge-day-title text_with_1px_border">Day Streak</div>
                        <div class="challenge-day-challenge text_with_1px_border" ng-if="personalChallenge.id == '1'" ng-cloak>for moving more</div>
                        <div class="challenge-day-challenge text_with_1px_border" ng-if="personalChallenge.id == '2'" ng-cloak>for being kind</div>
                    </div>
                  </div>
-                 <div class="row challenge-day-add-day" ng-if="!personalChallenge.completedToday" ng-cloak>
+                 <div class="d-flex challenge-day-add-day" ng-if="!personalChallenge.completedToday" ng-cloak>
      		    	      <div class="col-xs-4 col-sm-4 challenge-day-add-icon">
                       <img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/pc-challenge-add-day-icon.png" alt="Add a Day to your Challenge">
                     </div>
@@ -886,30 +895,32 @@
                    </div>
                  </div>
      	      </div>
-              <div class="col-sm-12">
+              <div class="col-6 challenge-buttons">
                 <p class="ym_my_challenge__description text-center">
                   <strong>Change Your Challenge</strong>
                 </p>
-                <div class="col-xs-12 col-sm-6">
-                  <div role="button" ng-click="updateDayChallenge(1)" class="text-center challenge-selection" ng-class="{'selected': personalChallenge.id == '1','disabled': personalChallenge.updatePending}" ng-disabled="personalChallenge.updatePending" ng-init="imghover1=false">
-                    <img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy23/badge-active{{personalChallenge.id == '1' ? '-hover':''}}.png" ng-mouseover="imghover1=true" ng-mouseout="imghover1=false" alt="Move More" ng-show="!imghover1" ng-cloak>
-                    <img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy23/badge-active-hover.png" ng-mouseover="imghover1=true" ng-mouseout="imghover1=false" alt="Move More" ng-show="imghover1" ng-cloak>
-                    Move<br/>More
-                  </div>
-                </div>
-                <div class="col-xs-12 col-sm-6">
-                  <div role="button" ng-click="updateDayChallenge(2)" class="text-center challenge-selection" ng-class="{'selected': personalChallenge.id == '2','disabled': personalChallenge.updatePending}" ng-disabled="personalChallenge.updatePending" ng-init="imghover2=false">
-                    <img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy23/badge-kind{{personalChallenge.id == '2' ? '-hover':''}}.png" ng-mouseover="imghover2=true" ng-mouseout="imghover2=false" alt="Be Kind" ng-show="!imghover2" ng-cloak>
-                    <img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy23/badge-kind-hover.png" ng-mouseover="imghover2=true" ng-mouseout="imghover2=false" alt="Be Kind" ng-show="imghover2" ng-cloak>
-                    Be<br/>Kind
-                  </div>
+                <div class="d-flex justify-content-center flex-wrap">
+									<div class="col-xs-12 col-sm-6">
+										<div role="button" ng-click="updateDayChallenge(1)" class="text-center challenge-selection" ng-class="{'selected': personalChallenge.id == '1','disabled': personalChallenge.updatePending}" ng-disabled="personalChallenge.updatePending" ng-init="imghover1=false">
+											<img class="img-fluid" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy23/badge-active{{personalChallenge.id == '1' ? '-hover':''}}.png" ng-mouseover="imghover1=true" ng-mouseout="imghover1=false" alt="Move More" ng-show="!imghover1" ng-cloak>
+											<img class="img-fluid" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy23/badge-active-hover.png" ng-mouseover="imghover1=true" ng-mouseout="imghover1=false" alt="Move More" ng-show="imghover1" ng-cloak>
+											<p class="text-bold">Move<br/>More</p>
+										</div>
+									</div>
+									<div class="col-xs-12 col-sm-6">
+										<div role="button" ng-click="updateDayChallenge(2)" class="text-center challenge-selection" ng-class="{'selected': personalChallenge.id == '2','disabled': personalChallenge.updatePending}" ng-disabled="personalChallenge.updatePending" ng-init="imghover2=false">
+											<img class="img-fluid" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy23/badge-kind{{personalChallenge.id == '2' ? '-hover':''}}.png" ng-mouseover="imghover2=true" ng-mouseout="imghover2=false" alt="Be Kind" ng-show="!imghover2" ng-cloak>
+											<img class="img-fluid" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy23/badge-kind-hover.png" ng-mouseover="imghover2=true" ng-mouseout="imghover2=false" alt="Be Kind" ng-show="imghover2" ng-cloak>
+											<p class="text-bold">Be<br/>Kind</p>
+										</div>
+									</div>
                 </div>
               </div>
             </div>
             <div class="col-sm-12 text-center">To learn more about how you and your student can meet your family challenge <a href="SPageServer?pagename=khc_resources_parents_corner" target="_blank" title="Click here to learn more about how you and your student can meet your family challenge" aria-label="Click here to learn more about how you and your student can meet your family challenge">click here</a>.</div>
           </div>
         </div>
-        <div class="col-sm-6 ym-activity-box ym-activity-box--virtual hide">
+      <div class="col-sm-6 ym-activity-box ym-activity-box--virtual d-none">
           <div class="row" ng-if="personalInfo.avatar == ''" ng-cloak>
              <div class="col-md-6">
                 <h3 class="h5">Create your own hero!</h3>
@@ -949,21 +960,16 @@
 	     </a>
 	  </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-xs-12">
-          <hr class="ym-zuri-animation__divider" ng-show="companyParticipants.totalFundraisers > 0" ng-cloak>
-          <div class="ym-page-section ym-page-section__main" ng-show="companyParticipants.totalFundraisers > 0" ng-cloak>
-  	    <div class="ym-school-animation">
-	      <iframe title="School Animation" id="school-animation"  ng-src="{{schoolAnimationURL}}"></iframe>
-	    </div>
-          </div>
-        </div>
+			<hr class="ym-zuri-animation__divider" ng-show="companyParticipants.totalFundraisers > 0" ng-cloak>
+			<div class="ym-page-section ym-page-section__main" ng-show="companyParticipants.totalFundraisers > 0" ng-cloak>
+				<div class="ym-school-animation">
+					<iframe title="School Animation" id="school-animation"  ng-src="{{schoolAnimationURL}}"></iframe>
+				</div>
       </div>
     </section>
-    <section class="row ym-pc-dashboard-bottom-section" aria-label="Top 5 list and Spreading the Word">
+    <section class="d-md-flex justify-content-center flex-wrap ym-pc-dashboard-bottom-section" aria-label="Top 5 list and Spreading the Word">
       <div class="col-md-6" ng-show="topClassRaised.length > 0 || topClassStudents.length > 0" ng-cloak>
-        <div class="container ym-teachers-leaderboard-block">
+        <div class="container ym-teachers-leaderboard-block ps-0">
 	  <div class="ym-teachers-leaderboard ym-promo-block">
 	      <h2 class="ym-headline">Leaderboard</h2>
   	   </div>
@@ -1042,8 +1048,9 @@
   </div>
   <div ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true' && location != '/dashboard-student'" ng-cloak>
     <section class="ym-pc-dashboard-coordinator-school-challenge-section" aria-label="School Challenge Selection">
-      <div class="row">
-        <div class="col-sm-6 ym-pc-dashboard-coordinator-progress-section__column">
+      <div class="d-flex justify-content-between flex-wrap">
+        <div class="col-sm-6 p-2">
+	 <div class="ym-pc-dashboard-coordinator-progress-section__column p-3 h-100">
           <div class="ym-pc-dashboard-coordinator-progress-box">
 	    <h2 class="h3 text-center">
 		  School Plan
@@ -1055,8 +1062,8 @@
 		    <span ng-if="schoolPlan.DonationDueDate != '0000-00-00'" ng-cloak>All donations are due on <strong>{{schoolPlan.DonationDueDate | date:'MM/dd/yyyy'}}</strong>.</span>
 		  </p>
 		</div>
-	      <div class="row ym-pc-dashboard-event-dates">
-		<div class="col-sm-6">
+	      <div class="d-flex ym-pc-dashboard-event-dates mb-2">
+		<div class="col-sm-6 pe-2">
                   <div class="form-group">
                     <label for="EventStartDate"><strong>Event Start Date</strong></label>
                     <div class="input-group-old">
@@ -1077,8 +1084,8 @@
 			</div>
 		</div>
 	      </div>
-	      <div class="row ym-pc-dashboard-point-field" ng-cloak>
-					<div class="col-sm-6 text-center">
+	      <div class="d-flex ym-pc-dashboard-point-field mb-2" ng-cloak>
+					<div class="col-sm-6 pe-2">
 						<div class="form-group">
 							<label for="KickOffDate"><strong>Kick Off/Assembly Date</strong></label>
 							<div class="input-group-old">
@@ -1100,27 +1107,27 @@
 					</div>
 	      </div>
 	      <div class="ym-pc-dashboard-school-goals" ng-cloak>
-					<div class="form-group">
+					<div class="form-group mb-2 pe-2">
 						<label for="StudentRecruitmentGoal">Student Recruitment Goal:</label>
 						<input type="number" class="form-control" id="StudentRecruitmentGoal" ng-model="schoolPlan.StudentRecruitmentGoal" aria-label="Student Recruitment Goal" ng-blur="putSchoolPlan($event)">
 					</div>
-					<div class="form-group">
+					<div class="form-group mb-2 pe-2">
 						<label for="FinnsMissionCompletedGoal">Finn's Mission Completion Goal:</label>
 						<input type="number" class="form-control" id="FinnsMissionCompletedGoal" ng-model="schoolPlan.FinnsMissionCompletedGoal" aria-label="Finn's Mission Completion Goal" ng-blur="putSchoolPlan($event)">
 					</div>
-					<div class="form-group hidden">
+					<div class="form-group d-none">
 						<label for="school_goal">Fundraising Goal:</label>
 						<input type="text" class="form-control" id="school_goal" ng-model="companyProgress.goalFormatted" aria-label="School Fundraising Goal" ng-blur="putSchoolPlan($event)" onkeypress="return event.charCode == 36 || event.charCode == 44 || event.charCode == 46 || (event.charCode >= 48 && event.charCode <= 57)">
 					</div>
 	      </div>
-	      <div class="ym-pc-dashboard-send-emails checkbox" custom-checkbox ng-class="{'checked': schoolPlan.SendEmailOnBehalfOfCoordinator == true}" ng-cloak>
+	      <div class="ym-pc-dashboard-send-emails checkbox mb-2 pe-2" custom-checkbox ng-class="{'checked': schoolPlan.SendEmailOnBehalfOfCoordinator == true}" ng-cloak>
 	        <label for="SendEmailOnBehalfOfCoordinator">
           	<input type="checkbox" name="SendEmailOnBehalfOfCoordinator" id="SendEmailOnBehalfOfCoordinator" ng-model="schoolPlan.SendEmailOnBehalfOfCoordinator" ng-true-value="true" ng-false-value="false" ng-click="putSchoolPlan($event)"> 
           	Allow AHA to Send Emails to my students on my behalf
         	</label>
 	      </div>
-              <div class="ym-pc-dashboard-participate-next-year">
-		<div class="row participatingNextYear text-left">
+              <div class="ym-pc-dashboard-participate-next-year mb-2 pe-2">
+		<div class="d-flex participatingNextYear text-left">
 		  <div class="col-md-8 pl-0">
 		    My school will be participating in Kids Heart Challenge next year!
 		  </div>
@@ -1134,12 +1141,12 @@
 		</div>
 	      </div>
               <div class="ym-pc-dashboard-materials-needed mt-sm">
-		<div class="row materialsNeeded text-left"> 
-		  <div class="col-md-8 pl-0">
+		<div class="d-flex materialsNeeded text-left"> 
+		  <div class="col-md-8  pe-2">
 		    My school would like materials in the form of:
 		    <button aria-label="Click the icon to see an example of the materials." data-balloon-pos="up" data-balloon-length="large" ng-click="showMaterialTypes()"><i class="fa fa-info-circle"></i></button> 
 		  </div>
-		  <div class="col-md-4 pr-0">
+		  <div class="col-md-4">
  		    <select class="form-control" id="MaterialsNeeded" ng-model="schoolPlan.MaterialsNeeded" aria-label="Materials Needed" ng-change="updateMaterialsNeeded()">
 		      <option value="Envelope">Envelope</option>
 		      <option value="Parent Letter">Parent Letter</option>
@@ -1155,7 +1162,7 @@
 					  </button>
 					</p>
 				</div>
-				        <div class="ym-pc-dashboard-multi-coord checkbox hidden" custom-checkbox ng-class="{'checked': schoolPlan.MultipleCoordinators == true}" ng-cloak>
+				        <div class="ym-pc-dashboard-multi-coord checkbox d-none" custom-checkbox ng-class="{'checked': schoolPlan.MultipleCoordinators == true}" ng-cloak>
 					  <label for="MultipleCoordinators">
 					  <input type="checkbox" name="MultipleCoordinators" id="MultipleCoordinators" ng-model="schoolPlan.MultipleCoordinators" ng-true-value="1" ng-false-value="0" ng-click="putSchoolPlan($event)"> 
 					  My school has two or more coordinators responsible for the Kids Heart Challenge program.
@@ -1167,7 +1174,9 @@
        <p>No plan data available for this School.</p>
      </div>
  </div>
- <div class="col-sm-6 ym-pc-dashboard-coordinator-progress-section__column">
+	      </div>
+ <div class="col-sm-6 p-2">
+  <div class="ym-pc-dashboard-coordinator-progress-section__column p-3 h-100">
    <div class="ym-pc-dashboard-coordinator-progress-box">
 	   <h2 class="h3 text-center">
 		  School Challenge
@@ -1245,19 +1254,20 @@
 		</div>
 	      </div>
           </div>
-  	  <div class="ym-pc-dashboard-qrcode hidden-xs hidden-sm" ng-cloak>
+  	  <div class="ym-pc-dashboard-qrcode d-xs-none d-sm-none d-md-block" ng-cloak>
             <div class="ym-pc-dashboard-section-header">
        	      <div class="schoolQRCode text-center">
                  School QR Code
 	      </div>
 	      <p>Click the Copy button to share QR code onto documents, social media and websites.</p>
  	      <div id="qrcode" load-qrcode="{{secureDomain}}/site/TR?pg=company&fr_id={{frId}}&company_id={{companyId}}"></div>
-	      <img src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/khc-logo-qrcode.png" class="qrcode-logo hidden">
+	      <img src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/khc-logo-qrcode.png" class="qrcode-logo d-none">
               <button type="button" class="btn btn-md-wide btn-primary" id="copyable" role="button" copy-qrcode><strong>Copy</strong></button>
 	    </div>
 	  </div>
         </div>
       </div>
+    </div>
     </section>
     <section class="ym-pc-dashboard-coordinator-school-years-section" aria-label="Years School Participated">
       <div class="ym-pc-dashboard-section-header">
@@ -1277,8 +1287,9 @@
       </div>
     </section>
     <section class="ym-pc-dashboard-coordinator-progress-section" aria-label="Fundraising Progress Meters">
-      <div class="row">
-        <div class="col-sm-5 ym-pc-dashboard-coordinator-progress-section__column event-secondary-medium">
+      <div class="d-flex justify-content-between flex-wrap">
+        <div class="col-sm-5 p-2">
+        <div class="ym-pc-dashboard-coordinator-progress-section__column event-secondary-medium p-3 h-100">
           <div class="ym-pc-dashboard-coordinator-progress-box">
             <div class="ym-pc-dashboard-section-header">
               <h2 class="h5">
@@ -1384,7 +1395,9 @@
             </div>
           </div>
         </div>
-        <div class="col-sm-7 ym-pc-dashboard-coordinator-progress-section__column event-secondary-medium">
+        </div>
+        <div class="col-sm-7 p-2">
+        <div class="ym-pc-dashboard-coordinator-progress-section__column event-secondary-medium p-3 h-100">
           <div class="ym-pc-dashboard-coordinator-students-box" ng-if="companyInfo.participantCount" ng-cloak>
             <div class="ym-pc-dashboard-section-header">
               <h2 class="h5">
@@ -1394,7 +1407,7 @@
             <div class="row">
               <div class="ym-pc-dashboard-coordinator-create-message col-md-6">
                 <div class="schoolStatusTitle">School Achievement</div>
-                <p class="students-registered hidden">
+                <p class="students-registered d-none">
                   <strong>{{companyInfo.participantCount|number}}</strong> student<span ng-if="companyInfo.participantCount > 1 || activity1amt == 0">s are</span><span ng-if="companyInfo.participantCount == 1"> is</span> registered 
                 </p>
 		<p class="students-fundraising">
@@ -1449,6 +1462,7 @@
           </div>
         </div>
       </div>
+      </div>
     </section>
     <section class="ym-pc-dashboard-coordinator-steps-section" aria-label="Fundraising Steps">
       <div class="ym-pc-dashboard-section-header">
@@ -1456,8 +1470,9 @@
           Coordinator Fundraising Steps
         </h2>
       </div>
-      <div class="row">
-        <div class="col-md-4 ym-activity-box ym-activity-box--coordinator-pages">
+      <div class="d-md-flex justify-content-between flex-wrap">
+        <div class="col-md-4 p-2">
+	        <div class="ym-activity-box ym-activity-box--coordinator-pages m-0 h-100">
           <h3 class="h5 clearfix">
             <span class="ym-activity-box-number">1</span> Edit My Pages
           </h3>
@@ -1601,14 +1616,16 @@
             </div>
           </div>
         </div>
-        <div class="col-md-4 ym-activity-box ym-activity-box--coordinator-student-view">
+        </div>
+        <div class="col-md-4 p-2">
+  	      <div class="ym-activity-box ym-activity-box--coordinator-student-view m-0 h-100">
           <h3 class="h5 clearfix">
             <span class="ym-activity-box-number">2</span> Student View
           </h3>
           <div class="clearfix">
             <div class="ym-pc-student-view-text">
               <div class="ym-pc-student-view-image">
-                <img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy22/student-view-2022.png" alt="Student View">
+                <img class="img-fluid" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy22/student-view-2022.png" alt="Student View">
               </div>
               <p>
                 Use the "Student View" to show your students all of the great tools and games in their Headquarters and encourage them to fundraise!
@@ -1621,7 +1638,9 @@
             </div>
           </div>
         </div>
-        <div class="col-md-4 ym-activity-box">
+        </div>
+        <div class="col-md-4 p-2">
+	        <div class="ym-activity-box m-0 h-100">
           <div class="ym-activity-box--coordinator-reports">
             <h3 class="h5 clearfix">
               <span class="ym-activity-box-number">3</span> Manage Event
@@ -1660,6 +1679,7 @@
               </a>
             </div>
           </div>
+        </div>
         </div>
       </div>
     </section>
