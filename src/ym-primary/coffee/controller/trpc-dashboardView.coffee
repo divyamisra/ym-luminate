@@ -311,6 +311,7 @@ angular.module 'trPcControllers'
       $scope.showMaterialTypes = ->
         $scope.showMaterialTypesModal = $uibModal.open
           scope: $scope
+          size: 'lg'
           templateUrl: APP_INFO.rootPath + 'dist/ym-primary/html/participant-center/modal/viewMaterialTypes.html'
 
       $scope.cancelShowMaterialsTypes = ->
@@ -391,6 +392,7 @@ angular.module 'trPcControllers'
             $scope.coordinatorMessage.text = 'Don\'t forget to complete Finn\'s Mission!'
           $scope.editCoordinatorMessageModal = $uibModal.open
             scope: $scope
+            size: 'lg'
             templateUrl: APP_INFO.rootPath + 'dist/ym-primary/html/participant-center/modal/editCoordinatorMessage.html'
 
         $scope.cancelEditCoordinatorMessage = ->
@@ -425,6 +427,7 @@ angular.module 'trPcControllers'
       $scope.postFeedbackMessage = ->
         $scope.postFeedbackMessageModal = $uibModal.open
           scope: $scope
+          size: 'lg'
           templateUrl: APP_INFO.rootPath + 'dist/ym-primary/html/participant-center/modal/postFeedbackMessage.html'
 
       $scope.cancelPostFeedbackMessage = ->
@@ -550,6 +553,7 @@ angular.module 'trPcControllers'
       $scope.showSchoolPlan = ->
         $scope.showSchoolPlanModal = $uibModal.open
           scope: $scope
+          size: 'lg'
           templateUrl: APP_INFO.rootPath + 'dist/ym-primary/html/participant-center/modal/viewSchoolPlan.html'
 
       $scope.cancelShowSchoolPlan = ->
