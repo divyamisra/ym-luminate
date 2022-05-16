@@ -102,12 +102,7 @@
    a {
       color: $event-primary-acc;
    }
-   .ym_my_challenge__current > .row {
-      display: flex;
-      @media (max-width:767px) {
-        display:block;
-      }
-   }
+
    .challenge-days {
       position:relative;
       flex: 0 0 50%;
@@ -191,32 +186,30 @@
       font-size: 26px;
       margin-top:0px;
    }
-   .row {
-     a, div.challenge-selection {
-	display: block;
-	text-decoration: none;
-	font-weight: bold;
-	color: #293b90;
-	font-size: 24px;
-	line-height: 28px;
-        margin-bottom:20px;
-	cursor: pointer;
+   a, div.challenge-selection {
+      display: block;
+      text-decoration: none;
+      font-weight: bold;
+      color: #293b90;
+      font-size: 24px;
+      line-height: 28px;
+      margin-bottom:20px;
+      cursor: pointer;
 
-	&.selected {
-	   font-weight:bold;
-	}
-	&.disabled {
-   	   cursor: not-allowed;
-           filter: alpha(opacity=65);
-           -webkit-box-shadow: none;
-           box-shadow: none;
-     	   opacity: .65;
-        }
-	img {
-           margin:0 auto 5px;
-	}
+      &.selected {
+	font-weight:bold;
       }
-   }
+      &.disabled {
+        cursor: not-allowed;
+        filter: alpha(opacity=65);
+        -webkit-box-shadow: none;
+        box-shadow: none;
+        opacity: .65;
+      }
+      img {
+         margin:0 auto 5px;
+      }
+    }
 }
 .ym-activity-box.ym-activity-box--virtual {
    a.entry-button{
