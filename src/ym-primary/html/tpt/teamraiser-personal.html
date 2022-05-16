@@ -14,7 +14,7 @@
             <span class="fa fa-camera"></span> Edit Photo
           </button>
         ::]]
-        <img class="hidden-md hidden-lg" ng-src="{{personalPagePhoto1.customUrl && personalPagePhoto1.customUrl != '' ? personalPagePhoto1.customUrl : personalPagePhoto1.defaultUrl}}" alt="{{personalPagePhoto1.caption != '' ? personalPagePhoto1.caption : 'Student Photo'}}" ng-cloak>
+        <img class="d-block d-md-none" ng-src="{{personalPagePhoto1.customUrl && personalPagePhoto1.customUrl != '' ? personalPagePhoto1.customUrl : personalPagePhoto1.defaultUrl}}" alt="{{personalPagePhoto1.caption != '' ? personalPagePhoto1.caption : 'Student Photo'}}" ng-cloak>
       </div>
       <div class="caption" ng-if="personalPagePhoto1.caption && personalPagePhoto1.caption != ''" ng-cloak>
         <span ng-bind-html="personalPagePhoto1.caption"></span>
@@ -51,7 +51,7 @@
     </div>
     <div class="clearfix"></div>
   </div>
-  <div class="ym-page-section ym-page-section__main">
+  <div class="ym-page-section ym-page-section__main d-md-flex jsutify-content-between flex-wrap">
     <div class="ym-story" ng-class="prizes.length > 0 || challengeId != null ? 'col-md-6' : 'col-md-12'">
       <h2 class="ym-headline h3">
         My Story
@@ -75,7 +75,7 @@
           </div>
         </div>
       ::]]
-      <div class="hidden js--default-page-content" hidden aria-hidden="true" ng-non-bindable>
+      <div class="d-none js--default-page-content" hidden aria-hidden="true" ng-non-bindable>
         [[C6:fr_rich_text]]
       </div>
       <div ng-show="personalPageContent.mode == 'view'">
@@ -196,7 +196,7 @@
         Donate
       </a>
     </div>
-    <div class="ym-list" ng-class="!personalDonors.donors || personalDonors.donors.length == 0 ? 'hidden' : 'col-sm-6'" aria-label="Top Fundraisers List" ng-cloak>
+    <div class="ym-list" ng-class="!personalDonors.donors || personalDonors.donors.length == 0 ? 'd-none' : 'col-sm-6'" aria-label="Top Fundraisers List" ng-cloak>
       <h2>
         <img class="img-responsive" src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/ym-primary/image/fy23/top-fundraisers.png" alt="Saluting these top fundraisers:">
       </h2>
@@ -211,7 +211,7 @@
     </div>
     <div class="clearfix"></div>
   </div>
-  <div class="hidden" hidden aria-hidden="true">
+  <div class="d-none" hidden aria-hidden="true">
     <div class="js--personal-donors">
       [[C5:fr_status_2]]
     </div>
