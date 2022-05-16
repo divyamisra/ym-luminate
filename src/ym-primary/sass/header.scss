@@ -7,6 +7,15 @@ header {
       margin: -2px 12px 0;
     }
   }
+
+  .ym-header-logos {
+    height: auto;
+    margin: 0;
+    
+    @media (min-width: $screen-sm-min) {
+      height: auto;
+    }
+  }
 }
 
 .ym-header-welcome {
