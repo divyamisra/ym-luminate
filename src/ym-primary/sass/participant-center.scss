@@ -497,26 +497,10 @@ div[id^="taTextElement"]:focus {
 		margin-bottom:5px;
 	}
 
-	.row {
-		margin: 0px;
-		
-		@media (min-width:768px) {
-			display:flex;
-			margin: 0px;
-		}
-		
-		.ym-pc-dashboard-coordinator-progress-section__column {
-			background-color: $event-accent-light;
-			padding: 30px;
-		}
-		
-		@media (min-width: 992px) {
-			.ym-pc-dashboard-coordinator-progress-section__column:first-child {
-			    margin: 0 30px 0 0;
-			}
-		}
+	.ym-pc-dashboard-coordinator-progress-section__column {
+		background-color: $event-accent-light;
 	}
-	
+
 	.schoolChallenge {
 	    margin-bottom: 20px;
 	}
