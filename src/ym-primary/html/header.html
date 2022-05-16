@@ -13,7 +13,7 @@
       <div class="container">
         <div class="clearfix">
           [[?x27x::x[[S4]]x::::
-            <ul class="ym-site-nav hidden-xs">
+            <ul class="ym-site-nav d-none d-sm-block">
               <li>
                 <a href="https://[[S29:SECURE_DOMAIN]][[S29:SECURE_PATH]]SPageNavigator/khc_resources_search.html">
                   Home
@@ -73,7 +73,7 @@
                         <a class="pull-right ym-header-login__help-link" href="UserLogin?CMD=ForgotLogin">Need Help?</a>
                       </div>
                     </form>
-                    <form class="hidden js--default-header-login-form" action="UserLogin" method="POST" hidden aria-hidden="true">
+                    <form class="d-none js--default-header-login-form" action="UserLogin" method="POST" hidden aria-hidden="true">
                       <input type="hidden" name="NEXTURL" value="{{headerLoginInfo.ng_nexturl}}">
                       <input type="hidden" name="USERNAME" value="{{headerLoginInfo.user_name}}">
                       <input type="hidden" name="Password" value="{{headerLoginInfo.password}}">
@@ -124,7 +124,7 @@
                   </a>
                   <a class="btn btn-global-primary ym-header-hq-btn" ng-href="TRSC?fr_id={{regEventId}}" ng-if="numberEvents == 1">
                     <span class="visible-xs visible-sm">My HQ</span>
-                    <span class="hidden-xs hidden-sm">My Headquarters</span>
+                    <span class="d-none d-md-block">My Headquarters</span>
                   </a>
                 </div>
               </div>
