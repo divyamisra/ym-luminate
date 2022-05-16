@@ -4,6 +4,17 @@
 
 @import "../../youth-markets/sass/participant.scss";
 
+.list-group-item > .badge {
+    float: right;
+}
+
+a.list-group-item:focus, 
+a.list-group-item:hover {
+    color: #555;
+    text-decoration: none;
+    background-color: #f5f5f5;
+}
+
 .ym-pc-dashboard-email-challenge-box {
   form {
     textarea.form-control[readonly] {
