@@ -9,10 +9,11 @@ angular.module 'ahaLuminateControllers'
     'APP_INFO'
     'TeamraiserParticipantService'
     'TeamraiserCompanyService'
+    'TeamraiserParticipantPageService'
     'ZuriService'
     'BoundlessService'
     'TeamraiserParticipantPageService'
-    ($scope, $rootScope, $location, $filter, $timeout, $uibModal, APP_INFO, TeamraiserParticipantService, TeamraiserCompanyService, ZuriService, BoundlessService, TeamraiserParticipantPageService) ->
+    ($scope, $rootScope, $location, $filter, $timeout, $uibModal, APP_INFO, TeamraiserParticipantService, TeamraiserCompanyService, TeamraiserParticipantPageService, ZuriService, BoundlessService, TeamraiserParticipantPageService) ->
       $dataRoot = angular.element '[data-aha-luminate-root]'
       $scope.participantId = $location.absUrl().split('px=')[1].split('&')[0].split('#')[0]
       $scope.companyId = $dataRoot.data('company-id') if $dataRoot.data('company-id') isnt ''
@@ -269,9 +270,8 @@ angular.module 'ahaLuminateControllers'
               if not $scope.$$phase
                 $scope.$apply()
               $scope.closePersonalPhoto1Modal()
-      
+
       $scope.personalPageContent =
-        mode: 'view'
         serial: new Date().getTime()
         textEditorToolbar: [
           [
@@ -292,25 +292,25 @@ angular.module 'ahaLuminateControllers'
             'redo'
           ]
         ]
-        rich_text: angular.element('.js--default-page-content').html()
-        ng_rich_text: angular.element('.js--default-page-content').html()
-      
-      $scope.editPersonalPageContent = ->
-        richText = $scope.personalPageContent.ng_rich_text
-        $richText = jQuery '<div />',
-          html: richText
-        richText = $richText.html()
-        richText = richText.replace(/<strong>/g, '<b>').replace(/<strong /g, '<b ').replace /<\/strong>/g, '</b>'
-        .replace(/<em>/g, '<i>').replace(/<em /g, '<i ').replace /<\/em>/g, '</i>'
-        $scope.personalPageContent.ng_rich_text = richText
-        $scope.personalPageContent.mode = 'edit'
-        $timeout ->
-          angular.element('[ta-bind][contenteditable]').focus()
-        , 500
+
+      TeamraiserParticipantPageService.getPersonalPageInfo
+        error: (response) ->
+          # TODO
+        success: (response) ->
+			  	$scope.personalPageInfo  = response.getPersonalPageResponse;
+          $scope.personalPageContent.rich_text: $scope.personalPageInfo.personalPage.richText
+          $scope.personalPageContent.ng_rich_text: $scope.personalPageInfo.personalPage.richText
+            
+          richText = $scope.personalPageContent.ng_rich_text
+          $richText = jQuery '<div />',
+            html: richText
+          richText = $richText.html()
+          richText = richText.replace(/<strong>/g, '<b>').replace(/<strong /g, '<b ').replace /<\/strong>/g, '</b>'
+          .replace(/<em>/g, '<i>').replace(/<em /g, '<i ').replace /<\/em>/g, '</i>'
+          $scope.personalPageContent.ng_rich_text = richText
       
       $scope.resetPersonalPageContent = ->
         $scope.personalPageContent.ng_rich_text = $scope.personalPageContent.rich_text
-        $scope.personalPageContent.mode = 'view'
       
       $scope.savePersonalPageContent = (isRetry) ->
         richText = $scope.personalPageContent.ng_rich_text
@@ -343,7 +343,6 @@ angular.module 'ahaLuminateControllers'
               else
                 $scope.personalPageContent.rich_text = richText
                 $scope.personalPageContent.ng_rich_text = richText
-                $scope.personalPageContent.mode = 'view'
                 BoundlessService.logPersonalPageUpdated()
                 if not $scope.$$phase
                   $scope.$apply()
