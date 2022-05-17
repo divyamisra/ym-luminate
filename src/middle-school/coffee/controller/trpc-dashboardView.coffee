@@ -1202,4 +1202,143 @@ angular.module 'trPcControllers'
         document.getElementById("tRctm").x.baseVal.value = -99999
         jQuery("#tTipm div").html("")
         document.getElementById("tTrim").setAttribute('points','0 0 0 0 0 0')
+	
+      $scope.editPersonalPhoto1 = ->
+        delete $scope.updatePersonalPhoto1Error
+        $scope.editPersonalPhoto1Modal = $uibModal.open
+          scope: $scope
+          templateUrl: APP_INFO.rootPath + 'dist/middle-school/html/modal/editPersonalPhoto1.html'
+      
+      $scope.closePersonalPhoto1Modal = ->
+        delete $scope.updatePersonalPhoto1Error
+        $scope.editPersonalPhoto1Modal.close()
+      
+      $scope.cancelEditPersonalPhoto1 = ->
+        $scope.closePersonalPhoto1Modal()
+      
+      $scope.deletePersonalPhoto1 = (e) ->
+        if e
+          e.preventDefault()
+        angular.element('.js--delete-personal-photo-1-form').submit()
+        false
+      
+      window.trPageEdit =
+        uploadPhotoError: (response) ->
+          errorResponse = response.errorResponse
+          photoNumber = errorResponse.photoNumber
+          errorCode = errorResponse.code
+          errorMessage = errorResponse.message
+          
+          if errorCode is '5'
+            window.location = luminateExtend.global.path.secure + 'UserLogin?NEXTURL=' + encodeURIComponent('TR?fr_id=' + $scope.frId + '&pg=personal&px=' + $scope.participantId)
+          else
+            if photoNumber is '1'
+              $scope.updatePersonalPhoto1Error =
+                message: errorMessage
+            if not $scope.$$phase
+              $scope.$apply()
+        uploadPhotoSuccess: (response) ->
+          delete $scope.updatePersonalPhoto1Error
+          if not $scope.$$phase
+            $scope.$apply()
+          BoundlessService.logPersonalPageUpdated()
+          successResponse = response.successResponse
+          photoNumber = successResponse.photoNumber
+          
+          TeamraiserParticipantPageService.getPersonalPhotos
+            error: (response) ->
+              # TODO
+            success: (response) ->
+              photoItems = response.getPersonalPhotosResponse?.photoItem
+              if photoItems
+                photoItems = [photoItems] if not angular.isArray photoItems
+                angular.forEach photoItems, (photoItem) ->
+                  photoUrl = photoItem.customUrl
+                  photoCaption = photoItem.caption
+                  if not photoCaption or not angular.isString(photoCaption)
+                    photoCaption = ''
+                  if photoItem.id is '1'
+                    $scope.personalPagePhoto1.customUrl = photoUrl
+                    $scope.personalPagePhoto1.caption = photoCaption
+              if not $scope.$$phase
+                $scope.$apply()
+              $scope.closePersonalPhoto1Modal()
+      
+      $scope.personalPageContent =
+        mode: 'view'
+        serial: new Date().getTime()
+        textEditorToolbar: [
+          [
+            'bold'
+            'italics'
+            'underline'
+          ]
+          [
+            'ul'
+            'ol'
+          ]
+          [
+            'insertImage'
+            'insertLink'
+          ]
+          [
+            'undo'
+            'redo'
+          ]
+        ]
+        rich_text: angular.element('.js--default-page-content').html()
+        ng_rich_text: angular.element('.js--default-page-content').html()
+      
+      $scope.editPersonalPageContent = ->
+        richText = $scope.personalPageContent.ng_rich_text
+        $richText = jQuery '<div />',
+          html: richText
+        richText = $richText.html()
+        richText = richText.replace(/<strong>/g, '<b>').replace(/<strong /g, '<b ').replace /<\/strong>/g, '</b>'
+        .replace(/<em>/g, '<i>').replace(/<em /g, '<i ').replace /<\/em>/g, '</i>'
+        $scope.personalPageContent.ng_rich_text = richText
+        $scope.personalPageContent.mode = 'edit'
+        $timeout ->
+          angular.element('[ta-bind][contenteditable]').focus()
+        , 500
+      
+      $scope.resetPersonalPageContent = ->
+        $scope.personalPageContent.ng_rich_text = $scope.personalPageContent.rich_text
+        $scope.personalPageContent.mode = 'view'
+      
+      $scope.savePersonalPageContent = (isRetry) ->
+        richText = $scope.personalPageContent.ng_rich_text
+        $richText = jQuery '<div />', 
+          html: richText
+        richText = $richText.html()
+        richText = richText.replace /<\/?[A-Z]+.*?>/g, (m) ->
+          m.toLowerCase()
+        .replace(/<font>/g, '<span>').replace(/<font /g, '<span ').replace /<\/font>/g, '</span>'
+        .replace(/<b>/g, '<strong>').replace(/<b /g, '<strong ').replace /<\/b>/g, '</strong>'
+        .replace(/<i>/g, '<em>').replace(/<i /g, '<em ').replace /<\/i>/g, '</em>'
+        .replace(/<u>/g, '<span style="text-decoration: underline;">').replace(/<u /g, '<span style="text-decoration: underline;" ').replace /<\/u>/g, '</span>'
+        .replace /[\u00A0-\u9999\&]/gm, (i) ->
+          '&#' + i.charCodeAt(0) + ';'
+        .replace /&#38;/g, '&'
+        .replace /<!--[\s\S]*?-->/g, ''
+        TeamraiserParticipantPageService.updatePersonalPageInfo 'rich_text=' + encodeURIComponent(richText),
+          error: ->
+            # TODO
+          success: (response) ->
+            if response.teamraiserErrorResponse
+              errorCode = response.teamraiserErrorResponse.code
+              if errorCode is '2647' and not isRetry
+                $scope.personalPageContent.ng_rich_text = response.teamraiserErrorResponse.body
+                $scope.savePageContent true
+            else
+              isSuccess = response.updatePersonalPageResponse?.success is 'true'
+              if not isSuccess
+                # TODO
+              else
+                $scope.personalPageContent.rich_text = richText
+                $scope.personalPageContent.ng_rich_text = richText
+                $scope.personalPageContent.mode = 'view'
+                BoundlessService.logPersonalPageUpdated()
+                if not $scope.$$phase
+                  $scope.$apply()
   ]
