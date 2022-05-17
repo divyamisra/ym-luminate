@@ -1203,7 +1203,10 @@ angular.module 'trPcControllers'
         document.getElementById("tRctm").x.baseVal.value = -99999
         jQuery("#tTipm div").html("")
         document.getElementById("tTrim").setAttribute('points','0 0 0 0 0 0')
-	
+
+      $scope.personalPagePhoto1 = 
+        defaultUrl: APP_INFO.rootPath + 'dist/middle-school/image/fy22/personal-default.jpg'
+
       $scope.editPersonalPhoto1 = ->
         delete $scope.updatePersonalPhoto1Error
         $scope.editPersonalPhoto1Modal = $uibModal.open
@@ -1264,7 +1267,23 @@ angular.module 'trPcControllers'
               if not $scope.$$phase
                 $scope.$apply()
               $scope.closePersonalPhoto1Modal()
-      
+
+      TeamraiserParticipantPageService.getPersonalPhotos
+        error: (response) ->
+        success: (response) ->
+          photoItems = if (ref7 = response.getPersonalPhotosResponse) != null then ref7.photoItem else undefined
+          if photoItems
+            if !angular.isArray(photoItems)
+              photoItems = [ photoItems ]
+            angular.forEach photoItems, (photoItem) ->
+              photoUrl = photoItem.customUrl
+              photoCaption = photoItem.caption
+              if !photoCaption or !angular.isString(photoCaption)
+                photoCaption = ''
+              if photoItem.id == '1'
+                $scope.personalPagePhoto1.customUrl = photoUrl
+                $scope.personalPagePhoto1.caption = photoCaption
+
       $scope.personalPageContent =
         mode: 'view'
         serial: new Date().getTime()
