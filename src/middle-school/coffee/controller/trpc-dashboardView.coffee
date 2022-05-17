@@ -1266,6 +1266,7 @@ angular.module 'trPcControllers'
               $scope.closePersonalPhoto1Modal()
       
       $scope.personalPageContent =
+        mode: 'view'
         serial: new Date().getTime()
         textEditorToolbar: [
           [
@@ -1303,8 +1304,22 @@ angular.module 'trPcControllers'
           .replace(/<em>/g, '<i>').replace(/<em /g, '<i ').replace /<\/em>/g, '</i>'
           $scope.personalPageContent.ng_rich_text = richText 
       
+      $scope.editPersonalPageContent = ->
+        richText = $scope.personalPageContent.ng_rich_text
+        $richText = jQuery '<div />',
+          html: richText
+        richText = $richText.html()
+        richText = richText.replace(/<strong>/g, '<b>').replace(/<strong /g, '<b ').replace /<\/strong>/g, '</b>'
+        .replace(/<em>/g, '<i>').replace(/<em /g, '<i ').replace /<\/em>/g, '</i>'
+        $scope.personalPageContent.ng_rich_text = richText
+        $scope.personalPageContent.mode = 'edit'
+        $timeout ->
+          angular.element('[ta-bind][contenteditable]').focus()
+        , 500
+      
       $scope.resetPersonalPageContent = ->
         $scope.personalPageContent.ng_rich_text = $scope.personalPageContent.rich_text
+        $scope.personalPageContent.mode = 'view'
       
       $scope.savePersonalPageContent = (isRetry) ->
         richText = $scope.personalPageContent.ng_rich_text
@@ -1337,6 +1352,7 @@ angular.module 'trPcControllers'
               else
                 $scope.personalPageContent.rich_text = richText
                 $scope.personalPageContent.ng_rich_text = richText
+                $scope.personalPageContent.mode = 'view'
                 BoundlessService.logPersonalPageUpdated()
                 if not $scope.$$phase
                   $scope.$apply()
