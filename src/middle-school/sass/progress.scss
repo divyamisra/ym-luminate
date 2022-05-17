@@ -7,7 +7,7 @@
 }
 
 .ym-progress__thermometer--fill {
-  background: url('../image/middle-school-therm-fill.png') no-repeat top left;
+  background: $event-primary;
   height: 35px;
 }
 
