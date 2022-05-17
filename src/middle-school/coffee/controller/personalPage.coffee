@@ -306,7 +306,7 @@ angular.module 'ahaLuminateControllers'
           richText = $richText.html()
           richText = richText.replace(/<strong>/g, '<b>').replace(/<strong /g, '<b ').replace /<\/strong>/g, '</b>'
           .replace(/<em>/g, '<i>').replace(/<em /g, '<i ').replace /<\/em>/g, '</i>'
-          $scope.personalPageContent.ng_rich_text = richText
+          $scope.personalPageContent.ng_rich_text = richText 
       
       $scope.resetPersonalPageContent = ->
         $scope.personalPageContent.ng_rich_text = $scope.personalPageContent.rich_text
