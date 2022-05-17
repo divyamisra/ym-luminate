@@ -24,6 +24,7 @@
 .therm-text-black {
   color: $event-font-color;
   text-indent: 100%;
+  white-space: nowrap;
   
   &::before {
     content: " ";
@@ -34,4 +35,5 @@
 .therm-text-white {
   color: #ffffff;
   text-indent: 5px;
+  white-space: nowrap;
 }
