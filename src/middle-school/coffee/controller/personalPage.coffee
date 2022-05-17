@@ -297,7 +297,7 @@ angular.module 'ahaLuminateControllers'
         error: (response) ->
           # TODO
         success: (response) ->
-			  	$scope.personalPageInfo  = response.getPersonalPageResponse;
+          $scope.personalPageInfo  = response.getPersonalPageResponse;
           $scope.personalPageContent.rich_text: $scope.personalPageInfo.personalPage.richText
           $scope.personalPageContent.ng_rich_text: $scope.personalPageInfo.personalPage.richText
             
