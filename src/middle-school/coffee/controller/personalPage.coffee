@@ -9,11 +9,10 @@ angular.module 'ahaLuminateControllers'
     'APP_INFO'
     'TeamraiserParticipantService'
     'TeamraiserCompanyService'
-    'TeamraiserParticipantPageService'
     'ZuriService'
     'BoundlessService'
     'TeamraiserParticipantPageService'
-    ($scope, $rootScope, $location, $filter, $timeout, $uibModal, APP_INFO, TeamraiserParticipantService, TeamraiserCompanyService, TeamraiserParticipantPageService, ZuriService, BoundlessService, TeamraiserParticipantPageService) ->
+    ($scope, $rootScope, $location, $filter, $timeout, $uibModal, APP_INFO, TeamraiserParticipantService, TeamraiserCompanyService, ZuriService, BoundlessService, TeamraiserParticipantPageService) ->
       $dataRoot = angular.element '[data-aha-luminate-root]'
       $scope.participantId = $location.absUrl().split('px=')[1].split('&')[0].split('#')[0]
       $scope.companyId = $dataRoot.data('company-id') if $dataRoot.data('company-id') isnt ''
