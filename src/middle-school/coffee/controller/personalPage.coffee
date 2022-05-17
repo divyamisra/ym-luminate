@@ -298,8 +298,8 @@ angular.module 'ahaLuminateControllers'
           # TODO
         success: (response) ->
           $scope.personalPageInfo  = response.getPersonalPageResponse;
-          $scope.personalPageContent.rich_text: $scope.personalPageInfo.personalPage.richText
-          $scope.personalPageContent.ng_rich_text: $scope.personalPageInfo.personalPage.richText
+          $scope.personalPageContent.rich_text = $scope.personalPageInfo.personalPage.richText
+          $scope.personalPageContent.ng_rich_text = $scope.personalPageInfo.personalPage.richText
             
           richText = $scope.personalPageContent.ng_rich_text
           $richText = jQuery '<div />',
