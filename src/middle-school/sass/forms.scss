@@ -28,3 +28,11 @@ div.responsive input[disabled] {
 .ym-optional {
   color: $event-secondary-medium;
 }
+
+.ym-pc-dashboard-coordinator-students-box {
+  form {
+    textarea.form-control[readonly] {
+      height: 270px;
+    }
+  }
+}
