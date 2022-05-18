@@ -3,126 +3,124 @@
 		<section class="ym-pc-dashboard-badges-section" aria-label="My Badges" ng-if="prizes &amp;&amp; prizes.length &gt; 0" ng-cloak>
 			<img src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/middle-school/image/heart-card-placeholder.jpg">
 		</section>
-		<section class="ym-pc-dashboard-progress-section" aria-label="Fundraising Progress Meters">
-			<div class="ym-pc-dashboard-section-header">
-				<h2 class="h3">
-					My Fundraising 
-				</h2>
-			</div>
+		<section class="ym-pc-dashboard-fundraise-section" aria-label="Fundraising Progress Meters">
+			<h2 class="h3 clearfix mt-4 text-center">
+				My Fundraising 
+			</h2>
 			<div class="d-md-flex align-items-start flex-wrap justify-content-between">
-					<div class="ym-pc-dashboard-progress-section__column col-md-4">
-						<div class="ym-pc-dashboard-progress-box white-box">
-							<div id="ym-pc-dashboard-personal-panel--student" aria-label="Personal Progress">
-								<div class="ym-pc-dashboard-section-header">
-									<h3 class="h5">
-										Personal Progress 
-									</h3>
+				<div class="col-md-5 p-2">
+					<div class="ym-pc-dashboard-progress-box white-box">
+						<div id="ym-pc-dashboard-personal-panel--student" aria-label="Personal Progress">
+							<div class="ym-pc-dashboard-section-header">
+								<h3 class="h5">
+									Personal Progress 
+								</h3>
+							</div>
+							<div class="ym-progress__thermometer" name="Personal Progress Bar" aria-label="{{participantProgress.percent}} percent of fundraising progress" aria-valuetext="{{participantProgress.percent}} percent of fundraising progress" role="progressbar" aria-valuenow="{{participantProgress.percent}}" aria-valuemin="0" aria-valuemax="100">
+								<div class="ym-progress__thermometer--fill" ng-class="(participantProgress.percent < 13) ? 'therm-text-black' : 'therm-text-white'" ng-style="{'width': participantProgress.percent + '%'}">{{participantProgress.percent}}%</div>
+							</div>
+							<div class="ym-progress-related">
+								<div class="ym-progress-donate">
+									<p>
+										<a class="btn btn-lg btn-primary" ng-href="{{baseUrl}}#/reports" title="Click to view your donation reports">
+											<strong>
+												Donation Reports
+											</strong>
+										</a>
+									</p>
+									<p>
+										<a class="btn btn-lg btn-primary" ng-href="Donation2?df_id={{eventInfo.donationFormId}}&amp;FR_ID={{frId}}&amp;PROXY_TYPE=20&amp;PROXY_ID={{consId}}">
+											<strong>
+												Donate to Personal Page
+											</strong>
+										</a>
+									</p>
 								</div>
-								<div class="ym-progress__thermometer" name="Personal Progress Bar" aria-label="{{participantProgress.percent}} percent of fundraising progress" aria-valuetext="{{participantProgress.percent}} percent of fundraising progress" role="progressbar" aria-valuenow="{{participantProgress.percent}}" aria-valuemin="0" aria-valuemax="100">
-									<div class="ym-progress__thermometer--fill" ng-class="(participantProgress.percent < 13) ? 'therm-text-black' : 'therm-text-white'" ng-style="{'width': participantProgress.percent + '%'}">{{participantProgress.percent}}%</div>
-								</div>
-								<div class="ym-progress-related">
-									<div class="ym-progress-donate">
-										<p>
-											<a class="btn btn-lg btn-primary" ng-href="{{baseUrl}}#/reports" title="Click to view your donation reports">
-												<strong>
-													Donation Reports
-												</strong>
-											</a>
-										</p>
-										<p>
-											<a class="btn btn-lg btn-primary" ng-href="Donation2?df_id={{eventInfo.donationFormId}}&amp;FR_ID={{frId}}&amp;PROXY_TYPE=20&amp;PROXY_ID={{consId}}">
-												<strong>
-													Donate to Personal Page
-												</strong>
-											</a>
-										</p>
-									</div>
-									<div class="ym-progress-amounts">
+								<div class="ym-progress-amounts">
+									<p>
+										<strong>
+											<span ng-bind-html="participantProgress.raisedFormatted">
+											</span>
+										</strong>
+										raised 
+									</p>
+									<div ng-if="participantProgress.goalFormatted &amp;&amp; participantProgress.goalFormatted != '$0'" ng-cloak>
 										<p>
 											<strong>
-												<span ng-bind-html="participantProgress.raisedFormatted">
+												<span ng-bind-html="participantProgress.goalFormatted">
+												</span>
+											</strong>
+											goal 
+										</p>
+									</div>
+									<p>
+										<a href="" ng-click="editPersonalGoal()" class="ym-progress-update-goal">
+											<strong>
+												Update Personal Goal
+											</strong>
+										</a>
+									</p>
+									<p ng-if="participantPrevProgress.raised > 0" ng-cloak>
+										<strong>
+											<span ng-bind-html="participantPrevProgress.raisedFormatted">
+											</span>
+										</strong>
+										raised last year 
+									</p>
+								</div>
+							</div>
+							<div class="ym-pc-feedback text-center d-none">
+								<button type="button" class="btn btn-md-wide btn-primary" ng-click="postFeedbackMessage()">
+										<strong>Provide Feedback</strong>
+								</button>
+							</div>
+						</div>
+						<hr>
+						<div id="ym-pc-dashboard-company-panel--school" aria-label="School Progress">
+							<div class="ym-pc-dashboard-section-header">
+								<h3 class="h5">
+									School Progress 
+								</h3>
+							</div>
+							<div class="ym-progress__thermometer" name="School Progress Bar" aria-label="{{companyProgress.percent}} percent of fundraising progress" aria-valuetext="{{companyProgress.percent}} percent of fundraising progress" role="progressbar" aria-valuenow="{{companyProgress.percent}}" aria-valuemin="0" aria-valuemax="100">
+								<div class="ym-progress__thermometer--fill" ng-class="(companyProgress.percent < 13) ? 'therm-text-black' : 'therm-text-white'" ng-style="{'width': companyProgress.percent + '%'}">{{companyProgress.percent}}%</div>
+							</div>
+							<div class="d-md-flex justify-content-between" style="margin-bottom:0px;">
+								<div class="ym-pc-dashboard-badges-box col-xs-8">
+									<div id="ym-pc-dashboard-badges-panel--student" aria-label="School Badges">
+										<div class="ym-badges__item" ng-repeat="schoolChallenge in schoolChallenges" ng-cloak>
+											<div class="ym-badge__item" ng-if="schoolChallenge.earned" ng-cloak>
+												<img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy21/badge-challenge-{{schoolChallenge.id}}.png" alt="{{schoolChallenge.label}}"> 
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-xs-4">
+									<div class="ym-progress-related-school">
+										<div class="text-right">
+											<strong>
+												<span ng-bind-html="companyProgress.raisedFormatted">
 												</span>
 											</strong>
 											raised 
-										</p>
-										<div ng-if="participantProgress.goalFormatted &amp;&amp; participantProgress.goalFormatted != '$0'" ng-cloak>
-											<p>
+										</div>
+										<div ng-if="companyProgress.goalFormatted &amp;&amp; companyProgress.goalFormatted != '$0'" ng-cloak>
+											<p class="text-right">
 												<strong>
-													<span ng-bind-html="participantProgress.goalFormatted">
+													<span ng-bind-html="companyProgress.goalFormatted">
 													</span>
 												</strong>
 												goal 
 											</p>
-										</div>
-										<p>
-											<a href="" ng-click="editPersonalGoal()" class="ym-progress-update-goal">
-												<strong>
-													Update Personal Goal
-												</strong>
-											</a>
-										</p>
-										<p ng-if="participantPrevProgress.raised > 0" ng-cloak>
-											<strong>
-												<span ng-bind-html="participantPrevProgress.raisedFormatted">
-												</span>
-											</strong>
-											raised last year 
-										</p>
-									</div>
-								</div>
-								<div class="ym-pc-feedback text-center d-none">
-									<button type="button" class="btn btn-md-wide btn-primary" ng-click="postFeedbackMessage()">
-								  		<strong>Provide Feedback</strong>
-									</button>
-								</div>
-							</div>
-							<hr>
-							<div id="ym-pc-dashboard-company-panel--school" aria-label="School Progress">
-								<div class="ym-pc-dashboard-section-header">
-									<h3 class="h5">
-										School Progress 
-									</h3>
-								</div>
-								<div class="ym-progress__thermometer" name="School Progress Bar" aria-label="{{companyProgress.percent}} percent of fundraising progress" aria-valuetext="{{companyProgress.percent}} percent of fundraising progress" role="progressbar" aria-valuenow="{{companyProgress.percent}}" aria-valuemin="0" aria-valuemax="100">
-									<div class="ym-progress__thermometer--fill" ng-class="(companyProgress.percent < 13) ? 'therm-text-black' : 'therm-text-white'" ng-style="{'width': companyProgress.percent + '%'}">{{companyProgress.percent}}%</div>
-								</div>
-								<div class="d-md-flex justify-content-between" style="margin-bottom:0px;">
-									<div class="ym-pc-dashboard-badges-box col-xs-8">
-										<div id="ym-pc-dashboard-badges-panel--student" aria-label="School Badges">
-											<div class="ym-badges__item" ng-repeat="schoolChallenge in schoolChallenges" ng-cloak>
-												<div class="ym-badge__item" ng-if="schoolChallenge.earned" ng-cloak>
-													<img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy21/badge-challenge-{{schoolChallenge.id}}.png" alt="{{schoolChallenge.label}}"> 
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="col-xs-4">
-										<div class="ym-progress-related-school">
-											<div class="text-right">
-												<strong>
-													<span ng-bind-html="companyProgress.raisedFormatted">
-													</span>
-												</strong>
-												raised 
-											</div>
-											<div ng-if="companyProgress.goalFormatted &amp;&amp; companyProgress.goalFormatted != '$0'" ng-cloak>
-												<p class="text-right">
-													<strong>
-														<span ng-bind-html="companyProgress.goalFormatted">
-														</span>
-													</strong>
-													goal 
-												</p>
-											</div>
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-					<div class="col-md-7">
-					<div class="ym-pc-dashboard-progress-section__column white-box mb-4">
+				</div>
+				<div class="col-md-7 p-2">
+					<div class="white-box mb-4">
 						<div class="ym-pc-dashboard-email-challenge-box">
 							<div class="ym-pc-dashboard-section-header">
 								<h3 class="h5">
@@ -157,8 +155,10 @@
 								</button>
 							</div>
 						</div>
-						</div>
-					<div class="ym-pc-dashboard-progress-section__column white-box">
+					</div>
+				</div>
+			</div>	
+			<div class="ym-pc-dashboard-progress-section__column white-box">
 						<div class="ym-pc-dashboard-livestream-box">
 							<div class="ym-pc-dashboard-livestream-title">
 								<img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/middle-school/image/pc-tiltify-livestream.png" alt="Livestream"> 
@@ -188,9 +188,7 @@
 							</div>
 						</div>
 					</div>
-					</div>
-					</div>
-				<div ng-show="facebookFundraisersEnabled" ng-cloak>
+			<div ng-show="facebookFundraisersEnabled" ng-cloak>
 					<div class="ym-pc-dashboard-facebook-box" ng-show="!facebookFundraiserId">
 						<div class="container">
 							<div class="ym-pc-dashboard-section-header">
@@ -257,147 +255,145 @@
 				</div>
 			</section>
 			<section class="ym-pc-dashboard-activities-section" aria-label="My Fundraising Activities">
-				<div class="ym-pc-dashboard-section-header">
-					<h2 class="h3">
-						My Activities 
-					</h2>
-				</div>
+				<h2 class="h3 clearfix mt-4 text-center">
+					My Activities 
+				</h2>
 				<div class="d-flex align-items-start flex-wrap justify-content-between">
 				  <div class="col-md-6 p-2">
-					<div class="ym-activity-box--next-step white-box mb-4">
-						<h3 class="h5">
-							My Donors 
-						</h3>
-						<div ng-if="participantGifts.gifts &amp;&amp; participantGifts.gifts.length == 0" ng-cloak>
-							<div class="ym-next-step">
-								<div class="ym-next-step__step">
-									You have no donations yet. 
+						<div class="ym-activity-box--next-step white-box mb-4">
+							<h3 class="h5">
+								My Donors 
+							</h3>
+							<div ng-if="participantGifts.gifts &amp;&amp; participantGifts.gifts.length == 0" ng-cloak>
+								<div class="ym-next-step">
+									<div class="ym-next-step__step">
+										You have no donations yet. 
+									</div>
+									<div class="ym-next-step__action">
+										<a class="btn btn-md-wide btn-primary" ng-href="Donation2?df_id={{eventInfo.donationFormId}}&amp;FR_ID={{frId}}&amp;PROXY_TYPE=20&amp;PROXY_ID={{consId}}" target="_blank">
+											<strong>
+												Be the first to donate!
+											</strong>
+										</a>
+									</div>
 								</div>
-								<div class="ym-next-step__action">
-									<a class="btn btn-md-wide btn-primary" ng-href="Donation2?df_id={{eventInfo.donationFormId}}&amp;FR_ID={{frId}}&amp;PROXY_TYPE=20&amp;PROXY_ID={{consId}}" target="_blank">
-										<strong>
-											Be the first to donate!
-										</strong>
-									</a>
+								<div class="ym-next-step">
+									<div class="ym-next-step__step">
+										Reaching out to family and friends is easy when you import your email address book. 
+									</div>
+									<div class="ym-next-step__action">
+										<a class="btn btn-md-wide btn-primary" ng-href="{{baseUrl}}#/email/contacts/email_rpt_show_all/list">
+											<strong>
+												Import Contacts
+											</strong>
+										</a>
+									</div>
 								</div>
 							</div>
-							<div class="ym-next-step">
-								<div class="ym-next-step__step">
-									Reaching out to family and friends is easy when you import your email address book. 
+							<div ng-if="participantGifts.gifts &amp;&amp; participantGifts.gifts.length == 1 &amp;&amp; participantRegistration.selfDonor == 'true'" ng-cloak>
+								<div class="ym-next-step">
+									<div class="ym-next-step__step">
+										You're the only donor so far. 
+									</div>
+									<div class="ym-next-step__action">
+										<a class="btn btn-md-wide btn-primary" ng-href="{{baseUrl}}#/email">
+											<strong>
+												Send Some Emails
+											</strong>
+										</a>
+									</div>
 								</div>
-								<div class="ym-next-step__action">
-									<a class="btn btn-md-wide btn-primary" ng-href="{{baseUrl}}#/email/contacts/email_rpt_show_all/list">
-										<strong>
-											Import Contacts
-										</strong>
-									</a>
+								<div class="ym-next-step">
+									<div class="ym-next-step__step">
+										Reaching out to family and friends is easy when you import your email address book. 
+									</div>
+									<div class="ym-next-step__action">
+										<a class="btn btn-md-wide btn-primary" ng-href="{{baseUrl}}#/email/contacts/email_rpt_show_all/list">
+											<strong>
+												Import Contacts
+											</strong>
+										</a>
+									</div>
+								</div>
+							</div>
+							<div ng-if="((participantGifts.gifts &amp;&amp; participantGifts.gifts.length == 1 &amp;&amp; participantRegistration.selfDonor == 'false') || (participantGifts.gifts &amp;&amp; participantGifts.gifts.length &gt; 1)) &amp;&amp; donorContactCounts.email_rpt_show_unthanked_donors == 0 &amp;&amp; donorContactCounts.email_rpt_show_nondonors_followup == 0" ng-cloak>
+								<div class="ym-next-step" ng-if="donorContactCounts.email_rpt_show_donors > 0" ng-cloak>
+									<div class="ym-next-step__step">
+										You're a natural fundraiser! Keep up your awesome efforts! 
+									</div>
+									<div class="ym-next-step__action">
+										<a class="btn btn-md-wide btn-primary" ng-href="{{baseUrl}}#/email">
+											<strong>
+												Send More Emails
+											</strong>
+										</a>
+									</div>
+								</div>
+								<div class="ym-next-step" ng-if="donorContactCounts.email_rpt_show_donors > 0" ng-cloak>
+									<div class="ym-next-step__step">
+										Reaching out to family and friends is easy when you import your email address book. 
+									</div>
+									<div class="ym-next-step__action">
+										<a class="btn btn-md-wide btn-primary" ng-href="{{baseUrl}}#/email/contacts/email_rpt_show_all/list">
+											<strong>
+												Import Contacts
+											</strong>
+										</a>
+									</div>
+								</div>
+								<div class="ym-next-step" ng-if="donorContactCounts.email_rpt_show_donors > 0" ng-cloak>
+									<div class="ym-next-step__step">
+										Review all of your donations on the Reports page. 
+									</div>
+									<div class="ym-next-step__action">
+										<a class="btn btn-md-wide btn-primary" ng-href="{{baseUrl}}#/reports">
+											<strong>
+												View All
+											</strong>
+										</a>
+									</div>
+								</div>
+							</div>
+							<div ng-if="((participantGifts.gifts &amp;&amp; participantGifts.gifts.length == 1 &amp;&amp; participantRegistration.selfDonor == 'false') || (participantGifts.gifts &amp;&amp; participantGifts.gifts.length &gt; 1)) &amp;&amp; (donorContactCounts.email_rpt_show_unthanked_donors &gt; 0 || donorContactCounts.email_rpt_show_nondonors_followup &gt; 0)" ng-cloak>
+								<div class="ym-next-step ym-next-step--sm" ng-if="donorContactCounts.email_rpt_show_unthanked_donors > 0" ng-cloak>
+									<div class="ym-next-step__step">
+										You have new donors who haven't received a thank-you email! 
+									</div>
+									<div class="ym-next-step__action">
+										<a class="btn btn-md-wide btn-primary" ng-href="{{baseUrl}}#/email/contacts/email_rpt_show_unthanked_donors/list">
+											<strong>
+												Say Thanks
+											</strong>
+										</a>
+									</div>
+								</div>
+								<div class="ym-next-step ym-next-step--sm" ng-if="donorContactCounts.email_rpt_show_nondonors_followup > 0" ng-cloak>
+									<div class="ym-next-step__step">
+										Great job sending emails. Some of your friends haven't donated! 
+									</div>
+									<div class="ym-next-step__action">
+										<a class="btn btn-md-wide btn-primary" ng-href="{{baseUrl}}#/email/contacts/email_rpt_show_nondonors_followup/list">
+											<strong>
+												Follow Up
+											</strong>
+										</a>
+									</div>
+								</div>
+								<div class="ym-next-step ym-next-step--sm" ng-if="donorContactCounts.email_rpt_show_donors > 0" ng-cloak>
+									<div class="ym-next-step__step">
+										Review all of your donations on the Reports page. 
+									</div>
+									<div class="ym-next-step__action">
+										<a class="btn btn-md-wide btn-primary" ng-href="{{baseUrl}}#/reports">
+											<strong>
+												View All
+											</strong>
+										</a>
+									</div>
 								</div>
 							</div>
 						</div>
-						<div ng-if="participantGifts.gifts &amp;&amp; participantGifts.gifts.length == 1 &amp;&amp; participantRegistration.selfDonor == 'true'" ng-cloak>
-							<div class="ym-next-step">
-								<div class="ym-next-step__step">
-									You're the only donor so far. 
-								</div>
-								<div class="ym-next-step__action">
-									<a class="btn btn-md-wide btn-primary" ng-href="{{baseUrl}}#/email">
-										<strong>
-											Send Some Emails
-										</strong>
-									</a>
-								</div>
-							</div>
-							<div class="ym-next-step">
-								<div class="ym-next-step__step">
-									Reaching out to family and friends is easy when you import your email address book. 
-								</div>
-								<div class="ym-next-step__action">
-									<a class="btn btn-md-wide btn-primary" ng-href="{{baseUrl}}#/email/contacts/email_rpt_show_all/list">
-										<strong>
-											Import Contacts
-										</strong>
-									</a>
-								</div>
-							</div>
-						</div>
-						<div ng-if="((participantGifts.gifts &amp;&amp; participantGifts.gifts.length == 1 &amp;&amp; participantRegistration.selfDonor == 'false') || (participantGifts.gifts &amp;&amp; participantGifts.gifts.length &gt; 1)) &amp;&amp; donorContactCounts.email_rpt_show_unthanked_donors == 0 &amp;&amp; donorContactCounts.email_rpt_show_nondonors_followup == 0" ng-cloak>
-							<div class="ym-next-step" ng-if="donorContactCounts.email_rpt_show_donors > 0" ng-cloak>
-								<div class="ym-next-step__step">
-									You're a natural fundraiser! Keep up your awesome efforts! 
-								</div>
-								<div class="ym-next-step__action">
-									<a class="btn btn-md-wide btn-primary" ng-href="{{baseUrl}}#/email">
-										<strong>
-											Send More Emails
-										</strong>
-									</a>
-								</div>
-							</div>
-							<div class="ym-next-step" ng-if="donorContactCounts.email_rpt_show_donors > 0" ng-cloak>
-								<div class="ym-next-step__step">
-									Reaching out to family and friends is easy when you import your email address book. 
-								</div>
-								<div class="ym-next-step__action">
-									<a class="btn btn-md-wide btn-primary" ng-href="{{baseUrl}}#/email/contacts/email_rpt_show_all/list">
-										<strong>
-											Import Contacts
-										</strong>
-									</a>
-								</div>
-							</div>
-							<div class="ym-next-step" ng-if="donorContactCounts.email_rpt_show_donors > 0" ng-cloak>
-								<div class="ym-next-step__step">
-									Review all of your donations on the Reports page. 
-								</div>
-								<div class="ym-next-step__action">
-									<a class="btn btn-md-wide btn-primary" ng-href="{{baseUrl}}#/reports">
-										<strong>
-											View All
-										</strong>
-									</a>
-								</div>
-							</div>
-						</div>
-						<div ng-if="((participantGifts.gifts &amp;&amp; participantGifts.gifts.length == 1 &amp;&amp; participantRegistration.selfDonor == 'false') || (participantGifts.gifts &amp;&amp; participantGifts.gifts.length &gt; 1)) &amp;&amp; (donorContactCounts.email_rpt_show_unthanked_donors &gt; 0 || donorContactCounts.email_rpt_show_nondonors_followup &gt; 0)" ng-cloak>
-							<div class="ym-next-step ym-next-step--sm" ng-if="donorContactCounts.email_rpt_show_unthanked_donors > 0" ng-cloak>
-								<div class="ym-next-step__step">
-									You have new donors who haven't received a thank-you email! 
-								</div>
-								<div class="ym-next-step__action">
-									<a class="btn btn-md-wide btn-primary" ng-href="{{baseUrl}}#/email/contacts/email_rpt_show_unthanked_donors/list">
-										<strong>
-											Say Thanks
-										</strong>
-									</a>
-								</div>
-							</div>
-							<div class="ym-next-step ym-next-step--sm" ng-if="donorContactCounts.email_rpt_show_nondonors_followup > 0" ng-cloak>
-								<div class="ym-next-step__step">
-									Great job sending emails. Some of your friends haven't donated! 
-								</div>
-								<div class="ym-next-step__action">
-									<a class="btn btn-md-wide btn-primary" ng-href="{{baseUrl}}#/email/contacts/email_rpt_show_nondonors_followup/list">
-										<strong>
-											Follow Up
-										</strong>
-									</a>
-								</div>
-							</div>
-							<div class="ym-next-step ym-next-step--sm" ng-if="donorContactCounts.email_rpt_show_donors > 0" ng-cloak>
-								<div class="ym-next-step__step">
-									Review all of your donations on the Reports page. 
-								</div>
-								<div class="ym-next-step__action">
-									<a class="btn btn-md-wide btn-primary" ng-href="{{baseUrl}}#/reports">
-										<strong>
-											View All
-										</strong>
-									</a>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="ym-activity-box--challenge white-box">
+						<div class="ym-activity-box--challenge white-box">
 						<h3 class="h5">
 							Healthy Heart Challenge 
 						</h3>
@@ -466,7 +462,7 @@
 						</div>
 					</div>
           </div>
-          <div class="col-md-6">
+          <div class="col-md-6 p-2">
 						<div class="ym-activity-box--page white-box mb-4 p-0">
 							<div class="card-header bg-light d-flex align-items-center justify-content-between mb-4">
 								<h2 class="mb-0">My Page</h2>
