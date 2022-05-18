@@ -810,9 +810,8 @@ angular.module 'trPcControllers'
               # id: challengeIndex
               # name: challenge
       challengeOptions =
-        "1": "Get your ZZZs, aiming for 8-10 hours of sleep every night."
-        "2": "Complete an act of kindness each day."
-        "3": "Move for one hour every day for a physical and mental boost."
+        "1": "Think Positive - Write down something you’re grateful for every day."
+        "2": "Choose Kindness - Complete an act of kindness each day."
       angular.forEach challengeOptions, (challenge, challengeIndex) ->
         $scope.challenges.push
           id: challengeIndex
