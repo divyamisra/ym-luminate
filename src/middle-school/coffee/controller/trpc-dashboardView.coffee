@@ -272,16 +272,15 @@ angular.module 'trPcControllers'
       
       $scope.emailChallenge = {}
       setEmailSampleText = ->
-        sampleText = 'What if I told you that together, we can help save the lives of millions of people? Seriously, we can!\n\n' +
-        'I\'m excited to be raising critical funds for the American Heart Association to fund lifesaving research.\n\n' +
-        'The kind of research that created the artificial heart valve, new medications to lower blood pressure and create guidelines used by physicians worldwide. The kind of science that is literally saving lives!\n\n' +
-        'I need your help. Please help me to reach my fundraising goal'
-        if not $scope.personalGoalInfo or not $scope.personalGoalInfo.goal or $scope.personalGoalInfo.goal is ''
-          sampleText += ' '
-        else
-          sampleText += ' of ' + $scope.personalGoalInfo.goal + ' '
-        sampleText += 'and help save the lives of more moms, dads, brothers, aunts and best friends.\n\n' +
-        'Thank you for your amazing generosity,\n' +
+        sampleText = 'I\'ve made a commitment to raise money to keep hearts beating. I need your help because more money\n\n' +
+	'raised means more moms, dads, brothers, aunts and babies\' lives saved. Even the smallest donation can make a big difference.\n\n' +
+	'Please make a donation and support me today!'
+        #if not $scope.personalGoalInfo or not $scope.personalGoalInfo.goal or $scope.personalGoalInfo.goal is ''
+        #  sampleText += ' '
+        #else
+        #  sampleText += ' of ' + $scope.personalGoalInfo.goal + ' '
+        #sampleText += 'and help save the lives of more moms, dads, brothers, aunts and best friends.\n\n' +
+        'Thank you in advance for your generosity,\n' +
         $scope.consName + '\n\n' +
         '***Did you know you might be able to double your gift to the American Heart Association? Ask your employer if you have an Employee Matching Gift program.'
         if $scope.personalPageUrl
