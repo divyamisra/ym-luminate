@@ -150,7 +150,7 @@
 								<p>
 									Or copy and paste the text above into your favorite email client! 
 								</p>
-								<button type="button" class="btn btn-md-wide btn-primary" data-clipboard-target="#emailChallenge-sampleText" role="button">
+								<button type="button" class="btn btn-md-wide btn-primary" data-clipboard-target="#emailChallenge-sampleText" data-clipboard-message="Text copied to clipboard" role="button">
 									<strong>
 										Copy Email Text
 									</strong>
@@ -486,7 +486,8 @@
 													<button type="button" class="btn btn-primary btn-sm" aria-label="Edit Personal Page URL" ng-click="editPersonalUrl()"><strong>Shorten URL</strong></button>
 												</div>
 											</div>
-											<button type="button" class="ahc-copy ahc-personal-page-url form-control form-control-sm bg-light text-start" title="Copy URL to clipboard" data-copy="#personalPageUrl" data-toast="#copyToClipboardToast" data-message="Personal page URL copied!">{{personalPageUrl}}</button>
+											<div id="personalPageUrl" class="d-none" aria-hidden="true">{{personalPageUrl}}</div>
+											<button type="button" class="ahc-copy ahc-personal-page-url form-control form-control-sm bg-light text-start" title="Copy URL to clipboard" data-clipboard-target="#personalPageUrl" data-clipboard-message="Personal page URL copied!">{{personalPageUrl}}</button>
 										</div>
 								</div>
 								<div class="border-bottom mb-3 pb-4">
@@ -496,14 +497,14 @@
 										</div>
 										<div class="col-auto">
 											<div class="ym-story-edit-btns">
-												<button type="button" class="btn btn-primary btn-sm" ng-click="editPersonalPageContent()" ng-if="personalPageContent.mode == 'view'">
+												<button type="button" class="btn btn-primary btn-sm" ng-click="editPersonalPageContent()" ng-if="personalPageContent.mode == 'view'" role="button">
 													<span class="fa fa-pencil"></span> <strong>Edit Story</strong>
 												</button>
 												<div ng-if="personalPageContent.mode == 'edit'" ng-cloak>
-													<button type="button" class="btn btn-primary btn-sm" ng-click="savePersonalPageContent()">
+													<button type="button" class="btn btn-primary btn-sm" ng-click="savePersonalPageContent()" role="button">
 														<span class="fa fa-pencil"></span> <strong>Save Story</strong>
 													</button> 
-													<button type="button" class="btn btn-primary btn-sm" ng-click="resetPersonalPageContent()">
+													<button type="button" class="btn btn-primary btn-sm" ng-click="resetPersonalPageContent()" role="button">
 														Cancel 
 													</button>
 												</div>
