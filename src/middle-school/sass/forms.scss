@@ -24,3 +24,7 @@ select {
 div.responsive input[disabled] {
   color: $event-primary;
 }
+
+.ym-optional {
+  color: $event-secondary-medium;
+}
