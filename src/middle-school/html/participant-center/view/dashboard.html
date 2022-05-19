@@ -703,7 +703,7 @@
 									</div>
 						<div class="col-sm-6 ym-pc-dashboard-coordinator-progress-section__column">
 							<div class="ym-pc-dashboard-school-goals" ng-cloak>
-								<div class="form-group">
+								<div class="form-group mb-4">
 									<label for="StudentRecruitmentGoal">
 										Student Recruitment Goal: 
 									</label>
@@ -755,7 +755,13 @@
 					   </div>
 				        </div>
 				</div>
-			</section>
+			</section>	
+			<style>
+			.ym-progress__thermometer--fill::after {
+				right: {{companyProgress.percent > 4 ? '10px' : '1px'}};
+				display: {{companyProgress.percent > 0 ? 'block' : 'none'}};
+			}
+			</style>
 			<section class="ym-pc-dashboard-coordinator-fundraise-section" aria-label="Fundraising Progress Meters">
 				<div class="ym-pc-dashboard-coordinator-progress-section__column">
 						<div class="d-flex flex-wrap justify-content-between mb-4">
@@ -773,9 +779,9 @@
 											<div class="p-4">
 												<div class="text-end"><span ng-bind-html="companyProgress.goalFormatted"></span></strong> goal</div>
 												<div class="ym-progress__thermometer m-0 mb-2 mw-100" name="School Progress Bar" aria-label="{{companyProgress.percent}} percent of fundraising progress" aria-valuetext="{{companyProgress.percent}} percent of fundraising progress" role="progressbar" aria-valuenow="{{companyProgress.percent}}" aria-valuemin="0" aria-valuemax="100">
-													<div class="ym-progress__thermometer--fill" ng-class="(participantProgress.percent < 13) ? 'therm-text-black' : 'therm-text-white'" ng-style="{'width': companyProgress.percent + '%'}">{{companyProgress.percent}}%</div>
+													<div class="ym-progress__thermometer--fill position-relative" ng-class="(companyProgress.percent < 13) ? 'therm-text-black' : 'therm-text-white'" ng-style="{'width': companyProgress.percent + '%'}">{{companyProgress.percent}}%</div>
 												</div>
-												<div class="text-left"><span ng-bind-html="companyProgress.raisedFormatted"></span></strong> raised</div>
+												<div class="text-start position-relative" style="left: calc({{companyProgress.percent < 13 ? 13 : companyProgress.percent}}% - 98px);"><span ng-bind-html="companyProgress.raisedFormatted"></span></strong> raised</div>
 											</div>
 										</div>
 										<div class="white-box red-border-bottom p-0">
