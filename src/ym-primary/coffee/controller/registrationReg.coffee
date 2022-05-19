@@ -256,8 +256,8 @@ angular.module 'ahaLuminateControllers'
                       if surveyResponseKey == 'ym_khc_parentlastname'
                         angular.element(document).find('.ym_khc_parentlastname').val(surveyResponseAnswer).trigger('change')
 
-                      if surveyResponseKey == 'ym_khc_student_state'
-                        angular.element(document).find('.ym_khc_student_state').val(surveyResponseAnswer).trigger('change')
+                      # if surveyResponseKey == 'ym_khc_student_state'
+                      #   angular.element(document).find('.ym_khc_student_state').val(surveyResponseAnswer).trigger('change')
 
                       if surveyResponseKey == 'ym_khc_grade'
                         newGrade
