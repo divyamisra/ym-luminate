@@ -606,7 +606,7 @@
 		<div ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true' && location != '/dashboard-student'" ng-cloak>
  
 			<section class="ym-pc-dashboard-coordinator-plan-section mb-4" aria-label="School Plan Selection">
-				<div class="ym-pc-dashboard-coordinator-progress-section__column white-box m-2">
+				<div class="ym-pc-dashboard-coordinator-progress-section__column white-box red-border-bottom m-2">
 					<h3 class="h5 clearfix">
 						School Plan 
 					</h3>
@@ -760,42 +760,61 @@
 				<div class="ym-pc-dashboard-coordinator-progress-section__column">
 						<div class="d-flex flex-wrap justify-content-between mb-4">
 						  <div class="col-md-6 p-2">
-								<div class="ym-pc-dashboard-coordinator-progress-section__column white-box h-100">
-								<div class="ym-pc-dashboard-coordinator-progress-box">
-									<div id="ym-pc-dashboard-company-panel--coordinator">
-										<h3 class="h5 clearfix">
-											School Progress  
-										</h3>
-										<div class="ym-progress__thermometer m-0 mb-2" name="School Progress Bar" aria-label="{{companyProgress.percent}} percent of fundraising progress" aria-valuetext="{{companyProgress.percent}} percent of fundraising progress" role="progressbar" aria-valuenow="{{companyProgress.percent}}" aria-valuemin="0" aria-valuemax="100">
-											<div class="ym-progress__thermometer--fill" ng-class="(participantProgress.percent < 13) ? 'therm-text-black' : 'therm-text-white'" ng-style="{'width': companyProgress.percent + '%'}">{{companyProgress.percent}}%</div>
-										</div>
-									       <div class="ym-progress-related">
-											<div class="ym-progress-amounts">
-											  <p>
-											    <strong><span ng-bind-html="companyProgress.raisedFormatted"></span></strong> raised
-											  </p>
-											  <div ng-if="companyProgress.goalFormatted && companyProgress.goalFormatted != '$0'" ng-cloak>
-											    <p>
-											      <strong><span ng-bind-html="companyProgress.goalFormatted"></span></strong> goal
-											    </p>
-											  </div>
-											  <p>
-											      <a href="" ng-click="editSchoolGoal()" class="ym-progress-update-goal" aria-label="Update School Goal">
-												<strong>Update School Goal</strong>
-											      </a>
-											    <!-- <a ng-href="NTM?tr.ntmgmt=company_cservice_main&amp;company_id={{participantRegistration.companyInformation.companyId}}">
-											      <strong>Update School Goal</strong>
-											    </a> -->
-											  </p>
+								<div class="ym-pc-dashboard-coordinator-progress-section__column h-100">
+									<div class="white-box red-border-bottom p-0 mb-4">
+											<div class="card-header bg-light d-flex align-items-center justify-content-between m-0">
+												<h3 class="h5 mb-0">School Progress</h3>
+												<a class="btn btn-md-wide btn-toggle" href="" ng-click="editSchoolGoal()">
+													<strong>
+														Update School Goal
+													</strong>
+												</a>
+											</div>	
+											<div class="p-4">
+												<div class="text-end"><span ng-bind-html="companyProgress.goalFormatted"></span></strong> goal</div>
+												<div class="ym-progress__thermometer m-0 mb-2 mw-100" name="School Progress Bar" aria-label="{{companyProgress.percent}} percent of fundraising progress" aria-valuetext="{{companyProgress.percent}} percent of fundraising progress" role="progressbar" aria-valuenow="{{companyProgress.percent}}" aria-valuemin="0" aria-valuemax="100">
+													<div class="ym-progress__thermometer--fill" ng-class="(participantProgress.percent < 13) ? 'therm-text-black' : 'therm-text-white'" ng-style="{'width': companyProgress.percent + '%'}">{{companyProgress.percent}}%</div>
+												</div>
+												<div class="text-left"><span ng-bind-html="companyProgress.raisedFormatted"></span></strong> raised</div>
 											</div>
-									      </div>
-
-									</div>
+										</div>
+										<div class="white-box red-border-bottom p-0">
+											<div class="card-header bg-light d-flex align-items-center justify-content-between m-0">
+												<h3 class="h5 mb-0">Personal Progress</h3>
+												<a class="btn btn-md-wide btn-toggle" href="" ng-click="editPersonalGoal()">
+													<strong>
+														Update Personal Goal
+													</strong>
+												</a>
+											</div>
+											<div class="p-4">
+												<div class="text-end"><span ng-bind-html="participantProgress.goalFormatted"></span> goal</div> 
+												<div class="ym-progress__thermometer m-0 mb-2 mw-100" name="Personal Progress Bar" aria-label="{{participantProgress.percent}} percent of fundraising progress" aria-valuetext="{{participantProgress.percent}} percent of fundraising progress" role="progressbar" aria-valuenow="{{participantProgress.percent}}" aria-valuemin="0" aria-valuemax="100">
+													<div class="ym-progress__thermometer--fill" ng-class="(participantProgress.percent < 13) ? 'therm-text-black' : 'therm-text-white'" ng-style="{ 'width': participantProgress.percent + '%'}">{{participantProgress.percent}}%</div>
+												</div>
+												<div class="text-start mb-2"><span ng-bind-html="participantProgress.raisedFormatted"></span> raised</div> 
+												<div class="d-flex justify-content-between">
+														<p>
+															<a class="btn btn-sm btn-primary" ng-href="{{baseUrl}}#/reports" title="Click to view your donation reports">
+																<strong>
+																	Donation Reports
+																</strong>
+															</a>
+														</p>
+														<p>
+															<a class="btn btn-sm btn-primary" ng-href="Donation2?df_id={{eventInfo.donationFormId}}&amp;FR_ID={{frId}}&amp;PROXY_TYPE=20&amp;PROXY_ID={{consId}}">
+																<strong>
+																	Donate to Personal Page
+																</strong>
+															</a>
+														</p>
+													</div>
+                        </div>
+											</div>
+										</div>
 								</div>
-							</div>
-							</div>
 							<div class="col-md-6 p-2">
-								<div class="ym-pc-dashboard-coordinator-progress-section__column white-box h-100">
+								<div class="white-box red-border-bottom h-100">
 									<h3 class="h5 clearfix">
 										Edit My Pages 
 									</h3>
@@ -974,12 +993,12 @@
 								</div>
 							</div>
 						</div>
-					</div>
+				</div>
 			</section>
 			<section class="ym-pc-dashboard-coordinator-school-challenge-section white-box m-2 mb-4" aria-label="School Challenge Selection">
 				<h3 class="h5 clearfix">
 					School Challenge 
-				</h2>
+				</h3>
 				<div class="d-md-flex justify-content-between">
 				  <div class="col-md-4 p-2">
 						<div class="ym-pc-dashboard-section-header">
@@ -1096,7 +1115,7 @@
 				</h2>
 				<div class="d-flex flex-wrap justify-content-between mb-4">
 				  <div class="col-md-6 p-2">
-						<div class="ym-activity-box--coordinator-student-view white-box h-100">
+						<div class="ym-activity-box--coordinator-student-view white-box red-border-left h-100">
 							<h3 class="h5 clearfix">
 								<span class="ym-activity-box-number">
 									1
@@ -1125,7 +1144,7 @@
 						</div>
 					</div>
 				  <div class="col-md-6 p-2">
-						<div class="ym-activity-box--coordinator-reports white-box h-100">
+						<div class="ym-activity-box--coordinator-reports white-box red-border-left h-100">
 						<div class="ym-activity-box--coordinator-reports">
 							<h3 class="h5 clearfix">
 								<span class="ym-activity-box-number">
@@ -1184,9 +1203,9 @@
 				</div>
 			</section>
 			<section id="ym-pc-coordinator-stats">
-				<div class="d-md-flex justify-content-between flex-wrap">
-					<div class="col-md-6 p-2 mb-2">
-						<div class="ym-pc-dashboard-coordinator-progress-section__column white-box h-100 mb-2">
+				<div class="d-md-flex justify-content-between flex-wrap mb-4">
+					<div class="col-md-6 p-2 pb-0 mb-2">
+						<div class="ym-pc-dashboard-coordinator-progress-section__column white-box red-border-bottom h-100 mb-2">
 							<div class="ym-pc-dashboard-coordinator-students" ng-if="companyInfo.participantCount" ng-cloak>
 								<h3 class="h5 clearfix mb-3 ">
 									My School Stats 
@@ -1240,7 +1259,7 @@
 						</div>
 					</div>
 					<div class="col-md-6 p-2">
-							<div class="white-box mb-4">
+							<div class="white-box red-bg-gradient mb-4">
 								<h3 class="h5 clearfix mb-3">
 									Daily Challenges 
 								</h3>
@@ -1251,10 +1270,74 @@
 									 <strong>{{activity2amt|number}}</strong> student<span ng-if="activity2amt > 1 || activity2amt == 0">s</span>&nbsp;choosing kindness 
 								</p>
 							</div>
-							<div class="white-box">
-								<h3 class="h5 clearfix mb-3">
-									Spread the Word 
-								</h2>
+							<div class="white-box red-border-left p-0 mb-4">
+								<div class="card-header bg-light d-flex align-items-center justify-content-between m-0 mb-4">
+									<h3 class="h5 mb-0">Coordinator Resources</h3>
+									<a class="btn btn-md-wide btn-toggle" ng-href="{{baseUrl}}#/teacher-resources">
+										<strong>
+											View All Resources
+										</strong>
+									</a>
+								</div>								
+								<div class="ym-pc-dashboard-coordinator-resources-options p-4">
+									<div class="d-md-flex justify-content-between">
+										<div class="col-md-4">
+											<div class="ym-pc-dashboard-section-header">
+												<h3 class="h5">
+													Activation Guides 
+												</h3>
+											</div>
+											<a class="btn btn-md-wide btn-primary" href="SPageServer?pagename=ahc_resources_activation_guides" target="_blank">
+												<strong>
+													Download
+												</strong>
+												<span class="sr-only">
+													Activation Guides
+												</span>
+											</a>
+										</div>
+										<div class="col-md-4">
+											<div class="ym-pc-dashboard-section-header">
+												<h3 class="h5">
+													Online Resources 
+												</h3>
+											</div>
+											<a class="btn btn-md-wide btn-primary" href="SPageServer?pagename=ahc_resources_technology" target="_blank">
+												<strong>
+													Download
+												</strong>
+												<span class="sr-only">
+													Online Resources
+												</span>
+											</a>
+										</div>
+										<div class="col-md-4">
+											<div class="ym-pc-dashboard-section-header">
+												<h3 class="h5">
+													Volunteer Planning 
+												</h3>
+											</div>
+											<a class="btn btn-md-wide btn-primary" href="DocServer/AHC_Planning_Guide_Timeline.pdf" target="_blank">
+												<strong>
+													Download
+												</strong>
+												<span class="sr-only">
+													Volunteer Planning
+												</span>
+											</a>
+										</div>
+									</div>
+								</div>
+								<div class="ym-pc-dashboard-coordinator-resources-contact" ng-if="notifyName != ''" ng-cloak>
+									Questions about your program – contact your staff partner at: 
+									<a ng-href="mailto:{{notifyEmail}}">
+										<strong>
+											{{notifyName}}
+										</strong>
+									</a>
+								</div>
+							</div>
+							<div class="white-box red-border-left">
 								<div class="ym-pc-dashboard-spread-options">
 									<div class="row">
 										<div class="col-sm-12">
@@ -1281,148 +1364,9 @@
 					</div>
 				</div>
 			</section>
-			<section id="ym-pc-coordinator-progress">
-				<div class="d-md-flex justify-content-between flex-wrap">
-						  <div class="col-md-6 p-2">
-				  			<div class="ym-pc-dashboard-coordinator-progress-box white-box">
-									<div id="ym-pc-dashboard-personal-panel--coordinator">
-										<h3 class="h5 clearfix">
-											Personal Progress  
-										</h3>
-										<div class="ym-progress__thermometer m-0 mb-2" name="Personal Progress Bar" aria-label="{{participantProgress.percent}} percent of fundraising progress" aria-valuetext="{{participantProgress.percent}} percent of fundraising progress" role="progressbar" aria-valuenow="{{participantProgress.percent}}" aria-valuemin="0" aria-valuemax="100">
-											<div class="ym-progress__thermometer--fill" ng-class="(participantProgress.percent < 13) ? 'therm-text-black' : 'therm-text-white'" ng-style="{ 'width': participantProgress.percent + '%'}">{{participantProgress.percent}}%</div>
-										</div>
-										<div class="ym-progress-related">
-											<div class="ym-progress-donate">
-												<p>
-													<a class="btn btn-lg btn-primary" ng-href="{{baseUrl}}#/reports" title="Click to view your donation reports">
-														<strong>
-															Donation Reports
-														</strong>
-													</a>
-												</p>
-												<p>
-													<a class="btn btn-lg btn-primary" ng-href="Donation2?df_id={{eventInfo.donationFormId}}&amp;FR_ID={{frId}}&amp;PROXY_TYPE=20&amp;PROXY_ID={{consId}}">
-														<strong>
-															Donate to Personal Page
-														</strong>
-													</a>
-												</p>
-											</div>
-											<div class="ym-progress-amounts">
-												<p>
-													<strong>
-														<span ng-bind-html="participantProgress.raisedFormatted">
-														</span>
-													</strong>
-													raised 
-												</p>
-												<div ng-if="participantProgress.goalFormatted &amp;&amp; participantProgress.goalFormatted != '$0'" ng-cloak>
-													<p>
-														<strong>
-															<span ng-bind-html="participantProgress.goalFormatted">
-															</span>
-														</strong>
-														goal 
-													</p>
-												</div>
-												<p>
-													<a href="" ng-click="editPersonalGoal()" class="ym-progress-update-goal" aria-label="Update Personal Goal">
-														<strong>
-															Update Goal
-														</strong>
-													</a>
-												</p>
-												<p ng-if="participantPrevProgress.raised > 0" ng-cloak>
-													<strong>
-														<span ng-bind-html="participantPrevProgress.raisedFormatted">
-														</span>
-													</strong>
-													raised last year 
-												</p>
-											</div>
-										</div>
-									</div>
-								</div>
-
-					</div>
-						  <div class="col-md-6 p-2">
-			<section class="ym-pc-dashboard-coordinator-downloads-section mb-4" aria-label="Fundraising Steps">
-				<div class="ym-activity-box--coordinator-resources white-box">
-					<h3 class="h5 clearfix pb-3">
-						Coordinator Resources 
-					</h3>
-					<div class="ym-pc-dashboard-coordinator-resources-options">
-					  <div class="d-md-flex justify-content-between">
-					  <div class="col-md-4">
-						<div class="ym-pc-dashboard-section-header">
-							<h3 class="h5">
-								Activation Guides 
-							</h3>
-						</div>
- 							<a class="btn btn-md-wide btn-primary" href="SPageServer?pagename=ahc_resources_activation_guides" target="_blank">
-							<strong>
-								Download
-							</strong>
-							<span class="sr-only">
-								Activation Guides
-							</span>
-						</a>
-						</div>
-					  <div class="col-md-4">
-						<div class="ym-pc-dashboard-section-header">
-							<h3 class="h5">
-								Online Resources 
-							</h3>
-						</div>
-						<a class="btn btn-md-wide btn-primary" href="SPageServer?pagename=ahc_resources_technology" target="_blank">
-							<strong>
-								Download
-							</strong>
-							<span class="sr-only">
-								Online Resources
-							</span>
-						</a>
-						</div>
-					  <div class="col-md-4">
-						<div class="ym-pc-dashboard-section-header">
-							<h3 class="h5">
-								Volunteer Planning 
-							</h3>
-						</div>
-						<a class="btn btn-md-wide btn-primary" href="DocServer/AHC_Planning_Guide_Timeline.pdf" target="_blank">
-							<strong>
-								Download
-							</strong>
-							<span class="sr-only">
-								Volunteer Planning
-							</span>
-						</a>
-						</div>
-						</div>
-					</div>
-					<div class="ym-pc-dashboard-coordinator-resources-more">
-						<a ng-href="{{baseUrl}}#/teacher-resources">
-							<strong>
-								View All Resources
-							</strong>
-						</a>
-					</div>
-					<div class="ym-pc-dashboard-coordinator-resources-contact" ng-if="notifyName != ''" ng-cloak>
-						Questions about your program – contact your staff partner at: 
-						<a ng-href="mailto:{{notifyEmail}}">
-							<strong>
-								{{notifyName}}
-							</strong>
-						</a>
-					</div>
-				</div>
-			</section>
-</div>
-</div>
-			<section class="ym-pc-dashboard-coordinator-school-years-section white-box mb-4" aria-label="Years School Participated">
+			<section class="ym-pc-dashboard-coordinator-school-years-section white-box red-border-bottom mb-4" aria-label="Years School Participated">
 			   <div class="d-flex justify-content-center align-items-center">
-				<h2 class="h3" ng-if="companyProgress.schoolYears > 0">
+				<h2 class="h3" ng-if="companyProgress.schoolYears > 0"> 
 					Your school has participated for 
 				</h2>
 				<h2 class="h3" ng-if="companyProgress.schoolYears == 0">
