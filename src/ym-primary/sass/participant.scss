@@ -163,6 +163,12 @@ a.list-group-item:hover {
       border: 2px solid #293B90;
       font-weight: bold;
       margin-bottom: 7px;
+	   
+      @media only screen and (max-width: $screen-md-max) {
+        width: 80px;
+        line-height: 56px;
+        padding: 8px 10px 12px 10px;
+      }
    }
    .text_with_1px_border {
       text-shadow: 
