@@ -419,8 +419,8 @@
               <div class="ym-progress__thermometer" name="Personal Progress Bar" aria-label="{{participantProgress.percent}} percent of fundraising progress" aria-valuetext="{{participantProgress.percent}} percent of fundraising progress" role="progressbar" aria-valuenow="{{participantProgress.percent}}" aria-valuemin="0" aria-valuemax="100">
                 <div class="ym-progress__thermometer--fill" ng-class="(participantProgress.percent < 13) ? 'therm-text-black' : 'therm-text-white'" ng-style="{'width': participantProgress.percent + '%'}">{{participantProgress.percent}}%</div>
               </div>
-              <div class="ym-progress-related">
-                <div class="ym-progress-donate">
+              <div class="ym-progress-related d-lg-flex justify-content-between flex-wrap">
+                <div class="ym-progress-donate col-lg-6">
                   <p>
                     <a class="btn btn-lg btn-primary" ng-href="{{baseUrl}}#/reports" title="Click to view your donation reports"><strong>Donation Reports</strong></a>
                   </p>
@@ -430,7 +430,7 @@
                     </a>
                   </p>
                 </div>
-                <div class="ym-progress-amounts">
+                <div class="ym-progress-amounts col-lg-6">
                   <p>
                     <strong><span ng-bind-html="participantProgress.raisedFormatted"></span></strong> raised
                   </p>
