@@ -756,18 +756,12 @@
 				        </div>
 				</div>
 			</section>	
-			<style>
-			.ym-progress__thermometer--fill::after {
-				right: {{companyProgress.percent > 4 ? '10px' : '1px'}};
-				display: {{companyProgress.percent > 0 ? 'block' : 'none'}};
-			}
-			</style>
 			<section class="ym-pc-dashboard-coordinator-fundraise-section" aria-label="Fundraising Progress Meters">
 				<div class="ym-pc-dashboard-coordinator-progress-section__column">
 						<div class="d-flex flex-wrap justify-content-between mb-4">
 						  <div class="col-md-6 p-2">
 								<div class="ym-pc-dashboard-coordinator-progress-section__column h-100">
-									<div class="white-box red-border-bottom p-0 mb-4">
+									<div class="coordinator-school-progress white-box red-border-bottom p-0 mb-4">
 											<div class="card-header bg-light d-flex align-items-center justify-content-between m-0">
 												<h3 class="h5 mb-0">School Progress</h3>
 												<a class="btn btn-md-wide btn-toggle" href="" ng-click="editSchoolGoal()">
@@ -778,46 +772,44 @@
 											</div>	
 											<div class="p-4">
 												<div class="text-end"><span ng-bind-html="companyProgress.goalFormatted"></span></strong> goal</div>
-												<div class="ym-progress__thermometer m-0 mb-2 mw-100" name="School Progress Bar" aria-label="{{companyProgress.percent}} percent of fundraising progress" aria-valuetext="{{companyProgress.percent}} percent of fundraising progress" role="progressbar" aria-valuenow="{{companyProgress.percent}}" aria-valuemin="0" aria-valuemax="100">
-													<div class="ym-progress__thermometer--fill position-relative" ng-class="(companyProgress.percent < 13) ? 'therm-text-black' : 'therm-text-white'" ng-style="{'width': companyProgress.percent + '%'}">{{companyProgress.percent}}%</div>
+												<div class="ym-progress__thermometer m-0 mb-4 mw-100" name="School Progress Bar" aria-label="{{companyProgress.percent}} percent of fundraising progress" aria-valuetext="{{companyProgress.percent}} percent of fundraising progress" role="progressbar" aria-valuenow="{{companyProgress.percent}}" aria-valuemin="0" aria-valuemax="100">
+													<div class="ym-progress__thermometer--fill position-relative" ng-class="(companyProgress.percent < 15) ? 'therm-text-black' : 'therm-text-white'" ng-style="{'width': companyProgress.percent + '%'}">{{companyProgress.percent}}% - {{companyProgress.raisedFormatted}}</div>
 												</div>
-												<div class="text-start position-relative" style="left: calc({{companyProgress.percent < 13 ? 13 : companyProgress.percent}}% - 98px);"><span ng-bind-html="companyProgress.raisedFormatted"></span></strong> raised</div>
 											</div>
 										</div>
-										<div class="white-box red-border-bottom p-0">
-											<div class="card-header bg-light d-flex align-items-center justify-content-between m-0">
-												<h3 class="h5 mb-0">Personal Progress</h3>
-												<a class="btn btn-md-wide btn-toggle" href="" ng-click="editPersonalGoal()">
-													<strong>
-														Update Personal Goal
-													</strong>
-												</a>
+									<div class="coordinator-personal-progress white-box red-border-bottom p-0">
+										<div class="card-header bg-light d-flex align-items-center justify-content-between m-0">
+											<h3 class="h5 mb-0">Personal Progress</h3>
+											<a class="btn btn-md-wide btn-toggle" href="" ng-click="editPersonalGoal()">
+												<strong>
+													Update Personal Goal
+												</strong>
+											</a>
+										</div>
+										<div class="p-4">
+											<div class="text-end"><span ng-bind-html="participantProgress.goalFormatted"></span> goal</div> 
+											<div class="ym-progress__thermometer m-0 mb-4 mw-100" name="Personal Progress Bar" aria-label="{{participantProgress.percent}} percent of fundraising progress" aria-valuetext="{{participantProgress.percent}} percent of fundraising progress" role="progressbar" aria-valuenow="{{participantProgress.percent}}" aria-valuemin="0" aria-valuemax="100">
+												<div class="ym-progress__thermometer--fill position-relative" ng-class="(participantProgress.percent < 15) ? 'therm-text-black' : 'therm-text-white'" ng-style="{ 'width': participantProgress.percent + '%'}">{{participantProgress.percent}}% - {{participantProgress.raisedFormatted}}</div>
 											</div>
-											<div class="p-4">
-												<div class="text-end"><span ng-bind-html="participantProgress.goalFormatted"></span> goal</div> 
-												<div class="ym-progress__thermometer m-0 mb-2 mw-100" name="Personal Progress Bar" aria-label="{{participantProgress.percent}} percent of fundraising progress" aria-valuetext="{{participantProgress.percent}} percent of fundraising progress" role="progressbar" aria-valuenow="{{participantProgress.percent}}" aria-valuemin="0" aria-valuemax="100">
-													<div class="ym-progress__thermometer--fill" ng-class="(participantProgress.percent < 13) ? 'therm-text-black' : 'therm-text-white'" ng-style="{ 'width': participantProgress.percent + '%'}">{{participantProgress.percent}}%</div>
+											<div class="d-flex justify-content-between">
+													<p>
+														<a class="btn btn-sm btn-primary" ng-href="{{baseUrl}}#/reports" title="Click to view your donation reports">
+															<strong>
+																Donation Reports
+															</strong>
+														</a>
+													</p>
+													<p>
+														<a class="btn btn-sm btn-primary" ng-href="Donation2?df_id={{eventInfo.donationFormId}}&amp;FR_ID={{frId}}&amp;PROXY_TYPE=20&amp;PROXY_ID={{consId}}">
+															<strong>
+																Donate to Personal Page
+															</strong>
+														</a>
+													</p>
 												</div>
-												<div class="text-start mb-2"><span ng-bind-html="participantProgress.raisedFormatted"></span> raised</div> 
-												<div class="d-flex justify-content-between">
-														<p>
-															<a class="btn btn-sm btn-primary" ng-href="{{baseUrl}}#/reports" title="Click to view your donation reports">
-																<strong>
-																	Donation Reports
-																</strong>
-															</a>
-														</p>
-														<p>
-															<a class="btn btn-sm btn-primary" ng-href="Donation2?df_id={{eventInfo.donationFormId}}&amp;FR_ID={{frId}}&amp;PROXY_TYPE=20&amp;PROXY_ID={{consId}}">
-																<strong>
-																	Donate to Personal Page
-																</strong>
-															</a>
-														</p>
-													</div>
-                        </div>
 											</div>
 										</div>
+									</div>
 								</div>
 							<div class="col-md-6 p-2">
 								<div class="white-box red-border-bottom h-100">
