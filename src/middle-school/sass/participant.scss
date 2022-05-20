@@ -18,12 +18,7 @@ a.list-group-item:hover {
 .ym-pc-dashboard-email-challenge-box {
   form {
     textarea.form-control[readonly] {
-      background-color: $brand-white;
-      border: 1px solid $title-color;
-      border-radius: 0;
-      font-size: 13px;
-      height: 470px;
-      padding: 28px;
+      height: 270px;
     }
   }
 }
