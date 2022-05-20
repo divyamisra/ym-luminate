@@ -821,7 +821,7 @@
         </div>
         </div>
         <div class="col-sm-6 p-2">
-        	<div class="ym-activity-box ym-activity-box--page p-3 h-100 m-0">
+        	<div class="ym-activity-box ym-activity-box--page p-3 h-100 m-0 mb-2">
           <h3 class="h5">
             My Page
           </h3>
@@ -875,7 +875,7 @@
           </div>
           <div class="ym_my_challenge__current" ng-if="personalChallenge.id != '-1'" ng-cloak>
             <div class="d-md-flex justify-content-between flex-wrap">
-              <div class="col-6 challenge-days">
+              <div class="col-md-6 challenge-days">
                   <div class="d-flex challenge-day-streak px-3">
                      <div class="col-xs-3 col-sm-4">
                        <div class="challenge-day-count"><span ng-bind-html="personalChallenge.numCompleted"></span></div>
@@ -887,15 +887,15 @@
                    </div>
                  </div>
                  <div class="d-flex challenge-day-add-day" ng-if="!personalChallenge.completedToday" ng-cloak>
-     		    	      <div class="col-xs-4 col-sm-4 challenge-day-add-icon">
+     		    <div class="col-4 challenge-day-add-icon">
                       <img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/pc-challenge-add-day-icon.png" alt="Add a Day to your Challenge">
                     </div>
-                    <div class="col-xs-8 col-sm-8">
+                    <div class="col-8">
                       <button type="button" class="btn btn-md-wide btn-primary" ng-class="{'disabled': personalChallenge.updatePending}" ng-disabled="personalChallenge.updatePending" ng-click="logChallenge()" aria-label="Add a day to your challenge"><strong>Add Day</strong></button>
                    </div>
                  </div>
      	      </div>
-              <div class="col-6 challenge-buttons">
+              <div class="col-md-6 challenge-buttons">
                 <p class="ym_my_challenge__description text-center">
                   <strong>Change Your Challenge</strong>
                 </p>
@@ -1287,8 +1287,8 @@
       </div>
     </section>
     <section class="ym-pc-dashboard-coordinator-progress-section" aria-label="Fundraising Progress Meters">
-      <div class="d-flex justify-content-between flex-wrap">
-        <div class="col-sm-5 p-2">
+      <div class="d-md-flex justify-content-between flex-wrap">
+        <div class="col-md-5 p-2">
         <div class="ym-pc-dashboard-coordinator-progress-section__column event-secondary-medium p-3 h-100">
           <div class="ym-pc-dashboard-coordinator-progress-box">
             <div class="ym-pc-dashboard-section-header">
