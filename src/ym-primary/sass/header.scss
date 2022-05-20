@@ -41,5 +41,8 @@ header nav .ym-header-welcome-toggle:focus {
 .ym-page-header-monster {
   img {
     max-height:135px;
+    @media (min-width: $screen-sm-min) {
+       max-height: 100px;
+    }
   }
 }
