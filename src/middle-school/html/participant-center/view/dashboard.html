@@ -771,7 +771,7 @@
 												</a>
 											</div>	
 											<div class="p-4">
-												<div class="text-end"><span ng-bind-html="companyProgress.goalFormatted"></span></strong> goal</div>
+												<div class="text-end fw-bold"><span ng-bind-html="companyProgress.goalFormatted"></span></strong> goal</div>
 												<div class="ym-progress__thermometer m-0 mb-4 mw-100" name="School Progress Bar" aria-label="{{companyProgress.percent}} percent of fundraising progress" aria-valuetext="{{companyProgress.percent}} percent of fundraising progress" role="progressbar" aria-valuenow="{{companyProgress.percent}}" aria-valuemin="0" aria-valuemax="100">
 													<div class="ym-progress__thermometer--fill position-relative" ng-class="(companyProgress.percent < 15) ? 'therm-text-black' : 'therm-text-white'" ng-style="{'width': companyProgress.percent + '%'}">{{companyProgress.percent}}% - {{companyProgress.raisedFormatted}}</div>
 												</div>
@@ -787,7 +787,7 @@
 											</a>
 										</div>
 										<div class="p-4">
-											<div class="text-end"><span ng-bind-html="participantProgress.goalFormatted"></span> goal</div> 
+											<div class="text-end fw-bold"><span ng-bind-html="participantProgress.goalFormatted"></span> goal</div> 
 											<div class="ym-progress__thermometer m-0 mb-4 mw-100" name="Personal Progress Bar" aria-label="{{participantProgress.percent}} percent of fundraising progress" aria-valuetext="{{participantProgress.percent}} percent of fundraising progress" role="progressbar" aria-valuenow="{{participantProgress.percent}}" aria-valuemin="0" aria-valuemax="100">
 												<div class="ym-progress__thermometer--fill position-relative" ng-class="(participantProgress.percent < 15) ? 'therm-text-black' : 'therm-text-white'" ng-style="{ 'width': participantProgress.percent + '%'}">{{participantProgress.percent}}% - {{participantProgress.raisedFormatted}}</div>
 											</div>
