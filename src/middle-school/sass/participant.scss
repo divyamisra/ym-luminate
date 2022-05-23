@@ -404,6 +404,19 @@ span.ym-activity-box-number {
     color: $event-grey;
 }
 
+
+/* student dashboard layout */
+.dashboard-cols {
+  grid-template-columns: 60% 40%;
+  grid-template-areas:
+    "one two"
+    "three two";
+}
+.dashboard-col1 { grid-area: one; }
+.dashboard-col2 { grid-area: two;  }
+.dashboard-col3 { grid-area: three; grid-row-end: none; }
+
+
 /* generic styles */
 .white-box {
   box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
@@ -439,4 +452,49 @@ span.ym-activity-box-number {
 	p {
 		color: #ffffff;
 	}
+}
+	
+.ahc-challenge {
+  .btn,
+  .form-control,
+  .form-select {
+    @include button-variant($white, $white, $event-primary, $white, $white, $event-primary-dark, $white, $white, $event-primary-dark, $white, $white, $event-primary);
+  }
+}
+
+.ahc-btn-add-to-streak {
+  &::before {
+    aspect-ratio: 1/1;
+    background: $add-to-streak-icon no-repeat center;
+    background-size: 1.25rem;
+    content: "";
+    margin-right: $spacer * 0.75;
+    transition: $transition-base;
+    min-width: 1.75rem;
+  }
+
+  &.active {
+    &::before {
+      background-image: $add-to-streak-active-icon;
+      background-size: 1.5rem;
+    }
+  }
+}
+
+.ahc-challenge-count {
+  align-items: center;
+  aspect-ratio: 1/1;
+  background: $challenge-count-bg no-repeat center;
+  background-size: cover;
+  display: inline-flex;
+  filter: drop-shadow(1px 1px 3px rgba(193, 14, 33, 0.5));
+  font-size: clamp(3rem, 7vw, 4rem);
+  font-weight: inherit;
+  justify-content: center;
+  padding-bottom: 0.25em;
+  padding-inline: 0.5em;
+
+  @media (max-width:767px) {
+    font-size: clamp(3rem, 4vw, 3.5rem);
+  }
 }
