@@ -527,15 +527,15 @@ span.ym-activity-box-number {
 }
 
 .ahc-share-facebook {
-  @include button-variant($facebook-blue, $white, $facebook-blue);
+  @include button-variant($white, $facebook-blue, $facebook-blue);
 }
 
 .ahc-connect-facebook {
-  @include button-variant($facebook-blue-dark, $white, $facebook-blue-dark);
+  @include button-variant($white, $facebook-blue-dark, $facebook-blue-dark);
 }
 
 .ahc-share-twitter {
-  @include button-variant($twitter-blue, $white, $twitter-blue, #1989ce, #1989ce, $white);
+  @include button-variant($white, $twitter-blue, $twitter-blue, #1989ce, #1989ce, $white);
 
   &::before {
     content: $twitter-icon;
