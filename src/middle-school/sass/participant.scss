@@ -454,14 +454,6 @@ span.ym-activity-box-number {
 	}
 }
 	
-.ahc-challenge {
-  .btn,
-  .form-control,
-  .form-select {
-    @include button-variant($white, $white, $event-primary, $white, $white, $event-primary-dark, $white, $white, $event-primary-dark, $white, $white, $event-primary);
-  }
-}
-
 .ahc-btn-add-to-streak {
   &::before {
     aspect-ratio: 1/1;
