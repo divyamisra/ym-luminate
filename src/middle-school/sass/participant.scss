@@ -510,25 +510,32 @@ span.ym-activity-box-number {
   .grid {
     grid-auto-rows: 1fr;
   }
+  .btn {
+    align-items: center;
+    display: inline-flex;
+    justify-content: center;
+    font-weight:bold;
+  }
 }
 
 .ahc-share-facebook,
 .ahc-connect-facebook {
   &::before {
     content: $facebook-icon;
+    padding-right: 10px;
   }
 }
 
 .ahc-share-facebook {
-  @include button-variant($facebook-blue, $facebook-blue, $white);
+  @include button-variant($facebook-blue, $white, $facebook-blue);
 }
 
 .ahc-connect-facebook {
-  @include button-variant($facebook-blue-dark, $facebook-blue-dark, $white);
+  @include button-variant($facebook-blue-dark, $white, $facebook-blue-dark);
 }
 
 .ahc-share-twitter {
-  @include button-variant($twitter-blue, $twitter-blue, $white, #1989ce, #1989ce, $white);
+  @include button-variant($twitter-blue, $white, $twitter-blue, #1989ce, #1989ce, $white);
 
   &::before {
     content: $twitter-icon;
