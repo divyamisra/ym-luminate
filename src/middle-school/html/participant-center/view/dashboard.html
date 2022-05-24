@@ -77,22 +77,84 @@
 					<h3 class="h5 mb-4">Share with Friends & Family</h3>
 					<div class="ahc-social-share-slot">
 						<div class="row g-3 mb-3">
-							<div class="col-sm-6">
-								<a target="_blank" href="https://www.facebook.com/sharer/sharer.php" class="ahc-btn-social ahc-connect-facebook btn btn-md-wide h-100 p-1 text-start w-100 fb-xfbml-parse-ignore">Share on Facebook</a>
+							<div class="col-sm-4">
+								<a target="_blank" href="https://www.facebook.com/sharer/sharer.php" class="ahc-btn-social ahc-connect-facebook btn btn-md-wide h-100 p-2 text-start w-100 fb-xfbml-parse-ignore">Share on Facebook</a>
 							</div>
-							<div class="col-sm-6">
-								<a target="_blank" class="ahc-btn-social ahc-share-twitter btn btn-md-wide h-100 p-1 text-start w-100 twitter-share-button" href="https://twitter.com/intent/tweet?text=Hello%20world">Share on Twitter</a>
+							<div class="col-sm-4">
+								<a target="_blank" class="ahc-btn-social ahc-share-twitter btn btn-md-wide h-100 p-2 text-start w-100 twitter-share-button" href="https://twitter.com/intent/tweet?text=Hello%20world">Share on Twitter</a>
 							</div>
-							<div class="col-sm-6">
-								<button type="button" class="ahc-btn-social ahc-connect-facebook btn btn-md-wide h-100 p-1 text-start w-100"><span>Connect to Facebook Fundraiser</span></button>
-							</div>
-							<div class="col-sm-6">
+							<div class="col-sm-4">
 								<!--<button type="button" class="ahc-btn-social ahc-copy ahc-btn-copy btn btn-primary btn-sm h-100 py-2 rounded-3 text-start w-100" data-copy="#personalPageUrl" data-toast="#copyToClipboardToast" data-toast-message="Personal page URL copied!">Copy Link to Personal Page</button>-->
 								<div id="personalPageUrlStudent" class="visually-hidden" aria-hidden="true">{{personalPageUrl}}</div>
-								<button type="button" class="ahc-copy ahc-btn-copy ahc-btn-social btn btn-md-wide btn-primary h-100 p-1 text-start w-100" title="Copy URL to clipboard" data-clipboard-target="#personalPageUrlStudent" data-clipboard-message="Personal page URL copied!">Copy Link to Personal Page</button>
+								<button type="button" class="ahc-copy ahc-btn-copy ahc-btn-social btn btn-md-wide btn-primary h-100 p-2 text-start w-100" title="Copy URL to clipboard" data-clipboard-target="#personalPageUrlStudent" data-clipboard-message="Personal page URL copied!">Copy Link to Personal Page</button>
 							</div>
 						</div>
 						<p><small>By clicking the links above, you will leave AHA's website and be redirected to another site not under the control of AHA.</small></p>
+					</div>
+					<div ng-show="facebookFundraisersEnabled" class="mt-4" ng-cloak>
+						<div class="ym-pc-dashboard-facebook-box" ng-show="!facebookFundraiserId">
+							<div class="container">
+								<div class="ym-pc-dashboard-section-header">
+									<h3 class="h5 text-white">
+										Let's Get Fundraising
+										<span ng-if="consNameFirst &amp;&amp; consNameFirst != ''">
+											, 
+											<span ng-bind-html="consNameFirst">
+											</span>
+										</span>
+										! 
+									</h3>
+								</div>
+								<div class="text-center">
+									<p>
+										Link your personal page to a new Facebook Fundraiser to receive donations from your Facebook friends. 
+									</p>
+									<div role="alert" class="alert alert-danger" ng-if="facebookFundraiserLoginStatus == 'login_error' || facebookFundraiserLoginStatus == 'permission_error' || facebookFundraiserLoginStatus == 'create_fundraiser_error' || facebookFundraiserCreateStatus == 'login_error' || facebookFundraiserCreateStatus == 'permission_error' || facebookFundraiserCreateStatus == 'create_fundraiser_error'" ng-cloak>
+										An error occurred attempting to connect to Facebook. Please try again later. 
+									</div>
+									<div role="alert" class="alert alert-danger" ng-if="facebookFundraiserCreateStatus == 'create_fundraiser_duplicate'" ng-cloak>
+										This Facebook account already has an active Facebook Fundraiser for this school. If you are trying to connect a second student, you will need to use another Facebook account. 
+									</div>
+									<div role="alert" class="alert alert-danger" ng-if="facebookFundraiserLoginStatus == 'declined_manage_fundraisers'" ng-cloak>
+										We need your permission to create a Facebook Fundraiser on your behalf. 
+									</div>
+									<button type="button" class="btn btn-white" ng-class="{'disabled': facebookFundraiserLoginStatus == 'pending' || facebookFundraiserCreateStatus == 'pending'}" ng-click="loginToFacebook()" ng-disabled="facebookFundraiserLoginStatus == 'pending' || facebookFundraiserCreateStatus == 'pending'">
+										<span class="fa fa-facebook-square">
+										</span>
+										<strong>
+											Connect to Facebook Fundraiser
+										</strong>
+									</button>
+									<div class="ym-pc-dashboard-facebook-hint">
+										By clicking this link, you will leave AHA's website and be redirected to another site not under the control of AHA. 
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="ym-pc-dashboard-facebook-box js--facebook-fundraiser-completed-section" ng-show="facebookFundraiserId">
+							<div class="container">
+								<div class="ym-pc-dashboard-section-header">
+									<h3 class="h5">
+										Your Fundraiser is Connected to Facebook! 
+									</h3>
+								</div>
+								<div class="text-center">
+									<p>
+										Log in to use Facebook's fundraising tools to invite friends, share updates and collect donations. We'll keep track of your progress on Facebook and on your page, so you'll always know how close you are to reaching your goal. 
+									</p>
+									<a class="btn btn-white" ng-class="{'disabled': !facebookFundraiserConfirmedStatus || facebookFundraiserConfirmedStatus == 'pending'}" ng-href="//facebook.com/donate/{{facebookFundraiserId}}/" ng-disabled="!facebookFundraiserConfirmedStatus || facebookFundraiserConfirmedStatus == 'pending'" target="_blank">
+										<span class="fa fa-facebook-square">
+										</span>
+										<strong>
+											Go to Facebook Fundraiser
+										</strong>
+									</a>
+									<div class="ym-pc-dashboard-facebook-hint">
+										By clicking this link, you will leave AHA's website and be redirected to another site not under the control of AHA. 
+									</div>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 				
@@ -172,106 +234,11 @@
 						</div>
 					</div>
 				</div>
-				<div class="livestream white-box mb-4">
-					<div class="ym-pc-dashboard-livestream-box">
-						<div class="ym-pc-dashboard-livestream-title">
-							<img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/middle-school/image/pc-tiltify-livestream.png" alt="Livestream"> 
-						</div>
-						<div class="ym-pc-dashboard-section-header">
-							<p>
-								Go live and help save lives. Start your charity stream today. 
-							</p>
-						</div>
-						<div class="text-center">
-							<div class="ym-pc-dashboard-livestream-buttons">
-								<a class="btn btn-md-wide btn-primary" ng-href="https://tiltify.com/aha/american-heart-challenge-e15ea11c-9812-4c1a-b18a-3f502c3bb54f/start/registration/address" target="_blank">
-									<strong>
-										Get Started
-									</strong>
-								</a>
-								<a class="btn btn-md-wide btn-primary" ng-href="https://dashboard.tiltify.com/@me" target="_blank">
-									<strong>
-										Check Your Progress
-									</strong>
-								</a>
-							</div>
-							<br /> 
-							<p>
-								By clicking these links, you will leave American Heart Challenge and be redirected to another site not under the control of the American Heart Association. 
-							</p>
-						</div>
-					</div>
-				</div>
-				<div ng-show="facebookFundraisersEnabled" class="white-box mb-4" ng-cloak>
-					<div class="ym-pc-dashboard-facebook-box" ng-show="!facebookFundraiserId">
-						<div class="container">
-							<div class="ym-pc-dashboard-section-header">
-								<h3 class="h5 text-white">
-									Let's Get Fundraising
-									<span ng-if="consNameFirst &amp;&amp; consNameFirst != ''">
-										, 
-										<span ng-bind-html="consNameFirst">
-										</span>
-									</span>
-									! 
-								</h3>
-							</div>
-							<div class="text-center">
-								<p>
-									Link your personal page to a new Facebook Fundraiser to receive donations from your Facebook friends. 
-								</p>
-								<div role="alert" class="alert alert-danger" ng-if="facebookFundraiserLoginStatus == 'login_error' || facebookFundraiserLoginStatus == 'permission_error' || facebookFundraiserLoginStatus == 'create_fundraiser_error' || facebookFundraiserCreateStatus == 'login_error' || facebookFundraiserCreateStatus == 'permission_error' || facebookFundraiserCreateStatus == 'create_fundraiser_error'" ng-cloak>
-									An error occurred attempting to connect to Facebook. Please try again later. 
-								</div>
-								<div role="alert" class="alert alert-danger" ng-if="facebookFundraiserCreateStatus == 'create_fundraiser_duplicate'" ng-cloak>
-									This Facebook account already has an active Facebook Fundraiser for this school. If you are trying to connect a second student, you will need to use another Facebook account. 
-								</div>
-								<div role="alert" class="alert alert-danger" ng-if="facebookFundraiserLoginStatus == 'declined_manage_fundraisers'" ng-cloak>
-									We need your permission to create a Facebook Fundraiser on your behalf. 
-								</div>
-								<button type="button" class="btn btn-white" ng-class="{'disabled': facebookFundraiserLoginStatus == 'pending' || facebookFundraiserCreateStatus == 'pending'}" ng-click="loginToFacebook()" ng-disabled="facebookFundraiserLoginStatus == 'pending' || facebookFundraiserCreateStatus == 'pending'">
-									<span class="fa fa-facebook-square">
-									</span>
-									<strong>
-										Connect to Facebook Fundraiser
-									</strong>
-								</button>
-								<div class="ym-pc-dashboard-facebook-hint">
-									By clicking this link, you will leave AHA's website and be redirected to another site not under the control of AHA. 
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="ym-pc-dashboard-facebook-box js--facebook-fundraiser-completed-section" ng-show="facebookFundraiserId">
-						<div class="container">
-							<div class="ym-pc-dashboard-section-header">
-								<h3 class="h5">
-									Your Fundraiser is Connected to Facebook! 
-								</h3>
-							</div>
-							<div class="text-center">
-								<p>
-									Log in to use Facebook's fundraising tools to invite friends, share updates and collect donations. We'll keep track of your progress on Facebook and on your page, so you'll always know how close you are to reaching your goal. 
-								</p>
-								<a class="btn btn-white" ng-class="{'disabled': !facebookFundraiserConfirmedStatus || facebookFundraiserConfirmedStatus == 'pending'}" ng-href="//facebook.com/donate/{{facebookFundraiserId}}/" ng-disabled="!facebookFundraiserConfirmedStatus || facebookFundraiserConfirmedStatus == 'pending'" target="_blank">
-									<span class="fa fa-facebook-square">
-									</span>
-									<strong>
-										Go to Facebook Fundraiser
-									</strong>
-								</a>
-								<div class="ym-pc-dashboard-facebook-hint">
-									By clicking this link, you will leave AHA's website and be redirected to another site not under the control of AHA. 
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="donor-list white-box mb-4">
-					<h3 class="h5">
-						My Donors 
-					</h3>
-					<div ng-if="participantGifts.gifts &amp;&amp; participantGifts.gifts.length == 0" ng-cloak>
+				<div class="ahc-donor-roll card mb-4 white-box red-border-bottom p-0">
+          <div class="card-header">
+            <h3 class="h5">Fundraising Progress</h3>
+          </div>
+ 					<div class="p-4" ng-if="participantGifts.gifts &amp;&amp; participantGifts.gifts.length == 0" ng-cloak>
 						<div class="ym-next-step mb-2">
 							<div class="ym-next-step__step">
 								You have no donations yet. 
@@ -297,7 +264,7 @@
 							</div>
 						</div>
 					</div>
-					<div ng-if="participantGifts.gifts &amp;&amp; participantGifts.gifts.length == 1 &amp;&amp; participantRegistration.selfDonor == 'true'" ng-cloak>
+					<div class="p-4" ng-if="participantGifts.gifts &amp;&amp; participantGifts.gifts.length == 1 &amp;&amp; participantRegistration.selfDonor == 'true'" ng-cloak>
 						<div class="ym-next-step mb-2">
 							<div class="ym-next-step__step">
 								You're the only donor so far. 
@@ -323,7 +290,8 @@
 							</div>
 						</div>
 					</div>
-					<div ng-if="((participantGifts.gifts &amp;&amp; participantGifts.gifts.length == 1 &amp;&amp; participantRegistration.selfDonor == 'false') || (participantGifts.gifts &amp;&amp; participantGifts.gifts.length &gt; 1)) &amp;&amp; donorContactCounts.email_rpt_show_unthanked_donors == 0 &amp;&amp; donorContactCounts.email_rpt_show_nondonors_followup == 0" ng-cloak>
+
+					<div class="p-4" ng-if="((participantGifts.gifts &amp;&amp; participantGifts.gifts.length == 1 &amp;&amp; participantRegistration.selfDonor == 'false') || (participantGifts.gifts &amp;&amp; participantGifts.gifts.length &gt; 1)) &amp;&amp; donorContactCounts.email_rpt_show_unthanked_donors == 0 &amp;&amp; donorContactCounts.email_rpt_show_nondonors_followup == 0" ng-cloak>
 						<div class="ym-next-step mb-2" ng-if="donorContactCounts.email_rpt_show_donors > 0" ng-cloak>
 							<div class="ym-next-step__step">
 								You're a natural fundraiser! Keep up your awesome efforts! 
@@ -361,7 +329,7 @@
 							</div>
 						</div>
 					</div>
-					<div ng-if="((participantGifts.gifts &amp;&amp; participantGifts.gifts.length == 1 &amp;&amp; participantRegistration.selfDonor == 'false') || (participantGifts.gifts &amp;&amp; participantGifts.gifts.length &gt; 1)) &amp;&amp; (donorContactCounts.email_rpt_show_unthanked_donors &gt; 0 || donorContactCounts.email_rpt_show_nondonors_followup &gt; 0)" ng-cloak>
+					<div class="p-4" ng-if="((participantGifts.gifts &amp;&amp; participantGifts.gifts.length == 1 &amp;&amp; participantRegistration.selfDonor == 'false') || (participantGifts.gifts &amp;&amp; participantGifts.gifts.length &gt; 1)) &amp;&amp; (donorContactCounts.email_rpt_show_unthanked_donors &gt; 0 || donorContactCounts.email_rpt_show_nondonors_followup &gt; 0)" ng-cloak>
 						<div class="ym-next-step ym-next-step--sm mb-2" ng-if="donorContactCounts.email_rpt_show_unthanked_donors > 0" ng-cloak>
 							<div class="ym-next-step__step">
 								You have new donors who haven't received a thank-you email! 
@@ -399,7 +367,21 @@
 							</div>
 						</div>
 					</div>
-				</div>
+					<div class="mt-2 p-4" ng-if="participantGifts.gifts &amp;&amp; participantGifts.gifts.length > 0" ng-cloak>
+						<h3 class="h5">My Donors</h3>
+						<div class="ahc-donors swiper d-flex">
+							<ul class="list-group list-group-flush swiper-wrapper pe-3 w-100">
+								<li class="list-group-item swiper-slide" ng-repeat="gifts in participantGifts.gifts" ng-cloak>
+									<div class="row align-items-center justify-content-between">
+										<div class="col">{{gifts.name.first}} {{gifts.name.last.charAt(0)}}  <span>({{gifts.giftAmountFormatted.replace('.00','')}})</span></div>
+										<div class="col text-end"><button type="button" class="btn btn-link btn-sm p-0">Send a thank you</button></div>
+									</div>
+								</li>
+							</ul>
+							<div class="swiper-scrollbar"></div>
+						</div>
+        </div>
+			</div>
 			</div>
 		  <div class="dashboard-col3 col p-2">
 				<div class="download-app white-box red-border-left mb-4">
