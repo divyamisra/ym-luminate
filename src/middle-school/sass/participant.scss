@@ -460,8 +460,8 @@ span.ym-activity-box-number {
     background: $add-to-streak-icon no-repeat center;
     background-size: 1.25rem;
     content: "";
-    margin-right: $spacer * 0.75;
-    transition: $transition-base;
+    margin-right: 0.75rem;
+    transition: all .2s ease-in-out;
     min-width: 1.75rem;
   }
 
