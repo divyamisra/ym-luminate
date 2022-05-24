@@ -505,3 +505,32 @@ span.ym-activity-box-number {
     font-size: clamp(3rem, 4vw, 3.5rem);
   }
 }
+
+.ahc-social-share {
+  .grid {
+    grid-auto-rows: 1fr;
+  }
+}
+
+.ahc-share-facebook,
+.ahc-connect-facebook {
+  &::before {
+    content: $facebook-icon;
+  }
+}
+
+.ahc-share-facebook {
+  @include button-variant($facebook-blue, $facebook-blue, $white);
+}
+
+.ahc-connect-facebook {
+  @include button-variant($facebook-blue-dark, $facebook-blue-dark, $white);
+}
+
+.ahc-share-twitter {
+  @include button-variant($twitter-blue, $twitter-blue, $white, #1989ce, #1989ce, $white);
+
+  &::before {
+    content: $twitter-icon;
+  }
+}
