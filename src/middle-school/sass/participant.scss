@@ -546,3 +546,10 @@ span.ym-activity-box-number {
     content: $twitter-icon;
   }
 }
+
+.ahc-donor-roll {
+   max-height: 40vh;
+}
+.ahc-donor-roll .ahc-donors  {
+   overflow: scroll;
+}
