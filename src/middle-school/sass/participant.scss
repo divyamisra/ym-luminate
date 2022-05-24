@@ -453,7 +453,20 @@ span.ym-activity-box-number {
 		color: #ffffff;
 	}
 }
-	
+
+.ahc-challenge .btn, 
+.ahc-challenge .form-control, 
+.ahc-challenge .form-select {
+	background-color: #fff;
+	border-color: #fff;
+	color: $event-primery;
+	&:hover {
+		background-color: #fff;
+		border-color: #fff;
+		color: $event-secondary;
+	}
+}
+
 .ahc-btn-add-to-streak {
   &::before {
     aspect-ratio: 1/1;
