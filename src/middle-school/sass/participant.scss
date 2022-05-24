@@ -544,6 +544,7 @@ span.ym-activity-box-number {
 
   &::before {
     content: $twitter-icon;
+    padding-right: 10px;
   }
 }
 
