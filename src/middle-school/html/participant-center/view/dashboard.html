@@ -73,6 +73,29 @@
 						</div>
 					</div>
 				</div>
+				<div class="ahc-social-share white-box mb-4">
+					<h3 class="h5 mb-4">Share with Friends & Family</h3>
+					<div class="ahc-social-share-slot">
+						<div class="row g-3 mb-3">
+							<div class="col-sm-6">
+								<a target="_blank" href="https://www.facebook.com/sharer/sharer.php" class="ahc-btn-social ahc-connect-facebook btn btn-md-wide h-100 p-1 text-start w-100 fb-xfbml-parse-ignore">Share on Facebook</a>
+							</div>
+							<div class="col-sm-6">
+								<a target="_blank" class="ahc-btn-social ahc-share-twitter btn btn-md-wide h-100 p-1 text-start w-100 twitter-share-button" href="https://twitter.com/intent/tweet?text=Hello%20world">Share on Twitter</a>
+							</div>
+							<div class="col-sm-6">
+								<button type="button" class="ahc-btn-social ahc-connect-facebook btn btn-md-wide h-100 p-1 text-start w-100"><span>Connect to Facebook Fundraiser</span></button>
+							</div>
+							<div class="col-sm-6">
+								<!--<button type="button" class="ahc-btn-social ahc-copy ahc-btn-copy btn btn-primary btn-sm h-100 py-2 rounded-3 text-start w-100" data-copy="#personalPageUrl" data-toast="#copyToClipboardToast" data-toast-message="Personal page URL copied!">Copy Link to Personal Page</button>-->
+								<div id="personalPageUrlStudent" class="visually-hidden" aria-hidden="true">{{personalPageUrl}}</div>
+								<button type="button" class="ahc-copy ahc-btn-copy ahc-btn-social btn btn-md-wide btn-primary h-100 p-1 text-start w-100" title="Copy URL to clipboard" data-clipboard-target="#personalPageUrlStudent" data-clipboard-message="Personal page URL copied!">Copy Link to Personal Page</button>
+							</div>
+						</div>
+						<p><small>By clicking the links above, you will leave AHA's website and be redirected to another site not under the control of AHA.</small></p>
+					</div>
+				</div>
+				
 				<div class="ahc-challenge white-box p-0 mb-4">
 					<h3 class="h5 p-2">
 						Healthy Heart Challenge
@@ -95,7 +118,8 @@
 								<div class="col-sm">
 									<button type="button" class="ahc-btn-add-to-streak btn opacity-100 py-3 rounded text-start" ng-class="{'disabled': personalChallenge.updatePending || personalChallenge.completedToday, 'active': personalChallenge.completedToday}" ng-disabled="personalChallenge.updatePending || personalChallenge.completedToday" ng-click="logChallenge()"aria-live="polite" aria-atomic="true">
 										<strong>
-											Add today to your streak
+											<span ng-if="!personalChallenge.completedToday">Add today to your streak</span>
+											<span ng-if="personalChallenge.completedToday">Today added to your streak</span>
 										</strong>
 									</button>
 									<div class="mt-3 px-0">
