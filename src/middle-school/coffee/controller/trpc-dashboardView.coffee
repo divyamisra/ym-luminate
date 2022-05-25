@@ -1320,6 +1320,8 @@ angular.module 'trPcControllers'
           richText = richText.replace(/<strong>/g, '<b>').replace(/<strong /g, '<b ').replace /<\/strong>/g, '</b>'
           .replace(/<em>/g, '<i>').replace(/<em /g, '<i ').replace /<\/em>/g, '</i>'
           $scope.personalPageContent.ng_rich_text = richText 
+          if not $scope.$$phase
+            $scope.$apply()
       
       $scope.editPersonalPageContent = ->
         richText = $scope.personalPageContent.ng_rich_text
