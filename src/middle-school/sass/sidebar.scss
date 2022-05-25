@@ -46,7 +46,7 @@
     min-height: 100%;
     font-size: clamp(.875rem,1.5vw,1.5rem);
     max-width: calc(3.5rem + 10rem);
-    overflow: hidden;
+    /*overflow: hidden;*/
     /*padding-inline: clamp(1em, 2.15vw, 3em);*/
     transition: max-width 0.35s ease;
     padding-right:0px;
