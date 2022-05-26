@@ -287,13 +287,26 @@ angular.module 'ahaLuminateControllers'
         $scope.getPrevSurveyResponses()
 
       # hide t-shirt question for jump start schools
-      currentSchool = angular.element(document).find('.hidden company-id').text()
-      console.log('currentSchool ' + currentSchool)
+      currentSchool = angular.element(document).find('.company-id').text()
       jumpStartSchools = angular.element(document).find('.jump-start-list').text()
       jumpStartArray = JSON.parse("[" + jumpStartSchools + "]");
-      console.log('jumpStartArray ' + jumpStartArray)
+      
+      findLabel = () ->
+        console.log('findlabel function')
+        if angular.element('#questions_hdr_container').length > 0
+          if jumpStartArray.indexOf(currentSchool) != -1
+            console.log('current school is in array')
 
+            angular.element('label.control-label span:contains("Shirt")').closest('.row').css('display','none')
+            angular.element('label.control-label span:contains("Shirt")').closest('.row').find('select').val('Jump Start School').trigger('change')
+          else
+            console.log('current school is NOT in array')
+            angular.element('label.control-label span:contains("Shirt")').closest('.row').find('select option[value="Jump Start School"]').remove()
 
+        else
+          window.setTimeout(findLabel,50);
+
+      findLabel()
 
       $scope.toggleAcceptWaiver = (acceptWaiver) ->
         $scope.acceptWaiver = acceptWaiver
