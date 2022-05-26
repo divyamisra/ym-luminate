@@ -1,12 +1,12 @@
 <div cg-busy="emailPromises">
   <div class="row">
     <div class="col-sm-4 col-md-3">
-      <div class="d-xs-block d-sm-none">
+      <div class="d-xs-block d-sm-block d-md-none">
         <div class="btn-group ng-pc-nav-btn-group" uib-dropdown>
-          <button type="button" class="btn btn-secondary form-control" uib-dropdown-toggle>
+          <button type="button" class="btn btn-secondary form-control" data-target="#compose" data-toggle="collapse">
             <strong>Compose</strong> <span class="caret"></span>
           </button>
-          <ul class="list-unstyled dropdown-menu" uib-dropdown-menu>
+          <ul id="compose" class="list-unstyled dropdown-menu collapse">
             <li>
               <a ng-href="{{baseUrl}}#/email/compose">
                 Compose
