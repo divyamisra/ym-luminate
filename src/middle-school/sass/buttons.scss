@@ -23,6 +23,11 @@ a.btn {
     &:active {
       background: $event-primary-dark;
     }
+	  
+    &:focus {
+      outline: auto 2px Highlight;
+      outline: auto 2px -webkit-focus-ring-color;
+    }
   }
   &.btn-secondary {
     &,
