@@ -283,10 +283,17 @@ angular.module 'ahaLuminateControllers'
                     window.setTimeout(findFields,50);
                 findFields();
 
-
-
       if $fieldErrors.length == 0
         $scope.getPrevSurveyResponses()
+
+      # hide t-shirt question for jump start schools
+      currentSchool = angular.element(document).find('.hidden company-id').text()
+      console.log('currentSchool ' + currentSchool)
+      jumpStartSchools = angular.element(document).find('.jump-start-list').text()
+      jumpStartArray = JSON.parse("[" + jumpStartSchools + "]");
+      console.log('jumpStartArray ' + jumpStartArray)
+
+
 
       $scope.toggleAcceptWaiver = (acceptWaiver) ->
         $scope.acceptWaiver = acceptWaiver
