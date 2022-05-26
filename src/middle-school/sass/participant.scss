@@ -4,6 +4,7 @@
 
 @import "../../youth-markets/sass/participant.scss";
 
+.ng-pc-nav,
 .ng-pc-nav--coordinator {
   @media (max-width: 669px) {
     max-width: none;
@@ -21,31 +22,6 @@
         height: auto;
         padding: 12px 6px;
         flex: 1 0 25%;
-      }
-
-      &.ng-pc-nav-item--resources,
-      &.ng-pc-nav-item--order-gifts {
-        padding: 3px 0 0;
-
-        @media (min-width: 670px) {
-          padding: 3px 0 0;
-        }
-
-        @media (min-width: 1170px) {
-          padding: 14px 0 0;
-        }
-
-        > span {
-          max-width: 80px;
-
-          @media (min-width: 670px) {
-            max-width: 100px;
-          }
-
-          @media (min-width: 1170px) {
-            max-width: none;
-          }
-        }
       }
 
       &.ng-pc-nav-item--student-view {
