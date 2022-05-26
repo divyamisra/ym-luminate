@@ -4,6 +4,112 @@
 
 @import "../../youth-markets/sass/participant.scss";
 
+.ng-pc-nav--coordinator {
+  @media (max-width: 669px) {
+    max-width: none;
+  }
+
+  a {
+    &,
+    &:link,
+    &:visited,
+    &:hover,
+    &:focus,
+    &:active {
+      @media (max-width: 669px) {
+        width: auto;
+        height: auto;
+        padding: 12px 6px;
+        flex: 1 0 25%;
+      }
+
+      &.ng-pc-nav-item--resources,
+      &.ng-pc-nav-item--order-gifts {
+        padding: 3px 0 0;
+
+        @media (min-width: 670px) {
+          padding: 3px 0 0;
+        }
+
+        @media (min-width: 1170px) {
+          padding: 14px 0 0;
+        }
+
+        > span {
+          max-width: 80px;
+
+          @media (min-width: 670px) {
+            max-width: 100px;
+          }
+
+          @media (min-width: 1170px) {
+            max-width: none;
+          }
+        }
+      }
+
+      &.ng-pc-nav-item--student-view {
+        padding: 3px 0 0;
+
+        @media (min-width: 670px) {
+          padding: 8px 0 0;
+        }
+
+        @media (min-width: 890px) {
+          padding: 14px 0 0;
+        }
+
+        > span {
+          max-width: 65px;
+
+          @media (min-width: 670px) {
+            max-width: 80px;
+            font-size: 16px;
+            line-height: 18px;
+          }
+
+          @media (min-width: 890px) {
+            max-width: none;
+            font-size: 18px;
+            line-height: 22px;
+          }
+        }
+      }
+    }
+
+    &,
+    &:link,
+    &:visited {
+      @media (max-width: 669px) {
+        background: $brand-white;
+        color: $event-secondary;
+      }
+    }
+
+    &:hover,
+    &:focus,
+    &:active {
+      @media (max-width: 669px) {
+        background: #cccccc;
+        color: $event-secondary;
+      }
+    }
+
+    &:last-child {
+      @media (min-width: 560px) and (max-width: 669px) {
+        margin: 0 3px 5px;
+      }
+    }
+
+    &.active {
+      @media (max-width: 669px) {
+        background: #cccccc;
+        color: $event-secondary;
+      }
+    }
+  }
+}
+
 .list-group-item > .badge {
     float: right;
 }
