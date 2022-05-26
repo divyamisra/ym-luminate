@@ -206,6 +206,7 @@ angular.module 'ahaLuminateControllers'
               initCustomQuestions()
               $scope.registrationCustomQuestions[surveyKey] = questionName
             else if questionLegend isnt 'Event Date' and surveyKey isnt 'ym_khc_challenge_info' and surveyKey isnt 'ym_khc_ecards_sent' and surveyKey isnt 'ym_khc_ecards_shared' and surveyKey isnt 'ym_khc_ecards_open' and surveyKey isnt 'ym_khc_ecards_clicked' and surveyKey isnt 'ym_khc_ym_game_points' and surveyKey isnt 'bb_facebook_connector_id'
+              console.log('dealing with other reg questions')
               if not $scope.registrationAdditionalQuestions
                 $scope.registrationAdditionalQuestions = {}
               $scope.registrationAdditionalQuestions[questionName] = questionName
@@ -277,6 +278,7 @@ angular.module 'ahaLuminateControllers'
                         if surveyResponseAnswer ==  'College' || surveyResponseAnswer == 'Other'
                           newGrade = 'Other'
                         angular.element(document).find('.ym_khc_grade').val(newGrade).trigger('change')
+
                   else
                     window.setTimeout(findFields,50);
                 findFields();
