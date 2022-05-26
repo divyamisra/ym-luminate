@@ -21,7 +21,8 @@
         width: auto;
         height: auto;
         padding: 12px 6px;
-        flex: 1 0 25%;
+        flex: 0 0 auto;
+	width: 25%;
       }
 
       &.ng-pc-nav-item--student-view {
