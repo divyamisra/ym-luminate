@@ -3,6 +3,11 @@ option {
   font-size: 18px;
 }
 
+.ym-pc-dashboard-coordinator-school-years-section {
+	select {
+		min-width:70px;
+	}
+}
 .ym-pc-dashboard-coordinator-progress-section,
 .ym-pc-dashboard-coordinator-steps-section,
 .ym-pc-dashboard-coordinator-school-challenge-section,
