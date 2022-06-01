@@ -272,7 +272,7 @@ angular.module 'trPcControllers'
       
       $scope.emailChallenge = {}
       setEmailSampleText = ->
-        sampleText = 'I\'ve made a commitment to raise money to keep hearts beating. I need your help because more money\n\n' +
+        sampleText = 'I\'ve made a commitment to raise money to keep hearts beating. I need your help because more money ' +
         'raised means more moms, dads, brothers, aunts and babies\' lives saved. Even the smallest donation can make a big difference.\n\n' +
         'Please make a donation and support me today!'
         #if not $scope.personalGoalInfo or not $scope.personalGoalInfo.goal or $scope.personalGoalInfo.goal is ''
