@@ -17,9 +17,9 @@
 		  <div class="dashboard-col2 col p-2">
 				<div ng-if="coordinatorMessage.message &amp;&amp; coordinatorMessage.message != ''" ng-cloak>
 					<div class="ahc-teacher-message white-box mb-4">
-						<h3 class="h5">
+						<h2 class="h5">
 							Message From Your Teacher 
-						</h3>
+						</h2>
 						<div ng-bind-html="coordinatorMessage.message"></div>
 					</div>
 				</div>
@@ -524,9 +524,9 @@
 	<div ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true' && location != '/dashboard-student'" ng-cloak>
 		<section class="ym-pc-dashboard-coordinator-plan-section mb-4" aria-label="School Plan Selection">
 			<div class="ym-pc-dashboard-coordinator-progress-section__column white-box red-border-bottom m-2">
-				<h3 class="h5 clearfix">
+				<h2 class="h5 clearfix">
 					School Plan 
-				</h3>
+				</h2>
 				<div class="row" ng-if="schoolPlan.EventStartDate != ''" ng-cloak>
 					<div class="schoolPlanDates text-left">
 						<p>
