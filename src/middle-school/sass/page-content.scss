@@ -1,5 +1,5 @@
 .pg-personal .ym-headline {
-	color: $event-secondary-medium;
+	color: $title-color;
 }
 
 a.btn.btn-donate {
@@ -50,4 +50,21 @@ a.btn.btn-donate {
       }
     }
   }
+}
+
+.modal.fade.in {
+   opacity: 1;
+}
+.modal.fade .modal-dialog {
+   transform: translate(0, 0) !important;
+}
+
+.modal-backdrop.fade {
+  opacity: 0.5 !important;
+ }
+.modal-header{
+   display: block;
+}
+.modal-content{
+   border-radius: 1.3rem !important;
 }

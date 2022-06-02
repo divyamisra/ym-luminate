@@ -44,9 +44,10 @@ angular.module 'trPcControllers'
       $scope.topGradeRaised = []
       $scope.topGradeStudents = []
       $scope.topCompanySteps = []
+      $scope.canCopyQRCode = CopyImageClipboard.canCopyImagesToClipboard()
        
       $dataRoot = angular.element '[data-embed-root]'
-                     
+		
       if $scope.participantRegistration.lastPC2Login is '0'
         if $scope.participantRegistration.companyInformation?.isCompanyCoordinator isnt 'true'
           $scope.firstLoginModal = $uibModal.open
@@ -190,7 +191,36 @@ angular.module 'trPcControllers'
                     totalFundraisers++
               setCompanyParticipants companyParticipants, totalNumberParticipants, totalFundraisers
       getCompanyParticipants()
-      
+
+      $scope.showSchoolChallengeReport = ->
+        $scope.schoolReportPending = true
+        $scope.showSchoolChallengeReportModal = $uibModal.open
+          scope: $scope
+          templateUrl: APP_INFO.rootPath + 'dist/ym-primary/html/participant-center/modal/viewSchoolChallengeReport.html'
+        $scope.schoolChallengeReportData()
+
+      $scope.cancelShowSchoolChallengeReport = ->
+        $scope.showSchoolChallengeReportModal.close()
+	
+      $scope.schoolChallengeReportData = ->
+        participantsString = ''
+        participants = $scope.companyParticipants.participants
+        level = Number($scope.companyProgress.schoolChallengeLevel.replace(/[^0-9.-]+/g, ''))
+        if participants and participants.length > 0
+          angular.forEach participants, (participant, participantIndex) ->
+            participantsString += participant.consId
+            if participantIndex < participants.length - 1
+              participantsString += ','
+          $scope.challenges = []
+          NgPcTeamraiserSchoolService.getRegistrationQuestions '&trID=' + $scope.frId + '&px=' + participantsString + '&level=' + level,
+            failure: (response) ->
+              # TODO
+            error: (response) ->
+              # TODO
+            success: (response) ->
+              $scope.schoolReportPending = false
+              $scope.companyParticipantList = {"participants": response.data.data, "totalNumber": participants.length}
+
       url = 'PageServer?pagename=ym_khc_school_animation&pgwrap=n'
       if $scope.protocol is 'https:'
         url = 'S' + url
@@ -281,6 +311,7 @@ angular.module 'trPcControllers'
       $scope.showMaterialTypes = ->
         $scope.showMaterialTypesModal = $uibModal.open
           scope: $scope
+          size: 'lg'
           templateUrl: APP_INFO.rootPath + 'dist/ym-primary/html/participant-center/modal/viewMaterialTypes.html'
 
       $scope.cancelShowMaterialsTypes = ->
@@ -361,6 +392,7 @@ angular.module 'trPcControllers'
             $scope.coordinatorMessage.text = 'Don\'t forget to complete Finn\'s Mission!'
           $scope.editCoordinatorMessageModal = $uibModal.open
             scope: $scope
+            size: 'lg'
             templateUrl: APP_INFO.rootPath + 'dist/ym-primary/html/participant-center/modal/editCoordinatorMessage.html'
 
         $scope.cancelEditCoordinatorMessage = ->
@@ -395,6 +427,7 @@ angular.module 'trPcControllers'
       $scope.postFeedbackMessage = ->
         $scope.postFeedbackMessageModal = $uibModal.open
           scope: $scope
+          size: 'lg'
           templateUrl: APP_INFO.rootPath + 'dist/ym-primary/html/participant-center/modal/postFeedbackMessage.html'
 
       $scope.cancelPostFeedbackMessage = ->
@@ -520,6 +553,7 @@ angular.module 'trPcControllers'
       $scope.showSchoolPlan = ->
         $scope.showSchoolPlanModal = $uibModal.open
           scope: $scope
+          size: 'lg'
           templateUrl: APP_INFO.rootPath + 'dist/ym-primary/html/participant-center/modal/viewSchoolPlan.html'
 
       $scope.cancelShowSchoolPlan = ->
@@ -1110,7 +1144,7 @@ angular.module 'trPcControllers'
           if response.data.errorResponse
             console.log 'There was an error processing your update. Please try again later.'
           $scope.dashboardPromises.push updateUserProfilePromise
-		
+            
       formatDateString = (dateVal) ->
         regex = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2}).*$/
         token_array = regex.exec(dateVal.toJSON());
@@ -1368,25 +1402,34 @@ angular.module 'trPcControllers'
           e.preventDefault()
           return false
 
-      $scope.mouseover = (prize, xPos, yPos, sel, offset) ->
-        document.getElementById("tRct").style.fill = "#206EBA"
+      $scope.mouseover = (prize, xPos, yPos, sel, offset, width=120, height=60) ->
+        document.getElementById("tRct").style.fill = "#850BAA"
         document.getElementById("tRct").x.baseVal.value = xPos
         document.getElementById("tRct").y.baseVal.value = yPos
+
+        document.getElementById("tRct").setAttribute('width',width)
+        document.getElementById("tRct").setAttribute('height',height)
+        document.getElementById("tTip").setAttribute('width',width)
+        document.getElementById("tTip").setAttribute('height',height)
 
         jQuery("#tTip div").attr("aria-label",$scope.prizes[prize].hover_msg).html($scope.prizes[prize].hover_msg)
         document.getElementById("tTip").setAttribute('x',xPos)
         document.getElementById("tTip").setAttribute('y',yPos)
 
-        document.getElementById("tTri").setAttribute('points',(parseInt(xPos)+53+parseInt(offset)) + ' ' + (parseInt(yPos)+60) + ' ' + (parseInt(xPos)+62+parseInt(offset)) + ' ' + (parseInt(yPos)+60) + ' ' + (parseInt(xPos)+58+parseInt(offset)) + ' ' + (parseInt(yPos)+66))
+        document.getElementById("tTri").setAttribute('points',(parseInt(xPos)+(height-7)+parseInt(offset)) + ' ' + (parseInt(yPos)+height) + ' ' + (parseInt(xPos)+(height+2)+parseInt(offset)) + ' ' + (parseInt(yPos)+height) + ' ' + (parseInt(xPos)+(height-2)+parseInt(offset)) + ' ' + (parseInt(yPos)+(height+6)))
 
       $scope.mouseout = ->
         document.getElementById("tRct").x.baseVal.value = -99999
+        document.getElementById("tRct").setAttribute('width',120)
+        document.getElementById("tRct").setAttribute('height',60)
+        document.getElementById("tTip").setAttribute('width',120)
+        document.getElementById("tTip").setAttribute('height',60)
         jQuery("#tTip div").html("")
         document.getElementById("tTri").setAttribute('points','0 0 0 0 0 0')
 
 
       $scope.mouseoverm = (prize, xPos, yPos, sel, offset) ->
-        document.getElementById("tRctm").style.fill = "#206EBA"
+        document.getElementById("tRctm").style.fill = "#850BAA"
         document.getElementById("tRctm").x.baseVal.value = xPos
         document.getElementById("tRctm").y.baseVal.value = yPos
 

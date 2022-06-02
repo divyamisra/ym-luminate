@@ -14,7 +14,7 @@
             <span class="fa fa-camera"></span> Edit Photo
           </button>
         ::]]
-        <img class="hidden-md hidden-lg" ng-src="{{personalPagePhoto1.customUrl && personalPagePhoto1.customUrl != '' ? personalPagePhoto1.customUrl : personalPagePhoto1.defaultUrl}}" alt="{{personalPagePhoto1.caption != '' ? personalPagePhoto1.caption : 'Student Photo'}}" ng-cloak>
+        <img class="d-block d-md-none d-lg-none" ng-src="{{personalPagePhoto1.customUrl && personalPagePhoto1.customUrl != '' ? personalPagePhoto1.customUrl : personalPagePhoto1.defaultUrl}}" alt="{{personalPagePhoto1.caption != '' ? personalPagePhoto1.caption : 'Student Photo'}}" ng-cloak>
       </div>
       <div class="caption" ng-if="personalPagePhoto1.caption && personalPagePhoto1.caption != ''" ng-cloak>
         <span ng-bind-html="personalPagePhoto1.caption"></span>
@@ -51,7 +51,7 @@
     </div>
     <div class="clearfix"></div>
   </div>
-  <div class="ym-page-section ym-page-section__main">
+  <div class="ym-page-section ym-page-section__main d-md-flex justify-content-between">
     <div class="ym-story" ng-class="prizes.length > 0 || schoolChallenges.length > 0 || challengeId != null ? 'col-md-6' : 'col-md-12'">
       <h2 class="ym-headline h3">
         Why I'm Fundraising
@@ -75,7 +75,7 @@
           </div>
         </div>
       ::]]
-      <div class="hidden js--default-page-content" hidden aria-hidden="true" ng-non-bindable>
+      <div class="d-none js--default-page-content" hidden aria-hidden="true" ng-non-bindable>
         [[C6:fr_rich_text]]
       </div>
       <div ng-show="personalPageContent.mode == 'view'">
@@ -103,25 +103,25 @@
         </h2>
         <div class="ym-badges__item" ng-if="prizesEarned == prizes.length && prizes.length != 0"  ng-cloak>
           <div class="ym-badge__item" tabindex="0" aria-label="Finn's Mission is Completed">
-            <img class="img-responsive" src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/middle-school/image/fy22/badge-finns-mission-complete.png" alt="Finn's Mission is Completed - Badge Earned">
+            <img class="img-fluid" src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/middle-school/image/fy22/badge-finns-mission-complete.png" alt="Finn's Mission is Completed - Badge Earned">
             <span>Completed Finn's Mission!</span> <span class="sr-only">(earned)</span>
           </div>
         </div>
         <div class="ym-badges__item" ng-repeat="prize in prizes | filter: {status: 1}" ng-cloak> <!--  ng-repeat="prize in prizes | limitTo: 3" -->
           <div class="ym-badge__item" ng-if="prize.earned" tabindex="0" aria-label="{{prize.label}} Badge Earned" ng-cloak>
-            <img class="img-responsive" ng-src="{{prize.image_url}}" alt="{{prize.label}} Badge Earned">
+            <img class="img-fluid" ng-src="{{prize.image_url}}" alt="{{prize.label}} Badge Earned">
             <span ng-bind-html="prize.label"></span> <span class="sr-only">(earned)</span>
           </div>
         </div>
         <div class="ym-badges__item" ng-if="studentChallengeBadge" ng-cloak>
           <div class="ym-badge__item" tabindex="0" aria-label="Individual School Challenge Badge Earned" ng-cloak>
-            <img class="img-responsive" ng-src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/middle-school/image/fy22/badge-challenge-student.png" alt="Individual School Challenge Badge Earned">
+            <img class="img-fluid" ng-src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/middle-school/image/fy22/badge-challenge-student.png" alt="Individual School Challenge Badge Earned">
             <span>Individual School Challenge Completed</span> <span class="sr-only">(earned)</span>
           </div>
         </div>
         <div class="ym-badges__item" ng-if="schoolChallengeBadge" ng-cloak>
           <div class="ym-badge__item" tabindex="0" aria-label="School Goal Challenge Badge Earned" ng-cloak>
-            <img class="img-responsive" ng-src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/middle-school/image/fy22/badge-challenge-school.png" alt="School Goal Challenge Badge Earned">
+            <img class="img-fluid" ng-src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/middle-school/image/fy22/badge-challenge-school.png" alt="School Goal Challenge Badge Earned">
             <span>School Goal Challenge Completed</span> <span class="sr-only">(earned)</span>
           </div>
         </div>
@@ -152,11 +152,11 @@
             My Challenge
           </h2>
           <div class="col-sm-4">
-            <img class="img-responsive" src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/middle-school/image/my-challenge-water.png" alt="">
+            <img class="img-fluid" src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/middle-school/image/my-challenge-water.png" alt="">
           </div>
           <div class="col-sm-8">
             <p class="ym_my_challenge__description">
-              <strong>[[E48:[[S80:trID]]-[[S334:px]]:question:Pick from one of the choices below and we will customize your message letting friends and family know you have taken the challenge. We will also send you some information to help you meet your goal.]]</strong>
+              <strong>[[E48:[[S80:trID]]-[[S334:px]]:question:Take the challenge by choosing one of the below.]]</strong>
             </p>
           </div>
           <div class="clearfix"></div>
@@ -185,7 +185,7 @@
         Donate
       </a>
     </div>
-    <div class="ym-list" ng-class="!personalDonors.donors || personalDonors.donors.length == 0 ? 'hidden' : 'col-sm-6'" role="list" aria-label="Top Donors List" ng-cloak>
+    <div class="ym-list" ng-class="!personalDonors.donors || personalDonors.donors.length == 0 ? 'd-none' : 'col-sm-6'" role="list" aria-label="Top Donors List" ng-cloak>
       <h2 class="h5">
         Top Donors
       </h2>
@@ -200,7 +200,7 @@
     </div>
     <div class="clearfix"></div>
   </div>
-  <div class="hidden" hidden aria-hidden="true">
+  <div class="d-none" hidden aria-hidden="true">
     <div class="js--personal-donors">
       [[C5:fr_status_2]]
     </div>

@@ -113,7 +113,7 @@ a.btn.btn-donate {
 .ym-page-section__list {
   .ym-donate-cta {
     .h5 {
-      color: indigo;
+      color: $event-secondary;
     }
   }
 }
@@ -141,4 +141,21 @@ hr.ym-zuri-animation__divider {
   img {
     width: 100%;
   }
+}
+
+.modal.fade.in {
+   opacity: 1;
+}
+.modal.fade .modal-dialog {
+   transform: translate(0, 0) !important;
+}
+
+.modal-backdrop.fade {
+  opacity: 0.5 !important;
+ }
+.modal-header{
+   display: block;
+}
+.modal-content{
+   border-radius: 1.3rem !important;
 }

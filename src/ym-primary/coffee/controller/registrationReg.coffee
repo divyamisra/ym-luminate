@@ -331,13 +331,13 @@ angular.module 'ahaLuminateControllers'
             }
           ]
         else
-          if not $scope.familyChallengePopup
-            $scope.familyChallengePopup = true
-            $scope.showFamilyChallengePopup = $uibModal.open
-              scope: $scope
-              templateUrl: APP_INFO.rootPath + 'dist/ym-primary/html/modal/showFamilyChallengePopup.html'
-          else
-            angular.element('.js--default-reg-form').submit()
+          #if not $scope.familyChallengePopup
+          #  $scope.familyChallengePopup = true
+          #  $scope.showFamilyChallengePopup = $uibModal.open
+          #    scope: $scope
+          #    templateUrl: APP_INFO.rootPath + 'dist/ym-primary/html/modal/showFamilyChallengePopup.html'
+          #else 
+          angular.element('.js--default-reg-form').submit()
         false
 
       BoundlessService.getTeachersBySchool $scope.companyId

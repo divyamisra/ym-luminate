@@ -321,5 +321,16 @@ module.exports = {
       'img-copy:teens-of-impact',
       'notify:teens-of-impact'
     ]
+  },
+  "ym-rewards": {
+    files: [
+      'src/youth-markets/sass/**/*',
+      'src/global/coffee/**/*',
+      'src/youth-markets/coffee/**/*',
+      'src/ym-rewards/html/**/*',
+      'src/ym-rewards/images/**/*',
+      'src/ym-rewards/sass/**/*',
+      'src/ym-rewards/coffee/**/*'
+    ]
   }
 }

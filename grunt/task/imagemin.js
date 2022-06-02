@@ -56,7 +56,8 @@ module.exports = {
           'prizes2021/*.{gif,GIF,jpg,JPG,png,PNG,svg,SVG}',
           'prizes2022/*.{gif,GIF,jpg,JPG,png,PNG,svg,SVG}',
           'fy21/*.{gif,GIF,jpg,JPG,png,PNG,svg,SVG}',
-          'fy22/*.{gif,GIF,jpg,JPG,png,PNG,svg,SVG}'
+          'fy22/*.{gif,GIF,jpg,JPG,png,PNG,svg,SVG}',
+          'fy23/*.{gif,GIF,jpg,JPG,png,PNG,svg,SVG}'
         ],
         dest: 'dist/ym-primary/image/'
       }
@@ -70,7 +71,8 @@ module.exports = {
         cwd: 'src/middle-school/image/',
         src: [
           '*.{gif,GIF,jpg,JPG,png,PNG,svg,SVG}',
-          'fy22/*.{gif,GIF,jpg,JPG,png,PNG,svg,SVG}'
+          'fy22/*.{gif,GIF,jpg,JPG,png,PNG,svg,SVG}',
+          'fy23/*.{gif,GIF,jpg,JPG,png,PNG,svg,SVG}'
         ],
         dest: 'dist/middle-school/image/'
       }
@@ -226,6 +228,18 @@ module.exports = {
           '*.{gif,GIF,jpg,JPG,png,PNG,svg,SVG}'
         ],
         dest: 'dist/teens-of-impact/img/'
+      }
+    ]
+  },
+  "ym-rewards": {
+    files: [
+      {
+        expand: true,
+        cwd: 'src/ym-rewards/images/',
+        src: [
+          '*.{gif,GIF,jpg,JPG,png,PNG,svg,SVG}'
+        ],
+        dest: 'dist/ym-rewards/images/'
       }
     ]
   }
