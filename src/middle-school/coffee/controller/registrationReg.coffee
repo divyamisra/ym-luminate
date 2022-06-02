@@ -241,8 +241,8 @@ angular.module 'ahaLuminateControllers'
                       surveyResponseKey = surveyResponse.key
                       surveyResponseAnswer = surveyResponse.responseValue 
 
-                      if surveyResponseKey == 'ym_middle_school_student_state'
-                        angular.element(document).find('.ym_middle_school_student_state').val(surveyResponseAnswer).trigger('change')              
+                      if surveyResponseKey == 'ym_middle_school_school_state'
+                        angular.element(document).find('.ym_ahc_student_state').val(surveyResponseAnswer).trigger('change')              
 
                       if surveyResponseKey == 'ym_middle_school_grade'
                         newGrade
