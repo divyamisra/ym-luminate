@@ -30,7 +30,7 @@
 						<img src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/middle-school/image/fy22/survivor-badge.png" alt="I am a Survivor">
 					</div>
 					<div class="student-image mb-2">
-						<img ng-src="{{personalPagePhoto1.customUrl && personalPagePhoto1.customUrl != '' ? personalPagePhoto1.customUrl : personalPagePhoto1.defaultUrl}}" alt="{{personalPagePhoto1.caption != '' ? personalPagePhoto1.caption : 'Student Photo'}}" ng-cloak>
+						<img class="img-fluid" ng-src="{{personalPagePhoto1.customUrl && personalPagePhoto1.customUrl != '' ? personalPagePhoto1.customUrl : personalPagePhoto1.defaultUrl}}" alt="{{personalPagePhoto1.caption != '' ? personalPagePhoto1.caption : 'Student Photo'}}" ng-cloak>
 					</div>
 					[[?
 						[[?xx::x[[S1:cons_id]]x::::
@@ -46,8 +46,8 @@
 					</div>
 				</div>
       </div>
-      <div class="ym-story">
-				<h2 class="ym-headline h3">
+      <div class="ym-story white-box">
+				<h2 class="h3">
 					Why I'm Fundraising
 				</h2>
 				[[?
@@ -89,35 +89,13 @@
 						<div text-angular name="ng_rich_text" ng-model="personalPageContent.ng_rich_text" ta-toolbar="{{personalPageContent.textEditorToolbar}}" serial="{{personalPageContent.serial}}"></div>
 					</div>
 				::]]
-				<div class="ym-progress__stats row">
-					<div class="ym-progress__amount col-sm-6">
-						<p>
-							I've raised <strong>[[E130:"[[E48:[[S80:trID]]-[[S334:px]]:dollars]]" ".00" "" replaceall]]</strong>
-						</p>
-					</div>
-					<div class="ym-progress__goal col-sm-6">
-						<p>
-							My goal is <strong>[[E130:"[[E48:[[S80:trID]]-[[S334:px]]:goal]]" ".00" "" replaceall]]</strong>
-						</p>
-					</div>
-				</div>
-	      <div class="ym-progress__thermometer my-0" name="Personal Progress Bar" aria-valuetext="{{personalProgress.percent}} percent of fundraising progress" role="progressbar" aria-label="{{personalProgress.percent}} percent of fundraising progress" aria-valuenow="{{personalProgress.percent}}" aria-valuemin="0" aria-valuemax="100">
-					<div class="ym-progress__thermometer--fill" ng-style="{'width': personalProgress.percent + '%'}"></div>
-				</div>
-				<div class="ym-progress__stats">
-					<div class="ym-progress__date" ng-if="schoolPlan.EventStartDate && schoolPlan.EventStartDate != '' && schoolPlan.EventStartDate != 'User Provided No Response'" ng-cloak>
-						<p>
-							My event is kicking off on <strong>{{schoolPlan.EventStartDate | date:'MM/dd/yyyy'}}</strong><span ng-if="(schoolPlan.EventStartDate | date:'MM/dd/yyyy') !== (schoolPlan.EventEndDate | date:'MM/dd/yyyy') && schoolPlan.EventEndDate != ''" ng-cloak> and will conclude on <strong>{{schoolPlan.EventEndDate | date:'MM/dd/yyyy'}}</strong></span>.
-						</p>
-					</div>
-				</div>
 			</div>
     </div>
   </div>
-  <div class="ym-page-section ym-page-section__main d-md-flex justify-content-between">
-    <div class="col-md-6 mb-4" ng-if="prizes.length > 0 || schoolChallenges.length > 0 || challengeId != null">
-    	<div class="white-box">
-				<div class="ym-badges w-100 h-100" ng-if="prizes.length > 0 || schoolChallenges.length > 0">
+  <div class="ym-page-section d-md-flex justify-content-between bg-white">
+    <div class="col-md-6 p-2 mb-4" ng-if="prizes.length > 0 || schoolChallenges.length > 0 || challengeId != null">
+    	<div class="white-box h-100">
+				<div class="ym-badges w-100" ng-if="prizes.length > 0 || schoolChallenges.length > 0">
 					<h2 class="h3">
 						Check Out My Badges
 					</h2>
@@ -148,8 +126,35 @@
 				</div>
 			</div>
     </div>
-    <div class="col-md-6 mb-4">
-    	<div class="white-box w-100 h-100">
+    <div class="col-md-6 p-2 mb-4">
+    	<div class="white-box w-100 mb-4 d-block">
+    		<h2 class="h3">
+					Fundraising Status
+				</h2>
+ 				<div class="ym-progress__stats row">
+					<div class="ym-progress__amount col-sm-6">
+						<p>
+							I've raised <strong>[[E130:"[[E48:[[S80:trID]]-[[S334:px]]:dollars]]" ".00" "" replaceall]]</strong>
+						</p>
+					</div>
+					<div class="ym-progress__goal col-sm-6">
+						<p>
+							My goal is <strong>[[E130:"[[E48:[[S80:trID]]-[[S334:px]]:goal]]" ".00" "" replaceall]]</strong>
+						</p>
+					</div>
+				</div>
+	      <div class="ym-progress__thermometer my-0" name="Personal Progress Bar" aria-valuetext="{{personalProgress.percent}} percent of fundraising progress" role="progressbar" aria-label="{{personalProgress.percent}} percent of fundraising progress" aria-valuenow="{{personalProgress.percent}}" aria-valuemin="0" aria-valuemax="100">
+					<div class="ym-progress__thermometer--fill" ng-style="{'width': personalProgress.percent + '%'}"></div>
+				</div>
+				<div class="ym-progress__stats">
+					<div class="ym-progress__date" ng-if="schoolPlan.EventStartDate && schoolPlan.EventStartDate != '' && schoolPlan.EventStartDate != 'User Provided No Response'" ng-cloak>
+						<p>
+							My event is kicking off on <strong>{{schoolPlan.EventStartDate | date:'MM/dd/yyyy'}}</strong><span ng-if="(schoolPlan.EventStartDate | date:'MM/dd/yyyy') !== (schoolPlan.EventEndDate | date:'MM/dd/yyyy') && schoolPlan.EventEndDate != ''" ng-cloak> and will conclude on <strong>{{schoolPlan.EventEndDate | date:'MM/dd/yyyy'}}</strong></span>.
+						</p> 
+					</div>
+				</div>
+			</div>
+    	<div class="white-box w-100">
 				<div class="ym-my-challenge ym-secondary-medium-color" ng-if="challengeId != null" ng-cloak>
 					<h2 class="h3">
 						My Challenge
