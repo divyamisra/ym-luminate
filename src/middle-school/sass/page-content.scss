@@ -2,6 +2,12 @@
 	color: $title-color;
 }
 
+@media (min-width:768px) {
+   .pg-personal .student-image {
+	max-width: 50%;
+   }
+}
+
 a.btn.btn-donate {
 	font-size: 18px;
 	width:100%;
