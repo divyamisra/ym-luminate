@@ -239,7 +239,10 @@ angular.module 'ahaLuminateControllers'
                     console.log('found fields')
                     angular.forEach surveyResponses, (surveyResponse, serveyResponseIndex) ->
                       surveyResponseKey = surveyResponse.key
-                      surveyResponseAnswer = surveyResponse.responseValue                  
+                      surveyResponseAnswer = surveyResponse.responseValue 
+
+                      if surveyResponseKey == 'ym_middle_school_student_state'
+                        angular.element(document).find('.ym_middle_school_student_state').val(surveyResponseAnswer).trigger('change')              
 
                       if surveyResponseKey == 'ym_middle_school_grade'
                         newGrade
@@ -259,8 +262,6 @@ angular.module 'ahaLuminateControllers'
                         if surveyResponseAnswer ==  'College' || surveyResponseAnswer == 'Other'
                           newGrade = 'Other'
                         angular.element(document).find('.ym_middle_school_grade').val(newGrade).trigger('change')
-
-
                   else
                     window.setTimeout(findFields,50);
                 findFields();
@@ -270,7 +271,27 @@ angular.module 'ahaLuminateControllers'
       if $fieldErrors.length == 0
         $scope.getPrevSurveyResponses()
 
+      # hide t-shirt question for jump start schools
+      currentSchool = angular.element(document).find('.company-id').text()
+      jumpStartSchools = angular.element(document).find('.jump-start-list').text()
+      jumpStartArray = JSON.parse("[" + jumpStartSchools + "]");
 
+      findLabel = () ->
+        console.log('findlabel function')
+        if angular.element('#questions_hdr_container').length > 0
+          if jumpStartArray.indexOf(currentSchool) != -1
+            console.log('current school is in array')
+
+            angular.element('label.control-label span:contains("Shirt")').closest('.row').css('display','none')
+            angular.element('label.control-label span:contains("Shirt")').closest('.row').find('select').val('Jump Start School').trigger('change')
+          else
+            console.log('current school is NOT in array')
+            angular.element('label.control-label span:contains("Shirt")').closest('.row').find('select option[value="Jump Start School"]').remove()
+
+        else
+          window.setTimeout(findLabel,50);
+
+      findLabel()
 
 
       $scope.toggleAcceptWaiver = (acceptWaiver) ->
