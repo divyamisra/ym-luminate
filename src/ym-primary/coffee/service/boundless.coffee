@@ -374,7 +374,7 @@ angular.module 'ahaLuminateApp'
           "FRANKIE-23"
           "BAXTER-23"         
           "SOCKS-23"
-          "POPPER-23"
+          "FP-23"
           "WATCH-23"
           "FINN-23"
           "CHARM-23"
@@ -386,7 +386,7 @@ angular.module 'ahaLuminateApp'
           "JR-23"
           "KHC"
           "SOCKS-23"
-          "POPPER-23"
+          "FP-23"
           "WATCH-23"
         ]
 
@@ -497,7 +497,7 @@ angular.module 'ahaLuminateApp'
             "FRANKIE-23"
             "BAXTER-23"
             "SOCKS-23"
-            "POPPER-23"
+            "FP-23"
             "CHARM-23"
           ]
           "Yellow $1000+":[
@@ -513,7 +513,7 @@ angular.module 'ahaLuminateApp'
             "FRANKIE-23"
             "BAXTER-23"
             "SOCKS-23"
-            "POPPER-23"
+            "FP-23"
             "WATCH-23"
             "CHARM-23"
           ]
@@ -569,15 +569,15 @@ angular.module 'ahaLuminateApp'
             "JR-23"
             "KHC"
             "SOCKS-23"
-            "POPPER-23"
+            "FP-23"
           ]
           "Yellow $1000+":[
             "LVL1WB-18"
             "JR-22"
             "KHC"
             "SOCKS-23"
-            "POPPER-23"
-            "SPEAKERS-23"
+            "FP-23"
+            "WATCH-23"
           ]
         }
   ]
