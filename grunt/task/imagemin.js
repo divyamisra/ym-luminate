@@ -55,6 +55,7 @@ module.exports = {
           'prizes2020/*.{gif,GIF,jpg,JPG,png,PNG,svg,SVG}',
           'prizes2021/*.{gif,GIF,jpg,JPG,png,PNG,svg,SVG}',
           'prizes2022/*.{gif,GIF,jpg,JPG,png,PNG,svg,SVG}',
+          'prizes2023/*.{gif,GIF,jpg,JPG,png,PNG,svg,SVG}',
           'fy21/*.{gif,GIF,jpg,JPG,png,PNG,svg,SVG}',
           'fy22/*.{gif,GIF,jpg,JPG,png,PNG,svg,SVG}',
           'fy23/*.{gif,GIF,jpg,JPG,png,PNG,svg,SVG}'
