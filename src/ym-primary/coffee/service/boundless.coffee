@@ -371,7 +371,6 @@ angular.module 'ahaLuminateApp'
           "KHC"
           "PBALL-23"
           "MARLEY-23"
-          "FRANKIE-23"
           "BAXTER-23"         
           "SOCKS-23"
           "FP-23"
@@ -452,7 +451,6 @@ angular.module 'ahaLuminateApp'
             "KHC"
             "PBALL-23"
             "MARLEY-23"
-            "RANKIE-23"
             "CHARM-23"
           ]
           "Red $200-$249":[
@@ -465,7 +463,6 @@ angular.module 'ahaLuminateApp'
             "KHC"
             "PBALL-23"
             "MARLEY-23"
-            "FRANKIE-23"
             "BAXTER-23"
             "CHARM-23"
           ]
@@ -479,7 +476,6 @@ angular.module 'ahaLuminateApp'
             "KHC"
             "PBALL-23"
             "MARLEY-23"
-            "FRANKIE-23"
             "BAXTER-23"
             "SOCKS-23"
             "CHARM-23"
@@ -494,7 +490,6 @@ angular.module 'ahaLuminateApp'
             "KHC"
             "PBALL-23"
             "MARLEY-23"
-            "FRANKIE-23"
             "BAXTER-23"
             "SOCKS-23"
             "FP-23"
@@ -510,7 +505,6 @@ angular.module 'ahaLuminateApp'
             "KHC"
             "PBALL-23"
             "MARLEY-23"
-            "FRANKIE-23"
             "BAXTER-23"
             "SOCKS-23"
             "FP-23"
