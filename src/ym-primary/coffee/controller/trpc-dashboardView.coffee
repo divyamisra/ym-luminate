@@ -1237,7 +1237,7 @@ angular.module 'trPcControllers'
                       msg_unearned: giftPrev.msg_unearned
                   # if items need to be added then only add up to 3 after pushing first one
                   if startList == 1 and listCnt <= giftToAdd
-                    if gift.id == "FINNLS-22" and $scope.prizes.length == $scope.prizesEarned
+                    if gift.id == "FINN-23" and $scope.prizes.length == $scope.prizesEarned
                       status = 1
                     listCnt++
                     $scope.upcomingGifts.push
