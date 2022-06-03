@@ -315,8 +315,8 @@ angular.module 'ahaLuminateApp'
             "video": ""
           }
           {
-            "id":"POPPER-23"
-            "name":"Ball Launcher"
+            "id":"FP-23"
+            "name":"Myster Poppers"
             "status":0
             "level":"$500"
             "msg_earned":"$500 Raised"
