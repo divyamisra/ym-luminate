@@ -1,4 +1,5 @@
 [[?[[T12:[[E47:[[S80:trID]]:fr_info:1:event_location_country]]]]::showselfpledgelb:false::::
+<!--
 <div class="modal fade" id="dspPledge" tabindex="-1" role="dialog" aria-labelledby="dspPledgeTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
@@ -21,11 +22,117 @@
       </div>
     </div>
   </div>
+-->
 ]]
 
-  [[?xjoinTeamx::x[[S80:regType]]x::
-    <div class="hidden">
-      <span class="captain-cons-id">[[S80:captainConsId]]</span>
-      <span class="captain-ptype">[[E48:[[S80:evID]]-[[S80:captainConsId]]:part-type]]</span>
+[[?xjoinTeamx::x[[S80:regType]]x::
+<!--
+<div class="hidden">
+  <span class="captain-cons-id">[[S80:captainConsId]]</span>
+  <span class="captain-ptype">[[E48:[[S80:evID]]-[[S80:captainConsId]]:part-type]]</span>
+</div>
+-->
+::]]
+
+<!-- ptype-page-steps content -->
+<style>
+    div#pt_title_container,
+    div#part_type_selection_container,
+    div#part_type_fundraising_goal_container,
+    div#part_type_additional_gift_container,
+    div#part_type_individual_company_selection_container,
+    div#part_type_section_footer {
+        display: none;
+    }
+</style>
+<div id="registration-ptype-page-steps">
+    <div class="registration-ptype-page-step registration-ptype-page-step-showcase" id="registration-ptype-page-step-1">
+        <h1>Get ready to make big difference!</h1>
+        <div class="row">
+            <div class="col-lg-6 col-md-12 display-table">
+                <ul class="align-middle display-table-cell">
+                    <li><span class="heart-icon">&hearts;</span> Save the lives of kids born with heart defects</li>
+                    <li><span class="heart-icon">&hearts;</span> Train thousands in life-saving CPR</li>
+                    <li><span class="heart-icon">&hearts;</span> Fund the next big medical breakthrough</li>
+                    <li><span class="heart-icon">&hearts;</span> Champion equitable access to healthcare</li>
+                </ul>
+            </div>
+            <div class="col-lg-6 col-md-12">
+                <div class="row">
+                    <div class="col-xs-6 my-3 text-center">
+                        <img class="rounded img-item" alt="Alt image 1" src="../images/content/pagebuilder/step1-img.png">
+                    </div>
+                    <div class="col-xs-6 my-3 text-center">
+                        <img class="rounded img-item" alt="Alt image 2" src="../images/content/pagebuilder/step1-img.png">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6 my-3 text-center">
+                        <img class="rounded img-item" alt="Alt image 3" src="../images/content/pagebuilder/step1-img.png">
+                    </div>
+                    <div class="col-xs-6 my-3 text-center">
+                        <img class="rounded img-item" alt="Alt image 4" src="../images/content/pagebuilder/step1-img.png">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="text-center pt-3">
+            <button type="button" class="btn btn-primary js__ptype-page-next-step" data-next-step="2">Let's save lives</button>
+        </div>
     </div>
-  ::]]
+    <div class="registration-ptype-page-step registration-ptype-page-step-goal" id="registration-ptype-page-step-2">
+        <h1>What's your fundraising goal?</h1>
+        <div class="row pt-3">
+            <div class="col-sm-12 col-md-4 text-right display-table">
+                <span class="align-middle display-table-cell"><h2 class="js__ptype-my-personal-goal-display">$250</h2></span>
+            </div>
+            <div class="col-sm-12 col-md-4 text-center">
+                <img class="rounded-circle img-item" alt="Alt Slide 2 Img" src="../images/content/pagebuilder/step1-img.png">
+            </div>
+            <div class="col-sm-12 col-md-3 display-table">
+                    <span class="text-center align-middle display-table-cell">
+                        That's enough to<br>teach CPR to<br>10 people!
+                    </span>
+            </div>
+        </div>
+        <div class="registration-ptype-personal-goal-slider-container">
+            <div class="registration-ptype-personal-goal-slider-dots">
+                <div id="slider-dot-1" class="slider-dot red-dot"></div>
+                <div id="slider-dot-2" class="slider-dot red-dot"></div>
+                <div id="slider-dot-3" class="slider-dot red-dot"></div>
+                <div id="slider-dot-4" class="slider-dot red-dot"></div>
+            </div>
+            <input type="range" min="1" max="4" value="2" class="registration-ptype-personal-goal-slider js__registration-ptype-personal-goal-slider">
+            <div class="registration-ptype-personal-goal-slider-info">
+                <div class="info-cell">
+                    (1) Ideal for new walkers!
+                </div>
+                <div class="info-cell">
+                    (2) Ideal for new walkers!
+                </div>
+                <div class="info-cell">
+                    (3) Ideal for new walkers!
+                </div>
+                <div class="info-cell">
+                    (4) Ideal for new walkers!
+                </div>
+            </div>
+        </div>
+        <div class="text-center">
+            <button type="button" class="btn btn-primary js__ptype-page-next-step" data-next-step="3">Next</button>
+        </div>
+    </div>
+    <div class="registration-ptype-page-step registration-ptype-page-step-personal-gift" id="registration-ptype-page-step-3">
+        <h1>Support your mission with a personal gift</h1>
+        <div class="row pt-3">
+            <div class="col-lg-12 col-xl-8">
+                <div class="registration-ptype-page-step-content"></div>
+            </div>
+            <div class="d-none d-xl-block col-xl-4">
+                <img class="img-item" alt="Alt Slide 3 Img" src="../images/content/pagebuilder/step1-img.png">
+            </div>
+        </div>
+        <div class="button-container"></div>
+    </div>
+</div>
+<!-- /ptype-page-steps content -->

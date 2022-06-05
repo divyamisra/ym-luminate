@@ -1174,14 +1174,46 @@
         }
         // END TFIND
 
-
         if ($('#fr_team_goal').length <= 0) {
             $('#team_find_section_footer').hide();
         }
 
-
         // PTYPE
         if ($('#F2fRegPartType').length > 0) {
+            cd.renderPTypePageStepHeader = function(step) {
+                $('#part_type_campaign_banner_container').text(
+                    $('div#registration-ptype-page-step-' + step.toString() + ' > h1').text()
+                );
+            };
+            cd.renderPTypePageSteps = function() {
+                var $steps = $('div#registration-ptype-page-steps').detach();
+                $('#part_type_section_container').append($steps);
+                cd.renderPTypePageStepHeader(1);
+                $steps.show();
+
+                $steps.find('div.registration-ptype-page-step-personal-gift div.registration-ptype-page-step-content')
+                    .append($('div#part_type_additional_gift_container').detach())
+                    .append($('div#part_type_individual_company_selection_container').detach());
+
+                $steps.find('div.registration-ptype-page-step-personal-gift > div.button-container')
+                    .append($('div#part_type_section_footer').detach());
+
+                $('.js__ptype-page-next-step').on('click', function () {
+                    var nextStep = parseInt($(this).data('next-step'), 10);
+                    $('div#registration-ptype-page-step-' + (nextStep - 1).toString()).hide();
+                    // if (nextStep === 3) {
+                    //     $('div#part_type_additional_gift_container').fadeIn();
+                    //     $('div#part_type_individual_company_selection_container').fadeIn();
+                    //     $('div#part_type_section_footer').fadeIn();
+                    // }
+                    cd.renderPTypePageStepHeader(nextStep);
+                    $('div#registration-ptype-page-step-' + nextStep.toString()).fadeIn();
+                });
+            };
+            if ($('div#registration-ptype-page-steps').length === 1) {
+                cd.renderPTypePageSteps();
+            }
+
             if ($('.part-type-container').length == 1) {
                 $('.part-type-container, #part_type_section_header').hide();
                 $('.part-type-container').before("<div class='part_type_one_only'><strong>Set Your Fundraising Goal!</strong></div>");
@@ -1208,7 +1240,9 @@
             $('#part_type_donation_level_input_container').wrapInner('<fieldset role="radiogroup" class="donation-form-fields" aria-label="Donation Amounts" aria-required="true" />');
             $('.donation-form-fields').prepend('<legend class="sr-only">Donate Towards Your Goal Now</legend>');
 
-            $('#part_type_individual_company_selection_container .input-container').prepend("<span class='hint-text'>Choose your company below. If your company does not show up, you can skip this step.</span>");
+            /* Alter company selection location */
+            //$('#part_type_individual_company_selection_container .input-container').prepend("<span class='hint-text'>Choose your company below. If your company does not show up, you can skip this step.</span>");
+            //$('#part_type_individual_company_selection_container').insertAfter('#part_type_selection_container');
 
             /* setup form validation - additional donation amount must be >= $25 */
             $('input[name^=donation_level_form_input]').addClass("validDonation").attr("title","Your donation needs to be at least $25.");
@@ -1277,7 +1311,8 @@
                 if ($('.donation-level-container').find('.donation-level-row-container.active').length > 0 || $('.donation-level-container').find('.donation-level-row-container.active').hasClass('notTime') === false) {
                   // If the participant chooses to make a gift, check for the Double the Donation field
                   // and record the chosen company in local storage if it exists
-                  if ($('input[name="doublethedonation_company_id"]').val().length > 0){
+                  var $doubleDonationCompany = $('input[name="doublethedonation_company_id"]');
+                  if ($doubleDonationCompany.length && $doubleDonationCompany.val().length > 0){
                       console.log('found dtd value');
                       var dtdCoId = $('input[name="doublethedonation_company_id"]').val();
                       console.log('dtdCoId ' + dtdCoId);
@@ -1474,13 +1509,15 @@
             $('input#cons_user_name + span.input-hint').html("You can use your email address or a unique name with any of the following: letters, numbers, and these symbols: +, -, _, @, ., %, and : but no spaces!");
             $('input#cons_password + span.input-hint').html("This needs to be at least 5 characters long and can contain any of the following: letters, numbers, and these symbols: !#$%()*+,-./:;=?@[\]^_`{|}~ o");
         }
+
         $('#password_component_container #cons_rep_password').parent().parent().parent().addClass('left');
         $('#password_component_container #cons_password').parent().parent().parent().addClass('left');
         $('span.survey-question-label:contains("Would you like to be recognized as a survivor?")').parent().next().children().children().children('input').wrap('<div></div>');
         $('span.survey-question-label:contains("Would you like to be recognized as a survivor?")').parent().parent().addClass('survivor_yes_no').attr({"role":"radiogroup","aria-label":" Would you like to be recognized as a survivor?","aria-required":"true"});
         $('span.input-label:contains("SurvivorQ")').parent().parent().addClass('survivorSelect');
         $('span.input-label:contains("SurvivorQ")').parent().parent().parent().parent().hide();
-	$('.survivor_yes_no li.input-container input[type="radio"]').attr("aria-required","true");
+        $('.survivor_yes_no li.input-container input[type="radio"]').attr("aria-required","true");
+
         if ($('.survivor_yes_no li.input-container input[value="No"]').is(':checked')) {
             $('.survivor_yes_no li.input-container input[value="No"]').parent().parent().addClass('survivor_active');
         } else if ($('.survivor_yes_no li.input-container input[value="Yes"]').is(':checked')) {
@@ -1507,11 +1544,10 @@
         $('.donation-level-row-label').parent().parent().addClass('donation-amt');
         $('.donation-level-row-label:contains("Additional Gift:")').parent().parent().addClass('enterAmt').removeClass('donation-amt');
         $('<span>$</span>').insertBefore('.donation-level-row-container.enterAmt input:last-child');
-        $('#part_type_individual_company_selection_container').insertAfter('#part_type_selection_container');
         $('.donation-level-row-label-no-gift').insertBefore(jQuery('.donation-level-row-label-no-gift').parent());
         $('.donation-level-row-container.enterAmt label.donation-level-row-label').text('Other Amount');
-	$('.donation-level-row-label-no-gift').parent().addClass('notTime');
-	$('.enterAmt .input-container > span').next('input').andSelf().wrapAll("<div class='enterAmt-other hidden'></div>");
+        $('.donation-level-row-label-no-gift').parent().addClass('notTime');
+        $('.enterAmt .input-container > span').next('input').andSelf().wrapAll("<div class='enterAmt-other hidden'></div>");
 
         $(".donation-level-amount-text").each(function() {
             $(this).text($(this).text().replace(".00", ""));

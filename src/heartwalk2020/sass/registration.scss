@@ -1,5 +1,6 @@
 @import "variables.scss";
 @import "mixins.scss";
+@import "ptype-page-steps.scss";
 
 // Heat Walk 2020 TeamRaiser Registration SCSS
 /*
@@ -211,27 +212,22 @@ div.responsive .survivor_yes_no .input-container {
     color: #fff;
     border: none;
     font-family: LubDubMedium,Helvetica,Arial,sans-serif!important;
-    margin-right:10px;
+    margin-right: 10px;
 }
 div.responsive button.step-button:hover {
     background: #900 !important;
     color: #fff;
 }
 div.responsive button#another_button {
-	text-transform: capitalize;
+    text-transform: capitalize;
 }
 div.responsive .donation-level-row-container.donation-amt .donation-level-row-decoration-container,
-div.responsive .survivor_yes_no .input-container{
-    border-radius: 60px 60px 60px 60px;
-    background-clip: padding-box;
-    color: #fff;
-    border: none;
-    font-family: LubDubMedium,Helvetica,Arial,sans-serif!important;
-    margin-right:10px;
+div.responsive .survivor_yes_no .input-container {
     background: #fff;
     color: #000;
     border: 2px solid #000;
-    position:relative;
+    position: relative;
+    outline: none;
 }
 div.responsive .survivor_yes_no .input-container input[type=radio] {
     position: absolute;
@@ -649,6 +645,7 @@ div#participation_options_page input,
 div#participation_options_page select {
     margin-left: 0;
     max-width: 400px;
+    outline: none;
 }
 div.required-indicator-legend {
     text-align: left;
