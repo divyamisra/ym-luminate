@@ -2,7 +2,7 @@
   <div class="ym-page-section d-md-flex flex-wrap p-4 bg-white">
     <div class="heart-card col-md-6 p-2">
       <div class="ng-scope ratio ratio-9x16 heartcard-iframe">
-        <iframe ng-src="{{heartCardDonorView}}" style="border:0;" title="Heart Card Donor View"></iframe>
+        <iframe ng-repeat="heartCardDonorView in vm.heartCardDonorView" ng-src="{{heartCardDonorView}}" style="border:0;" title="Heart Card Donor View"></iframe>
       </div>
     </div>
     <div class="col-md-6 p-2" ng-init="personalPagePhoto1.customUrl = '[[C4:graphic_upload]]'; personalPagePhoto1.caption = '[[T6:[[C1:graphic_caption]]]]'">
