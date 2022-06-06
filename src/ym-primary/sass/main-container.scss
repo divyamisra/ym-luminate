@@ -1,6 +1,11 @@
-.ym-pc-dashboard-progress-section :focus {
-    border-color: blue !important;
-    outline: 0;
-    box-shadow: 0 0 0 .25rem rgba(13,110,253,1);
-    border-width: 2px !important;
+.ym-pc-dashboard-progress-section,
+.ym-pc-dashboard-standard-gifts-section,
+.ym-pc-dashboard-activities-section,
+.ym-pc-dashboard-bottom-section {
+    :focus {
+        border-color: blue !important;
+        outline: 0;
+        box-shadow: 0 0 0 .25rem rgba(13,110,253,1);
+        border-width: 2px !important;
+    }
 }
