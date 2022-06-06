@@ -1176,14 +1176,14 @@ angular.module 'trPcControllers'
 	  if !response.data
             response.data = []
             response.data.student = [ {
-              'id': 0
-              'has_bonus': 2
-              'total_collected': '0.00'
-              'invalid_flag': 0
-              'is_new': 1
-              'prizes': []
-              'current_level': '$0'
-              'current_level_goal': '0'
+              id: 0
+              has_bonus: 2
+              total_collected: '0.00'
+              invalid_flag: 0
+              is_new: 1
+              prizes: []
+              current_level: '$0'
+              current_level_goal: '0'
             } ]
           students = response.data.student
           angular.forEach students, (student) ->
