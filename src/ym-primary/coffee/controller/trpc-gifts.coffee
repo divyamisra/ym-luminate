@@ -46,6 +46,18 @@ angular.module 'trPcControllers'
           #get all prizes
           BoundlessService.getPrizes $scope.consId
           .then (response) ->
+            if !response.data
+              response.data = []
+              response.data.student = [ {
+                'id': 0
+                'has_bonus': 2
+                'total_collected': '0.00'
+                'invalid_flag': 0
+                'is_new': 1
+                'prizes': []
+                'current_level': '$0'
+                'current_level_goal': '0'
+              } ]
             students = response.data.student
             angular.forEach students, (student) ->
               if student.has_bonus
