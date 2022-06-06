@@ -1175,7 +1175,8 @@ angular.module 'trPcControllers'
         .then (response) ->
 	  if !response.data
             response.data = []
-            response.data.student = [ {
+            response.data.student = []
+            response.data.student.push
               id: 0
               has_bonus: 2
               total_collected: '0.00'
@@ -1184,7 +1185,6 @@ angular.module 'trPcControllers'
               prizes: []
               current_level: '$0'
               current_level_goal: '0'
-            } ]
           students = response.data.student
           angular.forEach students, (student) ->
             if student.has_bonus
