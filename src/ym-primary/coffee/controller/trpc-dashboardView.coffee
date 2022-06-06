@@ -1173,7 +1173,7 @@ angular.module 'trPcControllers'
         $scope.totalGifts = 0
         BoundlessService.getPrizes $scope.consId
         .then (response) ->
-	  if !response.data
+          if !response.data
             response.data = []
             response.data.student = []
             response.data.student.push
