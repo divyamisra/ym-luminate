@@ -30,9 +30,9 @@ angular.module 'ahaLuminateControllers'
       $scope.has_bonus = 0
       $scope.studentChallengeBadge = false
       $scope.schoolChallengeBadge = false
-            
+      $scope.vm = []
       url = 'https://tools.heart.org/aha_ahc23_dev/donor-view/'
-      $scope.heartCardDonorView = $sce.trustAsResourceUrl url
+      $scope.vm.heartCardDonorView = $sce.trustAsResourceUrl url
       
       BoundlessService.getBadges $scope.frId + '/' + $scope.participantId
       .then (response) ->
