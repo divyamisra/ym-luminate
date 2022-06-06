@@ -1,7 +1,9 @@
 <div ng-controller="PersonalPageCtrl" ng-cloak>
   <div class="ym-page-section d-flex flex-wrap p-4 bg-white">
     <div class="heart-card col-md-6 p-2">
-      <img class="img-fluid w-100" src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/middle-school/image/heart-card-placeholder.jpg">
+      <div class="ng-scope ratio ratio-16x9 social-iframe">
+        <iframe ng-src="{{heartCardDonorView}}" style="border:0;" title="Heart Card Donor View"></iframe>
+      </div>
     </div>
     <div class="col-md-6 p-2" ng-init="personalPagePhoto1.customUrl = '[[C4:graphic_upload]]'; personalPagePhoto1.caption = '[[T6:[[C1:graphic_caption]]]]'">
       <div class="d-md-flex justify-content-between">
