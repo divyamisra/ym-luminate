@@ -172,7 +172,7 @@ angular.module 'ahaLuminateApp'
       defaultStandardGifts: ->
         [
           {
-            "id":"KtWB-23"
+            "id":"KTWB-23"
             "name":"Wristband"
             "status":0
             "level":"Wristband"
