@@ -15,7 +15,20 @@ main {
     border-width: 2px !important;
 }
 
-
+.ratio-9x16 {
+    --bs-aspect-ratio: 140.25%;
+}
+@media (min-width:992px) and (max-width:1023px) {
+  .ratio-9x16 {
+    --bs-aspect-ratio: 160.25%;
+  }
+}
+@media (max-width:991px) {
+  .ratio-9x16 {
+    --bs-aspect-ratio: 150.25%;
+  }
+}
+	
 /* generic styles */
 .white-box {
   box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
