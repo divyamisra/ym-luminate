@@ -31,7 +31,7 @@ angular.module 'ahaLuminateControllers'
       $scope.studentChallengeBadge = false
       $scope.schoolChallengeBadge = false
       timestamp = new Date().getTime() 
-      url = 'https://tools.heart.org/aha_ahc23_dev/donor-view/'+timestamp
+      url = 'https://tools.heart.org/aha_ahc23_dev/donor-view/?'+timestamp
       $scope.heartCardDonorView = $sce.trustAsResourceUrl url
       
       BoundlessService.getBadges $scope.frId + '/' + $scope.participantId
