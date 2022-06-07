@@ -42,7 +42,7 @@ main {
 }
 .personal-col1 { grid-area: one; }
 .personal-col2 { grid-area: two;  }
-.personal-col3 { grid-area: three; grid-row-end: none; }
+.personal-col3 { grid-area: three; }
 
 @media (min-width:768px) {
   .student-donate {max-width:50%;}
