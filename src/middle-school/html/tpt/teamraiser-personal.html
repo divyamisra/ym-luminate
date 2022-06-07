@@ -1,13 +1,7 @@
 <div ng-controller="PersonalPageCtrl" ng-cloak>
-  <div class="ym-page-section d-md-flex flex-wrap p-4 bg-white">
-    <div class="heart-card col-md-6 p-2">
-      <div class="ng-scope ratio ratio-9x16 heartcard-iframe">
-        <iframe ng-src="{{heartCardDonorView}}" style="border:0;" title="Heart Card Donor View"></iframe>
-      </div>
-    </div>
-    <div class="col-md-6 p-2" ng-init="personalPagePhoto1.customUrl = '[[C4:graphic_upload]]'; personalPagePhoto1.caption = '[[T6:[[C1:graphic_caption]]]]'">
-      <div class="d-md-flex justify-content-between">
-        <div class="student-info me-2">
+  <div class="ym-page-section d-md-grid personal-cols flex-wrap p-4 bg-white">
+    <div class="personal-col1 p-2" ng-init="personalPagePhoto1.customUrl = '[[C4:graphic_upload]]'; personalPagePhoto1.caption = '[[T6:[[C1:graphic_caption]]]]'">
+      <div class="student-info me-2">
 				<h1>
 					[[E48:[[S80:trID]]-[[S334:px]]:cons.first_name]] [[E48:[[S80:trID]]-[[S334:px]]:cons.last_name]]
 				</h1>
@@ -23,10 +17,36 @@
 						My Team: <a title="[[E48:[[S80:trID]]-[[S334:px]]:team-name]]" href="TR?pg=team&fr_id=[[S80:trID]]&team_id=[[E48:[[S80:trID]]-[[S334:px]]:team-id]]">[[E48:[[S80:trID]]-[[S334:px]]:team-name]]</a>
 					</p>
 				]]
-				  <a aria-label="Donate to help me raise funds" class="btn btn-primary btn-lg mb-4" href="Donation2?df_id=[[E42:[[S80:trID]]:form-id]]&amp;FR_ID=[[S80:trID]]&amp;PROXY_ID=[[S334:px]]&amp;PROXY_TYPE=20">
+				</div>
+      <div class="d-md-flex justify-content-between">
+        <div class="student-donate me-2">
+				  <a aria-label="Donate to help me raise funds" class="btn btn-primary btn-lg mb-4" href="#paymentSelType" data-toggle="collapse">
 						Donate
 					</a>
-				</div>
+					<div id="paymentSelType" class="collapse">
+						<h7>How would you like to donate?</h7>
+						<div class="d-flex justify-content-between flex-wrap align-items-center text-center">
+							<a class="col-md-6 p-2" href="Donation2?df_id=[[E42:[[S80:trID]]:form-id]]&amp;FR_ID=[[S80:trID]]&amp;PROXY_ID=[[S334:px]]&amp;PROXY_TYPE=20">
+								<img class="img-fluid" src="https://www2.heart.org/images/content/pagebuilder/credit-card-logos.png" alt="Donate using Credit Card">
+							</a>
+							<a class="col-md-6 p-2" href="https://secure3.convio.net/heartdev/site/SPageNavigator/ym_ahc_donate_amazon.html?FR_ID={{frId}}&mfc_pref=T&PROXY_ID={{consId}}&PROXY_TYPE=20" class="amazon">
+								<img class="img-fluid" src="https://www2.heart.org/images/content/pagebuilder/amazon-payments.png" alt="Donate using Amazon">
+							</a>
+							<a class="col-md-6 p-2" href="https://secure3.convio.net/heartdev/site/SPageNavigator/ym_ahc_donate_googlepay.html?FR_ID={{frId}}&mfc_pref=T&PROXY_ID={{consId}}&PROXY_TYPE=20" class="googlepay">
+								<img class="img-fluid" src="https://www2.heart.org/donation-forms/donatenow/images/googlepay-button.png" alt="Donate using Google Pay">
+							</a>
+							<a class="col-md-6 p-2" href="https://secure3.convio.net/heartdev/site/SPageNavigator/ym_ahc_donate_applepay.html?FR_ID={{frId}}&mfc_pref=T&PROXY_ID={{consId}}&PROXY_TYPE=20" class="applepay ">
+								<img class="img-fluid" src="https://www2.heart.org/donation-forms-braintree/donatenow/images/DonateBlack_32pt_@2x.png" alt="Donate using ApplePay">
+							</a>
+							<a class="col-md-6 p-2" href="https://secure3.convio.net/heartdev/site/SPageNavigator/ym_ahc_donate_venmo.html?FR_ID={{frId}}&mfc_pref=T&PROXY_ID={{consId}}&PROXY_TYPE=20" class="venmo">
+								<img class="img-fluid" src="https://www2.heart.org/donation-forms/donatenow/images/venmo-button.png" alt="Donate using Venmo">
+							</a>
+							<a class="col-md-6 p-2" href="Donation2?df_id={{eventInfo.donationFormId}}&FR_ID={{frId}}&PROXY_TYPE=20&PROXY_ID={{consId}}&amp;paypal=true">
+								<img class="img-fluid" src="https://www2.heart.org/images/content/pagebuilder/PP_logo_h_100x26.png" alt="Donate using Paypal">
+							</a>
+						</div>
+					</div>
+        </div>
 				<div class="ym-user-image-inner text-center mb-4">
 					<div class="ym-school-student-survivor" ng-if="survivor">
 						<img src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/middle-school/image/fy22/survivor-badge.png" alt="I am a Survivor">
@@ -48,6 +68,13 @@
 					</div>
 				</div>
       </div>
+		</div>
+    <div class="heart-card personal-col2 p-2">
+      <div class="ng-scope ratio ratio-9x16 heartcard-iframe">
+        <iframe ng-src="{{heartCardDonorView}}" style="border:0;" title="Heart Card Donor View"></iframe>
+      </div>
+    </div>
+    <div class="personal-col3 p-2" ng-init="personalPagePhoto1.customUrl = '[[C4:graphic_upload]]'; personalPagePhoto1.caption = '[[T6:[[C1:graphic_caption]]]]'">
       <div class="ym-story white-box">
 				<h2 class="h3">
 					Why I'm Fundraising
@@ -74,7 +101,7 @@
 				<div class="d-none js--default-page-content" hidden aria-hidden="true" ng-non-bindable>
 					[[C6:fr_rich_text]]
 				</div>
-				<div ng-show="personalPageContent.mode == 'view'">
+				<div class="personalPageContent" ng-show="personalPageContent.mode == 'view'">
 					<div ng-bind-html="personalPageContent.rich_text">
 						<div ng-non-bindable>
 							[[C6:fr_rich_text]]
