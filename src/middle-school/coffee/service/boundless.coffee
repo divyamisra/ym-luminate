@@ -110,4 +110,64 @@ angular.module 'ahaLuminateApp'
             response
           , (response) ->
             response
+            
+      defaultStandardGifts: ->
+        [
+          {
+            "id":"STK-23"
+            "name":"Sticker"
+            "status":0
+            "level":"Sticker"
+            "msg_earned":"Registration Completed"
+            "msg_unearned":"Complete Registration"
+          }
+          {
+            "id":"W-23"
+            "name":"Sticky Phone Wallet"
+            "status":0
+            "level":"$10"
+            "msg_earned":"$10 Raised"
+            "msg_unearned":"Raise $10"
+          }
+          {
+            "id":"FHP-23"
+            "name":"Fidget Popper"
+            "status":0
+            "level":"$25"
+            "msg_earned":"$25 Raised"
+            "msg_unearned":"Raise $25"
+          }
+          {
+            "id":"AHC"
+            "name":"T-Shirt"
+            "status":0
+            "level":"$50"
+            "msg_earned":"$50 Raised"
+            "msg_unearned":"Raise $50"
+          }
+          {
+            "id":"SNB-23"
+            "name":"Notebook"
+            "status":0
+            "level":"$100"
+            "msg_earned":"$100 Raised"
+            "msg_unearned":"Raise $100"
+          }
+          {
+            "id":"HP-23"
+            "name":"Hydration Pack"
+            "status":0
+            "level":"$200"
+            "msg_earned":"$200 Raised"
+            "msg_unearned":"Raise $200"
+          }
+          {
+            "id":"BN-23"
+            "name":"Finn's Heart Card"
+            "status":0
+            "level":"Complete Finn's Heart Card"
+            "msg_earned":"Finn's Heart Card Completed"
+            "msg_unearned":"Complete Finn's Heart Card"
+          }
+        ]
   ]
