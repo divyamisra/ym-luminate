@@ -2,6 +2,17 @@
 	color: $title-color;
 }
 
+.pg-personal .student-info h1 {
+    color: $title-color;
+    text-shadow: none;
+}
+
+@media (min-width:768px) {
+   .pg-personal .ym-user-image-inner {
+	width: 40%;
+   }
+}
+
 a.btn.btn-donate {
 	font-size: 18px;
 	width:100%;

@@ -1173,6 +1173,18 @@ angular.module 'trPcControllers'
         $scope.totalGifts = 0
         BoundlessService.getPrizes $scope.consId
         .then (response) ->
+          if !response.data
+            response.data = []
+            response.data.student = []
+            response.data.student.push
+              id: 0
+              has_bonus: 2
+              total_collected: '0.00'
+              invalid_flag: 0
+              is_new: 1
+              prizes: []
+              current_level: '$0'
+              current_level_goal: '0'
           students = response.data.student
           angular.forEach students, (student) ->
             if student.has_bonus
@@ -1237,7 +1249,7 @@ angular.module 'trPcControllers'
                       msg_unearned: giftPrev.msg_unearned
                   # if items need to be added then only add up to 3 after pushing first one
                   if startList == 1 and listCnt <= giftToAdd
-                    if gift.id == "FINNLS-22" and $scope.prizes.length == $scope.prizesEarned
+                    if gift.id == "FINN-23" and $scope.prizes.length == $scope.prizesEarned
                       status = 1
                     listCnt++
                     $scope.upcomingGifts.push

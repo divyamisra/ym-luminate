@@ -422,10 +422,10 @@
               <div class="ym-progress-related d-lg-flex justify-content-between flex-wrap">
                 <div class="ym-progress-donate col-lg-6">
                   <p>
-                    <a class="btn btn-lg btn-primary" ng-href="{{baseUrl}}#/reports" title="Click to view your donation reports"><strong>Donation Reports</strong></a>
+                    <a class="btn btn-md btn-primary" ng-href="{{baseUrl}}#/reports" title="Click to view your donation reports"><strong>Donation Reports</strong></a>
                   </p>
                   <p>
-                    <a class="btn btn-lg btn-primary" ng-href="Donation2?df_id={{eventInfo.donationFormId}}&amp;FR_ID={{frId}}&amp;PROXY_TYPE=20&amp;PROXY_ID={{consId}}">
+                    <a class="btn btn-md btn-primary" ng-href="Donation2?df_id={{eventInfo.donationFormId}}&amp;FR_ID={{frId}}&amp;PROXY_TYPE=20&amp;PROXY_ID={{consId}}">
                       <strong>Donate to Personal Page</strong>
                     </a>
                   </p>
@@ -677,8 +677,8 @@
       </div>
       <div class="ym-pc-dashboard-standard-gifts-icons" role="list" aria-label="Standard Gifts">
         <div class="ym-pc-dashboard-standard-gifts-icon" role="listitem" ng-class="{'not-earned': !upcomingGift.prize_status}" ng-repeat="upcomingGift in upcomingGifts" aria-label="{{standardGift.prize_label}}" ng-cloak>
-           <a href="" ng-click="showPrize(upcomingGift.prize_sku,upcomingGift.prize_label,upcomingGift.prize_status,upcomingGift.prize_video)">
-              <img class="img-fluid" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/prizes2022/{{upcomingGift.prize_sku}}.png" alt="{{upcomingGift.prize_label}}">
+           <a role="button" href="" ng-click="showPrize(upcomingGift.prize_sku,upcomingGift.prize_label,upcomingGift.prize_status,upcomingGift.prize_video)">
+              <img class="img-fluid" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/prizes2023/{{upcomingGift.prize_sku}}.png" alt="{{upcomingGift.prize_label}}">
 	      <div class="play-circle"><i class="fa fa-play"></i></div>
 	      <div class="ym-pc-dashboard-standard-gift-earned" ng-if="upcomingGift.prize_status" aria-label="Earned">
                  <h4 class="gift-title" ng-bind-html="upcomingGift.prize_label"></h4>
@@ -1526,10 +1526,10 @@
                     <p>
                       <strong>Share My School&nbsp;Page:</strong>
                     </p>
-                    <a ng-href="{{baseUrl}}#" ng-click="delegatedAddThis('.js--company-social-share', 'facebook')">
+                    <a class="d-inline-block me-2" ng-href="{{baseUrl}}#" ng-click="delegatedAddThis('.js--company-social-share', 'facebook')">
                       <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/youth-markets/image/facebook-logo.png" alt="Facebook">
                     </a> 
-                    <a ng-href="{{baseUrl}}#" ng-click="delegatedAddThis('.js--company-social-share', 'twitter')">
+                    <a class="d-inline-block" ng-href="{{baseUrl}}#" ng-click="delegatedAddThis('.js--company-social-share', 'twitter')">
                       <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/youth-markets/image/twitter-logo.png" alt="Twitter">
                     </a>
                   </div>
