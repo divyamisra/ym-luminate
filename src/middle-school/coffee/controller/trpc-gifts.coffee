@@ -46,4 +46,5 @@ angular.module 'trPcControllers'
             prize_level: gift.level
             msg_earned: gift.msg_earned
             msg_unearned: gift.msg_unearned 
+      $scope.getGifts()
 ]
