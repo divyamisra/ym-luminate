@@ -1,12 +1,12 @@
    <section class="ym-pc-dashboard-standard-gifts-section" aria-label="My Standard Gifts" ng-if="standardGifts && standardGifts.length > 0" ng-cloak>
       <div class="ym-pc-dashboard-standard-gifts-icons" role="list" aria-label="Standard Gifts">
-        <div class="ym-pc-dashboard-standard-gifts-icon" ng-class="{'not-earned': !standardGift.prize_status}" ng-repeat="standardGift in standardGifts" role="listitem" aria-label="{{standardGift.prize_label}}" ng-cloak>
-           <a role="button" href="" ng-click="showPrize(standardGift.prize_sku,standardGift.prize_label,standardGift.prize_status,standardGift.prize_video)">
+        <div class="ym-pc-dashboard-standard-gifts-icon d-flex justify-content-between flex-wrap" ng-class="{'not-earned': !standardGift.prize_status}" ng-repeat="standardGift in standardGifts" role="listitem" aria-label="{{standardGift.prize_label}}" ng-cloak>
+           <a role="button" class="mb-4" href="" ng-click="showPrize(standardGift.prize_sku,standardGift.prize_label,standardGift.prize_status,standardGift.prize_video)">
               <img class="img-fluid" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/middle-school/image/prizes2023/{{standardGift.prize_sku}}.png" alt="{{standardGift.prize_label}}">
               <div class="ym-pc-dashboard-standard-gift-earned">
-                 <h4 class="gift-title" ng-bind-html="standardGift.prize_label"></h4>
+                 <h4 class="h5" ng-bind-html="standardGift.prize_label"></h4>
               </div>
-              <div class="more-details-button">More Details</div>
+              <div class="btn btn-sm btn-primary">More Details</div>
            </a>
         </div>
       </div>
