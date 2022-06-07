@@ -72,6 +72,7 @@ module.exports = {
         cwd: 'src/middle-school/image/',
         src: [
           '*.{gif,GIF,jpg,JPG,png,PNG,svg,SVG}',
+          'prizes2023/*.{gif,GIF,jpg,JPG,png,PNG,svg,SVG}',
           'fy22/*.{gif,GIF,jpg,JPG,png,PNG,svg,SVG}',
           'fy23/*.{gif,GIF,jpg,JPG,png,PNG,svg,SVG}'
         ],
