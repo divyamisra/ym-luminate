@@ -122,7 +122,7 @@ angular.module 'ahaLuminateApp'
             "msg_unearned":"Complete Registration"
           }
           {
-            "id":"W-23"
+            "id":"PW-23"
             "name":"Sticky Phone Wallet"
             "status":0
             "level":"$10"
