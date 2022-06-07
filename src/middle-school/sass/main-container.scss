@@ -16,16 +16,16 @@ main {
 }
 
 .ratio-9x16 {
-    --bs-aspect-ratio: 140.25%;
+    --bs-aspect-ratio: 124.25%;
 }
 @media (min-width:992px) and (max-width:1023px) {
   .ratio-9x16 {
-    --bs-aspect-ratio: 160.25%;
+    --bs-aspect-ratio: 144.25%;
   }
 }
 @media (min-width: 768px) and (max-width:991px) {
   .ratio-9x16 {
-    --bs-aspect-ratio: 164.25%;
+    --bs-aspect-ratio: 148.25%;
   }
 }
 @media (max-width: 767px) {
@@ -43,6 +43,11 @@ main {
 .personal-col1 { grid-area: one; }
 .personal-col2 { grid-area: two;  }
 .personal-col3 { grid-area: three; grid-row-end: none; }
+
+@media (min-width:768px) {
+  .student-donate {max-width:50%;}
+  .ym-story .personalPageContent {max-height: 270px; overflow: scroll;}
+}
 
 /* generic styles */
 .white-box {
