@@ -33,7 +33,17 @@ main {
     --bs-aspect-ratio: 152.25%;
   }
 }
-	
+
+.personal-cols {
+  grid-template-columns: 50% 50%;
+  grid-template-areas:
+    "two one"
+    "two three";
+}
+.personal-col1 { grid-area: one; }
+.personal-col2 { grid-area: two;  }
+.personal-col3 { grid-area: three; grid-row-end: none; }
+
 /* generic styles */
 .white-box {
   box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
