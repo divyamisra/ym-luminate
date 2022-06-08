@@ -33,6 +33,7 @@ angular.module 'trPcControllers'
       $scope.companyId = $scope.participantRegistration.companyInformation.companyId
       $scope.theDate = new Date
       $scope.yearsList = [1..($scope.theDate.getFullYear()-1978)] # 0 - 50
+      $scope.notifyName = ''
       $scope.schoolChallenge = false
       $scope.schoolChallengeBadge = false
       $scope.studentChallengeBadge = false
