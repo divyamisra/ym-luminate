@@ -894,11 +894,11 @@ angular.module 'trPcControllers'
               final_url = prize.mission_url
             if prize.mission_url_type == 'Quiz' 
               if $scope.tablePrefix == 'heartdev'
-                final_url = 'https://tools.heart.org/aha_ym22_dev/quiz/show/' + prize.mission_url + '?event_id=' + $scope.frId + '&user_id=' + $scope.consId + '&name=' + $scope.consNameFirst
+                final_url = 'https://tools.heart.org/aha_ym23_dev/quiz/show/' + prize.mission_url + '?event_id=' + $scope.frId + '&user_id=' + $scope.consId + '&name=' + $scope.consNameFirst
               if $scope.tablePrefix == 'heartnew'
-                final_url = 'https://tools.heart.org/aha_ym22_testing/quiz/show/' + prize.mission_url + '?event_id=' + $scope.frId + '&user_id=' + $scope.consId + '&name=' + $scope.consNameFirst
+                final_url = 'https://tools.heart.org/aha_ym23_testing/quiz/show/' + prize.mission_url + '?event_id=' + $scope.frId + '&user_id=' + $scope.consId + '&name=' + $scope.consNameFirst
               if $scope.tablePrefix == 'heart'
-                final_url = 'https://tools.heart.org/aha_ym22/quiz/show/' + prize.mission_url + '?event_id=' + $scope.frId + '&user_id=' + $scope.consId + '&name=' + $scope.consNameFirst
+                final_url = 'https://tools.heart.org/aha_ym23/quiz/show/' + prize.mission_url + '?event_id=' + $scope.frId + '&user_id=' + $scope.consId + '&name=' + $scope.consNameFirst
             if prize.mission_url_type == 'Modal' and prize.mission_url == 'app' 
               final_url = 'showMobileApp()'
             if prize.status != 0
