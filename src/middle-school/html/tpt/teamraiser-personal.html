@@ -1,7 +1,8 @@
 <div ng-controller="PersonalPageCtrl" ng-cloak>
   <div class="ym-page-section d-md-grid personal-cols flex-wrap p-4 bg-white">
     <div class="personal-col1 p-2" ng-init="personalPagePhoto1.customUrl = '[[C4:graphic_upload]]'; personalPagePhoto1.caption = '[[T6:[[C1:graphic_caption]]]]'">
-      <div class="student-info me-2">
+      <div class="student-info d-flex justify-content-between flex-wrap me-2">
+	      <div>
 				<h1>
 					[[E48:[[S80:trID]]-[[S334:px]]:cons.first_name]] [[E48:[[S80:trID]]-[[S334:px]]:cons.last_name]]
 				</h1>
@@ -17,7 +18,11 @@
 						My Team: <a title="[[E48:[[S80:trID]]-[[S334:px]]:team-name]]" href="TR?pg=team&fr_id=[[S80:trID]]&team_id=[[E48:[[S80:trID]]-[[S334:px]]:team-id]]">[[E48:[[S80:trID]]-[[S334:px]]:team-name]]</a>
 					</p>
 				]]
-				</div>
+	      </div>
+		<div class="ym-school-student-survivor" ng-if="survivor">
+			<img src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/middle-school/image/fy22/survivor-badge.png" alt="I am a Survivor">
+		</div>
+	    </div>
       <div class="d-md-flex justify-content-between">
         <div class="student-donate me-2">
 				  <a aria-label="Donate to help me raise funds" class="btn btn-primary btn-lg mb-4" href="#paymentSelType" data-toggle="collapse">
@@ -48,9 +53,6 @@
 					</div>
         </div>
 				<div class="ym-user-image-inner d-none d-md-block text-center mb-4">
-					<div class="ym-school-student-survivor" ng-if="survivor">
-						<img src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/middle-school/image/fy22/survivor-badge.png" alt="I am a Survivor">
-					</div>
 					<div class="student-image mb-2">
 						<img class="img-fluid" ng-src="{{personalPagePhoto1.customUrl && personalPagePhoto1.customUrl != '' ? personalPagePhoto1.customUrl : personalPagePhoto1.defaultUrl}}" alt="{{personalPagePhoto1.caption != '' ? personalPagePhoto1.caption : 'Student Photo'}}" ng-cloak>
 					</div>
