@@ -1,0 +1,60 @@
+div#registration-reg-page-steps {
+    display: none;
+
+    .survey-question-container {
+        width: 100%;
+        max-width: none;
+    }
+
+    div.registration-reg-page-step {
+        display: none;
+
+        > h1 {
+            display: none;
+        }
+
+        .display-table {
+            display: table;
+        }
+
+        .display-table-cell {
+            display: table-cell;
+        }
+
+        .img-item {
+            width: 100%;
+            max-width: 225px;
+            max-height: 225px;
+        }
+    }
+
+    div#registration-reg-page-step-1 {
+        display: block;
+    }
+
+    div#registration-reg-page-step-2 {
+        .survey-number-required-container {
+            display: none;
+        }
+
+        .survivor_yes_no {
+            ul {
+                margin-top: 25px;
+                text-align: center;
+
+                li {
+                    float: none;
+                    display: inline-block;
+
+                    > div {
+                        position: relative;
+
+                        > input {
+                            top: 19px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
