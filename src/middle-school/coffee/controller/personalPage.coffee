@@ -45,7 +45,8 @@ angular.module 'ahaLuminateControllers'
             sku: prize.sku
             status: prize.status
             earned: prize.earned_datetime
-            image_url: prize.earned_image_url
+            earned_image_url: prize.earned_image_url
+            not_earned_image_url: prize.non_earned_image_url
 
           if prize.status is 1
             $scope.prizesEarned++
