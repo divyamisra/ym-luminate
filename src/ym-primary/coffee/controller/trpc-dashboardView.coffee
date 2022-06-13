@@ -907,7 +907,17 @@ angular.module 'trPcControllers'
             else 
               earned_status = 'Unearned'
               hover_msg = prize.unearned_hover
-            aria_label = prize.label + ": " + earned_status + " - " + hover_msg
+            prize_label = prize.label
+            switch prize.label
+              when "Take Challenge" then prize_label = "Pick a Challenge"
+              when "Edit Personal Page" then prize_label = "Edit Your Page"
+              when "Self Donor" then prize_label = "Self-Donation"
+              when "Go Social" then prize_label = "Share on Social"
+              when "Send Email/Ecard" then prize_label = "Send Emails"
+              when "First Online Donation" then prize_label = "First Donation"
+              when "CPR Quiz" then prize_label = "Hands-Only CPR"
+              when "Stroke Quiz" then prize_label = "Warning Signs of Stroke"
+            aria_label = prize_label + ": " + earned_status + " - " + hover_msg
             $scope.prizes.push
               id: prize.id
               label: prize.label
