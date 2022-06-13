@@ -482,8 +482,8 @@
               <div class="ym-progress__thermometer" name="School Progress Bar" aria-label="{{participantProgress.percent}} percent of fundraising progress" aria-valuetext="{{companyProgress.percent}} percent of fundraising progress" role="progressbar" aria-valuenow="{{companyProgress.percent}}" aria-valuemin="0" aria-valuemax="100">
                 <div class="ym-progress__thermometer--fill" ng-class="(companyProgress.percent < 13) ? 'therm-text-black' : 'therm-text-white'" ng-style="{'width': companyProgress.percent + '%'}">{{companyProgress.percent}}%</div>
               </div>
-	            <div class="row">
-                <div class="ym-pc-dashboard-badges-box col-xs-8">
+	      <div class="d-md-fle">
+                <div class="ym-pc-dashboard-badges-box col-md-8">
                   <div id="ym-pc-dashboard-badges-panel--school" aria-label="School Challenge Badge">
                     <div class="ym-pc-dashboard-badges-challenge">
                       <strong>School Goal Challenge:</strong><br/>
@@ -502,7 +502,7 @@
             		    </div>
             		  </div>
             		</div>
-                <div class="col-xs-4">
+                <div class="col-md-4">
                   <div class="ym-progress-related">
                     <div class="ym-progress-amounts">
                 		  <p>
@@ -516,26 +516,24 @@
                     </div>
                   </div>
                 </div>
- 	            </div>
-       	      <div class="row">
-    	          <div class="col-md-12 ym-pc-dashboard-school-challenge" ng-if="schoolChallenge == 1" ng-cloak>
+ 	      </div>
+              <div class="ym-pc-dashboard-school-challenge" ng-if="schoolChallenge == 1" ng-cloak>
                   <strong>School Challenge:</strong><br/>
                   Raise more than {{companyProgress.schoolChallengeLevel}} to participate in your school challenge - {{companyProgress.schoolChallenge == "Other" ? companyProgress.schoolChallengeOther : companyProgress.schoolChallenge}}. Keep fundraising to help your school reach its goal of {{companyProgress.goalFormatted}}.
-                </div>
-      	        <div class="col-md-12 ym-pc-dashboard-school-challenge" ng-if="schoolChallenge == 2" ng-cloak>
-            		  <strong>School Challenge:</strong><br/>
-            		  Since you raised more than {{companyProgress.schoolChallengeLevel}} you can now participate in your school challenge - {{companyProgress.schoolChallenge == "Other" ? companyProgress.schoolChallengeOther : companyProgress.schoolChallenge}}. Keep fundraising to help your school reach its goal of {{companyProgress.goalFormatted}}.
-             		</div>
-	              <div class="col-md-12 ym-pc-dashboard-school-challenge" ng-if="schoolChallenge == 3" ng-cloak>
-            		  <strong>School Challenge:</strong><br/>
-            	 	  Raise more than {{companyProgress.schoolChallengeLevel}} to participate in your school challenge - {{companyProgress.schoolChallenge == "Other" ? companyProgress.schoolChallengeOther : companyProgress.schoolChallenge}}. Keep fundraising to help your school raise more than its goal of {{companyProgress.goalFormatted}}.
-             		</div>
-            		<div class="col-md-12 ym-pc-dashboard-school-challenge" ng-if="schoolChallenge == 4" ng-cloak>
-            		  <strong>School Challenge:</strong><br/>
-            		  Since you raised more than {{companyProgress.schoolChallengeLevel}} you can now participate in your school challenge - {{companyProgress.schoolChallenge == "Other" ? companyProgress.schoolChallengeOther : companyProgress.schoolChallenge}}. Keep fundraising to help your school raise more than its goal of {{companyProgress.goalFormatted}}.
-             		 </div>
-	             </div>
-            </div>
+              </div>
+	      <div class="ym-pc-dashboard-school-challenge" ng-if="schoolChallenge == 2" ng-cloak>
+		  <strong>School Challenge:</strong><br/>
+		  Since you raised more than {{companyProgress.schoolChallengeLevel}} you can now participate in your school challenge - {{companyProgress.schoolChallenge == "Other" ? companyProgress.schoolChallengeOther : companyProgress.schoolChallenge}}. Keep fundraising to help your school reach its goal of {{companyProgress.goalFormatted}}.
+	      </div>
+	      <div class="ym-pc-dashboard-school-challenge" ng-if="schoolChallenge == 3" ng-cloak>
+		  <strong>School Challenge:</strong><br/>
+		  Raise more than {{companyProgress.schoolChallengeLevel}} to participate in your school challenge - {{companyProgress.schoolChallenge == "Other" ? companyProgress.schoolChallengeOther : companyProgress.schoolChallenge}}. Keep fundraising to help your school raise more than its goal of {{companyProgress.goalFormatted}}.
+		</div>
+		<div class="ym-pc-dashboard-school-challenge" ng-if="schoolChallenge == 4" ng-cloak>
+		  <strong>School Challenge:</strong><br/>
+		  Since you raised more than {{companyProgress.schoolChallengeLevel}} you can now participate in your school challenge - {{companyProgress.schoolChallenge == "Other" ? companyProgress.schoolChallengeOther : companyProgress.schoolChallenge}}. Keep fundraising to help your school raise more than its goal of {{companyProgress.goalFormatted}}.
+		 </div>
+	     </div>
           </div>
         </div>
         </div>
