@@ -174,25 +174,25 @@
 					 <path fill="url(#finn-wing-left)" d="M365 15v80h130v-80h-130z"></path>
 					 <path fill="url(#finn-mouth)" d="M435 57v20h20v-20h-20z"></path>
 				  </g>
-				  <g id="intro-text" filter="url(#a)" data-name="Intro Text" ng-if="prizesEarned != prizes.length" ng-cloak tabindex="0" aria-label="Click the icons in an order to complete the path and reveal Finn's message here!">
-					 <text fill="#000" font-size="9" font-weight="bold"><tspan x="225" y="340">Click the icons in any order to complete</tspan></text>
-					 <text fill="#000" font-size="9" font-weight="bold"><tspan x="240" y="352">the path and reveal the Treasure!</tspan></text>
+				  <g id="intro-text" filter="url(#a)" data-name="Intro Text" ng-if="prizesEarned != prizes.length" ng-cloak tabindex="0">
+					 <text fill="#000" font-size="9" font-weight="bold" aria-label="Click the icons in an order to complete"><tspan x="225" y="340">Click the icons in any order to complete</tspan></text>
+					 <text fill="#000" font-size="9" font-weight="bold" aria-label="the path and reveal Finn's message here!"><tspan x="240" y="352">the path and reveal the Treasure!</tspan></text>
 				  </g> 
-		      <g id="intro-text" filter="url(#a)" data-name="Intro Text" ng-if="prizesEarned == prizes.length" ng-cloak tabindex="0" aria-label="You did it! Thank you for being a hero for Kids Heart Challenge!">
-					 <text fill="#000" font-size="9" font-weight="bold"><tspan x="230" y="340">You did it! Thank you for being</tspan></text>
-					 <text fill="#000" font-size="9" font-weight="bold"><tspan x="230" y="352">a hero for Kids Heart Challenge!</tspan></text>
+		                  <g id="intro-text" filter="url(#a)" data-name="Intro Text" ng-if="prizesEarned == prizes.length" ng-cloak tabindex="0">
+					 <text fill="#000" font-size="9" font-weight="bold" aria-label="You did it! Thank you for being"><tspan x="230" y="340">You did it! Thank you for being</tspan></text>
+					 <text fill="#000" font-size="9" font-weight="bold" aria-label="a hero for Kids Heart Challenge!"><tspan x="230" y="352">a hero for Kids Heart Challenge!</tspan></text>
 				  </g>
 				  <g>
 					 <path fill="url(#finn)" d="M105 45v101h101v-101h-101z"></path>
-          </g>
+                                  </g>
 				  <g ng-if="prizesEarned != prizes.length" ng-cloak>
 					 <path fill="url(#finn)" d="M105 45v101h101v-101h-101z"></path>
 					 <path fill="url(#chest-closed)" d="M460 210v195h225v-195h-225z"></path>
-		                         <g id="status-text" filter="url(#b)" data-name="Status Text" tabindex="0" aria-label="{{prizesEarned}} out of {{prizes.length}} steps complete!" transform="rotate(24 300 182)">
-					   <text fill="#fff" font-size="9" font-weight="bold" font-style="italic">
+		                         <g id="status-text" filter="url(#b)" data-name="Status Text" tabindex="0"transform="rotate(24 300 182)">
+					   <text fill="#fff" font-size="9" font-weight="bold" font-style="italic" aria-label="{{prizesEarned}} out of {{prizes.length}}" >
 				             <tspan x="498" y="150" class="ng-binding">{{prizesEarned}} out of {{prizes.length}}</tspan>
 					   </text>
-                                           <text fill="#fff" font-size="9" font-weight="bold" font-style="italic">
+                                           <text fill="#fff" font-size="9" font-weight="bold" font-style="italic" aria-label="steps complete!" >
 					     <tspan x="485" y="161" class="ng-binding">steps complete!</tspan>
 					   </text>
 					  </g>
@@ -361,15 +361,15 @@
  					   <text fill="#000" font-size="18" font-weight="bold"><tspan x="212" y="965">of Stroke</tspan></text>
 					 	</a>
 				  </g>
-          <g>
-          		<path fill="url(#finnm)" d="M55 155v100h100v-100h-100z"></path>
-          </g>
+                                  <g>
+          		 		<path fill="url(#finnm)" d="M55 155v100h100v-100h-100z"></path>
+          			  </g>
 				  <g ng-if="prizesEarned != prizes.length" ng-cloak>
 					 <path fill="url(#chest-closedm)" d="M327 950v285h300v-285h-300z"></path>
-           <g id="status-text-mobile" filter="url(#bm)" data-name="Status Text" tabindex="0" arial-label="{{prizesEarned}} out of {{prizes.length}} steps complete!" transform="rotate(25 468 370)">
- 				     <text fill="#fff" font-size="14" font-weight="bold" font-style="italic"><tspan x="647" y="975">{{prizesEarned}} out of {{prizes.length}}</tspan></text>
+           				 <g id="status-text-mobile" filter="url(#bm)" data-name="Status Text" tabindex="0" arial-label="{{prizesEarned}} out of {{prizes.length}} steps complete!" transform="rotate(25 468 370)">
+ 				           <text fill="#fff" font-size="14" font-weight="bold" font-style="italic"><tspan x="647" y="975">{{prizesEarned}} out of {{prizes.length}}</tspan></text>
 					   <text fill="#fff" font-size="14" font-weight="bold" font-style="italic"><tspan x="625" y="995">steps complete!</tspan></text>
-				   </g>
+				         </g>
 				  </g>
 				  <g ng-if="prizesEarned == prizes.length" ng-cloak>
 					 <path fill="url(#chest-openm)" d="M327 875v345h335v-345h-335z"></path>
