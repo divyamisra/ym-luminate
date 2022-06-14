@@ -298,7 +298,7 @@
 				  <g>
 					 <path aria-hidden="true" fill="url(#bgm)" d="M0 0v1180h658v-1180h-658z"></path>
 				  </g>
-          <g id="into-text-mobile1" filter="url(#am)" data-name="Intro Text" ng-if="prizesEarned != prizes.length" tabindex="0" aria-label="Click the icons in an order to complete the path and reveal Finn's message here!" class="ng-scope">
+                                  <g id="into-text-mobile1" filter="url(#am)" data-name="Intro Text" ng-if="prizesEarned != prizes.length" tabindex="0" aria-label="Click the icons in an order to complete the path and reveal Finn's message here!" class="ng-scope">
 					 <text fill="#000" font-size="20" font-weight="bold"><tspan x="55" y="60">Click the icons in any order</tspan></text>
 					 <text fill="#000" font-size="20" font-weight="bold"><tspan x="55" y="82">to complete the path and</tspan></text>
 					 <text fill="#000" font-size="20" font-weight="bold"><tspan x="55" y="104">reveal the Treasure!</tspan></text>
@@ -308,11 +308,14 @@
 					 <text fill="#000" font-size="20" font-weight="bold"><tspan x="55" y="82">for being a hero for</tspan></text>
 					 <text fill="#000" font-size="20" font-weight="bold"><tspan x="55" y="104">Kids Heart Challenge!</tspan></text>
 				  </g>
+                                  <g>
+          		 		<path aria-hidden="true" fill="url(#finnm)" d="M55 155v100h100v-100h-100z"></path>
+          			  </g>
 				  <g role="image" id="take-challenge-mobile" data-name="Take Challenge" tabindex="0" ng-focus="mouseoverm(0, 20, 220, this, 0)" ng-blur="mouseoutm()" aria-label="{{prizes[0].aria_label}}">
 					 <path class="badge-path" d="M60 330v100h100v-100x-100z" fill="url(#1_deliveredm)" ng-mouseover="mouseoverm(0, 20, 220, this, 0)" ng-mouseout="mouseoutm()"/>
  					  <text fill="#000" font-size="18" font-weight="bold"><tspan x="81" y="448">Pick a</tspan></text>
  					  <text fill="#000" font-size="18" font-weight="bold"><tspan x="62" y="470">Challenge</tspan></text>
-  		 	  </g>
+  		 	          </g>
 				  <g id="self-donor-mobile" data-name="Self Donor" aria-label="{{prizes[2].aria_label}}">
 					  <a role="link" xlink:href="" ng-href="{{prizes[2].final_url}}" title="Self Donation" ng-focus="mouseoverm(2, 240, 275, this, 0)" ng-blur="mouseoutm()" aria-labelledby="self-donor-mobile">
 						 <path class="badge-path" d="M280 385v100h100v-100x-100z" fill="url(#3{{(prizes[2].earned) ? '_deliveredm' : '_earnedm'}})" ng-mouseover="mouseoverm(2, 240, 275, this, 0)" ng-mouseout="mouseoutm()"/>
@@ -361,9 +364,6 @@
  					   <text fill="#000" font-size="18" font-weight="bold"><tspan x="212" y="965">of Stroke</tspan></text>
 					 	</a>
 				  </g>
-                                  <g>
-          		 		<path fill="url(#finnm)" d="M55 155v100h100v-100h-100z"></path>
-          			  </g>
 				  <g ng-if="prizesEarned != prizes.length" ng-cloak>
 					 <path fill="url(#chest-closedm)" d="M327 950v285h300v-285h-300z"></path>
            				 <g id="status-text-mobile" filter="url(#bm)" data-name="Status Text" tabindex="0" arial-label="{{prizesEarned}} out of {{prizes.length}} steps complete!" transform="rotate(25 468 370)">
