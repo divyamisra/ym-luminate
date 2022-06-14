@@ -33,6 +33,7 @@ angular.module 'trPcControllers'
       $scope.companyId = $scope.participantRegistration.companyInformation.companyId
       $scope.theDate = new Date
       $scope.yearsList = [1..($scope.theDate.getFullYear()-1978)] # 0 - 50
+      $scope.notifyName = ''
       $scope.schoolChallenge = false
       $scope.schoolChallengeBadge = false
       $scope.studentChallengeBadge = false
@@ -893,11 +894,11 @@ angular.module 'trPcControllers'
               final_url = prize.mission_url
             if prize.mission_url_type == 'Quiz' 
               if $scope.tablePrefix == 'heartdev'
-                final_url = 'https://tools.heart.org/aha_ym22_dev/quiz/show/' + prize.mission_url + '?event_id=' + $scope.frId + '&user_id=' + $scope.consId + '&name=' + $scope.consNameFirst
+                final_url = 'https://tools.heart.org/aha_ym23_dev/quiz/show/' + prize.mission_url + '?event_id=' + $scope.frId + '&user_id=' + $scope.consId + '&name=' + $scope.consNameFirst
               if $scope.tablePrefix == 'heartnew'
-                final_url = 'https://tools.heart.org/aha_ym22_testing/quiz/show/' + prize.mission_url + '?event_id=' + $scope.frId + '&user_id=' + $scope.consId + '&name=' + $scope.consNameFirst
+                final_url = 'https://tools.heart.org/aha_ym23_testing/quiz/show/' + prize.mission_url + '?event_id=' + $scope.frId + '&user_id=' + $scope.consId + '&name=' + $scope.consNameFirst
               if $scope.tablePrefix == 'heart'
-                final_url = 'https://tools.heart.org/aha_ym22/quiz/show/' + prize.mission_url + '?event_id=' + $scope.frId + '&user_id=' + $scope.consId + '&name=' + $scope.consNameFirst
+                final_url = 'https://tools.heart.org/aha_ym23/quiz/show/' + prize.mission_url + '?event_id=' + $scope.frId + '&user_id=' + $scope.consId + '&name=' + $scope.consNameFirst
             if prize.mission_url_type == 'Modal' and prize.mission_url == 'app' 
               final_url = 'showMobileApp()'
             if prize.status != 0
@@ -906,7 +907,17 @@ angular.module 'trPcControllers'
             else 
               earned_status = 'Unearned'
               hover_msg = prize.unearned_hover
-            aria_label = prize.label + ": " + earned_status + " - " + hover_msg
+            prize_label = prize.label
+            switch prize.label
+              when "Take Challenge" then prize_label = "Pick a Challenge"
+              when "Edit Personal Page" then prize_label = "Edit Your Page"
+              when "Self Donor" then prize_label = "Self-Donation"
+              when "Go Social" then prize_label = "Share on Social"
+              when "Send Email/Ecard" then prize_label = "Send Emails"
+              when "First Online Donation" then prize_label = "First Donation"
+              when "CPR Quiz" then prize_label = "Hands-Only CPR"
+              when "Stroke Quiz" then prize_label = "Warning Signs of Stroke"
+            aria_label = prize_label + ": " + earned_status + " - " + hover_msg
             $scope.prizes.push
               id: prize.id
               label: prize.label

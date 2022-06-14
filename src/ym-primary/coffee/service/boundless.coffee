@@ -316,7 +316,7 @@ angular.module 'ahaLuminateApp'
           }
           {
             "id":"FP-23"
-            "name":"Myster Poppers"
+            "name":"Mystery Popper"
             "status":0
             "level":"$500"
             "msg_earned":"$500 Raised"

@@ -45,7 +45,8 @@ angular.module 'ahaLuminateControllers'
             sku: prize.sku
             status: prize.status
             earned: prize.earned_datetime
-            image_url: prize.earned_image_url
+            earned_image_url: prize.earned_image_url
+            not_earned_image_url: prize.non_earned_image_url
 
           if prize.status is 1
             $scope.prizesEarned++
@@ -212,7 +213,7 @@ angular.module 'ahaLuminateControllers'
           $scope.personalDonors.totalNumber = $defaultPersonalDonors.length
       
       $scope.personalPagePhoto1 =
-        defaultUrl: APP_INFO.rootPath + 'dist/middle-school/image/fy22/personal-default.jpg'
+        defaultUrl: APP_INFO.rootPath + 'dist/middle-school/image/fy23/personal-default.jpg'
       
       $scope.editPersonalPhoto1 = ->
         delete $scope.updatePersonalPhoto1Error
