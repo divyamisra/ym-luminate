@@ -118,16 +118,16 @@ angular.module 'ahaLuminateApp'
             "name":"Sticker"
             "status":0
             "level":"Sticker"
-            "msg_earned":"Registration Completed"
-            "msg_unearned":"Complete Registration"
+            "msg_earned":"App Downloaded and Registered"
+            "msg_unearned":"Download the App and Register"
           }
           {
             "id":"PW-23"
             "name":"Sticky Phone Wallet"
             "status":0
             "level":"$10"
-            "msg_earned":"$10 Raised"
-            "msg_unearned":"Raise $10"
+            "msg_earned":"$10 Raised Online"
+            "msg_unearned":"Raise $10 Online"
           }
           {
             "id":"FHP-23"
@@ -163,11 +163,11 @@ angular.module 'ahaLuminateApp'
           }
           {
             "id":"BN-23"
-            "name":"Finn's Heart Card"
+            "name":"Beanie"
             "status":0
             "level":"Complete Finn's Heart Card"
-            "msg_earned":"Finn's Heart Card Completed"
-            "msg_unearned":"Complete Finn's Heart Card"
+            "msg_earned":"Finn's Heart Card Mission Completed"
+            "msg_unearned":"Complete Finn’s Mission Heart Card"
           }
         ]
   ]
