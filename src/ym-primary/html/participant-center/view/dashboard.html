@@ -115,8 +115,8 @@
 				  <g transform="translate(-.001 .003)">
 					 <path fill="url(#road)" d="M27 68v245h600v-245h-600z"></path>
 				  </g>
-		 		  <g id="take-challenge" role="image" tabindex="0" ng-focus="mouseover(0, 0, 59, this, -10)" ng-blur="mouseout()" aria-label="{{prizes[0].aria_label}}" title="Pick a Challenge">
-				    <path class="badge-path" d="M22 129v53h53v-53x-53z" fill="url(#1_delivered)" ng-mouseover="mouseover(0, 0, 59, this, -10)" ng-mouseout="mouseout()"/>
+		 		  <g id="take-challenge" role="image" tabindex="0" ng-focus="mouseover(0, 0, 59, this, -10)" ng-blur="mouseout()" title="Pick a Challenge">
+				    <path class="badge-path" d="M22 129v53h53v-53x-53z" fill="url(#1_delivered)" ng-mouseover="mouseover(0, 0, 59, this, -10)" ng-mouseout="mouseout()"  aria-label="{{prizes[0].aria_label}}"/>
  					  <text fill="#000" font-size="10" font-weight="bold"><tspan x="35" y="195">Pick a</tspan></text>
  					  <text fill="#000" font-size="10" font-weight="bold"><tspan x="27" y="207">Challenge</tspan></text>
    			  </g>
@@ -174,11 +174,11 @@
 					 <path fill="url(#finn-wing-left)" d="M365 15v80h130v-80h-130z"></path>
 					 <path fill="url(#finn-mouth)" d="M435 57v20h20v-20h-20z"></path>
 				  </g>
-				  <g id="intro-text" filter="url(#a)" data-name="Intro Text" ng-if="prizesEarned != prizes.length" ng-cloak tabindex="0">
+				  <g id="intro-text" filter="url(#a)" data-name="Intro Text" ng-if="prizesEarned != prizes.length" ng-cloak>
 					 <text fill="#000" font-size="9" font-weight="bold" aria-label="Click the icons in an order to complete"><tspan x="225" y="340">Click the icons in any order to complete</tspan></text>
 					 <text fill="#000" font-size="9" font-weight="bold" aria-label="the path and reveal the Treasure!"><tspan x="240" y="352">the path and reveal the Treasure!</tspan></text>
 				  </g> 
-		                  <g id="intro-text" filter="url(#a)" data-name="Intro Text" ng-if="prizesEarned == prizes.length" ng-cloak tabindex="0">
+		                  <g id="intro-text" filter="url(#a)" data-name="Intro Text" ng-if="prizesEarned == prizes.length" ng-cloak>
 					 <text fill="#000" font-size="9" font-weight="bold" aria-label="You did it! Thank you for being"><tspan x="230" y="340">You did it! Thank you for being</tspan></text>
 					 <text fill="#000" font-size="9" font-weight="bold" aria-label="a hero for Kids Heart Challenge!"><tspan x="230" y="352">a hero for Kids Heart Challenge!</tspan></text>
 				  </g>
@@ -188,7 +188,7 @@
 				  <g ng-if="prizesEarned != prizes.length" ng-cloak>
 					 <path fill="url(#finn)" d="M105 45v101h101v-101h-101z"></path>
 					 <path fill="url(#chest-closed)" d="M460 210v195h225v-195h-225z"></path>
-		                         <g id="status-text" filter="url(#b)" data-name="Status Text" tabindex="0"transform="rotate(24 300 182)">
+		                         <g id="status-text" filter="url(#b)" data-name="Status Text" transform="rotate(24 300 182)">
 					   <text fill="#fff" font-size="9" font-weight="bold" font-style="italic" aria-label="{{prizesEarned}} out of {{prizes.length}}" >
 				             <tspan x="498" y="150" class="ng-binding">{{prizesEarned}} out of {{prizes.length}}</tspan>
 					   </text>
@@ -311,7 +311,7 @@
                                   <g>
           		 		<path aria-hidden="true" fill="url(#finnm)" d="M55 155v100h100v-100h-100z"></path>
           			  </g>
-				  <g role="image" id="take-challenge-mobile" data-name="Take Challenge" tabindex="0" ng-focus="mouseoverm(0, 20, 220, this, 0)" ng-blur="mouseoutm()" aria-label="{{prizes[0].aria_label}}">
+				  <g role="image" id="take-challenge-mobile" data-name="Take Challenge" tabindex="0" aria-label="{{prizes[0].aria_label}}">
 					 <path class="badge-path" d="M60 330v100h100v-100x-100z" fill="url(#1_deliveredm)" ng-mouseover="mouseoverm(0, 20, 220, this, 0)" ng-mouseout="mouseoutm()"/>
  					  <text fill="#000" font-size="18" font-weight="bold"><tspan x="81" y="448">Pick a</tspan></text>
  					  <text fill="#000" font-size="18" font-weight="bold"><tspan x="62" y="470">Challenge</tspan></text>
@@ -365,7 +365,7 @@
 					 	</a>
 				  </g>
 				  <g ng-if="prizesEarned != prizes.length" ng-cloak>
-					 <path fill="url(#chest-closedm)" d="M327 950v285h300v-285h-300z"></path>
+					 <path aria-hidden="true" fill="url(#chest-closedm)" d="M327 950v285h300v-285h-300z"></path>
            				 <g id="status-text-mobile" filter="url(#bm)" data-name="Status Text" tabindex="0" arial-label="{{prizesEarned}} out of {{prizes.length}} steps complete!" transform="rotate(25 468 370)">
  				           <text fill="#fff" font-size="14" font-weight="bold" font-style="italic"><tspan x="647" y="975">{{prizesEarned}} out of {{prizes.length}}</tspan></text>
 					   <text fill="#fff" font-size="14" font-weight="bold" font-style="italic"><tspan x="625" y="995">steps complete!</tspan></text>
@@ -389,7 +389,7 @@
 				</g>
 				<g aria-hidden="true" id="tooltipm" font-size="35">
 					<rect id="tRctm" width="180" height="100" fill="transparent" rx="3" aria-hidden="true"></rect>
-					<foreignObject id="tTipm" width="180" height="100">
+					<foreignObject id="tTipm" width="180" height="100" aria-hidden="true">
 							<div xmlns="http://www.w3.org/1999/xhtml" style="padding: 5px;font-size:16px;color:#fff;"></div>
 					</foreignObject>
 					<polygon id="tTrim" fill="#850BAA" aria-hidden="true"/>
