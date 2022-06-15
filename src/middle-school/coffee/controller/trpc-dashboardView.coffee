@@ -276,14 +276,14 @@ angular.module 'trPcControllers'
         'raised means more moms, dads, brothers, aunts and babies\' lives saved. Even the smallest donation can make a big difference.\n\n' +
         'Please make a donation and support me today!\n\n' +
         'Thank you in advance for your generosity,\n' +
-        $scope.consName + '\n\n'
+        $scope.consName + '\n\n' +
+        '***Did you know you might be able to double your gift to the American Heart Association? Ask your employer if you have an Employee Matching Gift program.'
         if $scope.personalPageUrl
-          sampleText += 'Visit my personal fundraising page:\n' +
+          sampleText += '\n\n' +
+          'Visit my personal fundraising page:\n' +
           $scope.personalPageUrl
-          sampleText += '\n\n'
-	sampleText += '***Did you know you might be able to double your gift to the American Heart Association? Ask your employer if you have an Employee Matching Gift program.'
         $scope.emailChallenge.sampleText = sampleText
-      setEmailSampleText()
+	setEmailSampleText()
       $scope.$watch 'personalGoalInfo.goal', ->
         setEmailSampleText()
       $scope.$watch 'personalPageUrl', ->
