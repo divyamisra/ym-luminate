@@ -283,7 +283,7 @@ angular.module 'trPcControllers'
           'Visit my personal fundraising page:\n' +
           $scope.personalPageUrl
         $scope.emailChallenge.sampleText = sampleText
-	setEmailSampleText()
+        setEmailSampleText()
       $scope.$watch 'personalGoalInfo.goal', ->
         setEmailSampleText()
       $scope.$watch 'personalPageUrl', ->
