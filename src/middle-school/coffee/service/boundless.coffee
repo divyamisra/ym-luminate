@@ -167,7 +167,7 @@ angular.module 'ahaLuminateApp'
             "status":0
             "level":"Complete Finn's Heart Card"
             "msg_earned":"Finn's Heart Card Mission Completed"
-            "msg_unearned":"Complete Finn’s Mission Heart Card"
+            "msg_unearned":"Complete Finn's Mission Heart Card"
           }
         ]
   ]
