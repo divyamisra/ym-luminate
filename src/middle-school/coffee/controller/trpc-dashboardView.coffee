@@ -276,7 +276,7 @@ angular.module 'trPcControllers'
         'raised means more moms, dads, brothers, aunts and babies\' lives saved. Even the smallest donation can make a big difference.\n\n' +
         'Please make a donation and support me today!\n\n' +
         'Thank you in advance for your generosity,\n' +
-        $scope.consName + '\n\n';
+        $scope.consName + '\n\n'
         if $scope.personalPageUrl
           sampleText += 'Visit my personal fundraising page:\n' +
           $scope.personalPageUrl
