@@ -131,7 +131,7 @@ angular.module 'ahaLuminateApp'
           }
           {
             "id":"FHP-23"
-            "name":"Fidget Popper"
+            "name":"Fidget Popper*"
             "status":0
             "level":"$25"
             "msg_earned":"$25 Raised"
@@ -139,7 +139,7 @@ angular.module 'ahaLuminateApp'
           }
           {
             "id":"AHC"
-            "name":"T-Shirt"
+            "name":"T-Shirt*"
             "status":0
             "level":"$50"
             "msg_earned":"$50 Raised"
@@ -147,7 +147,7 @@ angular.module 'ahaLuminateApp'
           }
           {
             "id":"SNB-23"
-            "name":"Notebook"
+            "name":"Notebook*"
             "status":0
             "level":"$100"
             "msg_earned":"$100 Raised"
@@ -155,7 +155,7 @@ angular.module 'ahaLuminateApp'
           }
           {
             "id":"HP-23"
-            "name":"Hydration Pack"
+            "name":"Hydration Pack*"
             "status":0
             "level":"$200"
             "msg_earned":"$200 Raised"
@@ -163,7 +163,7 @@ angular.module 'ahaLuminateApp'
           }
           {
             "id":"BN-23"
-            "name":"Beanie"
+            "name":"Beanie*"
             "status":0
             "level":"Complete Finn's Heart Card"
             "msg_earned":"Finn's Heart Card Mission Completed"
