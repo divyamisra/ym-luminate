@@ -55,6 +55,9 @@ header nav .ym-header-welcome-toggle:focus {
 }
 
 header nav .ym-header-welcome-toggle {
+   @media (max-width: 767px) {
+      left: 20px;
+   }
    &,
    &:link,
    &:visited,

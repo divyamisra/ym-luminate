@@ -1,5 +1,5 @@
 <div ng-controller="PersonalPageCtrl" ng-cloak>
-  <div class="ym-page-section d-md-grid personal-cols flex-wrap p-4 bg-white">
+  <div class="ym-page-section d-md-grid personal-cols flex-wrap p-4 pb-0 bg-white">
     <div class="personal-col1 p-2" ng-init="personalPagePhoto1.customUrl = '[[C4:graphic_upload]]'; personalPagePhoto1.caption = '[[T6:[[C1:graphic_caption]]]]'">
 			<div class="ym-school-student-survivor pull-right" ng-if="survivor">
 				<img src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/middle-school/image/fy22/survivor-badge.png" alt="I am a Survivor">
@@ -170,7 +170,7 @@
 			</div>
     </div>
   </div>
-  <div class="ym-page-section d-md-flex justify-content-between p-4 bg-white">
+  <div class="ym-page-section d-md-flex justify-content-between p-4 pt-0 bg-white">
     <div class="col-md-6 p-2 mb-4" ng-if="prizes.length > 0 || schoolChallenges.length > 0 || challengeId != null">
     	<div class="white-box h-100">
 				<div class="ym-badges w-100" ng-if="prizes.length > 0 || schoolChallenges.length > 0">

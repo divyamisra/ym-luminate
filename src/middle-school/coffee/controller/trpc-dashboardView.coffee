@@ -274,12 +274,7 @@ angular.module 'trPcControllers'
       setEmailSampleText = ->
         sampleText = 'I\'ve made a commitment to raise money to keep hearts beating. I need your help because more money ' +
         'raised means more moms, dads, brothers, aunts and babies\' lives saved. Even the smallest donation can make a big difference.\n\n' +
-        'Please make a donation and support me today!'
-        #if not $scope.personalGoalInfo or not $scope.personalGoalInfo.goal or $scope.personalGoalInfo.goal is ''
-        #  sampleText += ' '
-        #else
-        #  sampleText += ' of ' + $scope.personalGoalInfo.goal + ' '
-        #sampleText += 'and help save the lives of more moms, dads, brothers, aunts and best friends.\n\n' +
+        'Please make a donation and support me today!\n\n' +
         'Thank you in advance for your generosity,\n' +
         $scope.consName + '\n\n' +
         '***Did you know you might be able to double your gift to the American Heart Association? Ask your employer if you have an Employee Matching Gift program.'
@@ -288,7 +283,7 @@ angular.module 'trPcControllers'
           'Visit my personal fundraising page:\n' +
           $scope.personalPageUrl
         $scope.emailChallenge.sampleText = sampleText
-      setEmailSampleText()
+        setEmailSampleText()
       $scope.$watch 'personalGoalInfo.goal', ->
         setEmailSampleText()
       $scope.$watch 'personalPageUrl', ->
