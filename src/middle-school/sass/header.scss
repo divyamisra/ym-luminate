@@ -56,16 +56,15 @@ header nav .ym-header-welcome-toggle:focus {
 
 header nav .ym-header-welcome-toggle {
    @media (max-width: 767px) {
-      left: 20px;
+     &,
+     &:link,
+     &:visited,
+     &:hover,
+     &:focus,
+     &:active,
+     &:active:hover,
+     &:active:focus {
+       left: 20px;
+    }
    }
-   &,
-   &:link,
-   &:visited,
-   &:hover,
-   &:focus,
-   &:active,
-   &:active:hover,
-   &:active:focus {
-     min-width:200px;
-  }
 }
