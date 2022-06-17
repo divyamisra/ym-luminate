@@ -35,7 +35,16 @@ header {
 
 .ym-header-login {
   .btn {
-    color: #fff;
+     &,
+     &:link,
+     &:visited,
+     &:hover,
+     &:focus,
+     &:active,
+     &:active:hover,
+     &:active:focus {
+       color: #fff;
+    }
   }
 }
 
