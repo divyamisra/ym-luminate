@@ -1,3 +1,13 @@
+
+.ym-user-image {
+  @media (min-width: $screen-md-min) {
+    background-size: 93%;
+    background-color: #fff;
+    background-repeat: no-repeat;
+    box-shadow: inset 0px 0px 10px 7px #999;
+  }
+}
+
 a.btn.btn-donate {
 	font-size: 18px;
 	width:100%;
