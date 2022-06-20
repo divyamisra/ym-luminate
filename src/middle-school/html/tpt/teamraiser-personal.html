@@ -171,10 +171,10 @@
     </div>
   </div>
   <div class="ym-page-section d-md-flex justify-content-between p-4 pt-0 bg-white">
-    <div class="col-md-6 p-2 mb-4" ng-if="prizes.length > 0 || schoolChallenges.length > 0 || challengeId != null">
+    <div class="col-md-6 p-2 mb-4" ng-if="prizes.length > 0 || schoolChallenges.length > 0 || (challengeId != null && challengeId != '')" ng-class="(challengeId != null && challengeId != '') ? 'col-md-6' : 'col-md-12'">
     	<div class="white-box h-100">
 				<div class="ym-badges w-100" ng-if="prizes.length > 0 || schoolChallenges.length > 0">
-					<h2 class="h3">
+					<h2 class="h3">                                                 
 						Check Out My Badges
 					</h2>
 					<div class="ym-badges__item" ng-if="prizesEarned == prizes.length && prizes.length != 0"  ng-cloak>
@@ -208,9 +208,9 @@
 				</div>
 			</div>
     </div>
-    <div class="col-md-6 p-2 mb-4">
+    <div class="col-md-6 p-2 mb-4" ng-if="challengeId != null && challengeId != ''" ng-cloak>
     	<div class="white-box w-100">
-				<div class="ym-my-challenge ym-secondary-medium-color" ng-if="challengeId != null" ng-cloak>
+				<div class="ym-my-challenge ym-secondary-medium-color">
 					<h2 class="h3">
 						My Challenge
 					</h2>
