@@ -1416,16 +1416,22 @@
                 );
 
                 // Step 6
-                var $step6 = $('div#registration-reg-page-step-6');
-                $step6.find('div#relocated_cons_user_name').append(
-                    $('#cons_user_name').closest('div.form-content').detach()
-                );
-                $step6.find('div#relocated_cons_password').append(
-                    $('#cons_password').closest('div.form-content').detach()
-                );
-                $step6.find('div#relocated_cons_rep_password').append(
-                    $('#cons_rep_password').closest('div.form-content').detach()
-                );
+                var $consPasswordInput = $('#cons_password');
+                if ($consPasswordInput.length) {
+                    var $step6 = $('div#registration-reg-page-step-6');
+                    $step6.find('div#relocated_cons_user_name').append(
+                        $('#cons_user_name').closest('div.form-content').detach()
+                    );
+                    $step6.find('div#relocated_cons_password').append(
+                        $consPasswordInput.closest('div.form-content').detach()
+                    );
+                    $step6.find('div#relocated_cons_rep_password').append(
+                        $('#cons_rep_password').closest('div.form-content').detach()
+                    )
+                } else {
+                    // Skip registration
+                    $step5.data('next-step', parseInt($step5.data('next-step'), 10) + 1);
+                };
 
                 // Step 7
                 var $step7 = $('div#registration-reg-page-step-7');
