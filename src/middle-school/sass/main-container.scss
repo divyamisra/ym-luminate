@@ -38,7 +38,8 @@ main {
   grid-template-columns: 50% 50%;
   grid-template-areas:
     "two one"
-    "two three";
+    "two three"
+    "two four";
 }
 .personal-col1 { grid-area: one; }
 .personal-col2 { grid-area: two;  }
