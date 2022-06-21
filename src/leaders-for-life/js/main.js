@@ -1418,7 +1418,7 @@
             window.cdTeamRosterTable = $('#team-roster').DataTable({
                 "paging": false,
                 "autoWidth": false,
-                "order": [[1, 'desc']],
+                "order": [1, 'desc'],
                 "language": {
                     "search": "Search for a Team"
                 }
@@ -1459,7 +1459,7 @@
             window.cdParticipantRosterTable = $('#participant-roster').DataTable({
                 "paging": false,
                 "autoWidth": false,
-                "order": [[2, 'desc']],
+                "order": [2, 'desc'],
                 "language": {
                     "search": "Search for a Teammate"
                 }
@@ -1682,7 +1682,7 @@
                                         $('.js--personal-amt-other-wrap').show();
                                         $('.information-box .donation-amounts .custom-amount').attr("style","max-height: none;");
                                     }
-                                });                       
+                                });
 
                             $('.js--personal-amt-other').on('keyup', function (e) {
                                 var keyCode = (e.keyCode ? e.keyCode : e.which);
