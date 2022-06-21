@@ -1246,21 +1246,44 @@
         cd.getTopTeams = function (eventId) {
             luminateExtend.api({
                 api: 'teamraiser',
-                data: 'method=getTeamsByInfo&fr_id=' + eventId + '&list_sort_column=total&list_ascending=false&list_page_size=15&response_format=json',
+                data: 'method=getTeamsByInfo&fr_id=' + eventId + '&list_sort_column=team_name&list_ascending=true&list_page_size=15&response_format=json',
                 callback: {
                     success: function (response) {
                         if (!$.isEmptyObject(response.getTeamSearchByInfoResponse)) {
                             var teamData = luminateExtend.utils.ensureArray(response.getTeamSearchByInfoResponse.team);
-                            var teamListColumnLength = teamData.length > 5 && teamData.length < 11 ? 'two-column-team-list' : teamData.length > 10 ? 'three-column-team-list' : 'one-column-team-list';
                             console.log('this is the team data', teamData.length)
-
+                            var pendingGeneratedHTML = [];
                             $(teamData).each(function (i) {
+                                var deferred = $.Deferred();
+                                pendingGeneratedHTML.push(deferred);
                                 var teamName = this.name;
                                 var teamId = this.id;
-                                var topTeamRow = '<li class="'+teamListColumnLength+'"><div class="d-flex"><div class="flex-grow-1"><a href="TR/?team_id=' + teamId + '&amp;pg=team&amp;fr_id=' + evID + '">' + teamName + '</a></div></div></li>';
-
-                                $('.js--team-top-list ul').append(topTeamRow);
+                                var consId = this.captainConsId;
+                                luminateExtend.api({
+                                  api: 'teamraiser',
+                                  data: 'method=getPersonalPhotos&fr_id='+ eventId + '&cons_id=' + consId + '&response_format=json',
+                                  callback: {
+                                    success: function (response) {
+                                      var teamImages = luminateExtend.utils.ensureArray(response.getPersonalPhotosResponse.photoItem)
+                                      var topTeamRow = `<div class="col-md-4 pt-md-3 px-md-3"><a href="TR/?team_id=${teamId}&amp;pg=team&amp;fr_id=${eventId}" class="text-center text-body text-decoration-none"><img class="bg-primary" src="${teamImages[0].customUrl}" alt=""><p class="bg-primary py-2 text-white"><strong>${teamName}</strong></p></a></div>`;
+                                      deferred.resolve(topTeamRow);
+                                    },
+                                    error: function (response) {
+                                      deferred.resolve('');
+                                    }
+                                  }
+                                })
                             });
+                            $.when.apply($, pendingGeneratedHTML).done(function() {
+                              console.log(arguments);
+                              var topTeamContent = '';
+                              for(var i=0; i < arguments.length; i++) {
+                                topTeamContent += arguments[i];
+                              }
+                              console.log(topTeamContent);
+                              $('.js--team-top-list').append(topTeamContent);
+                            })
+
                         }
                     },
                     error: function (response) {
