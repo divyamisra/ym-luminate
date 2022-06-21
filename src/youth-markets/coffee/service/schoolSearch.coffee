@@ -310,8 +310,8 @@ angular.module 'ahaLuminateApp'
                     $scope.schoolList.totalItems = 0
                     $scope.schoolList.totalNumberResults = 0
 
-                setResults()
-                delete $scope.schoolList.searchPending
-                updateCompanyData()
+              setResults()
+              delete $scope.schoolList.searchPending
+              updateCompanyData()
 
   ]
