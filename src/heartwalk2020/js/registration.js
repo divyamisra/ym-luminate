@@ -1360,32 +1360,59 @@
                         $('div#registration-reg-page-step-' + step.toString() + ' > h1').text()
                     );
                 };
-                var renderNextStep = function (nextStep) {
+                var renderNextStep = function (currentStep, nextStep) {
                     renderHeader(nextStep);
-                    $('div#registration-reg-page-step-' + (nextStep - 1).toString()).hide();
+                    if (currentStep > 0) {
+                        $('div#registration-reg-page-step-' + currentStep.toString()).hide();
+                    }
                     $('div#registration-reg-page-step-' + nextStep.toString()).fadeIn();
                     $('html, body').animate({
                         scrollTop: $('#registration_options_page').offset().top
                     }, 500);
                 }
+                var handleErrors = function () {
+                    var step = 0,
+                        createLoginStep = 6,
+                        $errorHeader = $('div.ErrorMessage.page-error'),
+                        $firstError = $('div.registration-reg-page-step div.ErrorMessage').first();
+                    if ($firstError.length) {
+                        step = parseInt($firstError.closest('div.registration-reg-page-step').data('step'), 10);
+                    }
+                    if (step == 0 && $errorHeader.find('span:contains("User Name")').length) {
+                        step = createLoginStep;
+                    }
+                    if (step == 0) {
+                        step = 1;
+                    }
+                    $('div#registration-reg-page-step-' + step.toString()).prepend(
+                        $errorHeader.addClass('my-4').detach().show()
+                    );
+                    renderNextStep(0, step);
+                }
 
                 // Init
-                var $steps = $('div#registration-reg-page-steps').detach();
+                var $steps = $('div#registration-reg-page-steps').detach(),
+                    errorsPresent = $('div.ErrorMessage.page-error').length;
                 $('form#F2fRegContact').append($steps);
+                $steps.show();
 
                 // Step 1
                 var $step1 = $('div#registration-reg-page-step-1');
                 $step1.find('div#relocated_cons_first_name').append(
-                    $('#cons_first_name').closest('div.form-content').detach()
+                    $('#cons_first_name').closest('div.cons-info-question-container').detach()
                 );
                 $step1.find('div#relocated_cons_last_name').append(
-                    $('#cons_last_name').closest('div.form-content').detach()
+                    $('#cons_last_name').closest('div.cons-info-question-container').detach()
                 );
                 $step1.find('div#relocated_participation_years').append(
                     $('.survey-question-container label span:contains("How many years have you participated in Heart Walk")').closest('div.survey-question-container').detach()
                 );
-                renderHeader(1);
-                $steps.show();
+
+                // Start with Step 1?
+                if (errorsPresent == 0) {
+                    renderHeader(1);
+                    $step1.show();
+                }
 
                 // Step 2
                 var $step2 = $('div#registration-reg-page-step-2');
@@ -1395,18 +1422,18 @@
                 $step2.find('label').addClass('js__reg-page-next-step').attr('data-step', '2').attr('data-next-step', '3');
 
                 // Step 5
-                var $step5 = $('div#registration-reg-page-step-5');
-                var $consStateSelect = $('#cons_state');
+                var $step5 = $('div#registration-reg-page-step-5'),
+                    $consStateSelect = $('#cons_state');
                 if ($consStateSelect.length) {
                     $step5.find('div#relocated_cons_state').append(
-                        $consStateSelect.closest('div.form-content').detach()
+                        $consStateSelect.closest('div.cons-info-question-container').detach()
                     );
                 }
                 $step5.find('div#relocated_cons_zip_code').append(
-                    $('#cons_zip_code').closest('div.form-content').detach()
+                    $('#cons_zip_code').closest('div.cons-info-question-container').detach()
                 );
                 $step5.find('div#relocated_cons_email').append(
-                    $('#cons_email').closest('div.form-content').detach()
+                    $('#cons_email').closest('div.cons-info-question-container').detach()
                 );
                 $step5.find('div#relocated_mobile_phone_question').append(
                     $('.survey-question-container label span:contains("Mobile Phone")').closest('div.survey-question-container').detach()
@@ -1420,17 +1447,17 @@
                 if ($consPasswordInput.length) {
                     var $step6 = $('div#registration-reg-page-step-6');
                     $step6.find('div#relocated_cons_user_name').append(
-                        $('#cons_user_name').closest('div.form-content').detach()
+                        $('#cons_user_name').closest('div.field-required').detach()
                     );
                     $step6.find('div#relocated_cons_password').append(
-                        $consPasswordInput.closest('div.form-content').detach()
+                        $consPasswordInput.closest('div.field-required').detach()
                     );
                     $step6.find('div#relocated_cons_rep_password').append(
-                        $('#cons_rep_password').closest('div.form-content').detach()
+                        $('#cons_rep_password').closest('div.field-required').detach()
                     )
                 } else {
                     // Skip registration
-                    $step5.data('next-step', parseInt($step5.data('next-step'), 10) + 1);
+                    $step5.find('button.js__reg-page-next-step').data('next-step', 7);
                 };
 
                 // Step 7
@@ -1460,9 +1487,15 @@
                     );
                 }
 
+                // Handle errors
+                if (errorsPresent > 0) {
+                    handleErrors();
+                }
+
                 // Next step click
                 $('.js__reg-page-next-step').on('click', function () {
                     var currentStep = parseInt($(this).data('step'), 10),
+                        // prevStep = parseInt($(this).data('prev-step'), 10),
                         nextStep = parseInt($(this).data('next-step'), 10);
 
                     switch (currentStep) {
@@ -1470,13 +1503,13 @@
                             $('#cons_first_name').valid();
                             $('#cons_last_name').valid();
                             if ($('form#F2fRegContact').valid()) {
-                                renderNextStep(nextStep);
+                                renderNextStep(currentStep, nextStep);
                             }
                             return;
                         case 2 :
                             // Wait for other events to finish
                             setTimeout(function () {
-                                renderNextStep(nextStep);
+                                renderNextStep(currentStep, nextStep);
                             }, 500);
                             return;
                         case 3 :
@@ -1489,7 +1522,7 @@
                                 $('div#registration-reg-page-step-5 .phonecheck').valid();
                             }
                             if ($('form#F2fRegContact').valid()) {
-                                renderNextStep(nextStep);
+                                renderNextStep(currentStep, nextStep);
                             }
                             return;
                         case 6 :
@@ -1497,7 +1530,7 @@
                             $('#cons_password').valid();
                             $('#cons_rep_password').valid();
                             if ($('form#F2fRegContact').valid()) {
-                                renderNextStep(nextStep);
+                                renderNextStep(currentStep, nextStep);
                             }
                             return;
                         case 7 :
@@ -1512,7 +1545,7 @@
                             }
                             return;
                     }
-                    renderNextStep(nextStep);
+                    renderNextStep(currentStep, nextStep);
                 });
             };
             if ($('div#registration-reg-page-steps').length === 1) {

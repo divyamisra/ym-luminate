@@ -21,15 +21,17 @@ div#registration-reg-page-steps {
             display: table-cell;
         }
 
+        .cons-info-question-container {
+            float: none;
+            width: 100%;
+            max-width: 100%;
+        }
+
         .img-item {
             width: 100%;
             max-width: 225px;
             max-height: 225px;
         }
-    }
-
-    div#registration-reg-page-step-1 {
-        display: block;
     }
 
     div#registration-reg-page-step-2 {
