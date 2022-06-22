@@ -134,7 +134,7 @@ angular.module 'ahaLuminateControllers'
                 failure: (response) ->
                 error: (response) ->
                 success: (response) ->
-	                if response.data.company[0] != ""
+                  if response.data.company[0] != ""
                     $scope.schoolPlan = response.data.company[0]
                     $scope.hideAmount = $scope.schoolPlan.HideAmountRaised
                     $scope.notifyName = $scope.schoolPlan.YMDName
