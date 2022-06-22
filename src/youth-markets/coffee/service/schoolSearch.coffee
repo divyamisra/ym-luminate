@@ -305,10 +305,10 @@ angular.module 'ahaLuminateApp'
                     $scope.schoolList.schools = schools
                     $scope.schoolList.totalItems = schools.length
                     $scope.schoolList.totalNumberResults = schools.length
-                  else
-                    $scope.schoolList.schools = []
-                    $scope.schoolList.totalItems = 0
-                    $scope.schoolList.totalNumberResults = 0
+                else
+                  $scope.schoolList.schools = []
+                  $scope.schoolList.totalItems = 0
+                  $scope.schoolList.totalNumberResults = 0
 
               setResults()
               delete $scope.schoolList.searchPending
