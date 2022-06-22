@@ -152,28 +152,21 @@ angular.module 'ahaLuminateControllers'
               $rootScope.companyName = name
               setCompanyProgress amountRaised, goal
 
-              TeamraiserCompanyPageService.getSchoolDates()
-                .then (response) ->
-                  schoolDataRows = response.data.getSchoolDatesResponse.schoolData
-                  schoolDataHeaders = {}
-                  schoolDates = {}
-                  angular.forEach schoolDataRows[0], (schoolDataHeader, schoolDataHeaderIndex) ->
-                    schoolDataHeaders[schoolDataHeader] = schoolDataHeaderIndex
-                  i = 0
-                  len = schoolDataRows.length
-                  while i < len
-                    if $scope.companyId is schoolDataRows[i][schoolDataHeaders.CID]
-                      $scope.hideAmount = schoolDataRows[i][schoolDataHeaders.HA]
-                      $scope.notifyName = schoolDataRows[i][schoolDataHeaders.YMDN]
-                      $scope.notifyEmail = schoolDataRows[i][schoolDataHeaders.YMDE]
-                      $scope.unconfirmedAmountRaised = schoolDataRows[i][schoolDataHeaders.UCR]
-                      $scope.highestGift = schoolDataRows[i][schoolDataHeaders.HG]
-                      $scope.top25school = schoolDataRows[i][schoolDataHeaders.T25]
-                      $scope.highestRaisedAmount = schoolDataRows[i][schoolDataHeaders.HRR]
-                      $scope.highestRaisedYear = schoolDataRows[i][schoolDataHeaders.HRRY]
-                      break
-                    i++
-                  #setCompanyProgress Number(amountRaised) + Number(($scope.unconfirmedAmountRaised) * 100), goal
+              ZuriService.getSchoolDetail '&school_id=' + $scope.companyId,
+                failure: (response) ->
+                error: (response) ->
+                success: (response) ->
+                  companies = response.data.company[0]
+                  school = companies[0]
+                  if companies.length > 0
+                    $scope.hideAmount = school.HA
+                    $scope.notifyName = school.YMDN
+                    $scope.notifyEmail = school.YMDE
+                    $scope.unconfirmedAmountRaised = school.UCR
+                    $scope.highestGift = school.HG
+                    $scope.top25school = school.T25
+                    $scope.highestRaisedAmount = school.HRR
+                    $scope.highestRaisedYear = school.HRRY
                   setCompanyProgress Number(amountRaised), goal
                   
               if coordinatorId and coordinatorId isnt '0' and eventId
