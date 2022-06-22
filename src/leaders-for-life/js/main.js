@@ -1268,7 +1268,7 @@
                                   callback: {
                                     success: function (response) {
                                       var teamImages = luminateExtend.utils.ensureArray(response.getPersonalPhotosResponse.photoItem);
-                                      var topTeamRow = `<div class="col-md-4 pt-md-3 px-md-3"><a href="TR/?team_id=${teamId}&amp;pg=team&amp;fr_id=${eventId}" class="text-center text-body text-decoration-none"><img class="bg-primary" src="${teamImages[0].customUrl}" alt=""><p class="bg-primary py-2 text-white"><strong>${teamName}</strong></p></a></div>`;
+                                      var topTeamRow = `<div class="col-md-4 pt-md-3 px-md-3"><a href="TR/?team_id=${teamId}&amp;pg=team&amp;fr_id=${eventId}" class="text-center text-decoration-none"><img class="bg-red-deep" src="${teamImages[0].customUrl}" alt=""><p class="bg-red-deep py-2 text-white"><strong>${teamName}</strong></p></a></div>`;
                                       deferred.resolve(topTeamRow);
                                     },
                                     error: function (response) {
