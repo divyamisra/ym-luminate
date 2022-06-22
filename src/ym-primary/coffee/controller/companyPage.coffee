@@ -136,14 +136,14 @@ angular.module 'ahaLuminateControllers'
                 success: (response) ->
 	                if response.data.company[0] != ""
                     $scope.schoolPlan = response.data.company[0]
-                    $scope.hideAmount = $scope.schoolPlan.HA
-                    $scope.notifyName = $scope.schoolPlan.YMDN
-                    $scope.notifyEmail = $scope.schoolPlan.YMDE
-                    $scope.unconfirmedAmountRaised = $scope.schoolPlan.UCR
-                    $scope.highestGift = $scope.schoolPlan.HG
-                    $scope.top25school = $scope.schoolPlan.T25
+                    $scope.hideAmount = $scope.schoolPlan.HideAmountRaised
+                    $scope.notifyName = $scope.schoolPlan.YMDName
+                    $scope.notifyEmail = $scope.schoolPlan.YMDEmail
+                    $scope.unconfirmedAmountRaised = $scope.schoolPlan.OfflineUnconfirmedRevenue
+                    $scope.highestGift = $scope.schoolPlan.HighestRecordedRaised
+                    $scope.top25school = $scope.schoolPlan.IsTop25School
                     $scope.highestRaisedAmount = $scope.schoolPlan.HRR
-                    $scope.highestRaisedYear = $scope.schoolPlan.HRRY
+                    $scope.highestRaisedYear = $scope.schoolPlan.HRRYear
 
                     if $scope.schoolPlan.EventStartDate != undefined
                       if $scope.schoolPlan.EventStartDate != '0000-00-00'
