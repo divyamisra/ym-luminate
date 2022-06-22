@@ -185,6 +185,16 @@
       background-position: center;
     }
 
+    .nominee-section {
+
+      .js--team-top-list {
+        img {
+          display: block;
+          margin: 0 auto;
+        }
+      }
+    }
+
     #movement-section {
       &:after,
       &:before {
