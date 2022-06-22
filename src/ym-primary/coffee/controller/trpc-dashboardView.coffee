@@ -1086,7 +1086,7 @@ angular.module 'trPcControllers'
               $scope.coordinatorPoints = JSON.parse($scope.schoolPlan.PointsDetail)
             else
               $scope.schoolPlan.EventStartDate = ''
-          if len == 0 or not compfnd
+          else
             $rootScope.hideGifts = "N"
 						
           NgPcConstituentService.getUserRecord('fields=custom_boolean2,custom_string18,custom_string19&cons_id=' + $scope.consId).then (response) ->
