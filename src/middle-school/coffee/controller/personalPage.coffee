@@ -39,17 +39,19 @@ angular.module 'ahaLuminateControllers'
         prizes = response.data.prizes
         $scope.has_bonus = response.data.has_bonus
         angular.forEach prizes, (prize) ->
-          $scope.prizes.push
-            id: prize.id
-            label: prize.label
-            sku: prize.sku
-            status: prize.status
-            earned: prize.earned_datetime
-            earned_image_url: prize.earned_image_url
-            not_earned_image_url: prize.non_earned_image_url
+          ## skip 3+ donations
+          if prize.sku != 'BDG-4'
+            $scope.prizes.push
+              id: prize.id
+              label: prize.label
+              sku: prize.sku
+              status: prize.status
+              earned: prize.earned_datetime
+              earned_image_url: prize.earned_image_url
+              not_earned_image_url: prize.non_earned_image_url
 
-          if prize.status is 1
-            $scope.prizesEarned++
+            if prize.status is 1
+              $scope.prizesEarned++
       , (response) ->
         # TODO
 

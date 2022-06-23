@@ -1059,40 +1059,21 @@ angular.module 'trPcControllers'
           url = 'https://kidsheartchallenge.heart.org'
         window.open url + '/student/login/' + $scope.authToken + '/' + $scope.sessionCookie
 
-      NgPcTeamraiserCompanyService.getSchoolDates()
-        .then (response) ->
-          schoolDataRows = response.data.getSchoolDatesResponse.schoolData
-          schoolDataHeaders = {}
-          schoolDates = {}
-          angular.forEach schoolDataRows[0], (schoolDataHeader, schoolDataHeaderIndex) ->
-            schoolDataHeaders[schoolDataHeader] = schoolDataHeaderIndex
-          i = 0
-          compfnd = false
-          len = schoolDataRows.length
-          while i < len
-            if $rootScope.companyInfo.companyId is schoolDataRows[i][schoolDataHeaders.CID]
-              $scope.startDate = schoolDataRows[i][schoolDataHeaders.EDS]
-              $scope.endDate = schoolDataRows[i][schoolDataHeaders.EDE]
-              $scope.moneyDueDate = schoolDataRows[i][schoolDataHeaders.MDD]
-              $scope.schoolStudentGoal = schoolDataRows[i][schoolDataHeaders.PG]
-              $scope.schoolStudentReg = schoolDataRows[i][schoolDataHeaders.TR]
-              $scope.schoolStudentRegOnline = schoolDataRows[i][schoolDataHeaders.RO]
-              $scope.notifyName = schoolDataRows[i][schoolDataHeaders.YMDN]
-              $scope.notifyEmail = schoolDataRows[i][schoolDataHeaders.YMDE]
-              $rootScope.hideGifts = schoolDataRows[i][schoolDataHeaders.HG]
-              compfnd = true
-              break
-            i++
-          if len == 0 or not compfnd
-            $rootScope.hideGifts = "N"
-          $scope.getSchoolPlan()
-
-      $scope.getSchoolPlan = () ->
-        ZuriService.schoolPlanData '&method=GetSchoolPlan&CompanyId=' + $scope.participantRegistration.companyInformation.companyId + '&EventId=' + $scope.frId,
-          failure: (response) ->
-          error: (response) ->
-          success: (response) ->
+      ZuriService.getSchoolDetail '&school_id=' + $scope.participantRegistration.companyInformation.companyId + '&EventId=' + $scope.frId,
+        failure: (response) ->
+        error: (response) ->
+        success: (response) ->
+          if response.data.company[0] != ""
             $scope.schoolPlan = response.data.company[0]
+            $scope.hideAmount = $scope.schoolPlan.HideAmountRaised
+            $scope.notifyName = $scope.schoolPlan.YMDName
+            $scope.notifyEmail = $scope.schoolPlan.YMDEmail
+            $scope.unconfirmedAmountRaised = $scope.schoolPlan.OfflineUnconfirmedRevenue
+            $scope.highestGift = $scope.schoolPlan.HighestRecordedRaised
+            $scope.top25school = $scope.schoolPlan.IsTop25School
+            $scope.highestRaisedAmount = $scope.schoolPlan.HRR
+            $scope.highestRaisedYear = $scope.schoolPlan.HRRYear
+
             if $scope.schoolPlan.EventStartDate != undefined
               if $scope.schoolPlan.EventStartDate != '0000-00-00'
                 $scope.schoolPlan.EventStartDate = new Date($scope.schoolPlan.EventStartDate.replace(/-/g, "/") + ' 00:01')
@@ -1105,19 +1086,21 @@ angular.module 'trPcControllers'
               $scope.coordinatorPoints = JSON.parse($scope.schoolPlan.PointsDetail)
             else
               $scope.schoolPlan.EventStartDate = ''
+          else
+            $rootScope.hideGifts = "N"
 						
-            NgPcConstituentService.getUserRecord('fields=custom_boolean2,custom_string18,custom_string19&cons_id=' + $scope.consId).then (response) ->
-              if response.data.errorResponse
-                console.log 'There was an error getting user profile. Please try again later.'
-              $scope.constituent = response.data.getConsResponse
-              $scope.schoolPlan.SendEmailOnBehalfOfCoordinator = $scope.constituent.custom.boolean.content == 'true'
-              angular.forEach $scope.constituent.custom.string, (field) ->
-                if field.id == 'custom_string18'
-                  $scope.participatingNextYear = field.content
-                if field.id == 'custom_string19'
-                  $scope.schoolPlan.MaterialsNeeded = field.content
-                return
-
+          NgPcConstituentService.getUserRecord('fields=custom_boolean2,custom_string18,custom_string19&cons_id=' + $scope.consId).then (response) ->
+            if response.data.errorResponse
+              console.log 'There was an error getting user profile. Please try again later.'
+            $scope.constituent = response.data.getConsResponse
+            $scope.schoolPlan.SendEmailOnBehalfOfCoordinator = $scope.constituent.custom.boolean.content == 'true'
+            angular.forEach $scope.constituent.custom.string, (field) ->
+              if field.id == 'custom_string18'
+                $scope.participatingNextYear = field.content
+              if field.id == 'custom_string19'
+                $scope.schoolPlan.MaterialsNeeded = field.content
+              return
+	
       $scope.putSchoolPlan = (event) ->
         school = @schoolPlan
         if event.currentTarget.id == 'school_goal'

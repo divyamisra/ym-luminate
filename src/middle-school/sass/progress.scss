@@ -5,6 +5,9 @@
 .ym-progress__thermometer {
   border: none;
 }
+.pg-personal.app-26 .ym-progress__thermometer {
+    max-width: none;
+}
 
 .ym-progress__thermometer--fill {
   background: $event-primary;
@@ -15,6 +18,7 @@
   font-size: 18px;
   font-weight:bold;
 }
+
 /*
 .ym-progress__thermometer--fill::after {
 	border-left: .25rem solid transparent;

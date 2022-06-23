@@ -109,6 +109,9 @@
         School Achievements
      </h2>
      <div class="ym-school-achievements">
+			 <div class="ym-school-badge-participation-years" ng-if="schoolYears == 0 || schoolYears == 1" ng-cloak>
+					<img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy23/badge-first-year.png" alt="First Year Participating Badge">
+			 </div>
 			 <div class="ym-school-badge-participation-years" ng-if="schoolYears > 0" ng-cloak>
 					<img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy22/badge-years.png" alt="School Participation Years">
 					<div class="ym-school-participation-years-text">{{schoolYears}}</div>
