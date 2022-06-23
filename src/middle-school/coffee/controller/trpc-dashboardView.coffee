@@ -851,7 +851,7 @@ angular.module 'trPcControllers'
         failure: (response) ->
         error: (response) ->
         success: (response) ->
-          if response.data.company[0] != ""
+          if response.data.company[0] != ""  and response.data.company[0] !== null
             $scope.schoolPlan = response.data.company[0]
             $scope.hideAmount = $scope.schoolPlan.HideAmountRaised
             $scope.notifyName = $scope.schoolPlan.YMDName
