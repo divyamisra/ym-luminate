@@ -1,6 +1,6 @@
 <div ng-controller="CompanyPageCtrl" ng-cloak>
    <div class="d-none" hidden aria-hidden="true" ng-init="parentCompanyId = '[[?xx::x[[E417:[[S334:company_id]]]]x::::[[E130:[[T8:[[E417:[[S334:company_id]]]]]] dup dup [[T8:company_id=]] indexof 11 + swap length substring dup 0 swap [[T8:&]] indexof substring]]]]'; companyPagePhoto1.customUrl = '[[C4:responsive_company_logo]]'"></div>
-   <div class="ym-page-section ym-page-section__top">
+   <div class="ym-page-section d-md-flex">
       <div class="col-md-6 ym-user-image" ng-style="{'background-image': (companyPagePhoto1.customUrl && companyPagePhoto1.customUrl != '') ? ('url(' + companyPagePhoto1.customUrl + ')') : ('url(' + companyPagePhoto1.defaultUrl + ')')}">
          <div class="ym-user-image-inner">
             <button type="button" class="btn btn-md-wide btn-toggle" ng-click="editCompanyPhoto1()" ng-if="participantRegistration.companyInformation.companyId == '[[S334:company_id]]' && participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
