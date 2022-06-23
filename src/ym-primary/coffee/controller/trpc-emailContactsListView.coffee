@@ -352,9 +352,9 @@ angular.module 'trPcControllers'
                           challengeAmount = jQuery.trim reportDataRow[reportDataColumnIndexMap.ChallengeValueAmount]
                           amountRaised = Number reportDataRow[reportDataColumnIndexMap.AmountRaised]
                           finnsMission = reportDataRow[reportDataColumnIndexMap.FinnsMission]
-                          registrationDate = null
-                          if registrationDateFormatted and registrationDateFormatted.split('/').length is 3
-                            registrationDate = new Date(registrationDateFormatted.split('/')[2], Number(registrationDateFormatted.split('/')[0]) - 1, registrationDateFormatted.split('/')[1])
+                          #registrationDate = null
+                          # if registrationDateFormatted and registrationDateFormatted.split('/').length is 3
+                          #   registrationDate = new Date(registrationDateFormatted.split('/')[2], Number(registrationDateFormatted.split('/')[0]) - 1, registrationDateFormatted.split('/')[1])
                           contact =
                             firstName: firstName
                             lastName: lastName
