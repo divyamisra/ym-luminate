@@ -440,6 +440,9 @@ angular.module 'ahaLuminateControllers'
           angular.element('.btn--credit').addClass 'active'
           angular.element('.btn--paypal').removeClass 'active'
 
+      if getQueryParameter('paypal') == "true"
+        $scope.togglePaymentType 'paypal'
+                
       jQuery.validator.addMethod 'zipcode', ((value, element) ->
         @optional(element) or ! !value.trim().match(/^\d{5}(?:[-\s]\d{4})?$/)
       ), 'Invalid zip code'
