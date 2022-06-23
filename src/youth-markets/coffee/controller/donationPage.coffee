@@ -440,9 +440,6 @@ angular.module 'ahaLuminateControllers'
           angular.element('.btn--credit').addClass 'active'
           angular.element('.btn--paypal').removeClass 'active'
 
-      if getQueryParameter('paypal') == "true"
-        $scope.togglePaymentType 'paypal'
-                
       jQuery.validator.addMethod 'zipcode', ((value, element) ->
         @optional(element) or ! !value.trim().match(/^\d{5}(?:[-\s]\d{4})?$/)
       ), 'Invalid zip code'
@@ -609,6 +606,9 @@ angular.module 'ahaLuminateControllers'
                 $scope.selectLevel(null, 'other', $scope.donationInfo.otherLevelId, giftAmt, true)
                 $scope.donationInfo.levelChecked = 'level' + $scope.donationInfo.otherLevelId
                 $scope.donationInfo.classLevel = 'level' + $scope.donationInfo.otherLevelId
+            
+              if getQueryParameter('paypal') == "true"
+                $scope.togglePaymentType 'paypal'
           resolve()
 
       calculateGiftAmt = (type) ->
