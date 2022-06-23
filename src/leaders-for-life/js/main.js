@@ -1264,10 +1264,10 @@
                                 var consId = this.captainConsId;
                                 luminateExtend.api({
                                   api: 'teamraiser',
-                                  data: 'method=getPersonalPhotos&fr_id='+ eventId + '&cons_id=' + consId + '&response_format=json',
+                                  data: 'method=getTeamPhoto&fr_id='+ eventId + '&cons_id=' + consId + '&response_format=json',
                                   callback: {
                                     success: function (response) {
-                                      var teamImages = luminateExtend.utils.ensureArray(response.getPersonalPhotosResponse.photoItem);
+                                      var teamImages = luminateExtend.utils.ensureArray(response.getTeamPhotoResponse.photoItem);
                                       var topTeamRow = `<div class="col-md-4 pt-md-3 px-md-3"><div class="bg-red-deep pb-1 pt-3 px-3" style="aspect-ratio: 1/1;"><a href="TR/?team_id=${teamId}&amp;pg=team&amp;fr_id=${eventId}" class="d-flex flex-column h-100 overflow-hidden rounded-circle" aria-hidden="true"><img class="img-fluid w-100" src="${teamImages[0].customUrl}" alt=""></a></div><div class="bg-red-deep"><a href="TR/?team_id=${teamId}&amp;pg=team&amp;fr_id=${eventId}" class="text-center text-decoration-none"><p class="py-2 text-white"><strong>${teamName}</strong></p></a></div></div>`;
                                       deferred.resolve(topTeamRow);
                                     },
