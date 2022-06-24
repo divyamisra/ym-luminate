@@ -350,8 +350,14 @@ angular.module 'trPcControllers'
                           lastName = jQuery.trim reportDataRow[reportDataColumnIndexMap.StudentLastName]
                           email = jQuery.trim reportDataRow[reportDataColumnIndexMap.StudentEmail]
                           challengeAmount = jQuery.trim reportDataRow[reportDataColumnIndexMap.ChallengeValueAmount]
+                          challengeAmount = Number(challengeAmount.split('$')[1])
+                          console.log('challengeAmount ' + challengeAmount + typeof challengeAmount)
                           amountRaised = Number reportDataRow[reportDataColumnIndexMap.AmountRaised]
+                          console.log('amountRaised ' + amountRaised)
+                          challengePercent = (amountRaised/challengeAmount) * 100
+                          console.log('challengePercent ' + challengePercent)
                           finnsMission = reportDataRow[reportDataColumnIndexMap.FinnsMission]
+                          console.log('finnsMission ' + finnsMission + typeof finnsMission)
                           #registrationDate = null
                           # if registrationDateFormatted and registrationDateFormatted.split('/').length is 3
                           #   registrationDate = new Date(registrationDateFormatted.split('/')[2], Number(registrationDateFormatted.split('/')[0]) - 1, registrationDateFormatted.split('/')[1])
@@ -374,7 +380,7 @@ angular.module 'trPcControllers'
                             contactMeetsCustomFilter = true
                           else if filter is 'email_custom_rpt_show_company_coordinator_mission_complete' and finnsMission is 'YES'
                             contactMeetsCustomFilter = true
-                          else if filter is 'email_custom_rpt_show_company_coordinator_challenge_half' and ((amountRaised/challengeAmount) * 100 >= 50 and (amountRaised/challengeAmount) * 100 <= 100)
+                          else if filter is 'email_custom_rpt_show_company_coordinator_challenge_half' and challengePercent >= 50 and challengePercent < 100 
                             contactMeetsCustomFilter = true
                           else if filter is 'email_custom_rpt_show_company_coordinator_challenge_complete' and amountRaised >= challengeAmount
                             contactMeetsCustomFilter = true
@@ -423,7 +429,7 @@ angular.module 'trPcControllers'
               $scope.addressBookContacts.allContacts = []
               $scope.addressBookContacts.getAllPage = 0
             pageNumber = $scope.addressBookContacts.getAllPage
-            if filter is 'email_custom_rpt_show_company_coordinator_new_participants' or filter is 'email_custom_rpt_show_company_coordinator_weekly_participants' or filter is 'email_custom_rpt_show_company_coordinator_0_dollar_participants' or filter is 'email_custom_rpt_show_company_coordinator_250_dollar_participants' or filter is 'email_custom_rpt_show_past_company_coordinator_participants'
+            if filter is 'email_custom_rpt_show_company_coordinator_new_participants' or filter is 'email_custom_rpt_show_company_coordinator_weekly_participants' or filter is 'email_custom_rpt_show_company_coordinator_0_dollar_participants' or filter is 'email_custom_rpt_show_company_coordinator_250_dollar_participants' or filter is 'email_custom_rpt_show_past_company_coordinator_participants' or filter is 'email_custom_rpt_show_company_coordinator_mission_partial' or filter is 'email_custom_rpt_show_company_coordinator_mission_complete' or filter is 'email_custom_rpt_show_company_coordinator_challenge_half' or filter is 'email_custom_rpt_show_company_coordinator_challenge_complete'
               delete $scope.addressBookContacts.getAllPage
             else
               allContactsPromise = NgPcContactService.getTeamraiserAddressBookContacts 'tr_ab_filter=' + filter + '&skip_groups=true&list_page_size=200&list_page_offset=' + pageNumber
@@ -450,7 +456,7 @@ angular.module 'trPcControllers'
               $scope.emailPromises.push allContactsPromise
           $scope.getAllContacts()
         else
-          if filter is 'email_custom_rpt_show_company_coordinator_new_participants' or filter is 'email_custom_rpt_show_company_coordinator_weekly_participants' or filter is 'email_custom_rpt_show_company_coordinator_0_dollar_participants' or filter is 'email_custom_rpt_show_company_coordinator_250_dollar_participants' or filter is 'email_custom_rpt_show_past_company_coordinator_participants'
+          if filter is 'email_custom_rpt_show_company_coordinator_new_participants' or filter is 'email_custom_rpt_show_company_coordinator_weekly_participants' or filter is 'email_custom_rpt_show_company_coordinator_0_dollar_participants' or filter is 'email_custom_rpt_show_company_coordinator_250_dollar_participants' or filter is 'email_custom_rpt_show_past_company_coordinator_participants' or filter is 'email_custom_rpt_show_company_coordinator_mission_partial' or filter is 'email_custom_rpt_show_company_coordinator_mission_complete' or filter is 'email_custom_rpt_show_company_coordinator_challenge_half' or filter is 'email_custom_rpt_show_company_coordinator_challenge_complete'
             $scope.contactCounts[filter] = ''
           else
             # contactCountPromise = NgPcContactService.getTeamraiserAddressBookContacts 'tr_ab_filter=' + filter + '&skip_groups=true&list_page_size=1'
