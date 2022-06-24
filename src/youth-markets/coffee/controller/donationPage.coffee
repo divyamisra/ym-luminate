@@ -606,6 +606,9 @@ angular.module 'ahaLuminateControllers'
                 $scope.selectLevel(null, 'other', $scope.donationInfo.otherLevelId, giftAmt, true)
                 $scope.donationInfo.levelChecked = 'level' + $scope.donationInfo.otherLevelId
                 $scope.donationInfo.classLevel = 'level' + $scope.donationInfo.otherLevelId
+            
+              if getQueryParameter('paypal') == "true"
+                setTimeout $scope.togglePaymentType 'paypal', 500
           resolve()
 
       calculateGiftAmt = (type) ->
