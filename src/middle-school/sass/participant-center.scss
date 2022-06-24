@@ -3,6 +3,12 @@ option {
   font-size: 18px;
 }
 
+.ahc-social-share-slot {
+	.row>* {
+		flex: 1 0 0;
+	}
+}
+
 .ym-pc-dashboard-coordinator-school-years-section {
 	select {
 		min-width:70px;
