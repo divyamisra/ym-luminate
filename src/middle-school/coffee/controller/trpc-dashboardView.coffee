@@ -880,7 +880,7 @@ angular.module 'trPcControllers'
           else
             $rootScope.hideGifts = "N"
 
-	  $scope.schoolPlan.SendEmailOnBehalfOfCoordinator = false
+          $scope.schoolPlan.SendEmailOnBehalfOfCoordinator = false
           NgPcConstituentService.getUserRecord('fields=custom_boolean2,custom_string18,custom_string19&cons_id=' + $scope.consId).then (response) ->
             if response.data.errorResponse
               console.log 'There was an error getting user profile. Please try again later.'
