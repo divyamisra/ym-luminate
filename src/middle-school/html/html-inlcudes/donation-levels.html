@@ -14,11 +14,11 @@
       ]]
     ]]
     </h2>
-    <div class="pull-right hidden-xs hidden-sm">
+    <div class="pull-right d-xs-none d-sm-none d-md-block">
       <img style="height: 48px;" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/middle-school/image/suggested-donation-40-2021.png" alt="Suggested Donation of $40">
     </div>
     <h2 class="h4">Your Gift</h2>
-    <div class="hidden-md hidden-lg">
+    <div class="d-xs-block d-sm-block d-md-none">
       <img style="height: 48px;" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/middle-school/image/suggested-donation-40-2021.png" alt="Suggested Donation of $40">
     </div>
   </div>
@@ -58,7 +58,7 @@
         {{donationLevel.levelLabel}}
       </p>
     </div>
-    <div class="ym-donation-levels__message--installment level--installment"  ng-class="{'hidden': donationInfo.giftType != 'monthly'}">
+    <div class="ym-donation-levels__message--installment level--installment"  ng-class="{'d-none': donationInfo.giftType != 'monthly'}">
       <p>
         An installment gift allows you flexibility to give at a higher level and pay over time.
       </p>

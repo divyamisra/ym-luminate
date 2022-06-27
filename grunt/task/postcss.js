@@ -279,5 +279,17 @@ module.exports = {
         dest: 'dist/teens-of-impact/css/'
       }
     ]
+  },
+  "ym-rewards": {
+    files: [
+      {
+        expand: true,
+        cwd: 'dist/ym-rewards/css/',
+        src: [
+          'main.css'
+        ],
+        dest: 'dist/ym-rewards/css/'
+      }
+    ]
   }
 }

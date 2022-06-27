@@ -3,6 +3,7 @@ angular.module 'ahaLuminateControllers'
     '$scope'
     '$rootScope'
     '$location'
+    '$sce'
     '$filter'
     '$timeout'
     '$uibModal'
@@ -13,7 +14,7 @@ angular.module 'ahaLuminateControllers'
     'BoundlessService'
     'TeamraiserParticipantPageService'
     'TeamraiserSurveyResponseService'
-    ($scope, $rootScope, $location, $filter, $timeout, $uibModal, APP_INFO, TeamraiserParticipantService, TeamraiserCompanyService, ZuriService, BoundlessService, TeamraiserParticipantPageService, TeamraiserSurveyResponseService) ->
+    ($scope, $rootScope, $location, $sce, $filter, $timeout, $uibModal, APP_INFO, TeamraiserParticipantService, TeamraiserCompanyService, ZuriService, BoundlessService, TeamraiserParticipantPageService, TeamraiserSurveyResponseService) ->
       $dataRoot = angular.element '[data-aha-luminate-root]'
       $scope.participantId = $location.absUrl().split('px=')[1].split('&')[0].split('#')[0]
       $scope.companyId = $dataRoot.data('company-id') if $dataRoot.data('company-id') isnt ''
@@ -33,6 +34,7 @@ angular.module 'ahaLuminateControllers'
       $scope.has_bonus = 0
       $scope.studentChallengeBadge = false
       $scope.schoolChallengeBadge = false
+
       BoundlessService.getBadges $scope.frId + '/' + $scope.participantId
       .then (response) ->
         prizes = response.data.prizes
@@ -226,7 +228,7 @@ angular.module 'ahaLuminateControllers'
           $scope.personalDonors.totalNumber = $defaultPersonalDonors.length
 
       $scope.personalPagePhoto1 =
-        defaultUrl: APP_INFO.rootPath + 'dist/ym-primary/image/fy22/personal-default.jpg'
+        defaultUrl: APP_INFO.rootPath + 'dist/ym-primary/image/fy23/default-personal-photo.jpg'
 
       $scope.editPersonalPhoto1 = ->
         delete $scope.updatePersonalPhoto1Error
