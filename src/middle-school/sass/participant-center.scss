@@ -3,6 +3,12 @@ option {
   font-size: 18px;
 }
 
+span.input-group-addon {
+    display: inline-block;
+    line-height: 40px;
+    padding-right: 5px;
+}
+
 .ahc-social-share-slot {
 	.row>* {
 		flex: 1 0 0;

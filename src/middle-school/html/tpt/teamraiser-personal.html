@@ -2,9 +2,6 @@
   <div class="ym-page-section d-md-grid personal-cols flex-wrap p-4 pb-0 bg-white" ng-init="personalPagePhoto1.customUrl = '[[C4:graphic_upload]]'; personalPagePhoto1.caption = '[[T6:[[C1:graphic_caption]]]]'">
     <div class="heart-card personal-col2 p-2">
 			<div class="personal-col1-mobile d-block d-md-none p-2">
-				<div class="ym-school-student-survivor pull-right" ng-if="survivor">
-					<img src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/middle-school/image/fy22/survivor-badge.png" alt="I am a Survivor">
-				</div>
 				<div class="student-info d-flex justify-content-between flex-wrap me-2">
 					<div>
 					<h1>
@@ -43,7 +40,7 @@
 						</div>
 					</div>
 					<div class="student-donate me-2 text-end">
-						<a aria-label="Donate to help me raise funds" class="btn btn-primary btn-lg mb-4" href="#paymentSelTypeMobile" data-toggle="collapse">
+						<a aria-label="Donate to help me raise funds" class="btn btn-primary btn-lg mb-4" href="#paymentSelTypeMobile" data-bs-toggle="collapse">
 							Donate
 						</a>
 						<div id="paymentSelTypeMobile" class="collapse text-start">
@@ -104,9 +101,6 @@
 			</div>
     </div>
     <div class="personal-col1 p-2 d-none d-md-block">
-			<div class="ym-school-student-survivor pull-right" ng-if="survivor">
-				<img src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/middle-school/image/fy22/survivor-badge.png" alt="I am a Survivor">
-			</div>
       <div class="student-info d-flex justify-content-between flex-wrap me-2">
 	      <div>
 				<h1>
@@ -145,7 +139,7 @@
 					</div>
 				</div>
         <div class="student-donate me-2 text-end">
-				  <a aria-label="Donate to help me raise funds" class="btn btn-primary btn-lg mb-4" href="#paymentSelType" data-toggle="collapse">
+				  <a aria-label="Donate to help me raise funds" class="btn btn-primary btn-lg mb-4" href="#paymentSelType" data-bs-toggle="collapse">
 						Donate
 					</a>
 					<div id="paymentSelType" class="collapse text-start">
@@ -176,9 +170,6 @@
 		</div>
     <div class="personal-col3 p-2" ng-init="personalPagePhoto1.customUrl = '[[C4:graphic_upload]]'; personalPagePhoto1.caption = '[[T6:[[C1:graphic_caption]]]]'">
 			<div class="ym-user-image-inner d-sm-block d-md-none text-center mb-4">
-				<div class="ym-school-student-survivor" ng-if="survivor">
-					<img src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/middle-school/image/fy22/survivor-badge.png" alt="I am a Survivor">
-				</div>
 				<div class="student-image mb-2">
 					<img class="img-fluid" ng-src="{{personalPagePhoto1.customUrl && personalPagePhoto1.customUrl != '' ? personalPagePhoto1.customUrl : personalPagePhoto1.defaultUrl}}" alt="{{personalPagePhoto1.caption != '' ? personalPagePhoto1.caption : 'Student Photo'}}" ng-cloak>
 				</div>
@@ -197,6 +188,9 @@
 			</div>
       <div class="ym-story white-box">
 				<h2 class="h3">
+  				<div class="ym-school-student-survivor pull-right" ng-if="survivor"> 
+	  				<img src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/middle-school/image/fy22/survivor-badge.png" alt="I am a Survivor">
+		  		</div>
 					Why I'm Fundraising
 				</h2>
 				[[?

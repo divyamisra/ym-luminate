@@ -64,8 +64,13 @@ angular.module 'trPcControllers'
               $scope.schoolBadgesRegistrations = response.data.registration_badges
               $scope.schoolBadgesFundraising = response.data.fundraising_badges
               $scope.companyInfo.participantCount = response.data.students_registered
+              $scope.companyProgress.goal = response.data.goal
               $scope.companyProgress.raised = response.data.total_amount
               $scope.companyProgress.raisedFormatted = $filter('currency')(response.data.total_amount, '$').replace(".00","")
+              if $scope.companyProgress.goal isnt 0
+                $scope.companyProgress.percent = Math.ceil(($scope.companyProgress.raised / $scope.companyProgress.goal) * 100)
+                if $scope.companyProgress.percent > 100
+                  $scope.companyProgress.percent = 100
         , (response) ->
           # TODO
       else
@@ -156,9 +161,6 @@ angular.module 'trPcControllers'
             if participantIndex < (participants.length - 1)
               participantsString += ', '
           companyParticipantsString = '{participants: [' + participantsString + '], totalNumber: ' + participants.length + '}'
-          angular.element('.ym-school-animation iframe')[0].contentWindow.postMessage companyParticipantsString, domain
-          angular.element('.ym-school-animation iframe').on 'load', ->
-            angular.element('.ym-school-animation iframe')[0].contentWindow.postMessage companyParticipantsString, domain
 
       getCompanyParticipants = ->
         TeamraiserParticipantService.getParticipants 'team_name=' + encodeURIComponent('%') + '&first_name=' + encodeURIComponent('%%') + '&last_name=' + encodeURIComponent('%') + '&list_filter_column=team.company_id&list_filter_text=' + $scope.participantRegistration.companyInformation.companyId + '&list_sort_column=total&list_ascending=false&list_page_size=500',
@@ -847,6 +849,7 @@ angular.module 'trPcControllers'
             delete $scope.personalChallenge.updatePending
             getStudentChallenge()
 
+      $scope.schoolPlan = []
       ZuriService.getSchoolDetail '&school_id=' + $scope.participantRegistration.companyInformation.companyId + '&EventId=' + $scope.frId,
         failure: (response) ->
         error: (response) ->
@@ -876,7 +879,8 @@ angular.module 'trPcControllers'
               $scope.schoolPlan.EventStartDate = ''
           else
             $rootScope.hideGifts = "N"
-						
+
+          $scope.schoolPlan.SendEmailOnBehalfOfCoordinator = false
           NgPcConstituentService.getUserRecord('fields=custom_boolean2,custom_string18,custom_string19&cons_id=' + $scope.consId).then (response) ->
             if response.data.errorResponse
               console.log 'There was an error getting user profile. Please try again later.'
