@@ -126,10 +126,7 @@
                   </p>
                 </div>
                 <div ng-if="companyCity" ng-cloak>
-                  <p class="school-name-center text-center h5">
-                    <a title="{{companyName}}" href="TR?fr_id=[[S80:trID]]&pg=company&company_id=[[S80:frCompanyId]]"><span ng-bind-html="companyName"></span></a>
-                  </p>
-                  <p class="school-location text-center h5" ng-if="companyCity" ng-cloak>
+                  <p class="school-location h5" ng-if="companyCity" ng-cloak>
                     Located in <span ng-bind-html="companyCity"></span>, <span ng-bind-html="companyState"></span>
                   </p>
                 </div>
