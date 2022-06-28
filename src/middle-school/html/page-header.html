@@ -109,6 +109,11 @@
               </p>
             </div>
           ]]
+          <div ng-if="companyCity" ng-cloak>
+            <p class="school-location h5" ng-if="companyCity" ng-cloak>
+              Located in <span ng-bind-html="companyCity"></span>, <span ng-bind-html="companyState"></span>
+            </p>
+          </div>
         ::]]
       </div>
     </div>
