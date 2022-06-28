@@ -533,7 +533,7 @@
 				<h2 class="h5 clearfix">
 					School Plan 
 				</h2>
-				<div class="row" ng-if="schoolPlan.EventStartDate != ''" ng-cloak>
+				<div class="row" ng-if="schoolPlan.length > 0" ng-cloak>
 					<div class="schoolPlanDates text-left">
 						<p>
 							Your event is kicking off on <strong>{{schoolPlan.EventStartDate | date:'MM/dd/yyyy'}}</strong><span ng-if="(schoolPlan.EventStartDate | date:'MM/dd/yyyy') !== (schoolPlan.EventEndDate | date:'MM/dd/yyyy') && schoolPlan.EventEndDate != ''" ng-cloak> and will conclude on <strong>{{schoolPlan.EventEndDate | date:'MM/dd/yyyy'}}</strong></span>.
@@ -671,12 +671,12 @@
 							</p>
 						</div>
 					</div>
-					 <div class="ym-pc-dashboard-section-plan text-center" ng-if="schoolPlan.EventStartDate == ''" ng-cloak>
+							</div>
+					 <div class="ym-pc-dashboard-section-plan text-center" ng-if="schoolPlan.length == 0" ng-cloak>
 					<p>
 						No plan data available for this School. 
 					</p>
 					 </div>
-							</div>
 			</div>
 		</section>	
 		<section class="ym-pc-dashboard-coordinator-fundraise-section" aria-label="Fundraising Progress Meters">
