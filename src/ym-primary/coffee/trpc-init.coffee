@@ -1,6 +1,5 @@
 angular.module 'trPcApp', [
   'ngRoute'
-  'ngCsv'
   'textAngular'
   'trPcControllers'
   'ngAria'
