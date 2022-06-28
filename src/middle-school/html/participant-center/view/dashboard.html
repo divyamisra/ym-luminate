@@ -4,7 +4,7 @@
     	<div class="dashboard-col1 col p-2">
 				<section class="d-flex flex-column-reverse flex-md-column" aria-label="My Badges" ng-if="prizes &amp;&amp; prizes.length &gt; 0" ng-cloak>
 					<div class="ahc-heart-card mb-4">
-						<img class="img-fluid w-100" src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/middle-school/image/Heart_Card_comingsoon.png">
+						<img class="img-fluid w-100" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/middle-school/image/Heart_Card_comingsoon.png">
 					</div>
 					<div class="ahc-start-mission mb-2 white-box red-border-left">
 						<div class="card-body">
@@ -954,8 +954,7 @@
 									</div>
 									<div class="col-md-6 text-center">
 										<div id="qrcode" load-qrcode="{{secureDomain}}/site/TR?pg=company&fr_id={{frId}}&company_id={{companyId}}"></div>
-										<img src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/middle-school/image/ahc-logo-qrcode.png" class="qrcode-logo d-none">
-										
+										<img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/middle-school/image/ahc-logo-qrcode.png" class="qrcode-logo d-none">
 									</div>
 								</div>
 							</div>
