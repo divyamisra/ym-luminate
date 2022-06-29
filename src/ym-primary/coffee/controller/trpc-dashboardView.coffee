@@ -1060,14 +1060,14 @@ angular.module 'trPcControllers'
         window.open url + '/student/login/' + $scope.authToken + '/' + $scope.sessionCookie
             
       $scope.getSchoolTop15 = () ->
-        ZuriService.getSchoolTop15
+        ZuriService.schoolTop15 "",
           failure: (response) ->
           error: (response) ->
           success: (response) ->
             if response.data.company[0] != ""
               $scope.schoolTop15 = response.data.company[0]
 						
-        ZuriService.getSchoolTop15 "&state="+$scope.schoolPlan.SchoolState,
+        ZuriService.schoolTop15 "&state="+$scope.schoolPlan.SchoolState,
           failure: (response) ->
           error: (response) ->
           success: (response) ->
