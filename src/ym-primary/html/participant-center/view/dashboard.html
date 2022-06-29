@@ -1812,7 +1812,7 @@
 						</div>
 					</div>
 					<div class="col-md-6 px-4">
-						<h3 class="h5 text-center">Top 15 Schools in {{schoolPlan.SchoolState}}</h3>
+						<h3 class="h5 text-center">Top 15 Schools in {{stateList[schoolPlan.SchoolState]}}</h3>
 						<div class="ym-tl-dollars-raised" role="list">
 							<div class="d-flex justify-content-between" ng-repeat="topSchool2 in schoolTop15ByState" role="listitem" ng-if="schoolTop15ByState.length > 0" ng-cloak>
 								<div class="col-xs-1 top-index">#{{$index+1}}</div>
