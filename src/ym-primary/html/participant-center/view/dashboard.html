@@ -1074,7 +1074,7 @@
 	    <h2 class="h3 text-center">
 		  School Plan
 	    </h2>
-	    <div class="ym-pc-dashboard-section-plan" ng-if="schoolPlan.length > 0" ng-cloak>
+	    <div class="ym-pc-dashboard-section-plan" ng-if="schoolPlan != null" ng-cloak>
 		<div class="schoolPlanDates text-center">
 		  <p>
 		    Your event is kicking off on <strong>{{schoolPlan.EventStartDate | date:'MM/dd/yyyy'}}</strong><span ng-if="(schoolPlan.EventStartDate | date:'MM/dd/yyyy') !== (schoolPlan.EventEndDate | date:'MM/dd/yyyy') && schoolPlan.EventEndDate != ''" ng-cloak> and will conclude on <strong>{{schoolPlan.EventEndDate | date:'MM/dd/yyyy'}}</strong></span>.
@@ -1190,7 +1190,7 @@
 				        </div>
 		  </div>
      </div>
-     <div class="ym-pc-dashboard-section-plan text-center" ng-if="schoolPlan.length == 0" ng-cloak>
+     <div class="ym-pc-dashboard-section-plan text-center" ng-if="schoolPlan == null" ng-cloak>
        <p>No plan data available for this School.</p>
      </div>
  </div>
