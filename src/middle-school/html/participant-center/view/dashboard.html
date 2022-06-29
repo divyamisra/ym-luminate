@@ -93,13 +93,6 @@
 						<div class="ym-progress__thermometer m-0 mb-4 mw-100" name="School Progress Bar" aria-label="{{companyProgress.percent}} percent of fundraising progress" aria-valuetext="{{companyProgress.percent}} percent of fundraising progress" role="progressbar" aria-valuenow="{{companyProgress.percent}}" aria-valuemin="0" aria-valuemax="100">
 							<div class="ym-progress__thermometer--fill position-relative" ng-class="(companyProgress.percent < 15) ? 'therm-text-black' : 'therm-text-white'" ng-style="{'width': companyProgress.percent + '%'}">{{companyProgress.percent}}%</div>
 						</div>
-						<div id="ym-pc-dashboard-badges-panel--student" aria-label="School Badges">
-							<div class="ym-badges__item" ng-repeat="schoolChallenge in schoolChallenges" ng-cloak>
-								<div class="ym-badge__item" ng-if="schoolChallenge.earned" ng-cloak>
-									<img class="mw-100" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy21/badge-challenge-{{schoolChallenge.id}}.png" alt="{{schoolChallenge.label}}"> 
-								</div>
-							</div>
-						</div>
 					</div>
 				</div>
 				<div class="ahc-social-share white-box mb-4">
