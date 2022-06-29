@@ -46,6 +46,7 @@ angular.module 'trPcControllers'
       $scope.topGradeStudents = []
       $scope.topCompanySteps = []
       $scope.canCopyQRCode = CopyImageClipboard.canCopyImagesToClipboard()
+      $scope.stateList = {"AL":"Alabama","AK":"Alaska","AZ":"Arizona","AR":"Arkansas","CA":"California","CO":"Colorado","CT":"Connecticut","DE":"Delaware","FL":"Florida","GA":"Georgia","HI":"Hawaii","ID":"Idaho","IL":"Illinois","IN":"Indiana","IA":"Iowa","KS":"Kansas","KY":"Kentucky","LA":"Louisiana","ME":"Maine","MD":"Maryland","MA":"Massachusetts","MI":"Michigan","MN":"Minnesota","MS":"Mississippi","MO":"Missouri","MT":"Montana","NE":"Nebraska","NV":"Nevada","NH":"New Hampshire","NJ":"New Jersey","NM":"New Mexico","NY":"New York","NC":"North Carolina","ND":"North Dakota","OH":"Ohio","OK":"Oklahoma","OR":"Oregon","PA":"Pennsylvania","RI":"Rhode Island","SC":"South Carolina","SD":"South Dakota","TN":"Tennessee","TX":"Texas","UT":"Utah","VT":"Vermont","VA":"Virginia","WA":"Washington","WV":"West Virginia","WI":"Wisconsin","WY":"Wyoming"}
        
       $dataRoot = angular.element '[data-embed-root]'
 		
@@ -1058,49 +1059,67 @@ angular.module 'trPcControllers'
         else
           url = 'https://kidsheartchallenge.heart.org'
         window.open url + '/student/login/' + $scope.authToken + '/' + $scope.sessionCookie
-
-      ZuriService.getSchoolDetail '&school_id=' + $scope.participantRegistration.companyInformation.companyId + '&EventId=' + $scope.frId,
-        failure: (response) ->
-        error: (response) ->
-        success: (response) ->
-          if response.data.company[0] != ""
-            $scope.schoolPlan = response.data.company[0]
-            $scope.hideAmount = $scope.schoolPlan.HideAmountRaised
-            $scope.notifyName = $scope.schoolPlan.YMDName
-            $scope.notifyEmail = $scope.schoolPlan.YMDEmail
-            $scope.unconfirmedAmountRaised = $scope.schoolPlan.OfflineUnconfirmedRevenue
-            $scope.highestGift = $scope.schoolPlan.HighestRecordedRaised
-            $scope.top25school = $scope.schoolPlan.IsTop25School
-            $scope.highestRaisedAmount = $scope.schoolPlan.HRR
-            $scope.highestRaisedYear = $scope.schoolPlan.HRRYear
-
-            if $scope.schoolPlan.EventStartDate != undefined
-              if $scope.schoolPlan.EventStartDate != '0000-00-00'
-                $scope.schoolPlan.EventStartDate = new Date($scope.schoolPlan.EventStartDate.replace(/-/g, "/") + ' 00:01')
-              if $scope.schoolPlan.EventEndDate != '0000-00-00'
-                $scope.schoolPlan.EventEndDate = new Date($scope.schoolPlan.EventEndDate.replace(/-/g, "/") + ' 00:01')
-              if $scope.schoolPlan.DonationDueDate != '0000-00-00'
-                $scope.schoolPlan.DonationDueDate = new Date($scope.schoolPlan.DonationDueDate.replace(/-/g, "/") + ' 00:01')
-              if $scope.schoolPlan.KickOffDate != '0000-00-00'
-                $scope.schoolPlan.KickOffDate = new Date($scope.schoolPlan.KickOffDate.replace(/-/g, "/") + ' 00:01')
-              $scope.coordinatorPoints = JSON.parse($scope.schoolPlan.PointsDetail)
-            else
-              $scope.schoolPlan.EventStartDate = ''
-          else
-            $rootScope.hideGifts = "N"
+            
+      $scope.getSchoolTop15 = () ->
+        ZuriService.schoolTop15 "",
+          failure: (response) ->
+          error: (response) ->
+          success: (response) ->
+            if response.data.company[0] != ""
+              $scope.schoolTop15 = response.data.company[0]
 						
-          NgPcConstituentService.getUserRecord('fields=custom_boolean2,custom_string18,custom_string19&cons_id=' + $scope.consId).then (response) ->
-            if response.data.errorResponse
-              console.log 'There was an error getting user profile. Please try again later.'
-            $scope.constituent = response.data.getConsResponse
-            $scope.schoolPlan.SendEmailOnBehalfOfCoordinator = $scope.constituent.custom.boolean.content == 'true'
-            angular.forEach $scope.constituent.custom.string, (field) ->
-              if field.id == 'custom_string18'
-                $scope.participatingNextYear = field.content
-              if field.id == 'custom_string19'
-                $scope.schoolPlan.MaterialsNeeded = field.content
-              return
-	
+        ZuriService.schoolTop15 "&state="+$scope.schoolPlan.SchoolState,
+          failure: (response) ->
+          error: (response) ->
+          success: (response) ->
+            if response.data.company[0] != ""
+              $scope.schoolTop15ByState = response.data.company[0]
+
+      $scope.getSchoolPlan = () ->
+        ZuriService.getSchoolDetail '&school_id=' + $scope.participantRegistration.companyInformation.companyId + '&EventId=' + $scope.frId,
+          failure: (response) ->
+          error: (response) ->
+          success: (response) ->
+            if response.data.company[0] != ""
+              $scope.schoolPlan = response.data.company[0]
+              $scope.hideAmount = $scope.schoolPlan.HideAmountRaised
+              $scope.notifyName = $scope.schoolPlan.YMDName
+              $scope.notifyEmail = $scope.schoolPlan.YMDEmail
+              $scope.unconfirmedAmountRaised = $scope.schoolPlan.OfflineUnconfirmedRevenue
+              $scope.highestGift = $scope.schoolPlan.HighestRecordedRaised
+              $scope.top25school = $scope.schoolPlan.IsTop25School
+              $scope.highestRaisedAmount = $scope.schoolPlan.HRR
+              $scope.highestRaisedYear = $scope.schoolPlan.HRRYear
+
+              if $scope.schoolPlan.EventStartDate != undefined
+                if $scope.schoolPlan.EventStartDate != '0000-00-00'
+                  $scope.schoolPlan.EventStartDate = new Date($scope.schoolPlan.EventStartDate.replace(/-/g, "/") + ' 00:01')
+                if $scope.schoolPlan.EventEndDate != '0000-00-00'
+                  $scope.schoolPlan.EventEndDate = new Date($scope.schoolPlan.EventEndDate.replace(/-/g, "/") + ' 00:01')
+                if $scope.schoolPlan.DonationDueDate != '0000-00-00'
+                  $scope.schoolPlan.DonationDueDate = new Date($scope.schoolPlan.DonationDueDate.replace(/-/g, "/") + ' 00:01')
+                if $scope.schoolPlan.KickOffDate != '0000-00-00'
+                  $scope.schoolPlan.KickOffDate = new Date($scope.schoolPlan.KickOffDate.replace(/-/g, "/") + ' 00:01')
+                $scope.coordinatorPoints = JSON.parse($scope.schoolPlan.PointsDetail)
+              else
+                $scope.schoolPlan.EventStartDate = ''
+            else
+              $rootScope.hideGifts = "N"
+            $scope.getSchoolTop15()
+			
+            NgPcConstituentService.getUserRecord('fields=custom_boolean2,custom_string18,custom_string19&cons_id=' + $scope.consId).then (response) ->
+              if response.data.errorResponse
+                console.log 'There was an error getting user profile. Please try again later.'
+              $scope.constituent = response.data.getConsResponse
+              $scope.schoolPlan.SendEmailOnBehalfOfCoordinator = $scope.constituent.custom.boolean.content == 'true'
+              angular.forEach $scope.constituent.custom.string, (field) ->
+                if field.id == 'custom_string18'
+                  $scope.participatingNextYear = field.content
+                if field.id == 'custom_string19'
+                  $scope.schoolPlan.MaterialsNeeded = field.content
+                return
+      $scope.getSchoolPlan()
+
       $scope.putSchoolPlan = (event) ->
         school = @schoolPlan
         if event.currentTarget.id == 'school_goal'
@@ -1138,7 +1157,7 @@ angular.module 'trPcControllers'
           if response.data.errorResponse
             console.log 'There was an error processing your update. Please try again later.'
           $scope.dashboardPromises.push updateUserProfilePromise
-            
+
       formatDateString = (dateVal) ->
         regex = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2}).*$/
         token_array = regex.exec(dateVal.toJSON());
