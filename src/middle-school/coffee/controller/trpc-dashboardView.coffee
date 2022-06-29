@@ -41,7 +41,6 @@ angular.module 'trPcControllers'
       $scope.companyId = $scope.participantRegistration.companyInformation.companyId
       theDate = new Date
       $scope.yearsList = [1..(theDate.getFullYear()-1978)] # 0 - 50
-      $scope.schoolChallenges = []
       
       $dataRoot = angular.element '[data-embed-root]'
 
@@ -134,17 +133,6 @@ angular.module 'trPcControllers'
                   if meta.name == 'school-goal'
                     $scope.companyProgress.schoolChallengeLevel = meta.value
                 amt = $scope.participantProgress.raised / 100
-                if amt >= Number(($scope.companyProgress.schoolChallengeLevel).replace('$', '').replace(/,/g, '')) and $scope.companyProgress.schoolChallenge != "No School Challenge"
-                  # check if student badge already added
-                  schoolChallengeAdded = false
-                  angular.forEach $scope.schoolChallenges, (schoolChallenge, schoolChallengeIndex) ->
-                    if schoolChallenge.id == "student"
-                      schoolChallengeAdded = true
-                  if not schoolChallengeAdded
-                    $scope.schoolChallenges.push
-                      id: 'student'
-                      label: 'Individual Challenge'
-                      earned: true
                       
       participantsString = ''
       $scope.companyParticipants = {}
@@ -247,11 +235,6 @@ angular.module 'trPcControllers'
                   companyProgress.schoolChallenge = $scope.companyProgress?.schoolChallenge
                   companyProgress.schoolChallengeLevel = $scope.companyProgress?.schoolChallengeLevel
                   $scope.companyProgress = companyProgress
-                  if companyProgress.raised >= companyProgress.goal 
-                    $scope.schoolChallenges.push
-                      id: 'school'
-                      label: 'School Challenge'
-                      earned: true
             response
             getSchoolInformation()
         $scope.dashboardPromises.push fundraisingProgressPromise
