@@ -1249,7 +1249,7 @@
 		  </div>
 		</div>
 	      </div>
-  	   <div class="ym-pc-dashboard-school-report text-center" ng-cloak>
+  	   <div class="ym-pc-dashboard-school-report text-center" ng-if="companyParticipants.participants.length > 0" ng-cloak>
  	     <button type="button" class="btn btn-md-wide btn-primary" ng-class="{'disabled': companyProgress.schoolChallengeLevel == ''}" ng-click="showSchoolChallengeReport()" ng-disabled="companyProgress.schoolChallengeLevel == ''">
 	       <strong>Generate School Challenge Report</strong>
 	     </button>
