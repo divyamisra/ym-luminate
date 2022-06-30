@@ -25,10 +25,8 @@ angular.module 'ahaLuminateApp'
           i++
         str
 
-      downloadFile = (data, filename = 'data') ->
-        csvData = @ConvertToCSV(data, 
-                  ['First Name' 'Last Name' 'Teacher' 'Grade' 'Amount Raised' 'Completed'], 
-                  ['first_name' 'last_name' 'teacher' 'grade' 'raisedf' 'completed'])
+      downloadFile = (data, filename = 'data.csv') ->
+        csvData = @ConvertToCSV(data, ['First Name' 'Last Name' 'Teacher' 'Grade' 'Amount Raised' 'Completed'], ['first_name' 'last_name' 'teacher' 'grade' 'raisedf' 'completed'])
         blob = new Blob([ '\ufeff' + csvData ], type: 'text/csv;charset=utf-8;')
         dwldLink = document.createElement('a')
         url = URL.createObjectURL(blob)
@@ -36,7 +34,7 @@ angular.module 'ahaLuminateApp'
         if isSafariBrowser
           dwldLink.setAttribute 'target', '_blank'
         dwldLink.setAttribute 'href', url
-        dwldLink.setAttribute 'download', filename + '.csv'
+        dwldLink.setAttribute 'download', filename
         dwldLink.style.visibility = 'hidden'
         document.body.appendChild dwldLink
         dwldLink.click()
