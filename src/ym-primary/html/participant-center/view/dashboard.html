@@ -682,7 +682,7 @@
         -->
       </div>
     </section>
-    <section class="ym-pc-dashboard-standard-gifts-section mb-2" aria-label="My Gifts" ng-if="hideGifts != 'Y' && has_bonus != 3" ng-cloak>
+    <section class="ym-pc-dashboard-standard-gifts-section mb-2" aria-label="My Gifts" ng-if="schoolPlan.hideGifts != 'Y' && has_bonus != 3" ng-cloak>
       <div class="ym-pc-dashboard-section-header">
         <h2 class="h3">
           You Earned <span ng-bind-html="giftsEarned"></span> out of <span ng-bind-html="totalGifts"></span> Thank-You Gifts!
@@ -1074,7 +1074,7 @@
 	    <h2 class="h3 text-center">
 		  School Plan
 	    </h2>
-	    <div class="ym-pc-dashboard-section-plan" ng-if="schoolPlan.EventStartDate != ''" ng-cloak>
+	    <div class="ym-pc-dashboard-section-plan" ng-if="schoolPlan != null" ng-cloak>
 		<div class="schoolPlanDates text-center">
 		  <p>
 		    Your event is kicking off on <strong>{{schoolPlan.EventStartDate | date:'MM/dd/yyyy'}}</strong><span ng-if="(schoolPlan.EventStartDate | date:'MM/dd/yyyy') !== (schoolPlan.EventEndDate | date:'MM/dd/yyyy') && schoolPlan.EventEndDate != ''" ng-cloak> and will conclude on <strong>{{schoolPlan.EventEndDate | date:'MM/dd/yyyy'}}</strong></span>.
@@ -1190,7 +1190,7 @@
 				        </div>
 		  </div>
      </div>
-     <div class="ym-pc-dashboard-section-plan text-center" ng-if="schoolPlan.EventStartDate == ''" ng-cloak>
+     <div class="ym-pc-dashboard-section-plan text-center" ng-if="schoolPlan == null" ng-cloak>
        <p>No plan data available for this School.</p>
      </div>
  </div>
@@ -1249,7 +1249,7 @@
 		  </div>
 		</div>
 	      </div>
-  	   <div class="ym-pc-dashboard-school-report text-center" ng-cloak>
+  	   <div class="ym-pc-dashboard-school-report text-center" ng-if="companyParticipants.participants.length > 0" ng-cloak>
  	     <button type="button" class="btn btn-md-wide btn-primary" ng-class="{'disabled': companyProgress.schoolChallengeLevel == ''}" ng-click="showSchoolChallengeReport()" ng-disabled="companyProgress.schoolChallengeLevel == ''">
 	       <strong>Generate School Challenge Report</strong>
 	     </button>
@@ -1281,7 +1281,7 @@
 	      </div>
 	      <p>Click the Copy button to share QR code onto documents, social media and websites.</p>
  	      <div id="qrcode" load-qrcode="{{secureDomain}}/site/TR?pg=company&fr_id={{frId}}&company_id={{companyId}}"></div>
-	      <img src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/khc-logo-qrcode.png" class="qrcode-logo d-none">
+	      <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/khc-logo-qrcode.png" class="qrcode-logo d-none">
               <button type="button" class="btn btn-md-wide btn-primary" id="copyable" role="button" copy-qrcode><strong>Copy</strong></button>
 	    </div>
 	  </div>
@@ -1789,6 +1789,42 @@
           <strong>{{notifyName}}</strong>
         </a>
       </div>
+    </section>
+
+    <section class="ym-pc-dashboard-coordinator-resources-section" aria-label="Top 15 school list" ng-show="schoolTop15.length > 0 || schoolTop15ByState.length > 0" ng-cloak>
+				<div class="school-leaderboard">
+					<h2 class="h3 text-center">School Leaderboard</h2>
+				</div>
+			  <div class="row">
+					<div class="col-md-6 px-4">
+						<h3 class="h5 text-center">Top 15 Schools Nationally</h3>
+						<div class="ym-tl-dollars-raised" role="list">
+							<div class="d-flex justify-content-between" ng-repeat="topSchool in schoolTop15" role="listitem" ng-if="schoolTop15.length > 0" ng-cloak>
+								<div class="col-xs-1 top-index">#{{$index+1}}</div>
+								<div class="col-xs-8 top-detail">
+									<div class="top-name">{{topSchool.SchoolName}}</div>
+								</div>
+								<div class="col-xs-3 top-amount">
+									<div class="top-raised">{{topSchool.SchoolTotalAmountRaised | currency:"$":0}}</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6 px-4">
+						<h3 class="h5 text-center">Top 15 Schools in {{stateList[schoolPlan.SchoolState]}}</h3>
+						<div class="ym-tl-dollars-raised" role="list">
+							<div class="d-flex justify-content-between" ng-repeat="topSchool2 in schoolTop15ByState" role="listitem" ng-if="schoolTop15ByState.length > 0" ng-cloak>
+								<div class="col-xs-1 top-index">#{{$index+1}}</div>
+								<div class="col-xs-8 top-detail">
+									<div class="top-name">{{topSchool2.SchoolName}}</div>
+								</div>
+								<div class="col-xs-3 top-amount">
+									<div class="top-raised">{{topSchool2.SchoolTotalAmountRaised | currency:"$":0}}</div>
+								</div>
+							</div>
+						</div>
+					</div>
+			  </div>
     </section>
     <section class="ym-pc-dashboard-spread-section event-secondary-medium" aria-label="Resources for Spreading the Word">
       <div class="ym-pc-dashboard-section-header">
