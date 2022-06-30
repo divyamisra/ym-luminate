@@ -1073,7 +1073,8 @@ angular.module 'trPcControllers'
           success: (response) ->
             if response.data.company[0] != ""
               $scope.schoolTop15ByState = response.data.company[0]
- 
+
+      $scope.schoolPlan = []
       $scope.schoolPlan.hideGifts = "Y"
       $scope.getSchoolPlan = () ->
         ZuriService.getSchoolDetail '&school_id=' + $scope.participantRegistration.companyInformation.companyId + '&EventId=' + $scope.frId,
