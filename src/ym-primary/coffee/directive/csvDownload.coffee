@@ -5,7 +5,7 @@ angular.module 'ahaLuminateApp'
       link: (scope, element, attrs) ->
         element.bind 'click', (event) ->
           #CopyImageClipboard.copyImageToClipboard attrs.copyImage
-          CsvDownloadService.downloadFile scope.companyParticipantList.participants, attrs.filename, attrs['csv-header'], attrs['csv-fields'] 
+          CsvDownloadService.downloadFile scope.$eval(attrs.ngCsv), attrs.filename, scope.$eval(attrs.csvHeader), scope.$eval(attrs.csvFields) 
           scope.buildCSVPending = 'done'
         return
   ]
