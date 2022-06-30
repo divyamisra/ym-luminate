@@ -3,7 +3,7 @@ angular.module 'ahaLuminateApp'
     '$rootScope'
     ($rootScope) ->
       ConvertToCSV = (objArray, headerList, fieldList) ->
-        var index
+        index = 0
         array = if typeof objArray != 'object' then JSON.parse(objArray) else objArray
         str = ''
         row = ''
