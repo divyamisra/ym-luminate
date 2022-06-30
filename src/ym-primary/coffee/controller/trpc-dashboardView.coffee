@@ -1106,7 +1106,8 @@ angular.module 'trPcControllers'
                 $scope.schoolPlan.EventStartDate = ''
             else
               $scope.schoolPlan.hideGifts = "N"
-            $scope.getSchoolTop15()
+            if $scope.participantRegistration.companyInformation?.isCompanyCoordinator is 'true'
+              $scope.getSchoolTop15()
 			
             NgPcConstituentService.getUserRecord('fields=custom_boolean2,custom_string18,custom_string19&cons_id=' + $scope.consId).then (response) ->
               if response.data.errorResponse
