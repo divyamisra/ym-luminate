@@ -39,7 +39,6 @@ angular.module 'trPcControllers'
       $scope.studentChallengeBadge = false
       $scope.schoolBadges = []
       $scope.companyProgress = []
-      $rootScope.hideGifts = "Y"
       $scope.topClassRaised = []
       $scope.topClassStudents = []
       $scope.topGradeRaised = []
@@ -1074,7 +1073,8 @@ angular.module 'trPcControllers'
           success: (response) ->
             if response.data.company[0] != ""
               $scope.schoolTop15ByState = response.data.company[0]
-
+ 
+      $scope.schoolPlan.hideGifts = "Y"
       $scope.getSchoolPlan = () ->
         ZuriService.getSchoolDetail '&school_id=' + $scope.participantRegistration.companyInformation.companyId + '&EventId=' + $scope.frId,
           failure: (response) ->
@@ -1104,7 +1104,7 @@ angular.module 'trPcControllers'
               else
                 $scope.schoolPlan.EventStartDate = ''
             else
-              $rootScope.hideGifts = "N"
+              $scope.schoolPlan.hideGifts = "N"
             $scope.getSchoolTop15()
 			
             NgPcConstituentService.getUserRecord('fields=custom_boolean2,custom_string18,custom_string19&cons_id=' + $scope.consId).then (response) ->
