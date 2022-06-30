@@ -25,8 +25,8 @@ angular.module 'ahaLuminateApp'
           i++
         str
 
-      downloadFile = (data, filename = 'data.csv') ->
-        csvData = @ConvertToCSV(data, ['First Name' 'Last Name' 'Teacher' 'Grade' 'Amount Raised' 'Completed'], ['first_name' 'last_name' 'teacher' 'grade' 'raisedf' 'completed'])
+      downloadFile = (data, filename = 'data.csv', headerList, fieldList) ->
+        csvData = @ConvertToCSV(data, headerList, fieldList)
         blob = new Blob([ '\ufeff' + csvData ], type: 'text/csv;charset=utf-8;')
         dwldLink = document.createElement('a')
         url = URL.createObjectURL(blob)
