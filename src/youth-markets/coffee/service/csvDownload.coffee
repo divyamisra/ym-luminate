@@ -2,7 +2,7 @@ angular.module 'ahaLuminateApp'
   .factory 'CsvDownloadService', [
     '$rootScope'
     ($rootScope) ->
-      ConvertToCSV = (objArray, headerList, fieldList) ->
+      ConvertToCSV: (objArray, headerList, fieldList) ->
         index = 0
         array = if typeof objArray != 'object' then JSON.parse(objArray) else objArray
         str = ''
@@ -25,7 +25,7 @@ angular.module 'ahaLuminateApp'
           i++
         str
 
-      downloadFile = (data, filename = 'data.csv', headerList, fieldList) ->
+      downloadFile: (data, filename = 'data.csv', headerList, fieldList) ->
         csvData = @ConvertToCSV(data, headerList, fieldList)
         blob = new Blob([ '\ufeff' + csvData ], type: 'text/csv;charset=utf-8;')
         dwldLink = document.createElement('a')
