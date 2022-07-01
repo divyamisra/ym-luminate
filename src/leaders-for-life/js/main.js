@@ -1269,7 +1269,7 @@
                                     success: function (response) {
                                       var teamImages = luminateExtend.utils.ensureArray(response.getTeamPhotoResponse.photoItem);
                                       var teamImage = typeof teamImages[0].customUrl === 'string' && teamImages[0].customUrl.length ? teamImages[0].customUrl : teamImages[0].originalUrl;
-                                      var topTeamRow = `<div class="col-md-4 pt-md-3 px-md-3"><div class="bg-red-deep pb-1 pt-3 px-3" style="aspect-ratio: 1/1;"><a href="TR/?team_id=${teamId}&amp;pg=team&amp;fr_id=${eventId}" class="d-flex flex-column h-100 overflow-hidden rounded-circle" aria-hidden="true"><img class="img-fluid w-100" src="${teamImage}" alt=""></a></div><div class="bg-red-deep"><a href="TR/?team_id=${teamId}&amp;pg=team&amp;fr_id=${eventId}" class="text-center text-decoration-none"><p class="py-2 text-white"><strong>${teamName}</strong></p></a></div></div>`;
+                                      var topTeamRow = `<div class="col-md-4 pt-md-3 px-md-3"><div class="bg-red-deep pb-1 pt-3 px-3" style="aspect-ratio: 1/1;"><a href="TR/?team_id=${teamId}&amp;pg=team&amp;fr_id=${eventId}" class="d-block overflow-hidden rounded-circle" aria-hidden="true"><img class="w-100" src="${teamImage}" alt=""></a></div><div class="bg-red-deep"><a href="TR/?team_id=${teamId}&amp;pg=team&amp;fr_id=${eventId}" class="text-center text-decoration-none"><p class="py-2 text-white"><strong>${teamName}</strong></p></a></div></div>`;
                                       deferred.resolve(topTeamRow);
                                     },
                                     error: function (response) {
