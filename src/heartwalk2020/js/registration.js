@@ -1177,15 +1177,34 @@
                         $('div#registration-ptype-page-step-' + step.toString() + ' > h1').text()
                     );
                 };
-                var renderNextStep = function (nextStep) {
-                    renderHeader(nextStep);
-                    $('div#registration-ptype-page-step-' + (nextStep - 1).toString()).hide();
-                    // if (nextStep === 3) {
-                    //     $('div#part_type_additional_gift_container').fadeIn();
-                    //     $('div#part_type_individual_company_selection_container').fadeIn();
-                    //     $('div#part_type_section_footer').fadeIn();
-                    // }
-                    $('div#registration-ptype-page-step-' + nextStep.toString()).fadeIn();
+                var digestPersonalGiftAmount = function () {
+                    if ($('#registration-ptype-personal-goal-option').val() === 'other-ammount') {
+                        $('#fr_goal').val(
+                            Number($('input.js__personal-goal-other-amount-input').val().replace(/[^0-9.-]+/g,""))
+                        );
+                    } else {
+                        $('#fr_goal').val(
+                            frGoalMatrix[parseInt($('.js__registration-ptype-personal-goal-slider').val(), 10) - 1]
+                        );
+                    }
+                };
+                var renderStep = function (onPage, offPage) {
+                    renderHeader(onPage);
+                    $('div#registration-ptype-page-step-' + offPage.toString()).hide();
+                    $('div#registration-ptype-page-step-' + onPage.toString()).fadeIn();
+                    if (offPage === 2 && onPage === 3) {
+                        digestPersonalGiftAmount();
+                    }
+                }
+                var renderPrevStep = function (currentStep, prevStep) {
+                    if (prevStep > 0) {
+                        renderStep(prevStep, currentStep);
+                    } else {
+                        history.back();
+                    }
+                }
+                var renderNextStep = function (currentStep, nextStep) {
+                    renderStep(nextStep, currentStep);
                 }
 
                 // Init
@@ -1195,19 +1214,117 @@
                 $steps.show();
 
                 // Dom manipulations
-                $steps.find('div.registration-ptype-page-step-personal-gift div.registration-ptype-page-step-content')
+                var $personalGiftStep = $steps.find('div.registration-ptype-page-step-personal-gift');
+                $personalGiftStep
+                    .find('div.registration-ptype-page-step-content')
                     .append($('div#part_type_additional_gift_container').detach())
-                    .append($('div#part_type_individual_company_selection_container').detach());
+                    .append($('div#part_type_individual_company_selection_container').detach())
+                    .find('div#part_type_additional_gift_container .manageable-content').hide();
+                $personalGiftStep
+                    .find('> div.button-container')
+                    .append(
+                        $('button#next_step')
+                            .removeClass('step-button next-step')
+                            .addClass('btn btn-primary')
+                            .text('Next')
+                            .detach()
+                    );
+                $personalGiftStep
+                    .find('label.donation-level-row-label-no-gift')
+                    .text('No gift at this time')
+                    .closest('.donation-level-row-container')
+                    .removeClass('donation-level-row-container')
+                    .addClass('donation-level-row-container-no-gift mt-3')
 
-                $steps.find('div.registration-ptype-page-step-personal-gift > div.button-container')
-                    .append($('div#part_type_section_footer').detach());
+                // Prev step click
+                $('.js__ptype-page-prev-step').on('click', function () {
+                    renderPrevStep(
+                        parseInt($(this).data('step'), 10), parseInt($(this).data('prev-step'), 10)
+                    );
+                });
 
                 // Next step click
                 $('.js__ptype-page-next-step').on('click', function () {
                     renderNextStep(
-                        parseInt($(this).data('next-step'), 10)
+                        parseInt($(this).data('step'), 10), parseInt($(this).data('next-step'), 10)
                     );
                 });
+
+                // Personal gift slider
+                var $frGoal = $('#fr_goal'),
+                    frGoalVal = $frGoal.val(),
+                    sliderPos = 0,
+                    frGoalMatrix = [
+                        '$100.00', '$250.00', '$500.00', '$1,000.00', '$2,500.00', '$5,000.00'
+                    ];
+                var personalGoalChange = function (pos) {
+                    $('.registration-ptype-personal-goal-slider-dots > .slider-dot').removeClass('selected');
+                    $('.registration-ptype-personal-goal-slider-dots > #slider-dot-' + pos.toString()).addClass('selected');
+                    $frGoal.val(frGoalMatrix[pos - 1]);
+                    for (var i = 6; i > pos; i--) {
+                        $('#pg-slider-photo-' + i.toString()).removeClass('active');
+                        $('#slider-dot-' + i.toString()).removeClass('active');
+                        $('.registration-ptype-personal-goal-slider-section.slider-section-' + i.toString()).removeClass('active');
+                    }
+                    for (var i = 1; i <= pos; i++) {
+                        $('#pg-slider-photo-' + i.toString()).addClass('active');
+                        $('#slider-dot-' + i.toString()).addClass('active');
+                        $('.registration-ptype-personal-goal-slider-section.slider-section-' + i.toString()).addClass('active');
+                    }
+                }
+                $('.js__registration-ptype-personal-goal-slider').on('change', function () {
+                    personalGoalChange(parseInt($(this).val(), 10));
+                });
+
+                // Slider / Other Amount switch
+                var flipPersonalGoalPage = function (type) {
+                    if (type === 'other-ammount') {
+                        $('#registration-ptype-personal-goal-slider-page').hide();
+                        $('#registration-ptype-personal-goal-other-amount-page').fadeIn();
+                    } else {
+                        $('#registration-ptype-personal-goal-other-amount-page').hide();
+                        $('#registration-ptype-personal-goal-slider-page').fadeIn();
+                    }
+                    $('#registration-ptype-personal-goal-option').val(type);
+                }
+                $('.js__registration-ptype-personal-goal-show-other-amount').on('click', function (e) {
+                    e.preventDefault();
+                    flipPersonalGoalPage('other-ammount');
+                });
+                $('.js__registration-ptype-personal-goal-show-slider').on('click', function (e) {
+                    e.preventDefault();
+                    flipPersonalGoalPage('slider');
+                });
+
+                // On-load personal goal logic
+                for (var i = 0; i <= frGoalMatrix.length; i++) {
+                    if (frGoalVal == frGoalMatrix[i]) {
+                        sliderPos = i + 1;
+                        break;
+                    }
+                }
+                if (sliderPos > 0) { // Slider
+                    personalGoalChange(sliderPos);
+                } else { // Other amount
+                    $('input.js__personal-goal-other-amount-input').val(Number(frGoalVal.replace(/[^0-9.-]+/g,"")));
+                    flipPersonalGoalPage('other-amount');
+                }
+
+                // // On-submit populate #fr_goal
+                // $('#F2fRegPartType').on('submit', function (e) {
+                //
+                // });
+
+
+
+                /*
+                $('.donation-level-row-container').click(function () {
+
+                });
+                $('.donation-level-row-container-no-gift').click(function () {
+
+                });
+                */
             };
             if ($('div#registration-ptype-page-steps').length === 1) {
                 cd.renderPTypePageSteps();
@@ -1360,15 +1477,23 @@
                         $('div#registration-reg-page-step-' + step.toString() + ' > h1').text()
                     );
                 };
-                var renderNextStep = function (currentStep, nextStep) {
-                    renderHeader(nextStep);
-                    if (currentStep > 0) {
-                        $('div#registration-reg-page-step-' + currentStep.toString()).hide();
-                    }
-                    $('div#registration-reg-page-step-' + nextStep.toString()).fadeIn();
+                var renderStep = function (onPage, offPage) {
+                    renderHeader(onPage);
+                    $('div#registration-reg-page-step-' + offPage.toString()).hide();
+                    $('div#registration-reg-page-step-' + onPage.toString()).fadeIn();
                     $('html, body').animate({
                         scrollTop: $('#registration_options_page').offset().top
                     }, 500);
+                }
+                var renderPrevStep = function (currentStep, prevStep) {
+                    if (prevStep > 0) {
+                        renderStep(prevStep, currentStep);
+                    } else {
+                        history.back();
+                    }
+                }
+                var renderNextStep = function (currentStep, nextStep) {
+                    renderStep(nextStep, currentStep);
                 }
                 var handleErrors = function () {
                     var step = 0,
@@ -1492,10 +1617,16 @@
                     handleErrors();
                 }
 
+                // Prev step click
+                $('.js__reg-page-prev-step').on('click', function () {
+                    renderPrevStep(
+                        parseInt($(this).data('step'), 10), parseInt($(this).data('prev-step'), 10)
+                    );
+                });
+
                 // Next step click
                 $('.js__reg-page-next-step').on('click', function () {
                     var currentStep = parseInt($(this).data('step'), 10),
-                        // prevStep = parseInt($(this).data('prev-step'), 10),
                         nextStep = parseInt($(this).data('next-step'), 10);
 
                     switch (currentStep) {
