@@ -287,7 +287,7 @@ angular.module 'ahaLuminateControllers'
           failure: (response) ->
           error: (response) ->
           success: (response) ->
-            if response.data.company[0] is not null 
+            if response.data.company[0] != null 
               $rootScope.frId = response.data.company[0].EventId
               $scope.companyId = response.data.company[0].CompanyId
               $scope.isCoordinator = response.data.company[0].isCoordinator
