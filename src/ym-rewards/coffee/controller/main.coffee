@@ -278,12 +278,12 @@ angular.module 'ahaLuminateControllers'
             angular.element('.js--default-header-login-form').submit()
           success: ->
             if not $scope.headerLoginInfo.ng_nexturl or $scope.headerLoginInfo.ng_nexturl is ''
-              window.location = $rootScope.secureDomain + 'site/SPageServer?pagename=ym_coordinator_reward_center&fr_id=' + $rootScope.frId
+              window.location = $rootScope.secureDomain + 'site/SPageServer?pagename=ym_coordinator_reward_center'
             else
               window.location = $scope.headerLoginInfo.ng_nexturl
       
       if $rootScope.consId
-        ZuriService.getStudentDetail '&cons_id=' + $rootScope.consId,
+        CatalogService.getStudentDetail '&cons_id=' + $rootScope.consId,
           failure: (response) ->
           error: (response) ->
           success: (response) ->
