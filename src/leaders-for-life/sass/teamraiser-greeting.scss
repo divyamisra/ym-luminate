@@ -13,6 +13,9 @@
       background-repeat: no-repeat;
       background-size  : 100% 100%;
       padding: 1rem;
+      @include media-breakpoint-down(md) {
+        background-image : url("https://secure3.convio.net/heartdev/images/content/pagebuilder/greetingsx1903x570.png");
+      }
 
       .event-info-banner {
         min-height         : 65vh;
