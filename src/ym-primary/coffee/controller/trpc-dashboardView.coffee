@@ -1109,24 +1109,33 @@ angular.module 'trPcControllers'
               $scope.getSchoolTop15()
       $scope.getSchoolPlan()
 
-      $scope.putSchoolPlan = (event) ->
+      $scope.putSchoolPlan = (event, sel) ->
         school = @schoolPlan
-        if event.currentTarget.id == 'school_goal'
-          $scope.schoolGoalInfo.goal = event.currentTarget.value
-          $scope.updateSchoolGoal()
-          $scope.getSchoolPlan()
-        else
-          if event.currentTarget.type == 'date'
-            schoolParams = '&field_id=' + event.currentTarget.id + '&value=' + event.currentTarget.value + '&type=' + event.currentTarget.type
-          else
-            if event.currentTarget.type == 'checkbox'
-              schoolParams = '&field_id=' + event.currentTarget.id + '&value=' + angular.element(event.currentTarget).is(':checked') + '&type=' + event.currentTarget.type
-            else
-              schoolParams = '&field_id=' + event.currentTarget.id + '&value=' + school[event.currentTarget.id] + '&type=' + event.currentTarget.type
+        if sel == 'ParticipatingNextYear' or sel == 'MaterialsNeeded'
+          schoolParams = '&field_id=' + sel + '&value=' + $scope.schoolPlan[sel] + '&type=dropdown'
           ZuriService.schoolPlanData '&method=UpdateSchoolPlan&CompanyId=' + $scope.participantRegistration.companyInformation.companyId + '&EventId=' + $scope.frId + schoolParams,
             failure: (response) ->
             error: (response) ->
             success: (response) ->
+        else
+          if event.currentTarget.id == 'school_goal'
+            $scope.schoolGoalInfo.goal = event.currentTarget.value
+            $scope.updateSchoolGoal()
+            $scope.getSchoolPlan()
+          else
+            switch event.currentTarget.type
+              when 'date'
+                schoolParams = '&field_id=' + event.currentTarget.id + '&value=' + event.currentTarget.value + '&type=' + event.currentTarget.type
+              when 'checkbox'
+                schoolParams = '&field_id=' + event.currentTarget.id + '&value=' + $scope.schoolPlan[event.currentTarget.id] + '&type=' + event.currentTarget.type
+              when 'dropdown'
+                schoolParams = '&field_id=' + event.currentTarget.id + '&value=' + event.currentTarget.value + '&type=' + event.currentTarget.type
+              else
+                schoolParams = '&field_id=' + event.currentTarget.id + '&value=' + school[event.currentTarget.id] + '&type=' + event.currentTarget.type
+            ZuriService.schoolPlanData '&method=UpdateSchoolPlan&CompanyId=' + $scope.participantRegistration.companyInformation.companyId + '&EventId=' + $scope.frId + schoolParams,
+              failure: (response) ->
+              error: (response) ->
+              success: (response) ->
 
       formatDateString = (dateVal) ->
         regex = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2}).*$/
