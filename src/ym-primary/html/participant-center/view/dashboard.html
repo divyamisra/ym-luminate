@@ -1157,7 +1157,7 @@
 		    My school will be participating in Kids Heart Challenge next year!
 		  </div>
 		  <div class="col-md-4 pr-0">
-  		    <select class="form-control" id="participatingNextYear" ng-model="participatingNextYear" aria-label="Next Year Participation" ng-change="updateParticipatingNextYear()">
+  		    <select class="form-control" id="participatingNextYear" ng-model="participatingNextYear" aria-label="Next Year Participation" ng-change="putSchoolPlan($event)">
 		      <option value="YES">Yes</option>
 		      <option value="NO">No</option>
 		      <option value="Still Considering">Still Considering</option>
@@ -1172,7 +1172,7 @@
 		    <button aria-label="Click the icon to see an example of the materials." data-balloon-pos="up" data-balloon-length="large" ng-click="showMaterialTypes()"><i class="fa fa-info-circle"></i></button> 
 		  </div>
 		  <div class="col-md-4">
- 		    <select class="form-control" id="MaterialsNeeded" ng-model="schoolPlan.MaterialsNeeded" aria-label="Materials Needed" ng-change="updateMaterialsNeeded()">
+ 		    <select class="form-control" id="MaterialsNeeded" ng-model="schoolPlan.MaterialsNeeded" aria-label="Materials Needed" ng-change="putSchoolPlan($event)">
 		      <option value="Envelope">Envelope</option>
 		      <option value="Parent Letter">Parent Letter</option>
  		      <option value="Digital Only">Digital Only</option>
