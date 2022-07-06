@@ -1081,8 +1081,8 @@
 		    <span ng-if="schoolPlan.DonationDueDate != '0000-00-00'" ng-cloak>All donations are due on <strong>{{schoolPlan.DonationDueDate | date:'MM/dd/yyyy'}}</strong>.</span>
 		  </p>
 		</div>
-	      <div class="d-md-flex align-items-end ym-pc-dashboard-event-dates mb-2">
-		<div class="col-md-6 pe-2">
+	      <div class="d-md-flex align-items-end ym-pc-dashboard-event-dates flex-wrap mb-2">
+		<div class="col-md-6 pe-2 pb-2">
                   <div class="form-group">
                     <label for="EventStartDate"><strong>Event Start/Distribute Envelopes Date</strong></label>
                     <div class="input-group-old">
@@ -1092,7 +1092,7 @@
                     </div>
                   </div>
  		</div>
-		<div class="col-md-6">
+		<div class="col-md-6 pe-2 pb-2">
 			<div class="form-group">
 				<label for="EventEndDate"><strong>Event End Date</strong></label>
 				<div class="input-group-old">
@@ -1102,9 +1102,7 @@
 				</div>
 			</div>
 		</div>
-	      </div>
-	      <div class="d-md-flex ym-pc-dashboard-point-field mb-2" ng-cloak>
-					<div class="col-md-6 pe-2">
+					<div class="col-md-6 pe-2 pb-2">
 						<div class="form-group">
 							<label for="KickOffDate"><strong>Kick Off/Assembly Date</strong></label>
 							<div class="input-group-old">
@@ -1114,13 +1112,21 @@
 							</div>
 						</div>
 					</div>
-					<div class="col-md-6">
+					<div class="col-md-6 pe-2 pb-2">
 						<div class="form-group">
 							<label for="DonationDueDate"><strong>Donation Due Date</strong></label>
 							<div class="input-group-old">
 								<!-- <span ng-if="schoolPlan.DonationDueDate == '0000-00-00'" ng-cloak>--/--/----</span>
 								<span ng-if="schoolPlan.DonationDueDate != '0000-00-00'" ng-cloak>{{schoolPlan.DonationDueDate | date:'MM/dd/yyyy'}}</span> -->
 								<input type="date" class="form-control" id="DonationDueDate" ng-model="schoolPlan.DonationDueDate" aria-label="Donation Due Date" ng-blur="putSchoolPlan($event)" />
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6 pe-2 pb-2">
+						<div class="form-group">
+							<label for="DonationDueDate"><strong>Last Day of School</strong></label>
+							<div class="input-group-old">
+								<input type="date" class="form-control" id="LastDayOfSchool" ng-model="schoolPlan.LastDayOfSchool" aria-label="Last Day of School" ng-blur="putSchoolPlan($event)" />
 							</div>
 						</div>
 					</div>
@@ -1139,9 +1145,9 @@
 						<input type="text" class="form-control" id="school_goal" ng-model="companyProgress.goalFormatted" aria-label="School Fundraising Goal" ng-blur="putSchoolPlan($event)" onkeypress="return event.charCode == 36 || event.charCode == 44 || event.charCode == 46 || (event.charCode >= 48 && event.charCode <= 57)">
 					</div>
 	      </div>
-	      <div class="ym-pc-dashboard-send-emails checkbox mb-2 pe-2" custom-checkbox ng-class="{'checked': schoolPlan.SendEmailOnBehalfOfCoordinator == true}" ng-cloak>
+	      <div class="ym-pc-dashboard-send-emails checkbox mb-2 pe-2" custom-checkbox ng-class="{'checked': schoolPlan.SendEmailOnBehalfOfCoordinator == 'ALLOW'}" ng-cloak>
 	        <label for="SendEmailOnBehalfOfCoordinator">
-          	<input type="checkbox" name="SendEmailOnBehalfOfCoordinator" id="SendEmailOnBehalfOfCoordinator" ng-model="schoolPlan.SendEmailOnBehalfOfCoordinator" ng-true-value="true" ng-false-value="false" ng-click="putSchoolPlan($event)"> 
+          	<input type="checkbox" name="SendEmailOnBehalfOfCoordinator" id="SendEmailOnBehalfOfCoordinator" ng-model="schoolPlan.SendEmailOnBehalfOfCoordinator" ng-true-value="ALLOW" ng-false-value="DONOTALLOW" ng-click="putSchoolPlan($event)"> 
           	Allow AHA to Send Emails to my students on my behalf
         	</label>
 	      </div>
@@ -1152,8 +1158,8 @@
 		  </div>
 		  <div class="col-md-4 pr-0">
   		    <select class="form-control" id="participatingNextYear" ng-model="participatingNextYear" aria-label="Next Year Participation" ng-change="updateParticipatingNextYear()">
-		      <option value="Yes">Yes</option>
-		      <option value="No">No</option>
+		      <option value="YES">Yes</option>
+		      <option value="NO">No</option>
 		      <option value="Still Considering">Still Considering</option>
 		    </select>
  		  </div>
