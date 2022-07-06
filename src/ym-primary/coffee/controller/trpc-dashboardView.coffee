@@ -1119,7 +1119,10 @@ angular.module 'trPcControllers'
           if event.currentTarget.type == 'date'
             schoolParams = '&field_id=' + event.currentTarget.id + '&value=' + event.currentTarget.value + '&type=' + event.currentTarget.type
           else
-            schoolParams = '&field_id=' + event.currentTarget.id + '&value=' + school[event.currentTarget.id] + '&type=' + event.currentTarget.type
+            if event.currentTarget.type == 'checkbox'
+              schoolParams = '&field_id=' + event.currentTarget.id + '&value=' + angular.element(event.currentTarget).is(':checked') + '&type=' + event.currentTarget.type
+            else
+              schoolParams = '&field_id=' + event.currentTarget.id + '&value=' + school[event.currentTarget.id] + '&type=' + event.currentTarget.type
           ZuriService.schoolPlanData '&method=UpdateSchoolPlan&CompanyId=' + $scope.participantRegistration.companyInformation.companyId + '&EventId=' + $scope.frId + schoolParams,
             failure: (response) ->
             error: (response) ->
