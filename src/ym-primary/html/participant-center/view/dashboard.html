@@ -476,7 +476,7 @@
 			My student will be participating in Kids Heart Challenge next year!
 		  </div>
 		  <div class="col-md-4">
-  		    <select class="form-control" id="participatingNextYear" ng-model="schoolPlan.participatingNextYear" aria-label="Next Year Participation" ng-change="putSchoolPlan($event)">
+  		    <select class="form-control" id="participatingNextYear" ng-model="schoolPlan.participatingNextYear" aria-label="Next Year Participation" ng-change="updateParticipatingNextYear()">
 		      <option value="Yes">Yes</option>
 		      <option value="No">No</option>
 		      <option value="Still Considering">Still Considering</option>
@@ -1147,7 +1147,7 @@
 	      </div>
 	      <div class="ym-pc-dashboard-send-emails checkbox mb-2 pe-2" custom-checkbox ng-class="{'checked': schoolPlan.SendEmailOnBehalfOfCoordinator == 'ALLOW'}" ng-cloak>
 	        <label for="SendEmailOnBehalfOfCoordinator">
-          	<input type="checkbox" name="SendEmailOnBehalfOfCoordinator" id="SendEmailOnBehalfOfCoordinator" ng-model="schoolPlan.SendEmailOnBehalfOfCoordinator" ng-true-value="ALLOW" ng-false-value="DONOTALLOW" ng-click="putSchoolPlan($event)"> 
+          	<input type="checkbox" name="SendEmailOnBehalfOfCoordinator" id="SendEmailOnBehalfOfCoordinator" ng-model="schoolPlan.SendEmailOnBehalfOfCoordinator" ng-true-value="'ALLOW'" ng-false-value="'DONOTALLOW'" ng-click="putSchoolPlan($event)"> 
           	Allow AHA to Send Emails to my students on my behalf
         	</label>
 	      </div>
@@ -1157,10 +1157,10 @@
 		    My school will be participating in Kids Heart Challenge next year!
 		  </div>
 		  <div class="col-md-4 pr-0">
-  		    <select class="form-control" id="participatingNextYear" ng-model="schoolPlan.participatingNextYear" aria-label="Next Year Participation" ng-change="putSchoolPlan($event)">
+  		    <select class="form-control" id="participatingNextYear" ng-model="schoolPlan.ParticipatingNextYear" aria-label="Next Year Participation" ng-change="putSchoolPlan($event,'ParticipatingNextYear')">
 		      <option value="YES">Yes</option>
 		      <option value="NO">No</option>
-		      <option value="Still Considering">Still Considering</option>
+		      <option value="I'm not sure'">Still Considering</option>
 		    </select>
  		  </div>
 		</div>
@@ -1172,7 +1172,7 @@
 		    <button aria-label="Click the icon to see an example of the materials." data-balloon-pos="up" data-balloon-length="large" ng-click="showMaterialTypes()"><i class="fa fa-info-circle"></i></button> 
 		  </div>
 		  <div class="col-md-4">
- 		    <select class="form-control" id="MaterialsNeeded" ng-model="schoolPlan.MaterialsNeeded" aria-label="Materials Needed" ng-change="putSchoolPlan($event)">
+ 		    <select class="form-control" id="MaterialsNeeded" ng-model="schoolPlan.MaterialsNeeded" aria-label="Materials Needed" ng-change="putSchoolPlan($event,'MaterialsNeeded')">
 		      <option value="Envelope">Envelope</option>
 		      <option value="Parent Letter">Parent Letter</option>
  		      <option value="Digital Only">Digital Only</option>
