@@ -196,19 +196,22 @@
         display: grid;
       }
 
-      a > :first-child {
-        height: 0;
-        padding-top: 100%;
-        position: relative;
+      a {
+        text-decoration: none;
+        > :first-child {
+          height: 0;
+          padding-top: 100%;
+          position: relative;
 
-        > * {
-          clip-path: circle();
-          height: 100%;
-          left: 1rem;
-          overflow: hidden;
-          position: absolute;
-          top: 0;
-          width: calc(100% - 2rem);
+          > * {
+            clip-path: circle();
+            height: 100%;
+            left: 1rem;
+            overflow: hidden;
+            position: absolute;
+            top: 0;
+            width: calc(100% - 2rem);
+          }
         }
       }
 
