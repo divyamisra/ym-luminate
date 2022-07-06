@@ -1171,22 +1171,33 @@
         // PTYPE
         if ($('#F2fRegPartType').length > 0) {
             cd.renderPTypePageSteps = function () {
+                var sliderDonationLevel = 0,
+                    frGoalMatrix = [
+                        '$100.00', '$250.00', '$500.00', '$1,000.00', '$2,500.00', '$5,000.00'
+                    ]
+
                 // Local functions
                 var renderHeader = function (step) {
                     $('#part_type_campaign_banner_container').text(
                         $('div#registration-ptype-page-step-' + step.toString() + ' > h1').text()
                     );
                 };
-                var digestPersonalGiftAmount = function () {
-                    if ($('#registration-ptype-personal-goal-option').val() === 'other-ammount') {
-                        $('#fr_goal').val(
-                            Number($('input.js__personal-goal-other-amount-input').val().replace(/[^0-9.-]+/g,""))
-                        );
+                var sliderPos2DonationLevel = function(pos) {
+                    if (pos %  100 !== 0) {
+                        var level = pos/100;
+                        sliderDonationLevel = level > sliderDonationLevel ? Math.ceil(level) : Math.floor(level);
+                        $('.js__registration-ptype-personal-goal-slider').val(sliderDonationLevel * 100);
                     } else {
-                        $('#fr_goal').val(
-                            frGoalMatrix[parseInt($('.js__registration-ptype-personal-goal-slider').val(), 10) - 1]
-                        );
+                        sliderDonationLevel = pos/100;
                     }
+                    return sliderDonationLevel;
+                }
+                var digestPersonalGiftAmount = function () {
+                    var goal = frGoalMatrix[sliderDonationLevel - 1];
+                    if ($('#registration-ptype-personal-goal-option').val() === 'other-ammount') {
+                        goal = Number($('input.js__personal-goal-other-amount-input').val().replace(/[^0-9.-]+/g,""));
+                    }
+                    $('#fr_goal').val(goal);
                 };
                 var renderStep = function (onPage, offPage) {
                     renderHeader(onPage);
@@ -1252,28 +1263,28 @@
 
                 // Personal gift slider
                 var $frGoal = $('#fr_goal'),
-                    frGoalVal = $frGoal.val(),
-                    sliderPos = 0,
-                    frGoalMatrix = [
-                        '$100.00', '$250.00', '$500.00', '$1,000.00', '$2,500.00', '$5,000.00'
-                    ];
-                var personalGoalChange = function (pos) {
+                    frGoalVal = $frGoal.val();
+                var personalGoalChange = function (sliderDonationLevel) {
                     $('.registration-ptype-personal-goal-slider-dots > .slider-dot').removeClass('selected');
-                    $('.registration-ptype-personal-goal-slider-dots > #slider-dot-' + pos.toString()).addClass('selected');
-                    $frGoal.val(frGoalMatrix[pos - 1]);
-                    for (var i = 6; i > pos; i--) {
+                    $('.registration-ptype-personal-goal-slider-dots > #slider-dot-' + sliderDonationLevel.toString()).addClass('selected');
+                    $frGoal.val(frGoalMatrix[sliderDonationLevel - 1]);
+                    for (var i = 6; i > sliderDonationLevel; i--) {
                         $('#pg-slider-photo-' + i.toString()).removeClass('active');
                         $('#slider-dot-' + i.toString()).removeClass('active');
                         $('.registration-ptype-personal-goal-slider-section.slider-section-' + i.toString()).removeClass('active');
                     }
-                    for (var i = 1; i <= pos; i++) {
+                    for (var i = 1; i <= sliderDonationLevel; i++) {
                         $('#pg-slider-photo-' + i.toString()).addClass('active');
                         $('#slider-dot-' + i.toString()).addClass('active');
                         $('.registration-ptype-personal-goal-slider-section.slider-section-' + i.toString()).addClass('active');
                     }
                 }
                 $('.js__registration-ptype-personal-goal-slider').on('change', function () {
-                    personalGoalChange(parseInt($(this).val(), 10));
+                    personalGoalChange(
+                        sliderPos2DonationLevel(
+                            parseInt($(this).val(), 10)
+                        )
+                    );
                 });
 
                 // Slider / Other Amount switch
@@ -1299,12 +1310,12 @@
                 // On-load personal goal logic
                 for (var i = 0; i <= frGoalMatrix.length; i++) {
                     if (frGoalVal == frGoalMatrix[i]) {
-                        sliderPos = i + 1;
+                        sliderDonationLevel = i + 1;
                         break;
                     }
                 }
-                if (sliderPos > 0) { // Slider
-                    personalGoalChange(sliderPos);
+                if (sliderDonationLevel > 0) { // Slider
+                    personalGoalChange(sliderDonationLevel);
                 } else { // Other amount
                     $('input.js__personal-goal-other-amount-input').val(Number(frGoalVal.replace(/[^0-9.-]+/g,"")));
                     flipPersonalGoalPage('other-amount');
