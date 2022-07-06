@@ -250,6 +250,8 @@
         width: 40%;
         height: 27px;
         display: block;
+        position: relative;
+        z-index: 1;
       }
       &:before {
         float: right;
