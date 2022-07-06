@@ -38,12 +38,22 @@
           width: fit-content;
 
           h1 {
-            font-size: 79px;
-            color: $red-deep;
+            font-size: 63px;
             background-color: $white;
             line-height: 60px;
+
+            &::first-line {
+              color: $red-deep;
+              font-size: 79px;
+            }
+
             @include media-breakpoint-down(md) {
-              font-size: 2.25em !important;
+              font-size: 4.5em;
+
+              &::first-line {
+                color: $red-deep;
+                font-size: 0.5em;
+              }
             }
           }
 
