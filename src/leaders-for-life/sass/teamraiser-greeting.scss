@@ -1,29 +1,28 @@
 .pg_entry {
-
   main {
     margin-bottom: 60px;
 
     & > .container {
-      padding   : 0 !important;
+      padding: 0 !important;
       background: none;
     }
 
     .greeting-header {
-      background-image : url("https://secure3.convio.net/heartdev/images/content/pagebuilder/greetingsx1903x570_updated.png");
+      background-image: url("https://secure3.convio.net/heartdev/images/content/pagebuilder/greetingsx1903x570_updated.png");
       background-repeat: no-repeat;
-      background-size  : 100% 100%;
+      background-size: 100% 100%;
       padding: 1rem;
       @include media-breakpoint-down(md) {
-        background-image : url("https://secure3.convio.net/heartdev/images/content/pagebuilder/greetings-mobile.png");
+        background-image: url("https://secure3.convio.net/heartdev/images/content/pagebuilder/greetings-mobile.png");
       }
 
       .event-info-banner {
-        min-height         : 65vh;
-        width              : 100%;
-        background-image   : url("https://secure3.convio.net/heartdev/images/content/pagebuilder/Gold-Heart-ManWoman-1.png");
-        background-size    : contain;
+        min-height: 65vh;
+        width: 100%;
+        background-image: url("https://secure3.convio.net/heartdev/images/content/pagebuilder/Gold-Heart-ManWoman-1.png");
+        background-size: contain;
         background-position: center;
-        background-repeat  : no-repeat;
+        background-repeat: no-repeat;
         @include media-breakpoint-up(lg) {
           background-position: center;
         }
@@ -39,24 +38,24 @@
           width: fit-content;
 
           h1 {
-            font-size       : 79px;
-            color           : $red-deep;
+            font-size: 79px;
+            color: $red-deep;
             background-color: $white;
-            line-height     : 60px;
+            line-height: 60px;
             @include media-breakpoint-down(md) {
-              font-size: 2.25em!important;
+              font-size: 2.25em !important;
             }
           }
 
           h2 {
             background-color: $white;
-            font-weight     : 600;
+            font-weight: 600;
           }
 
           span {
             font-size: 63px;
             @include media-breakpoint-down(md) {
-              font-size: 2em!important;
+              font-size: 2em !important;
             }
           }
         }
@@ -70,16 +69,16 @@
 
         .event-info__details h2 {
           font-family: $font-family-light;
-          font-size  : 1.5em;
+          font-size: 1.5em;
           line-height: 1.5;
-          text-align : center;
+          text-align: center;
           font-weight: normal;
         }
         .event-info__details p {
-          font-size: 0.875em!important;
-          margin   : 1em 0;
+          font-size: 0.875em !important;
+          margin: 1em 0;
           @include media-breakpoint-up(md) {
-            font-size: 1.25em!important;
+            font-size: 1.25em !important;
           }
         }
         .event-date,
@@ -119,13 +118,13 @@
           }
         }
         .event-date {
-          margin     : 1px 0 31px;
-          font-size  : 1.44rem;
+          margin: 1px 0 31px;
+          font-size: 1.44rem;
           font-family: $font-family-medium;
           font-weight: normal;
         }
         .btn {
-          padding  : 1rem;
+          padding: 1rem;
           font-size: 1.5rem;
           min-width: 300px;
 
@@ -134,24 +133,24 @@
           }
         }
         .fundraising-amounts {
-          margin-top   : 90px;
+          margin-top: 90px;
           margin-bottom: 0;
-          padding      : 0 72px 67px;
+          padding: 0 72px 67px;
           span {
             font-size: 0.78em;
-            margin   : 14px 0 -3px;
+            margin: 14px 0 -3px;
             @include media-breakpoint-up(md) {
               font-size: 1em;
             }
           }
           .amount {
-            font-size  : 0.875em;
+            font-size: 0.875em;
             font-family: $font-family-bold;
             line-height: 1.4;
-            margin     : 0;
+            margin: 0;
             @include media-breakpoint-up(md) {
-              font-size: 1.667em!important;
-              color    : $red-deep;
+              font-size: 1.667em !important;
+              color: $red-deep;
             }
           }
         }
@@ -161,12 +160,12 @@
     // End greeting-header
 
     .greeting-about {
-      padding-top   : 0;
+      padding-top: 0;
       padding-bottom: 36px;
 
       h2 {
-        color      : $red;
-        font-size  : 21px;
+        color: $red;
+        font-size: 21px;
         font-weight: 600;
       }
 
@@ -177,18 +176,50 @@
     // End greeting-about
 
     .greeting-visual-banner {
-      height             : 200px;
+      height: 200px;
       @include media-breakpoint-up(xl) {
-        height               : 623px;
+        height: 623px;
         background-attachment: fixed;
       }
-      width              : 100%;
-      background-image   : url("https://www2.heart.org/images/content/pagebuilder/aha-fieldday-greeting-banner_2x.jpg");
-      background-size    : cover;
+      width: 100%;
+      background-image: url("https://www2.heart.org/images/content/pagebuilder/aha-fieldday-greeting-banner_2x.jpg");
+      background-size: cover;
       background-position: center;
     }
 
     .nominee-section {
+      p {
+        margin: 0;
+      }
+
+      [class*="col-"] {
+        display: grid;
+      }
+
+      a > :first-child {
+        height: 0;
+        padding-top: 100%;
+        position: relative;
+
+        > * {
+          clip-path: circle();
+          height: 100%;
+          left: 1rem;
+          overflow: hidden;
+          position: absolute;
+          top: 0;
+          width: calc(100% - 2rem);
+        }
+      }
+
+      img {
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-45%);
+      }
+      width: 100%;
 
       .js--team-top-list {
         img {
@@ -201,41 +232,41 @@
     #movement-section {
       &:after,
       &:before {
-        content         : " ";
-        background-color: #C10E21;
-        width           : 40%;
-        height          : 27px;
-        display         : block;
+        content: " ";
+        background-color: #c10e21;
+        width: 40%;
+        height: 27px;
+        display: block;
       }
       &:before {
         float: right;
       }
       .container {
         position: relative;
-        padding : 6rem 0;
+        padding: 6rem 0;
         &:after,
         &:before {
-          content          : "";
-          display          : block;
-          height           : 26px;
-          background       : url("https://secure3.convio.net/heartdev/images/content/pagebuilder/GoldBar_600px.png");
-          background-size  : cover;
+          content: "";
+          display: block;
+          height: 26px;
+          background: url("https://secure3.convio.net/heartdev/images/content/pagebuilder/GoldBar_600px.png");
+          background-size: cover;
           background-repeat: no-repeat;
         }
         &:before {
-          width   : 64px;
-          right   : 0;
-          top     : 5rem;
+          width: 64px;
+          right: 0;
+          top: 5rem;
           position: absolute;
         }
         &:after {
-          width   : 88px;
-          left    : -4rem;
-          top     : -3rem;
+          width: 88px;
+          left: -4rem;
+          top: -3rem;
           position: relative;
         }
         .movement-copy {
-          box-shadow      : 0 1rem 11rem 10rem #fff;
+          box-shadow: 0 1rem 11rem 10rem #fff;
           background-color: #fff;
         }
       }
@@ -243,16 +274,16 @@
 
     .top-list {
       max-width: 1040px;
-      margin   : auto;
+      margin: auto;
     }
     .top-lists {
-      background-color   : #c10e21;
-      background-repeat  : no-repeat;
+      background-color: #c10e21;
+      background-repeat: no-repeat;
       background-position: right top;
-      background-size    : 100%;
+      background-size: 100%;
       @include media-breakpoint-up(md) {
         background-image: url("../img/leaders-heartbeat.svg");
-        background-size : cover;
+        background-size: cover;
       }
     }
     .top-lists-container {
@@ -261,13 +292,13 @@
         padding: 91px 0;
       }
       .btn-tertiary {
-        color       : $red;
+        color: $red;
         border-color: $red;
       }
       h2 {
         font-size: 2rem;
-        margin   : 0 0 24px;
-        color    : $white;
+        margin: 0 0 24px;
+        color: $white;
       }
       ol,
       ul {
@@ -275,16 +306,16 @@
       }
       .top-list {
         background-color: $white;
-        padding         : 0;
-        box-shadow      : 0 15px 30px rgba(0,0,0,.5);
+        padding: 0;
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
         h3 {
-          font-size  : 2rem;
-          color      : $red;
-          padding    : 38px 43px 37px 45px;
+          font-size: 2rem;
+          color: $red;
+          padding: 38px 43px 37px 45px;
           font-family: $font-family-bold;
-          margin     : 0;
+          margin: 0;
           .text-small {
-            margin   : 6px 0 0;
+            margin: 6px 0 0;
             font-size: 1rem;
           }
         }
@@ -294,27 +325,27 @@
         li {
           border-bottom: solid 2px $gray-200;
           a {
-            font-size  : 1rem;
-            padding    : 26px 0 23px 47px;
+            font-size: 1rem;
+            padding: 26px 0 23px 47px;
             line-height: 1.6;
-            display    : block;
+            display: block;
           }
         }
         .raised {
-          font-size : 0.9rem;
-          padding   : 15px 58px 0 0;
+          font-size: 0.9rem;
+          padding: 15px 58px 0 0;
           text-align: right;
         }
         .raised strong {
-          font-size  : 0.9rem;
+          font-size: 0.9rem;
           font-family: $font-family-bold;
         }
         .top-list-footer {
           padding: 30px 0;
           .btn-tertiary {
-            width    : 100%;
+            width: 100%;
             max-width: 263px;
-            padding  : 5px 0 !important;
+            padding: 5px 0 !important;
           }
         }
       }
@@ -327,9 +358,9 @@
     }
     .marketing-call-out {
       background-color: $red-light;
-      padding         : 25px 0 55px;
+      padding: 25px 0 55px;
       h2 {
-        color    : $red;
+        color: $red;
         font-size: 1.3em;
         @include media-breakpoint-up(lg) {
           font-size: 2.2em;
@@ -346,38 +377,38 @@
       }
       .btn {
         max-width: 260px;
-        padding  : 13px;
-        margin   : auto;
+        padding: 13px;
+        margin: auto;
       }
     }
 
     .top-lists-container .top-list {
       ul {
-        display        : flex;
-        align-items    : center;
+        display: flex;
+        align-items: center;
         justify-content: flex-start;
-        flex-flow      : column wrap;
-        align-content  : center;
-        max-height     : 400px;
-        position       : relative;
+        flex-flow: column wrap;
+        align-content: center;
+        max-height: 400px;
+        position: relative;
         @include media-breakpoint-down(md) {
-          flex-flow : column nowrap;
-          height    : auto!important;
-          max-height: 100%!important;
-          min-height: auto!important;
+          flex-flow: column nowrap;
+          height: auto !important;
+          max-height: 100% !important;
+          min-height: auto !important;
         }
       }
       li {
-        position     : relative;
-        width        : 250px;
-        height       : 70px;
-        border-bottom: none!important;
+        position: relative;
+        width: 250px;
+        height: 70px;
+        border-bottom: none !important;
         @include media-breakpoint-down(md) {
-          width : 100%;
+          width: 100%;
           height: 100%;
         }
         a {
-          padding   : 26px 0 23px;
+          padding: 26px 0 23px;
           text-align: center;
           @include media-breakpoint-down(md) {
             padding: 15px 0;
@@ -390,10 +421,10 @@
       li.two-column-team-list:nth-of-type(1):after,
       li.two-column-team-list:nth-of-type(5):after {
         border-right: 1px solid #d2d7da;
-        position    : absolute;
-        content     : '';
-        height      : 100%;
-        right       : 0;
+        position: absolute;
+        content: "";
+        height: 100%;
+        right: 0;
       }
       li.two-column-team-list:nth-of-type(1):after {
         bottom: -35px;
@@ -410,10 +441,10 @@
       li.three-column-team-list:nth-of-type(5):after,
       li.three-column-team-list:nth-of-type(6):after {
         border-right: 1px solid #d2d7da;
-        position    : absolute;
-        content     : '';
-        height      : 100%;
-        right       : 0;
+        position: absolute;
+        content: "";
+        height: 100%;
+        right: 0;
       }
       li.three-column-team-list:nth-of-type(1):after,
       li.three-column-team-list:nth-of-type(6):after {
