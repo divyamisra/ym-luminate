@@ -61,6 +61,10 @@ h1, .h1, h3, .h3, h4, .h4, h5, .h5, strong {
   font-weight: bold;
 }
 
+.event-info__header h1::first-line {
+  font-weight: 900;
+}
+
 h2, .h2 {
   font-size: 46px;
   font-weight: 300;
