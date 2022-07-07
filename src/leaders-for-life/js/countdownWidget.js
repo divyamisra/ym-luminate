@@ -31,7 +31,7 @@ var CountDownWidget = function(element_id, datetime) {
 
   this.key = Math.random().toString(16).slice(2)
 
-  this.announceInterval = 1000 * 60 * .5 // in ms
+  this.announceInterval = 1000 * 60 * 5 // in ms
   this.announceTitle = 'Time left: '
 
   this.getTimeDiff()
