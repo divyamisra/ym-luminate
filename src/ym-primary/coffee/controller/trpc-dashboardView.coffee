@@ -407,6 +407,7 @@ angular.module 'trPcControllers'
                   if response.data.updateConsResponse?.message
                     $scope.coordinatorMessage.successMessage = true
                     $scope.editCoordinatorMessageModal.close()
+                    angular.element('.schoolCreateMessage button').focus()
                   else
                     $scope.coordinatorMessage.errorMessage = 'There was an error processing your update. Please try again later.'
           else
@@ -449,6 +450,7 @@ angular.module 'trPcControllers'
 	
       $scope.cancelPostFeedbackMessageConfirm = ->
         $scope.postFeedbackMessageModalConfirm.close()
+	angular.element('.ym-pc-feedback button').focus()
 
       $scope.personalGoalInfo = {}
 
