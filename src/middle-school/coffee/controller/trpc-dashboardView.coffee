@@ -599,7 +599,7 @@ angular.module 'trPcControllers'
                     $scope.teamPageUrl = shortcutItem.defaultUrl.split('/site/')[0] + '/site/TR?fr_id=' + $scope.frId + '&pg=team&team_id=' + $scope.participantRegistration.teamId
               response
           $scope.dashboardPromises.push getTeamShortcutPromise
-        $scope.getTeamShortcut()
+        #$scope.getTeamShortcut()
 
         $scope.teamUrlInfo = {}
 
