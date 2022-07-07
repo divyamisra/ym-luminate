@@ -450,7 +450,7 @@ angular.module 'trPcControllers'
 	
       $scope.cancelPostFeedbackMessageConfirm = ->
         $scope.postFeedbackMessageModalConfirm.close()
-	angular.element('.ym-pc-feedback button').focus()
+        angular.element('.ym-pc-feedback button').focus()
 
       $scope.personalGoalInfo = {}
 
