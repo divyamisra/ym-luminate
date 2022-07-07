@@ -609,7 +609,7 @@
 						<button aria-label="Click the icon to see an example of the materials." data-balloon-pos="up" data-balloon-length="large" ng-click="showMaterialTypes()"><i class="fa fa-info-circle"></i></button> 
 					</div>
 					<div class="col-md-4 pr-0">
-						<select class="form-control" id="MaterialsNeeded" ng-model="schoolPlan.MaterialsNeeded" aria-label="Materials Needed" ng-change="updateMaterialsNeeded()">
+						<select class="form-control" id="MaterialsNeeded" ng-model="schoolPlan.MaterialsNeeded" aria-label="Materials Needed" ng-change="putSchoolPlan($event,'MaterialsNeeded')">
 							<option value="Envelope">Envelope</option>
 							<option value="Parent Letter">Digital Parent Letter</option>
 						</select>
