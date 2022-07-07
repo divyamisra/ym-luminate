@@ -473,6 +473,13 @@ div[id^="taTextElement"]:focus {
 	border-radius:10px;
 }
 
+.ym-pc-dashboard-materials {
+	max-height:63vh;
+	.img-fluid {
+	   max-height: 100%;
+	}
+}
+
 .ym-pc-dashboard-school-plan {
 	max-height:63vh;
 	overflow:scroll;
