@@ -1253,7 +1253,7 @@
                 callback: {
                     success: function(response) {
                         const isLandscape = (img) => {
-                            newImg = new Image();
+                            const newImg = new Image();
                             newImg.src = img.src;
 
                             return newImg.naturalWidth > newImg.naturalHeight;
