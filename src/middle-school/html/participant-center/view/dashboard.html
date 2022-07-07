@@ -526,7 +526,7 @@
 				<h2 class="h5 clearfix">
 					School Plan 
 				</h2>
-				<div class="row" ng-if="schoolPlan.length > 0" ng-cloak>
+				<div class="row" ng-if="schoolPlan != null" ng-cloak>
 					<div class="schoolPlanDates text-left">
 						<p>
 							Your event is kicking off on <strong>{{schoolPlan.EventStartDate | date:'MM/dd/yyyy'}}</strong><span ng-if="(schoolPlan.EventStartDate | date:'MM/dd/yyyy') !== (schoolPlan.EventEndDate | date:'MM/dd/yyyy') && schoolPlan.EventEndDate != ''" ng-cloak> and will conclude on <strong>{{schoolPlan.EventEndDate | date:'MM/dd/yyyy'}}</strong></span>.
@@ -594,10 +594,10 @@
 						My school will be participating in American Heart Challenge next year!
 					</div>
 					<div class="col-md-4 pr-0">
-						<select class="form-control" id="participatingNextYear" ng-model="participatingNextYear" aria-label="Next Year Participation" ng-change="updateParticipatingNextYear()">
-							<option value="Yes">Yes</option>
-							<option value="No">No</option>
-							<option value="Still Considering">Still Considering</option>
+						<select class="form-control" id="ParticipatingNextYear" ng-model="schoolPlan.ParticipatingNextYear" aria-label="Next Year Participation" ng-change="putSchoolPlan($event,'ParticipatingNextYear')">
+							<option value="YES">Yes</option>
+							<option value="NO">No</option>
+							<option value="I'm not sure">Still Considering</option>
 						</select>
 					</div>
 				</div>
@@ -609,7 +609,7 @@
 						<button aria-label="Click the icon to see an example of the materials." data-balloon-pos="up" data-balloon-length="large" ng-click="showMaterialTypes()"><i class="fa fa-info-circle"></i></button> 
 					</div>
 					<div class="col-md-4 pr-0">
-						<select class="form-control" id="MaterialsNeeded" ng-model="schoolPlan.MaterialsNeeded" aria-label="Materials Needed" ng-change="updateMaterialsNeeded()">
+						<select class="form-control" id="MaterialsNeeded" ng-model="schoolPlan.MaterialsNeeded" aria-label="Materials Needed" ng-change="putSchoolPlan($event,'MaterialsNeeded')">
 							<option value="Envelope">Envelope</option>
 							<option value="Parent Letter">Digital Parent Letter</option>
 						</select>
@@ -637,9 +637,9 @@
 									</label>
 									<input type="text" class="form-control" id="school_goal" ng-model="companyProgress.goalFormatted" aria-label="School Fundraising Goal" ng-blur="putSchoolPlan($event)" onkeypress="return event.charCode == 36 || event.charCode == 44 || event.charCode == 46 || (event.charCode &gt;= 48 &amp;&amp; event.charCode &lt;= 57)">
 							</div>
-							<div class="ym-pc-dashboard-send-emails checkbox" custom-checkbox ng-class="{'checked': schoolPlan.SendEmailOnBehalfOfCoordinator == true}" ng-cloak>
+							<div class="ym-pc-dashboard-send-emails checkbox" custom-checkbox ng-class="{'checked': schoolPlan.SendEmailOnBehalfOfCoordinator == 'ALLOW'}" ng-cloak>
 								<label for="SendEmailOnBehalfOfCoordinator">
-									<input type="checkbox" name="SendEmailOnBehalfOfCoordinator" id="SendEmailOnBehalfOfCoordinator" ng-model="schoolPlan.SendEmailOnBehalfOfCoordinator" ng-true-value="true" ng-false-value="false" ng-click="putSchoolPlan($event)">
+									<input type="checkbox" name="SendEmailOnBehalfOfCoordinator" id="SendEmailOnBehalfOfCoordinator" ng-model="schoolPlan.SendEmailOnBehalfOfCoordinator" ng-true-value="'ALLOW'" ng-false-value="'DONOTALLOW'" ng-click="putSchoolPlan($event)">
 									Allow AHA to send emails to my students on my behalf 
 								</label>
 							</div>
@@ -665,7 +665,7 @@
 						</div>
 					</div>
 							</div>
-					 <div class="ym-pc-dashboard-section-plan text-center" ng-if="schoolPlan.length == 0" ng-cloak>
+					 <div class="ym-pc-dashboard-section-plan text-center" ng-if="schoolPlan == null" ng-cloak>
 					<p>
 						No plan data available for this School. 
 					</p>
