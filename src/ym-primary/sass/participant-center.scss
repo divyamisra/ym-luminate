@@ -474,10 +474,12 @@ div[id^="taTextElement"]:focus {
 }
 
 .ym-pc-dashboard-materials {
+   .modal-body {
 	max-height:63vh;
 	.img-fluid {
 	   max-height: 100%;
 	}
+   }
 }
 
 .ym-pc-dashboard-school-plan {
