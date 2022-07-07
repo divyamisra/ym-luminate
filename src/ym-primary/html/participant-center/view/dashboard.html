@@ -479,7 +479,7 @@
   		    <select class="form-control" id="ParticipatingNextYear" ng-model="schoolPlan.ParticipatingNextYear" aria-label="Participating Next Year" ng-change="putSchoolPlan($event,'ParticipatingNextYear')">
 		      <option value="YES">Yes</option>
 		      <option value="NO">No</option>
-		      <option value="I'm not sure">Still Considering</option>
+		      <option value="I'M NOT SURE">Still Considering</option>
 		    </select>
  		  </div>
 		</div>
@@ -1188,9 +1188,9 @@
 					  </button>
 					</p>
 				</div>
-				        <div class="ym-pc-dashboard-multi-coord checkbox d-none" custom-checkbox ng-class="{'checked': schoolPlan.MultipleCoordinators == true}" ng-cloak>
+				        <div class="ym-pc-dashboard-multi-coord checkbox d-none" custom-checkbox ng-class="{'checked': schoolPlan.MultipleCoordinators == 'YES'}" ng-cloak>
 					  <label for="MultipleCoordinators">
-					  <input type="checkbox" name="MultipleCoordinators" id="MultipleCoordinators" ng-model="schoolPlan.MultipleCoordinators" ng-true-value="1" ng-false-value="0" ng-click="putSchoolPlan($event)"> 
+					  <input type="checkbox" name="MultipleCoordinators" id="MultipleCoordinators" ng-model="schoolPlan.MultipleCoordinators" ng-true-value="'YES'" ng-false-value="'NO'" ng-click="putSchoolPlan($event)"> 
 					  My school has two or more coordinators responsible for the Kids Heart Challenge program.
 					  </label>
 				        </div>
