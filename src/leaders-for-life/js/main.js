@@ -1252,9 +1252,11 @@
                 data: 'method=getTeamsByInfo&fr_id=' + eventId + '&list_sort_column=team_name&list_ascending=true&list_page_size=15&response_format=json',
                 callback: {
                     success: function(response) {
-                        const isLandscape = (img) => {
+                        const isLandscape = (imgSrc) => {
+                            if (!imgSrc) return false;
+
                             const newImg = new Image();
-                            newImg.src = img.src;
+                            newImg.src = imgSrc;
 
                             return newImg.naturalWidth > newImg.naturalHeight;
                         };
