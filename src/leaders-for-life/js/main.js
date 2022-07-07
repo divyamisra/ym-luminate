@@ -1255,10 +1255,10 @@
                         const isLandscape = (imgSrc) => {
                             if (!imgSrc) return false
 
-                            const newImg = new Image()
-                            newImg.src = imgSrc.replace(/^\.\./, `${location.protocol}${location.host}`)
+                            // const newImg = new Image()
+                            // newImg.src = imgSrc.replace(/^\.\./, `${location.protocol}${location.host}`)
 
-                            return newImg.naturalWidth > newImg.naturalHeight
+                            // return newImg.naturalWidth > newImg.naturalHeight
                         }
 
                         if (!$.isEmptyObject(response.getTeamSearchByInfoResponse)) {
