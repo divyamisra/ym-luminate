@@ -1006,21 +1006,12 @@
 							Choose a student level to achieve 
 						</div>
 						<select class="form-control" id="challengeLevel" ng-model="companyProgress.schoolChallengeLevel" aria-label="School Challenge Level" ng-change="updateSchoolChallengeLevel()">
-							<option value="$100">
-								$100
-							</option>
-							<option value="$150">
-								$150
-							</option>
-							<option value="$200">
-								$200
-							</option>
-							<option value="$250">
-								$250
-							</option>
-							<option value="Other">
-								Other
-							</option>
+							<option value="$100">$100</option>
+							<option value="$150">$150</option>
+							<option value="$200">$200</option>
+							<option value="$250">$250</option>
+							<option value="$300">$300</option>
+							<option value="$350">$350</option>
 						</select>
 						<div uib-alert class="alert-danger" ng-if="schoolChallengeLevelInfo.errorMessage">
 							<div ng-bind-html="schoolChallengeLevelInfo.errorMessage">
