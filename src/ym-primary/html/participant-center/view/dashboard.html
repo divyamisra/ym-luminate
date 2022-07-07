@@ -476,10 +476,10 @@
 			My student will be participating in Kids Heart Challenge next year!
 		  </div>
 		  <div class="col-md-4">
-  		    <select class="form-control" id="participatingNextYear" ng-model="schoolPlan.participatingNextYear" aria-label="Next Year Participation" ng-change="updateParticipatingNextYear()">
-		      <option value="Yes">Yes</option>
-		      <option value="No">No</option>
-		      <option value="Still Considering">Still Considering</option>
+  		    <select class="form-control" id="ParticipatingNextYear" ng-model="schoolPlan.ParticipatingNextYear" aria-label="Participating Next Year" ng-change="putSchoolPlan($event,'ParticipatingNextYear')">
+		      <option value="YES">Yes</option>
+		      <option value="NO">No</option>
+		      <option value="I'm not sure">Still Considering</option>
 		    </select>
  		  </div>
 		</div>
@@ -1157,7 +1157,7 @@
 		    My school will be participating in Kids Heart Challenge next year!
 		  </div>
 		  <div class="col-md-4 pr-0">
-  		    <select class="form-control" id="participatingNextYear" ng-model="schoolPlan.ParticipatingNextYear" aria-label="Next Year Participation" ng-change="putSchoolPlan($event,'ParticipatingNextYear')">
+  		    <select class="form-control" id="ParticipatingNextYear" ng-model="schoolPlan.ParticipatingNextYear" aria-label="Participating Next Year" ng-change="putSchoolPlan($event,'ParticipatingNextYear')">
 		      <option value="YES">Yes</option>
 		      <option value="NO">No</option>
 		      <option value="I'm not sure'">Still Considering</option>
