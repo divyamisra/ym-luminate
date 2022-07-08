@@ -232,6 +232,12 @@
         min-width: 100%;
         position: absolute;
         top: 0;
+
+        &.is-landscape {
+          left: 50%;
+          max-width: none;
+          transform: translateX(-50%);
+        }
       }
 
       .js--team-top-list {
