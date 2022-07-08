@@ -1253,6 +1253,8 @@
                 callback: {
                     success: function(response) {
                         const isLandscape = (src) => {
+                            if (!src) { return false; };
+
                             // Returns true if image is landscape
                             var newImage = new Image();
 
