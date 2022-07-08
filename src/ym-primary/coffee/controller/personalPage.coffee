@@ -118,7 +118,7 @@ angular.module 'ahaLuminateControllers'
           $scope.challengeName = response.data.challenges.text
           $scope.challengeCompleted = response.data.challenges.completed
           $rootScope.survivor = response.data.show_banner
-          ZuriService.getSchoolDetail '&cons_id=' + $scope.participantId,
+          ZuriService.getStudentDetail '&cons_id=' + $scope.participantId,
             failure: (response) ->
             error: (response) ->
             success: (response) ->
