@@ -123,7 +123,7 @@ angular.module 'ahaLuminateControllers'
             error: (response) ->
             success: (response) ->
               if response.data.company[0] != "" and response.data.company[0] != null
-                if response.data.company[0].PriorYearEventId gt 0
+                if response.data.company[0].PriorYearEventId > 0
                   $scope.returningStudent = true
 
       $scope.personalInfo = {}
