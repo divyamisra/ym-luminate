@@ -122,7 +122,7 @@
       ::]]
     </div>
     <div class="col-md-6 ym-user-interactions" ng-if="prizes.length > 0 || studentChallengeBadge || schoolChallengeBadge || challengeId != null">
-      <div class="ym-badges" ng-if="prizes.length > 0 || studentChallengeBadge || schoolChallengeBadge">
+      <div class="ym-badges" ng-if="prizes.length > 0 || studentChallengeBadge || schoolChallengeBadge || returningStudent">
         <h2 class="ym-headline h3">
           Check Out My Badges
         </h2>
@@ -136,6 +136,12 @@
           <div class="ym-badge__item" ng-if="prize.earned" tabindex="0" aria-label="{{prize.label}} Badge Earned" ng-cloak>
             <img class="img-fluid" ng-src="{{prize.image_url}}" alt="{{prize.label}} Badge Earned">
             <span ng-bind-html="prize.label"></span>
+          </div>
+        </div>
+        <div class="ym-badges__item" ng-if="returningStudent" ng-cloak>
+          <div class="ym-badge__item" tabindex="0" aria-label="Returning Student Badge Earned" ng-cloak>
+            <img class="img-fluid" ng-src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/ym-primary/image/fy23/badge-returning-student.png" alt="Returning Student Badge Earned">
+            <span>Returning Student/span>
           </div>
         </div>
         <div class="ym-badges__item" ng-if="studentChallengeBadge" ng-cloak>
