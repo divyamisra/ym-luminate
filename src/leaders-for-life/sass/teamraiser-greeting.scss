@@ -57,16 +57,16 @@
               font-weight: 900;
             }
 
-            @include media-breakpoint-down(sm) {
-              font-size: 2.5em;
+            @include media-breakpoint-down(lg) {
+              font-size: 4em;
             }
 
             @include media-breakpoint-down(md) {
               font-size: 3.5em;
             }
 
-            @include media-breakpoint-down(lg) {
-              font-size: 4em;
+            @include media-breakpoint-down(sm) {
+              font-size: 2.5em;
             }
           }
 
