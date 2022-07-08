@@ -23,16 +23,16 @@
         background-position: center;
         background-repeat: no-repeat;
 
-        @include media-breakpoint-down(md) {
-          padding-top: 100%;
-        }
-
         @include media-breakpoint-up(md) {
           min-height: 65vh;
         }
 
         @include media-breakpoint-up(lg) {
           background-position: center;
+        }
+
+        @include media-breakpoint-down(768px) {
+          padding-top: 100%;
         }
       }
 
@@ -61,7 +61,7 @@
               font-size: 4em;
             }
 
-            @include media-breakpoint-down(md) {
+            @include media-breakpoint-down(768px) {
               font-size: 3.5em;
             }
 
