@@ -17,12 +17,20 @@
       }
 
       .event-info-banner {
-        min-height: 65vh;
         width: 100%;
         background-image: url("https://secure3.convio.net/heartdev/images/content/pagebuilder/Gold-Heart-ManWoman-1.png");
         background-size: contain;
         background-position: center;
         background-repeat: no-repeat;
+
+        @include media-breakpoint-down(md) {
+          padding-top: 100%;
+        }
+
+        @include media-breakpoint-up(md) {
+          min-height: 65vh;
+        }
+
         @include media-breakpoint-up(lg) {
           background-position: center;
         }
@@ -38,19 +46,23 @@
           width: fit-content;
 
           h1 {
-            font-size: 63px;
+            font-size: 3.9375em;
             background-color: $white;
-            line-height: 60px;
+            line-height: 0.95em;
             max-width: 0;
 
             &::first-line {
               color: $red-deep;
-              font-size: 79px;
+              font-size: 1.25em;
               font-weight: 900;
             }
 
+            @include media-breakpoint-down(sm) {
+              font-size: 2.5em;
+            }
+
             @include media-breakpoint-down(md) {
-              font-size: 4.5em;
+              font-size: 3.5em;
             }
 
             @include media-breakpoint-down(lg) {
@@ -137,7 +149,8 @@
         .btn {
           padding: 1rem;
           font-size: 1.5rem;
-          min-width: 300px;
+          min-width: 10em;
+          max-width: 100%;
 
           &.btn-primary {
             background-color: $red-deep;
