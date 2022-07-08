@@ -18,13 +18,19 @@
 *
 ***********************************************************************/
 
-var CountDownWidget = function(element_id, datetime) {
+var CountDownWidget = function(element_id, a, b, c) {
+
+
 
   this.id = element_id
   //this.offset = timeoffset;
-  this.datetime = convertTime(datetime)
-  this.tzoffset = getTimeOffset(datetime)
-  this.halt = false
+  this.datetime = convertTime(a[0]);
+  this.enddate = convertTime(b[0]);
+  this.tzoffset = getTimeOffset(a[0]);
+  this.halt = false;
+    /* b - before , p - in progress, e - ended */
+  this.stage = 'b';
+
 
   this.delta = 0
   this.prev = { d1: '', d0: '', h1: '', h0: '', m1: '', m0: '', s1: '', s0: '' }
@@ -37,8 +43,25 @@ var CountDownWidget = function(element_id, datetime) {
   this.getTimeDiff()
 
   document.getElementById(this.id).innerHTML = this.getCodes()
-  this.run()
-  this.announce()
+  this.run();
+  this.announce();
+
+   /********** Updating header and description ************/
+   let wrapper =  document.getElementById('countdownWidget-section');
+   let heading = a[1];
+   let desc = a[2];
+
+    if(this.stage == 'p'){
+        heading = b[1];
+        desc = b[2];
+    }
+    else if (this.stage == 'e'){
+        heading = c[1];
+        desc = c[2];
+    }
+   wrapper.querySelector('strong').innerHTML = heading;
+   wrapper.querySelectorAll('p')[1].innerHTML = desc;
+
 }
 
 CountDownWidget.prototype.getCodes = function() {
@@ -86,6 +109,7 @@ CountDownWidget.prototype.getCodes = function() {
   html += '</div>'
   html += '<div id="countdownWidgetAlert" role="alert" aria-live="assertive" style="position:absolute; width:0; height:0; clip: rect(0,0,0,0);"></div>'
   return html
+
 }
 
 CountDownWidget.prototype.getTimeDiff = function() {
@@ -94,16 +118,23 @@ CountDownWidget.prototype.getTimeDiff = function() {
   let diff = this.datetime - dt
   diff = Math.round(diff / 1000) - this.tzoffset * 60 - dt.getTimezoneOffset() * 60 - 3600
 
-  if (diff < 0 && diff > -86400) {
-    diff = 86400 + diff
+  if (diff < 0 ) {
+      diff = this.enddate - dt;
+
+      if(diff > 0){
+          this.stage = 'p';
+      }
+
   }
 
   if (diff < 0) {
     this.halt = true
+    this.stage = 'e';
     return
   }
 
-  this.delta = diff
+  this.delta = diff;
+
 }
 
 
@@ -125,6 +156,7 @@ CountDownWidget.prototype.run = function() {
     this.delta--
     setTimeout(() => { this.run() }, 1000)
   }
+
 }
 
 CountDownWidget.prototype.calc = function() {
@@ -157,6 +189,8 @@ CountDownWidget.prototype.calc = function() {
     s1: s.length > 1 ? s[0] : '0',
     s0: s.length > 1 ? s[1] : s[0],
   }
+
+
 }
 
 
@@ -177,6 +211,7 @@ CounterDigitChange.prototype.swap = function() {
 
   let root = document.getElementById(this.id)
   root.querySelector('.aha-counter-digit-bottom').innerHTML = this.num
+
 }
 
 CounterDigitChange.prototype.commit = function() {
