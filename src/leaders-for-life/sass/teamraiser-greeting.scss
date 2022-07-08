@@ -46,14 +46,11 @@
             &::first-line {
               color: $red-deep;
               font-size: 79px;
+              font-weight: 900;
             }
 
             @include media-breakpoint-down(md) {
               font-size: 4.5em;
-
-              &::first-line {
-                font-size: 0.5em;
-              }
             }
 
             @include media-breakpoint-down(lg) {

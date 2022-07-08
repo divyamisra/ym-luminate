@@ -86,7 +86,6 @@ CountDownWidget.prototype.getCodes = function() {
   html += '</div>'
   html += '<div id="countdownWidgetAlert" role="alert" aria-live="assertive" style="position:absolute; width:0; height:0; clip: rect(0,0,0,0);"></div>'
   return html
-
 }
 
 CountDownWidget.prototype.getTimeDiff = function() {
@@ -105,7 +104,6 @@ CountDownWidget.prototype.getTimeDiff = function() {
   }
 
   this.delta = diff
-
 }
 
 
@@ -127,7 +125,6 @@ CountDownWidget.prototype.run = function() {
     this.delta--
     setTimeout(() => { this.run() }, 1000)
   }
-
 }
 
 CountDownWidget.prototype.calc = function() {
@@ -160,8 +157,6 @@ CountDownWidget.prototype.calc = function() {
     s1: s.length > 1 ? s[0] : '0',
     s0: s.length > 1 ? s[1] : s[0],
   }
-
-
 }
 
 
@@ -182,7 +177,6 @@ CounterDigitChange.prototype.swap = function() {
 
   let root = document.getElementById(this.id)
   root.querySelector('.aha-counter-digit-bottom').innerHTML = this.num
-
 }
 
 CounterDigitChange.prototype.commit = function() {
