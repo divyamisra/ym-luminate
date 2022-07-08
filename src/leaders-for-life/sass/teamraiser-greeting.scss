@@ -261,7 +261,8 @@
       }
       .container {
         position: relative;
-        padding: 6rem 0;
+        padding-bottom: 6rem;
+        padding-top: 6rem;
         &:after,
         &:before {
           content: "";
