@@ -1174,7 +1174,7 @@
                 var sliderDonationLevel = 0,
                     frGoalMatrix = [
                         '$100.00', '$250.00', '$500.00', '$1,000.00', '$2,500.00', '$5,000.00'
-                    ]
+                    ];
 
                 // Local functions
                 var renderHeader = function (step) {
@@ -1191,11 +1191,12 @@
                         sliderDonationLevel = pos/100;
                     }
                     return sliderDonationLevel;
-                }
+                };
                 var digestPersonalGiftAmount = function () {
                     var goal = frGoalMatrix[sliderDonationLevel - 1];
                     if ($('#registration-ptype-personal-goal-option').val() === 'other-ammount') {
                         goal = Number($('input.js__personal-goal-other-amount-input').val().replace(/[^0-9.-]+/g,""));
+                        $('input.js__personal-goal-other-amount-input').val(goal);
                     }
                     $('#fr_goal').val(goal);
                 };
@@ -1206,17 +1207,17 @@
                     if (offPage === 2 && onPage === 3) {
                         digestPersonalGiftAmount();
                     }
-                }
+                };
                 var renderPrevStep = function (currentStep, prevStep) {
                     if (prevStep > 0) {
                         renderStep(prevStep, currentStep);
-                    } else {
-                        history.back();
+                        return;
                     }
-                }
+                    history.back();
+                };
                 var renderNextStep = function (currentStep, nextStep) {
                     renderStep(nextStep, currentStep);
-                }
+                };
 
                 // Init
                 var $steps = $('div#registration-ptype-page-steps').detach();
@@ -1228,8 +1229,8 @@
                 var $personalGiftStep = $steps.find('div.registration-ptype-page-step-personal-gift');
                 $personalGiftStep
                     .find('div.registration-ptype-page-step-content')
-                    .append($('div#part_type_additional_gift_container').detach())
                     .append($('div#part_type_individual_company_selection_container').detach())
+                    .append($('div#part_type_additional_gift_container').detach())
                     .find('div#part_type_additional_gift_container .manageable-content').hide();
                 $personalGiftStep
                     .find('> div.button-container')
@@ -1244,7 +1245,6 @@
                     .find('label.donation-level-row-label-no-gift')
                     .text('No gift at this time')
                     .closest('.donation-level-row-container')
-                    .removeClass('donation-level-row-container')
                     .addClass('donation-level-row-container-no-gift mt-3')
 
                 // Prev step click
@@ -1261,7 +1261,7 @@
                     );
                 });
 
-                // Personal gift slider
+                // Personal goal slider
                 var $frGoal = $('#fr_goal'),
                     frGoalVal = $frGoal.val();
                 var personalGoalChange = function (sliderDonationLevel) {
@@ -1320,22 +1320,6 @@
                     $('input.js__personal-goal-other-amount-input').val(Number(frGoalVal.replace(/[^0-9.-]+/g,"")));
                     flipPersonalGoalPage('other-amount');
                 }
-
-                // // On-submit populate #fr_goal
-                // $('#F2fRegPartType').on('submit', function (e) {
-                //
-                // });
-
-
-
-                /*
-                $('.donation-level-row-container').click(function () {
-
-                });
-                $('.donation-level-row-container-no-gift').click(function () {
-
-                });
-                */
             };
             if ($('div#registration-ptype-page-steps').length === 1) {
                 cd.renderPTypePageSteps();
@@ -1368,9 +1352,7 @@
             $('.donation-form-fields').prepend('<legend class="sr-only">Donate Towards Your Goal Now</legend>');
 
             /* Alter company selection location */
-            // TODO: Revisit
-            //$('#part_type_individual_company_selection_container .input-container').prepend("<span class='hint-text'>Choose your company below. If your company does not show up, you can skip this step.</span>");
-            //$('#part_type_individual_company_selection_container').insertAfter('#part_type_selection_container');
+            $('#part_type_individual_company_selection_container .input-container').prepend("<span class='hint-text'>Choose your company below. If your company does not show up, you can skip this step.</span>");
 
             /* setup form validation - additional donation amount must be >= $25 */
             $('input[name^=donation_level_form_input]').addClass("validDonation").attr("title", "Your donation needs to be at least $25.");
@@ -1488,6 +1470,26 @@
                         $('div#registration-reg-page-step-' + step.toString() + ' > h1').text()
                     );
                 };
+                var disableStep = function (hidePage) {
+                    var $prevPageNextStepBttn = $('#registration-reg-page-step-' + (hidePage - 1).toString()).find('button.js__reg-page-next-step'),
+                        $nextPagePrevStepBttn = $('#registration-reg-page-step-' + (hidePage + 1).toString()).find('button.js__reg-page-prev-step');
+                    if ($prevPageNextStepBttn.data('next-step') == hidePage) {
+                        $prevPageNextStepBttn.data('next-step', hidePage + 1);
+                    }
+                    if ($nextPagePrevStepBttn.data('prev-step') == hidePage) {
+                        $nextPagePrevStepBttn.data('prev-step', hidePage - 1);
+                    }
+                };
+                var enableStep = function (unhidePage) {
+                    var $prevPageNextStepBttn = $('#registration-reg-page-step-' + (unhidePage - 1).toString()).find('button.js__reg-page-next-step'),
+                        $nextPagePrevStepBttn = $('#registration-reg-page-step-' + (unhidePage + 1).toString()).find('button.js__reg-page-prev-step');
+                    if ($prevPageNextStepBttn.data('next-step') != unhidePage) {
+                        $prevPageNextStepBttn.data('next-step', unhidePage);
+                    }
+                    if ($nextPagePrevStepBttn.data('prev-step') != unhidePage) {
+                        $nextPagePrevStepBttn.data('prev-step', unhidePage);
+                    }
+                };
                 var renderStep = function (onPage, offPage) {
                     renderHeader(onPage);
                     $('div#registration-reg-page-step-' + offPage.toString()).hide();
@@ -1495,20 +1497,20 @@
                     $('html, body').animate({
                         scrollTop: $('#registration_options_page').offset().top
                     }, 500);
-                }
+                };
                 var renderPrevStep = function (currentStep, prevStep) {
                     if (prevStep > 0) {
                         renderStep(prevStep, currentStep);
-                    } else {
-                        history.back();
+                        return;
                     }
-                }
+                    history.back();
+                };
                 var renderNextStep = function (currentStep, nextStep) {
                     renderStep(nextStep, currentStep);
-                }
+                };
                 var handleErrors = function () {
                     var step = 0,
-                        createLoginStep = 6,
+                        createLoginStep = 5,
                         $errorHeader = $('div.ErrorMessage.page-error'),
                         $firstError = $('div.registration-reg-page-step div.ErrorMessage').first();
                     if ($firstError.length) {
@@ -1524,7 +1526,7 @@
                         $errorHeader.addClass('my-4').detach().show()
                     );
                     renderNextStep(0, step);
-                }
+                };
 
                 // Init
                 var $steps = $('div#registration-reg-page-steps').detach(),
@@ -1541,7 +1543,8 @@
                     $('#cons_last_name').closest('div.cons-info-question-container').detach()
                 );
                 $step1.find('div#relocated_participation_years').append(
-                    $('.survey-question-container label span:contains("How many years have you participated in Heart Walk")').closest('div.survey-question-container').detach()
+                    $('.survey-question-container label span:contains("How many years have you participated in Heart Walk")')
+                        .closest('div.survey-question-container').detach()
                 );
 
                 // Start with Step 1?
@@ -1552,73 +1555,88 @@
 
                 // Step 2
                 var $step2 = $('div#registration-reg-page-step-2');
+                var showStep2NavButtons = function () {
+                    $step2.find('button.js__reg-page-prev-step').show();
+                    $step2.find('button.js__reg-page-next-step').show();
+                };
                 $step2.find('div#relocated_survivor_recognition').append(
-                    $('.survey-question-container legend span:contains("Would you like to be recognized as a survivor")').closest('div.survey-question-container').detach()
+                    $('.survey-question-container legend span:contains("Would you like to be recognized as a survivor")').hide()
+                        .closest('div.survey-question-container').detach()
                 );
-                $step2.find('label').addClass('js__reg-page-next-step').attr('data-step', '2').attr('data-next-step', '3');
+                $step2.find('li').attr('data-step', '2').addClass('js__reg-page-next-step js__survivor_option_radio_bttn');
+                $step2.find('li:eq(0)').attr('data-next-step', '3').attr('data-answer', 'yes');
+                $step2.find('li:eq(1)').attr('data-next-step', '4').attr('data-answer', 'no');
+                if ($step2.find('input[type="radio"]:checked').length) {
+                    showStep2NavButtons();
+                }
+                $('.js__survivor_option_radio_bttn').on('click', function () {
+                    $step2.find('button.js__reg-page-next-step').data('next-step', $(this).data('next-step'));
+                    setTimeout(function () {
+                        showStep2NavButtons();
+                    }, 1000);
+                });
 
-                // Step 5
-                var $step5 = $('div#registration-reg-page-step-5'),
+                // Step 4
+                var $step4 = $('div#registration-reg-page-step-4'),
                     $consStateSelect = $('#cons_state');
                 if ($consStateSelect.length) {
-                    $step5.find('div#relocated_cons_state').append(
+                    $step4.find('div#relocated_cons_state').append(
                         $consStateSelect.closest('div.cons-info-question-container').detach()
                     );
                 }
-                $step5.find('div#relocated_cons_zip_code').append(
+                $step4.find('div#relocated_cons_zip_code').append(
                     $('#cons_zip_code').closest('div.cons-info-question-container').detach()
                 );
-                $step5.find('div#relocated_cons_email').append(
+                $step4.find('div#relocated_cons_email').append(
                     $('#cons_email').closest('div.cons-info-question-container').detach()
                 );
-                $step5.find('div#relocated_mobile_phone_question').append(
+                $step4.find('div#relocated_mobile_phone_question').append(
                     $('.survey-question-container label span:contains("Mobile Phone")').closest('div.survey-question-container').detach()
                 );
-                $step5.find('div#relocated_t_shirt_question').append(
+                $step4.find('div#relocated_t_shirt_question').append(
                     $('.survey-question-container label span:contains("What is your t-shirt size")').closest('div.survey-question-container').detach()
                 );
 
-                // Step 6
+                // Step 5
                 var $consPasswordInput = $('#cons_password');
                 if ($consPasswordInput.length) {
-                    var $step6 = $('div#registration-reg-page-step-6');
-                    $step6.find('div#relocated_cons_user_name').append(
+                    var $step5 = $('div#registration-reg-page-step-5');
+                    $step5.find('div#relocated_cons_user_name').append(
                         $('#cons_user_name').closest('div.field-required').detach()
                     );
-                    $step6.find('div#relocated_cons_password').append(
+                    $step5.find('div#relocated_cons_password').append(
                         $consPasswordInput.closest('div.field-required').detach()
                     );
-                    $step6.find('div#relocated_cons_rep_password').append(
+                    $step5.find('div#relocated_cons_rep_password').append(
                         $('#cons_rep_password').closest('div.field-required').detach()
                     )
                 } else {
-                    // Skip registration
-                    $step5.find('button.js__reg-page-next-step').data('next-step', 7);
+                    disableStep(5);
                 };
 
-                // Step 7
-                var $step7 = $('div#registration-reg-page-step-7');
-                $step7.find('div#relocated_hfg_optin').append(
+                // Step 6
+                var $step6 = $('div#registration-reg-page-step-6');
+                $step6.find('div#relocated_hfg_optin').append(
                     $('.survey-question-container span.input-container label:contains("Healthy For Good")').closest('div.survey-question-container').detach()
                 );
                 var $mobileOptinOuter = $('#mobile_optin_outer');
                 if ($mobileOptinOuter.length) {
-                    $step7.find('div#relocated_mobile_optin').append(
+                    $step6.find('div#relocated_mobile_optin').append(
                         $mobileOptinOuter.detach()
                     );
                 }
-                $step7.find('div#relocated_email_optin').append(
+                $step6.find('div#relocated_email_optin').append(
                     $('#reg_options_cons_info_extension').detach()
                 );
                 var $acceptReleaseChkbox = $('input[value^="I accept"]');
                 if ($acceptReleaseChkbox.length) {
-                    $step7.find('div#relocated_accept_release').append(
+                    $step6.find('div#relocated_accept_release').append(
                         $acceptReleaseChkbox.closest('div.survey-question-container').detach()
                     );
                 }
                 var $acceptPrivacyChkbox = $('input[value^="I agree to the Terms and Conditions"]');
                 if ($acceptPrivacyChkbox.length) {
-                    $step7.find('div#relocated_accept_privacy').append(
+                    $step6.find('div#relocated_accept_privacy').append(
                         $acceptPrivacyChkbox.closest('div.survey-question-container').detach()
                     );
                 }
@@ -1637,8 +1655,9 @@
 
                 // Next step click
                 $('.js__reg-page-next-step').on('click', function () {
-                    var currentStep = parseInt($(this).data('step'), 10),
-                        nextStep = parseInt($(this).data('next-step'), 10);
+                    var $bttn = $(this),
+                        currentStep = parseInt($bttn.data('step'), 10),
+                        nextStep = parseInt($bttn.data('next-step'), 10);
 
                     switch (currentStep) {
                         case 1 :
@@ -1649,15 +1668,19 @@
                             }
                             return;
                         case 2 :
-                            // Wait for other events to finish
-                            setTimeout(function () {
+                            if (nextStep === 3) {
+                                enableStep(3);
+                                $('div#registration-reg-page-step-3 > h1').text($('#cons_first_name').val() + ', you are the reason we walk!');
+                            } else {
+                                disableStep(3);
+                            }
+                            setTimeout(function () { // Wait for other events to finish
                                 renderNextStep(currentStep, nextStep);
                             }, 500);
                             return;
                         case 3 :
-                            $('div#registration-reg-page-step-4 > h1').text('Welcome to the team, ' + $('#cons_first_name').val() + '!');
                             break;
-                        case 5 :
+                        case 4 :
                             $('#cons_zip_code').valid();
                             $('#cons_email').valid();
                             if ($('div#registration-reg-page-step-5 .phonecheck').length) {
@@ -1667,7 +1690,7 @@
                                 renderNextStep(currentStep, nextStep);
                             }
                             return;
-                        case 6 :
+                        case 5 :
                             $('#cons_user_name').valid();
                             $('#cons_password').valid();
                             $('#cons_rep_password').valid();
@@ -1675,7 +1698,7 @@
                                 renderNextStep(currentStep, nextStep);
                             }
                             return;
-                        case 7 :
+                        case 6 :
                             if ($acceptReleaseChkbox.length) {
                                 $acceptReleaseChkbox.valid();
                             }
@@ -1874,7 +1897,10 @@
 
         $('.survivor_yes_no input[type=radio]').addClass("required survivorq");
 
-        $('.survivor_yes_no .survey-question-label').after('<small id="isSurvivor" class="form-text text-muted">Answering yes will display a small banner over your personal photo on your fundraising page that will proudly say, "I\'m a survivor."</small>');
+        $('.survivor_yes_no .survey-question-label').after(
+            '<div class="pb-4">If you have a personal experience with a heart condition or stroke, we want to know!</div>' +
+            '<div class="pb-4">You will receive a survivor banner on your personal page - plus perks like a commemorative Survivor Cap at the Walk.</div>'
+        );
 
         $('.survivor_yes_no li').click(function () {
             $('.survivor_yes_no li').removeClass('survivor_active');
