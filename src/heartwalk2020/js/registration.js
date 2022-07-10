@@ -1264,7 +1264,7 @@
                 // Personal goal slider
                 var $frGoal = $('#fr_goal'),
                     frGoalVal = $frGoal.val();
-                var personalGoalChange = function (sliderDonationLevel) {
+                var personalGoalChange = function (sliderDonationLevel, updateSliderVal) {
                     $('.registration-ptype-personal-goal-slider-dots > .slider-dot').removeClass('selected');
                     $('.registration-ptype-personal-goal-slider-dots > #slider-dot-' + sliderDonationLevel.toString()).addClass('selected');
                     $frGoal.val(frGoalMatrix[sliderDonationLevel - 1]);
@@ -1278,12 +1278,13 @@
                         $('#slider-dot-' + i.toString()).addClass('active');
                         $('.registration-ptype-personal-goal-slider-section.slider-section-' + i.toString()).addClass('active');
                     }
+                    if (updateSliderVal) {
+                        $('.js__registration-ptype-personal-goal-slider').val(sliderDonationLevel * 100);
+                    }
                 }
                 $('.js__registration-ptype-personal-goal-slider').on('change', function () {
                     personalGoalChange(
-                        sliderPos2DonationLevel(
-                            parseInt($(this).val(), 10)
-                        )
+                        sliderPos2DonationLevel(parseInt($(this).val(), 10)), false
                     );
                 });
 
@@ -1315,7 +1316,7 @@
                     }
                 }
                 if (sliderDonationLevel > 0) { // Slider
-                    personalGoalChange(sliderDonationLevel);
+                    personalGoalChange(sliderDonationLevel, true);
                 } else { // Other amount
                     $('input.js__personal-goal-other-amount-input').val(Number(frGoalVal.replace(/[^0-9.-]+/g,"")));
                     flipPersonalGoalPage('other-amount');
@@ -1542,10 +1543,16 @@
                 $step1.find('div#relocated_cons_last_name').append(
                     $('#cons_last_name').closest('div.cons-info-question-container').detach()
                 );
-                $step1.find('div#relocated_participation_years').append(
+                if ($step1.find('div#relocated_participation_years').length) {
+                    $step1.find('div#relocated_participation_years').append(
+                        $('.survey-question-container label span:contains("How many years have you participated in Heart Walk")')
+                            .closest('div.survey-question-container').detach()
+                    );
+                } else {
                     $('.survey-question-container label span:contains("How many years have you participated in Heart Walk")')
-                        .closest('div.survey-question-container').detach()
-                );
+                        .closest('div.survey-question-container')
+                        .find('select').val('0').change();
+                }
 
                 // Start with Step 1?
                 if (errorsPresent == 0) {
@@ -1555,9 +1562,9 @@
 
                 // Step 2
                 var $step2 = $('div#registration-reg-page-step-2');
-                var showStep2NavButtons = function () {
+                var showStep2NavButtons = function (nextStep) {
                     $step2.find('button.js__reg-page-prev-step').show();
-                    $step2.find('button.js__reg-page-next-step').show();
+                    $step2.find('button.js__reg-page-next-step').data('next-step', nextStep).show();
                 };
                 $step2.find('div#relocated_survivor_recognition').append(
                     $('.survey-question-container legend span:contains("Would you like to be recognized as a survivor")').hide()
@@ -1566,13 +1573,14 @@
                 $step2.find('li').attr('data-step', '2').addClass('js__reg-page-next-step js__survivor_option_radio_bttn');
                 $step2.find('li:eq(0)').attr('data-next-step', '3').attr('data-answer', 'yes');
                 $step2.find('li:eq(1)').attr('data-next-step', '4').attr('data-answer', 'no');
-                if ($step2.find('input[type="radio"]:checked').length) {
-                    showStep2NavButtons();
+                var $checkedAnswer = $step2.find('input[type="radio"]:checked');
+                if ($checkedAnswer.length) {
+                    showStep2NavButtons($checkedAnswer.closest('li').data('next-step'));
                 }
                 $('.js__survivor_option_radio_bttn').on('click', function () {
-                    $step2.find('button.js__reg-page-next-step').data('next-step', $(this).data('next-step'));
+                    var nextStep = $(this).data('next-step');
                     setTimeout(function () {
-                        showStep2NavButtons();
+                        showStep2NavButtons(nextStep);
                     }, 1000);
                 });
 
