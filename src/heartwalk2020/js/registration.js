@@ -1290,7 +1290,7 @@
 
                 // Slider / Other Amount switch
                 var flipPersonalGoalPage = function (type) {
-                    if (type === 'other-ammount') {
+                    if (type === 'other-amount') {
                         $('#registration-ptype-personal-goal-slider-page').hide();
                         $('#registration-ptype-personal-goal-other-amount-page').fadeIn();
                     } else {
@@ -1301,7 +1301,7 @@
                 }
                 $('.js__registration-ptype-personal-goal-show-other-amount').on('click', function (e) {
                     e.preventDefault();
-                    flipPersonalGoalPage('other-ammount');
+                    flipPersonalGoalPage('other-amount');
                 });
                 $('.js__registration-ptype-personal-goal-show-slider').on('click', function (e) {
                     e.preventDefault();
