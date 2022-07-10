@@ -1194,7 +1194,7 @@
                 };
                 var digestPersonalGiftAmount = function () {
                     var goal = frGoalMatrix[sliderDonationLevel - 1];
-                    if ($('#registration-ptype-personal-goal-option').val() === 'other-ammount') {
+                    if ($('#registration-ptype-personal-goal-option').val() === 'other-amount') {
                         goal = Number($('input.js__personal-goal-other-amount-input').val().replace(/[^0-9.-]+/g,""));
                         $('input.js__personal-goal-other-amount-input').val(goal);
                     }
@@ -1264,7 +1264,7 @@
                 // Personal goal slider
                 var $frGoal = $('#fr_goal'),
                     frGoalVal = $frGoal.val();
-                var personalGoalChange = function (sliderDonationLevel, updateSliderVal) {
+                var personalGoalSliderChange = function (sliderDonationLevel, updateSliderVal) {
                     $('.registration-ptype-personal-goal-slider-dots > .slider-dot').removeClass('selected');
                     $('.registration-ptype-personal-goal-slider-dots > #slider-dot-' + sliderDonationLevel.toString()).addClass('selected');
                     $frGoal.val(frGoalMatrix[sliderDonationLevel - 1]);
@@ -1283,7 +1283,7 @@
                     }
                 }
                 $('.js__registration-ptype-personal-goal-slider').on('change', function () {
-                    personalGoalChange(
+                    personalGoalSliderChange(
                         sliderPos2DonationLevel(parseInt($(this).val(), 10)), false
                     );
                 });
@@ -1316,7 +1316,7 @@
                     }
                 }
                 if (sliderDonationLevel > 0) { // Slider
-                    personalGoalChange(sliderDonationLevel, true);
+                    personalGoalSliderChange(sliderDonationLevel, true);
                 } else { // Other amount
                     $('input.js__personal-goal-other-amount-input').val(Number(frGoalVal.replace(/[^0-9.-]+/g,"")));
                     flipPersonalGoalPage('other-amount');
