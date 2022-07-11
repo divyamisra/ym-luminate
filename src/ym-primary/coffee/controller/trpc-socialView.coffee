@@ -37,7 +37,6 @@ angular.module('trPcControllers').controller 'NgPcSocialViewCtrl', [
                 $scope.personalPageUrl = shortcutItem.defaultUrl.split('/site/')[0] + '/site/TR?fr_id=' + $scope.frId + '&pg=personal&px=' + $scope.consId
               $scope.personalPageUrlEsc = window.encodeURIComponent($scope.personalPageUrl)
           response
-      $scope.dashboardPromises.push getParticipantShortcutPromise
     $scope.getParticipantShortcut()
     
     #setup social iframe
