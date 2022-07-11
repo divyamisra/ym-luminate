@@ -3,6 +3,12 @@ option {
   font-size: 18px;
 }
 
+.ym-pc-dashboard-coordinator-resources-contact {
+  a {
+    color: $event-primary-acc;
+  }
+}
+
 .btn.btn-secondary:focus, 
 a.btn.btn-secondary:focus {
     outline-color: $event-primary;
