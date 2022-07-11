@@ -89,7 +89,7 @@
 					</div>
 				</div>
 	      <div class="ym-progress__thermometer my-0" name="Personal Progress Bar" aria-valuetext="{{personalProgress.percent}} percent of fundraising progress" role="progressbar" aria-label="{{personalProgress.percent}} percent of fundraising progress" aria-valuenow="{{personalProgress.percent}}" aria-valuemin="0" aria-valuemax="100">
-					<div class="ym-progress__thermometer--fill" ng-style="{'width': personalProgress.percent + '%'}"></div>
+					<div class="ym-progress__thermometer--fill" ng-style="{'width': personalProgress.percent + '%'}">{{personalProgress.percent}}%</div>
 				</div>
 				<div class="ym-progress__stats">
 					<div class="ym-progress__date" ng-if="schoolPlan.EventStartDate && schoolPlan.EventStartDate != '' && schoolPlan.EventStartDate != 'User Provided No Response'" ng-cloak>
