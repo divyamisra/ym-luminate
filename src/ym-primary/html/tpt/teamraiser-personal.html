@@ -50,22 +50,22 @@
 			</a>
 		</div>
 	</div>
-
-      <div class="ym-progress__thermometer" name="Personal Progress Bar" aria-valuetext="{{personalProgress.percent}} percent of fundraising progress" role="progressbar" aria-label="{{personalProgress.percent}} percent of fundraising progress" aria-valuenow="{{personalProgress.percent}}" aria-valuemin="0" aria-valuemax="100">
-        <div class="ym-progress__thermometer--fill" ng-style="{'width': personalProgress.percent + '%'}"></div>
+ 				<div class="d-flex justify-content-between mx-5">
+					<div class="ym-progress__amount col-sm-6 text-start">
+						<p>
+							I've raised <strong>[[E130:"[[E48:[[S80:trID]]-[[S334:px]]:dollars]]" ".00" "" replaceall]]</strong>
+						</p>
+					</div>
+					<div class="ym-progress__goal text-end col-sm-6">
+						<p>
+							My goal is <strong>[[E130:"[[E48:[[S80:trID]]-[[S334:px]]:goal]]" ".00" "" replaceall]]</strong>
+						</p>
+					</div>
+				</div>
+      <div class="ym-progress__thermometer mx-5 my-0 mw-100" name="Personal Progress Bar" aria-valuetext="{{personalProgress.percent}} percent of fundraising progress" role="progressbar" aria-label="{{personalProgress.percent}} percent of fundraising progress" aria-valuenow="{{personalProgress.percent}}" aria-valuemin="0" aria-valuemax="100">
+        <div class="ym-progress__thermometer--fill" ng-class="(personalProgress.percent < 15) ? 'therm-text-black' : 'therm-text-white'" ng-style="{'width': personalProgress.percent + '%'}">{{personalProgress.percent}}%</div>
       </div>
       <div class="ym-progress__stats">
-        <div class="ym-progress__amount col-sm-6">
-          <p>
-            I've raised <strong>[[E130:"[[E48:[[S80:trID]]-[[S334:px]]:dollars]]" ".00" "" replaceall]]</strong>
-          </p>
-        </div>
-        <div class="ym-progress__goal col-sm-6">
-          <p>
-            My goal is <strong>[[E130:"[[E48:[[S80:trID]]-[[S334:px]]:goal]]" ".00" "" replaceall]]</strong>
-          </p>
-        </div>
-        <div class="clearfix"></div>
         <div class="ym-progress__date" ng-if="schoolPlan.EventStartDate && schoolPlan.EventStartDate != '' && schoolPlan.EventStartDate != 'User Provided No Response'" ng-cloak>
           <p>
 	          Our event is kicking off on <strong>{{schoolPlan.EventStartDate | date:'MM/dd/yyyy'}}</strong><span ng-if="(schoolPlan.EventStartDate | date:'MM/dd/yyyy') !== (schoolPlan.EventEndDate | date:'MM/dd/yyyy') && schoolPlan.EventEndDate != ''" ng-cloak> and will conclude on <strong>{{schoolPlan.EventEndDate | date:'MM/dd/yyyy'}}</strong></span>.
