@@ -14,3 +14,7 @@
   left: 0;
   max-height:91px;
 }
+
+.personal-image-container + .bg-gray-700 li:last-of-type {
+  background-color: blue;
+}
