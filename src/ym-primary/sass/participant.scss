@@ -269,3 +269,45 @@ a.list-group-item:hover {
     width: 45%;
     right: 20px;
 }
+
+.khc-btn-copy::before {
+    content: $copy-icon;
+    padding-right: 10px;
+}
+
+.khc-social-share {
+  .grid {
+    grid-auto-rows: 1fr;
+  }
+  .btn {
+    align-items: center;
+    display: inline-flex;
+    justify-content: center;
+    font-weight:bold;
+  }
+}
+
+.khc-share-facebook,
+.khc-connect-facebook {
+  &::before {
+    content: $facebook-icon;
+    padding-right: 10px;
+  }
+}
+
+.khc-share-facebook {
+  @include button-variant($white, $facebook-blue, $facebook-blue);
+}
+
+.khc-connect-facebook {
+  @include button-variant($white, $facebook-blue-dark, $facebook-blue-dark);
+}
+
+.khc-share-twitter {
+  @include button-variant($white, $twitter-blue, $twitter-blue, $white, #1989ce, $white);
+
+  &::before {
+    content: $twitter-icon;
+    padding-right: 10px;
+  }
+}
