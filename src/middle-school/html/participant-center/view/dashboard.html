@@ -623,13 +623,13 @@
 								<label for="StudentRecruitmentGoal">
 									Student Participant Goal: 
 								</label>
-								<input type="number" class="form-control" id="StudentRecruitmentGoal" ng-model="schoolPlan.StudentRecruitmentGoal" aria-label="Student Recruitment Goal" ng-blur="putSchoolPlan($event)">
+								<input type="number" class="form-control" id="StudentRecruitmentGoal" ng-model="schoolPlan.StudentRecruitmentGoal" aria-label="Student Recruitment Goal" ng-blur="putSchoolPlan($event)" ng-change="putSchoolPlan($event)">
 								</div>
 								<div class="form-group">
 									<label for="FinnsMissionCompletedGoal">
 										Finn's Mission Completion Goal: 
 									</label>
-									<input type="number" class="form-control" id="FinnsMissionCompletedGoal" ng-model="schoolPlan.FinnsMissionCompletedGoal" aria-label="Finn's Mission Completion Goal" ng-blur="putSchoolPlan($event)">
+									<input type="number" class="form-control" id="FinnsMissionCompletedGoal" ng-model="schoolPlan.FinnsMissionCompletedGoal" aria-label="Finn's Mission Completion Goal" ng-blur="putSchoolPlan($event)" ng-change="putSchoolPlan($event)">
 								</div>
 								<div class="form-group d-none">
 									<label for="school_goal">
