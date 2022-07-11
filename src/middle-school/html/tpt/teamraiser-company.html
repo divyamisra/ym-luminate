@@ -28,12 +28,12 @@
           </a> -->
         </div>
       </div>
-      <div class="d-flex">
-	<div ng-if="hideAmount != 'Y'" class="col-6 fw-bold"><span ng-bind-html="companyProgress.raisedFormatted"></span> raised</div> 
+      <div class="d-flex mx-5">
+	<div ng-if="hideAmount != 'Y'" class="col-6 fw-bold"><span ng-bind-html="companyProgress.amountRaisedFormatted"></span> raised</div> 
 	<div ng-if="companyProgress.goalFormatted && companyProgress.goalFormatted != '' && companyProgress.goalFormatted != '$0'" class="col-6 text-end fw-bold"><span ng-bind-html="companyProgress.goalFormatted"></span> goal</div> 
       </div>
-      <div class="ym-progress__thermometer" name="School Progress Bar" role="progressbar" aria-label="{{companyProgress.percent}} percent of fundraising progress" aria-valuetext="{{companyProgress.percent}} percent of fundraising progress" aria-valuenow="{{companyProgress.percent}}" aria-valuemin="0" aria-valuemax="100" ng-if="companyProgress.goal && companyProgress.goal != 0" ng-cloak>
-        <div class="ym-progress__thermometer--fill" ng-style="{'width': companyProgress.percent + '%'}">{{companyProgress.percent}}%</div>
+      <div class="ym-progress__thermometer mx-5 my-0 mw-100" name="School Progress Bar" role="progressbar" aria-label="{{companyProgress.percent}} percent of fundraising progress" aria-valuetext="{{companyProgress.percent}} percent of fundraising progress" aria-valuenow="{{companyProgress.percent}}" aria-valuemin="0" aria-valuemax="100" ng-if="companyProgress.goal && companyProgress.goal != 0" ng-cloak>
+        <div class="ym-progress__thermometer--fill" ng-class="(companyProgress.percent < 15) ? 'therm-text-black' : 'therm-text-white'" ng-style="{'width': companyProgress.percent + '%'}">{{companyProgress.percent}}%</div>
       </div>
       <div class="ym-progress__stats">
         <div class="ym-progress__date" ng-if="schoolPlan.EventStartDate && schoolPlan.EventStartDate != '' && schoolPlan.EventStartDate != 'User Provided No Response' && schoolPlan.EventStartDate != '0000-00-00'" ng-cloak>
