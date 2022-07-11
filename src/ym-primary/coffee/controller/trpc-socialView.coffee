@@ -3,7 +3,8 @@ angular.module('trPcControllers').controller 'NgPcSocialViewCtrl', [
   '$sce'
   '$rootScope'
   'FacebookFundraiserService'
-  ($scope, $sce, $rootScope, FacebookFundraiserService) ->
+  'NgPcTeamraiserShortcutURLService'
+  ($scope, $sce, $rootScope, FacebookFundraiserService, NgPcTeamraiserShortcutURLService) ->
     #facebook fundraising
     $rootScope.facebookFundraiserConfirmedStatus = ''
     if $scope.facebookFundraisersEnabled and $rootScope.facebookFundraiserId and $rootScope.facebookFundraiserId isnt ''
