@@ -8,6 +8,15 @@ main {
   }
 }
 
+.app-9 {
+  main {
+    > .container {
+      @media (max-width: $screen-xs-max) {
+        margin-top: 0px;
+      }
+    }
+  }
+}
 :focus {
     border-color: blue !important;
     outline: 0;
