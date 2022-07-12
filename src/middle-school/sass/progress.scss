@@ -47,8 +47,9 @@
   
   &::before {
     content: " ";
-    margin-left: 5px;
-    display: block;
+    width: 10%;
+    display: inline-block;
+    position: relative;
   }
 }
 
