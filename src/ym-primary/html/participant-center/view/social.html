@@ -1,20 +1,5 @@
 <div class="khc-social-share white-box mb-4">
   <h3 class="h5 mb-4">Share with Friends & Family</h3>
-  <div class="khc-social-share-slot">
-    <div class="row g-3 mb-3">
-      <div class="col-sm-4">
-        <div id="personalPageUrlStudent" class="visually-hidden" aria-hidden="true">{{personalPageUrl}}</div>
-        <button type="button" class="khc-copy khc-btn-copy khc-btn-social btn btn-md-wide btn-primary p-2 text-start w-100" title="Copy your link to share" data-clipboard-target="#personalPageUrlStudent" data-clipboard-message="Personal page URL copied!">Copy Your Link to Share</button>
-      </div>
-      <div class="col-sm-4">
-        <a target="_blank" class="khc-btn-social khc-share-twitter btn btn-md-wide p-2 text-start w-100 twitter-share-button" href="https://twitter.com/intent/tweet?text={{personalPageUrl}}">Share on Twitter</a>
-      </div> 
-      <div class="col-sm-4">
-        <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{personalPageUrl}}" class="khc-btn-social khc-connect-facebook btn btn-md-wide p-2 text-start w-100 fb-xfbml-parse-ignore">Share on Facebook</a>
-      </div>
-    </div>
-    <p><small>By clicking the links above, you will leave AHA's website and be redirected to another site not under the control of AHA.</small></p>
-  </div>
   <div ng-show="facebookFundraisersEnabled" class="mt-1" ng-cloak>
     <div class="ym-pc-dashboard-facebook-box" ng-show="!facebookFundraiserId">
       <div class="container">
