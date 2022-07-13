@@ -1531,18 +1531,22 @@
 
                 // Init
                 var $steps = $('div#registration-reg-page-steps').detach(),
-                    errorsPresent = $('div.ErrorMessage.page-error').length;
+                    errorsPresent = $('div.ErrorMessage.page-error').length,
+                    $question = null,
+                    $questionContainer = null;
                 $('form#F2fRegContact').append($steps);
                 $steps.show();
 
                 // Step 1
                 var $step1 = $('div#registration-reg-page-step-1');
-                $step1.find('div#relocated_cons_first_name').append(
-                    $('#cons_first_name').closest('div.cons-info-question-container').detach()
-                );
-                $step1.find('div#relocated_cons_last_name').append(
-                    $('#cons_last_name').closest('div.cons-info-question-container').detach()
-                );
+                $questionContainer = $('#cons_first_name').closest('div.cons-info-question-container');
+                if ($questionContainer.length) {
+                    $step1.find('div#relocated_cons_first_name').append($questionContainer.detach());
+                }
+                $questionContainer = $('#cons_last_name').closest('div.cons-info-question-container');
+                if ($questionContainer.length) {
+                    $step1.find('div#relocated_cons_last_name').append($questionContainer.detach());
+                }
                 if ($step1.find('div#relocated_participation_years').length) {
                     $step1.find('div#relocated_participation_years').append(
                         $('.survey-question-container label span:contains("How many years have you participated in Heart Walk")')
@@ -1586,24 +1590,29 @@
 
                 // Step 4
                 var $step4 = $('div#registration-reg-page-step-4'),
-                    $consStateSelect = $('#cons_state');
-                if ($consStateSelect.length) {
-                    $step4.find('div#relocated_cons_state').append(
-                        $consStateSelect.closest('div.cons-info-question-container').detach()
-                    );
+                    step4items = [
+                        'cons_street1',
+                        'cons_street2',
+                        'cons_city',
+                        'cons_state',
+                        'cons_zip_code',
+                        'cons_country',
+                        'cons_email'
+                    ];
+                for (var i = 0; i < step4items.length; i++) {
+                    $questionContainer = $('#' + step4items[i]).closest('div.cons-info-question-container');
+                    if ($questionContainer.length) {
+                        $step4.find('div#relocated_' + step4items[i]).append($questionContainer.detach());
+                    }
                 }
-                $step4.find('div#relocated_cons_zip_code').append(
-                    $('#cons_zip_code').closest('div.cons-info-question-container').detach()
-                );
-                $step4.find('div#relocated_cons_email').append(
-                    $('#cons_email').closest('div.cons-info-question-container').detach()
-                );
-                $step4.find('div#relocated_mobile_phone_question').append(
-                    $('.survey-question-container label span:contains("Mobile Phone")').closest('div.survey-question-container').detach()
-                );
-                $step4.find('div#relocated_t_shirt_question').append(
-                    $('.survey-question-container label span:contains("What is your t-shirt size")').closest('div.survey-question-container').detach()
-                );
+                $questionContainer = $('.survey-question-container label span:contains("Mobile Phone")').closest('div.survey-question-container');
+                if ($questionContainer.length) {
+                    $step4.find('div#relocated_mobile_phone_question').append($questionContainer.detach());
+                }
+                $questionContainer = $('.survey-question-container label span:contains("What is your t-shirt size")').closest('div.survey-question-container');
+                if ($questionContainer.length) {
+                    $step4.find('div#relocated_t_shirt_question').append($questionContainer.detach());
+                }
 
                 // Step 5
                 var $consPasswordInput = $('#cons_password');
@@ -1689,10 +1698,23 @@
                         case 3 :
                             break;
                         case 4 :
-                            $('#cons_zip_code').valid();
-                            $('#cons_email').valid();
-                            if ($('div#registration-reg-page-step-5 .phonecheck').length) {
-                                $('div#registration-reg-page-step-5 .phonecheck').valid();
+                            var questions = [
+                                'cons_street1',
+                                'cons_city',
+                                'cons_state',
+                                'cons_zip_code',
+                                'cons_country',
+                                'cons_email'
+                            ]
+                            for (var i = 0; i < questions.length; i++) {
+                                $question = $step4.find('#' + questions[i]);
+                                if ($question.length) {
+                                    $question.valid();
+                                }
+                            }
+                            $question = $step4.find('.phonecheck');
+                            if ($question.length) {
+                                $question.valid();
                             }
                             if ($('form#F2fRegContact').valid()) {
                                 renderNextStep(currentStep, nextStep);
