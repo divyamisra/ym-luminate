@@ -493,11 +493,17 @@ span.ym-activity-box-number {
   grid-template-columns: 60% 40%;
   grid-template-areas:
     "one two"
-    "three two";
+    "three two"
+    "three four";
+  @media (max-width:767px) {
+    grid-template-columns: 100%;
+    grid-template-areas: "one" "two" "four" "three";
+  }
 }
 .dashboard-col1 { grid-area: one; }
 .dashboard-col2 { grid-area: two;  }
 .dashboard-col3 { grid-area: three; grid-row-end: none; }
+.dashboard-col4 { grid-area: four; }
 
 .ahc-challenge .btn, 
 .ahc-challenge .form-control, 
