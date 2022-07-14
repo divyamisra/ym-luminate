@@ -49,6 +49,7 @@
   right: 0;
   height: 50%;
   overflow: hidden;
+  text-align:center;
 }
 .aha-counter-digit-bcover {}
 .aha-counter-digit-top {
@@ -137,4 +138,15 @@
   animation-name: digitflip_cover;
   animation-duration: 1s;
   animation-timing-function: linear;
+}
+.aha-counter-digit-static {
+  text-align: center;
+}
+.aha-counter-digit-bottom, .aha-counter-digit-static, .aha-counter-digit-to {
+min-width: 3.75rem;
+}
+
+.aha-counter-digit-top {
+background: linear-gradient(130deg,var(--counter_red_shade1) 0,var(--counter_red_shade2) 45%,var(--counter_red_shade3) 35%);
+width: 100%;
 }
