@@ -20,170 +20,171 @@
         padding: 1rem;
         @include media-breakpoint-down(md) {
           background-image: url("https://secure3.convio.net/heartdev/images/content/pagebuilder/greetings-mobile.png");
-        }
 
-      .event-info-banner {
-        width: 50%;
-        padding-top: 50%;
-        background-image: url("https://secure3.convio.net/heartdev/images/content/pagebuilder/Gold-Heart-ManWoman-1.png");
-        background-size: contain;
-        background-position: center;
-        background-repeat: no-repeat;
+        .event-info-banner {
+          width: 50%;
+          padding-top: 50%;
+          background-image: url("https://secure3.convio.net/heartdev/images/content/pagebuilder/Gold-Heart-ManWoman-1.png");
+          background-size: contain;
+          background-position: center;
+          background-repeat: no-repeat;
 
-        @include media-breakpoint-up(1024px) {
-          padding-top: 496px;
-        }
-
-        @include media-breakpoint-up(lg) {
-          background-position: right;
-        }
-
-        @media (max-width: 767.98px) {
-          width: 100%;
-          padding-top: 100%;
-        }
-      }
-
-      .event-info {
-        margin: 0;
-        @include media-breakpoint-up(lg) {
-          flex: 50% 0 0;
-        }
-
-        .event-info__header {
-          width: fit-content;
-
-          h1 {
-            font-size: 3.9375em;
-            background-color: $white;
-            line-height: 0.95em;
-            max-width: 0;
-
-            &::first-line {
-              color: $red-deep;
-              font-size: 1.25em;
-              font-weight: 900;
-            }
-
-            @include media-breakpoint-down(lg) {
-              font-size: 3.5em;
-            }
-
-            @include media-breakpoint-down(sm) {
-              font-size: 2.5em;
-            }
+          @include media-breakpoint-up(1024px) {
+            padding-top: 496px;
           }
 
-          h2 {
-            background-color: $white;
-            font-weight: 600;
-          }
-
-          span {
-            font-size: 63px;
-            @include media-breakpoint-down(md) {
-              font-size: 2em !important;
-            }
-          }
-        }
-        // End event-info__header
-
-        .event-info__content {
           @include media-breakpoint-up(lg) {
-            padding: 0 72px;
+            background-position: right;
+          }
+
+          @media (max-width: 767.98px) {
+            width: 100%;
+            padding-top: 100%;
           }
         }
 
-        .event-info__details h2 {
-          font-family: $font-family-light;
-          font-size: 1.5em;
-          line-height: 1.5;
-          text-align: center;
-          font-weight: normal;
-        }
-        .event-info__details p {
-          font-size: 0.875em !important;
-          margin: 1em 0;
-          @include media-breakpoint-up(md) {
-            font-size: 1.25em !important;
+        .event-info {
+          margin: 0;
+          @include media-breakpoint-up(lg) {
+            flex: 50% 0 0;
           }
-        }
-        .event-date,
-        .event-name {
-          letter-spacing: 0.7px;
-        }
-        .event-name,
-        .info-columns .fas,
-        .info-columns a {
-          color: $red;
-        }
-        .info-columns {
-          margin: 31px 0 0;
-          .event-info-collapse {
-            &:hover {
-              a,
-              i {
+
+          .event-info__header {
+            width: fit-content;
+
+            h1 {
+              font-size: 3.9375em;
+              background-color: $white;
+              line-height: 0.95em;
+              max-width: 0;
+
+              &::first-line {
+                color: $red-deep;
+                font-size: 1.25em;
+                font-weight: 900;
+              }
+
+              @include media-breakpoint-down(lg) {
+                font-size: 3.5em;
+              }
+
+              @include media-breakpoint-down(sm) {
+                font-size: 2.5em;
+              }
+            }
+
+            h2 {
+              background-color: $white;
+              font-weight: 600;
+            }
+
+            span {
+              font-size: 63px;
+              @include media-breakpoint-down(md) {
+                font-size: 2em !important;
+              }
+            }
+          }
+          // End event-info__header
+
+          .event-info__content {
+            @include media-breakpoint-up(lg) {
+              padding: 0 72px;
+            }
+          }
+
+          .event-info__details h2 {
+            font-family: $font-family-light;
+            font-size: 1.5em;
+            line-height: 1.5;
+            text-align: center;
+            font-weight: normal;
+          }
+          .event-info__details p {
+            font-size: 0.875em !important;
+            margin: 1em 0;
+            @include media-breakpoint-up(md) {
+              font-size: 1.25em !important;
+            }
+          }
+          .event-date,
+          .event-name {
+            letter-spacing: 0.7px;
+          }
+          .event-name,
+          .info-columns .fas,
+          .info-columns a {
+            color: $red;
+          }
+          .info-columns {
+            margin: 31px 0 0;
+            .event-info-collapse {
+              &:hover {
+                a,
+                i {
+                  color: $red-deep;
+                }
+              }
+            }
+            h3,
+            p {
+              line-height: 1.2;
+            }
+            .fas,
+            a,
+            h3,
+            p {
+              font-size: 1rem;
+            }
+            a {
+              line-height: 1;
+            }
+            p {
+              margin: 0 0 17px;
+            }
+          }
+          .event-date {
+            margin: 1px 0 31px;
+            font-size: 1.44rem;
+            font-family: $font-family-medium;
+            font-weight: normal;
+          }
+          .btn {
+            padding: 1rem;
+            font-size: 1.5rem;
+            min-width: 10em;
+            max-width: 100%;
+
+            &.btn-primary {
+              background-color: $red-deep;
+            }
+          }
+          .fundraising-amounts {
+            margin-top: 90px;
+            margin-bottom: 0;
+            padding: 0 72px 67px;
+            span {
+              font-size: 0.78em;
+              margin: 14px 0 -3px;
+              @include media-breakpoint-up(md) {
+                font-size: 1em;
+              }
+            }
+            .amount {
+              font-size: 0.875em;
+              font-family: $font-family-bold;
+              line-height: 1.4;
+              margin: 0;
+              @include media-breakpoint-up(md) {
+                font-size: 1.667em !important;
                 color: $red-deep;
               }
             }
           }
-          h3,
-          p {
-            line-height: 1.2;
-          }
-          .fas,
-          a,
-          h3,
-          p {
-            font-size: 1rem;
-          }
-          a {
-            line-height: 1;
-          }
-          p {
-            margin: 0 0 17px;
-          }
         }
-        .event-date {
-          margin: 1px 0 31px;
-          font-size: 1.44rem;
-          font-family: $font-family-medium;
-          font-weight: normal;
-        }
-        .btn {
-          padding: 1rem;
-          font-size: 1.5rem;
-          min-width: 10em;
-          max-width: 100%;
-
-          &.btn-primary {
-            background-color: $red-deep;
-          }
-        }
-        .fundraising-amounts {
-          margin-top: 90px;
-          margin-bottom: 0;
-          padding: 0 72px 67px;
-          span {
-            font-size: 0.78em;
-            margin: 14px 0 -3px;
-            @include media-breakpoint-up(md) {
-              font-size: 1em;
-            }
-          }
-          .amount {
-            font-size: 0.875em;
-            font-family: $font-family-bold;
-            line-height: 1.4;
-            margin: 0;
-            @include media-breakpoint-up(md) {
-              font-size: 1.667em !important;
-              color: $red-deep;
-            }
-          }
-        }
+        // End event-info
       }
-      // End event-info
+    // End little-gold-bars
     }
     // End greeting-header
 
