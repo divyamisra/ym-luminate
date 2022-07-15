@@ -8,13 +8,19 @@
     }
 
     .greeting-header {
-      background-image: url("https://secure3.convio.net/heartdev/images/content/pagebuilder/MicrosoftTeams-image__2_.png");
+      background-image: url("https://secure3.convio.net/heartdev/images/content/pagebuilder/greetingsx1903x570_updated-Flattened-BG-with-white.png");
       background-repeat: no-repeat;
-      background-size: 100% 100%;
+      background-size: cover;
       padding: 1rem;
-      @include media-breakpoint-down(md) {
-        background-image: url("https://secure3.convio.net/heartdev/images/content/pagebuilder/greetings-mobile.png");
-      }
+
+      .little-gold-bars {
+        background-image: url("https://secure3.convio.net/heartdev/images/content/pagebuilder/greetingsx1903x570_updated.png");
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        padding: 1rem;
+        @include media-breakpoint-down(md) {
+          background-image: url("https://secure3.convio.net/heartdev/images/content/pagebuilder/greetings-mobile.png");
+        }
 
       .event-info-banner {
         width: 50%;
