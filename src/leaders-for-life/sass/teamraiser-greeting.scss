@@ -20,6 +20,7 @@
         padding: 1rem;
         @include media-breakpoint-down(md) {
           background-image: url("https://secure3.convio.net/heartdev/images/content/pagebuilder/greetings-mobile.png");
+        }
 
         .event-info-banner {
           width: 50%;
