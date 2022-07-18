@@ -410,6 +410,9 @@ main > .container {
   .ym-progress-related {
     position: relative;
     display: flex;
+    @media (max-width:991px) {
+       display:block;
+    }
     margin: 30px 0 0;
   }
 
@@ -1176,7 +1179,7 @@ main > .container {
     }
   }
 }
-
+/*
 .ng-pc-nav-list-group {
   .list-group-item-heading {
     padding: 10px;
@@ -1198,7 +1201,7 @@ main > .container {
     }
   }
 }
-
+*/
 .btn + .ng-pc-nav-list-group {
   margin: 12px 0 0;
 }

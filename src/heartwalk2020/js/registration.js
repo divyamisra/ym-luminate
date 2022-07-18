@@ -133,7 +133,7 @@
                   $(teams).each(function (i, team) {
                     if (searchType === 'registration') {
                       $('.list').append(
-                        '<div class="search-result-details row py-3"><div class="col-md-5"><strong><a href="' + team.teamPageURL + '" class="team-name-label" title="' + team.name + '" target=_blank><span class="team-company-label sr-only">Team Name:</span> ' + team.name + '</a></strong><br><span class="team-captain-label">Coach:</span> <span class="team-captain-name">' + team.captainFirstName + ' ' + team.captainLastName + '</span></div><div class="col-md-5 mt-auto">' + ((team.companyName !== null && team.companyName !== undefined) ? '<span class="team-company-label">Company:</span> <span class="team-company-name">' + team.companyName + '</span>' : '') + '</div><div class="col-md-2"><a href="' + luminateExtend.global.path.secure + 'TRR/?fr_tjoin=' + team.id + '&pg=tfind&fr_id=' + evID + '&s_captainConsId=' + team.captainConsId + '&s_regType=joinTeam&skip_login_page=true&s_teamName=' + team.name + '&s_teamGoal=' + (parseInt(team.goal)/100) + '&s_teamCaptain=' + team.captainFirstName + ' ' + team.captainLastName + '" title="Join ' + team.name + '" aria-label="Join ' + team.name + '" class="btn btn-block btn-primary button team-join-btn">Join</a></div></div>');
+                        '<div class="search-result-details row py-3"><div class="col-md-5"><strong><a href="' + team.teamPageURL + '" class="team-name-label" title="' + team.name + '" target=_blank><span class="team-company-label sr-only">Team Name:</span> ' + team.name + '</a></strong><br><span class="team-captain-label">Coach:</span> <span class="team-captain-name">' + team.captainFirstName + ' ' + team.captainLastName + '</span></div><div class="col-md-5 mt-auto">' + ((team.companyName !== null && team.companyName !== undefined) ? '<span class="team-company-label">Company:</span> <span class="team-company-name">' + team.companyName + '</span>' : '') + '</div><div class="col-md-2"><a href="' + luminateExtend.global.path.secure + 'TRR/?fr_tjoin=' + team.id + '&pg=tfind&fr_id=' + evID + '&s_captainConsId=' + team.captainConsId + '&s_regType=joinTeam&skip_login_page=true&s_teamName=' + team.name + '&s_teamGoal=' + (parseInt(team.goal)/100) + '&s_teamCaptain=' + team.captainFirstName + ' ' + team.captainLastName + '" title="Join ' + team.name + '" aria-label="Join ' + team.name + '" class="btn btn-block btn-primary button team-join-btn" onclick=\'localStorage.companySelect = "' + team.companyName + '"\'>Join</a></div></div>');
                       $('.js__search-results-container').slideDown();
                       // $('.js__search-results-container').show();
 
@@ -654,6 +654,49 @@
                 return '<h1 class="campaign-banner-container">' + $(this).html() + '</h1>';
             });
             $('#title_container').replaceWith('<h2 class="ObjTitle" id="title_container">Tell us about you:</h2>');
+
+            $("#cons_email").blur(function() {
+              var email = $(this).val()
+              var emailVerifyApi = "https://api.emailverifyapi.com/v3/lookups/JSON?key=D107AB8B6EC24117&email=" + encodeURIComponent(email)
+
+              $.getJSON(emailVerifyApi, {})
+                .done(function(response) {
+                  console.log("response", response)
+
+                  if (response.validFormat === false) {
+                    handleValidation()
+
+                    return
+                  }
+
+                  if (response.deliverable === false) {
+                    handleValidation()
+
+                    return
+                  }
+
+                  if ($("#cons_email-error").length != 0) {
+                    $("#cons_email-error").text("").css("display", "none")
+                  }
+                })
+                .fail(function (jqxhr, textStatus, error) {
+                  var errorMessage = textStatus + ", " + error
+
+                  console.log("Request failed: " + errorMessage)
+                })
+            })
+
+            function handleValidation() {
+              var errorLabel = '<label id="cons_email-error" class="error" for="cons_email">Please check the spelling of your email address.</label>'
+
+              if ($("#cons_email-error").length === 0) {
+                $("#cons_email").after(errorLabel)
+
+                return
+              }
+
+              $("#cons_email-error").text("Please check the spelling of your email address.").css("display", "block")
+            }
         }
 
         //Rthanks
@@ -672,7 +715,7 @@
                     localStorage.companySelect = "AT&T";
                 } else {
                     console.log("reset AT&T 4");
-                    localStorage.companySelect = "";
+                    localStorage.companySelect = $(this).find('option:selected').text();
                 }
             });
             $('.list-component-cell-column-join-link a').click(function(){
@@ -682,7 +725,7 @@
                     localStorage.companySelect = "AT&T";
                 } else {
                     console.log("reset AT&T 5");
-                    localStorage.companySelect = "";
+                    localStorage.companySelect = compSel;
                 }
             });
 
@@ -744,7 +787,7 @@
                         localStorage.companySelect = "AT&T";
                     } else {
                         console.log("reset AT&T 6");
-                        localStorage.companySelect = "";
+                        localStorage.companySelect = $('select[name=fr_co_list] option:selected').text();
                     }
                 }
                 //store off personal goal in sess var by adding to action url
@@ -1218,7 +1261,7 @@
                     localStorage.companySelect = "AT&T";
                 } else {
                     console.log("reset AT&T 2");
-                    localStorage.companySelect = "";
+                    localStorage.companySelect = jQuery(this).find('option:selected').text();
                 }
             });
             $('button.next-step').click(function(){
@@ -1228,7 +1271,7 @@
                         localStorage.companySelect = "AT&T";
                     } else {
                         console.log("reset AT&T 3");
-                        localStorage.companySelect = "";
+                        localStorage.companySelect = $('select[name=fr_part_co_list] option:selected').text();
                     }
                 }
                 if ($('.donation-level-container').find('.donation-level-row-container.active').length > 0 || $('.donation-level-container').find('.donation-level-row-container.active').hasClass('notTime') === false) {
@@ -1241,10 +1284,10 @@
                       localStorage.dtdCompanyId = dtdCoId;
                   }
                   else {
-                      console.log('clear dtd company id'); 
+                      console.log('clear dtd company id');
                       localStorage.dtdCompanyId = "";
                   }
-                }        
+                }
                 if ($('form').valid()) {
                     //store off personal goal in sess var by adding to action url
                     $('#F2fRegPartType').prepend('<input type="hidden" id="personalGoal" name="s_personalGoal" value="' + $('input#fr_goal').val() + '">');
@@ -1372,15 +1415,20 @@
             //for AT&T company - a question will be displayed for their employee id
             //first it must be hidden though
             jQuery('label span.input-label:contains(By submitting the information requested in this form)').closest('.survey-question-container').addClass("att_id").hide();
+            jQuery('label span.input-label:contains(Cleveland Clinic)').closest('.survey-question-container').addClass("cleveland_id").hide();
             //jQuery('label span.input-label:contains(Clear Vidyard ID)').closest('.survey-question-container').addClass("vidyard_id").hide();
             //add additional code here for saving company name and displaying field if company selected was AT&T
 
             setTimeout(function(){
-                if (localStorage.companySelect == "AT&T") {
+                if (localStorage.companySelect.indexOf("AT&T") > -1) {
                     jQuery('.att_id').show();
                     jQuery('.att_id .input-container label .input-label').html(jQuery('.att_id .input-container label .input-label').html().replace("AT&amp;T Services, Inc.","<span class='att_id_blue'>AT&T Services, Inc.</span>"));
                     jQuery('.att_id .input-container label .input-label').prepend("<div class='att_id_title att_id_blue'>AT&T Employees:</div>");
                     localStorage.companySelect = "";
+                }
+                if (localStorage.companySelect.indexOf("Cleveland Clinic") > -1) {
+                    jQuery('.cleveland_id').show();
+                    //localStorage.companySelect = "";
                 }
             },500);
             jQuery('button.next-step').click(function(){
@@ -1442,7 +1490,7 @@
         $('.survivor_yes_no input[type=radio]').addClass("required survivorq");
 
         $('.survivor_yes_no .survey-question-label').after('<small id="isSurvivor" class="form-text text-muted">Answering yes will display a small banner over your personal photo on your fundraising page that will proudly say, "I\'m a survivor."</small>');
-        
+
 
         $('.survivor_yes_no li').click(function() {
             $('.survivor_yes_no li').removeClass('survivor_active');
@@ -1557,7 +1605,7 @@
 
 
                $('button.next-step').click(function(){
-                 // Add additional amount to local storage for Double the Donation 
+                 // Add additional amount to local storage for Double the Donation
                 if ($('.additional-gift-amount').text() != '$0.00'){
                     console.log('there is a gift value');
                     var addlGiftAmt = $('.additional-gift-amount').text();
@@ -1567,7 +1615,7 @@
                     localStorage.addlGiftAmt = addlGiftAmtFormatted;
                 }
                 else {
-                    console.log('clear addGiftAmt'); 
+                    console.log('clear addGiftAmt');
                     localStorage.addlGiftAmt = "";
                 }
 
@@ -1621,7 +1669,7 @@
             $('#fr_team_goal').val('');
             $('#fr_team_name').val('');
         }
-        
+
         $('.part-type-description-text:contains("Free")').html('&nbsp;');
         $('.survey-question-container legend span:contains("Waiver agreement")').parent().parent().addClass('waiverCheck');
         $('.waiverCheck legend').addClass('aural-only');
@@ -2127,3 +2175,5 @@
 
 
 })(jQuery);
+
+console.log("testing");

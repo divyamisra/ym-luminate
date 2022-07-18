@@ -380,11 +380,10 @@
                                 if (screenWidth >= 768) {
                                     $('.js--participants-results-rows').append('<tr' + (i > 10 ? ' class="d-none"' : '') + '><td><a href="' + participant.personalPageUrl + '">' +
                                         participant.name.first + ' ' + participant.name.last +
-                                        '</a></td><td></td><td></td><td class="col-cta text-right"><a href="' + participant.donationUrl + '" aria-label="Donate to ' + participant.name.first + ' ' + participant.name.last + '" class="btn btn-primary btn-block btn-rounded">Donate</a></td></tr>');
+                                        '</a></td><td></td><td></td><td class="col-cta text-right event-status-switch"><a href="' + participant.donationUrl + '" aria-label="Donate to ' + participant.name.first + ' ' + participant.name.last + '" class="btn btn-primary btn-block btn-rounded">Donate</a></td></tr>');
                                 } else {
                                     $('#participantResultsTable thead').remove();
-                                    $('.js--participants-results-rows').addClass('mobile').append('<tr><td><table><tr' + (i > 10 ? ' class="d-none"' : '') + '><td>Teammate</td><td><a href="' + participant.personalPageUrl + '">' +
-                                        participant.name.first + ' ' + participant.name.last + '</a></td></tr><td></td></tr><tr><td></td><td></td></tr><tr><td colspan="2" class="text-center"><a href="' + participant.donationUrl + '" class="btn btn-primary btn-block btn-rounded" title="Donate to ' + participant.name.first + ' ' + participant.name.last + '" aria-label="Donate to ' + participant.name.first + ' ' + participant.name.last + '">Donate</a></td></tr></table></td></tr>');
+                                    $('.js--participants-results-rows').addClass('mobile').append('<tr' + (i > 10 ? ' class="d-none"' : '') + '><td><table style="width:100%"><tr><td><a href="' + participant.personalPageUrl + '">' + participant.name.first + ' ' + participant.name.last + '</a></td></tr><tr><td colspan="2" class="text-center event-status-switch"><a href="' + participant.donationUrl + '" class="btn btn-primary btn-block btn-rounded" title="Donate to ' + participant.name.first + ' ' + participant.name.last + '" aria-label="Donate to ' + participant.name.first + ' ' + participant.name.last + '">Donate</a></td></tr></table></td></tr>');
                                 }
 
 
@@ -456,19 +455,26 @@
                                 if (screenWidth >= 768) {
                                   if ($('body').hasClass('pg_search_list')) {
                                     $('.js--team-results-rows')
-                                        .append('<tr' + (i > 10 ? ' class="d-none"' : '') + '><td><a href="' + team.teamPageURL + '">' +
-                                            team.name + '</a></td></tr>');
+                                        .append('<tr' + (i > 10 ? ' class="d-none"' : '') + '><td><a href="' + team.teamPageURL + '">' + team.name + '</a></td><td></td><td></td><td></td><td></td></tr>');
                                   } else {
                                     $('.js--team-results-rows')
-                                        .append('<tr' + (i > 10 ? ' class="d-none"' : '') + '><td><a href="' + team.teamPageURL + '">' +
-                                            team.name + '</a></td><td></td><td></td><td></td><td class="col-cta text-right"><a href="' + team.teamDonateURL + '" class="btn btn-primary btn-block btn-rounded" title="Donate to ' + team.name + '" aria-label="Donate to ' + team.name + '">Donate</a></td></tr>');
+                                        .append('<tr' + (i > 10 ? ' class="d-none"' : '') + '><td><a href="' + team.teamPageURL + '">' + team.name + '</a></td><td></td><td></td><td></td><td class="col-cta text-right event-status-switch"><a href="' + team.teamDonateURL + '" class="btn btn-primary btn-block btn-rounded" title="Donate to ' + team.name + '" aria-label="Donate to ' + team.name + '">Donate</a></td></tr>');
                                   }
                                 } else {
                                     $('#teamResultsTable thead').remove();
-                                    $('.js--team-results-rows')
-                                        .addClass('mobile')
-                                        .append('<tr><td><table><tr' + (i > 10 ? ' class="d-none"' : '') + '><td>Team</td><td><a href="' + team.teamPageURL + '">' +
-                                            team.name + '</a></td></tr><tr><td></td><td></td></tr></td></tr><tr><td></td><td><a href="TR/?fr_id=' + team.EventId + '&pg=entry">' + team.eventName + '</a></td></tr><tr><td colspan="2" class="text-center"><a href="' + team.teamDonateURL + '" class="btn btn-primary btn-block btn-rounded" title="Donate to ' + team.name + '" aria-label="Donate to ' + team.name + '">Donate</a></td></tr></table></td></tr>');
+                                    if ($('body').hasClass('pg_search_list')) {
+                                        $('.js--team-results-rows')
+                                            .addClass('mobile')
+                                            //.append('<tr><td><table style="width: 100%"><tr' + (i > 10 ? ' class="d-none"' : '') + '><td><a href="' + team.teamPageURL + '">' +
+                                                //team.name + '</a></td></tr></table></td></tr>');
+                                            .append('<tr' + (i > 10 ? ' class="d-none"' : '') + '><td><table style="width: 100%"><tr><td><a href="' + team.teamPageURL + '">' +
+                                                team.name + '</a></td></tr></table></td></tr>');
+                                    } else {
+                                        $('.js--team-results-rows')
+                                            .addClass('mobile')
+                                            .append('<tr' + (i > 10 ? ' class="d-none"' : '') + '><td><table style="width: 100%"><tr><td><a href="' + team.teamPageURL + '">' +
+                                                team.name + '</a></td></tr><tr' + (i > 10 ? ' class="d-none"' : '') + '><td colspan="2" class="text-center event-status-switch"><a href="' + team.teamDonateURL + '" class="btn btn-primary btn-block btn-rounded" title="Donate to ' + team.name + '" aria-label="Donate to ' + team.name + '">Donate</a></td></tr></table></td></tr>');
+                                    }
                                 }
                             });
 
@@ -1836,6 +1842,7 @@
                                 // $('.js--num-participant-results').text((totalParticipants === 1 ? '1 Result' : totalParticipants + ' Results'));
 
                                 $(participants).each(function (i, participant) {
+                                    console.log('team page particiapnts', participant)
 
                                     var participantRaised = (parseInt(participant.amountRaised) * 0.01).toFixed(2);
                                     var participantRaisedFormmatted = participantRaised.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,").replace('.00', '');
@@ -1844,7 +1851,7 @@
                                         participant.name.first + ' ' + participant.name.last +
                                         '</a></td><td class="raised" data-sort="' + participantRaisedFormmatted + '"><span></span></td><td><a href="' + participant.donationUrl + '">' + (screenWidth <= 480 ? 'Donate' : 'Donate to ' + participant.name.first) + '</a></td></tr>');
                                     if (participant.aTeamCaptain === 'true') {
-                                        $('.js--team-captain-link').attr('href', participant.personalPageUrl).attr('aria-lablel', "Team Captain " + participant.name.first + ' ' + participant.name.last + "'s fundraising page'" + participant.name.last + ' ').text(participant.name.first + ' ' + participant.name.last);
+                                        $('.js--team-captain-link').attr('href', participant.donationUrl).attr('aria-lablel', "Team Captain " + participant.name.first + ' ' + participant.name.last + "'s donation page'");
                                     }
                                 });
 
