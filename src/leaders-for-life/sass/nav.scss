@@ -87,7 +87,7 @@ nav {
     list-style:none;
 
     @include media-breakpoint-up(sm) {
-      color: $white;
+      color: $red;
     }
 
     &.dropdown {
