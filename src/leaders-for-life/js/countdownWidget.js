@@ -24,9 +24,9 @@ var CountDownWidget = function(element_id, a, b, c) {
 
   this.id = element_id
   //this.offset = timeoffset;
+  this.tzoffset = getTimeOffset(a[0]);
   this.datetime = convertTime(a[0]);
   this.enddate = convertTime(b[0]);
-  this.tzoffset = getTimeOffset(a[0]);
   this.halt = false;
     /* b - before , p - in progress, e - ended */
   this.stage = 'b';
@@ -116,8 +116,8 @@ CountDownWidget.prototype.getTimeDiff = function() {
 
   let dt = new Date()
   let diff = this.datetime - dt
-  diff = Math.round(diff / 1000) - this.tzoffset * 60 - dt.getTimezoneOffset() * 60 - 3600
 
+console.log(this.enddate)
   if (diff < 0 ) {
       diff = this.enddate - dt;
 
@@ -126,12 +126,14 @@ CountDownWidget.prototype.getTimeDiff = function() {
       }
 
   }
-
+ console.log(diff);
   if (diff < 0) {
     this.halt = true
     this.stage = 'e';
     return
   }
+
+   diff = Math.round(diff / 1000) - this.tzoffset * 60 - dt.getTimezoneOffset() * 60  - 3600;
 
   this.delta = diff;
 
@@ -162,6 +164,10 @@ CountDownWidget.prototype.run = function() {
 CountDownWidget.prototype.calc = function() {
 
   let out = { d1: '0', d0: '0', h1: '0', h0: '0', m1: '0', m0: '0', s1: '0', s0: '0' }
+
+  if (this.delta == 0) {
+      window.location.href = window.location.href;
+  }
 
   if (this.delta <= 0) {
     this.halt = true
@@ -248,6 +254,8 @@ function convertTime(datetime) {
   dt.setDate(b[2])
   dt.setHours(c[0])
   dt.setMinutes(c[1])
+  dt.setSeconds(0);
+
 
   return dt
 }
