@@ -242,6 +242,7 @@ angular.module 'ahaLuminateControllers'
           $scope.addedToBasket.close()
         $scope.productView = 'list'
         jQuery('html,body').animate({ scrollTop: 0 }, 'fast');
+        jQuery('.header-totals button:first').focus()
       
       $scope.viewBasket = ->
         if typeof $scope.addedToBasket == 'object' 
