@@ -8,9 +8,19 @@ main {
   }
 }
 
+.app-9 {
+  main {
+    > .container {
+      @media (max-width: $screen-xs-max) {
+        margin-top: 0px;
+      }
+    }
+  }
+}
 :focus {
     border-color: blue !important;
-    outline: 0;
+    outline: auto 2px Highlight;
+    outline: auto 2px -webkit-focus-ring-color;
     box-shadow: 0 0 0 .25rem rgba(13,110,253,1);
     border-width: 2px !important;
 }

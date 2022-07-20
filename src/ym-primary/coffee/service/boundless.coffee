@@ -353,7 +353,7 @@ angular.module 'ahaLuminateApp'
             "status":0
             "level":"Every $50"
             "msg_earned":"Every $50 Raised<br/><em>Students can earn up to 20 Mystery Gifts</em>"
-            "msg_unearned":"Raise $50"
+            "msg_unearned":"Every $50 Raised<br/><em>Students can earn up to 20 Mystery Gifts</em>"
             "instant": 2
             "online_only":0
             "video": ""

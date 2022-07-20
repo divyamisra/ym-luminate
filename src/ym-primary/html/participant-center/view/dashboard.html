@@ -476,10 +476,10 @@
 			My student will be participating in Kids Heart Challenge next year!
 		  </div>
 		  <div class="col-md-4">
-  		    <select class="form-control" id="participatingNextYear" ng-model="participatingNextYear" aria-label="Next Year Participation" ng-change="updateParticipatingNextYear()">
-		      <option value="Yes">Yes</option>
-		      <option value="No">No</option>
-		      <option value="Still Considering">Still Considering</option>
+  		    <select class="form-control" id="ParticipatingNextYear" ng-model="schoolPlan.ParticipatingNextYear" aria-label="Participating Next Year" ng-change="putSchoolPlan($event,'ParticipatingNextYear')">
+		      <option value="YES">Yes</option>
+		      <option value="NO">No</option>
+		      <option value="I'M NOT SURE">Still Considering</option>
 		    </select>
  		  </div>
 		</div>
@@ -595,7 +595,7 @@
       <div class="ym-pc-dashboard-facebook-box js--facebook-fundraiser-completed-section" ng-show="facebookFundraiserId">
         <div class="container">
           <div class="ym-pc-dashboard-section-header">
-            <h3 class="h5">
+            <h3 class="h5 text-white">
               Your Fundraiser is Connected to Facebook!
             </h3>
           </div>
@@ -1074,25 +1074,25 @@
 	    <h2 class="h3 text-center">
 		  School Plan
 	    </h2>
-	    <div class="ym-pc-dashboard-section-plan" ng-if="schoolPlan != null" ng-cloak>
+	    <div class="ym-pc-dashboard-section-plan" ng-if="schoolPlan != null && schoolPlan != ''" ng-cloak>
 		<div class="schoolPlanDates text-center">
 		  <p>
 		    Your event is kicking off on <strong>{{schoolPlan.EventStartDate | date:'MM/dd/yyyy'}}</strong><span ng-if="(schoolPlan.EventStartDate | date:'MM/dd/yyyy') !== (schoolPlan.EventEndDate | date:'MM/dd/yyyy') && schoolPlan.EventEndDate != ''" ng-cloak> and will conclude on <strong>{{schoolPlan.EventEndDate | date:'MM/dd/yyyy'}}</strong></span>.
 		    <span ng-if="schoolPlan.DonationDueDate != '0000-00-00'" ng-cloak>All donations are due on <strong>{{schoolPlan.DonationDueDate | date:'MM/dd/yyyy'}}</strong>.</span>
 		  </p>
 		</div>
-	      <div class="d-md-flex ym-pc-dashboard-event-dates mb-2">
-		<div class="col-md-6 pe-2">
+	      <div class="d-md-flex align-items-end ym-pc-dashboard-event-dates flex-wrap mb-2">
+		<div class="col-md-6 pe-2 pb-2">
                   <div class="form-group">
-                    <label for="EventStartDate"><strong>Event Start Date</strong></label>
+                    <label for="EventStartDate"><strong>Event Start/Distribute Envelopes Date</strong></label>
                     <div class="input-group-old">
 			<!-- <span ng-if="schoolPlan.EventStartDate == '0000-00-00'" ng-cloak>--/--/----</span>
 			<span ng-if="schoolPlan.EventStartDate != '0000-00-00'" ng-cloak>{{schoolPlan.EventStartDate | date:'MM/dd/yyyy'}}</span> -->
-                        <input type="date" class="form-control" id="EventStartDate" ng-model="schoolPlan.EventStartDate" aria-label="Event Start Date" ng-blur="putSchoolPlan($event)" />
+                        <input type="date" class="form-control" id="EventStartDate" ng-model="schoolPlan.EventStartDate" aria-label="Event Start/Distribute Envelopes Date" ng-blur="putSchoolPlan($event)" />
                     </div>
                   </div>
  		</div>
-		<div class="col-md-6">
+		<div class="col-md-6 pe-2 pb-2">
 			<div class="form-group">
 				<label for="EventEndDate"><strong>Event End Date</strong></label>
 				<div class="input-group-old">
@@ -1102,9 +1102,7 @@
 				</div>
 			</div>
 		</div>
-	      </div>
-	      <div class="d-md-flex ym-pc-dashboard-point-field mb-2" ng-cloak>
-					<div class="col-md-6 pe-2">
+					<div class="col-md-6 pe-2 pb-2">
 						<div class="form-group">
 							<label for="KickOffDate"><strong>Kick Off/Assembly Date</strong></label>
 							<div class="input-group-old">
@@ -1114,7 +1112,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="col-md-6">
+					<div class="col-md-6 pe-2 pb-2">
 						<div class="form-group">
 							<label for="DonationDueDate"><strong>Donation Due Date</strong></label>
 							<div class="input-group-old">
@@ -1124,24 +1122,32 @@
 							</div>
 						</div>
 					</div>
+					<div class="col-md-6 pe-2 pb-2">
+						<div class="form-group">
+							<label for="DonationDueDate"><strong>Last Day of School</strong></label>
+							<div class="input-group-old">
+								<input type="date" class="form-control" id="LastDayOfSchool" ng-model="schoolPlan.LastDayOfSchool" aria-label="Last Day of School" ng-blur="putSchoolPlan($event)" />
+							</div>
+						</div>
+					</div>
 	      </div>
 	      <div class="ym-pc-dashboard-school-goals" ng-cloak>
 					<div class="form-group mb-2 pe-2">
 						<label for="StudentRecruitmentGoal">Student Recruitment Goal:</label>
-						<input type="number" class="form-control" id="StudentRecruitmentGoal" ng-model="schoolPlan.StudentRecruitmentGoal" aria-label="Student Recruitment Goal" ng-blur="putSchoolPlan($event)">
+						<input type="number" class="form-control" id="StudentRecruitmentGoal" ng-model="schoolPlan.StudentRecruitmentGoal" aria-label="Student Recruitment Goal" ng-blur="putSchoolPlan($event)" ng-change="putSchoolPlan($event)">
 					</div>
 					<div class="form-group mb-2 pe-2">
 						<label for="FinnsMissionCompletedGoal">Finn's Mission Completion Goal:</label>
-						<input type="number" class="form-control" id="FinnsMissionCompletedGoal" ng-model="schoolPlan.FinnsMissionCompletedGoal" aria-label="Finn's Mission Completion Goal" ng-blur="putSchoolPlan($event)">
+						<input type="number" class="form-control" id="FinnsMissionCompletedGoal" ng-model="schoolPlan.FinnsMissionCompletedGoal" aria-label="Finn's Mission Completion Goal" ng-blur="putSchoolPlan($event)" ng-change="putSchoolPlan($event)">
 					</div>
 					<div class="form-group d-none">
 						<label for="school_goal">Fundraising Goal:</label>
 						<input type="text" class="form-control" id="school_goal" ng-model="companyProgress.goalFormatted" aria-label="School Fundraising Goal" ng-blur="putSchoolPlan($event)" onkeypress="return event.charCode == 36 || event.charCode == 44 || event.charCode == 46 || (event.charCode >= 48 && event.charCode <= 57)">
 					</div>
 	      </div>
-	      <div class="ym-pc-dashboard-send-emails checkbox mb-2 pe-2" custom-checkbox ng-class="{'checked': schoolPlan.SendEmailOnBehalfOfCoordinator == true}" ng-cloak>
+	      <div class="ym-pc-dashboard-send-emails checkbox mb-2 pe-2" custom-checkbox ng-class="{'checked': schoolPlan.SendEmailOnBehalfOfCoordinator == 'ALLOW'}" ng-cloak>
 	        <label for="SendEmailOnBehalfOfCoordinator">
-          	<input type="checkbox" name="SendEmailOnBehalfOfCoordinator" id="SendEmailOnBehalfOfCoordinator" ng-model="schoolPlan.SendEmailOnBehalfOfCoordinator" ng-true-value="true" ng-false-value="false" ng-click="putSchoolPlan($event)"> 
+          	<input type="checkbox" name="SendEmailOnBehalfOfCoordinator" id="SendEmailOnBehalfOfCoordinator" ng-model="schoolPlan.SendEmailOnBehalfOfCoordinator" ng-true-value="'ALLOW'" ng-false-value="'DONOTALLOW'" ng-click="putSchoolPlan($event)"> 
           	Allow AHA to Send Emails to my students on my behalf
         	</label>
 	      </div>
@@ -1151,10 +1157,10 @@
 		    My school will be participating in Kids Heart Challenge next year!
 		  </div>
 		  <div class="col-md-4 pr-0">
-  		    <select class="form-control" id="participatingNextYear" ng-model="participatingNextYear" aria-label="Next Year Participation" ng-change="updateParticipatingNextYear()">
-		      <option value="Yes">Yes</option>
-		      <option value="No">No</option>
-		      <option value="Still Considering">Still Considering</option>
+  		    <select class="form-control" id="ParticipatingNextYear" ng-model="schoolPlan.ParticipatingNextYear" aria-label="Participating Next Year" ng-change="putSchoolPlan($event,'ParticipatingNextYear')">
+		      <option value="YES">Yes</option>
+		      <option value="NO">No</option>
+		      <option value="I'm not sure'">Still Considering</option>
 		    </select>
  		  </div>
 		</div>
@@ -1166,8 +1172,8 @@
 		    <button aria-label="Click the icon to see an example of the materials." data-balloon-pos="up" data-balloon-length="large" ng-click="showMaterialTypes()"><i class="fa fa-info-circle"></i></button> 
 		  </div>
 		  <div class="col-md-4">
- 		    <select class="form-control" id="MaterialsNeeded" ng-model="schoolPlan.MaterialsNeeded" aria-label="Materials Needed" ng-change="updateMaterialsNeeded()">
-		      <option value="Envelope">Envelope</option>
+ 		    <select class="form-control" id="MaterialsNeeded" ng-model="schoolPlan.MaterialsNeeded" aria-label="Materials Needed" ng-change="putSchoolPlan($event,'MaterialsNeeded')">
+		      <option value="Envelopes">Envelopes</option>
 		      <option value="Parent Letter">Parent Letter</option>
  		      <option value="Digital Only">Digital Only</option>
 		    </select>
@@ -1182,15 +1188,15 @@
 					  </button>
 					</p>
 				</div>
-				        <div class="ym-pc-dashboard-multi-coord checkbox d-none" custom-checkbox ng-class="{'checked': schoolPlan.MultipleCoordinators == true}" ng-cloak>
+				        <div class="ym-pc-dashboard-multi-coord checkbox d-none" custom-checkbox ng-class="{'checked': schoolPlan.MultipleCoordinators == 'YES'}" ng-cloak>
 					  <label for="MultipleCoordinators">
-					  <input type="checkbox" name="MultipleCoordinators" id="MultipleCoordinators" ng-model="schoolPlan.MultipleCoordinators" ng-true-value="1" ng-false-value="0" ng-click="putSchoolPlan($event)"> 
+					  <input type="checkbox" name="MultipleCoordinators" id="MultipleCoordinators" ng-model="schoolPlan.MultipleCoordinators" ng-true-value="'YES'" ng-false-value="'NO'" ng-click="putSchoolPlan($event)"> 
 					  My school has two or more coordinators responsible for the Kids Heart Challenge program.
 					  </label>
 				        </div>
 		  </div>
      </div>
-     <div class="ym-pc-dashboard-section-plan text-center" ng-if="schoolPlan == null" ng-cloak>
+     <div class="ym-pc-dashboard-section-plan text-center" ng-if="schoolPlan == null || schoolPlan == ''" ng-cloak>
        <p>No plan data available for this School.</p>
      </div>
  </div>
@@ -1242,7 +1248,8 @@
 		    <option value="$150">$150</option>
 		    <option value="$200">$200</option>
 		    <option value="$250">$250</option>
-		    <option value="Other">Other</option>
+		    <option value="$300">$300</option>
+		    <option value="$350">$350</option>
 		  </select>
 		  <div uib-alert class="alert-danger" ng-if="schoolChallengeLevelInfo.errorMessage">
 		    <div ng-bind-html="schoolChallengeLevelInfo.errorMessage"></div>

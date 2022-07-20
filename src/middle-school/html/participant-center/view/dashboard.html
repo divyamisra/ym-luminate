@@ -1,16 +1,17 @@
 <div cg-busy="dashboardPromises">
 	<div ng-if="participantRegistration.companyInformation.isCompanyCoordinator != 'true' || location == '/dashboard-student'" ng-cloak>
-	  <div class="d-md-grid dashboard-cols">
+	  <div class="d-grid dashboard-cols">
     	<div class="dashboard-col1 col p-2">
-				<section class="d-flex flex-column-reverse flex-md-column" aria-label="My Badges" ng-if="prizes &amp;&amp; prizes.length &gt; 0" ng-cloak>
-					<div class="ahc-heart-card mb-4">
-						<img class="img-fluid w-100" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/middle-school/image/Heart_Card_comingsoon.png">
-					</div>
-					<div class="ahc-start-mission mb-2 white-box red-border-left">
+				<section class="d-md-flex flex-md-column" aria-label="My Badges" ng-if="prizes &amp;&amp; prizes.length &gt; 0" ng-cloak>
+					<div class="ahc-start-mission mb-2 white-box red-border-left d-block d-md-none">
 						<div class="card-body">
 							<h2 class="h5">Start Your Mission</h2>
-							<p>Tap your tiles below to do the challenge and complete your heart card. Fill in the whole card by asking friends &amp; family to support your mission.</p>
+							<p>Tap your tiles above to do the challenge and complete your heart card. Fill in the whole card by asking friends &amp; family to support your mission.</p>
 						</div>
+					</div>
+					<div class="ahc-heart-card mb-4">
+						<div ng-include="'SPageNavigator/ahc_heart_card_pc.html?pgwrap=n'"></div>
+						<!-- <img alt="Heart Card - Coming Soon" tabindex="0" class="img-fluid w-100" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/middle-school/image/Heart_Card_comingsoon.png"> -->
 					</div>
 				</section>
 		  </div>
@@ -111,7 +112,7 @@
 								<a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{personalPageUrl}}" class="ahc-btn-social ahc-connect-facebook btn btn-md-wide p-2 text-start w-100 fb-xfbml-parse-ignore">Share on<br/>Facebook</a>
 							</div>
 						</div>
-						<p><small>By clicking the links above, you will leave AHA's website and be redirected to another site not under the control of AHA.</small></p>
+						<p><small>By clicking the links below, you will leave AHA's website and be redirected to another site not under the control of AHA.</small></p>
 					</div>
 					<div ng-show="facebookFundraisersEnabled" class="mt-1" ng-cloak>
 						<div class="ym-pc-dashboard-facebook-box" ng-show="!facebookFundraiserId">
@@ -150,7 +151,7 @@
 						<div class="ym-pc-dashboard-facebook-box js--facebook-fundraiser-completed-section" ng-show="facebookFundraiserId">
 							<div class="container">
 								<div class="ym-pc-dashboard-section-header">
-									<h3 class="h5">
+									<h3 class="h5 text-white">
 										Your Fundraiser is Connected to Facebook! 
 									</h3>
 								</div>
@@ -214,6 +215,130 @@
 						</div>
           </div> 
 				</div>
+			</div>
+		  <div class="dashboard-col3 col p-2">
+					<div class="ahc-start-mission mb-2 white-box red-border-left d-none d-md-block">
+						<div class="card-body">
+							<h2 class="h5">Start Your Mission</h2>
+							<p>Tap your tiles below to do the challenge and complete your heart card. Fill in the whole card by asking friends &amp; family to support your mission.</p>
+						</div>
+					</div>
+				<div class="download-app white-box red-border-left mb-4">
+					<div class="ym-pc-dashboard-spread-options">
+						<div class="ym-pc-dashboard-section-header">
+							<h3 class="h5">
+								Download Mobile App 
+							</h3>
+						</div>
+						<p class="text-center">
+							Download our Mobile Fundraising App today! 
+						</p>
+						<div class="ym-pc-dashboard-mobile-downloads">
+							<a href="https://itunes.apple.com/us/app/aha-middle-school/id1274201161?mt=8" target="_blank">
+								<img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/youth-markets/image/apple-store-logo.png" alt="Download the iPhone App"> 
+							</a>
+							<a href="https://play.google.com/store/apps/details?id=com.charitydynamics.ahatgr" target="_blank">
+								<img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/youth-markets/image/google-play-logo.png" alt="Download the Android App"> 
+							</a>
+						</div>
+					</div>
+				</div>
+				<div class="edit-student-page white-box p-0 mb-4">
+					<div class="card-header bg-light d-flex align-items-center justify-content-between mb-4">
+						<h2 class="h3 mb-0">My Page</h2>
+						<a class="btn btn-md-wide btn-toggle" ng-href="TR?fr_id={{frId}}&amp;pg=personal&amp;px={{consId}}"><strong>View My Personal Page</strong></a>
+					</div>
+					<div class="p-4">
+						<p>
+							Personalize your fundraising page to share your heart-healthy journey. Students who personalize their page raise more money! 
+						</p>
+						<div class="ym-activity-url">
+								<div class="border-bottom mb-3 mt-4 pb-md-4">
+									<div class="row align-items-center justify-content-between mb-3">
+										<div class="col">
+											<h3 class="h5">Page URL</h3>
+										</div>
+										<div class="col-auto">
+											<button type="button" class="btn btn-primary btn-sm" aria-label="Shorten Personal Page URL" ng-click="editPersonalUrl()"><strong>Shorten URL</strong></button>
+										</div>
+									</div>
+									<div id="personalPageUrl" class="visually-hidden" aria-hidden="true">{{personalPageUrl}}</div>
+									<button type="button" class="ahc-copy ahc-personal-page-url form-control form-control-sm bg-light text-start" title="Copy URL to clipboard" data-clipboard-target="#personalPageUrl" data-clipboard-message="Personal page URL copied!">{{personalPageUrl}}</button>
+								</div>
+						</div>
+						<div class="border-bottom mb-3 pb-4">
+							<div class="row align-items-center justify-content-between mb-3">
+								<div class="col">
+									<h3 class="h5">Page Content</h3>
+								</div>
+								<div class="col-auto">
+									<div class="ym-story-edit-btns">
+										<button type="button" class="btn btn-primary btn-sm" ng-click="editPersonalPageContent()" ng-if="personalPageContent.mode == 'view'" role="button">
+											<span class="fa fa-pencil"></span> <strong>Edit Story</strong>
+										</button>
+										<div ng-if="personalPageContent.mode == 'edit'" ng-cloak>
+											<button type="button" class="btn btn-primary btn-sm" ng-click="savePersonalPageContent()" role="button">
+												<span class="fa fa-pencil"></span> <strong>Save Story</strong>
+											</button> 
+											<button type="button" class="btn btn-primary btn-sm" ng-click="resetPersonalPageContent()" role="button">
+												Cancel 
+											</button>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="ym-page-content-editor" ng-show="personalPageContent.mode == 'view'" ng-cloak>
+								<div class="form-control bg-light p-3" id="pageContent" role="textbox" aria-label="Personal page content">
+									<span ng-bind-html="personalPageContent.ng_rich_text"></span>
+								</div>
+							</div>
+							<div class="ym-page-content-editor" ng-show="personalPageContent.mode == 'edit'" ng-cloak>
+								<label for="taHtmlElement{{personalPageContent.serial}}" class="sr-only">Edit your personal story:</label>
+								<div text-angular name="ng_rich_text" ng-model="personalPageContent.ng_rich_text" ta-toolbar="{{personalPageContent.textEditorToolbar}}" serial="{{personalPageContent.serial}}"></div>
+							</div>
+						</div>
+						<div>
+							<div class="row align-items-center justify-content-between mb-3">
+								<div class="col">
+									<h3 class="h5">Personal Image</h3>
+								</div>
+								<div class="col-auto">
+									<button type="button" class="btn btn-sm btn-primary" ng-click="editPersonalPhoto1()"><span class="fa fa-camera"></span> <strong>Change Image</strong></button>
+								</div>
+							</div>
+							<div>
+								<img class="img-fluid" style="max-width:200px;" ng-src="{{personalPagePhoto1.customUrl && personalPagePhoto1.customUrl != '' ? personalPagePhoto1.customUrl : personalPagePhoto1.defaultUrl}}" alt="{{personalPagePhoto1.caption != '' ? personalPagePhoto1.caption : 'Student Photo'}}" ng-cloak>
+							</div>
+						</div>
+						<div class="col-sm-5">
+							<div class="clearfix">
+								<div class="ym-activity-share-page">
+									<p>
+										<strong>
+											Share My Personal&nbsp;Page: 
+										</strong>
+									</p>
+									<a class="d-inline-block me-2" ng-href="{{baseUrl}}#" ng-click="delegatedAddThis('.js--personal-social-share', 'facebook')">
+										<img src="../aha-luminate/dist/youth-markets/image/facebook-logo.png" alt="Facebook"> 
+									</a>
+									<a class="d-inline-block" ng-href="{{baseUrl}}#" ng-click="delegatedAddThis('.js--personal-social-share', 'twitter')">
+										<img src="../aha-luminate/dist/youth-markets/image/twitter-logo.png" alt="Twitter"> 
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="white-box red-bg-gradient text-center">
+					<h3 class="h4 text-white">
+						Join the Movement to End the Tobacco and Vaping Epidemic Now
+					</h3>
+					<a class="text-white" href="https://tobaccoendgame.yourethecure.org/" target="_blank">
+						Access the Tobacco Endgame site.
+					</a>
+				</div>
+			</div>
+			<div class="dashboard-col4 col p-2">
 				<div class="email-challenge white-box mb-4">
 					<div class="ym-pc-dashboard-email-challenge-box">
 						<div class="ym-pc-dashboard-section-header">
@@ -402,122 +527,6 @@
         </div>
 			</div>
 			</div>
-		  <div class="dashboard-col3 col p-2">
-				<div class="download-app white-box red-border-left mb-4">
-					<div class="ym-pc-dashboard-spread-options">
-						<div class="ym-pc-dashboard-section-header">
-							<h3 class="h5">
-								Download Mobile App 
-							</h3>
-						</div>
-						<p class="text-center">
-							Download our Mobile Fundraising App today! 
-						</p>
-						<div class="ym-pc-dashboard-mobile-downloads">
-							<a href="https://itunes.apple.com/us/app/aha-middle-school/id1274201161?mt=8" target="_blank">
-								<img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/youth-markets/image/apple-store-logo.png" alt="Download the iPhone App"> 
-							</a>
-							<a href="https://play.google.com/store/apps/details?id=com.charitydynamics.ahatgr" target="_blank">
-								<img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/youth-markets/image/google-play-logo.png" alt="Download the Android App"> 
-							</a>
-						</div>
-					</div>
-				</div>
-				<div class="edit-student-page white-box p-0 mb-4">
-					<div class="card-header bg-light d-flex align-items-center justify-content-between mb-4">
-						<h2 class="h3 mb-0">My Page</h2>
-						<a class="btn btn-md-wide btn-toggle" ng-href="TR?fr_id={{frId}}&amp;pg=personal&amp;px={{consId}}"><strong>View My Personal Page</strong></a>
-					</div>
-					<div class="p-4">
-						<p>
-							Personalize your fundraising page to share your heart-healthy journey. Students who personalize their page raise more money! 
-						</p>
-						<div class="ym-activity-url">
-								<div class="border-bottom mb-3 mt-4 pb-md-4">
-									<div class="row align-items-center justify-content-between mb-3">
-										<div class="col">
-											<h3 class="h5">Page URL</h3>
-										</div>
-										<div class="col-auto">
-											<button type="button" class="btn btn-primary btn-sm" aria-label="Shorten Personal Page URL" ng-click="editPersonalUrl()"><strong>Shorten URL</strong></button>
-										</div>
-									</div>
-									<div id="personalPageUrl" class="visually-hidden" aria-hidden="true">{{personalPageUrl}}</div>
-									<button type="button" class="ahc-copy ahc-personal-page-url form-control form-control-sm bg-light text-start" title="Copy URL to clipboard" data-clipboard-target="#personalPageUrl" data-clipboard-message="Personal page URL copied!">{{personalPageUrl}}</button>
-								</div>
-						</div>
-						<div class="border-bottom mb-3 pb-4">
-							<div class="row align-items-center justify-content-between mb-3">
-								<div class="col">
-									<h3 class="h5">Page Content</h3>
-								</div>
-								<div class="col-auto">
-									<div class="ym-story-edit-btns">
-										<button type="button" class="btn btn-primary btn-sm" ng-click="editPersonalPageContent()" ng-if="personalPageContent.mode == 'view'" role="button">
-											<span class="fa fa-pencil"></span> <strong>Edit Story</strong>
-										</button>
-										<div ng-if="personalPageContent.mode == 'edit'" ng-cloak>
-											<button type="button" class="btn btn-primary btn-sm" ng-click="savePersonalPageContent()" role="button">
-												<span class="fa fa-pencil"></span> <strong>Save Story</strong>
-											</button> 
-											<button type="button" class="btn btn-primary btn-sm" ng-click="resetPersonalPageContent()" role="button">
-												Cancel 
-											</button>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="ym-page-content-editor" ng-show="personalPageContent.mode == 'view'" ng-cloak>
-								<div class="form-control bg-light p-3" id="pageContent" role="textbox" aria-label="Personal page content">
-									<span ng-bind-html="personalPageContent.ng_rich_text"></span>
-								</div>
-							</div>
-							<div class="ym-page-content-editor" ng-show="personalPageContent.mode == 'edit'" ng-cloak>
-								<label for="taHtmlElement{{personalPageContent.serial}}" class="sr-only">Edit your personal story:</label>
-								<div text-angular name="ng_rich_text" ng-model="personalPageContent.ng_rich_text" ta-toolbar="{{personalPageContent.textEditorToolbar}}" serial="{{personalPageContent.serial}}"></div>
-							</div>
-						</div>
-						<div>
-							<div class="row align-items-center justify-content-between mb-3">
-								<div class="col">
-									<h3 class="h5">Personal Image</h3>
-								</div>
-								<div class="col-auto">
-									<button type="button" class="btn btn-sm btn-primary" ng-click="editPersonalPhoto1()"><span class="fa fa-camera"></span> <strong>Change Image</strong></button>
-								</div>
-							</div>
-							<div>
-								<img class="img-fluid" style="max-width:200px;" ng-src="{{personalPagePhoto1.customUrl && personalPagePhoto1.customUrl != '' ? personalPagePhoto1.customUrl : personalPagePhoto1.defaultUrl}}" alt="{{personalPagePhoto1.caption != '' ? personalPagePhoto1.caption : 'Student Photo'}}" ng-cloak>
-							</div>
-						</div>
-						<div class="col-sm-5">
-							<div class="clearfix">
-								<div class="ym-activity-share-page">
-									<p>
-										<strong>
-											Share My Personal&nbsp;Page: 
-										</strong>
-									</p>
-									<a class="d-inline-block me-2" ng-href="{{baseUrl}}#" ng-click="delegatedAddThis('.js--personal-social-share', 'facebook')">
-										<img src="../aha-luminate/dist/youth-markets/image/facebook-logo.png" alt="Facebook"> 
-									</a>
-									<a class="d-inline-block" ng-href="{{baseUrl}}#" ng-click="delegatedAddThis('.js--personal-social-share', 'twitter')">
-										<img src="../aha-luminate/dist/youth-markets/image/twitter-logo.png" alt="Twitter"> 
-									</a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="white-box red-bg-gradient text-center">
-					<h3 class="h4 text-white">
-						Join the Movement to End the Tobacco and Vaping Epidemic Now
-					</h3>
-					<a class="text-white" href="https://tobaccoendgame.yourethecure.org/" target="_blank">
-						Access the Tobacco Endgame site.
-					</a>
-				</div>
-			</div>
 		</div>
 	</div>
 	<div ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true' && location != '/dashboard-student'" ng-cloak>
@@ -526,7 +535,7 @@
 				<h2 class="h5 clearfix">
 					School Plan 
 				</h2>
-				<div class="row" ng-if="schoolPlan.length > 0" ng-cloak>
+				<div class="row" ng-if="schoolPlan != null && schoolPlan != ''" ng-cloak>
 					<div class="schoolPlanDates text-left">
 						<p>
 							Your event is kicking off on <strong>{{schoolPlan.EventStartDate | date:'MM/dd/yyyy'}}</strong><span ng-if="(schoolPlan.EventStartDate | date:'MM/dd/yyyy') !== (schoolPlan.EventEndDate | date:'MM/dd/yyyy') && schoolPlan.EventEndDate != ''" ng-cloak> and will conclude on <strong>{{schoolPlan.EventEndDate | date:'MM/dd/yyyy'}}</strong></span>.
@@ -594,10 +603,10 @@
 						My school will be participating in American Heart Challenge next year!
 					</div>
 					<div class="col-md-4 pr-0">
-						<select class="form-control" id="participatingNextYear" ng-model="participatingNextYear" aria-label="Next Year Participation" ng-change="updateParticipatingNextYear()">
-							<option value="Yes">Yes</option>
-							<option value="No">No</option>
-							<option value="Still Considering">Still Considering</option>
+						<select class="form-control" id="ParticipatingNextYear" ng-model="schoolPlan.ParticipatingNextYear" aria-label="Next Year Participation" ng-change="putSchoolPlan($event,'ParticipatingNextYear')">
+							<option value="YES">Yes</option>
+							<option value="NO">No</option>
+							<option value="I'M NOT SURE">Still Considering</option>
 						</select>
 					</div>
 				</div>
@@ -609,8 +618,8 @@
 						<button aria-label="Click the icon to see an example of the materials." data-balloon-pos="up" data-balloon-length="large" ng-click="showMaterialTypes()"><i class="fa fa-info-circle"></i></button> 
 					</div>
 					<div class="col-md-4 pr-0">
-						<select class="form-control" id="MaterialsNeeded" ng-model="schoolPlan.MaterialsNeeded" aria-label="Materials Needed" ng-change="updateMaterialsNeeded()">
-							<option value="Envelope">Envelope</option>
+						<select class="form-control" id="MaterialsNeeded" ng-model="schoolPlan.MaterialsNeeded" aria-label="Materials Needed" ng-change="putSchoolPlan($event,'MaterialsNeeded')">
+							<option value="Envelopes">Envelopes</option>
 							<option value="Parent Letter">Digital Parent Letter</option>
 						</select>
 					</div>
@@ -623,13 +632,13 @@
 								<label for="StudentRecruitmentGoal">
 									Student Participant Goal: 
 								</label>
-								<input type="number" class="form-control" id="StudentRecruitmentGoal" ng-model="schoolPlan.StudentRecruitmentGoal" aria-label="Student Recruitment Goal" ng-blur="putSchoolPlan($event)">
+								<input type="number" class="form-control" id="StudentRecruitmentGoal" ng-model="schoolPlan.StudentRecruitmentGoal" aria-label="Student Recruitment Goal" ng-blur="putSchoolPlan($event)" ng-change="putSchoolPlan($event)">
 								</div>
 								<div class="form-group">
 									<label for="FinnsMissionCompletedGoal">
 										Finn's Mission Completion Goal: 
 									</label>
-									<input type="number" class="form-control" id="FinnsMissionCompletedGoal" ng-model="schoolPlan.FinnsMissionCompletedGoal" aria-label="Finn's Mission Completion Goal" ng-blur="putSchoolPlan($event)">
+									<input type="number" class="form-control" id="FinnsMissionCompletedGoal" ng-model="schoolPlan.FinnsMissionCompletedGoal" aria-label="Finn's Mission Completion Goal" ng-blur="putSchoolPlan($event)" ng-change="putSchoolPlan($event)">
 								</div>
 								<div class="form-group d-none">
 									<label for="school_goal">
@@ -637,15 +646,15 @@
 									</label>
 									<input type="text" class="form-control" id="school_goal" ng-model="companyProgress.goalFormatted" aria-label="School Fundraising Goal" ng-blur="putSchoolPlan($event)" onkeypress="return event.charCode == 36 || event.charCode == 44 || event.charCode == 46 || (event.charCode &gt;= 48 &amp;&amp; event.charCode &lt;= 57)">
 							</div>
-							<div class="ym-pc-dashboard-send-emails checkbox" custom-checkbox ng-class="{'checked': schoolPlan.SendEmailOnBehalfOfCoordinator == true}" ng-cloak>
+							<div class="ym-pc-dashboard-send-emails checkbox" custom-checkbox ng-class="{'checked': schoolPlan.SendEmailOnBehalfOfCoordinator == 'ALLOW'}" ng-cloak>
 								<label for="SendEmailOnBehalfOfCoordinator">
-									<input type="checkbox" name="SendEmailOnBehalfOfCoordinator" id="SendEmailOnBehalfOfCoordinator" ng-model="schoolPlan.SendEmailOnBehalfOfCoordinator" ng-true-value="true" ng-false-value="false" ng-click="putSchoolPlan($event)">
+									<input type="checkbox" name="SendEmailOnBehalfOfCoordinator" id="SendEmailOnBehalfOfCoordinator" ng-model="schoolPlan.SendEmailOnBehalfOfCoordinator" ng-true-value="'ALLOW'" ng-false-value="'DONOTALLOW'" ng-click="putSchoolPlan($event)">
 									Allow AHA to send emails to my students on my behalf 
 								</label>
 							</div>
-							<div class="ym-pc-dashboard-multi-coord checkbox d-none" custom-checkbox ng-class="{'checked': schoolPlan.MultipleCoordinators == true}" ng-cloak>
+							<div class="ym-pc-dashboard-multi-coord checkbox d-none" custom-checkbox ng-class="{'checked': schoolPlan.MultipleCoordinators == 'YES'}" ng-cloak>
 					<label for="MultipleCoordinators">
-					<input type="checkbox" name="MultipleCoordinators" id="MultipleCoordinators" ng-model="schoolPlan.MultipleCoordinators" ng-true-value="1" ng-false-value="0" ng-click="putSchoolPlan($event)"> 
+					<input type="checkbox" name="MultipleCoordinators" id="MultipleCoordinators" ng-model="schoolPlan.MultipleCoordinators" ng-true-value="'YES'" ng-false-value="'NO'" ng-click="putSchoolPlan($event)"> 
 					My school has two or more coordinators responsible for the American Heart Challenge program.
 					</label>
 							</div>
@@ -665,7 +674,7 @@
 						</div>
 					</div>
 							</div>
-					 <div class="ym-pc-dashboard-section-plan text-center" ng-if="schoolPlan.length == 0" ng-cloak>
+					 <div class="ym-pc-dashboard-section-plan text-center" ng-if="schoolPlan == null || schoolPlan == ''" ng-cloak>
 					<p>
 						No plan data available for this School. 
 					</p>
@@ -732,7 +741,7 @@
 											<div id="paymentSelTypeC" class="collapse">
 												<h7>How would you like to donate?</h7>
 												<div class="d-flex justify-content-between flex-wrap align-items-center text-center">
-													<a class="col-md-4 p-2" href="Donation2?df_id=[[E42:[[S80:trID]]:form-id]]&amp;FR_ID=[[S80:trID]]&amp;PROXY_ID=[[S334:px]]&amp;PROXY_TYPE=20">
+													<a class="col-md-4 p-2" href="Donation2?df_id={{eventInfo.donationFormId}}&FR_ID={{frId}}&PROXY_TYPE=20&PROXY_ID={{consId}}">
 														<img class="img-fluid" src="https://www2.heart.org/images/content/pagebuilder/credit-card-logos.png" alt="Donate using Credit Card">
 													</a>
 													<a class="col-md-4 p-2" href="https://secure3.convio.net/heartdev/site/SPageNavigator/ym_ahc_donate_amazon.html?FR_ID={{frId}}&mfc_pref=T&PROXY_ID={{consId}}&PROXY_TYPE=20" class="amazon">
@@ -747,7 +756,7 @@
 													<a class="col-md-4 p-2" href="https://secure3.convio.net/heartdev/site/SPageNavigator/ym_ahc_donate_venmo.html?FR_ID={{frId}}&mfc_pref=T&PROXY_ID={{consId}}&PROXY_TYPE=20" class="venmo">
 														<img class="img-fluid" src="https://www2.heart.org/donation-forms/donatenow/images/venmo-button.png" alt="Donate using Venmo">
 													</a>
-													<a class="col-md-4 p-2" href="Donation2?df_id={{eventInfo.donationFormId}}&FR_ID={{frId}}&PROXY_TYPE=20&PROXY_ID={{consId}}&amp;paypal=true">
+													<a class="col-md-4 p-2" href="Donation2?df_id={{eventInfo.donationFormId}}&FR_ID={{frId}}&PROXY_TYPE=20&PROXY_ID={{consId}}&paypal=true">
 														<img class="img-fluid" src="https://www2.heart.org/images/content/pagebuilder/PP_logo_h_100x26.png" alt="Donate using Paypal">
 													</a>
 												</div>
@@ -1006,21 +1015,12 @@
 							Choose a student level to achieve 
 						</div>
 						<select class="form-control" id="challengeLevel" ng-model="companyProgress.schoolChallengeLevel" aria-label="School Challenge Level" ng-change="updateSchoolChallengeLevel()">
-							<option value="$100">
-								$100
-							</option>
-							<option value="$150">
-								$150
-							</option>
-							<option value="$200">
-								$200
-							</option>
-							<option value="$250">
-								$250
-							</option>
-							<option value="Other">
-								Other
-							</option>
+							<option value="$100">$100</option>
+							<option value="$150">$150</option>
+							<option value="$200">$200</option>
+							<option value="$250">$250</option>
+							<option value="$300">$300</option>
+							<option value="$350">$350</option>
 						</select>
 						<div uib-alert class="alert-danger" ng-if="schoolChallengeLevelInfo.errorMessage">
 							<div ng-bind-html="schoolChallengeLevelInfo.errorMessage">

@@ -3,6 +3,12 @@ option {
   font-size: 18px;
 }
 
+.ym-pc-dashboard-coordinator-resources-contact {
+  a {
+    color: $event-primary-acc;
+  }
+}
+
 .btn.btn-secondary:focus, 
 a.btn.btn-secondary:focus {
     outline-color: $event-primary;
@@ -473,8 +479,17 @@ div[id^="taTextElement"]:focus {
 	border-radius:10px;
 }
 
+.ym-pc-dashboard-materials {
+   .modal-body {
+	max-height:63vh;
+	.img-fluid {
+	   max-height: 90%;
+	}
+   }
+}
+
 .ym-pc-dashboard-school-plan {
-	max-height:600px;
+	max-height:63vh;
 	overflow:scroll;
 	
   hr {

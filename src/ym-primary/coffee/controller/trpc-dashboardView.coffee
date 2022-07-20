@@ -407,6 +407,7 @@ angular.module 'trPcControllers'
                   if response.data.updateConsResponse?.message
                     $scope.coordinatorMessage.successMessage = true
                     $scope.editCoordinatorMessageModal.close()
+                    angular.element('.schoolCreateMessage button').focus()
                   else
                     $scope.coordinatorMessage.errorMessage = 'There was an error processing your update. Please try again later.'
           else
@@ -449,6 +450,7 @@ angular.module 'trPcControllers'
 	
       $scope.cancelPostFeedbackMessageConfirm = ->
         $scope.postFeedbackMessageModalConfirm.close()
+        angular.element('.ym-pc-feedback button').focus()
 
       $scope.personalGoalInfo = {}
 
@@ -677,7 +679,7 @@ angular.module 'trPcControllers'
                     $scope.teamPageUrl = shortcutItem.defaultUrl.split('/site/')[0] + '/site/TR?fr_id=' + $scope.frId + '&pg=team&team_id=' + $scope.participantRegistration.teamId
               response
           $scope.dashboardPromises.push getTeamShortcutPromise
-        $scope.getTeamShortcut()
+        #$scope.getTeamShortcut()
 
         $scope.teamUrlInfo = {}
 
@@ -1092,72 +1094,50 @@ angular.module 'trPcControllers'
               $scope.highestRaisedAmount = $scope.schoolPlan.HRR
               $scope.highestRaisedYear = $scope.schoolPlan.HRRYear
 
-              if $scope.schoolPlan.EventStartDate != undefined
-                if $scope.schoolPlan.EventStartDate != '0000-00-00'
-                  $scope.schoolPlan.EventStartDate = new Date($scope.schoolPlan.EventStartDate.replace(/-/g, "/") + ' 00:01')
-                if $scope.schoolPlan.EventEndDate != '0000-00-00'
-                  $scope.schoolPlan.EventEndDate = new Date($scope.schoolPlan.EventEndDate.replace(/-/g, "/") + ' 00:01')
-                if $scope.schoolPlan.DonationDueDate != '0000-00-00'
-                  $scope.schoolPlan.DonationDueDate = new Date($scope.schoolPlan.DonationDueDate.replace(/-/g, "/") + ' 00:01')
-                if $scope.schoolPlan.KickOffDate != '0000-00-00'
-                  $scope.schoolPlan.KickOffDate = new Date($scope.schoolPlan.KickOffDate.replace(/-/g, "/") + ' 00:01')
-                $scope.coordinatorPoints = JSON.parse($scope.schoolPlan.PointsDetail)
-              else
-                $scope.schoolPlan.EventStartDate = ''
+              if $scope.schoolPlan.EventStartDate != '0000-00-00'
+                $scope.schoolPlan.EventStartDate = new Date($scope.schoolPlan.EventStartDate.replace(/-/g, "/") + ' 00:01')
+              if $scope.schoolPlan.EventEndDate != '0000-00-00'
+                $scope.schoolPlan.EventEndDate = new Date($scope.schoolPlan.EventEndDate.replace(/-/g, "/") + ' 00:01')
+              if $scope.schoolPlan.DonationDueDate != '0000-00-00'
+                $scope.schoolPlan.DonationDueDate = new Date($scope.schoolPlan.DonationDueDate.replace(/-/g, "/") + ' 00:01')
+              if $scope.schoolPlan.KickOffDate != '0000-00-00'
+                $scope.schoolPlan.KickOffDate = new Date($scope.schoolPlan.KickOffDate.replace(/-/g, "/") + ' 00:01')
+              if $scope.schoolPlan.LastDayOfSchool != '0000-00-00'
+                $scope.schoolPlan.LastDayOfSchool = new Date($scope.schoolPlan.LastDayOfSchool.replace(/-/g, "/") + ' 00:01')
+              $scope.coordinatorPoints = JSON.parse($scope.schoolPlan.PointsDetail)
             else
               $scope.schoolPlan.hideGifts = "N"
-            $scope.getSchoolTop15()
-			
-            NgPcConstituentService.getUserRecord('fields=custom_boolean2,custom_string18,custom_string19&cons_id=' + $scope.consId).then (response) ->
-              if response.data.errorResponse
-                console.log 'There was an error getting user profile. Please try again later.'
-              $scope.constituent = response.data.getConsResponse
-              $scope.schoolPlan.SendEmailOnBehalfOfCoordinator = $scope.constituent.custom.boolean.content == 'true'
-              angular.forEach $scope.constituent.custom.string, (field) ->
-                if field.id == 'custom_string18'
-                  $scope.participatingNextYear = field.content
-                if field.id == 'custom_string19'
-                  $scope.schoolPlan.MaterialsNeeded = field.content
-                return
+            if $scope.participantRegistration.companyInformation?.isCompanyCoordinator is 'true'
+              $scope.getSchoolTop15()
       $scope.getSchoolPlan()
 
-      $scope.putSchoolPlan = (event) ->
+      $scope.putSchoolPlan = (event, sel) ->
         school = @schoolPlan
-        if event.currentTarget.id == 'school_goal'
-          $scope.schoolGoalInfo.goal = event.currentTarget.value
-          $scope.updateSchoolGoal()
-          $scope.getSchoolPlan()
+        if sel == 'ParticipatingNextYear' or sel == 'MaterialsNeeded'
+          schoolParams = '&field_id=' + sel + '&value=' + $scope.schoolPlan[sel] + '&type=dropdown'
+          ZuriService.schoolPlanData '&method=UpdateSchoolPlan&CompanyId=' + $scope.participantRegistration.companyInformation.companyId + '&EventId=' + $scope.frId + schoolParams,
+            failure: (response) ->
+            error: (response) ->
+            success: (response) ->
         else
-          if event.currentTarget.type == 'checkbox' and event.currentTarget.id == 'SendEmailOnBehalfOfCoordinator'
-            updateUserProfilePromise = NgPcConstituentService.updateUserRecord('custom_boolean2=' + angular.element(event.currentTarget).is(':checked') + '&cons_id=' + $scope.consId).then (response) ->
-              if response.data.errorResponse
-                console.log 'There was an error processing your update. Please try again later.'
-              $scope.dashboardPromises.push updateUserProfilePromise
-              $scope.getSchoolPlan()
+          if event.currentTarget.id == 'school_goal'
+            $scope.schoolGoalInfo.goal = event.currentTarget.value
+            $scope.updateSchoolGoal()
+            $scope.getSchoolPlan()
           else
-            if event.currentTarget.type == 'date'
-              schoolParams = '&field_id=' + event.currentTarget.id + '&value=' + event.currentTarget.value + '&type=' + event.currentTarget.type
-            else
-              schoolParams = '&field_id=' + event.currentTarget.id + '&value=' + school[event.currentTarget.id] + '&type=' + event.currentTarget.type
+            switch event.currentTarget.type
+              when 'date'
+                schoolParams = '&field_id=' + event.currentTarget.id + '&value=' + event.currentTarget.value + '&type=' + event.currentTarget.type
+              when 'checkbox'
+                schoolParams = '&field_id=' + event.currentTarget.id + '&value=' + $scope.schoolPlan[event.currentTarget.id] + '&type=' + event.currentTarget.type
+              when 'dropdown'
+                schoolParams = '&field_id=' + event.currentTarget.id + '&value=' + event.currentTarget.value + '&type=' + event.currentTarget.type
+              else
+                schoolParams = '&field_id=' + event.currentTarget.id + '&value=' + school[event.currentTarget.id] + '&type=' + event.currentTarget.type
             ZuriService.schoolPlanData '&method=UpdateSchoolPlan&CompanyId=' + $scope.participantRegistration.companyInformation.companyId + '&EventId=' + $scope.frId + schoolParams,
               failure: (response) ->
               error: (response) ->
               success: (response) ->
-
-      $scope.updateParticipatingNextYear = ->
-        updateUserProfilePromise = NgPcConstituentService.updateUserRecord('custom_string18=' + this.participatingNextYear + '&cons_id=' + $scope.consId).then (response) ->
-          if response.data.errorResponse
-            console.log 'There was an error processing your update. Please try again later.'
-          updateUserProfilePromise = NgPcConstituentService.updateUserRecord('custom_date5_MONTH='+(($scope.theDate).getMonth()+1)+'&custom_date5_DAY='+($scope.theDate).getDate()+'&custom_date5_YEAR='+($scope.theDate).getFullYear()+'&cons_id=' + $scope.consId).then (response) ->
-            if response.data.errorResponse
-              console.log 'There was an error processing your update. Please try again later.'
-          $scope.dashboardPromises.push updateUserProfilePromise
-		
-      $scope.updateMaterialsNeeded = ->
-        updateUserProfilePromise = NgPcConstituentService.updateUserRecord('custom_string19=' + this.schoolPlan.MaterialsNeeded + '&cons_id=' + $scope.consId).then (response) ->
-          if response.data.errorResponse
-            console.log 'There was an error processing your update. Please try again later.'
-          $scope.dashboardPromises.push updateUserProfilePromise
 
       formatDateString = (dateVal) ->
         regex = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2}).*$/
