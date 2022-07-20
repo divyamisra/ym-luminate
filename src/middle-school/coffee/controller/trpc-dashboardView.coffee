@@ -1091,7 +1091,7 @@ angular.module 'trPcControllers'
               if prize.id == 9
                 prize.label = 'Mobile App User'
               if prize.id == 10
-                prize.label = 'Updated School Page'
+                prize.label = 'Updated Coordinator Page'
               $scope.coordinatorBadges.push
                 id: prize.id
                 status: prize.status
