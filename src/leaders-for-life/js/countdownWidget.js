@@ -13,7 +13,7 @@
 *   -----
 *
 *   window.onload=function(){
-*       new  CountDownWidget ('aha_counter', '2022-06-15 20:00', -300);
+*       new  CountDownWidget ('aha_counter', '2022-06-15 20:00', pst);
 *    }
 *
 ***********************************************************************/
@@ -270,6 +270,10 @@ function getTimeOffset(datetime) {
     case 'est': return -300
     case 'mst': return -420
     case 'cst': return -300
+    case 'akst' : return -540
+    case 'akdt' : return -480
+    case 'hst' : return -600
+    case 'hdt' : return -540
   }
 
   // default pacific
