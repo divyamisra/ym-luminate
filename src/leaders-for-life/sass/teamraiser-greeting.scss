@@ -11,6 +11,9 @@
       background-image: url("https://secure3.convio.net/heartdev/images/content/pagebuilder/greetingsx1903x570_updated-Flattened-BG-with-white.png");
       background-repeat: no-repeat;
       background-size: cover;
+      @include media-breakpoint-down(md) {
+        background-position: bottom;
+      }
 
       .little-gold-bars {
         background-image: url("https://secure3.convio.net/heartdev/images/content/pagebuilder/greetingsx1903x570_updated.png");
