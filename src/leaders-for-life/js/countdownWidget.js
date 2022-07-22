@@ -266,53 +266,28 @@ function getTimeOffset(datetime) {
   let a = datetime.split(' ')
   a = a[2].toLowerCase()
 
-    if(a == 'pst' || a == 'pdt'){
-        return isDaylight() ? -420 : -480;
+    switch (a){
+        case 'ast' : return -240;
+        case 'pst' : return -480;
+        case 'pdt' : return -420;
+        case 'est' : return -300;
+        case 'edt' : return -240;
+        case 'cst' : return -360;
+        case 'cdt' : return -300;
+        case 'mst' : return -420;
+        case 'mdt' : return -360;
+        case 'akst' : return -540;
+        case 'akdt' : return -480;
+        case 'hst' : return -600;
+        case 'hast' : return -600;
+        case 'hadt' : return -540;
+        case 'sst' : return -660;
+        case 'sdt' : return -600;
+        case 'chst' : return 600;
     }
-    else if(a == 'est' || a == 'edt') {
-        return isDaylight() ? -240 : -300;
-    }
-    else if(a == 'mst' || a == 'mdt') {
-        return isDaylight() ? -420 : -480;
-    }
-    else if(a == 'cst' || a == 'cdt') {
-        return isDaylight() ? -300 : -360;
-    }
-    else if(a == 'akst' || a == 'akdt') {
-        return isDaylight() ? -480 : -540;
-    }
-    else if(a == 'hast' || a == 'hadt' || a == 'hst') {
-        return isDaylight() ? -540 : -600;
-    }
-    else if(a == 'sst' || a == 'sdt' ) {
-        return isDaylight() ? -600 : -660;
-    }
-    else if(a == 'chst'  ) {
-        return isDaylight() ? -540 : -600;
-    }
+
 
 
   // default pacific
   return -480
-}
-
-function isDaylight () {
-
-    let dt = new Date();
-    let m = dt.getMonth();
-    let d = dt.getDate();
-
-    if(m == 2 && d >= 22) {
-        return true;
-    }
-    else if (m == 10 && d < 22){
-        return true;
-    }
-    else if (m < 2 && m > 10 ){
-        return false;
-    }
-
-    return true;
-
-
 }
