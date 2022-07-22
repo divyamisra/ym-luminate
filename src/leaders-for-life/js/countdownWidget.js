@@ -13,7 +13,7 @@
 *   -----
 *
 *   window.onload=function(){
-*       new  CountDownWidget ('aha_counter', '2022-06-15 20:00', pst);
+*       new  CountDownWidget ('aha_counter', '2022-06-15 20:00', -300);
 *    }
 *
 ***********************************************************************/
@@ -24,7 +24,7 @@ var CountDownWidget = function(element_id, a, b, c) {
 
   this.id = element_id
   //this.offset = timeoffset;
-  this.tzoffset = getTimeOffset(a[0]);
+  this.tzoffset = getTimeOffset(a[0])*60;
   this.datetime = convertTime(a[0]);
   this.enddate = convertTime(b[0]);
   this.halt = false;
@@ -115,26 +115,27 @@ CountDownWidget.prototype.getCodes = function() {
 CountDownWidget.prototype.getTimeDiff = function() {
 
   let dt = new Date()
-  let diff = this.datetime - dt
-
-console.log(this.enddate)
+  let diff = (this.datetime - dt)/1000 - dt.getTimezoneOffset()*60 - this.tzoffset
+ console.log((this.datetime - dt)/1000, dt.getTimezoneOffset()*60,this.tzoffset );
+console.log(this.datetime)
   if (diff < 0 ) {
-      diff = this.enddate - dt;
+      diff = (this.enddate - dt)/1000 - this.tzoffset - dt.getTimezoneOffset()*60;
 
       if(diff > 0){
           this.stage = 'p';
       }
 
+      console.log(this.enddate);
   }
- console.log(diff);
+
   if (diff < 0) {
     this.halt = true
     this.stage = 'e';
     return
   }
 
-   diff = Math.round(diff / 1000) - this.tzoffset * 60 - dt.getTimezoneOffset() * 60  - 3600;
-
+ //  diff = Math.round(diff / 1000) - this.tzoffset  - dt.getTimezoneOffset() * 60  ;
+console.log(diff);
   this.delta = diff;
 
 }
@@ -164,9 +165,9 @@ CountDownWidget.prototype.run = function() {
 CountDownWidget.prototype.calc = function() {
 
   let out = { d1: '0', d0: '0', h1: '0', h0: '0', m1: '0', m0: '0', s1: '0', s0: '0' }
-
+console.log(this.delta)
   if (this.delta == 0) {
-      window.location.href = window.location.href;
+   //   window.location.href = window.location.href;
   }
 
   if (this.delta <= 0) {
@@ -265,17 +266,47 @@ function getTimeOffset(datetime) {
   let a = datetime.split(' ')
   a = a[2].toLowerCase()
 
-  switch (a) {
-    case 'pst': return -480
-    case 'est': return -300
-    case 'mst': return -420
-    case 'cst': return -300
-    case 'akst' : return -540
-    case 'akdt' : return -480
-    case 'hst' : return -600
-    case 'hdt' : return -540
-  }
+    if(a == 'pst'){
+        return isDaylight() ? -420 : -480;
+    }
+    else if(a == 'est') {
+        return isDaylight() ? -240 : -300;
+    }
+    else if(a == 'mst') {
+        return isDaylight() ? -420 : -480;
+    }
+    else if(a == 'cst') {
+        return isDaylight() ? -300 : -360;
+    }
+    else if(a == 'akst') {
+        return isDaylight() ? -480 : -540;
+    }
+    else if(a == 'hast') {
+        return isDaylight() ? -540 : -600;
+    }
+
 
   // default pacific
   return -480
+}
+
+function isDaylight () {
+
+    let dt = new Date();
+    let m = dt.getMonth();
+    let d = dt.getDate();
+
+    if(m == 2 && d >= 22) {
+        return true;
+    }
+    else if (m == 10 && d < 22){
+        return true;
+    }
+    else if (m < 2 && m > 10 ){
+        return false;
+    }
+
+    return true;
+
+
 }
