@@ -266,22 +266,28 @@ function getTimeOffset(datetime) {
   let a = datetime.split(' ')
   a = a[2].toLowerCase()
 
-    if(a == 'pst'){
+    if(a == 'pst' || a == 'pdt'){
         return isDaylight() ? -420 : -480;
     }
-    else if(a == 'est') {
+    else if(a == 'est' || a == 'edt') {
         return isDaylight() ? -240 : -300;
     }
-    else if(a == 'mst') {
+    else if(a == 'mst' || a == 'mdt') {
         return isDaylight() ? -420 : -480;
     }
-    else if(a == 'cst') {
+    else if(a == 'cst' || a == 'cdt') {
         return isDaylight() ? -300 : -360;
     }
-    else if(a == 'akst') {
+    else if(a == 'akst' || a == 'akdt') {
         return isDaylight() ? -480 : -540;
     }
-    else if(a == 'hast') {
+    else if(a == 'hast' || a == 'hadt' || a == 'hst') {
+        return isDaylight() ? -540 : -600;
+    }
+    else if(a == 'sst' || a == 'sdt' ) {
+        return isDaylight() ? -600 : -660;
+    }
+    else if(a == 'chst'  ) {
         return isDaylight() ? -540 : -600;
     }
 
