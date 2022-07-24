@@ -1170,8 +1170,13 @@
 
         // PTYPE
         if ($('#F2fRegPartType').length > 0) {
-            cd.renderPTypePageSteps = function () {
-                var sliderDonationLevel = 0,
+            var ptypePageSteps = function () {
+                this.$personalGoalSlider = null;
+                this.defaultSliderVal = 200;
+                this.initialFrGoalVal = $('#fr_goal').val();
+
+                var self = this,
+                    sliderDonationLevel = 0,
                     frGoalMatrix = [
                         '$100.00', '$250.00', '$500.00', '$1,000.00', '$2,500.00', '$5,000.00'
                     ];
@@ -1182,16 +1187,11 @@
                         $('div#registration-ptype-page-step-' + step.toString() + ' > h1').text()
                     );
                 };
+
                 var sliderPos2DonationLevel = function(pos) {
-                    if (pos %  100 !== 0) {
-                        var level = pos/100;
-                        sliderDonationLevel = level > sliderDonationLevel ? Math.ceil(level) : Math.floor(level);
-                        $('.js__registration-ptype-personal-goal-slider').val(sliderDonationLevel * 100);
-                    } else {
-                        sliderDonationLevel = pos/100;
-                    }
-                    return sliderDonationLevel;
+                    return Math.floor(pos/100);
                 };
+
                 var digestPersonalGiftAmount = function () {
                     var goal = frGoalMatrix[sliderDonationLevel - 1];
                     if ($('#registration-ptype-personal-goal-option').val() === 'other-amount') {
@@ -1200,14 +1200,25 @@
                     }
                     $('#fr_goal').val(goal);
                 };
+
                 var renderStep = function (onPage, offPage) {
                     renderHeader(onPage);
                     $('div#registration-ptype-page-step-' + offPage.toString()).hide();
                     $('div#registration-ptype-page-step-' + onPage.toString()).fadeIn();
+                    if (onPage === 2) {
+                        var $sliderHandle = $('#registration-ptype-personal-goal-slider .ui-slider-handle');
+                        setTimeout(function () {
+                            $sliderHandle.addClass('shake-horizontal');
+                        }, 250);
+                        setTimeout(function () {
+                            $sliderHandle.removeClass('shake-horizontal');
+                        }, 2500);
+                    }
                     if (offPage === 2 && onPage === 3) {
                         digestPersonalGiftAmount();
                     }
                 };
+
                 var renderPrevStep = function (currentStep, prevStep) {
                     if (prevStep > 0) {
                         renderStep(prevStep, currentStep);
@@ -1215,115 +1226,129 @@
                     }
                     history.back();
                 };
+
                 var renderNextStep = function (currentStep, nextStep) {
                     renderStep(nextStep, currentStep);
                 };
 
-                // Init
-                var $steps = $('div#registration-ptype-page-steps').detach();
-                $('#part_type_section_container').append($steps);
-                renderHeader(1);
-                $steps.show();
-
-                // Dom manipulations
-                var $personalGiftStep = $steps.find('div.registration-ptype-page-step-personal-gift');
-                $personalGiftStep
-                    .find('div.registration-ptype-page-step-content')
-                    .append($('div#part_type_individual_company_selection_container').detach())
-                    .append($('div#part_type_additional_gift_container').detach())
-                    .find('div#part_type_additional_gift_container .manageable-content').hide();
-                $personalGiftStep
-                    .find('> div.button-container')
-                    .append(
-                        $('button#next_step')
-                            .removeClass('step-button next-step')
-                            .addClass('btn btn-primary')
-                            .text('Next')
-                            .detach()
-                    );
-                $personalGiftStep
-                    .find('label.donation-level-row-label-no-gift')
-                    .text('No gift at this time')
-                    .closest('.donation-level-row-container')
-                    .addClass('donation-level-row-container-no-gift mt-3')
-
-                // Prev step click
-                $('.js__ptype-page-prev-step').on('click', function () {
-                    renderPrevStep(
-                        parseInt($(this).data('step'), 10), parseInt($(this).data('prev-step'), 10)
-                    );
-                });
-
-                // Next step click
-                $('.js__ptype-page-next-step').on('click', function () {
-                    renderNextStep(
-                        parseInt($(this).data('step'), 10), parseInt($(this).data('next-step'), 10)
-                    );
-                });
-
-                // Personal goal slider
-                var $frGoal = $('#fr_goal'),
-                    frGoalVal = $frGoal.val();
-                var personalGoalSliderChange = function (sliderDonationLevel, updateSliderVal) {
+                this.personalGoalSliderSlide = function (sliderVal) {
+                    sliderDonationLevel = sliderPos2DonationLevel(sliderVal);
                     $('.registration-ptype-personal-goal-slider-dots > .slider-dot').removeClass('selected');
                     $('.registration-ptype-personal-goal-slider-dots > #slider-dot-' + sliderDonationLevel.toString()).addClass('selected');
-                    $frGoal.val(frGoalMatrix[sliderDonationLevel - 1]);
                     for (var i = 6; i > sliderDonationLevel; i--) {
-                        $('#pg-slider-photo-' + i.toString()).removeClass('active');
+                        $('#pg-slider-photo-' + i.toString()).fadeOut();
                         $('#slider-dot-' + i.toString()).removeClass('active');
-                        $('.registration-ptype-personal-goal-slider-section.slider-section-' + i.toString()).removeClass('active');
                     }
                     for (var i = 1; i <= sliderDonationLevel; i++) {
-                        $('#pg-slider-photo-' + i.toString()).addClass('active');
+                        $('#pg-slider-photo-' + i.toString()).fadeIn();
                         $('#slider-dot-' + i.toString()).addClass('active');
-                        $('.registration-ptype-personal-goal-slider-section.slider-section-' + i.toString()).addClass('active');
+                    }
+                };
+
+                this.personalGoalSliderChange = function (sliderVal, updateSliderVal) {
+                    var mod = sliderVal %  100;
+                    if (updateSliderVal || mod !== 0) {
+                        var level = sliderVal / 100;
+                        sliderVal = (mod > 49 ? Math.ceil(level) : Math.floor(level)) * 100;
+                        self.$personalGoalSlider.slider('value', sliderVal);
+                        updateSliderVal = true;
                     }
                     if (updateSliderVal) {
-                        $('.js__registration-ptype-personal-goal-slider').val(sliderDonationLevel * 100);
+                        self.personalGoalSliderSlide(sliderVal);
                     }
-                }
-                $('.js__registration-ptype-personal-goal-slider').on('change', function () {
-                    personalGoalSliderChange(
-                        sliderPos2DonationLevel(parseInt($(this).val(), 10)), false
-                    );
-                });
+                };
 
-                // Slider / Other Amount switch
-                var flipPersonalGoalPage = function (type) {
-                    if (type === 'other-amount') {
-                        $('#registration-ptype-personal-goal-slider-page').hide();
-                        $('#registration-ptype-personal-goal-other-amount-page').fadeIn();
-                    } else {
-                        $('#registration-ptype-personal-goal-other-amount-page').hide();
-                        $('#registration-ptype-personal-goal-slider-page').fadeIn();
-                    }
-                    $('#registration-ptype-personal-goal-option').val(type);
-                }
-                $('.js__registration-ptype-personal-goal-show-other-amount').on('click', function (e) {
-                    e.preventDefault();
-                    flipPersonalGoalPage('other-amount');
-                });
-                $('.js__registration-ptype-personal-goal-show-slider').on('click', function (e) {
-                    e.preventDefault();
-                    flipPersonalGoalPage('slider');
-                });
+                this.init = function () {
+                    var $steps = $('div#registration-ptype-page-steps').detach();
+                    $('#part_type_section_container').append($steps);
+                    renderHeader(1);
+                    $steps.show();
 
-                // On-load personal goal logic
-                for (var i = 0; i <= frGoalMatrix.length; i++) {
-                    if (frGoalVal == frGoalMatrix[i]) {
-                        sliderDonationLevel = i + 1;
-                        break;
+                    // Dom manipulations
+                    var $personalGiftStep = $steps.find('div.registration-ptype-page-step-personal-gift');
+                    $personalGiftStep
+                        .find('div.registration-ptype-page-step-content')
+                        .append($('div#part_type_individual_company_selection_container').detach())
+                        .append($('div#part_type_additional_gift_container').detach())
+                        .find('div#part_type_additional_gift_container .manageable-content').hide();
+                    $personalGiftStep
+                        .find('> div.button-container')
+                        .append(
+                            $('button#next_step')
+                                .removeClass('step-button next-step')
+                                .addClass('btn btn-primary')
+                                .text('Next')
+                                .detach()
+                        );
+                    $personalGiftStep
+                        .find('label.donation-level-row-label-no-gift')
+                        .text('No gift at this time')
+                        .closest('.donation-level-row-container')
+                        .addClass('donation-level-row-container-no-gift mt-3')
+
+                    // Prev step click
+                    $('.js__ptype-page-prev-step').on('click', function () {
+                        renderPrevStep(
+                            parseInt($(this).data('step'), 10), parseInt($(this).data('prev-step'), 10)
+                        );
+                    });
+
+                    // Next step click
+                    $('.js__ptype-page-next-step').on('click', function () {
+                        renderNextStep(
+                            parseInt($(this).data('step'), 10), parseInt($(this).data('next-step'), 10)
+                        );
+                    });
+
+                    // Slider dot click
+                    $('.js__personal_goal_slider_dot').on('click', function () {
+                        self.personalGoalSliderChange(
+                            parseInt($(this).data('slider-pos'), 10) * 100, true
+                        );
+                    });
+
+                    // Slider / Other Amount switch
+                    var flipPersonalGoalPage = function (type) {
+                        if (type === 'other-amount') {
+                            $('#registration-ptype-personal-goal-slider-page').hide();
+                            $('#registration-ptype-personal-goal-other-amount-page').fadeIn();
+                        } else {
+                            $('#registration-ptype-personal-goal-other-amount-page').hide();
+                            $('#registration-ptype-personal-goal-slider-page').fadeIn();
+                        }
+                        $('#registration-ptype-personal-goal-option').val(type);
                     }
-                }
-                if (sliderDonationLevel > 0) { // Slider
-                    personalGoalSliderChange(sliderDonationLevel, true);
-                } else { // Other amount
-                    $('input.js__personal-goal-other-amount-input').val(Number(frGoalVal.replace(/[^0-9.-]+/g,"")));
-                    flipPersonalGoalPage('other-amount');
-                }
+                    $('.js__registration-ptype-personal-goal-show-other-amount').on('click', function (e) {
+                        e.preventDefault();
+                        flipPersonalGoalPage('other-amount');
+                    });
+                    $('.js__registration-ptype-personal-goal-show-slider').on('click', function (e) {
+                        e.preventDefault();
+                        flipPersonalGoalPage('slider');
+                    });
+                };
+
+                this.personalGoalSliderInit = function () {
+                    var frGoalVal = self.initialFrGoalVal;
+                    for (var i = 0; i <= frGoalMatrix.length; i++) {
+                        if (frGoalVal == frGoalMatrix[i]) {
+                            sliderDonationLevel = i + 1;
+                            break;
+                        }
+                    }
+                    if (sliderDonationLevel > 0) { // Slider
+                        return sliderDonationLevel * 100;
+                    } else { // Other amount
+                        $('input.js__personal-goal-other-amount-input').val(Number(frGoalVal.replace(/[^0-9.-]+/g,"")));
+                        flipPersonalGoalPage('other-amount');
+                    }
+
+                    return self.defaultSliderVal;
+                };
             };
             if ($('div#registration-ptype-page-steps').length === 1) {
-                cd.renderPTypePageSteps();
+                cd.ptypePageSteps = new ptypePageSteps();
+                cd.ptypePageSteps.init();
             }
 
             if ($('.part-type-container').length == 1) {

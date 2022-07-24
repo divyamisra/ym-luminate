@@ -112,14 +112,9 @@ div#registration-ptype-page-steps {
 
         > div {
             position: absolute;
-            display: none;
             top: 0;
             left: 0;
             width: 100%;
-
-            &.active {
-                display: block;
-            }
 
             &#pg-slider-photo-1 {
                 position: relative;
@@ -138,94 +133,16 @@ div#registration-ptype-page-steps {
     }
 
     .registration-ptype-personal-goal-slider-container {
-        position: relative;
-        text-align: center;
-        margin: 80px 0 70px 0;
-
-        .registration-ptype-personal-goal-slider {
-            -webkit-appearance: none;
-            position: relative;
-            width: 90%;
-            height: 5px;
-            max-width: none;
-            background-color: transparent;
-            outline: none;
-            -webkit-transition: .2s;
-            transition: opacity .2s;
-            z-index: 25;
-
-            &::-webkit-slider-thumb {
-                -webkit-appearance: none;
-                appearance: none;
-                background-image: url("../../../../../images/content/pagebuilder/heart.gif");
-                background-size: contain;
-                background-repeat: no-repeat;
-                width: 72px;
-                height: 63px;
-                cursor: pointer;
-                //opacity: 0.1;
-            }
-
-            &::-moz-range-thumb {
-                background-image: url("../../../../../images/content/pagebuilder/heart.gif");
-                background-size: contain;
-                background-repeat: no-repeat;
-                width: 72px;
-                height: 63px;
-                cursor: pointer;
-            }
-        }
-
-        .registration-ptype-personal-goal-slider-section {
-            position: absolute;
-            top: 12px;
-            left: 9%;
-            height: 5px;
-            background-color: #bababb;
-
-            &.active {
-                background-color: #c00001;
-            }
-        }
-
-        .slider-section-1 {
-            width: 0;
-        }
-
-        .slider-section-2 {
-            width: 16.4%;
-            z-index: 5;
-        }
-
-        .slider-section-3 {
-            width: 32.8%;
-            z-index: 4;
-        }
-
-        .slider-section-4 {
-            width: 49.2%;
-            z-index: 3;
-        }
-
-        .slider-section-5 {
-            width: 65.6%;
-            z-index: 2;
-        }
-
-        .slider-section-6 {
-            width: 82%;
-            z-index: 1;
-        }
+        width: 82%;
+        margin: 80px auto 70px auto;
 
         .registration-ptype-personal-goal-slider-dots {
             position: relative;
-            width: 82%;
             margin: 0 auto;
-            z-index: 10;
 
             .slider-dot {
                 position: absolute;
-                top: 0;
+                top: -11px;
                 width: 28px;
                 height: 28px;
                 border-radius: 50%;
@@ -330,6 +247,43 @@ div#registration-ptype-page-steps {
                 }
             }
         }
+
+        #registration-ptype-personal-goal-slider {
+            &.ui-slider {
+                position: relative;
+                height: 5px;
+                background-color: #bababb;
+
+                .ui-slider-range {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    height: 100%;
+                    background-color: #c00001;
+                    z-index: 1;
+                }
+
+                .ui-slider-handle {
+                    position: absolute;
+                    background-image: url('../../../../../images/content/pagebuilder/heart.png');
+                    background-size: contain;
+                    background-repeat: no-repeat;
+                    width: 65px;
+                    height: 57px;
+                    top: -24px;
+                    margin-left: -32px;
+                    cursor: pointer;
+                    border: none;
+                    outline: none;
+                    z-index: 2;
+
+                    &.shake-horizontal {
+                        -webkit-animation: shake-horizontal 2s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
+                        animation: shake-horizontal 2s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
+                    }
+                }
+            }
+        }
     }
 
     .registration-ptype-personal-goal-slider-other-amount-selector {
@@ -348,48 +302,22 @@ div#registration-ptype-page-steps {
         }
 
         .registration-ptype-personal-goal-slider-container {
-            .registration-ptype-personal-goal-slider {
-                &::-webkit-slider-thumb {
-                    width: 48px;
-                    height: 42px;
+            #registration-ptype-personal-goal-slider {
+                &.ui-slider {
+                    height: 3px;
+
+                    .ui-slider-handle {
+                        width: 48px;
+                        height: 42px;
+                        top: -18px;
+                        margin-left: -24px;
+                    }
                 }
-
-                &::-moz-range-thumb {
-                    width: 48px;
-                    height: 42px;
-                }
-            }
-
-            .registration-ptype-personal-goal-slider-section {
-                left: 10%;
-                height: 3px;
-            }
-
-            .slider-section-2 {
-                width: 16%;
-            }
-
-            .slider-section-3 {
-                width: 32%;
-            }
-
-            .slider-section-4 {
-                width: 48%;
-            }
-
-            .slider-section-5 {
-                width: 64%;
-            }
-
-            .slider-section-6 {
-                width: 80%;
             }
 
             .registration-ptype-personal-goal-slider-dots {
-                width: 80%;
-
                 .slider-dot {
-                    top: 4px;
+                    top: -8px;
                     width: 20px;
                     height: 20px;
 
@@ -503,6 +431,8 @@ div#registration-ptype-page-steps {
                 font-family: LubDubBold,Helvetica,Arial,sans-serif;
                 font-weight: 700;
                 font-size: 3.2rem;
+                -webkit-animation: custom-amount-blink 3s infinite both;
+                animation: custom-amount-blink 3s infinite both;
             }
 
             input {
@@ -518,6 +448,110 @@ div#registration-ptype-page-steps {
                 border: 5px solid #bfbfbf !important;
                 border-radius: 30px !important;
             }
+        }
+    }
+
+    /* ----------------------------------------------
+     * Generated by Animista on 2022-7-14 12:31:49
+     * Licensed under FreeBSD License.
+     * See http://animista.net/license for more info.
+     * w: http://animista.net, t: @cssanimista
+     * ---------------------------------------------- */
+
+    /**
+     * ----------------------------------------
+     * animation shake-horizontal
+     * ----------------------------------------
+     */
+    @-webkit-keyframes shake-horizontal {
+        0%,
+        100% {
+            -webkit-transform: translateX(0);
+            transform: translateX(0);
+        }
+        10%,
+        30%,
+        50%,
+        70% {
+            -webkit-transform: translateX(-10px);
+            transform: translateX(-10px);
+        }
+        20%,
+        40%,
+        60% {
+            -webkit-transform: translateX(10px);
+            transform: translateX(10px);
+        }
+        80% {
+            -webkit-transform: translateX(8px);
+            transform: translateX(8px);
+        }
+        90% {
+            -webkit-transform: translateX(-8px);
+            transform: translateX(-8px);
+        }
+    }
+    @keyframes shake-horizontal {
+        0%,
+        100% {
+            -webkit-transform: translateX(0);
+            transform: translateX(0);
+        }
+        10%,
+        30%,
+        50%,
+        70% {
+            -webkit-transform: translateX(-10px);
+            transform: translateX(-10px);
+        }
+        20%,
+        40%,
+        60% {
+            -webkit-transform: translateX(10px);
+            transform: translateX(10px);
+        }
+        80% {
+            -webkit-transform: translateX(8px);
+            transform: translateX(8px);
+        }
+        90% {
+            -webkit-transform: translateX(-8px);
+            transform: translateX(-8px);
+        }
+    }
+
+    /* ----------------------------------------------
+     * Generated by Animista on 2022-7-18 13:52:14
+     * Licensed under FreeBSD License.
+     * See http://animista.net/license for more info.
+     * w: http://animista.net, t: @cssanimista
+     * ---------------------------------------------- */
+
+    /**
+     * ----------------------------------------
+     * animation custom-amount-blink
+     * ----------------------------------------
+     */
+    @-webkit-keyframes custom-amount-blink {
+        0% {
+            opacity: 1;
+        }
+        50% {
+            opacity: 0.2;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+    @keyframes custom-amount-blink {
+        0% {
+            opacity: 1;
+        }
+        50% {
+            opacity: 0.2;
+        }
+        100% {
+            opacity: 1;
         }
     }
 }

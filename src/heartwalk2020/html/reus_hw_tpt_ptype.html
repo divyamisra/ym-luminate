@@ -46,7 +46,7 @@
     }
 </style>
 <div id="registration-ptype-page-steps">
-    <div class="registration-ptype-page-step registration-ptype-page-step-showcase" id="registration-ptype-page-step-1">
+    <div class="registration-ptype-page-step registration-ptype-page-step-showcase pt-3" id="registration-ptype-page-step-1">
         <h1>
             [[?xxnullxx::x[[S1:user_name]]x::
                 We're so happy you're here!
@@ -73,18 +73,18 @@
             <div class="col-lg-6 col-md-12">
                 <div class="row">
                     <div class="col-xs-6 my-3 text-center">
-                        <img class="rounded img-item" alt="Alt image 1" src="../images/content/pagebuilder/step1-img.png">
+                        <img class="rounded img-item" alt="Alt image 1" src="../images/content/pagebuilder/step1-img-1.jpg">
                     </div>
                     <div class="col-xs-6 my-3 text-center">
-                        <img class="rounded img-item" alt="Alt image 2" src="../images/content/pagebuilder/step1-img.png">
+                        <img class="rounded img-item" alt="Alt image 2" src="../images/content/pagebuilder/step1-img-2.jpg">
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-xs-6 my-3 text-center">
-                        <img class="rounded img-item" alt="Alt image 3" src="../images/content/pagebuilder/step1-img.png">
+                        <img class="rounded img-item" alt="Alt image 3" src="../images/content/pagebuilder/step1-img-3.jpg">
                     </div>
                     <div class="col-xs-6 my-3 text-center">
-                        <img class="rounded img-item" alt="Alt image 4" src="../images/content/pagebuilder/step1-img.png">
+                        <img class="rounded img-item" alt="Alt image 4" src="../images/content/pagebuilder/step1-img-4.jpg">
                     </div>
                 </div>
             </div>
@@ -101,41 +101,74 @@
         </div>
         <div id="registration-ptype-personal-goal-slider-page">
             <div class="registration-ptype-personal-goal-slider-photos">
-                <div id="pg-slider-photo-1" class="active">
+                <div id="pg-slider-photo-1">
                     <img class="pg-slider-photo" src="../images/content/pagebuilder/pg-slider-photo-1.png">
                 </div>
-                <div id="pg-slider-photo-2" class="active">
+                <div id="pg-slider-photo-2">
                     <img class="pg-slider-photo" src="../images/content/pagebuilder/pg-slider-photo-2.png">
                 </div>
-                <div id="pg-slider-photo-3">
+                <div id="pg-slider-photo-3" style="display: none;">
                     <img class="pg-slider-photo" src="../images/content/pagebuilder/pg-slider-photo-3.png">
                 </div>
-                <div id="pg-slider-photo-4">
+                <div id="pg-slider-photo-4" style="display: none;">
                     <img class="pg-slider-photo" src="../images/content/pagebuilder/pg-slider-photo-4.png">
                 </div>
-                <div id="pg-slider-photo-5">
+                <div id="pg-slider-photo-5" style="display: none;">
                     <img class="pg-slider-photo" src="../images/content/pagebuilder/pg-slider-photo-5.png">
                 </div>
-                <div id="pg-slider-photo-6">
+                <div id="pg-slider-photo-6" style="display: none;">
                     <img class="pg-slider-photo" src="../images/content/pagebuilder/pg-slider-photo-6.png">
                 </div>
             </div>
             <div class="registration-ptype-personal-goal-slider-container">
-                <div class="registration-ptype-personal-goal-slider-section slider-section-1 active"></div>
-                <div class="registration-ptype-personal-goal-slider-section slider-section-2 active"></div>
-                <div class="registration-ptype-personal-goal-slider-section slider-section-3"></div>
-                <div class="registration-ptype-personal-goal-slider-section slider-section-4"></div>
-                <div class="registration-ptype-personal-goal-slider-section slider-section-5"></div>
-                <div class="registration-ptype-personal-goal-slider-section slider-section-6"></div>
                 <div class="registration-ptype-personal-goal-slider-dots">
-                    <div id="slider-dot-1" class="slider-dot active"></div>
-                    <div id="slider-dot-2" class="slider-dot active selected"></div>
-                    <div id="slider-dot-3" class="slider-dot"></div>
-                    <div id="slider-dot-4" class="slider-dot"></div>
-                    <div id="slider-dot-5" class="slider-dot"></div>
-                    <div id="slider-dot-6" class="slider-dot"></div>
+                    <div id="slider-dot-1" data-slider-pos="1" class="js__personal_goal_slider_dot slider-dot active"></div>
+                    <div id="slider-dot-2" data-slider-pos="2" class="js__personal_goal_slider_dot slider-dot active selected"></div>
+                    <div id="slider-dot-3" data-slider-pos="3" class="js__personal_goal_slider_dot slider-dot"></div>
+                    <div id="slider-dot-4" data-slider-pos="4" class="js__personal_goal_slider_dot slider-dot"></div>
+                    <div id="slider-dot-5" data-slider-pos="5" class="js__personal_goal_slider_dot slider-dot"></div>
+                    <div id="slider-dot-6" data-slider-pos="6" class="js__personal_goal_slider_dot slider-dot"></div>
                 </div>
-                <input type="range" min="100" max="600" value="200" class="registration-ptype-personal-goal-slider js__registration-ptype-personal-goal-slider">
+                <div id="registration-ptype-personal-goal-slider"></div>
+                <script>
+                    Y.config.modules['jquery:1.10.2'] = {
+                        name: 'jquery:1.10.2',
+                        type: 'js',
+                        fullpath: '//code.jquery.com/jquery-1.10.2.js'
+                    }
+                    Y.config.modules['jquery-ui:1.10.4'] = {
+                        name: 'jquery-ui:1.10.4',
+                        type: 'js',
+                        fullpath: '//code.jquery.com/ui/1.10.4/jquery-ui.js',
+                        requires: ['jquery:1.10.2']
+                    }
+                    Y.use('jquery-ui:1.10.4', function () {
+                        var $jq = jQuery.noConflict(true);
+                        (function($jq) {
+                            $jq(document).ready(function () {
+                                var $personalGoalSlider = $jq('#registration-ptype-personal-goal-slider'),
+                                    sliderVal = cd.ptypePageSteps.personalGoalSliderInit();
+                                cd.ptypePageSteps.$personalGoalSlider = $personalGoalSlider;
+                                $personalGoalSlider.slider({
+                                    range: 'min',
+                                    value: sliderVal,
+                                    min: 100,
+                                    max: 600,
+                                    step: 1,
+                                    slide: function(event, ui) {
+                                        cd.ptypePageSteps.personalGoalSliderSlide(ui.value);
+                                    },
+                                    change: function(event, ui) {
+                                        cd.ptypePageSteps.personalGoalSliderChange(ui.value, false);
+                                    }
+                                });
+                                if (sliderVal !== cd.ptypePageSteps.defaultSliderVal) {
+                                    cd.ptypePageSteps.personalGoalSliderChange(sliderVal, true);
+                                }
+                            });
+                        })($jq);
+                    });
+                </script>
             </div>
             <div class="registration-ptype-personal-goal-slider-other-amount-selector text-center">
                 <a href="#" class="js__registration-ptype-personal-goal-show-other-amount">Other Amount</a>
@@ -146,7 +179,7 @@
             <div class="registration-ptype-personal-goal-other-amount-container" class="text-center">
                 <div class="personal-goal-other-amount-input-container">
                     <span class="dollar-sign">$</span>
-                    <input type="text" class="js__personal-goal-other-amount-input" value="250" size="15" maxlength="15">
+                    <input type="text" class="js__personal-goal-other-amount-input" value="" size="15" maxlength="15">
                 </div>
                 <div>
                     <strong>The sky's the limit!</strong>
@@ -168,8 +201,8 @@
             <div class="col-lg-12 col-xl-7">
                 <div class="registration-ptype-page-step-content"></div>
             </div>
-            <div class="d-none d-xl-block col-xl-5">
-                <img class="img-item" alt="Alt Slide 3 Img" src="../images/content/pagebuilder/step1-img.png">
+            <div class="d-none d-xl-block col-xl-5 pt-4">
+                <img class="img-item" alt="Alt Slide 3 Img" src="../images/content/pagebuilder/step3-img-1.jpg">
             </div>
         </div>
         <div class="ptype-page-step-dtd-anchor"></div>
