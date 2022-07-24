@@ -120,10 +120,28 @@ div#registration-ptype-page-steps {
                 position: relative;
             }
 
-            &#pg-slider-photo-3,
-            &#pg-slider-photo-5 {
-                z-index: 10;
+            &#pg-slider-photo-2
+            {
+                z-index: 5;
             }
+            &#pg-slider-photo-3
+            {
+                z-index: 4;
+            }
+            &#pg-slider-photo-4
+            {
+                z-index: 3;
+            }
+            &#pg-slider-photo-5
+            {
+                z-index: 2;
+            }
+
+            //&#pg-slider-photo-3,
+            //&#pg-slider-photo-5
+            //{
+            //    z-index: 10;
+            //}
         }
 
         .pg-slider-photo {
