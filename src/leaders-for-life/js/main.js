@@ -407,7 +407,7 @@
                             }
                             $('.dataTables_length').addClass('bs-select');
                             //add call to hook donate button with payment type selections
-                            addPaymentTypesOnSearch();
+                            //addPaymentTypesOnSearch();
                             $('.js--participant-results-container').removeAttr('hidden');
 
                             $('.js--more-participant-results').on('click', function(e) {
@@ -494,7 +494,7 @@
                             }
                             $('.dataTables_length').addClass('bs-select');
                             //add call to hook donate button with payment type selections
-                            addPaymentTypesOnSearch();
+                            //addPaymentTypesOnSearch();
                             $('.js--team-results-container').removeAttr('hidden');
 
                         }
@@ -1685,7 +1685,9 @@
                             $('.js--personal-don-form').removeClass('hidden');
                             var defaultDonUrl = $('.js--personal-don-submit').data('don-url');
                             var finalDonUrl = null;
-                            $('.js--personal-don-submit').attr('data-final-don-url', defaultDonUrl);
+                            var levelID = $('label.active').data('level-id');
+                            finalDonUrl = defaultDonUrl + '&set.DonationLevel=' + levelID;
+                            $('.js--personal-don-submit').attr('href', finalDonUrl);
 
                             // define donation widget button behavior
                             $('.js--personal-don-form label').on('click', function() {
@@ -1695,7 +1697,7 @@
                                 $(this).addClass('active');
                                 // $('.js--don-amt').text($(this).text());
                                 finalDonUrl = defaultDonUrl + '&set.DonationLevel=' + $(this).data('level-id');
-                                $('.js--personal-don-submit').attr('data-final-don-url', finalDonUrl);
+                                $('.js--personal-don-submit').attr('href', finalDonUrl);
                                 $('.js--personal-amt-other-wrap').hide();
                                 $('.information-box .donation-amounts .custom-amount').attr("style", "max-height: 50px;");
                             });
@@ -2292,7 +2294,7 @@
                             var html = "<div aria-live='polite' class='paymentSelType' style='padding-top:10px;'>" +
                                 "<h2 class='h6'>How would you like to donate?</h2>" +
                                 "<div class='payment-options-container'><a href='" + dlink + "'><img src='https://www2.heart.org/images/content/pagebuilder/credit-card-logos2.png' alt='Donate with Visa, MasterCard, American Express or Discover cards'/></a>" +
-                                "<a href='" + default_path + "/site/SPageNavigator/fieldday_donate_amazon.html?FR_ID=" + fr_id + "&mfc_pref=T&PROXY_ID=" + px + "&PROXY_TYPE=" + pt + "' class='amazon'><img src='https://donatenow.heart.org/images/amazon-payments_inactive.png' alt='Donate with Amazon Pay'/></a>" +
+                                "<a href='" + default_path + "/site/SPageNavigator/fieldday_donate_amazon.html?FR_ID=" + fr_id + "&mfc_pref=T&PROXY_ID=" + px + "&PROXY_TYPE=" + pt + "' class='amazon'><img src='https://www2.heart.org/images/content/pagebuilder/amazon-payments.png' alt='Donate with Amazon Pay'/></a>" +
                                 "<a href='" + default_path + "/site/SPageNavigator/fieldday_donate_googlepay.html?FR_ID=" + fr_id + "&mfc_pref=T&PROXY_ID=" + px + "&PROXY_TYPE=" + pt + "' class='googlepay'><img src='https://www2.heart.org/donation-forms/donatenow/images/googlepay-button.png' alt='Donate with Google Pay'/></a>" +
                                 "<a href='" + default_path + "/site/SPageNavigator/fieldday_donate_applepay.html?FR_ID=" + fr_id + "&mfc_pref=T&PROXY_ID=" + px + "&PROXY_TYPE=" + pt + "' class='applepay hidden-md hidden-lg'><img src='https://www2.heart.org/donation-forms-braintree/donatenow/images/DonateBlack_32pt_@2x.png' alt='ApplePay'/></a>" +
                                 "<a href='" + default_path + "/site/SPageNavigator/fieldday_donate_venmo.html?FR_ID=" + fr_id + "&mfc_pref=T&PROXY_ID=" + px + "&PROXY_TYPE=" + pt + "' class='venmo hidden-md hidden-lg'><img src='https://www2.heart.org/donation-forms/donatenow/images/venmo-button.png' alt='Venmo'/></a>" +

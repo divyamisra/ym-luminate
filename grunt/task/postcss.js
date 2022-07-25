@@ -237,5 +237,59 @@ module.exports = {
         dest: 'dist/leaders-for-life/css/'
       }
     ]
+  },
+  "social-stem": {
+    files: [
+      {
+        expand: true,
+        cwd: 'dist/social-stem/css/',
+        src: [
+          'main.css',
+          'registration.css',
+          'donation.css'
+        ],
+        dest: 'dist/social-stem/css/'
+      }
+    ]
+  },
+  "women-of-impact": {
+    files: [
+      {
+        expand: true,
+        cwd: 'dist/women-of-impact/css/',
+        src: [
+          'main.css',
+          'registration.css',
+          'donation.css'
+        ],
+        dest: 'dist/women-of-impact/css/'
+      }
+    ]
+  },
+  "teens-of-impact": {
+    files: [
+      {
+        expand: true,
+        cwd: 'dist/teens-of-impact/css/',
+        src: [
+          'main.css',
+          'registration.css',
+          'donation.css'
+        ],
+        dest: 'dist/teens-of-impact/css/'
+      }
+    ]
+  },
+  "ym-rewards": {
+    files: [
+      {
+        expand: true,
+        cwd: 'dist/ym-rewards/css/',
+        src: [
+          'main.css'
+        ],
+        dest: 'dist/ym-rewards/css/'
+      }
+    ]
   }
 }
