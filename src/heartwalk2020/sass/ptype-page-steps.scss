@@ -296,8 +296,8 @@ div#registration-ptype-page-steps {
                     z-index: 2;
 
                     &.shake-horizontal {
-                        -webkit-animation: shake-horizontal 2s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
-                        animation: shake-horizontal 2s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
+                        -webkit-animation: shake-horizontal 1.2s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
+                        animation: shake-horizontal 1.2s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
                     }
                 }
             }
@@ -449,8 +449,11 @@ div#registration-ptype-page-steps {
                 font-family: LubDubBold,Helvetica,Arial,sans-serif;
                 font-weight: 700;
                 font-size: 3.2rem;
-                -webkit-animation: custom-amount-blink 3s infinite both;
-                animation: custom-amount-blink 3s infinite both;
+
+                &.custom-amount-blink {
+                    -webkit-animation: custom-amount-blink 3s infinite both;
+                    animation: custom-amount-blink 3s infinite both;
+                }
             }
 
             input {
@@ -491,22 +494,22 @@ div#registration-ptype-page-steps {
         30%,
         50%,
         70% {
-            -webkit-transform: translateX(-10px);
-            transform: translateX(-10px);
+            -webkit-transform: translateX(-8px);
+            transform: translateX(-8px);
         }
         20%,
         40%,
         60% {
-            -webkit-transform: translateX(10px);
-            transform: translateX(10px);
-        }
-        80% {
             -webkit-transform: translateX(8px);
             transform: translateX(8px);
         }
+        80% {
+            -webkit-transform: translateX(6px);
+            transform: translateX(6px);
+        }
         90% {
-            -webkit-transform: translateX(-8px);
-            transform: translateX(-8px);
+            -webkit-transform: translateX(-6px);
+            transform: translateX(-6px);
         }
     }
     @keyframes shake-horizontal {
@@ -519,22 +522,22 @@ div#registration-ptype-page-steps {
         30%,
         50%,
         70% {
-            -webkit-transform: translateX(-10px);
-            transform: translateX(-10px);
+            -webkit-transform: translateX(-8px);
+            transform: translateX(-8px);
         }
         20%,
         40%,
         60% {
-            -webkit-transform: translateX(10px);
-            transform: translateX(10px);
-        }
-        80% {
             -webkit-transform: translateX(8px);
             transform: translateX(8px);
         }
+        80% {
+            -webkit-transform: translateX(6px);
+            transform: translateX(6px);
+        }
         90% {
-            -webkit-transform: translateX(-8px);
-            transform: translateX(-8px);
+            -webkit-transform: translateX(-6px);
+            transform: translateX(-6px);
         }
     }
 

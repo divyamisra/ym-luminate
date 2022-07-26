@@ -1307,6 +1307,16 @@
                         );
                     });
 
+                    // Other amount input
+                    $('input.js__personal-goal-other-amount-input').on('keyup', function () {
+                        var $input = $(this);
+                        if ($input.val() == '') {
+                            $input.prev('.dollar-sign').addClass('custom-amount-blink');
+                        } else {
+                            $input.prev('.dollar-sign').removeClass('custom-amount-blink');
+                        }
+                    });
+
                     // Slider / Other Amount switch
                     var flipPersonalGoalPage = function (type) {
                         if (type === 'other-amount') {
@@ -1329,7 +1339,8 @@
                 };
 
                 this.personalGoalSliderInit = function () {
-                    var frGoalVal = self.initialFrGoalVal;
+                    var frGoalVal = self.initialFrGoalVal,
+                        $otherAmountInput = $('input.js__personal-goal-other-amount-input');
                     for (var i = 0; i <= frGoalMatrix.length; i++) {
                         if (frGoalVal == frGoalMatrix[i]) {
                             sliderDonationLevel = i + 1;
@@ -1337,9 +1348,10 @@
                         }
                     }
                     if (sliderDonationLevel > 0) { // Slider
+                        $otherAmountInput.prev('.dollar-sign').addClass('custom-amount-blink');
                         return sliderDonationLevel * 100;
                     } else { // Other amount
-                        $('input.js__personal-goal-other-amount-input').val(Number(frGoalVal.replace(/[^0-9.-]+/g,"")));
+                        $otherAmountInput.val(Number(frGoalVal.replace(/[^0-9.-]+/g,"")));
                         flipPersonalGoalPage('other-amount');
                     }
 
