@@ -77,9 +77,8 @@
             }
 
             h2 {
-              background-color: $white;
               font-weight: 600;
-              @include media-breakpoint-down(md){
+              @include media-breakpoint-down(md) {
                 background-color: transparent;
               }
             }
@@ -190,7 +189,7 @@
         }
         // End event-info
       }
-    // End little-gold-bars
+      // End little-gold-bars
     }
     // End greeting-header
 
