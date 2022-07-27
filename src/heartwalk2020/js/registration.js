@@ -1611,8 +1611,14 @@
 
                 // Start with Step 1?
                 if (errorsPresent == 0) {
-                    renderHeader(1);
-                    $step1.show();
+                    var activeStep = parseInt(readCookie('registration-reg-page-step'), 10);
+                    if (activeStep > 0) {
+                        document.cookie = 'registration-reg-page-step=;expires=Thu, 01 Jan 1970 00:00:01 GMT';
+                        renderStep(activeStep, 1);
+                    } else {
+                        renderHeader(1);
+                        $step1.show();
+                    }
                 }
 
                 // Step 2
@@ -1980,7 +1986,7 @@
 
         $('.survivor_yes_no .survey-question-label').after(
             '<div class="pb-4">If you have a personal experience with a heart condition or stroke, we want to know!</div>' +
-            '<div class="pb-4">You will receive a survivor banner on your personal page - plus perks like a commemorative Survivor Cap at the Walk.</div>'
+            '<div class="pb-4">You will receive a survivor banner on your personal webpage - plus we would like to honor you at the Walk with perks like a commemorative Survivor Cap.</div>'
         );
 
         $('.survivor_yes_no li').click(function () {
