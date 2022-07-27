@@ -1261,7 +1261,14 @@
                 this.init = function () {
                     var $steps = $('div#registration-ptype-page-steps').detach();
                     $('#part_type_section_container').append($steps);
-                    renderHeader(1);
+
+                    var activeStep = parseInt(readCookie('registration-ptype-page-step'), 10);
+                    if (activeStep > 0) {
+                        document.cookie = 'registration-ptype-page-step=;expires=Thu, 01 Jan 1970 00:00:01 GMT';
+                        renderStep(activeStep, 1);
+                    } else {
+                        renderHeader(1);
+                    }
                     $steps.show();
 
                     // Dom manipulations
@@ -1508,6 +1515,7 @@
                         $('div#registration-reg-page-step-' + step.toString() + ' > h1').text()
                     );
                 };
+
                 var disableStep = function (hidePage) {
                     var $prevPageNextStepBttn = $('#registration-reg-page-step-' + (hidePage - 1).toString()).find('button.js__reg-page-next-step'),
                         $nextPagePrevStepBttn = $('#registration-reg-page-step-' + (hidePage + 1).toString()).find('button.js__reg-page-prev-step');
@@ -1518,6 +1526,7 @@
                         $nextPagePrevStepBttn.data('prev-step', hidePage - 1);
                     }
                 };
+
                 var enableStep = function (unhidePage) {
                     var $prevPageNextStepBttn = $('#registration-reg-page-step-' + (unhidePage - 1).toString()).find('button.js__reg-page-next-step'),
                         $nextPagePrevStepBttn = $('#registration-reg-page-step-' + (unhidePage + 1).toString()).find('button.js__reg-page-prev-step');
@@ -1528,6 +1537,7 @@
                         $nextPagePrevStepBttn.data('prev-step', unhidePage);
                     }
                 };
+
                 var renderStep = function (onPage, offPage) {
                     renderHeader(onPage);
                     $('div#registration-reg-page-step-' + offPage.toString()).hide();
@@ -1536,16 +1546,20 @@
                         scrollTop: $('#registration_options_page').offset().top
                     }, 500);
                 };
+
                 var renderPrevStep = function (currentStep, prevStep) {
                     if (prevStep > 0) {
                         renderStep(prevStep, currentStep);
                         return;
                     }
+                    document.cookie = 'registration-ptype-page-step=3';
                     history.back();
                 };
+
                 var renderNextStep = function (currentStep, nextStep) {
                     renderStep(nextStep, currentStep);
                 };
+
                 var handleErrors = function () {
                     var step = 0,
                         createLoginStep = 5,
