@@ -41,12 +41,15 @@
         }
         .event-info {
           margin: 0;
+          @include media-breakpoint-up(lg) {
+            flex: 50% 0 0;
+          }
 
           .event-info__header {
             width: fit-content;
             box-shadow: 56px 0px 55px 100px #ffffff;
             background-color: #ffffff;
-            
+
             h1 {
               font-size       : 3.9375em;
               background-color: $white;
