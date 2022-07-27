@@ -13,25 +13,16 @@
         background-position: bottom;
       }
       .transparent-bars {
-        &::before {
-          content: " ";
-          background-color: #c10e21;
-          width: 40%;
-          height: 27px;
-          display: block;
-          position: relative;
-          z-index: 1;
-        }
-
-        &::after {
-          content: " ";
-          background-color: #c10e21;
-          width: 40%;
-          height: 27px;
-          display: block;
-          position: relative;
-          z-index: 1;
-        }
+        background-color: #ffffffb5;
+        // &::after {
+        //   content: " ";
+        //   background-color: #c10e21;
+        //   width: 40%;
+        //   height: 27px;
+        //   display: block;
+        //   position: relative;
+        //   z-index: 1;
+        // }
 
         .event-info-banner {
           width              : 50%;
@@ -40,9 +31,6 @@
           background-size    : contain;
           background-position: center;
           background-repeat  : no-repeat;
-          @include media-breakpoint-up(1024px) {
-            padding-top: 496px;
-          }
           @include media-breakpoint-up(lg) {
             background-position: right;
           }
@@ -53,11 +41,12 @@
         }
         .event-info {
           margin: 0;
-          @include media-breakpoint-up(lg) {
-            flex: 50% 0 0;
-          }
+
           .event-info__header {
             width: fit-content;
+            box-shadow: 56px 0px 55px 100px #ffffff;
+            background-color: #ffffff;
+            
             h1 {
               font-size       : 3.9375em;
               background-color: $white;
@@ -72,9 +61,9 @@
                 position: relative;
                 z-index: 1;
               }
-              &:not(::first-line) {
-                color      : $red-deep;
-                font-size  : 1.25em;
+              &::first-line {
+                color      : $dark;
+                font-size  : 1em;
                 font-weight: 900;
               }
               @include media-breakpoint-down(lg) {
@@ -85,7 +74,6 @@
               }
             }
             h2 {
-              background-color: $white;
               font-weight     : 600;
               @include media-breakpoint-down(md) {
                 background-color: transparent;
