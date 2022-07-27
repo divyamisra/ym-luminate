@@ -32,7 +32,7 @@
           background-position: center;
           background-repeat  : no-repeat;
           @include media-breakpoint-up(lg) {
-            background-position: right;
+            background-position: left;
           }
           @media (max-width: 767.98px) {
             width      : 100%;
@@ -256,44 +256,28 @@
       }
     }
     #movement-section {
-      &:after,
-      &:before {
-        content         : " ";
-        background-color: #c10e21;
-        width           : 40%;
-        height          : 27px;
-        display         : block;
-        position        : relative;
-        z-index         : 1;
-      }
-      &:before {
-        float: right;
-      }
       .container {
         position      : relative;
         padding-bottom: 6rem;
         padding-top   : 6rem;
         &:after,
         &:before {
-          content          : "";
-          display          : block;
-          height           : 26px;
-          background       : url("https://secure3.convio.net/heartdev/images/content/pagebuilder/GoldBar_600px.png");
-          background-size  : cover;
-          background-repeat: no-repeat;
+          content         : " ";
+          background-color: #0499b7b8;
+          width           : 20%;
+          height          : 76px;
+          display         : block;
+          position        : relative;
+          top: 196px;
         }
         &:before {
-          width   : 64px;
-          right   : 0;
-          top     : 5rem;
-          position: absolute;
+          float: right;
         }
         &:after {
-          width   : 88px;
-          left    : -4rem;
-          top     : -3rem;
-          position: relative;
+          top: 0;
+          background-color: #c10e21b8;
         }
+
         .movement-copy {
           box-shadow      : 0 1rem 11rem 10rem #fff;
           background-color: #fff;

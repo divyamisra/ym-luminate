@@ -1282,7 +1282,7 @@
                                             } else {
                                               isDefaultImage = ''
                                             }
-                                            var topTeamRow = `<div class="col-sm-6 col-md-4 pt-4 px-md-3"><a href="TR/?team_id=${teamId}&amp;pg=team&amp;fr_id=${eventId}"><div class="bg-red-deep"><div${isDefaultImage}><img src="${teamImage}" alt="Photo of ${teamName}"></div></div><div class="align-items-center bg-red-deep d-flex justify-content-center text-center"><p class="p-2 text-white"><strong>${teamName}</strong></p></div></a></div>`;
+                                            var topTeamRow = `<div class="col-sm-6 col-md-4 pt-4 px-md-3"><a href="TR/?team_id=${teamId}&amp;pg=team&amp;fr_id=${eventId}"><div class="bg-white"><div${isDefaultImage}><img src="${teamImage}" alt="Photo of ${teamName}"></div></div><div class="align-items-center bg-white d-flex justify-content-center text-center"><p class="p-2 text-body"><strong>${teamName}</strong></p></div></a></div>`;
 
                                             deferred.resolve(topTeamRow);
                                         },
