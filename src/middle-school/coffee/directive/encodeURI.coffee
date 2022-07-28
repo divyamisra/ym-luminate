@@ -1,3 +1,3 @@
 angular.module 'ahaLuminateApp'
-  .filter 'urlencode', ->
+  .filter 'urlEncode', ->
     return window.encodeURIComponent
