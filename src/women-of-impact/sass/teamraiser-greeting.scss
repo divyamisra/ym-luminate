@@ -13,9 +13,21 @@
         background-position: bottom;
       }
       .transparent-bars {
-        background-color: #ffffffb5;
+        background: radial-gradient(circle, rgba(255,255,255,1) 31%, rgba(255,255,255,0.7791491596638656) 100%);
         @include media-breakpoint-down(md) {
           justify-content: center !important;
+        }
+        &:after {
+          content: "";
+          width: 130px;
+          height: 40px;
+          background: #f1000091;
+          display: block;
+          position: sticky;
+          align-self: baseline;
+          @include media-breakpoint-down(md) {
+            display: none;
+          }
         }
 
         .event-info-banner {
