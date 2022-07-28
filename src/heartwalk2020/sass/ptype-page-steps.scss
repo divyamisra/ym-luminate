@@ -1,6 +1,10 @@
 div#registration-ptype-page-steps {
     display: none;
 
+    .font-size-lg {
+        font-size: $font-size-lg;
+    }
+
     button {
         &.btn-secondary {
             color: $gray-900;
@@ -50,12 +54,15 @@ div#registration-ptype-page-steps {
             list-style-type: none;
             padding: 10px 0 0 0;
 
-            span.heart-icon {
-                color: red;
-            }
-
             li {
-                padding: 15px 0;
+                position: relative;
+                padding: 15px 0 15px 20px;
+
+                span.heart-icon {
+                    position: absolute;
+                    left: 0;
+                    color: red;
+                }
             }
         }
     }
@@ -457,7 +464,7 @@ div#registration-ptype-page-steps {
             }
 
             input {
-                width: 240px;
+                width: 300px;
                 line-height: 80px;
                 height: auto !important;
                 max-height: none !important;

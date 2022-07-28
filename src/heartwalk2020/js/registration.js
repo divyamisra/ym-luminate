@@ -2060,6 +2060,22 @@
         /* Page = Reg */
         if ($('input[name="pg"]').val() == 'regsummary') {
             console.log('pg=regsummary');
+
+            // Add ptype/reg step logic to "Edit" links
+            var $contactInfoEdit = $('.contact-info-address + .reg-summary-edit-link > a');
+            if ($contactInfoEdit.length == 1) {
+                $contactInfoEdit.on('click', function () {
+                    document.cookie = 'registration-reg-page-step=4';
+                })
+            }
+
+            var $personalGoaEdit = $('#goal-container + .reg-summary-edit-link > a');
+            if ($personalGoaEdit.length == 1) {
+                $personalGoaEdit.on('click', function () {
+                    document.cookie = 'registration-ptype-page-step=2';
+                })
+            }
+
             // if there is a donation then change button text
             if ($.trim($('.additional-gift-amount').html()) != "$0.00") {
                 $('button.next-step').attr("value", "Complete and Donate").find('span').html("Complete and Donate");
