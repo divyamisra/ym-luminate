@@ -1293,7 +1293,6 @@
                         .find('> div.button-container')
                         .append(
                             $('button#next_step')
-                                .removeClass('step-button next-step')
                                 .addClass('btn btn-primary')
                                 .text('Next')
                                 .detach()
@@ -1479,6 +1478,7 @@
                         localStorage.dtdCompanyId = "";
                     }
                 }
+
                 if ($('form').valid()) {
                     //store off personal goal in sess var by adding to action url
                     $('#F2fRegPartType').prepend('<input type="hidden" id="personalGoal" name="s_personalGoal" value="' + $('input#fr_goal').val() + '">');

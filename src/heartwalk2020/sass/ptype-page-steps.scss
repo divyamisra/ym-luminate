@@ -103,6 +103,16 @@ div#registration-ptype-page-steps {
             width: 80%;
         }
 
+        button#next_step {
+            float: none;
+            height: auto;
+            min-width: auto;
+            font-size: 1rem;
+            margin: 0;
+            padding: 15px 20px;
+            line-height: 1;
+        }
+
         @media (max-width: 991px) {
             div.dtd-content {
                 width: 100%;
@@ -114,8 +124,8 @@ div#registration-ptype-page-steps {
         position: relative;
         width: 92%;
         max-width: 764px;
-        padding-bottom: 40px;
-        margin: 50px auto 0 auto;
+        padding-bottom: 30px;
+        margin: 15px auto 0 auto;
 
         > div {
             position: absolute;
