@@ -1258,6 +1258,17 @@
                     }
                 };
 
+                this.flipPersonalGoalPage = function (type) {
+                    if (type === 'other-amount') {
+                        $('#registration-ptype-personal-goal-slider-page').hide();
+                        $('#registration-ptype-personal-goal-other-amount-page').fadeIn();
+                    } else {
+                        $('#registration-ptype-personal-goal-other-amount-page').hide();
+                        $('#registration-ptype-personal-goal-slider-page').fadeIn();
+                    }
+                    $('#registration-ptype-personal-goal-option').val(type);
+                }
+
                 this.init = function () {
                     var $steps = $('div#registration-ptype-page-steps').detach();
                     $('#part_type_section_container').append($steps);
@@ -1325,23 +1336,13 @@
                     });
 
                     // Slider / Other Amount switch
-                    var flipPersonalGoalPage = function (type) {
-                        if (type === 'other-amount') {
-                            $('#registration-ptype-personal-goal-slider-page').hide();
-                            $('#registration-ptype-personal-goal-other-amount-page').fadeIn();
-                        } else {
-                            $('#registration-ptype-personal-goal-other-amount-page').hide();
-                            $('#registration-ptype-personal-goal-slider-page').fadeIn();
-                        }
-                        $('#registration-ptype-personal-goal-option').val(type);
-                    }
                     $('.js__registration-ptype-personal-goal-show-other-amount').on('click', function (e) {
                         e.preventDefault();
-                        flipPersonalGoalPage('other-amount');
+                        self.flipPersonalGoalPage('other-amount');
                     });
                     $('.js__registration-ptype-personal-goal-show-slider').on('click', function (e) {
                         e.preventDefault();
-                        flipPersonalGoalPage('slider');
+                        self.flipPersonalGoalPage('slider');
                     });
                 };
 
@@ -1356,10 +1357,11 @@
                     }
                     if (sliderDonationLevel > 0) { // Slider
                         $otherAmountInput.prev('.dollar-sign').addClass('custom-amount-blink');
+                        self.flipPersonalGoalPage('slider');
                         return sliderDonationLevel * 100;
                     } else { // Other amount
                         $otherAmountInput.val(Number(frGoalVal.replace(/[^0-9.-]+/g,"")));
-                        flipPersonalGoalPage('other-amount');
+                        self.flipPersonalGoalPage('other-amount');
                     }
 
                     return self.defaultSliderVal;
@@ -2064,6 +2066,9 @@
             // Add ptype/reg step logic to "Edit" links
             var $contactInfoEdit = $('.contact-info-address + .reg-summary-edit-link > a');
             if ($contactInfoEdit.length == 1) {
+                $contactInfoEdit.attr(
+                    'href', $contactInfoEdit.attr('href').replace('pg=regsummary&action=previous', 'pg=reg')
+                );
                 $contactInfoEdit.on('click', function () {
                     document.cookie = 'registration-reg-page-step=4';
                 })
