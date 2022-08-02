@@ -51,7 +51,11 @@
         }
         .event-info {
           margin: 0;
+          margin-left: 2rem;
           flex: 50% 0 0;
+          @include media-breakpoint-down(md) {
+            margin-top: 2rem;
+          }
 
           .event-info__header {
             width: fit-content;
