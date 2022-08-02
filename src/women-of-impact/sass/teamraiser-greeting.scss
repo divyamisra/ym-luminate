@@ -21,7 +21,7 @@
           content: "";
           width: 133px;
           height: 45px;
-          background: #f1000091;
+          background: #c10e21ba;
           display: block;
           position: sticky;
           align-self: baseline;
@@ -52,8 +52,6 @@
 
           .event-info__header {
             width: fit-content;
-            box-shadow: 56px 0px 55px 100px #ffffff;
-            background-color: #ffffff;
 
             img {
               width: 50%;
@@ -301,6 +299,12 @@
           box-shadow      : 0 1rem 11rem 10rem #fff;
           background-color: #fff;
         }
+      }
+      p {
+        font-weight: 600;
+      }
+      a {
+        text-decoration: none;
       }
     }
     .top-list {
