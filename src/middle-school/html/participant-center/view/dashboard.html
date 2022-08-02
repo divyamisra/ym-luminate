@@ -6,11 +6,12 @@
 					<div class="ahc-start-mission mb-2 white-box red-border-left d-block d-md-none">
 						<div class="card-body">
 							<h2 class="h5">Start Your Mission</h2>
-							<p>Tap your tiles below to do the challenge and complete your heart card. Fill in the whole card by asking friends &amp; family to support your mission.</p>
+							<p>Tap your tiles above to do the challenge and complete your heart card. Fill in the whole card by asking friends &amp; family to support your mission.</p>
 						</div>
 					</div>
 					<div class="ahc-heart-card mb-4">
-						<img alt="Heart Card - Coming Soon" tabindex="0" class="img-fluid w-100" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/middle-school/image/Heart_Card_comingsoon.png">
+						<div ng-include="'SPageNavigator/ahc_heart_card_pc.html?pgwrap=n'"></div>
+						<!-- <img alt="Heart Card - Coming Soon" tabindex="0" class="img-fluid w-100" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/middle-school/image/Heart_Card_comingsoon.png"> -->
 					</div>
 				</section>
 		  </div>
@@ -111,7 +112,7 @@
 								<a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{personalPageUrl | urlEncode}}" class="ahc-btn-social ahc-connect-facebook btn btn-md-wide p-2 text-start w-100 fb-xfbml-parse-ignore">Share on<br/>Facebook</a>
 							</div>
 						</div>
-						<p><small>By clicking the links above, you will leave AHA's website and be redirected to another site not under the control of AHA.</small></p>
+						<p><small>By clicking the links below, you will leave AHA's website and be redirected to another site not under the control of AHA.</small></p>
 					</div>
 					<div ng-show="facebookFundraisersEnabled" class="mt-1" ng-cloak>
 						<div class="ym-pc-dashboard-facebook-box" ng-show="!facebookFundraiserId">
