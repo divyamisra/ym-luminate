@@ -20,12 +20,13 @@
         }
         &:after {
           content: "";
-          width: 133px;
-          height: 45px;
+          width: 30%;
+          height: 10px;
           background: #c10e21ba;
           display: block;
-          position: sticky;
+          position: absolute;
           align-self: baseline;
+          right: 0;
           @include media-breakpoint-down(md) {
             display: none;
           }
