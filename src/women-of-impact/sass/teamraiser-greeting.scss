@@ -6,14 +6,15 @@
       background: none;
     }
     .greeting-header {
-      background-image : url("https://secure3.convio.net/heartdev/images/content/pagebuilder/WOI-Nominee-BG.png");
+      background-image : url("https://secure3.convio.net/heartdev/images/content/pagebuilder/WOI-Header-BGpng.png");
       background-repeat: no-repeat;
-      background-size  : cover;
+      background-size  : 100%;
       @include media-breakpoint-down(md) {
         background-position: bottom;
+        background-size: cover;
       }
       .transparent-bars {
-        background: radial-gradient(circle, rgba(255,255,255,1) 31%, rgba(255,255,255,0.7791491596638656) 100%);
+        background: radial-gradient(circle, rgba(255,255,255,1) 31%, rgba(255,255,255,0) 100%);
         @include media-breakpoint-down(md) {
           justify-content: center !important;
         }
@@ -32,17 +33,18 @@
 
         .event-info-banner {
           width              : 45%;
-          padding-top        : 50%;
+          padding-top        : 30%;
           background-image   : url("https://secure3.convio.net/heartdev/images/content/pagebuilder/WOI-HalfFace-1-STOCK-PHOTO-USED.png");
           background-size    : contain;
-          background-position: center;
+          background-position: right;
           background-repeat  : no-repeat;
           z-index: 1;
-          @include media-breakpoint-up(lg) {
-            background-position: left;
+          @include media-breakpoint-down(md) {
+            background-position: center;
+            padding-top        : 56%;
           }
-          @media (max-width: 767.98px) {
-            width      : 100%;
+          @include media-breakpoint-down(sm) {
+            width: 100%;
             padding-top: 100%;
           }
         }
@@ -53,44 +55,27 @@
           .event-info__header {
             width: fit-content;
 
-            img {
-              width: 50%;
-              @include media-breakpoint-down(md) {
-                margin: 1rem;
-              }
-            }
-
             h1 {
-              font-size       : 3.9375em;
+              font-size       : calc(32px + 31 * ((100vw - 768px) / (1920 - 768)));
               background-color: $white;
               line-height     : 0.95em;
               max-width       : 0;
-              &::before {
-                content: " ";
-                background-color: #c10e21;
-                width: 40%;
-                height: 27px;
-                display: block;
-                position: relative;
-                z-index: 1;
-              }
+
               &::first-line {
                 color      : $dark;
                 font-size  : 1em;
                 font-weight: 900;
               }
-              @include media-breakpoint-down(lg) {
-                font-size: 3.5em;
-              }
-              @include media-breakpoint-down(sm) {
-                font-size: 2.5em;
-              }
             }
             h2 {
+              font-size: calc(20px + 26 * ((100vw - 768px) / (1920 - 768)));
               font-weight     : 600;
               @include media-breakpoint-down(md) {
                 background-color: transparent;
               }
+            }
+            a {
+              font-size: calc(16px + 8 * ((100vw - 768px) / (1920 - 768)));
             }
             span {
               font-size: 63px;
