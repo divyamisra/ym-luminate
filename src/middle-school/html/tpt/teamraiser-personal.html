@@ -253,11 +253,11 @@
 					<div class="ym-badges__item" ng-repeat="prize in prizes" ng-cloak> <!--  ng-repeat="prize in prizes | limitTo: 3" -->
 						<div class="ym-badge__item text-center" ng-if="prize.earned" tabindex="0" aria-label="{{prize.label}} Badge Earned" ng-cloak>
 							<img class="img-fluid" ng-src="{{prize.earned_image_url}}" alt="{{prize.label}} Badge Earned">
-							<span ng-bind-html="prize.label"></span> <span class="sr-only">(earned)</span>
+							<span ng-bind-html="prize.label"></span> <span class="sr-only" aria-hidden="true">(earned)</span>
 						</div>
 						<div class="ym-badge__item text-center" ng-if="!prize.earned" tabindex="0" aria-label="{{prize.label}} Badge Not Earned" ng-cloak>
 							<img class="img-fluid" ng-src="{{prize.not_earned_image_url}}" alt="{{prize.label}} Badge Not Earned">
-							<span ng-bind-html="prize.label"></span> <span class="sr-only">(not earned)</span>
+							<span ng-bind-html="prize.label"></span> <span class="sr-only" aria-hidden="true">(not earned)</span>
 						</div>
 					</div>
 				</div>
