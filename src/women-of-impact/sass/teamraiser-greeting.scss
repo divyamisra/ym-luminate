@@ -56,10 +56,13 @@
             width: fit-content;
 
             h1 {
-              font-size       : calc(32px + 31 * ((100vw - 768px) / (1920 - 768)));
+              font-size: 32px;
               background-color: $white;
               line-height     : 0.95em;
               max-width       : 0;
+              @include media-breakpoint-up(sm) {
+                font-size       : calc(32px + 31 * ((100vw - 768px) / (1920 - 768)));
+              }
 
               &::first-line {
                 color      : $dark;
@@ -68,14 +71,22 @@
               }
             }
             h2 {
-              font-size: calc(20px + 26 * ((100vw - 768px) / (1920 - 768)));
+              font-size: 20px;
               font-weight     : 600;
+
+              @include media-breakpoint-up(sm) {
+                font-size       : calc(20px + 26 * ((100vw - 768px) / (1920 - 768)));
+              }
               @include media-breakpoint-down(md) {
                 background-color: transparent;
               }
             }
             a {
-              font-size: calc(16px + 8 * ((100vw - 768px) / (1920 - 768)));
+              font-size: 16px;
+
+              @include media-breakpoint-up(sm) {
+                font-size       : calc(16px + 8 * ((100vw - 768px) / (1920 - 768)));
+              }
             }
             span {
               font-size: 63px;
