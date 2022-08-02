@@ -26,7 +26,7 @@
 				</div>
 				<div class="personal-progress white-box red-border-bottom p-0 mb-4">
 					<div class="card-header bg-light d-flex align-items-center justify-content-between m-0">
-						<h3 class="h5 mb-0">Personal Progress</h3>
+						<h2 class="h5 mb-0">Personal Progress</h2>
 						<a class="btn btn-md-wide btn-toggle" href="" ng-click="editPersonalGoal()">
 							<strong>
 								Update Personal Goal
@@ -516,7 +516,7 @@
 						<div class="ahc-donors swiper d-flex">
 							<ul class="list-group list-group-flush swiper-wrapper pe-3 w-100">
 								<li class="list-group-item swiper-slide" ng-repeat="gifts in participantGifts.gifts" ng-cloak>
-									<div class="row align-items-center justify-content-between">
+									<div class="row align-items-center justify-content-between" tabindex="0">
 										<div class="col">{{gifts.name.first}} {{gifts.name.last.charAt(0)}}</div>
 										<div class="col text-end">{{gifts.giftAmountFormatted.replace('.00','')}}</div>
 									</div>
