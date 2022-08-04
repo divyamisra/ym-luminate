@@ -268,7 +268,7 @@
           You haven't added any contacts yet.
         </div>
         <div class="panel-body" ng-if="contactCounts.email_rpt_show_all != '0' && addressBookContacts.totalNumber == 0" ng-cloak>
-          No contacts to disaplay.
+          No contacts to display.
         </div>
         <pc-contact-list contacts="addressBookContacts.contacts" toggle-contact="toggleContact" select-contact="selectContact" delete-contact="deleteContact" ng-if="addressBookContacts.totalNumber > 0"></pc-contact-list>
         <div class="panel-footer" ng-if="filter != 'email_custom_rpt_show_company_coordinator_new_participants' && filter != 'email_custom_rpt_show_company_coordinator_weekly_participants' && filter != 'email_custom_rpt_show_company_coordinator_0_dollar_participants' && filter != 'email_custom_rpt_show_company_coordinator_250_dollar_participants' && filter != 'email_custom_rpt_show_past_company_coordinator_participants' && filter != 'email_custom_rpt_show_company_coordinator_mission_partial'  && filter != 'email_custom_rpt_show_company_coordinator_mission_complete'  && filter != 'email_custom_rpt_show_company_coordinator_challenge_half'  && filter != 'email_custom_rpt_show_company_coordinator_challenge_complete' && addressBookContacts.totalNumber > 10">
