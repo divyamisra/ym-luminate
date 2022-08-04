@@ -62,23 +62,21 @@
 
             h1 {
               font-size: 32px;
-              background-color: $white;
-              line-height     : 0.95em;
-              max-width       : 0;
+              font-weight: bold;
+              font-family: "LubDubBold", Helvetica, Arial, sans-serif;
+              line-height     : 1.2em;
+              letter-spacing: 3px;
               @include media-breakpoint-up(sm) {
-                font-size       : calc(32px + 31 * ((100vw - 768px) / (1920 - 768)));
-              }
-
-              &::first-line {
-                color      : $dark;
-                font-size  : 1em;
-                font-weight: 900;
+                font-size       : calc(32px + 28 * ((100vw - 768px) / (1920 - 768)));
               }
 
               span.event-info__header-last-word {
-                font-size: 63px;
-                @include media-breakpoint-down(md) {
-                  font-size: 2em !important;
+                font-size: 73px;
+                letter-spacing: 1px;
+                line-height: 151px;
+                font-family: "LubDubHeavy", Helvetica, Arial, sans-serif;
+                @include media-breakpoint-up(sm) {
+                  font-size: calc(73px + 73 * ((100vw - 768px) / (1920 - 768)));
                 }
               }
             }
@@ -99,7 +97,7 @@
                 font-size: calc(16px + 8 * ((100vw - 768px) / (1920 - 768)));
               }
 
-              .btn {
+              &.btn {
                 padding  : 1rem;
                 font-size: 1.5rem;
                 min-width: 10em;
