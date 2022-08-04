@@ -64,7 +64,6 @@
               font-size: 32px;
               font-weight: bold;
               font-family: "LubDubBold", Helvetica, Arial, sans-serif;
-              line-height     : 1.2em;
               letter-spacing: 3px;
               @include media-breakpoint-up(sm) {
                 font-size       : calc(32px + 28 * ((100vw - 768px) / (1920 - 768)));
@@ -73,7 +72,7 @@
               span.event-info__header-last-word {
                 font-size: 73px;
                 letter-spacing: 1px;
-                line-height: 151px;
+                line-height: 73px;
                 font-family: "LubDubHeavy", Helvetica, Arial, sans-serif;
                 @include media-breakpoint-up(sm) {
                   font-size: calc(73px + 73 * ((100vw - 768px) / (1920 - 768)));
