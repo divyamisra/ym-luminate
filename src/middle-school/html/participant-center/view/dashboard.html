@@ -15,6 +15,128 @@
 					</div>
 				</section>
 		  </div>
+		  <div class="dashboard-col3 col p-2">
+					<div class="ahc-start-mission mb-2 white-box red-border-left d-none d-md-block">
+						<div class="card-body">
+							<h2 class="h5">Start Your Mission</h2>
+							<p>Tap your tiles below to do the challenge and complete your heart card. Fill in the whole card by asking friends &amp; family to support your mission.</p>
+						</div>
+					</div>
+				<div class="download-app white-box red-border-left mb-4">
+					<div class="ym-pc-dashboard-spread-options">
+						<div class="ym-pc-dashboard-section-header">
+							<h3 class="h5">
+								Download Mobile App 
+							</h3>
+						</div>
+						<p class="text-center">
+							Download our Mobile Fundraising App today! 
+						</p>
+						<div class="ym-pc-dashboard-mobile-downloads">
+							<a href="https://itunes.apple.com/us/app/aha-middle-school/id1274201161?mt=8" target="_blank">
+								<img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/youth-markets/image/apple-store-logo.png" alt="Download the iPhone App"> 
+							</a>
+							<a href="https://play.google.com/store/apps/details?id=com.charitydynamics.ahatgr" target="_blank">
+								<img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/youth-markets/image/google-play-logo.png" alt="Download the Android App"> 
+							</a>
+						</div>
+					</div>
+				</div>
+				<div class="edit-student-page white-box p-0 mb-4">
+					<div class="card-header bg-light d-flex align-items-center justify-content-between mb-4">
+						<h2 class="h3 mb-0">My Page</h2>
+						<a class="btn btn-md-wide btn-toggle" ng-href="TR?fr_id={{frId}}&amp;pg=personal&amp;px={{consId}}"><strong>View My Personal Page</strong></a>
+					</div>
+					<div class="p-4">
+						<p>
+							Personalize your fundraising page to share your heart-healthy journey. Students who personalize their page raise more money! 
+						</p>
+						<div class="ym-activity-url">
+								<div class="border-bottom mb-3 mt-4 pb-md-4">
+									<div class="row align-items-center justify-content-between mb-3">
+										<div class="col">
+											<h3 class="h5">Page URL</h3>
+										</div>
+										<div class="col-auto">
+											<button type="button" class="btn btn-primary btn-sm" aria-label="Shorten Personal Page URL" ng-click="editPersonalUrl()"><strong>Shorten URL</strong></button>
+										</div>
+									</div>
+									<div id="personalPageUrl" class="visually-hidden" aria-hidden="true">{{personalPageUrl}}</div>
+									<button type="button" class="ahc-copy ahc-personal-page-url form-control form-control-sm bg-light text-start" title="Copy URL to clipboard" data-clipboard-target="#personalPageUrl" data-clipboard-message="Personal page URL copied!">{{personalPageUrl}}</button>
+								</div>
+						</div>
+						<div class="border-bottom mb-3 pb-4">
+							<div class="row align-items-center justify-content-between mb-3">
+								<div class="col">
+									<h3 class="h5">Page Content</h3>
+								</div>
+								<div class="col-auto">
+									<div class="ym-story-edit-btns">
+										<button type="button" class="btn btn-primary btn-sm" ng-click="editPersonalPageContent()" ng-if="personalPageContent.mode == 'view'" role="button">
+											<span class="fa fa-pencil"></span> <strong>Edit Story</strong>
+										</button>
+										<div ng-if="personalPageContent.mode == 'edit'" ng-cloak>
+											<button type="button" class="btn btn-primary btn-sm" ng-click="savePersonalPageContent()" role="button">
+												<span class="fa fa-pencil"></span> <strong>Save Story</strong>
+											</button> 
+											<button type="button" class="btn btn-primary btn-sm" ng-click="resetPersonalPageContent()" role="button">
+												Cancel 
+											</button>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="ym-page-content-editor" ng-show="personalPageContent.mode == 'view'" ng-cloak>
+								<div class="form-control bg-light p-3" id="pageContent" role="textbox" aria-label="Personal page content">
+									<span ng-bind-html="personalPageContent.ng_rich_text"></span>
+								</div>
+							</div>
+							<div class="ym-page-content-editor" ng-show="personalPageContent.mode == 'edit'" ng-cloak>
+								<label for="taHtmlElement{{personalPageContent.serial}}" class="sr-only">Edit your personal story:</label>
+								<div text-angular name="ng_rich_text" ng-model="personalPageContent.ng_rich_text" ta-toolbar="{{personalPageContent.textEditorToolbar}}" serial="{{personalPageContent.serial}}"></div>
+							</div>
+						</div>
+						<div>
+							<div class="row align-items-center justify-content-between mb-3">
+								<div class="col">
+									<h3 class="h5">Personal Image</h3>
+								</div>
+								<div class="col-auto">
+									<button type="button" class="btn btn-sm btn-primary" ng-click="editPersonalPhoto1()"><span class="fa fa-camera"></span> <strong>Change Image</strong></button>
+								</div>
+							</div>
+							<div>
+								<img class="img-fluid" style="max-width:200px;" ng-src="{{personalPagePhoto1.customUrl && personalPagePhoto1.customUrl != '' ? personalPagePhoto1.customUrl : personalPagePhoto1.defaultUrl}}" alt="{{personalPagePhoto1.caption != '' ? personalPagePhoto1.caption : 'Student Photo'}}" ng-cloak>
+							</div>
+						</div>
+						<div class="col-sm-5">
+							<div class="clearfix">
+								<div class="ym-activity-share-page">
+									<p>
+										<strong>
+											Share My Personal&nbsp;Page: 
+										</strong>
+									</p>
+									<a class="d-inline-block me-2" ng-href="{{baseUrl}}#" ng-click="delegatedAddThis('.js--personal-social-share', 'facebook')">
+										<img src="../aha-luminate/dist/youth-markets/image/facebook-logo.png" alt="Facebook"> 
+									</a>
+									<a class="d-inline-block" ng-href="{{baseUrl}}#" ng-click="delegatedAddThis('.js--personal-social-share', 'twitter')">
+										<img src="../aha-luminate/dist/youth-markets/image/twitter-logo.png" alt="Twitter"> 
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="white-box red-bg-gradient text-center">
+					<h3 class="h4 text-white">
+						Join the Movement to End the Tobacco and Vaping Epidemic Now
+					</h3>
+					<a class="text-white" href="https://tobaccoendgame.yourethecure.org/" target="_blank">
+						Access the Tobacco Endgame site.
+					</a>
+				</div>
+			</div>
 		  <div class="dashboard-col2 col p-2">
 				<div ng-if="coordinatorMessage.message &amp;&amp; coordinatorMessage.message != ''" ng-cloak>
 					<div class="ahc-teacher-message white-box mb-4">
@@ -214,128 +336,6 @@
 							</div>
 						</div>
           </div> 
-				</div>
-			</div>
-		  <div class="dashboard-col3 col p-2">
-					<div class="ahc-start-mission mb-2 white-box red-border-left d-none d-md-block">
-						<div class="card-body">
-							<h2 class="h5">Start Your Mission</h2>
-							<p>Tap your tiles below to do the challenge and complete your heart card. Fill in the whole card by asking friends &amp; family to support your mission.</p>
-						</div>
-					</div>
-				<div class="download-app white-box red-border-left mb-4">
-					<div class="ym-pc-dashboard-spread-options">
-						<div class="ym-pc-dashboard-section-header">
-							<h3 class="h5">
-								Download Mobile App 
-							</h3>
-						</div>
-						<p class="text-center">
-							Download our Mobile Fundraising App today! 
-						</p>
-						<div class="ym-pc-dashboard-mobile-downloads">
-							<a href="https://itunes.apple.com/us/app/aha-middle-school/id1274201161?mt=8" target="_blank">
-								<img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/youth-markets/image/apple-store-logo.png" alt="Download the iPhone App"> 
-							</a>
-							<a href="https://play.google.com/store/apps/details?id=com.charitydynamics.ahatgr" target="_blank">
-								<img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/youth-markets/image/google-play-logo.png" alt="Download the Android App"> 
-							</a>
-						</div>
-					</div>
-				</div>
-				<div class="edit-student-page white-box p-0 mb-4">
-					<div class="card-header bg-light d-flex align-items-center justify-content-between mb-4">
-						<h2 class="h3 mb-0">My Page</h2>
-						<a class="btn btn-md-wide btn-toggle" ng-href="TR?fr_id={{frId}}&amp;pg=personal&amp;px={{consId}}"><strong>View My Personal Page</strong></a>
-					</div>
-					<div class="p-4">
-						<p>
-							Personalize your fundraising page to share your heart-healthy journey. Students who personalize their page raise more money! 
-						</p>
-						<div class="ym-activity-url">
-								<div class="border-bottom mb-3 mt-4 pb-md-4">
-									<div class="row align-items-center justify-content-between mb-3">
-										<div class="col">
-											<h3 class="h5">Page URL</h3>
-										</div>
-										<div class="col-auto">
-											<button type="button" class="btn btn-primary btn-sm" aria-label="Shorten Personal Page URL" ng-click="editPersonalUrl()"><strong>Shorten URL</strong></button>
-										</div>
-									</div>
-									<div id="personalPageUrl" class="visually-hidden" aria-hidden="true">{{personalPageUrl}}</div>
-									<button type="button" class="ahc-copy ahc-personal-page-url form-control form-control-sm bg-light text-start" title="Copy URL to clipboard" data-clipboard-target="#personalPageUrl" data-clipboard-message="Personal page URL copied!">{{personalPageUrl}}</button>
-								</div>
-						</div>
-						<div class="border-bottom mb-3 pb-4">
-							<div class="row align-items-center justify-content-between mb-3">
-								<div class="col">
-									<h3 class="h5">Page Content</h3>
-								</div>
-								<div class="col-auto">
-									<div class="ym-story-edit-btns">
-										<button type="button" class="btn btn-primary btn-sm" ng-click="editPersonalPageContent()" ng-if="personalPageContent.mode == 'view'" role="button">
-											<span class="fa fa-pencil"></span> <strong>Edit Story</strong>
-										</button>
-										<div ng-if="personalPageContent.mode == 'edit'" ng-cloak>
-											<button type="button" class="btn btn-primary btn-sm" ng-click="savePersonalPageContent()" role="button">
-												<span class="fa fa-pencil"></span> <strong>Save Story</strong>
-											</button> 
-											<button type="button" class="btn btn-primary btn-sm" ng-click="resetPersonalPageContent()" role="button">
-												Cancel 
-											</button>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="ym-page-content-editor" ng-show="personalPageContent.mode == 'view'" ng-cloak>
-								<div class="form-control bg-light p-3" id="pageContent" role="textbox" aria-label="Personal page content">
-									<span ng-bind-html="personalPageContent.ng_rich_text"></span>
-								</div>
-							</div>
-							<div class="ym-page-content-editor" ng-show="personalPageContent.mode == 'edit'" ng-cloak>
-								<label for="taHtmlElement{{personalPageContent.serial}}" class="sr-only">Edit your personal story:</label>
-								<div text-angular name="ng_rich_text" ng-model="personalPageContent.ng_rich_text" ta-toolbar="{{personalPageContent.textEditorToolbar}}" serial="{{personalPageContent.serial}}"></div>
-							</div>
-						</div>
-						<div>
-							<div class="row align-items-center justify-content-between mb-3">
-								<div class="col">
-									<h3 class="h5">Personal Image</h3>
-								</div>
-								<div class="col-auto">
-									<button type="button" class="btn btn-sm btn-primary" ng-click="editPersonalPhoto1()"><span class="fa fa-camera"></span> <strong>Change Image</strong></button>
-								</div>
-							</div>
-							<div>
-								<img class="img-fluid" style="max-width:200px;" ng-src="{{personalPagePhoto1.customUrl && personalPagePhoto1.customUrl != '' ? personalPagePhoto1.customUrl : personalPagePhoto1.defaultUrl}}" alt="{{personalPagePhoto1.caption != '' ? personalPagePhoto1.caption : 'Student Photo'}}" ng-cloak>
-							</div>
-						</div>
-						<div class="col-sm-5">
-							<div class="clearfix">
-								<div class="ym-activity-share-page">
-									<p>
-										<strong>
-											Share My Personal&nbsp;Page: 
-										</strong>
-									</p>
-									<a class="d-inline-block me-2" ng-href="{{baseUrl}}#" ng-click="delegatedAddThis('.js--personal-social-share', 'facebook')">
-										<img src="../aha-luminate/dist/youth-markets/image/facebook-logo.png" alt="Facebook"> 
-									</a>
-									<a class="d-inline-block" ng-href="{{baseUrl}}#" ng-click="delegatedAddThis('.js--personal-social-share', 'twitter')">
-										<img src="../aha-luminate/dist/youth-markets/image/twitter-logo.png" alt="Twitter"> 
-									</a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="white-box red-bg-gradient text-center">
-					<h3 class="h4 text-white">
-						Join the Movement to End the Tobacco and Vaping Epidemic Now
-					</h3>
-					<a class="text-white" href="https://tobaccoendgame.yourethecure.org/" target="_blank">
-						Access the Tobacco Endgame site.
-					</a>
 				</div>
 			</div>
 			<div class="dashboard-col4 col p-2">
