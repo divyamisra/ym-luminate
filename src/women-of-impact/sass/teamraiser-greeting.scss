@@ -4,7 +4,8 @@
     margin-bottom: 60px;
 
     .greeting-header {
-      background-image : url("https://secure3.convio.net/heartdev/images/content/pagebuilder/WOI-Header-BGpng.png");
+        
+      background-image : url("http://heartdev.convio.net/images/content/pagebuilder/WOI-Header-BGpng-mobile.png");
       background-repeat: no-repeat;
       background-size  : 100%;
       @include media-breakpoint-down(md) {
@@ -13,7 +14,8 @@
       }
         
       @include media-breakpoint-up(sm) {
-             background-image : url("http://heartdev.convio.net/images/content/pagebuilder/WOI-Header-BGpng-mobile.png");
+          background-image : url("https://secure3.convio.net/heartdev/images/content/pagebuilder/WOI-Header-BGpng.png");
+            
             background-position: 0;
       }
 
