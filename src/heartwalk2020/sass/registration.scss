@@ -238,7 +238,7 @@ div.responsive .survivor_yes_no .input-container {
     color: #000;
     border: 2px solid #000;
     position: relative;
-    outline: none;
+    //outline: none;
 }
 div.responsive .survivor_yes_no .input-container input[type=radio] {
     position: absolute;
@@ -638,7 +638,7 @@ div#participation_options_page input,
 div#participation_options_page select {
     margin-left: 0;
     max-width: 400px;
-    outline: none;
+    //outline: none;
 }
 div.required-indicator-legend {
     text-align: left;

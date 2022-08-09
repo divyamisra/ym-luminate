@@ -1189,6 +1189,8 @@
                 };
 
                 var sliderPos2DonationLevel = function(pos) {
+                    //var mod = pos %  100, level = pos / 100;
+                    //return mod > 49 ? Math.ceil(level) : Math.floor(level);
                     return Math.floor(pos/100);
                 };
 
@@ -1203,6 +1205,7 @@
 
                 var renderStep = function (onPage, offPage) {
                     renderHeader(onPage);
+                    $('body').focus(); // Reset focus to the top of the page
                     $('div#registration-ptype-page-step-' + offPage.toString()).hide();
                     $('div#registration-ptype-page-step-' + onPage.toString()).fadeIn();
                     if (onPage === 2) {
@@ -1270,6 +1273,8 @@
                 }
 
                 this.init = function () {
+                    $('body').attr('tabindex', '-1');
+
                     var $steps = $('div#registration-ptype-page-steps').detach();
                     $('#part_type_section_container').append($steps);
 
@@ -1318,7 +1323,8 @@
                     });
 
                     // Slider dot click
-                    $('.js__personal_goal_slider_dot').on('click', function () {
+                    $('.js__personal_goal_slider_dot').on('click', function (e) {
+                        e.preventDefault();
                         self.personalGoalSliderChange(
                             parseInt($(this).data('slider-pos'), 10) * 100, true
                         );
@@ -1542,11 +1548,12 @@
 
                 var renderStep = function (onPage, offPage) {
                     renderHeader(onPage);
+                    $('body').focus(); // Reset focus to the top of the page
                     $('div#registration-reg-page-step-' + offPage.toString()).hide();
                     $('div#registration-reg-page-step-' + onPage.toString()).fadeIn();
-                    $('html, body').animate({
-                        scrollTop: $('#registration_options_page').offset().top
-                    }, 500);
+                    //$('html, body').animate({
+                    //    scrollTop: $('#registration_options_page').offset().top
+                    //  }, 500);
                 };
 
                 var renderPrevStep = function (currentStep, prevStep) {
@@ -1581,6 +1588,9 @@
                     );
                     renderNextStep(0, step);
                 };
+
+                // Body tabindex
+                $('body').attr('tabindex', '-1');
 
                 // Init
                 var $steps = $('div#registration-reg-page-steps').detach(),
@@ -1692,9 +1702,17 @@
 
                 // Step 6
                 var $step6 = $('div#registration-reg-page-step-6');
-                $step6.find('div#relocated_hfg_optin').append(
-                    $('.survey-question-container span.input-container label:contains("Healthy For Good")').closest('div.survey-question-container').detach()
-                );
+                var surveyQuestions = [
+                    'By submitting the information requested in this form',
+                    'Cleveland Clinic',
+                    'Healthy for good'
+                ];
+                for (var i = 0; i < surveyQuestions.length; i++) {
+                    $('.survey-question-container span.input-label:contains("' + surveyQuestions[i] + '")').closest('div.survey-question-container').each(function () {
+                        var $questionContainer = $(this).detach()
+                        $step6.find('div#relocated_survey_questions').append($questionContainer);
+                    });
+                }
                 var $mobileOptinOuter = $('#mobile_optin_outer');
                 if ($mobileOptinOuter.length) {
                     $step6.find('div#relocated_mobile_optin').append(

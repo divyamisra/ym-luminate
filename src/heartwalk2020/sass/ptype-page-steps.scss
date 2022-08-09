@@ -177,6 +177,7 @@ div#registration-ptype-page-steps {
 
             .slider-dot {
                 position: absolute;
+                display: block;
                 top: -11px;
                 width: 28px;
                 height: 28px;
@@ -309,7 +310,7 @@ div#registration-ptype-page-steps {
                     margin-left: -32px;
                     cursor: pointer;
                     border: none;
-                    outline: none;
+                    //outline: none;
                     z-index: 2;
 
                     &.shake-horizontal {
