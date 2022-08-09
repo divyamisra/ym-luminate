@@ -11,6 +11,11 @@
         background-position: bottom;
         background-size: cover;
       }
+        
+      @include media-breakpoint-up(sm) {
+             background-image : url("http://heartdev.convio.net/images/content/pagebuilder/WOI-Header-BGpng-mobile.png");
+            background-position: 0;
+      }
 
       .transparent-bars {
         background: radial-gradient(circle, rgba(255,255,255,1) 31%, rgba(255,255,255,0) 100%);
@@ -66,7 +71,7 @@
               font-family: "LubDubBold", Helvetica, Arial, sans-serif;
               letter-spacing: 3px;
               @include media-breakpoint-up(sm) {
-                font-size       : calc(32px + 28 * ((100vw - 768px) / (1920 - 768)));
+                font-size       : calc(32px + 28 * ((100vw - 768px) / (3960 - 1536)));
               }
 
               span.event-info__header-last-word {
@@ -75,7 +80,8 @@
                 line-height: 73px;
                 font-family: "LubDubHeavy", Helvetica, Arial, sans-serif;
                 @include media-breakpoint-up(sm) {
-                  font-size: calc(73px + 73 * ((100vw - 768px) / (1920 - 768)));
+                  font-size: calc(73px + 73 * ((100vw - 768px) / (3960 - 1536)));
+
                 }
               }
             }
@@ -84,7 +90,7 @@
               font-weight     : 600;
 
               @include media-breakpoint-up(sm) {
-                font-size       : calc(24px + 22 * ((100vw - 768px) / (1920 - 768)));
+                font-size       : calc(24px + 22 * ((100vw - 768px) / (3960 - 1536)));
               }
               @include media-breakpoint-down(md) {
                 background-color: transparent;
@@ -93,7 +99,7 @@
             a {
               font-size: 16px;
               @include media-breakpoint-up(sm) {
-                font-size: calc(16px + 8 * ((100vw - 768px) / (1920 - 768)));
+                font-size: calc(16px + 8 * ((100vw - 768px) / (3960 - 1536)));
               }
 
               &.btn {
@@ -104,6 +110,7 @@
 
                 &.btn-primary {
                   background-color: $red-deep;
+                    font-weight: bold;
                 }
               }
             }
