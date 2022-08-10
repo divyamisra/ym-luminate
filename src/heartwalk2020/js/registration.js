@@ -2295,8 +2295,8 @@
 
         $('#email_format_container label').attr('for', 'cons_email_format');
 
-        $('#personal_info_section_one .cons-info-question-container.cons-full-name-container span.input-label.cons_first_name').text('First Name');
-        $('#personal_info_section_one .cons-info-question-container.cons-full-name-container span.input-label.cons_last_name').text('Last Name');
+        $('.cons-info-question-container.cons-full-name-container span.input-label.cons_first_name').text('First Name');
+        $('.cons-info-question-container.cons-full-name-container span.input-label.cons_last_name').text('Last Name');
 
         $('h3.ObjTitle:contains("Review your registration")').replaceWith(function () {
             return '<h1 class="ObjTitle" id="title_container">' + $(this).html() + '</h1>';
