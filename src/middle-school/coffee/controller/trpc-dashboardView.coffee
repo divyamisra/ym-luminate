@@ -1321,4 +1321,15 @@ angular.module 'trPcControllers'
                 BoundlessService.logPersonalPageUpdated()
                 if not $scope.$$phase
                   $scope.$apply()
+
+      $scope.volunteerData = []
+      getVolunteerism = ->
+        ZuriService.getVolunteerData $scope.consId + '/' + $scope.frId,
+          failure: (response) ->
+          error: (response) ->
+          success: (response) ->
+            if typeof response.data.data != 'undefined'
+              if response.data.data.length > 0
+                $scope.volunteerData = response.data.data
+		
   ]
