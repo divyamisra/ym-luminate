@@ -1331,5 +1331,21 @@ angular.module 'trPcControllers'
             if typeof response.data.data != 'undefined'
               if response.data.data.length > 0
                 $scope.volunteerData = response.data.data
-		
+
+      createVolunteerism = ->
+        ZuriService.createVolunteerData {
+          'consituent_id':$scope.consId,
+          'school_id':$scope.participantRegistration.companyInformation.companyId,
+          'event_id':$scope.frId,
+          'activity_type_id': 1,
+          'activity_date':'01/01/2020',
+          'hours':10
+          },
+          failure: (response) ->
+          error: (response) ->
+          success: (response) ->
+            if typeof response.data.data != 'undefined'
+              if response.data.data.length > 0
+                $scope.volunteerData = response.data.data
+
   ]
