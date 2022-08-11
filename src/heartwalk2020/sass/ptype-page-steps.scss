@@ -56,7 +56,7 @@ div#registration-ptype-page-steps {
 
             li {
                 position: relative;
-                padding: 15px 0 15px 20px;
+                padding: 15px 0 15px 30px;
 
                 span.heart-icon {
                     position: absolute;
@@ -482,7 +482,7 @@ div#registration-ptype-page-steps {
                 font-family: LubDubBold,Helvetica,Arial,sans-serif;
                 font-weight: 700;
                 font-size: 3.2rem;
-                border: 5px solid #bfbfbf !important;
+                border: 5px solid $gray-600 !important;
                 border-radius: 30px !important;
             }
         }

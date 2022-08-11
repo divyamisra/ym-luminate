@@ -808,7 +808,7 @@
                     $('#team_find_new_team_attributes').addClass('no-companies');
                     $('#team_find_new_team_name, #team_find_new_fundraising_goal').addClass('col-md-6');
                 } else {
-                    $('#team_find_new_company_selection_container').append("<span class='hint-text hidden-xs'>If your team is a part of a company, please select the company above. If your company name does not appear, you can skip this step. Can't find your company? <strong>Contact your local staff</strong> to get your company set up today!</span>");
+                    $('#team_find_new_company_selection_container').append("<span class='hint-text hidden-xs'>If your team is part of a company, please select the company above. Can't find your company? Contact your local staff (email on the main page of this site) to get your company set up today!</span>");
                 }
             } else if (regType === 'joinTeam') {
                 if ($('#team_find_existing').length > 0) {
@@ -1197,8 +1197,9 @@
                 var digestPersonalGiftAmount = function () {
                     var goal = frGoalMatrix[sliderDonationLevel - 1];
                     if ($('#registration-ptype-personal-goal-option').val() === 'other-amount') {
-                        goal = Number($('input.js__personal-goal-other-amount-input').val().replace(/[^0-9.-]+/g,""));
-                        $('input.js__personal-goal-other-amount-input').val(goal);
+                        // goal = Number($('input.js__personal-goal-other-amount-input').val().replace(/[^0-9.-]+/g,""));
+                        // $('input.js__personal-goal-other-amount-input').val(goal);
+                        goal = $('input.js__personal-goal-other-amount-input').val();
                     }
                     $('#fr_goal').val(goal);
                 };
@@ -1235,17 +1236,26 @@
                 };
 
                 this.personalGoalSliderSlide = function (sliderVal) {
+                    var $dot;
                     sliderDonationLevel = sliderPos2DonationLevel(sliderVal);
                     $('.registration-ptype-personal-goal-slider-dots > .slider-dot').removeClass('selected');
                     $('.registration-ptype-personal-goal-slider-dots > #slider-dot-' + sliderDonationLevel.toString()).addClass('selected');
+                    for (var i = 1; i <= 6; i++) {
+                        $dot = $('#slider-dot-' + i.toString());
+                        $dot.attr('title', $dot.attr('title').replace('selected', 'available'));
+                    }
                     for (var i = 6; i > sliderDonationLevel; i--) {
                         $('#pg-slider-photo-' + i.toString()).fadeOut();
-                        $('#slider-dot-' + i.toString()).removeClass('active');
+                        $dot = $('#slider-dot-' + i.toString());
+                        $dot.removeClass('active');
                     }
                     for (var i = 1; i <= sliderDonationLevel; i++) {
                         $('#pg-slider-photo-' + i.toString()).fadeIn();
-                        $('#slider-dot-' + i.toString()).addClass('active');
+                        $dot = $('#slider-dot-' + i.toString());
+                        $dot.addClass('active');
                     }
+                    $dot.attr('title', $dot.attr('title').replace('available', 'selected'));
+                    $('#registration-ptype-personal-goal-slider-selected-amount').text($dot.attr('title'));
                 };
 
                 this.personalGoalSliderChange = function (sliderVal, updateSliderVal) {
@@ -1263,6 +1273,13 @@
 
                 this.flipPersonalGoalPage = function (type) {
                     if (type === 'other-amount') {
+                        if ($('input.js__personal-goal-other-amount-input').val() === '') {
+                            var $dollarSign = $('.personal-goal-other-amount-input-container > .dollar-sign');
+                            $dollarSign.addClass('custom-amount-blink');
+                            setTimeout(function () {
+                                $dollarSign.removeClass('custom-amount-blink');
+                            }, 4000);
+                        }
                         $('#registration-ptype-personal-goal-slider-page').hide();
                         $('#registration-ptype-personal-goal-other-amount-page').fadeIn();
                     } else {
@@ -1331,6 +1348,7 @@
                     });
 
                     // Other amount input
+                    /*
                     $('input.js__personal-goal-other-amount-input').on('keyup', function () {
                         var $input = $(this);
                         if ($input.val() == '') {
@@ -1339,6 +1357,7 @@
                             $input.prev('.dollar-sign').removeClass('custom-amount-blink');
                         }
                     });
+                    */
 
                     // Slider / Other Amount switch
                     $('.js__registration-ptype-personal-goal-show-other-amount').on('click', function (e) {
@@ -1365,7 +1384,8 @@
                         self.flipPersonalGoalPage('slider');
                         return sliderDonationLevel * 100;
                     } else { // Other amount
-                        $otherAmountInput.val(Number(frGoalVal.replace(/[^0-9.-]+/g,"")));
+                        // $otherAmountInput.val(Number(frGoalVal.replace(/[^0-9.-]+/g,"")));
+                        $otherAmountInput.val(frGoalVal);
                         self.flipPersonalGoalPage('other-amount');
                     }
 

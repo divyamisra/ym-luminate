@@ -123,13 +123,14 @@
                 </div>
             </div>
             <div class="registration-ptype-personal-goal-slider-container">
+                <p id="registration-ptype-personal-goal-slider-selected-amount" class="sr-only" role="alert" aria-atomic="true"></p>
                 <div class="registration-ptype-personal-goal-slider-dots">
-                    <a href="#slider-dot-1" id="slider-dot-1" title="$100.00" data-slider-pos="1" class="js__personal_goal_slider_dot slider-dot active"></a>
-                    <a href="#slider-dot-2" id="slider-dot-2" title="$250.00" data-slider-pos="2" class="js__personal_goal_slider_dot slider-dot active selected"></a>
-                    <a href="#slider-dot-3" id="slider-dot-3" title="$500.00" data-slider-pos="3" class="js__personal_goal_slider_dot slider-dot"></a>
-                    <a href="#slider-dot-4" id="slider-dot-4" title="$1,000.00" data-slider-pos="4" class="js__personal_goal_slider_dot slider-dot"></a>
-                    <a href="#slider-dot-5" id="slider-dot-5" title="$2,500.00" data-slider-pos="5" class="js__personal_goal_slider_dot slider-dot"></a>
-                    <a href="#slider-dot-6" id="slider-dot-6" title="$5,000.00" data-slider-pos="6" class="js__personal_goal_slider_dot slider-dot"></a>
+                    <a href="#slider-dot-1" id="slider-dot-1" title="$100 available" data-slider-pos="1" class="js__personal_goal_slider_dot slider-dot active"></a>
+                    <a href="#slider-dot-2" id="slider-dot-2" title="$250 selected" data-slider-pos="2" class="js__personal_goal_slider_dot slider-dot active selected"></a>
+                    <a href="#slider-dot-3" id="slider-dot-3" title="$500 available" data-slider-pos="3" class="js__personal_goal_slider_dot slider-dot"></a>
+                    <a href="#slider-dot-4" id="slider-dot-4" title="$1,000 available" data-slider-pos="4" class="js__personal_goal_slider_dot slider-dot"></a>
+                    <a href="#slider-dot-5" id="slider-dot-5" title="$2,500 available" data-slider-pos="5" class="js__personal_goal_slider_dot slider-dot"></a>
+                    <a href="#slider-dot-6" id="slider-dot-6" title="$5,000 available" data-slider-pos="6" class="js__personal_goal_slider_dot slider-dot"></a>
                 </div>
                 <div id="registration-ptype-personal-goal-slider"></div>
                 <script>
@@ -157,6 +158,9 @@
                                     min: 100,
                                     max: 600,
                                     step: 5,
+                                    create: function() {
+                                        $personalGoalSlider.find('a.ui-slider-handle').attr('title', 'slider');
+                                    },
                                     slide: function(event, ui) {
                                         cd.ptypePageSteps.personalGoalSliderSlide(ui.value);
                                     },
