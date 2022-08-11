@@ -1385,7 +1385,7 @@
                         return sliderDonationLevel * 100;
                     } else { // Other amount
                         // $otherAmountInput.val(Number(frGoalVal.replace(/[^0-9.-]+/g,"")));
-                        $otherAmountInput.val(frGoalVal);
+                        $otherAmountInput.val(frGoalVal.replace('$', ''));
                         self.flipPersonalGoalPage('other-amount');
                     }
 
