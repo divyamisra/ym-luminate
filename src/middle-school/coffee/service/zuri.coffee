@@ -169,7 +169,7 @@ angular.module 'ahaLuminateApp'
           , (response) ->
             callback.failure response
 
-      createVolunteerData: (requestData) ->
+      createVolunteerData: (requestData, callback) ->
         if $rootScope.tablePrefix is 'heartdev'
           url = '//tools.heart.org/aha_ahc23_dev/api/volunteerism?key=RByQUbXzYLBchS3n'
         else if $rootScope.tablePrefix is 'heartnew'
@@ -178,9 +178,9 @@ angular.module 'ahaLuminateApp'
           url = '//tools.heart.org/aha_ahc23/api/volunteerism?key=B78AEYxzbU9br6Cq'
         $http({method: 'POST', url: $sce.trustAsResourceUrl(url), data: requestData})
           .then (response) ->
-            console.log(response)
+            callback.success response
           , (response) ->
-            console.log(response)
+            callback.failure response
       
       getSchools: (requestData, callback) ->
         if $rootScope.tablePrefix is 'heartdev'
