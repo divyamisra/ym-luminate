@@ -1324,28 +1324,29 @@ angular.module 'trPcControllers'
 
       $scope.volunteerData = []
       getVolunteerism = ->
-        ZuriService.getVolunteerData $scope.consId + '/' + $scope.frId,
+        ZuriService.getVolunteerData $scope.frId + '/' + $scope.consId,
           failure: (response) ->
           error: (response) ->
           success: (response) ->
-            if typeof response.data.data != 'undefined'
-              if response.data.data.length > 0
-                $scope.volunteerData = response.data.data
-
+            if typeof response.data != 'undefined'
+              if response.data.length > 0
+                $scope.volunteerData = response.data
+      getVolunteerism()
+      
       createVolunteerism = ->
         ZuriService.createVolunteerData {
-          'consituent_id':$scope.consId,
-          'school_id':$scope.participantRegistration.companyInformation.companyId,
-          'event_id':$scope.frId,
-          'activity_type_id': 1,
-          'activity_date':'01/01/2020',
-          'hours':10
+          'consituent_id':$scope.consId
+          'school_id':$scope.participantRegistration.companyInformation.companyId
+          'event_id':$scope.frId
+          'event_year': 'fy23'
+          'activity_type_id': angular.element('activityId').val()
+          'activity_date':angular.element('activityDate').val()
+          'hours':angular.element('activityHours').val()
           },
           failure: (response) ->
           error: (response) ->
           success: (response) ->
-            if typeof response.data.data != 'undefined'
-              if response.data.data.length > 0
-                $scope.volunteerData = response.data.data
+            if response.data.status == 'success'
+              $scope.volunteerProcess = response.data
 
   ]
