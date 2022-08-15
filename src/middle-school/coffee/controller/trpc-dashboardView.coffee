@@ -1323,6 +1323,9 @@ angular.module 'trPcControllers'
                   $scope.$apply()
 
       $scope.volunteerData = []
+      $scope.volunteerTotal =
+        'hours': '0'
+        'minutes': '00'
       getVolunteerism = ->
         ZuriService.getVolunteerData $scope.frId + '/' + $scope.consId,
           failure: (response) ->
