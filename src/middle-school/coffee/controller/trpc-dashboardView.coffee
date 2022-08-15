@@ -1328,9 +1328,16 @@ angular.module 'trPcControllers'
           failure: (response) ->
           error: (response) ->
           success: (response) ->
-            if typeof response.data != 'undefined'
-              if response.data.length > 0
-                $scope.volunteerData = response.data
+            if typeof response.data.data != 'undefined'
+              if response.data.total_hours > 0
+                totalTimeInMinutes = response.data.total_hours
+                hours = Math.floor(totalTimeInMinutes / 60)
+                minutes = totalTimeInMinutes - (hour * 60)
+                minutes = if minutes < 10 then '0' + minutes else minutes
+                $scope.volunteerTotal =
+                  'hours': hours
+                  'minutes': minutes
+                $scope.volunteerData = response.data.data
       getVolunteerism()
       
       createVolunteerism = ->
