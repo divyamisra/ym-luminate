@@ -14,7 +14,7 @@ angular.module('trPcControllers').controller 'NgPcVolunteerViewCtrl', [
               if response.data.total_hours > 0
                 totalTimeInMinutes = response.data.total_hours
                 hours = Math.floor(totalTimeInMinutes / 60)
-                minutes = totalTimeInMinutes - (hour * 60)
+                minutes = totalTimeInMinutes - (hours * 60)
                 minutes = if minutes < 10 then '0' + minutes else minutes
                 $scope.volunteerTotal =
                   'hours': hours
