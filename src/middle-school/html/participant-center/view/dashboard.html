@@ -223,22 +223,21 @@
 					<h3 class="h5 p-2">
 						Volunteer Hours
 					</h3>
-          <div class="red-bg-gradient p-4 pt-3 text-white">
-            <div class="volunteer-hours border border-white rounded mb-4">
-            	<div class="d-flex flex-wrap">
-            		<div class="title col-5 text-center p-2">Hours</div>
-            		<div class="col-2 border-white-left border-white-right"></div>
-            		<div class="title col-5 text-center p-2">Minutes</div>
-            		<div class="time col-5 text-center bg-white text-red">5</div>
-            		<div class="time col-2 text-center bg-white text-red border-red-left border-red-right">:</div>
-            		<div class="time col-5 text-center bg-white text-red">30</div>
-            	</div>
-            </div>
-						<a class="btn btn-md-wide btn-toggle" ng-href="{{baseUrl}}#/volunteer"><strong>Manage Hours</strong></a>
-          </div> 
+                                        <div class="red-bg-gradient p-4 pt-3 text-white">
+ 				          <div class="volunteer-hours border border-white rounded mb-4">
+					  <div class="d-flex flex-wrap">
+						<div class="title col-5 text-center p-2">Hours</div>
+						<div class="col-2 border-white-left border-white-right"></div>
+						<div class="title col-5 text-center p-2">Minutes</div>
+						<div class="time col-5 text-center bg-white text-red">{{volunteerTotal.hours}}</div>
+						<div class="time col-2 text-center bg-white text-red border-red-left border-red-right">:</div>
+						<div class="time col-5 text-center bg-white text-red">{{volunteerTotal.minutes}}</div>
+					  </div>
+				      </div>
+				      <a class="btn btn-md-wide btn-toggle" ng-href="{{baseUrl}}#/volunteer"><strong>Manage Hours</strong></a>
+				  </div> 
 				</div>
-
-				
+			
 				<div class="ahc-social-share white-box mb-4">
 					<h3 class="h5 mb-4">Share with Friends & Family</h3>
 					<div class="ahc-social-share-slot">
