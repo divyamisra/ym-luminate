@@ -1,4 +1,4 @@
-angular.module('trPcControllers').filter 'time', ->
+angular.module('ahaLuminateApp').filter 'time', ->
   (input) ->
     hours = Math.floor(input / 60)
     minutes = input - (hours * 60)
