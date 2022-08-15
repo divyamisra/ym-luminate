@@ -13,60 +13,60 @@
   <a class="btn btn-md-wide btn-toggle" ng-href="{{baseUrl}}#/volunteer"><strong>Manage Hours</strong></a>
 </div> 
 
-        <div ng-if="volunteerData && volunteerData.length > 0" ng-cloak>
-          <div class="table-responsive">
-            <table class="table table-striped">
-              <caption class="sr-only">
-                Volunteer Time
-              </caption>
-              <thead>
-                <tr>
-                  <th scope="col">
-                    <div class="text-left">
-                      <strong>Date</strong>
-                    </div>
-                  </th>
-                  <th scope="col">
-                    <div class="text-center">
-                      <strong>Activity</strong>
-                    </div>
-                  </th>
-                  <th scope="col">
-                    <div class="text-center">
-                      <strong>Hours : Minutes</strong>
-                    </div>
-                  </th>
-                  <th scope="col">
-                    <div class="text-center">
-                      <strong>Edit/Delete</strong>
-                    </div>
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr ng-repeat="entry in volunteerData">
-                  <td>
-                    <div class="text-center">
-                      {{entry.activity_date | date : 'M/d/yy'}}
-                    </div>
-                  </td>
-                  <td>
-                    <div class="text-center">
-                      {{entry.activity_type}}
-                    </div>
-                  </td>
-                  <td>
-                    <div class="text-center">
-                      {{entry.hours | time}}
-                    </div>
-                  </td>
-                  <td>
-                    <div class="text-right">
-                      <button class="btn btn-md-wide btn-toggle" data-cons-id="{{entry.constituent_id}}" data-event-id="{{entry.event_id}}" data-id="{{entry.activity_type_id}}" ng-click="updateVolunteerEntry()"><strong>Edit/Delete</strong></button>
-                    </div>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
+<div ng-if="volunteerData && volunteerData.length > 0" ng-cloak>
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <caption class="sr-only">
+        Volunteer Time
+      </caption>
+      <thead>
+        <tr>
+          <th scope="col">
+            <div class="text-left">
+              <strong>Date</strong>
+            </div>
+          </th>
+          <th scope="col">
+            <div class="text-center">
+              <strong>Activity</strong>
+            </div>
+          </th>
+          <th scope="col">
+            <div class="text-center">
+              <strong>Hours : Minutes</strong>
+            </div>
+          </th>
+          <th scope="col">
+            <div class="text-right">
+              <strong>Edit/Delete</strong>
+            </div>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="entry in volunteerData">
+          <td>
+            <div class="text-left">
+              {{entry.activity_date | date : 'M/d/yy'}}
+            </div>
+          </td>
+          <td>
+            <div class="text-center">
+              {{entry.activity_type}}
+            </div>
+          </td>
+          <td>
+            <div class="text-center">
+              {{entry.hours | time}}
+            </div>
+          </td>
+          <td>
+            <div class="text-right">
+              <button class="btn btn-md-wide btn-toggle" data-cons-id="{{entry.constituent_id}}" data-event-id="{{entry.event_id}}" data-id="{{entry.activity_type_id}}" ng-click="updateVolunteerEntry()"><strong>Edit/Delete</strong></button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
