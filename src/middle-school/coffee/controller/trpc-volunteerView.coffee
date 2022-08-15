@@ -5,6 +5,9 @@ angular.module('trPcControllers').controller 'NgPcVolunteerViewCtrl', [
   ($scope, $rootScope, ZuriService) ->
 
       $scope.volunteerData = []
+      $scope.volunteerTotal =
+        'hours': '0'
+        'minutes': '00'
       getVolunteerism = ->
         ZuriService.getVolunteerData $scope.frId + '/' + $scope.consId,
           failure: (response) ->
