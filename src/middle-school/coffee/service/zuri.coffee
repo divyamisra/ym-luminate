@@ -189,7 +189,7 @@ angular.module 'ahaLuminateApp'
           url = '//tools.heart.org/aha_ahc23_testing/api/volunteerism/' + id + '?key=XgUnZxvFcjZ4jEMT'
         else
           url = '//tools.heart.org/aha_ahc23/api/volunteerism/' + id + '?key=B78AEYxzbU9br6Cq'
-        $http({method: 'PUT', url: $sce.trustAsResourceUrl(url), data: requestData})
+        $http({method: 'PUT', url: $sce.trustAsResourceUrl(url), data: JSON.stringify(requestData)})
           .then (response) ->
             callback.success response
           , (response) ->
