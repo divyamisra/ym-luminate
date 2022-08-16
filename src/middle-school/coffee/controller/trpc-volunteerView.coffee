@@ -45,6 +45,9 @@ angular.module('trPcControllers').controller 'NgPcVolunteerViewCtrl', [
 
     getVolunteerism = ->
       $scope.volunteerData = []
+      $scope.volunteerTotal =
+        'hours': '0'
+        'minutes': '00'
       ZuriService.getVolunteerData $scope.frId + '/' + $scope.consId,
         failure: (response) ->
         error: (response) ->
