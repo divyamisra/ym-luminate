@@ -76,7 +76,7 @@
 			:
 			<select class="form-select w-auto d-inline-block" name="volunteer-minute" id="volunteer-minute" ng-model="volunteerAdd.minute">
 				<option value=""></option>
-				<option ng-repeat="minute in minuteList" value="{{minute}}">{{minute < 10 ? '0' + minute : minute}}</option>
+				<option ng-repeat="minute in minuteList" value="{{minute}}">{{(minute < 10) ? ('0' + minute) : minute}}</option>
 			</select>
 		</div>
           </td>
