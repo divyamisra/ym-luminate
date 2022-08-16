@@ -127,9 +127,9 @@ angular.module('trPcControllers').controller 'NgPcVolunteerViewCtrl', [
           angular.forEach $scope.volunteerData, (entry, entryIndex) ->
             volunteerData[entryIndex] = {};
             volunteerData[entryIndex].activity_date = entry.activity_date
-            volunteerData[entryIndex].activity = $scope.volunteerActivities[entry.activity_type_id]
+            volunteerData[entryIndex].activity = entry.activity_type
             volunteerData[entryIndex].hours = entry.hour + ':' + entry.minute
-      $scope.volunteerReportList = {"entries": volunteerData} 
+      $scope.volunteerReportList = volunteerData
               
     ImagetoPrint = (source) ->
       '<html><head><scri' + 'pt>function step1(){\n' + 'setTimeout(\'step2()\', 10);}\n' + 'function step2(){window.print();window.close()}\n' + '</scri' + 'pt></head><body onload=\'step1()\'>\n' + '<img src=\'' + source + '\' /></body></html>'
