@@ -114,7 +114,7 @@
             <div class="text-center">
               <span ng-if="entryView != entry.id">{{entry.hours | time}}</span>
 		<span ng-if="entryView == entry.id">
-			<select class="form-select w-auto d-inline-block" name="volunteer-hour-{{entry.id}}" id="volunteer-hour-{{entry.id}}" ng-model="entry.hour"></span>
+			<select class="form-select w-auto d-inline-block" name="volunteer-hour-{{entry.id}}" id="volunteer-hour-{{entry.id}}" ng-model="entry.hour">
 				<option value=""></option>
 				<option ng-repeat="hour in hourList" ng-value="hour">{{hour}}</option>
 			</select>
