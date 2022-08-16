@@ -436,14 +436,12 @@
                     '&list_ascending=true',
                 callback: {
                     success: function (response) {
-
                         if ($.fn.DataTable) {
                             if ($.fn.DataTable.isDataTable('#teamResultsTable')) {
                                 $('#teamResultsTable').DataTable().destroy();
                             }
                         }
                         $('#teamResultsTable tbody').empty();
-
                         if (response.getTeamSearchByInfoResponse.totalNumberResults === '0') {
                             // no search results
                             $('#error-team').removeAttr('hidden').text('Team not found. Please try different search terms.');
@@ -1255,31 +1253,75 @@
         // END TOP PARTICIPANTS
 
         // BEGIN TOP TEAMS
-        cd.getTopTeams = function (eventId, listCount) {
-          luminateExtend.api({
-              api: 'teamraiser',
-              data: 'method=getTeamsByInfo&fr_id=' + eventId + '&list_sort_column=name&list_ascending=true&list_page_size=' + listCount + '&response_format=json',
-              callback: {
-                  success: function (response) {
-                      if (!$.isEmptyObject(response.getTeamSearchByInfoResponse)) {
-                          var teamData = luminateExtend.utils.ensureArray(response.getTeamSearchByInfoResponse.team);
-                          var teamListColumnLength = teamData.length > 5 && teamData.length < 11 ? 'two-column-team-list' : teamData.length > 10 ? 'three-column-team-list' : 'one-column-team-list';
-                          console.log('this is the team data', teamData.length)
+        cd.getTopTeams = function(eventId) {
+            luminateExtend.api({
+                api: 'teamraiser',
+                data: 'method=getTeamsByInfo&fr_id=' + eventId + '&list_sort_column=team_name&list_ascending=true&list_page_size=15&response_format=json',
+                callback: {
+                    success: function(response) {
+                        if (!$.isEmptyObject(response.getTeamSearchByInfoResponse)) {
+                            var teamData = luminateExtend.utils.ensureArray(response.getTeamSearchByInfoResponse.team);
+                            console.log('this is the team data', teamData.length);
+                            var pendingGeneratedHTML = [];
+                            $(teamData).each(function(i) {
+                                var deferred = $.Deferred();
+                                pendingGeneratedHTML.push(deferred);
+                                var teamName = this.name;
+                                var teamId = this.id;
+                                var consId = this.captainConsId;
+                                luminateExtend.api({
+                                    api: 'teamraiser',
+                                    data: 'method=getTeamPhoto&fr_id=' + eventId + '&cons_id=' + consId + '&response_format=json',
+                                    callback: {
+                                        success: function(response) {
+                                            var teamImages = luminateExtend.utils.ensureArray(response.getTeamPhotoResponse.photoItem);
+                                            teamImages[0].originalUrl = '../images/content/pagebuilder/TOI-Default-Photo.png';
+                                            var teamImage = typeof teamImages[0].customUrl === 'string' && teamImages[0].customUrl.length ? teamImages[0].customUrl : teamImages[0].originalUrl;
+                                            // if (teamImage === teamImages[0].originalUrl) {
+                                            //   var isDefaultImage = ' style="clip-path: none;"';
+                                            // } else {
+                                            //   isDefaultImage = ''
+                                            // }
+                                            var topTeamRow = `<div class="col-sm-6 col-md-4 pt-4 px-md-3"><a href="TR/?team_id=${teamId}&amp;pg=team&amp;fr_id=${eventId}"><div class="bg-white"><div><img src="${teamImage}" alt="Photo of ${teamName}"></div></div><div class="align-items-center bg-white d-flex justify-content-center text-center"><p class="p-2 text-body"><strong>${teamName}</strong></p></div></a></div>`;
 
-                          $(teamData).each(function (i) {
-                              var teamName = this.name;
-                              var teamId = this.id;
-                              var topTeamRow = '<li class="'+teamListColumnLength+'"><div class="d-flex"><div class="flex-grow-1"><a href="TR/?team_id=' + teamId + '&amp;pg=team&amp;fr_id=' + evID + '">' + teamName + '</a></div></div></li>';
+                                            deferred.resolve(topTeamRow);
+                                        },
+                                        error: function(response) {
+                                            deferred.resolve('');
+                                        }
+                                    }
+                                });
+                            });
+                            $.when.apply($, pendingGeneratedHTML).done(function() {
+                                const isLandscape = (image) => {
+                                    return image.naturalWidth > image.naturalHeight;
+                                };
 
-                              $('.js--team-top-list ul').append(topTeamRow);
-                          });
-                      }
-                  },
-                  error: function (response) {
-                      console.log('getTopTeams error: ' + response.errorResponse.message);
-                  }
-              }
-          });
+                                // console.log(arguments);
+                                var topTeamContent = '';
+                                for (var i = 0; i < arguments.length; i++) {
+                                    topTeamContent += arguments[i];
+                                }
+                                // console.log(topTeamContent);
+                                $('.js--team-top-list').append(topTeamContent);
+
+                                // This would make more sense above but it's easier here
+                                // When getting the images above the paths are not resolving
+                                // to consistently add a new Image() to check dimensions
+                                document.querySelectorAll('.nominee-section img').forEach(image => {
+                                    if (isLandscape(image)) {
+                                        image.classList.add('is-landscape');
+                                    }
+                                });
+                            });
+
+                        }
+                    },
+                    error: function(response) {
+                        console.log('getTopTeams error: ' + response.errorResponse.message);
+                    }
+                }
+            });
         };
 
         // END TOP TEAMS
@@ -2544,7 +2586,6 @@ var toggleMultiEventInfo = function (elem) {
 
 //main menu hack
 if ( $('.nav-item--find').length > 0 ) {
-
   $('#find').click(function () {
       $(this).parent().toggleClass('open');
   });
@@ -2570,9 +2611,6 @@ if ( $('.nav-item--find').length > 0 ) {
           $('.nav-item--find').removeClass('open');
       }
   });
-
-
-
 }
 
 if ( $('body').is('.app_donation') || $('body').is('.app_tr_registration') || $('body').is('.pg_fieldday_register') ) {

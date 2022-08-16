@@ -1,4 +1,3 @@
-
  $red: #C10E21 !default;
  $red-deep: #990000 !default;
  $red-light: #f5eff1 !default;
@@ -24,8 +23,8 @@
  $gray-border: #CCCCCC;
  $outline-blue: #0064bd;
 
- // Font family variables
- $font-fallback: Helvetica, Arial, sans-serif;
- $font-family-light: 'LubDubLight', $font-fallback;
- $font-family-medium: 'LubDubMedium', $font-fallback;
- $font-family-bold: 'LubDubBold', $font-fallback;
+// Font family variables
+$font-fallback: arial, sans-serif;
+$font-family-light: "Montserrat", $font-fallback;
+$font-family-medium: "Montserrat", $font-fallback;
+$font-family-bold: "Montserrat", $font-fallback;
