@@ -127,8 +127,8 @@ angular.module('trPcControllers').controller 'NgPcVolunteerViewCtrl', [
       volunteerData = []
       if $scope.volunteerData and $scope.volunteerData.length > 0
           angular.forEach $scope.volunteerData, (entry, entryIndex) ->
-            var actdate = new Date entry.activity_date
-            var entdate = "0000-00-00"
+            actdate = new Date entry.activity_date
+            entdate = "0000-00-00"
             if actdate != "Invalid Date"
             	entdate = actdate.getFullYear()+'-'+(actdate.getMonth()+1)+'-'+actdate.getDate()
             volunteerData[entryIndex] = {}
