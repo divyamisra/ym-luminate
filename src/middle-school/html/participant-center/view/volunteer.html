@@ -75,10 +75,7 @@
 			:
 			<select class="form-select w-auto d-inline-block" name="volunteer-minute" id="volunteer-minute" ng-model="volunteerAdd.minute">
 				<option value=""></option>
-				<option ng-repeat="minute in minuteList" ng-value="minute">
-				  <span ng-if="minute < 10">{{'0' + minute}}</span>
- 				  <span ng-if="minute >= 10">{{minute}}</span>
-				</option>
+				<option ng-repeat="minute in minuteList" ng-value="minute">{{minute | numpad}}</option>
 			</select>
 		</div>
           </td>
@@ -120,10 +117,7 @@
 			:
 			<select class="form-select w-auto d-inline-block" name="volunteer-minute-{{entry.id}}" id="volunteer-minute-{{entry.id}}" ng-model="entry.minute">
 				<option value=""></option>
-				<option ng-repeat="minute in minuteList" ng-value="minute">
-				  <span ng-if="minute < 10">{{'0' + minute}}</span>
- 				  <span ng-if="minute >= 10">{{minute}}</span>
-				</option>
+				<option ng-repeat="minute in minuteList" ng-value="minute">{{minute | numpad}}</option>
 			</select>
 		</span>
             </div>
