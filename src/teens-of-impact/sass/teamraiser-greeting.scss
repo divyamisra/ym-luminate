@@ -4,13 +4,13 @@
     margin-bottom: 60px;
 
     .greeting-header {
-      background-image : url("https://secure3.convio.net/heartdev/images/content/pagebuilder/WOI-Header-BGpng.png");
+      background-image : url("https://secure3.convio.net/heartdev/images/content/pagebuilder/TOI-Nominee-BG.png");
       background-repeat: no-repeat;
       background-size  : 100%;
       background-position: 0;
 
       @include media-breakpoint-down(md) {
-         background-image : url("https://secure3.convio.net/heartdev/images/content/pagebuilder/WOI-Header-BGpng-mobile.png");
+         background-image : url("https://secure3.convio.net/heartdev/images/content/pagebuilder/TOI-Nominee-BG-short.png");
         background-position: bottom;
         background-size: cover;
       }
@@ -18,24 +18,24 @@
       .transparent-bars {
         background: radial-gradient(circle, rgba(255,255,255,1) 31%, rgba(255,255,255,0) 100%);
 
-        &:after {
-          content: "";
-          width: 30%;
-          height: 10px;
-          background: #c10e21ba;
-          display: block;
-          position: absolute;
-          align-self: baseline;
-          right: 0;
-          @include media-breakpoint-down(md) {
-            display: none;
-          }
-        }
+        // &:after {
+        //   content: "";
+        //   width: 30%;
+        //   height: 10px;
+        //   background: #c10e21ba;
+        //   display: block;
+        //   position: absolute;
+        //   align-self: baseline;
+        //   right: 0;
+        //   @include media-breakpoint-down(md) {
+        //     display: none;
+        //   }
+        // }
 
         .event-info-banner {
           width              : 45%;
           padding-top        : 30%;
-          background-image   : url("https://secure3.convio.net/heartdev/images/content/pagebuilder/WOI-Woman-2000px.png");
+          background-image   : url("https://secure3.convio.net/heartdev/images/content/pagebuilder/TOI-Teen-2000px.png");
           background-size    : cover;
           background-position: right;
           background-repeat  : no-repeat;
@@ -44,7 +44,7 @@
             padding-top        : 56%;
           }
           @include media-breakpoint-down(sm) {
-            background-image   : url("https://secure3.convio.net/heartdev/images/content/pagebuilder/WOI-HalfFace-1-STOCK-PHOTO-USED.png");
+            background-image   : url("https://secure3.convio.net/heartdev/images/content/pagebuilder/TOI-Teen.png");
             width: 100%;
             padding-top: 100%;
           }
@@ -173,28 +173,22 @@
     }
     // End nominee-section
     #movement-section {
-      &:before {
-        content: " ";
-        background-color: #0499b7b8;
-        width: 200px;
-        height: 76px;
-        display: block;
-        position: sticky;
-        float: right;
-      }
+      position: relative;
+
       &:after {
         content: " ";
         background-color: #c10e21de;
-        width: 214px;
-        height: 69px;
+        width: 129px;
+        height: 71px;
         display: block;
-        position: relative;
-        top: -100px;
+        position: absolute;
+        bottom: 125px;
+
+        @include media-breakpoint-down(md) {
+          display: none;
+        }
       }
       .container {
-        position      : relative;
-        padding-bottom: 6rem;
-        padding-top   : 6rem;
 
         .movement-copy {
           box-shadow      : 0 1rem 11rem 10rem #fff;
