@@ -36,7 +36,7 @@ angular.module('trPcControllers').controller 'NgPcVolunteerViewCtrl', [
       $scope.entryView = ''
 
     getVolunteerActivities = ->
-      ZuriService.getVolunteerData 'activity_types',
+      ZuriService.getVolunteerData 'acvitity_types',
         failure: (response) ->
         error: (response) ->
         success: (response) ->
@@ -60,6 +60,7 @@ angular.module('trPcControllers').controller 'NgPcVolunteerViewCtrl', [
               $scope.volunteerData = response.data.data
           angular.forEach $scope.volunteerData, (entry, key) ->
             entry.activity_date = new Date(entry.activity_date)
+            entry.original_activity_date = entry.activity_date
             entry.hour = Math.floor(entry.hours / 60)
             entry.minute = entry.hours - (entry.hour * 60)
     getVolunteerism()
@@ -97,6 +98,7 @@ angular.module('trPcControllers').controller 'NgPcVolunteerViewCtrl', [
         success: (response) ->
           if response.data.status == 'success'
             $scope.createVolunteerEntryDetail = false
+            $scope.entryView = 0
             getVolunteerism()
             $scope.volunteerProcess = response.data
 
@@ -125,8 +127,12 @@ angular.module('trPcControllers').controller 'NgPcVolunteerViewCtrl', [
       volunteerData = []
       if $scope.volunteerData and $scope.volunteerData.length > 0
           angular.forEach $scope.volunteerData, (entry, entryIndex) ->
-            volunteerData[entryIndex] = {};
-            volunteerData[entryIndex].activity_date = entry.activity_date
+            var actdate = new Date entry.activity_date
+            var entdate = "0000-00-00"
+            if actdate != "Invalid Date"
+            	entdate = actdate.getFullYear()+'-'+(actdate.getMonth()+1)+'-'+actdate.getDate()
+            volunteerData[entryIndex] = {}
+            volunteerData[entryIndex].activity_date = entdate
             volunteerData[entryIndex].activity = entry.activity_type
             volunteerData[entryIndex].hours = entry.hour + ':' + entry.minute
       $scope.volunteerReportList = volunteerData
