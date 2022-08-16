@@ -100,11 +100,7 @@ angular.module('trPcControllers').controller 'NgPcVolunteerViewCtrl', [
 
     $scope.deleteVolunteerEntry = (evt) ->
       if confirm('Are you sure you want to delete this entry?')
-        ZuriService.deleteVolunteerData(@entry.id + '/' +
-          'constituent_id': @$parent.entry.constituent_id
-          'school_id': @$parent.entry.school_id
-          'event_id': @$parent.entry.event_id
-          'id': @$parent.entry.id,
+        ZuriService.deleteVolunteerData @$parent.entry.event_id + '/' + @$parent.entry.constituent_id + '/' + @$parent.entry.id,
           failure: (response) ->
           error: (response) ->
           success: (response) ->
@@ -112,7 +108,6 @@ angular.module('trPcControllers').controller 'NgPcVolunteerViewCtrl', [
               $scope.createVolunteerEntryDetail = false
               getVolunteerism()
               $scope.volunteerProcess = response.data
-        )
               
     ImagetoPrint = (source) ->
       '<html><head><scri' + 'pt>function step1(){\n' + 'setTimeout(\'step2()\', 10);}\n' + 'function step2(){window.print();window.close()}\n' + '</scri' + 'pt></head><body onload=\'step1()\'>\n' + '<img src=\'' + source + '\' /></body></html>'
