@@ -1,8 +1,10 @@
 angular.module('trPcControllers').controller 'NgPcVolunteerViewCtrl', [
   '$scope'
   '$rootScope'
+  '$uibModal'
   'ZuriService'
-  ($scope, $rootScope, ZuriService) ->
+  'APP_INFO'
+  ($scope, $rootScope, $uibModal, ZuriService, APP_INFO) ->
 
     $scope.entryView = ''
     $scope.hourList = [0..23]
@@ -108,6 +110,26 @@ angular.module('trPcControllers').controller 'NgPcVolunteerViewCtrl', [
               $scope.createVolunteerEntryDetail = false
               getVolunteerism()
               $scope.volunteerProcess = response.data
+
+    $scope.showVolunteerReport = ->
+      $scope.volunteerReportPending = true
+      $scope.showVolunteerReportModal = $uibModal.open
+        scope: $scope
+        templateUrl: APP_INFO.rootPath + 'dist/middle-school/html/participant-center/modal/viewVolunteerReport.html'
+      $scope.volunteerReportData()
+
+    $scope.cancelShowVolunteerReport = ->
+      $scope.showVolunteerReportModal.close()
+      
+    $scope.volunteerReportData = ->
+      volunteerData = []
+      if $scope.volunteerData and $scope.volunteerData.length > 0
+          angular.forEach $scope.volunteerData, (entry, entryIndex) ->
+            volunteerData[entryIndex] = {};
+            volunteerData[entryIndex].activity_date = entry.activity_date
+            volunteerData[entryIndex].activity = $scope.volunteerActivities[entry.activity_type_id]
+            volunteerData[entryIndex].hours = entry.hour + ':' + entry.minute
+      $scope.volunteerReportList = {"entries": volunteerData} 
               
     ImagetoPrint = (source) ->
       '<html><head><scri' + 'pt>function step1(){\n' + 'setTimeout(\'step2()\', 10);}\n' + 'function step2(){window.print();window.close()}\n' + '</scri' + 'pt></head><body onload=\'step1()\'>\n' + '<img src=\'' + source + '\' /></body></html>'
