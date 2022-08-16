@@ -1,19 +1,26 @@
 <h2 class="text-center h3">Community Service Log</h2>
 <div class="py-3 text-white">
-  <div class="volunteer-hours red-bg-gradient border-red rounded mb-4">
-    <div class="d-flex flex-wrap">
-      <div class="title col-5 text-center p-2">Hours</div>
-      <div class="col-2 border-white-left border-white-right"></div>
-      <div class="title col-5 text-center p-2">Minutes</div>
-      <div class="time col-5 text-center bg-white text-red">{{volunteerTotal.hours}}</div>
-      <div class="time col-2 text-center bg-white text-red border-red-left border-red-right">:</div>
-      <div class="time col-5 text-center bg-white text-red">{{volunteerTotal.minutes}}</div>
-    </div>
-  </div>
-  <a class="btn btn-md-wide btn-toggle" ng-href="{{baseUrl}}#/volunteer"><strong>Manage Hours</strong></a>
+	<div class="d-md-flex">
+		<div class="volunteer-hours red-bg-gradient border-red rounded mb-4">
+			<div class="d-flex flex-wrap">
+				<div class="title col-5 text-center p-2">Hours</div>
+				<div class="col-2 border-white-left border-white-right"></div>
+				<div class="title col-5 text-center p-2">Minutes</div>
+				<div class="time col-5 text-center bg-white text-red">{{volunteerTotal.hours}}</div>
+				<div class="time col-2 text-center bg-white text-red border-red-left border-red-right">:</div>
+				<div class="time col-5 text-center bg-white text-red">{{volunteerTotal.minutes}}</div>
+			</div>
+		</div>
+		<div class="volunteer-buttons px-4">
+			<div class="py-2"><a class="btn btn-md-wide btn-primary" ng-href="{{baseUrl}}#/volunteer"><strong>Download Report</strong></a></div>
+			<div class="py-2"><button class="btn btn-md-wide btn-primary" ng-click="PrintImage('#certificate')"><strong>Print Certificate</strong></button></div>
+   </div>	
+   <div class="certImage">
+   		<img id="certificate" class="d-none" src="https://tools.heart.org/volunteer/volunteer-certificate.php?name={{consName}}&hours={{volunteerTotal.hours}} Hours {{volunteerTotal.minutes}} Minutes">
+   </div>
 </div> 
 
-<div ng-if="volunteerData && volunteerData.length > 0" ng-cloak>
+<div>
   <div class="table-responsive">
     <table class="table table-striped">
       <caption class="sr-only">
@@ -36,33 +43,96 @@
               <strong>Hours : Minutes</strong>
             </div>
           </th>
-          <th scope="col">
-            <div class="text-end">
-              <strong>Edit/Delete</strong>
-            </div>
-          </th>
+          <th scope="col">&nbsp;</th>
         </tr>
       </thead>
       <tbody>
-        <tr ng-repeat="entry in volunteerData">
+        <tr ng-if="createVolunteerEntryDetail != true">
+          <td colspan="4" class="fs-4 color-black" ng-click="showVolunteerEntry()"><i class="bi bi-plus-circle"></i></td>
+        </tr>
+        <tr ng-if="createVolunteerEntryDetail == true" ng-cloak>
           <td>
-            <div class="text-start">
-              {{entry.activity_date | date : 'M/d/yy'}}
-            </div>
+	          <div class="text-start">
+  	        	<input type="date" class="form-control w-auto" id="volunteer-date" ng-model="volunteerAdd.date" aria-label="Volunteer Date" />
+  	        </div>
           </td>
           <td>
-            <div class="text-center">
-              {{entry.activity_type}}
-            </div>
-          </td>
+	          <div class="text-center">
+							<select class="form-select w-auto mx-auto" name="volunteer-activity" id="volunteer-activity" ng-model="volunteerAdd.activity">
+								<option value=""></option>
+								<option value="1">Help the Elderly</option>
+								<option ng-repeat="activity in volunteerActivities" value="{{id}}">
+								{{name}}
+								</option>
+							</select>
+						</div>
+					</td>
           <td>
-            <div class="text-center">
-              {{entry.hours | time}}
-            </div>
+	          <div class="text-center">
+							<select class="form-select w-auto d-inline-block" name="volunteer-hour" id="volunteer-hour" ng-model="volunteerAdd.hour">
+								<option value=""></option>
+								<option ng-repeat="hour in hourList" value="{{hour}}">{{hour}}</option>
+							</select>
+							:
+							<select class="form-select w-auto d-inline-block" name="volunteer-minute" id="volunteer-minute" ng-model="volunteerAdd.minute">
+								<option value=""></option>
+								<option ng-repeat="minute in minuteList" value="{{minute}}">{{minute < 10 ? '0' + minute : minute}}</option>
+							</select>
+						</div>
           </td>
           <td>
             <div class="text-end">
-              <button class="btn btn-md-wide btn-toggle" data-cons-id="{{entry.constituent_id}}" data-event-id="{{entry.event_id}}" data-id="{{entry.activity_type_id}}" ng-click="updateVolunteerEntry()"><strong>Edit/Delete</strong></button>
+              <button ng-disabled="volunteerAdd.date == '' || volunteerAdd.activity == '' || volunteerAdd.hour == '' || volunteerAdd.minute == ''"  class="btn btn-md-wide btn-primary" ng-click="createVolunteerEntry()"><strong>Add</strong></button>
+              <span class="fs-4 color-black" ng-click="hideVolunteerEntry()" data-id="{{entry.activity_type_id}}"><i class="bi bi-x-circle"></i></span>
+            </div>
+          </td>
+        </tr>
+        <tr ng-repeat="entry in volunteerData | orderBy: '-entry.activity_date' : true">
+          <td>
+            <div class="text-start entry-{{entry.id}}">
+              <span ng-if="entryView != entry.id">{{entry.activity_date | date : 'M/d/yy'}}</span>
+  	        	<span ng-if="entryView == entry.id"><input type="date" class="form-control w-auto" name="volunteer-date--{{entry.id}}" id="volunteer-date-{{entry.id}}" ng-model="entry.activity_date" aria-label="Volunteer Date" /></span>
+            </div>
+          </td>
+          <td>
+            <div class="text-center">
+              <span ng-if="entryView != entry.id">{{entry.activity_type}}</span>
+							<span ng-if="entryView == entry.id">
+								<select class="form-select w-auto mx-auto" name="volunteer-activity-{{entry.id}}" id="volunteer-activity-{{entry.id}}" ng-model="entry.activity_type_id">
+									<option value=""></option>
+									<option ng-repeat="activity in volunteerActivities" ng-value="{{id}}">
+									{{name}}
+									</option>
+								</select>
+							</span>
+            </div>
+          </td>
+          <td>
+            <div class="text-center">
+              <span ng-if="entryView != entry.id">{{entry.hours | time}}</span>
+ 							<span ng-if="entryView == entry.id">
+								<select class="form-select w-auto d-inline-block" name="volunteer-hour-{{entry.id}}" id="volunteer-hour-{{entry.id}}" ng-model="entry.hour"></span>
+									<option value=""></option>
+									<option ng-repeat="hour in hourList" ng-value="hour">{{hour}}</option>
+								</select>
+								:
+								<select class="form-select w-auto d-inline-block" name="volunteer-minute-{{entry.id}}" id="volunteer-minute-{{entry.id}}" ng-model="entry.minute">
+									<option value=""></option>
+									<option ng-repeat="minute in minuteList" ng-value="minute">{{minute < 10 ? '0' + minute : minute}}</option>
+								</select>
+							</span>
+            </div>
+          </td>
+          <td>
+            <div class="text-end" ng-if="entryView != entry.id">
+							<!-- on view -->
+              <button class="btn btn-md-wide btn-primary" ng-click="showEntries()" data-id="{{entry.activity_type_id}}"><strong>Edit</strong></button>
+              <span class="fs-4 color-black" ng-click="deleteVolunteerEntry()" data-id="{{entry.activity_type_id}}" ng-model="entry"><i class="bi bi-dash-circle"></i></span>
+            </div>
+            <div class="text-end" ng-if="entryView == entry.id" ng-cloak>
+							<!-- on edit -->
+              <button ng-disabled="entry.activity_date == '' || entry.activity_type_id == '' || entry.hour == '' || entry.minute == ''" class="btn btn-md-wide btn-primary" ng-click="saveVolunteerEntry()" data-id="{{entry.activity_type_id}}" ng-model="entry"><strong>Save</strong></button>
+              <span class="fs-4 color-black" ng-click="hideEntries()" data-id="{{entry.activity_type_id}}"><i class="bi bi-x-circle"></i></span>
             </div>
           </td>
         </tr>
