@@ -114,14 +114,14 @@ angular.module('trPcControllers').controller 'NgPcVolunteerViewCtrl', [
               $scope.volunteerProcess = response.data
         )
               
-      ImagetoPrint = (source) ->
-        '<html><head><scri' + 'pt>function step1(){\n' + 'setTimeout(\'step2()\', 10);}\n' + 'function step2(){window.print();window.close()}\n' + '</scri' + 'pt></head><body onload=\'step1()\'>\n' + '<img src=\'' + source + '\' /></body></html>'
+    ImagetoPrint = (source) ->
+      '<html><head><scri' + 'pt>function step1(){\n' + 'setTimeout(\'step2()\', 10);}\n' + 'function step2(){window.print();window.close()}\n' + '</scri' + 'pt></head><body onload=\'step1()\'>\n' + '<img src=\'' + source + '\' /></body></html>'
 
-      $scope.PrintImage = (source) ->
-        Pagelink = 'about:blank'
-        pwa = window.open(Pagelink, '_new')
-        pwa.document.open()
-        pwa.document.write ImagetoPrint(angular.element(source).attr('src'))
-        pwa.document.close()
+    $scope.PrintImage = (source) ->
+      Pagelink = 'about:blank'
+      pwa = window.open(Pagelink, '_new')
+      pwa.document.open()
+      pwa.document.write ImagetoPrint(angular.element(source).attr('src'))
+      pwa.document.close()
       
   ]
