@@ -58,27 +58,27 @@
           </td>
           <td>
 	          <div class="text-center">
-							<select class="form-select w-auto mx-auto" name="volunteer-activity" id="volunteer-activity" ng-model="volunteerAdd.activity">
-								<option value=""></option>
-								<option value="1">Help the Elderly</option>
-								<option ng-repeat="activity in volunteerActivities" value="{{id}}">
-								{{name}}
-								</option>
-							</select>
-						</div>
-					</td>
+			<select class="form-select w-auto mx-auto" name="volunteer-activity" id="volunteer-activity" ng-model="volunteerAdd.activity">
+				<option value=""></option>
+				<option value="1">Help the Elderly</option>
+				<option ng-repeat="activity in volunteerActivities" value="{{id}}">
+				{{name}}
+				</option>
+			</select>
+		</div>
+	</td>
           <td>
 	          <div class="text-center">
-							<select class="form-select w-auto d-inline-block" name="volunteer-hour" id="volunteer-hour" ng-model="volunteerAdd.hour">
-								<option value=""></option>
-								<option ng-repeat="hour in hourList" value="{{hour}}">{{hour}}</option>
-							</select>
-							:
-							<select class="form-select w-auto d-inline-block" name="volunteer-minute" id="volunteer-minute" ng-model="volunteerAdd.minute">
-								<option value=""></option>
-								<option ng-repeat="minute in minuteList" value="{{minute}}">{{minute < 10 ? '0' + minute : minute}}</option>
-							</select>
-						</div>
+			<select class="form-select w-auto d-inline-block" name="volunteer-hour" id="volunteer-hour" ng-model="volunteerAdd.hour">
+				<option value=""></option>
+				<option ng-repeat="hour in hourList" value="{{hour}}">{{hour}}</option>
+			</select>
+			:
+			<select class="form-select w-auto d-inline-block" name="volunteer-minute" id="volunteer-minute" ng-model="volunteerAdd.minute">
+				<option value=""></option>
+				<option ng-repeat="minute in minuteList" value="{{minute}}">{{minute < 10 ? '0' + minute : minute}}</option>
+			</select>
+		</div>
           </td>
           <td>
             <div class="text-end">
@@ -97,40 +97,40 @@
           <td>
             <div class="text-center">
               <span ng-if="entryView != entry.id">{{entry.activity_type}}</span>
-							<span ng-if="entryView == entry.id">
-								<select class="form-select w-auto mx-auto" name="volunteer-activity-{{entry.id}}" id="volunteer-activity-{{entry.id}}" ng-model="entry.activity_type_id">
-									<option value=""></option>
-									<option ng-repeat="activity in volunteerActivities" ng-value="{{id}}">
-									{{name}}
-									</option>
-								</select>
-							</span>
+		<span ng-if="entryView == entry.id">
+			<select class="form-select w-auto mx-auto" name="volunteer-activity-{{entry.id}}" id="volunteer-activity-{{entry.id}}" ng-model="entry.activity_type_id">
+				<option value=""></option>
+				<option ng-repeat="activity in volunteerActivities" ng-value="{{id}}">
+				{{name}}
+				</option>
+			</select>
+		</span>
             </div>
           </td>
           <td>
             <div class="text-center">
               <span ng-if="entryView != entry.id">{{entry.hours | time}}</span>
- 							<span ng-if="entryView == entry.id">
-								<select class="form-select w-auto d-inline-block" name="volunteer-hour-{{entry.id}}" id="volunteer-hour-{{entry.id}}" ng-model="entry.hour"></span>
-									<option value=""></option>
-									<option ng-repeat="hour in hourList" ng-value="hour">{{hour}}</option>
-								</select>
-								:
-								<select class="form-select w-auto d-inline-block" name="volunteer-minute-{{entry.id}}" id="volunteer-minute-{{entry.id}}" ng-model="entry.minute">
-									<option value=""></option>
-									<option ng-repeat="minute in minuteList" ng-value="minute">{{minute < 10 ? '0' + minute : minute}}</option>
-								</select>
-							</span>
+		<span ng-if="entryView == entry.id">
+			<select class="form-select w-auto d-inline-block" name="volunteer-hour-{{entry.id}}" id="volunteer-hour-{{entry.id}}" ng-model="entry.hour"></span>
+				<option value=""></option>
+				<option ng-repeat="hour in hourList" ng-value="hour">{{hour}}</option>
+			</select>
+			:
+			<select class="form-select w-auto d-inline-block" name="volunteer-minute-{{entry.id}}" id="volunteer-minute-{{entry.id}}" ng-model="entry.minute">
+				<option value=""></option>
+				<option ng-repeat="minute in minuteList" ng-value="minute">{{(minute < 10) ? ('0' + minute) : minute}}</option>
+			</select>
+		</span>
             </div>
           </td>
           <td>
             <div class="text-end" ng-if="entryView != entry.id">
-							<!-- on view -->
+	      <!-- on view -->
               <button class="btn btn-md-wide btn-primary" ng-click="showEntries()" data-id="{{entry.activity_type_id}}"><strong>Edit</strong></button>
               <span class="fs-4 color-black" ng-click="deleteVolunteerEntry()" data-id="{{entry.activity_type_id}}" ng-model="entry"><i class="bi bi-dash-circle"></i></span>
             </div>
             <div class="text-end" ng-if="entryView == entry.id" ng-cloak>
-							<!-- on edit -->
+	      <!-- on edit -->
               <button ng-disabled="entry.activity_date == '' || entry.activity_type_id == '' || entry.hour == '' || entry.minute == ''" class="btn btn-md-wide btn-primary" ng-click="saveVolunteerEntry()" data-id="{{entry.activity_type_id}}" ng-model="entry"><strong>Save</strong></button>
               <span class="fs-4 color-black" ng-click="hideEntries()" data-id="{{entry.activity_type_id}}"><i class="bi bi-x-circle"></i></span>
             </div>
