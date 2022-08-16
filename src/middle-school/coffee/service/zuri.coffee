@@ -202,7 +202,7 @@ angular.module 'ahaLuminateApp'
           url = '//tools.heart.org/aha_ahc23_testing/api/volunteerism/' + requestData + '?key=XgUnZxvFcjZ4jEMT'
         else
           url = '//tools.heart.org/aha_ahc23/api/volunteerism/' + requestData + '?key=B78AEYxzbU9br6Cq'
-        $http.jsonp($sce.trustAsResourceUrl(url), jsonpCallbackParam: 'callback')
+        $http({method: 'DELETE', url: $sce.trustAsResourceUrl(url)})
           .then (response) ->
             callback.success response
           , (response) ->
