@@ -63,7 +63,8 @@ angular.module('trPcControllers').controller 'NgPcVolunteerViewCtrl', [
                 'minutes': minutes
               $scope.volunteerData = response.data.data
           angular.forEach $scope.volunteerData, (entry, key) ->
-            entry.activity_date = new Date(entry.activity_date)
+            date = new Date(entry.activity_date)
+            entry.activity_date = new Date(date.toLocaleString('en-US', { timeZone: "UTC" }))
             entry.original_activity_date = entry.activity_date
             entry.hour = Math.floor(entry.hours / 60)
             entry.minute = entry.hours - (entry.hour * 60)
@@ -76,7 +77,7 @@ angular.module('trPcControllers').controller 'NgPcVolunteerViewCtrl', [
         'event_id': $scope.frId
         'event_year': 'fy23'
         'activity_type_id': $scope.volunteerAdd.activity
-        'activity_date': $scope.volunteerAdd.date
+        'activity_date': $filter('date')(new Date($scope.volunteerAdd.date), 'yyyy-MM-dd')
         'hours': parseInt($scope.volunteerAdd.hour) * 60 + parseInt($scope.volunteerAdd.minute)
       },
         failure: (response) ->
@@ -94,7 +95,7 @@ angular.module('trPcControllers').controller 'NgPcVolunteerViewCtrl', [
         'event_id': @$parent.entry.event_id
         'event_year': @$parent.entry.event_year
         'activity_type_id': @$parent.entry.activity_type_id
-        'activity_date': @$parent.entry.activity_date
+        'activity_date': $filter('date')(new Date(@$parent.entry.activity_date), 'yyyy-MM-dd')
         'hours': parseInt(@$parent.entry.hour) * 60 + parseInt(@$parent.entry.minute)
       },
         failure: (response) ->
@@ -131,12 +132,8 @@ angular.module('trPcControllers').controller 'NgPcVolunteerViewCtrl', [
       volunteerData = []
       if $scope.volunteerData and $scope.volunteerData.length > 0
           angular.forEach $scope.volunteerData, (entry, entryIndex) ->
-            actdate = new Date entry.activity_date
-            entdate = "0000-00-00"
-            if actdate != "Invalid Date"
-            	entdate = actdate.getFullYear()+'-'+(actdate.getMonth()+1)+'-'+actdate.getDate()
             volunteerData[entryIndex] = {}
-            volunteerData[entryIndex].activity_date = entdate
+            volunteerData[entryIndex].activity_date = $filter('date')(new Date(entry.activity_date), 'yyyy-MM-dd')
             volunteerData[entryIndex].activity = entry.activity_type
             volunteerData[entryIndex].hours = entry.hour + ':' + entry.minute
       $scope.volunteerReportList = volunteerData
