@@ -1342,21 +1342,5 @@ angular.module 'trPcControllers'
                   'minutes': minutes
                 $scope.volunteerData = response.data.data
       getVolunteerism()
-      
-      createVolunteerism = ->
-        ZuriService.createVolunteerData {
-          'consituent_id':$scope.consId
-          'school_id':$scope.participantRegistration.companyInformation.companyId
-          'event_id':$scope.frId
-          'event_year': 'fy23'
-          'activity_type_id': angular.element('activityId').val()
-          'activity_date':angular.element('activityDate').val()
-          'hours':angular.element('activityHours').val()
-          },
-          failure: (response) ->
-          error: (response) ->
-          success: (response) ->
-            if response.data.status == 'success'
-              $scope.volunteerProcess = response.data
 
   ]
