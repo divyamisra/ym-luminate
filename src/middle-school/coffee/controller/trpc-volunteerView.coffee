@@ -4,7 +4,8 @@ angular.module('trPcControllers').controller 'NgPcVolunteerViewCtrl', [
   '$uibModal'
   'ZuriService'
   'APP_INFO'
-  ($scope, $rootScope, $uibModal, ZuriService, APP_INFO) ->
+  '$filter'
+  ($scope, $rootScope, $uibModal, ZuriService, APP_INFO, $filter) ->
 
     $scope.entryView = ''
     $scope.hourList = [0..23]
