@@ -24,12 +24,12 @@ var CountDownWidget = function(element_id, a, b, c) {
 
   this.id = element_id
   //this.offset = timeoffset;
-  this.tzoffset = getTimeOffset(a[0])*60;
-  this.datetime = convertTime(a[0]);
-  this.enddate = convertTime(b[0]);
-  this.halt = false;
-    /* b - before , p - in progress, e - ended */
-  this.stage = 'b';
+  this.tzoffset = getTimeOffset(a[0]) * 60
+  this.datetime = convertTime(a[0])
+  this.enddate = convertTime(b[0])
+  this.halt = false
+  /* b - before , p - in progress, e - ended */
+  this.stage = 'b'
 
 
   this.delta = 0
@@ -43,24 +43,24 @@ var CountDownWidget = function(element_id, a, b, c) {
   this.getTimeDiff()
 
   document.getElementById(this.id).innerHTML = this.getCodes()
-  this.run();
-  this.announce();
+  this.run()
+  this.announce()
 
-   /********** Updating header and description ************/
-   let wrapper =  document.getElementById('countdownWidget-section');
-   let heading = a[1];
-   let desc = a[2];
+  /********** Updating header and description ************/
+  let wrapper = document.getElementById('countdownWidget-section')
+  let heading = a[1]
+  let desc = a[2]
 
-    if(this.stage == 'p'){
-        heading = b[1];
-        desc = b[2];
-    }
-    else if (this.stage == 'e'){
-        heading = c[1];
-        desc = c[2];
-    }
-   wrapper.querySelector('strong').innerHTML = heading;
-   wrapper.querySelectorAll('p')[1].innerHTML = desc;
+  if (this.stage == 'p') {
+    heading = b[1]
+    desc = b[2]
+  }
+  else if (this.stage == 'e') {
+    heading = c[1]
+    desc = c[2]
+  }
+  wrapper.querySelector('strong').innerHTML = heading
+  wrapper.querySelectorAll('p')[1].innerHTML = desc
 
 }
 
@@ -75,26 +75,26 @@ CountDownWidget.prototype.getCodes = function() {
     html += '    <div class="aha-counter-top">'
 
     html += '      <div class="aha-counter-digit" id="' + this.key + '_' + k + '1" >'
-    html += '        <div class="aha-counter-digit-tcover">'
+    html += '        <div class="aha-counter-digit-tcover" aria-hidden="true">'
     html += '          <div class="aha-counter-digit-top"></div>'
     html += '        </div>'
-    html += '        <div class="aha-counter-digit-sep">'
+    html += '        <div class="aha-counter-digit-sep" aria-hidden="true">'
     html += '          <div> <span class="digit-sep-left"></span><span class="digit-sep-right"></span> </div>'
     html += '        </div>'
-    html += '        <div class="aha-counter-digit-bcover">'
+    html += '        <div class="aha-counter-digit-bcover" aria-hidden="true">'
     html += '          <div class="aha-counter-digit-bottom"></div>'
     html += '        </div>'
     html += '        <div class="aha-counter-digit-static"></div>'
     html += '      </div>'
 
     html += '      <div class="aha-counter-digit" id="' + this.key + '_' + k + '0" >'
-    html += '        <div class="aha-counter-digit-tcover">'
+    html += '        <div class="aha-counter-digit-tcover" aria-hidden="true">'
     html += '          <div class="aha-counter-digit-top"></div>'
     html += '        </div>'
-    html += '        <div class="aha-counter-digit-sep">'
+    html += '        <div class="aha-counter-digit-sep" aria-hidden="true">'
     html += '          <div> <span class="digit-sep-left"></span><span class="digit-sep-right"></span> </div>'
     html += '        </div>'
-    html += '        <div class="aha-counter-digit-bcover">'
+    html += '        <div class="aha-counter-digit-bcover" aria-hidden="true">'
     html += '          <div class="aha-counter-digit-bottom"></div>'
     html += '        </div>'
     html += '        <div class="aha-counter-digit-static"></div>'
@@ -115,28 +115,28 @@ CountDownWidget.prototype.getCodes = function() {
 CountDownWidget.prototype.getTimeDiff = function() {
 
   let dt = new Date()
-  let diff = (this.datetime - dt)/1000 - dt.getTimezoneOffset()*60 - this.tzoffset
- console.log((this.datetime - dt)/1000, dt.getTimezoneOffset()*60,this.tzoffset );
-console.log(this.datetime)
-  if (diff < 0 ) {
-      diff = (this.enddate - dt)/1000 - this.tzoffset - dt.getTimezoneOffset()*60;
+  let diff = (this.datetime - dt) / 1000 - dt.getTimezoneOffset() * 60 - this.tzoffset
+  console.log((this.datetime - dt) / 1000, dt.getTimezoneOffset() * 60, this.tzoffset)
+  console.log(this.datetime)
+  if (diff < 0) {
+    diff = (this.enddate - dt) / 1000 - this.tzoffset - dt.getTimezoneOffset() * 60
 
-      if(diff > 0){
-          this.stage = 'p';
-      }
+    if (diff > 0) {
+      this.stage = 'p'
+    }
 
-      console.log(this.enddate);
+    console.log(this.enddate)
   }
 
   if (diff < 0) {
     this.halt = true
-    this.stage = 'e';
+    this.stage = 'e'
     return
   }
 
- //  diff = Math.round(diff / 1000) - this.tzoffset  - dt.getTimezoneOffset() * 60  ;
-console.log(diff);
-  this.delta = diff;
+  //  diff = Math.round(diff / 1000) - this.tzoffset  - dt.getTimezoneOffset() * 60  ;
+  console.log(diff)
+  this.delta = diff
 
 }
 
@@ -165,9 +165,9 @@ CountDownWidget.prototype.run = function() {
 CountDownWidget.prototype.calc = function() {
 
   let out = { d1: '0', d0: '0', h1: '0', h0: '0', m1: '0', m0: '0', s1: '0', s0: '0' }
-console.log(this.delta)
+  console.log(this.delta)
   if (this.delta == 0) {
-   //   window.location.href = window.location.href;
+    //   window.location.href = window.location.href;
   }
 
   if (this.delta <= 0) {
@@ -255,7 +255,7 @@ function convertTime(datetime) {
   dt.setDate(b[2])
   dt.setHours(c[0])
   dt.setMinutes(c[1])
-  dt.setSeconds(0);
+  dt.setSeconds(0)
 
 
   return dt
@@ -266,25 +266,25 @@ function getTimeOffset(datetime) {
   let a = datetime.split(' ')
   a = a[2].toLowerCase()
 
-    switch (a){
-        case 'ast' : return -240;
-        case 'pst' : return -480;
-        case 'pdt' : return -420;
-        case 'est' : return -300;
-        case 'edt' : return -240;
-        case 'cst' : return -360;
-        case 'cdt' : return -300;
-        case 'mst' : return -420;
-        case 'mdt' : return -360;
-        case 'akst' : return -540;
-        case 'akdt' : return -480;
-        case 'hst' : return -600;
-        case 'hast' : return -600;
-        case 'hadt' : return -540;
-        case 'sst' : return -660;
-        case 'sdt' : return -600;
-        case 'chst' : return 600;
-    }
+  switch (a) {
+    case 'ast': return -240
+    case 'pst': return -480
+    case 'pdt': return -420
+    case 'est': return -300
+    case 'edt': return -240
+    case 'cst': return -360
+    case 'cdt': return -300
+    case 'mst': return -420
+    case 'mdt': return -360
+    case 'akst': return -540
+    case 'akdt': return -480
+    case 'hst': return -600
+    case 'hast': return -600
+    case 'hadt': return -540
+    case 'sst': return -660
+    case 'sdt': return -600
+    case 'chst': return 600
+  }
 
 
 
