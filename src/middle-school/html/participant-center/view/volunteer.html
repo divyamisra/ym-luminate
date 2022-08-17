@@ -81,7 +81,7 @@
 					<div class="col-12 d-md-flex justify-content-between align-items-center py-2" ng-if="createVolunteerEntryDetail == true" ng-cloak>
 							<div class="text-start py-1">
 							  <label class="d-inline-block d-md-none fw-bold" for="volunteer-date">Activity Date:</label>
-								<input type="date" class="form-control w-auto d-inline-block" id="volunteer-date" ng-model="volunteerAdd.date" aria-label="Volunteer Date" /> 
+								<input type="date" class="form-control w-auto d-inline-block" id="volunteer-date" ng-model="volunteerAdd.date" ng-model-options="{timezone: null}" aria-label="Volunteer Date" /> 
 							</div>
 							<div class="text-start text-md-center py-1">
 							  <label class="d-inline-block d-md-none fw-bold" for="volunteer-activity">Activity Type:</label>
@@ -126,7 +126,7 @@
 					<div class="d-md-flex justify-content-between align-items-center py-2" ng-repeat="entry in volunteerData | orderBy: '-original_activity_date'" ng-class-odd="{'bg-row':true}">
 							<div class="text-start entry-{{entry.id}} py-1">
 								<span class="py-0" ng-if="entryView != entry.id" aria-label="Activity Date">
-									<span class="d-inline-block d-md-none fw-bold">Activity Date:</span> {{entry.activity_date | date : 'yyyy-M-d'}}
+									<span class="d-inline-block d-md-none fw-bold">Activity Date:</span> {{entry.activity_date | date : 'yyyy-M-d' : 'UTC'}}
 								</span>
 								<span class="p-0" ng-if="entryView == entry.id" aria-label="Select an Activity Date">
   								<label class="d-inline-block d-md-none fw-bold" for="volunteer-date-{{entry.id}}">Activity Date:</label>
