@@ -33,7 +33,7 @@
 				</button>
 			</div>
 			<div class="py-2">
-				<button class="btn btn-md-wide btn-primary" ng-click="PrintImage('#certificate')">
+				<button class="btn btn-md-wide btn-primary" ng-click="PrintImage('#certificate')" ng-class="{'disabled': volunteerData.length == 0}" ng-disabled="volunteerData.length == 0">
 					<strong>
 						Print Certificate
 					</strong>
