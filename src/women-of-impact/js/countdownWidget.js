@@ -72,7 +72,7 @@ CountDownWidget.prototype.getCodes = function() {
   for (let k in blocks) {
 
     html += '  <div class="aha-counter-block col-6 col-xl-3">'
-    html += '    <div class="aha-counter-top">'
+    html += '    <div class="aha-counter-top" role="text">'
 
     html += '      <div class="aha-counter-digit" id="' + this.key + '_' + k + '1" >'
     html += '        <div class="aha-counter-digit-tcover" aria-hidden="true">'
@@ -125,7 +125,7 @@ CountDownWidget.prototype.getTimeDiff = function() {
       this.stage = 'p'
     }
 
-    console.log(this.enddate)
+    // console.log(this.enddate)
   }
 
   if (diff < 0) {
@@ -165,7 +165,7 @@ CountDownWidget.prototype.run = function() {
 CountDownWidget.prototype.calc = function() {
 
   let out = { d1: '0', d0: '0', h1: '0', h0: '0', m1: '0', m0: '0', s1: '0', s0: '0' }
-  console.log(this.delta)
+  // console.log(this.delta)
   if (this.delta == 0) {
     //   window.location.href = window.location.href;
   }
