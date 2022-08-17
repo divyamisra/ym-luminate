@@ -8,7 +8,7 @@ angular.module('trPcControllers').controller 'NgPcVolunteerViewCtrl', [
 
     $scope.entryView = ''
     $scope.hourList = [0..23]
-    $scope.minuteList = [0..59]
+    $scope.minuteList = [0,15,30,45]
     $scope.volunteerData = []
     $scope.volunteerTotal =
       'hours': '0'
