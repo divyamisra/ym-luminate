@@ -224,8 +224,9 @@ CounterDigitChange.prototype.commit = function() {
   root.classList.remove('digit-flip')
   if (root.nextElementSibling) {
     console.log(root.nextElementSibling.querySelector('.aha-counter-digit-static').innerHTML)
+  } else if (root.nextElementSibling) {
+    console.log(root.nextElementSibling.querySelector('.aha-counter-digit-static').innerHTML)
   }
-
 }
 
 CountDownWidget.prototype.announce = function() {
