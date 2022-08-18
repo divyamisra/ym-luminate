@@ -132,18 +132,22 @@
 					<h3 class="h5 p-2">
 						Volunteer Opportunities
 					</h3>
-                                        <div class="red-bg-gradient p-4 pt-3 text-white">
- 				          <div class="volunteer-hours border border-white rounded mb-4">
-					  <div class="d-flex flex-wrap">
-						<div class="title col-5 text-center p-2">Hours</div>
-						<div class="col-2 border-white-left border-white-right"></div>
-						<div class="title col-5 text-center p-2">Minutes</div>
-						<div class="time col-5 text-center bg-white text-red">{{volunteerTotal.hours}}</div>
-						<div class="time col-2 text-center bg-white text-red border-red-left border-red-right">:</div>
-						<div class="time col-5 text-center bg-white text-red">{{volunteerTotal.minutes}}</div>
-					  </div>
-				      </div>
-				      <a class="btn btn-md-wide btn-toggle" ng-href="{{baseUrl}}#/volunteer"><strong>Manage Hours</strong></a>
+					<div class="red-bg-gradient p-4 pt-3 text-white d-md-flex flex-wrap justify-content-between align-items-center">
+						<div class="volunteer-text col-md-6">
+							<p><strong>Ready to Volunteer?</strong></p>
+							<p>Advocate for change, share your voice, teach your community healthy habits, and help end tobacco use for youth. Review the opportunities and select as many as you'd like!</p>
+				      <a class="btn btn-md-wide btn-toggle mb-4" ng-href="{{baseUrl}}#/volunteer"><strong>Manage Hours</strong></a>
+						</div>
+						<div class="volunteer-hours mb-4">
+							<div class="d-flex flex-wrap  border border-white rounded">
+								<div class="title col-5 text-center p-2">Hours</div>
+								<div class="col-2 border-white-left border-white-right"></div>
+								<div class="title col-5 text-center p-2">Minutes</div>
+								<div class="time col-5 text-center bg-white text-red">{{volunteerTotal.hours}}</div>
+								<div class="time col-2 text-center bg-white text-red border-red-left border-red-right">:</div>
+								<div class="time col-5 text-center bg-white text-red">{{volunteerTotal.minutes}}</div>
+							</div>
+						</div>
 				  </div> 
 				</div>
 			</div>
