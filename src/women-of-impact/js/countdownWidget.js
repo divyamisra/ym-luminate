@@ -72,7 +72,7 @@ CountDownWidget.prototype.getCodes = function() {
   for (let k in blocks) {
 
     html += '  <div class="aha-counter-block col-6 col-xl-3">'
-    html += '    < class="aha-counter-top" role="text">'
+    html += '    <div class="aha-counter-top" role="text">'
 
     html += '      <div class="aha-counter-digit" id="' + this.key + '_' + k + '1" >'
     html += '        <div class="aha-counter-digit-tcover" aria-hidden="true">'
@@ -99,9 +99,6 @@ CountDownWidget.prototype.getCodes = function() {
     html += '        </div>'
     html += '        <div class="aha-counter-digit-static"></div>'
     html += '      </div>'
-
-    html += '      <div class="aha-counter-digit-static-combo"></div>'
-
     html += '    </div>'
     html += '    <div class="aha-counter-bottom">' + blocks[k] + '</div>'
     html += '  </div>'
@@ -208,6 +205,7 @@ var CounterDigitChange = function(id, num) {
   let root = document.getElementById(this.id)
   root.classList.add('digit-flip')
   root.querySelector('.aha-counter-digit-top').innerHTML = num
+
 
   if (root.nextElementSibling) {
     console.log(root.nextElementSibling.querySelector('.aha-counter-digit-static').innerHTML)
