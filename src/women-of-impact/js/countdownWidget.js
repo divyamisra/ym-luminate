@@ -206,11 +206,6 @@ var CounterDigitChange = function(id, num) {
   root.classList.add('digit-flip')
   root.querySelector('.aha-counter-digit-top').innerHTML = num
 
-
-  if (root.nextElementSibling) {
-    console.log(root.nextElementSibling.querySelector('.aha-counter-digit-static').innerHTML)
-  }
-
   setTimeout(() => { this.swap() }, 250)
   setTimeout(() => { this.commit() }, 500)
 }
@@ -227,6 +222,10 @@ CounterDigitChange.prototype.commit = function() {
   let root = document.getElementById(this.id)
   root.querySelector('.aha-counter-digit-static').innerHTML = this.num
   root.classList.remove('digit-flip')
+  if (root.nextElementSibling) {
+    console.log(root.nextElementSibling.querySelector('.aha-counter-digit-static').innerHTML)
+  }
+
 }
 
 CountDownWidget.prototype.announce = function() {
