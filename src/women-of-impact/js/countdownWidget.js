@@ -99,6 +99,7 @@ CountDownWidget.prototype.getCodes = function() {
     html += '        </div>'
     html += '        <div class="aha-counter-digit-static"></div>'
     html += '      </div>'
+    html += '      <div class="aha-counter-digits-combo"></div>'
     html += '    </div>'
     html += '    <div class="aha-counter-bottom">' + blocks[k] + '</div>'
     html += '  </div>'
@@ -220,12 +221,14 @@ CounterDigitChange.prototype.swap = function() {
 CounterDigitChange.prototype.commit = function() {
 
   let root = document.getElementById(this.id)
+
   root.querySelector('.aha-counter-digit-static').innerHTML = this.num
   root.classList.remove('digit-flip')
+
   if (root.nextElementSibling) {
-    console.log(root.nextElementSibling.querySelector('.aha-counter-digit-static').innerHTML)
-  } else if (root.nextElementSibling) {
-    console.log(root.nextElementSibling.querySelector('.aha-counter-digit-static').innerHTML)
+    root.parentElement.querySelector('.aha-counter-digits-combo').innerHTML = `${num}${root.nextElementSibling.querySelector('.aha-counter-digit-static').innerHTML}`
+  } else if (root.previousElementSibling) {
+    root.parentElement.querySelector('.aha-counter-digits-combo').innerHTML = `${root.previousElementSibling.querySelector('.aha-counter-digit-static').innerHTML}${num}`
   }
 }
 
