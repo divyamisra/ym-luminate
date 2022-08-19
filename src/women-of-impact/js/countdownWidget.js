@@ -226,9 +226,9 @@ CounterDigitChange.prototype.commit = function() {
   root.classList.remove('digit-flip')
 
   if (root.nextElementSibling) {
-    root.parentElement.querySelector('.aha-counter-digits-combo').innerHTML = `${num}${root.nextElementSibling.querySelector('.aha-counter-digit-static').innerHTML}`
+    root.parentElement.querySelector('.aha-counter-digits-combo').innerHTML = `${this.num}${root.nextElementSibling.querySelector('.aha-counter-digit-static').innerHTML}`
   } else if (root.previousElementSibling) {
-    root.parentElement.querySelector('.aha-counter-digits-combo').innerHTML = `${root.previousElementSibling.querySelector('.aha-counter-digit-static').innerHTML}${num}`
+    root.parentElement.querySelector('.aha-counter-digits-combo').innerHTML = `${root.previousElementSibling.querySelector('.aha-counter-digit-static').innerHTML}${this.num}`
   }
 }
 
