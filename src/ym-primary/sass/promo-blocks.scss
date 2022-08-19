@@ -1,18 +1,22 @@
 .ym-promo-block__item {
   padding: 0 10px;
   font-size:14px;
-  width: 175px;
-  height: 175px;
+  width: 165px;
+  height: 165px;
   background: url(../image/fy23/school-stats-bg.png) no-repeat;
   background-size: 100% auto;
   
   .h2, 
   h2 {
-    font-size: 50px;
+    font-size: 45px;
     margin: 35px 0 10px;
   }
   
   @media (max-width: $screen-xs-max) {
     border-bottom: 0;
+  }
+  
+  p {
+    max-width: 90%;
   }
 }
