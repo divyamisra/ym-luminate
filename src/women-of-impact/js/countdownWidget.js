@@ -100,9 +100,7 @@ CountDownWidget.prototype.getCodes = function() {
     html += '        <div class="aha-counter-digit-static"></div>'
     html += '      </div>'
     html += '    </div>'
-    html += '    <div role="text">'
-    html += '      <div class="aha-counter-bottom"><span class="aha-counter-digits-combo sr-only"></span>&nbsp;' + blocks[k] + '</div>'
-    html += '    </div>'
+    html += '    <div class="aha-counter-bottom" role="text"><span class="aha-counter-digits-combo sr-only"></span>&nbsp;' + blocks[k] + '</div>'
     html += '  </div>'
 
   }
