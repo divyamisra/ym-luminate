@@ -72,7 +72,7 @@ CountDownWidget.prototype.getCodes = function() {
   for (let k in blocks) {
 
     html += '  <div class="aha-counter-block col-6 col-xl-3">'
-    html += '    <div class="aha-counter-top" role="presentation" ria-hidden="true">'
+    html += '    <div class="aha-counter-top" role="presentation" aria-hidden="true">'
 
     html += '      <div class="aha-counter-digit" id="' + this.key + '_' + k + '1" >'
     html += '        <div class="aha-counter-digit-tcover" aria-hidden="true">'
