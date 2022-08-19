@@ -41,6 +41,7 @@ angular.module 'ahaLuminateControllers'
       $scope.unconfirmedAmountRaised = 0
       $scope.schoolBadgesRegistrations = []
       $scope.schoolBadgesFundraising = []
+      $scope.finnsMissionStudentList = []
       
       $scope.trustHtml = (html) ->
         return $sce.trustAsHtml(html)
@@ -159,6 +160,9 @@ angular.module 'ahaLuminateControllers'
                       $scope.schoolPlan.EventStartDate = ''
                       $scope.schoolPlan.DonationDueDate = ''
                       $scope.schoolPlan.KickOffDate = ''
+                    if ListOfStudentsCompletingFinnsMission.studentList.length > 0
+                      angular.forEach ListOfStudentsCompletingFinnsMission.studentList, (student, index) ->
+                        $scope.finnsMissionStudentList[] = student
                   
               if coordinatorId and coordinatorId isnt '0' and eventId
                 TeamraiserCompanyService.getCoordinatorQuestion coordinatorId, eventId
