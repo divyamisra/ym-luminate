@@ -154,7 +154,7 @@
                             setTimeout(function() {
                                 target.focus();
                                 target.closest('section').find('h2').attr('tabindex', '-1').focus();
-                            }, 100);
+                            }, 500);
                         });
                     }
                 });
