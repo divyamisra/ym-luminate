@@ -37,7 +37,7 @@ var CountDownWidget = function(element_id, a, b, c) {
 
   this.key = Math.random().toString(16).slice(2)
 
-  this.announceInterval = 1000 * 60 * 1 // in ms
+  this.announceInterval = 1000 * 60 * 5 // in ms
   this.announceTitle = 'Time left: '
 
   this.getTimeDiff()
@@ -102,7 +102,6 @@ CountDownWidget.prototype.getCodes = function() {
     html += '    </div>'
     html += '    <div class="aha-counter-bottom" role="text"><span class="aha-counter-digits-combo sr-only"></span>&nbsp;' + blocks[k] + '</div>'
     html += '  </div>'
-
   }
 
   html += '</div>'
