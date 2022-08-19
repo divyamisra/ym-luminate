@@ -137,7 +137,11 @@
 
         var addScrollLinks = function() {
             function doFocus(target) {
-                target.closest('section').find('h2').attr('tabindex', '-1').focus();
+                if (target.closest('section').find('h2').length) {
+                    target.closest('section').find('h2').attr('tabindex', '-1').focus();
+                } else {
+                    target.focus();
+                }
             }
 
             $('a.scroll-link')
@@ -156,8 +160,6 @@
                             scrollTop: scrollLocation
                         }, 1000, function() {
                             setTimeout(function() {
-                                // target.focus();
-                                // target.closest('section').find('h2').attr('tabindex', '-1').focus();
                                 doFocus(target);
                             }, 500);
                         });
