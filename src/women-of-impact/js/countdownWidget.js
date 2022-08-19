@@ -72,16 +72,16 @@ CountDownWidget.prototype.getCodes = function() {
   for (let k in blocks) {
 
     html += '  <div class="aha-counter-block col-6 col-xl-3">'
-    html += '    <div class="aha-counter-top" role="text">'
+    html += '    <div class="aha-counter-top" role="presentation">'
 
     html += '      <div class="aha-counter-digit" id="' + this.key + '_' + k + '1" >'
     html += '        <div class="aha-counter-digit-tcover" aria-hidden="true">'
     html += '          <div class="aha-counter-digit-top"></div>'
     html += '        </div>'
-    html += '        <div class="aha-counter-digit-sep" aria-hidden="true">'
+    html += '        <div class="aha-counter-digit-sep">'
     html += '          <div> <span class="digit-sep-left"></span><span class="digit-sep-right"></span> </div>'
     html += '        </div>'
-    html += '        <div class="aha-counter-digit-bcover" aria-hidden="true">'
+    html += '        <div class="aha-counter-digit-bcover">'
     html += '          <div class="aha-counter-digit-bottom"></div>'
     html += '        </div>'
     html += '        <div class="aha-counter-digit-static"></div>'
@@ -91,7 +91,7 @@ CountDownWidget.prototype.getCodes = function() {
     html += '        <div class="aha-counter-digit-tcover" aria-hidden="true">'
     html += '          <div class="aha-counter-digit-top"></div>'
     html += '        </div>'
-    html += '        <div class="aha-counter-digit-sep" aria-hidden="true">'
+    html += '        <div class="aha-counter-digit-sep">'
     html += '          <div> <span class="digit-sep-left"></span><span class="digit-sep-right"></span> </div>'
     html += '        </div>'
     html += '        <div class="aha-counter-digit-bcover" aria-hidden="true">'
@@ -100,8 +100,10 @@ CountDownWidget.prototype.getCodes = function() {
     html += '        <div class="aha-counter-digit-static"></div>'
     html += '      </div>'
     html += '    </div>'
-    html += '    <div class="aha-counter-digits-combo"></div>'
-    html += '    <div class="aha-counter-bottom">' + blocks[k] + '</div>'
+    html += '    <div role="text">'
+    html += '      <div class="aha-counter-digits-combo"></div>'
+    html += '      <div class="aha-counter-bottom">' + blocks[k] + '</div>'
+    html += '    </div>'
     html += '  </div>'
 
   }
