@@ -136,6 +136,10 @@
         }
 
         var addScrollLinks = function() {
+            function doFocus(target) {
+                target.closest('section').find('h2').attr('tabindex', '-1').focus();
+            }
+
             $('a.scroll-link')
                 .on('click', function(event) {
                     // On-page links
@@ -152,8 +156,9 @@
                             scrollTop: scrollLocation
                         }, 1000, function() {
                             setTimeout(function() {
-                                target.focus();
-                                target.closest('section').find('h2').attr('tabindex', '-1').focus();
+                                // target.focus();
+                                // target.closest('section').find('h2').attr('tabindex', '-1').focus();
+                                doFocus(target);
                             }, 500);
                         });
                     }
