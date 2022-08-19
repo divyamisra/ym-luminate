@@ -160,8 +160,9 @@ angular.module 'ahaLuminateControllers'
                       $scope.schoolPlan.EventStartDate = ''
                       $scope.schoolPlan.DonationDueDate = ''
                       $scope.schoolPlan.KickOffDate = ''
-                    if ListOfStudentsCompletingFinnsMission.studentList.length > 0
-                      angular.forEach ListOfStudentsCompletingFinnsMission.studentList, (student, index) ->
+                    if $scope.schoolPlan.ListOfStudentsCompletingFinnsMission > 0
+                      students = JSON.parse $scope.schoolPlan.ListOfStudentsCompletingFinnsMission
+                      angular.forEach students, (student, index) ->
                         $scope.finnsMissionStudentList.push student
                   
               if coordinatorId and coordinatorId isnt '0' and eventId
