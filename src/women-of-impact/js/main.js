@@ -152,7 +152,8 @@
                             scrollTop: scrollLocation
                         }, 1000, function() {
                             setTimeout(function() {
-                                target.closest('section').find('h2').attr('tabindex', '-1').focus() || target.focus();
+                                target.focus();
+                                target.closest('section').find('h2').attr('tabindex', '-1').focus();
                             }, 100);
                         });
                     }
