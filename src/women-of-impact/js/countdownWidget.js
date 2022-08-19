@@ -99,8 +99,8 @@ CountDownWidget.prototype.getCodes = function() {
     html += '        </div>'
     html += '        <div class="aha-counter-digit-static"></div>'
     html += '      </div>'
-    html += '      <div class="aha-counter-digits-combo"></div>'
     html += '    </div>'
+    html += '    <div class="aha-counter-digits-combo"></div>'
     html += '    <div class="aha-counter-bottom">' + blocks[k] + '</div>'
     html += '  </div>'
 
@@ -219,16 +219,16 @@ CounterDigitChange.prototype.swap = function() {
 }
 
 CounterDigitChange.prototype.commit = function() {
-
   let root = document.getElementById(this.id)
+  const digitsCombo = root.closest('.aha-counter-block').querySelector('.aha-counter-digits-combo')
 
   root.querySelector('.aha-counter-digit-static').innerHTML = this.num
   root.classList.remove('digit-flip')
 
   if (root.nextElementSibling) {
-    root.parentElement.querySelector('.aha-counter-digits-combo').innerHTML = `${this.num}${root.nextElementSibling.querySelector('.aha-counter-digit-static').innerHTML}`
+    digitsCombo.innerHTML = `${this.num}${root.nextElementSibling.querySelector('.aha-counter-digit-static').innerHTML}`
   } else if (root.previousElementSibling) {
-    root.parentElement.querySelector('.aha-counter-digits-combo').innerHTML = `${root.previousElementSibling.querySelector('.aha-counter-digit-static').innerHTML}${this.num}`
+    digitsCombo.innerHTML = `${root.previousElementSibling.querySelector('.aha-counter-digit-static').innerHTML}${this.num}`
   }
 }
 
