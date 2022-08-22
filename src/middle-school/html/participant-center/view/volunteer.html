@@ -80,7 +80,7 @@
 							</div>
 							<div class="text-start text-md-center py-1">
 							  <label class="d-inline-block d-md-none fw-bold" for="volunteer-activity">Activity Type:</label>
-								<select class="form-select w-auto mx-md-auto pe-5" name="volunteer-activity" id="volunteer-activity" ng-model="volunteerAdd.activity">
+								<select class="form-select w-auto mx-md-auto pe-5 overflow-hidden" name="volunteer-activity" id="volunteer-activity" ng-model="volunteerAdd.activity">
 									<option value="">
 									</option>
 									<option ng-repeat="activity in volunteerActivities | orderBy: 'name'" value="{{activity.id}}">
