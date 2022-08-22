@@ -3,13 +3,13 @@
     margin-bottom: 60px;
 
     .greeting-header {
-      background-image : url("../images/content/pagebuilder/WOI-Header-BGpng.png");
+      background-image : url("https://secure3.convio.net/heartdev/images/content/pagebuilder/WOI-Header-BGpng.png");
       background-repeat: no-repeat;
       background-size  : 100%;
       background-position: 0;
 
       @include media-breakpoint-down(md) {
-        background-image: url("../images/content/pagebuilder/WOI-Header-BGpng-mobile.png");
+        background-image: url("https://secure3.convio.net/heartdev/images/content/pagebuilder/WOI-Header-BGpng-mobile.png");
         background-position: bottom;
         background-size: cover;
       }
