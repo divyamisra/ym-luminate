@@ -129,6 +129,14 @@ angular.module('trPcControllers').controller 'NgPcVolunteerViewCtrl', [
     $scope.cancelShowVolunteerReport = ->
       $scope.showVolunteerReportModal.close()
       
+    $scope.viewVolunteerActivities = ->
+      $scope.viewVolunteerActivitiesModal = $uibModal.open
+        scope: $scope
+        templateUrl: APP_INFO.rootPath + 'dist/middle-school/html/participant-center/modal/viewVolunteerActivities.html'
+
+    $scope.cancelViewVolunteerActivities = ->
+      $scope.viewVolunteerActivitiesModal.close()
+      
     $scope.volunteerReportData = ->
       volunteerData = []
       if $scope.volunteerData and $scope.volunteerData.length > 0
