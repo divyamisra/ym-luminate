@@ -229,10 +229,10 @@
 					</div>
 				</div>
 			</div>
-			<div class="ym-finns-mission-student-list px-4" ng-show="finnsMissionStudentList.length > 0" ng-cloak>
-				<h2 class="ym-headline">Finn's Mission Completion</h2>
-				<div class="ym-finns-list overflow-scroll" style="max-height:39vh;">
-					<div ng-repeat="student in finnsMissionStudentList" ng-class-even="'bg-light'">
+			<div class="ym-finns-mission-student-list px-4 col-md-6" ng-show="finnsMissionStudentList.length > 0" ng-cloak>
+				<h2 class="ym-headline text-center">Finn's Mission Completion</h2>
+				<div class="ym-finns-list d-md-flex flex-wrap overflow-scroll ms-md-5 mx-auto" style="max-height:39vh;">
+					<div class="col-md-6" ng-repeat="student in finnsMissionStudentList"">
 						<div>{{student.StudentName}}</div>
 					</div>
 				</div>
