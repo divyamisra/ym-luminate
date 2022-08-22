@@ -24,7 +24,7 @@ var CountDownWidget = function(element_id, a, b, c) {
 
   this.id = element_id;
   //this.offset = timeoffset;
-  this.tzoffset = getTimeOffset(a[0]) * 60;
+  this.tzoffset = getTimeOffset(a[0])*60;
   this.datetime = convertTime(a[0]);
   this.enddate = convertTime(b[0]);
   this.halt = false;
@@ -51,11 +51,11 @@ var CountDownWidget = function(element_id, a, b, c) {
   let heading = a[1];
   let desc = a[2];
 
-  if (this.stage == 'p') {
+  if (this.stage == 'p'){
     heading = b[1];
     desc = b[2];
   }
-  else if (this.stage == 'e') {
+  else if (this.stage == 'e'){
     heading = c[1];
     desc = c[2];
   }
