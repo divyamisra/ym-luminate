@@ -87,7 +87,7 @@
 								<select class="form-select w-auto mx-md-auto pe-5" name="volunteer-activity" id="volunteer-activity" ng-model="volunteerAdd.activity">
 									<option value="">
 									</option>
-									<option ng-repeat="activity in volunteerActivities" value="{{activity.id}}">
+									<option ng-repeat="activity in volunteerActivities | orderBy: 'name'" value="{{activity.id}}">
 										{{activity.name}} 
 									</option>
 								</select>
@@ -141,7 +141,7 @@
 									<select class="form-select w-auto mx-md-auto d-inline-block pe-5" name="volunteer-activity-{{entry.id}}" id="volunteer-activity-{{entry.id}}" ng-model="entry.activity_type_id">
 										<option value="">
 										</option>
-										<option ng-repeat="activity in volunteerActivities" ng-value="{{activity.id}}">
+										<option ng-repeat="activity in volunteerActivities | orderBy: 'name'" ng-value="{{activity.id}}">
 											{{activity.name}} 
 										</option>
 									</select>
