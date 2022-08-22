@@ -4,9 +4,9 @@
     </h2>
   </div>
   <div class="modal-body">
-    <div class="volunteerActivities border rounded p-3 mb-3 ms-md-auto">
-      <ul class="d-flex flex-wrap justify-content-around ps-3">
-	<li class="text-black me-5" ng-repeat="activity in volunteerActivities | orderBy: 'name'" ng-class-even="'bg-light'">{{activity.name}}</li>
+    <div class="volunteerActivities p-3 mb-3 ms-md-auto">
+      <ul class="ps-3">
+	<li class="text-black me-5" ng-repeat="activity in volunteerActivities | orderBy: 'name'">{{activity.name}}</li>
       </ul>
     </div>
   </div>
