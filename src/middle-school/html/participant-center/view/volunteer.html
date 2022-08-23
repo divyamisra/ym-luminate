@@ -49,22 +49,22 @@
 		<div class="table-responsive">
 			<div class="table table-striped volunteerEntries">
 					<div class="d-md-flex justify-content-between d-none d-md-block">
-						<div class="text-start">
+						<div class="col-md-3 text-start">
 							<strong>
 								Date
 							</strong>
 						</div>
-						<div class="text-start text-md-center">
+						<div class="col-md-3 text-start text-md-center">
 							<strong>
 								Activity
 							</strong>
 						</div>
-						<div class="text-start text-md-center">
+						<div class="col-md-3 text-start text-md-center">
 							<strong>
 								Hours : Minutes
 							</strong>
 						</div>
-						<div class="text-start text-md-end">
+						<div class="col-md-3 text-start text-md-end">
 							<strong>Edit/Delete</strong>
 						</div>
 					</div>
@@ -74,11 +74,11 @@
 						</div>
 					</div>
 					<div class="col-12 d-md-flex justify-content-between align-items-center py-2" ng-if="createVolunteerEntryDetail == true" ng-cloak>
-							<div class="text-start py-1">
+							<div class="col-md-3 text-start py-1">
 							  <label class="d-inline-block d-md-none fw-bold" for="volunteer-date">Activity Date:</label>
 								<input type="date" class="form-control w-auto d-inline-block" id="volunteer-date" ng-model="volunteerAdd.date" ng-model-options="{timezone: null}" aria-label="Volunteer Date" /> 
 							</div>
-							<div class="text-start text-md-center py-1">
+							<div class="col-md-3 text-start text-md-center py-1">
 							  <label class="d-inline-block d-md-none fw-bold" for="volunteer-activity">Activity Type:</label>
 								<select class="form-select w-auto mx-md-auto pe-5 overflow-hidden" name="volunteer-activity" id="volunteer-activity" ng-model="volunteerAdd.activity">
 									<option value="">
@@ -88,7 +88,7 @@
 									</option>
 								</select>
 							</div>
-							<div class="text-start text-md-center py-1">
+							<div class="col-md-3 text-start text-md-center py-1">
 							  <label class="d-block d-md-inline-block d-md-none fw-bold" for="volunteer-hour">Activity Time:</label>
 								<select class="form-select w-auto d-inline-block pe-5" name="volunteer-hour" id="volunteer-hour" ng-model="volunteerAdd.hour">
 									<option value="">
@@ -107,7 +107,7 @@
 								</select>
 								mins
 							</div>
-							<div class="text-start text-md-end py-1">
+							<div class="col-md-3 text-start text-md-end py-1">
 								<button ng-disabled="volunteerAdd.date == '' || volunteerAdd.activity == '' || (volunteerAdd.hour == '' && volunteerAdd.hour != '0') || (volunteerAdd.minute == '' && volunteerAdd.minute != '0')" class="btn btn-md-wide btn-primary" ng-click="createVolunteerEntry()">
 									<strong>
 										Add
@@ -119,7 +119,7 @@
  							</div>
 					</div>
 					<div class="d-md-flex justify-content-between align-items-center py-2" ng-repeat="entry in volunteerData | orderBy: '-original_activity_date'" ng-class-odd="{'bg-row':true}">
-							<div class="text-start entry-{{entry.id}} py-1">
+							<div class="col-md-3 text-start entry-{{entry.id}} py-1">
 								<span class="py-0" ng-if="entryView != entry.id" aria-label="Activity Date">
 									<span class="d-inline-block d-md-none fw-bold">Activity Date:</span> {{entry.activity_date | date : 'yyyy-M-d' : 'UTC'}}
 								</span>
@@ -128,7 +128,7 @@
 									<input type="date" class="form-control w-auto d-inline-block" name="volunteer-date-{{entry.id}}" id="volunteer-date-{{entry.id}}" ng-model="entry.activity_date" aria-label="Volunteer Date" />
 								</span>
 							</div>
-							<div class="text-start text-md-center py-1">
+							<div class="col-md-3 text-start text-md-center py-1">
 								<span class="py-0" ng-if="entryView != entry.id" aria-label="Activity Type">
 									<span class="d-inline-block d-md-none fw-bold">Activity Type:</span> {{entry.activity_type}}
 								</span>
@@ -143,7 +143,7 @@
 									</select>
 								</span>
 							</div>
-							<div class="text-start text-md-center py-1">
+							<div class="col-md-3 text-start text-md-center py-1">
 								<span class="py-0" ng-if="entryView != entry.id" aria-label="Activity Hours">
 									<span class="d-inline-block d-md-none fw-bold">Time:</span> {{entry.hours | time}}
 								</span>
@@ -167,7 +167,7 @@
 									mins
 								</span>
 							</div>
-							<div class="text-start text-md-end py-1" ng-if="entryView != entry.id">
+							<div class="col-md-3 text-start text-md-end py-1" ng-if="entryView != entry.id">
                 <!-- on view -->
 						 		<button class="btn btn-md-wide btn-primary" ng-click="showEntries()" data-id="{{entry.activity_type_id}}" aria-label="Edit Entry">
 									<strong>
