@@ -8,7 +8,7 @@ angular.module('trPcControllers').controller 'NgPcVolunteerViewCtrl', [
   ($scope, $rootScope, $uibModal, ZuriService, APP_INFO, $filter) ->
 
     $scope.entryView = ''
-    $scope.hourList = [0..23]
+    $scope.hourList = [0,1,2]
     $scope.minuteList = [0,15,30,45]
     $scope.volunteerData = []
     $scope.volunteerLoadPending = false
