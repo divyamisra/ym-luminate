@@ -68,7 +68,7 @@
 							<strong>Edit/Delete</strong>
 						</div>
 					</div>
-					<div class="col-12" ng-if="createVolunteerEntryDetail != true">
+					<div class="col-12" ng-if="createVolunteerEntryDetail != true && !volunteerLoadPending" ng-cloak>
 						<div class="fs-4 color-black py-2" ng-click="showVolunteerEntry()">
 							<i class="bi bi-plus-circle"></i> <span class="fs-5">Add Volunteer Entry</span>
 						</div>
