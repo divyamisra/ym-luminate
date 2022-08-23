@@ -55,6 +55,7 @@
           flex: 50% 0 0;
           @include media-breakpoint-down(md) {
             flex: 44% 0 0;
+            margin-top: 2rem;
           }
 
           .event-info__header {
