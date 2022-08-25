@@ -289,7 +289,6 @@ angular.module 'ahaLuminateControllers'
       # hide t-shirt question for jump start schools
       currentSchool = angular.element(document).find('.company-id').text()
       jumpStartSchools = angular.element(document).find('.jump-start-list').text()
-      console.log('jumpStartSchools ' + jumpStartSchools)
       jumpStartArray = JSON.parse("[" + jumpStartSchools + "]");
       
       findLabel = () ->
