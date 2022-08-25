@@ -1310,11 +1310,9 @@
                     var $personalGiftStep = $steps.find('div.registration-ptype-page-step-personal-gift');
                     $personalGiftStep
                         .find('div.registration-ptype-page-step-content')
+                        .append($('div#part_type_individual_company_selection_container').detach())
                         .append($('div#part_type_additional_gift_container').detach())
                         .find('div#part_type_additional_gift_container .manageable-content').hide();
-                    $personalGiftStep
-                        .find('div.registration-ptype-page-step-company-selection')
-                        .append($('div#part_type_individual_company_selection_container').detach());
                     $personalGiftStep
                         .find('> div.button-container')
                         .append(
@@ -1726,17 +1724,21 @@
 
                 // Step 6
                 var $step6 = $('div#registration-reg-page-step-6');
-                var surveyQuestions = [
-                    'By submitting the information requested in this form',
-                    'Cleveland Clinic',
+                var step6RelocatedSurveyQuestions = function (containerId, questions) {
+                    for (var i = 0; i < questions.length; i++) {
+                        $('.survey-question-container span.input-label:contains("' + questions[i] + '")').closest('div.survey-question-container').each(function () {
+                            var $questionContainer = $(this).detach()
+                            $step6.find('div#' + containerId).append($questionContainer);
+                        });
+                    }
+                };
+                step6RelocatedSurveyQuestions('relocated_survey_questions', [
                     'Healthy for good'
-                ];
-                for (var i = 0; i < surveyQuestions.length; i++) {
-                    $('.survey-question-container span.input-label:contains("' + surveyQuestions[i] + '")').closest('div.survey-question-container').each(function () {
-                        var $questionContainer = $(this).detach()
-                        $step6.find('div#relocated_survey_questions').append($questionContainer);
-                    });
-                }
+                ]);
+                step6RelocatedSurveyQuestions('relocated_company_survey_questions', [
+                    'By submitting the information requested in this form',
+                    'Cleveland Clinic'
+                ]);
                 var $mobileOptinOuter = $('#mobile_optin_outer');
                 if ($mobileOptinOuter.length) {
                     $step6.find('div#relocated_mobile_optin').append(
