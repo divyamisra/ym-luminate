@@ -231,8 +231,8 @@
 			</div>
 			<div class="ym-finns-mission-student-list px-4 col-md-6" ng-show="finnsMissionStudentList.length > 0" ng-cloak>
 				<h2 class="ym-headline text-center">Finn's Mission Completion</h2>
-				<div class="ym-finns-list d-md-flex flex-wrap overflow-scroll ms-md-5 mx-auto" style="max-height:39vh;">
-					<div class="col-md-6" ng-repeat="student in finnsMissionStudentList"">
+				<div class="ym-finns-list d-md-flex flex-wrap overflow-scroll ms-md-5 mx-auto" style="max-height:39vh;" role="list">
+					<div class="col-md-6" ng-repeat="student in finnsMissionStudentList" role="listitem" tabindex="0" aria-label="{{student.StudentName}} Completed Finn's Mission">
 						<div>{{student.StudentName}}</div>
 					</div>
 				</div>

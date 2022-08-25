@@ -30,9 +30,9 @@ angular.module 'ahaLuminateApp'
         blob = new Blob([ '\ufeff' + csvData ], type: 'text/csv;charset=utf-8;')
         dwldLink = document.createElement('a')
         url = URL.createObjectURL(blob)
-        isSafariBrowser = navigator.userAgent.indexOf('Safari') != -1 and navigator.userAgent.indexOf('Chrome') == -1
-        if isSafariBrowser
-          dwldLink.setAttribute 'target', '_blank'
+        #isSafariBrowser = navigator.userAgent.indexOf('Safari') != -1 and navigator.userAgent.indexOf('Chrome') == -1
+        #if isSafariBrowser
+        dwldLink.setAttribute 'target', '_blank'
         dwldLink.setAttribute 'href', url
         dwldLink.setAttribute 'download', filename
         dwldLink.style.visibility = 'hidden'

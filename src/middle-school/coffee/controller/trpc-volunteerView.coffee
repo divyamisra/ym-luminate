@@ -8,9 +8,10 @@ angular.module('trPcControllers').controller 'NgPcVolunteerViewCtrl', [
   ($scope, $rootScope, $uibModal, ZuriService, APP_INFO, $filter) ->
 
     $scope.entryView = ''
-    $scope.hourList = [0..23]
+    $scope.hourList = [0,1,2]
     $scope.minuteList = [0,15,30,45]
     $scope.volunteerData = []
+    $scope.volunteerLoadPending = false
     $scope.volunteerTotal =
       'hours': '0'
       'minutes': '00'
@@ -45,6 +46,7 @@ angular.module('trPcControllers').controller 'NgPcVolunteerViewCtrl', [
     getVolunteerActivities()
 
     getVolunteerism = ->
+      $scope.volunteerLoadPending = true
       $scope.volunteerData = []
       $scope.volunteerTotal =
         'hours': '0'
@@ -53,6 +55,7 @@ angular.module('trPcControllers').controller 'NgPcVolunteerViewCtrl', [
         failure: (response) ->
         error: (response) ->
         success: (response) ->
+          $scope.volunteerLoadPending = false
           if typeof response.data.data != 'undefined'
             if response.data.total_hours > 0
               totalTimeInMinutes = response.data.total_hours
