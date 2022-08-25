@@ -1197,9 +1197,11 @@
                 var digestPersonalGiftAmount = function () {
                     var goal = frGoalMatrix[sliderDonationLevel - 1];
                     if ($('#registration-ptype-personal-goal-option').val() === 'other-amount') {
-                        // goal = Number($('input.js__personal-goal-other-amount-input').val().replace(/[^0-9.-]+/g,""));
-                        // $('input.js__personal-goal-other-amount-input').val(goal);
-                        goal = $('input.js__personal-goal-other-amount-input').val();
+                        goal = Number($('input.js__personal-goal-other-amount-input').val().replace(/[^0-9.-]+/g,"")).toLocaleString('en-US', {
+                            style: 'currency',
+                            currency: 'USD',
+                        }).replace('$', '');
+                        $('input.js__personal-goal-other-amount-input').val(goal);
                     }
                     $('#fr_goal').val(goal);
                 };
@@ -1308,9 +1310,11 @@
                     var $personalGiftStep = $steps.find('div.registration-ptype-page-step-personal-gift');
                     $personalGiftStep
                         .find('div.registration-ptype-page-step-content')
-                        .append($('div#part_type_individual_company_selection_container').detach())
                         .append($('div#part_type_additional_gift_container').detach())
                         .find('div#part_type_additional_gift_container .manageable-content').hide();
+                    $personalGiftStep
+                        .find('div.registration-ptype-page-step-company-selection')
+                        .append($('div#part_type_individual_company_selection_container').detach());
                     $personalGiftStep
                         .find('> div.button-container')
                         .append(
