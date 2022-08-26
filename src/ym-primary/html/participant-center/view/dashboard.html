@@ -664,31 +664,6 @@
 												</strong>
 											</a>
 										</p>
-										<div id="paymentSelType" class="collapse">
-											<h7>
-												How would you like to donate?
-											</h7>
-											<div class="d-flex justify-content-between flex-wrap align-items-center text-center">
-												<a class="col-md-6 p-2" href="Donation2?df_id={{eventInfo.donationFormId}}&amp;FR_ID={{frId}}&amp;PROXY_TYPE=20&amp;PROXY_ID={{consId}}">
-													<img class="img-fluid" src="https://www2.heart.org/images/content/pagebuilder/credit-card-logos.png" alt="Donate using Credit Card"> 
-												</a>
-												<a class="col-md-6 p-2" href="SPageNavigator/ym_khc_donate_amazon.html?FR_ID={{frId}}&amp;mfc_pref=T&amp;PROXY_ID={{consId}}&amp;PROXY_TYPE=20" class="amazon">
-													<img class="img-fluid" src="https://www2.heart.org/images/content/pagebuilder/amazon-payments.png" alt="Donate using Amazon"> 
-												</a>
-												<a class="col-md-6 p-2" href="SPageNavigator/ym_khc_donate_googlepay.html?FR_ID={{frId}}&amp;mfc_pref=T&amp;PROXY_ID={{consId}}&amp;PROXY_TYPE=20" class="googlepay">
-													<img class="img-fluid" src="https://www2.heart.org/donation-forms/donatenow/images/googlepay-button.png" alt="Donate using Google Pay"> 
-												</a>
-												<a class="col-md-6 p-2" href="SPageNavigator/ym_khc_donate_applepay.html?FR_ID={{frId}}&amp;mfc_pref=T&amp;PROXY_ID={{consId}}&amp;PROXY_TYPE=20" class="applepay ">
-													<img class="img-fluid" src="https://www2.heart.org/donation-forms-braintree/donatenow/images/DonateBlack_32pt_@2x.png" alt="Donate using ApplePay"> 
-												</a>
-												<a class="col-md-6 p-2" href="SPageNavigator/ym_khc_donate_venmo.html?FR_ID={{frId}}&amp;mfc_pref=T&amp;PROXY_ID={{consId}}&amp;PROXY_TYPE=20" class="venmo">
-													<img class="img-fluid" src="https://www2.heart.org/donation-forms/donatenow/images/venmo-button.png" alt="Donate using Venmo"> 
-												</a>
-												<a class="col-md-6 p-2" href="Donation2?df_id={{eventInfo.donationFormId}}&amp;FR_ID={{frId}}&amp;PROXY_TYPE=20&amp;PROXY_ID={{consId}}&amp;paypal=true">
-													<img class="img-fluid" src="https://www2.heart.org/images/content/pagebuilder/PP_logo_h_100x26.png" alt="Donate using Paypal"> 
-												</a>
-											</div>
-										</div>
 									</div>
 									<div class="ym-progress-amounts col-lg-6">
 										<p>
@@ -721,6 +696,31 @@
 											</strong>
 											raised last year 
 										</p>
+									</div>
+									<div id="paymentSelType" class="collapse">
+										<h7>
+											How would you like to donate?
+										</h7>
+										<div class="d-flex justify-content-between flex-wrap align-items-center text-center">
+											<a class="col-md-6 p-2" href="Donation2?df_id={{eventInfo.donationFormId}}&amp;FR_ID={{frId}}&amp;PROXY_TYPE=20&amp;PROXY_ID={{consId}}">
+												<img class="img-fluid" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/credit-card-button.png" alt="Donate using Credit Card"> 
+											</a>
+											<a class="col-md-6 p-2" href="SPageNavigator/ym_khc_donate_amazon.html?FR_ID={{frId}}&amp;mfc_pref=T&amp;PROXY_ID={{consId}}&amp;PROXY_TYPE=20" class="amazon">
+												<img class="img-fluid" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/amazon-button.png" alt="Donate using Amazon"> 
+											</a>
+											<a class="col-md-6 p-2" href="SPageNavigator/ym_khc_donate_googlepay.html?FR_ID={{frId}}&amp;mfc_pref=T&amp;PROXY_ID={{consId}}&amp;PROXY_TYPE=20" class="googlepay">
+												<img class="img-fluid" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/googlepay-button.png" alt="Donate using Google Pay"> 
+											</a>
+											<a class="col-md-6 p-2" href="SPageNavigator/ym_khc_donate_applepay.html?FR_ID={{frId}}&amp;mfc_pref=T&amp;PROXY_ID={{consId}}&amp;PROXY_TYPE=20" class="applepay ">
+												<img class="img-fluid" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/applepay-button.png" alt="Donate using ApplePay"> 
+											</a>
+											<a class="col-md-6 p-2" href="SPageNavigator/ym_khc_donate_venmo.html?FR_ID={{frId}}&amp;mfc_pref=T&amp;PROXY_ID={{consId}}&amp;PROXY_TYPE=20" class="venmo">
+												<img class="img-fluid" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/venmo-button.png" alt="Donate using Venmo"> 
+											</a>
+											<a class="col-md-6 p-2" href="Donation2?df_id={{eventInfo.donationFormId}}&amp;FR_ID={{frId}}&amp;PROXY_TYPE=20&amp;PROXY_ID={{consId}}&amp;paypal=true">
+												<img class="img-fluid" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/paypal-button.png" alt="Donate using Paypal"> 
+											</a>
+										</div>
 									</div>
 								</div>
 								<div class="ym-pc-dashboard-section-header">
@@ -1970,31 +1970,6 @@
 																		</strong>
 																	</a>
 																</p>
-																<div id="paymentSelType2" class="collapse">
-																	<h7>
-																		How would you like to donate?
-																	</h7>
-																	<div class="d-flex justify-content-between flex-wrap align-items-center text-center">
-																		<a class="col-md-6 p-2" href="Donation2?df_id={{eventInfo.donationFormId}}&amp;FR_ID={{frId}}&amp;PROXY_TYPE=20&amp;PROXY_ID={{consId}}">
-																			<img class="img-fluid" src="https://www2.heart.org/images/content/pagebuilder/credit-card-logos.png" alt="Donate using Credit Card"> 
-																		</a>
-																		<a class="col-md-6 p-2" href="SPageNavigator/ym_khc_donate_amazon.html?FR_ID={{frId}}&amp;mfc_pref=T&amp;PROXY_ID={{consId}}&amp;PROXY_TYPE=20" class="amazon">
-																			<img class="img-fluid" src="https://www2.heart.org/images/content/pagebuilder/amazon-payments.png" alt="Donate using Amazon"> 
-																		</a>
-																		<a class="col-md-6 p-2" href="SPageNavigator/ym_khc_donate_googlepay.html?FR_ID={{frId}}&amp;mfc_pref=T&amp;PROXY_ID={{consId}}&amp;PROXY_TYPE=20" class="googlepay">
-																			<img class="img-fluid" src="https://www2.heart.org/donation-forms/donatenow/images/googlepay-button.png" alt="Donate using Google Pay"> 
-																		</a>
-																		<a class="col-md-6 p-2" href="SPageNavigator/ym_khc_donate_applepay.html?FR_ID={{frId}}&amp;mfc_pref=T&amp;PROXY_ID={{consId}}&amp;PROXY_TYPE=20" class="applepay ">
-																			<img class="img-fluid" src="https://www2.heart.org/donation-forms-braintree/donatenow/images/DonateBlack_32pt_@2x.png" alt="Donate using ApplePay"> 
-																		</a>
-																		<a class="col-md-6 p-2" href="SPageNavigator/ym_khc_donate_venmo.html?FR_ID={{frId}}&amp;mfc_pref=T&amp;PROXY_ID={{consId}}&amp;PROXY_TYPE=20" class="venmo">
-																			<img class="img-fluid" src="https://www2.heart.org/donation-forms/donatenow/images/venmo-button.png" alt="Donate using Venmo"> 
-																		</a>
-																		<a class="col-md-6 p-2" href="Donation2?df_id={{eventInfo.donationFormId}}&amp;FR_ID={{frId}}&amp;PROXY_TYPE=20&amp;PROXY_ID={{consId}}&amp;paypal=true">
-																			<img class="img-fluid" src="https://www2.heart.org/images/content/pagebuilder/PP_logo_h_100x26.png" alt="Donate using Paypal"> 
-																		</a>
-																	</div>
-																</div>
 															</div>
 															<div class="ym-progress-amounts">
 																<p>
@@ -2027,6 +2002,31 @@
 																	</strong>
 																	raised last year 
 																</p>
+															</div>
+															<div id="paymentSelType2" class="collapse">
+																<h7>
+																	How would you like to donate?
+																</h7>
+																<div class="d-flex justify-content-between flex-wrap align-items-center text-center">
+																	<a class="col-md-6 p-2" href="Donation2?df_id={{eventInfo.donationFormId}}&amp;FR_ID={{frId}}&amp;PROXY_TYPE=20&amp;PROXY_ID={{consId}}">
+																		<img class="img-fluid" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/credit-card-button.png" alt="Donate using Credit Card"> 
+																	</a>
+																	<a class="col-md-6 p-2" href="SPageNavigator/ym_khc_donate_amazon.html?FR_ID={{frId}}&amp;mfc_pref=T&amp;PROXY_ID={{consId}}&amp;PROXY_TYPE=20" class="amazon">
+																		<img class="img-fluid" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/amazon-button.png" alt="Donate using Amazon"> 
+																	</a>
+																	<a class="col-md-6 p-2" href="SPageNavigator/ym_khc_donate_googlepay.html?FR_ID={{frId}}&amp;mfc_pref=T&amp;PROXY_ID={{consId}}&amp;PROXY_TYPE=20" class="googlepay">
+																		<img class="img-fluid" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/googlepay-button.png" alt="Donate using Google Pay"> 
+																	</a>
+																	<a class="col-md-6 p-2" href="SPageNavigator/ym_khc_donate_applepay.html?FR_ID={{frId}}&amp;mfc_pref=T&amp;PROXY_ID={{consId}}&amp;PROXY_TYPE=20" class="applepay ">
+																		<img class="img-fluid" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/applepay-button.png" alt="Donate using ApplePay"> 
+																	</a>
+																	<a class="col-md-6 p-2" href="SPageNavigator/ym_khc_donate_venmo.html?FR_ID={{frId}}&amp;mfc_pref=T&amp;PROXY_ID={{consId}}&amp;PROXY_TYPE=20" class="venmo">
+																		<img class="img-fluid" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/venmo-button.png" alt="Donate using Venmo"> 
+																	</a>
+																	<a class="col-md-6 p-2" href="Donation2?df_id={{eventInfo.donationFormId}}&amp;FR_ID={{frId}}&amp;PROXY_TYPE=20&amp;PROXY_ID={{consId}}&amp;paypal=true">
+																		<img class="img-fluid" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/paypal-button.png" alt="Donate using Paypal"> 
+																	</a>
+																</div>
 															</div>
 														</div>
 													</div>
