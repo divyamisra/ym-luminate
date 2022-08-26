@@ -410,6 +410,7 @@ main > .container {
   .ym-progress-related {
     position: relative;
     display: flex;
+    flex-wrap: wrap;
     @media (max-width:991px) {
        display:block;
     }
