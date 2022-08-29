@@ -1806,7 +1806,7 @@
 					<div class="col-md-6 px-4">
 						<h3 class="h5 text-center">Top 15 Schools Nationally</h3>
 						<div class="ym-tl-dollars-raised" role="list">
-							<div class="d-flex justify-content-between" ng-repeat="topSchool in schoolTop15" role="listitem" ng-if="schoolTop15.length > 0" ng-cloak>
+							<div class="d-flex justify-content-between" ng-repeat="topSchool in schoolTop15" role="listitem" ng-if="schoolTop15.length > 0 && topSchool.SchoolTotalAmountRaised > 0" ng-cloak>
 								<div class="col-xs-1 top-index">#{{$index+1}}</div>
 								<div class="col-xs-8 top-detail">
 									<div class="top-name">{{topSchool.SchoolName}}</div>
@@ -1820,7 +1820,7 @@
 					<div class="col-md-6 px-4">
 						<h3 class="h5 text-center">Top 15 Schools in {{stateList[schoolPlan.SchoolState]}}</h3>
 						<div class="ym-tl-dollars-raised" role="list">
-							<div class="d-flex justify-content-between" ng-repeat="topSchool2 in schoolTop15ByState" role="listitem" ng-if="schoolTop15ByState.length > 0" ng-cloak>
+							<div class="d-flex justify-content-between" ng-repeat="topSchool2 in schoolTop15ByState" role="listitem" ng-if="schoolTop15ByState.length > 0 && schoolTop15ByState.SchoolTotalAmountRaised > 0" ng-cloak>
 								<div class="col-xs-1 top-index">#{{$index+1}}</div>
 								<div class="col-xs-8 top-detail">
 									<div class="top-name">{{topSchool2.SchoolName}}</div>
