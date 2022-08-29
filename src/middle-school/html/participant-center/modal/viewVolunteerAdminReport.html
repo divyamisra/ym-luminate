@@ -12,7 +12,7 @@
   <div class="modal-body text-center" ng-if="!volunteerAdminReportPending" ng-cloak>
     <div class="ym-volunteer-report-status">
       Report generation is completed.<br/><br/>
-      <button type="button" class="btn btn-md-wide btn-primary" ng-csv="volunteerReportList" filename="community-service-log.csv" csv-header="['School ID', 'Cons ID', 'Event Year', 'Activity Type', 'Total Hours']" csv-fields="['school_id', 'constituent_id', 'event_year', 'activity_type', 'total_hours']" charset="utf-8"><span class="glyphicon glyphicon-download-alt">&nbsp;</span>Download CSV</button>
+      <button type="button" class="btn btn-md-wide btn-primary" ng-csv="volunteerAdminReportList" filename="community-service-log.csv" csv-header="['School ID', 'Cons ID', 'Event Year', 'Activity Type', 'Total Hours']" csv-fields="['school_id', 'constituent_id', 'event_year', 'activity_type', 'total_hours']" charset="utf-8"><span class="glyphicon glyphicon-download-alt">&nbsp;</span>Download CSV</button>
       <div class="alert" role="alert" ng-if="buildCSVPending == 'done'" ng-cloak>
 	      <strong>CSV File has been created and downloaded.</strong>
       </div>
