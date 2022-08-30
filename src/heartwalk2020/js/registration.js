@@ -1209,6 +1209,7 @@
                 var renderStep = function (onPage, offPage) {
                     renderHeader(onPage);
                     $('body').focus(); // Reset focus to the top of the page
+                    $('html, body').animate({scrollTop: 0}, 0);
                     $('div#registration-ptype-page-step-' + offPage.toString()).hide();
                     $('div#registration-ptype-page-step-' + onPage.toString()).fadeIn();
                     if (onPage === 2) {
@@ -1571,11 +1572,9 @@
                 var renderStep = function (onPage, offPage) {
                     renderHeader(onPage);
                     $('body').focus(); // Reset focus to the top of the page
+                    $('html, body').animate({scrollTop: 0}, 0);
                     $('div#registration-reg-page-step-' + offPage.toString()).hide();
                     $('div#registration-reg-page-step-' + onPage.toString()).fadeIn();
-                    //$('html, body').animate({
-                    //    scrollTop: $('#registration_options_page').offset().top
-                    //  }, 500);
                 };
 
                 var renderPrevStep = function (currentStep, prevStep) {
