@@ -546,11 +546,6 @@
 		</div>
 	</div>
 	<div ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true' && location != '/dashboard-student'" ng-cloak>
-		<div class="py-1">
-			<button type="button" class="btn btn-md-wide btn-primary" ng-click="showVolunteerAdminReport()">
-				<strong>Volunteer Report</strong>
-			</button>
-		</div>
 		<section class="ym-pc-dashboard-coordinator-plan-section mb-4" aria-label="School Plan Selection">
 			<div class="ym-pc-dashboard-coordinator-progress-section__column white-box red-border-bottom m-2">
 				<h2 class="h5 clearfix">
@@ -726,7 +721,7 @@
 											</div>
 										</div>
 									</div>
-								<div class="coordinator-personal-progress white-box red-border-bottom p-0">
+								<div class="coordinator-personal-progress white-box red-border-bottom p-0 mb-4">
 									<div class="card-header bg-light d-flex align-items-center justify-content-between m-0">
 										<h3 class="h5 mb-0">Personal Progress</h3>
 										<a class="btn btn-md-wide btn-toggle" href="" ng-click="editPersonalGoal()">
@@ -783,9 +778,20 @@
 												</div>
 											</div>												
 										</div>
+								</div>
+								<div class="coordinator-personal-progress white-box red-border-bottom p-0 mb-4">
+									<div class="card-header bg-light d-flex align-items-center justify-content-between m-0">
+										<h3 class="h5 mb-0">Student Volunteer Report</h3>
+									</div>
+									<div class="p-4">
+									  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam vel sapien in enim ultricies malesuada. Maecenas sed congue mauris, eu dapibus odio. In ac bibendum sem.</p>
+										<button type="button" class="btn btn-md-wide btn-primary" ng-click="showVolunteerAdminReport()">
+											<strong>Generate Volunteer Report</strong>
+										</button>
 									</div>
 								</div>
 							</div>
+						</div>
 						<div class="col-md-6 p-2">
 							<div class="white-box red-border-bottom mb-4">
 								<h3 class="h5 clearfix">
