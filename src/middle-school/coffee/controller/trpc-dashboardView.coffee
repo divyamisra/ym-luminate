@@ -1356,7 +1356,7 @@ angular.module 'trPcControllers'
       
       $scope.volunteerAdminReportData = ->
         volunteerAdminData = []
-        ZuriService.getVolunteerData "report/" + $scope.participantRegistration.companyInformation.companyId,
+        ZuriService.getVolunteerAdminData $scope.participantRegistration.companyInformation.companyId,
           failure: (response) ->
           error: (response) ->
           success: (response) ->
