@@ -9,11 +9,16 @@
   height: 160px;
   background: url(../image/fy23/school-stats-bg.png) no-repeat;
   background-size: 100% auto;
+  align-items: center;
+  align-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   
   .h2, 
   h2 {
     font-size: 45px;
-    margin: 20px 0 10px;
+    margin: 0px;
   }
   
   @media (max-width: $screen-xs-max) {
