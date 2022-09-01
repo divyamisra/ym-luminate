@@ -1,4 +1,4 @@
-angular.module('trPcControllers').controller 'NgPcVolunteerViewCtrl', [
+angular.module('trPcControllers').controller 'NgPcVolunteerCoordinatorViewCtrl', [
   '$scope'
   '$rootScope'
   '$uibModal'
