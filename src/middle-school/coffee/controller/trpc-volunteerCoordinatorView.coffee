@@ -8,7 +8,403 @@ angular.module('trPcControllers').controller 'NgPcVolunteerCoordinatorViewCtrl',
   ($scope, $rootScope, $uibModal, ZuriService, APP_INFO, $filter) ->
 
     $scope.entryView = ''
-    $scope.hourList = [0,1,2]
+    $scope.hourList = [0,1,2]      $scope.volunteerAdminData = []
+      $scope.showVolunteerAdminReport = ->
+        $scope.volunteerAdminReportPending = true
+        $scope.showVolunteerAdminReportModal = $uibModal.open
+          scope: $scope
+          templateUrl: APP_INFO.rootPath + 'dist/middle-school/html/participant-center/modal/viewVolunteerAdminReport.html'
+        $scope.volunteerAdminReportData()
+
+      $scope.cancelShowVolunteerAdminReport = ->
+        $scope.showVolunteerAdminReportModal.close()
+      
+      $scope.volunteerAdminReportData = ->
+        volunteerAdminData = []
+        ZuriService.getVolunteerAdminData $scope.participantRegistration.companyInformation.companyId,
+          failure: (response) ->
+          error: (response) ->
+          success: (response) ->
+            if typeof response.data.data != 'undefined'
+              $scope.volunteerAdminData = response.data.data
+              angular.forEach $scope.volunteerAdminData, (entry, entryIndex) ->
+                volunteerAdminData[entryIndex] = entry
+              $scope.volunteerAdminReportList = volunteerAdminData
+            $scope.volunteerAdminReportPending = false      $scope.volunteerAdminData = []
+      $scope.showVolunteerAdminReport = ->
+        $scope.volunteerAdminReportPending = true
+        $scope.showVolunteerAdminReportModal = $uibModal.open
+          scope: $scope
+          templateUrl: APP_INFO.rootPath + 'dist/middle-school/html/participant-center/modal/viewVolunteerAdminReport.html'
+        $scope.volunteerAdminReportData()
+
+      $scope.cancelShowVolunteerAdminReport = ->
+        $scope.showVolunteerAdminReportModal.close()
+      
+      $scope.volunteerAdminReportData = ->
+        volunteerAdminData = []
+        ZuriService.getVolunteerAdminData $scope.participantRegistration.companyInformation.companyId,
+          failure: (response) ->
+          error: (response) ->
+          success: (response) ->
+            if typeof response.data.data != 'undefined'
+              $scope.volunteerAdminData = response.data.data
+              angular.forEach $scope.volunteerAdminData, (entry, entryIndex) ->
+                volunteerAdminData[entryIndex] = entry
+              $scope.volunteerAdminReportList = volunteerAdminData
+            $scope.volunteerAdminReportPending = false      $scope.volunteerAdminData = []
+      $scope.showVolunteerAdminReport = ->
+        $scope.volunteerAdminReportPending = true
+        $scope.showVolunteerAdminReportModal = $uibModal.open
+          scope: $scope
+          templateUrl: APP_INFO.rootPath + 'dist/middle-school/html/participant-center/modal/viewVolunteerAdminReport.html'
+        $scope.volunteerAdminReportData()
+
+      $scope.cancelShowVolunteerAdminReport = ->
+        $scope.showVolunteerAdminReportModal.close()
+      
+      $scope.volunteerAdminReportData = ->
+        volunteerAdminData = []
+        ZuriService.getVolunteerAdminData $scope.participantRegistration.companyInformation.companyId,
+          failure: (response) ->
+          error: (response) ->
+          success: (response) ->
+            if typeof response.data.data != 'undefined'
+              $scope.volunteerAdminData = response.data.data
+              angular.forEach $scope.volunteerAdminData, (entry, entryIndex) ->
+                volunteerAdminData[entryIndex] = entry
+              $scope.volunteerAdminReportList = volunteerAdminData
+            $scope.volunteerAdminReportPending = false      $scope.volunteerAdminData = []
+      $scope.showVolunteerAdminReport = ->
+        $scope.volunteerAdminReportPending = true
+        $scope.showVolunteerAdminReportModal = $uibModal.open
+          scope: $scope
+          templateUrl: APP_INFO.rootPath + 'dist/middle-school/html/participant-center/modal/viewVolunteerAdminReport.html'
+        $scope.volunteerAdminReportData()
+
+      $scope.cancelShowVolunteerAdminReport = ->
+        $scope.showVolunteerAdminReportModal.close()
+      
+      $scope.volunteerAdminReportData = ->
+        volunteerAdminData = []
+        ZuriService.getVolunteerAdminData $scope.participantRegistration.companyInformation.companyId,
+          failure: (response) ->
+          error: (response) ->
+          success: (response) ->
+            if typeof response.data.data != 'undefined'
+              $scope.volunteerAdminData = response.data.data
+              angular.forEach $scope.volunteerAdminData, (entry, entryIndex) ->
+                volunteerAdminData[entryIndex] = entry
+              $scope.volunteerAdminReportList = volunteerAdminData
+            $scope.volunteerAdminReportPending = false      $scope.volunteerAdminData = []
+      $scope.showVolunteerAdminReport = ->
+        $scope.volunteerAdminReportPending = true
+        $scope.showVolunteerAdminReportModal = $uibModal.open
+          scope: $scope
+          templateUrl: APP_INFO.rootPath + 'dist/middle-school/html/participant-center/modal/viewVolunteerAdminReport.html'
+        $scope.volunteerAdminReportData()
+
+      $scope.cancelShowVolunteerAdminReport = ->
+        $scope.showVolunteerAdminReportModal.close()
+      
+      $scope.volunteerAdminReportData = ->
+        volunteerAdminData = []
+        ZuriService.getVolunteerAdminData $scope.participantRegistration.companyInformation.companyId,
+          failure: (response) ->
+          error: (response) ->
+          success: (response) ->
+            if typeof response.data.data != 'undefined'
+              $scope.volunteerAdminData = response.data.data
+              angular.forEach $scope.volunteerAdminData, (entry, entryIndex) ->
+                volunteerAdminData[entryIndex] = entry
+              $scope.volunteerAdminReportList = volunteerAdminData
+            $scope.volunteerAdminReportPending = false      $scope.volunteerAdminData = []
+      $scope.showVolunteerAdminReport = ->
+        $scope.volunteerAdminReportPending = true
+        $scope.showVolunteerAdminReportModal = $uibModal.open
+          scope: $scope
+          templateUrl: APP_INFO.rootPath + 'dist/middle-school/html/participant-center/modal/viewVolunteerAdminReport.html'
+        $scope.volunteerAdminReportData()
+
+      $scope.cancelShowVolunteerAdminReport = ->
+        $scope.showVolunteerAdminReportModal.close()
+      
+      $scope.volunteerAdminReportData = ->
+        volunteerAdminData = []
+        ZuriService.getVolunteerAdminData $scope.participantRegistration.companyInformation.companyId,
+          failure: (response) ->
+          error: (response) ->
+          success: (response) ->
+            if typeof response.data.data != 'undefined'
+              $scope.volunteerAdminData = response.data.data
+              angular.forEach $scope.volunteerAdminData, (entry, entryIndex) ->
+                volunteerAdminData[entryIndex] = entry
+              $scope.volunteerAdminReportList = volunteerAdminData
+            $scope.volunteerAdminReportPending = false      $scope.volunteerAdminData = []
+      $scope.showVolunteerAdminReport = ->
+        $scope.volunteerAdminReportPending = true
+        $scope.showVolunteerAdminReportModal = $uibModal.open
+          scope: $scope
+          templateUrl: APP_INFO.rootPath + 'dist/middle-school/html/participant-center/modal/viewVolunteerAdminReport.html'
+        $scope.volunteerAdminReportData()
+
+      $scope.cancelShowVolunteerAdminReport = ->
+        $scope.showVolunteerAdminReportModal.close()
+      
+      $scope.volunteerAdminReportData = ->
+        volunteerAdminData = []
+        ZuriService.getVolunteerAdminData $scope.participantRegistration.companyInformation.companyId,
+          failure: (response) ->
+          error: (response) ->
+          success: (response) ->
+            if typeof response.data.data != 'undefined'
+              $scope.volunteerAdminData = response.data.data
+              angular.forEach $scope.volunteerAdminData, (entry, entryIndex) ->
+                volunteerAdminData[entryIndex] = entry
+              $scope.volunteerAdminReportList = volunteerAdminData
+            $scope.volunteerAdminReportPending = false      $scope.volunteerAdminData = []
+      $scope.showVolunteerAdminReport = ->
+        $scope.volunteerAdminReportPending = true
+        $scope.showVolunteerAdminReportModal = $uibModal.open
+          scope: $scope
+          templateUrl: APP_INFO.rootPath + 'dist/middle-school/html/participant-center/modal/viewVolunteerAdminReport.html'
+        $scope.volunteerAdminReportData()
+
+      $scope.cancelShowVolunteerAdminReport = ->
+        $scope.showVolunteerAdminReportModal.close()
+      
+      $scope.volunteerAdminReportData = ->
+        volunteerAdminData = []
+        ZuriService.getVolunteerAdminData $scope.participantRegistration.companyInformation.companyId,
+          failure: (response) ->
+          error: (response) ->
+          success: (response) ->
+            if typeof response.data.data != 'undefined'
+              $scope.volunteerAdminData = response.data.data
+              angular.forEach $scope.volunteerAdminData, (entry, entryIndex) ->
+                volunteerAdminData[entryIndex] = entry
+              $scope.volunteerAdminReportList = volunteerAdminData
+            $scope.volunteerAdminReportPending = false      $scope.volunteerAdminData = []
+      $scope.showVolunteerAdminReport = ->
+        $scope.volunteerAdminReportPending = true
+        $scope.showVolunteerAdminReportModal = $uibModal.open
+          scope: $scope
+          templateUrl: APP_INFO.rootPath + 'dist/middle-school/html/participant-center/modal/viewVolunteerAdminReport.html'
+        $scope.volunteerAdminReportData()
+
+      $scope.cancelShowVolunteerAdminReport = ->
+        $scope.showVolunteerAdminReportModal.close()
+      
+      $scope.volunteerAdminReportData = ->
+        volunteerAdminData = []
+        ZuriService.getVolunteerAdminData $scope.participantRegistration.companyInformation.companyId,
+          failure: (response) ->
+          error: (response) ->
+          success: (response) ->
+            if typeof response.data.data != 'undefined'
+              $scope.volunteerAdminData = response.data.data
+              angular.forEach $scope.volunteerAdminData, (entry, entryIndex) ->
+                volunteerAdminData[entryIndex] = entry
+              $scope.volunteerAdminReportList = volunteerAdminData
+            $scope.volunteerAdminReportPending = false      $scope.volunteerAdminData = []
+      $scope.showVolunteerAdminReport = ->
+        $scope.volunteerAdminReportPending = true
+        $scope.showVolunteerAdminReportModal = $uibModal.open
+          scope: $scope
+          templateUrl: APP_INFO.rootPath + 'dist/middle-school/html/participant-center/modal/viewVolunteerAdminReport.html'
+        $scope.volunteerAdminReportData()
+
+      $scope.cancelShowVolunteerAdminReport = ->
+        $scope.showVolunteerAdminReportModal.close()
+      
+      $scope.volunteerAdminReportData = ->
+        volunteerAdminData = []
+        ZuriService.getVolunteerAdminData $scope.participantRegistration.companyInformation.companyId,
+          failure: (response) ->
+          error: (response) ->
+          success: (response) ->
+            if typeof response.data.data != 'undefined'
+              $scope.volunteerAdminData = response.data.data
+              angular.forEach $scope.volunteerAdminData, (entry, entryIndex) ->
+                volunteerAdminData[entryIndex] = entry
+              $scope.volunteerAdminReportList = volunteerAdminData
+            $scope.volunteerAdminReportPending = false      $scope.volunteerAdminData = []
+      $scope.showVolunteerAdminReport = ->
+        $scope.volunteerAdminReportPending = true
+        $scope.showVolunteerAdminReportModal = $uibModal.open
+          scope: $scope
+          templateUrl: APP_INFO.rootPath + 'dist/middle-school/html/participant-center/modal/viewVolunteerAdminReport.html'
+        $scope.volunteerAdminReportData()
+
+      $scope.cancelShowVolunteerAdminReport = ->
+        $scope.showVolunteerAdminReportModal.close()
+      
+      $scope.volunteerAdminReportData = ->
+        volunteerAdminData = []
+        ZuriService.getVolunteerAdminData $scope.participantRegistration.companyInformation.companyId,
+          failure: (response) ->
+          error: (response) ->
+          success: (response) ->
+            if typeof response.data.data != 'undefined'
+              $scope.volunteerAdminData = response.data.data
+              angular.forEach $scope.volunteerAdminData, (entry, entryIndex) ->
+                volunteerAdminData[entryIndex] = entry
+              $scope.volunteerAdminReportList = volunteerAdminData
+            $scope.volunteerAdminReportPending = false      $scope.volunteerAdminData = []
+      $scope.showVolunteerAdminReport = ->
+        $scope.volunteerAdminReportPending = true
+        $scope.showVolunteerAdminReportModal = $uibModal.open
+          scope: $scope
+          templateUrl: APP_INFO.rootPath + 'dist/middle-school/html/participant-center/modal/viewVolunteerAdminReport.html'
+        $scope.volunteerAdminReportData()
+
+      $scope.cancelShowVolunteerAdminReport = ->
+        $scope.showVolunteerAdminReportModal.close()
+      
+      $scope.volunteerAdminReportData = ->
+        volunteerAdminData = []
+        ZuriService.getVolunteerAdminData $scope.participantRegistration.companyInformation.companyId,
+          failure: (response) ->
+          error: (response) ->
+          success: (response) ->
+            if typeof response.data.data != 'undefined'
+              $scope.volunteerAdminData = response.data.data
+              angular.forEach $scope.volunteerAdminData, (entry, entryIndex) ->
+                volunteerAdminData[entryIndex] = entry
+              $scope.volunteerAdminReportList = volunteerAdminData
+            $scope.volunteerAdminReportPending = false      $scope.volunteerAdminData = []
+      $scope.showVolunteerAdminReport = ->
+        $scope.volunteerAdminReportPending = true
+        $scope.showVolunteerAdminReportModal = $uibModal.open
+          scope: $scope
+          templateUrl: APP_INFO.rootPath + 'dist/middle-school/html/participant-center/modal/viewVolunteerAdminReport.html'
+        $scope.volunteerAdminReportData()
+
+      $scope.cancelShowVolunteerAdminReport = ->
+        $scope.showVolunteerAdminReportModal.close()
+      
+      $scope.volunteerAdminReportData = ->
+        volunteerAdminData = []
+        ZuriService.getVolunteerAdminData $scope.participantRegistration.companyInformation.companyId,
+          failure: (response) ->
+          error: (response) ->
+          success: (response) ->
+            if typeof response.data.data != 'undefined'
+              $scope.volunteerAdminData = response.data.data
+              angular.forEach $scope.volunteerAdminData, (entry, entryIndex) ->
+                volunteerAdminData[entryIndex] = entry
+              $scope.volunteerAdminReportList = volunteerAdminData
+            $scope.volunteerAdminReportPending = false      $scope.volunteerAdminData = []
+      $scope.showVolunteerAdminReport = ->
+        $scope.volunteerAdminReportPending = true
+        $scope.showVolunteerAdminReportModal = $uibModal.open
+          scope: $scope
+          templateUrl: APP_INFO.rootPath + 'dist/middle-school/html/participant-center/modal/viewVolunteerAdminReport.html'
+        $scope.volunteerAdminReportData()
+
+      $scope.cancelShowVolunteerAdminReport = ->
+        $scope.showVolunteerAdminReportModal.close()
+      
+      $scope.volunteerAdminReportData = ->
+        volunteerAdminData = []
+        ZuriService.getVolunteerAdminData $scope.participantRegistration.companyInformation.companyId,
+          failure: (response) ->
+          error: (response) ->
+          success: (response) ->
+            if typeof response.data.data != 'undefined'
+              $scope.volunteerAdminData = response.data.data
+              angular.forEach $scope.volunteerAdminData, (entry, entryIndex) ->
+                volunteerAdminData[entryIndex] = entry
+              $scope.volunteerAdminReportList = volunteerAdminData
+            $scope.volunteerAdminReportPending = false      $scope.volunteerAdminData = []
+      $scope.showVolunteerAdminReport = ->
+        $scope.volunteerAdminReportPending = true
+        $scope.showVolunteerAdminReportModal = $uibModal.open
+          scope: $scope
+          templateUrl: APP_INFO.rootPath + 'dist/middle-school/html/participant-center/modal/viewVolunteerAdminReport.html'
+        $scope.volunteerAdminReportData()
+
+      $scope.cancelShowVolunteerAdminReport = ->
+        $scope.showVolunteerAdminReportModal.close()
+      
+      $scope.volunteerAdminReportData = ->
+        volunteerAdminData = []
+        ZuriService.getVolunteerAdminData $scope.participantRegistration.companyInformation.companyId,
+          failure: (response) ->
+          error: (response) ->
+          success: (response) ->
+            if typeof response.data.data != 'undefined'
+              $scope.volunteerAdminData = response.data.data
+              angular.forEach $scope.volunteerAdminData, (entry, entryIndex) ->
+                volunteerAdminData[entryIndex] = entry
+              $scope.volunteerAdminReportList = volunteerAdminData
+            $scope.volunteerAdminReportPending = false      $scope.volunteerAdminData = []
+      $scope.showVolunteerAdminReport = ->
+        $scope.volunteerAdminReportPending = true
+        $scope.showVolunteerAdminReportModal = $uibModal.open
+          scope: $scope
+          templateUrl: APP_INFO.rootPath + 'dist/middle-school/html/participant-center/modal/viewVolunteerAdminReport.html'
+        $scope.volunteerAdminReportData()
+
+      $scope.cancelShowVolunteerAdminReport = ->
+        $scope.showVolunteerAdminReportModal.close()
+      
+      $scope.volunteerAdminReportData = ->
+        volunteerAdminData = []
+        ZuriService.getVolunteerAdminData $scope.participantRegistration.companyInformation.companyId,
+          failure: (response) ->
+          error: (response) ->
+          success: (response) ->
+            if typeof response.data.data != 'undefined'
+              $scope.volunteerAdminData = response.data.data
+              angular.forEach $scope.volunteerAdminData, (entry, entryIndex) ->
+                volunteerAdminData[entryIndex] = entry
+              $scope.volunteerAdminReportList = volunteerAdminData
+            $scope.volunteerAdminReportPending = false      $scope.volunteerAdminData = []
+      $scope.showVolunteerAdminReport = ->
+        $scope.volunteerAdminReportPending = true
+        $scope.showVolunteerAdminReportModal = $uibModal.open
+          scope: $scope
+          templateUrl: APP_INFO.rootPath + 'dist/middle-school/html/participant-center/modal/viewVolunteerAdminReport.html'
+        $scope.volunteerAdminReportData()
+
+      $scope.cancelShowVolunteerAdminReport = ->
+        $scope.showVolunteerAdminReportModal.close()
+      
+      $scope.volunteerAdminReportData = ->
+        volunteerAdminData = []
+        ZuriService.getVolunteerAdminData $scope.participantRegistration.companyInformation.companyId,
+          failure: (response) ->
+          error: (response) ->
+          success: (response) ->
+            if typeof response.data.data != 'undefined'
+              $scope.volunteerAdminData = response.data.data
+              angular.forEach $scope.volunteerAdminData, (entry, entryIndex) ->
+                volunteerAdminData[entryIndex] = entry
+              $scope.volunteerAdminReportList = volunteerAdminData
+            $scope.volunteerAdminReportPending = false      $scope.volunteerAdminData = []
+      $scope.showVolunteerAdminReport = ->
+        $scope.volunteerAdminReportPending = true
+        $scope.showVolunteerAdminReportModal = $uibModal.open
+          scope: $scope
+          templateUrl: APP_INFO.rootPath + 'dist/middle-school/html/participant-center/modal/viewVolunteerAdminReport.html'
+        $scope.volunteerAdminReportData()
+
+      $scope.cancelShowVolunteerAdminReport = ->
+        $scope.showVolunteerAdminReportModal.close()
+      
+      $scope.volunteerAdminReportData = ->
+        volunteerAdminData = []
+        ZuriService.getVolunteerAdminData $scope.participantRegistration.companyInformation.companyId,
+          failure: (response) ->
+          error: (response) ->
+          success: (response) ->
+            if typeof response.data.data != 'undefined'
+              $scope.volunteerAdminData = response.data.data
+              angular.forEach $scope.volunteerAdminData, (entry, entryIndex) ->
+                volunteerAdminData[entryIndex] = entry
+              $scope.volunteerAdminReportList = volunteerAdminData
+            $scope.volunteerAdminReportPending = false
     $scope.minuteList = [0,15,30,45]
     $scope.volunteerData = []
     $scope.volunteerLoadPending = false
@@ -148,9 +544,34 @@ angular.module('trPcControllers').controller 'NgPcVolunteerCoordinatorViewCtrl',
             volunteerData[entryIndex].activity_date = $filter('date')(new Date(entry.activity_date), 'yyyy-MM-dd')
             volunteerData[entryIndex].activity = entry.activity_type
             volunteerData[entryIndex].hours = entry.hour + ':' + entry.minute
-      $scope.volunteerReportList = volunteerData
-      $scope.volunteerReportPending = false
-              
+
+    $scope.volunteerReportList = volunteerData
+    $scope.volunteerReportPending = false
+
+    $scope.volunteerAdminData = []
+    $scope.showVolunteerAdminReport = ->
+      $scope.volunteerAdminReportPending = true
+      $scope.showVolunteerAdminReportModal = $uibModal.open
+        scope: $scope
+        templateUrl: APP_INFO.rootPath + 'dist/middle-school/html/participant-center/modal/viewVolunteerAdminReport.html'
+      $scope.volunteerAdminReportData()
+
+    $scope.cancelShowVolunteerAdminReport = ->
+      $scope.showVolunteerAdminReportModal.close()
+
+    $scope.volunteerAdminReportData = ->
+      volunteerAdminData = []
+      ZuriService.getVolunteerAdminData $scope.participantRegistration.companyInformation.companyId,
+        failure: (response) ->
+        error: (response) ->
+        success: (response) ->
+          if typeof response.data.data != 'undefined'
+            $scope.volunteerAdminData = response.data.data
+            angular.forEach $scope.volunteerAdminData, (entry, entryIndex) ->
+              volunteerAdminData[entryIndex] = entry
+            $scope.volunteerAdminReportList = volunteerAdminData
+          $scope.volunteerAdminReportPending = false
+            
     ImagetoPrint = (source) ->
       '<html><head><scri' + 'pt>function step1(){\n' + 'setTimeout(\'step2()\', 10);}\n' + 'function step2(){window.print();window.close()}\n' + '</scri' + 'pt></head><body onload=\'step1()\'>\n' + '<img src=\'' + source + '\' /></body></html>'
 
