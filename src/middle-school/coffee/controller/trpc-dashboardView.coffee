@@ -1343,4 +1343,27 @@ angular.module 'trPcControllers'
                 $scope.volunteerData = response.data.data
       getVolunteerism()
 
+      $scope.volunteerAdminData = []
+      $scope.showVolunteerAdminReport = ->
+        $scope.volunteerAdminReportPending = true
+        $scope.showVolunteerAdminReportModal = $uibModal.open
+          scope: $scope
+          templateUrl: APP_INFO.rootPath + 'dist/middle-school/html/participant-center/modal/viewVolunteerAdminReport.html'
+        $scope.volunteerAdminReportData()
+
+      $scope.cancelShowVolunteerAdminReport = ->
+        $scope.showVolunteerAdminReportModal.close()
+      
+      $scope.volunteerAdminReportData = ->
+        volunteerAdminData = []
+        ZuriService.getVolunteerAdminData $scope.participantRegistration.companyInformation.companyId,
+          failure: (response) ->
+          error: (response) ->
+          success: (response) ->
+            if typeof response.data.data != 'undefined'
+              $scope.volunteerAdminData = response.data.data
+              angular.forEach $scope.volunteerAdminData, (entry, entryIndex) ->
+                volunteerAdminData[entryIndex] = entry
+              $scope.volunteerAdminReportList = volunteerAdminData
+            $scope.volunteerAdminReportPending = false
   ]

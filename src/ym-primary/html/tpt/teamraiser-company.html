@@ -138,7 +138,7 @@
 	</div>
 	<div class="ym-page-section ym-page-section__main">
 		<div class="d-flex flex-wrap justify-content-around mb-5">
-			<div class=" px-3 text-center">
+			<div class="col-md-6 px-3 text-center">
 				<div class="ym-awards-section">
 					<h2 class="ym-headline">
 						School Achievements 
@@ -170,61 +170,78 @@
 						</div>
 					</div>
 				</div>
-				<div class="mt-4" ng-show="participantCount &gt; 0 &amp;&amp; (activity1amt != 0 || activity2amt != 0 || activity3amt != 0)" ng-cloak>
-					<div class="ym-our-stats ym-promo-block">
+				<div class="ym-stats-section mt-4" ng-show="participantCount &gt; 0 &amp;&amp; (activity1amt != 0 || activity2amt != 0 || activity3amt != 0)" ng-cloak>
+					<div class="">
 						<h2 class="ym-headline">
 							Our Stats 
 						</h2>
-						<div class="ym-promo-block__item" ng-if="schoolPlan.CountOfStudentsCompletingFinnsMission > 0" ng-cloak>
-							<div class="h2 ym-headline">
-								<span ng-if="schoolPlan.CountOfStudentsCompletingFinnsMission &lt; 1000" ng-cloak>
-									{{schoolPlan.CountOfStudentsCompletingFinnsMission}} 
-								</span>
-								<span ng-if="schoolPlan.CountOfStudentsCompletingFinnsMission > 999" ng-cloak>
-									{{schoolPlan.CountOfStudentsCompletingFinnsMission}} 
-								</span>
+						<div class="d-md-flex flex-wrap justify-content-around ym-our-stats ym-promo-block">
+							<div class="ym-promo-block__item" ng-if="schoolPlan.CountOfStudentsCompletingFinnsMission > 0" ng-cloak>
+								<div class="h2 text-white"> 
+									<span ng-if="schoolPlan.CountOfStudentsCompletingFinnsMission &lt; 1000" ng-cloak>
+										{{schoolPlan.CountOfStudentsCompletingFinnsMission}} 
+									</span>
+									<span ng-if="schoolPlan.CountOfStudentsCompletingFinnsMission > 999" ng-cloak>
+										{{schoolPlan.CountOfStudentsCompletingFinnsMission}} 
+									</span>
+								</div>
+								<div ng-if="schoolPlan.CountOfStudentsCompletingFinnsMission == 1" ng-cloak>
+									<p>
+										student completed Finn's mission 
+									</p>
+								</div>
+								<div ng-if="schoolPlan.CountOfStudentsCompletingFinnsMission != 1" ng-cloak>
+									<p>
+										students completed Finn's mission 
+									</p>
+								</div>
 							</div>
-							<div ng-if="schoolPlan.CountOfStudentsCompletingFinnsMission == 1" ng-cloak>
+							<div class="ym-promo-block__item">
+								<div class="h2 text-white">
+									{{participantCount}} 
+								</div>
+								<div ng-if="participantCount == 1" ng-cloak>
+									<p>
+										student registered. 
+									</p>
+								</div>
+								<div ng-if="participantCount > 1" ng-cloak>
+									<p>
+										students registered. 
+									</p>
+								</div>
+							</div>
+							<div class="ym-promo-block__item" ng-if="activity1amt != 0" ng-cloak>
+								<div class="h2 text-white">
+									{{activity1amt}} 
+								</div>
 								<p>
-									student completed Finn's mission 
+									challenge for being kind. 
 								</p>
 							</div>
-							<div ng-if="schoolPlan.CountOfStudentsCompletingFinnsMission != 1" ng-cloak>
+							<div class="ym-promo-block__item" ng-if="activity2amt != 0" ng-cloak>
+								<div class="h2 text-white">
+									{{activity2amt}} 
+								</div>
 								<p>
-									students completed Finn's mission 
+									challenge for moving more. 
 								</p>
 							</div>
-						</div>
-						<div class="ym-promo-block__item ym-promo-block__item--members">
-							<div class="h2 ym-headline">
-								{{participantCount}} 
+							<div class="ym-promo-block__item" ng-if="schoolPlan.CountCompletingCPRQuiz > 0" ng-cloak>
+								<div class="h2 text-white">
+									{{schoolPlan.CountCompletingCPRQuiz}}
+								</div>
+								<div ng-if="schoolPlan.CountCompletingCPRQuiz == 1" ng-cloak>
+									<p>
+										family completed CPR training ({{schoolPlan.PercentOfEnrollmentCompletingCPRQuiz}}% of school)
+									</p>
+								</div>
+								<div ng-if="schoolPlan.CountCompletingCPRQuiz != 1" ng-cloak>
+									<p>
+										families completed CPR training ({{schoolPlan.PercentOfEnrollmentCompletingCPRQuiz}}% of school)
+									</p>
+								</div>
 							</div>
-							<div ng-if="participantCount == 1" ng-cloak>
-								<p>
-									student registered. 
-								</p>
-							</div>
-							<div ng-if="participantCount > 1" ng-cloak>
-								<p>
-									students registered. 
-								</p>
-							</div>
-						</div>
-						<div class="ym-promo-block__item" ng-if="activity1amt != 0" ng-cloak>
-							<div class="h2 ym-headline">
-								{{activity1amt}} 
-							</div>
-							<p>
-								challenge for being kind. 
-							</p>
-						</div>
-						<div class="ym-promo-block__item" ng-if="activity2amt != 0" ng-cloak>
-							<div class="h2 ym-headline">
-								{{activity2amt}} 
-							</div>
-							<p>
-								challenge for moving more. 
-							</p>
 						</div>
 					</div>
 				</div>
