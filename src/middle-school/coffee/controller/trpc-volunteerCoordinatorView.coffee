@@ -43,7 +43,7 @@ angular.module('trPcControllers').controller 'NgPcVolunteerCoordinatorViewCtrl',
             entry.original_activity_date = entry.activity_date
             entry.hour = Math.floor(entry.hours / 60)
             entry.minute = entry.hours - (entry.hour * 60)
-            total_hours = total_hours + entry.hours
+            total_hours = total_hours + entry.orig_hours
           totalTimeInMinutes = total_hours
           hours = Math.floor(totalTimeInMinutes / 60)
           minutes = totalTimeInMinutes - (hours * 60)
@@ -51,6 +51,7 @@ angular.module('trPcControllers').controller 'NgPcVolunteerCoordinatorViewCtrl',
           $scope.volunteerTotal =
             'hours': hours
             'minutes': minutes
+          $filter('orderBy')($scope.volunteerCoordinatorData, 'StudentFirstName', false)
     getVolunteerism()
 
     $scope.viewVolunteerActivities = ->
@@ -84,5 +85,16 @@ angular.module('trPcControllers').controller 'NgPcVolunteerCoordinatorViewCtrl',
               volunteerAdminData[entryIndex] = entry
             $scope.volunteerAdminReportList = volunteerAdminData
           $scope.volunteerAdminReportPending = false
-      
+
+    $scope.volunteerDetail =
+      'sortColumn': ''
+      'sortAscending': false
+    $scope.orderVolunteerDetail = (sortColumn) ->
+      $scope.volunteerDetail.sortAscending = !$scope.volunteerDetail.sortAscending
+      if $scope.volunteerDetail.sortColumn != sortColumn
+        $scope.volunteerDetail.sortAscending = false
+      $scope.volunteerDetail.sortColumn = sortColumn
+      orderBy = $filter('orderBy')
+      $scope.volunteerCoordinatorData = orderBy($scope.volunteerCoordinatorData, sortColumn, !$scope.volunteerDetail.sortAscending)
+          
   ]
