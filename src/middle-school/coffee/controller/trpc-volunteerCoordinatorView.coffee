@@ -29,27 +29,28 @@ angular.module('trPcControllers').controller 'NgPcVolunteerCoordinatorViewCtrl',
       $scope.volunteerCoordinatorTotal =
         'hours': '0'
         'minutes': '00'
-      ZuriService.getVolunteerData "report/" + $scope.participantRegistration.companyInformation.companyId,
+      total_hours = 0
+      ZuriService.getVolunteerAdminData $scope.participantRegistration.companyInformation.companyId,
         failure: (response) ->
         error: (response) ->
         success: (response) ->
           $scope.volunteerLoadPending = false
           if typeof response.data.data != 'undefined'
-            if response.data.total_hours > 0
-              totalTimeInMinutes = response.data.total_hours
-              hours = Math.floor(totalTimeInMinutes / 60)
-              minutes = totalTimeInMinutes - (hours * 60)
-              minutes = if minutes < 10 then '0' + minutes else minutes
-              $scope.volunteerTotal =
-                'hours': hours
-                'minutes': minutes
-              $scope.volunteerCoordinatorData = response.data.data
+            $scope.volunteerCoordinatorData = response.data.data
           angular.forEach $scope.volunteerCoordinatorData, (entry, key) ->
             date = new Date(entry.activity_date)
             entry.activity_date = new Date(date.toLocaleString('en-US', { timeZone: "UTC" }))
             entry.original_activity_date = entry.activity_date
             entry.hour = Math.floor(entry.hours / 60)
             entry.minute = entry.hours - (entry.hour * 60)
+            total_hours = total_hours + entry.hours
+          totalTimeInMinutes = total_hours
+          hours = Math.floor(totalTimeInMinutes / 60)
+          minutes = totalTimeInMinutes - (hours * 60)
+          minutes = if minutes < 10 then '0' + minutes else minutes
+          $scope.volunteerTotal =
+            'hours': hours
+            'minutes': minutes
     getVolunteerism()
 
     $scope.viewVolunteerActivities = ->
@@ -73,7 +74,7 @@ angular.module('trPcControllers').controller 'NgPcVolunteerCoordinatorViewCtrl',
 
     $scope.volunteerAdminReportData = ->
       volunteerAdminData = []
-      ZuriService.getVolunteerData "report/" + $scope.participantRegistration.companyInformation.companyId,
+      ZuriService.getVolunteerAdminData $scope.participantRegistration.companyInformation.companyId,
         failure: (response) ->
         error: (response) ->
         success: (response) ->
