@@ -229,5 +229,17 @@ module.exports = {
         dest: "dist/teens-of-impact/html/"
       }
     ]
+  },
+  "ym-rewards": {
+    files: [
+      {
+        expand: true,
+        cwd: 'dist/ym-rewards/html/',
+        src: [
+          '**/*.*'
+        ],
+        dest: "dist/ym-rewards/html/"
+      }
+    ]
   }
 }
