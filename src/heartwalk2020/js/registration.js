@@ -1207,9 +1207,9 @@
                 };
 
                 var renderStep = function (onPage, offPage) {
+                    $('html, body').animate({scrollTop: 0}, 0);
                     renderHeader(onPage);
                     $('body').focus(); // Reset focus to the top of the page
-                    $('html, body').animate({scrollTop: 0}, 0);
                     $('div#registration-ptype-page-step-' + offPage.toString()).hide();
                     $('div#registration-ptype-page-step-' + onPage.toString()).fadeIn();
                     if (onPage === 2) {
@@ -1275,6 +1275,7 @@
                 };
 
                 this.flipPersonalGoalPage = function (type) {
+                    $('html, body').animate({scrollTop: 0}, 0);
                     if (type === 'other-amount') {
                         if ($('input.js__personal-goal-other-amount-input').val() === '') {
                             var $dollarSign = $('.personal-goal-other-amount-input-container > .dollar-sign');
@@ -1570,9 +1571,9 @@
                 };
 
                 var renderStep = function (onPage, offPage) {
+                    $('html, body').animate({scrollTop: 0}, 0);
                     renderHeader(onPage);
                     $('body').focus(); // Reset focus to the top of the page
-                    $('html, body').animate({scrollTop: 0}, 0);
                     $('div#registration-reg-page-step-' + offPage.toString()).hide();
                     $('div#registration-reg-page-step-' + onPage.toString()).fadeIn();
                 };
