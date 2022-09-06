@@ -160,7 +160,7 @@ angular.module('trPcControllers').controller 'NgPcVolunteerViewCtrl', [
       $scope.volunteerReportPending = false
               
     ImagetoPrint = (source) ->
-      '<html><head><scri' + 'pt>function step1(){\n' + 'setTimeout(\'step2()\', 10);}\n' + 'function step2(){window.print();window.close()}\n' + '</scri' + 'pt></head><body onload=\'step1()\'>\n' + '<img src=\'' + source + '\' /></body></html>'
+      '<html><head><style>@page {margin: 0;}@media print {footer { display: none;position: fixed;bottom: 0;}header {display: none;position: fixed;top: 0;}}</style><scri' + 'pt>function step1(){\n' + 'setTimeout(\'step2()\', 10);}\n' + 'function step2(){window.print();window.close()}\n' + '</scri' + 'pt></head><body onload=\'step1()\'>\n' + '<img src=\'' + source + '\' /></body></html>'
 
     $scope.PrintImage = (source) ->
       Pagelink = 'about:blank'
