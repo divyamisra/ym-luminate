@@ -102,6 +102,8 @@ module.exports = {
         'src/global/coffee/directive/*.*',
         'src/middle-school/coffee/directive/*.*',
         '!src/middle-school/coffee/directive/trpc-*.*',
+        'src/middle-school/coffee/filter/*.*',
+        '!src/middle-school/coffee/filter/trpc-*.*',
         'src/middle-school/coffee/**/*.*',
         '!src/middle-school/coffee/**/trpc-*.*'
       ],

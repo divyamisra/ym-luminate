@@ -46,6 +46,12 @@ if window.location.href.indexOf('pagename=middle_school_participant_center') isn
           .when '/social', 
             templateUrl: APP_INFO.rootPath + 'dist/middle-school/html/participant-center/view/social.html'
             controller: 'NgPcSocialViewCtrl'
+          .when '/volunteer', 
+            templateUrl: APP_INFO.rootPath + 'dist/middle-school/html/participant-center/view/volunteer.html'
+            controller: 'NgPcVolunteerViewCtrl'
+          .when '/volunteer-coordinator', 
+            templateUrl: APP_INFO.rootPath + 'dist/middle-school/html/participant-center/view/volunteer-coordinator.html'
+            controller: 'NgPcVolunteerCoordinatorViewCtrl'
           .otherwise 
             redirectTo: do ->
               # redirect PC1-style URLs
