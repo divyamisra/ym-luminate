@@ -126,9 +126,9 @@ angular.module('trPcControllers').controller 'NgPcVolunteerViewCtrl', [
       if typeof @$parent.entry != 'undefined'
         if @$parent.entry.hour == 2
           @$parent.entry.minute = 0
-      if typeof @$parent.volunteerAdd != 'undefined'
-        if @$parent.volunteerAdd.hour == 2
-          @$parent.volunteerAdd.minute = 0
+      if typeof @$parent.@$parent.volunteerAdd != 'undefined'
+        if @$parent.@$parent.volunteerAdd.hour == '2'
+          @$parent.@$parent.volunteerAdd.minute = 0
   
     $scope.showVolunteerReport = ->
       $scope.volunteerReportPending = true
