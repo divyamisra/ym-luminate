@@ -120,7 +120,7 @@
 			</div>
 			<div class="ym-progress__thermometer mx-5 my-0 mw-100" name="School Progress Bar" role="progressbar" aria-label="{{companyProgress.percent}} percent of fundraising progress" aria-valuetext="{{companyProgress.percent}} percent of fundraising progress" aria-valuenow="{{companyProgress.percent}}" aria-valuemin="0" aria-valuemax="100" ng-if="companyProgress.goal &amp;&amp; companyProgress.goal != 0" ng-cloak>
 				<div class="ym-progress__thermometer--fill" ng-class="(companyProgress.percent &lt; 15) ? 'therm-text-black' : 'therm-text-white'" ng-style="{'width': companyProgress.percent + '%'}">
-					{{companyProgress.percent}}% 
+					{{companyProgress.percent | number:0}}% 
 				</div>
 			</div>
 		</div>
