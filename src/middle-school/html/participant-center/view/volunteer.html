@@ -96,7 +96,7 @@
 								</div>
 								<div class="col-md-3 text-start text-md-center py-1">
 									<label class="d-block d-md-inline-block d-md-none fw-bold" for="volunteer-hour">Activity Time:</label>
-									<select class="form-select w-auto d-inline-block pe-5" name="volunteer-hour" id="volunteer-hour" ng-model="volunteerAdd.hour">
+									<select class="form-select w-auto d-inline-block pe-5" name="volunteer-hour" id="volunteer-hour" ng-model="volunteerAdd.hour" ng-change="checkVolunteerMinutes()">
 										<option value="">
 										</option>
 										<option ng-repeat="hour in hourList" value="{{hour}}">
@@ -107,9 +107,12 @@
 									<select class="form-select w-auto d-inline-block pe-5" name="volunteer-minute" id="volunteer-minute" ng-model="volunteerAdd.minute">
 										<option value="">
 										</option>
-										<option ng-repeat="minute in minuteList" ng-value="minute">
-											{{minute | numpad}}
-										</option>
+											<option ng-repeat="minute in minuteList" ng-value="minute" ng-if="minute == 0" ng-cloak>
+												{{minute | numpad}}
+											</option>
+											<option ng-repeat="minute in minuteList" ng-value="minute" ng-if="(minute == 15 || minute == 30 || minute == 45) && volunteerAdd.hour < 2" ng-cloak>
+												{{minute | numpad}}
+											</option>
 									</select>
 									mins
 								</div>
@@ -155,7 +158,7 @@
 									</span>
 									<span class="p-0" ng-if="entryView == entry.id" aria-label="Select Activity Time">
 										<label class="d-inline-block d-md-none fw-bold" for="volunteer-hour-{{entry.id}}">Activity Time:</label>
-										<select class="form-select w-auto d-inline-block pe-5" name="volunteer-hour-{{entry.id}}" id="volunteer-hour-{{entry.id}}" ng-model="entry.hour">
+										<select class="form-select w-auto d-inline-block pe-5" name="volunteer-hour-{{entry.id}}" id="volunteer-hour-{{entry.id}}" ng-model="entry.hour" ng-change="checkVolunteerMinutes()">
 											<option value="">
 											</option>
 											<option ng-repeat="hour in hourList" ng-value="hour">
@@ -166,7 +169,10 @@
 										<select class="form-select w-auto d-inline-block pe-5" name="volunteer-minute-{{entry.id}}" id="volunteer-minute-{{entry.id}}" ng-model="entry.minute">
 											<option value="">
 											</option>
-											<option ng-repeat="minute in minuteList" ng-value="minute">
+											<option ng-repeat="minute in minuteList" ng-value="minute" ng-if="minute == 0" ng-cloak>
+												{{minute | numpad}}
+											</option>
+											<option ng-repeat="minute in minuteList" ng-value="minute" ng-if="(minute == 15 || minute == 30 || minute == 45) && entry.hour < 2" ng-cloak>
 												{{minute | numpad}}
 											</option>
 										</select>
