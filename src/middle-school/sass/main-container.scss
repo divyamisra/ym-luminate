@@ -1,3 +1,25 @@
+.border-white-left {
+	border-left:1px solid #fff;
+}
+.border-white-right {
+	border-right:1px solid #fff;
+}
+.border-red {
+	border:1px solid $event-secondary-heading;
+}
+.border-red-left {
+	border-left:1px solid $event-secondary-heading;
+}
+.border-red-right {
+	border-right:1px solid $event-secondary-heading;
+}
+.text-red {
+	color: $event-secondary-heading;
+}
+.bg-row {
+	background-color:#eaeaea;
+}
+
 main {
   > .container {
     margin: 0px auto 0;

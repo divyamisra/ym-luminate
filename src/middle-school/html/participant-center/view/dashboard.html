@@ -6,220 +6,20 @@
 					<div class="ahc-start-mission mb-2 white-box red-border-left d-block d-md-none">
 						<div class="card-body">
 							<h2 class="h5">Start Your Mission</h2>
-							<p>Tap your tiles below to do the challenge and complete your heart card. Fill in the whole card by asking friends &amp; family to support your mission.</p>
+							<p>Tap your tiles to do the challenge and complete your heart card. Fill in the whole card by asking friends &amp; family to support your mission.</p>
 						</div>
 					</div>
 					<div class="ahc-heart-card mb-4">
-						<img alt="Heart Card - Coming Soon" tabindex="0" class="img-fluid w-100" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/middle-school/image/Heart_Card_comingsoon.png">
+						<div ng-include="'SPageNavigator/ahc_heart_card_pc.html?pgwrap=n'"></div>
+						<!-- <img alt="Heart Card - Coming Soon" tabindex="0" class="img-fluid w-100" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/middle-school/image/Heart_Card_comingsoon.png"> -->
 					</div>
 				</section>
 		  </div>
-		  <div class="dashboard-col2 col p-2">
-				<div ng-if="coordinatorMessage.message &amp;&amp; coordinatorMessage.message != ''" ng-cloak>
-					<div class="ahc-teacher-message white-box mb-4">
-						<h3 class="h5">
-							Message From Your Teacher 
-						</h3>
-						<div ng-bind-html="coordinatorMessage.message"></div>
-					</div>
-				</div>
-				<div class="personal-progress white-box red-border-bottom p-0 mb-4">
-					<div class="card-header bg-light d-flex align-items-center justify-content-between m-0">
-						<h3 class="h5 mb-0">Personal Progress</h3>
-						<a class="btn btn-md-wide btn-toggle" href="" ng-click="editPersonalGoal()">
-							<strong>
-								Update Personal Goal
-							</strong>
-						</a>
-					</div>
-					<div class="p-4">
-					  <div class="d-flex">
-							<div class="col-6 fw-bold"><span ng-bind-html="participantProgress.raisedFormatted"></span> raised</div> 
-							<div class="col-6 text-end fw-bold"><span ng-bind-html="participantProgress.goalFormatted"></span> goal</div> 
-						</div>
-						<div class="ym-progress__thermometer m-0 mb-4 mw-100" name="Personal Progress Bar" aria-label="{{participantProgress.percent}} percent of fundraising progress" aria-valuetext="{{participantProgress.percent}} percent of fundraising progress" role="progressbar" aria-valuenow="{{participantProgress.percent}}" aria-valuemin="0" aria-valuemax="100">
-							<div class="ym-progress__thermometer--fill position-relative" ng-class="(participantProgress.percent < 15) ? 'therm-text-black' : 'therm-text-white'" ng-style="{ 'width': participantProgress.percent + '%'}">{{participantProgress.percent}}%</div>
-						</div>
-						<div class="d-flex justify-content-between">
-								<p>
-									<a class="btn btn-sm btn-primary me-2" ng-href="{{baseUrl}}#/reports" title="Click to view your donation reports">
-										<strong>
-											Donation Reports
-										</strong>
-									</a>
-								</p>
-								<p>
-									<a class="btn btn-sm btn-primary" href="#paymentSelType" data-bs-toggle="collapse">
-										<strong>
-											Donate to Personal Page
-										</strong>
-									</a>
-								</p>
-							</div>
-							<div id="paymentSelType" class="collapse">
-								<h7>How would you like to donate?</h7>
-								<div class="d-flex justify-content-between flex-wrap align-items-center text-center">
-									<a class="col-md-4 p-2" href="Donation2?df_id={{eventInfo.donationFormId}}&FR_ID={{frId}}&PROXY_TYPE=20&PROXY_ID={{consId}}">
-										<img class="img-fluid" src="https://www2.heart.org/images/content/pagebuilder/credit-card-logos.png" alt="Donate using Credit Card">
-									</a>
-									<a class="col-md-4 p-2" href="SPageNavigator/ym_ahc_donate_amazon.html?FR_ID={{frId}}&mfc_pref=T&PROXY_ID={{consId}}&PROXY_TYPE=20" class="amazon">
-										<img class="img-fluid" src="https://www2.heart.org/images/content/pagebuilder/amazon-payments.png" alt="Donate using Amazon">
-									</a>
-									<a class="col-md-4 p-2" href="SPageNavigator/ym_ahc_donate_googlepay.html?FR_ID={{frId}}&mfc_pref=T&PROXY_ID={{consId}}&PROXY_TYPE=20" class="googlepay">
-										<img class="img-fluid" src="https://www2.heart.org/donation-forms/donatenow/images/googlepay-button.png" alt="Donate using Google Pay">
-									</a>
-									<a class="col-md-4 p-2" href="SPageNavigator/ym_ahc_donate_applepay.html?FR_ID={{frId}}&mfc_pref=T&PROXY_ID={{consId}}&PROXY_TYPE=20" class="applepay ">
-										<img class="img-fluid" src="https://www2.heart.org/donation-forms-braintree/donatenow/images/DonateBlack_32pt_@2x.png" alt="Donate using ApplePay">
-									</a>
-									<a class="col-md-4 p-2" href="SPageNavigator/ym_ahc_donate_venmo.html?FR_ID={{frId}}&mfc_pref=T&PROXY_ID={{consId}}&PROXY_TYPE=20" class="venmo">
-										<img class="img-fluid" src="https://www2.heart.org/donation-forms/donatenow/images/venmo-button.png" alt="Donate using Venmo">
-									</a>
-									<a class="col-md-4 p-2" href="Donation2?df_id={{eventInfo.donationFormId}}&FR_ID={{frId}}&PROXY_TYPE=20&PROXY_ID={{consId}}&amp;paypal=true">
-										<img class="img-fluid" src="https://www2.heart.org/images/content/pagebuilder/PP_logo_h_100x26.png" alt="Donate using Paypal">
-									</a>
-								</div>
-							</div>
-						</div>
-				</div>
-				<div class="school-progress white-box red-border-bottom p-0 mb-4">
-					<div class="card-header bg-light d-flex align-items-center justify-content-between m-0">
-						<h3 class="h5 mb-0">School Progress</h3>
-					</div>	
-					<div class="p-4">
-					  <div class="d-flex">
-							<div class="col-6 fw-bold"><span ng-bind-html="companyProgress.raisedFormatted"></span> raised</div> 
-							<div class="col-6 text-end fw-bold"><span ng-bind-html="companyProgress.goalFormatted"></span> goal</div> 
-						</div>
-						<div class="ym-progress__thermometer m-0 mb-4 mw-100" name="School Progress Bar" aria-label="{{companyProgress.percent}} percent of fundraising progress" aria-valuetext="{{companyProgress.percent}} percent of fundraising progress" role="progressbar" aria-valuenow="{{companyProgress.percent}}" aria-valuemin="0" aria-valuemax="100">
-							<div class="ym-progress__thermometer--fill position-relative" ng-class="(companyProgress.percent < 15) ? 'therm-text-black' : 'therm-text-white'" ng-style="{'width': companyProgress.percent + '%'}">{{companyProgress.percent}}%</div>
-						</div>
-					</div>
-				</div>
-				<div class="ahc-social-share white-box mb-4">
-					<h3 class="h5 mb-4">Share with Friends & Family</h3>
-					<div class="ahc-social-share-slot">
-						<div class="row g-3 mb-3">
-							<div class="">
-								<!--<button type="button" class="ahc-btn-social ahc-copy ahc-btn-copy btn btn-primary btn-sm h-100 py-2 rounded-3 text-start w-100" data-copy="#personalPageUrl" data-toast="#copyToClipboardToast" data-toast-message="Personal page URL copied!">Copy Link to Personal Page</button>-->
-								<div id="personalPageUrlStudent" class="visually-hidden" aria-hidden="true">{{personalPageUrl}}</div>
-								<button type="button" class="ahc-copy ahc-btn-copy ahc-btn-social btn btn-md-wide btn-primary p-2 text-start w-100" title="Copy your link to share" data-clipboard-target="#personalPageUrlStudent" data-clipboard-message="Personal page URL copied!">Copy Your Link to Share</button>
-							</div>
-							<div class="">
-								<a target="_blank" class="ahc-btn-social ahc-share-twitter btn btn-md-wide p-2 text-start w-100 twitter-share-button" href="https://twitter.com/intent/tweet?text={{personalPageUrl}}">Share on<br/>Twitter</a>
-							</div> 
-							<div class="">
-								<a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{personalPageUrl}}" class="ahc-btn-social ahc-connect-facebook btn btn-md-wide p-2 text-start w-100 fb-xfbml-parse-ignore">Share on<br/>Facebook</a>
-							</div>
-						</div>
-						<p><small>By clicking the links above, you will leave AHA's website and be redirected to another site not under the control of AHA.</small></p>
-					</div>
-					<div ng-show="facebookFundraisersEnabled" class="mt-1" ng-cloak>
-						<div class="ym-pc-dashboard-facebook-box" ng-show="!facebookFundraiserId">
-							<div class="container">
-								<div class="ym-pc-dashboard-section-header">
-									<h3 class="h5 text-white">
-										Create a Facebook Fundraiser<span ng-if="consNameFirst &amp;&amp; consNameFirst != ''">, <span ng-bind-html="consNameFirst"></span></span>!
-									</h3>
-								</div>
-								<div class="text-center">
-									<p>
-										Link your personal page to a new Facebook Fundraiser to receive donations from your Facebook friends by creating a dedicated Facebook page to raise donations. 
-									</p>
-									<div role="alert" class="alert alert-danger" ng-if="facebookFundraiserLoginStatus == 'login_error' || facebookFundraiserLoginStatus == 'permission_error' || facebookFundraiserLoginStatus == 'create_fundraiser_error' || facebookFundraiserCreateStatus == 'login_error' || facebookFundraiserCreateStatus == 'permission_error' || facebookFundraiserCreateStatus == 'create_fundraiser_error'" ng-cloak>
-										An error occurred attempting to connect to Facebook. Please try again later. 
-									</div>
-									<div role="alert" class="alert alert-danger" ng-if="facebookFundraiserCreateStatus == 'create_fundraiser_duplicate'" ng-cloak>
-										This Facebook account already has an active Facebook Fundraiser for this school. If you are trying to connect a second student, you will need to use another Facebook account. 
-									</div>
-									<div role="alert" class="alert alert-danger" ng-if="facebookFundraiserLoginStatus == 'declined_manage_fundraisers'" ng-cloak>
-										We need your permission to create a Facebook Fundraiser on your behalf. 
-									</div>
-									<button type="button" class="btn btn-white" ng-class="{'disabled': facebookFundraiserLoginStatus == 'pending' || facebookFundraiserCreateStatus == 'pending'}" ng-click="loginToFacebook()" ng-disabled="facebookFundraiserLoginStatus == 'pending' || facebookFundraiserCreateStatus == 'pending'">
-										<span class="fa fa-facebook-square">
-										</span>
-										<strong>
-											Connect to Facebook Fundraiser
-										</strong>
-									</button>
-									<div class="ym-pc-dashboard-facebook-hint">
-										By clicking this link, you will leave AHA's website and be redirected to another site not under the control of AHA. 
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="ym-pc-dashboard-facebook-box js--facebook-fundraiser-completed-section" ng-show="facebookFundraiserId">
-							<div class="container">
-								<div class="ym-pc-dashboard-section-header">
-									<h3 class="h5 text-white">
-										Your Fundraiser is Connected to Facebook! 
-									</h3>
-								</div>
-								<div class="text-center">
-									<p>
-										Log in to use Facebook's fundraising tools to invite friends, share updates and collect donations. We'll keep track of your progress on Facebook and on your page, so you'll always know how close you are to reaching your goal. 
-									</p>
-									<a class="btn btn-white" ng-class="{'disabled': !facebookFundraiserConfirmedStatus || facebookFundraiserConfirmedStatus == 'pending'}" ng-href="//facebook.com/donate/{{facebookFundraiserId}}/" ng-disabled="!facebookFundraiserConfirmedStatus || facebookFundraiserConfirmedStatus == 'pending'" target="_blank">
-										<span class="fa fa-facebook-square">
-										</span>
-										<strong>
-											Go to Facebook Fundraiser
-										</strong>
-									</a>
-									<div class="ym-pc-dashboard-facebook-hint">
-										By clicking this link, you will leave AHA's website and be redirected to another site not under the control of AHA. 
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				
-				<div class="ahc-challenge white-box p-0 mb-4">
-					<h3 class="h5 p-2">
-						Healthy Heart Challenge
-					</h3>
-          <div class="red-bg-gradient p-4 pt-3 text-white">
-          	<div class="ym_my_challenge__current" ng-if="personalChallenge.loadPending" ng-cloak>
-							Loading Your Challenge... 
-						</div>
-						<div class="ym_my_challenge__current" ng-if="personalChallenge.id &amp;&amp; personalChallenge.id != '-1'" ng-cloak>
-							<h3 class="ahc-current-challenge h5 mb-3">{{personalChallenge.name}}</h3>
-							<div class="row align-items-center align-items-xl-end g-4 g-lg-4 g-xl-5">
-								<div class="col-sm-auto">
-									<div class="ahc-challenge-streak fw-bold text-center">
-										<div class="ahc-challenge-count">
-											<span ng-bind-html="personalChallenge.numCompleted"></span>
-										</div>
-										<div class="fs-5 lh-sm text-capitalize">day streak</div>
-									</div>
-								</div>
-								<div class="col-sm">
-									<button type="button" class="ahc-btn-add-to-streak btn opacity-100 py-3 rounded text-start" ng-class="{'disabled': personalChallenge.updatePending || personalChallenge.completedToday, 'active': personalChallenge.completedToday}" ng-disabled="personalChallenge.updatePending || personalChallenge.completedToday" ng-click="logChallenge()"aria-live="polite" aria-atomic="true">
-										<strong>
-											<span ng-if="!personalChallenge.completedToday">Add today to your streak</span>
-											<span ng-if="personalChallenge.completedToday">Today added to your streak</span>
-										</strong>
-									</button>
-									<div class="mt-3 px-0">
-										<label for="ym-update-challenge" class="form-label">Change Your Challenge</label>
-										<select class="form-select fw-bold" ng-change="updateChallenge()" ng-class="{'disabled': personalChallenge.updatePending}" ng-disabled="personalChallenge.updatePending" name="ym-update-challenge" id="ym-update-challenge" ng-model="updatedPersonalChallenge.id">
-											<option value=""></option>
-											<option ng-repeat="challenge in challenges" value="{{challenge.id}}">
-												{{challenge.name}}
-											</option>
-										</select>
-									</div>
-								</div>
-							</div>
-						</div>
-          </div> 
-				</div>
-			</div>
 		  <div class="dashboard-col3 col p-2">
 					<div class="ahc-start-mission mb-2 white-box red-border-left d-none d-md-block">
 						<div class="card-body">
 							<h2 class="h5">Start Your Mission</h2>
-							<p>Tap your tiles below to do the challenge and complete your heart card. Fill in the whole card by asking friends &amp; family to support your mission.</p>
+							<p>Tap your tiles to do the challenge and complete your heart card. Fill in the whole card by asking friends &amp; family to support your mission.</p>
 						</div>
 					</div>
 				<div class="download-app white-box red-border-left mb-4">
@@ -328,13 +128,230 @@
 						</div>
 					</div>
 				</div>
-				<div class="white-box red-bg-gradient text-center">
-					<h3 class="h4 text-white">
-						Join the Movement to End the Tobacco and Vaping Epidemic Now
+				<div class="volunteer-opportunities white-box p-0 mb-4">
+					<h3 class="h5 p-2">
+						Volunteer Opportunities
 					</h3>
-					<a class="text-white" href="https://tobaccoendgame.yourethecure.org/" target="_blank">
-						Access the Tobacco Endgame site.
-					</a>
+					<div class="red-bg-gradient p-4 pt-3 text-white d-md-flex justify-content-between align-items-center gap-2">
+						<div class="volunteer-text me-2">
+							<h4 class="fs-5 text-white mb-3">Ready to Volunteer?</h4>
+							<p>Advocate for change, share your voice, teach your community healthy habits, help end tobacco use for youth, and more! Review the opportunities and select as many as you'd like!</p>
+							<p>You are joining a community of volunteers who are building healthier lives, free of heart disease and stroke.</p>
+				      <a class="btn btn-md-wide btn-toggle mb-4" ng-href="{{baseUrl}}#/volunteer"><strong>Manage Hours</strong></a>
+						</div>
+						<div class="volunteer-hours mb-4 col-6">
+							<div class="d-flex flex-wrap  border border-white rounded">
+								<div class="title col-5 text-center p-2">Hours</div>
+								<div class="col-1 col-md-2 border-white-left border-white-right"></div>
+								<div class="title col-6 col-md-5 text-center p-2">Minutes</div>
+								<div class="time col-5 text-center bg-white text-red">{{volunteerTotal.hours}}</div>
+								<div class="time col-1 col-md-2 text-center bg-white text-red border-red-left border-red-right">:</div>
+								<div class="time col-6 col-md-5 text-center bg-white text-red">{{volunteerTotal.minutes}}</div>
+							</div>
+						</div>
+				  </div> 
+				</div>
+			</div>
+		  <div class="dashboard-col2 col p-2">
+				<div ng-if="coordinatorMessage.message &amp;&amp; coordinatorMessage.message != ''" ng-cloak>
+					<div class="ahc-teacher-message white-box mb-4">
+						<h3 class="h5">
+							Message From Your Teacher 
+						</h3>
+						<div ng-bind-html="coordinatorMessage.message"></div>
+					</div>
+				</div>
+				<div class="personal-progress white-box red-border-bottom p-0 mb-4">
+					<div class="card-header bg-light d-flex align-items-center justify-content-between m-0">
+						<h2 class="h5 mb-0">Personal Progress</h2>
+						<a class="btn btn-md-wide btn-toggle" href="" ng-click="editPersonalGoal()">
+							<strong>
+								Update Personal Goal
+							</strong>
+						</a>
+					</div>
+					<div class="p-4">
+					  <div class="d-flex">
+							<div class="col-6 fw-bold"><span ng-bind-html="participantProgress.raisedFormatted"></span> raised</div> 
+							<div class="col-6 text-end fw-bold"><span ng-bind-html="participantProgress.goalFormatted"></span> goal</div> 
+						</div>
+						<div class="ym-progress__thermometer m-0 mb-4 mw-100" name="Personal Progress Bar" aria-label="{{participantProgress.percent}} percent of fundraising progress" aria-valuetext="{{participantProgress.percent}} percent of fundraising progress" role="progressbar" aria-valuenow="{{participantProgress.percent}}" aria-valuemin="0" aria-valuemax="100">
+							<div class="ym-progress__thermometer--fill position-relative" ng-class="(participantProgress.percent < 15) ? 'therm-text-black' : 'therm-text-white'" ng-style="{ 'width': participantProgress.percent + '%'}">{{participantProgress.percent}}%</div>
+						</div>
+						<div class="d-flex justify-content-between">
+								<p>
+									<a class="btn btn-sm btn-primary me-2" ng-href="{{baseUrl}}#/reports" title="Click to view your donation reports">
+										<strong>
+											Donation Reports
+										</strong>
+									</a>
+								</p>
+								<p>
+									<a class="btn btn-sm btn-primary" href="#paymentSelType" data-bs-toggle="collapse">
+										<strong>
+											Donate to Personal Page
+										</strong>
+									</a>
+								</p>
+							</div>
+							<div id="paymentSelType" class="collapse">
+								<h7>How would you like to donate?</h7>
+								<div class="d-flex justify-content-between flex-wrap align-items-center text-center">
+									<a class="col-md-4 p-2" href="Donation2?df_id={{eventInfo.donationFormId}}&FR_ID={{frId}}&PROXY_TYPE=20&PROXY_ID={{consId}}">
+										<img class="img-fluid" src="https://www2.heart.org/images/content/pagebuilder/credit-card-logos.png" alt="Donate using Credit Card">
+									</a>
+									<a class="col-md-4 p-2" href="SPageNavigator/ym_ahc_donate_amazon.html?FR_ID={{frId}}&mfc_pref=T&PROXY_ID={{consId}}&PROXY_TYPE=20" class="amazon">
+										<img class="img-fluid" src="https://www2.heart.org/images/content/pagebuilder/amazon-payments.png" alt="Donate using Amazon">
+									</a>
+									<a class="col-md-4 p-2" href="SPageNavigator/ym_ahc_donate_googlepay.html?FR_ID={{frId}}&mfc_pref=T&PROXY_ID={{consId}}&PROXY_TYPE=20" class="googlepay">
+										<img class="img-fluid" src="https://www2.heart.org/donation-forms/donatenow/images/googlepay-button.png" alt="Donate using Google Pay">
+									</a>
+									<a class="col-md-4 p-2" href="SPageNavigator/ym_ahc_donate_applepay.html?FR_ID={{frId}}&mfc_pref=T&PROXY_ID={{consId}}&PROXY_TYPE=20" class="applepay ">
+										<img class="img-fluid" src="https://www2.heart.org/donation-forms-braintree/donatenow/images/DonateBlack_32pt_@2x.png" alt="Donate using ApplePay">
+									</a>
+									<a class="col-md-4 p-2" href="SPageNavigator/ym_ahc_donate_venmo.html?FR_ID={{frId}}&mfc_pref=T&PROXY_ID={{consId}}&PROXY_TYPE=20" class="venmo">
+										<img class="img-fluid" src="https://www2.heart.org/donation-forms/donatenow/images/venmo-button.png" alt="Donate using Venmo">
+									</a>
+									<a class="col-md-4 p-2" href="Donation2?df_id={{eventInfo.donationFormId}}&FR_ID={{frId}}&PROXY_TYPE=20&PROXY_ID={{consId}}&amp;paypal=true">
+										<img class="img-fluid" src="https://www2.heart.org/images/content/pagebuilder/PP_logo_h_100x26.png" alt="Donate using Paypal">
+									</a>
+								</div>
+							</div>
+						</div>
+				</div>
+				<div class="school-progress white-box red-border-bottom p-0 mb-4">
+					<div class="card-header bg-light d-flex align-items-center justify-content-between m-0">
+						<h3 class="h5 mb-0">School Progress</h3>
+					</div>	
+					<div class="p-4">
+					  <div class="d-flex">
+							<div class="col-6 fw-bold"><span ng-bind-html="companyProgress.raisedFormatted"></span> raised</div> 
+							<div class="col-6 text-end fw-bold"><span ng-bind-html="companyProgress.goalFormatted"></span> goal</div> 
+						</div>
+						<div class="ym-progress__thermometer m-0 mb-4 mw-100" name="School Progress Bar" aria-label="{{companyProgress.percent}} percent of fundraising progress" aria-valuetext="{{companyProgress.percent}} percent of fundraising progress" role="progressbar" aria-valuenow="{{companyProgress.percent}}" aria-valuemin="0" aria-valuemax="100">
+							<div class="ym-progress__thermometer--fill position-relative" ng-class="(companyProgress.percent < 15) ? 'therm-text-black' : 'therm-text-white'" ng-style="{'width': companyProgress.percent + '%'}">{{companyProgress.percent}}%</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="ahc-social-share white-box mb-4">
+					<h3 class="h5 mb-4">Share with Friends & Family</h3>
+					<div class="ahc-social-share-slot">
+						<div class="row g-3 mb-3">
+							<div class="">
+								<!--<button type="button" class="ahc-btn-social ahc-copy ahc-btn-copy btn btn-primary btn-sm h-100 py-2 rounded-3 text-start w-100" data-copy="#personalPageUrl" data-toast="#copyToClipboardToast" data-toast-message="Personal page URL copied!">Copy Link to Personal Page</button>-->
+								<div id="personalPageUrlStudent" class="visually-hidden" aria-hidden="true">{{personalPageUrl}}</div>
+								<button type="button" class="ahc-copy ahc-btn-copy ahc-btn-social btn btn-md-wide btn-primary p-2 text-start w-100" title="Copy your link to share" data-clipboard-target="#personalPageUrlStudent" data-clipboard-message="Personal page URL copied!">Copy Your Link to Share</button>
+							</div>
+							<div class="">
+								<a target="_blank" class="ahc-btn-social ahc-share-twitter btn btn-md-wide p-2 text-start w-100 twitter-share-button" href="https://twitter.com/intent/tweet?text={{personalPageUrl}}">Share on<br/>Twitter</a>
+							</div> 
+							<div class="">
+								<a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{personalPageUrl | urlEncode}}" class="ahc-btn-social ahc-connect-facebook btn btn-md-wide p-2 text-start w-100 fb-xfbml-parse-ignore">Share on<br/>Facebook</a>
+							</div>
+						</div>
+						<p><small>By clicking the links below, you will leave AHA's website and be redirected to another site not under the control of AHA.</small></p>
+					</div>
+					<div ng-show="facebookFundraisersEnabled" class="mt-1" ng-cloak>
+						<div class="ym-pc-dashboard-facebook-box" ng-show="!facebookFundraiserId">
+							<div class="container">
+								<div class="ym-pc-dashboard-section-header">
+									<h3 class="h5 text-white">
+										Create a Facebook Fundraiser<span ng-if="consNameFirst &amp;&amp; consNameFirst != ''">, <span ng-bind-html="consNameFirst"></span></span>!
+									</h3>
+								</div>
+								<div class="text-center">
+									<p>
+										Link your personal page to a new Facebook Fundraiser to receive donations from your Facebook friends by creating a dedicated Facebook page to raise donations. 
+									</p>
+									<div role="alert" class="alert alert-danger" ng-if="facebookFundraiserLoginStatus == 'login_error' || facebookFundraiserLoginStatus == 'permission_error' || facebookFundraiserLoginStatus == 'create_fundraiser_error' || facebookFundraiserCreateStatus == 'login_error' || facebookFundraiserCreateStatus == 'permission_error' || facebookFundraiserCreateStatus == 'create_fundraiser_error'" ng-cloak>
+										An error occurred attempting to connect to Facebook. Please try again later. 
+									</div>
+									<div role="alert" class="alert alert-danger" ng-if="facebookFundraiserCreateStatus == 'create_fundraiser_duplicate'" ng-cloak>
+										This Facebook account already has an active Facebook Fundraiser for this school. If you are trying to connect a second student, you will need to use another Facebook account. 
+									</div>
+									<div role="alert" class="alert alert-danger" ng-if="facebookFundraiserLoginStatus == 'declined_manage_fundraisers'" ng-cloak>
+										We need your permission to create a Facebook Fundraiser on your behalf. 
+									</div>
+									<button type="button" class="btn btn-white" ng-class="{'disabled': facebookFundraiserLoginStatus == 'pending' || facebookFundraiserCreateStatus == 'pending'}" ng-click="loginToFacebook()" ng-disabled="facebookFundraiserLoginStatus == 'pending' || facebookFundraiserCreateStatus == 'pending'">
+										<span class="fa fa-facebook-square">
+										</span>
+										<strong>
+											Connect to Facebook Fundraiser
+										</strong>
+									</button>
+									<div class="ym-pc-dashboard-facebook-hint">
+										By clicking this link, you will leave AHA's website and be redirected to another site not under the control of AHA. 
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="ym-pc-dashboard-facebook-box js--facebook-fundraiser-completed-section" ng-show="facebookFundraiserId">
+							<div class="container">
+								<div class="ym-pc-dashboard-section-header">
+									<h3 class="h5 text-white">
+										Your Fundraiser is Connected to Facebook! 
+									</h3>
+								</div>
+								<div class="text-center">
+									<p>
+										Log in to use Facebook's fundraising tools to invite friends, share updates and collect donations. We'll keep track of your progress on Facebook and on your page, so you'll always know how close you are to reaching your goal. 
+									</p>
+									<a class="btn btn-white" ng-class="{'disabled': !facebookFundraiserConfirmedStatus || facebookFundraiserConfirmedStatus == 'pending'}" ng-href="//facebook.com/donate/{{facebookFundraiserId}}/" ng-disabled="!facebookFundraiserConfirmedStatus || facebookFundraiserConfirmedStatus == 'pending'" target="_blank">
+										<span class="fa fa-facebook-square">
+										</span>
+										<strong>
+											Go to Facebook Fundraiser
+										</strong>
+									</a>
+									<div class="ym-pc-dashboard-facebook-hint">
+										By clicking this link, you will leave AHA's website and be redirected to another site not under the control of AHA. 
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="ahc-challenge white-box p-0 mb-4">
+					<h3 class="h5 p-2">
+						Healthy Heart Challenge
+					</h3>
+          <div class="red-bg-gradient p-4 pt-3 text-white">
+          	<div class="ym_my_challenge__current" ng-if="personalChallenge.loadPending" ng-cloak>
+							Loading Your Challenge... 
+						</div>
+						<div class="ym_my_challenge__current" ng-if="personalChallenge.id &amp;&amp; personalChallenge.id != '-1'" ng-cloak>
+							<h3 class="ahc-current-challenge h5 mb-3">{{personalChallenge.name}}</h3>
+							<div class="row align-items-center align-items-xl-end g-4 g-lg-4 g-xl-5">
+								<div class="col-sm-auto">
+									<div class="ahc-challenge-streak fw-bold text-center">
+										<div class="ahc-challenge-count">
+											<span ng-bind-html="personalChallenge.numCompleted"></span>
+										</div>
+										<div class="fs-5 lh-sm text-capitalize">day streak</div>
+									</div>
+								</div>
+								<div class="col-sm">
+									<button type="button" class="ahc-btn-add-to-streak btn opacity-100 py-3 rounded text-start" ng-class="{'disabled': personalChallenge.updatePending || personalChallenge.completedToday, 'active': personalChallenge.completedToday}" ng-disabled="personalChallenge.updatePending || personalChallenge.completedToday" ng-click="logChallenge()"aria-live="polite" aria-atomic="true">
+										<strong>
+											<span ng-if="!personalChallenge.completedToday">Add today to your streak</span>
+											<span ng-if="personalChallenge.completedToday">Today added to your streak</span>
+										</strong>
+									</button>
+									<div class="mt-3 px-0">
+										<label for="ym-update-challenge" class="form-label">Change Your Challenge</label>
+										<select class="form-select fw-bold" ng-change="updateChallenge()" ng-class="{'disabled': personalChallenge.updatePending}" ng-disabled="personalChallenge.updatePending" name="ym-update-challenge" id="ym-update-challenge" ng-model="updatedPersonalChallenge.id">
+											<option value=""></option>
+											<option ng-repeat="challenge in challenges" value="{{challenge.id}}">
+												{{challenge.name}}
+											</option>
+										</select>
+									</div>
+								</div>
+							</div>
+						</div>
+          </div> 
 				</div>
 			</div>
 			<div class="dashboard-col4 col p-2">
@@ -515,7 +532,7 @@
 						<div class="ahc-donors swiper d-flex">
 							<ul class="list-group list-group-flush swiper-wrapper pe-3 w-100">
 								<li class="list-group-item swiper-slide" ng-repeat="gifts in participantGifts.gifts" ng-cloak>
-									<div class="row align-items-center justify-content-between">
+									<div class="row align-items-center justify-content-between" tabindex="0">
 										<div class="col">{{gifts.name.first}} {{gifts.name.last.charAt(0)}}</div>
 										<div class="col text-end">{{gifts.giftAmountFormatted.replace('.00','')}}</div>
 									</div>
@@ -704,7 +721,7 @@
 											</div>
 										</div>
 									</div>
-								<div class="coordinator-personal-progress white-box red-border-bottom p-0">
+								<div class="coordinator-personal-progress white-box red-border-bottom p-0 mb-4">
 									<div class="card-header bg-light d-flex align-items-center justify-content-between m-0">
 										<h3 class="h5 mb-0">Personal Progress</h3>
 										<a class="btn btn-md-wide btn-toggle" href="" ng-click="editPersonalGoal()">
@@ -723,7 +740,7 @@
 										</div>
 										<div class="d-flex justify-content-between">
 												<p>
-													<a class="btn btn-sm btn-primary" ng-href="{{baseUrl}}#/reports" title="Click to view your donation reports">
+													<a class="btn btn-sm btn-primary me-2" ng-href="{{baseUrl}}#/reports" title="Click to view your donation reports">
 														<strong>
 															Donation Reports
 														</strong>
@@ -761,9 +778,27 @@
 												</div>
 											</div>												
 										</div>
+								</div>
+								<div class="white-box red-border-bottom p-0">
+									<div class="card-header bg-light d-flex align-items-center justify-content-between m-0">
+										<h3 class="h5 mb-0">Download Mobile App</h3>
+									</div>	
+									<div class="p-4 mb-4">
+										<p>
+											Download our Mobile Fundraising App today! 
+										</p>
+										<div class="ym-pc-dashboard-mobile-downloads">
+											<a href="https://itunes.apple.com/us/app/aha-middle-school/id1274201161?mt=8" target="_blank">
+												<img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/youth-markets/image/apple-store-logo.png" alt="Download the iPhone App"> 
+											</a>
+											<a href="https://play.google.com/store/apps/details?id=com.charitydynamics.ahatgr" target="_blank">
+												<img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/youth-markets/image/google-play-logo.png" alt="Download the Android App"> 
+											</a>
+										</div>
 									</div>
 								</div>
 							</div>
+						</div>
 						<div class="col-md-6 p-2">
 							<div class="white-box red-border-bottom mb-4">
 								<h3 class="h5 clearfix">
@@ -1247,7 +1282,7 @@
 										<div class="ym-pc-dashboard-section-header">
 											<h3 class="h5">Online<br>Resources</h3>
 										</div>
-										<a class="btn btn-md-wide btn-primary" href="SPageServer?pagename=ahc_resources_technology" target="_blank"><strong>Download </strong><span class="sr-only">Online Resources</span></a>
+										<a class="btn btn-md-wide btn-primary" href="DocServer/FY23_AHC_Planning_Guide.pdf" target="_blank"><strong>Download </strong><span class="sr-only">Online Resources</span></a>
 									</div>
 									<div class="col w-100 p-2">
 										<div class="ym-pc-dashboard-section-header">
@@ -1266,28 +1301,13 @@
 								</a>
 							</div>
 						</div>
-						<div class="white-box red-border-left">
-							<div class="ym-pc-dashboard-spread-options">
-								<div class="row">
-									<div class="col-sm-12">
-										<div class="ym-pc-dashboard-section-header">
-											<h3 class="h5">
-												Download Mobile App 
-											</h3>
-										</div>
-										<p class="text-center">
-											Download our Mobile Fundraising App today! 
-										</p>
-										<div class="ym-pc-dashboard-mobile-downloads">
-											<a href="https://itunes.apple.com/us/app/aha-middle-school/id1274201161?mt=8" target="_blank">
-												<img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/youth-markets/image/apple-store-logo.png" alt="Download the iPhone App"> 
-											</a>
-											<a href="https://play.google.com/store/apps/details?id=com.charitydynamics.ahatgr" target="_blank">
-												<img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/youth-markets/image/google-play-logo.png" alt="Download the Android App"> 
-											</a>
-										</div>
-									</div>
-								</div>
+						<div class="student-volunteer-report white-box red-border-bottom p-0">
+							<div class="card-header bg-light d-flex align-items-center justify-content-between m-0">
+								<h3 class="h5 mb-0">Student Volunteer Report</h3>
+							</div>
+							<div class="p-4">
+							  <p>Students have the opportunity to advocate for change, share their voice, teach their community healthy habits, help end tobacco use for youth, and more! Review their logged community service hours as they work to build healthier lives, free of heart disease and stroke.</p>
+  							  <p class="text-center"><a class="btn btn-md-wide btn-toggle" ng-href="{{baseUrl}}#/volunteer-coordinator"><strong>View Student Volunteer Report</strong></a></p>
 							</div>
 						</div>
 				</div>

@@ -1091,7 +1091,7 @@ angular.module 'trPcControllers'
               if prize.id == 9
                 prize.label = 'Mobile App User'
               if prize.id == 10
-                prize.label = 'Updated School Page'
+                prize.label = 'Updated Coordinator Page'
               $scope.coordinatorBadges.push
                 id: prize.id
                 status: prize.status
@@ -1321,4 +1321,26 @@ angular.module 'trPcControllers'
                 BoundlessService.logPersonalPageUpdated()
                 if not $scope.$$phase
                   $scope.$apply()
+
+      $scope.volunteerData = []
+      $scope.volunteerTotal =
+        'hours': '0'
+        'minutes': '00'
+      getVolunteerism = ->
+        ZuriService.getVolunteerData $scope.frId + '/' + $scope.consId,
+          failure: (response) ->
+          error: (response) ->
+          success: (response) ->
+            if typeof response.data.data != 'undefined'
+              if response.data.total_hours > 0
+                totalTimeInMinutes = response.data.total_hours
+                hours = Math.floor(totalTimeInMinutes / 60)
+                minutes = totalTimeInMinutes - (hours * 60)
+                minutes = if minutes < 10 then '0' + minutes else minutes
+                $scope.volunteerTotal =
+                  'hours': hours
+                  'minutes': minutes
+                $scope.volunteerData = response.data.data
+      getVolunteerism()
+
   ]
