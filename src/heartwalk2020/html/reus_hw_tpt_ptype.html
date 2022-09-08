@@ -188,7 +188,7 @@
                                     }
                                 }
                                 var wait4cd = setInterval(function () {
-                                    if (cd) {
+                                    if (typeof cd !== 'undefined') {
                                         clearInterval(wait4cd);
                                         renderPersonalGoalSlider();
                                     }

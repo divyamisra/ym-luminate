@@ -1320,15 +1320,13 @@
                     $steps.show();
 
                     // Dom manipulations
-                    var $partTypeSelectionContainer = $('#part_type_selection_container');
-                    if ($partTypeSelectionContainer.length) {
-                        var $participationTypeStep = $steps.find('div.registration-ptype-page-step-participation-type');
-                        $participationTypeStep
+                    if ($('#part_type_selection_container div.part-type-container').length > 1) {
+                        $steps
                             .find('div.participation-type-ptype-page-step-content')
-                            .append($partTypeSelectionContainer.detach());
+                            .append($('#part_type_selection_container').detach());
                     } else {
                         disableStep(2);
-                    };
+                    }
 
                     var $personalGiftStep = $steps.find('div.registration-ptype-page-step-personal-gift');
                     $personalGiftStep
@@ -1615,7 +1613,7 @@
                         renderStep(prevStep, currentStep);
                         return;
                     }
-                    document.cookie = 'registration-ptype-page-step=3';
+                    document.cookie = 'registration-ptype-page-step=4';
                     history.back();
                 };
 
@@ -2154,7 +2152,7 @@
             var $personalGoaEdit = $('#goal-container + .reg-summary-edit-link > a');
             if ($personalGoaEdit.length == 1) {
                 $personalGoaEdit.on('click', function () {
-                    document.cookie = 'registration-ptype-page-step=2';
+                    document.cookie = 'registration-ptype-page-step=3';
                 })
             }
 
