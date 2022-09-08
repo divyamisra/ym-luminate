@@ -38,6 +38,7 @@
 <!-- ptype-page-steps content -->
 <style>
     div#pt_title_container,
+    div#part_type_section_header,
     div#part_type_selection_container,
     div#part_type_fundraising_goal_container,
     div#part_type_additional_gift_container,
@@ -47,7 +48,7 @@
     }
 </style>
 <div id="registration-ptype-page-steps">
-    <div class="registration-ptype-page-step registration-ptype-page-step-showcase pt-3" id="registration-ptype-page-step-1">
+    <div class="registration-ptype-page-step registration-ptype-page-step-showcase" id="registration-ptype-page-step-1">
         <h1>
             [[?xxnullxx::x[[S1:user_name]]x::
                 We're so happy you're here!
@@ -55,7 +56,7 @@
                 We're so happy you're back!
             ]]
         </h1>
-        <div class="row">
+        <div class="row pt-3">
             <div class="col-lg-6 col-md-12 display-table">
                 <div class="align-middle display-table-cell">
                     <div class="font-weight-bolder font-size-lg mb-3">
@@ -97,7 +98,19 @@
             <button type="button" class="btn btn-primary js__ptype-page-next-step" data-step="1" data-next-step="2">Next</button>
         </div>
     </div>
-    <div class="registration-ptype-page-step registration-ptype-page-step-goal" id="registration-ptype-page-step-2">
+    <div class="registration-ptype-page-step registration-ptype-page-step-participation-type" id="registration-ptype-page-step-2">
+        <h1>How will you participate?</h1>
+        <div class="row pt-3">
+            <div class="col-lg-12">
+                <div class="participation-type-ptype-page-step-content pb-3"></div>
+            </div>
+        </div>
+        <div class="text-center">
+            <button type="button" class="btn btn-secondary mr-3 js__ptype-page-prev-step" data-step="2" data-prev-step="1">Back</button>
+            <button type="button" class="btn btn-primary js__ptype-page-next-step" data-step="2" data-next-step="3">Next</button>
+        </div>
+    </div>
+    <div class="registration-ptype-page-step registration-ptype-page-step-goal" id="registration-ptype-page-step-3">
         <h1>Choose your fundraising goal</h1>
         <div class="text-center">
             <span>The bigger your goal, the more lives you impact</span>
@@ -150,28 +163,36 @@
                         var $jq = jQuery.noConflict(true);
                         (function($jq) {
                             $jq(document).ready(function () {
-                                var $personalGoalSlider = $jq('#registration-ptype-personal-goal-slider'),
-                                    sliderVal = cd.ptypePageSteps.personalGoalSliderInit();
-                                cd.ptypePageSteps.$personalGoalSlider = $personalGoalSlider;
-                                $personalGoalSlider.slider({
-                                    range: 'min',
-                                    value: sliderVal,
-                                    min: 100,
-                                    max: 600,
-                                    step: 5,
-                                    create: function() {
-                                        $personalGoalSlider.find('a.ui-slider-handle').attr('title', 'slider');
-                                    },
-                                    slide: function(event, ui) {
-                                        cd.ptypePageSteps.personalGoalSliderSlide(ui.value);
-                                    },
-                                    change: function(event, ui) {
-                                        cd.ptypePageSteps.personalGoalSliderChange(ui.value, false);
+                                var renderPersonalGoalSlider = function () {
+                                    var $personalGoalSlider = $jq('#registration-ptype-personal-goal-slider'),
+                                        sliderVal = cd.ptypePageSteps.personalGoalSliderInit();
+                                    cd.ptypePageSteps.$personalGoalSlider = $personalGoalSlider;
+                                    $personalGoalSlider.slider({
+                                        range: 'min',
+                                        value: sliderVal,
+                                        min: 100,
+                                        max: 600,
+                                        step: 5,
+                                        create: function() {
+                                            $personalGoalSlider.find('a.ui-slider-handle').attr('title', 'slider');
+                                        },
+                                        slide: function(event, ui) {
+                                            cd.ptypePageSteps.personalGoalSliderSlide(ui.value);
+                                        },
+                                        change: function(event, ui) {
+                                            cd.ptypePageSteps.personalGoalSliderChange(ui.value, false);
+                                        }
+                                    });
+                                    if (sliderVal !== cd.ptypePageSteps.defaultSliderVal) {
+                                        cd.ptypePageSteps.personalGoalSliderChange(sliderVal, true);
                                     }
-                                });
-                                if (sliderVal !== cd.ptypePageSteps.defaultSliderVal) {
-                                    cd.ptypePageSteps.personalGoalSliderChange(sliderVal, true);
                                 }
+                                var wait4cd = setInterval(function () {
+                                    if (cd) {
+                                        clearInterval(wait4cd);
+                                        renderPersonalGoalSlider();
+                                    }
+                                }, 250);
                             });
                         })($jq);
                     });
@@ -199,12 +220,12 @@
             </div>
         </div>
         <div class="text-center">
-            <button type="button" class="btn btn-secondary mr-3 js__ptype-page-prev-step" data-step="2" data-prev-step="1">Back</button>
-            <button type="button" class="btn btn-primary js__ptype-page-next-step" data-step="2" data-next-step="3">Next</button>
+            <button type="button" class="btn btn-secondary mr-3 js__ptype-page-prev-step" data-step="3" data-prev-step="2">Back</button>
+            <button type="button" class="btn btn-primary js__ptype-page-next-step" data-step="3" data-next-step="4">Next</button>
         </div>
         <input type="hidden" id="registration-ptype-personal-goal-option" value="slider">
     </div>
-    <div class="registration-ptype-page-step registration-ptype-page-step-personal-gift" id="registration-ptype-page-step-3">
+    <div class="registration-ptype-page-step registration-ptype-page-step-personal-gift" id="registration-ptype-page-step-4">
         <h1>Support your mission with a personal gift</h1>
         <div class="row pt-3">
             <div class="col-lg-12 col-xl-7">
@@ -216,7 +237,7 @@
         </div>
         <div class="ptype-page-step-dtd-anchor"></div>
         <div class="button-container text-center">
-            <button type="button" class="btn btn-secondary mr-3 js__ptype-page-prev-step" data-step="3" data-prev-step="2">Back</button>
+            <button type="button" class="btn btn-secondary mr-3 js__ptype-page-prev-step" data-step="4" data-prev-step="3">Back</button>
         </div>
     </div>
 </div>

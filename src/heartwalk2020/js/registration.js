@@ -1212,7 +1212,7 @@
                     $('body').focus(); // Reset focus to the top of the page
                     $('div#registration-ptype-page-step-' + offPage.toString()).hide();
                     $('div#registration-ptype-page-step-' + onPage.toString()).fadeIn();
-                    if (onPage === 2) {
+                    if (onPage === 3) {
                         var $sliderHandle = $('#registration-ptype-personal-goal-slider .ui-slider-handle');
                         setTimeout(function () {
                             $sliderHandle.addClass('shake-horizontal');
@@ -1221,8 +1221,19 @@
                             $sliderHandle.removeClass('shake-horizontal');
                         }, 2500);
                     }
-                    if (offPage === 2 && onPage === 3) {
+                    if (offPage === 3 && onPage === 4) {
                         digestPersonalGiftAmount();
+                    }
+                };
+
+                var disableStep = function (hidePage) {
+                    var $prevPageNextStepBttn = $('#registration-ptype-page-step-' + (hidePage - 1).toString()).find('button.js__ptype-page-next-step'),
+                        $nextPagePrevStepBttn = $('#registration-ptype-page-step-' + (hidePage + 1).toString()).find('button.js__ptype-page-prev-step');
+                    if ($prevPageNextStepBttn.data('next-step') == hidePage) {
+                        $prevPageNextStepBttn.data('next-step', hidePage + 1);
+                    }
+                    if ($nextPagePrevStepBttn.data('prev-step') == hidePage) {
+                        $nextPagePrevStepBttn.data('prev-step', hidePage - 1);
                     }
                 };
 
@@ -1309,6 +1320,16 @@
                     $steps.show();
 
                     // Dom manipulations
+                    var $partTypeSelectionContainer = $('#part_type_selection_container');
+                    if ($partTypeSelectionContainer.length) {
+                        var $participationTypeStep = $steps.find('div.registration-ptype-page-step-participation-type');
+                        $participationTypeStep
+                            .find('div.participation-type-ptype-page-step-content')
+                            .append($partTypeSelectionContainer.detach());
+                    } else {
+                        disableStep(2);
+                    };
+
                     var $personalGiftStep = $steps.find('div.registration-ptype-page-step-personal-gift');
                     $personalGiftStep
                         .find('div.registration-ptype-page-step-content')
@@ -1338,9 +1359,20 @@
 
                     // Next step click
                     $('.js__ptype-page-next-step').on('click', function () {
-                        renderNextStep(
-                            parseInt($(this).data('step'), 10), parseInt($(this).data('next-step'), 10)
-                        );
+                        var $bttn = $(this),
+                            currentStep = parseInt($bttn.data('step'), 10),
+                            nextStep = parseInt($bttn.data('next-step'), 10);
+
+                        switch (currentStep) {
+                            case 2 :
+                                $('input[name=fr_part_radio]').valid();
+                                if ($('form#F2fRegPartType').valid()) {
+                                    renderNextStep(currentStep, nextStep);
+                                }
+                                return;
+                        }
+
+                        renderNextStep(currentStep, nextStep);
                     });
 
                     // Slider dot click
