@@ -227,16 +227,16 @@
 									challenge for moving more. 
 								</p>
 							</div>
-							<div class="ym-promo-block__item" ng-if="schoolPlan.CountCompletingCPRQuiz > 0" ng-cloak>
+							<div class="ym-promo-block__item" ng-if="schoolPlan.CountCompletingCPRQuiz > 0" tabindex="0" ng-cloak>
 								<div class="h2 text-white">
 									{{schoolPlan.CountCompletingCPRQuiz}}
 								</div>
-								<div ng-if="schoolPlan.CountCompletingCPRQuiz == 1" tabindex="0" ng-cloak>
+								<div ng-if="schoolPlan.CountCompletingCPRQuiz == 1" ng-cloak>
 									<p>
 										family completed CPR training ({{schoolPlan.PercentOfEnrollmentCompletingCPRQuiz}}% of school)
 									</p>
 								</div>
-								<div ng-if="schoolPlan.CountCompletingCPRQuiz != 1" tabindex="0" ng-cloak>
+								<div ng-if="schoolPlan.CountCompletingCPRQuiz != 1" ng-cloak>
 									<p>
 										families completed CPR training ({{schoolPlan.PercentOfEnrollmentCompletingCPRQuiz}}% of school)
 									</p>
