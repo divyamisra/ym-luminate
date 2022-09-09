@@ -21,6 +21,7 @@ angular.module('trPcControllers').controller 'NgPcVolunteerViewCtrl', [
       'activity': ''
       'hour': '0'
       'minute': 0
+    event_year = 'fy23'
 
     $scope.showVolunteerEntry = ->
       $scope.createVolunteerEntryDetail = true
@@ -79,7 +80,7 @@ angular.module('trPcControllers').controller 'NgPcVolunteerViewCtrl', [
         'constituent_id': $scope.consId
         'school_id': $scope.participantRegistration.companyInformation.companyId
         'event_id': $scope.frId
-        'event_year': 'fy23'
+        'event_year': event_year
         'activity_type_id': $scope.volunteerAdd.activity
         'activity_date': $filter('date')(new Date($scope.volunteerAdd.date), 'yyyy-MM-dd')
         'hours': parseInt($scope.volunteerAdd.hour) * 60 + parseInt($scope.volunteerAdd.minute)
