@@ -53,7 +53,7 @@
 								<th scope="col" aria-sort="{{volunteerDetail.sortColumn != 'StudentFirstName' ? 'none' : (volunteerDetail.sortAscending ? 'ascending' : 'descending')}}">
 									<div class="text-left">
 										<button type="button" class="btn btn-link" ng-click="orderVolunteerDetail('StudentFirstName')">
-											<strong>Student</strong>&nbsp;<span class="fa" ng-class="{'fa-caret-down': (volunteerDetail.sortColumn == 'StudentFirstName' && !volunteerDetail.sortAscending) || volunteerDetail.sortColumn != 'StudentFirstName', 'fa-caret-up': volunteerDetail.sortColumn == 'StudentFirstName' && volunteerDetail.sortAscending, 'inactive': volunteerDetail.sortColumn != 'StudentFirstName'}" ng-if="volunteerCoordinatorData.length"><span class="sr-only">Sortable. {{volunteerDetail.sortColumn != 'StudentFirstName' ? 'Not sorted.' : (volunteerDetail.sortAscending ? 'Sorted ascending.' : 'Sorted descending.')}}</span></span>
+											<strong>Student First/Last Name</strong>&nbsp;<span class="fa" ng-class="{'fa-caret-down': (volunteerDetail.sortColumn == 'StudentFirstName' && !volunteerDetail.sortAscending) || volunteerDetail.sortColumn != 'StudentFirstName', 'fa-caret-up': volunteerDetail.sortColumn == 'StudentFirstName' && volunteerDetail.sortAscending, 'inactive': volunteerDetail.sortColumn != 'StudentFirstName'}" ng-if="volunteerCoordinatorData.length"><span class="sr-only">Sortable. {{volunteerDetail.sortColumn != 'StudentFirstName' ? 'Not sorted.' : (volunteerDetail.sortAscending ? 'Sorted ascending.' : 'Sorted descending.')}}</span></span>
 										</button>
 									</div>
 								</th>
