@@ -45,6 +45,19 @@ angular.module('trPcControllers').controller 'NgPcSocialViewCtrl', [
        failure: (response) ->
        error: (response) ->
        success: (response) ->
+
+    $scope.socialEarned = -1
+    getFinnsMission = ->
+      BoundlessService.getBadges $scope.frId + '/' + $scope.consId
+      .then (response) ->
+        prizes = response.data.prizes
+          angular.forEach prizes, (prize) ->
+            if prize.label == "Send Email/Ecard"
+              if prize.status != 0
+                $scope.socialEarned = 1
+              else 
+                $scope.socialEarned = 0
+    getFinnsMission()
               
     #setup social iframe
     urlPrefix = ''
