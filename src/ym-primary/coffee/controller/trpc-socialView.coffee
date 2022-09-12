@@ -54,7 +54,7 @@ angular.module('trPcControllers').controller 'NgPcSocialViewCtrl', [
       .then (response) ->
         prizes = response.data.prizes
         angular.forEach prizes, (prize) ->
-          if prize.label == "Send Email/Ecard"
+          if prize.label == "Go Social"
             if prize.status != 0
               $scope.socialEarned = 1
             else 
