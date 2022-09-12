@@ -2080,6 +2080,11 @@
         $('.donation-level-row-label').parent().parent().addClass('donation-amt');
         $('.donation-level-row-label:contains("Additional Gift:")').parent().parent().addClass('enterAmt').removeClass('donation-amt');
         $('<span>$</span>').insertBefore('.donation-level-row-container.enterAmt input:last-child');
+
+        if ($('div#registration-ptype-page-steps').length === 0) {
+            $('#part_type_individual_company_selection_container').insertAfter('#part_type_selection_container');
+        }
+
         $('.donation-level-row-label-no-gift').insertBefore(jQuery('.donation-level-row-label-no-gift').parent());
         $('.donation-level-row-container.enterAmt label.donation-level-row-label').text('Other Amount');
         $('.donation-level-row-label-no-gift').parent().addClass('notTime');
