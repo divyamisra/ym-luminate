@@ -42,11 +42,9 @@ angular.module('trPcControllers').controller 'NgPcSocialViewCtrl', [
     
     $scope.socialEarnedThankYou = 0
     $scope.putSocialMedia = (event, sel) ->
-      BoundlessService.putSocialMedia '',
-       failure: (response) ->
-       error: (response) ->
-       success: (response) ->
-         $scope.socialEarnedThankYou = 1
+      BoundlessService.putSocialMedia()
+        .then (response) ->
+          $scope.socialEarnedThankYou = 1
 
     $scope.socialEarned = -1
     getFinnsMission = ->
