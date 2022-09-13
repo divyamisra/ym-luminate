@@ -168,7 +168,21 @@ angular.module 'ahaLuminateApp'
             callback.success response
           , (response) ->
             callback.failure response
-
+            
+      getVolunteerAdminData: (requestData, callback) ->
+        if $rootScope.tablePrefix is 'heartdev'
+          url = '//tools.heart.org/volunteer/volunteer-admin-report.php?env=_dev&school_id=' + requestData
+        else
+          url = '//tools.heart.org/volunteer/volunteer-admin-report.php?school_id=' + requestData
+        $http.jsonp($sce.trustAsResourceUrl(url), jsonpCallbackParam: 'callback')
+          .then (response) ->
+            if response.data.success is false
+              callback.error response
+            else
+              callback.success response
+          , (response) ->
+            callback.failure response
+            
       createVolunteerData: (requestData, callback) ->
         if $rootScope.tablePrefix is 'heartdev'
           url = '//tools.heart.org/aha_ahc23_dev/api/volunteerism?key=RByQUbXzYLBchS3n'

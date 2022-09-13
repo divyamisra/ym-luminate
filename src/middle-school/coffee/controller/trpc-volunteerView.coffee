@@ -19,8 +19,9 @@ angular.module('trPcControllers').controller 'NgPcVolunteerViewCtrl', [
     $scope.volunteerAdd =
       'date': new Date()
       'activity': ''
-      'hour': ''
-      'minute': ''
+      'hour': '0'
+      'minute': 0
+    event_year = 'fy23'
 
     $scope.showVolunteerEntry = ->
       $scope.createVolunteerEntryDetail = true
@@ -79,7 +80,7 @@ angular.module('trPcControllers').controller 'NgPcVolunteerViewCtrl', [
         'constituent_id': $scope.consId
         'school_id': $scope.participantRegistration.companyInformation.companyId
         'event_id': $scope.frId
-        'event_year': 'fy23'
+        'event_year': event_year
         'activity_type_id': $scope.volunteerAdd.activity
         'activity_date': $filter('date')(new Date($scope.volunteerAdd.date), 'yyyy-MM-dd')
         'hours': parseInt($scope.volunteerAdd.hour) * 60 + parseInt($scope.volunteerAdd.minute)
@@ -122,6 +123,14 @@ angular.module('trPcControllers').controller 'NgPcVolunteerViewCtrl', [
               getVolunteerism()
               $scope.volunteerProcess = response.data
 
+    $scope.checkVolunteerMinutes = ->
+      if typeof @$parent.entry != 'undefined'
+        if @$parent.entry.hour == 2
+          @$parent.entry.minute = 0
+      if typeof @$parent.$parent.volunteerAdd != 'undefined'
+        if @$parent.$parent.volunteerAdd.hour == '2'
+          @$parent.$parent.volunteerAdd.minute = 0
+  
     $scope.showVolunteerReport = ->
       $scope.volunteerReportPending = true
       $scope.showVolunteerReportModal = $uibModal.open
@@ -152,7 +161,7 @@ angular.module('trPcControllers').controller 'NgPcVolunteerViewCtrl', [
       $scope.volunteerReportPending = false
               
     ImagetoPrint = (source) ->
-      '<html><head><scri' + 'pt>function step1(){\n' + 'setTimeout(\'step2()\', 10);}\n' + 'function step2(){window.print();window.close()}\n' + '</scri' + 'pt></head><body onload=\'step1()\'>\n' + '<img src=\'' + source + '\' /></body></html>'
+      '<html><head><style>@page {margin: 0;}@media print {footer { display: none;position: fixed;bottom: 0;}header {display: none;position: fixed;top: 0;}}</style><scri' + 'pt>function step1(){\n' + 'setTimeout(\'step2()\', 10);}\n' + 'function step2(){window.print();window.close()}\n' + '</scri' + 'pt></head><body onload=\'step1()\'>\n' + '<img src=\'' + source + '\' /></body></html>'
 
     $scope.PrintImage = (source) ->
       Pagelink = 'about:blank'

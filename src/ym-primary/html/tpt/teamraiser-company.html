@@ -120,7 +120,7 @@
 			</div>
 			<div class="ym-progress__thermometer mx-5 my-0 mw-100" name="School Progress Bar" role="progressbar" aria-label="{{companyProgress.percent}} percent of fundraising progress" aria-valuetext="{{companyProgress.percent}} percent of fundraising progress" aria-valuenow="{{companyProgress.percent}}" aria-valuemin="0" aria-valuemax="100" ng-if="companyProgress.goal &amp;&amp; companyProgress.goal != 0" ng-cloak>
 				<div class="ym-progress__thermometer--fill" ng-class="(companyProgress.percent &lt; 15) ? 'therm-text-black' : 'therm-text-white'" ng-style="{'width': companyProgress.percent + '%'}">
-					{{companyProgress.percent}}% 
+					{{companyProgress.percent | number:0}}% 
 				</div>
 			</div>
 		</div>
@@ -138,29 +138,29 @@
 	</div>
 	<div class="ym-page-section ym-page-section__main">
 		<div class="d-flex flex-wrap justify-content-around mb-5">
-			<div class=" px-3 text-center">
+			<div class="col-md-6 px-3 text-center">
 				<div class="ym-awards-section">
 					<h2 class="ym-headline">
 						School Achievements 
 					</h2>
 					<div class="ym-school-achievements">
 						<div class="ym-school-badge-participation-years" ng-if="schoolYears == 0 || schoolYears == 1" ng-cloak>
-							<img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy23/badge-first-year.png" alt="First Year Participating Badge"> 
+							<img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy23/badge-first-year.png" alt="First Year Participating Badge" tabindex="0"> 
 						</div>
 						<div class="ym-school-badge-participation-years" ng-if="schoolYears > 0" ng-cloak>
-							<img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy22/badge-years.png" alt="School Participation Years"> 
+							<img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy22/badge-years.png" alt="School Participation Years" tabindex="0"> 
 							<div class="ym-school-participation-years-text">
 								{{schoolYears}} 
 							</div>
 						</div>
 						<div class="ym-school-badge-top25-school" ng-if="top25school == 'Y'" ng-cloak>
-							<img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy22/badge-top25school.png" alt="Top 25 School"> 
+							<img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy22/badge-top25school.png" alt="Top 25 School" tabindex="0"> 
 						</div>
 						<div class="ym-school-badge-heartsaver" ng-cloak>
-							<img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy22/badge-heartsaver-school.png" alt="Heartsaver School"> 
+							<img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy22/badge-heartsaver-school.png" alt="Heartsaver School" tabindex="0"> 
 						</div>
 						<div style="position:relative;" class="ym-school-badge-best-year" ng-if="highestRaisedYear > 0" ng-cloak>
-							<img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy22/badge-bestyear.png" alt="Best Year and Amount"> 
+							<img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy22/badge-bestyear.png" alt="Best Year and Amount" tabindex="0"> 
 							<div class="ym-school-badge-best-year-date">
 								{{highestRaisedYear}} 
 							</div>
@@ -170,61 +170,78 @@
 						</div>
 					</div>
 				</div>
-				<div class="mt-4" ng-show="participantCount &gt; 0 &amp;&amp; (activity1amt != 0 || activity2amt != 0 || activity3amt != 0)" ng-cloak>
-					<div class="ym-our-stats ym-promo-block">
+				<div class="ym-stats-section mt-4" ng-show="participantCount &gt; 0 &amp;&amp; (activity1amt != 0 || activity2amt != 0 || activity3amt != 0)" ng-cloak>
+					<div class="">
 						<h2 class="ym-headline">
 							Our Stats 
 						</h2>
-						<div class="ym-promo-block__item" ng-if="schoolPlan.CountOfStudentsCompletingFinnsMission > 0" ng-cloak>
-							<div class="h2 ym-headline">
-								<span ng-if="schoolPlan.CountOfStudentsCompletingFinnsMission &lt; 1000" ng-cloak>
-									{{schoolPlan.CountOfStudentsCompletingFinnsMission}} 
-								</span>
-								<span ng-if="schoolPlan.CountOfStudentsCompletingFinnsMission > 999" ng-cloak>
-									{{schoolPlan.CountOfStudentsCompletingFinnsMission}} 
-								</span>
+						<div class="d-md-flex flex-wrap justify-content-around ym-our-stats ym-promo-block">
+							<div class="ym-promo-block__item" ng-if="schoolPlan.CountOfStudentsCompletingFinnsMission > 0" tabindex="0" ng-cloak>
+								<div class="h2 text-white"> 
+									<span ng-if="schoolPlan.CountOfStudentsCompletingFinnsMission &lt; 1000" ng-cloak>
+										{{schoolPlan.CountOfStudentsCompletingFinnsMission}} 
+									</span>
+									<span ng-if="schoolPlan.CountOfStudentsCompletingFinnsMission > 999" ng-cloak>
+										{{schoolPlan.CountOfStudentsCompletingFinnsMission}} 
+									</span>
+								</div>
+								<div ng-if="schoolPlan.CountOfStudentsCompletingFinnsMission == 1" tabindex="0" ng-cloak>
+									<p>
+										student completed Finn's mission 
+									</p>
+								</div>
+								<div ng-if="schoolPlan.CountOfStudentsCompletingFinnsMission != 1" tabindex="0" ng-cloak>
+									<p>
+										students completed Finn's mission 
+									</p>
+								</div>
 							</div>
-							<div ng-if="schoolPlan.CountOfStudentsCompletingFinnsMission == 1" ng-cloak>
+							<div class="ym-promo-block__item" tabindex="0">
+								<div class="h2 text-white">
+									{{participantCount}} 
+								</div>
+								<div ng-if="participantCount == 1" ng-cloak>
+									<p>
+										student registered. 
+									</p>
+								</div>
+								<div ng-if="participantCount > 1" ng-cloak>
+									<p>
+										students registered. 
+									</p>
+								</div>
+							</div>
+							<div class="ym-promo-block__item" tabindex="0" ng-if="activity1amt != 0" ng-cloak>
+								<div class="h2 text-white">
+									{{activity1amt}} 
+								</div>
 								<p>
-									student completed Finn's mission 
+									challenge for being kind. 
 								</p>
 							</div>
-							<div ng-if="schoolPlan.CountOfStudentsCompletingFinnsMission != 1" ng-cloak>
+							<div class="ym-promo-block__item" ng-if="activity2amt != 0" tabindex="0" ng-cloak>
+								<div class="h2 text-white">
+									{{activity2amt}} 
+								</div>
 								<p>
-									students completed Finn's mission 
+									challenge for moving more. 
 								</p>
 							</div>
-						</div>
-						<div class="ym-promo-block__item ym-promo-block__item--members">
-							<div class="h2 ym-headline">
-								{{participantCount}} 
+							<div class="ym-promo-block__item" ng-if="schoolPlan.CountCompletingCPRQuiz > 0" tabindex="0" ng-cloak>
+								<div class="h2 text-white">
+									{{schoolPlan.CountCompletingCPRQuiz}}
+								</div>
+								<div ng-if="schoolPlan.CountCompletingCPRQuiz == 1" ng-cloak>
+									<p>
+										family completed CPR training ({{schoolPlan.PercentOfEnrollmentCompletingCPRQuiz}}% of school)
+									</p>
+								</div>
+								<div ng-if="schoolPlan.CountCompletingCPRQuiz != 1" ng-cloak>
+									<p>
+										families completed CPR training ({{schoolPlan.PercentOfEnrollmentCompletingCPRQuiz}}% of school)
+									</p>
+								</div>
 							</div>
-							<div ng-if="participantCount == 1" ng-cloak>
-								<p>
-									student registered. 
-								</p>
-							</div>
-							<div ng-if="participantCount > 1" ng-cloak>
-								<p>
-									students registered. 
-								</p>
-							</div>
-						</div>
-						<div class="ym-promo-block__item" ng-if="activity1amt != 0" ng-cloak>
-							<div class="h2 ym-headline">
-								{{activity1amt}} 
-							</div>
-							<p>
-								challenge for being kind. 
-							</p>
-						</div>
-						<div class="ym-promo-block__item" ng-if="activity2amt != 0" ng-cloak>
-							<div class="h2 ym-headline">
-								{{activity2amt}} 
-							</div>
-							<p>
-								challenge for moving more. 
-							</p>
 						</div>
 					</div>
 				</div>

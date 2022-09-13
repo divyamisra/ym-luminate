@@ -1890,7 +1890,7 @@
 																			Update School Goal
 																		</strong>
 																	</a>
-<!-- <a ng-href="NTM?tr.ntmgmt=company_cservice_main&amp;company_id={{participantRegistration.companyInformation.companyId}}">
+                    <!-- <a ng-href="NTM?tr.ntmgmt=company_cservice_main&amp;company_id={{participantRegistration.companyInformation.companyId}}">
                       <strong>Update School Goal</strong>
                     </a> -->
 																	&nbsp; 
@@ -2092,7 +2092,7 @@
 																<div class="ym-pc-dashboard-school-badges-box d-flex flex-wrap justify-content-center">
 																	<div id="ym-pc-dashboard-school-registration-badges-panel--school" aria-label="School Registration Badges">
 																		<div class="ym-badges__item" ng-repeat="schoolBadge in schoolBadgesRegistrations" ng-cloak>
-																			<img class="img-responsive" ng-src="{{schoolBadge.image_url}}" alt="{{schoolBadge.image_name}}"> 
+																			<img class="img-responsive" ng-src="{{schoolBadge.image_url}}" alt="{{schoolBadge.image_name}}" tabindex="0"> 
 																			<div class="text">
 																				{{schoolBadge.text}}
 																			</div>
@@ -2100,7 +2100,7 @@
 																	</div>
 																	<div id="ym-pc-dashboard-school-fundraising-badges-panel--school" aria-label="School Fundraising Badges">
 																		<div class="ym-badges__item" ng-repeat="schoolBadge in schoolBadgesFundraising" ng-cloak>
-																			<img class="img-responsive" ng-src="{{schoolBadge.image_url}}" alt="{{schoolBadge.image_name}}"> 
+																			<img class="img-responsive" ng-src="{{schoolBadge.image_url}}" alt="{{schoolBadge.image_name}}" tabindex="0"> 
 																			<div class="text">
 																				{{schoolBadge.text}}
 																			</div>
@@ -2525,7 +2525,7 @@
 												Top 15 Schools Nationally
 											</h3>
 											<div class="ym-tl-dollars-raised" role="list">
-												<div class="d-flex justify-content-between" ng-repeat="topSchool in schoolTop15" role="listitem" ng-if="schoolTop15.length > 0" ng-cloak>
+												<div class="d-flex justify-content-between" ng-repeat="topSchool in schoolTop15" role="listitem" ng-if="schoolTop15.length > 0 && topSchool.SchoolTotalAmountRaised > 0" ng-cloak>
 													<div class="col-xs-1 top-index">
 														#{{$index+1}}
 													</div>
@@ -2547,7 +2547,7 @@
 												Top 15 Schools in {{stateList[schoolPlan.SchoolState]}}
 											</h3>
 											<div class="ym-tl-dollars-raised" role="list">
-												<div class="d-flex justify-content-between" ng-repeat="topSchool2 in schoolTop15ByState" role="listitem" ng-if="schoolTop15ByState.length > 0" ng-cloak>
+												<div class="d-flex justify-content-between" ng-repeat="topSchool2 in schoolTop15ByState" role="listitem" ng-if="schoolTop15ByState.length > 0 && topSchool2.SchoolTotalAmountRaised > 0" ng-cloak>
 													<div class="col-xs-1 top-index">
 														#{{$index+1}}
 													</div>
