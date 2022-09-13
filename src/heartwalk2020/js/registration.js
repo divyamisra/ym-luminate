@@ -1212,7 +1212,7 @@
                     $('body').focus(); // Reset focus to the top of the page
                     $('div#registration-ptype-page-step-' + offPage.toString()).hide();
                     $('div#registration-ptype-page-step-' + onPage.toString()).fadeIn();
-                    if (onPage === 2) {
+                    if (onPage === 3) {
                         var $sliderHandle = $('#registration-ptype-personal-goal-slider .ui-slider-handle');
                         setTimeout(function () {
                             $sliderHandle.addClass('shake-horizontal');
@@ -1221,8 +1221,19 @@
                             $sliderHandle.removeClass('shake-horizontal');
                         }, 2500);
                     }
-                    if (offPage === 2 && onPage === 3) {
+                    if (offPage === 3 && onPage === 4) {
                         digestPersonalGiftAmount();
+                    }
+                };
+
+                var disableStep = function (hidePage) {
+                    var $prevPageNextStepBttn = $('#registration-ptype-page-step-' + (hidePage - 1).toString()).find('button.js__ptype-page-next-step'),
+                        $nextPagePrevStepBttn = $('#registration-ptype-page-step-' + (hidePage + 1).toString()).find('button.js__ptype-page-prev-step');
+                    if ($prevPageNextStepBttn.data('next-step') == hidePage) {
+                        $prevPageNextStepBttn.data('next-step', hidePage + 1);
+                    }
+                    if ($nextPagePrevStepBttn.data('prev-step') == hidePage) {
+                        $nextPagePrevStepBttn.data('prev-step', hidePage - 1);
                     }
                 };
 
@@ -1309,6 +1320,14 @@
                     $steps.show();
 
                     // Dom manipulations
+                    if ($('#part_type_selection_container div.part-type-container').length > 1) {
+                        $steps
+                            .find('div.participation-type-ptype-page-step-content')
+                            .append($('#part_type_selection_container').detach());
+                    } else {
+                        disableStep(2);
+                    }
+
                     var $personalGiftStep = $steps.find('div.registration-ptype-page-step-personal-gift');
                     $personalGiftStep
                         .find('div.registration-ptype-page-step-content')
@@ -1338,9 +1357,20 @@
 
                     // Next step click
                     $('.js__ptype-page-next-step').on('click', function () {
-                        renderNextStep(
-                            parseInt($(this).data('step'), 10), parseInt($(this).data('next-step'), 10)
-                        );
+                        var $bttn = $(this),
+                            currentStep = parseInt($bttn.data('step'), 10),
+                            nextStep = parseInt($bttn.data('next-step'), 10);
+
+                        switch (currentStep) {
+                            case 2 :
+                                $('input[name=fr_part_radio]').valid();
+                                if ($('form#F2fRegPartType').valid()) {
+                                    renderNextStep(currentStep, nextStep);
+                                }
+                                return;
+                        }
+
+                        renderNextStep(currentStep, nextStep);
                     });
 
                     // Slider dot click
@@ -1583,7 +1613,7 @@
                         renderStep(prevStep, currentStep);
                         return;
                     }
-                    document.cookie = 'registration-ptype-page-step=3';
+                    document.cookie = 'registration-ptype-page-step=4';
                     history.back();
                 };
 
@@ -2050,6 +2080,11 @@
         $('.donation-level-row-label').parent().parent().addClass('donation-amt');
         $('.donation-level-row-label:contains("Additional Gift:")').parent().parent().addClass('enterAmt').removeClass('donation-amt');
         $('<span>$</span>').insertBefore('.donation-level-row-container.enterAmt input:last-child');
+
+        if ($('div#registration-ptype-page-steps').length === 0) {
+            $('#part_type_individual_company_selection_container').insertAfter('#part_type_selection_container');
+        }
+
         $('.donation-level-row-label-no-gift').insertBefore(jQuery('.donation-level-row-label-no-gift').parent());
         $('.donation-level-row-container.enterAmt label.donation-level-row-label').text('Other Amount');
         $('.donation-level-row-label-no-gift').parent().addClass('notTime');
@@ -2122,7 +2157,7 @@
             var $personalGoaEdit = $('#goal-container + .reg-summary-edit-link > a');
             if ($personalGoaEdit.length == 1) {
                 $personalGoaEdit.on('click', function () {
-                    document.cookie = 'registration-ptype-page-step=2';
+                    document.cookie = 'registration-ptype-page-step=3';
                 })
             }
 
