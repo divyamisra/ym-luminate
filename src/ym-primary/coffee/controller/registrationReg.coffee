@@ -348,9 +348,11 @@ angular.module 'ahaLuminateControllers'
         selectedGrade = $scope.registrationInfo[$scope.registrationCustomQuestions.ym_khc_grade]
         $scope.teachersByGrade = []
         teachersByGrade = []
+        teachersFound = []
         angular.forEach $scope.teachers, (teacher) ->
-          if teacher.grade == selectedGrade
+          if not teachersFound[teacher.teacher_name]
             teachersByGrade.push teacher_name: teacher.teacher_name
+          teachersFound[teacher.teacher_name] = teacher.teacher_name
         $scope.teachersByGrade = teachersByGrade
         
       setCompanyCity = (companyCity) ->
