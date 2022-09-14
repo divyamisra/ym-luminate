@@ -1210,7 +1210,9 @@
                     $('html, body').animate({scrollTop: 0}, 0);
                     renderHeader(onPage);
                     $('body').focus(); // Reset focus to the top of the page
-                    $('div#registration-ptype-page-step-' + offPage.toString()).hide();
+                    if (offPage > 0) {
+                        $('div#registration-ptype-page-step-' + offPage.toString()).hide();
+                    }
                     $('div#registration-ptype-page-step-' + onPage.toString()).fadeIn();
                     if (onPage === 3) {
                         var $sliderHandle = $('#registration-ptype-personal-goal-slider .ui-slider-handle');
@@ -1247,6 +1249,26 @@
 
                 var renderNextStep = function (currentStep, nextStep) {
                     renderStep(nextStep, currentStep);
+                };
+
+                var handleErrors = function () {
+                    var onPage = 0,
+                        offPage = 1,
+                        $errorHeader = $('div.ErrorMessage.page-error'),
+                        $firstError = $('div.registration-ptype-page-step div.ErrorMessage').first();
+                    if ($firstError.length) {
+                        onPage = parseInt($firstError.closest('div.registration-ptype-page-step').data('step'), 10);
+                    }
+                    if (onPage === 0) {
+                        onPage = 1;
+                    }
+                    if (onPage === 1) {
+                        offPage = 0;
+                    }
+                    $('div#registration-ptype-page-step-' + onPage.toString()).prepend(
+                        $errorHeader.addClass('my-4').detach().show()
+                    );
+                    renderStep(onPage, offPage);
                 };
 
                 this.personalGoalSliderSlide = function (sliderVal) {
@@ -1307,23 +1329,29 @@
                 this.init = function () {
                     $('body').attr('tabindex', '-1');
 
-                    var $steps = $('div#registration-ptype-page-steps').detach();
-                    $('#part_type_section_container').append($steps);
+                    var $steps = $('div#registration-ptype-page-steps').detach(),
+                        errorsPresent = $('div.ErrorMessage.page-error').length,
+                        activeStep = parseInt(readCookie('registration-ptype-page-step'), 10);
 
-                    var activeStep = parseInt(readCookie('registration-ptype-page-step'), 10);
-                    if (activeStep > 0) {
-                        document.cookie = 'registration-ptype-page-step=;expires=Thu, 01 Jan 1970 00:00:01 GMT';
-                        renderStep(activeStep, 1);
-                    } else {
-                        renderHeader(1);
+                    document.cookie = 'registration-ptype-page-step=;expires=Thu, 01 Jan 1970 00:00:01 GMT';
+                    $('#part_type_section_container').append($steps);
+                    if (errorsPresent === 0) {
+                        if (activeStep > 0) {
+                            renderStep(activeStep, 1);
+                        } else {
+                            renderHeader(1);
+                        }
                     }
                     $steps.show();
 
                     // Dom manipulations
                     if ($('#part_type_selection_container div.part-type-container').length > 1) {
-                        $steps
-                            .find('div.participation-type-ptype-page-step-content')
-                            .append($('#part_type_selection_container').detach());
+                        var $stepParticipationTypeContent = $steps.find('div.participation-type-ptype-page-step-content'),
+                            $discountCodeContainer = $('#discount_code_container');
+                        $stepParticipationTypeContent.append($('#part_type_selection_container').detach());
+                        if ($discountCodeContainer.length > 0) {
+                            $stepParticipationTypeContent.append($discountCodeContainer.detach());
+                        }
                     } else {
                         disableStep(2);
                     }
@@ -1347,6 +1375,11 @@
                         .text('No gift at this time')
                         .closest('.donation-level-row-container')
                         .addClass('donation-level-row-container-no-gift mt-3')
+
+                    // Handle errors
+                    if (errorsPresent > 0) {
+                        handleErrors();
+                    }
 
                     // Prev step click
                     $('.js__ptype-page-prev-step').on('click', function () {
@@ -1604,7 +1637,9 @@
                     $('html, body').animate({scrollTop: 0}, 0);
                     renderHeader(onPage);
                     $('body').focus(); // Reset focus to the top of the page
-                    $('div#registration-reg-page-step-' + offPage.toString()).hide();
+                    if (offPage > 0) {
+                        $('div#registration-reg-page-step-' + offPage.toString()).hide();
+                    }
                     $('div#registration-reg-page-step-' + onPage.toString()).fadeIn();
                 };
 
@@ -1674,10 +1709,10 @@
                 }
 
                 // Start with Step 1?
-                if (errorsPresent == 0) {
-                    var activeStep = parseInt(readCookie('registration-reg-page-step'), 10);
+                var activeStep = parseInt(readCookie('registration-reg-page-step'), 10);
+                document.cookie = 'registration-reg-page-step=;expires=Thu, 01 Jan 1970 00:00:01 GMT';
+                if (errorsPresent === 0) {
                     if (activeStep > 0) {
-                        document.cookie = 'registration-reg-page-step=;expires=Thu, 01 Jan 1970 00:00:01 GMT';
                         renderStep(activeStep, 1);
                     } else {
                         renderHeader(1);
