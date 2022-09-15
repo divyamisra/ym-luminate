@@ -1765,10 +1765,16 @@
                 if ($questionContainer.length) {
                     $step4.find('div#relocated_mobile_phone_question').append($questionContainer.detach());
                 }
+                $questionContainer = $('#reg_options_cons_info_extension');
+                if ($questionContainer.length) {
+                    $step4.find('div#relocated_reg_options_cons_info_extension').append($questionContainer.detach());
+                }
+                /*
                 $questionContainer = $('.survey-question-container label span:contains("What is your t-shirt size")').closest('div.survey-question-container');
                 if ($questionContainer.length) {
                     $step4.find('div#relocated_t_shirt_question').append($questionContainer.detach());
                 }
+                */
 
                 // Step 5
                 var $consPasswordInput = $('#cons_password');
@@ -1797,7 +1803,7 @@
                         });
                     }
                 };
-                step6RelocatedSurveyQuestions('relocated_survey_questions', [
+                step6RelocatedSurveyQuestions('relocated_top_survey_questions', [
                     'Healthy for good'
                 ]);
                 step6RelocatedSurveyQuestions('relocated_company_survey_questions', [
@@ -1811,7 +1817,7 @@
                     );
                 }
                 $step6.find('div#relocated_email_optin').append(
-                    $('#reg_options_cons_info_extension').detach()
+                    $('#gift_notice_optin').detach()
                 );
                 var $acceptReleaseChkbox = $('input[value^="I accept"]');
                 if ($acceptReleaseChkbox.length) {
@@ -1825,6 +1831,10 @@
                         $acceptPrivacyChkbox.closest('div.survey-question-container').detach()
                     );
                 }
+                // The rest of survey questions
+                $step6.find('div#relocated_survey_questions').append(
+                    $('#additional_questions_container').detach()
+                );
 
                 // Handle errors
                 if (errorsPresent > 0) {
