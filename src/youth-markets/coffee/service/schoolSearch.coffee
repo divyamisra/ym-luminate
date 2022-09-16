@@ -270,12 +270,12 @@ angular.module 'ahaLuminateApp'
           nameFilter = nameFilter.toLowerCase().replace(' elementary', '')
           nameFilter = nameFilter.toLowerCase().replace(' school', '')
           companies = []
-          isOverride = findOverrides(nameFilter)
-          if isOverride.length > 0
-            angular.forEach override.overrides, (replace) ->
-            nameFilterReplace = nameFilter.replace(override.original, replace)
-            if nameFilterReplace.indexOf('..') == -1
-              nameFilter = nameFilter + '|' + nameFilterReplace
+          #isOverride = findOverrides(nameFilter)
+          #if isOverride.length > 0
+          #  angular.forEach override.overrides, (replace) ->
+          #  nameFilterReplace = nameFilter.replace(override.original, replace)
+          #  if nameFilterReplace.indexOf('..') == -1
+          #    nameFilter = nameFilter + '|' + nameFilterReplace
 
           ZuriService.getSchools '&school_name=' + encodeURIComponent(nameFilter) + '&school_state=' + encodeURIComponent($scope.schoolList.stateFilter),
             failure: (response) ->
