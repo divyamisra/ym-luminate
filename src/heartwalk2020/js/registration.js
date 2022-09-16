@@ -1699,12 +1699,13 @@
                 }
                 if ($step1.find('div#relocated_participation_years').length) {
                     $step1.find('div#relocated_participation_years').append(
-                        $('.survey-question-container label span:contains("How many years have you participated in Heart Walk")')
+                        $('.survey-question-container label span:contains("How many years have you participated in")')
                             .closest('div.survey-question-container').detach()
                     );
                 } else {
-                    $('.survey-question-container label span:contains("How many years have you participated in Heart Walk")')
+                    $('.survey-question-container label span:contains("How many years have you participated in")')
                         .closest('div.survey-question-container')
+                        .hide()
                         .find('select').val('0').change();
                 }
 
