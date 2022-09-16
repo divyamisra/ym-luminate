@@ -1948,19 +1948,32 @@
                 }
             });
 
-            var optinName = $('.input-label:contains("Mobile Phone")').closest('.input-container').find('input').attr("name");
-            var tshirtName = $('.input-label:contains("t-shirt")').closest('.input-container').find('select').attr("name");
-
+            // Custom validation options
             var rules = {};
-            rules['cons_password'] = {required: true, minlength: 5};
-            rules['cons_rep_password'] = {required: true, minlength: 5, equalTo: "#cons_password"};
-            rules[optinName] = {required: '#mobile_optin:checked', minlength: 2};
-            rules[tshirtName] = {valueNotEquals: 'NOREPLY'};
-
             var messages = {};
+
+            /*
+            $('div.survey-question-container select.required').each(function () {
+                var $dd = $(this);
+                if ($dd.find('option:first-child').val() === 'NOREPLY') {
+                    rules[$dd.attr('name')] = {valueNotEquals: 'NOREPLY'};
+                    messages[$dd.attr('name')] = {required: 'Please select a value.'};
+                }
+            });
+            */
+
+            rules['cons_password'] = {required: true, minlength: 5};
             messages['cons_password'] = {minlength: "Please enter 5 characters or more", required: "Please enter a password"};
+
+            rules['cons_rep_password'] = {required: true, minlength: 5, equalTo: "#cons_password"};
             messages['cons_rep_password'] = {required: "Please confirm your password", minlength: "Please enter 5 characters or more", equalTo: "Passwords do not match. Please re-enter password."};
+
+            var optinName = $('.input-label:contains("Mobile Phone")').closest('.input-container').find('input').attr("name");
+            rules[optinName] = {required: '#mobile_optin:checked', minlength: 2};
             messages[optinName] = {required: "Mobile Opt in is selected.<br/>Please enter a mobile number."};
+
+            var tshirtName = $('.input-label:contains("t-shirt")').closest('.input-container').find('select').attr("name");
+            rules[tshirtName] = {valueNotEquals: 'NOREPLY'};
             messages[tshirtName] = {required: "Please select a t-shirt size."};
 
             $('button.previous-step').attr("formnovalidate", "true");
@@ -1982,19 +1995,24 @@
                     }, 500);
                 },
                 errorPlacement: function (error, element) {
-                    if ($(element).hasClass("survivorq")) {
+                    var $element = $(element);
+                    if ($element.hasClass("survivorq")) {
                         $('fieldset.survivor_yes_no').after(error);
                         return;
                     }
-                    if ($(element).hasClass("acceptRelease")) {
+                    if ($element.hasClass("acceptRelease")) {
                         $('.acceptRelease').closest('.input-container').append(error);
                         return;
                     }
-                    if ($(element).hasClass("acceptPrivacy")) {
+                    if ($element.hasClass("acceptPrivacy")) {
                         $('.acceptPrivacy').closest('.input-container').append(error);
                         return;
                     }
-                    var placement = $(element).data('error');
+                    if ($element.attr('type') === 'radio') {
+                        $element.closest('fieldset').append(error);
+                        return;
+                    }
+                    var placement = $element.data('error');
                     if (placement) {
                         $(placement).append(error)
                     } else {
