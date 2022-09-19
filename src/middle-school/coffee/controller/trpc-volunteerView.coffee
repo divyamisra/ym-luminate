@@ -148,7 +148,7 @@ angular.module('trPcControllers').controller 'NgPcVolunteerViewCtrl', [
       setTimeout (->
         jQuery('.non-collapsing').on 'click', (e) ->
           window.open jQuery(this).attr('href')
-        jQuery(this).on 'keydown', (e) ->
+        jQuery('.non-collapsing').on 'keydown', (e) ->
           if e.which == 13
             e.preventDefault()
             window.open jQuery(this).attr('href')
