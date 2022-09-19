@@ -3,8 +3,9 @@ angular.module('trPcControllers').controller 'NgPcSocialViewCtrl', [
   '$sce'
   '$rootScope'
   'FacebookFundraiserService'
+  'BoundlessService'
   'NgPcTeamraiserShortcutURLService'
-  ($scope, $sce, $rootScope, FacebookFundraiserService, NgPcTeamraiserShortcutURLService) ->
+  ($scope, $sce, $rootScope, FacebookFundraiserService, BoundlessService, NgPcTeamraiserShortcutURLService) ->
     #facebook fundraising
     $rootScope.facebookFundraiserConfirmedStatus = ''
     if $scope.facebookFundraisersEnabled and $rootScope.facebookFundraiserId and $rootScope.facebookFundraiserId isnt ''
@@ -39,6 +40,25 @@ angular.module('trPcControllers').controller 'NgPcSocialViewCtrl', [
           response
     $scope.getParticipantShortcut()
     
+    $scope.socialEarnedThankYou = 0
+    $scope.putSocialMedia = (event, sel) ->
+      BoundlessService.putSocialMedia()
+        .then (response) ->
+          $scope.socialEarnedThankYou = 1
+
+    $scope.socialEarned = -1
+    getFinnsMission = ->
+      BoundlessService.getBadges $scope.frId + '/' + $scope.consId
+      .then (response) ->
+        prizes = response.data.prizes
+        angular.forEach prizes, (prize) ->
+          if prize.label == "Go Social"
+            if prize.status != 0
+              $scope.socialEarned = 1
+            else 
+              $scope.socialEarned = 0
+    getFinnsMission()
+              
     #setup social iframe
     urlPrefix = ''
     if $scope.tablePrefix is 'heartdev' or $scope.tablePrefix is 'heartnew'
