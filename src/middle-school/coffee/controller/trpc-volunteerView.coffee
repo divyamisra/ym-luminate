@@ -148,7 +148,11 @@ angular.module('trPcControllers').controller 'NgPcVolunteerViewCtrl', [
       setTimeout (->
         jQuery('.non-collapsing').on 'click', (e) ->
           window.open jQuery(this).attr('href')
-      ), 1000
+        jQuery(this).on 'keydown', (e) ->
+          if e.which == 13
+            e.preventDefault()
+            window.open jQuery(this).attr('href')
+      ), 1500
 
     $scope.cancelViewVolunteerActivities = ->
       $scope.viewVolunteerActivitiesModal.close()
