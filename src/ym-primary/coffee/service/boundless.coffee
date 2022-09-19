@@ -147,6 +147,19 @@ angular.module 'ahaLuminateApp'
           , (response) ->
             response
             
+      putSocialMedia: ->
+        if $rootScope.tablePrefix is 'heartdev'
+          url = 'https://khc.staging.ootqa.org/api/points/activity/log/' + $rootScope.frId + '/' + $rootScope.consId + '/10/manual_social_earn'
+        else if $rootScope.tablePrefix is 'heartnew'
+          url = 'https://khc.staging.ootqa.org/api/points/activity/log/' + $rootScope.frId + '/' + $rootScope.consId + '/10/manual_social_earn'
+        else
+          url = 'https://kidsheartchallenge.heart.org/api/points/activity/log/' + $rootScope.frId + '/' + $rootScope.consId + '/10/manual_social_earn'
+        $http.jsonp($sce.trustAsResourceUrl(url), jsonpCallbackParam: 'callback')
+          .then (response) ->
+            response
+          , (response) ->
+            response
+            
       getBMLeaderboard: (requestData) ->
         motion_username = 'kidsheartapi'
         motion_password = 'mYhtYeBWCrA7cTST'
