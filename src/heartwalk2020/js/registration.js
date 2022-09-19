@@ -1699,12 +1699,13 @@
                 }
                 if ($step1.find('div#relocated_participation_years').length) {
                     $step1.find('div#relocated_participation_years').append(
-                        $('.survey-question-container label span:contains("How many years have you participated in Heart Walk")')
+                        $('.survey-question-container label span:contains("How many years have you participated in")')
                             .closest('div.survey-question-container').detach()
                     );
                 } else {
-                    $('.survey-question-container label span:contains("How many years have you participated in Heart Walk")')
+                    $('.survey-question-container label span:contains("How many years have you participated in")')
                         .closest('div.survey-question-container')
+                        .hide()
                         .find('select').val('0').change();
                 }
 
@@ -1765,10 +1766,16 @@
                 if ($questionContainer.length) {
                     $step4.find('div#relocated_mobile_phone_question').append($questionContainer.detach());
                 }
+                $questionContainer = $('#reg_options_cons_info_extension');
+                if ($questionContainer.length) {
+                    $step4.find('div#relocated_reg_options_cons_info_extension').append($questionContainer.detach());
+                }
+                /*
                 $questionContainer = $('.survey-question-container label span:contains("What is your t-shirt size")').closest('div.survey-question-container');
                 if ($questionContainer.length) {
                     $step4.find('div#relocated_t_shirt_question').append($questionContainer.detach());
                 }
+                */
 
                 // Step 5
                 var $consPasswordInput = $('#cons_password');
@@ -1797,7 +1804,7 @@
                         });
                     }
                 };
-                step6RelocatedSurveyQuestions('relocated_survey_questions', [
+                step6RelocatedSurveyQuestions('relocated_top_survey_questions', [
                     'Healthy for good'
                 ]);
                 step6RelocatedSurveyQuestions('relocated_company_survey_questions', [
@@ -1811,7 +1818,7 @@
                     );
                 }
                 $step6.find('div#relocated_email_optin').append(
-                    $('#reg_options_cons_info_extension').detach()
+                    $('#gift_notice_optin').detach()
                 );
                 var $acceptReleaseChkbox = $('input[value^="I accept"]');
                 if ($acceptReleaseChkbox.length) {
@@ -1825,6 +1832,10 @@
                         $acceptPrivacyChkbox.closest('div.survey-question-container').detach()
                     );
                 }
+                // The rest of survey questions
+                $step6.find('div#relocated_survey_questions').append(
+                    $('#additional_questions_container').detach()
+                );
 
                 // Handle errors
                 if (errorsPresent > 0) {
@@ -1937,19 +1948,32 @@
                 }
             });
 
-            var optinName = $('.input-label:contains("Mobile Phone")').closest('.input-container').find('input').attr("name");
-            var tshirtName = $('.input-label:contains("t-shirt")').closest('.input-container').find('select').attr("name");
-
+            // Custom validation options
             var rules = {};
-            rules['cons_password'] = {required: true, minlength: 5};
-            rules['cons_rep_password'] = {required: true, minlength: 5, equalTo: "#cons_password"};
-            rules[optinName] = {required: '#mobile_optin:checked', minlength: 2};
-            rules[tshirtName] = {valueNotEquals: 'NOREPLY'};
-
             var messages = {};
+
+            /*
+            $('div.survey-question-container select.required').each(function () {
+                var $dd = $(this);
+                if ($dd.find('option:first-child').val() === 'NOREPLY') {
+                    rules[$dd.attr('name')] = {valueNotEquals: 'NOREPLY'};
+                    messages[$dd.attr('name')] = {required: 'Please select a value.'};
+                }
+            });
+            */
+
+            rules['cons_password'] = {required: true, minlength: 5};
             messages['cons_password'] = {minlength: "Please enter 5 characters or more", required: "Please enter a password"};
+
+            rules['cons_rep_password'] = {required: true, minlength: 5, equalTo: "#cons_password"};
             messages['cons_rep_password'] = {required: "Please confirm your password", minlength: "Please enter 5 characters or more", equalTo: "Passwords do not match. Please re-enter password."};
+
+            var optinName = $('.input-label:contains("Mobile Phone")').closest('.input-container').find('input').attr("name");
+            rules[optinName] = {required: '#mobile_optin:checked', minlength: 2};
             messages[optinName] = {required: "Mobile Opt in is selected.<br/>Please enter a mobile number."};
+
+            var tshirtName = $('.input-label:contains("t-shirt")').closest('.input-container').find('select').attr("name");
+            rules[tshirtName] = {valueNotEquals: 'NOREPLY'};
             messages[tshirtName] = {required: "Please select a t-shirt size."};
 
             $('button.previous-step').attr("formnovalidate", "true");
@@ -1971,19 +1995,24 @@
                     }, 500);
                 },
                 errorPlacement: function (error, element) {
-                    if ($(element).hasClass("survivorq")) {
+                    var $element = $(element);
+                    if ($element.hasClass("survivorq")) {
                         $('fieldset.survivor_yes_no').after(error);
                         return;
                     }
-                    if ($(element).hasClass("acceptRelease")) {
+                    if ($element.hasClass("acceptRelease")) {
                         $('.acceptRelease').closest('.input-container').append(error);
                         return;
                     }
-                    if ($(element).hasClass("acceptPrivacy")) {
+                    if ($element.hasClass("acceptPrivacy")) {
                         $('.acceptPrivacy').closest('.input-container').append(error);
                         return;
                     }
-                    var placement = $(element).data('error');
+                    if ($element.attr('type') === 'radio') {
+                        $element.closest('fieldset').append(error);
+                        return;
+                    }
+                    var placement = $element.data('error');
                     if (placement) {
                         $(placement).append(error)
                     } else {
