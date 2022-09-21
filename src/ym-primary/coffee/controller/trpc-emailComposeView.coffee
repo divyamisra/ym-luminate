@@ -140,6 +140,26 @@ angular.module 'trPcControllers'
                 setEmailMessageBody messageBody
 
       sortOrder = {
+
+        "1 - Pre-Pre-Kick Off (W/O Frankie 3 weeks before Kick Off)": 0,
+        "2 - Pre-Pre-Kick Off (W/Frankie 3 weeks before Kick Off)": 1,
+        "3 - Pre-Kick Off (1 week to 1 day before kick-off)": 2,
+        "4 - Post Assembly/Kick Off Email": 3,
+        "5 - Mid Event Reminder #1 (Week after Kick Off)": 4,
+        "6 - Mid Event Reminder #2 (2 weeks post kick-off/mid event)": 5,
+        "7 - Last Chance Reminder (week of Event)": 6,
+        "8 - $0 students Post Kick Off": 7,
+        "9 - Students that have not yet registered post KO": 8,
+        "10 - We are so close to our Goal (school close to fundraising goal)": 9,
+        "11 - You're so close to a MYSTERY GIFT": 10,
+        "12 - Help our class!": 11,
+        "13 - Complete Finn's Mission": 12,
+        "14 - Help our school earn valuable equipment and resources": 13, 
+        "15 - Thank You (post event)": 14
+
+
+
+
         "Get a Jump Start/Past Participant wTeaser Video": 0,
         "Get a Jump Start/Past Participant (No Teaser Video)": 1,
         "One week before Kick-off": 2,
