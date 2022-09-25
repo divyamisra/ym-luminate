@@ -3696,10 +3696,11 @@ cd.getTeamHonorRoll();
                       $('.js--company-name').text(newAmpersand);
                     }
 
-                    var raised = numberWithCommas(response.getCompaniesResponse.company.amountRaised / 100);
+                    // var raised = numberWithCommas(response.getCompaniesResponse.company.amountRaised / 100);
+                    var raised = $('.company-tally-container--amount .company-tally-ammount').text();
 
                     if (raised) {
-                        $('#progress-amount').html('$' + raised);
+                        $('#progress-amount').text(raised);
                     }
 
                     // Get company goal
