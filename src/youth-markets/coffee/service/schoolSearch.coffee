@@ -169,7 +169,7 @@ angular.module 'ahaLuminateApp'
             $scope.schoolList.searchErrorMessage = 'Please specify a search criteria before initiating a search.'
           else
             delete $scope.schoolList.searchErrorMessage
-            if $rootScope.tablePrefix is 'heartdev'
+            if $scope.tablePrefix is 'heartdev'
               $scope.getSchoolSearchResultsDEV()
             else
               $scope.getSchoolSearchResults()
