@@ -654,7 +654,7 @@
         // BEGIN TOP COMPANIES
 // TODO - replace with companyList
 
-        var totalTopLevelCompanies = 0
+        //var totalTopLevelCompanies = 0
 
         cd.getCompanyList = function (eventId) {
             console.log('GETCOMPANYLIST')
