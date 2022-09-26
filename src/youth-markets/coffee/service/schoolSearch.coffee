@@ -206,7 +206,17 @@ angular.module 'ahaLuminateApp'
                 COORDINATOR_FIRST_NAME: company.COORDINATOR_FIRST_NAME
                 COORDINATOR_LAST_NAME: company.COORDINATOR_LAST_NAME                
           schools
-        
+          
+        setSchoolsData = (schools) ->
+          angular.forEach schools, (school, schoolIndex) ->
+            schoolData = $scope.schoolDataMap['id' + school.COMPANY_ID]
+            if schoolData
+              schools[schoolIndex].SCHOOL_CITY = schoolData.SCHOOL_CITY
+              schools[schoolIndex].SCHOOL_STATE = schoolData.SCHOOL_STATE
+              schools[schoolIndex].COORDINATOR_FIRST_NAME = schoolData.COORDINATOR_FIRST_NAME
+              schools[schoolIndex].COORDINATOR_LAST_NAME = schoolData.COORDINATOR_LAST_NAME
+          schools
+          
         searchOverridesMap = [
           {
             original: 'Saint', 
@@ -354,7 +364,7 @@ angular.module 'ahaLuminateApp'
                   $scope.schoolList.totalItems = schools.length
                   $scope.schoolList.totalNumberResults = schools.length
                 if $scope.schoolList.stateFilter isnt ''
-                  schools = $filter('filter') schools, SCHOOL_STATE: $scope.schoolList.stateFilter
+                  #schools = $filter('filter') schools, SCHOOL_STATE: $scope.schoolList.stateFilter
                   $scope.schoolList.schools = schools
                   $scope.schoolList.totalItems = schools.length
                   $scope.schoolList.totalNumberResults = schools.length
