@@ -1056,7 +1056,7 @@
             cd.getTopParticipants(evID);
             cd.getTopTeams(evID);
             cd.getCompanyList(evID);
-            // commenting out because total number of companies is coming from list of ancestor companies above per AHA-1023
+            // commenting out because total number of companies is coming from list of ancestor companies above per AHA-1023 
             //cd.getTopCompanies(evID);
 
             if (currDate >= fourWeek && currDate <= eventDate) {
