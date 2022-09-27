@@ -145,6 +145,14 @@ angular.module('trPcControllers').controller 'NgPcVolunteerViewCtrl', [
       $scope.viewVolunteerActivitiesModal = $uibModal.open
         scope: $scope
         templateUrl: APP_INFO.rootPath + 'dist/middle-school/html/participant-center/modal/viewVolunteerActivities.html'
+      setTimeout (->
+        jQuery('.non-collapsing').on 'click', (e) ->
+          window.open jQuery(this).attr('href')
+        jQuery('.non-collapsing').on 'keydown', (e) ->
+          if e.which == 13
+            e.preventDefault()
+            window.open jQuery(this).attr('href')
+      ), 1500
 
     $scope.cancelViewVolunteerActivities = ->
       $scope.viewVolunteerActivitiesModal.close()
