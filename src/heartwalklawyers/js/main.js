@@ -735,27 +735,26 @@
             });
         };
 
-        // commenting out because total number of companies is coming from list of ancestor companies above per AHA-1023
-        // cd.getTopCompanies = function (eventId) {
-        //     luminateExtend.api({
-        //         api: 'teamraiser',
-        //         data: 'method=getCompaniesByInfo&fr_id=' + eventId +
-        //             '&include_cross_event=true&list_sort_column=total&list_ascending=false&list_page_size=5&response_format=json',
-        //         callback: {
-        //             success: function (response) {
-        //                 if (!$.isEmptyObject(response.getCompaniesResponse)) {
-        //                     var topCompanies = luminateExtend.utils.ensureArray(response.getCompaniesResponse
-        //                         .company);
-        //                     var totalCompanies = parseInt(response.getCompaniesResponse.totalNumberResults);
-        //                     $('.js--num-companies').text(totalCompanies);
-        //                 }
-        //             },
-        //             error: function (response) {
-        //                 // console.log('getTopCompanies error: ' + response.errorResponse.message);
-        //             }
-        //         }
-        //     });
-        // };
+        cd.getTopCompanies = function (eventId) {
+            luminateExtend.api({
+                api: 'teamraiser',
+                data: 'method=getCompaniesByInfo&fr_id=' + eventId +
+                    '&include_cross_event=true&list_sort_column=total&list_ascending=false&list_page_size=5&response_format=json',
+                callback: {
+                    success: function (response) {
+                        if (!$.isEmptyObject(response.getCompaniesResponse)) {
+                            var topCompanies = luminateExtend.utils.ensureArray(response.getCompaniesResponse
+                                .company);
+                            var totalCompanies = parseInt(response.getCompaniesResponse.totalNumberResults);
+                            $('.js--num-companies').text(totalCompanies);
+                        }
+                    },
+                    error: function (response) {
+                        // console.log('getTopCompanies error: ' + response.errorResponse.message);
+                    }
+                }
+            });
+        };
 
         /******************/
         /* STEPS SCRIPTS */
@@ -1057,7 +1056,8 @@
             cd.getTopParticipants(evID);
             cd.getTopTeams(evID);
             cd.getCompanyList(evID);
-            cd.getTopCompanies(evID);
+            // commenting out because total number of companies is coming from list of ancestor companies above per AHA-1023
+            //cd.getTopCompanies(evID);
 
             if (currDate >= fourWeek && currDate <= eventDate) {
                 //build steps leaderboard
