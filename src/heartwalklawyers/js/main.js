@@ -716,6 +716,7 @@
                         var sortedAncestorCompanies = rootAncestorCompanies.sort(function (a, b) {
                             return b.amountRaised - a.amountRaised
                         });
+                        $('.js--num-companies').text(sortedAncestorCompanies.length);
                         //var sortedAncestorCompanies = $filter('orderBy')(rootAncestorCompanies, 'amountRaised', true);
                         $(sortedAncestorCompanies).each(function (i) {
                             if (i < 5) {
@@ -734,26 +735,27 @@
             });
         };
 
-        cd.getTopCompanies = function (eventId) {
-            luminateExtend.api({
-                api: 'teamraiser',
-                data: 'method=getCompaniesByInfo&fr_id=' + eventId +
-                    '&include_cross_event=true&list_sort_column=total&list_ascending=false&list_page_size=5&response_format=json',
-                callback: {
-                    success: function (response) {
-                        if (!$.isEmptyObject(response.getCompaniesResponse)) {
-                            var topCompanies = luminateExtend.utils.ensureArray(response.getCompaniesResponse
-                                .company);
-                            var totalCompanies = parseInt(response.getCompaniesResponse.totalNumberResults);
-                            $('.js--num-companies').text(totalCompanies);
-                        }
-                    },
-                    error: function (response) {
-                        // console.log('getTopCompanies error: ' + response.errorResponse.message);
-                    }
-                }
-            });
-        };
+        // commenting out because total number of companies is coming from list of ancestor companies above per AHA-1023
+        // cd.getTopCompanies = function (eventId) {
+        //     luminateExtend.api({
+        //         api: 'teamraiser',
+        //         data: 'method=getCompaniesByInfo&fr_id=' + eventId +
+        //             '&include_cross_event=true&list_sort_column=total&list_ascending=false&list_page_size=5&response_format=json',
+        //         callback: {
+        //             success: function (response) {
+        //                 if (!$.isEmptyObject(response.getCompaniesResponse)) {
+        //                     var topCompanies = luminateExtend.utils.ensureArray(response.getCompaniesResponse
+        //                         .company);
+        //                     var totalCompanies = parseInt(response.getCompaniesResponse.totalNumberResults);
+        //                     $('.js--num-companies').text(totalCompanies);
+        //                 }
+        //             },
+        //             error: function (response) {
+        //                 // console.log('getTopCompanies error: ' + response.errorResponse.message);
+        //             }
+        //         }
+        //     });
+        // };
 
         /******************/
         /* STEPS SCRIPTS */
