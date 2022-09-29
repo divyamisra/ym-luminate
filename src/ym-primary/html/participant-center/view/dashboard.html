@@ -2044,6 +2044,58 @@
 															My School 
 														</h2>
 													</div>
+													<div class="ym-pc-dashboard-coordinator-daily-challenges">
+														<div class="schoolStatusTitle">
+															Daily Challenges
+														</div>
+														<p class="students-challenge1">
+															<strong>
+																{{activity1amt|number}}
+															</strong>
+															student
+															<span ng-if="activity1amt > 1 || activity1amt == 0">
+																s are
+															</span>
+															<span ng-if="activity1amt == 1">
+																is
+															</span>
+															being kind 
+														</p>
+														<p class="students-challenge2">
+															<strong>
+																{{activity2amt|number}}
+															</strong>
+															student
+															<span ng-if="activity2amt > 1 || activity2amt == 0">
+																s are
+															</span>
+															<span ng-if="activity2amt == 1">
+																is
+															</span>
+															being active 
+														</p>
+														<p class="students-challenge3">
+															<strong>
+																{{schoolPlan.CountOfStudentsCompletingFinnsMission|number}}
+															</strong>
+															student
+															<span ng-if="schoolPlan.CountOfStudentsCompletingFinnsMission > 1 || schoolPlan.CountOfStudentsCompletingFinnsMission == 0">
+																s
+															</span>
+															completed Finn's&nbsp;Mission 
+														</p>
+														<p>
+															<strong>
+																Compose emails
+															</strong>
+															to friends and family to come visit your fundraising page. 
+														</p>
+														<a class="btn btn-md-wide btn-primary" ng-href="{{baseUrl}}#/email">
+															<strong>
+																Send Emails
+															</strong>
+														</a>
+													</div>
 													<div class="ym-pc-dashboard-coordinator-create-message">
 														<div class="schoolStatusTitle">
 															School Achievement
@@ -2112,58 +2164,6 @@
 																</div>
 															</div>
 														</div>
-													</div>
-													<div class="ym-pc-dashboard-coordinator-daily-challenges">
-														<div class="schoolStatusTitle">
-															Daily Challenges
-														</div>
-														<p class="students-challenge1">
-															<strong>
-																{{activity1amt|number}}
-															</strong>
-															student
-															<span ng-if="activity1amt > 1 || activity1amt == 0">
-																s are
-															</span>
-															<span ng-if="activity1amt == 1">
-																is
-															</span>
-															being kind 
-														</p>
-														<p class="students-challenge2">
-															<strong>
-																{{activity2amt|number}}
-															</strong>
-															student
-															<span ng-if="activity2amt > 1 || activity2amt == 0">
-																s are
-															</span>
-															<span ng-if="activity2amt == 1">
-																is
-															</span>
-															being active 
-														</p>
-														<p class="students-challenge3">
-															<strong>
-																{{schoolPlan.CountOfStudentsCompletingFinnsMission|number}}
-															</strong>
-															student
-															<span ng-if="schoolPlan.CountOfStudentsCompletingFinnsMission > 1 || schoolPlan.CountOfStudentsCompletingFinnsMission == 0">
-																s
-															</span>
-															completed Finn's&nbsp;Mission 
-														</p>
-														<p>
-															<strong>
-																Compose emails
-															</strong>
-															to friends and family to come visit your fundraising page. 
-														</p>
-														<a class="btn btn-md-wide btn-primary" ng-href="{{baseUrl}}#/email">
-															<strong>
-																Send Emails
-															</strong>
-														</a>
 													</div>
 												</div>
 											</div>
