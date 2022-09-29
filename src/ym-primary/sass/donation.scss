@@ -11,6 +11,15 @@
   }
 }
 
+@media (max-width:480px) {
+	.ym-donation-payment-type {
+		text-align:left !important;
+		.btn-primary {
+			margin-bottom: 5px;
+		}
+	}
+}
+
 .event-accent {
   .ym-donation-sidebar__text {
     span {
