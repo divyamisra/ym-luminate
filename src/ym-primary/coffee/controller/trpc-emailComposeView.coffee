@@ -141,45 +141,30 @@ angular.module 'trPcControllers'
 
       sortOrder = {
 
-        "1 - Pre-Pre-Kick Off (W/O Frankie 3 weeks before Kick Off)": 0,
-        "2 - Pre-Pre-Kick Off (W/Frankie 3 weeks before Kick Off)": 1,
-        "3 - Pre-Kick Off (1 week to 1 day before kick-off)": 2,
-        "4 - Post Assembly/Kick Off Email": 3,
-        "5 - Mid Event Reminder #1 (Week after Kick Off)": 4,
-        "6 - Mid Event Reminder #2 (2 weeks post kick-off/mid event)": 5,
-        "7 - Last Chance Reminder (week of Event)": 6,
-        "8 - $0 students Post Kick Off": 7,
-        "9 - Students that have not yet registered post KO": 8,
-        "10 - We are so close to our Goal (school close to fundraising goal)": 9,
-        "11 - You're so close to a MYSTERY GIFT": 10,
-        "12 - Help our class!": 11,
-        "13 - Complete Finn's Mission": 12,
-        "14 - Help our school earn valuable equipment and resources": 13, 
-        "15 - Thank You (post event)": 14
-
-
-
-
-        "Get a Jump Start/Past Participant wTeaser Video": 0,
-        "Get a Jump Start/Past Participant (No Teaser Video)": 1,
-        "One week before Kick-off": 2,
-        "Non Kick-off Event Email/All School Kick-off Email": 3,
-        "Mid-Event Reminder": 4,
-        "Help Our School Conquer Finn's Mission": 5,
-        "Send 10": 6,
-        "Last Chance Reminder": 7,
-        "Donation Solicitation Email 1": 8,
-        "Donation Solicitation Email 2": 9,
-        "Team Member Thank You Email": 10,
-        "Help me become a FINN's Mission Heart Hero": 11,
-        "I'm Trying to get a Donation from every state!": 12,
-        "Help Me Save Lives": 13,
-        "Have a heart, lend a hand": 14,
-        "Your BIG heart can help save lives": 15,
-        "Get 10 Donations Emails": 16,
-        "Donation Reminder": 17,
-        "Donation Thank you Email": 18,
-        "Thanks for helping me be a Heart Hero": 19
+        "Pre-Pre-Kick Off (WO/Frankie 3 weeks before Kick Off)": 1,
+        "Pre-Pre-Kick Off (W/Frankie 3 weeks before Kick Off)": 2,
+        "Pre-Kick Off (1 week to 1 day before kick-off)": 3,
+        "Post Assembly/Kick Off Email": 4,
+        "Mid Event Reminder #1 (Week after Kick Off)": 5,
+        "Mid Event Reminder #2 (2 weeks post kick-off/mid event)": 6,
+        "Last Chance Reminder (week of Event)": 7,
+        "$0 students Post Kick Off": 8,
+        "Students that have not yet registered post KO": 9,
+        "We are so close to our Goal (school close to fundraising goal)": 10,
+        "You're so close to a MYSTERY GIFT": 11,
+        "Help our class!": 12,
+        "Complete Finn's Mission": 13,
+        "Help our school earn valuable equipment and resources": 14,
+        "Thank You (post event)": 15,
+        "Your BIG Heart Can Help Save Lives": 16,
+        "Help Me Save Lives": 17,
+        "Have a Heart, Lend a Hand": 18,
+        "Earn all 6 Heart Heroes Goal": 19,
+        "Get 10 Donation Emails": 20,
+        "Help Me Become a FINN's Mission Heart Hero": 21,
+        "Donation Reminder": 22,
+        "Thanks for Helping me be a Heart Hero!": 23,
+        "Donation Thank You Email": 24
       }
 
       suggestedMessagesPromise = NgPcTeamraiserEmailService.getSuggestedMessages()
@@ -195,12 +180,12 @@ angular.module 'trPcControllers'
                   #   $scope.suggestedMessageCountByType[message.messageType] = 0
                   # $scope.suggestedMessageCountByType[message.messageType] = $scope.suggestedMessageCountByType[message.messageType] + 1
                   message.name = message.name.split('Student: ')[1] or message.name
-                  console.log('message.name x' + message.name + 'x' + 'message type ' + message.messageType)
+                  # console.log('message.name x' + message.name + 'x' + 'message type ' + message.messageType)
                   message.name = message.name.trim()
-                  console.log('message.name x' + message.name + 'x' + 'message type ' + message.messageType)
+                  # console.log('message.name x' + message.name + 'x' + 'message type ' + message.messageType)
                   if sortOrder[message.name]
                     message.sortOrder = sortOrder[message.name]
-                    console.log('message.sortOrder ' + message.sortOrder + typeof message.sortOrder)
+                    #console.log('message.sortOrder ' + message.sortOrder + typeof message.sortOrder)
                   $scope.suggestedMessages.push message
               else
                 if message.name.indexOf('Student:') is -1
@@ -208,15 +193,15 @@ angular.module 'trPcControllers'
                   #   $scope.suggestedMessageCountByType[message.messageType] = 0
                   # $scope.suggestedMessageCountByType[message.messageType] = $scope.suggestedMessageCountByType[message.messageType] + 1
                   message.name = message.name.split('Coordinator: ')[1] or message.name
-                  console.log('message.name x' + message.name + 'x' + 'message type ' + message.messageType)
+                  #console.log('message.name x' + message.name + 'x' + 'message type ' + message.messageType)
                   message.name = message.name.trim()
-                  console.log('message.name x' + message.name + 'x' + 'message type ' + message.messageType)
-                  if message.name == 'Get a Jump Start/Past Participant wTeaser Video'
-                    console.log('gotcha!')
-                    message.sortOrder = 0
+                  #console.log('message.name x' + message.name + 'x' + 'message type ' + message.messageType)
+                  # if message.name == 'Get a Jump Start/Past Participant wTeaser Video'
+                  #   console.log('gotcha!')
+                  #   message.sortOrder = 0
                   if sortOrder[message.name]
                     message.sortOrder = sortOrder[message.name]
-                    console.log('message.sortOrder ' + message.sortOrder)
+                    #console.log('message.sortOrder ' + message.sortOrder)
                   $scope.suggestedMessages.push message
               
               # angular.forEach suggestedMessages, (suggestedMessage, suggestedMessageIndex) ->
