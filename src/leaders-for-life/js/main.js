@@ -1876,7 +1876,8 @@
 								// cd.initializeTeamRosterTable();
 
 								//add call to hook donate button with payment type selections
-								addPaymentTypesOnSearch();
+								//removing to test console errors, as this refs a main body script that no longer exists
+								// addPaymentTypesOnSearch();
 								$('.js--more-participant-results').on('click', function (e) {
 									e.preventDefault();
 									$('#team-roster tr').removeClass('d-none');
