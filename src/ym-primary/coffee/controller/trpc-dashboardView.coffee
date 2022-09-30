@@ -357,7 +357,7 @@ angular.module 'trPcControllers'
         text: ''
         errorMessage: null
         successMessage: false
-        message: ''
+        message: "Don\'t forget to send 10 emails or e-cards to your friends and family tonight.  And remember to finish Finn\'s Mission!"
         interactionId: ''
 
       if $scope.participantRegistration.companyInformation?.isCompanyCoordinator isnt 'true' or $scope.location is '/dashboard-student'
@@ -390,7 +390,7 @@ angular.module 'trPcControllers'
         $scope.editCoordinatorMessage = ->
           $scope.coordinatorMessage.original = $scope.coordinatorMessage.text
           if $scope.coordinatorMessage.text == ''
-            $scope.coordinatorMessage.text = 'Don\'t forget to complete Finn\'s Mission!'
+            $scope.coordinatorMessage.text = 'Don\'t forget to send 10 emails or e-cards to your friends and family tonight.  And remember to finish Finn\'s Mission!'
           $scope.editCoordinatorMessageModal = $uibModal.open
             scope: $scope
             size: 'lg'
