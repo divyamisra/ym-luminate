@@ -357,7 +357,7 @@ angular.module 'trPcControllers'
         text: ''
         errorMessage: null
         successMessage: false
-        message: "Don\'t forget to send 10 emails or e-cards to your friends and family tonight.  And remember to finish Finn\'s Mission!"
+        message: "Don\'t forget to send 10 emails or e-cards to your friends and family tonight and remember to finish&nbsp;Finn\'s&nbsp;Mission!"
         interactionId: ''
 
       if $scope.participantRegistration.companyInformation?.isCompanyCoordinator isnt 'true' or $scope.location is '/dashboard-student'
