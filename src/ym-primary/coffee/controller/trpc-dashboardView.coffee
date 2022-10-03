@@ -390,7 +390,7 @@ angular.module 'trPcControllers'
         $scope.editCoordinatorMessage = ->
           $scope.coordinatorMessage.original = $scope.coordinatorMessage.text
           if $scope.coordinatorMessage.text == ''
-            $scope.coordinatorMessage.text = 'Don\'t forget to send 10 emails or e-cards to your friends and family tonight.  And remember to finish Finn\'s Mission!'
+            $scope.coordinatorMessage.text = 'Don\'t forget to send 10 emails or e-cards to your friends and family tonight and remember to finish&nbsp;Finn\'s&nbsp;Mission!'
           $scope.editCoordinatorMessageModal = $uibModal.open
             scope: $scope
             size: 'lg'
