@@ -99,6 +99,7 @@ angular.module 'trPcControllers'
                       prize_level: gift.level
                       msg_earned: gift.msg_earned
                       msg_unearned: gift.msg_unearned
+                      post_event: gift.post_event
                     $scope.giftStatus = status
                     prevstatus = status
                     if status == 1

@@ -1241,6 +1241,7 @@ angular.module 'trPcControllers'
                       prize_level: giftPrev.level
                       msg_earned: giftPrev.msg_earned
                       msg_unearned: giftPrev.msg_unearned
+                      post_event: giftPrev.post_event
                   # if items need to be added then only add up to 3 after pushing first one
                   if startList == 1 and listCnt <= giftToAdd
                     if gift.id == "FINN-23" and $scope.prizes.length == $scope.prizesEarned
@@ -1256,6 +1257,7 @@ angular.module 'trPcControllers'
                       prize_level: gift.level
                       msg_earned: gift.msg_earned
                       msg_unearned: gift.msg_unearned
+                      post_event: gift.post_event
                     $scope.giftStatus = status
                   giftPrev = gift
                   prevstatus = status
