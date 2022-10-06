@@ -140,6 +140,7 @@ angular.module 'trPcControllers'
         "Registration: Past Participants Email (2 weeks before kickoff)": 2,
         "Register Today - To All Families (1 week before kickoff)": 3,
         "Post Kickoff Next Steps - To All Families (day of your kickoff)": 4,
+        "Midway Point  To All Families": 5,
         "Midway Point To All Families": 5,
         "Complete Finn's Mission - To All Families": 6,
         "1 Week Left - To All Families": 7,
@@ -181,6 +182,9 @@ angular.module 'trPcControllers'
                   # $scope.suggestedMessageCountByType[message.messageType] = $scope.suggestedMessageCountByType[message.messageType] + 1
                   message.name = message.name.split('Coordinator: ')[1] or message.name
                   message.name = message.name.trim()
+                  if message.name.indexOf('&amp;') != -1
+                    message.name = message.name.replace('&amp;', '&');
+                    
                   console.log('message.name x' + message.name + 'x' + 'message type ' + message.messageType)
                   # if message.name == 'Registration - Past Participants Email (Prepare for Kickoff and Sign-Up)'
                   #   console.log('gotcha!')
