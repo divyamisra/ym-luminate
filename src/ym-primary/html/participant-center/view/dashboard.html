@@ -3,7 +3,7 @@
 		<div class="row ym-pc-dashboard-coordinators-message-section mb-2" ng-if="EventStartDate || DonationDueDate" ng-cloak>
 			<div class="ym-pc-dashboard-event-date" ng-if="EventStartDate" ng-cloak>
 				Event Date: {{EventStartDate | date:'MM/dd/yyyy'}} 
-				<span ng-if="EventStartDate != EventEndDate &amp;&amp; EventEndDate != ''" ng-cloak>
+				<span ng-if="EventStartDate != EventEndDate && EventEndDate != ''" ng-cloak>
 					thru {{EventEndDate | date:'MM/dd/yyyy'}}
 				</span>
 			</div>
@@ -12,19 +12,22 @@
 			</div>
 		</div>
 		<div class="row ym-pc-dashboard-school-challange mb-2">
-			<div ng-class="col-sm-12" ng-if="coordinatorMessage.message &amp;&amp; coordinatorMessage.message != ''" ng-cloak>
+			<div ng-class="col-sm-12">
 				<div class="hv-image" ng-init="hvImgNotesrc='note-peek.png';" ng-mouseover="hvImgNotesrc='note-peek-animated.gif';" ng-mouseout="hvImgNotesrc='note-peek.png';">
 					<img class="ym-coordinator-message-monster" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy23/teacher-note.png" alt="Note From Your Teacher"> 
 				</div>
 				<section class="ym-pc-dashboard-coordinators-message-section mb-2" aria-label="Note From Your Teacher">
 					<div class="ym-pc-dashboard-section-header">
-						<div ng-bind-html="coordinatorMessage.message">
+						<div ng-if="coordinatorMessage.message == ''" ng-cloak>
+						  Don't forget to send 10 emails or e-cards to your friends and family tonight and remember to finish&nbsp;Finn's&nbsp;Mission!
+						</div>
+						<div ng-bind-html="coordinatorMessage.message" ng-if="coordinatorMessage.message != ''" ng-cloak>
 						</div>
 					</div>
 				</section>
 			</div>
 		</div>
-		<section class="ym-pc-dashboard-badges-section" aria-label="My Badges" ng-if="prizes &amp;&amp; prizes.length &gt; 0" ng-cloak>
+		<section class="ym-pc-dashboard-badges-section" aria-label="My Badges" ng-if="prizes && prizes.length > 0" ng-cloak>
 			<div class="ym-pc-dashboard-badge-path">
 				<div class="ym-pc-dashboard-badges-header">
 					<em>
@@ -164,7 +167,7 @@
 								</a>
 							</g>
 							<g id="social-share" data-name="Share on Social">
-								<a role="link" xlink:href="" ng-href="{{prizes[2].final_url}}{{(facebookFundraisersEnabled) ? 'fb' : ''}}" title="Share on Social" ng-focus="mouseover(2, 45, 190, this, 0)" ng-blur="mouseout()" aria-label="{{prizes[3].aria_label}}">
+								<a role="link" xlink:href="" ng-href="{{prizes[2].final_url}}" title="Share on Social" ng-focus="mouseover(2, 45, 190, this, 0)" ng-blur="mouseout()" aria-label="{{prizes[3].aria_label}}">
 									<path class="badge-path" d="M77 260v53h53v-53x-53z" fill="url(#3{{(prizes[2].earned) ? '_delivered' : '_earned'}})" ng-mouseover="mouseover(2, 45, 190, this, 0)" ng-mouseout="mouseout()" /> 
 									<text fill="#000" font-size="10" font-weight="bold">
 										<tspan x="90" y="325">
@@ -644,7 +647,7 @@
 									</h3>
 								</div>
 								<div class="ym-progress__thermometer" name="Personal Progress Bar" aria-label="{{participantProgress.percent}} percent of fundraising progress" aria-valuetext="{{participantProgress.percent}} percent of fundraising progress" role="progressbar" aria-valuenow="{{participantProgress.percent}}" aria-valuemin="0" aria-valuemax="100">
-									<div class="ym-progress__thermometer--fill" ng-class="(participantProgress.percent &lt; 13) ? 'therm-text-black' : 'therm-text-white'" ng-style="{'width': participantProgress.percent + '%'}">
+									<div class="ym-progress__thermometer--fill" ng-class="(participantProgress.percent < 13) ? 'therm-text-black' : 'therm-text-white'" ng-style="{'width': participantProgress.percent + '%'}">
 										{{participantProgress.percent}}%
 									</div>
 								</div>
@@ -673,7 +676,7 @@
 											</strong>
 											raised 
 										</p>
-										<div ng-if="participantProgress.goalFormatted &amp;&amp; participantProgress.goalFormatted != '$0'" ng-cloak>
+										<div ng-if="participantProgress.goalFormatted && participantProgress.goalFormatted != '$0'" ng-cloak>
 											<p>
 												<strong>
 													<span ng-bind-html="participantProgress.goalFormatted">
@@ -764,7 +767,7 @@
 									</h3>
 								</div>
 								<div class="ym-progress__thermometer" name="School Progress Bar" aria-label="{{participantProgress.percent}} percent of fundraising progress" aria-valuetext="{{companyProgress.percent}} percent of fundraising progress" role="progressbar" aria-valuenow="{{companyProgress.percent}}" aria-valuemin="0" aria-valuemax="100">
-									<div class="ym-progress__thermometer--fill" ng-class="(companyProgress.percent &lt; 13) ? 'therm-text-black' : 'therm-text-white'" ng-style="{'width': companyProgress.percent + '%'}">
+									<div class="ym-progress__thermometer--fill" ng-class="(companyProgress.percent < 13) ? 'therm-text-black' : 'therm-text-white'" ng-style="{'width': companyProgress.percent + '%'}">
 										{{companyProgress.percent}}%
 									</div>
 								</div>
@@ -800,7 +803,7 @@
 													</strong>
 													raised 
 												</p>
-												<div ng-if="companyProgress.goalFormatted &amp;&amp; companyProgress.goalFormatted != '$0'" ng-cloak>
+												<div ng-if="companyProgress.goalFormatted && companyProgress.goalFormatted != '$0'" ng-cloak>
 													<p>
 														<strong>
 															<span ng-bind-html="companyProgress.goalFormatted">
@@ -843,74 +846,9 @@
 				</div>
 			</div>
 		</section>
-		<section class="ym-pc-dashboard-facebook-section p-2 mb-2" aria-label="Facebook Fundraising" ng-show="facebookFundraisersEnabled" ng-cloak>
-			<div class="ym-pc-dashboard-facebook-box" ng-show="!facebookFundraiserId">
-				<div class="container">
-					<div class="ym-pc-dashboard-section-header">
-						<h3 class="h5 text-white">
-							Let's Get Fundraising
-							<span ng-if="consNameFirst &amp;&amp; consNameFirst != ''">
-								, 
-								<span ng-bind-html="consNameFirst">
-								</span>
-							</span>
-							! 
-						</h3>
-					</div>
-					<div class="text-center">
-						<p>
-							Link your personal page to a new Facebook Fundraiser to receive donations from your Facebook friends. 
-						</p>
-						<div role="alert" class="alert alert-danger" ng-if="facebookFundraiserLoginStatus == 'login_error' || facebookFundraiserLoginStatus == 'permission_error' || facebookFundraiserLoginStatus == 'create_fundraiser_error' || facebookFundraiserCreateStatus == 'login_error' || facebookFundraiserCreateStatus == 'permission_error' || facebookFundraiserCreateStatus == 'create_fundraiser_error'" ng-cloak>
-							An error occurred attempting to connect to Facebook. Please try again later. 
-						</div>
-						<div role="alert" class="alert alert-danger" ng-if="facebookFundraiserCreateStatus == 'create_fundraiser_duplicate'" ng-cloak>
-							This Facebook account already has an active Facebook Fundraiser for this school. If you are trying to connect a second student, you will need to use another Facebook account. 
-						</div>
-						<div role="alert" class="alert alert-danger" ng-if="facebookFundraiserLoginStatus == 'declined_manage_fundraisers'" ng-cloak>
-							We need your permission to create a Facebook Fundraiser on your behalf. 
-						</div>
-						<button type="button" class="btn btn-white" ng-class="{'disabled': facebookFundraiserLoginStatus == 'pending' || facebookFundraiserCreateStatus == 'pending'}" ng-click="loginToFacebook()" ng-disabled="facebookFundraiserLoginStatus == 'pending' || facebookFundraiserCreateStatus == 'pending'">
-							<span class="fa fa-facebook-square">
-							</span>
-							<strong>
-								Connect to Facebook Fundraiser
-							</strong>
-						</button>
-						<div class="ym-pc-dashboard-facebook-hint">
-							By clicking this link, you will leave AHA's website and be redirected to another site not under the control of AHA. 
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="ym-pc-dashboard-facebook-box js--facebook-fundraiser-completed-section" ng-show="facebookFundraiserId">
-				<div class="container">
-					<div class="ym-pc-dashboard-section-header">
-						<h3 class="h5 text-white">
-							Your Fundraiser is Connected to Facebook! 
-						</h3>
-					</div>
-					<div class="text-center">
-						<p>
-							Log in to use Facebook's fundraising tools to invite friends, share updates and collect donations. We'll keep track of your progress on Facebook and on your page, so you'll always know how close you are to reaching your goal. 
-						</p>
-						<a class="btn btn-white" ng-class="{'disabled': !facebookFundraiserConfirmedStatus || facebookFundraiserConfirmedStatus == 'pending'}" ng-href="//facebook.com/donate/{{facebookFundraiserId}}/" ng-disabled="!facebookFundraiserConfirmedStatus || facebookFundraiserConfirmedStatus == 'pending'" target="_blank">
-							<span class="fa fa-facebook-square">
-							</span>
-							<strong>
-								Go to Facebook Fundraiser
-							</strong>
-						</a>
-						<div class="ym-pc-dashboard-facebook-hint">
-							By clicking this link, you will leave AHA's website and be redirected to another site not under the control of AHA. 
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
-		<section class="ym-pc-dashboard-progress-section mb-2" aria-label="Spread the Word and Livestream Sections">
+		<section class="ym-pc-dashboard-progress-section mb-0" aria-label="Spread the Word and Livestream Sections">
 			<div class="d-md-flex justify-content-between flex-wrap">
-				<div class="col-sm-6 p-2">
+				<div class="col-sm-12 p-2">
 					<div class="ym-pc-dashboard-progress-section__column event-secondary-medium p-3 h-100">
 						<div class="ym-pc-dashboard-email-challenge-box">
 							<div class="ym-pc-dashboard-section-header">
@@ -981,7 +919,72 @@
         -->
 			</div>
 		</section>
-		<section class="ym-pc-dashboard-standard-gifts-section mb-2" aria-label="My Gifts" ng-if="schoolPlan.hideGifts != 'Y' &amp;&amp; has_bonus != 3" ng-cloak>
+		<section class="ym-pc-dashboard-facebook-section p-2 mb-2" aria-label="Facebook Fundraising" ng-show="facebookFundraisersEnabled" ng-cloak>
+			<div class="ym-pc-dashboard-facebook-box" ng-show="!facebookFundraiserId">
+				<div class="container">
+					<div class="ym-pc-dashboard-section-header">
+						<h3 class="h5 text-white">
+							Let's Get Fundraising
+							<span ng-if="consNameFirst && consNameFirst != ''">
+								, 
+								<span ng-bind-html="consNameFirst">
+								</span>
+							</span>
+							! 
+						</h3>
+					</div>
+					<div class="text-center">
+						<p>
+							Link your personal page to a new Facebook Fundraiser to receive donations from your Facebook friends. 
+						</p>
+						<div role="alert" class="alert alert-danger" ng-if="facebookFundraiserLoginStatus == 'login_error' || facebookFundraiserLoginStatus == 'permission_error' || facebookFundraiserLoginStatus == 'create_fundraiser_error' || facebookFundraiserCreateStatus == 'login_error' || facebookFundraiserCreateStatus == 'permission_error' || facebookFundraiserCreateStatus == 'create_fundraiser_error'" ng-cloak>
+							An error occurred attempting to connect to Facebook. Please try again later. 
+						</div>
+						<div role="alert" class="alert alert-danger" ng-if="facebookFundraiserCreateStatus == 'create_fundraiser_duplicate'" ng-cloak>
+							This Facebook account already has an active Facebook Fundraiser for this school. If you are trying to connect a second student, you will need to use another Facebook account. 
+						</div>
+						<div role="alert" class="alert alert-danger" ng-if="facebookFundraiserLoginStatus == 'declined_manage_fundraisers'" ng-cloak>
+							We need your permission to create a Facebook Fundraiser on your behalf. 
+						</div>
+						<button type="button" class="btn btn-white" ng-class="{'disabled': facebookFundraiserLoginStatus == 'pending' || facebookFundraiserCreateStatus == 'pending'}" ng-click="loginToFacebook()" ng-disabled="facebookFundraiserLoginStatus == 'pending' || facebookFundraiserCreateStatus == 'pending'">
+							<span class="fa fa-facebook-square">
+							</span>
+							<strong>
+								Connect to Facebook Fundraiser
+							</strong>
+						</button>
+						<div class="ym-pc-dashboard-facebook-hint">
+							By clicking this link, you will leave AHA's website and be redirected to another site not under the control of AHA. 
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="ym-pc-dashboard-facebook-box js--facebook-fundraiser-completed-section" ng-show="facebookFundraiserId">
+				<div class="container">
+					<div class="ym-pc-dashboard-section-header">
+						<h3 class="h5 text-white">
+							Your Fundraiser is Connected to Facebook! 
+						</h3>
+					</div>
+					<div class="text-center">
+						<p>
+							Log in to use Facebook's fundraising tools to invite friends, share updates and collect donations. We'll keep track of your progress on Facebook and on your page, so you'll always know how close you are to reaching your goal. 
+						</p>
+						<a class="btn btn-white" ng-class="{'disabled': !facebookFundraiserConfirmedStatus || facebookFundraiserConfirmedStatus == 'pending'}" ng-href="//facebook.com/donate/{{facebookFundraiserId}}/" ng-disabled="!facebookFundraiserConfirmedStatus || facebookFundraiserConfirmedStatus == 'pending'" target="_blank">
+							<span class="fa fa-facebook-square">
+							</span>
+							<strong>
+								Go to Facebook Fundraiser
+							</strong>
+						</a>
+						<div class="ym-pc-dashboard-facebook-hint">
+							By clicking this link, you will leave AHA's website and be redirected to another site not under the control of AHA. 
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<section class="ym-pc-dashboard-standard-gifts-section mb-2" aria-label="My Gifts" ng-if="schoolPlan.hideGifts != 'Y' && has_bonus != 3" ng-cloak>
 			<div class="ym-pc-dashboard-section-header">
 				<h2 class="h3">
 					You Earned 
@@ -1014,6 +1017,9 @@
 								<span ng-bind-html="upcomingGift.msg_earned">
 								</span>
 							</div>
+							<div class="gift-post-event">
+								<span ng-if="upcomingGift.post_event">Post Event</span>
+							</div>
 						</div>
 						<div class="ym-pc-dashboard-standard-gift-notearned" ng-if="!upcomingGift.prize_status" aria-label="Unearned">
 							<h4 class="gift-title" ng-bind-html="upcomingGift.prize_label">
@@ -1021,6 +1027,9 @@
 							<div class="gift-subtitle1">
 								<span ng-bind-html="upcomingGift.msg_unearned">
 								</span>
+							</div>
+							<div class="gift-post-event">
+								<span ng-if="upcomingGift.post_event">Post Event</span>
 							</div>
 						</div>
 						<div class="more-details-button">
@@ -1049,7 +1058,7 @@
 						<h3 class="h5">
 							My Donors 
 						</h3>
-						<div ng-if="participantGifts.gifts &amp;&amp; participantGifts.gifts.length == 0" ng-cloak>
+						<div ng-if="participantGifts.gifts && participantGifts.gifts.length == 0" ng-cloak>
 							<div class="ym-next-step">
 								<div class="ym-next-step__step">
 									You have no donations yet. 
@@ -1075,7 +1084,7 @@
 								</div>
 							</div>
 						</div>
-						<div ng-if="participantGifts.gifts &amp;&amp; participantGifts.gifts.length == 1 &amp;&amp; participantRegistration.selfDonor == 'true'" ng-cloak>
+						<div ng-if="participantGifts.gifts && participantGifts.gifts.length == 1 && participantRegistration.selfDonor == 'true'" ng-cloak>
 							<div class="ym-next-step">
 								<div class="ym-next-step__step">
 									You're the only donor so far. 
@@ -1101,7 +1110,7 @@
 								</div>
 							</div>
 						</div>
-						<div ng-if="((participantGifts.gifts &amp;&amp; participantGifts.gifts.length == 1 &amp;&amp; participantRegistration.selfDonor == 'false') || (participantGifts.gifts &amp;&amp; participantGifts.gifts.length &gt; 1)) &amp;&amp; donorContactCounts.email_rpt_show_unthanked_donors == 0 &amp;&amp; donorContactCounts.email_rpt_show_nondonors_followup == 0" ng-cloak>
+						<div ng-if="((participantGifts.gifts && participantGifts.gifts.length == 1 && participantRegistration.selfDonor == 'false') || (participantGifts.gifts && participantGifts.gifts.length > 1)) && donorContactCounts.email_rpt_show_unthanked_donors == 0 && donorContactCounts.email_rpt_show_nondonors_followup == 0" ng-cloak>
 							<div class="ym-next-step" ng-if="donorContactCounts.email_rpt_show_donors > 0" ng-cloak>
 								<div class="ym-next-step__step">
 									You're a natural fundraiser! Keep up your awesome efforts! 
@@ -1139,7 +1148,7 @@
 								</div>
 							</div>
 						</div>
-						<div ng-if="((participantGifts.gifts &amp;&amp; participantGifts.gifts.length == 1 &amp;&amp; participantRegistration.selfDonor == 'false') || (participantGifts.gifts &amp;&amp; participantGifts.gifts.length &gt; 1)) &amp;&amp; (donorContactCounts.email_rpt_show_unthanked_donors &gt; 0 || donorContactCounts.email_rpt_show_nondonors_followup &gt; 0)" ng-cloak>
+						<div ng-if="((participantGifts.gifts && participantGifts.gifts.length == 1 && participantRegistration.selfDonor == 'false') || (participantGifts.gifts && participantGifts.gifts.length > 1)) && (donorContactCounts.email_rpt_show_unthanked_donors > 0 || donorContactCounts.email_rpt_show_nondonors_followup > 0)" ng-cloak>
 							<div class="ym-next-step ym-next-step- -sm" ng-if="donorContactCounts.email_rpt_show_unthanked_donors > 0" ng-cloak>
 								<div class="ym-next-step__step">
 									You have new donors who haven't received a thank-you email! 
@@ -1340,7 +1349,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="text-center" ng-if="prizes &amp;&amp; prizes.length &gt; 0" ng-cloak>
+				<div class="text-center" ng-if="prizes && prizes.length > 0" ng-cloak>
 					<a class="btn btn-lg btn-primary" ng-click="monsterEdit()">
 						<strong>
 							Customize Hero!
@@ -1476,7 +1485,7 @@
 			</div>
 		</section>
 	</div>
-	<div ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true' &amp;&amp; location != '/dashboard-student'" ng-cloak>
+	<div ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true' && location != '/dashboard-student'" ng-cloak>
 		<section class="ym-pc-dashboard-coordinator-school-challenge-section" aria-label="School Challenge Selection">
 			<div class="d-md-flex justify-content-between flex-wrap">
 				<div class="col-md-6 p-2">
@@ -1485,14 +1494,14 @@
 							<h2 class="h3 text-center">
 								School Plan 
 							</h2>
-							<div class="ym-pc-dashboard-section-plan" ng-if="schoolPlan != null &amp;&amp; schoolPlan != ''" ng-cloak>
+							<div class="ym-pc-dashboard-section-plan" ng-if="schoolPlan != null && schoolPlan != ''" ng-cloak>
 								<div class="schoolPlanDates text-center">
 									<p>
 										Your event is kicking off on 
 										<strong>
 											{{schoolPlan.EventStartDate | date:'MM/dd/yyyy'}}
 										</strong>
-										<span ng-if="(schoolPlan.EventStartDate | date:'MM/dd/yyyy') !== (schoolPlan.EventEndDate | date:'MM/dd/yyyy') &amp;&amp; schoolPlan.EventEndDate != ''" ng-cloak>
+										<span ng-if="(schoolPlan.EventStartDate | date:'MM/dd/yyyy') !== (schoolPlan.EventEndDate | date:'MM/dd/yyyy') && schoolPlan.EventEndDate != ''" ng-cloak>
 											and will conclude on 
 											<strong>
 												{{schoolPlan.EventEndDate | date:'MM/dd/yyyy'}}
@@ -1595,7 +1604,7 @@
 												<label for="school_goal">
 													Fundraising Goal:
 												</label>
-												<input type="text" class="form-control" id="school_goal" ng-model="companyProgress.goalFormatted" aria-label="School Fundraising Goal" ng-blur="putSchoolPlan($event)" onkeypress="return event.charCode == 36 || event.charCode == 44 || event.charCode == 46 || (event.charCode &gt;= 48 &amp;&amp; event.charCode &lt;= 57)">
+												<input type="text" class="form-control" id="school_goal" ng-model="companyProgress.goalFormatted" aria-label="School Fundraising Goal" ng-blur="putSchoolPlan($event)" onkeypress="return event.charCode == 36 || event.charCode == 44 || event.charCode == 46 || (event.charCode >= 48 && event.charCode <= 57)">
 												</div>
 											</div>
 											<div class="ym-pc-dashboard-send-emails checkbox mb-2 pe-2" custom-checkbox ng-class="{'checked': schoolPlan.SendEmailOnBehalfOfCoordinator == 'ALLOW'}" ng-cloak>
@@ -1785,7 +1794,7 @@
 																</strong>
 															</button>
 														</div>
-														<div class="schoolCreateMessage text-center" ng-if="coordinatorMessage.text &amp;&amp; coordinatorMessage.text != ''" ng-cloak>
+														<div class="schoolCreateMessage text-center" ng-if="coordinatorMessage.text && coordinatorMessage.text != ''" ng-cloak>
 															<p>
 																Update your 
 																<strong>
@@ -1862,7 +1871,7 @@
 															School Progress
 														</div>
 														<div class="ym-progress__thermometer" name="School Progress Bar" aria-label="{{companyProgress.percent}} percent of fundraising progress" aria-valuetext="{{companyProgress.percent}} percent of fundraising progress" role="progressbar" aria-valuenow="{{companyProgress.percent}}" aria-valuemin="0" aria-valuemax="100">
-															<div class="ym-progress__thermometer--fill" ng-class="(companyProgress.percent &lt; 13) ? 'therm-text-black' : 'therm-text-white'" ng-style="{'width': companyProgress.percent + '%'}">
+															<div class="ym-progress__thermometer--fill" ng-class="(companyProgress.percent < 13) ? 'therm-text-black' : 'therm-text-white'" ng-style="{'width': companyProgress.percent + '%'}">
 																{{companyProgress.percent}}%
 															</div>
 														</div>
@@ -1875,7 +1884,7 @@
 																	</strong>
 																	raised 
 																</p>
-																<div ng-if="companyProgress.goalFormatted &amp;&amp; companyProgress.goalFormatted != '$0'" ng-cloak>
+																<div ng-if="companyProgress.goalFormatted && companyProgress.goalFormatted != '$0'" ng-cloak>
 																	<p>
 																		<strong>
 																			<span ng-bind-html="companyProgress.goalFormatted">
@@ -1919,7 +1928,7 @@
 																	</strong>
 																	raised 
 																</p>
-																<div ng-if="teamProgress.goalFormatted &amp;&amp; teamProgress.goalFormatted != '$0'" ng-cloak>
+																<div ng-if="teamProgress.goalFormatted && teamProgress.goalFormatted != '$0'" ng-cloak>
 																	<p>
 																		<strong>
 																			<span ng-bind-html="teamProgress.goalFormatted">
@@ -1950,7 +1959,7 @@
 															Personal Progress
 														</div>
 														<div class="ym-progress__thermometer" name="Personal Progress Bar" aria-label="{{participantProgress.percent}} percent of fundraising progress" aria-valuetext="{{participantProgress.percent}} percent of fundraising progress" role="progressbar" aria-valuenow="{{participantProgress.percent}}" aria-valuemin="0" aria-valuemax="100">
-															<div class="ym-progress__thermometer--fill" ng-class="(participantProgress.percent &lt; 13) ? 'therm-text-black' : 'therm-text-white'" ng-style="{'width': participantProgress.percent + '%'}">
+															<div class="ym-progress__thermometer--fill" ng-class="(participantProgress.percent < 13) ? 'therm-text-black' : 'therm-text-white'" ng-style="{'width': participantProgress.percent + '%'}">
 																{{participantProgress.percent}}%
 															</div>
 														</div>
@@ -1979,7 +1988,7 @@
 																	</strong>
 																	raised 
 																</p>
-																<div ng-if="participantProgress.goalFormatted &amp;&amp; participantProgress.goalFormatted != '$0'" ng-cloak>
+																<div ng-if="participantProgress.goalFormatted && participantProgress.goalFormatted != '$0'" ng-cloak>
 																	<p>
 																		<strong>
 																			<span ng-bind-html="participantProgress.goalFormatted">
@@ -2041,75 +2050,6 @@
 															My School 
 														</h2>
 													</div>
-													<div class="ym-pc-dashboard-coordinator-create-message">
-														<div class="schoolStatusTitle">
-															School Achievement
-														</div>
-														<p class="students-registered d-none">
-															<strong>
-																{{companyInfo.participantCount|number}}
-															</strong>
-															student
-															<span ng-if="companyInfo.participantCount > 1 || activity1amt == 0">
-																s are
-															</span>
-															<span ng-if="companyInfo.participantCount == 1">
-																is
-															</span>
-															registered 
-														</p>
-														<p class="students-fundraising">
-															<strong>
-																{{companyParticipants.totalFundraisers|number}}
-															</strong>
-															student
-															<span ng-if="companyParticipants.totalFundraisers > 1 || companyParticipants.totalFundraisers == 0">
-																s
-															</span>
-															fundraising online 
-														</p>
-														<div ng-if="schoolBadgesRegistrations.length > 0" ng-cloak>
-															<p class="students-registered-online">
-																<span ng-if="studentRegGoal &amp;&amp; studentRegGoal != 0" ng-cloak>
-																	Keep recruiting to meet your goal of 
-																	<strong>
-																		{{studentRegGoal|number}}
-																	</strong>
-																	students!
-																</span>
-																<span ng-if="schoolStudentRegOnline &amp;&amp; schoolStudentRegOnline != 0" ng-cloak>
-																	<strong>
-																		{{schoolStudentReg|number}}
-																	</strong>
-																	of those 
-																	<strong>
-																		{{schoolStudentRegOnline|number}}
-																	</strong>
-																	students have registered online.
-																</span>
-															</p>
-															<div class="school-badges">
-																<div class="ym-pc-dashboard-school-badges-box d-flex flex-wrap justify-content-center">
-																	<div id="ym-pc-dashboard-school-registration-badges-panel--school" aria-label="School Registration Badges">
-																		<div class="ym-badges__item" ng-repeat="schoolBadge in schoolBadgesRegistrations" ng-cloak>
-																			<img class="img-responsive" ng-src="{{schoolBadge.image_url}}" alt="{{schoolBadge.image_name}}" tabindex="0"> 
-																			<div class="text">
-																				{{schoolBadge.text}}
-																			</div>
-																		</div>
-																	</div>
-																	<div id="ym-pc-dashboard-school-fundraising-badges-panel--school" aria-label="School Fundraising Badges">
-																		<div class="ym-badges__item" ng-repeat="schoolBadge in schoolBadgesFundraising" ng-cloak>
-																			<img class="img-responsive" ng-src="{{schoolBadge.image_url}}" alt="{{schoolBadge.image_name}}" tabindex="0"> 
-																			<div class="text">
-																				{{schoolBadge.text}}
-																			</div>
-																		</div>
-																	</div>
-																</div>
-															</div>
-														</div>
-													</div>
 													<div class="ym-pc-dashboard-coordinator-daily-challenges">
 														<div class="schoolStatusTitle">
 															Daily Challenges
@@ -2150,6 +2090,75 @@
 															</span>
 															completed Finn's&nbsp;Mission 
 														</p>
+													</div>
+													<div class="ym-pc-dashboard-coordinator-create-message">
+														<div class="schoolStatusTitle">
+															School Achievement
+														</div>
+														<p class="students-registered d-none">
+															<strong>
+																{{companyInfo.participantCount|number}}
+															</strong>
+															student
+															<span ng-if="companyInfo.participantCount > 1 || activity1amt == 0">
+																s are
+															</span>
+															<span ng-if="companyInfo.participantCount == 1">
+																is
+															</span>
+															registered 
+														</p>
+														<p class="students-fundraising">
+															<strong>
+																{{companyParticipants.totalFundraisers|number}}
+															</strong>
+															student
+															<span ng-if="companyParticipants.totalFundraisers > 1 || companyParticipants.totalFundraisers == 0">
+																s
+															</span>
+															fundraising online 
+														</p>
+														<div ng-if="schoolBadgesRegistrations.length > 0" ng-cloak>
+															<p class="students-registered-online">
+																<span ng-if="studentRegGoal && studentRegGoal != 0" ng-cloak>
+																	Keep recruiting to meet your goal of 
+																	<strong>
+																		{{studentRegGoal|number}}
+																	</strong>
+																	students!
+																</span>
+																<span ng-if="schoolStudentRegOnline && schoolStudentRegOnline != 0" ng-cloak>
+																	<strong>
+																		{{schoolStudentReg|number}}
+																	</strong>
+																	of those 
+																	<strong>
+																		{{schoolStudentRegOnline|number}}
+																	</strong>
+																	students have registered online.
+																</span>
+															</p>
+															<div class="school-badges">
+																<div class="ym-pc-dashboard-school-badges-box d-flex flex-wrap justify-content-center">
+																	<div id="ym-pc-dashboard-school-registration-badges-panel--school" aria-label="School Registration Badges">
+																		<div class="ym-badges__item" ng-repeat="schoolBadge in schoolBadgesRegistrations" ng-cloak>
+																			<img class="img-responsive" ng-src="{{schoolBadge.image_url}}" alt="{{schoolBadge.image_name}}" tabindex="0"> 
+																			<div class="text">
+																				{{schoolBadge.text}}
+																			</div>
+																		</div>
+																	</div>
+																	<div id="ym-pc-dashboard-school-fundraising-badges-panel--school" aria-label="School Fundraising Badges">
+																		<div class="ym-badges__item" ng-repeat="schoolBadge in schoolBadgesFundraising" ng-cloak>
+																			<img class="img-responsive" ng-src="{{schoolBadge.image_url}}" alt="{{schoolBadge.image_name}}" tabindex="0"> 
+																			<div class="text">
+																				{{schoolBadge.text}}
+																			</div>
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
 														<p>
 															<strong>
 																Compose emails
