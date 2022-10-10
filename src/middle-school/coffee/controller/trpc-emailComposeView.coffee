@@ -136,23 +136,22 @@ angular.module 'trPcControllers'
                 setEmailMessageBody messageBody
 
       sortOrder = {
-        "Registration - Past Participants Email (Prepare for Kickoff and Sign-Up)": 0,
-        "Step 1: Ask Students to Join": 1,
-        "Staff Announcement Email": 2,
-        "Email 1  THANK YOU FOR JOINING OUR TEAM (Post Kickoff Next Steps)": 3, 
-        "Email 2  Midway Point to Event": 4,
-        "Email 3 - 1 Week Left": 5,
-        "Email 4 - Two Days Before Event": 6,
-        "Email 5-Post Event Wrap-Up": 7,
-        "THANK YOU to Students": 8,
-        "Donation Thank You": 9,
-        "ASK 1: Donation Request": 10,
-        "Ask 2: Donation Reminder": 11,
-        "Ask 3: Help Me Reach my Goal": 12,
-        "Ask 4: Stepping Up for Health Equity": 13,
-        "Ask 5: Email to Past Donors": 14,
-        "ASK 6: Thank You for your Donation": 15,
-        "ASK 7: Recruit your Friends!": 16
+        "Staff Announcement Email": 1,
+        "Registration: Past Participants Email (2 weeks before kickoff)": 2,
+        "Register Today - To All Families (1 week before kickoff)": 3,
+        "Post Kickoff Next Steps - To All Families (day of your kickoff)": 4,
+        "Midway Point  To All Families": 5,
+        "Midway Point To All Families": 5,
+        "Complete Finn's Mission - To All Families": 6,
+        "1 Week Left - To All Families": 7,
+        "Two Days Before Event - To All Families": 8,
+        "Thank You & Event Wrap-up - To All Families": 9,
+        "Donation Received: Thank You": 10,
+        "Donation Request": 11,
+        "Help Me To Help Others": 12,
+        "Help Me Reach My Goal": 13,
+        "Donation Ask to Past Donors": 14,
+        "Donation Received: Thank You for Your Donation!": 15,
       }
 
       $scope.suggestedMessageCountByType = {}
@@ -183,10 +182,13 @@ angular.module 'trPcControllers'
                   # $scope.suggestedMessageCountByType[message.messageType] = $scope.suggestedMessageCountByType[message.messageType] + 1
                   message.name = message.name.split('Coordinator: ')[1] or message.name
                   message.name = message.name.trim()
+                  if message.name.indexOf('&amp;') != -1
+                    message.name = message.name.replace('&amp;', '&');
+                    
                   console.log('message.name x' + message.name + 'x' + 'message type ' + message.messageType)
-                  if message.name == 'Registration - Past Participants Email (Prepare for Kickoff and Sign-Up)'
-                    console.log('gotcha!')
-                    message.sortOrder = 0
+                  # if message.name == 'Registration - Past Participants Email (Prepare for Kickoff and Sign-Up)'
+                  #   console.log('gotcha!')
+                  #   message.sortOrder = 0
                   if sortOrder[message.name]
                     message.sortOrder = sortOrder[message.name]
                     console.log('message.sortOrder ' + message.sortOrder)
