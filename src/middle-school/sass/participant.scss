@@ -4,6 +4,16 @@
 
 @import "../../youth-markets/sass/participant.scss";
 
+.ng-pc-modal {
+  .close {
+    span {
+      right: 3px;
+      position: relative;
+      top: 2px;
+    }
+  }
+}
+
 .ng-pc-nav,
 .ng-pc-nav--coordinator {
   @media (max-width: 669px) {

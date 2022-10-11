@@ -2,11 +2,11 @@
 	<div ng-if="participantRegistration.companyInformation.isCompanyCoordinator != 'true' || location == '/dashboard-student'" ng-cloak>
 	  <div class="d-grid dashboard-cols">
     	<div class="dashboard-col1 col p-2">
-				<section class="d-md-flex flex-md-column" aria-label="My Badges" ng-if="prizes &amp;&amp; prizes.length &gt; 0" ng-cloak>
+				<section class="d-md-flex flex-md-column" aria-label="My Badges" ng-if="prizes && prizes.length > 0" ng-cloak>
 					<div class="ahc-start-mission mb-2 white-box red-border-left d-block d-md-none">
 						<div class="card-body">
 							<h2 class="h5">Start Your Mission</h2>
-							<p>Tap your tiles to do the challenge and complete your heart card. Fill in the whole card by asking friends &amp; family to support your mission.</p>
+							<p>Click the tiles to start Finn's Mission and complete his 8 challenges. Ask family and friends for donations to uncover the entire card, unveiling a special photo,&nbsp;while helping kids like Finn with special hearts.</p>
 						</div>
 					</div>
 					<div class="ahc-heart-card mb-4">
@@ -19,7 +19,7 @@
 					<div class="ahc-start-mission mb-2 white-box red-border-left d-none d-md-block">
 						<div class="card-body">
 							<h2 class="h5">Start Your Mission</h2>
-							<p>Tap your tiles to do the challenge and complete your heart card. Fill in the whole card by asking friends &amp; family to support your mission.</p>
+							<p>Click the tiles to start Finn's Mission and complete his 8 challenges. Ask family and friends for donations to uncover the entire card, unveiling a special photo,&nbsp;while helping kids like Finn with special hearts.</p>
 						</div>
 					</div>
 				<div class="download-app white-box red-border-left mb-4">
@@ -153,7 +153,7 @@
 				</div>
 			</div>
 		  <div class="dashboard-col2 col p-2">
-				<div ng-if="coordinatorMessage.message &amp;&amp; coordinatorMessage.message != ''" ng-cloak>
+				<div ng-if="coordinatorMessage.message && coordinatorMessage.message != ''" ng-cloak>
 					<div class="ahc-teacher-message white-box mb-4">
 						<h3 class="h5">
 							Message From Your Teacher 
@@ -257,7 +257,7 @@
 							<div class="container">
 								<div class="ym-pc-dashboard-section-header">
 									<h3 class="h5 text-white">
-										Create a Facebook Fundraiser<span ng-if="consNameFirst &amp;&amp; consNameFirst != ''">, <span ng-bind-html="consNameFirst"></span></span>!
+										Create a Facebook Fundraiser<span ng-if="consNameFirst && consNameFirst != ''">, <span ng-bind-html="consNameFirst"></span></span>!
 									</h3>
 								</div>
 								<div class="text-center">
@@ -321,7 +321,7 @@
           	<div class="ym_my_challenge__current" ng-if="personalChallenge.loadPending" ng-cloak>
 							Loading Your Challenge... 
 						</div>
-						<div class="ym_my_challenge__current" ng-if="personalChallenge.id &amp;&amp; personalChallenge.id != '-1'" ng-cloak>
+						<div class="ym_my_challenge__current" ng-if="personalChallenge.id && personalChallenge.id != '-1'" ng-cloak>
 							<h3 class="ahc-current-challenge h5 mb-3">{{personalChallenge.name}}</h3>
 							<div class="row align-items-center align-items-xl-end g-4 g-lg-4 g-xl-5">
 								<div class="col-sm-auto">
@@ -395,7 +395,7 @@
           <div class="card-header">
             <h3 class="h5">Fundraising Progress</h3>
           </div>
- 					<div class="p-4" ng-if="participantGifts.gifts &amp;&amp; participantGifts.gifts.length == 0" ng-cloak>
+ 					<div class="p-4" ng-if="participantGifts.gifts && participantGifts.gifts.length == 0" ng-cloak>
 						<div class="ym-next-step mb-2">
 							<div class="ym-next-step__step">
 								You have no donations yet. 
@@ -421,7 +421,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="p-4" ng-if="participantGifts.gifts &amp;&amp; participantGifts.gifts.length == 1 &amp;&amp; participantRegistration.selfDonor == 'true'" ng-cloak>
+					<div class="p-4" ng-if="participantGifts.gifts && participantGifts.gifts.length == 1 && participantRegistration.selfDonor == 'true'" ng-cloak>
 						<div class="ym-next-step mb-2">
 							<div class="ym-next-step__step">
 								You're the only donor so far. 
@@ -448,7 +448,7 @@
 						</div>
 					</div>
 
-					<div class="p-4" ng-if="((participantGifts.gifts &amp;&amp; participantGifts.gifts.length == 1 &amp;&amp; participantRegistration.selfDonor == 'false') || (participantGifts.gifts &amp;&amp; participantGifts.gifts.length &gt; 1)) &amp;&amp; donorContactCounts.email_rpt_show_unthanked_donors == 0 &amp;&amp; donorContactCounts.email_rpt_show_nondonors_followup == 0" ng-cloak>
+					<div class="p-4" ng-if="((participantGifts.gifts && participantGifts.gifts.length == 1 && participantRegistration.selfDonor == 'false') || (participantGifts.gifts && participantGifts.gifts.length &gt; 1)) && donorContactCounts.email_rpt_show_unthanked_donors == 0 && donorContactCounts.email_rpt_show_nondonors_followup == 0" ng-cloak>
 						<div class="ym-next-step mb-2" ng-if="donorContactCounts.email_rpt_show_donors > 0" ng-cloak>
 							<div class="ym-next-step__step">
 								You're a natural fundraiser! Keep up your awesome efforts! 
@@ -486,7 +486,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="p-4" ng-if="((participantGifts.gifts &amp;&amp; participantGifts.gifts.length == 1 &amp;&amp; participantRegistration.selfDonor == 'false') || (participantGifts.gifts &amp;&amp; participantGifts.gifts.length &gt; 1)) &amp;&amp; (donorContactCounts.email_rpt_show_unthanked_donors &gt; 0 || donorContactCounts.email_rpt_show_nondonors_followup &gt; 0)" ng-cloak>
+					<div class="p-4" ng-if="((participantGifts.gifts && participantGifts.gifts.length == 1 && participantRegistration.selfDonor == 'false') || (participantGifts.gifts && participantGifts.gifts.length &gt; 1)) && (donorContactCounts.email_rpt_show_unthanked_donors &gt; 0 || donorContactCounts.email_rpt_show_nondonors_followup &gt; 0)" ng-cloak>
 						<div class="ym-next-step ym-next-step--sm mb-2" ng-if="donorContactCounts.email_rpt_show_unthanked_donors > 0" ng-cloak>
 							<div class="ym-next-step__step">
 								You have new donors who haven't received a thank-you email! 
@@ -524,7 +524,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="p-4 pt-0" ng-if="participantGifts.gifts &amp;&amp; participantGifts.gifts.length > 0" ng-cloak>
+					<div class="p-4 pt-0" ng-if="participantGifts.gifts && participantGifts.gifts.length > 0" ng-cloak>
 						<div class="d-flex align-items-center justify-content-between mb-4">
 							<h3 class="h5 mb-0">My Donors</h3>
 							<a class="btn btn-md-wide btn-toggle" ng-href="{{baseUrl}}#/email/contacts/email_rpt_show_donors/list"><strong>Send a thank you</strong></a>
@@ -665,7 +665,7 @@
 									<label for="school_goal">
 										Fundraising Goal: 
 									</label>
-									<input type="text" class="form-control" id="school_goal" ng-model="companyProgress.goalFormatted" aria-label="School Fundraising Goal" ng-blur="putSchoolPlan($event)" onkeypress="return event.charCode == 36 || event.charCode == 44 || event.charCode == 46 || (event.charCode &gt;= 48 &amp;&amp; event.charCode &lt;= 57)">
+									<input type="text" class="form-control" id="school_goal" ng-model="companyProgress.goalFormatted" aria-label="School Fundraising Goal" ng-blur="putSchoolPlan($event)" onkeypress="return event.charCode == 36 || event.charCode == 44 || event.charCode == 46 || (event.charCode &gt;= 48 && event.charCode &lt;= 57)">
 							</div>
 							<div class="ym-pc-dashboard-send-emails checkbox" custom-checkbox ng-class="{'checked': schoolPlan.SendEmailOnBehalfOfCoordinator == 'ALLOW'}" ng-cloak>
 								<label for="SendEmailOnBehalfOfCoordinator">
@@ -1084,7 +1084,7 @@
 							</strong>
 						</button>
 					</div>
-					<div class="schoolCreateMessage text-center" ng-if="coordinatorMessage.text &amp;&amp; coordinatorMessage.text != ''" ng-cloak>
+					<div class="schoolCreateMessage text-center" ng-if="coordinatorMessage.text && coordinatorMessage.text != ''" ng-cloak>
 						<p>
 							Update your 
 							<strong>
@@ -1211,8 +1211,8 @@
 								 <strong>{{companyInfo.participantCount|number}}</strong> student<span ng-if="companyInfo.participantCount> 1 || activity1amt == 0">s are</span><span ng-if="companyInfo.participantCount == 1"> is</span> registered 
 							</p>
 							<p>
-								 <span ng-if="studentRegGoal &amp;&amp; studentRegGoal != 0" ng-cloak>Keep recruiting to meet your goal of <strong>{{studentRegGoal|number}}</strong> students!</span>
-								 <span ng-if="schoolStudentRegOnline &amp;&amp; schoolStudentRegOnline != 0" ng-cloak>
+								 <span ng-if="studentRegGoal && studentRegGoal != 0" ng-cloak>Keep recruiting to meet your goal of <strong>{{studentRegGoal|number}}</strong> students!</span>
+								 <span ng-if="schoolStudentRegOnline && schoolStudentRegOnline != 0" ng-cloak>
 								<strong>{{schoolStudentReg|number}}</strong> of those <strong>{{schoolStudentRegOnline|number}}</strong> students have registered online.
 								 </span>
 							</p>
@@ -1293,7 +1293,7 @@
 										<div class="ym-pc-dashboard-section-header">
 											<h3 class="h5">Volunteer<br>Planning</h3>
 										</div>
-										<a class="btn btn-md-wide btn-primary" href="DocServer/AHC_Planning_Guide_Timeline.pdf" target="_blank"><strong>Download </strong><span class="sr-only">Volunteer Planning</span></a>
+										<a class="btn btn-md-wide btn-primary" href="DocServer/FY23_AHC_Planning_Guide.pdf" target="_blank"><strong>Download </strong><span class="sr-only">Volunteer Planning</span></a>
 									</div>
 								</div>
 							</div>

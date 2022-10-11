@@ -81,3 +81,13 @@
 <div class="ratio ratio-16x9 social-iframe">
   <iframe ng-src="{{socialIframeURL}}" style="border:0;" title="Social Iframe"></iframe>
 </div>
+
+<div class="ym-pc-dashboard-social-media checkbox mt-2 pe-2" custom-checkbox ng-class="{'checked': socialEarned == 1}" ng-if="socialEarned == 0 && !socialEarnedThankYou" ng-cloak>
+   <label for="socialEarned">
+      <input type="checkbox" name="socialEarned" id="socialEarned" ng-model="socialEarned" ng-true-value="1" ng-false-value="0" ng-click="putSocialMedia($event)"> 
+      My student and/or family does not have social media
+   </label>
+</div>
+<div class="ym-pc-dashboard-social-media mb-2 pe-2" ng-if="socialEarnedThankYou" ng-cloak>
+    Your Share on Social badge is now marked as having been earned
+</div>
