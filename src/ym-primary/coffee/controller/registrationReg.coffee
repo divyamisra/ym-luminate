@@ -13,6 +13,7 @@ angular.module 'ahaLuminateControllers'
       $rootScope.companyName = ''
       $scope.teachers = []
       $scope.teachersByGrade = []
+      $scope.listUpload = false
       $scope.companyId = angular.element('[name=s_frCompanyId]').val()
       
       regCompanyId = luminateExtend.global.regCompanyId
@@ -343,6 +344,7 @@ angular.module 'ahaLuminateControllers'
       BoundlessService.getTeachersBySchool $scope.companyId
       .then (response) ->
         $scope.teachers = response.data.teachers
+        $scope.listUpload = response.data.list_upload;
 
       $scope.getTeacherList = () ->
         selectedGrade = $scope.registrationInfo[$scope.registrationCustomQuestions.ym_khc_grade]
