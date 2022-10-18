@@ -630,15 +630,153 @@
 				</div>
 			</div>
 		</section>
-		<section class="ym-pc-dashboard-progress-section" aria-label="Fundraising Progress Meters">
+		<section class="ym-pc-dashboard-progress-section mb-0" aria-label="Spread the Word and Livestream Sections">
+			<div class="d-md-flex justify-content-between flex-wrap">
+				<div class="col-sm-12 p-2">
+					<div class="ym-pc-dashboard-progress-section__column event-secondary-medium p-3 h-100">
+						<div class="ym-pc-dashboard-email-challenge-box">
+							<div class="ym-pc-dashboard-section-header">
+								<h3 class="h5">
+									Spread the Word! 
+								</h3>
+							</div>
+							<div class="text-center">
+								<p>
+									Spread the word! Send 10 emails or e-cards to friends and family. 
+								</p>
+								<div class="ym-pc-dashboard-email-challenge-images">
+									<a ng-href="{{baseUrl}}#/email">
+										<img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy23/spread-the-word-mail-icon.png" alt="Send Email"> 
+									</a>
+									<a ng-href="https://tools.heart.org/aha_ym23{{tablePrefix == 'heartdev' ? '_dev' : (tablePrefix == 'heartnew' ? '_testing' : '')}}/?eid={{frId}}&amp;sid={{consId}}&amp;name={{consNameFirst}}" target="_blank">
+										<img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy23/spread-the-word-ecard-icon.png" alt="Send E-card"> 
+									</a>
+								</div>
+								<div class="ym-pc-dashboard-email-challenge-buttons">
+									<a class="btn btn-md-wide btn-primary mb-2" ng-href="{{baseUrl}}#/email">
+										<strong>
+											Send Email
+										</strong>
+									</a>
+									<a class="btn btn-md-wide btn-primary mb-2" ng-href="https://tools.heart.org/aha_ym23{{tablePrefix == 'heartdev' ? '_dev' : (tablePrefix == 'heartnew' ? '_testing' : '')}}/?eid={{frId}}&amp;sid={{consId}}&amp;name={{consNameFirst}}" target="_blank">
+										<strong>
+											Send e-card
+										</strong>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+<!-- 
+        <div class="col-sm-6 ym-pc-dashboard-progress-section__column event-secondary-medium">
+          <div class="ym-pc-dashboard-livestream-box">
+            <div class="ym-pc-dashboard-livestream-title">
+              <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/pc-tiltify-livestream.png" alt="Livestream">
+            </div>
+            <div class="ym-pc-dashboard-section-header">
+              <p>
+                Go live and help save lives. Start your charity stream today.
+              </p>
+            </div>
+            <div class="text-center">
+              <div class="ym-pc-dashboard-livestream-images">
+   	        <span class="hv-image" ng-init="hvImgLSHsrc='pc-tiltify-hearts.png';" ng-mouseover="hvImgLSHsrc='pc-tiltify-hearts-animated.gif';" ng-mouseout="hvImgLSHsrc='pc-tiltify-hearts.png';">
+		  <img class="pc-livestream-hearts" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy21/{{hvImgLSHsrc}}" alt="Livestream Hearts">
+	        </span>
+                &nbsp;
+	        <img class="pc-livestream-character" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy22/livestream-heading.png" alt="Livestream Icon">
+              </div>
+              <div class="ym-pc-dashboard-livestream-buttons">
+                <a class="btn btn-md-wide btn-primary" ng-href="https://tiltify.com/aha/kids-heart-challengeamerican-heart-challenge-c4ba88cc-eefb-495f-8230-05fa82e1db98/start/ownership" target="_blank">
+                  <strong>Get Started</strong>
+                </a>
+                <a class="btn btn-md-wide btn-primary" ng-href="https://dashboard.tiltify.com/@me" target="_blank">
+                  <strong>Check Your Progress</strong>
+                </a> 
+              </div>
+              <br/>
+              <p>By clicking these links, you will leave Kids Heart Challenge and be redirected to another site not under the control of the American Heart Association.</p>
+            </div>
+          </div>
+        </div>
+        -->
+			</div>
+		</section>
+		<section class="ym-pc-dashboard-facebook-section p-2 mb-2" aria-label="Facebook Fundraising" ng-show="facebookFundraisersEnabled" ng-cloak>
+			<div class="ym-pc-dashboard-facebook-box" ng-show="!facebookFundraiserId">
+				<div class="container">
+					<div class="ym-pc-dashboard-section-header">
+						<h3 class="h5 text-white">
+							Let's Get Fundraising
+							<span ng-if="consNameFirst && consNameFirst != ''">
+								, 
+								<span ng-bind-html="consNameFirst">
+								</span>
+							</span>
+							! 
+						</h3>
+					</div>
+					<div class="text-center">
+						<p>
+							Link your personal page to a new Facebook Fundraiser to receive donations from your Facebook friends. 
+						</p>
+						<div role="alert" class="alert alert-danger" ng-if="facebookFundraiserLoginStatus == 'login_error' || facebookFundraiserLoginStatus == 'permission_error' || facebookFundraiserLoginStatus == 'create_fundraiser_error' || facebookFundraiserCreateStatus == 'login_error' || facebookFundraiserCreateStatus == 'permission_error' || facebookFundraiserCreateStatus == 'create_fundraiser_error'" ng-cloak>
+							An error occurred attempting to connect to Facebook. Please try again later. 
+						</div>
+						<div role="alert" class="alert alert-danger" ng-if="facebookFundraiserCreateStatus == 'create_fundraiser_duplicate'" ng-cloak>
+							This Facebook account already has an active Facebook Fundraiser for this school. If you are trying to connect a second student, you will need to use another Facebook account. 
+						</div>
+						<div role="alert" class="alert alert-danger" ng-if="facebookFundraiserLoginStatus == 'declined_manage_fundraisers'" ng-cloak>
+							We need your permission to create a Facebook Fundraiser on your behalf. 
+						</div>
+						<button type="button" class="btn btn-white" ng-class="{'disabled': facebookFundraiserLoginStatus == 'pending' || facebookFundraiserCreateStatus == 'pending'}" ng-click="loginToFacebook()" ng-disabled="facebookFundraiserLoginStatus == 'pending' || facebookFundraiserCreateStatus == 'pending'">
+							<span class="fa fa-facebook-square">
+							</span>
+							<strong>
+								Connect to Facebook Fundraiser
+							</strong>
+						</button>
+						<div class="ym-pc-dashboard-facebook-hint">
+							By clicking this link, you will leave AHA's website and be redirected to another site not under the control of AHA. 
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="ym-pc-dashboard-facebook-box js--facebook-fundraiser-completed-section" ng-show="facebookFundraiserId">
+				<div class="container">
+					<div class="ym-pc-dashboard-section-header">
+						<h3 class="h5 text-white">
+							Your Fundraiser is Connected to Facebook! 
+						</h3>
+					</div>
+					<div class="text-center">
+						<p>
+							Log in to use Facebook's fundraising tools to invite friends, share updates and collect donations. We'll keep track of your progress on Facebook and on your page, so you'll always know how close you are to reaching your goal. 
+						</p>
+						<a class="btn btn-white" ng-class="{'disabled': !facebookFundraiserConfirmedStatus || facebookFundraiserConfirmedStatus == 'pending'}" ng-href="//facebook.com/donate/{{facebookFundraiserId}}/" ng-disabled="!facebookFundraiserConfirmedStatus || facebookFundraiserConfirmedStatus == 'pending'" target="_blank">
+							<span class="fa fa-facebook-square">
+							</span>
+							<strong>
+								Go to Facebook Fundraiser
+							</strong>
+						</a>
+						<div class="ym-pc-dashboard-facebook-hint">
+							By clicking this link, you will leave AHA's website and be redirected to another site not under the control of AHA. 
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<section class="ym-pc-dashboard-progress-section mb-2" aria-label="Fundraising Progress Meters">
 			<div class="ym-pc-dashboard-section-header">
-				<h2 class="h3">
+				<h2 class="h3 my-2">
 					My Fundraising 
 				</h2>
 			</div>
 			<div class="d-md-flex justify-content-between flex-wrap">
 				<div class="col-sm-6 p-2">
-					<div class="ym-pc-dashboard-progress-section__column event-secondary-medium p-3">
+					<div class="ym-pc-dashboard-progress-section__column event-secondary-medium p-3 h-100">
 						<div class="ym-pc-dashboard-progress-box">
 							<div id="ym-pc-dashboard-personal-panel--student" aria-label="Personal Progress">
 								<div class="ym-pc-dashboard-section-header">
@@ -756,7 +894,9 @@
 							</div>
 						</div>
 					</div>
-					<div class="ym-pc-dashboard-progress-section__column event-secondary-medium my-3 p-3">
+				</div>
+				<div class="col-sm-6 p-2">
+					<div class="ym-pc-dashboard-progress-section__column event-secondary-medium p-3 h-100">
 						<div class="ym-pc-dashboard-progress-box">
 							<div id="ym-pc-dashboard-company-panel--student" aria-label="School Progress">
 								<div class="ym-pc-dashboard-section-header">
@@ -841,112 +981,6 @@
 							</div>
 						</div>
 					</div>
-				</div>
-				<div class="col-sm-6 p-2">
-					<div class="d-md-flex justify-content-between flex-wrap h-100">
-						<div class="w-100">
-					<div class="ym-pc-dashboard-progress-section__column event-secondary-medium p-3 pb-0 h-100">
-						<div class="ym-pc-dashboard-email-challenge-box">
-							<div class="ym-pc-dashboard-section-header">
-								<h3 class="h5">
-									Spread the Word! 
-								</h3>
-							</div>
-							<div class="text-center">
-								<p>
-									Spread the word! Send 10 emails or e-cards to friends and family. 
-								</p>
-								<div class="ym-pc-dashboard-email-challenge-images">
-									<a ng-href="{{baseUrl}}#/email">
-										<img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy23/spread-the-word-mail-icon.png" alt="Send Email"> 
-									</a>
-									<a ng-href="https://tools.heart.org/aha_ym23{{tablePrefix == 'heartdev' ? '_dev' : (tablePrefix == 'heartnew' ? '_testing' : '')}}/?eid={{frId}}&amp;sid={{consId}}&amp;name={{consNameFirst}}" target="_blank">
-										<img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy23/spread-the-word-ecard-icon.png" alt="Send E-card"> 
-									</a>
-								</div>
-								<div class="ym-pc-dashboard-email-challenge-buttons">
-									<a class="btn btn-md-wide btn-primary mb-2" ng-href="{{baseUrl}}#/email">
-										<strong>
-											Send Email
-										</strong>
-									</a>
-									<a class="btn btn-md-wide btn-primary mb-2" ng-href="https://tools.heart.org/aha_ym23{{tablePrefix == 'heartdev' ? '_dev' : (tablePrefix == 'heartnew' ? '_testing' : '')}}/?eid={{frId}}&amp;sid={{consId}}&amp;name={{consNameFirst}}" target="_blank">
-										<strong>
-											Send e-card
-										</strong>
-									</a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			<div class="ym-pc-dashboard-facebook-section mb-3 mt-3" aria-label="Facebook Fundraising" ng-show="facebookFundraisersEnabled" ng-cloak>
-				<div class="ym-pc-dashboard-facebook-box h-100" ng-show="!facebookFundraiserId">
-					<div class="container">
-						<div class="ym-pc-dashboard-section-header">
-							<h3 class="h5 text-white">
-								Let's Get Fundraising
-								<span ng-if="consNameFirst && consNameFirst != ''">
-									, 
-									<span ng-bind-html="consNameFirst">
-									</span>
-								</span>
-								! 
-							</h3>
-						</div>
-						<div class="text-center">
-							<p>
-								Link your personal page to a new Facebook Fundraiser to receive donations from your Facebook friends. 
-							</p>
-							<div role="alert" class="alert alert-danger" ng-if="facebookFundraiserLoginStatus == 'login_error' || facebookFundraiserLoginStatus == 'permission_error' || facebookFundraiserLoginStatus == 'create_fundraiser_error' || facebookFundraiserCreateStatus == 'login_error' || facebookFundraiserCreateStatus == 'permission_error' || facebookFundraiserCreateStatus == 'create_fundraiser_error'" ng-cloak>
-								An error occurred attempting to connect to Facebook. Please try again later. 
-							</div>
-							<div role="alert" class="alert alert-danger" ng-if="facebookFundraiserCreateStatus == 'create_fundraiser_duplicate'" ng-cloak>
-								This Facebook account already has an active Facebook Fundraiser for this school. If you are trying to connect a second student, you will need to use another Facebook account. 
-							</div>
-							<div role="alert" class="alert alert-danger" ng-if="facebookFundraiserLoginStatus == 'declined_manage_fundraisers'" ng-cloak>
-								We need your permission to create a Facebook Fundraiser on your behalf. 
-							</div>
-							<button type="button" class="btn btn-white" ng-class="{'disabled': facebookFundraiserLoginStatus == 'pending' || facebookFundraiserCreateStatus == 'pending'}" ng-click="loginToFacebook()" ng-disabled="facebookFundraiserLoginStatus == 'pending' || facebookFundraiserCreateStatus == 'pending'">
-								<span class="fa fa-facebook-square">
-								</span>
-								<strong>
-									Connect to Facebook Fundraiser
-								</strong>
-							</button>
-							<div class="ym-pc-dashboard-facebook-hint">
-								By clicking this link, you will leave AHA's website and be redirected to another site not under the control of AHA. 
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="ym-pc-dashboard-facebook-box js--facebook-fundraiser-completed-section" ng-show="facebookFundraiserId">
-					<div class="container">
-						<div class="ym-pc-dashboard-section-header">
-							<h3 class="h5 text-white">
-								Your Fundraiser is Connected to Facebook! 
-							</h3>
-						</div>
-						<div class="text-center">
-							<p>
-								Log in to use Facebook's fundraising tools to invite friends, share updates and collect donations. We'll keep track of your progress on Facebook and on your page, so you'll always know how close you are to reaching your goal. 
-							</p>
-							<a class="btn btn-white" ng-class="{'disabled': !facebookFundraiserConfirmedStatus || facebookFundraiserConfirmedStatus == 'pending'}" ng-href="//facebook.com/donate/{{facebookFundraiserId}}/" ng-disabled="!facebookFundraiserConfirmedStatus || facebookFundraiserConfirmedStatus == 'pending'" target="_blank">
-								<span class="fa fa-facebook-square">
-								</span>
-								<strong>
-									Go to Facebook Fundraiser
-								</strong>
-							</a>
-							<div class="ym-pc-dashboard-facebook-hint">
-								By clicking this link, you will leave AHA's website and be redirected to another site not under the control of AHA. 
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			
-								</div>
 				</div>
 			</div>
 		</section>
