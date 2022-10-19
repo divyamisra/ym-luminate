@@ -357,7 +357,7 @@ angular.module 'trPcControllers'
         text: ''
         errorMessage: null
         successMessage: false
-        message: ''
+        message: "Don\'t forget to send 10 emails or e-cards to your friends and family tonight and remember to finish Finn\'s Mission!"
         interactionId: ''
 
       if $scope.participantRegistration.companyInformation?.isCompanyCoordinator isnt 'true' or $scope.location is '/dashboard-student'
@@ -390,7 +390,7 @@ angular.module 'trPcControllers'
         $scope.editCoordinatorMessage = ->
           $scope.coordinatorMessage.original = $scope.coordinatorMessage.text
           if $scope.coordinatorMessage.text == ''
-            $scope.coordinatorMessage.text = 'Don\'t forget to complete Finn\'s Mission!'
+            $scope.coordinatorMessage.text = 'Don\'t forget to send 10 emails or e-cards to your friends and family tonight and remember to finish Finn\'s Mission!'
           $scope.editCoordinatorMessageModal = $uibModal.open
             scope: $scope
             size: 'lg'
@@ -1241,6 +1241,7 @@ angular.module 'trPcControllers'
                       prize_level: giftPrev.level
                       msg_earned: giftPrev.msg_earned
                       msg_unearned: giftPrev.msg_unearned
+                      post_event: giftPrev.post_event
                   # if items need to be added then only add up to 3 after pushing first one
                   if startList == 1 and listCnt <= giftToAdd
                     if gift.id == "FINN-23" and $scope.prizes.length == $scope.prizesEarned
@@ -1256,6 +1257,7 @@ angular.module 'trPcControllers'
                       prize_level: gift.level
                       msg_earned: gift.msg_earned
                       msg_unearned: gift.msg_unearned
+                      post_event: gift.post_event
                     $scope.giftStatus = status
                   giftPrev = gift
                   prevstatus = status

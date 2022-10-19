@@ -1210,9 +1210,11 @@
                     $('html, body').animate({scrollTop: 0}, 0);
                     renderHeader(onPage);
                     $('body').focus(); // Reset focus to the top of the page
-                    $('div#registration-ptype-page-step-' + offPage.toString()).hide();
+                    if (offPage > 0) {
+                        $('div#registration-ptype-page-step-' + offPage.toString()).hide();
+                    }
                     $('div#registration-ptype-page-step-' + onPage.toString()).fadeIn();
-                    if (onPage === 2) {
+                    if (onPage === 3) {
                         var $sliderHandle = $('#registration-ptype-personal-goal-slider .ui-slider-handle');
                         setTimeout(function () {
                             $sliderHandle.addClass('shake-horizontal');
@@ -1221,8 +1223,19 @@
                             $sliderHandle.removeClass('shake-horizontal');
                         }, 2500);
                     }
-                    if (offPage === 2 && onPage === 3) {
+                    if (offPage === 3 && onPage === 4) {
                         digestPersonalGiftAmount();
+                    }
+                };
+
+                var disableStep = function (hidePage) {
+                    var $prevPageNextStepBttn = $('#registration-ptype-page-step-' + (hidePage - 1).toString()).find('button.js__ptype-page-next-step'),
+                        $nextPagePrevStepBttn = $('#registration-ptype-page-step-' + (hidePage + 1).toString()).find('button.js__ptype-page-prev-step');
+                    if ($prevPageNextStepBttn.data('next-step') == hidePage) {
+                        $prevPageNextStepBttn.data('next-step', hidePage + 1);
+                    }
+                    if ($nextPagePrevStepBttn.data('prev-step') == hidePage) {
+                        $nextPagePrevStepBttn.data('prev-step', hidePage - 1);
                     }
                 };
 
@@ -1236,6 +1249,26 @@
 
                 var renderNextStep = function (currentStep, nextStep) {
                     renderStep(nextStep, currentStep);
+                };
+
+                var handleErrors = function () {
+                    var onPage = 0,
+                        offPage = 1,
+                        $errorHeader = $('div.ErrorMessage.page-error'),
+                        $firstError = $('div.registration-ptype-page-step div.ErrorMessage').first();
+                    if ($firstError.length) {
+                        onPage = parseInt($firstError.closest('div.registration-ptype-page-step').data('step'), 10);
+                    }
+                    if (onPage === 0) {
+                        onPage = 1;
+                    }
+                    if (onPage === 1) {
+                        offPage = 0;
+                    }
+                    $('div#registration-ptype-page-step-' + onPage.toString()).prepend(
+                        $errorHeader.addClass('my-4').detach().show()
+                    );
+                    renderStep(onPage, offPage);
                 };
 
                 this.personalGoalSliderSlide = function (sliderVal) {
@@ -1296,19 +1329,33 @@
                 this.init = function () {
                     $('body').attr('tabindex', '-1');
 
-                    var $steps = $('div#registration-ptype-page-steps').detach();
-                    $('#part_type_section_container').append($steps);
+                    var $steps = $('div#registration-ptype-page-steps').detach(),
+                        errorsPresent = $('div.ErrorMessage.page-error').length,
+                        activeStep = parseInt(readCookie('registration-ptype-page-step'), 10);
 
-                    var activeStep = parseInt(readCookie('registration-ptype-page-step'), 10);
-                    if (activeStep > 0) {
-                        document.cookie = 'registration-ptype-page-step=;expires=Thu, 01 Jan 1970 00:00:01 GMT';
-                        renderStep(activeStep, 1);
-                    } else {
-                        renderHeader(1);
+                    document.cookie = 'registration-ptype-page-step=;expires=Thu, 01 Jan 1970 00:00:01 GMT';
+                    $('#part_type_section_container').append($steps);
+                    if (errorsPresent === 0) {
+                        if (activeStep > 0) {
+                            renderStep(activeStep, 1);
+                        } else {
+                            renderHeader(1);
+                        }
                     }
                     $steps.show();
 
                     // Dom manipulations
+                    if ($('#part_type_selection_container div.part-type-container').length > 1) {
+                        var $stepParticipationTypeContent = $steps.find('div.participation-type-ptype-page-step-content'),
+                            $discountCodeContainer = $('#discount_code_container');
+                        $stepParticipationTypeContent.append($('#part_type_selection_container').detach());
+                        if ($discountCodeContainer.length > 0) {
+                            $stepParticipationTypeContent.append($discountCodeContainer.detach());
+                        }
+                    } else {
+                        disableStep(2);
+                    }
+
                     var $personalGiftStep = $steps.find('div.registration-ptype-page-step-personal-gift');
                     $personalGiftStep
                         .find('div.registration-ptype-page-step-content')
@@ -1329,6 +1376,11 @@
                         .closest('.donation-level-row-container')
                         .addClass('donation-level-row-container-no-gift mt-3')
 
+                    // Handle errors
+                    if (errorsPresent > 0) {
+                        handleErrors();
+                    }
+
                     // Prev step click
                     $('.js__ptype-page-prev-step').on('click', function () {
                         renderPrevStep(
@@ -1338,9 +1390,20 @@
 
                     // Next step click
                     $('.js__ptype-page-next-step').on('click', function () {
-                        renderNextStep(
-                            parseInt($(this).data('step'), 10), parseInt($(this).data('next-step'), 10)
-                        );
+                        var $bttn = $(this),
+                            currentStep = parseInt($bttn.data('step'), 10),
+                            nextStep = parseInt($bttn.data('next-step'), 10);
+
+                        switch (currentStep) {
+                            case 2 :
+                                $('input[name=fr_part_radio]').valid();
+                                if ($('form#F2fRegPartType').valid()) {
+                                    renderNextStep(currentStep, nextStep);
+                                }
+                                return;
+                        }
+
+                        renderNextStep(currentStep, nextStep);
                     });
 
                     // Slider dot click
@@ -1574,7 +1637,9 @@
                     $('html, body').animate({scrollTop: 0}, 0);
                     renderHeader(onPage);
                     $('body').focus(); // Reset focus to the top of the page
-                    $('div#registration-reg-page-step-' + offPage.toString()).hide();
+                    if (offPage > 0) {
+                        $('div#registration-reg-page-step-' + offPage.toString()).hide();
+                    }
                     $('div#registration-reg-page-step-' + onPage.toString()).fadeIn();
                 };
 
@@ -1583,7 +1648,7 @@
                         renderStep(prevStep, currentStep);
                         return;
                     }
-                    document.cookie = 'registration-ptype-page-step=3';
+                    document.cookie = 'registration-ptype-page-step=4';
                     history.back();
                 };
 
@@ -1634,20 +1699,21 @@
                 }
                 if ($step1.find('div#relocated_participation_years').length) {
                     $step1.find('div#relocated_participation_years').append(
-                        $('.survey-question-container label span:contains("How many years have you participated in Heart Walk")')
+                        $('.survey-question-container label span:contains("How many years have you participated in")')
                             .closest('div.survey-question-container').detach()
                     );
                 } else {
-                    $('.survey-question-container label span:contains("How many years have you participated in Heart Walk")')
+                    $('.survey-question-container label span:contains("How many years have you participated in")')
                         .closest('div.survey-question-container')
+                        .hide()
                         .find('select').val('0').change();
                 }
 
                 // Start with Step 1?
-                if (errorsPresent == 0) {
-                    var activeStep = parseInt(readCookie('registration-reg-page-step'), 10);
+                var activeStep = parseInt(readCookie('registration-reg-page-step'), 10);
+                document.cookie = 'registration-reg-page-step=;expires=Thu, 01 Jan 1970 00:00:01 GMT';
+                if (errorsPresent === 0) {
                     if (activeStep > 0) {
-                        document.cookie = 'registration-reg-page-step=;expires=Thu, 01 Jan 1970 00:00:01 GMT';
                         renderStep(activeStep, 1);
                     } else {
                         renderHeader(1);
@@ -1700,10 +1766,16 @@
                 if ($questionContainer.length) {
                     $step4.find('div#relocated_mobile_phone_question').append($questionContainer.detach());
                 }
+                $questionContainer = $('#reg_options_cons_info_extension');
+                if ($questionContainer.length) {
+                    $step4.find('div#relocated_reg_options_cons_info_extension').append($questionContainer.detach());
+                }
+                /*
                 $questionContainer = $('.survey-question-container label span:contains("What is your t-shirt size")').closest('div.survey-question-container');
                 if ($questionContainer.length) {
                     $step4.find('div#relocated_t_shirt_question').append($questionContainer.detach());
                 }
+                */
 
                 // Step 5
                 var $consPasswordInput = $('#cons_password');
@@ -1732,7 +1804,7 @@
                         });
                     }
                 };
-                step6RelocatedSurveyQuestions('relocated_survey_questions', [
+                step6RelocatedSurveyQuestions('relocated_top_survey_questions', [
                     'Healthy for good'
                 ]);
                 step6RelocatedSurveyQuestions('relocated_company_survey_questions', [
@@ -1746,7 +1818,7 @@
                     );
                 }
                 $step6.find('div#relocated_email_optin').append(
-                    $('#reg_options_cons_info_extension').detach()
+                    $('#gift_notice_optin').detach()
                 );
                 var $acceptReleaseChkbox = $('input[value^="I accept"]');
                 if ($acceptReleaseChkbox.length) {
@@ -1760,6 +1832,10 @@
                         $acceptPrivacyChkbox.closest('div.survey-question-container').detach()
                     );
                 }
+                // The rest of survey questions
+                $step6.find('div#relocated_survey_questions').append(
+                    $('#additional_questions_container').detach()
+                );
 
                 // Handle errors
                 if (errorsPresent > 0) {
@@ -1872,19 +1948,32 @@
                 }
             });
 
-            var optinName = $('.input-label:contains("Mobile Phone")').closest('.input-container').find('input').attr("name");
-            var tshirtName = $('.input-label:contains("t-shirt")').closest('.input-container').find('select').attr("name");
-
+            // Custom validation options
             var rules = {};
-            rules['cons_password'] = {required: true, minlength: 5};
-            rules['cons_rep_password'] = {required: true, minlength: 5, equalTo: "#cons_password"};
-            rules[optinName] = {required: '#mobile_optin:checked', minlength: 2};
-            rules[tshirtName] = {valueNotEquals: 'NOREPLY'};
-
             var messages = {};
+
+            /*
+            $('div.survey-question-container select.required').each(function () {
+                var $dd = $(this);
+                if ($dd.find('option:first-child').val() === 'NOREPLY') {
+                    rules[$dd.attr('name')] = {valueNotEquals: 'NOREPLY'};
+                    messages[$dd.attr('name')] = {required: 'Please select a value.'};
+                }
+            });
+            */
+
+            rules['cons_password'] = {required: true, minlength: 5};
             messages['cons_password'] = {minlength: "Please enter 5 characters or more", required: "Please enter a password"};
+
+            rules['cons_rep_password'] = {required: true, minlength: 5, equalTo: "#cons_password"};
             messages['cons_rep_password'] = {required: "Please confirm your password", minlength: "Please enter 5 characters or more", equalTo: "Passwords do not match. Please re-enter password."};
+
+            var optinName = $('.input-label:contains("Mobile Phone")').closest('.input-container').find('input').attr("name");
+            rules[optinName] = {required: '#mobile_optin:checked', minlength: 2};
             messages[optinName] = {required: "Mobile Opt in is selected.<br/>Please enter a mobile number."};
+
+            var tshirtName = $('.input-label:contains("t-shirt")').closest('.input-container').find('select').attr("name");
+            rules[tshirtName] = {valueNotEquals: 'NOREPLY'};
             messages[tshirtName] = {required: "Please select a t-shirt size."};
 
             $('button.previous-step').attr("formnovalidate", "true");
@@ -1906,19 +1995,24 @@
                     }, 500);
                 },
                 errorPlacement: function (error, element) {
-                    if ($(element).hasClass("survivorq")) {
+                    var $element = $(element);
+                    if ($element.hasClass("survivorq")) {
                         $('fieldset.survivor_yes_no').after(error);
                         return;
                     }
-                    if ($(element).hasClass("acceptRelease")) {
+                    if ($element.hasClass("acceptRelease")) {
                         $('.acceptRelease').closest('.input-container').append(error);
                         return;
                     }
-                    if ($(element).hasClass("acceptPrivacy")) {
+                    if ($element.hasClass("acceptPrivacy")) {
                         $('.acceptPrivacy').closest('.input-container').append(error);
                         return;
                     }
-                    var placement = $(element).data('error');
+                    if ($element.attr('type') === 'radio') {
+                        $element.closest('fieldset').append(error);
+                        return;
+                    }
+                    var placement = $element.data('error');
                     if (placement) {
                         $(placement).append(error)
                     } else {
@@ -2050,6 +2144,11 @@
         $('.donation-level-row-label').parent().parent().addClass('donation-amt');
         $('.donation-level-row-label:contains("Additional Gift:")').parent().parent().addClass('enterAmt').removeClass('donation-amt');
         $('<span>$</span>').insertBefore('.donation-level-row-container.enterAmt input:last-child');
+
+        if ($('div#registration-ptype-page-steps').length === 0) {
+            $('#part_type_individual_company_selection_container').insertAfter('#part_type_selection_container');
+        }
+
         $('.donation-level-row-label-no-gift').insertBefore(jQuery('.donation-level-row-label-no-gift').parent());
         $('.donation-level-row-container.enterAmt label.donation-level-row-label').text('Other Amount');
         $('.donation-level-row-label-no-gift').parent().addClass('notTime');
@@ -2122,7 +2221,7 @@
             var $personalGoaEdit = $('#goal-container + .reg-summary-edit-link > a');
             if ($personalGoaEdit.length == 1) {
                 $personalGoaEdit.on('click', function () {
-                    document.cookie = 'registration-ptype-page-step=2';
+                    document.cookie = 'registration-ptype-page-step=3';
                 })
             }
 

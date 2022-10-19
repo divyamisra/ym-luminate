@@ -1,5 +1,6 @@
 [[?COMMENT::::::
    NOT PART OF DEPLOYMENT PROCESS. MUST BE MANUALLY COPIED TO PAGEBUILDER.
+   THIS IS THE ONE USED ON PRODUCTION RATHER THAN ym_registration_reg_khc
 ]]
 
 [[?xTx::x[[A24]]x::
@@ -12,7 +13,6 @@
 <div class="d-none hidden prev-tr-id">[[E42:[[S80:trID]]:prev-fr-id]]</div>
 <div class="d-none hidden company-id">[[S80:frCompanyId]]</div>
 <div class="d-none hidden jump-start-list">
-  <!-- testing: [[E46:ym-jumpstart-schools/jumpstartschools.csv]]-->
   [[?xTRUEx::x[[E46:ym-jumpstart-schools/jumpstartschools.csv]]x::
     [[E130:[[T8:[[T6:[[E84:ym-jumpstart-schools/jumpstartschools.csv]]]]]] "\r\n" "'" replaceall "\" "" replaceall "'" "," replaceall]]
   ::]]
@@ -188,8 +188,8 @@
               <label class="control-label" for="registrationInfo-{{registrationCustomQuestions.ym_khc_future_middleschool}}">
                 <span ng-bind-html="registrationQuestions[registrationCustomQuestions.ym_khc_future_middleschool].label"></span>
               </label>
-              <input aria-required="true" type="email" class="form-control input-lg" name="ng_ym_khc_future_middleschool" id="registrationInfo-ym_khc_future_middleschool" ng-model="registrationInfo.ym_khc_future_middleschool" maxlength="{{registrationQuestions.ym_khc_future_middleschool.maxLength}}">
-        </div>
+              <input aria-required="true" type="text" class="form-control input-lg" name="ng_{{registrationCustomQuestions.ym_khc_future_middleschool}}" id="registrationInfo-{{registrationCustomQuestions.ym_khc_future_middleschool}}" ng-model="registrationInfo[registrationCustomQuestions.ym_khc_future_middleschool]" maxlength="{{registrationQuestions[registrationCustomQuestions.ym_khc_future_middleschool].maxLength}}">
+            </div>
       </div>
       <div class="row" ng-if="registrationCustomQuestions.ym_khc_instruction_type" ng-cloak>
         <div class="col-xs-12">
@@ -350,7 +350,7 @@
         <div class="ym-registration-reg-waiver-btns">
           <div class="clearfix">
             <div class="pull-left">
-              <button type="button" class="btn btn-toggle" ng-class="{'active': acceptWaiver == 'yes'}" ng-click="toggleAcceptWaiver('yes')">
+              <button type="button" class="btn btn-toggle d-block" ng-class="{'active': acceptWaiver == 'yes'}" ng-click="toggleAcceptWaiver('yes')">
                 Yes, I agree
               </button>
             </div>

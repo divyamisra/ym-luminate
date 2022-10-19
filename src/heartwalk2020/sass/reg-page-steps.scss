@@ -76,4 +76,28 @@ div#registration-reg-page-steps {
             }
         }
     }
+
+    div#registration-reg-page-step-4 {
+        #emergency_contact_field_group {
+            margin-left: 0;
+
+            div.field-required {
+                max-width: 100%;
+            }
+        }
+    }
+
+    div#registration-reg-page-step-6 {
+        #relocated_survey_questions {
+            #additional_questions_container {
+                padding-left: 35px;
+
+                span.survey-textarea-container {
+                    textarea {
+                        width: 100%;
+                    }
+                }
+            }
+        }
+    }
 }
