@@ -1005,10 +1005,13 @@
 			<div class="ym-pc-dashboard-standard-gifts-icons" role="list" aria-label="Standard Gifts">
 				<div class="ym-pc-dashboard-standard-gifts-icon" role="listitem" ng-class="{'not-earned': !upcomingGift.prize_status}" ng-repeat="upcomingGift in upcomingGifts" aria-label="{{standardGift.prize_label}}" ng-cloak>
 					<a role="button" href="" ng-click="showPrize(upcomingGift.prize_sku,upcomingGift.prize_label,upcomingGift.prize_status,upcomingGift.prize_video)">
-						<img class="img-fluid" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/prizes2023/{{upcomingGift.prize_sku}}.png" alt="{{upcomingGift.prize_label}}"> 
-						<div class="play-circle">
-							<i class="fa fa-play">
-							</i>
+						<div class="position-relative">
+							<img class="img-fluid" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/prizes2023/{{upcomingGift.prize_sku}}.png" alt="{{upcomingGift.prize_label}}"> 
+							<img ng-if="upcomingGift.vucheck" class="position-absolute bottom-0 end-0 w-25" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy23/{{upcomingGift.prize_sku}}-vucheck.png" alt="{{upcomingGift.prize_label}} Vucheck" ng-cloak>
+							<div class="play-circle">
+								<i class="fa fa-play">
+								</i>
+							</div>
 						</div>
 						<div class="ym-pc-dashboard-standard-gift-earned" ng-if="upcomingGift.prize_status" aria-label="Earned">
 							<h4 class="gift-title" ng-bind-html="upcomingGift.prize_label">
