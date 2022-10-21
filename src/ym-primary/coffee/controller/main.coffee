@@ -12,6 +12,7 @@ angular.module 'ahaLuminateControllers'
       $scope.regEventId = ''
       $scope.protocol = window.location.protocol
       
+      ###
       setRegEventId = (numberEvents = 0, regEventId = '') ->
         $scope.numberEvents = numberEvents
         $scope.regEventId = regEventId
@@ -34,6 +35,7 @@ angular.module 'ahaLuminateControllers'
               if numberEvents is 1
                 regEventId = teamraisers[0].id
               setRegEventId numberEvents, regEventId
+      ###
       
       $scope.toggleLoginMenu = ->
         if $scope.loginMenuOpen
