@@ -100,6 +100,7 @@ angular.module 'trPcControllers'
                       msg_earned: gift.msg_earned
                       msg_unearned: gift.msg_unearned
                       post_event: gift.post_event
+                      vucheck: gift.vucheck
                     $scope.giftStatus = status
                     prevstatus = status
                     if status == 1
