@@ -9,8 +9,11 @@
       <div class="ym-pc-dashboard-standard-gifts-icons" role="list" aria-label="Standard Gifts">
         <div class="ym-pc-dashboard-standard-gifts-icon" ng-class="{'not-earned': !standardGift.prize_status}" ng-repeat="standardGift in standardGifts" role="listitem" aria-label="{{standardGift.prize_label}}" ng-cloak>
            <a role="button" href="" ng-click="showPrize(standardGift.prize_sku,standardGift.prize_label,standardGift.prize_status,standardGift.prize_video)">
-              <img class="img-fluid" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/prizes2023/{{standardGift.prize_sku}}.png" alt="{{standardGift.prize_label}}">
-              <div class="play-circle"><i class="fa fa-play"></i></div>
+	      <div class="position-relative">
+		<img class="img-fluid" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/prizes2023/{{standardGift.prize_sku}}.png" alt="{{standardGift.prize_label}}">
+		<img ng-if="standardGift.vucheck" class="position-absolute bottom-0 end-0 w-25" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/prizes2023/{{standardGift.prize_sku}}-vucheck.png" alt="{{standardGift.prize_label}} Vucheck" ng-cloak>
+		<div class="play-circle"><i class="fa fa-play"></i></div> 
+	      </div>
               <div class="ym-pc-dashboard-standard-gift-earned" ng-if="standardGift.prize_status" arial-label="Earned">
                  <h4 class="gift-title" ng-bind-html="standardGift.prize_label"></h4>
                  <div class="gift-subtitle1"><span ng-bind-html="standardGift.msg_earned"></span></div>
