@@ -49,7 +49,7 @@ angular.module 'trPcControllers'
       lockStart = 2300
       lockEnd = 600
       $scope.lockEnabled = false
-      if $rootScope.currentCSTDate ne ''
+      if $rootScope.currentCSTDate != ''
         currDate = new Date $rootScope.currentCSTDate
         if currDate.getMinutes() < 10
           currTime = currDate.getHours()+'0'+currDate.getMinutes()
