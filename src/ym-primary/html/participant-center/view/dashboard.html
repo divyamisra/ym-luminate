@@ -1498,6 +1498,8 @@
 							<h2 class="h3 text-center">
 								School Plan 
 							</h2>
+							<em ng-if="!lockEnabled" class="text-center alert alert-light d-block me-2">Fields will be locked between 11pm and 6am CST<br>for point calculations</em>
+							<em ng-if="lockEnabled" class="text-center alert alert-danger d-block me-2">Fields are currently locked<br/>for point calculations until 6am CST </em>
 							<div class="ym-pc-dashboard-section-plan" ng-if="schoolPlan != null && schoolPlan != ''" ng-cloak>
 								<div class="schoolPlanDates text-center">
 									<p>
@@ -1530,9 +1532,9 @@
 												</strong>
 											</label>
 											<div class="input-group-old">
-<!-- <span ng-if="schoolPlan.EventStartDate == '0000-00-00'" ng-cloak>--/--/----</span>
-			<span ng-if="schoolPlan.EventStartDate != '0000-00-00'" ng-cloak>{{schoolPlan.EventStartDate | date:'MM/dd/yyyy'}}</span> -->
-												<input type="date" class="form-control" id="EventStartDate" ng-model="schoolPlan.EventStartDate" aria-label="Event Start/Distribute Envelopes Date" ng-blur="putSchoolPlan($event)" /> 
+												<span ng-if="schoolPlan.EventStartDate == '0000-00-00' && lockEnabled" ng-cloak>--/--/----</span>
+												<span ng-if="schoolPlan.EventStartDate != '0000-00-00' && lockEnabled" ng-cloak>{{schoolPlan.EventStartDate | date:'MM/dd/yyyy'}}</span>
+												<input ng-if="!lockEnabled" type="date" class="form-control" id="EventStartDate" ng-model="schoolPlan.EventStartDate" aria-label="Event Start/Distribute Envelopes Date" ng-blur="putSchoolPlan($event)" /> 
 											</div>
 										</div>
 									</div>
@@ -1544,9 +1546,9 @@
 												</strong>
 											</label>
 											<div class="input-group-old">
-<!-- <span ng-if="schoolPlan.EventEndDate == '0000-00-00'" ng-cloak>--/--/----</span>
-					<span ng-if="schoolPlan.EventEndDate != '0000-00-00'" ng-cloak>{{schoolPlan.EventEndDate | date:'MM/dd/yyyy'}}</span> -->
-												<input type="date" class="form-control" id="EventEndDate" ng-model="schoolPlan.EventEndDate" aria-label="Event End Date" ng-blur="putSchoolPlan($event)" /> 
+												<span ng-if="schoolPlan.EventEndDate == '0000-00-00' && lockEnabled" ng-cloak>--/--/----</span>
+												<span ng-if="schoolPlan.EventEndDate != '0000-00-00' && lockEnabled" ng-cloak>{{schoolPlan.EventEndDate | date:'MM/dd/yyyy'}}</span>
+												<input ng-if="!lockEnabled" type="date" class="form-control" id="EventEndDate" ng-model="schoolPlan.EventEndDate" aria-label="Event End Date" ng-blur="putSchoolPlan($event)" /> 
 											</div>
 										</div>
 									</div>
@@ -1558,9 +1560,9 @@
 												</strong>
 											</label>
 											<div class="input-group-old">
-<!-- <span ng-if="schoolPlan.KickOffDate == '0000-00-00'" ng-cloak>--/--/----</span>
-								<span ng-if="schoolPlan.KickOffDate != '0000-00-00'" ng-cloak>{{schoolPlan.KickOffDate | date:'MM/dd/yyyy'}}</span> -->
-												<input type="date" class="form-control" id="KickOffDate" ng-model="schoolPlan.KickOffDate" aria-label="Kick Off/Assembly Date" ng-blur="putSchoolPlan($event)" /> 
+												<span ng-if="schoolPlan.KickOffDate == '0000-00-00' && lockEnabled" ng-cloak>--/--/----</span>
+												<span ng-if="schoolPlan.KickOffDate != '0000-00-00' && lockEnabled" ng-cloak>{{schoolPlan.KickOffDate | date:'MM/dd/yyyy'}}</span>
+												<input ng-if="!lockEnabled" type="date" class="form-control" id="KickOffDate" ng-model="schoolPlan.KickOffDate" aria-label="Kick Off/Assembly Date" ng-blur="putSchoolPlan($event)" /> 
 											</div>
 										</div>
 									</div>
@@ -1572,9 +1574,9 @@
 												</strong>
 											</label>
 											<div class="input-group-old">
-<!-- <span ng-if="schoolPlan.DonationDueDate == '0000-00-00'" ng-cloak>--/--/----</span>
-								<span ng-if="schoolPlan.DonationDueDate != '0000-00-00'" ng-cloak>{{schoolPlan.DonationDueDate | date:'MM/dd/yyyy'}}</span> -->
-												<input type="date" class="form-control" id="DonationDueDate" ng-model="schoolPlan.DonationDueDate" aria-label="Donation Due Date" ng-blur="putSchoolPlan($event)" /> 
+												<span ng-if="schoolPlan.DonationDueDate == '0000-00-00' && lockEnabled" ng-cloak>--/--/----</span>
+												<span ng-if="schoolPlan.DonationDueDate != '0000-00-00' && lockEnabled" ng-cloak>{{schoolPlan.DonationDueDate | date:'MM/dd/yyyy'}}</span>
+												<input ng-if="!lockEnabled" type="date" class="form-control" id="DonationDueDate" ng-model="schoolPlan.DonationDueDate" aria-label="Donation Due Date" ng-blur="putSchoolPlan($event)" /> 
 											</div>
 										</div>
 									</div>
@@ -1586,7 +1588,9 @@
 												</strong>
 											</label>
 											<div class="input-group-old">
-												<input type="date" class="form-control" id="LastDayOfSchool" ng-model="schoolPlan.LastDayOfSchool" aria-label="Last Day of School" ng-blur="putSchoolPlan($event)" /> 
+												<span ng-if="schoolPlan.LastDayOfSchool == '0000-00-00' && lockEnabled" ng-cloak>--/--/----</span>
+												<span ng-if="schoolPlan.LastDayOfSchool != '0000-00-00' && lockEnabled" ng-cloak>{{schoolPlan.LastDayOfSchool | date:'MM/dd/yyyy'}}</span>
+												<input ng-if="!lockEnabled" type="date" class="form-control" id="LastDayOfSchool" ng-model="schoolPlan.LastDayOfSchool" aria-label="Last Day of School" ng-blur="putSchoolPlan($event)" /> 
 											</div>
 										</div>
 									</div>
@@ -1596,103 +1600,106 @@
 										<label for="StudentRecruitmentGoal">
 											Student Participant Goal:
 										</label>
-										<input type="number" class="form-control" id="StudentRecruitmentGoal" ng-model="schoolPlan.StudentRecruitmentGoal" aria-label="Student Participant Goal" ng-blur="putSchoolPlan($event)" ng-change="putSchoolPlan($event)">
+										<span ng-if="lockEnabled" ng-cloak>{{schoolPlan.StudentRecruitmentGoal}}</span>
+										<input ng-if="!lockEnabled" type="number" class="form-control" id="StudentRecruitmentGoal" ng-model="schoolPlan.StudentRecruitmentGoal" aria-label="Student Participant Goal" ng-blur="putSchoolPlan($event)" ng-change="putSchoolPlan($event)">
+									</div>
+									<div class="form-group mb-2 pe-2">
+										<label for="FinnsMissionCompletedGoal">
+											Finn's Mission Completion Goal:
+										</label>
+										<span ng-if="lockEnabled" ng-cloak>{{schoolPlan.FinnsMissionCompletedGoal}}</span>
+										<input ng-if="!lockEnabled" type="number" class="form-control" id="FinnsMissionCompletedGoal" ng-model="schoolPlan.FinnsMissionCompletedGoal" aria-label="Finn's Mission Completion Goal" ng-blur="putSchoolPlan($event)" ng-change="putSchoolPlan($event)">
+									</div>
+									<div class="form-group d-none">
+										<label for="school_goal">
+											Fundraising Goal:
+										</label>
+										<span ng-if="lockEnabled" ng-cloak>{{schoolPlan.goalFormatted}}</span>
+										<input ng-if="!lockEnabled" type="text" class="form-control" id="school_goal" ng-model="companyProgress.goalFormatted" aria-label="School Fundraising Goal" ng-blur="putSchoolPlan($event)" onkeypress="return event.charCode == 36 || event.charCode == 44 || event.charCode == 46 || (event.charCode >= 48 && event.charCode <= 57)">
+									</div>
+								</div>
+								<div class="ym-pc-dashboard-send-emails checkbox mb-2 pe-2" custom-checkbox ng-class="{'checked': schoolPlan.SendEmailOnBehalfOfCoordinator == 'ALLOW'}" ng-cloak>
+									<label for="SendEmailOnBehalfOfCoordinator">
+										<input ng-disabled="lockEnabled" type="checkbox" name="SendEmailOnBehalfOfCoordinator" id="SendEmailOnBehalfOfCoordinator" ng-model="schoolPlan.SendEmailOnBehalfOfCoordinator" ng-true-value="'ALLOW'" ng-false-value="'DONOTALLOW'" ng-click="putSchoolPlan($event)">
+											Allow AHA to Send Emails to my students on my behalf 
+										</label>
+								</div>
+								<div class="ym-pc-dashboard-participate-next-year mb-2 pe-2">
+									<div class="d-md-flex participatingNextYear text-left">
+										<div class="col-md-8 pl-0">
+											My school will be participating in Kids Heart Challenge next year! 
 										</div>
-										<div class="form-group mb-2 pe-2">
-											<label for="FinnsMissionCompletedGoal">
-												Finn's Mission Completion Goal:
-											</label>
-											<input type="number" class="form-control" id="FinnsMissionCompletedGoal" ng-model="schoolPlan.FinnsMissionCompletedGoal" aria-label="Finn's Mission Completion Goal" ng-blur="putSchoolPlan($event)" ng-change="putSchoolPlan($event)">
-											</div>
-											<div class="form-group d-none">
-												<label for="school_goal">
-													Fundraising Goal:
-												</label>
-												<input type="text" class="form-control" id="school_goal" ng-model="companyProgress.goalFormatted" aria-label="School Fundraising Goal" ng-blur="putSchoolPlan($event)" onkeypress="return event.charCode == 36 || event.charCode == 44 || event.charCode == 46 || (event.charCode >= 48 && event.charCode <= 57)">
-												</div>
-											</div>
-											<div class="ym-pc-dashboard-send-emails checkbox mb-2 pe-2" custom-checkbox ng-class="{'checked': schoolPlan.SendEmailOnBehalfOfCoordinator == 'ALLOW'}" ng-cloak>
-												<label for="SendEmailOnBehalfOfCoordinator">
-													<input type="checkbox" name="SendEmailOnBehalfOfCoordinator" id="SendEmailOnBehalfOfCoordinator" ng-model="schoolPlan.SendEmailOnBehalfOfCoordinator" ng-true-value="'ALLOW'" ng-false-value="'DONOTALLOW'" ng-click="putSchoolPlan($event)">
-														Allow AHA to Send Emails to my students on my behalf 
-													</label>
-												</div>
-												<div class="ym-pc-dashboard-participate-next-year mb-2 pe-2">
-													<div class="d-md-flex participatingNextYear text-left">
-														<div class="col-md-8 pl-0">
-															My school will be participating in Kids Heart Challenge next year! 
-														</div>
-														<div class="col-md-4 pr-0">
-															<select class="form-control" id="ParticipatingNextYear" ng-model="schoolPlan.ParticipatingNextYear" aria-label="Participating Next Year" ng-change="putSchoolPlan($event,'ParticipatingNextYear')">
-																<option value="YES">
-																	Yes
-																</option>
-																<option value="NO">
-																	No
-																</option>
-																<option value="I'm not sure'">
-																	Still Considering
-																</option>
-															</select>
-														</div>
-													</div>
-												</div>
-												<div class="ym-pc-dashboard-materials-needed mt-sm">
-													<div class="d-md-flex materialsNeeded text-left">
-														<div class="col-md-8  pe-2">
-															My school would like materials in the form of: 
-															<button aria-label="Click the icon to see an example of the materials." data-balloon-pos="up" data-balloon-length="large" ng-click="showMaterialTypes()">
-																<i class="fa fa-info-circle">
-																</i>
-															</button>
-														</div>
-														<div class="col-md-4">
-															<select class="form-control" id="MaterialsNeeded" ng-model="schoolPlan.MaterialsNeeded" aria-label="Materials Needed" ng-change="putSchoolPlan($event,'MaterialsNeeded')">
-																<option value="Envelopes">
-																	Envelopes
-																</option>
-																<option value="Parent Letter">
-																	Parent Letter
-																</option>
-																<option value="Digital Only">
-																	Digital Only
-																</option>
-															</select>
-														</div>
-													</div>
-												</div>
-												<div class="ym-pc-dashboard-total-points text-center">
-													<div>
-														<strong>
-															Total Points: 
-															<span ng-bind-html="schoolPlan.TotalPointsEarned">
-															</span>
-														</strong>
-													</div>
-													<p>
-														Points updated nightly at 6 a.m.<br /> 
-														<button ng-click="showSchoolPlan()" class="btn btn-md-wide btn-primary ym-progress-show-plan" aria-label="Click here for more information">
-															<strong>
-																Click here for more information
-															</strong>
-														</button>
-													</p>
-												</div>
-												<div class="ym-pc-dashboard-multi-coord checkbox mt-3" custom-checkbox ng-class="{'checked': schoolPlan.MultipleCoordinators == 'YES'}" ng-cloak>
-													<label for="MultipleCoordinators">
-														<input type="checkbox" name="MultipleCoordinators" id="MultipleCoordinators" ng-model="schoolPlan.MultipleCoordinators" ng-true-value="'YES'" ng-false-value="'NO'" ng-click="putSchoolPlan($event)">
-															My school has two or more coordinators responsible for the Kids Heart Challenge program. 
-														</label>
-													</div>
-												</div>
-											</div>
-											<div class="ym-pc-dashboard-section-plan text-center" ng-if="schoolPlan == null || schoolPlan == ''" ng-cloak>
-												<p>
-													No plan data available for this School.
-												</p>
-											</div>
+										<div class="col-md-4 pr-0">
+											<select ng-disabled="lockEnabled" class="form-control" id="ParticipatingNextYear" ng-model="schoolPlan.ParticipatingNextYear" aria-label="Participating Next Year" ng-change="putSchoolPlan($event,'ParticipatingNextYear')">
+												<option value="YES">
+													Yes
+												</option>
+												<option value="NO">
+													No
+												</option>
+												<option value="I'm not sure'">
+													Still Considering
+												</option>
+											</select>
 										</div>
 									</div>
+								</div>
+								<div class="ym-pc-dashboard-materials-needed mt-sm">
+									<div class="d-md-flex materialsNeeded text-left">
+										<div class="col-md-8  pe-2">
+											My school would like materials in the form of: 
+											<button aria-label="Click the icon to see an example of the materials." data-balloon-pos="up" data-balloon-length="large" ng-click="showMaterialTypes()">
+												<i class="fa fa-info-circle">
+												</i>
+											</button>
+										</div>
+										<div class="col-md-4">
+											<select ng-disabled="lockEnabled" class="form-control" id="MaterialsNeeded" ng-model="schoolPlan.MaterialsNeeded" aria-label="Materials Needed" ng-change="putSchoolPlan($event,'MaterialsNeeded')">
+												<option value="Envelopes">
+													Envelopes
+												</option>
+												<option value="Parent Letter">
+													Parent Letter
+												</option>
+												<option value="Digital Only">
+													Digital Only
+												</option>
+											</select>
+										</div>
+									</div>
+								</div>
+								<div class="ym-pc-dashboard-total-points text-center">
+									<div>
+										<strong>
+											Total Points: 
+											<span ng-bind-html="schoolPlan.TotalPointsEarned">
+											</span>
+										</strong>
+									</div>
+									<p>
+										Points updated nightly at 6 a.m. CST<br /> 
+										<button ng-click="showSchoolPlan()" class="btn btn-md-wide btn-primary ym-progress-show-plan" aria-label="Click here for more information">
+											<strong>
+												Click here for more information
+											</strong>
+										</button>
+									</p>
+								</div>
+								<div class="ym-pc-dashboard-multi-coord checkbox mt-3" custom-checkbox ng-class="{'checked': schoolPlan.MultipleCoordinators == 'YES'}" ng-cloak>
+									<label for="MultipleCoordinators">
+										<input ng-disabled="lockEnabled" type="checkbox" name="MultipleCoordinators" id="MultipleCoordinators" ng-model="schoolPlan.MultipleCoordinators" ng-true-value="'YES'" ng-false-value="'NO'" ng-click="putSchoolPlan($event)">
+											My school has two or more coordinators responsible for the Kids Heart Challenge program. 
+									</label>
+								</div>
+							</div>
+						</div>
+						<div class="ym-pc-dashboard-section-plan text-center" ng-if="schoolPlan == null || schoolPlan == ''" ng-cloak>
+							<p>
+								No plan data available for this School.
+							</p>
+						</div>
+					</div>
+				</div>
 									<div class="col-md-6 p-2">
 										<div class="ym-pc-dashboard-coordinator-progress-section__column p-3 h-100">
 											<div class="ym-pc-dashboard-coordinator-progress-box">
