@@ -460,16 +460,22 @@
 							var teams = luminateExtend.utils.ensureArray(response.getTeamSearchByInfoResponse.team);
 
 							$(teams).each(function (i, team) {
+	
+								var proxyType = "20";
+								var proxyId = team.captainConsId;
+								var captainDonateUrl = team.teamDonateURL.replace(/(PROXY_ID=).*?(&)/,'$1' + proxyId + '$2').replace(/(PROXY_TYPE=).*?(&)/,'$1' + proxyType + '$2');
+
+
 								if (screenWidth >= 768) {
 									$('.js--team-results-rows')
 										.append('<tr' + (i > 10 ? ' class="d-none"' : '') + '><td><a href="' + team.teamPageURL + '">' +
-											team.name + '</a></td><td></td><td></td><td></td><td class="col-cta text-right"><a href="' + team.teamDonateURL + '" class="btn btn-primary btn-block btn-rounded" title="Donate to ' + team.name + '" aria-label="Donate to ' + team.name + '">Donate</a></td></tr>');
+											team.name + '</a></td><td></td><td></td><td></td><td class="col-cta text-right"><a href="' + captainDonateUrl + '" class="btn btn-primary btn-block btn-rounded" title="Donate to ' + team.name + '" aria-label="Donate to ' + team.name + '">Donate</a></td></tr>');
 								} else {
 									$('#teamResultsTable thead').remove();
 									$('.js--team-results-rows')
 										.addClass('mobile')
 										.append('<tr><td><table><tr' + (i > 10 ? ' class="d-none"' : '') + '><td>Team</td><td><a href="' + team.teamPageURL + '">' +
-											team.name + '</a></td></tr><tr><td></td><td></td></tr></td></tr><tr><td></td><td><a href="TR/?fr_id=' + team.EventId + '&pg=entry">' + team.eventName + '</a></td></tr><tr><td colspan="2" class="text-center"><a href="' + team.teamDonateURL + '" class="btn btn-primary btn-block btn-rounded" title="Donate to ' + team.name + '" aria-label="Donate to ' + team.name + '">Donate</a></td></tr></table></td></tr>');
+											team.name + '</a></td></tr><tr><td></td><td></td></tr></td></tr><tr><td></td><td><a href="TR/?fr_id=' + team.EventId + '&pg=entry">' + team.eventName + '</a></td></tr><tr><td colspan="2" class="text-center"><a href="' + captainDonateUrl + '" class="btn btn-primary btn-block btn-rounded" title="Donate to ' + team.name + '" aria-label="Donate to ' + team.name + '">Donate</a></td></tr></table></td></tr>');
 								}
 							});
 
@@ -1876,7 +1882,8 @@
 								// cd.initializeTeamRosterTable();
 
 								//add call to hook donate button with payment type selections
-								addPaymentTypesOnSearch();
+								//removing to test console errors, as this refs a main body script that no longer exists
+								// addPaymentTypesOnSearch();
 								$('.js--more-participant-results').on('click', function (e) {
 									e.preventDefault();
 									$('#team-roster tr').removeClass('d-none');

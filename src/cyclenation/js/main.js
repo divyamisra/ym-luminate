@@ -3611,7 +3611,7 @@ cd.getTeamHonorRoll();
             // Populate company name from page title
             var pageTitle = jQuery('head title').text().trim();
             var start_pos = pageTitle.indexOf(':') + 1;
-            var end_pos = pageTitle.indexOf('- Heart Walk', start_pos);
+            var end_pos = pageTitle.indexOf('- American Heart Association', start_pos);
             var currentCompanyName = pageTitle.substring(start_pos, end_pos).trim();
             var currentCompanyId = getURLParameter(currentUrl, 'company_id');
             // var isParentCompany = ($('#company_hierarchy_list_component .lc_Row1').length ? true : false)
@@ -3696,10 +3696,11 @@ cd.getTeamHonorRoll();
                       $('.js--company-name').text(newAmpersand);
                     }
 
-                    var raised = numberWithCommas(response.getCompaniesResponse.company.amountRaised / 100);
+                    // var raised = numberWithCommas(response.getCompaniesResponse.company.amountRaised / 100);
+                    var raised = $('.company-tally-container--amount .company-tally-ammount').text();
 
                     if (raised) {
-                        $('#progress-amount').html('$' + raised);
+                        $('#progress-amount').text(raised);
                     }
 
                     // Get company goal
@@ -3761,11 +3762,11 @@ cd.getTeamHonorRoll();
                                     var teamRaised = (parseInt(team.amountRaised) * 0.01).toFixed(2);
                                     var teamRaisedFormmatted = teamRaised.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,").replace('.00', '');
                                     //$('#team-roster tbody').append('<tr class="' + (numTeamRows > 4 ? 'd-none' : '') + '"> <td class="team-name"> <a href="' + team.teamPageURL + '" data-sort="' + team.name + '">' + team.name + '</a> </td><td class="donor-name"> <a href="TR/?px=' + team.captainConsId + '&pg=personal&fr_id=' + team.EventId + '" data-sort="' + team.captainFirstName + ' ' + team.captainLastName + '">' + team.captainFirstName + ' ' + team.captainLastName + '</a> </td><td class="company-name"> <a href="' + luminateExtend.global.path.secure + 'TR/?pg=company&company_id=' + team.companyId + '&fr_id=' + team.EventId + '" data-sort="' + team.companyName + '">' + team.companyName + '</a> </td><td class="raised" data-sort="' + teamRaisedFormmatted + '"> <span><strong>$' + teamRaisedFormmatted + '</strong></span> </td><td> <a href="' + team.joinTeamURL + '">' + (screenWidth <= 480 ? 'Join' : 'Join Team') + '</a> </td></tr>');
-                                    $('#team-roster tbody').append('<tr> <td class="team-name"> <a href="' + team.teamPageURL + '" data-sort="' + team.name + '">' + team.name + '</a> </td><td class="donor-name"> <a href="TR/?px=' + team.captainConsId + '&pg=personal&fr_id=' + team.EventId + '" data-sort="' + team.captainFirstName + ' ' + team.captainLastName + '">' + team.captainFirstName + ' ' + team.captainLastName + '</a> </td><td class="company-name"> <a href="' + luminateExtend.global.path.secure + 'TR/?pg=company&company_id=' + team.companyId + '&fr_id=' + team.EventId + '" data-sort="' + team.companyName + '">' + team.companyName + '</a> </td><td class="raised" data-sort="' + teamRaisedFormmatted + '"> <span><strong>$' + teamRaisedFormmatted + '</strong></span> </td><td> <a href="' + team.joinTeamURL + '">' + (screenWidth <= 480 ? 'Join' : 'Join Team') + '</a> </td></tr>');
+                                    $('#team-roster tbody').append('<tr> <td class="team-name"> <a href="' + team.teamPageURL + '" data-sort="' + team.name + '">' + team.name + '</a> </td><td class="donor-name"> <a href="TR/?px=' + team.captainConsId + '&pg=personal&fr_id=' + team.EventId + '" data-sort="' + team.captainFirstName + ' ' + team.captainLastName + '">' + team.captainFirstName + ' ' + team.captainLastName + '</a> </td><td class="company-name"> <a href="' + luminateExtend.global.path.secure + 'TR/?pg=company&company_id=' + team.companyId + '&fr_id=' + team.EventId + '" data-sort="' + companyName + '">' + companyName + '</a> </td><td class="raised" data-sort="' + teamRaisedFormmatted + '"> <span><strong>$' + teamRaisedFormmatted + '</strong></span> </td><td> <a href="' + team.joinTeamURL + '">' + (screenWidth <= 480 ? 'Join' : 'Join Team') + '</a> </td></tr>');
                                     numTeamRows++;
-                                    console.log('company name', team.companyName);
-                                    var companyNameInsert = $('.js--company-name').text();
-                                    $('.company-name a').text(companyNameInsert);
+                                    console.log('company name 2 : ', companyName);
+                                    // var companyNameInsert = $('.js--company-name').text();
+                                    // $('.company-name a').text(companyNameInsert);
                                 });
 
                                 $('.js--more-team-results').on('click', function (e) {
@@ -4047,9 +4048,11 @@ cd.getTeamHonorRoll();
             }
             // var getCompanyId = getURLParameter(currentUrl, 'company_id');
             // console.log(getCompanyId)
-            setTimeout(function () {
-              cd.getCompanyName(getCompanyId);
-            }, 1000);
+            
+            // stop this to avoid participant table on comapany page only showing one company name - 10-05-2022
+            // setTimeout(function () {
+            //   cd.getCompanyName(getCompanyId);
+            // }, 1000);
     }
     if ($('body').is('.app_donation')) {
       /* 2019 DF UPDATES */
