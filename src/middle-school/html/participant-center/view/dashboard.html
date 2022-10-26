@@ -665,12 +665,12 @@
 								</div>
 					<div class="col-sm-6 ym-pc-dashboard-coordinator-progress-section__column">
 						<div class="ym-pc-dashboard-school-goals" ng-cloak>
-							<div class="form-group mb-4">
+							<div class="form-group">
 								<label for="StudentRecruitmentGoal">
 									Student Participant Goal: 
 								</label>
 								<span ng-if="lockEnabled" ng-cloak>{{schoolPlan.StudentRecruitmentGoal}}</span>
-								<input ng-if="!lockEnabled" type="number" class="form-control" id="StudentRecruitmentGoal" ng-model="schoolPlan.StudentRecruitmentGoal" aria-label="Student Participant Goal" ng-blur="putSchoolPlan($event)" ng-change="putSchoolPlan($event)">
+								<input ng-if="!lockEnabled" type="number" class="form-control mb-4" id="StudentRecruitmentGoal" ng-model="schoolPlan.StudentRecruitmentGoal" aria-label="Student Participant Goal" ng-blur="putSchoolPlan($event)" ng-change="putSchoolPlan($event)">
 							</div>
 							<div class="form-group">
 								<label for="FinnsMissionCompletedGoal">
