@@ -41,6 +41,17 @@ angular.module 'trPcControllers'
       $scope.companyId = $scope.participantRegistration.companyInformation.companyId
       theDate = new Date
       $scope.yearsList = [1..(theDate.getFullYear()-1978)] # 0 - 50
+      lockStart = 2200 #prod luminate server is est whereas dev server is cst
+      lockEnd = 500
+      $scope.lockEnabled = false
+      if $rootScope.currentCSTDate != ''
+        currDate = new Date $rootScope.currentCSTDate
+        if currDate.getMinutes() < 10
+          currTime = currDate.getHours()+'0'+currDate.getMinutes()
+        else
+          currTime = currDate.getHours()+''+currDate.getMinutes()
+        if currTime >= lockStart or currTime < lockEnd
+          $scope.lockEnabled = true
       
       $dataRoot = angular.element '[data-embed-root]'
 
