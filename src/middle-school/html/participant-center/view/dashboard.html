@@ -557,9 +557,9 @@
 					School Plan 
 				</h2>
 				<div class="row" ng-if="schoolPlan != null && schoolPlan != ''" ng-cloak>
-					<em ng-if="!lockEnabled" class="text-left alert alert-dark d-block me-2">School Planning fields will be locked between 11 pm – 6 am CST for point calculations.</em>
-					<em ng-if="lockEnabled" class="text-left alert alert-danger d-block me-2">School Planning fields are currently locked for point calculations until 6 am CST.</em>
-					<div class="schoolPlanDates text-left">
+					<em ng-if="!lockEnabled" class="text-start alert alert-dark d-block me-2">School Planning fields will be locked between 11 pm – 6 am CST for point calculations.</em>
+					<em ng-if="lockEnabled" class="text-start alert alert-danger d-block me-2">School Planning fields are currently locked for point calculations until 6 am CST.</em>
+					<div class="schoolPlanDates text-start">
 						<p>
 							Your event is kicking off on <strong>{{schoolPlan.EventStartDate | date:'MM/dd/yyyy'}}</strong><span ng-if="(schoolPlan.EventStartDate | date:'MM/dd/yyyy') !== (schoolPlan.EventEndDate | date:'MM/dd/yyyy') && schoolPlan.EventEndDate != ''" ng-cloak> and will conclude on <strong>{{schoolPlan.EventEndDate | date:'MM/dd/yyyy'}}</strong></span>.
 							<span ng-if="schoolPlan.DonationDueDate != '0000-00-00'" ng-cloak>All donations are due on <strong>{{schoolPlan.DonationDueDate | date:'MM/dd/yyyy'}}</strong>.</span>
@@ -635,7 +635,7 @@
 							</div>
 						</div>
 													<div class="ym-pc-dashboard-participate-next-year">
-				<div class="d-md-flex participatingNextYear text-left">
+				<div class="d-md-flex participatingNextYear text-start">
 					<div class="col-md-8 pl-0">
 						My school will be participating in American Heart Challenge next year!
 					</div>
@@ -649,7 +649,7 @@
 				</div>
 						</div>
 						<div class="ym-pc-dashboard-materials-needed mt-sm">
-				<div class="d-md-flex materialsNeeded text-left"> 
+				<div class="d-md-flex materialsNeeded text-start"> 
 					<div class="col-md-8 pl-0">
 						My school would like materials in the form of:
 						<button aria-label="Click the icon to see an example of the materials." data-balloon-pos="up" data-balloon-length="large" ng-click="showMaterialTypes()"><i class="fa fa-info-circle"></i></button> 
