@@ -557,8 +557,8 @@
 					School Plan 
 				</h2>
 				<div class="row" ng-if="schoolPlan != null && schoolPlan != ''" ng-cloak>
-					<em ng-if="!lockEnabled" class="text-center alert alert-light d-block me-2">School Planning fields will be locked<br/>between 11 pm – 6 am CST for point calculations.</em>
-					<em ng-if="lockEnabled" class="text-center alert alert-danger d-block me-2">School Planning fields are currently locked<br/>for point calculations until 6 am CST.</em>
+					<em ng-if="!lockEnabled" class="text-left alert alert-dark d-block me-2">School Planning fields will be locked between 11 pm – 6 am CST for point calculations.</em>
+					<em ng-if="lockEnabled" class="text-left alert alert-danger d-block me-2">School Planning fields are currently locked for point calculations until 6 am CST.</em>
 					<div class="schoolPlanDates text-left">
 						<p>
 							Your event is kicking off on <strong>{{schoolPlan.EventStartDate | date:'MM/dd/yyyy'}}</strong><span ng-if="(schoolPlan.EventStartDate | date:'MM/dd/yyyy') !== (schoolPlan.EventEndDate | date:'MM/dd/yyyy') && schoolPlan.EventEndDate != ''" ng-cloak> and will conclude on <strong>{{schoolPlan.EventEndDate | date:'MM/dd/yyyy'}}</strong></span>.
