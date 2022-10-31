@@ -72,10 +72,10 @@ CountDownWidget.prototype.getCodes = function() {
   for (let k in blocks) {
 
     html += '  <div class="aha-counter-block col-6 col-xl-3">'
-    html += '    <div class="aha-counter-top">'
+    html += '    <div class="aha-counter-top" role="presentation" aria-hidden="true">'
 
     html += '      <div class="aha-counter-digit" id="' + this.key + '_' + k + '1" >'
-    html += '        <div class="aha-counter-digit-tcover">'
+    html += '        <div class="aha-counter-digit-tcover" aria-hidden="true">'
     html += '          <div class="aha-counter-digit-top"></div>'
     html += '        </div>'
     html += '        <div class="aha-counter-digit-sep">'
@@ -88,22 +88,20 @@ CountDownWidget.prototype.getCodes = function() {
     html += '      </div>'
 
     html += '      <div class="aha-counter-digit" id="' + this.key + '_' + k + '0" >'
-    html += '        <div class="aha-counter-digit-tcover">'
+    html += '        <div class="aha-counter-digit-tcover" aria-hidden="true">'
     html += '          <div class="aha-counter-digit-top"></div>'
     html += '        </div>'
     html += '        <div class="aha-counter-digit-sep">'
     html += '          <div> <span class="digit-sep-left"></span><span class="digit-sep-right"></span> </div>'
     html += '        </div>'
-    html += '        <div class="aha-counter-digit-bcover">'
+    html += '        <div class="aha-counter-digit-bcover" aria-hidden="true">'
     html += '          <div class="aha-counter-digit-bottom"></div>'
     html += '        </div>'
     html += '        <div class="aha-counter-digit-static"></div>'
     html += '      </div>'
-
     html += '    </div>'
-    html += '    <div class="aha-counter-bottom">' + blocks[k] + '</div>'
+    html += '    <div class="aha-counter-bottom" role="text"><span class="aha-counter-digits-combo sr-only"></span>&nbsp;' + blocks[k] + '</div>'
     html += '  </div>'
-
   }
 
   html += '</div>'
@@ -135,6 +133,7 @@ CountDownWidget.prototype.getTimeDiff = function() {
 }
 
 
+
 CountDownWidget.prototype.run = function() {
 
   let nn = this.calc()
@@ -159,7 +158,7 @@ CountDownWidget.prototype.run = function() {
 CountDownWidget.prototype.calc = function() {
 
   let out = { d1: '0', d0: '0', h1: '0', h0: '0', m1: '0', m0: '0', s1: '0', s0: '0' }
-  console.log(this.delta)
+  // console.log(this.delta)
   if (this.delta == 0) {
     //   window.location.href = window.location.href;
   }
@@ -190,10 +189,7 @@ CountDownWidget.prototype.calc = function() {
     s1: s.length > 1 ? s[0] : '0',
     s0: s.length > 1 ? s[1] : s[0],
   }
-
-
 }
-
 
 var CounterDigitChange = function(id, num) {
 
@@ -222,9 +218,11 @@ CounterDigitChange.prototype.commit = function() {
   root.querySelector('.aha-counter-digit-static').innerHTML = this.num
   root.classList.remove('digit-flip')
 
-  let root = document.getElementById(this.id)
-  root.querySelector('.aha-counter-digit-static').innerHTML = this.num
-  root.classList.remove('digit-flip')
+  if (root.nextElementSibling) {
+    digitsCombo.innerHTML = `${this.num}${root.nextElementSibling.querySelector('.aha-counter-digit-static').innerHTML}`
+  } else if (root.previousElementSibling) {
+    digitsCombo.innerHTML = `${root.previousElementSibling.querySelector('.aha-counter-digit-static').innerHTML}${this.num}`
+  }
 }
 
 CountDownWidget.prototype.announce = function() {
