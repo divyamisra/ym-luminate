@@ -630,9 +630,147 @@
 				</div>
 			</div>
 		</section>
-		<section class="ym-pc-dashboard-progress-section" aria-label="Fundraising Progress Meters">
+		<section class="ym-pc-dashboard-progress-section mb-0" aria-label="Spread the Word and Livestream Sections">
+			<div class="d-md-flex justify-content-between flex-wrap">
+				<div class="col-sm-12 p-2">
+					<div class="ym-pc-dashboard-progress-section__column event-secondary-medium p-3 h-100">
+						<div class="ym-pc-dashboard-email-challenge-box">
+							<div class="ym-pc-dashboard-section-header">
+								<h3 class="h5">
+									Spread the Word! 
+								</h3>
+							</div>
+							<div class="text-center">
+								<p>
+									Spread the word! Send 10 emails or e-cards to friends and family. 
+								</p>
+								<div class="ym-pc-dashboard-email-challenge-images">
+									<a ng-href="{{baseUrl}}#/email">
+										<img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy23/spread-the-word-mail-icon.png" alt="Send Email"> 
+									</a>
+									<a ng-href="https://tools.heart.org/aha_ym23{{tablePrefix == 'heartdev' ? '_dev' : (tablePrefix == 'heartnew' ? '_testing' : '')}}/?eid={{frId}}&amp;sid={{consId}}&amp;name={{consNameFirst}}" target="_blank">
+										<img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy23/spread-the-word-ecard-icon.png" alt="Send E-card"> 
+									</a>
+								</div>
+								<div class="ym-pc-dashboard-email-challenge-buttons">
+									<a class="btn btn-md-wide btn-primary mb-2" ng-href="{{baseUrl}}#/email">
+										<strong>
+											Send Email
+										</strong>
+									</a>
+									<a class="btn btn-md-wide btn-primary mb-2" ng-href="https://tools.heart.org/aha_ym23{{tablePrefix == 'heartdev' ? '_dev' : (tablePrefix == 'heartnew' ? '_testing' : '')}}/?eid={{frId}}&amp;sid={{consId}}&amp;name={{consNameFirst}}" target="_blank">
+										<strong>
+											Send e-card
+										</strong>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+<!-- 
+        <div class="col-sm-6 ym-pc-dashboard-progress-section__column event-secondary-medium">
+          <div class="ym-pc-dashboard-livestream-box">
+            <div class="ym-pc-dashboard-livestream-title">
+              <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/pc-tiltify-livestream.png" alt="Livestream">
+            </div>
+            <div class="ym-pc-dashboard-section-header">
+              <p>
+                Go live and help save lives. Start your charity stream today.
+              </p>
+            </div>
+            <div class="text-center">
+              <div class="ym-pc-dashboard-livestream-images">
+   	        <span class="hv-image" ng-init="hvImgLSHsrc='pc-tiltify-hearts.png';" ng-mouseover="hvImgLSHsrc='pc-tiltify-hearts-animated.gif';" ng-mouseout="hvImgLSHsrc='pc-tiltify-hearts.png';">
+		  <img class="pc-livestream-hearts" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy21/{{hvImgLSHsrc}}" alt="Livestream Hearts">
+	        </span>
+                &nbsp;
+	        <img class="pc-livestream-character" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy22/livestream-heading.png" alt="Livestream Icon">
+              </div>
+              <div class="ym-pc-dashboard-livestream-buttons">
+                <a class="btn btn-md-wide btn-primary" ng-href="https://tiltify.com/aha/kids-heart-challengeamerican-heart-challenge-c4ba88cc-eefb-495f-8230-05fa82e1db98/start/ownership" target="_blank">
+                  <strong>Get Started</strong>
+                </a>
+                <a class="btn btn-md-wide btn-primary" ng-href="https://dashboard.tiltify.com/@me" target="_blank">
+                  <strong>Check Your Progress</strong>
+                </a> 
+              </div>
+              <br/>
+              <p>By clicking these links, you will leave Kids Heart Challenge and be redirected to another site not under the control of the American Heart Association.</p>
+            </div>
+          </div>
+        </div>
+        -->
+			</div>
+		</section>
+		<section class="ym-pc-dashboard-facebook-section p-2 mb-2" aria-label="Facebook Fundraising" ng-show="facebookFundraisersEnabled" ng-cloak>
+			<div class="ym-pc-dashboard-facebook-box" ng-show="!facebookFundraiserId">
+				<div class="container">
+					<div class="ym-pc-dashboard-section-header">
+						<h3 class="h5 text-white">
+							Let's Get Fundraising
+							<span ng-if="consNameFirst && consNameFirst != ''">
+								, 
+								<span ng-bind-html="consNameFirst">
+								</span>
+							</span>
+							! 
+						</h3>
+					</div>
+					<div class="text-center">
+						<p>
+							Link your personal page to a new Facebook Fundraiser to receive donations from your Facebook friends. 
+						</p>
+						<div role="alert" class="alert alert-danger" ng-if="facebookFundraiserLoginStatus == 'login_error' || facebookFundraiserLoginStatus == 'permission_error' || facebookFundraiserLoginStatus == 'create_fundraiser_error' || facebookFundraiserCreateStatus == 'login_error' || facebookFundraiserCreateStatus == 'permission_error' || facebookFundraiserCreateStatus == 'create_fundraiser_error'" ng-cloak>
+							An error occurred attempting to connect to Facebook. Please try again later. 
+						</div>
+						<div role="alert" class="alert alert-danger" ng-if="facebookFundraiserCreateStatus == 'create_fundraiser_duplicate'" ng-cloak>
+							This Facebook account already has an active Facebook Fundraiser for this school. If you are trying to connect a second student, you will need to use another Facebook account. 
+						</div>
+						<div role="alert" class="alert alert-danger" ng-if="facebookFundraiserLoginStatus == 'declined_manage_fundraisers'" ng-cloak>
+							We need your permission to create a Facebook Fundraiser on your behalf. 
+						</div>
+						<button type="button" class="btn btn-white" ng-class="{'disabled': facebookFundraiserLoginStatus == 'pending' || facebookFundraiserCreateStatus == 'pending'}" ng-click="loginToFacebook()" ng-disabled="facebookFundraiserLoginStatus == 'pending' || facebookFundraiserCreateStatus == 'pending'">
+							<span class="fa fa-facebook-square">
+							</span>
+							<strong>
+								Connect to Facebook Fundraiser
+							</strong>
+						</button>
+						<div class="ym-pc-dashboard-facebook-hint">
+							By clicking this link, you will leave AHA's website and be redirected to another site not under the control of AHA. 
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="ym-pc-dashboard-facebook-box js--facebook-fundraiser-completed-section" ng-show="facebookFundraiserId">
+				<div class="container">
+					<div class="ym-pc-dashboard-section-header">
+						<h3 class="h5 text-white">
+							Your Fundraiser is Connected to Facebook! 
+						</h3>
+					</div>
+					<div class="text-center">
+						<p>
+							Log in to use Facebook's fundraising tools to invite friends, share updates and collect donations. We'll keep track of your progress on Facebook and on your page, so you'll always know how close you are to reaching your goal. 
+						</p>
+						<a class="btn btn-white" ng-class="{'disabled': !facebookFundraiserConfirmedStatus || facebookFundraiserConfirmedStatus == 'pending'}" ng-href="//facebook.com/donate/{{facebookFundraiserId}}/" ng-disabled="!facebookFundraiserConfirmedStatus || facebookFundraiserConfirmedStatus == 'pending'" target="_blank">
+							<span class="fa fa-facebook-square">
+							</span>
+							<strong>
+								Go to Facebook Fundraiser
+							</strong>
+						</a>
+						<div class="ym-pc-dashboard-facebook-hint">
+							By clicking this link, you will leave AHA's website and be redirected to another site not under the control of AHA. 
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<section class="ym-pc-dashboard-progress-section mb-2" aria-label="Fundraising Progress Meters">
 			<div class="ym-pc-dashboard-section-header">
-				<h2 class="h3">
+				<h2 class="h3 my-2">
 					My Fundraising 
 				</h2>
 			</div>
@@ -846,144 +984,6 @@
 				</div>
 			</div>
 		</section>
-		<section class="ym-pc-dashboard-progress-section mb-0" aria-label="Spread the Word and Livestream Sections">
-			<div class="d-md-flex justify-content-between flex-wrap">
-				<div class="col-sm-12 p-2">
-					<div class="ym-pc-dashboard-progress-section__column event-secondary-medium p-3 h-100">
-						<div class="ym-pc-dashboard-email-challenge-box">
-							<div class="ym-pc-dashboard-section-header">
-								<h3 class="h5">
-									Spread the Word! 
-								</h3>
-							</div>
-							<div class="text-center">
-								<p>
-									Spread the word! Send 10 emails or e-cards to friends and family. 
-								</p>
-								<div class="ym-pc-dashboard-email-challenge-images">
-									<a ng-href="{{baseUrl}}#/email">
-										<img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy23/spread-the-word-mail-icon.png" alt="Send Email"> 
-									</a>
-									<a ng-href="https://tools.heart.org/aha_ym23{{tablePrefix == 'heartdev' ? '_dev' : (tablePrefix == 'heartnew' ? '_testing' : '')}}/?eid={{frId}}&amp;sid={{consId}}&amp;name={{consNameFirst}}" target="_blank">
-										<img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy23/spread-the-word-ecard-icon.png" alt="Send E-card"> 
-									</a>
-								</div>
-								<div class="ym-pc-dashboard-email-challenge-buttons">
-									<a class="btn btn-md-wide btn-primary mb-2" ng-href="{{baseUrl}}#/email">
-										<strong>
-											Send Email
-										</strong>
-									</a>
-									<a class="btn btn-md-wide btn-primary mb-2" ng-href="https://tools.heart.org/aha_ym23{{tablePrefix == 'heartdev' ? '_dev' : (tablePrefix == 'heartnew' ? '_testing' : '')}}/?eid={{frId}}&amp;sid={{consId}}&amp;name={{consNameFirst}}" target="_blank">
-										<strong>
-											Send e-card
-										</strong>
-									</a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-<!-- 
-        <div class="col-sm-6 ym-pc-dashboard-progress-section__column event-secondary-medium">
-          <div class="ym-pc-dashboard-livestream-box">
-            <div class="ym-pc-dashboard-livestream-title">
-              <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/pc-tiltify-livestream.png" alt="Livestream">
-            </div>
-            <div class="ym-pc-dashboard-section-header">
-              <p>
-                Go live and help save lives. Start your charity stream today.
-              </p>
-            </div>
-            <div class="text-center">
-              <div class="ym-pc-dashboard-livestream-images">
-   	        <span class="hv-image" ng-init="hvImgLSHsrc='pc-tiltify-hearts.png';" ng-mouseover="hvImgLSHsrc='pc-tiltify-hearts-animated.gif';" ng-mouseout="hvImgLSHsrc='pc-tiltify-hearts.png';">
-		  <img class="pc-livestream-hearts" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy21/{{hvImgLSHsrc}}" alt="Livestream Hearts">
-	        </span>
-                &nbsp;
-	        <img class="pc-livestream-character" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy22/livestream-heading.png" alt="Livestream Icon">
-              </div>
-              <div class="ym-pc-dashboard-livestream-buttons">
-                <a class="btn btn-md-wide btn-primary" ng-href="https://tiltify.com/aha/kids-heart-challengeamerican-heart-challenge-c4ba88cc-eefb-495f-8230-05fa82e1db98/start/ownership" target="_blank">
-                  <strong>Get Started</strong>
-                </a>
-                <a class="btn btn-md-wide btn-primary" ng-href="https://dashboard.tiltify.com/@me" target="_blank">
-                  <strong>Check Your Progress</strong>
-                </a> 
-              </div>
-              <br/>
-              <p>By clicking these links, you will leave Kids Heart Challenge and be redirected to another site not under the control of the American Heart Association.</p>
-            </div>
-          </div>
-        </div>
-        -->
-			</div>
-		</section>
-		<section class="ym-pc-dashboard-facebook-section p-2 mb-2" aria-label="Facebook Fundraising" ng-show="facebookFundraisersEnabled" ng-cloak>
-			<div class="ym-pc-dashboard-facebook-box" ng-show="!facebookFundraiserId">
-				<div class="container">
-					<div class="ym-pc-dashboard-section-header">
-						<h3 class="h5 text-white">
-							Let's Get Fundraising
-							<span ng-if="consNameFirst && consNameFirst != ''">
-								, 
-								<span ng-bind-html="consNameFirst">
-								</span>
-							</span>
-							! 
-						</h3>
-					</div>
-					<div class="text-center">
-						<p>
-							Link your personal page to a new Facebook Fundraiser to receive donations from your Facebook friends. 
-						</p>
-						<div role="alert" class="alert alert-danger" ng-if="facebookFundraiserLoginStatus == 'login_error' || facebookFundraiserLoginStatus == 'permission_error' || facebookFundraiserLoginStatus == 'create_fundraiser_error' || facebookFundraiserCreateStatus == 'login_error' || facebookFundraiserCreateStatus == 'permission_error' || facebookFundraiserCreateStatus == 'create_fundraiser_error'" ng-cloak>
-							An error occurred attempting to connect to Facebook. Please try again later. 
-						</div>
-						<div role="alert" class="alert alert-danger" ng-if="facebookFundraiserCreateStatus == 'create_fundraiser_duplicate'" ng-cloak>
-							This Facebook account already has an active Facebook Fundraiser for this school. If you are trying to connect a second student, you will need to use another Facebook account. 
-						</div>
-						<div role="alert" class="alert alert-danger" ng-if="facebookFundraiserLoginStatus == 'declined_manage_fundraisers'" ng-cloak>
-							We need your permission to create a Facebook Fundraiser on your behalf. 
-						</div>
-						<button type="button" class="btn btn-white" ng-class="{'disabled': facebookFundraiserLoginStatus == 'pending' || facebookFundraiserCreateStatus == 'pending'}" ng-click="loginToFacebook()" ng-disabled="facebookFundraiserLoginStatus == 'pending' || facebookFundraiserCreateStatus == 'pending'">
-							<span class="fa fa-facebook-square">
-							</span>
-							<strong>
-								Connect to Facebook Fundraiser
-							</strong>
-						</button>
-						<div class="ym-pc-dashboard-facebook-hint">
-							By clicking this link, you will leave AHA's website and be redirected to another site not under the control of AHA. 
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="ym-pc-dashboard-facebook-box js--facebook-fundraiser-completed-section" ng-show="facebookFundraiserId">
-				<div class="container">
-					<div class="ym-pc-dashboard-section-header">
-						<h3 class="h5 text-white">
-							Your Fundraiser is Connected to Facebook! 
-						</h3>
-					</div>
-					<div class="text-center">
-						<p>
-							Log in to use Facebook's fundraising tools to invite friends, share updates and collect donations. We'll keep track of your progress on Facebook and on your page, so you'll always know how close you are to reaching your goal. 
-						</p>
-						<a class="btn btn-white" ng-class="{'disabled': !facebookFundraiserConfirmedStatus || facebookFundraiserConfirmedStatus == 'pending'}" ng-href="//facebook.com/donate/{{facebookFundraiserId}}/" ng-disabled="!facebookFundraiserConfirmedStatus || facebookFundraiserConfirmedStatus == 'pending'" target="_blank">
-							<span class="fa fa-facebook-square">
-							</span>
-							<strong>
-								Go to Facebook Fundraiser
-							</strong>
-						</a>
-						<div class="ym-pc-dashboard-facebook-hint">
-							By clicking this link, you will leave AHA's website and be redirected to another site not under the control of AHA. 
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
 		<section class="ym-pc-dashboard-standard-gifts-section mb-2" aria-label="My Gifts" ng-if="schoolPlan.hideGifts != 'Y' && has_bonus != 3" ng-cloak>
 			<div class="ym-pc-dashboard-section-header">
 				<h2 class="h3">
@@ -1001,14 +1001,18 @@
 				<h3 class="h6" ng-if="giftsEarned == totalGifts">
 					Congratulations on earning all of your gifts! Keep going to help save special hearts. 
 				</h3>
+				<em>Scan the vumarks to see a special video in the KHC App under games tab.</em>
 			</div>
 			<div class="ym-pc-dashboard-standard-gifts-icons" role="list" aria-label="Standard Gifts">
 				<div class="ym-pc-dashboard-standard-gifts-icon" role="listitem" ng-class="{'not-earned': !upcomingGift.prize_status}" ng-repeat="upcomingGift in upcomingGifts" aria-label="{{standardGift.prize_label}}" ng-cloak>
 					<a role="button" href="" ng-click="showPrize(upcomingGift.prize_sku,upcomingGift.prize_label,upcomingGift.prize_status,upcomingGift.prize_video)">
-						<img class="img-fluid" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/prizes2023/{{upcomingGift.prize_sku}}.png" alt="{{upcomingGift.prize_label}}"> 
-						<div class="play-circle">
-							<i class="fa fa-play">
-							</i>
+						<div class="position-relative">
+							<img class="img-fluid" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/prizes2023/{{upcomingGift.prize_sku}}.png" alt="{{upcomingGift.prize_label}}"> 
+							<img ng-if="upcomingGift.vucheck && upcomingGift.prize_status" class="vucheck-image position-absolute bottom-0 end-0 w-25" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy23/{{upcomingGift.prize_sku}}-vucheck.png" alt="{{upcomingGift.prize_label}} Vucheck" ng-cloak>
+							<div class="play-circle">
+								<i class="fa fa-play">
+								</i>
+							</div>
 						</div>
 						<div class="ym-pc-dashboard-standard-gift-earned" ng-if="upcomingGift.prize_status" aria-label="Earned">
 							<h4 class="gift-title" ng-bind-html="upcomingGift.prize_label">
@@ -1494,6 +1498,8 @@
 							<h2 class="h3 text-center">
 								School Plan 
 							</h2>
+							<em ng-if="!lockEnabled" class="text-center alert alert-light d-block me-2">School Planning fields will be locked<br/>between 11 pm – 6 am CST for point calculations.</em>
+							<em ng-if="lockEnabled" class="text-center alert alert-danger d-block me-2">School Planning fields are currently locked<br/>for point calculations until 6 am CST.</em>
 							<div class="ym-pc-dashboard-section-plan" ng-if="schoolPlan != null && schoolPlan != ''" ng-cloak>
 								<div class="schoolPlanDates text-center">
 									<p>
@@ -1526,9 +1532,9 @@
 												</strong>
 											</label>
 											<div class="input-group-old">
-<!-- <span ng-if="schoolPlan.EventStartDate == '0000-00-00'" ng-cloak>--/--/----</span>
-			<span ng-if="schoolPlan.EventStartDate != '0000-00-00'" ng-cloak>{{schoolPlan.EventStartDate | date:'MM/dd/yyyy'}}</span> -->
-												<input type="date" class="form-control" id="EventStartDate" ng-model="schoolPlan.EventStartDate" aria-label="Event Start/Distribute Envelopes Date" ng-blur="putSchoolPlan($event)" /> 
+												<span ng-if="schoolPlan.EventStartDate == '0000-00-00' && lockEnabled" ng-cloak>--/--/----</span>
+												<span ng-if="schoolPlan.EventStartDate != '0000-00-00' && lockEnabled" ng-cloak>{{schoolPlan.EventStartDate | date:'MM/dd/yyyy'}}</span>
+												<input ng-if="!lockEnabled" type="date" class="form-control" id="EventStartDate" ng-model="schoolPlan.EventStartDate" aria-label="Event Start/Distribute Envelopes Date" ng-blur="putSchoolPlan($event)" /> 
 											</div>
 										</div>
 									</div>
@@ -1540,9 +1546,9 @@
 												</strong>
 											</label>
 											<div class="input-group-old">
-<!-- <span ng-if="schoolPlan.EventEndDate == '0000-00-00'" ng-cloak>--/--/----</span>
-					<span ng-if="schoolPlan.EventEndDate != '0000-00-00'" ng-cloak>{{schoolPlan.EventEndDate | date:'MM/dd/yyyy'}}</span> -->
-												<input type="date" class="form-control" id="EventEndDate" ng-model="schoolPlan.EventEndDate" aria-label="Event End Date" ng-blur="putSchoolPlan($event)" /> 
+												<span ng-if="schoolPlan.EventEndDate == '0000-00-00' && lockEnabled" ng-cloak>--/--/----</span>
+												<span ng-if="schoolPlan.EventEndDate != '0000-00-00' && lockEnabled" ng-cloak>{{schoolPlan.EventEndDate | date:'MM/dd/yyyy'}}</span>
+												<input ng-if="!lockEnabled" type="date" class="form-control" id="EventEndDate" ng-model="schoolPlan.EventEndDate" aria-label="Event End Date" ng-blur="putSchoolPlan($event)" /> 
 											</div>
 										</div>
 									</div>
@@ -1554,9 +1560,9 @@
 												</strong>
 											</label>
 											<div class="input-group-old">
-<!-- <span ng-if="schoolPlan.KickOffDate == '0000-00-00'" ng-cloak>--/--/----</span>
-								<span ng-if="schoolPlan.KickOffDate != '0000-00-00'" ng-cloak>{{schoolPlan.KickOffDate | date:'MM/dd/yyyy'}}</span> -->
-												<input type="date" class="form-control" id="KickOffDate" ng-model="schoolPlan.KickOffDate" aria-label="Kick Off/Assembly Date" ng-blur="putSchoolPlan($event)" /> 
+												<span ng-if="schoolPlan.KickOffDate == '0000-00-00' && lockEnabled" ng-cloak>--/--/----</span>
+												<span ng-if="schoolPlan.KickOffDate != '0000-00-00' && lockEnabled" ng-cloak>{{schoolPlan.KickOffDate | date:'MM/dd/yyyy'}}</span>
+												<input ng-if="!lockEnabled" type="date" class="form-control" id="KickOffDate" ng-model="schoolPlan.KickOffDate" aria-label="Kick Off/Assembly Date" ng-blur="putSchoolPlan($event)" /> 
 											</div>
 										</div>
 									</div>
@@ -1568,21 +1574,23 @@
 												</strong>
 											</label>
 											<div class="input-group-old">
-<!-- <span ng-if="schoolPlan.DonationDueDate == '0000-00-00'" ng-cloak>--/--/----</span>
-								<span ng-if="schoolPlan.DonationDueDate != '0000-00-00'" ng-cloak>{{schoolPlan.DonationDueDate | date:'MM/dd/yyyy'}}</span> -->
-												<input type="date" class="form-control" id="DonationDueDate" ng-model="schoolPlan.DonationDueDate" aria-label="Donation Due Date" ng-blur="putSchoolPlan($event)" /> 
+												<span ng-if="schoolPlan.DonationDueDate == '0000-00-00' && lockEnabled" ng-cloak>--/--/----</span>
+												<span ng-if="schoolPlan.DonationDueDate != '0000-00-00' && lockEnabled" ng-cloak>{{schoolPlan.DonationDueDate | date:'MM/dd/yyyy'}}</span>
+												<input ng-if="!lockEnabled" type="date" class="form-control" id="DonationDueDate" ng-model="schoolPlan.DonationDueDate" aria-label="Donation Due Date" ng-blur="putSchoolPlan($event)" /> 
 											</div>
 										</div>
 									</div>
 									<div class="col-md-6 pe-2 pb-2">
 										<div class="form-group">
-											<label for="DonationDueDate">
+											<label for="LastDayOfSchool">
 												<strong>
 													Last Day of School
 												</strong>
 											</label>
 											<div class="input-group-old">
-												<input type="date" class="form-control" id="LastDayOfSchool" ng-model="schoolPlan.LastDayOfSchool" aria-label="Last Day of School" ng-blur="putSchoolPlan($event)" /> 
+												<span ng-if="schoolPlan.LastDayOfSchool == '0000-00-00' && lockEnabled" ng-cloak>--/--/----</span>
+												<span ng-if="schoolPlan.LastDayOfSchool != '0000-00-00' && lockEnabled" ng-cloak>{{schoolPlan.LastDayOfSchool | date:'MM/dd/yyyy'}}</span>
+												<input ng-if="!lockEnabled" type="date" class="form-control" id="LastDayOfSchool" ng-model="schoolPlan.LastDayOfSchool" aria-label="Last Day of School" ng-blur="putSchoolPlan($event)" /> 
 											</div>
 										</div>
 									</div>
@@ -1592,103 +1600,106 @@
 										<label for="StudentRecruitmentGoal">
 											Student Participant Goal:
 										</label>
-										<input type="number" class="form-control" id="StudentRecruitmentGoal" ng-model="schoolPlan.StudentRecruitmentGoal" aria-label="Student Participant Goal" ng-blur="putSchoolPlan($event)" ng-change="putSchoolPlan($event)">
+										<span ng-if="lockEnabled" ng-cloak>{{schoolPlan.StudentRecruitmentGoal}}</span>
+										<input ng-if="!lockEnabled" type="number" class="form-control" id="StudentRecruitmentGoal" ng-model="schoolPlan.StudentRecruitmentGoal" aria-label="Student Participant Goal" ng-blur="putSchoolPlan($event)" ng-change="putSchoolPlan($event)">
+									</div>
+									<div class="form-group mb-2 pe-2">
+										<label for="FinnsMissionCompletedGoal">
+											Finn's Mission Completion Goal:
+										</label>
+										<span ng-if="lockEnabled" ng-cloak>{{schoolPlan.FinnsMissionCompletedGoal}}</span>
+										<input ng-if="!lockEnabled" type="number" class="form-control" id="FinnsMissionCompletedGoal" ng-model="schoolPlan.FinnsMissionCompletedGoal" aria-label="Finn's Mission Completion Goal" ng-blur="putSchoolPlan($event)" ng-change="putSchoolPlan($event)">
+									</div>
+									<div class="form-group d-none">
+										<label for="school_goal">
+											Fundraising Goal:
+										</label>
+										<span ng-if="lockEnabled" ng-cloak>{{schoolPlan.goalFormatted}}</span>
+										<input ng-if="!lockEnabled" type="text" class="form-control" id="school_goal" ng-model="companyProgress.goalFormatted" aria-label="School Fundraising Goal" ng-blur="putSchoolPlan($event)" onkeypress="return event.charCode == 36 || event.charCode == 44 || event.charCode == 46 || (event.charCode >= 48 && event.charCode <= 57)">
+									</div>
+								</div>
+								<div class="ym-pc-dashboard-send-emails checkbox mb-2 pe-2" custom-checkbox ng-class="{'checked': schoolPlan.SendEmailOnBehalfOfCoordinator == 'ALLOW'}" ng-cloak>
+									<label for="SendEmailOnBehalfOfCoordinator">
+										<input ng-disabled="lockEnabled" type="checkbox" name="SendEmailOnBehalfOfCoordinator" id="SendEmailOnBehalfOfCoordinator" ng-model="schoolPlan.SendEmailOnBehalfOfCoordinator" ng-true-value="'ALLOW'" ng-false-value="'DONOTALLOW'" ng-click="putSchoolPlan($event)">
+											Allow AHA to Send Emails to my students on my behalf 
+										</label>
+								</div>
+								<div class="ym-pc-dashboard-participate-next-year mb-2 pe-2">
+									<div class="d-md-flex participatingNextYear text-left">
+										<div class="col-md-8 pl-0">
+											My school will be participating in Kids Heart Challenge next year! 
 										</div>
-										<div class="form-group mb-2 pe-2">
-											<label for="FinnsMissionCompletedGoal">
-												Finn's Mission Completion Goal:
-											</label>
-											<input type="number" class="form-control" id="FinnsMissionCompletedGoal" ng-model="schoolPlan.FinnsMissionCompletedGoal" aria-label="Finn's Mission Completion Goal" ng-blur="putSchoolPlan($event)" ng-change="putSchoolPlan($event)">
-											</div>
-											<div class="form-group d-none">
-												<label for="school_goal">
-													Fundraising Goal:
-												</label>
-												<input type="text" class="form-control" id="school_goal" ng-model="companyProgress.goalFormatted" aria-label="School Fundraising Goal" ng-blur="putSchoolPlan($event)" onkeypress="return event.charCode == 36 || event.charCode == 44 || event.charCode == 46 || (event.charCode >= 48 && event.charCode <= 57)">
-												</div>
-											</div>
-											<div class="ym-pc-dashboard-send-emails checkbox mb-2 pe-2" custom-checkbox ng-class="{'checked': schoolPlan.SendEmailOnBehalfOfCoordinator == 'ALLOW'}" ng-cloak>
-												<label for="SendEmailOnBehalfOfCoordinator">
-													<input type="checkbox" name="SendEmailOnBehalfOfCoordinator" id="SendEmailOnBehalfOfCoordinator" ng-model="schoolPlan.SendEmailOnBehalfOfCoordinator" ng-true-value="'ALLOW'" ng-false-value="'DONOTALLOW'" ng-click="putSchoolPlan($event)">
-														Allow AHA to Send Emails to my students on my behalf 
-													</label>
-												</div>
-												<div class="ym-pc-dashboard-participate-next-year mb-2 pe-2">
-													<div class="d-md-flex participatingNextYear text-left">
-														<div class="col-md-8 pl-0">
-															My school will be participating in Kids Heart Challenge next year! 
-														</div>
-														<div class="col-md-4 pr-0">
-															<select class="form-control" id="ParticipatingNextYear" ng-model="schoolPlan.ParticipatingNextYear" aria-label="Participating Next Year" ng-change="putSchoolPlan($event,'ParticipatingNextYear')">
-																<option value="YES">
-																	Yes
-																</option>
-																<option value="NO">
-																	No
-																</option>
-																<option value="I'm not sure'">
-																	Still Considering
-																</option>
-															</select>
-														</div>
-													</div>
-												</div>
-												<div class="ym-pc-dashboard-materials-needed mt-sm">
-													<div class="d-md-flex materialsNeeded text-left">
-														<div class="col-md-8  pe-2">
-															My school would like materials in the form of: 
-															<button aria-label="Click the icon to see an example of the materials." data-balloon-pos="up" data-balloon-length="large" ng-click="showMaterialTypes()">
-																<i class="fa fa-info-circle">
-																</i>
-															</button>
-														</div>
-														<div class="col-md-4">
-															<select class="form-control" id="MaterialsNeeded" ng-model="schoolPlan.MaterialsNeeded" aria-label="Materials Needed" ng-change="putSchoolPlan($event,'MaterialsNeeded')">
-																<option value="Envelopes">
-																	Envelopes
-																</option>
-																<option value="Parent Letter">
-																	Parent Letter
-																</option>
-																<option value="Digital Only">
-																	Digital Only
-																</option>
-															</select>
-														</div>
-													</div>
-												</div>
-												<div class="ym-pc-dashboard-total-points text-center">
-													<div>
-														<strong>
-															Total Points: 
-															<span ng-bind-html="schoolPlan.TotalPointsEarned">
-															</span>
-														</strong>
-													</div>
-													<p>
-														Points updated nightly at 3 a.m.<br /> 
-														<button ng-click="showSchoolPlan()" class="btn btn-md-wide btn-primary ym-progress-show-plan" aria-label="Click here for more information">
-															<strong>
-																Click here for more information
-															</strong>
-														</button>
-													</p>
-												</div>
-												<div class="ym-pc-dashboard-multi-coord checkbox mt-3" custom-checkbox ng-class="{'checked': schoolPlan.MultipleCoordinators == 'YES'}" ng-cloak>
-													<label for="MultipleCoordinators">
-														<input type="checkbox" name="MultipleCoordinators" id="MultipleCoordinators" ng-model="schoolPlan.MultipleCoordinators" ng-true-value="'YES'" ng-false-value="'NO'" ng-click="putSchoolPlan($event)">
-															My school has two or more coordinators responsible for the Kids Heart Challenge program. 
-														</label>
-													</div>
-												</div>
-											</div>
-											<div class="ym-pc-dashboard-section-plan text-center" ng-if="schoolPlan == null || schoolPlan == ''" ng-cloak>
-												<p>
-													No plan data available for this School.
-												</p>
-											</div>
+										<div class="col-md-4 pr-0">
+											<select ng-disabled="lockEnabled" class="form-control" id="ParticipatingNextYear" ng-model="schoolPlan.ParticipatingNextYear" aria-label="Participating Next Year" ng-change="putSchoolPlan($event,'ParticipatingNextYear')">
+												<option value="YES">
+													Yes
+												</option>
+												<option value="NO">
+													No
+												</option>
+												<option value="I'm not sure'">
+													Still Considering
+												</option>
+											</select>
 										</div>
 									</div>
+								</div>
+								<div class="ym-pc-dashboard-materials-needed mt-sm">
+									<div class="d-md-flex materialsNeeded text-left">
+										<div class="col-md-8  pe-2">
+											My school would like materials in the form of: 
+											<button aria-label="Click the icon to see an example of the materials." data-balloon-pos="up" data-balloon-length="large" ng-click="showMaterialTypes()">
+												<i class="fa fa-info-circle">
+												</i>
+											</button>
+										</div>
+										<div class="col-md-4">
+											<select ng-disabled="lockEnabled" class="form-control" id="MaterialsNeeded" ng-model="schoolPlan.MaterialsNeeded" aria-label="Materials Needed" ng-change="putSchoolPlan($event,'MaterialsNeeded')">
+												<option value="Envelopes">
+													Envelopes
+												</option>
+												<option value="Parent Letter">
+													Parent Letter
+												</option>
+												<option value="Digital Only">
+													Digital Only
+												</option>
+											</select>
+										</div>
+									</div>
+								</div>
+								<div class="ym-pc-dashboard-total-points text-center">
+									<div>
+										<strong>
+											Total Points: 
+											<span ng-bind-html="schoolPlan.TotalPointsEarned">
+											</span>
+										</strong>
+									</div>
+									<p>
+										Points updated nightly at 6 a.m. CST<br /> 
+										<button ng-click="showSchoolPlan()" class="btn btn-md-wide btn-primary ym-progress-show-plan" aria-label="Click here for more information">
+											<strong>
+												Click here for more information
+											</strong>
+										</button>
+									</p>
+								</div>
+								<div class="ym-pc-dashboard-multi-coord checkbox mt-3" custom-checkbox ng-class="{'checked': schoolPlan.MultipleCoordinators == 'YES'}" ng-cloak>
+									<label for="MultipleCoordinators">
+										<input ng-disabled="lockEnabled" type="checkbox" name="MultipleCoordinators" id="MultipleCoordinators" ng-model="schoolPlan.MultipleCoordinators" ng-true-value="'YES'" ng-false-value="'NO'" ng-click="putSchoolPlan($event)">
+											My school has two or more coordinators responsible for the Kids Heart Challenge program. 
+									</label>
+								</div>
+							</div>
+						</div>
+						<div class="ym-pc-dashboard-section-plan text-center" ng-if="schoolPlan == null || schoolPlan == ''" ng-cloak>
+							<p>
+								No plan data available for this School.
+							</p>
+						</div>
+					</div>
+				</div>
 									<div class="col-md-6 p-2">
 										<div class="ym-pc-dashboard-coordinator-progress-section__column p-3 h-100">
 											<div class="ym-pc-dashboard-coordinator-progress-box">
