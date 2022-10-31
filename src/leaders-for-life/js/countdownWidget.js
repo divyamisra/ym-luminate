@@ -132,8 +132,6 @@ CountDownWidget.prototype.getTimeDiff = function() {
   this.delta = diff
 }
 
-
-
 CountDownWidget.prototype.run = function() {
 
   let nn = this.calc()
