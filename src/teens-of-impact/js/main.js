@@ -455,7 +455,7 @@
                             $('.js--error-team-search').show()
                         } else {
                             var teams = luminateExtend.utils.ensureArray(response.getTeamSearchByInfoResponse.team)
-                            console.log("teams results ", teams);
+                            console.log("teams results ", teams)
 
                             $(teams).each(function(i, team) {
                                 if (screenWidth >= 768) {
@@ -1274,12 +1274,12 @@
                                             var teamImages = luminateExtend.utils.ensureArray(response.getTeamPhotoResponse.photoItem)
                                             teamImages[0].originalUrl = '../images/content/pagebuilder/TOI-Default-Photo.png'
                                             var teamImage = typeof teamImages[0].customUrl === 'string' && teamImages[0].customUrl.length ? teamImages[0].customUrl : teamImages[0].originalUrl
-                                            // if (teamImage === teamImages[0].originalUrl) {
-                                            //   var isDefaultImage = ' style="clip-path: none;"';
-                                            // } else {
-                                            //   isDefaultImage = ''
-                                            // }
-                                            var topTeamRow = `<div class="col-sm-6 col-md-4 pt-4 px-md-3"><a href="TR/?team_id=${teamId}&amp;pg=team&amp;fr_id=${eventId}" class="bg-white"><div><div><img src="${teamImage}" alt="Photo of ${teamName}"></div></div><div class="align-items-center d-flex justify-content-center text-center"><p class="p-2 text-body"><strong>${teamName}</strong></p></div></a></div>`
+                                            if (teamImage === teamImages[0].originalUrl) {
+                                                var isDefaultImage = ' style="clip-path: none;"'
+                                            } else {
+                                                isDefaultImage = ''
+                                            }
+                                            var topTeamRow = `<div class="col-sm-6 col-md-4 pt-4 px-md-3"><a href="TR/?team_id=${teamId}&amp;pg=team&amp;fr_id=${eventId}"><div class="bg-red-deep"><div${isDefaultImage}><img src="${teamImage}" alt="Photo of ${teamName}"></div></div><div class="align-items-center bg-red-deep d-flex justify-content-center text-center"><p class="p-2 text-white"><strong>${teamName}</strong></p></div></a></div>`
 
                                             deferred.resolve(topTeamRow)
                                         },
@@ -1320,6 +1320,7 @@
                 }
             })
         }
+
 
         // END TOP TEAMS
 
