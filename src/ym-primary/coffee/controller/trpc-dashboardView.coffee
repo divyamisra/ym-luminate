@@ -46,6 +46,17 @@ angular.module 'trPcControllers'
       $scope.topCompanySteps = []
       $scope.canCopyQRCode = CopyImageClipboard.canCopyImagesToClipboard()
       $scope.stateList = {"AL":"Alabama","AK":"Alaska","AZ":"Arizona","AR":"Arkansas","CA":"California","CO":"Colorado","CT":"Connecticut","DE":"Delaware","FL":"Florida","GA":"Georgia","HI":"Hawaii","ID":"Idaho","IL":"Illinois","IN":"Indiana","IA":"Iowa","KS":"Kansas","KY":"Kentucky","LA":"Louisiana","ME":"Maine","MD":"Maryland","MA":"Massachusetts","MI":"Michigan","MN":"Minnesota","MS":"Mississippi","MO":"Missouri","MT":"Montana","NE":"Nebraska","NV":"Nevada","NH":"New Hampshire","NJ":"New Jersey","NM":"New Mexico","NY":"New York","NC":"North Carolina","ND":"North Dakota","OH":"Ohio","OK":"Oklahoma","OR":"Oregon","PA":"Pennsylvania","RI":"Rhode Island","SC":"South Carolina","SD":"South Dakota","TN":"Tennessee","TX":"Texas","UT":"Utah","VT":"Vermont","VA":"Virginia","WA":"Washington","WV":"West Virginia","WI":"Wisconsin","WY":"Wyoming"}
+      lockStart = 2200 #prod luminate server is est whereas dev server is cst
+      lockEnd = 500
+      $scope.lockEnabled = false
+      if $rootScope.currentCSTDate != ''
+        currDate = new Date $rootScope.currentCSTDate
+        if currDate.getMinutes() < 10
+          currTime = currDate.getHours()+'0'+currDate.getMinutes()
+        else
+          currTime = currDate.getHours()+''+currDate.getMinutes()
+        if currTime >= lockStart or currTime < lockEnd
+          $scope.lockEnabled = true
        
       $dataRoot = angular.element '[data-embed-root]'
 		
@@ -163,9 +174,10 @@ angular.module 'trPcControllers'
             if participantIndex < (participants.length - 1)
               participantsString += ', '
           companyParticipantsString = '{participants: [' + participantsString + '], totalNumber: ' + participants.length + '}'
-          angular.element('.ym-school-animation iframe')[0].contentWindow.postMessage companyParticipantsString, domain
-          angular.element('.ym-school-animation iframe').on 'load', ->
+          if angular.element('.ym-school-animation iframe') > 0
             angular.element('.ym-school-animation iframe')[0].contentWindow.postMessage companyParticipantsString, domain
+            angular.element('.ym-school-animation iframe').on 'load', ->
+              angular.element('.ym-school-animation iframe')[0].contentWindow.postMessage companyParticipantsString, domain
 
       getCompanyParticipants = ->
         TeamraiserParticipantService.getParticipants 'team_name=' + encodeURIComponent('%') + '&first_name=' + encodeURIComponent('%%') + '&last_name=' + encodeURIComponent('%') + '&list_filter_column=team.company_id&list_filter_text=' + $scope.participantRegistration.companyInformation.companyId + '&list_sort_column=total&list_ascending=false&list_page_size=500',
@@ -1242,6 +1254,7 @@ angular.module 'trPcControllers'
                       msg_earned: giftPrev.msg_earned
                       msg_unearned: giftPrev.msg_unearned
                       post_event: giftPrev.post_event
+                      vucheck: giftPrev.vucheck
                   # if items need to be added then only add up to 3 after pushing first one
                   if startList == 1 and listCnt <= giftToAdd
                     if gift.id == "FINN-23" and $scope.prizes.length == $scope.prizesEarned
@@ -1258,6 +1271,7 @@ angular.module 'trPcControllers'
                       msg_earned: gift.msg_earned
                       msg_unearned: gift.msg_unearned
                       post_event: gift.post_event
+                      vucheck: gift.vucheck
                     $scope.giftStatus = status
                   giftPrev = gift
                   prevstatus = status

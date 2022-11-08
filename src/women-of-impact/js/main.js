@@ -456,7 +456,7 @@
 							$('.js--error-team-search').show();
 						} else {
 							var teams = luminateExtend.utils.ensureArray(response.getTeamSearchByInfoResponse.team);
-
+							console.log("teams results ", teams);
 							$(teams).each(function (i, team) {
 								if (screenWidth >= 768) {
 									if ($('body').hasClass('pg_search_list')) {
