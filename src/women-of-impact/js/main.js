@@ -1837,6 +1837,7 @@
 			cd.getTeamHonorRoll();
 
 			// build team roster
+			console.log("pending 110922 edits for team roster");
 			cd.getTeamRoster = function () {
 				var teamId = getURLParameter(currentUrl, 'team_id');
 				luminateExtend.api({
