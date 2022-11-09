@@ -26,6 +26,7 @@ angular.module 'trPcControllers'
     ($rootScope, $scope, $location, $filter, $timeout, $uibModal, $sce, APP_INFO, ZuriService, BoundlessService, TeamraiserParticipantService, NgPcTeamraiserRegistrationService, NgPcTeamraiserProgressService, NgPcTeamraiserTeamService, NgPcTeamraiserSchoolService, NgPcTeamraiserGiftService, NgPcContactService, NgPcTeamraiserShortcutURLService, NgPcInteractionService, NgPcConstituentService, NgPcTeamraiserCompanyService, NgPcSurveyService, FacebookFundraiserService) ->
       $scope.dashboardPromises = []
       domain = $location.absUrl().split('/site/')[0]
+      $rootScope.HideGifts = "NO"
       $scope.studentsPledgedTotal = ''
       $scope.activity1amt = ''
       $scope.activity2amt = ''
@@ -1089,7 +1090,7 @@ angular.module 'trPcControllers'
               $scope.schoolTop15ByState = response.data.company[0]
 
       $scope.schoolPlan = []
-      $scope.schoolPlan.hideGifts = "Y"
+      $scope.schoolPlan.HideGifts = "NO"
       $scope.getSchoolPlan = () ->
         ZuriService.getSchoolDetail '&school_id=' + $scope.participantRegistration.companyInformation.companyId + '&EventId=' + $scope.frId,
           failure: (response) ->
@@ -1105,6 +1106,7 @@ angular.module 'trPcControllers'
               $scope.top25school = $scope.schoolPlan.IsTop25School
               $scope.highestRaisedAmount = $scope.schoolPlan.HRR
               $scope.highestRaisedYear = $scope.schoolPlan.HRRYear
+              $rootScope.HideGifts = $scope.schoolPlan.HideGifts
 
               if $scope.schoolPlan.EventStartDate != '0000-00-00'
                 $scope.schoolPlan.EventStartDate = new Date($scope.schoolPlan.EventStartDate.replace(/-/g, "/") + ' 00:01')
@@ -1118,7 +1120,7 @@ angular.module 'trPcControllers'
                 $scope.schoolPlan.LastDayOfSchool = new Date($scope.schoolPlan.LastDayOfSchool.replace(/-/g, "/") + ' 00:01')
               $scope.coordinatorPoints = JSON.parse($scope.schoolPlan.PointsDetail)
             else
-              $scope.schoolPlan.hideGifts = "N"
+              $scope.schoolPlan.HideGifts = "NO"
             if $scope.participantRegistration.companyInformation?.isCompanyCoordinator is 'true'
               $scope.getSchoolTop15()
       $scope.getSchoolPlan()
