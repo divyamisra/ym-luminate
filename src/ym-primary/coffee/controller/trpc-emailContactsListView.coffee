@@ -13,10 +13,26 @@ angular.module 'trPcControllers'
     'NgPcContactService'
     'NgPcTeamraiserCompanyService'
     'NgPcTeamraiserReportsService'
-    ($rootScope, $scope, $window, $routeParams, $location, $timeout, $httpParamSerializer, $uibModal, APP_INFO, NgPcTeamraiserEmailService, NgPcContactService, NgPcTeamraiserCompanyService, NgPcTeamraiserReportsService) ->
+    'ZuriService'
+    ($rootScope, $scope, $window, $routeParams, $location, $timeout, $httpParamSerializer, $uibModal, APP_INFO, NgPcTeamraiserEmailService, NgPcContactService, NgPcTeamraiserCompanyService, NgPcTeamraiserReportsService, ZuriService) ->
       $scope.filter = $routeParams.filter
       
       $scope.emailPromises = []
+      $scope.companyProgress.schoolChallengeLevel = '0'
+
+      $scope.getSchoolChallenge = () ->
+        ZuriService.getSchoolData $scope.participantRegistration.companyInformation.companyId,
+          failure: (response) ->
+          error: (response) ->
+          success: (response) ->
+            if typeof response.data.data != 'undefined'
+              if response.data.data.length > 0
+                angular.forEach response.data.data, (meta, key) ->
+                  if meta.name == 'school-goal'
+                    $scope.companyProgress.schoolChallengeLevel = meta.value
+                #amt = $scope.participantProgress.raised / 100
+                #if amt >= Number(($scope.companyProgress.schoolChallengeLevel).replace('$', '').replace(/,/g, ''))
+      $scope.getSchoolChallenge()
       
       # $scope.messageCounts = {}
       # messageTypes = [
@@ -306,15 +322,6 @@ angular.module 'trPcControllers'
                         else
                           return 0
 
-
-
-
-
-
-
-
-
-
             else if filter is 'email_custom_rpt_show_company_coordinator_mission_partial' or filter is 'email_custom_rpt_show_company_coordinator_mission_complete' or filter is 'email_custom_rpt_show_company_coordinator_challenge_half' or filter is 'email_custom_rpt_show_company_coordinator_challenge_complete'
               if $scope.participantRegistration.companyInformation?.isCompanyCoordinator isnt 'true'
                 $scope.addressBookContacts.contacts = []
@@ -326,14 +333,17 @@ angular.module 'trPcControllers'
                   delete $scope.addressBookContacts.contacts
                 filteredParticipants = []
                 totalNumberResults = 0
-                NgPcTeamraiserReportsService.getSchoolChallengeReport()
-                  .then (response) ->
-                    reportData = response.data.getSchoolChallengeReport?.reportData
-                    handleReportData reportData
-                    $scope.addressBookContacts.contacts = filteredParticipants
-                    $scope.addressBookContacts.totalNumber = totalNumberResults
-                    $scope.addressBookContacts.allContacts = filteredParticipants
-                    $scope.addressBookContacts.allContactsSelected = isAllContactsSelected()
+                ZuriService.getSchoolContacts '&school_id=' + $scope.participantRegistration.companyInformation.companyId + '&EventId=' + $scope.frId,
+                  failure: (response) ->
+                  error: (response) ->
+                  success: (response) ->
+                    if response.data.company[0] != "" and response.data.company[0] != null
+                      reportData = response.data.getSchoolChallengeReport?.reportData
+                      handleReportData reportData
+                      $scope.addressBookContacts.contacts = filteredParticipants
+                      $scope.addressBookContacts.totalNumber = totalNumberResults
+                      $scope.addressBookContacts.allContacts = filteredParticipants
+                      $scope.addressBookContacts.allContactsSelected = isAllContactsSelected()
                 handleReportData = (reportData) ->
                   if reportData
                     reportDataRows = []
@@ -349,7 +359,7 @@ angular.module 'trPcControllers'
                           firstName = jQuery.trim reportDataRow[reportDataColumnIndexMap.StudentFirstName]
                           lastName = jQuery.trim reportDataRow[reportDataColumnIndexMap.StudentLastName]
                           email = jQuery.trim reportDataRow[reportDataColumnIndexMap.StudentEmail]
-                          challengeAmount = jQuery.trim reportDataRow[reportDataColumnIndexMap.ChallengeValueAmount]
+                          challengeAmount = $scope.companyProgress.schoolChallengeLevel
                           challengeAmount = Number(challengeAmount.split('$')[1])
                           console.log('challengeAmount ' + challengeAmount + typeof challengeAmount)
                           amountRaised = Number reportDataRow[reportDataColumnIndexMap.AmountRaised]
