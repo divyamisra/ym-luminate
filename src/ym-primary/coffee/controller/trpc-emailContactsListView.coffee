@@ -18,7 +18,7 @@ angular.module 'trPcControllers'
       $scope.filter = $routeParams.filter
       
       $scope.emailPromises = []
-      $scope.companyProgress.schoolChallengeLevel = '0'
+      $scope.schoolChallengeAmount = '0'
 
       $scope.getSchoolChallenge = () ->
         ZuriService.getSchoolData $scope.participantRegistration.companyInformation.companyId,
@@ -29,7 +29,7 @@ angular.module 'trPcControllers'
               if response.data.data.length > 0
                 angular.forEach response.data.data, (meta, key) ->
                   if meta.name == 'school-goal'
-                    $scope.companyProgress.schoolChallengeLevel = meta.value
+                    $scope.schoolChallengeAmount = meta.value
                 #amt = $scope.participantProgress.raised / 100
                 #if amt >= Number(($scope.companyProgress.schoolChallengeLevel).replace('$', '').replace(/,/g, ''))
       $scope.getSchoolChallenge()
@@ -359,7 +359,7 @@ angular.module 'trPcControllers'
                           firstName = jQuery.trim reportDataRow[reportDataColumnIndexMap.StudentFirstName]
                           lastName = jQuery.trim reportDataRow[reportDataColumnIndexMap.StudentLastName]
                           email = jQuery.trim reportDataRow[reportDataColumnIndexMap.StudentEmail]
-                          challengeAmount = $scope.companyProgress.schoolChallengeLevel
+                          challengeAmount = $scope.schoolChallengeAmount
                           challengeAmount = Number(challengeAmount.split('$')[1])
                           console.log('challengeAmount ' + challengeAmount + typeof challengeAmount)
                           amountRaised = Number reportDataRow[reportDataColumnIndexMap.AmountRaised]
