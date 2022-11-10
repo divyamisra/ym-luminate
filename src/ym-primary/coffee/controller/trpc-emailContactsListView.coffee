@@ -333,12 +333,12 @@ angular.module 'trPcControllers'
                   delete $scope.addressBookContacts.contacts
                 filteredParticipants = []
                 totalNumberResults = 0
-                ZuriService.getSchoolContacts '&school_id=' + $scope.participantRegistration.companyInformation.companyId + '&EventId=' + $scope.frId,
+                ZuriService.getSchoolContacts '&SchoolId=' + $scope.participantRegistration.companyInformation.companyId + '&EventId=' + $scope.frId,
                   failure: (response) ->
                   error: (response) ->
                   success: (response) ->
                     if response.data.company[0] != "" and response.data.company[0] != null
-                      reportData = response.data.getSchoolChallengeReport?.reportData
+                      reportData = response.data.company[0]
                       handleReportData reportData
                       $scope.addressBookContacts.contacts = filteredParticipants
                       $scope.addressBookContacts.totalNumber = totalNumberResults
