@@ -20,20 +20,6 @@ angular.module 'trPcControllers'
       $scope.emailPromises = []
       $scope.schoolChallengeAmount = '0'
 
-      $scope.getSchoolChallenge = () ->
-        ZuriService.getSchoolData $scope.participantRegistration.companyInformation.companyId,
-          failure: (response) ->
-          error: (response) ->
-          success: (response) ->
-            if typeof response.data.data != 'undefined'
-              if response.data.data.length > 0
-                angular.forEach response.data.data, (meta, key) ->
-                  if meta.name == 'school-goal'
-                    $scope.schoolChallengeAmount = meta.value
-                #amt = $scope.participantProgress.raised / 100
-                #if amt >= Number(($scope.companyProgress.schoolChallengeLevel).replace('$', '').replace(/,/g, ''))
-      $scope.getSchoolChallenge()
-      
       # $scope.messageCounts = {}
       # messageTypes = [
       #   'draft'
@@ -339,11 +325,20 @@ angular.module 'trPcControllers'
                   success: (response) ->
                     if response.data.company[0] != "" and response.data.company[0] != null
                       reportData = response.data.company[0]
-                      handleReportData reportData
-                      $scope.addressBookContacts.contacts = filteredParticipants
-                      $scope.addressBookContacts.totalNumber = totalNumberResults
-                      $scope.addressBookContacts.allContacts = filteredParticipants
-                      $scope.addressBookContacts.allContactsSelected = isAllContactsSelected()
+                      ZuriService.getSchoolData $scope.participantRegistration.companyInformation.companyId,
+                        failure: (response) ->
+                        error: (response) ->
+                        success: (response) ->
+                          if typeof response.data.data != 'undefined'
+                            if response.data.data.length > 0
+                              angular.forEach response.data.data, (meta, key) ->
+                                if meta.name == 'school-goal'
+                                  $scope.schoolChallengeAmount = meta.value                      
+                          handleReportData reportData
+                          $scope.addressBookContacts.contacts = filteredParticipants
+                          $scope.addressBookContacts.totalNumber = totalNumberResults
+                          $scope.addressBookContacts.allContacts = filteredParticipants
+                          $scope.addressBookContacts.allContactsSelected = isAllContactsSelected()
                 handleReportData = (reportData) ->
                   if reportData
                     reportDataRows = []
