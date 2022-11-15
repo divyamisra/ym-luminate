@@ -479,7 +479,7 @@
     font-size: 13px;
     width: 122px;
 
-    .required::after {
+    &.required::after {
       color: red;
       content: "*";
       font-size: 1.5em;
