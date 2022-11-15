@@ -350,12 +350,12 @@
         <div class="ym-registration-reg-waiver-btns">
           <div class="clearfix">
             <div class="pull-left">
-              <button type="button" class="btn btn-toggle" ng-class="{'active': acceptWaiver == 'yes'}" ng-click="toggleAcceptWaiver('yes')">
+              <button aria-required="true" type="button" class="btn btn-toggle required" ng-class="{'active': acceptWaiver == 'yes'}" ng-click="toggleAcceptWaiver('yes')">
                 Yes, I agree
               </button>
             </div>
             <div class="pull-right">
-              <button type="button" class="btn btn-toggle" ng-class="{'active': acceptWaiver == 'no'}" ng-click="toggleAcceptWaiver('no')">
+              <button type="button" class="btn btn-toggle " ng-class="{'active': acceptWaiver == 'no'}" ng-click="toggleAcceptWaiver('no')">
                 No
               </button>
             </div>
