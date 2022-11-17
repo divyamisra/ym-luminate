@@ -474,17 +474,17 @@
   @media (min-width: $screen-sm-min) {
     width: 306px;
   }
+
+  .pull-left::after {
+    color: red;
+    content: "*";
+    font-size: 1.5em;
+    vertical-align: top;
+  }
   
   .btn {
     font-size: 13px;
     width: 122px;
-
-    &.required::after {
-      color: red;
-      content: "*";
-      font-size: 1.5em;
-      vertical-align: top;
-    }
     
     @media (min-width: 360px) {
       font-size: inherit;
