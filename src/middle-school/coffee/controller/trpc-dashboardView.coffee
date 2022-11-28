@@ -844,6 +844,7 @@ angular.module 'trPcControllers'
             getStudentChallenge()
 
       $scope.schoolPlan = []
+      $rootScope.HideGifts = "NO"	
       ZuriService.getSchoolDetail '&school_id=' + $scope.participantRegistration.companyInformation.companyId + '&EventId=' + $scope.frId,
         failure: (response) ->
         error: (response) ->
@@ -851,6 +852,7 @@ angular.module 'trPcControllers'
           if response.data.company[0] != "" and response.data.company[0] != null
             $scope.schoolPlan = response.data.company[0]
             $scope.hideAmount = $scope.schoolPlan.HideAmountRaised
+            $rootScope.HideGifts = $scope.schoolPlan.HideGifts  
             $scope.notifyName = $scope.schoolPlan.YMDName
             $scope.notifyEmail = $scope.schoolPlan.YMDEmail
             $scope.unconfirmedAmountRaised = $scope.schoolPlan.OfflineUnconfirmedRevenue
@@ -867,9 +869,11 @@ angular.module 'trPcControllers'
               $scope.schoolPlan.DonationDueDate = new Date($scope.schoolPlan.DonationDueDate.replace(/-/g, "/") + ' 00:01')
             if $scope.schoolPlan.KickOffDate != '0000-00-00'
               $scope.schoolPlan.KickOffDate = new Date($scope.schoolPlan.KickOffDate.replace(/-/g, "/") + ' 00:01')
+            if $scope.schoolPlan.LastDayOfSchool != '0000-00-00'
+              $scope.schoolPlan.LastDayOfSchool = new Date($scope.schoolPlan.LastDayOfSchool.replace(/-/g, "/") + ' 00:01')
             $scope.coordinatorPoints = JSON.parse($scope.schoolPlan.PointsDetail)
           else
-            $rootScope.hideGifts = "N"	      
+            $rootScope.HideGifts = "NO"	      
 	
       $scope.putSchoolPlan = (event, sel) ->
         school = @schoolPlan

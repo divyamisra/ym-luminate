@@ -42,6 +42,7 @@ angular.module 'ahaLuminateControllers'
       $scope.schoolBadgesRegistrations = []
       $scope.schoolBadgesFundraising = []
       $scope.finnsMissionStudentList = []
+      $rootScope.HideGifts = "NO"
       
       $scope.trustHtml = (html) ->
         return $sce.trustAsHtml(html)
@@ -140,6 +141,7 @@ angular.module 'ahaLuminateControllers'
                     setCompanyCity $scope.schoolPlan.SchoolCity
                     setCompanyState $scope.schoolPlan.SchoolState
                     $scope.hideAmount = $scope.schoolPlan.HideAmountRaised
+                    $rootScope.HideGifts = $scope.schoolPlan.HideGifts
                     $scope.notifyName = $scope.schoolPlan.YMDName
                     $scope.notifyEmail = $scope.schoolPlan.YMDEmail
                     $scope.unconfirmedAmountRaised = $scope.schoolPlan.OfflineUnconfirmedRevenue
