@@ -406,6 +406,16 @@ angular.module 'ahaLuminateControllers'
             angular.element('#tribute_show_honor_fieldsname').prop 'checked', false
             angular.element('#tribute_honoree_name_row').hide()
 
+      donorAddressFields = ->
+        angular.element('#donor_first_namename').attr('aria-required','true') 
+        angular.element('#donor_last_namename').attr('aria-required','true') 
+        angular.element('#donor_email_addressname').attr('aria-required','true') 
+        angular.element('#donor_addr_street1name').attr('aria-required','true') 
+        angular.element('#donor_addr_cityname').attr('aria-required','true') 
+        angular.element('#donor_addr_state').attr('aria-required','true') 
+        angular.element('#donor_addr_zipname').attr('aria-required','true')
+        angular.element('#donor_addr_country').attr('aria-required','true')
+
       billingAddressFields = ->
         angular.element('#billing_first_name_row').addClass 'billing-info'
         angular.element('#billing_last_name_row').addClass 'billing-info'
@@ -672,6 +682,7 @@ angular.module 'ahaLuminateControllers'
         addOptional()
         addFeeCheckbox()
 #        employerMatchFields()
+        donorAddressFields()
         billingAddressFields()
         donorRecognitionFields()
         ariaAdjustments()

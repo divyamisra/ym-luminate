@@ -30,7 +30,7 @@
           [[A5]]
         </div>
       ]]
-      <div class="alert alert-danger" role="alert" aria-atomic="true" aria-live="assertive" ng-class="{'d-none hidden': [[?xyz.xnullynullz.xynullz.xnullyz::x[[A4]]y[[A6]]z::true::]] && (!registrationInfoErrors || !registrationInfoErrors.errors || registrationInfoErrors.errors.length == 0)}" ng-cloak>
+      <div class="alert alert-danger" role="alert" aria-atomic="true" aria-live="assertive" tabindex="0" ng-class="{'d-none hidden': [[?xyz.xnullynullz.xynullz.xnullyz::x[[A4]]y[[A6]]z::true::]] && (!registrationInfoErrors || !registrationInfoErrors.errors || registrationInfoErrors.errors.length == 0)}" ng-cloak>
         [[?xy.xnully::x[[A4]]y::
           [[M0:friendraiser:generic_error]]
         ::
@@ -106,7 +106,7 @@
         <label for="registrationInfo-{{registrationCustomQuestions.ym_khc_email_consent_text}}">
           <input aria-required="true" type="checkbox" name="ng_ym_khc_email_consent_text" id="registrationInfo-{{registrationCustomQuestions.ym_khc_email_consent_text}}" ng-model="registrationInfo[registrationCustomQuestions.ym_khc_email_consent_text]" ng-true-value=true ng-false-value=false> 
           <span class="manageable-content" data-container="edit_opt_in_container">
-            <span id="opt_in_label" class="control-label">
+            <span id="opt_in_label_consent" class="control-label">
               {{registrationQuestions[registrationCustomQuestions.ym_khc_email_consent_text].label}}
             </span>
           </span>
@@ -171,19 +171,26 @@
             </div>
           </div>
           <div class="col-sm-6">
-            <div class="form-group required" ng-class="{'has-error': registrationQuestions[registrationCustomQuestions.ym_khc_teacher_name].hasError}" ng-if="registrationCustomQuestions.ym_khc_teacher_name" ng-cloak>
+            <div class="form-group required" ng-class="{'has-error': registrationQuestions[registrationCustomQuestions.ym_khc_teacher_name].hasError}" ng-if="registrationCustomQuestions.ym_khc_teacher_name && teachersByGrade.length > 0 && listUpload" ng-cloak>
               <label class="control-label" for="registrationInfo-{{registrationCustomQuestions.ym_khc_teacher_name}}">
                 <span ng-bind-html="registrationQuestions[registrationCustomQuestions.ym_khc_teacher_name].label"></span>
               </label>
-              <input aria-required="true" type="text" class="form-control input-lg" name="ng_{{registrationCustomQuestions.ym_khc_teacher_name}}" id="registrationInfo-{{registrationCustomQuestions.ym_khc_teacher_name}}" ng-model="registrationInfo[registrationCustomQuestions.ym_khc_teacher_name]" maxlength="{{registrationQuestions[registrationCustomQuestions.ym_khc_teacher_name].maxLength}}" list="dynamicTeachers">
-              <datalist id="dynamicTeachers">
+              <select class="form-control input-lg ym_khc_teacher" name="ng_{{registrationCustomQuestions.ym_khc_teacher_name}}" id="registrationInfo-{{registrationCustomQuestions.ym_khc_teacher_name}}" ng-model="registrationInfo[registrationCustomQuestions.ym_khc_teacher_name]">
                  <option ng-repeat="teacher in teachersByGrade" value="{{teacher.teacher_name}}">{{teacher.teacher_name}}</option>
-              </datalist>
+                 <option value="Other">Other</option>
+              </select>
+            </div>
+            <div class="form-group required" ng-class="{'has-error': registrationQuestions[registrationCustomQuestions.ym_khc_teacher_name].hasError}" ng-if="registrationCustomQuestions.ym_khc_teacher_name && !listUpload" ng-cloak>
+              <label class="control-label" for="registrationInfo-{{registrationCustomQuestions.ym_khc_teacher_name}}">
+                <span ng-bind-html="registrationQuestions[registrationCustomQuestions.ym_khc_teacher_name].label"></span>
+              </label>
+              <input aria-required="true" type="text" class="form-control input-lg" name="ng_{{registrationCustomQuestions.ym_khc_teacher_name}}" id="registrationInfo-{{registrationCustomQuestions.ym_khc_teacher_name}}" ng-model="registrationInfo[registrationCustomQuestions.ym_khc_teacher_name]" maxlength="{{registrationQuestions[registrationCustomQuestions.ym_khc_teacher_name].maxLength}}">
             </div>
           </div>
         </div>
       </div>
       <div class="ym-registration-row--bottomed" role="presentation" ng-if="registrationInfo[registrationCustomQuestions.ym_khc_grade] != 'NOREPLY' && registrationInfo[registrationCustomQuestions.ym_khc_grade] != 'Pre-School' && registrationInfo[registrationCustomQuestions.ym_khc_grade] != 'Kindergarten' && registrationInfo[registrationCustomQuestions.ym_khc_grade] != '1st' && registrationInfo[registrationCustomQuestions.ym_khc_grade] != '2nd' && registrationInfo[registrationCustomQuestions.ym_khc_grade] != '3rd' && registrationInfo[registrationCustomQuestions.ym_khc_grade] != '4th'" ng-cloak>
+
             <div class="form-group required" ng-class="{'has-error': registrationQuestions[registrationCustomQuestions.ym_khc_future_middleschool].hasError}" ng-if="registrationCustomQuestions.ym_khc_future_middleschool" ng-cloak>
               <label class="control-label" for="registrationInfo-{{registrationCustomQuestions.ym_khc_future_middleschool}}">
                 <span ng-bind-html="registrationQuestions[registrationCustomQuestions.ym_khc_future_middleschool].label"></span>
