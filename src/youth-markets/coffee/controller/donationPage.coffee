@@ -500,7 +500,9 @@ angular.module 'ahaLuminateControllers'
 
       angular.element('#ProcessForm').validate 
         errorPlacement: (error, element) ->
-          angular.element(error).attr "role", "alert"
+          #angular.element(error).attr "role", "alert"
+          angular.element(error).attr "aria-live", "polite"
+          angular.element(error).attr "tabindex", "0"
           angular.element(error).attr "aria-label", "Field required: "+angular.element('label[for='+angular.element(element).attr("name")+']').text().replace(":","")
           if element.attr('name') == 'terms-of-service-checkbox'
             # do whatever you need to place label where you want
