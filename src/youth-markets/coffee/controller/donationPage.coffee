@@ -406,6 +406,22 @@ angular.module 'ahaLuminateControllers'
             angular.element('#tribute_show_honor_fieldsname').prop 'checked', false
             angular.element('#tribute_honoree_name_row').hide()
 
+      donorAddressFields = ->
+        angular.element('#donor_first_namename').attr('aria-required','true') 
+        angular.element('#donor_last_namename').attr('aria-required','true') 
+        angular.element('#donor_email_addressname').attr('aria-required','true') 
+        angular.element('#donor_addr_street1name').attr('aria-required','true') 
+        angular.element('#donor_addr_cityname').attr('aria-required','true') 
+        angular.element('#donor_addr_state').attr('aria-required','true') 
+        angular.element('#donor_addr_zipname').attr('aria-required','true')
+        angular.element('#donor_addr_country').attr('aria-required','true')
+
+      paymentFields = ->
+        angular.element('#responsive_payment_typecc_numbername').attr('aria-required','true') 
+        angular.element('#responsive_payment_typecc_exp_date_MONTH').attr('aria-required','true') 
+        angular.element('#responsive_payment_typecc_exp_date_YEAR').attr('aria-required','true') 
+        angular.element('#responsive_payment_typecc_cvvname').attr('aria-required','true') 
+
       billingAddressFields = ->
         angular.element('#billing_first_name_row').addClass 'billing-info'
         angular.element('#billing_last_name_row').addClass 'billing-info'
@@ -434,11 +450,22 @@ angular.module 'ahaLuminateControllers'
           angular.element('#payment_cc_container').hide()
           angular.element('.btn--credit').removeClass 'active'
           angular.element('.btn--paypal').addClass 'active'
+
+          angular.element('#responsive_payment_typecc_numbername').attr('aria-required','false') 
+          angular.element('#responsive_payment_typecc_exp_date_MONTH').attr('aria-required','false') 
+          angular.element('#responsive_payment_typecc_exp_date_YEAR').attr('aria-required','false') 
+          angular.element('#responsive_payment_typecc_cvvname').attr('aria-required','trufalsee') 
+
         else
           angular.element('#responsive_payment_typepay_typeradiocredit').click()
           angular.element('#payment_cc_container').show()
           angular.element('.btn--credit').addClass 'active'
           angular.element('.btn--paypal').removeClass 'active'
+
+          angular.element('#responsive_payment_typecc_numbername').attr('aria-required','true') 
+          angular.element('#responsive_payment_typecc_exp_date_MONTH').attr('aria-required','true') 
+          angular.element('#responsive_payment_typecc_exp_date_YEAR').attr('aria-required','true') 
+          angular.element('#responsive_payment_typecc_cvvname').attr('aria-required','true') 
 
       jQuery.validator.addMethod 'zipcode', ((value, element) ->
         @optional(element) or ! !value.trim().match(/^\d{5}(?:[-\s]\d{4})?$/)
@@ -450,12 +477,32 @@ angular.module 'ahaLuminateControllers'
 
         if inputStatus is true
           angular.element('#billing_info_same_as_donorname').prop 'checked', true
+
+          angular.element('#billing_first_namename').attr('aria-required','false') 
+          angular.element('#billing_last_namename').attr('aria-required','false') 
+          angular.element('#billing_addr_street1name').attr('aria-required','false') 
+          angular.element('#billing_addr_cityname').attr('aria-required','false') 
+          angular.element('#billing_addr_state').attr('aria-required','false') 
+          angular.element('#billing_addr_zipname').attr('aria-required','false')
+          angular.element('#billing_addr_country').attr('aria-required','false')
+
+         
         else
           angular.element('#billing_info_same_as_donorname').prop 'checked', false
 
+          angular.element('#billing_first_namename').attr('aria-required','true') 
+          angular.element('#billing_last_namename').attr('aria-required','true') 
+          angular.element('#billing_addr_street1name').attr('aria-required','true') 
+          angular.element('#billing_addr_cityname').attr('aria-required','true') 
+          angular.element('#billing_addr_state').attr('aria-required','true') 
+          angular.element('#billing_addr_zipname').attr('aria-required','true')
+          angular.element('#billing_addr_country').attr('aria-required','true')
+
       angular.element('#ProcessForm').validate 
         errorPlacement: (error, element) ->
-          angular.element(error).attr "role", "alert"
+          #angular.element(error).attr "role", "alert"
+          angular.element(error).attr "aria-live", "polite"
+          angular.element(error).attr "tabindex", "0"
           angular.element(error).attr "aria-label", "Field required: "+angular.element('label[for='+angular.element(element).attr("name")+']').text().replace(":","")
           if element.attr('name') == 'terms-of-service-checkbox'
             # do whatever you need to place label where you want
@@ -672,6 +719,7 @@ angular.module 'ahaLuminateControllers'
         addOptional()
         addFeeCheckbox()
 #        employerMatchFields()
+        donorAddressFields()
         billingAddressFields()
         donorRecognitionFields()
         ariaAdjustments()
