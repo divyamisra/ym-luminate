@@ -1837,8 +1837,11 @@
 			cd.getTeamHonorRoll();
 
 			// build team roster
+			console.log("pending 110922 edits for team roster");
+			
 			cd.getTeamRoster = function () {
 				var teamId = getURLParameter(currentUrl, 'team_id');
+				var eventStatus = $('body').data('event-status')
 				luminateExtend.api({
 					api: 'teamraiser',
 					data: 'method=getParticipants' +
@@ -1872,10 +1875,16 @@
 
 									var participantRaised = (parseInt(participant.amountRaised) * 0.01).toFixed(2);
 									var participantRaisedFormmatted = participantRaised.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,").replace('.00', '');
-
-									$('#team-roster tbody').append('<tr class="' + (i > 4 ? 'd-none' : '') + '"><td class="donor-name">' + (participant.aTeamCaptain === "true" ? '' : '') + '<a href="' + participant.personalPageUrl + '">' +
+									console.log("event status = ",eventStatus);
+									if (eventStatus === 1) {
+										$('#team-roster tbody').append('<tr class="' + (i > 4 ? 'd-none' : '') + '"><td class="donor-name">' + (participant.aTeamCaptain === "true" ? '' : '') + '<a href="' + participant.personalPageUrl + '">' +
+											participant.name.first + ' ' + participant.name.last +
+											'</a></td><td class="raised" data-sort="' + participantRaisedFormmatted + '"><span></span></td></tr>');
+									} else {
+										$('#team-roster tbody').append('<tr class="' + (i > 4 ? 'd-none' : '') + '"><td class="donor-name">' + (participant.aTeamCaptain === "true" ? '' : '') + '<a href="' + participant.personalPageUrl + '">' +
 										participant.name.first + ' ' + participant.name.last +
 										'</a></td><td class="raised" data-sort="' + participantRaisedFormmatted + '"><span></span></td><td><a href="' + participant.donationUrl + '">' + (screenWidth <= 480 ? 'Donate' : 'Donate to ' + participant.name.first) + '</a></td></tr>');
+									}
 									if (participant.aTeamCaptain === 'true') {
 										$('.js--team-captain-link').attr('href', participant.donationUrl).attr('aria-lablel', "Team Captain " + participant.name.first + ' ' + participant.name.last + "'s fundraising page'");
 									}
