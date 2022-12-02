@@ -21,6 +21,7 @@ angular.module 'trPcControllers'
         return
       
       $scope.$on '$viewContentLoaded', ->
+        $scope.getHideGiftsFlag()
         if $rootScope.clipboard
           $rootScope.clipboard.destroy()
           delete $rootScope.clipboard
@@ -41,7 +42,6 @@ angular.module 'trPcControllers'
               $scope.schoolPlan.HideGifts = "NO"
 
       if $rootScope.facebookFundraisersEnabled
-        $scope.getHideGiftsFlag()
         toggleFacebookFundraiserStatus = ->
           if not $rootScope.$$phase
             $rootScope.$apply()
