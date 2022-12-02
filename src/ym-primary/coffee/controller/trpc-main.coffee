@@ -10,7 +10,8 @@ angular.module 'trPcControllers'
     'RichTextService'
     'FacebookFundraiserService'
     'BoundlessService'
-    ($rootScope, $scope, $location, $timeout, APP_INFO, TeamraiserParticipantPageService, NgPcTeamraiserEventService, RichTextService, FacebookFundraiserService, BoundlessService) ->
+    'ZuriService'
+    ($rootScope, $scope, $location, $timeout, APP_INFO, TeamraiserParticipantPageService, NgPcTeamraiserEventService, RichTextService, FacebookFundraiserService, BoundlessService, ZuriService) ->
       $rootScope.$location = $location
       $rootScope.baseUrl = $location.absUrl().split('#')[0]
       $rootScope.HideGifts = "NO"
