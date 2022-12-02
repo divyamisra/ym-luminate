@@ -13,6 +13,7 @@ angular.module 'trPcControllers'
     ($rootScope, $scope, $location, $timeout, APP_INFO, TeamraiserParticipantPageService, NgPcTeamraiserEventService, RichTextService, FacebookFundraiserService, BoundlessService) ->
       $rootScope.$location = $location
       $rootScope.baseUrl = $location.absUrl().split('#')[0]
+      $rootScope.HideGifts = "NO"
       
       $scope.location = $location.path()
       $rootScope.$on '$routeChangeSuccess', ->
@@ -28,8 +29,19 @@ angular.module 'trPcControllers'
           if angular.element(e.trigger).closest('div').find('.clipboard-copy').length == 0
             angular.element(e.trigger).after '<div class=\'clipboard-copy text-center small\' role=\'alert\' aria-atomic=\'true\'>'+angular.element(e.trigger).data('clipboard-message')+'</div>'
           return
-        
+
+      $scope.getHideGiftsFlag = () ->
+        ZuriService.getSchoolDetail '&school_id=' + $scope.participantRegistration.companyInformation.companyId + '&EventId=' + $scope.frId,
+          failure: (response) ->
+          error: (response) ->
+          success: (response) ->
+            if response.data.company[0] != "" and response.data.company[0] != null
+              $rootScope.HideGifts = $scope.schoolPlan.HideGifts
+            else
+              $scope.schoolPlan.HideGifts = "NO"
+
       if $rootScope.facebookFundraisersEnabled
+        $scope.getHideGiftsFlag()
         toggleFacebookFundraiserStatus = ->
           if not $rootScope.$$phase
             $rootScope.$apply()
