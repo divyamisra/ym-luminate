@@ -37,6 +37,7 @@ angular.module 'trPcControllers'
           failure: (response) ->
           error: (response) ->
           success: (response) ->
+            $scope.schoolPlan = response.data.company[0]
             if response.data.company[0] != "" and response.data.company[0] != null
               $rootScope.HideGifts = $scope.schoolPlan.HideGifts
             else
