@@ -16,6 +16,7 @@ angular.module 'ahaLuminateControllers'
       consId = $dataRoot.data('cons-id') if $dataRoot.data('cons-id') isnt ''
       $scope.protocol = window.location.protocol
       $scope.productList = []
+      $scope.productDetail = []
       $scope.cartProductList = []
       $scope.quantityList = [1..15]
       $scope.TotalPointsInCart = 0
@@ -62,6 +63,7 @@ angular.module 'ahaLuminateControllers'
           error: (response) ->
           success: (response) ->
             $scope.productList = response.data.company['list']
+            $scope.productDetail = response.data.company['detail'];
             angular.forEach $scope.productList, (product, index) ->
               product.productSize = ''
               product.quantitySel = 1
