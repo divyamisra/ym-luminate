@@ -269,9 +269,9 @@ angular.module 'ahaLuminateControllers'
             $scope.getSchoolPlan()
             $scope.getSchoolProducts()
 
-      $scope.reportPending = false
+      $scope.reportPending = true
       $scope.showAvailableProducts = ->
-        $scope.reportPending = true
+        $scope.reportPending = false
         $scope.availableProducts = $uibModal.open
           scope: $scope
           templateUrl: APP_INFO.rootPath + 'dist/ym-rewards/html/modal/availableProducts.html'
