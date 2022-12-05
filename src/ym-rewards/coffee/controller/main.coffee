@@ -269,6 +269,16 @@ angular.module 'ahaLuminateControllers'
             $scope.getSchoolPlan()
             $scope.getSchoolProducts()
 
+      $scope.reportPending = false
+      $scope.showAvailableProducts = ->
+        $scope.reportPending = true
+        $scope.availableProducts = $uibModal.open
+          scope: $scope
+          templateUrl: APP_INFO.rootPath + 'dist/ym-rewards/html/modal/availableProducts.html'
+          
+      $scope.cancelAvailableProducts = ->
+        $scope.availableProducts.close()
+        
       $scope.headerLoginInfo = 
         user_name: ''
         password: ''
