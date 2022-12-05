@@ -17,6 +17,7 @@ angular.module 'ahaLuminateControllers'
       $scope.protocol = window.location.protocol
       $scope.productList = []
       $scope.productDetail = []
+      $scope.productReport = []
       $scope.cartProductList = []
       $scope.quantityList = [1..15]
       $scope.TotalPointsInCart = 0
@@ -64,6 +65,7 @@ angular.module 'ahaLuminateControllers'
           success: (response) ->
             $scope.productList = response.data.company['list']
             $scope.productDetail = response.data.company['detail'];
+            $scope.productReport = response.data.company['report'];
             angular.forEach $scope.productList, (product, index) ->
               product.productSize = ''
               product.quantitySel = 1
