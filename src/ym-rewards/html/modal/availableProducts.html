@@ -12,7 +12,7 @@
   <div class="modal-body text-center" ng-if="!reportPending" ng-cloak>
     <div class="available-products-status">
       Report generation is completed.<br/><br/>
-      <button type="button" class="btn btn-md-wide btn-primary" ng-csv="productReport" filename="product_list_report.csv" csv-header="['Main Product ID', 'Product ID', 'Quantity', 'Total Qauntity']" csv-fields="['origProductId', 'productid', 'quantity', 'totalQuantity]" charset="utf-8"><span class="glyphicon glyphicon-download-alt">&nbsp;</span>Download CSV</button>
+      <button type="button" class="btn btn-md-wide btn-primary" ng-csv="productReport" filename="product_list_report.csv" csv-header="['Main Product ID', 'Product ID', 'Quantity', 'Total Quantity']" csv-fields="['origProductId', 'productSizeId', 'quantity', 'totalQuantity]" charset="utf-8"><span class="glyphicon glyphicon-download-alt">&nbsp;</span>Download CSV</button>
       <div class="alert" role="alert" ng-if="buildCSVPending == 'done'" ng-cloak>
 	<strong>CSV File has been created and downloaded.</strong>
       </div>
