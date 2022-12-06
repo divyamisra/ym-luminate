@@ -13,6 +13,9 @@ angular.module('trPcControllers').controller 'NgPcSocialViewCtrl', [
       FacebookFundraiserService.confirmFundraiserStatus()
         .then (response) ->
           confirmOrUnlinkFacebookFundraiserResponse = response.data.confirmOrUnlinkFacebookFundraiserResponse
+          if typeof response.data.confirmOrUnlinkFacebookFundraiserResponse == 'undefined'
+            confirmOrUnlinkFacebookFundraiserResponse = []
+            confirmOrUnlinkFacebookFundraiserResponse.active = 'false'
           if confirmOrUnlinkFacebookFundraiserResponse?.active is 'false'
             delete $rootScope.facebookFundraiserId
             $rootScope.facebookFundraiserConfirmedStatus = 'deleted'
