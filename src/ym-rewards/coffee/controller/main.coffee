@@ -16,6 +16,8 @@ angular.module 'ahaLuminateControllers'
       consId = $dataRoot.data('cons-id') if $dataRoot.data('cons-id') isnt ''
       $scope.protocol = window.location.protocol
       $scope.productList = []
+      $scope.productDetail = []
+      $scope.productReport = []
       $scope.cartProductList = []
       $scope.quantityList = [1..15]
       $scope.TotalPointsInCart = 0
@@ -62,6 +64,8 @@ angular.module 'ahaLuminateControllers'
           error: (response) ->
           success: (response) ->
             $scope.productList = response.data.company['list']
+            $scope.productDetail = response.data.company['detail'];
+            $scope.productReport = response.data.company['report'];
             angular.forEach $scope.productList, (product, index) ->
               product.productSize = ''
               product.quantitySel = 1
@@ -269,6 +273,16 @@ angular.module 'ahaLuminateControllers'
             $scope.getSchoolPlan()
             $scope.getSchoolProducts()
 
+      $scope.reportPending = true
+      $scope.showAvailableProducts = ->
+        $scope.reportPending = false
+        $scope.availableProducts = $uibModal.open
+          scope: $scope
+          templateUrl: APP_INFO.rootPath + 'dist/ym-rewards/html/modal/availableProducts.html'
+          
+      $scope.cancelAvailableProducts = ->
+        $scope.availableProducts.close()
+        
       $scope.headerLoginInfo = 
         user_name: ''
         password: ''
