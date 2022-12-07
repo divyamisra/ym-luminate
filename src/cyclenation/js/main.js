@@ -2587,6 +2587,23 @@
 
             return false;
           }
+
+          // if ($('.donation-level-container').find('.donation-level-row-container.active').length > 0 || $('.donation-level-container').find('.donation-level-row-container.active').hasClass('don-no-gift') === false) {
+
+          if ($('input[name^="donation_level_form_"]:checked').val() != '$0.00' || ($('input[name^="donation_level_form_"]:checked').closest('donation-level-row-container').hasClass('.other-amount-row-container') && $('input[name^="fr_donation_level_enter_amount_"]').val() != '')) {
+            // If the participant chooses to make a gift, check for the Double the Donation field
+            // and record the chosen company in local storage if it exists
+            var $doubleDonationCompany = $('input[name="doublethedonation_company_id"]');
+            if ($doubleDonationCompany.length && $doubleDonationCompany.val().length > 0) {
+                console.log('found dtd value');
+                var dtdCoId = $('input[name="doublethedonation_company_id"]').val();
+                console.log('dtdCoId ' + dtdCoId);
+                localStorage.dtdCompanyId = dtdCoId;
+            } else {
+                console.log('clear dtd company id');
+                localStorage.dtdCompanyId = "";
+            }
+          }
         });
 
         $('.part-type-container').on('click', function (e) {
