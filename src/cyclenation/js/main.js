@@ -2560,6 +2560,27 @@
           $(this).closest('.part-type-container').addClass('selected');
         });
 
+        $('#next_step').on('click', function () {
+          console.log('click function for stationery? ')
+          if ($('input[name^="donation_level_form_"]:checked').val() != '$0.00' || ($('input[name^="donation_level_form_"]:checked').closest('donation-level-row-container').hasClass('.other-amount-row-container') && $('input[name^="fr_donation_level_enter_amount_"]').val() != '')) {
+            // If the participant chooses to make a gift, check for the Double the Donation field
+            // and record the chosen company in local storage if it exists
+            var $doubleDonationCompany = $('input[name="doublethedonation_company_id"]');
+            if ($doubleDonationCompany.length && $doubleDonationCompany.val().length > 0) {
+                console.log('found dtd value');
+                var dtdCoId = $('input[name="doublethedonation_company_id"]').val();
+                console.log('dtdCoId ' + dtdCoId);
+                localStorage.dtdCompanyId = dtdCoId;
+            } else {
+                console.log('clear dtd company id');
+                localStorage.dtdCompanyId = "";
+            }
+          }
+
+        });
+        
+
+
       } else {
         $('#sel_type_container').text('How would you like to participate?');
         // Hide and disable participation types that don't apply to this particular registration path
@@ -2939,6 +2960,23 @@
         e.preventDefault();
         $('#next_button').click();
       });
+
+      $('#next_button').click(function(){
+
+        if ($('.additional-gift-amount').text() != '$0.00'){
+            console.log('there is a gift value');
+            var addlGiftAmt = $('.additional-gift-amount').text();
+            addlGiftAmt = addlGiftAmt.trim();
+            console.log("addlGiftAmt " + addlGiftAmt)
+            localStorage.addlGiftAmt = addlGiftAmt;
+        }
+        else {
+            console.log('clear addGiftAmt'); 
+            localStorage.addlGiftAmt = "";
+        }
+
+    });
+
 
     }
     // payment step of reg
