@@ -30,6 +30,7 @@ angular.module 'ahaLuminateControllers'
           error: (response) ->
           success: (response) ->
             angular.forEach response.data.company, (school) ->
+              $scope.EventProgram = school.EventProgram
               $scope.coordinatorPoints = JSON.parse(school.PointsDetail)
               $scope.TotalPointsEarned = school.TotalPointsEarned
               $scope.TotalPointsSpent = school.pointsUsed
