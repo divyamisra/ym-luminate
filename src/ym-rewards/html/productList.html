@@ -79,6 +79,15 @@
 							 	<label for="file">Select Image</label>
                	<input  onchange="angular.element(this).scope().onFileChange(event)" id="file" type="file">         
                </div>
+							 <div>
+							 	<label for="p_{{product.program}}">Select Program</label>
+						               	<select name="program-{{product.program}}" id="p_{{product.program}}" ng-model="product.program"/>
+									<option value="">- select program - </option>
+									<option value="KHC">KHC</option>
+									<option value="AHC">AHC</option>
+									<option value="all">All</option>
+							 	</select>
+ 					    	         </div>
 					  </div>
             <div class="col-md-7">
   			       <h3>Sizes:</h3>
