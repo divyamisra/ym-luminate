@@ -344,7 +344,7 @@ angular.module 'ahaLuminateControllers'
       $scope.getTeacherList = () ->
         selectedGrade = $scope.registrationInfo[$scope.registrationCustomQuestions.ym_khc_grade]
         if selectedGrade == ""
-          selectGrade = "1st"
+          selectedGrade = "1st"
         $scope.teachersByGrade = []
         teachersByGrade = []
         teachersFound = []
