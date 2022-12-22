@@ -282,6 +282,7 @@ angular.module 'ahaLuminateApp'
           nameFilter = $scope.schoolList.nameFilter or '%'
           nameFilter = nameFilter.toLowerCase().replace(' elementary', '')
           nameFilter = nameFilter.toLowerCase().replace(' school', '')
+          nameFilter = nameFilter.replace("'","\\'")
           companies = []
           #isOverride = findOverrides(nameFilter)
           #if isOverride.length > 0
