@@ -1793,12 +1793,12 @@
                     'By submitting the information requested in this form',
                     'Cleveland Clinic'
                 ]);
-                var $mobileOptinOuter = $('#mobile_optin_outer');
-                if ($mobileOptinOuter.length) {
-                    $step6.find('div#relocated_mobile_optin').append(
-                        $mobileOptinOuter.detach()
-                    );
-                }
+                //var $mobileOptinOuter = $('#mobile_optin_outer');
+                //if ($mobileOptinOuter.length) {
+                //   $step6.find('div#relocated_mobile_optin').append(
+                //        $mobileOptinOuter.detach()
+                //    );
+                //}
                 $step6.find('div#relocated_email_optin').append(
                     $('#gift_notice_optin').detach()
                 );
