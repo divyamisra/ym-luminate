@@ -1268,11 +1268,11 @@
         if ($('#F2fRegPartType').length > 0) {
             if ($('.part-type-container').length == 1) {
 
-		 if ($('input[name=discount_code]').length == 0) {
-	                $('.part-type-container, #part_type_section_header').hide();
-		} else {
-	                $('#part_type_section_header').hide();
-		}
+              if ($('input[name=discount_code]').length == 0) {
+                            $('.part-type-container, #part_type_section_header').hide();
+              } else {
+                            $('#part_type_section_header').hide();
+              }
                 //$('.part-type-container').before("<div class='part_type_one_only'><strong>Set Your Fundraising Goal!</strong></div>");
             } else {
                 $('input[name=fr_part_radio]:checked').removeAttr("checked");
@@ -1305,34 +1305,34 @@
 
             $('input[name=fr_part_radio]').addClass("required").attr("title","Participation type is required");
 
-	    //hide back button and turn into link
-	    $('button#previous_step').after('<a href="javascript:window.history.go(-1)" class="step-button previous-step backBtnReg">Back</a>').hide();
+            //hide back button and turn into link
+            $('button#previous_step').after('<a href="javascript:window.history.go(-1)" class="step-button previous-step backBtnReg">Back</a>').hide();
 
             $('form').validate({
-		focusInvalid: false,
-		invalidHandler: function(form, validator) {
-			if (!validator.numberOfInvalids())
-				return;
+              focusInvalid: false,
+              invalidHandler: function(form, validator) {
+                if (!validator.numberOfInvalids())
+                  return;
 
-			$('html, body').animate({
-				scrollTop: $(validator.errorList[0].element).offset().top
-			}, 500);
-		},
-		errorPlacement: function(error, element) {
-			if ($(element).attr("name") == "fr_part_radio") {
-				$('#part_type_selection_container').append(error).css({"display":"block","text-align":"left"});
-			} else {
-				if ($(element).attr("name").indexOf("donation_level_form_input") > -1) {
-					$('.enterAmt-other').after(error);
-				} else {
-					var placement = $(element).data('error');
-					if (placement) {
-						$(placement).append(error)
-					} else {
-						error.insertAfter(element);
-					}
-				}
-			}
+                $('html, body').animate({
+                  scrollTop: $(validator.errorList[0].element).offset().top
+                }, 500);
+              },
+              errorPlacement: function(error, element) {
+                if ($(element).attr("name") == "fr_part_radio") {
+                  $('#part_type_selection_container').append(error).css({"display":"block","text-align":"left"});
+                } else {
+                  if ($(element).attr("name").indexOf("donation_level_form_input") > -1) {
+                    $('.enterAmt-other').after(error);
+                  } else {
+                    var placement = $(element).data('error');
+                    if (placement) {
+                      $(placement).append(error)
+                    } else {
+                      error.insertAfter(element);
+                    }
+                  }
+                }
                 }
             });
             $.validator.addMethod("validDonation",function(value, element) {
@@ -1367,6 +1367,22 @@
                 if ($('form').valid()) {
                     //store off personal goal in sess var by adding to action url
                     $('#F2fRegPartType').prepend('<input type="hidden" id="personalGoal" name="s_personalGoal" value="' + $('input#fr_goal').val() + '">');
+
+                    if ($('input[name^="donation_level_form_"]:checked').val() != '$0.00' || ($('input[name^="donation_level_form_"]:checked').closest('donation-level-row-container').hasClass('.other-amount-row-container') && $('input[name^="fr_donation_level_enter_amount_"]').val() != '')) {
+                      // If the participant chooses to make a gift, check for the Double the Donation field
+                      // and record the chosen company in local storage if it exists
+                      var $doubleDonationCompany = $('input[name="doublethedonation_company_id"]');
+                      if ($doubleDonationCompany.length && $doubleDonationCompany.val().length > 0) {
+                          console.log('found dtd value');
+                          var dtdCoId = $('input[name="doublethedonation_company_id"]').val();
+                          console.log('dtdCoId ' + dtdCoId);
+                          localStorage.dtdCompanyId = dtdCoId;
+                      } else {
+                          console.log('clear dtd company id');
+                          localStorage.dtdCompanyId = "";
+                      }
+                    }
+
                     return true;
                 } else {
                     return false;
