@@ -486,6 +486,9 @@ angular.module 'trPcControllers'
         FacebookFundraiserService.confirmFundraiserStatus()
           .then (response) ->
             confirmOrUnlinkFacebookFundraiserResponse = response.data.confirmOrUnlinkFacebookFundraiserResponse
+            if typeof response.data.confirmOrUnlinkFacebookFundraiserResponse == 'undefined'
+              confirmOrUnlinkFacebookFundraiserResponse = []
+              confirmOrUnlinkFacebookFundraiserResponse.active = 'false'
             if confirmOrUnlinkFacebookFundraiserResponse?.active is 'false'
               delete $rootScope.facebookFundraiserId
               $rootScope.facebookFundraiserConfirmedStatus = 'deleted'
@@ -869,6 +872,8 @@ angular.module 'trPcControllers'
               $scope.schoolPlan.DonationDueDate = new Date($scope.schoolPlan.DonationDueDate.replace(/-/g, "/") + ' 00:01')
             if $scope.schoolPlan.KickOffDate != '0000-00-00'
               $scope.schoolPlan.KickOffDate = new Date($scope.schoolPlan.KickOffDate.replace(/-/g, "/") + ' 00:01')
+            if $scope.schoolPlan.LastDayOfSchool != '0000-00-00'
+              $scope.schoolPlan.LastDayOfSchool = new Date($scope.schoolPlan.LastDayOfSchool.replace(/-/g, "/") + ' 00:01')
             $scope.coordinatorPoints = JSON.parse($scope.schoolPlan.PointsDetail)
           else
             $rootScope.HideGifts = "NO"	      

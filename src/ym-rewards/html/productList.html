@@ -7,7 +7,16 @@
   <div ng-if="isCoordinator == 'YES'" ng-cloak>
 	 	<div class="row">
   		<div class="col-md-12">
+			<div class="title">
+				<div class="available-products-report float-end" ng-if="productList.length > 0" ng-cloak>
+					<button type="button" class="btn btn-md-wide btn-primary" ng-class="{'disabled': productList.length == 0}" ng-click="showAvailableProducts()" ng-disabled="productList.length == 0">
+						<strong>
+							Export Products Available
+						</strong>
+					</button>
+				</div>
 				<h2>Products</h2>
+			</div>
 				<style>
 				.btn.btn-primary {
 						margin-top: 10px;
@@ -70,6 +79,15 @@
 							 	<label for="file">Select Image</label>
                	<input  onchange="angular.element(this).scope().onFileChange(event)" id="file" type="file">         
                </div>
+							 <div>
+							 	<label for="p_{{product.program}}">Select Program</label>
+						               	<select name="program-{{product.program}}" id="p_{{product.program}}" ng-model="product.program">
+									<option value="">- select program - </option>
+									<option value="KHC">KHC</option>
+									<option value="AHC">AHC</option>
+									<option value="all">All</option>
+							 	</select>
+ 					    	         </div>
 					  </div>
             <div class="col-md-7">
   			       <h3>Sizes:</h3>
