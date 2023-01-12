@@ -1897,6 +1897,10 @@
                                 $acceptPrivacyChkbox.valid();
                             }
                             if ($('form#F2fRegContact').valid()) {
+                                localStorage.hfg = jQuery('label:contains(Healthy For Good)').prev('input:checked').length;
+                                localStorage.hfg_firstname = jQuery('input[name=cons_first_name]').val();
+                                localStorage.hfg_email = jQuery('input[name=cons_email]').val();
+                                localStorage.mobile_optin = jQuery('input[name=mobile_optin]:checked').val();
                                 $('form#F2fRegContact').submit();
                             }
                             return;
