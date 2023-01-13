@@ -1584,25 +1584,6 @@
 
         // WIP (wip)
         if (jQuery('input[name=pg]').val() == "reg" || jQuery('input[name=pg]').val() == "reganother") {
-            // Only add mobile opt in option if group id exists on body tag
-            if ($('body').data("group-id") != undefined) {
-                var optinHTML =
-                    '<div id="mobile_optin_outer">' +
-                        '<input type="checkbox" name="mobile_optin" id="mobile_optin">' +
-                        '<label for="mobile_optin" class="wrapable">' +
-                            '<span id="optin_label"><strong>Mobile Opt in:</strong> By checking the box, I consent to receive up to 1 - 2 text messages per week from AHA  supporting my Heart Walk efforts at the mobile number above. Selecting text option is not required for my participation. Message and data rates may apply. I can Reply STOP at any time to opt out.</span>' +
-                        '</label>' +
-                    '</div>';
-                $('#cons_info_component_container').append(optinHTML);
-                $('#mobile_optin').click(function () {
-                    if ($(this).is(":checked")) {
-                        $('.input-label:contains("Mobile Phone")').closest('label').next('input').addClass("phonecheck");
-                    } else {
-                        $('.input-label:contains("Mobile Phone")').closest('label').next('input').removeClass("phonecheck");
-                    }
-                });
-            }
-
             cd.renderRegPageSteps = function () {
                 // Local functions
                 var renderHeader = function (step) {
@@ -1770,6 +1751,7 @@
                 if ($questionContainer.length) {
                     $step4.find('div#relocated_reg_options_cons_info_extension').append($questionContainer.detach());
                 }
+
                 /*
                 $questionContainer = $('.survey-question-container label span:contains("What is your t-shirt size")').closest('div.survey-question-container');
                 if ($questionContainer.length) {
@@ -1811,12 +1793,12 @@
                     'By submitting the information requested in this form',
                     'Cleveland Clinic'
                 ]);
-                var $mobileOptinOuter = $('#mobile_optin_outer');
-                if ($mobileOptinOuter.length) {
-                    $step6.find('div#relocated_mobile_optin').append(
-                        $mobileOptinOuter.detach()
-                    );
-                }
+                //var $mobileOptinOuter = $('#mobile_optin_outer');
+                //if ($mobileOptinOuter.length) {
+                //   $step6.find('div#relocated_mobile_optin').append(
+                //        $mobileOptinOuter.detach()
+                //    );
+                //}
                 $step6.find('div#relocated_email_optin').append(
                     $('#gift_notice_optin').detach()
                 );
@@ -1915,6 +1897,10 @@
                                 $acceptPrivacyChkbox.valid();
                             }
                             if ($('form#F2fRegContact').valid()) {
+                                localStorage.hfg = jQuery('label:contains(Healthy For Good)').prev('input:checked').length;
+                                localStorage.hfg_firstname = jQuery('input[name=cons_first_name]').val();
+                                localStorage.hfg_email = jQuery('input[name=cons_email]').val();
+                                localStorage.mobile_optin = jQuery('input[name=mobile_optin]:checked').val();
                                 $('form#F2fRegContact').submit();
                             }
                             return;
@@ -2093,6 +2079,25 @@
         $('span.cons_email').parent().parent().addClass('consEmail');
         $('.survey-question-container.regMobilePhone').insertAfter('.cons-info-question-container.consEmail');
 
+        // Only add mobile opt in option if group id exists on body tag
+        if ($('body').data("group-id") != undefined) {
+            var optinHTML =
+                '<div id="mobile_optin_outer">' +
+                    '<input type="checkbox" name="mobile_optin" id="mobile_optin">' +
+                    '<label for="mobile_optin" class="wrapable">' +
+                        '<span id="optin_label"><strong>Mobile Opt in:</strong> By checking the box, I consent to receive up to 1 - 2 text messages per week from AHA  supporting my Heart Walk efforts at the mobile number above. Selecting text option is not required for my participation. Message and data rates may apply. I can Reply STOP at any time to opt out.</span>' +
+                    '</label>' +
+                '</div>';
+            $('.regMobilePhone').append(optinHTML);
+            $('#mobile_optin').click(function () {
+                if ($(this).is(":checked")) {
+                    $('.input-label:contains("Mobile Phone")').closest('label').next('input').addClass("phonecheck");
+                } else {
+                    $('.input-label:contains("Mobile Phone")').closest('label').next('input').removeClass("phonecheck");
+                }
+            });
+        }
+        
         $('#overlayWaiver, .lightboxWiaverClose').click(function () {
             $('#overlayWaiver, #lightboxWiaver').hide();
         });
