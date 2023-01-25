@@ -60,7 +60,7 @@
       <img style="height: 60px;" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy23/suggested-donation-100.png" alt="Consider $100 to celebrate the 100 year anniversary of the American Heart Association">
     </div>
   </div>
-  <div class="alert alert-danger" role="alert" ng-if="paymentInfoErrors.errors.length > 0" ng-cloak>
+  <div class="alert alert-danger" role="alert" tabindex="0" ng-if="paymentInfoErrors.errors.length > 0" ng-cloak>
     [[M0:friendraiser:generic_error]]
       <ul>
         <li ng-repeat="paymentInfoError in paymentInfoErrors.errors">
@@ -89,8 +89,8 @@
         </div>
       </div>
     </fieldset>
-    <div class="alert alert-danger ng-hide" role="alert" ng-show="otherAmtError" aria-hidden="true">
-      Donations of all amounts are greatly appreciated.<br>Online donations have a $10 minimum
+    <div class="alert alert-danger ng-hide" role="alert" tabindex="0" ng-show="otherAmtError" aria-hidden="true">
+      Online donations have a $10 minimum
     </div>
     <div class="ym-donation-levels__message level{{donationLevel.levelId}}" id="message-level-{{donationLevel.levelId}}" ng-repeat="donationLevel in donationLevels" ng-class="{'active': donationInfo.levelChecked == donationLevel.classLevel}">
       <p>

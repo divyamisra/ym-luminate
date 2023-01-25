@@ -35,6 +35,7 @@ angular.module 'ahaLuminateControllers'
       $scope.has_bonus = 0
       $scope.studentChallengeBadge = false
       $scope.schoolChallengeBadge = false
+      $rootScope.HideGifts = "NO"
 
       BoundlessService.getBadges $scope.frId + '/' + $scope.participantId
       .then (response) ->
@@ -60,6 +61,7 @@ angular.module 'ahaLuminateControllers'
           error: (response) ->
           success: (response) ->
             $scope.schoolPlan = response.data.company[0]
+            $rootScope.HideGifts = $scope.schoolPlan.HideGifts
             if $scope.schoolPlan.EventStartDate != undefined
               if $scope.schoolPlan.EventStartDate != '0000-00-00'
                 $scope.schoolPlan.EventStartDate = new Date($scope.schoolPlan.EventStartDate.replace(/-/g, "/") + ' 00:01')

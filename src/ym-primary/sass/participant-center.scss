@@ -1,3 +1,8 @@
+.ym-pc-dashboard-facebook-box button:focus,
+.ym-pc-dashboard-facebook-box a:focus{
+    border-color: #000 !important;
+}
+
 option {
   font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
   font-size: 18px;
@@ -369,6 +374,10 @@ section.ym-pc-dashboard-standard-gifts-section {
 		   .gift-subtitle2 {
 			   color:#2d2d2d;
 		   }
+		   .gift-post-event {
+			   color:$event-secondary;
+			   font-weight:bold;
+		   }
            }
 	   .ym-pc-dashboard-standard-gift-notearned {
 		   h4 {
@@ -383,6 +392,10 @@ section.ym-pc-dashboard-standard-gifts-section {
 		   }
 		   .gift-subtitle2 {
 			   color:$event-secondary;
+		   }
+		   .gift-post-event {
+			   color:$event-secondary;
+			   font-weight:bold;
 		   }
            }
 	   .more-details-button {

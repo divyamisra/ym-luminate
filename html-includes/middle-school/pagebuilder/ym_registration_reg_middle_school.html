@@ -24,7 +24,7 @@
           [[A5]]
         </div>
       ]]
-      <div class="alert alert-danger" role="alert" ng-class="{'d-none': [[?xyz.xnullynullz.xynullz.xnullyz::x[[A4]]y[[A6]]z::true::]] && (!registrationInfoErrors || !registrationInfoErrors.errors || registrationInfoErrors.errors.length == 0)}" ng-cloak>
+      <div class="alert alert-danger" role="alert" tabindex="0" ng-class="{'d-none': [[?xyz.xnullynullz.xynullz.xnullyz::x[[A4]]y[[A6]]z::true::]] && (!registrationInfoErrors || !registrationInfoErrors.errors || registrationInfoErrors.errors.length == 0)}" ng-cloak>
         [[?xy.xnully::x[[A4]]y::
           [[M0:friendraiser:generic_error]]
         ::
@@ -242,6 +242,9 @@
                 Password must be 5-20 characters.  Password may contain letters, digits and special characters
               </div>
             </div>
+            <p class="p-2">
+              <em>Please save your login information for all future years.</em>
+            </p>
           </div>
         </div>
       ]]
@@ -300,7 +303,7 @@
             Do you agree to the waiver?
           </label>
           <div class="form-control">
-            <div ng-bind-html="participationType.waiver.content"></div>
+            <div ng-bind-html="participationType.waiver.content" tabindex=0></div>
           </div>
         </div>
         <div class="ym-registration-reg-waiver-btns">

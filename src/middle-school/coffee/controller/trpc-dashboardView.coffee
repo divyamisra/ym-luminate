@@ -41,6 +41,17 @@ angular.module 'trPcControllers'
       $scope.companyId = $scope.participantRegistration.companyInformation.companyId
       theDate = new Date
       $scope.yearsList = [1..(theDate.getFullYear()-1978)] # 0 - 50
+      lockStart = 2200 #prod luminate server is est whereas dev server is cst
+      lockEnd = 500
+      $scope.lockEnabled = false
+      if $rootScope.currentCSTDate != ''
+        currDate = new Date $rootScope.currentCSTDate
+        if currDate.getMinutes() < 10
+          currTime = currDate.getHours()+'0'+currDate.getMinutes()
+        else
+          currTime = currDate.getHours()+''+currDate.getMinutes()
+        if currTime >= lockStart or currTime < lockEnd
+          $scope.lockEnabled = true
       
       $dataRoot = angular.element '[data-embed-root]'
 
@@ -475,6 +486,9 @@ angular.module 'trPcControllers'
         FacebookFundraiserService.confirmFundraiserStatus()
           .then (response) ->
             confirmOrUnlinkFacebookFundraiserResponse = response.data.confirmOrUnlinkFacebookFundraiserResponse
+            if typeof response.data.confirmOrUnlinkFacebookFundraiserResponse == 'undefined'
+              confirmOrUnlinkFacebookFundraiserResponse = []
+              confirmOrUnlinkFacebookFundraiserResponse.active = 'false'
             if confirmOrUnlinkFacebookFundraiserResponse?.active is 'false'
               delete $rootScope.facebookFundraiserId
               $rootScope.facebookFundraiserConfirmedStatus = 'deleted'
@@ -833,6 +847,7 @@ angular.module 'trPcControllers'
             getStudentChallenge()
 
       $scope.schoolPlan = []
+      $rootScope.HideGifts = "NO"	
       ZuriService.getSchoolDetail '&school_id=' + $scope.participantRegistration.companyInformation.companyId + '&EventId=' + $scope.frId,
         failure: (response) ->
         error: (response) ->
@@ -840,6 +855,7 @@ angular.module 'trPcControllers'
           if response.data.company[0] != "" and response.data.company[0] != null
             $scope.schoolPlan = response.data.company[0]
             $scope.hideAmount = $scope.schoolPlan.HideAmountRaised
+            $rootScope.HideGifts = $scope.schoolPlan.HideGifts  
             $scope.notifyName = $scope.schoolPlan.YMDName
             $scope.notifyEmail = $scope.schoolPlan.YMDEmail
             $scope.unconfirmedAmountRaised = $scope.schoolPlan.OfflineUnconfirmedRevenue
@@ -856,9 +872,11 @@ angular.module 'trPcControllers'
               $scope.schoolPlan.DonationDueDate = new Date($scope.schoolPlan.DonationDueDate.replace(/-/g, "/") + ' 00:01')
             if $scope.schoolPlan.KickOffDate != '0000-00-00'
               $scope.schoolPlan.KickOffDate = new Date($scope.schoolPlan.KickOffDate.replace(/-/g, "/") + ' 00:01')
+            if $scope.schoolPlan.LastDayOfSchool != '0000-00-00'
+              $scope.schoolPlan.LastDayOfSchool = new Date($scope.schoolPlan.LastDayOfSchool.replace(/-/g, "/") + ' 00:01')
             $scope.coordinatorPoints = JSON.parse($scope.schoolPlan.PointsDetail)
           else
-            $rootScope.hideGifts = "N"	      
+            $rootScope.HideGifts = "NO"	      
 	
       $scope.putSchoolPlan = (event, sel) ->
         school = @schoolPlan
@@ -868,6 +886,11 @@ angular.module 'trPcControllers'
             failure: (response) ->
             error: (response) ->
             success: (response) ->
+          if sel == 'ParticipatingNextYear' and $scope.schoolPlan[sel] == 'YES'
+            ZuriService.schoolPlanData '&method=UpdateParticipatingNextYear&EventProgram=AHC&CompanyId=' + $scope.participantRegistration.companyInformation.companyId + '&value=' + $scope.schoolPlan[sel],
+              failure: (response) ->
+              error: (response) ->
+              success: (response) ->
         else
           if event.currentTarget.id == 'school_goal'
             $scope.schoolGoalInfo.goal = event.currentTarget.value
