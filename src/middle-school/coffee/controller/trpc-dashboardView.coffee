@@ -44,7 +44,7 @@ angular.module 'trPcControllers'
       lockStart = 2200 #prod luminate server is est whereas dev server is cst
       lockEnd = 500
       $scope.lockEnabled = false
-      $scope.lockEnabled = $dataRoot.data('cons-id') if $dataRoot.data('cons-id') isnt ''
+      $scope.lockEnabled = $dataRoot.data('school-plan-locked') if $dataRoot.data('school-plan-locked') isnt ''
       if $rootScope.currentCSTDate != ''
         currDate = new Date $rootScope.currentCSTDate
         if currDate.getMinutes() < 10
