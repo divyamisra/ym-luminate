@@ -44,7 +44,6 @@ angular.module 'trPcControllers'
       lockStart = 2200 #prod luminate server is est whereas dev server is cst
       lockEnd = 500
       $scope.lockEnabled = false
-      $scope.lockEnabled = $dataRoot.data('school-plan-locked') if $dataRoot.data('school-plan-locked') isnt ''
       if $rootScope.currentCSTDate != ''
         currDate = new Date $rootScope.currentCSTDate
         if currDate.getMinutes() < 10
@@ -55,6 +54,7 @@ angular.module 'trPcControllers'
           $scope.lockEnabled = true
       
       $dataRoot = angular.element '[data-embed-root]'
+      $scope.lockEnabled = $dataRoot.data('school-plan-locked') if $dataRoot.data('school-plan-locked') isnt ''
 
       #setup social iframe
       urlPrefix = ''
