@@ -43,7 +43,7 @@ angular.module 'trPcControllers'
       $scope.yearsList = [1..(theDate.getFullYear()-1978)] # 0 - 50
       lockStart = 2200 #prod luminate server is est whereas dev server is cst
       lockEnd = 500
-      $scope.lockEnabled = false
+      $scope.lockEnabled = $dataRoot.data('cons-id') if $dataRoot.data('cons-id') isnt '' else false
       if $rootScope.currentCSTDate != ''
         currDate = new Date $rootScope.currentCSTDate
         if currDate.getMinutes() < 10
