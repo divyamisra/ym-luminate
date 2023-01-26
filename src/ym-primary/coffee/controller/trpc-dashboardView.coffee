@@ -50,6 +50,12 @@ angular.module 'trPcControllers'
       lockStart = 2200 #prod luminate server is est whereas dev server is cst
       lockEnd = 500
       $scope.lockEnabled = false
+      $scope.lockEnabledMsg = "School Planning fields are currently locked for point calculations until 6 am CST."
+      $dataRootBody = angular.element '[data-aha-luminate-root]'
+      if $dataRootBody.data('school-plan-locked') isnt ''
+        if $dataRootBody.data('school-plan-locked') == true
+          $scope.lockEnabled = $dataRootBody.data('school-plan-locked') 
+          $scope.lockEnabledMsg = "School Planning fields are currently locked for entry as we perform maintenance on the system."
       if $rootScope.currentCSTDate != ''
         currDate = new Date $rootScope.currentCSTDate
         if currDate.getMinutes() < 10
