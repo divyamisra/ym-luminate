@@ -48,7 +48,7 @@ angular.module 'trPcControllers'
       $scope.lockEnabledMsg = "School Planning fields are currently locked for point calculations until 6 am CST."
       $dataRootBody = angular.element '[data-aha-luminate-root]'
       if $dataRootBody.data('school-plan-locked') isnt ''
-        if $dataRootBody.data('school-plan-locked') is 'true'
+        if $dataRootBody.data('school-plan-locked') == 'true'
           $scope.lockEnabled = $dataRootBody.data('school-plan-locked') 
           $scope.lockEnabledMsg = "School Planning fields are currently locked for entry as we perform maintenance on the system."
       if $rootScope.currentCSTDate != ''
