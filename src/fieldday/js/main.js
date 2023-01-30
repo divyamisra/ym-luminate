@@ -1089,60 +1089,84 @@
 
             luminateExtend.api({
                 api: 'teamraiser',
-                data: 'method=getCompaniesByInfo' +
-                    '&company_name=' + companyName +
+                data: 'method=getTeamraisersByInfo' +
                     '&event_type=' + eventType +
+                    '&name=%25%25%25' +
                     '&response_format=json&list_page_size=499&list_page_offset=0',
                 callback: {
                     success: function (response) {
-                        if (response.getCompaniesResponse.totalNumberResults > '0') {
-                            $('.js--participant-loading').hide();
-                            var companies = luminateExtend.utils.ensureArray(response.getCompaniesResponse.company);
-                            var totalEvents = parseInt(response.getCompaniesResponse.totalNumberResults);
+                        console.log("getTRbyInfo = ", response);
+                        if (response.getTeamraisersResponse.totalNumberResults > '0') {
 
-                            $(companies).each(function (i, company) {
-
-                                var companyId = company.companyId;
-
-                                var companyLocation;
-
-                                companyLocation = $('#company-id-'+ companyId + ' .js--company-data-location').html();
-
-
-                                var eventRow = '<div class="row py-3' + (i > 10 ? ' d-none' : '') + '"><div class="landing-participant-search__name col-12 col-lg-6"><p><a href="'+ company.companyURL +'">'+ company.companyName +'</a><br>';
-
-                                if (companyLocation !== undefined ) {
-                                  eventRow += '<span class="js--company-location">'+ companyLocation +'</span>'
+                            luminateExtend.api({
+                                api: 'teamraiser',
+                                data: 'method=getCompaniesByInfo' +
+                                    '&company_name=' + companyName +
+                                    '&event_type=' + eventType +
+                                    '&response_format=json&list_page_size=499&list_page_offset=0',
+                                callback: {
+                                    success: function (response) {
+                                        if (response.getCompaniesResponse.totalNumberResults > '0') {
+                                            $('.js--participant-loading').hide();
+                                            var companies = luminateExtend.utils.ensureArray(response.getCompaniesResponse.company);
+                                            var totalEvents = parseInt(response.getCompaniesResponse.totalNumberResults);
+                
+                                            $(companies).each(function (i, company) {
+                
+                                                var companyId = company.companyId;
+                
+                                                var companyLocation;
+                
+                                                companyLocation = $('#company-id-'+ companyId + ' .js--company-data-location').html();
+                
+                
+                                                var eventRow = '<div class="row py-3' + (i > 10 ? ' d-none' : '') + '"><div class="landing-participant-search__name col-12 col-lg-6"><p><a href="'+ company.companyURL +'">'+ company.companyName +'</a><br>';
+                
+                                                if (companyLocation !== undefined ) {
+                                                  eventRow += '<span class="js--company-location">'+ companyLocation +'</span>'
+                                                }
+                
+                                                eventRow +='</p></div><div class="landing-participant-search__register col-12 col-lg-6"><p><a href="'+ company.companyURL +'" class="btn btn-primary">Register</a></p></div>';
+                
+                                                $('.js--participant-search-results').attr('aria-live', 'polite').append(eventRow);
+                
+                                            });
+                
+                                            if (totalEvents > 10) {
+                                                $('.js--participant-more-event-results').removeClass('hidden');
+                                            }
+                
+                                            $('.js--participant-more-event-results').on('click', function (e) {
+                                                e.preventDefault();
+                                                $('.js--participant-search-results .row').removeClass('d-none');
+                                                $(this).addClass('hidden');
+                                            });
+                
+                                            $('.js--participant-search-results').removeAttr('hidden');
+                                        } else {
+                                            $('.js--participant-loading').hide();
+                                            $('.js--participant-no-event-results').attr('role', 'alert').removeClass('d-none');
+                                        }
+                                    },
+                                    error: function (response) {
+                                        $('.js--participant-loading').hide();
+                                        console.log(response.errorResponse.message);
+                                    }
                                 }
-
-                                eventRow +='</p></div><div class="landing-participant-search__register col-12 col-lg-6"><p><a href="'+ company.companyURL +'" class="btn btn-primary">Register</a></p></div>';
-
-                                $('.js--participant-search-results').attr('aria-live', 'polite').append(eventRow);
-
                             });
-
-                            if (totalEvents > 10) {
-                                $('.js--participant-more-event-results').removeClass('hidden');
-                            }
-
-                            $('.js--participant-more-event-results').on('click', function (e) {
-                                e.preventDefault();
-                                $('.js--participant-search-results .row').removeClass('d-none');
-                                $(this).addClass('hidden');
-                            });
-
-                            $('.js--participant-search-results').removeAttr('hidden');
-                        } else {
-                            $('.js--participant-loading').hide();
-                            $('.js--participant-no-event-results').attr('role', 'alert').removeClass('d-none');
+                            
                         }
-                    },
-                    error: function (response) {
-                        $('.js--participant-loading').hide();
-                        console.log(response.errorResponse.message);
                     }
+                },
+                error: function (response) {
+                    $('.js--participant-loading').hide();
+                    console.log(response.errorResponse.message);
                 }
             });
+            
+
+
+            
         };
         // END getCompaniesLandingPage
 
