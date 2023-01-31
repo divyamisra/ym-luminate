@@ -252,9 +252,9 @@ function convertTime(datetime) {
   let c = a[1].split(':');
 
   let dt = new Date();
-  dt.setFullYear(b[0]);
-  dt.setMonth(b[1] - 1);
+  dt.setFullYear(b[0]);  
   dt.setDate(b[2]);
+  dt.setMonth(b[1] - 1);
   dt.setHours(c[0]);
   dt.setMinutes(c[1]);
   dt.setSeconds(0);
