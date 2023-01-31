@@ -1089,41 +1089,84 @@
 
             luminateExtend.api({
                 api: 'teamraiser',
-                data: 'method=getCompaniesByInfo' +
-                    '&company_name=' + companyName +
+                data: 'method=getTeamraisersByInfo' +
                     '&event_type=' + eventType +
+                    '&name=%25%25%25' +
                     '&response_format=json&list_page_size=499&list_page_offset=0',
                 callback: {
                     success: function (response) {
-                        if (response.getCompaniesResponse.totalNumberResults > '0') {
-                            $('.js--participant-loading').hide();
-                            var companies = luminateExtend.utils.ensureArray(response.getCompaniesResponse.company);
-                            var totalEvents = parseInt(response.getCompaniesResponse.totalNumberResults);
+                        // console.log("getTRbyInfo = ", response);
+                        if (response.getTeamraisersResponse.totalNumberResults > '0') {
+                            var searchableTRs = luminateExtend.utils.ensureArray(response.getTeamraisersResponse.teamraiser);
 
-                            $(companies).each(function (i, company) {
+                            const companyTRLoop = async () => {
+                            //   console.log('Start')
+                            
+                              const promises = await searchableTRs.map(async tr => {
+                                const companyArrs = new Promise((resolve, reject) => {
+                                        
+                                    luminateExtend.api({
+                                        api: 'teamraiser',
+                                        data: 'method=getCompaniesByInfo' +
+                                            '&company_name=' + companyName +
+                                            // '&event_type=' + eventType +
+                                            '&fr_id=' + tr.id +
+                                            '&response_format=json&list_page_size=499&list_page_offset=0',
+                                        callback: {
+                                            success: function (response) {
+                                                if (response.getCompaniesResponse.totalNumberResults > '0') {
+                                                    $('.js--participant-loading').hide();
+                                                    var companies = luminateExtend.utils.ensureArray(response.getCompaniesResponse.company);
+                                                    resolve(companies);
+                                                } else {
+                                                    $('.js--participant-loading').hide();
+                                                    // console.log("errored no companies match in this TR");
+                                                    resolve();
+                                                }
+                                            },
+                                            error: function (response) {
+                                                $('.js--participant-loading').hide();
+                                                console.log(response.errorResponse.message);
+                                                reject();
+                                            }
+                                        }
+                                    });                                    
 
-                                var companyId = company.companyId;
-
-                                var companyLocation;
-
-                                companyLocation = $('#company-id-'+ companyId + ' .js--company-data-location').html();
-
-
-                                var eventRow = '<div class="row py-3' + (i > 10 ? ' d-none' : '') + '"><div class="landing-participant-search__name col-12 col-lg-6"><p><a href="'+ company.companyURL +'">'+ company.companyName +'</a><br>';
-
-                                if (companyLocation !== undefined ) {
-                                  eventRow += '<span class="js--company-location">'+ companyLocation +'</span>'
+                                });
+                                return companyArrs
+                              })
+                              const fullCompanyArr = await Promise.all(promises)
+                              var companySearchArr = fullCompanyArr.flat().filter(item => item !== undefined);
+                            //   console.log(companySearchArr);
+                              if (companySearchArr.length === 0){
+                                $('.js--participant-no-event-results').attr('role', 'alert').removeClass('d-none');
+                              }
+                              if (companySearchArr.length > 10) {
+                                    $('.js--participant-more-event-results').removeClass('hidden');
                                 }
+                              $(companySearchArr).each(function (i, company) {
+                                if (company !== undefined) {
+                                  var companyId = company.companyId;
+  
+                                  var companyLocation;
+  
+                                  companyLocation = $('#company-id-'+ companyId + ' .js--company-data-location').html();
+  
+                                  var eventRow = '<div class="row py-3' + (i > 10 ? ' d-none' : '') + '"><div class="landing-participant-search__name col-12 col-lg-6"><p><a href="'+ company.companyURL +'">'+ company.companyName +'</a><br>';
+  
+                                  if (companyLocation !== undefined ) {
+                                    eventRow += '<span class="js--company-location">'+ companyLocation +'</span>'
+                                  }
 
-                                eventRow +='</p></div><div class="landing-participant-search__register col-12 col-lg-6"><p><a href="'+ company.companyURL +'" class="btn btn-primary">Register</a></p></div>';
+                                  eventRow +='</p></div><div class="landing-participant-search__register col-12 col-lg-6"><p><a href="'+ company.companyURL +'" class="btn btn-primary">Register</a></p></div>';
+  
+                                  $('.js--participant-search-results').attr('aria-live', 'polite').append(eventRow);
+                                }
+  
+                              });
 
-                                $('.js--participant-search-results').attr('aria-live', 'polite').append(eventRow);
-
-                            });
-
-                            if (totalEvents > 10) {
-                                $('.js--participant-more-event-results').removeClass('hidden');
                             }
+                            companyTRLoop();
 
                             $('.js--participant-more-event-results').on('click', function (e) {
                                 e.preventDefault();
@@ -1132,17 +1175,22 @@
                             });
 
                             $('.js--participant-search-results').removeAttr('hidden');
+                            
                         } else {
                             $('.js--participant-loading').hide();
                             $('.js--participant-no-event-results').attr('role', 'alert').removeClass('d-none');
                         }
-                    },
-                    error: function (response) {
-                        $('.js--participant-loading').hide();
-                        console.log(response.errorResponse.message);
                     }
+                },
+                error: function (response) {
+                    $('.js--participant-loading').hide();
+                    console.log(response.errorResponse.message);
                 }
             });
+            
+
+
+            
         };
         // END getCompaniesLandingPage
 
