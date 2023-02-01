@@ -307,7 +307,7 @@ angular.module 'ahaLuminateControllers'
         else
           window.setTimeout(findLabel,50);
 
-      findLabel()
+      #findLabel()
 
       $scope.toggleAcceptWaiver = (acceptWaiver) ->
         $scope.acceptWaiver = acceptWaiver
