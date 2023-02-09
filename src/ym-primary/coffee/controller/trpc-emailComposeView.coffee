@@ -97,6 +97,8 @@ angular.module 'trPcControllers'
         console.log('messageBody ' + messageBody)
         if not messageBody or not angular.isString(messageBody)
           messageBody = ''
+        if $scope.participantRegistration.companyInformation?.isCompanyCoordinator isnt 'true'
+          messageBody = 'insert link here<br>' + messageBody
         $scope.emailComposer.message_body = messageBody
       
       getEmailMessageBody = ->
