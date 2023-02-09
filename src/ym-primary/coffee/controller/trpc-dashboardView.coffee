@@ -181,7 +181,7 @@ angular.module 'trPcControllers'
             if participantIndex < (participants.length - 1)
               participantsString += ', '
           companyParticipantsString = '{participants: [' + participantsString + '], totalNumber: ' + participants.length + '}'
-          if angular.element('.ym-school-animation iframe') > 0
+          if angular.element('.ym-school-animation iframe').length > 0
             angular.element('.ym-school-animation iframe')[0].contentWindow.postMessage companyParticipantsString, domain
             angular.element('.ym-school-animation iframe').on 'load', ->
               angular.element('.ym-school-animation iframe')[0].contentWindow.postMessage companyParticipantsString, domain
