@@ -93,12 +93,16 @@ angular.module 'trPcControllers'
       setEmailComposerDefaults()
       
       setEmailMessageBody = (messageBody = '') ->
+        console.log('setEmailMessageBody ')
+        console.log('messageBody ' + messageBody)
         if not messageBody or not angular.isString(messageBody)
           messageBody = ''
         $scope.emailComposer.message_body = messageBody
       
       getEmailMessageBody = ->
+        console.log('setEmailMessageBody ')
         messageBody = $scope.emailComposer.message_body
+        console.log('messageBody ' + messageBody)
         messageBody
       
       if $scope.messageType is 'suggestedMessage' and $scope.messageId
@@ -220,6 +224,7 @@ angular.module 'trPcControllers'
       $scope.emailPromises.push personalizedGreetingEnabledPromise
       
       $scope.loadSuggestedMessage = ->
+        console.log('loadSuggestedMessage')
         suggested_message_id = $scope.emailComposer.suggested_message_id
         if suggested_message_id is ''
           $scope.emailComposer.subject = ''
