@@ -12,10 +12,11 @@ angular.module 'trPcControllers'
     'NgPcTeamraiserEventService'
     'NgPcTeamraiserEmailService'
     'NgPcContactService'
-    ($rootScope, $scope, $routeParams, $timeout, $sce, $httpParamSerializer, $uibModal, APP_INFO, BoundlessService, NgPcTeamraiserEventService, NgPcTeamraiserEmailService, NgPcContactService) ->
+    'NgPcTeamraiserRegistrationService'
+    ($rootScope, $scope, $routeParams, $timeout, $sce, $httpParamSerializer, $uibModal, APP_INFO, BoundlessService, NgPcTeamraiserEventService, NgPcTeamraiserEmailService, NgPcContactService,NgPcTeamraiserRegistrationService) ->
       $scope.messageType = $routeParams.messageType
       $scope.messageId = $routeParams.messageId
-      
+
       $scope.emailPromises = []
       
       # $scope.getMessageCounts = (refresh) ->
@@ -91,20 +92,16 @@ angular.module 'trPcControllers'
           message_body: ''
           layout_id: if defaultStationeryId isnt '-1' then defaultStationeryId else ''
       setEmailComposerDefaults()
-      
+
       setEmailMessageBody = (messageBody = '') ->
-        console.log('setEmailMessageBody ')
-        console.log('messageBody ' + messageBody)
         if not messageBody or not angular.isString(messageBody)
           messageBody = ''
         if $scope.participantRegistration.companyInformation?.isCompanyCoordinator isnt 'true'
-          messageBody = 'insert link here<br>' + messageBody
+          messageBody = '<a href="'+luminateExtend.global.path.secure + 'TR?fr_id='+$rootScope.frId+'&pg=personal&px='+$rootScope.participantRegistration.consId+'">Click here to help me reach my goal today!</a>' + messageBody
         $scope.emailComposer.message_body = messageBody
       
       getEmailMessageBody = ->
-        console.log('setEmailMessageBody ')
         messageBody = $scope.emailComposer.message_body
-        console.log('messageBody ' + messageBody)
         messageBody
       
       if $scope.messageType is 'suggestedMessage' and $scope.messageId
@@ -226,7 +223,6 @@ angular.module 'trPcControllers'
       $scope.emailPromises.push personalizedGreetingEnabledPromise
       
       $scope.loadSuggestedMessage = ->
-        console.log('loadSuggestedMessage')
         suggested_message_id = $scope.emailComposer.suggested_message_id
         if suggested_message_id is ''
           $scope.emailComposer.subject = ''
