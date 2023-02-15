@@ -634,20 +634,6 @@
 								</div>
 							</div>
 						</div>
-													<div class="ym-pc-dashboard-participate-next-year">
-				<div class="d-md-flex participatingNextYear text-start">
-					<div class="col-md-8 pl-0">
-						My school will be participating in American Heart Challenge next year!
-					</div>
-					<div class="col-md-4 pr-0">
-						<select ng-disabled="lockEnabled" class="form-control" id="ParticipatingNextYear" ng-model="schoolPlan.ParticipatingNextYear" aria-label="Next Year Participation" ng-change="putSchoolPlan($event,'ParticipatingNextYear')">
-							<option value="YES">Yes</option>
-							<option value="NO">No</option>
-							<option value="I'M NOT SURE">Still Considering</option>
-						</select>
-					</div>
-				</div>
-						</div>
 						<div class="ym-pc-dashboard-materials-needed mt-sm">
 				<div class="d-md-flex materialsNeeded text-start"> 
 					<div class="col-md-8 pl-0">
@@ -726,6 +712,27 @@
 					<div class="d-md-flex flex-wrap justify-content-between mb-4">
 						<div class="col-md-6 p-2">
 							<div class="ym-pc-dashboard-coordinator-progress-section__column h-100">
+								<div class="coordinator-school-progress white-box red-border-bottom p-0 mb-4">
+									<div class="card-header bg-light d-flex align-items-center justify-content-between m-0">
+										<h3 class="h5 mb-0">School Status</h3>
+									</div>	
+									<div class="p-4">
+										<div class="ym-pc-dashboard-participate-next-year">
+											<div class="d-md-flex participatingNextYear text-start">
+												<div class="col-md-8 pl-0">
+													My school will be participating in American Heart Challenge next year!
+												</div>
+												<div class="col-md-4 pr-0">
+													<select class="form-control" id="ParticipatingNextYear" ng-model="schoolPlan.ParticipatingNextYear" aria-label="Next Year Participation" ng-change="putSchoolPlan($event,'ParticipatingNextYear')">
+														<option value="YES">Yes</option>
+														<option value="NO">No</option>
+														<option value="I'M NOT SURE">Still Considering</option>
+													</select>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
 								<div class="coordinator-school-progress white-box red-border-bottom p-0 mb-4">
 										<div class="card-header bg-light d-flex align-items-center justify-content-between m-0">
 											<h3 class="h5 mb-0">School Progress</h3>
@@ -825,9 +832,9 @@
 						</div>
 						<div class="col-md-6 p-2">
 							<div class="white-box red-border-bottom mb-4">
-								<h3 class="h5 clearfix">
-									Edit My Pages 
-								</h3>
+								<div class="card-header bg-light d-flex align-items-center justify-content-between m-0">
+									<h3 class="h5 mb-0">Edit My Pages</h3>
+								</div>	
 								<p>
 									Edit your pages to encourage students and parents to join and donate! 
 								</p>
