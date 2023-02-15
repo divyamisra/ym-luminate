@@ -1500,7 +1500,7 @@
 								School Plan 
 							</h2>
 							<em ng-if="!lockEnabled" class="text-center alert alert-light d-block me-2">School Planning fields will be locked<br/>between 11 pm – 6 am CST for point calculations.</em>
-							<em ng-if="lockEnabled" class="text-center alert alert-danger d-block me-2">{{lockEnabledMsg}}</em>
+							<em ng-if="lockEnabled" class="text-center alert alert-light d-block me-2">{{lockEnabledMsg}}</em>
 							<div class="ym-pc-dashboard-section-plan" ng-if="schoolPlan != null && schoolPlan != ''" ng-cloak>
 								<div class="schoolPlanDates text-center">
 									<p>
@@ -1624,26 +1624,6 @@
 										<input ng-disabled="lockEnabled" type="checkbox" name="SendEmailOnBehalfOfCoordinator" id="SendEmailOnBehalfOfCoordinator" ng-model="schoolPlan.SendEmailOnBehalfOfCoordinator" ng-true-value="'ALLOW'" ng-false-value="'DONOTALLOW'" ng-click="putSchoolPlan($event)">
 											Allow AHA to Send Emails to my students on my behalf 
 										</label>
-								</div>
-								<div class="ym-pc-dashboard-participate-next-year mb-2 pe-2">
-									<div class="d-md-flex participatingNextYear text-left">
-										<div class="col-md-8 pl-0">
-											My school will be participating in Kids Heart Challenge next year! 
-										</div>
-										<div class="col-md-4 pr-0">
-											<select ng-disabled="lockEnabled" class="form-control" id="ParticipatingNextYear" ng-model="schoolPlan.ParticipatingNextYear" aria-label="Participating Next Year" ng-change="putSchoolPlan($event,'ParticipatingNextYear')">
-												<option value="YES">
-													Yes
-												</option>
-												<option value="NO">
-													No
-												</option>
-												<option value="I'm not sure'">
-													Still Considering
-												</option>
-											</select>
-										</div>
-									</div>
 								</div>
 								<div class="ym-pc-dashboard-materials-needed mt-sm">
 									<div class="d-md-flex materialsNeeded text-left">
@@ -1844,6 +1824,29 @@
 																Copy
 															</strong>
 														</button>
+													</div>
+												</div>
+												<div class="ym-pc-dashboard-participate-next-year mt-4 mb-2 p-2">
+													<h2 class="h4 text-center">
+														School Status 
+													</h2>
+													<div class="d-md-flex participatingNextYear text-left">
+														<div class="col-md-8 pl-0">
+															My school will be participating in Kids Heart Challenge next year! 
+														</div>
+														<div class="col-md-4 pr-0">
+															<select class="form-control" id="ParticipatingNextYear" ng-model="schoolPlan.ParticipatingNextYear" aria-label="Participating Next Year" ng-change="putSchoolPlan($event,'ParticipatingNextYear')">
+																<option value="YES">
+																	Yes
+																</option>
+																<option value="NO">
+																	No
+																</option>
+																<option value="I'm not sure'">
+																	Still Considering
+																</option>
+															</select>
+														</div>
 													</div>
 												</div>
 											</div>
