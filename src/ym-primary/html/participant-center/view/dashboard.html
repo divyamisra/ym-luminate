@@ -1683,6 +1683,29 @@
 				</div>
 									<div class="col-md-6 p-2">
 										<div class="ym-pc-dashboard-coordinator-progress-section__column p-3 h-100">
+											<div class="ym-pc-dashboard-participate-next-year mb-4 mb-2 p-2">
+												<h2 class="h3 text-center">
+													School Status 
+												</h2>
+												<div class="d-md-flex participatingNextYear text-left">
+													<div class="col-md-8 pl-0 pe-2">
+														My school will be participating in Kids Heart Challenge next year! 
+													</div>
+													<div class="col-md-4 pr-0">
+														<select class="form-control" id="ParticipatingNextYear" ng-model="schoolPlan.ParticipatingNextYear" aria-label="Participating Next Year" ng-change="putSchoolPlan($event,'ParticipatingNextYear')">
+															<option value="YES">
+																Yes
+															</option>
+															<option value="NO">
+																No
+															</option>
+															<option value="I'm not sure'">
+																Still Considering
+															</option>
+														</select>
+													</div>
+												</div>
+											</div>
 											<div class="ym-pc-dashboard-coordinator-progress-box">
 												<h2 class="h3 text-center">
 													School Challenge 
@@ -1824,29 +1847,6 @@
 																Copy
 															</strong>
 														</button>
-													</div>
-												</div>
-												<div class="ym-pc-dashboard-participate-next-year mt-4 mb-2 p-2">
-													<h2 class="h4 text-center">
-														School Status 
-													</h2>
-													<div class="d-md-flex participatingNextYear text-left">
-														<div class="col-md-8 pl-0">
-															My school will be participating in Kids Heart Challenge next year! 
-														</div>
-														<div class="col-md-4 pr-0">
-															<select class="form-control" id="ParticipatingNextYear" ng-model="schoolPlan.ParticipatingNextYear" aria-label="Participating Next Year" ng-change="putSchoolPlan($event,'ParticipatingNextYear')">
-																<option value="YES">
-																	Yes
-																</option>
-																<option value="NO">
-																	No
-																</option>
-																<option value="I'm not sure'">
-																	Still Considering
-																</option>
-															</select>
-														</div>
 													</div>
 												</div>
 											</div>
