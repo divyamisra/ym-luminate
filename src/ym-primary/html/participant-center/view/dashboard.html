@@ -1533,9 +1533,9 @@
 												</strong>
 											</label>
 											<div class="input-group-old">
-												<span ng-if="schoolPlan.EventStartDate == '0000-00-00' && lockEnabled" ng-cloak>--/--/----</span>
-												<span ng-if="schoolPlan.EventStartDate != '0000-00-00' && lockEnabled" ng-cloak>{{schoolPlan.EventStartDate | date:'MM/dd/yyyy'}}</span>
-												<input ng-if="!lockEnabled" type="date" class="form-control" id="EventStartDate" ng-model="schoolPlan.EventStartDate" aria-label="Event Start/Distribute Envelopes Date" ng-blur="putSchoolPlan($event)" /> 
+												<span ng-if="schoolPlan.EventStartDate == '0000-00-00'" ng-cloak>--/--/----</span>
+												<span ng-if="schoolPlan.EventStartDate != '0000-00-00'" ng-cloak>{{schoolPlan.EventStartDate | date:'MM/dd/yyyy'}}</span>
+												<!-- <input ng-if="!lockEnabled" type="date" class="form-control" id="EventStartDate" ng-model="schoolPlan.EventStartDate" aria-label="Event Start/Distribute Envelopes Date" ng-blur="putSchoolPlan($event)" />  -->
 											</div>
 										</div>
 									</div>
@@ -1547,9 +1547,9 @@
 												</strong>
 											</label>
 											<div class="input-group-old">
-												<span ng-if="schoolPlan.EventEndDate == '0000-00-00' && lockEnabled" ng-cloak>--/--/----</span>
-												<span ng-if="schoolPlan.EventEndDate != '0000-00-00' && lockEnabled" ng-cloak>{{schoolPlan.EventEndDate | date:'MM/dd/yyyy'}}</span>
-												<input ng-if="!lockEnabled" type="date" class="form-control" id="EventEndDate" ng-model="schoolPlan.EventEndDate" aria-label="Event End Date" ng-blur="putSchoolPlan($event)" /> 
+												<span ng-if="schoolPlan.EventEndDate == '0000-00-00'" ng-cloak>--/--/----</span>
+												<span ng-if="schoolPlan.EventEndDate != '0000-00-00'" ng-cloak>{{schoolPlan.EventEndDate | date:'MM/dd/yyyy'}}</span>
+												<!-- <input ng-if="!lockEnabled" type="date" class="form-control" id="EventEndDate" ng-model="schoolPlan.EventEndDate" aria-label="Event End Date" ng-blur="putSchoolPlan($event)" />   -->
 											</div>
 										</div>
 									</div>
@@ -1561,9 +1561,9 @@
 												</strong>
 											</label>
 											<div class="input-group-old">
-												<span ng-if="schoolPlan.KickOffDate == '0000-00-00' && lockEnabled" ng-cloak>--/--/----</span>
-												<span ng-if="schoolPlan.KickOffDate != '0000-00-00' && lockEnabled" ng-cloak>{{schoolPlan.KickOffDate | date:'MM/dd/yyyy'}}</span>
-												<input ng-if="!lockEnabled" type="date" class="form-control" id="KickOffDate" ng-model="schoolPlan.KickOffDate" aria-label="Kick Off/Assembly Date" ng-blur="putSchoolPlan($event)" /> 
+												<span ng-if="schoolPlan.KickOffDate == '0000-00-00'" ng-cloak>--/--/----</span>
+												<span ng-if="schoolPlan.KickOffDate != '0000-00-00'" ng-cloak>{{schoolPlan.KickOffDate | date:'MM/dd/yyyy'}}</span>
+												<!-- <input ng-if="!lockEnabled" type="date" class="form-control" id="KickOffDate" ng-model="schoolPlan.KickOffDate" aria-label="Kick Off/Assembly Date" ng-blur="putSchoolPlan($event)" />  --> 
 											</div>
 										</div>
 									</div>
@@ -1575,9 +1575,9 @@
 												</strong>
 											</label>
 											<div class="input-group-old">
-												<span ng-if="schoolPlan.DonationDueDate == '0000-00-00' && lockEnabled" ng-cloak>--/--/----</span>
-												<span ng-if="schoolPlan.DonationDueDate != '0000-00-00' && lockEnabled" ng-cloak>{{schoolPlan.DonationDueDate | date:'MM/dd/yyyy'}}</span>
-												<input ng-if="!lockEnabled" type="date" class="form-control" id="DonationDueDate" ng-model="schoolPlan.DonationDueDate" aria-label="Donation Due Date" ng-blur="putSchoolPlan($event)" /> 
+												<span ng-if="schoolPlan.DonationDueDate == '0000-00-00'" ng-cloak>--/--/----</span>
+												<span ng-if="schoolPlan.DonationDueDate != '0000-00-00'" ng-cloak>{{schoolPlan.DonationDueDate | date:'MM/dd/yyyy'}}</span>
+												<!-- <input ng-if="!lockEnabled" type="date" class="form-control" id="DonationDueDate" ng-model="schoolPlan.DonationDueDate" aria-label="Donation Due Date" ng-blur="putSchoolPlan($event)" />   -->
 											</div>
 										</div>
 									</div>
@@ -1589,9 +1589,9 @@
 												</strong>
 											</label>
 											<div class="input-group-old">
-												<span ng-if="schoolPlan.LastDayOfSchool == '0000-00-00' && lockEnabled" ng-cloak>--/--/----</span>
-												<span ng-if="schoolPlan.LastDayOfSchool != '0000-00-00' && lockEnabled" ng-cloak>{{schoolPlan.LastDayOfSchool | date:'MM/dd/yyyy'}}</span>
-												<input ng-if="!lockEnabled" type="date" class="form-control" id="LastDayOfSchool" ng-model="schoolPlan.LastDayOfSchool" aria-label="Last Day of School" ng-blur="putSchoolPlan($event)" /> 
+												<span ng-if="schoolPlan.LastDayOfSchool == '0000-00-00'" ng-cloak>--/--/----</span>
+												<span ng-if="schoolPlan.LastDayOfSchool != '0000-00-00'" ng-cloak>{{schoolPlan.LastDayOfSchool | date:'MM/dd/yyyy'}}</span>
+												<!-- <input ng-if="!lockEnabled" type="date" class="form-control" id="LastDayOfSchool" ng-model="schoolPlan.LastDayOfSchool" aria-label="Last Day of School" ng-blur="putSchoolPlan($event)" />  -->
 											</div>
 										</div>
 									</div>
@@ -1624,6 +1624,26 @@
 										<input ng-disabled="lockEnabled" type="checkbox" name="SendEmailOnBehalfOfCoordinator" id="SendEmailOnBehalfOfCoordinator" ng-model="schoolPlan.SendEmailOnBehalfOfCoordinator" ng-true-value="'ALLOW'" ng-false-value="'DONOTALLOW'" ng-click="putSchoolPlan($event)">
 											Allow AHA to Send Emails to my students on my behalf 
 										</label>
+								</div>
+								<div class="ym-pc-dashboard-participate-next-year mb-2 p-2">
+									<div class="d-md-flex participatingNextYear text-left">
+										<div class="col-md-8 pl-0 pe-2">
+											My school will be participating in Kids Heart Challenge next year! 
+										</div>
+										<div class="col-md-4 pr-0">
+											<select ng-disabled="lockEnabled" class="form-control" id="ParticipatingNextYear" ng-model="schoolPlan.ParticipatingNextYear" aria-label="Participating Next Year" ng-change="putSchoolPlan($event,'ParticipatingNextYear')">
+												<option value="YES">
+													Yes
+												</option>
+												<option value="NO">
+													No
+												</option>
+												<option value="I'm not sure'">
+													Still Considering
+												</option>
+											</select>
+										</div>
+									</div>
 								</div>
 								<div class="ym-pc-dashboard-materials-needed mt-sm">
 									<div class="d-md-flex materialsNeeded text-left">
@@ -1683,29 +1703,6 @@
 				</div>
 									<div class="col-md-6 p-2">
 										<div class="ym-pc-dashboard-coordinator-progress-section__column p-3 h-100">
-											<div class="ym-pc-dashboard-participate-next-year mb-4 mb-2 p-2">
-												<h2 class="h3 text-center">
-													School Status 
-												</h2>
-												<div class="d-md-flex participatingNextYear text-left">
-													<div class="col-md-8 pl-0 pe-2">
-														My school will be participating in Kids Heart Challenge next year! 
-													</div>
-													<div class="col-md-4 pr-0">
-														<select class="form-control" id="ParticipatingNextYear" ng-model="schoolPlan.ParticipatingNextYear" aria-label="Participating Next Year" ng-change="putSchoolPlan($event,'ParticipatingNextYear')">
-															<option value="YES">
-																Yes
-															</option>
-															<option value="NO">
-																No
-															</option>
-															<option value="I'm not sure'">
-																Still Considering
-															</option>
-														</select>
-													</div>
-												</div>
-											</div>
 											<div class="ym-pc-dashboard-coordinator-progress-box">
 												<h2 class="h3 text-center">
 													School Challenge 
