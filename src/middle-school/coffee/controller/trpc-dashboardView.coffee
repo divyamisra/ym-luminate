@@ -50,8 +50,8 @@ angular.module 'trPcControllers'
       if $dataRootBody.data('school-plan-locked') isnt ''
         if $dataRootBody.data('school-plan-locked') == true
           $scope.lockEnabled = $dataRootBody.data('school-plan-locked') 
-          #$scope.lockEnabledMsg = "School Planning fields are currently locked for entry as we perform maintenance on the system."
-          $scope.lockEnabledMsg = "If any of the information below needs to be updated, please contact your staff partner."
+          $scope.lockEnabledMsg = "School Planning fields are currently locked for entry as we perform maintenance on the system."
+          #$scope.lockEnabledMsg = "If any of the information below needs to be updated, please contact your staff partner."
       if $rootScope.currentCSTDate != ''
         currDate = new Date $rootScope.currentCSTDate
         if currDate.getMinutes() < 10
