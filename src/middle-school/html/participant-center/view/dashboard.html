@@ -634,6 +634,20 @@
 								</div>
 							</div>
 						</div>
+						<div class="ym-pc-dashboard-participate-next-year">
+							<div class="d-md-flex participatingNextYear text-start">
+								<div class="col-md-8 pl-0">
+									My school will be participating in American Heart Challenge next year!
+								</div>
+								<div class="col-md-4 pr-0">
+									<select class="form-control" id="ParticipatingNextYear" ng-model="schoolPlan.ParticipatingNextYear" aria-label="Next Year Participation" ng-change="putSchoolPlan($event,'ParticipatingNextYear')">
+										<option value="YES">Yes</option>
+										<option value="NO">No</option>
+										<option value="I'M NOT SURE">Still Considering</option>
+									</select>
+								</div>
+							</div>
+						</div>
 						<div class="ym-pc-dashboard-materials-needed mt-sm">
 				<div class="d-md-flex materialsNeeded text-start"> 
 					<div class="col-md-8 pl-0">
@@ -671,20 +685,6 @@
 								</label>
 								<span ng-if="lockEnabled" ng-cloak>{{schoolPlan.goalFormatted}}</span>
 								<input ng-if="!lockEnabled" type="text" class="form-control" id="school_goal" ng-model="companyProgress.goalFormatted" aria-label="School Fundraising Goal" ng-blur="putSchoolPlan($event)" onkeypress="return event.charCode == 36 || event.charCode == 44 || event.charCode == 46 || (event.charCode >= 48 && event.charCode <= 57)">
-							</div>
-							<div class="ym-pc-dashboard-participate-next-year">
-								<div class="d-md-flex participatingNextYear text-start">
-									<div class="col-md-8 pl-0">
-										My school will be participating in American Heart Challenge next year!
-									</div>
-									<div class="col-md-4 pr-0">
-										<select class="form-control" id="ParticipatingNextYear" ng-model="schoolPlan.ParticipatingNextYear" aria-label="Next Year Participation" ng-change="putSchoolPlan($event,'ParticipatingNextYear')">
-											<option value="YES">Yes</option>
-											<option value="NO">No</option>
-											<option value="I'M NOT SURE">Still Considering</option>
-										</select>
-									</div>
-								</div>
 							</div>
 							<div class="ym-pc-dashboard-send-emails checkbox" custom-checkbox ng-class="{'checked': schoolPlan.SendEmailOnBehalfOfCoordinator == 'ALLOW'}" ng-cloak>
 								<label for="SendEmailOnBehalfOfCoordinator">
