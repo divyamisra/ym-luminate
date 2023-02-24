@@ -121,6 +121,12 @@ angular.module 'trPcControllers'
             $rootScope.companyInfo.participantCount = response.data.students_registered
             $scope.companyProgress.raised = response.data.total_amount
             $scope.companyProgress.raisedFormatted = $filter('currency')(response.data.total_amount, '$')
+            goal = response.data.goal
+            percent = 0
+            if goal isnt 0
+              $scope.companyProgress.percent = Math.ceil(($scope.companyProgress.raised / goal) * 100)
+            if $scope.companyProgress.percent > 100
+              $scope.companyProgress.percent = 100
           
       #school years, challenge and level update
       $scope.schoolInfo = {}
