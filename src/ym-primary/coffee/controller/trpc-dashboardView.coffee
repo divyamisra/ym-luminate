@@ -1149,7 +1149,7 @@ angular.module 'trPcControllers'
             failure: (response) ->
             error: (response) ->
             success: (response) ->
-          if sel == 'ParticipatingNextYear' and $scope.schoolPlan[sel] == 'YES'
+          if sel == 'ParticipatingNextYear'
             ZuriService.schoolPlanData '&method=UpdateParticipatingNextYear&EventProgram=KHC&CompanyId=' + $scope.participantRegistration.companyInformation.companyId + '&value=' + $scope.schoolPlan[sel],
               failure: (response) ->
               error: (response) ->
