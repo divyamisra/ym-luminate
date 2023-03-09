@@ -129,12 +129,6 @@ module.exports = {
     files: {
       'dist/fieldday2023/css/main.css': [
         'src/fieldday2023/sass/main.scss'
-      ],
-      'dist/fieldday2023/css/registration.css': [
-        'src/fieldday2023/sass/registration.scss'
-      ],
-      'dist/fieldday2023/css/donation.css': [
-        'src/fieldday2023/sass/donation.scss'
       ]
     }
   },
