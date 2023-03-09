@@ -197,6 +197,19 @@ module.exports = {
     ]
   },
 
+  "fieldday2023-scripts": {
+    files: [
+      {
+        expand: true,
+        cwd: 'src/fieldday2023/js/',
+        src: [
+          '*.js'
+        ],
+        dest: 'dist/fieldday2023/js/'
+      }
+    ]
+  },
+
   "heartwalklawyers-scripts": {
     files: [
       {
