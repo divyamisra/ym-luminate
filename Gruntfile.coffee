@@ -281,6 +281,17 @@ module.exports = (grunt) ->
       'htmlmin'
       'imagemin'
     ], 'ym-rewards'
+    runTargetedTask [
+      'clean'
+      'sass'
+      'postcss'
+      'cssmin'
+      'coffee'
+      'uglify'
+      'replace'
+      'htmlmin'
+      'imagemin'
+    ], 'fieldday2023'
     return
   grunt.registerTask 'dev', ->
     devTasks = [
@@ -338,6 +349,9 @@ module.exports = (grunt) ->
       if task.indexOf('notify:') is -1
         devTasks.push task
     config.watch['ym-rewards'].tasks.forEach (task) ->
+      if task.indexOf('notify:') is -1
+        devTasks.push task
+    config.watch['fieldday2023'].tasks.forEach (task) ->
       if task.indexOf('notify:') is -1
         devTasks.push task
     devTasks.push 'watch'
