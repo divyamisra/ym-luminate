@@ -242,7 +242,6 @@ module.exports = {
       'notify:fieldday'
     ]
   },
-  },
   "fieldday2023": {
     files: [
       'src/fieldday2023/html/**/*',
