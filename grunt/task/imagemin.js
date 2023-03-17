@@ -172,6 +172,19 @@ module.exports = {
     ]
   },
 
+  "fieldday2023": {
+    files: [
+      {
+        expand: true,
+        cwd: 'src/fieldday2023/image/',
+        src: [
+          '*.{gif,GIF,jpg,JPG,png,PNG,svg,SVG}'
+        ],
+        dest: 'dist/fieldday2023/image/'
+      }
+    ]
+  },
+
   "heartwalklawyers": {
     files: [
       {

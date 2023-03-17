@@ -242,6 +242,22 @@ module.exports = {
       'notify:fieldday'
     ]
   },
+  "fieldday2023": {
+    files: [
+      'src/fieldday2023/html/**/*',
+      'src/fieldday2023/image/**/*',
+      'src/fieldday2023/sass/**/*',
+      'src/fieldday2023/js/**/*'
+    ],
+    tasks: [
+      'clean:fieldday2023',
+      'css-dist:fieldday2023',
+      'js-dist:fieldday2023',
+      'html-dist:fieldday2023',
+      'img-copy:fieldday2023-images',
+      'notify:fieldday2023'
+    ]
+  },
   "heartwalklawyers": {
     files: [
       'src/heartwalklawyers/html/**/*',
