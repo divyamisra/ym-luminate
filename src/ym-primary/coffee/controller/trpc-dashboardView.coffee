@@ -50,6 +50,13 @@ angular.module 'trPcControllers'
       lockStart = 2200 #prod luminate server is est whereas dev server is cst
       lockEnd = 500
       $scope.lockEnabled = false
+      $scope.lockEnabledMsg = "School Planning fields are currently locked for point calculations until 6 am CST."
+      $dataRootBody = angular.element '[data-aha-luminate-root]'
+      if $dataRootBody.data('school-plan-locked') isnt ''
+        if $dataRootBody.data('school-plan-locked') == true
+          $scope.lockEnabled = $dataRootBody.data('school-plan-locked') 
+          $scope.lockEnabledMsg = "School Planning fields are currently locked for entry as we perform maintenance on the system."
+          #$scope.lockEnabledMsg = "If any of the information below is not editable and needs to be updated, please contact your staff partner."
       if $rootScope.currentCSTDate != ''
         currDate = new Date $rootScope.currentCSTDate
         if currDate.getMinutes() < 10
@@ -114,6 +121,12 @@ angular.module 'trPcControllers'
             $rootScope.companyInfo.participantCount = response.data.students_registered
             $scope.companyProgress.raised = response.data.total_amount
             $scope.companyProgress.raisedFormatted = $filter('currency')(response.data.total_amount, '$')
+            goal = response.data.goal
+            percent = 0
+            if goal isnt 0
+              $scope.companyProgress.percent = Math.ceil(($scope.companyProgress.raised / goal) * 100)
+            if $scope.companyProgress.percent > 100
+              $scope.companyProgress.percent = 100
           
       #school years, challenge and level update
       $scope.schoolInfo = {}
@@ -175,7 +188,7 @@ angular.module 'trPcControllers'
             if participantIndex < (participants.length - 1)
               participantsString += ', '
           companyParticipantsString = '{participants: [' + participantsString + '], totalNumber: ' + participants.length + '}'
-          if angular.element('.ym-school-animation iframe') > 0
+          if angular.element('.ym-school-animation iframe').length > 0
             angular.element('.ym-school-animation iframe')[0].contentWindow.postMessage companyParticipantsString, domain
             angular.element('.ym-school-animation iframe').on 'load', ->
               angular.element('.ym-school-animation iframe')[0].contentWindow.postMessage companyParticipantsString, domain
@@ -1136,6 +1149,11 @@ angular.module 'trPcControllers'
             failure: (response) ->
             error: (response) ->
             success: (response) ->
+          if sel == 'ParticipatingNextYear'
+            ZuriService.schoolPlanData '&method=UpdateParticipatingNextYear&EventProgram=KHC&CompanyId=' + $scope.participantRegistration.companyInformation.companyId + '&value=' + $scope.schoolPlan[sel],
+              failure: (response) ->
+              error: (response) ->
+              success: (response) ->
         else
           if event.currentTarget.id == 'school_goal'
             $scope.schoolGoalInfo.goal = event.currentTarget.value
