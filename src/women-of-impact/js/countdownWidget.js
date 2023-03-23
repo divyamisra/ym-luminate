@@ -61,7 +61,7 @@ var CountDownWidget = function(element_id, a, b, c) {
         desc = c[2];
     }
    wrapper.querySelector('h2').innerHTML = heading;
-   wrapper.querySelectorAll('p').innerHTML = desc; 
+   wrapper.querySelector('p').innerHTML = desc; 
     
 }
 
