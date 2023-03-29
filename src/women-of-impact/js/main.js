@@ -1396,7 +1396,6 @@
 			})
 		}
 
-getTopTeams(8558)
 
 		// END TOP TEAMS
 
