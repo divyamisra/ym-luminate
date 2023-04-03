@@ -207,7 +207,7 @@ module.exports = (grunt) ->
     ], 'fieldday-scripts'
     runTargetedTask [
       'copy'
-    ], 'fieldday-fonts'
+    ], 'fieldday-webfonts'
     runTargetedTask [
       'clean'
       'sass'
