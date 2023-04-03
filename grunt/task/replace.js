@@ -166,16 +166,6 @@ module.exports = {
       }
     ]
   },
-  "fieldday2023fonts": {
-    files: [
-      {
-        expand: true,
-        cwd: "src/fieldday2023/webfonts/",
-        src: ["**/*.*"],
-        dest: "dist/fieldday2023/webfonts/"
-      }
-    ]
-  },
 
   "heartwalklawyers": {
     files: [
