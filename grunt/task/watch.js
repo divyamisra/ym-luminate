@@ -247,6 +247,7 @@ module.exports = {
       'src/fieldday2023/html/**/*',
       'src/fieldday2023/image/**/*',
       'src/fieldday2023/sass/**/*',
+      'src/fieldday2023/webfonts/**/*',
       'src/fieldday2023/js/**/*'
     ],
     tasks: [
@@ -255,6 +256,7 @@ module.exports = {
       'js-dist:fieldday2023',
       'html-dist:fieldday2023',
       'img-copy:fieldday2023-images',
+      'font-copy:field2023-webfonts',
       'notify:fieldday2023'
     ]
   },
