@@ -209,7 +209,7 @@ module.exports = {
       }
     ]
   },
-  "fieldday2023-fonts": {
+  "fieldday2023-images": {
     files: [
       {
         expand: true,
