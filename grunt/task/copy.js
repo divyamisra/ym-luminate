@@ -202,7 +202,7 @@ module.exports = {
         expand: true,
         cwd: 'src/fieldday/webfonts/',
         src: [
-          '*.{eot,woff,ttf,svg}'
+          '**/*.{eot,woff,ttf,svg}'
         ],
         dest: 'dist/fieldday/webfonts/'
       }
