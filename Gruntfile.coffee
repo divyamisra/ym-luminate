@@ -204,10 +204,7 @@ module.exports = (grunt) ->
     ], 'fieldday'
     runTargetedTask [
       'copy'
-    ], 'fieldday-scripts'
-    runTargetedTask [
-      'copy'
-    ], 'fieldday-fonts'
+    ], ['fieldday-scripts','fieldday-fonts']
     runTargetedTask [
       'clean'
       'sass'
