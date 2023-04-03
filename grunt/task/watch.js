@@ -256,7 +256,6 @@ module.exports = {
       'js-dist:fieldday2023',
       'html-dist:fieldday2023',
       'img-copy:fieldday2023-images',
-      'font-copy:field2023-webfonts',
       'notify:fieldday2023'
     ]
   },
