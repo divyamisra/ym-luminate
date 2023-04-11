@@ -43,13 +43,13 @@ angular.module 'trPcControllers'
             else
               $scope.schoolPlan.HideGifts = "NO"
 
-      if $rootScope.consId
-        ZuriService.getStudentDetail '&cons_id=' + $rootScope.consId,
-          failure: (response) ->
-          error: (response) ->
-          success: (response) ->
-            if response.data.company[0] != null 
-              $rootScope.AmountRaised = response.data.company[0].AmountRaised
+      #if $rootScope.consId
+      #  ZuriService.getStudentDetail '&cons_id=' + $rootScope.consId,
+      #    failure: (response) ->
+      #    error: (response) ->
+      #    success: (response) ->
+      #      if response.data.company[0] != null 
+      #        $rootScope.AmountRaised = response.data.company[0].AmountRaised
               
       if $rootScope.facebookFundraisersEnabled
         toggleFacebookFundraiserStatus = ->
