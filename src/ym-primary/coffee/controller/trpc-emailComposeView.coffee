@@ -34,6 +34,8 @@ angular.module 'trPcControllers'
       #       $scope.emailPromises.push messageCountPromise
       # $scope.getMessageCounts()
 
+      console.log('pcemusePcEmailailuse?? ' + $rootScope.usePcEmail)
+
       $scope.copyToClipboard = ->
         text = document.getElementById('emailComposer-recipients').value
         console.log('text ' + text)
