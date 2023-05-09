@@ -147,6 +147,19 @@ angular.module 'ahaLuminateApp'
           , (response) ->
             response
             
+      putSocialMedia: ->
+        if $rootScope.tablePrefix is 'heartdev'
+          url = 'https://khc.staging.ootqa.org/api/points/activity/log/' + $rootScope.frId + '/' + $rootScope.consId + '/10/manual_social_earn'
+        else if $rootScope.tablePrefix is 'heartnew'
+          url = 'https://khc.staging.ootqa.org/api/points/activity/log/' + $rootScope.frId + '/' + $rootScope.consId + '/10/manual_social_earn'
+        else
+          url = 'https://kidsheartchallenge.heart.org/api/points/activity/log/' + $rootScope.frId + '/' + $rootScope.consId + '/10/manual_social_earn'
+        $http.jsonp($sce.trustAsResourceUrl(url), jsonpCallbackParam: 'callback')
+          .then (response) ->
+            response
+          , (response) ->
+            response
+            
       getBMLeaderboard: (requestData) ->
         motion_username = 'kidsheartapi'
         motion_password = 'mYhtYeBWCrA7cTST'
@@ -181,6 +194,8 @@ angular.module 'ahaLuminateApp'
             "instant": 1
             "online_only":0
             "video": ""
+            "post_event":0
+            "vucheck": 0
           }
           {
             "id":"HEARTY-23"
@@ -192,6 +207,8 @@ angular.module 'ahaLuminateApp'
             "instant": 1
             "online_only":0
             "video": ""
+            "post_event":0
+            "vucheck": 1
           }
           {
             "id":"LVL1WB-18"
@@ -203,6 +220,8 @@ angular.module 'ahaLuminateApp'
             "instant": 0
             "online_only":0
             "video": ""
+            "post_event":0
+            "vucheck": 0
           }
           {
             "id":"BREEZE-23"
@@ -214,6 +233,8 @@ angular.module 'ahaLuminateApp'
             "instant": 1
             "online_only":0
             "video": ""
+            "post_event":0
+            "vucheck": 1
           }
           {
             "id":"JR-23"
@@ -225,6 +246,8 @@ angular.module 'ahaLuminateApp'
             "instant": 1
             "online_only":0
             "video": ""
+            "post_event":1
+            "vucheck": 0
           }
           {
             "id":"HYDRO-23"
@@ -236,6 +259,8 @@ angular.module 'ahaLuminateApp'
             "instant": 1
             "online_only":0
             "video": ""
+            "post_event":0
+            "vucheck": 1
           }
           {
             "id":"DREAM-23"
@@ -247,6 +272,8 @@ angular.module 'ahaLuminateApp'
             "instant": 1
             "online_only":0
             "video": "https://vimeo.com/americanheartassociation/review/453777085/ab8611f4ce"
+            "post_event":0
+            "vucheck": 1
           }
           {
             "id":"KHC"
@@ -258,6 +285,8 @@ angular.module 'ahaLuminateApp'
             "instant": 2
             "online_only":0
             "video": ""
+            "post_event":1
+            "vucheck": 0
           }
           {
             "id":"PBALL-23"
@@ -269,6 +298,8 @@ angular.module 'ahaLuminateApp'
             "instant": 2
             "online_only":0
             "video": ""
+            "post_event":1
+            "vucheck": 0
           }
           {
             "id":"MARLEY-23"
@@ -280,6 +311,8 @@ angular.module 'ahaLuminateApp'
             "instant": 2
             "online_only":0
             "video": ""
+            "post_event":0
+            "vucheck": 1
           }
           {
             "id":"FRANKIE-23"
@@ -291,6 +324,8 @@ angular.module 'ahaLuminateApp'
             "instant": 2
             "online_only":0
             "video": ""
+            "post_event":0
+            "vucheck": 1
           }
           {
             "id":"BAXTER-23"
@@ -302,6 +337,8 @@ angular.module 'ahaLuminateApp'
             "instant": 2
             "online_only":0
             "video": ""
+            "post_event":0
+            "vucheck": 1
           }
           {
             "id":"SOCKS-23"
@@ -313,6 +350,8 @@ angular.module 'ahaLuminateApp'
             "instant": 2
             "online_only":0
             "video": ""
+            "post_event":1
+            "vucheck": 0
           }
           {
             "id":"FP-23"
@@ -324,6 +363,8 @@ angular.module 'ahaLuminateApp'
             "instant": 2
             "online_only":0
             "video": "https://vimeo.com/americanheartassociation/review/453776957/cde52d6c23"
+            "post_event":1
+            "vucheck": 0
           }
           {
             "id":"WATCH-23"
@@ -335,6 +376,8 @@ angular.module 'ahaLuminateApp'
             "instant": 2
             "online_only":0
             "video": "https://video.link/w/On7X"
+            "post_event":1
+            "vucheck": 0
           }
           {
             "id":"FINN-23"
@@ -346,6 +389,8 @@ angular.module 'ahaLuminateApp'
             "instant": 2
             "online_only":0
             "video": ""
+            "post_event":0
+            "vucheck": 1
           }
           {
             "id":"CHARM-23"
@@ -357,6 +402,8 @@ angular.module 'ahaLuminateApp'
             "instant": 2
             "online_only":0
             "video": ""
+            "post_event":0
+            "vucheck": 0
           }
         ]
 

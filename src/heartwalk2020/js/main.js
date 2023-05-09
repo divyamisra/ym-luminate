@@ -326,6 +326,7 @@
             });
         };
 
+
         cd.getCompanies = function (companyName, isCrossEvent) {
             luminateExtend.api({
                 api: 'teamraiser',
@@ -653,7 +654,10 @@
         // BEGIN TOP COMPANIES
 // TODO - replace with companyList
 
+        //var totalTopLevelCompanies = 0
+
         cd.getCompanyList = function (eventId) {
+            console.log('GETCOMPANYLIST')
             luminateExtend.api({
                 api: 'teamraiser',
                 data: 'method=getCompanyList&fr_id=' + eventId +
@@ -715,6 +719,8 @@
                         var sortedAncestorCompanies = rootAncestorCompanies.sort(function (a, b) {
                             return b.amountRaised - a.amountRaised
                         });
+                        //console.log('sortedAncestorCompanies.length ' + sortedAncestorCompanies.length)
+                        $('.js--num-companies').text(sortedAncestorCompanies.length);
                         //var sortedAncestorCompanies = $filter('orderBy')(rootAncestorCompanies, 'amountRaised', true);
                         $(sortedAncestorCompanies).each(function (i) {
                             if (i < 5) {
@@ -1054,7 +1060,8 @@
             cd.getTopParticipants(evID);
             cd.getTopTeams(evID);
             cd.getCompanyList(evID);
-            cd.getTopCompanies(evID);
+            //commenting out because total number of companies is coming from list of ancestor companies above per AHA-1023 
+            //cd.getTopCompanies(evID);
 
             if (currDate >= fourWeek && currDate <= eventDate) {
                 //build steps leaderboard

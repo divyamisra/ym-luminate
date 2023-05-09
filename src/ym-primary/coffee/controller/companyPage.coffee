@@ -41,6 +41,8 @@ angular.module 'ahaLuminateControllers'
       $scope.unconfirmedAmountRaised = 0
       $scope.schoolBadgesRegistrations = []
       $scope.schoolBadgesFundraising = []
+      $scope.finnsMissionStudentList = []
+      $rootScope.HideGifts = "NO"
       
       $scope.trustHtml = (html) ->
         return $sce.trustAsHtml(html)
@@ -130,13 +132,16 @@ angular.module 'ahaLuminateControllers'
               $rootScope.companyName = name
               setCompanyProgress amountRaised, goal
 
-              ZuriService.getSchoolDetail '&school_id=' + $scope.companyId + '&EventId=' + $scope.frId,
+              ZuriService.getSchoolDetail '&school_id=' + $scope.companyId + '&EventId=' + $rootScope.frId,
                 failure: (response) ->
                 error: (response) ->
                 success: (response) ->
                   if response.data.company[0] != ""
                     $scope.schoolPlan = response.data.company[0]
+                    setCompanyCity $scope.schoolPlan.SchoolCity
+                    setCompanyState $scope.schoolPlan.SchoolState
                     $scope.hideAmount = $scope.schoolPlan.HideAmountRaised
+                    $rootScope.HideGifts = $scope.schoolPlan.HideGifts
                     $scope.notifyName = $scope.schoolPlan.YMDName
                     $scope.notifyEmail = $scope.schoolPlan.YMDEmail
                     $scope.unconfirmedAmountRaised = $scope.schoolPlan.OfflineUnconfirmedRevenue
@@ -159,6 +164,10 @@ angular.module 'ahaLuminateControllers'
                       $scope.schoolPlan.EventStartDate = ''
                       $scope.schoolPlan.DonationDueDate = ''
                       $scope.schoolPlan.KickOffDate = ''
+                    if $scope.schoolPlan.ListOfStudentsCompletingFinnsMission != ""
+                      students = JSON.parse $scope.schoolPlan.ListOfStudentsCompletingFinnsMission
+                      angular.forEach students.StudentList, (student, index) ->
+                        $scope.finnsMissionStudentList.push student
                   
               if coordinatorId and coordinatorId isnt '0' and eventId
                 TeamraiserCompanyService.getCoordinatorQuestion coordinatorId, eventId
@@ -443,16 +452,6 @@ angular.module 'ahaLuminateControllers'
         $rootScope.companyState = companyState
         if not $rootScope.$$phase
           $rootScope.$apply()
-          
-      SchoolLookupService.getSchoolData()
-        .then (response) ->
-          schoolDataRows = response.data.getSchoolSearchDataResponse.schoolData
-          angular.forEach schoolDataRows, (schoolDataRow, schoolDataRowIndex) ->
-            if schoolDataRowIndex > 0
-              if $scope.companyId is schoolDataRow[0]
-                setCompanyCity schoolDataRow[1]
-                setCompanyState schoolDataRow[2]
-          return
         
       ZuriService.getSchoolData $scope.companyId,
         error: (response) ->

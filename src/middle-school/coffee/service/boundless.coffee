@@ -111,6 +111,19 @@ angular.module 'ahaLuminateApp'
           , (response) ->
             response
             
+      putSocialMedia: ->
+        if $rootScope.tablePrefix is 'heartdev'
+          url = 'https://ahc.staging.ootqa.org/api/points/activity/log/' + $rootScope.frId + '/' + $rootScope.consId + '/10/manual_social_earn'
+        else if $rootScope.tablePrefix is 'heartnew'
+          url = 'https://ahc.staging.ootqa.org/api/points/activity/log/' + $rootScope.frId + '/' + $rootScope.consId + '/10/manual_social_earn'
+        else
+          url = 'https://middleschool.heart.org/api/points/activity/log/' + $rootScope.frId + '/' + $rootScope.consId + '/10/manual_social_earn'
+        $http.jsonp($sce.trustAsResourceUrl(url), jsonpCallbackParam: 'callback')
+          .then (response) ->
+            response
+          , (response) ->
+            response
+                        
       defaultStandardGifts: ->
         [
           {
@@ -167,7 +180,7 @@ angular.module 'ahaLuminateApp'
             "status":0
             "level":"Complete Finn's Heart Card"
             "msg_earned":"Finn's Heart Card Mission Completed"
-            "msg_unearned":"Complete Finn's Mission Heart Card"
+            "msg_unearned":"Complete 8 Action Tiles in Finn's Mission"
           }
         ]
   ]
