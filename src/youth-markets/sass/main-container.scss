@@ -5,7 +5,8 @@ main {
     padding: 22px 0;
   }
   
-  > .container {
+  > .container,
+  > .container-fluid {
     padding: 0 15px;
     margin: -50px auto 0;
     
@@ -27,7 +28,8 @@ main {
 .app-26,
 .app-27 {
   main {
-    > .container {
+    > .container,
+    > .container-fluid {
       @media (max-width: $screen-xs-max) {
         margin-top: -72px;
       }
@@ -37,7 +39,8 @@ main {
 
 .jump-hoops-home {
   main {
-    > .container {
+    > .container,
+    > .container-fluid {
       @media (max-width: $screen-xs-max) {
         margin-top: -50px;
       }
