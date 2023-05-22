@@ -1,8 +1,0 @@
-<ul class="list-group top-team-list">
-  <li class="list-group-item" ng-repeat="team in teams | limitTo:maxSize track by $index">
-    <a ng-href="TR?fr_id={{team.EventId}}&amp;pg=team&amp;team_id={{team.id}}">
-      <span ng-bind-html="team.name"></span>
-    </a><br>
-    <span ng-bind-html="team.amountRaisedFormatted"></span>
-  </li>
-</ul>

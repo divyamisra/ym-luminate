@@ -78,20 +78,6 @@ module.exports = (grunt) ->
     ], 'general'
     runTargetedTask [
       'clean'
-      'sass'
-      'postcss'
-      'cssmin'
-      'coffee'
-      'uglify'
-      'replace'
-      'htmlmin'
-      'imagemin'
-    ], 'heart-walk'
-    runTargetedTask [
-      'copy'
-    ], 'heart-walk-translations'
-    runTargetedTask [
-      'clean'
       'replace'
       'htmlmin'
       'imagemin'
@@ -128,182 +114,13 @@ module.exports = (grunt) ->
       'replace'
       'htmlmin'
       'imagemin'
-    ], 'high-school'
-    runTargetedTask [
-      'clean'
-      'sass'
-      'postcss'
-      'cssmin'
-      'coffee'
-      'uglify'
-      'replace'
-      'htmlmin'
-      'imagemin'
-    ], 'district-heart'
-    runTargetedTask [
-      'clean'
-      'sass'
-      'postcss'
-      'cssmin'
-      'uglify'
-      'replace'
-      'htmlmin'
-      'imagemin'
-    ], 'nchw'
-    runTargetedTask [
-      'copy'
-    ], 'nchw-scripts'
-    runTargetedTask [
-      'clean'
-      'sass'
-      'postcss'
-      'cssmin'
-      'uglify'
-      'replace'
-      'htmlmin'
-      'imagemin'
-    ], 'heartchase'
-    runTargetedTask [
-      'copy'
-    ], 'heartchase-scripts'
-    runTargetedTask [
-      'clean'
-      'sass'
-      'postcss'
-      'cssmin'
-      'uglify'
-      'replace'
-      'htmlmin'
-      'imagemin'
-    ], 'cyclenation'
-    runTargetedTask [
-      'copy'
-    ], 'cyclenation-scripts'
-    runTargetedTask [
-      'clean'
-      'sass'
-      'postcss'
-      'cssmin'
-      'uglify'
-      'replace'
-      'htmlmin'
-      'imagemin'
-    ], 'heartwalk2020'
-    runTargetedTask [
-      'copy'
-    ], 'heartwalk2020-scripts'
-    runTargetedTask [
-      'clean'
-      'sass'
-      'postcss'
-      'cssmin'
-      'uglify'
-      'replace'
-      'htmlmin'
-      'imagemin'
-    ], 'fieldday'
-    runTargetedTask [
-      'copy'
-    ], ['fieldday-scripts','fieldday-fonts']
-    runTargetedTask [
-      'clean'
-      'sass'
-      'postcss'
-      'cssmin'
-      'uglify'
-      'replace'
-      'htmlmin'
-      'imagemin'
-    ], 'heartwalklawyers'
-    runTargetedTask [
-      'copy'
-    ], 'heartwalklawyers-scripts'
-    runTargetedTask [
-      'clean'
-      'sass'
-      'postcss'
-      'cssmin'
-      'uglify'
-      'replace'
-      'htmlmin'
-      'imagemin'
-    ], 'leaders-for-life'
-    runTargetedTask [
-      'copy'
-    ], 'leaders-for-life-scripts'
-    runTargetedTask [
-      'clean'
-      'sass'
-      'postcss'
-      'cssmin'
-      'uglify'
-      'replace'
-      'htmlmin'
-      'imagemin'
-    ], 'social-stem'
-    runTargetedTask [
-      'copy'
-    ], 'social-stem-scripts'
-    runTargetedTask [
-      'clean'
-      'sass'
-      'postcss'
-      'cssmin'
-      'uglify'
-      'replace'
-      'htmlmin'
-      'imagemin'
-    ], 'women-of-impact'
-    runTargetedTask [
-      'copy'
-    ], 'women-of-impact-scripts'
-    runTargetedTask [
-      'clean'
-      'sass'
-      'postcss'
-      'cssmin'
-      'uglify'
-      'replace'
-      'htmlmin'
-      'imagemin'
-    ], 'teens-of-impact'
-    runTargetedTask [
-      'copy'
-    ], 'teens-of-impact-scripts'
-    runTargetedTask [
-      'clean'
-      'sass'
-      'postcss'
-      'cssmin'
-      'coffee'
-      'uglify'
-      'replace'
-      'htmlmin'
-      'imagemin'
     ], 'ym-rewards'
-    runTargetedTask [
-      'clean'
-      'sass'
-      'postcss'
-      'cssmin'
-      'coffee'
-      'uglify'
-      'replace'
-      'htmlmin'
-      'imagemin'
-    ], 'fieldday2023'
-    runTargetedTask [
-      'copy'
-    ], 'fieldday2023-fonts'  
     return
   grunt.registerTask 'dev', ->
     devTasks = [
       'connect:dev'
     ]
     config.watch['general'].tasks.forEach (task) ->
-      if task.indexOf('notify:') is -1
-        devTasks.push task
-    config.watch['heart-walk'].tasks.forEach (task) ->
       if task.indexOf('notify:') is -1
         devTasks.push task
     config.watch['youth-markets'].tasks.forEach (task) ->
@@ -315,46 +132,7 @@ module.exports = (grunt) ->
     config.watch['middle-school'].tasks.forEach (task) ->
       if task.indexOf('notify:') is -1
         devTasks.push task
-    config.watch['high-school'].tasks.forEach (task) ->
-      if task.indexOf('notify:') is -1
-        devTasks.push task
-    config.watch['district-heart'].tasks.forEach (task) ->
-      if task.indexOf('notify:') is -1
-        devTasks.push task
-    config.watch['nchw'].tasks.forEach (task) ->
-      if task.indexOf('notify:') is -1
-        devTasks.push task
-    config.watch['heartchase'].tasks.forEach (task) ->
-      if task.indexOf('notify:') is -1
-        devTasks.push task
-    config.watch['cyclenation'].tasks.forEach (task) ->
-      if task.indexOf('notify:') is -1
-        devTasks.push task
-    config.watch['heartwalk2020'].tasks.forEach (task) ->
-      if task.indexOf('notify:') is -1
-        devTasks.push task
-    config.watch['fieldday'].tasks.forEach (task) ->
-      if task.indexOf('notify:') is -1
-        devTasks.push task
-    config.watch['heartwalklawyers'].tasks.forEach (task) ->
-      if task.indexOf('notify:') is -1
-        devTasks.push task
-    config.watch['leaders-for-life'].tasks.forEach (task) ->
-      if task.indexOf('notify:') is -1
-        devTasks.push task
-    config.watch['social-stem'].tasks.forEach (task) ->
-      if task.indexOf('notify:') is -1
-        devTasks.push task
-    config.watch['women-of-impact'].tasks.forEach (task) ->
-      if task.indexOf('notify:') is -1
-        devTasks.push task
-    config.watch['teens-of-impact'].tasks.forEach (task) ->
-      if task.indexOf('notify:') is -1
-        devTasks.push task
     config.watch['ym-rewards'].tasks.forEach (task) ->
-      if task.indexOf('notify:') is -1
-        devTasks.push task
-    config.watch['fieldday2023'].tasks.forEach (task) ->
       if task.indexOf('notify:') is -1
         devTasks.push task
     devTasks.push 'watch'

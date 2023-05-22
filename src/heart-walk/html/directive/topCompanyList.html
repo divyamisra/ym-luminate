@@ -1,8 +1,0 @@
-<ul class="list-group">
-  <li class="list-group-item" ng-repeat="company in companies | limitTo:maxSize track by $index">
-    <a ng-href="TR?fr_id={{company.eventId}}&amp;pg=company&amp;company_id={{company.companyId}}">
-      <span ng-bind-html="company.companyName"></span>
-    </a><br>
-    <span ng-bind-html="company.amountRaisedFormatted"></span>
-  </li>
-</ul>

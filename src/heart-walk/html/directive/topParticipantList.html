@@ -1,8 +1,0 @@
-<ul class="list-group">
-  <li class="list-group-item" ng-repeat="participant in participants | limitTo:maxSize track by $index">
-    <a ng-href="TR?fr_id={{participant.eventId}}&amp;pg=personal&amp;px={{participant.consId}}">
-      <span ng-bind-html="participant.name.first"></span> <span ng-bind-html="participant.name.last"></span>
-    </a><br>
-    <span ng-bind-html="participant.amountRaisedFormatted"></span>
-  </li>
-</ul>

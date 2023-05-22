@@ -169,7 +169,7 @@ angular.module 'ahaLuminateApp'
             $scope.schoolList.searchErrorMessage = 'Please specify a search criteria before initiating a search.'
           else
             delete $scope.schoolList.searchErrorMessage
-            if $scope.tablePrefix is 'heartdev'
+            if $scope.tablePrefix is 'heartdev' and location.href.indexOf("showprod") is -1
               $scope.getSchoolSearchResultsDEV()
             else
               $scope.getSchoolSearchResults()
@@ -196,6 +196,10 @@ angular.module 'ahaLuminateApp'
           schools = []
           angular.forEach companies, (company) ->
             if company.coordinatorId and company.coordinatorId isnt '0'
+              if company.hasOwnProperty("EVENT_PROGRAM")
+                event_program = company.EVENT_PROGRAM
+              else
+                event_program = ''
               schools.push
                 FR_ID: company.eventId
                 COMPANY_ID: company.companyId
@@ -204,17 +208,23 @@ angular.module 'ahaLuminateApp'
                 SCHOOL_CITY: company.SCHOOL_CITY
                 SCHOOL_STATE: company.SCHOOL_STATE
                 COORDINATOR_FIRST_NAME: company.COORDINATOR_FIRST_NAME
-                COORDINATOR_LAST_NAME: company.COORDINATOR_LAST_NAME                
+                COORDINATOR_LAST_NAME: company.COORDINATOR_LAST_NAME
+                EVENT_PROGRAM: event_program
           schools
           
         setSchoolsData = (schools) ->
           angular.forEach schools, (school, schoolIndex) ->
             schoolData = $scope.schoolDataMap['id' + school.COMPANY_ID]
             if schoolData
+              if schoolData.hasOwnProperty("EVENT_PROGRAM")
+                event_program = schoolData.EVENT_PROGRAM
+              else
+                event_program = ''
               schools[schoolIndex].SCHOOL_CITY = schoolData.SCHOOL_CITY
               schools[schoolIndex].SCHOOL_STATE = schoolData.SCHOOL_STATE
               schools[schoolIndex].COORDINATOR_FIRST_NAME = schoolData.COORDINATOR_FIRST_NAME
               schools[schoolIndex].COORDINATOR_LAST_NAME = schoolData.COORDINATOR_LAST_NAME
+              schools[schoolIndex].EVENT_PROGRAM = event_program
           schools
           
         searchOverridesMap = [
