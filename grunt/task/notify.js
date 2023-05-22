@@ -22,13 +22,6 @@ module.exports = {
     }
   },
 
-  "heart-walk": {
-    options: {
-      title: 'AHA Luminate Framework',
-      message: 'Heart Walk files updated.'
-    }
-  },
-
   "youth-markets": {
     options: {
       title: 'AHA Luminate Framework',
@@ -50,93 +43,6 @@ module.exports = {
     }
   },
 
-  "high-school": {
-    options: {
-      title: 'AHA Luminate Framework',
-      message: 'High School files updated.'
-    }
-  },
-
-  "district-heart": {
-    options: {
-      title: 'AHA Luminate Framework',
-      message: 'District Heart Challenge files updated.'
-    }
-  },
-
-  "nchw": {
-    options: {
-      title: 'AHA Luminate Framework',
-      message: 'NCHW files updated.'
-    }
-  },
-
-  "heartchase": {
-    options: {
-      title: 'AHA Luminate Framework',
-      message: 'HeartChase files updated.'
-    }
-  },
-
-  "cyclenation": {
-    options: {
-      title: 'AHA Luminate Framework',
-      message: 'CycleNation files updated.'
-    }
-  },
-
-  "heartwalk2020": {
-    options: {
-      title: 'AHA Luminate Framework',
-      message: 'HeartWalk 2020 files updated.'
-    }
-  },
-
-  "fieldday": {
-    options: {
-      title: 'AHA Luminate Framework',
-      message: 'Field Day files updated.'
-    }
-  },
-
-  "fieldday2023": {
-    options: {
-      title: 'AHA Luminate Framework',
-      message: 'Field Day 2023 files updated.'
-    }
-  },
-
-  "heartwalklawyers": {
-    options: {
-      title: 'AHA Luminate Framework',
-      message: 'Lawyers Have Heart files updated.'
-    }
-  },
-
-  "leaders-for-life": {
-    options: {
-      title: 'AHA Luminate Framework',
-      message: 'Lawyers Have Heart files updated.'
-    }
-  },
-  "social-stem": {
-    options: {
-      title: 'AHA Luminate Framework',
-      message: 'Lawyers Have Heart files updated.'
-    }
-  },
-  "women-of-impact": {
-    options: {
-      title: 'AHA Luminate Framework',
-      message: 'Lawyers Have Heart files updated.'
-    }
-  },
-  "teens-of-impact": {
-    options: {
-      title: 'AHA Luminate Framework',
-      message: 'Lawyers Have Heart files updated.'
-    }
-  },
   "ym-rewards": {
     options: {
       title: 'AHA Luminate Framework',
