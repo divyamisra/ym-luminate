@@ -15,6 +15,9 @@
       <a role="listitem" ng-href="{{baseUrl}}#/reports" class="ng-pc-nav-item nav-link d-none" ng-class="{'active': location == '/reports'}">
         <span><strong>My Donors</strong></span>
       </a>
+      <a role="listitem" ng-href="{{baseUrl}}#/dashboard-student" class="ng-pc-nav-item nav-link ng-pc-nav-item--student-view" ng-class="{'active': location == '/dashboard-student'}" ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
+        <span><strong>Student View</strong></span>
+      </a>
       <a role="listitem" ng-href="{{baseUrl}}#/student-resources" class="ng-pc-nav-item nav-link ng-pc-nav-item--resources" ng-class="{'active': location == '/student-resources'}" ng-if="participantRegistration.companyInformation.isCompanyCoordinator != 'true'" ng-cloak>
         <span><strong>Resources</strong></span>
       </a>
