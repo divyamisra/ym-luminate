@@ -729,110 +729,18 @@
 						</div>
 					</div>
 				</div>
-<!-- 
-        <div class="col-sm-6 ym-pc-dashboard-progress-section__column event-secondary-medium">
-          <div class="ym-pc-dashboard-livestream-box">
-            <div class="ym-pc-dashboard-livestream-title">
-              <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ahyma-luminate/dist/ym-primary/image/pc-tiltify-livestream.png" alt="Livestream">
-            </div>
-            <div class="ym-pc-dashboard-section-header">
-              <p>
-                Go live and help save lives. Start your charity stream today.
-              </p>
-            </div>
-            <div class="text-center">
-              <div class="ym-pc-dashboard-livestream-images">
-   	        <span class="hv-image" ng-init="hvImgLSHsrc='pc-tiltify-hearts.png';" ng-mouseover="hvImgLSHsrc='pc-tiltify-hearts-animated.gif';" ng-mouseout="hvImgLSHsrc='pc-tiltify-hearts.png';">
-		  <img class="pc-livestream-hearts" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy21/{{hvImgLSHsrc}}" alt="Livestream Hearts">
-	        </span>
-                &nbsp;
-	        <img class="pc-livestream-character" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy22/livestream-heading.png" alt="Livestream Icon">
-              </div>
-              <div class="ym-pc-dashboard-livestream-buttons">
-                <a class="btn btn-md-wide btn-primary" ng-href="https://tiltify.com/aha/kids-heart-challengeamerican-heart-challenge-c4ba88cc-eefb-495f-8230-05fa82e1db98/start/ownership" target="_blank">
-                  <strong>Get Started</strong>
-                </a>
-                <a class="btn btn-md-wide btn-primary" ng-href="https://dashboard.tiltify.com/@me" target="_blank">
-                  <strong>Check Your Progress</strong>
-                </a> 
-              </div>
-              <br/>
-              <p>By clicking these links, you will leave Kids Heart Challenge and be redirected to another site not under the control of the American Heart Association.</p>
-            </div>
-          </div>
-        </div>
-        -->
 			</div>
 		</section>
-<!--		<section class="ym-pc-dashboard-facebook-section p-2 mb-2" aria-label="Facebook Fundraising" ng-show="facebookFundraisersEnabled" ng-cloak>
-			<div class="ym-pc-dashboard-facebook-box" ng-show="!facebookFundraiserId">
-				<div class="container">
-					<div class="ym-pc-dashboard-section-header">
-						<h3 class="h5 text-white">
-							Let's Get Fundraising<span ng-if="consNameFirst && consNameFirst != ''">, <span ng-bind-html="consNameFirst"></span></span>! 
-						</h3>
-					</div>
-					<div class="text-center">
-						<p>
-							Link your personal page to a new Facebook Fundraiser to receive donations from your Facebook friends. 
-						</p>
-						<div role="alert" class="alert alert-danger" ng-if="facebookFundraiserLoginStatus == 'login_error' || facebookFundraiserLoginStatus == 'permission_error' || facebookFundraiserLoginStatus == 'create_fundraiser_error' || facebookFundraiserCreateStatus == 'login_error' || facebookFundraiserCreateStatus == 'permission_error' || facebookFundraiserCreateStatus == 'create_fundraiser_error'" ng-cloak>
-							An error occurred attempting to connect to Facebook. Please try again later. 
-						</div>
-						<div role="alert" class="alert alert-danger" ng-if="facebookFundraiserCreateStatus == 'create_fundraiser_duplicate'" ng-cloak>
-							This Facebook account already has an active Facebook Fundraiser for this school. If you are trying to connect a second student, you will need to use another Facebook account. 
-						</div>
-						<div role="alert" class="alert alert-danger" ng-if="facebookFundraiserLoginStatus == 'declined_manage_fundraisers'" ng-cloak>
-							We need your permission to create a Facebook Fundraiser on your behalf. 
-						</div>
-						<button type="button" class="btn btn-white" ng-class="{'disabled': facebookFundraiserLoginStatus == 'pending' || facebookFundraiserCreateStatus == 'pending'}" ng-click="loginToFacebook()" ng-disabled="facebookFundraiserLoginStatus == 'pending' || facebookFundraiserCreateStatus == 'pending'">
-							<span class="fa fa-facebook-square">
-							</span>
-							<strong>
-								Connect to Facebook Fundraiser
-							</strong>
-						</button>
-						<div class="ym-pc-dashboard-facebook-hint">
-							By clicking this link, you will leave AHA's website and be redirected to another site not under the control of AHA. 
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="ym-pc-dashboard-facebook-box js--facebook-fundraiser-completed-section" ng-show="facebookFundraiserId">
-				<div class="container">
-					<div class="ym-pc-dashboard-section-header">
-						<h3 class="h5 text-white">
-							Your Fundraiser is Connected to Facebook! 
-						</h3>
-					</div>
-					<div class="text-center">
-						<p>
-							Log in to use Facebook's fundraising tools to invite friends, share updates and collect donations. We'll keep track of your progress on Facebook and on your page, so you'll always know how close you are to reaching your goal. 
-						</p>
-						<a class="btn btn-white" ng-class="{'disabled': !facebookFundraiserConfirmedStatus || facebookFundraiserConfirmedStatus == 'pending'}" ng-href="//facebook.com/donate/{{facebookFundraiserId}}/" ng-disabled="!facebookFundraiserConfirmedStatus || facebookFundraiserConfirmedStatus == 'pending'" target="_blank">
-							<span class="fa fa-facebook-square">
-							</span>
-							<strong>
-								Go to Facebook Fundraiser
-							</strong>
-						</a>
-						<div class="ym-pc-dashboard-facebook-hint">
-							By clicking this link, you will leave AHA's website and be redirected to another site not under the control of AHA. 
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
--->
+
 		<section class="ym-pc-dashboard-progress-section mb-2" aria-label="Fundraising Progress Meters">
-			<div class="ym-pc-dashboard-section-header">
-				<h2 class="h3 my-2">
-					My Fundraising 
-				</h2>
-			</div>
 			<div class="d-md-flex justify-content-between flex-wrap">
 				<div class="col-sm-6 p-2">
 					<div class="ym-pc-dashboard-progress-section__column event-secondary-medium p-3 h-100">
+						<div class="ym-pc-dashboard-section-header">
+							<h2 class="h3 my-2">
+								My Fundraising 
+							</h2>
+						</div>
 						<div class="ym-pc-dashboard-progress-box">
 							<div class="clearfix">
 								<div class="ym-pc-dashboard-coordinator-page-type" ng-class="{'active': dashboardStudentPageType == 'personal'}">
@@ -1077,6 +985,56 @@
 				<div class="col-sm-6 p-2">
 					<div class="ym-pc-dashboard-progress-section__column event-secondary-medium p-3 h-100">
 						<div class="ym-pc-dashboard-progress-box">
+							<h3 class="h5">
+								My Page 
+							</h3>
+							<p>
+								Personalize your fundraising page to share your heart-healthy journey. Students who personalize their page raise more money! 
+							</p>
+							<div class="text-center">
+								<a class="btn btn-md-wide btn-primary" ng-href="TR?fr_id={{frId}}&amp;pg=personal&amp;px={{consId}}">
+									<strong>
+										View and Edit Your Page
+									</strong>
+								</a>
+							</div>
+							<div class="row">
+								<div class="col-sm-7">
+									<div class="ym-activity-url">
+										<p>
+											<strong>
+												Personal Page URL:
+											</strong>
+										</p>
+										<p class="small">
+											<span ng-bind-html="personalPageUrl">
+											</span>
+										</p>
+										<button type="button" class="btn btn-md-wide btn-primary" aria-label="Edit Personal Page URL" ng-click="editPersonalUrl()">
+											<strong>
+												Edit
+											</strong>
+										</button>
+									</div>
+								</div>
+								<div class="col-sm-5">
+									<div class="clearfix">
+										<div class="ym-activity-share-page">
+											<p>
+												<strong>
+													Share My Personal&nbsp;Page:
+												</strong>
+											</p>
+											<a ng-href="{{baseUrl}}#" ng-click="delegatedAddThis('.js--personal-social-share', 'facebook')">
+												<img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/youth-markets/image/facebook-logo.png" alt="Facebook"> 
+											</a>
+											<a ng-href="{{baseUrl}}#" ng-click="delegatedAddThis('.js--personal-social-share', 'twitter')">
+												<img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/youth-markets/image/twitter-logo.png" alt="Twitter"> 
+											</a>
+										</div>
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -1148,338 +1106,7 @@
 				</a>
 			</div>
 		</section>
-		<section class="ym-pc-dashboard-activities-section mb-2" aria-label="My Fundraising Activities">
-			<div class="ym-pc-dashboard-section-header">
-				<h2 class="h3">
-					My Activities 
-				</h2>
-			</div>
-			<div class="d-md-flex justify-content-between flex-wrap">
-				<div class="col-sm-6 p-2 mb-2">
-					<div class="ym-activity-box ym-activity-box--next-step p-3 h-100 m-0">
-						<h3 class="h5">
-							My Donors 
-						</h3>
-						<div ng-if="participantGifts.gifts && participantGifts.gifts.length == 0" ng-cloak>
-							<div class="ym-next-step">
-								<div class="ym-next-step__step">
-									You have no donations yet. 
-								</div>
-								<div class="ym-next-step__action">
-									<a class="btn btn-md-wide btn-primary" ng-href="Donation2?df_id={{eventInfo.donationFormId}}&amp;FR_ID={{frId}}&amp;PROXY_TYPE=20&amp;PROXY_ID={{consId}}" target="_blank">
-										<strong>
-											Be the first to donate!
-										</strong>
-									</a>
-								</div>
-							</div>
-							<div class="ym-next-step">
-								<div class="ym-next-step__step">
-									Reaching out to family and friends is easy when you import your email address book. 
-								</div>
-								<div class="ym-next-step__action">
-									<a class="btn btn-md-wide btn-primary" ng-href="{{baseUrl}}#/email/contacts/email_rpt_show_all/list">
-										<strong>
-											Import Contacts
-										</strong>
-									</a>
-								</div>
-							</div>
-						</div>
-						<div ng-if="participantGifts.gifts && participantGifts.gifts.length == 1 && participantRegistration.selfDonor == 'true'" ng-cloak>
-							<div class="ym-next-step">
-								<div class="ym-next-step__step">
-									You're the only donor so far. 
-								</div>
-								<div class="ym-next-step__action">
-									<a class="btn btn-md-wide btn-primary" ng-href="{{baseUrl}}#/email">
-										<strong>
-											Send Some Emails
-										</strong>
-									</a>
-								</div>
-							</div>
-							<div class="ym-next-step">
-								<div class="ym-next-step__step">
-									Reaching out to family and friends is easy when you import your email address book. 
-								</div>
-								<div class="ym-next-step__action">
-									<a class="btn btn-md-wide btn-primary" ng-href="{{baseUrl}}#/email/contacts/email_rpt_show_all/list">
-										<strong>
-											Import Contacts
-										</strong>
-									</a>
-								</div>
-							</div>
-						</div>
-						<div ng-if="((participantGifts.gifts && participantGifts.gifts.length == 1 && participantRegistration.selfDonor == 'false') || (participantGifts.gifts && participantGifts.gifts.length > 1)) && donorContactCounts.email_rpt_show_unthanked_donors == 0 && donorContactCounts.email_rpt_show_nondonors_followup == 0" ng-cloak>
-							<div class="ym-next-step" ng-if="donorContactCounts.email_rpt_show_donors > 0" ng-cloak>
-								<div class="ym-next-step__step">
-									You're a natural fundraiser! Keep up your awesome efforts! 
-								</div>
-								<div class="ym-next-step__action">
-									<a class="btn btn-md-wide btn-primary" ng-href="{{baseUrl}}#/email">
-										<strong>
-											Send More Emails
-										</strong>
-									</a>
-								</div>
-							</div>
-							<div class="ym-next-step" ng-if="donorContactCounts.email_rpt_show_donors > 0" ng-cloak>
-								<div class="ym-next-step__step">
-									Reaching out to family and friends is easy when you import your email address book. 
-								</div>
-								<div class="ym-next-step__action">
-									<a class="btn btn-md-wide btn-primary" ng-href="{{baseUrl}}#/email/contacts/email_rpt_show_all/list">
-										<strong>
-											Import Contacts
-										</strong>
-									</a>
-								</div>
-							</div>
-							<div class="ym-next-step" ng-if="donorContactCounts.email_rpt_show_donors > 0" ng-cloak>
-								<div class="ym-next-step__step">
-									Review all of your donations on the Reports page. 
-								</div>
-								<div class="ym-next-step__action">
-									<a class="btn btn-md-wide btn-primary" ng-href="{{baseUrl}}#/reports">
-										<strong>
-											View All
-										</strong>
-									</a>
-								</div>
-							</div>
-						</div>
-						<div ng-if="((participantGifts.gifts && participantGifts.gifts.length == 1 && participantRegistration.selfDonor == 'false') || (participantGifts.gifts && participantGifts.gifts.length > 1)) && (donorContactCounts.email_rpt_show_unthanked_donors > 0 || donorContactCounts.email_rpt_show_nondonors_followup > 0)" ng-cloak>
-							<div class="ym-next-step ym-next-step- -sm" ng-if="donorContactCounts.email_rpt_show_unthanked_donors > 0" ng-cloak>
-								<div class="ym-next-step__step">
-									You have new donors who haven't received a thank-you email! 
-								</div>
-								<div class="ym-next-step__action">
-									<a class="btn btn-md-wide btn-primary" ng-href="{{baseUrl}}#/email/contacts/email_rpt_show_unthanked_donors/list">
-										<strong>
-											Say Thanks
-										</strong>
-									</a>
-								</div>
-							</div>
-							<div class="ym-next-step ym-next-step- -sm" ng-if="donorContactCounts.email_rpt_show_nondonors_followup > 0" ng-cloak>
-								<div class="ym-next-step__step">
-									Great job sending emails. Some of your friends haven't donated! 
-								</div>
-								<div class="ym-next-step__action">
-									<a class="btn btn-md-wide btn-primary" ng-href="{{baseUrl}}#/email/contacts/email_rpt_show_nondonors_followup/list">
-										<strong>
-											Follow Up
-										</strong>
-									</a>
-								</div>
-							</div>
-							<div class="ym-next-step ym-next-step- -sm" ng-if="donorContactCounts.email_rpt_show_donors > 0" ng-cloak>
-								<div class="ym-next-step__step">
-									Review all of your donations on the Reports page. 
-								</div>
-								<div class="ym-next-step__action">
-									<a class="btn btn-md-wide btn-primary" ng-href="{{baseUrl}}#/reports">
-										<strong>
-											View All
-										</strong>
-									</a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-sm-6 p-2 mb-2">
-					<div class="ym-activity-box ym-activity-box--page p-3 h-100 m-0 mb-2">
-						<h3 class="h5">
-							My Page 
-						</h3>
-						<p>
-							Personalize your fundraising page to share your heart-healthy journey. Students who personalize their page raise more money! 
-						</p>
-						<div class="text-center">
-							<a class="btn btn-md-wide btn-primary" ng-href="TR?fr_id={{frId}}&amp;pg=personal&amp;px={{consId}}">
-								<strong>
-									View and Edit Your Page
-								</strong>
-							</a>
-						</div>
-						<div class="row">
-							<div class="col-sm-7">
-								<div class="ym-activity-url">
-									<p>
-										<strong>
-											Personal Page URL:
-										</strong>
-									</p>
-									<p class="small">
-										<span ng-bind-html="personalPageUrl">
-										</span>
-									</p>
-									<button type="button" class="btn btn-md-wide btn-primary" aria-label="Edit Personal Page URL" ng-click="editPersonalUrl()">
-										<strong>
-											Edit
-										</strong>
-									</button>
-								</div>
-							</div>
-							<div class="col-sm-5">
-								<div class="clearfix">
-									<div class="ym-activity-share-page">
-										<p>
-											<strong>
-												Share My Personal&nbsp;Page:
-											</strong>
-										</p>
-										<a ng-href="{{baseUrl}}#" ng-click="delegatedAddThis('.js--personal-social-share', 'facebook')">
-											<img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/youth-markets/image/facebook-logo.png" alt="Facebook"> 
-										</a>
-										<a ng-href="{{baseUrl}}#" ng-click="delegatedAddThis('.js--personal-social-share', 'twitter')">
-											<img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/youth-markets/image/twitter-logo.png" alt="Twitter"> 
-										</a>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="ym-activity-box ym-activity-box--challenge p-2 mx-2 d-none">
-				<h3 class="h5">
-					Family Heart-Healthy Challenge 
-				</h3>
-				<div class="ym_my_challenge__current" ng-if="personalChallenge.loadPending" ng-cloak>
-					Loading Your Challenge... 
-				</div>
-				<div class="ym_my_challenge__current" ng-if="personalChallenge.id != '-1'" ng-cloak>
-					<div class="d-md-flex justify-content-between flex-wrap">
-						<div class="col-md-6 challenge-days">
-							<div class="d-flex challenge-day-streak px-3">
-								<div class="col-xs-3 col-sm-4">
-									<div class="challenge-day-count">
-										<span ng-bind-html="personalChallenge.numCompleted">
-										</span>
-									</div>
-								</div>
-								<div class="col-xs-9 col-sm-8" style="z-index:9999">
-									<div class="challenge-day-title text_with_1px_border">
-										Day Streak
-									</div>
-									<div class="challenge-day-challenge text_with_1px_border" ng-if="personalChallenge.id == '1'" ng-cloak>
-										for moving more
-									</div>
-									<div class="challenge-day-challenge text_with_1px_border" ng-if="personalChallenge.id == '2'" ng-cloak>
-										for being kind
-									</div>
-								</div>
-							</div>
-							<div class="d-flex challenge-day-add-day" ng-if="!personalChallenge.completedToday" ng-cloak>
-								<div class="col-4 challenge-day-add-icon">
-									<img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/pc-challenge-add-day-icon.png" alt="Add a Day to your Challenge"> 
-								</div>
-								<div class="col-8">
-									<button type="button" class="btn btn-md-wide btn-primary" ng-class="{'disabled': personalChallenge.updatePending}" ng-disabled="personalChallenge.updatePending" ng-click="logChallenge()" aria-label="Add a day to your challenge">
-										<strong>
-											Add Day
-										</strong>
-									</button>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-6 challenge-buttons">
-							<p class="ym_my_challenge__description text-center">
-								<strong>
-									Change Your Challenge
-								</strong>
-							</p>
-							<div class="d-flex justify-content-around flex-wrap">
-								<div class="">
-									<div role="button" ng-click="updateDayChallenge(1)" class="text-center challenge-selection" ng-class="{'selected': personalChallenge.id == '1','disabled': personalChallenge.updatePending}" ng-disabled="personalChallenge.updatePending" ng-init="imghover1=false">
-										<img class="img-fluid" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy23/badge-active{{personalChallenge.id == '1' ? '-hover':''}}.png" ng-mouseover="imghover1=true" ng-mouseout="imghover1=false" alt="Move More {{personalChallenge.id == '1' ? 'Active' : ''}}" ng-show="!imghover1" ng-cloak> <img class="img-fluid" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy23/badge-active-hover.png" ng-mouseover="imghover1=true" ng-mouseout="imghover1=false" alt="Move More {{personalChallenge.id == '1' ? 'Active' : ''}}" ng-show="imghover1" ng-cloak> 
-										<p class="text-bold">
-											Move<br />More
-										</p>
-									</div>
-								</div>
-								<div class="">
-									<div role="button" ng-click="updateDayChallenge(2)" class="text-center challenge-selection" ng-class="{'selected': personalChallenge.id == '2','disabled': personalChallenge.updatePending}" ng-disabled="personalChallenge.updatePending" ng-init="imghover2=false">
-										<img class="img-fluid" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy23/badge-kind{{personalChallenge.id == '2' ? '-hover':''}}.png" ng-mouseover="imghover2=true" ng-mouseout="imghover2=false" alt="Be Kind {{personalChallenge.id == '2' ? 'Active' : ''}}" ng-show="!imghover2" ng-cloak> <img class="img-fluid" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy23/badge-kind-hover.png" ng-mouseover="imghover2=true" ng-mouseout="imghover2=false" alt="Be Kind {{personalChallenge.id == '2' ? 'Active' : ''}}" ng-show="imghover2" ng-cloak> 
-										<p class="text-bold">
-											Be<br />Kind
-										</p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-12 text-center">
-						<a href="SPageServer?pagename=khc_resources_calming_series" target="_blank" title="Click here to view the Mindfulness Resources" aria-label="Click here to view the Mindfulness Resources">
-							Mindfulness Resources
-						</a>
-					</div>
-				</div>
-			</div>
-			<div class="col-sm-6 ym-activity-box ym-activity-box--virtual d-none">
-				<div class="row" ng-if="personalInfo.avatar == ''" ng-cloak>
-					<div class="col-md-6">
-						<h3 class="h5">
-							Create your own hero!
-						</h3>
-						<p>
-							Make your own avatar! Unlock features like color, smile and hands and customize your hero.
-						</p>
-					</div>
-					<div class="col-md-6">
-						<div class="hv-image" ng-init="hvImgsrc2='PC_customize-static.png';" ng-mouseover="hvImgsrc2='PC_customize-animated.gif';" ng-mouseout="hvImgsrc2='PC_customize-static.png';">
-							<img class="list-group" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy22/{{hvImgsrc2}}" alt="Customize Avatar"> 
-						</div>
-					</div>
-				</div>
-				<div class="row" ng-if="personalInfo.avatar != ''" ng-cloak>
-					<div class="col-md-6">
-						<h3 class="h5">
-							Update your hero!
-						</h3>
-						<p>
-							Change your avatar! Update features like color, smile and hands and customize your hero.
-						</p>
-					</div>
-					<div class="col-md-6">
-						<div class="hv-image">
-							<img class="list-group" ng-src="{{personalInfo.avatar}}" alt="Customize Avatar"> 
-						</div>
-					</div>
-				</div>
-				<div class="text-center" ng-if="prizes && prizes.length > 0" ng-cloak>
-					<a class="btn btn-lg btn-primary" ng-click="monsterEdit()">
-						<strong>
-							Customize Hero!
-						</strong>
-					</a>
-<!--<a class="btn btn-lg btn-primary" href="javascript:void(0);">
-             <strong>Coming Soon!</strong>
-             </a>-->
-				</div>
-				<div class="text-center" ng-if="!prizes || prizes.length == 0" ng-cloak>
-					We're building your heart hero customizer 
-				</div>
-				<div class="text-center" style="margin-top:20px;">
-					<a class="btn btn-lg btn-secondary" href="DocServer/Agent_KHC_Decoder.pdf" target="_blank">
-						<strong>
-							Agent KHC Decoder
-						</strong>
-					</a>
-				</div>
-			</div>
-			<hr class="ym-zuri-animation__divider" ng-show="companyParticipants.totalFundraisers > 0" ng-cloak> 
-			<div class="ym-page-section ym-page-section__main" ng-show="companyParticipants.totalFundraisers > 0" ng-cloak>
-				<div class="ym-school-animation">
-					<iframe title="School Animation" id="school-animation" ng-src="{{schoolAnimationURL}}">
-					</iframe>
-				</div>
-			</div>
-		</section>
+
 		<section class="d-md-flex justify-content-center flex-wrap ym-pc-dashboard-bottom-section" aria-label="Top 5 list and Spreading the Word">
 			<div class="col-md-6" ng-show="topClassRaised.length > 0 || topClassStudents.length > 0" ng-cloak>
 				<div class="container ym-teachers-leaderboard-block ps-0">
@@ -2011,9 +1638,6 @@
 																			Update School Goal
 																		</strong>
 																	</a>
-                    <!-- <a ng-href="NTM?tr.ntmgmt=company_cservice_main&amp;company_id={{participantRegistration.companyInformation.companyId}}">
-                      <strong>Update School Goal</strong>
-                    </a> -->
 																	&nbsp; 
 																</p>
 															</div>
@@ -2565,21 +2189,6 @@
 													</strong>
 												</a>
 											</div>
-<!--
-          <div class="col-sm-4">
-            <div class="ym-pc-dashboard-section-header">
-              <h3 class="h5">
-                Online Assignment
-              </h3>
-            </div>
-            <p>
-              Download a worksheet for an in-class assignment.
-            </p>
-            <a class="btn btn-md-wide btn-primary" href="/site/DocServer/in-class-assignment-1.pdf" target="_blank">
-              <strong>Download Assignment</strong>
-            </a>
-          </div>
-          -->
 											<div class="col-sm-6">
 												<div class="ym-pc-dashboard-section-header">
 													<h3 class="h5">
@@ -2597,13 +2206,6 @@
 											</div>
 										</div>
 									</div>
-<!--
-      <div class="ym-pc-dashboard-coordinator-resources-more">
-        <a ng-href="{{baseUrl}}#/teacher-resources">
-          <strong>View All Resources</strong>
-        </a>
-      </div>
-      -->
 									<div class="ym-pc-dashboard-coordinator-resources-contact" ng-if="notifyName != ''" ng-cloak>
 										Questions about your program – contact your staff partner at: 
 										<a ng-href="mailto:{{notifyEmail}}">
