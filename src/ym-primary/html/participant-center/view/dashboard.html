@@ -834,7 +834,30 @@
 				<div class="col-sm-6 p-2">
 					<div class="ym-pc-dashboard-progress-section__column event-secondary-medium p-3 h-100">
 						<div class="ym-pc-dashboard-progress-box">
-							<div id="ym-pc-dashboard-personal-panel--student" aria-label="Personal Progress">
+							<div class="clearfix">
+								<div class="ym-pc-dashboard-coordinator-page-type" ng-class="{'active': dashboardStudentPageType == 'personal'}">
+									<button type="button" ng-click="toggleStudentPageType('personal')" role="tab" aria-controls="ym-pc-dashboard-update-personal-panel">
+										<strong>
+											Personal
+										</strong>
+									</button>
+								</div>
+								<div class="ym-pc-dashboard-coordinator-page-type" ng-class="{'active': dashboardStudentPageType == 'team'}" ng-if="companyInfo.teamCount > 1">
+									<button type="button" ng-click="toggleStudentPageType('team')" role="tab" aria-controls="ym-pc-dashboard-update-team-panel">
+										<strong>
+											Team
+										</strong>
+									</button>
+								</div>
+								<div class="ym-pc-dashboard-coordinator-page-type" ng-class="{'active': dashboardStudentPageType == 'company'}">
+									<button type="button" ng-click="toggleStudentPageType('company')" role="tab" aria-controls="ym-pc-dashboard-update-school-panel">
+										<strong>
+											School
+										</strong>
+									</button>
+								</div>
+							</div>
+							<div id="ym-pc-dashboard-personal-panel--student" aria-label="Personal Progress" ng-if="dashboardStudentPageType == 'personal'" ng-cloak>
 								<div class="ym-pc-dashboard-section-header">
 									<h3 class="h5">
 										Personal Progress 
@@ -967,13 +990,7 @@
 									</button>
 								</div>
 							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-sm-6 p-2">
-					<div class="ym-pc-dashboard-progress-section__column event-secondary-medium p-3 h-100">
-						<div class="ym-pc-dashboard-progress-box">
-							<div id="ym-pc-dashboard-company-panel--student" aria-label="School Progress">
+							<div id="ym-pc-dashboard-company-panel--student" aria-label="School Progress" ng-if="dashboardStudentPageType == 'company'" ng-cloak>
 								<div class="ym-pc-dashboard-section-header">
 									<h3 class="h5">
 										School Progress 
@@ -1054,6 +1071,12 @@
 									<br /> Since you raised more than {{companyProgress.schoolChallengeLevel}} you can now participate in your school challenge - {{companyProgress.schoolChallenge == "Other" ? companyProgress.schoolChallengeOther : companyProgress.schoolChallenge}}. Keep fundraising to help your school raise more than its goal of {{companyProgress.goalFormatted}}. 
 								</div>
 							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-6 p-2">
+					<div class="ym-pc-dashboard-progress-section__column event-secondary-medium p-3 h-100">
+						<div class="ym-pc-dashboard-progress-box">
 						</div>
 					</div>
 				</div>
