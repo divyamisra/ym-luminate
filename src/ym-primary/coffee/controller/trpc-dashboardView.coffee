@@ -640,6 +640,10 @@ angular.module 'trPcControllers'
       $scope.togglePageType = (pageType) ->
         $scope.dashboardPageType = pageType
 
+      $scope.dashboardStudentPageType = 'personal'
+      $scope.toggleStudentPageType = (pageType) ->
+        $scope.dashboardStudentPageType = pageType
+
       $scope.getParticipantShortcut = ->
         getParticipantShortcutPromise = NgPcTeamraiserShortcutURLService.getShortcut()
           .then (response) ->
