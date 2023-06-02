@@ -31,7 +31,7 @@ angular.module 'ahaLuminateControllers'
               numberEvents = 0
               firstTR = '';
               angular.forEach teamraisers, (tr) ->
-                if paraseInt(tr.status) <= 3
+                if parseInt(tr.status) <= 3
                   numberEvents = numberEvents + 1
                   if firstTR == ''
                     firstTR = tr.id
