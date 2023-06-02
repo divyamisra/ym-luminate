@@ -416,7 +416,7 @@ angular.module 'trPcControllers'
         $scope.editCoordinatorMessage = ->
           $scope.coordinatorMessage.original = $scope.coordinatorMessage.text
           if $scope.coordinatorMessage.text == ''
-            $scope.coordinatorMessage.text = 'Don\'t forget to send 10 emails or e-cards to your friends and family tonight and remember to finish Finn\'s Mission!'
+            $scope.coordinatorMessage.text = 'Don\'t forget to text or send e-cards to your friends and family tonight and remember to finish Finn\'s Mission!'
           $scope.editCoordinatorMessageModal = $uibModal.open
             scope: $scope
             size: 'lg'
@@ -639,6 +639,10 @@ angular.module 'trPcControllers'
         $scope.dashboardPageType = 'company'
       $scope.togglePageType = (pageType) ->
         $scope.dashboardPageType = pageType
+
+      $scope.dashboardStudentPageType = 'personal'
+      $scope.toggleStudentPageType = (pageType) ->
+        $scope.dashboardStudentPageType = pageType
 
       $scope.getParticipantShortcut = ->
         getParticipantShortcutPromise = NgPcTeamraiserShortcutURLService.getShortcut()
@@ -920,20 +924,20 @@ angular.module 'trPcControllers'
               final_url = $scope.baseUrl + prize.mission_url
               if prize.sku == 'BDG-6'
                 if $scope.tablePrefix == 'heartdev'
-                  final_url = 'https://tools.heart.org/aha_ym23_dev/?eid=' + $scope.frId + '&sid=' + $scope.consId + '&name=' + $scope.consNameFirst
+                  final_url = 'https://tools.heart.org/aha_ym24_dev/?eid=' + $scope.frId + '&sid=' + $scope.consId + '&name=' + $scope.consNameFirst
                 if $scope.tablePrefix == 'heartnew'
-                  final_url = 'https://tools.heart.org/aha_ym23_testing/?eid=' + $scope.frId + '&sid=' + $scope.consId + '&name=' + $scope.consNameFirst
+                  final_url = 'https://tools.heart.org/aha_ym24_testing/?eid=' + $scope.frId + '&sid=' + $scope.consId + '&name=' + $scope.consNameFirst
                 if $scope.tablePrefix == 'heart'
-                  final_url = 'https://tools.heart.org/aha_ym23/?eid=' + $scope.frId + '&sid=' + $scope.consId + '&name=' + $scope.consNameFirst
+                  final_url = 'https://tools.heart.org/aha_ym24/?eid=' + $scope.frId + '&sid=' + $scope.consId + '&name=' + $scope.consNameFirst
             if prize.mission_url_type == 'URL' 
               final_url = prize.mission_url
             if prize.mission_url_type == 'Quiz' 
               if $scope.tablePrefix == 'heartdev'
-                final_url = 'https://tools.heart.org/aha_ym23_dev/quiz/show/' + prize.mission_url + '?event_id=' + $scope.frId + '&user_id=' + $scope.consId + '&name=' + $scope.consNameFirst
+                final_url = 'https://tools.heart.org/aha_ym24_dev/quiz/show/' + prize.mission_url + '?event_id=' + $scope.frId + '&user_id=' + $scope.consId + '&name=' + $scope.consNameFirst
               if $scope.tablePrefix == 'heartnew'
-                final_url = 'https://tools.heart.org/aha_ym23_testing/quiz/show/' + prize.mission_url + '?event_id=' + $scope.frId + '&user_id=' + $scope.consId + '&name=' + $scope.consNameFirst
+                final_url = 'https://tools.heart.org/aha_ym24_testing/quiz/show/' + prize.mission_url + '?event_id=' + $scope.frId + '&user_id=' + $scope.consId + '&name=' + $scope.consNameFirst
               if $scope.tablePrefix == 'heart'
-                final_url = 'https://tools.heart.org/aha_ym23/quiz/show/' + prize.mission_url + '?event_id=' + $scope.frId + '&user_id=' + $scope.consId + '&name=' + $scope.consNameFirst
+                final_url = 'https://tools.heart.org/aha_ym24/quiz/show/' + prize.mission_url + '?event_id=' + $scope.frId + '&user_id=' + $scope.consId + '&name=' + $scope.consNameFirst
             if prize.mission_url_type == 'Modal' and prize.mission_url == 'app' 
               final_url = 'showMobileApp()'
             if prize.status != 0

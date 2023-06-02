@@ -43,7 +43,14 @@
     ajaxProxyAuth: '[[S86:true]]',
     [[?
       [[?xx::x[[S1:cons_id]]x::T::
-        [[?[[S39:0*#000000*10pt*true*1*0*0*Events:true:YM Kids Heart Challenge 2024:::]]:: href=::::T]]
+        [[?
+					[[?[[S39:0*#000000*10pt*true*1*0*0*Events:true:YM Kids Heart Challenge 2023:::]]:: href=::::T]]
+					[[?[[S39:0*#000000*10pt*true*1*0*0*Events:true:YM Kids Heart Challenge 2024:::]]:: href=::::T]]
+					[[?[[S39:0*#000000*10pt*true*1*0*0*Events:true:American Heart Challenge 2023:::]]:: href=::::T]]
+					[[?[[S39:0*#000000*10pt*true*1*0*0*Events:true:American Heart Challenge 2024:::]]:: href=::::T]]
+				::T::
+				::
+				]]
       ]]
     ::T::
       isParticipant: false
@@ -126,12 +133,12 @@
       
       var scriptTag = document.createElement('script');
       [[?xheartdevx::x[[S29:TABLE_PREFIX]]x::
-        scriptTag.src = 'https://tools.heart.org/aha_ym23_dev/visitlink_record.php?ecard_linktrack=' + uparts[0];
+        scriptTag.src = 'https://tools.heart.org/aha_ym24_dev/visitlink_record.php?ecard_linktrack=' + uparts[0];
       ::
         [[?xheartnewx::x[[S29:TABLE_PREFIX]]x::
-          scriptTag.src = 'https://tools.heart.org/aha_ym23_testing/visitlink_record.php?ecard_linktrack=' + uparts[0];
+          scriptTag.src = 'https://tools.heart.org/aha_ym24_testing/visitlink_record.php?ecard_linktrack=' + uparts[0];
         ::
-          scriptTag.src = 'https://tools.heart.org/aha_ym23/visitlink_record.php?ecard_linktrack=' + uparts[0];
+          scriptTag.src = 'https://tools.heart.org/aha_ym24/visitlink_record.php?ecard_linktrack=' + uparts[0];
         ]]
       ]]
       document.body.appendChild(scriptTag);
