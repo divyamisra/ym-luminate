@@ -30,7 +30,9 @@ angular.module 'ahaLuminateControllers'
               setRegEventId()
             else
               teamraisers = [teamraisers] if not angular.isArray teamraisers
-              numberEvents = teamraisers.length
+              angular.forEach teamraisers, (tr) ->
+                if tr.status le 3
+                  numberEvents = numberEvents + 1
               regEventId = ''
               if numberEvents is 1
                 regEventId = teamraisers[0].id
