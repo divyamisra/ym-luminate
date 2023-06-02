@@ -29,12 +29,15 @@ angular.module 'ahaLuminateControllers'
             else
               teamraisers = [teamraisers] if not angular.isArray teamraisers
               numberEvents = 0
+              firstTR = '';
               angular.forEach teamraisers, (tr) ->
                 if paraseInt(tr.status) <= 3
                   numberEvents = numberEvents + 1
+                  if firstTR == ''
+                    firstTR = tr.id
               regEventId = ''
               if numberEvents is 1
-                regEventId = teamraisers[0].id
+                regEventId = firstTR
               setRegEventId numberEvents, regEventId
       
       $scope.toggleLoginMenu = ->
