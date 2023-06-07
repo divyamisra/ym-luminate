@@ -19,7 +19,7 @@ angular.module 'ahaLuminateControllers'
       if not consId or not luminateExtend.global.isParticipant
         setRegEventId()
       else
-        TeamraiserParticipantService.getRegisteredTeamraisers 'cons_id=' + consId + '&event_type=' + encodeURIComponent('American Heart Challenge 2023'),
+        TeamraiserParticipantService.getRegisteredTeamraisers 'cons_id=' + consId + '&event_type=%Heart Challenge%',
           error: ->
             setRegEventId()
           success: (response) ->
@@ -28,10 +28,16 @@ angular.module 'ahaLuminateControllers'
               setRegEventId()
             else
               teamraisers = [teamraisers] if not angular.isArray teamraisers
-              numberEvents = teamraisers.length
+              numberEvents = 0
+              firstTR = '';
+              angular.forEach teamraisers, (tr) ->
+                if parseInt(tr.status) <= 3
+                  numberEvents = numberEvents + 1
+                  if firstTR == ''
+                    firstTR = tr.id
               regEventId = ''
               if numberEvents is 1
-                regEventId = teamraisers[0].id
+                regEventId = firstTR
               setRegEventId numberEvents, regEventId
       
       $scope.toggleLoginMenu = ->
@@ -57,7 +63,7 @@ angular.module 'ahaLuminateControllers'
           success: ->
             if not $scope.headerLoginInfo.ng_nexturl or $scope.headerLoginInfo.ng_nexturl is ''
 #              window.location = window.location.href
-              window.location = $rootScope.secureDomain + 'site/SPageServer?pagename=middle_school_my_events'
+              window.location = $rootScope.secureDomain + 'site/SPageServer?pagename=ym_my_events'
             else
               window.location = $scope.headerLoginInfo.ng_nexturl
       

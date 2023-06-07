@@ -2,7 +2,8 @@
 @import "variables.scss";
 @import "../../youth-markets/sass/mixins.scss";
 
-main > .container {
+main > .container,
+main > .container-fluid {
   @media (max-width: $screen-xs-max) {
     margin-top: -72px;
   }

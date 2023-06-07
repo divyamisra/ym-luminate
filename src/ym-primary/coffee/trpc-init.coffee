@@ -14,9 +14,9 @@ angular.module 'trPcApp'
       rootPath = ''
       devBranch = luminateExtend.global.devBranch
       if devBranch and devBranch isnt ''
-        rootPath = '../' + devBranch + '/aha-luminate/'
+        rootPath = '../' + devBranch + '/ym-luminate/'
       else
-        rootPath = '../aha-luminate/'
+        rootPath = '../ym-luminate/'
       rootPath
     programKey: 'ym-primary'
 

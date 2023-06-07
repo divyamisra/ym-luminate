@@ -5,8 +5,9 @@ angular.module 'ahaLuminateControllers'
     '$httpParamSerializer'
     'AuthService'
     'TeamraiserParticipantService'
+    'TeamraiserRegistrationService'
     '$timeout'
-    ($rootScope, $scope, $httpParamSerializer, AuthService, TeamraiserParticipantService, $timeout) ->
+    ($rootScope, $scope, $httpParamSerializer, AuthService, TeamraiserParticipantService, TeamraiserRegistrationService, $timeout) ->
       $dataRoot = angular.element '[data-aha-luminate-root]'
       consId = $dataRoot.data('cons-id') if $dataRoot.data('cons-id') isnt ''
       $scope.regEventId = ''
@@ -20,7 +21,7 @@ angular.module 'ahaLuminateControllers'
       if not consId or not luminateExtend.global.isParticipant
         setRegEventId()
       else
-        TeamraiserParticipantService.getRegisteredTeamraisers 'cons_id=' + consId + '&event_type=' + encodeURIComponent('YM Kids Heart Challenge 2023'),
+        TeamraiserParticipantService.getRegisteredTeamraisers 'cons_id=' + consId + '&event_type=%Heart Challenge%',
           error: ->
             setRegEventId()
           success: (response) ->
@@ -29,12 +30,28 @@ angular.module 'ahaLuminateControllers'
               setRegEventId()
             else
               teamraisers = [teamraisers] if not angular.isArray teamraisers
-              numberEvents = teamraisers.length
+              numberEvents = 0
+              firstTR = '';
+              angular.forEach teamraisers, (tr) ->
+                if parseInt(tr.status) <= 3
+                  numberEvents = numberEvents + 1
+                  if firstTR == ''
+                    firstTR = tr.id
               regEventId = ''
               if numberEvents is 1
-                regEventId = teamraisers[0].id
+                regEventId = firstTR
               setRegEventId numberEvents, regEventId
-          
+
+      $scope.participationTypes = {}
+      TeamraiserRegistrationService.getParticipationTypes
+        error: ->
+          # TODO
+        success: (response) ->
+          participationTypes = response.getParticipationTypesResponse.participationType
+          participationTypes = [participationTypes] if not angular.isArray participationTypes
+          angular.forEach participationTypes, (ptype) ->
+            $scope.participationTypes[ptype.id] = ptype.name
+            
       $scope.toggleLoginMenu = ->
         if $scope.loginMenuOpen
           delete $scope.loginMenuOpen
@@ -58,7 +75,7 @@ angular.module 'ahaLuminateControllers'
           success: ->
             if not $scope.headerLoginInfo.ng_nexturl or $scope.headerLoginInfo.ng_nexturl is ''
 #              window.location = window.location.href
-              window.location = $rootScope.secureDomain + 'site/SPageServer?pagename=ym_khc_my_events'
+              window.location = $rootScope.secureDomain + 'site/SPageServer?pagename=ym_my_events'
             else
               window.location = $scope.headerLoginInfo.ng_nexturl
       

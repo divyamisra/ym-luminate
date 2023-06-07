@@ -8,6 +8,8 @@
 
 .ym-page-header {
   background: none;
+  color: #ffffff;
+  padding: 22px 0;
   
   h1 {
     font-size: 32px;
@@ -38,9 +40,6 @@
     }
   }
   .ym-page-header-related {
-    top: -25px;
-    @media (max-width: $screen-sm-min) {
-      top: -15px;
-    }
+    top: -15px;
   }
 }
