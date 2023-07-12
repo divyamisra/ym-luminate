@@ -169,11 +169,27 @@ angular.module 'ahaLuminateApp'
             
       getSchools: (requestData, callback) ->
         if $rootScope.tablePrefix is 'heartdev'
-          url = '//tools.heart.org/ym-school-plan/schoolPlan.php?env=_dev&method=GetSchools' + requestData
+          url = '//tools.heart.org/ym-school-plan/schoolPlan.php?env=_dev&method=GetSchools&EventProgram=KHC' + requestData
         else if $rootScope.tablePrefix is 'heartnew'
-          url = '//tools.heart.org/ym-school-plan/schoolPlan.php?env=_new&method=GetSchools' + requestData
+          url = '//tools.heart.org/ym-school-plan/schoolPlan.php?env=_new&method=GetSchools&EventProgram=KHC' + requestData
         else
-          url = '//tools.heart.org/ym-school-plan/schoolPlan.php?method=GetSchools' + requestData
+          url = '//tools.heart.org/ym-school-plan/schoolPlan.php?method=GetSchools&EventProgram=KHC' + requestData
+        $http.jsonp($sce.trustAsResourceUrl(url), jsonpCallbackParam: 'callback')
+          .then (response) ->
+            if response.data.success is false
+              callback.error response
+            else
+              callback.success response
+          , (response) ->
+            callback.failure response
+            
+      getSchoolsNew: (requestData, callback) ->
+        if $rootScope.tablePrefix is 'heartdev'
+          url = '//tools.heart.org/ym-school-plan/schoolPlan.php?env=_dev&method=GetSchoolsNew' + requestData
+        else if $rootScope.tablePrefix is 'heartnew'
+          url = '//tools.heart.org/ym-school-plan/schoolPlan.php?env=_new&method=GetSchoolsNew' + requestData
+        else
+          url = '//tools.heart.org/ym-school-plan/schoolPlan.php?method=GetSchoolsNew' + requestData
         $http.jsonp($sce.trustAsResourceUrl(url), jsonpCallbackParam: 'callback')
           .then (response) ->
             if response.data.success is false
