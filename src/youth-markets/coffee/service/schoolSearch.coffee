@@ -20,6 +20,7 @@ angular.module 'ahaLuminateApp'
           nameFilter: ''
           ng_nameFilter: ''
           stateFilter: ''
+          gradeFilter: ''
           showHelp: false
         $scope.schoolListByState = {}
         $scope.schoolDataMap = {}
@@ -132,6 +133,7 @@ angular.module 'ahaLuminateApp'
           nameFilter = jQuery.trim $scope.schoolList.ng_nameFilter
           $scope.schoolList.nameFilter = nameFilter
           $scope.schoolList.stateFilter = ''
+          $scope.schoolList.gradeFilter = ''
           $scope.schoolList.searchSubmitted = true
           $scope.schoolList.searchByLocation = false
           # if not nameFilter or nameFilter.length < 3
@@ -301,7 +303,7 @@ angular.module 'ahaLuminateApp'
           #  if nameFilterReplace.indexOf('..') == -1
           #    nameFilter = nameFilter + '|' + nameFilterReplace
 
-          ZuriService.getSchools '&school_name=' + encodeURIComponent(nameFilter) + '&school_state=' + encodeURIComponent($scope.schoolList.stateFilter),
+          ZuriService.getSchools '&school_name=' + encodeURIComponent(nameFilter) + '&school_state=' + encodeURIComponent($scope.schoolList.stateFilter) + '&school_grade=' + encodeURIComponent($scope.schoolList.gradeFilter),
             failure: (response) ->
             error: (response) ->
             success: (response) ->
