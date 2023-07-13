@@ -890,9 +890,9 @@ div[id^="taTextElement"]:focus {
   height: 50px;
   animation: glitter 6s linear 0s infinite normal;
   -webkit-animation: glitter 6s linear 0s infinite normal;
-  -moz-animation: glitter 8s linear 0s infinite normal;
-  -ms-animation: glitter 8s linear 0s infinite normal;
-  -o-animation: glitter 8s linear 0s infinite normal;
+  -moz-animation: glitter 6s linear 0s infinite normal;
+  -ms-animation: glitter 6s linear 0s infinite normal;
+  -o-animation: glitter 6s linear 0s infinite normal;
 }
 
 .mouth-open {
@@ -929,12 +929,12 @@ div[id^="taTextElement"]:focus {
     opacity: 0;
   }
   25% {
-    -webkit-transform: scale(1) rotate(360deg);
+    -webkit-transform: scale(1) rotate(180deg);
     opacity: 1;
   }
   50% {
-    -webkit-transform: scale(0.3) rotate(720deg);
-    opacity: 0;
+    -webkit-transform: scale(0.3) rotate(360deg);
+    opacity: 1;
   }
   100% {
     -webkit-transform: scale(0.3) rotate(0deg);
