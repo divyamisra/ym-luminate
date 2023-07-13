@@ -141,6 +141,12 @@
 					</div>
 				</div>
 				<div class="ym-pc-dashboard-badge-path col-md-6">
+				        <div class="ym-badges__item" ng-repeat="prize in prizes | filter: {status: 1}" ng-cloak>
+						<div class="ym-badge__item" ng-if="prize.earned" tabindex="0" aria-label="{{prize.label}} Badge Earned" ng-cloak>
+							<img class="img-fluid" ng-src="{{prize.image_url}}" alt="{{prize.label}} Badge Earned">
+							<span ng-bind-html="prize.label"></span>
+						</div>
+				        </div>					
 				</div>
 			</div>
 		</section>
