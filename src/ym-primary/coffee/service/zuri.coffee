@@ -184,12 +184,7 @@ angular.module 'ahaLuminateApp'
             callback.failure response
             
       getSchoolsNew: (requestData, callback) ->
-        if $rootScope.tablePrefix is 'heartdev'
-          url = '//tools.heart.org/ym-school-plan/schoolPlan.php?env=_dev&method=GetSchoolsNew' + requestData
-        else if $rootScope.tablePrefix is 'heartnew'
-          url = '//tools.heart.org/ym-school-plan/schoolPlan.php?env=_new&method=GetSchoolsNew' + requestData
-        else
-          url = '//tools.heart.org/ym-school-plan/schoolPlan.php?method=GetSchoolsNew' + requestData
+        url = '//tools.heart.org/ym-school-plan/schoolPlan.php?method=GetSchoolsNew' + requestData
         $http.jsonp($sce.trustAsResourceUrl(url), jsonpCallbackParam: 'callback')
           .then (response) ->
             if response.data.success is false
