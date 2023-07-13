@@ -1016,4 +1016,31 @@ textarea#feedbackMessage {
   padding: 10px;
   margin-bottom: 30px;
 }  
-
+.bounce-2 {
+  animation:balloon2 2s linear;
+}
+@keyframes balloon2 {
+  0% {transform: translate(0px,400px) rotate(-1deg);}
+  50% {transform: translate(0px,180px) rotate(1deg);}
+  95% {transform: translate(0px,5px) rotate(-1deg);}
+  100% {transform: translate(0px,0px) rotate(0deg);}
+}
+.bounce-3 {
+  animation:balloon3 3s linear;
+}
+@keyframes balloon3 {
+  0% {transform: translate(0px,350px);}
+  50% {transform: translate(0px,120px);}
+  95% {transform: translate(0px,5px);}
+  100% {transform: translate(0px,0px);}
+}
+.bounce-4 {
+  animation:balloon4 4s linear;
+}
+@keyframes balloon4 {
+  0% {transform: translate(0px,300px) rotate(1deg);}
+  50% {transform: translate(0px,100px) rotate(-1deg);}
+  75% {transform: translate(0px,5px) rotate(1deg);}
+  90% {transform: translate(0px,0px) rotate(0deg);}
+  100% {transform: translate(0px,0px) rotate(0deg);}
+}
