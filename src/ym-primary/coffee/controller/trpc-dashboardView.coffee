@@ -1545,7 +1545,7 @@ angular.module 'trPcControllers'
         wind = Math.floor(Math.random() * -30)
         rotate = Math.floor(Math.random() * 560) + 100
         el.animate {
-          top: '-150px'
+          top: '-160px'
           left: '+=' + wind + 0
         },
           step: ->
@@ -1561,7 +1561,7 @@ angular.module 'trPcControllers'
         windowWidth = jQuery('.finns-mission').width()
         windowHeight = jQuery('.finns-mission').height()
         i = 0
-        while i < 100
+        while i < 50
           el = jQuery('.bln-1').clone()
           el.appendTo '.blns'
           resetBalloon el
@@ -1571,6 +1571,15 @@ angular.module 'trPcControllers'
           else
             #releaseBalloon(el);
           i++
-      blowUpBalloons(); 
+
+      bcheck = 0
+      startBalloons = ->
+        if angular.element('.finns-mission').length > 0
+          blowUpBalloons()
+        else
+          bcheck++
+          if bcheck < 5
+            setTimeout startBalloons, 1000
+      startBalloons() 
 
   ]
