@@ -910,11 +910,9 @@ angular.module 'trPcControllers'
       refreshFinnsMission = ->
         $scope.prizes = []
         $scope.prizesEarned = 0
-        $rootScope.has_bonus = 0
         NuclavisService.getBadges $scope.consId + '/' + $scope.frId
         .then (response) ->
           prizes = response.data.missions
-          #$rootScope.has_bonus = response.data.has_bonus
           final_url = ''
           angular.forEach prizes, (prize) ->
             if prize.mission_url_type == 'Donate' 
