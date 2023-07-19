@@ -58,7 +58,7 @@ angular.module 'ahaLuminateApp'
       NuclavisService.login()
       .then (response) ->
         $rootScope.NuclavisAPIToken = response
-	    , (response) ->
+      , (response) ->
         $rootScope.NuclavisAPIToken = 0;
   ]
 
