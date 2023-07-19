@@ -911,10 +911,10 @@ angular.module 'trPcControllers'
         $scope.prizes = []
         $scope.prizesEarned = 0
         $rootScope.has_bonus = 0
-        BoundlessService.getBadges $scope.frId + '/' + $scope.consId
+        NuclavisService.getBadges $scope.frId + '/' + $scope.consId
         .then (response) ->
-          prizes = response.data.prizes
-          $rootScope.has_bonus = response.data.has_bonus
+          prizes = response.data.missions
+          #$rootScope.has_bonus = response.data.has_bonus
           final_url = ''
           angular.forEach prizes, (prize) ->
             if prize.mission_url_type == 'Donate' 
