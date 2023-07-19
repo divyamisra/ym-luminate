@@ -942,22 +942,22 @@ angular.module 'trPcControllers'
             if prize.earned != 0
               earned_status = 'Earned'
               hover_msg = prize.earned_hover
+              image_url = "badge-" + prize.mission_id + "-earned.png"
             else 
               earned_status = 'Unearned'
               hover_msg = prize.unearned_hover
+              image_url = "badge-" + prize.mission_id + "-unearned.png"
             prize_label = prize.label
             aria_label = prize_label + ": " + earned_status + " - " + hover_msg
             $scope.prizes.push
-              id: prize.id
+              id: prize.mission_id
               label: prize.label
               sku: prize.sku
               status: prize.earned
               completed_label: prize.completed_label
               mission_url: prize.mission_url
               mission_url_type: prize.mission_url_type
-              earned_image_url: prize.earned_image_url
-              not_earned_image_url: prize.non_earned_image_url
-              locked_image_url: prize.locked_image_url
+              image_url: image_url
               final_url: final_url
               hover_msg: hover_msg
               aria_label: aria_label
