@@ -22,7 +22,7 @@ angular.module 'ahaLuminateApp'
           url = 'https://smt.nuclavis.com/khc/student/missions/' + requestData
         reqHeader = 
           'Content-Type': 'application/json'
-          'Authorization': 'Bearer ' + $scope.NuclavisAPIToken
+          'Authorization': 'Bearer ' + $rootScope.NuclavisAPIToken
         $http.get($sce.trustAsResourceUrl(url), {headers: reqHeader})
           .then (response) ->
             response.data
