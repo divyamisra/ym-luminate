@@ -12,9 +12,10 @@ angular.module 'ahaLuminateControllers'
     'TeamraiserCompanyService'
     'ZuriService'
     'BoundlessService'
+    'NuclavisService'
     'TeamraiserParticipantPageService'
     'TeamraiserSurveyResponseService'
-    ($scope, $rootScope, $location, $sce, $filter, $timeout, $uibModal, APP_INFO, TeamraiserParticipantService, TeamraiserCompanyService, ZuriService, BoundlessService, TeamraiserParticipantPageService, TeamraiserSurveyResponseService) ->
+    ($scope, $rootScope, $location, $sce, $filter, $timeout, $uibModal, APP_INFO, TeamraiserParticipantService, TeamraiserCompanyService, ZuriService, BoundlessService, NuclavisService, TeamraiserParticipantPageService, TeamraiserSurveyResponseService) ->
       $dataRoot = angular.element '[data-aha-luminate-root]'
       $scope.participantId = $location.absUrl().split('px=')[1].split('&')[0].split('#')[0]
       $scope.companyId = $dataRoot.data('company-id') if $dataRoot.data('company-id') isnt ''
@@ -37,17 +38,16 @@ angular.module 'ahaLuminateControllers'
       $scope.schoolChallengeBadge = false
       $rootScope.HideGifts = "NO"
 
-      BoundlessService.getBadges $scope.frId + '/' + $scope.participantId
+      NuclavisService.getBadges $scope.participantId + '/' + $scope.frId
       .then (response) ->
-        prizes = response.data.prizes
-        $scope.has_bonus = response.data.has_bonus
+        prizes = response.data.missions
+        #$scope.has_bonus = response.data.has_bonus
         angular.forEach prizes, (prize) ->
           $scope.prizes.push
             id: prize.id
             label: prize.label
             sku: prize.sku
-            status: prize.status
-            earned: prize.earned_datetime
+            status: prize.earned
             image_url: prize.earned_image_url
 
           if prize.status isnt 0
