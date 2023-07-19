@@ -25,7 +25,7 @@ angular.module 'ahaLuminateApp'
           'Authorization': 'Bearer ' + $scope.NuclavisAPIToken
         $http.get($sce.trustAsResourceUrl(url), {headers: reqHeader})
           .then (response) ->
-            response
+            response.data
           , (response) ->
             response
 
