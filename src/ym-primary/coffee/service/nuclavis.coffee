@@ -11,7 +11,7 @@ angular.module 'ahaLuminateApp'
           url = 'https://smt.nuclavis.com/client/login'
         $http.post($sce.trustAsResourceUrl(url), JSON.stringify({"username": "aha_api","password": "AgP*09g8Iuqr","client": "khc"}))
           .then (response) ->
-            response
+            response.data.data.jwt
           , (response) ->
             response
 
