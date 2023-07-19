@@ -939,29 +939,19 @@ angular.module 'trPcControllers'
                 final_url = 'https://tools.heart.org/aha_ym24/quiz/show/' + prize.mission_url + '?event_id=' + $scope.frId + '&user_id=' + $scope.consId + '&name=' + $scope.consNameFirst
             if prize.mission_url_type == 'Modal' and prize.mission_url == 'app' 
               final_url = 'showMobileApp()'
-            if prize.status != 0
+            if prize.earned != 0
               earned_status = 'Earned'
               hover_msg = prize.earned_hover
             else 
               earned_status = 'Unearned'
               hover_msg = prize.unearned_hover
             prize_label = prize.label
-            switch prize.label
-              when "Take Challenge" then prize_label = "Pick a Challenge"
-              when "Edit Personal Page" then prize_label = "Edit Your Page"
-              when "Self Donor" then prize_label = "Self-Donation"
-              when "Go Social" then prize_label = "Share on Social"
-              when "Send Email/Ecard" then prize_label = "Send E-card"
-              when "First Online Donation" then prize_label = "First Donation"
-              when "CPR Quiz" then prize_label = "Hands-Only CPR"
-              when "Stroke Quiz" then prize_label = "Warning Signs of Stroke"
             aria_label = prize_label + ": " + earned_status + " - " + hover_msg
             $scope.prizes.push
               id: prize.id
               label: prize.label
               sku: prize.sku
-              status: prize.status
-              earned: prize.earned_datetime
+              status: prize.earned
               completed_label: prize.completed_label
               mission_url: prize.mission_url
               mission_url_type: prize.mission_url_type
