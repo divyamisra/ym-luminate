@@ -921,13 +921,6 @@ angular.module 'trPcControllers'
               final_url = 'TR?fr_id=' + $scope.frId + '&pg=personal&px=' + $scope.consId
             if prize.mission_url_type == 'Tab' 
               final_url = $scope.baseUrl + prize.mission_url
-              if prize.sku == 'BDG-6'
-                if $scope.tablePrefix == 'heartdev'
-                  final_url = 'https://tools.heart.org/aha_ym24_dev/?eid=' + $scope.frId + '&sid=' + $scope.consId + '&name=' + $scope.consNameFirst
-                if $scope.tablePrefix == 'heartnew'
-                  final_url = 'https://tools.heart.org/aha_ym24_testing/?eid=' + $scope.frId + '&sid=' + $scope.consId + '&name=' + $scope.consNameFirst
-                if $scope.tablePrefix == 'heart'
-                  final_url = 'https://tools.heart.org/aha_ym24/?eid=' + $scope.frId + '&sid=' + $scope.consId + '&name=' + $scope.consNameFirst
             if prize.mission_url_type == 'URL' 
               final_url = prize.mission_url
             if prize.mission_url_type == 'Quiz' 
@@ -949,18 +942,25 @@ angular.module 'trPcControllers'
               image_url = "badge-" + prize.mission_id + "-unearned.png"
             prize_label = prize.label
             aria_label = prize_label + ": " + earned_status + " - " + hover_msg
+            switch prize.mission_id
+              when 2 then button_label = "Donate"
+              when 3 then button_label = "Go Social"
+              when 4 then button_label = "Edit Page"
+              when 5 then button_label = "Watch"
+              when 6 then button_label = "Send Message"
+              when 7 then button_label = "Ask for Donations"
+              when 8 then button_label = "Take Quiz"
             $scope.prizes.push
               id: prize.mission_id
-              label: prize.label
-              sku: prize.sku
+              label: prize.name
               status: prize.earned
-              completed_label: prize.completed_label
               mission_url: prize.mission_url
               mission_url_type: prize.mission_url_type
               image_url: image_url
               final_url: final_url
               hover_msg: hover_msg
               aria_label: aria_label
+              button_label: button_label
 
             if prize.status != 0
               $scope.prizesEarned++
