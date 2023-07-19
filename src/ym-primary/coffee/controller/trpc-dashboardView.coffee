@@ -1567,9 +1567,8 @@ angular.module 'trPcControllers'
           positionx = el.position()
           if positionx.top > windowHeight or positionx.left > windowWidth or positionx.left < -100
             resetBalloon el
-          else
-            #releaseBalloon(el);
           i++
+        resetBalloon jQuery('.bln-1')
 
       bcheck = 0
       startBalloons = ->
