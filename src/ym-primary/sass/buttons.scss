@@ -3,6 +3,21 @@ a.btn-global-primary {
   @include button-variant($btn-primary-color, $btn-primary-bg, $btn-primary-border, $btn-primary-color, $btn-primary-darker-bg, $btn-primary-darker-border);
 }
 
+.btn, 
+.btn:active, 
+.btn:focus, 
+.btn:hover, 
+.btn:link, 
+.btn:visited, 
+a.btn, 
+a.btn:active, 
+a.btn:focus, 
+a.btn:hover, 
+a.btn:link, 
+a.btn:visited {
+    border-radius: 0px;
+}
+
 .btn.btn-primary {
   background: $event-primary;
   color: #ffffff;
