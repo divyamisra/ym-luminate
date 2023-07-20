@@ -915,52 +915,40 @@ angular.module 'trPcControllers'
           prizes = response.data.missions
           final_url = ''
           angular.forEach prizes, (prize) ->
-            if prize.mission_url_type == 'Donate' 
+            if prize.hq_action_type == 'Donate' 
               final_url = 'Donation2?df_id=' + $scope.eventInfo.donationFormId + "&FR_ID=" + $scope.frId + "&PROXY_TYPE=20&PROXY_ID=" + $scope.consId
-            if prize.mission_url_type == 'Personal' 
+            if prize.hq_action_type == 'Personal' 
               final_url = 'TR?fr_id=' + $scope.frId + '&pg=personal&px=' + $scope.consId
-            if prize.mission_url_type == 'Tab' 
-              final_url = $scope.baseUrl + prize.mission_url
-            if prize.mission_url_type == 'URL' 
-              final_url = prize.mission_url
-            if prize.mission_url_type == 'Quiz' 
+            if prize.hq_action_type == 'Tab' 
+              final_url = $scope.baseUrl + prize.hq_action_url
+            if prize.hq_action_type == 'URL' 
+              final_url = prize.hq_action_url
+            if prize.hq_action_type == 'Quiz' 
               if $scope.tablePrefix == 'heartdev'
                 final_url = 'https://tools.heart.org/aha_ym24_dev/quiz/show/' + prize.mission_url + '?event_id=' + $scope.frId + '&user_id=' + $scope.consId + '&name=' + $scope.consNameFirst
               if $scope.tablePrefix == 'heartnew'
                 final_url = 'https://tools.heart.org/aha_ym24_testing/quiz/show/' + prize.mission_url + '?event_id=' + $scope.frId + '&user_id=' + $scope.consId + '&name=' + $scope.consNameFirst
               if $scope.tablePrefix == 'heart'
                 final_url = 'https://tools.heart.org/aha_ym24/quiz/show/' + prize.mission_url + '?event_id=' + $scope.frId + '&user_id=' + $scope.consId + '&name=' + $scope.consNameFirst
-            if prize.mission_url_type == 'Modal' and prize.mission_url == 'app' 
+            if prize.hq_action_type == 'Modal' and prize.hq_action_url == 'app' 
               final_url = 'showMobileApp()'
             if prize.earned != 0
-              earned_status = 'Earned'
-              hover_msg = prize.earned_hover
               image_url = "badge-" + prize.mission_id + "-earned.png"
             else 
-              earned_status = 'Unearned'
-              hover_msg = prize.unearned_hover
               image_url = "badge-" + prize.mission_id + "-unearned.png"
             prize_label = prize.label
             aria_label = prize_label + ": " + earned_status + " - " + hover_msg
-            switch prize.mission_id
-              when 2 then button_label = "Donate"
-              when 3 then button_label = "Go Social"
-              when 4 then button_label = "Edit Page"
-              when 5 then button_label = "Watch"
-              when 6 then button_label = "Send Message"
-              when 7 then button_label = "Ask for Donations"
-              when 8 then button_label = "Take Quiz"
             $scope.prizes.push
               id: prize.mission_id
-              label: prize.name
+              label: prize.hq_name
               status: prize.earned
-              mission_url: prize.mission_url
-              mission_url_type: prize.mission_url_type
+              mission_url: prize.hq_action_url
+              mission_url_type: prize.hq_action_type
               image_url: image_url
               final_url: final_url
-              hover_msg: hover_msg
+              hover_msg: prize.hq_hover
               aria_label: aria_label
-              button_label: button_label
+              button_label: prize.hq_button
 
             if prize.status != 0
               $scope.prizesEarned++
