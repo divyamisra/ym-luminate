@@ -31,12 +31,6 @@
 		<section class="ym-pc-dashboard-badges-section" aria-label="My Badges" ng-if="prizes && prizes.length > 0" ng-cloak>
 			<div class="d-md-flex justify-content-between flex-wrap">
 				<div class="ym-pc-dashboard-badge-path col-md-6">
-					<div class="ym-pc-dashboard-badges-header">
-						<em>
-							Please allow 15 minutes for the system to update your badges.<br/>
-							If your student’s badge has not appeared after 15 minutes, please contact our support staff by <a href="javascript:void(0)" onclick="angular.element('#designstudio-button #transparent-button').click()">clicking here</a> and they will assist you.
-						</em>
-					</div>
 					<div class="finns-mission">
 						<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewbox="0 0 826 826" preserveaspectratio="xMidYMid meet" aria-labelledby="finns_mission_title finns_mission_desc">
 							<title id="finns_mission_title">
@@ -156,13 +150,24 @@
 						</svg>
 					</div>
 				</div>
-				<div class="ym-pc-dashboard-badge-path col-md-6">
-				  <div class="ym-badges__item" ng-repeat="prize in prizes" ng-cloak>
+				<div class="ym-pc-dashboard-badge-path col-md-6 px-3">
+					<div class="ym-pc-dashboard-badges-header">
+						<strong>
+							Complete Finn's Mission to earn Finn's Lifesavers Award.
+						</strong>
+					</div>
+					<div class="ym-badges__item" ng-repeat="prize in prizes" ng-cloak>
 						<div class="ym-badge__item" tabindex="0" aria-label="{{prize.label}} Badge {{(prize.status) ? 'Earned' : 'Not Earned'}}">
 							<img class="img-fluid" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24/{{prize.image_url}}" alt="{{prize.label}} Badge {{(prize.status) ? 'Earned' : 'Not Earned'}}">
 							<span ng-bind-html="prize.label"></span>
 						</div>
-				  </div>					
+					</div>					
+					<div class="ym-pc-dashboard-badges-header">
+						<em>
+							Please allow 15 minutes for the system to update your badges.<br/>
+							If your student’s badge has not appeared after 15 minutes, please contact our support staff by <a href="javascript:void(0)" onclick="angular.element('#designstudio-button #transparent-button').click()">clicking here</a> and they will assist you.
+						</em>
+					</div>
 				</div>	
 			</div>
 		</section>
