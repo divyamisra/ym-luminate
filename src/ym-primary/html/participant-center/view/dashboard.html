@@ -156,17 +156,19 @@
 							Complete Finn's Mission to earn Finn's Lifesavers Award.
 						</strong>
 					</div>
-					<div class="ym-badges__item" ng-repeat="prize in prizes" ng-cloak>
-						<div class="ym-badge__item text-center mb-4" tabindex="0" aria-label="{{prize.label}} Badge {{(prize.status) ? 'Earned' : 'Not Earned'}}">
-							<img class="img-fluid" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24/{{prize.image_url}}" alt="{{prize.label}} Badge {{(prize.status) ? 'Earned' : 'Not Earned'}}">
-							<span ng-bind-html="prize.label"></span>
-							<a class="btn btn-md-wide btn-primary mb-2" ng-href="prize.mission_url" target="_blank">
-								<strong>
-									{{prize.button_label}}
-								</strong>
-							</a>
-						</div>
-					</div>					
+					<div class="badges d-flex justify-content-around">
+						<div class="ym-badges__itemx" ng-repeat="prize in prizes" ng-cloak>
+							<div class="ym-badge__itemx text-center mb-4" tabindex="0" aria-label="{{prize.label}} Badge {{(prize.status) ? 'Earned' : 'Not Earned'}}">
+								<img class="img-fluid" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24/{{prize.image_url}}" alt="{{prize.label}} Badge {{(prize.status) ? 'Earned' : 'Not Earned'}}">
+								<span ng-bind-html="prize.label"></span>
+								<a class="btn btn-md-wide btn-primary mb-2" ng-href="prize.final_url" target="_blank">
+									<strong>
+										{{prize.button_label}}
+									</strong>
+								</a>
+							</div>
+						</div>					
+					</div>
 					<div class="ym-pc-dashboard-badges-header">
 						<em>
 							Please allow 15 minutes for the system to update your badges.<br/>
