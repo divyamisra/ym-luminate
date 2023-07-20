@@ -29,4 +29,17 @@ angular.module 'ahaLuminateApp'
           , (response) ->
             response
 
+      postAction: (requestData) ->
+        if $rootScope.tablePrefix is 'heartdev'
+          url = 'https://smt.nuclavis.com/khc/student/actions/' + requestData
+        else
+          url = 'https://smt.nuclavis.com/khc/student/actions/' + requestData
+        reqHeader = 
+          'Content-Type': 'application/json'
+          'Authorization': 'Bearer ' + $rootScope.NuclavisAPIToken
+        $http.get($sce.trustAsResourceUrl(url), {headers: reqHeader})
+          .then (response) ->
+            response.data
+          , (response) ->
+            response
   ]
