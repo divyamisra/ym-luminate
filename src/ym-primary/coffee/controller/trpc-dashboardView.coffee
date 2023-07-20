@@ -938,7 +938,7 @@ angular.module 'trPcControllers'
             else 
               image_url = "badge-" + prize.mission_id + "-unearned.png"
               earned_status = "Unearned"
-            aria_label = prize.hq_name + ": " + earned_status + " - " + hover_msg
+            aria_label = prize.hq_name + ": " + earned_status + " - " + prize.hq_hover
             $scope.prizes.push
               id: prize.mission_id
               label: prize.hq_name
