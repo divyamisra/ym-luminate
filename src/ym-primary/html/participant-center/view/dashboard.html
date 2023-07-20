@@ -156,7 +156,7 @@
 							Complete Finn's Mission to earn Finn's Lifesavers Award.
 						</strong>
 					</div>
-					<div class="badges d-flex justify-content-around">
+					<div class="badges d-flex flex-wrap justify-content-around">
 						<div class="ym-badges__itemx" ng-repeat="prize in prizes" ng-cloak>
 							<div class="ym-badge__itemx text-center mb-4" tabindex="0" aria-label="{{prize.label}} Badge {{(prize.status) ? 'Earned' : 'Not Earned'}}">
 								<img class="img-fluid" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24/{{prize.image_url}}" alt="{{prize.label}} Badge {{(prize.status) ? 'Earned' : 'Not Earned'}}">
