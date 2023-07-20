@@ -2,3 +2,18 @@
 a.btn-global-primary {
   @include button-variant($btn-primary-color, $btn-primary-bg, $btn-primary-border, $btn-primary-color, $btn-primary-darker-bg, $btn-primary-darker-border);
 }
+
+.btn.btn-primary {
+  background: $event-primary;
+  color: #ffffff;
+  border: 2px solid $event-primary;
+  display: flex;
+  justify-content: center;
+  min-height: 60px;
+  align-items: center;
+  padding: 7px !important;
+  &.btn-white {
+    background: #ffffff;
+    color: $event-primary;
+  }
+}
