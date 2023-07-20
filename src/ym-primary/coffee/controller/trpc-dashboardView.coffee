@@ -934,8 +934,10 @@ angular.module 'trPcControllers'
               final_url = 'showMobileApp()'
             if prize.earned != 0
               image_url = "badge-" + prize.mission_id + "-earned.png"
+              earned_status = "Earned"
             else 
               image_url = "badge-" + prize.mission_id + "-unearned.png"
+              earned_status = "Unearned"
             aria_label = prize.hq_name + ": " + earned_status + " - " + hover_msg
             $scope.prizes.push
               id: prize.mission_id
