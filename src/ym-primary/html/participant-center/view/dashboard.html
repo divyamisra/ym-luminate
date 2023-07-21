@@ -28,8 +28,49 @@
 				</section>
 			</div>
 		</div>
+		<section class="early-registration-section" aria-label="My Badges" ng-if="prizes && prizes.length > 0" ng-cloak>
+			<div class="early-registration">
+				<div class="row participatingNextYear text-left" ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
+					<div class="col-md-8">
+						My student will be participating in Kids Heart Challenge next year! 
+					</div>
+					<div class="col-md-4">
+						<select class="form-control" id="ParticipatingNextYear" ng-model="schoolPlan.ParticipatingNextYear" aria-label="Participating Next Year" ng-change="putSchoolPlan($event,'ParticipatingNextYear')">
+							<option value="YES">
+								Yes
+							</option>
+							<option value="NO">
+								No
+							</option>
+							<option value="I'M NOT SURE">
+								Still Considering
+							</option>
+						</select>
+					</div>
+				</div>
+				<div class="row participatingNextYear text-left" ng-if="participantRegistration.companyInformation.isCompanyCoordinator != 'true'" ng-cloak>
+					<div class="col-md-8">
+						I will be participating in Kids Heart Challenge next year! 
+					</div>
+					<div class="col-md-4">
+						<select class="form-control" id="participatingNextYear" ng-model="participatingNextYear" aria-label="Next Year Participation" ng-change="updateParticipatingNextYear()">
+							<option value="YES">
+								Yes
+							</option>
+							<option value="NO">
+								No
+							</option>
+							<option value="I'M NOT SURE">
+								Still Considering
+							</option>
+						</select>
+
+					</div>
+				</div>
+			</div>
+		</section>
 		<section class="ym-pc-dashboard-badges-section" aria-label="My Badges" ng-if="prizes && prizes.length > 0" ng-cloak>
-			<h2>Finn's Mission</h2>
+			<h2 class="text-center">Finn's Mission</h2>
 			<div class="finns-mission-section d-md-flex justify-content-between flex-wrap p-3">
 				<div class="ym-pc-dashboard-badge-path col-md-6">
 					<div class="finns-mission">
@@ -180,6 +221,7 @@
 			</div>
 		</section>
 		<section class="ym-pc-dashboard-progress-section mb-0" aria-label="Spread the Word and Livestream Sections">
+			<h2 class="text-center">Reach Your Goal</h2>
 			<div class="d-md-flex justify-content-between flex-wrap">
 				<div class="p-2" ng-class="(!facebookFundraisersEnabled) ? 'col-md-12' : 'col-md-6'">
 					<div class="ym-pc-dashboard-progress-section__column event-secondary-medium p-3 h-100">
@@ -395,45 +437,6 @@
 											<a class="col-md-6 p-2" href="Donation2?df_id={{eventInfo.donationFormId}}&amp;FR_ID={{frId}}&amp;PROXY_TYPE=20&amp;PROXY_ID={{consId}}&amp;paypal=true">
 												<img class="img-fluid" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/paypal-button.png" alt="Donate using Paypal"> 
 											</a>
-										</div>
-									</div>
-								</div>
-								<div class="ym-pc-dashboard-section-header">
-									<div class="row participatingNextYear text-left" ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
-										<div class="col-md-8">
-											My student will be participating in Kids Heart Challenge next year! 
-										</div>
-										<div class="col-md-4">
-											<select class="form-control" id="ParticipatingNextYear" ng-model="schoolPlan.ParticipatingNextYear" aria-label="Participating Next Year" ng-change="putSchoolPlan($event,'ParticipatingNextYear')">
-												<option value="YES">
-													Yes
-												</option>
-												<option value="NO">
-													No
-												</option>
-												<option value="I'M NOT SURE">
-													Still Considering
-												</option>
-											</select>
-										</div>
-									</div>
-									<div class="row participatingNextYear text-left" ng-if="participantRegistration.companyInformation.isCompanyCoordinator != 'true'" ng-cloak>
-										<div class="col-md-8">
-											I will be participating in Kids Heart Challenge next year! 
-										</div>
-										<div class="col-md-4">
-								                        <select class="form-control" id="participatingNextYear" ng-model="participatingNextYear" aria-label="Next Year Participation" ng-change="updateParticipatingNextYear()">
-												<option value="YES">
-													Yes
-												</option>
-												<option value="NO">
-													No
-												</option>
-												<option value="I'M NOT SURE">
-													Still Considering
-												</option>
-											</select>
-
 										</div>
 									</div>
 								</div>
