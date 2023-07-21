@@ -102,12 +102,11 @@
       }
 
       &.active {
-        color: $event-secondary-heading;
-        background-color: #cccccc;
+        background-color: #cee4f1;
         width:100%;
 
         &::before {
-          background-color: #cccccc;
+          background-color: #cee4f1;
         }
       }
 
