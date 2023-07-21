@@ -10,6 +10,15 @@
   -o-filter: grayscale(100%);
 }
 
+.early-registration-section {
+  background:#60269e;
+}
+
+.finns-mission-section {
+  border: 2px solid $event-secondary-medium;
+  border-radius: 10px;
+}
+
 .ym-pc-dashboard-facebook-box button:focus,
 .ym-pc-dashboard-facebook-box a:focus{
     border-color: #000 !important;
