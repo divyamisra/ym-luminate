@@ -14,11 +14,11 @@
 		</div>
 		<div class="row ym-pc-dashboard-school-challange mb-2">
 			<div ng-class="col-sm-12">
-				<div class="hv-image" ng-init="hvImgNotesrc='note-peek.png';" ng-mouseover="hvImgNotesrc='note-peek-animated.gif';" ng-mouseout="hvImgNotesrc='note-peek.png';">
-					<img class="ym-coordinator-message-monster" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy23/teacher-note.png" alt="Note From Your Teacher"> 
-				</div>
 				<section class="ym-pc-dashboard-coordinators-message-section mb-2" aria-label="Note From Your Teacher">
 					<div class="ym-pc-dashboard-section-header">
+						Note from your teacher:
+					</div>
+					<div class="ym-pc-dashboard-section-text">
 						<div ng-if="coordinatorMessage.message == ''" ng-cloak>
 						  Don't forget to text or send e-cards to your friends and family tonight and remember to finish&nbsp;Finn's&nbsp;Mission!
 						</div>
