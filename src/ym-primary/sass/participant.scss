@@ -62,9 +62,11 @@ a.list-group-item:hover {
 }
 
 .ym-pc-dashboard-coordinators-message-section {
-  background-color: #fcd151;
+  background-color: #39bb67;
+  color: #000000;
   .ym-pc-dashboard-section-header {
-    color: $event-font-color;
+    font-size: 24px;
+    font-weight:bold;
   }
 }
 
