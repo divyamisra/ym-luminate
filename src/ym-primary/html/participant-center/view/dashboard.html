@@ -278,36 +278,34 @@
 				</div>
 				<div class="col">
 					<div class="ym-pc-dashboard-progress-section__column event-secondary-medium p-3 h-100">
-						<div class="ym-pc-dashboard-email-challenge-box">
-							<div class="ym-pc-dashboard-section-header">
+						<div class="ym-pc-dashboard-email-challenge-box text-start">
+							<div class="ym-pc-dashboard-section-header text-start">
 								<h3 class="h5">
 									Spread the Word! 
 								</h3>
 							</div>
-							<div class="text-center">
+							<div class="text-start">
 								<p>
-									Spread the word! Send 10 e-cards to friends and family. 
+									Did you know if you share with friends/family you could more than double what you raise? 
 								</p>
-								<div class="ym-pc-dashboard-email-challenge-images">
-									<a ng-href="{{baseUrl}}#/social">
-										<img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy23/spread-the-word-mail-icon.png" alt="Send Email"> 
-									</a>
-									<a ng-href="https://tools.heart.org/aha_ym24{{tablePrefix == 'heartdev' ? '_dev' : (tablePrefix == 'heartnew' ? '_testing' : '')}}/?eid={{frId}}&amp;sid={{consId}}&amp;name={{consNameFirst}}" target="_blank">
-										<img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy23/spread-the-word-ecard-icon.png" alt="Send E-card"> 
-									</a>
+							</div>
+							<div class="d-md-flex align-items-center mb-3">
+								<div id="fieldText" class="border border-2 bg-light rounded p-2 d-inline-block overflow-hidden w-50 me-3">
+									<div class="">{{personalPageUrl}}</div>
 								</div>
-								<div class="ym-pc-dashboard-email-challenge-buttons">
-									<!-- <a class="btn btn-md-wide btn-primary mb-2" ng-href="{{baseUrl}}#/email">
-										<strong>
-											Send Email
-										</strong>
-									</a> -->
-									<a class="btn btn-md-wide btn-primary mb-2" ng-href="https://tools.heart.org/aha_ym24{{tablePrefix == 'heartdev' ? '_dev' : (tablePrefix == 'heartnew' ? '_testing' : '')}}/?eid={{frId}}&amp;sid={{consId}}&amp;name={{consNameFirst}}" target="_blank">
-										<strong>
-											Send e-card
-										</strong>
-									</a>
-								</div>
+								<button type="button" class="btn btn-md-wide btn-primary btn-white" id="copyable" data-field="fieldText" data-field-type="Personal URL" role="button" copy-field>
+									<strong>
+										Copy Link
+									</strong>
+								</button>
+							</div>
+							<div class="text-center">
+								<a ng-href="{{baseUrl}}#" ng-click="delegatedAddThis('.js--personal-social-share', 'facebook')">
+									<img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/youth-markets/image/facebook-logo.png" alt="Facebook"> 
+								</a>
+								<a ng-href="{{baseUrl}}#" ng-click="delegatedAddThis('.js--personal-social-share', 'twitter')">
+									<img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/youth-markets/image/twitter-logo.png" alt="Twitter"> 
+								</a>
 							</div>
 						</div>
 					</div>
