@@ -961,6 +961,8 @@ angular.module 'trPcControllers'
       refreshFinnsMission()
       
       $rootScope.facebookFundraiserConfirmedStatus = ''
+      if location.href.indexOf("showfb") > 0
+        $scope.facebookFundraisersEnabled = true
       if $scope.facebookFundraisersEnabled and $rootScope.facebookFundraiserId and $rootScope.facebookFundraiserId isnt ''
         $rootScope.facebookFundraiserConfirmedStatus = 'pending'
         FacebookFundraiserService.confirmFundraiserStatus()
