@@ -63,7 +63,7 @@
       text-align:left;
       padding: 10px 20px 25px 20px !important;
       line-height:30px;
-      width:100%;
+      width:95%;
       margin-bottom:5px;
       padding-right:15px;
       font-size: 16px;
@@ -104,6 +104,7 @@
       &.active {
         color: $event-secondary-heading;
         background-color: #cccccc;
+        width:100%;
 
         &::before {
           background-color: #cccccc;
