@@ -28,7 +28,7 @@
 		</div>
 		<section class="early-registration-section mb-3" aria-label="Early Registration Section">
 			<div class="early-registration text-center">
-				<div class="participatingNextYear text-center p-2" ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
+				<div class="participatingNextYear text-center p-2" ng-if="participantRegistration.companyInformation.isCompanyCoordinator != 'true'" ng-cloak>
 					<div class="checkbox pe-2 pb-2" custom-checkbox ng-class="{'checked': schoolPlan.ParticipatingNextYear == 'YES'}">
 						<strong>Early Registration:</strong>
 						<label for="ParticipatingNextYear">
@@ -37,7 +37,7 @@
 						</label> 
 					</div>
 				</div>
-				<div class="row participatingNextYear text-center p-2" ng-if="participantRegistration.companyInformation.isCompanyCoordinator != 'true'" ng-cloak>
+				<div class="row participatingNextYear text-center p-2" ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
 					<div class="checkbox pe-2 pb-2" custom-checkbox ng-class="{'checked': schoolPlan.ParticipatingNextYear == 'YES'}">
 						<strong>Early Registration:</strong>
 						<label for="ParticipatingNextYear">
@@ -438,8 +438,8 @@
 									</div>
 								</div>
 							</div>
-							<div class="ym-pc-dashboard-page-type d-flex justify-content-between align-items-center mt-3" ng-class="{'active': dashboardStudentPageType == 'personal'}">
-								<div class="col text-center">
+							<div class="ym-pc-dashboard-page-type d-flex justify-content-between align-items-center mt-3">
+								<div class="col text-center" ng-class="{'active': dashboardStudentPageType == 'personal'}">
 									<a href="" ng-click="toggleStudentPageType('personal')" role="tab" aria-controls="ym-pc-dashboard-update-personal-panel">
 										<span class="fa fa-angle-left fw-bold"></span>
 									</a>
