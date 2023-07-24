@@ -10,6 +10,12 @@
   -o-filter: grayscale(100%);
 }
 
+.student-hq {
+  .col {
+    min-width: 290px;
+  }
+}
+
 .early-registration-section {
   background:#60269e;
   color: #ffffff;
