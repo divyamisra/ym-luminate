@@ -1136,26 +1136,43 @@ angular.module 'trPcControllers'
                 if response.data.errorResponse
                   console.log 'There was an error getting user profile. Please try again later.'
                 $scope.constituent = response.data.getConsResponse
-                angular.forEach $scope.constituent.custom.string, (field) ->
-                  if field.id == 'custom_string18'
-                    $scope.schoolPlan.ParticipatingNextYear = field.content
-                  return
+                if typeof $scope.constituent.custom.string == 'object'
+                  if $scope.constituent.custom.string.id == 'custom_string18'
+                    $scope.schoolPlan.ParticipatingNextYear = $scope.constituent.custom.string.content
+                    if $scope.schoolPlan.ParticipatingNextYear == 'YES'
+                      $scope.schoolPlan.ParticipatingNextYear_isChecked = true
+                    else
+                      $scope.schoolPlan.ParticipatingNextYear_isChecked = false
+                else
+                  angular.forEach $scope.constituent.custom.string, (field) ->
+                    if field.id == 'custom_string18'
+                      $scope.schoolPlan.ParticipatingNextYear = field.content
+                      if $scope.schoolPlan.ParticipatingNextYear == 'YES'
+                        $scope.schoolPlan.ParticipatingNextYear_isChecked = true
+                      else
+                        $scope.schoolPlan.ParticipatingNextYear_isChecked = false
+            if $scope.schoolPlan.ParticipatingNextYear == 'YES'
+              $scope.schoolPlan.ParticipatingNextYear_isChecked = true
+            else
+              $scope.schoolPlan.ParticipatingNextYear_isChecked = false
       $scope.getSchoolPlan()
 
       $scope.putSchoolPlan = (event, sel) ->
         school = @schoolPlan
-        if sel == 'ParticipatingNextYear' or sel == 'MaterialsNeeded'
+        if sel == 'ParticipatingNextYear_isChecked' or sel == 'MaterialsNeeded'
+          if sel == 'ParticipatingNextYear_isChecked'
+            if $scope.schoolPlan[sel] == true
+              $scope.schoolPlan.ParticipatingNextYear = 'YES'
+            if $scope.schoolPlan[sel] == false
+              $scope.schoolPlan.ParticipatingNextYear = 'NO'
+            sel = 'ParticipatingNextYear'
           schoolParams = '&field_id=' + sel + '&value=' + $scope.schoolPlan[sel] + '&type=dropdown'
           ZuriService.schoolPlanData '&method=UpdateSchoolPlan&CompanyId=' + $scope.participantRegistration.companyInformation.companyId + '&EventId=' + $scope.frId + schoolParams,
             failure: (response) ->
             error: (response) ->
             success: (response) ->
           if sel == 'ParticipatingNextYear'
-            if $scope.schoolPlan[sel]
-              selValue = "YES"
-            else
-              selValue = "NO"
-            ZuriService.schoolPlanData '&method=UpdateParticipatingNextYear&EventProgram=KHC&CompanyId=' + $scope.participantRegistration.companyInformation.companyId + '&value=' + selValue,
+            ZuriService.schoolPlanData '&method=UpdateParticipatingNextYear&EventProgram=KHC&CompanyId=' + $scope.participantRegistration.companyInformation.companyId + '&value=' + $scope.schoolPlan[sel],
               failure: (response) ->
               error: (response) ->
               success: (response) ->
@@ -1180,7 +1197,11 @@ angular.module 'trPcControllers'
               success: (response) ->
 
       $scope.updateParticipatingNextYear = ->
-        updateUserProfilePromise = NgPcConstituentService.updateUserRecord('custom_string18=' + this.participatingNextYear + '&cons_id=' + $scope.consId).then (response) ->
+        if $scope.schoolPlan.ParticipatingNextYear_isChecked == true
+          $scope.schoolPlan.ParticipatingNextYear = 'YES'
+        if $scope.schoolPlan.ParticipatingNextYear_isChecked == false
+          $scope.schoolPlan.ParticipatingNextYear = 'NO'
+        updateUserProfilePromise = NgPcConstituentService.updateUserRecord('custom_string18=' + $scope.schoolPlan.participatingNextYear + '&cons_id=' + $scope.consId).then (response) ->
           if response.data.errorResponse
             console.log 'There was an error processing your update. Please try again later.'
           updateUserProfilePromise = NgPcConstituentService.updateUserRecord('custom_date5_MONTH='+(($scope.theDate).getMonth()+1)+'&custom_date5_DAY='+($scope.theDate).getDate()+'&custom_date5_YEAR='+($scope.theDate).getFullYear()+'&cons_id=' + $scope.consId).then (response) ->
