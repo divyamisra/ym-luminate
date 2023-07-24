@@ -3,7 +3,10 @@
 }
 
 .ym-progress__thermometer {
-  border: 8px solid $event-secondary;
+    border: 1px solid #dad7ce;
+    box-shadow: none;
+    background: #e8e5dd;
+    border-radius: 50px;
 }
 
 .ym-progress__thermometer--fill {
