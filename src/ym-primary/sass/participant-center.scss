@@ -83,41 +83,16 @@ a.btn.btn-secondary:focus {
 }
 
 .ym-pc-dashboard-page-type {
+  .col {
+    opacity: 1;
+    &.active {
+      opacity: .5;
+    }
+  }
   .fa-circle {
     opacity: .5;
     &.active {
       opacity: 1;
-    }
-  }
-	
-  a,
-  button {
-    &, 
-    &:link, 
-    &:visited {
-      color: $event-secondary;
-      opacity: 1;
-    }
-  }
-  a,
-  button {
-    &:hover,
-    &:focus,
-    &:active {
-      background-color: $event-secondary;
-      color: #ffffff;
-    }
-  }
-  &.active {
-    a, 
-    button {
-      &,
-      &:hover,
-      &:link,
-      &:visited {
-        color: $event-secondary;
-	opacity: .5;
-      }
     }
   }
 }
