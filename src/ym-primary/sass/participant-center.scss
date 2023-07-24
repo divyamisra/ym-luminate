@@ -71,6 +71,46 @@ a.btn.btn-secondary:focus {
   z-index:99999;
 }
 
+.ym-pc-dashboard-page-type {
+  .fa-circle {
+    opacity: .5;
+    &.active {
+      opacity: 1;
+    }
+  }
+	
+  a,
+  button {
+    &, 
+    &:link, 
+    &:visited {
+      color: $event-secondary;
+      opacity: 1;
+    }
+  }
+  a,
+  button {
+    &:hover,
+    &:focus,
+    &:active {
+      background-color: $event-secondary;
+      color: #ffffff;
+    }
+  }
+  &.active {
+    a, 
+    button {
+      &,
+      &:hover,
+      &:link,
+      &:visited {
+        color: $event-secondary;
+	opacity: .5;
+      }
+    }
+  }
+}
+
 .ym-pc-dashboard-event-date,
 .ym-pc-dashboard-money-date {
    font-weight:bold;
