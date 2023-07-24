@@ -91,6 +91,7 @@ a.btn.btn-secondary:focus {
   }
   .fa-circle {
     opacity: .5;
+    color: $event-scondary;
     &.active {
       opacity: 1;
     }
