@@ -1566,7 +1566,7 @@ angular.module 'trPcControllers'
         windowWidth = jQuery('.finns-mission').width()
         windowHeight = jQuery('.finns-mission').height()
         i = 0
-        while i < 50
+        while i < 25
           el = jQuery('.bln-1').clone()
           el.appendTo '.blns'
           resetBalloon el
