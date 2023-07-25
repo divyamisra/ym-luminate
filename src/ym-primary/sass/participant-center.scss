@@ -88,6 +88,13 @@ a.btn.btn-secondary:focus {
     &.active {
       opacity: .5;
     }
+    a {
+      &, 
+      &:link, 
+      &:visited {
+        color: $event-secondary;  
+      }
+    }
   }
   .fa-circle {
     opacity: .5;
