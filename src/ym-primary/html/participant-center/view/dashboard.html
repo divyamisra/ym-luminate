@@ -567,46 +567,25 @@
           </div>
         </div>
         <div class="col">
-          <div class="ym-event-box event-secondary-medium p-3">
-            <h3 class="h5 clearfix"> School Page </h3>
-            <p> Edit your pages to encourage students and parents to join and donate! </p>
-            <div id="ym-pc-dashboard-update-school-panel" role="tabpanel" aria-label="School Panel">
-              <div class="ym-pc-dashboard-coordinator-page-view">
-                <div class="text-center">
-                  <a class="btn btn-md-wide btn-primary" ng-href="TR?fr_id={{frId}}&amp;pg=company&amp;company_id={{participantRegistration.companyInformation.companyId}}">
-                    <strong> View and Edit School Page </strong>
-                  </a>
-                </div>
+         <div class="ym-pc-dashboard-progress-section__column event-secondary-medium p-3">
+            <div class="ym-pc-dashboard-progress-box">
+              <h3 class="h5"> School Page </h3>
+              <p> Edit your pages to encourage students and parents to join and donate! </p>
+              <div class="text-center mb-5">
+                <a class="btn btn-md-wide btn-primary" ng-href="TR?fr_id={{frId}}&amp;pg=company&amp;company_id={{participantRegistration.companyInformation.companyId}}">
+                  <strong> View and Edit School Page </strong>
+                </a>
+                <button type="button" class="btn btn-md-wide btn-primary" aria-label="Edit School Page URL" ng-click="editCompanyUrl()">
+                  <span class="fa fa-share-alt"></span>
+                </button>
               </div>
-              <div class="row">
-                <div class="col-sm-7">
-                  <div class="ym-activity-url">
-                    <p>
-                      <strong> School Page URL: </strong>
-                    </p>
-                    <p class="small">
-                      <span ng-bind-html="companyPageUrl"></span>
-                    </p>
-                    <button type="button" class="btn btn-md-wide btn-primary" aria-label="Edit School Page URL" ng-click="editCompanyUrl()">
-                      <strong> Edit </strong>
-                    </button>
-                  </div>
-                </div>
-                <div class="col-sm-5">
-                  <div class="clearfix">
-                    <div class="ym-activity-share-page">
-                      <p>
-                        <strong> Share My School&nbsp;Page: </strong>
-                      </p>
-                      <a class="d-inline-block me-2" ng-href="{{baseUrl}}#" ng-click="delegatedAddThis('.js--company-social-share', 'facebook')">
-                        <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/youth-markets/image/facebook-logo.png" alt="Facebook">
-                      </a>
-                      <a class="d-inline-block" ng-href="{{baseUrl}}#" ng-click="delegatedAddThis('.js--company-social-share', 'twitter')">
-                        <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/youth-markets/image/twitter-logo.png" alt="Twitter">
-                      </a>
-                    </div>
-                  </div>
-                </div>
+              <div class="ym-activity-url">
+                <p class="small">
+                  <span ng-bind-html="companyPageUrl"></span>
+                  <button type="button" class="btn btn-md-wide btn-primary" aria-label="Edit School Page URL" ng-click="editCompanyUrl()">
+                    <span class="fa fa-pencil"></span>
+                  </button>
+                </p>
               </div>
             </div>
           </div>
@@ -718,42 +697,25 @@
     <section class="ym-pc-dashboard-coordinator-progress-section mb-4" aria-label="Fundraising Progress Meters">
       <div class="d-md-flex justify-content-between flex-wrap gap-4">
         <div class="col">
-          <div class="ym-pc-dashboard-personal-view event-secondary-medium p-3 h-100">
-            <div class="ym-pc-dashboard-coordinator-page-view">
-              <div class="text-center">
+          <div class="ym-pc-dashboard-progress-section__column event-secondary-medium p-3 h-100">
+            <div class="ym-pc-dashboard-progress-box">
+              <h3 class="h5"> My Page </h3>
+              <p> Personalize your fundraising page to share why raising funds to save lives is important to you. </p>
+              <div class="text-center mb-5">
                 <a class="btn btn-md-wide btn-primary" ng-href="TR?fr_id={{frId}}&amp;pg=personal&amp;px={{consId}}">
                   <strong> View and Edit Your Page </strong>
                 </a>
+                <button type="button" class="btn btn-md-wide btn-primary" aria-label="Edit Personal Page URL" ng-click="editPersonalUrl()">
+                  <span class="fa fa-share-alt"></span>
+                </button>
               </div>
-            </div>
-            <div class="row">
-              <div class="col-sm-7">
-                <div class="ym-activity-url">
-                  <p>
-                    <strong> Personal Page URL: </strong>
-                  </p>
-                  <p class="small">
-                    <span ng-bind-html="personalPageUrl"></span>
-                  </p>
+              <div class="ym-activity-url">
+                <p class="small">
+                  <span ng-bind-html="personalPageUrl"></span>
                   <button type="button" class="btn btn-md-wide btn-primary" aria-label="Edit Personal Page URL" ng-click="editPersonalUrl()">
-                    <strong> Edit </strong>
+                    <span class="fa fa-pencil"></span>
                   </button>
-                </div>
-              </div>
-              <div class="col-sm-5">
-                <div class="clearfix">
-                  <div class="ym-activity-share-page">
-                    <p>
-                      <strong> Share My Personal&nbsp;Page: </strong>
-                    </p>
-                    <a ng-href="{{baseUrl}}#" ng-click="delegatedAddThis('.js--personal-social-share', 'facebook')">
-                      <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/youth-markets/image/facebook-logo.png" alt="Facebook">
-                    </a>
-                    <a ng-href="{{baseUrl}}#" ng-click="delegatedAddThis('.js--personal-social-share', 'twitter')">
-                      <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/youth-markets/image/twitter-logo.png" alt="Twitter">
-                    </a>
-                  </div>
-                </div>
+                </p>
               </div>
             </div>
           </div>
