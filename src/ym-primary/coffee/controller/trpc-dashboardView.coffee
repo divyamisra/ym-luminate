@@ -908,7 +908,7 @@ angular.module 'trPcControllers'
             getStudentChallenge()
 
       refreshFinnsMission = ->
-        $scope.prizes = []
+        $scope.prizes = {}
         $scope.prizesEarned = 0
         NuclavisService.getBadges $scope.consId + '/' + $scope.frId
         .then (response) ->
@@ -939,7 +939,7 @@ angular.module 'trPcControllers'
               image_url = "badge-" + prize.mission_id + "-unearned.png"
               earned_status = "Unearned"
             aria_label = prize.hq_name + ": " + earned_status + " - " + prize.hq_hover
-            $scope.prizes.push
+            $scope.prizes[prize.mission_id] = 
               id: prize.mission_id
               label: prize.hq_name
               status: prize.earned
