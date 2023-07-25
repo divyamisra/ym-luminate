@@ -325,19 +325,17 @@
 									<div class="ym-progress__thermometer--fill" ng-style="{'width': participantProgress.percent + '%'}"></div>
 								</div>
 								<div class="ym-progress-related d-flex justify-content-between flex-wrap mt-0 mb-3">
-									<div class="col">
-										<p>
-											<strong>
-												<span ng-bind-html="participantProgress.raisedFormatted">
-												</span>
-											</strong>
-											raised 
-										</p>
+									<div class="col-4">
+										<strong>
+											<span ng-bind-html="participantProgress.raisedFormatted">
+											</span>
+										</strong>
+										raised 
 									</div>
-									<div class="col text-center">
+									<div class="col-4 text-center">
 										{{participantProgress.percent}}%
 									</div>
-									<div class="col text-end">
+									<div class="col-4 text-end">
 										<div ng-if="participantProgress.goalFormatted && participantProgress.goalFormatted != '$0'" ng-cloak>
 											<strong>
 												<span ng-bind-html="participantProgress.goalFormatted"></span>
@@ -349,12 +347,12 @@
 												Update Personal Goal
 											</strong>
 										</a>
-										<p ng-if="participantPrevProgress.raisedFormatted" ng-cloak>
+										<div ng-if="participantPrevProgress.raisedFormatted" ng-cloak>
 											<strong>
 												<span ng-bind-html="participantPrevProgress.raisedFormatted"></span>
 											</strong>
 											raised last year 
-										</p>
+										</div>
 									</div>
 								</div>
 								<div class="ym-progress-donate text-center">
@@ -409,47 +407,42 @@
 									</h3>
 								</div>
 								<div class="ym-progress__thermometer m-0 mw-100" name="School Progress Bar" aria-label="{{companyProgress.percent}} percent of fundraising progress" aria-valuetext="{{companyProgress.percent}} percent of fundraising progress" role="progressbar" aria-valuenow="{{companyProgress.percent}}" aria-valuemin="0" aria-valuemax="100">
-									<div class="ym-progress__thermometer--fill" ng-style="{'width': companyProgress.percent + '%'}">
-									</div>
+									<div class="ym-progress__thermometer--fill" ng-style="{'width': companyProgress.percent + '%'}"></div>
 								</div>
 								<div class="d-flex justify-content-between">
-									<div class="col">
-										<p class="text-start">
-											<strong>
-												<span ng-bind-html="companyProgress.raisedFormatted">
-												</span>
-											</strong>
-											raised 
-										</p>
+									<div class="col-4 text-start">
+										<strong>
+											<span ng-bind-html="companyProgress.raisedFormatted">
+											</span>
+										</strong>
+										raised 
 									</div>
-									<div class="col text-center">
+									<div class="col-4 text-center">
 										{{companyProgress.percent}}%
 									</div>
-									<div class="col text-end">
+									<div class="col-4 text-end">
 										<div ng-if="companyProgress.goalFormatted && companyProgress.goalFormatted != '$0'" ng-cloak>
-											<p>
-												<strong>
-													<span ng-bind-html="companyProgress.goalFormatted">
-													</span>
-												</strong>
-												goal 
-											</p>
+											<strong>
+												<span ng-bind-html="companyProgress.goalFormatted">
+												</span>
+											</strong>
+											goal 
 										</div>
 									</div>
 								</div>
 							</div>
 							<div class="ym-pc-dashboard-page-type d-flex justify-content-between align-items-center mt-3">
-								<div class="col text-center" ng-class="{'active': dashboardStudentPageType == 'personal'}">
+								<div class="col-4 text-center" ng-class="{'active': dashboardStudentPageType == 'personal'}">
 									<a href="" ng-click="toggleStudentPageType('personal')" role="tab" aria-controls="ym-pc-dashboard-update-personal-panel">
 										<span class="fa fa-angle-left fw-bold"></span>
 									</a>
 								</div>
-								<div class="col text-center">
+								<div class="col-4 text-center">
 									<span class="fa fa-circle" ng-class="{'active': dashboardStudentPageType == 'personal'}"></span>
 									&nbsp;
 									<span class="fa fa-circle" ng-class="{'active': dashboardStudentPageType == 'company'}"></span>
 								</div>
-								<div class="col text-center" ng-class="{'active': dashboardStudentPageType == 'company'}">
+								<div class="col-4 text-center" ng-class="{'active': dashboardStudentPageType == 'company'}">
 									<a href="" ng-click="toggleStudentPageType('company')" role="tab" aria-controls="ym-pc-dashboard-update-school-panel">
 										<span class="fa fa-angle-right fw-bold"></span>
 									</a>
@@ -521,9 +514,9 @@
 	</div>
 	<div ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true' && location != '/dashboard-student'" ng-cloak>
 		<section class="ym-pc-dashboard-coordinator-school-challenge-section" aria-label="School Challenge Selection">
-			<div class="d-md-flex justify-content-between flex-wrap">
-				<div class="col-md-6 p-2">
-					<div class="ym-pc-dashboard-coordinator-progress-section__column p-3 h-100">
+			<div class="d-md-flex justify-content-between flex-wrap gap-4">
+				<div class="col">
+					<div class="ym-pc-dashboard-coordinator-progress-section__column event-secondary-medium p-3 h-100">
 						<div class="ym-pc-dashboard-coordinator-progress-box">
 							<h2 class="h3 text-center">
 								School Plan 
@@ -730,8 +723,8 @@
 						</div>
 					</div>
 				</div>
-									<div class="col-md-6 p-2">
-										<div class="ym-pc-dashboard-coordinator-progress-section__column p-3 h-100">
+									<div class="col">
+										<div class="ym-pc-dashboard-coordinator-progress-section__column  event-secondary-medium p-3 h-100">
 											<div class="ym-pc-dashboard-coordinator-progress-box">
 												<h2 class="h3 text-center">
 													School Challenge 
@@ -879,7 +872,7 @@
 										</div>
 									</div>
 								</section>
-								<section class="ym-pc-dashboard-coordinator-school-years-section" aria-label="Years School Participated">
+								<section class="ym-pc-dashboard-coordinator-school-years-section  event-secondary-medium" aria-label="Years School Participated">
 									<div class="ym-pc-dashboard-section-header">
 										<h2 class="h3" ng-if="companyProgress.schoolYears > 0">
 											Your school has participated for 
@@ -901,8 +894,8 @@
 									</div>
 								</section>
 								<section class="ym-pc-dashboard-coordinator-progress-section" aria-label="Fundraising Progress Meters">
-									<div class="d-md-flex justify-content-between flex-wrap">
-										<div class="col-md-5 p-2">
+									<div class="d-md-flex justify-content-between flex-wrap gap-4">
+										<div class="col">
 											<div class="ym-pc-dashboard-coordinator-progress-section__column event-secondary-medium p-3 h-100">
 												<div class="ym-pc-dashboard-coordinator-progress-box">
 													<div class="ym-pc-dashboard-section-header">
@@ -948,53 +941,6 @@
 															</div>
 														</div>
 													</div>
-													<div id="ym-pc-dashboard-team-panel--coordinator" role="tabpanel" aria-label="Team Panel" ng-if="companyInfo.teamCount > 1" ng-show="dashboardProgressType == 'company'" ng-cloak>
-														<div class="ym-progress__thermometer" name="Team Progress Bar" aria-label="{{teamProgress.percent}} percent of fundraising progress" aria-valuetext="{{teamProgress.percent}} percent of fundraising progress" role="progressbar" aria-valuenow="{{teamProgress.percent}}" aria-valuemin="0" aria-valuemax="100">
-															<div class="ym-progress__thermometer--fill" ng-style="{'width': teamProgress.percent + '%'}">
-															</div>
-														</div>
-														<div class="ym-progress-related">
-															<div class="ym-progress-donate">
-																<a class="btn btn-lg btn-primary" ng-href="Donation2?df_id={{eventInfo.donationFormId}}&amp;FR_ID={{frId}}&amp;PROXY_TYPE=22&amp;PROXY_ID={{participantRegistration.teamId}}">
-																	<strong>
-																		Donate to Team Page
-																	</strong>
-																</a>
-															</div>
-															<div class="ym-progress-amounts">
-																<p>
-																	<strong>
-																		<span ng-bind-html="teamProgress.raisedFormatted">
-																		</span>
-																	</strong>
-																	raised 
-																</p>
-																<div ng-if="teamProgress.goalFormatted && teamProgress.goalFormatted != '$0'" ng-cloak>
-																	<p>
-																		<strong>
-																			<span ng-bind-html="teamProgress.goalFormatted">
-																			</span>
-																		</strong>
-																		goal 
-																	</p>
-																</div>
-																<div ng-if="participantRegistration.aTeamCaptain != 'true'" ng-cloak>
-																	<p>
-																		&nbsp; 
-																	</p>
-																</div>
-																<div ng-if="participantRegistration.aTeamCaptain == 'true'" ng-cloak>
-																	<p>
-																		<a href="" ng-click="editTeamGoal()" class="ym-progress-update-goal" aria-label="Update Team Goal">
-																			<strong>
-																				Update Team Goal
-																			</strong>
-																		</a>
-																	</p>
-																</div>
-															</div>
-														</div>
-													</div>
 													<div id="ym-pc-dashboard-personal-panel--coordinator">
 														<div class="fundraisingStatusTitle">
 															Personal Progress
@@ -1007,14 +953,14 @@
 														<div class="ym-progress-related">
 															<div class="ym-progress-donate">
 																<p>
-																	<a class="btn btn-lg btn-primary" ng-href="{{baseUrl}}#/reports" title="Click to view your donation reports">
+																	<a class="btn btn-primary" ng-href="{{baseUrl}}#/reports" title="Click to view your donation reports">
 																		<strong>
 																			Donation Reports
 																		</strong>
 																	</a>
 																</p>
 																<p>
-																	<a class="btn btn-md btn-primary" href="#paymentSelType2" data-bs-toggle="collapse">
+																	<a class="btn btn-primary" href="#paymentSelType2" data-bs-toggle="collapse">
 																		<strong>
 																			Donate to Personal Page
 																		</strong>
@@ -1083,7 +1029,7 @@
 												</div>
 											</div>
 										</div>
-										<div class="col-sm-7 p-2">
+										<div class="col">
 											<div class="ym-pc-dashboard-coordinator-progress-section__column event-secondary-medium p-3 h-100">
 												<div class="ym-pc-dashboard-coordinator-students-box" ng-if="companyInfo.participantCount" ng-cloak>
 													<div class="ym-pc-dashboard-section-header">
@@ -1196,7 +1142,7 @@
 										</div>
 									</div>
 								</section>
-								<section class="ym-pc-dashboard-coordinator-steps-section" aria-label="Fundraising Steps">
+								<section class="ym-pc-dashboard-coordinator-steps-section event-secondary-medium" aria-label="Fundraising Steps">
 									<div class="ym-pc-dashboard-section-header">
 										<h2 class="h3">
 											Coordinator Fundraising Steps 
@@ -1471,7 +1417,7 @@
 										</div>
 									</div>
 								</section>
-								<section class="ym-pc-dashboard-coordinator-resources-section" aria-label="Fundraising Resources">
+								<section class="ym-pc-dashboard-coordinator-resources-section event-secondary-medium" aria-label="Fundraising Resources">
 									<div class="ym-pc-dashboard-section-header">
 										<h2 class="h3">
 											Coordinator Resources 
@@ -1520,7 +1466,7 @@
 										</a>
 									</div>
 								</section>
-								<section class="ym-pc-dashboard-coordinator-resources-section" aria-label="Top 15 school list" ng-show="schoolTop15.length > 0 || schoolTop15ByState.length > 0" ng-cloak>
+								<section class="ym-pc-dashboard-coordinator-resources-section event-secondary-medium" aria-label="Top 15 school list" ng-show="schoolTop15.length > 0 || schoolTop15ByState.length > 0" ng-cloak>
 									<div class="school-leaderboard">
 										<h2 class="h3 text-center">
 											School Leaderboard
