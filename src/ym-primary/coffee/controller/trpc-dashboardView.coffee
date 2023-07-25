@@ -1546,7 +1546,7 @@ angular.module 'trPcControllers'
         releaseBalloon el
   
       releaseBalloon = (el) ->
-        maxbllnSpeed = Math.floor(Math.random() * 10000 + 3000)
+        maxbllnSpeed = Math.floor(Math.random() * 3000) + 3000
         wind = Math.floor(Math.random() * -30)
         rotate = Math.floor(Math.random() * 560) + 100
         el.animate {
@@ -1566,7 +1566,7 @@ angular.module 'trPcControllers'
         windowWidth = jQuery('.finns-mission').width()
         windowHeight = jQuery('.finns-mission').height()
         i = 0
-        while i < 25
+        while i < 40
           el = jQuery('.bln-1').clone()
           el.appendTo '.blns'
           resetBalloon el
