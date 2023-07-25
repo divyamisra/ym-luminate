@@ -32,6 +32,7 @@ hr.event-secondary {
   background: transparent !important;
   border: 2px solid $event-secondary-medium;
   border-radius: 10px;
+  min-width: 290px;
 }
 
 .event-secondary-light {
