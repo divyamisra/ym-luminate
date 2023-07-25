@@ -29,7 +29,7 @@ hr.event-secondary {
 }
 
 .event-secondary-medium {
-  background: transparent;
+  background: transparent !important;
   border: 2px solid $event-secondary-medium;
   border-radius: 10px;
 }
