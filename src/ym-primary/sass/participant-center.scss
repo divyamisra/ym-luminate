@@ -83,17 +83,17 @@ a.btn.btn-secondary:focus {
 }
 
 .ym-pc-dashboard-page-type {
+  a {
+    &, 
+    &:link, 
+    &:visited {
+      color: $event-secondary;  
+    }
+  }
   .col {
     opacity: 1;
     &.active {
       opacity: .5;
-    }
-    a {
-      &, 
-      &:link, 
-      &:visited {
-        color: $event-secondary;  
-      }
     }
   }
   .fa-circle {
