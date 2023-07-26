@@ -164,6 +164,7 @@
                 <div class="badge-title" ng-bind-html="prize.label"></div>
                 <a class="badge-button btn btn-primary mb-2" ng-class="(!prize.status) ? '' : 'btn-white'" ng-href="{{prize.final_url}}" target="_blank" aria-label="{{prize.aria_label}}">
                   <strong>
+                  <span ng-if="name == 'trophy'" class="d-inline-block" ng-cloak><i class="fa fa-{{(prize.status) ? 'unlock' : 'lock'}}" aria-hidden="true"></i></span>
                     {{prize.button_label}}
                   </strong>
                 </a>
@@ -232,7 +233,7 @@
               </div>
               <div class="d-md-flex align-items-center mb-3">
                 <div id="fieldText" class="border border-2 bg-light rounded p-2 d-inline-block overflow-hidden me-3">
-                  <div class="">{{personalPageUrl}}</div>
+                  <div class="js--personal-social-share">{{personalPageUrl}}</div>
                 </div>
                 <button type="button" class="btn btn-md-wide btn-primary btn-white" id="copyable" data-field="fieldText" data-field-type="Personal URL" role="button" copy-field>
                   <strong> Copy Link </strong>
@@ -240,10 +241,10 @@
               </div>
               <div class="text-center">
                 <a ng-href="{{baseUrl}}#" ng-click="delegatedAddThis('.js--personal-social-share', 'facebook')">
-                  <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/youth-markets/image/facebook-logo.png" alt="Facebook">
+                  <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24/mail-icon.png" alt="Email">
                 </a>
-                <a ng-href="{{baseUrl}}#" ng-click="delegatedAddThis('.js--personal-social-share', 'twitter')">
-                  <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/youth-markets/image/twitter-logo.png" alt="Twitter">
+                <a ng-href="{{baseUrl}}#" ng-click="delegatedAddThis('.js--personal-social-share', 'facebook')">
+                  <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24/fb-icon.png" alt="Facebook">
                 </a>
               </div>
             </div>
