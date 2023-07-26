@@ -964,7 +964,6 @@ angular.module 'trPcControllers'
             status: prize.completed
             mission_url: prize.hq_action_url
             mission_url_type: prize.hq_action_type
-            image_url: image_url
             final_url: final_url
             hover_msg: prize.hq_hover
             aria_label: aria_label
