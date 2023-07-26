@@ -21,6 +21,12 @@
   color: #ffffff;
   .participatingNextYear {
     color: #ffffff;
+    font-size: 20px;
+   
+    .checkbox label:before, 
+    input[type=checkbox]+label:before {
+      top: 5px;
+    }
   }
 }
 
