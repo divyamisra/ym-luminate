@@ -38,8 +38,8 @@
   animation:balloon3 3s linear;
 }
 @keyframes balloon3 {
-  0% {transform: translate(0px,350px);}
-  50% {transform: translate(0px,120px);}
+  0% {transform: translate(0px,620px);}
+  50% {transform: translate(0px,320px);}
   95% {transform: translate(0px,5px);}
   100% {transform: translate(0px,0px);}
 }
@@ -47,9 +47,9 @@
   animation:balloon4 4s linear;
 }
 @keyframes balloon4 {
-  0% {transform: translate(0px,300px) rotate(1deg);}
-  50% {transform: translate(0px,100px) rotate(-1deg);}
-  75% {transform: translate(0px,5px) rotate(1deg);}
+  0% {transform: translate(0px,750px) rotate(1deg);}
+  50% {transform: translate(0px,350px) rotate(-1deg);}
+  75% {transform: translate(0px,10px) rotate(1deg);}
   90% {transform: translate(0px,0px) rotate(0deg);}
   100% {transform: translate(0px,0px) rotate(0deg);}
 }
