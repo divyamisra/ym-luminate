@@ -955,16 +955,16 @@ angular.module 'trPcControllers'
               $scope.prizesEarned++
           prize = response.data.overall_mission_status
           if prize.completed != 0
-            image_url = "badge-99-earned.png"
+            image_url = "badge-trophy-earned.png"
             earned_status = "Earned"
             final_url = 'showFinnsVideo()'
           else 
-            image_url = "badge-99-unearned.png"
+            image_url = "badge-trophy-unearned.png"
             earned_status = "Unearned"
             final_url = ''
           aria_label = prize.hq_name + ": " + earned_status + " - " + prize.hq_hover
-          $scope.prizes[99] = 
-            id: prize.mission_id
+          $scope.prizes['trophy'] = 
+            id: 99
             label: prize.hq_name
             status: prize.completed
             mission_url: prize.hq_action_url
