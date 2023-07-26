@@ -933,10 +933,8 @@ angular.module 'trPcControllers'
             if prize.hq_action_type == 'Modal' and prize.hq_action_url == 'app' 
               final_url = 'showMobileApp()'
             if prize.earned != 0
-              image_url = "badge-" + prize.mission_id + "-earned.png"
               earned_status = "Earned"
             else 
-              image_url = "badge-" + prize.mission_id + "-unearned.png"
               earned_status = "Unearned"
             aria_label = prize.hq_name + ": " + earned_status + " - " + prize.hq_hover
             $scope.prizes[prize.mission_id] = 
@@ -945,7 +943,6 @@ angular.module 'trPcControllers'
               status: prize.earned
               mission_url: prize.hq_action_url
               mission_url_type: prize.hq_action_type
-              image_url: image_url
               final_url: final_url
               hover_msg: prize.hq_hover
               aria_label: aria_label
@@ -955,11 +952,9 @@ angular.module 'trPcControllers'
               $scope.prizesEarned++
           prize = response.data.overall_mission_status
           if prize.completed != 0
-            image_url = "badge-trophy-earned.png"
             earned_status = "Earned"
             final_url = 'showFinnsVideo()'
           else 
-            image_url = "badge-trophy-unearned.png"
             earned_status = "Unearned"
             final_url = ''
           aria_label = prize.hq_name + ": " + earned_status + " - " + prize.hq_hover
