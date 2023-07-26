@@ -61,6 +61,9 @@
                 <pattern id="ballbw" filterunits="objectBoundingBox" x="0" y="0" width="1" height="1">
                   <image aria-hidden="true" width="105" ng-href="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24/finn-ball-bw.png" xlink:href="" alt="Black and White Ball"></image>
                 </pattern>
+                <pattern id="ballcolor" filterunits="objectBoundingBox" x="0" y="0" width="1" height="1">
+                  <image aria-hidden="true" width="105" ng-href="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24/finn-ball-color.png" xlink:href="" alt="Color Ball"></image>
+                </pattern>
                 <pattern id="discoball" filterunits="objectBoundingBox" x="0" y="0" width="1" height="1">
                   <image aria-hidden="true" width="230" ng-href="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24/finns-mission-disco-ball.png" xlink:href="" alt="Disco Ball"></image>
                 </pattern>
@@ -126,8 +129,9 @@
                 <g>
                   <path fill="url(#finn)" d="M260 313v700h341v-700h-341z"></path>
                 </g>
-                <g ng-if="prizesEarned < 8" ng-cloak>
-                  <path fill="url(#ballbw)" d="M292 587v105h105v-105h-105z"></path>
+                <g ng-if="prizesEarned < 8" class="gear" ng-cloak>
+                  <path ng-if="prizesEarned < 8" fill="url(#ballbw)" d="M292 587v105h105v-105h-105z"></path>
+                  <path ng-if="prizesEarned == 8" fill="url(#ballcolor)" d="M292 587v105h105v-105h-105z"></path>
                 </g>
               </g>
               <g>
