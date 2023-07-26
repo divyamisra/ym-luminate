@@ -65,25 +65,25 @@
                   <image aria-hidden="true" width="230" ng-href="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24/finns-mission-disco-ball.png" xlink:href="" alt="Disco Ball"></image>
                 </pattern>
                 <pattern id="1_balloon" filterunits="objectBoundingBox" x="0" y="0" width="1" height="1">
-                  <image class="bounce-3" aria-hidden="true" width="200" xlink:href="" ng-href="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24/Balloon1.png" alt="{{prizes[0].label}}" />
+                  <image class="bounce-3" aria-hidden="true" width="200" xlink:href="" ng-href="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24/Balloon1.png" alt="{{prizes[0].label}}" title="Donate" />
                 </pattern>
                 <pattern id="2_balloon" filterunits="objectBoundingBox" x="0" y="0" width="1" height="1">
-                  <image aria-hidden="true" width="200" xlink:href="" ng-href="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24/Balloon2.png" alt="{{prizes[1].label}}" />
+                  <image aria-hidden="true" width="200" xlink:href="" ng-href="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24/Balloon2.png" alt="{{prizes[1].label}}" title="Send Messages" />
                 </pattern>
                 <pattern id="3_balloon" filterunits="objectBoundingBox" x="0" y="0" width="1" height="1">
-                  <image aria-hidden="true" width="200" xlink:href="" ng-href="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24/Balloon3.png" alt="{{prizes[2].label}}" />
+                  <image aria-hidden="true" width="200" xlink:href="" ng-href="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24/Balloon3.png" alt="{{prizes[2].label}}" title="Edit your page" />
                 </pattern>
                 <pattern id="4_balloon" filterunits="objectBoundingBox" x="0" y="0" width="1" height="1">
-                  <image aria-hidden="true" width="200" xlink:href="" ng-href="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24/Balloon4.png" alt="{{prizes[3].label}}" />
+                  <image aria-hidden="true" width="200" xlink:href="" ng-href="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24/Balloon4.png" alt="{{prizes[3].label}}" title="Hands-Only CPR" />
                 </pattern>
                 <pattern id="5_balloon" filterunits="objectBoundingBox" x="0" y="0" width="1" height="1">
-                  <image aria-hidden="true" width="200" xlink:href="" ng-href="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24/Balloon5.png" alt="{{prizes[4].label}}" />
+                  <image aria-hidden="true" width="200" xlink:href="" ng-href="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24/Balloon5.png" alt="{{prizes[4].label}}" title="First Donation" />
                 </pattern>
                 <pattern id="6_balloon" filterunits="objectBoundingBox" x="0" y="0" width="1" height="1">
-                  <image aria-hidden="true" width="200" xlink:href="" ng-href="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24/Balloon6.png" alt="{{prizes[5].label}}" />
+                  <image aria-hidden="true" width="200" xlink:href="" ng-href="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24/Balloon6.png" alt="{{prizes[5].label}}" title="Share on Social" />
                 </pattern>
                 <pattern id="7_balloon" filterunits="objectBoundingBox" x="0" y="0" width="1" height="1">
-                  <image aria-hidden="true" width="200" xlink:href="" ng-href="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24/Balloon7.png" alt="{{prizes[6].label}}" />
+                  <image aria-hidden="true" width="200" xlink:href="" ng-href="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24/Balloon7.png" alt="{{prizes[6].label}}" title="Warning Signs of Stroke" />
                 </pattern>
               </defs>
               <g data-name="Winding Road">
@@ -98,25 +98,26 @@
                   </foreignObject>
                 </g>
                 <g ng-repeat="prize in prizes">
-                  <g class="bounce-4" ng-if="prize.id == 2 && prize.status" ng-cloak>
+                  <g class="bounce-4" ng-if="prize.id == 2 && prize.status" alt="Donate" ng-cloak>
                     <path fill="url(#1_balloon)" d="M70 90v746h200v-746h-200z"></path>
                   </g>
-                  <g class="bounce-3" ng-if="prize.id == 3 && prize.status" ng-cloak>
-                    <path fill="url(#2_balloon)" d="M140 300v746h200v-746h-200z"></path>
+                  <g class="bounce-3" ng-if="prize.id == 3 && prize.status" alt="Share on Social" ng-cloak>
+                    <path fill="url(#6_balloon)" d="M140 300v746h200v-746h-200z"></path>
                   </g>
-                  <g class="bounce-2" ng-if="prize.id == 5 && prize.status" ng-cloak>
+                  <g class="bounce-2" ng-if="prize.id == 5 && prize.status" alt="Hands-Only CPR" ng-cloak>
                     <path fill="url(#4_balloon)" d="M40 500v746h200v-746h-200z"></path>
                   </g>
-                  <g class="bounce-3" ng-if="prize.id == 7 && prize.status" ng-cloak>
-                    <path fill="url(#6_balloon)" d="M570 70v746h200v-746h-200z"></path>
+                  <g class="bounce-3" ng-if="prize.id == 7 && prize.status" alt="First Donation" ng-cloak>
+                    <path fill="url(#5_balloon)" d="M570 70v746h200v-746h-200z"></path>
                   </g>
-                  <g class="bounce-2" ng-if="prize.id == 4 && prize.status" ng-cloak>
+                  <g class="bounce-2" ng-if="prize.id == 4 && prize.status" alt="Edit Your Page" ng-cloak>
                     <path fill="url(#3_balloon)" d="M480 220v746h200v-746h-200z"></path>
                   </g>
-                  <g class="bounce-3" ng-if="prize.id == 6 && prize.status" ng-cloak>
-                    <path fill="url(#5_balloon)" d="M430 430v746h200v-746h-200z"></path>
+                  <g class="bounce-3" ng-if="prize.id == 6 && prize.status" alt="Send Messages" ng-cloak>
+                    <path fill="url(#2_balloon)" d="M430 430v746h200v-746h-200z"></path>
                   </g>
-                  <g class="bounce-4" ng-if="prize.id == 5 && prize.status" ng-cloak>1 <path fill="url(#7_balloon)" d="M600 500v746h200v-746h-200z"></path>
+                  <g class="bounce-4" ng-if="prize.id == 8 && prize.status" alt="Warning Signs of Stroke" ng-cloak>
+                    <path fill="url(#7_balloon)" d="M600 500v746h200v-746h-200z"></path>
                   </g>
                 </g>
                 <g>
@@ -125,7 +126,7 @@
                 <g>
                   <path fill="url(#finn)" d="M260 313v700h341v-700h-341z"></path>
                 </g>
-                <g ng-if"prizesEarned < 8" ng-cloak>
+                <g ng-if="prizesEarned < 8" ng-cloak>
                   <path fill="url(#ballbw)" d="M292 587v105h105v-105h-105z"></path>
                 </g>
               </g>
@@ -157,9 +158,9 @@
             <strong> Complete Finn's Mission to earn Finn's Lifesavers Award. </strong>
           </div>
           <div class="badges d-flex flex-wrap justify-content-around">
-            <div class="ym-badges" ng-repeat="prize in prizes" ng-cloak>
+            <div class="ym-badges" ng-repeat="(name, prize) in prizes" ng-cloak>
               <div class="ym-badge text-center mb-4 p-2" tabindex="0" aria-label="{{prize.label}} Badge {{(prize.status) ? 'Earned' : 'Not Earned'}}">
-                <img class="img-fluid" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24/{{prize.image_url}}" alt="{{prize.label}} Badge {{(prize.status) ? 'Earned' : 'Not Earned'}}">
+                <img class="img-fluid" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24/badge-{{name}}-{{(prize.status) ? 'earned' : 'unearned'}}.png" alt="{{prize.label}} Badge {{(prize.status) ? 'Earned' : 'Not Earned'}}">
                 <div class="badge-title" ng-bind-html="prize.label"></div>
                 <a class="badge-button btn btn-primary mb-2" ng-class="(!prize.status) ? '' : 'btn-white'" ng-href="{{prize.final_url}}" target="_blank" aria-label="{{prize.aria_label}}">
                   <strong>
