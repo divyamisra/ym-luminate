@@ -17,13 +17,13 @@ angular.module 'ahaLuminateApp'
               'fill': '#333333'
               'back': '#ffffff'
               'text': attrs.loadQrcode
-              'size': 100
-              'rounded': 100
+              'size': 150
+              'rounded': 150
               'quiet': 1
               'mode': 'image'
-              'mSize': 30
-              'mPosX': 0
-              'mPosY': 0
+              'mSize': 20
+              'mPosX': 50
+              'mPosY': 50
               'label': 'KHC'
               'fontname': 'Luckiest Guy'
               'fontcolor': '#c10e21'
