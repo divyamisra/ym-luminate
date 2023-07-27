@@ -448,55 +448,6 @@
         </div>
     </section>
   </div>
-  <style>
-.flex-wrapper {
-  display: flex;
-  flex-flow: row nowrap;
-}
-
-.single-chart {
-  width: 100%;
-  max-width:150px;
-  justify-content: space-around ;
-}
-
-.circular-chart {
-  display: block;
-  margin: 10px auto;
-  max-width: 80%;
-  max-height: 250px;
-}
-
-.circle-bg {
-  fill: none;
-  stroke: #898989;
-  stroke-width: 3.8;
-}
-
-.circle {
-  fill: none;
-  stroke-width: 2.8;
-  stroke-linecap: round;
-  animation: progress 1s ease-out forwards;
-}
-
-@keyframes progress {
-  0% {
-    stroke-dasharray: 0 100;
-  }
-}
-
-.circular-chart.blue .circle {
-  stroke: #04287b;
-}
-
-.percentage {
-  fill: #04287b;
-  font-family: sans-serif;
-  font-size: 0.5em;
-  text-anchor: middle;
-}
-  </style>
   <div class="coordinator-hq" ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true' && location != '/dashboard-student'" ng-cloak>
     <section class="ym-pc-dashboard-coordinator-school-achievements-section event-secondary-medium mb-3" aria-label="Years School Participated">
       <div class="ym-pc-dashboard-coordinator-students-box p-3 text-start" ng-if="companyInfo.participantCount" ng-cloak>
@@ -714,30 +665,31 @@
 						</div>
             <div class="schoolCreateMessage text-start" ng-if="coordinatorMessage.text == ''" ng-cloak>
               <p> Create an <strong> encouraging message </strong> for your students in their Headquarters. </p>
-              <button type="button" class="btn btn-md-wide btn-primary" ng-click="editCoordinatorMessage()">
-                <strong> Create Message </strong>
-              </button>
+              <div class="text-center">
+	              <button type="button" class="btn btn-md-wide btn-primary" ng-click="editCoordinatorMessage()">
+  	              <strong> Create Message </strong>
+    	          </button>
+    	        </div>
             </div>
             <div class="schoolCreateMessage text-start" ng-if="coordinatorMessage.text && coordinatorMessage.text != ''" ng-cloak>
               <p> Update your <strong> student message </strong> : <br />
                 <span class="coordinatorMessage"> "{{ coordinatorMessage.text.length > 90 ? coordinatorMessage.text.substring(0,90)+"..." : coordinatorMessage.text }}" </span>
               </p>
-              <button type="button" class="btn btn-md-wide btn-primary" ng-click="editCoordinatorMessage()">
-                <strong> Update Message </strong>
-              </button>
+              <div class="text-center">
+		              <button type="button" class="btn btn-md-wide btn-primary" ng-click="editCoordinatorMessage()">
+    	            <strong> Update Message </strong>
+      	        </button>
+      	      </div>
             </div>
           </div>
         </div>
         <div class="col">
           <div class="ym-pc-dashboard-student-view event-secondary-medium p-3 h-100">
-            <h3 class="h5 clearfix"> Student View </h3>
+            <h3 class="h5 clearfix"> Student Preview </h3>
             <div class="clearfix">
               <div class="ym-pc-student-view-text">
-                <div class="ym-pc-student-view-image">
-                  <img class="img-fluid" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy23/student-view-2023.png" alt="Student View">
-                </div>
                 <p> Use the "Student View" to show your students all of the great tools and games in their Headquarters and encourage them to fundraise! </p>
-                <div>
+                <div class="text-center">
                   <a class="btn btn-md-wide btn-primary" ng-href="{{baseUrl}}#/dashboard-student">
                     <strong> Student View </strong>
                   </a>
