@@ -450,7 +450,7 @@
   </div>
   <div class="coordinator-hq" ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true' && location != '/dashboard-student'" ng-cloak>
     <section class="ym-pc-dashboard-coordinator-school-achievements-section event-secondary-medium mb-3" aria-label="Years School Participated">
-      <div class="ym-pc-dashboard-coordinator-students-box p-3 text-start" ng-if="companyInfo.participantCount" ng-cloak>
+      <div class="ym-pc-dashboard-coordinator-students-box p-3 text-start" ng-cloak>
         <div class="ym-pc-dashboard-section-header">
           <h3 class="h5 text-start"> My School Achievements </h2>
         </div>
@@ -687,7 +687,7 @@
           <div class="ym-pc-dashboard-student-view event-secondary-medium p-3 h-100">
             <h3 class="h5 clearfix"> Student Preview </h3>
             <div class="clearfix">
-              <div class="ym-pc-student-view-text">
+              <div class="ym-pc-student-view">
                 <p> Use the "Student View" to show your students all of the great tools and games in their Headquarters and encourage them to fundraise! </p>
                 <div class="text-center">
                   <a class="btn btn-md-wide btn-primary" ng-href="{{baseUrl}}#/dashboard-student">
@@ -711,7 +711,7 @@
                 <a class="btn btn-md-wide btn-primary" ng-href="TR?fr_id={{frId}}&amp;pg=personal&amp;px={{consId}}">
                   <strong> View and Edit Your Page </strong>
                 </a>
-                <button type="button" class="btn btn-md-wide btn-primary" aria-label="Edit Personal Page URL" ng-click="editPersonalUrl()">
+                <button type="button" class="btn btn-blue ms-2" aria-label="Edit Personal Page URL" ng-click="editPersonalUrl()">
                   <span class="fa fa-share-alt"></span>
                 </button>
               </div>
