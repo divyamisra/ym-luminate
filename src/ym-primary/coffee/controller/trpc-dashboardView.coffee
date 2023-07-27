@@ -119,7 +119,7 @@ angular.module 'trPcControllers'
           if response.data.success is true
             $scope.schoolBadgesRegistrations = response.data.registration_badges
             $scope.schoolBadgesFundraising = response.data.fundraising_badges
-            $rootScope.companyInfo.participantCount = response.data.students_registered
+            #$rootScope.companyInfo.participantCount = response.data.students_registered
             $scope.companyProgress.raised = response.data.total_amount
             $scope.companyProgress.raisedFormatted = $filter('currency')(response.data.total_amount, '$')
             goal = response.data.goal
