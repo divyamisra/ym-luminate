@@ -673,10 +673,10 @@
 								<h3 class="h5"> School QR Code </h3>
 							</div>
 							<div class="d-flex jsutify-content-start flex-wrap gap-4">
-								<div class="col text-start">
+								<div class="col-8 text-start">
 									<p> Click the Copy button to share QR code onto documents, social media and websites. </p>
 								</div>
-								<div class="col">
+								<div class="col-3">
 									<div id="qrcode" load-qrcode="{{secureDomain}}/site/TR?pg=company&amp;fr_id={{frId}}&amp;company_id={{companyId}}"></div>
 									<img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/khc-logo-qrcode.png" class="qrcode-logo d-none">
 									<button type="button" class="btn btn-md-wide btn-primary" id="copyable" role="button" copy-qrcode>
@@ -709,13 +709,16 @@
       <div class="d-md-flex justify-content-between flex-wrap gap-4">
         <div class="col">
           <div class="ym-pc-dashboard-message event-secondary-medium p-3 h-100">
-            <div class="schoolCreateMessage text-center" ng-if="coordinatorMessage.text == ''" ng-cloak>
+						<div class="ym-pc-dashboard-section-header text-start">
+							<h3 class="h5"> Message to Your Students </h3>
+						</div>
+            <div class="schoolCreateMessage text-start" ng-if="coordinatorMessage.text == ''" ng-cloak>
               <p> Create an <strong> encouraging message </strong> for your students in their Headquarters. </p>
               <button type="button" class="btn btn-md-wide btn-primary" ng-click="editCoordinatorMessage()">
                 <strong> Create Message </strong>
               </button>
             </div>
-            <div class="schoolCreateMessage text-center" ng-if="coordinatorMessage.text && coordinatorMessage.text != ''" ng-cloak>
+            <div class="schoolCreateMessage text-start" ng-if="coordinatorMessage.text && coordinatorMessage.text != ''" ng-cloak>
               <p> Update your <strong> student message </strong> : <br />
                 <span class="coordinatorMessage"> "{{ coordinatorMessage.text.length > 90 ? coordinatorMessage.text.substring(0,90)+"..." : coordinatorMessage.text }}" </span>
               </p>
