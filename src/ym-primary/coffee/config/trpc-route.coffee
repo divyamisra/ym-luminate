@@ -14,6 +14,9 @@ if window.location.href.indexOf('pagename=ym_khc_participant_center') isnt -1
           .when '/dashboard-student', 
             templateUrl: APP_INFO.rootPath + 'dist/ym-primary/html/participant-center/view/dashboard.html'
             controller: 'NgPcDashboardViewCtrl'
+          .when '/schoolplan', 
+            templateUrl: APP_INFO.rootPath + 'dist/ym-primary/html/participant-center/view/schoolplan.html'
+            controller: 'NgPcDashboardViewCtrl'
           .when '/email', 
             redirectTo: '/email/compose'
           .when '/email/compose/:messageType?/:messageId?', 

@@ -1,3 +1,44 @@
+.grayscale {
+  /* For Firefox 10 and above, Firefox for Android */
+  filter: url("data:image/svg+xml;utf8,<svg></svg>#grayscale");
+  /* For Internet Explorer 6 to 9 */
+  filter: grayscale(100%);
+  /* For Chrome 19+, Safari 6+, Safari 6+ on iOS */
+  -webkit-filter: grayscale(100%);
+  -moz-filter: grayscale(100%);
+  -ms-filter: grayscale(100%);
+  -o-filter: grayscale(100%);
+}
+
+#nclvs_personal_page, #nclvs_team_page {
+  max-width:150px !important;
+}
+
+.student-hq {
+  .col {
+    min-width: 290px;
+  }
+}
+
+.early-registration-section {
+  background:#60269e;
+  color: #ffffff;
+  .participatingNextYear {
+    color: #ffffff;
+    font-size: 20px;
+   
+    .checkbox label:before, 
+    input[type=checkbox]+label:before {
+      top: 5px;
+    }
+  }
+}
+
+.finns-mission-section {
+  border: 2px solid $event-secondary-medium;
+  border-radius: 10px;
+}
+
 .ym-pc-dashboard-facebook-box button:focus,
 .ym-pc-dashboard-facebook-box a:focus{
     border-color: #000 !important;
@@ -36,6 +77,11 @@ a.btn.btn-secondary:focus {
   }
 }
 
+#ym-pc-dashboard-personal-panel--student,
+#ym-pc-dashboard-company-panel--student {
+  min-height: 180px;
+}
+
 .closeMobileApp {
   position: absolute;
   right: 30px;
@@ -46,38 +92,38 @@ a.btn.btn-secondary:focus {
   z-index:99999;
 }
 
+.ym-pc-dashboard-page-type {
+  a {
+    &, 
+    &:link, 
+    &:visited {
+      color: $event-secondary;  
+    }
+  }
+  .col {
+    opacity: 1;
+    &.active {
+      opacity: .5;
+    }
+  }
+  .fa-circle {
+    opacity: .5;
+    color: $event-secondary;
+    &.active {
+      opacity: 1;
+    }
+  }
+}
+
 .ym-pc-dashboard-event-date,
 .ym-pc-dashboard-money-date {
    font-weight:bold;
 }
 
 .ym-pc-student-view-text {
-  float: none;
-  width: auto !important;
-  margin: 0 3% 0 0;
-
-  @media (min-width: $screen-sm-min) {
-    width: auto !important;
-  }
-
   p {
     @media (min-width: $screen-sm-min) {
       margin: 0 0 32px;
-    }
-  }
-  .ym-pc-student-view-image {
-    width: 115px;
-    margin: 0 0 15px 10px;
-
-    @media (min-width: $screen-sm-min) {
-      float: none;
-      width: 125px;
-      margin: 0 0 15px;
-    }
-    @media (min-width: $screen-lg-min) {
-      float: right;
-      width: 125px;
-      margin: 0 0 15px 10px;
     }
   }
 }
@@ -123,11 +169,11 @@ a.btn.btn-secondary:focus {
 }
 
 a.ym-progress-update-goal {
-	color: $event-primary-acc;
+	color: $event-primary;
 }
 
 a.ym-pc-dashboard-download-certificates {
-	color: $event-primary-acc;
+	color: $event-primary;
 }
 
 .ym-pc-dashboard-coordinator-create-message {
@@ -227,7 +273,6 @@ a.ym-pc-dashboard-download-certificates {
 /* badge list */
 .ym-pc-dashboard-badges-section {
   background: none !important;
-  margin: 0px !important;
   padding: 10px 0 0 0 !important;
   position:relative;
   overflow:hidden;
@@ -261,7 +306,7 @@ a.ym-pc-dashboard-download-certificates {
 
 .ym-pc-dashboard-badge-path {
    position: relative;
-   margin: 0 auto 40px;
+   margin: 0 auto;
    svg {
       @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
          height:750px;
@@ -587,8 +632,8 @@ div[id^="taTextElement"]:focus {
 .ym-pc-dashboard-coordinator-school-challenge-section,
 .ym-pc-dashboard-coordinator-school-level-section {
 	div.ym-pc-dashboard-section-header {
-		font-size: 20px;
-		color: $event-secondary;
+		font-size: 24px;
+		color: #000000;
 		font-family: $headline-font;
 		line-height: 28px;
 		font-weight:bold;
@@ -863,6 +908,7 @@ div[id^="taTextElement"]:focus {
   color: tansparent;
   -moz-opacity: 0.0;
   opacity: 0.0;
+  position:fixed;
 }
 
 .shine.small {
@@ -876,9 +922,9 @@ div[id^="taTextElement"]:focus {
 }
 
 .shine.medium {
-  width: 30px;
-  height: 30px;
-  animation: glitter 5s linear 0s infinite normal;
+  width: 55px;
+  height: 55px;
+  animation: glitter 4s linear 0s infinite normal;
   -webkit-animation: glitter 5s linear 0s infinite normal;
   -moz-animation: glitter 5s linear 0s infinite normal;
   -ms-animation: glitter 5s linear 0s infinite normal;
@@ -886,13 +932,13 @@ div[id^="taTextElement"]:focus {
 }
 
 .shine.large {
-  width: 50px;
-  height: 50px;
-  animation: glitter 6s linear 0s infinite normal;
+  width: 60px;
+  height: 60px;
+  animation: glitter 5s linear 0s infinite normal;
   -webkit-animation: glitter 6s linear 0s infinite normal;
-  -moz-animation: glitter 8s linear 0s infinite normal;
-  -ms-animation: glitter 8s linear 0s infinite normal;
-  -o-animation: glitter 8s linear 0s infinite normal;
+  -moz-animation: glitter 6s linear 0s infinite normal;
+  -ms-animation: glitter 6s linear 0s infinite normal;
+  -o-animation: glitter 6s linear 0s infinite normal;
 }
 
 .mouth-open {
@@ -929,12 +975,12 @@ div[id^="taTextElement"]:focus {
     opacity: 0;
   }
   25% {
-    -webkit-transform: scale(1) rotate(360deg);
+    -webkit-transform: scale(1) rotate(180deg);
     opacity: 1;
   }
   50% {
-    -webkit-transform: scale(0.3) rotate(720deg);
-    opacity: 0;
+    -webkit-transform: scale(0.3) rotate(360deg);
+    opacity: 1;
   }
   100% {
     -webkit-transform: scale(0.3) rotate(0deg);
@@ -1017,3 +1063,51 @@ textarea#feedbackMessage {
   margin-bottom: 30px;
 }  
 
+/* percent circles */
+.flex-wrapper {
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+.single-chart {
+  width: 100%;
+  max-width:150px;
+  justify-content: space-around ;
+}
+
+.circular-chart {
+  display: block;
+  margin: 10px auto;
+  max-width: 80%;
+  max-height: 250px;
+}
+
+.circle-bg {
+  fill: none;
+  stroke: #898989;
+  stroke-width: 3.8;
+}
+
+.circle {
+  fill: none;
+  stroke-width: 2.8;
+  stroke-linecap: round;
+  animation: progress 1s ease-out forwards;
+}
+
+@keyframes progress {
+  0% {
+    stroke-dasharray: 0 100;
+  }
+}
+
+.circular-chart.blue .circle {
+  stroke: #04287b;
+}
+
+.percentage {
+  fill: #04287b;
+  font-family: sans-serif;
+  font-size: 0.5em;
+  text-anchor: middle;
+}

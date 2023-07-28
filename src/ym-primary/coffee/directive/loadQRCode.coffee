@@ -17,11 +17,11 @@ angular.module 'ahaLuminateApp'
               'fill': '#333333'
               'back': '#ffffff'
               'text': attrs.loadQrcode
-              'size': 300
-              'rounded': 300
+              'size': 150
+              'rounded': 150
               'quiet': 1
               'mode': 'image'
-              'mSize': 30
+              'mSize': 20
               'mPosX': 50
               'mPosY': 50
               'label': 'KHC'

@@ -35,7 +35,8 @@ angular.module 'ahaLuminateApp'
     '$rootScope'
     '$sce'
     'APP_INFO'
-    ($rootScope, $sce, APP_INFO) ->
+    'NuclavisService'
+    ($rootScope, $sce, APP_INFO, NuclavisService) ->
       $rootScope.eventType = 'ym-primary'
       $rootScope.tablePrefix = luminateExtend.global.tablePrefix
       $rootScope.nonSecureDomain = luminateExtend.global.path.nonsecure.split('/site/')[0] + '/'
@@ -54,6 +55,11 @@ angular.module 'ahaLuminateApp'
       $rootScope.facebookFundraiserId = $dataRoot.data('facebook-fundraiser-id') if $dataRoot.data('facebook-fundraiser-id') isnt ''
       $rootScope.currentCSTDate = $dataRoot.data('current-date') if $dataRoot.data('current-date') isnt ''
       $rootScope.browserName = detectBrowserName()
+      NuclavisService.login()
+      .then (response) ->
+        $rootScope.NuclavisAPIToken = response
+      , (response) ->
+        $rootScope.NuclavisAPIToken = 0;
   ]
 
 angular.element(document).ready ->

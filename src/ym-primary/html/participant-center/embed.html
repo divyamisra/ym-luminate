@@ -4,7 +4,10 @@
   <nav role="navigation" aria-label="Headquarters" class="ng-pc-nav khc-sidebar col-auto show" ng-class="{'ng-pc-nav--coordinator': participantRegistration.companyInformation.isCompanyCoordinator == 'true'}" ng-if="participantRegistration" ng-cloak>
     <div class="nav clearfix" role="list">
       <a role="listitem" ng-href="{{baseUrl}}#/dashboard" class="ng-pc-nav-item nav-link" ng-class="{'active': location == '/dashboard'}">
-        <span><strong>HQ Home</strong></span>
+        <span><strong>Home</strong></span>
+      </a>
+      <a role="listitem" ng-href="{{baseUrl}}#/schoolplan" class="ng-pc-nav-item nav-link" ng-class="{'active': location.indexOf('/schoolplan') != -1}" ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
+        <span><strong>School Plan</strong></span>
       </a>
       <a role="listitem" ng-href="{{baseUrl}}#/email" class="ng-pc-nav-item nav-link" ng-class="{'active': location.indexOf('/email/') != -1}" ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
         <span><strong>Email</strong></span>

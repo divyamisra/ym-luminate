@@ -10,6 +10,7 @@ angular.module 'trPcControllers'
     'APP_INFO'
     'ZuriService'
     'BoundlessService'
+    'NuclavisService'
     'TeamraiserParticipantService'
     'NgPcTeamraiserRegistrationService'
     'NgPcTeamraiserProgressService'
@@ -23,7 +24,7 @@ angular.module 'trPcControllers'
     'NgPcTeamraiserCompanyService'
     'NgPcSurveyService'
     'FacebookFundraiserService'
-    ($rootScope, $scope, $location, $filter, $timeout, $uibModal, $sce, APP_INFO, ZuriService, BoundlessService, TeamraiserParticipantService, NgPcTeamraiserRegistrationService, NgPcTeamraiserProgressService, NgPcTeamraiserTeamService, NgPcTeamraiserSchoolService, NgPcTeamraiserGiftService, NgPcContactService, NgPcTeamraiserShortcutURLService, NgPcInteractionService, NgPcConstituentService, NgPcTeamraiserCompanyService, NgPcSurveyService, FacebookFundraiserService) ->
+    ($rootScope, $scope, $location, $filter, $timeout, $uibModal, $sce, APP_INFO, ZuriService, BoundlessService, NuclavisService, TeamraiserParticipantService, NgPcTeamraiserRegistrationService, NgPcTeamraiserProgressService, NgPcTeamraiserTeamService, NgPcTeamraiserSchoolService, NgPcTeamraiserGiftService, NgPcContactService, NgPcTeamraiserShortcutURLService, NgPcInteractionService, NgPcConstituentService, NgPcTeamraiserCompanyService, NgPcSurveyService, FacebookFundraiserService) ->
       $scope.dashboardPromises = []
       domain = $location.absUrl().split('/site/')[0]
       $rootScope.HideGifts = "NO"
@@ -40,10 +41,10 @@ angular.module 'trPcControllers'
       $scope.studentChallengeBadge = false
       $scope.schoolBadges = []
       $scope.companyProgress = []
-      $scope.topClassRaised = []
-      $scope.topClassStudents = []
-      $scope.topGradeRaised = []
-      $scope.topGradeStudents = []
+      #$scope.topClassRaised = []
+      #$scope.topClassStudents = []
+      #$scope.topGradeRaised = []
+      #$scope.topGradeStudents = []
       $scope.topCompanySteps = []
       $scope.canCopyQRCode = CopyImageClipboard.canCopyImagesToClipboard()
       $scope.stateList = {"AL":"Alabama","AK":"Alaska","AZ":"Arizona","AR":"Arkansas","CA":"California","CO":"Colorado","CT":"Connecticut","DE":"Delaware","FL":"Florida","GA":"Georgia","HI":"Hawaii","ID":"Idaho","IL":"Illinois","IN":"Indiana","IA":"Iowa","KS":"Kansas","KY":"Kentucky","LA":"Louisiana","ME":"Maine","MD":"Maryland","MA":"Massachusetts","MI":"Michigan","MN":"Minnesota","MS":"Mississippi","MO":"Missouri","MT":"Montana","NE":"Nebraska","NV":"Nevada","NH":"New Hampshire","NJ":"New Jersey","NM":"New Mexico","NY":"New York","NC":"North Carolina","ND":"North Dakota","OH":"Ohio","OK":"Oklahoma","OR":"Oregon","PA":"Pennsylvania","RI":"Rhode Island","SC":"South Carolina","SD":"South Dakota","TN":"Tennessee","TX":"Texas","UT":"Utah","VT":"Vermont","VA":"Virginia","WA":"Washington","WV":"West Virginia","WI":"Wisconsin","WY":"Wyoming"}
@@ -67,7 +68,10 @@ angular.module 'trPcControllers'
           $scope.lockEnabled = true
        
       $dataRoot = angular.element '[data-embed-root]'
-		
+
+      #Nuclavis process start by setting this flag
+      webContent.load = 1
+
       if $scope.participantRegistration.lastPC2Login is '0'
         if $scope.participantRegistration.companyInformation?.isCompanyCoordinator isnt 'true'
           $scope.firstLoginModal = $uibModal.open
@@ -111,14 +115,14 @@ angular.module 'trPcControllers'
           # TODO
       else
         $rootScope.hasOOTDashboard = true
-
+      ###
       $scope.getSchoolBadges = ->
         BoundlessService.getSchoolBadges $scope.frId + '/' + $scope.participantRegistration.companyInformation.companyId
         .then (response) ->
           if response.data.success is true
             $scope.schoolBadgesRegistrations = response.data.registration_badges
             $scope.schoolBadgesFundraising = response.data.fundraising_badges
-            $rootScope.companyInfo.participantCount = response.data.students_registered
+            #$rootScope.companyInfo.participantCount = response.data.students_registered
             $scope.companyProgress.raised = response.data.total_amount
             $scope.companyProgress.raisedFormatted = $filter('currency')(response.data.total_amount, '$')
             goal = response.data.goal
@@ -127,12 +131,12 @@ angular.module 'trPcControllers'
               $scope.companyProgress.percent = Math.ceil(($scope.companyProgress.raised / goal) * 100)
             if $scope.companyProgress.percent > 100
               $scope.companyProgress.percent = 100
-          
+      ###          
       #school years, challenge and level update
       $scope.schoolInfo = {}
       $scope.schoolChallengeInfo = {}
       $scope.schoolChallengeLevelInfo = {}
-      $scope.companyProgress.schoolYears = '5'
+      #$scope.companyProgress.schoolYears = '5'
       $scope.companyProgress.schoolChallenge = ''
       $scope.companyProgress.schoolChallengeOther = ''
       $scope.companyProgress.schoolChallengeLevel = ''
@@ -145,8 +149,8 @@ angular.module 'trPcControllers'
             if typeof response.data.data != 'undefined'
               if response.data.data.length > 0
                 angular.forEach response.data.data, (meta, key) ->
-                  if meta.name == 'years-participated'
-                    $scope.companyProgress.schoolYears = meta.value
+                  #if meta.name == 'years-participated'
+                  #  $scope.companyProgress.schoolYears = meta.value
                   if meta.name == 'school-challenge'
                     if (meta.value).charAt(0) == '*'
                       $scope.companyProgress.schoolChallenge = "Other"
@@ -344,19 +348,19 @@ angular.module 'trPcControllers'
       $scope.cancelShowMaterialsTypes = ->
         $scope.showMaterialTypesModal.close()
 		
-      interactionMoveMoreId = $dataRoot.data 'move-more-flag-id'
+      #interactionMoveMoreId = $dataRoot.data 'move-more-flag-id'
 
-      $scope.moveMoreFlag =
-        text: ''
-        errorMessage: null
-        successMessage: false
-        message: ''
-        interactionId: ''
+      #$scope.moveMoreFlag =
+      #  text: ''
+      #  errorMessage: null
+      #  successMessage: false
+      #  message: ''
+      #  interactionId: ''
 
       #mm_current_mission_completed_header = "Congratulations, " + $scope.consNameFirst + "!"
       #mm_current_mission_title = "You've completed all of Finn's Missions!"
       #mm_current_mission_message = "You unlocked the secret code & your prize: a medal for your Heart Hero avatar! Visit your avatar to add your new, cool medal bling."
-      
+      ### 
       $scope.setMoveMoreFlag = ->
         if $scope.moveMoreFlag.message == 1 or $scope.moveMoreFlag.message == 2
           BoundlessService.setMoveMoreFlag $scope.frId + '/' + $scope.consId + '/' + $scope.moveMoreFlag.message
@@ -376,7 +380,7 @@ angular.module 'trPcControllers'
               refreshFinnsMission()
             else
               $scope.moveMoreFlag.errorMessage = 'There was an error processing your update. Please try again later.'
-             
+      ###    
       interactionTypeId = $dataRoot.data 'coordinator-message-id'
 
       $scope.coordinatorMessage =
@@ -511,7 +515,7 @@ angular.module 'trPcControllers'
                 $scope.refreshFundraisingProgress()
               response
           $scope.dashboardPromises.push updatePersonalGoalPromise
-
+      ###
       $scope.teamGoalInfo = {}
 
       $scope.editTeamGoal = ->
@@ -545,7 +549,7 @@ angular.module 'trPcControllers'
                 $scope.refreshFundraisingProgress()
               response
           $scope.dashboardPromises.push updateTeamGoalPromise
-
+      ###
       $scope.schoolGoalInfo = {}
 
       $scope.editSchoolGoal = ->
@@ -587,7 +591,7 @@ angular.module 'trPcControllers'
 
       $scope.cancelShowSchoolPlan = ->
         $scope.showSchoolPlanModal.close()
-         
+      ###   
       $scope.participantGifts =
         sortColumn: 'date_recorded'
         sortAscending: false
@@ -618,7 +622,9 @@ angular.module 'trPcControllers'
             response
         $scope.dashboardPromises.push personalGiftsPromise
       $scope.getGifts()
+      ###
 
+      ###
       $scope.donorContactCounts = {}
       donorContactFilters = [
         'email_rpt_show_nondonors_followup'
@@ -632,7 +638,7 @@ angular.module 'trPcControllers'
             $scope.donorContactCounts[filter] = if totalNumberResults then Number(totalNumberResults) else 0
             response
         $scope.dashboardPromises.push donorContactCountPromise
-
+      ###
       if $scope.participantRegistration.companyInformation?.isCompanyCoordinator isnt 'true'
         $scope.dashboardPageType = 'personal'
       else
@@ -688,7 +694,7 @@ angular.module 'trPcControllers'
               $scope.getParticipantShortcut()
             response
         $scope.dashboardPromises.push updatePersonalUrlPromise
-
+      ###
       if $scope.participantRegistration.teamId and $scope.participantRegistration.teamId isnt '-1' and $scope.participantRegistration.aTeamCaptain is 'true'
         $scope.getTeamShortcut = ->
           getTeamShortcutPromise = NgPcTeamraiserShortcutURLService.getTeamShortcut()
@@ -734,7 +740,7 @@ angular.module 'trPcControllers'
                 $scope.getTeamShortcut()
               response
           $scope.dashboardPromises.push updateTeamUrlPromise
-
+      ###
       if $scope.participantRegistration.companyInformation and $scope.participantRegistration.companyInformation.companyId and $scope.participantRegistration.companyInformation.companyId isnt -1 and $scope.participantRegistration.companyInformation?.isCompanyCoordinator is 'true'
 
         $scope.companyUrlInfo = {}
@@ -907,77 +913,67 @@ angular.module 'trPcControllers'
             getStudentChallenge()
 
       refreshFinnsMission = ->
-        $scope.prizes = []
+        $scope.prizes = {}
         $scope.prizesEarned = 0
-        $rootScope.has_bonus = 0
-        BoundlessService.getBadges $scope.frId + '/' + $scope.consId
+        NuclavisService.getBadges $scope.consId + '/' + $scope.frId
         .then (response) ->
-          prizes = response.data.prizes
-          $rootScope.has_bonus = response.data.has_bonus
+          prizes = response.data.missions
           final_url = ''
           angular.forEach prizes, (prize) ->
-            if prize.mission_url_type == 'Donate' 
+            if prize.hq_action_type == 'Donate' 
               final_url = 'Donation2?df_id=' + $scope.eventInfo.donationFormId + "&FR_ID=" + $scope.frId + "&PROXY_TYPE=20&PROXY_ID=" + $scope.consId
-            if prize.mission_url_type == 'Personal' 
+            if prize.hq_action_type == 'Personal' 
               final_url = 'TR?fr_id=' + $scope.frId + '&pg=personal&px=' + $scope.consId
-            if prize.mission_url_type == 'Tab' 
-              final_url = $scope.baseUrl + prize.mission_url
-              if prize.sku == 'BDG-6'
-                if $scope.tablePrefix == 'heartdev'
-                  final_url = 'https://tools.heart.org/aha_ym24_dev/?eid=' + $scope.frId + '&sid=' + $scope.consId + '&name=' + $scope.consNameFirst
-                if $scope.tablePrefix == 'heartnew'
-                  final_url = 'https://tools.heart.org/aha_ym24_testing/?eid=' + $scope.frId + '&sid=' + $scope.consId + '&name=' + $scope.consNameFirst
-                if $scope.tablePrefix == 'heart'
-                  final_url = 'https://tools.heart.org/aha_ym24/?eid=' + $scope.frId + '&sid=' + $scope.consId + '&name=' + $scope.consNameFirst
-            if prize.mission_url_type == 'URL' 
-              final_url = prize.mission_url
-            if prize.mission_url_type == 'Quiz' 
+            if prize.hq_action_type == 'Tab' 
+              final_url = $scope.baseUrl + prize.hq_action_url
+            if prize.hq_action_type == 'URL' 
+              final_url = prize.hq_action_url
+            if prize.hq_action_type == 'Quiz' 
               if $scope.tablePrefix == 'heartdev'
-                final_url = 'https://tools.heart.org/aha_ym24_dev/quiz/show/' + prize.mission_url + '?event_id=' + $scope.frId + '&user_id=' + $scope.consId + '&name=' + $scope.consNameFirst
+                final_url = 'https://tools.heart.org/aha_ym24_dev/quiz/show/' + prize.hq_action_url + '?event_id=' + $scope.frId + '&user_id=' + $scope.consId + '&name=' + $scope.consNameFirst
               if $scope.tablePrefix == 'heartnew'
-                final_url = 'https://tools.heart.org/aha_ym24_testing/quiz/show/' + prize.mission_url + '?event_id=' + $scope.frId + '&user_id=' + $scope.consId + '&name=' + $scope.consNameFirst
+                final_url = 'https://tools.heart.org/aha_ym24_testing/quiz/show/' + prize.hq_action_url + '?event_id=' + $scope.frId + '&user_id=' + $scope.consId + '&name=' + $scope.consNameFirst
               if $scope.tablePrefix == 'heart'
-                final_url = 'https://tools.heart.org/aha_ym24/quiz/show/' + prize.mission_url + '?event_id=' + $scope.frId + '&user_id=' + $scope.consId + '&name=' + $scope.consNameFirst
-            if prize.mission_url_type == 'Modal' and prize.mission_url == 'app' 
+                final_url = 'https://tools.heart.org/aha_ym24/quiz/show/' + prize.hq_action_url + '?event_id=' + $scope.frId + '&user_id=' + $scope.consId + '&name=' + $scope.consNameFirst
+            if prize.hq_action_type == 'Modal' and prize.hq_action_url == 'app' 
               final_url = 'showMobileApp()'
-            if prize.status != 0
-              earned_status = 'Earned'
-              hover_msg = prize.earned_hover
+            if prize.earned != 0
+              earned_status = "Earned"
             else 
-              earned_status = 'Unearned'
-              hover_msg = prize.unearned_hover
-            prize_label = prize.label
-            switch prize.label
-              when "Take Challenge" then prize_label = "Pick a Challenge"
-              when "Edit Personal Page" then prize_label = "Edit Your Page"
-              when "Self Donor" then prize_label = "Self-Donation"
-              when "Go Social" then prize_label = "Share on Social"
-              when "Send Email/Ecard" then prize_label = "Send E-card"
-              when "First Online Donation" then prize_label = "First Donation"
-              when "CPR Quiz" then prize_label = "Hands-Only CPR"
-              when "Stroke Quiz" then prize_label = "Warning Signs of Stroke"
-            aria_label = prize_label + ": " + earned_status + " - " + hover_msg
-            $scope.prizes.push
-              id: prize.id
-              label: prize.label
-              sku: prize.sku
-              status: prize.status
-              earned: prize.earned_datetime
-              completed_label: prize.completed_label
-              mission_url: prize.mission_url
-              mission_url_type: prize.mission_url_type
-              earned_image_url: prize.earned_image_url
-              not_earned_image_url: prize.non_earned_image_url
-              locked_image_url: prize.locked_image_url
+              earned_status = "Unearned"
+            aria_label = prize.hq_name + ": " + earned_status + " - " + prize.hq_hover
+            $scope.prizes[prize.mission_id] = 
+              id: prize.mission_id
+              label: prize.hq_name
+              status: prize.earned
+              mission_url: prize.hq_action_url
+              mission_url_type: prize.hq_action_type
               final_url: final_url
-              hover_msg: hover_msg
+              hover_msg: prize.hq_hover
               aria_label: aria_label
+              button_label: prize.hq_button
 
-            if prize.status != 0
+            if prize.earned != 0
               $scope.prizesEarned++
-            #get move more flag status  
-            if prize.id == 9 
-              $scope.moveMoreFlag.message = prize.status
+          prize = response.data.overall_mission_status
+          if prize.completed != 0
+            earned_status = "Earned"
+            final_url = 'showFinnsVideo()'
+          else 
+            earned_status = "Unearned"
+            final_url = ''
+          aria_label = prize.hq_name + ": " + earned_status + " - " + prize.hq_hover
+          $scope.prizes['trophy'] = 
+            id: 99
+            label: prize.hq_name
+            status: prize.completed
+            mission_url: prize.hq_action_url
+            mission_url_type: prize.hq_action_type
+            final_url: final_url
+            hover_msg: prize.hq_hover
+            aria_label: aria_label
+            button_label: prize.hq_button
+	    
           $scope.buildGiftCatalog()
           
         , (response) ->
@@ -986,6 +982,11 @@ angular.module 'trPcControllers'
       refreshFinnsMission()
       
       $rootScope.facebookFundraiserConfirmedStatus = ''
+      if location.href.indexOf("showfb") > 0
+        $scope.facebookFundraisersEnabled = true
+      if location.href.indexOf("fbconnected") > 0
+        $scope.facebookFundraiserId = 1234
+        $scope.facebookFundraiserConfirmedStatus = true
       if $scope.facebookFundraisersEnabled and $rootScope.facebookFundraiserId and $rootScope.facebookFundraiserId isnt ''
         $rootScope.facebookFundraiserConfirmedStatus = 'pending'
         FacebookFundraiserService.confirmFundraiserStatus()
@@ -999,7 +1000,7 @@ angular.module 'trPcControllers'
               $rootScope.facebookFundraiserConfirmedStatus = 'deleted'
             else
               $rootScope.facebookFundraiserConfirmedStatus = 'confirmed'
-        
+      ###  
       initCarousel = ->
         owl = jQuery '.owl-carousel'
         owl.owlCarousel
@@ -1048,7 +1049,9 @@ angular.module 'trPcControllers'
             angular.element('.owl-carousel').find('.owl-item.active').attr 'aria-selected', 'true'
             angular.element('.owl-item.active').attr 'tabindex', '0'
       $timeout initCarousel, 1000
+      ###
 
+      ###
       $scope.personalInfo = {}
       $scope.personalInfo.avatar = ''
       $scope.getPersonalAvatar = ->
@@ -1066,7 +1069,9 @@ angular.module 'trPcControllers'
                 avatarURL = ""
             $scope.personalInfo.avatar = avatarURL
       $scope.getPersonalAvatar()
+      ###
 
+      ###
       $scope.heroPopup = false
       $scope.heartHeros = heroPopup: ->
         $scope.heroPopup = true
@@ -1115,6 +1120,7 @@ angular.module 'trPcControllers'
           success: (response) ->
             if response.data.company[0] != ""
               $scope.schoolTop15ByState = response.data.company[0]
+      ###
 
       $scope.schoolPlan = []
       $scope.schoolPlan.HideGifts = "NO"
@@ -1156,15 +1162,36 @@ angular.module 'trPcControllers'
                 if response.data.errorResponse
                   console.log 'There was an error getting user profile. Please try again later.'
                 $scope.constituent = response.data.getConsResponse
-                angular.forEach $scope.constituent.custom.string, (field) ->
-                  if field.id == 'custom_string18'
-                    $scope.schoolPlan.ParticipatingNextYear = field.content
-                  return
+                if typeof $scope.constituent.custom.string == 'object'
+                  if $scope.constituent.custom.string.id == 'custom_string18'
+                    $scope.schoolPlan.ParticipatingNextYear = $scope.constituent.custom.string.content
+                    if $scope.schoolPlan.ParticipatingNextYear == 'YES'
+                      $scope.schoolPlan.ParticipatingNextYear_isChecked = true
+                    else
+                      $scope.schoolPlan.ParticipatingNextYear_isChecked = false
+                else
+                  angular.forEach $scope.constituent.custom.string, (field) ->
+                    if field.id == 'custom_string18'
+                      $scope.schoolPlan.ParticipatingNextYear = field.content
+                      if $scope.schoolPlan.ParticipatingNextYear == 'YES'
+                        $scope.schoolPlan.ParticipatingNextYear_isChecked = true
+                      else
+                        $scope.schoolPlan.ParticipatingNextYear_isChecked = false
+            if $scope.schoolPlan.ParticipatingNextYear == 'YES'
+              $scope.schoolPlan.ParticipatingNextYear_isChecked = true
+            else
+              $scope.schoolPlan.ParticipatingNextYear_isChecked = false
       $scope.getSchoolPlan()
 
       $scope.putSchoolPlan = (event, sel) ->
         school = @schoolPlan
-        if sel == 'ParticipatingNextYear' or sel == 'MaterialsNeeded'
+        if sel == 'ParticipatingNextYear_isChecked' or sel == 'MaterialsNeeded'
+          if sel == 'ParticipatingNextYear_isChecked'
+            if $scope.schoolPlan[sel] == true
+              $scope.schoolPlan.ParticipatingNextYear = 'YES'
+            if $scope.schoolPlan[sel] == false
+              $scope.schoolPlan.ParticipatingNextYear = 'NO'
+            sel = 'ParticipatingNextYear'
           schoolParams = '&field_id=' + sel + '&value=' + $scope.schoolPlan[sel] + '&type=dropdown'
           ZuriService.schoolPlanData '&method=UpdateSchoolPlan&CompanyId=' + $scope.participantRegistration.companyInformation.companyId + '&EventId=' + $scope.frId + schoolParams,
             failure: (response) ->
@@ -1196,7 +1223,11 @@ angular.module 'trPcControllers'
               success: (response) ->
 
       $scope.updateParticipatingNextYear = ->
-        updateUserProfilePromise = NgPcConstituentService.updateUserRecord('custom_string18=' + this.participatingNextYear + '&cons_id=' + $scope.consId).then (response) ->
+        if $scope.schoolPlan.ParticipatingNextYear_isChecked == true
+          $scope.schoolPlan.ParticipatingNextYear = 'YES'
+        if $scope.schoolPlan.ParticipatingNextYear_isChecked == false
+          $scope.schoolPlan.ParticipatingNextYear = 'NO'
+        updateUserProfilePromise = NgPcConstituentService.updateUserRecord('custom_string18=' + $scope.schoolPlan.participatingNextYear + '&cons_id=' + $scope.consId).then (response) ->
           if response.data.errorResponse
             console.log 'There was an error processing your update. Please try again later.'
           updateUserProfilePromise = NgPcConstituentService.updateUserRecord('custom_date5_MONTH='+(($scope.theDate).getMonth()+1)+'&custom_date5_DAY='+($scope.theDate).getDate()+'&custom_date5_YEAR='+($scope.theDate).getFullYear()+'&cons_id=' + $scope.consId).then (response) ->
@@ -1208,7 +1239,8 @@ angular.module 'trPcControllers'
         regex = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2}).*$/
         token_array = regex.exec(dateVal.toJSON());
         return token_array[1] + "-" + token_array[2] + "-" + token_array[3]
-      
+
+      ###
       $scope.showPrize = (sku, label, earned, video) ->
         $scope.prize_sku = sku
         $scope.prize_label = label
@@ -1220,10 +1252,12 @@ angular.module 'trPcControllers'
 
       $scope.cancelShowPrize = ->
         $scope.viewPrizeModal.close()
-
+      ###
+	
       getRandomID = ->
         return Math.floor((Math.random()*3)+1);
 
+      ###
       defaultStandardGifts = BoundlessService.defaultStandardGifts()
 
       $scope.buildGiftCatalog = ->
@@ -1338,7 +1372,9 @@ angular.module 'trPcControllers'
 
         , (response) ->
           # TODO
-      
+      ###
+
+      ###
       $scope.updateSchoolYears = ->
         delete $scope.schoolInfo.errorMessage
         newYears = $scope.companyProgress.schoolYears
@@ -1353,7 +1389,7 @@ angular.module 'trPcControllers'
             success: (response) ->
               $scope.companyProgress.schoolYears = newYears
               #$scope.editSchoolYearsModal.close()
-              
+      ###     
       $scope.updateSchoolChallenge = ->
         delete $scope.schoolChallengeInfo.errorMessage
         newChallenge = $scope.companyProgress.schoolChallenge
@@ -1392,7 +1428,7 @@ angular.module 'trPcControllers'
               $scope.companyProgress.schoolChallengeLevel = newChallengeLevel
               #$scope.editSchoolChallengeLevelModal.close()
 
-      ZuriService.getSchool $scope.companyId,
+      ZuriService.getSchoolActivity $scope.companyId,
         error: (response) ->
           $scope.studentsPledgedTotal = 0
           $scope.activity1amt = 0
@@ -1423,7 +1459,8 @@ angular.module 'trPcControllers'
       $scope.cancelMobileApp = ->
         $scope.viewMobileApp.close()
         delete $scope.viewMobileApp
-        
+
+      ###
       getLeaderboards = ->
         BoundlessService.getLeaderboards $scope.companyId
         .then (response) ->
@@ -1469,14 +1506,15 @@ angular.module 'trPcControllers'
               msg: '# Students'
 
       getLeaderboards()
-      
+      ###
+	
       $scope.omit_special_char = (e) ->
         if (/^[a-zA-Z0-9\s']*$/.test(e.key)) 
           return true
         else
           e.preventDefault()
           return false
-
+      ###
       $scope.mouseover = (prize, xPos, yPos, sel, offset, width=120, height=60) ->
         document.getElementById("tRct").style.fill = "#850BAA"
         document.getElementById("tRct").x.baseVal.value = xPos
@@ -1518,5 +1556,69 @@ angular.module 'trPcControllers'
         document.getElementById("tRctm").x.baseVal.value = -99999
         jQuery("#tTipm div").html("")
         document.getElementById("tTrim").setAttribute('points','0 0 0 0 0 0')
+      ###
+
+      #RANDOM FLOATING BALLOONS
+      windowWidth = 0
+      windowHeight = 0
+
+      pickANumber = (max, min) ->
+        Math.random() * (max - min + min) + min
+
+      changeColors = (el) ->
+        el.removeClass()
+        random = Math.floor(pickANumber(5, 1))
+        el.addClass 'bln-' + random + '-clone'
+
+      resetBalloon = (el) ->
+        changeColors el
+        scale = pickANumber(0.9, 0.5).toFixed(1)
+        el.css 'transform', 'scale(' + scale + ')'
+        x = Math.floor(Math.random() * windowWidth)
+        el.css 'left', x
+        y = Math.floor(Math.random() * 300 + windowHeight)
+        el.css 'top', y
+        releaseBalloon el
+  
+      releaseBalloon = (el) ->
+        maxbllnSpeed = Math.floor(Math.random() * 3000) + 3000
+        wind = Math.floor(Math.random() * -30)
+        rotate = Math.floor(Math.random() * 560) + 100
+        el.animate {
+          top: '-160px'
+          left: '+=' + wind + 0
+        },
+          step: ->
+            el.css
+              transform: 'rotate(' + rotate + 'deg)'
+              transition: 'transform ' + maxbllnSpeed * .001 + 's linear'
+          duration: maxbllnSpeed
+          easing: 'linear'
+          complete: ->
+            #resetBalloon(el);
+
+      blowUpBalloons = ->
+        windowWidth = jQuery('.finns-mission').width()
+        windowHeight = jQuery('.finns-mission').height()
+        i = 0
+        while i < 40
+          el = jQuery('.bln-1').clone()
+          el.appendTo '.blns'
+          resetBalloon el
+          positionx = el.position()
+          if positionx.top > windowHeight or positionx.left > windowWidth or positionx.left < -100
+            resetBalloon el
+          i++
+        resetBalloon jQuery('.bln-1')
+
+      bcheck = 0
+      startBalloons = ->
+        if angular.element('.finns-mission').length > 0
+          blowUpBalloons()
+        else
+          bcheck++
+          if bcheck < 5
+            setTimeout startBalloons, 1000
+      startBalloons() 
 
   ]
