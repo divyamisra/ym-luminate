@@ -3,7 +3,7 @@ a.btn-global-primary {
   @include button-variant($btn-primary-color, $btn-primary-bg, $btn-primary-border, $btn-primary-color, $btn-primary-darker-bg, $btn-primary-darker-border);
 }
 
-.ym-pc-dashboard-coordinator-page-type.active {
+.ym-pc-dashboard-fundraising-type.active {
   button {
     display:none;
   }
