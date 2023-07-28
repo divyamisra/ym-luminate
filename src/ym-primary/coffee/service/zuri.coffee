@@ -63,7 +63,7 @@ angular.module 'ahaLuminateApp'
           , (response) ->
             callback.failure response
       
-      getSchool: (requestData, callback) ->
+      getSchoolActivity: (requestData, callback) ->
         if $rootScope.tablePrefix is 'heartdev'
           url = '//tools.heart.org/aha_ym24_dev/api/program/school/' + requestData + '?key=k7wvZXDpmDpenVcp'
         else if $rootScope.tablePrefix is 'heartnew'
