@@ -115,7 +115,7 @@ angular.module 'trPcControllers'
           # TODO
       else
         $rootScope.hasOOTDashboard = true
-###
+      ###
       $scope.getSchoolBadges = ->
         BoundlessService.getSchoolBadges $scope.frId + '/' + $scope.participantRegistration.companyInformation.companyId
         .then (response) ->
@@ -131,7 +131,7 @@ angular.module 'trPcControllers'
               $scope.companyProgress.percent = Math.ceil(($scope.companyProgress.raised / goal) * 100)
             if $scope.companyProgress.percent > 100
               $scope.companyProgress.percent = 100
-###          
+      ###          
       #school years, challenge and level update
       $scope.schoolInfo = {}
       $scope.schoolChallengeInfo = {}
