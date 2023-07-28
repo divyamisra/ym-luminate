@@ -529,34 +529,34 @@
             <h3 class="h5 clearfix"> Manage Tools </h3>
             <p> Check out the reports page to see which students have completed challenges and who has earned donations. </p>
             <p style="color:#c10e21" ng-show="!hasOOTDashboard" ng-scope> Manage your event tool is not currently available. Please try again later. </p>
-            <div class="mx-auto ">
-              <div class="d-inline-block mx-auto text-center w-100" ng-scope>
+            <div class="d-flex justify-content-center text-center flex-wrap">
+              <div class="col" ng-scope>
                 <img class="d-block mx-auto mb-2" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24/fb-icon.png" alt="Facebook">
                 <a class="btn btn-md-wide btn-primary" ng-href="{{baseUrl}}#/schoolplan" ng-cloak>
                   <strong> School Plan </strong>
                 </a>
               </div>
-              <div class="d-inline-block" ng-show="hasOOTDashboard" ng-scope>
+              <div class="colk" ng-show="hasOOTDashboard" ng-scope>
                 <img class="d-block mx-auto mb-2" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24/fb-icon.png" alt="Facebook">
-                <a class="btn btn-md-wide btn-primary d-inline-block" ng-href="https://khc.staging.ootqa.org/coordinator/login/{{frId}}/{{authToken}}/{{sessionCookie}}" target="_blank" ng-if="tablePrefix == 'heartdev'" ng-cloak>
+                <a class="btn btn-md-wide btn-primary" ng-href="https://khc.staging.ootqa.org/coordinator/login/{{frId}}/{{authToken}}/{{sessionCookie}}" target="_blank" ng-if="tablePrefix == 'heartdev'" ng-cloak>
                   <strong> View Reports </strong>
                 </a>
-                <a class="btn btn-md-wide btn-primary d-inline-block" ng-href="https://khc.staging.ootqa.org/coordinator/login/{{frId}}/{{authToken}}/{{sessionCookie}}" target="_blank" ng-if="tablePrefix == 'heartnew'" ng-cloak>
+                <a class="btn btn-md-wide btn-primary" ng-href="https://khc.staging.ootqa.org/coordinator/login/{{frId}}/{{authToken}}/{{sessionCookie}}" target="_blank" ng-if="tablePrefix == 'heartnew'" ng-cloak>
                   <strong> View Reports </strong>
                 </a>
-                <a class="btn btn-md-wide btn-primary d-inline-block" ng-href="https://kidsheartchallenge.heart.org/coordinator/login/{{frId}}/{{authToken}}/{{sessionCookie}}" target="_blank" ng-if="tablePrefix == 'heart'" ng-cloak>
+                <a class="btn btn-md-wide btn-primary" ng-href="https://kidsheartchallenge.heart.org/coordinator/login/{{frId}}/{{authToken}}/{{sessionCookie}}" target="_blank" ng-if="tablePrefix == 'heart'" ng-cloak>
                   <strong> View Reports </strong>
                 </a>
               </div>
-              <div class="d-inline-block" ng-show="hasOOTDashboard">
+              <div class="col" ng-show="hasOOTDashboard">
                 <img class="d-block mx-auto mb-2" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24/fb-icon.png" alt="Facebook">
-                <a class="btn btn-md-wide btn-primary d-inline-block" ng-href="https://khc.staging.ootqa.org/coordinator/login/{{frId}}/{{authToken}}/{{sessionCookie}}" target="_blank" ng-if="tablePrefix == 'heartdev'" ng-cloak>
+                <a class="btn btn-md-wide btn-primary" ng-href="https://khc.staging.ootqa.org/coordinator/login/{{frId}}/{{authToken}}/{{sessionCookie}}" target="_blank" ng-if="tablePrefix == 'heartdev'" ng-cloak>
                   <strong> Thank-You Gifts </strong>
                 </a>
-                <a class="btn btn-md-wide btn-primary d-inline-block" ng-href="https://khc.staging.ootqa.org/coordinator/login/{{frId}}/{{authToken}}/{{sessionCookie}}" target="_blank" ng-if="tablePrefix == 'heartnew'" ng-cloak>
+                <a class="btn btn-md-wide btn-primary" ng-href="https://khc.staging.ootqa.org/coordinator/login/{{frId}}/{{authToken}}/{{sessionCookie}}" target="_blank" ng-if="tablePrefix == 'heartnew'" ng-cloak>
                   <strong> Thank-You Gifts </strong>
                 </a>
-                <a class="btn btn-md-wide btn-primary d-inline-block" ng-href="https://kidsheartchallenge.heart.org/coordinator/login/{{frId}}/{{authToken}}/{{sessionCookie}}" target="_blank" ng-if="tablePrefix == 'heart'" ng-cloak>
+                <a class="btn btn-md-wide btn-primary" ng-href="https://kidsheartchallenge.heart.org/coordinator/login/{{frId}}/{{authToken}}/{{sessionCookie}}" target="_blank" ng-if="tablePrefix == 'heart'" ng-cloak>
                   <strong> Thank-You Gifts </strong>
                 </a>
               </div>
@@ -581,7 +581,7 @@
               <p class="small">
                 <span ng-bind-html="companyPageUrl"></span>
                 <button type="button" class="btn btn-blue" aria-label="Edit School Page URL" ng-click="editCompanyUrl()">
-                  <span class="fa fa-pencil"></span>
+                  <strong>Edit School URL</strong>
                 </button>
               </p>
             </div>
@@ -694,7 +694,7 @@
               <p class="small">
                 <span ng-bind-html="personalPageUrl"></span>
                 <button type="button" class="btn btn-blue" aria-label="Edit Personal Page URL" ng-click="editPersonalUrl()">
-                  <span class="fa fa-pencil"></span>
+                  <strong>Edit My URL</strong>
                 </button>
               </p>
             </div>
