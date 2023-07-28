@@ -36,7 +36,10 @@ a.btn:visited {
   }
 }
 
-.btn-blue {
+.btn-blue, 
+.btn-blue:hover, 
+.btn-blue:focus, 
+.btn-blue:visited {
     padding: 3px 6px;
     background: #04287b;
     color: #fff;
