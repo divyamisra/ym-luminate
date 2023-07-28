@@ -130,7 +130,8 @@
                   <path fill="url(#finn)" d="M260 313v700h341v-700h-341z"></path>
                 </g>
                 <g ng-if="prizesEarned < 8" class="gear" ng-cloak>
-                  <path ng-if="prizesEarned < 8" fill="url(#ballbw)" d="M292 587v105h105v-105h-105z"></path>
+                  <path ng-if="prizesEarned < 8" fill="url(#ballbw)" d="M292 587v105h105v-105h-105z">
+                  </path>
                   <path ng-if="prizesEarned == 8" fill="url(#ballcolor)" d="M292 587v105h105v-105h-105z"></path>
                 </g>
               </g>
@@ -168,7 +169,9 @@
                 <div class="badge-title" ng-bind-html="prize.label"></div>
                 <a class="badge-button btn btn-primary mb-2" ng-class="(!prize.status) ? '' : 'btn-white'" ng-href="{{prize.final_url}}" target="_blank" aria-label="{{prize.aria_label}}">
                   <strong>
-                  <span ng-if="name == 'trophy'" class="d-inline-block" ng-cloak><i class="fa fa-{{(prize.status) ? 'unlock' : 'lock'}}" aria-hidden="true"></i></span>
+                    <span ng-if="name == 'trophy'" class="d-inline-block" ng-cloak>
+                      <i class="fa fa-{{(prize.status) ? 'unlock' : 'lock'}}" aria-hidden="true"></i>
+                    </span>
                     {{prize.button_label}}
                   </strong>
                 </a>
@@ -352,39 +355,20 @@
                   </div>
                 </div>
               </div>
-							<div class="clearfix mt-3">
-								<div class="ym-pc-dashboard-fundraising-type" ng-class="{'active': dashboardStudentPageType == 'personal'}">
-									<a href="" ng-click="toggleStudentPageType('personal')" role="link" aria-controls="ym-pc-dashboard-update-personal-panel">
-										<strong>
-											View My Personal Progress
-										</strong>
-									</a>
-								</div>
-								<div class="ym-pc-dashboard-fundraising-type" ng-class="{'active': dashboardStudentPageType == 'company'}">
-									<a href="" ng-click="toggleStudentPageType('company')" role="link" aria-controls="ym-pc-dashboard-update-school-panel">
-										<strong>
-											View My School's Progress
-										</strong>
-									</a>
-								</div>
-							</div>
-
-              <!--
-              <div class="ym-pc-dashboard-page-type d-flex justify-content-between align-items-center mt-3">
-                <div class="col-4 text-center" ng-class="{'active': dashboardStudentPageType == 'personal'}">
-                  <a href="" ng-click="toggleStudentPageType('personal')" role="tab" aria-controls="ym-pc-dashboard-update-personal-panel">
-                    <span class="fa fa-angle-left fw-bold"></span>
+              <div class="clearfix mt-3">
+                <div class="ym-pc-dashboard-fundraising-type" ng-class="{'active': dashboardStudentPageType == 'personal'}">
+                  <a href="" ng-click="toggleStudentPageType('personal')" role="link" aria-controls="ym-pc-dashboard-update-personal-panel">
+                    <strong> View My Personal Progress </strong>
                   </a>
                 </div>
-                <div class="col-4 text-center">
-                  <span class="fa fa-circle" ng-class="{'active': dashboardStudentPageType == 'personal'}"></span> &nbsp; <span class="fa fa-circle" ng-class="{'active': dashboardStudentPageType == 'company'}"></span>
-                </div>
-                <div class="col-4 text-center" ng-class="{'active': dashboardStudentPageType == 'company'}">
-                  <a href="" ng-click="toggleStudentPageType('company')" role="tab" aria-controls="ym-pc-dashboard-update-school-panel">
-                    <span class="fa fa-angle-right fw-bold"></span>
+                <div class="ym-pc-dashboard-fundraising-type" ng-class="{'active': dashboardStudentPageType == 'company'}">
+                  <a href="" ng-click="toggleStudentPageType('company')" role="link" aria-controls="ym-pc-dashboard-update-school-panel">
+                    <strong> View My School's Progress </strong>
                   </a>
                 </div>
               </div>
+              <!--
+              <div class="ym-pc-dashboard-page-type d-flex justify-content-between align-items-center mt-3"><div class="col-4 text-center" ng-class="{'active': dashboardStudentPageType == 'personal'}"><a href="" ng-click="toggleStudentPageType('personal')" role="tab" aria-controls="ym-pc-dashboard-update-personal-panel"><span class="fa fa-angle-left fw-bold"></span></a></div><div class="col-4 text-center"><span class="fa fa-circle" ng-class="{'active': dashboardStudentPageType == 'personal'}"></span> &nbsp; <span class="fa fa-circle" ng-class="{'active': dashboardStudentPageType == 'company'}"></span></div><div class="col-4 text-center" ng-class="{'active': dashboardStudentPageType == 'company'}"><a href="" ng-click="toggleStudentPageType('company')" role="tab" aria-controls="ym-pc-dashboard-update-school-panel"><span class="fa fa-angle-right fw-bold"></span></a></div></div>
               -->
             </div>
           </div>
@@ -399,9 +383,7 @@
                   <strong> View and Edit Your Page </strong>
                 </a>
                 <!--
-                <button type="button" class="btn btn-blue ms-2" aria-label="Edit Personal Page URL" ng-click="editPersonalUrl()">
-                  <span class="fa fa-share-alt"></span>
-                </button>
+                <button type="button" class="btn btn-blue ms-2" aria-label="Edit Personal Page URL" ng-click="editPersonalUrl()"><span class="fa fa-share-alt"></span></button>
               	-->
               </div>
               <div class="ym-activity-url">
@@ -447,361 +429,343 @@
             </div>
           </div>
         </div>
+      </div>
     </section>
+    <div class="mt-4 text-center">
+      <button type="button" class="btn btn-md-wide btn-primary" ng-click="postFeedbackMessage()">
+        <strong> Provide Feedback </strong>
+      </button>
+    </div>
   </div>
-    </section>
-		<div class="mt-4 text-center">
-			<button type="button" class="btn btn-md-wide btn-primary" ng-click="postFeedbackMessage()">
-				<strong> Provide Feedback </strong>
-			</button>
-		</div>
-  </div>
-  <div class="coordinator-hq" ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true' && location != '/dashboard-student'" ng-cloak>
-    <section class="ym-pc-dashboard-coordinator-school-achievements-section event-secondary-medium mb-3" aria-label="Years School Participated">
-      <div class="ym-pc-dashboard-coordinator-students-box p-3 text-start" ng-cloak>
-        <div class="ym-pc-dashboard-section-header">
-          <h3 class="h5 text-start"> My School Achievements </h2>
-        </div>
-        <div class="d-md-flex justify-content-between flex-wrap gap-4">
-          <div class="col">
-          	<div class="d-flex justify-content-around text-center flex-wrap gap-4">
-          		<div class="col">
-								<div class="d-flex justify-content-center">
-									<div class="single-chart">
-										<svg viewBox="0 0 36 36" class="circular-chart blue">
-											<path class="circle-bg"
-												d="M18 2.0845
+</div>
+<div class="coordinator-hq" ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true' && location != '/dashboard-student'" ng-cloak>
+  <section class="ym-pc-dashboard-coordinator-school-achievements-section event-secondary-medium mb-3" aria-label="Years School Participated">
+    <div class="ym-pc-dashboard-coordinator-students-box p-3 text-start" ng-cloak>
+      <div class="ym-pc-dashboard-section-header">
+        <h3 class="h5 text-start"> My School Achievements </h2>
+      </div>
+      <div class="d-md-flex justify-content-between flex-wrap gap-4">
+        <div class="col">
+          <div class="d-flex justify-content-around text-center flex-wrap gap-4">
+            <div class="col">
+              <div class="d-flex justify-content-center">
+                <div class="single-chart">
+                  <svg viewBox="0 0 36 36" class="circular-chart blue">
+                    <path class="circle-bg" d="M18 2.0845
 													a 15.9155 15.9155 0 0 1 0 31.831
-													a 15.9155 15.9155 0 0 1 0 -31.831"
-											/>
-											<path class="circle"
-												stroke-dasharray="{{ ((schoolPlan.TotalParticipantsRegisteredOnline/companyInfo.participantCount)*100).toFixed(0) }}, 100"
-												d="M18 2.0845
+													a 15.9155 15.9155 0 0 1 0 -31.831" />
+                    <path class="circle" stroke-dasharray="{{ ((schoolPlan.TotalParticipantsRegisteredOnline/companyInfo.participantCount)*100).toFixed(0) }}, 100" d="M18 2.0845
 													a 15.9155 15.9155 0 0 1 0 31.831
-													a 15.9155 15.9155 0 0 1 0 -31.831"
-											/>
-											<text x="18" y="20.35" class="percentage" ng-cloak>{{ ((schoolPlan.TotalParticipantsRegisteredOnline/companyInfo.participantCount)*100).toFixed(0) }}%</text>
-										</svg>
-									</div>
-								</div>
-								<p class="students-registered">
-									{{schoolPlan.TotalParticipantsRegisteredOnline|number}} Online Students Registered of <br/>
-									{{companyInfo.participantCount|number}} Students Enrolled
-								</p>
-							</div>
-          		<div class="col">
-								<div class="d-flex justify-content-center">
-									<div class="single-chart">
-										<svg viewBox="0 0 36 36" class="circular-chart blue">
-											<path class="circle-bg"
-												d="M18 2.0845
-													a 15.9155 15.9155 0 0 1 0 31.831
-													a 15.9155 15.9155 0 0 1 0 -31.831"
-											/>
-											<path class="circle"
-												stroke-dasharray="{{ ((schoolPlan.TotalParticipantsRegisteredOnline/companyInfo.participantCount)*100).toFixed(0) }}, 100"
-												d="M18 2.0845
-													a 15.9155 15.9155 0 0 1 0 31.831
-													a 15.9155 15.9155 0 0 1 0 -31.831"
-											/>
-											<text x="18" y="20.35" class="percentage" ng-cloak>{{ ((schoolPlan.TotalParticipantsRegisteredOnline/companyInfo.participantCount)*100).toFixed(0) }}%</text>
-										</svg>
-									</div>
-								</div>
-								<p class="students-registered">
-									 xx Students of {{schoolPlan.TotalParticipantsRegisteredOnline|number}} Online Students <br/>
-									 Completed Finn's Mission
-								</p>
-							</div>
-						</div>
-          </div>
-          <div class="col">
-            <div id="ym-pc-dashboard-company-panel--coordinator">
-              <div class="ym-pc-dashboard-progress-box">
-                <div id="ym-pc-dashboard-company-panel--student" aria-label="School Progress">
-                  <div class="ym-pc-dashboard-section-header">
-                    <h3 class="h5 text-start"> Fundraising - My School Progress </h3>
-                  </div>
-                  <div class="ym-progress__thermometer m-0 mw-100" name="School Progress Bar" aria-label="{{companyProgress.percent}} percent of fundraising progress" aria-valuetext="{{companyProgress.percent}} percent of fundraising progress" role="progressbar" aria-valuenow="{{companyProgress.percent}}" aria-valuemin="0" aria-valuemax="100">
-                    <div class="ym-progress__thermometer--fill" ng-style="{'width': companyProgress.percent + '%'}"></div>
-                  </div>
-                  <div class="d-flex justify-content-between">
-                    <div class="col-4 text-start">
-                      <strong>
-                        <span ng-bind-html="companyProgress.raisedFormatted"></span>
-                      </strong> raised
-                    </div>
-                    <div class="col-4 text-center">
-                      {{companyProgress.percent}}%
-                    </div>
-                    <div class="col-4 text-end">
-                      <div ng-if="companyProgress.goalFormatted && companyProgress.goalFormatted != '$0'" ng-cloak>
-                        <strong>
-                          <span ng-bind-html="companyProgress.goalFormatted"></span>
-                        </strong> goal
-                      </div>
-											<a href="" ng-click="editSchoolGoal()" class="ym-progress-update-goal" aria-label="Update School Goal">
-												<strong>
-													Update School Goal
-												</strong>
-											</a>
-                    </div>
-                  </div>
+													a 15.9155 15.9155 0 0 1 0 -31.831" />
+                    <text x="18" y="20.35" class="percentage" ng-cloak>{{ ((schoolPlan.TotalParticipantsRegisteredOnline/companyInfo.participantCount)*100).toFixed(0) }}%</text>
+                  </svg>
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section class="ym-pc-dashboard-coordinator-progress-section mb-4" aria-label="Fundraising Progress Meters">
-      <div class="d-md-flex justify-content-between flex-wrap gap-4">
-        <div class="col">
-          <div class="event-secondary-medium p-3 h-100">
-            <div class="ym-event-box">
-              <h3 class="h5 clearfix"> Manage Tools </h3>
-              <p> Check out the reports page to see which students have completed challenges and who has earned donations. </p>
-              <p style="color:#c10e21" ng-show="!hasOOTDashboard" ng-scope> Manage your event tool is not currently available. Please try again later. </p>
-              <div class="mx-auto ">
-								<div class="d-inline-block mx-auto text-center w-100" ng-scope>
-                  <img class="d-block mx-auto mb-2" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24/fb-icon.png" alt="Facebook">
-									<a class="btn btn-md-wide btn-primary" ng-href="{{baseUrl}}#/schoolplan" ng-cloak>
-										<strong> School Plan </strong>
-									</a>
-								</div>
-								<div class="d-inline-block" ng-show="hasOOTDashboard" ng-scope>
-                  <img class="d-block mx-auto mb-2" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24/fb-icon.png" alt="Facebook">
-									<a class="btn btn-md-wide btn-primary d-inline-block" ng-href="https://khc.staging.ootqa.org/coordinator/login/{{frId}}/{{authToken}}/{{sessionCookie}}" target="_blank" ng-if="tablePrefix == 'heartdev'" ng-cloak>
-										<strong> View Reports </strong>
-									</a>
-									<a class="btn btn-md-wide btn-primary d-inline-block" ng-href="https://khc.staging.ootqa.org/coordinator/login/{{frId}}/{{authToken}}/{{sessionCookie}}" target="_blank" ng-if="tablePrefix == 'heartnew'" ng-cloak>
-										<strong> View Reports </strong>
-									</a>
-									<a class="btn btn-md-wide btn-primary d-inline-block" ng-href="https://kidsheartchallenge.heart.org/coordinator/login/{{frId}}/{{authToken}}/{{sessionCookie}}" target="_blank" ng-if="tablePrefix == 'heart'" ng-cloak>
-										<strong> View Reports </strong>
-									</a>
-								</div>
-								<div class="d-inline-block"  ng-show="hasOOTDashboard">
-                  <img class="d-block mx-auto mb-2" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24/fb-icon.png" alt="Facebook">
-									<a class="btn btn-md-wide btn-primary d-inline-block" ng-href="https://khc.staging.ootqa.org/coordinator/login/{{frId}}/{{authToken}}/{{sessionCookie}}" target="_blank" ng-if="tablePrefix == 'heartdev'" ng-cloak>
-										<strong> Thank-You Gifts </strong>
-									</a>
-									<a class="btn btn-md-wide btn-primary d-inline-block" ng-href="https://khc.staging.ootqa.org/coordinator/login/{{frId}}/{{authToken}}/{{sessionCookie}}" target="_blank" ng-if="tablePrefix == 'heartnew'" ng-cloak>
-										<strong> Thank-You Gifts </strong>
-									</a>
-									<a class="btn btn-md-wide btn-primary d-inline-block" ng-href="https://kidsheartchallenge.heart.org/coordinator/login/{{frId}}/{{authToken}}/{{sessionCookie}}" target="_blank" ng-if="tablePrefix == 'heart'" ng-cloak>
-										<strong> Thank-You Gifts </strong>
-									</a>
-								</div>
-							</div>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="ym-pc-dashboard-progress-section__column event-secondary-medium p-3">
-            <div class="ym-pc-dashboard-progress-box">
-              <h3 class="h5"> School Page </h3>
-              <p> Edit your pages to encourage students and parents to join and donate! </p>
-              <div class="text-center mb-5">
-                <a class="btn btn-md-wide btn-primary" ng-href="TR?fr_id={{frId}}&amp;pg=company&amp;company_id={{participantRegistration.companyInformation.companyId}}">
-                  <strong> View and Edit School Page </strong>
-                </a>
-                <button type="button" class="btn btn-blue ms-2" aria-label="Edit School Page URL" ng-click="editCompanyUrl()">
-                  <span class="fa fa-share-alt"></span>
-                </button>
-              </div>
-              <div class="ym-activity-url">
-                <p class="small">
-                  <span ng-bind-html="companyPageUrl"></span>
-                  <button type="button" class="btn btn-blue" aria-label="Edit School Page URL" ng-click="editCompanyUrl()">
-                    <span class="fa fa-pencil"></span>
-                  </button>
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section class="ym-pc-dashboard-coordinator-qrcode-section mb-4" aria-label="Fundraising QR Code">
-      <div class="d-md-flex justify-content-between flex-wrap gap-4">
-        <div class="col">
-          <div class="event-secondary-medium p-3 h-100">
-						<div class="ym-pc-dashboard-section-header">
-							<div class="ym-pc-dashboard-section-header text-start">
-								<h3 class="h5"> School QR Code </h3>
-							</div>
-							<div class="d-flex jsutify-content-start flex-wrap gap-4">
-								<div class="col-8 text-start">
-									<p> Click the Copy button to share QR code onto documents, social media and websites. </p>
-								</div>
-								<div class="col-3">
-									<div id="qrcode" load-qrcode="{{secureDomain}}/site/TR?pg=company&amp;fr_id={{frId}}&amp;company_id={{companyId}}"></div>
-									<img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/khc-logo-qrcode.png" class="qrcode-logo d-none">
-									<button type="button" class="btn btn-md-wide btn-primary" id="copyable" role="button" copy-qrcode>
-										<strong> Copy </strong>
-									</button>
-								</div>
-							</div>
-						</div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="event-secondary-medium p-3 h-100">
-						<div class="ym-pc-dashboard-section-header text-start">
-							<h3 class="h5"> Go Mobile </h3>
-						</div>
-						<p class="text-start"> Manage your fundraising on the go with the AHA Schools app. </p>
-						<div class="ym-pc-dashboard-mobile-downloads">
-							<a href="https://itunes.apple.com/us/app/ym-primary/id548389448?mt=8" target="_blank" title="Download the iPhone App">
-								<img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/youth-markets/image/apple-store-logo.png" alt="Download the iPhone App">
-							</a>
-							<a href="https://play.google.com/store/apps/details?id=com.aha_jump.android.communicator&amp;hl=en" target="_blank" title="Download the Android App">
-								<img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/youth-markets/image/google-play-logo.png" alt="Download the Android App">
-							</a>
-						</div>
-					</div>
-        </div>
-      </div>
-    </section>
-    <section class="ym-pc-dashboard-coordinator-progress-section mb-4" aria-label="Fundraising Progress Meters">
-      <div class="d-md-flex justify-content-between flex-wrap gap-4">
-        <div class="col">
-          <div class="ym-pc-dashboard-message event-secondary-medium p-3 h-100">
-						<div class="ym-pc-dashboard-section-header text-start">
-							<h3 class="h5"> Message to Your Students </h3>
-						</div>
-            <div class="schoolCreateMessage text-start" ng-if="coordinatorMessage.text == ''" ng-cloak>
-              <p> Create an <strong> encouraging message </strong> for your students in their Headquarters. </p>
-              <div class="text-center">
-	              <button type="button" class="btn btn-md-wide btn-primary" ng-click="editCoordinatorMessage()">
-  	              <strong> Create Message </strong>
-    	          </button>
-    	        </div>
-            </div>
-            <div class="schoolCreateMessage text-start" ng-if="coordinatorMessage.text && coordinatorMessage.text != ''" ng-cloak>
-              <p> Update your <strong> student message </strong> : <br />
-                <span class="coordinatorMessage"> "{{ coordinatorMessage.text.length > 90 ? coordinatorMessage.text.substring(0,90)+"..." : coordinatorMessage.text }}" </span>
+              <p class="students-registered">
+                {{schoolPlan.TotalParticipantsRegisteredOnline|number}} Online Students Registered of <br />
+                {{companyInfo.participantCount|number}} Students Enrolled
               </p>
-              <div class="text-center">
-		              <button type="button" class="btn btn-md-wide btn-primary" ng-click="editCoordinatorMessage()">
-    	            <strong> Update Message </strong>
-      	        </button>
-      	      </div>
+            </div>
+            <div class="col">
+              <div class="d-flex justify-content-center">
+                <div class="single-chart">
+                  <svg viewBox="0 0 36 36" class="circular-chart blue">
+                    <path class="circle-bg" d="M18 2.0845
+													a 15.9155 15.9155 0 0 1 0 31.831
+													a 15.9155 15.9155 0 0 1 0 -31.831" />
+                    <path class="circle" stroke-dasharray="{{ ((schoolPlan.TotalParticipantsRegisteredOnline/companyInfo.participantCount)*100).toFixed(0) }}, 100" d="M18 2.0845
+													a 15.9155 15.9155 0 0 1 0 31.831
+													a 15.9155 15.9155 0 0 1 0 -31.831" />
+                    <text x="18" y="20.35" class="percentage" ng-cloak>{{ ((schoolPlan.TotalParticipantsRegisteredOnline/companyInfo.participantCount)*100).toFixed(0) }}%</text>
+                  </svg>
+                </div>
+              </div>
+              <p class="students-registered"> xx Students of {{schoolPlan.TotalParticipantsRegisteredOnline|number}} Online Students <br /> Completed Finn's Mission </p>
             </div>
           </div>
         </div>
         <div class="col">
-          <div class="ym-pc-dashboard-student-view event-secondary-medium p-3 h-100">
-            <h3 class="h5 clearfix"> Student Preview </h3>
-            <div class="clearfix">
-              <div class="ym-pc-student-view">
-                <p> Use the "Student View" to show your students all of the great tools and games in their Headquarters and encourage them to fundraise! </p>
-                <div class="text-center">
-                  <a class="btn btn-md-wide btn-primary" ng-href="{{baseUrl}}#/dashboard-student">
-                    <strong> Student View </strong>
-                  </a>
+          <div id="ym-pc-dashboard-company-panel--coordinator">
+            <div class="ym-pc-dashboard-progress-box">
+              <div id="ym-pc-dashboard-company-panel--student" aria-label="School Progress">
+                <div class="ym-pc-dashboard-section-header">
+                  <h3 class="h5 text-start"> Fundraising - My School Progress </h3>
+                </div>
+                <div class="ym-progress__thermometer m-0 mw-100" name="School Progress Bar" aria-label="{{companyProgress.percent}} percent of fundraising progress" aria-valuetext="{{companyProgress.percent}} percent of fundraising progress" role="progressbar" aria-valuenow="{{companyProgress.percent}}" aria-valuemin="0" aria-valuemax="100">
+                  <div class="ym-progress__thermometer--fill" ng-style="{'width': companyProgress.percent + '%'}"></div>
+                </div>
+                <div class="d-flex justify-content-between">
+                  <div class="col-4 text-start">
+                    <strong>
+                      <span ng-bind-html="companyProgress.raisedFormatted"></span>
+                    </strong> raised
+                  </div>
+                  <div class="col-4 text-center">
+                    {{companyProgress.percent}}%
+                  </div>
+                  <div class="col-4 text-end">
+                    <div ng-if="companyProgress.goalFormatted && companyProgress.goalFormatted != '$0'" ng-cloak>
+                      <strong>
+                        <span ng-bind-html="companyProgress.goalFormatted"></span>
+                      </strong> goal
+                    </div>
+                    <a href="" ng-click="editSchoolGoal()" class="ym-progress-update-goal" aria-label="Update School Goal">
+                      <strong> Update School Goal </strong>
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </section>
-    <section class="ym-pc-dashboard-coordinator-progress-section mb-4" aria-label="Fundraising Progress Meters">
-      <div class="d-md-flex justify-content-between flex-wrap gap-4">
-        <div class="col">
-          <div class="ym-pc-dashboard-progress-section__column event-secondary-medium p-3 h-100">
-            <div class="ym-pc-dashboard-progress-box">
-              <h3 class="h5"> My Page </h3>
-              <p> Personalize your fundraising page to share why raising funds to save lives is important to you. </p>
-              <div class="text-center mb-5">
-                <a class="btn btn-md-wide btn-primary" ng-href="TR?fr_id={{frId}}&amp;pg=personal&amp;px={{consId}}">
-                  <strong> View and Edit Your Page </strong>
+    </div>
+  </section>
+  <section class="ym-pc-dashboard-coordinator-progress-section mb-4" aria-label="Fundraising Progress Meters">
+    <div class="d-md-flex justify-content-between flex-wrap gap-4">
+      <div class="col">
+        <div class="event-secondary-medium p-3 h-100">
+          <div class="ym-event-box">
+            <h3 class="h5 clearfix"> Manage Tools </h3>
+            <p> Check out the reports page to see which students have completed challenges and who has earned donations. </p>
+            <p style="color:#c10e21" ng-show="!hasOOTDashboard" ng-scope> Manage your event tool is not currently available. Please try again later. </p>
+            <div class="mx-auto ">
+              <div class="d-inline-block mx-auto text-center w-100" ng-scope>
+                <img class="d-block mx-auto mb-2" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24/fb-icon.png" alt="Facebook">
+                <a class="btn btn-md-wide btn-primary" ng-href="{{baseUrl}}#/schoolplan" ng-cloak>
+                  <strong> School Plan </strong>
                 </a>
-                <button type="button" class="btn btn-blue ms-2" aria-label="Edit Personal Page URL" ng-click="editPersonalUrl()">
-                  <span class="fa fa-share-alt"></span>
+              </div>
+              <div class="d-inline-block" ng-show="hasOOTDashboard" ng-scope>
+                <img class="d-block mx-auto mb-2" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24/fb-icon.png" alt="Facebook">
+                <a class="btn btn-md-wide btn-primary d-inline-block" ng-href="https://khc.staging.ootqa.org/coordinator/login/{{frId}}/{{authToken}}/{{sessionCookie}}" target="_blank" ng-if="tablePrefix == 'heartdev'" ng-cloak>
+                  <strong> View Reports </strong>
+                </a>
+                <a class="btn btn-md-wide btn-primary d-inline-block" ng-href="https://khc.staging.ootqa.org/coordinator/login/{{frId}}/{{authToken}}/{{sessionCookie}}" target="_blank" ng-if="tablePrefix == 'heartnew'" ng-cloak>
+                  <strong> View Reports </strong>
+                </a>
+                <a class="btn btn-md-wide btn-primary d-inline-block" ng-href="https://kidsheartchallenge.heart.org/coordinator/login/{{frId}}/{{authToken}}/{{sessionCookie}}" target="_blank" ng-if="tablePrefix == 'heart'" ng-cloak>
+                  <strong> View Reports </strong>
+                </a>
+              </div>
+              <div class="d-inline-block" ng-show="hasOOTDashboard">
+                <img class="d-block mx-auto mb-2" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24/fb-icon.png" alt="Facebook">
+                <a class="btn btn-md-wide btn-primary d-inline-block" ng-href="https://khc.staging.ootqa.org/coordinator/login/{{frId}}/{{authToken}}/{{sessionCookie}}" target="_blank" ng-if="tablePrefix == 'heartdev'" ng-cloak>
+                  <strong> Thank-You Gifts </strong>
+                </a>
+                <a class="btn btn-md-wide btn-primary d-inline-block" ng-href="https://khc.staging.ootqa.org/coordinator/login/{{frId}}/{{authToken}}/{{sessionCookie}}" target="_blank" ng-if="tablePrefix == 'heartnew'" ng-cloak>
+                  <strong> Thank-You Gifts </strong>
+                </a>
+                <a class="btn btn-md-wide btn-primary d-inline-block" ng-href="https://kidsheartchallenge.heart.org/coordinator/login/{{frId}}/{{authToken}}/{{sessionCookie}}" target="_blank" ng-if="tablePrefix == 'heart'" ng-cloak>
+                  <strong> Thank-You Gifts </strong>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="ym-pc-dashboard-progress-section__column event-secondary-medium p-3">
+          <div class="ym-pc-dashboard-progress-box">
+            <h3 class="h5"> School Page </h3>
+            <p> Edit your pages to encourage students and parents to join and donate! </p>
+            <div class="text-center mb-5">
+              <a class="btn btn-md-wide btn-primary" ng-href="TR?fr_id={{frId}}&amp;pg=company&amp;company_id={{participantRegistration.companyInformation.companyId}}">
+                <strong> View and Edit School Page </strong>
+              </a>
+              <button type="button" class="btn btn-blue ms-2" aria-label="Edit School Page URL" ng-click="editCompanyUrl()">
+                <span class="fa fa-share-alt"></span>
+              </button>
+            </div>
+            <div class="ym-activity-url">
+              <p class="small">
+                <span ng-bind-html="companyPageUrl"></span>
+                <button type="button" class="btn btn-blue" aria-label="Edit School Page URL" ng-click="editCompanyUrl()">
+                  <span class="fa fa-pencil"></span>
+                </button>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="ym-pc-dashboard-coordinator-qrcode-section mb-4" aria-label="Fundraising QR Code">
+    <div class="d-md-flex justify-content-between flex-wrap gap-4">
+      <div class="col">
+        <div class="event-secondary-medium p-3 h-100">
+          <div class="ym-pc-dashboard-section-header">
+            <div class="ym-pc-dashboard-section-header text-start">
+              <h3 class="h5"> School QR Code </h3>
+            </div>
+            <div class="d-flex jsutify-content-start flex-wrap gap-4">
+              <div class="col-8 text-start">
+                <p> Click the Copy button to share QR code onto documents, social media and websites. </p>
+              </div>
+              <div class="col-3">
+                <div id="qrcode" load-qrcode="{{secureDomain}}/site/TR?pg=company&amp;fr_id={{frId}}&amp;company_id={{companyId}}"></div>
+                <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/khc-logo-qrcode.png" class="qrcode-logo d-none">
+                <button type="button" class="btn btn-md-wide btn-primary" id="copyable" role="button" copy-qrcode>
+                  <strong> Copy </strong>
                 </button>
               </div>
-              <div class="ym-activity-url">
-                <p class="small">
-                  <span ng-bind-html="personalPageUrl"></span>
-                  <button type="button" class="btn btn-blue" aria-label="Edit Personal Page URL" ng-click="editPersonalUrl()">
-                    <span class="fa fa-pencil"></span>
-                  </button>
-                </p>
-              </div>
             </div>
           </div>
         </div>
-        <div class="col">
-          <div class="ym-pc-dashboard-personal-fundraising event-secondary-medium p-3 h-100">
-            <div class="ym-pc-dashboard-section-header">
-              <h3 class="h5 text-start"> Fundraising - Personal Progress </h3>
+      </div>
+      <div class="col">
+        <div class="event-secondary-medium p-3 h-100">
+          <div class="ym-pc-dashboard-section-header text-start">
+            <h3 class="h5"> Go Mobile </h3>
+          </div>
+          <p class="text-start"> Manage your fundraising on the go with the AHA Schools app. </p>
+          <div class="ym-pc-dashboard-mobile-downloads">
+            <a href="https://itunes.apple.com/us/app/ym-primary/id548389448?mt=8" target="_blank" title="Download the iPhone App">
+              <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/youth-markets/image/apple-store-logo.png" alt="Download the iPhone App">
+            </a>
+            <a href="https://play.google.com/store/apps/details?id=com.aha_jump.android.communicator&amp;hl=en" target="_blank" title="Download the Android App">
+              <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/youth-markets/image/google-play-logo.png" alt="Download the Android App">
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="ym-pc-dashboard-coordinator-progress-section mb-4" aria-label="Fundraising Progress Meters">
+    <div class="d-md-flex justify-content-between flex-wrap gap-4">
+      <div class="col">
+        <div class="ym-pc-dashboard-message event-secondary-medium p-3 h-100">
+          <div class="ym-pc-dashboard-section-header text-start">
+            <h3 class="h5"> Message to Your Students </h3>
+          </div>
+          <div class="schoolCreateMessage text-start" ng-if="coordinatorMessage.text == ''" ng-cloak>
+            <p> Create an <strong> encouraging message </strong> for your students in their Headquarters. </p>
+            <div class="text-center">
+              <button type="button" class="btn btn-md-wide btn-primary" ng-click="editCoordinatorMessage()">
+                <strong> Create Message </strong>
+              </button>
             </div>
-            <div class="ym-progress__thermometer m-0 mw-100" name="Personal Progress Bar" aria-label="{{participantProgress.percent}} percent of fundraising progress" aria-valuetext="{{participantProgress.percent}} percent of fundraising progress" role="progressbar" aria-valuenow="{{participantProgress.percent}}" aria-valuemin="0" aria-valuemax="100">
-              <div class="ym-progress__thermometer--fill" ng-style="{'width': participantProgress.percent + '%'}"></div>
+          </div>
+          <div class="schoolCreateMessage text-start" ng-if="coordinatorMessage.text && coordinatorMessage.text != ''" ng-cloak>
+            <p> Update your <strong> student message </strong> : <br />
+              <span class="coordinatorMessage"> "{{ coordinatorMessage.text.length > 90 ? coordinatorMessage.text.substring(0,90)+"..." : coordinatorMessage.text }}" </span>
+            </p>
+            <div class="text-center">
+              <button type="button" class="btn btn-md-wide btn-primary" ng-click="editCoordinatorMessage()">
+                <strong> Update Message </strong>
+              </button>
             </div>
-            <div class="ym-progress-related d-flex justify-content-between flex-wrap mt-0 mb-3">
-              <div class="col-4">
-                <strong>
-                  <span ng-bind-html="participantProgress.raisedFormatted"></span>
-                </strong> raised
-              </div>
-              <div class="col-4 text-center">
-                {{participantProgress.percent}}%
-              </div>
-              <div class="col-4 text-end">
-                <div ng-if="participantProgress.goalFormatted && participantProgress.goalFormatted != '$0'" ng-cloak>
-                  <strong>
-                    <span ng-bind-html="participantProgress.goalFormatted"></span>
-                  </strong> goal
-                </div>
-                <a href="" ng-click="editPersonalGoal()" class="ym-progress-update-goal">
-                  <strong> Update Personal Goal </strong>
-                </a>
-                <div ng-if="participantPrevProgress.raisedFormatted" ng-cloak>
-                  <strong>
-                    <span ng-bind-html="participantPrevProgress.raisedFormatted"></span>
-                  </strong> raised last year
-                </div>
-              </div>
-            </div>
-            <div class="ym-progress-donate text-center">
-              <a class="btn btn-primary" href="#paymentSelType" data-bs-toggle="collapse">
-                <strong> Donate to Personal Page </strong>
-              </a>
-              &nbsp;&nbsp;
-              <a class="btn btn-primary btn-white" ng-href="{{baseUrl}}#/reports" title="Click to view your donation reports">
-                <strong> View Donors </strong>
-              </a> 
-            </div>
-            <div id="paymentSelType" class="collapse">
-              <h7> How would you like to donate? </h7>
-              <div class="d-flex justify-content-between flex-wrap align-items-center text-center">
-                <a class="col-md-6 p-2" href="Donation2?df_id={{eventInfo.donationFormId}}&amp;FR_ID={{frId}}&amp;PROXY_TYPE=20&amp;PROXY_ID={{consId}}">
-                  <img class="img-fluid" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/credit-card-button.png" alt="Donate using Credit Card">
-                </a>
-                <a class="col-md-6 p-2" href="SPageNavigator/ym_khc_donate_amazon.html?FR_ID={{frId}}&amp;mfc_pref=T&amp;PROXY_ID={{consId}}&amp;PROXY_TYPE=20" class="amazon">
-                  <img class="img-fluid" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/amazon-button.png" alt="Donate using Amazon">
-                </a>
-                <a class="col-md-6 p-2" href="SPageNavigator/ym_khc_donate_googlepay.html?FR_ID={{frId}}&amp;mfc_pref=T&amp;PROXY_ID={{consId}}&amp;PROXY_TYPE=20" class="googlepay">
-                  <img class="img-fluid" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/googlepay-button.png" alt="Donate using Google Pay">
-                </a>
-                <a class="col-md-6 p-2" ng-class="(browserName == 'safari') ? '' : 'd-md-none'" href="SPageNavigator/ym_khc_donate_applepay.html?FR_ID={{frId}}&amp;mfc_pref=T&amp;PROXY_ID={{consId}}&amp;PROXY_TYPE=20" class="applepay ">
-                  <img class="img-fluid" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/applepay-button.png" alt="Donate using ApplePay">
-                </a>
-                <a class="col-md-6 p-2 d-md-none" href="SPageNavigator/ym_khc_donate_venmo.html?FR_ID={{frId}}&amp;mfc_pref=T&amp;PROXY_ID={{consId}}&amp;PROXY_TYPE=20" class="venmo">
-                  <img class="img-fluid" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/venmo-button.png" alt="Donate using Venmo">
-                </a>
-                <a class="col-md-6 p-2" href="Donation2?df_id={{eventInfo.donationFormId}}&amp;FR_ID={{frId}}&amp;PROXY_TYPE=20&amp;PROXY_ID={{consId}}&amp;paypal=true">
-                  <img class="img-fluid" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/paypal-button.png" alt="Donate using Paypal">
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="ym-pc-dashboard-student-view event-secondary-medium p-3 h-100">
+          <h3 class="h5 clearfix"> Student Preview </h3>
+          <div class="clearfix">
+            <div class="ym-pc-student-view">
+              <p> Use the "Student View" to show your students all of the great tools and games in their Headquarters and encourage them to fundraise! </p>
+              <div class="text-center">
+                <a class="btn btn-md-wide btn-primary" ng-href="{{baseUrl}}#/dashboard-student">
+                  <strong> Student View </strong>
                 </a>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </section>
-  </div>
+    </div>
+  </section>
+  <section class="ym-pc-dashboard-coordinator-progress-section mb-4" aria-label="Fundraising Progress Meters">
+    <div class="d-md-flex justify-content-between flex-wrap gap-4">
+      <div class="col">
+        <div class="ym-pc-dashboard-progress-section__column event-secondary-medium p-3 h-100">
+          <div class="ym-pc-dashboard-progress-box">
+            <h3 class="h5"> My Page </h3>
+            <p> Personalize your fundraising page to share why raising funds to save lives is important to you. </p>
+            <div class="text-center mb-5">
+              <a class="btn btn-md-wide btn-primary" ng-href="TR?fr_id={{frId}}&amp;pg=personal&amp;px={{consId}}">
+                <strong> View and Edit Your Page </strong>
+              </a>
+              <button type="button" class="btn btn-blue ms-2" aria-label="Edit Personal Page URL" ng-click="editPersonalUrl()">
+                <span class="fa fa-share-alt"></span>
+              </button>
+            </div>
+            <div class="ym-activity-url">
+              <p class="small">
+                <span ng-bind-html="personalPageUrl"></span>
+                <button type="button" class="btn btn-blue" aria-label="Edit Personal Page URL" ng-click="editPersonalUrl()">
+                  <span class="fa fa-pencil"></span>
+                </button>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="ym-pc-dashboard-personal-fundraising event-secondary-medium p-3 h-100">
+          <div class="ym-pc-dashboard-section-header">
+            <h3 class="h5 text-start"> Fundraising - Personal Progress </h3>
+          </div>
+          <div class="ym-progress__thermometer m-0 mw-100" name="Personal Progress Bar" aria-label="{{participantProgress.percent}} percent of fundraising progress" aria-valuetext="{{participantProgress.percent}} percent of fundraising progress" role="progressbar" aria-valuenow="{{participantProgress.percent}}" aria-valuemin="0" aria-valuemax="100">
+            <div class="ym-progress__thermometer--fill" ng-style="{'width': participantProgress.percent + '%'}"></div>
+          </div>
+          <div class="ym-progress-related d-flex justify-content-between flex-wrap mt-0 mb-3">
+            <div class="col-4">
+              <strong>
+                <span ng-bind-html="participantProgress.raisedFormatted"></span>
+              </strong> raised
+            </div>
+            <div class="col-4 text-center">
+              {{participantProgress.percent}}%
+            </div>
+            <div class="col-4 text-end">
+              <div ng-if="participantProgress.goalFormatted && participantProgress.goalFormatted != '$0'" ng-cloak>
+                <strong>
+                  <span ng-bind-html="participantProgress.goalFormatted"></span>
+                </strong> goal
+              </div>
+              <a href="" ng-click="editPersonalGoal()" class="ym-progress-update-goal">
+                <strong> Update Personal Goal </strong>
+              </a>
+              <div ng-if="participantPrevProgress.raisedFormatted" ng-cloak>
+                <strong>
+                  <span ng-bind-html="participantPrevProgress.raisedFormatted"></span>
+                </strong> raised last year
+              </div>
+            </div>
+          </div>
+          <div class="ym-progress-donate text-center">
+            <a class="btn btn-primary" href="#paymentSelType" data-bs-toggle="collapse">
+              <strong> Donate to Personal Page </strong>
+            </a> &nbsp;&nbsp; <a class="btn btn-primary btn-white" ng-href="{{baseUrl}}#/reports" title="Click to view your donation reports">
+              <strong> View Donors </strong>
+            </a>
+          </div>
+          <div id="paymentSelType" class="collapse">
+            <h7> How would you like to donate? </h7>
+            <div class="d-flex justify-content-between flex-wrap align-items-center text-center">
+              <a class="col-md-6 p-2" href="Donation2?df_id={{eventInfo.donationFormId}}&amp;FR_ID={{frId}}&amp;PROXY_TYPE=20&amp;PROXY_ID={{consId}}">
+                <img class="img-fluid" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/credit-card-button.png" alt="Donate using Credit Card">
+              </a>
+              <a class="col-md-6 p-2" href="SPageNavigator/ym_khc_donate_amazon.html?FR_ID={{frId}}&amp;mfc_pref=T&amp;PROXY_ID={{consId}}&amp;PROXY_TYPE=20" class="amazon">
+                <img class="img-fluid" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/amazon-button.png" alt="Donate using Amazon">
+              </a>
+              <a class="col-md-6 p-2" href="SPageNavigator/ym_khc_donate_googlepay.html?FR_ID={{frId}}&amp;mfc_pref=T&amp;PROXY_ID={{consId}}&amp;PROXY_TYPE=20" class="googlepay">
+                <img class="img-fluid" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/googlepay-button.png" alt="Donate using Google Pay">
+              </a>
+              <a class="col-md-6 p-2" ng-class="(browserName == 'safari') ? '' : 'd-md-none'" href="SPageNavigator/ym_khc_donate_applepay.html?FR_ID={{frId}}&amp;mfc_pref=T&amp;PROXY_ID={{consId}}&amp;PROXY_TYPE=20" class="applepay ">
+                <img class="img-fluid" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/applepay-button.png" alt="Donate using ApplePay">
+              </a>
+              <a class="col-md-6 p-2 d-md-none" href="SPageNavigator/ym_khc_donate_venmo.html?FR_ID={{frId}}&amp;mfc_pref=T&amp;PROXY_ID={{consId}}&amp;PROXY_TYPE=20" class="venmo">
+                <img class="img-fluid" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/venmo-button.png" alt="Donate using Venmo">
+              </a>
+              <a class="col-md-6 p-2" href="Donation2?df_id={{eventInfo.donationFormId}}&amp;FR_ID={{frId}}&amp;PROXY_TYPE=20&amp;PROXY_ID={{consId}}&amp;paypal=true">
+                <img class="img-fluid" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/paypal-button.png" alt="Donate using Paypal">
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 </div>
