@@ -264,25 +264,9 @@
               <div class="ym-pc-dashboard-section-header">
                 <h3 class="h5 text-start"> Fundraising </h3>
               </div>
-							<div class="clearfix mb-3">
-								<div class="ym-pc-dashboard-coordinator-page-type" ng-class="{'active': dashboardStudentPageType == 'personal'}">
-									<button type="button" ng-click="toggleStudentPageType('personal')" role="tab" aria-controls="ym-pc-dashboard-update-personal-panel">
-										<strong>
-											Personal
-										</strong>
-									</button>
-								</div>
-								<div class="ym-pc-dashboard-coordinator-page-type" ng-class="{'active': dashboardStudentPageType == 'company'}">
-									<button type="button" ng-click="toggleStudentPageType('company')" role="tab" aria-controls="ym-pc-dashboard-update-school-panel">
-										<strong>
-											School
-										</strong>
-									</button>
-								</div>
-							</div>
               <div id="ym-pc-dashboard-personal-panel--student" aria-label="Personal Progress" ng-if="dashboardStudentPageType == 'personal'" ng-cloak>
                 <div class="ym-pc-dashboard-section-header">
-                  <h3 class="h6 text-start"> Personal Progress </h3>
+                  <h3 class="h6 text-start"> {{consNameFirst}}'s Progress </h3>
                 </div>
                 <div class="ym-progress__thermometer m-0 mw-100" name="Personal Progress Bar" aria-label="{{participantProgress.percent}} percent of fundraising progress" aria-valuetext="{{participantProgress.percent}} percent of fundraising progress" role="progressbar" aria-valuenow="{{participantProgress.percent}}" aria-valuemin="0" aria-valuemax="100">
                   <div class="ym-progress__thermometer--fill" ng-style="{'width': participantProgress.percent + '%'}"></div>
@@ -317,9 +301,7 @@
                     <strong> Donate to Personal Page </strong>
                   </a> &nbsp;&nbsp; <a class="btn btn-primary btn-white" ng-href="{{baseUrl}}#/reports" title="Click to view your donation reports">
                     <strong> View Donors </strong>
-                  </a> &nbsp;&nbsp; <button type="button" class="btn btn-md-wide btn-primary" ng-click="postFeedbackMessage()">
-                    <strong> Provide Feedback </strong>
-                  </button>
+                  </a>
                 </div>
                 <div id="paymentSelType" class="collapse">
                   <h7> How would you like to donate? </h7>
@@ -347,7 +329,7 @@
               </div>
               <div id="ym-pc-dashboard-company-panel--student" aria-label="School Progress" ng-if="dashboardStudentPageType == 'company'" ng-cloak>
                 <div class="ym-pc-dashboard-section-header">
-                  <h3 class="h6 text-start"> My School Progress </h3>
+                  <h3 class="h6 text-start"> {{companyInfo.companyName}} Progress </h3>
                 </div>
                 <div class="ym-progress__thermometer m-0 mw-100" name="School Progress Bar" aria-label="{{companyProgress.percent}} percent of fundraising progress" aria-valuetext="{{companyProgress.percent}} percent of fundraising progress" role="progressbar" aria-valuenow="{{companyProgress.percent}}" aria-valuemin="0" aria-valuemax="100">
                   <div class="ym-progress__thermometer--fill" ng-style="{'width': companyProgress.percent + '%'}"></div>
@@ -370,6 +352,23 @@
                   </div>
                 </div>
               </div>
+							<div class="clearfix mt-3">
+								<div class="ym-pc-dashboard-fundraising-type" ng-class="{'active': dashboardStudentPageType == 'personal'}">
+									<a href="" ng-click="toggleStudentPageType('personal')" role="link" aria-controls="ym-pc-dashboard-update-personal-panel">
+										<strong>
+											View My Personal Progress
+										</strong>
+									</a>
+								</div>
+								<div class="ym-pc-dashboard-fundraising-type" ng-class="{'active': dashboardStudentPageType == 'company'}">
+									<a href="" ng-click="toggleStudentPageType('company')" role="link" aria-controls="ym-pc-dashboard-update-school-panel">
+										<strong>
+											View My School's Progress
+										</strong>
+									</a>
+								</div>
+							</div>
+
               <!--
               <div class="ym-pc-dashboard-page-type d-flex justify-content-between align-items-center mt-3">
                 <div class="col-4 text-center" ng-class="{'active': dashboardStudentPageType == 'personal'}">
@@ -399,15 +398,17 @@
                 <a class="btn btn-md-wide btn-primary" ng-href="TR?fr_id={{frId}}&amp;pg=personal&amp;px={{consId}}">
                   <strong> View and Edit Your Page </strong>
                 </a>
+                <!--
                 <button type="button" class="btn btn-blue ms-2" aria-label="Edit Personal Page URL" ng-click="editPersonalUrl()">
                   <span class="fa fa-share-alt"></span>
                 </button>
+              	-->
               </div>
               <div class="ym-activity-url">
                 <p class="small">
                   <span ng-bind-html="personalPageUrl"></span>
-                  <button type="button" class="btn btn-blue" aria-label="Edit Personal Page URL" ng-click="editPersonalUrl()">
-                    <span class="fa fa-pencil"></span>
+                  <button type="button" class="btn btn-primary ms-2" aria-label="Edit Personal Page URL" ng-click="editPersonalUrl()">
+                    <strong>Edit My URL</strong>
                   </button>
                 </p>
               </div>
@@ -447,6 +448,13 @@
           </div>
         </div>
     </section>
+  </div>
+    </section>
+		<div class="mt-4 text-center">
+			<button type="button" class="btn btn-md-wide btn-primary" ng-click="postFeedbackMessage()">
+				<strong> Provide Feedback </strong>
+			</button>
+		</div>
   </div>
   <div class="coordinator-hq" ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true' && location != '/dashboard-student'" ng-cloak>
     <section class="ym-pc-dashboard-coordinator-school-achievements-section event-secondary-medium mb-3" aria-label="Years School Participated">
@@ -762,11 +770,11 @@
             <div class="ym-progress-donate text-center">
               <a class="btn btn-primary" href="#paymentSelType" data-bs-toggle="collapse">
                 <strong> Donate to Personal Page </strong>
-              </a> &nbsp;&nbsp; <a class="btn btn-primary btn-white" ng-href="{{baseUrl}}#/reports" title="Click to view your donation reports">
+              </a>
+              &nbsp;&nbsp;
+              <a class="btn btn-primary btn-white" ng-href="{{baseUrl}}#/reports" title="Click to view your donation reports">
                 <strong> View Donors </strong>
-              </a> &nbsp;&nbsp; <button type="button" class="btn btn-md-wide btn-primary" ng-click="postFeedbackMessage()">
-                <strong> Provide Feedback </strong>
-              </button>
+              </a> 
             </div>
             <div id="paymentSelType" class="collapse">
               <h7> How would you like to donate? </h7>
