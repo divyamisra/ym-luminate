@@ -59,14 +59,15 @@
       padding-inline: 0;
       transition: all .2s ease-in-out;
       color: $event-secondary-heading;
-      background: #ffffff;
+      background: #cee4f1;
       text-align:left;
       padding: 10px 20px 25px 20px !important;
       line-height:30px;
-      width:100%;
+      width:95%;
       margin-bottom:5px;
       padding-right:15px;
       font-size: 16px;
+      white-space: nowrap;
       
       > span {
         max-width:none !important;
@@ -102,11 +103,11 @@
       }
 
       &.active {
-        color: $event-secondary-heading;
-        background-color: #cccccc;
+        background-color: #ffffff;
+        width:100%;
 
         &::before {
-          background-color: #cccccc;
+          background-color: #cee4f1;
         }
       }
 

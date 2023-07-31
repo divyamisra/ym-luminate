@@ -1,19 +1,23 @@
-.ym-progress {
+-scoendary.ym-progress {
   background: $event-secondary-medium;
 }
 
 .ym-progress__thermometer {
-  border: 8px solid $event-secondary;
+    border: 1px solid #dad7ce;
+    box-shadow: none;
+    background: #e8e5dd;
+    border-radius: 50px;
 }
 
 .ym-progress__thermometer--fill {
-  background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(193,14,33,0.999019676229867) 29%, rgba(193,14,33,1) 100%);
+  background: $event-secondary;
   height: 35px;
   text-align: center;
   padding-top: 5px;
   font-size: 18px;
   font-weight: bold;
   white-space:nowrap;
+  border-radius: 50px;
 }
 
 .therm-text-black {
