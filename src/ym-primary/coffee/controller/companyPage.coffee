@@ -67,7 +67,7 @@ angular.module 'ahaLuminateControllers'
       $scope.$watch 'parentCompanyId', ->
         getLocalSponsors()
       
-      ZuriService.getSchool $scope.companyId,
+      ZuriService.getSchoolActivity $scope.companyId,
         error: (response) ->
           $scope.studentsPledgedTotal = 0
           $scope.activity1amt = 0
