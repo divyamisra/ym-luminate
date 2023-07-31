@@ -175,11 +175,9 @@
                     {{prize.button_label}}
                   </strong>
                 </a>
-                <a class="badge-button btn btn-primary mb-2" ng-class="(!prize.status) ? '' : 'btn-white'" href="" ng-click="{{prize.final_url}}" target="_blank" aria-label="{{prize.aria_button}}" ng-if="prize.mission_url_type == 'Modal'" ng-cloak>
+                <a class="badge-button btn btn-primary mb-2" ng-class="(!prize.status) ? '' : 'btn-white'" href="" ng-click="showTrophyMessage()" aria-label="{{prize.aria_button}}" ng-if="prize.mission_url_type == 'Modal' && name == 'trophy'" ng-cloak>
                   <strong>
-                    <span ng-if="name == 'trophy'" class="d-inline-block" ng-cloak>
-                      <i class="fa fa-{{(prize.status) ? 'unlock' : 'lock'}}" aria-hidden="true"></i>
-                    </span>
+                    <i class="fa fa-{{(prize.status) ? 'unlock' : 'lock'}}" aria-hidden="true"></i>
                     {{prize.button_label}}
                   </strong>
                 </a>
