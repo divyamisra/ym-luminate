@@ -951,8 +951,8 @@ angular.module 'trPcControllers'
               mission_url_type: prize.hq_action_type
               final_url: final_url
               hover_msg: prize.hq_hover
-              aria_label: button_aria_label
-              aria_button: aria_button
+              aria_label: aria_label
+              aria_button: button_aria_label
               button_label: prize.hq_button
 
             if prize.earned != 0
