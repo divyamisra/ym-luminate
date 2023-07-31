@@ -175,7 +175,7 @@ angular.module 'trPcControllers'
                 #if both student and school goals met
                 if $scope.companyProgress.raised >= $scope.companyProgress.goal and $scope.companyProgress.goal > 0 and amt >= Number(($scope.companyProgress.schoolChallengeLevel).replace('$', '').replace(/,/g, '')) and $scope.companyProgress.schoolChallenge != "No School Challenge"
                   $scope.schoolChallenge = 4
-            $scope.getSchoolBadges()
+            #$scope.getSchoolBadges()
             
       participantsString = ''
       $scope.companyParticipants = {}
@@ -978,7 +978,7 @@ angular.module 'trPcControllers'
             aria_button: button_aria_label
             button_label: prize.hq_button
 	    
-          $scope.buildGiftCatalog()
+          #$scope.buildGiftCatalog()
           
         , (response) ->
           # TODO
@@ -1168,8 +1168,8 @@ angular.module 'trPcControllers'
               $scope.coordinatorPoints = JSON.parse($scope.schoolPlan.PointsDetail)
             else
               $scope.schoolPlan.HideGifts = "NO"
-            if $scope.participantRegistration.companyInformation?.isCompanyCoordinator is 'true'
-              $scope.getSchoolTop15()
+            #if $scope.participantRegistration.companyInformation?.isCompanyCoordinator is 'true'
+            #  $scope.getSchoolTop15()
 				
             if $scope.participantRegistration.companyInformation?.isCompanyCoordinator isnt 'true'
               NgPcConstituentService.getUserRecord('fields=custom_string18&cons_id=' + $scope.consId).then (response) ->
