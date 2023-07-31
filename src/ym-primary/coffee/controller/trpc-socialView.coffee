@@ -7,6 +7,7 @@ angular.module('trPcControllers').controller 'NgPcSocialViewCtrl', [
   'NgPcTeamraiserShortcutURLService'
   ($scope, $sce, $rootScope, FacebookFundraiserService, BoundlessService, NgPcTeamraiserShortcutURLService) ->
     #facebook fundraising
+    webContent.load = 1
     $rootScope.facebookFundraiserConfirmedStatus = ''
     if $scope.facebookFundraisersEnabled and $rootScope.facebookFundraiserId and $rootScope.facebookFundraiserId isnt ''
       $rootScope.facebookFundraiserConfirmedStatus = 'pending'
