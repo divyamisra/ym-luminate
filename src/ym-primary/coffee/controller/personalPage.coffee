@@ -62,6 +62,7 @@ angular.module 'ahaLuminateControllers'
           mission_url_type: prize.hq_action_type
           hover_msg: prize.hq_hover
           button_label: prize.hq_button
+        $scope.totalPrizes++
         if prize.completed isnt 0
           $scope.prizesEarned++
       , (response) ->
