@@ -87,10 +87,10 @@
     <div class="col-md-6 ym-user-interactions" ng-if="totalPrizes > 0 || studentChallengeBadge || schoolChallengeBadge || challengeId != null">
       <div class="ym-badges" ng-if="totalPrizes > 0 || studentChallengeBadge || schoolChallengeBadge || returningStudent">
         <h3 class="ym-headline h5"> Check Out My Badges </h2>
-          <div class="ym-badges__item" ng-repeat="prize in prizes | filter: {status: 1}" ng-cloak>
+          <div class="ym-badges__item" ng-repeat="(name,prize) in prizes | filter: {status: 1}" ng-cloak>
             <!--  ng-repeat="prize in prizes | limitTo: 3" -->
             <div class="ym-badge__item" ng-if="prize.earned" tabindex="0" aria-label="{{prize.label}} Badge Earned" ng-cloak>
-              <img class="img-fluid" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24/badge-{{name}}-{{(prize.status) ? 'earned' : 'unearned'}}.png" alt="{{prize.label}} Badge {{(prize.status) ? 'Earned' : 'Not Earned'}}">
+              <img class="img-fluid" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24/badge-{{name}}-earned.png" alt="{{prize.label}} Badge Earned">
               <span ng-bind-html="prize.label"></span>
             </div>
           </div>
