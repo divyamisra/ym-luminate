@@ -960,10 +960,10 @@ angular.module 'trPcControllers'
           prize = response.data.overall_mission_status
           if prize.completed != 0
             earned_status = "Earned"
-            final_url = 'showFinnsVideo()'
+            final_url = ''
           else 
             earned_status = "Unearned"
-            final_url = ''
+            final_url = 'showTrophyMessage()'
           aria_label = prize.hq_name + ": " + earned_status + " - " + prize.hq_hover
           button_aria_label = prize.hq_button + ": " + earned_status + " - " + prize.hq_hover
           $scope.prizes['trophy'] = 
@@ -984,7 +984,17 @@ angular.module 'trPcControllers'
           # TODO
       #$scope.getMoveMoreFlag()
       refreshFinnsMission()
-      
+
+      $scope.showTrophyMessage = ->
+        if not $scope.viewTrophyMessage
+          $scope.viewTrophyMessage = $uibModal.open
+            scope: $scope
+            templateUrl: APP_INFO.rootPath + 'dist/ym-primary/html/participant-center/modal/viewTrophyMessage.html'
+
+      $scope.cancelTrophyMessage = ->
+        $scope.viewTrophyMessage.close()
+        delete $scope.viewTrophyMessage
+
       $rootScope.facebookFundraiserConfirmedStatus = ''
       if location.href.indexOf("showfb") > 0
         $scope.facebookFundraisersEnabled = true
