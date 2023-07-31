@@ -141,6 +141,7 @@ angular.module 'ahaLuminateControllers'
                   $scope.returningStudent = true
 
       $scope.personalInfo = {}
+      ###
       $scope.personalInfo.avatar = ''
       $scope.getPersonalAvatar = ->
         ZuriService.getAvatar $scope.frId + '/' + $scope.participantId,
@@ -157,7 +158,7 @@ angular.module 'ahaLuminateControllers'
               avatarURL = ""
             $scope.personalInfo.avatar = avatarURL
       $scope.getPersonalAvatar()
-
+      ###
       TeamraiserCompanyService.getCompanies 'company_id=' + $scope.companyId,
         success: (response) ->
           coordinatorId = response.getCompaniesResponse?.company?.coordinatorId
