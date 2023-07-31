@@ -167,7 +167,7 @@
               <div class="ym-badge text-center mb-4 p-2" tabindex="0" aria-label="{{prize.label}} Badge {{(prize.status) ? 'Earned' : 'Not Earned'}}">
                 <img class="img-fluid" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24/badge-{{name}}-{{(prize.status) ? 'earned' : 'unearned'}}.png" alt="{{prize.label}} Badge {{(prize.status) ? 'Earned' : 'Not Earned'}}">
                 <div class="badge-title" ng-bind-html="prize.label"></div>
-                <a class="badge-button btn btn-primary mb-2" ng-class="(!prize.status) ? '' : 'btn-white'" ng-href="{{prize.final_url}}" target="_blank" aria-label="{{prize.aria_button}}" ng-if="prize.hq_action_type != 'Modal'" ng-cloak>
+                <a class="badge-button btn btn-primary mb-2" ng-class="(!prize.status) ? '' : 'btn-white'" ng-href="{{prize.final_url}}" target="_blank" aria-label="{{prize.aria_button}}" ng-if="prize.mission_url_type != 'Modal'" ng-cloak>
                   <strong>
                     <span ng-if="name == 'trophy'" class="d-inline-block" ng-cloak>
                       <i class="fa fa-{{(prize.status) ? 'unlock' : 'lock'}}" aria-hidden="true"></i>
@@ -175,7 +175,7 @@
                     {{prize.button_label}}
                   </strong>
                 </a>
-                <a class="badge-button btn btn-primary mb-2" ng-class="(!prize.status) ? '' : 'btn-white'" href="" ng-click="{{prize.final_url}}" target="_blank" aria-label="{{prize.aria_button}}" ng-if="prize.hq_action_type == 'Modal'" ng-cloak>
+                <a class="badge-button btn btn-primary mb-2" ng-class="(!prize.status) ? '' : 'btn-white'" href="" ng-click="{{prize.final_url}}" target="_blank" aria-label="{{prize.aria_button}}" ng-if="prize.mission_url_type == 'Modal'" ng-cloak>
                   <strong>
                     <span ng-if="name == 'trophy'" class="d-inline-block" ng-cloak>
                       <i class="fa fa-{{(prize.status) ? 'unlock' : 'lock'}}" aria-hidden="true"></i>
