@@ -920,9 +920,9 @@ angular.module 'trPcControllers'
           prizes = response.data.missions
           final_url = ''
           angular.forEach prizes, (prize) ->
-            if prize.hq_action_type == 'Donate' 
-              final_url = 'Donation2?df_id=' + $scope.eventInfo.donationFormId + "&FR_ID=" + $scope.frId + "&PROXY_TYPE=20&PROXY_ID=" + $scope.consId
-            if prize.hq_action_type == 'Personal' 
+            #if prize.hq_action_type == 'Donate' 
+            #  final_url = 'Donation2?df_id=' + $scope.eventInfo.donationFormId + "&FR_ID=" + $scope.frId + "&PROXY_TYPE=20&PROXY_ID=" + $scope.consId
+            if prize.hq_action_type == 'Personal' or prize.hq_action_type == 'Donate'
               final_url = 'TR?fr_id=' + $scope.frId + '&pg=personal&px=' + $scope.consId
             if prize.hq_action_type == 'Tab' 
               final_url = $scope.baseUrl + prize.hq_action_url
