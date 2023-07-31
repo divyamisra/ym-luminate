@@ -942,6 +942,7 @@ angular.module 'trPcControllers'
             else 
               earned_status = "Unearned"
             aria_label = prize.hq_name + ": " + earned_status + " - " + prize.hq_hover
+            button_aria_label = prize.hq_button + ": " + earned_status + " - " + prize.hq_hover
             $scope.prizes[prize.mission_id] = 
               id: prize.mission_id
               label: prize.hq_name
@@ -950,7 +951,8 @@ angular.module 'trPcControllers'
               mission_url_type: prize.hq_action_type
               final_url: final_url
               hover_msg: prize.hq_hover
-              aria_label: aria_label
+              aria_label: button_aria_label
+              aria_button: aria_button
               button_label: prize.hq_button
 
             if prize.earned != 0
@@ -963,6 +965,7 @@ angular.module 'trPcControllers'
             earned_status = "Unearned"
             final_url = ''
           aria_label = prize.hq_name + ": " + earned_status + " - " + prize.hq_hover
+          button_aria_label = prize.hq_button + ": " + earned_status + " - " + prize.hq_hover
           $scope.prizes['trophy'] = 
             id: 99
             label: prize.hq_name
@@ -972,6 +975,7 @@ angular.module 'trPcControllers'
             final_url: final_url
             hover_msg: prize.hq_hover
             aria_label: aria_label
+            aria_button: button_aria_label
             button_label: prize.hq_button
 	    
           $scope.buildGiftCatalog()
