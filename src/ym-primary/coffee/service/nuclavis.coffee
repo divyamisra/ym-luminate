@@ -16,30 +16,40 @@ angular.module 'ahaLuminateApp'
             response
 
       getBadges: (requestData) ->
-        if $rootScope.tablePrefix is 'heartdev'
-          url = 'https://smt.nuclavis.com/khc/student/missions/' + requestData
-        else
-          url = 'https://smt.nuclavis.com/khc/student/missions/' + requestData
-        reqHeader = 
-          'Content-Type': 'application/json'
-          'Authorization': 'Bearer ' + $rootScope.NuclavisAPIToken
-        $http.get($sce.trustAsResourceUrl(url), {headers: reqHeader})
-          .then (response) ->
-            response.data
-          , (response) ->
-            response
+        this.login()
+        .then (response) ->
+          $rootScope.NuclavisAPIToken = response
+          if $rootScope.tablePrefix is 'heartdev'
+            url = 'https://smt.nuclavis.com/khc/student/missions/' + requestData
+          else
+            url = 'https://smt.nuclavis.com/khc/student/missions/' + requestData
+          reqHeader = 
+            'Content-Type': 'application/json'
+            'Authorization': 'Bearer ' + $rootScope.NuclavisAPIToken
+          $http.get($sce.trustAsResourceUrl(url), {headers: reqHeader})
+            .then (response) ->
+              response.data
+            , (response) ->
+              response
+        , (response) ->
+          $rootScope.NuclavisAPIToken = 0;
 
       postAction: (requestData) ->
-        if $rootScope.tablePrefix is 'heartdev'
-          url = 'https://smt.nuclavis.com/khc/student/actions/' + requestData
-        else
-          url = 'https://smt.nuclavis.com/khc/student/actions/' + requestData
-        reqHeader = 
-          'Content-Type': 'application/json'
-          'Authorization': 'Bearer ' + $rootScope.NuclavisAPIToken
-        $http.get($sce.trustAsResourceUrl(url), {headers: reqHeader})
-          .then (response) ->
-            response.data
-          , (response) ->
-            response
+        this.login()
+        .then (response) ->
+          $rootScope.NuclavisAPIToken = response
+          if $rootScope.tablePrefix is 'heartdev'
+            url = 'https://smt.nuclavis.com/khc/student/actions/' + requestData
+          else
+            url = 'https://smt.nuclavis.com/khc/student/actions/' + requestData
+          reqHeader = 
+            'Content-Type': 'application/json'
+            'Authorization': 'Bearer ' + $rootScope.NuclavisAPIToken
+          $http.post($sce.trustAsResourceUrl(url), {}, {headers: reqHeader})
+            .then (response) ->
+              response.data
+            , (response) ->
+              response
+        , (response) ->
+          $rootScope.NuclavisAPIToken = 0;
   ]

@@ -175,7 +175,7 @@ angular.module 'trPcControllers'
                 #if both student and school goals met
                 if $scope.companyProgress.raised >= $scope.companyProgress.goal and $scope.companyProgress.goal > 0 and amt >= Number(($scope.companyProgress.schoolChallengeLevel).replace('$', '').replace(/,/g, '')) and $scope.companyProgress.schoolChallenge != "No School Challenge"
                   $scope.schoolChallenge = 4
-            $scope.getSchoolBadges()
+            #$scope.getSchoolBadges()
             
       participantsString = ''
       $scope.companyParticipants = {}
@@ -920,9 +920,9 @@ angular.module 'trPcControllers'
           prizes = response.data.missions
           final_url = ''
           angular.forEach prizes, (prize) ->
-            if prize.hq_action_type == 'Donate' 
-              final_url = 'Donation2?df_id=' + $scope.eventInfo.donationFormId + "&FR_ID=" + $scope.frId + "&PROXY_TYPE=20&PROXY_ID=" + $scope.consId
-            if prize.hq_action_type == 'Personal' 
+            #if prize.hq_action_type == 'Donate' 
+            #  final_url = 'Donation2?df_id=' + $scope.eventInfo.donationFormId + "&FR_ID=" + $scope.frId + "&PROXY_TYPE=20&PROXY_ID=" + $scope.consId
+            if prize.hq_action_type == 'Personal' or prize.hq_action_type == 'Donate'
               final_url = 'TR?fr_id=' + $scope.frId + '&pg=personal&px=' + $scope.consId
             if prize.hq_action_type == 'Tab' 
               final_url = $scope.baseUrl + prize.hq_action_url
@@ -960,10 +960,10 @@ angular.module 'trPcControllers'
           prize = response.data.overall_mission_status
           if prize.completed != 0
             earned_status = "Earned"
-            final_url = 'showFinnsVideo()'
+            final_url = ''
           else 
             earned_status = "Unearned"
-            final_url = ''
+            final_url = 'showTrophyMessage()'
           aria_label = prize.hq_name + ": " + earned_status + " - " + prize.hq_hover
           button_aria_label = prize.hq_button + ": " + earned_status + " - " + prize.hq_hover
           $scope.prizes['trophy'] = 
@@ -978,13 +978,23 @@ angular.module 'trPcControllers'
             aria_button: button_aria_label
             button_label: prize.hq_button
 	    
-          $scope.buildGiftCatalog()
+          #$scope.buildGiftCatalog()
           
         , (response) ->
           # TODO
       #$scope.getMoveMoreFlag()
       refreshFinnsMission()
-      
+
+      $scope.showTrophyMessage = ->
+        if not $scope.viewTrophyMessage
+          $scope.viewTrophyMessage = $uibModal.open
+            scope: $scope
+            templateUrl: APP_INFO.rootPath + 'dist/ym-primary/html/participant-center/modal/viewTrophyMessage.html'
+
+      $scope.cancelTrophyMessage = ->
+        $scope.viewTrophyMessage.close()
+        delete $scope.viewTrophyMessage
+
       $rootScope.facebookFundraiserConfirmedStatus = ''
       if location.href.indexOf("showfb") > 0
         $scope.facebookFundraisersEnabled = true
@@ -1158,8 +1168,8 @@ angular.module 'trPcControllers'
               $scope.coordinatorPoints = JSON.parse($scope.schoolPlan.PointsDetail)
             else
               $scope.schoolPlan.HideGifts = "NO"
-            if $scope.participantRegistration.companyInformation?.isCompanyCoordinator is 'true'
-              $scope.getSchoolTop15()
+            #if $scope.participantRegistration.companyInformation?.isCompanyCoordinator is 'true'
+            #  $scope.getSchoolTop15()
 				
             if $scope.participantRegistration.companyInformation?.isCompanyCoordinator isnt 'true'
               NgPcConstituentService.getUserRecord('fields=custom_string18&cons_id=' + $scope.consId).then (response) ->
