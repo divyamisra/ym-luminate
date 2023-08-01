@@ -292,9 +292,10 @@ angular.module 'ahaLuminateControllers'
           delete $scope.updatePersonalPhoto1Error
           if not $scope.$$phase
             $scope.$apply()
-          BoundlessService.logPersonalPageUpdated()
+          #BoundlessService.logPersonalPageUpdated()
           successResponse = response.successResponse
           photoNumber = successResponse.photoNumber
+          NuclavisService.postAction $scope.frId + '/' + $scope.participantId + '/personal_page_update_hq'
           
           TeamraiserParticipantPageService.getPersonalPhotos
             error: (response) ->
