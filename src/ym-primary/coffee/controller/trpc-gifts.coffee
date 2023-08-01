@@ -7,11 +7,11 @@ angular.module 'trPcControllers'
     '$uibModal'
     '$location'
     'APP_INFO'
-    'BoundlessService'
+    'NuclavisService'
     'PageContentService'
     'NgPcTeamraiserProgressService'
     '$sce'
-    ($scope, $rootScope, $filter, $timeout, $uibModal, $location, APP_INFO, BoundlessService, PageContentService, NgPcTeamraiserProgressService, $sce) ->
+    ($scope, $rootScope, $filter, $timeout, $uibModal, $location, APP_INFO, NuclavisService, PageContentService, NgPcTeamraiserProgressService, $sce) ->
 
       $scope.showPrize = (sku, label, earned, video) ->
         $scope.prize_sku = sku
@@ -76,6 +76,7 @@ angular.module 'trPcControllers'
       $scope.getParticipantProgress()
       
       #get prizes earned count for Finns Prize
+      ###
       $scope.prizes = []
       $scope.prizesEarned = 0
       BoundlessService.getBadges $scope.frId + '/' + $scope.consId
@@ -84,4 +85,5 @@ angular.module 'trPcControllers'
           angular.forEach prizes, (prize) ->
             if prize.status != 0
               $scope.prizesEarned++
+      ###
 ]
