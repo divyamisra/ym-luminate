@@ -27,6 +27,7 @@ angular.module('trPcControllers').controller 'NgPcSocialViewCtrl', [
             $rootScope.facebookFundraiserConfirmedStatus = 'deleted'
           else
             $rootScope.facebookFundraiserConfirmedStatus = 'confirmed'
+            NuclavisService.postAction $scope.frId + '/' + $scope.consId + '/facebook_connect_hq'
     
     $scope.getParticipantShortcut = ->
       getParticipantShortcutPromise = NgPcTeamraiserShortcutURLService.getShortcut()
