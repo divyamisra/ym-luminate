@@ -1,15 +1,17 @@
-   <h2 class="text-center h3">
-     Congratulations, you have raised {{participantProgress.raisedFormatted}} and earned <span ng-bind-html="giftsEarned"></span> of <span ng-bind-html="gifts.length"></span> thank-you gifts.
-   </h2>   
-   <p class="text-start">
-     Please allow 15 minutes for the system to update your donation.<br/>
-     Please note that prizes can take up to 6 weeks to be delivered after the event has completed.
-   </p>
    <!-- <em class="text-center d-block">Scan the vumarks to see a special video in the KHC App under games tab.</em> -->
-   <section class="ym-pc-dashboard-standard-gifts-section" aria-label="My Gifts" ng-if="gifts && gifts.length > 0" ng-cloak>
+   <section class="ym-pc-dashboard-standard-gifts-section" aria-label="My Gifts">
+      <h2 class="text-start h3">
+        Congratulations, you have raised {{participantProgress.raisedFormatted}} and earned <span ng-bind-html="giftsEarned"></span> of <span ng-bind-html="gifts.length"></span> thank-you gifts.
+      </h2>   
+      <p class="text-start">
+        Please allow 15 minutes for the system to update your donation.
+      </p>
+      <p class="text-start">
+	Please note that prizes can take up to 6 weeks to be delivered after the event has completed.
+      </p>
       <div class="ym-pc-dashboard-standard-gifts-icons" role="list" aria-label="Gifts">
-        <div class="ym-pc-dashboard-standard-gifts-icon" ng-class="{'not-earned': !standardGift.prize_status}" ng-repeat="gift in gifts" role="listitem" aria-label="{{gift.name}}" ng-cloak>
-           <a role="button" href="" ng-click="showPrize(gift.gift_id,gift.name,gift.earned,'')">
+        <div class="ym-pc-dashboard-standard-gifts-icon" ng-class="{'not-earned': !gift.earned}" ng-repeat="gift in gifts" role="listitem" aria-label="{{gift.name}}" ng-cloak>
+           <a role="button" href="" ng-click="showPrize(gift.gift_id,gift.name,gift.earned,gift.image,'')">
 	      <div class="position-relative">
 		<img class="img-fluid" ng-src="{{gift.image}}" alt="{{gift.name}}">
 		<!--
@@ -17,19 +19,12 @@
 		<div class="play-circle"><i class="fa fa-play"></i></div> 
 		-->
 	      </div>
-	      <!--
-              <div class="ym-pc-dashboard-standard-gift-earned" ng-if="standardGift.prize_status" arial-label="Earned">
-                 <h4 class="gift-title" ng-bind-html="standardGift.prize_label"></h4>
-                 <div class="gift-subtitle1"><span ng-bind-html="standardGift.msg_earned"></span></div>
-		 <div class="gift-post-event"><span ng-if="standardGift.post_event">Post Event</span></div>
+              <div class="ym-pc-dashboard-standard-gift-{{(gift.earned) ? 'earned' : 'notearned'}}" ng-if="gift.earned" aria-label="{{(gift.earned) ? 'Earned' : 'Unearned'}}">
+                 <h4 class="gift-title" ng-bind-html="gift.name"></h4>
+                 <div class="gift-subtitle1"><span ng-bind-html="gift.info_text"></span></div>
+		 <!-- <div class="gift-post-event"><span ng-if="standardGift.post_event">Post Event</span></div> -->
               </div>
-              <div class="ym-pc-dashboard-standard-gift-notearned" ng-if="!standardGift.prize_status" arial-label="Unearned">
-                 <h4 class="gift-title" ng-bind-html="standardGift.prize_label"></h4>
-                 <div class="gift-subtitle1"><span ng-bind-html="standardGift.msg_unearned"></span></div>
-		 <div class="gift-post-event"><span ng-if="standardGift.post_event">Post Event</span></div>
-              </div>
-	      -->
-              <div class="more-details-button">More Details</div>
+              <div class="btn btn-primary btn-white">More Details</div>
            </a>
         </div>
 	<!--

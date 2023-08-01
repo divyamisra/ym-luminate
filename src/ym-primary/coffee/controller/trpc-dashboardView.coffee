@@ -52,6 +52,8 @@ angular.module 'trPcControllers'
       lockEnd = 500
       $scope.lockEnabled = false
       $scope.lockEnabledMsg = "School Planning fields are currently locked for point calculations until 6 am CST."
+      $scope.mystery_gift = 0
+		
       $dataRootBody = angular.element '[data-aha-luminate-root]'
       if $dataRootBody.data('school-plan-locked') isnt ''
         if $dataRootBody.data('school-plan-locked') == true
@@ -917,6 +919,7 @@ angular.module 'trPcControllers'
         $scope.prizesEarned = 0
         NuclavisService.getBadges $scope.consId + '/' + $scope.frId
         .then (response) ->
+          $scope.mystery_gift = response.data.mystery_gift.earned
           prizes = response.data.missions
           final_url = ''
           angular.forEach prizes, (prize) ->
