@@ -45,7 +45,7 @@ angular.module 'ahaLuminateApp'
           reqHeader = 
             'Content-Type': 'application/json'
             'Authorization': 'Bearer ' + $rootScope.NuclavisAPIToken
-          $http.post($sce.trustAsResourceUrl(url), {headers: reqHeader})
+          $http.post($sce.trustAsResourceUrl(url), {}, {headers: reqHeader})
             .then (response) ->
               response.data
             , (response) ->
