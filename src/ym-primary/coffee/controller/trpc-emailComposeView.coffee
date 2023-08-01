@@ -449,5 +449,5 @@ angular.module 'trPcControllers'
                 setEmailComposerDefaults()
                 window.scrollTo 0, 0
                 angular.element('#emailComposer-recipients').focus()
-                BoundlessService.logEmailSent()
+                NuclavisService.postAction $rootScope.frId + '/' + $rootScope.participantRegistration.consId + '/email_hq'
   ]
