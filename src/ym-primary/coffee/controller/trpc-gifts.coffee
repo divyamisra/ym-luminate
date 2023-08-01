@@ -43,8 +43,8 @@ angular.module 'trPcControllers'
           if badge.earned != 0
             $scope.badgesEarned++
         badge = response.data.overall_mission_status
-          if badge.completed != 0
-            $scope.badgesEarned++
+        if badge.completed != 0
+          $scope.badgesEarned++
         
         #get all prizes
         NuclavisService.getGifts $scope.consId + '/' + $scope.frId
