@@ -390,7 +390,8 @@ angular.module 'ahaLuminateControllers'
                 $scope.personalPageContent.rich_text = richText
                 $scope.personalPageContent.ng_rich_text = richText
                 $scope.personalPageContent.mode = 'view'
-                BoundlessService.logPersonalPageUpdated()
+                #BoundlessService.logPersonalPageUpdated()
+                NuclavisService.postAction $scope.frId + '/' + $scope.participantId + '/personal_page_update_hq'
                 if not $scope.$$phase
                   $scope.$apply()
   ]
