@@ -7,11 +7,11 @@ angular.module 'trPcControllers'
     '$uibModal'
     '$location'
     'APP_INFO'
-    'BoundlessService'
+    'NuclavisService'
     'PageContentService'
     'NgPcTeamraiserProgressService'
     '$sce'
-    ($scope, $rootScope, $filter, $timeout, $uibModal, $location, APP_INFO, BoundlessService, PageContentService, NgPcTeamraiserProgressService, $sce) ->
+    ($scope, $rootScope, $filter, $timeout, $uibModal, $location, APP_INFO, NuclavisService, PageContentService, NgPcTeamraiserProgressService, $sce) ->
 
       $scope.showPrize = (sku, label, earned, video) ->
         $scope.prize_sku = sku
@@ -28,88 +28,31 @@ angular.module 'trPcControllers'
       getRandomID = ->
         return Math.floor((Math.random()*3)+1);
 
-      defaultStandardGifts = BoundlessService.defaultStandardGifts()
+      #defaultStandardGifts = BoundlessService.defaultStandardGifts()
       
-      $scope.standardGifts = []
+      $scope.gifts = []
       $scope.giftsEarned = 0
 
       #get prizes earned count for Finns Prize
       $scope.badges = []
       $scope.badgesEarned = 0
-      BoundlessService.getBadges $scope.frId + '/' + $scope.consId
+      NuclavisService.getBadges $scope.consId + '/' + $scope.frId
+      .then (response) ->
+        $scope.badges = response.data.missions
+        angular.forEach $scope.badges, (badge) ->
+          if badge.earned != 0
+            $scope.badgesEarned++
+        badge = response.data.overall_mission_status
+        if badge.completed != 0
+          $scope.badgesEarned++
+        
+        #get all prizes
+        NuclavisService.getGifts $scope.consId + '/' + $scope.frId
         .then (response) ->
-          $scope.badges = response.data.prizes
-          angular.forEach $scope.badges, (badge) ->
-            if badge.status != 0
-              $scope.badgesEarned++
-          
-          #get all prizes
-          BoundlessService.getPrizes $scope.consId
-          .then (response) ->
-            if !response.data
-              response.data = []
-              response.data.student = []
-              response.data.student.push
-                id: 0
-                has_bonus: 2
-                total_collected: '0.00'
-                invalid_flag: 0
-                is_new: 1
-                prizes: []
-                current_level: '$0'
-                current_level_goal: '0'
-            students = response.data.student
-            angular.forEach students, (student) ->
-              if student.has_bonus
-                 giftLevels = BoundlessService.giftLevels_instant()
-                 giftLevelsEarned = BoundlessService.giftLevels_instant_earned()
-              else
-                 giftLevels = BoundlessService.giftLevels_noninstant()
-                 giftLevelsEarned = BoundlessService.giftLevels_noninstant_earned()
-
-              current_level = if student.current_level != null then student.current_level else '$0'
-              prevstatus = 0
-              angular.forEach defaultStandardGifts, (gift, key) ->
-                #check if gift is part of gifts allowed to receive
-                if jQuery.inArray(gift.id,giftLevels) isnt -1
-                  if student.has_bonus and (gift.instant == 1 or gift.instant == 2) or !student.has_bonus and (gift.instant == 0 or gift.instant == 2)
-                    status = 0
-                    lastItem = 0
-                    if jQuery.inArray(gift.id,giftLevelsEarned[current_level]) isnt -1
-                      status = 1
-                      if gift.online_only
-                        status = 0
-                        jQuery.each student.prizes, (item, key) ->
-                          if key.prize_sku.indexOf(gift.id) isnt -1
-                            status = 1
-                            return false
-                          return
-                    if prevstatus == 1 and status == 0
-                      $scope.standardGifts[$scope.standardGifts.length-1].lastItem = 1
-                    #mark finns mission as earned if all badges earned
-                    if gift.id == "FINN-23" and $scope.badges.length == $scope.badgesEarned
-                      status = 1
-                    $scope.standardGifts.push
-                      prize_label: gift.name
-                      prize_sku: gift.id
-                      prize_video: gift.video
-                      prize_status: status
-                      lastItem: lastItem
-                      randomID: getRandomID()
-                      prize_level: gift.level
-                      msg_earned: gift.msg_earned
-                      msg_unearned: gift.msg_unearned
-                      post_event: gift.post_event
-                      vucheck: gift.vucheck
-                    $scope.giftStatus = status
-                    prevstatus = status
-                    if status == 1
-                      $scope.giftsEarned++
-
-                  if $scope.giftStatus == 1
-                    $scope.standardGifts[$scope.standardGifts.length-1].lastItem = 1
-          , (response) ->
-            # TODO
+          $scope.gifts = response.data.gifts
+          angular.forEach $scope.gifts, (gift) ->
+            if gift.earned != 0
+              $scope.giftsEarned++
 
       $scope.participantProgress =
         raised: 0
@@ -131,6 +74,7 @@ angular.module 'trPcControllers'
       $scope.getParticipantProgress()
       
       #get prizes earned count for Finns Prize
+      ###
       $scope.prizes = []
       $scope.prizesEarned = 0
       BoundlessService.getBadges $scope.frId + '/' + $scope.consId
@@ -139,4 +83,5 @@ angular.module 'trPcControllers'
           angular.forEach prizes, (prize) ->
             if prize.status != 0
               $scope.prizesEarned++
+      ###
 ]
