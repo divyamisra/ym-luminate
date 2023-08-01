@@ -51,18 +51,18 @@ angular.module('trPcControllers').controller 'NgPcSocialViewCtrl', [
     
     $scope.socialEarnedThankYou = 0
     $scope.putSocialMedia = (event, sel) ->
-      BoundlessService.putSocialMedia()
+      NuclavisService.postAction $scope.frId + '/' + $scope.participantId + '/opt_out_hq'
         .then (response) ->
           $scope.socialEarnedThankYou = 1
 
     $scope.socialEarned = -1
     getFinnsMission = ->
-      BoundlessService.getBadges $scope.frId + '/' + $scope.consId
+      NuclavisService.getBadges $scope.participantId + '/' + $scope.frId
       .then (response) ->
-        prizes = response.data.prizes
+        prizes = response.data.missions
         angular.forEach prizes, (prize) ->
-          if prize.label == "Go Social"
-            if prize.status != 0
+          if prize.hq_button == "Go Social"
+            if prize.earned != 0
               $scope.socialEarned = 1
             else 
               $scope.socialEarned = 0
