@@ -253,10 +253,10 @@
                 </button>
               </div>
               <div class="text-center">
-                <a ng-href="{{baseUrl}}#" ng-click="delegatedAddThis('.js--personal-social-share', 'facebook')">
+                <a ng-href="mailto:{{baseUrl}}#" ng-click="window.webContent.sp[0].sharePageEmail()">
                   <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24/mail-icon.png" alt="Email">
                 </a>
-                <a ng-href="{{baseUrl}}#" ng-click="delegatedAddThis('.js--personal-social-share', 'facebook')">
+                <a ng-href="{{baseUrl}}#" ng-click="window.webContent.sp[0].openMessageFacebook()">
                   <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24/fb-icon.png" alt="Facebook">
                 </a>
               </div>
