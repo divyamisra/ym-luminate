@@ -6,6 +6,7 @@
       <p class="text-start">Please allow 15 minutes for the system to update your donation.</p>
       <p class="text-start">Please note that prizes can take up to 6 weeks to be delivered after the event has completed.</p>
       <div class="ym-pc-dashboard-standard-gifts d-flex justify-content-between flex-wrap gap-4" role="list" aria-label="Gifts">
+	<div class="loading pt-5" ng-if="loadingGifts" ng-cloak>Loading Gifts... <i class='fa fa-spinner fa-spin '></i></div>
         <div class="ym-pc-dashboard-standard-gifts-icon" ng-class="{'not-earned': !gift.earned}" ng-repeat="gift in gifts" role="listitem" aria-label="{{gift.name}}" ng-cloak>
            <a role="button" href="" ng-click="showPrize(gift.gift_id,gift.name,gift.earned,gift.image,'')">
 	      <div class="position-relative">
