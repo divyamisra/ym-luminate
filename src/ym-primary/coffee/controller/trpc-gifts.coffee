@@ -13,11 +13,11 @@ angular.module 'trPcControllers'
     '$sce'
     ($scope, $rootScope, $filter, $timeout, $uibModal, $location, APP_INFO, NuclavisService, PageContentService, NgPcTeamraiserProgressService, $sce) ->
 
-      $scope.showPrize = (sku, label, earned, video) ->
-        $scope.prize_sku = sku
-        $scope.prize_label = label
+      $scope.showPrize = (gift_id, name, earned, video) ->
+        $scope.prize_sku = gift_id
+        $scope.prize_label = name
         $scope.prize_status = earned
-        $scope.prize_video = video
+        #$scope.prize_video = video
         $scope.viewPrizeModal = $uibModal.open
           scope: $scope
           templateUrl: APP_INFO.rootPath + 'dist/ym-primary/html/participant-center/modal/viewPrize.html'
