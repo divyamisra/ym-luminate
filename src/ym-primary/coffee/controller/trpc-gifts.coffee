@@ -30,7 +30,7 @@ angular.module 'trPcControllers'
 
       #defaultStandardGifts = BoundlessService.defaultStandardGifts()
       
-      $scope.standardGifts = []
+      $scope.gifts = []
       $scope.giftsEarned = 0
 
       #get prizes earned count for Finns Prize
@@ -50,6 +50,9 @@ angular.module 'trPcControllers'
           NuclavisService.getGifts $scope.consId + '/' + $scope.frId
           .then (response) ->
             $scope.gifts = response.data.gifts
+            angular.forEach $scope.gifts, (gift) ->
+              if gift.earned != 0
+                $scope.giftsEarned++
           , (response) ->
             # TODO
 
