@@ -3,9 +3,9 @@ angular.module('trPcControllers').controller 'NgPcSocialViewCtrl', [
   '$sce'
   '$rootScope'
   'FacebookFundraiserService'
-  'BoundlessService'
+  'NuclavisService'
   'NgPcTeamraiserShortcutURLService'
-  ($scope, $sce, $rootScope, FacebookFundraiserService, BoundlessService, NgPcTeamraiserShortcutURLService) ->
+  ($scope, $sce, $rootScope, FacebookFundraiserService, NuclavisService, NgPcTeamraiserShortcutURLService) ->
     #facebook fundraising
     webContent.load = 1
     $rootScope.facebookFundraiserConfirmedStatus = ''
@@ -51,13 +51,13 @@ angular.module('trPcControllers').controller 'NgPcSocialViewCtrl', [
     
     $scope.socialEarnedThankYou = 0
     $scope.putSocialMedia = (event, sel) ->
-      NuclavisService.postAction $scope.frId + '/' + $scope.participantId + '/opt_out_hq'
+      NuclavisService.postAction $scope.frId + '/' + $scope.consId + '/opt_out_hq'
         .then (response) ->
           $scope.socialEarnedThankYou = 1
 
     $scope.socialEarned = -1
     getFinnsMission = ->
-      NuclavisService.getBadges $scope.participantId + '/' + $scope.frId
+      NuclavisService.getBadges $scope.consId + '/' + $scope.frId
       .then (response) ->
         prizes = response.data.missions
         angular.forEach prizes, (prize) ->
