@@ -36,11 +36,14 @@ angular.module 'trPcControllers'
       #get prizes earned count for Finns Prize
       $scope.badges = []
       $scope.badgesEarned = 0
-      BoundlessService.getBadges $scope.frId + '/' + $scope.consId
+      NuclavisService.getBadges $scope.consId + '/' + $scope.frId
         .then (response) ->
-          $scope.badges = response.data.prizes
+          $scope.badges = response.data.missions
           angular.forEach $scope.badges, (badge) ->
-            if badge.status != 0
+            if badge.earned != 0
+              $scope.badgesEarned++
+          badge = response.data.overall_mission_status
+            if badge.completed != 0
               $scope.badgesEarned++
           
           #get all prizes
