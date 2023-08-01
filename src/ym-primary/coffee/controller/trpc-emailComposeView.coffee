@@ -8,11 +8,11 @@ angular.module 'trPcControllers'
     '$httpParamSerializer'
     '$uibModal'
     'APP_INFO'
-    'BoundlessService'
+    'NuclavisService'
     'NgPcTeamraiserEventService'
     'NgPcTeamraiserEmailService'
     'NgPcContactService'
-    ($rootScope, $scope, $routeParams, $timeout, $sce, $httpParamSerializer, $uibModal, APP_INFO, BoundlessService, NgPcTeamraiserEventService, NgPcTeamraiserEmailService, NgPcContactService) ->
+    ($rootScope, $scope, $routeParams, $timeout, $sce, $httpParamSerializer, $uibModal, APP_INFO, NuclavisService, NgPcTeamraiserEventService, NgPcTeamraiserEmailService, NgPcContactService) ->
       $scope.messageType = $routeParams.messageType
       $scope.messageId = $routeParams.messageId
 
@@ -449,5 +449,5 @@ angular.module 'trPcControllers'
                 setEmailComposerDefaults()
                 window.scrollTo 0, 0
                 angular.element('#emailComposer-recipients').focus()
-                BoundlessService.logEmailSent()
+                NuclavisService.postAction $rootScope.frId + '/' + $rootScope.participantRegistration.consId + '/email_hq'
   ]
