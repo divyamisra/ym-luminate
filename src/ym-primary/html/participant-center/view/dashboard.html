@@ -19,24 +19,36 @@
         </div>
       </section>
     </div>
-    <section class="early-registration-section mb-3" aria-label="Early Registration Section">
-      <div class="early-registration text-center">
-        <div class="participatingNextYear text-center p-2" ng-if="participantRegistration.companyInformation.isCompanyCoordinator != 'true'" ng-cloak>
-          <div class="checkbox pe-2 pb-2" custom-checkbox ng-class="{'checked': schoolPlan.ParticipatingNextYear == 'YES'}">
-            <strong>Early Registration:</strong>
-            <label for="ParticipatingNextYear">
-              <input type="checkbox" name="ParticipatingNextYear" id="ParticipatingNextYear" ng-model="schoolPlan.ParticipatingNextYear_isChecked" aria-label="Participating Next Year" ng-change="putSchoolPlan($event,'ParticipatingNextYear_isChecked')"> Re-register for next year </label>
+    <div class="ym-pc-top-bar d-flex flex-wrap">
+      <section class="early-registration-section mb-3" aria-label="Early Registration Section">
+        <div class="early-registration text-center">
+          <div class="participatingNextYear text-center p-2" ng-if="participantRegistration.companyInformation.isCompanyCoordinator != 'true'" ng-cloak>
+            <div class="checkbox pe-2 pb-2" custom-checkbox ng-class="{'checked': schoolPlan.ParticipatingNextYear == 'YES'}">
+              <strong>Early Registration:</strong>
+              <label for="ParticipatingNextYear">
+                <input type="checkbox" name="ParticipatingNextYear" id="ParticipatingNextYear" ng-model="schoolPlan.ParticipatingNextYear_isChecked" aria-label="Participating Next Year" ng-change="putSchoolPlan($event,'ParticipatingNextYear_isChecked')"> Re-register for next year </label>
+            </div>
+          </div>
+          <div class="row participatingNextYear text-center p-2" ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
+            <div class="checkbox pe-2 pb-2" custom-checkbox ng-class="{'checked': schoolPlan.ParticipatingNextYear == 'YES'}">
+              <strong>Early Registration:</strong>
+              <label for="ParticipatingNextYear">
+                <input type="checkbox" name="ParticipatingNextYear" id="ParticipatingNextYear" ng-model="schoolPlan.ParticipatingNextYear_isChecked" value="{{schoolPlan.ParticipatingNextYear}}" aria-label="Participating Next Year" ng-change="updateParticipatingNextYear()"> Re-register for next year </label>
+            </div>
           </div>
         </div>
-        <div class="row participatingNextYear text-center p-2" ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
-          <div class="checkbox pe-2 pb-2" custom-checkbox ng-class="{'checked': schoolPlan.ParticipatingNextYear == 'YES'}">
-            <strong>Early Registration:</strong>
-            <label for="ParticipatingNextYear">
-              <input type="checkbox" name="ParticipatingNextYear" id="ParticipatingNextYear" ng-model="schoolPlan.ParticipatingNextYear_isChecked" value="{{schoolPlan.ParticipatingNextYear}}" aria-label="Participating Next Year" ng-change="updateParticipatingNextYear()"> Re-register for next year </label>
-          </div>
-        </div>
-      </div>
-    </section>
+      </section>
+      <section class="bonus-gift">
+	<div class="d-flex justify-content-between gap-4">
+          <div class="bonus-gift-text">
+	    Congratulations! You earned the Rare Buster Collectible.
+	  </div>	
+  	  <div class="bonus-gift-image">
+             <img class="img-fluid" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24/trophy-icon.png" alt="Rare Buster Collectible">
+	  </div>
+	</div>
+      </section>
+    </div>d
     <section class="ym-pc-dashboard-badges-section mb-4" aria-label="My Badges" ng-if="prizes" ng-cloak>
       <h2 class="text-center">Finn's Mission</h2>
       <div class="finns-mission-section d-flex justify-content-between flex-wrap gap-4 p-3">
