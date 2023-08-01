@@ -961,6 +961,7 @@ angular.module 'trPcControllers'
           if prize.completed != 0
             earned_status = "Earned"
             final_url = ''
+            $scope.prizesEarned++
           else 
             earned_status = "Unearned"
             final_url = 'showTrophyMessage()'
