@@ -37,24 +37,22 @@ angular.module 'trPcControllers'
       $scope.badges = []
       $scope.badgesEarned = 0
       NuclavisService.getBadges $scope.consId + '/' + $scope.frId
+      .then (response) ->
+        $scope.badges = response.data.missions
+        angular.forEach $scope.badges, (badge) ->
+          if badge.earned != 0
+            $scope.badgesEarned++
+        badge = response.data.overall_mission_status
+          if badge.completed != 0
+            $scope.badgesEarned++
+        
+        #get all prizes
+        NuclavisService.getGifts $scope.consId + '/' + $scope.frId
         .then (response) ->
-          $scope.badges = response.data.missions
-          angular.forEach $scope.badges, (badge) ->
-            if badge.earned != 0
-              $scope.badgesEarned++
-          badge = response.data.overall_mission_status
-            if badge.completed != 0
-              $scope.badgesEarned++
-          
-          #get all prizes
-          NuclavisService.getGifts $scope.consId + '/' + $scope.frId
-          .then (response) ->
-            $scope.gifts = response.data.gifts
-            angular.forEach $scope.gifts, (gift) ->
-              if gift.earned != 0
-                $scope.giftsEarned++
-          , (response) ->
-            # TODO
+          $scope.gifts = response.data.gifts
+          angular.forEach $scope.gifts, (gift) ->
+            if gift.earned != 0
+              $scope.giftsEarned++
 
       $scope.participantProgress =
         raised: 0
