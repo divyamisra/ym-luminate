@@ -46,6 +46,7 @@
 
 .bounce-2 {
   animation:balloon2 2s linear;
+  filter: drop-shadow(0px 8px 4px #666);
 }
 @keyframes balloon2 {
   0% {transform: translate(0px,400px) rotate(-1deg);}
@@ -55,6 +56,7 @@
 }
 .bounce-3 {
   animation:balloon3 3s linear;
+  filter: drop-shadow(0px 8px 4px #666);
 }
 @keyframes balloon3 {
   0% {transform: translate(0px,620px);}
@@ -64,6 +66,7 @@
 }
 .bounce-4 {
   animation:balloon4 4s linear;
+  filter: drop-shadow(0px 8px 4px #666);
 }
 @keyframes balloon4 {
   0% {transform: translate(0px,750px) rotate(1deg);}
