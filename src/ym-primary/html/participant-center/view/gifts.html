@@ -9,7 +9,7 @@
 	<div class="loading pt-5" ng-if="loadingGifts" ng-cloak>Loading Gifts... <i class='fa fa-spinner fa-spin '></i></div>
         <div class="ym-pc-dashboard-standard-gifts-icon" ng-class="{'not-earned': !gift.earned}" ng-repeat="gift in gifts" role="listitem" aria-label="{{gift.name}}" ng-cloak>
            <a role="button" href="" ng-click="showPrize(gift.gift_id,gift.name,gift.earned,gift.image,'')">
-              <h3 class="gift-title h4" ng-bind-html="gift.name"></h3>
+              <h3 class="gift-title h5" ng-bind-html="gift.name"></h3>
 	      <div class="position-relative">
 		<img class="img-fluid" ng-src="{{gift.image}}" alt="{{gift.name}}">
 		<!--
@@ -18,7 +18,7 @@
 		-->
 	      </div>
               <div class="ym-pc-dashboard-standard-gift-{{(gift.earned) ? 'earned' : 'notearned'}}" aria-label="{{(gift.earned) ? 'Earned' : 'Unearned'}}">
-                 <div class="gift-subtitle1"><span ng-bind-html="gift.info_text"></span></div>
+                 <div class="gift-subtitle1 h6"><span ng-bind-html="gift.info_text"></span></div>
 		 <!-- <div class="gift-post-event"><span ng-if="standardGift.post_event">Post Event</span></div> -->
               </div>
               <div class="btn btn-primary btn-white">View</div>
