@@ -385,7 +385,8 @@ section.ym-pc-dashboard-standard-gifts-section {
 	   padding: 20px;
            border: 2px solid $event-secondary-medium;
            border-radius: 20px;
-           width: 300px;
+           min-width: 300px;
+           max-width: 300px;
   
 	   img {
 	      margin-bottom: 30px;
