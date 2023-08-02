@@ -27,8 +27,8 @@
 
 .gear{
     animation-name: ckw;
-    animation-duration: 5s;
-    animation-iteration-count: 3;
+    animation-duration: 10s;
+    animation-iteration-count: 1;
     transform-origin: 41.7% 77.4%;
     display: inline-block;
 }
@@ -36,8 +36,11 @@
     0% {
         transform: rotate(0deg);
     }
-    100% {
+    50% {
         transform: rotate(-360deg);
+    }
+    100% {
+        transform: rotate(0deg);
     }
 }
 
