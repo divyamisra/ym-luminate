@@ -384,9 +384,11 @@ section.ym-pc-dashboard-standard-gifts-section {
            vertical-align: top;
    	   position:relative;
 	   text-align:center;
-	   background: $event-secondary-medium;
+	   background: $event-accent-blue;
 	   padding: 20px;
 	   flex: 1 100%;
+           border: 2px solid $event-secondary-medium;
+           border-radius: 20px;
   
 	   @media (max-width: $screen-sm-min) {
               max-width:45%;

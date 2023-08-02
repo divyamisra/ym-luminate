@@ -37,6 +37,7 @@ angular.module 'trPcControllers'
       #get prizes earned count for Finns Prize
       $scope.badges = []
       $scope.badgesEarned = 0
+      $scope.loadingGifts = 1
       NuclavisService.getBadges $scope.consId + '/' + $scope.frId
       .then (response) ->
         $scope.badges = response.data.missions
@@ -54,6 +55,7 @@ angular.module 'trPcControllers'
           angular.forEach $scope.gifts, (gift) ->
             if gift.earned != 0
               $scope.giftsEarned++
+          $scope.loadingGifts = 0
 
       $scope.participantProgress =
         raised: 0
