@@ -1,44 +1,65 @@
    <!-- <em class="text-center d-block">Scan the vumarks to see a special video in the KHC App under games tab.</em> -->
    <section class="ym-pc-dashboard-standard-gifts-section" aria-label="My Gifts">
-      <h2 class="text-start h3">
-        Congratulations, you have raised {{participantProgress.raisedFormatted}} and earned <span ng-bind-html="giftsEarned"></span> of <span ng-bind-html="gifts.length"></span> thank-you gifts.
-      </h2>   
-      <p class="text-start">Please allow 15 minutes for the system to update your donation.</p>
-      <p class="text-start">Please note that prizes can take up to 6 weeks to be delivered after the event has completed.</p>
-      <div class="ym-pc-dashboard-standard-gifts d-flex justify-content-between flex-wrap gap-4" role="list" aria-label="Gifts">
-	<div class="loading pt-5" ng-if="loadingGifts" ng-cloak>Loading Gifts... <i class='fa fa-spinner fa-spin '></i></div>
-        <div class="ym-pc-dashboard-standard-gifts-icon" ng-class="{'not-earned': !gift.earned}" ng-repeat="gift in gifts" role="listitem" aria-label="{{gift.name}}" ng-cloak>
-           <a role="button" href="" ng-click="showPrize(gift.gift_id,gift.name,gift.earned,gift.image,'')">
-	      <div class="position-relative">
-		<img class="img-fluid" ng-src="{{gift.image}}" alt="{{gift.name}}">
-		<!--
-		<img ng-if="standardGift.vucheck && standardGift.prize_status" class="vucheck-image position-absolute bottom-0 end-0 w-25" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/prizes2023/{{standardGift.prize_sku}}-vucheck.png" alt="{{standardGift.prize_label}} Vucheck" ng-cloak>
-		<div class="play-circle"><i class="fa fa-play"></i></div> 
-		-->
-	      </div>
-              <div class="ym-pc-dashboard-standard-gift-{{(gift.earned) ? 'earned' : 'notearned'}}" ng-if="gift.earned" aria-label="{{(gift.earned) ? 'Earned' : 'Unearned'}}">
-                 <h4 class="gift-title" ng-bind-html="gift.name"></h4>
-                 <div class="gift-subtitle1"><span ng-bind-html="gift.info_text"></span></div>
-		 <!-- <div class="gift-post-event"><span ng-if="standardGift.post_event">Post Event</span></div> -->
-              </div>
-              <div class="btn btn-primary btn-white">More Details</div>
-           </a>
-        </div>
-	<!--
-        <div class="giftApp">
-           <div class="ym-pc-dashboard-section-header">
-              <h3 class="h5">Fundraise on the Go!</h3>
+     <h2 class="text-start h3 mb-4">Congratulations, you have raised {{participantProgress.raisedFormatted}} and earned <span ng-bind-html="giftsEarned"></span> of <span ng-bind-html="gifts.length"></span> thank-you gifts. </h2>
+     <p class="text-start">Please allow 15 minutes for the system to update your donation. <br /> Please note that prizes can take up to 6 weeks to be delivered after the event has completed. </p>
+     <div class="ym-pc-dashboard-progress-section__column event-secondary-medium p-3 mb-5">
+       <div class="ym-pc-dashboard-email-challenge-box text-start">
+         <div class="ym-pc-dashboard-section-header text-start">
+           <h3 class="h5"> Spread the Word! </h3>
+         </div>
+         <div class="d-md-flex justify-content-between flex-wrap">
+           <div class="col">
+             <div class="text-start">
+               <p>Continue sending emails, social messages and e-cards to receive additional thank-you gifts!</p>
+             </div>
            </div>
-           <p>Check in on your fundraising and gifts progress by<br/>downloading the Kids Heart Challenge mobile app today!</p>
-           <div class="ym-pc-dashboard-mobile-downloads">
-              <a href="https://itunes.apple.com/us/app/ym-primary/id548389448?mt=8" target="_blank">
-                 <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/youth-markets/image/apple-store-logo.png" alt="Download the iPhone App"> 
-              </a>
-              <a href="https://play.google.com/store/apps/details?id=com.aha_jump.android.communicator&amp;hl=en" target="_blank">
-                 <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/youth-markets/image/google-play-logo.png" alt="Download the Android App">
-              </a>
+           <div class="col">
+             <div class="d-flex justify-content-between flex-wrap">
+               <div class="col text-center">
+                 <a class="text-decoration-none d-block mb-2" ng-href="mailto:{{baseUrl}}#" ng-click="window.webContent.sp[0].sharePageEmail()">
+                   <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24/mail-icon.png" alt="Email Icon">
+                 </a>
+                 <div class="btn-cta">
+                   <a class=" btn btn-primary" href="{{baseUrl}}#/social">Send Message</a>
+                 </div>
+               </div>
+               <div class="col text-center">
+                 <a class="text-decoration-none d-block mb-2" ng-href="mailto:{{baseUrl}}#" ng-click="window.webContent.sp[0].sharePageEmail()">
+                   <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24/social-icon.png" alt="Social Icon">
+                 </a>
+                 <div class="btn-cta">
+                   <a class=" btn btn-primary" href="{{baseUrl}}#/social">Go Social</a>
+                 </div>
+               </div>
+               <div class="col text-center">
+                 <a class="text-decoration-none d-block mb-2" ng-href="mailto:{{baseUrl}}#" ng-click="window.webContent.sp[0].sharePageEmail()">
+                   <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24/ecard-icon.png" alt="e-Card Icon">
+                 </a>
+                 <div class="btn-cta">
+                   <a class=" btn btn-primary" href="{{baseUrl}}#/social">Send e-Card</a>
+                 </div>
+               </div>
+             </div>
            </div>
-        </div>
-	-->
-      </div>
+         </div>
+       </div>
+     </div>
+     <div class="ym-pc-dashboard-standard-gifts d-flex justify-content-between flex-wrap gap-4" role="list" aria-label="Gifts">
+       <div class="loading pt-5" ng-if="loadingGifts" ng-cloak>Loading Gifts... <i class='fa fa-spinner fa-spin '></i>
+       </div>
+       <div class="ym-pc-dashboard-standard-gifts-icon col" ng-class="{'not-earned': !gift.earned}" ng-repeat="gift in gifts" role="listitem" aria-label="{{gift.name}}" ng-cloak>
+         <a role="button" href="" ng-click="showPrize(gift.gift_id,gift.name,gift.earned,gift.image,'')">
+           <h3 class="gift-title h5" ng-bind-html="gift.name"></h3>
+           <div class="position-relative">
+             <img class="img-fluid" ng-src="{{gift.image}}" alt="{{gift.name}}">
+           </div>
+           <div class="ym-pc-dashboard-standard-gift-{{(gift.earned) ? 'earned' : 'notearned'}}" aria-label="{{(gift.earned) ? 'Earned' : 'Unearned'}}">
+             <div class="gift-subtitle1 h6">
+               <span ng-bind-html="gift.info_text"></span>
+             </div>
+           </div>
+           <div class="btn btn-primary btn-white">View</div>
+         </a>
+       </div>
+     </div>
    </section>

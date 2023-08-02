@@ -53,6 +53,7 @@ angular.module 'trPcControllers'
       $scope.lockEnabled = false
       $scope.lockEnabledMsg = "School Planning fields are currently locked for point calculations until 6 am CST."
       $scope.mystery_gift = 0
+      $scope.loadingBadges = 1
 		
       $dataRootBody = angular.element '[data-aha-luminate-root]'
       if $dataRootBody.data('school-plan-locked') isnt ''
@@ -981,6 +982,7 @@ angular.module 'trPcControllers'
             aria_label: aria_label
             aria_button: button_aria_label
             button_label: prize.hq_button
+          $scope.loadingBadges = 0
 	    
           #$scope.buildGiftCatalog()
           
