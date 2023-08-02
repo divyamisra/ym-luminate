@@ -128,10 +128,6 @@ div.table {
   
   tbody {
     tr {
-      &:nth-of-type(odd) {
-        background-color: $event-accent-light;
-      }
-      
       td {
         vertical-align: middle;
         padding: 10px;
@@ -154,10 +150,6 @@ div.table {
   
   .table-body {
     .table-row {
-      &:nth-of-type(odd) {
-        background-color: $event-accent-light;
-      }
-      
       .table-cell {
         vertical-align: middle;
         padding: 10px;
