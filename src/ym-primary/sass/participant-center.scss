@@ -379,24 +379,14 @@ section.ym-pc-dashboard-standard-gifts-section {
         }
 	
 	.ym-pc-dashboard-standard-gifts-icon {
-           max-width: 23%;
-           margin: 0 11px 15px 0;
-           vertical-align: top;
    	   position:relative;
 	   text-align:center;
 	   background: $event-accent-blue;
 	   padding: 20px;
-	   flex: 1 100%;
            border: 2px solid $event-secondary-medium;
            border-radius: 20px;
+           width: 300px;
   
-	   @media (max-width: $screen-sm-min) {
-              max-width:45%;
-           }
-	   @media (max-width: $screen-xs-min) {
-              max-width:100%;
-           }
-		
 	   img {
 	      margin-bottom: 30px;
 	      max-height: 200px;
