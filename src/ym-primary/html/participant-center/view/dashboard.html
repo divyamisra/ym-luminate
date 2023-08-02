@@ -170,6 +170,7 @@
           <div class="ym-pc-dashboard-badges-header">
             <strong> Complete Finn's Mission to earn Finn's Lifesavers Award. </strong>
           </div>
+          <div class="loading pt-5" ng-if="loadingBadges" ng-cloak>Loading Badges... <i class='fa fa-spinner fa-spin '></i></div>
           <div class="badges d-flex flex-wrap justify-content-around">
             <div class="ym-badges" ng-repeat="(name, prize) in prizes" ng-cloak>
               <div class="ym-badge text-center mb-4 p-2" tabindex="0" aria-label="{{prize.label}} Badge {{(prize.status) ? 'Earned' : 'Not Earned'}}">
