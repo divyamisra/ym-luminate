@@ -170,7 +170,7 @@
           <div class="ym-pc-dashboard-badges-header">
             <strong> Complete Finn's Mission to earn Finn's Lifesavers Award. </strong>
           </div>
-          <div class="loading pt-5" ng-if="loadingBadges" ng-cloak>Loading Badges... <img style="max-width: 75px" class="spin" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24/badge-trophy-earned.png"></div>
+          <div class="loading pt-5" ng-if="loadingBadges" ng-cloak>Loading Badges... <img style="max-width: 75px" class="spin" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24/badge-2-earned.png"></div>
           <div class="badges d-flex flex-wrap justify-content-around">
             <div class="ym-badges" ng-repeat="(name, prize) in prizes" ng-cloak>
               <div class="ym-badge text-center mb-4 p-2" tabindex="0" aria-label="{{prize.label}} Badge {{(prize.status) ? 'Earned' : 'Not Earned'}}">
@@ -261,11 +261,17 @@
                   <strong> Copy Link </strong>
                 </button>
               </div>
-              <div class="text-center">
-                <a ng-href="mailto:{{baseUrl}}#" ng-click="window.webContent.sp[0].sharePageEmail()">
+              <div class="d-flex justify-content-center gap-1 text-center">
+                <a class="text-decoration-none" ng-href="mailto:{{baseUrl}}#" ng-click="window.webContent.sp[0].nuclavisShareEmail()">
                   <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24/mail-icon.png" alt="Email">
                 </a>
-                <a ng-href="{{baseUrl}}#" ng-click="window.webContent.sp[0].openMessageFacebook()">
+                <a class="text-decoration-none" ng-href="mailto:{{baseUrl}}#" ng-click="window.webContent.sp[0].nuclavisShareSms()">
+                  <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24/msg-icon.png" alt="Messaging">
+                </a>
+                <a class="text-decoration-none" ng-href="mailto:{{baseUrl}}#" ng-click="window.webContent.sp[0].nuclavisShareLinkedIn()">
+                  <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24/chat-icon.png" alt="LinkedIn">
+                </a>
+                <a class="text-decoration-none" ng-href="{{baseUrl}}#" ng-click="window.webContent.sp[0].nuclavisShareFacebook()">
                   <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24/fb-icon.png" alt="Facebook">
                 </a>
               </div>
