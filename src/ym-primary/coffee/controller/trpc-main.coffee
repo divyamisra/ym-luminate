@@ -9,9 +9,9 @@ angular.module 'trPcControllers'
     'NgPcTeamraiserEventService'
     'RichTextService'
     'FacebookFundraiserService'
-    'BoundlessService'
+    'NuclavisService'
     'ZuriService'
-    ($rootScope, $scope, $location, $timeout, APP_INFO, TeamraiserParticipantPageService, NgPcTeamraiserEventService, RichTextService, FacebookFundraiserService, BoundlessService, ZuriService) ->
+    ($rootScope, $scope, $location, $timeout, APP_INFO, TeamraiserParticipantPageService, NgPcTeamraiserEventService, RichTextService, FacebookFundraiserService, NuclavisService, ZuriService) ->
       $rootScope.$location = $location
       $rootScope.baseUrl = $location.absUrl().split('#')[0]
       $rootScope.HideGifts = "NO"
@@ -124,6 +124,6 @@ angular.module 'trPcControllers'
                                           jQuery('html, body').animate
                                             scrollTop: jQuery('.js--facebook-fundraiser-completed-section').offset().top - 150
                                           , 250
-                                      BoundlessService.logFundraiserCreated()
+                                      NuclavisService.postAction $scope.frId + '/' + $rootScope.consId + '/facebook_connect_hq'
           , scope: 'manage_fundraisers'
   ]
