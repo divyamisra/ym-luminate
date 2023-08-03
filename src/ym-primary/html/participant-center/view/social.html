@@ -52,7 +52,7 @@
       <button class="nav-link active" id="recruit-tab" data-bs-toggle="tab" data-bs-target="#recruit" type="button" role="tab" aria-controls="recruit" aria-selected="true">Recruit</button>
     </li>
     <li class="nav-item" role="presentation">
-      <button class="nav-link" id="donation-tab" data-bs-toggle="tab" data-bs-target="#donation" type="button" role="tab" aria-controls="donation" aria-selected="false">Ask for Donations</button>
+      <button class="nav-link" ng-class="(participantRegistration.companyInformation.isCompanyCoordinator != 'true') ? 'active' : ''" id="donation-tab" data-bs-toggle="tab" data-bs-target="#donation" type="button" role="tab" aria-controls="donation" aria-selected="false">Ask for Donations</button>
     </li>
     <li class="nav-item" role="presentation">
       <button class="nav-link" id="thank-donors-tab" data-bs-toggle="tab" data-bs-target="#thank" type="button" role="tab" aria-controls="thank" aria-selected="false">Thank Donors</button>
