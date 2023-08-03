@@ -1,53 +1,51 @@
    <!-- <em class="text-center d-block">Scan the vumarks to see a special video in the KHC App under games tab.</em> -->
    <section class="ym-pc-dashboard-standard-gifts-section" aria-label="My Gifts">
      <h2 class="text-start h3 mb-4">Congratulations, you have raised {{participantProgress.raisedFormatted}} and earned <span ng-bind-html="giftsEarned"></span> of <span ng-bind-html="gifts.length"></span> thank-you gifts. </h2>
-     <p class="text-start">Please allow 15 minutes for the system to update your donation.<br/>
-     Please note that prizes can take up to 6 weeks to be delivered after the event has completed.</p>
-
-		 <div class="ym-pc-dashboard-progress-section__column event-secondary-medium p-3 mb-5">
-			<div class="ym-pc-dashboard-email-challenge-box text-start">
-				<div class="ym-pc-dashboard-section-header text-start">
-					<h3 class="h5"> Spread the Word! </h3>
-				</div>
-				<div class="d-md-flex justify-content-between flex-wrap">
-				  <div class="col">
-						<div class="text-start">
-							<p>Continue sending emails, social messages and e-cards to receive additional thank-you gifts!</p>
-						</div>
-					</div>
-					<div class="col">
-					  <div class="d-flex justify-content-between flex-wrap">
-							<div class="col text-center">
-								<a class="text-decoration-none d-block mb-2" ng-href="mailto:{{baseUrl}}#" ng-click="window.webContent.sp[0].sharePageEmail()">
-									<img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24/mail-icon.png" alt="Email Icon">
-								</a>
-								<div class="btn-cta">
-									<a class=" btn btn-primary" href="{{baseUrl}}#/social">Send Message</a>
-								</div>
-							</div>
-							<div class="col text-center">
-								<a class="text-decoration-none d-block mb-2" ng-href="mailto:{{baseUrl}}#" ng-click="window.webContent.sp[0].sharePageEmail()">
-									<img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24/social-icon.png" alt="Social Icon">
-								</a>
-								<div class="btn-cta">
-									<a class=" btn btn-primary" href="{{baseUrl}}#/social">Go Social</a>
-								</div>
-							</div>
-							<div class="col text-center">
-								<a class="text-decoration-none d-block mb-2" ng-href="mailto:{{baseUrl}}#" ng-click="window.webContent.sp[0].sharePageEmail()">
-									<img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24/ecard-icon.png" alt="e-Card Icon">
-								</a>
-								<div class="btn-cta">
-									<a class=" btn btn-primary" href="{{baseUrl}}#/social">Send e-Card</a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		 </div>
-       <div class="ym-pc-dashboard-standard-gifts d-flex justify-content-between flex-wrap gap-4" role="list" aria-label="Gifts">
-         <div class="loading pt-5" ng-if="loadingGifts" ng-cloak>Loading Gifts... <img style="max-width: 75px" class="spin" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24/badge-trophy-earned.png">
+     <p class="text-start">Please allow 15 minutes for the system to update your donation. <br /> Please note that prizes can take up to 6 weeks to be delivered after the event has completed. </p>
+     <div class="ym-pc-dashboard-progress-section__column event-secondary-medium p-3 mb-5">
+       <div class="ym-pc-dashboard-email-challenge-box text-start">
+         <div class="ym-pc-dashboard-section-header text-start">
+           <h3 class="h5"> Spread the Word! </h3>
+         </div>
+         <div class="d-md-flex justify-content-between flex-wrap">
+           <div class="col">
+             <div class="text-start">
+               <p>Continue sending emails, social messages and e-cards to receive additional thank-you gifts!</p>
+             </div>
+           </div>
+           <div class="col">
+             <div class="d-flex justify-content-between flex-wrap">
+               <div class="col text-center">
+                 <a class="text-decoration-none d-block mb-2" ng-href="mailto:{{baseUrl}}#" ng-click="window.webContent.sp[0].sharePageEmail()">
+                   <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24/mail-icon.png" alt="Email Icon">
+                 </a>
+                 <div class="btn-cta">
+                   <a class=" btn btn-primary" href="{{baseUrl}}#/social">Send Message</a>
+                 </div>
+               </div>
+               <div class="col text-center">
+                 <a class="text-decoration-none d-block mb-2" ng-href="mailto:{{baseUrl}}#" ng-click="window.webContent.sp[0].sharePageEmail()">
+                   <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24/social-icon.png" alt="Social Icon">
+                 </a>
+                 <div class="btn-cta">
+                   <a class=" btn btn-primary" href="{{baseUrl}}#/social">Go Social</a>
+                 </div>
+               </div>
+               <div class="col text-center">
+                 <a class="text-decoration-none d-block mb-2" ng-href="mailto:{{baseUrl}}#" ng-click="window.webContent.sp[0].sharePageEmail()">
+                   <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24/ecard-icon.png" alt="e-Card Icon">
+                 </a>
+                 <div class="btn-cta">
+                   <a class=" btn btn-primary" href="{{baseUrl}}#/social">Send e-Card</a>
+                 </div>
+               </div>
+             </div>
+           </div>
+         </div>
+       </div>
+     </div>
+     <div class="ym-pc-dashboard-standard-gifts d-flex justify-content-between flex-wrap gap-4" role="list" aria-label="Gifts">
+       <div class="loading mt-3" ng-if="loadingGifts" ng-cloak>Loading Gifts... <img style="max-width: 75px" class="spin" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24/badge-trophy-earned.png">
        </div>
        <div class="ym-pc-dashboard-standard-gifts-icon col" ng-class="{'not-earned': !gift.earned}" ng-repeat="gift in gifts" role="listitem" aria-label="{{gift.name}}" ng-cloak>
          <a role="button" href="" ng-click="showPrize(gift.gift_id,gift.name,gift.earned,gift.image,'')">
