@@ -10,6 +10,29 @@ h1.h5.modal-title {
     height:65vh;
   }
 }
+
+.modal-dialog {
+   .ym-pc-dashboard-gift-earned {
+      color: #440075;
+      font-family: $headline-font;
+      font-size: 30px;
+      text-align:center;
+      font-weight:bold;
+   }
+   img.prize-image {
+      max-height: 350px;
+      margin:0 auto;
+      -webkit-animation-name: wiggle;
+      -ms-animation-name: wiggle;
+      -ms-animation-duration: 1000ms;
+      -webkit-animation-duration: 1000ms;
+      -webkit-animation-iteration-count: 1;
+      -ms-animation-iteration-count: 1;
+      -webkit-animation-timing-function: ease-in-out;
+      -ms-animation-timing-function: ease-in-out;
+    }
+}
+
 .ym-pc-dashboard-mobile-downloads a:focus {
     outline: red 1px solid;
 }
