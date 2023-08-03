@@ -19,6 +19,9 @@ if window.location.href.indexOf('pagename=ym_khc_participant_center') isnt -1
             controller: 'NgPcDashboardViewCtrl'
           .when '/email', 
             redirectTo: '/email/compose'
+          .when '/email/classic/:messageType?/:messageId?', 
+            templateUrl: APP_INFO.rootPath + 'dist/ym-primary/html/participant-center/view/emailClassic.html'
+            controller: 'NgPcEmailComposeViewCtrl'
           .when '/email/compose/:messageType?/:messageId?', 
             templateUrl: APP_INFO.rootPath + 'dist/ym-primary/html/participant-center/view/emailCompose.html'
             controller: 'NgPcEmailComposeViewCtrl'
