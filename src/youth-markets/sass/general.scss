@@ -12,6 +12,16 @@
   }
 }
 
+.loading {
+    background: $event-secondary-light;
+    padding: 10px;
+    text-align: center;
+    font-size: 20px;
+    font-style: italic;
+    border-radius: 5px;
+    color: #000000;
+}
+
 .event-primary {
   background: $event-primary;
 }

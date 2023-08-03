@@ -9,13 +9,21 @@
       <div class="ym-pc-dashboard-money-date" ng-if="DonationDueDate" ng-cloak> Donation Due Date: {{DonationDueDate | date:'MM/dd/yyyy'}}
       </div>
     </div>
-    <div class="ym-pc-dashboard-school-challange mb-0">
-      <section class="ym-pc-dashboard-coordinators-message-section mb-0" aria-label="Note From Your Teacher">
+    <div class="ym-pc-dashboard-school-challange d-md-flex flex-wrap mb-0">
+      <section class="ym-pc-dashboard-coordinators-message-section mb-0" ng-class="(mystery_gift) ? 'col-md-8' : 'w-100'" aria-label="Note From Your Teacher">
         <div class="ym-pc-dashboard-section-header"> Note from your teacher: </div>
         <div class="ym-pc-dashboard-section-text">
           <div ng-if="coordinatorMessage.message == ''" ng-cloak> Don't forget to text or send e-cards to your friends and family tonight and remember to finish&nbsp;Finn's&nbsp;Mission! </div>
           <div ng-bind-html="coordinatorMessage.message" ng-if="coordinatorMessage.message != ''" ng-cloak></div>
           <!--<div>Don't forget to text or send e-cards to your friends and family tonight. Remember to finish Finn's Mission!</div>-->
+        </div>
+      </section>
+      <section class="col-md-4 bonus-gift" ng-if="mystery_gift" ng-cloak>
+        <div class="d-flex justify-content-between align-items-center gap-4 py-2 px-5">
+          <div class="bonus-gift-text text-center fw-bold"> Congratulations! You earned the Rare Buster Collectible. </div>
+          <div class="bonus-gift-image">
+            <img class="img-fluid" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24/trophy-icon.png" alt="Rare Buster Collectible">
+          </div>
         </div>
       </section>
     </div>
@@ -129,7 +137,7 @@
                 <g>
                   <path fill="url(#finn)" d="M260 313v700h341v-700h-341z"></path>
                 </g>
-                <g ng-if="prizesEarned < 8" class="gear" ng-cloak>
+                <g class="gear" ng-cloak>
                   <path ng-if="prizesEarned < 8" fill="url(#ballbw)" d="M292 587v105h105v-105h-105z">
                   </path>
                   <path ng-if="prizesEarned == 8" fill="url(#ballcolor)" d="M292 587v105h105v-105h-105z"></path>
@@ -162,16 +170,23 @@
           <div class="ym-pc-dashboard-badges-header">
             <strong> Complete Finn's Mission to earn Finn's Lifesavers Award. </strong>
           </div>
+          <div class="loading mt-3" ng-if="loadingBadges" ng-cloak>Loading Badges... <img style="max-width: 75px" class="spin" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24/badge-2-earned.png"></div>
           <div class="badges d-flex flex-wrap justify-content-around">
             <div class="ym-badges" ng-repeat="(name, prize) in prizes" ng-cloak>
               <div class="ym-badge text-center mb-4 p-2" tabindex="0" aria-label="{{prize.label}} Badge {{(prize.status) ? 'Earned' : 'Not Earned'}}">
                 <img class="img-fluid" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24/badge-{{name}}-{{(prize.status) ? 'earned' : 'unearned'}}.png" alt="{{prize.label}} Badge {{(prize.status) ? 'Earned' : 'Not Earned'}}">
                 <div class="badge-title" ng-bind-html="prize.label"></div>
-                <a class="badge-button btn btn-primary mb-2" ng-class="(!prize.status) ? '' : 'btn-white'" ng-href="{{prize.final_url}}" target="_blank" aria-label="{{prize.aria_label}}">
+                <a class="badge-button btn btn-primary mb-2" ng-class="(!prize.status) ? '' : 'btn-white'" ng-href="{{prize.final_url}}" target="{{(prize.mission_url_type == 'Quiz') ? '_blank' : ''}}" aria-label="{{prize.aria_button}}" ng-if="prize.mission_url_type != 'Modal'" ng-cloak>
                   <strong>
                     <span ng-if="name == 'trophy'" class="d-inline-block" ng-cloak>
                       <i class="fa fa-{{(prize.status) ? 'unlock' : 'lock'}}" aria-hidden="true"></i>
                     </span>
+                    {{prize.button_label}}
+                  </strong>
+                </a>
+                <a class="badge-button btn btn-primary mb-2" ng-class="(!prize.status) ? '' : 'btn-white'" href="" ng-click="showTrophyMessage()" aria-label="{{prize.aria_button}}" ng-if="prize.mission_url_type == 'Modal' && name == 'trophy'" ng-cloak>
+                  <strong>
+                    <i class="fa fa-{{(prize.status) ? 'unlock' : 'lock'}}" aria-hidden="true"></i>
                     {{prize.button_label}}
                   </strong>
                 </a>
@@ -246,11 +261,17 @@
                   <strong> Copy Link </strong>
                 </button>
               </div>
-              <div class="text-center">
-                <a ng-href="{{baseUrl}}#" ng-click="delegatedAddThis('.js--personal-social-share', 'facebook')">
+              <div class="d-flex justify-content-center gap-1 text-center">
+                <a class="text-decoration-none" ng-href="mailto:{{baseUrl}}#" ng-click="window.webContent.sp[0].nuclavisShareEmail()">
                   <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24/mail-icon.png" alt="Email">
                 </a>
-                <a ng-href="{{baseUrl}}#" ng-click="delegatedAddThis('.js--personal-social-share', 'facebook')">
+                <a class="text-decoration-none" ng-href="mailto:{{baseUrl}}#" ng-click="window.webContent.sp[0].nuclavisShareSms()">
+                  <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24/msg-icon.png" alt="Messaging">
+                </a>
+                <a class="text-decoration-none" ng-href="mailto:{{baseUrl}}#" ng-click="window.webContent.sp[0].nuclavisShareLinkedIn()">
+                  <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24/chat-icon.png" alt="LinkedIn">
+                </a>
+                <a class="text-decoration-none" ng-href="{{baseUrl}}#" ng-click="window.webContent.sp[0].nuclavisShareFacebook()">
                   <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24/fb-icon.png" alt="Facebook">
                 </a>
               </div>
@@ -466,7 +487,7 @@
                 {{companyInfo.participantCount|number}} Students Enrolled
               </p>
             </div>
-            <div class="col">
+            <div class="col d-none">
               <div class="d-flex justify-content-center">
                 <div class="single-chart">
                   <svg viewBox="0 0 36 36" class="circular-chart blue">
@@ -531,13 +552,13 @@
             <p style="color:#c10e21" ng-show="!hasOOTDashboard" ng-scope> Manage your event tool is not currently available. Please try again later. </p>
             <div class="d-flex justify-content-center text-center flex-wrap">
               <div class="col" ng-scope>
-                <img class="d-block mx-auto mb-2" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24/fb-icon.png" alt="Facebook">
+                <img class="d-block mx-auto mb-2" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24/school-plan-icon.png" alt="View School Plan">
                 <a class="btn btn-md-wide btn-primary" ng-href="{{baseUrl}}#/schoolplan" ng-cloak>
                   <strong> School Plan </strong>
                 </a>
               </div>
               <div class="colk" ng-show="hasOOTDashboard" ng-scope>
-                <img class="d-block mx-auto mb-2" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24/fb-icon.png" alt="Facebook">
+                <img class="d-block mx-auto mb-2" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24/reports-icon.png" alt="View Reports">
                 <a class="btn btn-md-wide btn-primary" ng-href="https://khc.staging.ootqa.org/coordinator/login/{{frId}}/{{authToken}}/{{sessionCookie}}" target="_blank" ng-if="tablePrefix == 'heartdev'" ng-cloak>
                   <strong> View Reports </strong>
                 </a>
@@ -549,7 +570,7 @@
                 </a>
               </div>
               <div class="col" ng-show="hasOOTDashboard">
-                <img class="d-block mx-auto mb-2" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24/fb-icon.png" alt="Facebook">
+                <img class="d-block mx-auto mb-2" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24/thank-you-gift-icon.png" alt="View Thank You Gifts">
                 <a class="btn btn-md-wide btn-primary" ng-href="https://khc.staging.ootqa.org/coordinator/login/{{frId}}/{{authToken}}/{{sessionCookie}}" target="_blank" ng-if="tablePrefix == 'heartdev'" ng-cloak>
                   <strong> Thank-You Gifts </strong>
                 </a>

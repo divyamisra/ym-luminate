@@ -31,8 +31,9 @@ angular.module 'ahaLuminateControllers'
       $scope.companyProgress = {}
       $scope.returningStudent = false
 
-      $scope.prizes = []
+      $scope.prizes = {}
       $scope.prizesEarned = 0
+      $scope.totalPrizes = 0
       $scope.has_bonus = 0
       $scope.studentChallengeBadge = false
       $scope.schoolChallengeBadge = false
@@ -43,15 +44,27 @@ angular.module 'ahaLuminateControllers'
         prizes = response.data.missions
         #$scope.has_bonus = response.data.has_bonus
         angular.forEach prizes, (prize) ->
-          $scope.prizes.push
-            id: prize.id
-            label: prize.label
-            sku: prize.sku
+          $scope.prizes[prize.mission_id] = 
+            id: prize.mission_id
+            label: prize.hq_name
             status: prize.earned
-            image_url: prize.earned_image_url
-
-          if prize.status isnt 0
+          $scope.totalPrizes++
+          
+          if prize.earned isnt 0
             $scope.prizesEarned++
+
+        prize = response.data.overall_mission_status
+        $scope.prizes['trophy'] = 
+          id: 99
+          label: prize.hq_name
+          status: prize.completed
+          mission_url: prize.hq_action_url
+          mission_url_type: prize.hq_action_type
+          hover_msg: prize.hq_hover
+          button_label: prize.hq_button
+        $scope.totalPrizes++
+        if prize.completed isnt 0
+          $scope.prizesEarned++
       , (response) ->
         # TODO
 
@@ -129,6 +142,7 @@ angular.module 'ahaLuminateControllers'
                   $scope.returningStudent = true
 
       $scope.personalInfo = {}
+     
       $scope.personalInfo.avatar = ''
       $scope.getPersonalAvatar = ->
         ZuriService.getAvatar $scope.frId + '/' + $scope.participantId,
@@ -145,7 +159,7 @@ angular.module 'ahaLuminateControllers'
               avatarURL = ""
             $scope.personalInfo.avatar = avatarURL
       $scope.getPersonalAvatar()
-
+      
       TeamraiserCompanyService.getCompanies 'company_id=' + $scope.companyId,
         success: (response) ->
           coordinatorId = response.getCompaniesResponse?.company?.coordinatorId
@@ -278,9 +292,10 @@ angular.module 'ahaLuminateControllers'
           delete $scope.updatePersonalPhoto1Error
           if not $scope.$$phase
             $scope.$apply()
-          BoundlessService.logPersonalPageUpdated()
+          #BoundlessService.logPersonalPageUpdated()
           successResponse = response.successResponse
           photoNumber = successResponse.photoNumber
+          NuclavisService.postAction $scope.frId + '/' + $scope.participantId + '/personal_page_update_hq'
           
           TeamraiserParticipantPageService.getPersonalPhotos
             error: (response) ->
@@ -375,7 +390,8 @@ angular.module 'ahaLuminateControllers'
                 $scope.personalPageContent.rich_text = richText
                 $scope.personalPageContent.ng_rich_text = richText
                 $scope.personalPageContent.mode = 'view'
-                BoundlessService.logPersonalPageUpdated()
+                #BoundlessService.logPersonalPageUpdated()
+                NuclavisService.postAction $scope.frId + '/' + $scope.participantId + '/personal_page_update_hq'
                 if not $scope.$$phase
                   $scope.$apply()
   ]

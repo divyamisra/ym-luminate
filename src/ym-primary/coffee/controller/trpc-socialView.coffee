@@ -3,11 +3,17 @@ angular.module('trPcControllers').controller 'NgPcSocialViewCtrl', [
   '$sce'
   '$rootScope'
   'FacebookFundraiserService'
-  'BoundlessService'
+  'NuclavisService'
   'NgPcTeamraiserShortcutURLService'
-  ($scope, $sce, $rootScope, FacebookFundraiserService, BoundlessService, NgPcTeamraiserShortcutURLService) ->
+  ($scope, $sce, $rootScope, FacebookFundraiserService, NuclavisService, NgPcTeamraiserShortcutURLService) ->
     #facebook fundraising
+    webContent.load = 1
     $rootScope.facebookFundraiserConfirmedStatus = ''
+    if location.href.indexOf("showfb") > 0
+      $scope.facebookFundraisersEnabled = true
+    if location.href.indexOf("fbconnected") > 0
+      $scope.facebookFundraiserId = 1234
+      $scope.facebookFundraiserConfirmedStatus = true
     if $scope.facebookFundraisersEnabled and $rootScope.facebookFundraiserId and $rootScope.facebookFundraiserId isnt ''
       $rootScope.facebookFundraiserConfirmedStatus = 'pending'
       FacebookFundraiserService.confirmFundraiserStatus()
@@ -21,6 +27,7 @@ angular.module('trPcControllers').controller 'NgPcSocialViewCtrl', [
             $rootScope.facebookFundraiserConfirmedStatus = 'deleted'
           else
             $rootScope.facebookFundraiserConfirmedStatus = 'confirmed'
+            NuclavisService.postAction $scope.frId + '/' + $scope.consId + '/facebook_connect_hq'
     
     $scope.getParticipantShortcut = ->
       getParticipantShortcutPromise = NgPcTeamraiserShortcutURLService.getShortcut()
@@ -45,18 +52,18 @@ angular.module('trPcControllers').controller 'NgPcSocialViewCtrl', [
     
     $scope.socialEarnedThankYou = 0
     $scope.putSocialMedia = (event, sel) ->
-      BoundlessService.putSocialMedia()
+      NuclavisService.postAction $scope.frId + '/' + $scope.consId + '/opt_out_hq'
         .then (response) ->
           $scope.socialEarnedThankYou = 1
 
     $scope.socialEarned = -1
     getFinnsMission = ->
-      BoundlessService.getBadges $scope.frId + '/' + $scope.consId
+      NuclavisService.getBadges $scope.consId + '/' + $scope.frId
       .then (response) ->
-        prizes = response.data.prizes
+        prizes = response.data.missions
         angular.forEach prizes, (prize) ->
-          if prize.label == "Go Social"
-            if prize.status != 0
+          if prize.hq_button == "Go Social"
+            if prize.earned != 0
               $scope.socialEarned = 1
             else 
               $scope.socialEarned = 0

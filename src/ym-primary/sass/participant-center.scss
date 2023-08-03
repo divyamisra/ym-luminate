@@ -14,6 +14,13 @@
   max-width:150px !important;
 }
 
+.bonus-gift {
+  background: $event-accent-blue;
+  .bonus-gift-image {
+    max-width: 70px;
+  }
+}
+
 .student-hq {
   .col {
     min-width: 290px;
@@ -372,24 +379,18 @@ section.ym-pc-dashboard-standard-gifts-section {
         }
 	
 	.ym-pc-dashboard-standard-gifts-icon {
-           max-width: 23%;
-           margin: 0 11px 15px 0;
-           vertical-align: top;
    	   position:relative;
 	   text-align:center;
-	   background: $event-secondary-medium;
+	   background: $event-accent-blue;
 	   padding: 20px;
-	   flex: 1 100%;
+           border: 2px solid $event-secondary-medium;
+           border-radius: 20px;
+           min-width: 245px;
+           max-width: 245px;
   
-	   @media (max-width: $screen-sm-min) {
-              max-width:45%;
-           }
-	   @media (max-width: $screen-xs-min) {
-              max-width:100%;
-           }
-		
 	   img {
 	      margin-bottom: 30px;
+	      max-height: 200px;
 	   }
            
 	   &.not-earned {
@@ -469,26 +470,17 @@ div.ta-editor table.containFull table {
 	width: auto !important;
 }
 
-.modal-dialog {
-   .ym-pc-dashboard-gift-earned {
-      color: #440075;
-      font-family: $headline-font;
-      font-size: 30px;
-      text-align:center;
-      font-weight:bold;
-   }
-   img.prize-image {
-      margin:0 auto;
-      -webkit-animation-name: wiggle;
-      -ms-animation-name: wiggle;
-      -ms-animation-duration: 1000ms;
-      -webkit-animation-duration: 1000ms;
-      -webkit-animation-iteration-count: 1;
-      -ms-animation-iteration-count: 1;
-      -webkit-animation-timing-function: ease-in-out;
-      -ms-animation-timing-function: ease-in-out;
-    }
+.spin {
+  animation: rotation 6s infinite linear;
+}
 
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
 }
 
 @-webkit-keyframes wiggle {
