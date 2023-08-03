@@ -70,6 +70,7 @@ angular.module('trPcControllers').controller 'NgPcSocialViewCtrl', [
     getFinnsMission()
               
     #setup social iframe
+    ###
     urlPrefix = ''
     if $scope.tablePrefix is 'heartdev' or $scope.tablePrefix is 'heartnew'
       urlPrefix = 'load'
@@ -82,4 +83,5 @@ angular.module('trPcControllers').controller 'NgPcSocialViewCtrl', [
     url = 'https://' + urlPrefix + '.boundlessfundraising.com/applications/ahakhc/social/app/ui/#/addsocial/' + consId + '/' + frId + '/' + auth + '/' + jsession + '?source=PCSocial'
     $scope.socialIframeURL = $sce.trustAsResourceUrl url
     return
+    ###
   ]
