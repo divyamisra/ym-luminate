@@ -470,28 +470,6 @@ div.ta-editor table.containFull table {
 	width: auto !important;
 }
 
-.modal-dialog {
-   .ym-pc-dashboard-gift-earned {
-      color: #440075;
-      font-family: $headline-font;
-      font-size: 30px;
-      text-align:center;
-      font-weight:bold;
-   }
-   img.prize-image {
-      margin:0 auto;
-      -webkit-animation-name: wiggle;
-      -ms-animation-name: wiggle;
-      -ms-animation-duration: 1000ms;
-      -webkit-animation-duration: 1000ms;
-      -webkit-animation-iteration-count: 1;
-      -ms-animation-iteration-count: 1;
-      -webkit-animation-timing-function: ease-in-out;
-      -ms-animation-timing-function: ease-in-out;
-    }
-
-}
-
 .spin {
   animation: rotation 6s infinite linear;
 }
