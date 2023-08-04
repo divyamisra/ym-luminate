@@ -148,10 +148,11 @@
               </h2>
             </div>
             <div class="col-md-4">
-              <div class="ym-pc-report-header-buttons" ng-if="participantGifts.gifts && participantGifts.gifts.length > 0" ng-cloak>
+              <div class="ym-pc-report-head-buttons text-end" ng-if="participantGifts.gifts && participantGifts.gifts.length > 0" ng-cloak>
                 <a class="btn btn-primary btn-white" aria-label="Download Personal Donors" ng-href="TRParticipantDownload/Personal_Donations.csv?download_type=personal_donations&amp;fr_id={{frId}}" target="_blank">
                   <i class="fa fa-download" hidden aria-hidden="true"></i>&nbsp;<strong>Download</strong>
                 </a>
+                &nbsp;&nbsp;
                 <button type="button" class="btn btn-primary" aria-label="Thank All Personal Donors" ng-click="thankAllParticipantDonors()">
                   <i class="fa fa-envelope" hidden aria-hidden="true"></i>&nbsp;<strong>Thank All</strong>
                 </button>
