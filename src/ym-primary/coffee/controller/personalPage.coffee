@@ -29,6 +29,7 @@ angular.module 'ahaLuminateControllers'
       $rootScope.survivor = false
       $scope.companyProgress = {}
       $scope.returningStudent = false
+      $scope.loadingBadges = true
 
       $scope.prizes = {}
       $scope.prizesEarned = 0
@@ -64,6 +65,7 @@ angular.module 'ahaLuminateControllers'
         $scope.totalPrizes++
         if prize.completed isnt 0
           $scope.prizesEarned++
+        $scope.loadingBadges = false
       , (response) ->
         # TODO
 
