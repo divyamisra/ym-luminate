@@ -58,7 +58,7 @@
                   <span ng-bind-html="gift.info_text"></span>
                 </div>
               </div>
-              <div class="btn btn-primary btn-white">View</div>
+              <div class="btn btn-primary" ng-class="{{(gift.earned) ? 'btn-white' : ''}}>View</div>
             </a>
           </div>
         </div>
