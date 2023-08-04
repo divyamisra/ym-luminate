@@ -563,13 +563,7 @@
               </div>
               <div class="colk" ng-show="hasOOTDashboard" ng-scope>
                 <img class="d-block mx-auto mb-2" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24/reports-icon.png" alt="View Reports">
-                <a class="btn btn-md-wide btn-primary" ng-href="https://khc.staging.ootqa.org/coordinator/login/{{frId}}/{{authToken}}/{{sessionCookie}}" target="_blank" ng-if="tablePrefix == 'heartdev'" ng-cloak>
-                  <strong> View Reports </strong>
-                </a>
-                <a class="btn btn-md-wide btn-primary" ng-href="https://khc.staging.ootqa.org/coordinator/login/{{frId}}/{{authToken}}/{{sessionCookie}}" target="_blank" ng-if="tablePrefix == 'heartnew'" ng-cloak>
-                  <strong> View Reports </strong>
-                </a>
-                <a class="btn btn-md-wide btn-primary" ng-href="https://kidsheartchallenge.heart.org/coordinator/login/{{frId}}/{{authToken}}/{{sessionCookie}}" target="_blank" ng-if="tablePrefix == 'heart'" ng-cloak>
+                <a class="btn btn-md-wide btn-primary" ng-href="{{baseUrl}}#/reports" ng-cloak>
                   <strong> View Reports </strong>
                 </a>
               </div>
