@@ -54,7 +54,12 @@ main > .container-fluid {
         height: 40px;
         padding: 12px 6px 0;
         margin: 0 3px 5px;
+        flex: 1 1 100%;
+	text-align:left;
+      }
+      @media (max-width: 767px) {
         flex: 1 1 46%;
+	text-align:center;
       }
     }
   }
