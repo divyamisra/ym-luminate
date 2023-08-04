@@ -739,7 +739,9 @@
           </div>
         </div>
       </form>
-      <a ng-href="{{baseUrl}}#/email/classic">Click here to use HQ Email Tools</a>
+      <div class="my-3" ng-if="AmountRaised >= 5 || returningStudent" ng-cloak>
+        <a ng-href="{{baseUrl}}#/email/classic">Click here to use HQ Email Tools</a>
+      </div>
     </div>
   </div>
 
