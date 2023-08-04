@@ -32,11 +32,11 @@
                  </div>
                </div>
                <div class="col text-center">
-                 <a class="text-decoration-none d-block mb-2" ng-href="{{baseUrl}}#/social">
+                 <a class="text-decoration-none d-block mb-2" ng-href="https://tools.heart.org/aha_ym24{{(tablePrefix == 'heartdev') ? '_dev' : ''}}/?eid={{frId}}&sid={{consId}}&name={{consNameFirst}}">
                    <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24/ecard-icon.png" alt="e-Card Icon">
                  </a>
                  <div class="btn-cta">
-                   <a class=" btn btn-primary" href="{{baseUrl}}#/social">Send e-Card</a>
+                   <a class=" btn btn-primary" ng-href="https://tools.heart.org/aha_ym24{{(tablePrefix == 'heartdev') ? '_dev' : ''}}/?eid={{frId}}&sid={{consId}}&name={{consNameFirst}}">Send e-Card</a>
                  </div>
                </div>
              </div>
