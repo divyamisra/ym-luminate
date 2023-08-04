@@ -931,5 +931,8 @@ angular.module 'trPcControllers'
             response
         $scope.emailPromises.push deleteContactsPromise
       $scope.emailSelectedContacts = ->
-        $location.path '/email/compose'
+        if $scope.emailView != 'classic'
+          $location.path '/email/compose'
+        else
+          $location.path '/email/classic'
   ]
