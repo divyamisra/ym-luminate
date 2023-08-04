@@ -409,9 +409,13 @@
               </div>
               <div class="ym-activity-url">
                 <p class="small">
-                  <span ng-bind-html="personalPageUrl"></span>
+                  <span id="personalUrl1" ng-bind-html="personalPageUrl"></span>
                   <button type="button" class="btn btn-primary ms-2" aria-label="Edit Personal Page URL" ng-click="editPersonalUrl()">
                     <strong>Edit My URL</strong>
+                  </button>
+		  &nbsp;&nbsp;
+                  <button type="button" class="btn btn-md-wide btn-primary btn-white" id="copyable" data-field="personalUrl1" data-field-type="Personal URL" role="button" copy-field>
+                    <strong> Copy Link </strong>
                   </button>
                 </p>
               </div>
@@ -713,9 +717,13 @@
             </div>
             <div class="ym-activity-url">
               <p class="small">
-                <span ng-bind-html="personalPageUrl"></span>
+                <span id="personalUrl2" ng-bind-html="personalPageUrl"></span>
                 <button type="button" class="btn btn-primary ms-2" aria-label="Edit Personal Page URL" ng-click="editPersonalUrl()">
                   <strong>Edit My URL</strong>
+                </button>
+		&nbsp;&nbsp;
+		<button type="button" class="btn btn-md-wide btn-primary btn-white" id="copyable" data-field="personalUrl2" data-field-type="Personal URL" role="button" copy-field>
+                  <strong> Copy Link </strong>
                 </button>
               </p>
             </div>

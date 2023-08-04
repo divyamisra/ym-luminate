@@ -78,6 +78,7 @@ angular.module 'trPcControllers'
         alert 'Message copied successfully.'
         document.execCommand 'copy'
         window.getSelection().removeAllRanges()
+        NuclavisService.postAction $rootScope.frId + '/' + $rootScope.participantRegistration.consId + '/email_hq'
         return
         
         # if window.clipboardData and window.clipboardData.setData
