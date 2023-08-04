@@ -5,6 +5,13 @@ svg *:focus {
     border-width: 2px !important;
 }
 
+main > .container,
+main > .container-fluid {
+  @media (max-width: $screen-xs-max) {
+    margin-top: 0px;
+  }
+}
+
 .hidden {
    display: none;
 }
