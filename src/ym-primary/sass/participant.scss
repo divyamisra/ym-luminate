@@ -25,6 +25,13 @@
    }
 }*/
 
+main > .container,
+main > .container-fluid {
+  @media (max-width: $screen-xs-max) {
+    margin-top: 0px;
+  }
+}
+
 .ng-pc-nav--coordinator {
   @media (max-width: 991px) {
     text-align: center;
