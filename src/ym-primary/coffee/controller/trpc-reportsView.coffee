@@ -119,9 +119,15 @@ angular.module 'trPcControllers'
             if giftContact
               $rootScope.selectedContacts.contacts.push giftContact
         if $scope.thankYouMessageId
-          $location.path '/email/compose/suggestedMessage/' + $scope.thankYouMessageId
+          if localStorage.emailView != 'classic'
+            $location.path '/email/compose/suggestedMessage/' + $scope.thankYouMessageId
+          else
+            $location.path '/email/classic/suggestedMessage/' + $scope.thankYouMessageId
         else
-          $location.path '/email/compose/'
+          if localStorage.emailView != 'classic'
+            $location.path '/email/compose/'
+          else
+            $location.path '/email/classic/'
       
       if $scope.participantRegistration.aTeamCaptain is 'true'
         $scope.teamGifts =

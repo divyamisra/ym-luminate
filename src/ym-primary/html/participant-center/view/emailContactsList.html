@@ -1,7 +1,7 @@
 <div cg-busy="emailPromises">
   <div class="row">
     <div class="col-sm-4 col-md-3">
-      <div class="visible-xs">
+      <div class="d-sm-block d-md-none">
         <div class="btn-group ng-pc-nav-btn-group" uib-dropdown>
           <button type="button" class="btn btn-secondary form-control" uib-dropdown-toggle>
             <strong>{{filterName}}</strong> <span class="caret"></span>
@@ -125,7 +125,7 @@
           </ul>
         </div>
       </div>
-      <div class="hidden-xs">
+      <div class="d-sm-none d-md-block">
         <a class="btn btn-secondary form-control" ng-href="{{baseUrl}}#/email/compose" ng-show="usePcEmail">
           <strong>Compose</strong>
         </a>
@@ -227,19 +227,20 @@
         {{deleteContactSuccess}}
       </div>
       <div class="contacts-list__actions clearfix">
-        <div class="contacts-list__actions-selected">
+        <div class="contacts-list__actions-selected me-2">
           <button class="btn btn-primary" ng-click="emailSelectedContacts()">
             <strong>Email Selected</strong>
           </button>
         </div>
         <div class="contacts-list__actions-manage">
-          <button class="btn btn-toggle" ng-click="addContact()">
+          <button class="btn btn-primary btn-white" ng-click="addContact()">
             Add<span class="hidden-xs"> Contact</span>
           </button> 
-          <button class="btn btn-toggle" ng-click="importContacts()">
+          &nbsp;&nbsp;
+          <button class="btn btn-primary btn-white" ng-click="importContacts()">
             Import<span class="hidden-xs"> Contacts</span>
           </button>
-          <button class="btn btn-toggle" ng-click="deleteContacts()">
+          <button class="btn btn-primary btn-white" ng-click="deleteContacts()">
             <span> Delete Selected Contacts</span>
           </button>
         </div>
