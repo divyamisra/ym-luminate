@@ -15,6 +15,7 @@ angular.module 'trPcControllers'
     ($rootScope, $scope, $routeParams, $timeout, $sce, $httpParamSerializer, $uibModal, APP_INFO, BoundlessService, NgPcTeamraiserEventService, NgPcTeamraiserEmailService, NgPcContactService) ->
       $scope.messageType = $routeParams.messageType
       $scope.messageId = $routeParams.messageId
+      localStorage.emailView = 'classic' 
       
       $scope.emailPromises = []
       

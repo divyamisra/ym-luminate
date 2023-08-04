@@ -2,7 +2,7 @@
 
   <div class="row" ng-show="usePcEmail">
     <div class="col-sm-4 col-md-3">
-      <div class="d-xs-block d-sm-none">
+      <div class="d-sm-block d-md-none">
         <div class="btn-group ng-pc-nav-btn-group" uib-dropdown>
           <button type="button" class="btn btn-secondary form-control" uib-dropdown-toggle>
             <strong>Compose</strong> <span class="caret"></span>
@@ -128,7 +128,7 @@
           </ul>
         </div>
       </div>
-      <div class="d-xs-none d-sm-block">
+      <div class="d-sm-none d-md-block">
         <a disabled class="btn btn-secondary form-control">
           <strong>Compose</strong>
         </a>
@@ -286,7 +286,7 @@
 
   <div class="row" ng-show="!usePcEmail">
     <div class="col-sm-4 col-md-3">
-      <div class="d-xs-block d-sm-none">
+      <div class="d-sm-block d-md-none">
         <div class="btn-group ng-pc-nav-btn-group" uib-dropdown>
           <button type="button" class="btn btn-secondary form-control" uib-dropdown-toggle>
             <strong>Compose</strong> <span class="caret"></span>
@@ -412,7 +412,7 @@
           </ul>
         </div>
       </div>
-      <div class="d-xs-none d-sm-block">
+      <div class="d-sm-none d-md-block">
         <!-- NOTE uncomment the compose button when restoring suggested message behavior
         <a disabled class="btn btn-secondary form-control">
           <strong>Compose</strong>
@@ -739,7 +739,9 @@
           </div>
         </div>
       </form>
-      <a ng-href="{{baseUrl}}#/email/classic">Click here to use HQ Email Tools</a>
+      <div class="my-3" ng-if="AmountRaised >= 5 || returningStudent" ng-cloak>
+        <a ng-href="{{baseUrl}}#/email/classic">Click here to use HQ Email Tools</a>
+      </div>
     </div>
   </div>
 
