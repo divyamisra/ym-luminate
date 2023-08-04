@@ -84,11 +84,11 @@
            <div text-angular name="ng_rich_text" ng-model="personalPageContent.ng_rich_text" ta-toolbar="{{personalPageContent.textEditorToolbar}}" serial="{{personalPageContent.serial}}"></div>
          </div> ::]]
        </div>
-       <div class="col-md-6 ym-user-interactions" ng-if="totalPrizes > 0 || studentChallengeBadge || schoolChallengeBadge || challengeId != null">
-         <div class="ym-badges-earned" ng-if="totalPrizes > 0 || studentChallengeBadge || schoolChallengeBadge || returningStudent">
+       <div class="col-md-6 ym-user-interactions">
+         <div class="ym-badges-earned">
            <h3 class="ym-headline h5"> Check Out My Badges </h3>
            <div class="loading mt-3" ng-if="loadingBadges" ng-cloak>Loading Badges... <img style="max-width: 75px" class="spin" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24/badge-2-earned.png"></div>
-           <div class="d-flex justify-content-start aign-items-center flex-wrap gap-4">
+           <div class="d-flex justify-content-start aign-items-center flex-wrap gap-4" ng-if="totalPrizes > 0 || studentChallengeBadge || schoolChallengeBadge || returningStudent">
              <div class="ym-badge" ng-repeat="(name,prize) in prizes" ng-if="prize.status" ng-cloak>
                <!--  ng-repeat="prize in prizes | limitTo: 3" -->
                <div class="ym-badge__item text-center" tabindex="0" aria-label="{{prize.label}} Badge Earned" ng-cloak>
