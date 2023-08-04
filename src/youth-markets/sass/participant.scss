@@ -283,6 +283,8 @@ main > .container-fluid {
   &.open {
     > .dropdown-menu {
       width: 100%;
+      display:block;
+      top:45px;
     }
   }
   
