@@ -366,6 +366,12 @@ section.ym-pc-dashboard-gifts-section {
 }
 
 section.ym-pc-dashboard-standard-gifts-section {
+	.gift-title {
+    	   min-height: 50px;
+	}	
+	.gift-subtitle1 {
+          min-height: 45px;
+        }
         @media (min-width: $screen-sm-min) {
            margin: 0 0 40px;
         }
@@ -390,7 +396,7 @@ section.ym-pc-dashboard-standard-gifts-section {
   
 	   img {
 	      margin-bottom: 30px;
-	      max-height: 200px;
+	      max-height: 180px;
 	   }
            
 	   &.not-earned {
