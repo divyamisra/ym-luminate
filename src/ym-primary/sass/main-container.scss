@@ -8,3 +8,14 @@ svg *:focus {
 .hidden {
    display: none;
 }
+
+.app-26,
+.app-27 {
+  main {
+    > .container {
+      @media (max-width: $screen-xs-max) {
+        margin-top: 0px;
+      }
+    }
+  }
+}
