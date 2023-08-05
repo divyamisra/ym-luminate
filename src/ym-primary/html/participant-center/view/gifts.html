@@ -16,15 +16,15 @@
            <div class="col">
              <div class="d-flex justify-content-between flex-wrap">
                <div class="col text-center">
-                 <a class="text-decoration-none d-block mb-2" ng-href="mailto:{{baseUrl}}#" ng-click="window.webContent.sp[0].sharePageEmail()">
+                 <a class="text-decoration-none d-block mb-2" ng-href="{{baseUrl}}#/email">
                    <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24/mail-icon.png" alt="Email Icon">
                  </a>
                  <div class="btn-cta">
-                   <a class=" btn btn-primary" href="{{baseUrl}}#/social">Send Message</a>
+                   <a class=" btn btn-primary" href="{{baseUrl}}#/email">Send Message</a>
                  </div>
                </div>
                <div class="col text-center">
-                 <a class="text-decoration-none d-block mb-2" ng-href="mailto:{{baseUrl}}#" ng-click="window.webContent.sp[0].sharePageEmail()">
+                 <a class="text-decoration-none d-block mb-2" ng-href="{{baseUrl}}#/social">
                    <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24/social-icon.png" alt="Social Icon">
                  </a>
                  <div class="btn-cta">
@@ -32,11 +32,13 @@
                  </div>
                </div>
                <div class="col text-center">
-                 <a class="text-decoration-none d-block mb-2" ng-href="mailto:{{baseUrl}}#" ng-click="window.webContent.sp[0].sharePageEmail()">
+                 <a class="text-decoration-none d-block mb-2" target="_blank" ng-href="https://tools.heart.org/aha_ym24{{(tablePrefix == 'heartdev') ? '_dev' : ''}}/?eid={{frId}}&sid={{consId}}&name={{consNameFirst}}">
                    <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24/ecard-icon.png" alt="e-Card Icon">
                  </a>
                  <div class="btn-cta">
-                   <a class=" btn btn-primary" href="{{baseUrl}}#/social">Send e-Card</a>
+                   <a class=" btn btn-primary" target="_blank" ng-href="https://tools.heart.org/aha_ym24{{(tablePrefix == 'heartdev') ? '_dev' : ''}}/?eid={{frId}}&sid={{consId}}&name={{consNameFirst}}">
+                      Send e-Card
+                   </a>
                  </div>
                </div>
              </div>
@@ -58,7 +60,7 @@
                   <span ng-bind-html="gift.info_text"></span>
                 </div>
               </div>
-              <div class="btn btn-primary btn-white">View</div>
+              <div class="btn btn-primary" ng-class="{'btn-white': gift.earned}">View</div>
             </a>
           </div>
         </div>

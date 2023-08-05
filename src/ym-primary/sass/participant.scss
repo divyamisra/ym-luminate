@@ -25,6 +25,46 @@
    }
 }*/
 
+main > .container,
+main > .container-fluid {
+  @media (max-width: $screen-xs-max) {
+    margin-top: 0px;
+  }
+}
+
+.ng-pc-nav--coordinator {
+  @media (max-width: 991px) {
+    text-align: center;
+    max-width: 320px;
+    margin: 0 auto 7px;
+  }
+  
+  a {
+    &,
+    &:link,
+    &:visited,
+    &:hover,
+    &:focus,
+    &:active {
+      @media (max-width: 991px) {
+        border-right: 0;
+        font-size: $font-size-sm;
+        line-height: 16px;
+        width: 100px;
+        height: 40px;
+        padding: 12px 6px 0;
+        margin: 0 3px 5px;
+        flex: 1 1 100%;
+	text-align:left;
+      }
+      @media (max-width: 767px) {
+        flex: 1 1 46%;
+	text-align:center;
+      }
+    }
+  }
+}
+
 .list-group-item > .badge {
     float: right;
 }

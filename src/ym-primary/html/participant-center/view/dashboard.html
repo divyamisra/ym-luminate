@@ -403,9 +403,6 @@
                 <a class="btn btn-md-wide btn-primary" ng-href="TR?fr_id={{frId}}&amp;pg=personal&amp;px={{consId}}">
                   <strong> View and Edit Your Page </strong>
                 </a>
-                <!--
-                <button type="button" class="btn btn-blue ms-2" aria-label="Edit Personal Page URL" ng-click="editPersonalUrl()"><span class="fa fa-share-alt"></span></button>
-              	-->
               </div>
               <div class="ym-activity-url">
                 <p class="small">
@@ -444,7 +441,7 @@
           </div>
         </div>
         <div class="col event-secondary-medium p-3">
-          <div class="d-flex justify-content-between gap-3">
+          <div class="d-flex justify-content-between flex-wrap gap-3">
             <div class="col">
               <h3 class="h5">Personal QR Code</h3>
               <p>Share your personal QR Code to spread the word about your fundraising efforts and share your story!</p>
@@ -547,38 +544,44 @@
     </div>
   </section>
   <section class="ym-pc-dashboard-coordinator-progress-section mb-4" aria-label="Fundraising Progress Meters">
-    <div class="d-md-flex justify-content-between flex-wrap gap-4">
+    <div class="d-flex justify-content-between flex-wrap gap-4">
       <div class="col">
         <div class="event-secondary-medium p-3 h-100">
           <div class="ym-event-box">
             <h3 class="h5 clearfix"> Manage Tools </h3>
             <p> Check out the reports page to see which students have completed challenges and who has earned donations. </p>
             <p style="color:#c10e21" ng-show="!hasOOTDashboard" ng-scope> Manage your event tool is not currently available. Please try again later. </p>
-            <div class="d-flex justify-content-center text-center flex-wrap">
+            <div class="d-flex justify-content-center text-center flex-wrap gap-4">
               <div class="col" ng-scope>
-                <img class="d-block mx-auto mb-2" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24/school-plan-icon.png" alt="View School Plan">
+                <a class="" ng-href="{{baseUrl}}#/schoolplan" ng-cloak>
+                  <img class="d-block mx-auto mb-2" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24/school-plan-icon.png" alt="View School Plan">
+		</a>
                 <a class="btn btn-md-wide btn-primary" ng-href="{{baseUrl}}#/schoolplan" ng-cloak>
                   <strong> School Plan </strong>
                 </a>
               </div>
               <div class="colk" ng-show="hasOOTDashboard" ng-scope>
-                <img class="d-block mx-auto mb-2" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24/reports-icon.png" alt="View Reports">
-                <a class="btn btn-md-wide btn-primary" ng-href="https://khc.staging.ootqa.org/coordinator/login/{{frId}}/{{authToken}}/{{sessionCookie}}" target="_blank" ng-if="tablePrefix == 'heartdev'" ng-cloak>
-                  <strong> View Reports </strong>
-                </a>
-                <a class="btn btn-md-wide btn-primary" ng-href="https://khc.staging.ootqa.org/coordinator/login/{{frId}}/{{authToken}}/{{sessionCookie}}" target="_blank" ng-if="tablePrefix == 'heartnew'" ng-cloak>
-                  <strong> View Reports </strong>
-                </a>
-                <a class="btn btn-md-wide btn-primary" ng-href="https://kidsheartchallenge.heart.org/coordinator/login/{{frId}}/{{authToken}}/{{sessionCookie}}" target="_blank" ng-if="tablePrefix == 'heart'" ng-cloak>
+                <a class="" ng-href="{{baseUrl}}#/reports" ng-cloak>
+                  <img class="d-block mx-auto mb-2" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24/reports-icon.png" alt="View Reports">
+		</a>
+                <a class="btn btn-md-wide btn-primary" ng-href="{{baseUrl}}#/reports" ng-cloak>
                   <strong> View Reports </strong>
                 </a>
               </div>
               <div class="col" ng-show="hasOOTDashboard">
-                <img class="d-block mx-auto mb-2" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24/thank-you-gift-icon.png" alt="View Thank You Gifts">
+                <a class="" ng-href="https://khc.staging.ootqa.org/coordinator/login/{{frId}}/{{authToken}}/{{sessionCookie}}" target="_blank" ng-if="tablePrefix == 'heartdev'" ng-cloak>
+                  <img class="d-block mx-auto mb-2" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24/thank-you-gift-icon.png" alt="View Thank You Gifts">
+		</a>
+                <a class="btn btn-md-wide btn-primary" ng-href="https://khc.staging.ootqa.org/coordinator/login/{{frId}}/{{authToken}}/{{sessionCookie}}" target="_blank" ng-if="tablePrefix == 'heartnew'" ng-cloak>
+                  <img class="d-block mx-auto mb-2" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24/thank-you-gift-icon.png" alt="View Thank You Gifts">
+                </a>
+                <a class="" ng-href="https://kidsheartchallenge.heart.org/coordinator/login/{{frId}}/{{authToken}}/{{sessionCookie}}" target="_blank" ng-if="tablePrefix == 'heart'" ng-cloak>
+                  <img class="d-block mx-auto mb-2" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24/thank-you-gift-icon.png" alt="View Thank You Gifts">
+                </a>
                 <a class="btn btn-md-wide btn-primary" ng-href="https://khc.staging.ootqa.org/coordinator/login/{{frId}}/{{authToken}}/{{sessionCookie}}" target="_blank" ng-if="tablePrefix == 'heartdev'" ng-cloak>
                   <strong> Thank-You Gifts </strong>
                 </a>
-                <a class="btn btn-md-wide btn-primary" ng-href="https://khc.staging.ootqa.org/coordinator/login/{{frId}}/{{authToken}}/{{sessionCookie}}" target="_blank" ng-if="tablePrefix == 'heartnew'" ng-cloak>
+                <a class="" ng-href="https://khc.staging.ootqa.org/coordinator/login/{{frId}}/{{authToken}}/{{sessionCookie}}" target="_blank" ng-if="tablePrefix == 'heartnew'" ng-cloak>
                   <strong> Thank-You Gifts </strong>
                 </a>
                 <a class="btn btn-md-wide btn-primary" ng-href="https://kidsheartchallenge.heart.org/coordinator/login/{{frId}}/{{authToken}}/{{sessionCookie}}" target="_blank" ng-if="tablePrefix == 'heart'" ng-cloak>
@@ -598,9 +601,6 @@
               <a class="btn btn-md-wide btn-primary" ng-href="TR?fr_id={{frId}}&amp;pg=company&amp;company_id={{participantRegistration.companyInformation.companyId}}">
                 <strong> View and Edit School Page </strong>
               </a>
-              <button type="button" class="btn btn-blue ms-2" aria-label="Edit School Page URL" ng-click="editCompanyUrl()">
-                <span class="fa fa-share-alt"></span>
-              </button>
             </div>
             <div class="ym-activity-url">
               <p class="small">
@@ -616,7 +616,7 @@
     </div>
   </section>
   <section class="ym-pc-dashboard-coordinator-qrcode-section mb-4" aria-label="Fundraising QR Code">
-    <div class="d-md-flex justify-content-between flex-wrap gap-4">
+    <div class="d-flex justify-content-between flex-wrap gap-4">
       <div class="col">
         <div class="event-secondary-medium p-3 h-100">
           <div class="ym-pc-dashboard-section-header">
@@ -657,7 +657,7 @@
     </div>
   </section>
   <section class="ym-pc-dashboard-coordinator-progress-section mb-4" aria-label="Fundraising Progress Meters">
-    <div class="d-md-flex justify-content-between flex-wrap gap-4">
+    <div class="d-flex justify-content-between flex-wrap gap-4">
       <div class="col">
         <div class="ym-pc-dashboard-message event-secondary-medium p-3 h-100">
           <div class="ym-pc-dashboard-section-header text-start">
@@ -701,7 +701,7 @@
     </div>
   </section>
   <section class="ym-pc-dashboard-coordinator-progress-section mb-4" aria-label="Fundraising Progress Meters">
-    <div class="d-md-flex justify-content-between flex-wrap gap-4">
+    <div class="d-flex justify-content-between flex-wrap gap-4">
       <div class="col">
         <div class="ym-pc-dashboard-progress-section__column event-secondary-medium p-3 h-100">
           <div class="ym-pc-dashboard-progress-box">
@@ -711,9 +711,6 @@
               <a class="btn btn-md-wide btn-primary" ng-href="TR?fr_id={{frId}}&amp;pg=personal&amp;px={{consId}}">
                 <strong> View and Edit Your Page </strong>
               </a>
-              <button type="button" class="btn btn-blue ms-2" aria-label="Edit Personal Page URL" ng-click="editPersonalUrl()">
-                <span class="fa fa-share-alt"></span>
-              </button>
             </div>
             <div class="ym-activity-url">
               <p class="small">
@@ -733,7 +730,7 @@
       <div class="col">
         <div class="ym-pc-dashboard-personal-fundraising event-secondary-medium p-3 h-100">
           <div class="ym-pc-dashboard-section-header">
-            <h3 class="h5 text-start"> Fundraising - Personal Progress </h3>
+            <h3 class="h5 text-start"> My Personal Progress </h3>
           </div>
           <div class="ym-progress__thermometer m-0 mw-100" name="Personal Progress Bar" aria-label="{{participantProgress.percent}} percent of fundraising progress" aria-valuetext="{{participantProgress.percent}} percent of fundraising progress" role="progressbar" aria-valuenow="{{participantProgress.percent}}" aria-valuemin="0" aria-valuemax="100">
             <div class="ym-progress__thermometer--fill" ng-style="{'width': participantProgress.percent + '%'}"></div>
