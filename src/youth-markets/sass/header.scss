@@ -286,8 +286,9 @@ header {
         color: $brand-primary;
         height: 50px;
         font-weight: 700;
-        
+        /*
         @media (max-width: $screen-xs-max) {
+          
           height: auto;
           white-space: inherit;
           text-align: left;
@@ -316,6 +317,7 @@ header {
             font-size: 18px;
           }
         }
+        */
       }
       
       &:hover,
