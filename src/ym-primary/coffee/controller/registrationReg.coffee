@@ -12,7 +12,7 @@ angular.module 'ahaLuminateControllers'
     ($rootScope, $scope, $filter, $uibModal, APP_INFO, TeamraiserCompanyService, TeamraiserRegistrationService, SchoolLookupService, NuclavisService) ->
       $rootScope.companyName = ''
       $scope.teachers = []
-      $scope.teachersByGrade = []
+      $scope.teacherList = []
       $scope.listUpload = false
       $scope.companyId = angular.element('[name=s_frCompanyId]').val()
       
