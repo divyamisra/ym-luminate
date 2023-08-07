@@ -32,6 +32,7 @@ main > .container-fluid {
   }
 }
 
+.ng-pc-nav,
 .ng-pc-nav--coordinator {
   @media (max-width: 991px) {
     text-align: center;
