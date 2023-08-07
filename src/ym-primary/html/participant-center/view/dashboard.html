@@ -623,11 +623,11 @@
             <div class="ym-pc-dashboard-section-header text-start">
               <h3 class="h5"> School QR Code </h3>
             </div>
-            <div class="d-flex jsutify-content-start flex-wrap gap-4">
-              <div class="col-8 text-start">
+            <div class="d-flex justify-content-start flex-wrap gap-4">
+              <div class="col-6 text-start">
                 <p> Click the Copy button to share QR code onto documents, social media and websites. </p>
               </div>
-              <div class="col-3">
+              <div class="col">
                 <div id="qrcode" load-qrcode="{{secureDomain}}/site/TR?pg=company&amp;fr_id={{frId}}&amp;company_id={{companyId}}"></div>
                 <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/khc-logo-qrcode.png" class="qrcode-logo d-none">
                 <button type="button" class="btn btn-md-wide btn-primary" id="copyable" role="button" copy-qrcode>
