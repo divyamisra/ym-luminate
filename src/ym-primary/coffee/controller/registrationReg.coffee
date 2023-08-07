@@ -8,8 +8,8 @@ angular.module 'ahaLuminateControllers'
     'TeamraiserCompanyService'
     'TeamraiserRegistrationService'
     'SchoolLookupService'
-    'BoundlessService'
-    ($rootScope, $scope, $filter, $uibModal, APP_INFO, TeamraiserCompanyService, TeamraiserRegistrationService, SchoolLookupService, BoundlessService) ->
+    'NuclavisService'
+    ($rootScope, $scope, $filter, $uibModal, APP_INFO, TeamraiserCompanyService, TeamraiserRegistrationService, SchoolLookupService, NuclavisService) ->
       $rootScope.companyName = ''
       $scope.teachers = []
       $scope.teachersByGrade = []
@@ -352,7 +352,7 @@ angular.module 'ahaLuminateControllers'
             teachersFound[teacher] = teacher
           $scope.teacherList = teacherList
 
-      Nuclavis.getTeachers $scope.companyId + "/" + $rootScope.frId
+      NuclavisService.getTeachers $scope.companyId + "/" + $rootScope.frId
       .then (response) ->
         $scope.teachers = response.data.teachers
         $scope.listUpload = response.data.list_upload
