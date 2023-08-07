@@ -4,8 +4,8 @@
   <input type="hidden" name="method" value="uploadPersonalPhoto">
   <input type="hidden" name="fr_id" value="{{frId}}">
   <input type="hidden" name="graphic_upload_upload" value="true">
-  <input type="hidden" name="success_redirect" value="{{secureDomain + 'ym-luminate/dist/heart-walk/html/page-edit/frame/edit-photo.html?photo_type=personal&amp;success=true&amp;photo_number=1&amp;error_code=${uploadPersonalPhotoResponse/code}&amp;error_message=${uploadPersonalPhotoResponse/message}'}}">
-  <input type="hidden" name="error_redirect" value="{{secureDomain + 'ym-luminate/dist/heart-walk/html/page-edit/frame/edit-photo.html?photo_type=personal&amp;photo_number=1&amp;error_code=${errorResponse/code}&amp;error_message=${errorResponse/message}'}}">
+  <input type="hidden" name="success_redirect" value="{{secureDomain + 'ym-luminate/dist/middle-school/html/page-edit/edit-photo.html?photo_type=personal&amp;success=true&amp;photo_number=1&amp;error_code=${uploadPersonalPhotoResponse/code}&amp;error_message=${uploadPersonalPhotoResponse/message}'}}">
+  <input type="hidden" name="error_redirect" value="{{secureDomain + 'ym-luminate/dist/middle-school/html/page-edit/edit-photo.html?photo_type=personal&amp;photo_number=1&amp;error_code=${errorResponse/code}&amp;error_message=${errorResponse/message}'}}">
   <input type="hidden" name="auth" value="{{authToken}}">
   <input type="hidden" name="JSESSIONID" value="{{sessionCookie}}">
   <div class="modal-header">
@@ -56,10 +56,10 @@
     <input type="hidden" name="method" value="removePersonalPhoto">
     <input type="hidden" name="fr_id" value="{{frId}}">
     <input type="hidden" name="graphic_upload_delete" value="true">
-    <input type="hidden" name="success_redirect" value="{{secureDomain + 'ym-luminate/dist/heart-walk/html/page-edit/frame/edit-photo.html?photo_type=personal&amp;success=true&amp;photo_number=2&amp;error_code=${removePersonalPhotoResponse/code}&amp;error_message=${removePersonalPhotoResponse/message}'}}">
-    <input type="hidden" name="error_redirect" value="{{secureDomain + 'ym-luminate/dist/heart-walk/html/page-edit/frame/edit-photo.html?photo_type=personal&amp;photo_number=2&amp;error_code=${errorResponse/code}&amp;error_message=${errorResponse/message}'}}">
+    <input type="hidden" name="success_redirect" value="{{secureDomain + 'ym-luminate/dist/middle-school/html/page-edit/edit-photo.html?photo_type=personal&amp;success=true&amp;photo_number=2&amp;error_code=${removePersonalPhotoResponse/code}&amp;error_message=${removePersonalPhotoResponse/message}'}}">
+    <input type="hidden" name="error_redirect" value="{{secureDomain + 'ym-luminate/dist/middle-school/html/page-edit/edit-photo.html?photo_type=personal&amp;photo_number=2&amp;error_code=${errorResponse/code}&amp;error_message=${errorResponse/message}'}}">
     <input type="hidden" name="auth" value="{{authToken}}">
     <input type="hidden" name="JSESSIONID" value="{{sessionCookie}}">
   </form>
-  <iframe name="edit-personal-photo-1-shim" id="edit-personal-photo-1-shim" src="../ym-luminate/dist/heart-walk/html/page-edit/frame/edit-photo.html"></iframe>
+  <iframe name="edit-personal-photo-1-shim" id="edit-personal-photo-1-shim" src="../ym-luminate/dist/middle-school/html/page-edit/edit-photo.html"></iframe>
 </div>
