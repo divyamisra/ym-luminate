@@ -1,5 +1,7 @@
 angular.module 'ahaLuminateApp'
-  .directive 'copyField', ->
+  .directive 'copyField', [
+    'NuclavisService'
+    (NuclavisService) ->
     (scope, element, attrs) ->
       element.bind 'click', (event) ->
         fieldtype = angular.element(this).data("field-type")
@@ -15,4 +17,7 @@ angular.module 'ahaLuminateApp'
         element.html 'Copied!'
         angular.element('.clipboard-copy').remove()
         element.after '<div class="clipboard-copy text-center small" role="alert" aria-atomic="true">'+fieldtype+' copied to clipboard</div>'
+        if fieldtype == 'Personal URL'
+          NuclavisService.postAction $rootScope.frId + '/' + $rootScope.consId + '/page_share_hq'
       return
+  ]
