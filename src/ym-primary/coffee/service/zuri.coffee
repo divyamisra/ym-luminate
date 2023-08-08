@@ -156,11 +156,11 @@ angular.module 'ahaLuminateApp'
 
       getSchoolInfo: (requestData, callback) ->
         if $rootScope.tablePrefix is 'heartdev'
-          url = '//tools.heart.org/ym-school-plan/schoolPlan.php?env=_dev&method=GetSchoolInfo' + requestData
+          url = '//tools.heart.org/ym-school-plan/schoolPlan.php?env=_dev&method=GetSchoolInfo&companyId=' + requestData
         else if $rootScope.tablePrefix is 'heartnew'
-          url = '//tools.heart.org/ym-school-plan/schoolPlan.php?env=_new&method=GetSchoolInfo' + requestData
+          url = '//tools.heart.org/ym-school-plan/schoolPlan.php?env=_new&method=GetSchoolInfo&companyId=' + requestData
         else
-          url = '//tools.heart.org/ym-school-plan/schoolPlan.php?method=GetSchoolInfo' + requestData
+          url = '//tools.heart.org/ym-school-plan/schoolPlan.php?method=GetSchoolInfo&companyId=' + requestData
         $http.jsonp($sce.trustAsResourceUrl(url), jsonpCallbackParam: 'callback')
           .then (response) ->
             if response.data.success is false
