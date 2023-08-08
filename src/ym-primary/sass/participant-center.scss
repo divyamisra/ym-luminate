@@ -56,6 +56,10 @@ option {
   font-size: 18px;
 }
 
+.ym-pc-dashboard-box-header {
+  min-height:60px;
+}
+
 .ym-pc-dashboard-coordinator-resources-contact {
   a {
     color: $event-primary-acc;
