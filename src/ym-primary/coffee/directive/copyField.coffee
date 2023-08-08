@@ -17,6 +17,6 @@ angular.module('ahaLuminateApp').directive 'copyField', [
         angular.element('.clipboard-copy').remove()
         element.after '<div class="clipboard-copy text-center small" role="alert" aria-atomic="true">' + fieldtype + ' copied to clipboard</div>'
         if fieldtype == 'Personal URL'
-          NuclavisService.postAction($scope.frId + '/' + $scope.consId + '/page_share_hq')
+          NuclavisService.postAction(scope.frId + '/' + scope.consId + '/page_share_hq')
  }
 ]
