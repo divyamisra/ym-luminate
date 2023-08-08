@@ -89,7 +89,7 @@
            <h3 class="ym-headline h5"> Check Out My Badges </h3>
            <div class="loading mt-3" ng-if="loadingBadges" ng-cloak>Loading Badges... <img style="max-width: 75px" class="spin" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24/badge-2-earned.png">
            </div>
-           <div class="d-flex justify-content-start aign-items-center flex-wrap gap-4" ng-if="totalPrizes > 0 || studentChallengeBadge || schoolChallengeBadge || returningStudent" ng-if="!loadingBadges" ng-cloak>
+           <div class="d-flex justify-content-start aign-items-center flex-wrap gap-4" ng-if="(totalPrizes > 0 || studentChallengeBadge || schoolChallengeBadge || returningStudent) && !loadingBadges" ng-cloak>
              <div class="ym-badge__item text-center" ng-repeat="(name,prize) in prizes" ng-if="prize.status" tabindex="0" aria-label="{{prize.label}} Badge Earned" ng-cloak>
                <img class="img-fluid" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24/badge-{{name}}-earned.png" alt="{{prize.label}} Badge Earned">
                <span ng-bind-html="prize.label"></span>
