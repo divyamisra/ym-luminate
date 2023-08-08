@@ -33,7 +33,6 @@ angular.module 'trPcApp'
       $rootScope.consName = $embedRoot.data('cons-name') or ''
       $rootScope.consNameFirst = $embedRoot.data('cons-first-name') or ''
       $rootScope.consNameLast = $embedRoot.data('cons-last-name') or ''
-      $rootScope.bodyCompanyId = $embedRoot.data('company-id') or ''
       studentRegGoal = $embedRoot.data('student-reg-goal') or '0'
       if isNaN studentRegGoal
         studentRegGoal = 0
@@ -46,6 +45,8 @@ angular.module 'trPcApp'
       
       $rootScope.usePcEmail = $embedRoot.data('use-pc-email') or ''
 
+      $dataRootBody = angular.element '[data-aha-luminate-root]'
+      $rootScope.bodyCompanyId = $dataRootBody.data('company-id') or ''
       $rootScope.showGiftsTab = false
       if $rootScope.tablePrefix == 'heartdev'
         $rootScope.showGiftsTab = true
