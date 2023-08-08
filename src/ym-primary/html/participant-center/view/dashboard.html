@@ -36,7 +36,7 @@
               <input type="checkbox" name="ParticipatingNextYear" id="ParticipatingNextYear" ng-model="schoolPlan.ParticipatingNextYear_isChecked" aria-label="Participating Next Year" ng-change="putSchoolPlan($event,'ParticipatingNextYear_isChecked')"> Re-register for next year </label>
           </div>
         </div>
-        <div class="row participatingNextYear text-center p-2" ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
+        <div class="participatingNextYear text-center p-2" ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
           <div class="checkbox pe-2 pb-2" custom-checkbox ng-class="{'checked': schoolPlan.ParticipatingNextYear == 'YES'}">
             <strong>Early Registration:</strong>
             <label for="ParticipatingNextYear">
