@@ -1,6 +1,6 @@
 <div cg-busy="dashboardPromises">
   <div class="student-hq" ng-if="participantRegistration.companyInformation.isCompanyCoordinator != 'true' || location == '/dashboard-student'" ng-cloak>
-    <p class="fw-bold">Participation Type: {{participationTypes[participantRegistration.participationTypeId]}}</p>
+    <p class="fw-bold d-none">Participation Type: {{participationTypes[participantRegistration.participationTypeId]}}</p>
     <div class="row ym-pc-dashboard-coordinators-message-section mb-2" ng-if="EventStartDate || DonationDueDate" ng-cloak>
       <div class="ym-pc-dashboard-event-date" ng-if="EventStartDate" ng-cloak> Event Date: {{EventStartDate | date:'MM/dd/yyyy'}}
         <span ng-if="EventStartDate != EventEndDate && EventEndDate != ''" ng-cloak> thru {{EventEndDate | date:'MM/dd/yyyy'}}
@@ -36,7 +36,7 @@
               <input type="checkbox" name="ParticipatingNextYear" id="ParticipatingNextYear" ng-model="schoolPlan.ParticipatingNextYear_isChecked" aria-label="Participating Next Year" ng-change="putSchoolPlan($event,'ParticipatingNextYear_isChecked')"> Re-register for next year </label>
           </div>
         </div>
-        <div class="row participatingNextYear text-center p-2" ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
+        <div class="participatingNextYear text-center p-2" ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
           <div class="checkbox pe-2 pb-2" custom-checkbox ng-class="{'checked': schoolPlan.ParticipatingNextYear == 'YES'}">
             <strong>Early Registration:</strong>
             <label for="ParticipatingNextYear">
@@ -265,10 +265,10 @@
                 <a class="text-decoration-none" href="javascript:void(0)" onclick="window.webContent.sp[0].nuclavisShareEmail()">
                   <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24/mail-icon.png" alt="Email">
                 </a>
-                <a class="text-decoration-none" href="javascript:void(0)" onclick="window.webContent.sp[0].nuclavisShareSms()">
+                <a class="text-decoration-none d-none" href="javascript:void(0)" onclick="window.webContent.sp[0].nuclavisShareSms()">
                   <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24/msg-icon.png" alt="Messaging">
                 </a>
-                <a class="text-decoration-none" href="javascript:void(0)" onclick="window.webContent.sp[0].nuclavisShareLinkedIn()">
+                <a class="text-decoration-none d-none" href="javascript:void(0)" onclick="window.webContent.sp[0].nuclavisShareLinkedIn()">
                   <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24/chat-icon.png" alt="LinkedIn">
                 </a>
                 <a class="text-decoration-none" href="javascript:void(0)" onclick="window.webContent.sp[0].nuclavisShareFacebook()">
