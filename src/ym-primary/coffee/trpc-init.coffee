@@ -24,7 +24,8 @@ angular.module 'trPcApp'
   .run [
     '$rootScope'
     'NG_PC_APP_INFO'
-    ($rootScope, NG_PC_APP_INFO) ->
+    'ZuriService'
+    ($rootScope, NG_PC_APP_INFO, ZuriService) ->
       # get data from embed container
       $embedRoot = angular.element '[data-embed-root]'
       $rootScope.prev1FrId = $embedRoot.data('prev-one-fr-id') or ''
@@ -32,6 +33,7 @@ angular.module 'trPcApp'
       $rootScope.consName = $embedRoot.data('cons-name') or ''
       $rootScope.consNameFirst = $embedRoot.data('cons-first-name') or ''
       $rootScope.consNameLast = $embedRoot.data('cons-last-name') or ''
+      $rootScope.bodyCompanyId = $embedRoot.data('company-id') or ''
       studentRegGoal = $embedRoot.data('student-reg-goal') or '0'
       if isNaN studentRegGoal
         studentRegGoal = 0
@@ -43,6 +45,17 @@ angular.module 'trPcApp'
       $rootScope.AmountRaised = Number((AmountRaised).replace('$', '').replace(/,/g, ''))
       
       $rootScope.usePcEmail = $embedRoot.data('use-pc-email') or ''
+
+      $rootScope.showGiftsTab = false
+      if $rootScope.tablePrefix == 'heartdev'
+        $rootScope.showGiftsTab = true
+      else
+        ZuriService.getSchoolInfo $rootScope.bodyCompanyId,
+          failure: (response) ->
+          error: (response) ->
+          success: (response) ->
+            if response.company.customCompanyDetail1.indexOf("IG:A") > -1
+              $rootScope.showGiftsTab = true
   ]
 
 angular.element(document).ready ->
