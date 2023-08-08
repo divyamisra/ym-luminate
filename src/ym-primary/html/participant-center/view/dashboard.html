@@ -473,12 +473,8 @@
               <div class="d-flex justify-content-center">
                 <div class="single-chart">
                   <svg viewBox="0 0 36 36" class="circular-chart blue">
-                    <path class="circle-bg" d="M18 2.0845
-													a 15.9155 15.9155 0 0 1 0 31.831
-													a 15.9155 15.9155 0 0 1 0 -31.831" />
-                    <path class="circle" stroke-dasharray="{{ ((schoolPlan.TotalParticipantsRegisteredOnline/companyInfo.participantCount)*100).toFixed(0) }}, 100" d="M18 2.0845
-													a 15.9155 15.9155 0 0 1 0 31.831
-													a 15.9155 15.9155 0 0 1 0 -31.831" />
+                    <path class="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                    <path class="circle" stroke-dasharray="{{ ((schoolPlan.TotalParticipantsRegisteredOnline/companyInfo.participantCount)*100).toFixed(0) }}, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
                     <text x="18" y="20.35" class="percentage" ng-cloak>{{ ((schoolPlan.TotalParticipantsRegisteredOnline/companyInfo.participantCount)*100).toFixed(0) }}%</text>
                   </svg>
                 </div>
@@ -488,21 +484,19 @@
                 {{companyInfo.participantCount|number}} Students Enrolled
               </p>
             </div>
-            <div class="col d-none">
+            <div class="col" ng-if="schoolPlan.TotalParticipantsRegisteredOnline > 0" ng-cloak>
               <div class="d-flex justify-content-center">
                 <div class="single-chart">
                   <svg viewBox="0 0 36 36" class="circular-chart blue">
-                    <path class="circle-bg" d="M18 2.0845
-													a 15.9155 15.9155 0 0 1 0 31.831
-													a 15.9155 15.9155 0 0 1 0 -31.831" />
-                    <path class="circle" stroke-dasharray="{{ ((schoolPlan.TotalParticipantsRegisteredOnline/companyInfo.participantCount)*100).toFixed(0) }}, 100" d="M18 2.0845
-													a 15.9155 15.9155 0 0 1 0 31.831
-													a 15.9155 15.9155 0 0 1 0 -31.831" />
-                    <text x="18" y="20.35" class="percentage" ng-cloak>{{ ((schoolPlan.TotalParticipantsRegisteredOnline/companyInfo.participantCount)*100).toFixed(0) }}%</text>
+                    <path class="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                    <path class="circle" stroke-dasharray="{{ ((schoolPlan.CountOfStudentsCompletingFinnsMission/schoolPlan.TotalParticipantsRegisteredOnline)*100).toFixed(0) }}, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                    <text x="18" y="20.35" class="percentage" ng-cloak>{{ ((schoolPlan.CountOfStudentsCompletingFinnsMission/schoolPlan.TotalParticipantsRegisteredOnline)*100).toFixed(0) }}%</text>
                   </svg>
                 </div>
               </div>
-              <p class="students-registered"> xx Students of {{schoolPlan.TotalParticipantsRegisteredOnline|number}} Online Students <br /> Completed Finn's Mission </p>
+              <p class="students-registered"> 
+		{{schoolPlan.CountOfStudentsCompletingFinnsMission}} Students of 
+		{{schoolPlan.TotalParticipantsRegisteredOnline|number}} Online Students <br /> Completed Finn's Mission </p>
             </div>
           </div>
         </div>
@@ -623,11 +617,11 @@
             <div class="ym-pc-dashboard-section-header text-start">
               <h3 class="h5"> School QR Code </h3>
             </div>
-            <div class="d-flex jsutify-content-start flex-wrap gap-4">
-              <div class="col-8 text-start">
+            <div class="d-flex justify-content-start flex-wrap gap-4">
+              <div class="col-6 text-start">
                 <p> Click the Copy button to share QR code onto documents, social media and websites. </p>
               </div>
-              <div class="col-3">
+              <div class="col">
                 <div id="qrcode" load-qrcode="{{secureDomain}}/site/TR?pg=company&amp;fr_id={{frId}}&amp;company_id={{companyId}}"></div>
                 <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/khc-logo-qrcode.png" class="qrcode-logo d-none">
                 <button type="button" class="btn btn-md-wide btn-primary" id="copyable" role="button" copy-qrcode>

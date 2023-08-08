@@ -8,11 +8,11 @@ angular.module 'ahaLuminateControllers'
     'TeamraiserCompanyService'
     'TeamraiserRegistrationService'
     'SchoolLookupService'
-    'BoundlessService'
-    ($rootScope, $scope, $filter, $uibModal, APP_INFO, TeamraiserCompanyService, TeamraiserRegistrationService, SchoolLookupService, BoundlessService) ->
+    'NuclavisService'
+    ($rootScope, $scope, $filter, $uibModal, APP_INFO, TeamraiserCompanyService, TeamraiserRegistrationService, SchoolLookupService, NuclavisService) ->
       $rootScope.companyName = ''
       $scope.teachers = []
-      $scope.teachersByGrade = []
+      $scope.teacherList = []
       $scope.listUpload = false
       $scope.companyId = angular.element('[name=s_frCompanyId]').val()
       
@@ -343,19 +343,16 @@ angular.module 'ahaLuminateControllers'
 
       $scope.getTeacherList = () ->
         if typeof $scope.registrationCustomQuestions != 'undefined'
-          selectedGrade = $scope.registrationInfo[$scope.registrationCustomQuestions.ym_khc_grade]
-          if selectedGrade == ""
-            selectedGrade = "1st"
-          $scope.teachersByGrade = []
-          teachersByGrade = []
+          $scope.teacherList = []
+          teacherList = []
           teachersFound = []
           angular.forEach $scope.teachers, (teacher) ->
-            if not teachersFound[teacher.teacher_name]
-              teachersByGrade.push teacher_name: teacher.teacher_name
-            teachersFound[teacher.teacher_name] = teacher.teacher_name
-          $scope.teachersByGrade = teachersByGrade
+            if not teachersFound[teacher]
+              teacherList.push teacher
+            teachersFound[teacher] = teacher
+          $scope.teacherList = teacherList
 
-      BoundlessService.getTeachersBySchool $scope.companyId
+      NuclavisService.getTeachers $scope.companyId + "/" + $rootScope.frId
       .then (response) ->
         $scope.teachers = response.data.teachers
         $scope.listUpload = response.data.list_upload
