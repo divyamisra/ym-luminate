@@ -7,9 +7,11 @@ angular.module 'ahaLuminateApp'
       login: (requestData) ->
         if $rootScope.tablePrefix is 'heartdev'
           url = 'https://smt.nuclavis.com/client/login'
+          loginParams = {"username": "aha_api","password": "AgP*09g8Iuqr","client": "khc"}
         else
           url = 'https://smt-api.heart.org/client/login'
-        $http.post($sce.trustAsResourceUrl(url), JSON.stringify({"username": "aha_api","password": "AgP*09g8Iuqr","client": "khc"}))
+          loginParams = {"username": "hq_api","password": "IzRVR1#cdsxWm48%","client": "khc"}
+        $http.post($sce.trustAsResourceUrl(url), JSON.stringify(loginParams))
           .then (response) ->
             response.data.data.jwt
           , (response) ->
