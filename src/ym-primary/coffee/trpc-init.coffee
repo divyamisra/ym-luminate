@@ -47,7 +47,10 @@ angular.module 'trPcApp'
       $rootScope.usePcEmail = $embedRoot.data('use-pc-email') or ''
 
       $rootScope.showGiftsTab = false
-      ZuriService.getSchoolInfo $rootScope.bodyCompanyId,
+      if $rootScope.tablePrefix == 'heartdev'
+        $rootScope.showGiftsTab = true
+      else
+        ZuriService.getSchoolInfo $rootScope.bodyCompanyId,
           failure: (response) ->
           error: (response) ->
           success: (response) ->
