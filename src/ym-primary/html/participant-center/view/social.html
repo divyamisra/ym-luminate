@@ -59,11 +59,11 @@
     </li>
   </ul>
   <div class="tab-content border-start border-bottom border-end p-2" id="myTabContent">
-    <div class="tab-pane fade show active" id="recruit" role="tabpanel" aria-labelledby="recruit-tab">
+    <div class="tab-pane fade show active" id="recruit" role="tabpanel" aria-labelledby="recruit-tab" ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
        <h3 class="h5 text-start">Send Messages - Recruit</h3>
        <div id="nclvs_recruit_share" client_id="ahayouthmarket" cons_id="{{consId}}" event_id="{{frId}}"></div>
     </div>
-    <div class="tab-pane fade" id="donation" role="tabpanel" aria-labelledby="donation-tab">
+    <div class="tab-pane fade" ng-class="(participantRegistration.companyInformation.isCompanyCoordinator != 'true') ? 'active' : ''" id="donation" role="tabpanel" aria-labelledby="donation-tab">
        <h3 class="h5 text-start">Send Messages - Donations</h3>
       <div id="nclvs_fundraising_share" client_id="ahayouthmarket" cons_id="{{consId}}" event_id="{{frId}}"></div>
     </div>
