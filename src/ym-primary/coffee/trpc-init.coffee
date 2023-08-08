@@ -55,7 +55,7 @@ angular.module 'trPcApp'
           failure: (response) ->
           error: (response) ->
           success: (response) ->
-            if response.company.customCompanyDetail1.indexOf("IG:A") > -1
+            if response.data.company.customCompanyDetail1.indexOf("IG:A") > -1
               $rootScope.showGiftsTab = true
   ]
 
