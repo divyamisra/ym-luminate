@@ -57,7 +57,8 @@
               </div>
               <div class="ym-pc-dashboard-standard-gift-{{(gift.earned) ? 'earned' : 'notearned'}}" aria-label="{{(gift.earned) ? 'Earned' : 'Unearned'}}">
                 <div class="gift-subtitle1 h6">
-                  <span ng-bind-html="gift.info_text"></span>
+                  <div ng-bind-html="gift.info_text"></div>
+                  <div ng-if="!gift.instant" ng-cloak>Post Gift</div>
                 </div>
               </div>
               <div class="btn btn-primary" ng-class="{'btn-white': gift.earned}">View</div>
