@@ -10,10 +10,11 @@
   -o-filter: grayscale(100%);
 }
 
-.ym-activity-url span {
-	max-width: 70%;
-	overflow: hidden;
-	display: inline-block;
+@media (max-width:767px) {
+  .ym-activity-url  {
+    overflow: hidden;
+    max-width: 276px;
+  }
 }
 
 #nclvs_personal_page, #nclvs_team_page {
