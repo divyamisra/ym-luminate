@@ -469,7 +469,12 @@
       <div class="d-md-flex justify-content-between flex-wrap gap-4">
         <div class="col">
           <div class="d-flex justify-content-around text-center flex-wrap gap-4">
-            <div class="col">
+            <div class="col" ng-if="schoolPlan.TotalParticipantsRegisteredOnline == 0" ng-cloak>
+              <p class="students-registered text-start">
+                {{companyInfo.participantCount|number}} Students Enrolled
+              </p>
+            </div>
+            <div class="col" ng-if="schoolPlan.TotalParticipantsRegisteredOnline > 0" ng-cloak>
               <div class="d-flex justify-content-center">
                 <div class="single-chart">
                   <svg viewBox="0 0 36 36" class="circular-chart blue">
