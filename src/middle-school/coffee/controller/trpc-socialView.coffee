@@ -3,9 +3,13 @@ angular.module('trPcControllers').controller 'NgPcSocialViewCtrl', [
   '$sce'
   '$rootScope'
   'FacebookFundraiserService'
-  'BoundlessService'
+  'NuclavisService'
   'NgPcTeamraiserShortcutURLService'
-  ($scope, $sce, $rootScope, FacebookFundraiserService, BoundlessService, NgPcTeamraiserShortcutURLService) ->
+  ($scope, $sce, $rootScope, FacebookFundraiserService, NuclavisService, NgPcTeamraiserShortcutURLService) ->
+
+    #Nuclavis process start by setting this flag
+    webContent.load = 1
+
     #facebook fundraising
     $rootScope.facebookFundraiserConfirmedStatus = ''
     if $scope.facebookFundraisersEnabled and $rootScope.facebookFundraiserId and $rootScope.facebookFundraiserId isnt ''
@@ -21,6 +25,7 @@ angular.module('trPcControllers').controller 'NgPcSocialViewCtrl', [
             $rootScope.facebookFundraiserConfirmedStatus = 'deleted'
           else
             $rootScope.facebookFundraiserConfirmedStatus = 'confirmed'
+            NuclavisService.postAction $scope.frId + '/' + $scope.consId + '/facebook_connect_hq'
 
     $scope.getParticipantShortcut = ->
       getParticipantShortcutPromise = NgPcTeamraiserShortcutURLService.getShortcut()
@@ -45,23 +50,24 @@ angular.module('trPcControllers').controller 'NgPcSocialViewCtrl', [
 
     $scope.socialEarnedThankYou = 0
     $scope.putSocialMedia = (event, sel) ->
-      BoundlessService.putSocialMedia()
+      NuclavisService.postAction $scope.frId + '/' + $scope.consId + '/opt_out_hq'
         .then (response) ->
           $scope.socialEarnedThankYou = 1
 
     $scope.socialEarned = -1
     getFinnsMission = ->
-      BoundlessService.getBadges $scope.frId + '/' + $scope.consId
+      NuclavisService.getBadges $scope.consId + '/' + $scope.frId
       .then (response) ->
-        prizes = response.data.prizes
+        prizes = response.data.missions
         angular.forEach prizes, (prize) ->
-          if prize.label == "Go Social"
-            if prize.status != 0
+          if prize.hq_button == "Go Social"
+            if prize.earned != 0
               $scope.socialEarned = 1
             else 
               $scope.socialEarned = 0
     getFinnsMission()
-    
+
+    ###
     urlPrefix = ''
     if $scope.tablePrefix is 'heartdev'
       urlPrefix = 'load'
@@ -74,4 +80,5 @@ angular.module('trPcControllers').controller 'NgPcSocialViewCtrl', [
     url = 'https://' + urlPrefix + '.boundlessfundraising.com/applications/ahatgr/social/app/ui/#/addsocial/' + consId + '/' + frId + '/' + auth + '/' + jsession + '?source=PCSocial'
     $scope.socialIframeURL = $sce.trustAsResourceUrl url
     return
+    ###
   ]
