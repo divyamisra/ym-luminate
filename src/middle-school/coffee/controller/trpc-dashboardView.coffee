@@ -99,7 +99,7 @@ angular.module 'trPcControllers'
           # TODO
       else
         $rootScope.hasOOTDashboard = true
-      
+      ###
       if $scope.participantRegistration.lastPC2Login is '0'
         if $scope.participantRegistration.companyInformation?.isCompanyCoordinator isnt 'true'
           $scope.firstLoginModal = $uibModal.open
@@ -122,7 +122,7 @@ angular.module 'trPcControllers'
 
           $scope.closeFirstLogin = ->
             $scope.firstLoginModal.close()
-
+      ###
       # undocumented update_last_pc2_login parameter required to make news feeds work, see bz #67720
       NgPcTeamraiserRegistrationService.updateRegistration 'update_last_pc2_login=true'
         .then ->
