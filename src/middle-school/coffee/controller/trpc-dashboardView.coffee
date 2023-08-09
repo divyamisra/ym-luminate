@@ -7,6 +7,7 @@ angular.module 'trPcControllers'
     '$timeout'
     '$uibModal'
     'APP_INFO'
+    'BoundlessService'
     'NuclavisService'
     'TeamraiserParticipantService'
     'TeamraiserParticipantPageService'
@@ -23,7 +24,7 @@ angular.module 'trPcControllers'
     'NgPcSurveyService'
     'FacebookFundraiserService'
     'ZuriService'
-    ($rootScope, $scope, $sce, $filter, $timeout, $uibModal, APP_INFO, NuclavisService, TeamraiserParticipantService, TeamraiserParticipantPageService, NgPcTeamraiserRegistrationService, NgPcTeamraiserProgressService, NgPcTeamraiserTeamService, NgPcTeamraiserGiftService, NgPcContactService, NgPcTeamraiserShortcutURLService, NgPcInteractionService, NgPcTeamraiserCompanyService, NgPcTeamraiserSchoolService, NgPcConstituentService, NgPcSurveyService, FacebookFundraiserService, ZuriService) ->
+    ($rootScope, $scope, $sce, $filter, $timeout, $uibModal, APP_INFO, BoundlessService, NuclavisService, TeamraiserParticipantService, TeamraiserParticipantPageService, NgPcTeamraiserRegistrationService, NgPcTeamraiserProgressService, NgPcTeamraiserTeamService, NgPcTeamraiserGiftService, NgPcContactService, NgPcTeamraiserShortcutURLService, NgPcInteractionService, NgPcTeamraiserCompanyService, NgPcTeamraiserSchoolService, NgPcConstituentService, NgPcSurveyService, FacebookFundraiserService, ZuriService) ->
       $scope.dashboardPromises = []
       $scope.eventDate = ''
       $scope.moneyDueDate = ''
