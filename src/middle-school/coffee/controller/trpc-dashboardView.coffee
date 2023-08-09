@@ -8,6 +8,7 @@ angular.module 'trPcControllers'
     '$uibModal'
     'APP_INFO'
     'BoundlessService'
+    'NuclavisService'
     'TeamraiserParticipantService'
     'TeamraiserParticipantPageService'
     'NgPcTeamraiserRegistrationService'
@@ -23,7 +24,7 @@ angular.module 'trPcControllers'
     'NgPcSurveyService'
     'FacebookFundraiserService'
     'ZuriService'
-    ($rootScope, $scope, $sce, $filter, $timeout, $uibModal, APP_INFO, BoundlessService, TeamraiserParticipantService, TeamraiserParticipantPageService, NgPcTeamraiserRegistrationService, NgPcTeamraiserProgressService, NgPcTeamraiserTeamService, NgPcTeamraiserGiftService, NgPcContactService, NgPcTeamraiserShortcutURLService, NgPcInteractionService, NgPcTeamraiserCompanyService, NgPcTeamraiserSchoolService, NgPcConstituentService, NgPcSurveyService, FacebookFundraiserService, ZuriService) ->
+    ($rootScope, $scope, $sce, $filter, $timeout, $uibModal, APP_INFO, BoundlessService, NuclavisService, TeamraiserParticipantService, TeamraiserParticipantPageService, NgPcTeamraiserRegistrationService, NgPcTeamraiserProgressService, NgPcTeamraiserTeamService, NgPcTeamraiserGiftService, NgPcContactService, NgPcTeamraiserShortcutURLService, NgPcInteractionService, NgPcTeamraiserCompanyService, NgPcTeamraiserSchoolService, NgPcConstituentService, NgPcSurveyService, FacebookFundraiserService, ZuriService) ->
       $scope.dashboardPromises = []
       $scope.eventDate = ''
       $scope.moneyDueDate = ''
@@ -1220,7 +1221,7 @@ angular.module 'trPcControllers'
           delete $scope.updatePersonalPhoto1Error
           if not $scope.$$phase
             $scope.$apply()
-          BoundlessService.logPersonalPageUpdated()
+          NuclavisService.postAction $scope.frId + '/' + $scope.consId + '/personal_page_update_hq'
           successResponse = response.successResponse
           photoNumber = successResponse.photoNumber
           
@@ -1349,7 +1350,7 @@ angular.module 'trPcControllers'
                 $scope.personalPageContent.rich_text = richText
                 $scope.personalPageContent.ng_rich_text = richText
                 $scope.personalPageContent.mode = 'view'
-                BoundlessService.logPersonalPageUpdated()
+                NuclavisService.postAction $scope.frId + '/' + $scope.consId + '/personal_page_update_hq'
                 if not $scope.$$phase
                   $scope.$apply()
 
