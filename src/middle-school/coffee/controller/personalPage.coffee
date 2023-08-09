@@ -11,9 +11,9 @@ angular.module 'ahaLuminateControllers'
     'TeamraiserParticipantService'
     'TeamraiserCompanyService'
     'ZuriService'
-    'BoundlessService'
+    'NuclavisService'
     'TeamraiserParticipantPageService'
-    ($scope, $rootScope, $location, $sce, $filter, $timeout, $uibModal, APP_INFO, TeamraiserParticipantService, TeamraiserCompanyService, ZuriService, BoundlessService, TeamraiserParticipantPageService) ->
+    ($scope, $rootScope, $location, $sce, $filter, $timeout, $uibModal, APP_INFO, TeamraiserParticipantService, TeamraiserCompanyService, ZuriService, NuclavisService, TeamraiserParticipantPageService) ->
       $dataRoot = angular.element '[data-aha-luminate-root]'
       $scope.participantId = $location.absUrl().split('px=')[1].split('&')[0].split('#')[0]
       $scope.companyId = $dataRoot.data('company-id') if $dataRoot.data('company-id') isnt ''
@@ -253,7 +253,7 @@ angular.module 'ahaLuminateControllers'
           delete $scope.updatePersonalPhoto1Error
           if not $scope.$$phase
             $scope.$apply()
-          BoundlessService.logPersonalPageUpdated()
+          NuclavisService.postAction $scope.frId + '/' + $scope.participantId + '/personal_page_update_hq'
           successResponse = response.successResponse
           photoNumber = successResponse.photoNumber
           
@@ -350,7 +350,7 @@ angular.module 'ahaLuminateControllers'
                 $scope.personalPageContent.rich_text = richText
                 $scope.personalPageContent.ng_rich_text = richText
                 $scope.personalPageContent.mode = 'view'
-                BoundlessService.logPersonalPageUpdated()
+                NuclavisService.postAction $scope.frId + '/' + $scope.participantId + '/personal_page_update_hq'
                 if not $scope.$$phase
                   $scope.$apply()
   ]

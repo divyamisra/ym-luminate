@@ -7,7 +7,7 @@ angular.module 'trPcControllers'
     '$timeout'
     '$uibModal'
     'APP_INFO'
-    'BoundlessService'
+    'NuclavisService'
     'TeamraiserParticipantService'
     'TeamraiserParticipantPageService'
     'NgPcTeamraiserRegistrationService'
@@ -23,7 +23,7 @@ angular.module 'trPcControllers'
     'NgPcSurveyService'
     'FacebookFundraiserService'
     'ZuriService'
-    ($rootScope, $scope, $sce, $filter, $timeout, $uibModal, APP_INFO, BoundlessService, TeamraiserParticipantService, TeamraiserParticipantPageService, NgPcTeamraiserRegistrationService, NgPcTeamraiserProgressService, NgPcTeamraiserTeamService, NgPcTeamraiserGiftService, NgPcContactService, NgPcTeamraiserShortcutURLService, NgPcInteractionService, NgPcTeamraiserCompanyService, NgPcTeamraiserSchoolService, NgPcConstituentService, NgPcSurveyService, FacebookFundraiserService, ZuriService) ->
+    ($rootScope, $scope, $sce, $filter, $timeout, $uibModal, APP_INFO, NuclavisService, TeamraiserParticipantService, TeamraiserParticipantPageService, NgPcTeamraiserRegistrationService, NgPcTeamraiserProgressService, NgPcTeamraiserTeamService, NgPcTeamraiserGiftService, NgPcContactService, NgPcTeamraiserShortcutURLService, NgPcInteractionService, NgPcTeamraiserCompanyService, NgPcTeamraiserSchoolService, NgPcConstituentService, NgPcSurveyService, FacebookFundraiserService, ZuriService) ->
       $scope.dashboardPromises = []
       $scope.eventDate = ''
       $scope.moneyDueDate = ''
@@ -62,8 +62,12 @@ angular.module 'trPcControllers'
           $scope.lockEnabled = true
       
       $dataRoot = angular.element '[data-embed-root]'
+
+      #Nuclavis process start by setting this flag
+      webContent.load = 1
 		
       #setup social iframe
+      ###
       urlPrefix = ''
       if $scope.tablePrefix is 'heartdev' or $scope.tablePrefix is 'heartnew'
         urlPrefix = 'load'
@@ -71,7 +75,8 @@ angular.module 'trPcControllers'
         urlPrefix = 'loadprod'
       url = 'https://' + urlPrefix + '.boundlessfundraising.com/applications/ahatgr/social/app/ui/#/addsocial/' + $scope.consId + '/' + $scope.frId + '/' + $rootScope.authToken + '/' + $rootScope.sessionCookie + '?source=PCSocial'
       $scope.socialIframeURL = $sce.trustAsResourceUrl url
-
+      ###
+		
       if $scope.participantRegistration.companyInformation?.isCompanyCoordinator is 'true'
         BoundlessService.checkOOTDashboard $scope.frId + '/' + $scope.consId
         .then (response) ->
@@ -502,6 +507,7 @@ angular.module 'trPcControllers'
               $rootScope.facebookFundraiserConfirmedStatus = 'deleted'
             else
               $rootScope.facebookFundraiserConfirmedStatus = 'confirmed'
+              NuclavisService.postAction $scope.frId + '/' + $scope.consId + '/facebook_connect_hq'
 
       $scope.participantGifts =
         sortColumn: 'date_recorded'
@@ -1064,80 +1070,91 @@ angular.module 'trPcControllers'
                       $scope.prizesEarned = $scope.prizesEarned - 1
 
       refreshFinnsMission = ->
-        $scope.prizes = []
-        $scope.coordinatorBadges = []
+        $scope.prizes = {}
         $scope.prizesEarned = 0
-        $rootScope.has_bonus = 0
-        BoundlessService.getBadges $scope.frId + '/' + $scope.consId
+        NuclavisService.getBadges $scope.consId + '/' + $scope.frId
         .then (response) ->
-          prizes = response.data.prizes
-          $rootScope.has_bonus = response.data.has_bonus
+          $scope.mystery_gift = response.data.mystery_gift.earned
+          prizes = response.data.missions
           final_url = ''
           angular.forEach prizes, (prize) ->
-            if prize.mission_url_type == 'Donate' 
-              final_url = 'Donation2?df_id=' + $scope.eventInfo.donationFormId + "&FR_ID=" + $scope.frId + "&PROXY_TYPE=20&PROXY_ID=" + $scope.consId
-            if prize.mission_url_type == 'Personal' 
+            #if prize.hq_action_type == 'Donate' 
+            #  final_url = 'Donation2?df_id=' + $scope.eventInfo.donationFormId + "&FR_ID=" + $scope.frId + "&PROXY_TYPE=20&PROXY_ID=" + $scope.consId
+            if prize.hq_action_type == 'Personal' or prize.hq_action_type == 'Donate'
               final_url = 'TR?fr_id=' + $scope.frId + '&pg=personal&px=' + $scope.consId
-            if prize.mission_url_type == 'Tab' 
-              final_url = $scope.baseUrl + prize.mission_url
-            if prize.mission_url_type == 'URL' 
-              final_url = prize.mission_url
-            if prize.mission_url_type == 'Quiz' 
+            if prize.hq_action_type == 'Tab' 
+              final_url = $scope.baseUrl + prize.hq_action_url
+            if prize.hq_action_type == 'URL' 
+              final_url = prize.hq_action_url
+            if prize.hq_action_type == 'Quiz' 
               if $scope.tablePrefix == 'heartdev'
-                final_url = 'https://tools.heart.org/aha_ahc23_dev/quiz/show/' + prize.mission_url + '?event_id=' + $scope.frId + '&user_id=' + $scope.consId + '&name=' + $scope.consNameFirst
+                final_url = 'https://tools.heart.org/aha_ahc24_dev/quiz/show/' + prize.hq_action_url + '?event_id=' + $scope.frId + '&user_id=' + $scope.consId + '&name=' + $scope.consNameFirst
               if $scope.tablePrefix == 'heartnew'
-                final_url = 'https://tools.heart.org/aha_ahc23_testing/quiz/show/' + prize.mission_url + '?event_id=' + $scope.frId + '&user_id=' + $scope.consId + '&name=' + $scope.consNameFirst
+                final_url = 'https://tools.heart.org/aha_ahc24_testing/quiz/show/' + prize.hq_action_url + '?event_id=' + $scope.frId + '&user_id=' + $scope.consId + '&name=' + $scope.consNameFirst
               if $scope.tablePrefix == 'heart'
-                final_url = 'https://tools.heart.org/aha_ahc23/quiz/show/' + prize.mission_url + '?event_id=' + $scope.frId + '&user_id=' + $scope.consId + '&name=' + $scope.consNameFirst
-            if prize.mission_url_type == 'Modal' and prize.mission_url == 'app' 
+                final_url = 'https://tools.heart.org/aha_ahc24/quiz/show/' + prize.hq_action_url + '?event_id=' + $scope.frId + '&user_id=' + $scope.consId + '&name=' + $scope.consNameFirst
+            if prize.hq_action_type == 'Modal' and prize.hq_action_url == 'app' 
               final_url = 'showMobileApp()'
-            if prize.status != 0
-              earned_status = 'Earned'
-              hover_msg = prize.earned_hover
+            if prize.earned != 0
+              earned_status = "Earned"
             else 
-              earned_status = 'Unearned'
-              hover_msg = prize.unearned_hover
-            aria_label = prize.label + ": " + earned_status + " - " + hover_msg
-            $scope.prizes.push
-              id: prize.id
-              label: prize.label
-              sku: prize.sku
-              status: prize.status
-              earned: prize.earned_datetime
-              completed_label: prize.completed_label
-              mission_url: prize.mission_url
-              mission_url_type: prize.mission_url_type
-              earned_image_url: prize.earned_image_url
-              not_earned_image_url: prize.non_earned_image_url
-              locked_image_url: prize.locked_image_url
+              earned_status = "Unearned"
+            aria_label = prize.hq_name + ": " + earned_status + " - " + prize.hq_hover
+            button_aria_label = prize.hq_button + ": " + earned_status + " - " + prize.hq_hover
+            $scope.prizes[prize.mission_id] = 
+              id: prize.mission_id
+              label: prize.hq_name
+              status: prize.earned
+              mission_url: prize.hq_action_url
+              mission_url_type: prize.hq_action_type
               final_url: final_url
-              hover_msg: hover_msg
+              hover_msg: prize.hq_hover
               aria_label: aria_label
+              aria_button: button_aria_label
+              button_label: prize.hq_button
 
-            if prize.id == 3 or prize.id == 6 or prize.id == 9 or prize.id == 10
-              if prize.id == 3
-                prize.label = 'Made a Donation'
-              if prize.id == 6
-                prize.label = 'Sent Kickoff Email'
-              if prize.id == 9
-                prize.label = 'Mobile App User'
-              if prize.id == 10
-                prize.label = 'Updated Coordinator Page'
-              $scope.coordinatorBadges.push
-                id: prize.id
-                status: prize.status
-                label: prize.label
-                earned_image_url: prize.earned_image_url
-                not_earned_image_url: prize.non_earned_image_url
-                aria_label: aria_label
-              
-            if prize.status != 0
+            if prize.earned != 0
               $scope.prizesEarned++
-            
+          prize = response.data.overall_mission_status
+          if prize.completed != 0
+            earned_status = "Earned"
+            final_url = ''
+            $scope.prizesEarned++
+          else 
+            earned_status = "Unearned"
+            final_url = 'showTrophyMessage()'
+          aria_label = prize.hq_name + ": " + earned_status + " - " + prize.hq_hover
+          button_aria_label = prize.hq_button + ": " + earned_status + " - " + prize.hq_hover
+          $scope.prizes['trophy'] = 
+            id: 99
+            label: prize.hq_name
+            status: prize.completed
+            mission_url: prize.hq_action_url
+            mission_url_type: prize.hq_action_type
+            final_url: final_url
+            hover_msg: prize.hq_hover
+            aria_label: aria_label
+            aria_button: button_aria_label
+            button_label: prize.hq_button
+          $scope.loadingBadges = 0
+	    
+          #$scope.buildGiftCatalog()
+          
         , (response) ->
           # TODO
+      #$scope.getMoveMoreFlag()
       refreshFinnsMission()
 
+      $scope.showTrophyMessage = ->
+        if not $scope.viewTrophyMessage
+          $scope.viewTrophyMessage = $uibModal.open
+            scope: $scope
+            templateUrl: APP_INFO.rootPath + 'dist/middle-school/html/participant-center/modal/viewTrophyMessage.html'
+
+      $scope.cancelTrophyMessage = ->
+        $scope.viewTrophyMessage.close()
+        delete $scope.viewTrophyMessage
+	
       $scope.showMobileApp = ->
         $scope.viewMobileApp = $uibModal.open
           scope: $scope
@@ -1220,7 +1237,7 @@ angular.module 'trPcControllers'
           delete $scope.updatePersonalPhoto1Error
           if not $scope.$$phase
             $scope.$apply()
-          BoundlessService.logPersonalPageUpdated()
+          NuclavisService.postAction $scope.frId + '/' + $scope.consId + '/personal_page_update_hq'
           successResponse = response.successResponse
           photoNumber = successResponse.photoNumber
           
@@ -1349,7 +1366,7 @@ angular.module 'trPcControllers'
                 $scope.personalPageContent.rich_text = richText
                 $scope.personalPageContent.ng_rich_text = richText
                 $scope.personalPageContent.mode = 'view'
-                BoundlessService.logPersonalPageUpdated()
+                NuclavisService.postAction $scope.frId + '/' + $scope.consId + '/personal_page_update_hq'
                 if not $scope.$$phase
                   $scope.$apply()
 

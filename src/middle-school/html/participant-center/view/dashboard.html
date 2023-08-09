@@ -235,22 +235,46 @@
 				</div>
 
 				<div class="ahc-social-share white-box mb-4">
+                                  <div class="d-flex justify-content-between flex-wrap gap-3">
+                                    <div class="col">
+                                      <h3 class="h5">Personal QR Code</h3>
+                                      <p>Share your personal QR Code to spread the word about your fundraising efforts and share your story!</p>
+                                    </div>
+                                    <div class="col">
+                                      <div id="nclvs_personal_page" client_id="ahayouthmarket" cons_id="{{consId}}" event_id="{{frId}}" style="max-width:150px"></div>
+                                    </div>
+                                  </div>
+                                </div>
+			  <div class="ahc-social-share white-box mb-4">
 					<h3 class="h5 mb-4">Share with Friends & Family</h3>
 					<div class="ahc-social-share-slot">
-						<div class="row g-3 mb-3">
-							<div class="">
-								<!--<button type="button" class="ahc-btn-social ahc-copy ahc-btn-copy btn btn-primary btn-sm h-100 py-2 rounded-3 text-start w-100" data-copy="#personalPageUrl" data-toast="#copyToClipboardToast" data-toast-message="Personal page URL copied!">Copy Link to Personal Page</button>-->
-								<div id="personalPageUrlStudent" class="visually-hidden" aria-hidden="true">{{personalPageUrl}}</div>
-								<button type="button" class="ahc-copy ahc-btn-copy ahc-btn-social btn btn-md-wide btn-primary p-2 text-start w-100" title="Copy your link to share" data-clipboard-target="#personalPageUrlStudent" data-clipboard-message="Personal page URL copied!">Copy Your Link to Share</button>
-							</div>
-							<div class="">
-								<a target="_blank" class="ahc-btn-social ahc-share-twitter btn btn-md-wide p-2 text-start w-100 twitter-share-button" href="https://twitter.com/intent/tweet?text={{personalPageUrl}}">Share on<br/>Twitter</a>
-							</div> 
-							<div class="">
-								<a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{personalPageUrl | urlEncode}}" class="ahc-btn-social ahc-connect-facebook btn btn-md-wide p-2 text-start w-100 fb-xfbml-parse-ignore">Share on<br/>Facebook</a>
-							</div>
+					  <div class="ym-pc-dashboard-progress-section__column event-secondary-medium h-100">
+					      <div class="text-start">
+						<p> Did you know if you share with friends/family you could more than double what you raise? </p>
+					      </div>
+					      <div class="d-md-flex align-items-center flex-wrap mb-3">
+						<div id="fieldText" class="border border-2 bg-light rounded p-2 d-inline-block overflow-hidden me-3 mb-1">
+						  <div class="js--personal-social-share">{{personalPageUrl}}</div>
 						</div>
-						<p><small>By clicking the links below, you will leave AHA's website and be redirected to another site not under the control of AHA.</small></p>
+						<button type="button" class="btn btn-md-wide btn-primary btn-white" id="copyable" data-field="fieldText" data-field-type="Personal URL" role="button" copy-field>
+						  <strong> Copy Link </strong>
+						</button>
+					      </div>
+					      <div class="d-flex justify-content-center gap-1 text-center">
+						<a class="text-decoration-none" href="javascript:void(0)" onclick="window.webContent.sp[0].nuclavisShareEmail()">
+						  <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24/mail-icon.png" alt="Email">
+						</a>
+						<a class="text-decoration-none d-none" href="javascript:void(0)" onclick="window.webContent.sp[0].nuclavisShareSms()">
+						  <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24/msg-icon.png" alt="Messaging">
+						</a>
+						<a class="text-decoration-none d-none" href="javascript:void(0)" onclick="window.webContent.sp[0].nuclavisShareLinkedIn()">
+						  <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24/chat-icon.png" alt="LinkedIn">
+						</a>
+						<a class="text-decoration-none" href="javascript:void(0)" onclick="window.webContent.sp[0].nuclavisShareFacebook()">
+						  <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24/fb-icon.png" alt="Facebook">
+						</a>
+					      </div>
+					  </div>
 					</div>
 					<div ng-show="facebookFundraisersEnabled" class="mt-1" ng-cloak>
 						<div class="ym-pc-dashboard-facebook-box" ng-show="!facebookFundraiserId">
@@ -311,47 +335,6 @@
 							</div>
 						</div>
 					</div>
-				</div>
-				
-				<div class="ahc-challenge white-box p-0 mb-4">
-					<h3 class="h5 p-2">
-						Healthy Heart Challenge
-					</h3>
-          <div class="red-bg-gradient p-4 pt-3 text-white">
-          	<div class="ym_my_challenge__current" ng-if="personalChallenge.loadPending" ng-cloak>
-							Loading Your Challenge... 
-						</div>
-						<div class="ym_my_challenge__current" ng-if="personalChallenge.id && personalChallenge.id != '-1'" ng-cloak>
-							<h3 class="ahc-current-challenge h5 mb-3">{{personalChallenge.name}}</h3>
-							<div class="row align-items-center align-items-xl-end g-4 g-lg-4 g-xl-5">
-								<div class="col-sm-auto">
-									<div class="ahc-challenge-streak fw-bold text-center">
-										<div class="ahc-challenge-count">
-											<span ng-bind-html="personalChallenge.numCompleted"></span>
-										</div>
-										<div class="fs-5 lh-sm text-capitalize">day streak</div>
-									</div>
-								</div>
-								<div class="col-sm">
-									<button type="button" class="ahc-btn-add-to-streak btn opacity-100 py-3 rounded text-start" ng-class="{'disabled': personalChallenge.updatePending || personalChallenge.completedToday, 'active': personalChallenge.completedToday}" ng-disabled="personalChallenge.updatePending || personalChallenge.completedToday" ng-click="logChallenge()"aria-live="polite" aria-atomic="true">
-										<strong>
-											<span ng-if="!personalChallenge.completedToday">Add today to your streak</span>
-											<span ng-if="personalChallenge.completedToday">Today added to your streak</span>
-										</strong>
-									</button>
-									<div class="mt-3 px-0">
-										<label for="ym-update-challenge" class="form-label">Change Your Challenge</label>
-										<select class="form-select fw-bold" ng-change="updateChallenge()" ng-class="{'disabled': personalChallenge.updatePending}" ng-disabled="personalChallenge.updatePending" name="ym-update-challenge" id="ym-update-challenge" ng-model="updatedPersonalChallenge.id">
-											<option value=""></option>
-											<option ng-repeat="challenge in challenges" value="{{challenge.id}}">
-												{{challenge.name}}
-											</option>
-										</select>
-									</div>
-								</div>
-							</div>
-						</div>
-          </div> 
 				</div>
 			</div>
 			<div class="dashboard-col4 col p-2">
@@ -545,7 +528,7 @@
 			</div>
 		</div>
                 <!-- Start Tour Button -->
-                <div class="bg-white bottom-0 end-0 m-3 p-1 position-fixed rounded-circle shadow" style="z-index: 1030;filter: drop-shadow(rgba(0, 0, 0, 0.1) 0px 0px .5rem);">
+                <div class="bg-white bottom-0 end-0 m-3 p-1 position-fixed rounded-circle shadow d-none" style="z-index: 1030;filter: drop-shadow(rgba(0, 0, 0, 0.1) 0px 0px .5rem);">
                   <button type="button" class="btn btn-help btn-start-tour bg-opacity-50 bg-secondary p-0 rounded-circle fw-bold" aria-label="Restart tour" data-bs-toggle="tooltip" data-bs-placement="left"><span aria-hidden="true">?</span></button>
                 </div>
                 <!-- /Start Tour Button -->
