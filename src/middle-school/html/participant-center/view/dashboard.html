@@ -237,20 +237,33 @@
 				<div class="ahc-social-share white-box mb-4">
 					<h3 class="h5 mb-4">Share with Friends & Family</h3>
 					<div class="ahc-social-share-slot">
-						<div class="row g-3 mb-3">
-							<div class="">
-								<!--<button type="button" class="ahc-btn-social ahc-copy ahc-btn-copy btn btn-primary btn-sm h-100 py-2 rounded-3 text-start w-100" data-copy="#personalPageUrl" data-toast="#copyToClipboardToast" data-toast-message="Personal page URL copied!">Copy Link to Personal Page</button>-->
-								<div id="personalPageUrlStudent" class="visually-hidden" aria-hidden="true">{{personalPageUrl}}</div>
-								<button type="button" class="ahc-copy ahc-btn-copy ahc-btn-social btn btn-md-wide btn-primary p-2 text-start w-100" title="Copy your link to share" data-clipboard-target="#personalPageUrlStudent" data-clipboard-message="Personal page URL copied!">Copy Your Link to Share</button>
-							</div>
-							<div class="">
-								<a target="_blank" class="ahc-btn-social ahc-share-twitter btn btn-md-wide p-2 text-start w-100 twitter-share-button" href="https://twitter.com/intent/tweet?text={{personalPageUrl}}">Share on<br/>Twitter</a>
-							</div> 
-							<div class="">
-								<a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{personalPageUrl | urlEncode}}" class="ahc-btn-social ahc-connect-facebook btn btn-md-wide p-2 text-start w-100 fb-xfbml-parse-ignore">Share on<br/>Facebook</a>
-							</div>
+					  <div class="ym-pc-dashboard-progress-section__column event-secondary-medium h-100">
+					      <div class="text-start">
+						<p> Did you know if you share with friends/family you could more than double what you raise? </p>
+					      </div>
+					      <div class="d-md-flex align-items-center flex-wrap mb-3">
+						<div id="fieldText" class="border border-2 bg-light rounded p-2 d-inline-block overflow-hidden me-3 mb-1">
+						  <div class="js--personal-social-share">{{personalPageUrl}}</div>
 						</div>
-						<p><small>By clicking the links below, you will leave AHA's website and be redirected to another site not under the control of AHA.</small></p>
+						<button type="button" class="btn btn-md-wide btn-primary btn-white" id="copyable" data-field="fieldText" data-field-type="Personal URL" role="button" copy-field>
+						  <strong> Copy Link </strong>
+						</button>
+					      </div>
+					      <div class="d-flex justify-content-center gap-1 text-center">
+						<a class="text-decoration-none" href="javascript:void(0)" onclick="window.webContent.sp[0].nuclavisShareEmail()">
+						  <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24/mail-icon.png" alt="Email">
+						</a>
+						<a class="text-decoration-none d-none" href="javascript:void(0)" onclick="window.webContent.sp[0].nuclavisShareSms()">
+						  <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24/msg-icon.png" alt="Messaging">
+						</a>
+						<a class="text-decoration-none d-none" href="javascript:void(0)" onclick="window.webContent.sp[0].nuclavisShareLinkedIn()">
+						  <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24/chat-icon.png" alt="LinkedIn">
+						</a>
+						<a class="text-decoration-none" href="javascript:void(0)" onclick="window.webContent.sp[0].nuclavisShareFacebook()">
+						  <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24/fb-icon.png" alt="Facebook">
+						</a>
+					      </div>
+					  </div>
 					</div>
 					<div ng-show="facebookFundraisersEnabled" class="mt-1" ng-cloak>
 						<div class="ym-pc-dashboard-facebook-box" ng-show="!facebookFundraiserId">
