@@ -503,6 +503,7 @@ angular.module 'trPcControllers'
               $rootScope.facebookFundraiserConfirmedStatus = 'deleted'
             else
               $rootScope.facebookFundraiserConfirmedStatus = 'confirmed'
+              NuclavisService.postAction $scope.frId + '/' + $scope.consId + '/facebook_connect_hq'
 
       $scope.participantGifts =
         sortColumn: 'date_recorded'
