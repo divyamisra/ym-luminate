@@ -4,6 +4,13 @@
 
 @import "../../youth-markets/sass/participant.scss";
 
+main > .container,
+main > .container-fluid {
+  @media (max-width: $screen-xs-max) {
+    margin-top: 0px;
+  }
+}
+
 .ng-pc-modal {
   .close {
     span {
