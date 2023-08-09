@@ -27,6 +27,7 @@ angular.module 'trPcControllers'
         $rootScope.clipboard.on 'success', (e) ->
           if angular.element(e.trigger).closest('div').find('.clipboard-copy').length == 0
             angular.element(e.trigger).after '<div class=\'clipboard-copy text-center small\' role=\'alert\' aria-atomic=\'true\'>'+angular.element(e.trigger).data('clipboard-message')+'</div>'
+            NuclavisService.postAction $scope.frId + '/' + $scope.consId + '/email_hq'
           return
       
       if $rootScope.facebookFundraisersEnabled
