@@ -10,7 +10,8 @@ angular.module 'trPcControllers'
     'RichTextService'
     'FacebookFundraiserService'
     'BoundlessService'
-    ($rootScope, $scope, $location, $timeout, APP_INFO, TeamraiserParticipantPageService, NgPcTeamraiserEventService, RichTextService, FacebookFundraiserService, BoundlessService) ->
+    'NuclavisService'
+    ($rootScope, $scope, $location, $timeout, APP_INFO, TeamraiserParticipantPageService, NgPcTeamraiserEventService, RichTextService, FacebookFundraiserService, BoundlessService, NuclavisService) ->
       $rootScope.$location = $location
       $rootScope.baseUrl = $location.absUrl().split('#')[0]
       
