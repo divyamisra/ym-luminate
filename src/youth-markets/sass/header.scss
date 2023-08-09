@@ -192,7 +192,7 @@ header {
       font-size: $font-size-sm;
       width: 266px;
       padding: 0;
-      z-index: 1000;
+      z-index: 9999;
       
       @media (max-width: 1023px) {
         padding-right: 40px;
