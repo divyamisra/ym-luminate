@@ -21,7 +21,7 @@ angular.module('trPcControllers').controller 'NgPcVolunteerViewCtrl', [
       'activity': ''
       'hour': '0'
       'minute': 0
-    event_year = 'fy23'
+    event_year = 'fy24'
 
     $scope.showVolunteerEntry = ->
       $scope.createVolunteerEntryDetail = true
