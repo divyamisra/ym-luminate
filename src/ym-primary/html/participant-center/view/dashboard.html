@@ -469,12 +469,12 @@
       <div class="d-md-flex justify-content-between flex-wrap gap-4">
         <div class="col">
           <div class="d-flex justify-content-around text-center flex-wrap gap-4">
-            <div class="col" ng-if="schoolPlan.TotalParticipantsRegisteredOnline == null && schoolPlan.TotalParticipantsRegisteredOnline == ''" ng-cloak>
+            <div class="col" ng-if="schoolPlan.TotalParticipantsRegisteredOnline == NULL" ng-cloak>
               <p class="students-registered text-start">
                 {{companyInfo.participantCount|number}} Students Enrolled
               </p>
             </div>
-            <div class="col" ng-if="schoolPlan.TotalParticipantsRegisteredOnline != null && schoolPlan.TotalParticipantsRegisteredOnline != ''" ng-cloak>
+            <div class="col" ng-if="schoolPlan.TotalParticipantsRegisteredOnline != null && (schoolPlan.TotalParticipantsRegisteredOnline|number) != ''" ng-cloak>
               <div class="d-flex justify-content-center">
                 <div class="single-chart">
                   <svg viewBox="0 0 36 36" class="circular-chart blue">
@@ -489,7 +489,7 @@
                 {{companyInfo.participantCount|number}} Students Enrolled
               </p>
             </div>
-            <div class="col" ng-if="schoolPlan.TotalParticipantsRegisteredOnline != null && schoolPlan.TotalParticipantsRegisteredOnline != ''" ng-cloak>
+            <div class="col" ng-if="(schoolPlan.TotalParticipantsRegisteredOnline|number) > 0" ng-cloak>
               <div class="d-flex justify-content-center">
                 <div class="single-chart">
                   <svg viewBox="0 0 36 36" class="circular-chart blue">
@@ -500,8 +500,9 @@
                 </div>
               </div>
               <p class="students-registered"> 
-		{{schoolPlan.CountOfStudentsCompletingFinnsMission}} Students of 
-		{{schoolPlan.TotalParticipantsRegisteredOnline|number}} Online Students <br /> Completed Finn's Mission </p>
+								{{schoolPlan.CountOfStudentsCompletingFinnsMission}} Students of 
+								{{schoolPlan.TotalParticipantsRegisteredOnline|number}} Online Students <br /> Completed Finn's Mission 
+							</p>
             </div>
           </div>
         </div>
