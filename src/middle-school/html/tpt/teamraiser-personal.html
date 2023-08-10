@@ -1,6 +1,6 @@
 <div ng-controller="PersonalPageCtrl" ng-cloak>
   <div class="ym-page-section d-md-grid personal-cols flex-wrap p-4 pb-0 bg-white" ng-init="personalPagePhoto1.customUrl = '[[C4:graphic_upload]]'; personalPagePhoto1.caption = '[[T6:[[C1:graphic_caption]]]]'">
-    <div class="heart-card personal-col2 p-2">
+    <div class="heart-card personal-col2 p-2 d-none">
 			<div class="personal-col1-mobile d-block d-md-none p-2">
 				<div class="student-info d-flex justify-content-between flex-wrap me-2">
 					<div>
@@ -236,7 +236,7 @@
     </div>
   </div>
   <div class="ym-page-section d-md-flex justify-content-between p-4 pt-0 bg-white">
-    <div class="col-md-6 p-2 mb-4" ng-class="(challengeId != null && challengeId != '') ? 'col-md-6' : 'col-md-12'">
+    <div class="p-2 mb-4 col-md-12">
     	<div class="white-box h-100">
 				<div class="ym-badges w-100" ng-if="prizes.length > 0 || schoolChallenges.length > 0">
 					<h2 class="h3">                                                 
@@ -251,7 +251,7 @@
 				</div>
 			</div>
     </div>
-    <div class="col-md-6 p-2 mb-4" ng-if="challengeId != null && challengeId != ''" ng-cloak>
+    <div class="col-md-6 p-2 mb-4 d-none" ng-if="challengeId != null && challengeId != ''" ng-cloak>
     	<div class="white-box w-100">
 				<div class="ym-my-challenge ym-secondary-medium-color">
 					<h2 class="h3">
