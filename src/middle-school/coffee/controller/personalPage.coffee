@@ -10,11 +10,10 @@ angular.module 'ahaLuminateControllers'
     'APP_INFO'
     'TeamraiserParticipantService'
     'TeamraiserCompanyService'
-    'BoundlessService'
     'ZuriService'
     'NuclavisService'
     'TeamraiserParticipantPageService'
-    ($scope, $rootScope, $location, $sce, $filter, $timeout, $uibModal, APP_INFO, TeamraiserParticipantService, TeamraiserCompanyService, BoundlessService, ZuriService, NuclavisService, TeamraiserParticipantPageService) ->
+    ($scope, $rootScope, $location, $sce, $filter, $timeout, $uibModal, APP_INFO, TeamraiserParticipantService, TeamraiserCompanyService, ZuriService, NuclavisService, TeamraiserParticipantPageService) ->
       $dataRoot = angular.element '[data-aha-luminate-root]'
       $scope.participantId = $location.absUrl().split('px=')[1].split('&')[0].split('#')[0]
       $scope.companyId = $dataRoot.data('company-id') if $dataRoot.data('company-id') isnt ''
@@ -28,29 +27,39 @@ angular.module 'ahaLuminateControllers'
       
       $scope.prizes = []
       $scope.prizesEarned = 0
+      $scope.totalPrizes = 0
       $scope.has_bonus = 0
       $scope.studentChallengeBadge = false
       $scope.schoolChallengeBadge = false
       timestamp = new Date().getTime() 
       
-      BoundlessService.getBadges $scope.frId + '/' + $scope.participantId
+      NuclavisService.getBadges $scope.participantId + '/' + $scope.frId
       .then (response) ->
-        prizes = response.data.prizes
-        $scope.has_bonus = response.data.has_bonus
+        prizes = response.data.missions
+        #$scope.has_bonus = response.data.has_bonus
         angular.forEach prizes, (prize) ->
-          ## skip 3+ donations
-          if prize.sku != 'BDG-4'
-            $scope.prizes.push
-              id: prize.id
-              label: prize.label
-              sku: prize.sku
-              status: prize.status
-              earned: prize.earned_datetime
-              earned_image_url: prize.earned_image_url
-              not_earned_image_url: prize.non_earned_image_url
+          $scope.prizes[prize.mission_id] = 
+            id: prize.mission_id
+            label: prize.hq_name
+            status: prize.earned
+          $scope.totalPrizes++
+          
+          if prize.earned isnt 0
+            $scope.prizesEarned++
 
-            if prize.status is 1
-              $scope.prizesEarned++
+        prize = response.data.overall_mission_status
+        $scope.prizes['trophy'] = 
+          id: 99
+          label: prize.hq_name
+          status: prize.completed
+          mission_url: prize.hq_action_url
+          mission_url_type: prize.hq_action_type
+          hover_msg: prize.hq_hover
+          button_label: prize.hq_button
+        $scope.totalPrizes++
+        if prize.completed isnt 0
+          $scope.prizesEarned++
+        $scope.loadingBadges = false
       , (response) ->
         # TODO
 
