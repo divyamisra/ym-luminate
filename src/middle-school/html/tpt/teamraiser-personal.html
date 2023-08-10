@@ -242,7 +242,7 @@
 					<h2 class="h3">                                                 
 						Check Out My Badges
 					</h2>
-				        <div class="d-flex justify-content-start aign-items-center flex-wrap gap-4" ng-if="totalPrizes > 0" ng-cloak>
+				        <div class="d-flex justify-content-center flex-wrap gap-4" ng-if="totalPrizes > 0" ng-cloak>
 				          <div class="ym-badge__item text-center" ng-repeat="(name,prize) in prizes" ng-if="prize.status" tabindex="0" aria-label="{{prize.label}} Badge Earned" ng-cloak>
 				            <img class="img-fluid" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/middle-school/image/fy24/badge-{{name}}-earned.png" alt="{{prize.label}} Badge Earned">
 				            <span ng-bind-html="prize.label"></span>
