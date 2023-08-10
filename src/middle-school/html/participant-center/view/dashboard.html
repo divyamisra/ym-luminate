@@ -2,6 +2,20 @@
 	<div ng-if="participantRegistration.companyInformation.isCompanyCoordinator != 'true' || location == '/dashboard-student'" ng-cloak>
 	  <div class="d-grid dashboard-cols">
     	<div class="dashboard-col1 col p-2">
+				<section class="d-md-flex flex-md-column d-none" aria-label="Heart Card">
+					<div class="ahc-start-mission mb-2 white-box red-border-left">
+						<div class="card-body">
+							<h2 class="h5">Start Your Mission</h2>
+							<p>Click the tiles to start Finn's Mission and complete his 8 challenges. Ask family and friends for donations to uncover the entire card, unveiling a special photo,&nbsp;while helping kids like Finn with special hearts.</p>
+						</div>
+					</div>
+					<div class="ahc-heart-card mb-4">
+						<div ng-include="'SPageNavigator/ahc_heart_card_pc.html?pgwrap=n'"></div>
+						<!-- <img alt="Heart Card - Coming Soon" tabindex="0" class="img-fluid w-100" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/middle-school/image/Heart_Card_comingsoon.png"> -->
+					</div>
+				</section>
+		  </div>
+		  <div class="dashboard-col3 col p-2">
 				<div class="white-box h-100">
 					<div class="ym-badges w-100">
 						<h2 class="h3"> My Badges </h2>
@@ -32,20 +46,6 @@
 						</div>
 					</div>
 				</div>
-				<section class="d-md-flex flex-md-column" aria-label="My Badges">
-					<div class="ahc-start-mission mb-2 white-box red-border-left d-none">
-						<div class="card-body">
-							<h2 class="h5">Start Your Mission</h2>
-							<p>Click the tiles to start Finn's Mission and complete his 8 challenges. Ask family and friends for donations to uncover the entire card, unveiling a special photo,&nbsp;while helping kids like Finn with special hearts.</p>
-						</div>
-					</div>
-					<div class="ahc-heart-card mb-4 d-none">
-						<div ng-include="'SPageNavigator/ahc_heart_card_pc.html?pgwrap=n'"></div>
-						<!-- <img alt="Heart Card - Coming Soon" tabindex="0" class="img-fluid w-100" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/middle-school/image/Heart_Card_comingsoon.png"> -->
-					</div>
-				</section>
-		  </div>
-		  <div class="dashboard-col3 col p-2">
 					<div class="ahc-start-mission mb-2 white-box red-border-left d-none">
 						<div class="card-body">
 							<h2 class="h5">Start Your Mission</h2>
