@@ -1,0 +1,24 @@
+<div class="ym-pc-dashboard-materials">
+  <div class="modal-header">
+    <h2 class="h5 modal-title">
+      Finn’s Lifesaver Award
+    </h2>
+  </div>
+  <div class="modal-body text-center" ng-if="prizesEarned < 8" ng-cloak>
+    <p class="text-center bold">Complete Finn’s Mission to earn Finn’s Lifesaver Award!</p>
+  </div>
+  <div class="modal-body text-center" ng-if="prizesEarned == 8" ng-cloak>
+    <video class="h-auto" type="video/mp4" src="https://d42r08io5j7nw.cloudfront.net/ym_khc_2022_character_intro.mp4" ng-attr-poster="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/middle-school/image/FY23_YM_Wallpaper.png" height="300" controls autoplay alt="Finn's Lifesaver Award Video">
+       <p>Your browser doesn't support HTML5 video. Here is a <a href="http://www2.heart.org/KHC_MeetHH_Video">link to the video</a> instead.</p>
+    </video>
+  </div>
+  <div class="modal-footer">
+    <div class="clearfix">
+      <div class="text-center">
+        <button type="button" class="btn btn-toggle" ng-click="cancelTrophyMessage()">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
