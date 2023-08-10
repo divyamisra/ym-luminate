@@ -25,7 +25,7 @@ angular.module 'ahaLuminateControllers'
       $rootScope.survivor = false
       $scope.companyProgress = {}
       
-      $scope.prizes = []
+      $scope.prizes = {}
       $scope.prizesEarned = 0
       $scope.totalPrizes = 0
       $scope.has_bonus = 0
