@@ -42,6 +42,7 @@ angular.module 'trPcControllers'
       $scope.companyId = $scope.participantRegistration.companyInformation.companyId
       theDate = new Date
       $scope.yearsList = [1..(theDate.getFullYear()-1978)] # 0 - 50
+      $scope.loadingBadges = 1
 
       lockStart = 2200 #prod luminate server is est whereas dev server is cst
       lockEnd = 500
