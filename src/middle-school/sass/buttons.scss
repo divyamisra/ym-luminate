@@ -48,6 +48,12 @@ a.btn {
       background: $event-secondary-dark;
     }
   }
+	
+  &.btn-white {
+    background: #ffffff;
+    color: $event-primary;
+    border: 4px solid $event-primary;
+  }
 }
 
 div.responsive {
