@@ -2,6 +2,36 @@
 	<div ng-if="participantRegistration.companyInformation.isCompanyCoordinator != 'true' || location == '/dashboard-student'" ng-cloak>
 	  <div class="d-grid dashboard-cols">
     	<div class="dashboard-col1 col p-2">
+				<div class="white-box h-100">
+					<div class="ym-badges w-100">
+						<h2 class="h3"> My Badges </h2>
+						<div class="d-flex justify-content-center flex-wrap gap-4">
+							<div class="loading mt-3" ng-if="loadingBadges" ng-cloak>Loading Badges... <img style="max-width: 75px" class="spin" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/middle-school/image/fy24/badge-11-earned.png"></div>
+							<div class="badges d-flex flex-wrap justify-content-around">
+								<div class="ym-badges" ng-repeat="(name, prize) in prizes" ng-cloak>
+									<div class="ym-badge text-center mb-4 p-2" tabindex="0" aria-label="{{prize.label}} Badge {{(prize.status) ? 'Earned' : 'Not Earned'}}">
+										<img class="img-fluid" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/middle-school/image/fy24/badge-{{name}}-{{(prize.status) ? 'earned' : 'unearned'}}.png" alt="{{prize.label}} Badge {{(prize.status) ? 'Earned' : 'Not Earned'}}">
+										<div class="badge-title" ng-bind-html="prize.label"></div>
+										<a class="badge-button btn btn-primary mb-2" ng-class="(!prize.status) ? '' : 'btn-white'" ng-href="{{prize.final_url}}" target="{{(prize.mission_url_type == 'Quiz') ? '_blank' : ''}}" aria-label="{{prize.aria_button}}" ng-if="prize.mission_url_type != 'Modal'" ng-cloak>
+											<strong>
+												<span ng-if="name == 'trophy'" class="d-inline-block" ng-cloak>
+													<i class="fa fa-{{(prize.status) ? 'unlock' : 'lock'}}" aria-hidden="true"></i>
+												</span>
+												{{prize.button_label}}
+											</strong>
+										</a>
+										<a class="badge-button btn btn-primary mb-2" ng-class="(!prize.status) ? '' : 'btn-white'" href="" ng-click="showTrophyMessage()" aria-label="{{prize.aria_button}}" ng-if="prize.mission_url_type == 'Modal' && name == 'trophy'" ng-cloak>
+											<strong>
+												<i class="fa fa-{{(prize.status) ? 'unlock' : 'lock'}}" aria-hidden="true"></i>
+												{{prize.button_label}}
+											</strong>
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 				<section class="d-md-flex flex-md-column" aria-label="My Badges">
 					<div class="ahc-start-mission mb-2 white-box red-border-left d-none">
 						<div class="card-body">
@@ -9,7 +39,7 @@
 							<p>Click the tiles to start Finn's Mission and complete his 8 challenges. Ask family and friends for donations to uncover the entire card, unveiling a special photo,&nbsp;while helping kids like Finn with special hearts.</p>
 						</div>
 					</div>
-					<div class="ahc-heart-card mb-4">
+					<div class="ahc-heart-card mb-4 d-none">
 						<div ng-include="'SPageNavigator/ahc_heart_card_pc.html?pgwrap=n'"></div>
 						<!-- <img alt="Heart Card - Coming Soon" tabindex="0" class="img-fluid w-100" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/middle-school/image/Heart_Card_comingsoon.png"> -->
 					</div>
