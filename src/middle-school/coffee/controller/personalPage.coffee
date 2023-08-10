@@ -84,7 +84,7 @@ angular.module 'ahaLuminateControllers'
               $scope.schoolPlan.DonationDueDate = ''
               $scope.schoolPlan.KickOffDate = ''
       $scope.getSchoolPlan()
-      
+      ###
       checkSchoolChallenges = (amountRaised) ->
         amt = amountRaised / 100
         ZuriService.getSchoolData $scope.companyId,
@@ -127,7 +127,7 @@ angular.module 'ahaLuminateControllers'
           $scope.challengeName = response.data.challenges.text
           $scope.challengeCompleted = response.data.challenges.completed
           $rootScope.survivor = response.data.show_banner
-      
+      ###
       TeamraiserCompanyService.getCompanies 'company_id=' + $scope.companyId,
         success: (response) ->
           coordinatorId = response.getCompaniesResponse?.company?.coordinatorId
@@ -142,12 +142,13 @@ angular.module 'ahaLuminateControllers'
               .then (response) ->
                 $scope.eventDate = response.data.coordinator?.event_date
                 
+          ###
           if amountRaised >= goal 
             $scope.schoolChallenges.push
               id: 'school'
               label: 'School Challenge Completed'
               earned: true
-              
+          ###    
       setParticipantProgress = (amountRaised, goal) ->
         $scope.personalProgress = 
           amountRaised: if amountRaised then Number(amountRaised) else 0
@@ -177,7 +178,7 @@ angular.module 'ahaLuminateControllers'
             setParticipantProgress()
           else
             setParticipantProgress Number(participantInfo.amountRaised), Number(participantInfo.goal)
-          checkSchoolChallenges Number(participantInfo.amountRaised)
+          #checkSchoolChallenges Number(participantInfo.amountRaised)
           
       $scope.personalDonors = 
         page: 1
