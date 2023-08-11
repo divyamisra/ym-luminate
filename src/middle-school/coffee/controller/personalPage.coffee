@@ -309,10 +309,6 @@ angular.module 'ahaLuminateControllers'
             'ol'
           ]
           [
-            'insertImage'
-            'insertLink'
-          ]
-          [
             'undo'
             'redo'
           ]
