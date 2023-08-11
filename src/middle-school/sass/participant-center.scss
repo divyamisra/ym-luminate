@@ -8,7 +8,12 @@
 .flicker-fast{
   animation: flicker 1s linear infinite;
 }
-
+.flicker-delay1{
+  animation: flicker 2s linear 2;
+}
+.flicker-delay2{
+  animation: flicker 3s linear 2;
+}
 @keyframes flicker {
 	0%, 19.999%, 22%, 62.999%, 64%, 64.999%, 70%, 100% {
 		//text-shadow: none;
