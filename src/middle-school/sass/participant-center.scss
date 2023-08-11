@@ -1,8 +1,10 @@
 /* finns mission */
+.flicker-slower{
+  animation: flicker 4s linear infinite;
+}
 .flicker-slow{
   animation: flicker 3s linear infinite;
 }
-
 .flicker-fast{
   animation: flicker 1s linear infinite;
 }
