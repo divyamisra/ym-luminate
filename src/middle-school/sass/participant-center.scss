@@ -1,10 +1,18 @@
 /* finns mission */
+.flicker-slower{
+  animation: flicker 5s linear infinite;
+}
 .flicker-slow{
   animation: flicker 3s linear infinite;
 }
-
 .flicker-fast{
   animation: flicker 1s linear infinite;
+}
+.flicker-delay1{
+  animation: flicker 2s linear 2;
+}
+.flicker-delay2{
+  animation: flicker 3s linear 2;
 }
 
 @keyframes flicker {
@@ -256,6 +264,12 @@ select#ym-update-challenge {
   }
   h2, .h3 {
     color: $event-secondary-medium;
+  }
+}
+
+.finns-mission {
+  svg {
+    border-radius: .3333rem;
   }
 }
 

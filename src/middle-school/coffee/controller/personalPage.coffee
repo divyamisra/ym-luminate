@@ -28,15 +28,14 @@ angular.module 'ahaLuminateControllers'
       $scope.prizes = {}
       $scope.prizesEarned = 0
       $scope.totalPrizes = 0
-      $scope.has_bonus = 0
       $scope.studentChallengeBadge = false
       $scope.schoolChallengeBadge = false
+      $scope.returningStudent = false
       timestamp = new Date().getTime() 
       
       NuclavisService.getBadges $scope.participantId + '/' + $scope.frId
       .then (response) ->
         prizes = response.data.missions
-        #$scope.has_bonus = response.data.has_bonus
         angular.forEach prizes, (prize) ->
           $scope.prizes[prize.mission_id] = 
             id: prize.mission_id
@@ -128,6 +127,15 @@ angular.module 'ahaLuminateControllers'
           $scope.challengeCompleted = response.data.challenges.completed
           $rootScope.survivor = response.data.show_banner
       ###
+
+      ZuriService.getStudentDetail '&cons_id=' + $scope.participantId,
+        failure: (response) ->
+        error: (response) ->
+        success: (response) ->
+          if response.data.company[0] != "" and response.data.company[0] != null
+            if response.data.company[0].PriorYearEventId > 0
+              $scope.returningStudent = true
+                  
       TeamraiserCompanyService.getCompanies 'company_id=' + $scope.companyId,
         success: (response) ->
           coordinatorId = response.getCompaniesResponse?.company?.coordinatorId
@@ -299,10 +307,6 @@ angular.module 'ahaLuminateControllers'
           [
             'ul'
             'ol'
-          ]
-          [
-            'insertImage'
-            'insertLink'
           ]
           [
             'undo'
