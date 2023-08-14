@@ -321,10 +321,6 @@ angular.module 'trPcControllers'
           'ol'
         ]
         [
-          'insertImage'
-          'insertLink'
-        ]
-        [
           'undo'
           'redo'
         ]

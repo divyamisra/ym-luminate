@@ -1,3 +1,31 @@
+/* finns mission */
+.flicker-slower{
+  animation: flicker 5s linear infinite;
+}
+.flicker-slow{
+  animation: flicker 3s linear infinite;
+}
+.flicker-fast{
+  animation: flicker 1s linear infinite;
+}
+.flicker-delay1{
+  animation: flicker 2s linear 2;
+}
+.flicker-delay2{
+  animation: flicker 3s linear 2;
+}
+@keyframes flicker {
+	0%, 19.999%, 22%, 62.999%, 64%, 64.999%, 70%, 100% {
+		//text-shadow: none;
+    opacity: .99;
+		
+	}
+	20%, 21.999%, 63%, 63.999%, 65%, 69.999% {
+		opacity: 0.4;
+	}
+}
+/* ------ */
+
 option {
   font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
   font-size: 18px;
