@@ -538,7 +538,7 @@
         
         <div class="form-group mb-2" style="margin-bottom: 30px!important;">
           <label for="emailComposer-suggested_message_id" class="sr-only">Sample Message:</label>
-          <select class="form-control input-lg" id="emailComposerMessages" name="messages" ng-model="emailComposer.messages" ng-change="displayMessage()">
+          <select class="form-control input-lg" id="emailComposerMessages" name="messages" ng-model="emailComposer.messages" ng-change="displayMessage()" aria-label="Choose a sample message to view">
               <option value="">Choose a sample message</option>
               <option ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" value="pre-kickoff">Pre-Kick Off (1 week to 1 day before kick-off)</option>
               <option ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" value="help-school">Help our school earn valuable equipment and resources</option>
