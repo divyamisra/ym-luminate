@@ -227,7 +227,7 @@
         </div>
         <div class="form-group mb-2" ng-if="suggestedMessages.length > 0">
           <label for="emailComposer-suggested_message_id" class="sr-only">Sample Message:</label>
-          <select class="form-control input-lg" id="emailComposer-suggested_message_id" name="suggested_message_id" ng-model="emailComposer.suggested_message_id" ng-change="loadSuggestedMessage()">
+          <select class="form-control input-lg" id="emailComposer-suggested_message_id" name="suggested_message_id" ng-model="emailComposer.suggested_message_id" ng-change="loadSuggestedMessage()" aria-label="Choose a sample message to view">
             <option value="">Choose a sample message</option>
             <option ng-repeat="suggestedMessage in suggestedMessages | orderBy:'-sortOrder':true" value="{{suggestedMessage.messageId}}">
               {{suggestedMessage.name}}
