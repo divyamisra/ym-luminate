@@ -1,11 +1,3 @@
-<style>
-.flicker-delay1{
-  animation: flicker 2s linear 2;
-}
-.flicker-delay2{
-  animation: flicker 3s linear 2;
-}
-</style>
 <div cg-busy="dashboardPromises">
 	<div ng-if="participantRegistration.companyInformation.isCompanyCoordinator != 'true' || location == '/dashboard-student'" ng-cloak>
 	  <div class="d-grid dashboard-cols">
@@ -419,7 +411,7 @@
                                       <p>Share your personal QR Code to spread the word about your fundraising efforts and share your story!</p>
                                     </div>
                                     <div class="col">
-                                      <div id="nclvs_personal_page" client_id="ahayouthmarket" cons_id="{{consId}}" event_id="{{frId}}" style="max-width:150px"></div>
+                                      <div id="nclvs_personal_page" client_id="ahayouthmarket" cons_id="{{consId}}" event_id="{{frId}}"></div>
                                     </div>
                                   </div>
                                 </div>
