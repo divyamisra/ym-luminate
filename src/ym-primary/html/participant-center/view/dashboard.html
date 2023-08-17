@@ -486,7 +486,7 @@
               </div>
               <p class="students-registered">
                 {{schoolPlan.TotalParticipantsRegisteredOnline|number}} Online Students Registered of <br />
-                {{companyInfo.participantCount|number}} Students Enrolled
+                {{schoolPlan.StudentsEnrolled|number}} Students Enrolled
               </p>
             </div>
             <div class="col" ng-if="(schoolPlan.TotalParticipantsRegisteredOnline|number) > 0" ng-cloak>
