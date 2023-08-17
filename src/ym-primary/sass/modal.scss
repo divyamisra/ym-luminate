@@ -1,6 +1,11 @@
 h1.h5.modal-title {
   color: #000;
 }
+
+.ng-pc-modal .close {
+  postion:fixed;
+}  
+
 .modal-title {
   text-shadow: none;
 }
