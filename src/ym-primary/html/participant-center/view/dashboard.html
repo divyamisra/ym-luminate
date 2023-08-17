@@ -211,7 +211,7 @@
                 <div role="alert" class="alert alert-danger" ng-if="facebookFundraiserLoginStatus == 'login_error' || facebookFundraiserLoginStatus == 'permission_error' || facebookFundraiserLoginStatus == 'create_fundraiser_error' || facebookFundraiserCreateStatus == 'login_error' || facebookFundraiserCreateStatus == 'permission_error' || facebookFundraiserCreateStatus == 'create_fundraiser_error'" ng-cloak> An error occurred attempting to connect to Facebook. Please try again later. </div>
                 <div role="alert" class="alert alert-danger" ng-if="facebookFundraiserCreateStatus == 'create_fundraiser_duplicate'" ng-cloak> This Facebook account already has an active Facebook Fundraiser for this school. If you are trying to connect a second student, you will need to use another Facebook account. </div>
                 <div role="alert" class="alert alert-danger" ng-if="facebookFundraiserLoginStatus == 'declined_manage_fundraisers'" ng-cloak> We need your permission to create a Facebook Fundraiser on your behalf. </div>
-                <button type="button" class="btn btn-primary btn-white mb-3" ng-class="{'disabled': facebookFundraiserLoginStatus == 'pending' || facebookFundraiserCreateStatus == 'pending'}" ng-click="loginToFacebook()" ng-disabled="facebookFundraiserLoginStatus == 'pending' || facebookFundraiserCreateStatus == 'pending'">
+                <button type="button" class="btn btn-primary mb-3" ng-class="{'disabled': facebookFundraiserLoginStatus == 'pending' || facebookFundraiserCreateStatus == 'pending'}" ng-click="loginToFacebook()" ng-disabled="facebookFundraiserLoginStatus == 'pending' || facebookFundraiserCreateStatus == 'pending'">
                   <span class="fa fa-facebook-square"></span>&nbsp; <strong> Connect to Facebook Fundraiser </strong>
                 </button>
                 <div class="ym-pc-dashboard-facebook-hint"> By clicking this link, you will leave AHA's website and be redirected to another site not under the control of AHA. </div>
@@ -441,7 +441,7 @@
           </div>
         </div>
         <div class="col event-secondary-medium p-3">
-          <div class="d-flex justify-content-between flex-wrap gap-3">
+          <div class="d-md-flex justify-content-between flex-wrap gap-3">
             <div class="col">
               <h3 class="h5">Personal QR Code</h3>
               <p>Share your personal QR Code to spread the word about your fundraising efforts and share your story!</p>
@@ -510,10 +510,7 @@
           <div id="ym-pc-dashboard-company-panel--coordinator">
             <div class="ym-pc-dashboard-progress-box">
               <div id="ym-pc-dashboard-company-panel--student" aria-label="School Progress">
-                <div class="ym-pc-dashboard-section-header">
-                  <h3 class="h5 text-start"> Fundraising - My School Progress </h3>
-                </div>
-                <div class="ym-progress__thermometer m-0 mw-100" name="School Progress Bar" aria-label="{{companyProgress.percent}} percent of fundraising progress" aria-valuetext="{{companyProgress.percent}} percent of fundraising progress" role="progressbar" aria-valuenow="{{companyProgress.percent}}" aria-valuemin="0" aria-valuemax="100">
+                <div class="ym-progress__thermometer m-0 mt-4 mw-100" name="School Progress Bar" aria-label="{{companyProgress.percent}} percent of fundraising progress" aria-valuetext="{{companyProgress.percent}} percent of fundraising progress" role="progressbar" aria-valuenow="{{companyProgress.percent}}" aria-valuemin="0" aria-valuemax="100">
                   <div class="ym-progress__thermometer--fill" ng-style="{'width': companyProgress.percent + '%'}"></div>
                 </div>
                 <div class="d-flex justify-content-between">
@@ -623,12 +620,12 @@
             <div class="ym-pc-dashboard-section-header text-start">
               <h3 class="h5"> School QR Code </h3>
             </div>
-            <div class="d-flex justify-content-start flex-wrap gap-4">
+            <div class="d-md-flex justify-content-start flex-wrap gap-4">
               <div class="col-6 text-start">
                 <p> Click the Copy button to share QR code onto documents, social media and websites. </p>
               </div>
               <div class="col">
-                <div id="nclvs_team_page" client_id="ahayouthmarket" cons_id="{{consId}}" event_id="{{frId}}" style="max-width:150px"></div>
+                <div id="nclvs_team_page" client_id="ahayouthmarket" cons_id="{{consId}}" event_id="{{frId}}"></div>
               </div>
             </div>
           </div>
