@@ -21,6 +21,10 @@
   max-width:150px !important;
 }
 
+#nclvs_personal_page img, #nclvs_team_page img {
+  max-width: 90%;
+}
+
 .bonus-gift {
   background: $event-accent-blue;
   .bonus-gift-image {
