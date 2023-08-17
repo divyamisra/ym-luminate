@@ -48,7 +48,7 @@ angular.module 'trPcControllers'
           document.body.appendChild textarea
           textarea.select()
           try
-            alert 'Message copied successfully.'
+            alert 'Recipients copied successfully.'
             return document.execCommand('copy')
           catch ex
             console.warn 'Copy to clipboard failed.', ex

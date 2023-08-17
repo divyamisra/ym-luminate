@@ -17,8 +17,10 @@
   }
 }
 
-#nclvs_personal_page, #nclvs_team_page {
-  max-width:150px !important;
+@media (min-width:480px) {
+  #nclvs_personal_page, #nclvs_team_page {
+    max-width:150px !important;
+  }
 }
 
 #nclvs_personal_page img, #nclvs_team_page img {
