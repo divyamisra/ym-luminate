@@ -102,7 +102,7 @@
                 </div>
                 <div class="ym-pc-dashboard-send-emails checkbox mb-2 pe-2" custom-checkbox ng-class="{'checked': schoolPlan.SendEmailOnBehalfOfCoordinator == 'ALLOW'}" ng-cloak>
                   <label for="SendEmailOnBehalfOfCoordinator">
-                    <input disabled="true" type="checkbox" name="SendEmailOnBehalfOfCoordinator" id="SendEmailOnBehalfOfCoordinator" ng-model="schoolPlan.SendEmailOnBehalfOfCoordinator" ng-true-value="'ALLOW'" ng-false-value="'DONOTALLOW'" ng-click="putSchoolPlan($event)"> Allow AHA to Send Emails to my students on my behalf </label>
+                    <input ng-disabled="lockEnabled" type="checkbox" name="SendEmailOnBehalfOfCoordinator" id="SendEmailOnBehalfOfCoordinator" ng-model="schoolPlan.SendEmailOnBehalfOfCoordinator" ng-true-value="'ALLOW'" ng-false-value="'DONOTALLOW'" ng-click="putSchoolPlan($event)"> Allow AHA to Send Emails to my students on my behalf </label>
                 </div>
                 <div class="ym-pc-dashboard-participate-next-year mb-2">
                   <div class="d-md-flex participatingNextYear text-left">
