@@ -380,10 +380,10 @@ angular.module 'trPcControllers'
       ZuriService.getStudentDetail '&cons_id=' + $rootScope.participantRegistration.consId,
         failure: (response) ->
         error: (response) ->
-          success: (response) ->
-            if response.data.company[0] != "" and response.data.company[0] != null
-              if response.data.company[0].PriorYearEventId > 0
-                $scope.returningStudent = true
+        success: (response) ->
+          if response.data.company[0] != "" and response.data.company[0] != null
+            if response.data.company[0].PriorYearEventId > 0
+              $scope.returningStudent = true
                   
       $scope.previewEmail = ->
         $scope.clearEmailAlerts()
