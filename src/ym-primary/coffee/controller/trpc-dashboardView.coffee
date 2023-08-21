@@ -1178,30 +1178,29 @@ angular.module 'trPcControllers'
             #if $scope.participantRegistration.companyInformation?.isCompanyCoordinator is 'true'
             #  $scope.getSchoolTop15()
 				
-            if $scope.participantRegistration.companyInformation?.isCompanyCoordinator isnt 'true'
-              NgPcConstituentService.getUserRecord('fields=custom_string18&cons_id=' + $scope.consId).then (response) ->
-                if response.data.errorResponse
-                  console.log 'There was an error getting user profile. Please try again later.'
-                $scope.constituent = response.data.getConsResponse
-                if typeof $scope.constituent.custom.string == 'object'
-                  if $scope.constituent.custom.string.id == 'custom_string18'
-                    $scope.schoolPlan.ParticipatingNextYear = $scope.constituent.custom.string.content
-                    if $scope.schoolPlan.ParticipatingNextYear == 'YES'
+            NgPcConstituentService.getUserRecord('fields=custom_string18&cons_id=' + $scope.consId).then (response) ->
+              if response.data.errorResponse
+                console.log 'There was an error getting user profile. Please try again later.'
+              $scope.constituent = response.data.getConsResponse
+              if typeof $scope.constituent.custom.string == 'object'
+                if $scope.constituent.custom.string.id == 'custom_string18'
+                  $scope.schoolPlan.ParticipatingNextYear_student = $scope.constituent.custom.string.content
+                  if $scope.schoolPlan.ParticipatingNextYear_student == 'YES'
+                    $scope.schoolPlan.ParticipatingNextYear_isChecked = true
+                  else
+                    $scope.schoolPlan.ParticipatingNextYear_isChecked = false
+              else
+                angular.forEach $scope.constituent.custom.string, (field) ->
+                  if field.id == 'custom_string18'
+                    $scope.schoolPlan.ParticipatingNextYear_student = field.content
+                    if $scope.schoolPlan.ParticipatingNextYear_student == 'YES'
                       $scope.schoolPlan.ParticipatingNextYear_isChecked = true
                     else
                       $scope.schoolPlan.ParticipatingNextYear_isChecked = false
-                else
-                  angular.forEach $scope.constituent.custom.string, (field) ->
-                    if field.id == 'custom_string18'
-                      $scope.schoolPlan.ParticipatingNextYear = field.content
-                      if $scope.schoolPlan.ParticipatingNextYear == 'YES'
-                        $scope.schoolPlan.ParticipatingNextYear_isChecked = true
-                      else
-                        $scope.schoolPlan.ParticipatingNextYear_isChecked = false
-            if $scope.schoolPlan.ParticipatingNextYear == 'YES'
-              $scope.schoolPlan.ParticipatingNextYear_isChecked = true
-            else
-              $scope.schoolPlan.ParticipatingNextYear_isChecked = false
+          if $scope.schoolPlan.ParticipatingNextYear_student == 'YES'
+            $scope.schoolPlan.ParticipatingNextYear_isChecked = true
+          else
+            $scope.schoolPlan.ParticipatingNextYear_isChecked = false
       $scope.getSchoolPlan()
 
       $scope.putSchoolPlan = (event, sel) ->
@@ -1245,10 +1244,10 @@ angular.module 'trPcControllers'
 
       $scope.updateParticipatingNextYear = ->
         if $scope.schoolPlan.ParticipatingNextYear_isChecked == true
-          $scope.schoolPlan.ParticipatingNextYear = 'YES'
+          $scope.schoolPlan.ParticipatingNextYear_student = 'YES'
         if $scope.schoolPlan.ParticipatingNextYear_isChecked == false
-          $scope.schoolPlan.ParticipatingNextYear = 'NO'
-        updateUserProfilePromise = NgPcConstituentService.updateUserRecord('custom_string18=' + $scope.schoolPlan.participatingNextYear + '&cons_id=' + $scope.consId).then (response) ->
+          $scope.schoolPlan.ParticipatingNextYear_student = 'NO'
+        updateUserProfilePromise = NgPcConstituentService.updateUserRecord('custom_string18=' + $scope.schoolPlan.participatingNextYear_student + '&cons_id=' + $scope.consId).then (response) ->
           if response.data.errorResponse
             console.log 'There was an error processing your update. Please try again later.'
           updateUserProfilePromise = NgPcConstituentService.updateUserRecord('custom_date5_MONTH='+(($scope.theDate).getMonth()+1)+'&custom_date5_DAY='+($scope.theDate).getDate()+'&custom_date5_YEAR='+($scope.theDate).getFullYear()+'&cons_id=' + $scope.consId).then (response) ->
