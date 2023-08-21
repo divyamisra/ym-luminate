@@ -1205,13 +1205,7 @@ angular.module 'trPcControllers'
 
       $scope.putSchoolPlan = (event, sel) ->
         school = @schoolPlan
-        if sel == 'ParticipatingNextYear' or sel == 'ParticipatingNextYear_isChecked' or sel == 'MaterialsNeeded'
-          if sel == 'ParticipatingNextYear_isChecked'
-            if $scope.schoolPlan[sel] == true
-              $scope.schoolPlan.ParticipatingNextYear = 'YES'
-            if $scope.schoolPlan[sel] == false
-              $scope.schoolPlan.ParticipatingNextYear = 'NO'
-            sel = 'ParticipatingNextYear'
+        if sel == 'ParticipatingNextYear' or sel == 'MaterialsNeeded'
           schoolParams = '&field_id=' + sel + '&value=' + $scope.schoolPlan[sel] + '&type=dropdown'
           ZuriService.schoolPlanData '&method=UpdateSchoolPlan&CompanyId=' + $scope.participantRegistration.companyInformation.companyId + '&EventId=' + $scope.frId + schoolParams,
             failure: (response) ->
