@@ -1241,7 +1241,7 @@ angular.module 'trPcControllers'
           $scope.schoolPlan.ParticipatingNextYear_student = 'YES'
         if $scope.schoolPlan.ParticipatingNextYear_isChecked == false
           $scope.schoolPlan.ParticipatingNextYear_student = 'NO'
-        updateUserProfilePromise = NgPcConstituentService.updateUserRecord('custom_string18=' + $scope.schoolPlan.participatingNextYear_student + '&cons_id=' + $scope.consId).then (response) ->
+        updateUserProfilePromise = NgPcConstituentService.updateUserRecord('custom_string18=' + $scope.schoolPlan.ParticipatingNextYear_student + '&cons_id=' + $scope.consId).then (response) ->
           if response.data.errorResponse
             console.log 'There was an error processing your update. Please try again later.'
           updateUserProfilePromise = NgPcConstituentService.updateUserRecord('custom_date5_MONTH='+(($scope.theDate).getMonth()+1)+'&custom_date5_DAY='+($scope.theDate).getDate()+'&custom_date5_YEAR='+($scope.theDate).getFullYear()+'&cons_id=' + $scope.consId).then (response) ->
