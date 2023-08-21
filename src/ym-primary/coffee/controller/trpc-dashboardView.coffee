@@ -1206,7 +1206,7 @@ angular.module 'trPcControllers'
 
       $scope.putSchoolPlan = (event, sel) ->
         school = @schoolPlan
-        if sel == 'ParticipatingNextYear_isChecked' or sel == 'MaterialsNeeded'
+        if sel == 'ParticipatingNextYear' or sel == 'ParticipatingNextYear_isChecked' or sel == 'MaterialsNeeded'
           if sel == 'ParticipatingNextYear_isChecked'
             if $scope.schoolPlan[sel] == true
               $scope.schoolPlan.ParticipatingNextYear = 'YES'
