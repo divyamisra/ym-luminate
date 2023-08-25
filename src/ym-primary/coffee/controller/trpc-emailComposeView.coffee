@@ -242,10 +242,12 @@ angular.module 'trPcControllers'
       suggestedMessagesPromise = NgPcTeamraiserEmailService.getSuggestedMessages()
         .then (response) ->
           suggestedMessages = response.data.getSuggestedMessagesResponse.suggestedMessage
+          console.log('got suggested messages')
           suggestedMessages = [suggestedMessages] if not angular.isArray suggestedMessages
           $scope.suggestedMessages = []
           angular.forEach suggestedMessages, (message) ->
             if message.active is 'true'
+              console.log('message is active')
               if $scope.participantRegistration.companyInformation?.isCompanyCoordinator isnt 'true'
                 if message.name.indexOf('Coordinator:') is -1
                   # if not $scope.suggestedMessageCountByType[message.messageType]
