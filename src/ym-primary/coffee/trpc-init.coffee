@@ -44,6 +44,7 @@ angular.module 'trPcApp'
       $rootScope.AmountRaised = Number((AmountRaised).replace('$', '').replace(/,/g, ''))
       
       $rootScope.usePcEmail = $embedRoot.data('use-pc-email') or ''
+      console.log('$rootScope.usePcEmail ' + $rootScope.usePcEmail)
 
       $dataRootBody = angular.element '[data-aha-luminate-root]'
       $rootScope.bodyCompanyId = $dataRootBody.data('company-id') or ''
