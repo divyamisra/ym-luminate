@@ -12,15 +12,15 @@
     "node": "^12.14.0"
   },
   "dependencies": {
-    "coffeescript": "^2.5.1",
+    "coffeescript": "^2.7.0",
     "grunt-cli": "^1.4.3",
     "load-grunt-tasks": "^5.1.0"
   },
   "devDependencies": {
-    "autoprefixer": "^9.8.6",
-    "glob": "^7.1.6",
-    "grunt": "^1.4.1",
-    "grunt-contrib-clean": "^2.0.0",
+    "autoprefixer": "^9.8.8",
+    "glob": "^7.2.3",
+    "grunt": "^1.6.1",
+    "grunt-contrib-clean": "^2.0.1",
     "grunt-contrib-coffee": "^1.0.0",
     "grunt-contrib-connect": "^2.1.0",
     "grunt-contrib-copy": "^1.0.0",

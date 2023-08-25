@@ -1,14 +1,14 @@
 <div cg-busy="emailPromises">
-  <!-- <div class="row"> usePcEmail? {{usePcEmail}}-->
-  <div class="row" ng-show="usePcEmail=='true'">
+  <div class="row">
     <div class="col-sm-4 col-md-3">
-      <div class="d-block d-md-none">
+      <!-- <div class="d-block d-md-none"> -->
+      <div class="d-xs-block d-sm-none">
         <div class="btn-group ng-pc-nav-btn-group" uib-dropdown>
           <button type="button" class="btn btn-secondary form-control" uib-dropdown-toggle>
             <strong>Compose</strong> <span class="caret"></span>
           </button>
           <ul class="list-unstyled dropdown-menu" uib-dropdown-menu>
-            <li>
+            <!-- <li>
               <a ng-href="{{baseUrl}}#/email/compose">
                 Compose
               </a>
@@ -25,7 +25,7 @@
                 <span class="badge">{{messageCounts.sentMessages}}</span> 
                 Sent Messages
               </a>
-            </li>
+            </li> -->
             <li class="divider"></li>
             <li>
               <a ng-href="{{baseUrl}}#/email/contacts/email_rpt_show_all/list">
@@ -102,8 +102,9 @@
           </ul>
         </div>
       </div>
-      <div class="d-block d-sm-none">
-        <a disabled class="btn btn-secondary form-control">
+      <!-- <div class="d-block d-sm-none"> -->
+      <div class="d-xs-none d-sm-block">
+        <!-- <a disabled class="btn btn-secondary form-control">
           <strong>Compose</strong>
         </a>
         <div class="list-group ng-pc-nav-list-group">
@@ -115,7 +116,7 @@
             <span class="badge">{{messageCounts.sentMessages}}</span> 
             Sent Messages
           </a>
-        </div>
+        </div> -->
         <div class="list-group ng-pc-nav-list-group">
           <h2 class="h5 list-group-item-heading">
             Contacts
