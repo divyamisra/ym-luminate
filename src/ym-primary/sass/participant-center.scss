@@ -640,7 +640,7 @@ div[id^="taTextElement"]:focus {
 
 .ym-pc-dashboard-school-goals {
   label {display:inline-block;width:50%;}
-  input {display:inline-block;width:auto;}
+  input {display:inline-block;width:auto;max-width:170px;}
 }
 
 .ym-pc-dashboard-coordinator-school-years-section,
