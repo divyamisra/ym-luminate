@@ -63,7 +63,7 @@
                       <label for="DonationDueDate" class="col-6">
                         <strong> Donation Due Date </strong>
                       </label>
-                      <div class="input-group-old class="col-6"">
+                      <div class="input-group-old class="col-6">
                         <span ng-if="schoolPlan.DonationDueDate == '0000-00-00'" ng-cloak>--/--/----</span>
                         <span ng-if="schoolPlan.DonationDueDate != '0000-00-00' && lockEnabled" ng-cloak>{{schoolPlan.DonationDueDate | date:'MM/dd/yyyy'}}</span>
                         <input ng-if="!lockEnabled" type="date" class="form-control" id="DonationDueDate" ng-model="schoolPlan.DonationDueDate" aria-label="Donation Due Date" ng-blur="putSchoolPlan($event)" />
