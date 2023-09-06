@@ -74,6 +74,10 @@ angular.module 'trPcControllers'
 
       #Nuclavis process start by setting this flag
       webContent.load = 1
+      setTimeout (->
+        ahaWebContent.initialize false, $rootScope.consId, '' + $rootScope.authToken, $rootScope.frId
+        return
+      ), 1000
 
       if $scope.participantRegistration.lastPC2Login is '0'
         if $scope.participantRegistration.companyInformation?.isCompanyCoordinator isnt 'true'
