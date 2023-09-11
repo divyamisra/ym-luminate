@@ -41,6 +41,12 @@ h1.h5.modal-title {
   }
   .modal-body {
       overflow: hidden;
+      &.confetti {
+          .close {
+              right: 10px;
+              top: 10px;
+          }
+      }
   }
   .ym-pc-first-login-modal {
   	font-size: 18px;
