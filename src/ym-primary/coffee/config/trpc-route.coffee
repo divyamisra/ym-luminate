@@ -40,6 +40,9 @@ if window.location.href.indexOf('pagename=ym_khc_participant_center') isnt -1
           .when '/reports', 
             templateUrl: APP_INFO.rootPath + 'dist/ym-primary/html/participant-center/view/reports.html'
             controller: 'NgPcReportsViewCtrl'
+          .when '/mydonors', 
+            templateUrl: APP_INFO.rootPath + 'dist/ym-primary/html/participant-center/view/mydonors.html'
+            controller: 'NgPcReportsViewCtrl'
           .when '/student-resources', 
             templateUrl: APP_INFO.rootPath + 'dist/ym-primary/html/participant-center/view/studentResources.html'
             controller: 'NgPcStudentResourcesViewCtrl'
