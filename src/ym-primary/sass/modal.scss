@@ -45,6 +45,7 @@ h1.h5.modal-title {
           .close {
               right: 10px;
               top: 10px;
+              z-index: 999999;
           }
       }
   }
