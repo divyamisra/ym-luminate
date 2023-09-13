@@ -695,6 +695,7 @@ angular.module 'ahaLuminateControllers'
         angular.element('span.field-required').closest('.form-content').find('input:not(:hidden), select:not(:hidden)').addClass('required')
         angular.element('input#donor_addr_zipname').addClass("zipcode");
         angular.element('input#responsive_payment_typecc_numbername').addClass("creditcard")
+        angular.element('.HelpLink').attr("title","What is CVV? Opens new window.")
         
       loadLevels().then ->
         $scope.otherAmtError = false
