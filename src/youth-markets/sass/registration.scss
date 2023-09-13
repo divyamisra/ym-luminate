@@ -465,9 +465,10 @@
 
 
 .ym-registration-reg-waiver-btns {
-  width: 254px;
+  /*width: 254px;*/
   margin: 0 auto;
   
+  /*
   @media (min-width: 360px) {
     width: 282px;
   }
@@ -475,8 +476,8 @@
   @media (min-width: $screen-sm-min) {
     width: 306px;
   }
-
-  .pull-left::after {
+  */
+  .btn-yes::after {
     color: red;
     content: "*";
     font-size: 1.5em;
@@ -485,16 +486,7 @@
   
   .btn {
     font-size: 13px;
-    width: 122px;
-    
-    @media (min-width: 360px) {
-      font-size: inherit;
-      width: 126px;
-    }
-    
-    @media (min-width: $screen-sm-min) {
-      width: 138px;
-    }
+    max-width: 150px;    
   }
 }
 
