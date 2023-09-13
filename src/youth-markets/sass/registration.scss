@@ -465,28 +465,24 @@
 
 
 .ym-registration-reg-waiver-btns {
-  /*width: 254px;*/
+  max-width: 400px;
   margin: 0 auto;
+
+  .btn-yes {
+    display:flex;
   
-  /*
-  @media (min-width: 360px) {
-    width: 282px;
-  }
-  
-  @media (min-width: $screen-sm-min) {
-    width: 306px;
-  }
-  */
-  .btn-yes::after {
-    color: red;
-    content: "*";
-    font-size: 1.5em;
-    vertical-align: top;
+    &::after {
+      color: #c10e21;
+      content: "*";
+      font-size: 1.5em;
+      vertical-align: top;
+      padding-left:10px;
+    }
   }
   
   .btn {
-    font-size: 13px;
-    max-width: 150px;    
+    font-size: 16px;
+    width: 150px;    
   }
 }
 
