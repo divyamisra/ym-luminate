@@ -55,9 +55,14 @@ angular.module 'ahaLuminateApp'
       $rootScope.facebookFundraiserId = $dataRoot.data('facebook-fundraiser-id') if $dataRoot.data('facebook-fundraiser-id') isnt ''
       $rootScope.currentCSTDate = $dataRoot.data('current-date') if $dataRoot.data('current-date') isnt ''
       $rootScope.browserName = detectBrowserName()
+
+      $rootScope.bodyCompanyId = $dataRoot.data('company-id') or ''
+
       $rootScope.showGiftsTab = false
+      $rootScope.classroomChallenge = false
       if $rootScope.tablePrefix == 'heartdev'
         $rootScope.showGiftsTab = true
+        $rootScope.classroomChallenge = true
       else
         ZuriService.getSchoolInfo $rootScope.bodyCompanyId,
           failure: (response) ->
@@ -65,6 +70,8 @@ angular.module 'ahaLuminateApp'
           success: (response) ->
             if response.data.company.customCompanyDetail1.indexOf("IG:A") > -1
               $rootScope.showGiftsTab = true
+            if response.data.company.customCompanyDetail1.indexOf("CC:Y") > -1
+              $rootScope.classroomChallenge = true
   ]
 
 angular.element(document).ready ->
