@@ -352,11 +352,11 @@ angular.module 'ahaLuminateControllers'
             teachersFound[teacher] = teacher
           $scope.teacherList = teacherList
 
-      NuclavisService.getTeachers $scope.companyId + "/" + $rootScope.frId
-      .then (response) ->
-        $scope.teachers = response.data.teachers
-        $scope.listUpload = response.data.list_upload
-        $scope.getTeacherList()
+      if $rootScope.classroomChallenge
+        NuclavisService.getTeachers $scope.companyId + "/" + $rootScope.frId
+        .then (response) ->
+          $scope.teachers = response.data.teachers
+          $scope.getTeacherList()
         
       setCompanyCity = (companyCity) ->
         $rootScope.companyCity = companyCity
