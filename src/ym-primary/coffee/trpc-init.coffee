@@ -24,8 +24,7 @@ angular.module 'trPcApp'
   .run [
     '$rootScope'
     'NG_PC_APP_INFO'
-    'ZuriService'
-    ($rootScope, NG_PC_APP_INFO, ZuriService) ->
+    ($rootScope, NG_PC_APP_INFO) ->
       # get data from embed container
       $embedRoot = angular.element '[data-embed-root]'
       $rootScope.prev1FrId = $embedRoot.data('prev-one-fr-id') or ''
@@ -47,16 +46,6 @@ angular.module 'trPcApp'
 
       $dataRootBody = angular.element '[data-aha-luminate-root]'
       $rootScope.bodyCompanyId = $dataRootBody.data('company-id') or ''
-      $rootScope.showGiftsTab = false
-      if $rootScope.tablePrefix == 'heartdev'
-        $rootScope.showGiftsTab = true
-      else
-        ZuriService.getSchoolInfo $rootScope.bodyCompanyId,
-          failure: (response) ->
-          error: (response) ->
-          success: (response) ->
-            if response.data.company.customCompanyDetail1.indexOf("IG:A") > -1
-              $rootScope.showGiftsTab = true
   ]
 
 angular.element(document).ready ->
