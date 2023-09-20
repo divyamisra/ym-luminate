@@ -2,6 +2,10 @@
     background: #fff;
 }
 
+.text-red {
+  color: $brand-primary;
+}
+
 .ym-user-image {
   @media (min-width: $screen-sm-min) {
     background-size: 93%;
