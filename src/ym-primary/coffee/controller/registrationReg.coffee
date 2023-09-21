@@ -4,12 +4,13 @@ angular.module 'ahaLuminateControllers'
     '$scope'
     '$filter'
     '$uibModal'
+    '$timeout'
     'APP_INFO'
     'TeamraiserCompanyService'
     'TeamraiserRegistrationService'
     'SchoolLookupService'
     'NuclavisService'
-    ($rootScope, $scope, $filter, $uibModal, APP_INFO, TeamraiserCompanyService, TeamraiserRegistrationService, SchoolLookupService, NuclavisService) ->
+    ($rootScope, $scope, $filter, $uibModal, $timeout, APP_INFO, TeamraiserCompanyService, TeamraiserRegistrationService, SchoolLookupService, NuclavisService) ->
       $rootScope.companyName = ''
       $scope.teachers = []
       $scope.teacherList = []
