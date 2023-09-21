@@ -64,7 +64,7 @@ angular.module 'ahaLuminateControllers'
 
       $timeout ->
         $scope.submitRegSummary()
-        , 500
+      , 500
 
       #
       #SchoolLookupService.getSchoolData()
