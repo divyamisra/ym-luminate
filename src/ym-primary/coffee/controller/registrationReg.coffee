@@ -16,6 +16,7 @@ angular.module 'ahaLuminateControllers'
       $scope.teacherList = []
       $scope.listUpload = false
       $scope.companyId = angular.element('[name=s_frCompanyId]').val()
+      $scope.studentTreated = ''
       
       regCompanyId = luminateExtend.global.regCompanyId
       setCompanyName = (companyName) ->
