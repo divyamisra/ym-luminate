@@ -1,6 +1,6 @@
 body.app-27 {
   main {
-  	background: url(/images/content/pagebuilder/ym-reg-background-2024.png) repeat;
+  	background: url(../image/fy24/ym-reg-background-2024.png) repeat;
   	background-size: 100% 100%;
   }
 
@@ -11,6 +11,7 @@ body.app-27 {
     flex-flow: column;
   	flex: 100%;
   	max-width: 100%;
+    z-index:1;
   }
   
   .reg-container {
@@ -53,7 +54,26 @@ body.app-27 {
   	flex-flow: column;
   	justify-content: center;
   	flex: 100%;
+    position:relative;
 
+    .confetti {
+      top: -55px;
+      padding-top: 50px;
+      margin-bottom: -66px;
+      
+      &:before {
+        background: url(../image/badge_confetti.png) !important;
+        content: '';
+        width: 100%;
+        height: 400%;
+        display: block;
+        position: absolute;
+        opacity: 0.3;
+        animation: slide 6s linear infinite;
+        -webkit-animation: slide 6s linear infinite;
+        -ms-animation: slide 6s linear infinite;
+     }
+      
     .ym-registration-page-container {
     	display: flex;
     	flex-flow: column;
