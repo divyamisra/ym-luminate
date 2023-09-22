@@ -214,6 +214,8 @@ angular.module 'ahaLuminateControllers'
                 $scope.registrationAdditionalQuestions = {}
               #$scope.registrationAdditionalQuestions[questionName] = questionName
               $scope.registrationAdditionalQuestions[surveyKey] = questionName
+            if surveyKey == 'ym_khc_survivor_teacher'
+                $scope.studentTreated = questionName
             if not $scope.$$phase
               $scope.$apply()
           TeamraiserRegistrationService.getRegistrationDocument 'participation_id=' + newValue,
@@ -233,7 +235,6 @@ angular.module 'ahaLuminateControllers'
                 angular.forEach registrationQuestions, (registrationQuestion) ->
                   if registrationQuestion.ng_questionName
                     setRegistrationQuestionSurveyKey registrationQuestion.ng_questionName, registrationQuestion.key
-                $scope.studentTreated = registrationAdditionalQuestions['ym_khc_survivor_teacher']
               initCustomQuestions()
 
 
