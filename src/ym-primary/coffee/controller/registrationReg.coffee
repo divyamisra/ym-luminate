@@ -233,6 +233,7 @@ angular.module 'ahaLuminateControllers'
                 angular.forEach registrationQuestions, (registrationQuestion) ->
                   if registrationQuestion.ng_questionName
                     setRegistrationQuestionSurveyKey registrationQuestion.ng_questionName, registrationQuestion.key
+                $scope.studentTreated = registrationAdditionalQuestions['ym_khc_survivor_teacher']
               initCustomQuestions()
 
 
