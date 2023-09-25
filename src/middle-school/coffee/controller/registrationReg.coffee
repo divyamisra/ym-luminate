@@ -5,7 +5,8 @@ angular.module 'ahaLuminateControllers'
     '$filter'
     'TeamraiserCompanyService'
     'TeamraiserRegistrationService'
-    ($rootScope, $scope, $filter, TeamraiserCompanyService, TeamraiserRegistrationService) ->
+    'NuclavisService'
+    ($rootScope, $scope, $filter, TeamraiserCompanyService, TeamraiserRegistrationService, NuclavisService) ->
       $rootScope.companyName = ''
       regCompanyId = luminateExtend.global.regCompanyId
       setCompanyName = (companyName) ->
@@ -287,4 +288,36 @@ angular.module 'ahaLuminateControllers'
         else
           angular.element('.js--default-reg-form').submit()
         false
+
+      $scope.getTeacherList = () ->
+        if typeof $scope.registrationCustomQuestions != 'undefined'
+          $scope.teacherList = []
+          teacherList = []
+          teachersFound = []
+          angular.forEach $scope.teachers, (teacher) ->
+            if not teachersFound[teacher]
+              teacherList.push teacher
+            teachersFound[teacher] = teacher
+          $scope.teacherList = teacherList
+
+      if $rootScope.classroomChallenge
+        NuclavisService.getTeachers $scope.companyId + "/" + $rootScope.frId
+        .then (response) ->
+          $scope.teachers = response.data.teachers
+          $scope.getTeacherList()
+        
+      setCompanyCity = (companyCity) ->
+        $rootScope.companyCity = companyCity
+        if not $rootScope.$$phase
+          $rootScope.$apply()
+          
+      setCompanyState = (companyState) ->
+        $rootScope.companyState = companyState
+        if not $rootScope.$$phase
+          $rootScope.$apply()
+          
+      if localStorage.companyCity != undefined
+        setCompanyCity localStorage.companyCity
+        setCompanyState localStorage.companyState
+        
   ]
