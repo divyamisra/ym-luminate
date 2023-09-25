@@ -8,19 +8,19 @@
       </div>
       [[?x27x::x[[S4]]x::
         <div class="registration-location">
-					[[?xx::x[[S80:frCompanyId]]x::::
-					<div ng-if="companyName" class="text-center fw-bold" ng-cloak>
-						<p class="school-name mb-1">
-							My School: <a title="{{companyName}}" href="TR?fr_id=[[S80:trID]]&pg=company&company_id=[[S80:frCompanyId]]"><span ng-bind-html="companyName"></span></a>
-						</p>
-						<div ng-if="companyCity" ng-cloak>
-							<p class="school-location" ng-if="companyCity" ng-cloak>
-								Located in <span ng-bind-html="companyCity"></span>, <span ng-bind-html="companyState"></span> 
-							</p>
-						</div>
-					</div>
-					]]      
-				</div>
+	[[?xx::x[[S80:frCompanyId]]x::::
+		<div ng-if="companyName" class="text-center fw-bold" ng-cloak>
+			<p class="school-name mb-1">
+				My School: <a title="{{companyName}}" href="TR?fr_id=[[S80:trID]]&pg=company&company_id=[[S80:frCompanyId]]"><span ng-bind-html="companyName"></span></a>
+			</p>
+			<div ng-if="companyCity" ng-cloak>
+				<p class="school-location" ng-if="companyCity" ng-cloak>
+					Located in <span ng-bind-html="companyCity"></span>, <span ng-bind-html="companyState"></span> 
+				</p>
+			</div>
+		</div>
+	]]      
+	</div>
       ::]]
     </div>
   ]]
