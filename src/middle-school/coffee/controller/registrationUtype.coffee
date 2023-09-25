@@ -3,7 +3,8 @@ angular.module 'ahaLuminateControllers'
     '$rootScope'
     '$scope'
     'TeamraiserCompanyService'
-    ($rootScope, $scope, TeamraiserCompanyService) ->
+    'ZuriService'
+    ($rootScope, $scope, TeamraiserCompanyService, ZuriService) ->
       $rootScope.companyName = ''
       regCompanyId = luminateExtend.global.regCompanyId
       setCompanyName = (companyName) ->
@@ -38,4 +39,14 @@ angular.module 'ahaLuminateControllers'
       $scope.submitForgotLogin = ->
         angular.element('.js--default-utype-send-username-form').submit()
         false
+
+      ZuriService.getSchoolDetail '&school_id=' + regCompanyId + '&EventId=' + $rootScope.frId,
+        failure: (response) ->
+        error: (response) ->
+        success: (response) ->
+          if response.data.company[0] != ""
+            $scope.schoolPlan = response.data.company[0]
+            setCompanyCity $scope.schoolPlan.SchoolCity
+            setCompanyState $scope.schoolPlan.SchoolState
+    
   ]
