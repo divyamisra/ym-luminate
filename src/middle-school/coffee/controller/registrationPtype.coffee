@@ -5,7 +5,8 @@ angular.module 'ahaLuminateControllers'
     '$filter'
     '$timeout'
     'TeamraiserCompanyService'
-    ($rootScope, $scope, $filter, $timeout, TeamraiserCompanyService) ->
+    'NuclavisService'
+    ($rootScope, $scope, $filter, $timeout, TeamraiserCompanyService, NuclavisService) ->
       $rootScope.companyName = ''
       regCompanyId = luminateExtend.global.regCompanyId
       setCompanyName = (companyName) ->
@@ -250,6 +251,12 @@ angular.module 'ahaLuminateControllers'
           angular.element('.js--default-ptype-form').submit()
           false
 
+      if $rootScope.classroomChallenge
+        NuclavisService.getTeachers $scope.companyId + "/" + $rootScope.frId
+        .then (response) ->
+          $scope.teachers = response.data.teachers
+          $scope.getTeacherList()
+          
       setCompanyCity = (companyCity) ->
         $rootScope.companyCity = companyCity
         if not $rootScope.$$phase
