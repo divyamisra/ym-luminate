@@ -8,9 +8,8 @@ angular.module 'ahaLuminateControllers'
     'APP_INFO'
     'TeamraiserCompanyService'
     'TeamraiserRegistrationService'
-    'SchoolLookupService'
     'NuclavisService'
-    ($rootScope, $scope, $filter, $uibModal, $timeout, APP_INFO, TeamraiserCompanyService, TeamraiserRegistrationService, SchoolLookupService, NuclavisService) ->
+    ($rootScope, $scope, $filter, $uibModal, $timeout, APP_INFO, TeamraiserCompanyService, TeamraiserRegistrationService, NuclavisService) ->
       $rootScope.companyName = ''
       $scope.teachers = []
       $scope.teacherList = []
@@ -377,14 +376,4 @@ angular.module 'ahaLuminateControllers'
         setCompanyCity localStorage.companyCity
         setCompanyState localStorage.companyState
       
-      #
-      #SchoolLookupService.getSchoolData()
-      #  .then (response) ->
-      #    schoolDataRows = response.data.getSchoolSearchDataResponse.schoolData
-      #    angular.forEach schoolDataRows, (schoolDataRow, schoolDataRowIndex) ->
-      #      if schoolDataRowIndex > 0
-      #        if regCompanyId is schoolDataRow[0]
-      #          setCompanyCity schoolDataRow[1]
-      #          setCompanyState schoolDataRow[2]
-      #          return
   ]
