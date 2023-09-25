@@ -180,7 +180,14 @@ angular.module 'trPcControllers'
                 if $scope.companyProgress.raised >= $scope.companyProgress.goal and $scope.companyProgress.goal > 0 and amt >= Number(($scope.companyProgress.schoolChallengeLevel).replace('$', '').replace(/,/g, '')) and $scope.companyProgress.schoolChallenge != "No School Challenge"
                   $scope.schoolChallenge = 4
             #$scope.getSchoolBadges()
-            
+
+      $scope.CountOfStudentsCompletingFinnsMission = 0
+      getFinnsMissionCompletedCount = ->
+        NuclavisService.getBadges $scope.participantRegistration.companyInformation.companyId + '/' + $scope.frId
+        .then (response) ->
+	  $scope.CountOfStudentsCompletingFinnsMission = response.data.finns_mission_completed
+      getFinnsMissionCompletedCount()
+		
       participantsString = ''
       $scope.companyParticipants = {}
       setCompanyParticipants = (participants, totalNumber, totalFundraisers) ->
