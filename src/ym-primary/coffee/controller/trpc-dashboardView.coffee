@@ -185,7 +185,7 @@ angular.module 'trPcControllers'
       getFinnsMissionCompletedCount = ->
         NuclavisService.getBadges $scope.participantRegistration.companyInformation.companyId + '/' + $scope.frId
         .then (response) ->
-	  $scope.CountOfStudentsCompletingFinnsMission = response.data.finns_mission_completed
+          $scope.CountOfStudentsCompletingFinnsMission = response.data.finns_mission_completed
       getFinnsMissionCompletedCount()
 		
       participantsString = ''
