@@ -11,6 +11,19 @@ angular.module 'ahaLuminateControllers'
         $rootScope.companyName = companyName
         if not $rootScope.$$phase
           $rootScope.$apply()
+          
+      setCompanyCity = (companyCity) ->
+        $rootScope.companyCity = companyCity
+        localStorage.companyCity = companyCity
+        if not $rootScope.$$phase
+          $rootScope.$apply()
+          
+      setCompanyState = (companyState) ->
+        $rootScope.companyState = companyState
+        localStorage.companyState = companyState
+        if not $rootScope.$$phase
+          $rootScope.$apply()
+          
       TeamraiserCompanyService.getCompanies 'company_id=' + regCompanyId,
         error: ->
           # TODO
