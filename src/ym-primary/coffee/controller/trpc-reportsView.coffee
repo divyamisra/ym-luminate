@@ -11,6 +11,8 @@ angular.module 'trPcControllers'
     'NgPcTeamraiserReportsService'
     ($rootScope, $scope, $filter, $location, $uibModal, APP_INFO, NgPcTeamraiserEmailService, NgPcTeamraiserGiftService, NgPcTeamraiserReportsService) ->
       $scope.reportPromises = []
+
+      ahaWebContent.ssoInitialize $rootScope.consId, $rootScope.frId, '' + $rootScope.authToken, '' + $rootScope.sessionCookie
       
       $scope.activeReportTab = 1 ##if $scope.participantRegistration.companyInformation?.isCompanyCoordinator is 'true' then 0 else 1
       

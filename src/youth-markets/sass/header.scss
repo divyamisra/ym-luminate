@@ -458,7 +458,7 @@ header {
       font-size: $font-size-sm;
       width: 250px;
       padding: 0;
-      z-index: 1000;
+      z-index: 999999;
       
       &.open {
         display: block;

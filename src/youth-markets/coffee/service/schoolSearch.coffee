@@ -335,7 +335,7 @@ angular.module 'ahaLuminateApp'
           $scope.schoolList.currentPage = 1
           nameFilter = $scope.schoolList.nameFilter or '%'
           companies = []
-          TeamraiserCompanyService.getCompanies 'event_type=' + encodeURIComponent(eventType) + '&company_name=' + encodeURIComponent(nameFilter) + '&list_sort_column=company_name&list_page_size=500', (response) ->
+          TeamraiserCompanyService.getCompanies 'event_type=' + eventType + '&company_name=' + encodeURIComponent(nameFilter) + '&list_sort_column=company_name&list_page_size=500', (response) ->
             if response.getCompaniesResponse?.company
               if response.getCompaniesResponse?.totalNumberResults is '1'
                 companies.push response.getCompaniesResponse.company

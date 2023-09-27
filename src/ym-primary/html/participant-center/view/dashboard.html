@@ -250,7 +250,7 @@
                 <div id="fieldText" class="border border-2 bg-light rounded p-2 d-inline-block overflow-hidden me-3">
                   <div class="js--personal-social-share">{{personalPageUrl}}</div>
                 </div>
-                <button type="button" class="btn btn-md-wide btn-primary btn-white" id="copyable" data-field="fieldText" data-field-type="Personal URL" role="button" copy-field>
+                <button type="button" class="btn btn-md-wide btn-primary btn-white" id="copyable2" data-field="fieldText" data-field-type="Personal URL" role="button" copy-field>
                   <strong> Copy Link </strong>
                 </button>
               </div>
@@ -258,10 +258,10 @@
                 <a class="text-decoration-none" href="javascript:void(0)" onclick="window.webContent.sp[0].nuclavisShareEmail()">
                   <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24/mail-icon.png" alt="Email">
                 </a>
-                <a class="text-decoration-none d-none" href="javascript:void(0)" onclick="window.webContent.sp[0].nuclavisShareSms()">
+                <a class="text-decoration-none" href="javascript:void(0)" onclick="window.webContent.sp[0].nuclavisShareSms()">
                   <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24/msg-icon.png" alt="Messaging">
                 </a>
-                <a class="text-decoration-none d-none" href="javascript:void(0)" onclick="window.webContent.sp[0].nuclavisShareLinkedIn()">
+                <a class="text-decoration-none" href="javascript:void(0)" onclick="window.webContent.sp[0].nuclavisShareLinkedIn()">
                   <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24/chat-icon.png" alt="LinkedIn">
                 </a>
                 <a class="text-decoration-none" href="javascript:void(0)" onclick="window.webContent.sp[0].nuclavisShareFacebook()">
@@ -371,19 +371,16 @@
               </div>
               <div class="clearfix mt-3">
                 <div class="ym-pc-dashboard-fundraising-type" ng-class="{'active': dashboardStudentPageType == 'personal'}">
-                  <a href="" ng-click="toggleStudentPageType('personal')" role="link" aria-controls="ym-pc-dashboard-update-personal-panel">
+                  <a href="" ng-click="toggleStudentPageType('personal')" role="link">
                     <strong> View My Personal Progress </strong>
                   </a>
                 </div>
                 <div class="ym-pc-dashboard-fundraising-type" ng-class="{'active': dashboardStudentPageType == 'company'}">
-                  <a href="" ng-click="toggleStudentPageType('company')" role="link" aria-controls="ym-pc-dashboard-update-school-panel">
+                  <a href="" ng-click="toggleStudentPageType('company')" role="link">
                     <strong> View My School's Progress </strong>
                   </a>
                 </div>
               </div>
-              <!--
-              <div class="ym-pc-dashboard-page-type d-flex justify-content-between align-items-center mt-3"><div class="col-4 text-center" ng-class="{'active': dashboardStudentPageType == 'personal'}"><a href="" ng-click="toggleStudentPageType('personal')" role="tab" aria-controls="ym-pc-dashboard-update-personal-panel"><span class="fa fa-angle-left fw-bold"></span></a></div><div class="col-4 text-center"><span class="fa fa-circle" ng-class="{'active': dashboardStudentPageType == 'personal'}"></span> &nbsp; <span class="fa fa-circle" ng-class="{'active': dashboardStudentPageType == 'company'}"></span></div><div class="col-4 text-center" ng-class="{'active': dashboardStudentPageType == 'company'}"><a href="" ng-click="toggleStudentPageType('company')" role="tab" aria-controls="ym-pc-dashboard-update-school-panel"><span class="fa fa-angle-right fw-bold"></span></a></div></div>
-              -->
             </div>
           </div>
         </div>
@@ -404,7 +401,7 @@
                     <strong>Edit My URL</strong>
                   </button>
 		  &nbsp;&nbsp;
-                  <button type="button" class="btn btn-md-wide btn-primary btn-white" id="copyable" data-field="personalUrl1" data-field-type="Personal URL" role="button" copy-field>
+                  <button type="button" class="btn btn-md-wide btn-primary btn-white" id="copyable3" data-field="personalUrl1" data-field-type="Personal URL" role="button" copy-field>
                     <strong> Copy Link </strong>
                   </button>
                 </p>
@@ -615,7 +612,7 @@
             </div>
             <div class="d-md-flex justify-content-start flex-wrap gap-4">
               <div class="col-6 text-start">
-                <p> Click the Copy button to share QR code onto documents, social media and websites. </p>
+                <p> Share your School QR code onto documents, social media and websites. </p>
               </div>
               <div class="col">
                 <div id="nclvs_team_page" client_id="ahayouthmarket" cons_id="{{consId}}" event_id="{{frId}}"></div>
@@ -705,7 +702,7 @@
                   <strong>Edit My URL</strong>
                 </button>
 		&nbsp;&nbsp;
-		<button type="button" class="btn btn-md-wide btn-primary btn-white" id="copyable" data-field="personalUrl2" data-field-type="Personal URL" role="button" copy-field>
+		<button type="button" class="btn btn-md-wide btn-primary btn-white" id="copyable4" data-field="personalUrl2" data-field-type="Personal URL" role="button" copy-field>
                   <strong> Copy Link </strong>
                 </button>
               </p>

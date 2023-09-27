@@ -85,7 +85,7 @@
     </div>
     <div class="ym-list col-md-6" aria-label="Top Fundraisers List" ng-if="companyParticipants.totalFundraisers > 0" ng-cloak>
       <h2>
-        <img class="img-responsive" src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]ym-luminate/dist/ym-primary/image/fy23/top-fundraisers.png" alt="Saluting these top fundraisers">
+        <img class="img-responsive" src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]ym-luminate/dist/ym-primary/image/fy24/Salute_Top_Fundraisers.png" alt="Saluting these top fundraisers">
       </h2>
       <ul class="ym-donor-list" role="list">
         <company-participant-list fr-id="'[[S80:trID]]'" company-id="'[[T6:[[S334:company_id]]]]'" participants="companyParticipants.participants"></company-participant-list>
@@ -122,7 +122,7 @@
         <div class="ym-stats-section mt-4" ng-show="participantCount &gt; 0 &amp;&amp; (activity1amt != 0 || activity2amt != 0 || activity3amt != 0)" ng-cloak>
           <div class="">
             <h2 class="ym-headline"> Our Stats </h2>
-            <div class="d-md-flex flex-wrap justify-content-around ym-our-stats ym-promo-block">
+            <div class="d-flex flex-wrap justify-content-around ym-our-stats ym-promo-block">
               <div class="ym-promo-block__item" ng-if="schoolPlan.CountOfStudentsCompletingFinnsMission > 0" tabindex="0" ng-cloak>
                 <div class="h2 text-white">
                   <span ng-if="schoolPlan.CountOfStudentsCompletingFinnsMission &lt; 1000" ng-cloak>
@@ -150,6 +150,7 @@
                   <p> students registered. </p>
                 </div>
               </div>
+              <!--
               <div class="ym-promo-block__item" tabindex="0" ng-if="activity1amt != 0" ng-cloak>
                 <div class="h2 text-white">
                   {{activity1amt}}
@@ -162,6 +163,7 @@
                 </div>
                 <p> challenge for moving more. </p>
               </div>
+              -->
               <div class="ym-promo-block__item" ng-if="schoolPlan.CountCompletingCPRQuiz > 0" tabindex="0" ng-cloak>
                 <div class="h2 text-white">
                   {{schoolPlan.CountCompletingCPRQuiz}}
@@ -319,7 +321,7 @@
     <div class="container">
       <div class="container d-xs-none d-sm-block">
         <div class="ym-school-animation">
-          <iframe id="school-animation" ng-src="{{schoolAnimationURL}}" style="min-height:200px" aria-role="none"></iframe>
+          <iframe id="school-leaderboard-animation" ng-src="{{schoolAnimationURL}}" style="min-height:200px" aria-role="none" tabindex="0"></iframe>
         </div>
       </div>
     </div>

@@ -27,6 +27,17 @@
   max-width: 90%;
 }
 
+.ym-pc-dashboard-progress-box #nclvs_classroom_competition {
+    padding: 0;
+    box-shadow: none;
+}
+
+.ym-pc-reports-lists #nclvs_students_report {
+    max-width: 100%;
+    padding: 0;
+    box-shadow: none;
+}
+
 .bonus-gift {
   background: $event-accent-blue;
   .bonus-gift-image {
@@ -640,7 +651,7 @@ div[id^="taTextElement"]:focus {
 
 .ym-pc-dashboard-school-goals {
   label {display:inline-block;width:50%;}
-  input {display:inline-block;width:auto;}
+  input {display:inline-block;width:auto;max-width:170px;}
 }
 
 .ym-pc-dashboard-coordinator-school-years-section,
