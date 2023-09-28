@@ -37,7 +37,7 @@ angular.module 'ahaLuminateApp'
     'APP_INFO'
     'ZuriService'
     ($rootScope, $sce, APP_INFO, ZuriService) ->
-      $rootScope.eventType = 'ym-primary'
+      $rootScope.eventType = 'middle-school'
       $rootScope.tablePrefix = luminateExtend.global.tablePrefix
       $rootScope.nonSecureDomain = luminateExtend.global.path.nonsecure.split('/site/')[0] + '/'
       $rootScope.secureDomain = luminateExtend.global.path.secure.split('/site/')[0] + '/'
