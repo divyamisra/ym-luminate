@@ -1,10 +1,11 @@
 <div cg-busy="emailPromises">
   <div class="row">
     <div class="col-sm-4 col-md-3">
-      <div class="d-sm-block d-md-none">
+      <!-- <div class="d-block d-md-none"> -->
+      <div class="d-xs-block d-sm-none">
         <div class="btn-group ng-pc-nav-btn-group" uib-dropdown>
           <button type="button" class="btn btn-secondary form-control" uib-dropdown-toggle>
-            <strong>{{messageTypeName}}</strong> <span class="caret"></span>
+            <strong>Compose</strong> <span class="caret"></span>
           </button>
           <ul class="list-unstyled dropdown-menu" uib-dropdown-menu>
             <li>
@@ -101,16 +102,17 @@
           </ul>
         </div>
       </div>
-      <div class="d-sm-none d-md-block">
-        <a class="btn btn-secondary form-control" ng-href="{{baseUrl}}#/email/compose">
+      <!-- <div class="d-block d-sm-none"> -->
+      <div class="d-xs-none d-sm-block">
+        <a disabled class="btn btn-secondary form-control">
           <strong>Compose</strong>
         </a>
         <div class="list-group ng-pc-nav-list-group">
-          <a class="list-group-item" ng-class="{'active': messageType == 'draft'}" ng-href="{{baseUrl}}#/email/message/draft/list">
+          <a class="list-group-item" ng-href="{{baseUrl}}#/email/message/draft/list">
             <span class="badge">{{messageCounts.drafts}}</span> 
             Drafts
           </a>
-          <a class="list-group-item" ng-class="{'active': messageType == 'sentMessage'}" ng-href="{{baseUrl}}#/email/message/sentMessage/list">
+          <a class="list-group-item" ng-href="{{baseUrl}}#/email/message/sentMessage/list">
             <span class="badge">{{messageCounts.sentMessages}}</span> 
             Sent Messages
           </a>
@@ -171,28 +173,72 @@
       </div>
     </div>
     <div class="col-sm-8 col-md-9">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <span class="panel-title">
-            <span ng-bind-html="messageTypeName"></span>
-          </span>
+      <div uib-alert class="alert-danger" role="alert" ng-if="sendEmailError" ng-cloak>
+        <span ng-bind-html="sendEmailError"></span>
+      </div>
+      <div uib-alert class="alert-success" role="alert" ng-if="sendEmailSuccess" ng-cloak>
+        Your email has been sent.
+      </div>
+      <form name="emailComposerForm" method="POST" novalidate ng-submit="previewEmail()">
+        <div class="form-group">
+          <label for="emailComposer-recipients" class="sr-only">Recipients:</label>
+          <textarea class="form-control" id="emailComposer-recipients" name="recipients" ng-model="emailComposer.ng_recipients" placeholder="Recipients (separate multiple email addresses with a comma)" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea>
         </div>
-        <div class="panel-body" ng-if="emailMessages.totalNumber == 0">
-          <div ng-if="messageType == 'draft'">
-            You don't have any saved drafts.
-          </div>
-          <div ng-if="messageType == 'sentMessage'">
-            You haven't sent any emails yet.
+        <div class="form-group" ng-if="suggestedMessages.length > 0">
+          <label for="emailComposer-suggested_message_id" class="sr-only">Sample Message:</label>
+          <select class="form-control input-lg" id="emailComposer-suggested_message_id" name="suggested_message_id" ng-model="emailComposer.suggested_message_id" ng-change="loadSuggestedMessage()">
+            <option value="">Choose a sample message</option>
+            <option ng-repeat="suggestedMessage in suggestedMessages | orderBy:'-sortOrder':true" value="{{suggestedMessage.messageId}}">
+              {{suggestedMessage.name}}
+            </option>
+            <!-- <optgroup label="Build Your Team" ng-if="suggestedMessageCountByType.RECRUIT > 0">
+              <option value="{{suggestedMessage.messageId}}" ng-repeat="suggestedMessage in suggestedMessages|filter:{messageType: 'RECRUIT'}">
+                {{suggestedMessage.name}}
+              </option>
+            </optgroup>
+            <optgroup label="Ask for Donations" ng-if="suggestedMessageCountByType.SOLICIT > 0">
+              <option value="{{suggestedMessage.messageId}}" ng-repeat="suggestedMessage in suggestedMessages|filter:{messageType: 'SOLICIT'}">
+                {{suggestedMessage.name}}
+              </option>
+            </optgroup>
+            <optgroup label="Say Thank You" ng-if="suggestedMessageCountByType.THANKS > 0">
+              <option value="{{suggestedMessage.messageId}}" ng-repeat="suggestedMessage in suggestedMessages|filter:{messageType: 'THANKS'}">
+                {{suggestedMessage.name}}
+              </option>
+            </optgroup>
+            <optgroup label="Other" ng-if="suggestedMessageCountByType.OTHER > 0">
+              <option value="{{suggestedMessage.messageId}}" ng-repeat="suggestedMessage in suggestedMessages|filter:{messageType: 'OTHER'}">
+                {{suggestedMessage.name}}
+              </option>
+            </optgroup> -->
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="emailComposer-subject" class="sr-only">Subject</label>
+          <input type="text" class="form-control input-lg" id="emailComposer-subject" name="subject" ng-model="emailComposer.subject" placeholder="Subject" autocorrect="on" autocapitalize="on" spellcheck="true">
+        </div>
+        <p><em>To add a photo - Click the photo icon and add image URL and click OK, or drag and drop a photo into body of email and resize as needed. Click image to resize and choose 25%.</em></p>
+        <div class="form-group" ng-if="personalizedSalutationEnabled && false">
+          <div class="checkbox" custom-checkbox ng-class="{'checked': emailComposer.prepend_salutation}">
+            <label>
+              <input type="checkbox" ng-model="emailComposer.prepend_salutation"> Include personalized greeting
+            </label>
           </div>
         </div>
-        <pc-email-message-list messages="emailMessages.messages" select-message="selectMessage" delete-message="deleteMessage" ng-if="emailMessages.totalNumber > 0"></pc-email-message-list>
-        <div class="panel-footer" ng-if="emailMessages.totalNumber > 10">
-          <div class="ym-list-pagination">
-            <nav>
-              <ul class="list-unstyled" uib-pagination items-per-page="10" total-items="emailMessages.totalNumber" max-size="10" ng-model="emailMessages.page" ng-change="getEmailMessages()"></ul>
-            </nav>
+        <div class="form-group">
+          <label for="taHtmlElement{{emailComposer.serial}}" class="sr-only">Email message entry:</label>
+          <div text-angular name="message_body" ng-model="emailComposer.message_body" ta-toolbar="{{textEditorToolbar}}" ta-text-editor-class="border-around" ta-html-editor-class="border-around" serial="{{emailComposer.serial}}"></div>
+        </div>
+        <div class="form-group clearfix">
+          <div class="pull-left">
+            <button type="submit" class="btn btn-primary">
+              <strong>Preview &amp; Send</strong>
+            </button>
           </div>
         </div>
+      </form>
+      <div class="my-3">
+        <a ng-href="{{baseUrl}}#/email/compose">Click here to return to new HQ Email Tools</a>
       </div>
     </div>
   </div>

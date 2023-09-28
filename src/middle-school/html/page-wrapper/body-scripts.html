@@ -12,12 +12,12 @@
     });
   });
 </script >
-
+  
 <script src="//cdnjs.cloudflare.com/ajax/libs/angular-filter/0.5.17/angular-filter[[?xtruex::x[[S80:debug]]x::::.min]].js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper[[?xtruex::x[[S80:debug]]x::::.min]].js" crossorigin="anonymous"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.5.0/ui-bootstrap-tpls[[?xtruex::x[[S80:debug]]x::::.min]].js"></script>
 [[?
-  [[?[[S334:pagename]]::participant_center::T::]]
+  [[?xym_khc_participant_center_newx::x[[S334:pagename]]x::T::]]
   [[?xx::x[[S1:cons_id]]x::::
     [[?xpersonalx[[S1:cons_id]]x::x[[S334:pg]]x[[S334:px]]x::T::]]
     [[?xteamx[[E48:[[S334:fr_id]]-[[S1:cons_id]]:team-id]]xTRUEx::x[[S334:pg]]x[[S334:team_id]]x[[E48:[[S334:fr_id]]-[[S1:cons_id]]:if-is-captain]]x::T::]]
@@ -43,7 +43,14 @@
     ajaxProxyAuth: '[[S86:true]]',
     [[?
       [[?xx::x[[S1:cons_id]]x::T::
-        [[?[[S39:0*#000000*10pt*true*1*0*0*Events:true:American Heart Challenge 2024:::]]:: href=::::T]]
+        [[?
+					[[?[[S39:0*#000000*10pt*true*1*0*0*Events:true:YM Kids Heart Challenge 2023:::]]:: href=::::T]]
+					[[?[[S39:0*#000000*10pt*true*1*0*0*Events:true:YM Kids Heart Challenge 2024:::]]:: href=::::T]]
+					[[?[[S39:0*#000000*10pt*true*1*0*0*Events:true:American Heart Challenge 2023:::]]:: href=::::T]]
+					[[?[[S39:0*#000000*10pt*true*1*0*0*Events:true:American Heart Challenge 2024:::]]:: href=::::T]]
+				::T::
+				::
+				]]
       ]]
     ::T::
       isParticipant: false
@@ -51,7 +58,7 @@
       isParticipant: true
     ]]
     [[?
-      [[?[[S334:pagename]]::participant_center::T::]]
+      [[?xym_khc_participant_center_newx::x[[S334:pagename]]x::T::]]
       [[?xx::x[[S1:cons_id]]x::::
         [[?xpersonalx[[S1:cons_id]]x::x[[S334:pg]]x[[S334:px]]x::T::]]
         [[?xteamx[[E48:[[S334:fr_id]]-[[S1:cons_id]]:team-id]]xTRUEx::x[[S334:pg]]x[[S334:team_id]]x[[E48:[[S334:fr_id]]-[[S1:cons_id]]:if-is-captain]]x::T::]]
@@ -66,11 +73,13 @@
   });
 </script>
 
-<script src="[[S666:template_macros/ym_luminate_filepath.tpt::middle-school/js/main::js::@@buildTimestamp]]"></script>
+<script src="[[S666:template_macros/ym_luminate_filepath.tpt::ym-primary/js/main::js::@@buildTimestamp]]"></script>
 
-[[?[[S334:pagename]]::participant_center::
+[[?xym_khc_participant_center_newx::x[[S334:pagename]]x::
+  <script src="//cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/owl.carousel[[?xtruex::x[[S80:debug]]x::::.min]].js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard[[?xtruex::x[[S80:debug]]x::::.min]].js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/ng-csv/0.3.6/ng-csv[[?xtruex::x[[S80:debug]]x::::.min]].js"></script>
+  <!--<script src="//cdnjs.cloudflare.com/ajax/libs/ng-csv/0.3.6/ng-csv[[?xtruex::x[[S80:debug]]x::::.min]].js"></script>-->
+  <script src='[[?x0x::x[[S4]]x::[[E130:"https://[[S29:SECURE_DOMAIN]][[S29:SECURE_PATH]]" "/site/" "" replaceall]]::..]]/jquery/ng-csv.js'></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment[[?xtruex::x[[S80:debug]]x::::.min]].js"></script>
   <script>
     window.fbAsyncInit = function() {
@@ -94,12 +103,7 @@
       fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
   </script>
-  <script src="[[S666:template_macros/ym_luminate_filepath.tpt::middle-school/js/participant::js::@@buildTimestamp]]"></script>
-  [[?xheartdevx::x[[S29:TABLE_PREFIX]]x::
-    <script src="https://tools.heart.org/aha_ahc24_dev/heart-card/pc/ahc-heart-card-pc/ahc-heart-card-pc.js" defer></script>
-  ::
-    <script src="https://tools.heart.org/aha_ahc24/heart-card/pc/ahc-heart-card-pc/ahc-heart-card-pc.js" defer></script>
-  ]]
+  <script src="[[S666:template_macros/ym_luminate_filepath.tpt::ym-primary/js/participant::js::@@buildTimestamp]]"></script>
 ::]]
 
 <!--
@@ -131,12 +135,12 @@
       
       var scriptTag = document.createElement('script');
       [[?xheartdevx::x[[S29:TABLE_PREFIX]]x::
-        scriptTag.src = 'https://tools.heart.org/aha_ahc24_dev/visitlink_record.php?ecard_linktrack=' + uparts[0];
+        scriptTag.src = 'https://tools.heart.org/aha_ym24_dev/visitlink_record.php?ecard_linktrack=' + uparts[0];
       ::
         [[?xheartnewx::x[[S29:TABLE_PREFIX]]x::
-          scriptTag.src = 'https://tools.heart.org/aha_ahc24_testing/visitlink_record.php?ecard_linktrack=' + uparts[0];
+          scriptTag.src = 'https://tools.heart.org/aha_ym24_testing/visitlink_record.php?ecard_linktrack=' + uparts[0];
         ::
-          scriptTag.src = 'https://tools.heart.org/aha_ahc24/visitlink_record.php?ecard_linktrack=' + uparts[0];
+          scriptTag.src = 'https://tools.heart.org/aha_ym24/visitlink_record.php?ecard_linktrack=' + uparts[0];
         ]]
       ]]
       document.body.appendChild(scriptTag);
@@ -147,20 +151,19 @@
 [[?x9x::x[[S4]]x::
 <script>
   jQuery(document).ready(function($){
-    if  ($('#tos_radio_true').length > 0){
-      $('label[for="tos_dropdown"]').parent().hide();
-      $('label[for="tos_dropdown"]').parent().next('fieldset').hide();
-      $('label[for="tos_dropdown"]').parent().before('<input type="checkbox" name="terms-of-service-checkbox" id="terms-of-service-checkbox"><label for="terms-of-service-checkbox">&nbsp;Yes, I agree to the <a href="https://www.heart.org/en/about-us/statements-and-policies/privacy-statement" target="_blank">AHA Privacy Policy</a></label>');
-      $('#terms-of-service-checkbox').change(function(){
-        if($(this).is(':checked')){
-          $('#tos_radio_true').prop('checked',true);
+    if  (jQuery('#tos_radio_true').length > 0 || jQuery('#tos_radio_Yes').length > 0){
+      jQuery('label[for="tos_dropdown"]').parent().hide();
+      jQuery('label[for="tos_dropdown"]').parent().next('fieldset').hide();
+      jQuery('label[for="tos_dropdown"]').parent().before('<input type="checkbox" name="terms-of-service-checkbox" id="terms-of-service-checkbox"><label for="terms-of-service-checkbox">&nbsp;Yes, I agree to the <a href="https://www.heart.org/en/about-us/statements-and-policies/privacy-statement" target="_blank">AHA Privacy Policy</a></label>');
+      jQuery('#terms-of-service-checkbox').change(function(){
+        if(jQuery(this).is(':checked')){
+          jQuery('#tos_radio_true, #tos_radio_Yes').prop('checked',true);
         }
         else {
-          $('#tos_radio_true').prop('checked',false);
+          jQuery('#tos_radio_true, #tos_radio_Yes').prop('checked',false);
         }
       });
     }
   });
 </script>
-
 ::]] 

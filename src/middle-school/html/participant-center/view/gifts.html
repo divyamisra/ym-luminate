@@ -1,19 +1,69 @@
-   <h2 class="text-center h3">Thank-you gifts that can be earned!</h2>
-   <h3 class="h6 text-center mb-24">
-     Continue sending emails and texts to receive additional thank-you gifts!
-   </h3>
-   <em class="text-center d-block mb-4">*Plus lower level gifts</em>
-   <section class="ym-pc-dashboard-standard-gifts-section" aria-label="My Standard Gifts" ng-if="standardGifts && standardGifts.length > 0" ng-cloak>
-      <div class="ym-pc-dashboard-standard-gifts-icons d-flex justify-content-start flex-wrap" role="list" aria-label="Standard Gifts">
-        <div class="ym-pc-dashboard-standard-gifts-icon col-md-3 text-center mb-4" ng-repeat="standardGift in standardGifts" role="listitem" aria-label="{{standardGift.prize_label}}" ng-cloak>
-           <a role="button" class="d-block border text-decoration-none p-2 mx-4 mb-4" href="" ng-click="showPrize(standardGift.prize_sku,standardGift.prize_label,standardGift.prize_status,standardGift.prize_video)">
-              <img class="img-fluid" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/middle-school/image/prizes2023/{{standardGift.prize_sku}}.png" alt="{{standardGift.prize_label}}">
-              <div class="ym-pc-dashboard-standard-gift-earned mb-4">
-                 <h4 class="h5" ng-bind-html="standardGift.prize_label"></h4>
-                 <div class="gift-subtitle1"><span ng-bind-html="standardGift.msg_unearned"></span></div>
+   <!-- <em class="text-center d-block">Scan the vumarks to see a special video in the KHC App under games tab.</em> -->
+   <section class="ym-pc-dashboard-standard-gifts-section" aria-label="My Gifts">
+     <h2 class="text-start h3 mb-4">Below are the thank-you gifts that can be earned.</h2>
+     <p class="text-start">Please allow 15 minutes for the system to update your donation. <br /> Please note that prizes can take up to 6 weeks to be delivered after the event has completed. </p>
+     <div class="ym-pc-dashboard-progress-section__column event-secondary-medium p-3 mb-5">
+       <div class="ym-pc-dashboard-email-challenge-box text-start">
+         <div class="ym-pc-dashboard-section-header text-start">
+           <h3 class="h5"> Spread the Word! </h3>
+         </div>
+         <div class="d-md-flex justify-content-between flex-wrap">
+           <div class="col">
+             <div class="text-start">
+               <p>Continue sending emails, social messages and e-cards to receive additional thank-you gifts!</p>
+             </div>
+           </div>
+           <div class="col">
+             <div class="d-flex justify-content-between flex-wrap">
+               <div class="col text-center">
+                 <a class="text-decoration-none d-block mb-2" ng-href="{{baseUrl}}#/email">
+                   <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24/mail-icon.png" alt="Email Icon">
+                 </a>
+                 <div class="btn-cta">
+                   <a class=" btn btn-primary" href="{{baseUrl}}#/email">Send Message</a>
+                 </div>
+               </div>
+               <div class="col text-center">
+                 <a class="text-decoration-none d-block mb-2" ng-href="{{baseUrl}}#/social">
+                   <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24/social-icon.png" alt="Social Icon">
+                 </a>
+                 <div class="btn-cta">
+                   <a class=" btn btn-primary" href="{{baseUrl}}#/social">Go Social</a>
+                 </div>
+               </div>
+               <div class="col text-center">
+                 <a class="text-decoration-none d-block mb-2" target="_blank" ng-href="https://tools.heart.org/aha_ym24{{(tablePrefix == 'heartdev') ? '_dev' : ''}}/?eid={{frId}}&sid={{consId}}&name={{consNameFirst}}">
+                   <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24/ecard-icon.png" alt="e-Card Icon">
+                 </a>
+                 <div class="btn-cta">
+                   <a class=" btn btn-primary" target="_blank" ng-href="https://tools.heart.org/aha_ym24{{(tablePrefix == 'heartdev') ? '_dev' : ''}}/?eid={{frId}}&sid={{consId}}&name={{consNameFirst}}">
+                      Send e-Card
+                   </a>
+                 </div>
+               </div>
+             </div>
+           </div>
+         </div>
+       </div>
+     </div>
+     <div class="ym-pc-dashboard-standard-gifts">
+       <div class="loading mt-3" ng-if="loadingGifts" ng-cloak>Loading Gifts... <img style="max-width: 75px" class="spin" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24/badge-trophy-earned.png">       </div>
+        <div class="d-flex justify-content-center justify-content-md-between flex-wrap gap-4" role="list" aria-label="Gifts">
+          <div class="ym-pc-dashboard-standard-gifts-icon col" ng-class="{'not-earned': !gift.earned}" ng-repeat="gift in gifts" role="listitem" aria-label="{{gift.name}}" ng-cloak>
+            <a role="button" href="" ng-click="showPrize(gift.gift_id,gift.name,gift.earned,gift.image,'')">
+              <h3 class="gift-title h5" ng-bind-html="gift.name"></h3>
+              <div class="position-relative">
+                <img class="img-fluid" ng-src="{{gift.image}}" alt="{{gift.name}}">
               </div>
-              <div class="btn btn-sm btn-primary">More Details</div>
-           </a>
+              <div class="ym-pc-dashboard-standard-gift-{{(gift.earned) ? 'earned' : 'notearned'}}" aria-label="{{(gift.earned) ? 'Earned' : 'Unearned'}}">
+                <div class="gift-subtitle1 h6">
+                  <div ng-bind-html="gift.info_text"></div>
+                  <div ng-if="!gift.instant" ng-cloak>Post Gift</div>
+                </div>
+              </div>
+              <div class="btn btn-primary" ng-class="{'btn-white': gift.earned}">View</div>
+            </a>
+          </div>
         </div>
-      </div>
-   </section> 
+        </div>
+   </section>

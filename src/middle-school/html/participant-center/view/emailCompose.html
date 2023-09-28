@@ -1,13 +1,13 @@
 <div cg-busy="emailPromises">
   <div class="row">
     <div class="col-sm-4 col-md-3">
-      <div class="d-xs-block d-sm-block d-md-none">
+      <div class="d-block d-md-none">
         <div class="btn-group ng-pc-nav-btn-group" uib-dropdown>
-          <button type="button" class="btn btn-secondary form-control" data-target="#compose" data-toggle="collapse">
+          <button type="button" class="btn btn-secondary form-control" uib-dropdown-toggle>
             <strong>Compose</strong> <span class="caret"></span>
           </button>
-          <ul id="compose" class="list-unstyled dropdown-menu collapse">
-            <li>
+          <ul class="list-unstyled dropdown-menu" uib-dropdown-menu>
+            <!-- <li>
               <a ng-href="{{baseUrl}}#/email/compose">
                 Compose
               </a>
@@ -24,7 +24,7 @@
                 <span class="badge">{{messageCounts.sentMessages}}</span> 
                 Sent Messages
               </a>
-            </li>
+            </li> -->
             <li class="divider"></li>
             <li>
               <a ng-href="{{baseUrl}}#/email/contacts/email_rpt_show_all/list">
@@ -71,7 +71,7 @@
             <li ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
               <a ng-href="{{baseUrl}}#/email/contacts/email_custom_rpt_show_company_coordinator_new_participants/list">
                 <span class="badge"><span class="fa fa-star"></span></span>
-                New to American Heart Challenge
+                New to Kids Heart Challenge
               </a>
             </li>
             <li ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
@@ -92,6 +92,32 @@
                 $250 Participants
               </a>
             </li>
+
+
+            <li ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
+              <a ng-href="{{baseUrl}}#/email/contacts/email_custom_rpt_show_company_coordinator_mission_partial/list">
+                <span class="badge"><span class="fa fa-star"></span></span>
+                Finn's Mission Not Complete
+              </a>
+            </li>
+            <li ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
+              <a ng-href="{{baseUrl}}#/email/contacts/email_custom_rpt_show_company_coordinator_mission_complete/list">
+                <span class="badge"><span class="fa fa-star"></span></span>
+                Finn's Mission Not Complete
+              </a>
+            </li>
+            <li ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
+              <a ng-href="{{baseUrl}}#/email/contacts/email_custom_rpt_show_company_coordinator_challenge_half/list">
+                <span class="badge"><span class="fa fa-star"></span></span>
+                50% of School Challenge
+              </a>
+            </li>
+            <li ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
+              <a ng-href="{{baseUrl}}#/email/contacts/email_custom_rpt_show_company_coordinator_challenge_complete/list">
+                <span class="badge"><span class="fa fa-star"></span></span>
+                Met School Challenge
+              </a>
+            </li>
             <li ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true' && prev1FrId && prev1FrId != ''" ng-cloak>
               <a ng-href="{{baseUrl}}#/email/contacts/email_custom_rpt_show_past_company_coordinator_participants/list">
                 <span class="badge"><span class="fa fa-star"></span></span>
@@ -102,10 +128,11 @@
         </div>
       </div>
       <div class="d-none d-md-block">
-        <a disabled class="btn btn-secondary form-control btn-compose">
+        <!-- NOTE uncomment the compose button when restoring suggested message behavior
+        <a disabled class="btn btn-secondary form-control">
           <strong>Compose</strong>
-        </a>
-        <div class="list-group list-group-flush ng-pc-nav-list-group">
+        </a> -->
+        <!-- <div class="list-group list-group-flush ng-pc-nav-list-group">
           <a class="list-group-item" ng-href="{{baseUrl}}#/email/message/draft/list">
             <span class="badge">{{messageCounts.drafts}}</span> 
             Drafts
@@ -114,7 +141,7 @@
             <span class="badge">{{messageCounts.sentMessages}}</span> 
             Sent Messages
           </a>
-        </div>
+        </div> -->
         <div class="list-group list-group-flush ng-pc-nav-list-group">
           <h2 class="h5 list-group-item-heading">
             Contacts
@@ -143,13 +170,13 @@
             <span class="badge">{{contactCounts.email_rpt_show_nondonors}}</span>
             Non-Donors
           </a>
-          <a class="list-group-item" ng-class="{'active': filter == 'email_rpt_show_company_coordinator_participants'}" ng-href="{{baseUrl}}#/email/contacts/email_rpt_show_company_coordinator_participants/list" ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
+          <a class="list-group-item" ng-href="{{baseUrl}}#/email/contacts/email_rpt_show_company_coordinator_participants/list" ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
             <span class="badge">{{contactCounts.email_rpt_show_company_coordinator_participants}}</span>
             School Participants
           </a>
           <a class="list-group-item" ng-href="{{baseUrl}}#/email/contacts/email_custom_rpt_show_company_coordinator_new_participants/list" ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
             <span class="badge"><span class="fa fa-star"></span></span>
-            New to American Heart Challenge
+            New to Kids Heart Challenge
           </a>
           <a class="list-group-item" ng-href="{{baseUrl}}#/email/contacts/email_custom_rpt_show_company_coordinator_weekly_participants/list" ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
             <span class="badge"><span class="fa fa-star"></span></span>
@@ -162,6 +189,22 @@
           <a class="list-group-item" ng-href="{{baseUrl}}#/email/contacts/email_custom_rpt_show_company_coordinator_250_dollar_participants/list" ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
             <span class="badge"><span class="fa fa-star"></span></span>
             $250 Participants
+          </a>
+          <a class="list-group-item" ng-href="{{baseUrl}}#/email/contacts/email_custom_rpt_show_company_coordinator_mission_partial/list" ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
+            <span class="badge"><span class="fa fa-star"></span></span>
+            Finn's Mission Not Complete
+          </a>
+          <a class="list-group-item" ng-href="{{baseUrl}}#/email/contacts/email_custom_rpt_show_company_coordinator_mission_complete/list" ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
+            <span class="badge"><span class="fa fa-star"></span></span>
+            Completed Finn's Mission
+          </a>
+          <a class="list-group-item" ng-href="{{baseUrl}}#/email/contacts/email_custom_rpt_show_company_coordinator_challenge_half/list" ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
+            <span class="badge"><span class="fa fa-star"></span></span>
+            50% of School Challenge
+          </a>
+          <a class="list-group-item" ng-href="{{baseUrl}}#/email/contacts/email_custom_rpt_show_company_coordinator_challenge_complete/list" ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
+            <span class="badge"><span class="fa fa-star"></span></span>
+            Met School Challenge
           </a>
           <a class="list-group-item" ng-href="{{baseUrl}}#/email/contacts/email_custom_rpt_show_past_company_coordinator_participants/list" ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true' && prev1FrId && prev1FrId != ''" ng-cloak>
             <span class="badge"><span class="fa fa-star"></span></span>
@@ -177,64 +220,350 @@
       <div uib-alert class="alert-success" role="alert" ng-if="sendEmailSuccess" ng-cloak>
         Your email has been sent.
       </div>
+      <div>
+        <p><strong>*NEW* - How to send emails:</strong></p>
+
+        <ol>
+          <li>
+            Select the contact list you want to email.
+          </li>
+          <li>
+            Select the message you want to send.
+          </li>
+          <li>
+            Click “Copy Recipients” and paste the list into the BCC line of a new email in your school email account.
+          </li>
+          <li>
+            Click “Copy Message” and paste it into the body of your new email.
+          </li>
+          <li>
+            Enter subject in subject line.
+          </li>
+          <li>
+            Send!
+          </li>
+        </ol>
+
+      </div>
       <form name="emailComposerForm" method="POST" novalidate ng-submit="previewEmail()">
         <div class="form-group mb-2">
           <label for="emailComposer-recipients" class="sr-only">Recipients:</label>
           <textarea class="form-control" id="emailComposer-recipients" name="recipients" ng-model="emailComposer.ng_recipients" placeholder="Recipients (separate multiple email addresses with a comma)" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea>
         </div>
-        <div class="form-group mb-2" ng-if="suggestedMessages.length > 0">
+        
+        <div class="form-group mb-2" style="margin-bottom: 30px!important;">
           <label for="emailComposer-suggested_message_id" class="sr-only">Sample Message:</label>
-          <select class="form-control input-lg" id="emailComposer-suggested_message_id" name="suggested_message_id" ng-model="emailComposer.suggested_message_id" ng-change="loadSuggestedMessage()">
-            <option value="">Choose a sample message</option>
-            <option ng-repeat="suggestedMessage in suggestedMessages | orderBy:'-sortOrder':true" value="{{suggestedMessage.messageId}}">
-              {{suggestedMessage.name}}
-            </option>
-            <!-- <optgroup label="Build Your Team" ng-if="suggestedMessageCountByType.RECRUIT > 0">
-              <option value="{{suggestedMessage.messageId}}" ng-repeat="suggestedMessage in suggestedMessages|filter:{messageType: 'RECRUIT'}">
-                {{suggestedMessage.name}}
-              </option>
-            </optgroup>
-            <optgroup label="Ask for Donations" ng-if="suggestedMessageCountByType.SOLICIT > 0">
-              <option value="{{suggestedMessage.messageId}}" ng-repeat="suggestedMessage in suggestedMessages|filter:{messageType: 'SOLICIT'}">
-                {{suggestedMessage.name}}
-              </option>
-            </optgroup>
-            <optgroup label="Say Thank You" ng-if="suggestedMessageCountByType.THANKS > 0">
-              <option value="{{suggestedMessage.messageId}}" ng-repeat="suggestedMessage in suggestedMessages|filter:{messageType: 'THANKS'}">
-                {{suggestedMessage.name}}
-              </option>
-            </optgroup>
-            <optgroup label="Other" ng-if="suggestedMessageCountByType.OTHER > 0">
-              <option value="{{suggestedMessage.messageId}}" ng-repeat="suggestedMessage in suggestedMessages|filter:{messageType: 'OTHER'}">
-                {{suggestedMessage.name}}
-              </option>
-            </optgroup> -->
+          <select class="form-control input-lg" id="emailComposerMessages" name="messages" ng-model="emailComposer.messages" ng-change="displayMessage()" aria-label="Choose a sample message to view">
+              <option value="">Choose a sample message</option>
+              <option ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" value="pre-kickoff">Pre-Kick Off (1 week to 1 day before kick-off)</option>
+              <option ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" value="help-school">Help our school earn valuable equipment and resources</option>
+              <option ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" value="reminder">Mid Event Reminder #1 (Week after Kick Off)</option>
+              <option ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" value="finns-mission">Complete Finn's Mission</option>
+              <option ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" value="last-chance">Last Chance Reminder (week of Event)</option>
+              <option ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'false'" value="save-lives">Help Me Save Lives</option>
+              <option ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'false'" value="big-heart">Your BIG Heart Can Help Save Lives </option>
+              <option ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'false'" value="have-heart">Have a Heart, Lend a Hand</option>
+              <option ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'false'" value="thanks-for-helping">Thanks for Helping Me Be a Heart Hero!</option>
+              <option ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'false'" value="help-me">Help Me Become a Finn's Mission Heart Hero</option>
           </select>
         </div>
-        <div class="form-group mb-2">
-          <label for="emailComposer-subject" class="sr-only">Subject</label>
-          <input type="text" class="form-control input-lg" id="emailComposer-subject" name="subject" ng-model="emailComposer.subject" placeholder="Subject" autocorrect="on" autocapitalize="on" spellcheck="true">
-        </div>
-        <p><em>To add a photo - Click the photo icon and add image URL and click OK, or drag and drop a photo into body of email and resize as needed. Click image to resize and choose 25%.</em></p>
-        <div class="form-group mb-2" ng-if="personalizedSalutationEnabled && false">
-          <div class="checkbox" custom-checkbox ng-class="{'checked': emailComposer.prepend_salutation}">
-            <label>
-              <input type="checkbox" ng-model="emailComposer.prepend_salutation"> Include personalized greeting
-            </label>
+
+        <!-- coordinator messages -->
+        <div class="email-composer-message" id="pre-kickoff">
+          <p><strong>Subject:</strong> Kids Heart Challenge is coming -- join today!</p>
+          <br />
+          <div id="pre-kickoff-message">
+              <a href="http://www.heart.org/schools"><center>Sign Up Today!</center></a>
+              <br aria-hidden="true">
+              Our school is getting ready to kick off the American Heart Association's Kids Heart Challenge (KHC)! This year, we are working to help all our students, staff and families learn the lifesaving skill of Hands-Only CPR. No mouth-to-mouth breathing is required and even our youngest students can play a part by calling 911 and finding a trusted adult. And, as always, we will all be learning how to take care of our hearts and minds, while helping raise funds for kids with special hearts!
+              <br aria-hidden="true">
+              <br aria-hidden="true">
+              Join us by <a href="http://www.heart.org/schools">signing up today!</a> Download the AHA Schools app or visit heart.org/schools.
+              <br aria-hidden="true">
+              <br aria-hidden="true">
+              Get started on FINN'S MISSION where you and your family can help create a community of lifesavers by learning Hands-Only CPR!
+              <br aria-hidden="true">
+              <br aria-hidden="true">
+              You've been at the heart of our KHC program, and your support will continue to make a big difference in the fight against heart disease and stroke.
+              <br aria-hidden="true">
+              <br aria-hidden="true">
+              <a href="{{secureDomain}}site/TR?fr_id={{frId}}&pg=company&company_id={{participantRegistration.companyInformation.companyId}}">Our School Page</a>
+              <br aria-hidden="true">
+              {{secureDomain}}site/TR?fr_id={{frId}}&pg=company&company_id={{participantRegistration.companyInformation.companyId}}
           </div>
         </div>
-        <div class="form-group mb-3">
-          <label for="taHtmlElement{{emailComposer.serial}}" class="sr-only">Email message entry:</label>
-          <div text-angular name="message_body" ng-model="emailComposer.message_body" ta-toolbar="{{textEditorToolbar}}" ta-text-editor-class="border-around" ta-html-editor-class="border-around" serial="{{emailComposer.serial}}"></div>
+        <div class="email-composer-message" id="help-school">
+          <p><strong>Subject:</strong> Send 10 to help our school!</p>
+          <br />
+          <div id="help-school-message">
+              <a href="http://www.heart.org/schools"><center>Help Today!</center></a>
+              <br aria-hidden="true">
+              I am so excited to be leading our school's Kids Heart Challenge (KHC)! Your family is making a lifesaving difference! Thank you!
+              <br aria-hidden="true">
+              <br aria-hidden="true">
+              Did you know that not only are we helping save lives, but the more we raise, the more chances we have to help our school earn much needed school equipment that supports mind and body health?
+              <br aria-hidden="true">
+              <br aria-hidden="true">
+              Can you help us? It's easy. Just send 10 texts, emails or E-cards today. (You'll also be one step closer to competing Finn's Mission!)
+              <br aria-hidden="true">
+              <br aria-hidden="true">
+              If you haven't already registered, you can do so by downloading the AHA Schools app or visiting <a href="http://www.heart.org/schools">heart.org/schools</a>.
+              <br aria-hidden="true">
+              <br aria-hidden="true">
+              Thank you for supporting our team, our school, and our community through KHC!
+              <br aria-hidden="true">
+              <br aria-hidden="true">
+              Don't forget: You can double your gift by <a href="http://www.heart.org/matchinggifts">checking to see</a> if your employer will match your donation. Follow the steps and forward the confirmation to <a href="mailto:matchgifts@heart.org">matchgifts@heart.org</a> to have this added to your student's fundraising page.
+              <br aria-hidden="true">
+              <br aria-hidden="true">
+              <a href="{{secureDomain}}site/TR?fr_id={{frId}}&pg=company&company_id={{participantRegistration.companyInformation.companyId}}">Our School Page</a>
+              <br aria-hidden="true">
+              {{secureDomain}}site/TR?fr_id={{frId}}&pg=company&company_id={{participantRegistration.companyInformation.companyId}}
+          </div>
         </div>
+        <div class="email-composer-message" id="reminder">
+          <p><strong>Subject:</strong> 3 Things to do Right Now</p>
+          <br />
+          <div id="reminder-message">
+            <a href="http://www.heart.org/schools"><center>Help Today!</center></a>
+            <br aria-hidden="true">
+            Kids Heart Challenge (KHC) is going on NOW! Our school is building a team of lifesavers ready to take on Finn's Mission to learn Hands-Only CPR and gain a forever skill that will keep our school, community and families safer.
+            <br aria-hidden="true">
+            <br aria-hidden="true">
+            With just 3 simple steps you can get started today: 
+            <br aria-hidden="true">
+            <br aria-hidden="true">
+            <ol>
+              <li>
+                DOWNLOAD THE FREE AHA SCHOOLS APP &mdash; <a href="https://apps.apple.com/us/app/ym-primary/id548389448">click here for iOS App Store</a> or 
+                <a href="https://play.google.com/store/apps/details?id=com.aha_jump.android.communicator&hl=en">click here for Google Play</a>. It makes fundraising easy. You can even use it to scan checks.
+              </li>
+              <li>
+                SEND 10 emails, ecards, or texts to family and friends and share the message of heart health from your Headquarters.
+              </li>
+              <li>
+                CONNECT TO SOCIAL MEDIA for a quick and easy way to reach friends and family. You'll also be one step closer to completing Finn's Mission!
+              </li>
+            </ol>
+            When you support KHC, you are helping kids with special hearts. Thank you for working to keep your mind and heart healthy!
+            <br aria-hidden="true">
+            <br aria-hidden="true">
+            Don't forget: Double your Gift! <a href="http://www.heart.org/matchinggifts">Check to see</a> if your employer will match your donation today! Follow the steps and forward the confirmation to <a href="mailto:matchinggifts@heart.org">matchinggifts@heart.org</a> to have this added to the student's fundraising page.
+            <br aria-hidden="true">
+            <br aria-hidden="true">
+            <a href="{{secureDomain}}site/TR?fr_id={{frId}}&pg=company&company_id={{participantRegistration.companyInformation.companyId}}">Our School Page</a>
+            <br aria-hidden="true">
+            {{secureDomain}}site/TR?fr_id={{frId}}&pg=company&company_id={{participantRegistration.companyInformation.companyId}}
+          </div>
+        </div>
+        <div class="email-composer-message" id="finns-mission">
+          <p><strong>Subject:</strong> Help Our School Complete Finn's Mission</p>
+          <br />
+          <div id="finns-mission-message">
+            <a href="http://www.heart.org/schools"><center>Complete Finn's Mission Today!</center></a>
+            <br aria-hidden="true">
+            Thank you for participating in Kids Heart Challenge (KHC) and supporting the American Heart Association! Finn's Mission is teaching our students and families how to recognize the signs of a stroke and learn the critical lifesaving skill of Hands-Only CPR. Did you know Hands-Only CPR requires no mouth-to-mouth breathing, is easy and quick to learn and since most cardiac arrests happen at home, it could save the life of someone you love? 
+            <br aria-hidden="true">
+            <br aria-hidden="true">
+            You can learn Hands-Only CPR when you complete Finn's Mission. Finn was born with a special heart and has been working hard to help raise awareness and support for kids with special hearts just like him.
+            <br aria-hidden="true">
+            <br aria-hidden="true">
+            Take Finn's Mission today! DOWNLOAD THE FREE AHA SCHOOLS APP to get started &mdash; <a href="https://apps.apple.com/us/app/ym-primary/id548389448">click here for iOS App Store</a> or 
+                <a href="https://play.google.com/store/apps/details?id=com.aha_jump.android.communicator&hl=en">click here for Google Play</a>.
+            <br aria-hidden="true">
+            <br aria-hidden="true">
+            Your support will continue to make a big difference in the fight against heart disease and stroke by assisting families just like Finn's.
+            <br aria-hidden="true">
+            <br aria-hidden="true">
+            Thank you for being a Heart Hero!!!
+            <br aria-hidden="true">
+            <br aria-hidden="true">
+            Don't forget: Double your Gift! <a href="http://www.heart.org/matchinggifts">Check to see</a> if your employer will match your donation today! Follow the steps and forward the confirmation to <a href="mailto:matchgifts@heart.org">matchgifts@heart.org</a> to have this added to the student's fundraising page.
+            <br aria-hidden="true">
+            <br aria-hidden="true">
+            <a href="{{secureDomain}}site/TR?fr_id={{frId}}&pg=company&company_id={{participantRegistration.companyInformation.companyId}}">Our School Page</a>
+            <br aria-hidden="true">
+            {{secureDomain}}site/TR?fr_id={{frId}}&pg=company&company_id={{participantRegistration.companyInformation.companyId}}
+          </div>
+        </div>
+        <div class="email-composer-message" id="last-chance">
+          <p><strong>Subject:</strong> It's not too late to help our school and help others!</p>
+          <br />
+          <div id="last-chance-message">
+            <a href="http://www.heart.org/schools"><center>Help Today!</center></a>
+            <br aria-hidden="true">
+            Kids Heart Challenge is coming to an end and our students have done an amazing job learning how to keep their hearts and minds healthy! We're still collecting donations and working to get every family to learn the lifesaving skill of Hands-Only CPR. If you haven't already, please take Finn's Mission today so you too can learn how to save a life.
+            <br aria-hidden="true">
+            <br aria-hidden="true">
+            PRO TIPS TO MAXIMIZE YOUR IMPACT
+            <br aria-hidden="true">
+            <br aria-hidden="true">
+            <ol>
+              <li>If you haven't already, get started today by downloading the AHA Schools app. See your Heart Heroes come to life, take selfies with your heroes, and fundraise from your mobile device. You can even scan checks in the mobile APP! &mdash; <a href="https://apps.apple.com/us/app/ym-primary/id548389448">click here for iOS App Store</a> or 
+                <a href="https://play.google.com/store/apps/details?id=com.aha_jump.android.communicator&hl=en">click here for Google Play</a></li>
+              <li>Send 10 emails, ecards, or texts to family and friends and share the message of heart health! It's so easy, with pre-written messages in your Headquarters.</li>
+              <li>COMPLETE FINN'S MISSION to learn Hands-Only CPR, how to spot a stroke</li>
+              <li>Stroke F.A.S.T., and how to help spread awareness by connecting to social media.</li>
+            </ol>
+            <br aria-hidden="true">
+            It's not too late! Earn your own HEART HEROES and MYSTERY GIFTS when you raise lifesaving donations!
+            <br aria-hidden="true">
+            <br aria-hidden="true">
+            Your family is an important part of our school's Kids Heart Challenge team. Together, our efforts will help save lives! I cannot thank you enough!  When you support KHC, you are helping kids with special hearts.
+            <br aria-hidden="true">
+            <br aria-hidden="true">
+            Don't forget: Double your Gift! <a href="http://www.heart.org/matchinggifts">Check to see</a> if your employer will match your donation today! Follow the steps and forward the confirmation to <a href="mailto:matchinggifts@heart.org">matchinggifts@heart.org</a> to have this added to the student's fundraising page.
+            <br aria-hidden="true">
+            <br aria-hidden="true">              
+            <a href="{{secureDomain}}site/Donation2?df_id={{eventInfo.donationFormId}}&FR_ID={{frId}}&PROXY_TYPE=20&PROXY_ID={{consId}}">Donate Now</a>
+            <br aria-hidden="true">
+            {{secureDomain}}site/Donation2?df_id={{eventInfo.donationFormId}}&FR_ID={{frId}}&PROXY_TYPE=20&PROXY_ID={{consId}}
+          </div>
+        </div>
+        <!-- student messages -->
+        <div class="email-composer-message" id="save-lives">
+          <p><strong>Subject:</strong> Want to help students like me live healthier lives?</p>
+          <br />
+          <div id="save-lives-message">
+            Now's your chance!
+            <br aria-hidden="true">
+            <br aria-hidden="true">
+            Our school is taking part in the American Heart Association's Kids Heart Challenge! We're raising funds to help kids with special hearts, learning how to keep our own hearts and brains healthy and moving more with fun activities. Plus, we have the chance to earn thank-you gifts for ourselves and our school! Will you help us?
+            <br aria-hidden="true">
+            <br aria-hidden="true">
+            Please support me with a donation. Just click on the link below. 
+            <br aria-hidden="true">
+            <br aria-hidden="true">
+            Your generosity will go a long way. Thank you for being a Heart Hero!
+            <br aria-hidden="true">
+            <br aria-hidden="true">
+            Don't forget: You can double your gift! <a href="http://www.heart.org/matchinggifts">See if your employer will match your donation</a>. Follow the steps and forward the confirmation to <a href="mailto:matchinggifts@heart.org">matchinggifts@heart.org</a> to have the match added to my fundraising page.
+            <br aria-hidden="true">
+            <br aria-hidden="true">              
+            <a href="{{secureDomain}}site/Donation2?df_id={{eventInfo.donationFormId}}&FR_ID={{frId}}&PROXY_TYPE=20&PROXY_ID={{consId}}">Donate Now</a>
+            <br aria-hidden="true">
+            {{secureDomain}}site/Donation2?df_id={{eventInfo.donationFormId}}&FR_ID={{frId}}&PROXY_TYPE=20&PROXY_ID={{consId}}
+          </div>
+        </div>
+        <div class="email-composer-message" id="big-heart">
+          <p><strong>Subject:</strong> I'm pumped to be a part of Kids Heart Challenge!</p>
+          <br />
+          <div id="big-heart-message">
+            Why?
+            <br aria-hidden="true">
+            <br aria-hidden="true">
+            Here's just some of the reasons:
+            <br aria-hidden="true">
+            <br aria-hidden="true">
+            It's an awesome American Heart Association program that raises funds to help kids with special hearts and fight heart disease and stroke through lifesaving research. (This is my favorite reason.)
+            <br aria-hidden="true">
+            <br aria-hidden="true">
+            I get to learn about the lifelong lifesaving skill of Hands-Only CPR and how to spot a stroke F.A.S.T., which could help save a life!
+            <br aria-hidden="true">
+            <br aria-hidden="true">
+            I'm learning some great ways to help keep my heart healthy by drinking more water, moving more, getting good sleep and being kind.
+            <br aria-hidden="true">
+            <br aria-hidden="true">
+            Will you support me in Kids Heart Challenge and help me help others? Click below to donate.
+            <br aria-hidden="true">
+            <br aria-hidden="true">
+            Thanks so much for being a Heart Hero and for helping to save lives.
+            <br aria-hidden="true">
+            <br aria-hidden="true">
+            Don't forget: You can double your gift! <a href="http://www.heart.org/matchinggifts">See if your employer will match your donation</a>. Follow the steps and forward the confirmation to <a href="mailto:matchinggifts@heart.org">matchinggifts@heart.org</a> to have the match added to my fundraising page.
+            <br aria-hidden="true">
+            <br aria-hidden="true">              
+            <a href="{{secureDomain}}site/Donation2?df_id={{eventInfo.donationFormId}}&FR_ID={{frId}}&PROXY_TYPE=20&PROXY_ID={{consId}}">Donate Now</a>
+            <br aria-hidden="true">
+            {{secureDomain}}site/Donation2?df_id={{eventInfo.donationFormId}}&FR_ID={{frId}}&PROXY_TYPE=20&PROXY_ID={{consId}}
+          </div>
+        </div>
+        <div class="email-composer-message" id="have-heart">
+          <p><strong>Subject:</strong> Have a Heart, Lend a Hand</p>
+          <br />
+          <div id="have-heart-message">
+            I'm getting the chance to do something really special at my school to help kids be healthier — and happier! I'm taking part in the American Heart Association's Kids Heart Challenge. I'm having so much fun learning important ways to help others while learning about how to keep my heart healthy and raising lifesaving donations.
+            <br aria-hidden="true">
+            <br aria-hidden="true">
+            Our school is also working hard to create a community of lifesavers by learning the lifesaving skill of Hands-Only CPR and the warning signs of a stroke through Finn's Mission. Finn is a very special kid with a very special heart.
+            <br aria-hidden="true">
+            <br aria-hidden="true">
+            Kids Heart Challenge is a great way for me to not only be active but to give back. The money I raise goes to the American Heart Association to help fund lifesaving research -- will you help me?
+            <br aria-hidden="true">
+            <br aria-hidden="true">
+            It makes me feel good to know I'm helping do so much good for so many people. I hope you'll join me and help too!
+            <br aria-hidden="true">
+            <br aria-hidden="true">
+            Your generosity helps keep more hearts beating strong!
+            <br aria-hidden="true">
+            <br aria-hidden="true">
+            Just click on the link below to donate.
+            <br aria-hidden="true">
+            <br aria-hidden="true">
+            <a href="{{secureDomain}}site/Donation2?df_id={{eventInfo.donationFormId}}&FR_ID={{frId}}&PROXY_TYPE=20&PROXY_ID={{consId}}">Donate Now</a>
+            <br aria-hidden="true">
+            {{secureDomain}}site/Donation2?df_id={{eventInfo.donationFormId}}&FR_ID={{frId}}&PROXY_TYPE=20&PROXY_ID={{consId}}
+          </div>
+        </div>
+        <div class="email-composer-message" id="thanks-for-helping">
+          <p><strong>Subject:</strong> Thanks for help me be a Heart Hero!</p>
+          <br />
+          <div id="thanks-for-helping-message">
+            I'm taking part in the American Heart Association's Kids Heart Challenge! I'm having so much fun and learning important ways to stay happy and heart healthy while raising lifesaving donations to help others with special hearts.
+            <br aria-hidden="true">
+            <br aria-hidden="true">
+            Our school is also working hard to create a community of lifesavers by learning the lifesaving skill of Hands-Only CPR and the warning signs of a stroke.
+            <br aria-hidden="true">
+            <br aria-hidden="true">
+            Will you help us by making a donation today? Any help you provide means so much to me. Your donation will help save lives!
+            <br aria-hidden="true">
+            <br aria-hidden="true">
+            Thank you for helping me to keep more hearts beating strong!
+            <br aria-hidden="true">
+            <br aria-hidden="true">
+            Don't forget: You can double your gift! <a href="http://www.heart.org/matchinggifts">See if your employer will match your donation</a>. Follow the steps and forward the confirmation to <a href="mailto:matchinggifts@heart.org">matchinggifts@heart.org</a> to have the match added to my fundraising page.
+            <br aria-hidden="true">
+            <br aria-hidden="true">              
+            <a href="{{secureDomain}}site/Donation2?df_id={{eventInfo.donationFormId}}&FR_ID={{frId}}&PROXY_TYPE=20&PROXY_ID={{consId}}">Donate Now</a>
+            <br aria-hidden="true">
+            {{secureDomain}}site/Donation2?df_id={{eventInfo.donationFormId}}&FR_ID={{frId}}&PROXY_TYPE=20&PROXY_ID={{consId}}
+          </div>
+        </div>
+        <div class="email-composer-message" id="help-me">
+          <p><strong>Subject:</strong> Help Me Become a Finn's Mission Heart Hero</p>
+          <br />
+          <div id="help-me-message">
+            The American Heart Association is partnering with our school this year for Kids Heart Challenge and I'm so excited to be part of it. I'm having so much fun and learning important ways to help others while also learning about how to keep my heart (and brain) healthy. Through Finn's Mission I also get to learn about Hands-Only CPR and share it with others, helping all of us learn how to save a life!
+            <br aria-hidden="true">
+            <br aria-hidden="true">
+            Part of Finn's Mission is to ask others to support my personal fundraising efforts. Will YOU support me by making a donation and help me complete Finn's Mission?
+            <br aria-hidden="true">
+            <br aria-hidden="true">
+            Your support will make a big difference in the fight against heart disease and stroke by helping people with special hearts, including kids like Finn.
+            <br aria-hidden="true">
+            <br aria-hidden="true">
+            Thank you for helping me to keep more hearts beating strong!
+            <br aria-hidden="true">
+            <br aria-hidden="true">
+            Don't forget: You can double your gift! <a href="http://www.heart.org/matchinggifts">See if your employer will match your donation</a>. Follow the steps and forward the confirmation to <a href="mailto:matchinggifts@heart.org">matchinggifts@heart.org</a> to have the match added to my fundraising page.
+            <br aria-hidden="true">
+            <br aria-hidden="true">              
+            <a href="{{secureDomain}}site/Donation2?df_id={{eventInfo.donationFormId}}&FR_ID={{frId}}&PROXY_TYPE=20&PROXY_ID={{consId}}">Donate Now</a>
+            <br aria-hidden="true">
+            {{secureDomain}}site/Donation2?df_id={{eventInfo.donationFormId}}&FR_ID={{frId}}&PROXY_TYPE=20&PROXY_ID={{consId}}
+          </div>
+        </div>
+
         <div class="form-group clearfix">
           <div class="pull-left">
-            <button type="submit" class="btn btn-primary">
-              <strong>Preview &amp; Send</strong>
-            </button>
+            <a ng-disabled="{{(emailComposer.ng_recipients != '') ? false : true}}" ng-class="(emailComposer.ng_recipients != '') ? '' : 'disabled'" class="btn btn-primary" id="copy_recipients" href ng-click="copyRecipients('Copy Recipients to Clipboard button'); copyToClipboard()" class="pc_btn">Copy Recipients</a>
+            <a class="btn btn-primary" id="copy_messadge" href ng-click="copyMessage('Copy Message to Clipboard button');" class="pc_btn">Copy Message</a>
           </div>
         </div>
       </form>
+      <div class="classic-email-link my-3" ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
+        <a ng-href="{{baseUrl}}#/email/classic">Click here to use HQ Email Tools</a>
+      </div>
     </div>
   </div>
 </div>
