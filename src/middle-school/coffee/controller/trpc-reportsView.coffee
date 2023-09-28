@@ -4,11 +4,15 @@ angular.module 'trPcControllers'
     '$scope'
     '$filter'
     '$location'
+    '$uibModal'
+    'APP_INFO'
     'NgPcTeamraiserEmailService'
     'NgPcTeamraiserGiftService'
     'NgPcTeamraiserReportsService'
-    ($rootScope, $scope, $filter, $location, NgPcTeamraiserEmailService, NgPcTeamraiserGiftService, NgPcTeamraiserReportsService) ->
+    ($rootScope, $scope, $filter, $location, $uibModal, APP_INFO, NgPcTeamraiserEmailService, NgPcTeamraiserGiftService, NgPcTeamraiserReportsService) ->
       $scope.reportPromises = []
+
+      ahaWebContent.ssoInitialize $rootScope.consId, $rootScope.frId, '' + $rootScope.authToken, '' + $rootScope.sessionCookie
       
       $scope.activeReportTab = 1 ##if $scope.participantRegistration.companyInformation?.isCompanyCoordinator is 'true' then 0 else 1
       
@@ -73,7 +77,7 @@ angular.module 'trPcControllers'
         $scope.participantGifts.sortColumn = sortColumn
         $scope.participantGifts.page = 1
         $scope.getGifts()
-      
+
       $scope.thankParticipantDonor = (participantGift) ->
         if not $rootScope.selectedContacts
           $rootScope.selectedContacts = {}
@@ -117,9 +121,15 @@ angular.module 'trPcControllers'
             if giftContact
               $rootScope.selectedContacts.contacts.push giftContact
         if $scope.thankYouMessageId
-          $location.path '/email/compose/suggestedMessage/' + $scope.thankYouMessageId
+          if localStorage.emailView != 'classic'
+            $location.path '/email/compose/suggestedMessage/' + $scope.thankYouMessageId
+          else
+            $location.path '/email/classic/suggestedMessage/' + $scope.thankYouMessageId
         else
-          $location.path '/email/compose/'
+          if localStorage.emailView != 'classic'
+            $location.path '/email/compose/'
+          else
+            $location.path '/email/classic/'
       
       if $scope.participantRegistration.aTeamCaptain is 'true'
         $scope.teamGifts =
@@ -207,12 +217,13 @@ angular.module 'trPcControllers'
             $location.path '/email/compose/suggestedMessage/' + $scope.thankYouMessageId
           else
             $location.path '/email/compose/'
-      
+      ###
       if $scope.participantRegistration.companyInformation?.isCompanyCoordinator is 'true'
         $scope.schoolDetailStudents =
           downloadHeaders: [
             'Name'
             'Amount'
+            'Ecards'
             'Emails'
             'T-shirt'
             'Teacher'
@@ -251,17 +262,18 @@ angular.module 'trPcControllers'
                       email = jQuery.trim reportDataRow[reportDataColumnIndexMap.PARTICIPANT_EMAIL]
                       amount = Number reportDataRow[reportDataColumnIndexMap.TRX_AMT]
                       amountFormatted = $filter('currency') jQuery.trim(reportDataRow[reportDataColumnIndexMap.TRX_AMT]), '$'
+                      ecardsSent = Number reportDataRow[reportDataColumnIndexMap.ECARDS_SENT_CNT]
                       emailsSent = Number reportDataRow[reportDataColumnIndexMap.EMAILS_SENT_CNT]
                       tshirtSize = jQuery.trim reportDataRow[reportDataColumnIndexMap.TSHIRT_SIZE]
                       teacherName = jQuery.trim reportDataRow[reportDataColumnIndexMap.TEACHER_NAME]
-#                      challenge = jQuery.trim reportDataRow[reportDataColumnIndexMap.CHALLENGE3]
-                      challenge = jQuery.trim reportDataRow[reportDataColumnIndexMap.CHALLENGE]
+                      challenge = jQuery.trim(reportDataRow[reportDataColumnIndexMap.CHALLENGE1]).replace('1. ', '').replace('2. ', '').replace('3. ', '').replace '4. ', ''
                       schoolDetailStudents.push
                         firstName: firstName
                         lastName: lastName
                         email: email
                         amount: amount
                         amountFormatted: amountFormatted.replace '.00', ''
+                        ecardsSent: ecardsSent
                         emailsSent: emailsSent
                         tshirtSize: tshirtSize
                         teacherName: teacherName
@@ -269,6 +281,7 @@ angular.module 'trPcControllers'
                       schoolDetailDownloadData.push [
                         firstName + ' ' + lastName
                         amountFormatted.replace('$', '').replace /,/g, ''
+                        ecardsSent
                         emailsSent
                         tshirtSize
                         teacherName
@@ -307,4 +320,5 @@ angular.module 'trPcControllers'
               if companyParticipantContact
                 $rootScope.selectedContacts.contacts.push companyParticipantContact
           $location.path '/email/compose/'
+      ###
   ]

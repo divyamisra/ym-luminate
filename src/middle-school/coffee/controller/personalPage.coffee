@@ -13,7 +13,8 @@ angular.module 'ahaLuminateControllers'
     'ZuriService'
     'NuclavisService'
     'TeamraiserParticipantPageService'
-    ($scope, $rootScope, $location, $sce, $filter, $timeout, $uibModal, APP_INFO, TeamraiserParticipantService, TeamraiserCompanyService, ZuriService, NuclavisService, TeamraiserParticipantPageService) ->
+    'TeamraiserSurveyResponseService'
+    ($scope, $rootScope, $location, $sce, $filter, $timeout, $uibModal, APP_INFO, TeamraiserParticipantService, TeamraiserCompanyService, ZuriService, NuclavisService, TeamraiserParticipantPageService, TeamraiserSurveyResponseService) ->
       $dataRoot = angular.element '[data-aha-luminate-root]'
       $scope.participantId = $location.absUrl().split('px=')[1].split('&')[0].split('#')[0]
       $scope.companyId = $dataRoot.data('company-id') if $dataRoot.data('company-id') isnt ''
@@ -22,20 +23,26 @@ angular.module 'ahaLuminateControllers'
       $scope.schoolProgress = {}
       $scope.schoolProgress.amountRaised = 0
       $rootScope.numTeams = ''
+      $scope.challengeId = null
+      $scope.challengeName = null
+      $scope.challengeCompleted = 0
       $rootScope.survivor = false
       $scope.companyProgress = {}
-      
+      $scope.returningStudent = false
+      $scope.loadingBadges = true
+
       $scope.prizes = {}
       $scope.prizesEarned = 0
       $scope.totalPrizes = 0
+      $scope.has_bonus = 0
       $scope.studentChallengeBadge = false
       $scope.schoolChallengeBadge = false
-      $scope.returningStudent = false
-      timestamp = new Date().getTime() 
-      
+      $rootScope.HideGifts = "NO"
+
       NuclavisService.getBadges $scope.participantId + '/' + $scope.frId
       .then (response) ->
         prizes = response.data.missions
+        #$scope.has_bonus = response.data.has_bonus
         angular.forEach prizes, (prize) ->
           $scope.prizes[prize.mission_id] = 
             id: prize.mission_id
@@ -68,6 +75,7 @@ angular.module 'ahaLuminateControllers'
           error: (response) ->
           success: (response) ->
             $scope.schoolPlan = response.data.company[0]
+            $rootScope.HideGifts = $scope.schoolPlan.HideGifts
             if $scope.schoolPlan.EventStartDate != undefined
               if $scope.schoolPlan.EventStartDate != '0000-00-00'
                 $scope.schoolPlan.EventStartDate = new Date($scope.schoolPlan.EventStartDate.replace(/-/g, "/") + ' 00:01')
@@ -83,7 +91,7 @@ angular.module 'ahaLuminateControllers'
               $scope.schoolPlan.DonationDueDate = ''
               $scope.schoolPlan.KickOffDate = ''
       $scope.getSchoolPlan()
-      ###
+      
       checkSchoolChallenges = (amountRaised) ->
         amt = amountRaised / 100
         ZuriService.getSchoolData $scope.companyId,
@@ -126,16 +134,33 @@ angular.module 'ahaLuminateControllers'
           $scope.challengeName = response.data.challenges.text
           $scope.challengeCompleted = response.data.challenges.completed
           $rootScope.survivor = response.data.show_banner
-      ###
+          ZuriService.getStudentDetail '&cons_id=' + $scope.participantId,
+            failure: (response) ->
+            error: (response) ->
+            success: (response) ->
+              if response.data.company[0] != "" and response.data.company[0] != null
+                if response.data.company[0].PriorYearEventId > 0
+                  $scope.returningStudent = true
 
-      ZuriService.getStudentDetail '&cons_id=' + $scope.participantId,
-        failure: (response) ->
-        error: (response) ->
-        success: (response) ->
-          if response.data.company[0] != "" and response.data.company[0] != null
-            if response.data.company[0].PriorYearEventId > 0
-              $scope.returningStudent = true
-                  
+      $scope.personalInfo = {}
+     
+      $scope.personalInfo.avatar = ''
+      $scope.getPersonalAvatar = ->
+        ZuriService.getAvatar $scope.frId + '/' + $scope.participantId,
+          failure: (response) ->
+            # TODO
+          error: (response) ->
+            # TODO
+          success: (response) ->
+            if response.data.student.student_id isnt null and typeof response.data.student.avatar_url isnt 'undefined'
+              avatarURL = response.data.student.avatar_url
+              if avatarURL.indexOf("default") > 0
+                avatarURL = ""
+            else
+              avatarURL = ""
+            $scope.personalInfo.avatar = avatarURL
+      $scope.getPersonalAvatar()
+      
       TeamraiserCompanyService.getCompanies 'company_id=' + $scope.companyId,
         success: (response) ->
           coordinatorId = response.getCompaniesResponse?.company?.coordinatorId
@@ -143,22 +168,18 @@ angular.module 'ahaLuminateControllers'
           amountRaised = Number response.getCompaniesResponse?.company?.amountRaised
           goal = Number response.getCompaniesResponse?.company?.goal
           $scope.schoolProgress.amountRaised = amountRaised / 100
-          $rootScope.numTeams = response.getCompaniesResponse.company?.teamCount
-          
-          if coordinatorId and coordinatorId isnt '0' and eventId          
+          $rootScope.numTeams = response.getCompaniesResponse?.company?.teamCount
+
+          if coordinatorId and coordinatorId isnt '0' and eventId
             TeamraiserCompanyService.getCoordinatorQuestion coordinatorId, eventId
               .then (response) ->
                 $scope.eventDate = response.data.coordinator?.event_date
                 
-          ###
-          if amountRaised >= goal 
-            $scope.schoolChallenges.push
-              id: 'school'
-              label: 'School Challenge Completed'
-              earned: true
-          ###    
+          if amountRaised >= goal and goal > 0
+            $scope.schoolChallengeBadge = true
+                
       setParticipantProgress = (amountRaised, goal) ->
-        $scope.personalProgress = 
+        $scope.personalProgress =
           amountRaised: if amountRaised then Number(amountRaised) else 0
           goal: if goal then Number(goal) else 0
         $scope.personalProgress.amountRaisedFormatted = $filter('currency')($scope.personalProgress.amountRaised / 100, '$')
@@ -176,7 +197,7 @@ angular.module 'ahaLuminateControllers'
           if not $scope.$$phase
             $scope.$apply()
         , 100
-      
+
       TeamraiserParticipantService.getParticipants 'fr_id=' + $scope.frId + '&first_name=' + encodeURIComponent('%%') + '&last_name=' + encodeURIComponent('%') + '&list_filter_column=reg.cons_id&list_filter_text=' + $scope.participantId,
         error: ->
           setParticipantProgress()
@@ -186,9 +207,9 @@ angular.module 'ahaLuminateControllers'
             setParticipantProgress()
           else
             setParticipantProgress Number(participantInfo.amountRaised), Number(participantInfo.goal)
-          #checkSchoolChallenges Number(participantInfo.amountRaised)
-          
-      $scope.personalDonors = 
+          checkSchoolChallenges Number(participantInfo.amountRaised)
+
+      $scope.personalDonors =
         page: 1
       $defaultResponsivePersonalDonors = angular.element '.js--personal-donors .team-honor-list-row'
       if $defaultResponsivePersonalDonors and $defaultResponsivePersonalDonors.length isnt 0
@@ -205,7 +226,7 @@ angular.module 'ahaLuminateControllers'
               donorAmount = Number(donorAmount.replace('$', '').replace(/,/g, '')) * 100
             if not $scope.personalDonors.donors
               $scope.personalDonors.donors = []
-            $scope.personalDonors.donors.push 
+            $scope.personalDonors.donors.push
               name: donorName
               amount: donorAmount
               amountFormatted: if donorAmount is -1 then '' else $filter('currency')(donorAmount / 100, '$', 2)
@@ -225,41 +246,41 @@ angular.module 'ahaLuminateControllers'
               donorAmount = Number(donorAmount.replace('$', '').replace(/,/g, '')) * 100
             if not $scope.personalDonors.donors
               $scope.personalDonors.donors = []
-            $scope.personalDonors.donors.push 
+            $scope.personalDonors.donors.push
               name: donorName
               amount: donorAmount
               amountFormatted: if donorAmount is -1 then '' else $filter('currency')(donorAmount / 100, '$', 2)
           $scope.personalDonors.totalNumber = $defaultPersonalDonors.length
-      
+
       $scope.personalPagePhoto1 =
-        defaultUrl: APP_INFO.rootPath + 'dist/middle-school/image/fy23/personal-default.jpg'
-      
+        defaultUrl: APP_INFO.rootPath + 'dist/ym-primary/image/fy23/default-personal-photo.jpg'
+
       $scope.editPersonalPhoto1 = ->
         delete $scope.updatePersonalPhoto1Error
         $scope.editPersonalPhoto1Modal = $uibModal.open
           scope: $scope
-          templateUrl: APP_INFO.rootPath + 'dist/middle-school/html/modal/editPersonalPhoto1.html'
-      
+          templateUrl: APP_INFO.rootPath + 'dist/ym-primary/html/modal/editPersonalPhoto1.html'
+
       $scope.closePersonalPhoto1Modal = ->
         delete $scope.updatePersonalPhoto1Error
         $scope.editPersonalPhoto1Modal.close()
-      
+
       $scope.cancelEditPersonalPhoto1 = ->
         $scope.closePersonalPhoto1Modal()
-      
+
       $scope.deletePersonalPhoto1 = (e) ->
         if e
           e.preventDefault()
         angular.element('.js--delete-personal-photo-1-form').submit()
         false
-      
+
       window.trPageEdit =
         uploadPhotoError: (response) ->
           errorResponse = response.errorResponse
           photoNumber = errorResponse.photoNumber
           errorCode = errorResponse.code
           errorMessage = errorResponse.message
-          
+
           if errorCode is '5'
             window.location = luminateExtend.global.path.secure + 'UserLogin?NEXTURL=' + encodeURIComponent('TR?fr_id=' + $scope.frId + '&pg=personal&px=' + $scope.participantId)
           else
@@ -272,9 +293,10 @@ angular.module 'ahaLuminateControllers'
           delete $scope.updatePersonalPhoto1Error
           if not $scope.$$phase
             $scope.$apply()
-          NuclavisService.postAction $scope.frId + '/' + $scope.participantId + '/personal_page_update_hq'
+          #BoundlessService.logPersonalPageUpdated()
           successResponse = response.successResponse
           photoNumber = successResponse.photoNumber
+          NuclavisService.postAction $scope.frId + '/' + $scope.participantId + '/personal_page_update_hq'
           
           TeamraiserParticipantPageService.getPersonalPhotos
             error: (response) ->
@@ -315,7 +337,7 @@ angular.module 'ahaLuminateControllers'
         ]
         rich_text: angular.element('.js--default-page-content').html()
         ng_rich_text: angular.element('.js--default-page-content').html()
-      
+
       $scope.editPersonalPageContent = ->
         richText = $scope.personalPageContent.ng_rich_text
         $richText = jQuery '<div />',
@@ -328,14 +350,14 @@ angular.module 'ahaLuminateControllers'
         $timeout ->
           angular.element('[ta-bind][contenteditable]').focus()
         , 500
-      
+
       $scope.resetPersonalPageContent = ->
         $scope.personalPageContent.ng_rich_text = $scope.personalPageContent.rich_text
         $scope.personalPageContent.mode = 'view'
-      
+
       $scope.savePersonalPageContent = (isRetry) ->
         richText = $scope.personalPageContent.ng_rich_text
-        $richText = jQuery '<div />', 
+        $richText = jQuery '<div />',
           html: richText
         richText = $richText.html()
         richText = richText.replace /<\/?[A-Z]+.*?>/g, (m) ->
@@ -365,6 +387,7 @@ angular.module 'ahaLuminateControllers'
                 $scope.personalPageContent.rich_text = richText
                 $scope.personalPageContent.ng_rich_text = richText
                 $scope.personalPageContent.mode = 'view'
+                #BoundlessService.logPersonalPageUpdated()
                 NuclavisService.postAction $scope.frId + '/' + $scope.participantId + '/personal_page_update_hq'
                 if not $scope.$$phase
                   $scope.$apply()

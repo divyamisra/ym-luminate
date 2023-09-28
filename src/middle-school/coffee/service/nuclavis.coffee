@@ -7,10 +7,10 @@ angular.module 'ahaLuminateApp'
       login: (requestData) ->
         if $rootScope.tablePrefix is 'heartdev'
           url = 'https://smt.nuclavis.com/client/login'
-          loginParams = {"username": "aha_api","password": "AgP*09g8Iuqr","client": "ahc"}
+          loginParams = {"username": "aha_api","password": "AgP*09g8Iuqr","client": "khc"}
         else
           url = 'https://smt-api.heart.org/client/login'
-          loginParams = {"username": "hq_api","password": "IzRVR1#cdsxWm48%","client": "ahc"}
+          loginParams = {"username": "hq_api","password": "IzRVR1#cdsxWm48%","client": "khc"}
         $http.post($sce.trustAsResourceUrl(url), JSON.stringify(loginParams))
           .then (response) ->
             response.data.data.jwt
@@ -22,9 +22,9 @@ angular.module 'ahaLuminateApp'
         .then (response) ->
           $rootScope.NuclavisAPIToken = response
           if $rootScope.tablePrefix is 'heartdev'
-            url = 'https://smt.nuclavis.com/ahc/student/missions/' + requestData
+            url = 'https://smt.nuclavis.com/khc/student/missions/' + requestData
           else
-            url = 'https://smt-api.heart.org/ahc/student/missions/' + requestData
+            url = 'https://smt-api.heart.org/khc/student/missions/' + requestData
           reqHeader = 
             'Content-Type': 'application/json'
             'Authorization': 'Bearer ' + $rootScope.NuclavisAPIToken
@@ -41,9 +41,9 @@ angular.module 'ahaLuminateApp'
         .then (response) ->
           $rootScope.NuclavisAPIToken = response
           if $rootScope.tablePrefix is 'heartdev'
-            url = 'https://smt.nuclavis.com/ahc/student/gifts/' + requestData
+            url = 'https://smt.nuclavis.com/khc/student/gifts/' + requestData
           else
-            url = 'https://smt-api.heart.org/ahc/student/gifts/' + requestData
+            url = 'https://smt-api.heart.org/khc/student/gifts/' + requestData
           reqHeader = 
             'Content-Type': 'application/json'
             'Authorization': 'Bearer ' + $rootScope.NuclavisAPIToken
@@ -60,9 +60,9 @@ angular.module 'ahaLuminateApp'
         .then (response) ->
           $rootScope.NuclavisAPIToken = response
           if $rootScope.tablePrefix is 'heartdev'
-            url = 'https://smt.nuclavis.com/ahc/student/teachers/' + requestData
+            url = 'https://smt.nuclavis.com/khc/student/teachers/' + requestData
           else
-            url = 'https://smt-api.heart.org/ahc/student/teachers/' + requestData
+            url = 'https://smt-api.heart.org/khc/student/teachers/' + requestData
           reqHeader = 
             'Content-Type': 'application/json'
             'Authorization': 'Bearer ' + $rootScope.NuclavisAPIToken
@@ -79,9 +79,9 @@ angular.module 'ahaLuminateApp'
         .then (response) ->
           $rootScope.NuclavisAPIToken = response
           if $rootScope.tablePrefix is 'heartdev'
-            url = 'https://smt.nuclavis.com/ahc/student/actions/' + requestData
+            url = 'https://smt.nuclavis.com/khc/student/actions/' + requestData
           else
-            url = 'https://smt-api.heart.org/ahc/student/actions/' + requestData
+            url = 'https://smt-api.heart.org/khc/student/actions/' + requestData
           reqHeader = 
             'Content-Type': 'application/json'
             'Authorization': 'Bearer ' + $rootScope.NuclavisAPIToken

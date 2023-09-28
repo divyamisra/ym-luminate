@@ -5,30 +5,33 @@ angular.module 'ahaLuminateControllers'
     '$filter'
     '$timeout'
     'TeamraiserCompanyService'
-    ($rootScope, $scope, $filter, $timeout, TeamraiserCompanyService) ->
+    'SchoolLookupService'
+    ($rootScope, $scope, $filter, $timeout, TeamraiserCompanyService, SchoolLookupService) ->
       $rootScope.companyName = ''
       regCompanyId = luminateExtend.global.regCompanyId
       setCompanyName = (companyName) ->
         $rootScope.companyName = companyName
         if not $rootScope.$$phase
           $rootScope.$apply()
-      TeamraiserCompanyService.getCompanies 'company_id=' + regCompanyId,
-        error: ->
-          # TODO
-        success: (response) ->
-          companies = response.getCompaniesResponse.company
-          if not companies
-            # TODO
-          else
-            companies = [companies] if not angular.isArray companies
-            companyInfo = companies[0]
-            setCompanyName companyInfo.companyName
+      #TeamraiserCompanyService.getCompanies 'company_id=' + regCompanyId,
+      #  error: ->
+      #    # TODO
+      #  success: (response) ->
+      #    companies = response.getCompaniesResponse.company
+      #    if not companies
+      #      # TODO
+      #    else
+      #      companies = [companies] if not angurlar.isArray companies
+      #      companyInfo = companies[0]
+      #      setCompanyName companyInfo.companyName
+      setCompanyName localStorage.companyName
       
       if not $scope.participationOptions
         $scope.participationOptions = {}
       
       $scope.toggleDonationLevel = (event, type, levelAmount) ->
         console.log('TOGGLEDONATIONLEVEL type ' + type + ' levelAmount ' + levelAmount)
+        console.log('TOGGLEDONATIONLEVEL $scope.participationOptions.ng_donation_level_other_amount' + $scope.participationOptions.ng_donation_level_other_amount)
 
         if levelAmount != '$0.00'
           console.log('removing coverfee check box disabled')
@@ -80,6 +83,7 @@ angular.module 'ahaLuminateControllers'
       angular.forEach $donationLevels, ($donationLevel) ->
         $donationLevel = angular.element $donationLevel
         $donationLevelRadio = $donationLevel.find 'input[type="radio"][name^="donation_level_form_"]'
+        console.log('$donationLevelRadio id' + $donationLevelRadio.attr('id'))
         levelAmount = $donationLevelRadio.val()
         isOtherAmount = levelAmount is '-1'
         isNoDonation = levelAmount is '$0.00'
@@ -103,6 +107,7 @@ angular.module 'ahaLuminateControllers'
           if otherAmount
             $scope.participationOptions.ng_donation_level_other_amount = otherAmount
 
+  
       angular.element('btn-enter').keydown ->
         console.log('btn-enger keydown function')
         $scope.coverFee = false
@@ -149,6 +154,7 @@ angular.module 'ahaLuminateControllers'
           return newGiftAmt
 
         else
+
           storedGiftAmt = localStorage.getItem('storedAmt');
           console.log('storedGiftAmt ' + storedGiftAmt)
           if storedGiftAmt
@@ -158,18 +164,7 @@ angular.module 'ahaLuminateControllers'
             oldGiftAmt = 0
           return oldGiftAmt
 
-          # currentGiftAmt = angular.element('.ym-registration-ptype-donation-levels .btn.active').prop('title')
-          # console.log("currentGiftAmt " + currentGiftAmt)
-          # if currentGiftAmt == 'Other Amount'
-          #   currentGiftAmt = angular.element('.btn-enter').val()
-          #   console.log("OTHER originalGiftAmt " + currentGiftAmt)
-          # else
-          #   currentGiftAmt = currentGiftAmt.split('$')[1]
-          #   console.log("originalGiftAmt " + originalGiftAmt)
 
-          # oldGiftAmt = (Math.round(currentGiftAmt / 1.026 - 0.26)).toFixed 2
-          # return oldGiftAmt
-          
       $scope.toggleCoverFee = ->
         console.log('$scope.coverFee ' + $scope.coverFee)
 
@@ -193,16 +188,10 @@ angular.module 'ahaLuminateControllers'
             console.log('turn off cover fee')
             amount = $scope.getAmount()
             console.log('amount ' + amount)
-
-            angular.element('.ym-registration-ptype-donation-levels .btn-enter').val(amount)
             $scope.participationOptions.ng_donation_level_other_amount = amount
+            angular.element('.ym-registration-ptype-donation-levels .btn-enter').val(amount)
             angular.element('.ym-registration-ptype-donation-levels .btn-enter').addClass('active')
             angular.element('.ym-registration-ptype-donation-levels .btn-enter').trigger('blur')
-
-        else
-          #$scope.coverFee = false
-          #angular.element('.cover-fee-content').addClass('has-error')
-          #angular.element('.cover-fee-content .checkbox .help-block').removeClass('hidden')
 
 
       $scope.previousStep = ->
@@ -246,7 +235,32 @@ angular.module 'ahaLuminateControllers'
             else
               console.log('clear dtd company id');
               localStorage.dtdCompanyId = ''
-            
+
           angular.element('.js--default-ptype-form').submit()
           false
+          
+      setCompanyCity = (companyCity) ->
+        $rootScope.companyCity = companyCity
+        if not $rootScope.$$phase
+          $rootScope.$apply()
+          
+      setCompanyState = (companyState) ->
+        $rootScope.companyState = companyState
+        if not $rootScope.$$phase
+          $rootScope.$apply()
+          
+      if localStorage.companyCity != undefined
+        setCompanyCity localStorage.companyCity
+        setCompanyState localStorage.companyState
+      
+      #
+      #SchoolLookupService.getSchoolData()
+      #  .then (response) ->
+      #    schoolDataRows = response.data.getSchoolSearchDataResponse.schoolData
+      #    angular.forEach schoolDataRows, (schoolDataRow, schoolDataRowIndex) ->
+      #      if schoolDataRowIndex > 0
+      #        if regCompanyId is schoolDataRow[0]
+      #          setCompanyCity schoolDataRow[1]
+      #          setCompanyState schoolDataRow[2]
+      #          return
   ]

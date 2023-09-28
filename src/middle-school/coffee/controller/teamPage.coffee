@@ -10,14 +10,40 @@ angular.module 'ahaLuminateControllers'
     'TeamraiserTeamService'
     'TeamraiserParticipantService'
     'TeamraiserCompanyService'
-    'BoundlessService'
+    'ZuriService'
     'TeamraiserTeamPageService'
-    ($rootScope, $scope, $location, $filter, $timeout, $uibModal, APP_INFO, TeamraiserTeamService, TeamraiserParticipantService, TeamraiserCompanyService, BoundlessService, TeamraiserTeamPageService) ->
+    ($rootScope, $scope, $location, $filter, $timeout, $uibModal, APP_INFO, TeamraiserTeamService, TeamraiserParticipantService, TeamraiserCompanyService, ZuriService, TeamraiserTeamPageService) ->
       $scope.teamId = $location.absUrl().split('team_id=')[1].split('&')[0].split('#')[0]
       $scope.teamParticipants = []
       $rootScope.teamName = ''
       $scope.eventDate = ''
       $scope.participantCount = ''
+      $scope.studentsPledgedTotal = ''
+      $scope.activity1amt = ''
+      $scope.activity2amt = ''
+      $scope.activity3amt = ''
+      
+      ZuriService.getTeam $scope.teamId,
+        error: (response) ->
+          $scope.studentsPledgedTotal = 0
+          $scope.activity1amt = 0
+          $scope.activity2amt = 0
+          $scope.activity3amt = 0
+        success: (response) ->
+          $scope.studentsPledgedTotal = response.data.studentsPledged
+          studentsPledgedActivities = response.data.studentsPledgedByActivity
+          if studentsPledgedActivities['1']
+            $scope.activity1amt = studentsPledgedActivities['1'].count
+          else
+            $scope.activity1amt = 0
+          if studentsPledgedActivities['2']
+            $scope.activity2amt = studentsPledgedActivities['2'].count
+          else
+            $scope.activity2amt = 0
+          if studentsPledgedActivities['3']
+            $scope.activity3amt = studentsPledgedActivities['3'].count
+          else
+            $scope.activity3amt = 0
       
       setTeamProgress = (amountRaised, goal) ->
         $scope.teamProgress = 
@@ -51,15 +77,6 @@ angular.module 'ahaLuminateControllers'
             teamInfo = response.getTeamSearchByInfoResponse?.team
             companyId = teamInfo.companyId
             $scope.participantCount = teamInfo.numMembers
-            
-            BoundlessService.getSchoolRollupTotals companyId + '/' + $scope.teamId
-            .then (response) ->
-              if response.data.status isnt 'success'
-                $scope.totalEmails = 0
-              else
-                totals = response.data.totals
-                totalEmails = totals?.total_online_emails_sent or '0'
-                $scope.totalEmails = Number totalEmails
             
             if not teamInfo
               setTeamProgress()
@@ -112,13 +129,13 @@ angular.module 'ahaLuminateControllers'
       getTeamParticipants()
       
       $scope.teamPagePhoto1 =
-        defaultUrl: APP_INFO.rootPath + 'dist/middle-school/image/team-default.jpg'
+        defaultUrl: APP_INFO.rootPath + 'dist/ym-primary/image/team-default.jpg'
       
       $scope.editTeamPhoto1 = ->
         delete $scope.updateTeamPhoto1Error
         $scope.editTeamPhoto1Modal = $uibModal.open
           scope: $scope
-          templateUrl: APP_INFO.rootPath + 'dist/middle-school/html/modal/editTeamPhoto1.html'
+          templateUrl: APP_INFO.rootPath + 'dist/ym-primary/html/modal/editTeamPhoto1.html'
       
       $scope.closeTeamPhoto1Modal = ->
         delete $scope.updateTeamPhoto1Error

@@ -61,7 +61,7 @@ angular.module 'trPcControllers'
             # .then (response) ->
               # $scope.contactCounts[filter] = response.data.getTeamraiserAddressBookContactsResponse?.totalNumberResults or '0'
               # response
-          # scope.emailPromises.push contactCountPromise
+          # $scope.emailPromises.push contactCountPromise
           $scope.contactCounts[filter] = ''
       
       messageTypeNames = 
@@ -95,9 +95,10 @@ angular.module 'trPcControllers'
                 $scope.$on 'modal.closing', ->
                   angular.element('html').removeClass 'ym-modal-is-open'
             ]
-            templateUrl: APP_INFO.rootPath + 'dist/middle-school/html/participant-center/modal/viewSentMessage.html'
+            templateUrl: APP_INFO.rootPath + 'dist/ym-primary/html/participant-center/modal/viewSentMessage.html'
             size: 'lg'
             windowClass: 'ng-pc-modal ym-modal-full-screen'
+          angular.element('html').addClass 'ym-modal-is-open'
       
       closeSentMessageModal = ->
         $scope.viewSentMessageModal.close()
@@ -113,7 +114,7 @@ angular.module 'trPcControllers'
         $scope.deleteMessageId = messageId
         $scope.deleteMessageModal = $uibModal.open 
           scope: $scope
-          templateUrl: APP_INFO.rootPath + 'dist/middle-school/html/participant-center/modal/deleteEmailMessage.html'
+          templateUrl: APP_INFO.rootPath + 'dist/ym-primary/html/participant-center/modal/deleteEmailMessage.html'
       
       closeDeleteMessageModal = ->
         delete $scope.deleteMessageId

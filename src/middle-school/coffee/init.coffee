@@ -28,15 +28,16 @@ angular.module 'ahaLuminateApp'
       else
         rootPath = '../ym-luminate/'
       rootPath
-    programKey: 'middle-school'
+    programKey: 'ym-primary'
 
 angular.module 'ahaLuminateApp'
   .run [
     '$rootScope'
     '$sce'
     'APP_INFO'
-    ($rootScope, $sce, APP_INFO) ->
-      $rootScope.eventType = 'middle-school'
+    'ZuriService'
+    ($rootScope, $sce, APP_INFO, ZuriService) ->
+      $rootScope.eventType = 'ym-primary'
       $rootScope.tablePrefix = luminateExtend.global.tablePrefix
       $rootScope.nonSecureDomain = luminateExtend.global.path.nonsecure.split('/site/')[0] + '/'
       $rootScope.secureDomain = luminateExtend.global.path.secure.split('/site/')[0] + '/'
@@ -53,6 +54,24 @@ angular.module 'ahaLuminateApp'
       $rootScope.facebookFundraisersEnabled = $dataRoot.data('facebook-fundraisers-enabled') is 'TRUE'
       $rootScope.facebookFundraiserId = $dataRoot.data('facebook-fundraiser-id') if $dataRoot.data('facebook-fundraiser-id') isnt ''
       $rootScope.currentCSTDate = $dataRoot.data('current-date') if $dataRoot.data('current-date') isnt ''
+      $rootScope.browserName = detectBrowserName()
+
+      $rootScope.bodyCompanyId = $dataRoot.data('company-id') or ''
+
+      $rootScope.showGiftsTab = false
+      $rootScope.classroomChallenge = false
+      if $rootScope.tablePrefix == 'heartdev'
+        $rootScope.showGiftsTab = true
+        $rootScope.classroomChallenge = true
+      else
+        ZuriService.getSchoolInfo $rootScope.bodyCompanyId,
+          failure: (response) ->
+          error: (response) ->
+          success: (response) ->
+            if response.data.company.customCompanyDetail1.indexOf("IG:A") > -1
+              $rootScope.showGiftsTab = true
+            if response.data.company.customCompanyDetail1.indexOf("CC:Y") > -1
+              $rootScope.classroomChallenge = true
   ]
 
 angular.element(document).ready ->
@@ -66,3 +85,22 @@ angular.element(document).ready ->
   catch error
 
   angular.bootstrap document, appModules
+
+detectBrowserName = ->
+  agent = window.navigator.userAgent.toLowerCase()
+  switch true
+    when agent.indexOf('edge') > -1
+      return 'edge'
+    when agent.indexOf('opr') > -1
+      return 'opera'
+    when agent.indexOf('chrome') > -1
+      return 'chrome'
+    when agent.indexOf('trident') > -1
+      return 'ie'
+    when agent.indexOf('firefox') > -1
+      return 'firefox'
+    when agent.indexOf('safari') > -1
+      return 'safari'
+    else
+      return 'other'
+  return

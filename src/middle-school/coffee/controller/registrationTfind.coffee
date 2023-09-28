@@ -4,24 +4,26 @@ angular.module 'ahaLuminateControllers'
     '$scope'
     'TeamraiserCompanyService'
     'TeamraiserTeamService'
-    ($rootScope, $scope, TeamraiserCompanyService, TeamraiserTeamService) ->
+    'SchoolLookupService'
+    ($rootScope, $scope, TeamraiserCompanyService, TeamraiserTeamService, SchoolLookupService) ->
       $rootScope.companyName = ''
       regCompanyId = luminateExtend.global.regCompanyId
       setCompanyName = (companyName) ->
         $rootScope.companyName = companyName
         if not $rootScope.$$phase
           $rootScope.$apply()
-      TeamraiserCompanyService.getCompanies 'company_id=' + regCompanyId,
-        error: ->
-          # TODO
-        success: (response) ->
-          companies = response.getCompaniesResponse.company
-          if not companies
-            # TODO
-          else
-            companies = [companies] if not angular.isArray companies
-            companyInfo = companies[0]
-            setCompanyName companyInfo.companyName
+      #TeamraiserCompanyService.getCompanies 'company_id=' + regCompanyId,
+      #  error: ->
+      #    # TODO
+      #  success: (response) ->
+      #    companies = response.getCompaniesResponse.company
+      #    if not companies
+      #      # TODO
+      #    else
+      #      companies = [companies] if not angular.isArray companies
+      #      companyInfo = companies[0]
+      #      setCompanyName companyInfo.companyName
+      setCompanyName localStorage.companyName
       
       if not $scope.teamSearch
         $scope.teamSearch = {}
@@ -56,4 +58,29 @@ angular.module 'ahaLuminateControllers'
       
       $scope.submitTfindSearch = ->
         $scope.teamSearch.teamName = $scope.teamSearch.ng_team_name
+        
+      setCompanyCity = (companyCity) ->
+        $rootScope.companyCity = companyCity
+        if not $rootScope.$$phase
+          $rootScope.$apply()
+          
+      setCompanyState = (companyState) ->
+        $rootScope.companyState = companyState
+        if not $rootScope.$$phase
+          $rootScope.$apply()
+          
+      if localStorage.companyCity != undefined
+        setCompanyCity localStorage.companyCity
+        setCompanyState localStorage.companyState
+      
+      #
+      #SchoolLookupService.getSchoolData()
+      #  .then (response) ->
+      #    schoolDataRows = response.data.getSchoolSearchDataResponse.schoolData
+      #    angular.forEach schoolDataRows, (schoolDataRow, schoolDataRowIndex) ->
+      #      if schoolDataRowIndex > 0
+      #        if regCompanyId is schoolDataRow[0]
+      #          setCompanyCity schoolDataRow[1]
+      #          setCompanyState schoolDataRow[2]
+      #          return
   ]
