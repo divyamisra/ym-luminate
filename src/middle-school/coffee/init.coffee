@@ -28,7 +28,7 @@ angular.module 'ahaLuminateApp'
       else
         rootPath = '../ym-luminate/'
       rootPath
-    programKey: 'ym-primary'
+    programKey: 'middle-school'
 
 angular.module 'ahaLuminateApp'
   .run [
