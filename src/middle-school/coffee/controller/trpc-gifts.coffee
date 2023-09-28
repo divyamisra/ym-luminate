@@ -21,7 +21,7 @@ angular.module 'trPcControllers'
         #$scope.prize_video = video
         $scope.viewPrizeModal = $uibModal.open
           scope: $scope
-          templateUrl: APP_INFO.rootPath + 'dist/ym-primary/html/participant-center/modal/viewPrize.html'
+          templateUrl: APP_INFO.rootPath + 'dist/middle-school/html/participant-center/modal/viewPrize.html'
 
       $scope.cancelShowPrize = ->
         $scope.viewPrizeModal.close()

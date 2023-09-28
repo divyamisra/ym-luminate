@@ -251,13 +251,13 @@ angular.module 'ahaLuminateControllers'
               $scope.participantRegistration = participantRegistration
       
       $scope.companyPagePhoto1 =
-        defaultUrl: APP_INFO.rootPath + 'dist/ym-primary/image/fy23/default-school-photo.jpg'
+        defaultUrl: APP_INFO.rootPath + 'dist/middle-school/image/fy23/default-school-photo.jpg'
       
       $scope.editCompanyPhoto1 = ->
         delete $scope.updateCompanyPhoto1Error
         $scope.editCompanyPhoto1Modal = $uibModal.open
           scope: $scope
-          templateUrl: APP_INFO.rootPath + 'dist/ym-primary/html/modal/editCompanyPhoto1.html'
+          templateUrl: APP_INFO.rootPath + 'dist/middle-school/html/modal/editCompanyPhoto1.html'
       
       $scope.closeCompanyPhoto1Modal = ->
         delete $scope.updateCompanyPhoto1Error

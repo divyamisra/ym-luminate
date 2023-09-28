@@ -515,7 +515,7 @@ angular.module 'trPcControllers'
         $scope.resetNewContact()
         $scope.addContactModal = $uibModal.open 
           scope: $scope
-          templateUrl: APP_INFO.rootPath + 'dist/ym-primary/html/participant-center/modal/addContact.html'
+          templateUrl: APP_INFO.rootPath + 'dist/middle-school/html/participant-center/modal/addContact.html'
       
       closeAddContactModal = ->
         $scope.addContactModal.close()
@@ -561,7 +561,7 @@ angular.module 'trPcControllers'
         $scope.resetImportContacts()
         $scope.importContactsModal = $uibModal.open 
           scope: $scope
-          templateUrl: APP_INFO.rootPath + 'dist/ym-primary/html/participant-center/modal/importContacts.html'
+          templateUrl: APP_INFO.rootPath + 'dist/middle-school/html/participant-center/modal/importContacts.html'
       
       closeImportContactsModal = ->
         $scope.importContactsModal.close()
@@ -579,7 +579,7 @@ angular.module 'trPcControllers'
             $scope.contactImport.step = 'csv-upload'
           else
             $scope.contactImport.step = 'online-consent'
-            $window.open APP_INFO.rootPath + 'dist/ym-primary/html/participant-center/popup/address-book-import.html?import_source=' + $scope.contactImport.import_type, 'startimport', 'location=no,menubar=no,toolbar=no,height=400'
+            $window.open APP_INFO.rootPath + 'dist/middle-school/html/participant-center/popup/address-book-import.html?import_source=' + $scope.contactImport.import_type, 'startimport', 'location=no,menubar=no,toolbar=no,height=400'
             false
       
       window.trPcContactImport = 
@@ -828,7 +828,7 @@ angular.module 'trPcControllers'
           email: $scope.selectedContact.email
         $scope.editContactModal = $uibModal.open
           scope: $scope
-          templateUrl: APP_INFO.rootPath + 'dist/ym-primary/html/participant-center/modal/editContact.html'
+          templateUrl: APP_INFO.rootPath + 'dist/middle-school/html/participant-center/modal/editContact.html'
       
       closeEditContactModal = ->
         $scope.editContactModal.close()
@@ -868,7 +868,7 @@ angular.module 'trPcControllers'
         $scope.deleteContactId = contactId
         $scope.deleteContactModal = $uibModal.open 
           scope: $scope
-          templateUrl: APP_INFO.rootPath + 'dist/ym-primary/html/participant-center/modal/deleteContact.html'
+          templateUrl: APP_INFO.rootPath + 'dist/middle-school/html/participant-center/modal/deleteContact.html'
       
       $scope.deleteContacts = ->
         contacts = []
@@ -880,7 +880,7 @@ angular.module 'trPcControllers'
         $scope.clearAllContactAlerts()
         $scope.deleteContactsModal = $uibModal.open 
           scope: $scope
-          templateUrl: APP_INFO.rootPath + 'dist/ym-primary/html/participant-center/modal/deleteContacts.html'
+          templateUrl: APP_INFO.rootPath + 'dist/middle-school/html/participant-center/modal/deleteContacts.html'
       
       closeDeleteContactModal = ->
         delete $scope.deleteContactId

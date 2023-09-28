@@ -129,13 +129,13 @@ angular.module 'ahaLuminateControllers'
       getTeamParticipants()
       
       $scope.teamPagePhoto1 =
-        defaultUrl: APP_INFO.rootPath + 'dist/ym-primary/image/team-default.jpg'
+        defaultUrl: APP_INFO.rootPath + 'dist/middle-school/image/team-default.jpg'
       
       $scope.editTeamPhoto1 = ->
         delete $scope.updateTeamPhoto1Error
         $scope.editTeamPhoto1Modal = $uibModal.open
           scope: $scope
-          templateUrl: APP_INFO.rootPath + 'dist/ym-primary/html/modal/editTeamPhoto1.html'
+          templateUrl: APP_INFO.rootPath + 'dist/middle-school/html/modal/editTeamPhoto1.html'
       
       $scope.closeTeamPhoto1Modal = ->
         delete $scope.updateTeamPhoto1Error

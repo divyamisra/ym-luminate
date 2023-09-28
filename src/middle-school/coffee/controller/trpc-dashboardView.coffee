@@ -80,7 +80,7 @@ angular.module 'trPcControllers'
         if $scope.participantRegistration.companyInformation?.isCompanyCoordinator isnt 'true'
           $scope.firstLoginModal = $uibModal.open
             scope: $scope
-            templateUrl: APP_INFO.rootPath + 'dist/ym-primary/html/participant-center/modal/firstLogin.html'
+            templateUrl: APP_INFO.rootPath + 'dist/middle-school/html/participant-center/modal/firstLogin.html'
 
           $scope.setPersonalUrlInfo =
             updatedShortcut: ''
@@ -231,7 +231,7 @@ angular.module 'trPcControllers'
         $scope.schoolReportPending = true
         $scope.showSchoolChallengeReportModal = $uibModal.open
           scope: $scope
-          templateUrl: APP_INFO.rootPath + 'dist/ym-primary/html/participant-center/modal/viewSchoolChallengeReport.html'
+          templateUrl: APP_INFO.rootPath + 'dist/middle-school/html/participant-center/modal/viewSchoolChallengeReport.html'
         $scope.schoolChallengeReportData()
 
       $scope.cancelShowSchoolChallengeReport = ->
@@ -347,7 +347,7 @@ angular.module 'trPcControllers'
         $scope.showMaterialTypesModal = $uibModal.open
           scope: $scope
           size: 'lg'
-          templateUrl: APP_INFO.rootPath + 'dist/ym-primary/html/participant-center/modal/viewMaterialTypes.html'
+          templateUrl: APP_INFO.rootPath + 'dist/middle-school/html/participant-center/modal/viewMaterialTypes.html'
 
       $scope.cancelShowMaterialsTypes = ->
         $scope.showMaterialTypesModal.close()
@@ -428,7 +428,7 @@ angular.module 'trPcControllers'
           $scope.editCoordinatorMessageModal = $uibModal.open
             scope: $scope
             size: 'lg'
-            templateUrl: APP_INFO.rootPath + 'dist/ym-primary/html/participant-center/modal/editCoordinatorMessage.html'
+            templateUrl: APP_INFO.rootPath + 'dist/middle-school/html/participant-center/modal/editCoordinatorMessage.html'
 
         $scope.cancelEditCoordinatorMessage = ->
           $scope.coordinatorMessage.text = $scope.coordinatorMessage.original
@@ -464,7 +464,7 @@ angular.module 'trPcControllers'
         $scope.postFeedbackMessageModal = $uibModal.open
           scope: $scope
           size: 'lg'
-          templateUrl: APP_INFO.rootPath + 'dist/ym-primary/html/participant-center/modal/postFeedbackMessage.html'
+          templateUrl: APP_INFO.rootPath + 'dist/middle-school/html/participant-center/modal/postFeedbackMessage.html'
 
       $scope.cancelPostFeedbackMessage = ->
         $scope.postFeedbackMessageModal.close()
@@ -480,7 +480,7 @@ angular.module 'trPcControllers'
               $scope.feedbackMessage.message = 'Please try again later.'
             $scope.postFeedbackMessageModalConfirm = $uibModal.open
               scope: $scope
-              templateUrl: APP_INFO.rootPath + 'dist/ym-primary/html/participant-center/modal/postFeedbackMessageConfirm.html'
+              templateUrl: APP_INFO.rootPath + 'dist/middle-school/html/participant-center/modal/postFeedbackMessageConfirm.html'
 	
       $scope.cancelPostFeedbackMessageConfirm = ->
         $scope.postFeedbackMessageModalConfirm.close()
@@ -497,7 +497,7 @@ angular.module 'trPcControllers'
           $scope.personalGoalInfo.goal = personalGoal
         $scope.editPersonalGoalModal = $uibModal.open
           scope: $scope
-          templateUrl: APP_INFO.rootPath + 'dist/ym-primary/html/participant-center/modal/editParticipantGoal.html'
+          templateUrl: APP_INFO.rootPath + 'dist/middle-school/html/participant-center/modal/editParticipantGoal.html'
 
       $scope.cancelEditPersonalGoal = ->
         $scope.editPersonalGoalModal.close()
@@ -531,7 +531,7 @@ angular.module 'trPcControllers'
           $scope.teamGoalInfo.goal = teamGoal
         $scope.editTeamGoalModal = $uibModal.open
           scope: $scope
-          templateUrl: APP_INFO.rootPath + 'dist/ym-primary/html/participant-center/modal/editTeamGoal.html'
+          templateUrl: APP_INFO.rootPath + 'dist/middle-school/html/participant-center/modal/editTeamGoal.html'
 
       $scope.cancelEditTeamGoal = ->
         $scope.editTeamGoalModal.close()
@@ -565,7 +565,7 @@ angular.module 'trPcControllers'
           $scope.schoolGoalInfo.goal = schoolGoal
         $scope.editSchoolGoalModal = $uibModal.open
           scope: $scope
-          templateUrl: APP_INFO.rootPath + 'dist/ym-primary/html/participant-center/modal/editSchoolGoal.html'
+          templateUrl: APP_INFO.rootPath + 'dist/middle-school/html/participant-center/modal/editSchoolGoal.html'
 
       $scope.cancelEditSchoolGoal = ->
         $scope.editSchoolGoalModal.close()
@@ -591,7 +591,7 @@ angular.module 'trPcControllers'
         $scope.showSchoolPlanModal = $uibModal.open
           scope: $scope
           size: 'lg'
-          templateUrl: APP_INFO.rootPath + 'dist/ym-primary/html/participant-center/modal/viewSchoolPlan.html'
+          templateUrl: APP_INFO.rootPath + 'dist/middle-school/html/participant-center/modal/viewSchoolPlan.html'
 
       $scope.cancelShowSchoolPlan = ->
         $scope.showSchoolPlanModal.close()
@@ -682,7 +682,7 @@ angular.module 'trPcControllers'
         $scope.personalUrlInfo.updatedShortcut = $scope.participantShortcut.text or ''
         $scope.editPersonalUrlModal = $uibModal.open
           scope: $scope
-          templateUrl: APP_INFO.rootPath + 'dist/ym-primary/html/participant-center/modal/editParticipantUrl.html'
+          templateUrl: APP_INFO.rootPath + 'dist/middle-school/html/participant-center/modal/editParticipantUrl.html'
 
       $scope.cancelEditPersonalUrl = ->
        $scope.editPersonalUrlModal.close()
@@ -728,7 +728,7 @@ angular.module 'trPcControllers'
           $scope.teamUrlInfo.updatedShortcut = $scope.teamShortcut.text or ''
           $scope.editTeamUrlModal = $uibModal.open
             scope: $scope
-            templateUrl: APP_INFO.rootPath + 'dist/ym-primary/html/participant-center/modal/editTeamUrl.html'
+            templateUrl: APP_INFO.rootPath + 'dist/middle-school/html/participant-center/modal/editTeamUrl.html'
 
         $scope.cancelEditTeamUrl = ->
          $scope.editTeamUrlModal.close()
@@ -754,14 +754,14 @@ angular.module 'trPcControllers'
           $scope.companyUrlInfo.updatedShortcut = $scope.companyShortcut.text or ''
           $scope.editCompanyUrlModal = $uibModal.open
             scope: $scope
-            templateUrl: APP_INFO.rootPath + 'dist/ym-primary/html/participant-center/modal/editCompanyUrl.html'
+            templateUrl: APP_INFO.rootPath + 'dist/middle-school/html/participant-center/modal/editCompanyUrl.html'
 
         $scope.editCompanyUrlFirst = ->
           delete $scope.companyUrlInfo.errorMessage
           $scope.companyUrlInfo.updatedShortcut = $scope.companyShortcut.text or ''
           $scope.editCompanyUrlModal = $uibModal.open
             scope: $scope
-            templateUrl: APP_INFO.rootPath + 'dist/ym-primary/html/participant-center/modal/firstLoginCoord.html'
+            templateUrl: APP_INFO.rootPath + 'dist/middle-school/html/participant-center/modal/firstLoginCoord.html'
 
         $scope.cancelEditCompanyUrl = ->
          $scope.editCompanyUrlModal.close()
@@ -996,7 +996,7 @@ angular.module 'trPcControllers'
         if not $scope.viewTrophyMessage
           $scope.viewTrophyMessage = $uibModal.open
             scope: $scope
-            templateUrl: APP_INFO.rootPath + 'dist/ym-primary/html/participant-center/modal/viewTrophyMessage.html'
+            templateUrl: APP_INFO.rootPath + 'dist/middle-school/html/participant-center/modal/viewTrophyMessage.html'
 
       $scope.cancelTrophyMessage = ->
         $scope.viewTrophyMessage.close()
@@ -1263,7 +1263,7 @@ angular.module 'trPcControllers'
         $scope.prize_video = video
         $scope.viewPrizeModal = $uibModal.open
           scope: $scope
-          templateUrl: APP_INFO.rootPath + 'dist/ym-primary/html/participant-center/modal/viewPrize.html'
+          templateUrl: APP_INFO.rootPath + 'dist/middle-school/html/participant-center/modal/viewPrize.html'
 
       $scope.cancelShowPrize = ->
         $scope.viewPrizeModal.close()
@@ -1469,7 +1469,7 @@ angular.module 'trPcControllers'
         if not $scope.viewMobileApp
           $scope.viewMobileApp = $uibModal.open
             scope: $scope
-            templateUrl: APP_INFO.rootPath + 'dist/ym-primary/html/participant-center/modal/viewMobileApp.html'
+            templateUrl: APP_INFO.rootPath + 'dist/middle-school/html/participant-center/modal/viewMobileApp.html'
 
       $scope.cancelMobileApp = ->
         $scope.viewMobileApp.close()

@@ -321,7 +321,7 @@ angular.module 'trPcControllers'
                     $scope.$on 'modal.closing', ->
                       angular.element('html').removeClass 'ym-modal-is-open'
                 ]
-                templateUrl: APP_INFO.rootPath + 'dist/ym-primary/html/participant-center/modal/emailPreview.html'
+                templateUrl: APP_INFO.rootPath + 'dist/middle-school/html/participant-center/modal/emailPreview.html'
                 size: 'lg'
                 windowClass: 'ng-pc-modal ym-modal-full-screen'
       

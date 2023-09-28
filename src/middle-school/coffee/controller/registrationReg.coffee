@@ -336,7 +336,7 @@ angular.module 'ahaLuminateControllers'
           #  $scope.familyChallengePopup = true
           #  $scope.showFamilyChallengePopup = $uibModal.open
           #    scope: $scope
-          #    templateUrl: APP_INFO.rootPath + 'dist/ym-primary/html/modal/showFamilyChallengePopup.html'
+          #    templateUrl: APP_INFO.rootPath + 'dist/middle-school/html/modal/showFamilyChallengePopup.html'
           #else 
           angular.element('.js--default-reg-form').submit()
         false
