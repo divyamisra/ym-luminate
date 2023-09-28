@@ -40,7 +40,8 @@
     </section>
     <section class="ym-pc-dashboard-badges-section mb-4" aria-label="My Badges" ng-if="prizes" ng-cloak>
       <h2 class="text-center">Finn's Mission</h2>
-        <div class="mb-4">
+      <div class="finns-mission-section d-flex justify-content-between flex-wrap gap-4 p-3">
+        <div class="ym-pc-dashboard-badge-path col">
           <div class="finns-mission">
             <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewbox="0 0 826 371" preserveaspectratio="xMidYMid meet" shape-rendering="crispEdges" aria-labelledby="finns_mission_title finns_mission_desc" aria-hidden="true">
               <title id="finns_mission_title"> Finn's Mission </title>
@@ -186,7 +187,8 @@
             </svg>
           </div>
         </div>
-        <div class="ym-badges-section white-box mb-4">
+        <div class="ym-pc-dashboard-badge-path col">
+	        <div class="ym-badges-section white-box mb-4">
           <div class="ym-badges-list w-100">
             <h2 class="h3"> My Badges </h2>
             <div class="d-flex justify-content-center flex-wrap gap-4">
@@ -216,6 +218,8 @@
             </div>
           </div>
         </div>
+        </div>
+      </div>
     </section>
     <section class="ym-pc-dashboard-goal-section mb-4" aria-label="Spread the Word and Livestream Sections">
       <h2 class="h3 text-center">Reach Your Goal</h2>
@@ -439,7 +443,7 @@
         </div>
       </div>
     </section>
-    <section class="ym-pc-dashboard-spread-word-section p-0" aria-label="Spreading the Word">
+    <section class="ym-pc-dashboard-spread-word-section mb-4 p-0" aria-label="Spreading the Word">
       <div class="ym-pc-dashboard-section-header">
         <h2 class="h3"> Spread the Word </h2>
       </div>
@@ -471,11 +475,11 @@
         </div>
       </div>
     </section>
-		<div class="volunteer-opportunities white-box p-0 mb-4">
-			<h3 class="h5 p-2"> Volunteer Opportunities </h3>
-			<div class="red-bg-gradient p-4 pt-3 text-white d-md-flex justify-content-between align-items-center gap-2">
+		<div class="volunteer-opportunities white-box p-3 mb-4">
+			<h3 class="h5"> Volunteer Opportunities </h3>
+			<div class="red-bg-gradient p-4 pt-3 d-md-flex justify-content-between align-items-center gap-2">
 				<div class="volunteer-text me-2">
-					<h4 class="fs-5 text-white mb-3">Ready to Volunteer?</h4>
+					<h4 class="fs-5 mb-3">Ready to Volunteer?</h4>
 					<p>Advocate for change, share your voice, teach your community healthy habits, help end tobacco use for youth, and more! Review the opportunities and select as many as you'd like!</p>
 					<p>You are joining a community of volunteers who are building healthier lives, free of heart disease and stroke.</p>
 					<a class="btn btn-md-wide btn-toggle mb-4" ng-href="{{baseUrl}}#/volunteer">
@@ -848,6 +852,6 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> 
   </section>
 </div>
