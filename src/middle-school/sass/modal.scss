@@ -1,6 +1,11 @@
 h1.h5.modal-title {
   color: #000;
 }
+
+.ng-pc-modal .close {
+  postion:fixed;
+}  
+
 .modal-title {
   text-shadow: none;
 }
@@ -12,6 +17,9 @@ h1.h5.modal-title {
 }
 
 .modal-dialog {
+   @media (min-width: 576px) {
+      max-width: 700px;
+   }
    .ym-pc-dashboard-gift-earned {
       color: #440075;
       font-family: $headline-font;
@@ -30,7 +38,48 @@ h1.h5.modal-title {
       -ms-animation-iteration-count: 1;
       -webkit-animation-timing-function: ease-in-out;
       -ms-animation-timing-function: ease-in-out;
+  }
+  .modal-body {
+      overflow: hidden;
+      &.confetti {
+          .close {
+              right: 10px;
+              top: 10px;
+              z-index: 999999;
+          }
+      }
+  }
+  .ym-pc-first-login-modal {
+  	font-size: 18px;
+  	z-index:99999;
+  	position:relative;
+    .js--personal-social-share {
+  	   font-size:16px;
     }
+  }
+  .confetti:before {
+      background: url(../image/badge_confetti.png) !important;
+      content: '';
+      width: 100%;
+      height: 300%;
+      display: block;
+      position: absolute;
+      opacity: 0.3;
+      animation: slide 6s linear infinite;
+      -webkit-animation: slide 6s linear infinite;
+      -ms-animation: slide 6s linear infinite;
+  }
+}
+
+span.number {
+    font-size: 36px;
+    padding: 0px 22px 6px;
+    border-radius: 50px;
+    border: 4px solid #04287b;
+    display: inline-flex;
+    vertical-align: middle;
+    color: #04287b;
+    margin-right: 10px;
 }
 
 .ym-pc-dashboard-mobile-downloads a:focus {

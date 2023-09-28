@@ -1,5 +1,5 @@
 
-.ahc-sidebar {
+.khc-sidebar {
   /*background: linear-gradient(180deg, #990000 42.19%, #660000 100%);*/
 
   .nav-link {
@@ -9,7 +9,7 @@
 }
 
 @media (max-width:991px) {
-  .ahc-sidebar {
+  .khc-sidebar {
     left: 0;
     padding: 1rem * 0.75 1rem * 0.5 1rem * 0.5;
     position: sticky;
@@ -42,7 +42,7 @@
 @media (min-width:992px) {
   body > .container-fluid,
   body > .container-fluid > .row,
-  .ahc-sidebar.ng-pc-nav {
+  .khc-sidebar.ng-pc-nav {
     min-height: 100%;
     font-size: clamp(.875rem,1.5vw,1.5rem);
     max-width: calc(3.5rem + 10rem);
@@ -58,19 +58,24 @@
     a.nav-link {
       padding-inline: 0;
       transition: all .2s ease-in-out;
-      color: $event-secondary-heading;
-      background: #ffffff;
-      text-align:left;
-      padding: 10px 20px 25px 20px !important;
-      line-height:30px;
-      width:100%;
-      margin-bottom:5px;
-      padding-right:15px;
+      color: #04287b;
+      background: #cee4f1;
+      text-align: left;
+      padding: 10px 10px 5px 10px !important;
+      width: 95%;
+      margin-bottom: 5px;
+      padding-right: 15px;
       font-size: 16px;
+      white-space: normal;
+      display: flex;
+      align-items: center;
+      min-height: 45px;
+      max-width: 211px;
       
       > span {
         max-width:none !important;
         font-size: 16px;
+        margin: inherit;
         
         strong {
           font-size:16px;
@@ -102,11 +107,11 @@
       }
 
       &.active {
-        color: $event-secondary-heading;
-        background-color: #cccccc;
+        background-color: #ffffff;
+        width:100%;
 
         &::before {
-          background-color: #cccccc;
+          background-color: #cee4f1;
         }
       }
 

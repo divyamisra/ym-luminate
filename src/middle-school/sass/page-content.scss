@@ -1,16 +1,14 @@
-.pg-personal .ym-headline {
-	color: $title-color;
+.ym-secondary-medium-color {
+    background: #fff;
 }
 
-.pg-personal .student-info h1 {
-    color: $title-color;
-    text-shadow: none;
-}
-
-@media (min-width:768px) {
-   .pg-personal .ym-user-image-inner {
-	width: 40%;
-   }
+.ym-user-image {
+  @media (min-width: $screen-sm-min) {
+    background-size: 93%;
+    background-color: #fff;
+    background-repeat: no-repeat;
+    box-shadow: inset 0px 0px 10px 7px #999;
+  }
 }
 
 a.btn.btn-donate {
@@ -27,6 +25,10 @@ a.btn.btn-donate {
 	}
 }
 
+body.pg-personal .ym-badge__item {
+    width: 80px;
+}
+
 .ym-section-divider {
   border: 0;
   border-top: 1px solid $event-secondary;
@@ -34,33 +36,127 @@ a.btn.btn-donate {
   margin: 0;
 }
 
+.personal-avatar {
+  max-width:35%;
+  margin-right:20px;
+  margin-bottom:20px;
+  float:left;
+}
 .ym-page-section__list {
   background: $event-accent;
 }
 
+.ym-my-challenge {
+  background: $event-secondary-medium;
+  padding: 20px;
+  overflow:hidden;
+  
+  @media (min-width: $screen-sm-min) {
+    padding: 20px 30px;
+  }
+  
+  img {
+    max-width: 115px;
+  }
+  
+  h3 {
+    margin: 0 0 20px;
+    text-align: center;
+  }
+  
+  .col-xs-4, 
+  .col-xs-8 {
+    padding: 0;
+  }
+  .challenge-day-streak {
+    position:relative;
+    z-index: 1;
+    padding-bottom: 10px !important;
+    /*
+    &::before {
+      background: #ed1c24;
+      content: " ";
+      height: 100%;
+      width: 107%;
+      display: block;
+      position: absolute;
+      transform: rotate(-2deg);
+      margin-top: -10px;
+      left: -17px;
+    }
+    */
+  }
+}
+
+.school-location {
+  &.h5 {
+    color:$event-grey;
+  }
+}
+
+.ym_my_challenge__stats {
+  font-size: 26px;
+  color: $event-secondary;
+  line-height:48px;
+  margin-top:10px;
+
+  .challenge-day-count {
+      font-size: 32px;
+      background: #fff;
+      position: relative;
+      border-radius: 55px;
+      text-align: center;
+      line-height: 40px;
+      vertical-align: middle;
+      padding: 0px 15px 6px 15px;
+      color: #ed1c24;
+      border: 2px solid #293B90;
+      font-weight: bold;
+      top: -5px;
+   }
+   .text_with_1px_border {
+      text-shadow: 
+         -2px -2px 0px #293B90,
+         0px -2px 0px #293B90,
+         2px -2px 0px #293B90,
+         -2px  0px 0px #293B90,
+         2px  0px 0px #293B90,
+         -2px  2px 0px #293B90,
+         0px  2px 0px #293B90,
+         2px  2px 0px #293B90;
+   }
+}
+
+.ym-page-section__list {
+  .ym-donate-cta {
+    .h5 {
+      color: $event-secondary;
+    }
+  }
+}
+
+hr.ym-zuri-animation__divider {
+  margin: 0;
+}
+
+.ym-zuri-animation {
+  > p {
+    text-align: center;
+  }
+  
+  h4 {
+    color: $event-secondary;
+    text-align: center;
+  }
+}
+
 .ym-school-student-survivor {
   position:relative;
-  max-width:100px;
+  max-width:180px;
   padding:5px;
   
   img {
     width: 100%;
-  }
-}
-
-.ym-home-feature {
-  .social-icons {
-    > div {
-      display:flex;
-      justify-content:center;
-    }
-    a {
-      text-decoration:none;
-      margin: 5px;
-      img {
-  	max-height: 70px;
-      }
-    }
   }
 }
 
