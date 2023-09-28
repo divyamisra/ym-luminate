@@ -1,5 +1,5 @@
 
-.khc-sidebar {
+.ahc-sidebar {
   /*background: linear-gradient(180deg, #990000 42.19%, #660000 100%);*/
 
   .nav-link {
@@ -9,7 +9,7 @@
 }
 
 @media (max-width:991px) {
-  .khc-sidebar {
+  .ahc-sidebar {
     left: 0;
     padding: 1rem * 0.75 1rem * 0.5 1rem * 0.5;
     position: sticky;
@@ -42,7 +42,7 @@
 @media (min-width:992px) {
   body > .container-fluid,
   body > .container-fluid > .row,
-  .khc-sidebar.ng-pc-nav {
+  .ahc-sidebar.ng-pc-nav {
     min-height: 100%;
     font-size: clamp(.875rem,1.5vw,1.5rem);
     max-width: calc(3.5rem + 10rem);
