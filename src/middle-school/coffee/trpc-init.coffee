@@ -18,7 +18,7 @@ angular.module 'trPcApp'
       else
         rootPath = '../ym-luminate/'
       rootPath
-    programKey: 'ym-primary'
+    programKey: 'middle-school'
 
 angular.module 'trPcApp'
   .run [
