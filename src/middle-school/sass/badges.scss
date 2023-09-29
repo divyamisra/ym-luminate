@@ -1,6 +1,7 @@
 .ym-badges {
   flex: 1 0 25%;
-  max-width:25%;
+  /*max-width:25%;*/
+  max-width:180px;
   gap: 10px;
   @media (max-width: 981px) {
     flex: 1 0 33%;
