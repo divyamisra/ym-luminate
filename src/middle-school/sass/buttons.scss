@@ -52,3 +52,14 @@ a.btn:visited {
     margin-left: 5px;
     border-radius: 5px;
 }
+
+.btn-red, 
+.btn-red:hover, 
+.btn-red:focus, 
+.btn-red:visited {
+    padding: 3px 6px;
+    background: $event-primary-acc;
+    color: #fff;
+    margin-left: 5px;
+    border-radius: 5px;
+}
