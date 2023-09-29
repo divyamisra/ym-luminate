@@ -444,7 +444,7 @@ section.ym-pc-dashboard-standard-gifts-section {
 	.ym-pc-dashboard-standard-gifts-icon {
    	   position:relative;
 	   text-align:center;
-	   background: $event-accent-blue;
+	   background: $event-accent-light;
 	   padding: 20px;
            border: 2px solid $event-secondary-medium;
            border-radius: 20px;
@@ -457,7 +457,7 @@ section.ym-pc-dashboard-standard-gifts-section {
 	   }
            
 	   &.not-earned {
-	      background: $event-secondary-light;
+	      background: $white;
 		   
 	      img {
 		 opacity: 0.5;
