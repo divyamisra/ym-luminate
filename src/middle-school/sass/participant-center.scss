@@ -56,14 +56,17 @@
   max-width: 90%;
 }
 
+#nclvs_cc_heading {
+  color: $event-primary-acc;
+}
+#nclvs_sr_table thead tr th {
+  border-color: $event-primary-acc !important;
+}
+
 .ym-pc-reports-lists {
 	#nclvs_sr_heading,
 	#nclvs_sr_filter_heading {
 	    color: $event-primary-acc;
-	}
-	
-	#nclvs_sr_table thead tr th {
-	    border-color: $event-primary-acc;
 	}
 	
 	 .nclvs_sr_control_select {
