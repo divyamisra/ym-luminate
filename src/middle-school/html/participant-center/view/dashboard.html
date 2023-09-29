@@ -476,9 +476,10 @@
       </div>
     </section>
 		<div class="volunteer-opportunities event-secondary-medium white-box p-3 mb-4">
-			<h3 class="h5"> Ready to Volunteer? </h3>
-			<div class="red-bg-gradient d-md-flex justify-content-between align-items-center gap-2">
+			<h3 class="h5"> Volunteer Opportunities </h3>
+			<div class="red-bg-gradient p-4 pt-3 d-md-flex justify-content-between align-items-center gap-2">
 				<div class="volunteer-text me-2">
+					<h4 class="fs-5 mb-3">Ready to Volunteer?</h4>
 					<p>Advocate for change, share your voice, teach your community healthy habits, help end tobacco use for youth, and more! Review the opportunities and select as many as you'd like!</p>
 					<p>You are joining a community of volunteers who are building healthier lives, free of heart disease and stroke.</p>
 					<a class="btn btn-md-wide btn-toggle mb-4" ng-href="{{baseUrl}}#/volunteer">
@@ -601,22 +602,13 @@
                   <strong> School Plan </strong>
                 </a>
               </div>
-              <div class="colk" ng-show="hasOOTDashboard" ng-scope>
+              <div class="col" ng-show="hasOOTDashboard" ng-scope>
                 <a class="" ng-href="{{baseUrl}}#/reports" ng-cloak>
                   <img class="d-block mx-auto mb-2" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/middle-school/image/fy24/reports-icon.png" alt="View Reports">
-		</a>
+								</a>
                 <a class="btn btn-md-wide btn-primary" ng-href="{{baseUrl}}#/reports" ng-cloak>
                   <strong> View Reports </strong>
                 </a>
-                <div class="col w-100 p-2">
-                  <div class="ym-pc-dashboard-section-header">
-                    <h3 class="h5">Volunteer <br>Planning </h3>
-                  </div>
-                  <a class="btn btn-md-wide btn-primary" href="DocServer/FY23_AHC_Planning_Guide.pdf" target="_blank">
-                    <strong>Download </strong>
-                    <span class="sr-only">Volunteer Planning</span>
-                  </a>
-                </div>
               </div>
               <div class="col" ng-show="hasOOTDashboard">
                 <a class="" ng-href="https://khc.staging.ootqa.org/coordinator/login/{{frId}}/{{authToken}}/{{sessionCookie}}" target="_blank" ng-if="tablePrefix == 'heartdev'" ng-cloak>
@@ -635,22 +627,17 @@
                   <strong> Thank-You Gifts </strong>
                 </a>
                 <a class="btn btn-md-wide btn-primary" ng-href="https://kidsheartchallenge.heart.org/coordinator/login/{{frId}}/{{authToken}}/{{sessionCookie}}" target="_blank" ng-if="tablePrefix == 'heart'" ng-cloak>
-                  <strong> Thank-You Gifts </strong>
+                  <strong> Thank-You Gifts </strong> 
                 </a>
               </div>
-            </div>
-          </div>
-          <div class="student-volunteer-report white-box red-border-bottom p-0">
-            <div class="card-header bg-light d-flex align-items-center justify-content-between m-0">
-              <h3 class="h5 mb-0">Student Volunteer Report</h3>
-            </div>
-            <div class="p-4">
-              <p>Students have the opportunity to advocate for change, share their voice, teach their community healthy habits, help end tobacco use for youth, and more! Review their logged community service hours as they work to build healthier lives, free of heart disease and stroke.</p>
-              <p class="text-center">
-                <a class="btn btn-md-wide btn-primary" ng-href="{{baseUrl}}#/volunteer-coordinator">
-                  <strong>View Student Volunteer Report</strong>
+              <div class="col" ng-show="hasOOTDashboard">
+                <a class="" href="DocServer/FY23_AHC_Planning_Guide.pdf" target="_blank">
+                  <img class="d-block mx-auto mb-2" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/middle-school/image/fy24/thank-you-gift-icon.png" alt="View Thank You Gifts">
                 </a>
-              </p>
+                <a class="btn btn-md-wide btn-primary" href="DocServer/FY23_AHC_Planning_Guide.pdf" target="_blank">
+                  <strong> Volunteer Guide </strong>
+                </a>
+              </div>
             </div>
           </div>
         </div>
@@ -853,4 +840,22 @@
       </div>
     </div> 
   </section>
+  <section class="ym-pc-dashboard-coordinator-volunteer-section mb-4" aria-label="Volunteer Details">
+    <div class="d-flex justify-content-between flex-wrap gap-4">
+      <div class="col">
+        <div class="student-volunteer-report event-secondary-medium p-3 white-box red-border-bottom">
+          <div class="d-flex align-items-center justify-content-between m-0">
+						<h3 class="h5 mb-0">Student Volunteer Report</h3>
+					</div>
+					<div class="p-4">
+						<p>Students have the opportunity to advocate for change, share their voice, teach their community healthy habits, help end tobacco use for youth, and more! Review their logged community service hours as they work to build healthier lives, free of heart disease and stroke.</p>
+						<p class="text-center">
+							<a class="btn btn-md-wide btn-primary" ng-href="{{baseUrl}}#/volunteer-coordinator">
+								<strong>View Student Volunteer Report</strong>
+							</a>
+						</p>
+					</div>
+				</div>
+			</div>
+	</section>
 </div>
