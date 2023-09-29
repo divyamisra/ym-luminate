@@ -58,11 +58,11 @@
 
 #nclvs_sr_heading,
 #nclvs_sr_filter_heading {
-    color: $event-primary-acc;
+    color: $event-primary-acc !important;
 }
 
 #nclvs_sr_table thead tr th {
-    border-color: $event-primary-acc;
+    border-color: $event-primary-acc !important;
 }
 
 .ym-pc-dashboard-progress-box #nclvs_classroom_competition {
