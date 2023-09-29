@@ -57,9 +57,10 @@
 }
 
 #nclvs_cc_heading {
-  color: $event-primary-acc;
+  color: $event-primary-acc !important;
 }
-#nclvs_sr_table thead tr th {
+#nclvs_sr_table thead tr th,
+#nclvs_cc_table thead tr th {
   border-color: $event-primary-acc !important;
 }
 
