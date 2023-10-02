@@ -35,6 +35,23 @@ select.form-control {
 }
 
 .form-group {
+  &.required {
+    .control-label {
+      &::after {
+	    background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Red_asterisk.svg/16px-Red_asterisk.svg.png);
+	    font-size: 1em;
+	    vertical-align: top;
+	    background-size: .5em .5em;
+	    content: "";
+	    width: .5em;
+	    height: .5em;
+	    display: inline-block;
+      }
+    }
+  }
+}
+
+.form-group {
     margin-bottom: 15px;
 }
 
