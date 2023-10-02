@@ -436,13 +436,13 @@ angular.module 'ahaLuminateControllers'
               msg: '# Students'
 
       getLeaderboards()
-
+      ###
       BoundlessService.getBMLeaderboard('event_id=' + $scope.frId + '&company_id=' + $scope.companyId).then (response) ->
         if response.company_member_list != undefined
           angular.forEach response.company_member_list, (company_member_list) ->
             if company_member_list.total > 0
               $scope.topCompanySteps.push company_member_list
-
+      ###
       setCompanyCity = (companyCity) ->
         $rootScope.companyCity = companyCity
         if not $rootScope.$$phase
