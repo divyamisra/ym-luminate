@@ -16,6 +16,19 @@ angular.module 'ahaLuminateApp'
             response
           , (response) ->
             response
+
+      getLeaderboards: (requestData) ->
+        if $rootScope.tablePrefix is 'heartdev'
+          url = 'https://ahc.staging.ootqa.org/api/points/leaders/school/' + requestData + '/teachers/all?limit=5'
+        else if $rootScope.tablePrefix is 'heartnew'
+          url = 'https://ahc.staging.ootqa.org/api/points/leaders/school/' + requestData + '/teachers/all?limit=5'
+        else
+          url = 'https://middleschool.heart.org/api/points/leaders/school/' + requestData + '/teachers/all?limit=5'
+        $http.jsonp($sce.trustAsResourceUrl(url), jsonpCallbackParam: 'callback')
+          .then (response) ->
+            response
+          , (response) ->
+            response
             
       getBadges: (requestData) ->
         if $rootScope.tablePrefix is 'heartdev'
