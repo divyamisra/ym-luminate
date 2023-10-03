@@ -1,3 +1,15 @@
+<style>
+/* specific containe override because of report formatting */
+.ng-pc-view-container {
+   width: 100%;
+}
+@media (min-width:992px) {
+  .ng-pc-view-container {
+    max-width: calc(100% - 225px);
+    flex: 0 0 auto;
+  }
+}
+</style>
 <div cg-busy="reportPromises">
   <div class="ym-pc-reports-lists">
     <div class="ym-pc-report-header">
