@@ -360,7 +360,9 @@ angular.module 'ahaLuminateControllers'
         NuclavisService.getTeachers $scope.companyId + "/" + $rootScope.frId
         .then (response) ->
           $scope.teachers = response.data.teachers
-          $scope.getTeacherList()
+          if $scope.teachers.length > 0
+            $scope.getTeacherList()
+            $scope.listUpload = true
         
       setCompanyCity = (companyCity) ->
         $rootScope.companyCity = companyCity
