@@ -4,6 +4,11 @@ body.app-27 {
   	background-size: 100% 100%;
   }
 
+  input[type=checkbox]:checked, 
+  input[type=checkbox]:not(:checked) {
+    left: 0;
+  }
+  
   .ym-registration-page-container {
   	display: flex;
   	justify-content: center;
