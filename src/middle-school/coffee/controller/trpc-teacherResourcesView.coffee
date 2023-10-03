@@ -6,7 +6,7 @@ angular.module 'trPcControllers'
     ($scope, PageBuilderService, $sce) ->
       $scope.trustHtml = (html) ->
         return $sce.trustAsHtml(html)
-      PageBuilderService.getPageContent 'reus_ym_khc_teacher_resources', 'tab=elementary'
+      PageBuilderService.getPageContent 'ym_school_resources', 'tab=AHC'
         .then (response) ->
           pageContent = response.data
           if pageContent
