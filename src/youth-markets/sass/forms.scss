@@ -38,14 +38,14 @@ select.form-control {
     margin-bottom: 15px;
 }
 
-/*
 .form-group.required .control-label::after {
     color: red;
     content: "*";
     font-size: 1.5em;
     vertical-align: middle;
 }
-*/
+
+/*
 .form-group {
   &.required {
     .control-label {
@@ -62,6 +62,8 @@ select.form-control {
     }
   }
 }
+*/
+
 .input-lg, 
 select.input-lg {
   line-height: normal;
