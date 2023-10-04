@@ -211,8 +211,10 @@ angular.module 'ahaLuminateControllers'
               console.log('dealing with other reg questions')
               if not $scope.registrationAdditionalQuestions
                 $scope.registrationAdditionalQuestions = {}
-              #$scope.registrationAdditionalQuestions[questionName] = questionName
-              $scope.registrationAdditionalQuestions[surveyKey] = questionName
+              if angular.element('body').hasClass('newreg')
+                $scope.registrationAdditionalQuestions[surveyKey] = questionName
+              else
+                $scope.registrationAdditionalQuestions[questionName] = questionName
             if surveyKey == 'ym_khc_survivor_teacher'
                 $scope.studentTreated = questionName
             if not $scope.$$phase
