@@ -69,13 +69,14 @@ body.app-27 {
         background: url(../image/badge_confetti.png) !important;
         content: '';
         width: 100%;
-        height: 400%;
+        height: 200%;
         display: block;
         position: absolute;
+        top: 100%;
         opacity: 0.3;
-        animation: slide 6s linear infinite;
-        -webkit-animation: slide 6s linear infinite;
-        -ms-animation: slide 6s linear infinite;
+        animation: slide 6s linear 1;
+        -webkit-animation: slide 6s linear 1;
+        -ms-animation: slide 6s linear 1;
      }
     }
       
