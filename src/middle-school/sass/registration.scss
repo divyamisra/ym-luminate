@@ -3,7 +3,21 @@ body.app-27 {
   	background: url(../image/fy24/ym-reg-background-2024.png) repeat;
   	background-size: 100% 100%;
   }
-
+  
+  :focus, svg :focus {
+    border-color: #39bb67!important;
+  }
+  
+  .form-control:focus {
+    border-color: #39bb67 !important;
+    border-width: 3px !important;
+  }
+  
+  input[type=checkbox]:checked, 
+  input[type=checkbox]:not(:checked) {
+    left: 0;
+  }
+  
   .ym-registration-page-container {
   	display: flex;
   	justify-content: center;
