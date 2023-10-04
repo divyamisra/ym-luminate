@@ -4,6 +4,11 @@ body.app-27 {
   	background-size: 100% 100%;
   }
 
+  .form-control:focus {
+    border-color: #39bb67 !important;
+    border-width: 3px !important;
+  }
+  
   input[type=checkbox]:checked, 
   input[type=checkbox]:not(:checked) {
     left: 0;
