@@ -200,7 +200,7 @@ angular.module 'ahaLuminateControllers'
             else if questionLegend isnt 'Event Date' and surveyKey isnt 'ym_middle_school_challenge_info' and surveyKey isnt 'ym_middle_school_ecards_sent' and surveyKey isnt 'ym_middle_school_ecards_shared' and surveyKey isnt 'ym_middle_school_ecards_open' and surveyKey isnt 'ym_middle_school_ecards_clicked' and surveyKey isnt 'bb_facebook_connector_id'
               if not $scope.registrationAdditionalQuestions
                 $scope.registrationAdditionalQuestions = {}
-              #$scope.registrationAdditionalQuestions[questionName] = questionName
+              $scope.registrationAdditionalQuestions[questionName] = questionName
               $scope.registrationAdditionalQuestions[surveyKey] = questionName
               if surveyKey == 'ym_middle_school_survivor'
                 $scope.studentTreated = questionName              
