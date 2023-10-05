@@ -62,14 +62,15 @@ angular.module 'ahaLuminateApp'
         $rootScope.showGiftsTab = true
         $rootScope.classroomChallenge = true
       else
-        ZuriService.getSchoolInfo $rootScope.bodyCompanyId,
-          failure: (response) ->
-          error: (response) ->
-          success: (response) ->
-            if response.data.company.customCompanyDetail1.indexOf("IG:A") > -1
-              $rootScope.showGiftsTab = true
-            if response.data.company.customCompanyDetail1.indexOf("CC:Y") > -1
-              $rootScope.classroomChallenge = true
+        if $rootScope.bodyCompanyId != ''
+          ZuriService.getSchoolInfo $rootScope.bodyCompanyId,
+            failure: (response) ->
+            error: (response) ->
+            success: (response) ->
+              if response.data.company.customCompanyDetail1.indexOf("IG:A") > -1
+                $rootScope.showGiftsTab = true
+              if response.data.company.customCompanyDetail1.indexOf("CC:Y") > -1
+                $rootScope.classroomChallenge = true
 ]
 
 angular.element(document).ready ->
