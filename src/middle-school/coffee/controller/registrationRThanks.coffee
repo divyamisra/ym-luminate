@@ -1,5 +1,5 @@
 angular.module 'ahaLuminateControllers'
-  .controller 'RegistrationUtypeCtrl', [
+  .controller 'RegistrationThanksCtrl', [
     '$rootScope'
     '$scope'
     'TeamraiserCompanyService',
@@ -43,23 +43,6 @@ angular.module 'ahaLuminateControllers'
             companyInfo = companies[0]
             setCompanyName companyInfo.companyName
       
-      $scope.toggleUserType = (userType) ->
-        $scope.userType = userType
-        if userType is 'new'
-          angular.element('.js--default-utype-new-form').submit()
-          false
-      
-      $scope.submitUtypeLogin = ->
-        angular.element('.js--default-utype-existing-form').submit()
-        false
-      
-      $scope.toggleForgotLogin = (showHide) ->
-        $scope.showForgotLogin = showHide is 'show'
-      
-      $scope.submitForgotLogin = ->
-        angular.element('.js--default-utype-send-username-form').submit()
-        false
-
       ZuriService.getSchoolDetail '&school_id=' + regCompanyId + '&EventId=' + $rootScope.frId,
         failure: (response) ->
         error: (response) ->

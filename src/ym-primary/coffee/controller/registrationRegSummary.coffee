@@ -2,9 +2,10 @@ angular.module 'ahaLuminateControllers'
   .controller 'RegistrationRegSummaryCtrl', [
     '$rootScope'
     '$scope'
+    '$timeout'
     'TeamraiserCompanyService'
     'SchoolLookupService'
-    ($rootScope, $scope, TeamraiserCompanyService, SchoolLookupService) ->
+    ($rootScope, $scope, $timeout, TeamraiserCompanyService, SchoolLookupService) ->
       $rootScope.companyName = ''
       regCompanyId = luminateExtend.global.regCompanyId
       setCompanyName = (companyName) ->
@@ -61,8 +62,10 @@ angular.module 'ahaLuminateControllers'
         console.log 'clear addGiftAmt'
         localStorage.addlGiftAmt = ''
 
-      $scope.submitRegSummary()
-      
+      $timeout ->
+        $scope.submitRegSummary()
+      , 500
+
       #
       #SchoolLookupService.getSchoolData()
       #  .then (response) ->

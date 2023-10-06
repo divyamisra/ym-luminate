@@ -185,7 +185,7 @@ angular.module 'ahaLuminateApp'
               callback.success response
           , (response) ->
             callback.failure response
-
+            
       updateSchoolData: (requestData, callback) ->
         if $rootScope.tablePrefix is 'heartdev'
           url = '//tools.heart.org/aha_ahc24_dev/api/school/' + requestData + '&key=RByQUbXzYLBchS3n'
