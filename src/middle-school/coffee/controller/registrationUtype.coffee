@@ -2,19 +2,13 @@ angular.module 'ahaLuminateControllers'
   .controller 'RegistrationUtypeCtrl', [
     '$rootScope'
     '$scope'
-    'TeamraiserCompanyService',
-    'SchoolLookupService'
-    ($rootScope, $scope, TeamraiserCompanyService, SchoolLookupService) ->
+    'TeamraiserCompanyService'
+    'ZuriService'
+    ($rootScope, $scope, TeamraiserCompanyService, ZuriService) ->
       $rootScope.companyName = ''
-      localStorage.companyName = ''
-      localStorage.companyCity = ''
-      localStorage.companyState = ''
-      $rootScope.regCompanyId = luminateExtend.global.regCompanyId
       regCompanyId = luminateExtend.global.regCompanyId
-      
       setCompanyName = (companyName) ->
         $rootScope.companyName = companyName
-        localStorage.companyName = companyName
         if not $rootScope.$$phase
           $rootScope.$apply()
           
@@ -59,13 +53,13 @@ angular.module 'ahaLuminateControllers'
         angular.element('.js--default-utype-send-username-form').submit()
         false
 
-      SchoolLookupService.getSchoolData()
-        .then (response) ->
-          schoolDataRows = response.data.getSchoolSearchDataResponse.schoolData
-          angular.forEach schoolDataRows, (schoolDataRow, schoolDataRowIndex) ->
-            if schoolDataRowIndex > 0
-              if regCompanyId is schoolDataRow[0]
-                setCompanyCity schoolDataRow[1]
-                setCompanyState schoolDataRow[2]
-                return
+      ZuriService.getSchoolDetail '&school_id=' + regCompanyId + '&EventId=' + $rootScope.frId,
+        failure: (response) ->
+        error: (response) ->
+        success: (response) ->
+          if response.data.company[0] != ""
+            $scope.schoolPlan = response.data.company[0]
+            setCompanyCity $scope.schoolPlan.SchoolCity
+            setCompanyState $scope.schoolPlan.SchoolState
+    
   ]
