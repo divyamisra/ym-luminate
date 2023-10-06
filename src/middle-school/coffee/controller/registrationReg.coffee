@@ -3,37 +3,29 @@ angular.module 'ahaLuminateControllers'
     '$rootScope'
     '$scope'
     '$filter'
-    '$uibModal'
-    'APP_INFO'
+    '$timeout'
     'TeamraiserCompanyService'
     'TeamraiserRegistrationService'
-    'SchoolLookupService'
     'NuclavisService'
-    ($rootScope, $scope, $filter, $uibModal, APP_INFO, TeamraiserCompanyService, TeamraiserRegistrationService, SchoolLookupService, NuclavisService) ->
+    ($rootScope, $scope, $filter, $timeout, TeamraiserCompanyService, TeamraiserRegistrationService, NuclavisService) ->
       $rootScope.companyName = ''
-      $scope.teachers = []
-      $scope.teacherList = []
-      $scope.listUpload = false
-      $scope.companyId = angular.element('[name=s_frCompanyId]').val()
-      
       regCompanyId = luminateExtend.global.regCompanyId
       setCompanyName = (companyName) ->
         $rootScope.companyName = companyName
         if not $rootScope.$$phase
           $rootScope.$apply()
-      #TeamraiserCompanyService.getCompanies 'company_id=' + regCompanyId,
-      #  error: ->
-      #    # TODO
-      #  success: (response) ->
-      #    companies = response.getCompaniesResponse.company
-      #    if not companies
-      #      # TODO
-      #    else
-      #      companies = [companies] if not angular.isArray companies
-      #      companyInfo = companies[0]
-      #      setCompanyName companyInfo.companyName
-      setCompanyName localStorage.companyName
-
+      TeamraiserCompanyService.getCompanies 'company_id=' + regCompanyId,
+        error: ->
+          # TODO
+        success: (response) ->
+          companies = response.getCompaniesResponse.company
+          if not companies
+            # TODO
+          else
+            companies = [companies] if not angular.isArray companies
+            companyInfo = companies[0]
+            setCompanyName companyInfo.companyName
+      
       $scope.registrationInfoErrors =
         errors: []
       $fieldErrors = angular.element '.ErrorMessage'
@@ -163,7 +155,6 @@ angular.module 'ahaLuminateControllers'
             questionOptions.push
               value: questionOptionValue
               text: questionOptionText
-        
         questionValue = $additionalInfoQuestion.val() or ''
         questionMaxLength = $additionalInfoQuestion.attr('maxlength') or ''
         questionHasError = $additionalInfoQuestion.is '.form-error *'
@@ -176,7 +167,7 @@ angular.module 'ahaLuminateControllers'
           maxLength: questionMaxLength
           hasError: questionHasError
         $scope.registrationInfo[questionName] = questionValue
-
+      
       $scope.participationType = {}
       setParticipationType = (participationType) ->
         $scope.participationType = participationType
@@ -203,14 +194,18 @@ angular.module 'ahaLuminateControllers'
           setRegistrationQuestionSurveyKey = (questionName, surveyKey) ->
             $scope.registrationQuestions[questionName].surveyKey = surveyKey
             questionLegend = $scope.registrationQuestions[questionName].legend
-            if surveyKey is 'ym_khc_email_type' or surveyKey is 'ym_khc_grade' or surveyKey is 'ym_khc_school' or surveyKey is 'ym_khc_teacher_title' or surveyKey is 'ym_khc_teacher_name' or surveyKey is 'ym_khc_school_city' or surveyKey is 'ym_khc_school_state' or surveyKey is 'ym_khc_parentfirstname' or surveyKey is 'ym_khc_parentlastname' or surveyKey is 'ym_khc_student_state' or surveyKey is 'ym_khc_instruction_type' or surveyKey is 'ym_khc_email_consent_text' or surveyKey is 'ym_khc_future_middleschool'
+            if surveyKey is 'ym_middle_school_email_type' or surveyKey is 'ym_middle_school_grade' or surveyKey is 'ym_middle_school_school' or surveyKey is 'ym_middle_school_teacher_name' or surveyKey is 'ym_middle_school_school_city' or surveyKey is 'ym_middle_school_school_state' or surveyKey is 'ym_middle_school_participated_ly'  or surveyKey is 'ym_ahc_student_state' or surveyKey is 'ahc_cell_phone'
               initCustomQuestions()
               $scope.registrationCustomQuestions[surveyKey] = questionName
-            else if questionLegend isnt 'Event Date' and surveyKey isnt 'ym_khc_challenge_info' and surveyKey isnt 'ym_khc_ecards_sent' and surveyKey isnt 'ym_khc_ecards_shared' and surveyKey isnt 'ym_khc_ecards_open' and surveyKey isnt 'ym_khc_ecards_clicked' and surveyKey isnt 'ym_khc_ym_game_points' and surveyKey isnt 'bb_facebook_connector_id'
-              console.log('dealing with other reg questions')
+            else if questionLegend isnt 'Event Date' and surveyKey isnt 'ym_middle_school_challenge_info' and surveyKey isnt 'ym_middle_school_ecards_sent' and surveyKey isnt 'ym_middle_school_ecards_shared' and surveyKey isnt 'ym_middle_school_ecards_open' and surveyKey isnt 'ym_middle_school_ecards_clicked' and surveyKey isnt 'bb_facebook_connector_id'
               if not $scope.registrationAdditionalQuestions
                 $scope.registrationAdditionalQuestions = {}
-              $scope.registrationAdditionalQuestions[questionName] = questionName
+              if angular.element('body').hasClass('newreg')
+                $scope.registrationAdditionalQuestions[surveyKey] = questionName
+              else
+                $scope.registrationAdditionalQuestions[questionName] = questionName
+              if surveyKey == 'ym_middle_school_survivor'
+                $scope.studentTreated = questionName              
             if not $scope.$$phase
               $scope.$apply()
           TeamraiserRegistrationService.getRegistrationDocument 'participation_id=' + newValue,
@@ -244,24 +239,16 @@ angular.module 'ahaLuminateControllers'
               if surveyResponses
                 surveyResponses = [surveyResponses] if not angular.isArray surveyResponses
                 console.log('got survey responses')
-                console.log('are fields here? ' + angular.element(document).find('.ym_khc_parentfirstname').length)
+                console.log('are fields here? ' + angular.element(document).find('.ym_middle_school_grade').length)
 
                 findFields = () ->
-                  if angular.element(document).find('.ym_khc_parentfirstname').length > 0
+                  if angular.element(document).find('.ym_middle_school_grade').length > 0
                     console.log('found fields')
                     angular.forEach surveyResponses, (surveyResponse, serveyResponseIndex) ->
                       surveyResponseKey = surveyResponse.key
-                      surveyResponseAnswer = surveyResponse.responseValue                  
-                      if surveyResponseKey == 'ym_khc_parentfirstname'
-                        angular.element(document).find('.ym_khc_parentfirstname').val(surveyResponseAnswer).trigger('change')
+                      surveyResponseAnswer = surveyResponse.responseValue 
 
-                      if surveyResponseKey == 'ym_khc_parentlastname'
-                        angular.element(document).find('.ym_khc_parentlastname').val(surveyResponseAnswer).trigger('change')
-
-                      # if surveyResponseKey == 'ym_khc_student_state'
-                      #   angular.element(document).find('.ym_khc_student_state').val(surveyResponseAnswer).trigger('change')
-
-                      if surveyResponseKey == 'ym_khc_grade'
+                      if surveyResponseKey == 'ym_middle_school_grade'
                         newGrade
                         if surveyResponseAnswer == 'Pre-School'
                           newGrade = 'Kindergarten'
@@ -278,36 +265,13 @@ angular.module 'ahaLuminateControllers'
                           newGrade = 'College'
                         if surveyResponseAnswer ==  'College' || surveyResponseAnswer == 'Other'
                           newGrade = 'Other'
-                        angular.element(document).find('.ym_khc_grade').val(newGrade).trigger('change')
-
+                        angular.element(document).find('.ym_middle_school_grade').val(newGrade).trigger('change')
                   else
                     window.setTimeout(findFields,50);
                 findFields();
 
       if $fieldErrors.length == 0
         $scope.getPrevSurveyResponses()
-
-      # hide t-shirt question for jump start schools
-      currentSchool = angular.element(document).find('.company-id').text()
-      jumpStartSchools = angular.element(document).find('.jump-start-list').text()
-      jumpStartArray = JSON.parse("[" + jumpStartSchools + "]");
-      
-      findLabel = () ->
-        console.log('findlabel function')
-        if angular.element('#questions_hdr_container').length > 0
-          if jumpStartArray.indexOf(currentSchool) != -1
-            console.log('current school is in array')
-
-            angular.element('label.control-label span:contains("Shirt")').closest('.row').css('display','none')
-            angular.element('label.control-label span:contains("Shirt")').closest('.row').find('select').val('Jump Start School').trigger('change')
-          else
-            console.log('current school is NOT in array')
-            angular.element('label.control-label span:contains("Shirt")').closest('.row').find('select option[value="Jump Start School"]').remove()
-
-        else
-          window.setTimeout(findLabel,50);
-
-      #findLabel()
 
       $scope.toggleAcceptWaiver = (acceptWaiver) ->
         $scope.acceptWaiver = acceptWaiver
@@ -319,10 +283,6 @@ angular.module 'ahaLuminateControllers'
         , 500
         false
       
-      $scope.familyChallengePopup = false
-      $scope.submitFamilyChallengePopup = ->
-        angular.element('.js--default-reg-form').submit()
-      
       $scope.submitReg = ->
         if $scope.acceptWaiver isnt 'yes' and not $scope.ng_go_back
           window.scrollTo 0, 0
@@ -332,12 +292,6 @@ angular.module 'ahaLuminateControllers'
             }
           ]
         else
-          #if not $scope.familyChallengePopup
-          #  $scope.familyChallengePopup = true
-          #  $scope.showFamilyChallengePopup = $uibModal.open
-          #    scope: $scope
-          #    templateUrl: APP_INFO.rootPath + 'dist/middle-school/html/modal/showFamilyChallengePopup.html'
-          #else 
           angular.element('.js--default-reg-form').submit()
         false
 
@@ -371,15 +325,5 @@ angular.module 'ahaLuminateControllers'
       if localStorage.companyCity != undefined
         setCompanyCity localStorage.companyCity
         setCompanyState localStorage.companyState
-      
-      #
-      #SchoolLookupService.getSchoolData()
-      #  .then (response) ->
-      #    schoolDataRows = response.data.getSchoolSearchDataResponse.schoolData
-      #    angular.forEach schoolDataRows, (schoolDataRow, schoolDataRowIndex) ->
-      #      if schoolDataRowIndex > 0
-      #        if regCompanyId is schoolDataRow[0]
-      #          setCompanyCity schoolDataRow[1]
-      #          setCompanyState schoolDataRow[2]
-      #          return
+        
   ]
