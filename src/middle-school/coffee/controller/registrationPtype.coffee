@@ -249,4 +249,19 @@ angular.module 'ahaLuminateControllers'
             
           angular.element('.js--default-ptype-form').submit()
           false
+
+      setCompanyCity = (companyCity) ->
+        $rootScope.companyCity = companyCity
+        if not $rootScope.$$phase
+          $rootScope.$apply()
+          
+      setCompanyState = (companyState) ->
+        $rootScope.companyState = companyState
+        if not $rootScope.$$phase
+          $rootScope.$apply()
+          
+      if localStorage.companyCity != undefined
+        setCompanyCity localStorage.companyCity
+        setCompanyState localStorage.companyState
+          
   ]

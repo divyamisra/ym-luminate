@@ -35,7 +35,8 @@ angular.module 'ahaLuminateApp'
     '$rootScope'
     '$sce'
     'APP_INFO'
-    ($rootScope, $sce, APP_INFO) ->
+    'ZuriService'
+    ($rootScope, $sce, APP_INFO, ZuriService) ->
       $rootScope.eventType = 'middle-school'
       $rootScope.tablePrefix = luminateExtend.global.tablePrefix
       $rootScope.nonSecureDomain = luminateExtend.global.path.nonsecure.split('/site/')[0] + '/'
@@ -53,7 +54,24 @@ angular.module 'ahaLuminateApp'
       $rootScope.facebookFundraisersEnabled = $dataRoot.data('facebook-fundraisers-enabled') is 'TRUE'
       $rootScope.facebookFundraiserId = $dataRoot.data('facebook-fundraiser-id') if $dataRoot.data('facebook-fundraiser-id') isnt ''
       $rootScope.currentCSTDate = $dataRoot.data('current-date') if $dataRoot.data('current-date') isnt ''
-  ]
+      $rootScope.bodyCompanyId = $dataRoot.data('company-id') or ''
+
+      $rootScope.showGiftsTab = false
+      $rootScope.classroomChallenge = false
+      if $rootScope.tablePrefix == 'heartdev'
+        $rootScope.showGiftsTab = true
+        $rootScope.classroomChallenge = true
+      else
+        if $rootScope.bodyCompanyId != ''
+          ZuriService.getSchoolInfo $rootScope.bodyCompanyId,
+            failure: (response) ->
+            error: (response) ->
+            success: (response) ->
+              if response.data.company.customCompanyDetail1.indexOf("IG:A") > -1
+                $rootScope.showGiftsTab = true
+              if response.data.company.customCompanyDetail1.indexOf("CC:Y") > -1
+                $rootScope.classroomChallenge = true
+]
 
 angular.element(document).ready ->
   appModules = [

@@ -4,17 +4,18 @@ angular.module 'ahaLuminateControllers'
     '$scope'
     '$filter'
     '$uibModal'
+    '$timeout'
     'APP_INFO'
     'TeamraiserCompanyService'
     'TeamraiserRegistrationService'
-    'SchoolLookupService'
     'NuclavisService'
-    ($rootScope, $scope, $filter, $uibModal, APP_INFO, TeamraiserCompanyService, TeamraiserRegistrationService, SchoolLookupService, NuclavisService) ->
+    ($rootScope, $scope, $filter, $uibModal, $timeout, APP_INFO, TeamraiserCompanyService, TeamraiserRegistrationService, NuclavisService) ->
       $rootScope.companyName = ''
       $scope.teachers = []
       $scope.teacherList = []
       $scope.listUpload = false
       $scope.companyId = angular.element('[name=s_frCompanyId]').val()
+      $scope.studentTreated = ''
       
       regCompanyId = luminateExtend.global.regCompanyId
       setCompanyName = (companyName) ->
@@ -210,7 +211,12 @@ angular.module 'ahaLuminateControllers'
               console.log('dealing with other reg questions')
               if not $scope.registrationAdditionalQuestions
                 $scope.registrationAdditionalQuestions = {}
-              $scope.registrationAdditionalQuestions[questionName] = questionName
+              if angular.element('body').hasClass('newreg')
+                $scope.registrationAdditionalQuestions[surveyKey] = questionName
+              else
+                $scope.registrationAdditionalQuestions[questionName] = questionName
+            if surveyKey == 'ym_khc_survivor_teacher'
+                $scope.studentTreated = questionName
             if not $scope.$$phase
               $scope.$apply()
           TeamraiserRegistrationService.getRegistrationDocument 'participation_id=' + newValue,
@@ -307,7 +313,7 @@ angular.module 'ahaLuminateControllers'
         else
           window.setTimeout(findLabel,50);
 
-      #findLabel()
+      findLabel()
 
       $scope.toggleAcceptWaiver = (acceptWaiver) ->
         $scope.acceptWaiver = acceptWaiver
@@ -356,7 +362,9 @@ angular.module 'ahaLuminateControllers'
         NuclavisService.getTeachers $scope.companyId + "/" + $rootScope.frId
         .then (response) ->
           $scope.teachers = response.data.teachers
-          $scope.getTeacherList()
+          if $scope.teachers.length > 0
+            $scope.getTeacherList()
+            $scope.listUpload = true
         
       setCompanyCity = (companyCity) ->
         $rootScope.companyCity = companyCity
@@ -372,14 +380,4 @@ angular.module 'ahaLuminateControllers'
         setCompanyCity localStorage.companyCity
         setCompanyState localStorage.companyState
       
-      #
-      #SchoolLookupService.getSchoolData()
-      #  .then (response) ->
-      #    schoolDataRows = response.data.getSchoolSearchDataResponse.schoolData
-      #    angular.forEach schoolDataRows, (schoolDataRow, schoolDataRowIndex) ->
-      #      if schoolDataRowIndex > 0
-      #        if regCompanyId is schoolDataRow[0]
-      #          setCompanyCity schoolDataRow[1]
-      #          setCompanyState schoolDataRow[2]
-      #          return
   ]
