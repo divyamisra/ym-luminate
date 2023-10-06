@@ -4,6 +4,22 @@ angular.module 'ahaLuminateApp'
     '$http'
     '$sce'
     ($rootScope, $http, $sce) ->
+      getSchoolChallenges: (requestData, callback) ->
+        if $rootScope.tablePrefix is 'heartdev'
+          url = '//tools.heart.org/aha_ahc24_dev/api/program/school/' + requestData + '?key=RByQUbXzYLBchS3n'
+        else if $rootScope.tablePrefix is 'heartnew'
+          url = '//tools.heart.org/aha_ahc24_testing/api/program/school/' + requestData + '?key=XgUnZxvFcjZ4jEMT'
+        else
+          url = '//tools.heart.org/aha_ahc24/api/program/school/' + requestData + '?key=B78AEYxzbU9br6Cq'
+        $http.jsonp($sce.trustAsResourceUrl(url), jsonpCallbackParam: 'callback')
+          .then (response) ->
+            if response.data.success is false
+              callback.error response
+            else
+              callback.success response
+          , (response) ->
+            callback.failure response
+            
       getChallenges: (requestData, callback) ->
         if $rootScope.tablePrefix is 'heartdev'
           url = '//tools.heart.org/aha_ahc24_dev/api/student/challenges/' + requestData + '?key=RByQUbXzYLBchS3n'
