@@ -3,9 +3,11 @@ angular.module 'ahaLuminateControllers'
     '$rootScope'
     '$scope'
     '$filter'
+    '$timeout'
     'TeamraiserCompanyService'
     'TeamraiserRegistrationService'
-    ($rootScope, $scope, $filter, TeamraiserCompanyService, TeamraiserRegistrationService) ->
+    'NuclavisService'
+    ($rootScope, $scope, $filter, $timeout, TeamraiserCompanyService, TeamraiserRegistrationService, NuclavisService) ->
       $rootScope.companyName = ''
       regCompanyId = luminateExtend.global.regCompanyId
       setCompanyName = (companyName) ->
@@ -192,13 +194,18 @@ angular.module 'ahaLuminateControllers'
           setRegistrationQuestionSurveyKey = (questionName, surveyKey) ->
             $scope.registrationQuestions[questionName].surveyKey = surveyKey
             questionLegend = $scope.registrationQuestions[questionName].legend
-            if surveyKey is 'ym_middle_school_email_type' or surveyKey is 'ym_middle_school_grade' or surveyKey is 'ym_middle_school_school' or surveyKey is 'ym_middle_school_teacher_name' or surveyKey is 'ym_middle_school_school_city' or surveyKey is 'ym_middle_school_school_state' or surveyKey is 'ym_ahc_student_state' or surveyKey is 'ahc_cell_phone'
+            if surveyKey is 'ym_middle_school_email_type' or surveyKey is 'ym_middle_school_grade' or surveyKey is 'ym_middle_school_school' or surveyKey is 'ym_middle_school_teacher_name' or surveyKey is 'ym_middle_school_school_city' or surveyKey is 'ym_middle_school_school_state' or surveyKey is 'ym_middle_school_participated_ly'  or surveyKey is 'ym_ahc_student_state' or surveyKey is 'ahc_cell_phone'
               initCustomQuestions()
               $scope.registrationCustomQuestions[surveyKey] = questionName
             else if questionLegend isnt 'Event Date' and surveyKey isnt 'ym_middle_school_challenge_info' and surveyKey isnt 'ym_middle_school_ecards_sent' and surveyKey isnt 'ym_middle_school_ecards_shared' and surveyKey isnt 'ym_middle_school_ecards_open' and surveyKey isnt 'ym_middle_school_ecards_clicked' and surveyKey isnt 'bb_facebook_connector_id'
               if not $scope.registrationAdditionalQuestions
                 $scope.registrationAdditionalQuestions = {}
-              $scope.registrationAdditionalQuestions[questionName] = questionName
+              if angular.element('body').hasClass('newreg')
+                $scope.registrationAdditionalQuestions[surveyKey] = questionName
+              else
+                $scope.registrationAdditionalQuestions[questionName] = questionName
+              if surveyKey == 'ym_middle_school_survivor'
+                $scope.studentTreated = questionName              
             if not $scope.$$phase
               $scope.$apply()
           TeamraiserRegistrationService.getRegistrationDocument 'participation_id=' + newValue,
@@ -287,4 +294,36 @@ angular.module 'ahaLuminateControllers'
         else
           angular.element('.js--default-reg-form').submit()
         false
+
+      $scope.getTeacherList = () ->
+        if typeof $scope.registrationCustomQuestions != 'undefined'
+          $scope.teacherList = []
+          teacherList = []
+          teachersFound = []
+          angular.forEach $scope.teachers, (teacher) ->
+            if not teachersFound[teacher]
+              teacherList.push teacher
+            teachersFound[teacher] = teacher
+          $scope.teacherList = teacherList
+
+      if $rootScope.classroomChallenge
+        NuclavisService.getTeachers $scope.companyId + "/" + $rootScope.frId
+        .then (response) ->
+          $scope.teachers = response.data.teachers
+          $scope.getTeacherList()
+        
+      setCompanyCity = (companyCity) ->
+        $rootScope.companyCity = companyCity
+        if not $rootScope.$$phase
+          $rootScope.$apply()
+          
+      setCompanyState = (companyState) ->
+        $rootScope.companyState = companyState
+        if not $rootScope.$$phase
+          $rootScope.$apply()
+          
+      if localStorage.companyCity != undefined
+        setCompanyCity localStorage.companyCity
+        setCompanyState localStorage.companyState
+        
   ]

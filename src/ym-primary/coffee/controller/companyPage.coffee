@@ -107,7 +107,7 @@ angular.module 'ahaLuminateControllers'
           $scope.companyProgress.percent = percent
           if not $scope.$$phase
             $scope.$apply()
-          getBoundlessSchoolData()
+          #getBoundlessSchoolData()
         , 500
       
       getCompanyTotals = ->
@@ -465,7 +465,7 @@ angular.module 'ahaLuminateControllers'
                 $scope.schoolChallengeGoal = meta.value
               if meta.name == 'years-participated'
                 $scope.schoolYears = meta.value
-                
+      ###         
       getBoundlessSchoolData = () ->
         BoundlessService.getSchoolBadges $scope.frId + '/' + $scope.companyId
         .then (response) ->
@@ -492,5 +492,5 @@ angular.module 'ahaLuminateControllers'
             # $scope.companyProgress.percent = percent
             # if not $scope.$$phase
             #   $scope.$apply()
-  
+      ###
     ]
