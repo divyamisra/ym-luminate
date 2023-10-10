@@ -42,7 +42,7 @@ h1 {
 	border-right:1px solid $event-secondary-heading;
 }
 .text-red {
-	color: $event-secondary-heading;
+	color: $event-secondary-heading !important;
 }
 .text-black {
 	color: #000 !important;
