@@ -359,17 +359,17 @@ angular.module 'ahaLuminateControllers'
             teachersFound[teacher] = teacher
           $scope.teacherList = teacherList
 
-      ZuriService.getSchoolInfo $scope.companyId,
-        failure: (response) ->
-        error: (response) ->
-        success: (response) ->
-          if response.data.company.customCompanyDetail1.indexOf("CC:Y") > -1
-            NuclavisService.getTeachers $scope.companyId + "/" + $rootScope.frId
-            .then (response) ->
-              $scope.teachers = response.data.teachers
-              if $scope.teachers.length > 0
-                $scope.getTeacherList()
-                $scope.listUpload = true
+      #ZuriService.getSchoolInfo $scope.companyId,
+      #  failure: (response) ->
+      #  error: (response) ->
+      #  success: (response) ->
+      #    if response.data.company.customCompanyDetail1.indexOf("CC:Y") > -1
+      NuclavisService.getTeachers $scope.companyId + "/" + $rootScope.frId
+        .then (response) ->
+          $scope.teachers = response.data.teachers
+          if $scope.teachers.length > 0
+            $scope.getTeacherList()
+            $scope.listUpload = true
         
       setCompanyCity = (companyCity) ->
         $rootScope.companyCity = companyCity
