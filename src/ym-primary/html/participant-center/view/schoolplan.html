@@ -154,17 +154,14 @@
           </div>
           <div class="ym-pc-dashboard-coordinator-progress-section__column  event-secondary-medium p-3">
             <div class="ym-pc-dashboard-box-header">
-              <button type="button" class="btn btn-md-wide btn-primary float-end" ng-class="{'disabled': companyProgress.schoolChallengeLevel == ''}" ng-click="showSchoolChallengeReport()" ng-disabled="companyProgress.schoolChallengeLevel == ''" ng-if="companyParticipants.participants.length > 0" ng-cloak>
-                <strong> Generate School Challenge Report </strong>
-              </button>
               <h3 class="h5 text-start"> School Challenge </h3>
             </div>
             <div class="schoolChallenge d-flex justify-content-between flex-wrap gap-4 text-center">
-              <div class="col col-md-6">
+              <div class="col-md-6">
                 <div class="text-start" ng-if="companyProgress.schoolChallenge != ''"> I am challenging my students to </div>
                 <div class="text-start" ng-if="companyProgress.schoolChallenge == ''"> Choose a challenge for your students </div>
               </div>
-              <div class="col col-md-5">
+              <div class="col-md-5">
                 <select class="form-control" id="challenge" ng-model="companyProgress.schoolChallenge" aria-label="School Challenge" ng-change="updateSchoolChallenge()">
                   <option value="Ice Bucket/Water Challenge"> Ice Bucket/Water Challenge </option>
                   <option value="Dance Party"> Dance Party </option>
@@ -183,11 +180,11 @@
                   <input ng-keypress="omit_special_char($event)" placeholder="Specify Other Challenge" type="text" id="schoolChallengeOther" class="form-control" ng-model="companyProgress.schoolChallengeOther" aria-label="Other School Challenge" ng-blur="updateSchoolChallenge()">
                 </div>
               </div>
-              <div class="col col-md-6">
+              <div class="col-md-6">
                 <div class="text-start" ng-if="companyProgress.schoolChallengeLevel != ''"> Student level to achieve </div>
                 <div class="text-start" ng-if="companyProgress.schoolChallengeLevel == ''"> Choose a student level to achieve </div>
               </div>
-              <div class="col col-md-5">
+              <div class="col-md-5">
                 <select class="form-control" id="challengeLevel" ng-model="companyProgress.schoolChallengeLevel" aria-label="School Challenge Level" ng-change="updateSchoolChallengeLevel()">
                   <option value="$100"> $100 </option>
                   <option value="$150"> $150 </option>
@@ -201,6 +198,11 @@
                   <div ng-bind-html="schoolChallengeLevelInfo.errorMessage"></div>
                 </div>
               </div>
+            </div>
+            <div class="btn-challenge-report text-center">
+              <button type="button" class="btn btn-md-wide btn-primary" ng-class="{'disabled': companyProgress.schoolChallengeLevel == ''}" ng-click="showSchoolChallengeReport()" ng-disabled="companyProgress.schoolChallengeLevel == ''" ng-if="companyParticipants.participants.length > 0" ng-cloak>
+                <strong> Generate School Challenge Report </strong>
+              </button>
             </div>
           </div>
         </div>
