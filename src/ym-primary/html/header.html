@@ -145,8 +145,84 @@
                       Home
                     </a>
                   </li>
+                  [[?[[S334:pagename]]::participant_center::
                   <li>
-<!--                    <a href="http://american.heart.org/kidsheartchallenge/for-parents/"> -->
+                    <a role="listitem" ng-href="{{baseUrl}}#/schoolplan" class="ng-pc-nav-item nav-link ng-pc-nav-item--school-plan" ng-class="{'active': location.indexOf('/schoolplan') != -1}" ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
+                      <span><strong>School Plan</strong></span>
+                    </a>
+                  </li>
+                  <li>
+                    <a role="listitem" ng-href="{{baseUrl}}#/student-gifts" class="ng-pc-nav-item nav-link ng-pc-nav-item--gift" ng-class="{'active': location == '/student-gifts'}" ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true' && showGiftsTab" ng-cloak>
+                      <span><strong>Student Thank-You Gifts</strong></span>
+                    </a>
+                  </li>
+                  <li>
+                    <a role="listitem" ng-href="{{baseUrl}}#/email" class="ng-pc-nav-item nav-link ng-pc-nav-item--messages" ng-class="{'active': location.indexOf('/email/') != -1}">
+                      <span><strong>Send Messages</strong></span>
+                    </a>
+                  </li>
+                  <li>
+                    <a role="listitem" ng-href="{{baseUrl}}#/social" class="ng-pc-nav-item nav-link ng-pc-nav-item--social" ng-class="{'active': location == '/social'}">
+                      <span><strong>Go Social</strong></span>
+                    </a>
+                  </li>
+                  <li>
+                    <a role="listitem" ng-href="{{baseUrl}}#/reports" class="ng-pc-nav-item nav-link ng-pc-nav-item--reports" ng-class="{'active': location == '/reports'}" ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
+                      <span><strong>Reports</strong></span>
+                    </a>
+                  </li>
+                  <li>
+                    <a role="listitem" ng-href="{{baseUrl}}#/dashboard-student" class="ng-pc-nav-item nav-link ng-pc-nav-item--student" ng-class="{'active': location == '/dashboard-student'}" ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
+                      <span><strong>My Page</strong></span>
+                    </a>
+                  </li>
+                  <li>
+                    <a role="listitem" ng-href="{{baseUrl}}#/mydonors" class="ng-pc-nav-item nav-link ng-pc-nav-item--my-donors" ng-class="{'active': location == '/mydonors'}">
+                      <span><strong>My Donors</strong></span>
+                    </a>
+                  </li>
+                  <li>
+                    <a role="listitem" ng-href="{{baseUrl}}#/student-resources" class="ng-pc-nav-item nav-link ng-pc-nav-item--resource" ng-class="{'active': location == '/student-resources'}" ng-if="participantRegistration.companyInformation.isCompanyCoordinator != 'true'" ng-cloak>
+                      <span><strong>Resources</strong></span>
+                    </a>
+                  </li>
+                  <li>
+                    <a role="listitem" ng-href="{{baseUrl}}#/teacher-resources" class="ng-pc-nav-item nav-link ng-pc-nav-item--resource" ng-class="{'active': location == '/teacher-resources'}" ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
+                      <span><strong>Teacher Resources</strong></span>
+                    </a>
+                  </li>
+                  <li>
+                    <a role="listitem" ng-href="{{baseUrl}}#/gifts" class="ng-pc-nav-item nav-link ng-pc-nav-item--gift" ng-class="{'active': location == '/gifts'}" ng-if="participantRegistration.companyInformation.isCompanyCoordinator != 'true' && showGiftsTab" ng-cloak>
+                      <span><strong>Thank-You Gifts</strong></span>
+                    </a>
+                  </li>
+                  <li>
+                    <a role="listitem" class="ng-pc-nav-item nav-link ng-pc-nav-item--order-gifts" ng-href="https://khc.staging.ootqa.org/coordinator/login/{{frId}}/{{authToken}}/{{sessionCookie}}" target="_blank" ng-if="tablePrefix == 'heartdev' && participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-show="hasOOTDashboard">
+                       <span><strong>Manage Event</strong>&nbsp;&nbsp;<span class="fa fa-external-link" aria-hidden="true"></span></span>
+                    </a>
+                  </li>
+                  <li>
+                    <a role="listitem" class="ng-pc-nav-item nav-link ng-pc-nav-item--order-gifts" ng-href="https://khc.staging.ootqa.org/coordinator/login/{{frId}}/{{authToken}}/{{sessionCookie}}" target="_blank" ng-if="tablePrefix == 'heartnew' && participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-show="hasOOTDashboard">
+                       <span><strong>Manage Event</strong>&nbsp;&nbsp;<span class="fa fa-external-link" aria-hidden="true"></span></span>
+                    </a>
+                  </li>
+                  <li>
+                    <a role="listitem" class="ng-pc-nav-item nav-link ng-pc-nav-item--order-gifts" ng-href="https://kidsheartchallenge.heart.org/coordinator/login/{{frId}}/{{authToken}}/{{sessionCookie}}" target="_blank" ng-if="tablePrefix == 'heart' && participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-show="hasOOTDashboard"> 
+                      <span><strong>Manage Event</strong>&nbsp;&nbsp;<span class="fa fa-external-link" aria-hidden="true"></span></span>
+                    </a>
+                  </li>
+                  <li>
+                    <a role="listitem" class="ng-pc-nav-item ng-pc-nav-item--faq nav-link ng-pc-nav-item--faq" href="https://www2.heart.org/site/SPageNavigator/khc_resources_faq_resources_logged_in.html" target="_blank" ng-if="participantRegistration.companyInformation.isCompanyCoordinator != 'true'">
+                       <span><strong>FAQ</strong>&nbsp;&nbsp;<span class="fa fa-external-link" aria-hidden="true"></span></span>
+                    </a>
+                  </li>
+                  <li>
+                    <a role="listitem" class="ng-pc-nav-item ng-pc-nav-item--faq nav-link ng-pc-nav-item--faq" href="https://www2.heart.org/site/SPageNavigator/khc_resources_coordinator_FAQ.html" target="_blank" ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'">
+                       <span><strong>FAQ</strong>&nbsp;&nbsp;<span class="fa fa-external-link" aria-hidden="true"></span></span>
+                    </a>
+                  </li>
+                  ::]]
+                  <li>
                     <a href="https://[[S29:SECURE_DOMAIN]][[S29:SECURE_PATH]]SPageServer?pagename=khc_resources_parents_corner">
                       For Parents
                     </a>
