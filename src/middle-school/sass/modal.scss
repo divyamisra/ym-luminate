@@ -75,10 +75,10 @@ span.number {
     font-size: 36px;
     padding: 0px 22px 6px;
     border-radius: 50px;
-    border: 4px solid #04287b;
+    border: 4px solid $event-primary;
     display: inline-flex;
     vertical-align: middle;
-    color: #04287b;
+    color: $event-primary;
     margin-right: 10px;
 }
 
