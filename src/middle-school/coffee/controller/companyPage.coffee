@@ -443,6 +443,18 @@ angular.module 'ahaLuminateControllers'
             if company_member_list.total > 0
               $scope.topCompanySteps.push company_member_list
       ###
+
+      BoundlessService.getSchoolRollupTotals $scope.companyId
+        .then (response) ->
+          if response.data.status isnt 'success'
+            $scope.totalEmails = 0
+          else
+            totals = response.data.totals
+            totalEmails = totals?.total_online_emails_sent or '0'
+            $scope.totalEmails = Number totalEmails
+            if $scope.totalEmails .toString().length > 4
+              $scope.totalEmails  = Math.round($scope.totalEmails  / 1000) + 'K'
+              
       setCompanyCity = (companyCity) ->
         $rootScope.companyCity = companyCity
         if not $rootScope.$$phase
