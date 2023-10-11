@@ -147,6 +147,11 @@
                   </li>
                   [[?[[S334:pagename]]::participant_center::
                   <li>
+                    <a role="listitem" ng-click="toggleSiteMenu()" ng-href="{{baseUrl}}#/dashboard">
+                      <span><strong>HQ Home</strong></span>
+                    </a>
+                  </li>
+                  <li>
                     <a role="listitem" ng-click="toggleSiteMenu()" ng-href="{{baseUrl}}#/schoolplan" ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
                       <span><strong>School Plan</strong></span>
                     </a>
