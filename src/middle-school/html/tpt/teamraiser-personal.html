@@ -159,8 +159,8 @@
          <a aria-label="Donate to [[E48:[[S80:trID]]-[[S334:px]]:cons.first_name]]" class="btn btn-primary btn-lg" href="Donation2?df_id=[[E42:[[S80:trID]]:form-id]]&amp;FR_ID=[[S80:trID]]&amp;PROXY_ID=[[S334:px]]&amp;PROXY_TYPE=20"> Donate </a>
        </div>
        <div class="ym-list" ng-class="!personalDonors.donors || personalDonors.donors.length == 0 ? 'd-none' : 'col-sm-6'" aria-label="Top Fundraisers List" ng-cloak>
-         <h2>
-           <img class="img-fluid" src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]ym-luminate/dist/middle-school/image/fy24/Salute_Top_Fundraisers.png" alt="Saluting these top fundraisers:">
+         <h2 class="h5 text-red">
+           Top Fundraisers
          </h2>
          <ul class="ym-donor-list" role="list">
            <li class="ym-donor-list__row" ng-repeat="personalDonor in personalDonors.donors" role="listitem" ng-if="personalDonors.donors.length > 0" ng-cloak>
