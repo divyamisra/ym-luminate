@@ -2,8 +2,12 @@ h1.h5.modal-title {
   color: #000;
 }
 
-.ng-pc-modal .close {
-  postion:fixed;
+.ng-pc-modal .modal-body .close {
+  z-index: 999999;
+  padding-left: 3px;
+  padding-top: 3px;
+  top:5px;
+  right:5px;
 }  
 
 .modal-title {
