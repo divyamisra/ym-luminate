@@ -182,6 +182,11 @@
                     </a>
                   </li>
                   <li>
+                    <a role="listitem" ng-click="toggleSiteMenu()" ng-href="{{baseUrl}}#/gifts" ng-if="participantRegistration.companyInformation.isCompanyCoordinator != 'true' && showGiftsTab" ng-cloak>
+                      <span><strong>Thank-You Gifts</strong></span>
+                    </a>
+                  </li>
+                  <li>
                     <a role="listitem" ng-click="toggleSiteMenu()" ng-href="{{baseUrl}}#/student-resources" ng-if="participantRegistration.companyInformation.isCompanyCoordinator != 'true'" ng-cloak>
                       <span><strong>Resources</strong></span>
                     </a>
@@ -189,11 +194,6 @@
                   <li>
                     <a role="listitem" ng-click="toggleSiteMenu()" ng-href="{{baseUrl}}#/teacher-resources" ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
                       <span><strong>Teacher Resources</strong></span>
-                    </a>
-                  </li>
-                  <li>
-                    <a role="listitem" ng-click="toggleSiteMenu()" ng-href="{{baseUrl}}#/gifts" ng-if="participantRegistration.companyInformation.isCompanyCoordinator != 'true' && showGiftsTab" ng-cloak>
-                      <span><strong>Thank-You Gifts</strong></span>
                     </a>
                   </li>
                   <li>
