@@ -76,7 +76,7 @@ angular.module 'trPcControllers'
       webContent.load = 1
       ahaWebContent.ssoInitialize $rootScope.consId, $rootScope.frId, '' + $rootScope.authToken, '' + $rootScope.sessionCookie
 
-      if $scope.participantRegistration.lastPC2Login is '0'
+      if $scope.participantRegistration.lastPC2Login is '0' or location.href.indexOf("first=true") > -1
         if $scope.participantRegistration.companyInformation?.isCompanyCoordinator isnt 'true'
           $scope.firstLoginModal = $uibModal.open
             scope: $scope
