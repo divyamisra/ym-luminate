@@ -69,9 +69,9 @@ h1.h5.modal-title {
       display: block;
       position: absolute;
       opacity: 0.3;
-      animation: slide 6s linear infinite;
-      -webkit-animation: slide 6s linear infinite;
-      -ms-animation: slide 6s linear infinite;
+      animation: slide 6s linear 1;
+      -webkit-animation: slide 6s linear 1;
+      -ms-animation: slide 6s linear 1;
   }
 }
 
