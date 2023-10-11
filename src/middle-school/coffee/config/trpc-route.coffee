@@ -42,7 +42,7 @@ if window.location.href.indexOf('pagename=middle_school_participant_center') isn
             controller: 'NgPcReportsViewCtrl'
           .when '/mydonors', 
             templateUrl: APP_INFO.rootPath + 'dist/middle-school/html/participant-center/view/mydonors.html'
-            controller: 'NgPcReportsViewCtrl'
+            controller: 'NgPcMyDonorsViewCtrl'
           .when '/student-resources', 
             templateUrl: APP_INFO.rootPath + 'dist/middle-school/html/participant-center/view/studentResources.html'
             controller: 'NgPcStudentResourcesViewCtrl'
