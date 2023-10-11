@@ -8,5 +8,4 @@ angular.module 'trPcControllers'
       $scope.reportPromises = []
 
       ahaWebContent.ssoInitialize $rootScope.consId, $rootScope.frId, '' + $rootScope.authToken, '' + $rootScope.sessionCookie
-      $scope.reportPromises.push personalGiftsPromise
   ]
