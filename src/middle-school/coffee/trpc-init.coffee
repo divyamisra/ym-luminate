@@ -41,7 +41,8 @@ angular.module 'trPcApp'
       $rootScope.challengeTaken = $embedRoot.data('challenge-taken') if $embedRoot.data('challenge-taken') isnt ''
       AmountRaised = $embedRoot.data('dollars') or '0'
       $rootScope.AmountRaised = Number((AmountRaised).replace('$', '').replace(/,/g, ''))
-      
+
+      ahaWebContent.ssoInitialize $rootScope.consId, $rootScope.frId, '' + $rootScope.authToken, '' + $rootScope.sessionCookie
       #$rootScope.usePcEmail = $embedRoot.data('use-pc-email') or ''
   ]
 
