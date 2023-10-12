@@ -209,6 +209,11 @@
                     </a>      
                   </li>
                   <li>
+                    <a role="listitem" ng-click="toggleSiteMenu()" ng-href="{{baseUrl}}#/volunteer-coordinator" ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
+                      <span><strong>Volunteer Reporting</strong></span>
+                    </a>  
+                  </li>
+                  <li>
                     <a role="listitem" ng-click="toggleSiteMenu()" ng-href="https://ahc.staging.ootqa.org/coordinator/login/{{frId}}/{{authToken}}/{{sessionCookie}}" target="_blank" ng-if="tablePrefix == 'heartdev' && participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-show="hasOOTDashboard">
                        <span><strong>Manage Event</strong>&nbsp;&nbsp;<span class="fa fa-external-link" aria-hidden="true"></span></span>
                     </a>
