@@ -39,6 +39,9 @@
       <a role="listitem" ng-href="{{baseUrl}}#/volunteer" class="ng-pc-nav-item nav-link ng-pc-nav-item--volunteer" ng-class="{'active': location == '/volunteer'}" ng-cloak>
         <span><strong>Volunteer</strong></span>
       </a>      
+      <a role="listitem" ng-href="{{baseUrl}}#/volunteer-coordinator" class="ng-pc-nav-item nav-link ng-pc-nav-item--volunteer" ng-class="{'active': location == '/volunteer'}" ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
+        <span><strong>Volunteer Reporting</strong></span>
+      </a>      
       <a role="listitem" class="ng-pc-nav-item nav-link ng-pc-nav-item--order-gifts" ng-href="https://ahc.staging.ootqa.org/coordinator/login/{{frId}}/{{authToken}}/{{sessionCookie}}" target="_blank" ng-if="tablePrefix == 'heartdev' && participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-show="hasOOTDashboard">
          <span><strong>Manage Event</strong>&nbsp;&nbsp;<span class="fa fa-external-link" aria-hidden="true"></span></span>
       </a>
