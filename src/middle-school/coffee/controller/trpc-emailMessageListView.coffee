@@ -61,7 +61,7 @@ angular.module 'trPcControllers'
             # .then (response) ->
               # $scope.contactCounts[filter] = response.data.getTeamraiserAddressBookContactsResponse?.totalNumberResults or '0'
               # response
-          # scope.emailPromises.push contactCountPromise
+          # $scope.emailPromises.push contactCountPromise
           $scope.contactCounts[filter] = ''
       
       messageTypeNames = 
@@ -98,6 +98,7 @@ angular.module 'trPcControllers'
             templateUrl: APP_INFO.rootPath + 'dist/middle-school/html/participant-center/modal/viewSentMessage.html'
             size: 'lg'
             windowClass: 'ng-pc-modal ym-modal-full-screen'
+          angular.element('html').addClass 'ym-modal-is-open'
       
       closeSentMessageModal = ->
         $scope.viewSentMessageModal.close()

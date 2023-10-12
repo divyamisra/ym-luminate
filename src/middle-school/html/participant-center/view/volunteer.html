@@ -5,12 +5,12 @@
 	<div class="d-md-flex justify-content-center">
 		<div class="volunteer-hours red-bg-gradient border-red rounded mb-4 mx-sm-auto mx-md-0">
 			<div class="d-flex flex-wrap">
-				<div class="title col-5 text-center p-2">
+				<div class="title col-5 text-center text-red p-2">
 					Hours
 				</div>
 				<div class="col-2 border-white-left border-white-right">
 				</div>
-				<div class="title col-5 text-center p-2">
+				<div class="title col-5 text-center text-red p-2">
 					Minutes
 				</div>
 				<div class="time col-5 text-center bg-white text-red" aria-label="Volunteer Hours">
@@ -59,12 +59,12 @@
 								Activity
 							</strong>
 						</div>
-						<div class="col-md-3 text-start text-md-center">
+						<div class="col-md-4 text-start text-md-center">
 							<strong>
 								Hours : Minutes
 							</strong>
 						</div>
-						<div class="col-md-3 text-start text-md-end">
+						<div class="col-md-2 text-start text-md-end">
 							<strong>Edit/Delete</strong>
 						</div>	
 					</div>
@@ -94,7 +94,7 @@
 										</option>
 									</select>
 								</div>
-								<div class="col-md-3 text-start text-md-center py-1">
+								<div class="col-md-4 text-start text-md-center py-1">
 									<label class="d-block d-md-inline-block d-md-none fw-bold" for="volunteer-hour">Activity Time:</label>
 									<select class="form-select w-auto d-inline-block pe-5" name="volunteer-hour" id="volunteer-hour" ng-model="volunteerAdd.hour" ng-change="checkVolunteerMinutes()">
 										<option value="">
@@ -116,7 +116,7 @@
 									</select>
 									mins
 								</div>
-								<div class="col-md-3 text-start text-md-end py-1">
+								<div class="col-md-2 text-start text-md-end py-1">
 									<button ng-disabled="volunteerAdd.date == '' || volunteerAdd.activity == '' || (volunteerAdd.hour == '' && volunteerAdd.hour != '0') || (volunteerAdd.minute == '' && volunteerAdd.minute != '0')" class="btn btn-md-wide btn-primary" ng-click="createVolunteerEntry()">
 										<strong>
 											Add
@@ -152,7 +152,7 @@
 										</select>
 									</span>
 								</div>
-								<div class="col-md-3 text-start text-md-center py-1">
+								<div class="col-md-4 text-start text-md-center py-1">
 									<span class="py-0" ng-if="entryView != entry.id" aria-label="Activity Hours">
 										<span class="d-inline-block d-md-none fw-bold">Time:</span> {{entry.hours | time}}
 									</span>
@@ -179,7 +179,7 @@
 										mins
 									</span>
 								</div>
-								<div class="col-md-3 text-start text-md-end py-1" ng-if="entryView != entry.id">
+								<div class="col-md-2 text-start text-md-end py-1" ng-if="entryView != entry.id">
 									<!-- on view -->
 									<button class="btn btn-md-wide btn-primary" ng-click="showEntries()" data-id="{{entry.activity_type_id}}" aria-label="Edit Entry">
 										<strong>

@@ -14,8 +14,14 @@ if window.location.href.indexOf('pagename=middle_school_participant_center') isn
           .when '/dashboard-student', 
             templateUrl: APP_INFO.rootPath + 'dist/middle-school/html/participant-center/view/dashboard.html'
             controller: 'NgPcDashboardViewCtrl'
+          .when '/schoolplan', 
+            templateUrl: APP_INFO.rootPath + 'dist/middle-school/html/participant-center/view/schoolplan.html'
+            controller: 'NgPcDashboardViewCtrl'
           .when '/email', 
             redirectTo: '/email/compose'
+          .when '/email/classic/:messageType?/:messageId?', 
+            templateUrl: APP_INFO.rootPath + 'dist/middle-school/html/participant-center/view/emailClassic.html'
+            controller: 'NgPcEmailClassicViewCtrl'
           .when '/email/compose/:messageType?/:messageId?', 
             templateUrl: APP_INFO.rootPath + 'dist/middle-school/html/participant-center/view/emailCompose.html'
             controller: 'NgPcEmailComposeViewCtrl'
@@ -34,18 +40,30 @@ if window.location.href.indexOf('pagename=middle_school_participant_center') isn
           .when '/reports', 
             templateUrl: APP_INFO.rootPath + 'dist/middle-school/html/participant-center/view/reports.html'
             controller: 'NgPcReportsViewCtrl'
+          .when '/mydonors', 
+            templateUrl: APP_INFO.rootPath + 'dist/middle-school/html/participant-center/view/mydonors.html'
+            controller: 'NgPcMyDonorsViewCtrl'
           .when '/student-resources', 
             templateUrl: APP_INFO.rootPath + 'dist/middle-school/html/participant-center/view/studentResources.html'
             controller: 'NgPcStudentResourcesViewCtrl'
           .when '/teacher-resources', 
             templateUrl: APP_INFO.rootPath + 'dist/middle-school/html/participant-center/view/teacherResources.html'
             controller: 'NgPcTeacherResourcesViewCtrl'
-          .when '/gifts', 
-            templateUrl: APP_INFO.rootPath + 'dist/middle-school/html/participant-center/view/gifts.html'
-            controller: 'NgPcGiftsViewCtrl'
           .when '/social', 
             templateUrl: APP_INFO.rootPath + 'dist/middle-school/html/participant-center/view/social.html'
             controller: 'NgPcSocialViewCtrl'
+          .when '/socialfb', 
+            templateUrl: APP_INFO.rootPath + 'dist/middle-school/html/participant-center/view/socialfb.html'
+            controller: 'NgPcSocialViewCtrl'
+          .when '/gifts', 
+            templateUrl: APP_INFO.rootPath + 'dist/middle-school/html/participant-center/view/gifts.html'
+            controller: 'NgPcGiftsViewCtrl'
+          .when '/student-gifts', 
+            templateUrl: APP_INFO.rootPath + 'dist/middle-school/html/participant-center/view/gifts.html'
+            controller: 'NgPcGiftsViewCtrl'
+          .when '/faq', 
+            templateUrl: APP_INFO.rootPath + 'dist/middle-school/html/participant-center/view/faq.html'
+            controller: 'NgPcFAQViewCtrl'
           .when '/volunteer', 
             templateUrl: APP_INFO.rootPath + 'dist/middle-school/html/participant-center/view/volunteer.html'
             controller: 'NgPcVolunteerViewCtrl'

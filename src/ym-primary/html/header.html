@@ -145,8 +145,89 @@
                       Home
                     </a>
                   </li>
+                  [[?[[S334:pagename]]::participant_center::
                   <li>
-<!--                    <a href="http://american.heart.org/kidsheartchallenge/for-parents/"> -->
+                    <a role="listitem" ng-click="toggleSiteMenu()" ng-href="{{baseUrl}}#/dashboard">
+                      <span><strong>HQ Home</strong></span>
+                    </a>
+                  </li>
+                  <li>
+                    <a role="listitem" ng-click="toggleSiteMenu()" ng-href="{{baseUrl}}#/schoolplan" ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
+                      <span><strong>School Plan</strong></span>
+                    </a>
+                  </li>
+                  <li>
+                    <a role="listitem" ng-click="toggleSiteMenu()" ng-href="{{baseUrl}}#/student-gifts" ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true' && showGiftsTab" ng-cloak>
+                      <span><strong>Student Thank-You Gifts</strong></span>
+                    </a>
+                  </li>
+                  <li>
+                    <a role="listitem" ng-click="toggleSiteMenu()" ng-href="{{baseUrl}}#/email">
+                      <span><strong>Send Messages</strong></span>
+                    </a>
+                  </li>
+                  <li>
+                    <a role="listitem" ng-click="toggleSiteMenu()" ng-href="{{baseUrl}}#/social">
+                      <span><strong>Go Social</strong></span>
+                    </a>
+                  </li>
+                  <li>
+                    <a role="listitem" ng-click="toggleSiteMenu()" ng-href="{{baseUrl}}#/reports" ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
+                      <span><strong>Reports</strong></span>
+                    </a>
+                  </li>
+                  <li>
+                    <a role="listitem" ng-click="toggleSiteMenu()" ng-href="{{baseUrl}}#/dashboard-student" ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
+                      <span><strong>My Page</strong></span>
+                    </a>
+                  </li>
+                  <li>
+                    <a role="listitem" ng-click="toggleSiteMenu()" ng-href="{{baseUrl}}#/mydonors">
+                      <span><strong>My Donors</strong></span>
+                    </a>
+                  </li>
+                  <li>
+                    <a role="listitem" ng-click="toggleSiteMenu()" ng-href="{{baseUrl}}#/gifts" ng-if="participantRegistration.companyInformation.isCompanyCoordinator != 'true' && showGiftsTab" ng-cloak>
+                      <span><strong>Thank-You Gifts</strong></span>
+                    </a>
+                  </li>
+                  <li>
+                    <a role="listitem" ng-click="toggleSiteMenu()" ng-href="{{baseUrl}}#/student-resources" ng-if="participantRegistration.companyInformation.isCompanyCoordinator != 'true'" ng-cloak>
+                      <span><strong>Resources</strong></span>
+                    </a>
+                  </li>
+                  <li>
+                    <a role="listitem" ng-click="toggleSiteMenu()" ng-href="{{baseUrl}}#/teacher-resources" ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
+                      <span><strong>Teacher Resources</strong></span>
+                    </a>
+                  </li>
+                  <li>
+                    <a role="listitem" ng-click="toggleSiteMenu()" ng-href="https://khc.staging.ootqa.org/coordinator/login/{{frId}}/{{authToken}}/{{sessionCookie}}" target="_blank" ng-if="tablePrefix == 'heartdev' && participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-show="hasOOTDashboard">
+                       <span><strong>Manage Event</strong>&nbsp;&nbsp;<span class="fa fa-external-link" aria-hidden="true"></span></span>
+                    </a>
+                  </li>
+                  <li>
+                    <a role="listitem" ng-click="toggleSiteMenu()" ng-href="https://khc.staging.ootqa.org/coordinator/login/{{frId}}/{{authToken}}/{{sessionCookie}}" target="_blank" ng-if="tablePrefix == 'heartnew' && participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-show="hasOOTDashboard">
+                       <span><strong>Manage Event</strong>&nbsp;&nbsp;<span class="fa fa-external-link" aria-hidden="true"></span></span>
+                    </a>
+                  </li>
+                  <li>
+                    <a role="listitem" ng-click="toggleSiteMenu()" ng-href="https://kidsheartchallenge.heart.org/coordinator/login/{{frId}}/{{authToken}}/{{sessionCookie}}" target="_blank" ng-if="tablePrefix == 'heart' && participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-show="hasOOTDashboard"> 
+                      <span><strong>Manage Event</strong>&nbsp;&nbsp;<span class="fa fa-external-link" aria-hidden="true"></span></span>
+                    </a>
+                  </li>
+                  <li>
+                    <a role="listitem" ng-click="toggleSiteMenu()" href="https://www2.heart.org/site/SPageNavigator/khc_resources_faq_resources_logged_in.html" target="_blank" ng-if="participantRegistration.companyInformation.isCompanyCoordinator != 'true'">
+                       <span><strong>FAQ</strong>&nbsp;&nbsp;<span class="fa fa-external-link" aria-hidden="true"></span></span>
+                    </a>
+                  </li>
+                  <li>
+                    <a role="listitem" ng-click="toggleSiteMenu()" href="https://www2.heart.org/site/SPageNavigator/khc_resources_coordinator_FAQ.html" target="_blank" ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'">
+                       <span><strong>FAQ</strong>&nbsp;&nbsp;<span class="fa fa-external-link" aria-hidden="true"></span></span>
+                    </a>
+                  </li>
+                  ::]]
+                  <li>
                     <a href="https://[[S29:SECURE_DOMAIN]][[S29:SECURE_PATH]]SPageServer?pagename=khc_resources_parents_corner">
                       For Parents
                     </a>
@@ -156,18 +237,6 @@
                       For Students
                     </a>
                   </li>
-                  <li ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
-                    <a href="http://www.heart.org/educationalresources">
-                      For Teachers
-                    </a>
-                  </li>
-                  [[?xx::x[[S1:user_name]]x::
-                  <li>
-                    <a href="https://www.heart.org/en/professional/educator/school-programs/elementary-schools" target="_blank">
-                      Teacher Sign Up
-                    </a>
-                  </li>
-                  ::]]
                 </ul>
               </div>
             </div>

@@ -1,13 +1,45 @@
+.ym-page-header-social {
+  margin: 0 0 10px;
+  
+  p {
+    margin: 0 0 4px;
+  }
+}
+
 .ym-page-header {
   background: none;
   color: #ffffff;
   padding: 22px 0;
   
-  p {
-    a,
-    a:link,
-    a:visited {
-      color: #ffffff;
+  h1 {
+    font-size: 32px;
+    margin: 0 0 18px;
+    max-width: 75%;
+    
+    @media (min-width: $screen-sm-min) {
+      font-size: 60px;
+      margin: 0 0 22px;
     }
+  }
+  
+  p {
+    color: $brand-white;
+    a {
+        &,
+        &:link,
+        &:visited {
+          color: $brand-white;
+        }
+    }
+  }
+  
+  .survivor {
+    img {
+       max-width: 50px;
+       margin-right: 10px;
+    }
+  }
+  .ym-page-header-related {
+    top: -15px;
   }
 }

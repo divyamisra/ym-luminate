@@ -1,16 +1,39 @@
-.ym-donation-sidebar__header {
-  color:$event-grey;
-}
-.event-accent {
-  a,
-  a:link,
-  a:visited,
-  a:hover {
-    color: $event-grey;
+.ym-progress,
+.ym-progress-related {
+  #paymentSelType,
+  #paymentSelType2 {
+    img {
+      background: #fff;
+      border-radius: 10px;
+      padding: 10px 20px;
+      max-width:160px;
+    }
   }
 }
-.ym-donation-sidebar__text span {
-  color: $event-grey;
+
+@media (max-width:480px) {
+	.ym-donation-payment-type {
+		text-align:left !important;
+		.btn-primary {
+			margin-bottom: 5px;
+		}
+	}
+}
+
+.event-accent {
+  .ym-donation-sidebar__text {
+    span {
+      color: $acc-purple;
+    }
+
+    a {
+      color: $acc-purple;
+    }
+  }
+}
+
+.ym-donation-sidebar__header {
+   color: $acc-purple;
 }
 
 div.donation-form-container label[for="terms-of-service-checkbox"] {
@@ -24,14 +47,11 @@ div.donation-form-container label[for="terms-of-service-checkbox"] {
     font-size: 1.5em;
     padding-left: 5px;
   }
+  
 } 
 
-div.donation-form-container {
-  .section-header-container,
-  h2 {
-    color: $event-primary;
-    border-color: $event-primary;
-  }
+div.donation-form-container label[for="cover-fee-checkbox"] {
+  margin-top: 30px;
 }
 
 div.donation-form-container .custom-field-container.has-error .checkbox label:before,
@@ -39,17 +59,26 @@ div.donation-form-container .custom-field-container.has-error input[type=checkbo
   background-color: #fcddde;
 }
 
-div.donation-form-container .ym-donation-levels {
-    p {
-      color: $event-primary;
-    }
+div.ym-donation-thanks-flex-conatiner {
+  display: flex;
+  flex-wrap: wrap;
 }
 
-.ym-donation-thanks {
-   .ym-secondary-medium-color {
-      a,
-      a:link {
-         color: #c10e21;
-      }
-   }
+div.ym-donation-thanks-video {
+  flex: 50%;
+}
+div.ym-donation-thanks-confirmation {
+  flex: 50%;
+}
+div.ym-donation-thanks-widget {
+  flex: 100%;
+}
+
+@media (max-width: $screen-md-min) {
+  div.ym-donation-thanks-widget {
+		order: 2;
+	}
+  div.ym-donation-thanks-confirmation {
+    order: 3;
+  }
 }

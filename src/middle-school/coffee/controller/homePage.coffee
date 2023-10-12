@@ -6,32 +6,28 @@ angular.module 'ahaLuminateControllers'
     '$rootScope'
     '$location'
     '$anchorScroll'
-    'BoundlessService'
     'TeamraiserService'
     'AriaCarouselService'
-    ($scope, $timeout, TeamraiserParticipantService, $rootScope, $location, $anchorScroll, BoundlessService, TeamraiserService, AriaCarouselService) ->
+    ($scope, $timeout, TeamraiserParticipantService, $rootScope, $location, $anchorScroll, TeamraiserService, AriaCarouselService) ->
       $dataRoot = angular.element '[data-aha-luminate-root]'
       consId = $dataRoot.data('cons-id') if $dataRoot.data('cons-id') isnt ''
 
+      ###
       setNoSchoolLink = (noSchoolLink) ->
-
         $scope.noSchoolLink = noSchoolLink
         if not $scope.$$phase
           $scope.$apply()
-      TeamraiserService.getTeamRaisersByInfo 'event_type=' + encodeURIComponent('American Heart Challenge 2023') + '&public_event_type=' + encodeURIComponent('School Not Found') + '&name=' + encodeURIComponent('%') + '&list_page_size=1&list_ascending=false&list_sort_column=event_date',
+      TeamraiserService.getTeamRaisersByInfo 'event_type=' + encodeURIComponent('YM Kids Heart Challenge 2023') + '&public_event_type=' + encodeURIComponent('School Not Found') + '&name=' + encodeURIComponent('%') + '&list_page_size=1&list_ascending=false&list_sort_column=event_date',
           error: (response) ->
-            # TODO
           success: (response) ->
             teamraisers = response.getTeamraisersResponse?.teamraiser
             if not teamraisers
-              # TODO
             else
               teamraisers = [teamraisers] if not angular.isArray teamraisers
               teamraiserInfo = teamraisers[0]
               setNoSchoolLink $scope.nonsecureDomain + 'site/TRR?fr_id=' + teamraiserInfo.id + '&pg=tfind&fr_tm_opt=none&s_frTJoin=&s_frCompanyId='
-
       if consId
-        TeamraiserParticipantService.getRegisteredTeamraisers 'cons_id=' + consId + '&event_type=' + encodeURIComponent('American Heart Challenge 2022'),
+        TeamraiserParticipantService.getRegisteredTeamraisers 'cons_id=' + consId + '&event_type=' + encodeURIComponent('YM Kids Heart Challenge 2023'),
           error: ->
             # TODO
           success: (response) ->
@@ -44,7 +40,9 @@ angular.module 'ahaLuminateControllers'
               modalSet = readCookie 'modalSet'
               if modalSet isnt 'true'
                 setModal()
-
+      ###
+      
+      ###
       readCookie = (name) ->
         nameEQ = name + '='
         ca = document.cookie.split ';'
@@ -61,7 +59,7 @@ angular.module 'ahaLuminateControllers'
       setModal = ->
         date = new Date
         expires = 'expires='
-        date.setDate date.getDate() + 1
+        date.setHours date.getHours() + 1
         expires += date.toGMTString()
 
         angular.element('#noRegModal').modal()
@@ -70,11 +68,14 @@ angular.module 'ahaLuminateControllers'
       $scope.closeModal = ->
         angular.element('#noRegModal').modal 'hide'
         document.getElementById('school-search').scrollIntoView()
+      ###
 
       $scope.totalStudents = ''
       $scope.totalSchools = ''
-      $scope.totalEmail = ''
+      $scope.totalChallenges = ''
 
+      ### Hiding Rollup as Boundless API no longer returning data
+      WG 1/30/18
       BoundlessService.getRollupTotals()
         .then (response) ->
           if not response.data.status or response.data.status isnt 'success'
@@ -91,12 +92,13 @@ angular.module 'ahaLuminateControllers'
               $scope.totalSchools = totals.total_schools
               if $scope.totalSchools.toString().length > 4
                 $scope.totalSchools = Math.round($scope.totalSchools / 1000) + 'K'
-              $scope.totalEmails = totals.total_online_emails_sent
-              if $scope.totalEmails.toString().length > 4
-                $scope.totalEmails = Math.round($scope.totalEmails / 1000) + 'K'
+              $scope.totalChallenges = totals.total_challenge_taken_students
+              if $scope.totalChallenges.toString().length > 4
+                $scope.totalChallenges = Math.round($scope.totalChallenges / 1000) + 'K'
         , (response) ->
           $scope.showStats = false
-
+      ###
+      ###
       initCarousel = ->
         owl = jQuery '.ym-home-feature .owl-carousel'
         owlStr = '.ym-home-feature .owl-carousel'
@@ -105,6 +107,7 @@ angular.module 'ahaLuminateControllers'
           nav: true
           loop: true
           center: true
+          dots: false
           responsive:
             0:
               stagePadding: 0
@@ -137,6 +140,7 @@ angular.module 'ahaLuminateControllers'
               nav: true
               loop: true
               center: true
+              dots: false
               navText: [
                 '<i class="fa fa-chevron-left" hidden aria-hidden="true" />'
                 '<i class="fa fa-chevron-right" hidden aria-hidden="true" />'
@@ -146,6 +150,6 @@ angular.module 'ahaLuminateControllers'
                 AriaCarouselService.init(owlStr)
               onChanged: ->
                 AriaCarouselService.onChange(owlStr)
-
+      ###
       #$timeout initHeroCarousel, 1000
   ]

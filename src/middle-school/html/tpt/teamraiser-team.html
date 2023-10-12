@@ -70,50 +70,57 @@
     </div>
     <div class="clearfix"></div>
   </div>
-  <div class="ym-page-section ym-page-section__main" ng-show="participantCount > 0 && totalEmails > 0" ng-cloak>
+  <div class="ym-page-section ym-page-section__main" ng-if="participantCount > 0 && (activity1amt != 0 || activity2amt != 0 || activity3amt != 0)" ng-cloak>
     <div class="container">
       <div class="ym-our-stats ym-promo-block">
         <h2 class="ym-headline">
           Our Stats
         </h2>
-        <div class="ym-promo-block__item ym-promo-block--circle">
+        <div class="ym-promo-block__item ym-promo-block__item--members ym-promo-block--circle">
           <div class="h2 ym-headline">
-            <span ng-if="participantCount < 1000" ng-cloak>{{participantCount}}</span>
-            <span ng-if="participantCount > 999" ng-cloak>{{participantCount}}</span>
+            {{participantCount}}
           </div>
           <div ng-if="participantCount == 1" ng-cloak>
             <p>
-              student registered
+              team member registered.
             </p>
           </div>
-          <div ng-if="participantCount != 1" ng-cloak>
+          <div ng-if="participantCount > 1" ng-cloak>
             <p>
-              students registered
+              team members registered.
             </p>
           </div>
         </div>
-        <div class="ym-promo-block__item ym-promo-block--circle" ng-if="totalEmails > 0" ng-cloak>
+        <div class="ym-promo-block__item ym-promo-block--circle" ng-if="activity1amt != 0" ng-cloak>
           <div class="h2 ym-headline">
-            <span ng-if="totalEmails < 1000">{{totalEmails}}</span>
-            <span ng-if="totalEmails > 999">{{totalEmails}}</span>
+            {{activity1amt}}
           </div>
-          <div ng-if="totalEmails == 1" ng-cloak>
-            <p>
-              email sent
-            </p>
+          <p>
+            family challenge of exercising 60 minutes a day!
+          </p>
+        </div>
+        <div class="ym-promo-block__item ym-promo-block--circle" ng-if="activity2amt != 0" ng-cloak>
+          <div class="h2 ym-headline">
+            {{activity2amt}}
           </div>
-          <div ng-if="totalEmails != 1" ng-cloak>
-            <p>
-              emails sent
-            </p>
+          <p>
+            family challenge of choosing water over sugar drinks.
+          </p>
+        </div>
+        <div class="ym-promo-block__item ym-promo-block__item--food ym-promo-block--circle" ng-if="activity3amt != 0" ng-cloak>
+          <div class="h2 ym-headline">
+            {{activity3amt}}
           </div>
+          <p>
+            family challenge of doing a good deed.
+          </p>
         </div>
       </div>
     </div>
   </div>
   <div class="ym-page-section ym-page-section__list ym-accent-color">
     <div class="ym-story" ng-class="teamParticipants.totalFundraisers > 0 ? 'col-md-6' : 'col-md-12'">
-      <h2 class="h5">
+      <h2 class="ym-headline">
         Our Class is Heart Healthy!
       </h2>
       [[?
@@ -157,8 +164,8 @@
       ::]]
     </div>
     <div class="ym-list" class="col-md-6" role="list" aria-label="Top Fundraisers List" ng-if="teamParticipants.totalFundraisers > 0" ng-cloak>
-      <h2 class="h5">
-        Top Fundraisers
+      <h2>
+        <img class="img-responsive" src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]ym-luminate/dist/middle-school/image/hj-fundraisers-graphic.png" alt="Saluting these top fundraisers:">
       </h2>
       <ul class="ym-donor-list">
         <team-participant-list fr-id="'[[S80:trID]]'" team-id="'[[T6:[[S334:team_id]]]]'" participants="teamParticipants.participants"></team-participant-list>

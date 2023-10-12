@@ -1,30 +1,26 @@
 .cms {
+  .ym-page-breadcrumbs {
+    color: $acc-purple;
+
+    a {
+      color: $acc-purple;
+    }
+  }
+
   .breadcrumbComponent {
     .breadcrumb {
-      color: $event-grey;
+      color: $acc-purple;
     }
+
   }
 
   .breadcrumbseparator {
-    color: $event-grey;
+    color: $acc-purple;
   }
 }
 
-
 .ym-school-search {
-  #school-state-filter,
-  #school-state-filter2,
-  #search-sort {
-    &:hover {
-      background: url("../image/ym-select-carrot-black.png") right 0.75rem center no-repeat $event-primary-dark;
-      color: $event-secondary-medium;
-    }
-  }
-  .img-responsive {
-    margin: 0 auto 10px;
-    
-    @media (min-width: $screen-sm-min) {
-      margin: 0 auto 10px;
-    }
+  .school-name-filter-submit:focus {
+    outline-color: cyan;
   }
 }

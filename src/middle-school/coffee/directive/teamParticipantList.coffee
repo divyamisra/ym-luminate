@@ -9,4 +9,5 @@ angular.module 'ahaLuminateApp'
         teamId: '='
         frId: '='
         participants: '='
+
   ]

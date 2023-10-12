@@ -1,79 +1,254 @@
-.app-26 {
-  main {
-    > .container {
-      @media (max-width: $screen-xs-max) {
-        margin-top: 0px;
-      }
-    }
-  }
+.ym-awards-section,
+.ym-stats-section,
+.ym-finns-mission-student-list,
+.ym-teachers-leaderboard {
+	h2.ym-headline {
+		font-size: 32px;
+	}
 }
 
-main {
-  > .container {
-    @media (max-width: $screen-xs-max) {
-      margin-top: 0px;
-    }
-  }
-}
-	
 body.pg-company {
-	.challenge-slime {
-		background: #fff url('../image/fy22/school_challenge_slime.jpg') no-repeat center bottom / 100% 100%;
+	.ym-story {
+		padding: 40px;
+		text-align: center;
+		background: #fff;
+	}
+	.ym-page-section__list {
+		background: $event-secondary-medium;
+	}
+	.ym-progress {
 		.ym-progress__title {
-			color: #000000;
+			font-size: 48px;
+			color: $event-secondary;
+			font-family: $headline-font;
+			margin: 10px 0 0;
+			font-weight:bold;
 		}
+		.ym-progress__stats {
+		    margin: 10px auto 0;
+		}
+	}
+	.challenge-ice {
+		background: #fff url('../image/fy23/school_challenge_water.png') no-repeat center top / 100% 100%;
+	}
+	.challenge-slime {
+		background: #fff url('../image/fy23/school_challenge_slime.png') no-repeat center top / 100% 100%;
 	}
 	.challenge-pie {
-		background: #fff url('../image/fy22/school_challenge_pie_in_face.jpg') no-repeat center bottom / 100% 100%;
-		.ym-progress__stats {
-		    max-width: 343px;
-		    margin-left: 130px;
-		}
+		background: #fff url('../image/fy23/school_challenge_pie.png') no-repeat center top / 100% 100%;
+	}
+	.challenge-activity {
+		background: #fff url('../image/fy23/school_challenge_party.png') no-repeat center top / 100% 100%;
 	}
 	.challenge-color {
-		background: #fff url('../image/fy22/school_challenge_chalk.jpg') no-repeat center bottom / 100% 100%;
-		.ym-progress__title {
-			color: #000000;
-		}
+		background: #fff url('../image/fy23/school_challenge_blast.png') no-repeat center top / 100% 100%;
 	}
-	.challenge-hair {
-		background: #fff url('../image/fy22/school_challenge_hair_dye.jpg') no-repeat center bottom / 100% 100%;
-		.ym-progress__title {
-			color: #000000;
-			margin-left:65px;
-			padding: 0 10px;
-		}
-		.ym-progress__cta {
-			margin-left:65px;
-		}
-		.ym-progress__thermometer {
-			margin-left: 85px;
-		}
+	.challenge-other {
+		background: #fff url('../image/fy23/school_challenge_other.png') no-repeat center top / 100% 100%;
 	}
+	
+     @media (max-width: $screen-sm-max) {
+          .ym-our-stats {
+               margin-bottom:40px;
+          }
+     }
+     .ym-page-section__main > .col-md-6 {
+          padding: 0 20px;
+     }
+     @media (max-width: $screen-sm-max) {
+          h2 {
+               font-size:32px;
+          }
+          body.pg-company {
+              .ym-promo-block__item {
+                    height: auto;
+               }
+          }
+     }
+     @media (min-width: $screen-sm-min) {
+          .ym-page-header h1 {
+               margin: 0 196px 0 0;
+          }
+     }
 }
-.ym-school-participation-years {
-  position:relative;
-  max-width:180px;
-  padding:5px;
-  
-  img {
-    width: 100%;
+.ym-teachers-leaderboard-block {
+     padding-right: 0px;
+     padding-left:30px;
+	
+     &.col-md-12 {
+	 padding-right: 15px;
+     }
+     h2 {
+         font-size:42px;
+         color:$brand-primary-darker;
+          @media (max-width: $screen-sm-max) {
+               font-size:32px;
+          }
+    }
+     h3 {
+         font-size: 17px;
+         text-align: center;
+         color: $brand-primary-darker;
+         margin:0 auto 10px;
+	 max-width:200px;
+    }
+    > [class*="col-"] {
+         padding-left: 0 !important;
+         padding-right: 0 !important;
+    } 
+    .ym-tl-dollars-raised, .ym-tl-registered-students {
+         .row {
+             padding: 10px;
+             color: #000;
+             margin: 0 2px 5px 2px;
+             &:nth-child(1) {
+                 background: #b0e1f4;
+            }
+             &:nth-child(2) {
+                 background: #bee4f2;
+            }
+             &:nth-child(3) {
+                 background: #cfe7f0;
+            }
+             &:nth-child(4) {
+                 background: #e0eaee;
+            }
+             &:nth-child(5) {
+                 background: #e8eced;
+            }
+        }
+    }
+     .top-index {
+         text-align:left;
+    }
+     .top-detail {
+         text-align:center;
+    }
+     .top-index, .top-detail {
+         padding-left:0px;
+    }
+     .top-name {
+    }
+     .top-grade {
+        font-size:10px;
+    }
+     .top-raised, .top-students {
+        margin-top:10px;
+    }
+     .top-msg {
+        font-size:10px;
+    }
+     @media (max-width: $screen-sm-max) {
+	  padding-left:15px;
+          & > .row > div:nth-child(odd) {
+		padding-left: 0;
+          }         
+	  .ym-tl-dollars-raised {
+              margin-bottom: 20px;
+              .row {
+                    margin-right: -15px;
+               }
+          }
+          .ym-tl-registered-students {
+               .row {
+                    margin-left:-15px;
+               }
+          }
+     }
+}
+
+.ym-steps-leaderboard-block {
+     padding-right: 30px;
+     margin: 0px;
+	
+     h3 {
+         font-size: 17px;
+         text-align: center;
+         color: $brand-primary-darker;
+         margin:0 auto 10px;
+	 max-width:200px;
+    }
+    > [class*="col-"] {
+         padding-left: 0 !important;
+         padding-right: 0 !important;
+    } 
+    .ym-tl-registered-students {
+         .row {
+             padding: 10px;
+             color: #000;
+             margin: 0 2px 5px 2px;
+             &:nth-child(1) {
+                 background: #94C960;
+            }
+             &:nth-child(2) {
+                 background: #A8D180;
+            }
+             &:nth-child(3) {
+                 background: #BDDC9D;
+            }
+             &:nth-child(4) {
+                 background: #D2E6BB;
+            }
+             &:nth-child(5) {
+                 background: #E7F1DB;
+            }
+        }
+    }
+     .top-index {
+         text-align:left;
+    }
+     .top-detail {
+         text-align:center;
+    }
+     .top-index, .top-detail {
+         padding-left:0px;
+    }
+     .top-msg {
+        font-size:10px;
+    }
+     @media (max-width: $screen-sm-max) {
+	padding-right:0px;
+     }
+}
+
+.ym-school-achievements {
+  display:flex;
+  justify-content:space-evenly;
+  flex-wrap:wrap;
+	
+  .ym-school-badge-participation-years {
+    position:relative;
+	  
+    .ym-school-participation-years-text {
+      position: absolute;
+      top: 42px;
+      font-size: 40px;
+      color: white;
+      font-weight: bold;
+       width: 100%;
+    }
   }
-  .ym-school-participation-years-text {
-    position: absolute;
-    top: 31px;
-    left: 5%;
-    text-align: center;
-    font-weight: bold;
-    margin: 0 27px;
-    line-height: 18px;
-    font-size: 14px;
-    color: $event-secondary-medium;
-    
-    span {
-      display: block;
-      font-size: 1.5em;
-      line-height: 1.3em;
+  .ym-school-badge-heartsaver {
+      display:none;
+  }
+  .ym-school-badge-best-year {
+    position:relative;
+
+    .ym-school-badge-best-year-date {
+        position: absolute;
+	top: 48px;
+	font-size: 40px;
+	font-weight: bold;
+	color: #fff;
+	width: 100%;
+    }
+    .ym-school-badge-best-year-amount {
+	position: absolute; 
+	top: 100px;
+	font-size: 18px;
+	font-weight: bold;
+	color: #fff;
+	width: 100%;
     }
   }
 }
