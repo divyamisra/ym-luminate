@@ -556,7 +556,7 @@
 
         <div class="form-group clearfix">
           <div class="pull-left">
-            <a ng-disabled="{{(emailComposer.ng_recipients != '') ? false : true}}" ng-class="(emailComposer.ng_recipients != '') ? '' : 'disabled'" class="btn btn-primary" id="copy_recipients" href ng-click="copyRecipients('Copy Recipients to Clipboard button'); copyToClipboard()" class="pc_btn">Copy Recipients</a>
+            <a class="btn btn-primary" id="copy_recipients" href ng-click="copyRecipients('Copy Recipients to Clipboard button'); copyToClipboard()" class="pc_btn" ng-if="emailComposer.ng_recipients != ''"  ng-cloak>Copy Recipients</a>
             <a class="btn btn-primary" id="copy_messadge" href ng-click="copyMessage('Copy Message to Clipboard button');" class="pc_btn">Copy Message</a>
           </div>
         </div>
