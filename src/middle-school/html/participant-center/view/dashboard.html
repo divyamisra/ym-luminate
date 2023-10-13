@@ -327,21 +327,23 @@
                 </div>
                 <div class="ym-progress-related d-flex justify-content-between flex-wrap mt-0 mb-3">
                   <div class="col-4">
+		    Raised
                     <strong>
                       <span ng-bind-html="participantProgress.raisedFormatted"></span>
-                    </strong> raised
+                    </strong>
                   </div>
                   <div class="col-4 text-center">
                     {{participantProgress.percent}}%
                   </div>
                   <div class="col-4 text-end">
                     <div ng-if="participantProgress.goalFormatted && participantProgress.goalFormatted != '$0'" ng-cloak>
+		      Goal
                       <strong>
                         <span ng-bind-html="participantProgress.goalFormatted"></span>
-                      </strong> goal
+                      </strong>
                     </div>
                     <a href="" ng-click="editPersonalGoal()" class="ym-progress-update-goal">
-                      <strong> Update Personal Goal </strong>
+                      <strong> Edit Personal Goal </strong>
                     </a>
                     <div ng-if="participantPrevProgress.raisedFormatted" ng-cloak>
                       <strong>
@@ -390,18 +392,20 @@
                 </div>
                 <div class="d-flex justify-content-between">
                   <div class="col-4 text-start">
+		    Raised
                     <strong>
                       <span ng-bind-html="companyProgress.raisedFormatted"></span>
-                    </strong> raised
+                    </strong>
                   </div>
                   <div class="col-4 text-center">
                     {{companyProgress.percent}}%
                   </div>
                   <div class="col-4 text-end">
                     <div ng-if="companyProgress.goalFormatted && companyProgress.goalFormatted != '$0'" ng-cloak>
+		      Goal
                       <strong>
                         <span ng-bind-html="companyProgress.goalFormatted"></span>
-                      </strong> goal
+                      </strong>
                     </div>
                   </div>
                 </div>
@@ -564,21 +568,23 @@
                 </div>
                 <div class="d-flex justify-content-between">
                   <div class="col-4 text-start">
+		    Raised
                     <strong>
                       <span ng-bind-html="companyProgress.raisedFormatted"></span>
-                    </strong> raised
+                    </strong>
                   </div>
                   <div class="col-4 text-center">
                     {{companyProgress.percent}}%
                   </div>
                   <div class="col-4 text-end">
                     <div ng-if="companyProgress.goalFormatted && companyProgress.goalFormatted != '$0'" ng-cloak>
+		      Goal
                       <strong>
                         <span ng-bind-html="companyProgress.goalFormatted"></span>
-                      </strong> goal
+                      </strong>
                     </div>
-                    <a href="" ng-click="editSchoolGoal()" class="ym-progress-update-goal" aria-label="Update School Goal">
-                      <strong> Update School Goal </strong>
+                    <a href="" ng-click="editSchoolGoal()" class="ym-progress-update-goal" aria-label="Edit School Goal">
+                      <strong> Edit School Goal </strong>
                     </a>
                   </div>
                 </div>
@@ -780,28 +786,30 @@
       <div class="col">
         <div class="ym-pc-dashboard-personal-fundraising event-secondary-medium p-3 h-100">
           <div class="ym-pc-dashboard-section-header">
-            <h3 class="h5 text-start"> My Personal Progress </h3>
+            <h3 class="h5 text-start"> My Personal Fundraising Progress </h3>
           </div>
           <div class="ym-progress__thermometer m-0 mw-100" name="Personal Progress Bar" aria-label="{{participantProgress.percent}} percent of fundraising progress" aria-valuetext="{{participantProgress.percent}} percent of fundraising progress" role="progressbar" aria-valuenow="{{participantProgress.percent}}" aria-valuemin="0" aria-valuemax="100">
             <div class="ym-progress__thermometer--fill" ng-style="{'width': participantProgress.percent + '%'}"></div>
           </div>
           <div class="ym-progress-related d-flex justify-content-between flex-wrap mt-0 mb-3">
             <div class="col-4">
-              <strong>
+              Raised
+	      <strong>
                 <span ng-bind-html="participantProgress.raisedFormatted"></span>
-              </strong> raised
+              </strong>
             </div>
             <div class="col-4 text-center">
               {{participantProgress.percent}}%
             </div>
             <div class="col-4 text-end">
               <div ng-if="participantProgress.goalFormatted && participantProgress.goalFormatted != '$0'" ng-cloak>
+		Goal
                 <strong>
                   <span ng-bind-html="participantProgress.goalFormatted"></span>
-                </strong> goal
+                </strong>
               </div>
               <a href="" ng-click="editPersonalGoal()" class="ym-progress-update-goal">
-                <strong> Update Personal Goal </strong>
+                <strong> Edit Personal Goal </strong>
               </a>
               <div ng-if="participantPrevProgress.raisedFormatted" ng-cloak>
                 <strong>
