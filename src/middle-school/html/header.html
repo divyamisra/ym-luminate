@@ -204,7 +204,7 @@
                     </a>
                   </li>
                   <li>
-                    <a role="listitem" ng-click="toggleSiteMenu()" ng-href="{{baseUrl}}#/volunteer" ng-cloak>
+                    <a role="listitem" ng-click="toggleSiteMenu()" ng-href="{{baseUrl}}#/volunteer" ng-if="participantRegistration.companyInformation.isCompanyCoordinator != 'true'" ng-cloak>
                       <span><strong>Volunteer</strong></span>
                     </a>      
                   </li>
