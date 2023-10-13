@@ -81,13 +81,13 @@
     </div>
   </div>
   <div class="modal-footer">
-    <div class="clearfix">
-      <div class="pull-left">
+    <div class=" d-flex justify-content-between flex-wrap gap-4 w-100">
+      <div class="">
         <button type="button" class="btn btn-toggle" ng-click="cancelImportContacts()">
           Cancel
         </button>
       </div>
-      <div class="pull-right">
+      <div class="">
         <button type="button" class="btn btn-primary" ng-click="chooseImportContactType()" ng-if="contactImport.step == 'choose-type'">
           <strong>Next</strong>
         </button>
