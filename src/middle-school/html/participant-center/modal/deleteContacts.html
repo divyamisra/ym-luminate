@@ -1,0 +1,24 @@
+<form method="POST" novalidate ng-submit="confirmDeleteContacts()">
+  <div class="modal-header">
+    <h2 class="h5 modal-title">
+      Confirm Delete
+    </h2>
+  </div>
+  <div class="modal-body">
+    To confirm that you want to remove the {{contactsToDelete.split(",").length}} selected contacts, click Delete.
+  </div>
+  <div class="modal-footer">
+    <div class="clearfix">
+      <div class="pull-left">
+        <button type="button" class="btn btn-primary btn-white me-2" ng-click="cancelDeleteContacts()">
+          Cancel
+        </button>
+      </div>
+      <div class="pull-right">
+        <button type="submit" class="btn btn-primary">
+          <strong>Delete</strong>
+        </button>
+      </div>
+    </div>
+  </div>
+</form>

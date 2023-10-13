@@ -59,12 +59,12 @@
 								Activity
 							</strong>
 						</div>
-						<div class="col-md-3 text-start text-md-center">
+						<div class="col-md-4 text-start text-md-center">
 							<strong>
 								Hours : Minutes
 							</strong>
 						</div>
-						<div class="col-md-3 text-start text-md-end">
+						<div class="col-md-2 text-start text-md-end">
 							<strong>Edit/Delete</strong>
 						</div>	
 					</div>
@@ -75,8 +75,8 @@
 					</div>
 					<div ng-if="!volunteerLoadPending" ng-cloak>
 						<div class="col-12" ng-if="createVolunteerEntryDetail != true && !volunteerLoadPending" ng-cloak>
-							<div class="fs-4 color-black py-2" ng-click="showVolunteerEntry()">
-								<i class="bi bi-plus-circle"></i> <span class="fs-5">Add Volunteer Entry</span>
+							<div class="btn btn-md-wide btn-primary fs-4 color-black my-2" ng-click="showVolunteerEntry()">
+								<i class="bi bi-plus-circle"></i> <span class="fs-5 ps-1">Add Volunteer Entry</span>
 							</div>
 						</div>
 						<div class="col-12 d-md-flex justify-content-between align-items-center py-2" ng-if="createVolunteerEntryDetail == true" ng-cloak>
@@ -94,7 +94,7 @@
 										</option>
 									</select>
 								</div>
-								<div class="col-md-3 text-start text-md-center py-1">
+								<div class="col-md-4 text-start text-md-center py-1">
 									<label class="d-block d-md-inline-block d-md-none fw-bold" for="volunteer-hour">Activity Time:</label>
 									<select class="form-select w-auto d-inline-block pe-5" name="volunteer-hour" id="volunteer-hour" ng-model="volunteerAdd.hour" ng-change="checkVolunteerMinutes()">
 										<option value="">
@@ -116,7 +116,7 @@
 									</select>
 									mins
 								</div>
-								<div class="col-md-3 text-start text-md-end py-1">
+								<div class="col-md-2 text-start text-md-end py-1">
 									<button ng-disabled="volunteerAdd.date == '' || volunteerAdd.activity == '' || (volunteerAdd.hour == '' && volunteerAdd.hour != '0') || (volunteerAdd.minute == '' && volunteerAdd.minute != '0')" class="btn btn-md-wide btn-primary" ng-click="createVolunteerEntry()">
 										<strong>
 											Add
@@ -152,7 +152,7 @@
 										</select>
 									</span>
 								</div>
-								<div class="col-md-3 text-start text-md-center py-1">
+								<div class="col-md-4 text-start text-md-center py-1">
 									<span class="py-0" ng-if="entryView != entry.id" aria-label="Activity Hours">
 										<span class="d-inline-block d-md-none fw-bold">Time:</span> {{entry.hours | time}}
 									</span>
@@ -179,7 +179,7 @@
 										mins
 									</span>
 								</div>
-								<div class="col-md-3 text-start text-md-end py-1" ng-if="entryView != entry.id">
+								<div class="col-md-2 text-start text-md-end py-1" ng-if="entryView != entry.id">
 									<!-- on view -->
 									<button class="btn btn-md-wide btn-primary" ng-click="showEntries()" data-id="{{entry.activity_type_id}}" aria-label="Edit Entry">
 										<strong>

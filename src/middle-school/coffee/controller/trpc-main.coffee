@@ -9,11 +9,12 @@ angular.module 'trPcControllers'
     'NgPcTeamraiserEventService'
     'RichTextService'
     'FacebookFundraiserService'
-    'BoundlessService'
     'NuclavisService'
-    ($rootScope, $scope, $location, $timeout, APP_INFO, TeamraiserParticipantPageService, NgPcTeamraiserEventService, RichTextService, FacebookFundraiserService, BoundlessService, NuclavisService) ->
+    'ZuriService'
+    ($rootScope, $scope, $location, $timeout, APP_INFO, TeamraiserParticipantPageService, NgPcTeamraiserEventService, RichTextService, FacebookFundraiserService, NuclavisService, ZuriService) ->
       $rootScope.$location = $location
       $rootScope.baseUrl = $location.absUrl().split('#')[0]
+      $rootScope.HideGifts = "NO"
       
       $scope.location = $location.path()
       $rootScope.$on '$routeChangeSuccess', ->
@@ -21,6 +22,7 @@ angular.module 'trPcControllers'
         return
       
       $scope.$on '$viewContentLoaded', ->
+        #$scope.getHideGiftsFlag()
         if $rootScope.clipboard
           $rootScope.clipboard.destroy()
           delete $rootScope.clipboard
@@ -28,9 +30,27 @@ angular.module 'trPcControllers'
         $rootScope.clipboard.on 'success', (e) ->
           if angular.element(e.trigger).closest('div').find('.clipboard-copy').length == 0
             angular.element(e.trigger).after '<div class=\'clipboard-copy text-center small\' role=\'alert\' aria-atomic=\'true\'>'+angular.element(e.trigger).data('clipboard-message')+'</div>'
-            NuclavisService.postAction $scope.frId + '/' + $scope.consId + '/email_hq'
           return
-      
+      ###
+      $scope.getHideGiftsFlag = () ->
+        ZuriService.getSchoolDetail '&school_id=' + $scope.participantRegistration.companyInformation.companyId + '&EventId=' + $scope.frId,
+          failure: (response) ->
+          error: (response) ->
+          success: (response) ->
+            $scope.schoolPlan = response.data.company[0]
+            if response.data.company[0] != "" and response.data.company[0] != null
+              $rootScope.HideGifts = $scope.schoolPlan.HideGifts
+            else
+              $scope.schoolPlan.HideGifts = "NO"
+      ###
+      #if $rootScope.consId
+      #  ZuriService.getStudentDetail '&cons_id=' + $rootScope.consId,
+      #    failure: (response) ->
+      #    error: (response) ->
+      #    success: (response) ->
+      #      if response.data.company[0] != null 
+      #        $rootScope.AmountRaised = response.data.company[0].AmountRaised
+              
       if $rootScope.facebookFundraisersEnabled
         toggleFacebookFundraiserStatus = ->
           if not $rootScope.$$phase
@@ -104,6 +124,6 @@ angular.module 'trPcControllers'
                                           jQuery('html, body').animate
                                             scrollTop: jQuery('.js--facebook-fundraiser-completed-section').offset().top - 150
                                           , 250
-                                      BoundlessService.logFundraiserCreated()
+                                      NuclavisService.postAction $scope.frId + '/' + $rootScope.consId + '/facebook_connect_hq'
           , scope: 'manage_fundraisers'
   ]

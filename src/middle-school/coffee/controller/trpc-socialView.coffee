@@ -6,12 +6,14 @@ angular.module('trPcControllers').controller 'NgPcSocialViewCtrl', [
   'NuclavisService'
   'NgPcTeamraiserShortcutURLService'
   ($scope, $sce, $rootScope, FacebookFundraiserService, NuclavisService, NgPcTeamraiserShortcutURLService) ->
-
-    #Nuclavis process start by setting this flag
-    webContent.load = 1
-
     #facebook fundraising
+    webContent.load = 1
     $rootScope.facebookFundraiserConfirmedStatus = ''
+    if location.href.indexOf("showfb") > 0
+      $scope.facebookFundraisersEnabled = true
+    if location.href.indexOf("fbconnected") > 0
+      $scope.facebookFundraiserId = 1234
+      $scope.facebookFundraiserConfirmedStatus = true
     if $scope.facebookFundraisersEnabled and $rootScope.facebookFundraiserId and $rootScope.facebookFundraiserId isnt ''
       $rootScope.facebookFundraiserConfirmedStatus = 'pending'
       FacebookFundraiserService.confirmFundraiserStatus()
@@ -26,7 +28,7 @@ angular.module('trPcControllers').controller 'NgPcSocialViewCtrl', [
           else
             $rootScope.facebookFundraiserConfirmedStatus = 'confirmed'
             NuclavisService.postAction $scope.frId + '/' + $scope.consId + '/facebook_connect_hq'
-
+    
     $scope.getParticipantShortcut = ->
       getParticipantShortcutPromise = NgPcTeamraiserShortcutURLService.getShortcut()
         .then (response) ->
@@ -47,7 +49,7 @@ angular.module('trPcControllers').controller 'NgPcSocialViewCtrl', [
               $scope.personalPageUrlEsc = window.encodeURIComponent($scope.personalPageUrl)
           response
     $scope.getParticipantShortcut()
-
+    
     $scope.socialEarnedThankYou = 0
     $scope.putSocialMedia = (event, sel) ->
       NuclavisService.postAction $scope.frId + '/' + $scope.consId + '/opt_out_hq'
@@ -66,18 +68,19 @@ angular.module('trPcControllers').controller 'NgPcSocialViewCtrl', [
             else 
               $scope.socialEarned = 0
     getFinnsMission()
-
+              
+    #setup social iframe
     ###
     urlPrefix = ''
-    if $scope.tablePrefix is 'heartdev'
+    if $scope.tablePrefix is 'heartdev' or $scope.tablePrefix is 'heartnew'
       urlPrefix = 'load'
     else
       urlPrefix = 'loadaha'
     consId = $scope.consId
     frId = $rootScope.frId
     auth = $rootScope.authToken
-    jsession = $rootScope.sessionCookie
-    url = 'https://' + urlPrefix + '.boundlessfundraising.com/applications/ahatgr/social/app/ui/#/addsocial/' + consId + '/' + frId + '/' + auth + '/' + jsession + '?source=PCSocial'
+    jsession = $rootScope.sessionCookie	
+    url = 'https://' + urlPrefix + '.boundlessfundraising.com/applications/ahakhc/social/app/ui/#/addsocial/' + consId + '/' + frId + '/' + auth + '/' + jsession + '?source=PCSocial'
     $scope.socialIframeURL = $sce.trustAsResourceUrl url
     return
     ###

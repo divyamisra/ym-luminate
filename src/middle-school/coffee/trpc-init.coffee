@@ -31,13 +31,19 @@ angular.module 'trPcApp'
       $rootScope.prev2FrId = $embedRoot.data('prev-two-fr-id') or ''
       $rootScope.consName = $embedRoot.data('cons-name') or ''
       $rootScope.consNameFirst = $embedRoot.data('cons-first-name') or ''
-      $rootScope.consNameLast = $embedRoot.data('cons-last-name') or ''      
+      $rootScope.consNameLast = $embedRoot.data('cons-last-name') or ''
       studentRegGoal = $embedRoot.data('student-reg-goal') or '0'
       if isNaN studentRegGoal
         studentRegGoal = 0
       else
         studentRegGoal = Number studentRegGoal
       $rootScope.studentRegGoal = studentRegGoal
+      $rootScope.challengeTaken = $embedRoot.data('challenge-taken') if $embedRoot.data('challenge-taken') isnt ''
+      AmountRaised = $embedRoot.data('dollars') or '0'
+      $rootScope.AmountRaised = Number((AmountRaised).replace('$', '').replace(/,/g, ''))
+
+      ahaWebContent.ssoInitialize $rootScope.consId, $rootScope.frId, '' + $rootScope.authToken, '' + $rootScope.sessionCookie
+      #$rootScope.usePcEmail = $embedRoot.data('use-pc-email') or ''
   ]
 
 angular.element(document).ready ->
@@ -47,4 +53,3 @@ angular.element(document).ready ->
         'trPcApp'
       ]
   ,1000
-      

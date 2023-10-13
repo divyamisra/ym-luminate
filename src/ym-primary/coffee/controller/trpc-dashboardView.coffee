@@ -74,7 +74,6 @@ angular.module 'trPcControllers'
 
       #Nuclavis process start by setting this flag
       webContent.load = 1
-      ahaWebContent.ssoInitialize $rootScope.consId, $rootScope.frId, '' + $rootScope.authToken, '' + $rootScope.sessionCookie
 
       if $scope.participantRegistration.lastPC2Login is '0'
         if $scope.participantRegistration.companyInformation?.isCompanyCoordinator isnt 'true'
@@ -1642,5 +1641,5 @@ angular.module 'trPcControllers'
           if bcheck < 5
             setTimeout startBalloons, 1000
       startBalloons() 
-
+	
   ]

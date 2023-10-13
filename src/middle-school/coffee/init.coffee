@@ -54,6 +54,7 @@ angular.module 'ahaLuminateApp'
       $rootScope.facebookFundraisersEnabled = $dataRoot.data('facebook-fundraisers-enabled') is 'TRUE'
       $rootScope.facebookFundraiserId = $dataRoot.data('facebook-fundraiser-id') if $dataRoot.data('facebook-fundraiser-id') isnt ''
       $rootScope.currentCSTDate = $dataRoot.data('current-date') if $dataRoot.data('current-date') isnt ''
+      $rootScope.browserName = detectBrowserName()
       $rootScope.bodyCompanyId = $dataRoot.data('company-id') or ''
 
       $rootScope.showGiftsTab = false
@@ -84,3 +85,22 @@ angular.element(document).ready ->
   catch error
 
   angular.bootstrap document, appModules
+
+detectBrowserName = ->
+  agent = window.navigator.userAgent.toLowerCase()
+  switch true
+    when agent.indexOf('edge') > -1
+      return 'edge'
+    when agent.indexOf('opr') > -1
+      return 'opera'
+    when agent.indexOf('chrome') > -1
+      return 'chrome'
+    when agent.indexOf('trident') > -1
+      return 'ie'
+    when agent.indexOf('firefox') > -1
+      return 'firefox'
+    when agent.indexOf('safari') > -1
+      return 'safari'
+    else
+      return 'other'
+  return

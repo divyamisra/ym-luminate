@@ -1,6 +1,5 @@
 <div class="donation-form-container">
-
-  [[?[[S51:reus_ym_ahc_student_fundraising_closed_teams]]::x[[E48:[[S334:FR_ID]]-[[S334:PROXY_ID]]:team-id]]x::
+  [[?[[S51:reus_ym_khc_student_fundraising_closed_teams]]::x[[E48:[[S334:FR_ID]]-[[S334:PROXY_ID]]:team-id]]x::
     [[?x20x::x[[S334:PROXY_TYPE]]x::
       <style>
         .app-9 .ym-page-content .col-md-8 {
@@ -20,14 +19,24 @@
           font-weight: bold;
           text-align: center;
         }
+/* 
+        .screen-reader-only {
+          position: absolute;
+          height: 1px;
+          width: 1px;
+          clip: rect(1px 1px 1px 1px); 
+          clip: rect(1px,1px,1px,1px);
+          clip-path: polygon(0px 0px, 0px 0px, 0px 0px);
+          -webkit-clip-path: polygon(0px 0px, 0px 0px, 0px 0px);
+          overflow: hidden !important;
+          } */
+
       </style>
       <div class="ym-donation-giving-closed">
         <p>[[S120:dc:participantName]]'s personal fundraiser has ended but you can still support our school's overall fundraising efforts <a href="Donation2?[[S120:dc:donFormId]].donation=form1&df_id=[[S120:dc:donFormId]]&FR_ID=[[S334:FR_ID]]&mfc_pref=T&PROXY_TYPE=22&PROXY_ID=[[E48:[[S334:FR_ID]]-[[S334:PROXY_ID]]:team-id]][[?xtruex::x[[S334:paypal]]x::&paypal=true::]]" aria-label="donate here">here</a>.</p>
       </div>
     ::]]
   ::]]
-
-
   <div class="ym-donation-headlines">
     [[?xx::x[[S1:user_name]]x::::
       <p>You are currently logged in as [[S1:first_name]] [[S1:last_name]]. <a href="UserLogin?logout=t&NEXTURL=[[T1:[[S8]]]]">Log out if you are not [[S1:first_name]] [[S1:last_name]]</a>.
@@ -43,9 +52,15 @@
       ]]
     ]]
     </h2>
+    <div class="pull-right d-none d-md-block">
+      <img style="height: 60px;" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/middle-school/image/fy23/suggested-donation-100.png" alt="Consider $100 to celebrate the 100 year anniversary of the American Heart Association">
+    </div>
     <h2 class="h4">Your Gift</h2>
+    <div class="d-block d-md-none">
+      <img style="height: 60px;" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/middle-school/image/fy23/suggested-donation-100.png" alt="Consider $100 to celebrate the 100 year anniversary of the American Heart Association">
+    </div>
   </div>
-  <div class="alert alert-danger" role="alert" ng-if="paymentInfoErrors.errors.length > 0" ng-cloak>
+  <div class="alert alert-danger" role="alert" tabindex="0" ng-if="paymentInfoErrors.errors.length > 0" ng-cloak>
     [[M0:friendraiser:generic_error]]
       <ul>
         <li ng-repeat="paymentInfoError in paymentInfoErrors.errors">
@@ -57,7 +72,8 @@
   <div class="event-secondary-light ym-donation-levels">
     <div class="ym-donation-levels__type" role="list" aria-label="Choose your gift type">
       <button role="listitem" type="button" class="btn btn-toggle btn-lg ym-donation-levels__type--onetime" ng-class="{'active': donationInfo.giftType == 'onetime'}" ng-click="giftType('onetime')">One-time Gift</button>
-      <button role="listitem" type="button" class="btn btn-toggle btn-lg ym-donation-levels__type--monthly" ng-class="{'active': donationInfo.giftType == 'monthly'}" ng-click="giftType('monthly');">Installment Gift</button>
+      <button role="listitem" type="button" class="btn btn-toggle btn-lg ym-donation-levels__type--monthly" ng-class="{'active': donationInfo.giftType == 'monthly'}" ng-click="giftType('monthly')" ng-if="donationGiftType == 'installment'" ng-cloak>Installment Gift</button>
+      <button role="listitem" type="button" class="btn btn-toggle btn-lg ym-donation-levels__type--monthly" ng-class="{'active': donationInfo.giftType == 'monthly'}" ng-click="giftType('monthly')" ng-if="donationGiftType == 'flexible'" ng-cloak>Recurring Gift</button>
     </div>
     <hr>
     <fieldset>
@@ -69,11 +85,11 @@
           </button>
           <label ng-if="donationLevel.userSpecified == 'true'" class="sr-only" for="other_amount">Other Amount</label>
           <span ng-if="donationLevel.userSpecified == 'true'" class="ym-donation-levels__dollar-sign">$</span>
-          <input uib-popover="Please enter an amount" popover-placement="right" popover-trigger="focus" type="text" id="other_amount" name="otherAmt" class="btn btn-toggle btn-enter {{donationLevel.classLevel}} other-amount" ng-class="{'active': donationInfo.levelChecked == donationLevel.classLevel}" title="other_amount" ng-if="donationLevel.userSpecified == 'true'" ng-change="enterAmount(otherAmt)" ng-blur="selectLevel($event, 'other', donationLevel.levelId)" ng-model="otherAmt" placeholder="Other" ng-value="donationInfo.otherAmt" aria-describedby="message-level-{{donationLevel.levelId}}">
+          <input uib-popover="Please enter an amount" popover-placement="right" popover-trigger="focus" type="text" id="other_amount" name="otherAmt" class="btn btn-toggle btn-enter {{donationLevel.classLevel}} other-amount" ng-class="{'active': donationInfo.levelChecked == donationLevel.classLevel}" title="Other Amount" ng-if="donationLevel.userSpecified == 'true'" ng-change="enterAmount(otherAmt)" ng-blur="selectLevel($event, 'other', donationLevel.levelId)" ng-model="otherAmt" placeholder="Other" ng-value="donationInfo.otherAmt" aria-describedby="message-level-{{donationLevel.levelId}}">
         </div>
       </div>
     </fieldset>
-    <div class="alert alert-danger ng-hide" role="alert" ng-show="otherAmtError" aria-hidden="true">
+    <div class="alert alert-danger ng-hide" role="alert" tabindex="0" ng-show="otherAmtError" aria-hidden="true">
       Online donations have a $10 minimum
     </div>
     <div class="ym-donation-levels__message level{{donationLevel.levelId}}" id="message-level-{{donationLevel.levelId}}" ng-repeat="donationLevel in donationLevels" ng-class="{'active': donationInfo.levelChecked == donationLevel.classLevel}">
@@ -81,9 +97,14 @@
         {{donationLevel.levelLabel}}
       </p>
     </div>
-    <div class="ym-donation-levels__message--installment level--installment"  ng-class="{'d-none': donationInfo.giftType != 'monthly'}">
+    <div class="ym-donation-levels__message--installment level--installment"  ng-class="{'hidden': donationInfo.giftType != 'monthly'}" ng-if="donationGiftType == 'installment'" ng-cloak>
       <p>
         An installment gift allows you flexibility to give at a higher level and pay over time.
+      </p>
+    </div>
+    <div class="ym-donation-levels__message--sustaining level--sustaining"  ng-class="{'hidden': donationInfo.giftType != 'monthly'}" ng-if="donationGiftType == 'flexible'" ng-cloak>
+      <p>
+        A recurring gift allows you the flexibility to choose the duration of your donations.
       </p>
     </div>
   </div>
