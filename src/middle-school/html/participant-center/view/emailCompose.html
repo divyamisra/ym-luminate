@@ -230,8 +230,11 @@
           <li>
             Select the message you want to send.
           </li>
-          <li>
-            Click “Copy Recipients” and paste the list into the BCC line of a new email in your school email account.
+          <li ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
+            Click “Copy Recipients” and paste the list into the BCC line of a new email in your personal/work email account (i.e. school, google, outlook, yahoo).
+          </li>
+          <li ng-if="participantRegistration.companyInformation.isCompanyCoordinator != 'true'" ng-cloak>
+            Click “Copy Recipients” and paste the list into the BCC line of a new email in your personal/work email account (i.e. google, outlook, yahoo).
           </li>
           <li>
             Click “Copy Message” and paste it into the body of your new email.
