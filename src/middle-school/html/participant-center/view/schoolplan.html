@@ -5,9 +5,9 @@
         <div class="col">
           <div class="ym-pc-dashboard-coordinator-progress-section__column event-secondary-medium p-3 mb-4">
             <div class="ym-pc-dashboard-coordinator-progress-box">
-              <h2 class="h3 text-center"> School Plan </h2>
-              <em ng-if="!lockEnabled" class="text-center alert alert-light d-block me-2">School Planning fields will be locked <br />between 11 pm – 6 am CST for point calculations. If any of the information below is not editable and needs to be updated, please contact your staff partner. </em>
-              <em ng-if="lockEnabled" class="text-center alert alert-light d-block me-2">{{lockEnabledMsg}}</em>
+              <h2 class="h5"> School Plan </h2>
+              <em ng-if="!lockEnabled" class="alert alert-light d-block p-0 py-2 me-2">School Planning fields will be locked between 11 pm – 6 am CST for point calculations. If any of the information below is not editable and needs to be updated, please contact your staff partner. </em>
+              <em ng-if="lockEnabled" class="alert alert-light d-block p-0 py-2 me-2">{{lockEnabledMsg}}</em>
               <div class="ym-pc-dashboard-section-plan" ng-if="schoolPlan != null && schoolPlan != ''" ng-cloak>
                 <div class="schoolPlanDates text-center">
                   <p> Your event is kicking off on <strong>
