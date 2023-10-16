@@ -71,10 +71,10 @@
       </div>
       <div class="d-flex mx-5">
         <div ng-if="hideAmount != 'Y'" class="col-6 text-start fw-bold ym-progress__raised">
-          <span ng-bind-html="companyProgress.amountRaisedFormatted"></span> raised
+          Raised <span ng-bind-html="companyProgress.amountRaisedFormatted"></span>
         </div>
         <div ng-if="companyProgress.goalFormatted &amp;&amp; companyProgress.goalFormatted != '' &amp;&amp; companyProgress.goalFormatted != '$0'" class="col-6 text-end fw-bold ym-progress__goal">
-          <span ng-bind-html="companyProgress.goalFormatted"></span> goal
+          Goal <span ng-bind-html="companyProgress.goalFormatted"></span>
         </div>
       </div>
       <div class="ym-progress__thermometer mx-5 my-0 mw-100" name="School Progress Bar" role="progressbar" aria-label="{{companyProgress.percent}} percent of fundraising progress" aria-valuetext="{{companyProgress.percent}} percent of fundraising progress" aria-valuenow="{{companyProgress.percent}}" aria-valuemin="0" aria-valuemax="100" ng-if="companyProgress.goal &amp;&amp; companyProgress.goal != 0" ng-cloak>

@@ -306,7 +306,7 @@ angular.module 'ahaLuminateControllers'
             teachersFound[teacher] = teacher
           $scope.teacherList = teacherList
 
-      NuclavisService.getTeachers $scope.companyId + "/" + $rootScope.frId
+      NuclavisService.getTeachers $rootScope.bodyCompanyId + "/" + $rootScope.frId
         .then (response) ->
           $scope.teachers = response.data.teachers
           if $scope.teachers.length > 0
