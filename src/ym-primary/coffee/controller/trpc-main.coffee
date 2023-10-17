@@ -22,7 +22,7 @@ angular.module 'trPcControllers'
         return
       
       $scope.$on '$viewContentLoaded', ->
-        $scope.getHideGiftsFlag()
+        #$scope.getHideGiftsFlag()
         if $rootScope.clipboard
           $rootScope.clipboard.destroy()
           delete $rootScope.clipboard
@@ -31,7 +31,7 @@ angular.module 'trPcControllers'
           if angular.element(e.trigger).closest('div').find('.clipboard-copy').length == 0
             angular.element(e.trigger).after '<div class=\'clipboard-copy text-center small\' role=\'alert\' aria-atomic=\'true\'>'+angular.element(e.trigger).data('clipboard-message')+'</div>'
           return
-
+      ###
       $scope.getHideGiftsFlag = () ->
         ZuriService.getSchoolDetail '&school_id=' + $scope.participantRegistration.companyInformation.companyId + '&EventId=' + $scope.frId,
           failure: (response) ->
@@ -42,7 +42,7 @@ angular.module 'trPcControllers'
               $rootScope.HideGifts = $scope.schoolPlan.HideGifts
             else
               $scope.schoolPlan.HideGifts = "NO"
-
+      ###
       #if $rootScope.consId
       #  ZuriService.getStudentDetail '&cons_id=' + $rootScope.consId,
       #    failure: (response) ->

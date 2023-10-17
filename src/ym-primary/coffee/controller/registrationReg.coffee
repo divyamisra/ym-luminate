@@ -8,8 +8,9 @@ angular.module 'ahaLuminateControllers'
     'APP_INFO'
     'TeamraiserCompanyService'
     'TeamraiserRegistrationService'
+    'ZuriService'
     'NuclavisService'
-    ($rootScope, $scope, $filter, $uibModal, $timeout, APP_INFO, TeamraiserCompanyService, TeamraiserRegistrationService, NuclavisService) ->
+    ($rootScope, $scope, $filter, $uibModal, $timeout, APP_INFO, TeamraiserCompanyService, TeamraiserRegistrationService, ZuriService, NuclavisService) ->
       $rootScope.companyName = ''
       $scope.teachers = []
       $scope.teacherList = []
@@ -358,8 +359,12 @@ angular.module 'ahaLuminateControllers'
             teachersFound[teacher] = teacher
           $scope.teacherList = teacherList
 
-      if $rootScope.classroomChallenge
-        NuclavisService.getTeachers $scope.companyId + "/" + $rootScope.frId
+      #ZuriService.getSchoolInfo $scope.companyId,
+      #  failure: (response) ->
+      #  error: (response) ->
+      #  success: (response) ->
+      #    if response.data.company.customCompanyDetail1.indexOf("CC:Y") > -1
+      NuclavisService.getTeachers $scope.companyId + "/" + $rootScope.frId
         .then (response) ->
           $scope.teachers = response.data.teachers
           if $scope.teachers.length > 0

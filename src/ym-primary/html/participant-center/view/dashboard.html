@@ -290,21 +290,23 @@
                 </div>
                 <div class="ym-progress-related d-flex justify-content-between flex-wrap mt-0 mb-3">
                   <div class="col-4">
+		    Raised
                     <strong>
                       <span ng-bind-html="participantProgress.raisedFormatted"></span>
-                    </strong> raised
+                    </strong>
                   </div>
                   <div class="col-4 text-center">
                     {{participantProgress.percent}}%
                   </div>
                   <div class="col-4 text-end">
                     <div ng-if="participantProgress.goalFormatted && participantProgress.goalFormatted != '$0'" ng-cloak>
+		      Goal
                       <strong>
                         <span ng-bind-html="participantProgress.goalFormatted"></span>
-                      </strong> goal
+                      </strong>
                     </div>
                     <a href="" ng-click="editPersonalGoal()" class="ym-progress-update-goal">
-                      <strong> Update Personal Goal </strong>
+                      <strong> Edit Personal Goal </strong>
                     </a>
                     <div ng-if="participantPrevProgress.raisedFormatted" ng-cloak>
                       <strong>
@@ -316,7 +318,7 @@
                 <div class="ym-progress-donate text-center">
                   <a class="btn btn-primary" href="#paymentSelType" data-bs-toggle="collapse">
                     <strong> Donate to Personal Page </strong>
-                  </a> &nbsp;&nbsp; <a class="btn btn-primary btn-white" ng-href="{{baseUrl}}#/reports" title="Click to view your donation reports">
+                  </a> &nbsp;&nbsp; <a class="btn btn-primary btn-white" ng-href="{{baseUrl}}#/mydonors" title="Click to view your donation reports">
                     <strong> View Donors </strong>
                   </a>
                 </div>
@@ -353,18 +355,20 @@
                 </div>
                 <div class="d-flex justify-content-between">
                   <div class="col-4 text-start">
+		    Raised
                     <strong>
                       <span ng-bind-html="companyProgress.raisedFormatted"></span>
-                    </strong> raised
+                    </strong>
                   </div>
                   <div class="col-4 text-center">
                     {{companyProgress.percent}}%
                   </div>
                   <div class="col-4 text-end">
                     <div ng-if="companyProgress.goalFormatted && companyProgress.goalFormatted != '$0'" ng-cloak>
+		      Goal
                       <strong>
                         <span ng-bind-html="companyProgress.goalFormatted"></span>
-                      </strong> goal
+                      </strong>
                     </div>
                   </div>
                 </div>
@@ -505,21 +509,23 @@
                 </div>
                 <div class="d-flex justify-content-between">
                   <div class="col-4 text-start">
+		    Raised
                     <strong>
                       <span ng-bind-html="companyProgress.raisedFormatted"></span>
-                    </strong> raised
+                    </strong>
                   </div>
                   <div class="col-4 text-center">
                     {{companyProgress.percent}}%
                   </div>
                   <div class="col-4 text-end">
                     <div ng-if="companyProgress.goalFormatted && companyProgress.goalFormatted != '$0'" ng-cloak>
+		      Goal
                       <strong>
                         <span ng-bind-html="companyProgress.goalFormatted"></span>
-                      </strong> goal
+                      </strong>
                     </div>
                     <a href="" ng-click="editSchoolGoal()" class="ym-progress-update-goal" aria-label="Update School Goal">
-                      <strong> Update School Goal </strong>
+                      <strong> Edit School Goal </strong>
                     </a>
                   </div>
                 </div>
@@ -530,13 +536,13 @@
       </div>
     </div>
   </section>
-  <section class="ym-pc-dashboard-coordinator-progress-section mb-4" aria-label="Fundraising Progress Meters">
+  <section class="ym-pc-dashboard-coordinator-progress-section mb-4" aria-label="Manage Tools Section">
     <div class="d-flex justify-content-between flex-wrap gap-4">
       <div class="col">
         <div class="event-secondary-medium p-3 h-100">
           <div class="ym-event-box">
             <h3 class="h5 clearfix"> Manage Tools </h3>
-            <p> Check out the reports page to see which students have completed challenges and who has earned donations. </p>
+            <p> Event management tools at your fingertips. </p>
             <p style="color:#c10e21" ng-show="!hasOOTDashboard" ng-scope> Manage your event tool is not currently available. Please try again later. </p>
             <div class="d-flex justify-content-center text-center flex-wrap gap-4">
               <div class="col" ng-scope>
@@ -583,7 +589,7 @@
         <div class="ym-pc-dashboard-progress-section__column event-secondary-medium p-3">
           <div class="ym-pc-dashboard-progress-box">
             <h3 class="h5"> School Page </h3>
-            <p> Edit your pages to encourage students and parents to join and donate! </p>
+            <p> Personalize your school fundraising page to share the heart-healthy journey. </p>
             <div class="text-center mb-5">
               <a class="btn btn-md-wide btn-primary" ng-href="TR?fr_id={{frId}}&amp;pg=company&amp;company_id={{participantRegistration.companyInformation.companyId}}">
                 <strong> View and Edit School Page </strong>
@@ -626,7 +632,7 @@
           <div class="ym-pc-dashboard-section-header text-start">
             <h3 class="h5"> Go Mobile </h3>
           </div>
-          <p class="text-start"> Manage your fundraising on the go with the AHA Schools app. </p>
+          <p class="text-start"> Manage your fundraising on the go with the AHA Schools App. </p>
           <div class="ym-pc-dashboard-mobile-downloads">
             <a href="https://itunes.apple.com/us/app/ym-primary/id548389448?mt=8" target="_blank" title="Download the iPhone App">
               <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/youth-markets/image/apple-store-logo.png" alt="Download the iPhone App">
@@ -639,7 +645,7 @@
       </div>
     </div>
   </section>
-  <section class="ym-pc-dashboard-coordinator-progress-section mb-4" aria-label="Fundraising Progress Meters">
+  <section class="ym-pc-dashboard-coordinator-progress-section mb-4" aria-label="School Message Section">
     <div class="d-flex justify-content-between flex-wrap gap-4">
       <div class="col">
         <div class="ym-pc-dashboard-message event-secondary-medium p-3 h-100">
@@ -671,7 +677,7 @@
           <h3 class="h5 clearfix"> Student Preview </h3>
           <div class="clearfix">
             <div class="ym-pc-student-view">
-              <p> Use the "Student View" button to show your students all of the great tools and games in their Headquarters and encourage them to fundraise! </p>
+              <p> Show your students all of the great tools and games in their Headquarters and encourage them to fundraise! </p>
               <div class="text-center">
                 <a class="btn btn-md-wide btn-primary" ng-href="{{baseUrl}}#/dashboard-student">
                   <strong> Student View </strong>
@@ -683,12 +689,12 @@
       </div>
     </div>
   </section>
-  <section class="ym-pc-dashboard-coordinator-progress-section mb-4" aria-label="Fundraising Progress Meters">
+  <section class="ym-pc-dashboard-coordinator-progress-section mb-4" aria-label="Personal Page Section">
     <div class="d-flex justify-content-between flex-wrap gap-4">
       <div class="col">
         <div class="ym-pc-dashboard-progress-section__column event-secondary-medium p-3 h-100">
           <div class="ym-pc-dashboard-progress-box">
-            <h3 class="h5"> My Page </h3>
+            <h3 class="h5"> My Personal Page </h3>
             <p> Personalize your fundraising page to share why raising funds to save lives is important to you. </p>
             <div class="text-center mb-5">
               <a class="btn btn-md-wide btn-primary" ng-href="TR?fr_id={{frId}}&amp;pg=personal&amp;px={{consId}}">
@@ -713,28 +719,30 @@
       <div class="col">
         <div class="ym-pc-dashboard-personal-fundraising event-secondary-medium p-3 h-100">
           <div class="ym-pc-dashboard-section-header">
-            <h3 class="h5 text-start"> My Personal Progress </h3>
+            <h3 class="h5 text-start"> My Personal Fundraising Progress </h3>
           </div>
           <div class="ym-progress__thermometer m-0 mw-100" name="Personal Progress Bar" aria-label="{{participantProgress.percent}} percent of fundraising progress" aria-valuetext="{{participantProgress.percent}} percent of fundraising progress" role="progressbar" aria-valuenow="{{participantProgress.percent}}" aria-valuemin="0" aria-valuemax="100">
             <div class="ym-progress__thermometer--fill" ng-style="{'width': participantProgress.percent + '%'}"></div>
           </div>
           <div class="ym-progress-related d-flex justify-content-between flex-wrap mt-0 mb-3">
             <div class="col-4">
+	      Raised
               <strong>
                 <span ng-bind-html="participantProgress.raisedFormatted"></span>
-              </strong> raised
+              </strong>
             </div>
             <div class="col-4 text-center">
               {{participantProgress.percent}}%
             </div>
             <div class="col-4 text-end">
               <div ng-if="participantProgress.goalFormatted && participantProgress.goalFormatted != '$0'" ng-cloak>
+		Goal
                 <strong>
                   <span ng-bind-html="participantProgress.goalFormatted"></span>
-                </strong> goal
+                </strong>
               </div>
               <a href="" ng-click="editPersonalGoal()" class="ym-progress-update-goal">
-                <strong> Update Personal Goal </strong>
+                <strong> Edit Personal Goal </strong>
               </a>
               <div ng-if="participantPrevProgress.raisedFormatted" ng-cloak>
                 <strong>

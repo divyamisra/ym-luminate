@@ -21,4 +21,8 @@
   select {
     max-width: 250px;
   }
+  
+  tr:nth-child(odd) {
+    background: none;
+  }
 }

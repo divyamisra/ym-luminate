@@ -5,11 +5,13 @@ angular.module 'ahaLuminateControllers'
     '$httpParamSerializer'
     'AuthService'
     'TeamraiserParticipantService'
+    'TeamraiserRegistrationService'
     '$timeout'
-    ($rootScope, $scope, $httpParamSerializer, AuthService, TeamraiserParticipantService, $timeout) ->
+    ($rootScope, $scope, $httpParamSerializer, AuthService, TeamraiserParticipantService, TeamraiserRegistrationService, $timeout) ->
       $dataRoot = angular.element '[data-aha-luminate-root]'
       consId = $dataRoot.data('cons-id') if $dataRoot.data('cons-id') isnt ''
       $scope.regEventId = ''
+      $scope.protocol = window.location.protocol
       
       setRegEventId = (numberEvents = 0, regEventId = '') ->
         $scope.numberEvents = numberEvents
@@ -39,7 +41,17 @@ angular.module 'ahaLuminateControllers'
               if numberEvents is 1
                 regEventId = firstTR
               setRegEventId numberEvents, regEventId
-      
+
+      $scope.participationTypes = {}
+      TeamraiserRegistrationService.getParticipationTypes
+        error: ->
+          # TODO
+        success: (response) ->
+          participationTypes = response.getParticipationTypesResponse.participationType
+          participationTypes = [participationTypes] if not angular.isArray participationTypes
+          angular.forEach participationTypes, (ptype) ->
+            $scope.participationTypes[ptype.id] = ptype.name
+            
       $scope.toggleLoginMenu = ->
         if $scope.loginMenuOpen
           delete $scope.loginMenuOpen
@@ -77,7 +89,7 @@ angular.module 'ahaLuminateControllers'
           focusDropdown = ->
             document.getElementById('js--header-welcome-ul').focus()
           $timeout focusDropdown, 100
-          
+      
       angular.element('body').on 'click', (event) ->
         if $scope.welcomeMenuOpen and angular.element(event.target).closest('.ym-header-welcome').length is 0
           $scope.toggleWelcomeMenu()

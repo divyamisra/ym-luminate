@@ -1,26 +1,49 @@
-<div>
-  <div class="modal-body">
+  <div class="modal-body confetti">
     <button type="button" tabindex="0" class="close" aria-label="Close" ng-click="closeFirstLogin()">
       <span aria-hidden="true">×</span>
     </button>
     <div class="ym-pc-first-login-modal">
       <h2 class="h3">
-        Finn has a special mission for you!
+        Congratulations on Registering!
       </h2>
       <div>
-        Complete his 8 challenges in any order to complete Finn’s Mission, and earn a special gift from Finn!
+      	<div class="mb-4">
+	        To earn your first two Finn's Mission badges:
+	      </div>
+        <div class="d-flex justify-content-around flex-wrap gap-4 mb-4">
+          <div>
+            <span class="number">1</span>
+            Send emails or texts
+          </div>
+          <div>
+            <span class="number">2</span>
+            Post on social
+          </div>
+        </div>         
       </div>
-      <!--
-      <div class="ym-pc-first-login-close">
-        <a class="btn btn-primary" ng-href="TR?fr_id={{frId}}&amp;pg=personal&amp;px={{consId}}">
-          <strong>Upload Photo</strong>
-        </a>
+      <div class="text-center mb-4">
+        Did you know if you share with 10 friends/family you could more than double what you raise?
       </div>
-      -->
-    </div>
-    <div class="hidden" hidden aria-hidden="true">
-      <img ng-src="//ahc.staging.ootqa.org/api/webhooks/team/refresh/{{frId}}/{{participantRegistration.teamId}}" alt="" ng-if="tablePrefix == 'heartdev'">
-      <img ng-src="//middleschool.heart.org/api/webhooks/team/refresh/{{frId}}/{{participantRegistration.teamId}}" alt="" ng-if="tablePrefix == 'heart'">
+      <div class="d-md-flex align-items-start flex-wrap mb-3">
+        <div id="fieldText-modal" class="border border-2 bg-light rounded p-2 d-inline-block overflow-hidden me-3 mb-2">
+          <div class="js--personal-social-share">{{personalPageUrl}}</div>
+        </div>
+        <button type="button" class="btn btn-primary btn-white" id="copyable" data-field="fieldText-modal" data-field-type="Personal URL" role="button" copy-field>
+          <strong> Copy Link </strong>
+        </button>
+      </div>
+      <div class="modal-footer justify-content-center">
+				<button type="button" class="btn btn-primary btn-white me-2" ng-click="closeFirstLogin()">
+					<strong> Remind me later </strong> 
+				</button>
+      </div>
+      <div class="hidden" hidden aria-hidden="true">
+        <img ng-src="//tools.heart.org/aha_ym24_dev/api/student/register/{{frId}}/{{consId}}?team_id={{participantRegistration.teamId}}&amp;school_id={{participantRegistration.companyInformation.companyId}}" alt="" ng-if="tablePrefix == 'heartdev'">
+        <img ng-src="//tools.heart.org/aha_ym24_testing/api/student/register/{{frId}}/{{consId}}?team_id={{participantRegistration.teamId}}&amp;school_id={{participantRegistration.companyInformation.companyId}}" alt="" ng-if="tablePrefix == 'heartnew'">
+        <img ng-src="//tools.heart.org/aha_ym24/api/student/register/{{frId}}/{{consId}}?team_id={{participantRegistration.teamId}}&amp;school_id={{participantRegistration.companyInformation.companyId}}" alt="" ng-if="tablePrefix == 'heart'">
+        <img ng-src="//khc.staging.ootqa.org/api/webhooks/team/refresh/{{frId}}/{{participantRegistration.teamId}}" alt="" ng-if="tablePrefix == 'heartdev'">
+        <img ng-src="//khc.staging.ootqa.org/api/webhooks/team/refresh/{{frId}}/{{participantRegistration.teamId}}" alt="" ng-if="tablePrefix == 'heartnew'">
+        <img ng-src="//kidsheartchallenge.heart.org/api/webhooks/team/refresh/{{frId}}/{{participantRegistration.teamId}}" alt="" ng-if="tablePrefix == 'heart'">
+      </div>
     </div>
   </div>
-</div>

@@ -4,6 +4,27 @@
 
 @import "../../youth-markets/sass/participant.scss";
 
+/*.ng-pc-nav {
+  a {
+    &, 
+    &:link, 
+    &:visited {
+      width: 16.66666667%;
+    }
+  }
+}
+@media only screen and (max-width: $screen-xs-max) {
+   .ng-pc-nav {
+     a {
+       &, 
+       &:link, 
+       &:visited {
+         width: 48%;
+       }
+     }
+   }
+}*/
+
 main > .container,
 main > .container-fluid {
   @media (max-width: $screen-xs-max) {
@@ -11,22 +32,14 @@ main > .container-fluid {
   }
 }
 
-.ng-pc-modal {
-  .close {
-    span {
-      right: 3px;
-      position: relative;
-      top: 2px;
-    }
-  }
-}
-
 .ng-pc-nav,
 .ng-pc-nav--coordinator {
-  @media (max-width: 669px) {
-    max-width: none;
+  @media (max-width: 991px) {
+    text-align: center;
+    max-width: 320px;
+    margin: 0 auto 7px;
   }
-
+  
   a {
     &,
     &:link,
@@ -34,71 +47,20 @@ main > .container-fluid {
     &:hover,
     &:focus,
     &:active {
-      @media (max-width: 669px) {
-        width: auto;
-        height: auto;
-        padding: 12px 6px;
-        flex: 0 0 auto;
-	width: 25%;
-      }
-
-      &.ng-pc-nav-item--student-view {
-        padding: 3px 0 0;
-
-        @media (min-width: 670px) {
-          padding: 8px 0 0;
-        }
-
-        @media (min-width: 890px) {
-          padding: 14px 0 0;
-        }
-
-        > span {
-          max-width: 65px;
-
-          @media (min-width: 670px) {
-            max-width: 80px;
-            font-size: 16px;
-            line-height: 18px;
-          }
-
-          @media (min-width: 890px) {
-            max-width: none;
-            font-size: 18px;
-            line-height: 22px;
-          }
-        }
-      }
-    }
-
-    &,
-    &:link,
-    &:visited {
-      @media (max-width: 669px) {
-        background: $brand-white;
-        color: $event-secondary;
-      }
-    }
-
-    &:hover,
-    &:focus,
-    &:active {
-      @media (max-width: 669px) {
-        background: #cccccc;
-        color: $event-secondary;
-      }
-    }
-
-    &:last-child {
-      @media (min-width: 560px) and (max-width: 669px) {
+      @media (max-width: 991px) {
+        border-right: 0;
+        font-size: $font-size-sm;
+        line-height: 16px;
+        width: 100px;
+        height: 40px;
+        padding: 12px 6px 0;
         margin: 0 3px 5px;
+        flex: 1 1 100%;
+	text-align:left;
       }
-    }
-
-    &.active {
-      @media (max-width: 669px) {
-        background: #cccccc;
-        color: $event-secondary;
+      @media (max-width: 767px) {
+        flex: 1 1 46%;
+	text-align:center;
       }
     }
   }
@@ -110,476 +72,258 @@ main > .container-fluid {
 
 a.list-group-item:focus, 
 a.list-group-item:hover {
-    color: #fff;
+    color: #555;
     text-decoration: none;
     background-color: #f5f5f5;
 }
 
-.ym-pc-dashboard-email-challenge-box {
-  form {
-    textarea.form-control[readonly] {
-      height: 270px;
-    }
-  }
-}
-
-.ym-pc-dashboard-coordinators-tobacco-endgame-section {
-  background-color: $event-accent;
-  text-align: center;
-  margin: 0 0 24px;
-  padding: 12px;
-
-  @media (min-width: $screen-sm-min) {
-    padding: 24px 172px;
-  }
-
-  .ym-pc-dashboard-section-header {
-    color: $event-grey;
-  }
-}
-
-.list-group-item.active {
-  &:focus,
-  &.active,
-  &.active:hover {
-    background-color: $event-primary;
-    border-color: $event-primary;
-  }
-}
-
-.ym-pc-dashboard-section-header {
-  h2, 
-  .h2 {
-    text-transform: uppercase;
-  }
-}
-
-.ym-pc-dashboard-progress-section {
-  .row {
-    .ym-pc-dashboard-progress-section__column {
-        padding: 0;
-    }
-  }
-}
-.ym-pc-dashboard-progress-section,
-.ym-pc-dashboard-activities-section {
+.ym-pc-dashboard-email-challenge-images {
   a {
-    &:link,
-    &:visited {
-      color: $event-primary-acc;
-    }
-
-    &:hover,
-    &:focus,
-    &:active {
-      color: $event-primary-acc;
-    }
-  }
-}
-
-.ym-pc-dashboard-progress-box {
-  padding: 20px;
-  margin: 0 0 15px;
-  
-  @media (min-width: $screen-md-min) {
-    margin: 0 0 30px;
-  }
-  
-  .ym-pc-dashboard-section-header {
-    h5, 
-    .h5 {
-      text-transform: none;
-    }
-  }
-}
-
-span.ym-activity-box-number {
-    padding: 10px;
-    background: $event-primary;
-    text-align: center;
-    border-radius: 50px;
-    width: 50px;
-    display: inline-block;
-    margin-right: 10px;
-    color: #fff;
-}
-
-.ym-pc-dashboard-captain-page-type {
-  a,
-  button {
-    &, 
-    &:link, 
-    &:visited {
-      background-color: rgb(40, 79, 73);
-      background-color: rgba(40, 79, 73, 0.2);
-      color: rgb(255, 255, 255);
-      color: rgba(40, 79, 73, 1);
-    }
-  }
-  a,
-  button {
-    &:hover,
-    &:focus,
-    &:active {
-      background-color: $event-secondary;
-      color: $event-secondary-medium;
-    }
-  }
-  &.active {
-    a, 
-    button {
-      &,
-      &:hover,
-      &:link,
-      &:visited {
-        background-color: $event-secondary;
-        color: $event-secondary-medium;
-      }
-    }
-  }
-}
-
-.ym-pc-dashboard-coordinator-page-type {
-  a,
-  button {
-    &, 
-    &:link, 
-    &:visited {
-      background-color: $event-primary;
-      color: #ffffff;
-    }
-  }
-  a,
-  button {
-    &:hover,
-    &:focus,
-    &:active {
-      background-color: $event-secondary;
-      color: #ffffff;
-    }
-  }
-  &.active {
-    a, 
-    button {
-      &,
-      &:hover,
-      &:link,
-      &:visited {
-        background-color: $event-secondary;
-        color: #ffffff;
-      }
-    }
-  }
-}
-
-.ym-pc-dashboard-progress-type {
-  a, 
-  button {
     &,
     &:link,
-    &:visited {
-      color: $event-secondary-heading;
-    }
-  }
-
-  a,
-  button {
+    &:visited,
     &:hover,
     &:focus,
     &:active {
-      background-color: $event-secondary;
-      color: $event-secondary-medium;
-    }
-  }
-  &.active {
-    a, 
-    button {
-      &,
-      &:hover,
-      &:link,
-      &:visited {
-        background-color: $event-secondary;
-        color: $event-secondary-medium;
-      }
+      margin:0;
     }
   }
 }
+.ym-pc-dashboard-activities-section {
+  margin: 0;
+}
 
-.ym-pc-dashboard-badges-box {
-  padding: 20px;
-  
+.ym-coordinator-message-monster {
+  display: block;
+  margin: 0 auto;
+}
+
+.ym-pc-dashboard-activities-section {
+  margin: 0 0 24px;
+}
+
+.ym-pc-dashboard-coordinators-message-section {
+  background-color: #39bb67;
+  color: #000000;
   .ym-pc-dashboard-section-header {
-    position: relative;
-    
-    h5, 
-    .h5 {
-      text-transform: none;
-      margin: 0 0 18px !important;
-      
-      @media (min-width: $screen-lg-min) {
-        margin: 0 0 12px !important;
-      }
-    }
+    font-size: 24px;
+    font-weight:bold;
+    color: #000000;
   }
-  
-  .btn, 
-  a.btn {
-    &, 
-    &:link, 
-    &:visited, 
-    &:hover, 
-    &:focus, 
-    &:active {
-      margin: 0 0 4px;
-      
-      @media (min-width: $screen-lg-min) {
-        position: absolute;
-        right: 0;
-        top: 0;
-        padding: 7px 10px;
-        margin: 0;
-      }
-    }
+  .ym-pc-dashboard-section-text {
+    font-size:16px;
+    color:#000000;
   }
-  
-  .ym-pc-dashboard-badges-icons {
-    width: 212px;
-    margin: 0 auto;
-    
-    @media (min-width: 414px) {
-      width: 318px;
-    }
-    
-    @media (min-width: $screen-md-min) {
-      width: 414px;
-    }
-    
-    @media (min-width: $screen-lg-min) {
-      width: 450px;
-    }
-  }
-  
-  .ym-pc-dashboard-badges-icon {
-    float: left;
-    text-align: center;
-    width: 76px;
-    margin: 20px 15px 0;
-    
-    @media (min-width: $screen-md-min) {
-      width: 98px;
-      margin: 20px 20px 0;
-    }
-    
-    @media (min-width: $screen-lg-min) {
-      width: 110px;
-    }
-    
-    &:nth-child(3), 
-    &:nth-child(5), 
-    &:nth-child(7), 
-    &:nth-child(9) {
-      @media (max-width: 413px) {
-        clear: both;
+}
+
+.entry-container{
+	max-width:482px;
+	min-height:406px;
+	position:relative;
+}
+.entry-division{
+	background: #a0ade1;
+	background: -webkit-linear-gradient(left, #a0ade1 0%, #6362b7 100%);
+	background: -o-linear-gradient(left, #a0ade1 0%, #6362b7 100%);
+	background: linear-gradient(to right, #a0ade1 0%, #6362b7 100%); 
+}
+.green{border:10px solid #acde47;}
+.pink{border:10px solid #ff0096;}
+.entry-division .title-banner{
+	background-color:rgba(0,0,0,0.37);
+	font-size:24px;
+	line-height:28px;
+	padding:10px 20px;
+	color:#fff;
+	font-family: $headline-font;
+	font-weight:bold;
+}
+.entry-division .title-banner-link {
+	color:#ffffff;
+	text-decoration:none;
+}
+.entry-division .text-area{
+	color:#fff;
+	padding:10px 20px;
+	font-size:14px;
+	line-height:20px;
+	font-family: 'Open Sans', sans-serif;
+	font-weight:bold;
+	font-style: italic;
+	width:60%;
+}
+.ym-activity-box--challenge {
+   padding: 25px 0px;
+
+   .h5 {
+      margin: 0 20px 20px;
+   }
+   a {
+      color: $event-primary-acc;
+   }
+
+   .challenge-days {
+      position:relative;
+      flex: 0 0 50%;
+      overflow:hidden;
+      .challenge-day-streak {
+	position:relative;
+	z-index: 1;
+	margin-bottom:20px;
+        &::before {
+  	  background: $event-primary;
+  	  content: " ";
+	  height: 100%;
+	  width: 101%;
+	  display: block;
+	  position: absolute;
+	  margin-top: 9px;
+	  left: -2px;
+        }
+	   }
+      button.btn {
+	margin: 20px 0 60px 0;
+	width: 100%;
+	font-size: 20px;
       }
-    }
-    
-    &:nth-child(4), 
-    &:nth-child(7) {
-      @media (min-width: 414px) {
-        clear: both;
+      .challenge-day-add-day {
+	position:relative;
+     }
+     .challenge-day-add-icon {
+	position: relative;
+        top: 5px;
+        left: 5%;
+     }
+   }
+   .challenge-day-count {
+      font-size: 60px;
+      background: #fff;
+      position: relative;
+      width: 105px;
+      border-radius: 55px;
+      text-align: center;
+      margin-right: 30px;
+      margin-top: 22px;
+      line-height: 80px;
+      vertical-align: middle;
+      padding: 2px 10px 15px 10px;
+      color: #ed1c24;
+      border: 2px solid #293B90;
+      font-weight: bold;
+      margin-bottom: 7px;
+	   
+      @media only screen and (max-width: $screen-md-max) {
+        width: 80px;
+        line-height: 56px;
+        padding: 8px 10px 12px 10px;
       }
-    }
-    
-    img {
+   }
+   .text_with_1px_border {
+      text-shadow: 
+         -2px -2px 0px #293B90,
+         0px -2px 0px #293B90,
+         2px -2px 0px #293B90,
+         -2px  0px 0px #293B90,
+         2px  0px 0px #293B90,
+         -2px  2px 0px #293B90,
+         0px  2px 0px #293B90,
+         2px  2px 0px #293B90;
+   }
+   .challenge-day-title {
+      text-transform: uppercase;
+      font-size: 44px;
+      @media only screen and (max-width: $screen-md-max) {
+	      font-size:1.5rem;
+      }
+      color: #fff;
+      margin-top: 25px;
+      line-height:46px;
+   }
+   .challenge-day-challenge {
+      font-size:33px;
+      color:#ffffff;
+      @media only screen and (max-width: $screen-md-max) {
+	      font-size:1.5rem;
+      }
+   }
+   .ym_my_challenge__description {
+      color: $event-secondary;
+      font-size: 26px;
+      margin-top:0px;
+   }
+   div.challenge-selection {
       display: block;
-      width: 100%;
-    }
-  }
-}
+      text-decoration: none;
+      font-weight: bold;
+      color: #293b90;
+      font-size: 24px;
+      line-height: 28px;
+      margin-bottom:20px;
+      cursor: pointer;
 
-.ym-activity-box {
-  color: $event-grey;
-  h5, 
-  .h5 {
-    text-transform: none;
-    color: $title-color;
-
-    .ym-activity-box-number {
-       background: $event-primary;
-    }
-  }
-}
-
-.ym-spread-the-word-box {
-  background: $event-secondary-medium;
-  border: 5px solid $event-secondary;
-  border-radius: 20px;
-  box-shadow: 0 5px 0 0 rgb(50, 50, 50);
-  box-shadow: 0 5px 0 0 rgba(50, 50, 50, 1);
-  padding: 25px 20px;
-  margin: 0 0 20px;
-  
-  @media (min-width: $screen-sm-min) {
-    margin: 0;
-  }
-  
-}
-
-.ym-pc-dashboard-spread-section {
-  padding: 0;	
-	
-  @media (min-width: $screen-sm-min) {
-    padding: 0;
-  }  
-  .ym-pc-dashboard-section-header {
-    h3, 
-    .h3 {
-      margin: 0 0 22px;
-    }
-  }
-  
-  .ym-pc-dashboard-spread-options {
-    .ym-pc-dashboard-section-header {
-      h5, 
-      .h5 {
-        text-transform: none;
+      &.selected {
+	font-weight:bold;
+      }
+      &.disabled {
+        cursor: not-allowed;
+        filter: alpha(opacity=65);
+        -webkit-box-shadow: none;
+        box-shadow: none;
+        opacity: .65;
+      }
+      img {
+         margin:0 auto 5px;
       }
     }
-  }
+}
+.ym-activity-box.ym-activity-box--virtual {
+   a.entry-button{
+	font-size:18px;
+	line-height:28px;
+	padding:5px 20px;
+	color:#fff;
+	font-family: $headline-font;
+	background:#ff0096;
+	border-radius:5px;
+	text-decoration: none;
+	font-style:normal;
+	font-weight:normal;
+	letter-spacing:0.05em
+   }
+   .hv-image {
+	margin-left:-20px;
+	margin-right:-20px;
+   }
+}
+/*
+.ym-activity-box.ym-activity-box--virtual a.entry-button:hover{
+	background:#acde47;
+	color:#333;
+}
+*/
+
+.right-column-images{
+	display:block;
+	background: url(../image/bg_entry-right.png) no-repeat top;
+	position:absolute;
+ 	right: 20px;
+ 	top: 40px;
+	height: 406px;
+	width:208px;
+}
+.right-column-images img {
+    position: absolute;
+    bottom: 24px;
+    width: 45%;
+    right: 20px;
 }
 
-.ym-pc-dashboard-coordinator-progress-box {
-  .ym-pc-dashboard-section-header {
-    h5, 
-    .h5 {
-      text-transform: none;
-    }
-  }
-}
-
-.ym-pc-dashboard-coordinator-students-box {
-  .ym-pc-dashboard-section-header {
-    h5, 
-    .h5 {
-      text-transform: none;
-    }
-  }
-}
-
-.ym-pc-dashboard-coordinator-resources-section {
-  .ym-pc-dashboard-section-header {
-    h3, 
-    .h3 {
-      margin: 0 0 32px;
-    }
-  }
-  
-  .ym-pc-dashboard-coordinator-resources-options {
-    .ym-pc-dashboard-section-header {
-      h5, 
-      .h5 {
-        text-transform: none;
-	color: $event-grey;
-      }
-    }
-  }
-}
-
-.ym-activity-box.ym-activity-box--challenge {
-  .ym_my_challenge__update {
-	  margin-bottom: 20px;
-  }
-}
-
-.ym-pc-dashboard-spread-section {
-  .ym-pc-dashboard-section-header {
-    h2,.h3 {
-	    color: $event-secondary-heading;
-    }
-  }
-}
-
-.schoolChallenge, 
-.schoolCreateMessage {
-    color: $event-grey;
-}
-
-
-/* student dashboard layout */
-.dashboard-cols {
-  grid-template-columns: 60% 40%;
-  grid-template-areas:
-    "one two"
-    "three two"
-    "three four";
-  @media (max-width:767px) {
-    grid-template-columns: 100%;
-    grid-template-areas: "one" "two" "four" "three";
-  }
-}
-.dashboard-col1 { grid-area: one; }
-.dashboard-col2 { grid-area: two;  }
-.dashboard-col3 { grid-area: three; grid-row-end: none; }
-.dashboard-col4 { grid-area: four; }
-
-.ahc-challenge .btn, 
-.ahc-challenge .form-control, 
-.ahc-challenge .form-select {
-	background-color: #fff;
-	border-color: #fff;
-	color: $event-primary;
-	&:hover {
-		background-color: #fff;
-		border-color: #fff;
-		color: $event-secondary;
-	}
-}
-
-.ahc-btn-add-to-streak {
-  &::before {
-    aspect-ratio: 1/1;
-    background: $add-to-streak-icon no-repeat center;
-    background-size: 1.25rem;
-    content: "";
-    margin-right: 0.5rem;
-    transition: all .2s ease-in-out;
-    min-width: 1.75rem;
-    display: inline-flex;
-    vertical-align: middle;
-  }
-
-  &.active {
-    &::before {
-      background-image: $add-to-streak-active-icon;
-      background-size: 1.5rem;
-    }
-  }
-}
-
-.ahc-challenge-count {
-  align-items: center;
-  aspect-ratio: 1/1;
-  background: $challenge-count-bg no-repeat center;
-  background-size: cover;
-  display: inline-flex;
-  filter: drop-shadow(1px 1px 3px rgba(193, 14, 33, 0.5));
-  font-size: clamp(3rem, 7vw, 4rem);
-  font-weight: inherit;
-  justify-content: center;
-  padding-bottom: 0.25em;
-  padding-inline: 0.7em;
-
-  @media (max-width:767px) {
-    font-size: clamp(3rem, 4vw, 3.5rem);
-  }
-}
-
-.ahc-btn-copy::before {
+.khc-btn-copy::before {
     content: $copy-icon;
     padding-right: 10px;
 }
 
-.ahc-social-share {
+.khc-social-share {
   .grid {
     grid-auto-rows: 1fr;
   }
@@ -591,32 +335,27 @@ span.ym-activity-box-number {
   }
 }
 
-.ahc-share-facebook,
-.ahc-connect-facebook {
+.khc-share-facebook,
+.khc-connect-facebook {
   &::before {
     content: $facebook-icon;
     padding-right: 10px;
   }
 }
 
-.ahc-share-facebook {
+.khc-share-facebook {
   @include button-variant($white, $facebook-blue, $facebook-blue);
 }
 
-.ahc-connect-facebook {
+.khc-connect-facebook {
   @include button-variant($white, $facebook-blue-dark, $facebook-blue-dark);
 }
 
-.ahc-share-twitter {
+.khc-share-twitter {
   @include button-variant($white, $twitter-blue, $twitter-blue, $white, #1989ce, $white);
 
   &::before {
     content: $twitter-icon;
     padding-right: 10px;
   }
-}
-
-.ahc-donor-roll .ahc-donors  {
-   max-height: 20vh;
-   overflow: scroll;
 }

@@ -48,9 +48,4 @@ angular.module 'trPcApp'
         NgPcLuminateRESTService.teamraiserRequest dataString, true, true
           .then (response) ->
             response
-      
-      getCaptainsMessage: ->
-        NgPcLuminateRESTService.teamraiserRequest 'method=getCaptainsMessage', true, true
-          .then (response) ->
-            response
   ]

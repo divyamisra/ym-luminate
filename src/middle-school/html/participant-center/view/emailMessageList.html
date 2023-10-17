@@ -1,7 +1,7 @@
 <div cg-busy="emailPromises">
   <div class="row">
     <div class="col-sm-4 col-md-3">
-      <div class="visible-xs">
+      <div class="d-sm-block d-md-none">
         <div class="btn-group ng-pc-nav-btn-group" uib-dropdown>
           <button type="button" class="btn btn-secondary form-control" uib-dropdown-toggle>
             <strong>{{messageTypeName}}</strong> <span class="caret"></span>
@@ -71,7 +71,7 @@
             <li ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
               <a ng-href="{{baseUrl}}#/email/contacts/email_custom_rpt_show_company_coordinator_new_participants/list">
                 <span class="badge"><span class="fa fa-star"></span></span>
-                New to American Heart Challenge
+                New to Kids Heart Challenge
               </a>
             </li>
             <li ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
@@ -101,7 +101,7 @@
           </ul>
         </div>
       </div>
-      <div class="hidden-xs">
+      <div class="d-sm-none d-md-block">
         <a class="btn btn-secondary form-control" ng-href="{{baseUrl}}#/email/compose">
           <strong>Compose</strong>
         </a>
@@ -143,13 +143,13 @@
             <span class="badge">{{contactCounts.email_rpt_show_nondonors}}</span>
             Non-Donors
           </a>
-          <a class="list-group-item" ng-class="{'active': filter == 'email_rpt_show_company_coordinator_participants'}" ng-href="{{baseUrl}}#/email/contacts/email_rpt_show_company_coordinator_participants/list" ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
+          <a class="list-group-item" ng-href="{{baseUrl}}#/email/contacts/email_rpt_show_company_coordinator_participants/list" ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
             <span class="badge">{{contactCounts.email_rpt_show_company_coordinator_participants}}</span>
             School Participants
           </a>
           <a class="list-group-item" ng-href="{{baseUrl}}#/email/contacts/email_custom_rpt_show_company_coordinator_new_participants/list" ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
             <span class="badge"><span class="fa fa-star"></span></span>
-            New to American Heart Challenge
+            New to Kids Heart Challenge
           </a>
           <a class="list-group-item" ng-href="{{baseUrl}}#/email/contacts/email_custom_rpt_show_company_coordinator_weekly_participants/list" ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
             <span class="badge"><span class="fa fa-star"></span></span>

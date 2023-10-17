@@ -20,9 +20,9 @@
       </label>
       <input type="text" class="form-control" id="addContactLastName" ng-model="newContact.last_name" aria-label="Last">
     </div>
-    <div class="form-group" ng-class="{'has-error': addNewContactForm.$submitted && addNewContactForm.email.$invalid}">
+    <div class="form-group required" ng-class="{'has-error': addNewContactForm.$submitted && addNewContactForm.email.$invalid}">
       <label for="addContactEmail">
-        Email
+        Email <span class="control-label"></span>
       </label>
       <input type="email" class="form-control" name="email" id="addContactEmail" ng-model="newContact.email" aria-label="Email" required>
     </div>
@@ -30,7 +30,7 @@
   <div class="modal-footer">
     <div class="clearfix">
       <div class="pull-left">
-        <button type="button" class="btn btn-toggle" ng-click="cancelAddContact()">
+        <button type="button" class="btn btn-primary btn-white me-2" ng-click="cancelAddContact()">
           Cancel
         </button>
       </div>

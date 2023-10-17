@@ -1,3 +1,31 @@
+:focus,
+svg *:focus {
+    border-color: blue !important;
+    box-shadow: 0 0 0 .25rem rgba(13,110,253,1);
+    border-width: 2px !important;
+}
+
+.hidden {
+   display: none;
+}
+
+.app-26,
+.app-27 {
+  main {
+    > .container {
+      @media (max-width: $screen-xs-max) {
+        margin-top: 0px;
+      }
+    }
+  }
+}
+
+.h1, 
+.h1-heading, 
+h1 {
+    line-height:1.3em;
+}
+
 .border-white-left {
 	border-left:1px solid #fff;
 }
@@ -14,90 +42,10 @@
 	border-right:1px solid $event-secondary-heading;
 }
 .text-red {
-	color: $event-secondary-heading;
+	color: $event-secondary-heading !important;
 }
-.bg-row {
-	background-color:#eaeaea;
-}
-
-.hidden {
-   display: none;
-}
-
-.cursor-pointer{
-  cursor: pointer;
-}
-
-main {
-  > .container {
-    margin: 0px auto 0;
-    
-    @media (max-width: $screen-xs-max) {
-      margin-top: -100px;
-    }
-  }
-}
-
-.app-9 {
-  main {
-    > .container {
-      @media (max-width: $screen-xs-max) {
-        margin-top: 0px;
-      }
-    }
-  }
-}
-:focus {
-    border-color: blue !important;
-    outline: auto 2px Highlight;
-    outline: auto 2px -webkit-focus-ring-color;
-    box-shadow: 0 0 0 .25rem rgba(13,110,253,1);
-    border-width: 2px !important;
-}
-
-.ratio-9x16 {
-    --bs-aspect-ratio: 124.25%;
-}
-@media (min-width:992px) and (max-width:1023px) {
-  .ratio-9x16 {
-    --bs-aspect-ratio: 144.25%;
-  }
-}
-@media (min-width: 768px) and (max-width:991px) {
-  .ratio-9x16 {
-    --bs-aspect-ratio: 148.25%;
-  }
-}
-@media (max-width: 767px) {
-  .ratio-9x16 {
-    --bs-aspect-ratio: 126.25%;
-  }
-}
-
-.app-27 {
-  main {
-    > .container {
-      @media (max-width: $screen-xs-max) {
-        margin-top: 0px;
-      }
-    }
-  }
-}
-
-.personal-cols {
-  grid-template-columns: 50% 50%;
-  grid-template-areas:
-    "two one"
-    "two three"
-    "two four";
-}
-.personal-col1 { grid-area: one; }
-.personal-col2 { grid-area: two;  }
-.personal-col3 { grid-area: three; }
-
-@media (min-width:768px) {
-  .student-donate {max-width:50%;}
-  .ym-story .personalPageContent {max-height: 470px; overflow: scroll;}
+.text-black {
+	color: #000 !important;
 }
 
 /* generic styles */
@@ -136,3 +84,4 @@ main {
 		color: #ffffff;
 	}
 }
+

@@ -16,6 +16,19 @@ angular.module 'ahaLuminateApp'
             response
           , (response) ->
             response
+
+      getLeaderboards: (requestData) ->
+        if $rootScope.tablePrefix is 'heartdev'
+          url = 'https://ahc.staging.ootqa.org/api/points/leaders/school/' + requestData + '/teachers/all?limit=5'
+        else if $rootScope.tablePrefix is 'heartnew'
+          url = 'https://ahc.staging.ootqa.org/api/points/leaders/school/' + requestData + '/teachers/all?limit=5'
+        else
+          url = 'https://middleschool.heart.org/api/points/leaders/school/' + requestData + '/teachers/all?limit=5'
+        $http.jsonp($sce.trustAsResourceUrl(url), jsonpCallbackParam: 'callback')
+          .then (response) ->
+            response
+          , (response) ->
+            response
             
       getBadges: (requestData) ->
         if $rootScope.tablePrefix is 'heartdev'
@@ -123,7 +136,29 @@ angular.module 'ahaLuminateApp'
             response
           , (response) ->
             response
-                        
+      ###
+      getBMLeaderboard: (requestData) ->
+        motion_username = 'kidsheartapi'
+        motion_password = 'mYhtYeBWCrA7cTST'
+        if $rootScope.tablePrefix == 'heartdev'
+          url = 'https://load.boundlessfundraising.com/mobiles/ahakhc/getMotionKhcCompanyRoster?' + requestData + '&list_size=5'
+        else
+          url = 'https://loadprod.boundlessfundraising.com/mobiles/ahakhc/getMotionKhcCompanyRoster?' + requestData + '&list_size=5'
+        jQuery.ajax
+          url: $sce.trustAsResourceUrl(url)
+          async: true
+          type: 'GET'
+          dataType: 'json'
+          contentType: 'application/json'
+          beforeSend: (xhr) ->
+            xhr.setRequestHeader 'Authorization', 'Basic ' + btoa(motion_username + ':' + motion_password)
+            return
+          success: (response) ->
+            response
+          error: (err) ->
+            console.log 'getMotionKhcCompanyRoster err', err
+            response
+            
       defaultStandardGifts: ->
         [
           {
@@ -183,4 +218,5 @@ angular.module 'ahaLuminateApp'
             "msg_unearned":"Complete 8 Action Tiles in Finn's Mission"
           }
         ]
+      ###
   ]
