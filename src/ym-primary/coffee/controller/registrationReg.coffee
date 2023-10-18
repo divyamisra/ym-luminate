@@ -200,7 +200,7 @@ angular.module 'ahaLuminateControllers'
           participationTypes = response.getParticipationTypesResponse.participationType
           participationTypes = [participationTypes] if not angular.isArray participationTypes
           if localStorage.getItem("participationType") is not null
-            $scope.setParticipationType = localStorage.getItem('participationType')
+            participationType = localStorage.getItem('participationType')
           else
             participationType = participationTypes[0]
           waiverContent = participationType.waiver?.content
