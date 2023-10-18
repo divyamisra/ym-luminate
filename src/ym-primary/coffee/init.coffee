@@ -36,8 +36,7 @@ angular.module 'ahaLuminateApp'
     '$sce'
     'APP_INFO'
     'ZuriService'
-    'NgPcTeamraiserRegistrationService'
-    ($rootScope, $sce, APP_INFO, ZuriService, NgPcTeamraiserRegistrationService) ->
+    ($rootScope, $sce, APP_INFO, ZuriService) ->
       $rootScope.eventType = 'ym-primary'
       $rootScope.tablePrefix = luminateExtend.global.tablePrefix
       $rootScope.nonSecureDomain = luminateExtend.global.path.nonsecure.split('/site/')[0] + '/'
@@ -56,8 +55,6 @@ angular.module 'ahaLuminateApp'
       $rootScope.facebookFundraiserId = $dataRoot.data('facebook-fundraiser-id') if $dataRoot.data('facebook-fundraiser-id') isnt ''
       $rootScope.currentCSTDate = $dataRoot.data('current-date') if $dataRoot.data('current-date') isnt ''
       $rootScope.browserName = detectBrowserName()
-
-      NgPcTeamraiserRegistrationService.getRegistration()
 
       $rootScope.bodyCompanyId = $dataRoot.data('company-id') or ''
 
