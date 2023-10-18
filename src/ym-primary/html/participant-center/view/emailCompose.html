@@ -1,5 +1,6 @@
 <div cg-busy="emailPromises">
-  <div class="row">
+  <div class="row send-emails-section mb-5">
+    <h2 class="h5">Send Emails</h2>
     <div class="col-sm-4 col-md-3">
       <div class="d-block d-md-none">
         <div class="btn-group ng-pc-nav-btn-group" uib-dropdown>
@@ -563,6 +564,20 @@
       </form>
       <div class="classic-email-link my-3" ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
         <a ng-href="{{baseUrl}}#/email/classic">Click here to use HQ Email Tools</a>
+      </div>
+    </div>
+  </div>
+  <div class="send-ecard-section">
+    <h2 class="h5">Send e-Card</h2>
+    <div class="d-md-flex justify-content-between flex-wrap gap-5 flex-row-reverse">
+      <div class="col">
+        <img class="img-fluid mb-3" src="https://placehold.co/200x200">
+      </div>
+      <div class="col">
+        <p>Send a personalized life saving e-card and tell your friends and family you are making a difference in heart health today.</p>
+        <a class=" btn btn-primary" target="_blank" ng-href="https://tools.heart.org/aha_ym24{{(tablePrefix == 'heartdev') ? '_dev' : ''}}/ecard">
+          Send e-Card
+        </a>
       </div>
     </div>
   </div>
