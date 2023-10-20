@@ -6,11 +6,12 @@ angular.module 'ahaLuminateControllers'
     '$uibModal'
     '$timeout'
     'APP_INFO'
+    'LuminateRESTService'
     'TeamraiserCompanyService'
     'TeamraiserRegistrationService'
     'ZuriService'
     'NuclavisService'
-    ($rootScope, $scope, $filter, $uibModal, $timeout, APP_INFO, TeamraiserCompanyService, TeamraiserRegistrationService, ZuriService, NuclavisService) ->
+    ($rootScope, $scope, $filter, $uibModal, $timeout, APP_INFO, LuminateRESTService, TeamraiserCompanyService, TeamraiserRegistrationService, ZuriService, NuclavisService) ->
       $rootScope.companyName = ''
       $scope.teachers = []
       $scope.teacherList = []
@@ -54,7 +55,15 @@ angular.module 'ahaLuminateControllers'
               fieldErrorText = fieldErrorText.replace ': - Please enter a valid response.', ' - Please enter a valid response.'
           $scope.registrationInfoErrors.errors.push
             text: fieldErrorText
-      
+
+      LuminateRESTService.teamraiserRequest 'method=getRegistration', true, true
+        .then (response) ->
+          participantRegistration = response.data.getRegistrationResponse?.registration
+          if not participantRegistration
+            $rootScope.participantRegistration = -1
+          else
+            $rootScope.participantRegistration = participantRegistration
+            
       $scope.registrationHiddenFields = 
         fr_cstm_reg: 't'
       $scope.registrationQuestions = {}
@@ -190,7 +199,10 @@ angular.module 'ahaLuminateControllers'
         success: (response) ->
           participationTypes = response.getParticipationTypesResponse.participationType
           participationTypes = [participationTypes] if not angular.isArray participationTypes
-          participationType = participationTypes[0]
+          if localStorage.getItem("participationType") is not null
+            participationType = localStorage.getItem('participationType')
+          else
+            participationType = participationTypes[0]
           waiverContent = participationType.waiver?.content
           if waiverContent
             participationType.waiver.content = waiverContent.replace /(?:\r\n|\r|\n)/g, '<br />'
