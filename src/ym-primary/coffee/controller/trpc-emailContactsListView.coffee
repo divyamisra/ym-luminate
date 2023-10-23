@@ -103,6 +103,7 @@ angular.module 'trPcControllers'
         page: 1
         allContactsSelected: false
       angular.forEach contactFilters, (filter) ->
+        console.log('contact filters each function')
         if filter is $scope.filter
           $scope.getContacts = ->
             pageNumber = $scope.addressBookContacts.page - 1
