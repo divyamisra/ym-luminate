@@ -312,7 +312,6 @@ angular.module 'ahaLuminateControllers'
       jumpStartArray = JSON.parse("[" + jumpStartSchools + "]");
       
       findLabel = () ->
-        console.log('findlabel function')
         if angular.element('#questions_hdr_container').length > 0
           if jumpStartArray.indexOf(currentSchool) != -1
             console.log('current school is in array')
