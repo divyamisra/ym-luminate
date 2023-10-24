@@ -54,6 +54,7 @@ angular.module 'ahaLuminateApp'
       $rootScope.facebookFundraisersEnabled = $dataRoot.data('facebook-fundraisers-enabled') is 'TRUE'
       $rootScope.facebookFundraiserId = $dataRoot.data('facebook-fundraiser-id') if $dataRoot.data('facebook-fundraiser-id') isnt ''
       $rootScope.currentCSTDate = $dataRoot.data('current-date') if $dataRoot.data('current-date') isnt ''
+      $rootScope.partTypeId = $dataRoot.data('part-id') if $dataRoot.data('part-id') isnt ''
       $rootScope.browserName = detectBrowserName()
 
       $rootScope.bodyCompanyId = $dataRoot.data('company-id') or ''
