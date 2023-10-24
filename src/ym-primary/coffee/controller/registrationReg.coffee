@@ -200,7 +200,9 @@ angular.module 'ahaLuminateControllers'
           participationTypes = response.getParticipationTypesResponse.participationType
           participationTypes = [participationTypes] if not angular.isArray participationTypes
           if $rootScope.partTypeId != ''
-            participationType = $rootScope.partTypeId
+            angular.forEach participationTypes, (pType) ->
+              if pType.ID == $rootScope.partTypeId
+                participationType = pType
           else
             participationType = participationTypes[0]
           waiverContent = participationType.waiver?.content
