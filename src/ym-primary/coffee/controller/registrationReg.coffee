@@ -189,7 +189,7 @@ angular.module 'ahaLuminateControllers'
         $scope.registrationInfo[questionName] = questionValue
 
       $scope.participationType = {}
-      particpationType = ''
+      participationType = ''
       setParticipationType = (participationType) ->
         $scope.participationType = participationType
         if not $scope.$$phase
@@ -202,7 +202,7 @@ angular.module 'ahaLuminateControllers'
           participationTypes = [participationTypes] if not angular.isArray participationTypes
           if $rootScope.partTypeId != ''
             angular.forEach participationTypes, (pType) ->
-              if parseInt(pType.ID) == parseInt($rootScope.partTypeId)
+              if parseInt(pType.id) == parseInt($rootScope.partTypeId)
                 return participationType = pType
           else
             participationType = participationTypes[0]
