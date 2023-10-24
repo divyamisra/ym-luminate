@@ -5,7 +5,7 @@ angular.module 'ahaLuminateApp'
     '$sce'
     ($rootScope, $http, $sce) ->
       login: (requestData) ->
-        if $rootScope.tablePrefix is 'heartdev'
+        if $rootScope.tablePrefix is 'heartdev' or $rootScope.tablePrefix is 'heartnew'
           url = 'https://smt.nuclavis.com/client/login'
           loginParams = {"username": "aha_api","password": "AgP*09g8Iuqr","client": "ahc"}
         else
@@ -21,7 +21,7 @@ angular.module 'ahaLuminateApp'
         this.login()
         .then (response) ->
           $rootScope.NuclavisAPIToken = response
-          if $rootScope.tablePrefix is 'heartdev'
+          if $rootScope.tablePrefix is 'heartdev' or $rootScope.tablePrefix is 'heartnew'
             url = 'https://smt.nuclavis.com/ahc/student/missions/' + requestData
           else
             url = 'https://smt-api.heart.org/ahc/student/missions/' + requestData
@@ -40,7 +40,7 @@ angular.module 'ahaLuminateApp'
         this.login()
         .then (response) ->
           $rootScope.NuclavisAPIToken = response
-          if $rootScope.tablePrefix is 'heartdev'
+          if $rootScope.tablePrefix is 'heartdev' or $rootScope.tablePrefix is 'heartnew'
             url = 'https://smt.nuclavis.com/ahc/student/gifts/' + requestData
           else
             url = 'https://smt-api.heart.org/ahc/student/gifts/' + requestData
@@ -59,7 +59,7 @@ angular.module 'ahaLuminateApp'
         this.login()
         .then (response) ->
           $rootScope.NuclavisAPIToken = response
-          if $rootScope.tablePrefix is 'heartdev'
+          if $rootScope.tablePrefix is 'heartdev' or $rootScope.tablePrefix is 'heartnew'
             url = 'https://smt.nuclavis.com/ahc/student/teachers/' + requestData
           else
             url = 'https://smt-api.heart.org/ahc/student/teachers/' + requestData
@@ -78,7 +78,7 @@ angular.module 'ahaLuminateApp'
         this.login()
         .then (response) ->
           $rootScope.NuclavisAPIToken = response
-          if $rootScope.tablePrefix is 'heartdev'
+          if $rootScope.tablePrefix is 'heartdev' or $rootScope.tablePrefix is 'heartnew'
             url = 'https://smt.nuclavis.com/khc/student/missionCount/' + requestData
           else
             url = 'https://smt-api.heart.org/khc/student/missionCount/' + requestData
@@ -97,7 +97,7 @@ angular.module 'ahaLuminateApp'
         this.login()
         .then (response) ->
           $rootScope.NuclavisAPIToken = response
-          if $rootScope.tablePrefix is 'heartdev'
+          if $rootScope.tablePrefix is 'heartdev' or $rootScope.tablePrefix is 'heartnew'
             url = 'https://smt.nuclavis.com/ahc/student/actions/' + requestData
           else
             url = 'https://smt-api.heart.org/ahc/student/actions/' + requestData
