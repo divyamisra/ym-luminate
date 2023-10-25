@@ -3,8 +3,9 @@ angular.module 'ahaLuminateControllers'
     '$rootScope'
     '$scope'
     'TeamraiserCompanyService',
+    'TeamraiserRegistrationService'
     'ZuriService'
-    ($rootScope, $scope, TeamraiserCompanyService, ZuriService) ->
+    ($rootScope, $scope, TeamraiserCompanyService, TeamraiserRegistrationService, ZuriService) ->
       $rootScope.companyName = ''
       localStorage.companyName = ''
       localStorage.companyCity = ''
@@ -61,13 +62,23 @@ angular.module 'ahaLuminateControllers'
         false
 
       $scope.pTypeId = ''
-      angular.forEach participationTypes, ($participationType, $participationTypeId) ->
-        return $scope.pTypeId = $participationTypeId
+      $scope.participationTypes = {}
+      TeamraiserRegistrationService.getParticipationTypes
+        error: ->
+        success: (response) ->
+          participationTypes = response.getParticipationTypesResponse.participationType
+          if !angular.isArray(participationTypes)
+            participationTypes = [ participationTypes ]
+          angular.forEach participationTypes, (ptype, val) ->
+            $scope.participationTypes[ptype.id] = ptype.name
+          $scope.pTypeId = parseInt(participationTypes[0].id)
+          $scope.setParticipationType '', $scope.pTypeId
+
       $scope.participationType = {}
-      setParticipationType = (pTypeId) ->
-        $scope.participationType.id = pTypeId
-        $scope.participationType.name = participationTypes[pTypeId]
-        if not $scope.$$phase
+      $scope.setParticipationType = ($event, pTypeId) ->
+        $scope.participationType.id = parseInt(pTypeId)
+        $scope.participationType.name = $scope.participationTypes[pTypeId]
+        if !$scope.$$phase
           $scope.$apply()
           
       ZuriService.getSchoolDetail '&school_id=' + regCompanyId + '&EventId=' + $rootScope.frId,
