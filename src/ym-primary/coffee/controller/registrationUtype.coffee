@@ -60,7 +60,10 @@ angular.module 'ahaLuminateControllers'
         angular.element('.js--default-utype-send-username-form').submit()
         false
 
-        
+      $scope.pTypeId = ''
+      angular.forEach $participationTypes, ($participationTypeId, $participationType) ->
+        $scope.pTypeId = $participationTypeId
+        break
       $scope.participationType = {}
       setParticipationType = (pTypeId) ->
         $scope.participationType.id = pTypeId
