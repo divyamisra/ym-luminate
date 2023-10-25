@@ -61,9 +61,8 @@ angular.module 'ahaLuminateControllers'
         false
 
       $scope.pTypeId = ''
-      angular.forEach $participationTypes, ($participationTypeId, $participationType) ->
-        $scope.pTypeId = $participationTypeId
-        break
+      angular.forEach $participationTypes, ($participationType, $participationTypeId) ->
+        return $scope.pTypeId = $participationTypeId
       $scope.participationType = {}
       setParticipationType = (pTypeId) ->
         $scope.participationType.id = pTypeId
