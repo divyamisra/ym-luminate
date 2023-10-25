@@ -60,6 +60,12 @@ angular.module 'ahaLuminateControllers'
         angular.element('.js--default-utype-send-username-form').submit()
         false
 
+      $scope.selParticipationType = {}
+      setParticipationType = (participationType) ->
+        $scope.selParticipationType = participationType
+        if not $scope.$$phase
+          $scope.$apply()
+          
       ZuriService.getSchoolDetail '&school_id=' + regCompanyId + '&EventId=' + $rootScope.frId,
         failure: (response) ->
         error: (response) ->
