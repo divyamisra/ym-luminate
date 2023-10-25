@@ -59,13 +59,6 @@ angular.module 'ahaLuminateControllers'
       $scope.submitForgotLogin = ->
         angular.element('.js--default-utype-send-username-form').submit()
         false
-
-      $scope.participationType = {}
-      setParticipationType = (pTypeId) ->
-        $scope.participationType.id = pTypeId
-        $scope.participationType.name = participationTypes[pTypeId]
-        if not $scope.$$phase
-          $scope.$apply()
           
       ZuriService.getSchoolDetail '&school_id=' + regCompanyId + '&EventId=' + $rootScope.frId,
         failure: (response) ->
