@@ -66,7 +66,8 @@ angular.module 'ahaLuminateControllers'
 
       $scope.setParticipationType = (event, id) ->
         $scope.participationOptions.fr_part_radio = id
-        #localStorage.setItem('participationType', id)
+      if $rootScope.partTypeId != ''
+        $scope.participationOptions.fr_part_radio = $rootScope.partTypeId
 
       $participationTypes = angular.element '.js--registration-ptype-part-types .part-type-container'
       angular.forEach $participationTypes, ($participationType) ->
