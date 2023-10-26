@@ -281,8 +281,9 @@ angular.module 'ahaLuminateApp'
           delete $scope.schoolList.schools
           $scope.schoolList.searchPending = true
           nameFilter = $scope.schoolList.nameFilter or '%'
-          nameFilter = nameFilter.toLowerCase().replace(' elementary', '')
-          nameFilter = nameFilter.toLowerCase().replace(' school', '')
+          nameFilter = nameFilter.toLowerCase()
+          nameFilter = nameFilter.replace(/\b elementary$/ig, '')
+          nameFilter = nameFilter.replace(/\b school$/ig, '')
           nameFilter = nameFilter.replace("'","\\'")
           companies = []
           #isOverride = findOverrides(nameFilter)
