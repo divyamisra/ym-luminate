@@ -199,10 +199,7 @@ angular.module 'ahaLuminateControllers'
         success: (response) ->
           participationTypes = response.getParticipationTypesResponse.participationType
           participationTypes = [participationTypes] if not angular.isArray participationTypes
-          if localStorage.getItem("participationType") is not null
-            participationType = localStorage.getItem('participationType')
-          else
-            participationType = participationTypes[0]
+          participationType = participationTypes[0]
           waiverContent = participationType.waiver?.content
           if waiverContent
             participationType.waiver.content = waiverContent.replace /(?:\r\n|\r|\n)/g, '<br />'
