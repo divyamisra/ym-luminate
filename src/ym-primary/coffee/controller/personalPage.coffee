@@ -134,6 +134,7 @@ angular.module 'ahaLuminateControllers'
           $scope.challengeName = response.data.challenges.text
           $scope.challengeCompleted = response.data.challenges.completed
           $rootScope.survivor = response.data.show_banner
+          ###
           ZuriService.getStudentDetail '&cons_id=' + $scope.participantId,
             failure: (response) ->
             error: (response) ->
@@ -141,7 +142,7 @@ angular.module 'ahaLuminateControllers'
               if response.data.company[0] != "" and response.data.company[0] != null
                 if response.data.company[0].PriorYearEventId > 0
                   $scope.returningStudent = true
-
+          ###
       $scope.personalInfo = {}
      
       $scope.personalInfo.avatar = ''
