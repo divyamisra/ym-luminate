@@ -324,7 +324,10 @@ angular.module 'ahaLuminateControllers'
           else
             console.log('current school is NOT in array')
             angular.element('label.control-label span:contains("Shirt")').closest('.row').find('select option[value="Jump Start School"]').remove()
-
+          #preselect last entry
+          numGrades = angular.element('select.ym_khc_grade option').length
+          angular.element('select.ym_khc_grade').prop('selectedIndex', numGrades-1)
+            
         else
           window.setTimeout(findLabel,50);
 
