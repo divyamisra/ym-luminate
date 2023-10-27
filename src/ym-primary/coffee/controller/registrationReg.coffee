@@ -326,7 +326,7 @@ angular.module 'ahaLuminateControllers'
             angular.element('label.control-label span:contains("Shirt")').closest('.row').find('select option[value="Jump Start School"]').remove()
           #preselect last entry
           numGrades = angular.element('select.ym_khc_grade option').length
-          angular.element('select.ym_khc_grade').prop('selectedIndex', numGrades-1)
+          angular.element('select.ym_khc_grade').prop('selectedIndex', numGrades-1).change()
             
         else
           window.setTimeout(findLabel,50);
