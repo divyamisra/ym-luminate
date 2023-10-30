@@ -33,7 +33,7 @@
       <a role="listitem" ng-href="{{baseUrl}}#/teacher-resources" class="ng-pc-nav-item nav-link ng-pc-nav-item--resource" ng-class="{'active': location == '/teacher-resources'}" ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
         <span><strong>Teacher Resources</strong></span>
       </a>
-      <a role="listitem" ng-href="{{baseUrl}}#/gifts" class="ng-pc-nav-item nav-link ng-pc-nav-item--gift" ng-class="{'active': location == '/gifts'}" ng-if="participantRegistration.companyInformation.isCompanyCoordinator != 'true' && showGiftsTab" ng-cloak>
+      <a role="listitem" ng-href="{{baseUrl}}#/gifts" class="ng-pc-nav-item nav-link ng-pc-nav-item--gift" ng-class="{'active': location == '/gifts'}" ng-if="participantRegistration.companyInformation.isCompanyCoordinator != 'true' && showGiftsTab && participationTypes[partTypeId].indexOf('Employee') == -1" ng-cloak>
         <span><strong>Thank-You Gifts</strong></span>
       </a>
       <a role="listitem" class="ng-pc-nav-item nav-link ng-pc-nav-item--order-gifts" ng-href="https://khc.staging.ootqa.org/coordinator/login/{{frId}}/{{authToken}}/{{sessionCookie}}" target="_blank" ng-if="tablePrefix == 'heartdev' && participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-show="hasOOTDashboard">
