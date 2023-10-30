@@ -350,20 +350,7 @@ angular.module 'ahaLuminateControllers'
         angular.element('.js--default-reg-form').submit()
       
       $scope.submitReg = ->
-        if $scope.acceptWaiver isnt 'yes' and not $scope.ng_go_back
-          window.scrollTo 0, 0
-          $scope.registrationInfoErrors.errors = [
-            {
-              text: 'You must agree to the waiver.'
-            }
-          ]
-        else
-          #if not $scope.familyChallengePopup
-          #  $scope.familyChallengePopup = true
-          #  $scope.showFamilyChallengePopup = $uibModal.open
-          #    scope: $scope
-          #    templateUrl: APP_INFO.rootPath + 'dist/ym-primary/html/modal/showFamilyChallengePopup.html'
-          #else 
+        if angular.element('form[name=regForm]').valid() and not $scope.ng_go_back
           angular.element('.js--default-reg-form').submit()
         false
 
