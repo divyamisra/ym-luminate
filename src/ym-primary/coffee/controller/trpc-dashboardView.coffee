@@ -932,9 +932,9 @@ angular.module 'trPcControllers'
           prizes = response.data.missions
           final_url = ''
           angular.forEach prizes, (prize) ->
-	    #if student then skip badge 10 
-	    #if employee then skip badge 8
-	    if ($scope.participationTypes[partTypeId].indexOf('Employee') > 0 and prize.mission_id != 8) or ($scope.participationTypes[partTypeId].indexOf('Teacher') > 0 and prize.mission_id != 10)
+            #if student then skip badge 10 
+            #if employee then skip badge 8
+            if ($scope.participationTypes[partTypeId].indexOf('Employee') > 0 and prize.mission_id != 8) or ($scope.participationTypes[partTypeId].indexOf('Teacher') > 0 and prize.mission_id != 9)
               #if prize.hq_action_type == 'Donate' 
               #  final_url = 'Donation2?df_id=' + $scope.eventInfo.donationFormId + "&FR_ID=" + $scope.frId + "&PROXY_TYPE=20&PROXY_ID=" + $scope.consId
               if prize.hq_action_type == 'Personal' or prize.hq_action_type == 'Donate'
