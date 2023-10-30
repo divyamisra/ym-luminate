@@ -932,33 +932,60 @@ angular.module 'trPcControllers'
           prizes = response.data.missions
           final_url = ''
           angular.forEach prizes, (prize) ->
-            #if prize.hq_action_type == 'Donate' 
-            #  final_url = 'Donation2?df_id=' + $scope.eventInfo.donationFormId + "&FR_ID=" + $scope.frId + "&PROXY_TYPE=20&PROXY_ID=" + $scope.consId
-            if prize.hq_action_type == 'Personal' or prize.hq_action_type == 'Donate'
-              final_url = 'TR?fr_id=' + $scope.frId + '&pg=personal&px=' + $scope.consId
-            if prize.hq_action_type == 'Tab' 
-              final_url = $scope.baseUrl + prize.hq_action_url
-            if prize.hq_action_type == 'URL' 
-              final_url = prize.hq_action_url
-            if prize.hq_action_type == 'Quiz' 
-              if $scope.tablePrefix == 'heartdev'
-                final_url = 'https://tools.heart.org/aha_ym24_dev/quiz/show/' + prize.hq_action_url + '?event_id=' + $scope.frId + '&user_id=' + $scope.consId + '&name=' + $scope.consNameFirst
-              if $scope.tablePrefix == 'heartnew'
-                final_url = 'https://tools.heart.org/aha_ym24_testing/quiz/show/' + prize.hq_action_url + '?event_id=' + $scope.frId + '&user_id=' + $scope.consId + '&name=' + $scope.consNameFirst
-              if $scope.tablePrefix == 'heart'
-                final_url = 'https://tools.heart.org/aha_ym24/quiz/show/' + prize.hq_action_url + '?event_id=' + $scope.frId + '&user_id=' + $scope.consId + '&name=' + $scope.consNameFirst
-            if prize.hq_action_type == 'Modal' and prize.hq_action_url == 'app' 
-              final_url = 'showMobileApp()'
-            if prize.earned != 0
+	    #if student then skip badge 10 
+	    #if employee then skip badge 8
+	    if ($scope.participationTypes[partTypeId].indexOf('Employee') > 0 and prize.mission_id != 8) or ($scope.participationTypes[partTypeId].indexOf('Teacher') > 0 and prize.mission_id != 10)
+              #if prize.hq_action_type == 'Donate' 
+              #  final_url = 'Donation2?df_id=' + $scope.eventInfo.donationFormId + "&FR_ID=" + $scope.frId + "&PROXY_TYPE=20&PROXY_ID=" + $scope.consId
+              if prize.hq_action_type == 'Personal' or prize.hq_action_type == 'Donate'
+                final_url = 'TR?fr_id=' + $scope.frId + '&pg=personal&px=' + $scope.consId
+              if prize.hq_action_type == 'Tab' 
+                final_url = $scope.baseUrl + prize.hq_action_url
+              if prize.hq_action_type == 'URL' 
+                final_url = prize.hq_action_url
+              if prize.hq_action_type == 'Quiz' 
+                if $scope.tablePrefix == 'heartdev'
+                  final_url = 'https://tools.heart.org/aha_ym24_dev/quiz/show/' + prize.hq_action_url + '?event_id=' + $scope.frId + '&user_id=' + $scope.consId + '&name=' + $scope.consNameFirst
+                if $scope.tablePrefix == 'heartnew'
+                  final_url = 'https://tools.heart.org/aha_ym24_testing/quiz/show/' + prize.hq_action_url + '?event_id=' + $scope.frId + '&user_id=' + $scope.consId + '&name=' + $scope.consNameFirst
+                if $scope.tablePrefix == 'heart'
+                  final_url = 'https://tools.heart.org/aha_ym24/quiz/show/' + prize.hq_action_url + '?event_id=' + $scope.frId + '&user_id=' + $scope.consId + '&name=' + $scope.consNameFirst
+              if prize.hq_action_type == 'Modal' and prize.hq_action_url == 'app' 
+                final_url = 'showMobileApp()'
+              if prize.earned != 0
+                earned_status = "Earned"
+              else 
+                earned_status = "Unearned"
+              aria_label = prize.hq_name + ": " + earned_status + " - " + prize.hq_hover
+              button_aria_label = prize.hq_button + ": " + earned_status + " - " + prize.hq_hover
+              $scope.prizes[prize.mission_id] = 
+                id: prize.mission_id
+                label: prize.hq_name
+                status: prize.earned
+                mission_url: prize.hq_action_url
+                mission_url_type: prize.hq_action_type
+                final_url: final_url
+                hover_msg: prize.hq_hover
+                aria_label: aria_label
+                aria_button: button_aria_label
+                button_label: prize.hq_button
+
+              if prize.earned != 0
+                $scope.prizesEarned++
+            prize = response.data.overall_mission_status
+            if prize.completed != 0
               earned_status = "Earned"
+              final_url = ''
+              $scope.prizesEarned++
             else 
               earned_status = "Unearned"
+              final_url = 'showTrophyMessage()'
             aria_label = prize.hq_name + ": " + earned_status + " - " + prize.hq_hover
             button_aria_label = prize.hq_button + ": " + earned_status + " - " + prize.hq_hover
-            $scope.prizes[prize.mission_id] = 
-              id: prize.mission_id
+            $scope.prizes['trophy'] = 
+              id: 99
               label: prize.hq_name
-              status: prize.earned
+              status: prize.completed
               mission_url: prize.hq_action_url
               mission_url_type: prize.hq_action_type
               final_url: final_url
@@ -966,31 +993,7 @@ angular.module 'trPcControllers'
               aria_label: aria_label
               aria_button: button_aria_label
               button_label: prize.hq_button
-
-            if prize.earned != 0
-              $scope.prizesEarned++
-          prize = response.data.overall_mission_status
-          if prize.completed != 0
-            earned_status = "Earned"
-            final_url = ''
-            $scope.prizesEarned++
-          else 
-            earned_status = "Unearned"
-            final_url = 'showTrophyMessage()'
-          aria_label = prize.hq_name + ": " + earned_status + " - " + prize.hq_hover
-          button_aria_label = prize.hq_button + ": " + earned_status + " - " + prize.hq_hover
-          $scope.prizes['trophy'] = 
-            id: 99
-            label: prize.hq_name
-            status: prize.completed
-            mission_url: prize.hq_action_url
-            mission_url_type: prize.hq_action_type
-            final_url: final_url
-            hover_msg: prize.hq_hover
-            aria_label: aria_label
-            aria_button: button_aria_label
-            button_label: prize.hq_button
-          $scope.loadingBadges = 0
+            $scope.loadingBadges = 0
 	    
           #$scope.buildGiftCatalog()
           
