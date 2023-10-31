@@ -341,7 +341,7 @@ angular.module 'ahaLuminateControllers'
       $scope.previousStep = ->
         $scope.ng_go_back = true
         $timeout ->
-          $scope.submitReg()
+          angular.element('.js--default-reg-form').submit()
         , 500
         false
       
@@ -350,7 +350,7 @@ angular.module 'ahaLuminateControllers'
         angular.element('.js--default-reg-form').submit()
       
       $scope.submitReg = ->
-        if angular.element('form[name=regForm]').valid() and not $scope.ng_go_back
+        if angular.element('form[name=regForm]').valid() 
           angular.element('.js--default-reg-form').submit()
         false
 
