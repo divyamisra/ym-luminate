@@ -172,6 +172,7 @@ angular.module 'ahaLuminateControllers'
         $scope.registrationInfo[questionName] = questionValue
       
       $scope.participationType = {}
+      participationType = ''
       setParticipationType = (participationType) ->
         $scope.participationType = participationType
         if not $scope.$$phase
