@@ -942,11 +942,11 @@ angular.module 'trPcControllers'
               final_url = prize.hq_action_url
             if prize.hq_action_type == 'Quiz' 
               if $scope.tablePrefix == 'heartdev'
-                final_url = 'https://tools.heart.org/aha_ym24_dev/quiz/show/' + prize.hq_action_url + '?event_id=' + $scope.frId + '&user_id=' + $scope.consId + '&name=' + $scope.consNameFirst
+                final_url = 'https://tools.heart.org/aha_ym24_dev/quiz/show/' + prize.hq_action_url + '?event_id=' + $scope.frId + '&user_id=' + $scope.consId + '&name=' + encodeURI($scope.consNameFirst)
               if $scope.tablePrefix == 'heartnew'
-                final_url = 'https://tools.heart.org/aha_ym24_testing/quiz/show/' + prize.hq_action_url + '?event_id=' + $scope.frId + '&user_id=' + $scope.consId + '&name=' + $scope.consNameFirst
+                final_url = 'https://tools.heart.org/aha_ym24_testing/quiz/show/' + prize.hq_action_url + '?event_id=' + $scope.frId + '&user_id=' + $scope.consId + '&name=' + encodeURI($scope.consNameFirst)
               if $scope.tablePrefix == 'heart'
-                final_url = 'https://tools.heart.org/aha_ym24/quiz/show/' + prize.hq_action_url + '?event_id=' + $scope.frId + '&user_id=' + $scope.consId + '&name=' + $scope.consNameFirst
+                final_url = 'https://tools.heart.org/aha_ym24/quiz/show/' + prize.hq_action_url + '?event_id=' + $scope.frId + '&user_id=' + $scope.consId + '&name=' + encodeURI($scope.consNameFirst)
             if prize.hq_action_type == 'Modal' and prize.hq_action_url == 'app' 
               final_url = 'showMobileApp()'
             if prize.earned != 0
