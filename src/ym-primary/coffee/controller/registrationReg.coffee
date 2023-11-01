@@ -332,7 +332,7 @@ angular.module 'ahaLuminateControllers'
               numGrades = angular.element('select.ym_khc_grade option').length
               angular.element('select.ym_khc_grade').prop('selectedIndex', numGrades-1).change()
               angular.element('input.ym_khc_teacher_name').val('Faculty').change()  
-              angular.element('select.ym_khc_tshirt_size option[value="No T-Shirt"]').prop("selected",true)
+              angular.element('select.ym_khc_tshirt_size option[value="No T-Shirt"]').prop("selected",true).change()
               return
             ), 500
           else
