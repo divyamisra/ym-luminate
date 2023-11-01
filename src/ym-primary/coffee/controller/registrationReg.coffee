@@ -328,9 +328,15 @@ angular.module 'ahaLuminateControllers'
             angular.element('label.control-label span:contains("Shirt")').closest('.row').find('select option[value="Jump Start School"]').remove()
           if $scope.participationTypes[$rootScope.partTypeId].indexOf("Employee") > 0 
             #preselect last entry and default teacher name
-            numGrades = angular.element('select.ym_khc_grade option').length
-            angular.element('select.ym_khc_grade').prop('selectedIndex', numGrades-1).change()
-            angular.element('input.ym_khc_teacher_name').val('Faculty').change()  
+            setTimeout (->
+              numGrades = angular.element('select.ym_khc_grade option').length
+              angular.element('select.ym_khc_grade').prop('selectedIndex', numGrades-1).change()
+              angular.element('input.ym_khc_teacher_name').val('Faculty').change()  
+              angular.element('select.ym_khc_tshirt_size option[value="No T-Shirt"]').prop("selected",true)
+              return
+            ), 500
+          else
+            angular.element('label.control-label span:contains("Shirt")').closest('.row').find('select option[value="No T-Shirt"]').remove()
         else
           window.setTimeout(findLabel,50);
 
