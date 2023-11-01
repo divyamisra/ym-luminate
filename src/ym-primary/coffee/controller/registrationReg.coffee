@@ -336,6 +336,8 @@ angular.module 'ahaLuminateControllers'
               return
             ), 500
           else
+            angular.element('select.ym_khc_grade').prop('selectedIndex', 0).change()
+            angular.element('input.ym_khc_teacher_name').val('').change()    
             angular.element('label.control-label span:contains("Shirt")').closest('.row').find('select option[value="No T-Shirt"]').remove()
         else
           window.setTimeout(findLabel,50);
