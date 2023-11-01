@@ -281,7 +281,27 @@ angular.module 'ahaLuminateControllers'
 
       if $fieldErrors.length == 0
         $scope.getPrevSurveyResponses()
+      
+      findLabel = () ->
+        if angular.element('#questions_hdr_container').length > 0
+          if $scope.participationTypes[$rootScope.partTypeId].indexOf("Employee") > 0 
+            #preselect last entry and default teacher name
+            setTimeout (->
+              #numGrades = angular.element('select.ym_khc_grade option').length
+              #angular.element('select.ym_khc_grade').prop('selectedIndex', numGrades-1).change()
+              #angular.element('input.ym_khc_teacher_name').val('Faculty').change()  
+              angular.element('select.ym_khc_tshirt_size option[value="No T-Shirt"]').prop("selected",true).change()
+              return
+            ), 500
+          else
+            #angular.element('select.ym_khc_grade').prop('selectedIndex', 0).change()
+            #angular.element('input.ym_khc_teacher_name').val('').change()    
+            angular.element('label.control-label span:contains("Shirt")').closest('.row').find('select option[value="No T-Shirt"]').remove()
+        else
+          window.setTimeout(findLabel,50);
 
+      findLabel()
+      
       $scope.toggleAcceptWaiver = (acceptWaiver) ->
         $scope.acceptWaiver = acceptWaiver
       
