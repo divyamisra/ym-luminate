@@ -326,10 +326,11 @@ angular.module 'ahaLuminateControllers'
           else
             console.log('current school is NOT in array')
             angular.element('label.control-label span:contains("Shirt")').closest('.row').find('select option[value="Jump Start School"]').remove()
-          #preselect last entry and default teacher name
-          numGrades = angular.element('select.ym_khc_grade option').length
-          angular.element('select.ym_khc_grade').prop('selectedIndex', numGrades-1).change()
-          angular.element('input.ym_khc_teacher_name').val('Faculty').change()  
+          if $scope.participationTypes[$rootScope.partTypeId].indexOf("Employee") > 0 
+            #preselect last entry and default teacher name
+            numGrades = angular.element('select.ym_khc_grade option').length
+            angular.element('select.ym_khc_grade').prop('selectedIndex', numGrades-1).change()
+            angular.element('input.ym_khc_teacher_name').val('Faculty').change()  
         else
           window.setTimeout(findLabel,50);
 
