@@ -186,17 +186,22 @@ angular.module 'trPcControllers'
                                 grade: grade
                               contact.selected = isContactSelected contact
                               contactIsUnique = true
+                              if reportDataRow[reportDataColumnIndexMap.PARTICIPANT_TYPE_NAME]
+                                console.log('found the part type name column')
+                                partTypeName = jQuery.trim reportDataRow[reportDataColumnIndexMap.PARTICIPANT_TYPE_NAME]
                               angular.forEach participants, (participant) ->
+                                console.log('partTypeName ' + partTypeName)
                                 contactString = firstName.toLowerCase() + ' ' + lastName.toLowerCase() + ' <' + email.toLowerCase() + '>'
                                 participantString = participant.firstName.toLowerCase() + ' ' + participant.lastName.toLowerCase() + ' <' + participant.email.toLowerCase() + '>'
                                 if contactString is participantString
                                   contactIsUnique = false
-                              if contactIsUnique
-                                totalNumberResults++
-                                participants.push contact
-                                if newOnly
-                                  totalNumberNewResults++
-                                  newParticipants.push contact
+                              if partTypeName is 'Participant' || partTypeName is ''
+                                if contactIsUnique
+                                  totalNumberResults++
+                                  participants.push contact
+                                  if newOnly
+                                    totalNumberNewResults++
+                                    newParticipants.push contact
                         if newOnly
                           participants = newParticipants
                           totalNumberResults = totalNumberNewResults
