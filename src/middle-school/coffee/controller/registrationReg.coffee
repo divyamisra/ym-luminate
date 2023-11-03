@@ -283,7 +283,7 @@ angular.module 'ahaLuminateControllers'
         $scope.getPrevSurveyResponses()
       
       findLabel = () ->
-        if angular.element('#questions_hdr_container').length > 0
+        if typeof $scope.participationTypes[$rootScope.partTypeId] != "undefined"
           if $scope.participationTypes[$rootScope.partTypeId].indexOf("Employee") > 0 
             #preselect last entry and default teacher name
             setTimeout (->
@@ -335,9 +335,10 @@ angular.module 'ahaLuminateControllers'
       NuclavisService.getTeachers $rootScope.bodyCompanyId + "/" + $rootScope.frId
         .then (response) ->
           $scope.teachers = response.data.teachers
-          if $scope.teachers.length > 0
-            $scope.getTeacherList()
-            $scope.listUpload = true
+          if $scope.teachers
+            if $scope.teachers.length > 0
+              $scope.getTeacherList()
+              $scope.listUpload = true
         
       setCompanyCity = (companyCity) ->
         $rootScope.companyCity = companyCity
