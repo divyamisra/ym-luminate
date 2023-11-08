@@ -140,15 +140,10 @@
               </button>
               <div class="ym-site-menu-dropdown" ng-class="{'open': siteMenuOpen}" ng-cloak>
                 <ul>
-                  <li>
-                    <a href="https://[[S29:SECURE_DOMAIN]][[S29:SECURE_PATH]]SPageNavigator/ym_school_search.html">
-                      Home
-                    </a>
-                  </li>
                   [[?[[S334:pagename]]::participant_center::
                   <li>
                     <a role="listitem" ng-click="toggleSiteMenu()" ng-href="{{baseUrl}}#/dashboard">
-                      <span><strong>HQ Home</strong></span>
+                      <span><strong>My Headquarters</strong></span>
                     </a>
                   </li>
                   <li>
@@ -227,6 +222,11 @@
                     </a>
                   </li>
                   ::]]
+                  <li>
+                    <a href="https://[[S29:SECURE_DOMAIN]][[S29:SECURE_PATH]]SPageNavigator/ym_school_search.html">
+                      Home
+                    </a>
+                  </li>
                   <li>
                     <a href="https://[[S29:SECURE_DOMAIN]][[S29:SECURE_PATH]]SPageServer?pagename=khc_resources_parents_corner">
                       For Parents
