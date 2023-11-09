@@ -27,17 +27,27 @@
         </div>
       </section>
     </div>
-    <section class="early-registration-section mb-3" aria-label="Early Registration Section">
-      <div class="early-registration text-center">
-        <div class="participatingNextYear text-center p-2" ng-cloak>
-          <div class="checkbox pe-2 pb-2" custom-checkbox ng-class="{'checked': schoolPlan.ParticipatingNextYear_student == 'YES'}">
-            <strong>Early Registration:</strong>
-            <label for="ParticipatingNextYear">
-              <input type="checkbox" name="ParticipatingNextYear" id="ParticipatingNextYear" ng-model="schoolPlan.ParticipatingNextYear_isChecked" value="{{schoolPlan.ParticipatingNextYear_student}}" aria-label="Participating Next Year" ng-change="updateParticipatingNextYear()"> Re-register for next year </label>
+    <div class="ym-pc-dashboard-school-challange d-md-flex flex-wrap mb-0">
+      <section class="early-registration-section mb-3" ng-class="(company_match) ? 'col-md-8' : 'w-100'" aria-label="Early Registration Section">
+        <div class="early-registration text-center">
+          <div class="participatingNextYear text-center p-2" ng-cloak>
+            <div class="checkbox pe-2 pb-2" custom-checkbox ng-class="{'checked': schoolPlan.ParticipatingNextYear_student == 'YES'}">
+              <strong>Early Registration:</strong>
+              <label for="ParticipatingNextYear">
+                <input type="checkbox" name="ParticipatingNextYear" id="ParticipatingNextYear" ng-model="schoolPlan.ParticipatingNextYear_isChecked" value="{{schoolPlan.ParticipatingNextYear_student}}" aria-label="Participating Next Year" ng-change="updateParticipatingNextYear()"> Re-register for next year </label>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+      <section class="col-md-4 company-match" ng-if="company_match" ng-cloak>
+        <div class="d-flex justify-content-between align-items-center gap-4 py-2 px-5">
+          <div class="company-match-title text-center fw-bold"> Double your Donation </div>
+          <div class="company-match-text">
+            <a href="https://www.heart.org/matchinggifts" target="_blank">Learn more</a> about your employer's matching gift program.
+          </div>
+        </div>
+      </section>
+    </div>
     <section class="ym-pc-dashboard-badges-section mb-4" aria-label="My Badges" ng-if="prizes" ng-cloak>
       <h2 class="text-center">Finn's Mission</h2>
       <div class="finns-mission-section d-flex justify-content-between flex-wrap gap-4 p-3">
