@@ -187,7 +187,20 @@ angular.module 'trPcControllers'
         .then (response) ->
           $scope.CountOfStudentsCompletingFinnsMission = response.data.finns_mission_completed
       getFinnsMissionCompletedCount()
-		
+
+      $scope.re_reg = 0
+      getReRegister = ->
+        NuclavisService.getReRegister $scope.participantRegistration.companyInformation.companyId + '/' + $scope.frId
+        .then (response) ->
+          $scope.re_reg = response.data.reregisterTime
+      getReRegister()
+
+      postReRegister = ->
+        NuclavisService.postReRegister $scope.participantRegistration.companyInformation.companyId + '/' + $scope.frId
+        .then (response) ->
+          $scope.re_reg = true
+	  $scope.$apply()
+
       participantsString = ''
       $scope.companyParticipants = {}
       setCompanyParticipants = (participants, totalNumber, totalFundraisers) ->
@@ -1187,7 +1200,7 @@ angular.module 'trPcControllers'
               $scope.schoolPlan.HideGifts = "NO"
             #if $scope.participantRegistration.companyInformation?.isCompanyCoordinator is 'true'
             #  $scope.getSchoolTop15()
-				
+	    ###		
             NgPcConstituentService.getUserRecord('fields=custom_string18&cons_id=' + $scope.consId).then (response) ->
               if response.data.errorResponse
                 console.log 'There was an error getting user profile. Please try again later.'
@@ -1207,10 +1220,13 @@ angular.module 'trPcControllers'
                       $scope.schoolPlan.ParticipatingNextYear_isChecked = true
                     else
                       $scope.schoolPlan.ParticipatingNextYear_isChecked = false
+            ###
+	  ###
           if $scope.schoolPlan.ParticipatingNextYear_student == 'YES'
             $scope.schoolPlan.ParticipatingNextYear_isChecked = true
           else
             $scope.schoolPlan.ParticipatingNextYear_isChecked = false
+          ###
       $scope.getSchoolPlan()
 
       $scope.putSchoolPlan = (event, sel) ->
