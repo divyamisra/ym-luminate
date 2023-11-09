@@ -926,7 +926,7 @@ angular.module 'trPcControllers'
       refreshFinnsMission = ->
         $scope.prizes = {}
         $scope.prizesEarned = 0
-	$scope.company_match = 0
+        $scope.company_match = 0
         NuclavisService.getBadges $scope.consId + '/' + $scope.frId
         .then (response) ->
           $scope.mystery_gift = response.data.mystery_gift.earned
