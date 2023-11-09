@@ -189,19 +189,19 @@ angular.module 'trPcControllers'
       getFinnsMissionCompletedCount()
 
       $scope.re_reg = 0
-      getReRegister = ->
+      $scope.getReRegister = ->
         NuclavisService.getReRegister $scope.participantRegistration.companyInformation.companyId + '/' + $scope.frId
         .then (response) ->
           $scope.re_reg = response.data.reregisterTime
       getReRegister()
 
-      postReRegister = ->
+      $scope.postReRegister = ->
         NuclavisService.postReRegister $scope.participantRegistration.companyInformation.companyId + '/' + $scope.frId
         .then (response) ->
           $scope.re_reg = true
           $scope.$apply()
 
-      deleteReRegister = ->
+      $scope.deleteReRegister = ->
         NuclavisService.deleteReRegister $scope.participantRegistration.companyInformation.companyId + '/' + $scope.frId
         .then (response) ->
           $scope.re_reg = 0
