@@ -201,6 +201,12 @@ angular.module 'trPcControllers'
           $scope.re_reg = true
           $scope.$apply()
 
+      deleteReRegister = ->
+        NuclavisService.deleteReRegister $scope.participantRegistration.companyInformation.companyId + '/' + $scope.frId
+        .then (response) ->
+          $scope.re_reg = 0
+          $scope.$apply()
+
       participantsString = ''
       $scope.companyParticipants = {}
       setCompanyParticipants = (participants, totalNumber, totalFundraisers) ->
