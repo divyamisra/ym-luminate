@@ -131,6 +131,25 @@ angular.module 'ahaLuminateApp'
         , (response) ->
           $rootScope.NuclavisAPIToken = 0;
 
+      deleteReRegister: (requestData) ->
+        this.login()
+        .then (response) ->
+          $rootScope.NuclavisAPIToken = response
+          if $rootScope.tablePrefix is 'heartdev' or $rootScope.tablePrefix is 'heartnew'
+            url = 'https://smt.nuclavis.com/khc/student/reregister/' + requestData
+          else
+            url = 'https://smt-api.heart.org/khc/student/reregister/' + requestData
+          reqHeader = 
+            'Content-Type': 'application/json'
+            'Authorization': 'Bearer ' + $rootScope.NuclavisAPIToken
+          $http.delete($sce.trustAsResourceUrl(url), {}, {headers: reqHeader})
+            .then (response) ->
+              response.data
+            , (response) ->
+              response
+        , (response) ->
+          $rootScope.NuclavisAPIToken = 0;
+
       postAction: (requestData) ->
         this.login()
         .then (response) ->
