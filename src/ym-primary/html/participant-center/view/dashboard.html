@@ -35,12 +35,12 @@
               <strong>Early Registration:</strong>
               <label for="ParticipatingNextYear">
                 <input type="checkbox" name="ParticipatingNextYear" id="ParticipatingNextYear" ng-model="re_reg" value="{{re_reg}}" aria-label="Participating Next Year" ng-change="postReRegister()"> Re-register for next year </label>
-              Don't worry, you can always unenroll if your plans change and you can't participate.	   
             </div>
+            <div class="earlyReg-text">Don't worry, you can always unenroll if your plans change and you can't participate.</div>
           </div>
         </div>
       </section>
-      <section class="col-md-4 company-match" ng-if="!company_match" ng-class="(!re_reg) ? 'col-md-8' : 'w-100'" ng-cloak>
+      <section class="col-md-4 company-match" ng-if="!company_match" ng-class="(!re_reg) ? 'col-md-4' : 'w-100'" ng-cloak>
         <div class="py-2 px-5">
           <div class="company-match-title text-white text-center fw-bold"> Double your Donation </div>
           <div class="company-match-text text-white text-center">
@@ -462,14 +462,14 @@
       <section class="early-registration-section mb-3" ng-if="re_reg" ng-class="(company_match) ? 'col-md-8' : 'w-100'" aria-label="Early Registration Section">
         <div class="early-registration text-center">
           <div class="participatingNextYear text-center p-2" ng-cloak>
-            <div class="checkbox pe-2 pb-2" custom-checkbox ng-class="{'checked': schoolPlan.ParticipatingNextYear_student == 'YES'}">
-	      Don't worry, you can always unenroll if your plans change and you can't participate.
+            <div class="checkbox pe-2 pb-2" custom-checkbox ng-class="{'checked': re_reg}">
+	      <div class="earlyReg-text">Don't worry, you can always unenroll if your plans change and you can't participate.</div>
               <a href="#"><strong>Remove Early Registration:</strong></a>
             </div>
           </div>
         </div>
       </section>
-      <section class="col-md-4 company-match" ng-if="company_match" ng-class="(re_reg) ? 'col-md-8' : 'w-100'" ng-cloak>
+      <section class="col-md-4 company-match" ng-if="company_match" ng-class="(re_reg) ? 'col-md-4' : 'w-100'" ng-cloak>
         <div class="py-2 px-5">
           <div class="company-match-title text-white text-center fw-bold"> Double your Donation </div>
           <div class="company-match-text text-white text-center">
