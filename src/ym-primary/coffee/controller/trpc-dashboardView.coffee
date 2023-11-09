@@ -199,7 +199,7 @@ angular.module 'trPcControllers'
         NuclavisService.postReRegister $scope.participantRegistration.companyInformation.companyId + '/' + $scope.frId
         .then (response) ->
           $scope.re_reg = true
-	  $scope.$apply()
+          $scope.$apply()
 
       participantsString = ''
       $scope.companyParticipants = {}
