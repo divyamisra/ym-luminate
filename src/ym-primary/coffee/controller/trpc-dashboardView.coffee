@@ -1200,7 +1200,7 @@ angular.module 'trPcControllers'
               $scope.schoolPlan.HideGifts = "NO"
             #if $scope.participantRegistration.companyInformation?.isCompanyCoordinator is 'true'
             #  $scope.getSchoolTop15()
-	    ###		
+            ###
             NgPcConstituentService.getUserRecord('fields=custom_string18&cons_id=' + $scope.consId).then (response) ->
               if response.data.errorResponse
                 console.log 'There was an error getting user profile. Please try again later.'
@@ -1221,7 +1221,7 @@ angular.module 'trPcControllers'
                     else
                       $scope.schoolPlan.ParticipatingNextYear_isChecked = false
             ###
-	  ###
+          ###
           if $scope.schoolPlan.ParticipatingNextYear_student == 'YES'
             $scope.schoolPlan.ParticipatingNextYear_isChecked = true
           else
