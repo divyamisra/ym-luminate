@@ -31,10 +31,11 @@
       <section class="early-registration-section mb-3" ng-if="!re_reg" ng-class="(!company_match) ? 'col-md-8' : 'w-100'" aria-label="Early Registration Section">
         <div class="early-registration text-center">
           <div class="participatingNextYear text-center p-2" ng-cloak>
-            <div class="checkbox pe-2 pb-2" custom-checkbox ng-class="{'checked': schoolPlan.ParticipatingNextYear_student == 'YES'}">
+            <div class="checkbox pe-2 pb-2" custom-checkbox ng-class="{'checked': re_reg}">
               <strong>Early Registration:</strong>
               <label for="ParticipatingNextYear">
-                <input type="checkbox" name="ParticipatingNextYear" id="ParticipatingNextYear" ng-model="schoolPlan.ParticipatingNextYear_isChecked" value="{{schoolPlan.ParticipatingNextYear_student}}" aria-label="Participating Next Year" ng-change="updateParticipatingNextYear()"> Re-register for next year </label>
+                <input type="checkbox" name="ParticipatingNextYear" id="ParticipatingNextYear" ng-model="re_reg" value="{{re_reg}}" aria-label="Participating Next Year" ng-change="postReRegister()"> Re-register for next year </label>
+              Don't worry, you can always unenroll if your plans change and you can't participate.	   
             </div>
           </div>
         </div>
