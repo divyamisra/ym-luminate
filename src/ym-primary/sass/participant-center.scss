@@ -45,6 +45,13 @@
   }
 }
 
+.company-match {
+  background: $event-accent-pink;
+  .company-match-text {
+    font-size: 18px;
+  }
+}
+
 .student-hq {
   .col {
     min-width: 290px;
