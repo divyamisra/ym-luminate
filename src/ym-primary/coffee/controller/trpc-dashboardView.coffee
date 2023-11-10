@@ -193,7 +193,7 @@ angular.module 'trPcControllers'
         NuclavisService.getReRegister $scope.participantRegistration.companyInformation.companyId + '/' + $scope.frId
         .then (response) ->
           $scope.re_reg = response.data.reregisterTime
-      getReRegister()
+      $scope.getReRegister()
 
       $scope.postReRegister = ->
         NuclavisService.postReRegister $scope.participantRegistration.companyInformation.companyId + '/' + $scope.frId
