@@ -190,19 +190,19 @@ angular.module 'trPcControllers'
 
       $scope.re_reg = 0
       $scope.getReRegister = ->
-        NuclavisService.getReRegister $scope.participantRegistration.companyInformation.companyId + '/' + $scope.frId
+        NuclavisService.getReRegister $scope.consId + '/' + $scope.frId
         .then (response) ->
           $scope.re_reg = response.data.reregisterTime
       $scope.getReRegister()
 
       $scope.postReRegister = ->
-        NuclavisService.postReRegister $scope.participantRegistration.companyInformation.companyId + '/' + $scope.frId
+        NuclavisService.postReRegister $scope.consId + '/' + $scope.frId
         .then (response) ->
           $scope.re_reg = true
           $scope.$apply()
 
       $scope.deleteReRegister = ->
-        NuclavisService.deleteReRegister $scope.participantRegistration.companyInformation.companyId + '/' + $scope.frId
+        NuclavisService.deleteReRegister $scope.consId + '/' + $scope.frId
         .then (response) ->
           $scope.re_reg = 0
           $scope.$apply()
