@@ -142,7 +142,7 @@ angular.module 'ahaLuminateApp'
           reqHeader = 
             'Content-Type': 'application/json'
             'Authorization': 'Bearer ' + $rootScope.NuclavisAPIToken
-          $http.delete($sce.trustAsResourceUrl(url), {headers: reqHeader})
+          $http.delete($sce.trustAsResourceUrl(url), {data: {}, headers: reqHeader})
             .then (response) ->
               response.data
             , (response) ->
