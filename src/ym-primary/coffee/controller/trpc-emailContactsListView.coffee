@@ -103,7 +103,7 @@ angular.module 'trPcControllers'
         page: 1
         allContactsSelected: false
       angular.forEach contactFilters, (filter) ->
-        console.log('contact filters each function')
+        
         if filter is $scope.filter
           $scope.getContacts = ->
             pageNumber = $scope.addressBookContacts.page - 1
@@ -188,10 +188,8 @@ angular.module 'trPcControllers'
                               contactIsUnique = true
                               partTypeName = ''
                               if reportDataRow[reportDataColumnIndexMap.PARTICIPANT_TYPE_NAME]
-                                console.log('found the part type name column')
                                 partTypeName = jQuery.trim reportDataRow[reportDataColumnIndexMap.PARTICIPANT_TYPE_NAME]
                               angular.forEach participants, (participant) ->
-                                console.log('partTypeName ' + partTypeName)
                                 contactString = firstName.toLowerCase() + ' ' + lastName.toLowerCase() + ' <' + email.toLowerCase() + '>'
                                 participantString = participant.firstName.toLowerCase() + ' ' + participant.lastName.toLowerCase() + ' <' + participant.email.toLowerCase() + '>'
                                 if contactString is participantString
@@ -292,7 +290,6 @@ angular.module 'trPcControllers'
                           contactIsUnique = true
                           partTypeName = ''
                           if reportDataRow[reportDataColumnIndexMap.PARTICIPANT_TYPE_NAME]
-                            console.log('found the part type name column')
                             partTypeName = jQuery.trim reportDataRow[reportDataColumnIndexMap.PARTICIPANT_TYPE_NAME]
                           angular.forEach filteredParticipants, (filteredParticipant) ->
                             contactString = firstName.toLowerCase() + ' ' + lastName.toLowerCase() + ' <' + email.toLowerCase() + '>'
