@@ -38,9 +38,10 @@
                 </div>
             </div>
             <div class="product-column">
-                <div class="h3 mb-4">
+                <div class="h3">
                     Products
                 </div>
+		<em class="d-block mb-4">If any item becomes unavailable, we reserve the right to offer an alternate item of equal value.</em>
                 <div class="productList d-lg-flex flex-wrap d-md-block justify-content-between">
                     <product ng-repeat="product in productList" ng-if="product.quantity > 10 && (product.program == EventProgram || product.program == 'all')">
                         <div style="margin-bottom:20px;" class="{{product.productId}} d-flex overflow-hidden">
