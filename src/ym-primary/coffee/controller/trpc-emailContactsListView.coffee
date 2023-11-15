@@ -103,7 +103,7 @@ angular.module 'trPcControllers'
         page: 1
         allContactsSelected: false
       angular.forEach contactFilters, (filter) ->
-        console.log('contact filters each function')
+        
         if filter is $scope.filter
           $scope.getContacts = ->
             pageNumber = $scope.addressBookContacts.page - 1
@@ -186,17 +186,21 @@ angular.module 'trPcControllers'
                                 grade: grade
                               contact.selected = isContactSelected contact
                               contactIsUnique = true
+                              partTypeName = ''
+                              if reportDataRow[reportDataColumnIndexMap.PARTICIPANT_TYPE_NAME]
+                                partTypeName = jQuery.trim reportDataRow[reportDataColumnIndexMap.PARTICIPANT_TYPE_NAME]
                               angular.forEach participants, (participant) ->
                                 contactString = firstName.toLowerCase() + ' ' + lastName.toLowerCase() + ' <' + email.toLowerCase() + '>'
                                 participantString = participant.firstName.toLowerCase() + ' ' + participant.lastName.toLowerCase() + ' <' + participant.email.toLowerCase() + '>'
                                 if contactString is participantString
                                   contactIsUnique = false
-                              if contactIsUnique
-                                totalNumberResults++
-                                participants.push contact
-                                if newOnly
-                                  totalNumberNewResults++
-                                  newParticipants.push contact
+                              if partTypeName is 'Participant' || partTypeName is ''
+                                if contactIsUnique
+                                  totalNumberResults++
+                                  participants.push contact
+                                  if newOnly
+                                    totalNumberNewResults++
+                                    newParticipants.push contact
                         if newOnly
                           participants = newParticipants
                           totalNumberResults = totalNumberNewResults
@@ -284,6 +288,9 @@ angular.module 'trPcControllers'
                             registrationDateFormatted: registrationDateFormatted
                           contact.selected = isContactSelected contact
                           contactIsUnique = true
+                          partTypeName = ''
+                          if reportDataRow[reportDataColumnIndexMap.PARTICIPANT_TYPE_NAME]
+                            partTypeName = jQuery.trim reportDataRow[reportDataColumnIndexMap.PARTICIPANT_TYPE_NAME]
                           angular.forEach filteredParticipants, (filteredParticipant) ->
                             contactString = firstName.toLowerCase() + ' ' + lastName.toLowerCase() + ' <' + email.toLowerCase() + '>'
                             filteredParticipantString = filteredParticipant.firstName.toLowerCase() + ' ' + filteredParticipant.lastName.toLowerCase() + ' <' + filteredParticipant.email.toLowerCase() + '>'
@@ -296,9 +303,10 @@ angular.module 'trPcControllers'
                             contactMeetsCustomFilter = true
                           else if filter is 'email_custom_rpt_show_company_coordinator_250_dollar_participants' and amountRaised >= 250
                             contactMeetsCustomFilter = true
-                          if contactIsUnique and contactMeetsCustomFilter
-                            totalNumberResults++
-                            filteredParticipants.push contact
+                          if partTypeName is 'Participant' || partTypeName is ''
+                            if contactIsUnique and contactMeetsCustomFilter
+                              totalNumberResults++
+                              filteredParticipants.push contact
                       filteredParticipants.sort (a, b) ->
                         aFullName = a.firstName.toLowerCase() + ' ' + a.lastName.toLowerCase()
                         bFullName = b.firstName.toLowerCase() + ' ' + b.lastName.toLowerCase()
@@ -403,11 +411,6 @@ angular.module 'trPcControllers'
                           return 1
                         else
                           return 0
-
-
-
-
-
 
 
             else
