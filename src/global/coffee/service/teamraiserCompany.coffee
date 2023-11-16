@@ -7,6 +7,7 @@ angular.module 'ahaLuminateApp'
       companyTree = {}
       
       getCompanies = (requestData, callback) ->
+        console.log('getCompanies requestData ' + requestData)
         dataString = 'method=getCompaniesByInfo'
         dataString += '&' + requestData if requestData and requestData isnt ''
         LuminateRESTService.luminateExtendTeamraiserRequest dataString, false, true, callback

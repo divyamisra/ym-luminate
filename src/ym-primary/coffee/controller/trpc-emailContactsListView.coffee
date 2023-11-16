@@ -133,12 +133,14 @@ angular.module 'trPcControllers'
                       $scope.addressBookContacts.allContacts = participants
                       $scope.addressBookContacts.allContactsSelected = isAllContactsSelected()
                     getCurrentContacts = ->
+                      console.log('getCurrentContacts')
                       NgPcTeamraiserReportsService.getSchoolDetailReport $rootScope.frId, $scope.participantRegistration.companyInformation.companyId
                         .then (response) ->
                           reportCurrentData = response.data.getSchoolDetailReport?.reportData
                           handleReportData reportCurrentData, true
                           setAddressBookContacts()
                     getPrev2Contacts = ->
+                      console.log('getPrev2Contacts')
                       companyId = prev1CompanyId or $scope.participantRegistration.companyInformation.companyId
                       NgPcTeamraiserCompanyService.getCompanies 'fr_id=' + $scope.prev2FrId + '&company_name=' + encodeURIComponent('org_for_company_id=' + companyId)
                         .then (response) ->
@@ -161,6 +163,8 @@ angular.module 'trPcControllers'
                                 else
                                   getCurrentContacts()
                     handleReportData = (reportData, newOnly) ->
+                      console.log('handleReportData')
+                      console.log('newOnly '  + newOnly);
                       if reportData
                         if newOnly
                           newParticipants = []
@@ -191,7 +195,9 @@ angular.module 'trPcControllers'
                                 partTypeName = jQuery.trim reportDataRow[reportDataColumnIndexMap.PARTICIPANT_TYPE_NAME]
                               angular.forEach participants, (participant) ->
                                 contactString = firstName.toLowerCase() + ' ' + lastName.toLowerCase() + ' <' + email.toLowerCase() + '>'
+                                console.log('contactString ' + contractString);
                                 participantString = participant.firstName.toLowerCase() + ' ' + participant.lastName.toLowerCase() + ' <' + participant.email.toLowerCase() + '>'
+                                console.log('participantString ' + participantString);
                                 if contactString is participantString
                                   contactIsUnique = false
                               if partTypeName is 'Participant' || partTypeName is ''
