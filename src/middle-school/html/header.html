@@ -194,7 +194,7 @@
                     </a>
                   </li>
                   <li>
-                    <a role="listitem" ng-click="toggleSiteMenu()" ng-href="{{baseUrl}}#/gifts" ng-if="participantRegistration.companyInformation.isCompanyCoordinator != 'true' && showGiftsTab" ng-cloak>
+                    <a role="listitem" ng-click="toggleSiteMenu()" ng-href="{{baseUrl}}#/gifts" ng-if="participantRegistration.companyInformation.isCompanyCoordinator != 'true' && showGiftsTab && participationTypes[partTypeId].indexOf('Employee') == -1" ng-cloak>
                       <span><strong>Thank-You Gifts</strong></span>
                     </a>
                   </li>
