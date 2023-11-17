@@ -14,7 +14,8 @@ angular.module 'trPcControllers'
     'NgPcTeamraiserCompanyService'
     'NgPcTeamraiserReportsService'
     'ZuriService'
-    ($rootScope, $scope, $window, $routeParams, $location, $timeout, $httpParamSerializer, $uibModal, APP_INFO, NgPcTeamraiserEmailService, NgPcContactService, NgPcTeamraiserCompanyService, NgPcTeamraiserReportsService, ZuriService) ->
+    'TeamraiserParticipantService'
+    ($rootScope, $scope, $window, $routeParams, $location, $timeout, $httpParamSerializer, $uibModal, APP_INFO, NgPcTeamraiserEmailService, NgPcContactService, NgPcTeamraiserCompanyService, NgPcTeamraiserReportsService, ZuriService, TeamraiserParticipantService) ->
       $scope.filter = $routeParams.filter
       
       $scope.emailPromises = []
@@ -76,7 +77,31 @@ angular.module 'trPcControllers'
       
       isAllContactsSelected = ->
         $scope.addressBookContacts.allContacts.length > 0 and $scope.addressBookContacts.allContacts.length is countContactSelected($scope.addressBookContacts.allContacts)
-      
+
+
+
+      $scope.registeredCons = []
+      setRegisteredCons = (participants, totalNumber, totalFundraisers) ->
+        totalNumber = totalNumber or 0
+        console.log('totalNumber ' + totalNumber)
+        if not $scope.$$phase
+          $scope.$apply()
+        if participants and participants.length > 0
+            angular.forEach participants, (participant, participantIndex) ->
+              console.log('part cons id: ' + participant.consId)
+              $scope.registeredCons.push participant.consId
+
+      getRegisteredCons = ->
+        TeamraiserParticipantService.getParticipants 'team_name=' + encodeURIComponent('%') + '&first_name=' + encodeURIComponent('%%') + '&last_name=' + encodeURIComponent('%') + '&list_filter_column=team.company_id&list_filter_text=' + $scope.participantRegistration.companyInformation.companyId + '&list_sort_column=total&list_ascending=false&list_page_size=500',
+            error: ->
+              setCompanyParticipants()
+            success: (response) ->
+              participants = response.getParticipantsResponse?.participant
+              totalNumberParticipants = response.getParticipantsResponse?.totalNumberResults or '0'
+              setRegisteredCons participants, totalNumberParticipants
+      getRegisteredCons()
+
+
       $scope.contactCounts = {}
       contactFilters = [
         'email_rpt_show_all'
@@ -125,25 +150,31 @@ angular.module 'trPcControllers'
                   delete $scope.addressBookContacts.contacts
                 NgPcTeamraiserCompanyService.getCompanies 'fr_id=' + $scope.prev1FrId + '&company_name=' + encodeURIComponent('org_for_company_id=' + $scope.participantRegistration.companyInformation.companyId)
                   .then (response) ->
+                    console.log('got prev1 company response ' + Object.getOwnPropertyNames(response) )
                     participants = []
+                    console.log('participants array length: ' + participants.length)
                     totalNumberResults = 0
+
+
                     setAddressBookContacts = ->
+                      console.log('setAddressBookContacts')
                       $scope.addressBookContacts.contacts = participants
                       $scope.addressBookContacts.totalNumber = totalNumberResults
                       $scope.addressBookContacts.allContacts = participants
                       $scope.addressBookContacts.allContactsSelected = isAllContactsSelected()
                     getCurrentContacts = ->
-                      console.log('getCurrentContacts')
+                      console.log('getCurrentContacts uses participant current company')
                       NgPcTeamraiserReportsService.getSchoolDetailReport $rootScope.frId, $scope.participantRegistration.companyInformation.companyId
                         .then (response) ->
                           reportCurrentData = response.data.getSchoolDetailReport?.reportData
                           handleReportData reportCurrentData, true
                           setAddressBookContacts()
                     getPrev2Contacts = ->
-                      console.log('getPrev2Contacts')
+                      console.log('getPrev2Contacts ')
                       companyId = prev1CompanyId or $scope.participantRegistration.companyInformation.companyId
                       NgPcTeamraiserCompanyService.getCompanies 'fr_id=' + $scope.prev2FrId + '&company_name=' + encodeURIComponent('org_for_company_id=' + companyId)
                         .then (response) ->
+                          console.log('got prev2Companies')
                           prev2Companies = response.data.getCompaniesResponse?.company
                           if not prev2Companies
                             if filter is 'email_custom_rpt_show_past_company_coordinator_participants'
@@ -179,6 +210,7 @@ angular.module 'trPcControllers'
                             reportDataColumnIndexMap[reportDataHeader] = reportDataHeaderIndex
                           angular.forEach reportDataRows, (reportDataRow, reportDataRowIndex) ->
                             if reportDataRowIndex > 0
+                              consId = jQuery.trim reportDataRow[reportDataColumnIndexMap.PARTICIPANT_CONS_ID]
                               firstName = jQuery.trim reportDataRow[reportDataColumnIndexMap.PARTICIPANT_FIRST_NAME]
                               lastName = jQuery.trim reportDataRow[reportDataColumnIndexMap.PARTICIPANT_LAST_NAME]
                               email = jQuery.trim reportDataRow[reportDataColumnIndexMap.PARTICIPANT_EMAIL]
@@ -193,20 +225,35 @@ angular.module 'trPcControllers'
                               partTypeName = ''
                               if reportDataRow[reportDataColumnIndexMap.PARTICIPANT_TYPE_NAME]
                                 partTypeName = jQuery.trim reportDataRow[reportDataColumnIndexMap.PARTICIPANT_TYPE_NAME]
+                              console.log('handlereportdata participants length? ' + participants.length)
                               angular.forEach participants, (participant) ->
                                 contactString = firstName.toLowerCase() + ' ' + lastName.toLowerCase() + ' <' + email.toLowerCase() + '>'
-                                console.log('contactString ' + contractString);
                                 participantString = participant.firstName.toLowerCase() + ' ' + participant.lastName.toLowerCase() + ' <' + participant.email.toLowerCase() + '>'
-                                console.log('participantString ' + participantString);
                                 if contactString is participantString
                                   contactIsUnique = false
                               if partTypeName is 'Participant' || partTypeName is ''
+                                console.log('cons id? ' + consId)
                                 if contactIsUnique
-                                  totalNumberResults++
-                                  participants.push contact
+                                  console.log('check registered participants')
+                                  console.log('get current coordinator team id: ' + $scope.participantRegistration.teamId)
+                                  #TeamraiserParticipantService.getParticipants 'team_name=' + encodeURIComponent('%') + '&first_name=' + encodeURIComponent('%%') + '&last_name=' + encodeURIComponent('%') + '&list_filter_column=team.company_id&list_filter_text=' + $scope.participantRegistration.companyInformation.companyId + '&list_sort_column=total&list_ascending=false&list_page_size=500',
+                                  TeamraiserParticipantService.getParticipants 'team_id=' + $scope.participantRegistration.teamId  + '&first_name=' + encodeURIComponent('%%') + '&last_name=' + encodeURIComponent('%') + '&list_filter_column=reg.cons_id&list_filter_text=' + consId,
+                                      error: ->
+                                        # TODO: handle error
+                                      success: (response) ->
+                                        responseData = response.getParticipantsResponse?.participant
+                                        console.log('responseData ' + responseData)
+                                        totalNumberParticipants = response.getParticipantsResponse?.totalNumberResults or '0'
+                                        console.log('totalNumberParticipants ' + totalNumberParticipants)
+
+                                        if totalNumberParticipants == '0'
+                                          totalNumberResults++
+                                          participants.push contact
+
                                   if newOnly
                                     totalNumberNewResults++
                                     newParticipants.push contact
+
                         if newOnly
                           participants = newParticipants
                           totalNumberResults = totalNumberNewResults
@@ -219,32 +266,48 @@ angular.module 'trPcControllers'
                             return 1
                           else
                             return 0
+
                     prev1Companies = response.data.getCompaniesResponse?.company
+                    console.log('prev1Companies' + prev1Companies)
                     prev1CompanyId = null
                     if prev1Companies
+                      console.log('prev1Companies')
                       prev1Companies = [prev1Companies] if not angular.isArray prev1Companies
                       prev1Company = prev1Companies[0]
+                      console.log('prev1Company')
                       prev1CompanyId = prev1Company.companyId
                     if not prev1CompanyId
+                      console.log('not prev1CompanyId')
                       if not $scope.prev2FrId or $scope.prev2FrId is ''
+                        console.log('no prev2 fr ID')
                         if filter is 'email_custom_rpt_show_past_company_coordinator_participants'
+                          console.log('filter is email_custom_rpt_show_past_company_coordinator_participants')
                           setAddressBookContacts()
                         else
+                          console.log('filter is NOT email_custom_rpt_show_past_company_coordinator_participants')
                           getCurrentContacts()
                       else
+                        console.log('there IS prev2 fr ID')
                         getPrev2Contacts()
                     else
+                      console.log('IS prev1CompanyId')
                       NgPcTeamraiserReportsService.getSchoolDetailReport $scope.prev1FrId, prev1CompanyId
                         .then (response) ->
+                          console.log('getSchoolDetailReport result for prev1FrId prev1CompanyId')
                           report1Data = response.data.getSchoolDetailReport?.reportData
                           handleReportData report1Data
                           if not $scope.prev2FrId or $scope.prev2FrId is ''
+                            console.log("not prev2FrId")
                             if filter is 'email_custom_rpt_show_past_company_coordinator_participants'
+                              console.log('filter is email_custom_rpt_show_past_company_coordinator_participants')
                               setAddressBookContacts()
                             else
+                              console.log('filter is NOT email_custom_rpt_show_past_company_coordinator_participants')
                               getCurrentContacts()
                           else
+                            console.log('IS prev2FrId')
                             getPrev2Contacts()
+
             else if filter is 'email_custom_rpt_show_company_coordinator_weekly_participants' or filter is 'email_custom_rpt_show_company_coordinator_0_dollar_participants' or filter is 'email_custom_rpt_show_company_coordinator_250_dollar_participants'
               if $scope.participantRegistration.companyInformation?.isCompanyCoordinator isnt 'true'
                 $scope.addressBookContacts.contacts = []
