@@ -18,6 +18,8 @@ angular.module 'ahaLuminateControllers'
       $scope.listUpload = false
       $scope.companyId = angular.element('[name=s_frCompanyId]').val()
       $scope.studentTreated = ''
+      $scope.agreeWaiver = 'no'
+      $scope.acceptWaiver = 'no'
       
       regCompanyId = luminateExtend.global.regCompanyId
       setCompanyName = (companyName) ->
@@ -189,6 +191,7 @@ angular.module 'ahaLuminateControllers'
         $scope.registrationInfo[questionName] = questionValue
 
       $scope.participationType = {}
+      participationType = ''
       setParticipationType = (participationType) ->
         $scope.participationType = participationType
         if not $scope.$$phase
@@ -199,7 +202,12 @@ angular.module 'ahaLuminateControllers'
         success: (response) ->
           participationTypes = response.getParticipationTypesResponse.participationType
           participationTypes = [participationTypes] if not angular.isArray participationTypes
-          participationType = participationTypes[0]
+          if $rootScope.partTypeId != ''
+            angular.forEach participationTypes, (pType) ->
+              if parseInt(pType.id) == parseInt($rootScope.partTypeId)
+                return participationType = pType
+          else
+            participationType = participationTypes[0]
           waiverContent = participationType.waiver?.content
           if waiverContent
             participationType.waiver.content = waiverContent.replace /(?:\r\n|\r|\n)/g, '<br />'
@@ -214,7 +222,7 @@ angular.module 'ahaLuminateControllers'
           setRegistrationQuestionSurveyKey = (questionName, surveyKey) ->
             $scope.registrationQuestions[questionName].surveyKey = surveyKey
             questionLegend = $scope.registrationQuestions[questionName].legend
-            if surveyKey is 'ym_khc_email_type' or surveyKey is 'ym_khc_grade' or surveyKey is 'ym_khc_school' or surveyKey is 'ym_khc_teacher_title' or surveyKey is 'ym_khc_teacher_name' or surveyKey is 'ym_khc_school_city' or surveyKey is 'ym_khc_school_state' or surveyKey is 'ym_khc_parentfirstname' or surveyKey is 'ym_khc_parentlastname' or surveyKey is 'ym_khc_student_state' or surveyKey is 'ym_khc_instruction_type' or surveyKey is 'ym_khc_email_consent_text' or surveyKey is 'ym_khc_future_middleschool'
+            if surveyKey is 'ym_khc_email_type' or surveyKey is 'ym_khc_grade' or surveyKey is 'ym_khc_school' or surveyKey is 'ym_khc_teacher_title' or surveyKey is 'ym_khc_teacher_name' or surveyKey is 'ym_khc_school_city' or surveyKey is 'ym_khc_school_state' or surveyKey is 'ym_khc_parentfirstname' or surveyKey is 'ym_khc_parentlastname' or surveyKey is 'ym_khc_student_state' or surveyKey is 'ym_khc_instruction_type' or surveyKey is 'ym_khc_email_consent_text' or surveyKey is 'ym_khc_future_middleschool' or surveyKey is 'ym_khc_tshirt_size_dse'
               initCustomQuestions()
               $scope.registrationCustomQuestions[surveyKey] = questionName
             else if questionLegend isnt 'Event Date' and surveyKey isnt 'ym_khc_challenge_info' and surveyKey isnt 'ym_khc_ecards_sent' and surveyKey isnt 'ym_khc_ecards_shared' and surveyKey isnt 'ym_khc_ecards_open' and surveyKey isnt 'ym_khc_ecards_clicked' and surveyKey isnt 'ym_khc_ym_game_points' and surveyKey isnt 'bb_facebook_connector_id'
@@ -309,7 +317,6 @@ angular.module 'ahaLuminateControllers'
       jumpStartArray = JSON.parse("[" + jumpStartSchools + "]");
       
       findLabel = () ->
-        console.log('findlabel function')
         if angular.element('#questions_hdr_container').length > 0
           if jumpStartArray.indexOf(currentSchool) != -1
             console.log('current school is in array')
@@ -319,7 +326,19 @@ angular.module 'ahaLuminateControllers'
           else
             console.log('current school is NOT in array')
             angular.element('label.control-label span:contains("Shirt")').closest('.row').find('select option[value="Jump Start School"]').remove()
-
+          if $scope.participationTypes[$rootScope.partTypeId].indexOf("Employee") > 0 
+            #preselect last entry and default teacher name
+            setTimeout (->
+              numGrades = angular.element('select.ym_khc_grade option').length
+              angular.element('select.ym_khc_grade').prop('selectedIndex', numGrades-1).change()
+              angular.element('input.ym_khc_teacher_name').val('Faculty').change()  
+              angular.element('select.ym_khc_tshirt_size option[value="No T-Shirt"]').prop("selected",true).change()
+              return
+            ), 500
+          else
+            angular.element('select.ym_khc_grade').prop('selectedIndex', 0).change()
+            angular.element('input.ym_khc_teacher_name').val('').change()    
+            angular.element('label.control-label span:contains("Shirt")').closest('.row').find('select option[value="No T-Shirt"]').remove()
         else
           window.setTimeout(findLabel,50);
 
@@ -331,7 +350,7 @@ angular.module 'ahaLuminateControllers'
       $scope.previousStep = ->
         $scope.ng_go_back = true
         $timeout ->
-          $scope.submitReg()
+          angular.element('.js--default-reg-form').submit()
         , 500
         false
       
@@ -340,20 +359,7 @@ angular.module 'ahaLuminateControllers'
         angular.element('.js--default-reg-form').submit()
       
       $scope.submitReg = ->
-        if $scope.acceptWaiver isnt 'yes' and not $scope.ng_go_back
-          window.scrollTo 0, 0
-          $scope.registrationInfoErrors.errors = [
-            {
-              text: 'You must agree to the waiver.'
-            }
-          ]
-        else
-          #if not $scope.familyChallengePopup
-          #  $scope.familyChallengePopup = true
-          #  $scope.showFamilyChallengePopup = $uibModal.open
-          #    scope: $scope
-          #    templateUrl: APP_INFO.rootPath + 'dist/ym-primary/html/modal/showFamilyChallengePopup.html'
-          #else 
+        if angular.element('form[name=regForm]').valid() 
           angular.element('.js--default-reg-form').submit()
         false
 

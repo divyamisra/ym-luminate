@@ -11,6 +11,9 @@
     flex: 1 0 50%;
     max-width: 50%;
   }
+  img {
+    max-width: 112px;
+  }
   .badge-title {
     color: $event-secondary;
     font-weight: bold;

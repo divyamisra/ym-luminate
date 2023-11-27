@@ -74,7 +74,8 @@ angular.module 'trPcControllers'
 
       #Nuclavis process start by setting this flag
       webContent.load = 1
-      ahaWebContent.ssoInitialize $rootScope.consId, $rootScope.frId, '' + $rootScope.authToken, '' + $rootScope.sessionCookie
+      if $scope.participantRegistration.companyInformation?.isCompanyCoordinator is 'true'
+        ahaWebContent.ssoInitialize $rootScope.consId, $rootScope.frId, '' + $rootScope.authToken, '' + $rootScope.sessionCookie
 
       if $scope.participantRegistration.lastPC2Login is '0'
         if $scope.participantRegistration.companyInformation?.isCompanyCoordinator isnt 'true'
@@ -187,7 +188,26 @@ angular.module 'trPcControllers'
         .then (response) ->
           $scope.CountOfStudentsCompletingFinnsMission = response.data.finns_mission_completed
       getFinnsMissionCompletedCount()
-		
+
+      $scope.re_reg = 0
+      $scope.getReRegister = ->
+        NuclavisService.getReRegister $scope.consId + '/' + $scope.frId
+        .then (response) ->
+          $scope.re_reg = response.data.reregisterTime
+      $scope.getReRegister()
+
+      $scope.postReRegister = ->
+        NuclavisService.postReRegister $scope.consId + '/' + $scope.frId
+        .then (response) ->
+          $scope.re_reg = true
+          $scope.$apply()
+
+      $scope.deleteReRegister = ->
+        NuclavisService.deleteReRegister $scope.consId + '/' + $scope.frId
+        .then (response) ->
+          $scope.re_reg = 0
+          $scope.$apply()
+
       participantsString = ''
       $scope.companyParticipants = {}
       setCompanyParticipants = (participants, totalNumber, totalFundraisers) ->
@@ -926,6 +946,7 @@ angular.module 'trPcControllers'
       refreshFinnsMission = ->
         $scope.prizes = {}
         $scope.prizesEarned = 0
+        $scope.company_match = 0
         NuclavisService.getBadges $scope.consId + '/' + $scope.frId
         .then (response) ->
           $scope.mystery_gift = response.data.mystery_gift.earned
@@ -990,6 +1011,7 @@ angular.module 'trPcControllers'
             aria_label: aria_label
             aria_button: button_aria_label
             button_label: prize.hq_button
+          $scope.company_match = response.data.company_match
           $scope.loadingBadges = 0
 	    
           #$scope.buildGiftCatalog()
@@ -1185,7 +1207,7 @@ angular.module 'trPcControllers'
               $scope.schoolPlan.HideGifts = "NO"
             #if $scope.participantRegistration.companyInformation?.isCompanyCoordinator is 'true'
             #  $scope.getSchoolTop15()
-				
+            ###
             NgPcConstituentService.getUserRecord('fields=custom_string18&cons_id=' + $scope.consId).then (response) ->
               if response.data.errorResponse
                 console.log 'There was an error getting user profile. Please try again later.'
@@ -1205,10 +1227,13 @@ angular.module 'trPcControllers'
                       $scope.schoolPlan.ParticipatingNextYear_isChecked = true
                     else
                       $scope.schoolPlan.ParticipatingNextYear_isChecked = false
+            ###
+          ###
           if $scope.schoolPlan.ParticipatingNextYear_student == 'YES'
             $scope.schoolPlan.ParticipatingNextYear_isChecked = true
           else
             $scope.schoolPlan.ParticipatingNextYear_isChecked = false
+          ###
       $scope.getSchoolPlan()
 
       $scope.putSchoolPlan = (event, sel) ->
