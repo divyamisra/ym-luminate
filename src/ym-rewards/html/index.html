@@ -38,9 +38,10 @@
                 </div>
             </div>
             <div class="product-column">
-                <div class="h3 mb-4">
+                <div class="h3">
                     Products
                 </div>
+		<em class="d-block mb-4">If any item becomes unavailable, we reserve the right to offer an alternate item of equal value.</em>
                 <div class="productList d-lg-flex flex-wrap d-md-block justify-content-between">
                     <product ng-repeat="product in productList" ng-if="product.quantity > 10 && (product.program == EventProgram || product.program == 'all')">
                         <div style="margin-bottom:20px;" class="{{product.productId}} d-flex overflow-hidden">
@@ -178,7 +179,9 @@
             </p>
             <p><em>Unused points will carry over to next year.<br/>
 		    Thank you for your redemption. 
-		    Rewards will be included in the Thank-You Gifts you receive for your students post program.</em></p>
+		    Rewards will be included in the Thank-You Gifts you receive for your students post program.<br/>
+	    	    If any item becomes unavailable, we reserve the right to offer an alternate item of equal value.</em>
+	    </p>
             <a class="btn btn-primary" href="" name="delPurchase" ng-click="deletePurchase($event)" ng-if="tablePrefix == 'heartdev'" ng-cloak>
 		TEST ONLY: Remove Purchase 
   	    </a>
