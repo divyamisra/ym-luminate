@@ -206,6 +206,7 @@ angular.module 'ahaLuminateApp'
               SCHOOL_STATE: company.SCHOOL_STATE
               COORDINATOR_FIRST_NAME: company.COORDINATOR_FIRST_NAME
               COORDINATOR_LAST_NAME: company.COORDINATOR_LAST_NAME
+              GRADES: company.ParticipatingGradeLevels
           schools
           
         setSchoolsData = (schools) ->
