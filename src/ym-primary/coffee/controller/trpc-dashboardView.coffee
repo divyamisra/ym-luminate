@@ -219,6 +219,7 @@ angular.module 'trPcControllers'
           $scope.$apply()
         if participants and participants.length > 0
           angular.forEach participants, (participant, participantIndex) ->
+            console.log('participantIndex ' + participantIndex)
             participantsString += '{name: "' + participant.name.first + ' ' + participant.name.last + '", raised: "' + participant.amountRaisedFormatted + '"}'
             if participantIndex < (participants.length - 1)
               participantsString += ', '
@@ -228,6 +229,7 @@ angular.module 'trPcControllers'
             angular.element('.ym-school-animation iframe').on 'load', ->
               angular.element('.ym-school-animation iframe')[0].contentWindow.postMessage companyParticipantsString, domain
 
+      $rootScope.registeredCons = []
       getCompanyParticipants = ->
         TeamraiserParticipantService.getParticipants 'team_name=' + encodeURIComponent('%') + '&first_name=' + encodeURIComponent('%%') + '&last_name=' + encodeURIComponent('%') + '&list_filter_column=team.company_id&list_filter_text=' + $scope.participantRegistration.companyInformation.companyId + '&list_sort_column=total&list_ascending=false&list_page_size=500',
             error: ->
@@ -236,6 +238,7 @@ angular.module 'trPcControllers'
               participants = response.getParticipantsResponse?.participant
               companyParticipants = []
               totalNumberParticipants = response.getParticipantsResponse?.totalNumberResults or '0'
+              console.log('totalNumberParticipants ' + totalNumberParticipants)
               totalFundraisers = 0
               if participants
                 participants = [participants] if not angular.isArray participants
@@ -250,6 +253,13 @@ angular.module 'trPcControllers'
                     if participant.donationUrl
                       participant.donationFormId = participant.donationUrl.split('df_id=')[1].split('&')[0]
                     companyParticipants.push participant
+                    console.log('companyParticipants length ' + companyParticipants.length)
+                    console.log('get company parts ' + participant.consId)
+                    console.log('is page private: ' + participant.personalPagePrivate)
+                    console.log('is active? ' + participant.status)
+                    
+                    $rootScope.registeredCons.push participant.consId
+                    console.log('$rootScope.registeredCons ' + $rootScope.registeredCons.length)
                     totalFundraisers++
               setCompanyParticipants companyParticipants, totalNumberParticipants, totalFundraisers
       getCompanyParticipants()
