@@ -27,17 +27,28 @@
         </div>
       </section>
     </div>
-    <section class="early-registration-section mb-3" aria-label="Early Registration Section">
-      <div class="early-registration text-center">
-        <div class="participatingNextYear text-center p-2" ng-cloak>
-          <div class="checkbox pe-2 pb-2" custom-checkbox ng-class="{'checked': schoolPlan.ParticipatingNextYear_student == 'YES'}">
-            <strong>Early Registration:</strong>
-            <label for="ParticipatingNextYear">
-              <input type="checkbox" name="ParticipatingNextYear" id="ParticipatingNextYear" ng-model="schoolPlan.ParticipatingNextYear_isChecked" value="{{schoolPlan.ParticipatingNextYear_student}}" aria-label="Participating Next Year" ng-change="updateParticipatingNextYear()"> Re-register for next year </label>
+    <div class="ym-pc-dashboard-school-challange d-md-flex flex-wrap mb-0">
+      <section class="early-registration-section" ng-if="!re_reg" ng-class="(company_match == 1) ? 'col' : 'w-100'" aria-label="Early Registration Section">
+        <div class="early-registration text-center">
+          <div class="participatingNextYear text-center p-2" ng-cloak>
+            <div class="checkbox pe-2 pb-1" custom-checkbox ng-class="{'checked': re_reg}">
+              <strong>Early Registration:</strong>
+              <label for="ParticipatingNextYear">
+                <input type="checkbox" name="ParticipatingNextYear" id="ParticipatingNextYear" ng-model="re_reg" value="{{re_reg}}" aria-label="Participating Next Year" ng-change="postReRegister()"> Re-register for next year </label>
+            </div>
+            <div class="earlyReg-text">Don't worry, you can always unenroll if your plans change and you can't participate.</div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+      <section class="col-md-4 company-match" ng-if="company_match == 1" ng-class="(!re_reg) ? 'col-md-4' : 'w-100'" ng-cloak>
+        <div class="py-2 px-5">
+          <div class="company-match-title text-white text-center fw-bold pb-1"> Double your Donation </div>
+          <div class="company-match-text text-white text-center">
+            <a class="text-white" href="https://www.heart.org/matchinggifts" target="_blank" aria-label="Learn more about your employer's matching gift program">Learn more</a> about your employer's matching gift program.
+          </div>
+        </div>
+      </section>
+    </div>
     <section class="ym-pc-dashboard-badges-section mb-4" aria-label="My Badges" ng-if="prizes" ng-cloak>
       <h2 class="text-center">Finn's Mission</h2>
       <div class="finns-mission-section d-flex justify-content-between flex-wrap gap-4 p-3">
@@ -506,6 +517,26 @@
 				</div>
 			</div>
 		</div>
+    <div class="ym-pc-dashboard-school-challange d-md-flex flex-wrap mb-0">
+      <section class="early-registration-section" ng-if="re_reg" ng-class="(company_match == 2) ? 'col' : 'w-100'" aria-label="Early Registration Section">
+        <div class="early-registration text-center">
+          <div class="participatingNextYear text-center p-2" ng-cloak>
+            <div class="checkbox pe-2 pb-2" custom-checkbox ng-class="{'checked': re_reg}">
+	      <div class="earlyReg-text">Don't worry, you can always unenroll if your plans change and you can't participate.</div>
+              <a class="text-white" href="" ng-click="deleteReRegister()"><strong>Remove Early Registration</strong></a>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="col-md-4 company-match" ng-if="company_match == 2" ng-class="(re_reg) ? 'col-md-4' : 'w-100'" ng-cloak>
+        <div class="py-2 px-5">
+          <div class="company-match-title text-white text-center fw-bold"> Double your Donation </div>
+          <div class="company-match-text text-white text-center">
+            Congratulations on doubling your donation with your employer matching gift!
+          </div>
+        </div>
+      </section>
+    </div>
     <div class="mt-4 text-center">
       <button type="button" class="btn btn-md-wide btn-primary" ng-click="postFeedbackMessage()">
         <strong> Provide Feedback </strong>
