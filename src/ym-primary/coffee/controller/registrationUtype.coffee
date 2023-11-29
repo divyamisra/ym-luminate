@@ -3,8 +3,9 @@ angular.module 'ahaLuminateControllers'
     '$rootScope'
     '$scope'
     'TeamraiserCompanyService',
+    'TeamraiserRegistrationService'
     'ZuriService'
-    ($rootScope, $scope, TeamraiserCompanyService, ZuriService) ->
+    ($rootScope, $scope, TeamraiserCompanyService, TeamraiserRegistrationService, ZuriService) ->
       $rootScope.companyName = ''
       localStorage.companyName = ''
       localStorage.companyCity = ''
@@ -59,6 +60,27 @@ angular.module 'ahaLuminateControllers'
       $scope.submitForgotLogin = ->
         angular.element('.js--default-utype-send-username-form').submit()
         false
+
+      $scope.pTypeId = ''
+      $scope.participationTypes = {}
+      TeamraiserRegistrationService.getParticipationTypes
+        error: ->
+        success: (response) ->
+          participationTypes = response.getParticipationTypesResponse.participationType
+          if !angular.isArray(participationTypes)
+            participationTypes = [ participationTypes ]
+          angular.forEach participationTypes, (ptype, val) ->
+            $scope.participationTypes[ptype.id] = ptype.name
+          $scope.pTypeId = participationTypes[0].id
+          $scope.setParticipationType '', $scope.pTypeId
+
+      $scope.participationType = {}
+      $scope.setParticipationType = ($event, pTypeId) ->
+        $scope.participationType.altid = parseInt(pTypeId)
+        $scope.participationType.id = pTypeId
+        $scope.participationType.name = $scope.participationTypes[pTypeId]
+        if !$scope.$$phase
+          $scope.$apply()
           
       ZuriService.getSchoolDetail '&school_id=' + regCompanyId + '&EventId=' + $rootScope.frId,
         failure: (response) ->
