@@ -45,6 +45,13 @@
   }
 }
 
+.company-match {
+  background: $event-accent-pink;
+  .company-match-title {
+    font-size: 20px;
+  }
+}
+
 .student-hq {
   .col {
     min-width: 290px;
@@ -61,6 +68,9 @@
     .checkbox label:before, 
     input[type=checkbox]+label:before {
       top: 5px;
+    }
+    .earlyReg-text {
+      font-size:16px;
     }
   }
 }
