@@ -181,7 +181,14 @@ angular.module 'trPcControllers'
                 if $scope.companyProgress.raised >= $scope.companyProgress.goal and $scope.companyProgress.goal > 0 and amt >= Number(($scope.companyProgress.schoolChallengeLevel).replace('$', '').replace(/,/g, '')) and $scope.companyProgress.schoolChallenge != "No School Challenge"
                   $scope.schoolChallenge = 4
             #$scope.getSchoolBadges()
-            
+
+      $scope.CountOfStudentsCompletingFinnsMission = 0
+      getFinnsMissionCompletedCount = ->
+        NuclavisService.getMissionCount $scope.participantRegistration.companyInformation.companyId + '/' + $scope.frId
+        .then (response) ->
+          $scope.CountOfStudentsCompletingFinnsMission = response.data.finns_mission_completed
+      getFinnsMissionCompletedCount()
+		
       $scope.re_reg = 0
       $scope.getReRegister = ->
         NuclavisService.getReRegister $scope.consId + '/' + $scope.frId
@@ -939,6 +946,7 @@ angular.module 'trPcControllers'
       refreshFinnsMission = ->
         $scope.prizes = {}
         $scope.prizesEarned = 0
+        $scope.company_match = 0
         NuclavisService.getBadges $scope.consId + '/' + $scope.frId
         .then (response) ->
           $scope.mystery_gift = response.data.mystery_gift.earned
@@ -1003,6 +1011,7 @@ angular.module 'trPcControllers'
             aria_label: aria_label
             aria_button: button_aria_label
             button_label: prize.hq_button
+          $scope.company_match = response.data.company_match
           $scope.loadingBadges = 0
 	    
           #$scope.buildGiftCatalog()
