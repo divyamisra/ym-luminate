@@ -182,6 +182,25 @@ angular.module 'trPcControllers'
                   $scope.schoolChallenge = 4
             #$scope.getSchoolBadges()
             
+      $scope.re_reg = 0
+      $scope.getReRegister = ->
+        NuclavisService.getReRegister $scope.consId + '/' + $scope.frId
+        .then (response) ->
+          $scope.re_reg = response.data.reregisterTime
+      $scope.getReRegister()
+
+      $scope.postReRegister = ->
+        NuclavisService.postReRegister $scope.consId + '/' + $scope.frId
+        .then (response) ->
+          $scope.re_reg = true
+          $scope.$apply()
+
+      $scope.deleteReRegister = ->
+        NuclavisService.deleteReRegister $scope.consId + '/' + $scope.frId
+        .then (response) ->
+          $scope.re_reg = 0
+          $scope.$apply()
+
       participantsString = ''
       $scope.companyParticipants = {}
       setCompanyParticipants = (participants, totalNumber, totalFundraisers) ->
