@@ -194,7 +194,7 @@ angular.module 'trPcControllers'
                                 participantString = participant.firstName.toLowerCase() + ' ' + participant.lastName.toLowerCase() + ' <' + participant.email.toLowerCase() + '>'
                                 if contactString is participantString
                                   contactIsUnique = false
-                              if partTypeName is 'Participant' || partTypeName is ''
+                              if partTypeName is 'Participant' || partTypeName is 'Student/Parent' || partTypeName is ''
                                 if contactIsUnique
                                   totalNumberResults++
                                   participants.push contact
@@ -303,7 +303,7 @@ angular.module 'trPcControllers'
                             contactMeetsCustomFilter = true
                           else if filter is 'email_custom_rpt_show_company_coordinator_250_dollar_participants' and amountRaised >= 250
                             contactMeetsCustomFilter = true
-                          if partTypeName is 'Participant' || partTypeName is ''
+                          if partTypeName is 'Participant' || partTypeName is 'Student/Parent' || partTypeName is ''
                             if contactIsUnique and contactMeetsCustomFilter
                               totalNumberResults++
                               filteredParticipants.push contact
