@@ -174,6 +174,7 @@ angular.module 'trPcControllers'
                             reportDataColumnIndexMap[reportDataHeader] = reportDataHeaderIndex
                           angular.forEach reportDataRows, (reportDataRow, reportDataRowIndex) ->
                             if reportDataRowIndex > 0
+                              consId = jQuery.trim reportDataRow[reportDataColumnIndexMap.PARTICIPANT_CONS_ID]
                               firstName = jQuery.trim reportDataRow[reportDataColumnIndexMap.PARTICIPANT_FIRST_NAME]
                               lastName = jQuery.trim reportDataRow[reportDataColumnIndexMap.PARTICIPANT_LAST_NAME]
                               email = jQuery.trim reportDataRow[reportDataColumnIndexMap.PARTICIPANT_EMAIL]
@@ -193,13 +194,14 @@ angular.module 'trPcControllers'
                                 participantString = participant.firstName.toLowerCase() + ' ' + participant.lastName.toLowerCase() + ' <' + participant.email.toLowerCase() + '>'
                                 if contactString is participantString
                                   contactIsUnique = false
-                              if partTypeName is 'Participant' || partTypeName is ''
+                              if partTypeName is 'Participant' || partTypeName is 'Student/Parent' || partTypeName is ''
                                 if contactIsUnique
-                                  totalNumberResults++
-                                  participants.push contact
-                                  if newOnly
-                                    totalNumberNewResults++
-                                    newParticipants.push contact
+                                  if $rootScope.registeredCons.indexOf(consId) == -1
+                                    totalNumberResults++
+                                    participants.push contact
+                                    if newOnly
+                                      totalNumberNewResults++
+                                      newParticipants.push contact
                         if newOnly
                           participants = newParticipants
                           totalNumberResults = totalNumberNewResults
@@ -302,7 +304,7 @@ angular.module 'trPcControllers'
                             contactMeetsCustomFilter = true
                           else if filter is 'email_custom_rpt_show_company_coordinator_250_dollar_participants' and amountRaised >= 250
                             contactMeetsCustomFilter = true
-                          if partTypeName is 'Participant' || partTypeName is ''
+                          if partTypeName is 'Participant' || partTypeName is 'Student/Parent' || partTypeName is ''
                             if contactIsUnique and contactMeetsCustomFilter
                               totalNumberResults++
                               filteredParticipants.push contact

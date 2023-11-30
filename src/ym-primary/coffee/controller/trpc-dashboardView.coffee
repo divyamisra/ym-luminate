@@ -253,13 +253,13 @@ angular.module 'trPcControllers'
                     if participant.donationUrl
                       participant.donationFormId = participant.donationUrl.split('df_id=')[1].split('&')[0]
                     companyParticipants.push participant
-                    console.log('companyParticipants length ' + companyParticipants.length)
-                    console.log('get company parts ' + participant.consId)
-                    console.log('is page private: ' + participant.personalPagePrivate)
-                    console.log('is active? ' + participant.status)
+                    # console.log('companyParticipants length ' + companyParticipants.length)
+                    # console.log('get company parts ' + participant.consId)
+                    # console.log('is page private: ' + participant.personalPagePrivate)
+                    # console.log('is active? ' + participant.status)
                     
                     $rootScope.registeredCons.push participant.consId
-                    console.log('$rootScope.registeredCons ' + $rootScope.registeredCons.length)
+                    #console.log('$rootScope.registeredCons ' + $rootScope.registeredCons.length)
                     totalFundraisers++
               setCompanyParticipants companyParticipants, totalNumberParticipants, totalFundraisers
       getCompanyParticipants()

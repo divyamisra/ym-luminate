@@ -14,8 +14,7 @@ angular.module 'trPcControllers'
     'NgPcTeamraiserCompanyService'
     'NgPcTeamraiserReportsService'
     'ZuriService'
-    'TeamraiserParticipantService'
-    ($rootScope, $scope, $window, $routeParams, $location, $timeout, $httpParamSerializer, $uibModal, APP_INFO, NgPcTeamraiserEmailService, NgPcContactService, NgPcTeamraiserCompanyService, NgPcTeamraiserReportsService, ZuriService, TeamraiserParticipantService) ->
+    ($rootScope, $scope, $window, $routeParams, $location, $timeout, $httpParamSerializer, $uibModal, APP_INFO, NgPcTeamraiserEmailService, NgPcContactService, NgPcTeamraiserCompanyService, NgPcTeamraiserReportsService, ZuriService) ->
       $scope.filter = $routeParams.filter
       
       $scope.emailPromises = []
@@ -77,31 +76,6 @@ angular.module 'trPcControllers'
       
       isAllContactsSelected = ->
         $scope.addressBookContacts.allContacts.length > 0 and $scope.addressBookContacts.allContacts.length is countContactSelected($scope.addressBookContacts.allContacts)
-
-
-
-      # $scope.registeredCons = []
-      # setRegisteredCons = (participants, totalNumber, totalFundraisers) ->
-      #   totalNumber = totalNumber or 0
-      #   console.log('totalNumber ' + totalNumber)
-      #   if not $scope.$$phase
-      #     $scope.$apply()
-      #   if participants and participants.length > 0
-      #       angular.forEach participants, (participant, participantIndex) ->
-      #         console.log('part cons id: ' + participant.consId)
-      #         $scope.registeredCons.push participant.consId
-      #       console.log('registeredCons length ' + $scope.registeredCons.length)
-
-      # getRegisteredCons = ->
-      #   TeamraiserParticipantService.getParticipants 'team_name=' + encodeURIComponent('%') + '&first_name=' + encodeURIComponent('%%') + '&last_name=' + encodeURIComponent('%') + '&list_filter_column=team.company_id&list_filter_text=' + $scope.participantRegistration.companyInformation.companyId + '&list_sort_column=total&list_ascending=false&list_page_size=500',
-      #       error: ->
-      #         setCompanyParticipants()
-      #       success: (response) ->
-      #         participants = response.getParticipantsResponse?.participant
-      #         totalNumberParticipants = response.getParticipantsResponse?.totalNumberResults or '0'
-      #         setRegisteredCons participants, totalNumberParticipants
-      # getRegisteredCons()
-
 
       $scope.contactCounts = {}
       contactFilters = [
@@ -232,7 +206,7 @@ angular.module 'trPcControllers'
                                 participantString = participant.firstName.toLowerCase() + ' ' + participant.lastName.toLowerCase() + ' <' + participant.email.toLowerCase() + '>'
                                 if contactString is participantString
                                   contactIsUnique = false
-                              if partTypeName is 'Participant' || partTypeName is ''
+                              if partTypeName is 'Participant' || partTypeName is 'Student/Parent' || partTypeName is ''
                                 console.log('cons id? ' + consId)
                                 if contactIsUnique
                                   console.log('check registered participants')
@@ -363,7 +337,7 @@ angular.module 'trPcControllers'
                             contactMeetsCustomFilter = true
                           else if filter is 'email_custom_rpt_show_company_coordinator_250_dollar_participants' and amountRaised >= 250
                             contactMeetsCustomFilter = true
-                          if partTypeName is 'Participant' || partTypeName is ''
+                          if partTypeName is 'Participant' || partTypeName is 'Student/Parent' || partTypeName is ''
                             if contactIsUnique and contactMeetsCustomFilter
                               totalNumberResults++
                               filteredParticipants.push contact
