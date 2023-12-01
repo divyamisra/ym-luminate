@@ -79,9 +79,9 @@ angular.module 'ahaLuminateApp'
         .then (response) ->
           $rootScope.NuclavisAPIToken = response
           if $rootScope.tablePrefix is 'heartdev' or $rootScope.tablePrefix is 'heartnew'
-            url = 'https://smt.nuclavis.com/khc/student/missionCount/' + requestData
+            url = 'https://smt.nuclavis.com/ahc/student/missionCount/' + requestData
           else
-            url = 'https://smt-api.heart.org/khc/student/missionCount/' + requestData
+            url = 'https://smt-api.heart.org/ahc/student/missionCount/' + requestData
           reqHeader = 
             'Content-Type': 'application/json'
             'Authorization': 'Bearer ' + $rootScope.NuclavisAPIToken
@@ -93,6 +93,63 @@ angular.module 'ahaLuminateApp'
         , (response) ->
           $rootScope.NuclavisAPIToken = 0;
 
+      getReRegister: (requestData) ->
+        this.login()
+        .then (response) ->
+          $rootScope.NuclavisAPIToken = response
+          if $rootScope.tablePrefix is 'heartdev' or $rootScope.tablePrefix is 'heartnew'
+            url = 'https://smt.nuclavis.com/ahc/student/reregister/' + requestData
+          else
+            url = 'https://smt-api.heart.org/ahc/student/reregister/' + requestData
+          reqHeader = 
+            'Content-Type': 'application/json'
+            'Authorization': 'Bearer ' + $rootScope.NuclavisAPIToken
+          $http.get($sce.trustAsResourceUrl(url), {headers: reqHeader})
+            .then (response) ->
+              response.data
+            , (response) ->
+              response
+        , (response) ->
+          $rootScope.NuclavisAPIToken = 0;
+
+      postReRegister: (requestData) ->
+        this.login()
+        .then (response) ->
+          $rootScope.NuclavisAPIToken = response
+          if $rootScope.tablePrefix is 'heartdev' or $rootScope.tablePrefix is 'heartnew'
+            url = 'https://smt.nuclavis.com/ahc/student/reregister/' + requestData
+          else
+            url = 'https://smt-api.heart.org/ahc/student/reregister/' + requestData
+          reqHeader = 
+            'Content-Type': 'application/json'
+            'Authorization': 'Bearer ' + $rootScope.NuclavisAPIToken
+          $http.post($sce.trustAsResourceUrl(url), {}, {headers: reqHeader})
+            .then (response) ->
+              response.data
+            , (response) ->
+              response
+        , (response) ->
+          $rootScope.NuclavisAPIToken = 0;
+
+      deleteReRegister: (requestData) ->
+        this.login()
+        .then (response) ->
+          $rootScope.NuclavisAPIToken = response
+          if $rootScope.tablePrefix is 'heartdev' or $rootScope.tablePrefix is 'heartnew'
+            url = 'https://smt.nuclavis.com/ahc/student/reregister/' + requestData
+          else
+            url = 'https://smt-api.heart.org/ahc/student/reregister/' + requestData
+          reqHeader = 
+            'Content-Type': 'application/json'
+            'Authorization': 'Bearer ' + $rootScope.NuclavisAPIToken
+          $http.delete($sce.trustAsResourceUrl(url), {data: {}, headers: reqHeader})
+            .then (response) ->
+              response.data
+            , (response) ->
+              response
+        , (response) ->
+          $rootScope.NuclavisAPIToken = 0;
+          
       postAction: (requestData) ->
         this.login()
         .then (response) ->
