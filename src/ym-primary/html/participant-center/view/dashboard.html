@@ -54,122 +54,283 @@
       <div class="finns-mission-section d-flex justify-content-between flex-wrap gap-4 p-3">
         <div class="ym-pc-dashboard-badge-path col">
           <div class="finns-mission">
-            <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewbox="0 0 826 826" preserveaspectratio="xMidYMid meet" aria-labelledby="finns_mission_title finns_mission_desc" aria-hidden="true">
-              <title id="finns_mission_title"> Finn's Mission </title>
-              <desc id="finns_mission_desc"> Your mission is to complete the challenges listed for Finn </desc>
-              <defs>
-                <filter id="a" x="220" y="320" width="210" height="100" filterunits="userSpaceOnUse">
-                  <feoffset dx="1" dy="1" />
-                </filter>
-                <filter id="b" x="470" y="130" width="250" height="70" filterunits="userSpaceOnUse">
-                  <feoffset dx="1" dy="1" />
-                </filter>
-                <pattern id="bg" filterunits="objectBoundingBox" x="0" y="0" width="1" height="1">
-                  <image aria-hidden="true" width="100%" ng-href="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24/finns-mission-bg.png" xlink:href="" alt="Finn's Mission Background"></image>
-                </pattern>
-                <pattern id="finn" filterunits="objectBoundingBox" x="0" y="0" width="1" height="1">
-                  <image aria-hidden="true" width="250" ng-href="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24/finn-nobg.png" xlink:href="" alt="Finn"></image>
-                </pattern>
-                <pattern id="ballbw" filterunits="objectBoundingBox" x="0" y="0" width="1" height="1">
-                  <image aria-hidden="true" width="105" ng-href="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24/finn-ball-bw.png" xlink:href="" alt="Black and White Ball"></image>
-                </pattern>
-                <pattern id="ballcolor" filterunits="objectBoundingBox" x="0" y="0" width="1" height="1">
-                  <image aria-hidden="true" width="105" ng-href="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24/finn-ball-color.png" xlink:href="" alt="Color Ball"></image>
-                </pattern>
-                <pattern id="discoball" filterunits="objectBoundingBox" x="0" y="0" width="1" height="1">
-                  <image aria-hidden="true" width="230" ng-href="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24/finns-mission-disco-ball.png" xlink:href="" alt="Disco Ball"></image>
-                </pattern>
-                <pattern id="1_balloon" filterunits="objectBoundingBox" x="0" y="0" width="1" height="1">
-                  <image class="bounce-3" aria-hidden="true" width="200" xlink:href="" ng-href="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24/Balloon1.png" alt="{{prizes[0].label}}" title="Donate" />
-                </pattern>
-                <pattern id="2_balloon" filterunits="objectBoundingBox" x="0" y="0" width="1" height="1">
-                  <image aria-hidden="true" width="200" xlink:href="" ng-href="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24/Balloon2.png" alt="{{prizes[1].label}}" title="Send Messages" />
-                </pattern>
-                <pattern id="3_balloon" filterunits="objectBoundingBox" x="0" y="0" width="1" height="1">
-                  <image aria-hidden="true" width="200" xlink:href="" ng-href="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24/Balloon3.png" alt="{{prizes[2].label}}" title="Edit your page" />
-                </pattern>
-                <pattern id="4_balloon" filterunits="objectBoundingBox" x="0" y="0" width="1" height="1">
-                  <image aria-hidden="true" width="200" xlink:href="" ng-href="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24/Balloon4.png" alt="{{prizes[3].label}}" title="Hands-Only CPR" />
-                </pattern>
-                <pattern id="5_balloon" filterunits="objectBoundingBox" x="0" y="0" width="1" height="1">
-                  <image aria-hidden="true" width="200" xlink:href="" ng-href="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24/Balloon5.png" alt="{{prizes[4].label}}" title="First Donation" />
-                </pattern>
-                <pattern id="6_balloon" filterunits="objectBoundingBox" x="0" y="0" width="1" height="1">
-                  <image aria-hidden="true" width="200" xlink:href="" ng-href="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24/Balloon6.png" alt="{{prizes[5].label}}" title="Share on Social" />
-                </pattern>
-                <pattern id="7_balloon" filterunits="objectBoundingBox" x="0" y="0" width="1" height="1">
-		  <image aria-hidden="true" width="200" xlink:href="" ng-href="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24/Balloon{{(participationTypes[partTypeId].indexOf('Employee') > 0) ? '7a' : '7'}}.png" alt="{{prizes[6].label}}" title="Warning Signs of Stroke" />
-                </pattern>
-              </defs>
-              <g data-name="Winding Road">
-                <g transform="translate(-.001 .003)">
-                  <path fill="url(#bg)" d="M0 0v826h826v-826h-826z"></path>
-                </g>
-                <g>
-                  <foreignObject width="100%" height="100%" x="0" y="0">
-                    <div class="blns">
-                      <div class="bln-1"></div>
-                    </div>
-                  </foreignObject>
-                </g>
-                <g ng-repeat="prize in prizes">
-                  <g class="bounce-4" ng-if="prize.id == 2 && prize.status" alt="Donate" ng-cloak>
-                    <path fill="url(#1_balloon)" d="M70 90v746h200v-746h-200z"></path>
-                  </g>
-                  <g class="bounce-3" ng-if="prize.id == 3 && prize.status" alt="Share on Social" ng-cloak>
-                    <path fill="url(#6_balloon)" d="M140 300v746h200v-746h-200z"></path>
-                  </g>
-                  <g class="bounce-2" ng-if="prize.id == 5 && prize.status" alt="Hands-Only CPR" ng-cloak>
-                    <path fill="url(#4_balloon)" d="M40 500v746h200v-746h-200z"></path>
-                  </g>
-                  <g class="bounce-4" ng-if="prize.id == 7 && prize.status" alt="First Donation" ng-cloak>
-                    <path fill="url(#5_balloon)" d="M570 70v746h200v-746h-200z"></path>
-                  </g>
-                  <g class="bounce-3" ng-if="prize.id == 4 && prize.status" alt="Edit Your Page" ng-cloak>
-                    <path fill="url(#3_balloon)" d="M480 220v746h200v-746h-200z"></path>
-                  </g>
-                  <g class="bounce-2" ng-if="prize.id == 6 && prize.status" alt="Send Messages" ng-cloak>
-                    <path fill="url(#2_balloon)" d="M430 430v746h200v-746h-200z"></path>
-                  </g>
-                  <g class="bounce-2" ng-if="prize.id == 8 && prize.status" alt="Warning Signs of Stroke" ng-cloak>
-                    <path fill="url(#7_balloon)" d="M600 500v746h200v-746h-200z"></path>
-                  </g>
-                </g>
-                <g>
-                  <path fill="url(#discoball)" d="M305 20v230h230v-230h-230z"></path>
-                </g>
-                <g>
-                  <path fill="url(#finn)" d="M260 313v700h341v-700h-341z"></path>
-                </g>
-                <g class="gear" ng-cloak>
-                  <path ng-if="prizesEarned < 8" fill="url(#ballbw)" d="M292 587v105h105v-105h-105z">
-                  </path>
-                  <path ng-if="prizesEarned == 8" fill="url(#ballcolor)" d="M292 587v105h105v-105h-105z"></path>
-                </g>
-              </g>
-              <g>
-                <foreignObject width="55" height="55" x="320" y="40">
-                  <div class="template shine large"></div>
-                </foreignObject>
-                <foreignObject width="55" height="55" x="305" y="120">
-                  <div class="template shine medium"></div>
-                </foreignObject>
-                <foreignObject width="60" height="60" x="470" y="135">
-                  <div class="template shine large"></div>
-                </foreignObject>
-                <foreignObject width="55" height="55" x="440" y="40">
-                  <div class="template shine medium"></div>
-                </foreignObject>
-                <foreignObject width="60" height="60" x="345" y="180">
-                  <div class="template shine large"></div>
-                </foreignObject>
-                <foreignObject width="60" height="60" x="410" y="170">
-                  <div class="template shine medium"></div>
-                </foreignObject>
-              </g>
-            </svg>
+					<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewbox="0 0 658 380" preserveaspectratio="xMidYMid meet" aria-labelledby="finns_mission_title finns_mission_desc">
+						<title id="finns_mission_title">
+							Finn's Mission
+						</title>
+						<desc id="finns_mission_desc">
+							Your mission is to complete the challenges listed for Finn
+						</desc>
+						<defs>
+							<filter id="a" x="220" y="320" width="210" height="100" filterunits="userSpaceOnUse">
+								<feoffset dx="1" dy="1" /> 
+							</filter>
+							<filter id="b" x="470" y="130" width="250" height="70" filterunits="userSpaceOnUse">
+								<feoffset dx="1" dy="1" /> 
+							</filter>
+							<pattern id="bg" filterunits="objectBoundingBox" x="0" y="0" width="1" height="1">
+								<image aria-hidden="true" width="100%" ng-href="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy24-mission/finns-mission-bg-desktop.png" xlink:href="" alt="Finn's Mission Background">
+								</image>
+							</pattern>
+							<pattern id="road" filterunits="objectBoundingBox" x="0" y="0" width="1" height="1">
+								<image aria-hidden="true" width="88%" ng-href="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy24-mission/path-desktop.png" xlink:href="" title="Finn's Mission Path">
+								</image>
+							</pattern>
+							<pattern id="finn" filterunits="objectBoundingBox" x="0" y="0" width="1" height="1">
+								<image aria-hidden="true" width="70" ng-href="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy24-mission/Finn-desktop.png" xlink:href="" alt="Finn">
+								</image>
+							</pattern>
+							<pattern id="1_delivered" filterunits="objectBoundingBox" x="0" y="0" width="1" height="1">
+								<image aria-hidden="true" width="53" height="53" xlink:href="" ng-href="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24-mission/badge-1-active.png" alt="{{prizes[0].label}}" /> 
+							</pattern>
+							<pattern id="2_delivered" filterunits="objectBoundingBox" x="0" y="0" width="1" height="1">
+								<image aria-hidden="true" width="53" height="53" xlink:href="" ng-href="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24-mission/badge-2-active.png" alt="{{prizes[1].label}}" /> 
+							</pattern>
+							<pattern id="3_delivered" filterunits="objectBoundingBox" x="0" y="0" width="1" height="1">
+								<image aria-hidden="true" width="53" height="53" xlink:href="" ng-href="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24-mission/badge-3-active.png" alt="{{prizes[2].label}}" /> 
+							</pattern>
+							<pattern id="4_delivered" filterunits="objectBoundingBox" x="0" y="0" width="1" height="1">
+								<image aria-hidden="true" width="53" height="53" xlink:href="" ng-href="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24-mission/badge-4-active.png" alt="{{prizes[3].label}}" /> 
+							</pattern>
+							<pattern id="5_delivered" filterunits="objectBoundingBox" x="0" y="0" width="1" height="1">
+								<image aria-hidden="true" width="53" height="53" xlink:href="" ng-href="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24-mission/badge-5-active.png" alt="{{prizes[4].label}}" /> 
+							</pattern>
+							<pattern id="6_delivered" filterunits="objectBoundingBox" x="0" y="0" width="1" height="1">
+								<image aria-hidden="true" width="53" height="53" xlink:href="" ng-href="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24-mission/badge-6-active.png" alt="{{prizes[5].label}}" /> 
+							</pattern>
+							<pattern id="7_delivered" filterunits="objectBoundingBox" x="0" y="0" width="1" height="1">
+								<image aria-hidden="true" width="53" height="53" xlink:href="" ng-href="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24-mission/badge-7-active.png" alt="{{prizes[6].label}}" /> 
+							</pattern>
+							<pattern id="8_delivered" filterunits="objectBoundingBox" x="0" y="0" width="1" height="1">
+								<image aria-hidden="true" width="53" height="53" xlink:href="" ng-href="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24-mission/badge-{{(participationTypes[partTypeId].indexOf('Employee') > 0) ? '8a' : '8'}}-active.png" alt="{{prizes[7].label}}" /> 
+							</pattern>
+							<pattern id="1_earned" filterunits="objectBoundingBox" x="0" y="0" width="1" height="1">
+								<image aria-hidden="true" width="53" height="53" xlink:href="" ng-href="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24-mission/badge-1-inactive.png" alt="{{prizes[0].label}}" /> 
+							</pattern>
+							<pattern id="2_earned" filterunits="objectBoundingBox" x="0" y="0" width="1" height="1">
+								<image aria-hidden="true" width="53" height="53" xlink:href="" ng-href="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24-mission/badge-2-inactive.png" alt="{{prizes[1].label}}" /> 
+							</pattern>
+							<pattern id="3_earned" filterunits="objectBoundingBox" x="0" y="0" width="1" height="1">
+								<image aria-hidden="true" width="53" height="53" xlink:href="" ng-href="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24-mission/badge-3-inactive.png" alt="{{prizes[2].label}}" /> 
+							</pattern>
+							<pattern id="4_earned" filterunits="objectBoundingBox" x="0" y="0" width="1" height="1">
+								<image aria-hidden="true" width="53" height="53" xlink:href="" ng-href="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24-mission/badge-4-inactive.png" alt="{{prizes[3].label}}" /> 
+							</pattern>
+							<pattern id="5_earned" filterunits="objectBoundingBox" x="0" y="0" width="1" height="1">
+								<image aria-hidden="true" width="53" height="53" xlink:href="" ng-href="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24-mission/badge-5-inactive.png" alt="{{prizes[4].label}}" /> 
+							</pattern>
+							<pattern id="6_earned" filterunits="objectBoundingBox" x="0" y="0" width="1" height="1">
+								<image aria-hidden="true" width="53" height="53" xlink:href="" ng-href="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24-mission/badge-6-inactive.png" alt="{{prizes[5].label}}" /> 
+							</pattern>
+							<pattern id="7_earned" filterunits="objectBoundingBox" x="0" y="0" width="1" height="1">
+								<image aria-hidden="true" width="53" height="53" xlink:href="" ng-href="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24-mission/badge-7-inactive.png" alt="{{prizes[6].label}}" /> 
+							</pattern>
+							<pattern id="8_earned" filterunits="objectBoundingBox" x="0" y="0" width="1" height="1">
+								<image aria-hidden="true" width="53" height="53" xlink:href="" ng-href="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24-mission/badge-{{(participationTypes[partTypeId].indexOf('Employee') > 0) ? '8a' : '8'}}-inactive.png" alt="{{prizes[7].label}}" /> 
+							</pattern>
+						</defs>
+						<g data-name="Winding Road">
+							<g transform="translate(-.001 .003)">
+								<path fill="url(#bg)" d="M0 0v422h658v-422h-658z">
+								</path>
+							</g>
+							<g transform="translate(-.001 .003)">
+								<path fill="url(#road)" d="M27 68v245h600v-245h-600z">
+								</path>
+							</g>
+							<g id="take-challenge" role="image" tabindex="0" ng-focus="mouseover(0, 0, 59, this, -10)" ng-blur="mouseout()" title="Pick a Challenge">
+								<path class="badge-path" d="M22 129v53h53v-53x-53z" fill="url(#1_delivered)" ng-mouseover="mouseover(0, 0, 59, this, -10)" ng-mouseout="mouseout()" aria-label="{{prizes[0].aria_label}}" /> 
+								<text fill="#000" font-size="10" font-weight="bold">
+									<tspan x="35" y="195">
+										Pick a
+									</tspan>
+								</text>
+								<text fill="#000" font-size="10" font-weight="bold">
+									<tspan x="27" y="207">
+										Challenge
+									</tspan>
+								</text>
+							</g>
+							<g id="self-donation" data-name="Self Donation">
+								<a role="link" xlink:href="" ng-href="{{prizes[1].final_url}}" title="Self-Donation" ng-focus="mouseover(1, 118, 80, this, 0)" ng-blur="mouseout()" aria-label="{{prizes[1].aria_label}}">
+									<path class="badge-path" d="M150 150v53h53v-53x-53z" fill="url(#2{{(prizes[1].earned) ? '_delivered' : '_earned'}})" ng-mouseover="mouseover(1, 118, 80, this, 0)" ng-mouseout="mouseout()" /> 
+									<text fill="#000" font-size="10" font-weight="bold">
+										<tspan x="145" y="215">
+											Self-Donation
+										</tspan>
+									</text>
+								</a>
+							</g>
+							<g id="social-share" data-name="Share on Social">
+								<a role="link" xlink:href="" ng-href="{{prizes[2].final_url}}" title="Share on Social" ng-focus="mouseover(2, 45, 190, this, 0)" ng-blur="mouseout()" aria-label="{{prizes[2].aria_label}}">
+									<path class="badge-path" d="M77 260v53h53v-53x-53z" fill="url(#3{{(prizes[2].earned) ? '_delivered' : '_earned'}})" ng-mouseover="mouseover(2, 45, 190, this, 0)" ng-mouseout="mouseout()" /> 
+									<text fill="#000" font-size="10" font-weight="bold">
+										<tspan x="90" y="325">
+											Share
+										</tspan>
+									</text>
+									<text fill="#000" font-size="10" font-weight="bold">
+										<tspan x="82" y="337">
+											on Social
+										</tspan>
+									</text>
+								</a>
+							</g>
+							<g id="personal-page" data-name="Personal Page">
+								<a role="link" xlink:href="" ng-href="{{prizes[3].final_url}}" title="Edit Your Page" ng-focus="mouseover(3, 153, 170, this, 0)" ng-blur="mouseout()" aria-label="{{prizes[3].aria_label}}">
+									<path class="badge-path" d="M185 240v53h53v-53x-53z" fill="url(#4{{(prizes[3].earned) ? '_delivered' : '_earned'}})" ng-mouseover="mouseover(3, 153, 170, this, 0)" ng-mouseout="mouseout()" /> 
+									<text fill="#000" font-size="10" font-weight="bold">
+										<tspan x="203" y="303">
+											Edit
+										</tspan>
+									</text>
+									<text fill="#000" font-size="10" font-weight="bold">
+										<tspan x="191" y="315">
+											Your Page
+										</tspan>
+									</text>
+								</a>
+							</g>
+							<g id="cpr-quiz" data-name="CPR Quiz">
+								<a role="link" xlink:href="" ng-href="{{prizes[4].final_url}}" title="Hands-Only CPR" ng-focus="mouseover(4, 233, 100, this, 0)" ng-blur="mouseout()" aria-label="{{prizes[4].aria_label}}">
+									<path class="badge-path" d="M265 170v53h53v-53x-53z" fill="url(#5{{(prizes[4].earned) ? '_delivered' : '_earned'}})" ng-mouseover="mouseover(4, 233, 100, this, 0)" ng-mouseout="mouseout()" /> 
+									<text fill="#000" font-size="10" font-weight="bold">
+										<tspan x="265" y="234">
+											Hands-Only
+										</tspan>
+									</text>
+									<text fill="#000" font-size="10" font-weight="bold">
+										<tspan x="281" y="246">
+											CPR
+										</tspan>
+									</text>
+								</a>
+							</g>
+							<g id="send-email" data-name="Send email/ecard">
+								<a role="link" xlink:href="" ng-href="{{prizes[5].final_url}}" title="Send E-card" ng-focus="mouseover(5, 323, 170, this, 0)" ng-blur="mouseout()" aria-label="{{prizes[5].aria_label}}">
+									<path class="badge-path" d="M355 240v53h53v-53x-53z" fill="url(#6{{(prizes[5].earned) ? '_delivered' : '_earned'}})" ng-mouseover="mouseover(5, 323, 170, this, 0)" ng-mouseout="mouseout()" /> 
+									<text fill="#000" font-size="10" font-weight="bold">
+										<tspan x="369" y="303">
+											Send
+										</tspan>
+									</text>
+									<text fill="#000" font-size="10" font-weight="bold">
+										<tspan x="366" y="315">
+											E-card
+										</tspan>
+									</text>
+								</a>
+							</g>
+							<g id="first-donation" data-name="First Online Donation">
+								<a role="link" xlink:href="" ng-href="{{prizes[6].final_url}}" title="First Donation" ng-focus="mouseover(6, 378, 104, this, 0)" ng-blur="mouseout()" aria-label="{{prizes[6].aria_label}}">
+									<path class="badge-path" d="M410 174v53h53v-53x-53z" fill="url(#7{{(prizes[6].earned) ? '_delivered' : '_earned'}})" ng-mouseover="mouseover(6, 378, 104, this, 0)" ng-mouseout="mouseout()" /> 
+									<text fill="#000" font-size="10" font-weight="bold">
+										<tspan x="422" y="157">
+											First
+										</tspan>
+									</text>
+									<text fill="#000" font-size="10" font-weight="bold">
+										<tspan x="412" y="169">
+											Donation
+										</tspan>
+									</text>
+								</a>
+							</g>
+							<g id="stroke-quiz" data-name="Stroke Quiz">
+								<a role="link" xlink:href="" ng-href="{{prizes[7].final_url}}" title="Warning Signs of Stroke" ng-focus="mouseover(7, 438, 0, this, 55, 180, 35)" ng-blur="mouseout()" aria-label="{{prizes[7].aria_label}}">
+									<path class="badge-path" d="M500 42v53h53v-53x-53z" fill="url(#8{{(prizes[7].earned) ? '_delivered' : '_earned'}})" ng-mouseover="mouseover(7, 438, 0, this, 55, 180, 35)" ng-mouseout="mouseout()" /> 
+									<text fill="#000" font-size="10" font-weight="bold">
+										<tspan x="493" y="105">
+											Warning Signs
+										</tspan>
+									</text>
+									<text fill="#000" font-size="10" font-weight="bold">
+										<tspan x="506" y="117">
+											of Stroke
+										</tspan>
+									</text>
+								</a>
+							</g>
+							<g id="intro-text" filter="url(#a)" data-name="Intro Text" ng-if="prizesEarned != prizes.length" ng-cloak>
+								<text fill="#000" font-size="9" font-weight="bold" aria-label="Click the icons in an order to complete">
+									<tspan x="225" y="340">
+										Click the icons in any order to complete
+									</tspan>
+								</text>
+								<text fill="#000" font-size="9" font-weight="bold" aria-label="the path and reveal the Treasure!">
+									<tspan x="240" y="352">
+										the path and reveal the Treasure!
+									</tspan>
+								</text>
+							</g>
+							<g id="intro-text" filter="url(#a)" data-name="Intro Text" ng-if="prizesEarned == prizes.length" ng-cloak>
+								<text fill="#000" font-size="9" font-weight="bold" aria-label="You did it! Thank you for being">
+									<tspan x="230" y="340">
+										You did it! Thank you for being
+									</tspan>
+								</text>
+								<text fill="#000" font-size="9" font-weight="bold" aria-label="a hero for Kids Heart Challenge!">
+									<tspan x="230" y="352">
+										a hero for Kids Heart Challenge!
+									</tspan>
+								</text>
+							</g>
+							<g>
+								<path fill="url(#finn)" d="M105 45v101h101v-101h-101z">
+								</path>
+							</g>
+							<g ng-if="prizesEarned != prizes.length" ng-cloak>
+								<path fill="url(#finn)" d="M105 45v101h101v-101h-101z">
+								</path>
+								<g id="status-text" filter="url(#b)" data-name="Status Text" transform="rotate(24 300 182)">
+									<text fill="#fff" font-size="9" font-weight="bold" font-style="italic" aria-label="{{prizesEarned}} out of {{prizes.length}}">
+										<tspan x="498" y="150" class="ng-binding">
+											{{prizesEarned}} out of {{prizes.length}}
+										</tspan>
+									</text>
+									<text fill="#fff" font-size="9" font-weight="bold" font-style="italic" aria-label="steps complete!">
+										<tspan x="485" y="161" class="ng-binding">
+											steps complete!
+										</tspan>
+									</text>
+								</g>
+							</g>
+							<g ng-if="prizesEarned == prizes.length" ng-cloak>
+								<foreignobject width="30" height="30" x="520" y="220">
+									<div class="template shine small">
+									</div>
+								</foreignobject>
+								<foreignobject width="30" height="30" x="485" y="235">
+									<div class="template shine medium">
+									</div>
+								</foreignobject>
+								<foreignobject width="50" height="50" x="545" y="215">
+									<div class="template shine large">
+									</div>
+								</foreignobject>
+								<foreignobject width="20" height="20" x="540" y="260">
+									<div class="template shine small">
+									</div>
+								</foreignobject>
+							</g>
+						</g>
+						<g id="tooltip" font-size="25">
+							<rect id="tRct" width="120" height="60" fill="transparent" rx="3" aria-hidden="true">
+							</rect>
+							<foreignobject id="tTip" width="120" height="60">
+								<div xmlns="http://www.w3.org/1999/xhtml" style="padding: 5px;font-size:10px;color:#fff;">
+								</div>
+							</foreignobject>
+							<polygon id="tTri" fill="#850BAA" aria-hidden="true" /> 
+						</g>
+					</svg>
           </div>
         </div>
+        <style>
+        .finns-mission {max-width: 1200px;margin: 0 auto 20px;}
+        .finns-mission svg {border-radius: 10px;box-shadow: 7px 8px 8px 0px #aaa;}
+        .ym-badges {max-width:180px;}
+        </style>
         <div class="ym-pc-dashboard-badge-path col px-3">
           <div class="ym-pc-dashboard-badges-header">
             <strong> Complete Finn's Mission to earn Finn's Lifesavers Award. </strong>
