@@ -1562,7 +1562,7 @@ angular.module 'trPcControllers'
           e.preventDefault()
           return false
       
-      $scope.mouseover = (prize, xPos, yPos, sel, offset, width=120, height=60) ->
+      $scope.mouseover = (prize, xPos, yPos, sel, offset, width=120, height=30) ->
         document.getElementById("tRct").style.fill = "#C10E21"
         document.getElementById("tRct").x.baseVal.value = xPos
         document.getElementById("tRct").y.baseVal.value = yPos
@@ -1581,9 +1581,9 @@ angular.module 'trPcControllers'
       $scope.mouseout = ->
         document.getElementById("tRct").x.baseVal.value = -99999
         document.getElementById("tRct").setAttribute('width',120)
-        document.getElementById("tRct").setAttribute('height',60)
+        document.getElementById("tRct").setAttribute('height',30)
         document.getElementById("tTip").setAttribute('width',120)
-        document.getElementById("tTip").setAttribute('height',60)
+        document.getElementById("tTip").setAttribute('height',30)
         jQuery("#tTip div").html("")
         document.getElementById("tTri").setAttribute('points','0 0 0 0 0 0')
 
