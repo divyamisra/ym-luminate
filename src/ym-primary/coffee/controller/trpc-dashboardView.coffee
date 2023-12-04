@@ -1561,7 +1561,7 @@ angular.module 'trPcControllers'
         else
           e.preventDefault()
           return false
-      ###
+      
       $scope.mouseover = (prize, xPos, yPos, sel, offset, width=120, height=60) ->
         document.getElementById("tRct").style.fill = "#850BAA"
         document.getElementById("tRct").x.baseVal.value = xPos
@@ -1603,7 +1603,7 @@ angular.module 'trPcControllers'
         document.getElementById("tRctm").x.baseVal.value = -99999
         jQuery("#tTipm div").html("")
         document.getElementById("tTrim").setAttribute('points','0 0 0 0 0 0')
-      ###
+      
 
       #RANDOM FLOATING BALLOONS
       windowWidth = 0
