@@ -149,7 +149,7 @@
 	       }
        }
    }
-   .butterfly2 {
+   &.butterfly2 {
        animation: hover2 250ms cubic-bezier(.48,.01,.54,1) 30;
        animation-direction: alternate;
        animation-fill-mode: reverse;
@@ -204,7 +204,7 @@
 		}
 	}
   }
-  .butterfly3 {
+  &.butterfly3 {
        animation: hover2 250ms cubic-bezier(.48,.01,.54,1) 30;
        animation-direction: alternate;
        animation-fill-mode: reverse;
