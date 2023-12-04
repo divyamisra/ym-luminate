@@ -236,7 +236,8 @@
            position: absolute;
            top: 0;
     
-           .bit {
+           .bit,
+	   .bit:after {
               background:yellow;
            }
           
