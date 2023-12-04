@@ -54,7 +54,7 @@
       <div class="finns-mission-section d-flex justify-content-between flex-wrap gap-4 p-3">
         <div class="ym-pc-dashboard-badge-path col">
           <div class="finns-mission d-none d-md-block">
-					<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewbox="0 0 658 317" preserveaspectratio="xMidYMid meet" aria-labelledby="finns_mission_title finns_mission_desc">
+					<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewbox="0 0 658 365" preserveaspectratio="xMidYMid meet" aria-labelledby="finns_mission_title finns_mission_desc">
 						<title id="finns_mission_title">
 							Finn's Mission
 						</title>
@@ -62,9 +62,9 @@
 							Your mission is to complete the challenges listed for Finn
 						</desc>
 						<defs>
-							<filter id="b" x="430" y="120" width="250" height="170" filterunits="userSpaceOnUse">
-								<feoffset dx="1" dy="1" /> 
-							</filter>
+							<filter id="b" x="25" y="10" width="600" height="100" filterUnits="userSpaceOnUse">
+								<feOffset dx="1" dy="1"></feOffset> 
+							</filter>							
 							<pattern id="bg" filterunits="objectBoundingBox" x="0" y="0" width="1" height="1">
 								<image aria-hidden="true" width="100%" ng-href="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24-mission/finns-mission-bg-desktop.png" xlink:href="" alt="Finn's Mission Background">
 								</image>
@@ -82,7 +82,7 @@
 								</image>
 							</pattern>
 							<pattern id="finn" filterunits="objectBoundingBox" x="0" y="0" width="1" height="1">
-								<image aria-hidden="true" width="260" ng-href="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24-mission/Finn-desktop.png" xlink:href="" alt="Finn">
+								<image aria-hidden="true" width="158" ng-href="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24-mission/Finn-mobile.png" xlink:href="" alt="Finn">
 								</image>
 							</pattern>
 							<pattern id="ball-inactive" filterunits="objectBoundingBox" x="0" y="0" width="1" height="1">
@@ -95,6 +95,14 @@
 							</pattern>
 							<pattern id="worm" filterunits="objectBoundingBox" x="0" y="0" width="1" height="1">
 								<image aria-hidden="true" width="100" ng-href="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24-mission/inch-worm.gif" xlink:href="" alt="inch worm">
+								</image>
+							</pattern>
+							<pattern id="cocoon" filterunits="objectBoundingBox" x="0" y="0" width="1" height="1">
+								<image aria-hidden="true" width="20" ng-href="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24-mission/worm_sleep.png" xlink:href="" alt="inch worm">
+								</image>
+							</pattern>
+							<pattern id="status" filterunits="objectBoundingBox" x="0" y="0" width="1" height="1">
+								<image aria-hidden="true" width="600" height="50" ng-href="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24-mission/message-box.png" xlink:href="" alt="mission status box">
 								</image>
 							</pattern>
 							<pattern id="2_delivered" filterunits="objectBoundingBox" x="0" y="0" width="1" height="1">
@@ -149,27 +157,27 @@
 								</path>
 							</g>
 							<g transform="translate(-.001 .003)">
-								<path fill="url(#start)" d="M85 220v100h100v-100h-100z">
+								<path fill="url(#start)" d="M85 268v100h100v-100h-100z">
 								</path>
 							</g>
 							<g transform="translate(-.001 .003)">
-								<path fill="url(#path)" d="M45 25v245h600v-245h-600z">
+								<path fill="url(#path)" d="M45 73v245h600v-245h-600z">
 								</path>
 							</g>
 							<g transform="translate(-.001 .003)">
-								<path fill="url(#dot)" d="M83 224v10h10v-10h-10z">
+								<path fill="url(#dot)" d="M83 272v10h10v-10h-10z">
 								</path>
 							</g>
 							<g>
-								<path fill="url(#finn)" d="M275 110v205h260v-205h-260z">
+								<path fill="url(#finn)" d="M273 160v205h160v-205h-160z">
 								</path>
 							</g>
 							<g transform="translate(-.001 .003)">
-								<path fill="url(#dot)" d="M404 175v10h10v-10h-10z">
+								<path fill="url(#dot)" d="M404 223v10h10v-10h-10z">
 								</path>
 							</g>
 							<g transform="translate(-.001 .003)">
-								<path fill="url(#worm)" d="M100 500v50h100v-50h-100z">
+								<path fill="url(#worm)" d="M100 548v50h100v-50h-100z">
 								</path>
 							</g>
 							<g ng-if="prizesEarned == prizes.length" ng-cloak>
@@ -204,96 +212,81 @@
 								</foreignObject>
 							</g>
 							<g ng-if="prizesEarned != prizes.length">
-								<path fill="url(#ball-inactive)" d="M379 134v35h35v-35h-35z"></path>
+								<path fill="url(#cocoon)" d="M175 326v44h20v-44h-20z"></path>
+								<path fill="url(#cocoon)" d="M635 275v44h20v-44h-20z"></path>
+							</g>
+							<g ng-if="prizesEarned != prizes.length">
+								<path fill="url(#ball-inactive)" d="M379 182v35h35v-35h-35z"></path>
 							</g>
 							<g class="gear" ng-if="prizesEarned == prizes.length" ng-cloak>
-								<path fill="url(#ball-active)" d="M379 134v35h35v-35h-35z"></path>
+								<path fill="url(#ball-active)" d="M379 182v35h35v-35h-35z"></path>
+							</g>
+							<g class="status">
+								<path fill="url(#status)" d="M25 5v76h600v-76h-600z"></path>
 							</g>
 							<g id="self-donation" data-name="Self Donation">
 								<a role="link" xlink:href="" ng-href="{{prizes[2].final_url}}" title="Self-Donation" ng-focus="mouseover(2, 120, 100, this, 0)" ng-blur="mouseout()" aria-label="{{prizes[2].aria_label}}">
-									<path class="badge-path" d="M20 120v100h100v-100x-100z" fill="url(#2{{(prizes[2].earned) ? '_delivered' : '_earned'}})" ng-mouseover="mouseover(2, 120, 100, this, 0)" ng-mouseout="mouseout()" /> 
+									<path class="badge-path" d="M15 168v100h100v-100x-100z" fill="url(#2{{(prizes[2].earned) ? '_delivered' : '_earned'}})" ng-mouseover="mouseover(2, 120, 100, this, 0)" ng-mouseout="mouseout()" /> 
 								</a>
 							</g>
 							<g id="personal-page" data-name="Edit Personal Page">
 								<a role="link" xlink:href="" ng-href="{{prizes[4].final_url}}" title="Edit Your Page" ng-focus="mouseover(4, 15, 100, this, 0)" ng-blur="mouseout()" aria-label="{{prizes[4].aria_label}}">
-									<path class="badge-path" d="M85 15v100h100v-100x-100z" fill="url(#3{{(prizes[4].earned) ? '_delivered' : '_earned'}})" ng-mouseover="mouseover(4, 15, 100, this, 0)" ng-mouseout="mouseout()" /> 
+									<path class="badge-path" d="M85 63v100h100v-100x-100z" fill="url(#3{{(prizes[4].earned) ? '_delivered' : '_earned'}})" ng-mouseover="mouseover(4, 15, 100, this, 0)" ng-mouseout="mouseout()" /> 
 								</a>
 							</g>
 							<g id="send-email" data-name="Send messages">
 								<a role="link" xlink:href="" ng-href="{{prizes[6].final_url}}" title="Send E-card" ng-focus="mouseover(6, 85, 100, this, 0)" ng-blur="mouseout()" aria-label="{{prizes[6].aria_label}}">
-									<path class="badge-path" d="M185 85v100h100v-100x-100z" fill="url(#4{{(prizes[6].earned) ? '_delivered' : '_earned'}})" ng-mouseover="mouseover(6, 85, 100, this, 0)" ng-mouseout="mouseout()" /> 
+									<path class="badge-path" d="M185 133v100h100v-100x-100z" fill="url(#4{{(prizes[6].earned) ? '_delivered' : '_earned'}})" ng-mouseover="mouseover(6, 85, 100, this, 0)" ng-mouseout="mouseout()" /> 
 								</a>
 							</g>
 							<g id="social-share" data-name="Share on Social">
 								<a role="link" xlink:href="" ng-href="{{prizes[3].final_url}}" title="Share on Social" ng-focus="mouseover(3, 8, 100, this, 0)" ng-blur="mouseout()" aria-label="{{prizes[3].aria_label}}">
-									<path class="badge-path" d="M300 8v100h100v-100x-100z" fill="url(#5{{(prizes[3].earned) ? '_delivered' : '_earned'}})" ng-mouseover="mouseover(3, 8, 100, this, 0)" ng-mouseout="mouseout()" /> 
+									<path class="badge-path" d="M300 56v100h100v-100x-100z" fill="url(#5{{(prizes[3].earned) ? '_delivered' : '_earned'}})" ng-mouseover="mouseover(3, 8, 100, this, 0)" ng-mouseout="mouseout()" /> 
 								</a>
 							</g>
 							<g id="cpr-quiz" data-name="CPR Quiz">
 								<a role="link" xlink:href="" ng-href="{{prizes[5].final_url}}" title="Hands-Only CPR" ng-focus="mouseover(5, 25, 100, this, 0)" ng-blur="mouseout()" aria-label="{{prizes[5].aria_label}}">
-									<path class="badge-path" d="M440 25v100h100v-100x-100z" fill="url(#6{{(prizes[5].earned) ? '_delivered' : '_earned'}})" ng-mouseover="mouseover(5, 25, 100, this, 0)" ng-mouseout="mouseout()" /> 
+									<path class="badge-path" d="M440 73v100h100v-100x-100z" fill="url(#6{{(prizes[5].earned) ? '_delivered' : '_earned'}})" ng-mouseover="mouseover(5, 25, 100, this, 0)" ng-mouseout="mouseout()" /> 
 								</a>
 							</g>
 							<g id="first-donation" data-name="First Online Donation">
 								<a role="link" xlink:href="" ng-href="{{prizes[7].final_url}}" title="First Donation" ng-focus="mouseover(7, 110, 100, this, 0)" ng-blur="mouseout()" aria-label="{{prizes[7].aria_label}}">
-									<path class="badge-path" d="M545 110v100h100v-100x-100z" fill="url(#7{{(prizes[7].earned) ? '_delivered' : '_earned'}})" ng-mouseover="mouseover(7, 110, 100, this, 0)" ng-mouseout="mouseout()" /> 
+									<path class="badge-path" d="M535 158v100h100v-100x-100z" fill="url(#7{{(prizes[7].earned) ? '_delivered' : '_earned'}})" ng-mouseover="mouseover(7, 110, 100, this, 0)" ng-mouseout="mouseout()" /> 
 								</a>
 							</g>
 							<g id="stroke-quiz" data-name="Stroke or Mindfulness Quiz">
 								<a role="link" xlink:href="" ng-href="{{prizes[8].final_url}}" title="{{prizes[8].aria_label}}" ng-focus="mouseover(8, 185, 100, this, 55, 180, 35)" ng-blur="mouseout()" aria-label="{{prizes[8].aria_label}}">
-									<path class="badge-path" d="M430 185v100h100v-100x-100z" fill="url(#8{{(prizes[8].earned) ? '_delivered' : '_earned'}})" ng-mouseover="mouseover(7, 185, 100, this, 55, 180, 35)" ng-mouseout="mouseout()" /> 
+									<path class="badge-path" d="M430 233v100h100v-100x-100z" fill="url(#8{{(prizes[8].earned) ? '_delivered' : '_earned'}})" ng-mouseover="mouseover(7, 185, 100, this, 55, 180, 35)" ng-mouseout="mouseout()" /> 
 								</a>
 							</g>
-							<g ng-if="prizesEarned != prizes.length" ng-cloak>
+							<g ng-if="prizesEarned != prizes.length" class="ng-scope">
 								<g id="status-text" filter="url(#b)" data-name="Status Text">
 									<text fill="#fff" font-size="36" font-weight="bold" aria-label="0" font-style="italic">
-										<tspan x="435" y="162" class="ng-binding">
+										<tspan x="215" y="40" class="ng-binding">
 											0
 										</tspan>
 									</text>
-									<text fill="#fff" font-size="7" font-weight="bold" aria-label="more steps">
-										<tspan x="463" y="142" class="ng-binding">
-											more steps
-										</tspan>
+									<text fill="#fff" font-size="14" font-weight="bold" aria-label="more steps">
+										<tspan x="250" y="23" class="ng-binding">more steps to complete</tspan>
 									</text>
-									<text fill="#fff" font-size="7" font-weight="bold" aria-label="to complete">
-										<tspan x="463" y="151" class="ng-binding">
-											to complete
-										</tspan>
-									</text>
-									<text fill="#fff" font-size="7" font-weight="bold" aria-label="Finn's Mission.">
-										<tspan x="463" y="160" class="ng-binding">
-											Finn's Mission.
-										</tspan>
+									<text fill="#fff" font-size="14" font-weight="bold" aria-label="to complete">
+										<tspan x="250" y="40" class="ng-binding">Finn's Mission.</tspan>
 									</text>
 								</g>
 							</g>
-							<g ng-if="prizesEarned == prizes.length" ng-cloak>
+							<g ng-if="prizesEarned == prizes.length" class="ng-scope">
 								<g id="status-text" filter="url(#b)" data-name="Status Text">
-									<text fill="#fff" font-size="6" font-weight="bold" aria-label="A heartfelt thank you">
-										<tspan x="437" y="135" class="ng-binding">
-											A heartfelt thank you
-										</tspan>
+									
+									<text fill="#fff" font-size="13" font-weight="bold" aria-label="more steps">
+										<tspan x="196" y="23" class="ng-binding">A heartfelt thank you for completing</tspan>
 									</text>
-									<text fill="#fff" font-size="6" font-weight="bold" aria-label="for completing">
-										<tspan x="437" y="144" class="ng-binding">
-											for completing
-										</tspan>
-									</text>
-									<text fill="#fff" font-size="6" font-weight="bold" aria-label="Finn's Mission.">
-										<tspan x="437" y="153" class="ng-binding">
-											Finn's Mission.
-										</tspan>
-									</text>
-									<text fill="#fff" font-size="6" font-weight="bold" aria-label="keep spreading the word!">
-										<tspan x="437" y="162" class="ng-binding">
-											Keep spreading the word!
-										</tspan>
+									<text fill="#fff" font-size="13" font-weight="bold" aria-label="to complete">
+										<tspan x="180" y="40" class="ng-binding">Finn's Mission. Keep spreading the word!</tspan>
 									</text>
 								</g>
 							</g>
 							<g id="intro-text" data-name="Intro Text" ng-if="prizesEarned != prizes.length" ng-cloak>
-								<path id="curve" d="M373,145 C385,119 405,119 420,145" fill="transparent" />
+								<path id="curve" d="M373,193 C385,167 405,167 420,193" fill="transparent" />
 								<text fill="#990000" width="100" font-size="10" font-weight="bold" transform="rotate(0 0 0)">
 									<textPath xlink:href="#curve">
 										You can do it!
@@ -301,13 +294,13 @@
 								</text>
  							</g>
 							<g id="finished-text" data-name="Finished Text" ng-if="prizesEarned == prizes.length" ng-cloak>
-								<path id="curve" d="M368,139 C385,112 405,112 427,140" fill="transparent" />
+								<path id="curve" d="M368,187 C385,160 405,160 427,188" fill="transparent" />
 								<text fill="#990000" width="100" font-size="8" font-weight="bold" transform="rotate(0 0 0)">
 									<textPath xlink:href="#curve">
 										You've completed
 									</textPath> 
 								</text>
-								<path id="curve2" d="M373,148 C385,124 405,124 420,148" fill="transparent" />
+								<path id="curve2" d="M373,196 C385,172 405,172 420,196" fill="transparent" />
 								<text fill="#990000" width="100" font-size="9" font-weight="bold" transform="rotate(0 0 0)">
 									<textPath xlink:href="#curve2">
 										Finn's Mission!
@@ -583,7 +576,7 @@
     animation: move 6s 1;
     position: absolute;
     left:142px;
-    top:222px;
+    top:270px;
 }
 
 .moveb2 {
@@ -767,7 +760,7 @@
 
 @keyframes move {
 		from {left: 50%;top:100%} 
-    to{left:142px;top:222px;} 
+    to{left:142px;top:270px;} 
 }
 
 @keyframes move2 {
