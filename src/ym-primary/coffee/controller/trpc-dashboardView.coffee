@@ -1562,7 +1562,7 @@ angular.module 'trPcControllers'
           e.preventDefault()
           return false
       
-      $scope.mouseover = (prize, xPos, yPos, sel, offset, width=120, height=30) ->
+      $scope.mouseover = (prize, xPos, yPos, sel, offset, width=120, height=30, pos='left') ->
         document.getElementById("tRct").style.fill = "#C10E21"
         document.getElementById("tRct").x.baseVal.value = xPos
         document.getElementById("tRct").y.baseVal.value = yPos
@@ -1576,7 +1576,10 @@ angular.module 'trPcControllers'
         document.getElementById("tTip").setAttribute('x',xPos)
         document.getElementById("tTip").setAttribute('y',yPos)
 
-        document.getElementById("tTri").setAttribute('points',(parseInt(xPos)+(height-7)+parseInt(offset)) + ' ' + (parseInt(yPos)+height) + ' ' + (parseInt(xPos)+(height+2)+parseInt(offset)) + ' ' + (parseInt(yPos)+height) + ' ' + (parseInt(xPos)+(height-2)+parseInt(offset)) + ' ' + (parseInt(yPos)+(height+6)))
+        if pos == 'left'
+          document.getElementById("tTri").setAttribute('points', (parseInt(xPos) + parseInt(offset)) + ' ' + (parseInt(yPos) + ((height/2)-4)) + ' ' + (parseInt(xPos) - 5 + parseInt(offset)) + ' ' + (parseInt(yPos) + ((height/2))) + ' ' + (parseInt(xPos) + parseInt(offset)) + ' ' + (parseInt(yPos) + (height/2)+4));
+        else
+          document.getElementById("tTri").setAttribute('points', (parseInt(xPos) + width + parseInt(offset)) + ' ' + (parseInt(yPos) + ((height/2)-4)) + ' ' + (parseInt(xPos) + (width+5) + parseInt(offset)) + ' ' + (parseInt(yPos) + ((height/2))) + ' ' + (parseInt(xPos) + width + parseInt(offset)) + ' ' + (parseInt(yPos) + (height/2)+4));
 
       $scope.mouseout = ->
         document.getElementById("tRct").x.baseVal.value = -99999
@@ -1666,6 +1669,6 @@ angular.module 'trPcControllers'
           bcheck++
           if bcheck < 5
             setTimeout startBalloons, 1000
-      startBalloons() 
+      #startBalloons() 
 	
   ]
