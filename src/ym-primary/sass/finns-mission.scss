@@ -180,6 +180,10 @@
 		outline: 1px solid transparent;
 		position: absolute;
 		top: 0;
+
+		.bit
+              	  background:purple;
+           	}
 	
 		&:first-child {
 			animation: leftflap2 250ms cubic-bezier(.48,.01,.54,1) 30;
@@ -238,7 +242,7 @@
     
            .bit,
 	   .bit:after {
-              background:yellow;
+              background:orange;
            }
           
            &:first-child {
