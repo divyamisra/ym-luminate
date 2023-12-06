@@ -27,7 +27,7 @@
 }
 
  .worm {
-     animation: moveworm 6s 1;
+     animation: moveworm 6s 1 linear;
      position: absolute;
      left:-50px;
      bottom:0;
@@ -307,7 +307,7 @@
 
 @keyframes moveworm {
      from {
-        left: 40%;
+        left: 105%;
         bottom:0
     }
      to{
