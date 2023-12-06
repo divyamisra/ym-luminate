@@ -273,6 +273,41 @@
    }
 }
 
+#fly {
+  width: 5px;
+  height: 5px;
+  background: black;
+  border-radius: 100%;
+  position: absolute;
+  bottom: 50%;
+  left: 50%;
+  offset-path: path('M0,0 C20,-20 50,-50 200,100 250,150 -50,-50 -400,-40 -130,0 -80,80 -50,50 20,-20 50,-50 100,100 -3,15 200,-5 176,151 176,165 187,178 194,178 175,149 205,141 189,110 195,113 202,122 203,126 208,121 205,105 200,97 290,118 259,182 304,193 267,160 346,117 282,79 293,77 301,80 304,82 298,54 248,62 244,62 247,58 259,50 266,50 239,39 185,59 178,93 146,87 117,142 166,172 170,173 178,173 178,173 178,173 178,163 178,163 178,163 177,160 176,151');
+  animation: movefly 6s 1 alternate ease-in-out;
+  &:before,
+  #:after {
+    content:"";
+    display: block;
+    position: absolute;
+    background: rgba(255,255,255,0.5);
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
+    transform: translate(-100%, 0);
+  }
+  &:after {
+  transform: translate(100%, 0);
+  }
+}
+
+@keyframes movefly {
+  0% {
+    offset-distance: 55%;
+  }
+  100% {
+    offset-distance: 100%;
+  }
+}
+
 @keyframes shake {
      10%, 90% {
          transform: rotate(0.3deg);
