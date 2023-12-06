@@ -52,6 +52,34 @@
 	left:5%;
 	top:47%;
 }
+.zzz {
+    animation-name: zzz;
+    animation-duration: 2s;
+    animation-timing-function: ease-out;
+    animation-iteration-count: infinite;
+    animation-direction: forwards;
+    color: rgba(0,0,0,1);
+    font-weight: bold;
+    position: absolute;
+    z-index: 100;
+    transform: translateY(100%);
+    font-family: 'Concert One', cursive;
+    font-size:6px;
+}
+
+.zzz-z {
+    animation-delay: 0s;
+    right: 5px;
+}
+.zzz-zz {
+    animation-delay: 0.5s;
+    right: -5px;
+}
+.zzz-zzz {
+    animation-delay: 1s;
+    right: 0;
+}
+
 .butterfly {
   position:relative;
 
@@ -298,6 +326,20 @@
   &:after {
     transform: translate(100%, 0);
   }
+}
+
+/* *** All Animations *** */
+@keyframes zzz {
+    0% {
+        color: rgba(255,255,255,0);
+        font-size: 1px;
+        transform: translateY(100%);
+    }
+    100% {
+        color: rgba(255,255,255,1);
+        font-size: 6px;
+        transform: translateY(-100%);
+    }
 }
 
 @keyframes movefly {
