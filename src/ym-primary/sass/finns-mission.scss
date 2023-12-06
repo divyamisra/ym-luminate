@@ -240,11 +240,14 @@
            position: absolute;
            top: 0;
     
-           .bit,
-	   .bit:after {
+           .bit {
               background:orange;
            }
-          
+
+	   .bit:after {
+              background:purple;
+           }
+
            &:first-child {
                animation: leftflap2 250ms cubic-bezier(.48,.01,.54,1) 30;
                animation-direction: alternate;
