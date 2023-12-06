@@ -93,6 +93,10 @@
 								<image aria-hidden="true" width="20" ng-href="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24-mission/worm_sleep.png" xlink:href="" alt="inch worm">
 								</image>
 							</pattern>
+							<pattern id="worm" filterunits="objectBoundingBox" x="0" y="0" width="1" height="1">
+								<image aria-hidden="true" width="50" ng-href="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24-mission/inch-worm.png" xlink:href="" alt="sleeping inch worm">
+								</image>
+							</pattern>
 							<pattern id="status" filterunits="objectBoundingBox" x="0" y="0" width="1" height="1">
 								<image aria-hidden="true" width="600" height="50" ng-href="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24-mission/message-box.png" xlink:href="" alt="mission status box">
 								</image>
@@ -208,6 +212,18 @@
 								<g ng-if="prizesEarned != 8 && loadingBadges == 0">
 									<path fill="url(#cocoon)" d="M175 326v44h20v-44h-20z" class="wiggle"></path>
 									<path fill="url(#cocoon)" d="M635 275v44h20v-44h-20z" class="wiggle2"></path>
+									<path fill="url(#worm)" d="M5 350v23h100v-23h-100z"></path>
+									<text fill="#000" font-size="13" font-weight="bold" aria-label="more steps">
+										<tspan x="7" y="338" class="zzz zzz-zzz">Z</tspan>
+										<tspan x="7" y="343" class="zzz zzz-zz">Z</tspan>
+										<tspan x="7" y="348" class="zzz zzz-z">Z</tspan>
+										<tspan x="190" y="317" class="zzz zzz-zzz">Z</tspan>
+										<tspan x="190" y="322" class="zzz zzz-zz">Z</tspan>
+										<tspan x="190" y="326" class="zzz zzz-z">Z</tspan>
+										<tspan x="647" y="265" class="zzz zzz-zzz">Z</tspan>
+										<tspan x="647" y="270" class="zzz zzz-zz">Z</tspan>
+										<tspan x="647" y="275" class="zzz zzz-z">Z</tspan>
+									</text>
 								</g>
 								<g ng-if="prizesEarned != 8 && loadingBadges == 0">
 									<path fill="url(#ball-inactive)" d="M379 182v35h35v-35h-35z"></path>
@@ -221,37 +237,37 @@
 							</g>
 							<g style="{{(loadingBadges == 0) ? '' : 'opacity:75%'}}" class="ng-scope">
 								<g id="self-donation" data-name="Self Donation">
-									<a role="link" href="{{prizes[2].final_url}}" title="Self-Donation" ng-focus="mouseover(2, 95, 193, this, 0, NULL, 45)" ng-blur="mouseout()" aria-label="{{prizes[2].aria_label}}">
+									<a role="link" href="{{prizes[2].final_url}}" title="{{prizes[2].button_label}}" ng-focus="mouseover(2, 95, 193, this, 0, NULL, 45)" ng-blur="mouseout()" aria-label="{{prizes[2].aria_label}}">
 										<path class="badge-path" d="M15 168v100h100v-100x-100z" fill="url(#2badge)" ng-mouseover="mouseover(2, 95, 193, this, 0, NULL, 45)" ng-mouseout="mouseout()" /> 
 									</a>
 								</g>
 								<g id="personal-page" data-name="Edit Personal Page">
-									<a role="link" href="{{prizes[4].final_url}}" title="Edit Your Page" ng-focus="mouseover(4, 165, 88, this, 0, NULL, 45)" ng-blur="mouseout()" aria-label="{{prizes[4].aria_label}}">
+									<a role="link" href="{{prizes[4].final_url}}" title="{{prizes[4].button_label}}" ng-focus="mouseover(4, 165, 88, this, 0, NULL, 45)" ng-blur="mouseout()" aria-label="{{prizes[4].aria_label}}">
 										<path class="badge-path" d="M85 63v100h100v-100x-100z" fill="url(#3badge)" ng-mouseover="mouseover(4, 165, 88, this, 0, NULL, 45)" ng-mouseout="mouseout()" /> 
 									</a>
 								</g>
 								<g id="send-email" data-name="Send messages">
-									<a role="link" href="{{prizes[6].final_url}}" title="Send E-card" ng-focus="mouseover(6, 85, 158, this, 0, NULL, 45, 'right')" ng-blur="mouseout()" aria-label="{{prizes[6].aria_label}}">
+									<a role="link" href="{{prizes[6].final_url}}" title="{{prizes[6].button_label}}" ng-focus="mouseover(6, 85, 158, this, 0, NULL, 45, 'right')" ng-blur="mouseout()" aria-label="{{prizes[6].aria_label}}">
 										<path class="badge-path" d="M185 133v100h100v-100x-100z" fill="url(#4badge)" ng-mouseover="mouseover(6, 85, 158, this, 0, NULL, 45, 'right')" ng-mouseout="mouseout()" /> 
 									</a>
 								</g>
 								<g id="social-share" data-name="Share on Social">
-									<a role="link" href="{{prizes[3].final_url}}" title="Share on Social" ng-focus="mouseover(3, 200, 81, this, 0, NULL, 45, 'right')" ng-blur="mouseout()" aria-label="{{prizes[3].aria_label}}">
+									<a role="link" href="{{prizes[3].final_url}}" title="{{prizes[3].button_label}}" ng-focus="mouseover(3, 200, 81, this, 0, NULL, 45, 'right')" ng-blur="mouseout()" aria-label="{{prizes[3].aria_label}}">
 										<path class="badge-path" d="M300 56v100h100v-100x-100z" fill="url(#5badge)" ng-mouseover="mouseover(3, 200, 81, this, 0, NULL, 45, 'right')" ng-mouseout="mouseout()" /> 
 									</a>
 								</g>
 								<g id="cpr-quiz" data-name="CPR Quiz">
-									<a role="link" href="{{prizes[5].final_url}}" title="Hands-Only CPR" ng-focus="mouseover(5, 520, 98, this, 0, NULL, 45)" ng-blur="mouseout()" aria-label="{{prizes[5].aria_label}}">
+									<a role="link" href="{{prizes[5].final_url}}" title="{{prizes[5].button_label}}" ng-focus="mouseover(5, 520, 98, this, 0, NULL, 45)" ng-blur="mouseout()" aria-label="{{prizes[5].aria_label}}">
 										<path class="badge-path" d="M440 73v100h100v-100x-100z" fill="url(#6badge)" ng-mouseover="mouseover(5, 520, 98, this, 0, NULL, 45)" ng-mouseout="mouseout()" /> 
 									</a>
 								</g>
 								<g id="first-donation" data-name="First Online Donation">
-									<a role="link" href="{{prizes[7].final_url}}" title="First Donation" ng-focus="mouseover(7, 435, 183, this, 0, NULL, 55, 'right')" ng-blur="mouseout()" aria-label="{{prizes[7].aria_label}}">
+									<a role="link" href="{{prizes[7].final_url}}" title="{{prizes[7].button_label}}" ng-focus="mouseover(7, 435, 183, this, 0, NULL, 55, 'right')" ng-blur="mouseout()" aria-label="{{prizes[7].aria_label}}">
 										<path class="badge-path" d="M535 158v100h100v-100x-100z" fill="url(#7badge)" ng-mouseover="mouseover(7, 435, 183, this, 0, NULL, 55, 'right')" ng-mouseout="mouseout()" />
 									</a>
 								</g>
 								<g id="stroke-quiz" data-name="Stroke or Mindfulness Quiz">
-									<a role="link" href="{{prizes[8].final_url}}" title="{{prizes[8].aria_label}}" ng-focus="mouseover(8, 510, 258, this, 0, NULL, 45)" ng-blur="mouseout()" aria-label="{{prizes[8].aria_label}}">
+									<a role="link" href="{{prizes[8].final_url}}" title="{{prizes[8].button_label}}" ng-focus="mouseover(8, 510, 258, this, 0, NULL, 45)" ng-blur="mouseout()" aria-label="{{prizes[8].aria_label}}">
 										<path class="badge-path" d="M430 233v100h100v-100x-100z" fill="url(#8badge)" ng-mouseover="mouseover(8, 510, 258, this, 0, NULL, 45)" ng-mouseout="mouseout()" /> 
 									</a>
 								</g>
@@ -428,37 +444,37 @@
 								<path fill="url(#ballm-active)" d="M385 475v70h70v-70h-70z" ng-if="prizesEarned == 8"></path>
 							</g>
 							<g id="self-donation" data-name="Self Donation">
-								<a role="link" href="{{prizes[2].final_url}}" title="Self-Donation" ng-focus="mouseoverm(2, 150, 580, this, 0, 200, 80)" ng-blur="mouseoutm()" aria-label="{{prizes[2].aria_label}}">
+								<a role="link" href="{{prizes[2].final_url}}" title="{{prizes[2].button_label}}" ng-focus="mouseoverm(2, 150, 580, this, 0, 200, 80)" ng-blur="mouseoutm()" aria-label="{{prizes[2].aria_label}}">
 									<path class="badge-path" d="M20 535v150h150v-150x-150z" fill="url(#2badgem)" ng-mouseover="mouseoverm(2, 150, 580, this, 0, 200, 80)" ng-mouseout="mouseoutm()" /> 
 								</a>
 							</g>
 							<g id="personal-page" data-name="Edit Personal Page">
-								<a role="link" href="{{prizes[4].final_url}}" title="Edit Your Page" ng-focus="mouseoverm(4, 165, 365, this, 0, 200)" ng-blur="mouseoutm()" aria-label="{{prizes[4].aria_label}}">
+								<a role="link" href="{{prizes[4].final_url}}" title="{{prizes[4].button_label}}" ng-focus="mouseoverm(4, 165, 365, this, 0, 200)" ng-blur="mouseoutm()" aria-label="{{prizes[4].aria_label}}">
 									<path class="badge-path" d="M35 330v150h150v-150x-150z" fill="url(#3badgem)" ng-mouseover="mouseoverm(4, 165, 365, this, 0, 200)" ng-mouseout="mouseoutm()" /> 
 								</a>
 							</g>
 							<g id="send-email" data-name="Send messages">
-								<a role="link" href="{{prizes[6].final_url}}" title="Send E-card" ng-focus="mouseoverm(6, 315, 230, this, 0, NULL, 80)" ng-blur="mouseoutm()" aria-label="{{prizes[6].aria_label}}">
+								<a role="link" href="{{prizes[6].final_url}}" title="{{prizes[6].button_label}}" ng-focus="mouseoverm(6, 315, 230, this, 0, NULL, 80)" ng-blur="mouseoutm()" aria-label="{{prizes[6].aria_label}}">
 									<path class="badge-path" d="M185 200v150h150v-150x-150z" fill="url(#4badgem)" ng-mouseover="mouseoverm(6, 315, 230, this, 0, NULL, 80)" ng-mouseout="mouseoutm()" /> 
 								</a>
 							</g>
 							<g id="social-share" data-name="Share on Social">
-								<a role="link" href="{{prizes[3].final_url}}" title="Share on Social" ng-focus="mouseoverm(3, 170, 278, this, 0, 200, NULL, 'right')" ng-blur="mouseoutm()" aria-label="{{prizes[3].aria_label}}">
+								<a role="link" href="{{prizes[3].final_url}}" title="{{prizes[3].button_label}}" ng-focus="mouseoverm(3, 170, 278, this, 0, 200, NULL, 'right')" ng-blur="mouseoutm()" aria-label="{{prizes[3].aria_label}}">
 									<path class="badge-path" d="M350 228v150h150v-150x-150z" fill="url(#5badgem)" ng-mouseover="mouseoverm(3, 170, 278, this, 0, 200, NULL, 'right')" ng-mouseout="mouseoutm()" /> 
 								</a>
 							</g>
 							<g id="cpr-quiz" data-name="CPR Quiz">
-								<a role="link" href="{{prizes[5].final_url}}" title="Hands-Only CPR" ng-focus="mouseoverm(5, 295, 395, this, 0, 200, NULL, 'right')" ng-blur="mouseoutm()" aria-label="{{prizes[5].aria_label}}">
+								<a role="link" href="{{prizes[5].final_url}}" title="{{prizes[5].button_label}}" ng-focus="mouseoverm(5, 295, 395, this, 0, 200, NULL, 'right')" ng-blur="mouseoutm()" aria-label="{{prizes[5].aria_label}}">
 									<path class="badge-path" d="M475 345v150h150v-150x-150z" fill="url(#6badgem)" ng-mouseover="mouseoverm(5, 295, 395, this, 0, 200, NULL, 'right')" ng-mouseout="mouseoutm()" /> 
 								</a>
 							</g>
 							<g id="first-donation" data-name="First Online Donation">
-								<a role="link" href="{{prizes[7].final_url}}" title="First Donation" ng-focus="mouseoverm(7, 325, 550, this, 0, 200, NULL, 'right')" ng-blur="mouseoutm()" aria-label="{{prizes[7].aria_label}}">
+								<a role="link" href="{{prizes[7].final_url}}" title="{{prizes[7].button_label}}" ng-focus="mouseoverm(7, 325, 550, this, 0, 200, NULL, 'right')" ng-blur="mouseoutm()" aria-label="{{prizes[7].aria_label}}">
 									<path class="badge-path" d="M505 500v150h150v-150x-150z" fill="url(#7badgem)" ng-mouseover="mouseoverm(7, 325, 550, this, 0, 200, NULL, 'right')" ng-mouseout="mouseoutm()" /> 
 								</a>
 							</g>
 							<g id="stroke-quiz" data-name="Stroke or Mindfulness Quiz">
-								<a role="link" href="{{prizes[8].final_url}}" title="{{prizes[8].aria_label}}" ng-focus="mouseoverm(8, 250, 695, this, 0, 200, 50, 'right')" ng-blur="mouseoutm()" aria-label="{{prizes[8].aria_label}}">
+								<a role="link" href="{{prizes[8].final_url}}" title="{{prizes[8].button_label}}" ng-focus="mouseoverm(8, 250, 695, this, 0, 200, 50, 'right')" ng-blur="mouseoutm()" aria-label="{{prizes[8].aria_label}}">
 									<path class="badge-path" d="M430 645v150h150v-150x-150z" fill="url(#8badgem)" ng-mouseover="mouseoverm(8, 250, 695, this, 0, 200, 50, 'right')" ng-mouseout="mouseoutm()" /> 
 								</a>
 							</g>
