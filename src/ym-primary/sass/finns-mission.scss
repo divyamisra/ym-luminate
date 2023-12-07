@@ -18,7 +18,7 @@
      transform-origin:28.3% 80.6%;
 }
 .wiggle2 {
-     animation: shake 3.82s cubic-bezier(.36,.07,.19,.97) infinite;
+     animation: shake2 3.82s cubic-bezier(.36,.07,.19,.97) infinite;
      transform: translate3d(0, 0, 0);
     /*backface-visibility: hidden;
      perspective: 1000px;
@@ -363,6 +363,21 @@
     }
      40%, 60% {
          transform: rotate(-0.4deg);
+    }
+}
+
+@keyframes shake2 {
+     10%, 90% {
+         transform: rotate(-0.4deg);
+    }
+     20%, 80% {
+         transform: rotate(0.4deg);
+    }
+     30%, 50%, 70% {
+         transform: rotate(0deg);
+    }
+     40%, 60% {
+         transform: rotate(0.3deg);
     }
 }
 
