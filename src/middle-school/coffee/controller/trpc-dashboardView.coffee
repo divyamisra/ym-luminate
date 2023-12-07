@@ -24,7 +24,8 @@ angular.module 'trPcControllers'
     'NgPcTeamraiserCompanyService'
     'NgPcSurveyService'
     'FacebookFundraiserService'
-    ($rootScope, $scope, $location, $filter, $timeout, $uibModal, $sce, APP_INFO, ZuriService, BoundlessService, NuclavisService, TeamraiserParticipantService, NgPcTeamraiserRegistrationService, NgPcTeamraiserProgressService, NgPcTeamraiserTeamService, NgPcTeamraiserSchoolService, NgPcTeamraiserGiftService, NgPcContactService, NgPcTeamraiserShortcutURLService, NgPcInteractionService, NgPcConstituentService, NgPcTeamraiserCompanyService, NgPcSurveyService, FacebookFundraiserService) ->
+    'NgPcTeamraiserReportsService'
+    ($rootScope, $scope, $location, $filter, $timeout, $uibModal, $sce, APP_INFO, ZuriService, BoundlessService, NuclavisService, TeamraiserParticipantService, NgPcTeamraiserRegistrationService, NgPcTeamraiserProgressService, NgPcTeamraiserTeamService, NgPcTeamraiserSchoolService, NgPcTeamraiserGiftService, NgPcContactService, NgPcTeamraiserShortcutURLService, NgPcInteractionService, NgPcConstituentService, NgPcTeamraiserCompanyService, NgPcSurveyService, FacebookFundraiserService, NgPcTeamraiserReportsService) ->
       $scope.dashboardPromises = []
       domain = $location.absUrl().split('/site/')[0]
       $rootScope.HideGifts = "NO"
@@ -228,7 +229,43 @@ angular.module 'trPcControllers'
             angular.element('.ym-school-animation iframe').on 'load', ->
               angular.element('.ym-school-animation iframe')[0].contentWindow.postMessage companyParticipantsString, domain
 
-      $rootScope.registeredCons = []
+      $rootScope.registeredParticipants = []
+
+      getRegisteredParticipants = ->
+        console.log('getRegisteredParticipants')
+        NgPcTeamraiserReportsService.getSchoolDetailReport $rootScope.frId, $scope.participantRegistration.companyInformation.companyId
+          .then (response) ->
+            reportData = response.data.getSchoolDetailReport?.reportData
+            if reportData
+              reportDataRows = []
+              angular.forEach reportData, (reportDataRow) ->
+                if reportDataRow.length > 1
+                  reportDataRows.push reportDataRow
+              if reportDataRows.length > 1
+                reportDataColumnIndexMap = {}
+                angular.forEach reportDataRows[0], (reportDataHeader, reportDataHeaderIndex) ->
+                  reportDataColumnIndexMap[reportDataHeader] = reportDataHeaderIndex
+                angular.forEach reportDataRows, (reportDataRow, reportDataRowIndex) ->
+                  if reportDataRowIndex > 0
+                    consId = jQuery.trim reportDataRow[reportDataColumnIndexMap.PARTICIPANT_CONS_ID]
+                    firstName = jQuery.trim reportDataRow[reportDataColumnIndexMap.PARTICIPANT_FIRST_NAME]
+                    lastName = jQuery.trim reportDataRow[reportDataColumnIndexMap.PARTICIPANT_LAST_NAME]
+                    email = jQuery.trim reportDataRow[reportDataColumnIndexMap.PARTICIPANT_EMAIL]
+                    grade = jQuery.trim reportDataRow[reportDataColumnIndexMap.GRADE_LEVEL]
+                    contact =
+                      firstName: firstName
+                      lastName: lastName
+                      email: email
+                      grade: grade
+                    partTypeName = ''
+                    if reportDataRow[reportDataColumnIndexMap.PARTICIPANT_TYPE_NAME]
+                      partTypeName = jQuery.trim reportDataRow[reportDataColumnIndexMap.PARTICIPANT_TYPE_NAME]
+                    if partTypeName is 'Participant' || partTypeName is 'Student/Parent' || partTypeName is ''
+                      $rootScope.registeredParticipants.push contact
+                      console.log('registeredParticipants length ' + $rootScope.registeredParticipants.length)
+
+      getRegisteredParticipants()
+
       getCompanyParticipants = ->
         TeamraiserParticipantService.getParticipants 'team_name=' + encodeURIComponent('%') + '&first_name=' + encodeURIComponent('%%') + '&last_name=' + encodeURIComponent('%') + '&list_filter_column=team.company_id&list_filter_text=' + $scope.participantRegistration.companyInformation.companyId + '&list_sort_column=total&list_ascending=false&list_page_size=500',
             error: ->
@@ -251,7 +288,6 @@ angular.module 'trPcControllers'
                     if participant.donationUrl
                       participant.donationFormId = participant.donationUrl.split('df_id=')[1].split('&')[0]
                     companyParticipants.push participant
-                    $rootScope.registeredCons.push participant.consId
                     totalFundraisers++
               setCompanyParticipants companyParticipants, totalNumberParticipants, totalFundraisers
       getCompanyParticipants()

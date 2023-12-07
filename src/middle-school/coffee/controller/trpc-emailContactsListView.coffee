@@ -186,6 +186,7 @@ angular.module 'trPcControllers'
                                 grade: grade
                               contact.selected = isContactSelected contact
                               contactIsUnique = true
+                              contactIsRegistered = false
                               partTypeName = ''
                               if reportDataRow[reportDataColumnIndexMap.PARTICIPANT_TYPE_NAME]
                                 partTypeName = jQuery.trim reportDataRow[reportDataColumnIndexMap.PARTICIPANT_TYPE_NAME]
@@ -194,9 +195,17 @@ angular.module 'trPcControllers'
                                 participantString = participant.firstName.toLowerCase() + ' ' + participant.lastName.toLowerCase() + ' <' + participant.email.toLowerCase() + '>'
                                 if contactString is participantString
                                   contactIsUnique = false
+
+                              angular.forEach $rootScope.registeredParticipants, (participant) ->
+                                contactString = firstName.toLowerCase() + ' ' + lastName.toLowerCase() + ' <' + email.toLowerCase() + '>'
+                                participantString = participant.firstName.toLowerCase() + ' ' + participant.lastName.toLowerCase() + ' <' + participant.email.toLowerCase() + '>'
+                                if contactString is participantString
+                                  contactIsRegistered = true
+
                               if partTypeName is 'Participant' || partTypeName is 'Student/Parent' || partTypeName is ''
                                 if contactIsUnique
-                                  if $rootScope.registeredCons.indexOf(consId) == -1
+                                  if contactIsRegistered is false
+                                    console.log('NOT REGISTERED ' + consId)
                                     totalNumberResults++
                                     participants.push contact
                                     if newOnly

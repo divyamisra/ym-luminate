@@ -126,30 +126,23 @@ angular.module 'trPcControllers'
                   delete $scope.addressBookContacts.contacts
                 NgPcTeamraiserCompanyService.getCompanies 'fr_id=' + $scope.prev1FrId + '&company_name=' + encodeURIComponent('org_for_company_id=' + $scope.participantRegistration.companyInformation.companyId)
                   .then (response) ->
-                    #console.log('got prev1 company response ' + Object.getOwnPropertyNames(response) )
                     participants = []
-                    #console.log('participants array length: ' + participants.length)
                     totalNumberResults = 0
-
                     setAddressBookContacts = ->
-                      #console.log('setAddressBookContacts')
                       $scope.addressBookContacts.contacts = participants
                       $scope.addressBookContacts.totalNumber = totalNumberResults
                       $scope.addressBookContacts.allContacts = participants
                       $scope.addressBookContacts.allContactsSelected = isAllContactsSelected()
                     getCurrentContacts = ->
-                      #console.log('getCurrentContacts uses participant current company')
                       NgPcTeamraiserReportsService.getSchoolDetailReport $rootScope.frId, $scope.participantRegistration.companyInformation.companyId
                         .then (response) ->
                           reportCurrentData = response.data.getSchoolDetailReport?.reportData
                           handleReportData reportCurrentData, true
                           setAddressBookContacts()
                     getPrev2Contacts = ->
-                      #console.log('getPrev2Contacts ')
                       companyId = prev1CompanyId or $scope.participantRegistration.companyInformation.companyId
                       NgPcTeamraiserCompanyService.getCompanies 'fr_id=' + $scope.prev2FrId + '&company_name=' + encodeURIComponent('org_for_company_id=' + companyId)
                         .then (response) ->
-                          #console.log('got prev2Companies')
                           prev2Companies = response.data.getCompaniesResponse?.company
                           if not prev2Companies
                             if filter is 'email_custom_rpt_show_past_company_coordinator_participants'
@@ -169,8 +162,6 @@ angular.module 'trPcControllers'
                                 else
                                   getCurrentContacts()
                     handleReportData = (reportData, newOnly) ->
-                      #console.log('handleReportData')
-                      #console.log('newOnly '  + newOnly);
                       if reportData
                         if newOnly
                           newParticipants = []
@@ -197,24 +188,28 @@ angular.module 'trPcControllers'
                                 grade: grade
                               contact.selected = isContactSelected contact
                               contactIsUnique = true
+                              contactIsRegistered = false
                               partTypeName = ''
                               if reportDataRow[reportDataColumnIndexMap.PARTICIPANT_TYPE_NAME]
                                 partTypeName = jQuery.trim reportDataRow[reportDataColumnIndexMap.PARTICIPANT_TYPE_NAME]
-                              console.log('handlereportdata participants length? ' + participants.length)
                               angular.forEach participants, (participant) ->
                                 contactString = firstName.toLowerCase() + ' ' + lastName.toLowerCase() + ' <' + email.toLowerCase() + '>'
                                 participantString = participant.firstName.toLowerCase() + ' ' + participant.lastName.toLowerCase() + ' <' + participant.email.toLowerCase() + '>'
                                 if contactString is participantString
                                   contactIsUnique = false
+
+                              angular.forEach $rootScope.registeredParticipants, (participant) ->
+                                contactString = firstName.toLowerCase() + ' ' + lastName.toLowerCase() + ' <' + email.toLowerCase() + '>'
+                                participantString = participant.firstName.toLowerCase() + ' ' + participant.lastName.toLowerCase() + ' <' + participant.email.toLowerCase() + '>'
+                                if contactString is participantString
+                                  contactIsRegistered = true
+
                               if partTypeName is 'Participant' || partTypeName is 'Student/Parent' || partTypeName is ''
-                                console.log('cons id? ' + consId)
                                 if contactIsUnique
-                                  console.log('check registered participants')
-                                  console.log('$rootScope.registeredCons.indexOf(consId) ' + $rootScope.registeredCons.indexOf(consId))
-                                  if $rootScope.registeredCons.indexOf(consId) == -1
+                                  if contactIsRegistered is false
+                                    console.log('pushing this cons id: ' + consId)
                                     totalNumberResults++
                                     participants.push contact
-
                                   if newOnly
                                     totalNumberNewResults++
                                     newParticipants.push contact
