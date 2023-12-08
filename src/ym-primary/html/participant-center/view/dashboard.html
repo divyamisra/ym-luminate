@@ -90,11 +90,19 @@
 								</image>
 							</pattern>
 							<pattern id="cocoon" filterunits="objectBoundingBox" x="0" y="0" width="1" height="1">
-								<image aria-hidden="true" width="20" ng-href="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24-mission/worm_sleep.png" xlink:href="" alt="inch worm">
+								<image aria-hidden="true" width="30" ng-href="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24-mission/worm_sleep3.png" xlink:href="" alt="inch worm">
 								</image>
 							</pattern>
 							<pattern id="worm" filterunits="objectBoundingBox" x="0" y="0" width="1" height="1">
 								<image aria-hidden="true" width="50" ng-href="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24-mission/inch-worm.png" xlink:href="" alt="sleeping inch worm">
+								</image>
+							</pattern>
+							<pattern id="wormhappy" filterunits="objectBoundingBox" x="0" y="0" width="1" height="1">
+								<image aria-hidden="true" width="50" ng-href="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24-mission/worm_happy.png" xlink:href="" alt="happy inch worm">
+								</image>
+							</pattern>
+							<pattern id="wormhappyhand" filterunits="objectBoundingBox" x="0" y="0" width="1" height="1">
+								<image aria-hidden="true" width="20" ng-href="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24-mission/worm_happy_hand.png" xlink:href="" alt="happy inch worm waving">
 								</image>
 							</pattern>
 							<pattern id="status" filterunits="objectBoundingBox" x="0" y="0" width="1" height="1">
@@ -146,11 +154,6 @@
 								</g>
 								<g ng-if="prizesEarned == 8 && loadingBadges == 0" ng-cloak>
 									<foreignObject width="100%" height="100%" x="0" y="0">
-										<div class="mouse">
-											<div class="mousebody"></div>
-											<div class="mousefeet"></div>
-											<div class="mousetail"></div>
-										</div>
 										<div id="fly"></div>
 									</foreignObject>
 								</g>
@@ -167,6 +170,8 @@
 									</path>
 								</g>
 								<g ng-if="prizesEarned == 8 && loadingBadges == 0" ng-cloak>
+									<path fill="url(#wormhappy)" d="M27 276v60h50v-60h-50z"></path>
+									<path fill="url(#wormhappyhand)" d="M14 308v20h20v-20h-20z" class="waving"></path>
 									<foreignObject width="100%" height="100%" x="0" y="0">
 										<div class="moveb">
 											<div class="butterfly butterfly1">
@@ -210,16 +215,16 @@
 									</foreignObject>
 								</g>
 								<g ng-if="prizesEarned != 8 && loadingBadges == 0">
-									<path fill="url(#cocoon)" d="M175 326v44h20v-44h-20z" class="wiggle"></path>
-									<path fill="url(#cocoon)" d="M635 275v44h20v-44h-20z" class="wiggle2"></path>
+									<path fill="url(#cocoon)" d="M45 261v102h50v-102h-50z" class="wiggle"></path>
+									<path fill="url(#cocoon)" d="M625 275v102h50v-102h-50z" class="wiggle2"></path>
 									<path fill="url(#worm)" d="M5 350v23h100v-23h-100z"></path>
 									<text fill="#000" font-size="13" font-weight="bold" aria-label="sleeping cocoons and worm">
 										<tspan x="7" y="338" class="zzz zzz-zzz">Z</tspan>
 										<tspan x="7" y="343" class="zzz zzz-zz">Z</tspan>
 										<tspan x="7" y="348" class="zzz zzz-z">Z</tspan>
-										<tspan x="190" y="317" class="zzz zzz-zzz">Z</tspan>
-										<tspan x="190" y="322" class="zzz zzz-zz">Z</tspan>
-										<tspan x="190" y="326" class="zzz zzz-z">Z</tspan>
+										<tspan x="70" y="267" class="zzz zzz-zzz">Z</tspan>
+										<tspan x="70" y="272" class="zzz zzz-zz">Z</tspan>
+										<tspan x="70" y="277" class="zzz zzz-z">Z</tspan>
 										<tspan x="647" y="265" class="zzz zzz-zzz">Z</tspan>
 										<tspan x="647" y="270" class="zzz zzz-zz">Z</tspan>
 										<tspan x="647" y="275" class="zzz zzz-z">Z</tspan>
