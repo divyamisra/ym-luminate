@@ -15,7 +15,8 @@
     /*backface-visibility: hidden;
      perspective: 1000px;
     */
-     transform-origin:28.3% 80.6%;
+    transform-origin: 9.3% 67.6%;
+
 }
 .wiggle2 {
      animation: shake2 3.82s cubic-bezier(.36,.07,.19,.97) infinite;
@@ -78,6 +79,11 @@
 .zzz-zzz {
     animation-delay: 1s;
     right: 0;
+}
+
+.waving {
+    animation: wave 6s 2 linear;
+    transform-origin: 5% 85%;
 }
 
 .butterfly {
@@ -329,6 +335,21 @@
 }
 
 /* *** All Animations *** */
+@keyframes wave {
+  0% {
+    transform: rotate(0deg);
+  }
+  5%, 15%, 25%, 45%, 75%, 85% {
+    transform: rotate(70deg);
+  }
+  35%, 55%, 65%, 95% {
+    transform: rotate(40deg);
+  }
+  10%, 20%, 30%, 40%, 50%, 60%, 70%, 80%, 90%, 100% {
+    transform: rotate(0deg);
+  }
+}
+
 @keyframes zzz {
     0% {
         color: rgba(255,255,255,0);
