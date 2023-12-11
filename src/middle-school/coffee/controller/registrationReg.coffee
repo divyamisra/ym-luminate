@@ -8,6 +8,11 @@ angular.module 'ahaLuminateControllers'
     'TeamraiserRegistrationService'
     'NuclavisService'
     ($rootScope, $scope, $filter, $timeout, TeamraiserCompanyService, TeamraiserRegistrationService, NuclavisService) ->
+      $scope.teachers = []
+      $scope.teacherList = []
+      $scope.listUpload = false
+      $scope.companyId = angular.element('[name=s_frCompanyId]').val()
+      $scope.studentTreated = ''
       $scope.agreeWaiver = 'no'
       $scope.acceptWaiver = 'no'
       
