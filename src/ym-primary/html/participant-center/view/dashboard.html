@@ -105,6 +105,14 @@
 								<image aria-hidden="true" width="20" ng-href="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24-mission/worm_happy_hand.png" xlink:href="" alt="happy inch worm waving">
 								</image>
 							</pattern>
+							<pattern id="wormeat" filterunits="objectBoundingBox" x="0" y="0" width="1" height="1">
+								<image aria-hidden="true" width="50" ng-href="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24-mission/worm_eat.png" xlink:href="" alt="happy inch worm eat">
+								</image>
+							</pattern>
+							<pattern id="wormeatleaf" filterunits="objectBoundingBox" x="0" y="0" width="1" height="1">
+								<image aria-hidden="true" width="40" ng-href="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24-mission/worm_eat_leaf.png" xlink:href="" alt="happy inch worm eating leaf">
+								</image>
+							</pattern>
 							<pattern id="status" filterunits="objectBoundingBox" x="0" y="0" width="1" height="1">
 								<image aria-hidden="true" width="600" height="50" ng-href="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24-mission/message-box.png" xlink:href="" alt="mission status box">
 								</image>
@@ -172,6 +180,8 @@
 								<g ng-if="prizesEarned == 8 && loadingBadges == 0" ng-cloak>
 									<path fill="url(#wormhappy)" d="M27 276v60h50v-60h-50z"></path>
 									<path fill="url(#wormhappyhand)" d="M14 308v20h20v-20h-20z" class="waving"></path>
+									<path fill="url(#wormeat)" d="M530 300v60h50v-60h-50z"></path>
+									<path fill="url(#wormeatleaf)" d="M550 330v25h40v-25h-40z" class="eating wiggle2"></path>
 									<foreignObject width="100%" height="100%" x="0" y="0">
 										<div class="moveb">
 											<div class="butterfly butterfly1">
@@ -357,6 +367,24 @@
 						</g>
 					</svg>
           </div>
+    <style>
+.eating {
+  animation: MoveUpDown 2s linear 6;
+
+}
+
+@keyframes MoveUpDown {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  20% {
+    transform: translateY(-7px);
+  }
+  80% {
+    transform: translateY(-6px);
+  }
+}
+</style>
           <div class="finns-mission-mobile d-block d-md-none">
 					<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewbox="0 0 658 877" preserveaspectratio="xMidYMid meet" aria-labelledby="finns_mission_title_mobile finns_mission_desc_mobile">
 						<title id="finns_mission_title_mobile">Finn's Mission</title>
