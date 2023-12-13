@@ -8,6 +8,8 @@ angular.module 'ahaLuminateControllers'
     ($rootScope, $scope, $filter, $timeout, TeamraiserCompanyService) ->
       $rootScope.companyName = ''
       regCompanyId = luminateExtend.global.regCompanyId
+      if $scope.companyId = ''
+        $scope.companyId = regCompanyId      
       setCompanyName = (companyName) ->
         $rootScope.companyName = companyName
         if not $rootScope.$$phase
@@ -63,7 +65,7 @@ angular.module 'ahaLuminateControllers'
 
       $scope.setParticipationType = (event, id) ->
         $scope.participationOptions.fr_part_radio = id
-      if $rootScope.partTypeId != ''
+      if $rootScope.partTypeId != '' and typeof($rootScope.partTypeId) != "undefined"
         $scope.participationOptions.fr_part_radio = $rootScope.partTypeId
 
       $participationTypes = angular.element '.js--registration-ptype-part-types .part-type-container'

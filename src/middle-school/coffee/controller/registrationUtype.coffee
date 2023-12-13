@@ -7,7 +7,14 @@ angular.module 'ahaLuminateControllers'
     'ZuriService'
     ($rootScope, $scope, TeamraiserCompanyService, TeamraiserRegistrationService, ZuriService) ->
       $rootScope.companyName = ''
+      localStorage.companyName = ''
+      localStorage.companyCity = ''
+      localStorage.companyState = ''
+      $scope.schoolPlan = ''
+      $scope.companyId = ''
       regCompanyId = luminateExtend.global.regCompanyId
+      if $scope.companyId = ''
+        $scope.companyId = regCompanyId
       setCompanyName = (companyName) ->
         $rootScope.companyName = companyName
         if not $rootScope.$$phase
