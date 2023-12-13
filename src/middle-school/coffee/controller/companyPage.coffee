@@ -130,6 +130,7 @@ angular.module 'ahaLuminateControllers'
               name = companies[0].companyName
               coordinatorId = companies[0].coordinatorId
               $rootScope.companyName = name
+              localStorage.companyName = name
               setCompanyProgress amountRaised, goal
 
               ZuriService.getSchoolDetail '&school_id=' + $scope.companyId + '&EventId=' + $rootScope.frId,
