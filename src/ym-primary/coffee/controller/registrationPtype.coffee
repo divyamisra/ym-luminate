@@ -9,6 +9,8 @@ angular.module 'ahaLuminateControllers'
     ($rootScope, $scope, $filter, $timeout, TeamraiserCompanyService, SchoolLookupService) ->
       $rootScope.companyName = ''
       regCompanyId = luminateExtend.global.regCompanyId
+      if $scope.companyId = ''
+        $scope.companyId = regCompanyId
       setCompanyName = (companyName) ->
         $rootScope.companyName = companyName
         if not $rootScope.$$phase
