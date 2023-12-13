@@ -232,7 +232,6 @@ angular.module 'trPcControllers'
       $rootScope.registeredParticipants = []
 
       getRegisteredParticipants = ->
-        console.log('getRegisteredParticipants')
         NgPcTeamraiserReportsService.getSchoolDetailReport $rootScope.frId, $scope.participantRegistration.companyInformation.companyId
           .then (response) ->
             reportData = response.data.getSchoolDetailReport?.reportData
@@ -262,7 +261,6 @@ angular.module 'trPcControllers'
                       partTypeName = jQuery.trim reportDataRow[reportDataColumnIndexMap.PARTICIPANT_TYPE_NAME]
                     if partTypeName is 'Participant' || partTypeName is 'Student/Parent' || partTypeName is ''
                       $rootScope.registeredParticipants.push contact
-                      console.log('registeredParticipants length ' + $rootScope.registeredParticipants.length)
 
       getRegisteredParticipants()
 

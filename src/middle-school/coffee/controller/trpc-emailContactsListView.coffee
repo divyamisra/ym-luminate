@@ -205,7 +205,6 @@ angular.module 'trPcControllers'
                               if partTypeName is 'Participant' || partTypeName is 'Student/Parent' || partTypeName is ''
                                 if contactIsUnique
                                   if contactIsRegistered is false
-                                    console.log('NOT REGISTERED ' + consId)
                                     totalNumberResults++
                                     participants.push contact
                                     if newOnly

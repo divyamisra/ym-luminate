@@ -105,7 +105,6 @@ angular.module 'trPcControllers'
       angular.forEach contactFilters, (filter) ->
         
         if filter is $scope.filter
-          console.log('scope.filter ' + $scope.filter)
           $scope.getContacts = ->
             pageNumber = $scope.addressBookContacts.page - 1
             if pageNumber > 0
@@ -207,7 +206,6 @@ angular.module 'trPcControllers'
                               if partTypeName is 'Participant' || partTypeName is 'Student/Parent' || partTypeName is ''
                                 if contactIsUnique
                                   if contactIsRegistered is false
-                                    console.log('pushing this cons id: ' + consId)
                                     totalNumberResults++
                                     participants.push contact
                                   if newOnly
@@ -228,44 +226,30 @@ angular.module 'trPcControllers'
                             return 0
 
                     prev1Companies = response.data.getCompaniesResponse?.company
-                    #console.log('prev1Companies' + prev1Companies)
                     prev1CompanyId = null
                     if prev1Companies
-                      #console.log('prev1Companies')
                       prev1Companies = [prev1Companies] if not angular.isArray prev1Companies
                       prev1Company = prev1Companies[0]
-                      #console.log('prev1Company')
                       prev1CompanyId = prev1Company.companyId
                     if not prev1CompanyId
-                      #console.log('not prev1CompanyId')
                       if not $scope.prev2FrId or $scope.prev2FrId is ''
-                        #console.log('no prev2 fr ID')
                         if filter is 'email_custom_rpt_show_past_company_coordinator_participants'
-                          #console.log('filter is email_custom_rpt_show_past_company_coordinator_participants')
                           setAddressBookContacts()
                         else
-                          #console.log('filter is NOT email_custom_rpt_show_past_company_coordinator_participants')
                           getCurrentContacts()
                       else
-                        #console.log('there IS prev2 fr ID')
                         getPrev2Contacts()
                     else
-                      #console.log('IS prev1CompanyId')
                       NgPcTeamraiserReportsService.getSchoolDetailReport $scope.prev1FrId, prev1CompanyId
                         .then (response) ->
-                          #console.log('getSchoolDetailReport result for prev1FrId prev1CompanyId')
                           report1Data = response.data.getSchoolDetailReport?.reportData
                           handleReportData report1Data
                           if not $scope.prev2FrId or $scope.prev2FrId is ''
-                            #console.log("not prev2FrId")
                             if filter is 'email_custom_rpt_show_past_company_coordinator_participants'
-                              #console.log('filter is email_custom_rpt_show_past_company_coordinator_participants')
                               setAddressBookContacts()
                             else
-                              #console.log('filter is NOT email_custom_rpt_show_past_company_coordinator_participants')
                               getCurrentContacts()
                           else
-                            #console.log('IS prev2FrId')
                             getPrev2Contacts()
 
             else if filter is 'email_custom_rpt_show_company_coordinator_weekly_participants' or filter is 'email_custom_rpt_show_company_coordinator_0_dollar_participants' or filter is 'email_custom_rpt_show_company_coordinator_250_dollar_participants'
