@@ -24,7 +24,7 @@ angular.module 'ahaLuminateControllers'
             if not companies
               # TODO
             else
-              companies = [companies] if not angurlar.isArray companies
+              companies = [companies] if not angular.isArray companies
               companyInfo = companies[0]
               setCompanyName companyInfo.companyName
       else
