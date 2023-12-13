@@ -15,20 +15,17 @@ angular.module 'ahaLuminateControllers'
         localStorage.companyName = companyName
         if not $rootScope.$$phase
           $rootScope.$apply()
-      if typeof localStorage.companyName == 'undefined'
-        TeamraiserCompanyService.getCompanies 'company_id=' + regCompanyId,
-          error: ->
+      TeamraiserCompanyService.getCompanies 'company_id=' + regCompanyId,
+        error: ->
+          # TODO
+        success: (response) ->
+          companies = response.getCompaniesResponse.company
+          if not companies
             # TODO
-          success: (response) ->
-            companies = response.getCompaniesResponse.company
-            if not companies
-              # TODO
-            else
-              companies = [companies] if not angular.isArray companies
-              companyInfo = companies[0]
-              setCompanyName companyInfo.companyName
-      else
-        setCompanyName localStorage.companyName
+          else
+            companies = [companies] if not angular.isArray companies
+            companyInfo = companies[0]
+            setCompanyName companyInfo.companyName
       
       if not $scope.participationOptions
         $scope.participationOptions = {}
