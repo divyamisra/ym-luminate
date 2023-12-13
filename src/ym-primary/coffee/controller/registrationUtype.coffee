@@ -11,9 +11,12 @@ angular.module 'ahaLuminateControllers'
       localStorage.companyCity = ''
       localStorage.companyState = ''
       $scope.schoolPlan = ''
+      $scope.companyId = ''
       $rootScope.regCompanyId = luminateExtend.global.regCompanyId
       regCompanyId = luminateExtend.global.regCompanyId
-      
+      if $scope.companyId = ''
+        $scope.companyId = regCompanyId
+        
       setCompanyName = (companyName) ->
         $rootScope.companyName = companyName
         localStorage.companyName = companyName
