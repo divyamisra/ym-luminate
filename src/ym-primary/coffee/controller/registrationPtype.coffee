@@ -11,22 +11,26 @@ angular.module 'ahaLuminateControllers'
       regCompanyId = luminateExtend.global.regCompanyId
       if $scope.companyId = ''
         $scope.companyId = regCompanyId
+        
       setCompanyName = (companyName) ->
         $rootScope.companyName = companyName
+        localStorage.companyName = companyName
         if not $rootScope.$$phase
           $rootScope.$apply()
-      #TeamraiserCompanyService.getCompanies 'company_id=' + regCompanyId,
-      #  error: ->
-      #    # TODO
-      #  success: (response) ->
-      #    companies = response.getCompaniesResponse.company
-      #    if not companies
-      #      # TODO
-      #    else
-      #      companies = [companies] if not angurlar.isArray companies
-      #      companyInfo = companies[0]
-      #      setCompanyName companyInfo.companyName
-      setCompanyName localStorage.companyName
+      if typeof localStorage.companyName == 'undefined'
+        TeamraiserCompanyService.getCompanies 'company_id=' + regCompanyId,
+          error: ->
+            # TODO
+          success: (response) ->
+            companies = response.getCompaniesResponse.company
+            if not companies
+              # TODO
+            else
+              companies = [companies] if not angular.isArray companies
+              companyInfo = companies[0]
+              setCompanyName companyInfo.companyName
+      else
+        setCompanyName localStorage.companyName
       
       if not $scope.participationOptions
         $scope.participationOptions = {}
