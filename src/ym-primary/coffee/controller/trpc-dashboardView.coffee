@@ -1597,9 +1597,9 @@ angular.module 'trPcControllers'
         else
           e.preventDefault()
           return false
-      ###
-      $scope.mouseover = (prize, xPos, yPos, sel, offset, width=120, height=60) ->
-        document.getElementById("tRct").style.fill = "#850BAA"
+      
+      $scope.mouseover = (prize, xPos, yPos, sel, offset, width=120, height=60, pos='left') ->
+        document.getElementById("tRct").style.fill = "#C10E21"
         document.getElementById("tRct").x.baseVal.value = xPos
         document.getElementById("tRct").y.baseVal.value = yPos
 
@@ -1612,34 +1612,48 @@ angular.module 'trPcControllers'
         document.getElementById("tTip").setAttribute('x',xPos)
         document.getElementById("tTip").setAttribute('y',yPos)
 
-        document.getElementById("tTri").setAttribute('points',(parseInt(xPos)+(height-7)+parseInt(offset)) + ' ' + (parseInt(yPos)+height) + ' ' + (parseInt(xPos)+(height+2)+parseInt(offset)) + ' ' + (parseInt(yPos)+height) + ' ' + (parseInt(xPos)+(height-2)+parseInt(offset)) + ' ' + (parseInt(yPos)+(height+6)))
+        if pos == 'left'
+          document.getElementById("tTri").setAttribute('points', (parseInt(xPos) + parseInt(offset)) + ' ' + (parseInt(yPos) + ((height/2)-4)) + ' ' + (parseInt(xPos) - 5 + parseInt(offset)) + ' ' + (parseInt(yPos) + ((height/2))) + ' ' + (parseInt(xPos) + parseInt(offset)) + ' ' + (parseInt(yPos) + (height/2)+4));
+        else
+          document.getElementById("tTri").setAttribute('points', (parseInt(xPos) + width + parseInt(offset)) + ' ' + (parseInt(yPos) + ((height/2)-4)) + ' ' + (parseInt(xPos) + (width+5) + parseInt(offset)) + ' ' + (parseInt(yPos) + ((height/2))) + ' ' + (parseInt(xPos) + width + parseInt(offset)) + ' ' + (parseInt(yPos) + (height/2)+4));
 
       $scope.mouseout = ->
         document.getElementById("tRct").x.baseVal.value = -99999
         document.getElementById("tRct").setAttribute('width',120)
-        document.getElementById("tRct").setAttribute('height',60)
+        document.getElementById("tRct").setAttribute('height',30)
         document.getElementById("tTip").setAttribute('width',120)
-        document.getElementById("tTip").setAttribute('height',60)
+        document.getElementById("tTip").setAttribute('height',30)
         jQuery("#tTip div").html("")
         document.getElementById("tTri").setAttribute('points','0 0 0 0 0 0')
 
-
-      $scope.mouseoverm = (prize, xPos, yPos, sel, offset) ->
-        document.getElementById("tRctm").style.fill = "#850BAA"
+      $scope.mouseoverm = (prize, xPos, yPos, sel, offset, width=200, height=60, pos='left') ->
+        document.getElementById("tRctm").style.fill = "#C10E21"
         document.getElementById("tRctm").x.baseVal.value = xPos
         document.getElementById("tRctm").y.baseVal.value = yPos
+
+        document.getElementById("tRctm").setAttribute('width',width)
+        document.getElementById("tRctm").setAttribute('height',height)
+        document.getElementById("tTipm").setAttribute('width',width)
+        document.getElementById("tTipm").setAttribute('height',height)
 
         jQuery("#tTipm div").attr("aria-label",$scope.prizes[prize].hover_msg).html($scope.prizes[prize].hover_msg)
         document.getElementById("tTipm").setAttribute('x',xPos)
         document.getElementById("tTipm").setAttribute('y',yPos)
 
-        document.getElementById("tTrim").setAttribute('points', (parseInt(xPos) + 83 + parseInt(offset)) + ' ' + (parseInt(yPos) + 100) + ' ' + (parseInt(xPos) + 97 + parseInt(offset)) + ' ' + (parseInt(yPos) + 100) + ' ' + (parseInt(xPos) + 92 + parseInt(offset)) + ' ' + (parseInt(yPos) + 106))
+        if pos == 'left'
+          document.getElementById("tTrim").setAttribute('points', (parseInt(xPos) + parseInt(offset)) + ' ' + (parseInt(yPos) + ((height/2)-4)) + ' ' + (parseInt(xPos) - 5 + parseInt(offset)) + ' ' + (parseInt(yPos) + ((height/2))) + ' ' + (parseInt(xPos) + parseInt(offset)) + ' ' + (parseInt(yPos) + (height/2)+4));
+        else
+          document.getElementById("tTrim").setAttribute('points', (parseInt(xPos) + width + parseInt(offset)) + ' ' + (parseInt(yPos) + ((height/2)-4)) + ' ' + (parseInt(xPos) + (width+5) + parseInt(offset)) + ' ' + (parseInt(yPos) + ((height/2))) + ' ' + (parseInt(xPos) + width + parseInt(offset)) + ' ' + (parseInt(yPos) + (height/2)+4));
 
       $scope.mouseoutm = ->
         document.getElementById("tRctm").x.baseVal.value = -99999
+        document.getElementById("tRctm").setAttribute('width',120)
+        document.getElementById("tRctm").setAttribute('height',30)
+        document.getElementById("tTipm").setAttribute('width',120)
+        document.getElementById("tTipm").setAttribute('height',30)
         jQuery("#tTipm div").html("")
         document.getElementById("tTrim").setAttribute('points','0 0 0 0 0 0')
-      ###
+     
 
       #RANDOM FLOATING BALLOONS
       windowWidth = 0
@@ -1702,6 +1716,6 @@ angular.module 'trPcControllers'
           bcheck++
           if bcheck < 5
             setTimeout startBalloons, 1000
-      startBalloons() 
+      #startBalloons() 
 	
   ]
