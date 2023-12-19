@@ -29,7 +29,7 @@
 
  .worm {
      animation: moveworm 6s 1 linear;
-     position: absolute;
+     position: fixed;
      left:-50px;
      bottom:0;
      max-width:50px;
@@ -37,19 +37,19 @@
 
 .moveb {
 	animation: move1 6s 1;
-	position: absolute;
+	position: fixed;
 	left:142px;
 	top:270px;
 }
 .moveb2 {
 	animation: move2 6s 1;
-	position: absolute;
+	position: fixed;
 	left:90%;
 	top:81%;
 }
 .moveb3 {
 	animation: move3 6s 1;
-	position: absolute;
+	position: fixed;
 	left:5%;
 	top:47%;
 }
@@ -316,7 +316,7 @@
   height: 5px;
   background: black;
   border-radius: 100%;
-  position: absolute;
+  position: fixed;
   bottom: 50%;
   left: 50%;
   offset-path: path('M0,0 C20,-20 50,-50 200,100 250,150 -50,-50 -400,-40 -130,0 -80,80 -50,50 20,-20 50,-50 100,100 -3,15 200,-5 176,151 176,165 187,178 194,178 175,149 205,141 189,110 195,113 202,122 203,126 208,121 205,105 200,97 290,118 259,182 304,193 267,160 346,117 282,79 293,77 301,80 304,82 298,54 248,62 244,62 247,58 259,50 266,50 239,39 185,59 178,93 146,87 117,142 166,172 170,173 178,173 178,173 178,173 178,163 178,163 178,163 177,160 176,151');
