@@ -18,7 +18,7 @@ angular.module 'ahaLuminateControllers'
       
       $rootScope.companyName = ''
       regCompanyId = luminateExtend.global.regCompanyId
-      if $scope.companyId = ''
+      if $scope.companyId == ''
         $scope.companyId = regCompanyId      
       setCompanyName = (companyName) ->
         $rootScope.companyName = companyName
