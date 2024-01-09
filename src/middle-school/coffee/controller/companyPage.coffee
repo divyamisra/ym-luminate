@@ -70,7 +70,7 @@ angular.module 'ahaLuminateControllers'
       
       $scope.CountOfStudentsCompletingFinnsMission = 0
       getFinnsMissionCompletedCount = ->
-        NuclavisService.getMissionCount $scope.participantRegistration.companyInformation.companyId + '/' + $scope.frId
+        NuclavisService.getMissionCount $scope.companyId + '/' + $scope.frId
         .then (response) ->
           $scope.CountOfStudentsCompletingFinnsMission = response.data.finns_mission_completed
       getFinnsMissionCompletedCount()
