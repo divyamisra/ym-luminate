@@ -123,19 +123,19 @@
           <div class="">
             <h2 class="ym-headline"> Our Stats </h2>
             <div class="d-flex flex-wrap justify-content-around ym-our-stats ym-promo-block">
-              <div class="ym-promo-block__item" ng-if="schoolPlan.CountOfStudentsCompletingFinnsMission > 0" tabindex="0" ng-cloak>
+              <div class="ym-promo-block__item" ng-if="CountOfStudentsCompletingFinnsMission > 0" tabindex="0" ng-cloak>
                 <div class="h2 text-white">
-                  <span ng-if="schoolPlan.CountOfStudentsCompletingFinnsMission &lt; 1000" ng-cloak>
-                    {{schoolPlan.CountOfStudentsCompletingFinnsMission}}
+                  <span ng-if="CountOfStudentsCompletingFinnsMission &lt; 1000" ng-cloak>
+                    {{CountOfStudentsCompletingFinnsMission}}
                   </span>
-                  <span ng-if="schoolPlan.CountOfStudentsCompletingFinnsMission > 999" ng-cloak>
-                    {{schoolPlan.CountOfStudentsCompletingFinnsMission}}
+                  <span ng-if="CountOfStudentsCompletingFinnsMission > 999" ng-cloak>
+                    {{CountOfStudentsCompletingFinnsMission}}
                   </span>
                 </div>
-                <div ng-if="schoolPlan.CountOfStudentsCompletingFinnsMission == 1" tabindex="0" ng-cloak>
+                <div ng-if="CountOfStudentsCompletingFinnsMission == 1" tabindex="0" ng-cloak>
                   <p> student completed Finn's mission. </p>
                 </div>
-                <div ng-if="schoolPlan.CountOfStudentsCompletingFinnsMission != 1" tabindex="0" ng-cloak>
+                <div ng-if="CountOfStudentsCompletingFinnsMission != 1" tabindex="0" ng-cloak>
                   <p> students completed Finn's mission. </p>
                 </div>
               </div>
