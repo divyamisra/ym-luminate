@@ -7,5 +7,6 @@ angular.module 'trPcControllers'
     ($rootScope, $scope, $filter, $location) ->
       $scope.reportPromises = []
 
-      ahaWebContent.ssoInitialize $rootScope.consId, $rootScope.frId, '' + $rootScope.authToken, '' + $rootScope.sessionCookie
+      if $scope.participantRegistration.companyInformation?.isCompanyCoordinator is 'true'
+        ahaWebContent.ssoInitialize $rootScope.consId, $rootScope.frId, '' + $rootScope.authToken, '' + $rootScope.sessionCookie
   ]
