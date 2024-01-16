@@ -569,7 +569,7 @@
         </div>
       </div>
     </section>
-		<section class="ym-pc-dashboard-standard-gifts-section mb-2" aria-label="My Gifts" ng-if="schoolPlan.HideGifts != 'YES' && has_bonus != 3" ng-cloak>
+		<section class="ym-pc-dashboard-standard-gifts-section event-secondary-medium p-3 mb-2" aria-label="My Gifts" ng-if="schoolPlan.HideGifts != 'YES' && has_bonus != 3" ng-cloak>
 			<div class="ym-pc-dashboard-section-header">
 				<h2 class="h3">
 					You Earned 
@@ -581,12 +581,11 @@
 					Thank-You Gifts! 
 				</h2>
 				<h3 class="h6" ng-if="giftsEarned != totalGifts">
-					Continue sending emails and e-cards to receive additional thank-you gifts! 
+					Continue sending emails, social messages and e-cards to receive additional thank-you gifts!
 				</h3>
 				<h3 class="h6" ng-if="giftsEarned == totalGifts">
 					Congratulations on earning all of your gifts! Keep going to help save special hearts. 
 				</h3>
-				<em>Scan the vumarks to see a special video in the KHC App under games tab.</em>
 			</div>
      <div class="ym-pc-dashboard-standard-gifts">
        <div class="loading mt-3" ng-if="loadingGifts" ng-cloak>Loading Gifts... <img style="max-width: 75px" class="spin" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24/badge-trophy-earned.png">       </div>
@@ -608,7 +607,6 @@
            </div>
          </div>
        </div>
-     </div>
 
 			<div class="see-all-gifts text-center">
 				<a class="btn btn-primary" ng-href="{{baseUrl}}#/gifts">
@@ -617,6 +615,7 @@
 					</strong>
 				</a>
 			</div>
+     </div>
 		</section>
 	  <section class="ym-pc-dashboard-goal-section mb-4" aria-label="Spread the Word and Livestream Sections">
       <h2 class="h3 text-center">Reach Your Goal</h2>
