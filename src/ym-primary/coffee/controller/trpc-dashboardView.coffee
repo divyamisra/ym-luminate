@@ -1364,11 +1364,11 @@ angular.module 'trPcControllers'
             # if prev item is the last item earned then add and start pushing in items
             if prevstatus == 1 and status == 0 and startList == 0
               startList = 1
-              $scope.upcomingGifts[] = gift
+              $scope.upcomingGifts.push gift
             # if items need to be added then only add up to 3 after pushing first one
             if startList == 1 and listCnt <= giftToAdd
               listCnt++
-              $scope.upcomingGifts[] = gift
+              $scope.upcomingGifts.push gift
             giftPrev = gift
             prevstatus = gift.earned
             # add last 4 no matter what
