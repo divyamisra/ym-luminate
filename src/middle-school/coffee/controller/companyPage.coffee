@@ -12,12 +12,13 @@ angular.module 'ahaLuminateControllers'
     'TeamraiserParticipantService'
     'BoundlessService'
     'ZuriService'
+    'NuclavisService'
     'TeamraiserRegistrationService'
     'TeamraiserCompanyPageService'
     'PageContentService'
     'SchoolLookupService'
     '$sce'
-    ($scope, $rootScope, $location, $filter, $timeout, $uibModal, APP_INFO, TeamraiserCompanyService, TeamraiserTeamService, TeamraiserParticipantService, BoundlessService, ZuriService, TeamraiserRegistrationService, TeamraiserCompanyPageService, PageContentService, SchoolLookupService, $sce) ->
+    ($scope, $rootScope, $location, $filter, $timeout, $uibModal, APP_INFO, TeamraiserCompanyService, TeamraiserTeamService, TeamraiserParticipantService, BoundlessService, ZuriService, NuclavisService, TeamraiserRegistrationService, TeamraiserCompanyPageService, PageContentService, SchoolLookupService, $sce) ->
       $scope.companyId = $location.absUrl().split('company_id=')[1].split('&')[0].split('#')[0]
       domain = $location.absUrl().split('/site/')[0]
       $rootScope.companyName = ''
@@ -66,6 +67,13 @@ angular.module 'ahaLuminateControllers'
       getLocalSponsors()
       $scope.$watch 'parentCompanyId', ->
         getLocalSponsors()
+      
+      $scope.CountOfStudentsCompletingFinnsMission = 0
+      getFinnsMissionCompletedCount = ->
+        NuclavisService.getMissionCount $scope.companyId + '/' + $scope.frId
+        .then (response) ->
+          $scope.CountOfStudentsCompletingFinnsMission = response.data.finns_mission_completed
+      getFinnsMissionCompletedCount()
       
       ZuriService.getSchoolActivity $scope.companyId,
         error: (response) ->
@@ -130,6 +138,7 @@ angular.module 'ahaLuminateControllers'
               name = companies[0].companyName
               coordinatorId = companies[0].coordinatorId
               $rootScope.companyName = name
+              localStorage.companyName = name
               setCompanyProgress amountRaised, goal
 
               ZuriService.getSchoolDetail '&school_id=' + $scope.companyId + '&EventId=' + $rootScope.frId,

@@ -154,7 +154,7 @@
           </div>
           <div class="ym-pc-dashboard-coordinator-progress-section__column  event-secondary-medium p-3">
             <div class="ym-pc-dashboard-box-header">
-              <h3 class="h5 text-start"> School Challenge </h3>
+              <h2 class="h5 text-start"> School Challenge </h2>
             </div>
             <div class="schoolChallenge d-flex justify-content-between flex-wrap gap-4 text-center">
               <div class="col-md-6">
@@ -209,21 +209,18 @@
         <div class="col">
           <div class="ym-pc-dashboard-progress-section__column event-secondary-medium p-3 mb-4">
             <div class="ym-pc-dashboard-progress-box">
-              <h3 class="h5"> School Page </h3>
+              <h2 class="h5"> School Page </h2>
               <p> Edit your pages to encourage students and parents to join and donate! </p>
               <div class="text-center mb-5">
                 <a class="btn btn-md-wide btn-primary" ng-href="TR?fr_id={{frId}}&amp;pg=company&amp;company_id={{participantRegistration.companyInformation.companyId}}">
                   <strong> View and Edit School Page </strong>
                 </a>
-                <button type="button" class="btn btn-blue" aria-label="Edit School Page URL" ng-click="editCompanyUrl()">
-                  <span class="fa fa-share-alt"></span>
-                </button>
               </div>
               <div class="ym-activity-url">
                 <p class="small">
                   <span ng-bind-html="companyPageUrl"></span>
-                  <button type="button" class="btn btn-blue" aria-label="Edit School Page URL" ng-click="editCompanyUrl()">
-                    <span class="fa fa-pencil"></span>
+                  <button type="button" class="btn btn-primary ms-2 fw-bold" aria-label="Edit School Page URL" ng-click="editCompanyUrl()">
+                    Edit School URL
                   </button>
                 </p>
               </div>
@@ -236,7 +233,7 @@
           </div>
           <div class="ym-pc-dashboard-progress-section__column event-secondary-medium p-3 mb-4">
             <div class="ym-pc-dashboard-progress-box">
-              <h3 class="h5"> District Dashboard </h3>
+              <h2 class="h5"> District Dashboard </h2>
               <p> Access district leaderboards and top school reports. </p>
             </div>
             <a href="https://districtdashboard.heart.org" target="_blank" class="btn btn-primary" aria-label="Dashboard report">

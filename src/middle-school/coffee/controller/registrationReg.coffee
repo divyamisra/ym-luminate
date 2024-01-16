@@ -18,6 +18,8 @@ angular.module 'ahaLuminateControllers'
       
       $rootScope.companyName = ''
       regCompanyId = luminateExtend.global.regCompanyId
+      if $scope.companyId == ''
+        $scope.companyId = regCompanyId      
       setCompanyName = (companyName) ->
         $rootScope.companyName = companyName
         if not $rootScope.$$phase
@@ -188,7 +190,7 @@ angular.module 'ahaLuminateControllers'
         success: (response) ->
           participationTypes = response.getParticipationTypesResponse.participationType
           participationTypes = [participationTypes] if not angular.isArray participationTypes
-          if $rootScope.partTypeId != ''
+          if $rootScope.partTypeId != '' and typeof($rootScope.partTypeId) != "undefined"
             angular.forEach participationTypes, (pType) ->
               if parseInt(pType.id) == parseInt($rootScope.partTypeId)
                 return participationType = pType

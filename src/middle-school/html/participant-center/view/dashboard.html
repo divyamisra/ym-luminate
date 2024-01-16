@@ -1,6 +1,6 @@
 <div cg-busy="dashboardPromises">
   <div class="student-hq" ng-if="participantRegistration.companyInformation.isCompanyCoordinator != 'true' || location == '/dashboard-student'" ng-cloak>
-    <p class="fw-bold">Participation Type: {{participationTypes[participantRegistration.participationTypeId]}}</p>
+    <p class="fw-bold d-none">Participation Type: {{participationTypes[participantRegistration.participationTypeId]}}</p>
     <div class="row ym-pc-dashboard-coordinators-message-section mb-2" ng-if="EventStartDate || DonationDueDate" ng-cloak>
       <div class="ym-pc-dashboard-event-date" ng-if="EventStartDate" ng-cloak> Event Date: {{EventStartDate | date:'MM/dd/yyyy'}}
         <span ng-if="EventStartDate != EventEndDate && EventEndDate != ''" ng-cloak> thru {{EventEndDate | date:'MM/dd/yyyy'}}
@@ -206,7 +206,7 @@
         </style>
 	        <div class="ym-badges-section white-box mb-4">
           <div class="ym-badges-list w-100">
-            <h2 class="h3"> My Badges </h2>
+            <h3 class="h3"> My Badges </h3>
             <div class="d-flex justify-content-center flex-wrap gap-4">
               <div class="loading mt-3" ng-if="loadingBadges" ng-cloak>Loading Badges... <img style="max-width: 75px" class="spin" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/middle-school/image/fy24/badge-11-earned.png"></div>
             </div>
@@ -675,7 +675,7 @@
                 <a class="" href="DocServer/FY23_AHC_Planning_Guide.pdf" target="_blank">
                   <img class="d-block mx-auto mb-2" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/middle-school/image/fy24/thank-you-gift-icon.png" alt="View Thank You Gifts">
                 </a>
-                <a class="btn btn-md-wide btn-primary" href="DocServer/FY23_AHC_Planning_Guide.pdf" target="_blank">
+                <a class="btn btn-md-wide btn-primary" href="https://www2.heart.org/site/SPageNavigator/ahc_resources_activation_guides_middle.html" target="_blank">
                   <strong> Volunteer Guide </strong>
                 </a>
               </div>

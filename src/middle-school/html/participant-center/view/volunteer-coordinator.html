@@ -50,30 +50,30 @@
 						</caption>
 						<thead>
 							<tr>
-								<th scope="col" aria-sort="{{volunteerDetail.sortColumn != 'StudentFirstName' ? 'none' : (volunteerDetail.sortAscending ? 'ascending' : 'descending')}}" role="alert">
+								<th scope="col">
 									<div class="text-left">
-										<button type="button" class="btn btn-link" ng-click="orderVolunteerDetail('StudentFirstName')" aria-label="Student First/Last Name">
+										<button type="button" class="btn btn-link" ng-click="orderVolunteerDetail('StudentFirstName')" aria-label="sort by student {{volunteerDetail.sortColumn != 'StudentFirstName' ? '' : (volunteerDetail.sortAscending ? 'ascending' : 'descending')}}">
 											<strong>Student</strong>&nbsp;<span class="fa" ng-class="{'fa-caret-down': (volunteerDetail.sortColumn == 'StudentFirstName' && !volunteerDetail.sortAscending) || volunteerDetail.sortColumn != 'StudentFirstName', 'fa-caret-up': volunteerDetail.sortColumn == 'StudentFirstName' && volunteerDetail.sortAscending, 'inactive': volunteerDetail.sortColumn != 'StudentFirstName'}" ng-if="volunteerCoordinatorData.length"><span class="sr-only">Sortable. {{volunteerDetail.sortColumn != 'StudentFirstName' ? 'Not sorted.' : (volunteerDetail.sortAscending ? 'Sorted ascending.' : 'Sorted descending.')}}</span></span>
 										</button>
 									</div>
 								</th>
-								<th scope="col" aria-sort="{{volunteerDetail.sortColumn != 'activity_date' ? 'none' : (volunteerDetail.sortAscending ? 'ascending' : 'descending')}}" role="alert">
+								<th scope="col">
 									<div class="text-center">
-										<button type="button" class="btn btn-link" ng-click="orderVolunteerDetail('activity_date')">
+										<button type="button" class="btn btn-link" ng-click="orderVolunteerDetail('activity_date')" aria-label="sort by date {{volunteerDetail.sortColumn != 'activity_date' ? '' : (volunteerDetail.sortAscending ? 'ascending' : 'descending')}}">
 											<strong>Date</strong>&nbsp;<span class="fa" ng-class="{'fa-caret-down': (volunteerDetail.sortColumn == 'activity_date' && !volunteerDetail.sortAscending) || volunteerDetail.sortColumn != 'activity_date', 'fa-caret-up': volunteerDetail.sortColumn == 'activity_date' && volunteerDetail.sortAscending, 'inactive': volunteerDetail.sortColumn != 'activity_date'}" ng-if="volunteerCoordinatorData.length"><span class="sr-only">Sortable. {{volunteerDetail.sortColumn != 'activity_date' ? 'Not sorted.' : (volunteerDetail.sortAscending ? 'Sorted ascending.' : 'Sorted descending.')}}</span></span>
 										</button>
 									</div>
 								</th>
-								<th scope="col" aria-sort="{{volunteerDetail.sortColumn != 'activity' ? 'none' : (volunteerDetail.sortAscending ? 'ascending' : 'descending')}}" role="alert">
+								<th scope="col">
 									<div class="text-center">
-										<button type="button" class="btn btn-link" ng-click="orderVolunteerDetail('activity')">
+										<button type="button" class="btn btn-link" ng-click="orderVolunteerDetail('activity')" aria-label="sort by activity {{volunteerDetail.sortColumn != 'activity' ? '' : (volunteerDetail.sortAscending ? 'ascending' : 'descending')}}">
 											<strong>Activity</strong>&nbsp;<span class="fa" ng-class="{'fa-caret-down': (volunteerDetail.sortColumn == 'activity' && !volunteerDetail.sortAscending) || volunteerDetail.sortColumn != 'activity', 'fa-caret-up': volunteerDetail.sortColumn == 'activity' && volunteerDetail.sortAscending, 'inactive': volunteerDetail.sortColumn != 'activity'}" ng-if="volunteerCoordinatorData.length"><span class="sr-only">Sortable. {{volunteerDetail.sortColumn != 'activity' ? 'Not sorted.' : (volunteerDetail.sortAscending ? 'Sorted ascending.' : 'Sorted descending.')}}</span></span>
 										</button>
 									</div>
 								</th>
-								<th scope="col" aria-sort="{{volunteerDetail.sortColumn != 'orig_hours' ? 'none' : (volunteerDetail.sortAscending ? 'ascending' : 'descending')}}" role="alert">
+								<th scope="col">
 									<div class="text-center">
-										<button type="button" class="btn btn-link" ng-click="orderVolunteerDetail('orig_hours')">
+										<button type="button" class="btn btn-link" ng-click="orderVolunteerDetail('orig_hours')" aria-label="sort by time {{volunteerDetail.sortColumn != 'orig_hours' ? '' : (volunteerDetail.sortAscending ? 'ascending' : 'descending')}}">
 											<strong>Hours : Minutes</strong>&nbsp;<span class="fa" ng-class="{'fa-caret-down': (volunteerDetail.sortColumn == 'orig_hours' && !volunteerDetail.sortAscending) || volunteerDetail.sortColumn != 'orig_hours', 'fa-caret-up': volunteerDetail.sortColumn == 'orig_hours' && volunteerDetail.sortAscending, 'inactive': volunteerDetail.sortColumn != 'orig_hours'}" ng-if="volunteerCoordinatorData.length"><span class="sr-only">Sortable. {{volunteerDetail.sortColumn != 'orig_hours' ? 'Not sorted.' : (volunteerDetail.sortAscending ? 'Sorted ascending.' : 'Sorted descending.')}}</span></span>
 										</button>
 									</div>

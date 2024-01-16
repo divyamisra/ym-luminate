@@ -1,6 +1,6 @@
 <div cg-busy="dashboardPromises">
   <div class="student-hq" ng-if="participantRegistration.companyInformation.isCompanyCoordinator != 'true' || location == '/dashboard-student'" ng-cloak>
-    <p class="fw-bold" ng-if="participationTypes[partTypeId].indexOf('Employee') > 0" ng-cloak>You are registered as a: {{participationTypes[partTypeId]}}</p>
+    <p class="fw-bold d-none">Participation Type: {{participationTypes[partTypeId]}}</p>
     <div class="row ym-pc-dashboard-coordinators-message-section mb-2" ng-if="EventStartDate || DonationDueDate" ng-cloak>
       <div class="ym-pc-dashboard-event-date" ng-if="EventStartDate" ng-cloak> Event Date: {{EventStartDate | date:'MM/dd/yyyy'}}
         <span ng-if="EventStartDate != EventEndDate && EventEndDate != ''" ng-cloak> thru {{EventEndDate | date:'MM/dd/yyyy'}}
@@ -220,7 +220,7 @@
 											</div>
 										</div>
 										<div class="worm">
-											<img class="img-fluid" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24-mission/inch-worm.gif">
+											<img class="img-fluid" alt="Inch Worm" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/ym-primary/image/fy24-mission/inch-worm.gif">
 										</div>
 									</foreignObject>
 								</g>
