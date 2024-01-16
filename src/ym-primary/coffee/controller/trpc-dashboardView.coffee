@@ -1347,34 +1347,28 @@ angular.module 'trPcControllers'
         NuclavisService.getGifts $scope.consId + '/' + $scope.frId
         .then (response) ->
           $scope.gifts = response.data.gifts
+          $scope.giftsEarned = 0
           angular.forEach $scope.gifts, (gift) ->
-            if gift.earned != 0
+            if gift.earned
               $scope.giftsEarned++
             $scope.totalGifts++
-          prevstatus = -1
+          prevEarned = -1
           startList = 0
           listCnt = 1
-          giftPrev = ""
-          giftToAdd = 3 # after adding first one - add 3 more
+          giftPrev = ''
+          giftToAdd = 3
           angular.forEach $scope.gifts, (gift) ->
-            # if nothing has been earned yet
-            if prevstatus == -1 and status == 0 and $scope.giftsEarned == 0
+            if prevEarned == -1 and !gift.earned and $scope.giftsEarned == 0
               startList = 1
-              giftToAdd = 4 # need to add next 4 to list
-            # if prev item is the last item earned then add and start pushing in items
-            if prevstatus == 1 and status == 0 and startList == 0
+              giftToAdd = 4
+            if prevEarned and !gift.earned and startList == 0
               startList = 1
-              $scope.upcomingGifts.push gift
-            # if items need to be added then only add up to 3 after pushing first one
+              $scope.upcomingGifts.push giftPrev
             if startList == 1 and listCnt <= giftToAdd
               listCnt++
               $scope.upcomingGifts.push gift
             giftPrev = gift
-            prevstatus = gift.earned
-            # add last 4 no matter what
-            if $scope.totalGifts >= giftsInList - 5 and status == 1 and startList == 0
-              startList = 1
-              giftToAdd = 4
+            prevEarned = gift.earned
 
         , (response) ->
           # TODO
