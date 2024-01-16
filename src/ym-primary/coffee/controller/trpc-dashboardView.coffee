@@ -1323,19 +1323,18 @@ angular.module 'trPcControllers'
         token_array = regex.exec(dateVal.toJSON());
         return token_array[1] + "-" + token_array[2] + "-" + token_array[3]
 
-      ###
-      $scope.showPrize = (sku, label, earned, video) ->
-        $scope.prize_sku = sku
-        $scope.prize_label = label
+      $scope.showPrize = (gift_id, name, earned, img_url, video) ->
+        $scope.prize_sku = gift_id
+        $scope.prize_label = name
         $scope.prize_status = earned
-        $scope.prize_video = video
+        $scope.prize_imgurl = img_url
+        #$scope.prize_video = video
         $scope.viewPrizeModal = $uibModal.open
           scope: $scope
           templateUrl: APP_INFO.rootPath + 'dist/ym-primary/html/participant-center/modal/viewPrize.html'
 
       $scope.cancelShowPrize = ->
         $scope.viewPrizeModal.close()
-      ###
 	
       getRandomID = ->
         return Math.floor((Math.random()*3)+1);
