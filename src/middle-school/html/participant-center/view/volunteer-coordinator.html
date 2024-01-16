@@ -52,7 +52,7 @@
 							<tr>
 								<th scope="col">
 									<div class="text-left">
-										<button type="button" class="btn btn-link" ng-click="orderVolunteerDetail('StudentFirstName')" aria-label="Student First/Last Name" aria-label="sort by student {{volunteerDetail.sortColumn != 'StudentFirstName' ? '' : (volunteerDetail.sortAscending ? 'ascending' : 'descending')}}">
+										<button type="button" class="btn btn-link" ng-click="orderVolunteerDetail('StudentFirstName')" aria-label="sort by student {{volunteerDetail.sortColumn != 'StudentFirstName' ? '' : (volunteerDetail.sortAscending ? 'ascending' : 'descending')}}">
 											<strong>Student</strong>&nbsp;<span class="fa" ng-class="{'fa-caret-down': (volunteerDetail.sortColumn == 'StudentFirstName' && !volunteerDetail.sortAscending) || volunteerDetail.sortColumn != 'StudentFirstName', 'fa-caret-up': volunteerDetail.sortColumn == 'StudentFirstName' && volunteerDetail.sortAscending, 'inactive': volunteerDetail.sortColumn != 'StudentFirstName'}" ng-if="volunteerCoordinatorData.length"><span class="sr-only">Sortable. {{volunteerDetail.sortColumn != 'StudentFirstName' ? 'Not sorted.' : (volunteerDetail.sortAscending ? 'Sorted ascending.' : 'Sorted descending.')}}</span></span>
 										</button>
 									</div>
