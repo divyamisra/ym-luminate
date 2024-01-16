@@ -95,7 +95,7 @@ angular.module('trPcControllers').controller 'NgPcVolunteerCoordinatorViewCtrl',
           $scope.volunteerAdminReportPending = false
   
     $scope.volunteerDetail =
-      'sortColumn': ''
+      'sortColumn': 'activity_date'
       'sortAscending': false
     $scope.orderVolunteerDetail = (sortColumn) ->
       $scope.volunteerDetail.sortAscending = !$scope.volunteerDetail.sortAscending
