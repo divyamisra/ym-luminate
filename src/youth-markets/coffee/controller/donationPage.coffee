@@ -211,6 +211,7 @@ angular.module 'ahaLuminateControllers'
 #          console.log('$scope.donationInfo.amount ' +$scope.donationInfo.amount)
           $scope.donationInfo.levelType = type
 #          console.log('$scope.donationInfo.levelType ' +$scope.donationInfo.levelType)
+          $scope.donationInfo.levelChecked = "level" + level
           localStorage['levelType'] = type
 #          console.log('localStorage[levelType] ' +localStorage['levelType'])
 
