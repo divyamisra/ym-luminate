@@ -1228,15 +1228,15 @@ angular.module 'trPcControllers'
               $scope.highestRaisedYear = $scope.schoolPlan.HRRYear
               $rootScope.HideGifts = $scope.schoolPlan.HideGifts
 
-              if $scope.schoolPlan.EventStartDate != '0000-00-00'
+              if $scope.schoolPlan.EventStartDate != '0000-00-00' && $scope.schoolPlan.EventStartDate != '1901-01-01'
                 $scope.schoolPlan.EventStartDate = new Date($scope.schoolPlan.EventStartDate.replace(/-/g, "/") + ' 00:01')
-              if $scope.schoolPlan.EventEndDate != '0000-00-00'
+              if $scope.schoolPlan.EventEndDate != '0000-00-00' && $scope.schoolPlan.EventEndDate != '1901-01-01'
                 $scope.schoolPlan.EventEndDate = new Date($scope.schoolPlan.EventEndDate.replace(/-/g, "/") + ' 00:01')
-              if $scope.schoolPlan.DonationDueDate != '0000-00-00'
+              if $scope.schoolPlan.DonationDueDate != '0000-00-00' && $scope.schoolPlan.DonationDueDate != '1901-01-01'
                 $scope.schoolPlan.DonationDueDate = new Date($scope.schoolPlan.DonationDueDate.replace(/-/g, "/") + ' 00:01')
-              if $scope.schoolPlan.KickOffDate != '0000-00-00'
+              if $scope.schoolPlan.KickOffDate != '0000-00-00' && $scope.schoolPlan.KickOffDate != '1901-01-01'
                 $scope.schoolPlan.KickOffDate = new Date($scope.schoolPlan.KickOffDate.replace(/-/g, "/") + ' 00:01')
-              if $scope.schoolPlan.LastDayOfSchool != '0000-00-00'
+              if $scope.schoolPlan.LastDayOfSchool != '0000-00-00' && $scope.schoolPlan.LastDayOfSchool != '1901-01-01'
                 $scope.schoolPlan.LastDayOfSchool = new Date($scope.schoolPlan.LastDayOfSchool.replace(/-/g, "/") + ' 00:01')
               $scope.coordinatorPoints = JSON.parse($scope.schoolPlan.PointsDetail)
             else
