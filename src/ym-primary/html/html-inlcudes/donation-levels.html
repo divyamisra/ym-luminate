@@ -85,7 +85,7 @@
           </button>
           <label ng-if="donationLevel.userSpecified == 'true'" class="sr-only" for="other_amount">Other Amount</label>
           <span ng-if="donationLevel.userSpecified == 'true'" class="ym-donation-levels__dollar-sign">$</span>
-          <input uib-popover="Please enter an amount" popover-placement="right" popover-trigger="focus" type="text" id="other_amount" name="otherAmt" class="btn btn-toggle btn-enter {{donationLevel.classLevel}} other-amount" ng-class="{'active': donationInfo.levelChecked == donationLevel.classLevel}" title="Other Amount" ng-if="donationLevel.userSpecified == 'true'" ng-change="enterAmount(otherAmt)" ng-blur="selectLevel($event, 'other', donationLevel.levelId)" ng-model="otherAmt" placeholder="Other" ng-value="donationInfo.otherAmt" aria-describedby="message-level-{{donationLevel.levelId}}" aria-pressed="{{donationInfo.levelChecked == donationLevel.classLevel}}">
+          <input uib-popover="Please enter an amount" popover-placement="right" popover-trigger="focus" type="text" id="other_amount" name="otherAmt" class="btn btn-toggle btn-enter {{donationLevel.classLevel}} other-amount" ng-class="{'active': donationInfo.levelChecked == donationLevel.classLevel}" title="Other Amount" ng-if="donationLevel.userSpecified == 'true'" ng-change="enterAmount(otherAmt)" ng-blur="selectLevel($event, 'other', donationLevel.levelId)" ng-model="otherAmt" placeholder="Other" ng-value="donationInfo.otherAmt" aria-describedby="message-level-{{donationLevel.levelId}}">
         </div>
       </div>
     </fieldset>
