@@ -198,15 +198,16 @@ angular.module 'ahaLuminateApp'
           schools = []
           angular.forEach companies, (company) ->
             #if company.coordinatorId and company.coordinatorId isnt '0'
-            schools.push
-              FR_ID: company.eventId
-              COMPANY_ID: company.companyId
-              SCHOOL_NAME: company.companyName
-              SCHOOL_CITY: company.SCHOOL_CITY
-              SCHOOL_STATE: company.SCHOOL_STATE
-              COORDINATOR_FIRST_NAME: company.COORDINATOR_FIRST_NAME
-              COORDINATOR_LAST_NAME: company.COORDINATOR_LAST_NAME
-              GRADES: company.ParticipatingGradeLevels
+            if company.eventId != 0
+              schools.push
+                FR_ID: company.eventId
+                COMPANY_ID: company.companyId
+                SCHOOL_NAME: company.companyName
+                SCHOOL_CITY: company.SCHOOL_CITY
+                SCHOOL_STATE: company.SCHOOL_STATE
+                COORDINATOR_FIRST_NAME: company.COORDINATOR_FIRST_NAME
+                COORDINATOR_LAST_NAME: company.COORDINATOR_LAST_NAME
+                GRADES: company.ParticipatingGradeLevels
           schools
           
         setSchoolsData = (schools) ->
