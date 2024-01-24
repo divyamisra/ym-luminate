@@ -447,6 +447,7 @@ angular.module 'ahaLuminateControllers'
         angular.element('.btn--credit').attr 'aria-pressed','true'
         angular.element('.btn--paypal').attr 'aria-pressed','false'
         angular.element('span.field-required + label').append '<span class=\'text-red fs-5\'>*</span>'
+        angular.element('.cvv-input a.HelpLink').attr 'aria-label','What is CVV? Opens new window.'
 
       $scope.togglePaymentType = (paymentType) ->
         if paymentType is 'paypal'
