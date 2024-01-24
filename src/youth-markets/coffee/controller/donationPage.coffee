@@ -446,6 +446,8 @@ angular.module 'ahaLuminateControllers'
         angular.element('.ym-personal-note label').append '<span class="sr-only">Checkbox 3 of 3</span>'
         angular.element('.btn--credit').attr 'aria-pressed','true'
         angular.element('.btn--paypal').attr 'aria-pressed','false'
+        angular.element('span.field-required + label').append '<span class=\'text-red fs-5\'>*</span>'
+        angular.element('input.required, select.required').attr 'aria-required','true'
 
       $scope.togglePaymentType = (paymentType) ->
         if paymentType is 'paypal'
