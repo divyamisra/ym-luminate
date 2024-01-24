@@ -447,7 +447,6 @@ angular.module 'ahaLuminateControllers'
         angular.element('.btn--credit').attr 'aria-pressed','true'
         angular.element('.btn--paypal').attr 'aria-pressed','false'
         angular.element('span.field-required + label').append '<span class=\'text-red fs-5\'>*</span>'
-        angular.element('input.required, select.required').attr 'aria-required','true'
 
       $scope.togglePaymentType = (paymentType) ->
         if paymentType is 'paypal'
@@ -706,6 +705,7 @@ angular.module 'ahaLuminateControllers'
         angular.element('input#responsive_payment_typecc_numbername').addClass("creditcard")
         angular.element('.HelpLink').attr("title","What is CVV? Opens new window.")
         angular.element('input[name=terms-of-service-checkbox]').attr("aria-required","true")
+        angular.element('input.required, select.required').attr 'aria-required','true'
         
       loadLevels().then ->
         $scope.otherAmtError = false
