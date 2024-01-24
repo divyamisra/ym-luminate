@@ -36,32 +36,33 @@ angular.module 'ahaLuminateControllers'
         console.log('TOGGLEDONATIONLEVEL type ' + type + ' levelAmount ' + levelAmount)
         console.log('TOGGLEDONATIONLEVEL $scope.participationOptions.ng_donation_level_other_amount' + $scope.participationOptions.ng_donation_level_other_amount)
 
-        if levelAmount != '$0.00'
-          console.log('removing coverfee check box disabled')
-          angular.element('input[name="cover-fee-checkbox"]').removeAttr('disabled')
-        else if levelAmount == '$0.00'
-          console.log('adding coverfee check box disabled')
-          angular.element('input[name="cover-fee-checkbox"]').attr('disabled',true)
+        if typeof $scope.participationOptions.ng_donation_level_other_amount != 'undefined' or levelAmount != '-1'
+          if levelAmount != '$0.00'
+            console.log('removing coverfee check box disabled')
+            angular.element('input[name="cover-fee-checkbox"]').removeAttr('disabled')
+          else if levelAmount == '$0.00'
+            console.log('adding coverfee check box disabled')
+            angular.element('input[name="cover-fee-checkbox"]').attr('disabled',true)
 
-        if type is 'level' and $scope.coverFee == true
-          $scope.coverFee = false
+          if type is 'level' and $scope.coverFee == true
+            $scope.coverFee = false
 
-        if type is 'level' and $scope.coverFee == false
-          console.log('TOGGLEDONATIONLEVEL coverfee ' + $scope.coverFee)
-          angular.element('.ym-registration-ptype-donation-levels .btn-enter').val('')
-          angular.element('.ym-registration-ptype-donation-levels .btn-enter').removeClass('active')
+          if type is 'level' and $scope.coverFee == false
+            console.log('TOGGLEDONATIONLEVEL coverfee ' + $scope.coverFee)
+            angular.element('.ym-registration-ptype-donation-levels .btn-enter').val('')
+            angular.element('.ym-registration-ptype-donation-levels .btn-enter').removeClass('active')
 
-        if type is 'level' or (type is 'other' and $scope.participationOptions.ng_donation_level_other_amount isnt '') 
-          console.log('type is level or type is other and other is not blank')
-          $scope.participationOptions.ng_donation_level = levelAmount
-          $selectedDonAmt = levelAmount
-          $scope.participationOptionsForm.ng_donation_level_other_amount.$setValidity('amount', true)
-          angular.forEach $scope.donationLevels.levels, (donationLevel, donationLevelIndex) ->
-            if donationLevel.amount is levelAmount
-              $scope.donationLevels.activeLevel = donationLevel
+          if type is 'level' or (type is 'other' and $scope.participationOptions.ng_donation_level_other_amount isnt '') 
+            console.log('type is level or type is other and other is not blank')
+            $scope.participationOptions.ng_donation_level = levelAmount
+            $selectedDonAmt = levelAmount
+            $scope.participationOptionsForm.ng_donation_level_other_amount.$setValidity('amount', true)
+            angular.forEach $scope.donationLevels.levels, (donationLevel, donationLevelIndex) ->
+              if donationLevel.amount is levelAmount
+                $scope.donationLevels.activeLevel = donationLevel
  
-        if levelAmount isnt '-1'
-          $scope.participationOptions.ng_donation_level_other_amount = ''
+          if levelAmount isnt '-1'
+            $scope.participationOptions.ng_donation_level_other_amount = ''
 
       $scope.participationOptions.participationTypes = []
       $participationType = angular.element('.js--registration-ptype-part-types input[name="fr_part_radio"]').eq 0
