@@ -82,7 +82,7 @@
         <div role="group" aria-labelledby="button_amounts" required aria-required="true" class="donation-amounts">
           <span class="aural-only" aria-hidden="true" id="button_amounts">Select or specify an amount</span>
           <div class="ym-donation-levels__amount" ng-repeat="donationLevel in donationLevels" ng-class="{'active': donationInfo.levelChecked == donationLevel.classLevel}" aria-describedby="message-level-{{donationLevel.levelId}}">
-            <button type="button" class="btn btn-toggle btn-lg {{donationLevel.classLevel}}" ng-class="{'active': donationInfo.levelChecked == donationLevel.classLevel}" ng-if="donationLevel.userSpecified == 'false'" ng-click="selectLevel($event, 'level', donationLevel.levelId, donationLevel.amount);" title="{{donationLevel.levelLabel}}" aria-pressed="{{donationInfo.levelChecked == donationLevel.classLevel}}" aria-required="true">
+            <button type="button" class="btn btn-toggle btn-lg {{donationLevel.classLevel}}" ng-class="{'active': donationInfo.levelChecked == donationLevel.classLevel}" ng-if="donationLevel.userSpecified == 'false'" ng-click="selectLevel($event, 'level', donationLevel.levelId, donationLevel.amount);" title="{{donationLevel.levelLabel}}" aria-pressed="{{donationInfo.levelChecked == donationLevel.classLevel}}">
               {{donationLevel.amount}}
             </button>
             <label ng-if="donationLevel.userSpecified == 'true'" class="sr-only" for="other_amount">Other Amount</label>
