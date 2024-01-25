@@ -444,6 +444,10 @@ angular.module 'ahaLuminateControllers'
 #        angular.element('.ym-employer-match label').append '<span class="sr-only">Checkbox 1 of 3</span>'
         angular.element('.ym-donor-recognition label').append '<span class="sr-only">Checkbox 2 of 3</span>'
         angular.element('.ym-personal-note label').append '<span class="sr-only">Checkbox 3 of 3</span>'
+        angular.element('.btn--credit').attr 'aria-pressed','true'
+        angular.element('.btn--paypal').attr 'aria-pressed','false'
+        angular.element('span.field-required + label').append '<span class=\'text-red fs-5\'>*</span>'
+        angular.element('.cvv-input a.HelpLink').attr 'aria-label','What is CVV? Opens new window.'
 
       $scope.togglePaymentType = (paymentType) ->
         if paymentType is 'paypal'
@@ -451,6 +455,8 @@ angular.module 'ahaLuminateControllers'
           angular.element('#payment_cc_container').hide()
           angular.element('.btn--credit').removeClass 'active'
           angular.element('.btn--paypal').addClass 'active'
+          angular.element('.btn--credit').attr 'aria-pressed','false'
+          angular.element('.btn--paypal').attr 'aria-pressed','true'
 
           angular.element('#responsive_payment_typecc_numbername').attr('aria-required','false') 
           angular.element('#responsive_payment_typecc_exp_date_MONTH').attr('aria-required','false') 
@@ -462,6 +468,8 @@ angular.module 'ahaLuminateControllers'
           angular.element('#payment_cc_container').show()
           angular.element('.btn--credit').addClass 'active'
           angular.element('.btn--paypal').removeClass 'active'
+          angular.element('.btn--credit').attr 'aria-pressed','true'
+          angular.element('.btn--paypal').attr 'aria-pressed','false'
 
           angular.element('#responsive_payment_typecc_numbername').attr('aria-required','true') 
           angular.element('#responsive_payment_typecc_exp_date_MONTH').attr('aria-required','true') 
@@ -698,6 +706,7 @@ angular.module 'ahaLuminateControllers'
         angular.element('input#responsive_payment_typecc_numbername').addClass("creditcard")
         angular.element('.HelpLink').attr("title","What is CVV? Opens new window.")
         angular.element('input[name=terms-of-service-checkbox]').attr("aria-required","true")
+        angular.element('input.required, select.required').attr 'aria-required','true'
         
       loadLevels().then ->
         $scope.otherAmtError = false
