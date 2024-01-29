@@ -1016,7 +1016,6 @@ angular.module 'trPcControllers'
               id: prize.mission_id
               label: prize.hq_name
               status: prize.earned
-              img_url: prize.url
               mission_url: prize.hq_action_url
               mission_url_type: prize.hq_action_type
               final_url: final_url
@@ -1041,7 +1040,6 @@ angular.module 'trPcControllers'
             id: 99
             label: prize.hq_name
             status: prize.completed
-            img_url: prize.url
             mission_url: prize.hq_action_url
             mission_url_type: prize.hq_action_type
             final_url: final_url
