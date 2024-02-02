@@ -576,7 +576,7 @@
           <div class="ym-pc-dashboard-facebook-section h-100 event-secondary-medium p-3" ng-show="!facebookFundraiserId">
             <div class="container">
               <div class="ym-pc-dashboard-section-header">
-                <h3 class="h5 text-start"> Let's Get Fundraising <span ng-bind-html="consNameFirst"></span></span>! </h3>
+                <h3 class="h5 text-start"> Let's Get Fundraising<span ng-if="consNameFirst && consNameFirst != ''"> <span ng-bind-html="consNameFirst"></span></span>!</h3>
               </div>
               <div class="text-start">
                 <p> Link your personal page to a new Facebook Fundraiser to receive donations from your Facebook friends. </p>
@@ -587,7 +587,7 @@
                   <span class="fa fa-facebook-square"></span>&nbsp; <strong> Connect to Facebook Fundraiser </strong>
                 </button>
                 <div class="ym-pc-dashboard-facebook-hint">
-		  Please allow up to 72 hours for donations to be reflected in your totals and Finn’s Mission.<br/>
+		  Please allow up to 72 hours for donations to be reflected in your totals and Finn's Mission.<br/>
 		  By clicking this link, you will leave AHA's website and be redirected to another site not under the control of AHA.
 		</div>
               </div>
