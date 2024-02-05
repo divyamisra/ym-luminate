@@ -212,8 +212,8 @@
             </div>
             <div class="badges d-flex flex-wrap justify-content-around">
               <div class="ym-badges" ng-repeat="(name, prize) in prizes" ng-cloak>
-                <div class="ym-badge text-center mb-0 p-2" tabindex="0" aria-label="{{prize.label}} Badge {{(prize.status) ? 'Earned' : 'Not Earned'}}">
-                  <img class="img-fluid" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/middle-school/image/fy24/badge-{{(name == 14 && (participationTypes[partTypeId].indexOf('Employee') > 0) ? '14a' : name)}}-{{(prize.status) ? 'earned' : 'unearned'}}.png" alt="{{prize.label}} Badge {{(prize.status) ? 'Earned' : 'Not Earned'}}">
+                <div class="ym-badge text-center mb-0 p-2" tabindex="0" aria-label="{{prize.label_acc}} Badge {{(prize.status) ? 'Earned' : 'Not Earned'}}">
+                  <img class="img-fluid" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}ym-luminate/dist/middle-school/image/fy24/badge-{{(name == 14 && (participationTypes[partTypeId].indexOf('Employee') > 0) ? '14a' : name)}}-{{(prize.status) ? 'earned' : 'unearned'}}.png" alt="{{prize.label_acc}} Badge {{(prize.status) ? 'Earned' : 'Not Earned'}}">
                   <div class="badge-title" ng-bind-html="prize.label"></div>
                   <a class="badge-button btn btn-primary mb-2" ng-class="(!prize.status) ? '' : 'btn-white'" ng-href="{{prize.final_url}}" target="{{(prize.mission_url_type == 'Quiz') ? '_blank' : ''}}" aria-label="{{prize.aria_button}}" ng-if="prize.mission_url_type != 'Modal'" ng-cloak>
                     <strong>

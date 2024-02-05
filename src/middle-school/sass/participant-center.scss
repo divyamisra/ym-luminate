@@ -56,12 +56,17 @@
   max-width: 90%;
 }
 
-#nclvs_cc_heading {
+#nclvs_cc_heading,
+#nclvs_cch_heading {
   color: $event-primary-acc !important;
 }
 #nclvs_sr_table thead tr th,
-#nclvs_cc_table thead tr th {
+#nclvs_cc_table thead tr th,
+#nclvs_cch_table thead tr th {
   border-color: $event-primary-acc !important;
+}
+#nclvs_classroom_challenge .nclvs_cch_tab_item {
+  color: $event-primary-acc !important;
 }
 
 .ym-pc-reports-lists {
@@ -78,7 +83,8 @@
 	}
 }
 
-.ym-pc-dashboard-progress-box #nclvs_classroom_competition {
+.ym-pc-dashboard-progress-box #nclvs_classroom_competition,
+.ym-pc-dashboard-progress-box #nclvs_classroom_challenge {
     padding: 0;
     box-shadow: none;
 }
