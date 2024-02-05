@@ -1010,11 +1010,17 @@ angular.module 'trPcControllers'
               earned_status = "Earned"
             else 
               earned_status = "Unearned"
+            hq_name_acc = prize.hq_name
+            if prize.hq_name == 'Personal Donation'
+              hq_name_acc = 'Give Donation'
+            if prize.hq_name == 'Donation from Others'
+              hq_name_acc = 'Get Donation'
             aria_label = prize.hq_name + ": " + earned_status + " - " + prize.hq_hover
             button_aria_label = prize.hq_button + ": " + earned_status + " - " + prize.hq_hover
             $scope.prizes[prize.mission_id] = 
               id: prize.mission_id
               label: prize.hq_name
+              label_acc: hq_name_acc
               status: prize.earned
               mission_url: prize.hq_action_url
               mission_url_type: prize.hq_action_type
@@ -1039,6 +1045,7 @@ angular.module 'trPcControllers'
           $scope.prizes['trophy'] = 
             id: 99
             label: prize.hq_name
+            label_acc: prize.hq_name
             status: prize.completed
             mission_url: prize.hq_action_url
             mission_url_type: prize.hq_action_type
