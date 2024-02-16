@@ -2,14 +2,16 @@
 <!-- Activate header/footer plugin -->
 <script>
   jQuery(function() {
-    jQuery('body.aha-luminate').ahaHeaderFooterSitecore({
-      showSearch: true,
-      showFooterSupportBar: true,
-      supportBarContent:
-      {'title':'CPR-Related Inquiries:','info':'1-877-AHA-4CPR or 1-877-242-4277'},
-      supportBarCallToActions:
-      [{'title':'International Inquiries','link':'#'}]
-    });
+    if (jQuery.isFunction(jQuery().ahaHeaderFooterSitecore)) {
+      jQuery('body.aha-luminate').ahaHeaderFooterSitecore({
+        showSearch: true,
+        showFooterSupportBar: true,
+        supportBarContent:
+        {'title':'CPR-Related Inquiries:','info':'1-877-AHA-4CPR or 1-877-242-4277'},
+        supportBarCallToActions:
+        [{'title':'International Inquiries','link':'#'}]
+      });
+    }
   });
 </script >
   
