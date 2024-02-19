@@ -64,6 +64,9 @@ if window.location.href.indexOf('pagename=ym_khc_participant_center') isnt -1
           .when '/faq', 
             templateUrl: APP_INFO.rootPath + 'dist/ym-primary/html/participant-center/view/faq.html'
             controller: 'NgPcFAQViewCtrl'
+          .when '/order-post-event-gifts', 
+            templateUrl: APP_INFO.rootPath + 'dist/ym-primary/html/participant-center/view/order-gifts.html'
+            controller: 'NgPcOrderGiftsViewCtrl'
           .otherwise 
             redirectTo: do ->
               # redirect PC1-style URLs
