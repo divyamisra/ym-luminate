@@ -51,6 +51,9 @@
       <a role="listitem" class="ng-pc-nav-item ng-pc-nav-item--faq nav-link ng-pc-nav-item--faq" href="https://www2.heart.org/site/SPageNavigator/khc_resources_coordinator_FAQ.html" target="_blank" ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'">
          <span><strong>FAQ</strong>&nbsp;&nbsp;<span class="fa fa-external-link" aria-hidden="true"></span></span>
       </a>
+      <a role="listitem" ng-href="{{baseUrl}}#/order-post-event-gifts" class="ng-pc-nav-item nav-link ng-pc-nav-item--post-event-gifts" ng-class="{'active': location == '/order-post-event-gifts'}" ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
+        <span><strong>Order Post-Event Gifts</strong></span>
+      </a>
     </div>
   </nav>
   <div ng-view class="ng-pc-view-container col"></div>
