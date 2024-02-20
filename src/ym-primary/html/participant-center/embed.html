@@ -9,6 +9,9 @@
       <a role="listitem" ng-href="{{baseUrl}}#/schoolplan" class="ng-pc-nav-item nav-link ng-pc-nav-item--school-plan" ng-class="{'active': location.indexOf('/schoolplan') != -1}" ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
         <span><strong>School Plan</strong></span>
       </a>
+      <a role="listitem" ng-href="{{baseUrl}}#/manage-instant-gifts" class="ng-pc-nav-item nav-link ng-pc-nav-item--manage-instant-gifts" ng-class="{'active': location.indexOf('/manage-instant-gifts') != -1}" ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
+        <span><strong>Manage Instant Gifts</strong></span>
+      </a>
       <a role="listitem" ng-href="{{baseUrl}}#/student-gifts" class="ng-pc-nav-item nav-link ng-pc-nav-item--gift" ng-class="{'active': location == '/student-gifts'}" ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true' && showGiftsTab" ng-cloak>
         <span><strong>Student Thank-You Gifts</strong></span>
       </a>
@@ -53,6 +56,9 @@
       </a>
       <a role="listitem" ng-href="{{baseUrl}}#/order-post-event-gifts" class="ng-pc-nav-item nav-link ng-pc-nav-item--post-event-gifts" ng-class="{'active': location == '/order-post-event-gifts'}" ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
         <span><strong>Order Post-Event Gifts</strong></span>
+      </a>
+      <a role="listitem" ng-href="{{baseUrl}}#/school-give-back" class="ng-pc-nav-item nav-link ng-pc-nav-item--school-give-back" ng-class="{'active': location == '/school-give-back'}" ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
+        <span><strong>School Give-Back</strong></span>
       </a>
     </div>
   </nav>
