@@ -152,6 +152,11 @@
                     </a>
                   </li>
                   <li>
+                    <a role="listitem" ng-click="toggleSiteMenu()" ng-href="{{baseUrl}}#/manage-instant-gifts" ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
+                      <span><strong>Manage Instant Gifts</strong></span>
+                    </a>
+                  </li>
+                  <li>
                     <a role="listitem" ng-click="toggleSiteMenu()" ng-href="{{baseUrl}}#/student-gifts" ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true' && showGiftsTab" ng-cloak>
                       <span><strong>Student Thank-You Gifts</strong></span>
                     </a>
@@ -224,6 +229,11 @@
                   <li>
                     <a role="listitem" ng-click="toggleSiteMenu()" ng-href="{{baseUrl}}#/order-post-event-gifts" ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
                        <span><strong>Order Post-Event Gifts</strong></span>
+                    </a>
+                  </li>
+                  <li>
+                    <a role="listitem" ng-click="toggleSiteMenu()" ng-href="{{baseUrl}}#/school-give-back" ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
+                       <span><strong>School Give-Back</strong></span>
                     </a>
                   </li>
                   ::]]
