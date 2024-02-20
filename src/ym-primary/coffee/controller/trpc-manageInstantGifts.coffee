@@ -1,5 +1,5 @@
 angular.module 'trPcControllers'
-  .controller 'NgPcManageGiftsViewCtrl', [
+  .controller 'NgPcManageInstantGiftsViewCtrl', [
     '$rootScope'
     '$scope'
     '$filter'
