@@ -11,5 +11,6 @@ angular.module 'trPcControllers'
       if $scope.participantRegistration.companyInformation?.isCompanyCoordinator is 'true'
         setTimeout (->
           ahaWebSMT.ssoInitialize $rootScope.consId, $rootScope.frId, '' + $rootScope.authToken, '' + $rootScope.sessionCookie
+          ahaWebSMT.orderPage.setup()
         ), 1000
   ]
