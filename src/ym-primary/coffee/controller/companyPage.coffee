@@ -422,7 +422,7 @@ angular.module 'ahaLuminateControllers'
               name: teacher.teacher_name
               grade: grade
               students: teacher.students | 0
-              msg: '# Online Students'
+              msg: '# Students'
           grade_raised = response.data.most_dollars_by_grade
           angular.forEach grade_raised, (sgrade) ->
             grade = sgrade.grade_name
