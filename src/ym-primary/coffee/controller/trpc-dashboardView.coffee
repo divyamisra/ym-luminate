@@ -1,4 +1,4 @@
-angular.module 'trPcControllers'
+kiangular.module 'trPcControllers'
   .controller 'NgPcDashboardViewCtrl', [
     '$rootScope'
     '$scope'
@@ -77,7 +77,7 @@ angular.module 'trPcControllers'
       webContent.load = 1
       if $scope.participantRegistration.companyInformation?.isCompanyCoordinator is 'true'
         ahaWebContent.ssoInitialize $rootScope.consId, $rootScope.frId, '' + $rootScope.authToken, '' + $rootScope.sessionCookie
-	ahaWebSMT.schoolPage.setup()
+        ahaWebSMT.schoolPage.setup()
 
       if $scope.participantRegistration.lastPC2Login is '0'
         if $scope.participantRegistration.companyInformation?.isCompanyCoordinator isnt 'true'
