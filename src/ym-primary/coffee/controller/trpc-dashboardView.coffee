@@ -1,4 +1,4 @@
-kiangular.module 'trPcControllers'
+angular.module 'trPcControllers'
   .controller 'NgPcDashboardViewCtrl', [
     '$rootScope'
     '$scope'
