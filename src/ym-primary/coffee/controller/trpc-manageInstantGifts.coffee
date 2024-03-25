@@ -12,6 +12,6 @@ angular.module 'trPcControllers'
         ahaWebSMT.ssoInitialize $rootScope.consId, $rootScope.frId, '' + $rootScope.authToken, '' + $rootScope.sessionCookie
         setTimeout (->
           ahaWebSMT.studentsPage.setup()
-        ), 2000
+        ), 3000
       
   ]
