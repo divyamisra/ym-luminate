@@ -8,5 +8,7 @@ angular.module 'trPcControllers'
       $scope.reportPromises = []
 
       if $scope.participantRegistration.companyInformation?.isCompanyCoordinator is 'true'
-        ahaWebContent.ssoInitialize $rootScope.consId, $rootScope.frId, '' + $rootScope.authToken, '' + $rootScope.sessionCookie
+        setTimeout (->
+          ahaWebContent.ssoInitialize $rootScope.consId, $rootScope.frId, '' + $rootScope.authToken, '' + $rootScope.sessionCookie
+        ), 3000
   ]
